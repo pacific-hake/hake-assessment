@@ -23,18 +23,23 @@ make.catches.table <- function(catches,              ## The output of the load.c
     ## If start.yr > 1991 then US foreign, US JV, and Canadian foreign will be removed since they are all zeroes.
     catches <- catches[,c("Year","atSea_US_MS","atSea_US_CP","US_shore","USresearch","Ustotal",
                           "CAN_JV","CAN_Shoreside","CAN_FreezeTrawl","CANtotal","TOTAL")]
-    colnames(catches) <- c("Year","\\specialcell{US\\\\Mother-\\\\ship}","\\specialcell{US\\\\Catcher-\\\\Processor}","\\specialcell{US\\\\Shore-\\\\based}",
-                           "\\specialcell{US\\\\Research}","\\specialcell{US\\\\Total}",
-                           "\\specialcell{CAN\\\\Joint\\\\Venture}","\\specialcell{CAN\\\\Shore-\\\\side}","\\specialcell{CAN\\\\Freezer-\\\\Trawler}",
-                           "\\specialcell{CAN\\\\Total}","Total")
-    ##colnames(catches) <- c("Year","US\nMother-\nship","US\nCatcher-\nProcessor","US\nShore-\nbased","US\nResearch","US\nTotal",
-    ##                       "CAN\nJoint-\nVenture","CAN\nShoreside","CAN\nFreezer-Trawler","CAN\nTotal","Total")
+    colnames(catches) <- c("\\specialcell{\\textbf{Year}}",
+                           "\\specialcell{\\textbf{US}\\\\\\textbf{Mother-}\\\\\\textbf{ship}}",
+                           "\\specialcell{\\textbf{US}\\\\\\textbf{Catcher}-\\\\\\textbf{Processor}}",
+                           "\\specialcell{\\textbf{US}\\\\\\textbf{Shore-}\\\\\\textbf{based}}",
+                           "\\specialcell{\\textbf{US}\\\\\\textbf{Research}}",
+                           "\\specialcell{\\textbf{US}\\\\\\textbf{Total}}",
+                           "\\specialcell{\\textbf{CAN}\\\\\\textbf{Joint}\\\\\\textbf{Venture}}",
+                           "\\specialcell{\\textbf{CAN}\\\\\\textbf{Shore-}\\\\\\textbf{side}}",
+                           "\\specialcell{\\textbf{CAN}\\\\\\textbf{Freezer-}\\\\\\textbf{Trawler}}",
+                           "\\specialcell{\\textbf{CAN}\\\\\\textbf{Total}}",
+                           "\\specialcell{\\textbf{Total}}")
   }else{
     colnames(catches) <- c("Year","US\nForeign","US\nJV","US\nMother-\nship","US\nCatcher-\nProcessor","US\nShore-\nbased","US\nResearch","US\nTotal",
                            "CAN\nForeign","CAN\nJoint-\nVenture","CAN\nShoreside","CAN\nFreezer-Trawler","CAN\nTotal","Total")
   }
-  ## Filter for correct years to show and make thousand-seperated numbers
-  catches <- catches[catches$Year >= start.yr & catches$Year <= end.yr,]
+  ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
+  catches <- catches[catches[,1] >= start.yr & catches[,1] <= end.yr,]
   catches[,-1] <- fmt0(catches[,-1])  ## -1 means leave the years alone and don't comma-seperate them
 
   ## Make the size string for font and space size

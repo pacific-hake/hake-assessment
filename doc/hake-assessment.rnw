@@ -74,6 +74,12 @@
 \usepackage{algorithm}         %% For display of pseudocode
 \usepackage{algpseudocode}     %% For display of pseudocode
 \usepackage{linegoal}          %% For display of pseudocode
+
+\newcommand*{\TitleFont}{%
+      \usefont{\encodingdefault}{\rmdefault}{b}{n}%
+      \fontsize{20}{24}%
+      \selectfont}
+
 %% A \Let command for defining assignments within the algorithmic environment which
 %% supports automatic indentation when the second argument is too long to fit
 %% on one line
@@ -194,9 +200,9 @@
 ## When the latex part is run, these plots will be inserted automatically.
 ## ** IMPORTANT** If you want to remake the plots, you must delete this directory.
 ## If you don't, the cached plots from last time will be used.
-##opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
-##               fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
-##               results='show', cache=TRUE, cache.path='knitr-cache/')
+## opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
+##                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
+##                results='show', cache=TRUE, cache.path='knitr-cache/')
 opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
                fig.height=4, echo=FALSE, results=FALSE, message=FALSE, warning=FALSE,
                results='hide', cache=TRUE, cache.path='knitr-cache/')
@@ -229,6 +235,12 @@ if(use.binary.envir){
 }
 @
 
+%% Title page and author references page
+\title{\TitleFont DRAFT - Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}}
+\author{Joint Technical Committee of the Pacific Hake/Whiting Agreement \\ Between the Governments of the United States and Canada}
+\maketitle
+\newpage
+
 \input{preamble}            %% Table of contents, etc.
 % \setcounter{chapter}{0}
 % \setcounter{table}{0}
@@ -241,6 +253,9 @@ if(use.binary.envir){
 \renewcommand{\thetable}{\arabic{table}}
 \renewcommand{\thefigure}{\arabic{figure}}
 \renewcommand{\theequation}{\arabic{equation}}
+
+
+%%\subtitle{Joint Technical Committee of the Pacific Hake/Whiting Agreement Between the Governments of the United States and Canada}
 
 %% Here is where the maindoc 'rnw' file is inserted.
 %% It is simply pasted in here by knitr, just before the knitting is done,
