@@ -222,6 +222,7 @@ if(use.binary.envir){
   survey.start.yr <- 1995
   survey.end.yr <- 2015
 }else{
+  ## This doesn't work right at the moment, just use the binary loading for now.
   source("./r/all.r")
 }
 @
