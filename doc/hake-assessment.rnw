@@ -221,6 +221,8 @@ if(use.binary.envir){
   end.yr <- 2015    ## Used in text and plots throughout document, should be changed every year.
   survey.start.yr <- 1995
   survey.end.yr <- 2015
+  assess.yr <- 2015
+  last.assess.yr <- 2014
 }else{
   ## This doesn't work right at the moment, just use the binary loading for now.
   source("./r/all.r")

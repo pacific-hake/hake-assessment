@@ -47,7 +47,27 @@ the 2014 stock assessment, but are not included in the base model for this year.
 
 The Joint Technical Committee (JTC) assessment depends primarily on the fishery landings (\Sexpr{start.yr} -- \Sexpr{end.yr}),
 acoustic survey biomass estimates and age-composition (\Sexpr{survey.start.yr} -- \Sexpr{survey.end.yr}; Figure \ref{fig:es-survey-biomass}),
-as well as fishery age-composition.
+as well as fishery age-composition. While the 2011 survey index value was the lowest in the time-series, the index increased steadily over the
+four surveys conducted in 2011, 2012, 2013, and 2015. Age-composition data from the aggregated fisheries (1975--2014) and the acoustic survey
+contribute to the assessment model’s ability to resolve strong and weak cohorts.
+
+The assessment uses a Bayesian estimation approach, sensitivity analyses, and closed-loop simulations to evaluate the potential consequences
+of parameter uncertainty, alternative structural models, and management system performance, respectively. The Bayesian approach combines prior
+knowledge about natural mortality, stock-recruitment steepness (a parameter for stock productivity), and several other parameters with likelihoods
+for acoustic survey biomass indices and age-composition, as well as fishery age composition data. Integrating the joint posterior distribution
+over model parameters (via Markov Chain Monte Carlo simulation) provides probabilistic inferences about uncertain model parameters and forecasts
+derived from those parameters. Sensitivity analyses are used to identify alternative structural models that may also be consistent with the data.
+Finally, the closed-loop simulations provide an assessment of how alternative combinations of survey frequency, assessment model selectivity
+assumptions, and harvest control rules affect expected management outcomes given repeated application of these procedures over the long-term.
+
+This \Sexpr{assess.yr} assessment retains the structural form of the base assessment model from \Sexpr{last.assess.yr}. The model retains many
+of the previous elements as configured in Stock Synthesis (SS). Analyses conducted in \Sexpr{last.assess.yr} showed that the time-varying
+selectivity assessment model reduced the magnitude of extreme cohort strength estimates. In closed-loop simulations, management based upon
+assessment models with time-varying fishery selectivity led to higher median average catch, lower risk of falling below 10\% of unfished
+biomass ($B_0$), smaller probability of fishery closures, and lower inter-annual variability in catch compared to assessment models with
+time-invariant fishery selectivity. It was found that even a small degree of flexibility in the assessment model fishery selectivity could
+reduce the effects of errors caused by assuming selectivity is constant over time.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
@@ -63,6 +83,14 @@ make.survey.biomass.plot(models, modelnum=1)
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection*{Stock Biomass} \label{sec:es-stock-biomass}
+The base stock assessment model indicates that since the 1960s, Pacific Hake female spawning biomass has ranged from well below to near
+unfished equilibrium. The model estimates that it was below the unfished equilibrium in the 1960s and 1970s due to lower than average recruitment.
+The stock is estimated to have increased rapidly to near unfished equilibrium after two or more large recruitments in the early 1980s, and then
+declined steadily after a peak in the mid- to late-1980s to a low in 2000. This long period of decline was followed by a brief increase to a peak
+in 2003 as the large 1999 year class matured. The 1999 year class largely supported the fishery for several years due to relatively small recruitments
+between 2000 and 2007 entering the fishery to replace catches being removed during this period. With the aging 1999 year class, median female
+spawning biomass declined throughout the late 2000s, reaching a time-series low of 
 
 \newpage
 
