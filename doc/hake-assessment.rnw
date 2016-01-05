@@ -1,0 +1,279 @@
+%% hake-assessment.Rnw
+%% Pacific Hake Joint technical committee.
+%% Initial code Jan 2016.
+%% There are various commented-out lines which are from previous projects
+%% They are left in for examples of what can be done.
+
+\documentclass[11pt]{book}
+\usepackage{resDocSty}
+\usepackage{appendix}
+\usepackage{cite}
+%% need array when specifying a ragged right column:  >{\raggedright\arraybackslash}{p2in}.
+\usepackage{longtable,array}
+%% \renewcommand{\chaptername}{Appendix}
+%% \addto\captionsenglish{\renewcommand\chaptername{Part}}
+\usepackage{import}            % for figures in chapter subdirectories
+\usepackage{float}             % Allow figures and tables to be controlled better (avoid the floating).
+
+% Had these for YMR Eqns appendix:
+% \renewcommand{\footrulewidth}{0.4pt}
+% \renewcommand{\headrulewidth}{0pt}
+
+\usepackage{alltt}             %% Allows symbols inside a verbatim-type section
+\usepackage{listings}          %% For code listing with syntax highlighting
+\usepackage{graphicx}          % For inclusion of figures
+\usepackage{verbatim,fancyvrb} % verbatim package allows blocks with special characters to be shown easily.
+\usepackage{xifthen}           % provides \ifthenelse and \isempty
+\usepackage{color, colortbl}
+\usepackage{arydshln}          % For dashed lines in tables (has to be loaded after other stuff)
+\usepackage{pdfpages}          % So we can import PDFs into the document (e.g. request for science advice).
+\usepackage[parfill]{parskip}  % So paragraphs will have a blank line between them
+\setlength{\parskip}{12pt}
+
+% For hyperlinked references (figures and citations, etc.). The bookmarksdepthlevel allows
+%  the TOC to be shown in the bookmarks tree in the output PDF.
+
+%% START - COMMENTED OUT TO AVOID HYPERREF COLLISIONS
+%% \usepackage[bookmarks,bookmarksopen,bookmarksdepth=4]{hyperref}
+
+%% \hypersetup{                   % Set up the hyperref options here
+%%     pdftitle={Arrowtooth Flounder},
+%%     pdfauthor={Chris Grandin},
+%%     pdfsubject={Stock Assessment},
+%%     %pdfkeywords={keyword1, keyword2},
+%%     bookmarksnumbered=true,
+%%     bookmarksopen=true,
+%%     bookmarksopenlevel=1,
+%%     colorlinks=false,   % Must be false for CSAS submission. This makes it harder to find the links but they stupidly require it.
+%%     hidelinks=true,     % Necessary to remove boxes around hyperlinks for submission
+%%     %linkcolor=blue,    % Commented out for the submission
+%%     %allcolors=blue,    % Commented out for the submission
+%%     %citecolor=cyan,    % Commented out for the submission
+%%     pdfstartview=Fit,
+%%     pdfpagemode=UseOutlines,
+%%     breaklinks=true     % Allows the list of figures and tables to have wrapping text (since they are actually hyperlinks).
+%%     %pdfpagelayout=TwoPageRight
+%% }
+%% END - COMMENTED OUT TO AVOID HYPERREF COLLISIONS
+
+%% Use the following codes for references within the document.
+%%   chap: chapter
+%%    sec: section
+%% subsec: subsection
+%%   fig: figure
+%%    tab: table
+%%     eq: equation
+%%    lst: code listing
+%%    itm: enumerated list item
+%%    app: appendix subsection
+\usepackage{xspace}            %% Provide the LaTeX and TeX symbols
+\usepackage{hypcap}            %% So links will anchor at figure, not caption
+\usepackage{subfig}            %% For two-panel plots
+\usepackage{scrextend}         %% For indenting blocks of text with 'addmargin'
+\usepackage{relsize}           %% For mathlarger, which makes equations bigger
+\usepackage{algorithm}         %% For display of pseudocode
+\usepackage{algpseudocode}     %% For display of pseudocode
+\usepackage{linegoal}          %% For display of pseudocode
+%% A \Let command for defining assignments within the algorithmic environment which
+%% supports automatic indentation when the second argument is too long to fit
+%% on one line
+\newcommand*{\Let}[2]{\State #1 $\gets$
+\parbox[t]{\linegoal}{#2\strut}}
+%% A \State command that supports automatic indentation when the argument's
+%% content is too long to fit on one line
+\newcommand*{\LongState}[1]{\State
+\parbox[t]{\linegoal}{#1\strut}}
+
+\usepackage{enumitem}          % To remove spacing between list items [noitemsep,nolistsep]
+\newlist{longitem}{enumerate}{5}
+\setlist[longitem,1]{label=\arabic*)}
+\setlist[longitem,2]{label=\alph*)}
+\setlist[longitem,3]{label=\roman*)}
+\setlist[longitem,4]{label=\arabic*)}
+\setlist[longitem,5]{label=\alph*)}
+
+\definecolor{rowclr}{RGB}{255, 192, 203}
+\newcommand{\sQuote}[1]{`#1'}
+\newcommand{\dQuote}[1]{``#1''}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\gfrac}[2]{\genfrac{}{}{}{0}{#1}{#2}}
+
+\newcommand\bestfig[6]{ % #1=filename, #2=main caption, #3=figure height, #4=short caption #5=file extension #6=directory
+	%% Needs package epstopdf to work
+	\begin{figure}[htpb] %[htbp]
+	\centering
+	\ifthenelse{ \isempty{#5} \OR \equal{#5}{eps} }
+		{\includegraphics[width=6.5in,height=#3in,keepaspectratio=TRUE]{#6#1.eps}}
+		{\setlength\fboxsep{0pt}
+		 \setlength\fboxrule{0pt}
+		 \fbox{\includegraphics[width=6.5in,height=#3in,keepaspectratio=TRUE]{#6#1.#5}}}
+	%% source: http://xelatex.blogspot.ca/2008/03/newcommand-with-optional-argument.html
+	\ifthenelse{\isempty{#4}}
+		{\caption[#2]{#2}}  % \vspace{-2ex}} AME removing
+		{\caption[#4]{#2}}  % \vspace{-2ex}}  ``
+	\label{fig:#1}
+	\end{figure}
+        }
+
+\newcommand\pbsfig[5]{    % #1=filename, #2=main caption, #3=figure height, #4=short caption, #5=directory
+	\begin{figure}[tp] %[htbp]  Rowan had ht!
+	\centering
+	\includegraphics[width=6.5in,height=#3in,keepaspectratio=TRUE]{#5#1.eps}
+	%% source: http://xelatex.blogspot.ca/2008/03/newcommand-with-optional-argument.html
+	\ifthenelse{\isempty{#4}}
+		{\caption[#2]{#2}\vspace{-2ex}}
+		{\caption[#4]{#2}\vspace{-2ex}}
+	\label{fig:#1}
+	\end{figure}
+	%\clearpage
+}
+
+%% ** Declare global variables (commands) here **
+%% Filenames used for this project
+\newcommand{\rdata}{.RData}
+\newcommand{\rfile}{example.r}
+\newcommand{\texfile}{example.tex}
+\newcommand{\rnwexamplefile}{example.Rnw}
+\newcommand{\rnwmaindocfile}{maindoc.Rnw}
+\newcommand{\rnwappendixonefile}{appendix-1.Rnw}
+
+%% Next two lines provide the LaTeX and TeX symbols (from xspace package)
+\newcommand{\latex}{\LaTeX\xspace}
+\newcommand{\tex}{\TeX\xspace}
+%% Allows the Sexpr command to be shown as text in the final document for example reasons
+\newcommand{\ShowSexpr}[1]{\texttt{{\char`\\}Sexpr\{#1\}}}
+%% eor - Show two things with a vertical bar between them
+\newcommand{\eor}[2]{{#1$\Vert$#2}}
+%% bM - makes equations larger
+\newcommand{\bM}[1]{\mathlarger{\mathlarger{#1}}}
+%% Allow newline breaks in a table cell: syntax is \specialcell{first line\\secondline}
+\newcommand{\specialcell}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+\newcommand{\fishname}{Pacific Hake}
+\newcommand{\commonname}{Pacific Whiting}
+\newcommand{\sciencename}{Merluccius Productus}
+\newcommand{\simplename}{hake}
+\newcommand{\Avuln}{Age-at-50\%-vulnerability}
+\newcommand{\Amat}{Age-at-50\%-maturity}
+\newcommand{\amat}{age-at-50\%-maturity}
+\newcommand{\bc}{British Columbia}
+%% For subscripts in text mode
+\newcommand{\subscr}[1]{$_{\text{#1}}$}
+
+%% Headers and footers
+%% For Res Doc, best to have a left and a right footer
+%%  (and/or header), not just one (for double-sided printing).
+%%
+%% \lhead{DRAFT -- Non-citable working paper}  % Omit for final ResDoc.
+\lhead{}
+\rhead{}
+\lfoot{Example \latex-knitr} %% Species common name for left footer
+\rfoot{DRAFT - DO NOT CITE} %% The area of the assessment for right footer
+%% \rfoot{WP 2012/P02a}     %% Change to appendix number for appendices
+                            %% Will probably delete footers in main text
+                            %%  for final Res Doc.
+
+%% \linenumbers             %% Uncomment to add in line numbers
+%% \modulolinenumbers[5]    %% just number every 5th line
+%% \def\AppLet{F}           %% Appendix letter - we had this
+                            %%  to number equations in Appendix
+                            %%  F as (F.17) etc.
+%% \def\StartP{102}         %% page start
+
+\begin{document}
+
+%% Start by sourcing your R code here. The R environment will persist throughout the latex code,
+%% so anything sourced or required here will be accessible later on in the latex knitr chunks.
+%% Note the start and end bracketing for this knitr chunk <<>>= and @.
+%% Sourcing all code here, then calling the plot functions later will be much faster
+%% and make for more maintanable code.
+%% <<echo=TRUE,  message=TRUE, results='show', warning=TRUE>>=
+<<echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
+## Inside this block is R code so comment character is different
+## cache=TRUE tells knitr to build all the plots into a cache directory
+## which is defined here as knitr-cache/
+## When the latex part is run, these plots will be inserted automatically.
+## ** IMPORTANT** If you want to remake the plots, you must delete this directory.
+## If you don't, the cached plots from last time will be used.
+##opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
+##               fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
+##               results='show', cache=TRUE, cache.path='knitr-cache/')
+opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
+               fig.height=4, echo=FALSE, results=FALSE, message=FALSE, warning=FALSE,
+               results='hide', cache=TRUE, cache.path='knitr-cache/')
+
+## You can source your R code here. For projects with a long load time it will
+## be better to source the file inside an R session, then save the environment
+## as .RData (it asks you if you want to do this when you quit the R session),
+## then use the load() function to load the binary .RData envirnonment. This
+## is much, much faster and will help during development because you are
+## constantly compiling the document. If you do this, you will need to
+## put the require or library statements that the functions use because the
+## saved environment does not save the libraries as well.
+use.binary.envir <- TRUE
+if(use.binary.envir){
+  require(nwfscSurvey)
+  require(nwfscMapping)
+  require(date)
+  require(r4ss)
+  require(xtable)   ## For tables which can be inserted into latex docs with knitr
+  load("./r/.RData")
+  start.yr <- 1966  ## Used in text and plots throughout document
+  end.yr <- 2015    ## Used in text and plots throughout document, should be changed every year.
+  survey.start.yr <- 1995
+  survey.end.yr <- 2015
+}else{
+  source("./r/all.r")
+}
+@
+
+\input{preamble}            %% Table of contents, etc.
+% \setcounter{chapter}{0}
+% \setcounter{table}{0}
+% \setcounter{figure}{0}
+\setcounter{secnumdepth}{5} %% To number subsubheadings-ish
+
+%% To number sections, tables etc. as 1, 2, 3, not 1.1 etc. (where
+%%  the first 1 would be chapter number).
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thetable}{\arabic{table}}
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\theequation}{\arabic{equation}}
+
+%% Here is where the maindoc 'rnw' file is inserted.
+%% It is simply pasted in here by knitr, just before the knitting is done,
+%% So the final tex file will include everything.
+<<executive-summary, child='executive-summary/executive-summary.rnw'>>=
+@
+
+\clearpage
+
+\addtocontents{toc}{\par {\bf \vspace{10mm} APPENDICES} \par}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+\appendix
+
+%% Now want to number sections, tables etc. as A.1, A.2, etc.
+%% Thought these wouldn't be with the appendix package, as
+%%  automatic, but do need them even if use \begin{appendices}:
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\renewcommand{\thetable}{\thechapter.\arabic{table}}
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+\renewcommand{\theequation}{\thechapter.\arabic{equation}}
+
+%% Not including Appendix figures and tables in contents, and just
+%%  including the Appendix (chapter) names (not sections or
+%%  subsections):
+
+\lfoot{\cname}
+
+%% Add an appendix. The appedices or any other Rnw files will be in the same scope as the main file,
+%% so they see the same R objects and those objects can be referenced directly.
+%% There is no difference between this and maindoc, they are both pasted in directly
+%% before the code is knitted.
+%% \rfoot{Appendix A -- Example appendix 1}
+%% <<appendix-1, child='appendix-1/appendix-1.rnw'>>=
+%% @
+
+%% Used when you need to insert outside documents:
+%% \setcounter{page}{68}
+
+\end{document}

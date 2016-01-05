@@ -1,0 +1,68 @@
+%% executive-summary.Rnw
+%% Note some variables are global from the calling file (hake-assessent.Rnw)
+
+%% Need numbering back to Arabic.
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section*{Executive Summary}
+
+\subsection*{Stock} \label{sec:es-stock}
+This assessment reports the status of the coastal \fishname\ (or \commonname, \emph{\sciencename}) resource off the west coast of the United States and Canada. This stock exhibits seasonal migratory behavior, ranging from offshore and generally southern waters during the winter spawning season to coastal areas between northern California and northern British Columbia during the spring, summer and fall when the fishery is conducted. In years with warmer water temperatures the stock tends to move farther to the North during the summer and older \simplename\ tend to migrate farther than younger fish in all years with catches in the Canadian zone typically consisting of fish greater than four years old. Separate, and much smaller, populations of \simplename\ occurring in the major inlets of the northeast Pacific Ocean, including the Strait of Georgia, Puget Sound, and the Gulf of California, are not included in this analysis.
+
+\subsection*{Catches} \label{sec:es-catches}
+Coast-wide fishery \fishname\ landings averaged \Sexpr{fmt0(mean(catches$TOTAL))} t from \Sexpr{min(catches$Year)} to \Sexpr{max(catches$Year)}, with a low of \Sexpr{fmt0(min(catches$TOTAL))} t in \Sexpr{catches$Year[catches$TOTAL==min(catches$TOTAL)]} and a peak of \Sexpr{fmt0(max(catches$TOTAL))} t in \Sexpr{catches$Year[catches$TOTAL==max(catches$TOTAL)]}. Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to the modern fishery. Over the early period, \Sexpr{min(catches$Year)}--1990, most removals were from foreign or joint-venture fisheries. Over all years, the fishery in U.S. waters averaged \Sexpr{fmt0(mean(catches$Ustotal))} t, or \Sexpr{round(100*mean(catches$Ustotal)/mean(catches$TOTAL),1)}\% of the average total landings, while catch from Canadian waters averaged \Sexpr{fmt0(mean(catches$CANtotal))} t.  Over the last 10 years, \Sexpr{max(catches$Year)-9}--\Sexpr{max(catches$Year)}, the total average catch is \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$TOTAL))} with U.S. and Canadian catches averaging \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$Ustotal))} t and \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$CANtotal))} t, respectively.
+
+In this stock assessment, the terms catch and landings are used interchangeably. Estimates of discard within the target fishery
+are included, but discarding of \fishname\ in non-target fisheries is not. Discard from all fisheries is estimated to be less
+than 1\% of landings in recent years. Recent coast-wide landings from 2010--2014 have been above the long term average of \Sexpr{fmt0(mean(catches$TOTAL))} t.
+
+Landings between 2001 and 2008 were predominantly comprised of fish from the very large 1999 year class, with the cumulative removal from that cohort exceeding 1.2 million t.
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<fig.height=4, fig.width=8>>=
+make.catches.plot(catches, leg.y.loc=520) ## leg.y.loc is y-coord to place legend at
+@
+\end{center}
+%\vspace{0mm}
+\caption{Total Pacific Hake catch used in the assessment by sector, \Sexpr{start.yr} -- \Sexpr{end.yr}. U.S. tribal catches are included in the sectors where they are represented.}
+\label{fig:es-catches}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+<<results='asis', echo=FALSE>>=
+make.catches.table(catches, start.yr=2006, end.yr=2015, weight.factor=1000,
+                   xcaption <- "Recent commercial fishery catch (1,000's t). Tribal catches are included where applicable.",
+                   xlabel <- "tab:es-catches",
+                   font.size = 9,
+                   space.size = 10)
+@
+
+\subsection*{Data and Assessment} \label{sec:es-data-and-assessment}
+The biomass estimate from the acoustic survey conducted in 2015 has been added to the model survey time series. The only other new data included
+in 2015 are the 2015 fishery age compositions and total catch. Various other data types, including data on maturity, have been explored since
+the 2014 stock assessment, but are not included in the base model for this year.
+
+The Joint Technical Committee (JTC) assessment depends primarily on the fishery landings (\Sexpr{start.yr} -- \Sexpr{end.yr}),
+acoustic survey biomass estimates and age-composition (\Sexpr{survey.start.yr} -- \Sexpr{survey.end.yr}; Figure \ref{fig:es-survey-biomass}),
+as well as fishery age-composition.
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<fig.height=5, fig.width=8>>=
+## modelnum is the model from which the survey input data are used.
+make.survey.biomass.plot(models, modelnum=1)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Acoustic survey biomass index (millions of metric tons). Approximate 95\% confidence intervals are based on only sampling variability (\Sexpr{survey.start.yr}--2007, 2011--\Sexpr{survey.end.yr}) in addition to squid/hake apportionment uncertainty (2009, in blue).}
+\label{fig:es-survey-biomass}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newpage
+

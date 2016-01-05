@@ -1,0 +1,266 @@
+% resDocSty.sty
+% Unofficial LaTeX style file for Canadian 
+% Science Advisory Secretariat Research Documents.
+% Andrew Edwards, Andrew.Edwards@dfo-mpo.gc.ca, 17th January 2012.
+% Modified by Rowan Haigh (2015-05-07)
+
+% Need to merge with Jaclyn's latest. 29th March 2012***
+
+% This is not an official template, but my attempt at developing
+%  the correct CSAS formatting for Research Documents. 
+
+% I haven't attempted to format the first few pages, seems easier
+%  to stick with the Word 'template' RES2011_nnn-eng.doc 
+%  (which looks like it might change every year), available at
+%  http://www.dfo-mpo.gc.ca/csas-sccs/process-processus/res-docs-rech/index-eng.htm
+
+% This means that the CSAP/CSAS people can insert things like the
+%  Res Doc number and French translation of title and abstract.
+
+% Not yet sure how to deal with the Table of Contents for a full
+%  LaTeX document. This is optional (though no doubt preferred), 
+%  and needs to come before the Abstract/Resume. Maybe best to
+%  have it done automatically in LaTeX for the Working Paper 
+%  (submitted for the review meeting), then manually create it in
+%  the Word file (based on the automatic LaTeX one) for the final
+%   Res Doc submission?
+
+% I should tidy this up somewhat but am short of time. The output
+%  is a mixture of useful text related to the style, and some
+%  text from assessments and papers to give enough text to 
+%  see how paragraphs etc. look.
+
+% Basing style settings on the CSAS guide RES2011_nnn-eng.doc.
+
+% ** Packages **
+% For installation, the caption package said to look at the 
+%  following three, but I didn't find them helpful:
+% If you need help for installation please visit:
+% http://www.tex.ac.uk/cgi-bin/texfaq2html?label=inst-miktex*
+% http://www.tex.ac.uk/cgi-bin/texfaq2html?label=installthings
+% http://www.tex.ac.uk/cgi-bin/texfaq2html?label=privinst
+
+% For caption it took me a while, it seems that you can't just
+%  simply download a .sty file and stick it in the right
+%  directory, there are things called .dtx and .ins files 
+%  instead. I use MikTex, but the automatic installer didn't
+%  seem to work.
+% I ended up downloading the caption package as a .zip file,
+%  unzipping and moving the folder to 
+%  C:Program Files/MiKTeX 2.6/tex/latex/caption, 
+%  then in there ran latex caption.ins, which (finally) created
+%  the .sty files from the .ins files. 
+%  Then have to refresh FNDB: Start-Programs-MikTex-Settings.
+
+%http://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
+\usepackage[T1]{fontenc}
+%https://www.ctan.org/pkg/urw-arial
+\usepackage[scaled=1.00]{uarial}
+% Redefine default font to Arial (LaTeX only):
+\renewcommand{\rmdefault}{ua1} %phv}% Arial vs. Helvetica
+\renewcommand{\sfdefault}{ua1} %phv}% Arial vs. Helvetica
+
+\usepackage{nccmath}                    % from web for fleqn (flus-left equations)
+
+%%% All this nonsense is to get the reference section to conatin blue underlined hyperlinks (RH).
+%%% Note: in your *.bib file, the Title field needs to contain: \urldfo{http://www.somewhere.ca}{The actual title of the aricle}
+%%% See: http://tex.stackexchange.com/questions/76174/set-doi-link-on-journal-name-with-bibtex-bst
+%%% ----------------------------------------------
+\usepackage{natbib}                     % use mecology bst file: e.g., \bibliographystyle{C:/Users/SnivelServant/Latex/mecology}
+\setlength{\bibhang}{1cm}               % set the DFO overhang
+\setlength{\bibsep}{6pt}                % paragraph spacing
+\usepackage[breaklinks=true,bookmarksopen,bookmarksdepth=3]{hyperref}  % CSAP wants hyperlinks in references
+\usepackage[normalem]{ulem}             % The ulem package: underlining for emphasis
+\hypersetup{colorlinks, plainpages=true, linkcolor=black, citecolor=black, urlcolor=blue}
+% Create a blue underlined hyperlink (e.g., http://tex.stackexchange.com/questions/233668/new-ulem-command-not-working)
+\newcommand\bluline{\bgroup\markoverwith
+  {\textcolor{blue}{\rule[-0.5ex]{2pt}{0.4pt}}}\ULon} % wtf
+\newcommand\urldfo[2]{ \href{#1}{\bluline{#2}} }
+\renewcommand{\bibname}{References}
+%%%---------END hyperref chicanery----------------
+
+\usepackage[pagewise]{lineno}           % if you want to add line numbers in
+\usepackage[top=1in, bottom=1in, left=1in, right=1in, footskip=0.5in, headheight=0.5in]{geometry} 
+                                        %  page margins
+\usepackage{fancyhdr}                   % to add in headers and footers
+\usepackage[format=plain, indention=0cm, labelsep=period, font={small, it}, justification=raggedright, singlelinecheck=false]{caption}
+                                        % to change settings, see caption-eng.pdf.
+\usepackage{tocloft}                    % Table of Contents
+
+\captionsetup[table]{position=above, skip=5pt}
+     % To have less whitespace after Table caption.
+     % 'above' tells it to put the skip after caption, but you may still
+     % need to have the caption before the table in .tex.
+\usepackage{epsfig}                     % for epsfbox (deprecated but used by some)
+\usepackage{graphicx}                   % for \includegraphics (can take eps along with other figure file types)
+
+
+\raggedright		% For ragged right margins (yes, ugly, 
+			%  but that's the rules, which of course
+			%  exist because right justified in Word
+			%  always looks so bad).
+			% I had also tried the newer \RaggedRight
+			%   from the ragged2e package, but it 
+			%   seems to introduce lots of hyphens.
+% \usepackage{ragged2e}   % For RaggedRight which is apparently
+			%  a better word-breaking algorithm, 
+			%  (raggedright tries to avoid hyphens).
+			% You actually need the ms package (Martin
+			%  Schroeder), as ragged2e calls others.
+% \RaggedRight
+
+% Headers and footers - see \lhead etc. at the start of .tex
+\pagestyle{fancy}
+\renewcommand{\footrulewidth}{0.25pt}
+\renewcommand{\headrulewidth}{0.25pt}
+% For Res Doc, best to have a left and a right footer (header), not
+%  just one (for double-sided printing). Though I remember from my
+%  thesis there's a way to make it a header always be on the 
+%  'outside' corner, so have a Google around.
+
+\setlength\parindent{0pt}     % To not indent paragraphs.
+\parskip 6pt                  % To increase white space between
+%\parskip 2ex   % was 3ex
+% To increase white space between paragraphs (since not indenting).
+% For POP 2011 I did this, presumably because we did it in the Word version.
+
+\def\headc{\vspace{-2ex}}     % contraction after 'fake' subsubheading
+% \def\subsub#1{\noindent {\bf #1} \headc}    % fake subsubheading
+\def\subsubsub#1{\vspace{1ex} \noindent {\underline{#1}} \vspace{1ex}} % fake subsubsubheading
+
+% Section Headings. Adapting from
+% http://help-csli.stanford.edu/tex/latex-sections.shtml#section
+% http://zoonek.free.fr/LaTeX/LaTeX_samples_section/0.html
+% Font sizes I think will actually be 10.95pt
+%   for normal and 11.75pt for \large, according to the table in
+% http://en.wikibooks.org/wiki/LaTeX/Formatting#Sizing_text
+
+% http://tex.stackexchange.com/questions/64756/what-is-glue-stretching
+% In TeX any glue is composed by a fixed part, a stretchable part and a
+% shrinkable part. Each of these parts can be zero.
+% The general form to express a glue is: <fixed part> plus <stretchable part>
+% minus <shrinkable part>. Each of these parts can be expressed in any of TeX 
+% units (mm, cm, pt, em, etc.). For example 2cm plus 2mm minus 1mm.
+
+\makeatletter    % Need this and \makeatother around these (AME).
+
+\newcommand{\nonumsection}{\@startsection
+{section}{1}{0mm}%                                     % name, level, indent
+%{-3.5ex \@plus -1ex \@minus -.2ex}% beforeskip
+%{2.3ex \@plus.2ex}                % afterskip
+{-18pt \@plus -0pt \@minus -0pt}%                      % beforeskip
+{6pt \@plus 0pt}%                                      % afterskip
+{\centering\normalfont\large\bfseries\MakeUppercase}}% %style
+% See below for help
+
+\renewcommand{\section}{\@startsection
+{section}{1}{0mm}%                                     % name, level, indent
+{-18pt \@plus -0pt \@minus -0pt}{6pt \@plus 0pt}%      % beforeskip afterskip
+%{-3.5ex \@plus -1ex \@minus -0.2ex}% beforeskip
+%{2.3ex \@plus 0.2ex}                % afterskip
+{\centering\normalfont\large\bfseries\MakeUppercase}}% % style
+% Doesn't force upper case in Table of Contents though.
+
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+{-12pt \@plus -0pt \@minus -0pt}{6pt \@plus 0pt}%      %beforeskip afterskip
+%{-3.25ex plus -1ex minus  -.2ex}{1.5ex plus .2ex}
+% {1ex}{0.1ex plus -2ex}
+{\normalfont\bf\MakeUppercase}}
+
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+{-12pt \@plus -0pt \@minus -0pt}{6pt \@plus 0pt}%      % beforeskip afterskip
+%{-2ex plus -1ex minus -.2ex}{1.5ex plus .2ex}
+% % {-3.25ex plus -1ex minus -.2ex}{1.5ex plus .2ex} - original
+%{\normalfont\bf\underline}}     %  to underline
+{\normalfont\bf}} % To leave out underlining (but that would break the rules)(RH: no longer)
+
+% For Appendices
+\renewcommand{\chapter}{\@startsection
+{chapter}{1}{0mm}%                                     % name, level, indent
+{-18pt \@plus -0pt \@minus -0pt}{6pt \@plus 0pt}%      % beforeskip afterskip
+%{-3.5ex \@plus -1ex \@minus -.2ex}% beforeskip
+%{2.3ex \@plus.2ex}                % afterskip
+{\centering\normalfont\large\bfseries\MakeUppercase}}% % style
+
+% \renewcommand{\chaptername}{Appendix}   % - never worked; it doesn't like \subsubsubsection (AME).
+%%%-----------------------------------------------
+%%% RH: In appendix tex files, you can use:
+%%%-----------------------------------------------
+% \setcounter{secnumdepth}{3} % To number subsubheadings-ish
+% \setcounter{chapter}{3}     % temporary for standalone chapters (3 if not using \thechapter in chapter{}, 4 if using it... who knows why
+% \renewcommand{\thechapter}{\Alph{chapter}}
+% Now want to number sections, tables etc. as A.1, A.2, etc.
+% \renewcommand{\thesection}{\thechapter.\arabic{section}}
+% \renewcommand{\thesubsection}{\thechapter.\arabic{subsection}}
+% \renewcommand{\thetable}{\thechapter.\arabic{table}}
+% \renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+% \renewcommand{\theequation}{\thechapter.\arabic{equation}}
+% \renewcommand{\thepage}{\thechapter\arabic{page}}
+%%%-----------------------------------------------
+
+% http://stackoverflow.com/questions/1321721/how-do-i-change-the-amount-of-whitespace-between-sections-in-latex   :
+%\makeatletter
+% \renewcommand\section{\@startsection {section}{1}{\z@}%
+%     {-2.5ex \@plus -1ex \@minus -.2ex}%
+%     {1.3ex \@plus.2ex}%
+%    {\centering\bfseries}}
+% \@startsection {NAME}{LEVEL}{INDENT}{BEFORESKIP}{AFTERSKIP}{STYLE} 
+%            optional * [ALTHEADING]{HEADING}
+%    Generic command to start a section.  
+%    NAME       : e.g., 'subsection'
+%    LEVEL      : a number, denoting depth of section -- e.g., chapter=1,
+%                 section = 2, etc.  A section number will be printed if
+%                 and only if LEVEL gt or eq the value of the secnumdepth
+%                 counter.
+%    INDENT     : Indentation of heading from left margin
+%    BEFORESKIP : Absolute value = skip to leave above the heading.  
+%                 If negative, then paragraph indent of text following 
+%                 heading is suppressed.
+%    AFTERSKIP  : if positive, then skip to leave below heading,
+%                       else - skip to leave to right of run-in heading.
+%    STYLE      : commands to set style
+%  If '*' missing, then increments the counter.  If it is present, then
+%  there should be no [ALTHEADING] argument.  A sectioning command
+%  is normally defined to \@startsection + its first six arguments.
+
+
+
+% From http://stackoverflow.com/questions/2009420/how-to-put-a-figure-on-the-top-of-a-page-on-its-own-in-latex
+% to make a float on its own page appear at the top (not centered). 
+% Not sure what fpsep does, separation between floats I think.
+\setlength\@fptop{0pt} 
+% \setlength\@fpsep{8pt plus 1fil} 
+% \setlength\@fpbot{0pt}      % presumably for bottom float. 
+% The website says that the defaults are:
+% From source2e, glue is inserted at the top and bottom of the page, and between each float on the page. This inserted glue is given by the following parameters:
+%\setlength\@fptop{0\p@ \@plus 1fil} 
+%\setlength\@fpsep{8\p@ \@plus 2fil} 
+%\setlength\@fpbot{0\p@ \@plus 1fil}
+
+\makeatother                  % Need this after the renewcommands
+
+% Think this was fiddling around because of having equations in tables.
+% To make equations left flush, so use in Tables.
+%\def\beq{\vspace{-5ex} \begin{fleqn} \begin{equation}} 
+%\def\eeq{\end{equation} \end{fleqn} \vspace{-5ex}}     
+
+% Andy's usual command for equations:
+\newcommand{\eb}{\begin{eqnarray}}
+\newcommand{\ee}{\end{eqnarray}}
+
+% \def\tabline{\vspace{2ex} \hrule \vspace{2ex}}  % For second page of a table.
+
+% If using pdfLaTeX (only to get DFO-style hyperlinks in Bibliogrpahy), eps files need to be converted to pdf (RH).
+% PDF files are only created when using pdflatex; doesn't hurt to load this package when using latex compiler.
+%\usepackage{eps2pdf}
+
+% If using XeLateX, redefine default font to Arial (RH)
+%\usepackage{xltxtra} % xltxtra loads fontspec + xunicode.
+%\setmainfont{Arial}
+
+\raggedbottom
+
+% I haven't checked this, but try for punctuation of references (AME)
+%  (from a .tex file by Ian Jonsen):
+% \bibpunct[, ]{(}{)}{;}{a}{}{,}
+% \bibstyle{cjfas}
