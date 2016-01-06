@@ -166,7 +166,8 @@
 %% For subscripts in text mode
 \newcommand{\subscr}[1]{$_{\text{#1}}$}
 \newcommand{\supscr}[1]{$^{\text{#1}}$}
-
+% degree symbol
+% \newcommand{\deg}{$^{\text{o}}$}
 %% Headers and footers
 \lhead{}
 \rhead{}
@@ -218,8 +219,10 @@ start.yr        <- 1966 ## Start year for the models
 end.yr          <- 2015 ## End year for the models
 survey.start.yr <- 1995 ## First year in the survey timeseries
 survey.end.yr   <- 2015 ## Last year in the survey timeseries
-assess.yr       <- 2015 ## The year of this assessment
-last.assess.yr  <- 2014 ## The last year an assessment was done
+assess.yr       <- 2015 ## The year of this assessment    
+## ** That will become 2016
+last.assess.yr  <- 2014 ## The last year an assessment was done  
+## ** That will become 2015
 unfished.eq.yr  <- 1964 ## Unfished equilibrium year
 @
 
@@ -278,7 +281,7 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 <<executive-summary, child='executive-summary/executive-summary.rnw'>>=
 @
 
-<<main-doc, child='main-doc/main-doc.rnw'>>=
+<<introduction, child='introduction/introduction.rnw'>>=
 @
 
 \clearpage
