@@ -4,8 +4,8 @@
 %% There are various commented-out lines which are from previous projects
 %% They are left in for examples of what can be done.
 
-\documentclass[11pt]{book}
-\usepackage{resDocSty}
+\documentclass[12pt]{book}
+\usepackage{hake}
 \usepackage{appendix}
 \usepackage{cite}
 %% need array when specifying a ragged right column:  >{\raggedright\arraybackslash}{p2in}.
