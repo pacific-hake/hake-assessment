@@ -291,6 +291,9 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 <<executive-summary, child='executive-summary/executive-summary.rnw'>>=
 @
 
+<<main-doc, child='main-doc/main-doc.rnw'>>=
+@
+
 \clearpage
 
 \addtocontents{toc}{\par {\bf \vspace{10mm} APPENDICES} \par}
