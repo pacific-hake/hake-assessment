@@ -167,10 +167,6 @@
 \newcommand{\supscr}[1]{$^{\text{#1}}$}
 
 %% Headers and footers
-%% For Res Doc, best to have a left and a right footer
-%%  (and/or header), not just one (for double-sided printing).
-%%
-%% \lhead{DRAFT -- Non-citable working paper}  % Omit for final ResDoc.
 \lhead{}
 \rhead{}
 \lfoot{Pacific Hake stock assessment} %% Species common name for left footer
@@ -208,32 +204,22 @@ opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5
                fig.height=4, echo=FALSE, results=FALSE, message=FALSE, warning=FALSE,
                results='hide', cache=TRUE, cache.path='knitr-cache/')
 
-## You can source your R code here. For projects with a long load time it will
-## be better to source the file inside an R session, then save the environment
-## as .RData (it asks you if you want to do this when you quit the R session),
-## then use the load() function to load the binary .RData envirnonment. This
-## is much, much faster and will help during development because you are
-## constantly compiling the document. If you do this, you will need to
+## Load your R environment here. When you do this, you will need to
 ## put the require or library statements that the functions use because the
 ## saved environment does not save the libraries as well.
-use.binary.envir <- TRUE
-if(use.binary.envir){
-  require(nwfscSurvey)
-  require(nwfscMapping)
-  require(date)
-  require(r4ss)
-  require(xtable)   ## For tables which can be inserted into latex docs with knitr
-  load("./r/.RData")
-  start.yr <- 1966  ## Used in text and plots throughout document
-  end.yr <- 2015    ## Used in text and plots throughout document, should be changed every year.
-  survey.start.yr <- 1995
-  survey.end.yr <- 2015
-  assess.yr <- 2015
-  last.assess.yr <- 2014
-}else{
-  ## This doesn't work right at the moment, just use the binary loading for now.
-  source("./r/all.r")
-}
+require(nwfscSurvey)
+require(nwfscMapping)
+require(date)
+require(r4ss)
+require(xtable)   ## For tables which can be inserted into latex docs with knitr
+load("./r/.RData")
+start.yr        <- 1966 ## Start year for the models
+end.yr          <- 2015 ## End year for the models
+survey.start.yr <- 1995 ## First year in the survey timeseries
+survey.end.yr   <- 2015 ## Last year in the survey timeseries
+assess.yr       <- 2015 ## The year of this assessment
+last.assess.yr  <- 2014 ## The last year an assessment was done
+unfished.eq.yr  <- 1964 ## Unfished equilibrium year
 @
 
 %% Title page and author references page

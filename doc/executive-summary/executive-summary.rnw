@@ -49,7 +49,7 @@ The Joint Technical Committee (JTC) assessment depends primarily on the fishery 
 acoustic survey biomass estimates and age-composition (\Sexpr{survey.start.yr} -- \Sexpr{survey.end.yr}; Figure \ref{fig:es-survey-biomass}),
 as well as fishery age-composition. While the 2011 survey index value was the lowest in the time-series, the index increased steadily over the
 four surveys conducted in 2011, 2012, 2013, and 2015. Age-composition data from the aggregated fisheries (1975--2014) and the acoustic survey
-contribute to the assessment model’s ability to resolve strong and weak cohorts.
+contribute to the assessment model's ability to resolve strong and weak cohorts.
 
 The assessment uses a Bayesian estimation approach, sensitivity analyses, and closed-loop simulations to evaluate the potential consequences
 of parameter uncertainty, alternative structural models, and management system performance, respectively. The Bayesian approach combines prior
@@ -95,6 +95,20 @@ spawning biomass declined from 2014 to 2015 after five years of increases from 2
 and an above-average 2008 cohort. The 2015 median posterior spawning biomass is estimated to be 73.6\% of the unfished equilibrium level ($B_0$) with
 95\% posterior credibility intervals ranging from 34.3\% to 149.8\%. The median estimates of 2014 and 2015 female spawning biomass values are
 1.703 and 1.663 million t, respectively.
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<fig.height=5, fig.width=8>>=
+## modelnum is the model from which the survey input data are used.
+make.survey.biomass.plot(models, modelnum=1)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Acoustic survey biomass index (millions of metric tons). Approximate 95\% confidence intervals are based on only sampling variability (\Sexpr{survey.start.yr}--2007, 2011--\Sexpr{survey.end.yr}) in addition to squid/hake apportionment uncertainty (2009, in blue).}
+\label{fig:es-survey-biomass}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
 
