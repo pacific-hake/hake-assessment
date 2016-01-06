@@ -51,12 +51,25 @@ _____________________________________________________________
 The following depicts the object structure of the **models** list:
 
     models[[1]] - First directory found, typically of format like: 00_Last_years_model
-    models[[2]] - Second directory found, typically of format like: 01_Last_years_model
+    models[[2]] - Second directory found, typically of format like: 01_This_years_model
     ...
     models[[N]] - The Nth directory found; each unique member of this models list contains
-      models[[N]]$mcmc - mcmc output from the model as read in by the SSgetMCMC function in the r4ss package or NULL if none for this model
-      models[[N]]$dat  - data file as read in by the SS_readdat function in the r4ss package
-      models[[N]]$     - All the objects as read in by the SS_output function in the r4ss package
+      models[[N]]$          - All the objects as read in by the SS_output function in the r4ss package
+      models[[N]]$dat       - data file as read in by the SS_readdat function in the r4ss package
+      models[[N]]$mcmc      - mcmc output from the model as read in by the SSgetMCMC function in the r4ss package or NULL if none for this model
+      models[[N]]$mcmccalcs - calculations done on the mcmc outputs for this model
+        models[[N]]$mcmccalcs$slower   - SPB lower confidence (2.5%)
+        models[[N]]$mcmccalcs$smed     - SPB median (50%)
+        models[[N]]$mcmccalcs$supper   - SPB upper confidence (97.5%)
+        models[[N]]$mcmccalcs$dlower   - Depletion lower confidence (2.5%)
+        models[[N]]$mcmccalcs$dmed     - Depletion median (50%)
+        models[[N]]$mcmccalcs$dupper   - Depletion upper confidence (97.5%)
+        models[[N]]$mcmccalcs$rlower   - Recruitment lower confidence (2.5%)
+        models[[N]]$mcmccalcs$rmed     - Recruitment median (50%)
+        models[[N]]$mcmccalcs$rupper   - Recruitment upper confidence (97.5%)
+        models[[N]]$mcmccalcs$devlower - Recruitment deviations lower confidence (2.5%)
+        models[[N]]$mcmccalcs$devmed   - Recruitment deviations median (50%)
+        models[[N]]$mcmccalcs$devupper - Recruitment deviations upper confidence (97.5%)
 
 ---
 

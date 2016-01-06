@@ -38,11 +38,16 @@ source("catches.r")
 source("load-models.r")
 source("survey.r")
 
+yr <- 2015
+
 data.path <- file.path("..","..","data")
 models.path <- file.path("..","..","models")
 
 catches <- load.catches(file.path(data.path,"2016HakeCatches_preliminary_2016.01.04.csv"))
-models <- load.models(models.path)
+models <- load.models(models.path, yr = yr)
+
+
+
 
 rc <- rich.colors.short <- function(n, alpha = 1){
   x <- seq(0, 1, length = n)
@@ -261,5 +266,3 @@ biomass_fraction_plots <- function(replist, selected=FALSE){
          legend=c("Ages 4+","Ages 5+"),bg='white')
   title(main=ifelse(selected, "Estimated fractions of selected biomass", "Estimated fractions of total biomass"))
 }
-
-model.list <- load.models()
