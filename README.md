@@ -11,7 +11,7 @@ _____________________________________________________________
 * MikTex for Windows - the first time you try to run, many packages will be installed automatically.
   This takes some time so make sure you have a fast connection.
 * R (version 3.22 "Fire Safety" or later)
-* R Packages 'knitr', 'xtable', and 'r4ss' and their dependencies.
+* R Packages 'knitr', 'xtable', 'r4ss', nwfscSurvey, nwfscMapping, data and their dependencies,  
 * Rscript.exe must be on your PATH.
 
 ---
