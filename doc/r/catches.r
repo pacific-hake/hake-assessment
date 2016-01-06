@@ -74,21 +74,4 @@ legend(x=0,y=leg.y.loc,
   par <- oldpar
 }
 
-fmt0 <- function(x){
-  ## For reduction of code inside Sexpr in Latex
-  ## Make thousands seperated by commas and no decimal point
-  return(format(round(x,0),big.mark=","))
-}
-
-get.align <- function(num){
-  # return a character vector used in the align argument of the xtable command.
-  # For tables where the first column is left-aligned and the rest are right-aligned,
-  # e.g. posterior output tables, reference point tables. Most tables really.
-  # num is the number of columns in the table
-  align <- c("l","l")
-  for(i in 1:(num-1)){
-    align <- c(align, "r")
-  }
-  return(align)
-}
 

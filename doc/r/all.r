@@ -37,6 +37,8 @@ require(xtable)
 source("catches.r")
 source("load-models.r")
 source("survey.r")
+source("figures-timeseries.r")
+source("tables-timeseries.r")
 
 yr <- 2015
 
@@ -265,4 +267,23 @@ biomass_fraction_plots <- function(replist, selected=FALSE){
   legend('bottomleft', lwd=3, col=c(2,4), ncol=2,
          legend=c("Ages 4+","Ages 5+"),bg='white')
   title(main=ifelse(selected, "Estimated fractions of selected biomass", "Estimated fractions of total biomass"))
+}
+
+fmt0 <- function(x, dec.points=0){
+  ## Format 0
+  ## Format x to have supplied number of decimal points
+  ## Make thousands seperated by commas and no decimal point
+  return(format(round(x,dec.points),big.mark=","))
+}
+
+get.align <- function(num){
+  # return a character vector used in the align argument of the xtable command.
+  # For tables where the first column is left-aligned and the rest are right-aligned,
+  # e.g. posterior output tables, reference point tables. Most tables really.
+  # num is the number of columns in the table
+  align <- c("l","l")
+  for(i in 1:(num-1)){
+    align <- c(align, "r")
+  }
+  return(align)
 }
