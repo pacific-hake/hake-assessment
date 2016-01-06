@@ -4,8 +4,8 @@
 %% There are various commented-out lines which are from previous projects
 %% They are left in for examples of what can be done.
 
-\documentclass[11pt]{book}
-\usepackage{resDocSty}
+\documentclass[12pt]{book}
+\usepackage{hake}
 \usepackage{appendix}
 \usepackage{cite}
 %% need array when specifying a ragged right column:  >{\raggedright\arraybackslash}{p2in}.
@@ -70,7 +70,8 @@
 \usepackage{xspace}            %% Provide the LaTeX and TeX symbols
 \usepackage{hypcap}            %% So links will anchor at figure, not caption
 \usepackage{subfig}            %% For two-panel plots
-\usepackage{scrextend}         %% For indenting blocks of text with 'addmargin'
+% \usepackage{scrextend}         %% For indenting blocks of text with 'addmargin'
+%  AME took out since led to a warning
 \usepackage{relsize}           %% For mathlarger, which makes equations bigger
 \usepackage{algorithm}         %% For display of pseudocode
 \usepackage{algpseudocode}     %% For display of pseudocode

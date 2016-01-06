@@ -5,12 +5,12 @@
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
-\section*{Executive Summary}
+\section*{Executive Summary}\addcontentsline{toc}{chapter}{Executive Summary}
 
-\subsection*{Stock} \label{sec:es-stock}
+\subsection*{Stock} \label{sec:es-stock} \addcontentsline{toc}{subsection}{Stock}
 This assessment reports the status of the coastal \fishname\ (or \commonname, \emph{\sciencename}) resource off the west coast of the United States and Canada. This stock exhibits seasonal migratory behavior, ranging from offshore and generally southern waters during the winter spawning season to coastal areas between northern California and northern British Columbia during the spring, summer and fall when the fishery is conducted. In years with warmer water temperatures the stock tends to move farther to the North during the summer and older \simplename\ tend to migrate farther than younger fish in all years with catches in the Canadian zone typically consisting of fish greater than four years old. Separate, and much smaller, populations of \simplename\ occurring in the major inlets of the northeast Pacific Ocean, including the Strait of Georgia, Puget Sound, and the Gulf of California, are not included in this analysis.
 
-\subsection*{Catches} \label{sec:es-catches}
+\subsection*{Catches} \label{sec:es-catches} \addcontentsline{toc}{subsection}{Catches}
 Coast-wide fishery \fishname\ landings averaged \Sexpr{fmt0(mean(catches$TOTAL))} t from \Sexpr{min(catches$Year)} to \Sexpr{max(catches$Year)}, with a low of \Sexpr{fmt0(min(catches$TOTAL))} t in \Sexpr{catches$Year[catches$TOTAL==min(catches$TOTAL)]} and a peak of \Sexpr{fmt0(max(catches$TOTAL))} t in \Sexpr{catches$Year[catches$TOTAL==max(catches$TOTAL)]}. Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to the modern fishery. Over the early period, \Sexpr{min(catches$Year)}--1990, most removals were from foreign or joint-venture fisheries. Over all years, the fishery in U.S. waters averaged \Sexpr{fmt0(mean(catches$Ustotal))} t, or \Sexpr{round(100*mean(catches$Ustotal)/mean(catches$TOTAL),1)}\% of the average total landings, while catch from Canadian waters averaged \Sexpr{fmt0(mean(catches$CANtotal))} t.  Over the last 10 years, \Sexpr{max(catches$Year)-9}--\Sexpr{max(catches$Year)}, the total average catch is \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$TOTAL))} with U.S. and Canadian catches averaging \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$Ustotal))} t and \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$CANtotal))} t, respectively.
 
 In this stock assessment, the terms catch and landings are used interchangeably. Estimates of discard within the target fishery
@@ -40,7 +40,7 @@ make.catches.table(catches, start.yr=2006, end.yr=2015, weight.factor=1000,
                    space.size = 10)
 @
 
-\subsection*{Data and Assessment} \label{sec:es-data-and-assessment}
+\subsection*{Data and Assessment} \label{sec:es-data-and-assessment} \addcontentsline{toc}{subsection}{Data and Assessment}
 The biomass estimate from the acoustic survey conducted in 2015 has been added to the model survey time series. The only other new data included
 in 2015 are the 2015 fishery age compositions and total catch. Various other data types, including data on maturity, have been explored since
 the 2014 stock assessment, but are not included in the base model for this year.
@@ -83,7 +83,7 @@ make.survey.biomass.plot(models, modelnum=base.model.ind)
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection*{Stock Biomass} \label{sec:es-stock-biomass}
+\subsection*{Stock Biomass} \label{sec:es-stock-biomass} \addcontentsline{toc}{subsection}{Stock Biomass}
 The base stock assessment model indicates that since the 1960s, Pacific Hake female spawning biomass has ranged from well below to near
 unfished equilibrium. The model estimates that it was below the unfished equilibrium in the 1960s and 1970s due to lower than average recruitment.
 The stock is estimated to have increased rapidly to near unfished equilibrium after two or more large recruitments in the early 1980s, and then
@@ -120,5 +120,20 @@ make.biomass.table(models[[base.model.ind]], start.yr=2006, end.yr=2015, weight.
                    font.size = 12,
                    space.size = 14)
 @
+
+\subsection*{Recruitment} \label{sec:es-recruitment} \addcontentsline{toc}{subsection}{Recruitment}
+
+\subsection*{Exploitation Status} \label{sec:es-exploitation-status} \addcontentsline{toc}{subsection}{Exploitation Status}
+
+\subsection*{Management Performance} \label{sec:es-management-performance} \addcontentsline{toc}{subsection}{Management Performance}
+
+\subsection*{Reference Points} \label{sec:es-reference-points} \addcontentsline{toc}{subsection}{Reference Points}
+
+\subsection*{Unresolved Problems and Major Uncertainties} \label{sec:es-unresolved-problems} \addcontentsline{toc}{subsection}{Unresolved Problems and Major Uncertainties}
+
+\subsection*{Forecast Decision Table} \label{sec:es-forecast-decision-table} \addcontentsline{toc}{subsection}{Forecast Decision Table}
+
+\subsection*{Research and Data Needs} \label{sec:es-research-data-needs} \addcontentsline{toc}{subsection}{Research and Data Needs}
+
 \newpage
 
