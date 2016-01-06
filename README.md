@@ -99,7 +99,8 @@ __GitHub workflow__
 
 - **git com** and **git push** often [I'm using Chris's **git-workshop** shortcuts]
 - **git fetch cgrandin** - fetches his latest version
-- **git diff cgrandin/master** shows me the differences between his and mine.
+- **git diff cgrandin/master** shows me the differences between his and mine. :
+-- + green is on mine not his, red is his not mine [seems like it can look like I've added something but really Chris has removed it; and when merging it should base it on the most recent commits]
 - **git merge cgrandin/master** merges our versions. Then I need to **commit** and **push**. 
 - We will try and work on different files so that there are no conflicts when we merge.
 
