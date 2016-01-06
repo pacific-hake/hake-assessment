@@ -82,3 +82,40 @@ The following depicts the object structure of the **models** list:
 - The list structure of the model scenarios is crucial to keep things organized, and to ensure sensitivity plots are easy to implement.
 
 ---
+
+## How Andy is running it (and see Chris's notes above)
+
+- **source("all.r")** to reload models and data files and for any changes to R code.
+- close R, or do **save.image()** to create the **.RData** file.
+- delete **knitr-cache** directory if any tables or figures need to be updated
+- **knit("hake-assessment.rnw")** [or use Chris's batch file - at first I just want to see the warnings]
+- **latex hake-assessment.tex** and **dvips** and **bibtex** if necessary
+- **ispell hake-assessment.tex** periodically
+
+
+__GitHub workflow__
+
+- I forked Chris's master repository, and did **git remote add cgrandin https://...** [and he added me to his] so that we can merge each other's commits. **git remove -v** shows that.
+
+- **git com** and **git push** often [I'm using Chris's **git-workshop** shortcuts]
+- **git fetch cgrandin** - fetches his latest version
+- **git diff cgrandin/master** shows me the differences between his and mine.
+- **git merge cgrandin/master** merges our versions. Then I need to **commit** and **push**. 
+- We will try and work on different files so that there are no conflicts when we merge.
+
+
+
+__Andy's other notes__
+
+- Use text in main document of last year's, and start converting to .tex.
+- Table 1 and 2 of last year's .pdf -- values should be in **catches**, see **make-catches-table.r** in **catches.r** for an earlier table, and modify to make new ones.
+
+
+[I can delete this once I know it all automatically] GitHub Colors are explained under The Prompt in the README shown at https://github.com/dahlbyk/posh-git/ . To summarize:
+
+- Cyan means the branch matches its remote
+- Green means the branch is ahead of its remote (green light to push)
+- Red means the branch is behind its remote
+- Yellow means the branch is both ahead of and behind its remote
+
+The +~-! status represents added/modified/removed/conflicted file count in your index (dark green) and/or working directory (dark red).
