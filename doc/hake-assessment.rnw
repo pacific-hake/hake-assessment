@@ -27,6 +27,7 @@
 \usepackage{color, colortbl}
 \usepackage{arydshln}          % For dashed lines in tables (has to be loaded after other stuff)
 \usepackage{pdfpages}          % So we can import PDFs into the document (e.g. request for science advice).
+\usepackage{multicol}
 \usepackage[parfill]{parskip}  % So paragraphs will have a blank line between them
 \setlength{\parskip}{12pt}
 
@@ -220,6 +221,7 @@ survey.end.yr   <- 2015 ## Last year in the survey timeseries
 assess.yr       <- 2015 ## The year of this assessment
 last.assess.yr  <- 2014 ## The last year an assessment was done
 unfished.eq.yr  <- 1964 ## Unfished equilibrium year
+base.model.ind  <- 1    ## The index of the base model in the models list.
 @
 
 %% Title page and author references page

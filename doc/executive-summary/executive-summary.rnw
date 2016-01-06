@@ -73,8 +73,8 @@ reduce the effects of errors caused by assuming selectivity is constant over tim
 \begin{figure}[H]
 \begin{center}
 <<fig.height=5, fig.width=8>>=
-## modelnum is the model from which the survey input data are used.
-make.survey.biomass.plot(models, modelnum=1)
+## modelnum is the model index in models list from which the survey input data are used.
+make.survey.biomass.plot(models, modelnum=base.model.ind)
 @
 \end{center}
 %\vspace{0mm}
@@ -99,16 +99,26 @@ and an above-average 2008 cohort. The 2015 median posterior spawning biomass is 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<fig.height=5, fig.width=8>>=
-## modelnum is the model from which the survey input data are used.
-make.survey.biomass.plot(models, modelnum=1)
+<<spawning.biomass, fig.height=5, fig.width=8>>=
+make.biomass.plot(models[[base.model.ind]],
+                  equil.yr = unfished.eq.yr,
+                  start.yr = start.yr,
+                  end.yr = end.yr,
+                  color = "blue")
 @
 \end{center}
 %\vspace{0mm}
-\caption{Acoustic survey biomass index (millions of metric tons). Approximate 95\% confidence intervals are based on only sampling variability (\Sexpr{survey.start.yr}--2007, 2011--\Sexpr{survey.end.yr}) in addition to squid/hake apportionment uncertainty (2009, in blue).}
-\label{fig:es-survey-biomass}
+\caption{Median of the posterior distribution for female spawning biomass through \Sexpr{end.yr} (solid line) with 95\% posterior credibility intervals (shaded area).}
+\label{fig:es-female-spawning-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+<<results='asis', echo=FALSE>>=
+make.biomass.table(models[[base.model.ind]], start.yr=2006, end.yr=2015, weight.factor=1000,
+                   xcaption <- "Recent trends in estimated Pacific Hake female spawning biomass (thousand t) and relative spawning biomass level relative to estimated unfished equilibrium.",
+                   xlabel <- "tab:es-catches",
+                   font.size = 12,
+                   space.size = 14)
+@
 \newpage
 

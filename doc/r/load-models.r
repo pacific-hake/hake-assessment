@@ -74,7 +74,8 @@ calc.mcmc <- function(mcmc,            ## mcmc is the output of the SS_getMCMC f
   ## Do the mcmc calculations, e.g. quantiles for SB, SPB, DEPL, RECR, RECRDEVS
   ## Returns a list of them all
 
-  spb <- mcmc[,grep("SPB",names(mcmc))]
+  ## 2e6 used here because biomass will be shown in the millions of tonnes and it is female only
+  spb <- mcmc[,grep("SPB",names(mcmc))]/2e6
   spb <- spb[,!names(spb) %in% c("SPB_Virgin", paste0("SPB_",yr+1:20))]
 
   slower <- apply(spb,2,quantile,prob=0.025)
@@ -86,7 +87,8 @@ calc.mcmc <- function(mcmc,            ## mcmc is the output of the SS_getMCMC f
   dmed   <- apply(depl,2,quantile,prob=0.5)
   dupper <- apply(depl,2,quantile,prob=0.975)
 
-  recr <- mcmc[,grep("Recr_",names(mcmc))]
+  ## 1e6 used here because recruitment will be shown in the millions of tonnes
+  recr <- mcmc[,grep("Recr_",names(mcmc))]/1e6
   recr <- recr[,-grep("Fore",names(recr))]
   yrs <- unlist(lapply(strsplit(names(recr),"_"),function(x){x[2]}))
   recr <- recr[,yrs%in%c("Virgin",start.yr:yr)]
