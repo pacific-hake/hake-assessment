@@ -1,4 +1,6 @@
-load.models <- function(models.dir = file.path("..","..","models")){
+load.models <- function(models.dir = file.path("..","..","models"),
+                        yr  ## The year to calculate mcmc values for. Should be the last year in the time series (without projections).
+                        ){
   ## Load all models and their dat files into a list
   ## For all model directories that have an 'mcmc'
   ## sub-directory, load that as well, and attach
@@ -12,6 +14,7 @@ load.models <- function(models.dir = file.path("..","..","models")){
   ## something wrong with it.
   models.names <- file.path(models.dir, dir(models.dir))
   model.list <- NULL
+
   for(nm in 1:length(models.names)){
     ## Load the model in the order in which is is listed
     tryCatch({
@@ -49,6 +52,8 @@ load.models <- function(models.dir = file.path("..","..","models")){
     if(dir.exists(mcmc.dir)){
       tryCatch({
         model.list[[nm]]$mcmc <- data.frame(SSgetMCMC(dir=mcmc.dir, writecsv=FALSE)$model1)
+        ## Do the mcmc calculations, e.g. quantiles for SB, SPB, DEPL, RECR, RECRDEVS
+        model.list[[nm]]$mcmccalcs <- calc.mcmc(model.list[[nm]]$mcmc, yr = yr)
       }, warning = function(war){
         cat("There was a warning while loading the MCMC model scenario ", mcmc.dir,". Warning was: ", war$message,". Continuing...\n")
       }, error = function(err){
@@ -60,4 +65,44 @@ load.models <- function(models.dir = file.path("..","..","models")){
     }
   }
   return(model.list)
+}
+
+calc.mcmc <- function(mcmc,            ## mcmc is the output of the SS_getMCMC function from the r4ss package as a data.frame
+                      start.yr = 1966, ## Start year for recruitment
+                      yr               ## The year to calculate mcmc values for. Should be the last year in the time series (without projections).
+                      ){
+  ## Do the mcmc calculations, e.g. quantiles for SB, SPB, DEPL, RECR, RECRDEVS
+  ## Returns a list of them all
+
+  spb <- mcmc[,grep("SPB",names(mcmc))]
+  spb <- spb[,!names(spb) %in% c("SPB_Virgin", paste0("SPB_",yr+1:20))]
+
+  slower <- apply(spb,2,quantile,prob=0.025)
+  smed   <- apply(spb,2,quantile,prob=0.5)
+  supper <- apply(spb,2,quantile,prob=0.975)
+
+  depl <- t(apply(spb,1,function(x){x/x[1]}))[,-1]
+  dlower <- apply(depl,2,quantile,prob=0.025)
+  dmed   <- apply(depl,2,quantile,prob=0.5)
+  dupper <- apply(depl,2,quantile,prob=0.975)
+
+  recr <- mcmc[,grep("Recr_",names(mcmc))]
+  recr <- recr[,-grep("Fore",names(recr))]
+  yrs <- unlist(lapply(strsplit(names(recr),"_"),function(x){x[2]}))
+  recr <- recr[,yrs%in%c("Virgin",start.yr:yr)]
+
+  rmed <- apply(recr, 2, quantile, prob=0.5)
+  rmean <- apply(recr, 2, mean)
+  rlower <- apply(recr, 2, quantile,prob=0.025)
+  rupper <- apply(recr, 2, quantile,prob=0.975)
+
+  dev <- mcmc[,grep("Early_InitAge_20",names(mcmc)):
+                     grep(paste0("ForeRecr_",yr+2),names(mcmc))]
+  devlower <- apply(dev, 2, quantile, prob=0.025)
+  devmed <- apply(dev, 2, quantile, prob=0.5)
+  devupper <- apply(dev, 2, quantile, prob=0.975)
+  return(list(slower=slower, smed=smed, supper=supper,
+              dlower=dlower, dmed=dmed, dupper=dupper,
+              rlower=rlower, rmed=rmed, rupper=rupper, rmean,
+              devlower=devlower, devmed=devmed, devupper=devupper))
 }

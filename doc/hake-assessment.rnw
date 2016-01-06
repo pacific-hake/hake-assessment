@@ -164,6 +164,7 @@
 \newcommand{\bc}{British Columbia}
 %% For subscripts in text mode
 \newcommand{\subscr}[1]{$_{\text{#1}}$}
+\newcommand{\supscr}[1]{$^{\text{#1}}$}
 
 %% Headers and footers
 %% For Res Doc, best to have a left and a right footer
@@ -172,7 +173,7 @@
 %% \lhead{DRAFT -- Non-citable working paper}  % Omit for final ResDoc.
 \lhead{}
 \rhead{}
-\lfoot{Example \latex-knitr} %% Species common name for left footer
+\lfoot{Pacific Hake stock assessment} %% Species common name for left footer
 \rfoot{DRAFT - DO NOT CITE} %% The area of the assessment for right footer
 %% \rfoot{WP 2012/P02a}     %% Change to appendix number for appendices
                             %% Will probably delete footers in main text
@@ -239,6 +240,33 @@ if(use.binary.envir){
 \title{\TitleFont DRAFT - Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}}
 \author{Joint Technical Committee of the Pacific Hake/Whiting Agreement \\ Between the Governments of the United States and Canada}
 \maketitle
+\newpage
+
+%% Authors page
+This document reports the collaborative efforts of the official U.S. and Canadian JTC members.
+
+Authors of this document are (In no particular order): \\
+\hspace{4ex}Allan C. Hicks\supscr{1} \\
+\hspace{4ex}Aaron Berger\supscr{1} \\
+\hspace{4ex}Ian G. Taylor\supscr{1} \\
+\hspace{4ex}Nathan Taylor\supscr{2} \\
+\hspace{4ex}Chris Grandin\supscr{2} \\
+\hspace{4ex}Andrew Edwards\supscr{2} \\
+\hspace{4ex}Sean Cox\supscr{3} \\
+\bigskip
+
+\emph{\supscr{1}Northwest Fisheries Science Center, National Marine Fisheries Service, National Oceanic and Atmospheric Administration, U.S. Department of Commerce.
+  2725 Montlake Blvd. East, Seattle, WA 98112-2097, USA}
+
+\emph{\supscr{2}Fisheries and Oceans Canada, Pacific Biological Station,
+  3190 Hammond Bay Road, Nanaimo, BC V9T 6N7, Canada}
+
+\emph{\supscr{3}School of Resource and Environmental Management, Simon Fraser University, TASC I -- Room \#8405, 8888 University Drive, Burnaby, B.C. V5A-1S6, Canada}
+
+This document should be cited as follows: Taylor, I.G., C. Grandin, A.C. Hicks, N. Taylor, and S. Cox. 2015.
+Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}.
+Prepared by the Joint Technical Committee of the U.S. and Canada Pacific Hake/Whiting Agreement;
+National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~p.
 \newpage
 
 \input{preamble}            %% Table of contents, etc.
