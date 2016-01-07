@@ -46,6 +46,7 @@ data.path <- file.path("..","..","data")
 models.path <- file.path("..","..","models")
 
 catches <- load.catches(file.path(data.path,"2016HakeCatches_preliminary_2016.01.04.csv"))
+landings.vs.tac <- load.landings.tac(file.path(data.path,"Landings_vs_TAC.csv"))
 models <- load.models(models.path, yr = yr)
 
 
@@ -276,14 +277,21 @@ fmt0 <- function(x, dec.points=0){
   return(format(round(x,dec.points),big.mark=","))
 }
 
-get.align <- function(num){
-  # return a character vector used in the align argument of the xtable command.
-  # For tables where the first column is left-aligned and the rest are right-aligned,
-  # e.g. posterior output tables, reference point tables. Most tables really.
-  # num is the number of columns in the table
-  align <- c("l","l")
+get.align <- function(num,
+                      first.left = TRUE, ## Keep the first column left-justified
+                                         ## If FALSE, it will be justified according to the 'just' argument
+                      just = "r"         ## just is the justification to use for the columns, "r", "l", or "c"
+                      ){
+  ## Returns a character vector used in the align argument of the xtable command.
+  ## e.g. posterior output tables, reference point tables. Most tables really.
+  ## num is the number of columns in the table
+  if(first.left){
+    align <- c("l", "l")
+  }else{
+    align <- c(just, just)
+  }
   for(i in 1:(num-1)){
-    align <- c(align, "r")
+    align <- c(align, just)
   }
   return(align)
 }

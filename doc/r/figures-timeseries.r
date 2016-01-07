@@ -148,7 +148,7 @@ make.exploitation.fraction.plot <- function(model,            ## model is an mcm
   names(fmed) <- gsub("F_","",names(fmed))
   names(fupper) <- gsub("F_","",names(fupper))
 
-  ## Remove any projection years from SPR tables
+  ## Remove any projection years from F tables
   flower <- flower[(names(flower) %in% yrs)]
   fmed <- fmed[(names(fmed) %in% yrs)]
   fupper <- fupper[(names(fupper) %in% yrs)]
@@ -161,5 +161,79 @@ make.exploitation.fraction.plot <- function(model,            ## model is an mcm
   ## axis(1,at=seq(1965,lastCatchYr,2))
   axis(1,at=c(seq(start.yr+4,end.yr-1,5), end.yr-1))
   axis(1,at=start.yr:(end.yr-1), lab=rep("",length(start.yr:(end.yr-1))), tcl=-0.3)
+  par <- oldpar
+}
+
+make.phase.plot <- function(model,            ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
+                            start.yr,         ## Year the timeseries starts (i.e. first year in model)
+                            end.yr,           ## Year the timeseries ends (i.e. last year in model)
+                            color = "blue"
+                            ){
+  ## Plots the relative fishing intensity and relative spawning biomass as a historical
+  ## look at the fishery for the mcmc given by model
+  oldpar <- par()
+
+  yrs <- start.yr:end.yr
+
+  slower <- model$mcmccalcs$slower
+  smed <- model$mcmccalcs$smed
+  supper <- model$mcmccalcs$supper
+
+  ## Remove prepended strings from year labels
+  names(slower) <- gsub("SPB_","",names(slower))
+  names(smed) <- gsub("SPB_","",names(smed))
+  names(supper) <- gsub("SPB_","",names(supper))
+
+  sb40 <- smed["Initial"] * 0.4
+  sb0 <- smed["Initial"]
+
+  ## Remove Initial value from biomass series
+  slower <- slower[-grep("Initial",names(slower))]
+  smed <- smed[-grep("Initial",names(smed))]
+  supper <- supper[-grep("Initial",names(supper))]
+
+  plower <- model$mcmccalcs$plower
+  pmed <- model$mcmccalcs$pmed
+  pupper <- model$mcmccalcs$pupper
+
+  ## Remove prepended strings from year labels
+  names(plower) <- gsub("SPRratio_","",names(plower))
+  names(pmed) <- gsub("SPRratio_","",names(pmed))
+  names(pupper) <- gsub("SPRratio_","",names(pupper))
+
+  ## Remove any projection years from SPR tables
+  plower <- plower[(names(plower) %in% yrs)]
+  pmed <- pmed[(names(pmed) %in% yrs)]
+  pupper <- pupper[(names(pupper) %in% yrs)]
+
+  sb <- smed[yrs %in% c(start.yr:(end.yr-1))]/sb0
+  sb.hi <- supper[yrs %in% (end.yr-1)]/sb0
+  sb.lo <- slower[yrs %in% (end.yr-1)]/sb0
+
+  spr <- pmed[yrs %in% c(start.yr:(end.yr-1))]
+  spr.hi <- pupper[yrs %in% (end.yr-1)]
+  spr.lo <- plower[yrs %in% (end.yr-1)]
+
+  par(mfrow=c(1,1),las=1,mar=c(3.6,3.6,1,1),oma=c(0,0,0,0))
+  plot(sb,spr,type="n",pch=20,xlim=c(0,1.3),ylim=c(0,1.3),
+       #xlab="Spawning depletion (SB/SB0)",
+       xlab=expression(paste("Relative spawning biomass",~~~(italic(B[t])/italic(B)[0]))),
+       #ylab="Relative fishing intensity (1-SPR)/(1-SPR_40%)",
+       ylab=expression(paste("Relative fishing intensity",~~(1-italic(SPR))/(1-italic(SPR)['40%']))),
+       xaxs="i",yaxs="i",mgp=c(2.4,1,0))
+  colvec <- rev(rich.colors.short(n=length(sb))[-1])
+  arrows(sb[-length(sb)],spr[-length(spr)],sb[-1],spr[-1],length=0.09,
+         #col=rgb(0,0,0,0.4))
+         col=colvec)
+  points(sb,spr,type="p",pch=20)
+  points(sb[length(sb)],spr[length(spr)],pch=16,col=1,cex=1.2)
+  points(sb[1],spr[1],pch=16,col=1,cex=1.2)
+  text(sb[1],spr[1]-0.025,"1966",cex=0.6,pos=2,offset=0.15)
+  segments(sb[length(sb)],spr.lo,sb[length(sb)],spr.hi,col=rgb(0,0,0,0.5))
+  segments(sb.lo,spr[length(spr)],sb.hi,spr[length(spr)],col=rgb(0,0,0,0.5))
+  text(sb[length(sb)],spr[length(spr)]+0.045,end.yr-1,pos=4,cex=0.6)
+  abline(h=1,v=1,lty=2,col=rgb(0,0,0,0.4))
+  abline(h=1,v=c(0.1,0.4),lty=2,col=rgb(0,0,0,0.4))
+
   par <- oldpar
 }
