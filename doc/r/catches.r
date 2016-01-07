@@ -127,3 +127,41 @@ make.catches.table.Can <- function(catches,              ## The output of the lo
 }
 
 
+# ** Combine these three functions (this and two above) into one with a switch,
+#  since it's only the filtering that changes.
+# Total catches for both countries, for all years:
+make.catches.table.total <- function(catches,              ## The output of the load.catches function above.
+                               start.yr,             ## start.yr is the first year to show in the table
+                               end.yr,               ## end.yr is the last year to show in the table
+                               weight.factor = 1000, ## divide catches by this factor
+                               xcaption = "default", ## Caption to use
+                               xlabel   = "default", ## Latex label to use
+                               font.size = 9,        ## Size of the font for the table
+                               space.size = 10       ## Size of the spaces for the table
+                               ){
+  ## Returns an xtable in the proper format for the full catches from Canada.
+    catches <- catches[,c("Year", "Ustotal", "CANtotal", "TOTAL")]
+    colnames(catches) <- c("Year","Total U.S.","Total Canada","Total coastwide")
+    catches[, "Percent U.S."] = 100 * catches[,"Total U.S."] /
+        catches[,"Total coastwide"]
+    # catches[, "Percent U.S."] = paste0(round(catches[, "Percent U.S."],
+    #    1), "\\%")    # To add % sign, but a bit clutterred and not sure how
+    #                  #  to force 91.0% instead of 91%
+    catches[, "Percent Canada"] = 100 * catches[,"Total Canada"] /
+        catches[,"Total coastwide"]
+    # catches[, "Percent Canada"] = paste0(round(catches[, "Percent Canada"
+    #    ],  1), "\\%")
+    
+  ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
+  catches <- catches[catches[,1] >= start.yr & catches[,1] <= end.yr,]
+  catches[,-c(1, 5, 6)] <- fmt0(catches[,-c(1, 5, 6)])  ## leave three columns
+                                   ## alone and don't comma-separate them
+  catches[,c(5, 6)] <- fmt0(catches[,c(5, 6)], dec.points=1) ## one dec point 
+    
+  ## Make the size string for font and space size
+  size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
+  return(print(xtable(catches, caption=xcaption, label=xlabel, align=get.align(ncol(catches))),
+               caption.placement = "top", include.rownames=FALSE, sanitize.text.function=function(x){x}, size=size.string))
+}
+
+

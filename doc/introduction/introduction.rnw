@@ -93,3 +93,12 @@ make.catches.table.Can(catches, start.yr=start.yr, end.yr=end.yr,
                    space.size = 12)
 @
 
+<<catches.total, results='asis', echo=FALSE>>=
+make.catches.table.total(catches, start.yr=start.yr, end.yr=end.yr, 
+                   weight.factor=1000,
+                   xcaption <- paste("Total U.S., Canadian and coastwide catches  of Pacific Hake (t) from ", start.yr, "-", end.yr, ". The percentage of the total catch from each country's waters is also given.", sep=""),
+                   xlabel <- "tab:intro-catches-total",
+                   font.size = 11,
+                   space.size = 12)
+@
+
