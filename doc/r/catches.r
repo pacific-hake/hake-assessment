@@ -74,4 +74,31 @@ legend(x=0,y=leg.y.loc,
   par <- oldpar
 }
 
+# US catches only, for all years:
+make.catches.table.US <- function(catches,              ## The output of the load.catches function above.
+                               start.yr,             ## start.yr is the first year to show in the table
+                               end.yr,               ## end.yr is the last year to show in the table
+                               weight.factor = 1000, ## divide catches by this factor
+                               xcaption = "default", ## Caption to use
+                               xlabel   = "default", ## Latex label to use
+                               font.size = 9,        ## Size of the font for the table
+                               space.size = 10       ## Size of the spaces for the table
+                               ){
+  ## Returns an xtable in the proper format for the Table 1 full catches from the U.S.
+    catches <- catches[,c("Year", "US_foreign", "US_JV", "atSea_US_MS",
+                          "atSea_US_CP", "US_shore",  "USresearch", "Ustotal")]
+    # colnames(catches) <- c("Year","US Foreign","US JV","US Mothership","US Catcher-Processor","US Shore-based","US Research","US Total")  # to include 'US'
+    colnames(catches) <- c("Year","Foreign","JV","Mothership","Catcher-Processor","Shore-based","Research","Total")
+    
+  ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
+  catches <- catches[catches[,1] >= start.yr & catches[,1] <= end.yr,]
+  catches[,-1] <- fmt0(catches[,-1])  ## -1 means leave the years alone and don't comma-seperate them
+
+  ## Make the size string for font and space size
+  size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
+  return(print(xtable(catches, caption=xcaption, label=xlabel, align=get.align(ncol(catches))),
+               caption.placement = "top", include.rownames=FALSE, sanitize.text.function=function(x){x}, size=size.string))
+}
+
+
 
