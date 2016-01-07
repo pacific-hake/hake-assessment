@@ -70,6 +70,12 @@ The following depicts the object structure of the **models** list:
         models[[N]]$mcmccalcs$devlower - Recruitment deviations lower confidence (2.5%)
         models[[N]]$mcmccalcs$devmed   - Recruitment deviations median (50%)
         models[[N]]$mcmccalcs$devupper - Recruitment deviations upper confidence (97.5%)
+        models[[N]]$mcmccalcs$plower   - SPR lower confidence (2.5%)
+        models[[N]]$mcmccalcs$pmed     - SPR median (50%)
+        models[[N]]$mcmccalcs$pupper   - SPR upper confidence (97.5%)
+        models[[N]]$mcmccalcs$flower   - Fishing mortality lower confidence (2.5%)
+        models[[N]]$mcmccalcs$fmed     - Fishing mortality median (50%)
+        models[[N]]$mcmccalcs$fupper   - Fishing mortality upper confidence (97.5%)
 
 ---
 

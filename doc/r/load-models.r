@@ -69,23 +69,25 @@ load.models <- function(models.dir = file.path("..","..","models"),
 
 calc.mcmc <- function(mcmc,            ## mcmc is the output of the SS_getMCMC function from the r4ss package as a data.frame
                       start.yr = 1966, ## Start year for recruitment
-                      yr               ## The year to calculate mcmc values for. Should be the last year in the time series (without projections).
+                      yr,              ## The year to calculate mcmc values for. Should be the last year in the time series (without projections).
+                      lower = 0.025,   ## Lower quantile for confidence interval calcs
+                      upper = 0.975    ## Upper quantile for confidence interval calcs
                       ){
-  ## Do the mcmc calculations, e.g. quantiles for SB, SPB, DEPL, RECR, RECRDEVS
+  ## Do the mcmc calculations, e.g. quantiles for SB, SPB, DEPL, RECR, RECRDEVS, SPR
   ## Returns a list of them all
 
   ## 2e6 used here because biomass will be shown in the millions of tonnes and it is female only
   spb <- mcmc[,grep("SPB",names(mcmc))]/2e6
   spb <- spb[,!names(spb) %in% c("SPB_Virgin", paste0("SPB_",yr+1:20))]
 
-  slower <- apply(spb,2,quantile,prob=0.025)
+  slower <- apply(spb,2,quantile,prob=lower)
   smed   <- apply(spb,2,quantile,prob=0.5)
-  supper <- apply(spb,2,quantile,prob=0.975)
+  supper <- apply(spb,2,quantile,prob=upper)
 
   depl <- t(apply(spb,1,function(x){x/x[1]}))[,-1]
-  dlower <- apply(depl,2,quantile,prob=0.025)
+  dlower <- apply(depl,2,quantile,prob=lower)
   dmed   <- apply(depl,2,quantile,prob=0.5)
-  dupper <- apply(depl,2,quantile,prob=0.975)
+  dupper <- apply(depl,2,quantile,prob=upper)
 
   ## 1e6 used here because recruitment will be shown in the millions of tonnes
   recr <- mcmc[,grep("Recr_",names(mcmc))]/1e6
@@ -95,16 +97,29 @@ calc.mcmc <- function(mcmc,            ## mcmc is the output of the SS_getMCMC f
 
   rmed <- apply(recr, 2, quantile, prob=0.5)
   rmean <- apply(recr, 2, mean)
-  rlower <- apply(recr, 2, quantile,prob=0.025)
-  rupper <- apply(recr, 2, quantile,prob=0.975)
+  rlower <- apply(recr, 2, quantile,prob=lower)
+  rupper <- apply(recr, 2, quantile,prob=upper)
 
   dev <- mcmc[,grep("Early_InitAge_20",names(mcmc)):
                      grep(paste0("ForeRecr_",yr+2),names(mcmc))]
-  devlower <- apply(dev, 2, quantile, prob=0.025)
+  devlower <- apply(dev, 2, quantile, prob=lower)
   devmed <- apply(dev, 2, quantile, prob=0.5)
-  devupper <- apply(dev, 2, quantile, prob=0.975)
+  devupper <- apply(dev, 2, quantile, prob=upper)
+
+  spr <- mcmc[,grep("SPRratio_",names(mcmc))]
+  plower <- apply(spr, 2, quantile, prob=lower)
+  pmed <- apply(spr, 2, quantile, prob=0.5)
+  pupper <- apply(spr, 2, quantile, prob=upper)
+
+  f <- mcmc[,grep("F_",names(mcmc))]
+  flower <- apply(f, 2, quantile, prob=lower)
+  fmed   <- apply(f, 2, quantile, prob=0.5)
+  fupper <- apply(f, 2, quantile, prob=upper)
+
   return(list(slower=slower, smed=smed, supper=supper,
               dlower=dlower, dmed=dmed, dupper=dupper,
               rlower=rlower, rmed=rmed, rupper=rupper, rmean=rmean,
-              devlower=devlower, devmed=devmed, devupper=devupper))
+              devlower=devlower, devmed=devmed, devupper=devupper,
+              plower=plower, pmed=pmed, pupper=pupper,
+              flower=flower, fmed=fmed, fupper=fupper))
 }

@@ -88,3 +88,78 @@ make.recruitment.plot <- function(model,            ## model is an mcmc run and 
   }
   par <- oldpar
 }
+
+make.fishing.intensity.plot <- function(model,            ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
+                                        start.yr,         ## Year the timeseries starts (i.e. first year in model)
+                                        end.yr,           ## Year the timeseries ends (i.e. last year in model)
+                                        color = "blue"
+                                        ){
+  ## Plots the 1-SPR / 1-SPR40% for the mcmc given by model
+  oldpar <- par()
+
+  plower <- model$mcmccalcs$plower
+  pmed <- model$mcmccalcs$pmed
+  pupper <- model$mcmccalcs$pupper
+
+  yrs <- start.yr:end.yr
+
+  ## Remove prepended strings from year labels
+  names(plower) <- gsub("SPRratio_","",names(plower))
+  names(pmed) <- gsub("SPRratio_","",names(pmed))
+  names(pupper) <- gsub("SPRratio_","",names(pupper))
+
+  ## Remove any projection years from SPR tables
+  plower <- plower[(names(plower) %in% yrs)]
+  pmed <- pmed[(names(pmed) %in% yrs)]
+  pupper <- pupper[(names(pupper) %in% yrs)]
+
+  y <- data.frame(value=pmed,lo=plower,hi=pupper)
+  par(mfrow=c(1,1),las=1,mar=c(3.5,3.5,1,1),oma=c(0,0,0,0))
+  plotBars.fn(yrs,y,scalar=1,ylim=c(0,1.3),pch=20,
+            ## xlab="Year",ylab="Fishing intensity (1-SPR)/(1-SPR_40%)",
+            xlab="Year",
+            ylab=expression(paste("Fishing intensity",~~(1-italic(SPR))/(1-italic(SPR)['40%']))),
+            cex=0.8,las=1,gap=0.02,xaxt="n",ciLwd=1,ciCol=rgb(0,0,1,0.5),
+            mgp=c(2.3,1,0),xlim=range(yrs),yaxs="i")
+  axis(1,at=c(seq(start.yr+4,end.yr-1,5), end.yr-1))
+  axis(1,at=start.yr:(end.yr-1), lab=rep("",length(start.yr:(end.yr-1))), tcl=-0.3)
+  ##axis(1,at=seq(1965,lastCatchYr,2))
+  abline(h=1,col=rgb(0,0,0,0.4))
+  text(start.yr+4,1.05,"Management Target",cex=0.8,col=rgb(0,0,0,0.4))
+  par <- oldpar
+}
+
+make.exploitation.fraction.plot <- function(model,            ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
+                                            start.yr,         ## Year the timeseries starts (i.e. first year in model)
+                                            end.yr,           ## Year the timeseries ends (i.e. last year in model)
+                                            color = "blue"
+                                            ){
+  ## Plots the exploitation fraction for the mcmc given by model
+  oldpar <- par()
+
+  flower <- model$mcmccalcs$flower
+  fmed <- model$mcmccalcs$fmed
+  fupper <- model$mcmccalcs$fupper
+
+  yrs <- start.yr:end.yr
+
+  ## Remove prepended strings from year labels
+  names(flower) <- gsub("F_","",names(flower))
+  names(fmed) <- gsub("F_","",names(fmed))
+  names(fupper) <- gsub("F_","",names(fupper))
+
+  ## Remove any projection years from SPR tables
+  flower <- flower[(names(flower) %in% yrs)]
+  fmed <- fmed[(names(fmed) %in% yrs)]
+  fupper <- fupper[(names(fupper) %in% yrs)]
+
+  y <- data.frame(value=fmed,lo=flower,hi=fupper)
+
+  par(mfrow=c(1,1),las=1,mar=c(3.5,3.5,1,1),oma=c(0,0,0,0))
+  plotBars.fn(yrs,y,scalar=1,ylim=c(0,0.4),pch=20,xlab="Year",ylab="Exploitation fraction",
+              cex=0.8,las=1,gap=0.005,xaxt="n",ciLwd=1,ciCol=rgb(0,0,1,0.5),mgp=c(2.3,1,0),xlim=range(yrs),yaxs="i")
+  ## axis(1,at=seq(1965,lastCatchYr,2))
+  axis(1,at=c(seq(start.yr+4,end.yr-1,5), end.yr-1))
+  axis(1,at=start.yr:(end.yr-1), lab=rep("",length(start.yr:(end.yr-1))), tcl=-0.3)
+  par <- oldpar
+}

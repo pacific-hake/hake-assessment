@@ -161,7 +161,6 @@ make.recruitment.plot(models[[base.model.ind]],
                       add.r0 = TRUE)
 @
 \end{center}
-%\vspace{0mm}
 \caption{Medians (solid circles) and means (x) of the posterior distribution for recruitment (billions of age-0) with 95\% posterior credibility intervals (blue lines). The median of the posterior distribution for mean unfished equilibrium recruitment (R\subscr{0}) is shown as the horizontal dashed line with a 95\% posterior credibility interval shaded between the dotted lines.}
 \label{fig:es-recruitment}
 \end{figure}
@@ -176,6 +175,50 @@ make.recruitment.table(models[[base.model.ind]], start.yr=end.yr-10, end.yr=end.
 @
 
 \subsection*{Exploitation Status} \label{sec:es-exploitation-status} \addcontentsline{toc}{subsection}{Exploitation Status}
+Median fishing intensity on the stock is estimated to have been consistently below the F\subscr{40\%} target with the
+exception of the periods in the late 1990s and late 2000s when the spawning biomass was the lowest. In retrospect,
+the target was exceeded slightly in 2008 and 2010. Exploitation fraction (catch divided by biomass of ages 3 and above) has
+shown relatively similar patterns. Fishing intensity is estimated to have declined from 100.3\% in 2010 to 61.6\% in 2014 while
+exploitation fraction has decreased from about 0.25 in the late 2000s to less than 0.10 in 2013 and 2014. The uncertainty around
+these estimates is largest in the most recent years due to uncertainty in recruitment and spawning biomass.
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<fishing.intensity, fig.height=5, fig.width=8>>=
+make.fishing.intensity.plot(models[[base.model.ind]],
+                            start.yr = start.yr,
+                            end.yr = end.yr,
+                            color = "blue")
+@
+\end{center}
+\caption{Trend in median fishing intensity (relative to the SPR management target) through \Sexpr{end.yr-1} with 95\% posterior credibility intervals. The management target defined in the Agreement is shown as a horizontal line at 1.0.}
+\label{fig:es-fishing-intensity}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<exploitation.fraction, fig.height=5, fig.width=8>>=
+make.exploitation.fraction.plot(models[[base.model.ind]],
+                                start.yr = start.yr,
+                                end.yr = end.yr,
+                                color = "blue")
+@
+\end{center}
+\caption{Trend in median exploitation fraction through \Sexpr{end.yr-1} with 95\% posterior credibility intervals.}
+\label{fig:es-exploitation-fraction}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+<<results='asis', echo=FALSE>>=
+make.fishing.intensity.table(models[[base.model.ind]], start.yr=end.yr-10, end.yr=end.yr-1, digits=3,
+                             xcaption <- "Recent trend in fishing intensity. Relative spawning potential ratio; (1-SPR)/(1-SPR\\subscr{40\\%}) and exploitation rate (catch divided by age 3+ biomass).",
+                             xlabel <- "tab:es-fishing-intensity",
+                             font.size = 12,
+                             space.size = 14)
+@
 
 \subsection*{Management Performance} \label{sec:es-management-performance} \addcontentsline{toc}{subsection}{Management Performance}
 
