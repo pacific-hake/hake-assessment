@@ -224,7 +224,7 @@ make.fishing.intensity.table(models[[base.model.ind]], start.yr=end.yr-10, end.y
 Over the last decade, the average coast-wide utilization rate (i.e., utilization = landings/quota) has been \Sexpr{round(mean(landings.vs.tac[,4]),1)}\%.
 From 2010 to 2014, the mean utilization rates differed between the United States (85\%) and Canada (60\%). Total landings last exceeded the coast-wide
 quota in 2002 when utilization was 112\%. Exploitation history in terms of joint biomass and F-target reference points shows that before
-2007, median fishing intensity was below target and female spawning biomass was near or above target (Figure \textbf{was figure H}).
+2007, median fishing intensity was below target and female spawning biomass was near or above target (Figure \ref{tab:es-landings-tac}).
 Between 2007 and 2011, however, fishing intensity ranged from 87\% to 105\% and relative spawning biomass between 0.22 and 0.31.
 Biomass has risen recently with the 2008 and 2010 recruitments and correspondingly, fishing intensity has fallen below targets, and
 relative spawning biomass above targets for 2012 through 2014. While uncertainty in the 2014 fishing intensity estimates and relative
@@ -256,6 +256,18 @@ make.phase.plot(models[[base.model.ind]],
 
 
 \subsection*{Reference Points} \label{sec:es-reference-points} \addcontentsline{toc}{subsection}{Reference Points}
+We report estimates of the \Sexpr{assess.yr} base model reference points with posterior credibility intervals in Table f.
+The estimates are slightly different than the estimates in the 2014 assessment with slightly greater yields and biomasses
+estimated in this assessment.
+
+<<results='asis', echo=FALSE>>=
+make.reference.points.table(models[[base.model.ind]],
+                            xcaption <- paste0("Summary of median and 95\\% credibility intervals of equilibrium reference points for the \\fishname\\ base assessment model. Equilibrium reference points were computed using ",start.yr,"--",end.yr-1," averages for mean size at age and selectivity at age."),
+                            xlabel <- "tab:es-reference.points",
+                            font.size = 8,
+                            space.size = 9)
+@
+
 
 \subsection*{Unresolved Problems and Major Uncertainties} \label{sec:es-unresolved-problems} \addcontentsline{toc}{subsection}{Unresolved Problems and Major Uncertainties}
 

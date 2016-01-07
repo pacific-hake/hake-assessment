@@ -39,6 +39,7 @@ source("load-models.r")
 source("survey.r")
 source("figures-timeseries.r")
 source("tables-timeseries.r")
+source("tables-reference-points.r")
 
 yr <- 2015
 
