@@ -22,7 +22,7 @@ Landings between 2001 and 2008 were predominantly comprised of fish from the ver
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<fig.height=4, fig.width=8>>=
+<<total.catches, fig.height=4, fig.width=8>>=
 make.catches.plot(catches, leg.y.loc=520) ## leg.y.loc is y-coord to place legend at
 @
 \end{center}
@@ -72,7 +72,7 @@ reduce the effects of errors caused by assuming selectivity is constant over tim
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<fig.height=5, fig.width=8>>=
+<<survey.biomass, fig.height=5, fig.width=8>>=
 ## modelnum is the model index in models list from which the survey input data are used.
 make.survey.biomass.plot(models, modelnum=base.model.ind)
 @
@@ -114,14 +114,66 @@ make.biomass.plot(models[[base.model.ind]],
 %%%%%%%%%%%%%%%%%%%%%%%
 
 <<results='asis', echo=FALSE>>=
-make.biomass.table(models[[base.model.ind]], start.yr=2006, end.yr=2015, weight.factor=1000,
+make.biomass.table(models[[base.model.ind]], start.yr=end.yr-9, end.yr=end.yr, weight.factor=1000,
                    xcaption <- "Recent trends in estimated Pacific Hake female spawning biomass (thousand t) and relative spawning biomass level relative to estimated unfished equilibrium.",
-                   xlabel <- "tab:es-catches",
+                   xlabel <- "tab:es-biomass",
                    font.size = 12,
                    space.size = 14)
 @
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<relative.spawning.biomass, fig.height=5, fig.width=8>>=
+make.depletion.plot(models[[base.model.ind]],
+                    start.yr = start.yr,
+                    end.yr = end.yr,
+                    color = "blue")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Median (solid line) of the posterior distribution for relative spawning biomass (B\subscr{t}/B\subscr{0}) through \Sexpr{end.yr} with 95\% posterior credibility intervals (shaded area). Dashed horizontal lines show 10\%, 40\% and 100\% levels.}
+\label{fig:es-relative-spawning-biomass}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection*{Recruitment} \label{sec:es-recruitment} \addcontentsline{toc}{subsection}{Recruitment}
+The new data available for this assessment do not significantly change the estimated patterns of recruitment. \fishname\ appear
+to have low average recruitment with occasional large year-classes. Very large year classes in 1980, 1984, and 1999 supported much
+of the commercial catch from the 1980s to the mid-2000s. From 2000 to 2007, estimated recruitment was at some of the lowest values
+in the time-series followed by a relatively large 2008 year class. The current assessment estimates a very strong 2010 year class
+comprising 70\% of the coast-wide commercial catch in 2013 and 64\% of the 2014 catch. Its size is still more uncertain than cohorts
+that have been observed for more years but the median estimate is the second highest in the time series (after the 1980 recruitment estimate).
+The model currently estimates a small 2011 year class, and smaller than average 2012 and 2013 year classes. There is little or no
+information in the data to estimate the sizes of the 2014 and 2015 year classes. Retrospective analyses of year class strength for
+young fish have shown the estimates of recent recruitment to be unreliable prior to at least age 3.
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<recruitment, fig.height=5, fig.width=8>>=
+make.recruitment.plot(models[[base.model.ind]],
+                      equil.yr = unfished.eq.yr,
+                      start.yr = start.yr,
+                      end.yr = end.yr,
+                      color = "blue",
+                      add.mean = TRUE,
+                      add.r0 = TRUE)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Medians (solid circles) and means (x) of the posterior distribution for recruitment (billions of age-0) with 95\% posterior credibility intervals (blue lines). The median of the posterior distribution for mean unfished equilibrium recruitment (R\subscr{0}) is shown as the horizontal dashed line with a 95\% posterior credibility interval shaded between the dotted lines.}
+\label{fig:es-recruitment}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+<<results='asis', echo=FALSE>>=
+make.recruitment.table(models[[base.model.ind]], start.yr=end.yr-10, end.yr=end.yr-1, weight.factor=1000,
+                       xcaption <- "Estimates of recent Pacific Hake recruitment (millions of age-0) and recruitment deviations (deviations below zero indicate less than median recruitment and deviations above zero indicate above median recruitment).",
+                       xlabel <- "tab:es-recruitment",
+                       font.size = 12,
+                       space.size = 14)
+@
 
 \subsection*{Exploitation Status} \label{sec:es-exploitation-status} \addcontentsline{toc}{subsection}{Exploitation Status}
 

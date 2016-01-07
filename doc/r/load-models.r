@@ -105,6 +105,6 @@ calc.mcmc <- function(mcmc,            ## mcmc is the output of the SS_getMCMC f
   devupper <- apply(dev, 2, quantile, prob=0.975)
   return(list(slower=slower, smed=smed, supper=supper,
               dlower=dlower, dmed=dmed, dupper=dupper,
-              rlower=rlower, rmed=rmed, rupper=rupper, rmean,
+              rlower=rlower, rmed=rmed, rupper=rupper, rmean=rmean,
               devlower=devlower, devmed=devmed, devupper=devupper))
 }
