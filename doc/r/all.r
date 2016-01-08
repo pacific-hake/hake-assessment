@@ -9,8 +9,6 @@
 ## are not yet installed. Note this will be really slow the
 ## first time you run it, especially if they have dependencies.
 
-rm(list=ls(all=TRUE))
-
 if(!("nwfscSurvey" %in% rownames(installed.packages()))){
   devtools::install_github("nwfsc-assess/nwfscSurvey")
 }
@@ -39,15 +37,22 @@ source("load-models.r")
 source("survey.r")
 source("figures-timeseries.r")
 source("tables-timeseries.r")
+source("tables-reference-points.r")
 
 yr <- 2015
 
 data.path <- file.path("..","..","data")
 models.path <- file.path("..","..","models")
 
-catches <- load.catches(file.path(data.path,"2016HakeCatches_preliminary_2016.01.04.csv"))
-landings.vs.tac <- load.landings.tac(file.path(data.path,"Landings_vs_TAC.csv"))
-models <- load.models(models.path, yr = yr)
+n <- readline(prompt="Reload all models and data? [y/n]")
+if(n == "y" | n == "Y"){
+  catches <- load.catches(file.path(data.path,"2016HakeCatches_preliminary_2016.01.04.csv"))
+  landings.vs.tac <- load.landings.tac(file.path(data.path,"Landings_vs_TAC.csv"))
+  models <- load.models(models.path, yr = yr)
+  cat("\n\nModels and data have been reloaded and all code has been re-sourced.\n\n")
+}else{
+  cat("\n\nModels and data have NOT been reloaded, but all code has been re-sourced.\n\n")
+}
 
 
 
