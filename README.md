@@ -107,7 +107,7 @@ __GitHub workflow__
 - **git fetch cgrandin** - fetches his latest version
 - **git diff cgrandin/master** shows me the differences between his and mine. :
 -- + green is on mine not his, red is his not mine [seems like it can look like I've added something but really Chris has removed it; and when merging it should base it on the most recent commits]
-- **git merge cgrandin/master** merges our versions. Then I need to **commit** and **push**. 
+- **git merge cgrandin/master** merges our versions. Then I need to **push** (I think a merge automatically does a **committ**?). 
 - We will try and work on different files so that there are no conflicts when we merge.
 
 
