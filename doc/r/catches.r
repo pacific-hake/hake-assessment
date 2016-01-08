@@ -1,5 +1,5 @@
 ## Functions to load catches table from a csv file, display it as a table,
-## and plot the figure.
+## and plot the figure. Also calculates years.Can.JV.catch.eq.0. 
 
 load.catches <- function(fn ## fn is the filename with reletive path
                          ){
@@ -196,3 +196,15 @@ make.landings.tac.table <- function(landings.vs.tac,      ## The
   return(print(xtable(tab, caption=xcaption, label=xlabel, align=get.align(ncol(tab),first.left=FALSE,just="c"), digits=c(0,0,0,0,1)),
                caption.placement = "top", include.rownames=FALSE, sanitize.text.function=function(x){x}, size=size.string))
 }
+
+years.Can.JV.catch.eq.0 = function(catches, ## The output of the load.catches
+                                            ## function above.
+                       start.yr = 1999)     ## the year from which to look for no
+                                            ##  Can JC catch.
+    # Calculate the recent years that had no Canadian JV catch, for Introduction
+    {
+     years.Can.JV.catch.eq.0 = catches[ catches$CAN_JV == 0, ]$Year
+     years.Can.JV.catch.eq.0.recent =
+         years.Can.JV.catch.eq.0[ years.Can.JV.catch.eq.0 > 1999]
+     return(years.Can.JV.catch.eq.0.recent)
+    }

@@ -60,7 +60,7 @@
 %% Use the following codes for references within the document.
 %%   chap: chapter
 %%    sec: section
-%% subsec: subsection
+%% subsec: subsection    %% AME: it should do these automatically using sec:
 %%   fig: figure
 %%    tab: table
 %%     eq: equation
