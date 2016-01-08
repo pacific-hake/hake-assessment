@@ -284,8 +284,8 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 <<executive-summary, child='executive-summary/executive-summary.rnw'>>=
 @
 
-<<introduction, child='introduction/introduction.rnw'>>=
-@
+%% <<introduction, child='introduction/introduction.rnw'>>=
+%% @
 
 \clearpage
 

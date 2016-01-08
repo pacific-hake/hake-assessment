@@ -269,10 +269,117 @@ make.reference.points.table(models[[base.model.ind]],
 @
 
 \subsection*{Unresolved Problems and Major Uncertainties} \label{sec:es-unresolved-problems} \addcontentsline{toc}{subsection}{Unresolved Problems and Major Uncertainties}
+Uncertainty measures in the base model underestimate the total uncertainty in the current stock status and projections
+because they do not account for possible alternative structural models for \simplename\ population dynamics and fishery processes
+(e.g., selectivity), the effects of data-weighting schemes, and the scientific basis for prior probability distributions.
+To address structural uncertainties, the JTC investigated a range of alternative models, and we present a subset of key sensitivity
+analyses in the main document. Uncertainty in the best method for calculating acoustic survey biomass is a particular focus and
+results from a model fit to an alternative set of survey biomass values are presented in the decision tables alongside the base model results.
+
+The \fishname\ stock displays the highest degree of recruitment variability of any west coast groundfish stock, resulting in large
+and rapid biomass changes. This volatility adds to the uncertainty in estimates of current stock status and stock projections because
+of the dynamic fishery, which potentially targets strong cohorts resulting in time-varying fishery selectivity and limited data to
+estimate incoming recruitment in a timely manner (i.e., until the cohort is age 2 or greater).
+
+The JTC was active doing MSE in 2014-15. We divided MSE research activities into short and long term projects. The short term plan was
+to evaluate the system performance with and without an age-1 index. The design of the age-1 index simulations is described below and
+simulations will be completed soon. The age-1 index simulations and our efforts to elicit feedback on management objectives from the JMC
+and MSE Steering Group for the purposes of operating model development are described in \textbf{Appendix XXX}.
+
+Developing alternative operating dynamics complicates analyses greatly. For example last year’s closed-loop simulations only examined a
+single implementation of time-varying selectivity: there are many possible hypotheses about how this process is best modelled and statistical
+methods with which to estimate parameters describing these dynamics. How to determine estimation and simulation methods for time-varying
+selectivity is only a small subset of choices that are possible for modeling \fishname; other hypotheses that might change our perception
+of stock status (spatial dynamics, time-varying changes in life-history parameters) will also involve complicated and difficult analyses.
+Decisions about what operating models to pursue with MSE will have to be made carefully. Furthermore, the JTC would like to continue the
+involvement of the JMC, SRG, and AP to further refine management objectives, as well as, determine scenarios of interest, management actions
+to investigate, and hypotheses to simulate.
 
 \subsection*{Forecast Decision Table} \label{sec:es-forecast-decision-table} \addcontentsline{toc}{subsection}{Forecast Decision Table}
+The median catch for \Sexpr{end.yr} based on the default harvest policy (F\subscr{40\%} -- 40:10) is \textbf{FIX..804,576} t, but has a
+wide range of uncertainty; the 95\% posterior credibility interval ranges from \textbf{FIX..307,435 t to1,920,296} t.
+
+A decision table showing predicted population status and fishing intensity relative to target fishing intensity is presented with uncertainty
+represented from within the base model. The decision table (split into \textbf{FIX..Table g.1 and Table g.2}) is organized such that
+the projected outcomes for each potential catch level (rows) can be evaluated across the quantiles (columns) of the posterior distribution.
+The first table (Table g.1) shows projected relative spawning biomass outcomes, and the second (Table \textbf{FIX..g.2}) shows projected
+fishing intensity outcomes relative to the target fishing intensity (based on SPR; see table legend). Fishing intensity exceeding 100\%
+indicates fishing in excess of the F\subscr{40\%} default harvest rate catch limit. The default harvest rate catch limit results in a
+median fishing intensity above 100\% in 2015, 2016, and 2017 because the F\subscr{40\%} default harvest rate catch limit is calculated
+using baseline selectivity from all years and the forecasted catches are removed using selectivity averaged over the last 5 years.
+Recent changes in selectivity will thus be reflected in the determination of overfishing. An alternative catch level where median fishing
+intensity is 100\% is provided for comparison.
+
+Management metrics that were identified as important to the Joint Management Committee (JMC) and the Advisory Panel (AP) in 2012 are
+presented for projections to 2016 and 2017 (\textbf{FIX..Tables g.3 and g.4 and Figures j and k}). These metrics summarize the probability
+of various outcomes from the base model given each potential management action. Although not linear, probabilities can be interpolated
+from this table for intermediate catch values. Figure \textbf{FIX..i} shows the predicted relative spawning biomass trajectory through
+2017 for several of these management actions. With zero catch for the next two years, the median biomass is predicted to remain stable
+from 2016 to 2017, with a \textbf{FIX..39}\% probability of decreasing from 2015 to 2016 and a \textbf{FIX..51}\% probability of
+decreasing from 2016 to 2017.
+
+At all catch levels 180,000 t per year or greater, the spawning biomass is predicted to decline from 2015 to 2016 with greater than 68\%
+probability (Table g.3 and Figure j). The model predicts high biomass levels and the predicted probability of dropping below 10\%
+in 2016 is less than 1\% and the maximum probability of dropping below B\subscr{40\%} is 21\% for all catches explored.
+It should be noted that in addition to the natural mortality rate overtaking the growth rate for the 2010 year class, the model
+estimated below average recruitment for the 2011 and 2013 cohorts entering the 2016 spawning biomass, which also contributes to
+the relatively low catch that will result in a reduction in spawning biomass from 2015 to 2016. The probability that the 2017 spawning
+biomass will be less than the 2016 spawning biomass is greater than 50\% for any catch level (including zero catch).
+
 
 \subsection*{Research and Data Needs} \label{sec:es-research-data-needs} \addcontentsline{toc}{subsection}{Research and Data Needs}
+There are many research projects that could improve the stock assessment for \fishname. The following prioritized list of topics might
+appreciably improve biological understanding and decision-making:
+
+\begin{enumerate}[noitemsep,nolistsep]
+  \item Continue development of the management strategy evaluation (MSE) tools to evaluate major sources of uncertainty relating to
+    data, model structure and the harvest policy for this fishery and compare potential methods to address them.
+    Incorporate the feedback from JMC/AP/SRG/MSE Advisory Panel into operating model development. Specifically, making sure
+    that the operating model is able to provide insight into the important questions defined by these groups. If a spatially,
+    seasonally explicit operating model is needed, then research should focus on how to best to model these dynamics to capture
+    seasonal effects and potential climate forcing influences in the simulations.
+  \item Conduct further exploration of ageing imprecision and the effects of large cohorts via simulation and blind source age-reading
+    of samples with differing underlying age distributions -- with and without dominant year classes.
+  \item Continue to explore and develop statistical methods to parameterize time-varying fishery selectivity in assessment and forecasting.
+  \item Continue to investigate maturity observations of Pacific Hake and explore additional sampling sources to determine fecundity and
+    when spawning occurs. Continue to explore ways to include new maturity estimates in the assessment. This would involve:
+    \begin{enumerate}[noitemsep,nolistsep]
+      \item Having ages read for the 2014 trawl samples
+      \item Further investigation of the smaller maturity-at-length south of Point Conception
+      \item Determining the significance of batch spawning and viability of spawning events throughout the year
+      \item Studying fecundity as a function of size, age, weight, and batch spawning
+    \end{enumerate}
+  \item Investigate links between hake spatial distribution and dynamics with ocean conditions and ecosystem variables such as temperature
+    and prey availability. These investigations have the potential to improve the scenarios considered in future MSE work as well as
+    providing a better basic understanding of drivers of hake population dynamics and availability to fisheries and surveys.
+  \item Continue to collect and analyze life-history data, including weight, maturity and fecundity for \fishname. Explore possible
+    relationships among these life history traits including time-varying changes as well as with body growth and population density.
+    Currently available information is limited and outdated. Continue to explore the possibility of using additional data types
+    (such as length data) within the stock assessment.
+  \item Continue to explore alternative indices for juvenile or young (0 and/or 1 year old) \fishname. This would include completing
+    ongoing MSE analyses to investigate whether an age-1 index could reduce stock assessment and management uncertainty enough to
+    improve overall management performance.
+  \item Conduct research to improve the acoustic survey estimates of age and abundance. This includes, but is not limited to, species
+    identification, target verification, target strength, directionality of survey and alternative technologies to assist in the survey,
+    as well as improved and more efficient analysis methods.
+  \item Maintain the flexibility to undertake annual acoustic surveys for \fishname\ under pressing circumstances in which uncertainty
+    in the \simplename\ stock assessment presents a potential risk to or underutilization of the stock.
+  \item Evaluate the quantity and quality of historical biological data (prior to 1989 from the Canadian fishery, and prior to 1975 from
+    the U.S. fishery) for use as age-composition and weight-at-age data, and/or any historical indications of abundance fluctuations.
+  \item Consider alternative methods for treatment of recruitment variability ($\sigma_{r}$) including the use of prior distributions
+    derived from meta-analytic methods, and for refining existing prior for natural mortality (M).
+  \item Apply bootstrapping methods to the acoustic survey time-series to incorporate more of the relevant uncertainties into the survey
+    variance calculations. These factors include the target strength relationship, subjective scoring of echograms, thresholding methods,
+    the species-mix and demographic estimates used to interpret the acoustic backscatter, and others
+  \item Continue to coordinate our MSE research with other scientists in the region engaging in similar research.
+  \item Continue to investigate alternative ways to model and forecast recruitment. Use MSE simulations to investigate the impact of
+    making incorrect assumptions about the underlying recruitment process.
+  \item Continue to work with acousticians and survey personnel from the NWFSC, the SWFSC, and DFO to determine an optimal design for
+    the Joint U.S./Canada Hake/Sardine survey.
+  \item Explore the potential to use acoustic data collected from commercial fishing vessels to study hake distributions, schooling patterns,
+    and other questions of interest. This could be similar to the "acoustic vessels of opportunity" program on fishing vessels targeting
+    pollock in Alaska.
+\end{enumerate}
 
 \newpage
 

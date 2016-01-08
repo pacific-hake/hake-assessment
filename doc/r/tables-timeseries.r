@@ -60,7 +60,7 @@ make.biomass.table <- function(model,                ## model is an mcmc run and
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(tab.filt, caption=xcaption, label=xlabel, align=get.align(ncol(tab.filt))),
-               caption.placement = "top", add.to.row=addtorow, include.rownames=FALSE, sanitize.text.function=function(x){x},
+               caption.placement = "top", add.to.row=addtorow, table.placement="H", include.rownames=FALSE, sanitize.text.function=function(x){x},
                size=size.string))
 }
 
@@ -142,7 +142,7 @@ make.recruitment.table <- function(model,                ## model is an mcmc run
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(tab.filt, caption=xcaption, label=xlabel, align=get.align(ncol(tab.filt))),
-               caption.placement = "top", add.to.row=addtorow, include.rownames=FALSE, sanitize.text.function=function(x){x},
+               caption.placement = "top", add.to.row=addtorow, table.placement="H", include.rownames=FALSE, sanitize.text.function=function(x){x},
                size=size.string))
 }
 
@@ -215,6 +215,6 @@ make.fishing.intensity.table <- function(model,                ## model is an mc
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(tab.filt, caption=xcaption, label=xlabel, align=get.align(ncol(tab.filt)), digits=digits),
-               caption.placement = "top", add.to.row=addtorow, include.rownames=FALSE, sanitize.text.function=function(x){x},
+               caption.placement = "top", add.to.row=addtorow, table.placement="H", include.rownames=FALSE, sanitize.text.function=function(x){x},
                size=size.string))
 }

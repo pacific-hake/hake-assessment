@@ -1,7 +1,7 @@
 ## Functions to load catches table from a csv file, display it as a table,
-## and plot the figure. Also calculates years.Can.JV.catch.eq.0. 
+## and plot the figure. Also calculates years.Can.JV.catch.eq.0.
 
-load.catches <- function(fn ## fn is the filename with reletive path
+load.catches <- function(fn ## fn is the filename with relative path
                          ){
   ## Reads in the catches file, replacing any NA's with zeroes
   catches <- read.csv(fn)
@@ -56,7 +56,7 @@ make.catches.table <- function(catches,              ## The output of the load.c
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(catches, caption=xcaption, label=xlabel, align=get.align(ncol(catches))),
-               caption.placement = "top", include.rownames=FALSE, sanitize.text.function=function(x){x}, size=size.string))
+               caption.placement = "top", include.rownames=FALSE, table.placement="H", sanitize.text.function=function(x){x}, size=size.string))
 }
 
 make.catches.plot <- function(catches,
@@ -108,7 +108,7 @@ make.catches.table.US <- function(catches,              ## The output of the loa
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(catches, caption=xcaption, label=xlabel, align=get.align(ncol(catches))),
-               caption.placement = "top", include.rownames=FALSE, sanitize.text.function=function(x){x}, size=size.string))
+               caption.placement = "top", include.rownames=FALSE, table.placement="H", sanitize.text.function=function(x){x}, size=size.string))
 }
 
 ## Canadian catches only, for all years:
@@ -133,7 +133,7 @@ make.catches.table.Can <- function(catches,              ## The output of the lo
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(catches, caption=xcaption, label=xlabel, align=get.align(ncol(catches))),
-               caption.placement = "top", include.rownames=FALSE, sanitize.text.function=function(x){x}, size=size.string))
+               caption.placement = "top", include.rownames=FALSE, table.placement="H", sanitize.text.function=function(x){x}, size=size.string))
 }
 
 ## ** Combine these three functions (this and two above) into one with a switch,
@@ -170,10 +170,10 @@ make.catches.table.total <- function(catches,              ## The output of the 
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(catches, caption=xcaption, label=xlabel, align=get.align(ncol(catches))),
-               caption.placement = "top", include.rownames=FALSE, sanitize.text.function=function(x){x}, size=size.string))
+               caption.placement = "top", include.rownames=FALSE, table.placement="H", sanitize.text.function=function(x){x}, size=size.string))
 }
 
-make.landings.tac.table <- function(landings.vs.tac,      ## The 
+make.landings.tac.table <- function(landings.vs.tac,
                                     start.yr,             ## start.yr is the first year to show in the table
                                     end.yr,               ## end.yr is the last year to show in the table
                                     xcaption = "default", ## Caption to use
@@ -194,17 +194,15 @@ make.landings.tac.table <- function(landings.vs.tac,      ## The
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(tab, caption=xcaption, label=xlabel, align=get.align(ncol(tab),first.left=FALSE,just="c"), digits=c(0,0,0,0,1)),
-               caption.placement = "top", include.rownames=FALSE, sanitize.text.function=function(x){x}, size=size.string))
+               caption.placement = "top", include.rownames=FALSE, table.placement="H", sanitize.text.function=function(x){x}, size=size.string))
 }
 
-years.Can.JV.catch.eq.0 = function(catches, ## The output of the load.catches
-                                            ## function above.
-                       start.yr = 1999)     ## the year from which to look for no
-                                            ##  Can JC catch.
-    # Calculate the recent years that had no Canadian JV catch, for Introduction
-    {
-     years.Can.JV.catch.eq.0 = catches[ catches$CAN_JV == 0, ]$Year
-     years.Can.JV.catch.eq.0.recent =
-         years.Can.JV.catch.eq.0[ years.Can.JV.catch.eq.0 > 1999]
-     return(years.Can.JV.catch.eq.0.recent)
-    }
+years.Can.JV.catch.eq.0 = function(catches,          ## The output of the load.catches
+                                                     ## function above.
+                                   start.yr = 1999){ ## the year from which to look for no
+                                                     ##  Can JC catch.
+  ## Calculate the recent years that had no Canadian JV catch, for Introduction
+  years.Can.JV.catch.eq.0 = catches[ catches$CAN_JV == 0, ]$Year
+  years.Can.JV.catch.eq.0.recent = years.Can.JV.catch.eq.0[ years.Can.JV.catch.eq.0 > 1999]
+  return(years.Can.JV.catch.eq.0.recent)
+}
