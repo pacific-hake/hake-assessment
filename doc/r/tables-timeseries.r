@@ -34,7 +34,7 @@ make.biomass.table <- function(model,                ## model is an mcmc run and
 
   ## Join the values and apply the formatiing
   tab <- t(rbind(fmt0(slower,digits),fmt0(smed,digits),fmt0(supper,digits),
-                 paste0(round(dlower,digits),"\\%"),paste0(round(dmed,digits),"\\%"),paste0(round(dupper,digits),"\\%")))
+                 paste0(fmt0(dlower,digits),"\\%"),paste0(fmt0(dmed,digits),"\\%"),paste0(fmt0(dupper,digits),"\\%")))
 
   ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
   tab.filt <- tab[match(start.yr:end.yr, rownames(tab)),]
@@ -116,7 +116,7 @@ make.recruitment.table <- function(model,                ## model is an mcmc run
 
   ## Join the values and apply the formatiing
   tab <- t(rbind(fmt0(rlower,digits),fmt0(rmed,digits),fmt0(rupper,digits),
-                 round(devlower,digits.dev),round(devmed,digits.dev),round(devupper,digits.dev)))
+                 fmt0(devlower,digits.dev),fmt0(devmed,digits.dev),fmt0(devupper,digits.dev)))
 
   ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
   tab.filt <- tab[match(start.yr:end.yr, rownames(tab)),]
@@ -188,8 +188,8 @@ make.fishing.intensity.table <- function(model,                ## model is an mc
   fupper <- fupper[(names(fupper) %in% yrs)]
 
   ## Join the values and apply the formatiing
-  tab <- t(rbind(round(plower,digits),round(pmed,digits),round(pupper,digits),
-                 round(flower,digits),round(fmed,digits),round(fupper,digits)))
+  tab <- t(rbind(fmt0(plower,digits),fmt0(pmed,digits),fmt0(pupper,digits),
+                 fmt0(flower,digits),fmt0(fmed,digits),fmt0(fupper,digits)))
 
   ## Filter for correct years to show
   tab.filt <- tab[match(start.yr:end.yr, rownames(tab)),]

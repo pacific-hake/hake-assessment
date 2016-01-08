@@ -279,7 +279,7 @@ fmt0 <- function(x, dec.points=0){
   ## Format 0
   ## Format x to have supplied number of decimal points
   ## Make thousands seperated by commas and no decimal point
-  return(format(round(x,dec.points),big.mark=","))
+  return(format(round(x,dec.ponints),big.mark=","))
 }
 
 get.align <- function(num,

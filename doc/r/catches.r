@@ -197,12 +197,12 @@ make.landings.tac.table <- function(landings.vs.tac,
                caption.placement = "top", include.rownames=FALSE, table.placement="H", sanitize.text.function=function(x){x}, size=size.string))
 }
 
-years.Can.JV.catch.eq.0 = function(catches,          ## The output of the load.catches
-                                                     ## function above.
-                                   start.yr = 1999){ ## the year from which to look for no
-                                                     ##  Can JC catch.
+years.Can.JV.catch.eq.0 <- function(catches,          ## The output of the load.catches
+                                                      ## function above.
+                                    start.yr = 1999){ ## the year from which to look for no
+                                                      ##  Can JC catch.
   ## Calculate the recent years that had no Canadian JV catch, for Introduction
-  years.Can.JV.catch.eq.0 = catches[ catches$CAN_JV == 0, ]$Year
-  years.Can.JV.catch.eq.0.recent = years.Can.JV.catch.eq.0[ years.Can.JV.catch.eq.0 > 1999]
+  years.Can.JV.catch.eq.0 <- catches[ catches$CAN_JV == 0, ]$Year
+  years.Can.JV.catch.eq.0.recent <- years.Can.JV.catch.eq.0[ years.Can.JV.catch.eq.0 > 1999]
   return(years.Can.JV.catch.eq.0.recent)
 }

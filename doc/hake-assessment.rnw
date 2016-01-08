@@ -221,9 +221,9 @@ start.yr        <- 1966 ## Start year for the models
 end.yr          <- 2015 ## End year for the models
 survey.start.yr <- 1995 ## First year in the survey timeseries
 survey.end.yr   <- 2015 ## Last year in the survey timeseries
-assess.yr       <- 2015 ## The year of this assessment    
+assess.yr       <- 2015 ## The year of this assessment
 ## ** That will become 2016
-last.assess.yr  <- 2014 ## The last year an assessment was done  
+last.assess.yr  <- 2014 ## The last year an assessment was done
 ## ** That will become 2015
 unfished.eq.yr  <- 1964 ## Unfished equilibrium year
 base.model.ind  <- 1    ## The index of the base model in the models list.
@@ -284,13 +284,14 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 <<executive-summary, child='executive-summary/executive-summary.rnw'>>=
 @
 
-%% <<introduction, child='introduction/introduction.rnw'>>=
-%% @
+<<introduction, child='introduction/introduction.rnw'>>=
+@
 
 \clearpage
 
-\addcontentsline{toc}{section}{REFERENCES}   % May get page number wrong 
-\bibliographystyle{resDoc}  
+%% \addcontentsline{toc}{section}{REFERENCES}   % May get page number wrong
+\phantomsection \addcontentsline{toc}{subsection}{REFERENCES}
+\bibliographystyle{resDoc}
 \bibliography{all}                             %  if starting a new page
 
 \clearpage

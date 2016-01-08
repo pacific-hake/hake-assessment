@@ -7,12 +7,12 @@
 
 \clearpage
 \section*{Executive Summary}
+\phantomsection \addcontentsline{toc}{section}{EXECUTIVE SUMMARY}
 
 % To enable pdf link from table of contents to work for an unnumbered section:
 %  https://en.wikibooks.org/wiki/LaTeX/Document_Structure. Putting it after
 %  \section else it sometimes gets the wrong page (if new section starts on new
 %  page). 
-\phantomsection \addcontentsline{toc}{section}{EXECUTIVE SUMMARY}
 
 \subsection*{Stock} \label{sec:es-stock}
 \phantomsection  \addcontentsline{toc}{subsection}{Stock}
@@ -289,7 +289,8 @@ make.reference.points.table(models[[base.model.ind]],
                             space.size = 12)
 @
 
-\subsection*{Unresolved Problems and Major Uncertainties} \label{sec:es-unresolved-problems} \addcontentsline{toc}{subsection}{Unresolved Problems and Major Uncertainties}
+\subsection*{Unresolved Problems and Major Uncertainties} \label{sec:es-unresolved-problems}
+\phantomsection \addcontentsline{toc}{subsection}{Unresolved Problems and Major Uncertainties}
 Uncertainty measures in the base model underestimate the total uncertainty in the current stock status and projections
 because they do not account for possible alternative structural models for \simplename\ population dynamics and fishery processes
 (e.g., selectivity), the effects of data-weighting schemes, and the scientific basis for prior probability distributions.
@@ -316,7 +317,8 @@ Decisions about what operating models to pursue with MSE will have to be made ca
 involvement of the JMC, SRG, and AP to further refine management objectives, as well as, determine scenarios of interest, management actions
 to investigate, and hypotheses to simulate.
 
-\subsection*{Forecast Decision Table} \label{sec:es-forecast-decision-table} \addcontentsline{toc}{subsection}{Forecast Decision Table}
+\subsection*{Forecast Decision Table} \label{sec:es-forecast-decision-table}
+\phantomsection \addcontentsline{toc}{subsection}{Forecast Decision Table}
 The median catch for \Sexpr{end.yr} based on the default harvest policy (F\subscr{40\%} -- 40:10) is \textbf{FIX..804,576} t, but has a
 wide range of uncertainty; the 95\% posterior credibility interval ranges from \textbf{FIX..307,435 t to1,920,296} t.
 
@@ -347,8 +349,8 @@ estimated below average recruitment for the 2011 and 2013 cohorts entering the 2
 the relatively low catch that will result in a reduction in spawning biomass from 2015 to 2016. The probability that the 2017 spawning
 biomass will be less than the 2016 spawning biomass is greater than 50\% for any catch level (including zero catch).
 
-
-\subsection*{Research and Data Needs} \label{sec:es-research-data-needs} \addcontentsline{toc}{subsection}{Research and Data Needs}
+\subsection*{Research and Data Needs} \label{sec:es-research-data-needs}
+\phantomsection \addcontentsline{toc}{subsection}{Research and Data Needs}
 There are many research projects that could improve the stock assessment for \fishname. The following prioritized list of topics might
 appreciably improve biological understanding and decision-making:
 
@@ -401,19 +403,6 @@ appreciably improve biological understanding and decision-making:
     and other questions of interest. This could be similar to the "acoustic vessels of opportunity" program on fishing vessels targeting
     pollock in Alaska.
 \end{enumerate}
-
-\subsection*{Unresolved Problems and Major Uncertainties} \label{sec:es-unresolved-problems}
-\phantomsection \addcontentsline{toc}{subsection}{Unresolved Problems and Major Uncertainties}
-
-
-
-\subsection*{Forecast Decision Table} \label{sec:es-forecast-decision-table}
-\phantomsection \addcontentsline{toc}{subsection}{Forecast Decision Table}
-
-
-
-\subsection*{Research and Data Needs} \label{sec:es-research-data-needs}
-\phantomsection \addcontentsline{toc}{subsection}{Research and Data Needs}
 
 \newpage
 
