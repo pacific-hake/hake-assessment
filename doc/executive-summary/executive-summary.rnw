@@ -264,10 +264,9 @@ estimated in this assessment.
 make.reference.points.table(models[[base.model.ind]],
                             xcaption <- paste0("Summary of median and 95\\% credibility intervals of equilibrium reference points for the \\fishname\\ base assessment model. Equilibrium reference points were computed using ",start.yr,"--",end.yr-1," averages for mean size at age and selectivity at age."),
                             xlabel <- "tab:es-reference.points",
-                            font.size = 8,
-                            space.size = 9)
+                            font.size = 10,
+                            space.size = 12)
 @
-
 
 \subsection*{Unresolved Problems and Major Uncertainties} \label{sec:es-unresolved-problems} \addcontentsline{toc}{subsection}{Unresolved Problems and Major Uncertainties}
 
