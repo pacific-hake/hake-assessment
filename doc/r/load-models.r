@@ -1,5 +1,11 @@
 load.models <- function(models.dir = file.path("..","..","models"),
-                        yr  ## The year to calculate mcmc values for. Should be the last year in the time series (without projections).
+                        yr,  ## The year to calculate mcmc values for. Should be the last year in the time series (without projections).
+                        proj.years = NULL, ## Years to do projections for, e.g. 2015:2017
+                        ## catch.levels is a list of N catch levels to run projections for
+                        catch.levels = list(c(0.01,0.01,0.01), c(180000,80000,0.01), rep(300000,3), rep(428000,3),
+                                            rep(710000,3), c(730000,650000,600000), c(804576,682782,0)),
+                        ## catch.levels.names is a list of N names for the catch levels given in catch.levels
+                        catch.levels.names = c("0","medBsame","300","428","stableCatch","SPR100","defaultHR")
                         ){
   ## Load all models and their dat files into a list
   ## For all model directories that have an 'mcmc'
@@ -8,10 +14,12 @@ load.models <- function(models.dir = file.path("..","..","models"),
   ## If the loading of the mcmc directory fails,
   ## its object will be set to NULL but code will continue.
   ##
-  ## Returns a list of models, each of which has a dat member
-  ## and an mcmc member. The dat member must be populated, but
+  ## Returns a list of models, each of which has a dat member,
+  ## an mcmc member, and a catch.proj member. The dat member must be populated, but
   ## the mcmc member will be NULL if the mcmc directory had
-  ## something wrong with it.
+  ## something wrong with it. The catch.proj member will be NULL if catch.levels was NULL
+  ## or a list of the same length as the number of catch levels input into this function.
+
   models.names <- file.path(models.dir, dir(models.dir))
   model.list <- NULL
 
@@ -54,6 +62,8 @@ load.models <- function(models.dir = file.path("..","..","models"),
         model.list[[nm]]$mcmc <- data.frame(SSgetMCMC(dir=mcmc.dir, writecsv=FALSE)$model1)
         ## Do the mcmc calculations, e.g. quantiles for SB, SPB, DEPL, RECR, RECRDEVS
         model.list[[nm]]$mcmccalcs <- calc.mcmc(model.list[[nm]]$mcmc, yr = yr)
+        ## For decision tables, need to create some sub-directories and run the mceval.
+        ## model.list[[nm]]$catch.proj <- calc.catch.proj(model.list[[nm]]$mcmc, mcmc.dir, proj.yrs, catch.levels, catch.levels.names)
       }, warning = function(war){
         cat("There was a warning while loading the MCMC model scenario ", mcmc.dir,". Warning was: ", war$message,". Continuing...\n")
       }, error = function(err){
@@ -65,6 +75,59 @@ load.models <- function(models.dir = file.path("..","..","models"),
     }
   }
   return(model.list)
+}
+
+calc.catch.proj <- function(mcmc,                ## mcmc is the output of the SS_getMCMC function from the r4ss package as a data.frame
+                            mcmc.dir,            ## The path of the mcmc run which are to have catch projections run
+                            proj.yrs,            ## Years to do projections for, e.g. 2015:2017
+                            catch.levels,        ## catch.levels is a list of N catch levels to run projections for
+                            catch.levels.names,  ## catch.levels.names is a list of N names for the catch levels given in catch.levels
+                            probs = c(0.05,0.25,0.5,0.75,0.95)){ ## Probabilities for table
+  ## Run catch projections on the mcmc model and return the list of outputs.
+  if(!is.null(catch.levels)){
+    if(length(catch.levels) != length(catch.levels.names)){
+      stop("\nError: catch.levels is not the same length as catch.levels.names!\n")
+    }
+  }
+
+  catch.proj.dir <- file.path(mcmc.dir,"catch-projections")
+  dir.create(catch.proj.dir)
+  ## biomass.list will contain one element for each model run
+  ## for each catch projections, each having the quantiles for the proj.years
+  biomass.list <- NULL
+  spr.list <- NULL
+  for(catch.proj in 1:length(catch.levels)) {
+    ## Create a new sub-directory for each catch projection
+    name <- catch.levels.names[catch.proj]
+    new.catch.proj.dir <- file.path(catch.proj.dir, name)
+    dir.create(new.catch.proj.dir)
+    ## Copy all model files into this new catch projection directory
+    file.copy(file.path(mcmc.dir,list.files(mcmc.dir)),new.catch.proj.dir)
+
+    ## Insert fixed catches into forecast file
+    forecast.file <- file.path(new.catch.proj.dir,"forecast.ss")
+    fore <- SS_readforecast(forecast.file, Nfleets=1, Nareas=1, verbose=FALSE)
+    fore$Ncatch <- 3
+    fore$ForeCatch <- data.frame(Year=proj.yrs, Seas=1, Fleet=1, Catch_or_F=catch.levels[[catch.proj]])
+    SS_writeforecast(fore, dir = new.catch.proj.dir, overwrite = TRUE, verbose = FALSE)
+    ## Evaluate the model using mceval option of ADMB
+    shell.command <- paste0("cd ", new.catch.proj.dir, " & ss3 -mceval")
+    shell(shell.command)
+    mcmc.out <- SSgetMCMC(dir=list.dirs(catch.proj.dir)[catch.proj+1], writecsv=FALSE)$model1
+    ## Get the values of interest, namely Spawning biomass and SPR for the two
+    ## decision tables in the executive summary
+    sb <- mcmc.out[,grep("Bratio_",names(mcmc.out))]
+    spr <- mcmc.out[,grep("SPRratio_",names(mcmc.out))]
+    ## Strip out the Bratio_ and SPRratio_ headers so columns are years only
+    names(sb) <- gsub("Bratio_", "",names(sb))
+    names(spr) <- gsub("SPRratio_", "",names(spr))
+    ## Now, filter out the projected years only
+    sb.proj.cols <- sb[,names(sb) %in% proj.yrs]
+    spr.proj.cols <- spr[,names(spr) %in% proj.yrs]
+    biomass.list[[catch.proj]] <- t(apply(sb.proj.cols, 2, quantile, probs=probs))
+    spr.list[[catch.proj]] <- t(apply(spr.proj.cols, 2, quantile, probs=probs))
+  }
+  browser()
 }
 
 calc.mcmc <- function(mcmc,            ## mcmc is the output of the SS_getMCMC function from the r4ss package as a data.frame
