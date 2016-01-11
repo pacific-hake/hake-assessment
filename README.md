@@ -11,7 +11,7 @@ _____________________________________________________________
 * MikTex for Windows - the first time you try to run, many packages will be installed automatically.
   This takes some time so make sure you have a fast connection.
 * R (version 3.22 "Fire Safety" or later)
-* R Packages 'knitr', 'xtable', 'r4ss', nwfscSurvey, nwfscMapping, data and their dependencies,  
+* R Packages 'knitr', 'xtable', 'r4ss', nwfscSurvey, nwfscMapping, data and their dependencies.
 * Rscript.exe must be on your PATH.
 
 ---
@@ -55,8 +55,12 @@ The following depicts the object structure of the **models** list:
     ...
     models[[N]] - The Nth directory found; each unique member of this models list contains
       models[[N]]$          - All the objects as read in by the SS_output function in the r4ss package
+      models[[N]]$forecasts - A list of forecasts from the mcmc run of the model (for decision tables)
+        models[[N]]$forecasts$biomass  - Forecasts for biomass. The rows are labelled by forecast year.
+        models[[N]]$forecasts$spr      - Forecasts for SPR. The rows are labelled by forecast year.
+      models[[N]]$path      - The absolute path where this model is located
       models[[N]]$dat       - data file as read in by the SS_readdat function in the r4ss package
-      models[[N]]$mcmc      - mcmc output from the model as read in by the SSgetMCMC function in the r4ss package or NULL if none for this model
+      models[[N]]$mcmc      - mcmc output from the model as read in by the SSgetMCMC function or NULL if none for this model
       models[[N]]$mcmccalcs - calculations done on the mcmc outputs for this model
         models[[N]]$mcmccalcs$slower   - SPB lower confidence (2.5%)
         models[[N]]$mcmccalcs$smed     - SPB median (50%)
@@ -76,6 +80,24 @@ The following depicts the object structure of the **models** list:
         models[[N]]$mcmccalcs$flower   - Fishing mortality lower confidence (2.5%)
         models[[N]]$mcmccalcs$fmed     - Fishing mortality median (50%)
         models[[N]]$mcmccalcs$fupper   - Fishing mortality upper confidence (97.5%)
+
+
+These are the other variables in the global workspace. These can be directly referenced using \Sexpr{} in inline latex code,
+or in a knitr code chunk:
+
+    base.model.ind     - Index of the base model as found in the directory.
+    unfished.eq.yr     - Unfished equilibrium year. For hake, this is before the start year.
+    start.yr           - Start year for the model.
+    end.yr             - End year for the model.
+    survey.start.yr    - First survey year included in the model.
+    survey.end.yr      - Last survey year included in the model.
+    assess.yr          - The current assessment year.
+    last.assess.yr     - The last year in which an assessment was done.
+    forecast.yrs       - A vector of years to forecast for decision tables (e.g. 2015:2017).
+    catch.levels       - A list of vectors of length equal to the number of years in forcast.yrs.
+    catch.levels.names - A vector of names that describe the catch.levels list elements.
+    data.path          - The absolute path to the data folder, which holds catch and tac tables.
+    models.path        - The absolute path to the models folder, which holds sub-directories for the models which have been run.
 
 ---
 
@@ -107,7 +129,7 @@ __GitHub workflow__
 - **git fetch cgrandin** - fetches his latest version
 - **git diff cgrandin/master** shows me the differences between his and mine. :
 -- + green is on mine not his, red is his not mine [seems like it can look like I've added something but really Chris has removed it; and when merging it should base it on the most recent commits]
-- **git merge cgrandin/master** merges our versions. Then I need to **push** (I think a merge automatically does a **committ**?). 
+- **git merge cgrandin/master** merges our versions. Then I need to **push** (I think a merge automatically does a **committ**?).
 - We will try and work on different files so that there are no conflicts when we merge.
 
 

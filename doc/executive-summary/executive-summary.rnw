@@ -349,6 +349,15 @@ estimated below average recruitment for the 2011 and 2013 cohorts entering the 2
 the relatively low catch that will result in a reduction in spawning biomass from 2015 to 2016. The probability that the 2017 spawning
 biomass will be less than the 2016 spawning biomass is greater than 50\% for any catch level (including zero catch).
 
+<<results='asis', echo=FALSE>>=
+make.decision.table(models[[base.model.ind]],
+                    xcaption <- paste0("Forecast quantiles of \\fishname\\ relative spawning biomass at the beginning of the year before fishing. Quantiles from the base model are shown in the center of the table with median (50\\% quantile) in bold. Catch alternatives are based on: constant catch levels (rows a, b, c, d, e, g), the TAC from  ",end.yr-1," (row f), the catch level that results in a 50\\% probability that the median projected catch will remain the same in ",end.yr," (row h), the catch values that result in a median SPR ratio of 1.0 (row i), and the median values estimated via the default harvest policy (F\\subscr{40\\%} -- 40:10) for the base (row j). Catch in ",end.yr+2," is not given because it does not impact the beginning of the year biomass in ",end.yr+2,"."),
+                    xlabel <- "tab:es-decisions-biomass",
+                    font.size = 12,
+                    space.size = 14,
+                    which = "biomass")
+@
+
 \subsection*{Research and Data Needs} \label{sec:es-research-data-needs}
 \phantomsection \addcontentsline{toc}{subsection}{Research and Data Needs}
 There are many research projects that could improve the stock assessment for \fishname. The following prioritized list of topics might

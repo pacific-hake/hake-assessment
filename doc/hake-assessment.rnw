@@ -28,6 +28,7 @@
 \usepackage{arydshln}          % For dashed lines in tables (has to be loaded after other stuff)
 \usepackage{pdfpages}          % So we can import PDFs into the document (e.g. request for science advice).
 \usepackage{multicol}
+\usepackage{booktabs}
 \usepackage[parfill]{parskip}  % So paragraphs will have a blank line between them
 \setlength{\parskip}{12pt}
 
@@ -105,6 +106,7 @@
 \newcommand{\dQuote}[1]{``#1''}
 \newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
 \newcommand{\gfrac}[2]{\genfrac{}{}{}{0}{#1}{#2}}
+\newcolumntype{C}{>{\centering\arraybackslash}p{2em}} %% For centered, even columns in a table. Use 'C' instead of 'c'
 
 \newcommand\bestfig[6]{ % #1=filename, #2=main caption, #3=figure height, #4=short caption #5=file extension #6=directory
 	%% Needs package epstopdf to work
@@ -216,17 +218,8 @@ require(nwfscMapping)
 require(date)
 require(r4ss)
 require(xtable)   ## For tables which can be inserted into latex docs with knitr
+
 load("./r/.RData")
-start.yr        <- 1966 ## Start year for the models
-end.yr          <- 2015 ## End year for the models
-survey.start.yr <- 1995 ## First year in the survey timeseries
-survey.end.yr   <- 2015 ## Last year in the survey timeseries
-assess.yr       <- 2015 ## The year of this assessment
-## ** That will become 2016
-last.assess.yr  <- 2014 ## The last year an assessment was done
-## ** That will become 2015
-unfished.eq.yr  <- 1964 ## Unfished equilibrium year
-base.model.ind  <- 1    ## The index of the base model in the models list.
 @
 
 %% Title page and author references page
