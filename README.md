@@ -56,8 +56,14 @@ The following depicts the object structure of the **models** list:
     models[[N]] - The Nth directory found; each unique member of this models list contains
       models[[N]]$          - All the objects as read in by the SS_output function in the r4ss package
       models[[N]]$forecasts - A list of forecasts from the mcmc run of the model (for decision tables)
+        models[[N]]$forecasts$outputs  - a list of mcmc outputs from the forecast models as read in by the SSgetMCMC function
         models[[N]]$forecasts$biomass  - Forecasts for biomass. The rows are labelled by forecast year.
         models[[N]]$forecasts$spr      - Forecasts for SPR. The rows are labelled by forecast year.
+      models[[N]]$risks     - The risk calculations for the sxecutive summary decision table (e.g. P(B2016<B2015))
+        models[[N]]$risks[[1]] - Holds the risk values for the second year of forecasts - the first year
+        models[[N]]$risks[[2]] - Holds the risk values for the third year of forecasts - the second year
+        ...
+        models[[N]]$risks[[N]] - Holds the risk values for the N+1th year of forecasts - the Nth year
       models[[N]]$path      - The absolute path where this model is located
       models[[N]]$dat       - data file as read in by the SS_readdat function in the r4ss package
       models[[N]]$mcmc      - mcmc output from the model as read in by the SSgetMCMC function or NULL if none for this model

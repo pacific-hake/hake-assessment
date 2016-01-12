@@ -64,16 +64,17 @@ assess.yr       <- end.yr
 last.assess.yr  <- 2014
 
 forecast.yrs <- 2015:2017
+forecast.probs <- c(0.05,0.25,0.5,0.75,0.95)
 ## catch.levels is a list of N catch levels to run forecasts for
 ## Each element of the list is a vector of length the same as the
-## number of forcast.yrs
+## number of elements in forcast.yrs
 catch.levels <- list(c(0.01,0.01,0.01),
-                     c(180000,180000,180000),
+                     c(180000,180000,0.01),
                      rep(300000,3),
                      rep(428000,3),
                      rep(710000,3),
                      c(730000,650000,600000),
-                     c(804576,682782,547280))
+                     c(804576,682782,0))
 ## catch.levels.names is a list of N names for the catch levels given in catch.levels
 catch.levels.names <- c("0",
                         "medBsame",
@@ -87,31 +88,46 @@ data.path <- file.path("..","..","data")
 models.path <- file.path("..","..","models")
 
 reload.models <- readline(prompt="Reload all models and data? [y/n] ")
+run.forecasts <- readline(prompt="Run forecasting for base model (for decision tables)? [y/n] ")
+run.risks <- readline(prompt="Run risk calculations for base model (for risk tables)? [y/n] ")
+
 if(reload.models == "y" | reload.models == "Y"){
   catches <- load.catches(file.path(data.path, catch.data.file))
   landings.vs.tac <- load.landings.tac(file.path(data.path, landings.vs.tac.data.file))
   models <- load.models(models.path, yr = end.yr)
-  run.forecasts <- readline(prompt="Run forecasting for base model (for decision tables)? [y/n] ")
-
-  if(run.forecasts == "y" | run.forecasts == "Y"){
-    ## Delete any old forecasts by removing whole forecasts directory recursively
-    forecasts.path <- file.path(models[[base.model.ind]]$path, "mcmc", "forecasts")
-    unlink(forecasts.path, recursive=TRUE)
-
-    forecasts <- calc.forecast(models[[base.model.ind]]$mcmc,
-                               models[[base.model.ind]]$path,
-                               forecast.yrs,
-                               catch.levels,
-                               catch.levels.names,
-                               probs = c(0.05,0.25,0.5,0.75,0.95))
-
-    models[[base.model.ind]]$forecasts$biomass <- forecasts[[1]]
-    models[[base.model.ind]]$forecasts$spr <- forecasts[[2]]
-
-    cat("\n\nForecasts completed for (base) model located in ",models[[base.model.ind]]$path,"\n\n")
-  }
   cat("\n\nAll models and data have been reloaded and all code has been re-sourced.\n\n")
 }else{
   cat("\n\nModels and data have NOT been reloaded, but all code has been re-sourced.\n\n")
 }
 
+if(run.forecasts == "y" | run.forecasts == "Y"){
+  ## Delete any old forecasts by removing whole forecasts directory recursively
+  forecasts.path <- file.path(models[[base.model.ind]]$path, "mcmc", "forecasts")
+
+  forecasts <- calc.forecast(models[[base.model.ind]]$mcmc,
+                             models[[base.model.ind]]$path,
+                             forecast.yrs,
+                             catch.levels,
+                             catch.levels.names,
+                             probs = forecast.probs)
+
+  models[[base.model.ind]]$forecasts$biomass <- forecasts[[1]]
+  models[[base.model.ind]]$forecasts$spr <- forecasts[[2]]
+  models[[base.model.ind]]$forecasts$outputs <- forecasts[[3]]
+
+  cat("\n\nForecast calculations completed for (base) model located in ",models[[base.model.ind]]$path,"\n\n")
+}
+
+if(run.risks == "y" | run.risks == "Y"){
+  if(is.null(models[[base.model.ind]]$forecasts$outputs)){
+    stop("\n\nError - You must successfully run the forecasting step before calculating risks.\n\n")
+  }
+  ## calc.risk assumes the forecasting step was done correctly
+  risks <- calc.risk(models[[base.model.ind]]$forecasts$outputs,
+                     forecast.yrs,
+                     catch.levels,
+                     catch.levels.names)
+
+  models[[base.model.ind]]$risks <- risks
+  cat("\n\nRisk calculations completed for (base) model located in ",models[[base.model.ind]]$path,"\n\n")
+}
