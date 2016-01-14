@@ -15,3 +15,5 @@ doc/cache/*
 doc/figure/*
 doc/resDoc.tex
 doc/r/old*
+models/*
+extra-models/*

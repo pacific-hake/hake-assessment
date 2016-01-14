@@ -1,5 +1,6 @@
 load.models <- function(models.dir = file.path("..","..","models"),
-                        yr  ## The year to calculate mcmc values for. Should be the last year in the time series (without projections).
+                        yr,  ## The year to calculate mcmc values for. Should be the last year in the time series (without projections).
+                        verbose = TRUE
                         ){
   ## Load all models and their dat files into a list
   ## For all model directories that have an 'mcmc'
@@ -20,7 +21,7 @@ load.models <- function(models.dir = file.path("..","..","models"),
   for(nm in 1:length(models.names)){
     ## Load the model in the order in which is is listed
     tryCatch({
-      model.list[[nm]] <- SS_output(dir=models.names[nm])
+      model.list[[nm]] <- SS_output(dir=models.names[nm], verbose = verbose)
     }, warning = function(war){
       cat("load.models: Warning - warning loading model ", models.names[nm],". Warning was: ", war$message,". Continuing...\n")
     }, error = function(err){
@@ -58,7 +59,7 @@ load.models <- function(models.dir = file.path("..","..","models"),
     mcmc.dir <- file.path(models.names[nm], "mcmc")
     if(dir.exists(mcmc.dir)){
       tryCatch({
-        model.list[[nm]]$mcmc <- data.frame(SSgetMCMC(dir=mcmc.dir, writecsv=FALSE)$model1)
+        model.list[[nm]]$mcmc <- data.frame(SSgetMCMC(dir=mcmc.dir, writecsv=FALSE, verbose = verbose)$model1)
         ## Do the mcmc calculations, e.g. quantiles for SB, SPB, DEPL, RECR, RECRDEVS
         model.list[[nm]]$mcmccalcs <- calc.mcmc(model.list[[nm]]$mcmc, yr = yr)
       }, warning = function(war){
@@ -167,7 +168,8 @@ calc.forecast <- function(mcmc,                ## The output of the SS_getMCMC f
     shell.command <- paste0("cd ", new.forecast.dir, " & ss3 -mceval")
     shell(shell.command)
     ## The +1 in the next line is to avoid the first directory in the listing, which is the root directory itself.
-    mcmc.out <- SSgetMCMC(dir=list.dirs(forecast.dir)[level.ind+1], writecsv=FALSE)$model1
+    ##mcmc.out <- SSgetMCMC(dir=list.dirs(forecast.dir)[level.ind+1], writecsv=FALSE)$model1
+    mcmc.out <- SSgetMCMC(dir=new.forecast.dir, writecsv=FALSE)$model1
     ## Save the outputs to return later
     outputs.list[[level.ind]] <- mcmc.out
 

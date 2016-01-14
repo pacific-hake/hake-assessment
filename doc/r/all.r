@@ -1,5 +1,6 @@
 ## Pacific Hake Joint Technical Committee, January 2016
 ## all.r - Source this file to load all data and functions,
+##  and to run the forecasting for the base model,
 ## then save the R environment to .RData in this directory. This
 ## will be read in by knitr as a binary file so that multiple
 ## loads don't happen during the latex/knitr build (they are
@@ -41,6 +42,9 @@ source("tables-timeseries.r")
 source("tables-reference-points.r")
 source("tables-decisions.r")
 
+## verbose applies to the SS loading functions as well as this project's functions
+verbose <- FALSE
+
 catch.data.file <- "2016HakeCatches_preliminary_2016.01.04.csv"
 landings.vs.tac.data.file <- "Landings_vs_TAC.csv"
 
@@ -74,7 +78,7 @@ catch.levels <- list(c(0.01,0.01,0.01),
                      rep(428000,3),
                      rep(710000,3),
                      c(730000,650000,600000),
-                     c(804576,682782,0))
+                     c(804576,682782,0.01))
 ## catch.levels.names is a list of N names for the catch levels given in catch.levels
 catch.levels.names <- c("0",
                         "medBsame",
@@ -92,15 +96,17 @@ run.forecasts <- readline(prompt="Run forecasting for base model (for decision t
 run.risks <- readline(prompt="Run risk calculations for base model (for risk tables)? [y/n] ")
 
 if(reload.models == "y" | reload.models == "Y"){
+  cat("\n\nLoading all models and data...\n\n")
   catches <- load.catches(file.path(data.path, catch.data.file))
   landings.vs.tac <- load.landings.tac(file.path(data.path, landings.vs.tac.data.file))
   models <- load.models(models.path, yr = end.yr)
-  cat("\n\nAll models and data have been reloaded and all code has been re-sourced.\n\n")
+  cat("\n\nAll models and data have been loaded.\n\n")
 }else{
-  cat("\n\nModels and data have NOT been reloaded, but all code has been re-sourced.\n\n")
+  cat("\n\nModels and data have NOT been loaded.\n\n")
 }
 
 if(run.forecasts == "y" | run.forecasts == "Y"){
+  cat("\n\nRunning forecasts for model located in ",models[[base.model.ind]]$path,"...\n\n")
   ## Delete any old forecasts by removing whole forecasts directory recursively
   forecasts.path <- file.path(models[[base.model.ind]]$path, "mcmc", "forecasts")
 
@@ -115,7 +121,7 @@ if(run.forecasts == "y" | run.forecasts == "Y"){
   models[[base.model.ind]]$forecasts$spr <- forecasts[[2]]
   models[[base.model.ind]]$forecasts$outputs <- forecasts[[3]]
 
-  cat("\n\nForecast calculations completed for (base) model located in ",models[[base.model.ind]]$path,"\n\n")
+  cat("\n\nForecast calculations completed.\n\n")
 }
 
 if(run.risks == "y" | run.risks == "Y"){
@@ -131,3 +137,6 @@ if(run.risks == "y" | run.risks == "Y"){
   models[[base.model.ind]]$risks <- risks
   cat("\n\nRisk calculations completed for (base) model located in ",models[[base.model.ind]]$path,"\n\n")
 }
+
+## Set up a simpler variable for the base model
+base.model <- models[[base.model.ind]]

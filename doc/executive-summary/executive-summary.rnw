@@ -230,7 +230,7 @@ make.exploitation.fraction.plot(models[[base.model.ind]],
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-<<results='asis', echo=FALSE>>=
+<<fishing.intensity.table, results='asis', echo=FALSE>>=
 make.fishing.intensity.table(models[[base.model.ind]], start.yr=end.yr-10, end.yr=end.yr-1, digits=3,
                              xcaption <- "Recent trend in fishing intensity. Relative spawning potential ratio; (1-SPR)/(1-SPR\\subscr{40\\%}) and exploitation rate (catch divided by age 3+ biomass).",
                              xlabel <- "tab:es-fishing-intensity",
