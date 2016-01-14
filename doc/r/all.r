@@ -37,7 +37,10 @@ source("utilities.r")
 source("catches.r")
 source("load-models.r")
 source("survey.r")
+
 source("figures-timeseries.r")
+source("figures-compare-forecasts.r")
+
 source("tables-timeseries.r")
 source("tables-reference-points.r")
 source("tables-decisions.r")
@@ -87,17 +90,21 @@ catch.levels <- list(rep(0.01, 3),
                      rep(710000,3),
                      c(730000,650000,520000),
                      c(804576,682782,547280))
+
+## The catch as calculated using the default harvest policy. Used in forecasting.
+catch.default.policy <- catch.levels[[length(catch.levels)]]
+
 ## catch.levels.names is a list of N names for the catch levels given in catch.levels
-catch.levels.names <- c("0",
-                        "180",
-                        "300",
-                        "350",
-                        "400",
-                        "428",
-                        "500",
+catch.levels.names <- c("No Fishing",
+                        "180,000 t",
+                        "300,000 t",
+                        "350,000 t",
+                        "400,000 t",
+                        "428,000 t",
+                        "500,000 t",
                         "stableCatch",
                         "SPR100",
-                        "defaultHR")
+                        paste0("Default: ",fmt0(catch.default.policy[1])," t"))
 
 data.path <- file.path("..","..","data")
 models.path <- file.path("..","..","models")
