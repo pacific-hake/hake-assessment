@@ -63,9 +63,10 @@ end.yr          <- 2015
 survey.start.yr <- 1995
 ## Last year in the survey timeseries
 survey.end.yr   <- 2015
-assess.yr       <- end.yr
 ## The last year an assessment was done
 last.assess.yr  <- 2014
+## current assessment year
+assess.yr       <- end.yr
 
 forecast.yrs <- 2015:2017
 forecast.probs <- c(0.05,0.25,0.5,0.75,0.95)
@@ -75,15 +76,21 @@ forecast.probs <- c(0.05,0.25,0.5,0.75,0.95)
 catch.levels <- list(c(0.01,0.01,0.01),
                      c(180000,180000,0.01),
                      rep(300000,3),
+                     rep(350000,3),
+                     rep(400000,3),
                      rep(428000,3),
+                     rep(500000,3),
                      rep(710000,3),
-                     c(730000,650000,600000),
-                     c(804576,682782,0.01))
+                     c(730000,650000,520000),
+                     c(804576,682782,547280))
 ## catch.levels.names is a list of N names for the catch levels given in catch.levels
 catch.levels.names <- c("0",
-                        "medBsame",
+                        "180",
                         "300",
+                        "350",
+                        "400",
                         "428",
+                        "500",
                         "stableCatch",
                         "SPR100",
                         "defaultHR")

@@ -12,7 +12,7 @@
 % To enable pdf link from table of contents to work for an unnumbered section:
 %  https://en.wikibooks.org/wiki/LaTeX/Document_Structure. Putting it after
 %  \section else it sometimes gets the wrong page (if new section starts on new
-%  page). 
+%  page).
 
 \subsection*{Stock} \label{sec:es-stock}
 \phantomsection  \addcontentsline{toc}{subsection}{Stock}
@@ -42,7 +42,7 @@ make.catches.plot(catches, leg.y.loc=520) ## leg.y.loc is y-coord to place legen
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-<<results='asis', echo=FALSE>>=
+<<total.catches.table, results='asis', echo=FALSE>>=
 make.catches.table(catches, start.yr=2006, end.yr=2015, weight.factor=1000,
                    xcaption <- "Recent commercial fishery catch (1,000's t). Tribal catches are included where applicable.",
                    xlabel <- "tab:es-catches",
@@ -127,7 +127,7 @@ make.biomass.plot(models[[base.model.ind]],
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-<<results='asis', echo=FALSE>>=
+<<biomass.table, results='asis', echo=FALSE>>=
 make.biomass.table(models[[base.model.ind]], start.yr=end.yr-9, end.yr=end.yr, weight.factor=1000,
                    xcaption <- "Recent trends in estimated Pacific Hake female spawning biomass (thousand t) and relative spawning biomass level relative to estimated unfished equilibrium.",
                    xlabel <- "tab:es-biomass",
@@ -182,7 +182,7 @@ make.recruitment.plot(models[[base.model.ind]],
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-<<results='asis', echo=FALSE>>=
+<<recruitment.table, results='asis', echo=FALSE>>=
 make.recruitment.table(models[[base.model.ind]], start.yr=end.yr-10, end.yr=end.yr-1, weight.factor=1000,
                        xcaption <- "Estimates of recent Pacific Hake recruitment (millions of age-0) and recruitment deviations (deviations below zero indicate less than median recruitment and deviations above zero indicate above median recruitment).",
                        xlabel <- "tab:es-recruitment",
@@ -251,7 +251,7 @@ relative spawning biomass above targets for 2012 through 2014. While uncertainty
 spawning biomass is large, the model predicts a 1.4\% joint probability of being both above the target fishing intensity in 2014 and below
 40\% relative spawning biomass at the start of \Sexpr{end.yr}.
 
-<<results='asis', echo=FALSE>>=
+<<landings.tac.table, results='asis', echo=FALSE>>=
 make.landings.tac.table(landings.vs.tac, start.yr=end.yr-10, end.yr=end.yr-1,
                         xcaption <- "Recent trends in Pacific Hake landings and management decisions.",
                         xlabel <- "tab:es-landings-tac",
@@ -281,7 +281,7 @@ We report estimates of the \Sexpr{assess.yr} base model reference points with po
 The estimates are slightly different than the estimates in the 2014 assessment with slightly greater yields and biomasses
 estimated in this assessment.
 
-<<results='asis', echo=FALSE>>=
+<<reference.points.table, results='asis', echo=FALSE>>=
 make.reference.points.table(models[[base.model.ind]],
                             xcaption <- paste0("Summary of median and 95\\% credibility intervals of equilibrium reference points for the \\fishname\\ base assessment model. Equilibrium reference points were computed using ",start.yr,"--",end.yr-1," averages for mean size at age and selectivity at age."),
                             xlabel <- "tab:es-reference.points",
@@ -349,7 +349,7 @@ estimated below average recruitment for the 2011 and 2013 cohorts entering the 2
 the relatively low catch that will result in a reduction in spawning biomass from 2015 to 2016. The probability that the 2017 spawning
 biomass will be less than the 2016 spawning biomass is greater than 50\% for any catch level (including zero catch).
 
-<<decisions-biomass, results='asis', echo=FALSE>>=
+<<decisions.biomass.table, results='asis', echo=FALSE>>=
 make.decision.table(models[[base.model.ind]],
                     xcaption <- paste0("Forecast quantiles of \\fishname\\ relative spawning biomass at the beginning of the year before fishing. Quantiles from the base model are shown in the center of the table with median (50\\% quantile) in bold. Catch alternatives are based on: constant catch levels (rows a, b, c, d, e, g), the TAC from  ",min(forecast.yrs)-1," (row f), the catch level that results in a 50\\% probability that the median projected catch will remain the same in ",min(forecast.yrs)," (row h), the catch values that result in a median SPR ratio of 1.0 (row i), and the median values estimated via the default harvest policy (F\\subscr{40\\%} -- 40:10) for the base (row j). Catch in ",max(forecast.yrs)," is not given because it does not impact the beginning of the year biomass in ",max(forecast.yrs),"."),
                     xlabel <- "tab:es-decisions-biomass",
@@ -358,7 +358,7 @@ make.decision.table(models[[base.model.ind]],
                     which = "biomass")
 @
 
-<<decisions-spr, results='asis', echo=FALSE>>=
+<<decisions.spr.table, results='asis', echo=FALSE>>=
 make.decision.table(models[[base.model.ind]],
                     xcaption <- paste0("Forecast quantiles of \\fishname\\ fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}) for the ",min(forecast.yrs)," -- ",max(forecast.yrs)," catch alternatives presented in Table \\ref{tab:es-decisions-biomass}. Values greater than 100\\% indicate fishing intensities greater than the F\\subscr{40\\%} harvest policy calculated using baseline selectivity."),
                     xlabel <- "tab:es-decisions-spr",
@@ -367,15 +367,25 @@ make.decision.table(models[[base.model.ind]],
                     which = "spr")
 @
 
-%% <<risk-year-1, results='asis', echo=FALSE>>=
-%% make.risk.table(models[[base.model.ind]],
-%%                 forecast.yrs,
-%%                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-%%                 xcaption <- paste0("Probabilities of related to spawning biomass, fishing intensity, and ",end.yr+1," catch limits for alternative ",end.yr," catch options (catch options explained in Table \\ref{tab:es-decisions-biomass})."),
-%%                 xlabel <- "tab:es-risk-year-1",
-%%                 font.size = 12,
-%%                 space.size = 14)
-%% @
+<<risk.forecast.year.1.table, results='asis', echo=FALSE>>=
+make.risk.table(models[[base.model.ind]],
+                forecast.yrs,
+                index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                xcaption <- paste0("Probabilities of related to spawning biomass, fishing intensity, and ",end.yr+1," catch limits for alternative ",end.yr," catch options (catch options explained in Table \\ref{tab:es-decisions-biomass})."),
+                xlabel <- "tab:es-risk-year-1",
+                font.size = 12,
+                space.size = 14)
+@
+
+<<risk.forecast.year.2.table, results='asis', echo=FALSE>>=
+make.risk.table(models[[base.model.ind]],
+                forecast.yrs,
+                index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                xcaption <- paste0("Probabilities of related to spawning biomass, fishing intensity, and ",end.yr+2," catch limits for alternative ",end.yr+1," catch options (catch options explained in Table \\ref{tab:es-decisions-biomass})."),
+                xlabel <- "tab:es-risk-year-2",
+                font.size = 12,
+                space.size = 14)
+@
 
 \subsection*{Research and Data Needs} \label{sec:es-research-data-needs}
 \phantomsection \addcontentsline{toc}{subsection}{Research and Data Needs}

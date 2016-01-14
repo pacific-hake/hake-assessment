@@ -105,25 +105,28 @@ make.risk.table <- function(model,                  ## model is an mcmc run and 
                             ){
   ## Returns an xtable in the proper format for the executive summary risk tables
 
-  risk <- t(as.data.frame(model$risks[[index]]))
-  rownames(risk) <- NULL
+  risk <- model$risks[[index]]
   ## Fix tiny catch of less than 1 to zero
   risk[risk[,1] < 1,] <- 0
-  risk[,-1] <- paste0(fmt0(risk[,-1] * 100), "\\%")
-  ##risk[,1] <- fmt0(risk[,1])
-  
+  ## Format all columns except catch (1) to be zero decimal points and have a percent sign
+  risk[,-1] <- apply(apply(risk[,-1],2,fmt0),2,paste0,"\\%")
+  ## Format the catch column (1) to have no decimal points and the thousands separator
+  risk[,1] <- fmt0(risk[,1])
+  ## Add letters to the catch for reference with the decision tables
+  risk[,1] <- paste0(letters[1:nrow(risk)], ": ", risk[,1])
+
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
   addtorow$pos[[2]] <- nrow(risk)
   addtorow$command <- c(paste0("\\toprule \n",
-                               "Catch in ",forecast.yrs[index]," ",
-                               "& Probability\nB\\subscr{",forecast.yrs[index+1],"}<B\\subscr{",forecast.yrs[index],"} ",
-                               "& Probability\nB\\subscr{",forecast.yrs[index+1],"}<B\\subscr{40\\%} ",
-                               "& Probability\nB\\subscr{",forecast.yrs[index+1],"}<B\\subscr{25\\%}",
-                               "& Probability\nB\\subscr{",forecast.yrs[index+1],"}<B\\subscr{10\\%}",
-                               "& Probability\nFishing intensity\nin ",forecast.yrs[index],"\n>40\\% Target",
-                               "& Probability\n",forecast.yrs[index+1]," Catch Target\n < ",forecast.yrs[index]," Catch",
+                               "\\specialcell{Catch\\\\in ",forecast.yrs[index]," } ",
+                               "& \\specialcell{Probability\\\\B\\subscr{",forecast.yrs[index+1],"}<B\\subscr{",forecast.yrs[index],"}} ",
+                               "& \\specialcell{Probability\\\\B\\subscr{",forecast.yrs[index+1],"}<B\\subscr{40\\%}} ",
+                               "& \\specialcell{Probability\\\\B\\subscr{",forecast.yrs[index+1],"}<B\\subscr{25\\%}} ",
+                               "& \\specialcell{Probability\\\\B\\subscr{",forecast.yrs[index+1],"}<B\\subscr{10\\%}} ",
+                               "& \\specialcell{Probability\\\\Fishing\\\\intensity\\\\in ",forecast.yrs[index],"\\\\>40\\% Target} ",
+                               "& \\specialcell{Probability\\\\",forecast.yrs[index+1]," Catch\\\\Target\\\\<",forecast.yrs[index]," Catch} \\\\ ",
                                "\\midrule \n"),
                         "\\bottomrule \n")
 
@@ -132,7 +135,7 @@ make.risk.table <- function(model,                  ## model is an mcmc run and 
   return(print(xtable(risk,
                       caption=xcaption,
                       label=xlabel,
-                      align=get.align(ncol(risk), first.left=FALSE, just="c")),
+                      align=get.align(ncol(risk), first.left=TRUE, just="r")),
                caption.placement = "top",
                include.rownames=FALSE,
                include.colnames=FALSE,
