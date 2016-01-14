@@ -12,10 +12,10 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
   }
   if(which == "biomass"){
     forecast <- model$forecasts$biomass
-    table.header <- "Beginning of year relative spawning biomass"
+    table.header <- "\\textbf{Beginning of year relative spawning biomass}"
   }else{
     forecast <- model$forecasts$spr
-    table.header <- "Fishing Intensity"
+    table.header <- "\\textbf{Fishing Intensity}"
   }
 
   ## tab.letters are the letters in the table, one for each forecast management action
@@ -23,7 +23,7 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
   tab.letters <- NULL
   next.ind <- 1
   for(i in 1:length(forecast)){
-    tab.letters[next.ind] <- letters[i]
+    tab.letters[next.ind] <- paste0(letters[i],":")
     next.ind <- next.ind + 1
     for(j in 1:(nrow(forecast[[i]])-1)){
       tab.letters[next.ind] <- ""
@@ -61,16 +61,24 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
   addtorow$pos[[2]] <- nrow(forecast.tab)
 
   quant.string <- ""
+  quant.ampersands <- ""
+  quant.cell.defs <- NULL
   for(i in 1:length(quant.levels)){
     quant.string <- paste0(quant.string, "& ", quant.levels[i], " ")
+    quant.ampersands <- paste0(quant.ampersands,"& ")
+    quant.cell.defs <- c(quant.cell.defs, "Y")
   }
-  addtorow$command <- c(paste0("\\toprule \n",
-                               "\\multicolumn{3}{c}{Within model quantile} ",
-                               quant.string, " \\\\ ",
-                               "\\hline",
-                               " & Year & Catch (t) & \\multicolumn{5}{c}{",table.header,"} \\\\ ",
-                               "\\midrule \n"),
-                        "\\bottomrule \n")
+  ## Add the vertical bar to the edge of the last quant cell
+  quant.cell.defs[length(quant.cell.defs)] <- paste0(quant.cell.defs[length(quant.cell.defs)], "|")
+
+  addtorow$command <- c(paste0("\\hline ",
+                               "\\multicolumn{3}{|c|}{Within model quantile} ", quant.string, " \\\\ ",
+                               "\\hline ",
+                               "\\multicolumn{3}{|c|}{Management Action} ",quant.ampersands,"\\\\ ",
+                               "\\cline{1-3} ",
+                               " & Year & Catch (t) & \\multicolumn{",length(quant.levels),"}{c|}{\\multirow{-2}{*}{",table.header,"}} \\\\ ",
+                               "\\hline "),
+                        "\\hline ")
   ## Add the right number of horizontal lines to make the table break in the correct places
   ## A line is not needed at the bottom explains the (length(forecast)-1) statement.
   for(i in 1:(length(forecast)-1)){
@@ -82,16 +90,17 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
   return(print(xtable(forecast.tab,
                       caption=xcaption,
                       label=xlabel,
-                      align=get.align(ncol(forecast.tab), first.left=FALSE, just="c")),
+                      align=c("c","|c","c","c|",quant.cell.defs)),
                caption.placement = "top",
-               include.rownames=FALSE,
-               include.colnames=FALSE,
-               sanitize.text.function=function(x){x},
-               size=size.string,
-               add.to.row=addtorow,
-               table.placement="H",
-               hline.after=NULL,
-               booktabs=TRUE))
+               include.rownames = FALSE,
+               include.colnames = FALSE,
+               sanitize.text.function = function(x){x},
+               size = size.string,
+               add.to.row = addtorow,
+               table.placement = "H",
+               tabular.environment = "tabularx",
+               width = "\\textwidth",
+               hline.after = NULL))
 }
 
 make.risk.table <- function(model,                  ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC

@@ -28,7 +28,9 @@
 \usepackage{arydshln}          % For dashed lines in tables (has to be loaded after other stuff)
 \usepackage{pdfpages}          % So we can import PDFs into the document (e.g. request for science advice).
 \usepackage{multicol}
+\usepackage{multirow}          % necessary for decision tables
 \usepackage{booktabs}
+\usepackage{tabularx}
 \usepackage[parfill]{parskip}  % So paragraphs will have a blank line between them
 \setlength{\parskip}{12pt}
 
@@ -102,6 +104,8 @@
 \setlist[longitem,5]{label=\alph*)}
 
 \definecolor{rowclr}{RGB}{255, 192, 203}
+%% Y - For centering cell values in a tabularx using stretched cells (X)
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
 \newcommand{\sQuote}[1]{`#1'}
 \newcommand{\dQuote}[1]{``#1''}
 \newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}

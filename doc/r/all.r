@@ -68,13 +68,17 @@ last.assess.yr  <- 2014
 ## current assessment year
 assess.yr       <- end.yr
 
+## The forecasting yrs and probs can be set to whatever is required, the
+## latex/knitr code is set up to automatically accomodate changes
 forecast.yrs <- 2015:2017
 forecast.probs <- c(0.05,0.25,0.5,0.75,0.95)
+## forecast.probs <- c(0.1,0.5,0.9)
+
 ## catch.levels is a list of N catch levels to run forecasts for
 ## Each element of the list is a vector of length the same as the
 ## number of elements in forcast.yrs
-catch.levels <- list(c(0.01,0.01,0.01),
-                     c(180000,180000,0.01),
+catch.levels <- list(rep(0.01, 3),
+                     rep(180000,3),
                      rep(300000,3),
                      rep(350000,3),
                      rep(400000,3),
@@ -100,7 +104,7 @@ models.path <- file.path("..","..","models")
 
 reload.models <- readline(prompt="Reload all models and data? [y/n] ")
 run.forecasts <- readline(prompt="Run forecasting for base model (for decision tables)? [y/n] ")
-run.risks <- readline(prompt="Run risk calculations for base model (for risk tables)? [y/n] ")
+## run.risks <- readline(prompt="Run risk calculations for base model (for risk tables)? [y/n] ")
 
 if(reload.models == "y" | reload.models == "Y"){
   cat("\n\nLoading all models and data...\n\n")
@@ -128,13 +132,6 @@ if(run.forecasts == "y" | run.forecasts == "Y"){
   models[[base.model.ind]]$forecasts$spr <- forecasts[[2]]
   models[[base.model.ind]]$forecasts$outputs <- forecasts[[3]]
 
-  cat("\n\nForecast calculations completed.\n\n")
-}
-
-if(run.risks == "y" | run.risks == "Y"){
-  if(is.null(models[[base.model.ind]]$forecasts$outputs)){
-    stop("\n\nError - You must successfully run the forecasting step before calculating risks.\n\n")
-  }
   ## calc.risk assumes the forecasting step was done correctly
   risks <- calc.risk(models[[base.model.ind]]$forecasts$outputs,
                      forecast.yrs,
@@ -142,8 +139,9 @@ if(run.risks == "y" | run.risks == "Y"){
                      catch.levels.names)
 
   models[[base.model.ind]]$risks <- risks
-  cat("\n\nRisk calculations completed for (base) model located in ",models[[base.model.ind]]$path,"\n\n")
+
+  cat("\n\nForecast calculations completed.\n\n")
 }
 
-## Set up a simpler variable for the base model
+## A simpler variable for the base model
 base.model <- models[[base.model.ind]]
