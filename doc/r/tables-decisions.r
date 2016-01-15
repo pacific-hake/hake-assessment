@@ -144,7 +144,7 @@ make.risk.table <- function(model,                  ## model is an mcmc run and 
   return(print(xtable(risk,
                       caption=xcaption,
                       label=xlabel,
-                      align=get.align(ncol(risk), first.left=TRUE, just="r")),
+                      align=get.align(ncol(risk), first.left=TRUE, just="Y")),
                caption.placement = "top",
                include.rownames=FALSE,
                include.colnames=FALSE,
@@ -153,5 +153,7 @@ make.risk.table <- function(model,                  ## model is an mcmc run and 
                add.to.row=addtorow,
                table.placement="H",
                hline.after=NULL,
+               tabular.environment = "tabularx",
+               width = "\\textwidth",
                booktabs=TRUE))
 }

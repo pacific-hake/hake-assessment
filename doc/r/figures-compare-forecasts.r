@@ -70,10 +70,15 @@ make.forecast.risk.comparison.plot <- function(model,        ## model is the mod
                                                legend.cex = 0.7,   ## Text size for the legend
                                                legend.loc = "topleft"){
   oldpar <- par()
-  par(mfrow=c(1,1),las=1,mar=c(3.6,3.6,1,1),oma=c(0,0,0,0),mgp=c(2.5,1,0))
+  par(mar=c(4.5,4.5,1,1))
   prob.dat <- model$risks[fore.yr == forecast.yrs][[1]]
+  ## Sort the table by catches
+  prob.dat <- prob.dat[order(prob.dat[,1]),]
+  ## Divide all the percentages by 100 to get probabilities
   prob.dat[,-1] <- prob.dat[-1] / 100.0
+  ## Divide all catches by 1000 to get megatonnes
   catches <- round(prob.dat[,1] / 1000.0, 0)
+  ## Remove catches from the table
   prob.dat <- prob.dat[,-1]
 
   legend.text <- c(paste0("P(B",fore.yr+1,"<B",fore.yr,"): Stock declines in ",fore.yr),
@@ -84,7 +89,7 @@ make.forecast.risk.comparison.plot <- function(model,        ## model is the mod
                    paste0("P(C",fore.yr+1,"<C",fore.yr,"): F40% catch declines in ",fore.yr+1))
 
   matplot(catches, prob.dat,
-          xlim=c(),
+          xlim=c(0,max(catches)),
           ylim=c(0,1),
           xaxt="n",
           ylab="Probability",
