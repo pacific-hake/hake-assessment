@@ -6,34 +6,24 @@
 ## loads don't happen during the latex/knitr build (they are
 ## very slow compared to loading the binary once at the beginning).
 
-## Check for specific packages and install them if they
-## are not yet installed. Note this will be really slow the
-## first time you run it, especially if they have dependencies.
-
-if(!("nwfscSurvey" %in% rownames(installed.packages()))){
-  devtools::install_github("nwfsc-assess/nwfscSurvey")
-}
-
-if(!("nwfscMapping" %in% rownames(installed.packages()))){
-  devtools::install_github("nwfsc-assess/nwfscMapping")
-}
-
-if(!("r4ss" %in% rownames(installed.packages()))){
-  devtools::install_github("r4ss/r4ss")
-}
-
-## if(!("PBSmapping" %in% rownames(installed.packages()))){
-##  install.packages("PBSmapping")
-##}
+## Need to source utilities.r here because it contains the function
+##  install.packages.if.needed
+source("utilities.r")
+install.packages.if.needed("devtools", "devtools", github=FALSE)
+install.packages.if.needed("nwfscSurvey", "nwfsc-assess/nwfscSurvey", github=TRUE)
+install.packages.if.needed("nwfscMapping", "nwfsc-assess/nwfscMapping", github=TRUE)
+install.packages.if.needed("date", "date", github=FALSE)
+install.packages.if.needed("r4ss", "r4ss/r4ss", github=TRUE)
+install.packages.if.needed("xtable", "xtable", github=FALSE)
+install.packages.if.needed("PBSmapping", "PBSmapping", github=FALSE)
 
 require(nwfscSurvey)
 require(nwfscMapping)
 require(date)
 require(r4ss)
 require(xtable)
-## require(PBSmapping)
+require(PBSmapping)
 
-source("utilities.r")
 source("catches.r")
 source("load-models.r")
 source("survey.r")
@@ -95,6 +85,7 @@ catch.levels <- list(rep(0.01, 3),
 catch.default.policy <- catch.levels[[length(catch.levels)]]
 
 ## catch.levels.names is a list of N names for the catch levels given in catch.levels
+##  to be used in plots (Pretty names)
 catch.levels.names <- c("No Fishing",
                         "180,000 t",
                         "300,000 t",
@@ -106,12 +97,24 @@ catch.levels.names <- c("No Fishing",
                         "SPR100",
                         paste0("Default: ",fmt0(catch.default.policy[1])," t"))
 
+## catch.levels.dir.names is a list of N names for the catch levels given in catch.levels,
+##  to be used as the directory names (OS-naming friendly).
+catch.levels.dir.names <- c("0",
+                            "180000",
+                            "300000",
+                            "350000",
+                            "400000",
+                            "428000",
+                            "500000",
+                            "stableCatch",
+                            "SPR100",
+                            "DefaultHR")
+
 data.path <- file.path("..","..","data")
 models.path <- file.path("..","..","models")
 
 reload.models <- readline(prompt="Reload all models and data? [y/n] ")
 run.forecasts <- readline(prompt="Run forecasting for base model (for decision tables)? [y/n] ")
-## run.risks <- readline(prompt="Run risk calculations for base model (for risk tables)? [y/n] ")
 
 if(reload.models == "y" | reload.models == "Y"){
   cat("\n\nLoading all models and data...\n\n")
@@ -132,7 +135,7 @@ if(run.forecasts == "y" | run.forecasts == "Y"){
                              models[[base.model.ind]]$path,
                              forecast.yrs,
                              catch.levels,
-                             catch.levels.names,
+                             catch.levels.dir.names,
                              probs = forecast.probs)
 
   models[[base.model.ind]]$forecasts$biomass <- forecasts[[1]]
@@ -143,7 +146,7 @@ if(run.forecasts == "y" | run.forecasts == "Y"){
   risks <- calc.risk(models[[base.model.ind]]$forecasts$outputs,
                      forecast.yrs,
                      catch.levels,
-                     catch.levels.names)
+                     catch.levels.dir.names)
 
   models[[base.model.ind]]$risks <- risks
 

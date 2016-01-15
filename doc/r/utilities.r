@@ -1,3 +1,15 @@
+install.packages.if.needed <- function(package.name, package.install.name, github=FALSE){
+  if(github){
+    if(!(package.name %in% rownames(installed.packages()))){
+      devtools::install_github(package.install.name)
+    }
+  }else{
+    if(!(package.name %in% rownames(installed.packages()))){
+      install.packages(package.install.name)
+    }
+  }
+}
+
 fmt0 <- function(x, dec.points=0){
   ## Format 0
   ## Format x to have supplied number of decimal points
