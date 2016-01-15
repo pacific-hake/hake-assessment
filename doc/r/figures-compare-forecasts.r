@@ -54,3 +54,47 @@ make.forecast.depletion.comparison.plot <- function(model,        ## model is th
   axis(1,at=seq(start.yr,end.yr,2))
   par <- oldpar
 }
+
+make.forecast.risk.comparison.plot <- function(model,        ## model is the model for which mcmc runs with different forecasts
+                                                             ## has been made
+                                               forecast.yrs, ## a vector of the years which were forecast,
+                                                             ## used in conjunction with fore.yr to determine which
+                                                             ##  forecast list element is used
+                                               fore.yr,      ## Forecast year for probabilities
+                                               colors = c("black","blue","green","orange","red","tan"),
+                                                             ## color is a vector of colors for the lines. This must be the same length
+                                                             ## as the number of rows models[[N]]$risks data frames has
+                                               pch = c(16,17,17,17,15,18),
+                                                             ## pch is a vector of symbols. This must be the same length
+                                                             ## as the number of rows models[[N]]$risks data frames has
+                                               legend.cex = 0.7,   ## Text size for the legend
+                                               legend.loc = "topleft"){
+  oldpar <- par()
+  par(mfrow=c(1,1),las=1,mar=c(3.6,3.6,1,1),oma=c(0,0,0,0),mgp=c(2.5,1,0))
+  prob.dat <- model$risks[fore.yr == forecast.yrs][[1]]
+  prob.dat[,-1] <- prob.dat[-1] / 100.0
+  catches <- round(prob.dat[,1] / 1000.0, 0)
+  prob.dat <- prob.dat[,-1]
+
+  legend.text <- c(paste0("P(B",fore.yr+1,"<B",fore.yr,"): Stock declines in ",fore.yr),
+                   paste0("P(B",fore.yr+1,"<B40%)"),
+                   paste0("P(B",fore.yr+1,"<B25%)"),
+                   paste0("P(B",fore.yr+1,"<B10%)"),
+                   paste0("P(",fore.yr," Fishing intensity > Target of 40%)"),
+                   paste0("P(C",fore.yr+1,"<C",fore.yr,"): F40% catch declines in ",fore.yr+1))
+
+  matplot(catches, prob.dat,
+          xlim=c(),
+          ylim=c(0,1),
+          xaxt="n",
+          ylab="Probability",
+          xlab=paste0("Catch in ",fore.yr," ('000 t)"),
+          type="b",
+          lty=2,
+          pch=pch,
+          col=colors)
+  abline(h=0.5, lty=2, lwd=1, col="grey")
+  axis(1, at=catches, cex.axis=0.9, las=2)
+  legend(legend.loc, legend.text, col=colors, lty=1, lwd=2, pch=pch, cex=legend.cex, bty="n")
+  par <- oldpar
+}

@@ -409,6 +409,42 @@ make.forecast.depletion.comparison.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<forecast.risk.comparison.plot.year.1, fig.height=5, fig.width=8>>=
+make.forecast.risk.comparison.plot(base.model,
+                                   forecast.yrs = forecast.yrs,
+                                   fore.yr = forecast.yrs[1],
+                                   colors = c("black","blue","green","orange","red","tan"),
+                                   pch = c(16,17,17,17,15,18),
+                                   legend.loc = "topleft",
+                                   legend.cex = 0.7)
+@
+\end{center}
+\caption{Graphical representation of the base model results presented in Table \ref{tab:es-risk-year-1} for catch in \Sexpr{forecast.yrs[1]}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
+\label{fig:es-forecast-risk-comparison-year-1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<forecast.risk.comparison.plot.year.2, fig.height=5, fig.width=8>>=
+make.forecast.risk.comparison.plot(base.model,
+                                   forecast.yrs = forecast.yrs,
+                                   fore.yr = forecast.yrs[2],
+                                   colors = c("black","blue","green","orange","red","tan"),
+                                   pch = c(16,17,17,17,15,18),
+                                   legend.loc = "topleft",
+                                   legend.cex = 0.7)
+@
+\end{center}
+\caption{Graphical representation of the base model results presented in Table \ref{tab:es-risk-year-2} for catch in \Sexpr{forecast.yrs[2]}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
+\label{fig:es-forecast-risk-comparison-year-2}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection*{Research and Data Needs} \label{sec:es-research-data-needs}
 \phantomsection \addcontentsline{toc}{subsection}{Research and Data Needs}
 There are many research projects that could improve the stock assessment for \fishname. The following prioritized list of topics might
