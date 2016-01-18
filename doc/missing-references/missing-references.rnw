@@ -1,0 +1,33 @@
+% missing-references.rnw     
+
+\clearpage
+
+\section*{Missing references}
+
+** References needed were in last year's assessment text but not in its bibliography or in the .bib file from Allan:
+
+Alheit and Pitcher 1995
+
+Lloris et al. 2005
+
+Vrooman and Paloma 1977
+
+Dorn 1991 - should this be Dorn and Methot 1991, as in the 2015 bibliography?
+
+Dorn 1992 
+
+
+
+** References that were in last year's assessment but not its bibliography, but I'm taking from the .bib file:
+
+\citet{IwamotoFordEtAl2004}
+
+\citet{KingMcFarlaneEtAl2012}
+
+\citep{Dorn1995b} - there are two Dorn (1995) references in the .bib file, I assume the one referenced next to Agostini et al. is the CalCOFI report, not the stock assessment.
+
+\citep{AgostiniFrancisEtAl2006}
+
+% \vspace{20mm} % remove me when refs are sorted out
+
+

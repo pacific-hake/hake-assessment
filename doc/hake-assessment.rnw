@@ -179,7 +179,7 @@
 %% Headers and footers
 \lhead{}
 \rhead{}
-\lfoot{Pacific Hake stock assessment} %% Species common name for left footer
+\lfoot{Pacific Hake stock assessment 2016} %% Species common name for left footer
 \rfoot{DRAFT - DO NOT CITE} %% The area of the assessment for right footer
 %% \rfoot{WP 2012/P02a}     %% Change to appendix number for appendices
                             %% Will probably delete footers in main text
@@ -272,6 +272,8 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 \renewcommand{\thefigure}{\arabic{figure}}
 \renewcommand{\theequation}{\arabic{equation}}
 
+% To get the References labelled as a numbered section
+\renewcommand{\bibsection}{\section{REFERENCES}}
 
 %%\subtitle{Joint Technical Committee of the Pacific Hake/Whiting Agreement Between the Governments of the United States and Canada}
 
@@ -281,17 +283,44 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 <<executive-summary, child='executive-summary/executive-summary.rnw'>>=
 @
 
-<<introduction, child='introduction-section/introduction.rnw'>>=
+<<introduction-sec, child='introduction-section/introduction.rnw'>>=
+@
+
+<<data-sec, child='data-section/data.rnw'>>=
+@ 
+
+<<assessment-sec, child='assessment-section/assessment-section.rnw'>>=
+@ 
+
+<<research-sec, child='research-section/research.rnw'>>=
+@ 
+
+<<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
+@ 
+
+% Keeping track of missing references here; this section will get
+%  delted once its empty.
+<<missing-refs, child='missing-references/missing-references.rnw'>>=
 @
 
 \clearpage
 
 %% \addcontentsline{toc}{section}{REFERENCES}   % May get page number wrong
-\phantomsection \addcontentsline{toc}{subsection}{REFERENCES}
+% \phantomsection \addcontentsline{toc}{subsection}{REFERENCES} %sorted above
 \bibliographystyle{resDoc}
 \bibliography{all}                             %  if starting a new page
 
-\clearpage
+% Have a spurious blank page before tables, need to get rid of. Think it may
+%  possibly be due to not having all the references defined yet, so it may
+%  get resolved. 
+
+<<main-tables, child='main-tables/main-tables.rnw'>>=
+@
+
+<<main-figures, child='main-figures/main-figures.rnw'>>=
+@
+
+
 
 \addtocontents{toc}{\par {\bf \vspace{10mm} APPENDICES} \par}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
@@ -309,7 +338,7 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 %%  including the Appendix (chapter) names (not sections or
 %%  subsections):
 
-\lfoot{\cname}
+% \lfoot{\cname}   % Add this in to have Appendix A etc. as the left footer.
 
 %% Add an appendix. The appedices or any other Rnw files will be in the same scope as the main file,
 %% so they see the same R objects and those objects can be referenced directly.
