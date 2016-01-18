@@ -1,3 +1,9 @@
+strip.columns <- function(vec, names){
+  ## Return a vector which is the same as the vector 'vec'
+  ## but with the matching col.names removed
+  return(vec[!names(vec) %in% names])
+}
+
 install.packages.if.needed <- function(package.name, package.install.name, github=FALSE){
   if(github){
     if(!(package.name %in% rownames(installed.packages()))){

@@ -18,20 +18,6 @@ make.biomass.table <- function(model,                ## model is an mcmc run and
   dmed <- model$mcmccalcs$dmed * 100
   dupper <- model$mcmccalcs$dupper * 100
 
-  ## remove prepended strings from year labels
-  names(slower) <- gsub("SPB_","",names(slower))
-  names(smed) <- gsub("SPB_","",names(smed))
-  names(supper) <- gsub("SPB_","",names(supper))
-
-  names(dlower) <- gsub("SPB_","",names(dlower))
-  names(dmed) <- gsub("SPB_","",names(dmed))
-  names(dupper) <- gsub("SPB_","",names(dupper))
-
-  ## Remove Initial biomass from biomass
-  slower <- slower[-grep("Initial",names(slower))]
-  smed <- smed[-grep("Initial",names(smed))]
-  supper <- supper[-grep("Initial",names(supper))]
-
   ## Join the values and apply the formatiing
   tab <- t(rbind(fmt0(slower,digits),fmt0(smed,digits),fmt0(supper,digits),
                  paste0(fmt0(dlower,digits),"\\%"),paste0(fmt0(dmed,digits),"\\%"),paste0(fmt0(dupper,digits),"\\%")))
@@ -76,43 +62,30 @@ make.recruitment.table <- function(model,                ## model is an mcmc run
                                    digits.dev = 3        ## Number of decimal points in recruitment deviations
                                    ){
   ## Returns an xtable in the proper format for the executive summary recruitment and deviations values for the base case mcmc
+  yrs <- start.yr:end.yr
   ## Recruitment quantiles
   rlower <- model$mcmccalcs$rlower * weight.factor
   rmed <- model$mcmccalcs$rmed * weight.factor
   rupper <- model$mcmccalcs$rupper * weight.factor
+  ## Only include start year to end year
+  rlower <- rlower[names(rlower) %in% yrs]
+  rmed <- rmed[names(rmed) %in% yrs]
+  rupper <- rupper[names(rupper) %in% yrs]
+
   ## Deviations quantiles
   devlower <- model$mcmccalcs$devlower
   devmed <- model$mcmccalcs$devmed
   devupper <- model$mcmccalcs$devupper
-
-  ## remove prepended strings from year labels
-  names(rlower) <- gsub("Recr_","",names(rlower))
-  names(rmed) <- gsub("Recr_","",names(rmed))
-  names(rupper) <- gsub("Recr_","",names(rupper))
-
-  names(devlower) <- gsub(".*_RecrDev_","",names(devlower))
-  names(devmed) <- gsub(".*_RecrDev_","",names(devmed))
-  names(devupper) <- gsub(".*_RecrDev_","",names(devupper))
-
-  names(devlower) <- gsub("ForeRecr_","",names(devlower))
-  names(devmed) <- gsub("ForeRecr_","",names(devmed))
-  names(devupper) <- gsub("ForeRecr_","",names(devupper))
-
-  ## Remove virgin recruitment if present
-  rlower <- rlower[-grep("Virgin",names(rlower))]
-  rmed <- rmed[-grep("Virgin",names(rmed))]
-  rupper <- rupper[-grep("Virgin",names(rupper))]
 
   ## Remove recruitment deviations prior to the start year
   devlower <- devlower[-grep("Early.*",names(devlower))]
   devmed <- devmed[-grep("Early.*",names(devmed))]
   devupper <- devupper[-grep("Early.*",names(devupper))]
 
-  ## Remove and projected years from the deviations, based on the recruitment years
-  ## After this devmed and rmed will be the same length, with the same years present.
-  devlower <- devlower[(names(devlower) %in% names(rlower))]
-  devmed <- devmed[(names(devmed) %in% names(rmed))]
-  devupper <- devupper[(names(devupper) %in% names(rupper))]
+  ## Only include start year to end year
+  devlower <- devlower[names(devlower) %in% yrs]
+  devmed <- devmed[names(devmed) %in% yrs]
+  devupper <- devupper[names(devupper) %in% yrs]
 
   ## Join the values and apply the formatiing
   tab <- t(rbind(fmt0(rlower,digits),fmt0(rmed,digits),fmt0(rupper,digits),
