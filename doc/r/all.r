@@ -155,3 +155,34 @@ if(run.forecasts == "y" | run.forecasts == "Y"){
 
 ## A simpler variable for the base model
 base.model <- models[[base.model.ind]]
+
+## last year's values (mostly for the one-page-summary)
+last.year.landings <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$year==end.yr-1,][2]))
+last.year.tac <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$year==end.yr-1,][3]))
+last.year.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$year==end.yr-1,][4]), 1)
+
+## New depletion and spawning biomass estimates
+curr.depl.lower <- fmt0(base.model$mcmccalcs$dlower[names(base.model$mcmccalcs$dlower) %in% end.yr] * 100, 1)
+curr.depl.median <- fmt0(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end.yr] * 100, 1)
+curr.depl.upper <- fmt0(base.model$mcmccalcs$dupper[names(base.model$mcmccalcs$dupper) %in% end.yr] * 100, 1)
+
+curr.bio.lower <- fmt0(base.model$mcmccalcs$slower[names(base.model$mcmccalcs$slower) %in% end.yr], 3)
+curr.bio.median <- fmt0(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% end.yr], 3)
+curr.bio.upper <- fmt0(base.model$mcmccalcs$supper[names(base.model$mcmccalcs$supper) %in% end.yr], 3)
+
+## First forecast year depletion and spawning biomass estimates
+next.depl.lower <- fmt0(base.model$mcmccalcs$dlower[names(base.model$mcmccalcs$dlower) %in% end.yr + 1] * 100, 1)
+next.depl.median <- fmt0(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end.yr + 1] * 100, 1)
+next.depl.upper <- fmt0(base.model$mcmccalcs$dupper[names(base.model$mcmccalcs$dupper) %in% end.yr + 1] * 100, 1)
+
+next.bio.lower <- fmt0(base.model$mcmccalcs$slower[names(base.model$mcmccalcs$slower) %in% end.yr + 1], 3)
+next.bio.median <- fmt0(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% end.yr + 1], 3)
+next.bio.upper <- fmt0(base.model$mcmccalcs$supper[names(base.model$mcmccalcs$supper) %in% end.yr + 1], 3)
+
+next2.depl.lower <- fmt0(base.model$mcmccalcs$dlower[names(base.model$mcmccalcs$dlower) %in% end.yr + 2] * 100, 1)
+next2.depl.median <- fmt0(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end.yr + 2] * 100, 1)
+next2.depl.upper <- fmt0(base.model$mcmccalcs$dupper[names(base.model$mcmccalcs$dupper) %in% end.yr + 2] * 100, 1)
+
+next2.bio.lower <- fmt0(base.model$mcmccalcs$slower[names(base.model$mcmccalcs$slower) %in% end.yr + 2], 3)
+next2.bio.median <- fmt0(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% end.yr + 2], 3)
+next2.bio.upper <- fmt0(base.model$mcmccalcs$supper[names(base.model$mcmccalcs$supper) %in% end.yr + 2], 3)

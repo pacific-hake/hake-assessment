@@ -275,14 +275,14 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 
 %%\subtitle{Joint Technical Committee of the Pacific Hake/Whiting Agreement Between the Governments of the United States and Canada}
 
-%% <<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=
+<<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=
+@
+
+%% <<executive-summary, child='executive-summary/executive-summary.rnw'>>=
 %% @
 
-<<executive-summary, child='executive-summary/executive-summary.rnw'>>=
-@
-
-<<introduction, child='introduction/introduction.rnw'>>=
-@
+%% <<introduction, child='introduction/introduction.rnw'>>=
+%% @
 
 \clearpage
 
