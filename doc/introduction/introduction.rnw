@@ -98,8 +98,12 @@ A more detailed description of the history of the fishery is provided in the 201
 years.Can.JV.catch.eq.0.recent = years.Can.JV.catch.eq.0(catches)
 @ 
 
-% Updated and automated for 2015:
+% Updated and automated for 2016 assessment:
 For an overview of Canadian catch by year and fleet, see Table~\ref{tab:intro-catches-Can}. For \Sexpr{years.Can.JV.catch.eq.0.recent[-length(years.Can.JV.catch.eq.0.recent)]} and \Sexpr{years.Can.JV.catch.eq.0.recent[length(years.Can.JV.catch.eq.0.recent)]} there was no Joint-Venture fishery operating in Canada and this is reflected as zero catch in that sector for those years in Table~\ref{tab:intro-catches-Can}.  
+
+% New for 2016 assessment, since Table was not actually referenced in 2015 assessment:
+The total U.S, Canadian and coastwide catches of Pacific Hake are shown in Table~\ref{tab:intro-catches-total}, together with the percentage of the total catch that came from each country.
+
 
 
 

@@ -120,7 +120,7 @@ or in a knitr code chunk:
 ## How Andy is running it (and see Chris's notes above)
 
 - **source("all.r")** to reload models and data files and for any changes to R code.
-- close R, or do **save.image()** to create the **.RData** file.
+- **save.image()** to create the **.RData** file, or close R (and **save** workspace).
 - delete **knitr-cache** directory if any tables or figures need to be updated
 - **knit("hake-assessment.rnw")** [or use Chris's batch file - at first I just want to see the warnings]
 - **latex hake-assessment.tex** and **dvips** and **bibtex** if necessary
