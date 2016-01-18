@@ -277,9 +277,9 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 
 %%\subtitle{Joint Technical Committee of the Pacific Hake/Whiting Agreement Between the Governments of the United States and Canada}
 
-%% Here is where the maindoc 'rnw' file is inserted.
-%% It is simply pasted in here by knitr, just before the knitting is done,
-%% So the final tex file will include everything.
+<<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=
+@
+
 <<executive-summary, child='executive-summary/executive-summary.rnw'>>=
 @
 
@@ -302,6 +302,8 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 %  delted once its empty.
 <<missing-refs, child='missing-references/missing-references.rnw'>>=
 @
+
+
 
 \clearpage
 

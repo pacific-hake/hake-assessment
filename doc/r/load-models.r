@@ -61,7 +61,7 @@ load.models <- function(models.dir = file.path("..","..","models"),
       tryCatch({
         model.list[[nm]]$mcmc <- data.frame(SSgetMCMC(dir=mcmc.dir, writecsv=FALSE, verbose = verbose)$model1)
         ## Do the mcmc calculations, e.g. quantiles for SB, SPB, DEPL, RECR, RECRDEVS
-        model.list[[nm]]$mcmccalcs <- calc.mcmc(model.list[[nm]]$mcmc, yr = yr)
+        model.list[[nm]]$mcmccalcs <- calc.mcmc(model.list[[nm]]$mcmc)
       }, warning = function(war){
         cat("load.models: Warning while loading the MCMC model ", mcmc.dir,". Warning was: ", war$message,". Continuing...\n")
       }, error = function(err){
@@ -76,8 +76,6 @@ load.models <- function(models.dir = file.path("..","..","models"),
 }
 
 calc.mcmc <- function(mcmc,            ## mcmc is the output of the SS_getMCMC function from the r4ss package as a data.frame
-                      start.yr = 1966, ## Start year for recruitment
-                      yr,              ## The year to calculate mcmc values for. Should be the last year in the time series (without projections).
                       lower = 0.025,   ## Lower quantile for confidence interval calcs
                       upper = 0.975    ## Upper quantile for confidence interval calcs
                       ){
@@ -86,13 +84,21 @@ calc.mcmc <- function(mcmc,            ## mcmc is the output of the SS_getMCMC f
 
   ## 2e6 used here because biomass will be shown in the millions of tonnes and it is female only
   spb <- mcmc[,grep("SPB",names(mcmc))]/2e6
-  spb <- spb[,!names(spb) %in% c("SPB_Virgin", paste0("SPB_",yr+1:20))]
+  svirg <- quantile(spb[,names(spb) == "SPB_Virgin"], c(lower, 0.5, upper))
+  sinit <- quantile(spb[,names(spb) == "SPB_Initial"], c(lower, 0.5, upper))
+
+  ## sinit.post is saved here so that depletion calculations can be done for each posterior,
+  sinit.post <- spb[,names(spb) == "SPB_Initial"]
+
+  names(spb) <- gsub("SPB_","",names(spb))
+  cols.to.strip <- c("Virgin", "Initial")
+  spb <- strip.columns(spb, cols.to.strip)
 
   slower <- apply(spb,2,quantile,prob=lower)
   smed   <- apply(spb,2,quantile,prob=0.5)
   supper <- apply(spb,2,quantile,prob=upper)
 
-  depl <- t(apply(spb,1,function(x){x/x[1]}))[,-1]
+  depl   <- apply(spb,2,function(x){x/sinit.post})
   dlower <- apply(depl,2,quantile,prob=lower)
   dmed   <- apply(depl,2,quantile,prob=0.5)
   dupper <- apply(depl,2,quantile,prob=upper)
@@ -100,32 +106,50 @@ calc.mcmc <- function(mcmc,            ## mcmc is the output of the SS_getMCMC f
   ## 1e6 used here because recruitment will be shown in the millions of tonnes
   recr <- mcmc[,grep("Recr_",names(mcmc))]/1e6
   recr <- recr[,-grep("Fore",names(recr))]
-  yrs <- unlist(lapply(strsplit(names(recr),"_"),function(x){x[2]}))
-  recr <- recr[,yrs%in%c("Virgin",start.yr:yr)]
+  names(recr) <- gsub("Recr_","",names(recr))
+  rvirg <- quantile(recr[,names(recr) == "Virgin"], c(lower, 0.5, upper))
+  rinit <- quantile(recr[,names(recr) == "Initial"], c(lower, 0.5, upper))
+  runfished <- quantile(recr[,names(recr) == "Unfished"], c(lower, 0.5, upper))
+
+  cols.to.strip <- c("Virgin", "Initial","Unfished")
+  recr <- strip.columns(recr, cols.to.strip)
 
   rmed <- apply(recr, 2, quantile, prob=0.5)
   rmean <- apply(recr, 2, mean)
   rlower <- apply(recr, 2, quantile,prob=lower)
   rupper <- apply(recr, 2, quantile,prob=upper)
 
-  dev <- mcmc[,grep("Early_InitAge_20",names(mcmc)):
-                     grep(paste0("ForeRecr_",yr+2),names(mcmc))]
+  dev <- mcmc[,c(grep("Early_InitAge_", names(mcmc)),
+                 grep("Early_RecrDev_", names(mcmc)),
+                 grep("Main_RecrDev_", names(mcmc)),
+                 grep("Late_RecrDev_", names(mcmc)),
+                 grep("ForeRecr_", names(mcmc)))]
+
+  names(dev) <- gsub("Early_RecrDev_", "", names(dev))
+  names(dev) <- gsub("Main_RecrDev_", "", names(dev))
+  names(dev) <- gsub("Late_RecrDev_", "", names(dev))
+  names(dev) <- gsub("ForeRecr_", "", names(dev))
+
   devlower <- apply(dev, 2, quantile, prob=lower)
   devmed <- apply(dev, 2, quantile, prob=0.5)
   devupper <- apply(dev, 2, quantile, prob=upper)
 
-  spr <- mcmc[,grep("SPRratio_",names(mcmc))]
+  spr <- mcmc[,grep("SPRratio_", names(mcmc))]
+  names(spr) <- gsub("SPRratio_", "", names(spr))
+
   plower <- apply(spr, 2, quantile, prob=lower)
   pmed <- apply(spr, 2, quantile, prob=0.5)
   pupper <- apply(spr, 2, quantile, prob=upper)
 
-  f <- mcmc[,grep("F_",names(mcmc))]
+  f <- mcmc[,grep("F_", names(mcmc))]
+  names(f) <- gsub("F_", "", names(f))
   flower <- apply(f, 2, quantile, prob=lower)
   fmed   <- apply(f, 2, quantile, prob=0.5)
   fupper <- apply(f, 2, quantile, prob=upper)
 
-  return(list(slower=slower, smed=smed, supper=supper,
+  return(list(svirg=svirg, sinit=sinit, slower=slower, smed=smed, supper=supper,
               dlower=dlower, dmed=dmed, dupper=dupper,
+              rvirg=rvirg, rinit=rinit, runfihed=runfished,
               rlower=rlower, rmed=rmed, rupper=rupper, rmean=rmean,
               devlower=devlower, devmed=devmed, devupper=devupper,
               plower=plower, pmed=pmed, pupper=pupper,
@@ -139,7 +163,7 @@ calc.forecast <- function(mcmc,                ## The output of the SS_getMCMC f
                           catch.levels.names,  ## catch.levels.names is a list of N names for the catch levels given in catch.levels
                           probs = NULL){       ## Probabilities for table
   ## Run forecasts  on the mcmc model and return the list of outputs.
-  ## Also returns the list of outputs from the models as read by SSgetMCMC
+  ## Also returns the list of mcmc calcs from the models
   if(is.null(probs)){
     stop("\ncalc.forecast: Error - You must supply a probability vector (probs)\n")
   }
@@ -151,7 +175,7 @@ calc.forecast <- function(mcmc,                ## The output of the SS_getMCMC f
 
   mcmc.dir <- file.path(model.dir,"mcmc")
   forecast.dir <- file.path(mcmc.dir,"forecasts")
-  ## Delete the old forecasts if they exist, and re-make the directories
+  ## Delete any old forecasts by removing whole forecasts directory recursively, then re-create
   unlink(forecast.dir, recursive=TRUE)
   dir.create(forecast.dir)
 
@@ -160,6 +184,9 @@ calc.forecast <- function(mcmc,                ## The output of the SS_getMCMC f
   biomass.list <- NULL
   spr.list <- NULL
 
+  ## mcmccalcs.list holds the quantile calculations of important variables such as
+  ##  biomass, depletion, recruitment
+  mcmccalcs.list <- NULL
   ## outputs.list holds the outputs from the mcmc models as read in by SSgetMCMC
   outputs.list <- NULL
 
@@ -202,12 +229,14 @@ calc.forecast <- function(mcmc,                ## The output of the SS_getMCMC f
     ## Do quantile calculations and put results in the output lists
     biomass.list[[level.ind]] <- t(apply(sb.proj.cols, 2, quantile, probs=probs))
     spr.list[[level.ind]] <- t(apply(spr.proj.cols, 2, quantile, probs=probs))
+    mcmccalcs.list[[level.ind]] <- calc.mcmc(mcmc.out)
   }
   names(biomass.list) <- catch.levels.names
   names(spr.list) <- catch.levels.names
 
   return(list(biomass.list,
               spr.list,
+              mcmccalcs.list,
               outputs.list))
 }
 
@@ -240,7 +269,6 @@ calc.risk <- function(forecast.outputs,    ## A list of the output of the SS_get
     out[7] <- sum(x[,paste0("ForeCatch_",yr+1)] < out[1])/nrow(x) * 100.0
     return(out)
   }
-
   risk.list <- NULL
   for(i in 1:(length(forecast.yrs)-1)){
     yr <- forecast.yrs[i]

@@ -56,9 +56,10 @@ The following depicts the object structure of the **models** list:
     models[[N]] - The Nth directory found; each unique member of this models list contains
       models[[N]]$          - All the objects as read in by the SS_output function in the r4ss package
       models[[N]]$forecasts - A list of forecasts from the mcmc run of the model (for decision tables)
-        models[[N]]$forecasts$outputs  - a list of mcmc outputs from the forecast models as read in by the SSgetMCMC function
-        models[[N]]$forecasts$biomass  - Forecasts for biomass. The rows are labelled by forecast year.
-        models[[N]]$forecasts$spr      - Forecasts for SPR. The rows are labelled by forecast year.
+        models[[N]]$forecasts$outputs   - List of mcmc outputs from the forecast models as read in by the SSgetMCMC function
+        models[[N]]$forecasts$mcmccalcs - Calculations done on the mcmc outputs for this forecast model. Same structure as below.
+        models[[N]]$forecasts$biomass   - Forecasts for biomass. The rows are labelled by forecast year.
+        models[[N]]$forecasts$spr       - Forecasts for SPR. The rows are labelled by forecast year.
       models[[N]]$risks     - The risk calculations for the sxecutive summary decision table (e.g. P(B2016<B2015))
         models[[N]]$risks[[1]] - Holds the risk values for the second year of forecasts - the first year
         models[[N]]$risks[[2]] - Holds the risk values for the third year of forecasts - the second year
@@ -68,42 +69,49 @@ The following depicts the object structure of the **models** list:
       models[[N]]$dat       - data file as read in by the SS_readdat function in the r4ss package
       models[[N]]$mcmc      - mcmc output from the model as read in by the SSgetMCMC function or NULL if none for this model
       models[[N]]$mcmccalcs - calculations done on the mcmc outputs for this model
-        models[[N]]$mcmccalcs$slower   - SPB lower confidence (2.5%)
-        models[[N]]$mcmccalcs$smed     - SPB median (50%)
-        models[[N]]$mcmccalcs$supper   - SPB upper confidence (97.5%)
-        models[[N]]$mcmccalcs$dlower   - Depletion lower confidence (2.5%)
-        models[[N]]$mcmccalcs$dmed     - Depletion median (50%)
-        models[[N]]$mcmccalcs$dupper   - Depletion upper confidence (97.5%)
-        models[[N]]$mcmccalcs$rlower   - Recruitment lower confidence (2.5%)
-        models[[N]]$mcmccalcs$rmed     - Recruitment median (50%)
-        models[[N]]$mcmccalcs$rupper   - Recruitment upper confidence (97.5%)
-        models[[N]]$mcmccalcs$devlower - Recruitment deviations lower confidence (2.5%)
-        models[[N]]$mcmccalcs$devmed   - Recruitment deviations median (50%)
-        models[[N]]$mcmccalcs$devupper - Recruitment deviations upper confidence (97.5%)
-        models[[N]]$mcmccalcs$plower   - SPR lower confidence (2.5%)
-        models[[N]]$mcmccalcs$pmed     - SPR median (50%)
-        models[[N]]$mcmccalcs$pupper   - SPR upper confidence (97.5%)
-        models[[N]]$mcmccalcs$flower   - Fishing mortality lower confidence (2.5%)
-        models[[N]]$mcmccalcs$fmed     - Fishing mortality median (50%)
-        models[[N]]$mcmccalcs$fupper   - Fishing mortality upper confidence (97.5%)
+        models[[N]]$mcmccalcs$svirg     - SPB virgin biomass, vector of length 3 (2.5%, 50%, 97.5%)
+        models[[N]]$mcmccalcs$sinit     - SPB initial biomass, vector of length 3 (2.5%, 50%, 97.5%)
+        models[[N]]$mcmccalcs$slower    - SPB lower confidence (2.5%)
+        models[[N]]$mcmccalcs$smed      - SPB median (50%)
+        models[[N]]$mcmccalcs$supper    - SPB upper confidence (97.5%)
+        models[[N]]$mcmccalcs$dlower    - Depletion lower confidence (2.5%)
+        models[[N]]$mcmccalcs$dmed      - Depletion median (50%)
+        models[[N]]$mcmccalcs$dupper    - Depletion upper confidence (97.5%)
+        models[[N]]$mcmccalcs$rvirg     - Virgin recruitment, vector of length 3 (2.5%, 50%, 97.5%)
+        models[[N]]$mcmccalcs$rinit     - Initial recruitment, vector of length 3 (2.5%, 50%, 97.5%)
+        models[[N]]$mcmccalcs$runfished - Unfished recruitment, vector of length 3 (2.5%, 50%, 97.5%)
+        models[[N]]$mcmccalcs$rlower    - Recruitment lower confidence (2.5%)
+        models[[N]]$mcmccalcs$rmed      - Recruitment median (50%)
+        models[[N]]$mcmccalcs$rupper    - Recruitment upper confidence (97.5%)
+        models[[N]]$mcmccalcs$devlower  - Recruitment deviations lower confidence (2.5%)
+        models[[N]]$mcmccalcs$devmed    - Recruitment deviations median (50%)
+        models[[N]]$mcmccalcs$devupper  - Recruitment deviations upper confidence (97.5%)
+        models[[N]]$mcmccalcs$plower    - SPR lower confidence (2.5%)
+        models[[N]]$mcmccalcs$pmed      - SPR median (50%)
+        models[[N]]$mcmccalcs$pupper    - SPR upper confidence (97.5%)
+        models[[N]]$mcmccalcs$flower    - Fishing mortality lower confidence (2.5%)
+        models[[N]]$mcmccalcs$fmed      - Fishing mortality median (50%)
+        models[[N]]$mcmccalcs$fupper    - Fishing mortality upper confidence (97.5%)
 
 
 These are the other variables in the global workspace. These can be directly referenced using \Sexpr{} in inline latex code,
 or in a knitr code chunk:
 
-    base.model.ind     - Index of the base model as found in the directory.
-    unfished.eq.yr     - Unfished equilibrium year. For hake, this is before the start year.
-    start.yr           - Start year for the model.
-    end.yr             - End year for the model.
-    survey.start.yr    - First survey year included in the model.
-    survey.end.yr      - Last survey year included in the model.
-    assess.yr          - The current assessment year.
-    last.assess.yr     - The last year in which an assessment was done.
-    forecast.yrs       - A vector of years to forecast for decision tables (e.g. 2015:2017).
-    catch.levels       - A list of vectors of length equal to the number of years in forcast.yrs.
-    catch.levels.names - A vector of names that describe the catch.levels list elements.
-    data.path          - The absolute path to the data folder, which holds catch and tac tables.
-    models.path        - The absolute path to the models folder, which holds sub-directories for the models which have been run.
+    base.model.ind          - Index of the base model as found in the directory.
+    unfished.eq.yr          - Unfished equilibrium year. For hake, this is before the start year.
+    start.yr                - Start year for the model.
+    end.yr                  - End year for the model.
+    survey.start.yr         - First survey year included in the model.
+    survey.end.yr           - Last survey year included in the model.
+    assess.yr               - The current assessment year.
+    last.assess.yr          - The last year in which an assessment was done.
+    forecast.yrs            - A vector of years to forecast for decision tables (e.g. 2015:2017).
+    catch.levels            - A list of vectors of length equal to the number of years in forcast.yrs.
+    catch.levels.names      - A vector of names that describe the catch.levels list elements.
+    catch.levels.dir.names  - A vector of OS_friendly names to use for the catch levels' directory names.
+    catch.default.policy    - A vector of catch limits for the forecast years which corresponds to the default harvest rate.
+    data.path               - The absolute path to the data folder, which holds catch and tac tables.
+    models.path             - The absolute path to the models folder, which holds sub-directories for the models which have been run.
 
 ---
 
@@ -119,6 +127,7 @@ or in a knitr code chunk:
 
 ## How Andy is running it (and see Chris's notes above)
 
+- download from Hake JTC Google Drive one of the model runs, and put in **hake-assessment\models\** (have to unzip and then remove one directory level). ???I just did this for the first time (18/1/16), but where was it getting model output from before???
 - **source("all.r")** to reload models and data files and for any changes to R code.
 - **save.image()** to create the **.RData** file, or close R (and **save** workspace).
 - delete **knitr-cache** directory if any tables or figures need to be updated
@@ -136,6 +145,7 @@ __GitHub workflow__
 - **git diff cgrandin/master** shows me the differences between his and mine. :
 -- + green is on mine not his, red is his not mine [seems like it can look like I've added something but really Chris has removed it; and when merging it should base it on the most recent commits]
 - **git merge cgrandin/master** merges our versions. Then I need to **push** (I think a merge automatically does a **committ**?).
+- when get a conflict, open the file in emacs and it has <<<<<<   for the start of a conflicting part, and ========= at the end, so manually fix it. 
 - We will try and work on different files so that there are no conflicts when we merge.
 
 

@@ -71,15 +71,15 @@ forecast.probs <- c(0.05,0.25,0.5,0.75,0.95)
 ## Each element of the list is a vector of length the same as the
 ## number of elements in forcast.yrs
 catch.levels <- list(rep(0.01, 3),
-                     rep(180000,3),
-                     rep(300000,3),
-                     rep(350000,3),
-                     rep(400000,3),
-                     rep(428000,3),
-                     rep(500000,3),
-                     rep(710000,3),
-                     c(730000,650000,520000),
-                     c(804576,682782,547280))
+                     rep(180000,3))
+                     ## rep(300000,3),
+                     ## rep(350000,3),
+                     ## rep(400000,3),
+                     ## rep(428000,3),
+                     ## rep(500000,3),
+                     ## rep(710000,3),
+                     ## c(730000,650000,520000),
+                     ## c(804576,682782,547280))
 
 ## The catch as calculated using the default harvest policy. Used in forecasting.
 catch.default.policy <- catch.levels[[length(catch.levels)]]
@@ -87,28 +87,28 @@ catch.default.policy <- catch.levels[[length(catch.levels)]]
 ## catch.levels.names is a list of N names for the catch levels given in catch.levels
 ##  to be used in plots (Pretty names)
 catch.levels.names <- c("No Fishing",
-                        "180,000 t",
-                        "300,000 t",
-                        "350,000 t",
-                        "400,000 t",
-                        "428,000 t",
-                        "500,000 t",
-                        "stableCatch",
-                        "SPR100",
-                        paste0("Default: ",fmt0(catch.default.policy[1])," t"))
+                        "180,000 t")
+                        ## "300,000 t",
+                        ## "350,000 t",
+                        ## "400,000 t",
+                        ## "428,000 t",
+                        ## "500,000 t",
+                        ## "stableCatch",
+                        ## "SPR100",
+                        ## paste0("Default: ",fmt0(catch.default.policy[1])," t"))
 
 ## catch.levels.dir.names is a list of N names for the catch levels given in catch.levels,
 ##  to be used as the directory names (OS-naming friendly).
 catch.levels.dir.names <- c("0",
-                            "180000",
-                            "300000",
-                            "350000",
-                            "400000",
-                            "428000",
-                            "500000",
-                            "stableCatch",
-                            "SPR100",
-                            "DefaultHR")
+                            "180000")
+                            ## "300000",
+                            ## "350000",
+                            ## "400000",
+                            ## "428000",
+                            ## "500000",
+                            ## "stableCatch",
+                            ## "SPR100",
+                            ## "DefaultHR")
 
 data.path <- file.path("..","..","data")
 models.path <- file.path("..","..","models")
@@ -128,7 +128,6 @@ if(reload.models == "y" | reload.models == "Y"){
 
 if(run.forecasts == "y" | run.forecasts == "Y"){
   cat("\n\nRunning forecasts for model located in ",models[[base.model.ind]]$path,"...\n\n")
-  ## Delete any old forecasts by removing whole forecasts directory recursively
   forecasts.path <- file.path(models[[base.model.ind]]$path, "mcmc", "forecasts")
 
   forecasts <- calc.forecast(models[[base.model.ind]]$mcmc,
@@ -140,7 +139,8 @@ if(run.forecasts == "y" | run.forecasts == "Y"){
 
   models[[base.model.ind]]$forecasts$biomass <- forecasts[[1]]
   models[[base.model.ind]]$forecasts$spr <- forecasts[[2]]
-  models[[base.model.ind]]$forecasts$outputs <- forecasts[[3]]
+  models[[base.model.ind]]$forecasts$mcmccalcs <- forecasts[[3]]
+  models[[base.model.ind]]$forecasts$outputs <- forecasts[[4]]
 
   ## calc.risk assumes the forecasting step was done correctly
   risks <- calc.risk(models[[base.model.ind]]$forecasts$outputs,
@@ -155,3 +155,34 @@ if(run.forecasts == "y" | run.forecasts == "Y"){
 
 ## A simpler variable for the base model
 base.model <- models[[base.model.ind]]
+
+## last year's values (mostly for the one-page-summary)
+last.year.landings <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$year==end.yr-1,][2]))
+last.year.tac <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$year==end.yr-1,][3]))
+last.year.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$year==end.yr-1,][4]), 1)
+
+## New depletion and spawning biomass estimates
+curr.depl.lower <- fmt0(base.model$mcmccalcs$dlower[names(base.model$mcmccalcs$dlower) %in% end.yr] * 100, 1)
+curr.depl.median <- fmt0(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end.yr] * 100, 1)
+curr.depl.upper <- fmt0(base.model$mcmccalcs$dupper[names(base.model$mcmccalcs$dupper) %in% end.yr] * 100, 1)
+
+curr.bio.lower <- fmt0(base.model$mcmccalcs$slower[names(base.model$mcmccalcs$slower) %in% end.yr], 3)
+curr.bio.median <- fmt0(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% end.yr], 3)
+curr.bio.upper <- fmt0(base.model$mcmccalcs$supper[names(base.model$mcmccalcs$supper) %in% end.yr], 3)
+
+## First forecast year depletion and spawning biomass estimates
+next.depl.lower <- fmt0(base.model$mcmccalcs$dlower[names(base.model$mcmccalcs$dlower) %in% end.yr + 1] * 100, 1)
+next.depl.median <- fmt0(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end.yr + 1] * 100, 1)
+next.depl.upper <- fmt0(base.model$mcmccalcs$dupper[names(base.model$mcmccalcs$dupper) %in% end.yr + 1] * 100, 1)
+
+next.bio.lower <- fmt0(base.model$mcmccalcs$slower[names(base.model$mcmccalcs$slower) %in% end.yr + 1], 3)
+next.bio.median <- fmt0(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% end.yr + 1], 3)
+next.bio.upper <- fmt0(base.model$mcmccalcs$supper[names(base.model$mcmccalcs$supper) %in% end.yr + 1], 3)
+
+next2.depl.lower <- fmt0(base.model$mcmccalcs$dlower[names(base.model$mcmccalcs$dlower) %in% end.yr + 2] * 100, 1)
+next2.depl.median <- fmt0(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end.yr + 2] * 100, 1)
+next2.depl.upper <- fmt0(base.model$mcmccalcs$dupper[names(base.model$mcmccalcs$dupper) %in% end.yr + 2] * 100, 1)
+
+next2.bio.lower <- fmt0(base.model$mcmccalcs$slower[names(base.model$mcmccalcs$slower) %in% end.yr + 2], 3)
+next2.bio.median <- fmt0(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% end.yr + 2], 3)
+next2.bio.upper <- fmt0(base.model$mcmccalcs$supper[names(base.model$mcmccalcs$supper) %in% end.yr + 2], 3)
