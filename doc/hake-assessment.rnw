@@ -171,6 +171,7 @@
 \newcommand{\amat}{age-at-50\%-maturity}
 \newcommand{\bc}{British Columbia}
 \newcommand{\Fforty}{F_{\text{SPR}=40\%}}
+\newcommand{\Fmsy}{F_{\text{MSY}}}
 %% For subscripts in text mode
 \newcommand{\subscr}[1]{$_{\text{#1}}$}
 \newcommand{\supscr}[1]{$^{\text{#1}}$}
