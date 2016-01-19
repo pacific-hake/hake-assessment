@@ -38,8 +38,7 @@ source("tables-decisions.r")
 ## verbose applies to the SS loading functions as well as this project's functions
 verbose <- FALSE
 
-catch.data.file <- "2016HakeCatches_preliminary_2016.01.04.csv"
-landings.vs.tac.data.file <- "Landings_vs_TAC.csv"
+catch.data.file <- "Hake_Landings_TAC_History.csv"
 
 ## Index of the base model as found in the directory.
 ## i.e. 00_Modelname is index 1, 01_Modelname is index 2, etc.
@@ -65,7 +64,6 @@ assess.yr       <- end.yr
 ## latex/knitr code is set up to automatically accomodate changes
 forecast.yrs <- 2015:2017
 forecast.probs <- c(0.05,0.25,0.5,0.75,0.95)
-## forecast.probs <- c(0.1,0.5,0.9)
 
 ## catch.levels is a list of N catch levels to run forecasts for
 ## Each element of the list is a vector of length the same as the
@@ -119,7 +117,8 @@ run.forecasts <- readline(prompt="Run forecasting for base model (for decision t
 if(reload.models == "y" | reload.models == "Y"){
   cat("\n\nLoading all models and data...\n\n")
   catches <- load.catches(file.path(data.path, catch.data.file))
-  landings.vs.tac <- load.landings.tac(file.path(data.path, landings.vs.tac.data.file))
+  landings.vs.tac <- catches[[2]]
+  catches <- catches[[1]]
   models <- load.models(models.path, yr = end.yr)
   cat("\n\nAll models and data have been loaded.\n\n")
 }else{
@@ -156,10 +155,16 @@ if(run.forecasts == "y" | run.forecasts == "Y"){
 ## A simpler variable for the base model
 base.model <- models[[base.model.ind]]
 
+## Attainment, used in the management performance section
+usa.last.5.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),8]), 1)
+can.last.5.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),9]), 1)
+tot.last.5.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),10]), 1)
+tot.last.10.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-10):(end.yr-1),10]), 1)
+
 ## last year's values (mostly for the one-page-summary)
-last.year.landings <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$year==end.yr-1,][2]))
-last.year.tac <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$year==end.yr-1,][3]))
-last.year.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$year==end.yr-1,][4]), 1)
+last.year.landings <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year==end.yr-1,][2]))
+last.year.tac <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year==end.yr-1,][3]))
+last.year.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year==end.yr-1,][4]), 1)
 
 ## New depletion and spawning biomass estimates
 curr.depl.lower <- fmt0(base.model$mcmccalcs$dlower[names(base.model$mcmccalcs$dlower) %in% end.yr] * 100, 1)
