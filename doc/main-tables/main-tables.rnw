@@ -40,6 +40,14 @@ make.catches.table.total(catches, start.yr=start.yr, end.yr=end.yr,
                    space.size = 12)
 @
 
+<<main.landings.tac.table, results='asis', echo=FALSE>>=
+make.landings.tac.table(landings.vs.tac, start.yr=end.yr-10, end.yr=end.yr-1,
+                        xcaption <- "Recent trends in Pacific Hake landings and management decisions.",
+                        xlabel <- "tab:main-landings-tac",
+                        font.size = 6,
+                        space.size = 8)
+@
+
 % Tables referenced in data-section.rnw:
 
 % Tables referenced in assessment-section.rnw:

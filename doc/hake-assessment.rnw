@@ -288,23 +288,21 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 @
 
 <<data-sec, child='data-section/data.rnw'>>=
-@ 
+@
 
 <<assessment-sec, child='assessment-section/assessment-section.rnw'>>=
-@ 
+@
 
 <<research-sec, child='research-section/research.rnw'>>=
-@ 
+@
 
 <<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
-@ 
+@
 
 % Keeping track of missing references here; this section will get
 %  delted once its empty.
 <<missing-refs, child='missing-references/missing-references.rnw'>>=
 @
-
-
 
 \clearpage
 

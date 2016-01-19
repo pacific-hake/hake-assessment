@@ -3,22 +3,42 @@
 
 load.catches <- function(fn ## fn is the filename with relative path
                          ){
-  ## Reads in the catches file, replacing any NA's with zeroes
+  ## Reads in the catches file, splits it up into two data frames,
+  ##  one for catches and one for the catches/tac.
+  ## In the catches data frame, any NA's will be replaced by zeroes.
+  ## In the landings/tac table, they will remain NAs
   catches <- read.csv(fn)
+  landings.vs.tac <- as.data.frame(cbind(Year = catches$Year,
+                                         Ustotal = catches$Ustotal,
+                                         CANtotal = catches$CANtotal,
+                                         TOTAL = catches$TOTAL,
+                                         TAC = catches$TAC,
+                                         TACCAN = catches$TACCAN,
+                                         TACUSA = catches$TACUSA))
+
+  landings.vs.tac <- as.data.frame(cbind(landings.vs.tac,
+                                         landings.vs.tac$Ustotal / landings.vs.tac$TACUSA * 100,
+                                         landings.vs.tac$CANtotal / landings.vs.tac$TACCAN * 100,
+                                         landings.vs.tac$TOTAL / landings.vs.tac$TAC * 100))
+
+  colnames(landings.vs.tac) <- c("Year", "Ustotal", "CANtotal",
+                                 "TOTAL", "TAC", "TACCAN", "TACUSA",
+                                 "USATTAIN", "CANATTAIN", "ATTAIN")
+  catches <- catches[,!names(catches) %in% c("TAC", "TACCAN", "TACUSA")]
   catches[is.na(catches)] <- 0
-  return(catches)
+  return(list(catches = catches, landings.vs.tac = landings.vs.tac))
 }
 
-load.landings.tac <- function(fn ## fn is the filename with reletive path
-                              ){
-  ## Reads in the landings vs tac file. This is for the management performance section
-  ## of the executive summary. The table represents coastwide values
-  landings.vs.tac <- read.csv(fn)
+## load.landings.tac <- function(fn ## fn is the filename with reletive path
+##                               ){
+##   ## Reads in the landings vs tac file. This is for the management performance section
+##   ## of the executive summary. The table represents coastwide values
+##   landings.vs.tac <- read.csv(fn)
 
-  ## Add column for proportions
-  landings.vs.tac <- cbind(landings.vs.tac, landings.vs.tac$landings / landings.vs.tac$tac * 100)
-  return(landings.vs.tac)
-}
+##   ## Add column for proportions
+##   landings.vs.tac <- cbind(landings.vs.tac, landings.vs.tac$landings / landings.vs.tac$tac * 100)
+##   return(landings.vs.tac)
+## }
 
 make.catches.table <- function(catches,              ## The output of the load.catches function above.
                                start.yr,             ## start.yr is the first year to show in the table
@@ -185,15 +205,25 @@ make.landings.tac.table <- function(landings.vs.tac,
   tab <- landings.vs.tac
 
   ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
-  tab <- tab[tab[,1] >= start.yr & tab[,1] <= end.yr,]
-  tab[,-c(1,4)] <- fmt0(tab[,-c(1,4)])  ## -c(1,4) means leave the years and proportions alone and don't comma-seperate them
+  tab <- tab[tab$Year >= start.yr & tab$Year <= end.yr,]
+  tab[,-c(1,8,9,10)] <- fmt0(tab[,-c(1,8,9,10)])
   ## Round the proportions to one decimal place
-  tab[,4] <- paste0(round(tab[,4],1),"\\%")
-
-  colnames(tab) <- c("\\textbf{Year}","\\textbf{Total landings (t)}","\\specialcell{\\textbf{Coast-wide (US+Canada)}\\\\\\textbf{catch target (t)}}","\\specialcell{\\textbf{Proportion of catch}\\\\\\textbf{target removed}}")
+  tab[,8] <- paste0(fmt0(tab[,8],1),"\\%")
+  tab[,9] <- paste0(fmt0(tab[,9],1),"\\%")
+  tab[,10] <- paste0(fmt0(tab[,10],1),"\\%")
+  colnames(tab) <- c("\\textbf{Year}",
+                     "\\specialcell{\\textbf{US}\\\\\\textbf{landings (t)}}",
+                     "\\specialcell{\\textbf{Canadian}\\\\\\textbf{landings (t)}}",
+                     "\\specialcell{\\textbf{Total}\\\\\\textbf{landings (t)}}",
+                     "\\specialcell{\\textbf{Coast-wide}\\\\\\textbf{(US+Canada)}\\\\\\textbf{catch}\\\\\\textbf{target (t)}}",
+                     "\\specialcell{\\textbf{Canada}\\\\\\textbf{catch}\\\\\\textbf{target (t)}}",
+                     "\\specialcell{\\textbf{US}\\\\\\textbf{catch}\\\\\\textbf{target (t)}}",
+                     "\\specialcell{\\textbf{US}\\\\\\textbf{Proportion}\\\\\\textbf{of catch}\\\\\\textbf{target}\\\\\\textbf{removed}}",
+                     "\\specialcell{\\textbf{Canada}\\\\\\textbf{Proportion}\\\\\\textbf{of catch}\\\\\\textbf{target}\\\\\\textbf{removed}}",
+                     "\\specialcell{\\textbf{Total}\\\\\\textbf{Proportion}\\\\\\textbf{of catch}\\\\\\textbf{target}\\\\\\textbf{removed}}")
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
-  return(print(xtable(tab, caption=xcaption, label=xlabel, align=get.align(ncol(tab),first.left=FALSE,just="c"), digits=c(0,0,0,0,1)),
+  return(print(xtable(tab, caption=xcaption, label=xlabel, align=get.align(ncol(tab),first.left=FALSE,just="c"), digits=c(0,0,0,0,0,0,0,0,1,1,1)),
                caption.placement = "top", include.rownames=FALSE, table.placement="H", sanitize.text.function=function(x){x}, size=size.string))
 }
 
