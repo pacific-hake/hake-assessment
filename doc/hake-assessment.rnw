@@ -300,8 +300,8 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 
 % Keeping track of missing references here; this section will get
 %  delted once its empty.
-<<missing-refs, child='missing-references/missing-references.rnw'>>=
-@
+%% <<missing-refs, child='missing-references/missing-references.rnw'>>=
+%% @
 
 
 
