@@ -248,3 +248,24 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
 
   par <- oldpar
 }
+
+make.bridge.biomass.plot <- function(models,             ## models is a list of model runs to be plotted against of which
+                                                         ## each element is the output of the r4ss package's function SSgetMCMC
+                                     model.names = NULL, ## vector of model names. Must be same length as models
+                                     end.yr              ## Last year to plot (i.e. last year in model)
+                                     ){
+  ## Plot the list of models against each other.
+  ## if model.names is null, the directory names will be used
+  oldpar <- par()
+  if(is.null(model.names)){
+    tmp.names <- sapply(models[1:length(models)], "[[", "path")
+    model.names <- gsub(".*/","", tmp.names)
+  }
+  compare.summary <- SSsummarize(models)
+  SSplotComparisons(compare.summary,
+                    subplots = 2,
+                    legendlabels = model.names,
+                    endyr = end.yr,
+                    new=FALSE)
+  par <- oldpar
+}

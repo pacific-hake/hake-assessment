@@ -159,6 +159,20 @@ if(run.forecasts == "y" | run.forecasts == "Y"){
 base.model <- models[[base.model.ind]]
 cat("Base model is ",base.model$path,"\n\n")
 
+## Bridge model indices are used to tell knitr which elements of the models list are to
+## be plotted together.
+bridge.model.inds <- 1:7
+
+## Bridge model names will be used to make the bridge model plot and its caption.
+## Make sure this is the same length as bridge.model.inds
+bridge.model.names <- c(paste0("Hake ", last.assess.yr),
+                        paste0("Update pre-",end.yr," catch"),
+                        paste0("Update pre-",end.yr," fish comps"),
+                        paste0("Update pre-",end.yr," wt-age"),
+                        paste0("Update pre-",end.yr," survey"),
+                        paste0("Add ",end.yr," catch and age"),
+                        paste0("Add ",end.yr," survey"))
+
 ## Attainment, used in the management performance section
 usa.last.5.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),8]), 1)
 can.last.5.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),9]), 1)

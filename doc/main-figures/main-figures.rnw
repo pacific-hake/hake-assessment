@@ -1,10 +1,60 @@
 % main-figures.rnw
 
-\clearpage 
+\clearpage
 
 \section{FIGURES} \label{sec:figures}
 
-Lots of figures will go here.
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.total.catches, fig.height=4, fig.width=8>>=
+make.catches.plot(catches, leg.y.loc=520) ## leg.y.loc is y-coord to place legend at
+@
+\end{center}
+%\vspace{0mm}
+\caption{Total Pacific Hake catch used in the assessment by sector, \Sexpr{start.yr} -- \Sexpr{end.yr}. U.S. tribal catches are included in the sectors where they are represented.}
+\label{fig:main-catches}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Bottom depths....
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.survey.biomass, fig.height=5, fig.width=8>>=
+## modelnum is the model index in models list from which the survey input data are used.
+make.survey.biomass.plot(models, modelnum=base.model.ind)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Acoustic survey biomass index (millions of metric tons). Approximate 95\% confidence intervals are based on only sampling variability (\Sexpr{survey.start.yr}--2007, 2011--\Sexpr{survey.end.yr}) in addition to squid/hake apportionment uncertainty (2009, in blue).}
+\label{fig:main-survey-biomass}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.bridge.biomass, fig.height=5, fig.width=8>>=
+make.bridge.biomass.plot(models[bridge.model.inds],
+                         model.names = bridge.model.names,
+                         end.yr = end.yr)
+@
+\end{center}
+\caption{Sequential bridge models from the \Sexpr{last.assess.yr} base model (\Sexpr{bridge.model.names[1]})
+  to updating the pre-\Sexpr{end.yr} catches (\Sexpr{bridge.model.names[2]}),
+  updating the fishery age compositions prior to \Sexpr{end.yr} (\Sexpr{bridge.model.names[3]}),
+  updating the weight-at-age data prior to \Sexpr{end.yr} (\Sexpr{bridge.model.names[4]}),
+  updating the survey biomass indices prior to \Sexpr{end.yr} (\Sexpr{bridge.model.names[5]}),
+  adding the \Sexpr{end.yr} catch and fishery age compositions  (\Sexpr{bridge.model.names[6]}),
+  and adding the \Sexpr{end.yr} survey biomass index (\Sexpr{bridge.model.names[7]}). The points
+  disconnected from the time-series on the left side show the unfished equilibrium spawning biomass estimates.}
+\label{fig:main-bridge-biomass}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 % Figures referenced in introduction-section.rnw:
 
