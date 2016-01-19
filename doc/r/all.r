@@ -44,7 +44,7 @@ catch.data.file <- "Hake_Landings_TAC_History.csv"
 ## i.e. 00_Modelname is index 1, 01_Modelname is index 2, etc.
 base.model.ind <- 1
 
-## Unfished equilibrium year
+## Unfished equilibrium year.
 unfished.eq.yr  <- 1964
 ## Start year for the models
 start.yr        <- 1966
@@ -56,7 +56,7 @@ survey.start.yr <- 1995
 ## Last year in the survey timeseries
 survey.end.yr   <- 2015
 ## The last year an assessment was done
-last.assess.yr  <- 2014
+last.assess.yr  <- end.yr - 1
 ## current assessment year
 assess.yr       <- end.yr
 
@@ -157,6 +157,7 @@ if(run.forecasts == "y" | run.forecasts == "Y"){
 
 ## A simpler variable for the base model
 base.model <- models[[base.model.ind]]
+cat("Base model is ",base.model$path,"\n\n")
 
 ## Attainment, used in the management performance section
 usa.last.5.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),8]), 1)
@@ -186,13 +187,14 @@ next.depl.lower.tac.based <- fmt0(fore.tac.mcmc$dlower[names(fore.tac.mcmc$dlowe
 next.depl.median.tac.based <- fmt0(fore.tac.mcmc$dmed[names(fore.tac.mcmc$dmed) %in% (end.yr + 1)] * 100, 1)
 next.depl.upper.tac.based <- fmt0(fore.tac.mcmc$dupper[names(fore.tac.mcmc$dupper) %in% (end.yr + 1)] * 100, 1)
 
-next2.depl.lower.tac.based <- fmt0(fore.tac.mcmc$dlower[names(fore.tac.mcmc$dlower) %in% (end.yr + 2)] * 100, 1)
-next2.depl.median.tac.based <- fmt0(fore.tac.mcmc$dmed[names(fore.tac.mcmc$dmed) %in% (end.yr + 2)] * 100, 1)
-next2.depl.upper.tac.based <- fmt0(fore.tac.mcmc$dupper[names(fore.tac.mcmc$dupper) %in% (end.yr + 2)] * 100, 1)
-
 next.bio.lower.tac.based <- fmt0(fore.tac.mcmc$slower[names(fore.tac.mcmc$slower) %in% (end.yr + 1)] * 100, 1)
 next.bio.median.tac.based <- fmt0(fore.tac.mcmc$smed[names(fore.tac.mcmc$smed) %in% (end.yr + 1)] * 100, 1)
 next.bio.upper.tac.based <- fmt0(fore.tac.mcmc$supper[names(fore.tac.mcmc$supper) %in% (end.yr + 1)] * 100, 1)
+
+## Second forecast year depletion and spawning biomass estimates
+next2.depl.lower.tac.based <- fmt0(fore.tac.mcmc$dlower[names(fore.tac.mcmc$dlower) %in% (end.yr + 2)] * 100, 1)
+next2.depl.median.tac.based <- fmt0(fore.tac.mcmc$dmed[names(fore.tac.mcmc$dmed) %in% (end.yr + 2)] * 100, 1)
+next2.depl.upper.tac.based <- fmt0(fore.tac.mcmc$dupper[names(fore.tac.mcmc$dupper) %in% (end.yr + 2)] * 100, 1)
 
 next2.bio.lower.tac.based <- fmt0(fore.tac.mcmc$slower[names(fore.tac.mcmc$slower) %in% (end.yr + 2)] * 100, 1)
 next2.bio.median.tac.based <- fmt0(fore.tac.mcmc$smed[names(fore.tac.mcmc$smed) %in% (end.yr + 2)] * 100, 1)

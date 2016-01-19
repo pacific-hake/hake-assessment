@@ -97,6 +97,7 @@ The following depicts the object structure of the **models** list:
 These are the other variables in the global workspace. These can be directly referenced using \Sexpr{} in inline latex code,
 or in a knitr code chunk:
 
+    base.model              - The base model object. Same as models[[base.model.ind]].
     base.model.ind          - Index of the base model as found in the directory.
     unfished.eq.yr          - Unfished equilibrium year. For hake, this is before the start year.
     start.yr                - Start year for the model.
