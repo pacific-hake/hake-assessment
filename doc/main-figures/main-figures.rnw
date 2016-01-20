@@ -128,6 +128,49 @@ par <- oldpar
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.mcmc.diag.hists, fig.height=5, fig.width=8>>=
+make.mcmc.diag.hists.plot(base.model)
+@
+\end{center}
+\caption{Summary histograms of MCMC diagnostics for all base model parameters along with derived
+  quantities for the time-series of spawning biomass, and relative spawning biomass.}
+\label{fig:main-mcmc.diag.hists}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.mcmc.pairs, fig.height=8, fig.width=8>>=
+make.mcmc.diag.pairs.plot(base.model,
+                          inc.key.params = TRUE,
+                          recr = c(2008, 2010),
+                          bratio = end.yr,
+                          forecatch = end.yr)
+@
+\end{center}
+\caption{Posterior correlations among key base-model parameters and derived quantities.}
+\label{fig:main-mcmc-pairs}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.mcmc.pairs.recruit.devs, fig.height=8, fig.width=8>>=
+make.mcmc.diag.pairs.plot(base.model,
+                          inc.key.params = FALSE,
+                          recr = (end.yr-10):(end.yr-1))
+@
+\end{center}
+\caption{Posterior correlations among recruitment deviations from recent years.}
+\label{fig:main-mcmc-pairs-recruit-devs}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 % Figures referenced in introduction-section.rnw:
 
 

@@ -1,3 +1,12 @@
+cbind.fill <- function(...){
+  ## equivalent of cbind(df, xx) where df is an empty data frame.
+  nm <- list(...)
+    nm <- lapply(nm, as.matrix)
+    n <- max(sapply(nm, nrow))
+    do.call(cbind, lapply(nm, function (x)
+        rbind(x, matrix(, n-nrow(x), ncol(x)))))
+}
+
 strip.columns <- function(vec, names){
   ## Return a vector which is the same as the vector 'vec'
   ## but with the matching col.names removed
