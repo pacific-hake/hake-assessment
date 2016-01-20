@@ -6,6 +6,7 @@
 *.dvi
 *.ps
 .RData
+model-partest.RData
 .RHistory
 *.7z
 *.toc
