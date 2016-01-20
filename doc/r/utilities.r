@@ -1,3 +1,144 @@
+
+run.partest.model <- function(model){
+  ## re-run the model a bunch of times for some reason
+  ## Create the directory partest which will hold the runs
+  ##  erasing the directory recursively if necessary
+
+  partest.dir <- file.path(model$path, "partest")
+  unlink(partest.dir, recursive=TRUE)
+  dir.create(partest.dir)
+
+  ## Copy all model files into the partest directory
+  mcmc.dir <- model$mcmcpath
+  files <- list.files(model$path)
+  ## We don't want to copy the mcmc directory
+  files <- files[!(files=="mcmc")]
+  file.copy(file.path(model$path, files), partest.dir)
+
+  posts <- read.table(file.path(model$mcmcpath, "posteriors.sso"), header = TRUE)
+
+  ## create a table of parameter values based on labels in parameters section of Report.sso
+  newpar <- data.frame(value = c(1, model$parameters$Value),
+                       hash = "#",
+                       label = c("dummy_parm", model$parameters$Label),
+                       stringsAsFactors = FALSE)
+
+  ## add hash before first column name
+  names(newpar)[1] <- "#value"
+
+  ## change label for R0 parameter to match R's conversion in "posts"
+  newpar$label[newpar$label == "SR_LN(R0)"] <- "SR_LN.R0."
+
+  ## write table of new files
+  write.table(x = newpar,
+              file = file.path(partest.dir, "ss3.par"),
+              quote = FALSE, row.names=FALSE)
+
+  start <- SS_readstarter(file.path(partest.dir, "starter.ss"))
+browser()
+  if(start$init_values_src != 1){
+    stop("run.partest.model: Error - change starter file to read from par file!")
+  }
+
+  ## loop over rows of posteriors file
+  for(irow in 1:nrow(posts)){
+    print(irow)
+    ## replace values in newpar table with posteriors values
+    ## (excluding 1 and 2 for "Iter" and "Objective_function")
+    newpar[newpar$label %in% names(posts), 1] <- as.numeric(posts[irow, -(1:2)])
+    write.table(x = newpar,
+                file = file.path(partest.dir, "ss3.par"),
+                quote = FALSE,
+                row.names = FALSE)
+
+    file.copy(file.path(partest.dir, "ss3.par"),
+              paste0("ss3_input",irow,'.par'),
+              overwrite = TRUE)
+    shell.command <- paste0("cd ", partest.dir, " & ss3 -maxfn 0 -phase 10 -nohess")
+    shell(shell.command)
+
+    file.copy(file.path(partest.dir, "ss3.par"),
+              paste0("ss3_output",irow,'.par'),
+              overwrite = TRUE)
+    file.copy(file.path(partest.dir, "Report.sso"),
+              paste0("Report_", irow, ".sso"),
+              overwrite = TRUE)
+    file.copy(file.path(partest.dir, "CompReport.sso"),
+              paste0("CompReport_", irow, ".sso"),
+              overwrite = TRUE)
+  }
+
+  ## make table to store likelihood components
+  like.info <- data.frame(Iter = posts$Iter, stringsAsFactors = FALSE)
+  for(lab in c("TOTAL",
+               "Equil_catch",
+               "Survey",
+               "Age_comp",
+               "Recruitment",
+               "Forecast_Recruitment",
+               "Parm_priors",
+               "Parm_devs",
+               "Crash_Pen",
+               "Age_comp_surv",
+               "Age_comp_fishery")){
+    like.info[[lab]] <- 0
+  }
+
+  for(irow in 1:nrow(posts)){
+    likes <- read.table(file.path(partest.dir, paste0("Report_", irow, ".sso")),
+                        skip = 86,
+                        nrows = 17,
+                        fill = TRUE,
+                        row.names = NULL,
+                        col.names = 1:4,
+                        stringsAsFactors = FALSE)
+    like.info[irow, 2:10] <- as.numeric(likes$X2[3:11])  ## fleet-aggregated likelihoods
+    like.info[irow, 11] <- as.numeric(likes[17, 3])      ## fleet-specific age comp likelihoods
+    like.info[irow, 12] <- as.numeric(likes[17, 4])      ## fleet-specific age comp likelihoods
+  }
+
+  ## read expected proportions and Pearson values for each age comp observations
+  comp.table <- read.table(file.path(partest.dir, "CompReport.sso"),
+                           skip = 21,
+                           header = TRUE,
+                           fill = TRUE,
+                           stringsAsFactors = FALSE)
+  ## loop to create columns Exp1, Exp2, ..., Exp999 and Pearson1, Pearson2, etc.
+  for(irow in 1:nrow(posts)){
+    if(irow%%100==0){
+      print(irow)
+    }
+    comps <- read.table(file.path(partest.dir, paste0("CompReport_", irow, ".sso")),
+                        skip = 21,
+                        header = TRUE,
+                        fill = TRUE,
+                        stringsAsFactors = FALSE)
+    lab1 <- paste0("Pearson",irow)
+    lab2 <- paste0("Exp",irow)
+    comp.table[lab1] <- comps$Pearson
+    comp.table[lab2] <- comps$Exp
+  }
+
+  ## filter out values that are not included in agedbase within base model
+  comp.table <- comp.table[!is.na(comp.table$N) & comp.table$N>0,]
+
+  cpue.table <- NULL
+  for(irow in 1:nrow(posts)){
+    cpue <- read.table(file.path(partest.dir, paste0("Report_", irow,".sso")),
+                       skip = 1243,
+                       nrows = 21,
+                       header = TRUE,
+                       stringsAsFactors = FALSE)
+    lab1 <- paste0("Exp", irow)
+    cpue.table <- cbind(cpue.table, cpue$Exp)
+  }
+  cpue.median <- apply(cpue.table, MARGIN=1, FUN=median)
+  cpue.025 <- apply(cpue.table, MARGIN=1, FUN=quantile, probs=0.025)
+  cpue.975 <- apply(cpue.table, MARGIN=1, FUN=quantile, probs=0.975)
+
+}
+
+
 cbind.fill <- function(...){
   ## equivalent of cbind(df, xx) where df is an empty data frame.
   nm <- list(...)

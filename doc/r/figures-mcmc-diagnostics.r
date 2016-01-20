@@ -52,7 +52,7 @@ make.mcmc.diag.hists.plot <- function(model ## model is an mcmc run and is the o
   par <- oldpar
 }
 
-make.mcmc.diag.pairs.plot <- function(model,                 ## model is an mcmc run and is the output of the
+make.mcmc.diag.pairs.plot <- function(model,                 ## model is model with an mcmc run which has the output of the
                                                              ##  r4ss package's function SSgetMCMC
                                       inc.key.params = TRUE, ## If true, include the key parameters in the plot
                                       recr = NULL,           ## vector of recruitment years to plot params for
@@ -62,7 +62,7 @@ make.mcmc.diag.pairs.plot <- function(model,                 ## model is an mcmc
                                       ){
   ## Plot the correlation between parameters via the pairs plot for the mcmc model.
   ## Assumes the model has an mcmc
-  ## If inc.key.params is NULL, only the others will be added
+  ## If inc.key.params is FALSE, only recr. devs will be added (and recr must not be NULL)
   ## If recr is NULL, no recruitment parameters will be included
   ## If forecatch is NULL, no ForeCatch parameters will be included
 
@@ -114,4 +114,67 @@ make.mcmc.diag.pairs.plot <- function(model,                 ## model is an mcmc
         gap = 0.5,
         oma = c(0,0,0,0))
     par <- oldpar
+}
+
+make.mcmc.survey.fit.plot <- function(model,        ## model is a model with an mcmc run which has the output of the
+                                                    ##  r4ss package's function SSgetMCMC
+                                      start.yr,     ## Year to start the plot
+                                      end.yr,       ## Year to end the plot
+                                      probs = c(0.025, 0.975), ## Confidence interval values lower and upper
+                                      y.max = 5.5e6 ## maximum value for the y-axis
+                                      ){
+  ## Plot the fit of the model to the acoustic survey with 95% C.I.
+  oldpar <- par()
+  par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
+  plot(0,
+       type = 'n',
+       xlim = c(start.yr, end.yr),
+       xaxs = 'i',
+       ylim = c(0, y.max),
+       yaxs = 'i',
+       axes = FALSE,
+       xlab = "Year",
+       ylab = "Biomass index (million t)")
+  dat <- model$dat
+  cpue <- dat$CPUE[dat$CPUE$index > 0,]
+  segments(x0 = cpue$year,
+           y0 = qlnorm(probs[1], meanlog = log(cpue$ob), sdlog = cpue$se_log),
+           y1 = qlnorm(probs[2], meanlog = log(cpue$ob), sdlog = cpue$se_log),
+           lwd = 3,
+           lend = 1)
+  ## matplot(x = start.yr:end.yr,
+  ##         y = cpue.table,
+  ##         col = rgb(0, 0, 1, 0.03),
+  ##         type = 'l',
+  ##         add=TRUE,
+  ##         lty = 1)
+  ## lines(x = start.yr:end.yr,
+  ##       y = apply(cpue.table, 1, median),
+  ##       col = rgb(0, 0, 0.5, 0.7),
+  ##       lty = 1,
+  ##       lwd = 3)
+  legend('topleft',
+         legend = c("Observed survey biomass (with MLE estimates of 95% intervals)",
+                    "MLE estimates of expected survey biomass",
+                    "Median MCMC estimate of expected survey biomass",
+                    "MCMC samples of estimates of expected survey biomass"),
+         lwd = c(NA,3,3,1),
+         pch = c(21, NA, NA, NA),
+         bg = 'white',
+         text.col = gray(0.6),
+         col = c(1,
+                 rgb(1, 0, 0, 0.7),
+                 rgb(0, 0, 0.5, 0.7),
+                 rgb(0, 0, 1, 0.4)),
+         bty = 'n')
+  SSplotIndices(model, subplot = 2, add = TRUE, col3 = rgb(1, 0, 0, 0.7))
+  axis(1, at = model$cpue$Yr[model$cpue$Use==1], cex.axis = 0.8, tcl = -0.6)
+  axis(1,
+       at = (start.yr-4):(end.yr+7),
+       lab = rep("", length((start.yr-4):(end.yr+7))),
+       cex.axis = 0.8,
+       tcl = -0.3)
+  box()
+  axis(2, at = (0:5)*1e6, lab = 0:5, las = 1)
+  par <- oldpar
 }

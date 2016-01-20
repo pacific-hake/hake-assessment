@@ -171,6 +171,48 @@ make.mcmc.diag.pairs.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.mcmc.survey.fit, fig.height=5, fig.width=8>>=
+make.mcmc.survey.fit.plot(base.model,
+                          start.yr = end.yr-20,
+                          end.yr = end.yr,
+                          probs = c(0.025, 0.975),
+                          y.max = 5.5e6)
+@
+\end{center}
+\caption{Fits to the acoustic survey with 95\% confidence intervals around the index points.
+  Red and blue thick lines are MLE and median MCMC expected survey estimates in every year,
+  including years without a survey. Thin blue lines show individual MCMC samples of the
+  expected survey biomass. Thicker bars on uncertainty intervals around observed survey points
+  indicate 95\% log-normal uncertainty intervals estimated by the kriging method. Longer bars
+  indicate 95\% uncertainty intervals with the MLE estimate of additional uncertainty.}
+\label{fig:main-mcmc-survey-fit}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.age.comp.fits, fig.height=5, fig.width=8>>=
+oldpar <- par(no.readonly = TRUE)
+## par(mar=c(4.1, 4.1, 3.1, 0.1))
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.age.comp.fit.plot(base.model,
+                       subplot = 1)
+make.age.comp.fit.plot(base.model,
+                       subplot = 2)
+par <- oldpar
+@
+\end{center}
+\caption{Base model fit to the observed fishery (top) and acoustic survey (bottom) age composition data.
+  Colored bars show observed proportions with colors following each cohort across years.
+  Points with intervals indicate median expected proportions and 95\% uncertainty intervals from the MCMC.}
+\label{fig:main-age-comp-fits}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 % Figures referenced in introduction-section.rnw:
 
 
