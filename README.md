@@ -65,9 +65,10 @@ The following depicts the object structure of the **models** list:
         models[[N]]$risks[[2]] - Holds the risk values for the third year of forecasts - the second year
         ...
         models[[N]]$risks[[N]] - Holds the risk values for the N+1th year of forecasts - the Nth year
-      models[[N]]$path      - The absolute path where this model is located
+      models[[N]]$path      - The path where this model is located
       models[[N]]$dat       - data file as read in by the SS_readdat function in the r4ss package
       models[[N]]$mcmc      - mcmc output from the model as read in by the SSgetMCMC function or NULL if none for this model
+      models[[N]]$mcmcpath  - The path where this mcmc model is located
       models[[N]]$mcmccalcs - calculations done on the mcmc outputs for this model
         models[[N]]$mcmccalcs$svirg     - SPB virgin biomass, vector of length 3 (2.5%, 50%, 97.5%)
         models[[N]]$mcmccalcs$sinit     - SPB initial biomass, vector of length 3 (2.5%, 50%, 97.5%)

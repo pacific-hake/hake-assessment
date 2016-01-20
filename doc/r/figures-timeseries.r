@@ -251,6 +251,7 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
 
 make.bridge.biomass.plot <- function(models,             ## models is a list of model runs to be plotted against of which
                                                          ## each element is the output of the r4ss package's function SSgetMCMC
+                                     subplots = 1,       ## Same as subplot argument in SSplotComparisons
                                      model.names = NULL, ## vector of model names. Must be same length as models
                                      end.yr              ## Last year to plot (i.e. last year in model)
                                      ){
@@ -263,7 +264,7 @@ make.bridge.biomass.plot <- function(models,             ## models is a list of 
   }
   compare.summary <- SSsummarize(models)
   SSplotComparisons(compare.summary,
-                    subplots = 2,
+                    subplots = subplots,
                     legendlabels = model.names,
                     endyr = end.yr,
                     new=FALSE)

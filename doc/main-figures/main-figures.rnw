@@ -1,4 +1,4 @@
-% main-figures.rnw
+%% main-figures.rnw
 
 \clearpage
 
@@ -38,6 +38,7 @@ make.survey.biomass.plot(models, modelnum=base.model.ind)
 \begin{center}
 <<main.bridge.biomass, fig.height=5, fig.width=8>>=
 make.bridge.biomass.plot(models[bridge.model.inds],
+                         subplots = 2,
                          model.names = bridge.model.names,
                          end.yr = end.yr)
 @
@@ -54,7 +55,78 @@ make.bridge.biomass.plot(models[bridge.model.inds],
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.bridge.detail, fig.height=8, fig.width=10>>=
+oldpar <- par(no.readonly=TRUE)
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
+## subplot 2 is spawning output with CI
+make.bridge.biomass.plot(models[bridge.model.detail.inds],
+                         subplots = 2,
+                         model.names = bridge.model.detail.names,
+                         end.yr = end.yr)
+## subplot 4 is spawning output with CI and 0.1, 0.4, and 1.0 lines
+make.bridge.biomass.plot(models[bridge.model.detail.inds],
+                         subplots = 4,
+                         model.names = bridge.model.detail.names,
+                         end.yr = end.yr)
+## subplot 8 is recruitment with CI
+make.bridge.biomass.plot(models[bridge.model.detail.inds],
+                         subplots = 8,
+                         model.names = bridge.model.detail.names,
+                         end.yr = end.yr)
+## subplot 8 is recruitment devs with CI
+make.bridge.biomass.plot(models[bridge.model.detail.inds],
+                         subplots = 10,
+                         model.names = bridge.model.detail.names,
+                         end.yr = end.yr)
+par(oldpar)
+@
+\end{center}
+\caption{Bridge models showing the difference between the model with updated \Sexpr{end.yr-2} data (blue)
+  and the base model with all new \Sexpr{end.yr-1} data (red). Spawning biomass (upper left),
+  relative spawning biomass (spawning biomass in each year relative to the unfished equilibrium spawning biomass, upper right),
+  absolute recruitment (lower left), and recruitment deviations (lower right) are shown.}
+\label{fig:main-bridge-detail}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.mcmc.diag.m.r0, fig.height=5, fig.width=8>>=
+oldpar <- par(no.readonly=TRUE)
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.mcmc.diag.plot(base.model, subplot = 1)
+make.mcmc.diag.plot(base.model, subplot = 2)
+par <- oldpar
+@
+\end{center}
+\caption{Summary of MCMC diagnostics for natural mortality (upper panels) and log(\emph{R\subscr{0}}) (lower panels) in the base model.}
+\label{fig:main-mcmc.diag.m.r0}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.mcmc.diag.h.extra.sd, fig.height=5, fig.width=8>>=
+oldpar <- par(no.readonly=TRUE)
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.mcmc.diag.plot(base.model, subplot = 3)
+make.mcmc.diag.plot(base.model, subplot = 4)
+par <- oldpar
+@
+\end{center}
+\caption{Summary of MCMC diagnostics for steepness (upper panels) and the additional standard deviation (SD)
+  in the survey index (lower panels) in the base model.}
+\label{fig:main-mcmc.diag.h.extra.sd}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
 
 % Figures referenced in introduction-section.rnw:
 

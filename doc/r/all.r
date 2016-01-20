@@ -30,6 +30,7 @@ source("survey.r")
 
 source("figures-timeseries.r")
 source("figures-compare-forecasts.r")
+source("figures-mcmc-diagnostics.r")
 
 source("tables-timeseries.r")
 source("tables-reference-points.r")
@@ -162,16 +163,22 @@ cat("Base model is ",base.model$path,"\n\n")
 ## Bridge model indices are used to tell knitr which elements of the models list are to
 ## be plotted together.
 bridge.model.inds <- 1:7
+## For the 4-panel plot showing details of only two, the old base and the updated data
+bridge.model.detail.inds <- c(1,7)
 
 ## Bridge model names will be used to make the bridge model plot and its caption.
 ## Make sure this is the same length as bridge.model.inds
-bridge.model.names <- c(paste0("Hake ", last.assess.yr),
-                        paste0("Update pre-",end.yr," catch"),
-                        paste0("Update pre-",end.yr," fish comps"),
-                        paste0("Update pre-",end.yr," wt-age"),
-                        paste0("Update pre-",end.yr," survey"),
-                        paste0("Add ",end.yr," catch and age"),
-                        paste0("Add ",end.yr," survey"))
+bridge.model.names <- c(paste0("Hake ", end.yr-1),
+                        paste0("Update pre-",end.yr-1," catch"),
+                        paste0("Update pre-",end.yr-1," fish comps"),
+                        paste0("Update pre-",end.yr-1," wt-age"),
+                        paste0("Update pre-",end.yr-1," survey"),
+                        paste0("Add ",end.yr-1," catch and age"),
+                        paste0("Add ",end.yr-1," survey"))
+## For the 4-panel plot showing details of only two, the old base and the updated data
+bridge.model.detail.names <- c(paste0("Hake ", last.assess.yr),
+                               paste0("Add ",end.yr-1," data"))
+
 
 ## Attainment, used in the management performance section
 usa.last.5.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),8]), 1)
