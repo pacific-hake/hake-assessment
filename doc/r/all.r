@@ -116,8 +116,9 @@ catch.levels.dir.names <- c("0",
 data.path <- file.path("..","..","data")
 models.path <- file.path("..","..","models")
 
-reload.models <- readline(prompt="Reload all models and data? [y/n] ")
-run.forecasts <- readline(prompt="Run forecasting for base model (for decision tables)? [y/n] ")
+reload.models <- readline(prompt = "Reload all models and data? [y/n] ")
+run.forecasts <- readline(prompt = "Run forecasting for base model (for decision tables)? [y/n] ")
+run.partest <- readline(prompt = "Run partest for base model (re-runs the model for each posterior and takes 10 minutes)? [y/n] ")
 
 if(reload.models == "y" | reload.models == "Y"){
   cat("\n\nLoading all models and data...\n\n")
@@ -155,6 +156,10 @@ if(run.forecasts == "y" | run.forecasts == "Y"){
   models[[base.model.ind]]$risks <- risks
 
   cat("\n\nForecast calculations completed.\n\n")
+}
+
+if(run.partest == "y" | run.partest == "Y"){
+  run.partest.model(models[[base.model.ind]], output.file = "model-partest.RData")
 }
 
 ## A simpler variable for the base model

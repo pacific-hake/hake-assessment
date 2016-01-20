@@ -1,21 +1,43 @@
+run.partest.model <- function(model,
+                              output.file, ## The model object will be stored in binary form here
+                              rows.to.skip.to.comps.header = 21,
+                              rows.to.skip.to.likelihood = 90,
+                              rows.to.skip.to.survey.header = 1246){
+  ## To ensure integration with the knitr loading step, you must
+  ## run this from the Rgui (after you've got a base model loaded) like this:
+  ##
+  ## run.partest.model(base.model, "model-partest.RData")
+  ##
+  ## This Re-runs the model (MLE) once for each posterior
+  ## and fetches information from their respective Report.sso files.
+  ## This is to be run once for the base model, and stored as a binary as
+  ## shown above.
+  ##
+  ## rows.to.skip.to.survey.header should be the line just above the header for
+  ## the survey (index 2 in this case) in the Reports.sso file
+  ##
+  ## rows.to.skip.to.likelihood should be the line just above the LIKELIHOOD
+  ## line in the Reports.sso file
+  ##
+  ## rows.to.skip.to.comps.header should be the line just above the header for
+  ## the age comps in the CompReport.sso file
 
-run.partest.model <- function(model){
-  ## re-run the model a bunch of times for some reason
   ## Create the directory partest which will hold the runs
   ##  erasing the directory recursively if necessary
-
   partest.dir <- file.path(model$path, "partest")
+  reports.dir <- file.path(partest.dir, "reports")
   unlink(partest.dir, recursive=TRUE)
   dir.create(partest.dir)
+  dir.create(reports.dir)
 
-  ## Copy all model files into the partest directory
+  ## Copy all mcmc model files into the partest directory
   mcmc.dir <- model$mcmcpath
-  files <- list.files(model$path)
-  ## We don't want to copy the mcmc directory
-  files <- files[!(files=="mcmc")]
-  file.copy(file.path(model$path, files), partest.dir)
+  file.copy(file.path(mcmc.dir, list.files(mcmc.dir)), partest.dir)
 
-  posts <- read.table(file.path(model$mcmcpath, "posteriors.sso"), header = TRUE)
+  posts <- read.table(file.path(partest.dir, "posteriors.sso"), header = TRUE)
+  ## Change this for testing on smaller subset of posteriors
+  ## num.posts <- 5
+  num.posts <- nrow(posts)
 
   ## create a table of parameter values based on labels in parameters section of Report.sso
   newpar <- data.frame(value = c(1, model$parameters$Value),
@@ -35,13 +57,16 @@ run.partest.model <- function(model){
               quote = FALSE, row.names=FALSE)
 
   start <- SS_readstarter(file.path(partest.dir, "starter.ss"))
-browser()
+  ## Change starter file to read from par file
+  start$init_values_src <- 1
+  SS_writestarter(start, dir = partest.dir, file = "starter.ss", overwrite = TRUE)
+
   if(start$init_values_src != 1){
     stop("run.partest.model: Error - change starter file to read from par file!")
   }
 
   ## loop over rows of posteriors file
-  for(irow in 1:nrow(posts)){
+  for(irow in 1:num.posts){
     print(irow)
     ## replace values in newpar table with posteriors values
     ## (excluding 1 and 2 for "Iter" and "Objective_function")
@@ -52,19 +77,18 @@ browser()
                 row.names = FALSE)
 
     file.copy(file.path(partest.dir, "ss3.par"),
-              paste0("ss3_input",irow,'.par'),
+              file.path(reports.dir, paste0("ss3_input", irow, ".par")),
               overwrite = TRUE)
     shell.command <- paste0("cd ", partest.dir, " & ss3 -maxfn 0 -phase 10 -nohess")
     shell(shell.command)
-
     file.copy(file.path(partest.dir, "ss3.par"),
-              paste0("ss3_output",irow,'.par'),
+              file.path(reports.dir, paste0("ss3_output", irow, ".par")),
               overwrite = TRUE)
     file.copy(file.path(partest.dir, "Report.sso"),
-              paste0("Report_", irow, ".sso"),
+              file.path(reports.dir, paste0("Report_", irow, ".sso")),
               overwrite = TRUE)
     file.copy(file.path(partest.dir, "CompReport.sso"),
-              paste0("CompReport_", irow, ".sso"),
+              file.path(reports.dir, paste0("CompReport_", irow, ".sso")),
               overwrite = TRUE)
   }
 
@@ -84,9 +108,9 @@ browser()
     like.info[[lab]] <- 0
   }
 
-  for(irow in 1:nrow(posts)){
-    likes <- read.table(file.path(partest.dir, paste0("Report_", irow, ".sso")),
-                        skip = 86,
+  for(irow in 1:num.posts){
+    likes <- read.table(file.path(reports.dir, paste0("Report_", irow, ".sso")),
+                        skip = rows.to.skip.to.likelihood,
                         nrows = 17,
                         fill = TRUE,
                         row.names = NULL,
@@ -99,17 +123,17 @@ browser()
 
   ## read expected proportions and Pearson values for each age comp observations
   comp.table <- read.table(file.path(partest.dir, "CompReport.sso"),
-                           skip = 21,
+                           skip = rows.to.skip.to.comps.header,
                            header = TRUE,
                            fill = TRUE,
                            stringsAsFactors = FALSE)
   ## loop to create columns Exp1, Exp2, ..., Exp999 and Pearson1, Pearson2, etc.
-  for(irow in 1:nrow(posts)){
-    if(irow%%100==0){
+  for(irow in 1:num.posts){
+    if(irow %% 100 == 0){
       print(irow)
     }
-    comps <- read.table(file.path(partest.dir, paste0("CompReport_", irow, ".sso")),
-                        skip = 21,
+    comps <- read.table(file.path(reports.dir, paste0("CompReport_", irow, ".sso")),
+                        skip = rows.to.skip.to.comps.header,
                         header = TRUE,
                         fill = TRUE,
                         stringsAsFactors = FALSE)
@@ -122,20 +146,49 @@ browser()
   ## filter out values that are not included in agedbase within base model
   comp.table <- comp.table[!is.na(comp.table$N) & comp.table$N>0,]
 
+  ## median and quantiles of expected values and Pearsons
+  exp.table <- comp.table[,names(comp.table) %in% paste0("Exp",1:num.posts)]
+  Pearson.table <- comp.table[,names(comp.table) %in% paste0("Pearson",1:num.posts)]
+  exp.median <- apply(exp.table, MARGIN=1, FUN=median)
+  exp.low    <- apply(exp.table, MARGIN=1, FUN=quantile, probs=0.025)
+  exp.high   <- apply(exp.table, MARGIN=1, FUN=quantile, probs=0.975)
+  Pearson.median <- apply(Pearson.table, MARGIN=1, FUN=median)
+  Pearson.low    <- apply(Pearson.table, MARGIN=1, FUN=quantile, probs=0.025)
+  Pearson.high   <- apply(Pearson.table, MARGIN=1, FUN=quantile, probs=0.975)
+
+  ## confirm that values match between mcmc tables and base model MLE table
+  ## table(base$agedbase$Obs == comp.table$Obs)
+  ## TRUE
+  ##  750
+
   cpue.table <- NULL
-  for(irow in 1:nrow(posts)){
-    cpue <- read.table(file.path(partest.dir, paste0("Report_", irow,".sso")),
-                       skip = 1243,
-                       nrows = 21,
+  for(irow in 1:num.posts){
+    cpue <- read.table(file.path(reports.dir, paste0("Report_", irow,".sso")),
+                       skip = rows.to.skip.to.survey.header,
+                       nrows = model$dat$N_cpue, ## number of survey index points
                        header = TRUE,
+                       fill = TRUE,
                        stringsAsFactors = FALSE)
     lab1 <- paste0("Exp", irow)
     cpue.table <- cbind(cpue.table, cpue$Exp)
   }
-  cpue.median <- apply(cpue.table, MARGIN=1, FUN=median)
-  cpue.025 <- apply(cpue.table, MARGIN=1, FUN=quantile, probs=0.025)
-  cpue.975 <- apply(cpue.table, MARGIN=1, FUN=quantile, probs=0.975)
 
+  model.partest <- model
+
+  model.partest$agedbase$Exp <- exp.median
+  model.partest$agedbase$Exp.025 <- exp.low
+  model.partest$agedbase$Exp.975 <- exp.high
+  model.partest$agedbase$Pearson <- Pearson.median
+  model.partest$agedbase$Pearson.025 <- Pearson.low
+  model.partest$agedbase$Pearson.975 <- Pearson.high
+
+  model.partest$cpue.table <- cpue.table
+  model.partest$cpue.median <- apply(cpue.table, MARGIN = 1, FUN = median)
+  model.partest$cpue.025 <- apply(cpue.table, MARGIN = 1, FUN = quantile, probs = 0.025)
+  model.partest$cpue.975 <- apply(cpue.table, MARGIN = 1, FUN = quantile, probs = 0.975)
+
+  model.partest$like.info <- like.info
+  save(model.partest, file = output.file)
 }
 
 
