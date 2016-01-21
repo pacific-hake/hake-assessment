@@ -41,6 +41,11 @@ source("tables-decisions.r")
 verbose <- FALSE
 
 catch.data.file <- "Hake_Landings_TAC_History.csv"
+data.file.name <- "2015hake_data.ss"
+control.file.name <- "2015hake_control.ss"
+starter.file.name <- "starter.ss"
+forecast.file.name <- "forecast.ss"
+weight.at.age.file.name <- "wtatage.ss"
 
 ## Index of the base model as found in the directory.
 ## i.e. 00_Modelname is index 1, 01_Modelname is index 2, etc.
@@ -56,7 +61,7 @@ end.yr          <- 2015
 ## First year in the survey timeseries
 survey.start.yr <- 1995
 ## Last year in the survey timeseries
-survey.end.yr   <- 2015
+survey.end.yr   <- 2013
 ## The last year an assessment was done
 last.assess.yr  <- end.yr - 1
 ## current assessment year

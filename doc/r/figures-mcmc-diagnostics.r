@@ -118,6 +118,8 @@ make.mcmc.diag.pairs.plot <- function(model,                 ## model is model w
 
 make.mcmc.survey.fit.plot <- function(model,        ## model is a model with an mcmc run which has the output of the
                                                     ##  r4ss package's function SSgetMCMC
+                                                    ## It must have also gone through the make.partest.model function so that it
+                                                    ##  it has the cpue.table member which is required by the age.fits function.
                                       start.yr,     ## Year to start the plot
                                       end.yr,       ## Year to end the plot
                                       probs = c(0.025, 0.975), ## Confidence interval values lower and upper
@@ -142,17 +144,17 @@ make.mcmc.survey.fit.plot <- function(model,        ## model is a model with an 
            y1 = qlnorm(probs[2], meanlog = log(cpue$ob), sdlog = cpue$se_log),
            lwd = 3,
            lend = 1)
-  ## matplot(x = start.yr:end.yr,
-  ##         y = cpue.table,
-  ##         col = rgb(0, 0, 1, 0.03),
-  ##         type = 'l',
-  ##         add=TRUE,
-  ##         lty = 1)
-  ## lines(x = start.yr:end.yr,
-  ##       y = apply(cpue.table, 1, median),
-  ##       col = rgb(0, 0, 0.5, 0.7),
-  ##       lty = 1,
-  ##       lwd = 3)
+  matplot(x = start.yr:end.yr,
+          y = model$cpue.table,
+          col = rgb(0, 0, 1, 0.03),
+          type = 'l',
+          add=TRUE,
+          lty = 1)
+  lines(x = start.yr:end.yr,
+        y = model$cpue.median,
+        col = rgb(0, 0, 0.5, 0.7),
+        lty = 1,
+        lwd = 3)
   legend('topleft',
          legend = c("Observed survey biomass (with MLE estimates of 95% intervals)",
                     "MLE estimates of expected survey biomass",
