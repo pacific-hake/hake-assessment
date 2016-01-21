@@ -241,8 +241,9 @@ make.fishing.intensity.table(models[[base.model.ind]], start.yr=end.yr-10, end.y
 
 \subsection*{Management Performance} \label{sec:es-management-performance}
 \phantomsection  \addcontentsline{toc}{subsection}{Management Performance}
-Over the last decade, the average coast-wide utilization rate (i.e., utilization = landings/quota) has been \Sexpr{round(mean(landings.vs.tac[,4]),1)}\%.
-From 2010 to 2014, the mean utilization rates differed between the United States (85\%) and Canada (60\%). Total landings last exceeded the coast-wide
+Over the last decade, the average coast-wide utilization rate (i.e., utilization = landings/quota) has been \Sexpr{tot.last.10.years.attainment}\%.
+From \Sexpr{end.yr-5} to \Sexpr{end.yr-1}, the mean utilization rates differed between the United States (\Sexpr{usa.last.5.years.attainment}\%) and
+Canada (\Sexpr{can.last.5.years.attainment}\%). Total landings last exceeded the coast-wide
 quota in 2002 when utilization was 112\%. Exploitation history in terms of joint biomass and F-target reference points shows that before
 2007, median fishing intensity was below target and female spawning biomass was near or above target (Figure \ref{tab:es-landings-tac}).
 Between 2007 and 2011, however, fishing intensity ranged from 87\% to 105\% and relative spawning biomass between 0.22 and 0.31.
@@ -255,8 +256,8 @@ spawning biomass is large, the model predicts a 1.4\% joint probability of being
 make.landings.tac.table(landings.vs.tac, start.yr=end.yr-10, end.yr=end.yr-1,
                         xcaption <- "Recent trends in Pacific Hake landings and management decisions.",
                         xlabel <- "tab:es-landings-tac",
-                        font.size = 12,
-                        space.size = 14)
+                        font.size = 6,
+                        space.size = 8)
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%

@@ -98,71 +98,9 @@ A more detailed description of the history of the fishery is provided in the 201
 years.Can.JV.catch.eq.0.recent = years.Can.JV.catch.eq.0(catches)
 @ 
 
-% Updated and automated for 2015:
+% Updated and automated for 2016 assessment:
 For an overview of Canadian catch by year and fleet, see Table~\ref{tab:intro-catches-Can}. For \Sexpr{years.Can.JV.catch.eq.0.recent[-length(years.Can.JV.catch.eq.0.recent)]} and \Sexpr{years.Can.JV.catch.eq.0.recent[length(years.Can.JV.catch.eq.0.recent)]} there was no Joint-Venture fishery operating in Canada and this is reflected as zero catch in that sector for those years in Table~\ref{tab:intro-catches-Can}.  
 
-
-
-\clearpage
-
-\subsection*{Missing references}
-
-** References needed were in last year's assessment text but not in its bibliography or in the .bib file from Allan:
-
-Alheit and Pitcher 1995
-
-Lloris et al. 2005
-
-Vrooman and Paloma 1977
-
-Dorn 1991 - should this be Dorn and Methot 1991, as in the 2015 bibliography?
-
-Dorn 1992 
-
-
-
-** References that were in last year's assessment but not its bibliography, but I'm taking from the .bib file:
-
-\citet{IwamotoFordEtAl2004}
-
-\citet{KingMcFarlaneEtAl2012}
-
-\citep{Dorn1995b} - there are two Dorn (1995) references in the .bib file, I assume the one referenced next to Agostini et al. is the CalCOFI report, not the stock assessment.
-
-\citep{AgostiniFrancisEtAl2006}
-
-\vspace{20mm} % remove me when refs are sorted out
-
-
-
-
-
-<<catches.US, results='asis', echo=FALSE>>=
-make.catches.table.US(catches, start.yr=start.yr, end.yr=end.yr, 
-                   weight.factor=1000,
-                   xcaption <- paste("Annual catches of Pacific Hake (t) in U.S. waters by sector, ", start.yr, "-", end.yr, ". Tribal catches are included in the sector totals.", sep=""),
-                   xlabel <- "tab:intro-catches-US",
-                   font.size = 11,
-                   space.size = 12)
-@
-
-
-
-<<catches.Can, results='asis', echo=FALSE>>=
-make.catches.table.Can(catches, start.yr=start.yr, end.yr=end.yr, 
-                   weight.factor=1000,
-                   xcaption <- paste("Annual catches of Pacific Hake (t) in Canadian  waters by sector, ", start.yr, "-", end.yr, ".", sep=""),
-                   xlabel <- "tab:intro-catches-Can",
-                   font.size = 11,
-                   space.size = 12)
-@
-
-<<catches.total, results='asis', echo=FALSE>>=
-make.catches.table.total(catches, start.yr=start.yr, end.yr=end.yr, 
-                   weight.factor=1000,
-                   xcaption <- paste("Total U.S., Canadian and coastwide catches  of Pacific Hake (t) from ", start.yr, "-", end.yr, ". The percentage of the total catch from each country's waters is also given.", sep=""),
-                   xlabel <- "tab:intro-catches-total",
-                   font.size = 11,
-                   space.size = 12)
-@
+% New for 2016 assessment, since Table was not actually referenced in 2015 assessment:
+The total U.S, Canadian and coastwide catches of Pacific Hake are shown in Table~\ref{tab:intro-catches-total}, together with the percentage of the total catch that came from each country.
 

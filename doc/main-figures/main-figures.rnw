@@ -1,0 +1,271 @@
+%% main-figures.rnw
+
+\clearpage
+
+\section{FIGURES} \label{sec:figures}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.total.catches, fig.height=4, fig.width=8>>=
+make.catches.plot(catches, leg.y.loc=520) ## leg.y.loc is y-coord to place legend at
+@
+\end{center}
+%\vspace{0mm}
+\caption{Total Pacific Hake catch used in the assessment by sector, \Sexpr{start.yr} -- \Sexpr{end.yr}. U.S. tribal catches are included in the sectors where they are represented.}
+\label{fig:main-catches}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.age.comp.bubbles, fig.height=5, fig.width=8>>=
+layout(matrix(c(1,1), nrow = 2, ncol = 1, byrow=TRUE))
+## The return values from the plot function contain
+## start year, end year, max. proportion,
+##  year of max. proportion, age of max. proportion.
+max.survey.age.prop <- make.age.comp.bubble.plot(base.model,
+                                                 subplot = 2,
+                                                 show.key = TRUE,
+                                                 start.yr = 1975,
+                                                 key.yrs = c(1990, 1994, 1998, 2002))
+max.fishery.age.prop <- make.age.comp.bubble.plot(base.model, subplot = 1)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Age compositions for the acoustic survey (top) and the aggregate fishery (bottom, all sectors combined)
+  for the years \Sexpr{max.fishery.age.prop[1]} -- \Sexpr{max.fishery.age.prop[2]}.
+  Proportions in each year sum to 1.0 and area of the bubbles are
+  proportional to the proportion and consistent in both panels (see key at top).
+  The largest bubble in the survey data is \Sexpr{max.survey.age.prop[3]} for age \Sexpr{max.survey.age.prop[5]}
+  in \Sexpr{max.survey.age.prop[4]} and in the fishery is \Sexpr{max.fishery.age.prop[3]} for age \Sexpr{max.survey.age.prop[5]}
+  in \Sexpr{max.fishery.age.prop[4]}.}
+\label{fig:main-age-comp-bubbles}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.survey.biomass, fig.height=5, fig.width=8>>=
+## modelnum is the model index in models list from which the survey input data are used.
+make.survey.biomass.plot(models, modelnum=base.model.ind)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Acoustic survey biomass index (millions of metric tons). Approximate 95\% confidence intervals are based on only sampling variability (\Sexpr{survey.start.yr}--2007, 2011--\Sexpr{survey.end.yr}) in addition to squid/hake apportionment uncertainty (2009, in blue).}
+\label{fig:main-survey-biomass}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.bridge.biomass, fig.height=5, fig.width=8>>=
+make.bridge.biomass.plot(models[bridge.model.inds],
+                         subplots = 2,
+                         model.names = bridge.model.names,
+                         end.yr = end.yr)
+@
+\end{center}
+\caption{Sequential bridge models from the \Sexpr{last.assess.yr} base model (\Sexpr{bridge.model.names[1]})
+  to updating the pre-\Sexpr{end.yr} catches (\Sexpr{bridge.model.names[2]}),
+  updating the fishery age compositions prior to \Sexpr{end.yr} (\Sexpr{bridge.model.names[3]}),
+  updating the weight-at-age data prior to \Sexpr{end.yr} (\Sexpr{bridge.model.names[4]}),
+  updating the survey biomass indices prior to \Sexpr{end.yr} (\Sexpr{bridge.model.names[5]}),
+  adding the \Sexpr{end.yr} catch and fishery age compositions  (\Sexpr{bridge.model.names[6]}),
+  and adding the \Sexpr{end.yr} survey biomass index (\Sexpr{bridge.model.names[7]}). The points
+  disconnected from the time-series on the left side show the unfished equilibrium spawning biomass estimates.}
+\label{fig:main-bridge-biomass}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.bridge.detail, fig.height=8, fig.width=10>>=
+oldpar <- par(no.readonly=TRUE)
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
+## subplot 2 is spawning output with CI
+make.bridge.biomass.plot(models[bridge.model.detail.inds],
+                         subplots = 2,
+                         model.names = bridge.model.detail.names,
+                         end.yr = end.yr)
+## subplot 4 is spawning output with CI and 0.1, 0.4, and 1.0 lines
+make.bridge.biomass.plot(models[bridge.model.detail.inds],
+                         subplots = 4,
+                         model.names = bridge.model.detail.names,
+                         end.yr = end.yr)
+## subplot 8 is recruitment with CI
+make.bridge.biomass.plot(models[bridge.model.detail.inds],
+                         subplots = 8,
+                         model.names = bridge.model.detail.names,
+                         end.yr = end.yr)
+## subplot 8 is recruitment devs with CI
+make.bridge.biomass.plot(models[bridge.model.detail.inds],
+                         subplots = 10,
+                         model.names = bridge.model.detail.names,
+                         end.yr = end.yr)
+par(oldpar)
+@
+\end{center}
+\caption{Bridge models showing the difference between the model with updated \Sexpr{end.yr-2} data (blue)
+  and the base model with all new \Sexpr{end.yr-1} data (red). Spawning biomass (upper left),
+  relative spawning biomass (spawning biomass in each year relative to the unfished equilibrium spawning biomass, upper right),
+  absolute recruitment (lower left), and recruitment deviations (lower right) are shown.}
+\label{fig:main-bridge-detail}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.mcmc.diag.m.r0, fig.height=5, fig.width=8>>=
+oldpar <- par(no.readonly=TRUE)
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.mcmc.diag.plot(base.model, subplot = 1)
+make.mcmc.diag.plot(base.model, subplot = 2)
+par <- oldpar
+@
+\end{center}
+\caption{Summary of MCMC diagnostics for natural mortality (upper panels) and log(\emph{R\subscr{0}}) (lower panels) in the base model.}
+\label{fig:main-mcmc.diag.m.r0}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.mcmc.diag.h.extra.sd, fig.height=5, fig.width=8>>=
+oldpar <- par(no.readonly=TRUE)
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.mcmc.diag.plot(base.model, subplot = 3)
+make.mcmc.diag.plot(base.model, subplot = 4)
+par <- oldpar
+@
+\end{center}
+\caption{Summary of MCMC diagnostics for steepness (upper panels) and the additional standard deviation (SD)
+  in the survey index (lower panels) in the base model.}
+\label{fig:main-mcmc.diag.h.extra.sd}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.mcmc.diag.hists, fig.height=5, fig.width=8>>=
+make.mcmc.diag.hists.plot(base.model)
+@
+\end{center}
+\caption{Summary histograms of MCMC diagnostics for all base model parameters along with derived
+  quantities for the time-series of spawning biomass, and relative spawning biomass.}
+\label{fig:main-mcmc.diag.hists}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.mcmc.pairs, fig.height=8, fig.width=8>>=
+make.mcmc.diag.pairs.plot(base.model,
+                          inc.key.params = TRUE,
+                          recr = c(2008, 2010),
+                          bratio = end.yr,
+                          forecatch = end.yr)
+@
+\end{center}
+\caption{Posterior correlations among key base-model parameters and derived quantities.}
+\label{fig:main-mcmc-pairs}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.mcmc.pairs.recruit.devs, fig.height=8, fig.width=8>>=
+make.mcmc.diag.pairs.plot(base.model,
+                          inc.key.params = FALSE,
+                          recr = (end.yr-10):(end.yr-1))
+@
+\end{center}
+\caption{Posterior correlations among recruitment deviations from recent years.}
+\label{fig:main-mcmc-pairs-recruit-devs}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.mcmc.survey.fit, fig.height=5, fig.width=8>>=
+make.mcmc.survey.fit.plot(model.partest,
+                          start.yr = survey.start.yr,
+                          end.yr = survey.end.yr,
+                          probs = c(0.025, 0.975),
+                          y.max = 5.5e6)
+@
+\end{center}
+\caption{Fits to the acoustic survey with 95\% confidence intervals around the index points.
+  Red and blue thick lines are MLE and median MCMC expected survey estimates in every year,
+  including years without a survey. Thin blue lines show individual MCMC samples of the
+  expected survey biomass. Thicker bars on uncertainty intervals around observed survey points
+  indicate 95\% log-normal uncertainty intervals estimated by the kriging method. Longer bars
+  indicate 95\% uncertainty intervals with the MLE estimate of additional uncertainty.}
+\label{fig:main-mcmc-survey-fit}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.age.comp.fits, fig.height=5, fig.width=8>>=
+oldpar <- par(no.readonly = TRUE)
+## par(mar=c(4.1, 4.1, 3.1, 0.1))
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.age.comp.fit.plot(base.model,
+                       subplot = 1)
+make.age.comp.fit.plot(base.model,
+                       subplot = 2)
+par <- oldpar
+@
+\end{center}
+\caption{Base model fit to the observed fishery (top) and acoustic survey (bottom) age composition data.
+  Colored bars show observed proportions with colors following each cohort across years.
+  Points with intervals indicate median expected proportions and 95\% uncertainty intervals from the MCMC.}
+\label{fig:main-age-comp-fits}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.age.comp.pearson, fig.height=8, fig.width=8>>=
+make.age.comp.pearson.plot(model.partest)
+@
+\end{center}
+\caption{Pearson residuals for base model MLE fits to the fishery age composition data.
+  Closed bubbles are positive residuals (observed > expected) and open bubbles are
+  negative residuals (observed < expected).}
+\label{fig:main-main.age.comp.pearson}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+% Figures referenced in introduction-section.rnw:
+
+
+
+% Figures referenced in data-section.rnw:
+
+
+
+% Figures referenced in assessment-section.rnw:
+
+
+
+% Figures referenced in research-section.rnw:
+
+
+
