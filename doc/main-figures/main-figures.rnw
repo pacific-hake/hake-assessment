@@ -201,9 +201,9 @@ make.mcmc.diag.pairs.plot(base.model,
 \begin{figure}[H]
 \begin{center}
 <<main.mcmc.survey.fit, fig.height=5, fig.width=8>>=
-make.mcmc.survey.fit.plot(base.model,
-                          start.yr = end.yr-20,
-                          end.yr = end.yr,
+make.mcmc.survey.fit.plot(model.partest,
+                          start.yr = survey.start.yr,
+                          end.yr = survey.end.yr,
                           probs = c(0.025, 0.975),
                           y.max = 5.5e6)
 @

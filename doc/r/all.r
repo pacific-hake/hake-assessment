@@ -56,7 +56,7 @@ end.yr          <- 2015
 ## First year in the survey timeseries
 survey.start.yr <- 1995
 ## Last year in the survey timeseries
-survey.end.yr   <- 2015
+survey.end.yr   <- 2013
 ## The last year an assessment was done
 last.assess.yr  <- end.yr - 1
 ## current assessment year
