@@ -329,8 +329,8 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 <<main-tables, child='main-tables/main-tables.rnw'>>=
 @
 
-% <<main-figures, child='main-figures/main-figures.rnw'>>=
-% @
+<<main-figures, child='main-figures/main-figures.rnw'>>=
+@
 
 \addtocontents{toc}{\par {\bf \vspace{10mm} APPENDICES} \par}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
@@ -358,20 +358,10 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 <<appendix-glossary, child='appendix-glossary/appendix-glossary.rnw'>>=
 @
 
-% <<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
-% @
-
-<<appendix-SS-data-file, child='appendix-SS-data-file/appendix-SS-data-file.rnw'>>=
+% All the code to import the SS code for the appendices are in one file since
+%  the code is so short:
+<<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
 @ 
-
-% <<appendix-SS-control-file, child='appendix-SS-control-file/appendix-SS-control-file.rnw'>>=
-% @ 
-
-%<<appendix-SS-starter-file, child='appendix-SS-starter-file/appendix-SS-starter-file.rnw'>>=
-%@ 
-
-%<<appendix-SS-forecast-file, child='appendix-SS-forecast-file/appendix-SS-forecast-file.rnw'>>=
-%@ 
 
 \end{appendices}
 
