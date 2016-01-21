@@ -145,7 +145,9 @@ __GitHub workflow__
 - **git fetch cgrandin** - fetches his latest version
 - **git diff cgrandin/master** shows me the differences between his and mine. :
 -- + green is on mine not his, red is his not mine [seems like it can look like I've added something but really Chris has removed it; and when merging it should base it on the most recent commits]
-- **git merge cgrandin/master** merges our versions. Then I need to **push** (I think a merge automatically does a **committ**?).
+- **git merge cgrandin/master** merges our versions. 
+- remove **knitr-cache** directory, re-run **source("all.r")** and re-run **knitr** to make sure it all still works (I kept forgetting this before pushing).
+- Then **push** (I think a merge automatically does a **commit**?).
 - when get a conflict, open the file in emacs and it has <<<<<<   for the start of a conflicting part, and ========= at the end, so manually fix it. Then **git add <filename>** to confirm that's the one you want (not completely obvious), then commit. See <https://help.github.com/articles/resolving-a-merge-conflict-from-the-command-line/>  
 - We will try and work on different files so that there are no conflicts when we merge.
 
