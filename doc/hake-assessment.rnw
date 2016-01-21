@@ -1,8 +1,6 @@
 %% hake-assessment.Rnw
 %% Pacific Hake Joint technical committee.
-%% Initial code Jan 2016.
-%% There are various commented-out lines which are from previous projects
-%% They are left in for examples of what can be done.
+%% January 2016
 
 \documentclass[12pt]{book}
 \usepackage{hake}
@@ -21,15 +19,15 @@
 
 \usepackage{alltt}             %% Allows symbols inside a verbatim-type section
 \usepackage{listings}          %% For code listing with syntax highlighting
-\usepackage{graphicx}          % For inclusion of figures
-\usepackage{verbatim,fancyvrb} % verbatim package allows blocks with special characters to be shown easily.
-\usepackage{xifthen}           % provides \ifthenelse and \isempty
+\usepackage{graphicx}          %% For inclusion of figures
+\usepackage{verbatim,fancyvrb} %% verbatim package allows blocks with special characters to be shown easily.
+\usepackage{xifthen}           %% provides \ifthenelse and \isempty
 \usepackage{color, colortbl}
-\usepackage{arydshln}          % For dashed lines in tables (has to be loaded after other stuff)
-\usepackage{pdfpages}          % So we can import PDFs into the document (e.g. request for science advice).
-\usepackage{multicol}
-\usepackage{multirow}          % necessary for decision tables
-\usepackage{booktabs}
+\usepackage{arydshln}          %% For dashed lines in tables (has to be loaded after other stuff)
+\usepackage{pdfpages}          %% So we can import PDFs into the document if necessary
+\usepackage{multicol}          %% Used innecessary for decision tables
+\usepackage{multirow}          %% Used in decision tables
+\usepackage{booktabs}          %% Used in executive summary tables
 \usepackage{tabularx}
 \usepackage[parfill]{parskip}  % So paragraphs will have a blank line between them
 \setlength{\parskip}{12pt}
@@ -223,8 +221,12 @@ require(nwfscMapping)
 require(date)
 require(r4ss)
 require(xtable)   ## For tables which can be inserted into latex docs with knitr
-
+## Load all R code and the model outputs
 load("./r/.RData")
+## Load the model-partest which was previously run for the base model.
+## This object takes a very long time to build so it is stored in binary
+##  on its own.
+load("./r/model-partest.RData")
 @
 
 %% Title page and author references page
@@ -278,26 +280,26 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 
 %%\subtitle{Joint Technical Committee of the Pacific Hake/Whiting Agreement Between the Governments of the United States and Canada}
 
-<<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=
-@
+%% <<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=
+%% @
 
-<<executive-summary, child='executive-summary/executive-summary.rnw'>>=
-@
+%% <<executive-summary, child='executive-summary/executive-summary.rnw'>>=
+%% @
 
-<<introduction-sec, child='introduction-section/introduction.rnw'>>=
-@
+%% <<introduction-sec, child='introduction-section/introduction.rnw'>>=
+%% @
 
-<<data-sec, child='data-section/data.rnw'>>=
-@
+%% <<data-sec, child='data-section/data.rnw'>>=
+%% @
 
-<<assessment-sec, child='assessment-section/assessment-section.rnw'>>=
-@
+%% <<assessment-sec, child='assessment-section/assessment-section.rnw'>>=
+%% @
 
-<<research-sec, child='research-section/research.rnw'>>=
-@
+%% <<research-sec, child='research-section/research.rnw'>>=
+%% @
 
-<<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
-@
+%% <<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
+%% @
 
 % Keeping track of missing references here; this section will get
 %  delted once its empty.
@@ -321,8 +323,6 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 <<main-figures, child='main-figures/main-figures.rnw'>>=
 @
 
-
-
 \addtocontents{toc}{\par {\bf \vspace{10mm} APPENDICES} \par}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 \appendix
@@ -341,10 +341,6 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 
 % \lfoot{\cname}   % Add this in to have Appendix A etc. as the left footer.
 
-%% Add an appendix. The appedices or any other Rnw files will be in the same scope as the main file,
-%% so they see the same R objects and those objects can be referenced directly.
-%% There is no difference between this and maindoc, they are both pasted in directly
-%% before the code is knitted.
 %% \rfoot{Appendix A -- Example appendix 1}
 %% <<appendix-1, child='appendix-1/appendix-1.rnw'>>=
 %% @

@@ -60,6 +60,7 @@ load.models <- function(models.dir = file.path("..","..","models"),
     if(dir.exists(mcmc.dir)){
       tryCatch({
         model.list[[nm]]$mcmc <- data.frame(SSgetMCMC(dir=mcmc.dir, writecsv=FALSE, verbose = verbose)$model1)
+        model.list[[nm]]$mcmcpath <- mcmc.dir
         ## Do the mcmc calculations, e.g. quantiles for SB, SPB, DEPL, RECR, RECRDEVS
         model.list[[nm]]$mcmccalcs <- calc.mcmc(model.list[[nm]]$mcmc)
       }, warning = function(war){
