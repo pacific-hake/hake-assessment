@@ -1,8 +1,88 @@
+make.age.comp.bubble.plot <- function(model,                  ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
+                                      subplot = 1,            ## 1) fishery or 2) survey
+                                      start.yr = min(dat$Yr), ## First year for age comps - default from the data frame
+                                      end.yr = max(dat$Yr),   ## Last year for age comps - default from the data frame
+                                      show.key = FALSE,       ## Show some sample bubbles at the top with sizes
+                                      key.yrs = NULL,         ## Vector of 4 years for locations to put the key if show.key == TRUE
+                                      fg = gray(level=0.1, alpha=0.5),
+                                      bg = gray(level=0.5, alpha=0.5),
+                                      inches = 0.12
+                                      ){
+  ## Plot the age compositions for whatever subplot is set to
+  ## Returns a vector of the start.yr, end.yr, max. proportion,
+  ##  year of max. proportion, age of max. proportion.
+  oldpar <- par()
+  if(show.key){
+    if(is.null(key.yrs)){
+      stop("make.age.comp.bubble.plot: Error - you must supply a key.yrs vector of 4 years when specifying show.key = TRUE.\n")
+    }else{
+      if(length(key.yrs) != 4){
+        stop("make.age.comp.bubble.plot: Error - key.yrs must be a vector of exactly 4 years when specifying show.key = TRUE.\n")
+      }
+    }
+    par(mar = c(2.1, 4.1, 3.1, 4.1), cex.axis = 0.9)
+  }else{
+    par(mar = c(2.1, 4.1, 1.1, 4.1), cex.axis = 0.9)
+  }
+  dat <- model$dat$agecomp[model$dat$agecomp$FltSvy == subplot,]
+  if(end.yr < start.yr){
+    stop("make.age.comp.bubble.plot: Error - end.yr cannot be less than start.yr\n")
+  }
+  ages.str <- names(dat)[grep("^a[0-9]+$", names(dat))]
+  ages <- as.numeric(gsub("a", "", ages.str))
+  min.age <- min(ages)
+  max.age <- max(ages)
+  ## Get the maximum proportion and its location within the data
+  age.df <- dat[,names(dat) %in% ages.str]
+  max.prop <- max(age.df)
+  which.max.prop <- which(age.df == max(age.df), arr.ind = TRUE)
+  ## Convert the locations to year and age for return statement
+  which.max.prop <- c(dat$Yr[which.max.prop[1]], ages[which.max.prop[2]])
+
+  if(subplot == 1){
+    label <- "Fishery ages"
+  }else if(subplot == 2){
+    label <- "Survey ages"
+  }else{
+    cat("make.age.comp.fit.plot: Error - subplot must be either 1 or 2.\n\n")
+  }
+  x <- data.frame(expand.grid(dat$Yr, min.age:max.age),
+                  prop = unlist(dat[,ages.str]))
+  names(x) <- c("Yr", "Age", "prop")
+  symbols(c(x[,1], -1),
+          c(x[,2], -1),
+          circles = sqrt(c(x[,3], max.prop)),
+          inches = inches,
+          ylim = c(min.age, max.age),
+          xlim = c(start.yr, end.yr),
+          xlab = "",
+          ylab = label,
+          xaxt = "n",
+          fg = fg,
+          bg = bg)
+  if(show.key){
+    symbols(0.2 + c(key.yrs, -1),
+            c(16.2, 16.2, 16.2, 16.2, -1),
+            circles = sqrt(c(0.01, 0.1, 0.2, 0.4, max.prop)),
+            inches = inches,
+            add = TRUE,
+            xpd = NA,
+            fg = fg,
+            bg = bg)
+    text(key.yrs + 1.9, c(16.2,16.2,16.2,16.2), c("0.01", "0.1", "0.2", "0.4"), xpd = NA, cex = 0.8)
+  }
+  axis(1, seq(start.yr, end.yr + 5, 5))
+  axis(4)
+  par <- oldpar
+  ret.vec <- c(start.yr, end.yr, max.prop, which.max.prop)
+  names(ret.vec) <- c("start.yr", "end.yr", "max.prop", "max.prop.yr", "max.prop.age")
+  return(ret.vec)
+}
+
 make.age.comp.fit.plot <- function(model,       ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
                                    subplot = 1  ## 1) fishery or 2) survey
                                    ){
   ## Plot the age compositions for whatever subplot is set to
-  ## if model.names is null, the directory names will be used
   oldpar <- par()
   if(subplot == 1){
     ncol <- 4

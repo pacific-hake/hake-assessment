@@ -17,7 +17,33 @@ make.catches.plot(catches, leg.y.loc=520) ## leg.y.loc is y-coord to place legen
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-%% Bottom depths....
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.age.comp.bubbles, fig.height=5, fig.width=8>>=
+layout(matrix(c(1,1), nrow = 2, ncol = 1, byrow=TRUE))
+## The return values from the plot function contain
+## start year, end year, max. proportion,
+##  year of max. proportion, age of max. proportion.
+max.survey.age.prop <- make.age.comp.bubble.plot(base.model,
+                                                 subplot = 2,
+                                                 show.key = TRUE,
+                                                 start.yr = 1975,
+                                                 key.yrs = c(1990, 1994, 1998, 2002))
+max.fishery.age.prop <- make.age.comp.bubble.plot(base.model, subplot = 1)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Age compositions for the acoustic survey (top) and the aggregate fishery (bottom, all sectors combined)
+  for the years \Sexpr{max.fishery.age.prop[1]} -- \Sexpr{max.fishery.age.prop[2]}.
+  Proportions in each year sum to 1.0 and area of the bubbles are
+  proportional to the proportion and consistent in both panels (see key at top).
+  The largest bubble in the survey data is \Sexpr{max.survey.age.prop[3]} for age \Sexpr{max.survey.age.prop[5]}
+  in \Sexpr{max.survey.age.prop[4]} and in the fishery is \Sexpr{max.fishery.age.prop[3]} for age \Sexpr{max.survey.age.prop[5]}
+  in \Sexpr{max.fishery.age.prop[4]}.}
+\label{fig:main-age-comp-bubbles}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
