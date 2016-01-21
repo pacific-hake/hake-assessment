@@ -132,7 +132,49 @@ Management metrics that were identified as important to the Joint Management Com
 
 \subsection{Sensitivity analyses}\label{sec:assessment-sensitivity-analyses}
 
-% \subsection{}\label{sec:assessment-}
+Sensitivity analyses were conducted to investigate the influences of data inputs and structural uncertainty of the base model by investigating how changes to the model affected the estimated values and derived quantities. For expediency, all sensitivity analyses compared MLE estimates rather than MCMC posteriors. Therefore, the values reported below are not directly comparable to the base model values reported elsewhere (see **Table 12 for a set of comparisons of the base model to corresponding MLE estimates). The sensitivities include the following:
+
+*** to be updated:
+
+\begin{enumerate}
+  
+\item Change the survey biomass for 2012 and 2013 based to values discussed at the SRG,
+  
+\item Assume natural mortality declines with age rather than remain constant across ages,
+  
+\item Link natural mortality for young hake with an index of abundance for Humboldt Squid
+  
+\item Have mean weight at age remain constant across years,
+  
+\item Include autocorrelation in recruitment deviations.
+
+\end{enumerate}
+  
+** In general, none of the sensitivities resulted in any significant departure from the population dynamics of the base model: ** all models showed large estimated increases in spawning biomass in recent years driven by a large ** 2010 cohort.
+
+The sensitivity of the base model to changes in the survey biomass estimates was conducted to bracket the uncertainty associated with the extrapolation of estimated biomass outside the survey area (see discussion in section~\ref{sec:data-acoustic-survey} above). The index used in the base model has values of **1.381 and **2.423 million~t for **2012 and **2013. Alternative values calculated during the SRG meeting in **February 2015 were **1.207 and **1.648 for these same years, which are lower by **12.6\% and **32.0\%, respectively. This analysis was conducted using MCMC while the other sensitivity analyses were based on comparisons of MLE values. The results of this analysis are shown in **Table 18 and **Figures 42-45. The early part of the time series of biomass remains relatively unchanged, but the lower survey numbers result in smaller estimates of the ** 2008 and **2010 cohorts (**Figure 44) and a slower increase in biomass resulting from those cohorts (**Figure 43). The estimated **2015 relative spawning biomass is **60.2\% with the lower survey values compared to **73.6\% in the base model. This is a change of **18\%, which is smaller than the magnitude of the change in survey biomass due to the base model expectation not being as high as the original **2013 acoustic survey biomass estimate (**Figure 42). The median default harvest control catch limit coming from the model with lower survey values is **628,361~t compared to **804,576~t for the base model, a difference of **22\% (**Figure 45).
+
+Two sensitivities related to natural mortality were explored, one related to natural mortality varying with age according to a rescaled Lorenzen curve (**Lorenzen, 1996) and another linking natural mortality to an estimated index of abundance for Humboldt Squid (**Stewart et al. 2014; **J. Field, pers. comm.).
+
+The Lorenzen curve links natural mortality to fish size. As implemented in Stock Synthesis, the function is scaled by an estimated parameter for natural mortality at a chosen age (**Methot and Wetzel, 2009). For this sensitivity, **age 5 was arbitrarily chosen and the prior distribution used in the base model for all ages was applied to this age. The base model is configured to use an empirical mean weight-at-age matrix rather than model growth explicitly, so the Lorenzen curve was based on a von Bertalanffy growth curve that approximates recent patterns of hake growth but was not fit to length and age data. The intention of this sensitivity is therefore to explore the impact of natural mortality declining with age rather than propose a specific set of mortality estimates for the population.
+
+Preliminary sensitivities with Humboldt Squid index linked to hake natural mortality at all ages resulted in a negative relationship between squid abundance and hake mortality, which is contrary to the hypothesized interaction. The sensitivity presented here has natural mortality for hake split into two parameters, one for ages **0-4 and one for ages **5+. The natural mortality prior distribution from the base model was applied to both parameters. The parameter for the younger hake mortality was then linked to the Humboldt Squid abundance under the assumption that the distribution of Humboldt Squid has greater overlap with younger hake.
+The patterns of natural mortality resulting from these two sensitivities differ from base model (**Figure 46) but MLE estimates of spawning biomass at both initial equilibrium and in recent years are very similar among these three models (**Figure 47). Recruitment is much higher in the Lorenzen $M$ model to account for the higher mortality at young ages but since these ages are not commonly selected in the fishery and there is a flexible selectivity pattern for these ages, the fit to the data and key model outputs are very similar (**Table 19).
+
+In order to understand the sensitivity of the model results to assumptions about the estimates of weight at age (**Figure 11), a sensitivity was conducted in which the matrix of weight-at-age values for each year with the vector of mean weight-at-age across all years. There was relatively little impact of this change on assessment results, with the estimate of **2015 relative spawning biomass at **63.6\% instead of **67.2\% of $B_0$ (**Table 18). This result suggests that there would be little impact of alternative assumptions about how weights are treated for year/age combinations with missing data or small sample sizes.
+
+The sensitivity with the smallest impact on model results involved estimating an autocorrelation parameter for recruitment deviations. The estimated value was **-0.12, reflecting the negative relationship between recruitments in adjacent years  (large cohorts typically followed by small cohorts). The additional parameter reduces the negative log-likelihood by only **0.6 units and has negligible effects on model estimates (**Table 19), as well as forecast quantities. Exploration of alternative ways to model and forecast recruitment is included in the list of suggested research needs, and future MSE operating models can include more flexible options for treatment of recruitment autocorrelations (beyond the lag-1 autocorrelation implemented in Stock Synthesis). The MSE could explore trade-offs associated with more complex treatment of recruitment in an assessment model.
+
+\subsection{Retrospective analyses}\label{sec:assessment-retrospective-analyses}
+
+** Retrospective analyses were performed by iteratively removing the terminal years' data and estimating the parameters under the assumptions of the base model. Models with **4 or 5 years of data removed had the high **2009 acoustic survey as the final point in the index of abundance and therefore predicted a higher biomass than models which included any of the surveys conducted in **2011, 2012, and 2013 (**Figure 48).
+
+** Overall, there is little retrospective change to the relative spawning biomass trajectory up to the early 2000s, and most retrospective change occurs in the final years of the retrospective model. Retrospective estimates over the last **5 years have been both positively and negatively biased: in the last **3 years, the stock assessment has retrospectively underestimated the status, but removing **3 or more years of data resulted in the assessment over-estimating the status in the terminal year, which is likely related to the high **2009 acoustic survey estimate.
+
+** **Figure 49 shows the retrospective patterns of estimated recruitment deviations for various cohorts. The magnitude of the deviation is not well estimated until several years of catch-at-age data have been collected, incorporated into the model, and the cohort is older. The variability among cohort estimates relative to their estimated size in the base model (**Figure 50) indicate that the estimates improve significantly at age 3 and begin to stabilize when the cohort is approximately 4 years old. This illustrates that multiple observations of each cohort are needed in order to more accurately determine their recruitment strength.
+
+** A comparison of the actual assessment models used in each year since **1991 is shown in **Figure 51. There has been a large difference in the models submitted each year, which can clearly be seen by looking at the spawning biomass trajectories. The variability between models, especially early on in the time series, is larger than the uncertainty (95\% C.I.) reported in any single model in recent years. One important avenue which was investigated between 2004 and 2007 was the inclusion of several different, but fixed, survey catchability ($q$) values. In the subsequent years 2008 to **present, it was allowed to be freely estimated by the model. In all the years prior to 2004, the survey catchability was fixed at 1.0. The fixing of survey catchability had the effect of driving the estimate of initial biomass upward, which in turn scaled the entire biomass trajectory up, leading to **higher estimates of relative spawning biomass than what we see **today. The **2015 estimates of spawning biomass are consistent with recent assessments, although the model structure has remained consistent, and the uncertainty intervals associated with them bracket the majority of the historical estimates.
+
 
 % \subsection{}\label{sec:assessment-}
 
