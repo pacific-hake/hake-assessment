@@ -1,0 +1,24 @@
+% appendix-SS-data-file.rnw
+
+\clearpage
+
+% Trying manual fix to call appendices  'Appendix A' etc., and look good
+%  in TOC. didn't work.
+% \phantomsection
+% \addcontentsline{toc}{section}{Appendix~\ref{chap:glossary}. Glossary of terms and acronyms}
+% \chapter*{Appendix~\ref{chap:glossary}. Glossary of terms and acronyms}  %  
+
+\chapter{Stock synthesis data file}
+\label{chap:data-file}
+
+\begin{codefont}
+ 
+\lstinputlisting{\Sexpr{sub("../", "", 
+    file.path(base.model$path,data.file.name) ) }}
+
+\end{codefont}
+
+%% Alternative approach (but doesn't work yet):
+%% <<SSdatafile, results='markup'>>=
+%% readLines(file.path(base.model$path,data.file.name))
+%% @

@@ -146,8 +146,8 @@
 \newenvironment{codefont}{\fontfamily{pcr}\selectfont}{\par}
 % See use in appendices.
 
-\lstset{breakatwhitespace=TRUE,numberstyle=\tiny\color{gray},title=\lstname}
-   % ,language=C++}  % ,font=pcr}   no font option???
+\lstset{breakatwhitespace=TRUE,title=\lstname,breaklines=TRUE,breakautoindent=FALSE,basicstyle=\ttfamily\footnotesize}  % numberstyle=\tiny\color{gray}
+   % http://texdoc.net/texmf-dist/doc/latex/listings/listings.pdf
 
 %% ** Declare global variables (commands) here **
 %% Filenames used for this project
