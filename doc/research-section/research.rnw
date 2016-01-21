@@ -6,3 +6,99 @@
 
 ** indicates something that needs to be checked (or cannot be automated). For now have concentrated on converting last year's text into \LaTeX. Missing references are listed at the end.
 
+\subsection{Progress on past ``Research and data needs'' topics}\label{sec:research-progress}
+
+** These are all the 2015 progress on the 2014 list, so need to be replaced by the relevant ones from 2015 (which appear in the next section for now).
+
+\emph{Examine statistical methods to parameterize time-varying fishery selectivity in assessment and forecasting (\#1 on list from 2014).}
+
+Jim Thorson (NOAA NWFSC) has been leading a project with participation from the JTC (Allan Hicks and Ian Taylor) looking at alternative selectivity parameterizations to be included in Stock Synthesis. The approach is being informed by methods presented at a CAPAM workshop on selectivity, the results of which were published in October 2014.
+
+\emph{Continue development of the management strategy evaluation (MSE) tools to evaluate major sources of uncertainty relating to data, model structure and the harvest policy for this fishery and compare potential methods to address them. Work with the JMC, SRG, and AP to develop scenarios to investigate, management performance metrics to evaluate the scenarios, and hypotheses related to the life-history, fishery, spatial dynamics, and management of Pacific Hake (\#2 on list from 2014).}
+
+Progress on the MSE is summarized in **Appendix A of this document.
+
+\emph{Continue to explore alternative indices for juvenile or young (0 and/or 1 year old) Pacific Hake. Initially, the MSE should be used to investigate whether an age-0 or -1 index could reduce stock assessment and management uncertainty enough to improve overall management performance (\#3 on list from 2014).}
+
+The JTC has explored the use of the preliminary time series of age-1 abundance derived from past acoustic surveys and is currently conducting simulations to investigate the utility of an age-1 index in the assessment of Pacific Hake. It is expected that these results will be available in late 2015 and presented to the MSE steering committee.
+
+\emph{Finalize the analysis of recently collected maturity samples and explore ways to include new maturity estimates in the assessment (\#4 from 2014).}
+
+Analysis of those samples has been completed (see **Section 2.3.1 above). However, the resulting patterns are complex and the best approach for including these results in the stock assessment is not yet clear. The JTC continues to work with biologists to better understand the spawning behavior of Pacific Hake.
+
+
+\emph{Conduct research to improve the acoustic survey estimates of age and abundance. This includes, but is not limited to, species identification, target verification, target strength and alternative technologies to assist in the survey, as well as improved and more efficient analysis methods (\#8 from 2014).}
+
+The NWFSC and DFO acoustic survey teams consulted with the JTC on specific research to be conducted in 2014. This research will be presented at the February 2015 SRG meeting.
+
+\emph{Coordinate our MSE research with other scientists in the region engaging in similar research (\#13 from 2014).}
+
+A JTC representative was included in a recent IPHC meeting on the MSE work being conducted by that agency and an IPHC representative attended the December 2014 JTC meeting. The JTC continues to be well connected to the ongoing MSE process for B.C. Sablefish.
+
+\emph{Examine alternative ways to model and forecast recruitment (\#15 from 2014).}
+
+Elizabeth Councill, a post-doctoral researcher working with Jim Thorson at the NOAA NWFSC, is investigating issues related to recruitment autocorrelations and forecasting. She is expecting to have results available in time to benefit from them in the 2016 hake stock assessment. A second avenue that we are pursuing is the examination of stock recruitment models that have for example the Larkin extension (**Larkin 1971) of the Ricker stock recruitment model that has lag terms at $t-1, t-2, ..., t-n$): in this way, some of the apparent lag-4 autocorrelation in recruitment can be captured in predictions. Using simulation to test if there is improved management performance by employing alternative recruitment model formulations will be a key tool for choosing amongst alternatives.
+
+\emph{Investigate the utility of additional data sources (bottom trawl surveys, length data, etc.) for use in assessment and simulation models (\#16 from 2014).}
+
+The JTC (Allan and Ian) have been consulting with NWFSC scientists on a paper investigating the information about Pacific Hake contained in acoustic survey, trawl survey, and observer data. Additionally, the JTC continues to investigate the utility of the NWFSC trawl survey with regard to assessing and understanding Pacific Hake. In 2014, more than 1,500 Pacific Hake collected from the NWFSC trawl survey from different years were aged to assist this investigation.
+
+
+
+
+
+
+\subsection{Research and data needs for the future}\label{sec:research-needs}
+
+** Needs editing for 2016.
+
+There are many research projects that could improve the stock assessment for Pacific Hake. The following prioritized list of topics might appreciably improve biological understanding and decision-making:
+
+\begin{enumerate}
+
+\item Continue development of the management strategy evaluation (MSE) tools to evaluate major sources of uncertainty relating to data, model structure and the harvest policy for this fishery and compare potential methods to address them. Incorporate the feedback from JMC/AP/SRG/MSE Advisory Panel into operating model development. Specifically, making sure that the operating model is able to provide insight into the important questions defined by these groups. If a spatially, seasonally explicit operating model is needed, then research should focus on how to best to model these dynamics in order to capture seasonal effects and potential climate forcing influences in the simulations.
+  
+\item Conduct further exploration of ageing imprecision and the effects of large cohorts via simulation and blind source age-reading of samples with differing underlying age distributions -- with and without dominant year classes.
+  
+\item Continue to explore and develop statistical methods to parameterize time-varying fishery selectivity in assessment and forecasting.
+  
+\item Continue to investigate maturity observations of Pacific Hake and explore additional sampling sources to determine fecundity and when spawning occurs. Continue to explore ways to include new maturity estimates in the assessment. This would involve:
+  
+\begin{enumerate}[label=(\alph*)]
+  
+  \item Having ages read for the 2014 trawl samples.
+    
+  \item Further investigation of the smaller maturity-at-length south of Point Conception.
+    
+  \item Determining the significance of batch spawning and viability of spawning events throughout the year.
+    
+  \item Studying fecundity as a function of size, age, weight, and batch spawning
+. 
+    
+\end{enumerate}
+
+\item Investigate links between hake spatial distribution and dynamics with ocean conditions and ecosystem variables such as temperature and prey availability. These investigations have the potential to improve the scenarios considered in future MSE work as well as providing a better basic understanding of drivers of hake population dynamics and availability to fisheries and surveys.
+  
+\item Continue to collect and analyze life-history data, including weight, maturity and fecundity for Pacific Hake. Explore possible relationships among these life history traits including time-varying changes as well as with body growth and population density. Currently available information is limited and outdated. Continue to explore the possibility of using additional data types (such as length data) within the stock assessment.
+  
+\item Continue to explore alternative indices for juvenile or young (0 and/or 1 year old) Pacific Hake. This would include completing ongoing MSE analyses to investigate whether an age-1 index could reduce stock assessment and management uncertainty enough to improve overall management performance.
+  
+\item Conduct research to improve the acoustic survey estimates of age and abundance. This includes, but is not limited to, species identification, target verification, target strength, directionality of survey and alternative technologies to assist in the survey, as well as improved and more efficient analysis methods.
+  
+\item Maintain the flexibility to undertake annual acoustic surveys for Pacific Hake under pressing circumstances in which uncertainty in the hake stock assessment presents a potential risk to or underutilization of the stock.
+  
+\item Evaluate the quantity and quality of historical biological data (prior to 1989 from the Canadian fishery, and prior to 1975 from the U.S. fishery) for use as age-composition and weight-at-age data, and/or any historical indications of abundance fluctuations.
+  
+\item Consider alternative methods for treatment of recruitment variability ($\sigma_r$) including the use of prior distributions derived from meta-analytic methods, and for refining existing prior for natural mortality ($M$).
+  
+\item Apply bootstrapping methods to the acoustic survey time-series to incorporate more of the relevant uncertainties into the survey variance calculations. These factors include the target strength relationship, subjective scoring of echograms, thresholding methods, the species-mix and demographic estimates used to interpret the acoustic backscatter, and others.
+  
+\item Continue to coordinate our MSE research with other scientists in the region engaging in similar research.
+  
+\item Continue to investigate alternative ways to model and forecast recruitment. Use MSE simulations to investigate the impact of making incorrect assumptions about the underlying recruitment process.
+  
+\item Continue to work with acousticians and survey personnel from the NWFSC, the SWFSC, and DFO to determine an optimal design for the Joint U.S./Canada Hake/Sardine survey.
+  
+\item Explore the potential to use acoustic data collected from commercial fishing vessels to study hake distributions, schooling patterns, and other questions of interest. This could be similar to the ``acoustic vessels of opportunity'' program on fishing vessels targeting pollock in Alaska.
+
+\end{enumerate}
