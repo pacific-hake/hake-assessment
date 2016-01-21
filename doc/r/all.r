@@ -32,6 +32,7 @@ source("figures-timeseries.r")
 source("figures-compare-forecasts.r")
 source("figures-mcmc-diagnostics.r")
 source("figures-age-comps.r")
+source("figures-selex.r")
 
 source("tables-timeseries.r")
 source("tables-reference-points.r")

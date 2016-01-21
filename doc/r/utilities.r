@@ -61,10 +61,6 @@ run.partest.model <- function(model,
   start$init_values_src <- 1
   SS_writestarter(start, dir = partest.dir, file = "starter.ss", overwrite = TRUE)
 
-  if(start$init_values_src != 1){
-    stop("run.partest.model: Error - change starter file to read from par file!")
-  }
-
   ## loop over rows of posteriors file
   for(irow in 1:num.posts){
     print(irow)

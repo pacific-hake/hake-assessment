@@ -239,6 +239,20 @@ par <- oldpar
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.age.comp.pearson, fig.height=8, fig.width=8>>=
+make.age.comp.pearson.plot(model.partest)
+@
+\end{center}
+\caption{Pearson residuals for base model MLE fits to the fishery age composition data.
+  Closed bubbles are positive residuals (observed > expected) and open bubbles are
+  negative residuals (observed < expected).}
+\label{fig:main-main.age.comp.pearson}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 % Figures referenced in introduction-section.rnw:
 
 
