@@ -289,31 +289,31 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 
 %%\subtitle{Joint Technical Committee of the Pacific Hake/Whiting Agreement Between the Governments of the United States and Canada}
 
-%% <<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=
-%% @
+<<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=
+@
 
-%% <<executive-summary, child='executive-summary/executive-summary.rnw'>>=
-%% @
+<<executive-summary, child='executive-summary/executive-summary.rnw'>>=
+@
 
-%% <<introduction-sec, child='introduction-section/introduction.rnw'>>=
-%% @
+<<introduction-sec, child='introduction-section/introduction.rnw'>>=
+@
 
-%% <<data-sec, child='data-section/data.rnw'>>=
-%% @
+<<data-sec, child='data-section/data.rnw'>>=
+@
 
-%% <<assessment-sec, child='assessment-section/assessment-section.rnw'>>=
-%% @
+<<assessment-sec, child='assessment-section/assessment-section.rnw'>>=
+@
 
-%% <<research-sec, child='research-section/research.rnw'>>=
-%% @
+<<research-sec, child='research-section/research.rnw'>>=
+@
 
-%% <<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
-%% @
+<<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
+@
 
-%% % Keeping track of missing references here; this section will get
-%% %  delted once its empty.
-%% <<missing-refs, child='missing-references/missing-references.rnw'>>=
-%% @
+% Keeping track of missing references here; this section will get
+%  delted once its empty.
+<<missing-refs, child='missing-references/missing-references.rnw'>>=
+@
 
 %% \clearpage
 

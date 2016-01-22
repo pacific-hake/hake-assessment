@@ -7,7 +7,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.total.catches, fig.height=4, fig.width=8>>=
+<<main.total.catches, fig.height=8, fig.width=9>>=
 make.catches.plot(catches, leg.y.loc=520) ## leg.y.loc is y-coord to place legend at
 @
 \end{center}
@@ -48,7 +48,7 @@ max.fishery.age.prop <- make.age.comp.bubble.plot(base.model, subplot = 1)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.survey.biomass, fig.height=5, fig.width=8>>=
+<<main.survey.biomass, fig.height=6, fig.width=8>>=
 ## modelnum is the model index in models list from which the survey input data are used.
 make.survey.biomass.plot(models, modelnum=base.model.ind)
 @
@@ -62,7 +62,7 @@ make.survey.biomass.plot(models, modelnum=base.model.ind)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.bridge.biomass, fig.height=5, fig.width=8>>=
+<<main.bridge.biomass, fig.height=6, fig.width=8>>=
 make.bridge.biomass.plot(models[bridge.model.inds],
                          subplots = 2,
                          model.names = bridge.model.names,
@@ -84,7 +84,7 @@ make.bridge.biomass.plot(models[bridge.model.inds],
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.bridge.detail, fig.height=8, fig.width=10>>=
+<<main.bridge.detail, fig.height=10, fig.width=10>>=
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
@@ -157,7 +157,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.mcmc.diag.hists, fig.height=5, fig.width=8>>=
+<<main.mcmc.diag.hists, fig.height=6, fig.width=8>>=
 make.mcmc.diag.hists.plot(base.model)
 @
 \end{center}
@@ -200,7 +200,7 @@ make.mcmc.diag.pairs.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.mcmc.survey.fit, fig.height=5, fig.width=8>>=
+<<main.mcmc.survey.fit, fig.height=6, fig.width=8>>=
 make.mcmc.survey.fit.plot(model.partest,
                           start.yr = survey.start.yr,
                           end.yr = survey.end.yr,
@@ -325,7 +325,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+\begin{figure}[p]
 \begin{center}
 <<main.spawning.biomass, fig.height=4.5, fig.width=8>>=
 make.biomass.plot(base.model,
@@ -338,11 +338,11 @@ make.biomass.plot(base.model,
 \caption{Median of the posterior distribution for female spawning biomass through \Sexpr{end.yr} (solid line)
   with 95\% posterior credibility intervals (shaded area).}
 \label{fig:main-female-spawning-biomass}
-\end{figure}
+%% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
+%% JOINED ON PAGE
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+%% \begin{figure}[H]
 \begin{center}
 <<main.relative.spawning.biomass, fig.height=4.5, fig.width=8>>=
 make.depletion.plot(base.model,
@@ -359,7 +359,7 @@ make.depletion.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+\begin{figure}[p]
 \begin{center}
 <<main.recruitment, fig.height=4.5, fig.width=8>>=
 make.recruitment.plot(base.model,
@@ -376,11 +376,11 @@ make.recruitment.plot(base.model,
   equilibrium recruitment (R\subscr{0}) is shown as the horizontal dashed line with a 95\% posterior credibility
   interval shaded between the dotted lines.}
 \label{fig:main-recruitment}
-\end{figure}
+%% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
+%% JOINED ON PAGE
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+%% \begin{figure}[H]
 \begin{center}
 <<main.recruitment.devs, fig.height=4.5, fig.width=8>>=
 make.recruitment.dev.plot(base.model,
@@ -395,3 +395,66 @@ make.recruitment.dev.plot(base.model,
 \label{fig:main-recruitment-devs}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.numbers.at.age, fig.height=8, fig.width=8>>=
+make.numbers.at.age.plot(base.model)
+@
+\end{center}
+\caption{Bubble plot of maximum likelihood (MLE) estimates of population numbers at age at the beginning of each year.
+  The red line represents the mean age. The scale of the bubbles is represented in the key where the units are
+  billions of fish (with the largest bubble representing about 14 billion age 0 recruits in 1980).}
+\label{fig:main-numbers-at-age}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[p]
+\begin{center}
+<<main.fishing.intensity, fig.height=4.5, fig.width=8>>=
+make.fishing.intensity.plot(base.model,
+                            start.yr = start.yr,
+                            end.yr = end.yr,
+                            color = "blue")
+@
+\end{center}
+\caption{Trend in median fishing intensity (relative to the SPR management target) through \Sexpr{end.yr-1}
+  with 95\% posterior credibility intervals. The management target defined in the Agreement is shown as a horizontal line at 1.0.}
+\label{fig:main-fishing-intensity}
+%% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{figure}[H]
+\begin{center}
+<<main.exploitation.fraction, fig.height=4.5, fig.width=8>>=
+make.exploitation.fraction.plot(base.model,
+                                start.yr = start.yr,
+                                end.yr = end.yr,
+                                color = "blue")
+@
+\end{center}
+\caption{Trend in median exploitation fraction through \Sexpr{end.yr-1} with 95\% posterior credibility intervals.}
+\label{fig:main-exploitation-fraction}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.phase.plot, fig.height=6, fig.width=8>>=
+make.phase.plot(base.model,
+                start.yr = start.yr,
+                end.yr = end.yr,
+                color = "blue")
+@
+\end{center}
+\caption{Estimated historical path followed by fishing intensity and relative spawning biomass for \fishname\ with labels
+  on the start and end years. Gray bars span the 95\% credibility intervals for \Sexpr{end.yr-1} fishing intensity (vertical)
+  and relative spawning biomass (horizontal).}
+\label{fig:main-phase}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
