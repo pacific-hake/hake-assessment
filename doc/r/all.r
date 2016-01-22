@@ -55,6 +55,8 @@ weight.at.age.file.name <- "wtatage.ss"
 ## i.e. 00_Modelname is index 1, 01_Modelname is index 2, etc.
 base.model.ind <- 1
 
+## recruitment deviations start year
+recruit.dev.start.yr <- 1946
 ## Unfished equilibrium year.
 unfished.eq.yr  <- 1964
 ## Start year for the models

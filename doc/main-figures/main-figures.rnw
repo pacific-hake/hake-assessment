@@ -327,7 +327,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.spawning.biomass, fig.height=5, fig.width=8>>=
+<<main.spawning.biomass, fig.height=4.5, fig.width=8>>=
 make.biomass.plot(base.model,
                   equil.yr = unfished.eq.yr,
                   start.yr = start.yr,
@@ -344,7 +344,7 @@ make.biomass.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.relative.spawning.biomass, fig.height=5, fig.width=8>>=
+<<main.relative.spawning.biomass, fig.height=4.5, fig.width=8>>=
 make.depletion.plot(base.model,
                     start.yr = start.yr,
                     end.yr = end.yr,
@@ -361,7 +361,7 @@ make.depletion.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.recruitment, fig.height=5, fig.width=8>>=
+<<main.recruitment, fig.height=4.5, fig.width=8>>=
 make.recruitment.plot(base.model,
                       equil.yr = unfished.eq.yr,
                       start.yr = start.yr,
@@ -379,3 +379,19 @@ make.recruitment.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.recruitment.devs, fig.height=4.5, fig.width=8>>=
+make.recruitment.dev.plot(base.model,
+                          end.yr = end.yr)
+
+@
+\end{center}
+\caption{Medians (solid circles) of the posterior distribution for log-scale recruitment deviations with
+  95\% posterior credibility intervals (blue lines). Recruitment deviations for the years \Sexpr{recruit.dev.start.yr} -- \Sexpr{start.yr-1}
+  are used to calculate the numbers at age in \Sexpr{start.yr}, the initial year of the model. Deviations for
+  the years 1970 -- 2010 are constrained to sum to zero while deviations outside this range do not have a constraint.}
+\label{fig:main-recruitment-devs}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
