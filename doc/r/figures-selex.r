@@ -4,7 +4,7 @@ calc.tv.selex <- function(model,
                           ages = 1:8,  ## ages to be included
                           probs = c(0.025, 0.975)){
   ## Calculate the data frame to ise for the functions involving time varying selectivity
-  ## Returns a list of 3 data frames, of median lower, and upper quantiles
+  ## Returns a list of length 4: The overall selex object, and data frames of median, lower, and upper quantiles
   ##  as calculated for the given probablities. The columns in the data frames are the years
   ##  and the rows are ages. Both row names and column names have been set properly.
 
@@ -49,7 +49,8 @@ calc.tv.selex <- function(model,
   selex.upper <- as.data.frame(lapply(selex, function(x){apply(x, 2, quantile, prob = probs[2])}))
   names(selex.upper) <- yrs
 
-  return(list(lower = selex.lower,
+  return(list(selex = selex,
+              lower = selex.lower,
               median = selex.median,
               upper = selex.upper))
 }
@@ -138,4 +139,62 @@ make.multiple.tv.selex.uncertainty.plots <- function(tv.sel.list ## A list of ou
   mtext(side = 1, line = -1, outer = TRUE, text="Age")
   mtext(side = 2, outer = TRUE, text="Selectivity by year")
   par <- oldpar
+}
+
+make.selex.uncertainty.lines.plot <- function(model,
+                                              ages = 1:8,
+                                              type = 1, ## 1 = Fishery, any other value is the survey
+                                              selex.list = NULL,  ## A list of time varying selectivites as returned by calc.tv.selex
+                                                                  ## *Only used when type=1 (fishery)
+                                              probs = c(0.025, 0.975)
+                                              ){
+  ## Plots estimated selectivity lines from each sample in the posterior distribution
+  if(type == 1 & is.null(selex.list)){
+    stop("make.mcmc.selex.uncertainty.plot: Error - when type = 1, you must supply a selex.list.\n")
+  }
+  oldpar <- par()
+  par(mar=c(4,4,1,1))
+  sel.med <- selex.list$median
+
+  if(type == 1){
+    selex <- selex.list$selex[[1]]
+    ## The indexing below will give you the last year in the series.
+    ## Need to check this to make sure it is correct.
+    selex.med <- selex.list$median[,ncol(selex.list$med)]
+    selex.lower <- selex.list$lower[,ncol(selex.list$lower)]
+    selex.upper <- selex.list$upper[,ncol(selex.list$upper)]
+    seg.color <- rgb(0.1, 0.1, 1, 0.8)
+  }else{
+    selex <- model$mcmc[,grep("Selex_std_2_Fem_A_", names(model$mcmc))]
+    selex.med <- apply(selex,2,median)
+    selex.lower <- apply(selex, 2, quantile, prob = probs[1])
+    selex.upper <- apply(selex, 2, quantile, prob = probs[2])
+    seg.color <- rgb(1,0.1,0.1,0.8)
+  }
+  plot(ages,
+       selex.med[ages],
+       type = "b",
+       ylim = c(0, 1),
+       pch = 20,
+       xlab = "Age",
+       ylab = "Selectivity",
+       xaxt = "n",
+       las = 1)
+  for(i in 1:nrow(selex)) {
+    lines(ages, selex[i, ages], col = rgb(0, 0, 0, 0.1))
+  }
+  segments(ages,
+           selex.upper[ages],
+           ages,
+           selex.lower[ages],
+           col = seg.color,
+           lwd = 3)
+  points(ages,
+         selex.med[ages],
+         pch = 16,
+         cex = 1.5,
+         col = seg.color)
+  axis(1, at = ages)
+  par <- oldpar
+
 }
