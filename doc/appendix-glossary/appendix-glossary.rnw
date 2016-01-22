@@ -88,27 +88,37 @@ $\Fforty$ (F-40 Percent): The rate of fishing mortality estimated to reduce the 
 
 Female spawning biomass: The biomass of mature female fish at the beginning of the year. Occasionally, especially in reference points, this term is used to mean spawning output (expected egg production, see below) when this is not proportional to spawning biomass. See also spawning biomass.
 
-Fishing intensity: A measure of the magnitude of fishing relative to a specified target. In this assessment it is defined as: relative SPR, or $(1-\mbox{SPR})/(1-\mbox{SPR}_{xx\%})$, where $xx\%$ is the 40\% proxy.
+Fishing intensity: A measure of the magnitude of fishing relative to a specified target. In this assessment it is defined as: 
+\eb
+\mbox {relative SPR} = \frac{1-\mbox{SPR}}{ 1-\mbox{SPR}_{xx\%}},
+\label{appendix-glossary-spr}
+\ee
+where $xx\%$ is the 40\% proxy. See Figure~\ref{fig:glossary-fishing-intensity}.
 
 %%%%%%%%%%%%%%%%%%%%%%%
-%%\begin{figure}[t]
-%%\begin{center}
-%<<fishing.intensity.plot.height=5, fig.width=5>>=
-% Do as function so that intensity is local
-%intensity.plot = function(intensity=seq(0, 1.7, 0.01), target = 0.4)
-%  {
-%  acheived = ....
-%  }      
-%
-%@
-%\end{center}
-%\caption{**.}
-%\label{fig:glossary-fishing-intensity}
-%\end{figure}
+\begin{figure}[t]
+\begin{center}
+<<fishing.intensity.plot.height=5, fig.width=5>>=
+# Do as a function so that variables remain local
+intensity.plot = function(target = 0.4, intensity=seq(0, 1/(1-target), 0.01))
+  {
+  achieved = 1 - intensity * (1 - target)
+  plot(intensity, achieved, xlab="Fishing intensity", 
+    ylab = "Acheived SPR", type="l", xlim=c(0, max(intensity)+0.1), ylim=c(0,1),
+    xaxs="i", yaxs="i")
+  lines(c(1,1,0), c(0, 0.4, 0.4), lty=2)
+  text(0, target+0.04, "Target SPR", pos=4, adj=0.2)
+  }      
+intensity.plot()
+@
+\end{center}
+\caption{Achieved SPR as a function of fishing intensity for a target SPR of 40\%, using the inverse of (\ref{appendix-glossary-spr}). **Need to make terminology the same as the fishing intensity definition.....}
+\label{fig:glossary-fishing-intensity}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 
-** AME to do figure, but doesn't understand what the equation for it should be (and whether notation is consistent with text)....
+** AME has done figure (next page), but need to make terminology on axes consistent with text. It's kind of strange that fishing intensity is defined on left-hand side of (\ref{appendix-glossary-spr}) but is the x-axis in the figure.
 
 Fishing mortality rate, or instantaneous rate of fishing mortality ($F$): A metric of fishing intensity that is usually reported in relation to the most highly selected ages(s) or length(s), or occasionally as an average over an age range that is vulnerable to the fishery. Because it is an instantaneous rate operating simultaneously with natural mortality, it is not equivalent to exploitation fraction (or percent annual removal; see above) or the spawning potential ratio (SPR, see below).
 

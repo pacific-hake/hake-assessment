@@ -353,10 +353,10 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 %% Now want to number sections, tables etc. as A.1, A.2, etc.
 %% Thought these wouldn't be with the appendix package, as
 %%  automatic, but may need them even if use \begin{appendices}:
-%\renewcommand{\thesection}{\thechapter.\arabic{section}}
-%\renewcommand{\thetable}{\thechapter.\arabic{table}}
-%\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
-%\renewcommand{\theequation}{\thechapter.\arabic{equation}}
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\renewcommand{\thetable}{\thechapter.\arabic{table}}
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+\renewcommand{\theequation}{\thechapter.\arabic{equation}}
 
 % \lfoot{\cname}   % Add this in to have Appendix A etc. as the left footer.
   
