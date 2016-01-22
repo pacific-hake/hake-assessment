@@ -26,9 +26,9 @@ Acceptable biological catch (ABC): The acceptable biological catch is a scientif
 
 Adjusted: A term used to describe TAC or allocations that account for carryovers of uncaught catch from previous years (see Carryover below).
 
-Advisory Panel (AP): The advisory panel on Pacific Hake/Whiting established by the Agreement.
+Advisory Panel (AP): The advisory panel on Pacific Hake/whiting established by the Agreement.
 
-Agreement (``Treaty''): The Agreement between the government of the United States and the Government of Canada on Pacific Hake/Whiting, signed at Seattle, Washington, on November 21, 2003, and entered into force June 25, 2008.
+Agreement (``Treaty''): The Agreement between the government of the United States and the Government of Canada on Pacific Hake/whiting, signed at Seattle, Washington, on November 21, 2003, and entered into force June 25, 2008.
 
 AFSC: Alaska Fisheries Science Center (National Marine Fisheries Service).
 
@@ -47,7 +47,7 @@ California Current Ecosystem: The waters of the continental shelf and slope off 
 
 Carryover: If at the end of the year, there are unharvested allocations, then there are provisions for an amount of these fish to be carried over into the next year's allocation process. The Agreement states that ``[I]f, in any year, a Party's catch is less than its individual TAC, an amount equal to the shortfall shall be added to its individual TAC in the following year, unless otherwise recommended by the JMC. Adjustments under this sub-paragraph shall in no case exceed 15 percent of a Party's unadjusted individual TAC for the year in which the shortfall occurred.''
 
-Case: A combination of the harvest policy ($\Fspr$ and control rule) and simulation assumptions regarding the survey. Cases considered in the MSE are ``Annual'', ``Biennial'', ``Perfect information'', and ``No Fishing''.  **AME -- this mentions MSE, edit it for 2016???
+Case: A combination of the harvest policy ($\Fspr$ and control rule) and simulation assumptions regarding the survey. Cases considered in the MSE are ``Annual'', ``Biennial'', ``Perfect information'', and ``No Fishing''.  **AME -- this mentions MSE, edit it for 2016??? ** And what does the $\Fspr$ part mean??
 
 Catchability ($q$): The parameter defining the proportionality between a relative index of stock abundance (often a fishery-independent survey) and the estimated stock abundance available to that survey (as modified by selectivity) in the assessment model.
 
@@ -67,7 +67,7 @@ CPUE: Catch-per-unit-effort (see above).
 
 CV: Coefficient of variation. A measure of uncertainty defined as the standard deviation (SD, see below) divided by the mean.
 
-Default harvest policy (rate): The application of $\Fforty$ (see below) with the 40:10 adjustment (see above). Having considered any advice provided by the JTC, SRG or AP, the JMC may recommend a different harvest rate if the scientific evidence demonstrates that a different rate is necessary to sustain the offshore Pacific Hake/Whiting resource.
+Default harvest policy (rate): The application of $\Fforty$ (see below) with the 40:10 adjustment (see above). Having considered any advice provided by the JTC, SRG or AP, the JMC may recommend a different harvest rate if the scientific evidence demonstrates that a different rate is necessary to sustain the offshore Pacific Hake/whiting resource.
 
 Depletion: Term used for relative spawning biomass (see below) prior to the 2015 stock assessment. ``Relative depletion'' was also used.
 
@@ -88,7 +88,9 @@ $\Fforty$ (F-40 Percent): The rate of fishing mortality estimated to reduce the 
 
 Female spawning biomass: The biomass of mature female fish at the beginning of the year. Occasionally, especially in reference points, this term is used to mean spawning output (expected egg production, see below) when this is not proportional to spawning biomass. See also spawning biomass.
 
-Fishing intensity: A measure of the magnitude of fishing relative to a specified target. In this assessment it is defined as: relative SPR, or the ratio of (1-SPR) to $(1-\mbox{SPR}_{xx\%})$, where $xx\%$ is the 40\% proxy.
+Fishing intensity: A measure of the magnitude of fishing relative to a specified target. In this assessment it is defined as: relative SPR, or $(1-\mbox{SPR})/(1-\mbox{SPR}_{xx\%})$, where $xx\%$ is the 40\% proxy.
+
+** AME to do figure.
 
 Fishing mortality rate, or instantaneous rate of fishing mortality ($F$): A metric of fishing intensity that is usually reported in relation to the most highly selected ages(s) or length(s), or occasionally as an average over an age range that is vulnerable to the fishery. Because it is an instantaneous rate operating simultaneously with natural mortality, it is not equivalent to exploitation fraction (or percent annual removal; see above) or the spawning potential ratio (SPR, see below).
 
@@ -100,7 +102,7 @@ Harvest control rule: A process for determining an ABC from a stock assessment. 
 
 Joint Management Committee (JMC): The joint management committee established by the Agreement.
 
-Joint Technical Committee (JTC): The joint technical committee established by the Agreement. The full formal name is ``Joint Technical Committee of the Pacific Hake/Whiting Agreement Between the Governments of the United States and Canada''.
+Joint Technical Committee (JTC): The joint technical committee established by the Agreement. The full formal name is ``Joint Technical Committee of the Pacific Hake/whiting Agreement Between the Governments of the United States and Canada''.
 
 kt: Knots (nautical miles per hour).
 
