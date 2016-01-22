@@ -163,13 +163,13 @@ make.selex.uncertainty.lines.plot <- function(model,
     selex.med <- selex.list$median[,ncol(selex.list$med)]
     selex.lower <- selex.list$lower[,ncol(selex.list$lower)]
     selex.upper <- selex.list$upper[,ncol(selex.list$upper)]
-    seg.color <- rgb(0.1, 0.1, 1, 0.8)
+    seg.color <- rgb(1,0.1,0.1,0.8)
   }else{
     selex <- model$mcmc[,grep("Selex_std_2_Fem_A_", names(model$mcmc))]
     selex.med <- apply(selex,2,median)
     selex.lower <- apply(selex, 2, quantile, prob = probs[1])
     selex.upper <- apply(selex, 2, quantile, prob = probs[2])
-    seg.color <- rgb(1,0.1,0.1,0.8)
+    seg.color <- rgb(0.1, 0.1, 1, 0.8)
   }
   plot(ages,
        selex.med[ages],

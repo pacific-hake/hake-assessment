@@ -6,7 +6,7 @@
 ## loads don't happen during the latex/knitr build (they are
 ## very slow compared to loading the binary once at the beginning).
 
-## Need to source utilities.r here because it contains the function
+## Need to source utilities.r before everything because it contains the function
 ##  install.packages.if.needed
 source("utilities.r")
 install.packages.if.needed("devtools", "devtools", github=FALSE)
@@ -40,6 +40,9 @@ source("tables-decisions.r")
 
 ## verbose applies to the SS loading functions as well as this project's functions
 verbose <- FALSE
+
+data.path <- file.path("..","..","data")
+models.path <- file.path("..","..","models")
 
 catch.data.file <- "Hake_Landings_TAC_History.csv"
 data.file.name <- "2015hake_data.ss"
@@ -78,14 +81,14 @@ forecast.probs <- c(0.05,0.25,0.5,0.75,0.95)
 ## number of elements in forcast.yrs
 catch.levels <- list(rep(0.01, 3),
                      rep(180000,3),
-                     ## rep(300000,3),
-                     ## rep(350000,3),
-                     ## rep(400000,3),
-                     rep(428000,3))
-                     ## rep(500000,3),
-                     ## rep(710000,3),
-                     ## c(730000,650000,520000),
-                     ## c(804576,682782,547280))
+                     rep(300000,3),
+                     rep(350000,3),
+                     rep(400000,3),
+                     rep(428000,3),
+                     rep(500000,3),
+                     rep(710000,3),
+                     c(730000,650000,520000),
+                     c(804576,682782,547280))
 
 ## The catch as calculated using the default harvest policy. Used in forecasting.
 catch.default.policy <- catch.levels[[length(catch.levels)]]
@@ -97,30 +100,27 @@ catch.tac.ind <- 3
 ##  to be used in plots (Pretty names)
 catch.levels.names <- c("No Fishing",
                         "180,000 t",
-                        ## "300,000 t",
-                        ## "350,000 t",
-                        ## "400,000 t",
-                        "428,000 t")
-                        ## "500,000 t",
-                        ## "stableCatch",
-                        ## "SPR100",
-                        ## paste0("Default: ",fmt0(catch.default.policy[1])," t"))
+                        "300,000 t",
+                        "350,000 t",
+                        "400,000 t",
+                        "428,000 t",
+                        "500,000 t",
+                        "stableCatch",
+                        "SPR100",
+                        paste0("Default: ",fmt0(catch.default.policy[1])," t"))
 
 ## catch.levels.dir.names is a list of N names for the catch levels given in catch.levels,
 ##  to be used as the directory names (OS-naming friendly).
 catch.levels.dir.names <- c("0",
                             "180000",
-                            ## "300000",
-                            ## "350000",
-                            ## "400000",
-                            "428000")
-                            ## "500000",
-                            ## "stableCatch",
-                            ## "SPR100",
-                            ## "DefaultHR")
-
-data.path <- file.path("..","..","data")
-models.path <- file.path("..","..","models")
+                            "300000",
+                            "350000",
+                            "400000",
+                            "428000",
+                            "500000",
+                            "stableCatch",
+                            "SPR100",
+                            "DefaultHR")
 
 reload.models <- readline(prompt = "Reload all models and data? [y/n] ")
 run.forecasts <- readline(prompt = "Run forecasting for base model (for decision tables)? [y/n] ")
