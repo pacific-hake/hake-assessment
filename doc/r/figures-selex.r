@@ -72,25 +72,25 @@ make.tv.selex.plot <- function(selex.list  ## A list of time varying selectivite
   par <- oldpar
 }
 
-make.tv.selex.with.uncertainty.plot <- function(selex.list  ## A list of time varying selectivites as returned by calc.tv.selex
-                                                ){
+make.tv.selex.uncertainty.plot <- function(selex.list  ## A list of time varying selectivites as returned by calc.tv.selex
+                                           ){
   ## Plot the time-varying selectivity of model with uncertainty
   oldpar <- par()
 
   par(mar=c(4,4,1,1))
 
-  sel.poly <- function(sel.med,   ## vector of selectivity medians for any given year
-                       sel.lower, ## vector of selectivity lower quantile for any given year
-                       sel.upper, ## vector of selectivity upper quantile for any given year
-                       year,
-                       ages,
-                       yAdjust){
-    lines(ages, yAdjust + rev(sel.med), type="b", pch = 20)
-    segments(x0 = ages, y0 = yAdjust + rev(sel.upper),
-             x1 = ages, y1 = yAdjust + rev(sel.lower))
-#    polygon(x = c(ages, rev(ages)),
-#            y = yAdjust + c(rev(sel.upper), sel.lower),
-#            col = rgb(0, 0, 1, 0.2), lty = 3)
+  single.yr.sel <- function(sel.med,   ## vector of selectivity medians for any given year
+                            sel.lower, ## vector of selectivity lower quantile for any given year
+                            sel.upper, ## vector of selectivity upper quantile for any given year
+                            year,
+                            ages,
+                            yAdjust){
+    lines(ages, yAdjust + sel.med, type="b", pch = 20)
+    segments(x0 = ages, y0 = yAdjust + sel.upper,
+             x1 = ages, y1 = yAdjust + sel.lower)
+    polygon(x = c(ages, rev(ages)),
+            y = yAdjust + c(sel.upper, rev(sel.lower)),
+            col = rgb(0, 0, 1, 0.2), lty = 3)
   }
 
   selex.med <- selex.list$median
@@ -100,21 +100,42 @@ make.tv.selex.with.uncertainty.plot <- function(selex.list  ## A list of time va
   ages <- as.numeric(rownames(selex.med))
   yrs <- as.numeric(colnames(selex.med))
 
-  plot(0, type = "n", xlim = c(min(ages), max(ages)), ylim = c(max(yrs), min(yrs)),
-       yaxt = "n", pch = 20, xlab = "", ylab = "")
+  plot(0,
+       type = "n",
+       xlim = c(min(ages), max(ages)),
+       ylim = -1 * (max(yrs) - c(0, length(yrs))),
+       yaxt = "n",
+       pch = 20,
+       xlab = "",
+       ylab = "")
   label <- yrs
   axis(2, las = 1, at = -yrs + 0.5, lab = label)
   for(y in yrs){
-    sel.poly(selex.med[,names(selex.med) %in% y],
-             selex.lower[,names(selex.lower) %in% y],
-             selex.upper[,names(selex.upper) %in% y],
-             y,
-             ages,
-             yAdjust = y)
+    single.yr.sel(selex.med[,names(selex.med) %in% y],
+                  selex.lower[,names(selex.lower) %in% y],
+                  selex.upper[,names(selex.upper) %in% y],
+                  y,
+                  ages,
+                  yAdjust = -y)
   }
   abline(h = -c(min(yrs)-1, yrs), col = rgb(0, 0, 0, 0.2))
-  mtext(side = 1, line = 2, "Age")
-  mtext(side = 2, line = 3, "Selectivity by year")
 
+  par <- oldpar
+}
+
+make.multiple.tv.selex.uncertainty.plots <- function(tv.sel.list ## A list of outputs from calc.tv.selex function
+                                                     ){
+  ## Takes a list of outputs from the calc.tv.selex function, and calls
+  ##  make.tv.selex.uncertainty.plot for each of the items, placing
+  ##  them side-by-side with single labels for Age and Selectivity by year.
+  ## This allows the user to select how they want to break up the plots by year
+
+  oldpar <- par()
+  par(mfrow=c(1, length(tv.sel.list)), oma=c(1,1,0,0))
+  for(i in 1:length(tv.sel.list)){
+    make.tv.selex.uncertainty.plot(tv.sel.list[[i]])
+  }
+  mtext(side = 1, line = -1, outer = TRUE, text="Age")
+  mtext(side = 2, outer = TRUE, text="Selectivity by year")
   par <- oldpar
 }
