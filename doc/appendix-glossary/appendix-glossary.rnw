@@ -90,7 +90,25 @@ Female spawning biomass: The biomass of mature female fish at the beginning of t
 
 Fishing intensity: A measure of the magnitude of fishing relative to a specified target. In this assessment it is defined as: relative SPR, or $(1-\mbox{SPR})/(1-\mbox{SPR}_{xx\%})$, where $xx\%$ is the 40\% proxy.
 
-** AME to do figure.
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\begin{figure}[t]
+%%\begin{center}
+%<<fishing.intensity.plot.height=5, fig.width=5>>=
+% Do as function so that intensity is local
+%intensity.plot = function(intensity=seq(0, 1.7, 0.01), target = 0.4)
+%  {
+%  acheived = ....
+%  }      
+%
+%@
+%\end{center}
+%\caption{**.}
+%\label{fig:glossary-fishing-intensity}
+%\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+** AME to do figure, but doesn't understand what the equation for it should be (and whether notation is consistent with text)....
 
 Fishing mortality rate, or instantaneous rate of fishing mortality ($F$): A metric of fishing intensity that is usually reported in relation to the most highly selected ages(s) or length(s), or occasionally as an average over an age range that is vulnerable to the fishery. Because it is an instantaneous rate operating simultaneously with natural mortality, it is not equivalent to exploitation fraction (or percent annual removal; see above) or the spawning potential ratio (SPR, see below).
 
@@ -114,7 +132,7 @@ MAP: maximum \emph{a posteriori} probability. See below.
 
 Markov-Chain Monte-Carlo (MCMC): A numerical method used to sample from the posterior distribution (see below) of parameters and derived quantities in a Bayesian analysis. It is more computationally intensive than the maximum likelihood estimate (see above), but provides a more accurate depiction of parameter uncertainty. See **Stewart et al. (2012) for a discussion of issues related to differences between MCMC and MLE.
 
-Maximum \emph{a posteriori} probability (MAP) estimate: mode of the posterior distribution used as a point estimate which is similar to the penalized MLE. This is also referred to as the ``maximum posterior density'' (MPD) in this document. **AME -- check if we use that, I don't think I've seen it.
+Maximum \emph{a posteriori} probability (MAP) estimate: mode of the posterior distribution used as a point estimate which is similar to the penalized MLE. This is also referred to as the ``maximum posterior density'' (MPD) in this document. **AME -- check if we use the latter, I don't think I've seen it.
 
 Maximum likelihood estimate (MLE): Sometimes used interchangeably with ``maximum posterior density estimate'' or MPD. A numerical method used to estimate a single value for each of the parameters and derived quantities. It is less computationally intensive than MCMC methods (see below), but parameter uncertainty is less well characterized.
 
