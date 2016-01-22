@@ -4,7 +4,8 @@
 
 \documentclass[12pt]{book}
 \usepackage{hake}
-\usepackage{appendix}
+\usepackage[titletoc,title]{appendix}   % title gives 'Appendix A', not just 'A', but doesn't seem to work.
+
 \usepackage{cite}
 %% need array when specifying a ragged right column:  >{\raggedright\arraybackslash}{p2in}.
 \usepackage{longtable,array}
@@ -59,15 +60,15 @@
 %% END - COMMENTED OUT TO AVOID HYPERREF COLLISIONS
 
 %% Use the following codes for references within the document.
-%%   chap: chapter
+%%   chap: chapter       %% only for Appendices I think
 %%    sec: section
 %% subsec: subsection    %% AME: it should do these automatically using sec:
 %%   fig: figure
 %%    tab: table
-%%     eq: equation
+%%     eq: equation      %% AME: usually don't use anything for equations
 %%    lst: code listing
 %%    itm: enumerated list item
-%%    app: appendix subsection
+%%    app: appendix subsection  %%AME: not needed
 \usepackage{xspace}            %% Provide the LaTeX and TeX symbols
 \usepackage{hypcap}            %% So links will anchor at figure, not caption
 \usepackage{subfig}            %% For two-panel plots
@@ -139,6 +140,14 @@
 	\end{figure}
 	%\clearpage
 }
+
+
+% http://tex.stackexchange.com/questions/25249/how-do-i-use-a-particular-font-for-a-small-section-of-text-in-my-document  :
+\newenvironment{codefont}{\fontfamily{pcr}\selectfont}{\par}
+% See use in appendices.
+
+\lstset{breakatwhitespace=TRUE,title=\lstname,breaklines=TRUE,breakautoindent=FALSE,basicstyle=\ttfamily\footnotesize}  % numberstyle=\tiny\color{gray}
+   % http://texdoc.net/texmf-dist/doc/latex/listings/listings.pdf
 
 %% ** Declare global variables (commands) here **
 %% Filenames used for this project
@@ -239,13 +248,13 @@ load("./r/model-partest.RData")
 This document reports the collaborative efforts of the official U.S. and Canadian JTC members.
 
 Authors of this document are (In no particular order): \\
+\hspace{4ex}Chris J. Grandin\supscr{2} \\
 \hspace{4ex}Allan C. Hicks\supscr{1} \\
 \hspace{4ex}Aaron Berger\supscr{1} \\
-\hspace{4ex}Ian G. Taylor\supscr{1} \\
 \hspace{4ex}Nathan Taylor\supscr{2} \\
-\hspace{4ex}Chris Grandin\supscr{2} \\
 \hspace{4ex}Andrew Edwards\supscr{2} \\
 \hspace{4ex}Sean Cox\supscr{3} \\
+\hspace{4ex}Ian G. Taylor\supscr{1} \\
 \bigskip
 
 \emph{\supscr{1}Northwest Fisheries Science Center, National Marine Fisheries Service, National Oceanic and Atmospheric Administration, U.S. Department of Commerce.
@@ -301,49 +310,60 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 %% <<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
 %% @
 
-% Keeping track of missing references here; this section will get
-%  delted once its empty.
-<<missing-refs, child='missing-references/missing-references.rnw'>>=
-@
+%% % Keeping track of missing references here; this section will get
+%% %  delted once its empty.
+%% <<missing-refs, child='missing-references/missing-references.rnw'>>=
+%% @
 
-\clearpage
+%% \clearpage
 
-%% \addcontentsline{toc}{section}{REFERENCES}   % May get page number wrong
-% \phantomsection \addcontentsline{toc}{subsection}{REFERENCES} %sorted above
-\bibliographystyle{resDoc}
-\bibliography{all}                             %  if starting a new page
+%% %% \addcontentsline{toc}{section}{REFERENCES}   % May get page number wrong
+%% % \phantomsection \addcontentsline{toc}{subsection}{REFERENCES} %sorted above
+%% \bibliographystyle{resDoc}
+%% \bibliography{all}                             %  if starting a new page
 
-% Have a spurious blank page before tables, need to get rid of. Think it may
-%  possibly be due to not having all the references defined yet, so it may
-%  get resolved. 
+%% % Have a spurious blank page before tables, need to get rid of. Think it may
+%% %  possibly be due to not having all the references defined yet, so it may
+%% %  get resolved. 
 
-<<main-tables, child='main-tables/main-tables.rnw'>>=
-@
+%% <<main-tables, child='main-tables/main-tables.rnw'>>=
+%% @
 
 <<main-figures, child='main-figures/main-figures.rnw'>>=
 @
 
 \addtocontents{toc}{\par {\bf \vspace{10mm} APPENDICES} \par}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
-\appendix
+
+\begin{appendices}
+% \appendix
+% \renewcommand{\chaptername}{Appendix}
+% \addto\captionsenglish{\renewcommand\chaptername{Appendix}}
+
+% Tried using appendix package, so may not need these (AME's manual fix),
+%  but either way treats appendices as chapters and formats them differently
+%  to sections in the Table of Contents (bold and no dots). Could try and fix
+%  if needed and if time.
 
 %% Now want to number sections, tables etc. as A.1, A.2, etc.
 %% Thought these wouldn't be with the appendix package, as
-%%  automatic, but do need them even if use \begin{appendices}:
-\renewcommand{\thesection}{\thechapter.\arabic{section}}
-\renewcommand{\thetable}{\thechapter.\arabic{table}}
-\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
-\renewcommand{\theequation}{\thechapter.\arabic{equation}}
-
-%% Not including Appendix figures and tables in contents, and just
-%%  including the Appendix (chapter) names (not sections or
-%%  subsections):
+%%  automatic, but may need them even if use \begin{appendices}:
+%\renewcommand{\thesection}{\thechapter.\arabic{section}}
+%\renewcommand{\thetable}{\thechapter.\arabic{table}}
+%\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+%\renewcommand{\theequation}{\thechapter.\arabic{equation}}
 
 % \lfoot{\cname}   % Add this in to have Appendix A etc. as the left footer.
 
-%% \rfoot{Appendix A -- Example appendix 1}
-%% <<appendix-1, child='appendix-1/appendix-1.rnw'>>=
+%% <<appendix-glossary, child='appendix-glossary/appendix-glossary.rnw'>>=
 %% @
+
+%% % All the code to import the SS code for the appendices are in one file since
+%% %  the code is so short:
+%% <<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
+%% @
+
+\end{appendices}
 
 %% Used when you need to insert outside documents:
 %% \setcounter{page}{68}

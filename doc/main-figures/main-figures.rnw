@@ -249,7 +249,78 @@ make.age.comp.pearson.plot(model.partest)
 \caption{Pearson residuals for base model MLE fits to the fishery age composition data.
   Closed bubbles are positive residuals (observed > expected) and open bubbles are
   negative residuals (observed < expected).}
-\label{fig:main-main.age.comp.pearson}
+\label{fig:main-age-comp-pearson}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.tv.selex, fig.height=8, fig.width=8>>=
+## Extract TV selectivity fits by running the calculation function. WARNING!!! Change end.yr-1 below to end.yr
+tv.selex.start.yr <- 1990
+tv.selex.ages <- 1:8
+tv.selex <- calc.tv.selex(base.model,
+                          start.yr = tv.selex.start.yr,
+                          end.yr = end.yr - 1,
+                          ages = tv.selex.ages,
+                          probs = c(0.025, 0.975))
+make.tv.selex.plot(tv.selex)
+@
+\end{center}
+\caption{Mountains plot of time varying fishery selectivity for the base model. Range of selectivity is 0 to 1 in each year.}
+\label{fig:main-tv-selex}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.tv.selex.uncertainty, fig.height=8, fig.width=8>>=
+## Extract TV selectivity fits by running the calculation function, once for each year span,
+##  then call the plotting function with them as a list to make a multipanel plot. WARNING!!! Change end.yr-1 below to end.yr
+tv.selex.left <- calc.tv.selex(base.model,
+                               start.yr = tv.selex.start.yr,
+                               end.yr = 2001,
+                               ages = tv.selex.ages,
+                               probs = c(0.025, 0.975))
+tv.selex.right <- calc.tv.selex(base.model,
+                                start.yr = 2002,
+                                end.yr = end.yr-1,
+                                ages = tv.selex.ages,
+                                probs = c(0.025, 0.975))
+make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
+@
+\end{center}
+\caption{Fishery selectivity sampled from posterior probability distribution by year. Black dots and bars indicate
+  the median and 95\% credibility interval, respectively. The shaded polygon also shows the 95\% credibility
+  interval. Range is from 0 to 1 within each year. Selectivity for \Sexpr{tv.selex.start.yr} is shared for all
+  years from \Sexpr{start.yr} to \Sexpr{tv.selex.start.yr}.}
+\label{fig:main-tv-selex-uncertainty}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.tv.selex.uncertainty.lines, fig.height=8, fig.width=8>>=
+oldpar <- par(no.readonly = TRUE)
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.selex.uncertainty.lines.plot(base.model,
+                                  ages = tv.selex.ages,
+                                  type = 1,
+                                  selex.list = tv.selex,
+                                  probs = c(0.025, 0.975))
+make.selex.uncertainty.lines.plot(base.model,
+                                  ages = tv.selex.ages,
+                                  type = 2,
+                                  probs = c(0.025, 0.975))
+par <- oldpar
+@
+\end{center}
+\caption{Estimated acoustic (top) and fishery (bottom) selectivity (\Sexpr{end.yr-1})
+  ogives from the posterior distribution}
+\label{fig:main-tv-selex-uncertainty-lines}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
