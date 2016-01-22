@@ -178,7 +178,12 @@
 \newcommand{\amat}{age-at-50\%-maturity}
 \newcommand{\bc}{British Columbia}
 \newcommand{\Fforty}{F_{\text{SPR}=40\%}}
+\newcommand{\Bforty}{B_{\text{SPR}=40\%}}
+\newcommand{\Bten}{B_{\text{SPR}=10\%}}
+\newcommand{\Bmsy}{B_{\text{MSY}}}
 \newcommand{\Fmsy}{F_{\text{MSY}}}
+\newcommand{\Fspr}{F_{\text{SPR}}}
+
 %% For subscripts in text mode
 \newcommand{\subscr}[1]{$_{\text{#1}}$}
 \newcommand{\supscr}[1]{$^{\text{#1}}$}
@@ -326,8 +331,8 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 %% %  possibly be due to not having all the references defined yet, so it may
 %% %  get resolved.
 
-%% <<main-tables, child='main-tables/main-tables.rnw'>>=
-%% @
+<<main-tables, child='main-tables/main-tables.rnw'>>=
+@
 
 <<main-figures, child='main-figures/main-figures.rnw'>>=
 @
