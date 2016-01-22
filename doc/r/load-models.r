@@ -131,6 +131,14 @@ calc.mcmc <- function(mcmc,            ## mcmc is the output of the SS_getMCMC f
   names(dev) <- gsub("Late_RecrDev_", "", names(dev))
   names(dev) <- gsub("ForeRecr_", "", names(dev))
 
+  ## Change the Early_Init names to be the correct preceeding years
+  start.yr <- as.numeric(min(names(dev)))
+  early <- grep("Early_InitAge_",names(dev))
+  num.early.yrs <- length(early)
+  early.yrs <- seq(start.yr - num.early.yrs, start.yr - 1, 1)
+  late.yrs <- names(dev[-early])
+  names(dev) <- c(as.character(early.yrs), late.yrs)
+
   devlower <- apply(dev, 2, quantile, prob=lower)
   devmed <- apply(dev, 2, quantile, prob=0.5)
   devupper <- apply(dev, 2, quantile, prob=upper)

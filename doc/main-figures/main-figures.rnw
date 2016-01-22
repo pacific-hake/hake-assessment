@@ -308,12 +308,12 @@ oldpar <- par(no.readonly = TRUE)
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
 make.selex.uncertainty.lines.plot(base.model,
                                   ages = tv.selex.ages,
-                                  type = 1,
-                                  selex.list = tv.selex,
+                                  type = 2,
                                   probs = c(0.025, 0.975))
 make.selex.uncertainty.lines.plot(base.model,
                                   ages = tv.selex.ages,
-                                  type = 2,
+                                  type = 1,
+                                  selex.list = tv.selex,
                                   probs = c(0.025, 0.975))
 par <- oldpar
 @
@@ -324,19 +324,74 @@ par <- oldpar
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-% Figures referenced in introduction-section.rnw:
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.spawning.biomass, fig.height=4.5, fig.width=8>>=
+make.biomass.plot(base.model,
+                  equil.yr = unfished.eq.yr,
+                  start.yr = start.yr,
+                  end.yr = end.yr,
+                  color = "blue")
+@
+\end{center}
+\caption{Median of the posterior distribution for female spawning biomass through \Sexpr{end.yr} (solid line)
+  with 95\% posterior credibility intervals (shaded area).}
+\label{fig:main-female-spawning-biomass}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.relative.spawning.biomass, fig.height=4.5, fig.width=8>>=
+make.depletion.plot(base.model,
+                    start.yr = start.yr,
+                    end.yr = end.yr,
+                    color = "blue")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Median (solid line) of the posterior distribution for relative spawning biomass (B\subscr{t}/B\subscr{0})
+  through \Sexpr{end.yr} with 95\% posterior credibility intervals (shaded area). Dashed horizontal lines show 10\%, 40\% and 100\% levels.}
+\label{fig:main-relative-spawning-biomass}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.recruitment, fig.height=4.5, fig.width=8>>=
+make.recruitment.plot(base.model,
+                      equil.yr = unfished.eq.yr,
+                      start.yr = start.yr,
+                      end.yr = end.yr,
+                      color = "blue",
+                      add.mean = TRUE,
+                      add.r0 = TRUE)
+@
+\end{center}
+\caption{Medians (solid circles) and means (x) of the posterior distribution for recruitment (billions of age-0) with
+  95\% posterior credibility intervals (blue lines). The median of the posterior distribution for mean unfished
+  equilibrium recruitment (R\subscr{0}) is shown as the horizontal dashed line with a 95\% posterior credibility
+  interval shaded between the dotted lines.}
+\label{fig:main-recruitment}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
 
-% Figures referenced in data-section.rnw:
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.recruitment.devs, fig.height=4.5, fig.width=8>>=
+make.recruitment.dev.plot(base.model,
+                          end.yr = end.yr)
 
-
-
-% Figures referenced in assessment-section.rnw:
-
-
-
-% Figures referenced in research-section.rnw:
-
-
-
+@
+\end{center}
+\caption{Medians (solid circles) of the posterior distribution for log-scale recruitment deviations with
+  95\% posterior credibility intervals (blue lines). Recruitment deviations for the years \Sexpr{recruit.dev.start.yr} -- \Sexpr{start.yr-1}
+  are used to calculate the numbers at age in \Sexpr{start.yr}, the initial year of the model. Deviations for
+  the years 1970 -- 2010 are constrained to sum to zero while deviations outside this range do not have a constraint.}
+\label{fig:main-recruitment-devs}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%

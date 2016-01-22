@@ -324,7 +324,7 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 
 %% % Have a spurious blank page before tables, need to get rid of. Think it may
 %% %  possibly be due to not having all the references defined yet, so it may
-%% %  get resolved. 
+%% %  get resolved.
 
 %% <<main-tables, child='main-tables/main-tables.rnw'>>=
 %% @

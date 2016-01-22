@@ -124,6 +124,40 @@ make.recruitment.plot <- function(model,            ## model is an mcmc run and 
   par <- oldpar
 }
 
+make.recruitment.dev.plot <- function(model,  ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
+                                      end.yr  ## Year the timeseries ends (i.e. last year in model). Need this so forecast years aren't shown
+                                      ){
+  ## Plots the recruitment deviations for the mcmc given by model
+  oldpar <- par()
+
+  dev.lower <- model$mcmccalcs$devlower
+  dev.med <- model$mcmccalcs$devmed
+  dev.upper <- model$mcmccalcs$devupper
+  dev.yrs <- as.numeric(names(dev.med))
+  y <- data.frame(value = dev.med, lo = dev.lower, hi = dev.upper)
+
+  plotBars.fn(dev.yrs,
+              y,
+              scalar = 1,
+              ylim = c(-4.5, 4.5),
+              pch = 20,
+              xlab = "Year",
+              ylab = "Log-scale recruitment deviations ",
+              cex = 0.8,
+              las = 1,
+              gap = 0,
+              xaxt = "n",
+              ciLwd = 1,
+              ciCol = rgb(0, 0, 1, 0.5),
+              mgp = c(2.3, 1, 0),
+              xlim = range(dev.yrs))
+  axis(1, at = seq(min(dev.yrs) - 1, end.yr, 5))
+  abline(h = 0, col = rgb(0, 0, 0, 0.5))
+  abline(h = seq(-4, 4, 2), col = rgb(0, 0, 0, 0.5), lty = "13", lwd = 0.5)
+
+  par <- oldpar
+}
+
 make.fishing.intensity.plot <- function(model,            ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
                                         start.yr,         ## Year the timeseries starts (i.e. first year in model)
                                         end.yr,           ## Year the timeseries ends (i.e. last year in model)
