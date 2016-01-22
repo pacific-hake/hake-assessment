@@ -7,30 +7,37 @@
 
 \clearpage
 \section*{One Page Summary}
-\phantomsection \addcontentsline{toc}{section}{ONE PAGE SUMMARY}
+\phantomsection \addcontentsline{toc}{section}{One Page Summary}
 
-\begin{enumerate}[noitemsep,nolistsep]
+\begin{itemize}
   \item The stock assessment model for \Sexpr{assess.yr} is similar in structure to the \Sexpr{last.assess.yr} model with addition
     of fishery data from \Sexpr{end.yr-1}, a new acoustic survey biomass estimate, and minor refinements to data including catch
     estimates from earlier years.
+
   \item The stock assessment is fit to an acoustic survey index of abundance and age compositions from the survey and commercial fisheries.
+
   \item Coastwide catch in \Sexpr{end.yr-1} was \Sexpr{last.year.landings} t, out of a
     TAC (adjusted for carryovers) of \Sexpr{last.year.tac} t. Attainment in the U.S. was \Sexpr{last.year.us.attained}\% of its quota;
     in Canada it was \Sexpr{last.year.can.attained}\%. A variety of factors influenced the attainment of the quota.
+
   \item The stock is estimated to be near its highest biomass level since the early 1990s as a result of an above average 2008 cohort
     and a very large 2010 cohort. Recruitment in 2011 is estimated to have been below average. Cohorts from the years \Sexpr{end.yr-3}
     -- \Sexpr{end.yr-1} have not been observed long enough in the data to estimate their ided by unfished equilibrium, B\subscr{0}) is
     estimated to be \Sexpr{curr.depl.median} \% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower} \% to
     \Sexpr{curr.depl.upper} \%).
+
   \item The median estimate of \Sexpr{end.yr} female spawning biomass is \Sexpr{curr.bio.median}
     million t (with 95\% interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper} million t).
+
   \item The spawning biomass in \Sexpr{end.yr} is estimated to have increased from \Sexpr{end.yr-1} due to the large size of the
     2010 year class.
+
   \item As in the past, forecasts are highly uncertain due to lack of information about recruitment in the most recent years.
     Forecasts were conducted across a range of catch levels.
+
   \item Projections setting \Sexpr{forecast.yrs[1]} and \Sexpr{forecast.yrs[2]} catch equal to the \Sexpr{forecast.yrs[1]-1} TAC of
     \Sexpr{last.year.tac} t show the median spawning relative biomass estimates declining from \Sexpr{curr.depl.median}\%
     of B\subscr{0} in \Sexpr{end.yr} to \Sexpr{next.depl.median.tac.based}\% in \Sexpr{end.yr+1} and \Sexpr{next2.depl.median.tac.based}\%
     in \Sexpr{end.yr+2}. %%However, this projection is highly uncertain and shows a \textbf{FROM here on is not correct} 5\% chance of falling below 25\%
   %%   of B0 in 2 years (by 2017) and a 5\% chance of increasing above 129\% in that same time frame.
-\end{enumerate}
+\end{itemize}
