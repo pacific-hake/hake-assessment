@@ -144,7 +144,7 @@ There are additional elements for model-partest, which is created by running **r
 
 ## How Andy is running it (and see Chris's notes above)
 
-- download from Hake JTC Google Drive one of the model runs, and put in **hake-assessment\models\** (have to unzip and then remove one directory level). ???I just did this for the first time (18/1/16), but where was it getting model output from before???
+- download from Hake JTC Google Drive the model runs, and put in **hake-assessment\models\** (then 'unzip to here', then remove the .zip file so that **models\** just has the required subdirectories).
 - **source("all.r")** to reload models and data files and for any changes to R code.
 - **save.image()** to create the **.RData** file, or close R (and **save** workspace).
 - delete **knitr-cache** directory if any tables or figures need to be updated
