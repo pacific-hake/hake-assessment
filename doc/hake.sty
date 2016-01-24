@@ -123,7 +123,9 @@
 %  thesis there's a way to make it a header always be on the 
 %  'outside' corner, so have a Google around.
 
-\setlength\parindent{0pt}     % To not indent paragraphs.
+\setlength\parindent{0pt}     % To not indent paragraphs. If change then
+                              %  may need to change the values in 
+                              %  appendix-glossary.rnw
 \parskip 6pt                  % To increase white space between
 %\parskip 2ex   % was 3ex
 % To increase white space between paragraphs (since not indenting).
@@ -181,11 +183,12 @@
 {\normalfont\bf}} % To leave out underlining (but that would break the rules)(RH: no longer)
 
 % For Appendices
+% AME editin out for Hake, think it's why I wasn't getting ``Appendix A''.
 \renewcommand{\chapter}{\@startsection
 {chapter}{1}{0mm}%                                     % name, level, indent
 {-18pt \@plus -0pt \@minus -0pt}{6pt \@plus 0pt}%      % beforeskip afterskip
-%{-3.5ex \@plus -1ex \@minus -.2ex}% beforeskip
-%{2.3ex \@plus.2ex}                % afterskip
+%%{-3.5ex \@plus -1ex \@minus -.2ex}% beforeskip
+%%{2.3ex \@plus.2ex}                % afterskip
 {\centering\normalfont\large\bfseries\MakeUppercase}}% % style
 
 % \renewcommand{\chaptername}{Appendix}   % - never worked; it doesn't like \subsubsubsection (AME).
