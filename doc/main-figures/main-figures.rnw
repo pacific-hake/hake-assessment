@@ -7,7 +7,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.total.catches, fig.height=4, fig.width=8>>=
+<<main.total.catches, fig.height=8, fig.width=9>>=
 make.catches.plot(catches, leg.y.loc=520) ## leg.y.loc is y-coord to place legend at
 @
 \end{center}
@@ -48,7 +48,7 @@ max.fishery.age.prop <- make.age.comp.bubble.plot(base.model, subplot = 1)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.survey.biomass, fig.height=5, fig.width=8>>=
+<<main.survey.biomass, fig.height=6, fig.width=8>>=
 ## modelnum is the model index in models list from which the survey input data are used.
 make.survey.biomass.plot(models, modelnum=base.model.ind)
 @
@@ -62,7 +62,7 @@ make.survey.biomass.plot(models, modelnum=base.model.ind)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.bridge.biomass, fig.height=5, fig.width=8>>=
+<<main.bridge.biomass, fig.height=6, fig.width=8>>=
 make.bridge.biomass.plot(models[bridge.model.inds],
                          subplots = 2,
                          model.names = bridge.model.names,
@@ -84,7 +84,7 @@ make.bridge.biomass.plot(models[bridge.model.inds],
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.bridge.detail, fig.height=8, fig.width=10>>=
+<<main.bridge.detail, fig.height=10, fig.width=10>>=
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
@@ -157,7 +157,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.mcmc.diag.hists, fig.height=5, fig.width=8>>=
+<<main.mcmc.diag.hists, fig.height=6, fig.width=8>>=
 make.mcmc.diag.hists.plot(base.model)
 @
 \end{center}
@@ -200,7 +200,7 @@ make.mcmc.diag.pairs.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.mcmc.survey.fit, fig.height=5, fig.width=8>>=
+<<main.mcmc.survey.fit, fig.height=6, fig.width=8>>=
 make.mcmc.survey.fit.plot(model.partest,
                           start.yr = survey.start.yr,
                           end.yr = survey.end.yr,
@@ -249,23 +249,212 @@ make.age.comp.pearson.plot(model.partest)
 \caption{Pearson residuals for base model MLE fits to the fishery age composition data.
   Closed bubbles are positive residuals (observed > expected) and open bubbles are
   negative residuals (observed < expected).}
-\label{fig:main-main.age.comp.pearson}
+\label{fig:main-age-comp-pearson}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-% Figures referenced in introduction-section.rnw:
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.tv.selex, fig.height=8, fig.width=8>>=
+## Extract TV selectivity fits by running the calculation function. WARNING!!! Change end.yr-1 below to end.yr
+tv.selex.start.yr <- 1990
+tv.selex.ages <- 1:8
+tv.selex <- calc.tv.selex(base.model,
+                          start.yr = tv.selex.start.yr,
+                          end.yr = end.yr - 1,
+                          ages = tv.selex.ages,
+                          probs = c(0.025, 0.975))
+make.tv.selex.plot(tv.selex)
+@
+\end{center}
+\caption{Mountains plot of time varying fishery selectivity for the base model. Range of selectivity is 0 to 1 in each year.}
+\label{fig:main-tv-selex}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.tv.selex.uncertainty, fig.height=8, fig.width=8>>=
+## Extract TV selectivity fits by running the calculation function, once for each year span,
+##  then call the plotting function with them as a list to make a multipanel plot. WARNING!!! Change end.yr-1 below to end.yr
+tv.selex.left <- calc.tv.selex(base.model,
+                               start.yr = tv.selex.start.yr,
+                               end.yr = 2001,
+                               ages = tv.selex.ages,
+                               probs = c(0.025, 0.975))
+tv.selex.right <- calc.tv.selex(base.model,
+                                start.yr = 2002,
+                                end.yr = end.yr-1,
+                                ages = tv.selex.ages,
+                                probs = c(0.025, 0.975))
+make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
+@
+\end{center}
+\caption{Fishery selectivity sampled from posterior probability distribution by year. Black dots and bars indicate
+  the median and 95\% credibility interval, respectively. The shaded polygon also shows the 95\% credibility
+  interval. Range is from 0 to 1 within each year. Selectivity for \Sexpr{tv.selex.start.yr} is shared for all
+  years from \Sexpr{start.yr} to \Sexpr{tv.selex.start.yr}.}
+\label{fig:main-tv-selex-uncertainty}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.tv.selex.uncertainty.lines, fig.height=8, fig.width=8>>=
+oldpar <- par(no.readonly = TRUE)
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.selex.uncertainty.lines.plot(base.model,
+                                  ages = tv.selex.ages,
+                                  type = 2,
+                                  probs = c(0.025, 0.975))
+make.selex.uncertainty.lines.plot(base.model,
+                                  ages = tv.selex.ages,
+                                  type = 1,
+                                  selex.list = tv.selex,
+                                  probs = c(0.025, 0.975))
+par <- oldpar
+@
+\end{center}
+\caption{Estimated acoustic (top) and fishery (bottom) selectivity (\Sexpr{end.yr-1})
+  ogives from the posterior distribution}
+\label{fig:main-tv-selex-uncertainty-lines}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
 
-% Figures referenced in data-section.rnw:
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[p]
+\begin{center}
+<<main.spawning.biomass, fig.height=4.5, fig.width=8>>=
+make.biomass.plot(base.model,
+                  equil.yr = unfished.eq.yr,
+                  start.yr = start.yr,
+                  end.yr = end.yr,
+                  color = "blue")
+@
+\end{center}
+\caption{Median of the posterior distribution for female spawning biomass through \Sexpr{end.yr} (solid line)
+  with 95\% posterior credibility intervals (shaded area).}
+\label{fig:main-female-spawning-biomass}
+%% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{figure}[H]
+\begin{center}
+<<main.relative.spawning.biomass, fig.height=4.5, fig.width=8>>=
+make.depletion.plot(base.model,
+                    start.yr = start.yr,
+                    end.yr = end.yr,
+                    color = "blue")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Median (solid line) of the posterior distribution for relative spawning biomass (B\subscr{t}/B\subscr{0})
+  through \Sexpr{end.yr} with 95\% posterior credibility intervals (shaded area). Dashed horizontal lines show 10\%, 40\% and 100\% levels.}
+\label{fig:main-relative-spawning-biomass}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[p]
+\begin{center}
+<<main.recruitment, fig.height=4.5, fig.width=8>>=
+make.recruitment.plot(base.model,
+                      equil.yr = unfished.eq.yr,
+                      start.yr = start.yr,
+                      end.yr = end.yr,
+                      color = "blue",
+                      add.mean = TRUE,
+                      add.r0 = TRUE)
+@
+\end{center}
+\caption{Medians (solid circles) and means (x) of the posterior distribution for recruitment (billions of age-0) with
+  95\% posterior credibility intervals (blue lines). The median of the posterior distribution for mean unfished
+  equilibrium recruitment (R\subscr{0}) is shown as the horizontal dashed line with a 95\% posterior credibility
+  interval shaded between the dotted lines.}
+\label{fig:main-recruitment}
+%% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{figure}[H]
+\begin{center}
+<<main.recruitment.devs, fig.height=4.5, fig.width=8>>=
+make.recruitment.dev.plot(base.model,
+                          end.yr = end.yr)
 
+@
+\end{center}
+\caption{Medians (solid circles) of the posterior distribution for log-scale recruitment deviations with
+  95\% posterior credibility intervals (blue lines). Recruitment deviations for the years \Sexpr{recruit.dev.start.yr} -- \Sexpr{start.yr-1}
+  are used to calculate the numbers at age in \Sexpr{start.yr}, the initial year of the model. Deviations for
+  the years 1970 -- 2010 are constrained to sum to zero while deviations outside this range do not have a constraint.}
+\label{fig:main-recruitment-devs}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
 
-% Figures referenced in assessment-section.rnw:
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.numbers.at.age, fig.height=8, fig.width=8>>=
+make.numbers.at.age.plot(base.model)
+@
+\end{center}
+\caption{Bubble plot of maximum likelihood (MLE) estimates of population numbers at age at the beginning of each year.
+  The red line represents the mean age. The scale of the bubbles is represented in the key where the units are
+  billions of fish (with the largest bubble representing about 14 billion age 0 recruits in 1980).}
+\label{fig:main-numbers-at-age}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[p]
+\begin{center}
+<<main.fishing.intensity, fig.height=4.5, fig.width=8>>=
+make.fishing.intensity.plot(base.model,
+                            start.yr = start.yr,
+                            end.yr = end.yr,
+                            color = "blue")
+@
+\end{center}
+\caption{Trend in median fishing intensity (relative to the SPR management target) through \Sexpr{end.yr-1}
+  with 95\% posterior credibility intervals. The management target defined in the Agreement is shown as a horizontal line at 1.0.}
+\label{fig:main-fishing-intensity}
+%% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{figure}[H]
+\begin{center}
+<<main.exploitation.fraction, fig.height=4.5, fig.width=8>>=
+make.exploitation.fraction.plot(base.model,
+                                start.yr = start.yr,
+                                end.yr = end.yr,
+                                color = "blue")
+@
+\end{center}
+\caption{Trend in median exploitation fraction through \Sexpr{end.yr-1} with 95\% posterior credibility intervals.}
+\label{fig:main-exploitation-fraction}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
 
-
-% Figures referenced in research-section.rnw:
-
-
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.phase.plot, fig.height=6, fig.width=8>>=
+make.phase.plot(base.model,
+                start.yr = start.yr,
+                end.yr = end.yr,
+                color = "blue")
+@
+\end{center}
+\caption{Estimated historical path followed by fishing intensity and relative spawning biomass for \fishname\ with labels
+  on the start and end years. Gray bars span the 95\% credibility intervals for \Sexpr{end.yr-1} fishing intensity (vertical)
+  and relative spawning biomass (horizontal).}
+\label{fig:main-phase}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
 

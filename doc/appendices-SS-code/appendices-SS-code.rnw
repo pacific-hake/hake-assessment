@@ -1,0 +1,71 @@
+% appendices-SS-code.rnw
+
+\clearpage
+
+\chapter{Stock synthesis data file}
+\label{chap:data-file}
+
+\begin{codefont}
+ 
+\lstinputlisting{\Sexpr{sub("../", "", 
+    file.path(base.model$path,data.file.name) ) }}
+
+\end{codefont}
+
+%% Alternative approach (but doesn't work yet):
+%% <<SSdatafile, results='markup'>>=
+%% readLines(file.path(base.model$path,data.file.name))
+%% @
+
+
+\clearpage
+
+\chapter{Stock synthesis control file}
+\label{chap:control-file}
+
+\begin{codefont}
+ 
+\lstinputlisting{\Sexpr{sub("../", "", 
+    file.path(base.model$path,control.file.name) ) }}
+
+\end{codefont}
+
+\clearpage
+
+\chapter{Stock synthesis starter file}
+\label{chap:starter-file}
+
+\begin{codefont}
+ 
+\lstinputlisting{\Sexpr{sub("../", "", 
+    file.path(base.model$path,starter.file.name) ) }}
+
+\end{codefont}
+
+
+\clearpage
+
+\chapter{Stock synthesis forecast file}
+\label{chap:forecast-file}
+
+\begin{codefont}
+ 
+\lstinputlisting{\Sexpr{sub("../", "", 
+    file.path(base.model$path,forecast.file.name) ) }}
+
+\end{codefont}
+
+
+\clearpage
+
+\chapter{Stock synthesis weight-at-age file}
+\label{chap:weight-at-age-file}
+
+\begin{codefont}
+ 
+\lstinputlisting{\Sexpr{sub("../", "", 
+    file.path(base.model$path,weight.at.age.file.name) ) }}
+
+\end{codefont}
+
+
