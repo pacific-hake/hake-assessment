@@ -171,29 +171,18 @@ __GitHub workflow__
 
 __Andy's other notes__
 
+- Network graph - I just [25 Jan 2016, commit number 7e25a5c] merged Chris's, but this doesn't show up on his or my Network graphs, I think because he had merged all my commits earlier, and I hadn't committing anything since. So it's not really merging (and there was no possibility for a conflict because I hadn't changed anything since he merged mine), just updating.
+
 - Use text in main document of last year's, and start converting to .tex.
 - Table 1 and 2 of last year's .pdf -- values should be in **catches**, see **make-catches-table.r** in **catches.r** for an earlier table, and modify to make new ones.
 
-22/1/16 at home (DFO email didn't work I think):
+Helpful git commands I didn't know:
 
-Hi Chris,
+**git lg1**   [or lg2] - shows commit numbers (codes)
 
-So I downloaded all the model runs from Google Drive (I'm at home, so it was super-fast), so thought I'd try and build everything. When sourcing all.r it, and saying yes to the three questions, I ended up with the error:
+**git log .\doc\hake-assessment.rnw**  - show revision history for a file (syntax not quite right there)
 
-Error in file(file, "rt") (from utilities.r#108) : cannot open the connection
-In addition: There were 50 or more warnings (use warnings() to see the first 50)
-
-It did do all 999 partest things.
-
-Anyway, just documenting now in case it's an issue next week. I'll see if it will build with everything included, then I'll push....
-
-knitr seems to work, except it can't make Figure 31. Can look into next week. 
-
-Cheers,
-
-Andy
-
-
+**git checkout <enough numbers of the commit reference to make it unique> .\doc\[filename.rnw] **  - revert back to that version of that file, I think...  
 
 [I can delete this once I know it all automatically] GitHub Colors are explained under The Prompt in the README shown at https://github.com/dahlbyk/posh-git/ . To summarize:
 
