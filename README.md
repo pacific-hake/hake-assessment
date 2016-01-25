@@ -144,7 +144,7 @@ There are additional elements for model-partest, which is created by running **r
 
 ## How Andy is running it (and see Chris's notes above)
 
-- download from Hake JTC Google Drive one of the model runs, and put in **hake-assessment\models\** (have to unzip and then remove one directory level). ???I just did this for the first time (18/1/16), but where was it getting model output from before???
+- download from Hake JTC Google Drive the model runs, and put in **hake-assessment\models\** (then 'unzip to here', then remove the .zip file so that **models\** just has the required subdirectories).
 - **source("all.r")** to reload models and data files and for any changes to R code.
 - **save.image()** to create the **.RData** file, or close R (and **save** workspace).
 - delete **knitr-cache** directory if any tables or figures need to be updated
@@ -173,6 +173,26 @@ __Andy's other notes__
 
 - Use text in main document of last year's, and start converting to .tex.
 - Table 1 and 2 of last year's .pdf -- values should be in **catches**, see **make-catches-table.r** in **catches.r** for an earlier table, and modify to make new ones.
+
+22/1/16 at home (DFO email didn't work I think):
+
+Hi Chris,
+
+So I downloaded all the model runs from Google Drive (I'm at home, so it was super-fast), so thought I'd try and build everything. When sourcing all.r it, and saying yes to the three questions, I ended up with the error:
+
+Error in file(file, "rt") (from utilities.r#108) : cannot open the connection
+In addition: There were 50 or more warnings (use warnings() to see the first 50)
+
+It did do all 999 partest things.
+
+Anyway, just documenting now in case it's an issue next week. I'll see if it will build with everything included, then I'll push....
+
+knitr seems to work, except it can't make Figure 31. Can look into next week. 
+
+Cheers,
+
+Andy
+
 
 
 [I can delete this once I know it all automatically] GitHub Colors are explained under The Prompt in the README shown at https://github.com/dahlbyk/posh-git/ . To summarize:

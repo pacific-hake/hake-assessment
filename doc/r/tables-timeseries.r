@@ -78,11 +78,6 @@ make.recruitment.table <- function(model,                ## model is an mcmc run
   devupper <- model$mcmccalcs$devupper
 
   ## Remove recruitment deviations prior to the start year
-  devlower <- devlower[-grep("Early.*",names(devlower))]
-  devmed <- devmed[-grep("Early.*",names(devmed))]
-  devupper <- devupper[-grep("Early.*",names(devupper))]
-
-  ## Only include start year to end year
   devlower <- devlower[names(devlower) %in% yrs]
   devmed <- devmed[names(devmed) %in% yrs]
   devupper <- devupper[names(devupper) %in% yrs]

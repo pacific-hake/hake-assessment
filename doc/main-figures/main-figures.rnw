@@ -458,3 +458,23 @@ make.phase.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.mcmc.sr.variability, fig.height=8, fig.width=8>>=
+make.mcmc.sr.variability.plot(base.model,
+                              start.yr = start.yr,
+                              end.yr = end.yr - 1,
+                              probs = c(0.025, 0.5, 0.975))
+@
+\end{center}
+\caption{Estimated stock-recruit relationship for the base model with median predicted recruitments
+  and 95\% posterior credibility intervals. Colors indicate time-period, with yellow colors in the
+  early years and blue colors in the recent years. The thick solid black line indicates the central
+  tendency (mean) and the red line the central tendency after bias correcting for the log-normal
+  distribution (median). Shading around stock-recruit curves indicates uncertainty in shape associated
+  with distribution of the steepness parameter (h). The gray polygon on the right indicates the
+  expected distribution of recruitments relative to the unfished equilibrium.}
+\label{fig:main-mcmc.sr.variability}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
