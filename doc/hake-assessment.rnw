@@ -257,7 +257,7 @@ Authors of this document are (In no particular order): \\
 \hspace{4ex}Allan C. Hicks\supscr{1} \\
 \hspace{4ex}Aaron Berger\supscr{1} \\
 \hspace{4ex}Nathan Taylor\supscr{2} \\
-\hspace{4ex}Andrew Edwards\supscr{2} \\
+\hspace{4ex}Andrew M. Edwards\supscr{2} \\
 \hspace{4ex}Sean Cox\supscr{3} \\
 \hspace{4ex}Ian G. Taylor\supscr{1} \\
 \bigskip
@@ -320,12 +320,12 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 %% <<missing-refs, child='missing-references/missing-references.rnw'>>=
 %% @
 
-%% \clearpage
+\clearpage
 
-%% %% \addcontentsline{toc}{section}{REFERENCES}   % May get page number wrong
-%% % \phantomsection \addcontentsline{toc}{subsection}{REFERENCES} %sorted above
-%% \bibliographystyle{resDoc}
-%% \bibliography{all}                             %  if starting a new page
+%% \addcontentsline{toc}{section}{REFERENCES}   % May get page number wrong
+ % \phantomsection \addcontentsline{toc}{subsection}{REFERENCES} %sorted above
+\bibliographystyle{resDoc}
+\bibliography{all}                             %  if starting a new page
 
 %% % Have a spurious blank page before tables, need to get rid of. Think it may
 %% %  possibly be due to not having all the references defined yet, so it may
@@ -353,20 +353,20 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 %% Now want to number sections, tables etc. as A.1, A.2, etc.
 %% Thought these wouldn't be with the appendix package, as
 %%  automatic, but may need them even if use \begin{appendices}:
-%\renewcommand{\thesection}{\thechapter.\arabic{section}}
-%\renewcommand{\thetable}{\thechapter.\arabic{table}}
-%\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
-%\renewcommand{\theequation}{\thechapter.\arabic{equation}}
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\renewcommand{\thetable}{\thechapter.\arabic{table}}
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+\renewcommand{\theequation}{\thechapter.\arabic{equation}}
 
 % \lfoot{\cname}   % Add this in to have Appendix A etc. as the left footer.
 
-%% <<appendix-glossary, child='appendix-glossary/appendix-glossary.rnw'>>=
-%% @
+<<appendix-glossary, child='appendix-glossary/appendix-glossary.rnw'>>=
+@
 
 %% % All the code to import the SS code for the appendices are in one file since
 %% %  the code is so short:
-%% <<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
-%% @
+<<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
+@
 
 \end{appendices}
 
