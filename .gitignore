@@ -2,10 +2,10 @@
 *.aux
 *.bbl
 *.blg
-*~
+*~*
 *.dvi
 *.ps
-.RData
+*.RData
 model-partest.RData
 .RHistory
 *.7z
