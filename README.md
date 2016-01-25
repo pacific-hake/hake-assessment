@@ -17,6 +17,11 @@ _____________________________________________________________
 ---
 ## How to run the code and create hake-assessment.pdf
 
+- You **MUST** load the R environment first. To do this, navigate to the doc/r directory,
+  start RGui in that directory, and type **source("all.r")**. If it is the first time or you
+  are running this, you must answer *y* to the three questions. Once this is finished, do a save.image()
+  to sdave the .RData file in the doc/r directory.
+
 - Using the command line, navigate to the doc subdirectory and run the buildtex.bat file.
 
 - To clean up the build, run the cleantex.bat file.

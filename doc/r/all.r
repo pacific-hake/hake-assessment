@@ -34,6 +34,7 @@ source("figures-mcmc-diagnostics.r")
 source("figures-age-comps.r")
 source("figures-selex.r")
 source("figures-stock-recruitment.r")
+source("figures-mle-mcmc.r")
 
 source("tables-timeseries.r")
 source("tables-reference-points.r")
@@ -78,7 +79,7 @@ assess.yr       <- end.yr
 
 ## The forecasting yrs and probs can be set to whatever is required, the
 ## latex/knitr code is set up to automatically accomodate changes
-forecast.yrs <- 2015:2017
+forecast.yrs <- end.yr:(end.yr + 2)
 forecast.probs <- c(0.05,0.25,0.5,0.75,0.95)
 
 ## catch.levels is a list of N catch levels to run forecasts for
@@ -127,9 +128,9 @@ catch.levels.dir.names <- c("0",
                             "SPR100",
                             "DefaultHR")
 
-reload.models <- readline(prompt = "Reload all models and data? [y/n] ")
-run.forecasts <- readline(prompt = "Run forecasting for base model (for decision tables)? [y/n] ")
-run.partest <- readline(prompt = "Run partest for base model (re-runs the model for each posterior and takes 10 minutes)? [y/n] ")
+reload.models <- readline(prompt = "Reload all models and data (only necessary first time or if you add new models to the models directory)? [y/n] ")
+run.forecasts <- readline(prompt = "Run forecasting for base model (only necessary first time or if you add answered 'y' to the previous question)? [y/n] ")
+run.partest <- readline(prompt = "Run partest for base model (only necessary first time or if you add answered 'y' to the first question [takes 15 minutes])? [y/n] ")
 
 if(reload.models == "y" | reload.models == "Y"){
   cat("\n\nLoading all models and data...\n\n")

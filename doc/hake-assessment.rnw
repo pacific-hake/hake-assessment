@@ -297,8 +297,8 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 %% <<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=
 %% @
 
-<<executive-summary, child='executive-summary/executive-summary.rnw'>>=
-@
+%% <<executive-summary, child='executive-summary/executive-summary.rnw'>>=
+%% @
 
 %% <<introduction-sec, child='introduction-section/introduction.rnw'>>=
 %% @
@@ -315,10 +315,10 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 %% <<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
 %% @
 
-%% % Keeping track of missing references here; this section will get
-%% %  delted once its empty.
-%% <<missing-refs, child='missing-references/missing-references.rnw'>>=
-%% @
+% Keeping track of missing references here; this section will get
+%  delted once its empty.
+<<missing-refs, child='missing-references/missing-references.rnw'>>=
+@
 
 \clearpage
 
@@ -331,19 +331,18 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 %% %  possibly be due to not having all the references defined yet, so it may
 %% %  get resolved.
 
-%% <<main-tables, child='main-tables/main-tables.rnw'>>=
-%% @
+<<main-tables, child='main-tables/main-tables.rnw'>>=
+@
 
-%% <<main-figures, child='main-figures/main-figures.rnw'>>=
-%% @
+<<main-figures, child='main-figures/main-figures.rnw'>>=
+@
 
 \addtocontents{toc}{\par {\bf \vspace{10mm} APPENDICES} \par}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 
 \begin{appendices}
-% \appendix
-% \renewcommand{\chaptername}{Appendix}
-% \addto\captionsenglish{\renewcommand\chaptername{Appendix}}
+%\appendix
+\renewcommand{\chaptername}{Appendix}
 
 % Tried using appendix package, so may not need these (AME's manual fix),
 %  but either way treats appendices as chapters and formats them differently
