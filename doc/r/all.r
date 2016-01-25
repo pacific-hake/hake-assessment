@@ -77,6 +77,9 @@ survey.end.yr   <- 2013
 last.assess.yr  <- end.yr - 1
 ## current assessment year
 assess.yr       <- end.yr
+## Final year of data
+last.data.yr    <- end.yr - 1
+
 
 ## The forecasting yrs and probs can be set to whatever is required, the
 ## latex/knitr code is set up to automatically accomodate changes
@@ -211,6 +214,10 @@ last.year.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TAC
 last.year.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$ATTAIN), 1)
 last.year.can.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANATTAIN), 1)
 last.year.us.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
+last.year.us.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACUS)
+last.year.can.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACCAN)
+latest.year.can.jv <- max(filter(catches, CAN_JV > 0)$Year)
+
 
 ## New depletion and spawning biomass estimates
 curr.depl.lower <- fmt0(base.model$mcmccalcs$dlower[names(base.model$mcmccalcs$dlower) %in% end.yr] * 100, 1)
@@ -239,3 +246,8 @@ next2.depl.upper.tac.based <- fmt0(fore.tac.mcmc$dupper[names(fore.tac.mcmc$dupp
 next2.bio.lower.tac.based <- fmt0(fore.tac.mcmc$slower[names(fore.tac.mcmc$slower) %in% (end.yr + 2)] * 100, 1)
 next2.bio.median.tac.based <- fmt0(fore.tac.mcmc$smed[names(fore.tac.mcmc$smed) %in% (end.yr + 2)] * 100, 1)
 next2.bio.upper.tac.based <- fmt0(fore.tac.mcmc$supper[names(fore.tac.mcmc$supper) %in% (end.yr + 2)] * 100, 1)
+
+## Vector of 1-10 in words, to use in the command afterwards in introduction.rnw
+numbers.as.words <- c("one", "two", "three", "four", "five", "six", "seven",
+    "eight", "nine", "ten")
+low.catches.since.1996 <- numbers.as.words[length(filter(catches, TOTAL <= 200000, Year > 1986)$Year)]
