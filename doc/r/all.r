@@ -52,6 +52,8 @@ starter.file.name <- "starter.ss"
 forecast.file.name <- "forecast.ss"
 weight.at.age.file.name <- "wtatage.ss"
 
+SSversion <- "3.24U"
+
 ## Index of the base model as found in the directory.
 ## i.e. 00_Modelname is index 1, 01_Modelname is index 2, etc.
 base.model.ind <- 1
