@@ -229,11 +229,15 @@ load("./r/model-partest.RData")
 @
 
 %% Title page and author references page
-% \pagestyle{empty}
+\thispagestyle{empty}
 \title{\TitleFont DRAFT - Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}}
 \author{Joint Technical Committee of the Pacific Hake/Whiting Agreement \\ Between the Governments of the United States and Canada}
 \maketitle
 \newpage
+
+\pagenumbering{roman}
+\lfoot{Pacific Hake stock assessment \Sexpr{assess.yr}} %% Species common name for left footer
+\rfoot{DRAFT - DO NOT CITE} %% The area of the assessment for right footer
 
 %% Authors page
 This document reports the collaborative efforts of the official U.S. and Canadian JTC members.
@@ -266,10 +270,6 @@ This DRAFT document is non-citable.
 
 \newpage
 
-\lfoot{Pacific Hake stock assessment 2016} %% Species common name for left footer
-\rfoot{DRAFT - DO NOT CITE} %% The area of the assessment for right footer
-
-% \pagenumbering{empty}
 \input{preamble}            %% Table of contents, etc.
 % \setcounter{chapter}{0}
 % \setcounter{table}{0}

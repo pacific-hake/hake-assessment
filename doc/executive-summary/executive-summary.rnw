@@ -1,10 +1,6 @@
 %% executive-summary.Rnw
 %% Note some variables are global from the calling file (hake-assessent.Rnw)
 
-%% Need numbering back to Arabic.
-\pagenumbering{arabic}
-\setcounter{page}{1}
-
 \clearpage
 \section*{Executive Summary}
 \phantomsection \addcontentsline{toc}{section}{EXECUTIVE SUMMARY}
