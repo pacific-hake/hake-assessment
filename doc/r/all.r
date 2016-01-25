@@ -97,7 +97,8 @@ catch.levels <- list(rep(0.01, 3),
                      c(804576,682782,547280))
 
 ## The catch as calculated using the default harvest policy. Used in forecasting.
-catch.default.policy <- catch.levels[[length(catch.levels)]]
+catch.default.policy.ind <- length(catch.levels)
+catch.default.policy <- catch.levels[[catch.default.policy.ind]]
 ## Index for the forecasts list, which one above is the TAC case?
 ## This is used in the one-page summary
 catch.tac.ind <- 3
@@ -116,17 +117,18 @@ catch.levels.names <- c("No Fishing",
                         paste0("Default: ",fmt0(catch.default.policy[1])," t"))
 
 ## catch.levels.dir.names is a list of N names for the catch levels given in catch.levels,
-##  to be used as the directory names (OS-naming friendly).
-catch.levels.dir.names <- c("0",
-                            "180000",
-                            "300000",
-                            "350000",
-                            "400000",
-                            "428000",
-                            "500000",
-                            "stableCatch",
-                            "SPR100",
-                            "DefaultHR")
+##  to be used as the directory names (OS-naming friendly). Use prefixed numbers so that
+## the list order is the same as the directory order.
+catch.levels.dir.names <- c("1_0",
+                            "2_180000",
+                            "3_300000",
+                            "4_350000",
+                            "5_400000",
+                            "6_428000",
+                            "7_500000",
+                            "8_stableCatch",
+                            "9_SPR100",
+                            "10_DefaultHR")
 
 reload.models <- readline(prompt = "Reload all models and data (only necessary first time or if you add new models to the models directory)? [y/n] ")
 run.forecasts <- readline(prompt = "Run forecasting for base model (only necessary first time or if you add answered 'y' to the previous question)? [y/n] ")

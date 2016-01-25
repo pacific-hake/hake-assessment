@@ -51,7 +51,6 @@ make.catches.table(catches,
                    space.size = 10)
 @
 
-
 \subsection*{Data and Assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and Assessment}
 The biomass estimate from the acoustic survey conducted in 2015 has been added to the model survey time series. The only other new data included
