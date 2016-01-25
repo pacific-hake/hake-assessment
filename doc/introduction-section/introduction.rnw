@@ -1,5 +1,9 @@
 % main-doc.rnw
 
+%% Need numbering back to Arabic.
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
 \clearpage
 
 % \chapter{Introduction} \label{chap:introduction}
