@@ -45,7 +45,7 @@ make.catches.table(catches,
                    start.yr = 2006,
                    end.yr = 2015,
                    weight.factor = 1000,
-                   xcaption <- "Recent commercial fishery catch (1,000's t). Tribal catches are included where applicable.",
+                   xcaption <- "Recent commercial fishery catch (t). Tribal catches are included where applicable.",
                    xlabel <- "tab:es-catches",
                    font.size = 9,
                    space.size = 10)
