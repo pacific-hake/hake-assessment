@@ -29,17 +29,6 @@ load.catches <- function(fn ## fn is the filename with relative path
   return(list(catches = catches, landings.vs.tac = landings.vs.tac))
 }
 
-## load.landings.tac <- function(fn ## fn is the filename with reletive path
-##                               ){
-##   ## Reads in the landings vs tac file. This is for the management performance section
-##   ## of the executive summary. The table represents coastwide values
-##   landings.vs.tac <- read.csv(fn)
-
-##   ## Add column for proportions
-##   landings.vs.tac <- cbind(landings.vs.tac, landings.vs.tac$landings / landings.vs.tac$tac * 100)
-##   return(landings.vs.tac)
-## }
-
 make.catches.table <- function(catches,              ## The output of the load.catches function above.
                                start.yr,             ## start.yr is the first year to show in the table
                                end.yr,               ## end.yr is the last year to show in the table

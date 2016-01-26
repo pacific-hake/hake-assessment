@@ -322,8 +322,8 @@ This DRAFT document is non-citable.
 <<main-tables, child='main-tables/main-tables.rnw'>>=
 @
 
-<<main-figures, child='main-figures/main-figures.rnw'>>=
-@
+%% <<main-figures, child='main-figures/main-figures.rnw'>>=
+%% @
 
 \addtocontents{toc}{\par {\bf \vspace{10mm} APPENDICES} \par}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}

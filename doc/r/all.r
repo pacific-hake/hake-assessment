@@ -24,9 +24,9 @@ require(r4ss)
 require(xtable)
 require(PBSmapping)
 
-source("catches.r")
+source("catches.r") ## Contains the code to catch/TAC data and figure and table-making code for catch/TAC
 source("load-models.r")
-source("survey.r")
+source("survey.r") ## Contains the code to load survey history data and table-making code for survey
 
 source("figures-timeseries.r")
 source("figures-compare-forecasts.r")
@@ -48,6 +48,8 @@ models.path <- file.path("..","..","models")
 
 catch.data.file <- "Hake_Landings_TAC_History.csv"
 data.file.name <- "2015hake_data.ss"
+survey.history.file <- "survey_history.csv"
+
 control.file.name <- "2015hake_control.ss"
 starter.file.name <- "starter.ss"
 forecast.file.name <- "forecast.ss"
@@ -139,6 +141,7 @@ if(reload.models == "y" | reload.models == "Y"){
   catches <- load.catches(file.path(data.path, catch.data.file))
   landings.vs.tac <- catches[[2]]
   catches <- catches[[1]]
+  survey.history <- load.survey.history(file.path(data.path, survey.history.file))
   models <- load.models(models.path, yr = end.yr)
   cat("\n\nAll models and data have been loaded.\n\n")
 }else{

@@ -14,8 +14,8 @@
 <<catches.US, results='asis', echo=FALSE>>=
 make.catches.table.US(catches, start.yr=start.yr, end.yr=end.yr, 
                    weight.factor=1000,
-                   xcaption <- paste("Annual catches of Pacific Hake (t) in U.S. waters by sector, ", start.yr, "-", end.yr, ". Tribal catches are included in the sector totals.", sep=""),
-                   xlabel <- "tab:intro-catches-US",
+                   xcaption = paste("Annual catches of Pacific Hake (t) in U.S. waters by sector, ", start.yr, "-", end.yr, ". Tribal catches are included in the sector totals.", sep=""),
+                   xlabel = "tab:intro-catches-US",
                    font.size = 11,
                    space.size = 12)
 @
@@ -25,27 +25,36 @@ make.catches.table.US(catches, start.yr=start.yr, end.yr=end.yr,
 <<catches.Can, results='asis', echo=FALSE>>=
 make.catches.table.Can(catches, start.yr=start.yr, end.yr=end.yr, 
                    weight.factor=1000,
-                   xcaption <- paste("Annual catches of Pacific Hake (t) in Canadian  waters by sector, ", start.yr, "-", end.yr, ".", sep=""),
-                   xlabel <- "tab:intro-catches-Can",
+                   xcaption = paste("Annual catches of Pacific Hake (t) in Canadian  waters by sector, ", start.yr, "-", end.yr, ".", sep=""),
+                   xlabel = "tab:intro-catches-Can",
                    font.size = 11,
                    space.size = 12)
 @
 
 <<catches.total, results='asis', echo=FALSE>>=
 make.catches.table.total(catches, start.yr=start.yr, end.yr=end.yr, 
-                   weight.factor=1000,
-                   xcaption <- paste("Total U.S., Canadian and coastwide catches  of Pacific Hake (t) from ", start.yr, "-", end.yr, ". The percentage of the total catch from each country's waters is also given.", sep=""),
-                   xlabel <- "tab:intro-catches-total",
+                   weight.factor = 1000,
+                   xcaption = paste("Total U.S., Canadian and coastwide catches  of Pacific Hake (t) from ", start.yr, "-", end.yr, ". The percentage of the total catch from each country's waters is also given.", sep=""),
+                   xlabel = "tab:intro-catches-total",
                    font.size = 11,
                    space.size = 12)
 @
 
 <<main.landings.tac.table, results='asis', echo=FALSE>>=
 make.landings.tac.table(landings.vs.tac, start.yr=end.yr-10, end.yr=end.yr-1,
-                        xcaption <- "Recent trends in Pacific Hake landings and management decisions.",
-                        xlabel <- "tab:main-landings-tac",
+                        xcaption = "Recent trends in Pacific Hake landings and management decisions.",
+                        xlabel = "tab:main-landings-tac",
                         font.size = 6,
                         space.size = 8)
+@
+
+<<main.survey.history.table, results='asis', echo=FALSE>>=
+make.survey.history.table(survey.history,
+                          digits = 3,
+                          xcaption = paste0("Summary of the acoustic surveys from ", survey.start.yr, " to ", survey.end.yr, "."),
+                          xlabel = "tab:main-survey-history",
+                          font.size = 10,
+                          space.size = 12)
 @
 
 % Tables referenced in data-section.rnw:
