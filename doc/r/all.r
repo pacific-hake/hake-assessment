@@ -142,17 +142,21 @@ reload.models <- readline(prompt = "Reload all models and data (only necessary f
 run.forecasts <- readline(prompt = "Run forecasting for base model (only necessary first time or if you add answered 'y' to the previous question)? [y/n] ")
 run.partest <- readline(prompt = "Run partest for base model (only necessary first time or if you add answered 'y' to the first question [takes 15 minutes])? [y/n] ")
 
+
+cat("\nLoading all data tables (csv files) from ", data.path,"\n")
+catches <- load.catches(file.path(data.path, catch.data.file))
+landings.vs.tac <- catches[[2]]
+catches <- catches[[1]]
+survey.history <- load.survey.history(file.path(data.path, survey.history.file))
+further.tac <- further.tac.details(file.path(data.path, further.tac.file))
+cat("All data tables have been loaded ", data.path,"\n")
+
 if(reload.models == "y" | reload.models == "Y"){
-  cat("\n\nLoading all models and data...\n\n")
-  catches <- load.catches(file.path(data.path, catch.data.file))
-  landings.vs.tac <- catches[[2]]
-  catches <- catches[[1]]
-  survey.history <- load.survey.history(file.path(data.path, survey.history.file))
-  further.tac <- further.tac.details(file.path(data.path, further.tac.file))
+  cat("\n\nLoading all models...\n\n")
   models <- load.models(models.path, yr = end.yr)
-  cat("\n\nAll models and data have been loaded.\n\n")
+  cat("\n\nAll models have been loaded.\n\n")
 }else{
-  cat("\n\nModels and data have NOT been loaded.\n\n")
+  cat("\n\nModels have NOT been loaded.\n\n")
 }
 
 if(run.forecasts == "y" | run.forecasts == "Y"){
