@@ -208,6 +208,7 @@
 ## opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
 ##                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
 ##                results='show', cache=TRUE, cache.path='knitr-cache/')
+rm(list=ls(all=TRUE))
 opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
                fig.height=4, echo=FALSE, results=FALSE, message=FALSE, warning=FALSE,
                results='hide', cache=TRUE, cache.path='knitr-cache/')
