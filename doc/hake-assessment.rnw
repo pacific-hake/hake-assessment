@@ -265,7 +265,7 @@ This DRAFT document is non-citable.
 % This document should be cited as follows: Grandin, C.J., A.C. Hicks, A. Berger, N. Taylor, A.M. Edwards, S. Cox, and I.G. Taylor. 2015.
 % Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}.
 % Prepared by the Joint Technical Committee of the U.S. and Canada Pacific Hake/Whiting Agreement;
-% National Marine Fishery Service; Canada Department of Fisheries and Oceans. *******~p.  
+% National Marine Fishery Service; Canada Department of Fisheries and Oceans. *******~p.
 % Seem to be a lot of semi-colons in there!
 
 \newpage
@@ -288,8 +288,8 @@ This DRAFT document is non-citable.
 <<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=
 @
 
-<<executive-summary, child='executive-summary/executive-summary.rnw'>>=
-@
+%% <<executive-summary, child='executive-summary/executive-summary.rnw'>>=
+%% @
 
 <<introduction-sec, child='introduction-section/introduction.rnw'>>=
 @
@@ -307,14 +307,17 @@ This DRAFT document is non-citable.
 @
 
 <<missing-refs, child='missing-references/missing-references.rnw'>>=
+@
+
+<<missing-refs, child='missing-references/missing-references.rnw'>>=
 @      % Keeping track of missing references, will get deleted once empty.
 
 \clearpage
 
-\addcontentsline{toc}{section}{REFERENCES}   
+\addcontentsline{toc}{section}{REFERENCES}
 \phantomsection \addcontentsline{toc}{subsection}{REFERENCES} %So TOC correct
 \bibliographystyle{resDoc}
-\bibliography{all}                             
+\bibliography{all}
 
 <<main-tables, child='main-tables/main-tables.rnw'>>=
 @

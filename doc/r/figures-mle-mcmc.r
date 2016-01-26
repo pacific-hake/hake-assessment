@@ -1,0 +1,38 @@
+make.mcmc.vs.mle.plot <- function(model, ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
+                                  end.yr,
+                                  subplot = 2, ## Same as subplots argument for SScomparisons
+                                  type = "o"   ## Same as the type argument for SScomparisons
+                                      ){
+  ## Plot the MCMC verses the MLE for given model and subplot
+
+  oldpar <- par()
+
+  mod.list <- list(model, model)
+  mod.summ <- SSsummarize(mod.list)
+  mod.summ$mcmc <- list(model$mcmc, model$mcmc)
+  model.names <- c("MLE","MCMC")
+
+  spacepoints <- 3000
+  if(subplot == 8){
+    type <- "p"
+    spacepoints <- 1
+  }
+
+  par(mfrow = c(1,1), las = 1, mar = c(3.6, 3.6, 1, 1), oma = c(0, 0, 0, 0), mgp = c(2.5, 1, 0))
+  SSplotComparisons(mod.summ,
+                    legendlabels = model.names,
+                    endyr = end.yr,
+                    new = FALSE,
+                    minbthresh = 0,
+                    subplots = subplot,
+                    legend = TRUE,
+                    col = c("red", "black"),
+                    spacepoints = 3000,
+                    shadealpha = 0.1,
+                    btarg = -0.4,
+                    type = type,
+                    mcmc = c(FALSE, TRUE),
+                    legendloc = "topleft")
+  axis(2, at = c(0.1, 0.4), cex.axis = 0.8)
+  par <- oldpar
+}
