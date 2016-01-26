@@ -10,12 +10,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.total.catches, fig.height=8, fig.width=9>>=
-make.catches.plot(catches, leg.y.loc=520) ## leg.y.loc is y-coord to place legend at
+<<main.total.catches, fig.height=6, fig.width=9>>=
+make.catches.plot(catches,
+                  leg.y.loc=450) ## leg.y.loc is y-coord to place legend at
 @
 \end{center}
 %\vspace{0mm}
-\caption{Total Pacific Hake catch used in the assessment by sector, \Sexpr{start.yr} -- \Sexpr{end.yr}. U.S. tribal catches are included in the sectors where they are represented.}
+\caption{Total Pacific Hake catch used in the assessment by sector, \Sexpr{start.yr} -- \Sexpr{end.yr}.
+  U.S. tribal catches are included in the sectors where they are represented.}
 \label{fig:main-catches}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
