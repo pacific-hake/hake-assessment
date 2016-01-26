@@ -40,7 +40,7 @@ make.age.comp.bubble.plot(base.model, subplot = 1)
 \end{center}
 %\vspace{0mm}
 \caption{Age compositions for the acoustic survey (top) and the aggregate fishery (bottom, all sectors combined)
-  for the years \Sexpr{max.fishery.age.prop[1]} -- \Sexpr{max.fishery.age.prop[2]}.
+  for the years \Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}.
   Proportions in each year sum to 1.0 and area of the bubbles are
   proportional to the proportion and consistent in both panels (see key at top).
   The largest bubble in the survey data is \Sexpr{max.survey.age.prop[3]} for age \Sexpr{max.survey.age.prop[5]}
