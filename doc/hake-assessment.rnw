@@ -220,6 +220,7 @@ require(nwfscMapping)
 require(date)
 require(r4ss)
 require(xtable)   ## For tables which can be inserted into latex docs with knitr
+require(dplyr)
 ## Load all R code and the model outputs
 load("./r/.RData")
 ## Load the model-partest which was previously run for the base model.
@@ -322,8 +323,8 @@ This DRAFT document is non-citable.
 <<main-tables, child='main-tables/main-tables.rnw'>>=
 @
 
-%% <<main-figures, child='main-figures/main-figures.rnw'>>=
-%% @
+<<main-figures, child='main-figures/main-figures.rnw'>>=
+@
 
 \addtocontents{toc}{\par {\bf \vspace{10mm} APPENDICES} \par}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}

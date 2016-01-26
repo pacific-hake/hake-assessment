@@ -37,12 +37,15 @@ make.age.comp.bubble.plot <- function(model,                  ## model is an mcm
                                       key.yrs = NULL,         ## Vector of 4 years for locations to put the key if show.key == TRUE
                                       fg = gray(level=0.1, alpha=0.5),
                                       bg = gray(level=0.5, alpha=0.5),
-                                      inches = 0.12
+                                      inches = 0.12,
+                                      do.plot = TRUE          ## If FALSE, no plot will be drawn, but the return values will be returned
                                       ){
   ## Plot the age compositions for whatever subplot is set to
   ## Returns a vector of the start.yr, end.yr, max. proportion,
   ##  year of max. proportion, age of max. proportion.
-  oldpar <- par()
+  if(do.plot){
+    oldpar <- par()
+  }
   if(show.key){
     if(is.null(key.yrs)){
       stop("make.age.comp.bubble.plot: Error - you must supply a key.yrs vector of 4 years when specifying show.key = TRUE.\n")
@@ -51,9 +54,13 @@ make.age.comp.bubble.plot <- function(model,                  ## model is an mcm
         stop("make.age.comp.bubble.plot: Error - key.yrs must be a vector of exactly 4 years when specifying show.key = TRUE.\n")
       }
     }
-    par(mar = c(2.1, 4.1, 3.1, 4.1), cex.axis = 0.9)
+    if(do.plot){
+      par(mar = c(2.1, 4.1, 3.1, 4.1), cex.axis = 0.9)
+    }
   }else{
-    par(mar = c(2.1, 4.1, 1.1, 4.1), cex.axis = 0.9)
+    if(do.plot){
+      par(mar = c(2.1, 4.1, 1.1, 4.1), cex.axis = 0.9)
+    }
   }
   dat <- model$dat$agecomp[model$dat$agecomp$FltSvy == subplot,]
   if(end.yr < start.yr){
@@ -80,31 +87,33 @@ make.age.comp.bubble.plot <- function(model,                  ## model is an mcm
   x <- data.frame(expand.grid(dat$Yr, min.age:max.age),
                   prop = unlist(dat[,ages.str]))
   names(x) <- c("Yr", "Age", "prop")
-  symbols(c(x[,1], -1),
-          c(x[,2], -1),
-          circles = sqrt(c(x[,3], max.prop)),
-          inches = inches,
-          ylim = c(min.age, max.age),
-          xlim = c(start.yr, end.yr),
-          xlab = "",
-          ylab = label,
-          xaxt = "n",
-          fg = fg,
-          bg = bg)
-  if(show.key){
-    symbols(0.2 + c(key.yrs, -1),
-            c(16.2, 16.2, 16.2, 16.2, -1),
-            circles = sqrt(c(0.01, 0.1, 0.2, 0.4, max.prop)),
+  if(do.plot){
+    symbols(c(x[,1], -1),
+            c(x[,2], -1),
+            circles = sqrt(c(x[,3], max.prop)),
             inches = inches,
-            add = TRUE,
-            xpd = NA,
+            ylim = c(min.age, max.age),
+            xlim = c(start.yr, end.yr),
+            xlab = "",
+            ylab = label,
+            xaxt = "n",
             fg = fg,
             bg = bg)
-    text(key.yrs + 1.9, c(16.2,16.2,16.2,16.2), c("0.01", "0.1", "0.2", "0.4"), xpd = NA, cex = 0.8)
+    if(show.key){
+      symbols(0.2 + c(key.yrs, -1),
+              c(16.2, 16.2, 16.2, 16.2, -1),
+              circles = sqrt(c(0.01, 0.1, 0.2, 0.4, max.prop)),
+              inches = inches,
+              add = TRUE,
+              xpd = NA,
+              fg = fg,
+              bg = bg)
+      text(key.yrs + 1.9, c(16.2,16.2,16.2,16.2), c("0.01", "0.1", "0.2", "0.4"), xpd = NA, cex = 0.8)
+    }
+    axis(1, seq(start.yr, end.yr + 5, 5))
+    axis(4)
+    par <- oldpar
   }
-  axis(1, seq(start.yr, end.yr + 5, 5))
-  axis(4)
-  par <- oldpar
   ret.vec <- c(start.yr, end.yr, max.prop, which.max.prop)
   names(ret.vec) <- c("start.yr", "end.yr", "max.prop", "max.prop.yr", "max.prop.age")
   return(ret.vec)

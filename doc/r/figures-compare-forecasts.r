@@ -1,19 +1,17 @@
 make.forecast.catch.posterior.plot <- function(model,        ## model is the model for which mcmc runs with different forecasts
                                                              ## has been made
-                                               fore.yr,      ## Forecast year to make the plot with
-                                               index         ## Index of the forecast to plot. See catch.default.policy.ind in all.r
+                                               fore.yr       ## Forecast year to make the plot with
                                                ){
   oldpar <- par()
-  dat <- model$forecasts$outputs[[index]]
+  dat <- model$mcmc
   dat <- eval(parse(text = paste0("dat$ForeCatch_", fore.yr))) / 1000.0
-  browser()
+  med.catch <- median(dat)
   dens <- density(dat, from = min(dat))
   dens.orig <- dens
-  ## origy <- y <- density(model$mcmc$ForeCatch_2015/1000, from=min(base$mcmc$ForeCatch_2015/1000))
 
   plot(dens,
        yaxt = "n",
-       ylab = "Density",
+       ylab = "",
        xlab = paste0("Projected ",fore.yr," catch based on the default harvest policy ('000 t)"),
        type = "l",
        lty = 1,
@@ -36,9 +34,9 @@ make.forecast.catch.posterior.plot <- function(model,        ## model is the mod
   yy$y <- c(-1, dens$y, -1)
   polygon(yy$x, yy$y, col = rgb(0, 0, 1, 0.3), lty = 0)
   lines(dens.orig, lwd = 3)
-  tmpy <- dens$y[min(abs(dens$x - medCatch)) == abs(dens$x - medCatch)]
-  lines(c(medCatch, medCatch), c(0, tmpy), lwd = 2)
-  text(medCatch, mean(c(0, tmpy)), paste0("Median", round(medCatch,3)), srt = 90, adj = c(0.5, -0.5))
+  tmpy <- dens$y[min(abs(dens$x - med.catch)) == abs(dens$x - med.catch)]
+  lines(c(med.catch, med.catch), c(0, tmpy), lwd = 2)
+  text(med.catch, mean(c(0, tmpy)), paste0("Median = ", round(med.catch,3)), srt = 90, adj = c(0.5, -0.5))
   box()
   par <- oldpar
 }

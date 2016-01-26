@@ -76,6 +76,8 @@ load.models <- function(models.dir = file.path("..","..","models"),
         tryCatch({
           model.list[[nm]]$mcmc <- data.frame(SSgetMCMC(dir=mcmc.dir, writecsv=FALSE, verbose = verbose)$model1)
           model.list[[nm]]$mcmcpath <- mcmc.dir
+          model.list[[nm]]$mcmckey <- read.csv(file.path(mcmc.dir, "keyposteriors.csv"))
+          model.list[[nm]]$mcmcnuc <- read.csv(file.path(mcmc.dir, "nuisanceposteriors.csv"))
           ## Do the mcmc calculations, e.g. quantiles for SB, SPB, DEPL, RECR, RECRDEVS
           model.list[[nm]]$mcmccalcs <- calc.mcmc(model.list[[nm]]$mcmc)
         }, warning = function(war){
