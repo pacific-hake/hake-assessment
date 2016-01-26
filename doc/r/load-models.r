@@ -219,8 +219,6 @@ calc.forecast <- function(mcmc,                ## The output of the SS_getMCMC f
     shell.command <- paste0("cd ", new.forecast.dir, " & ss3 -mceval")
     shell(shell.command)
     mcmc.out <- SSgetMCMC(dir=new.forecast.dir, writecsv=FALSE)$model1
-    ## Save the outputs to the return list
-    outputs.list[[level.ind]] <- mcmc.out
 
     ## Get the values of interest, namely Spawning biomass and SPR for the two
     ## decision tables in the executive summary
@@ -239,9 +237,12 @@ calc.forecast <- function(mcmc,                ## The output of the SS_getMCMC f
     biomass.list[[level.ind]] <- t(apply(sb.proj.cols, 2, quantile, probs=probs))
     spr.list[[level.ind]] <- t(apply(spr.proj.cols, 2, quantile, probs=probs))
     mcmccalcs.list[[level.ind]] <- calc.mcmc(mcmc.out)
+    outputs.list[[level.ind]] <- mcmc.out
   }
   names(biomass.list) <- catch.levels.names
   names(spr.list) <- catch.levels.names
+  names(mcmccalcs.list) <- catch.levels.names
+  names(outputs.list) <- catch.levels.names
 
   return(list(biomass.list,
               spr.list,

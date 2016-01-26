@@ -1,10 +1,6 @@
 %% executive-summary.Rnw
 %% Note some variables are global from the calling file (hake-assessent.Rnw)
 
-%% Need numbering back to Arabic.
-\pagenumbering{arabic}
-\setcounter{page}{1}
-
 \clearpage
 \section*{Executive Summary}
 \phantomsection \addcontentsline{toc}{section}{EXECUTIVE SUMMARY}
@@ -20,7 +16,7 @@ This assessment reports the status of the coastal \fishname\ (or \commonname, \e
 
 
 \subsection*{Catches} \label{sec:es-catches}
-\phantomsection  \addcontentsline{toc}{subsection}{Catches} 
+\phantomsection  \addcontentsline{toc}{subsection}{Catches}
 Coast-wide fishery \fishname\ landings averaged \Sexpr{fmt0(mean(catches$TOTAL))} t from \Sexpr{min(catches$Year)} to \Sexpr{max(catches$Year)}, with a low of \Sexpr{fmt0(min(catches$TOTAL))} t in \Sexpr{catches$Year[catches$TOTAL==min(catches$TOTAL)]} and a peak of \Sexpr{fmt0(max(catches$TOTAL))} t in \Sexpr{catches$Year[catches$TOTAL==max(catches$TOTAL)]}. Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to the modern fishery. Over the early period, \Sexpr{min(catches$Year)}--1990, most removals were from foreign or joint-venture fisheries. Over all years, the fishery in U.S. waters averaged \Sexpr{fmt0(mean(catches$Ustotal))} t, or \Sexpr{round(100*mean(catches$Ustotal)/mean(catches$TOTAL),1)}\% of the average total landings, while catch from Canadian waters averaged \Sexpr{fmt0(mean(catches$CANtotal))} t.  Over the last 10 years, \Sexpr{max(catches$Year)-9}--\Sexpr{max(catches$Year)}, the total average catch is \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$TOTAL))} with U.S. and Canadian catches averaging \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$Ustotal))} t and \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$CANtotal))} t, respectively.
 
 In this stock assessment, the terms catch and landings are used interchangeably. Estimates of discard within the target fishery
@@ -54,7 +50,6 @@ make.catches.table(catches,
                    font.size = 9,
                    space.size = 10)
 @
-
 
 \subsection*{Data and Assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and Assessment}
@@ -160,7 +155,7 @@ make.depletion.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 
-\subsection*{Recruitment} \label{sec:es-recruitment} 
+\subsection*{Recruitment} \label{sec:es-recruitment}
 \phantomsection \addcontentsline{toc}{subsection}{Recruitment}
 The new data available for this assessment do not significantly change the estimated patterns of recruitment. \fishname\ appear
 to have low average recruitment with occasional large year-classes. Very large year classes in 1980, 1984, and 1999 supported much

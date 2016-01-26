@@ -4,7 +4,9 @@
 
 \documentclass[12pt]{book}
 \usepackage{hake}
-\usepackage[titletoc,title]{appendix}   % title gives 'Appendix A', not just 'A', but doesn't seem to work.
+\usepackage[titletoc,title]{appendix}   % title gives 'Appendix A', not 
+    % just 'A', but doesn't seem to work, may need article class, 
+    % but need to see appendix manual.
 
 \usepackage{cite}
 %% need array when specifying a ragged right column:  >{\raggedright\arraybackslash}{p2in}.
@@ -128,19 +130,6 @@
 	\end{figure}
         }
 
-\newcommand\pbsfig[5]{    % #1=filename, #2=main caption, #3=figure height, #4=short caption, #5=directory
-	\begin{figure}[tp] %[htbp]  Rowan had ht!
-	\centering
-	\includegraphics[width=6.5in,height=#3in,keepaspectratio=TRUE]{#5#1.eps}
-	%% source: http://xelatex.blogspot.ca/2008/03/newcommand-with-optional-argument.html
-	\ifthenelse{\isempty{#4}}
-		{\caption[#2]{#2}\vspace{-2ex}}
-		{\caption[#4]{#2}\vspace{-2ex}}
-	\label{fig:#1}
-	\end{figure}
-	%\clearpage
-}
-
 
 % http://tex.stackexchange.com/questions/25249/how-do-i-use-a-particular-font-for-a-small-section-of-text-in-my-document  :
 \newenvironment{codefont}{\fontfamily{pcr}\selectfont}{\par}
@@ -192,18 +181,14 @@
 %% Headers and footers
 \lhead{}
 \rhead{}
-\lfoot{Pacific Hake stock assessment 2016} %% Species common name for left footer
-\rfoot{DRAFT - DO NOT CITE} %% The area of the assessment for right footer
+% \lfoot{Pacific Hake stock assessment 2016} %% Species common name for left footer
+% \rfoot{DRAFT - DO NOT CITE} %% The area of the assessment for right footer
 %% \rfoot{WP 2012/P02a}     %% Change to appendix number for appendices
                             %% Will probably delete footers in main text
                             %%  for final Res Doc.
 
 %% \linenumbers             %% Uncomment to add in line numbers
 %% \modulolinenumbers[5]    %% just number every 5th line
-%% \def\AppLet{F}           %% Appendix letter - we had this
-                            %%  to number equations in Appendix
-                            %%  F as (F.17) etc.
-%% \def\StartP{102}         %% page start
 
 \begin{document}
 
@@ -244,15 +229,20 @@ load("./r/model-partest.RData")
 @
 
 %% Title page and author references page
+\thispagestyle{empty}
 \title{\TitleFont DRAFT - Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}}
 \author{Joint Technical Committee of the Pacific Hake/Whiting Agreement \\ Between the Governments of the United States and Canada}
 \maketitle
 \newpage
 
+\pagenumbering{roman}
+\lfoot{Pacific Hake stock assessment \Sexpr{assess.yr}} %% Species common name for left footer
+\rfoot{DRAFT - DO NOT CITE} %% The area of the assessment for right footer
+
 %% Authors page
 This document reports the collaborative efforts of the official U.S. and Canadian JTC members.
 
-Authors of this document are (In no particular order): \\
+Authors of this document are (in no particular order): \\
 \hspace{4ex}Chris J. Grandin\supscr{2} \\
 \hspace{4ex}Allan C. Hicks\supscr{1} \\
 \hspace{4ex}Aaron Berger\supscr{1} \\
@@ -270,10 +260,14 @@ Authors of this document are (In no particular order): \\
 
 \emph{\supscr{3}School of Resource and Environmental Management, Simon Fraser University, TASC I -- Room \#8405, 8888 University Drive, Burnaby, B.C. V5A-1S6, Canada}
 
-This document should be cited as follows: Taylor, I.G., C. Grandin, A.C. Hicks, N. Taylor, and S. Cox. 2015.
-Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}.
-Prepared by the Joint Technical Committee of the U.S. and Canada Pacific Hake/Whiting Agreement;
-National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~p.
+This DRAFT document is non-citable.
+% Once finalised, uncomment these:
+% This document should be cited as follows: Grandin, C.J., A.C. Hicks, A. Berger, N. Taylor, A.M. Edwards, S. Cox, and I.G. Taylor. 2015.
+% Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}.
+% Prepared by the Joint Technical Committee of the U.S. and Canada Pacific Hake/Whiting Agreement;
+% National Marine Fishery Service; Canada Department of Fisheries and Oceans. *******~p.
+% Seem to be a lot of semi-colons in there!
+
 \newpage
 
 \input{preamble}            %% Table of contents, etc.
@@ -282,95 +276,100 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 159~
 % \setcounter{figure}{0}
 \setcounter{secnumdepth}{5} %% To number subsubheadings-ish
 
-%% To number sections, tables etc. as 1, 2, 3, not 1.1 etc. (where
-%%  the first 1 would be chapter number).
-\renewcommand{\thesection}{\arabic{section}}
-\renewcommand{\thetable}{\arabic{table}}
-\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\thesection}{\arabic{section}} % To number as 1,2,3 not 1.1
+\renewcommand{\thetable}{\arabic{table}}     %  where first 1 would be chapter
+\renewcommand{\thefigure}{\arabic{figure}}   %  number.
 \renewcommand{\theequation}{\arabic{equation}}
 
-% To get the References labelled as a numbered section
-\renewcommand{\bibsection}{\section{REFERENCES}}
+\renewcommand{\bibsection}{\section{REFERENCES}} %References as numbered section
 
-%%\subtitle{Joint Technical Committee of the Pacific Hake/Whiting Agreement Between the Governments of the United States and Canada}
 
-%% <<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=
-%% @
-
-<<executive-summary, child='executive-summary/executive-summary.rnw'>>=
+%% Comment out any un-needed sections from here onwards:
+<<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=
 @
 
-%% <<introduction-sec, child='introduction-section/introduction.rnw'>>=
+%% <<executive-summary, child='executive-summary/executive-summary.rnw'>>=
 %% @
 
-%% <<data-sec, child='data-section/data.rnw'>>=
-%% @
+<<introduction-sec, child='introduction-section/introduction.rnw'>>=
+@
 
-%% <<assessment-sec, child='assessment-section/assessment-section.rnw'>>=
-%% @
+<<data-sec, child='data-section/data.rnw'>>=
+@
 
-%% <<research-sec, child='research-section/research.rnw'>>=
-%% @
+<<assessment-sec, child='assessment-section/assessment-section.rnw'>>=
+@
 
-%% <<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
-%% @
+<<research-sec, child='research-section/research.rnw'>>=
+@
 
-%% % Keeping track of missing references here; this section will get
-%% %  delted once its empty.
-%% <<missing-refs, child='missing-references/missing-references.rnw'>>=
-%% @
+<<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
+@
+
+<<missing-refs, child='missing-references/missing-references.rnw'>>=
+@
+
+<<missing-refs, child='missing-references/missing-references.rnw'>>=
+@      % Keeping track of missing references, will get deleted once empty.
 
 \clearpage
 
-%% \addcontentsline{toc}{section}{REFERENCES}   % May get page number wrong
- % \phantomsection \addcontentsline{toc}{subsection}{REFERENCES} %sorted above
+\addcontentsline{toc}{section}{REFERENCES}
+\phantomsection \addcontentsline{toc}{subsection}{REFERENCES} %So TOC correct
 \bibliographystyle{resDoc}
-\bibliography{all}                             %  if starting a new page
+\bibliography{all}
 
-%% % Have a spurious blank page before tables, need to get rid of. Think it may
-%% %  possibly be due to not having all the references defined yet, so it may
-%% %  get resolved.
+<<main-tables, child='main-tables/main-tables.rnw'>>=
+@
 
-%% <<main-tables, child='main-tables/main-tables.rnw'>>=
-%% @
-
-%% <<main-figures, child='main-figures/main-figures.rnw'>>=
-%% @
+<<main-figures, child='main-figures/main-figures.rnw'>>=
+@
 
 \addtocontents{toc}{\par {\bf \vspace{10mm} APPENDICES} \par}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 
 \begin{appendices}
-% \appendix
-% \renewcommand{\chaptername}{Appendix}
-% \addto\captionsenglish{\renewcommand\chaptername{Appendix}}
 
-% Tried using appendix package, so may not need these (AME's manual fix),
-%  but either way treats appendices as chapters and formats them differently
-%  to sections in the Table of Contents (bold and no dots). Could try and fix
-%  if needed and if time.
-
-%% Now want to number sections, tables etc. as A.1, A.2, etc.
-%% Thought these wouldn't be with the appendix package, as
-%%  automatic, but may need them even if use \begin{appendices}:
 \renewcommand{\thesection}{\thechapter.\arabic{section}}
 \renewcommand{\thetable}{\thechapter.\arabic{table}}
 \renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 \renewcommand{\theequation}{\thechapter.\arabic{equation}}
 
-% \lfoot{\cname}   % Add this in to have Appendix A etc. as the left footer.
-
 <<appendix-glossary, child='appendix-glossary/appendix-glossary.rnw'>>=
 @
 
-%% % All the code to import the SS code for the appendices are in one file since
-%% %  the code is so short:
 <<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
-@
+@     % one .rnw file for all four SS code appendices, since .rnw code is short.
 
 \end{appendices}
+
+\end{document}
+
+%% AME moving extra notes to here:
 
 %% Used when you need to insert outside documents:
 %% \setcounter{page}{68}
 
-\end{document}
+%% % Have a spurious blank page before tables, need to get rid of. Think it may
+%% %  possibly be due to not having all the references defined yet, so it may
+%% %  get resolved.
+
+% Tried using appendix package, so may not need AME's manual \renumbering of
+%  sections etc., but it seems to work. Either way it treats appendices
+%  as chapters and formats them differently to sections in the Table of 
+%  Contents (bold and no dots). Could try and fix if needed and if time.
+
+%% Now want to number sections, tables etc. as A.1, A.2, etc.
+%% Thought these wouldn't be with the appendix package, as
+%%  automatic, but may need them even if use \begin{appendices}:
+
+% \lfoot{\cname}   % Add this in to have Appendix A etc. as the left footer.
+
+% Appendices:
+%\addto\captionsenglish{\renewcommand\chaptername{Appendix}} - supposed to 
+%  add 'Appendix' to Appendix title, but didn't seem to work, nor did:
+% \renewcommand{\chaptername}{Appendix}       % after \begin{appendices} 
+
+% What AME used to use (before appendix package) to change the numbering in
+%  appendices. May be automatic now, but not needed
+
