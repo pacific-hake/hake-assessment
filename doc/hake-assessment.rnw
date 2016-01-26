@@ -276,11 +276,11 @@ This DRAFT document is non-citable.
 % \setcounter{figure}{0}
 \setcounter{secnumdepth}{5} %% To number subsubheadings-ish
 
+\renewcommand{\thetable}{\alph{table}}       % Exec summary number Tables a,b,c.
+\renewcommand{\thefigure}{\alph{figure}}
 \renewcommand{\thesection}{\arabic{section}} % To number as 1,2,3 not 1.1
-\renewcommand{\thetable}{\arabic{table}}     %  where first 1 would be chapter
-\renewcommand{\thefigure}{\arabic{figure}}   %  number.
-\renewcommand{\theequation}{\arabic{equation}}
-
+\renewcommand{\theequation}{\arabic{equation}} % where first 1 would be chapter
+                                               % number
 \renewcommand{\bibsection}{\section{REFERENCES}} %References as numbered section
 
 
@@ -290,6 +290,11 @@ This DRAFT document is non-citable.
 
 <<executive-summary, child='executive-summary/executive-summary.rnw'>>=
 @
+
+\renewcommand{\thetable}{\arabic{table}}    % Now number Tables 1,2,3,...
+\renewcommand{\thefigure}{\arabic{figure}} 
+\setcounter{table}{0}
+\setcounter{figure}{0}
 
 <<introduction-sec, child='introduction-section/introduction.rnw'>>=
 @
@@ -304,9 +309,6 @@ This DRAFT document is non-citable.
 @
 
 <<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
-@
-
-<<missing-refs, child='missing-references/missing-references.rnw'>>=
 @
 
 <<missing-refs, child='missing-references/missing-references.rnw'>>=
