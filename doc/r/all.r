@@ -48,6 +48,7 @@ data.path <- file.path("..","..","data")
 models.path <- file.path("..","..","models")
 
 catch.data.file <- "Hake_Landings_TAC_History.csv"
+further.tac.file <- "Further_TAC_details.csv"
 data.file.name <- "2015hake_data.ss"
 control.file.name <- "2015hake_control.ss"
 starter.file.name <- "starter.ss"
@@ -141,6 +142,7 @@ if(reload.models == "y" | reload.models == "Y"){
   catches <- load.catches(file.path(data.path, catch.data.file))
   landings.vs.tac <- catches[[2]]
   catches <- catches[[1]]
+  further.tac <- further.tac.details(file.path(data.path, further.tac.file))
   models <- load.models(models.path, yr = end.yr)
   cat("\n\nAll models and data have been loaded.\n\n")
 }else{
@@ -214,9 +216,20 @@ last.year.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TAC
 last.year.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$ATTAIN), 1)
 last.year.can.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANATTAIN), 1)
 last.year.us.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
-last.year.us.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACUS)
+last.year.us.not.attained <- fmt0(as.numeric(100 - landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
+last.year.us.not.attained.tonnes <- filter(landings.vs.tac, Year == last.data.yr)$TACUSA - filter(landings.vs.tac, Year == last.data.yr)$Ustotal
+last.year.us.tac <- landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACUS
+   # Not doing fmt0 here since want to do further calculations
 last.year.can.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACCAN)
 latest.year.can.jv <- max(filter(catches, CAN_JV > 0)$Year)
+last.year.us.non.tribal <- last.year.us.tac * (1-0.175) - 1500
+last.year.us.tribal.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.tribal.quota.reallocated
+last.year.us.tribal.reallocate.dates <- filter(further.tac, Year == last.data.yr)$us.tribal.reallocate.dates
+last.year.us.tribal.max.landed <- filter(further.tac, Year == last.data.yr)$us.tribal.max.landed
+
+
+
+
 
 
 ## New depletion and spawning biomass estimates

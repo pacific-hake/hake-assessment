@@ -236,3 +236,10 @@ years.Can.JV.catch.eq.0 <- function(catches,          ## The output of the load.
   years.Can.JV.catch.eq.0.recent <- years.Can.JV.catch.eq.0[ years.Can.JV.catch.eq.0 > 1999]
   return(years.Can.JV.catch.eq.0.recent)
 }
+
+further.tac.details <- function(fn){
+                                ## fn is the filename with relative path
+  ## Reads in the further.tac.details file and returns it as a data.frame
+  further.tac <- read.csv(fn, header=TRUE, sep=",", comment.char="#")
+  return(further.tac)
+}
