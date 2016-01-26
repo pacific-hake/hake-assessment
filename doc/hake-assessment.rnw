@@ -318,8 +318,6 @@ This DRAFT document is non-citable.
 
 \clearpage
 
-\addcontentsline{toc}{section}{REFERENCES}
-\phantomsection \addcontentsline{toc}{subsection}{REFERENCES} %So TOC correct
 \bibliographystyle{resDoc}
 \bibliography{all}
 
