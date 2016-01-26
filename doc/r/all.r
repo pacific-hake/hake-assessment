@@ -153,7 +153,16 @@ catch.levels.dir.names <- c("1_0",
                             "9_SPR100",
                             "10_DefaultHR")
 
-reload.models <- readline(prompt = "Reload all models (only necessary first time or if you add new models to the models directory)? [y/n] ")
+reload.models <- readline(prompt = "Reload models (only necessary first time or if you add new models to the models directory)? [y/n] ")
+if(reload.models == "y" | reload.models == "Y"){
+  smart.load <- readline(prompt = "   Use smart load (will only reload newly-added models, thus keeping any forecasting done previously) ? [y/n] ")
+  if(smart.load != "y" & smart.load != "Y"){
+    sure <- readline(prompt = "      Are you sure (your entire models list will be deleted and re-populated) ? [y/n] ")
+    if(sure != "y" & sure != "Y"){
+      stop("I'm stopping because you aren't sure. Re-source to try again.\n\n")
+    }
+  }
+}
 run.forecasts <- readline(prompt = "Run forecasting for base model (only necessary first time or if you add answered 'y' to the previous question [takes 10 minutes])? [y/n] ")
 run.partest <- readline(prompt = "Run partest for base model (only necessary first time or if you add answered 'y' to the first question [takes 15 minutes])? [y/n] ")
 
@@ -166,8 +175,16 @@ further.tac <- further.tac.details(file.path(data.path, further.tac.file))
 cat("All data tables have been loaded ", data.path,"\n")
 
 if(reload.models == "y" | reload.models == "Y"){
-  cat("\n\nLoading all models...\n\n")
-  models <- load.models(models.path, yr = end.yr)
+  cat("\n\nLoading models...\n\n")
+  if(!exists("models")){
+    models <- NULL
+  }
+  if(smart.load == "y" | smart.load == "Y"){
+    smart.load <- TRUE
+  }else{
+    smart.load <- FALSE
+  }
+  models <- load.models(models.path, yr = end.yr, smart.load = smart.load, model.list = models)
   cat("\n\nAll models have been loaded.\n\n")
 }else{
   cat("\n\nModels have NOT been loaded.\n\n")

@@ -1,5 +1,11 @@
 load.models <- function(models.dir = file.path("..","..","models"),
-                        yr,  ## The year to calculate mcmc values for. Should be the last year in the time series (without projections).
+                        yr,          ## The year to calculate mcmc values for. Should be the last year in the time series (without projections).
+                        smart.load,  ## If TRUE, load only new models, keeping the models list intact, but with new models added on the end.
+                                     ##  This allows you to keep any forecasting already done in the previous models, saving a lot of time
+                                     ## If FALSE, the models list will be completely wiped out, and all models will be reloaded from disk.
+                                     ##  This would require a re-running of the forecasting.
+                        model.list,  ## If not NULL and smart.load is TRUE, this is the models list to be appended to.
+                                     ##  If NULL and smart.load is FALSE, the models list will be built from scratch.
                         verbose = TRUE
                         ){
   ## Load all models and their dat files into a list
@@ -15,62 +21,72 @@ load.models <- function(models.dir = file.path("..","..","models"),
   ## something wrong with it. The catch.proj member will be NULL if catch.levels was NULL
   ## or a list of the same length as the number of catch levels input into this function.
 
+  if(smart.load & is.null(model.list)){
+    cat("load.models: Warning - you specified to use smart loading but the models list is empty. Continuing with loading all models...\n")
+    smart.load <- FALSE
+  }
   models.names <- file.path(models.dir, dir(models.dir))
-  model.list <- NULL
+  if(smart.load){
+    curr.model.names <- sapply(model.list[1:length(model.list)], "[[", "path")
+    which.loaded <- models.names %in% curr.model.names
+  }else{
+    which.loaded <- rep(FALSE, length(models.names))
+  }
 
   for(nm in 1:length(models.names)){
-    ## Load the model in the order in which is is listed
-    tryCatch({
-      model.list[[nm]] <- SS_output(dir=models.names[nm], verbose = verbose)
-    }, warning = function(war){
-      cat("load.models: Warning - warning loading model ", models.names[nm],". Warning was: ", war$message,". Continuing...\n")
-    }, error = function(err){
-      cat("load.models: Error - error loading model ", models.names[nm],". Error was: ", err$message,". Stopping...\n")
-      stop("load.models: Check model outputs and re-run.")
-    })
-
-    ## Load the data file for the model
-    ## Get the file whose name contains "_data.ss"
-    ## If there is not exactly one, stop with error.
-    model.dir.listing <- dir(models.names[nm])
-    fn.ind <- grep("_data.ss", model.dir.listing)
-    if(!length(fn.ind)){
-      stop("load.models: Error in model ",models.names[nm],
-           ", there is no data file. A data file is anything followed and ending in _data.ss.\n")
-    }
-    if(length(fn.ind) > 1){
-      stop("load.models: Error in model ",models.names[nm],
-           ", there is more than one data file. A data file is anything followed and ending in _data.ss. Check and make sure there is only one.\n")
-    }
-    fn <- file.path(models.names[nm], model.dir.listing[fn.ind])
-    tryCatch({
-      model.list[[nm]]$path <- models.names[nm]
-      model.list[[nm]]$dat <- SS_readdat(fn)
-    }, warning = function(war){
-      cat("load.models: Warning while loading the dat file '",fn,
-          "' for model scenario ", models.names[nm],". Warning was: ", war$message,". Continuing...\n")
-    }, error = function(err){
-      cat("load.models: Error while loading the dat file '",fn,
-          "' for model scenario ", models.names[nm],". Error was: ", err$message,". Stopping...\n")
-      stop("load.models: Check model outputs and re-run.")
-    })
-
-    ## If it has an 'mcmc' sub-directory, load that as well
-    mcmc.dir <- file.path(models.names[nm], "mcmc")
-    if(dir.exists(mcmc.dir)){
+    if(!smart.load | (smart.load & !which.loaded[nm])){
       tryCatch({
-        model.list[[nm]]$mcmc <- data.frame(SSgetMCMC(dir=mcmc.dir, writecsv=FALSE, verbose = verbose)$model1)
-        model.list[[nm]]$mcmcpath <- mcmc.dir
-        ## Do the mcmc calculations, e.g. quantiles for SB, SPB, DEPL, RECR, RECRDEVS
-        model.list[[nm]]$mcmccalcs <- calc.mcmc(model.list[[nm]]$mcmc)
+        model.list[[nm]] <- SS_output(dir=models.names[nm], verbose = verbose)
       }, warning = function(war){
-        cat("load.models: Warning while loading the MCMC model ", mcmc.dir,". Warning was: ", war$message,". Continuing...\n")
+        cat("load.models: Warning - warning loading model ", models.names[nm],". Warning was: ", war$message,". Continuing...\n")
       }, error = function(err){
-        cat("load.models: Error while loading the MCMC model ", mcmc.dir,". Error was: ", err$message,". Continuing...\n")
-        model.list[[nm]]$mcmc <- NULL
+        cat("load.models: Error - error loading model ", models.names[nm],". Error was: ", err$message,". Stopping...\n")
+        stop("load.models: Check model outputs and re-run.")
       })
-    }else{
-      model.list[[nm]]$mcmc <- NULL
+
+      ## Load the data file for the model
+      ## Get the file whose name contains "_data.ss"
+      ## If there is not exactly one, stop with error.
+      model.dir.listing <- dir(models.names[nm])
+      fn.ind <- grep("_data.ss", model.dir.listing)
+      if(!length(fn.ind)){
+        stop("load.models: Error in model ",models.names[nm],
+             ", there is no data file. A data file is anything followed and ending in _data.ss.\n")
+      }
+      if(length(fn.ind) > 1){
+        stop("load.models: Error in model ",models.names[nm],
+             ", there is more than one data file. A data file is anything followed and ending in _data.ss. Check and make sure there is only one.\n")
+      }
+      fn <- file.path(models.names[nm], model.dir.listing[fn.ind])
+      tryCatch({
+        model.list[[nm]]$path <- models.names[nm]
+        model.list[[nm]]$dat <- SS_readdat(fn)
+      }, warning = function(war){
+        cat("load.models: Warning while loading the dat file '",fn,
+            "' for model scenario ", models.names[nm],". Warning was: ", war$message,". Continuing...\n")
+      }, error = function(err){
+        cat("load.models: Error while loading the dat file '",fn,
+            "' for model scenario ", models.names[nm],". Error was: ", err$message,". Stopping...\n")
+        stop("load.models: Check model outputs and re-run.")
+      })
+
+      ## If it has an 'mcmc' sub-directory, load that as well
+      mcmc.dir <- file.path(models.names[nm], "mcmc")
+      if(dir.exists(mcmc.dir)){
+        tryCatch({
+          model.list[[nm]]$mcmc <- data.frame(SSgetMCMC(dir=mcmc.dir, writecsv=FALSE, verbose = verbose)$model1)
+          model.list[[nm]]$mcmcpath <- mcmc.dir
+          ## Do the mcmc calculations, e.g. quantiles for SB, SPB, DEPL, RECR, RECRDEVS
+          model.list[[nm]]$mcmccalcs <- calc.mcmc(model.list[[nm]]$mcmc)
+        }, warning = function(war){
+          cat("load.models: Warning while loading the MCMC model ", mcmc.dir,". Warning was: ", war$message,". Continuing...\n")
+        }, error = function(err){
+          cat("load.models: Error while loading the MCMC model ", mcmc.dir,". Error was: ", err$message,". Continuing...\n")
+          model.list[[nm]]$mcmc <- NULL
+        })
+      }else{
+        model.list[[nm]]$mcmc <- NULL
+      }
     }
   }
   return(model.list)
