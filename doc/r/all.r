@@ -33,6 +33,7 @@ install.packages.if.needed("r4ss", "r4ss/r4ss", github=TRUE)
 install.packages.if.needed("xtable", "xtable", github=FALSE)
 install.packages.if.needed("PBSmapping", "PBSmapping", github=FALSE)
 install.packages.if.needed("dplyr", "dplyr", github = FALSE)
+## install.packages.if.needed("gtools", "gtools", github = FALSE)
 
 require(nwfscSurvey)
 require(nwfscMapping)
@@ -41,6 +42,7 @@ require(r4ss)
 require(xtable)
 require(PBSmapping)
 require(dplyr)
+## require(gtools)
 
 source("catches.r") ## Contains the code to catch/TAC data and figure and table-making code for catch/TAC
 source("load-models.r")
@@ -311,5 +313,14 @@ numbers.as.words <- c("one", "two", "three", "four", "five", "six", "seven",
     "eight", "nine", "ten")
 low.catches.since.1996 <- numbers.as.words[length(filter(catches, TOTAL <= 200000, Year > 1986)$Year)]
 
-## Age composition years for data section
+## Age composition data for data section
 survey.age.years <- base.model$dat$agecomp[base.model$dat$agecomp$FltSvy == 2,]$Yr
+max.survey.age.prop <- make.age.comp.bubble.plot(base.model,
+                                                 subplot = 2,
+                                                 show.key = TRUE,
+                                                 start.yr = 1975,
+                                                 key.yrs = c(1990, 1994, 1998, 2002),
+                                                 do.plot = FALSE)
+max.fishery.age.prop <- make.age.comp.bubble.plot(base.model,
+                                                  subplot = 1,
+                                                  do.plot = FALSE)
