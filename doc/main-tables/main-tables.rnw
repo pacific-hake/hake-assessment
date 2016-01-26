@@ -68,5 +68,13 @@ make.median.posterior.table(base.model,
                             space.size = 10)
 @
 
-
-
+<<main.ci.posterior.table, results='asis', echo=FALSE>>=
+make.ci.posterior.table(base.model,
+                        start.yr = start.yr,
+                        end.yr = end.yr,
+                        digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
+                        xcaption = paste0("Time-series of 95\\% posterior credibility intervals for the quantities shown in Table \\ref{tab:main-median-posterior}."),
+                        xlabel = "tab:main-ci-posterior",
+                        font.size = 8,
+                        space.size = 10)
+@
