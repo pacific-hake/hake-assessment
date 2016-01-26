@@ -169,6 +169,7 @@
 \newcommand{\Fforty}{F_{\text{SPR}=40\%}}
 \newcommand{\Bforty}{B_{\text{SPR}=40\%}}
 \newcommand{\Bten}{B_{\text{SPR}=10\%}}
+\newcommand{\Bzero}{B_{0}}
 \newcommand{\Bmsy}{B_{\text{MSY}}}
 \newcommand{\Fmsy}{F_{\text{MSY}}}
 \newcommand{\Fspr}{F_{\text{SPR}}}

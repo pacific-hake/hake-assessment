@@ -57,11 +57,16 @@ make.survey.history.table(survey.history,
                           space.size = 12)
 @
 
-% Tables referenced in data-section.rnw:
-
-% Tables referenced in assessment-section.rnw:
-
-% Tables referenced in research-section.rnw:
+<<main.median.posterior.table, results='asis', echo=FALSE>>=
+make.median.posterior.table(base.model,
+                            start.yr = start.yr,
+                            end.yr = end.yr,
+                            digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
+                            xcaption = paste0("Time-series of median posterior population estimates from the base model. Relative spawning biomass is spawning biomass relative to the unfished equilibrium ($\\Bzero$). Exploitation fraction is total catch divided by total age-3+ biomass. (1-SPR)/(1-SPR\\subscr{40\\%}) is the fishing intensity relative to the default harvest control catch limit."),
+                            xlabel = "tab:main-median-posterior",
+                            font.size = 8,
+                            space.size = 10)
+@
 
 
 

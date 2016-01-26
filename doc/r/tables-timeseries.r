@@ -1,3 +1,43 @@
+make.median.posterior.table <- function(model,                ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
+                                        start.yr,             ## start.yr is the first year to show in the table
+                                        end.yr,               ## end.yr is the last year to show in the table
+                                        weight.factor = 1000, ## divide catches by this factor
+                                        xcaption = "default", ## Caption to use
+                                        xlabel   = "default", ## Latex label to use
+                                        font.size = 9,        ## Size of the font for the table
+                                        space.size = 10,      ## Size of the spaces for the table
+                                        digits = 1            ## Number of decimal points on % columns
+                                        ){
+  ## Returns an xtable in the proper format for the main tables section for biomass,
+  ##  relative biomass, recruitment, fishing intensity, and exploitation fraction
+
+  yrs <- start.yr:end.yr
+
+  ## Filter the values by years
+  f <- lapply(model$mcmccalcs, function(x) x[names(x) %in% yrs])
+  tab.filt <- cbind(yrs,
+                    fmt0(f$smed * weight.factor),
+                    paste0(fmt0(f$dmed * 100, digits), "\\%"),
+                    fmt0(f$rmed * weight.factor),
+                    paste0(fmt0(f$pmed * 100, digits), "\\%"),
+                    paste0(fmt0(f$fmed * 100, digits), "\\%"))
+
+  ## Add latex headers
+  colnames(tab.filt) <- c("\\specialcell{\\textbf{Year}}",
+                          "\\specialcell{\\textbf{Female}\\\\\\textbf{spawning}\\\\\\textbf{biomass}\\\\\\textbf{(thousand t)}}",
+                          "\\specialcell{\\textbf{Relative}\\\\\\textbf{spawning}\\\\\\textbf{biomass}}",
+                          "\\specialcell{\\textbf{Age-0}\\\\\\textbf{recruits}\\\\\\textbf{(millions)}}",
+                          "\\specialcell{\\textbf{(1-SPR)}\\\\\\textbf{/}\\\\\\textbf{(1-SPR\\subscr{40\\%})}}",
+                          "\\specialcell{\\textbf{Exploitation}\\\\\\textbf{fraction}}")
+
+  ## Make the size string for font and space size
+  size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
+  return(print(xtable(tab.filt, caption=xcaption, label=xlabel, align=get.align(ncol(tab.filt)), digits=digits),
+               caption.placement = "top", table.placement="H", include.rownames=FALSE, sanitize.text.function=function(x){x},
+               size=size.string))
+
+}
+
 make.biomass.table <- function(model,                ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
                                start.yr,             ## start.yr is the first year to show in the table
                                end.yr,               ## end.yr is the last year to show in the table
