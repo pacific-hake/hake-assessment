@@ -83,7 +83,7 @@ make.catches.plot <- function(catches,
                  col=cols,xlab="Year", ylab="", cex.lab=1, xaxt="n", mgp=c(2.2,1,0))
   axis(1,at=tmp, labels=years, line=-0.12)
   grid(NA,NULL,lty=1,lwd = 1)
-  mtext("Catch ('000 mt)",side=2,line=2.8,las=0,cex=1.3)
+  mtext("Catch (thousand t)",side=2,line=2.8,las=0,cex=1.3)
   barplot(t(as.matrix(catches))/1000,beside=FALSE,names=catches[,1],
           col=cols, xlab="Year",ylab="",cex.lab=1,xaxt="n",add=TRUE,mgp=c(2.2,1,0))
 
@@ -224,4 +224,11 @@ years.Can.JV.catch.eq.0 <- function(catches,          ## The output of the load.
   years.Can.JV.catch.eq.0 <- catches[ catches$CAN_JV == 0, ]$Year
   years.Can.JV.catch.eq.0.recent <- years.Can.JV.catch.eq.0[ years.Can.JV.catch.eq.0 > 1999]
   return(years.Can.JV.catch.eq.0.recent)
+}
+
+further.tac.details <- function(fn){
+                                ## fn is the filename with relative path
+  ## Reads in the further.tac.details file and returns it as a data.frame
+  further.tac <- read.csv(fn, header=TRUE, sep=",", comment.char="#")
+  return(further.tac)
 }

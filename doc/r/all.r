@@ -16,6 +16,7 @@ install.packages.if.needed("date", "date", github=FALSE)
 install.packages.if.needed("r4ss", "r4ss/r4ss", github=TRUE)
 install.packages.if.needed("xtable", "xtable", github=FALSE)
 install.packages.if.needed("PBSmapping", "PBSmapping", github=FALSE)
+install.packages.if.needed("dplyr")
 
 require(nwfscSurvey)
 require(nwfscMapping)
@@ -23,6 +24,7 @@ require(date)
 require(r4ss)
 require(xtable)
 require(PBSmapping)
+require(dplyr)
 
 source("catches.r") ## Contains the code to catch/TAC data and figure and table-making code for catch/TAC
 source("load-models.r")
@@ -47,6 +49,7 @@ data.path <- file.path("..","..","data")
 models.path <- file.path("..","..","models")
 
 catch.data.file <- "Hake_Landings_TAC_History.csv"
+further.tac.file <- "Further_TAC_details.csv"
 data.file.name <- "2015hake_data.ss"
 survey.history.file <- "survey_history.csv"
 
@@ -78,6 +81,9 @@ survey.end.yr   <- 2013
 last.assess.yr  <- end.yr - 1
 ## current assessment year
 assess.yr       <- end.yr
+## Final year of data
+last.data.yr    <- end.yr - 1
+
 
 ## The forecasting yrs and probs can be set to whatever is required, the
 ## latex/knitr code is set up to automatically accomodate changes
@@ -142,6 +148,7 @@ if(reload.models == "y" | reload.models == "Y"){
   landings.vs.tac <- catches[[2]]
   catches <- catches[[1]]
   survey.history <- load.survey.history(file.path(data.path, survey.history.file))
+  further.tac <- further.tac.details(file.path(data.path, further.tac.file))
   models <- load.models(models.path, yr = end.yr)
   cat("\n\nAll models and data have been loaded.\n\n")
 }else{
@@ -209,12 +216,32 @@ can.last.5.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %i
 tot.last.5.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),10]), 1)
 tot.last.10.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-10):(end.yr-1),10]), 1)
 
-## last year's values (mostly for the one-page-summary)
+## last year's values (mostly for the one-page-summary and introduction)
 last.year.landings <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TOTAL), 1)
 last.year.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TAC)
 last.year.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$ATTAIN), 1)
-last.year.can.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANATTAIN), 1)
+
 last.year.us.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
+last.year.us.not.attained <- fmt0(as.numeric(100 - landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
+last.year.us.not.attained.tonnes <- filter(landings.vs.tac, Year == last.data.yr)$TACUSA - filter(landings.vs.tac, Year == last.data.yr)$Ustotal
+last.year.us.tac <- landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACUS
+   # Not doing fmt0 here since want to do further calculations
+last.year.us.non.tribal <- last.year.us.tac * (1-0.175) - 1500
+last.year.us.tribal.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.tribal.quota.reallocated
+last.year.us.tribal.reallocate.dates <- filter(further.tac, Year == last.data.yr)$us.tribal.reallocate.dates
+last.year.us.tribal.max.landed <- filter(further.tac, Year == last.data.yr)$us.tribal.max.landed
+
+last.year.can.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANATTAIN), 1)   # the percentage
+last.year.can.landings <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal))
+last.year.can.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACCAN)
+latest.year.can.jv <- max(filter(catches, CAN_JV > 0)$Year)  # latest year of JV in Canada
+last.year.can.shore <- fmt0(filter(catches, Year == last.data.yr)$CAN_Shoreside)
+last.year.can.freezer <- fmt0(filter(catches, Year == last.data.yr)$CAN_FreezeTrawl)
+years.Can.JV.catch.eq.0.recent = years.Can.JV.catch.eq.0(catches)
+
+
+
+
 
 ## New depletion and spawning biomass estimates
 curr.depl.lower <- fmt0(base.model$mcmccalcs$dlower[names(base.model$mcmccalcs$dlower) %in% end.yr] * 100, 1)
@@ -243,3 +270,11 @@ next2.depl.upper.tac.based <- fmt0(fore.tac.mcmc$dupper[names(fore.tac.mcmc$dupp
 next2.bio.lower.tac.based <- fmt0(fore.tac.mcmc$slower[names(fore.tac.mcmc$slower) %in% (end.yr + 2)] * 100, 1)
 next2.bio.median.tac.based <- fmt0(fore.tac.mcmc$smed[names(fore.tac.mcmc$smed) %in% (end.yr + 2)] * 100, 1)
 next2.bio.upper.tac.based <- fmt0(fore.tac.mcmc$supper[names(fore.tac.mcmc$supper) %in% (end.yr + 2)] * 100, 1)
+
+## Vector of 1-10 in words, to use in the command afterwards in introduction.rnw
+numbers.as.words <- c("one", "two", "three", "four", "five", "six", "seven",
+    "eight", "nine", "ten")
+low.catches.since.1996 <- numbers.as.words[length(filter(catches, TOTAL <= 200000, Year > 1986)$Year)]
+
+## Age composition years for data section
+survey.age.years <- base.model$dat$agecomp[base.model$dat$agecomp$FltSvy == 2,]$Yr
