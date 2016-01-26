@@ -78,3 +78,15 @@ make.ci.posterior.table(base.model,
                         font.size = 8,
                         space.size = 10)
 @
+
+<<main.est.numbers.at.age.table, results='asis', echo=FALSE>>=
+make.est.numbers.at.age.table(base.model,
+                              start.yr = start.yr,
+                              end.yr = end.yr,
+                              weight.factor = 1000,
+                              plus.group = 15,
+                              xcaption = paste0("Estimated numbers at age at the beginning of the year from the base model (MLE; million)."),
+                              xlabel = "tab:main-est.numbers.at.age",
+                              font.size = 8,
+                              space.size = 10)
+@
