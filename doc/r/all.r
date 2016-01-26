@@ -6,6 +6,22 @@
 ## loads don't happen during the latex/knitr build (they are
 ## very slow compared to loading the binary once at the beginning).
 
+remove.all.except <- function(vars  = c("models")){
+  # Removes every object in the workspace except for what is in the vars list.
+  # Upon finishing, the workspace will contain whatever is in the vars list,
+  #  plus the objects 'remove.all.except' (this function) and 'models.loaded'.
+  # That tells the software that the model has already been loaded.
+  vars <- c(vars, "remove.all.except")
+  keep <- match(x = vars, table = ls(all = TRUE, envir = .GlobalEnv))
+  if(any(is.na(keep))){
+    models.loaded <<- FALSE
+  }else{
+    rm(list=ls(all = TRUE, envir = .GlobalEnv)[-keep], envir = .GlobalEnv)
+    models.loaded <<- TRUE
+  }
+}
+remove.all.except()
+
 ## Need to source utilities.r before everything because it contains the function
 ##  install.packages.if.needed
 source("utilities.r")
@@ -16,7 +32,7 @@ install.packages.if.needed("date", "date", github=FALSE)
 install.packages.if.needed("r4ss", "r4ss/r4ss", github=TRUE)
 install.packages.if.needed("xtable", "xtable", github=FALSE)
 install.packages.if.needed("PBSmapping", "PBSmapping", github=FALSE)
-install.packages.if.needed("dplyr")
+install.packages.if.needed("dplyr", "dplyr", github = FALSE)
 
 require(nwfscSurvey)
 require(nwfscMapping)
@@ -84,7 +100,6 @@ assess.yr       <- end.yr
 ## Final year of data
 last.data.yr    <- end.yr - 1
 
-
 ## The forecasting yrs and probs can be set to whatever is required, the
 ## latex/knitr code is set up to automatically accomodate changes
 forecast.yrs <- end.yr:(end.yr + 2)
@@ -138,10 +153,9 @@ catch.levels.dir.names <- c("1_0",
                             "9_SPR100",
                             "10_DefaultHR")
 
-reload.models <- readline(prompt = "Reload all models and data (only necessary first time or if you add new models to the models directory)? [y/n] ")
-run.forecasts <- readline(prompt = "Run forecasting for base model (only necessary first time or if you add answered 'y' to the previous question)? [y/n] ")
+reload.models <- readline(prompt = "Reload all models (only necessary first time or if you add new models to the models directory)? [y/n] ")
+run.forecasts <- readline(prompt = "Run forecasting for base model (only necessary first time or if you add answered 'y' to the previous question [takes 10 minutes])? [y/n] ")
 run.partest <- readline(prompt = "Run partest for base model (only necessary first time or if you add answered 'y' to the first question [takes 15 minutes])? [y/n] ")
-
 
 cat("\nLoading all data tables (csv files) from ", data.path,"\n")
 catches <- load.catches(file.path(data.path, catch.data.file))
