@@ -2,8 +2,8 @@
 %% Note some variables are global from the calling file (hake-assessent.Rnw)
 
 %% Need numbering back to Arabic.
-\pagenumbering{arabic}
-\setcounter{page}{1}
+%%\pagenumbering{arabic}
+%%\setcounter{page}{1}
 
 \clearpage
 \section*{One Page Summary}
@@ -16,8 +16,8 @@
 
   \item The stock assessment is fit to an acoustic survey index of abundance and age compositions from the survey and commercial fisheries.
 
-  \item Coastwide catch in \Sexpr{end.yr-1} was \Sexpr{last.year.landings} t, out of a
-    TAC (adjusted for carryovers) of \Sexpr{last.year.tac} t. Attainment in the U.S. was \Sexpr{last.year.us.attained}\% of its quota;
+  \item Coastwide catch in \Sexpr{end.yr-1} was \Sexpr{last.year.landings}~t, out of a
+    TAC (adjusted for carryovers) of \Sexpr{last.year.tac}~t. Attainment in the U.S. was \Sexpr{last.year.us.attained}\% of its quota;
     in Canada it was \Sexpr{last.year.can.attained}\%. A variety of factors influenced the attainment of the quota.
 
   \item The stock is estimated to be near its highest biomass level since the early 1990s as a result of an above average 2008 cohort
@@ -27,7 +27,7 @@
     \Sexpr{curr.depl.upper} \%).
 
   \item The median estimate of \Sexpr{end.yr} female spawning biomass is \Sexpr{curr.bio.median}
-    million t (with 95\% interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper} million t).
+    million~t (with 95\% interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper} million~t).
 
   \item The spawning biomass in \Sexpr{end.yr} is estimated to have increased from \Sexpr{end.yr-1} due to the large size of the
     2010 year class.
@@ -36,7 +36,7 @@
     Forecasts were conducted across a range of catch levels.
 
   \item Projections setting \Sexpr{forecast.yrs[1]} and \Sexpr{forecast.yrs[2]} catch equal to the \Sexpr{forecast.yrs[1]-1} TAC of
-    \Sexpr{last.year.tac} t show the median spawning relative biomass estimates declining from \Sexpr{curr.depl.median}\%
+    \Sexpr{last.year.tac}~t show the median spawning relative biomass estimates declining from \Sexpr{curr.depl.median}\%
     of B\subscr{0} in \Sexpr{end.yr} to \Sexpr{next.depl.median.tac.based}\% in \Sexpr{end.yr+1} and \Sexpr{next2.depl.median.tac.based}\%
     in \Sexpr{end.yr+2}. %%However, this projection is highly uncertain and shows a \textbf{FROM here on is not correct} 5\% chance of falling below 25\%
   %%   of B0 in 2 years (by 2017) and a 5\% chance of increasing above 129\% in that same time frame.

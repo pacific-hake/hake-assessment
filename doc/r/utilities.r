@@ -276,13 +276,17 @@ plotBars.fn <- function(x,y,gap=0,scalar=1e6,add=F,ciCol="black",ciLty=1,ciLwd=1
   segments(x,y$hi/scalar,x,y$value/scalar+gap,col=ciCol,lty=ciLty,lwd=ciLwd) 
 }
 
-addpoly <- function(yrvec, lower, upper, color){ # add shaded uncertainty intervals behind line
-  lower[lower<0] <- 0 # max of value or 0
-  shadeCol <- rgb(t(col2rgb(color)),alpha=0.2*255,maxColorValue=255)
-  polygon(x=c(yrvec,rev(yrvec)),y=c(lower,rev(upper)),
-          border=NA,col=shadeCol)
-  lines(yrvec,lower,lty=3,col=color)
-  lines(yrvec,upper,lty=3,col=color)
+addpoly <- function(yrvec, lower, upper, color = 1, shade.col = NULL){
+  lower[lower<0] <- 0 ## max of value or 0
+  if(is.null(shade.col)){
+    shade.col <- rgb(t(col2rgb(color)), alpha = 0.2 * 255, maxColorValue = 255)
+  }
+  polygon(x = c(yrvec, rev(yrvec)),
+          y = c(lower, rev(upper)),
+          border = NA,
+          col = shade.col)
+  lines(yrvec, lower, lty = 3, col = color)
+  lines(yrvec, upper, lty = 3, col = color)
 }
 
 randWalkSelex.fn <- function(pars,devs=NULL,bounds=NULL) {

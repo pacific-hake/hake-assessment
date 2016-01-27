@@ -2,10 +2,10 @@
 *.aux
 *.bbl
 *.blg
-*~
+*~*
 *.dvi
 *.ps
-.RData
+*.RData
 model-partest.RData
 .RHistory
 *.7z
@@ -17,7 +17,7 @@ doc/resDoc.tex
 doc/r/old*
 models/*
 extra-models/*
-doc/hake-assessment.pdf
+doc/hake-assessment*.pdf
 doc/hake-assessment.tex
 doc/knitr-cache
 models/*

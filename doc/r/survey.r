@@ -1,3 +1,40 @@
+load.survey.history <- function(fn ## fn is the filename with relative path
+                                ){
+  ## Reads in the survey history file and returns it as a data frame
+
+  dat <- read.csv(fn)
+  return(dat)
+}
+
+make.survey.history.table <- function(dat,
+                                      digits = 3,           ## number of decimal points for biomass and cv
+                                      xcaption = "default", ## Caption to use
+                                      xlabel   = "default", ## Latex label to use
+                                      font.size = 9,        ## Size of the font for the table
+                                      space.size = 10){       ## Size of the spaces for the table
+  ## dat is a data frame containing the survey history
+  ## The vessel names neew to be fixed. They are seperated by spaces, and may or may not have dashes in their names
+  ## The dashes will be replaced with spaces, and the spaces will be replaced by newlines in the output
+
+  dat$biomass <- fmt0(dat$biomass, digits)
+  dat$cv <- fmt0(dat$cv, digits)
+
+  dat$vessels <- gsub(" ", "\\\\\\\\", dat$vessels)
+  dat$vessels <- gsub("-", " ", dat$vessels)
+  dat$vessels <- paste0("\\specialcell{", dat$vessels,"}")
+  colnames(dat) <- c("\\specialcell{\\textbf{Year}}",
+                     "\\specialcell{\\textbf{Start date}}",
+                     "\\specialcell{\\textbf{End date}}",
+                     "\\specialcell{\\textbf{Vessels}}",
+                     "\\specialcell{\\textbf{Biomass}\\\\\\textbf{index}\\\\\\textbf{(million t)}}",
+                     "\\specialcell{\\textbf{Sampling CV\\supscr{2}}}",
+                     "\\specialcell{\\textbf{Number of}\\\\\\textbf{hauls with bio.}\\\\\\textbf{samples}}")
+  ## Make the size string for font and space size
+  size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
+  return(print(xtable(dat, caption=xcaption, label=xlabel, align=get.align(ncol(dat), just = "c")),
+               caption.placement = "top", include.rownames=FALSE, table.placement="H", sanitize.text.function=function(x){x}, size=size.string))
+}
+
 make.survey.biomass.plot <- function(models,      ## models is the list returned by load.models.
                                      modelnum = 1 ## the index of the model to show. It shouldn't
                                                   ## really matter on the same assessment though.

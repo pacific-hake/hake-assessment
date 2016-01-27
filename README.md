@@ -17,6 +17,11 @@ _____________________________________________________________
 ---
 ## How to run the code and create hake-assessment.pdf
 
+- You **MUST** load the R environment first. To do this, navigate to the doc/r directory,
+  start RGui in that directory, and type **source("all.r")**. If it is the first time or you
+  are running this, you must answer *y* to the three questions. Once this is finished, do a save.image()
+  to sdave the .RData file in the doc/r directory.
+
 - Using the command line, navigate to the doc subdirectory and run the buildtex.bat file.
 
 - To clean up the build, run the cleantex.bat file.
@@ -68,6 +73,8 @@ The following depicts the object structure of the **models** list:
       models[[N]]$path      - The path where this model is located
       models[[N]]$dat       - data file as read in by the SS_readdat function in the r4ss package
       models[[N]]$mcmc      - mcmc output from the model as read in by the SSgetMCMC function or NULL if none for this model
+      models[[N]]$mcmckey   - contents of the mcmc keyposteriors.csv file
+      models[[N]]$mcmcnuc   - contents of the mcmc nuisanceposteriors.csv file
       models[[N]]$mcmcpath  - The path where this mcmc model is located
       models[[N]]$mcmccalcs - calculations done on the mcmc outputs for this model
         models[[N]]$mcmccalcs$svirg     - SPB virgin biomass, vector of length 3 (2.5%, 50%, 97.5%)
@@ -144,7 +151,7 @@ There are additional elements for model-partest, which is created by running **r
 
 ## How Andy is running it (and see Chris's notes above)
 
-- download from Hake JTC Google Drive one of the model runs, and put in **hake-assessment\models\** (have to unzip and then remove one directory level). ???I just did this for the first time (18/1/16), but where was it getting model output from before???
+- download from Hake JTC Google Drive the model runs, and put in **hake-assessment\models\** (then 'unzip to here', then remove the .zip file so that **models\** just has the required subdirectories).
 - **source("all.r")** to reload models and data files and for any changes to R code.
 - **save.image()** to create the **.RData** file, or close R (and **save** workspace).
 - delete **knitr-cache** directory if any tables or figures need to be updated
@@ -171,9 +178,18 @@ __GitHub workflow__
 
 __Andy's other notes__
 
+- Network graph - I just [25 Jan 2016, commit number 7e25a5c] merged Chris's, but this doesn't show up on his or my Network graphs, I think because he had merged all my commits earlier, and I hadn't committing anything since. So it's not really merging (and there was no possibility for a conflict because I hadn't changed anything since he merged mine), just updating.
+
 - Use text in main document of last year's, and start converting to .tex.
 - Table 1 and 2 of last year's .pdf -- values should be in **catches**, see **make-catches-table.r** in **catches.r** for an earlier table, and modify to make new ones.
 
+Helpful git commands I didn't know:
+
+**git lg1**   [or lg2] - shows commit numbers (codes)
+
+**git log .\doc\hake-assessment.rnw**  - show revision history for a file (syntax not quite right there)
+
+**git checkout <enough numbers of the commit reference to make it unique> .\doc\[filename.rnw] **  - revert back to that version of that file, I think...  
 
 [I can delete this once I know it all automatically] GitHub Colors are explained under The Prompt in the README shown at https://github.com/dahlbyk/posh-git/ . To summarize:
 
