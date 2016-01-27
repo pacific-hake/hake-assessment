@@ -567,7 +567,7 @@ make.numbers.at.age.plot(base.model)
 <<main.fishing.intensity, fig.height=4.5, fig.width=8>>=
 make.fishing.intensity.plot(base.model,
                             start.yr = start.yr,
-                            end.yr = end.yr,
+                            end.yr = end.yr-1,
                             color = "blue")
 @
 \end{center}
@@ -583,7 +583,7 @@ make.fishing.intensity.plot(base.model,
 <<main.exploitation.fraction, fig.height=4.5, fig.width=8>>=
 make.exploitation.fraction.plot(base.model,
                                 start.yr = start.yr,
-                                end.yr = end.yr,
+                                end.yr = end.yr-1,
                                 color = "blue")
 @
 \end{center}
