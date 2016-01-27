@@ -267,7 +267,7 @@ tv.selex.start.yr <- 1990
 tv.selex.ages <- 1:8
 tv.selex <- calc.tv.selex(base.model,
                           start.yr = tv.selex.start.yr,
-                          end.yr = end.yr - 1,
+                          end.yr = end.yr - 2,
                           ages = tv.selex.ages,
                           probs = c(0.025, 0.975))
 make.tv.selex.plot(tv.selex)
@@ -291,7 +291,7 @@ tv.selex.left <- calc.tv.selex(base.model,
                                probs = c(0.025, 0.975))
 tv.selex.right <- calc.tv.selex(base.model,
                                 start.yr = 2002,
-                                end.yr = end.yr-1,
+                                end.yr = end.yr - 2,
                                 ages = tv.selex.ages,
                                 probs = c(0.025, 0.975))
 make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))

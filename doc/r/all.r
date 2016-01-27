@@ -69,19 +69,31 @@ models.path <- file.path("..","..","models")
 
 catch.data.file <- "Hake_Landings_TAC_History.csv"
 further.tac.file <- "Further_TAC_details.csv"
-data.file.name <- "2015hake_data.ss"
 survey.history.file <- "survey_history.csv"
 
-control.file.name <- "2015hake_control.ss"
 starter.file.name <- "starter.ss"
 forecast.file.name <- "forecast.ss"
 weight.at.age.file.name <- "wtatage.ss"
 
 SSversion <- "3.24U"
 
+## These will be used to generate the keyposteriors.csv file,
+##  the remaining ones will be put into nuisanceposteriors.csv.
+key.posteriors <- c("NatM_p_1_Fem_GP_1",
+                    "SR_LN.R0.",
+                    "SR_BH_steep",
+                    "Q_extraSD_2_Acoustic_Survey")
+key.posteriors.file <- "keyposteriors.csv"
+nuisance.posteriors.file <- "nuisanceposteriors.csv"
+
 ## Index of the base model as found in the directory.
 ## i.e. 00_Modelname is index 1, 01_Modelname is index 2, etc.
-base.model.ind <- 1
+base.model.ind <- 7
+
+
+## IMPORTANT - If any of these do not match up with what the models are set up
+##  for, the build will fail. The only exception is that end.yr must actually
+##  be the end year of the model + 1.
 
 ## recruitment deviations start year
 recruit.dev.start.yr <- 1946
@@ -91,22 +103,22 @@ unfished.eq.yr  <- 1964
 start.yr        <- 1966
 ## The last non-forecast year in the model. This is the year for which the
 ## mcmc outputs will be used in reference point calculations.
-end.yr          <- 2015
+end.yr          <- 2016
 ## First year in the survey timeseries
-survey.start.yr <- 1995
+survey.start.yr <- 1998
 ## Last year in the survey timeseries
-survey.end.yr   <- 2013
+survey.end.yr   <- 2015
 ## The last year an assessment was done
 last.assess.yr  <- end.yr - 1
 ## current assessment year
 assess.yr       <- end.yr
-## Final year of data
+## Final year of data (This is what is the end year is in the model data files)
 last.data.yr    <- end.yr - 1
 
 ## The forecasting yrs and probs can be set to whatever is required, the
 ## latex/knitr code is set up to automatically accomodate changes
 forecast.yrs <- end.yr:(end.yr + 2)
-forecast.probs <- c(0.05,0.25,0.5,0.75,0.95)
+forecast.probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 
 ## catch.levels is a list of N catch levels to run forecasts for
 ## Each element of the list is a vector of length the same as the
@@ -158,16 +170,16 @@ catch.levels.dir.names <- c("1_0",
 
 reload.models <- readline(prompt = "Reload models (only necessary first time or if you add new models to the models directory)? [y/n] ")
 if(reload.models == "y" | reload.models == "Y"){
-  smart.load <- readline(prompt = "   Use smart load (will only reload newly-added models, thus keeping any forecasting done previously) ? [y/n] ")
+  smart.load <- readline(prompt = "   Use smart load (will only reload newly-added models, thus keeping any forecasting done previously)? [y/n] ")
   if(smart.load != "y" & smart.load != "Y"){
-    sure <- readline(prompt = "      Are you sure (your entire models list will be deleted and re-populated) ? [y/n] ")
+    sure <- readline(prompt = "      Are you sure (your entire models list will be deleted and re-populated)? [y/n] ")
     if(sure != "y" & sure != "Y"){
       stop("I'm stopping because you aren't sure. Re-source to try again.\n\n")
     }
   }
 }
-run.forecasts <- readline(prompt = "Run forecasting for base model (only necessary first time or if you add answered 'y' to the previous question [takes 10 minutes])? [y/n] ")
-run.partest <- readline(prompt = "Run partest for base model (only necessary first time or if you add answered 'y' to the first question [takes 15 minutes])? [y/n] ")
+run.forecasts <- readline(prompt = "Run forecasting for base model (only necessary after fully reloading or if you changed the base model [takes 10 minutes])? [y/n] ")
+run.partest <- readline(prompt = "Run partest for base model (only necessary if you changed the base model [takes 15 minutes])? [y/n] ")
 
 cat("\nLoading all data tables (csv files) from ", data.path,"\n")
 catches <- load.catches(file.path(data.path, catch.data.file))
@@ -276,9 +288,6 @@ latest.year.can.jv <- max(filter(catches, CAN_JV > 0)$Year)  # latest year of JV
 last.year.can.shore <- fmt0(filter(catches, Year == last.data.yr)$CAN_Shoreside)
 last.year.can.freezer <- fmt0(filter(catches, Year == last.data.yr)$CAN_FreezeTrawl)
 years.Can.JV.catch.eq.0.recent = years.Can.JV.catch.eq.0(catches)
-
-
-
 
 
 ## New depletion and spawning biomass estimates
