@@ -175,7 +175,7 @@ make.mcmc.survey.fit.plot <- function(model,        ## model is a model with an 
   par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
   plot(0,
        type = 'n',
-       xlim = c(start.yr, end.yr),
+       xlim = c(start.yr-0.5, end.yr+0.5),
        xaxs = 'i',
        ylim = c(0, y.max),
        yaxs = 'i',
