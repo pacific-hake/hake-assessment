@@ -341,6 +341,9 @@ This DRAFT document is non-citable.
 <<appendix-glossary, child='appendix-glossary/appendix-glossary.rnw'>>=
 @
 
+<<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
+@
+
 <<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
 @     % one .rnw file for all four SS code appendices, since .rnw code is short.
 

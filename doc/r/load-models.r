@@ -49,6 +49,8 @@ load.models <- function(models.dir = file.path("..","..","models"),
       ## If there is not exactly one, stop with error.
       model.dir.listing <- dir(models.names[nm])
       fn.ind <- grep("_data.ss", model.dir.listing)
+      ## Also get control file name
+      c.file.ind <- grep("_control.ss", model.dir.listing)
       if(!length(fn.ind)){
         stop("load.models: Error in model ",models.names[nm],
              ", there is no data file. A data file is anything followed and ending in _data.ss.\n")
@@ -58,8 +60,11 @@ load.models <- function(models.dir = file.path("..","..","models"),
              ", there is more than one data file. A data file is anything followed and ending in _data.ss. Check and make sure there is only one.\n")
       }
       fn <- file.path(models.names[nm], model.dir.listing[fn.ind])
+      c.fn <- file.path(models.names[nm], model.dir.listing[c.file.ind])
       tryCatch({
         model.list[[nm]]$path <- models.names[nm]
+        model.list[[nm]]$dat.file <- fn
+        model.list[[nm]]$ctl.file <- c.fn
         model.list[[nm]]$dat <- SS_readdat(fn)
       }, warning = function(war){
         cat("load.models: Warning while loading the dat file '",fn,
@@ -76,8 +81,10 @@ load.models <- function(models.dir = file.path("..","..","models"),
         tryCatch({
           model.list[[nm]]$mcmc <- data.frame(SSgetMCMC(dir=mcmc.dir, writecsv=FALSE, verbose = verbose)$model1)
           model.list[[nm]]$mcmcpath <- mcmc.dir
-          model.list[[nm]]$mcmckey <- read.csv(file.path(mcmc.dir, "keyposteriors.csv"))
-          model.list[[nm]]$mcmcnuc <- read.csv(file.path(mcmc.dir, "nuisanceposteriors.csv"))
+          create.key.nuisance.posteriors.files(model.list[[nm]])
+          ## Likely these are unneccessary
+          ## model.list[[nm]]$mcmckey <- read.csv(file.path(mcmc.dir, "keyposteriors.csv"))
+          ## model.list[[nm]]$mcmcnuc <- read.csv(file.path(mcmc.dir, "nuisanceposteriors.csv"))
           ## Do the mcmc calculations, e.g. quantiles for SB, SPB, DEPL, RECR, RECRDEVS
           model.list[[nm]]$mcmccalcs <- calc.mcmc(model.list[[nm]]$mcmc)
         }, warning = function(war){
@@ -92,6 +99,21 @@ load.models <- function(models.dir = file.path("..","..","models"),
     }
   }
   return(model.list)
+}
+
+create.key.nuisance.posteriors.files <- function(model){
+  ## Creates the two files for key and nuisance posteriors
+  ## Depends on the global variables set in all.r:
+  ##  key.posteriors
+  ##  key.posteriors.file
+  ##  nuisance.posteriors.file
+  key.file <- file.path(model$mcmcpath, key.posteriors.file)
+  nuisance.file <- file.path(model$mcmcpath, nuisance.posteriors.file)
+
+  keys <- model$mcmc[,names(model$mcmc) %in% key.posteriors]
+  nuisances <- model$mcmc[,!(names(model$mcmc) %in% key.posteriors)]
+  write.csv(keys, key.file, row.names = FALSE)
+  write.csv(nuisances, nuisance.file, row.names = FALSE)
 }
 
 calc.mcmc <- function(mcmc,            ## mcmc is the output of the SS_getMCMC function from the r4ss package as a data.frame

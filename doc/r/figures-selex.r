@@ -3,7 +3,7 @@ calc.tv.selex <- function(model,
                           end.yr,
                           ages = 1:8,  ## ages to be included
                           probs = c(0.025, 0.975)){
-  ## Calculate the data frame to ise for the functions involving time varying selectivity
+  ## Calculate the data frame to use for the functions involving time varying selectivity
   ## Returns a list of length 4: The overall selex object, and data frames of median, lower, and upper quantiles
   ##  as calculated for the given probablities. The columns in the data frames are the years
   ##  and the rows are ages. Both row names and column names have been set properly.
@@ -21,7 +21,6 @@ calc.tv.selex <- function(model,
   for(i in 2:length(yrs)){
     selex[[i]] <- selexYear.fn(model$mcmc, yrs[i])
   }
-
   ## Strip off unneeded ages
   for(i in 1:length(selex)){
     cols.to.remove <- NULL

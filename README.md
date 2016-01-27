@@ -71,6 +71,8 @@ The following depicts the object structure of the **models** list:
         ...
         models[[N]]$risks[[N]] - Holds the risk values for the N+1th year of forecasts - the Nth year
       models[[N]]$path      - The path where this model is located
+      models[[N]]$ctl.file  - control file name for this model
+      models[[N]]$dat.file  - data file name for this model
       models[[N]]$dat       - data file as read in by the SS_readdat function in the r4ss package
       models[[N]]$mcmc      - mcmc output from the model as read in by the SSgetMCMC function or NULL if none for this model
       models[[N]]$mcmckey   - contents of the mcmc keyposteriors.csv file

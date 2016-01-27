@@ -83,6 +83,20 @@ make.mcmc.diag.hists.plot <- function(model ## model is an mcmc run and is the o
   par <- oldpar
 }
 
+panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...){
+  ## From ?pairs, to add correlation values to pairs plot, AME changing final
+  ##  term from r to sqrt(r):
+  usr <- par("usr")
+  on.exit(par(usr))
+
+  par(usr = c(0, 1, 0, 1))
+  r <- abs(cor(x, y))
+  txt <- format(c(r, 0.123456789), digits = digits)[1]
+  txt <- paste0(prefix, txt)
+  if(missing(cex.cor)) cex.cor <- 0.8 / strwidth(txt)
+  text(0.5, 0.5, txt, cex = cex.cor * sqrt(r))
+}
+
 make.mcmc.diag.pairs.plot <- function(model,                 ## model is model with an mcmc run which has the output of the
                                                              ##  r4ss package's function SSgetMCMC
                                       inc.key.params = TRUE, ## If true, include the key parameters in the plot
@@ -143,8 +157,9 @@ make.mcmc.diag.pairs.plot <- function(model,                 ## model is model w
         yaxt = "n",
         las = 1,
         gap = 0.5,
-        oma = c(0,0,0,0))
-    par <- oldpar
+        oma = c(0,0,0,0),
+        lower.panel = panel.cor)
+  par <- oldpar
 }
 
 make.mcmc.survey.fit.plot <- function(model,        ## model is a model with an mcmc run which has the output of the
@@ -161,7 +176,7 @@ make.mcmc.survey.fit.plot <- function(model,        ## model is a model with an 
   par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
   plot(0,
        type = 'n',
-       xlim = c(start.yr, end.yr),
+       xlim = c(start.yr-0.5, end.yr+0.5),
        xaxs = 'i',
        ylim = c(0, y.max),
        yaxs = 'i',
