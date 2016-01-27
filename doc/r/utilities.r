@@ -187,11 +187,13 @@ num.posts <- 5
   save(model.partest, file = output.file)
 }
 
-number.to.word <- function(x){
+number.to.word <- function(x, th = FALSE, cap.first = FALSE){
   ## https://github.com/ateucher/useful_code/blob/master/R/numbers2words.r
   ## Function by John Fox found here:
   ## http://tolstoy.newcastle.edu.au/R/help/05/04/2715.html
   ## Tweaks by AJH to add commas and "and"
+  ## if th is TRUE, the th version will be returned, e.g. 4 = fourth
+  ## if cap.first is TRUE, the first letter will be capitalized
   helper <- function(x){
       digits <- rev(strsplit(as.character(x), "")[[1]])
       nDigits <- length(digits)
@@ -235,7 +237,51 @@ number.to.word <- function(x){
   x <- round(x)
   suffixes <- c("thousand", "million", "billion", "trillion")
   if (length(x) > 1) return(trim(sapply(x, helper)))
-  helper(x)
+  j <- helper(x)
+  ## Cgrandin added the 'th' bit
+  if(th){
+    j <- strsplit(j, " ")[[1]]
+    first <- j[-length(j)]
+    last <- j[length(j)]
+    if(last == "one"){
+      last <- "first"
+    }else if(last == "two"){
+      last <- "second"
+    }else if(last == "three"){
+      last <- "third"
+    }else if(last == "five"){
+      last <- "fifth"
+    }else if(last == "eight"){
+      last <- "eighth"
+    }else if(last == "nine"){
+      last <- "ninth"
+    }else if(last == "twelve"){
+      last <- "twelfth"
+    }else if(last == "twenty"){
+      last <- "twentieth"
+    }else if(last == "thirty"){
+      last <- "thirtieth"
+    }else if(last == "forty"){
+      last <- "fortieth"
+    }else if(last == "fifty"){
+      last <- "fiftieth"
+    }else if(last == "sixty"){
+      last <- "sixtieth"
+    }else if(last == "seventy"){
+      last <- "seventieth"
+    }else if(last == "eighty"){
+      last <- "eightieth"
+    }else if(last == "ninety"){
+      last <- "ninetieth"
+    }else{
+      last <- paste0(last, "th")
+    }
+    j <- paste(c(first, last), collapse = " ")
+  }
+  if(cap.first){
+    j <- paste0(toupper(substr(j, 1, 1)), substr(j, 2, nchar(j)))
+  }
+  return(j)
 }
 
 cbind.fill <- function(...){
@@ -364,11 +410,6 @@ randWalkSelex.fn <- function(pars,devs=NULL,bounds=NULL) {
   selex[pars== -1000] <- 0
   return(selex)
 }
-
-#randWalkSelex.fn(c(-1000,-1000,0,0.317379,0.00653887,-0.0244099,0.449238,0,0,0,0,0,0,0,0))
-#randWalkSelex.fn(c(-1000,0,4.02533, 1.65537,   0.49088, 0.264563, 0.330266, 0,0,0,0,0,0,0,0,0),
-#             devs=c(NA, NA,0.203144,-0.102409,-0.020993,0.0786477,0.0492123,NA,NA,NA,NA,NA,NA,NA,NA,NA),
-#             bounds=c(-5,9))
 
 selexYear.fn <- function(x, yr, bnds=c(-5,9)) {
   ## specific for hake 2013 and 2014
