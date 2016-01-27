@@ -16,8 +16,8 @@ This assessment reports the status of the coastal \fishname\ (or \commonname, \e
 
 
 \subsection*{Catches} \label{sec:es-catches}
-\phantomsection  \addcontentsline{toc}{subsection}{Catches}
-Coast-wide fishery \fishname\ landings averaged \Sexpr{fmt0(mean(catches$TOTAL))} t from \Sexpr{min(catches$Year)} to \Sexpr{max(catches$Year)}, with a low of \Sexpr{fmt0(min(catches$TOTAL))} t in \Sexpr{catches$Year[catches$TOTAL==min(catches$TOTAL)]} and a peak of \Sexpr{fmt0(max(catches$TOTAL))} t in \Sexpr{catches$Year[catches$TOTAL==max(catches$TOTAL)]}. Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to the modern fishery. Over the early period, \Sexpr{min(catches$Year)}--1990, most removals were from foreign or joint-venture fisheries. Over all years, the fishery in U.S. waters averaged \Sexpr{fmt0(mean(catches$Ustotal))} t, or \Sexpr{round(100*mean(catches$Ustotal)/mean(catches$TOTAL),1)}\% of the average total landings, while catch from Canadian waters averaged \Sexpr{fmt0(mean(catches$CANtotal))} t.  Over the last 10 years, \Sexpr{max(catches$Year)-9}--\Sexpr{max(catches$Year)}, the total average catch is \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$TOTAL))} with U.S. and Canadian catches averaging \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$Ustotal))} t and \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$CANtotal))} t, respectively.
+\phantomsection  \addcontentsline{toc}{subsection}{Catches} 
+Coast-wide fishery \fishname\ landings averaged \Sexpr{fmt0(mean(catches$TOTAL))}~t from \Sexpr{min(catches$Year)} to \Sexpr{max(catches$Year)}, with a low of \Sexpr{fmt0(min(catches$TOTAL))}~t in \Sexpr{catches$Year[catches$TOTAL==min(catches$TOTAL)]} and a peak of \Sexpr{fmt0(max(catches$TOTAL))}~t in \Sexpr{catches$Year[catches$TOTAL==max(catches$TOTAL)]}. Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to the modern fishery. Over the early period, \Sexpr{min(catches$Year)}--1990, most removals were from foreign or joint-venture fisheries. Over all years, the fishery in U.S. waters averaged \Sexpr{fmt0(mean(catches$Ustotal))}~t, or \Sexpr{round(100*mean(catches$Ustotal)/mean(catches$TOTAL),1)}\% of the average total landings, while catch from Canadian waters averaged \Sexpr{fmt0(mean(catches$CANtotal))}~t.  Over the last 10 years, \Sexpr{max(catches$Year)-9}--\Sexpr{max(catches$Year)}, the total average catch is \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$TOTAL))} with U.S. and Canadian catches averaging \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$Ustotal))}~t and \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$CANtotal))}~t, respectively.
 
 In this stock assessment, the terms catch and landings are used interchangeably. Estimates of discard within the target fishery
 are included, but discarding of \fishname\ in non-target fisheries is not. Discard from all fisheries is estimated to be less
@@ -45,7 +45,7 @@ make.catches.table(catches,
                    start.yr = 2006,
                    end.yr = 2015,
                    weight.factor = 1000,
-                   xcaption <- "Recent commercial fishery catch (1,000's t). Tribal catches are included where applicable.",
+                   xcaption <- "Recent commercial fishery catch (t). Tribal catches are included where applicable.",
                    xlabel <- "tab:es-catches",
                    font.size = 9,
                    space.size = 10)
@@ -104,11 +104,11 @@ The stock is estimated to have increased rapidly to near unfished equilibrium af
 declined steadily after a peak in the mid- to late-1980s to a low in 2000. This long period of decline was followed by a brief increase to a peak
 in 2003 as the large 1999 year class matured. The 1999 year class largely supported the fishery for several years due to relatively small recruitments
 between 2000 and 2007 entering the fishery to replace catches being removed during this period. With the aging 1999 year class, median female
-spawning biomass declined throughout the late 2000s, reaching a time-series low of 0.497 million t in 2009. The assessment model estimates that
+spawning biomass declined throughout the late 2000s, reaching a time-series low of 0.497 million~t in 2009. The assessment model estimates that
 spawning biomass declined from 2014 to 2015 after five years of increases from 2009 to 2014. The estimated increase was the result of a large 2010
 and an above-average 2008 cohort. The 2015 median posterior spawning biomass is estimated to be 73.6\% of the unfished equilibrium level ($B_0$) with
 95\% posterior credibility intervals ranging from 34.3\% to 149.8\%. The median estimates of 2014 and 2015 female spawning biomass values are
-1.703 and 1.663 million t, respectively.
+1.703 and 1.663 million~t, respectively.
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
@@ -331,8 +331,8 @@ to investigate, and hypotheses to simulate.
 
 \subsection*{Forecast Decision Table} \label{sec:es-forecast-decision-table}
 \phantomsection \addcontentsline{toc}{subsection}{Forecast Decision Table}
-The median catch for \Sexpr{min(forecast.yrs)} based on the default harvest policy (F\subscr{40\%} -- 40:10) is \textbf{FIX..} t, but has a
-wide range of uncertainty; the 95\% posterior credibility interval ranges from \textbf{FIX..307,435 t to1,920,296} t.
+The median catch for \Sexpr{min(forecast.yrs)} based on the default harvest policy (F\subscr{40\%} -- 40:10) is \textbf{FIX..}~t, but has a
+wide range of uncertainty; the 95\% posterior credibility interval ranges from \textbf{FIX..307,435~t to1,920,296}~t.
 
 A decision table showing predicted population status and fishing intensity relative to target fishing intensity is presented with uncertainty
 represented from within the base model. The decision table (split into Table \ref{tab:es-decisions-biomass} and Table \ref{tab:es-decisions-spr}) is organized such that
@@ -353,7 +353,7 @@ from this table for intermediate catch values. Figure \textbf{FIX..i} shows the 
 from 2016 to 2017, with a \textbf{FIX..39}\% probability of decreasing from 2015 to 2016 and a \textbf{FIX..51}\% probability of
 decreasing from 2016 to 2017.
 
-At all catch levels 180,000 t per year or greater, the spawning biomass is predicted to decline from 2015 to 2016 with greater than 68\%
+At all catch levels 180,000~t per year or greater, the spawning biomass is predicted to decline from 2015 to 2016 with greater than 68\%
 probability (Table g.3 and Figure j). The model predicts high biomass levels and the predicted probability of dropping below 10\%
 in 2016 is less than 1\% and the maximum probability of dropping below B\subscr{40\%} is 21\% for all catches explored.
 It should be noted that in addition to the natural mortality rate overtaking the growth rate for the 2010 year class, the model
@@ -416,7 +416,7 @@ make.forecast.depletion.comparison.plot(base.model,
                                         legend.loc = "topleft")
 @
 \end{center}
-\caption{Time-series of estimated relative spawning biomass to \Sexpr{end.yr} from the base model, and forecast trajectories to \Sexpr{forecast.yrs[length(forecast.yrs)]} for several management options from the decision table, with 95\% posterior credibility intervals. The \Sexpr{end.yr} catch of \Sexpr{fmt0(catch.default.policy[1])} t was calculated using the default harvest policy, as defined in the Agreement.}
+\caption{Time-series of estimated relative spawning biomass to \Sexpr{end.yr} from the base model, and forecast trajectories to \Sexpr{forecast.yrs[length(forecast.yrs)]} for several management options from the decision table, with 95\% posterior credibility intervals. The \Sexpr{end.yr} catch of \Sexpr{fmt0(catch.default.policy[1])}~t was calculated using the default harvest policy, as defined in the Agreement.}
 \label{fig:es-forecast-depletion-comparison}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

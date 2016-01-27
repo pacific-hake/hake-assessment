@@ -4,7 +4,7 @@
 
 \section{ASSESSMENT} \label{sec:assessment}
 
-** indicates something that needs to be checked (or cannot be automated). For now have concentrated on converting last year's text into \LaTeX. Missing references are listed at the end. Not doing refs or Tables/Figures yet.
+** indicates something that needs to be checked (or cannot be automated). References not attempted yet. 
 
 \subsection{Modeling history}\label{sec:assessment-modeling-history}
 
@@ -12,30 +12,57 @@ In spite of the relatively short history of fishing, Pacific Hake have surely be
 
 While the age-structured assessment form has remained similar since 1991, management procedures have been modified in a variety of ways. There have been alternative data choices, post-data collection processing routines, different data weighting schemes, a huge number of structural assumptions for the stock assessment model, and alternative control rules.
 
-Data processing, choices, and weighting have been modified several times in historical hake assessments. For example, acoustic data processing has been modified over the years through modifications to target strength calculations (**Dorn and Saunders 1997) or the introduction of kriging (**Stewart and Hamel 2010). While survey data have been the key index for abundance since 1988, which surveys have been used have varied considerably: the AFSC/NWFSC triennial bottom trawl survey was used from 1988 before being discarded from the 2009 assessment (by **Hamel and Stewart 2009). Acoustic surveys from the years prior to 1995 were used for assessments in the early 1990s, but **Stewart et al. (2011) reviewed these early surveys and deemed that their sampling had been insufficient to be comparable with more recent data; various recruitment indices have been considered, but subsequently rejected (**Helser et al. 2002, **Helser et al. 2004, **Stewart and Hamel 2010). Even where data have been consistently used, their weighting in the statistical likelihood has varied through various emphasis factors (e.g., **Dorn 1994, **Dorn et al. 1999); multinomial sample size on age-composition (**Dorn et al. 1999, **Helser et al. 2002, **Helser et al. 2005, **Stewart et al. 2011) and survey variance assumptions. The list of changes discussed above is for illustrative purposes only; it is only a small fraction of the different data choices analysts have made and that reviewers/panels have required.
+Data processing, choices, and weighting have been modified several times in historical hake assessments. For example, acoustic data processing has been modified over the years through modifications to target strength calculations (**Dorn and Saunders 1997) or the introduction of kriging (**Stewart and Hamel 2010). While survey data have been the key index for abundance since 1988, which surveys have been used have varied considerably: the AFSC/NWFSC triennial bottom trawl survey was used from 1988 before being discarded from the 2009 assessment (by **Hamel and Stewart 2009). Acoustic surveys from the years prior to 1995 were used for assessments in the early 1990s, but **Stewart et al. (2011) reviewed these early surveys and deemed that their sampling had been insufficient to be comparable with more recent data; various recruitment indices have been considered, but subsequently rejected (**Helser et al. 2002, **Helser et al. 2004, **Stewart and Hamel 2010). Even where data have been consistently used, their weighting in the statistical likelihood has varied through various emphasis factors (e.g., **Dorn 1994, **Dorn et al. 1999), use of a multinomial sample size on age-composition (**Dorn et al. 1999, **Helser et al. 2002, **Helser et al. 2005, **Stewart et al. 2011) and assumptions regarding survey variance. The list of changes discussed above is for illustrative purposes only; it is only a small fraction of the different data choices analysts have made and that reviewers/panels have required.
 
-The structure of assessment models has perhaps had the largest number of changes. In terms of spatial models since 1994, analysts have considered spatial explicit forms (**Dorn 1994, **Dorn and Saunders 1997), spatially implicit forms (**Helser et al. 2006) and single-area models (**JTC 2012). Predicted recruitment has been modeled by sampling historical recruitment (e.g., **Dorn 1994, **Helser et al. 2005), using a stock-recruitment relationship parameterized using $\Fmsy / \text{MSY}$ [**I think that should be $\Fmsy$ and MSY???] (**Martell 2010), and using several alternative steepness priors (**JTC 2012, **2013). Selectivity has also been modeled in several ways: it has been both time-varying with a random walk (**Helser et al. 2002) and without (**Dorn 1994, **Dorn and Saunders 1997, **JTC 2012, **2013) and invariant (**JTC 2012, **2013); and it has been age-based (**Dorn 1994, **Dorn and Saunders 1997, **JTC 2012, *2013) and length-based (**Helser and Martell 2007).
+The structure of assessment models has perhaps had the largest number of changes. In terms of spatial models since 1994, analysts have considered spatial explicit forms (**Dorn 1994, **Dorn and Saunders 1997), spatially implicit forms (**Helser et al. 2006) and single-area models (**JTC 2012). Predicted recruitment has been modeled by sampling historical recruitment (e.g., **Dorn 1994, **Helser et al. 2005), using a stock-recruitment relationship parameterized using $\Fmsy$ and $\text{MSY}$ (**Martell 2010), and using several alternative steepness priors (**JTC 2012, **2013). Selectivity has also been modeled in several ways: it has been invariant (**JTC 2012, **2013), time-varying with (**Helser et al. 2002) and without (**Dorn 1994, **Dorn and Saunders 1997, **JTC 2012, **2013) a random walk, age-based (**Dorn 1994, **Dorn and Saunders 1997, **JTC 2012, *2013) and length-based (**Helser and Martell 2007).
 
-Several harvest control rules have been explored for providing catch limits from these stock assessments. Pacific Hake stock assessments have presented decision makers with constant $F$, variable $F$ and hybrid control rules: [**SPR okay?] $F_{\text{SPR}=35\%}, \Fforty, \Fforty-40:10, F_{\text{SPR}=45\%}, F_{\text{SPR}=45\%}-40:10$ and $F_{\text{SPR}=50\%}$ (e.g., **Dorn 1996, JTC 2013) The above is only a small fraction of the number of management procedures that have actually been investigated. There have been many others combinations of data, assessment model and harvest control rule. In addition to the cases examined in the assessment documents, there have been many more requested at assorted review panel meetings.
+Several harvest control rules have been explored for providing catch limits from these stock assessments. Pacific Hake stock assessments have presented decision makers with constant $F$, variable $F$ and hybrid control rules: $F_{\text{SPR}=35\%}, \Fforty$, $\Fforty$--40:10, $F_{\text{SPR}=45\%}$, $F_{\text{SPR}=45\%}$--40:10 and $F_{\text{SPR}=50\%}$ (e.g., **Dorn 1996, **JTC 2013). The above is only a small fraction of the number of management procedures that have actually been investigated. There have been many others combinations of data, assessment model and harvest control rule. In addition to the cases examined in the assessment documents, there have been many more requested at assorted review panel meetings.
 
-While there have been many changes to Pacific Hake management procedures, they have not been capricious. Available data have changed over the years, and there have been many advances in the discipline of Fisheries Science. In some ways, the latter has evolved considerably over the course of the historical hake fishery: new statistical techniques and software have evolved (Bayesian vs. maximum likelihood methods for example); and the scientific literature has suggested potentially important biological dynamics to consider (explicit modelling of length-at-age for example). Policies requiring the application of specific control rules have also changed such as the United States' National Standards Guidelines in 2002 and the $\Fforty-40:10$ harvest control rule in The Agreement. Analysts making changes to Pacific Hake management procedures have been trying to improve the caliber and relevance of the assessments by responding to new scientific developments, policy requirements, and different reviewers. Until the Management Strategy Evaluation (MSE) that was begun in 2013 (**JTC, 2013), none of these management procedure changes has been evaluated by simulation and quantitatively compared with performance measures.
-
-
-
-
-
+While there have been many changes to Pacific Hake management procedures, they have not been capricious. Available data have changed over the years, and there have been many advances in the discipline of Fisheries Science. In some ways, the latter has evolved considerably over the course of the historical hake fishery: new statistical techniques and software have evolved (Bayesian vs. maximum likelihood methods for example); and the scientific literature has suggested potentially important biological dynamics to consider (explicit modeling of length-at-age for example). Policies requiring the application of specific control rules have also changed such as the United States' National Standards Guidelines in 2002 and the $\Fforty$--40:10 harvest control rule in The Agreement. Analysts making changes to Pacific Hake management procedures have been trying to improve the caliber and relevance of the assessments by responding to new scientific developments, policy requirements, and different reviewers. Until the Management Strategy Evaluation (MSE) that was begun in 2013 (**JTC, 2013), none of these management procedure changes has been evaluated by simulation and quantitatively compared with performance measures.
 
 \subsection{Response to recent review recommendations}\label{sec:assessment-response-review}
 
-\subsection{2015 Scientific Review Group (SRG) review}\label{sec:assessment-2015-review}
+\subsection{\Sexpr{assess.yr} Scientific Review Group (SRG) review}\label{sec:assessment-2016-review}
 
-**To be added after 2015 review.  [**this is what it said in final 2015 report, but nothing seemed to have been added.]
+**To be added after \Sexpr{assess.yr} review.  [**for 2015 assessment nothing actually got added.]
 
-\subsection{2014 Scientific Review Group (SRG) review}\label{sec:assessment-2014-review}
+\subsection{\Sexpr{last.assess.yr} Scientific Review Group (SRG) review}\label{sec:assessment-2015-review}
 
-The Scientific Review Group (SRG) was held in Seattle, WA from February 18-21, 2014. The SRG investigated many aspects of the 2013 acoustic survey estimate and the model. The base model presented by the JTC was unchanged and endorsed by the SRG for use by the JMC when considering the 2013 catch quota, with the understanding that the 2013 acoustic survey biomass estimate was potentially biased due to extrapolation into unsurveyed areas. A sensitivity to a lower survey estimate resulted in a 16\% reduction in the default harvest rate catch. The SRG also reviewed the Management Strategy Evaluation (MSE), and felt that progress has been made and it is proving to be a useful tool to investigate assessment model behavior and potentially could be used to understand management decisions.
+The Scientific Review Group (SRG) meeting was held from February 24--27, 2015, at Simon Fraser University, Vancouver, B.C, Canada. 
 
-Many recommendations were made by the SRG and are summarized in their 2014 report. A few of the high priority recommendations were to continue research on the acoustic survey including research on the methods to calculate a biomass estimate, continuing research on hake biology and ecology, and expanding the MSE operating model to test how the assessment model performs under alternative stock and recruitment assumptions.
+**Could be worth responding to the five specific points from last year's report:
+
+The following are the Assessment Recommendations from the \Sexpr{last.assess.yr} SRG report, as listed from highest to lowest priority:
+
+\begin{itemize}
+
+\item Given the information and analyses presented to the SRG at this meeting, the 2016 base assessment model should be fitted to a survey biomass index series (starting in 1995) with no extrapolation. Sensitivity runs can be conducted to assess the effect of extrapolation in the survey index on the assessment, if extrapolation is supported by compelling evidence.
+
+\emph{**Reply....}
+  
+\item Age-1 index --  the SRG recommends that the next assessment include a sensitivity run incorporating the age-1 acoustic index (which begins in 1995) shown in Figure 8 of the draft 2015 assessment document. Results of this run could be used to facilitate an MSE evaluation of the value of developing a formal age-1 index (see below).
+
+\emph{**Reply....}
+  
+\item The SRG recommends that future stock assessments include sensitivity analyses that help communicate more of the key structural uncertainties in the current assessment modelling framework. Two key sensitivities in previous Hake assessments are the prior distributions on natural mortality and recruitment variation. The JTC should define a list of additional uncertainties to be examined regularly.
+
+\emph{**Reply....}
+
+\item High uncertainty about species/stock composition of the developing Hake fishery in Mexico and of Hake found south of Point Conception in the southern California Bight does not support the inclusion of these fish in the assessment at this time. The SRG encourages ongoing monitoring and collaborative research on stock structure to resolve stock status. Anecdotal reports that Mexican catches of Hake have increased substantially in recent years are a concern, especially should these catches come from the same offshore stock of Hake covered by this assessment.
+
+\emph{**Reply....}
+
+\item The SRG supports continued collection of ovaries across the range of Hake and analysis of maturity schedules using histological techniques. Analyses conducted in 2014 show that maturity-at-length differs between northern and southern areas of the stock (based on a break-point at Point Conception, 34$^o$N). The SRG notes that the maturity-at-length curve for the northern region is similar to the relationship used in the current stock assessment (based on **Dorn and Saunders 1997). Since most of the catch and estimated survey biomass occurs above 34$^o$N, further work on defining the apparent difference between northern and southern regions is expected to have low relevance to the stock assessment. However, further investigation into the source of this difference, including the possibility of a separate southern stock or sub-species, is of interest for increasing our understanding of Hake species.
+
+\emph{**Reply....}
+  
+\end{itemize}
+
+** From 2015 assessment, based on 2014 review: The SRG investigated many aspects of the 2013 acoustic survey estimate and the model. The base model presented by the JTC was unchanged and endorsed by the SRG for use by the JMC when considering the 2013 catch quota, with the understanding that the 2013 acoustic survey biomass estimate was potentially biased due to extrapolation into unsurveyed areas. A sensitivity to a lower survey estimate resulted in a 16\% reduction in the default harvest rate catch. The SRG also reviewed the Management Strategy Evaluation (MSE), and felt that progress has been made and it is proving to be a useful tool to investigate assessment model behavior and potentially could be used to understand management decisions.
+
+** From 2015 assessment, based on 2014 review: Many recommendations were made by the SRG and are summarized in their 2014 report. A few of the high priority recommendations were to continue research on the acoustic survey including research on the methods to calculate a biomass estimate, continuing research on hake biology and ecology, and expanding the MSE operating model to test how the assessment model performs under alternative stock and recruitment assumptions.
+
+
 
 \subsection{Model description}\label{sec:assessment-model-description}
 

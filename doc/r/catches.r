@@ -29,17 +29,6 @@ load.catches <- function(fn ## fn is the filename with relative path
   return(list(catches = catches, landings.vs.tac = landings.vs.tac))
 }
 
-## load.landings.tac <- function(fn ## fn is the filename with reletive path
-##                               ){
-##   ## Reads in the landings vs tac file. This is for the management performance section
-##   ## of the executive summary. The table represents coastwide values
-##   landings.vs.tac <- read.csv(fn)
-
-##   ## Add column for proportions
-##   landings.vs.tac <- cbind(landings.vs.tac, landings.vs.tac$landings / landings.vs.tac$tac * 100)
-##   return(landings.vs.tac)
-## }
-
 make.catches.table <- function(catches,              ## The output of the load.catches function above.
                                start.yr,             ## start.yr is the first year to show in the table
                                end.yr,               ## end.yr is the last year to show in the table
@@ -94,7 +83,7 @@ make.catches.plot <- function(catches,
                  col=cols,xlab="Year", ylab="", cex.lab=1, xaxt="n", mgp=c(2.2,1,0))
   axis(1,at=tmp, labels=years, line=-0.12)
   grid(NA,NULL,lty=1,lwd = 1)
-  mtext("Catch ('000 mt)",side=2,line=2.8,las=0,cex=1.3)
+  mtext("Catch (thousand t)",side=2,line=2.8,las=0,cex=1.3)
   barplot(t(as.matrix(catches))/1000,beside=FALSE,names=catches[,1],
           col=cols, xlab="Year",ylab="",cex.lab=1,xaxt="n",add=TRUE,mgp=c(2.2,1,0))
 
@@ -235,4 +224,11 @@ years.Can.JV.catch.eq.0 <- function(catches,          ## The output of the load.
   years.Can.JV.catch.eq.0 <- catches[ catches$CAN_JV == 0, ]$Year
   years.Can.JV.catch.eq.0.recent <- years.Can.JV.catch.eq.0[ years.Can.JV.catch.eq.0 > 1999]
   return(years.Can.JV.catch.eq.0.recent)
+}
+
+further.tac.details <- function(fn){
+                                ## fn is the filename with relative path
+  ## Reads in the further.tac.details file and returns it as a data.frame
+  further.tac <- read.csv(fn, header=TRUE, sep=",", comment.char="#")
+  return(further.tac)
 }

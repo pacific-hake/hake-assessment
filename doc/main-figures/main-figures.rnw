@@ -4,15 +4,20 @@
 
 \section{FIGURES} \label{sec:figures}
 
+%% Data overview not done yet, but referenced in text, so please label as:
+% \label{fig:main-data-overview}
+
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.total.catches, fig.height=8, fig.width=9>>=
-make.catches.plot(catches, leg.y.loc=520) ## leg.y.loc is y-coord to place legend at
+<<main.total.catches, fig.height=6, fig.width=9>>=
+make.catches.plot(catches,
+                  leg.y.loc=450) ## leg.y.loc is y-coord to place legend at
 @
 \end{center}
 %\vspace{0mm}
-\caption{Total Pacific Hake catch used in the assessment by sector, \Sexpr{start.yr} -- \Sexpr{end.yr}. U.S. tribal catches are included in the sectors where they are represented.}
+\caption{Total Pacific Hake catch used in the assessment by sector, \Sexpr{start.yr} -- \Sexpr{end.yr}.
+  U.S. tribal catches are included in the sectors where they are represented.}
 \label{fig:main-catches}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -25,17 +30,17 @@ layout(matrix(c(1,1), nrow = 2, ncol = 1, byrow=TRUE))
 ## The return values from the plot function contain
 ## start year, end year, max. proportion,
 ##  year of max. proportion, age of max. proportion.
-max.survey.age.prop <- make.age.comp.bubble.plot(base.model,
-                                                 subplot = 2,
-                                                 show.key = TRUE,
-                                                 start.yr = 1975,
-                                                 key.yrs = c(1990, 1994, 1998, 2002))
-max.fishery.age.prop <- make.age.comp.bubble.plot(base.model, subplot = 1)
+make.age.comp.bubble.plot(base.model,
+                          subplot = 2,
+                          show.key = TRUE,
+                          start.yr = 1975,
+                          key.yrs = c(1990, 1994, 1998, 2002))
+make.age.comp.bubble.plot(base.model, subplot = 1)
 @
 \end{center}
 %\vspace{0mm}
 \caption{Age compositions for the acoustic survey (top) and the aggregate fishery (bottom, all sectors combined)
-  for the years \Sexpr{max.fishery.age.prop[1]} -- \Sexpr{max.fishery.age.prop[2]}.
+  for the years \Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}.
   Proportions in each year sum to 1.0 and area of the bubbles are
   proportional to the proportion and consistent in both panels (see key at top).
   The largest bubble in the survey data is \Sexpr{max.survey.age.prop[3]} for age \Sexpr{max.survey.age.prop[5]}
@@ -499,9 +504,23 @@ make.mcmc.vs.mle.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+\begin{figure}[p]
 \begin{center}
-<<main.forecast.depletion.comparison.plot, fig.height=5, fig.width=8>>=
+<<main.projected.catch.density, fig.height=4.5, fig.width=8>>=
+make.forecast.catch.posterior.plot(base.model,
+                                   fore.yr = end.yr)
+@
+\end{center}
+\caption{The posterior distribution of the default \Sexpr{end.yr} catch limit calculated using the default harvest
+  policy ($\Fforty$ - 40:10). The dark shaded area ranges from the 2.5\% quantile to the 97.5\% quantile.}
+\label{fig:main-projected-catch-density}
+%% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{figure}[H]
+\begin{center}
+<<main.forecast.depletion.comparison.plot, fig.height=4.5, fig.width=8>>=
 ## Look at catch.levels and catch.levels.names to decide which to include here
 ## models.inds are the indices of those which will be plotted against each other
 models.inds <- c(1, 2, 6, 10)
@@ -524,9 +543,9 @@ make.forecast.depletion.comparison.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+\begin{figure}[p]
 \begin{center}
-<<main.forecast.risk.comparison.plot.year.1, fig.height=5, fig.width=8>>=
+<<main.forecast.risk.comparison.plot.year.1, fig.height=4.5, fig.width=8>>=
 make.forecast.risk.comparison.plot(base.model,
                                    forecast.yrs = forecast.yrs,
                                    fore.yr = forecast.yrs[1],
@@ -539,13 +558,13 @@ make.forecast.risk.comparison.plot(base.model,
 \caption{Graphical representation of the base model results presented in Table \ref{tab:es-risk-year-1} for catch in
   \Sexpr{forecast.yrs[1]}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
 \label{fig:main-forecast-risk-comparison-year-1}
-\end{figure}
+%% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
+%% JOINED ON PAGE
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+%% \begin{figure}[H]
 \begin{center}
-<<main.forecast.risk.comparison.plot.year.2, fig.height=5, fig.width=8>>=
+<<main.forecast.risk.comparison.plot.year.2, fig.height=4.5, fig.width=8>>=
 make.forecast.risk.comparison.plot(base.model,
                                    forecast.yrs = forecast.yrs,
                                    fore.yr = forecast.yrs[2],
