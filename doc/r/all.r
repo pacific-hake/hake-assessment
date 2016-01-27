@@ -60,6 +60,7 @@ source("tables-timeseries.r")
 source("tables-reference-points.r")
 source("tables-decisions.r")
 source("tables-age.r")
+source("tables-parameters.r")
 
 ## verbose applies to the SS loading functions as well as this project's functions
 verbose <- FALSE
