@@ -175,6 +175,23 @@ __GitHub workflow__
 - Then **push** (I think a merge automatically does a **commit**?).
 - when get a conflict, open the file in emacs and it has <<<<<<   for the start of a conflicting part, and ========= at the end, so manually fix it. Then **git add <filename>** to confirm that's the one you want (not completely obvious), then commit. See <https://help.github.com/articles/resolving-a-merge-conflict-from-the-command-line/>  
 - We will try and work on different files so that there are no conflicts when we merge.
+ 
+
+**Undoing a merge**
+
+Just merged Chris's stuff (27/1/16) in but rebuilding the models doesn't work, I think because he mentioned that he had to change some structure (and he's left for the day). I tried fixing, but I don't think it worked (I'll commit this edit to the readme.md file to double check), so easiest just to ask Chris tomorrow as I need to leave soon anyway. I tried:
+
+From http://stackoverflow.com/questions/2389361/undo-a-git-merge  trying the answer:
+
+"Strange that the simplest command was missing. Most answers work, but undoing the merge you just did, this is the easy and safe way:
+
+git reset --merge ORIG_HEAD
+
+The ref ORIG_HEAD will point to the original commit from before the merge."
+
+So I get ORIG_HEAD from doing  git lg
+
+git reset --merge 33489f0
 
 
 
