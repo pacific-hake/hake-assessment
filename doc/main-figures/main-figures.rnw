@@ -705,3 +705,68 @@ make.forecast.risk.comparison.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<mle.survey.base.alternative, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Maximum likelihood estimates (MLEs) of expected survey biomass for the base model (black, same as red line in Figure~\ref{fig:main-mcmc-survey-fit}) and the alternative sensitivity run (red) which ***ONCE WE DECIDE ON ONE.}
+\label{fig:mle-survey-base-alternative}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<biomass.base.alternative, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Posterior MCMC predictions of spawning biomass at the start of each year for the base model (black) and alternative sensititivy run (red) which ***AS PREVIOUS.}
+\label{fig:biomass-base-alternative}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<recruitment.base.alternative, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Posterior MCMC predictions of recruitment for the base model (black) and alternative sensititivy run (red) which ***AS PREVIOUS.}}
+\label{fig:recruitment-base-alternative}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<catch.limit.base.alternative, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{The posterior distribution of the default \Sexpr{end.yr} catch limit calculated using the default harvest policy ($\Fforty-40:10$). The dark shaded area ranges from the 2.5\% to 97.5\% quantiles. The base model is shown in black (the same distribution as in Figure~\ref{fig:main-projected-catch-density}) with a median at **GET FROM EARLIER, and the alternative sensitivity run (red) which ***AS PREVIOUS has a median of ***.}
+\label{fig:catch.limit.base.alternative}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{figure}[H]
+%\begin{center}
+%<<*, fig.height=6, fig.width=8>>=
+%plot(1:10, main="Placeholder dummy figure")
+%@
+%\end{center}
+%%\vspace{0mm}
+%\caption{*}
+%\label{fig:*}
+%\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
