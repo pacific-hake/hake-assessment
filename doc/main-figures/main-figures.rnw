@@ -362,14 +362,12 @@ make.age.comp.pearson.plot(model.partest)
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<prior.posterior.plot, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
+<<main.prior.posterior, fig.height=6, fig.width=8>>=
+make.mcmc.priors.vs.posts.plot(base.model,
+                               key.posteriors)
 @
 \end{center}
 %\vspace{0mm}
@@ -377,11 +375,6 @@ plot(1:10, main="Placeholder dummy figure")
 \label{fig:main-prior-posterior}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
