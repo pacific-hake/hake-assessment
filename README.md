@@ -197,8 +197,10 @@ git reset --merge 33489f0
 Copy and paste all model output files into new mcmc/ directory.
 
 ss3 -mcmc 999 -mcsave 1 
+
 ss3 -mceval
 
+[Allan says probably 1000 for the first one since it discards the first sample - presumably only when -mcsave 1 is there would we need 1000]
 
 
 

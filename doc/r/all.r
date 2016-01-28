@@ -300,6 +300,12 @@ curr.bio.lower <- fmt0(base.model$mcmccalcs$slower[names(base.model$mcmccalcs$sl
 curr.bio.median <- fmt0(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% end.yr], 3)
 curr.bio.upper <- fmt0(base.model$mcmccalcs$supper[names(base.model$mcmccalcs$supper) %in% end.yr], 3)
 
+## Estimates of spawning biomass for previous year (calculated in this assessment):
+prev.bio.lower <- fmt0(base.model$mcmccalcs$slower[names(base.model$mcmccalcs$slower) %in% last.data.yr], 3)      # last.data.yr = end.yr-1
+prev.bio.median <- fmt0(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% last.data.yr], 3)
+prev.bio.upper <- fmt0(base.model$mcmccalcs$supper[names(base.model$mcmccalcs$supper) %in% last.data.yr], 3)
+
+
 ## First forecast year depletion and spawning biomass estimates
 fore.tac.mcmc <- base.model$forecasts$mcmccalcs[[catch.tac.ind]]
 next.depl.lower.tac.based <- fmt0(fore.tac.mcmc$dlower[names(fore.tac.mcmc$dlower) %in% (end.yr + 1)] * 100, 1)
@@ -309,6 +315,12 @@ next.depl.upper.tac.based <- fmt0(fore.tac.mcmc$dupper[names(fore.tac.mcmc$duppe
 next.bio.lower.tac.based <- fmt0(fore.tac.mcmc$slower[names(fore.tac.mcmc$slower) %in% (end.yr + 1)] * 100, 1)
 next.bio.median.tac.based <- fmt0(fore.tac.mcmc$smed[names(fore.tac.mcmc$smed) %in% (end.yr + 1)] * 100, 1)
 next.bio.upper.tac.based <- fmt0(fore.tac.mcmc$supper[names(fore.tac.mcmc$supper) %in% (end.yr + 1)] * 100, 1)
+
+## Calculations for assessment-section.rnw
+num.mcmc.samples <- dim(base.model$mcmc)[1]
+median.bio.min  <- fmt0(min(base.model$mcmccalcs$smed), 3)  # min median biomass
+median.bio.min.year <- names(which.min(base.model$mcmccalcs$smed)) # year of min
+
 
 ## Second forecast year depletion and spawning biomass estimates
 next2.depl.lower.tac.based <- fmt0(fore.tac.mcmc$dlower[names(fore.tac.mcmc$dlower) %in% (end.yr + 2)] * 100, 1)
