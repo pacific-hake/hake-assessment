@@ -316,7 +316,8 @@ next.bio.lower.tac.based <- fmt0(fore.tac.mcmc$slower[names(fore.tac.mcmc$slower
 next.bio.median.tac.based <- fmt0(fore.tac.mcmc$smed[names(fore.tac.mcmc$smed) %in% (end.yr + 1)] * 100, 1)
 next.bio.upper.tac.based <- fmt0(fore.tac.mcmc$supper[names(fore.tac.mcmc$supper) %in% (end.yr + 1)] * 100, 1)
 
-## Calculations for assessment-section.rnw
+## Calculations for assessment-section.rnw; number of mcmc samples, minimum
+##  median biomass
 num.mcmc.samples <- dim(base.model$mcmc)[1]
 median.bio.min  <- fmt0(min(base.model$mcmccalcs$smed), 3)  # min median biomass
 median.bio.min.year <- names(which.min(base.model$mcmccalcs$smed)) # year of min
@@ -332,6 +333,7 @@ next2.bio.median.tac.based <- fmt0(fore.tac.mcmc$smed[names(fore.tac.mcmc$smed) 
 next2.bio.upper.tac.based <- fmt0(fore.tac.mcmc$supper[names(fore.tac.mcmc$supper) %in% (end.yr + 2)] * 100, 1)
 
 ## Vector of 1-10 in words, to use in the command afterwards in introduction.rnw
+## [Can probably replace with Chris's fancy new function, but this works for now]
 numbers.as.words <- c("one", "two", "three", "four", "five", "six", "seven",
     "eight", "nine", "ten")
 low.catches.since.1996 <- numbers.as.words[length(filter(catches, TOTAL <= 200000, Year > 1986)$Year)]
