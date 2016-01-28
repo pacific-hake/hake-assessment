@@ -659,7 +659,7 @@ make.forecast.depletion.comparison.plot(base.model,
                                         legend.loc = "topleft")
 @
 \end{center}
-\caption{Time-series of relative spawning biomass at the start of each year until \Sexpr{end.yr} as estimated from the base model, and forecast trajectories
+\caption{Time series of relative spawning biomass at the start of each year until \Sexpr{end.yr} as estimated from the base model, and forecast trajectories
   to the start of \Sexpr{forecast.yrs[length(forecast.yrs)]} for several management options from the decision table, with 95\% posterior
   credibility intervals. The \Sexpr{end.yr} catch of \Sexpr{fmt0(catch.default.policy[1])}~t was calculated using the default
   harvest policy, as defined in the Agreement.}
@@ -680,7 +680,7 @@ make.forecast.risk.comparison.plot(base.model,
                                    legend.cex = 0.7)
 @
 \end{center}
-\caption{Graphical representation of the base model results presented in Table \ref{tab:es-risk-year-1} for catch in
+\caption{Graphical representation of the base model results presented in Table \ref{tab:es-risk-year-1} for various catches in
   \Sexpr{forecast.yrs[1]}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
 \label{fig:main-forecast-risk-comparison-year-1}
 %% \end{figure}
