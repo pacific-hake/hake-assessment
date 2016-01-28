@@ -37,8 +37,8 @@ run.partest.model <- function(model,
 
   posts <- read.table(file.path(partest.dir, "posteriors.sso"), header = TRUE)
   ## Change this for testing on smaller subset of posteriors
-num.posts <- 5
-  ## num.posts <- nrow(posts)
+  ## num.posts <- 5
+  num.posts <- nrow(posts)
 
   ## create a table of parameter values based on labels in parameters section of Report.sso
   newpar <- data.frame(value = c(1, model$parameters$Value),

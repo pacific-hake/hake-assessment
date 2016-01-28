@@ -193,6 +193,13 @@ So I get ORIG_HEAD from doing  git lg
 
 git reset --merge 33489f0
 
+**Running MCMC in SS**
+Copy and paste all model output files into new mcmc/ directory.
+
+ss3 -mcmc 999 -mcsave 1 
+ss3 -mceval
+
+
 
 
 __Andy's other notes__
