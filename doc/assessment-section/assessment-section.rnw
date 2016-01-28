@@ -134,8 +134,9 @@ The median estimate of \Sexpr{end.yr} female spawning biomass is \Sexpr{curr.bio
 
 The estimated recruitments with uncertainty for each predicted point and the overall stock recruit relationship are provided in (Figure~\ref{fig:main-mcmc.sr.variability}). Extremely large variability about the expectation and about the joint uncertainty of individual recruitment and spawning biomass pairs are **clearly evident in this plot. High and low recruitment has been produced throughout the range of observed spawning biomass (Figure~\ref{fig:main-mcmc.sr.variability}).
 
-**HERE**
 
+% Thought I could get years from base.model$recruitpars but they're all NA's
+%  for the current model run.
 ** The standard deviation of the time series of median recruitment deviation estimates for the years **1971--**2011, which are well informed by the age compositions, is **1.51. The standard deviation of the MCMC samples of all recruitment deviations for the years 1946--**2014 (**69 years with \Sexpr{num.mcmc.samples} samples per year, combining both the variability among years and the uncertainty within each year), is **1.51. These values are roughly consistent with the base model value of $\sigma_r = 1.4$ and suggest that, if anything, $\sigma_r$ could be even higher.
 
 \subsubsub{Exploitation status}
