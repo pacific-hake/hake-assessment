@@ -81,7 +81,7 @@ SSversion <- "3.24U"
 ## These will be used to generate the keyposteriors.csv file,
 ##  the remaining ones will be put into nuisanceposteriors.csv.
 key.posteriors <- c("NatM_p_1_Fem_GP_1",
-                    "SR_LN.R0.",
+                    "SR_LN",
                     "SR_BH_steep",
                     "Q_extraSD_2_Acoustic_Survey")
 key.posteriors.file <- "keyposteriors.csv"
@@ -90,6 +90,9 @@ nuisance.posteriors.file <- "nuisanceposteriors.csv"
 ## Index of the base model as found in the directory.
 ## i.e. 00_Modelname is index 1, 01_Modelname is index 2, etc.
 base.model.ind <- 7
+## Last year's base model. This is used for the parameter estimates table which compares
+##  last year's to this year's parameter estimates.
+last.year.base.model.ind <- 1
 
 
 ## IMPORTANT - If any of these do not match up with what the models are set up

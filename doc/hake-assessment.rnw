@@ -295,7 +295,7 @@ This DRAFT document is non-citable.
 @
 
 \renewcommand{\thetable}{\arabic{table}}    % Now number Tables 1,2,3,...
-\renewcommand{\thefigure}{\arabic{figure}} 
+\renewcommand{\thefigure}{\arabic{figure}}
 \setcounter{table}{0}
 \setcounter{figure}{0}
 
