@@ -160,7 +160,7 @@ make.recruitment.dev.plot <- function(model,  ## model is an mcmc run and is the
 
 make.fishing.intensity.plot <- function(model,            ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
                                         start.yr,         ## Year the timeseries starts (i.e. first year in model)
-                                        end.yr,           ## Year the timeseries ends (i.e. last year in model)
+                                        end.yr,           ## Year the timeseries ends (i.e. last year that values are required for; note that SS calculates a fishing intensity for the final year of the model, but the number is meaningless).
                                         color = "blue"
                                         ){
   ## Plots the 1-SPR / 1-SPR40% for the mcmc given by model
@@ -185,8 +185,8 @@ make.fishing.intensity.plot <- function(model,            ## model is an mcmc ru
             ylab = expression(paste("Fishing intensity", ~~(1-italic(SPR))/(1-italic(SPR)['40%']))),
             cex = 0.8, las = 1, gap = 0.02, xaxt = "n", ciLwd = 1, ciCol = rgb(0,0,1,0.5),
             mgp = c(2.3,1,0), xlim = range(yrs), yaxs = "i")
-  axis(1, at = c(seq(start.yr+4, end.yr-1, 5), end.yr-1))
-  axis(1, at = start.yr:(end.yr-1), lab = rep("",length(start.yr:(end.yr-1))), tcl = -0.3)
+  axis(1, at = seq(1960, end.yr+4, 5))
+  axis(1, at = seq(1960, end.yr+4, 1), lab = rep("",length(seq(1960, end.yr+4, 1))), tcl = -0.3)
   abline(h = 1, col = rgb(0,0,0,0.4))
   text(start.yr+4, 1.05, "Management Target", cex = 0.8, col = rgb(0,0,0,0.4))
   par <- oldpar
@@ -194,7 +194,7 @@ make.fishing.intensity.plot <- function(model,            ## model is an mcmc ru
 
 make.exploitation.fraction.plot <- function(model,            ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
                                             start.yr,         ## Year the timeseries starts (i.e. first year in model)
-                                            end.yr,           ## Year the timeseries ends (i.e. last year in model)
+                                            end.yr,           ## Year the timeseries ends (i.e. last year that values are required for; note that SS calculates an exploitation rate for the final year of the model, but the number is meaningless because that year has no catch).
                                             color = "blue"
                                             ){
   ## Plots the exploitation fraction for the mcmc given by model
@@ -217,9 +217,8 @@ make.exploitation.fraction.plot <- function(model,            ## model is an mcm
   plotBars.fn(yrs, y, scalar = 1, ylim = c(0,0.4), pch = 20, xlab = "Year", ylab = "Exploitation fraction",
               cex = 0.8, las = 1, gap = 0.005, xaxt = "n", ciLwd = 1, ciCol = rgb(0,0,1,0.5),
               mgp = c(2.3,1,0), xlim = range(yrs), yaxs="i")
-  ## axis(1,at=seq(1965,lastCatchYr,2))
-  axis(1, at = c(seq(start.yr+4, end.yr-1, 5), end.yr-1))
-  axis(1, at = start.yr:(end.yr-1), lab = rep("",length(start.yr:(end.yr-1))), tcl = -0.3)
+  axis(1, at = seq(1960, end.yr+4, 5))
+  axis(1, at = seq(1960, end.yr+4, 1), lab = rep("",length(seq(1960, end.yr+4, 1))), tcl = -0.3)
   par <- oldpar
 }
 
