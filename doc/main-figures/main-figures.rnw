@@ -715,7 +715,7 @@ plot(1:10, main="Placeholder dummy figure")
 \end{center}
 %\vspace{0mm}
 \caption{Maximum likelihood estimates (MLEs) of expected survey biomass for the base model (black, same as red line in Figure~\ref{fig:main-mcmc-survey-fit}) and the alternative sensitivity run (red) which ***ONCE WE DECIDE ON ONE.}
-\label{fig:mle-survey-base-alternative}
+\label{fig:main-mle-survey-base-alternative}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -728,7 +728,7 @@ plot(1:10, main="Placeholder dummy figure")
 \end{center}
 %\vspace{0mm}
 \caption{Posterior MCMC predictions of spawning biomass at the start of each year for the base model (black) and alternative sensititivy run (red) which ***AS PREVIOUS.}
-\label{fig:biomass-base-alternative}
+\label{fig:main-biomass-base-alternative}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -740,8 +740,8 @@ plot(1:10, main="Placeholder dummy figure")
 @
 \end{center}
 %\vspace{0mm}
-\caption{Posterior MCMC predictions of recruitment for the base model (black) and alternative sensititivy run (red) which ***AS PREVIOUS.}}
-\label{fig:recruitment-base-alternative}
+\caption{Posterior MCMC predictions of recruitment for the base model (black) and alternative sensititivy run (red) which ***AS PREVIOUS.}
+\label{fig:main-recruitment-base-alternative}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -753,20 +753,85 @@ plot(1:10, main="Placeholder dummy figure")
 @
 \end{center}
 %\vspace{0mm}
-\caption{The posterior distribution of the default \Sexpr{end.yr} catch limit calculated using the default harvest policy ($\Fforty-40:10$). The dark shaded area ranges from the 2.5\% to 97.5\% quantiles. The base model is shown in black (the same distribution as in Figure~\ref{fig:main-projected-catch-density}) with a median at **GET FROM EARLIER, and the alternative sensitivity run (red) which ***AS PREVIOUS has a median of ***.}
-\label{fig:catch.limit.base.alternative}
+\caption{The posterior distribution of the default \Sexpr{end.yr} catch limit calculated using the default harvest policy ($\Fforty$-40:10). The dark shaded area ranges from the 2.5\% to 97.5\% quantiles. The base model is shown in black (the same distribution as in Figure~\ref{fig:main-projected-catch-density}) with a median at **GET FROM EARLIER, and the alternative sensitivity run (red) which ***AS PREVIOUS has a median of ***.}
+\label{fig:main-catch-limit-base-alternative}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-%\begin{figure}[H]
-%\begin{center}
-%<<*, fig.height=6, fig.width=8>>=
-%plot(1:10, main="Placeholder dummy figure")
-%@
-%\end{center}
-%%\vspace{0mm}
-%\caption{*}
-%\label{fig:*}
-%\end{figure}
+\begin{figure}[H]
+\begin{center}
+<<natural.mortality.sensitivities, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Natural mortality as a function of age (left) and year (right) for two sensitivity analyses compared to the base model.}
+\label{fig:main-natural-mortality-sensitivities}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<biomass.sensitivities, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Maximum likelihood estimates (MLEs) of spawning biomass at the beginning of each year for **two sensitivity analyses (red, blue) compared to the base model (black, **mostly obscured by the red lines). **Shaded areas are what?}
+\label{fig:main-biomass-sensitivities}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<biomass.recruitment.retrospective, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Estimates of spawning biomass at the start of each year (top) and recruitment (bottom) for the base model and retrospective runs (based on MCMC posteriors **except there's no uncertainty in the 2015 version of the bottom figure).}
+\label{fig:main-biomass-recruitment-retrospective}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<retrospective.recruitment, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Retrospective analysis of recruitment deviations from maximum likelihood estimate (MLE) models over the last **15 years. Recruitment deviations are the log-scale differences between recruitment estimated by the model and expected recruitment from the spawner-recruit relationship. Lines represent estimated recruitment deviations for cohorts starting in **1999, with cohort birth year marked at the right of each color-coded line. Values are estimated by models using data available only up to the year in which each cohort was a given age.}
+\label{fig:main-retrospective.recruitment}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<relative.retrospective.recruitment, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Retrospective recruitment deviations from Figure~\ref{fig:main-retrospective.recruitment}, with each cohort scaled relative to the most recent estimate of its recruitment deviation (such that the right-most point of each line is at zero).}
+\label{fig:main-relative-retrospective-recruitment}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<historical.assessments, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Summary of historical Pacific Hake assessment estimates of spawning biomass. **The 2013 and 2014 assessment estimated trajectories (red and blue lines) are almost completely covered by the 2015 estimated trajectory. **What is the shaded region? **The 95\% range from the current model?.}
+\label{fig:main-historical-assessments}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
