@@ -162,7 +162,7 @@ plot(1:10, main="Placeholder dummy figure")
 @
 \end{center}
 %\vspace{0mm}
-\caption{Empiricial weight-at-age (kg) used in the assessment (numbers, with colours given by the scale at the bottom). Numbers shown in bold were interpolated or extrapolated from adjacent areas.}
+\caption{Empiricial weight-at-age (kg) used in the assessment (numbers, with colors given by the scale at the bottom). Numbers shown in bold were interpolated or extrapolated from adjacent areas.}
 \label{fig:main-empirical.weight.at.age}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -727,7 +727,7 @@ plot(1:10, main="Placeholder dummy figure")
 @
 \end{center}
 %\vspace{0mm}
-\caption{Posterior MCMC predictions of spawning biomass at the start of each year for the base model (black) and alternative sensititivy run (red) which ***AS PREVIOUS.}
+\caption{Posterior MCMC predictions of spawning biomass at the start of each year for the base model (black) and alternative sensitivity run (red) which ***AS PREVIOUS.}
 \label{fig:main-biomass-base-alternative}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -740,7 +740,7 @@ plot(1:10, main="Placeholder dummy figure")
 @
 \end{center}
 %\vspace{0mm}
-\caption{Posterior MCMC predictions of recruitment for the base model (black) and alternative sensititivy run (red) which ***AS PREVIOUS.}
+\caption{Posterior MCMC predictions of recruitment for the base model (black) and alternative sensitivity run (red) which ***AS PREVIOUS.}
 \label{fig:main-recruitment-base-alternative}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

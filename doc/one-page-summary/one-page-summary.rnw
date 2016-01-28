@@ -21,10 +21,12 @@
     in Canada it was \Sexpr{last.year.can.attained}\%. A variety of factors influenced the attainment of the quota.
 
   \item The stock is estimated to be near its highest biomass level since the early 1990s as a result of an above average 2008 cohort
-    and a very large 2010 cohort. Recruitment in 2011 is estimated to have been below average. Cohorts from the years \Sexpr{end.yr-3}
-    -- \Sexpr{end.yr-1} have not been observed long enough in the data to estimate their ided by unfished equilibrium, B\subscr{0}) is
-    estimated to be \Sexpr{curr.depl.median} \% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower} \% to
-    \Sexpr{curr.depl.upper} \%).
+    and a very large 2010 cohort. Recruitment in 2011 is estimated to have been below average. Cohorts from the years 
+    \Sexpr{end.yr-3}--\Sexpr{end.yr-1} have not been observed long enough in the data to estimate their size or even if they are likely to be above or below average.
+    
+  \item The median estimate of \Sexpr{end.yr} relative spawning biomass (spawning biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium, $B_0$) is
+    \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
+    \Sexpr{curr.depl.upper}\%).
 
   \item The median estimate of \Sexpr{end.yr} female spawning biomass is \Sexpr{curr.bio.median}
     million~t (with 95\% interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper} million~t).
