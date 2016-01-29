@@ -44,9 +44,9 @@ load.models <- function(models.dir = file.path("..","..","models"),
         stop("load.models: Check model outputs and re-run.")
       })
 
-      ## Load the data file for the model
-      ## Get the file whose name contains "_data.ss"
-      ## If there is not exactly one, stop with error.
+      ## Load the data file and control file for the model
+      ## Get the file whose name contains "_data.ss" and "_control.ss"
+      ## If there is not exactly one of each, stop with error.
       model.dir.listing <- dir(models.names[nm])
       fn.ind <- grep("_data.ss", model.dir.listing)
       ## Also get control file name
@@ -64,8 +64,9 @@ load.models <- function(models.dir = file.path("..","..","models"),
       tryCatch({
         model.list[[nm]]$path <- models.names[nm]
         model.list[[nm]]$dat.file <- fn
-        model.list[[nm]]$ctl.file <- c.fn
         model.list[[nm]]$dat <- SS_readdat(fn)
+        model.list[[nm]]$ctl.file <- c.fn
+        model.list[[nm]]$ctl <- readLines(c.fn)
       }, warning = function(war){
         cat("load.models: Warning while loading the dat file '",fn,
             "' for model scenario ", models.names[nm],". Warning was: ", war$message,". Continuing...\n")
