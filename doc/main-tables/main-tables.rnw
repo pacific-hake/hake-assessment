@@ -109,7 +109,7 @@ make.short.parameter.estimates.table(base.model,
                                      space.size = 10)
 @
 
-\textbf{**MISSING TABLE - Summary of median and 95\% credibility base reference points...}
+\textbf{**MISSING TABLE - Summary of median and 95\% credibility base reference points....   **Referencing in text as Table~\ref{tab:main-reference-points}.}
 
 <<main.decisions.biomass.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,

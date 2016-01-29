@@ -168,7 +168,7 @@ The Pacific Hake stock displays the ** highest degree of recruitment variability
 
 \subsection{Reference points}\label{sec:assessment-reference-points}
 
-We report estimates of the **2014 base reference points with posterior credibility intervals in **Table 13. ** The estimates are slightly different than the estimates in the **2014 assessment with slightly greater yields and biomasses estimated in this assessment.
+We report estimates of the base reference points with posterior credibility intervals in Table~\ref{tab:main-reference-points}. ** The estimates are slightly different than the estimates in the previous \Sexpr{last.assess.yr} assessment with ** slightly greater yields and biomasses estimated in this assessment.  
 
 \subsection{Model projections}\label{sec:assessment-model-projections}
 
