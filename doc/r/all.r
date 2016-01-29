@@ -320,11 +320,13 @@ next.bio.median.tac.based <- fmt0(fore.tac.mcmc$smed[names(fore.tac.mcmc$smed) %
 next.bio.upper.tac.based <- fmt0(fore.tac.mcmc$supper[names(fore.tac.mcmc$supper) %in% (end.yr + 1)] * 100, 1)
 
 ## Calculations for assessment-section.rnw; number of mcmc samples, minimum
-##  median biomass
+##  median biomass, years when fishing intensity > 1
 num.mcmc.samples <- dim(base.model$mcmc)[1]
 median.bio.min  <- fmt0(min(base.model$mcmccalcs$smed), 3)  # min median biomass
 median.bio.min.year <- names(which.min(base.model$mcmccalcs$smed)) # year of min
-
+median.intensity.above.one.all.years <- names(which(base.model$mcmccalcs$pmed > 1))    # includes > end.yr
+median.intensity.above.one.years <- median.intensity.above.one.all.years[
+         median.intensity.above.one.all.years < end.yr]  # ones to mention
 
 ## Second forecast year depletion and spawning biomass estimates
 next2.depl.lower.tac.based <- fmt0(fore.tac.mcmc$dlower[names(fore.tac.mcmc$dlower) %in% (end.yr + 2)] * 100, 1)
