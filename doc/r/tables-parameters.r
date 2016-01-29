@@ -136,7 +136,7 @@ make.short.parameter.estimates.table <- function(model,                ## model 
   tab[c(2,5,6,7),] <- fmt0(apply(tab[c(2,5,6,7),], 1, as.numeric))
   ## Percentages
   tab[c(8,9,10),] <- paste0(fmt0(apply(tab[c(8,9,10),], 1, as.numeric), 1), "\\%")
-  ## SPR Percentages (some may be NA). This is really ugly but works
+  ## SPR Percentages row (some may be NA). This is really ugly but works
   tab[12, !is.na(tab[12,])] <- paste0(fmt0(apply(tab[12, !is.na(tab[12,])], 1, as.numeric), 1), "\\%")
 
   ## Replace NAs with dashes
@@ -180,52 +180,60 @@ make.short.parameter.estimates.table <- function(model,                ## model 
 }
 
 make.long.parameter.estimates.table <- function(model,                ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
-                                                digits = 3,           ## number of decimal points for the estimates
+                                                posterior.regex,      ## a vector of the posterior names to search for (partial names will be matched)
+                                                digits = 4,           ## number of decimal points for the estimates
                                                 xcaption = "default", ## Caption to use
                                                 xlabel   = "default", ## Latex label to use
                                                 font.size = 9,        ## Size of the font for the table
                                                 space.size = 10       ## Size of the spaces for the table
                                                 ){
-  ## Returns an xtable in the proper format for the parameter estimates
+  ## Returns an xtable in the proper format for the posterior medians of the parameter estimates
 
-  j <- model$par
-  p.names <- rownames(j)
-  ## Should use the global key.posteriors here but the name of SR_LN.R0. is different here
-  key.posts <- c("NatM_p_1_Fem_GP_1",
-                 "SR_LN(R0)",
-                 "SR_BH_steep",
-                 "Q_extraSD_2_Acoustic_Survey")
-  df <- as.data.frame(cbind(key.posts, j[p.names %in% key.posts,]$Value))
-  names(df) <- c("parameter", "post.med")
+  mc <- model$mcmc
+  mc.names <- names(mc)
 
+  ## Start with the key posteriors using the regex
+  mcmc.grep <- unique(grep(paste(posterior.regex, collapse="|"), mc.names))
+  mcmc.names <- mc.names[mcmc.grep]
+  mcmc.par <- mc[,mcmc.grep]
+  mcmc.meds <- as.data.frame(apply(mcmc.par, 2, median))
+  df <- cbind(mcmc.names, mcmc.meds)
+  names(df) <- c("param","p.med")
+  rownames(df) <- NULL
+
+  calc.meds <- function(df, x){
+    ## x is a data frame of posteriors for some parameters
+    ## This function will take the medians of these,
+    ##  and bind them with the data frame df, and return the result
+    ## Assumes df has column names param and p.med
+    d <- as.data.frame(apply(x, 2, median))
+    d <- cbind(rownames(d), d)
+    rownames(d) <- NULL
+    names(d) <- c("param","p.med")
+    df <- rbind(df, d)
+    return(df)
+  }
   ## Add all Early_InitAge parameters
-  ei <- j[grep("Early_InitAge_[0-9]+", p.names),]
-  ei <- as.data.frame(cbind(ei$Label, ei$Value))
-  names(ei) <- c("parameter", "post.med")
-  df <- rbind(df, ei)
+  ei <- mc[,grep("Early_InitAge_[0-9]+", mc.names)]
+  df <- calc.meds(df, ei)
 
   ## Add all Recruitment deviation parameters
-  ##rec <- j[grepl("(.*_RecrDev_[0-9]+)(.*ForeRecr_[0-9]+)", p.names, perl = TRUE),]
-  rec <- j[union(grep(".*_RecrDev_[0-9]+", p.names),
-           grep("ForeRecr_[0-9]+", p.names)),]
-  rec <- as.data.frame(cbind(rec$Label, rec$Value))
-  names(rec) <- c("parameter", "post.med")
-  df <- rbind(df, rec)
+  rec <- mc[,union(grep(".*_RecrDev_[0-9]+", mc.names),
+                  grep("ForeRecr_[0-9]+", mc.names))]
+  df <- calc.meds(df, rec)
 
   ## Add all AgeSel
-  a.sel <- j[grep("AgeSel_.*", p.names),]
-  a.sel <- a.sel[a.sel$Value != 0,]
-  a.sel <- as.data.frame(cbind(a.sel$Label, a.sel$Value))
-  names(a.sel) <- c("parameter", "post.med")
-  df <- rbind(df, a.sel)
+  a.sel <- mc[,grep("AgeSel_.*", mc.names)]
+  df <- calc.meds(df, a.sel)
 
   ## Format the values
-  df[,2] <- fmt0(as.numeric(levels(df[,2])[df[,2]]), digits)
+  df[,2] <- fmt0(df[,2], digits)
 
-  ## Make the underscores in the names have a preceeding \
+  ## Make the underscores in the names have a preceeding \ so latex will like it
   param.names <- levels(df[,1])[df[,1]]
   df[,1] <- gsub("\\_", "\\\\_", param.names)
 
+  ## Latex column names
   names(df) <- c("\\textbf{Parameter}", "\\textbf{Posterior median}")
 
   addtorow          <- list()
@@ -240,7 +248,7 @@ make.long.parameter.estimates.table <- function(model,                ## model i
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(df, caption=xcaption, label=xlabel, align=get.align(ncol(df)), digits=digits),
-               caption.placement = "top", table.placement="H", tabular.environment="longtable",
+               caption.placement = "top", table.placement="H", tabular.environment="longtable", floating=FALSE,
                include.rownames=FALSE, sanitize.text.function=function(x){x},
                size=size.string, add.to.row = addtorow, hline.after=c(-1)))
 }

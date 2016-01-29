@@ -1,8 +1,8 @@
 % main-tables.rnw
 
-% \clearpage - 
+% \clearpage -
 
-% \vspace{-2mm}   % To shift section heading up. Can't for now get rid of 
+% \vspace{-2mm}   % To shift section heading up. Can't for now get rid of
                 %  previous blank page.
 
 \section{TABLES} \label{sec:tables}
@@ -12,7 +12,7 @@
 % Tables referenced in introduction-section.rnw:
 
 <<catches.US, results='asis', echo=FALSE>>=
-make.catches.table.US(catches, start.yr=start.yr, end.yr=end.yr, 
+make.catches.table.US(catches, start.yr=start.yr, end.yr=end.yr,
                    weight.factor=1000,
                    xcaption = paste("Annual catches of Pacific Hake (t) in U.S. waters by sector, ", start.yr, "-", end.yr, ". Tribal catches are included in the sector totals.", sep=""),
                    xlabel = "tab:intro-catches-US",
@@ -23,7 +23,7 @@ make.catches.table.US(catches, start.yr=start.yr, end.yr=end.yr,
 \clearpage
 
 <<catches.Can, results='asis', echo=FALSE>>=
-make.catches.table.Can(catches, start.yr=start.yr, end.yr=end.yr, 
+make.catches.table.Can(catches, start.yr=start.yr, end.yr=end.yr,
                    weight.factor=1000,
                    xcaption = paste("Annual catches of Pacific Hake (t) in Canadian  waters by sector, ", start.yr, "-", end.yr, ".", sep=""),
                    xlabel = "tab:intro-catches-Can",
@@ -32,7 +32,7 @@ make.catches.table.Can(catches, start.yr=start.yr, end.yr=end.yr,
 @
 
 <<catches.total, results='asis', echo=FALSE>>=
-make.catches.table.total(catches, start.yr=start.yr, end.yr=end.yr, 
+make.catches.table.total(catches, start.yr=start.yr, end.yr=end.yr,
                    weight.factor = 1000,
                    xcaption = paste("Total U.S., Canadian and coastwide catches  of Pacific Hake (t) from ", start.yr, "-", end.yr, ". The percentage of the total catch from each country's waters is also given.", sep=""),
                    xlabel = "tab:intro-catches-total",
@@ -48,6 +48,8 @@ make.landings.tac.table(landings.vs.tac, start.yr=end.yr-10, end.yr=end.yr-1,
                         space.size = 8)
 @
 
+\textbf{***MISSING TABLE - Annual summary of US and Canadian fishery sampling....}
+
 <<main.survey.history.table, results='asis', echo=FALSE>>=
 make.survey.history.table(survey.history,
                           digits = 3,
@@ -56,6 +58,10 @@ make.survey.history.table(survey.history,
                           font.size = 10,
                           space.size = 12)
 @
+
+\textbf{**MISSING TABLE - Number of ovaries collected.....}
+
+\textbf{**MISSING TABLE - Summary of estimated parameters and priors in base model....}
 
 <<main.median.posterior.table, results='asis', echo=FALSE>>=
 make.median.posterior.table(base.model,
@@ -102,3 +108,52 @@ make.short.parameter.estimates.table(base.model,
                                      font.size = 9,
                                      space.size = 10)
 @
+
+\textbf{**MISSING TABLE - Summary of median and 95\% credibility base reference points...}
+
+<<main.decisions.biomass.table, results='asis', echo=FALSE>>=
+make.decision.table(base.model,
+                    xcaption <- paste0("Forecast quantiles of \\fishname\\ relative spawning biomass at the beginning of the year before fishing. Quantiles from the base model are shown in the center of the table with median (50\\% quantile) in bold. Catch alternatives are based on: constant catch levels (rows a, b, c, d, e, g), the TAC from  ",min(forecast.yrs)-1," (row f), the catch level that results in a 50\\% probability that the median projected catch will remain the same in ",min(forecast.yrs)," (row h), the catch values that result in a median SPR ratio of 1.0 (row i), and the median values estimated via the default harvest policy (F\\subscr{40\\%} -- 40:10) for the base (row j). Catch in ",max(forecast.yrs)," is not given because it does not impact the beginning of the year biomass in ",max(forecast.yrs),"."),
+                    xlabel <- "tab:main-decisions-biomass",
+                    font.size = 12,
+                    space.size = 14,
+                    which = "biomass")
+@
+
+<<main.decisions.spr.table, results='asis', echo=FALSE>>=
+make.decision.table(base.model,
+                    xcaption <- paste0("Forecast quantiles of \\fishname\\ fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}) for the ",min(forecast.yrs)," -- ",max(forecast.yrs)," catch alternatives presented in Table \\ref{tab:es-decisions-biomass}. Values greater than 100\\% indicate fishing intensities greater than the F\\subscr{40\\%} harvest policy calculated using baseline selectivity."),
+                    xlabel <- "tab:main-decisions-spr",
+                    font.size = 12,
+                    space.size = 14,
+                    which = "spr")
+@
+
+<<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
+make.risk.table(base.model,
+                forecast.yrs,
+                index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                xcaption <- paste0("Probabilities of related to spawning biomass, fishing intensity, and ",end.yr+1," catch limits for alternative ",end.yr," catch options (catch options explained in Table \\ref{tab:es-decisions-biomass})."),
+                xlabel <- "tab:main-risk-year-1",
+                font.size = 12,
+                space.size = 14)
+@
+
+<<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
+make.risk.table(base.model,
+                forecast.yrs,
+                index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                xcaption <- paste0("Probabilities of related to spawning biomass, fishing intensity, and ",end.yr+2," catch limits for alternative ",end.yr+1," catch options (catch options explained in Table \\ref{tab:es-decisions-biomass})."),
+                xlabel <- "tab:main-risk-year-2",
+                font.size = 12,
+                space.size = 14)
+@
+
+\textbf{**MISSING TABLE - Select parameters, dervied quantities, and reference points for base vs. sensitivity case... May not be necessary this year}
+
+\textbf{**MISSING TABLE - MLE estimates etc.. for base model and all sensitivities...}
+
+\textbf{**MISSING TABLE - Select parameters, dervied quantities, and reference points for base vs. retrospectives...}
+
+
+
