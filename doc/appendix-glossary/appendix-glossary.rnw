@@ -16,7 +16,7 @@ Note: Many of these definitions are relevant to the historical management of Pac
 \leftskip 0.7in
 \parindent -0.7in   % But need to reset to defaults at end of glossary
 
-40:10 Harvest control rule: The calculation leading to the ABC catch level (see below) for future years. This calculation decreases the catch linearly (given a constant age structure in the population) from the catch implied by the $\Fmsy$ (see below) harvest level when the stock declines below $\Bforty$ (see below) to a value of 0 at $\Bten$.
+40:10 harvest control rule: The calculation leading to the ABC catch level (see below) for future years. This calculation decreases the catch linearly (given a constant age structure in the population) from the catch implied by the $\Fmsy$ (see below) harvest level when the stock declines below $\Bforty$ (see below) to a value of 0 at $\Bten$.
 
 40:10 adjustment: a reduction in the overall total allowable catch that is triggered when the biomass falls below 40\% of its average equilibrium level in the absence of fishing. This adjustment reduces the total allowable catch on a straight-line basis from the 40\% level such that the total allowable catch would equal zero when the stock is at 10\% of its average equilibrium level in the absence of fishing.
 
@@ -86,6 +86,8 @@ $F$: Instantaneous rate of fishing mortality (or fishing mortality rate); see be
 
 $\Fforty$ (F-40 Percent): The rate of fishing mortality estimated to reduce the spawning potential ratio (SPR, see below) to 40\%.
 
+\Ffortyten{} harvest policy: The default harvest policy (see above).
+
 Female spawning biomass: The biomass of mature female fish at the beginning of the year. Occasionally, especially in reference points, this term is used to mean spawning output (expected egg production, see below) when this is not proportional to spawning biomass. See also spawning biomass.
 
 Fishing intensity: A measure of the magnitude of fishing relative to a specified target. In this assessment it is defined as: 
@@ -126,7 +128,7 @@ $\Fmsy$: The rate of fishing mortality estimated to produce the maximum sustaina
 
 Harvest strategy: A formal system for managing a fishery that includes the elements shown in Figure A.1 of \citet{JTC2015}. **AME check ref works.
 
-Harvest control rule: A process for determining an ABC from a stock assessment. (See ``40:10 Harvest control rule'' above).
+Harvest control rule: A process for determining an ABC from a stock assessment. (See ``40:10 harvest control rule'' above).
 
 Joint Management Committee (JMC): The joint management committee established by the Agreement.
 

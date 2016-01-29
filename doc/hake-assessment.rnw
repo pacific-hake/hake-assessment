@@ -167,7 +167,9 @@
 \newcommand{\Amat}{Age-at-50\%-maturity}
 \newcommand{\amat}{age-at-50\%-maturity}
 \newcommand{\bc}{British Columbia}
-\newcommand{\Fforty}{F_{\text{SPR}=40\%}}
+\newcommand{\Fforty}{F_{\text{SPR}=40\%}}       % Needs to be done as $\Fforty$
+\newcommand{\Ffortyten}{$\Fforty$--40:10}   % harvest control rule, \Ffortyten{}
+                                            %  to have a space after
 \newcommand{\Bforty}{B_{\text{SPR}=40\%}}
 \newcommand{\Bten}{B_{\text{SPR}=10\%}}
 \newcommand{\Bzero}{B_{0}}

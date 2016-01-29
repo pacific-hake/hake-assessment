@@ -341,7 +341,7 @@ next2.bio.upper.tac.based <- fmt0(fore.tac.mcmc$supper[names(fore.tac.mcmc$suppe
 ## [Can probably replace with Chris's fancy new function, but this works for now]
 numbers.as.words <- c("one", "two", "three", "four", "five", "six", "seven",
     "eight", "nine", "ten")
-low.catches.since.1996 <- numbers.as.words[length(filter(catches, TOTAL <= 200000, Year > 1986)$Year)]
+catches.below.200000.since.1986 <- numbers.as.words[length(filter(catches, TOTAL <= 200000, Year > 1986)$Year)]
 
 ## Age composition data for data section
 survey.age.years <- base.model$dat$agecomp[base.model$dat$agecomp$FltSvy == 2,]$Yr
