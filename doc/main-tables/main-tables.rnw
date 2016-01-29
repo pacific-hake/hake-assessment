@@ -90,3 +90,15 @@ make.est.numbers.at.age.table(base.model,
                               font.size = 8,
                               space.size = 10)
 @
+
+<<main.parameter.estimates, results='asis', echo=FALSE>>=
+make.short.parameter.estimates.table(base.model,
+                                     models[[last.year.base.model.ind]],
+                                     posterior.regex = key.posteriors,
+                                     end.yr = end.yr,
+                                     digits = 3,
+                                     xcaption <- paste0("Select parameters, derived quantities, and reference point estimates for the base model MLE and posterior median (MCMC) estimates with comparison to posterior median estimates from the ",end.yr," base model."),
+                                     xlabel <- "tab:main-parameter-estimates",
+                                     font.size = 9,
+                                     space.size = 10)
+@

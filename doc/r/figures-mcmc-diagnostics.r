@@ -1,32 +1,16 @@
-make.mcmc.priors.vs.posts.plot <- function(model,      ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
-                                           subplot = 1 ## which parameter to plot. See below for info
+make.mcmc.priors.vs.posts.plot <- function(model, ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
+                                           posterior.regex  ## Vector of regular expression strings to use for the parameter search
                                            ){
   ## Plot the priors vs. posterior density for a particular parameter for the model.
-  ## subplots: 1=steepness, 2=LN(R0), 3=Natural mortality, 4=survey extra SD
-
-  ## plot.mcmc.var <- function(x1, col.name) {
-  ##   x1 <- x1[,col.name]
-  ##   plot(x1, type = "n", xlab = "Iteration", ylab = col.name)
-  ##   browser()
-  ##   q <- apply(x1, 1, quantile, probs=c(0.025, 0.5, 0.975))
-  ##   lines(running(x1, fun=median, allow.fewer=TRUE, width=nrow(x1)), col="black")
-  ##   lines(running(x1, fun=quantile, allow.fewer=TRUE, width=nrow(x1), probs=0.025), col="grey")
-  ##   lines(running(x1, fun=quantile, allow.fewer=TRUE, width=nrow(x1), probs=0.975), col="grey")
-  ##   acf(x1,lag.max=10,ylim=c(-0.2,0.2),lwd=3)
-  ##   points(tmp$acf[,1,1], type="h", col="blue", lwd=3)
-  ## }
-
-  x <- cbind(model$mcmckey, model$mcmcnuc)
-  if(subplot == 1){
-    col.str <- "SR_BH_steep"
-  }else if(subplot == 2){
-    col.str <- "SR_LN.R0."
-  }else if(subplot == 3){
-    col.str <- "NatM_p_1_Fem_GP_1"
-  }else{
-    col.str <- "Q_extraSD_2_Acoustic_Survey"
-  }
-##  plot.mcmc.var(x, col.name = col.str)
+  oldpar <- par()
+  par(mfrow=c(2,2),mar=c(3,3,1,1))
+  SSplotPars(model$mcmcpath,
+             strings = posterior.regex,
+             newheaders = c("Steepness", "LN(R0)", "Natural mortality", "Survey extra SD"),
+             nrows = 2,
+             ncols = 2,
+             new = FALSE)
+  par <- oldpar
 }
 
 make.mcmc.diag.plot <- function(model,      ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
