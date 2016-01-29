@@ -17,6 +17,7 @@ doc/resDoc.tex
 doc/r/old*
 models/*
 extra-models/*
+*.pdf
 doc/hake-assessment*.pdf
 doc/hake-assessment.tex
 doc/knitr-cache
