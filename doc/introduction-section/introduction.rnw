@@ -65,7 +65,7 @@ In \Sexpr{last.data.yr}, all Canadian Pacific Hake trips remained subject to 100
 
 \subsection{Fisheries}\label{sec:intro-fisheries}
 
-The fishery for the coastal population of Pacific Hake occurs along the coasts of northern California, Oregon, Washington, and British Columbia primarily during May-November. The fishery is conducted with mid-water trawls. Foreign fleets dominated the fishery until 1991, when domestic fleets began taking the majority of the catch. Catches were occasionally $>200,000$~t prior to 1986, and since then they have been $>200,000$~t for all except \Sexpr{low.catches.since.1996} years.
+The fishery for the coastal population of Pacific Hake occurs along the coasts of northern California, Oregon, Washington, and British Columbia primarily during May-November. The fishery is conducted with mid-water trawls. Foreign fleets dominated the fishery until 1991, when domestic fleets began taking the majority of the catch. Catches were occasionally $>200,000$~t prior to 1986, and since then they have been $>200,000$~t for all except \Sexpr{catches.below.200000.since.1986} years.  
 
 A more detailed description of the history of the fishery is provided in the 2013 Pacific Hake stock assessment \citep{JTC2013}.
 
