@@ -1,3 +1,192 @@
+make.parameters.estimated.summary.table <- function(model,                ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
+                                                    start.rec.dev.yr, ## First year of estimated recruitment devs
+                                                    end.rec.dev.yr,   ## Last year of estimated recruitment devs
+                                                    digits = 3,           ## number of decimal points for the estimates
+                                                    xcaption = "default", ## Caption to use
+                                                    xlabel   = "default", ## Latex label to use
+                                                    font.size = 9,        ## Size of the font for the table
+                                                    space.size = 10       ## Size of the spaces for the table
+                                                    ){
+  ## Returns an xtable in the proper format for the parameters estimated summary
+
+  ## column indexes for the values as found in the control file
+  lo <- 1
+  hi <- 2
+  init <- 3
+  p.mean <- 4 ## prior mean
+  p.type <- 5 ## prior type
+  p.sd <- 6   ## prior sd
+  phase <- 7
+  start.yr.sel <- 10
+  end.yr.sel <- 11
+  sel.dev.sd <- 12
+
+  prior.type <- c("-1" = "Uniform", "2" = "Beta", "3" = "Lognormal")
+
+  fetch.and.split <- function(ctl, x){
+    ## Fetch the line x from the vector ctl and split it up, removing spaces.
+    ## Also remove any leading spaces..
+    ## Return the vector of values
+    j <- ctl[x]
+    ## Remove inter-number spaces
+    j <- strsplit(j," +")[[1]]
+    ## Remove leading spaces
+    j <- j[j != ""]
+    return(j)
+  }
+
+  fetch.prior.info <- function(vals,
+                               digits = 2){
+    ## Looks at the prior type p.type and phase, and if uniform will return "Uniform"
+    ## If not uniform, it will parse the vals and build a string defining the prior info.
+    ## If Fixed, it will return the initial value
+    ## If Lognormal, it will parse the vals and build a string defining the prior info, with the exp function applied..
+    if(vals[p.type] < 0 & vals[phase] > 0){
+      ## Uniform prior on estimated parameter
+      return("Uniform")
+    }
+    if(vals[p.type] < 0 & vals[phase] < 0){
+      ## Fixed parameter
+      return(vals[init])
+    }
+    if(prior.type[vals[p.type]] == "Lognormal"){
+      return(paste0(prior.type[vals[p.type]], "(",
+                    fmt0(exp(as.numeric(vals[p.mean])), digits), ",",
+                    fmt0(exp(as.numeric(vals[p.sd])), digits), ")"))
+    }
+    return(paste0(prior.type[vals[p.type]], "(",
+                  fmt0(as.numeric(vals[p.mean]), digits), ",",
+                  fmt0(as.numeric(vals[p.sd]), digits), ")"))
+  }
+
+  ctl <- model$ctl
+  ## Remove all lines that start with a comment
+  ctl <- ctl[-grep("^#.*", ctl)]
+
+  ## R0 is at line 39 of comment-stripped dataframe. Get it's values which can be indexed by the variables defined above
+  r0 <- fetch.and.split(ctl, 39)
+  r0.vals <- c("Log(\\emph{R}\\subscr{0})", 1, paste0("(", r0[lo], ",", r0[hi], ")"), prior.type[r0[p.type]])
+
+  ## Steepness is at line 40 of comment-stripped dataframe
+  h <- fetch.and.split(ctl, 40)
+  h.vals <- c("Steepness (\\emph{h})", 1, paste0("(", h[lo], ",", h[hi], ")"), fetch.prior.info(h, digits))
+
+  ## Recruitment variability (sigma_r) is at line 41 of comment-stripped dataframe
+  sig.r <- fetch.and.split(ctl, 41)
+  sig.r.vals <- c("Recruitment variability (\\emph{$\\sigma_r$})",
+                  if(sig.r[p.type] < 0 & sig.r[phase] > 0) 1 else "--",
+                  if(sig.r[p.type] < 0 & sig.r[phase] > 0) paste0("(", sig.r[lo], ",", sig.r[hi], ")") else "NA",
+                  fetch.prior.info(sig.r, digits))
+
+  ## Recruitment devs, lower and upper bound found on lines 64 and 65 of comment-stripped dataframe
+  ## The number of them comes from the arguments to this function (for now)
+  rec.dev.lb <- fetch.and.split(ctl, 64)[1]
+  rec.dev.ub <- fetch.and.split(ctl, 65)[1]
+  rec.dev.vals <- c(paste0("Log Rec. deviations: ", start.rec.dev.yr, "--", end.rec.dev.yr),
+                    end.rec.dev.yr - start.rec.dev.yr + 1,
+                    paste0("(", rec.dev.lb, ",", rec.dev.ub, ")"),
+                    "Lognormal(0,\\emph{$\\sigma_r$})")
+
+  ## Natural mortality is at line 20 of comment-stripped dataframe
+  m <- fetch.and.split(ctl, 20)
+  m.vals <- c("Natural mortality (\\emph{M})",
+              if(prior.type[h[p.type]] == "Fixed") 1 else "--",
+              paste0("(", m[lo], ",", m[hi], ")"),
+              fetch.prior.info(m, digits))
+
+  ## Warning!! - Hard-coded for the hake assessment
+  q.vals <- c("Catchability (\\emph{q})", 1, "NA", "Analytic solution")
+
+  ## Survey additional value for SE is at line 78 of comment-stripped dataframe
+  se <- fetch.and.split(ctl, 78)
+  se.vals <- c("Additional value for survey log(SE)",
+               if(prior.type[se[p.type]] == "Fixed") 1 else "--",
+               paste0("(", se[lo], ",", se[hi], ")"),
+               fetch.prior.info(se, digits))
+
+  ## Number of survey selectivities is on line 83 of comment-stripped dataframe
+  num.sel <- fetch.and.split(ctl, 83)
+  grep.num.sel <- grep("#", num.sel)
+  if(length(grep.num.sel) > 0){
+    num.sel <- num.sel[1:(grep.num.sel - 1)]
+  }
+  num.sel <- as.numeric(num.sel[length(num.sel)])
+  ## num.sel is the number of selectivity entries in the file for survey
+  ## Age-0 starts on line 107 of comment-stripped dataframe
+  line.num <- 107
+  ages.estimated <- NULL
+  for(i in line.num:(line.num + num.sel)){
+    age.sel <- fetch.and.split(ctl, i)
+    if(age.sel[phase] > 0){
+      ## This age plus one is being estimated
+      ages.estimated <- c(ages.estimated, i - line.num)
+      ## Use the last line to get the values
+      est.sel <- age.sel
+    }
+  }
+  age.sel.vals <- c(paste0("Non-parametric age-based selectivity: ages ", min(ages.estimated), "--", max(ages.estimated)),
+                    length(ages.estimated),
+                    paste0("(", est.sel[lo], ",", est.sel[hi], ")"),
+                    fetch.prior.info(est.sel, digits))
+
+  ## Number of fishery selectivities is on line 82 of comment-stripped dataframe
+  num.sel <- fetch.and.split(ctl, 82)
+  grep.num.sel <- grep("#", num.sel)
+  if(length(grep.num.sel) > 0){
+    num.sel <- num.sel[1:(grep.num.sel - 1)]
+  }
+  num.sel <- as.numeric(num.sel[length(num.sel)])
+  ## num.sel is the number of selectivity entries in the file for survey
+  ## Age-0 starts on line 85 of comment-stripped dataframe
+  line.num <- 85
+  ages.estimated <- NULL
+  for(i in line.num:(line.num + num.sel)){
+    age.sel <- fetch.and.split(ctl, i)
+    if(age.sel[phase] > 0){
+      ## This age plus one is being estimated
+      ages.estimated <- c(ages.estimated, i - line.num)
+      ## Use the last line to get the values
+      est.sel <- age.sel
+    }
+  }
+  f.age.sel.vals <- c(paste0("Non-parametric age-based selectivity: ages ", min(ages.estimated), "--", max(ages.estimated)),
+                      length(ages.estimated),
+                      paste0("(", est.sel[lo], ",", est.sel[hi], ")"),
+                      fetch.prior.info(est.sel, digits))
+
+  ## Selectivity deviations for fishery. Uses last line to get values, assumes all are the same
+  f.age.sel.dev.vals <- c(paste0("Selectivity deviations (", est.sel[start.yr.sel], "--",
+                                 est.sel[end.yr.sel], ", ages ", min(ages.estimated), "--", max(ages.estimated), ")"),
+                          length(ages.estimated) * length(est.sel[start.yr.sel]:est.sel[end.yr.sel]),
+                          "NA",
+                          paste0("Normal(0,", est.sel[sel.dev.sd], ")"))
+
+  tab <- rbind(r0.vals, h.vals, sig.r.vals, rec.dev.vals, m.vals, q.vals, se.vals, age.sel.vals, f.age.sel.vals, f.age.sel.dev.vals)
+
+  colnames(tab) <- c("\\textbf{Parameter}",
+                     "\\specialcell{\\textbf{Number}\\\\\\textbf{estimated}}",
+                     "\\specialcell{\\textbf{Bounds}\\\\\\textbf{(low,high)}}",
+                     paste0("\\specialcell{\\textbf{Prior (Mean, SD)}\\\\\\textbf{single value = fixed}}"))
+
+  addtorow <- list()
+  addtorow$pos <- list()
+  addtorow$pos[[1]] <- 0
+  addtorow$pos[[2]] <- 5
+  addtorow$pos[[3]] <- 5
+  addtorow$pos[[4]] <- 8
+  addtorow$command <- c("\\textbf{\\underline{Stock dynamics}} \\\\",
+                        "\\textbf{\\underline{Catchability and selectivity (double normal)}} \\\\",
+                        "\\emph{Acoustic survey} \\\\",
+                        "\\emph{Fishery} \\\\")
+
+  ## Make the size string for font and space size
+  size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
+  return(print(xtable(tab, caption=xcaption, label=xlabel, align=get.align(ncol(tab), just="c")),
+               caption.placement = "top", include.rownames=FALSE, sanitize.text.function=function(x){x},
+               size=size.string, add.to.row=addtorow, table.placement="H"))
+
+}
+
 make.short.parameter.estimates.table <- function(model,                ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
                                                  last.yr.model,        ## last year's base model for comparison
                                                  posterior.regex,      ## a vector of the posterior names to search for (partial names will be matched)

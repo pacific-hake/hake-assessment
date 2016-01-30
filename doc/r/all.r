@@ -347,9 +347,6 @@ catches.below.200000.since.1986 <- numbers.as.words[length(filter(catches, TOTAL
 survey.age.years <- base.model$dat$agecomp[base.model$dat$agecomp$FltSvy == 2,]$Yr
 max.survey.age.prop <- make.age.comp.bubble.plot(base.model,
                                                  subplot = 2,
-                                                 show.key = TRUE,
-                                                 start.yr = 1975,
-                                                 key.yrs = c(1990, 1994, 1998, 2002),
                                                  do.plot = FALSE)
 max.fishery.age.prop <- make.age.comp.bubble.plot(base.model,
                                                   subplot = 1,
