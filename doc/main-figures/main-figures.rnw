@@ -183,7 +183,7 @@ make.mcmc.diag.pairs.plot(base.model,
                           forecatch = end.yr)
 @
 \end{center}
-\caption{Posterior correlations among key base-model parameters and derived quantities.}
+\caption{Posterior correlations among key base-model parameters and derived quantities. Numbers refer to the absolute correlation coefficients, with font size proportional to the square root of the coefficient.}
 \label{fig:main-mcmc-pairs}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -197,7 +197,7 @@ make.mcmc.diag.pairs.plot(base.model,
                           recr = (end.yr-10):(end.yr-1))
 @
 \end{center}
-\caption{Posterior correlations among recruitment deviations from recent years.}
+\caption{Posterior correlations among recruitment deviations from recent years. Numbers refer to the absolute correlation coefficients, with font size proportional to the square root of the coefficient.}
 \label{fig:main-mcmc-pairs-recruit-devs}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
