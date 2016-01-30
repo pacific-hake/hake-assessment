@@ -80,7 +80,8 @@
 \usepackage{algorithm}         %% For display of pseudocode
 \usepackage{algpseudocode}     %% For display of pseudocode
 \usepackage{linegoal}          %% For display of pseudocode
-
+% \usepackage{lineno}          %% For adding line numbers that don't
+                               %% restart each page
 \newcommand*{\TitleFont}{%
       \usefont{\encodingdefault}{\rmdefault}{b}{n}%
       \fontsize{20}{24}%
@@ -188,8 +189,11 @@
                             %% Will probably delete footers in main text
                             %%  for final Res Doc.
 
-%% \linenumbers             %% Uncomment to add in line numbers
-%% \modulolinenumbers[5]    %% just number every 5th line
+\linenumbers             %% Uncomment to add in line numbers
+
+%% \modulolinenumbers[5] %% Just number every 5th line. Doesn't restart
+                         %%  numbers on each page, but need lineno package
+                         %%  I think (AME). Probably no need to use.
 
 \begin{document}
 
@@ -295,7 +299,7 @@ This DRAFT document is non-citable.
 @
 
 \renewcommand{\thetable}{\arabic{table}}    % Now number Tables 1,2,3,...
-\renewcommand{\thefigure}{\arabic{figure}} 
+\renewcommand{\thefigure}{\arabic{figure}}
 \setcounter{table}{0}
 \setcounter{figure}{0}
 
@@ -339,6 +343,9 @@ This DRAFT document is non-citable.
 \renewcommand{\theequation}{\thechapter.\arabic{equation}}
 
 <<appendix-glossary, child='appendix-glossary/appendix-glossary.rnw'>>=
+@
+
+<<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
 @
 
 <<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=

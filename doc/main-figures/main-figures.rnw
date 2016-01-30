@@ -4,8 +4,44 @@
 
 \section{FIGURES} \label{sec:figures}
 
-%% Data overview not done yet, but referenced in text, so please label as:
-% \label{fig:main-data-overview}
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.overview.map, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Overview map of the area in the Northeast Pacific Ocean occupied by Pacific Hake. Common areas referred to in this document are shown.}
+\label{fig:main-overview-map}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.backscatter.map, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Spatial distribution of acoustic backscatter attributable to Pacific Hake from joint US-Canada acoustic surveys \Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}. Area of the circle is roughly proportional to observed backscatter.}
+\label{fig:main-backscatter-map}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.data.overview.map, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Overview of data used in this assessment, \Sexpr{start.yr}--\Sexpr{last.data.yr}.}
+\label{fig:main-data-overview}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
@@ -16,11 +52,25 @@ make.catches.plot(catches,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Total Pacific Hake catch used in the assessment by sector, \Sexpr{start.yr} -- \Sexpr{end.yr}.
+\caption{Total Pacific Hake catch used in the assessment by sector, \Sexpr{start.yr}--\Sexpr{end.yr}.
   U.S. tribal catches are included in the sectors where they are represented.}
 \label{fig:main-catches}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.us.at.sea.depths, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Distribution of bottom depths (left) and fishing depths (right), in fathoms, of Pacific Hake catches in the U.S. at-sea fleet from 2008--\Sexpr{last.data.yr}.}
+\label{fig:main-us-at-sea-depths}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
@@ -63,6 +113,60 @@ make.survey.biomass.plot(models, modelnum=base.model.ind)
 \label{fig:main-survey-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<age.one.index, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Preliminary acoustic survey age-1 index overlaid on estimated numbers of age-1 fish (posterior medians from the base model). **The y-axis is on a log scale with labels in real space. **AE suggests no need for log axis, given the scale. This figure represents a comparison with, not a fit to, the preliminary age-1 index data.}
+\label{fig:main-age-one-index}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<prop.mature.by.source, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Observed proportion mature-at-length (bubbles with circle size relative to number of samples at length), fitted proportion mature-at-length with an estimated asymptote (lines), and number of samples at length (barplots beneath each panel). Panels show categories of source (top left), year (top right), source and year (bottom left), and month (for the trawl survey only, bottom right).}
+\label{fig:main-proportion-mature-by-source}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<prop.mature.by.latitude, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{As for Figure~\ref{fig:proportion-mature-by-source} but for two-degree latitude bins. Observed proportion mature-at-length (bubbles with circle size relative to number of samples at length), fitted proportion mature-at-length with an estimated asymptote (lines), and number of samples at length (barplots beneath each panel).}
+\label{fig:main-proportion-mature-by-latitude}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<empirical.weight.at.age, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Empiricial weight-at-age (kg) used in the assessment (numbers, with colors given by the scale at the bottom). Numbers shown in bold were interpolated or extrapolated from adjacent areas.}
+\label{fig:main-empirical.weight.at.age}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
@@ -261,13 +365,27 @@ make.age.comp.pearson.plot(model.partest)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
+<<main.prior.posterior, fig.height=6, fig.width=8>>=
+make.mcmc.priors.vs.posts.plot(base.model,
+                               key.posteriors)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Prior (black lines) and posterior (gray histograms) probability distributions for key parameters in the base model. From the top left, the parameters are: steepness ($h$), natural mortality ($M$), equilibrium log recruitment $\log(R_0)$, and the additional process-error standard deviation for the acoustic survey. The maximum likelihood estimates and associated symmetric uncertainty intervals are also shown (blue lines).}
+\label{fig:main-prior-posterior}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
 <<main.tv.selex, fig.height=8, fig.width=8>>=
 ## Extract TV selectivity fits by running the calculation function. WARNING!!! Change end.yr-1 below to end.yr
 tv.selex.start.yr <- 1990
 tv.selex.ages <- 1:8
 tv.selex <- calc.tv.selex(base.model,
                           start.yr = tv.selex.start.yr,
-                          end.yr = end.yr - 1,
+                          end.yr = end.yr - 2,
                           ages = tv.selex.ages,
                           probs = c(0.025, 0.975))
 make.tv.selex.plot(tv.selex)
@@ -291,7 +409,7 @@ tv.selex.left <- calc.tv.selex(base.model,
                                probs = c(0.025, 0.975))
 tv.selex.right <- calc.tv.selex(base.model,
                                 start.yr = 2002,
-                                end.yr = end.yr-1,
+                                end.yr = end.yr - 2,
                                 ages = tv.selex.ages,
                                 probs = c(0.025, 0.975))
 make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
@@ -340,7 +458,7 @@ make.biomass.plot(base.model,
                   color = "blue")
 @
 \end{center}
-\caption{Median of the posterior distribution for female spawning biomass through \Sexpr{end.yr} (solid line)
+\caption{Median of the posterior distribution for female spawning biomass at the start of each year ($B_t$) up to \Sexpr{end.yr} (solid line)
   with 95\% posterior credibility intervals (shaded area).}
 \label{fig:main-female-spawning-biomass}
 %% \end{figure}
@@ -357,7 +475,7 @@ make.depletion.plot(base.model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Median (solid line) of the posterior distribution for relative spawning biomass (B\subscr{t}/B\subscr{0})
+\caption{Median (solid line) of the posterior distribution for relative spawning biomass ($B_t/B_0$)
   through \Sexpr{end.yr} with 95\% posterior credibility intervals (shaded area). Dashed horizontal lines show 10\%, 40\% and 100\% levels.}
 \label{fig:main-relative-spawning-biomass}
 \end{figure}
@@ -378,7 +496,7 @@ make.recruitment.plot(base.model,
 \end{center}
 \caption{Medians (solid circles) and means (x) of the posterior distribution for recruitment (billions of age-0) with
   95\% posterior credibility intervals (blue lines). The median of the posterior distribution for mean unfished
-  equilibrium recruitment (R\subscr{0}) is shown as the horizontal dashed line with a 95\% posterior credibility
+  equilibrium recruitment ($R_0$) is shown as the horizontal dashed line with a 95\% posterior credibility
   interval shaded between the dotted lines.}
 \label{fig:main-recruitment}
 %% \end{figure}
@@ -394,9 +512,9 @@ make.recruitment.dev.plot(base.model,
 @
 \end{center}
 \caption{Medians (solid circles) of the posterior distribution for log-scale recruitment deviations with
-  95\% posterior credibility intervals (blue lines). Recruitment deviations for the years \Sexpr{recruit.dev.start.yr} -- \Sexpr{start.yr-1}
+  95\% posterior credibility intervals (blue lines). Recruitment deviations for the years \Sexpr{recruit.dev.start.yr}--\Sexpr{start.yr-1}
   are used to calculate the numbers at age in \Sexpr{start.yr}, the initial year of the model. Deviations for
-  the years 1970 -- 2010 are constrained to sum to zero while deviations outside this range do not have a constraint.}
+  the years **1970--**2010 are constrained to sum to zero while deviations outside this range do not have a constraint.}
 \label{fig:main-recruitment-devs}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -416,7 +534,7 @@ make.mcmc.sr.variability.plot(base.model,
   early years and blue colors in the recent years. The thick solid black line indicates the central
   tendency (mean) and the red line the central tendency after bias correcting for the log-normal
   distribution (median). Shading around stock-recruit curves indicates uncertainty in shape associated
-  with distribution of the steepness parameter (h). The gray polygon on the right indicates the
+  with distribution of the steepness parameter ($h$). The gray polygon on the right indicates the
   expected distribution of recruitments relative to the unfished equilibrium.}
 \label{fig:main-mcmc.sr.variability}
 \end{figure}
@@ -431,7 +549,7 @@ make.numbers.at.age.plot(base.model)
 \end{center}
 \caption{Bubble plot of maximum likelihood (MLE) estimates of population numbers at age at the beginning of each year.
   The red line represents the mean age. The scale of the bubbles is represented in the key where the units are
-  billions of fish (with the largest bubble representing about 14 billion age 0 recruits in 1980).}
+  billions of fish (with the largest bubble representing about 14 billion age-0 recruits in 1980).}
 \label{fig:main-numbers-at-age}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -442,7 +560,7 @@ make.numbers.at.age.plot(base.model)
 <<main.fishing.intensity, fig.height=4.5, fig.width=8>>=
 make.fishing.intensity.plot(base.model,
                             start.yr = start.yr,
-                            end.yr = end.yr,
+                            end.yr = end.yr-1,
                             color = "blue")
 @
 \end{center}
@@ -458,7 +576,7 @@ make.fishing.intensity.plot(base.model,
 <<main.exploitation.fraction, fig.height=4.5, fig.width=8>>=
 make.exploitation.fraction.plot(base.model,
                                 start.yr = start.yr,
-                                end.yr = end.yr,
+                                end.yr = end.yr-1,
                                 color = "blue")
 @
 \end{center}
@@ -512,7 +630,7 @@ make.forecast.catch.posterior.plot(base.model,
 @
 \end{center}
 \caption{The posterior distribution of the default \Sexpr{end.yr} catch limit calculated using the default harvest
-  policy ($\Fforty$ - 40:10). The dark shaded area ranges from the 2.5\% quantile to the 97.5\% quantile.}
+  policy ($\Fforty$-40:10). The dark shaded area ranges from the 2.5\% quantile to the 97.5\% quantile.}
 \label{fig:main-projected-catch-density}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -534,9 +652,9 @@ make.forecast.depletion.comparison.plot(base.model,
                                         legend.loc = "topleft")
 @
 \end{center}
-\caption{Time-series of estimated relative spawning biomass to \Sexpr{end.yr} from the base model, and forecast trajectories
-  to \Sexpr{forecast.yrs[length(forecast.yrs)]} for several management options from the decision table, with 95\% posterior
-  credibility intervals. The \Sexpr{end.yr} catch of \Sexpr{fmt0(catch.default.policy[1])} t was calculated using the default
+\caption{Time series of relative spawning biomass at the start of each year until \Sexpr{end.yr} as estimated from the base model, and forecast trajectories
+  to the start of \Sexpr{forecast.yrs[length(forecast.yrs)]} for several management options from the decision table, with 95\% posterior
+  credibility intervals. The \Sexpr{end.yr} catch of \Sexpr{fmt0(catch.default.policy[1])}~t was calculated using the default
   harvest policy, as defined in the Agreement.}
 \label{fig:main-forecast-depletion-comparison}
 \end{figure}
@@ -555,7 +673,7 @@ make.forecast.risk.comparison.plot(base.model,
                                    legend.cex = 0.7)
 @
 \end{center}
-\caption{Graphical representation of the base model results presented in Table \ref{tab:es-risk-year-1} for catch in
+\caption{Graphical representation of the base model results presented in Table \ref{tab:es-risk-year-1} for various catches in
   \Sexpr{forecast.yrs[1]}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
 \label{fig:main-forecast-risk-comparison-year-1}
 %% \end{figure}
@@ -577,5 +695,136 @@ make.forecast.risk.comparison.plot(base.model,
 \caption{Graphical representation of the base model results presented in Table \ref{tab:es-risk-year-2} for catch in
   \Sexpr{forecast.yrs[2]}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
 \label{fig:main-forecast-risk-comparison-year-2}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<mle.survey.base.alternative, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Maximum likelihood estimates (MLEs) of expected survey biomass for the base model (black, same as red line in Figure~\ref{fig:main-mcmc-survey-fit}) and the alternative sensitivity run (red) which ***ONCE WE DECIDE ON ONE.}
+\label{fig:main-mle-survey-base-alternative}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<biomass.base.alternative, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Posterior MCMC predictions of spawning biomass at the start of each year for the base model (black) and alternative sensitivity run (red) which ***AS PREVIOUS.}
+\label{fig:main-biomass-base-alternative}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<recruitment.base.alternative, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Posterior MCMC predictions of recruitment for the base model (black) and alternative sensitivity run (red) which ***AS PREVIOUS.}
+\label{fig:main-recruitment-base-alternative}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<catch.limit.base.alternative, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{The posterior distribution of the default \Sexpr{end.yr} catch limit calculated using the default harvest policy ($\Fforty$-40:10). The dark shaded area ranges from the 2.5\% to 97.5\% quantiles. The base model is shown in black (the same distribution as in Figure~\ref{fig:main-projected-catch-density}) with a median at **GET FROM EARLIER, and the alternative sensitivity run (red) which ***AS PREVIOUS has a median of ***.}
+\label{fig:main-catch-limit-base-alternative}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<natural.mortality.sensitivities, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Natural mortality as a function of age (left) and year (right) for two sensitivity analyses compared to the base model.}
+\label{fig:main-natural-mortality-sensitivities}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<biomass.sensitivities, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Maximum likelihood estimates (MLEs) of spawning biomass at the beginning of each year for **two sensitivity analyses (red, blue) compared to the base model (black, **mostly obscured by the red lines). **Shaded areas are what?}
+\label{fig:main-biomass-sensitivities}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<biomass.recruitment.retrospective, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Estimates of spawning biomass at the start of each year (top) and recruitment (bottom) for the base model and retrospective runs (based on MCMC posteriors **except there's no uncertainty in the 2015 version of the bottom figure).}
+\label{fig:main-biomass-recruitment-retrospective}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<retrospective.recruitment, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Retrospective analysis of recruitment deviations from maximum likelihood estimate (MLE) models over the last **15 years. Recruitment deviations are the log-scale differences between recruitment estimated by the model and expected recruitment from the spawner-recruit relationship. Lines represent estimated recruitment deviations for cohorts starting in **1999, with cohort birth year marked at the right of each color-coded line. Values are estimated by models using data available only up to the year in which each cohort was a given age.}
+\label{fig:main-retrospective.recruitment}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<relative.retrospective.recruitment, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Retrospective recruitment deviations from Figure~\ref{fig:main-retrospective.recruitment}, with each cohort scaled relative to the most recent estimate of its recruitment deviation (such that the right-most point of each line is at zero).}
+\label{fig:main-relative-retrospective-recruitment}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<historical.assessments, fig.height=6, fig.width=8>>=
+plot(1:10, main="Placeholder dummy figure")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Summary of historical Pacific Hake assessment estimates of spawning biomass. **The 2013 and 2014 assessment estimated trajectories (red and blue lines) are almost completely covered by the 2015 estimated trajectory. **What is the shaded region? **The 95\% range from the current model?.}
+\label{fig:main-historical-assessments}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

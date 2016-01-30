@@ -2,7 +2,8 @@ run.partest.model <- function(model,
                               output.file, ## The model object will be stored in binary form here
                               rows.to.skip.to.comps.header = 21,
                               rows.to.skip.to.likelihood = 90,
-                              rows.to.skip.to.survey.header = 1246){
+##                              rows.to.skip.to.survey.header = 1246){ ## end.yr = 2015
+                              rows.to.skip.to.survey.header = 1261){  ## end.yr = 2016, These numbers change when a new year is added
   ## To ensure integration with the knitr loading step, you must
   ## run this from the Rgui (after you've got a base model loaded) like this:
   ##
@@ -168,7 +169,6 @@ run.partest.model <- function(model,
     lab1 <- paste0("Exp", irow)
     cpue.table <- cbind(cpue.table, cpue$Exp)
   }
-
   model.partest <- model
 
   model.partest$agedbase$Exp <- exp.median
@@ -187,6 +187,102 @@ run.partest.model <- function(model,
   save(model.partest, file = output.file)
 }
 
+number.to.word <- function(x, th = FALSE, cap.first = FALSE){
+  ## https://github.com/ateucher/useful_code/blob/master/R/numbers2words.r
+  ## Function by John Fox found here:
+  ## http://tolstoy.newcastle.edu.au/R/help/05/04/2715.html
+  ## Tweaks by AJH to add commas and "and"
+  ## if th is TRUE, the th version will be returned, e.g. 4 = fourth
+  ## if cap.first is TRUE, the first letter will be capitalized
+  helper <- function(x){
+      digits <- rev(strsplit(as.character(x), "")[[1]])
+      nDigits <- length(digits)
+      if (nDigits == 1) as.vector(ones[digits])
+      else if (nDigits == 2)
+        if (x <= 19) as.vector(teens[digits[1]])
+        else trim(paste(tens[digits[2]],
+                        Recall(as.numeric(digits[1]))))
+      else if (nDigits == 3) trim(paste(ones[digits[3]], "hundred and",
+                                        Recall(makeNumber(digits[2:1]))))
+      else {
+        nSuffix <- ((nDigits + 2) %/% 3) - 1
+        if (nSuffix > length(suffixes)) stop(paste(x, "is too large!"))
+        trim(paste(Recall(makeNumber(digits[
+          nDigits:(3*nSuffix + 1)])),
+          suffixes[nSuffix],"," ,
+          Recall(makeNumber(digits[(3*nSuffix):1]))))
+      }
+  }
+  trim <- function(text){
+    ## Tidy leading/trailing whitespace, space before comma
+    text=gsub("^\ ", "", gsub("\ *$", "", gsub("\ ,",",",text)))
+    ## Clear any trailing " and"
+    text=gsub(" and$","",text)
+    ##Clear any trailing comma
+    gsub("\ *,$","",text)
+  }
+  makeNumber <- function(...) as.numeric(paste(..., collapse=""))
+  ## Disable scientific notation
+  opts <- options(scipen=100)
+  on.exit(options(opts))
+  ones <- c("", "one", "two", "three", "four", "five", "six", "seven",
+            "eight", "nine")
+  names(ones) <- 0:9
+  teens <- c("ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+             "sixteen", " seventeen", "eighteen", "nineteen")
+  names(teens) <- 0:9
+  tens <- c("twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty",
+            "ninety")
+  names(tens) <- 2:9
+  x <- round(x)
+  suffixes <- c("thousand", "million", "billion", "trillion")
+  if (length(x) > 1) return(trim(sapply(x, helper)))
+  j <- helper(x)
+  ## Cgrandin added the 'th' bit
+  if(th){
+    j <- strsplit(j, " ")[[1]]
+    first <- j[-length(j)]
+    last <- j[length(j)]
+    if(last == "one"){
+      last <- "first"
+    }else if(last == "two"){
+      last <- "second"
+    }else if(last == "three"){
+      last <- "third"
+    }else if(last == "five"){
+      last <- "fifth"
+    }else if(last == "eight"){
+      last <- "eighth"
+    }else if(last == "nine"){
+      last <- "ninth"
+    }else if(last == "twelve"){
+      last <- "twelfth"
+    }else if(last == "twenty"){
+      last <- "twentieth"
+    }else if(last == "thirty"){
+      last <- "thirtieth"
+    }else if(last == "forty"){
+      last <- "fortieth"
+    }else if(last == "fifty"){
+      last <- "fiftieth"
+    }else if(last == "sixty"){
+      last <- "sixtieth"
+    }else if(last == "seventy"){
+      last <- "seventieth"
+    }else if(last == "eighty"){
+      last <- "eightieth"
+    }else if(last == "ninety"){
+      last <- "ninetieth"
+    }else{
+      last <- paste0(last, "th")
+    }
+    j <- paste(c(first, last), collapse = " ")
+  }
+  if(cap.first){
+    j <- paste0(toupper(substr(j, 1, 1)), substr(j, 2, nchar(j)))
+  }
+  return(j)
+}
 
 cbind.fill <- function(...){
   ## equivalent of cbind(df, xx) where df is an empty data frame.
@@ -315,29 +411,23 @@ randWalkSelex.fn <- function(pars,devs=NULL,bounds=NULL) {
   return(selex)
 }
 
-#randWalkSelex.fn(c(-1000,-1000,0,0.317379,0.00653887,-0.0244099,0.449238,0,0,0,0,0,0,0,0))
-#randWalkSelex.fn(c(-1000,0,4.02533, 1.65537,   0.49088, 0.264563, 0.330266, 0,0,0,0,0,0,0,0,0),
-#             devs=c(NA, NA,0.203144,-0.102409,-0.020993,0.0786477,0.0492123,NA,NA,NA,NA,NA,NA,NA,NA,NA),
-#             bounds=c(-5,9))
+selexYear.fn <- function(x, yr, bnds=c(-5,9)) {
+  ## specific for hake 2013 and 2014
+  selexPars <- matrix(c(-1000, 0, NA, NA, NA, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow = nrow(x), ncol = 16, byrow = TRUE)
+  devsPars  <- matrix(NA, ncol = ncol(selexPars), nrow = nrow(x))
 
-selexYear.fn <- function(x,yr,bnds=c(-5,9)) {
-    ## specific for hake 2013 and 2014
-    selexPars <- matrix(c(-1000,0,NA,NA,NA,NA,NA,0,0,0,0,0,0,0,0,0),nrow=nrow(x),ncol=16,byrow=T)
-    devsPars  <- matrix(NA,ncol=ncol(selexPars),nrow=nrow(x))
+  tmp <- grep("AgeSel_1P_[1-9]_Fishery", names(x))
+  devsInd <- grep("AgeSel_1P_[1-9]_Fishery_DEVadd", names(x))
+  allDevsPars <- x[,devsInd]
+  selexPars[,3:7] <- as.matrix(x[,tmp[!(tmp %in% devsInd)]])
+  devsInd <- grep(as.character(yr), names(x)[devsInd])
+  devsPars[,3:7] <- as.matrix(allDevsPars[,devsInd])
 
-    tmp <- grep("AgeSel_1P_[1-9]_Fishery",names(x))
-    devsInd <- grep("AgeSel_1P_[1-9]_Fishery_DEVadd",names(x))
-    allDevsPars <- x[,devsInd]
-    selexPars[,3:7] <- as.matrix(x[,tmp[!(tmp %in% devsInd)]])
-    devsInd <- grep(as.character(yr),names(x)[devsInd])
-    devsPars[,3:7] <- as.matrix(allDevsPars[,devsInd])
-
-    selex <- matrix(NA,ncol=ncol(selexPars),nrow=nrow(x))
-    for(i in 1:nrow(selexPars)) {
-        selex[i,] <- randWalkSelex.fn(selexPars[i,],devsPars[i,],bounds=bnds)
-    }
-
-    return(selex)
+  selex <- matrix(NA,ncol=ncol(selexPars),nrow=nrow(x))
+  for(i in 1:nrow(selexPars)) {
+    selex[i,] <- randWalkSelex.fn(selexPars[i,],devsPars[i,],bounds=bnds)
+  }
+  return(selex)
 }
 
 selexYear10.fn <- function(x,yr,bnds=c(-5,9)) {

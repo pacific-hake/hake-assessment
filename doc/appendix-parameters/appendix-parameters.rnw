@@ -1,0 +1,17 @@
+% appendix-parameters.rnw
+
+\clearpage
+
+\chapter{Estimated parameters in the base assessment model}
+\label{chap:parameters}
+
+
+<<appendix.parameter.estimates, results='asis', echo=FALSE>>=
+make.long.parameter.estimates.table(base.model,
+                                    key.posteriors,
+                                    digits = 4,
+                                    xcaption <- "Medians of estimated parameters for the base model.",
+                                    xlabel <- "tab:app-parameter-estimates",
+                                    font.size = 9,
+                                    space.size = 10)
+@

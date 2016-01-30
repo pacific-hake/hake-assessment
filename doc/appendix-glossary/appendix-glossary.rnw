@@ -98,7 +98,7 @@ where $xx\%$ is the 40\% proxy. See Figure~\ref{fig:glossary-fishing-intensity}.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \begin{center}
-<<fishing.intensity.plot.height=5, fig.width=5>>=
+<<fishing.intensity.plot,height=5, fig.width=5>>=
 # Do as a function so that variables remain local
 intensity.plot = function(target = 0.4, intensity=seq(0, 1/(1-target), 0.01))
   {
