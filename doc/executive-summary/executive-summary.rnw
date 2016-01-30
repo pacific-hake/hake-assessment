@@ -325,7 +325,7 @@ to investigate, and hypotheses to simulate.
 
 \subsection*{Forecast Decision Table} \label{sec:es-forecast-decision-table}
 \phantomsection \addcontentsline{toc}{subsection}{Forecast Decision Table}
-The median catch for \Sexpr{min(forecast.yrs)} based on the default harvest policy (F\subscr{40\%} -- 40:10) is \textbf{FIX..}~t, but has a
+The median catch for \Sexpr{min(forecast.yrs)} based on the default harvest policy (\Ffortyten) is \textbf{FIX..}~t, but has a
 wide range of uncertainty; the 95\% posterior credibility interval ranges from \textbf{FIX..307,435~t to1,920,296}~t.
 
 A decision table showing predicted population status and fishing intensity relative to target fishing intensity is presented with uncertainty
@@ -357,7 +357,7 @@ biomass will be less than the 2016 spawning biomass is greater than 50\% for any
 
 <<decisions.biomass.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption <- paste0("Forecast quantiles of \\fishname\\ relative spawning biomass at the beginning of the year before fishing. Quantiles from the base model are shown in the center of the table with median (50\\% quantile) in bold. Catch alternatives are based on: constant catch levels (rows a, b, c, d, e, g), the TAC from  ",min(forecast.yrs)-1," (row f), the catch level that results in a 50\\% probability that the median projected catch will remain the same in ",min(forecast.yrs)," (row h), the catch values that result in a median SPR ratio of 1.0 (row i), and the median values estimated via the default harvest policy (F\\subscr{40\\%} -- 40:10) for the base (row j). Catch in ",max(forecast.yrs)," is not given because it does not impact the beginning of the year biomass in ",max(forecast.yrs),"."),
+                    xcaption <- paste0("Forecast quantiles of \\fishname\\ relative spawning biomass at the beginning of the year before fishing. Quantiles from the base model are shown in the center of the table with median (50\\% quantile) in bold. Catch alternatives are based on: constant catch levels (rows a, b, c, d, e, g), the TAC from  ",min(forecast.yrs)-1," (row f), the catch level that results in a 50\\% probability that the median projected catch will remain the same in ",min(forecast.yrs)," (row h), the catch values that result in a median SPR ratio of 1.0 (row i), and the median values estimated via the default harvest policy (\\Ffortyten) for the base (row j). Catch in ",max(forecast.yrs)," is not given because it does not impact the beginning of the year biomass in ",max(forecast.yrs),"."),
                     xlabel <- "tab:es-decisions-biomass",
                     font.size = 12,
                     space.size = 14,

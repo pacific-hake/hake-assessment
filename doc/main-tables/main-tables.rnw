@@ -61,7 +61,16 @@ make.survey.history.table(survey.history,
 
 \textbf{**MISSING TABLE - Number of ovaries collected.....}
 
-\textbf{**MISSING TABLE - Summary of estimated parameters and priors in base model....}
+<<main.parameters.estimated.summary.table, results='asis', echo=FALSE>>=
+make.parameters.estimated.summary.table(base.model,
+                                        start.rec.dev.yr = recruit.dev.start.yr,
+                                        end.rec.dev.yr = end.yr,
+                                        digits = 2,
+                                        xcaption = paste0("Summary of estimated model parameters and priors in the base model. The Beta prior is parameterized with a mean and standard deviation. The Lognormal distribution is parameterized with the median and standard deviation in log space."),
+                                        xlabel = "tab:main-params-est-summary",
+                                        font.size = 10,
+                                        space.size = 12)
+@
 
 <<main.median.posterior.table, results='asis', echo=FALSE>>=
 make.median.posterior.table(base.model,
@@ -109,11 +118,11 @@ make.short.parameter.estimates.table(base.model,
                                      space.size = 10)
 @
 
-\textbf{**MISSING TABLE - Summary of median and 95\% credibility base reference points...}
+\textbf{**MISSING TABLE - Summary of median and 95\% credibility base reference points....   **Referencing in text as Table~\ref{tab:main-reference-points}.}
 
 <<main.decisions.biomass.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption <- paste0("Forecast quantiles of \\fishname\\ relative spawning biomass at the beginning of the year before fishing. Quantiles from the base model are shown in the center of the table with median (50\\% quantile) in bold. Catch alternatives are based on: constant catch levels (rows a, b, c, d, e, g), the TAC from  ",min(forecast.yrs)-1," (row f), the catch level that results in a 50\\% probability that the median projected catch will remain the same in ",min(forecast.yrs)," (row h), the catch values that result in a median SPR ratio of 1.0 (row i), and the median values estimated via the default harvest policy (F\\subscr{40\\%} -- 40:10) for the base (row j). Catch in ",max(forecast.yrs)," is not given because it does not impact the beginning of the year biomass in ",max(forecast.yrs),"."),
+                    xcaption <- paste0("Forecast quantiles of \\fishname\\ relative spawning biomass at the beginning of the year before fishing. Quantiles from the base model are shown in the center of the table with median (50\\% quantile) in bold. Catch alternatives are based on: constant catch levels (rows a, b, c, d, e, g), the TAC from  ",min(forecast.yrs)-1," (row f), the catch level that results in a 50\\% probability that the median projected catch will remain the same in ",min(forecast.yrs)," (row h), the catch values that result in a median SPR ratio of 1.0 (row i), and the median values estimated via the default harvest policy (\\Ffortyten) for the base (row j). Catch in ",max(forecast.yrs)," is not given because it does not impact the beginning of the year biomass in ",max(forecast.yrs),"."),
                     xlabel <- "tab:main-decisions-biomass",
                     font.size = 12,
                     space.size = 14,
