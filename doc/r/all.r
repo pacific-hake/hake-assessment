@@ -354,3 +354,8 @@ max.survey.age.prop <- make.age.comp.bubble.plot(base.model,
 max.fishery.age.prop <- make.age.comp.bubble.plot(base.model,
                                                   subplot = 1,
                                                   do.plot = FALSE)
+
+catch.limit.quantiles <- fmt0(make.forecast.catch.posterior.plot(base.model,
+                                   fore.yr = end.yr, do.plot = FALSE) * 1000)
+                # 2.5%, median and 97.5% quantiles of catch limit for assess.yr
+                #  using the default harvest policy; tonnes
