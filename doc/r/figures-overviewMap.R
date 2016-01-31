@@ -10,20 +10,23 @@ library(PBSmapping)
 data(westCoastLL)
 data(WCstatesInlandPBS)
 
-source("C:/Mapping/WestCoastMapping.R")
-LMEoffshore <- importShapefile("C:/Mapping/Shapefiles/LME66_Offshore/LME66_Offshore.shp",readDBF=T)
-LME <- importShapefile("C:/Mapping/Shapefiles/LME66/LME66.shp",readDBF=T)
-province <- importShapefile("C:/Mapping/Shapefiles/province/province.shp",readDBF=T)
+#This assumes that you are in the "r" directory
+
+source("MapData/WestCoastMapping.R")
+LMEoffshore <- importShapefile("MapData/LME66_Offshore/LME66_Offshore.shp",readDBF=T)
+LME <- importShapefile("MapData/LME66/LME66.shp",readDBF=T)
+province <- importShapefile("MapData/province/province.shp",readDBF=T)
 alberta <- attributes(province)$PolyData[attributes(province)$PolyData$NAME == "Alberta","PID"]
 CCLME <- attributes(LME)$PolyData[attributes(LME)$PolyData$LME_NAME == "California Current","PID"]
 GOALME <- attributes(LME)$PolyData[attributes(LME)$PolyData$LME_NAME == "Gulf of Alaska","PID"]
 data(nepacLL)
 
+# *** CHRIS this will need to be fixed
 figDir <- "C:/NOAA2016/Hake/WriteUp/Figures"
 
 ##########################################################################
 ## Map of area
-portLats <- read.csv("C:/Mapping/Data/portLats.csv")
+portLats <- read.csv("MapData/portLats.csv")
 theCities <- c("Newport","Westport","Astoria","Eureka","Charleston (Coos Bay)")
 theCities <- portLats[portLats$Name%in%theCities,]
 
