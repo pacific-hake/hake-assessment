@@ -160,7 +160,7 @@
 %% Allow newline breaks in a table cell: syntax is \specialcell{first line\\secondline}
 \newcommand{\specialcell}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 \newcommand{\fishname}{Pacific Hake}
-\newcommand{\commonname}{Pacific Whiting}
+\newcommand{\commonname}{Pacific whiting}
 \newcommand{\sciencename}{Merluccius productus}
 \newcommand{\simplename}{hake}
 \newcommand{\Avuln}{Age-at-50\%-vulnerability}
