@@ -94,10 +94,10 @@ nuisance.posteriors.file <- "nuisanceposteriors.csv"
 
 ## Index of the base model as found in the directory.
 ## i.e. 00_Modelname is index 1, 01_Modelname is index 2, etc.
-base.model.ind <- 12
+## base.model.ind <- 12
 ## Last year's base model. This is used for the parameter estimates table which compares
 ##  last year's to this year's parameter estimates.
-last.year.base.model.ind <- 1
+## last.year.base.model.ind <- 1
 
 ## IMPORTANT - If any of these do not match up with what the models are set up
 ##  for, the build will fail. The only exception is that end.yr must actually
