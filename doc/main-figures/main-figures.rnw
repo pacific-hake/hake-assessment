@@ -7,8 +7,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.overview.map, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
+<<main.overview.map, fig.height=8, fig.width=8>>=
+make.overview.map.plot(r.loc = file.path("..", "r"))
 @
 \end{center}
 %\vspace{0mm}
@@ -83,7 +83,6 @@ layout(matrix(c(1,1), nrow = 2, ncol = 1, byrow=TRUE))
 make.age.comp.bubble.plot(base.model,
                           subplot = 2,
                           show.key = TRUE,
-                          start.yr = 1975,
                           key.yrs = c(1990, 1994, 1998, 2002))
 make.age.comp.bubble.plot(base.model, subplot = 1)
 @
@@ -630,7 +629,7 @@ make.forecast.catch.posterior.plot(base.model,
 @
 \end{center}
 \caption{The posterior distribution of the default \Sexpr{end.yr} catch limit calculated using the default harvest
-  policy ($\Fforty$-40:10). The dark shaded area ranges from the 2.5\% quantile to the 97.5\% quantile.}
+  policy (\Ffortyten). The median is \Sexpr{catch.limit.quantiles["median"]}~t (vertical line), with the dark shaded area ranging from the 2.5\% quantile to the 97.5\% quantile, covering the range \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.}
 \label{fig:main-projected-catch-density}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -640,8 +639,8 @@ make.forecast.catch.posterior.plot(base.model,
 \begin{center}
 <<main.forecast.depletion.comparison.plot, fig.height=4.5, fig.width=8>>=
 ## Look at catch.levels and catch.levels.names to decide which to include here
-## models.inds are the indices of those which will be plotted against each other
-models.inds <- c(1, 2, 6, 10)
+## models.inds are the indices of those forecast models which will be plotted against each other
+models.inds <- c(1, 2, 3, 4)
 models.names <- catch.levels.names[models.inds]
 make.forecast.depletion.comparison.plot(base.model,
                                         models.inds,
@@ -746,7 +745,7 @@ plot(1:10, main="Placeholder dummy figure")
 @
 \end{center}
 %\vspace{0mm}
-\caption{The posterior distribution of the default \Sexpr{end.yr} catch limit calculated using the default harvest policy ($\Fforty$-40:10). The dark shaded area ranges from the 2.5\% to 97.5\% quantiles. The base model is shown in black (the same distribution as in Figure~\ref{fig:main-projected-catch-density}) with a median at **GET FROM EARLIER, and the alternative sensitivity run (red) which ***AS PREVIOUS has a median of ***.}
+\caption{The posterior distribution of the default \Sexpr{end.yr} catch limit calculated using the default harvest policy (\Ffortyten). The dark shaded area ranges from the 2.5\% to 97.5\% quantiles. The base model is shown in black (the same distribution as in Figure~\ref{fig:main-projected-catch-density}) with a median at **GET FROM EARLIER, and the alternative sensitivity run (red) which ***AS PREVIOUS has a median of ***.}
 \label{fig:main-catch-limit-base-alternative}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
