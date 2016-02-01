@@ -230,6 +230,7 @@ require(r4ss)
 require(xtable)   ## For tables which can be inserted into latex docs with knitr
 require(PBSmapping)
 require(maps)
+require(coda)
 require(dplyr)
 ## Load all R code and the model outputs
 load("./r/.RData")

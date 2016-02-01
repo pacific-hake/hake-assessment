@@ -33,6 +33,7 @@ install.packages.if.needed("r4ss", "r4ss/r4ss", github=TRUE)
 install.packages.if.needed("xtable", "xtable", github=FALSE)
 install.packages.if.needed("PBSmapping", "PBSmapping", github=FALSE)
 install.packages.if.needed("maps", "maps", github=FALSE)
+install.packages.if.needed("coda", "coda", github=FALSE)
 install.packages.if.needed("dplyr", "dplyr", github = FALSE)
 ## install.packages.if.needed("gtools", "gtools", github = FALSE)
 
@@ -44,6 +45,7 @@ require(xtable)
 require(PBSmapping)
 require(maps)
 require(dplyr)
+require(coda)
 ## require(gtools)
 
 source("catches.r") ## Contains the code to catch/TAC data and figure and table-making code for catch/TAC
@@ -90,14 +92,6 @@ key.posteriors <- c("NatM_p_1_Fem_GP_1",
 key.posteriors.file <- "keyposteriors.csv"
 nuisance.posteriors.file <- "nuisanceposteriors.csv"
 
-## Index of the base model as found in the directory.
-## i.e. 00_Modelname is index 1, 01_Modelname is index 2, etc.
-base.model.ind <- 12
-## Last year's base model. This is used for the parameter estimates table which compares
-##  last year's to this year's parameter estimates.
-last.year.base.model.ind <- 1
-
-
 ## IMPORTANT - If any of these do not match up with what the models are set up
 ##  for, the build will fail. The only exception is that end.yr must actually
 ##  be the end year of the model + 1.
@@ -126,6 +120,56 @@ last.data.yr    <- end.yr - 1
 ## latex/knitr code is set up to automatically accomodate changes
 forecast.yrs <- end.yr:(end.yr + 2)
 forecast.probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
+
+## Set up models lists - NOTE all are *required* to build the document.
+models.dir.list <- dir(models.path)
+base.model.name <- "11_Add2015Catch_FishAcomps_withExtrap"
+last.year.base.model.name <- "00_2015hake_basePreSRG"
+bridge.model.dir.names <- c("00_2015hake_basePreSRG",
+                            "01_UpdatePre2015catches",
+                            "02_UpdatePre2015FishAcomps",
+                            "03_UpdatePre2015WtAge",
+                            "04_UpdatePre2015Survey",
+                            "05_Add2015Catch_FishAcomps",
+                            "06_Add2015Survey")
+## Indicies models as found in the directory.
+base.model.ind <- grep(base.model.name, models.dir.list)
+if(length(base.model.ind) == 0){
+  stop("Base model '", base.model.name, "' not found. Check the name and try again.\n")
+}
+## Last year's base model. This is used for the parameter estimates table which compares
+##  last year's to this year's parameter estimates.
+last.year.base.model.ind <- grep(last.year.base.model.name, models.dir.list)
+if(length(last.year.base.model.ind) == 0){
+  stop("Last year's base model '", last.year.base.model.name, "' not found. Check the name and try again.\n")
+}
+## Bridge model indices are used to tell knitr which elements of the models list are to
+## be plotted together.
+bridge.model.inds <- grep(paste(bridge.model.dir.names, collapse = "|"), models.dir.list)
+if(length(bridge.model.inds) != length(bridge.model.dir.names)){
+  stop("One or more of the bridge mode names were not found. Check the names and try again. Directory names listed in all.r are:\n", paste0(bridge.model.dir.names, "\n"))
+}
+## For the 4-panel plot showing details of only two, the old base and the updated data
+bridge.model.detail.inds <- c(bridge.model.inds[1], bridge.model.inds[length(bridge.model.inds)])
+
+## Bridge model names will be used to make the bridge model plot and its caption.
+## Make sure this is the same length as bridge.model.inds
+bridge.model.names <- c(paste0("Hake ", end.yr-1),
+                        paste0("Update pre-",end.yr-1," catch"),
+                        paste0("Update pre-",end.yr-1," fish comps"),
+                        paste0("Update pre-",end.yr-1," wt-age"),
+                        paste0("Update pre-",end.yr-1," survey"),
+                        paste0("Add ",end.yr-1," catch and age"),
+                        paste0("Add ",end.yr-1," survey"))
+if(length(bridge.model.names) != length(bridge.model.dir.names)){
+  cat("bridge.model.names in all.r has a different length than the list of names provided. Make sure these two vectors match in length and try again.\n")
+  cat("Bridge model directory names you provided (bridge.model.dir.names):", paste0(bridge.model.dir.names, "\n"))
+  stop("Bridge model plotting names you provided (bridge.model.names):", paste0(bridge.model.names, "\n"))
+}
+## For the 4-panel plot showing details of only two, the old base and the updated data
+bridge.model.detail.names <- c(paste0("Hake ", last.assess.yr),
+                               paste0("Add ",end.yr-1," data"))
+
 
 ## catch.levels is a list of N catch levels to run forecasts for
 ## Each element of the list is a vector of length the same as the
@@ -246,26 +290,6 @@ if(run.partest == "y" | run.partest == "Y"){
 ## A simpler variable for the base model
 base.model <- models[[base.model.ind]]
 cat("Base model is ",base.model$path,"\n\n")
-
-## Bridge model indices are used to tell knitr which elements of the models list are to
-## be plotted together.
-bridge.model.inds <- 1:7
-## For the 4-panel plot showing details of only two, the old base and the updated data
-bridge.model.detail.inds <- c(1,7)
-
-## Bridge model names will be used to make the bridge model plot and its caption.
-## Make sure this is the same length as bridge.model.inds
-bridge.model.names <- c(paste0("Hake ", end.yr-1),
-                        paste0("Update pre-",end.yr-1," catch"),
-                        paste0("Update pre-",end.yr-1," fish comps"),
-                        paste0("Update pre-",end.yr-1," wt-age"),
-                        paste0("Update pre-",end.yr-1," survey"),
-                        paste0("Add ",end.yr-1," catch and age"),
-                        paste0("Add ",end.yr-1," survey"))
-## For the 4-panel plot showing details of only two, the old base and the updated data
-bridge.model.detail.names <- c(paste0("Hake ", last.assess.yr),
-                               paste0("Add ",end.yr-1," data"))
-
 
 ## Attainment, used in the management performance section
 usa.last.5.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),8]), 1)
