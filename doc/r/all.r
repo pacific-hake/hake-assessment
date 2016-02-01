@@ -133,13 +133,13 @@ forecast.probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 catch.levels <- list(rep(0.01, 3),
                      rep(180000,3),
                      rep(300000,3),
-                     rep(350000,3),
-                     rep(400000,3),
-                     rep(428000,3),
-                     rep(500000,3),
-                     rep(710000,3),
-                     c(730000,650000,520000),
-                     c(804576,682782,547280))
+                     rep(350000,3))
+                     ##rep(400000,3),
+                     ##rep(428000,3),
+                     ##rep(500000,3),
+                     ##rep(710000,3),
+                     ##c(730000,650000,520000),
+                     ##c(804576,682782,547280))
 
 ## The catch as calculated using the default harvest policy. Used in forecasting.
 catch.default.policy.ind <- length(catch.levels)
@@ -153,27 +153,27 @@ catch.tac.ind <- 3
 catch.levels.names <- c("No Fishing",
                         "180,000 t",
                         "300,000 t",
-                        "350,000 t",
-                        "400,000 t",
-                        "428,000 t",
-                        "500,000 t",
-                        "stableCatch",
-                        "SPR100",
-                        paste0("Default: ",fmt0(catch.default.policy[1])," t"))
+                        "350,000 t")
+                        ##"400,000 t",
+                        ##"428,000 t",
+                        ##"500,000 t",
+                        ##"stableCatch",
+                        ##"SPR100",
+                        ##paste0("Default: ",fmt0(catch.default.policy[1])," t"))
 
 ## catch.levels.dir.names is a list of N names for the catch levels given in catch.levels,
 ##  to be used as the directory names (OS-naming friendly). Use prefixed numbers so that
 ## the list order is the same as the directory order.
-catch.levels.dir.names <- c("1_0",
-                            "2_180000",
-                            "3_300000",
-                            "4_350000",
-                            "5_400000",
-                            "6_428000",
-                            "7_500000",
-                            "8_stableCatch",
-                            "9_SPR100",
-                            "10_DefaultHR")
+catch.levels.dir.names <- c("01_0",
+                            "02_180000",
+                            "03_300000",
+                            "04_350000")
+                            ##"05_400000",
+                            ##"06_428000",
+                            ##"07_500000",
+                            ##"08_stableCatch",
+                            ##"09_SPR100",
+                            ##"10_DefaultHR")
 
 reload.models <- readline(prompt = "Reload models (only necessary first time or if you add new models to the models directory)? [y/n] ")
 if(reload.models == "y" | reload.models == "Y"){

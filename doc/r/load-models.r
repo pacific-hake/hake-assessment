@@ -82,7 +82,10 @@ load.models <- function(models.dir = file.path("..","..","models"),
         tryCatch({
           model.list[[nm]]$mcmc <- data.frame(SSgetMCMC(dir=mcmc.dir, writecsv=FALSE, verbose = verbose)$model1)
           model.list[[nm]]$mcmcpath <- mcmc.dir
-          create.key.nuisance.posteriors.files(model.list[[nm]])
+          create.key.nuisance.posteriors.files(model.list[[nm]],
+                                               key.posteriors,
+                                               key.posteriors.file,
+                                               nuisance.posteriors.file)
           ## Likely these are unneccessary
           ## model.list[[nm]]$mcmckey <- read.csv(file.path(mcmc.dir, "keyposteriors.csv"))
           ## model.list[[nm]]$mcmcnuc <- read.csv(file.path(mcmc.dir, "nuisanceposteriors.csv"))
@@ -102,17 +105,20 @@ load.models <- function(models.dir = file.path("..","..","models"),
   return(model.list)
 }
 
-create.key.nuisance.posteriors.files <- function(model){
+create.key.nuisance.posteriors.files <- function(model,
+                                                 posterior.regex,
+                                                 key.post.file,
+                                                 nuisance.post.file){
   ## Creates the two files for key and nuisance posteriors
-  ## Depends on the global variables set in all.r:
-  ##  key.posteriors
-  ##  key.posteriors.file
-  ##  nuisance.posteriors.file
-  key.file <- file.path(model$mcmcpath, key.posteriors.file)
-  nuisance.file <- file.path(model$mcmcpath, nuisance.posteriors.file)
+  key.file <- file.path(model$mcmcpath, key.post.file)
+  nuisance.file <- file.path(model$mcmcpath, nuisance.post.file)
 
-  keys <- model$mcmc[,names(model$mcmc) %in% key.posteriors]
-  nuisances <- model$mcmc[,!(names(model$mcmc) %in% key.posteriors)]
+  mc <- model$mcmc
+  mc.names <- names(mc)
+  mcmc.grep <- unique(grep(paste(posterior.regex, collapse="|"), mc.names))
+  mcmc.names <- mc.names[mcmc.grep]
+  keys <- mc[,mcmc.grep]
+  nuisances <- mc[,-mcmc.grep]
   write.csv(keys, key.file, row.names = FALSE)
   write.csv(nuisances, nuisance.file, row.names = FALSE)
 }
