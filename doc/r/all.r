@@ -32,6 +32,7 @@ install.packages.if.needed("date", "date", github=FALSE)
 install.packages.if.needed("r4ss", "r4ss/r4ss", github=TRUE)
 install.packages.if.needed("xtable", "xtable", github=FALSE)
 install.packages.if.needed("PBSmapping", "PBSmapping", github=FALSE)
+install.packages.if.needed("maps", "maps", github=FALSE)
 install.packages.if.needed("dplyr", "dplyr", github = FALSE)
 ## install.packages.if.needed("gtools", "gtools", github = FALSE)
 
@@ -41,6 +42,7 @@ require(date)
 require(r4ss)
 require(xtable)
 require(PBSmapping)
+require(maps)
 require(dplyr)
 ## require(gtools)
 
@@ -55,6 +57,7 @@ source("figures-age-comps.r")
 source("figures-selex.r")
 source("figures-stock-recruitment.r")
 source("figures-mle-mcmc.r")
+## source("figures-overview-map.r")
 
 source("tables-timeseries.r")
 source("tables-reference-points.r")
@@ -89,7 +92,7 @@ nuisance.posteriors.file <- "nuisanceposteriors.csv"
 
 ## Index of the base model as found in the directory.
 ## i.e. 00_Modelname is index 1, 01_Modelname is index 2, etc.
-base.model.ind <- 7
+base.model.ind <- 12
 ## Last year's base model. This is used for the parameter estimates table which compares
 ##  last year's to this year's parameter estimates.
 last.year.base.model.ind <- 1

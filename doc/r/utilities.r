@@ -3,7 +3,8 @@ run.partest.model <- function(model,
                               rows.to.skip.to.comps.header = 21,
                               rows.to.skip.to.likelihood = 90,
 ##                              rows.to.skip.to.survey.header = 1246){ ## end.yr = 2015
-                              rows.to.skip.to.survey.header = 1261){  ## end.yr = 2016, These numbers change when a new year is added
+##                              rows.to.skip.to.survey.header = 1261){  ## end.yr = 2016, These numbers change when a new year is added
+                              rows.to.skip.to.survey.header = 1266){  ## end.yr = 2016, These numbers change when a new year is added
   ## To ensure integration with the knitr loading step, you must
   ## run this from the Rgui (after you've got a base model loaded) like this:
   ##
@@ -552,3 +553,4 @@ biomass_fraction_plots <- function(replist, selected=FALSE){
          legend=c("Ages 4+","Ages 5+"),bg='white')
   title(main=ifelse(selected, "Estimated fractions of selected biomass", "Estimated fractions of total biomass"))
 }
+
