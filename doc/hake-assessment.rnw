@@ -205,7 +205,7 @@
 %% Sourcing all code here, then calling the plot functions later will be much faster
 %% and make for more maintanable code.
 %% <<echo=TRUE,  message=TRUE, results='show', warning=TRUE>>=
-<<echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
+<<off-we-go, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
 ## Inside this block is R code so comment character is different
 ## cache=TRUE tells knitr to build all the plots into a cache directory
 ## which is defined here as knitr-cache/
@@ -228,6 +228,8 @@ require(nwfscMapping)
 require(date)
 require(r4ss)
 require(xtable)   ## For tables which can be inserted into latex docs with knitr
+require(PBSmapping)
+require(maps)
 require(dplyr)
 ## Load all R code and the model outputs
 load("./r/.RData")
