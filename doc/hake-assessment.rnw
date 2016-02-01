@@ -161,7 +161,7 @@
 \newcommand{\specialcell}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 \newcommand{\fishname}{Pacific Hake}
 \newcommand{\commonname}{Pacific Whiting}
-\newcommand{\sciencename}{Merluccius Productus}
+\newcommand{\sciencename}{Merluccius productus}
 \newcommand{\simplename}{hake}
 \newcommand{\Avuln}{Age-at-50\%-vulnerability}
 \newcommand{\Amat}{Age-at-50\%-maturity}
