@@ -122,7 +122,7 @@ make.short.parameter.estimates.table(base.model,
 
 <<main.decisions.biomass.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption <- paste0("Forecast quantiles of \\fishname\\ relative spawning biomass at the beginning of the year before fishing. Quantiles from the base model are shown in the center of the table with median (50\\% quantile) in bold. Catch alternatives are based on: constant catch levels (rows a, b, c, d, e, g), the TAC from  ",min(forecast.yrs)-1," (row f), the catch level that results in a 50\\% probability that the median projected catch will remain the same in ",min(forecast.yrs)," (row h), the catch values that result in a median SPR ratio of 1.0 (row i), and the median values estimated via the default harvest policy (\\Ffortyten) for the base (row j). Catch in ",max(forecast.yrs)," is not given because it does not impact the beginning of the year biomass in ",max(forecast.yrs),"."),
+                    xcaption <- paste0("Decision tables of forecast quantiles of \\fishname\\ relative spawning biomass at the beginning of the year before fishing. Quantiles from the base model are shown in the center of the table with median (50\\% quantile) in bold. Catch alternatives are based on: constant catch levels (rows a, b, c, d, e, g), the TAC from  ",min(forecast.yrs)-1," (row f), the catch level that results in a 50\\% probability that the median projected catch will remain the same in ",min(forecast.yrs)," (row h), the catch values that result in a median SPR ratio of 1.0 (row i), and the median values estimated via the default harvest policy (\\Ffortyten) for the base (row j). Catch in ",max(forecast.yrs)," is not given because it does not impact the beginning of the year biomass in ",max(forecast.yrs),". **AME: it is given though, should it be commented out, or more easily, replace last sentence with: Catch in .. is given but does not affect the estimated biomass at the start of that year. **Change in Exec summary also."),
                     xlabel <- "tab:main-decisions-biomass",
                     font.size = 12,
                     space.size = 14,
@@ -131,7 +131,7 @@ make.decision.table(base.model,
 
 <<main.decisions.spr.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption <- paste0("Forecast quantiles of \\fishname\\ fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}) for the ",min(forecast.yrs)," -- ",max(forecast.yrs)," catch alternatives presented in Table \\ref{tab:es-decisions-biomass}. Values greater than 100\\% indicate fishing intensities greater than the F\\subscr{40\\%} harvest policy calculated using baseline selectivity."),
+                    xcaption <- paste0("Decision tables of forecast quantiles of \\fishname\\ fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}) for the ",min(forecast.yrs)," -- ",max(forecast.yrs)," catch alternatives presented in Table \\ref{tab:es-decisions-biomass}. Values greater than 100\\% indicate fishing intensities greater than the F\\subscr{40\\%} harvest policy calculated using baseline selectivity."),
                     xlabel <- "tab:main-decisions-spr",
                     font.size = 12,
                     space.size = 14,
@@ -142,7 +142,7 @@ make.decision.table(base.model,
 make.risk.table(base.model,
                 forecast.yrs,
                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                xcaption <- paste0("Probabilities of related to spawning biomass, fishing intensity, and ",end.yr+1," catch limits for alternative ",end.yr," catch options (catch options explained in Table \\ref{tab:es-decisions-biomass})."),
+                xcaption <- paste0("Probabilities of related to spawning biomass, fishing intensity, and ",end.yr+1," catch limits for alternative ",end.yr," catch options (catch options explained in Table \\ref{tab:main-decisions-biomass})."),
                 xlabel <- "tab:main-risk-year-1",
                 font.size = 12,
                 space.size = 14)
@@ -152,7 +152,7 @@ make.risk.table(base.model,
 make.risk.table(base.model,
                 forecast.yrs,
                 index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                xcaption <- paste0("Probabilities of related to spawning biomass, fishing intensity, and ",end.yr+2," catch limits for alternative ",end.yr+1," catch options (catch options explained in Table \\ref{tab:es-decisions-biomass})."),
+                xcaption <- paste0("Probabilities of related to spawning biomass, fishing intensity, and ",end.yr+2," catch limits for alternative ",end.yr+1," catch options (catch options explained in Table \\ref{tab:main-decisions-biomass})."),
                 xlabel <- "tab:main-risk-year-2",
                 font.size = 12,
                 space.size = 14)
