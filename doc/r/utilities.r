@@ -3,7 +3,8 @@ run.partest.model <- function(model,
                               rows.to.skip.to.comps.header = 21,
                               rows.to.skip.to.likelihood = 90,
 ##                              rows.to.skip.to.survey.header = 1246){ ## end.yr = 2015
-                              rows.to.skip.to.survey.header = 1261){  ## end.yr = 2016, These numbers change when a new year is added
+                              rows.to.skip.to.survey.header = 1261,   ## end.yr = 2016, These numbers change when a new year is added
+                              verbose=TRUE){  
   ## To ensure integration with the knitr loading step, you must
   ## run this from the Rgui (after you've got a base model loaded) like this:
   ##
@@ -22,6 +23,8 @@ run.partest.model <- function(model,
   ##
   ## rows.to.skip.to.comps.header should be the line just above the header for
   ## the age comps in the CompReport.sso file
+
+  if(!verbose) {flush.console;cat("\nRunning partest. Screen may not show output for a while\n\n")} 
 
   ## Create the directory partest which will hold the runs
   ##  erasing the directory recursively if necessary
@@ -57,14 +60,14 @@ run.partest.model <- function(model,
               file = file.path(partest.dir, "ss3.par"),
               quote = FALSE, row.names=FALSE)
 
-  start <- SS_readstarter(file.path(partest.dir, "starter.ss"))
+  start <- SS_readstarter(file.path(partest.dir, "starter.ss"), verbose=verbose)
   ## Change starter file to read from par file
   start$init_values_src <- 1
-  SS_writestarter(start, dir = partest.dir, file = "starter.ss", overwrite = TRUE)
+  SS_writestarter(start, dir = partest.dir, file = "starter.ss", overwrite = TRUE, verbose=F)
 
   ## loop over rows of posteriors file
   for(irow in 1:num.posts){
-    print(irow)
+    if(verbose) {print(irow)}
     ## replace values in newpar table with posteriors values
     ## (excluding 1 and 2 for "Iter" and "Objective_function")
     newpar[newpar$label %in% names(posts), 1] <- as.numeric(posts[irow, -(1:2)])
@@ -77,7 +80,8 @@ run.partest.model <- function(model,
               file.path(reports.dir, paste0("ss3_input", irow, ".par")),
               overwrite = TRUE)
     shell.command <- paste0("cd ", partest.dir, " & ss3 -maxfn 0 -phase 10 -nohess")
-    shell(shell.command)
+    if(verbose) {shell(shell.command)}  #shell doesn't accept the argument show.output.on.console for some reason
+    if(!verbose) {system(shell.command, show.output.on.console=FALSE)}
     file.copy(file.path(partest.dir, "ss3.par"),
               file.path(reports.dir, paste0("ss3_output", irow, ".par")),
               overwrite = TRUE)
@@ -118,6 +122,7 @@ run.partest.model <- function(model,
     like.info[irow, 12] <- as.numeric(likes[17, 4])      ## fleet-specific age comp likelihoods
   }
 
+  cat("\n\nReading comp table\n\n");flush.console()
   ## read expected proportions and Pearson values for each age comp observations
   comp.table <- read.table(file.path(partest.dir, "CompReport.sso"),
                            skip = rows.to.skip.to.comps.header,
@@ -157,11 +162,13 @@ run.partest.model <- function(model,
   ## table(base$agedbase$Obs == comp.table$Obs)
   ## TRUE
   ##  750
-
+  cat("\n\nReading cpue table\n\n");flush.console()
   cpue.table <- NULL
   for(irow in 1:num.posts){
+    tmp <- readLines(file.path(reports.dir, paste0("Report_", irow,".sso")))
+    skipRow <- grep("INDEX_2", tmp)[2]  #this sort of thing should be done for all read.tables to generalize it
     cpue <- read.table(file.path(reports.dir, paste0("Report_", irow,".sso")),
-                       skip = rows.to.skip.to.survey.header,
+                       skip = skipRow, #rows.to.skip.to.survey.header,
                        nrows = model$dat$N_cpue, ## number of survey index points
                        header = TRUE,
                        fill = TRUE,

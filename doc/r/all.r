@@ -62,7 +62,7 @@ source("tables-decisions.r")
 source("tables-age.r")
 source("tables-parameters.r")
 
-## verbose applies to the SS loading functions as well as this project's functions
+## verbose applies to the SS loading functions as well as this project's functions and the system call
 verbose <- FALSE
 
 data.path <- file.path("..","..","data")
@@ -94,6 +94,8 @@ base.model.ind <- 7
 ##  last year's to this year's parameter estimates.
 last.year.base.model.ind <- 1
 
+DEBUG <- T
+if(DEBUG) {cat("\nDEBUG: Loading model",base.model.ind,"as base model\n\n")}
 
 ## IMPORTANT - If any of these do not match up with what the models are set up
 ##  for, the build will fail. The only exception is that end.yr must actually
@@ -225,6 +227,8 @@ if(run.forecasts == "y" | run.forecasts == "Y"){
   models[[base.model.ind]]$forecasts$mcmccalcs <- forecasts[[3]]
   models[[base.model.ind]]$forecasts$outputs <- forecasts[[4]]
 
+  if(DEBUG) {cat("\nDEBUG: Calculated forecasts\n\n")}
+
   ## calc.risk assumes the forecasting step was done correctly
   risks <- calc.risk(models[[base.model.ind]]$forecasts$outputs,
                      forecast.yrs,
@@ -233,11 +237,15 @@ if(run.forecasts == "y" | run.forecasts == "Y"){
 
   models[[base.model.ind]]$risks <- risks
 
+  if(DEBUG) {cat("\nDEBUG: Calculated risks\n\n")}
+
   cat("\n\nForecast calculations completed.\n\n")
 }
 
 if(run.partest == "y" | run.partest == "Y"){
-  run.partest.model(models[[base.model.ind]], output.file = "model-partest.RData")
+  if(DEBUG) {cat("\nDEBUG: Running partest\n\n")}
+  run.partest.model(models[[base.model.ind]], output.file = "model-partest.RData", verbose=verbose)
+  if(DEBUG) {cat("\nDEBUG: Partest Completed\n\n")}
 }
 
 ## A simpler variable for the base model
