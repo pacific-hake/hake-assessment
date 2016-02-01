@@ -191,6 +191,8 @@ Probabilities referring to the biomass at the start of \Sexpr{forecast.yrs[3]} u
 
 \subsection{Sensitivity analyses}\label{sec:assessment-sensitivity-analyses}
 
+**NOT AUTOMATED THIS SECTION AT ALL, just manually write it this year. This is 2015 text:
+
 Sensitivity analyses were conducted to investigate the influences of data inputs and structural uncertainty of the base model by investigating how changes to the model affected the estimated values and derived quantities. For expediency, all sensitivity analyses compared MLE estimates rather than MCMC posteriors. Therefore, the values reported below are not directly comparable to the base model values reported elsewhere (see **Table 12 for a set of comparisons of the base model to corresponding MLE estimates). The sensitivities include the following:
 
 *** to be updated:
@@ -225,6 +227,8 @@ In order to understand the sensitivity of the model results to assumptions about
 The sensitivity with the smallest impact on model results involved estimating an autocorrelation parameter for recruitment deviations. The estimated value was **-0.12, reflecting the negative relationship between recruitments in adjacent years  (large cohorts typically followed by small cohorts). The additional parameter reduces the negative log-likelihood by only **0.6 units and has negligible effects on model estimates (**Table 19), as well as forecast quantities. Exploration of alternative ways to model and forecast recruitment is included in the list of suggested research needs, and future MSE operating models can include more flexible options for treatment of recruitment autocorrelations (beyond the lag-1 autocorrelation implemented in Stock Synthesis). The MSE could explore trade-offs associated with more complex treatment of recruitment in an assessment model.
 
 \subsection{Retrospective analyses}\label{sec:assessment-retrospective-analyses}
+
+**NOT AUTOMATED THIS SECTION AT ALL, just manually write it this year. This is 2015 text:
 
 ** Retrospective analyses were performed by iteratively removing the terminal years' data and estimating the parameters under the assumptions of the base model. Models with **4 or 5 years of data removed had the high **2009 acoustic survey as the final point in the index of abundance and therefore predicted a higher biomass than models which included any of the surveys conducted in **2011, 2012, and 2013 (**Figure 48).
 
