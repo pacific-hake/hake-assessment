@@ -559,3 +559,161 @@ biomass_fraction_plots <- function(replist, selected=FALSE){
   title(main=ifelse(selected, "Estimated fractions of selected biomass", "Estimated fractions of total biomass"))
 }
 
+mcmc.out <- function (directory = "c:/mydirectory/", run = "mymodel/", file = "keyposteriors.csv", 
+    namefile = "postplotnames.sso", names = FALSE, headernames = TRUE, 
+    numparams = 1, closeall = TRUE, burn = 0, thin = 1, scatter = FALSE, 
+    surface = FALSE, surf1 = 1, surf2 = 2, stats = FALSE, plots = TRUE, 
+    header = TRUE, sep = ",", print = FALSE, new = T, colNames = NULL) 
+{
+    if (print == TRUE) {
+    }
+    if (closeall == TRUE) {
+    }
+    filename <- file.path(directory, run, file)
+    if (!file.exists(filename)) {
+        stop("file doesn't exist:\n", filename)
+    }
+    mcmcdata <- read.table(filename, header = header, sep = sep, 
+        fill = TRUE)
+    if (names == TRUE) {
+        nameout <- file.path(directory, run, namefile)
+        namedata <- read.table(nameout, header = FALSE, sep = "", 
+            colClasses = "character", fill = TRUE)
+        numparams <- as.numeric(namedata[1, 1])
+        for (j in 1:numparams) {
+            names(mcmcdata)[j] <- namedata[(j + 1), 1]
+        }
+    }
+    if (!is.null(colNames)) {
+        if (length(colNames) != numparams) 
+            cat("numparams argument overidden by length of colNames argument\n")
+        numparams <- length(colNames)
+        mcmcdata <- mcmcdata[, colNames]
+        if (length(colNames) == 1) {
+            mcmcdata <- data.frame(mcmcdata)
+            names(mcmcdata) <- colNames
+        }
+    }
+    mcmcfirst <- mcmc(mcmcdata)
+    mcmctemp <- window(mcmcfirst, thin = thin, start = (1 + burn))
+    mcthinned <- as.matrix(mcmctemp)
+    mcmcobject <- mcmc(mcthinned)
+    draws <- length(mcmcobject[, 1])
+    if (plots == TRUE) {
+        if (new) 
+            dev.new(record = TRUE)
+        if (numparams == 5 || numparams == 9 || numparams == 
+            13 || numparams == 17) {
+            plot(0, 0, xlab = "", ylab = "", frame.plot = FALSE, 
+                yaxt = "n", xaxt = "n", type = "n")
+        }
+        for (i in 1:numparams) {
+            par(new = FALSE, mfrow = c(2, 2), ann = TRUE)
+            traceplot(mcmcobject[, i], smooth = TRUE)
+            mtext("Value", side = 2, line = 3, font = 1, cex = 0.8)
+            if (names | headernames) {
+                mtext(names(mcmcdata)[i], side = 3, adj = 0, 
+                  line = 2, font = 2, cex = 1)
+            }
+            else {
+                mtext(paste("param", i), side = 3, adj = 0, line = 2, 
+                  font = 2, cex = 1)
+            }
+            lowest <- min(mcmcobject[, i])
+            highest <- max(mcmcobject[, i])
+            plot(c(seq(1, draws, by = 1)), c(lowest, rep(c(highest), 
+                (draws - 1))), xlab = "Iterations", ylab = "", 
+                yaxt = "n", type = "n")
+            if (!exists("running")) {
+                cat("skipping running average section because function 'running' is needed\n")
+            }
+            else {
+                lines(running(mcmcobject[, i], fun = median, 
+                  allow.fewer = TRUE, width = draws))
+                fun <- function(x, prob) quantile(x, probs = prob, 
+                  names = FALSE)
+                lines(running(mcmcobject[, i], fun = fun, prob = 0.05, 
+                  allow.fewer = TRUE, width = draws), col = "GREY")
+                lines(running(mcmcobject[, i], fun = fun, prob = 0.95, 
+                  allow.fewer = TRUE, width = draws), col = "GREY")
+            }
+            par(ann = FALSE)
+            autocorr.plot(mcmcobject[, i], auto.layout = FALSE, 
+                lag.max = 20, ask = FALSE)
+            mtext("Autocorrelation", side = 2, line = 3, font = 1, 
+                cex = 0.8)
+            mtext("Lag", side = 1, line = 3, font = 1, cex = 0.8)
+            lines(seq(1, 20, by = 1), rep(0.1, 20), col = "GREY")
+            lines(seq(1, 20, by = 1), rep(-0.1, 20), col = "GREY")
+            densplot(mcmcobject[, i], show.obs = TRUE)
+            mtext("Density", side = 2, line = 3, font = 1, cex = 0.8)
+            mtext("Value", side = 1, line = 3, font = 1, cex = 0.8)
+        }
+    }
+    if (stats == TRUE) {
+        dev.new()
+        par(mar = c(0, 0, 3, 0))
+        plot(0, ylab = "", xlab = "", type = "n", xlim = c(0, 
+            25), ylim = c(0, 25), main = "Summary statistics for key parameters", 
+            axes = FALSE)
+        text(0.001, 25, "Parameter", font = 2, cex = 0.9, adj = 0)
+        text(4, 25, "Median (0.05-0.95)", font = 2, cex = 0.9, 
+            adj = 0)
+        text(13, 25, "AC Lag 1", font = 2, cex = 0.9, adj = 0)
+        text(16.5, 25, "Eff. N", font = 2, cex = 0.9, adj = 0)
+        text(19, 25, "Geweke-Z", font = 2, cex = 0.9, adj = 0)
+        text(22.5, 25, "Heidel-W", font = 2, cex = 0.9, adj = 0)
+        for (i in 1:numparams) {
+            text(0, (25 - i), paste("param", i), font = 1, cex = 0.9, 
+                adj = 0)
+            med <- quantile(mcmcobject[, i], probs = 0.5, names = FALSE)
+            range <- quantile(mcmcobject[, i], probs = c(0.05, 
+                0.95), names = FALSE)
+            text(3.2, 25 - i, paste(signif(round(med, 6), 6), 
+                "(", paste(signif(round(range[1], 6), 6), "-", 
+                  signif(round(range[2], 6), 6)), ")"), font = 1, 
+                cex = 0.9, adj = 0)
+            l1.ac <- acf(mcmcobject[, i], lag.max = 1, type = "correlation", 
+                plot = F)
+            acoruse <- round(l1.ac$acf[2], 6)
+            text(13, 25 - i, acoruse, font = 1, cex = 0.9, adj = 0)
+            effsize <- effectiveSize(mcmcobject[, i])
+            text(16.5, 25 - i, round(min(effsize, draws), 0), 
+                font = 1, cex = 0.9, adj = 0)
+            if (acoruse > 0.4) {
+                gewuse <- "None"
+            }
+            if (acoruse <= 0.4) {
+                geweke <- geweke.diag(mcmcobject[, i], frac1 = 0.1, 
+                  frac2 = 0.5)
+                gewuse <- round(geweke$z, 3)
+            }
+            text(19, 25 - i, gewuse, font = 1, cex = 0.9, adj = 0)
+            if (acoruse > 0.4) {
+                send <- "None"
+            }
+            if (acoruse <= 0.4) {
+                hw <- as.list(heidel.diag(mcmcobject[, i], pvalue = 0.05))
+                if (hw[1] == 0) {
+                  send <- "Failed"
+                }
+                if (hw[1] == 1) {
+                  send <- "Passed"
+                }
+            }
+            text(22.5, 25 - i, send, font = 1, cex = 0.9, adj = 0)
+        }
+    }
+    if (scatter == TRUE) {
+        dev.new()
+        par(xaxt = "n", yaxt = "n")
+        pairs(mcmcdata[1:numparams], cex = 0.1, gap = 0)
+    }
+    if (surface == TRUE) {
+        dev.new()
+        par(new = FALSE)
+        hist2d(mcmcobject[, surf1], mcmcobject[, surf2], nbins = 100, 
+            na.rm = TRUE, xlab = paste("parameter", surf1), ylab = paste("parameter", 
+                surf2), show = TRUE, col = c("GREY", topo.colors(20)))
+    }
+}
