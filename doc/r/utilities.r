@@ -1,10 +1,6 @@
 run.partest.model <- function(model,
                               output.file, ## The model object will be stored in binary form here
-                              rows.to.skip.to.comps.header = 21,
-                              rows.to.skip.to.likelihood = 90,
-##                              rows.to.skip.to.survey.header = 1246){ ## end.yr = 2015
-##                              rows.to.skip.to.survey.header = 1261){  ## end.yr = 2016, These numbers change when a new year is added
-                              rows.to.skip.to.survey.header = 1266){  ## end.yr = 2016, These numbers change when a new year is added
+                              verbose = TRUE){
   ## To ensure integration with the knitr loading step, you must
   ## run this from the Rgui (after you've got a base model loaded) like this:
   ##
@@ -14,15 +10,10 @@ run.partest.model <- function(model,
   ## and fetches information from their respective Report.sso files.
   ## This is to be run once for the base model, and stored as a binary as
   ## shown above.
-  ##
-  ## rows.to.skip.to.survey.header should be the line just above the header for
-  ## the survey (index 2 in this case) in the Reports.sso file
-  ##
-  ## rows.to.skip.to.likelihood should be the line just above the LIKELIHOOD
-  ## line in the Reports.sso file
-  ##
-  ## rows.to.skip.to.comps.header should be the line just above the header for
-  ## the age comps in the CompReport.sso file
+  if(!verbose){
+    flush.console
+    cat("\nRunning partest. Screen may not show output for a while\n\n")
+  }
 
   ## Create the directory partest which will hold the runs
   ##  erasing the directory recursively if necessary
@@ -35,10 +26,9 @@ run.partest.model <- function(model,
   ## Copy all mcmc model files into the partest directory
   mcmc.dir <- model$mcmcpath
   file.copy(file.path(mcmc.dir, list.files(mcmc.dir)), partest.dir)
-
   posts <- read.table(file.path(partest.dir, "posteriors.sso"), header = TRUE)
   ## Change this for testing on smaller subset of posteriors
-  ## num.posts <- 5
+  ## num.posts <- 10
   num.posts <- nrow(posts)
 
   ## create a table of parameter values based on labels in parameters section of Report.sso
@@ -58,14 +48,14 @@ run.partest.model <- function(model,
               file = file.path(partest.dir, "ss3.par"),
               quote = FALSE, row.names=FALSE)
 
-  start <- SS_readstarter(file.path(partest.dir, "starter.ss"))
+  start <- SS_readstarter(file.path(partest.dir, "starter.ss"), verbose=verbose)
   ## Change starter file to read from par file
   start$init_values_src <- 1
-  SS_writestarter(start, dir = partest.dir, file = "starter.ss", overwrite = TRUE)
+  SS_writestarter(start, dir = partest.dir, file = "starter.ss", overwrite = TRUE, verbose=F)
 
   ## loop over rows of posteriors file
   for(irow in 1:num.posts){
-    print(irow)
+    if(verbose) {print(irow)}
     ## replace values in newpar table with posteriors values
     ## (excluding 1 and 2 for "Iter" and "Objective_function")
     newpar[newpar$label %in% names(posts), 1] <- as.numeric(posts[irow, -(1:2)])
@@ -78,7 +68,13 @@ run.partest.model <- function(model,
               file.path(reports.dir, paste0("ss3_input", irow, ".par")),
               overwrite = TRUE)
     shell.command <- paste0("cd ", partest.dir, " & ss3 -maxfn 0 -phase 10 -nohess")
-    shell(shell.command)
+    if(verbose){
+      ## shell doesn't accept the argument show.output.on.console for some reason
+      shell(shell.command)
+    }else{
+      ## This doesn't work!!
+      system(shell.command, show.output.on.console = FALSE)
+    }
     file.copy(file.path(partest.dir, "ss3.par"),
               file.path(reports.dir, paste0("ss3_output", irow, ".par")),
               overwrite = TRUE)
@@ -107,8 +103,11 @@ run.partest.model <- function(model,
   }
 
   for(irow in 1:num.posts){
+    tmp <- readLines(file.path(reports.dir, paste0("Report_", irow,".sso")))
+    skip.row <- grep("LIKELIHOOD", tmp)[2]
+##    browser()
     likes <- read.table(file.path(reports.dir, paste0("Report_", irow, ".sso")),
-                        skip = rows.to.skip.to.likelihood,
+                        skip = skip.row,
                         nrows = 17,
                         fill = TRUE,
                         row.names = NULL,
@@ -119,9 +118,15 @@ run.partest.model <- function(model,
     like.info[irow, 12] <- as.numeric(likes[17, 4])      ## fleet-specific age comp likelihoods
   }
 
+  if(verbose){
+    cat("\n\nReading comp table\n\n")
+    flush.console()
+  }
   ## read expected proportions and Pearson values for each age comp observations
+  tmp <- readLines(file.path(reports.dir, paste0("CompReport_", irow,".sso")))
+  skip.row <- grep("Composition_Database", tmp)
   comp.table <- read.table(file.path(partest.dir, "CompReport.sso"),
-                           skip = rows.to.skip.to.comps.header,
+                           skip = skip.row,
                            header = TRUE,
                            fill = TRUE,
                            stringsAsFactors = FALSE)
@@ -130,8 +135,10 @@ run.partest.model <- function(model,
     if(irow %% 100 == 0){
       print(irow)
     }
+    tmp <- readLines(file.path(reports.dir, paste0("CompReport_", irow,".sso")))
+    skip.row <- grep("Composition_Database", tmp)
     comps <- read.table(file.path(reports.dir, paste0("CompReport_", irow, ".sso")),
-                        skip = rows.to.skip.to.comps.header,
+                        skip = skip.row,
                         header = TRUE,
                         fill = TRUE,
                         stringsAsFactors = FALSE)
@@ -158,11 +165,16 @@ run.partest.model <- function(model,
   ## table(base$agedbase$Obs == comp.table$Obs)
   ## TRUE
   ##  750
-
+  if(verbose){
+    cat("\n\nReading cpue table\n\n")
+    flush.console()
+  }
   cpue.table <- NULL
   for(irow in 1:num.posts){
+    tmp <- readLines(file.path(reports.dir, paste0("Report_", irow,".sso")))
+    skip.row <- grep("INDEX_2", tmp)[2]
     cpue <- read.table(file.path(reports.dir, paste0("Report_", irow,".sso")),
-                       skip = rows.to.skip.to.survey.header,
+                       skip = skip.row,
                        nrows = model$dat$N_cpue, ## number of survey index points
                        header = TRUE,
                        fill = TRUE,

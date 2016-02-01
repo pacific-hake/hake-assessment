@@ -36,7 +36,6 @@ install.packages.if.needed("maps", "maps", github=FALSE)
 install.packages.if.needed("coda", "coda", github=FALSE)
 install.packages.if.needed("dplyr", "dplyr", github = FALSE)
 install.packages.if.needed("maptools", github = FALSE)
-## install.packages.if.needed("gtools", "gtools", github = FALSE)
 
 require(nwfscSurvey)
 require(nwfscMapping)
@@ -48,7 +47,6 @@ require(maps)
 require(dplyr)
 require(coda)
 require(maptools)
-## require(gtools)
 
 source("catches.r") ## Contains the code to catch/TAC data and figure and table-making code for catch/TAC
 source("load-models.r")
@@ -69,8 +67,8 @@ source("tables-decisions.r")
 source("tables-age.r")
 source("tables-parameters.r")
 
-## verbose applies to the SS loading functions as well as this project's functions
-verbose <- FALSE
+## verbose applies to the SS loading functions as well as this project's functions and the system call
+verbose <- TRUE
 
 data.path <- file.path("..","..","data")
 models.path <- file.path("..","..","models")
@@ -93,6 +91,13 @@ key.posteriors <- c("NatM_p_1_Fem_GP_1",
                     "Q_extraSD_2_Acoustic_Survey")
 key.posteriors.file <- "keyposteriors.csv"
 nuisance.posteriors.file <- "nuisanceposteriors.csv"
+
+## Index of the base model as found in the directory.
+## i.e. 00_Modelname is index 1, 01_Modelname is index 2, etc.
+base.model.ind <- 12
+## Last year's base model. This is used for the parameter estimates table which compares
+##  last year's to this year's parameter estimates.
+last.year.base.model.ind <- 1
 
 ## IMPORTANT - If any of these do not match up with what the models are set up
 ##  for, the build will fail. The only exception is that end.yr must actually
@@ -138,6 +143,9 @@ bridge.model.dir.names <- c("00_2015hake_basePreSRG",
 base.model.ind <- grep(base.model.name, models.dir.list)
 if(length(base.model.ind) == 0){
   stop("Base model '", base.model.name, "' not found. Check the name and try again.\n")
+}
+if(verbose){
+  cat("\nDEBUG: Loading model ", base.model.name, " as base model\n\n")
 }
 ## Last year's base model. This is used for the parameter estimates table which compares
 ##  last year's to this year's parameter estimates.
@@ -274,6 +282,10 @@ if(run.forecasts == "y" | run.forecasts == "Y"){
   models[[base.model.ind]]$forecasts$mcmccalcs <- forecasts[[3]]
   models[[base.model.ind]]$forecasts$outputs <- forecasts[[4]]
 
+  if(verbose){
+    cat("\nDEBUG: Calculated forecasts\n\n")
+  }
+
   ## calc.risk assumes the forecasting step was done correctly
   risks <- calc.risk(models[[base.model.ind]]$forecasts$outputs,
                      forecast.yrs,
@@ -282,11 +294,21 @@ if(run.forecasts == "y" | run.forecasts == "Y"){
 
   models[[base.model.ind]]$risks <- risks
 
+  if(verbose){
+    cat("\nDEBUG: Calculated risks\n\n")
+  }
+
   cat("\n\nForecast calculations completed.\n\n")
 }
 
 if(run.partest == "y" | run.partest == "Y"){
-  run.partest.model(models[[base.model.ind]], output.file = "model-partest.RData")
+  if(verbose){
+    cat("\nDEBUG: Running partest\n\n")
+  }
+  run.partest.model(models[[base.model.ind]], output.file = "model-partest.RData", verbose = verbose)
+  if(verbose){
+    cat("\nDEBUG: Partest Completed\n\n")
+  }
 }
 
 ## A simpler variable for the base model
