@@ -1,5 +1,7 @@
-make.overview.map.plot <- function(){
+make.overview.map.plot <- function(r.loc = getwd()){
   ## Create the overview map for the hake assessment
+  ## r.loc is necessary so that the code can be run from latex
+  ## and a reletive path can be given to locate the r directory
   oldpar <- par()
 
   ## California coast
@@ -156,7 +158,7 @@ make.overview.map.plot <- function(){
   tmp.islands <- tmp[tmp$PID!=1,]
 
   ## Now cut off the little bit that nepacLL has
-  tmp <- tmp[tmp$PID == 1 & tmp$Y < =34,]
+  tmp <- tmp[tmp$PID == 1 & tmp$Y <= 34,]
   wc <- nepacLL[nepacLL$Y >= 34 &
                 nepacLL$Y < 65 &
                 nepacLL$X < -112 &
@@ -175,7 +177,8 @@ make.overview.map.plot <- function(){
   tmp$POS <- 1:nrow(tmp)
 
   ## Just in case some of the PID numbers are the same, renumber them
-  ## This renumbers the PID to be between 1 and whatever, and keeps the correct groups, example: x <- c(11,12,12,13,13,13,14,14,14,14,15,15,15,15,15); as.numeric(factor(x))
+  ## This renumbers the PID to be between 1 and whatever, and keeps the correct groups,
+  ##  example: x <- c(11,12,12,13,13,13,14,14,14,14,15,15,15,15,15); as.numeric(factor(x))
   tmpPID <- as.numeric(factor(tmp.islands$PID)) + 1
   ## Add to it so that other PIDs are not the same
   wcPID <- as.numeric(factor(wc.islands$PID)) + max(tmpPID)
@@ -309,7 +312,7 @@ make.overview.map.plot <- function(){
   INPFCareaNames[1,c("X", "Y")] <- c(-126.15, 47.75)
 
   print("Created PSMFCareasPBS, PSMFCareaNames, INPFCareasPBS, and INPFCareaNames")
-  EEZ <- importShapefile(file.path("map-data", "eez", "Pacific_EEZ_dissolve_dd.shp"), readDBF = TRUE)
+  EEZ <- importShapefile(file.path(r.loc, "map-data", "eez", "Pacific-EEZ-dissolve-dd.shp"), readDBF = TRUE)
   ## tmp <- importShapefile("C:\\Mapping\\Shapefiles\\DepthContours_4Survey_dd.shp",readDBF=T)
   ## depth30f <- tmp[tmp$PID==1,]
   ## depth100f <- tmp[tmp$PID==2,]
@@ -328,79 +331,55 @@ make.overview.map.plot <- function(){
   tmp <- joinPolys(EEZ, INPFCareasPBS[INPFCareasPBS$PID == 4,], operation = "INT")
   tmp <- joinPolys(EEZ, INPFCareasPBS, operation = "INT")
 
-  LMEoffshore <- importShapefile(file.path("map-data", "lme-66-offshore", "LME66_Offshore.shp"), readDBF = TRUE)
-  LME <- importShapefile(file.path("map-data", "lme-66", "LME66.shp"), readDBF = TRUE)
-  province <- importShapefile("map-data", "province", "province.shp"), readDBF = TRUE)
+  LMEoffshore <- importShapefile(file.path(r.loc, "map-data", "lme-66-offshore", "LME66-Offshore.shp"), readDBF = TRUE)
+  LME <- importShapefile(file.path(r.loc, "map-data", "lme-66", "LME66.shp"), readDBF = TRUE)
+  province <- importShapefile(file.path(r.loc, "map-data", "province", "province.shp"), readDBF = TRUE)
   alberta <- attributes(province)$PolyData[attributes(province)$PolyData$NAME == "Alberta", "PID"]
   CCLME <- attributes(LME)$PolyData[attributes(LME)$PolyData$LME_NAME == "California Current", "PID"]
   GOALME <- attributes(LME)$PolyData[attributes(LME)$PolyData$LME_NAME == "Gulf of Alaska", "PID"]
 
+  port.lats <- read.csv(file.path(r.loc, "map-data","port-lats.csv"))
+  cities <- c("Newport", "Westport", "Astoria", "Eureka", "Charleston (Coos Bay)")
+  cities <- port.lats[port.lats$Name %in% cities,]
+
+  ## par(mar = c(4, 4, 0, 0) + 0.1, las = 1)
+  plotMap(westCoastLL, tck = c(-0.02), xlim = c(-140, -113.0), ylim = c(29.9, 59.1), col = gray(0.8))
+  addLines(wc.states.inland.pbs)
+  map("state", add = TRUE, region = c("Idaho", "Montana", "Nevada", "Arizona"))
+  addLines(province, polyProps = data.frame(PID = alberta))
+  addLines(province, polyProps = data.frame(PID = 12, SID = c(123)))
+  ## Found this by x <- addLines(LMEoffshore) then looking at x
+  addLines(LMEoffshore, polyProps = data.frame(PID = 76))
+  addLines(LMEoffshore, polyProps = data.frame(PID = 169))
+  points(-cities$Lon, cities$Lat, pch = 16, col = gray(0.4))
+  text(-cities$Lon, cities$Lat, cities$Name, pos = 4, cex = 0.7, col = gray(0.4))
+
+  text(-123, 56, "BC", cex = 1.2)
+  text(-120, 47.1, "WA", cex = 1.1)
+  text(-120, 44.3, "OR", cex = 1.2)
+  text(-118.8, 35.9, "CA", cex = 1.2)
+  text(-122.8, 51, "Strait of\nGeorgia", adj = 0, cex = 0.7)
+  arrows(-122.8, 51, -123.55, 49.67, length = 0.05)
+  text(-120.7, 48.4, "Puget\nSound", adj = 0, cex = 0.7)
+  arrows(-120.7, 48.4, -122.1, 47.7, length = 0.05)
+  text(-133.2, 52, "Haida\nGwaii", adj = 1, cex = 0.7)
+  arrows(-133.2, 52, -132.2, 52.5, length = 0.05)
+  text(-117.8, 30.5,"Baja\nCalifornia", adj = 1, cex = 0.7)
+  arrows(-117.8, 30.5, -115.5, 30.5, length = 0.05)
+  text(-131.2, 58, "SE\nAlaska", adj = 0, cex = 0.7)
+  arrows(-131.2, 58, -132.3, 57.5, length = 0.05)
+  text(-128.3, 49.9, "Vancouver\nIsland", adj = 1, cex = 0.7)
+  arrows(-128.3, 49.9, -127.4, 49.8, length = 0.05)
+  text(-129.5, 51.6, "Queen\nCharlotte\nSound", adj = 0.5, cex = 0.6)
+  text(-133.5, 54.5, "Dixon Entrance", adj = 1, cex = 0.7)
+  arrows(-133.5, 54.45, -132.5, 54.45, length = 0.05)
+  text(-126.2, 48.5, "Strait of\nJuan de Fuca", adj = 1, cex = 0.7)
+  arrows(-126.2, 48.5, -124.7, 48.5, length = 0.05)
+
+  text(-128, 39, "California Current LME", cex = 1.4, srt = 285)
+  text(-138, 56.8, "Gulf Of Alaska\nLME", cex = 0.9, srt = 300)
+
   par <- oldpar
 }
-
-
-LMEoffshore <- importShapefile("MapData/LME66_Offshore/LME66_Offshore.shp",readDBF=T)
-LME <- importShapefile("MapData/LME66/LME66.shp",readDBF=T)
-province <- importShapefile("MapData/province/province.shp",readDBF=T)
-alberta <- attributes(province)$PolyData[attributes(province)$PolyData$NAME == "Alberta","PID"]
-CCLME <- attributes(LME)$PolyData[attributes(LME)$PolyData$LME_NAME == "California Current","PID"]
-GOALME <- attributes(LME)$PolyData[attributes(LME)$PolyData$LME_NAME == "Gulf of Alaska","PID"]
-data(nepacLL)
-
-# *** CHRIS this will need to be fixed
-figDir <- "C:/NOAA2016/Hake/WriteUp/Figures"
-
-##########################################################################
-## Map of area
-portLats <- read.csv("MapData/portLats.csv")
-theCities <- c("Newport","Westport","Astoria","Eureka","Charleston (Coos Bay)")
-theCities <- portLats[portLats$Name%in%theCities,]
-
-doPNG <- F
-doTIFF <- F
-doEPS <- T
-
-
-ht <- 10; wd<- 6.5
-if(doPNG) {png(filename = paste(figDir,"overviewMap.png",sep="\\"), width = wd, height = ht,units="in",res=300, pointsize = 11)}
-if(doTIFF) {tiff(filename = paste(figDir,"overviewMap.tiff",sep="\\"), width = wd, height = ht,units="in",res=300, pointsize = 11)}
-if(doEPS) {postscript(file = paste(figDir,"overviewMap.eps",sep="\\"), width = wd, height = ht, pointsize=11)}
-if(!doPNG & !doTIFF & !doEPS) {windows(height=ht,width=wd)}
-par(mfrow=c(1,1),mar=c(4,4,0,0)+0.1,las=1)
-plotMap(westCoastLL, tck = c(-0.02), xlim=c(-140,-113.0), ylim=c(29.9,59.1),col=gray(0.8))
-addLines(WCstatesInlandPBS)
-map('state',add=T,region=c("Idaho","Montana","Nevada","Arizona"))
-addLines(province,polyProps=data.frame(PID=alberta))
-addLines(province,polyProps=data.frame(PID=12,SID=c(123)))
-addLines(LMEoffshore,polyProps=data.frame(PID=76)) #foudn this by x <- addLines(LMEoffshore) then looking at x
-addLines(LMEoffshore,polyProps=data.frame(PID=169))
-points(-theCities$Lon,theCities$Lat,pch=16,col=gray(0.4))
-text(-theCities$Lon,theCities$Lat,theCities$Name,pos=4,cex=0.7,col=gray(0.4))
-
-text(-123,56,"BC",cex=1.2)
-text(-120,47.1,"WA",cex=1.1)
-text(-120,44.3,"OR",cex=1.2)
-text(-118.8,35.9,"CA",cex=1.2)
-text(-122.8,51,"Strait of\nGeorgia",adj=0,cex=0.7)
-arrows(-122.8,51,-123.55,49.67,length=0.05)
-text(-120.7,48.4,"Puget\nSound",adj=0,cex=0.7)
-arrows(-120.7,48.4,-122.1,47.7,length=0.05)
-text(-133.2,52,"Haida\nGwaii",adj=1,cex=0.7)
-arrows(-133.2,52,-132.2,52.5,length=0.05)
-text(-117.8,30.5,"Baja\nCalifornia",adj=1,cex=0.7)
-arrows(-117.8,30.5,-115.5,30.5,length=0.05)
-text(-131.2,58,"SE\nAlaska",adj=0,cex=0.7)
-arrows(-131.2,58,-132.3,57.5,length=0.05)
-text(-128.3,49.9,"Vancouver\nIsland",adj=1,cex=0.7)
-arrows(-128.3,49.9,-127.4,49.8,length=0.05)
-text(-129.5,51.6,"Queen\nCharlotte\nSound",adj=0.5,cex=0.6)
-text(-133.5,54.5,"Dixon Entrance",adj=1,cex=0.7)
-arrows(-133.5,54.45,-132.5,54.45,length=0.05)
-text(-126.2,48.5,"Strait of\nJuan de Fuca",adj=1,cex=0.7)
-arrows(-126.2,48.5,-124.7,48.5,length=0.05)
-
-text(-128,39,"California Current LME",cex=1.4,srt=285)
-text(-138,56.8,"Gulf Of Alaska\nLME",cex=0.9,srt=300)
-if(doPNG | doTIFF | doEPS) {dev.off()}
 
 

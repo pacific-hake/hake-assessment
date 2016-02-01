@@ -7,8 +7,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.overview.map, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
+<<main.overview.map, fig.height=8, fig.width=8>>=
+make.overview.map.plot(r.loc = file.path("..", "r"))
 @
 \end{center}
 %\vspace{0mm}

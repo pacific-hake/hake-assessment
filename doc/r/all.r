@@ -57,7 +57,7 @@ source("figures-age-comps.r")
 source("figures-selex.r")
 source("figures-stock-recruitment.r")
 source("figures-mle-mcmc.r")
-## source("figures-overview-map.r")
+source("figures-overview-map.r")
 
 source("tables-timeseries.r")
 source("tables-reference-points.r")
