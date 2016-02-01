@@ -1,10 +1,6 @@
 run.partest.model <- function(model,
                               output.file, ## The model object will be stored in binary form here
-                              rows.to.skip.to.comps.header = 21,
-                              rows.to.skip.to.likelihood = 90,
-##                              rows.to.skip.to.survey.header = 1246){ ## end.yr = 2015
-##                              rows.to.skip.to.survey.header = 1261){  ## end.yr = 2016, These numbers change when a new year is added
-                              rows.to.skip.to.survey.header = 1266){  ## end.yr = 2016, These numbers change when a new year is added
+                              verbose = TRUE){
   ## To ensure integration with the knitr loading step, you must
   ## run this from the Rgui (after you've got a base model loaded) like this:
   ##
@@ -14,15 +10,10 @@ run.partest.model <- function(model,
   ## and fetches information from their respective Report.sso files.
   ## This is to be run once for the base model, and stored as a binary as
   ## shown above.
-  ##
-  ## rows.to.skip.to.survey.header should be the line just above the header for
-  ## the survey (index 2 in this case) in the Reports.sso file
-  ##
-  ## rows.to.skip.to.likelihood should be the line just above the LIKELIHOOD
-  ## line in the Reports.sso file
-  ##
-  ## rows.to.skip.to.comps.header should be the line just above the header for
-  ## the age comps in the CompReport.sso file
+  if(!verbose){
+    flush.console
+    cat("\nRunning partest. Screen may not show output for a while\n\n")
+  }
 
   ## Create the directory partest which will hold the runs
   ##  erasing the directory recursively if necessary
@@ -35,10 +26,9 @@ run.partest.model <- function(model,
   ## Copy all mcmc model files into the partest directory
   mcmc.dir <- model$mcmcpath
   file.copy(file.path(mcmc.dir, list.files(mcmc.dir)), partest.dir)
-
   posts <- read.table(file.path(partest.dir, "posteriors.sso"), header = TRUE)
   ## Change this for testing on smaller subset of posteriors
-  ## num.posts <- 5
+  ## num.posts <- 10
   num.posts <- nrow(posts)
 
   ## create a table of parameter values based on labels in parameters section of Report.sso
@@ -58,14 +48,14 @@ run.partest.model <- function(model,
               file = file.path(partest.dir, "ss3.par"),
               quote = FALSE, row.names=FALSE)
 
-  start <- SS_readstarter(file.path(partest.dir, "starter.ss"))
+  start <- SS_readstarter(file.path(partest.dir, "starter.ss"), verbose=verbose)
   ## Change starter file to read from par file
   start$init_values_src <- 1
-  SS_writestarter(start, dir = partest.dir, file = "starter.ss", overwrite = TRUE)
+  SS_writestarter(start, dir = partest.dir, file = "starter.ss", overwrite = TRUE, verbose=F)
 
   ## loop over rows of posteriors file
   for(irow in 1:num.posts){
-    print(irow)
+    if(verbose) {print(irow)}
     ## replace values in newpar table with posteriors values
     ## (excluding 1 and 2 for "Iter" and "Objective_function")
     newpar[newpar$label %in% names(posts), 1] <- as.numeric(posts[irow, -(1:2)])
@@ -78,7 +68,13 @@ run.partest.model <- function(model,
               file.path(reports.dir, paste0("ss3_input", irow, ".par")),
               overwrite = TRUE)
     shell.command <- paste0("cd ", partest.dir, " & ss3 -maxfn 0 -phase 10 -nohess")
-    shell(shell.command)
+    if(verbose){
+      ## shell doesn't accept the argument show.output.on.console for some reason
+      shell(shell.command)
+    }else{
+      ## This doesn't work!!
+      system(shell.command, show.output.on.console = FALSE)
+    }
     file.copy(file.path(partest.dir, "ss3.par"),
               file.path(reports.dir, paste0("ss3_output", irow, ".par")),
               overwrite = TRUE)
@@ -107,8 +103,11 @@ run.partest.model <- function(model,
   }
 
   for(irow in 1:num.posts){
+    tmp <- readLines(file.path(reports.dir, paste0("Report_", irow,".sso")))
+    skip.row <- grep("LIKELIHOOD", tmp)[2]
+##    browser()
     likes <- read.table(file.path(reports.dir, paste0("Report_", irow, ".sso")),
-                        skip = rows.to.skip.to.likelihood,
+                        skip = skip.row,
                         nrows = 17,
                         fill = TRUE,
                         row.names = NULL,
@@ -119,9 +118,15 @@ run.partest.model <- function(model,
     like.info[irow, 12] <- as.numeric(likes[17, 4])      ## fleet-specific age comp likelihoods
   }
 
+  if(verbose){
+    cat("\n\nReading comp table\n\n")
+    flush.console()
+  }
   ## read expected proportions and Pearson values for each age comp observations
+  tmp <- readLines(file.path(reports.dir, paste0("CompReport_", irow,".sso")))
+  skip.row <- grep("Composition_Database", tmp)
   comp.table <- read.table(file.path(partest.dir, "CompReport.sso"),
-                           skip = rows.to.skip.to.comps.header,
+                           skip = skip.row,
                            header = TRUE,
                            fill = TRUE,
                            stringsAsFactors = FALSE)
@@ -130,8 +135,10 @@ run.partest.model <- function(model,
     if(irow %% 100 == 0){
       print(irow)
     }
+    tmp <- readLines(file.path(reports.dir, paste0("CompReport_", irow,".sso")))
+    skip.row <- grep("Composition_Database", tmp)
     comps <- read.table(file.path(reports.dir, paste0("CompReport_", irow, ".sso")),
-                        skip = rows.to.skip.to.comps.header,
+                        skip = skip.row,
                         header = TRUE,
                         fill = TRUE,
                         stringsAsFactors = FALSE)
@@ -158,11 +165,16 @@ run.partest.model <- function(model,
   ## table(base$agedbase$Obs == comp.table$Obs)
   ## TRUE
   ##  750
-
+  if(verbose){
+    cat("\n\nReading cpue table\n\n")
+    flush.console()
+  }
   cpue.table <- NULL
   for(irow in 1:num.posts){
+    tmp <- readLines(file.path(reports.dir, paste0("Report_", irow,".sso")))
+    skip.row <- grep("INDEX_2", tmp)[2]
     cpue <- read.table(file.path(reports.dir, paste0("Report_", irow,".sso")),
-                       skip = rows.to.skip.to.survey.header,
+                       skip = skip.row,
                        nrows = model$dat$N_cpue, ## number of survey index points
                        header = TRUE,
                        fill = TRUE,
@@ -554,3 +566,161 @@ biomass_fraction_plots <- function(replist, selected=FALSE){
   title(main=ifelse(selected, "Estimated fractions of selected biomass", "Estimated fractions of total biomass"))
 }
 
+mcmc.out <- function (directory = "c:/mydirectory/", run = "mymodel/", file = "keyposteriors.csv", 
+    namefile = "postplotnames.sso", names = FALSE, headernames = TRUE, 
+    numparams = 1, closeall = TRUE, burn = 0, thin = 1, scatter = FALSE, 
+    surface = FALSE, surf1 = 1, surf2 = 2, stats = FALSE, plots = TRUE, 
+    header = TRUE, sep = ",", print = FALSE, new = T, colNames = NULL) 
+{
+    if (print == TRUE) {
+    }
+    if (closeall == TRUE) {
+    }
+    filename <- file.path(directory, run, file)
+    if (!file.exists(filename)) {
+        stop("file doesn't exist:\n", filename)
+    }
+    mcmcdata <- read.table(filename, header = header, sep = sep, 
+        fill = TRUE)
+    if (names == TRUE) {
+        nameout <- file.path(directory, run, namefile)
+        namedata <- read.table(nameout, header = FALSE, sep = "", 
+            colClasses = "character", fill = TRUE)
+        numparams <- as.numeric(namedata[1, 1])
+        for (j in 1:numparams) {
+            names(mcmcdata)[j] <- namedata[(j + 1), 1]
+        }
+    }
+    if (!is.null(colNames)) {
+        if (length(colNames) != numparams) 
+            cat("numparams argument overidden by length of colNames argument\n")
+        numparams <- length(colNames)
+        mcmcdata <- mcmcdata[, colNames]
+        if (length(colNames) == 1) {
+            mcmcdata <- data.frame(mcmcdata)
+            names(mcmcdata) <- colNames
+        }
+    }
+    mcmcfirst <- mcmc(mcmcdata)
+    mcmctemp <- window(mcmcfirst, thin = thin, start = (1 + burn))
+    mcthinned <- as.matrix(mcmctemp)
+    mcmcobject <- mcmc(mcthinned)
+    draws <- length(mcmcobject[, 1])
+    if (plots == TRUE) {
+        if (new) 
+            dev.new(record = TRUE)
+        if (numparams == 5 || numparams == 9 || numparams == 
+            13 || numparams == 17) {
+            plot(0, 0, xlab = "", ylab = "", frame.plot = FALSE, 
+                yaxt = "n", xaxt = "n", type = "n")
+        }
+        for (i in 1:numparams) {
+            par(new = FALSE, mfrow = c(2, 2), ann = TRUE)
+            traceplot(mcmcobject[, i], smooth = TRUE)
+            mtext("Value", side = 2, line = 3, font = 1, cex = 0.8)
+            if (names | headernames) {
+                mtext(names(mcmcdata)[i], side = 3, adj = 0, 
+                  line = 2, font = 2, cex = 1)
+            }
+            else {
+                mtext(paste("param", i), side = 3, adj = 0, line = 2, 
+                  font = 2, cex = 1)
+            }
+            lowest <- min(mcmcobject[, i])
+            highest <- max(mcmcobject[, i])
+            plot(c(seq(1, draws, by = 1)), c(lowest, rep(c(highest), 
+                (draws - 1))), xlab = "Iterations", ylab = "", 
+                yaxt = "n", type = "n")
+            if (!exists("running")) {
+                cat("skipping running average section because function 'running' is needed\n")
+            }
+            else {
+                lines(running(mcmcobject[, i], fun = median, 
+                  allow.fewer = TRUE, width = draws))
+                fun <- function(x, prob) quantile(x, probs = prob, 
+                  names = FALSE)
+                lines(running(mcmcobject[, i], fun = fun, prob = 0.05, 
+                  allow.fewer = TRUE, width = draws), col = "GREY")
+                lines(running(mcmcobject[, i], fun = fun, prob = 0.95, 
+                  allow.fewer = TRUE, width = draws), col = "GREY")
+            }
+            par(ann = FALSE)
+            autocorr.plot(mcmcobject[, i], auto.layout = FALSE, 
+                lag.max = 20, ask = FALSE)
+            mtext("Autocorrelation", side = 2, line = 3, font = 1, 
+                cex = 0.8)
+            mtext("Lag", side = 1, line = 3, font = 1, cex = 0.8)
+            lines(seq(1, 20, by = 1), rep(0.1, 20), col = "GREY")
+            lines(seq(1, 20, by = 1), rep(-0.1, 20), col = "GREY")
+            densplot(mcmcobject[, i], show.obs = TRUE)
+            mtext("Density", side = 2, line = 3, font = 1, cex = 0.8)
+            mtext("Value", side = 1, line = 3, font = 1, cex = 0.8)
+        }
+    }
+    if (stats == TRUE) {
+        dev.new()
+        par(mar = c(0, 0, 3, 0))
+        plot(0, ylab = "", xlab = "", type = "n", xlim = c(0, 
+            25), ylim = c(0, 25), main = "Summary statistics for key parameters", 
+            axes = FALSE)
+        text(0.001, 25, "Parameter", font = 2, cex = 0.9, adj = 0)
+        text(4, 25, "Median (0.05-0.95)", font = 2, cex = 0.9, 
+            adj = 0)
+        text(13, 25, "AC Lag 1", font = 2, cex = 0.9, adj = 0)
+        text(16.5, 25, "Eff. N", font = 2, cex = 0.9, adj = 0)
+        text(19, 25, "Geweke-Z", font = 2, cex = 0.9, adj = 0)
+        text(22.5, 25, "Heidel-W", font = 2, cex = 0.9, adj = 0)
+        for (i in 1:numparams) {
+            text(0, (25 - i), paste("param", i), font = 1, cex = 0.9, 
+                adj = 0)
+            med <- quantile(mcmcobject[, i], probs = 0.5, names = FALSE)
+            range <- quantile(mcmcobject[, i], probs = c(0.05, 
+                0.95), names = FALSE)
+            text(3.2, 25 - i, paste(signif(round(med, 6), 6), 
+                "(", paste(signif(round(range[1], 6), 6), "-", 
+                  signif(round(range[2], 6), 6)), ")"), font = 1, 
+                cex = 0.9, adj = 0)
+            l1.ac <- acf(mcmcobject[, i], lag.max = 1, type = "correlation", 
+                plot = F)
+            acoruse <- round(l1.ac$acf[2], 6)
+            text(13, 25 - i, acoruse, font = 1, cex = 0.9, adj = 0)
+            effsize <- effectiveSize(mcmcobject[, i])
+            text(16.5, 25 - i, round(min(effsize, draws), 0), 
+                font = 1, cex = 0.9, adj = 0)
+            if (acoruse > 0.4) {
+                gewuse <- "None"
+            }
+            if (acoruse <= 0.4) {
+                geweke <- geweke.diag(mcmcobject[, i], frac1 = 0.1, 
+                  frac2 = 0.5)
+                gewuse <- round(geweke$z, 3)
+            }
+            text(19, 25 - i, gewuse, font = 1, cex = 0.9, adj = 0)
+            if (acoruse > 0.4) {
+                send <- "None"
+            }
+            if (acoruse <= 0.4) {
+                hw <- as.list(heidel.diag(mcmcobject[, i], pvalue = 0.05))
+                if (hw[1] == 0) {
+                  send <- "Failed"
+                }
+                if (hw[1] == 1) {
+                  send <- "Passed"
+                }
+            }
+            text(22.5, 25 - i, send, font = 1, cex = 0.9, adj = 0)
+        }
+    }
+    if (scatter == TRUE) {
+        dev.new()
+        par(xaxt = "n", yaxt = "n")
+        pairs(mcmcdata[1:numparams], cex = 0.1, gap = 0)
+    }
+    if (surface == TRUE) {
+        dev.new()
+        par(new = FALSE)
+        hist2d(mcmcobject[, surf1], mcmcobject[, surf2], nbins = 100, 
+            na.rm = TRUE, xlab = paste("parameter", surf1), ylab = paste("parameter", 
+                surf2), show = TRUE, col = c("GREY", topo.colors(20)))
+    }
+}
