@@ -34,6 +34,7 @@ install.packages.if.needed("xtable", "xtable", github=FALSE)
 install.packages.if.needed("PBSmapping", "PBSmapping", github=FALSE)
 install.packages.if.needed("maps", "maps", github=FALSE)
 install.packages.if.needed("dplyr", "dplyr", github = FALSE)
+install.packages.if.needed("maptools", github = FALSE)
 ## install.packages.if.needed("gtools", "gtools", github = FALSE)
 
 require(nwfscSurvey)
@@ -44,6 +45,7 @@ require(xtable)
 require(PBSmapping)
 require(maps)
 require(dplyr)
+require(maptools)
 ## require(gtools)
 
 source("catches.r") ## Contains the code to catch/TAC data and figure and table-making code for catch/TAC
