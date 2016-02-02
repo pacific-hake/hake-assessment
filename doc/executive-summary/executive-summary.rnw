@@ -212,7 +212,7 @@ exception of the periods in the late 1990s and late 2000s when the spawning biom
 Median fishing intensity on the stock is estimated to have been consistently below the $\Fforty$ target except for 
 \Sexpr{median.intensity.above.one.years[1:(length(median.intensity.above.one.years)-1)]} and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]} when spawning biomass was low (Figure~\ref{fig:es-fishing-intensity}). Exploitation fraction (catch divided by biomass of fish of age 3 and above) has
 shown relatively similar patterns (Figure~\ref{fig:es-exploitation-fraction}). Fishing intensity is estimated to have declined from \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.penult.yr}\% in \Sexpr{end.yr-1} while
-exploitation fraction has decreased from about **0.25 in the late 2000s to less than 0.10 in 2013 and 2014. The uncertainty around
+exploitation fraction has decreased from about **0.25 in the late 2000s to less than **0.10 in 2013 and 2014. The uncertainty around
 these estimates is largest in the most recent years due to uncertainty in recruitment and spawning biomass.
 
 %%%%%%%%%%%%%%%%%%%%%%%
