@@ -90,7 +90,7 @@ reduce the effects of errors caused by assuming selectivity is constant over tim
 \subsection*{Stock Biomass} \label{sec:es-stock-biomass}
 \phantomsection  \addcontentsline{toc}{subsection}{Stock Biomass}
 The base stock assessment model indicates that since the 1960s, Pacific Hake female spawning biomass has ranged from well below to near
-unfished equilibrium (Figure~{fig:es-female-spawning-biomass}). The model estimates that it was below the unfished equilibrium in the 1960s and 1970s due to lower than average recruitment.
+unfished equilibrium (Figure~\ref{fig:es-female-spawning-biomass}). The model estimates that it was below the unfished equilibrium in the 1960s and 1970s due to lower than average recruitment.
 The stock is estimated to have increased rapidly to near unfished equilibrium after two or more large recruitments in the early 1980s, and then
 declined steadily after a peak in the mid- to late-1980s to a low in 2000. This long period of decline was followed by a brief increase to a peak
 in 2003 as the large 1999 year class matured. The 1999 year class largely supported the fishery for several years due to relatively small recruitments
@@ -217,7 +217,7 @@ these estimates is largest in the most recent years due to uncertainty in recrui
 <<fishing.intensity, fig.height=5, fig.width=8>>=
 make.fishing.intensity.plot(base.model,
                             start.yr = start.yr,
-                            end.yr = end.yr,
+                            end.yr = end.yr-1,
                             color = "blue")
 @
 \end{center}
@@ -233,7 +233,7 @@ make.fishing.intensity.plot(base.model,
 <<exploitation.fraction, fig.height=5, fig.width=8>>=
 make.exploitation.fraction.plot(base.model,
                                 start.yr = start.yr,
-                                end.yr = end.yr,
+                                end.yr = end.yr-1,
                                 color = "blue")
 @
 \end{center}
