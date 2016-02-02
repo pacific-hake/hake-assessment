@@ -32,7 +32,7 @@ make.catches.plot(catches,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Total Pacific Hake catch used in the assessment by sector, \Sexpr{start.yr} -- \Sexpr{end.yr}.
+\caption{Total Pacific Hake catch used in the assessment by sector, \Sexpr{start.yr}--\Sexpr{end.yr}.
   U.S. tribal catches are included in the sectors where they are represented.}
 \label{fig:es-catches}
 \end{figure}
@@ -51,29 +51,16 @@ make.catches.table(catches,
 
 \subsection*{Data and Assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and Assessment}
-The biomass estimate and age composition from the acoustic survey conducted in 2015 has been added to the model survey time series. The only other new data included
-in 2015 are the 2015 fishery age compositions and total catch. Various other data types, including data on maturity, have been explored since
-the 2014 stock assessment, but are not included in the base model for this year.
+The biomass estimate and age composition from the acoustic survey conducted in \Sexpr{survey.end.yr} has been added to the model survey time series. The only other new data for this \Sexpr{assess.yr} assessment, that was not in the \Sexpr{last.assess.yr} assessment, are the \Sexpr{last.data.yr} fishery age compositions and total catch. Various other data types, including data on maturity, have been explored since the 2014 stock assessment, but are not included in the base model for this year.
 
-The Joint Technical Committee (JTC) assessment depends primarily on the fishery landings (\Sexpr{start.yr} -- \Sexpr{end.yr}),
-acoustic survey biomass estimates and age-composition (\Sexpr{survey.start.yr} -- \Sexpr{survey.end.yr}; Figure \ref{fig:es-survey-biomass}),
+The Joint Technical Committee (JTC) assessment depends primarily on the fishery landings (\Sexpr{start.yr}--\Sexpr{end.yr}),
+acoustic survey biomass estimates and age-composition (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}; Figure~\ref{fig:es-survey-biomass}),
 as well as fishery age-composition. While the 2011 survey index value was the lowest in the time-series, the index increased steadily over the
 four surveys conducted in 2011, 2012, 2013, and 2015. Age-composition data from the aggregated fisheries (1975--\Sexpr{end.yr-1}) and the acoustic survey
 contribute to the assessment model's ability to resolve strong and weak cohorts.
 
-The assessment uses a Bayesian estimation approach, sensitivity analyses, and retrospective investigations to evaluate the potential consequences of parameter uncertainty, alternative structural models, and historical performance of the assessment model, respectively. The Bayesian approach combines prior knowledge about natural mortality, stock-recruitment steepness (a parameter for stock productivity), and several other parameters with likelihoods for acoustic survey biomass indices and age-composition, as well as fishery age composition data. Integrating the joint posterior distribution over model parameters (via Markov Chain Monte Carlo simulation) provides probabilistic inferences about uncertain model parameters and forecasts derived from those parameters. Sensitivity analyses are used to identify alternative structural models that may also be consistent with the data. Retrospective analyses identify possible poor performance of the assessment model with respect to future predictions. In past assessments, closed-loop simulations have provided an assessment of how alternative combinations of survey frequency, assessment model selectivity assumptions, and harvest control rules affect expected management outcomes given repeated application of these procedures over the long-term. The results of past closed-loop simulations influence the decisions made for this assessment.
-
-This \Sexpr{assess.yr} assessment retains the structural form of the base assessment model from \Sexpr{last.assess.yr}. The model retains many
-of the previous elements as configured in Stock Synthesis (SS). Analyses conducted in \Sexpr{last.assess.yr} showed that the time-varying
-selectivity assessment model reduced the magnitude of extreme cohort strength estimates. In closed-loop simulations, management based upon
-assessment models with time-varying fishery selectivity led to higher median average catch, lower risk of falling below 10\% of unfished
-biomass ($B_0$), smaller probability of fishery closures, and lower inter-annual variability in catch compared to assessment models with
-time-invariant fishery selectivity. It was found that even a small degree of flexibility in the assessment model fishery selectivity could
-reduce the effects of errors caused by assuming selectivity is constant over time.
-
-
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+\begin{figure}[tp]
 \begin{center}
 <<survey.biomass, fig.height=5, fig.width=8>>=
 ## modelnum is the model index in models list from which the survey input data are used.
@@ -86,6 +73,19 @@ make.survey.biomass.plot(models,
 \label{fig:es-survey-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+
+
+The assessment uses a Bayesian estimation approach, sensitivity analyses, and retrospective investigations to evaluate the potential consequences of parameter uncertainty, alternative structural models, and historical performance of the assessment model, respectively. The Bayesian approach combines prior knowledge about natural mortality, stock-recruitment steepness (a parameter for stock productivity), and several other parameters with likelihoods for acoustic survey biomass indices and age-composition, as well as fishery age composition data. Integrating the joint posterior distribution over model parameters (via Markov Chain Monte Carlo simulation) provides probabilistic inferences about uncertain model parameters and forecasts derived from those parameters. Sensitivity analyses are used to identify alternative structural models that may also be consistent with the data. Retrospective analyses identify possible poor performance of the assessment model with respect to future predictions. In past assessments, closed-loop simulations have provided an assessment of how alternative combinations of survey frequency, assessment model selectivity assumptions, and harvest control rules affect expected management outcomes given repeated application of these procedures over the long-term. The results of past closed-loop simulations influence the decisions made for this assessment.
+
+This \Sexpr{assess.yr} assessment retains the structural form of the base assessment model from \Sexpr{last.assess.yr}. The model retains many
+of the previous elements as configured in Stock Synthesis (SS). Analyses conducted in **2014 [**that's what 2015 assessment said -- were such analyses repeated in 2015? If so then it should say \Sexpr{last.assess.yr}] showed that the time-varying
+selectivity assessment model reduced the magnitude of extreme cohort strength estimates. In closed-loop simulations, management based upon
+assessment models with time-varying fishery selectivity led to higher median average catch, lower risk of falling below 10\% of unfished
+biomass ($B_0$), smaller probability of fishery closures, and lower inter-annual variability in catch compared to assessment models with
+time-invariant fishery selectivity. It was found that even a small degree of flexibility in the assessment model fishery selectivity could
+reduce the effects of errors caused by assuming selectivity is constant over time.
+
+
 
 \subsection*{Stock Biomass} \label{sec:es-stock-biomass}
 \phantomsection  \addcontentsline{toc}{subsection}{Stock Biomass}
@@ -245,7 +245,7 @@ Over the last decade, the average coast-wide utilization rate (i.e., utilization
 From \Sexpr{end.yr-5} to \Sexpr{end.yr-1}, the mean utilization rates differed between the United States (\Sexpr{usa.last.5.years.attainment}\%) and
 Canada (\Sexpr{can.last.5.years.attainment}\%). Total landings last exceeded the coast-wide
 quota in 2002 when utilization was 112\%. Exploitation history in terms of joint biomass and F-target reference points shows that before
-2007, median fishing intensity was below target and female spawning biomass was near or above target (Figure \ref{tab:es-landings-tac}).
+2007, median fishing intensity was below target and female spawning biomass was near or above target (**says tab: Figure~\ref{tab:es-landings-tac}).
 Between 2007 and 2011, however, fishing intensity ranged from 87\% to 105\% and relative spawning biomass between 0.22 and 0.31.
 Biomass has risen recently with the 2008 and 2010 recruitments and correspondingly, fishing intensity has fallen below targets, and
 relative spawning biomass above targets for 2012 through 2014. While uncertainty in the 2014 fishing intensity estimates and relative
