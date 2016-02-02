@@ -472,3 +472,8 @@ ss.age.prop.holder <- get.age.prop(last.year.can.ages.ss, 4)
 fourth.shoreside.age.prop.age <- ss.age.prop.holder[1]
 fourth.shoreside.age.prop <- fmt0(ss.age.prop.holder[2] * 100, 1)
 
+## Years for which median recruitment is below the mean of the median
+##  recruitments for years >2010 and <(end.yr-1) ; end.yr-1 won't be
+##  well estimated
+recruitment.med.since.2010 <- base.model$mcmccalcs$rmed[ which(as.numeric(names(base.model$mcmccalcs$rmed)) > 2010 & as.numeric(names(base.model$mcmccalcs$rmed)) < (end.yr-1))]
+years.since.2010.recruitment.med.below.mean <- names(recruitment.med.since.2010[recruitment.med.since.2010  < mean(base.model$mcmccalcs$rmed)])
