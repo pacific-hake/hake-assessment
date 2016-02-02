@@ -401,11 +401,8 @@ next2.bio.lower.tac.based <- fmt0(fore.tac.mcmc$slower[names(fore.tac.mcmc$slowe
 next2.bio.median.tac.based <- fmt0(fore.tac.mcmc$smed[names(fore.tac.mcmc$smed) %in% (end.yr + 2)] * 100, 1)
 next2.bio.upper.tac.based <- fmt0(fore.tac.mcmc$supper[names(fore.tac.mcmc$supper) %in% (end.yr + 2)] * 100, 1)
 
-## Vector of 1-10 in words, to use in the command afterwards in introduction.rnw
-## [Can probably replace with Chris's fancy new function, but this works for now]
-numbers.as.words <- c("one", "two", "three", "four", "five", "six", "seven",
-    "eight", "nine", "ten")
-catches.below.200000.since.1986 <- numbers.as.words[length(filter(catches, TOTAL <= 200000, Year > 1986)$Year)]
+## number.to.word function located in utilities.r
+catches.below.200000.since.1986 <- number.to.word(length(filter(catches, TOTAL <= 200000, Year > 1986)$Year))
 
 ## Age composition data for data section
 survey.age.years <- base.model$dat$agecomp[base.model$dat$agecomp$FltSvy == 2,]$Yr
