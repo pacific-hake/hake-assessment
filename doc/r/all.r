@@ -94,10 +94,10 @@ nuisance.posteriors.file <- "nuisanceposteriors.csv"
 
 ## Index of the base model as found in the directory.
 ## i.e. 00_Modelname is index 1, 01_Modelname is index 2, etc.
-base.model.ind <- 12
+## base.model.ind <- 12
 ## Last year's base model. This is used for the parameter estimates table which compares
 ##  last year's to this year's parameter estimates.
-last.year.base.model.ind <- 1
+## last.year.base.model.ind <- 1
 
 ## IMPORTANT - If any of these do not match up with what the models are set up
 ##  for, the build will fail. The only exception is that end.yr must actually
@@ -321,6 +321,13 @@ can.last.5.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %i
 tot.last.5.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),10]), 1)
 tot.last.10.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-10):(end.yr-1),10]), 1)
 
+## Recent catches
+last.5.years.of.catch.data <- (max(catches$Year)-4):max(catches$Year)
+last.5.years.total.catch <- catches[catches$Year %in% last.5.years.of.catch.data, "TOTAL"]
+long.term.avge.catch <- mean(catches$TOTAL)
+last.5.years.above.avge <- last.5.years.of.catch.data[last.5.years.total.catch > long.term.avge.catch]
+last.5.years.below.avge <- last.5.years.of.catch.data[last.5.years.total.catch < long.term.avge.catch]
+
 ## last year's values (mostly for the one-page-summary and introduction)
 last.year.landings <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TOTAL), 1)
 last.year.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TAC)
@@ -331,10 +338,16 @@ last.year.us.not.attained <- fmt0(as.numeric(100 - landings.vs.tac[landings.vs.t
 last.year.us.not.attained.tonnes <- filter(landings.vs.tac, Year == last.data.yr)$TACUSA - filter(landings.vs.tac, Year == last.data.yr)$Ustotal
 last.year.us.tac <- landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACUS
    # Not doing fmt0 here since want to do further calculations
-last.year.us.non.tribal <- last.year.us.tac * (1-0.175) - 1500
+last.year.us.tribal <- filter(further.tac, Year == last.data.yr)$us.tribal.quota
+last.year.us.research <- filter(further.tac, Year == last.data.yr)$us.research.quota
+last.year.us.non.tribal <- filter(further.tac, Year == last.data.yr)$us.nontribal.quota
 last.year.us.tribal.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.tribal.quota.reallocated
 last.year.us.tribal.reallocate.dates <- filter(further.tac, Year == last.data.yr)$us.tribal.reallocate.dates
 last.year.us.tribal.max.landed <- filter(further.tac, Year == last.data.yr)$us.tribal.max.landed
+last.year.us.shore.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.shore.reallocated
+last.year.us.cp.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.cp.reallocated
+last.year.us.ms.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.ms.reallocated
+
 
 last.year.can.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANATTAIN), 1)   # the percentage
 last.year.can.landings <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal))
@@ -370,7 +383,7 @@ next.bio.lower.tac.based <- fmt0(fore.tac.mcmc$slower[names(fore.tac.mcmc$slower
 next.bio.median.tac.based <- fmt0(fore.tac.mcmc$smed[names(fore.tac.mcmc$smed) %in% (end.yr + 1)] * 100, 1)
 next.bio.upper.tac.based <- fmt0(fore.tac.mcmc$supper[names(fore.tac.mcmc$supper) %in% (end.yr + 1)] * 100, 1)
 
-## Calculations for assessment-section.rnw; number of mcmc samples, minimum
+## Calculations for exec summary and assessment-section.rnw; number of mcmc samples, minimum
 ##  median biomass, years when fishing intensity > 1
 num.mcmc.samples <- dim(base.model$mcmc)[1]
 median.bio.min  <- fmt0(min(base.model$mcmccalcs$smed), 3)  # min median biomass
@@ -388,11 +401,8 @@ next2.bio.lower.tac.based <- fmt0(fore.tac.mcmc$slower[names(fore.tac.mcmc$slowe
 next2.bio.median.tac.based <- fmt0(fore.tac.mcmc$smed[names(fore.tac.mcmc$smed) %in% (end.yr + 2)] * 100, 1)
 next2.bio.upper.tac.based <- fmt0(fore.tac.mcmc$supper[names(fore.tac.mcmc$supper) %in% (end.yr + 2)] * 100, 1)
 
-## Vector of 1-10 in words, to use in the command afterwards in introduction.rnw
-## [Can probably replace with Chris's fancy new function, but this works for now]
-numbers.as.words <- c("one", "two", "three", "four", "five", "six", "seven",
-    "eight", "nine", "ten")
-catches.below.200000.since.1986 <- numbers.as.words[length(filter(catches, TOTAL <= 200000, Year > 1986)$Year)]
+## number.to.word function located in utilities.r
+catches.below.200000.since.1986 <- number.to.word(length(filter(catches, TOTAL <= 200000, Year > 1986)$Year))
 
 ## Age composition data for data section
 survey.age.years <- base.model$dat$agecomp[base.model$dat$agecomp$FltSvy == 2,]$Yr
@@ -407,3 +417,14 @@ catch.limit.quantiles <- fmt0(make.forecast.catch.posterior.plot(base.model,
                                    fore.yr = end.yr, do.plot = FALSE) * 1000)
                 # 2.5%, median and 97.5% quantiles of catch limit for assess.yr
                 #  using the default harvest policy; tonnes
+
+## Estimated numbers at age for fishery for Recruitment section in Exec Summary and main text
+##  From make.age.comp.fit.plot() which in turn calls age.fits()
+fishery.estimated.age.comp <- base.model$agedbase[base.model$agedbase$Fleet==1,]
+year.class.2010.in.2013 <- fmt0(filter(fishery.estimated.age.comp, Yr==2013, Bin==3)$Exp * 100)
+year.class.2010.in.2014 <- fmt0(filter(fishery.estimated.age.comp, Yr==2014, Bin==4)$Exp * 100)
+year.class.2010.in.2015 <- fmt0(filter(fishery.estimated.age.comp, Yr==2015, Bin==5)$Exp * 100)
+
+catcher.processor.catch <- fmt0(100 * filter(catches, Year == last.data.yr)$atSea_US_CP / (last.year.us.cp.quota.reallocated), 1)
+mothership.catch <- fmt0(100 * filter(catches, Year == last.data.yr)$atSea_US_MS / (last.year.us.ms.quota.reallocated), 1)
+shore.based.catch <- fmt0(100 * filter(catches, Year == last.data.yr)$US_shore / (last.year.us.shore.quota.reallocated), 1)

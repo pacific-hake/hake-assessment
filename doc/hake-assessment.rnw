@@ -160,8 +160,8 @@
 %% Allow newline breaks in a table cell: syntax is \specialcell{first line\\secondline}
 \newcommand{\specialcell}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 \newcommand{\fishname}{Pacific Hake}
-\newcommand{\commonname}{Pacific Whiting}
-\newcommand{\sciencename}{Merluccius Productus}
+\newcommand{\commonname}{Pacific whiting}
+\newcommand{\sciencename}{Merluccius productus}
 \newcommand{\simplename}{hake}
 \newcommand{\Avuln}{Age-at-50\%-vulnerability}
 \newcommand{\Amat}{Age-at-50\%-maturity}
@@ -198,7 +198,7 @@
                          %%  I think (AME). Probably no need to use.
 
 \begin{document}
-
+% \color{black} % AME will sort this out, or try other fonts.
 %% Start by sourcing your R code here. The R environment will persist throughout the latex code,
 %% so anything sourced or required here will be accessible later on in the latex knitr chunks.
 %% Note the start and end bracketing for this knitr chunk <<>>= and @.

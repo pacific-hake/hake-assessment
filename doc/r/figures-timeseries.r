@@ -233,9 +233,9 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
 
   yrs <- start.yr:end.yr
 
-  slower <- model$mcmccalcs$slower
-  smed <- model$mcmccalcs$smed
-  supper <- model$mcmccalcs$supper
+  dlower <- model$mcmccalcs$dlower
+  dmed <- model$mcmccalcs$dmed
+  dupper <- model$mcmccalcs$dupper
 
   sb40 <- model$mcmccalcs$sinit[2] * 0.4
   sb0 <- model$mcmccalcs$sinit[2]
@@ -245,22 +245,23 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
   pupper <- model$mcmccalcs$pupper
 
   ## Only include start year to end year
-  slower <- slower[(names(slower) %in% yrs)]
-  smed <- smed[(names(smed) %in% yrs)]
-  supper <- supper[(names(supper) %in% yrs)]
+  dlower <- dlower[(names(dlower) %in% yrs)]
+  dmed <- dmed[(names(dmed) %in% yrs)]
+  dupper <- dupper[(names(dupper) %in% yrs)]
   plower <- plower[(names(plower) %in% yrs)]
   pmed <- pmed[(names(pmed) %in% yrs)]
   pupper <- pupper[(names(pupper) %in% yrs)]
 
-  sb <- smed[yrs %in% c(start.yr:(end.yr-1))]/sb0
-  sb.hi <- supper[yrs %in% (end.yr-1)]/sb0
-  sb.lo <- slower[yrs %in% (end.yr-1)]/sb0
+  sb <- dmed[yrs %in% c(start.yr:(end.yr-1))]
+  sb.hi <- dupper[yrs %in% (end.yr-1)]
+  sb.lo <- dlower[yrs %in% (end.yr-1)]
 
   spr <- pmed[yrs %in% c(start.yr:(end.yr-1))]
   spr.hi <- pupper[yrs %in% (end.yr-1)]
   spr.lo <- plower[yrs %in% (end.yr-1)]
 
-  par(mfrow=c(1,1), las = 1, mar = c(3.6,3.6,1,1), oma = c(0,0,0,0))
+  ## par(mfrow=c(1,1), las = 1, mar = c(3.6,3.6,1,1), oma = c(0,0,0,0))
+  par(las = 1, mar = c(3.6, 3.6, 1, 1), oma = c(0, 0, 0, 0))
   plot(sb, spr, type = "n", pch = 20, xlim = c(0,1.3), ylim = c(0,1.3),
        xlab = expression(paste("Relative spawning biomass", ~~~(italic(B[t])/italic(B)[0]))),
        ylab = expression(paste("Relative fishing intensity", ~~(1-italic(SPR))/(1-italic(SPR)['40%']))),
