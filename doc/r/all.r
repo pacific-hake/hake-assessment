@@ -501,3 +501,7 @@ fourth.shoreside.age.prop <- fmt0(ss.age.prop.holder[2] * 100, 1)
 ##  well estimated
 recruitment.med.since.2010 <- base.model$mcmccalcs$rmed[ which(as.numeric(names(base.model$mcmccalcs$rmed)) > 2010 & as.numeric(names(base.model$mcmccalcs$rmed)) < (end.yr-1))]
 years.since.2010.recruitment.med.below.mean <- names(recruitment.med.since.2010[recruitment.med.since.2010  < mean(base.model$mcmccalcs$rmed)])
+
+## Exploitation values
+exploitation.med.2010 <- fmt0(base.model$mcmccalcs$fmed["2010"],2)
+exploitation.med.penult.yr <- fmt0(base.model$mcmccalcs$fmed[as.character(end.yr-1)],2)
