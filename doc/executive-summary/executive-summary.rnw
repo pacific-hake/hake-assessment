@@ -204,11 +204,15 @@ make.recruitment.table(base.model,
 
 \subsection*{Exploitation Status} \label{sec:es-exploitation-status}
 \phantomsection  \addcontentsline{toc}{subsection}{Exploitation Status}
-Median fishing intensity on the stock is estimated to have been consistently below the F\subscr{40\%} target with the
-exception of the periods in the late 1990s and late 2000s when the spawning biomass was the lowest. In retrospect,
-the target was exceeded slightly in 2008 and 2010. Exploitation fraction (catch divided by biomass of ages 3 and above) has
-shown relatively similar patterns. Fishing intensity is estimated to have declined from 100.3\% in 2010 to 61.6\% in 2014 while
-exploitation fraction has decreased from about 0.25 in the late 2000s to less than 0.10 in 2013 and 2014. The uncertainty around
+** Median fishing intensity on the stock is estimated to have been consistently below the $\Fforty$ target with the
+exception of the periods in the late 1990s and late 2000s when the spawning biomass was the lowest. In retrospect, the target was exceeded slightly in 2008 and 2010.
+
+**AME: That's what the text said last year, but first sentence wasn't true then (or now). Median always below target except 2008 and 2010. Or am I misunderstanding something? Expect it was true in earlier assessments.... Replacing with:
+
+Median fishing intensity on the stock is estimated to have been consistently below the $\Fforty$ target except for 
+\Sexpr{median.intensity.above.one.years[1:(length(median.intensity.above.one.years)-1)]} and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]} when spawning biomass was low (Figure~\ref{fig:es-fishing-intensity}). Exploitation fraction (catch divided by biomass of fish of age 3 and above) has
+shown relatively similar patterns (Figure~\ref{fig:es-exploitation-fraction}). Fishing intensity is estimated to have declined from \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.penult.yr}\% in \Sexpr{end.yr-1} while
+exploitation fraction has decreased from about **0.25 in the late 2000s to less than **0.10 in 2013 and 2014. The uncertainty around
 these estimates is largest in the most recent years due to uncertainty in recruitment and spawning biomass.
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -345,8 +349,8 @@ represented from within the base model. The decision table (split into Table \re
 the projected outcomes for each potential catch level (rows) can be evaluated across the quantiles (columns) of the posterior distribution.
 The first table (Table \ref{tab:es-decisions-biomass}) shows projected relative spawning biomass outcomes, and the second (Table \ref{tab:es-decisions-spr}) shows projected
 fishing intensity outcomes relative to the target fishing intensity (based on SPR; see table legend). Fishing intensity exceeding 100\%
-indicates fishing in excess of the F\subscr{40\%} default harvest rate catch limit. The default harvest rate catch limit results in a
-median fishing intensity above 100\% in 2015, 2016, and 2017 because the F\subscr{40\%} default harvest rate catch limit is calculated
+indicates fishing in excess of the $\Fforty$ default harvest rate catch limit. The default harvest rate catch limit results in a
+median fishing intensity above 100\% in 2015, 2016, and 2017 because the $\Fforty$ default harvest rate catch limit is calculated
 using baseline selectivity from all years and the forecasted catches are removed using selectivity averaged over the last 5 years.
 Recent changes in selectivity will thus be reflected in the determination of overfishing. An alternative catch level where median fishing
 intensity is 100\% is provided for comparison.
