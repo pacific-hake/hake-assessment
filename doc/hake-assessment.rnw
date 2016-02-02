@@ -198,7 +198,7 @@
                          %%  I think (AME). Probably no need to use.
 
 \begin{document}
-
+% \color{black} % AME will sort this out, or try other fonts.
 %% Start by sourcing your R code here. The R environment will persist throughout the latex code,
 %% so anything sourced or required here will be accessible later on in the latex knitr chunks.
 %% Note the start and end bracketing for this knitr chunk <<>>= and @.
