@@ -428,3 +428,13 @@ year.class.2010.in.2015 <- fmt0(filter(fishery.estimated.age.comp, Yr==2015, Bin
 catcher.processor.catch <- fmt0(100 * filter(catches, Year == last.data.yr)$atSea_US_CP / (last.year.us.cp.quota.reallocated), 1)
 mothership.catch <- fmt0(100 * filter(catches, Year == last.data.yr)$atSea_US_MS / (last.year.us.ms.quota.reallocated), 1)
 shore.based.catch <- fmt0(100 * filter(catches, Year == last.data.yr)$US_shore / (last.year.us.shore.quota.reallocated), 1)
+
+## Years for which median recruitment is below the mean of the median
+##  recruitments for years >2010 and <(end.yr-1) ; end.yr-1 won't be
+##  well estimated  
+recruitment.med.since.2010 <- base.model$mcmccalcs$rmed[ which(as.numeric(names(base.model$mcmccalcs$rmed)) > 2010 & as.numeric(names(base.model$mcmccalcs$rmed)) < (end.yr-1))]
+years.since.2010.recruitment.med.below.mean <- names(recruitment.med.since.2010[recruitment.med.since.2010  < mean(base.model$mcmccalcs$rmed)])
+
+
+
+ 
