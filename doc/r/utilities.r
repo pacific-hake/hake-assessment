@@ -1,3 +1,57 @@
+run.retrospectives <- function(model,
+                               yrs = 1:5,       ## A vector of years to subtract from the model's data to run on.
+                               remove.blocks = FALSE,
+                               verbose = TRUE){
+  ## Runs retrospectives for the given model and for the vector of years given
+  ## This will create a 'retrospectives' directory in the same directory as the model resides,
+  ##  create a directory for each restrospective year, copy all model files into each directory,
+  ##  run the retrospectives, and make a list of the SS_output() call to each
+  ##  and return this list.
+  ## Warning - This function will completely delete all previous retrospectives that have been run without notice.
+
+  if(!verbose){
+    flush.console
+    cat("\nRunning retrospectives. Screen may not show output for a while\n\n")
+  }
+
+  ## Create the directory 'retrospectives't which will hold the runs
+  ##  erasing the directory recursively if necessary
+  retros.dir <- file.path(model$path, "retrospectives")
+  unlink(retros.dir, recursive = TRUE)
+  dir.create(retros.dir)
+
+  ## Create a list for the retros' output to be saved to
+  retros.list <- list()
+
+  ## Create a directory for each retrospective, copy files, and run retro
+  for(retro in 1:length(yrs)){
+    retro.dir <- file.path(retros.dir, paste0("retro-",yrs[retro]))
+    unlink(retro.dir, recursive = TRUE)
+    dir.create(retro.dir)
+    ## Copy all model files into the retrospective directory
+    file.copy(file.path(model$path, list.files(model$path)), retro.dir)
+    starter.file <- file.path(retro.dir, starter.file.name)
+    starter <- SS_readstarter(starter.file, verbose = verbose)
+    starter$retro_yr <- yrs[retro]
+    starter$init_values_src <- 0
+    SS_writestarter(starter, dir = retro.dir, verbose = verbose, overwrite = TRUE)
+    if(remove.blocks){
+      ctl.file <- file.path(retro.dir, model$ctl.file)
+      ctl <- readLines(ctl.file)
+      ctl[grep("block designs", ctl)] <- "0 # Number of block designs for time varying parameters"
+      ctl[grep("blocks per design", ctl) + 0:2] <- "# blocks deleted"
+      unlink(ctl.file)
+      writeLines(ctl, ctl.file)
+    }
+    covar.file <- file.path(retro, "covar.sso")
+    unlink(covar.file)
+    shell.command <- paste0("cd ", retro.dir, " & ss3")
+    shell(shell.command)
+    retros.list[[retro]] <- SS_output(dir = retro.dir, verbose = verbose)
+  }
+  return(retros.list)
+}
+
 run.partest.model <- function(model,
                               output.file, ## The model object will be stored in binary form here
                               verbose = TRUE){
