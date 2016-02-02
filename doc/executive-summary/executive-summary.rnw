@@ -78,7 +78,7 @@ make.survey.biomass.plot(models,
 The assessment uses a Bayesian estimation approach, sensitivity analyses, and retrospective investigations to evaluate the potential consequences of parameter uncertainty, alternative structural models, and historical performance of the assessment model, respectively. The Bayesian approach combines prior knowledge about natural mortality, stock-recruitment steepness (a parameter for stock productivity), and several other parameters with likelihoods for acoustic survey biomass indices and age-composition, as well as fishery age composition data. Integrating the joint posterior distribution over model parameters (via Markov Chain Monte Carlo simulation) provides probabilistic inferences about uncertain model parameters and forecasts derived from those parameters. Sensitivity analyses are used to identify alternative structural models that may also be consistent with the data. Retrospective analyses identify possible poor performance of the assessment model with respect to future predictions. In past assessments, closed-loop simulations have provided an assessment of how alternative combinations of survey frequency, assessment model selectivity assumptions, and harvest control rules affect expected management outcomes given repeated application of these procedures over the long-term. The results of past closed-loop simulations influence the decisions made for this assessment.
 
 This \Sexpr{assess.yr} assessment retains the structural form of the base assessment model from \Sexpr{last.assess.yr}. The model retains many
-of the previous elements as configured in Stock Synthesis (SS). Analyses conducted in **2014 [**that's what 2015 assessment said -- were such analyses repeated in 2015? If so then it should say \Sexpr{last.assess.yr}] showed that the time-varying
+of the previous elements as configured in Stock Synthesis (SS). Analyses conducted in 2014 showed that the time-varying
 selectivity assessment model reduced the magnitude of extreme cohort strength estimates. In closed-loop simulations, management based upon
 assessment models with time-varying fishery selectivity led to higher median average catch, lower risk of falling below 10\% of unfished
 biomass ($B_0$), smaller probability of fishery closures, and lower inter-annual variability in catch compared to assessment models with
@@ -90,7 +90,7 @@ reduce the effects of errors caused by assuming selectivity is constant over tim
 \subsection*{Stock Biomass} \label{sec:es-stock-biomass}
 \phantomsection  \addcontentsline{toc}{subsection}{Stock Biomass}
 The base stock assessment model indicates that since the 1960s, Pacific Hake female spawning biomass has ranged from well below to near
-unfished equilibrium (Figure~\ref{fig:es-female-spawning-biomass}). The model estimates that it was below the unfished equilibrium in the 1960s and 1970s due to lower than average recruitment.
+unfished equilibrium (Figure~\ref{fig:es-female-spawning-biomass}). The model estimates that it was below the unfished equilibrium in the 1960s and 1970s due to lower than average recruitment. 
 The stock is estimated to have increased rapidly to near unfished equilibrium after two or more large recruitments in the early 1980s, and then
 declined steadily after a peak in the mid- to late-1980s to a low in 2000. This long period of decline was followed by a brief increase to a peak
 in 2003 as the large 1999 year class matured. The 1999 year class largely supported the fishery for several years due to relatively small recruitments
@@ -325,6 +325,7 @@ and rapid biomass changes. This volatility adds to the uncertainty in estimates 
 of the dynamic fishery, which potentially targets strong cohorts resulting in time-varying fishery selectivity and limited data to
 estimate incoming recruitment in a timely manner (i.e., until the cohort is age 2 or greater).
 
+**NGT suggest next two paragraphs be removed
 The JTC was active doing MSE in 2014-15. We divided MSE research activities into short and long term projects. The short term plan was
 to evaluate the system performance with and without an age-1 index. The design of the age-1 index simulations is described below and
 simulations will be completed soon. The age-1 index simulations and our efforts to elicit feedback on management objectives from the JMC
@@ -338,6 +339,10 @@ of stock status (spatial dynamics, time-varying changes in life-history paramete
 Decisions about what operating models to pursue with MSE will have to be made carefully. Furthermore, the JTC would like to continue the
 involvement of the JMC, SRG, and AP to further refine management objectives, as well as, determine scenarios of interest, management actions
 to investigate, and hypotheses to simulate.
+***NGT: suggested text here below
+
+
+
 
 \subsection*{Forecast Decision Table} \label{sec:es-forecast-decision-table}
 \phantomsection \addcontentsline{toc}{subsection}{Forecast Decision Table}
@@ -363,6 +368,7 @@ from this table for intermediate catch values. Figure \textbf{FIX..i} shows the 
 from 2016 to 2017, with a \textbf{FIX..39}\% probability of decreasing from 2015 to 2016 and a \textbf{FIX..51}\% probability of
 decreasing from 2016 to 2017.
 
+***NGT all of the next paragraph will need to be modified
 At all catch levels 180,000~t per year or greater, the spawning biomass is predicted to decline from 2015 to 2016 with greater than 68\%
 probability (Table g.3 and Figure j). The model predicts high biomass levels and the predicted probability of dropping below 10\%
 in 2016 is less than 1\% and the maximum probability of dropping below B\subscr{40\%} is 21\% for all catches explored.
