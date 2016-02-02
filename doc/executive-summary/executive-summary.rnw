@@ -157,7 +157,9 @@ The new data available for this assessment do not significantly change the estim
 to have low average recruitment with occasional large year-classes. Very large year classes in 1980, 1984, and 1999 supported much
 of the commercial catch from the 1980s to the mid-2000s. From 2000 to 2007, estimated recruitment was at some of the lowest values
 in the time-series followed by a relatively large 2008 year class. The current assessment estimates a very strong 2010 year class
-comprising 70\% of the coast-wide commercial catch in 2013 and 64\% of the 2014 catch. Its size is still more uncertain than cohorts
+comprising \Sexpr{year.class.2010.in.2013}\% of the coast-wide commercial catch in 2013, \Sexpr{year.class.2010.in.2014}\% of the 2014 catch, and \Sexpr{year.class.2010.in.2015}\% of the 2015 catch. 
+
+**Its size is still more uncertain than cohorts
 that have been observed for more years but the median estimate is the second highest in the time series (after the 1980 recruitment estimate).
 The model currently estimates a small 2011 year class, and smaller than average 2012 and 2013 year classes. There is little or no
 information in the data to estimate the sizes of the 2014 and 2015 year classes. Retrospective analyses of year class strength for

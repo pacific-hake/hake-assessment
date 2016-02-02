@@ -414,3 +414,10 @@ catch.limit.quantiles <- fmt0(make.forecast.catch.posterior.plot(base.model,
                                    fore.yr = end.yr, do.plot = FALSE) * 1000)
                 # 2.5%, median and 97.5% quantiles of catch limit for assess.yr
                 #  using the default harvest policy; tonnes
+
+## Estimated numbers at age for fishery for Recruitment section in Exec Summary and main text
+##  From make.age.comp.fit.plot() which in turn calls age.fits()
+fishery.estimated.age.comp <- base.model$agedbase[base.model$agedbase$Fleet==1,]
+year.class.2010.in.2013 = fmt0(filter(fishery.estimated.age.comp, Yr==2013, Bin==3)$Obs * 100)
+year.class.2010.in.2014 = fmt0(filter(fishery.estimated.age.comp, Yr==2014, Bin==4)$Obs * 100)
+year.class.2010.in.2015 = fmt0(filter(fishery.estimated.age.comp, Yr==2015, Bin==5)$Obs * 100)

@@ -15,6 +15,7 @@ make.est.numbers.at.age.table <- function(model,                ## model is an m
 
   ## Filter the values by years
   f <- model$natage[model$natage$"Beg/Mid" == "B", -c(1:6,8:11)]
+  ## If above line gets changed then change in all.r also.
   f <- f[f$Yr %in% yrs,]
   ## Group ages greater than or equal to plus.group together by summing
   max.age <- max(as.numeric(names(f[,-1])))
