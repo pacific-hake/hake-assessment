@@ -78,27 +78,25 @@ The Joint Management Committee (JMC) determined an adjusted (for carryovers) coa
 
 The U.S. adjusted allocation (i.e.~adjusted for carryovers) of \Sexpr{fmt0(last.year.us.tac)}~t was further divided to research, tribal, catcher-processor, mothership, and shore-based sectors. After the tribal allocation of 17.5\% (\Sexpr{fmt0(last.year.us.tribal)}~t), and a \Sexpr{fmt0(last.year.us.research)}~t allocation for research catch and bycatch in non-groundfish fisheries, the \Sexpr{last.data.yr} non-tribal U.S. catch limit of \Sexpr{fmt0(last.year.us.non.tribal)}~t was allocated to the catcher/processor (34\%), mothership (24\%), and shore-based (42\%) commercial sectors.  After reallocation of \Sexpr{fmt0(last.year.us.tribal-last.year.us.tribal.quota.reallocated)}~t of tribal quota to non-tribal sectors on \Sexpr{last.year.us.tribal.reallocate.dates}, the catcher/processor, mothership, and shore-based sectors total quotas were \Sexpr{fmt0(last.year.us.cp.quota.reallocated)}~t, \Sexpr{fmt0(last.year.us.ms.quota.reallocated)}~t, and \Sexpr{fmt0(last.year.us.shore.quota.reallocated)}~t, respectively. 
 
-** this is where ACH left editing...
-
 ** For next section, AME can't find US at-sea age data, only the fishery age compositions from {\tt base.model\$dat\$agecomp}, {\tt filter(base.model\$dat\$agecomp, FltSvy == 1)}, which I presume include both US and Canada. 
 
 **From 2015 assessment: Catch in the at-sea sectors was **dominated by age-4 fish from the **2010 year class (**$>70$\% of the catch). ** While the catch from the shore-based sector had a higher proportion of age-6 fish from the 2008 year class, more than 60\% of this sector's catch was from the **2010 year class. 
 
 ** Values for 2015 need to updated in {\tt /data/Further\_TAC\_details.csv}; values in there for 2015 are just the 2014 for now (the following values are for \Sexpr{last.data.yr} which will be 2014 until we get first new model run with 2015 data in).
 
-Tribal fisheries landed less than \Sexpr{fmt0(last.year.us.tribal.max.landed)}~t, and a total of \Sexpr{fmt0(last.year.us.tribal.quota.reallocated)}~t of tribal hake quota was reapportioned to the non-tribal sectors on \Sexpr{last.year.us.tribal.reallocate.dates}.
+Tribal fisheries did not land any hake in 2015.
 % Putting calculations here since 0.34 etc. are hardwired, based on the
 %  above text. Assuming that won't change from year to year.
  The catcher-processor, mothership, and shore-based fleets caught 
-\Sexpr{fmt0(100 * filter(catches, Year == last.data.yr)$atSea_US_CP / (0.34 * (last.year.us.non.tribal + last.year.us.tribal.quota.reallocated)), 1)}\%,
-%
-\Sexpr{fmt0(100 * filter(catches, Year == last.data.yr)$atSea_US_MS / (0.24 * (last.year.us.non.tribal + last.year.us.tribal.quota.reallocated)), 1)}\%
+\Sexpr{fmt0(100 * filter(catches, Year == last.data.yr)$atSea_US_CP / (last.year.us.cp.quota.reallocated)), 1)}\%,     
+\Sexpr{fmt0(100 * filter(catches, Year == last.data.yr)$atSea_US_MS / (last.year.us.ms.quota.reallocated)), 1)}\%
 and
-%
-\Sexpr{fmt0(100 * filter(catches, Year == last.data.yr)$US_shore / (0.42 * (last.year.us.non.tribal + last.year.us.tribal.quota.reallocated)), 1)}\%
+\Sexpr{fmt0(100 * filter(catches, Year == last.data.yr)$US_shore / (last.year.us.shore.quota.reallocated)), 1)}\%
 of their reallocated quotas, respectively. 
 %
 Overall, \Sexpr{fmt0(last.year.us.not.attained.tonnes)}~t (\Sexpr{last.year.us.not.attained}\%) of the total U.S. adjusted TAC was not caught.
+
+** this is where ACH left editing...
 
 ** Needs explicit text for 2016 assessment: The mothership sector started the season fishing in the north, but moved to waters off southern Oregon and Northern California after some high Pacific Ocean Perch bycatch events. Although the fleet encountered some older fish in the North, they fished predominantly on 4 year old fish in the South. Later in the season, high bycatch of darkblotched rockfish briefly halted fishing in the mothership sector. Coastwide catch of darkblotched rockfish was below target harvest levels, which provided industry and fishery managers the ability to transfer darkblotched rockfish quota to the mothership sector in order for them to continue utilizing their uncaught hake quota. Ultimately, the mothership fishery reopened, but with additional restrictions imposed on them intended to reduce salmon and rockfish bycatch. These restrictions also limited access for many of the harvesters to productive hake grounds. The 85.0\% utilization of the mothership quota was a result of factors other than being able to catch fish (e.g.~scheduled maintenance).
 
