@@ -392,7 +392,7 @@ median.intensity.above.one.all.years <- names(which(base.model$mcmccalcs$pmed > 
 median.intensity.above.one.years <- median.intensity.above.one.all.years[
          median.intensity.above.one.all.years < end.yr]  # ones to mention
 median.intensity.2010 <- fmt0(base.model$mcmccalcs$pmed["2010"] * 100, 1)
-median.intensity.penult.yr <- fmt0(base.model$mcmccalcs$pmed[end.yr-1] * 100, 1)
+median.intensity.penult.yr <- fmt0(base.model$mcmccalcs$pmed[as.character(end.yr-1)] * 100, 1) 
 
 
 ## Second forecast year depletion and spawning biomass estimates
