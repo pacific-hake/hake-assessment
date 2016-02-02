@@ -99,6 +99,8 @@ make.recruitment.plot <- function(model,            ## model is an mcmc run and 
               xlab = "Year", ylab = "Age 0 recruits (billions)",
               cex = 0.8, las = 1, gap = 0, xaxt = "n", ciLwd = 1,
               ciCol = rgb(0,0,1,0.5), mgp = c(2.3,1,0), xlim = range(non.equil.yrs))
+  ## AME tried ylim = c(0,max(y$hi)) in above line, but 2014 recruitment
+  ##  goes up to 80, squishing everything else down too much.
   if(add.mean){
     points(non.equil.yrs, rmean, pch = 4, cex = 0.8)
   }else{
