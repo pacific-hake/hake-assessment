@@ -171,10 +171,10 @@ plot(1:10, main="Placeholder dummy figure")
 \begin{figure}[H]
 \begin{center}
 <<main.bridge.biomass, fig.height=6, fig.width=8>>=
-make.bridge.biomass.plot(models[bridge.model.inds],
-                         subplots = 2,
-                         model.names = bridge.model.names,
-                         end.yr = end.yr)
+make.comparison.plot(models[bridge.model.inds],
+                     subplots = 2,
+                     model.names = bridge.model.names,
+                     end.yr = end.yr)
 @
 \end{center}
 \caption{Sequential bridge models from the \Sexpr{last.assess.yr} base model (\Sexpr{bridge.model.names[1]})
@@ -197,25 +197,25 @@ oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
 ## subplot 2 is spawning output with CI
-make.bridge.biomass.plot(models[bridge.model.detail.inds],
-                         subplots = 2,
-                         model.names = bridge.model.detail.names,
-                         end.yr = end.yr)
+make.comparison.plot(models[bridge.model.detail.inds],
+                     subplots = 2,
+                     model.names = bridge.model.detail.names,
+                     end.yr = end.yr)
 ## subplot 4 is spawning output with CI and 0.1, 0.4, and 1.0 lines
-make.bridge.biomass.plot(models[bridge.model.detail.inds],
-                         subplots = 4,
-                         model.names = bridge.model.detail.names,
-                         end.yr = end.yr)
+make.comparison.plot(models[bridge.model.detail.inds],
+                     subplots = 4,
+                     model.names = bridge.model.detail.names,
+                     end.yr = end.yr)
 ## subplot 8 is recruitment with CI
-make.bridge.biomass.plot(models[bridge.model.detail.inds],
-                         subplots = 8,
-                         model.names = bridge.model.detail.names,
-                         end.yr = end.yr)
+make.comparison.plot(models[bridge.model.detail.inds],
+                     subplots = 8,
+                     model.names = bridge.model.detail.names,
+                     end.yr = end.yr)
 ## subplot 8 is recruitment devs with CI
-make.bridge.biomass.plot(models[bridge.model.detail.inds],
-                         subplots = 10,
-                         model.names = bridge.model.detail.names,
-                         end.yr = end.yr)
+make.comparison.plot(models[bridge.model.detail.inds],
+                     subplots = 10,
+                     model.names = bridge.model.detail.names,
+                     end.yr = end.yr)
 par(oldpar)
 @
 \end{center}
@@ -697,7 +697,6 @@ make.forecast.risk.comparison.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
@@ -715,11 +714,15 @@ plot(1:10, main="Placeholder dummy figure")
 \begin{figure}[H]
 \begin{center}
 <<biomass.base.alternative, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
+make.comparison.plot(models[c(base.model.ind, sens.model.inds)],
+                     subplots = 2,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names),
+                     end.yr = end.yr)
+
 @
 \end{center}
 %\vspace{0mm}
-\caption{Posterior MCMC predictions of spawning biomass at the start of each year for the base model (black) and alternative sensitivity run (red) which ***AS PREVIOUS.}
+\caption{Posterior MCMC predictions of spawning biomass at the start of each year for the base model and alternative sensitivity runs.}
 \label{fig:main-biomass-base-alternative}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

@@ -50,8 +50,8 @@ require(maptools)
 
 source("catches.r") ## Contains the code to catch/TAC data and figure and table-making code for catch/TAC
 source("load-models.r")
-source("survey.r") ## Contains the code to load survey history data and table-making code for survey
-source("load-data.r") ## Contains the code to load data tables
+source("survey.r") ## Contains the table-making code for survey
+source("load-data.r") ## Contains the code to load data tables, including survey data table
 
 source("figures-timeseries.r")
 source("figures-compare-forecasts.r")
@@ -141,6 +141,22 @@ bridge.model.dir.names <- c("00_2015hake_basePreSRG",
                             "04_UpdatePre2015Survey",
                             "05_Add2015Catch_FishAcomps",
                             "06_Add2015Survey")
+## Bridge model names will be used to make the bridge model plot and its caption.
+## Make sure this is the same length as bridge.model.dir.names
+bridge.model.names <- c(paste0("Hake ", end.yr-1),
+                        paste0("Update pre-",end.yr-1," catch"),
+                        paste0("Update pre-",end.yr-1," fish comps"),
+                        paste0("Update pre-",end.yr-1," wt-age"),
+                        paste0("Update pre-",end.yr-1," survey"),
+                        paste0("Add ",end.yr-1," catch and age"),
+                        paste0("Add ",end.yr-1," survey"))
+sens.model.dir.names <- c("23_Sensbase_Selmaxage5",
+                          "26_Sensbase_sigmaR_1.0")
+## Sens model names will be used to make the sensitivity model plot and its caption.
+## Make sure this is the same length as sens.model.dir.names
+sens.model.names <- c("Max. age of selectivity = 5",
+                      "Sigma R = 1.0")
+
 ## Indicies models as found in the directory.
 base.model.ind <- grep(base.model.name, models.dir.list)
 if(length(base.model.ind) == 0){
@@ -164,15 +180,6 @@ if(length(bridge.model.inds) != length(bridge.model.dir.names)){
 ## For the 4-panel plot showing details of only two, the old base and the updated data
 bridge.model.detail.inds <- c(bridge.model.inds[1], bridge.model.inds[length(bridge.model.inds)])
 
-## Bridge model names will be used to make the bridge model plot and its caption.
-## Make sure this is the same length as bridge.model.inds
-bridge.model.names <- c(paste0("Hake ", end.yr-1),
-                        paste0("Update pre-",end.yr-1," catch"),
-                        paste0("Update pre-",end.yr-1," fish comps"),
-                        paste0("Update pre-",end.yr-1," wt-age"),
-                        paste0("Update pre-",end.yr-1," survey"),
-                        paste0("Add ",end.yr-1," catch and age"),
-                        paste0("Add ",end.yr-1," survey"))
 if(length(bridge.model.names) != length(bridge.model.dir.names)){
   cat("bridge.model.names in all.r has a different length than the list of names provided. Make sure these two vectors match in length and try again.\n")
   cat("Bridge model directory names you provided (bridge.model.dir.names):", paste0(bridge.model.dir.names, "\n"))
@@ -182,6 +189,12 @@ if(length(bridge.model.names) != length(bridge.model.dir.names)){
 bridge.model.detail.names <- c(paste0("Hake ", last.assess.yr),
                                paste0("Add ",end.yr-1," data"))
 
+## Sensitivity model indices are used to tell knitr which elements of the models list are to
+## be plotted together.
+sens.model.inds <- grep(paste(sens.model.dir.names, collapse = "|"), models.dir.list)
+if(length(sens.model.inds) != length(sens.model.dir.names)){
+  stop("One or more of the sensitivity mode names were not found. Check the names and try again. Directory names listed in all.r are:\n", paste0(sens.model.dir.names, "\n"))
+}
 
 ## catch.levels is a list of N catch levels to run forecasts for
 ## Each element of the list is a vector of length the same as the
@@ -340,7 +353,7 @@ last.year.us.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %i
 last.year.us.not.attained <- fmt0(as.numeric(100 - landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
 last.year.us.not.attained.tonnes <- filter(landings.vs.tac, Year == last.data.yr)$TACUSA - filter(landings.vs.tac, Year == last.data.yr)$Ustotal
 last.year.us.tac <- landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACUS
-   # Not doing fmt0 here since want to do further calculations
+## Not doing fmt0 here since want to do further calculations
 last.year.us.tribal <- filter(further.tac, Year == last.data.yr)$us.tribal.quota
 last.year.us.research <- filter(further.tac, Year == last.data.yr)$us.research.quota
 last.year.us.non.tribal <- filter(further.tac, Year == last.data.yr)$us.nontribal.quota
