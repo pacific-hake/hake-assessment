@@ -51,6 +51,7 @@ require(maptools)
 source("catches.r") ## Contains the code to catch/TAC data and figure and table-making code for catch/TAC
 source("load-models.r")
 source("survey.r") ## Contains the code to load survey history data and table-making code for survey
+source("load-data.r") ## Contains the code to load data tables
 
 source("figures-timeseries.r")
 source("figures-compare-forecasts.r")
@@ -73,6 +74,7 @@ verbose <- TRUE
 data.path <- file.path("..","..","data")
 models.path <- file.path("..","..","models")
 
+can.age.file <- "canadian-age-data.csv"
 catch.data.file <- "Hake_Landings_TAC_History.csv"
 further.tac.file <- "Further_TAC_details.csv"
 survey.history.file <- "survey_history.csv"
@@ -248,6 +250,7 @@ landings.vs.tac <- catches[[2]]
 catches <- catches[[1]]
 survey.history <- load.survey.history(file.path(data.path, survey.history.file))
 further.tac <- further.tac.details(file.path(data.path, further.tac.file))
+can.ages <- load.can.age.data(file.path(data.path, can.age.file))
 cat("All data tables have been loaded ", data.path,"\n")
 
 if(reload.models == "y" | reload.models == "Y"){
@@ -428,3 +431,44 @@ year.class.2010.in.2015 <- fmt0(filter(fishery.estimated.age.comp, Yr==2015, Bin
 catcher.processor.catch <- fmt0(100 * filter(catches, Year == last.data.yr)$atSea_US_CP / (last.year.us.cp.quota.reallocated), 1)
 mothership.catch <- fmt0(100 * filter(catches, Year == last.data.yr)$atSea_US_MS / (last.year.us.ms.quota.reallocated), 1)
 shore.based.catch <- fmt0(100 * filter(catches, Year == last.data.yr)$US_shore / (last.year.us.shore.quota.reallocated), 1)
+
+## Canadian age data variables
+get.age.prop <- function(vec, place = 1){
+  ## returns the age prop and the age itself for the place,
+  ## where place is 1=max, 2-second highest, etc.
+  prop <- rev(sort(vec))
+  prop <- prop[place]
+  age <- as.numeric(names(vec[vec == prop]))
+  return(c(age, prop))
+}
+## Canadian Freezer trawlers
+last.year.can.ages.ft <- can.ages[[2]][rownames(can.ages[[2]]) == last.data.yr,]
+get.age.prop(last.year.can.ages.ft, 1)
+ft.age.prop.holder <- get.age.prop(last.year.can.ages.ft, 1)
+max.freezer.trawler.age.prop.age <- ft.age.prop.holder[1]
+max.freezer.trawler.age.prop <- fmt0(ft.age.prop.holder[2] * 100, 1)
+ft.age.prop.holder <- get.age.prop(last.year.can.ages.ft, 2)
+second.freezer.trawler.age.prop.age <- ft.age.prop.holder[1]
+second.freezer.trawler.age.prop <- fmt0(ft.age.prop.holder[2] * 100, 1)
+ft.age.prop.holder <- get.age.prop(last.year.can.ages.ft, 3)
+third.freezer.trawler.age.prop.age <- ft.age.prop.holder[1]
+third.freezer.trawler.age.prop <- fmt0(ft.age.prop.holder[2] * 100, 1)
+ft.age.prop.holder <- get.age.prop(last.year.can.ages.ft, 4)
+fourth.freezer.trawler.age.prop.age <- ft.age.prop.holder[1]
+fourth.freezer.trawler.age.prop <- fmt0(ft.age.prop.holder[2] * 100, 1)
+## Canadian Shoreside
+last.year.can.ages.ss <- can.ages[[1]][rownames(can.ages[[1]]) == last.data.yr,]
+get.age.prop(last.year.can.ages.ss, 1)
+ss.age.prop.holder <- get.age.prop(last.year.can.ages.ss, 1)
+max.shoreside.age.prop.age <- ss.age.prop.holder[1]
+max.shoreside.age.prop <- fmt0(ss.age.prop.holder[2] * 100, 1)
+ss.age.prop.holder <- get.age.prop(last.year.can.ages.ss, 2)
+second.shoreside.age.prop.age <- ss.age.prop.holder[1]
+second.shoreside.age.prop <- fmt0(ss.age.prop.holder[2] * 100, 1)
+ss.age.prop.holder <- get.age.prop(last.year.can.ages.ss, 3)
+third.shoreside.age.prop.age <- ss.age.prop.holder[1]
+third.shoreside.age.prop <- fmt0(ss.age.prop.holder[2] * 100, 1)
+ss.age.prop.holder <- get.age.prop(last.year.can.ages.ss, 4)
+fourth.shoreside.age.prop.age <- ss.age.prop.holder[1]
+fourth.shoreside.age.prop <- fmt0(ss.age.prop.holder[2] * 100, 1)
+

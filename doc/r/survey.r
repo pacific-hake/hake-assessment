@@ -1,11 +1,3 @@
-load.survey.history <- function(fn ## fn is the filename with relative path
-                                ){
-  ## Reads in the survey history file and returns it as a data frame
-
-  dat <- read.csv(fn)
-  return(dat)
-}
-
 make.survey.history.table <- function(dat,
                                       digits = 3,           ## number of decimal points for biomass and cv
                                       xcaption = "default", ## Caption to use
