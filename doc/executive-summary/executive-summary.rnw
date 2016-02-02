@@ -159,7 +159,10 @@ of the commercial catch from the 1980s to the mid-2000s. From 2000 to 2007, esti
 in the time-series followed by a relatively large 2008 year class. The current assessment estimates a very strong 2010 year class
 comprising \Sexpr{year.class.2010.in.2013}\% of the coast-wide commercial catch in 2013, \Sexpr{year.class.2010.in.2014}\% of the 2014 catch, and \Sexpr{year.class.2010.in.2015}\% of the 2015 catch. 
 
-**Its size is still more uncertain than cohorts
+**AE not sure where to get the uncertainties from for the next sentence. I think for same reason that CG couldn't get error bars on the rainbow cohort plot -- see issue number 9.
+% Andy got to here with automating and flagging.
+
+** Its size is still more uncertain than cohorts
 that have been observed for more years but the median estimate is the second highest in the time series (after the 1980 recruitment estimate).
 The model currently estimates a small 2011 year class, and smaller than average 2012 and 2013 year classes. There is little or no
 information in the data to estimate the sizes of the 2014 and 2015 year classes. Retrospective analyses of year class strength for
