@@ -1,11 +1,11 @@
-make.forecast.catch.posterior.plot <- function(model,        ## model is the model for which mcmc runs with different forecasts
-                                                             ## has been made
+make.forecast.catch.posterior.plot <- function(model,         ## model is the model for which mcmc runs with different forecasts
+                                                              ## has been made
                                                fore.yr,       ## Forecast year to make the plot with
-                                      do.plot = TRUE          ## If FALSE, no plot will be drawn, but the return values will be returned
+                                               do.plot = TRUE ## If FALSE, no plot will be drawn, but the return values will be returned
                                                ){
   if(do.plot){
     oldpar <- par()
-  }    
+  }
   dat <- model$mcmc
   dat <- eval(parse(text = paste0("dat$ForeCatch_", fore.yr))) / 1000.0
   med.catch <- median(dat)
@@ -139,7 +139,7 @@ make.forecast.risk.comparison.plot <- function(model,        ## model is the mod
   ## Remove catches from the table
   prob.dat <- prob.dat[,-1]
 
-  legend.text <- c(paste0("P(B",fore.yr+1,"<B",fore.yr,"): Stock declines in ",fore.yr),
+  legend.text <- c(paste0("P(B",fore.yr+1,"<B",fore.yr,"): Stock declines in ",fore.yr+1),
                    paste0("P(B",fore.yr+1,"<B40%)"),
                    paste0("P(B",fore.yr+1,"<B25%)"),
                    paste0("P(B",fore.yr+1,"<B10%)"),
