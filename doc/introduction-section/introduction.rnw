@@ -71,10 +71,6 @@ The Joint Management Committee (JMC) determined an adjusted (for carryovers) coa
 
 \subsubsub{United States}
 
-**AME assuming the percentages are the same as last year. The calculations are done here (when doing for 2014 values, the shore-based value came out 1~t larger than reported in the \Sexpr{last.assess.yr} assessment, presumably not critical):
-
-**ACH: 1~t may not be critical, but it matters to industry. I think that we should strive to be exact rather than relying on calculations that may round differently than the mathematics done during a meeting. Plus, tribal allocation sometimes has an additional amount added.
-
 The U.S. adjusted allocation (i.e.~adjusted for carryovers) of \Sexpr{fmt0(last.year.us.tac)}~t was further divided to research, tribal, catcher-processor, mothership, and shore-based sectors. After the tribal allocation of 17.5\% (\Sexpr{fmt0(last.year.us.tribal)}~t), and a \Sexpr{fmt0(last.year.us.research)}~t allocation for research catch and bycatch in non-groundfish fisheries, the \Sexpr{last.data.yr} non-tribal U.S. catch limit of \Sexpr{fmt0(last.year.us.non.tribal)}~t was allocated to the catcher/processor (34\%), mothership (24\%), and shore-based (42\%) commercial sectors.  After reallocation of \Sexpr{fmt0(last.year.us.tribal-last.year.us.tribal.quota.reallocated)}~t of tribal quota to non-tribal sectors on \Sexpr{last.year.us.tribal.reallocate.dates}, the catcher/processor, mothership, and shore-based sectors total quotas were \Sexpr{fmt0(last.year.us.cp.quota.reallocated)}~t, \Sexpr{fmt0(last.year.us.ms.quota.reallocated)}~t, and \Sexpr{fmt0(last.year.us.shore.quota.reallocated)}~t, respectively.
 
 ** For next section, AME can't find US at-sea age data, only the fishery age compositions from {\tt base.model\$dat\$agecomp}, {\tt filter(base.model\$dat\$agecomp, FltSvy == 1)}, which I presume include both US and Canada.
@@ -83,12 +79,11 @@ The U.S. adjusted allocation (i.e.~adjusted for carryovers) of \Sexpr{fmt0(last.
 
 ** Values for 2015 need to updated in {\tt /data/Further\_TAC\_details.csv}; values in there for 2015 are just the 2014 for now (the following values are for \Sexpr{last.data.yr} which will be 2014 until we get first new model run with 2015 data in).
 
-Tribal fisheries did not land any hake in 2015.
+The overall catch of \fishname\ in U.S. waters was much less than anticipated.  Tribal fisheries did not land any hake in 2015. The catcher-processor, mothership, and shore-based fleets caught \Sexpr{catcher.processor.catch}\%, \Sexpr{mothership.catch}\%, and \Sexpr{shore.based.catch}\% of their reallocated quotas, respectively. Overall, \Sexpr{fmt0(last.year.us.not.attained.tonnes)}~t (\Sexpr{last.year.us.not.attained}\%) of the total U.S. adjusted TAC was not caught.
 
-The catcher-processor, mothership, and shore-based fleets caught
-\Sexpr{catcher.processor.catch}\%, \Sexpr{mothership.catch}\%, and \Sexpr{shore.based.catch}\% of their reallocated quotas, respectively.
-%
-Overall, \Sexpr{fmt0(last.year.us.not.attained.tonnes)}~t (\Sexpr{last.year.us.not.attained}\%) of the total U.S. adjusted TAC was not caught.
+The midwater fishery for \fishname\ began on May 15 for the shorebased and at-sea fisheries.  In previous years, the shore-based midwater fishery began on June 15 north of 42$^\circ$ N. latitude, but could fish for hake between 40$^\circ$30' N. and 42$^\circ$ N. latitudes starting on April 1.  In 2015, the shorebased fishery was allowed to fish north of 40$^\circ$30' N. latitude starting May 15, and could fish south of 40$^\circ$30' N. latitude starting on April 15.  Regulations don't allow at-sea processing south of 42$\circ$ N. latitude at any time during the year.
+
+The spring fishery began in May with high catch rates and fish mostly found off Oregon, although some fish were caught off of Westport, WA. As time progressed, the fishery slowed with periods (typically several days) of slow fishing.  During the summer months, the at-sea 
 
 ** this is where ACH left editing...
 
