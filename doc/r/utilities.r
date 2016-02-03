@@ -1,6 +1,7 @@
 run.retrospectives <- function(model,
-                               yrs = 1:5,       ## A vector of years to subtract from the model's data to run on.
+                               yrs = 1:15,            ## A vector of years to subtract from the model's data to run on.
                                remove.blocks = FALSE,
+                               extras = "-nox",       ## Extra switches for the command line.
                                verbose = TRUE){
   ## Runs retrospectives for the given model and for the vector of years given
   ## This will create a 'retrospectives' directory in the same directory as the model resides,
@@ -14,7 +15,7 @@ run.retrospectives <- function(model,
     cat("\nRunning retrospectives. Screen may not show output for a while\n\n")
   }
 
-  ## Create the directory 'retrospectives't which will hold the runs
+  ## Create the directory 'retrospectives' which will hold the runs
   ##  erasing the directory recursively if necessary
   retros.dir <- file.path(model$path, "retrospectives")
   unlink(retros.dir, recursive = TRUE)
@@ -25,14 +26,21 @@ run.retrospectives <- function(model,
 
   ## Create a directory for each retrospective, copy files, and run retro
   for(retro in 1:length(yrs)){
-    retro.dir <- file.path(retros.dir, paste0("retro-",yrs[retro]))
+    retro.dir <- file.path(retros.dir, paste0("retro-", yrs[retro]))
     unlink(retro.dir, recursive = TRUE)
     dir.create(retro.dir)
-    ## Copy all model files into the retrospective directory
-    file.copy(file.path(model$path, list.files(model$path)), retro.dir)
+
+    ## Copy all required model files into the retrospective directory
+    files.to.copy <- file.path(model$path, c(exe.file.name,
+                                             starter.file.name,
+                                             forecast.file.name,
+                                             weight.at.age.file.name,
+                                             model$ctl.file,
+                                             model$dat.file))
+    file.copy(file.path(model$path, files.to.copy), retro.dir)
     starter.file <- file.path(retro.dir, starter.file.name)
     starter <- SS_readstarter(starter.file, verbose = verbose)
-    starter$retro_yr <- yrs[retro]
+    starter$retro_yr <- -yrs[retro]
     starter$init_values_src <- 0
     SS_writestarter(starter, dir = retro.dir, verbose = verbose, overwrite = TRUE)
     if(remove.blocks){
@@ -45,7 +53,7 @@ run.retrospectives <- function(model,
     }
     covar.file <- file.path(retro, "covar.sso")
     unlink(covar.file)
-    shell.command <- paste0("cd ", retro.dir, " & ss3")
+    shell.command <- paste0("cd ", retro.dir, " & ss3 ", extras)
     shell(shell.command)
     retros.list[[retro]] <- SS_output(dir = retro.dir, verbose = verbose)
   }

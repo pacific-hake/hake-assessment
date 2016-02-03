@@ -293,6 +293,7 @@ make.comparison.plot <- function(models,                   ## models is a list o
                                  indexPlotEach = FALSE,    ## Same as indexPlotEach argument in SSplotComparisons
                                  indexUncertainty = FALSE, ## Same as indexUncertainty argument in SSplotComparisons
                                  legend = TRUE,            ## Passed to the SSplotComparisons function
+                                 legendloc = "topright",   ## Passed to the SSplotComparisons function
                                  end.yr                    ## Last year to plot (i.e. last year in model)
                                  ){
   ## Plot the list of models against each other.
@@ -308,6 +309,7 @@ make.comparison.plot <- function(models,                   ## models is a list o
                       subplots = subplots,
                       legend = legend,
                       legendlabels = model.names,
+                      legendloc = legendloc,
                       indexPlotEach = indexPlotEach,
                       indexUncertainty = indexUncertainty,
                       endyr = end.yr,
@@ -317,6 +319,7 @@ make.comparison.plot <- function(models,                   ## models is a list o
                       subplots = subplots,
                       legend = legend,
                       legendlabels = model.names,
+                      legendloc = legendloc,
                       densitynames = densitynames,
                       indexPlotEach = indexPlotEach,
                       indexUncertainty = indexUncertainty,

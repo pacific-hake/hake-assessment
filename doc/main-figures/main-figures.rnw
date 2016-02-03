@@ -837,12 +837,34 @@ plot(1:10, main="Placeholder dummy figure")
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<biomass.recruitment.retrospective, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
+<<main.biomass.recruitment.retrospective, fig.height=8, fig.width=8>>=
+## Number of retro years for the plot. Assumes you've run them.
+plot.retro.yrs <- 1:5
+retro.model.names <- c("Base model", sapply(plot.retro.yrs, function(x) paste0("-", x, if(x == 1) " year" else " years")))
+## Need to re-assemble the list with the base as the first element
+retro.list <- list(base.model)
+for(i in plot.retro.yrs){
+  retro.list[[i + 1]] <- base.model$retros[[i]]
+}
+oldpar <- par()
+par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
+layout(matrix(c(1, 2), nrow = 2, ncol = 1, byrow = TRUE))
+make.comparison.plot(retro.list,
+                     subplots = 2,
+                     model.names = retro.model.names,
+                     legend = FALSE,
+                     end.yr = end.yr)
+make.comparison.plot(retro.list,
+                     subplots = 8,
+                     model.names = retro.model.names,
+                     legend = TRUE,
+                     legendloc = "topleft",
+                     end.yr = end.yr)
+mtext("Year", side = 1, line = 1, outer = TRUE)
+par <- oldpar
 @
 \end{center}
-%\vspace{0mm}
-\caption{Estimates of spawning biomass at the start of each year (top) and recruitment (bottom) for the base model and retrospective runs (based on MCMC posteriors **except there's no uncertainty in the 2015 version of the bottom figure).}
+\caption{Estimates of spawning biomass at the start of each year (top) and recruitment (bottom) for the base model and retrospective runs (based on MLE model runs).}
 \label{fig:main-biomass-recruitment-retrospective}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
