@@ -418,6 +418,9 @@ median.intensity.above.one.years <- median.intensity.above.one.all.years[
 median.intensity.2010 <- fmt0(base.model$mcmccalcs$pmed["2010"] * 100, 1)
 median.intensity.penult.yr <- fmt0(base.model$mcmccalcs$pmed[as.character(end.yr-1)] * 100, 1)
 
+median.relative.bio <- base.model$mcmccalcs$dmed  
+median.relative.bio.below.target <- median.relative.bio[median.relative.bio < 0.4]     # when below target
+
 
 ## Second forecast year depletion and spawning biomass estimates
 next2.depl.lower.tac.based <- fmt0(fore.tac.mcmc$dlower[names(fore.tac.mcmc$dlower) %in% (end.yr + 2)] * 100, 1)
