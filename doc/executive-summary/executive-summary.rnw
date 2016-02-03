@@ -278,7 +278,6 @@ relative spawning biomass above targets for 2012 through 2014.
 While there is large uncertainty in the \Sexpr{end.yr-1} estimates of fishing intensity and relative
 spawning biomass, the model predicts a **1.4\% [**not sure where to find that] joint probability of being both above the target fishing intensity in \Sexpr{end.yr-1} and below the target relative spawning biomass at the start of \Sexpr{end.yr}.
 
-**Andy got to here.
 <<landings.tac.table, results='asis', echo=FALSE>>=
 make.landings.tac.table(landings.vs.tac,
                         start.yr = end.yr-10,
@@ -308,11 +307,9 @@ make.phase.plot(base.model,
 
 \subsection*{Reference Points} \label{sec:es-reference-points}
 \phantomsection \addcontentsline{toc}{subsection}{Reference Points}
-**ALL TEXT from here onwards is likely just copied from 2015 assessment and needs to be modified/updated/automated.
 
-We report estimates of the \Sexpr{assess.yr} base model reference points with posterior credibility intervals in Table f.
-The estimates are slightly different than the estimates in the 2014 assessment with slightly greater yields and biomasses
-estimated in this assessment.
+Estimates of the \Sexpr{assess.yr} base model reference points with posterior credibility intervals are in Table~\ref{tab:es-reference.points}.
+The estimates are slightly different than those in the \Sexpr{last.assess.yr} assessment, with ******slightly greater yields and biomasses estimated in this assessment.
 
 <<reference.points.table, results='asis', echo=FALSE>>=
 make.reference.points.table(base.model,
@@ -328,13 +325,14 @@ Uncertainty measures in the base model underestimate the total uncertainty in th
 because they do not account for possible alternative structural models for \simplename\ population dynamics and fishery processes
 (e.g., selectivity), the effects of data-weighting schemes, and the scientific basis for prior probability distributions.
 To address structural uncertainties, the JTC investigated a range of alternative models, and we present a subset of key sensitivity
-analyses in the main document. Uncertainty in the best method for calculating acoustic survey biomass is a particular focus and
+analyses in the main document. 
+
+**Update from main text**Uncertainty in the best method for calculating acoustic survey biomass is a particular focus and
 results from a model fit to an alternative set of survey biomass values are presented in the decision tables alongside the base model results.
 
-The \fishname\ stock displays the highest degree of recruitment variability of any west coast groundfish stock, resulting in large
-and rapid biomass changes. This volatility adds to the uncertainty in estimates of current stock status and stock projections because
-of the dynamic fishery, which potentially targets strong cohorts resulting in time-varying fishery selectivity and limited data to
-estimate incoming recruitment in a timely manner (i.e., until the cohort is age 2 or greater).
+The \fishname\ stock displays the highest degree of recruitment variability of any west coast groundfish stock  [**do we really know this?? how about just:  ... displays a high degree of recruitment variability], resulting in large
+and rapid biomass changes. This volatility adds to the uncertainty in estimates of current stock status and stock projections because it leads to a dynamic fishery. The fishery potentially targets strong cohorts resulting in time-varying fishery selectivity and limited data to
+estimate incoming recruitment in a timely manner (i.e., until the cohort is age 2 or greater). **AME tweaked that paragraph, but still a bit convoluted.
 
 **NGT suggest next two paragraphs be removed
 The JTC was active doing MSE in 2014-15. We divided MSE research activities into short and long term projects. The short term plan was
@@ -357,27 +355,22 @@ to investigate, and hypotheses to simulate.
 
 \subsection*{Forecast Decision Table} \label{sec:es-forecast-decision-table}
 \phantomsection \addcontentsline{toc}{subsection}{Forecast Decision Table}
-The median catch for \Sexpr{min(forecast.yrs)} based on the default harvest policy (\Ffortyten) is \textbf{FIX..}~t, but has a
-wide range of uncertainty; the 95\% posterior credibility interval ranges from \textbf{FIX..307,435~t to1,920,296}~t.
 
-A decision table showing predicted population status and fishing intensity relative to target fishing intensity is presented with uncertainty
-represented from within the base model. The decision table (split into Table \ref{tab:es-decisions-biomass} and Table \ref{tab:es-decisions-spr}) is organized such that
-the projected outcomes for each potential catch level (rows) can be evaluated across the quantiles (columns) of the posterior distribution.
-The first table (Table \ref{tab:es-decisions-biomass}) shows projected relative spawning biomass outcomes, and the second (Table \ref{tab:es-decisions-spr}) shows projected
-fishing intensity outcomes relative to the target fishing intensity (based on SPR; see table legend). Fishing intensity exceeding 100\%
-indicates fishing in excess of the $\Fforty$ default harvest rate catch limit. The default harvest rate catch limit results in a
-median fishing intensity above 100\% in 2015, 2016, and 2017 because the $\Fforty$ default harvest rate catch limit is calculated
-using baseline selectivity from all years and the forecasted catches are removed using selectivity averaged over the last 5 years.
-Recent changes in selectivity will thus be reflected in the determination of overfishing. An alternative catch level where median fishing
-intensity is 100\% is provided for comparison.
+The median catch limit for \Sexpr{min(forecast.yrs)} based on the default \Ffortyten{} harvest policy is \Sexpr{catch.limit.quantiles["median"]}~t, but has a wide range of uncertainty, with the 2.5\% to 97.5\% range being \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
 
-Management metrics that were identified as important to the Joint Management Committee (JMC) and the Advisory Panel (AP) in 2012 are
-presented for projections to 2016 and 2017 (\textbf{FIX..Tables g.3 and g.4 and Figures j and k}). These metrics summarize the probability
-of various outcomes from the base model given each potential management action. Although not linear, probabilities can be interpolated
-from this table for intermediate catch values. Figure \textbf{FIX..i} shows the predicted relative spawning biomass trajectory through
-2017 for several of these management actions. With zero catch for the next two years, the median biomass is predicted to remain stable
-from 2016 to 2017, with a \textbf{FIX..39}\% probability of decreasing from 2015 to 2016 and a \textbf{FIX..51}\% probability of
-decreasing from 2016 to 2017.
+
+Decision tables give the projected population status (relative spawning biomass) and the fishing intensity relative to target fishing intensity, under different catch alternatives for the base model (Tables~\ref{tab:main-decisions-biomass} and~\ref{tab:main-decisions-spr}). The tables are organized such that the projected outcome for each potential catch level and year (each row) can be evaluated across the quantiles (columns) of the posterior distribution. Table~\ref{tab:main-decisions-biomass} shows projected relative spawning biomass outcomes and Table~\ref{tab:main-decisions-spr} shows projected fishing intensity outcomes relative to the target fishing intensity (based on SPR; see table legend). 
+
+Fishing intensity exceeding 100\% indicates fishing in excess of the $\Fforty$ default harvest rate catch limit. This can happen for the median fishing intensity  in \Sexpr{forecast.yrs[1:(length(forecast.yrs)-1)]} and \Sexpr{forecast.yrs[length(forecast.yrs)]} because the $\Fforty$ default harvest-rate catch limit is calculated using baseline selectivity from all years, whereas the forecasted catches are removed using selectivity averaged over the last five years. Recent changes in selectivity will thus be reflected in the determination of overfishing. An alternative catch level where median fishing intensity is 100\% is provided for comparison (catch alternative **j [**it may change letter]).
+
+**AME edited the above pargraphs from last year's for clarity. Please check it reads okay.
+
+From main:
+
+Management metrics that were identified as important to the Joint Management Committee (JMC) and the Advisory Panel (AP) in 2012 are presented for projections to \Sexpr{forecast.yrs[2:(length(forecast.yrs)-1)]} and \Sexpr{forecast.yrs[length(forecast.yrs)]} (Tables~\ref{tab:es-risk-year-1} and~\ref{tab:es-risk-year-2} and Figures~\ref{fig:es-forecast-risk-comparison-year-1} and~\ref{fig:es-forecast-risk-comparison-year-2}). These metrics summarize the probability of various outcomes from the base model given each potential management action. Although not linear, probabilities can be interpolated from this table for intermediate catch values. Figure~\ref{fig:es-forecast-depletion-comparison} shows the predicted relative spawning biomass trajectory through \Sexpr{forecast.yrs[length(forecast.yrs)]} for several of these management actions. With zero catch for the next two years, the biomass has a probability of **\% of decreasing from \Sexpr{forecast.yrs[2]} to \Sexpr{forecast.yrs[length(forecast.yrs)]}, and a probability of **\% of decreasing from \Sexpr{forecast.yrs[2]} to \Sexpr{forecast.yrs[length(forecast.yrs)]}.
+**add numbers manually.
+
+**TO HERE**
 
 ***NGT all of the next paragraph will need to be modified
 At all catch levels 180,000~t per year or greater, the spawning biomass is predicted to decline from 2015 to 2016 with greater than 68\%
