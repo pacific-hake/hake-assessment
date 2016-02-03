@@ -79,6 +79,7 @@ catch.data.file <- "Hake_Landings_TAC_History.csv"
 further.tac.file <- "Further_TAC_details.csv"
 survey.history.file <- "survey_history.csv"
 
+exe.file.name <- "ss3.exe"
 starter.file.name <- "starter.ss"
 forecast.file.name <- "forecast.ss"
 weight.at.age.file.name <- "wtatage.ss"

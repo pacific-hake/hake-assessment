@@ -184,8 +184,7 @@ make.comparison.plot(models[bridge.model.inds.1],
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Base model from the \Sexpr{last.assess.yr} assessment compared with a model with the same parameterization
-  but including updated weight-at-age data.}
+\caption{Bridging models comparison showing the \Sexpr{last.assess.yr} base model and the terminal model from sequentially updating all pre-\Sexpr{last.assess.yr}data.  This included updating fishery catch and age-compositions as well as weight-at-age information.  The points disconnected from the time-series on the left side show the unfished equilibrium spawning biomass estimates.}
 \label{fig:main-bridge-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -224,14 +223,15 @@ make.comparison.plot(models[bridge.model.inds.2],
                      subplots = 11,
                      model.names = bridge.model.names.2,
                      densitynames = bridge.density.names,
+                     indexPlotEach = TRUE,
+                     indexUncertainty = TRUE,
                      legend = FALSE,
                      end.yr = end.yr)
 mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
 \end{center}
-\caption{Base model from the \Sexpr{last.assess.yr} assessment compared with models with the same parameterization
-  but using survey biomass estimates with extrapolation and fishery age compositions with extrapolation.}
+\caption{Bridge models showing the difference between the  \Sexpr{last.assess.yr} base model (blue) and the sequential addition of the new acoustic survey time-series (\Sexpr{survey.start.yr}-\Sexpr{last.assess.yr}; red) and then the new \Sexpr{last.assess.yr} fishery data (green).  Spawning biomass (upper panel), relative spawning biomass (spawning biomass in each year relative to the unfished equilibrium spawning biomass, middle left), absolute recruitment (middle right), recruitment deviations (lower left), and survey index (lower right) are shown.}
 \label{fig:main-bridge-5-panel}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -274,8 +274,7 @@ mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
 \end{center}
-\caption{Base model from the \Sexpr{last.assess.yr} assessment compared with models with the same parameterization
-  but using an adjusted bias ramp, modified survey age composition weights, and modified age composition weights.}
+\caption{Bridge models showing the difference between the \Sexpr{end.yr} pre-tuned base model (blue) and the sequential addition of the main base model tuning runs (adjusting time periods and levels for recruitment bias [red] and reweighting the survey [yellow] and fishery [red] compositional data).  The red line is equivalent to the \Sexpr{end.yr} base model.  Spawning biomass (upper left panel), relative spawning biomass (spawning biomass in each year relative to the unfished equilibrium spawning biomass, upper right), absolute recruitment (lower left), and recruitment deviations (lower right) are shown.}
 \label{fig:main-bridge-4-panel}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -835,12 +834,34 @@ plot(1:10, main="Placeholder dummy figure")
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<biomass.recruitment.retrospective, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
+<<main.biomass.recruitment.retrospective, fig.height=8, fig.width=8>>=
+## Number of retro years for the plot. Assumes you've run them.
+plot.retro.yrs <- 1:5
+retro.model.names <- c("Base model", sapply(plot.retro.yrs, function(x) paste0("-", x, if(x == 1) " year" else " years")))
+## Need to re-assemble the list with the base as the first element
+retro.list <- list(base.model)
+for(i in plot.retro.yrs){
+  retro.list[[i + 1]] <- base.model$retros[[i]]
+}
+oldpar <- par()
+par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
+layout(matrix(c(1, 2), nrow = 2, ncol = 1, byrow = TRUE))
+make.comparison.plot(retro.list,
+                     subplots = 2,
+                     model.names = retro.model.names,
+                     legend = FALSE,
+                     end.yr = end.yr)
+make.comparison.plot(retro.list,
+                     subplots = 8,
+                     model.names = retro.model.names,
+                     legend = TRUE,
+                     legendloc = "topleft",
+                     end.yr = end.yr)
+mtext("Year", side = 1, line = 1, outer = TRUE)
+par <- oldpar
 @
 \end{center}
-%\vspace{0mm}
-\caption{Estimates of spawning biomass at the start of each year (top) and recruitment (bottom) for the base model and retrospective runs (based on MCMC posteriors **except there's no uncertainty in the 2015 version of the bottom figure).}
+\caption{Estimates of spawning biomass at the start of each year (top) and recruitment (bottom) for the base model and retrospective runs (based on MLE model runs).}
 \label{fig:main-biomass-recruitment-retrospective}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
