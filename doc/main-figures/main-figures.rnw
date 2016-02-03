@@ -224,6 +224,8 @@ make.comparison.plot(models[bridge.model.inds.2],
                      subplots = 11,
                      model.names = bridge.model.names.2,
                      densitynames = bridge.density.names,
+                     indexPlotEach = TRUE,
+                     indexUncertainty = TRUE,
                      legend = FALSE,
                      end.yr = end.yr)
 mtext("Year", side = 1, line = 1, outer = TRUE)

@@ -285,13 +285,15 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
   par <- oldpar
 }
 
-make.comparison.plot <- function(models,              ## models is a list of model runs to be plotted against of which
-                                                      ## each element is the output of the r4ss package's function SSgetMCMC
-                                 subplots = 1,        ## Same as subplot argument in SSplotComparisons
-                                 model.names = NULL,  ## vector of model names. Must be same length as models
-                                 densitynames = NULL, ## Same as densitynames argument in SSplotComparisons
-                                 legend = TRUE,       ## Passed to the SSplotComparisons function
-                                 end.yr               ## Last year to plot (i.e. last year in model)
+make.comparison.plot <- function(models,                   ## models is a list of model runs to be plotted against of which
+                                                           ## each element is the output of the r4ss package's function SSgetMCMC
+                                 subplots = 1,             ## Same as subplot argument in SSplotComparisons
+                                 model.names = NULL,       ## vector of model names. Must be same length as models
+                                 densitynames = NULL,      ## Same as densitynames argument in SSplotComparisons
+                                 indexPlotEach = FALSE,    ## Same as indexPlotEach argument in SSplotComparisons
+                                 indexUncertainty = FALSE, ## Same as indexUncertainty argument in SSplotComparisons
+                                 legend = TRUE,            ## Passed to the SSplotComparisons function
+                                 end.yr                    ## Last year to plot (i.e. last year in model)
                                  ){
   ## Plot the list of models against each other.
   ## if model.names is null, the directory names will be used
@@ -306,6 +308,8 @@ make.comparison.plot <- function(models,              ## models is a list of mod
                       subplots = subplots,
                       legend = legend,
                       legendlabels = model.names,
+                      indexPlotEach = indexPlotEach,
+                      indexUncertainty = indexUncertainty,
                       endyr = end.yr,
                       new=FALSE)
   }else{
@@ -314,6 +318,8 @@ make.comparison.plot <- function(models,              ## models is a list of mod
                       legend = legend,
                       legendlabels = model.names,
                       densitynames = densitynames,
+                      indexPlotEach = indexPlotEach,
+                      indexUncertainty = indexUncertainty,
                       endyr = end.yr,
                       new=FALSE)
   }
