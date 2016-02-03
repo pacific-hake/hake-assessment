@@ -115,8 +115,8 @@ make.risk.table <- function(model,                  ## model is an mcmc run and 
   ## Returns an xtable in the proper format for the executive summary risk tables
 
   risk <- model$risks[[index]]
-  ## Fix tiny catch of less than 1 to zero
-  risk[risk[,1] < 1,] <- 0
+  ## Fix tiny catch of less than 0.49 to zero, only for first (catch) column
+  risk[risk[,1] < 0.49, 1] <- 0
   ## Format all columns except catch (1) to be zero decimal points and have a percent sign
   risk[,-1] <- apply(apply(risk[,-1],2,fmt0),2,paste0,"\\%")
   ## Format the catch column (1) to have no decimal points and the thousands separator
