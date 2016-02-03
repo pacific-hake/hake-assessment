@@ -132,7 +132,7 @@ forecast.probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 
 ## Set up models lists - NOTE all are *required* to build the document.
 models.dir.list <- dir(models.path)
-base.model.name <- "11_Add2015Catch_FishAcomps_withExtrap"
+base.model.name <- "22_preSRGbase"
 last.year.base.model.name <- "00_2015hake_basePreSRG"
 bridge.model.dir.names <- c("00_2015hake_basePreSRG",
                             "01_UpdatePre2015catches",
