@@ -869,12 +869,23 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<retrospective.recruitment, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
+<<main.retrospective.recruitment, fig.height=6, fig.width=8>>=
+## Number of retro years for the plot. Assumes you've run them.
+plot.retro.yrs <- retro.yrs
+retro.cohorts <- 1999:2014
+##retro.model.names <- c("Base model", sapply(plot.retro.yrs, function(x) paste0("-", x, if(x == 1) " year" else " years")))
+## Need to re-assemble the list with the base as the first element
+retro.list <- list(base.model)
+for(i in plot.retro.yrs){
+  retro.list[[i + 1]] <- base.model$retros[[i]]
+}
+make.squid.plot(retro.list,
+                subplot = 1,
+                cohorts = retro.cohorts)
 @
 \end{center}
 %\vspace{0mm}
-\caption{Retrospective analysis of recruitment deviations from maximum likelihood estimate (MLE) models over the last **15 years. Recruitment deviations are the log-scale differences between recruitment estimated by the model and expected recruitment from the spawner-recruit relationship. Lines represent estimated recruitment deviations for cohorts starting in **1999, with cohort birth year marked at the right of each color-coded line. Values are estimated by models using data available only up to the year in which each cohort was a given age.}
+\caption{Retrospective analysis of recruitment deviations from maximum likelihood estimate (MLE) models over the last \Sexpr{length(plot.retro.yrs)} years. Recruitment deviations are the log-scale differences between recruitment estimated by the model and expected recruitment from the spawner-recruit relationship. Lines represent estimated recruitment deviations for cohorts from \Sexpr{min(retro.cohorts)} to \Sexpr{max(retro.cohorts)}, with cohort birth year marked at the right of each color-coded line. Values are estimated by models using data available only up to the year in which each cohort was a given age.}
 \label{fig:main-retrospective.recruitment}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -882,13 +893,15 @@ plot(1:10, main="Placeholder dummy figure")
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<relative.retrospective.recruitment, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
+<<main.relative.retrospective.recruitment, fig.height=6, fig.width=8>>=
+make.squid.plot(retro.list,
+                subplot = 2,
+                cohorts = retro.cohorts)
 @
 \end{center}
 %\vspace{0mm}
-\caption{Retrospective recruitment deviations from Figure~\ref{fig:main-retrospective.recruitment}, with each cohort scaled relative to the most recent estimate of its recruitment deviation (such that the right-most point of each line is at zero).}
-\label{fig:main-relative-retrospective-recruitment}
+\caption{Retrospective recruitment estimates shown Figure \ref{fig:main-retrospective.recruitment} scaled relative to the most recent estimate of the strength of each cohort.}
+\label{fig:main-relative-retrospective.recruitment}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
