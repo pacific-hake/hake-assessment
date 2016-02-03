@@ -194,7 +194,7 @@ We report estimates of the base reference points with posterior credibility inte
 
 \subsection{Model projections}\label{sec:assessment-model-projections}
 
-The median catch limit for \Sexpr{end.yr+1} based on the default \Ffortyten{} harvest policy is \Sexpr{catch.limit.quantiles["median"]}~t, but has a wide range of uncertainty (Figure~\ref{fig:main-projected-catch-density}), with the 2.5\% to 97.5\% range being \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
+The median catch limit for \Sexpr{min(forecast.yrs)} based on the default \Ffortyten{} harvest policy is \Sexpr{catch.limit.quantiles["median"]}~t, but has a wide range of uncertainty (Figure~\ref{fig:main-projected-catch-density}), with the 2.5\% to 97.5\% range being \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
 
 Decision tables give the projected population status (relative spawning biomass) and the fishing intensity relative to target fishing intensity, under different catch alternatives for the base model (Tables~\ref{tab:main-decisions-biomass} and~\ref{tab:main-decisions-spr}). The tables are organized such that the projected outcome for each potential catch level and year (each row) can be evaluated across the quantiles (columns) of the posterior distribution. Table~\ref{tab:main-decisions-biomass} shows projected relative spawning biomass outcomes, and Table~\ref{tab:main-decisions-spr} shows projected fishing intensity outcomes relative to the target fishing intensity (based on SPR; see table legend). 
 

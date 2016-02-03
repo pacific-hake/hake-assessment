@@ -363,14 +363,13 @@ Decision tables give the projected population status (relative spawning biomass)
 
 Fishing intensity exceeding 100\% indicates fishing in excess of the $\Fforty$ default harvest rate catch limit. This can happen for the median fishing intensity  in \Sexpr{forecast.yrs[1:(length(forecast.yrs)-1)]} and \Sexpr{forecast.yrs[length(forecast.yrs)]} because the $\Fforty$ default harvest-rate catch limit is calculated using baseline selectivity from all years, whereas the forecasted catches are removed using selectivity averaged over the last five years. Recent changes in selectivity will thus be reflected in the determination of overfishing. An alternative catch level where median fishing intensity is 100\% is provided for comparison (catch alternative **j [**it may change letter]).
 
-**AME edited the above pargraphs from last year's for clarity. Please check it reads okay.
+**AME edited the above pargraphs from last year's for clarity. Please check it reads okay. ** All rows may not be done in table yet.
 
 From main:
 
 Management metrics that were identified as important to the Joint Management Committee (JMC) and the Advisory Panel (AP) in 2012 are presented for projections to \Sexpr{forecast.yrs[2:(length(forecast.yrs)-1)]} and \Sexpr{forecast.yrs[length(forecast.yrs)]} (Tables~\ref{tab:es-risk-year-1} and~\ref{tab:es-risk-year-2} and Figures~\ref{fig:es-forecast-risk-comparison-year-1} and~\ref{fig:es-forecast-risk-comparison-year-2}). These metrics summarize the probability of various outcomes from the base model given each potential management action. Although not linear, probabilities can be interpolated from this table for intermediate catch values. Figure~\ref{fig:es-forecast-depletion-comparison} shows the predicted relative spawning biomass trajectory through \Sexpr{forecast.yrs[length(forecast.yrs)]} for several of these management actions. With zero catch for the next two years, the biomass has a probability of **\% of decreasing from \Sexpr{forecast.yrs[2]} to \Sexpr{forecast.yrs[length(forecast.yrs)]}, and a probability of **\% of decreasing from \Sexpr{forecast.yrs[2]} to \Sexpr{forecast.yrs[length(forecast.yrs)]}.
 **add numbers manually.
 
-**TO HERE**
 
 ***NGT all of the next paragraph will need to be modified
 At all catch levels 180,000~t per year or greater, the spawning biomass is predicted to decline from 2015 to 2016 with greater than 68\%
@@ -403,7 +402,7 @@ make.decision.table(base.model,
 make.risk.table(base.model,
                 forecast.yrs,
                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                xcaption <- paste0("Probabilities of related to spawning biomass, fishing intensity, and ",end.yr+1," catch limits for alternative ",end.yr," catch options (catch options explained in Table \\ref{tab:es-decisions-biomass})."),
+                xcaption <- paste0("**Probabilities of related to spawning biomass, fishing intensity, and ",end.yr+1," catch limits for alternative ",end.yr," catch options (catch options explained in Table \\ref{tab:es-decisions-biomass})."),
                 xlabel <- "tab:es-risk-year-1",
                 font.size = 12,
                 space.size = 14)
@@ -413,7 +412,7 @@ make.risk.table(base.model,
 make.risk.table(base.model,
                 forecast.yrs,
                 index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                xcaption <- paste0("Probabilities of related to spawning biomass, fishing intensity, and ",end.yr+2," catch limits for alternative ",end.yr+1," catch options (catch options explained in Table \\ref{tab:es-decisions-biomass})."),
+                xcaption <- paste0("**Probabilities of related to spawning biomass, fishing intensity, and ",end.yr+2," catch limits for alternative ",end.yr+1," catch options (catch options explained in Table \\ref{tab:es-decisions-biomass})."),
                 xlabel <- "tab:es-risk-year-2",
                 font.size = 12,
                 space.size = 14)
