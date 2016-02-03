@@ -1,16 +1,16 @@
-## Pacific Hake Joint Technical Committee, January 2016
+## Pacific Hake Joint Technical Committee, January-February 2016
 ## all.r - Source this file to load all data and functions,
-##  and to run the forecasting for the base model,
-## then save the R environment to .RData in this directory. This
-## will be read in by knitr as a binary file so that multiple
-## loads don't happen during the latex/knitr build (they are
-## very slow compared to loading the binary once at the beginning).
+##  to run the forecasting and retrospectives for the base model,
+##  then save the R environment to .RData in this directory. This
+##  will be read in by knitr as a binary file so that multiple
+##  loads don't happen during the latex/knitr build (they are
+##  very slow compared to loading the binary once at the beginning).
 
 remove.all.except <- function(vars  = c("models")){
-  # Removes every object in the workspace except for what is in the vars list.
-  # Upon finishing, the workspace will contain whatever is in the vars list,
-  #  plus the objects 'remove.all.except' (this function) and 'models.loaded'.
-  # That tells the software that the model has already been loaded.
+  ## Removes every object in the workspace except for what is in the vars list.
+  ## Upon finishing, the workspace will contain whatever is in the vars list,
+  ##  plus the objects 'remove.all.except' (this function) and 'models.loaded'.
+  ## That tells the software that the model has already been loaded.
   vars <- c(vars, "remove.all.except")
   keep <- match(x = vars, table = ls(all = TRUE, envir = .GlobalEnv))
   if(any(is.na(keep))){
@@ -48,10 +48,10 @@ require(dplyr)
 require(coda)
 require(maptools)
 
-source("catches.r") ## Contains the code to catch/TAC data and figure and table-making code for catch/TAC
-source("load-models.r")
-source("survey.r") ## Contains the table-making code for survey
-source("load-data.r") ## Contains the code to load data tables, including survey data table
+source("catches.r")      ## Contains the code to catch/TAC data and figure and table-making code for catch/TAC
+source("load-models.r")  ## Contains the code to load the models list from the model directories
+source("survey.r")       ## Contains the table-making code for survey
+source("load-data.r")    ## Contains the code to load data tables, including survey data table
 
 source("figures-timeseries.r")
 source("figures-compare-forecasts.r")
@@ -94,12 +94,9 @@ key.posteriors <- c("NatM_p_1_Fem_GP_1",
 key.posteriors.file <- "keyposteriors.csv"
 nuisance.posteriors.file <- "nuisanceposteriors.csv"
 
-## Index of the base model as found in the directory.
-## i.e. 00_Modelname is index 1, 01_Modelname is index 2, etc.
-## base.model.ind <- 12
-## Last year's base model. This is used for the parameter estimates table which compares
-##  last year's to this year's parameter estimates.
-## last.year.base.model.ind <- 1
+################################################################################
+## Key values that pertain to the base model
+################################################################################
 
 ## IMPORTANT - If any of these do not match up with what the models are set up
 ##  for, the build will fail. The only exception is that end.yr must actually
@@ -130,32 +127,17 @@ last.data.yr    <- end.yr - 1
 forecast.yrs <- end.yr:(end.yr + 2)
 forecast.probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 
+################################################################################
+## Base model, this year and last
+################################################################################
+
 ## Set up models lists - NOTE all are *required* to build the document.
 models.dir.list <- dir(models.path)
+
 base.model.name <- "22_preSRGbase"
+## Last year's base model. This is used for the parameter estimates table which compares
+##  last year's to this year's parameter estimates.
 last.year.base.model.name <- "00_2015hake_basePreSRG"
-bridge.model.dir.names <- c("00_2015hake_basePreSRG",
-                            "01_UpdatePre2015catches",
-                            "02_UpdatePre2015FishAcomps",
-                            "03_UpdatePre2015WtAge",
-                            "04_UpdatePre2015Survey",
-                            "05_Add2015Catch_FishAcomps",
-                            "06_Add2015Survey")
-## Bridge model names will be used to make the bridge model plot and its caption.
-## Make sure this is the same length as bridge.model.dir.names
-bridge.model.names <- c(paste0("Hake ", end.yr-1),
-                        paste0("Update pre-",end.yr-1," catch"),
-                        paste0("Update pre-",end.yr-1," fish comps"),
-                        paste0("Update pre-",end.yr-1," wt-age"),
-                        paste0("Update pre-",end.yr-1," survey"),
-                        paste0("Add ",end.yr-1," catch and age"),
-                        paste0("Add ",end.yr-1," survey"))
-sens.model.dir.names <- c("23_Sensbase_Selmaxage5",
-                          "26_Sensbase_sigmaR_1.0")
-## Sens model names will be used to make the sensitivity model plot and its caption.
-## Make sure this is the same length as sens.model.dir.names
-sens.model.names <- c("Max. age of selectivity = 5",
-                      "Sigma R = 1.0")
 
 ## Indicies models as found in the directory.
 base.model.ind <- grep(base.model.name, models.dir.list)
@@ -165,29 +147,67 @@ if(length(base.model.ind) == 0){
 if(verbose){
   cat("\nDEBUG: Loading model ", base.model.name, " as base model\n\n")
 }
-## Last year's base model. This is used for the parameter estimates table which compares
-##  last year's to this year's parameter estimates.
 last.year.base.model.ind <- grep(last.year.base.model.name, models.dir.list)
 if(length(last.year.base.model.ind) == 0){
   stop("Last year's base model '", last.year.base.model.name, "' not found. Check the name and try again.\n")
 }
+
+################################################################################
+## Bridge models
+################################################################################
+
+bridge.model.dir.names.1 <- c(last.year.base.model.name,
+                              "03_UpdatePre2015WtAge")
+## Bridge model names will be used to make the bridge model plot and its caption.
+bridge.model.names.1 <- c(paste0(last.assess.yr, " Base model"),
+                          "Update data")
+bridge.model.dir.names.2 <- c(last.year.base.model.name,
+                              "10_Add2015Survey_withExtrap",
+                              "11_Add2015Catch_FishAcomps_withExtrap")
+## Bridge model names will be used to make the bridge model plot and its caption.
+bridge.model.names.2 <- c(paste0(last.assess.yr, " Base model"),
+                          paste0("Add ", survey.end.yr, " survey series"),
+                          paste0("Add ", last.data.yr, " fishery data"))
+bridge.model.dir.names.3 <- c("11_Add2015Catch_FishAcomps_withExtrap",
+                              "11.01_adjustBiasRamping",
+                              "11.02_ChangeSurveyTuning",
+                              "11.03_ChangeAllTuning")
+## Bridge model names will be used to make the bridge model plot and its caption.
+bridge.model.names.3 <- c("Base model pretune",
+                          "Adjust bias ramp",
+                          "Change survey comp weight.",
+                          "Change all comp weights")
+
 ## Bridge model indices are used to tell knitr which elements of the models list are to
 ## be plotted together.
-bridge.model.inds <- grep(paste(bridge.model.dir.names, collapse = "|"), models.dir.list)
-if(length(bridge.model.inds) != length(bridge.model.dir.names)){
-  stop("One or more of the bridge mode names were not found. Check the names and try again. Directory names listed in all.r are:\n", paste0(bridge.model.dir.names, "\n"))
+bridge.model.inds.1 <- grep(paste(bridge.model.dir.names.1, collapse = "|"), models.dir.list)
+bridge.model.inds.2 <- grep(paste(bridge.model.dir.names.2, collapse = "|"), models.dir.list)
+bridge.model.inds.3 <- grep(paste(bridge.model.dir.names.3, collapse = "|"), models.dir.list)
+if((length(bridge.model.inds.1) != length(bridge.model.dir.names.1)) |
+   (length(bridge.model.inds.2) != length(bridge.model.dir.names.2)) |
+   (length(bridge.model.inds.3) != length(bridge.model.dir.names.3))){
+  stop("One or more of the bridge model directory names were not found. Check the names and try again. Directory names listed in all.r are:\n",
+       paste0(bridge.model.dir.names.1, "\n"),
+       "\n",
+       paste0(bridge.model.dir.names.2, "\n"),
+       "\n",
+       paste0(bridge.model.dir.names.3, "\n"))
 }
-## For the 4-panel plot showing details of only two, the old base and the updated data
-bridge.model.detail.inds <- c(bridge.model.inds[1], bridge.model.inds[length(bridge.model.inds)])
+if((length(bridge.model.names.1) != length(bridge.model.dir.names.1)) |
+   (length(bridge.model.names.2) != length(bridge.model.dir.names.2)) |
+   (length(bridge.model.names.3) != length(bridge.model.dir.names.3))){
+  stop("One of the bridge.model.names vectors in all.r has a different length than its bridge.model.dir.names counterpart. Make sure these two vectors match in length and try again.\n")
+}
 
-if(length(bridge.model.names) != length(bridge.model.dir.names)){
-  cat("bridge.model.names in all.r has a different length than the list of names provided. Make sure these two vectors match in length and try again.\n")
-  cat("Bridge model directory names you provided (bridge.model.dir.names):", paste0(bridge.model.dir.names, "\n"))
-  stop("Bridge model plotting names you provided (bridge.model.names):", paste0(bridge.model.names, "\n"))
-}
-## For the 4-panel plot showing details of only two, the old base and the updated data
-bridge.model.detail.names <- c(paste0("Hake ", last.assess.yr),
-                               paste0("Add ",end.yr-1," data"))
+################################################################################
+## Sensitivity models
+################################################################################
+sens.model.dir.names <- c("23_Sensbase_Selmaxage5",
+                          "26_Sensbase_sigmaR_1.0")
+## Sens model names will be used to make the sensitivity model plot and its caption.
+## Make sure this is the same length as sens.model.dir.names
+sens.model.names <- c("Max. age of selectivity = 5",
+                      "Sigma R = 1.0")
 
 ## Sensitivity model indices are used to tell knitr which elements of the models list are to
 ## be plotted together.
@@ -195,6 +215,10 @@ sens.model.inds <- grep(paste(sens.model.dir.names, collapse = "|"), models.dir.
 if(length(sens.model.inds) != length(sens.model.dir.names)){
   stop("One or more of the sensitivity mode names were not found. Check the names and try again. Directory names listed in all.r are:\n", paste0(sens.model.dir.names, "\n"))
 }
+
+################################################################################
+## Forecasting
+################################################################################
 
 ## catch.levels is a list of N catch levels to run forecasts for
 ## Each element of the list is a vector of length the same as the
@@ -244,6 +268,10 @@ catch.levels.dir.names <- c("01_0",
                             ##"09_SPR100",
                             ##"10_DefaultHR")
 
+################################################################################
+## Model loading questions
+################################################################################
+
 reload.models <- readline(prompt = "Reload models (only necessary first time or if you add new models to the models directory)? [y/n] ")
 if(reload.models == "y" | reload.models == "Y"){
   smart.load <- readline(prompt = "   Use smart load (will only reload newly-added models, thus keeping any forecasting done previously)? [y/n] ")
@@ -257,9 +285,11 @@ if(reload.models == "y" | reload.models == "Y"){
 run.forecasts <- readline(prompt = "Run forecasting for base model (only necessary after fully reloading or if you changed the base model [takes 10 minutes])? [y/n] ")
 run.partest <- readline(prompt = "Run partest for base model (only necessary if you changed the base model [takes 15 minutes])? [y/n] ")
 run.retros <- readline(prompt = "Run retrospectives for base model? [y/n] ")
-if(run.retros == "y" | run.retros == "Y"){
-  retro.yrs <- readline(prompt = "  How many years do you want to run back for the retrospectives? ")
-}
+retro.yrs <- 1:15
+
+################################################################################
+## Data table loading
+################################################################################
 
 cat("\nLoading all data tables (csv files) from ", data.path,"\n")
 catches <- load.catches(file.path(data.path, catch.data.file))
@@ -269,6 +299,10 @@ survey.history <- load.survey.history(file.path(data.path, survey.history.file))
 further.tac <- further.tac.details(file.path(data.path, further.tac.file))
 can.ages <- load.can.age.data(file.path(data.path, can.age.file))
 cat("All data tables have been loaded ", data.path,"\n")
+
+################################################################################
+## Model loading
+################################################################################
 
 if(reload.models == "y" | reload.models == "Y"){
   cat("\n\nLoading models...\n\n")
@@ -285,6 +319,10 @@ if(reload.models == "y" | reload.models == "Y"){
 }else{
   cat("\n\nModels have NOT been loaded.\n\n")
 }
+
+################################################################################
+## Forecast model runs
+################################################################################
 
 if(run.forecasts == "y" | run.forecasts == "Y"){
   cat("\n\nRunning forecasts for model located in ",models[[base.model.ind]]$path,"...\n\n")
@@ -321,6 +359,10 @@ if(run.forecasts == "y" | run.forecasts == "Y"){
   cat("\n\nForecast calculations completed.\n\n")
 }
 
+################################################################################
+## Get Report and CompReport files for each posterior sample
+################################################################################
+
 if(run.partest == "y" | run.partest == "Y"){
   if(verbose){
     cat("\nDEBUG: Running partest\n\n")
@@ -331,13 +373,21 @@ if(run.partest == "y" | run.partest == "Y"){
   }
 }
 
+################################################################################
+## Retrospective model runs
+################################################################################
+
 if(run.retros == "y" | run.retros == "Y"){
-  models[[base.model.ind]]$retros <- run.retrospectives(models[[base.model.ind]], yrs = 1:retro.yrs, verbose = verbose)
+  models[[base.model.ind]]$retros <- run.retrospectives(models[[base.model.ind]], yrs = retro.yrs, verbose = verbose)
 }
 
 ## A simpler variable for the base model
 base.model <- models[[base.model.ind]]
 cat("Base model is ",base.model$path,"\n\n")
+
+################################################################################
+## Variables to be used in the knitr code chunks
+################################################################################
 
 ## Attainment, used in the management performance section
 usa.last.5.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),8]), 1)
@@ -418,7 +468,7 @@ median.intensity.above.one.years <- median.intensity.above.one.all.years[
 median.intensity.2010 <- fmt0(base.model$mcmccalcs$pmed["2010"] * 100, 1)
 median.intensity.penult.yr <- fmt0(base.model$mcmccalcs$pmed[as.character(end.yr-1)] * 100, 1)
 
-median.relative.bio <- base.model$mcmccalcs$dmed  
+median.relative.bio <- base.model$mcmccalcs$dmed
 median.relative.bio.below.target <- median.relative.bio[median.relative.bio < 0.4]     # when below target
 
 
@@ -468,6 +518,7 @@ get.age.prop <- function(vec, place = 1){
   age <- as.numeric(names(vec[vec == prop]))
   return(c(age, prop))
 }
+
 ## Canadian Freezer trawlers
 last.year.can.ages.ft <- can.ages[[2]][rownames(can.ages[[2]]) == last.data.yr,]
 get.age.prop(last.year.can.ages.ft, 1)

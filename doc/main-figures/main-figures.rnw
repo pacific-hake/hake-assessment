@@ -166,25 +166,26 @@ plot(1:10, main="Placeholder dummy figure")
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
 <<main.bridge.biomass, fig.height=6, fig.width=8>>=
-make.comparison.plot(models[bridge.model.inds],
+bridge.density.names <- c("SPB_Virgin",
+                          "R0",
+                          "Main_RecrDev_2010",
+                          "Late_RecrDev_2012",
+                          "Late_RecrDev_2014",
+                          "SR_BH_steep",
+                          "ForeCatch_2016")
+make.comparison.plot(models[bridge.model.inds.1],
                      subplots = 2,
-                     model.names = bridge.model.names,
+                     model.names = bridge.model.names.1,
+                     densitynames = bridge.density.names,
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Sequential bridge models from the \Sexpr{last.assess.yr} base model (\Sexpr{bridge.model.names[1]})
-  to updating the pre-\Sexpr{end.yr} catches (\Sexpr{bridge.model.names[2]}),
-  updating the fishery age compositions prior to \Sexpr{end.yr} (\Sexpr{bridge.model.names[3]}),
-  updating the weight-at-age data prior to \Sexpr{end.yr} (\Sexpr{bridge.model.names[4]}),
-  updating the survey biomass indices prior to \Sexpr{end.yr} (\Sexpr{bridge.model.names[5]}),
-  adding the \Sexpr{end.yr} catch and fishery age compositions  (\Sexpr{bridge.model.names[6]}),
-  and adding the \Sexpr{end.yr} survey biomass index (\Sexpr{bridge.model.names[7]}). The points
-  disconnected from the time-series on the left side show the unfished equilibrium spawning biomass estimates.}
+\caption{Base model from the \Sexpr{last.assess.yr} assessment compared with a model with the same parameterization
+  but including updated weight-at-age data.}
 \label{fig:main-bridge-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -192,38 +193,90 @@ make.comparison.plot(models[bridge.model.inds],
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.bridge.detail, fig.height=10, fig.width=10>>=
+<<main.bridge.5.panel, fig.height=6, fig.width=8>>=
 oldpar <- par(no.readonly=TRUE)
-par(mar=c(4.1, 4.1, 3.1, 0.1))
-layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
-## subplot 2 is spawning output with CI
-make.comparison.plot(models[bridge.model.detail.inds],
+par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
+layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
+make.comparison.plot(models[bridge.model.inds.2],
                      subplots = 2,
-                     model.names = bridge.model.detail.names,
+                     model.names = bridge.model.names.2,
+                     densitynames = bridge.density.names,
                      end.yr = end.yr)
-## subplot 4 is spawning output with CI and 0.1, 0.4, and 1.0 lines
-make.comparison.plot(models[bridge.model.detail.inds],
+make.comparison.plot(models[bridge.model.inds.2],
                      subplots = 4,
-                     model.names = bridge.model.detail.names,
+                     model.names = bridge.model.names.2,
+                     densitynames = bridge.density.names,
+                     legend = FALSE,
                      end.yr = end.yr)
-## subplot 8 is recruitment with CI
-make.comparison.plot(models[bridge.model.detail.inds],
+make.comparison.plot(models[bridge.model.inds.2],
                      subplots = 8,
-                     model.names = bridge.model.detail.names,
+                     model.names = bridge.model.names.2,
+                     densitynames = bridge.density.names,
+                     legend = FALSE,
                      end.yr = end.yr)
-## subplot 8 is recruitment devs with CI
-make.comparison.plot(models[bridge.model.detail.inds],
+make.comparison.plot(models[bridge.model.inds.2],
                      subplots = 10,
-                     model.names = bridge.model.detail.names,
+                     model.names = bridge.model.names.2,
+                     densitynames = bridge.density.names,
+                     legend = FALSE,
                      end.yr = end.yr)
-par(oldpar)
+make.comparison.plot(models[bridge.model.inds.2],
+                     subplots = 11,
+                     model.names = bridge.model.names.2,
+                     densitynames = bridge.density.names,
+                     legend = FALSE,
+                     end.yr = end.yr)
+mtext("Year", side = 1, line = 1, outer = TRUE)
+par <- oldpar
 @
 \end{center}
-\caption{Bridge models showing the difference between the model with updated \Sexpr{end.yr-2} data (blue)
-  and the base model with all new \Sexpr{end.yr-1} data (red). Spawning biomass (upper left),
-  relative spawning biomass (spawning biomass in each year relative to the unfished equilibrium spawning biomass, upper right),
-  absolute recruitment (lower left), and recruitment deviations (lower right) are shown.}
-\label{fig:main-bridge-detail}
+\caption{Base model from the \Sexpr{last.assess.yr} assessment compared with models with the same parameterization
+  but using survey biomass estimates with extrapolation and fishery age compositions with extrapolation.}
+\label{fig:main-bridge-5-panel}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.bridge.4.panel, fig.height=6, fig.width=10>>=
+oldpar <- par(no.readonly=TRUE)
+par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
+layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
+## subplot 2 is spawning output with CI
+make.comparison.plot(models[bridge.model.inds.3],
+                     subplots = 2,
+                     model.names = bridge.model.names.3,
+                     densitynames = bridge.density.names,
+                     end.yr = end.yr)
+## subplot 4 is spawning output with CI and 0.1, 0.4, and 1.0 lines
+make.comparison.plot(models[bridge.model.inds.3],
+                     subplots = 4,
+                     model.names = bridge.model.names.3,
+                     densitynames = bridge.density.names,
+                     legend = FALSE,
+                     end.yr = end.yr)
+## subplot 8 is recruitment with CI
+make.comparison.plot(models[bridge.model.inds.3],
+                     subplots = 8,
+                     model.names = bridge.model.names.3,
+                     densitynames = bridge.density.names,
+                     legend = FALSE,
+                     end.yr = end.yr)
+## subplot 10 is recruitment devs with CI
+make.comparison.plot(models[bridge.model.inds.3],
+                     subplots = 10,
+                     model.names = bridge.model.names.3,
+                     densitynames = bridge.density.names,
+                     legend = FALSE,
+                     end.yr = end.yr)
+mtext("Year", side = 1, line = 1, outer = TRUE)
+par <- oldpar
+@
+\end{center}
+\caption{Base model from the \Sexpr{last.assess.yr} assessment compared with models with the same parameterization
+  but using an adjusted bias ramp, modified survey age composition weights, and modified age composition weights.}
+\label{fig:main-bridge-4-panel}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
