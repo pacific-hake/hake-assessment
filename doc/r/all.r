@@ -256,6 +256,10 @@ if(reload.models == "y" | reload.models == "Y"){
 }
 run.forecasts <- readline(prompt = "Run forecasting for base model (only necessary after fully reloading or if you changed the base model [takes 10 minutes])? [y/n] ")
 run.partest <- readline(prompt = "Run partest for base model (only necessary if you changed the base model [takes 15 minutes])? [y/n] ")
+run.retros <- readline(prompt = "Run retrospectives for base model? [y/n] ")
+if(run.retros == "y" | run.retros == "Y"){
+  retro.yrs <- readline(prompt = "  How many years do you want to run back for the retrospectives? ")
+}
 
 cat("\nLoading all data tables (csv files) from ", data.path,"\n")
 catches <- load.catches(file.path(data.path, catch.data.file))
@@ -325,6 +329,10 @@ if(run.partest == "y" | run.partest == "Y"){
   if(verbose){
     cat("\nDEBUG: Partest Completed\n\n")
   }
+}
+
+if(run.retros == "y" | run.retros == "Y"){
+  models[[base.model.ind]]$retros <- run.retrospectives(models[[base.model.ind]], yrs = 1:retro.yrs, verbose = verbose)
 }
 
 ## A simpler variable for the base model
@@ -408,7 +416,7 @@ median.intensity.above.one.all.years <- names(which(base.model$mcmccalcs$pmed > 
 median.intensity.above.one.years <- median.intensity.above.one.all.years[
          median.intensity.above.one.all.years < end.yr]  # ones to mention
 median.intensity.2010 <- fmt0(base.model$mcmccalcs$pmed["2010"] * 100, 1)
-median.intensity.penult.yr <- fmt0(base.model$mcmccalcs$pmed[as.character(end.yr-1)] * 100, 1) 
+median.intensity.penult.yr <- fmt0(base.model$mcmccalcs$pmed[as.character(end.yr-1)] * 100, 1)
 
 
 ## Second forecast year depletion and spawning biomass estimates
@@ -493,3 +501,7 @@ fourth.shoreside.age.prop <- fmt0(ss.age.prop.holder[2] * 100, 1)
 ##  well estimated
 recruitment.med.since.2010 <- base.model$mcmccalcs$rmed[ which(as.numeric(names(base.model$mcmccalcs$rmed)) > 2010 & as.numeric(names(base.model$mcmccalcs$rmed)) < (end.yr-1))]
 years.since.2010.recruitment.med.below.mean <- names(recruitment.med.since.2010[recruitment.med.since.2010  < mean(base.model$mcmccalcs$rmed)])
+
+## Exploitation values
+exploitation.med.2010 <- fmt0(base.model$mcmccalcs$fmed["2010"],2)
+exploitation.med.penult.yr <- fmt0(base.model$mcmccalcs$fmed[as.character(end.yr-1)],2)

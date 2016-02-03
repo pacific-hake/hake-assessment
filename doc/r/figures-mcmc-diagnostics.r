@@ -39,7 +39,6 @@ make.mcmc.diag.plot <- function(model,      ## model is an mcmc run and is the o
   }
   oldpar <- par()
   par(mar=c(5,3.5,0,0.5),oma=c(0,2.5,0.2,0))
-browser()
   mcmc.out(model$mcmcpath,
            run = "",
            numparams = 1,

@@ -60,6 +60,11 @@ The following depicts the object structure of the **models** list:
     ...
     models[[N]] - The Nth directory found; each unique member of this models list contains
       models[[N]]$          - All the objects as read in by the SS_output function in the r4ss package
+      models[[N]]$retros    - A list of MLE retrospective outputs from SS_output
+      models[[N]]$retros[[1]] - Model run with one year removed
+      models[[N]]$retros[[2]] - Model run with two years removed
+      ...
+      models[[N]]$retros[[N]] - Model run with N years removed (depends on user input when sourcing all.r)
       models[[N]]$forecasts - A list of forecasts from the mcmc run of the model (for decision tables)
         models[[N]]$forecasts$outputs   - List of mcmc outputs from the forecast models as read in by the SSgetMCMC function
         models[[N]]$forecasts$mcmccalcs - Calculations done on the mcmc outputs for this forecast model. Same structure as below.
