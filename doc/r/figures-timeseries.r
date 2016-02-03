@@ -285,11 +285,13 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
   par <- oldpar
 }
 
-make.comparison.plot <- function(models,             ## models is a list of model runs to be plotted against of which
-                                                     ## each element is the output of the r4ss package's function SSgetMCMC
-                                 subplots = 1,       ## Same as subplot argument in SSplotComparisons
-                                 model.names = NULL, ## vector of model names. Must be same length as models
-                                 end.yr              ## Last year to plot (i.e. last year in model)
+make.comparison.plot <- function(models,              ## models is a list of model runs to be plotted against of which
+                                                      ## each element is the output of the r4ss package's function SSgetMCMC
+                                 subplots = 1,        ## Same as subplot argument in SSplotComparisons
+                                 model.names = NULL,  ## vector of model names. Must be same length as models
+                                 densitynames = NULL, ## Same as densitynames argument in SSplotComparisons
+                                 legend = TRUE,       ## Passed to the SSplotComparisons function
+                                 end.yr               ## Last year to plot (i.e. last year in model)
                                  ){
   ## Plot the list of models against each other.
   ## if model.names is null, the directory names will be used
@@ -299,10 +301,21 @@ make.comparison.plot <- function(models,             ## models is a list of mode
     model.names <- gsub(".*/","", tmp.names)
   }
   compare.summary <- SSsummarize(models)
-  SSplotComparisons(compare.summary,
-                    subplots = subplots,
-                    legendlabels = model.names,
-                    endyr = end.yr,
-                    new=FALSE)
+  if(is.null(densitynames)){
+    SSplotComparisons(compare.summary,
+                      subplots = subplots,
+                      legend = legend,
+                      legendlabels = model.names,
+                      endyr = end.yr,
+                      new=FALSE)
+  }else{
+    SSplotComparisons(compare.summary,
+                      subplots = subplots,
+                      legend = legend,
+                      legendlabels = model.names,
+                      densitynames = densitynames,
+                      endyr = end.yr,
+                      new=FALSE)
+  }
   par <- oldpar
 }
