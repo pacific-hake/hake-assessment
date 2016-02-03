@@ -365,13 +365,9 @@ Fishing intensity exceeding 100\% indicates fishing in excess of the $\Fforty$ d
 
 **AME edited the above pargraphs from last year's for clarity. Please check it reads okay. ** All rows may not be done in table yet.
 
-From main:
+Management metrics that were identified as important to the Joint Management Committee (JMC) and the Advisory Panel (AP) in 2012 are presented for projections to \Sexpr{forecast.yrs[2:(length(forecast.yrs)-1)]} and \Sexpr{forecast.yrs[length(forecast.yrs)]} (Tables~\ref{tab:es-risk-year-1} and~\ref{tab:es-risk-year-2} and Figures~\ref{fig:es-forecast-risk-comparison-year-1} and~\ref{fig:es-forecast-risk-comparison-year-2}). These metrics summarize the probability of various outcomes from the base model given each potential management action. Although not linear, probabilities can be interpolated from this table for intermediate catch values. Figure~\ref{fig:es-forecast-depletion-comparison} shows the predicted relative spawning biomass trajectory through \Sexpr{forecast.yrs[length(forecast.yrs)]} for several of these management actions. With zero catch for the next two years, the biomass has a probability of \Sexpr{zero.catch.prob.bio.down.1}\% of decreasing from \Sexpr{forecast.yrs[1]} to \Sexpr{forecast.yrs[2]}, and a probability of \Sexpr{zero.catch.prob.bio.down.2}\% of decreasing from \Sexpr{forecast.yrs[2]} to \Sexpr{forecast.yrs[3]}
 
-Management metrics that were identified as important to the Joint Management Committee (JMC) and the Advisory Panel (AP) in 2012 are presented for projections to \Sexpr{forecast.yrs[2:(length(forecast.yrs)-1)]} and \Sexpr{forecast.yrs[length(forecast.yrs)]} (Tables~\ref{tab:es-risk-year-1} and~\ref{tab:es-risk-year-2} and Figures~\ref{fig:es-forecast-risk-comparison-year-1} and~\ref{fig:es-forecast-risk-comparison-year-2}). These metrics summarize the probability of various outcomes from the base model given each potential management action. Although not linear, probabilities can be interpolated from this table for intermediate catch values. Figure~\ref{fig:es-forecast-depletion-comparison} shows the predicted relative spawning biomass trajectory through \Sexpr{forecast.yrs[length(forecast.yrs)]} for several of these management actions. With zero catch for the next two years, the biomass has a probability of **\% of decreasing from \Sexpr{forecast.yrs[2]} to \Sexpr{forecast.yrs[length(forecast.yrs)]}, and a probability of **\% of decreasing from \Sexpr{forecast.yrs[2]} to \Sexpr{forecast.yrs[length(forecast.yrs)]}.
-**add numbers manually.
-
-
-***NGT all of the next paragraph will need to be modified
+***AME to edit manually:
 At all catch levels 180,000~t per year or greater, the spawning biomass is predicted to decline from 2015 to 2016 with greater than 68\%
 probability (Table g.3 and Figure j). The model predicts high biomass levels and the predicted probability of dropping below 10\%
 in 2016 is less than 1\% and the maximum probability of dropping below B\subscr{40\%} is 21\% for all catches explored.

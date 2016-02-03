@@ -471,6 +471,11 @@ median.intensity.penult.yr <- fmt0(base.model$mcmccalcs$pmed[as.character(end.yr
 
 median.relative.bio <- base.model$mcmccalcs$dmed
 median.relative.bio.below.target <- median.relative.bio[median.relative.bio < 0.4]     # when below target
+# Prob biomass declines next year to year after with zero catch:
+zero.catch.prob.bio.down.1 <- fmt0(base.model$risks[[1]][1,2])  
+# Prob biomass declines year after next to year after that with zero catch:
+zero.catch.prob.bio.down.2 <- fmt0(base.model$risks[[2]][1,2])  
+
 
 
 ## Second forecast year depletion and spawning biomass estimates
