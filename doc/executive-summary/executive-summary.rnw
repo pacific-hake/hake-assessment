@@ -308,6 +308,8 @@ make.phase.plot(base.model,
 
 \subsection*{Reference Points} \label{sec:es-reference-points}
 \phantomsection \addcontentsline{toc}{subsection}{Reference Points}
+**ALL TEXT from here onwards is likely just copied from 2015 assessment and needs to be modified/updated/automated.
+
 We report estimates of the \Sexpr{assess.yr} base model reference points with posterior credibility intervals in Table f.
 The estimates are slightly different than the estimates in the 2014 assessment with slightly greater yields and biomasses
 estimated in this assessment.
