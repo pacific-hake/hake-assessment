@@ -32,6 +32,7 @@
 \usepackage{multirow}          %% Used in decision tables
 \usepackage{booktabs}          %% Used in executive summary tables
 \usepackage{tabularx}
+\usepackage{pdflscape}
 \usepackage[parfill]{parskip}  % So paragraphs will have a blank line between them
 \setlength{\parskip}{12pt}
 
