@@ -16,7 +16,6 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 \label{fig:main-overview-map}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
@@ -85,17 +84,13 @@ make.catches.plot(catches,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-%call the figure directly instead of create it because the data are confidential
+%% Call the figure directly instead of create it because the data are confidential
 \begin{figure}[H]
 \begin{center}
-%\begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{main-figures/fishDepthsUS} 
-
-%\end{knitrout}
+\includegraphics[width=\maxwidth]{main-figures/fishDepthsUS}
 \end{center}
-%\vspace{0mm}
-\caption{Distribution of bottom depths (left) and fishing depths (right), in fathoms, of Pacific Hake catches in the U.S. at-sea fleet from 2008--\Sexpr{last.data.yr}.}
+\caption{Distribution of bottom depths (left) and fishing depths (right), in fathoms, of \fishname\ catches in the U.S. at-sea fleet from 2008--\Sexpr{last.data.yr}.}
 \label{fig:main-us-at-sea-depths}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -103,18 +98,13 @@ make.catches.plot(catches,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-\begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{main-figures/fishCatchRatesUS} 
-
-\end{knitrout}
+\includegraphics[width=\maxwidth]{main-figures/fishCatchRatesUS}
 \end{center}
-%\vspace{0mm}
-\caption{Unstandardized (raw) catch-rates (t/hr) of Pacific Hake catches by tow in the U.S. at-sea fleet in 2015.}
+\caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in the U.S. at-sea fleet in \Sexpr{last.data.yr}.}
 \label{fig:main-us-catch-rates}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
@@ -894,13 +884,13 @@ make.comparison.plot(retro.list,
                      subplots = 2,
                      model.names = retro.model.names,
                      legend = FALSE,
-                     end.yr = end.yr)
+                     is.retro = TRUE)
 make.comparison.plot(retro.list,
                      subplots = 8,
                      model.names = retro.model.names,
                      legend = TRUE,
                      legendloc = "topleft",
-                     end.yr = end.yr)
+                     is.retro = TRUE)
 mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @

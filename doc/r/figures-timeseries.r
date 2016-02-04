@@ -322,9 +322,9 @@ make.comparison.plot <- function(models,                   ## models is a list o
                                  densitynames = NULL,      ## Same as densitynames argument in SSplotComparisons
                                  indexPlotEach = FALSE,    ## Same as indexPlotEach argument in SSplotComparisons
                                  indexUncertainty = FALSE, ## Same as indexUncertainty argument in SSplotComparisons
+                                 is.retro = FALSE,         ## Is this a retrospective plot?
                                  legend = TRUE,            ## Passed to the SSplotComparisons function
-                                 legendloc = "topright",   ## Passed to the SSplotComparisons function
-                                 end.yr                    ## Last year to plot (i.e. last year in model)
+                                 legendloc = "topright"    ## Passed to the SSplotComparisons function
                                  ){
   ## Plot the list of models against each other.
   ## if model.names is null, the directory names will be used
@@ -334,6 +334,11 @@ make.comparison.plot <- function(models,                   ## models is a list o
     model.names <- gsub(".*/","", tmp.names)
   }
   compare.summary <- SSsummarize(models)
+  endyrvec <- "default"
+  ## If it is a retropective plot, compute the end year vector of years so the lines end on the correct years
+  if(is.retro){
+    endyrvec <- compare.summary$endyrs + 1 + (0:-(length(models) - 1))
+  }
   if(is.null(densitynames)){
     SSplotComparisons(compare.summary,
                       subplots = subplots,
@@ -342,7 +347,7 @@ make.comparison.plot <- function(models,                   ## models is a list o
                       legendloc = legendloc,
                       indexPlotEach = indexPlotEach,
                       indexUncertainty = indexUncertainty,
-                      endyr = end.yr,
+                      endyrvec = endyrvec,
                       new=FALSE)
   }else{
     SSplotComparisons(compare.summary,
@@ -353,7 +358,7 @@ make.comparison.plot <- function(models,                   ## models is a list o
                       densitynames = densitynames,
                       indexPlotEach = indexPlotEach,
                       indexUncertainty = indexUncertainty,
-                      endyr = end.yr,
+                      endyrvec = endyrvec,
                       new=FALSE)
   }
   par <- oldpar
