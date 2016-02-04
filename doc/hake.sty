@@ -3,7 +3,7 @@
 %  since we are not constrained by any rules). 6th January 2016.
 
 % resDocSty.sty
-% Unofficial LaTeX style file for Canadian 
+% Unofficial LaTeX style file for Canadian
 % Science Advisory Secretariat Research Documents.
 % Andrew Edwards, Andrew.Edwards@dfo-mpo.gc.ca, 17th January 2012.
 % Modified by Rowan Haigh (2015-05-07)
@@ -11,10 +11,10 @@
 % Need to merge with Jaclyn's latest. 29th March 2012***
 
 % This is not an official template, but my attempt at developing
-%  the correct CSAS formatting for Research Documents. 
+%  the correct CSAS formatting for Research Documents.
 
 % I haven't attempted to format the first few pages, seems easier
-%  to stick with the Word 'template' RES2011_nnn-eng.doc 
+%  to stick with the Word 'template' RES2011_nnn-eng.doc
 %  (which looks like it might change every year), available at
 %  http://www.dfo-mpo.gc.ca/csas-sccs/process-processus/res-docs-rech/index-eng.htm
 
@@ -22,22 +22,22 @@
 %  Res Doc number and French translation of title and abstract.
 
 % Not yet sure how to deal with the Table of Contents for a full
-%  LaTeX document. This is optional (though no doubt preferred), 
+%  LaTeX document. This is optional (though no doubt preferred),
 %  and needs to come before the Abstract/Resume. Maybe best to
-%  have it done automatically in LaTeX for the Working Paper 
+%  have it done automatically in LaTeX for the Working Paper
 %  (submitted for the review meeting), then manually create it in
 %  the Word file (based on the automatic LaTeX one) for the final
 %   Res Doc submission?
 
 % I should tidy this up somewhat but am short of time. The output
 %  is a mixture of useful text related to the style, and some
-%  text from assessments and papers to give enough text to 
+%  text from assessments and papers to give enough text to
 %  see how paragraphs etc. look.
 
 % Basing style settings on the CSAS guide RES2011_nnn-eng.doc.
 
 % ** Packages **
-% For installation, the caption package said to look at the 
+% For installation, the caption package said to look at the
 %  following three, but I didn't find them helpful:
 % If you need help for installation please visit:
 % http://www.tex.ac.uk/cgi-bin/texfaq2html?label=inst-miktex*
@@ -46,21 +46,21 @@
 
 % For caption it took me a while, it seems that you can't just
 %  simply download a .sty file and stick it in the right
-%  directory, there are things called .dtx and .ins files 
+%  directory, there are things called .dtx and .ins files
 %  instead. I use MikTex, but the automatic installer didn't
 %  seem to work.
 % I ended up downloading the caption package as a .zip file,
-%  unzipping and moving the folder to 
-%  C:Program Files/MiKTeX 2.6/tex/latex/caption, 
+%  unzipping and moving the folder to
+%  C:Program Files/MiKTeX 2.6/tex/latex/caption,
 %  then in there ran latex caption.ins, which (finally) created
-%  the .sty files from the .ins files. 
+%  the .sty files from the .ins files.
 %  Then have to refresh FNDB: Start-Programs-MikTex-Settings.
 
 %http://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
 \usepackage[T1]{fontenc}
-% https://www.sharelatex.com/learn/Font_typefaces  
+% https://www.sharelatex.com/learn/Font_typefaces
 % \usepackage{tgschola}
-% \usepackage{tgpagella}
+\usepackage{tgpagella}
 
 
 %https://www.ctan.org/pkg/urw-arial
@@ -89,7 +89,7 @@
 %%%---------END hyperref chicanery----------------
 
 \usepackage[pagewise]{lineno}           % if you want to add line numbers in
-\usepackage[top=1in, bottom=1in, left=1in, right=1in, footskip=0.5in, headheight=0.5in]{geometry} 
+\usepackage[top=1in, bottom=1in, left=1in, right=1in, footskip=0.5in, headheight=0.5in]{geometry}
                                         %  page margins
 \usepackage{fancyhdr}                   % to add in headers and footers
 % \usepackage[format=plain, indention=0cm, labelsep=period, font={small, it}, justification=raggedright, singlelinecheck=false]{caption}
@@ -105,15 +105,15 @@
 \usepackage{graphicx}                   % for \includegraphics (can take eps along with other figure file types)
 
 
-% \raggedright		% For ragged right margins (yes, ugly, 
+% \raggedright		% For ragged right margins (yes, ugly,
 			%  but that's the rules, which of course
 			%  exist because right justified in Word
 			%  always looks so bad).
 			% I had also tried the newer \RaggedRight
-			%   from the ragged2e package, but it 
+			%   from the ragged2e package, but it
 			%   seems to introduce lots of hyphens.
 % \usepackage{ragged2e}   % For RaggedRight which is apparently
-			%  a better word-breaking algorithm, 
+			%  a better word-breaking algorithm,
 			%  (raggedright tries to avoid hyphens).
 			% You actually need the ms package (Martin
 			%  Schroeder), as ragged2e calls others.
@@ -125,11 +125,11 @@
 \renewcommand{\headrulewidth}{0.25pt}
 % For Res Doc, best to have a left and a right footer (header), not
 %  just one (for double-sided printing). Though I remember from my
-%  thesis there's a way to make it a header always be on the 
+%  thesis there's a way to make it a header always be on the
 %  'outside' corner, so have a Google around.
 
 \setlength\parindent{0pt}     % To not indent paragraphs. If change then
-                              %  may need to change the values in 
+                              %  may need to change the values in
                               %  appendix-glossary.rnw
 \parskip 6pt                  % To increase white space between
 %\parskip 2ex   % was 3ex
@@ -152,7 +152,7 @@
 % In TeX any glue is composed by a fixed part, a stretchable part and a
 % shrinkable part. Each of these parts can be zero.
 % The general form to express a glue is: <fixed part> plus <stretchable part>
-% minus <shrinkable part>. Each of these parts can be expressed in any of TeX 
+% minus <shrinkable part>. Each of these parts can be expressed in any of TeX
 % units (mm, cm, pt, em, etc.). For example 2cm plus 2mm minus 1mm.
 
 \makeatletter    % Need this and \makeatother around these (AME).
@@ -218,17 +218,17 @@
 %     {-2.5ex \@plus -1ex \@minus -.2ex}%
 %     {1.3ex \@plus.2ex}%
 %    {\centering\bfseries}}
-% \@startsection {NAME}{LEVEL}{INDENT}{BEFORESKIP}{AFTERSKIP}{STYLE} 
+% \@startsection {NAME}{LEVEL}{INDENT}{BEFORESKIP}{AFTERSKIP}{STYLE}
 %            optional * [ALTHEADING]{HEADING}
-%    Generic command to start a section.  
+%    Generic command to start a section.
 %    NAME       : e.g., 'subsection'
 %    LEVEL      : a number, denoting depth of section -- e.g., chapter=1,
 %                 section = 2, etc.  A section number will be printed if
 %                 and only if LEVEL gt or eq the value of the secnumdepth
 %                 counter.
 %    INDENT     : Indentation of heading from left margin
-%    BEFORESKIP : Absolute value = skip to leave above the heading.  
-%                 If negative, then paragraph indent of text following 
+%    BEFORESKIP : Absolute value = skip to leave above the heading.
+%                 If negative, then paragraph indent of text following
 %                 heading is suppressed.
 %    AFTERSKIP  : if positive, then skip to leave below heading,
 %                       else - skip to leave to right of run-in heading.
@@ -240,23 +240,23 @@
 
 
 % From http://stackoverflow.com/questions/2009420/how-to-put-a-figure-on-the-top-of-a-page-on-its-own-in-latex
-% to make a float on its own page appear at the top (not centered). 
+% to make a float on its own page appear at the top (not centered).
 % Not sure what fpsep does, separation between floats I think.
-\setlength\@fptop{0pt} 
-% \setlength\@fpsep{8pt plus 1fil} 
-% \setlength\@fpbot{0pt}      % presumably for bottom float. 
+\setlength\@fptop{0pt}
+% \setlength\@fpsep{8pt plus 1fil}
+% \setlength\@fpbot{0pt}      % presumably for bottom float.
 % The website says that the defaults are:
 % From source2e, glue is inserted at the top and bottom of the page, and between each float on the page. This inserted glue is given by the following parameters:
-%\setlength\@fptop{0\p@ \@plus 1fil} 
-%\setlength\@fpsep{8\p@ \@plus 2fil} 
+%\setlength\@fptop{0\p@ \@plus 1fil}
+%\setlength\@fpsep{8\p@ \@plus 2fil}
 %\setlength\@fpbot{0\p@ \@plus 1fil}
 
 \makeatother                  % Need this after the renewcommands
 
 % Think this was fiddling around because of having equations in tables.
 % To make equations left flush, so use in Tables.
-%\def\beq{\vspace{-5ex} \begin{fleqn} \begin{equation}} 
-%\def\eeq{\end{equation} \end{fleqn} \vspace{-5ex}}     
+%\def\beq{\vspace{-5ex} \begin{fleqn} \begin{equation}}
+%\def\eeq{\end{equation} \end{fleqn} \vspace{-5ex}}
 
 % Andy's usual command for equations:
 \newcommand{\eb}{\begin{eqnarray}}
