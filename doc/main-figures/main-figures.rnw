@@ -797,9 +797,9 @@ plot(1:10, main="Placeholder dummy figure")
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+\begin{figure}[p]
 \begin{center}
-<<biomass.base.alternative.1, fig.height=6, fig.width=8>>=
+<<main.biomass.base.alternative.1, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
                      subplots = 2,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
@@ -808,13 +808,13 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
 \end{center}
 \caption{MLE estimates of spawning biomass for the base model and alternative sensitivity runs representing changes to selectivity, $\sigma_r$, and steepness parameters.}
 \label{fig:main-biomass-base-alternative-1}
-\end{figure}
+%% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
+%% JOINED ON PAGE
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+%% \begin{figure}[H]
 \begin{center}
-<<recruitment.base.alternative.1, fig.height=6, fig.width=8>>=
+<<main.recruitment.base.alternative.1, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
                      subplots = 8,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
@@ -825,6 +825,70 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
 %\vspace{0mm}
 \caption{MLE estimates of recruitment for the base model and alternative sensitivity runs representing changes to selectivity, $\sigma_r$, and steepness parameters.}
 \label{fig:main-recruitment-base-alternative-1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[p]
+\begin{center}
+<<main.biomass.base.alternative.2, fig.height=4.5, fig.width=8>>=
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
+                     subplots = 2,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
+                     end.yr = end.yr)
+@
+\end{center}
+\caption{MLE estimates of spawning biomass for the base model and alternative sensitivity runs representing no extrapolation on the acoustic survey estimate and inclusion of an age-1 index.}
+\label{fig:main-biomass-base-alternative-2}
+%% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{figure}[H]
+\begin{center}
+<<main.recruitment.base.alternative.2, fig.height=4.5, fig.width=8>>=
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
+                     subplots = 8,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
+                     legendloc = "topleft",
+                     end.yr = end.yr)
+@
+\end{center}
+%\vspace{0mm}
+\caption{MLE estimates of recruitment for the base model and alternative sensitivity runs representing no extrapolation on the acoustic survey estimate and inclusion of an age-1 index.}
+\label{fig:main-recruitment-base-alternative-2}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[p]
+\begin{center}
+<<main.biomass.base.alternative.3, fig.height=4.5, fig.width=8>>=
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.3)],
+                     subplots = 2,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.3),
+                     end.yr = end.yr)
+@
+\end{center}
+\caption{MLE estimates of spawning biomass for the base model and alternative sensitivity runs representing changes in the natural mortality parameter and inclusion of an ageing error matrix.}
+\label{fig:main-biomass-base-alternative-3}
+%% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{figure}[H]
+\begin{center}
+<<main.recruitment.base.alternative.3, fig.height=4.5, fig.width=8>>=
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.3)],
+                     subplots = 8,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.3),
+                     legendloc = "topleft",
+                     end.yr = end.yr)
+@
+\end{center}
+%\vspace{0mm}
+\caption{MLE estimates of recruitment for the base model and alternative sensitivity runs representing changes in the natural mortality parameter and inclusion of an ageing error matrix.}
+\label{fig:main-recruitment-base-alternative-3}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
