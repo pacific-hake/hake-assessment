@@ -285,6 +285,36 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
   par <- oldpar
 }
 
+make.squid.plot <- function(models,      ## A list of models to compare (typically base and retrospectives)
+                            subplot = 1, ## 1 = Recruitment devs, 2 = Rec dev strength relative to most recent estimate
+                            cohorts){    ## Vector of years to plot the cohorts for
+  ## Plot the retrospective recruitment deviations AKA "squid" plot to outline
+  ##  deviation estimates changing for cohorts between assessment years
+
+  oldpar <- par()
+  compare.summary <- SSsummarize(models)
+  neg.yr.vec <- seq(0, -(length(models) - 1), -1)
+  endyrvec <- compare.summary$endyrs + 1 + neg.yr.vec
+  if(subplot == 1){
+    relative = FALSE
+  }else{
+    relative = TRUE
+  }
+  SSplotRetroRecruits(compare.summary,
+                      endyrvec = endyrvec,
+                      cohorts = cohorts,
+                      ylim = NULL,
+                      uncertainty = FALSE,
+                      main="",
+                      mcmcVec = FALSE,
+                      devs = TRUE,
+                      relative = relative,
+                      labelyears = TRUE,
+                      legend = FALSE,
+                      leg.ncols = 4)
+  par <- oldpar
+}
+
 make.comparison.plot <- function(models,                   ## models is a list of model runs to be plotted against of which
                                                            ## each element is the output of the r4ss package's function SSgetMCMC
                                  subplots = 1,             ## Same as subplot argument in SSplotComparisons
@@ -293,6 +323,7 @@ make.comparison.plot <- function(models,                   ## models is a list o
                                  indexPlotEach = FALSE,    ## Same as indexPlotEach argument in SSplotComparisons
                                  indexUncertainty = FALSE, ## Same as indexUncertainty argument in SSplotComparisons
                                  legend = TRUE,            ## Passed to the SSplotComparisons function
+                                 legendloc = "topright",   ## Passed to the SSplotComparisons function
                                  end.yr                    ## Last year to plot (i.e. last year in model)
                                  ){
   ## Plot the list of models against each other.
@@ -308,6 +339,7 @@ make.comparison.plot <- function(models,                   ## models is a list o
                       subplots = subplots,
                       legend = legend,
                       legendlabels = model.names,
+                      legendloc = legendloc,
                       indexPlotEach = indexPlotEach,
                       indexUncertainty = indexUncertainty,
                       endyr = end.yr,
@@ -317,6 +349,7 @@ make.comparison.plot <- function(models,                   ## models is a list o
                       subplots = subplots,
                       legend = legend,
                       legendlabels = model.names,
+                      legendloc = legendloc,
                       densitynames = densitynames,
                       indexPlotEach = indexPlotEach,
                       indexUncertainty = indexUncertainty,

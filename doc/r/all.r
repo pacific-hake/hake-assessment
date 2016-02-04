@@ -79,6 +79,7 @@ catch.data.file <- "Hake_Landings_TAC_History.csv"
 further.tac.file <- "Further_TAC_details.csv"
 survey.history.file <- "survey_history.csv"
 
+exe.file.name <- "ss3.exe"
 starter.file.name <- "starter.ss"
 forecast.file.name <- "forecast.ss"
 weight.at.age.file.name <- "wtatage.ss"
@@ -457,8 +458,9 @@ next.bio.lower.tac.based <- fmt0(fore.tac.mcmc$slower[names(fore.tac.mcmc$slower
 next.bio.median.tac.based <- fmt0(fore.tac.mcmc$smed[names(fore.tac.mcmc$smed) %in% (end.yr + 1)] * 100, 1)
 next.bio.upper.tac.based <- fmt0(fore.tac.mcmc$supper[names(fore.tac.mcmc$supper) %in% (end.yr + 1)] * 100, 1)
 
-## Calculations for exec summary and assessment-section.rnw; number of mcmc samples, minimum
-##  median biomass, years when fishing intensity > 1
+## Calculations for exec summary and assessment-section.rnw:
+##  number of mcmc samples, minimum median biomass,
+##  years when fishing intensity > 1
 num.mcmc.samples <- dim(base.model$mcmc)[1]
 median.bio.min  <- fmt0(min(base.model$mcmccalcs$smed), 3)  # min median biomass
 median.bio.min.year <- names(which.min(base.model$mcmccalcs$smed)) # year of min
@@ -470,6 +472,11 @@ median.intensity.penult.yr <- fmt0(base.model$mcmccalcs$pmed[as.character(end.yr
 
 median.relative.bio <- base.model$mcmccalcs$dmed
 median.relative.bio.below.target <- median.relative.bio[median.relative.bio < 0.4]     # when below target
+# Prob biomass declines next year to year after with zero catch:
+zero.catch.prob.bio.down.1 <- fmt0(base.model$risks[[1]][1,2])  
+# Prob biomass declines year after next to year after that with zero catch:
+zero.catch.prob.bio.down.2 <- fmt0(base.model$risks[[2]][1,2])  
+
 
 
 ## Second forecast year depletion and spawning biomass estimates
