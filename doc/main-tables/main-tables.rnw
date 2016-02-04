@@ -69,7 +69,9 @@ make.survey.history.table(survey.history,
                           space.size = 12)
 @
 
-\textbf{**MISSING TABLE - Number of ovaries collected.....}
+% Please label as "tab:main-ovaries"
+\textbf{**MISSING TABLE - Number of ovaries collected.....} 
+
 
 <<main.parameters.estimated.summary.table, results='asis', echo=FALSE>>=
 make.parameters.estimated.summary.table(base.model,
