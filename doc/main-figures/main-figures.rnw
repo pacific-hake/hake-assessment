@@ -700,7 +700,7 @@ make.mcmc.vs.mle.plot(base.model,
                       subplot = 8)
 @
 \end{center}
-\caption{A comparison of MLE estimates with 95\% confidence intervals determined from asymptotic variance estimates (red)
+\caption{A comparison of maximum likelihood estimates with 95\% confidence intervals determined from asymptotic variance estimates (red)
   to the median of the posterior distribution with 95\% credibility intervals (black).}
 \label{fig:main-mle.vs.mcmc}
 \end{figure}
@@ -791,7 +791,7 @@ plot(1:10, main="Placeholder dummy figure")
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates (MLEs) of expected survey biomass for the base model (black, same as red line in Figure~\ref{fig:main-mcmc-survey-fit}) and the alternative sensitivity run (red) which ***ONCE WE DECIDE ON ONE.}
+\caption{Maximum likelihood estimates of expected survey biomass for the base model (black, same as red line in Figure~\ref{fig:main-mcmc-survey-fit}) and the alternative sensitivity run (red) which ***ONCE WE DECIDE ON ONE.}
 \label{fig:main-mle-survey-base-alternative}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -806,7 +806,7 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
                      end.yr = end.yr)
 @
 \end{center}
-\caption{MLE estimates of spawning biomass for the base model and alternative sensitivity runs representing changes to selectivity, $\sigma_r$, and steepness parameters.}
+\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing changes to selectivity, $\sigma_r$, and steepness parameters.}
 \label{fig:main-biomass-base-alternative-1}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -823,7 +823,7 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
 @
 \end{center}
 %\vspace{0mm}
-\caption{MLE estimates of recruitment for the base model and alternative sensitivity runs representing changes to selectivity, $\sigma_r$, and steepness parameters.}
+\caption{Maximum likelihood estimates of recruitment for the base model and alternative sensitivity runs representing changes to selectivity, $\sigma_r$, and steepness parameters.}
 \label{fig:main-recruitment-base-alternative-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -838,7 +838,7 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
                      end.yr = end.yr)
 @
 \end{center}
-\caption{MLE estimates of spawning biomass for the base model and alternative sensitivity runs representing no extrapolation on the acoustic survey estimate and inclusion of an age-1 index.}
+\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing no extrapolation on the acoustic survey estimate and inclusion of an age-1 index.}
 \label{fig:main-biomass-base-alternative-2}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -855,7 +855,7 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
 @
 \end{center}
 %\vspace{0mm}
-\caption{MLE estimates of recruitment for the base model and alternative sensitivity runs representing no extrapolation on the acoustic survey estimate and inclusion of an age-1 index.}
+\caption{Maximum likelihood estimates of recruitment for the base model and alternative sensitivity runs representing no extrapolation on the acoustic survey estimate and inclusion of an age-1 index.}
 \label{fig:main-recruitment-base-alternative-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -870,7 +870,7 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.3)],
                      end.yr = end.yr)
 @
 \end{center}
-\caption{MLE estimates of spawning biomass for the base model and alternative sensitivity runs representing changes in the natural mortality parameter and inclusion of an ageing error matrix.}
+\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing changes in the natural mortality parameter and inclusion of an ageing error matrix.}
 \label{fig:main-biomass-base-alternative-3}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -887,7 +887,7 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.3)],
 @
 \end{center}
 %\vspace{0mm}
-\caption{MLE estimates of recruitment for the base model and alternative sensitivity runs representing changes in the natural mortality parameter and inclusion of an ageing error matrix.}
+\caption{Maximum likelihood estimates of recruitment for the base model and alternative sensitivity runs representing changes in the natural mortality parameter and inclusion of an ageing error matrix.}
 \label{fig:main-recruitment-base-alternative-3}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
