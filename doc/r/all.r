@@ -204,32 +204,33 @@ if((length(bridge.model.names.1) != length(bridge.model.dir.names.1)) |
 ################################################################################
 ## Sensitivity models
 ################################################################################
-sens.model.dir.names.1 <- c("23_Sensbase_Selmaxage5",
-                            "24_Sensbase_Selmaxage7",
-                            "25_Sensbase_Selmaxage12",
-                            "26_Sensbase_sigmaR_1.0",
+sens.model.dir.names.1 <- c("26_Sensbase_sigmaR_1.0",
                             "27_Sensbase_sigmaR_2.0",
                             "28_Sensbase_h_0.5prior",
-                            "29_Sensbase_h_1.0fix")
+                            "29_Sensbase_h_1.0fix",
+                            "36_Sensbase_M_SD0.2",
+                            "37_Sensbase_M_SD0.3",
+                            "38_Sensbase_AgeError_noCohort")
 ## Sens model names will be used to make the sensitivity model plot and its caption.
 ## Make sure they are the same length as sens.model.dir.names
-sens.model.names.1 <- c("Max. age of selectivity 5",
-                        "Max. age of selectivity 7",
-                        "Max. age of selectivity 12",
-                        "SigmaR 1.0",
-                        "SigmaR 2.0",
+sens.model.names.1 <- c("Sigma R = 1.0",
+                        "Sigma R = 2.0",
                         "Steepness prior mean 0.5",
-                        "Steepness fixed mean 1.0")
+                        "Steepness fixed mean 1.0",
+                        "Natural mortality SD 0.2",
+                        "Natural mortality SD 0.3",
+                        "Include ageing error")
+
 sens.model.dir.names.2 <- c("32_Sensbase_Survey_noExtrap",
                             "33_Sensbase_Age1Index")
 sens.model.names.2 <- c("No extrapolation on survey",
                         "Include age-1 index")
-sens.model.dir.names.3 <- c("36_Sensbase_M_SD0.2",
-                            "37_Sensbase_M_SD0.3",
-                            "38_Sensbase_AgeError_noCohort")
-sens.model.names.3 <- c("Natural mortality SD 0.2",
-                        "Natural mortality SD 0.3",
-                        "Remove ageing error")
+sens.model.dir.names.3 <- c("23_Sensbase_Selmaxage5",
+                            "24_Sensbase_Selmaxage7",
+                            "25_Sensbase_Selmaxage12",)
+sens.model.names.3 <- c("Max. age of selectivity 5",
+                        "Max. age of selectivity 7",
+                        "Max. age of selectivity 12")
 
 ## Sensitivity model indices are used to tell knitr which elements of the models list are to
 ## be plotted together.

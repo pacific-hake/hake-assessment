@@ -767,38 +767,6 @@ plot(1:10, main="Placeholder dummy figure")
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[p]
 \begin{center}
-<<main.biomass.base.alternative.1, fig.height=4.5, fig.width=8>>=
-make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
-                     subplots = 2,
-                     model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
-                     end.yr = end.yr)
-@
-\end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing changes to selectivity, $\sigma_r$, and steepness parameters.}
-\label{fig:main-biomass-base-alternative-1}
-%% \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-%% JOINED ON PAGE
-%%%%%%%%%%%%%%%%%%%%%%%
-%% \begin{figure}[H]
-\begin{center}
-<<main.recruitment.base.alternative.1, fig.height=4.5, fig.width=8>>=
-make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
-                     subplots = 8,
-                     model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
-                     legendloc = "topleft",
-                     end.yr = end.yr)
-@
-\end{center}
-%\vspace{0mm}
-\caption{Maximum likelihood estimates of recruitment for the base model and alternative sensitivity runs representing changes to selectivity, $\sigma_r$, and steepness parameters.}
-\label{fig:main-recruitment-base-alternative-1}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
-\begin{center}
 <<main.biomass.base.alternative.2, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
                      subplots = 2,
@@ -806,8 +774,13 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing no extrapolation on the acoustic survey estimate and inclusion of an age-1 index.}
+<<<<<<< HEAD
+\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing changes to selectivity, $\sigma_r$, and steepness parameters.}
+\label{fig:main-biomass-base-alternative-1}
+=======
+\caption{MLE estimates of spawning biomass for the base model and alternative sensitivity runs representing no extrapolation on the acoustic survey estimate and inclusion of an age-1 index.}
 \label{fig:main-biomass-base-alternative-2}
+>>>>>>> aberger/master
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %% JOINED ON PAGE
@@ -823,8 +796,13 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of recruitment for the base model and alternative sensitivity runs representing no extrapolation on the acoustic survey estimate and inclusion of an age-1 index.}
+<<<<<<< HEAD
+\caption{Maximum likelihood estimates of recruitment for the base model and alternative sensitivity runs representing changes to selectivity, $\sigma_r$, and steepness parameters.}
+\label{fig:main-recruitment-base-alternative-1}
+=======
+\caption{Density plot showing the MLE recruitment deviate estimates for the 2014 cohort for the base model and alternative sensitivity runs representing no extrapolation on the acoustic survey estimate and inclusion of an age-1 index.}
 \label{fig:main-recruitment-base-alternative-2}
+>>>>>>> aberger/master
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -838,8 +816,13 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.3)],
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing changes in the natural mortality parameter and inclusion of an ageing error matrix.}
+<<<<<<< HEAD
+\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing no extrapolation on the acoustic survey estimate and inclusion of an age-1 index.}
+\label{fig:main-biomass-base-alternative-2}
+=======
+\caption{MLE estimates of spawning biomass for the base model and alternative sensitivity runs representing changes in the natural mortality parameter and inclusion of an ageing error matrix.}
 \label{fig:main-biomass-base-alternative-3}
+>>>>>>> aberger/master
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %% JOINED ON PAGE
@@ -855,8 +838,55 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.3)],
 @
 \end{center}
 %\vspace{0mm}
+<<<<<<< HEAD
+\caption{Maximum likelihood estimates of recruitment for the base model and alternative sensitivity runs representing no extrapolation on the acoustic survey estimate and inclusion of an age-1 index.}
+\label{fig:main-recruitment-base-alternative-2}
+=======
+\caption{MLE estimates of recruitment for the base model and alternative sensitivity runs representing changes in the natural mortality parameter and inclusion of an ageing error matrix.}
+\label{fig:main-recruitment-base-alternative-3}
+>>>>>>> aberger/master
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[p]
+\begin{center}
+<<main.biomass.base.alternative.1, fig.height=4.5, fig.width=8>>=
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
+                     subplots = 2,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
+                     end.yr = end.yr)
+@
+\end{center}
+<<<<<<< HEAD
+\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing changes in the natural mortality parameter and inclusion of an ageing error matrix.}
+\label{fig:main-biomass-base-alternative-3}
+=======
+\caption{MLE estimates of spawning biomass for the base model and alternative sensitivity runs representing changes to $\sigma_r$, steepness, and natural mortality parameters.}
+\label{fig:main-biomass-base-alternative-1}
+>>>>>>> aberger/master
+%% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{figure}[H]
+\begin{center}
+<<main.status.base.alternative.1, fig.height=4.5, fig.width=8>>=
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
+                     subplots = 4,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
+                     legendloc = "topleft",
+                     end.yr = end.yr)
+@
+\end{center}
+%\vspace{0mm}
+<<<<<<< HEAD
 \caption{Maximum likelihood estimates of recruitment for the base model and alternative sensitivity runs representing changes in the natural mortality parameter and inclusion of an ageing error matrix.}
 \label{fig:main-recruitment-base-alternative-3}
+=======
+\caption{MLE estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity runs representing changes to $\sigma_r$, steepness, and natural mortality parameters.}
+\label{fig:main-status-base-alternative-1}
+>>>>>>> aberger/master
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
