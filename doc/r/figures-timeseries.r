@@ -324,7 +324,8 @@ make.comparison.plot <- function(models,                   ## models is a list o
                                  indexUncertainty = FALSE, ## Same as indexUncertainty argument in SSplotComparisons
                                  is.retro = FALSE,         ## Is this a retrospective plot?
                                  legend = TRUE,            ## Passed to the SSplotComparisons function
-                                 legendloc = "topright"    ## Passed to the SSplotComparisons function
+                                 legendloc = "topright",   ## Passed to the SSplotComparisons function
+                                 end.yr = NULL             ## End year of the plot. If is.retro is TRUE, this is ignored and endyrvec is calculated
                                  ){
   ## Plot the list of models against each other.
   ## if model.names is null, the directory names will be used
@@ -338,6 +339,10 @@ make.comparison.plot <- function(models,                   ## models is a list o
   ## If it is a retropective plot, compute the end year vector of years so the lines end on the correct years
   if(is.retro){
     endyrvec <- compare.summary$endyrs + 1 + (0:-(length(models) - 1))
+  }else{
+    if(!is.null(end.yr)){
+      endyrvec <- end.yr
+    }
   }
   if(is.null(densitynames)){
     SSplotComparisons(compare.summary,

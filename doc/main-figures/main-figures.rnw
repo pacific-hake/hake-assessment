@@ -799,30 +799,32 @@ plot(1:10, main="Placeholder dummy figure")
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<biomass.base.alternative, fig.height=6, fig.width=8>>=
-make.comparison.plot(models[c(base.model.ind, sens.model.inds)],
+<<biomass.base.alternative.1, fig.height=6, fig.width=8>>=
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
                      subplots = 2,
-                     model.names = c(paste0("Base model ", end.yr), sens.model.names),
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
                      end.yr = end.yr)
-
 @
 \end{center}
-%\vspace{0mm}
-\caption{Posterior MCMC predictions of spawning biomass at the start of each year for the base model and alternative sensitivity runs.}
-\label{fig:main-biomass-base-alternative}
+\caption{MLE estimates of spawning biomass for the base model and alternative sensitivity runs representing changes to selectivity, $\sigma_r$, and steepness parameters.}
+\label{fig:main-biomass-base-alternative-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<recruitment.base.alternative, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
+<<recruitment.base.alternative.1, fig.height=6, fig.width=8>>=
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
+                     subplots = 8,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
+                     legendloc = "topleft",
+                     end.yr = end.yr)
 @
 \end{center}
 %\vspace{0mm}
-\caption{Posterior MCMC predictions of recruitment for the base model (black) and alternative sensitivity run (red) which ***AS PREVIOUS.}
-\label{fig:main-recruitment-base-alternative}
+\caption{MLE estimates of recruitment for the base model and alternative sensitivity runs representing changes to selectivity, $\sigma_r$, and steepness parameters.}
+\label{fig:main-recruitment-base-alternative-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
