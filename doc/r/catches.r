@@ -60,7 +60,8 @@ make.catches.table <- function(catches,              ## The output of the load.c
   }
   ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
   catches <- catches[catches[,1] >= start.yr & catches[,1] <= end.yr,]
-  catches[,-1] <- fmt0(catches[,-1])  ## -1 means leave the years alone and don't comma-seperate them
+  ## -1 below means leave the years alone and don't comma-seperate them
+  catches[,-1] <-fmt0(catches[-1])
 
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
@@ -87,10 +88,10 @@ make.catches.plot <- function(catches,
   barplot(t(as.matrix(catches))/1000,beside=FALSE,names=catches[,1],
           col=cols, xlab="Year",ylab="",cex.lab=1,xaxt="n",add=TRUE,mgp=c(2.2,1,0))
 
-legend(x=0,y=leg.y.loc,
+  legend(x=0,y=leg.y.loc,
          c("Canadian Foreign","Canadian Joint-Venture","Canadian Shoreside","Canadian Freezer Trawl",
            "U.S. Foreign","U.S. Joint-Venture","U.S. MS","U.S. CP","U.S. Shore-based")[legOrder],
-         bg="white",horiz=F,xpd=NA,cex=1,ncol=3,fill=cols[legOrder],border=cols[legOrder],bty="n")
+         bg = "white",horiz=FALSE,xpd=NA,cex=1,ncol=3,fill=cols[legOrder],border=cols[legOrder],bty="n")
   par <- oldpar
 }
 
@@ -112,7 +113,8 @@ make.catches.table.US <- function(catches,              ## The output of the loa
 
   ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
   catches <- catches[catches[,1] >= start.yr & catches[,1] <= end.yr,]
-  catches[,-1] <- fmt0(catches[,-1])  ## -1 means leave the years alone and don't comma-seperate them
+  ## -1 below means leave the years alone and don't comma-seperate them
+  catches[,-1] <-fmt0(catches[-1])
 
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
@@ -137,7 +139,8 @@ make.catches.table.Can <- function(catches,              ## The output of the lo
 
   ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
   catches <- catches[catches[,1] >= start.yr & catches[,1] <= end.yr,]
-  catches[,-1] <- fmt0(catches[,-1])  ## -1 means leave the years alone and don't comma-seperate them
+  ## -1 below means leave the years alone and don't comma-seperate them
+  catches[,-1] <-fmt0(catches[-1])
 
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
@@ -172,9 +175,9 @@ make.catches.table.total <- function(catches,              ## The output of the 
 
   ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
   catches <- catches[catches[,1] >= start.yr & catches[,1] <= end.yr,]
-  catches[,-c(1, 5, 6)] <- fmt0(catches[,-c(1, 5, 6)])  ## leave three columns
-                                   ## alone and don't comma-separate them
-  catches[,c(5, 6)] <- fmt0(catches[,c(5, 6)], dec.points=1) ## one dec point
+  catches[,-c(1, 5, 6)] <- fmt0(catches[,-c(1, 5, 6)])
+
+  catches[,c(5, 6)] <- fmt0(catches[,c(5, 6)], 1)
 
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
@@ -195,11 +198,12 @@ make.landings.tac.table <- function(landings.vs.tac,
 
   ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
   tab <- tab[tab$Year >= start.yr & tab$Year <= end.yr,]
-  tab[,-c(1,8,9,10)] <- fmt0(tab[,-c(1,8,9,10)])
+  tab[,-c(1, 8, 9, 10)] <- fmt0(tab[,-c(1, 8, 9, 10)])
+
   ## Round the proportions to one decimal place
-  tab[,8] <- paste0(fmt0(tab[,8],1),"\\%")
-  tab[,9] <- paste0(fmt0(tab[,9],1),"\\%")
-  tab[,10] <- paste0(fmt0(tab[,10],1),"\\%")
+  tab[,8] <- paste0(fmt0(tab[,8], 1),"\\%")
+  tab[,9] <- paste0(fmt0(tab[,9], 1),"\\%")
+  tab[,10] <- paste0(fmt0(tab[,10], 1),"\\%")
   colnames(tab) <- c("\\textbf{Year}",
                      "\\specialcell{\\textbf{US}\\\\\\textbf{landings (t)}}",
                      "\\specialcell{\\textbf{Canadian}\\\\\\textbf{landings (t)}}",
@@ -211,9 +215,9 @@ make.landings.tac.table <- function(landings.vs.tac,
                      "\\specialcell{\\textbf{Canada}\\\\\\textbf{proportion}\\\\\\textbf{of catch}\\\\\\textbf{target}\\\\\\textbf{removed}}",
                      "\\specialcell{\\textbf{Total}\\\\\\textbf{proportion}\\\\\\textbf{of catch}\\\\\\textbf{target}\\\\\\textbf{removed}}")
   ## Make the size string for font and space size
-  size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
-  return(print(xtable(tab, caption=xcaption, label=xlabel, align=get.align(ncol(tab),first.left=FALSE,just="c"), digits=c(0,0,0,0,0,0,0,0,1,1,1)),
-               caption.placement = "top", include.rownames=FALSE, table.placement="H", sanitize.text.function=function(x){x}, size=size.string))
+  size.string <- paste0("\\fontsize{", font.size, "}{", space.size, "}\\selectfont")
+  return(print(xtable(tab, caption=xcaption, label=xlabel, align = get.align(ncol(tab), first.left = FALSE, just = "c"), digits = c(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1)),
+               caption.placement = "top", include.rownames = FALSE, table.placement = "H", sanitize.text.function = function(x){x}, size = size.string))
 }
 
 years.Can.JV.catch.eq.0 <- function(catches,          ## The output of the load.catches
@@ -222,13 +226,12 @@ years.Can.JV.catch.eq.0 <- function(catches,          ## The output of the load.
                                                       ##  Can JC catch.
   ## Calculate the recent years that had no Canadian JV catch, for Introduction
   years.Can.JV.catch.eq.0 <- catches[ catches$CAN_JV == 0, ]$Year
-  years.Can.JV.catch.eq.0.recent <- years.Can.JV.catch.eq.0[ years.Can.JV.catch.eq.0 > 1999]
+  years.Can.JV.catch.eq.0.recent <- years.Can.JV.catch.eq.0[years.Can.JV.catch.eq.0 > start.yr]
   return(years.Can.JV.catch.eq.0.recent)
 }
 
-further.tac.details <- function(fn){
-                                ## fn is the filename with relative path
+further.tac.details <- function(fn){ ## fn is the filename with relative path
   ## Reads in the further.tac.details file and returns it as a data.frame
-  further.tac <- read.csv(fn, header=TRUE, sep=",", comment.char="#")
+  further.tac <- read.csv(fn, header = TRUE, sep = ",", comment.char = "#")
   return(further.tac)
 }

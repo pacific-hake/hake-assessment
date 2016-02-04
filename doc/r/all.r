@@ -61,6 +61,7 @@ source("figures-selex.r")
 source("figures-stock-recruitment.r")
 source("figures-mle-mcmc.r")
 source("figures-overview-map.r")
+source("figures-data.r")
 
 source("tables-timeseries.r")
 source("tables-reference-points.r")
@@ -291,7 +292,7 @@ catch.levels.names <- c("No Fishing",
 
 ## catch.levels.dir.names is a list of N names for the catch levels given in catch.levels,
 ##  to be used as the directory names (OS-naming friendly). Use prefixed numbers so that
-## the list order is the same as the directory order.
+##  the list order is the same as the directory order.
 catch.levels.dir.names <- c("01_0",
                             "02_180000",
                             "03_300000",
