@@ -59,15 +59,59 @@ make.catches.plot(catches,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
+% \begin{figure}[H]
+% \begin{center}
+% <<main.us.at.sea.depths, fig.height=6, fig.width=8>>=
+% plot(1:10, main="Placeholder dummy figure")
+% @
+% \end{center}
+% %\vspace{0mm}
+% \caption{Distribution of bottom depths (left) and fishing depths (right), in fathoms, of Pacific Hake catches in the U.S. at-sea fleet from 2008--\Sexpr{last.data.yr}.}
+% \label{fig:main-us-at-sea-depths}
+% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{figure}[H]
+% \begin{center}
+% <<main.us.catch-rates, fig.height=6, fig.width=8>>=
+% plot(1:10, main="Placeholder dummy figure")
+% @
+% \end{center}
+% %\vspace{0mm}
+% \caption{Unstandardized (raw) catch-rates (t/hr) of Pacific Hake catches in the U.S. at-sea fleet in \Sexpr{last.data.yr}.}
+% \label{fig:main-us-catch-rates}
+% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%call the figure directly instead of create it because the data are confidential
 \begin{figure}[H]
 \begin{center}
-<<main.us.at.sea.depths, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
-@
+%\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{main-figures/fishDepthsUS} 
+
+%\end{knitrout}
 \end{center}
 %\vspace{0mm}
 \caption{Distribution of bottom depths (left) and fishing depths (right), in fathoms, of Pacific Hake catches in the U.S. at-sea fleet from 2008--\Sexpr{last.data.yr}.}
 \label{fig:main-us-at-sea-depths}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{main-figures/fishCatchRatesUS} 
+
+\end{knitrout}
+\end{center}
+%\vspace{0mm}
+\caption{Unstandardized (raw) catch-rates (t/hr) of Pacific Hake catches by tow in the U.S. at-sea fleet in 2015.}
+\label{fig:main-us-catch-rates}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
