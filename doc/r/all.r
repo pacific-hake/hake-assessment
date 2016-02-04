@@ -176,7 +176,7 @@ bridge.model.dir.names.3 <- c("11_Add2015Catch_FishAcomps_withExtrap",
 ## Bridge model names will be used to make the bridge model plot and its caption.
 bridge.model.names.3 <- c("Base model pretune",
                           "Adjust bias ramp",
-                          "Change survey comp weight.",
+                          "Change survey comp weights",
                           "Change all comp weights")
 
 ## Bridge model indices are used to tell knitr which elements of the models list are to
@@ -203,18 +203,52 @@ if((length(bridge.model.names.1) != length(bridge.model.dir.names.1)) |
 ################################################################################
 ## Sensitivity models
 ################################################################################
-sens.model.dir.names <- c("23_Sensbase_Selmaxage5",
-                          "26_Sensbase_sigmaR_1.0")
+sens.model.dir.names.1 <- c("23_Sensbase_Selmaxage5",
+                            "24_Sensbase_Selmaxage7",
+                            "25_Sensbase_Selmaxage12",
+                            "26_Sensbase_sigmaR_1.0",
+                            "27_Sensbase_sigmaR_2.0",
+                            "28_Sensbase_h_0.5prior",
+                            "29_Sensbase_h_1.0fix")
 ## Sens model names will be used to make the sensitivity model plot and its caption.
-## Make sure this is the same length as sens.model.dir.names
-sens.model.names <- c("Max. age of selectivity = 5",
-                      "Sigma R = 1.0")
+## Make sure they are the same length as sens.model.dir.names
+sens.model.names.1 <- c("Max. age of selectivity = 5",
+                        "Max. age of selectivity = 7",
+                        "Max. age of selectivity = 12",
+                        "Sigma R = 1.0",
+                        "Sigma R = 2.0",
+                        "Steepness prior mean = 0.5",
+                        "Steepness fixed mean = 1.0")
+sens.model.dir.names.2 <- c("32_Sensbase_Survey_noExtrap",
+                            "33_Sensbase_Age1Index")
+sens.model.names.2 <- c("No extrapolation on survey",
+                        "Include age-1 index")
+sens.model.dir.names.3 <- c("36_Sensbase_M_SD0.2",
+                            "37_Sensbase_M_SD0.3",
+                            "38_Sensbase_AgeError_noCohort")
+sens.model.names.3 <- c("Natural mortality SD = 0.2",
+                        "Natural mortality SD = 0.3",
+                        "Include ageing error")
 
 ## Sensitivity model indices are used to tell knitr which elements of the models list are to
 ## be plotted together.
-sens.model.inds <- grep(paste(sens.model.dir.names, collapse = "|"), models.dir.list)
-if(length(sens.model.inds) != length(sens.model.dir.names)){
-  stop("One or more of the sensitivity mode names were not found. Check the names and try again. Directory names listed in all.r are:\n", paste0(sens.model.dir.names, "\n"))
+sens.model.inds.1 <- grep(paste(sens.model.dir.names.1, collapse = "|"), models.dir.list)
+sens.model.inds.2 <- grep(paste(sens.model.dir.names.2, collapse = "|"), models.dir.list)
+sens.model.inds.3 <- grep(paste(sens.model.dir.names.3, collapse = "|"), models.dir.list)
+if((length(sens.model.inds.1) != length(sens.model.dir.names.1)) |
+   (length(sens.model.inds.2) != length(sens.model.dir.names.2)) |
+   (length(sens.model.inds.3) != length(sens.model.dir.names.3))){
+  stop("One or more of the sensitivity model directory names were not found. Check the names and try again. Directory names listed in all.r are:\n",
+       paste0(sens.model.dir.names.1, "\n"),
+       "\n",
+       paste0(sens.model.dir.names.2, "\n"),
+       "\n",
+       paste0(sens.model.dir.names.3, "\n"))
+}
+if((length(sens.model.names.1) != length(sens.model.dir.names.1)) |
+   (length(sens.model.names.2) != length(sens.model.dir.names.2)) |
+   (length(sens.model.names.3) != length(sens.model.dir.names.3))){
+  stop("One of the sens.model.names vectors in all.r has a different length than its sens.model.dir.names counterpart. Make sure these two vectors match in length and try again.\n")
 }
 
 ################################################################################
