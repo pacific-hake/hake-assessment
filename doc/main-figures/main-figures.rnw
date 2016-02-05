@@ -852,14 +852,6 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
 \begin{figure}[H]
 \begin{center}
 <<main.biomass.recruitment.retrospective, fig.height=8, fig.width=8>>=
-## Number of retro years for the plot. Assumes you've run them.
-plot.retro.yrs <- 1:5
-retro.model.names <- c("Base model", sapply(plot.retro.yrs, function(x) paste0("-", x, if(x == 1) " year" else " years")))
-## Need to re-assemble the list with the base as the first element
-retro.list <- list(base.model)
-for(i in plot.retro.yrs){
-  retro.list[[i + 1]] <- base.model$retros[[i]]
-}
 oldpar <- par()
 par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
 layout(matrix(c(1, 2), nrow = 2, ncol = 1, byrow = TRUE))

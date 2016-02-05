@@ -377,37 +377,41 @@ if(reload.models == "y" | reload.models == "Y"){
   cat("\n\nModels have NOT been loaded.\n\n")
 }
 
+## A simpler variable for the base model
+base.model <- models[[base.model.ind]]
+cat("Base model is ",base.model$path,"\n\n")
+
 ################################################################################
 ## Forecast model runs
 ################################################################################
 
 if(run.forecasts == "y" | run.forecasts == "Y"){
-  cat("\n\nRunning forecasts for model located in ",models[[base.model.ind]]$path,"...\n\n")
-  forecasts.path <- file.path(models[[base.model.ind]]$path, "mcmc", "forecasts")
+  cat("\n\nRunning forecasts for model located in ",base.model$path,"...\n\n")
+  forecasts.path <- file.path(base.model$path, "mcmc", "forecasts")
 
-  forecasts <- calc.forecast(models[[base.model.ind]]$mcmc,
-                             models[[base.model.ind]]$path,
+  forecasts <- calc.forecast(base.model$mcmc,
+                             base.model$path,
                              forecast.yrs,
                              catch.levels,
                              catch.levels.dir.names,
                              probs = forecast.probs)
 
-  models[[base.model.ind]]$forecasts$biomass <- forecasts[[1]]
-  models[[base.model.ind]]$forecasts$spr <- forecasts[[2]]
-  models[[base.model.ind]]$forecasts$mcmccalcs <- forecasts[[3]]
-  models[[base.model.ind]]$forecasts$outputs <- forecasts[[4]]
+  base.model$forecasts$biomass <- forecasts[[1]]
+  base.model$forecasts$spr <- forecasts[[2]]
+  base.model$forecasts$mcmccalcs <- forecasts[[3]]
+  base.model$forecasts$outputs <- forecasts[[4]]
 
   if(verbose){
     cat("\nDEBUG: Calculated forecasts\n\n")
   }
 
   ## calc.risk assumes the forecasting step was done correctly
-  risks <- calc.risk(models[[base.model.ind]]$forecasts$outputs,
+  risks <- calc.risk(base.model$forecasts$outputs,
                      forecast.yrs,
                      catch.levels,
                      catch.levels.dir.names)
 
-  models[[base.model.ind]]$risks <- risks
+  base.model$risks <- risks
 
   if(verbose){
     cat("\nDEBUG: Calculated risks\n\n")
@@ -424,7 +428,7 @@ if(run.partest == "y" | run.partest == "Y"){
   if(verbose){
     cat("\nDEBUG: Running partest\n\n")
   }
-  run.partest.model(models[[base.model.ind]], output.file = "model-partest.RData", verbose = verbose)
+  run.partest.model(base.model, output.file = "model-partest.RData", verbose = verbose)
   if(verbose){
     cat("\nDEBUG: Partest Completed\n\n")
   }
@@ -435,12 +439,17 @@ if(run.partest == "y" | run.partest == "Y"){
 ################################################################################
 
 if(run.retros == "y" | run.retros == "Y"){
-  models[[base.model.ind]]$retros <- run.retrospectives(models[[base.model.ind]], yrs = retro.yrs, verbose = verbose)
+  base.model$retros <- run.retrospectives(base.model, yrs = retro.yrs, verbose = verbose)
 }
 
-## A simpler variable for the base model
-base.model <- models[[base.model.ind]]
-cat("Base model is ",base.model$path,"\n\n")
+## Number of retro years for the plot and table. Assumes you've run them.
+plot.retro.yrs <- 1:5
+retro.model.names <- c("Base model", sapply(plot.retro.yrs, function(x) paste0("-", x, if(x == 1) " year" else " years")))
+## Need to re-assemble the list with the base as the first element
+retro.list <- list(base.model)
+for(i in plot.retro.yrs){
+  retro.list[[i + 1]] <- base.model$retros[[i]]
+}
 
 ################################################################################
 ## Variables to be used in the knitr code chunks
