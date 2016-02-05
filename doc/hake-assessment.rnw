@@ -331,7 +331,7 @@ This DRAFT document is non-citable.
 
 % \clearpage
 
-\bibliographystyle{resDoc}
+\bibliographystyle{hake}
 \bibliography{all}
 
 <<main-tables, child='main-tables/main-tables.rnw'>>=
