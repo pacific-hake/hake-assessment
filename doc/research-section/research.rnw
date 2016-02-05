@@ -50,5 +50,9 @@ The JTC (Allan and Ian) have been consulting with NWFSC scientists on a paper in
 
 \subsection{Research and data needs for the future}\label{sec:research-needs}
 
+There are many research projects that could improve the stock assessment for Pacific Hake. The following prioritized list of topics will lead to improved biological understanding and decision-making:
+
 <<research-research-needs-sec, child='../executive-summary/research-needs.rnw'>>=
 @
+
+<<research-research-needs-remainder-sec, child='../executive-summary/research-needs-remainder.rnw'>>=
