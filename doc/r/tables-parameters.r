@@ -246,17 +246,21 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
     mle.par <- c(mle.par, fi)
 
     ## Add Female spawning biomass B_f40%
-    ## b <- models[[1]]$timeseries[model$timeseries$Yr == end.yr,]
-    mle.par <- c(mle.par, NA)
+    b <- model$derived_quants["SSB_SPRtgt",2]
+    b <- b / 1000
+    mle.par <- c(mle.par, b)
 
     ## Add SPR MSY-proxy
     mle.par <- c(mle.par, 40)
 
     ## Add Exploitation fraction corresponding to SPR
-    mle.par <- c(mle.par, NA)
+    ex <- model$derived_quants["Fstd_SPRtgt",2]
+    mle.par <- c(mle.par, ex)
 
     ## Add Yield at Bf_40%
-    mle.par <- c(mle.par, NA)
+    yi <- model$derived_quants["TotYield_SPRtgt",2]
+    yi <- yi / 1000
+    mle.par <- c(mle.par, yi)
 
     if(is.null(tab)){
       tab <- as.data.frame(mle.par)
