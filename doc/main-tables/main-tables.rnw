@@ -162,7 +162,7 @@ make.risk.table(base.model,
                 space.size = 14)
 @
 
-\begin{landscape}
+%%\begin{landscape}
 <<main.parameter.estimates.sens.1, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(sens.models.1.for.table,
                                           model.names = sens.model.names.1.for.table,
@@ -174,7 +174,7 @@ make.short.parameter.estimates.sens.table(sens.models.1.for.table,
                                           font.size = 7,
                                           space.size = 9)
 @
-\end{landscape}
+%%\end{landscape}
 
 <<main.parameter.estimates.sens.2, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(sens.models.2.for.table,

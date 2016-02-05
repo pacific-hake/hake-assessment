@@ -213,8 +213,8 @@ sens.model.dir.names.1 <- c("26_Sensbase_sigmaR_1.0",
                             "38_Sensbase_AgeError_noCohort")
 ## Sens model names will be used to make the sensitivity model plot and its caption.
 ## Make sure they are the same length as sens.model.dir.names
-sens.model.names.1 <- c("Sigma R = 1.0",
-                        "Sigma R = 2.0",
+sens.model.names.1 <- c("Sigma R 1.0",
+                        "Sigma R 2.0",
                         "Steepness prior mean 0.5",
                         "Steepness fixed mean 1.0",
                         "Natural mortality SD 0.2",
