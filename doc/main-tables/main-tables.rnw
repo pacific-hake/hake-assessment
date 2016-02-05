@@ -1,6 +1,6 @@
 % main-tables.rnw
 
-% \clearpage -
+\clearpage
 
 \vspace{-2mm}   % To shift section heading up. Can't for now get rid of
                 %  previous blank page.
@@ -12,8 +12,8 @@ make.catches.table.US(catches, start.yr=start.yr, end.yr=end.yr,
                    weight.factor=1000,
                    xcaption = paste("Annual catches of Pacific Hake (t) in U.S. waters by sector, ", start.yr, "-", end.yr, ". Tribal catches are included in the sector totals.", sep=""),
                    xlabel = "tab:intro-catches-US",
-                   font.size = 11,
-                   space.size = 12)
+                   font.size = 10,
+                   space.size = 11)
 @
 \vspace{2mm}
 % \clearpage
