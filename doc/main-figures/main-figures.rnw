@@ -806,7 +806,7 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.3)],
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing changes in the natural mortality parameter and inclusion of an ageing error matrix.}
+\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing changes age of maximum selectivity from the value of 6 in the base model.}
 \label{fig:main-biomass-base-alternative-3}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -823,7 +823,7 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.3)],
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of recruitment for the base model and alternative sensitivity runs representing changes in the natural mortality parameter and inclusion of an ageing error matrix.}
+\caption{Maximum likelihood estimates of recruitment for the base model and alternative sensitivity runs representing changes age of maximum selectivity from the value of 6 in the base model.}
 \label{fig:main-recruitment-base-alternative-3}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
