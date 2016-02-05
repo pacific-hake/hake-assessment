@@ -16,14 +16,14 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 \label{fig:main-overview-map}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%  % Call figure directly
 \begin{figure}[H]
+\vspace{-5mm}  % Chris will hate this
 \begin{center}
-<<main.backscatter.map, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
-@
+\includegraphics[angle=90,origin=c]{main-figures/backscatter2smaller2.eps} % width=\maxwidth,
 \end{center}
-%\vspace{0mm}
+\vspace{-5mm}
 \caption{Spatial distribution of acoustic backscatter attributable to Pacific Hake from joint US-Canada acoustic surveys \Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}. Area of the circle is roughly proportional to observed backscatter.}
 \label{fig:main-backscatter-map}
 \end{figure}
