@@ -227,7 +227,7 @@ sens.model.names.2 <- c("No extrapolation on survey",
                         "Include age-1 index")
 sens.model.dir.names.3 <- c("23_Sensbase_Selmaxage5",
                             "24_Sensbase_Selmaxage7",
-                            "25_Sensbase_Selmaxage12",)
+                            "25_Sensbase_Selmaxage12")
 sens.model.names.3 <- c("Max. age of selectivity 5",
                         "Max. age of selectivity 7",
                         "Max. age of selectivity 12")
@@ -284,14 +284,14 @@ for(sens.model in sens.model.inds.2.for.table){
 ## number of elements in forcast.yrs
 catch.levels <- list(rep(0.01, 3),
                      rep(180000,3),
-                     rep(300000,3),
-                     rep(350000,3))
+                     ##rep(300000,3),
+                     rep(350000,3),
                      ##rep(400000,3),
-                     ##rep(428000,3),
+                     rep(440000,3),
                      ##rep(500000,3),
-                     ##rep(710000,3),
-                     ##c(730000,650000,520000),
-                     ##c(804576,682782,547280))
+                     c(790000,880000,770000),
+                     c(839476,922929,792803),
+                     c(906500,906500,781749))
 
 ## The catch as calculated using the default harvest policy. Used in forecasting.
 catch.default.policy.ind <- length(catch.levels)
@@ -304,28 +304,28 @@ catch.tac.ind <- 3
 ##  to be used in plots (Pretty names)
 catch.levels.names <- c("No Fishing",
                         "180,000 t",
-                        "300,000 t",
-                        "350,000 t")
+                        ##"300,000 t",
+                        "350,000 t",
                         ##"400,000 t",
-                        ##"428,000 t",
+                        "440,000 t",
                         ##"500,000 t",
-                        ##"stableCatch",
-                        ##"SPR100",
-                        ##paste0("Default: ",fmt0(catch.default.policy[1])," t"))
+                        "SPR100",
+                        paste0("Default: ",fmt0(catch.default.policy[1])," t"),
+                        "stableCatch")
 
 ## catch.levels.dir.names is a list of N names for the catch levels given in catch.levels,
 ##  to be used as the directory names (OS-naming friendly). Use prefixed numbers so that
 ##  the list order is the same as the directory order.
 catch.levels.dir.names <- c("01_0",
                             "02_180000",
-                            "03_300000",
-                            "04_350000")
+                            ##"03_300000",
+                            "04_350000",
                             ##"05_400000",
-                            ##"06_428000",
+                            "06_440000",
                             ##"07_500000",
-                            ##"08_stableCatch",
-                            ##"09_SPR100",
-                            ##"10_DefaultHR")
+                            "09_SPR100",
+                            "10_DefaultHR",
+                            "08_stableCatch")
 
 ################################################################################
 ## Model loading questions
