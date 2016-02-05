@@ -983,7 +983,7 @@ make.squid.plot(retro.list,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Retrospective analysis of recruitment deviations from maximum likelihood estimate (MLE) models over the last \Sexpr{length(plot.retro.yrs)} years. Recruitment deviations are the log-scale differences between recruitment estimated by the model and expected recruitment from the spawner-recruit relationship. Lines represent estimated recruitment deviations for cohorts from \Sexpr{min(retro.cohorts)} to \Sexpr{max(retro.cohorts)}, with cohort birth year marked at the right of each color-coded line. Values are estimated by models using data available only up to the year in which each cohort was a given age.}
+\caption{Retrospective analysis of recruitment deviations from maximum likelihood estimate (MLE) models over the last \Sexpr{length(plot.retro.yrs)+1} years. Recruitment deviations are the log-scale differences between recruitment estimated by the model and expected recruitment from the spawner-recruit relationship. Lines represent estimated recruitment deviations for cohorts from \Sexpr{min(retro.cohorts)} to \Sexpr{max(retro.cohorts)}, with cohort birth year marked at the right of each color-coded line. Values are estimated by models using data available only up to the year in which each cohort was a given age.}
 \label{fig:main-retrospective.recruitment}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -998,7 +998,7 @@ make.squid.plot(retro.list,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Retrospective recruitment estimates shown Figure \ref{fig:main-retrospective.recruitment} scaled relative to the most recent estimate of the strength of each cohort.}
+\caption{Retrospective recruitment estimates shown in Figure \ref{fig:main-retrospective.recruitment} scaled relative to the most recent estimate of the strength of each cohort.}
 \label{fig:main-relative-retrospective.recruitment}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1011,7 +1011,7 @@ plot(1:10, main="Placeholder dummy figure")
 @
 \end{center}
 %\vspace{0mm}
-\caption{Summary of historical Pacific Hake assessment estimates of spawning biomass. **The 2013 and 2014 assessment estimated trajectories (red and blue lines) are almost completely covered by the 2015 estimated trajectory. **What is the shaded region? **The 95\% range from the current model?.}
+\caption{Summary of historical Pacific Hake assessment estimates of spawning biomass. Shading represents the approximate 95\% confidence range from the \Sexpr{end.yr} base model.}
 \label{fig:main-historical-assessments}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
