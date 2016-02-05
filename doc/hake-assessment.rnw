@@ -32,6 +32,7 @@
 \usepackage{multirow}          %% Used in decision tables
 \usepackage{booktabs}          %% Used in executive summary tables
 \usepackage{tabularx}
+\usepackage{pdflscape}
 \usepackage[parfill]{parskip}  % So paragraphs will have a blank line between them
 \setlength{\parskip}{12pt}
 
@@ -191,11 +192,6 @@
                             %% Will probably delete footers in main text
                             %%  for final Res Doc.
 
-\linenumbers             %% Uncomment to add in line numbers
-
-%% \modulolinenumbers[5] %% Just number every 5th line. Doesn't restart
-                         %%  numbers on each page, but need lineno package
-                         %%  I think (AME). Probably no need to use.
 
 \begin{document}
 % \color{black} % AME will sort this out, or try other fonts.
@@ -295,6 +291,11 @@ This DRAFT document is non-citable.
                                                % number
 \renewcommand{\bibsection}{\section{REFERENCES}} %References as numbered section
 
+\linenumbers             %% Add line numbers
+\rightlinenumbers        %% Put line numbers in right margin
+%% \modulolinenumbers[5] %% Just number every 5th line. Doesn't restart
+                         %%  numbers on each page, but need lineno package
+                         %%  I think (AME). Probably no need to use.
 
 %% Comment out any un-needed sections from here onwards:
 <<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=

@@ -2,43 +2,29 @@
 
 \clearpage
 
-\section*{Missing references}
+\section*{**Missing references [delete once empty]}
 
-** References needed were in last year's assessment text but not in its bibliography or in the .bib file from Allan:
-
-
-Jürgen Alheit and T.J. Pitcher eds, Hake: Biology, fisheries and markets. Chapman and Hall. 1995
+**Andy now assuming that references that were in last year's assessment but not its bibliography, are the ones in the .bib file (that Allan originally sent me).
 
 
+
+** References needed (or delete them from text) that were in last year's assessment text but not in its bibliography or in the .bib file from Allan:
+
+{\tt introduction.rnw}:
 
 Lloris et al. 2005
-Dorn, M. W. 1992. Detecting environmental covariates of Pacific whiting Merlusccius productus, growth using a growht increment regression model. Fishery Bulletin 90:260-275.
 
-Vrooman and Paloma 1977
-Vrooman, A., M and P. A. Paloma. 1977. Dwarf hake off the coast of Baja California. Calif. Coop. Oceanic. Fish. Invest. Rep. 19:67-72.
+
+
+---
 
 Dorn 1991 - should this be Dorn and Methot 1991, as in the 2015 bibliography?
 
-Dorn 1992 
 NGT: I have no idea what this referred to. It could be
 Dorn, M.W. and Methot, R.D. 1992. Status of coastal Pacific whiting resource in 1992. Alaska Fisheries Science Center
 National Marine Fisheries Service, National Oceanic and Atmospheric Administration,7600 Sand Point Way NE, BIN C15700, Seattle, WA 98115-0070
 
 
-** References that were in last year's assessment but not its bibliography, but I'm taking from the .bib file:
-
-\citet{IwamotoFordEtAl2004}
-Iwamoto E., Ford M. J., Gustafson R. G. 2004. Genetic population structure of Pacific hake, Merluccius productus, in the Pacific Northwest. Environmental Biology of Fishes, 69: 187–199
-
-\citet{KingMcFarlaneEtAl2012}
-King, J. R., G. A. McFarlane, S. R. M. Jones, S. R. Gilmore, and C. L. Abbott. 2012. Stock delineation of migratory and resident Pacific hake in Canadian waters. Fisheries Research 114:19-30.
-
-\citep{Dorn1995b} - there are two Dorn (1995) references in the .bib file, I assume the one referenced next to Agostini et al. is the CalCOFI report, not the stock assessment.
-NGT: not sure here
-
-\citep{AgostiniFrancisEtAl2006}
-
-This is: Agostini, V. N., R. C. Francis, A. B. Hollowed, S. D. Pierce, C. Wilson, and A. N. Hendrix. 2006. The relationship between Pacific hake (Merluccius productus) distribution and poleward subsurface flow in the California Current System. Canadian Journal of Fisheries and Aquatic Sciences 63:2648-2659.
 
 % \vspace{20mm} % remove me when refs are sorted out
 

@@ -61,6 +61,7 @@ source("figures-selex.r")
 source("figures-stock-recruitment.r")
 source("figures-mle-mcmc.r")
 source("figures-overview-map.r")
+source("figures-data.r")
 
 source("tables-timeseries.r")
 source("tables-reference-points.r")
@@ -203,32 +204,33 @@ if((length(bridge.model.names.1) != length(bridge.model.dir.names.1)) |
 ################################################################################
 ## Sensitivity models
 ################################################################################
-sens.model.dir.names.1 <- c("23_Sensbase_Selmaxage5",
-                            "24_Sensbase_Selmaxage7",
-                            "25_Sensbase_Selmaxage12",
-                            "26_Sensbase_sigmaR_1.0",
+sens.model.dir.names.1 <- c("26_Sensbase_sigmaR_1.0",
                             "27_Sensbase_sigmaR_2.0",
                             "28_Sensbase_h_0.5prior",
-                            "29_Sensbase_h_1.0fix")
+                            "29_Sensbase_h_1.0fix",
+                            "36_Sensbase_M_SD0.2",
+                            "37_Sensbase_M_SD0.3",
+                            "38_Sensbase_AgeError_noCohort")
 ## Sens model names will be used to make the sensitivity model plot and its caption.
 ## Make sure they are the same length as sens.model.dir.names
-sens.model.names.1 <- c("Max. age of selectivity = 5",
-                        "Max. age of selectivity = 7",
-                        "Max. age of selectivity = 12",
-                        "Sigma R = 1.0",
+sens.model.names.1 <- c("Sigma R = 1.0",
                         "Sigma R = 2.0",
-                        "Steepness prior mean = 0.5",
-                        "Steepness fixed mean = 1.0")
+                        "Steepness prior mean 0.5",
+                        "Steepness fixed mean 1.0",
+                        "Natural mortality SD 0.2",
+                        "Natural mortality SD 0.3",
+                        "Include ageing error")
+
 sens.model.dir.names.2 <- c("32_Sensbase_Survey_noExtrap",
                             "33_Sensbase_Age1Index")
 sens.model.names.2 <- c("No extrapolation on survey",
                         "Include age-1 index")
-sens.model.dir.names.3 <- c("36_Sensbase_M_SD0.2",
-                            "37_Sensbase_M_SD0.3",
-                            "38_Sensbase_AgeError_noCohort")
-sens.model.names.3 <- c("Natural mortality SD = 0.2",
-                        "Natural mortality SD = 0.3",
-                        "Include ageing error")
+sens.model.dir.names.3 <- c("23_Sensbase_Selmaxage5",
+                            "24_Sensbase_Selmaxage7",
+                            "25_Sensbase_Selmaxage12",)
+sens.model.names.3 <- c("Max. age of selectivity 5",
+                        "Max. age of selectivity 7",
+                        "Max. age of selectivity 12")
 
 ## Sensitivity model indices are used to tell knitr which elements of the models list are to
 ## be plotted together.
@@ -250,6 +252,28 @@ if((length(sens.model.names.1) != length(sens.model.dir.names.1)) |
    (length(sens.model.names.3) != length(sens.model.dir.names.3))){
   stop("One of the sens.model.names vectors in all.r has a different length than its sens.model.dir.names counterpart. Make sure these two vectors match in length and try again.\n")
 }
+
+## A vector of all sensitivities for the MLE parameters, derived quantiles, and reference points table
+sens.model.inds.1.for.table <- sens.model.inds.1
+sens.model.names.1.for.table <- c("Base model", sens.model.names.1)
+sens.models.1.for.table <- list(models[[base.model.ind]])
+i <- 1
+for(sens.model in sens.model.inds.1.for.table){
+  sens.models.1.for.table[[i + 1]] <- models[[sens.model]]
+  i <- i + 1
+}
+sens.model.inds.2.for.table <- c(sens.model.inds.2, sens.model.inds.3)
+sens.model.names.2.for.table <- c("Base model", sens.model.names.2, sens.model.names.3)
+sens.models.2.for.table <- list(models[[base.model.ind]])
+i <- 1
+for(sens.model in sens.model.inds.2.for.table){
+  sens.models.2.for.table[[i + 1]] <- models[[sens.model]]
+  i <- i + 1
+}
+## sens.models.1.for.table now contains the base case and sensitivity group 1 models
+## sens.model.names.1.for.table now contains "Base model" sensitivity group 1 models
+## sens.models.2.for.table now contains the base case and sensitivity groups 2 and 3 models
+## sens.model.names.2.for.table now contains "Base model" sensitivity groups 2 and 3 models
 
 ################################################################################
 ## Forecasting
@@ -291,7 +315,7 @@ catch.levels.names <- c("No Fishing",
 
 ## catch.levels.dir.names is a list of N names for the catch levels given in catch.levels,
 ##  to be used as the directory names (OS-naming friendly). Use prefixed numbers so that
-## the list order is the same as the directory order.
+##  the list order is the same as the directory order.
 catch.levels.dir.names <- c("01_0",
                             "02_180000",
                             "03_300000",
