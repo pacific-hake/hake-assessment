@@ -162,7 +162,7 @@ make.risk.table(base.model,
                 space.size = 14)
 @
 
-\begin{landscape}
+%%\begin{landscape}
 <<main.parameter.estimates.sens.1, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(sens.models.1.for.table,
                                           model.names = sens.model.names.1.for.table,
@@ -174,7 +174,7 @@ make.short.parameter.estimates.sens.table(sens.models.1.for.table,
                                           font.size = 7,
                                           space.size = 9)
 @
-\end{landscape}
+%%\end{landscape}
 
 <<main.parameter.estimates.sens.2, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(sens.models.2.for.table,
@@ -187,9 +187,18 @@ make.short.parameter.estimates.sens.table(sens.models.2.for.table,
                                           font.size = 7,
                                           space.size = 9)
 @
-\textbf{**MISSING TABLE - MLE estimates etc.. for base model and all sensitivities...}
 
-\textbf{**MISSING TABLE - Select parameters, dervied quantities, and reference points for base vs. retrospectives...}
+<<main.parameter.estimates.retro, results='asis', echo=FALSE>>=
+make.short.parameter.estimates.sens.table(retro.list,
+                                          model.names = retro.model.names,
+                                          posterior.regex = key.posteriors,
+                                          end.yr = end.yr,
+                                          digits = 3,
+                                          xcaption <- paste0("Select parameters, derived quantities, and reference point estimates for retrospective analyses using the base model. Values in italics are implied since they occur after the ending year of the respective retrospective analysis."),
+                                          xlabel <- "tab:main-parameter-estimates-retro",
+                                          font.size = 7,
+                                          space.size = 9)
+@
 
 
 

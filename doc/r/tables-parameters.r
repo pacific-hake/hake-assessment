@@ -204,7 +204,7 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
     return(exp(x) * 2)
   }
 
-  tab <- NULL ## Data frame to hold the columns
+  tab <- NULL
   for(model in models){
     j <- model$par
     p.names <- rownames(j)
@@ -258,16 +258,20 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
     ## Add Yield at Bf_40%
     mle.par <- c(mle.par, NA)
 
-    tab <- cbind(tab, mle.par)
+    if(is.null(tab)){
+      tab <- as.data.frame(mle.par)
+    }else{
+      tab <- cbind(tab, mle.par)
+    }
   }
 
   ## Format the tables rows depending on what they are
   ## Decimal values
   tab[c(1,3,4),] <- fmt0(tab[c(1,3,4),], 3)
   ## Large numbers with no decimal points but probably commas
-  tab[c(2,5,6,7),] <- fmt0(apply(tab[c(2,5,6,7),], 1, as.numeric))
+  tab[c(2,5,6,7),] <- fmt0(apply(tab[c(2,5,6,7),], c(1,2), as.numeric))
   ## Percentages
-  tab[c(8,9,10),] <- paste0(fmt0(apply(tab[c(8,9,10),], 1, as.numeric), 1), "\\%")
+  tab[c(8,9,10),] <- paste0(fmt0(apply(tab[c(8,9,10),], c(1,2), as.numeric), 1), "\\%")
   ## SPR Percentages row (some may be NA). This is really ugly but works
   tab[12, !is.na(tab[12,])] <- paste0(fmt0(as.numeric(tab[12, !is.na(tab[12,])]), 1), "\\%")
 
@@ -446,9 +450,9 @@ make.short.parameter.estimates.table <- function(model,                ## model 
   ## Decimal values
   tab[c(1,3,4),] <- fmt0(tab[c(1,3,4),], 3)
   ## Large numbers with no decimal points but probably commas
-  tab[c(2,5,6,7),] <- fmt0(apply(tab[c(2,5,6,7),], 1, as.numeric))
+  tab[c(2,5,6,7),] <- fmt0(apply(tab[c(2,5,6,7),], c(1,2), as.numeric))
   ## Percentages
-  tab[c(8,9,10),] <- paste0(fmt0(apply(tab[c(8,9,10),], 1, as.numeric), 1), "\\%")
+  tab[c(8,9,10),] <- paste0(fmt0(apply(tab[c(8,9,10),], c(1,2), as.numeric), 1), "\\%")
   ## SPR Percentages row (some may be NA). This is really ugly but works
   tab[12, !is.na(tab[12,])] <- paste0(fmt0(apply(tab[12, !is.na(tab[12,])], 1, as.numeric), 1), "\\%")
 
