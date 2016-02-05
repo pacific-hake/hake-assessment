@@ -251,28 +251,6 @@ if((length(sens.model.names.1) != length(sens.model.dir.names.1)) |
   stop("One of the sens.model.names vectors in all.r has a different length than its sens.model.dir.names counterpart. Make sure these two vectors match in length and try again.\n")
 }
 
-## A vector of all sensitivities for the MLE parameters, derived quantiles, and reference points table
-sens.model.inds.1.for.table <- sens.model.inds.1
-sens.model.names.1.for.table <- c("Base model", sens.model.names.1)
-sens.models.1.for.table <- list(models[[base.model.ind]])
-i <- 1
-for(sens.model in sens.model.inds.1.for.table){
-  sens.models.1.for.table[[i + 1]] <- models[[sens.model]]
-  i <- i + 1
-}
-sens.model.inds.2.for.table <- c(sens.model.inds.2, sens.model.inds.3)
-sens.model.names.2.for.table <- c("Base model", sens.model.names.2, sens.model.names.3)
-sens.models.2.for.table <- list(models[[base.model.ind]])
-i <- 1
-for(sens.model in sens.model.inds.2.for.table){
-  sens.models.2.for.table[[i + 1]] <- models[[sens.model]]
-  i <- i + 1
-}
-## sens.models.1.for.table now contains the base case and sensitivity group 1 models
-## sens.model.names.1.for.table now contains "Base model" sensitivity group 1 models
-## sens.models.2.for.table now contains the base case and sensitivity groups 2 and 3 models
-## sens.model.names.2.for.table now contains "Base model" sensitivity groups 2 and 3 models
-
 ################################################################################
 ## Forecasting
 ################################################################################
@@ -368,6 +346,10 @@ if(reload.models == "y" | reload.models == "Y"){
   cat("\n\nModels have NOT been loaded.\n\n")
 }
 
+if(!exists("models")){
+  stop("Cannot continue... Models must be loaded first.\n\n")
+}
+
 ## A simpler variable for the base model
 base.model <- models[[base.model.ind]]
 cat("Base model is ",base.model$path,"\n\n")
@@ -443,6 +425,32 @@ for(i in plot.retro.yrs){
 }
 
 ################################################################################
+## Set up lists to use for sensitivity plots and tables
+################################################################################
+
+## A vector of all sensitivities for the MLE parameters, derived quantiles, and reference points table
+sens.model.inds.1.for.table <- sens.model.inds.1
+sens.model.names.1.for.table <- c("Base model", sens.model.names.1)
+sens.models.1.for.table <- list(models[[base.model.ind]])
+i <- 1
+for(sens.model in sens.model.inds.1.for.table){
+  sens.models.1.for.table[[i + 1]] <- models[[sens.model]]
+  i <- i + 1
+}
+sens.model.inds.2.for.table <- c(sens.model.inds.2, sens.model.inds.3)
+sens.model.names.2.for.table <- c("Base model", sens.model.names.2, sens.model.names.3)
+sens.models.2.for.table <- list(models[[base.model.ind]])
+i <- 1
+for(sens.model in sens.model.inds.2.for.table){
+  sens.models.2.for.table[[i + 1]] <- models[[sens.model]]
+  i <- i + 1
+}
+## sens.models.1.for.table now contains the base case and sensitivity group 1 models
+## sens.model.names.1.for.table now contains "Base model" sensitivity group 1 models
+## sens.models.2.for.table now contains the base case and sensitivity groups 2 and 3 models
+## sens.model.names.2.for.table now contains "Base model" sensitivity groups 2 and 3 models
+
+################################################################################
 ## Variables to be used in the knitr code chunks
 ################################################################################
 
@@ -486,6 +494,10 @@ last.year.can.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]
 latest.year.can.jv <- max(filter(catches, CAN_JV > 0)$Year)  # latest year of JV in Canada
 last.year.can.shore <- fmt0(filter(catches, Year == last.data.yr)$CAN_Shoreside)
 last.year.can.freezer <- fmt0(filter(catches, Year == last.data.yr)$CAN_FreezeTrawl)
+last.year.can.shore.percent <- fmt0(filter(catches, Year == last.data.yr)$CAN_Shoreside /
+                                    as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal) * 100.0, 1)
+last.year.can.freezer.percent <- fmt0(filter(catches, Year == last.data.yr)$CAN_FreezeTrawl /
+                                      as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal) * 100.0, 1)
 years.Can.JV.catch.eq.0.recent = years.Can.JV.catch.eq.0(catches)
 
 
