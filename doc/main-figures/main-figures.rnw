@@ -7,7 +7,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.overview.map, fig.height=8, fig.width=8>>=
+<<main.overview.map, fig.height=10>>=
 make.overview.map.plot(r.loc = file.path("..", "r"))
 @
 \end{center}

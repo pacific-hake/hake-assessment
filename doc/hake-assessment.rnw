@@ -329,9 +329,6 @@ This DRAFT document is non-citable.
 <<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
 @
 
-<<missing-refs, child='missing-references/missing-references.rnw'>>=
-@      % Keeping track of missing references, will get deleted once empty.
-
 % \clearpage
 
 \bibliographystyle{hake}
