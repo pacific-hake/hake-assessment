@@ -327,7 +327,7 @@ This DRAFT document is non-citable.
 <<missing-refs, child='missing-references/missing-references.rnw'>>=
 @      % Keeping track of missing references, will get deleted once empty.
 
-\clearpage
+% \clearpage
 
 \bibliographystyle{resDoc}
 \bibliography{all}

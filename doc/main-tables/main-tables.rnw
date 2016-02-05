@@ -2,25 +2,11 @@
 
 % \clearpage -
 
-% \vspace{-2mm}   % To shift section heading up. Can't for now get rid of
+\vspace{-2mm}   % To shift section heading up. Can't for now get rid of
                 %  previous blank page.
 
 \section{TABLES} \label{sec:tables}
-
 % \vspace{-2mm}
-
-% Tables referenced in introduction-section.rnw:
-
-%<<landings.tac.table, results='asis', echo=FALSE>>=
-%make.landings.tac.table(landings.vs.tac,
-%                        start.yr = end.yr-10,
-%                        end.yr = end.yr-1,
-%                        xcaption <- "Recent trends in Pacific Hake landings and management decisions.",
-%                        xlabel <- "tab:intro-landings-tac",
-%                        font.size = 6,
-%                        space.size = 8)
-%@
-
 <<catches.US, results='asis', echo=FALSE>>=
 make.catches.table.US(catches, start.yr=start.yr, end.yr=end.yr,
                    weight.factor=1000,
@@ -30,7 +16,7 @@ make.catches.table.US(catches, start.yr=start.yr, end.yr=end.yr,
                    space.size = 12)
 @
 \vspace{2mm}
-\clearpage
+% \clearpage
 
 <<catches.Can, results='asis', echo=FALSE>>=
 make.catches.table.Can(catches, start.yr=start.yr, end.yr=end.yr,
