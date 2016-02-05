@@ -227,7 +227,7 @@ sens.model.names.2 <- c("No extrapolation on survey",
                         "Include age-1 index")
 sens.model.dir.names.3 <- c("23_Sensbase_Selmaxage5",
                             "24_Sensbase_Selmaxage7",
-                            "25_Sensbase_Selmaxage12",)
+                            "25_Sensbase_Selmaxage12")
 sens.model.names.3 <- c("Max. age of selectivity 5",
                         "Max. age of selectivity 7",
                         "Max. age of selectivity 12")
