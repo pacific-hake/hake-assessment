@@ -11,7 +11,6 @@
 make.overview.map.plot(r.loc = file.path("..", "r"))
 @
 \end{center}
-%\vspace{0mm}
 \caption{Overview map of the area in the Northeast Pacific Ocean occupied by Pacific Hake. Common areas referred to in this document are shown.}
 \label{fig:main-overview-map}
 \end{figure}
@@ -30,27 +29,25 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+\begin{figure}[p]
 \begin{center}
-<<main.data.overview.map, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
+<<main.data.overview.map, fig.height=4.5, fig.width=8>>=
+make.data.overview.plot(base.model)
 @
 \end{center}
-%\vspace{0mm}
 \caption{Overview of data used in this assessment, \Sexpr{start.yr}--\Sexpr{last.data.yr}.}
 \label{fig:main-data-overview}
-\end{figure}
+%% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
+%% JOINED ON PAGE
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+%% \begin{figure}[H]
 \begin{center}
-<<main.total.catches, fig.height=6, fig.width=9>>=
-make.catches.plot(catches,
-                  leg.y.loc=450) ## leg.y.loc is y-coord to place legend at
+<<main.total.catches, fig.height=5, fig.width=8>>=
+## leg.y.loc is y-coord to place legend at
+make.catches.plot(catches, leg.y.loc = 475)
 @
 \end{center}
-%\vspace{0mm}
 \caption{Total Pacific Hake catch used in the assessment by sector, \Sexpr{start.yr}--\Sexpr{end.yr}.
   U.S. tribal catches are included in the sectors where they are represented.}
 \label{fig:main-catches}
@@ -58,48 +55,22 @@ make.catches.plot(catches,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-% \begin{figure}[H]
-% \begin{center}
-% <<main.us.at.sea.depths, fig.height=6, fig.width=8>>=
-% plot(1:10, main="Placeholder dummy figure")
-% @
-% \end{center}
-% %\vspace{0mm}
-% \caption{Distribution of bottom depths (left) and fishing depths (right), in fathoms, of Pacific Hake catches in the U.S. at-sea fleet from 2008--\Sexpr{last.data.yr}.}
-% \label{fig:main-us-at-sea-depths}
-% \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{figure}[H]
-% \begin{center}
-% <<main.us.catch-rates, fig.height=6, fig.width=8>>=
-% plot(1:10, main="Placeholder dummy figure")
-% @
-% \end{center}
-% %\vspace{0mm}
-% \caption{Unstandardized (raw) catch-rates (t/hr) of Pacific Hake catches in the U.S. at-sea fleet in \Sexpr{last.data.yr}.}
-% \label{fig:main-us-catch-rates}
-% \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
 %% Call the figure directly instead of create it because the data are confidential
-\begin{figure}[H]
+\begin{figure}[p]
 \begin{center}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{main-figures/fishDepthsUS}
+\includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishDepthsUS}
 \end{center}
 \caption{Distribution of bottom depths (left) and fishing depths (right), in fathoms, of \fishname\ catches in the U.S. at-sea fleet from 2008--\Sexpr{last.data.yr}.}
 \label{fig:main-us-at-sea-depths}
-\end{figure}
+%% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
+%% JOINED ON PAGE
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+%% \begin{figure}[H]
 \begin{center}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{main-figures/fishCatchRatesUS}
+\includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishCatchRatesUS}
 \end{center}
 \caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in the U.S. at-sea fleet in \Sexpr{last.data.yr}.}
 \label{fig:main-us-catch-rates}
@@ -121,7 +92,6 @@ make.age.comp.bubble.plot(base.model,
 make.age.comp.bubble.plot(base.model, subplot = 1)
 @
 \end{center}
-%\vspace{0mm}
 \caption{Age compositions for the acoustic survey (top) and the aggregate fishery (bottom, all sectors combined)
   for the years \Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}.
   Proportions in each year sum to 1.0 and area of the bubbles are
@@ -141,12 +111,10 @@ make.age.comp.bubble.plot(base.model, subplot = 1)
 make.survey.biomass.plot(models, modelnum=base.model.ind)
 @
 \end{center}
-%\vspace{0mm}
 \caption{Acoustic survey biomass index (millions of metric tons). Approximate 95\% confidence intervals are based on only sampling variability (\Sexpr{survey.start.yr}--2007, 2011--\Sexpr{survey.end.yr}) in addition to squid/hake apportionment uncertainty (2009, in blue).}
 \label{fig:main-survey-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
@@ -799,38 +767,6 @@ plot(1:10, main="Placeholder dummy figure")
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[p]
 \begin{center}
-<<main.biomass.base.alternative.1, fig.height=4.5, fig.width=8>>=
-make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
-                     subplots = 2,
-                     model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
-                     end.yr = end.yr)
-@
-\end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing changes to selectivity, $\sigma_r$, and steepness parameters.}
-\label{fig:main-biomass-base-alternative-1}
-%% \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-%% JOINED ON PAGE
-%%%%%%%%%%%%%%%%%%%%%%%
-%% \begin{figure}[H]
-\begin{center}
-<<main.recruitment.base.alternative.1, fig.height=4.5, fig.width=8>>=
-make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
-                     subplots = 8,
-                     model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
-                     legendloc = "topleft",
-                     end.yr = end.yr)
-@
-\end{center}
-%\vspace{0mm}
-\caption{Maximum likelihood estimates of recruitment for the base model and alternative sensitivity runs representing changes to selectivity, $\sigma_r$, and steepness parameters.}
-\label{fig:main-recruitment-base-alternative-1}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
-\begin{center}
 <<main.biomass.base.alternative.2, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
                      subplots = 2,
@@ -855,7 +791,7 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of recruitment for the base model and alternative sensitivity runs representing no extrapolation on the acoustic survey estimate and inclusion of an age-1 index.}
+\caption{Density plot showing the MLE recruitment deviate estimates for the 2014 cohort for the base model and alternative sensitivity runs representing no extrapolation on the acoustic survey estimate and inclusion of an age-1 index.}
 \label{fig:main-recruitment-base-alternative-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -889,6 +825,38 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.3)],
 %\vspace{0mm}
 \caption{Maximum likelihood estimates of recruitment for the base model and alternative sensitivity runs representing changes in the natural mortality parameter and inclusion of an ageing error matrix.}
 \label{fig:main-recruitment-base-alternative-3}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[p]
+\begin{center}
+<<main.biomass.base.alternative.1, fig.height=4.5, fig.width=8>>=
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
+                     subplots = 2,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
+                     end.yr = end.yr)
+@
+\end{center}
+\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing changes to $\sigma_r$, steepness, and natural mortality parameters.}
+\label{fig:main-biomass-base-alternative-1}
+%% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{figure}[H]
+\begin{center}
+<<main.status.base.alternative.1, fig.height=4.5, fig.width=8>>=
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
+                     subplots = 4,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
+                     legendloc = "topleft",
+                     end.yr = end.yr)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity runs representing changes to $\sigma_r$, steepness, and natural mortality parameters.}
+\label{fig:main-status-base-alternative-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 

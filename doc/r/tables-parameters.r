@@ -187,6 +187,130 @@ make.parameters.estimated.summary.table <- function(model,                ## mod
 
 }
 
+make.short.parameter.estimates.sens.table <- function(models,               ## A list of models which contain the MLE output from SS_output
+                                                      model.names,          ## A vector of names of the same length as the number of models in the models list
+                                                      posterior.regex,      ## a vector of the posterior names to search for (partial names will be matched)
+                                                      end.yr,
+                                                      digits = 3,           ## number of decimal points for the estimates
+                                                      xcaption = "default", ## Caption to use
+                                                      xlabel   = "default", ## Latex label to use
+                                                      font.size = 9,        ## Size of the font for the table
+                                                      space.size = 10){     ## Size of the spaces for the table
+  ## Returns an xtable in the proper format for the MLE parameter estimates for all the models,
+  ##  one for each column
+
+  calc.ro <- function(x){
+    ## Changes from logspace and multiplies by two because it's female only
+    return(exp(x) * 2)
+  }
+
+  tab <- NULL ## Data frame to hold the columns
+  for(model in models){
+    j <- model$par
+    p.names <- rownames(j)
+    mle.grep <- unique(grep(paste(posterior.regex, collapse="|"), p.names))
+    mle.par <- j[mle.grep,]$Value
+    mle.par[2] <- mle.par[2] * 1000 ### To make R millions
+
+    ## Add 2008 recruitment
+    rec <- model$recruit[model$recruit$year == 2008,]$pred_recr
+    rec <- rec / 1000 ## To make R in the millions
+    mle.par <- c(mle.par, rec)
+
+    ## Add 2010 recruitment
+    rec <- model$recruit[model$recruit$year == 2010,]$pred_recr
+    rec <- rec / 1000 ## To make R in the millions
+    mle.par <- c(mle.par, rec)
+
+    ## Add B0
+    b0 <- model$SBzero
+    b0 <- b0 / 1000 ## To make B0 in the thousands
+    mle.par <- c(mle.par, b0)
+
+    ## Add depletion for 2009
+    d <- model$timeseries[model$timeseries$Yr == 2009,]$SpawnBio
+    d <- d / (b0 * 1000)
+    d <- d * 100  ## To make a percentage
+    mle.par <- c(mle.par, d)
+
+    ## Add depletion for end.yr
+    d <- model$timeseries[model$timeseries$Yr == end.yr,]$SpawnBio
+    d <- d / (b0 * 1000)
+    d <- d * 100  ## To make a percentage
+    mle.par <- c(mle.par, d)
+
+    ## Add fishing intensity for end.yr
+    spr <- model$sprseries[model$sprseries$Year == end.yr - 1,]$SPR
+    spr40 <- model$sprseries[model$sprseries$Year == end.yr - 1,]$SPR_std
+    fi <- (1 - spr) / (1 - spr40)
+    mle.par <- c(mle.par, fi)
+
+    ## Add Female spawning biomass B_f40%
+    ## b <- models[[1]]$timeseries[model$timeseries$Yr == end.yr,]
+    mle.par <- c(mle.par, NA)
+
+    ## Add SPR MSY-proxy
+    mle.par <- c(mle.par, 40)
+
+    ## Add Exploitation fraction corresponding to SPR
+    mle.par <- c(mle.par, NA)
+
+    ## Add Yield at Bf_40%
+    mle.par <- c(mle.par, NA)
+
+    tab <- cbind(tab, mle.par)
+  }
+
+  ## Format the tables rows depending on what they are
+  ## Decimal values
+  tab[c(1,3,4),] <- fmt0(tab[c(1,3,4),], 3)
+  ## Large numbers with no decimal points but probably commas
+  tab[c(2,5,6,7),] <- fmt0(apply(tab[c(2,5,6,7),], 1, as.numeric))
+  ## Percentages
+  tab[c(8,9,10),] <- paste0(fmt0(apply(tab[c(8,9,10),], 1, as.numeric), 1), "\\%")
+  ## SPR Percentages row (some may be NA). This is really ugly but works
+  tab[12, !is.na(tab[12,])] <- paste0(fmt0(as.numeric(tab[12, !is.na(tab[12,])]), 1), "\\%")
+
+  ## Replace NAs with dashes
+  tab[is.na(tab)] <- "--"
+
+  ## Set the first column to be the names
+  tab <- cbind(c("Natural Mortality (\\emph{M})",
+                 "\\emph{R}\\subscr{0} (millions)",
+                 "Steepness (\\emph{h})",
+                 "Additional acoustic survey SD",
+                 "2008 recruitment",
+                 "2010 recruitment",
+                 "\\emph{B}\\subscr{0} (thousand t)",
+                 "2009 Relative Spawning Biomass",
+                 paste0(end.yr, " Relative Spawning Biomass"),
+                 paste0(end.yr - 1, " Fishing intensity: (1-SPR)/(1-SPR\\subscr{40\\%})"),
+                 "Female Spawning Biomass (\\emph{$B_{F_{40_{\\%}}}$})",
+                 "SPR\\subscr{MSY-proxy}",
+                 "Exploitation Fraction corresponding to SPR",
+                 "Yield at \\emph{$B_{F_{40_{\\%}}}$} (thousand t)"),
+               tab)
+  ## Need to split up the headers (model names) by words and let them stack on top of each other
+  model.names.str <- paste0("\\specialcell{", gsub(" ", "\\\\\\\\", model.names), "}")
+  colnames(tab) <- c("", model.names.str)
+
+  addtorow <- list()
+  addtorow$pos <- list()
+  addtorow$pos[[1]] <- 0
+  addtorow$pos[[2]] <- 4
+  addtorow$pos[[3]] <- 10
+  addtorow$command <- c("\\hline \\\\ \\textbf{\\underline{Parameters}} \\\\",
+                        "\\hline \\\\ \\textbf{\\underline{Derived Quantities}} \\\\",
+                        "\\hline \\\\ \\textbf{\\underline{Reference Points based on \\emph{F}\\subscr{40\\%}}} \\\\")
+
+  ## Make the size string for font and space size
+  size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
+  return(print(xtable(tab, caption=xcaption, label=xlabel, align=get.align(ncol(tab), just="c")),
+               caption.placement = "top", include.rownames=FALSE, sanitize.text.function=function(x){x},
+               size=size.string, add.to.row=addtorow, table.placement="H"))
+
+}
+
 make.short.parameter.estimates.table <- function(model,                ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
                                                  last.yr.model,        ## last year's base model for comparison
                                                  posterior.regex,      ## a vector of the posterior names to search for (partial names will be matched)
