@@ -447,10 +447,14 @@ make.forecast.risk.comparison.plot(base.model,
 \subsection*{Research and Data Needs} \label{sec:es-research-data-needs}
 \phantomsection \addcontentsline{toc}{subsection}{Research and Data Needs}
 
-% research-needs.rnw gets loaded in here and in research-section/research.rnw in
-%  main text. Saves manually updating.
+There are many research projects that could improve the stock assessment for Pacific Hake and lead to improved biological understanding and decision-making. The top three are:
+
+% research-needs.rnw gets loaded in here and also in 
+%  research-section/research.rnw in main text, and only contains
+%  the top few. Saves manually updating.
 <<es-research-sec, child='research-needs.rnw'>>=
 @
 
+\end{enumerate}     % To close off the short list.
 \newpage
 
