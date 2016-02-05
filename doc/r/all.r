@@ -300,11 +300,13 @@ catch.levels.dir.names <- c("01_0",
 
 reload.models <- readline(prompt = "Reload models (only necessary first time or if you add new models to the models directory)? [y/n] ")
 if(reload.models == "y" | reload.models == "Y"){
-  smart.load <- readline(prompt = "   Use smart load (will only reload newly-added models, thus keeping any forecasting done previously)? [y/n] ")
-  if(smart.load != "y" & smart.load != "Y"){
-    sure <- readline(prompt = "      Are you sure (your entire models list will be deleted and re-populated)? [y/n] ")
-    if(sure != "y" & sure != "Y"){
-      stop("I'm stopping because you aren't sure. Re-source to try again.\n\n")
+  if(exists("models")){ ## Only ask if the models list exists
+    smart.load <- readline(prompt = "   Use smart load (will only reload newly-added models, thus keeping any forecasting done previously)? [y/n] ")
+    if(smart.load != "y" & smart.load != "Y"){
+      sure <- readline(prompt = "      Are you sure (your entire models list will be deleted and re-populated)? [y/n] ")
+      if(sure != "y" & sure != "Y"){
+        stop("I'm stopping because you aren't sure. Re-source to try again.\n\n")
+      }
     }
   }
 }
