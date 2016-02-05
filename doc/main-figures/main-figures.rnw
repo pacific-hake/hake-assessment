@@ -96,8 +96,8 @@ make.age.comp.bubble.plot(base.model, subplot = 1)
   for the years \Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}.
   Proportions in each year sum to 1.0 and area of the bubbles are
   proportional to the proportion and consistent in both panels (see key at top).
-  The largest bubble in the survey data is \Sexpr{max.survey.age.prop[3]} for age \Sexpr{max.survey.age.prop[5]}
-  in \Sexpr{max.survey.age.prop[4]} and in the fishery is \Sexpr{max.fishery.age.prop[3]} for age \Sexpr{max.survey.age.prop[5]}
+  The largest bubble in the survey data is \Sexpr{fmt0(max.survey.age.prop[3] / 100, 2)} for age \Sexpr{max.survey.age.prop[5]}
+  in \Sexpr{max.survey.age.prop[4]} and in the fishery is \Sexpr{fmt0(max.fishery.age.prop[3] / 100, 2)} for age \Sexpr{max.survey.age.prop[5]}
   in \Sexpr{max.fishery.age.prop[4]}.}
 \label{fig:main-age-comp-bubbles}
 \end{figure}
