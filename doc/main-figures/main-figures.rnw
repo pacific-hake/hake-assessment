@@ -752,19 +752,6 @@ make.forecast.risk.comparison.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
-<<mle.survey.base.alternative, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
-@
-\end{center}
-%\vspace{0mm}
-\caption{Maximum likelihood estimates of expected survey biomass for the base model (black, same as red line in Figure~\ref{fig:main-mcmc-survey-fit}) and the alternative sensitivity run (red) which ***ONCE WE DECIDE ON ONE.}
-\label{fig:main-mle-survey-base-alternative}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[p]
 \begin{center}
 <<main.biomass.base.alternative.2, fig.height=4.5, fig.width=8>>=
@@ -797,34 +784,26 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
-<<main.biomass.base.alternative.3, fig.height=4.5, fig.width=8>>=
+<<main.base.alternative.3, fig.height=8, fig.width=8>>=
+oldpar <- par(no.readonly=TRUE)
+par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
+layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.3)],
                      subplots = 2,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.3),
                      end.yr = end.yr)
+make.selex.plot(base.model, pan.letter = "a")
+make.selex.plot(models[[sens.model.inds.3[1]]], pan.letter = "b")
+make.selex.plot(models[[sens.model.inds.3[2]]], pan.letter = "c")
+make.selex.plot(models[[sens.model.inds.3[3]]], pan.letter = "d")
+par <- oldpar
+mtext("Age", side = 1, line = 1, outer = TRUE)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing changes age of maximum selectivity from the value of 6 in the base model.}
-\label{fig:main-biomass-base-alternative-3}
-%% \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-%% JOINED ON PAGE
-%%%%%%%%%%%%%%%%%%%%%%%
-%% \begin{figure}[H]
-\begin{center}
-<<main.recruitment.base.alternative.3, fig.height=4.5, fig.width=8>>=
-make.comparison.plot(models[c(base.model.ind, sens.model.inds.3)],
-                     subplots = 8,
-                     model.names = c(paste0("Base model ", end.yr), sens.model.names.3),
-                     legendloc = "topleft",
-                     end.yr = end.yr)
-@
-\end{center}
-%\vspace{0mm}
-\caption{Maximum likelihood estimates of recruitment for the base model and alternative sensitivity runs representing changes age of maximum selectivity from the value of 6 in the base model.}
-\label{fig:main-recruitment-base-alternative-3}
+\caption{Maximum likelihood estimates of spawning biomass and selectivity for the base model and alternative sensitivity runs representing changes age of maximum selectivity from the value of 6 in the base model. Selectivity panels are a) Base model, b) \Sexpr{sens.model.names.3[1]}, c) \Sexpr{sens.model.names.3[2]}, d) \Sexpr{sens.model.names.3[3]}}
+\label{fig:main-base-alternative-3}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -857,45 +836,6 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
 %\vspace{0mm}
 \caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity runs representing changes to $\sigma_r$, steepness, and natural mortality parameters.}
 \label{fig:main-status-base-alternative-1}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
-<<catch.limit.base.alternative, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
-@
-\end{center}
-%\vspace{0mm}
-\caption{The posterior distribution of the default \Sexpr{end.yr} catch limit calculated using the default harvest policy (\Ffortyten). The dark shaded area ranges from the 2.5\% to 97.5\% quantiles. The base model is shown in black (the same distribution as in Figure~\ref{fig:main-projected-catch-density}) with a median at **GET FROM EARLIER, and the alternative sensitivity run (red) which ***AS PREVIOUS has a median of ***.}
-\label{fig:main-catch-limit-base-alternative}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
-<<natural.mortality.sensitivities, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
-@
-\end{center}
-%\vspace{0mm}
-\caption{Natural mortality as a function of age (left) and year (right) for two sensitivity analyses compared to the base model.}
-\label{fig:main-natural-mortality-sensitivities}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
-<<biomass.sensitivities, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
-@
-\end{center}
-%\vspace{0mm}
-\caption{Maximum likelihood estimates (MLEs) of spawning biomass at the beginning of each year for **two sensitivity analyses (red, blue) compared to the base model (black, **mostly obscured by the red lines). **Shaded areas are what?}
-\label{fig:main-biomass-sensitivities}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 

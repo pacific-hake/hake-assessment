@@ -447,6 +447,15 @@ plotBars.fn <- function(x,y,gap=0,scalar=1e6,add=F,ciCol="black",ciLty=1,ciLwd=1
   segments(x,y$hi/scalar,x,y$value/scalar+gap,col=ciCol,lty=ciLty,lwd=ciLwd) 
 }
 
+panel.letter <- function(letter){
+  # adds letters to plot panels
+  # letter is the letter to place on the panel
+  usr <- par("usr")
+  inset.x <- 0.05*(usr[2]-usr[1])
+  inset.y <- 0.05*(usr[4]-usr[3])
+  text(usr[1]+inset.x,usr[4]-inset.y,paste("(",letter,")",sep=""),cex=1.,font=1)
+}
+
 addpoly <- function(yrvec, lower, upper, color = 1, shade.col = NULL){
   lower[lower<0] <- 0 ## max of value or 0
   if(is.null(shade.col)){
