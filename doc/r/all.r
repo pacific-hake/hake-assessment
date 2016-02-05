@@ -323,9 +323,9 @@ catch.levels.dir.names <- c("01_0",
                             ##"05_400000",
                             "06_440000",
                             ##"07_500000",
-                            "09_SPR100",
-                            "10_DefaultHR",
-                            "08_stableCatch")
+                            "08_SPR100",
+                            "09_DefaultHR",
+                            "10_stableCatch")
 
 ################################################################################
 ## Model loading questions
