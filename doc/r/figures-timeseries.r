@@ -322,6 +322,7 @@ make.comparison.plot <- function(models,                   ## models is a list o
                                  densitynames = NULL,      ## Same as densitynames argument in SSplotComparisons
                                  indexPlotEach = FALSE,    ## Same as indexPlotEach argument in SSplotComparisons
                                  indexUncertainty = FALSE, ## Same as indexUncertainty argument in SSplotComparisons
+                                 indexfleets = NULL,       ## Passed to the SSplotComparisons function
                                  is.retro = FALSE,         ## Is this a retrospective plot?
                                  legend = TRUE,            ## Passed to the SSplotComparisons function
                                  legendloc = "topright",   ## Passed to the SSplotComparisons function
@@ -352,6 +353,7 @@ make.comparison.plot <- function(models,                   ## models is a list o
                       legendloc = legendloc,
                       indexPlotEach = indexPlotEach,
                       indexUncertainty = indexUncertainty,
+                      indexfleets = indexfleets,
                       endyrvec = endyrvec,
                       new=FALSE)
   }else{
@@ -363,6 +365,7 @@ make.comparison.plot <- function(models,                   ## models is a list o
                       densitynames = densitynames,
                       indexPlotEach = indexPlotEach,
                       indexUncertainty = indexUncertainty,
+                      indexfleets = indexfleets,
                       endyrvec = endyrvec,
                       new=FALSE)
   }

@@ -770,15 +770,24 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
 %% \begin{figure}[H]
 \begin{center}
 <<main.recruitment.base.alternative.2, fig.height=4.5, fig.width=8>>=
+sens.density.year <- last.data.yr - 1
+sens.density.names <- c(paste0("Late_RecrDev_",sens.density.yr))
+oldpar <- par()
+par(mar = c(2.6, 3.1, 1.1, 1.1))
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
-                     subplots = 8,
+                     subplots = 14,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
                      legendloc = "topleft",
+                     densitynames = sens.density.names,
+                     indexfleets = c(2,2,2,2),
+                     indexPlotEach = TRUE,
                      end.yr = end.yr)
+mtext("Catch (thousand t)", side = 1, line = 1, outer = TRUE)
+par <- oldpar
 @
 \end{center}
 %\vspace{0mm}
-\caption{Density plot showing the MLE recruitment deviate estimates for the 2014 cohort for the base model and alternative sensitivity runs representing no extrapolation on the acoustic survey estimate and inclusion of an age-1 index.}
+\caption{Density plot showing the MLE recruitment deviate estimates for the \Sexpr{sens.density.year} cohort for the base model and alternative sensitivity runs representing no extrapolation on the acoustic survey estimate and inclusion of an age-1 index.}
 \label{fig:main-recruitment-base-alternative-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
