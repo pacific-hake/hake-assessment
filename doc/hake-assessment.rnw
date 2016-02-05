@@ -255,7 +255,7 @@ This document reports the collaborative efforts of the official U.S. and Canadia
 Authors of this document are (in no particular order): \\
 \hspace{4ex}Chris J. Grandin\supscr{2} \\
 \hspace{4ex}Allan C. Hicks\supscr{1} \\
-\hspace{4ex}Aaron Berger\supscr{1} \\
+\hspace{4ex}Aaron Berger\supscr{4} \\
 \hspace{4ex}Andrew M. Edwards\supscr{2} \\ %Given the amount of work that Andy has done, there's no way my name should appear before his on the author list
 \hspace{4ex}Nathan Taylor\supscr{2} \\
 \hspace{4ex}Sean Cox\supscr{3} \\
@@ -269,6 +269,9 @@ Authors of this document are (in no particular order): \\
   3190 Hammond Bay Road, Nanaimo, BC V9T 6N7, Canada}
 
 \emph{\supscr{3}School of Resource and Environmental Management, Simon Fraser University, TASC I -- Room \#8405, 8888 University Drive, Burnaby, B.C. V5A-1S6, Canada}
+
+\emph{\supscr{4}Northwest Fisheries Science Center, National Marine Fisheries Service, National Oceanic and Atmospheric Administration, U.S. Department of Commerce.
+  2032 SE OSU Dr. Bldg. 955, Newport, OR 97365-5275, USA}
 
 This DRAFT document is non-citable.
 % Once finalised, uncomment these:
@@ -331,7 +334,7 @@ This DRAFT document is non-citable.
 
 % \clearpage
 
-\bibliographystyle{resDoc}
+\bibliographystyle{hake}
 \bibliography{all}
 
 <<main-tables, child='main-tables/main-tables.rnw'>>=
