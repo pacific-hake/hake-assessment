@@ -565,10 +565,16 @@ catch.limit.quantiles <- fmt0(make.forecast.catch.posterior.plot(base.model,
 
 ## Estimated numbers at age for fishery for Recruitment section in Exec Summary and main text
 ##  From make.age.comp.fit.plot() which in turn calls age.fits()
-fishery.estimated.age.comp <- base.model$agedbase[base.model$agedbase$Fleet==1,]
+fishery.estimated.age.comp <- base.model$agedbase[base.model$agedbase$Fleet==1,]  #I think that this has ageing error incorporated
 year.class.2010.in.2013 <- fmt0(filter(fishery.estimated.age.comp, Yr==2013, Bin==3)$Exp * 100)
 year.class.2010.in.2014 <- fmt0(filter(fishery.estimated.age.comp, Yr==2014, Bin==4)$Exp * 100)
 year.class.2010.in.2015 <- fmt0(filter(fishery.estimated.age.comp, Yr==2015, Bin==5)$Exp * 100)
+
+tmp <- base.model$catage[base.model$catage$Fleet==1,-(1:10)]  #This does not have ageing error
+fishery.estimated.age.comp <- cbind(base.model$catage[base.model$catage$Fleet==1,(1:10)],t(apply(tmp,1,function(x){x/sum(x)})))
+year.class.2010.in.2013 <- fmt0(filter(fishery.estimated.age.comp, Yr==2013)$"3" * 100)
+year.class.2010.in.2014 <- fmt0(filter(fishery.estimated.age.comp, Yr==2014)$"4" * 100)
+year.class.2010.in.2015 <- fmt0(filter(fishery.estimated.age.comp, Yr==2015)$"5" * 100)
 
 catcher.processor.catch <- fmt0(100 * filter(catches, Year == last.data.yr)$atSea_US_CP / (last.year.us.cp.quota.reallocated), 1)
 mothership.catch <- fmt0(100 * filter(catches, Year == last.data.yr)$atSea_US_MS / (last.year.us.ms.quota.reallocated), 1)
