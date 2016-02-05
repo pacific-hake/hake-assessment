@@ -282,31 +282,25 @@ for(sens.model in sens.model.inds.2.for.table){
 ## number of elements in forcast.yrs
 catch.levels <- list(rep(0.01, 3),
                      rep(180000,3),
-                     ##rep(300000,3),
                      rep(350000,3),
-                     ##rep(400000,3),
                      rep(440000,3),
-                     ##rep(500000,3),
                      c(790000,880000,770000),
                      c(839476,922929,792803),
                      c(906500,906500,781749))
 
-## The catch as calculated using the default harvest policy. Used in forecasting.
-catch.default.policy.ind <- length(catch.levels)
-catch.default.policy <- catch.levels[[catch.default.policy.ind]]
 ## Index for the forecasts list, which one above is the TAC case?
-## This is used in the one-page summary
-catch.tac.ind <- 3
+## This is used in the one-page summary and the plot comparing several catch cases
+catch.tac.ind <- 4
+## The catch as calculated using the default harvest policy.
+catch.default.policy.ind <- 6
+catch.default.policy <- catch.levels[[catch.default.policy.ind]]
 
 ## catch.levels.names is a list of N names for the catch levels given in catch.levels
 ##  to be used in plots (Pretty names)
 catch.levels.names <- c("No Fishing",
                         "180,000 t",
-                        ##"300,000 t",
                         "350,000 t",
-                        ##"400,000 t",
-                        "440,000 t",
-                        ##"500,000 t",
+                        paste0(last.data.yr, "TAC: 440,000 t"),
                         "SPR100",
                         paste0("Default: ",fmt0(catch.default.policy[1])," t"),
                         "stableCatch")
@@ -316,14 +310,11 @@ catch.levels.names <- c("No Fishing",
 ##  the list order is the same as the directory order.
 catch.levels.dir.names <- c("01_0",
                             "02_180000",
-                            ##"03_300000",
-                            "04_350000",
-                            ##"05_400000",
-                            "06_440000",
-                            ##"07_500000",
-                            "08_SPR100",
-                            "09_DefaultHR",
-                            "10_stableCatch")
+                            "03_350000",
+                            "04_440000",
+                            "05_SPR100",
+                            "06_DefaultHR",
+                            "07_stableCatch")
 
 ################################################################################
 ## Model loading questions
