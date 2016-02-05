@@ -336,6 +336,7 @@ if(reload.models == "y" | reload.models == "Y"){
   cat("\n\nLoading models...\n\n")
   if(!exists("models")){
     models <- NULL
+    smart.load <- FALSE
   }
   if(smart.load == "y" | smart.load == "Y"){
     smart.load <- TRUE
