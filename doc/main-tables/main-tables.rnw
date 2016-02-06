@@ -68,8 +68,6 @@ make.maturity.N.table(ovaryN, start.yr=start.yr, end.yr=end.yr-1,
                         font.size = 10,
                         space.size = 10)
 @
-% Please label as "tab:main-ovaries"
-\textbf{**MISSING TABLE - Number of ovaries collected.....} 
 
 
 <<main.parameters.estimated.summary.table, results='asis', echo=FALSE>>=
