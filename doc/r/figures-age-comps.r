@@ -1,6 +1,6 @@
-make.numbers.at.age.plot <- function(model){ ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
+make.numbers.at.age.plot <- function(model){ ## model is an mle run and is the output of the r4ss package's function SS_output
   ## Number-at-age from the MLE run for the model
-  SSplotNumbers(base.model,
+  SSplotNumbers(model,
                 subplot = 1,
                 pwidth = 6.5,
                 pheight = 6)
