@@ -49,8 +49,8 @@ make.catches.table(catches,
                    space.size = 10)
 @
 
-\subsection*{Data and Assessment} \label{sec:es-data-and-assessment}
-\phantomsection \addcontentsline{toc}{subsection}{Data and Assessment}
+\subsection*{Data and assessment} \label{sec:es-data-and-assessment}
+\phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
 The biomass estimate and age composition from the acoustic survey conducted in \Sexpr{survey.end.yr} has been added to the survey time series. The only other new data for this \Sexpr{assess.yr} assessment, that was not in the \Sexpr{last.assess.yr} assessment, are the \Sexpr{last.data.yr} fishery age compositions.  Total catch and empirical weight-at-age for 2015 are also added to the assessment model this year, but are fixed and not fit to. Various other data types, including data on maturity, have been explored since the 2014 stock assessment, but are not included in the base model for this year.
 
 The Joint Technical Committee (JTC) assessment depends primarily on the fishery landings (\Sexpr{start.yr}--\Sexpr{last.data.yr}),
@@ -87,8 +87,8 @@ reduce the effects of errors caused by assuming selectivity is constant over tim
 
 
 
-\subsection*{Stock Biomass} \label{sec:es-stock-biomass}
-\phantomsection  \addcontentsline{toc}{subsection}{Stock Biomass}
+\subsection*{Stock biomass} \label{sec:es-stock-biomass}
+\phantomsection  \addcontentsline{toc}{subsection}{Stock biomass}
 The base stock assessment model indicates that since the 1960s, \fishname\ female spawning biomass has ranged from well below to near
 unfished equilibrium (Figure~\ref{fig:es-female-spawning-biomass}). The model estimates that it was below the unfished equilibrium in the 1960s and 1970s due to lower than average recruitment. 
 The stock is estimated to have increased rapidly to near unfished equilibrium after two or more large recruitments in the early 1980s, and then
@@ -199,8 +199,8 @@ make.recruitment.table(base.model,
                        space.size = 14)
 @
 
-\subsection*{Exploitation Status} \label{sec:es-exploitation-status}
-\phantomsection  \addcontentsline{toc}{subsection}{Exploitation Status}
+\subsection*{Exploitation status} \label{sec:es-exploitation-status}
+\phantomsection  \addcontentsline{toc}{subsection}{Exploitation status}
 Median fishing intensity on the stock is estimated to have been below the $\Fforty$ target except for the years
 \Sexpr{median.intensity.above.one.years[1:(length(median.intensity.above.one.years)-1)]} and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]} when spawning biomass was low (Figure~\ref{fig:es-fishing-intensity} and Table~\ref{tab:es-fishing-intensity}). Exploitation fraction (catch divided by biomass of fish of age 3 and above) has
 shown relatively similar patterns (Figure~\ref{fig:es-exploitation-fraction} and Table~\ref{tab:es-fishing-intensity}). Fishing intensity is estimated to have declined from \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.penult.yr}\% in \Sexpr{end.yr-1}, while
@@ -249,8 +249,8 @@ make.fishing.intensity.table(base.model,
                              space.size = 14)
 @
 
-\subsection*{Management Performance} \label{sec:es-management-performance}
-\phantomsection  \addcontentsline{toc}{subsection}{Management Performance}
+\subsection*{Management performance} \label{sec:es-management-performance}
+\phantomsection  \addcontentsline{toc}{subsection}{Management performance}
 Over the last decade (\Sexpr{end.yr-10}--\Sexpr{end.yr-1}), the mean coast-wide utilization rate (i.e., landings/quota) has been \Sexpr{tot.last.10.years.attainment}\% (Table~\ref{tab:es-landings-tac}).
 From \Sexpr{end.yr-5} to \Sexpr{end.yr-1}, the mean utilization rates differed between the United States (\Sexpr{usa.last.5.years.attainment}\%) and
 Canada (\Sexpr{can.last.5.years.attainment}\%). Total landings last exceeded the coast-wide
@@ -295,8 +295,8 @@ make.phase.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection*{Reference Points} \label{sec:es-reference-points}
-\phantomsection \addcontentsline{toc}{subsection}{Reference Points}
+\subsection*{Reference points} \label{sec:es-reference-points}
+\phantomsection \addcontentsline{toc}{subsection}{Reference points}
 
 Estimates of the \Sexpr{assess.yr} base model reference points with posterior credibility intervals are in Table~\ref{tab:es-reference.points}.
 The estimates are slightly different than those in the \Sexpr{last.assess.yr} assessment, with slightly greater sustainable yields and reference biomasses estimated in this assessment.
@@ -309,8 +309,8 @@ make.reference.points.table(base.model,
                             space.size = 12)
 @
 
-\subsection*{Unresolved Problems and Major Uncertainties} \label{sec:es-unresolved-problems}
-\phantomsection \addcontentsline{toc}{subsection}{Unresolved Problems and Major Uncertainties}
+\subsection*{Unresolved problems and major uncertainties} \label{sec:es-unresolved-problems}
+\phantomsection \addcontentsline{toc}{subsection}{Unresolved problems and major uncertainties}
 Uncertainty measures in the base model underestimate the total uncertainty in the current stock status and projections
 because they do not account for possible alternative structural models for \simplename\ population dynamics and fishery processes
 (e.g., selectivity), the effects of data-weighting schemes, and the scientific basis for prior probability distributions.
@@ -330,8 +330,8 @@ big the cohort is (i.e., cohort strength is not well know until it is age 2 or g
 The JTC presented results from closed-loop simulations evaluating the effect of including potential age-1 indices on management outcomes at the May 6-7 JMC meeting in Victoria, B.C. They found that fitting to an unbiased age-1 survey results in lower catch, lower P(<B10\%) and a lower average annual variability in catch (AAV), but that comparable results in terms of catch could be achieved with a more precise age-2+ survey or alternative harvest control rules.  The simulations assumed an age-1 survey design with consistent, effective, and numerous sampling, which may not be the case for the existing age-1 index.
 
 
-\subsection*{Forecast Decision Tables} \label{sec:es-forecast-decision-table}
-\phantomsection \addcontentsline{toc}{subsection}{Forecast Decision Table}
+\subsection*{Forecast decision tables} \label{sec:es-forecast-decision-table}
+\phantomsection \addcontentsline{toc}{subsection}{Forecast decision tables}
 
 The median catch limit for \Sexpr{min(forecast.yrs)} based on the default \Ffortyten{} harvest policy is \Sexpr{catch.limit.quantiles["median"]}~t, but has a wide range of uncertainty, with the 2.5\% to 97.5\% range being \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
 
@@ -444,8 +444,8 @@ make.forecast.risk.comparison.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection*{Research and Data Needs} \label{sec:es-research-data-needs}
-\phantomsection \addcontentsline{toc}{subsection}{Research and Data Needs}
+\subsection*{Research and data needs} \label{sec:es-research-data-needs}
+\phantomsection \addcontentsline{toc}{subsection}{Research and data needs}
 
 There are many research projects that could improve the stock assessment for Pacific Hake and lead to improved biological understanding and decision-making. The top three are:
 
