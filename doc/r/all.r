@@ -342,7 +342,6 @@ survey.history <- load.survey.history(file.path(data.path, survey.history.file))
 sampling.history <- load.sampling.history(file.path(data.path, sampling.history.file))
 further.tac <- further.tac.details(file.path(data.path, further.tac.file))
 can.ages <- load.can.age.data(file.path(data.path, can.age.file))
-fisheryN <- read.csv(file.path(data.path, fishery.N.file))
 ovaryN <- read.csv(file.path(data.path, ovary.N.file))
 cat("All data tables have been loaded ", data.path,"\n")
 
