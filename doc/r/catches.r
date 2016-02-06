@@ -220,6 +220,38 @@ make.landings.tac.table <- function(landings.vs.tac,
                caption.placement = "top", include.rownames = FALSE, table.placement = "H", sanitize.text.function = function(x){x}, size = size.string))
 }
 
+make.fishery.N.table <- function(fisheryN,
+                                    start.yr,             ## start.yr is the first year to show in the table
+                                    end.yr,               ## end.yr is the last year to show in the table
+                                    xcaption = "default", ## Caption to use
+                                    xlabel   = "default", ## Latex label to use
+                                    font.size = 9,        ## Size of the font for the table
+                                    space.size = 10       ## Size of the spaces for the table
+                                    ){
+  ## Returns an xtable in the proper format for the fishery sample sizes
+  tab <- fisheryN
+
+  ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
+  tab <- tab[tab$Year >= start.yr & tab$Year <= end.yr,]
+  #tab[,-1] <- fmt0(tab[,-1])
+  tab[is.na(tab)] <- "--"
+
+  colnames(tab) <- c("\\textbf{Year}",
+                     "\\specialcell{\\textbf{US}\\\\\\textbf{Foreign}\\\\\\textbf{(hauls)}}",
+                     "\\specialcell{\\textbf{US}\\\\\\textbf{Joint-}\\\\\\textbf{Venture}\\\\\\textbf{(hauls)}}",
+                     "\\specialcell{\\textbf{US}\\\\\\textbf{Mother-ship}\\\\\\textbf{ship}\\\\\\textbf{(hauls)}}",
+                     "\\specialcell{\\textbf{US}\\\\\\textbf{Catcher-}\\\\\\textbf{processor}\\\\\\textbf{(hauls)}}",
+                     "\\specialcell{\\textbf{US}\\\\\\textbf{Shore-}\\\\\\textbf{based}\\\\\\textbf{(trips)}}",
+                     "\\specialcell{\\textbf{Canadian}\\\\\\textbf{Foreign}}",
+                     "\\specialcell{\\textbf{Canadian}\\\\\\textbf{Joint-}\\\\\\textbf{Venture}\\\\\\textbf{(hauls)}}",
+                     "\\specialcell{\\textbf{Canadian}\\\\\\textbf{Shoreside}\\\\\\textbf{(trips)}}",
+                     "\\specialcell{\\textbf{Canadian}\\\\\\textbf{Freezer-}\\\\\\textbf{trawl}\\\\\\textbf{(hauls)}}")
+  ## Make the size string for font and space size
+  size.string <- paste0("\\fontsize{", font.size, "}{", space.size, "}\\selectfont")
+  return(print(xtable(tab, caption=xcaption, label=xlabel, align = get.align(ncol(tab), first.left = FALSE, just = "c"), digits = c(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1)),
+               caption.placement = "top", include.rownames = FALSE, table.placement = "H", sanitize.text.function = function(x){x}, size = size.string))
+}
+
 years.Can.JV.catch.eq.0 <- function(catches,          ## The output of the load.catches
                                                       ## function above.
                                     start.yr = 1999){ ## the year from which to look for no

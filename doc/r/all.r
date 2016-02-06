@@ -79,6 +79,7 @@ can.age.file <- "canadian-age-data.csv"
 catch.data.file <- "Hake_Landings_TAC_History.csv"
 further.tac.file <- "Further_TAC_details.csv"
 survey.history.file <- "survey_history.csv"
+fishery.N.file <- "fisherySampling.csv"
 
 exe.file.name <- "ss3.exe"
 starter.file.name <- "starter.ss"
@@ -337,6 +338,7 @@ catches <- catches[[1]]
 survey.history <- load.survey.history(file.path(data.path, survey.history.file))
 further.tac <- further.tac.details(file.path(data.path, further.tac.file))
 can.ages <- load.can.age.data(file.path(data.path, can.age.file))
+fisheryN <- read.csv(file.path(data.path, fishery.N.file))
 cat("All data tables have been loaded ", data.path,"\n")
 
 ################################################################################
