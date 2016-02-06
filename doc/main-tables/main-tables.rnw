@@ -46,13 +46,11 @@ make.landings.tac.table(landings.vs.tac, start.yr=end.yr-10, end.yr=end.yr-1,
 
 <<main.fishery.N.table, results='asis', echo=FALSE>>=
 make.fishery.N.table(fisheryN, start.yr=start.yr, end.yr=end.yr-1,
-                        xcaption = "Annual summary of U.S. and Canadian fishery sampling included in this stock assessment. Canadian, foreign, joint-venture and at-sea sectors are in number of hauls sampled for age-composition, the shore-based sector is in number of trips. A dash (‘––‘) indicates there was no catch to sample. A number indicates how many samples from the catch were taken. The number of fish with otoliths sampled per haul has varied over time but is typically small (current protocols for the U.S. At-Sea sectors is 2 fish per haul).",
+                        xcaption = "Annual summary of U.S. and Canadian fishery sampling included in this stock assessment. Canadian, foreign, joint-venture and at-sea sectors are in number of hauls sampled for age-composition, the shore-based sector is in number of trips. A dash indicates there was no catch to sample. A number indicates how many samples from the catch were taken. The number of fish with otoliths sampled per haul has varied over time but is typically small (current protocols for the U.S. At-Sea sectors is 2 fish per haul).",
                         xlabel = "tab:main-fisheryN-tac",
                         font.size = 8,
                         space.size = 10)
 @
-
-\textbf{***MISSING TABLE - Annual summary of US and Canadian fishery sampling....}
 
 <<main.survey.history.table, results='asis', echo=FALSE>>=
 make.survey.history.table(survey.history,
