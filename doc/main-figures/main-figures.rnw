@@ -61,7 +61,7 @@ make.catches.plot(catches, leg.y.loc = 475)
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishDepthsUS}
 \end{center}
-\caption{Distribution of bottom depths (left) and fishing depths (right), in fathoms, of \fishname\ catches in the U.S. at-sea fleet from 2008--\Sexpr{last.data.yr}.}
+\caption{Distribution of fishing depths (left) and bottom depths (right), in fathoms, of \fishname\ catches in the U.S. at-sea fleet from 2008--\Sexpr{last.data.yr}.}
 \label{fig:main-us-at-sea-depths}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
