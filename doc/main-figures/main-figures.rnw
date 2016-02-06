@@ -6,8 +6,8 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
-\begin{center}
-<<main.overview.map, fig.height=10>>=
+\begin{center}    % Don't make any bigger as then previous page becomes blank
+<<main.overview.map, fig.height=9>>=
 make.overview.map.plot(r.loc = file.path("..", "r"))
 @
 \end{center}

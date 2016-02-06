@@ -170,7 +170,14 @@ There are additional elements for model-partest, which is created by running **r
 __GitHub workflow__
 
 - I forked Chris's master repository, and did **git remote add cgrandin https://...** [and he added me to his] so that we can merge each other's commits. **git remove -v** shows that.
-
+- **Allan/Aaron**: to merge my commits (for when Chris isn't on top of it) do:
+-  
+       git remote add aedwards https://github.com/andrew-edwards/hake-assessment
+  
+- just once. 
+- Then do **git fetch** and **merge** as described below, but with **aedwards** instead of **cgrandin**. Note that **aedwards** is just what you call my repository on your machine, it doesn't have to match my user name.
+ 
+  
 - **git com** and **git push** often [I'm using Chris's **git-workshop** shortcuts]
 - **git fetch cgrandin** - fetches his latest version
 - **git diff cgrandin/master** shows me the differences between his and mine. :

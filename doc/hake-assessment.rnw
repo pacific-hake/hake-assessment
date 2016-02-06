@@ -240,7 +240,8 @@ load("./r/model-partest.RData")
 
 %% Title page and author references page
 \thispagestyle{empty}
-\title{\TitleFont DRAFT - Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}}
+\title{\TitleFont DRAFT - Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr} \\ ~\\ ~\\ \includegraphics[width=4in]{hake-picture}}
+
 \author{Joint Technical Committee of the Pacific Hake/Whiting Agreement \\ Between the Governments of the United States and Canada}
 \maketitle
 \newpage
@@ -290,7 +291,9 @@ This DRAFT document is non-citable.
 \setcounter{secnumdepth}{5} %% To number subsubheadings-ish
 
 \renewcommand{\thetable}{\alph{table}}       % Exec summary number Tables a,b,c.
+
 \renewcommand{\thefigure}{\alph{figure}}
+%\renewcommand*{\theHfigure}{\alph{figure}}   % Trying to get hyperrefs correct
 \renewcommand{\thesection}{\arabic{section}} % To number as 1,2,3 not 1.1
 \renewcommand{\theequation}{\arabic{equation}} % where first 1 would be chapter
                                                % number
@@ -310,9 +313,14 @@ This DRAFT document is non-citable.
 @
 
 \renewcommand{\thetable}{\arabic{table}}    % Now number Tables 1,2,3,...
-\renewcommand{\thefigure}{\arabic{figure}}
 \setcounter{table}{0}
+
+\renewcommand{\thefigure}{\arabic{figure}}
 \setcounter{figure}{0}
+% Trying to make refs in pdf work, from 
+%  http://tex.stackexchange.com/questions/26469/two-table-counters-and-hyperref-links :
+% \renewcommand*{\theHfigure}{\arabic{figure}}
+% \setcounter{figure}{0}
 
 <<introduction-sec, child='introduction-section/introduction.rnw'>>=
 @
