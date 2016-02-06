@@ -309,6 +309,7 @@ catch.levels.dir.names <- c("01_0",
 
 reload.models <- readline(prompt = "Reload models (only necessary first time or if you add new models to the models directory)? [y/n] ")
 if(reload.models == "y" | reload.models == "Y"){
+  smart.load <- FALSE
   if(exists("models")){ ## Only ask if the models list exists
     smart.load <- readline(prompt = "   Use smart load (will only reload newly-added models, thus keeping any forecasting done previously)? [y/n] ")
     if(smart.load != "y" & smart.load != "Y"){
@@ -316,6 +317,7 @@ if(reload.models == "y" | reload.models == "Y"){
       if(sure != "y" & sure != "Y"){
         stop("I'm stopping because you aren't sure. Re-source to try again.\n\n")
       }
+      smart.load <- TRUE
     }
   }
 }
@@ -343,19 +345,10 @@ cat("All data tables have been loaded ", data.path,"\n")
 
 if(reload.models == "y" | reload.models == "Y"){
   cat("\n\nLoading models...\n\n")
-  if(!exists("models")){
-    models <- NULL
-    smart.load <- FALSE
-  }
-  if(smart.load == "y" | smart.load == "Y"){
-    smart.load <- TRUE
-  }else{
-    smart.load <- FALSE
-  }
   models <- load.models(models.path, yr = end.yr, smart.load = smart.load, model.list = models)
   cat("\n\nAll models have been loaded.\n\n")
 }else{
-  cat("\n\nModels have NOT been loaded.\n\n")
+  cat("\n\nModels have NOT been re-loaded.\n\n")
 }
 
 if(!exists("models")){
