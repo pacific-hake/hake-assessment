@@ -68,6 +68,8 @@ source("tables-reference-points.r")
 source("tables-decisions.r")
 source("tables-age.r")
 source("tables-parameters.r")
+source("tables-sampling.r")
+source("tables-maturity.r")
 
 ## verbose applies to the SS loading functions as well as this project's functions and the system call
 verbose <- TRUE
@@ -76,9 +78,11 @@ data.path <- file.path("..","..","data")
 models.path <- file.path("..","..","models")
 
 can.age.file <- "canadian-age-data.csv"
-catch.data.file <- "Hake_Landings_TAC_History.csv"
-further.tac.file <- "Further_TAC_details.csv"
-survey.history.file <- "survey_history.csv"
+catch.data.file <- "landings-tac-history.csv"
+further.tac.file <- "further-tac-details.csv"
+survey.history.file <- "survey-history.csv"
+sampling.history.file <- "sampling-history.csv"
+ovary.N.file <- "OvarySamples.csv"
 
 exe.file.name <- "ss3.exe"
 starter.file.name <- "starter.ss"
@@ -335,8 +339,10 @@ catches <- load.catches(file.path(data.path, catch.data.file))
 landings.vs.tac <- catches[[2]]
 catches <- catches[[1]]
 survey.history <- load.survey.history(file.path(data.path, survey.history.file))
+sampling.history <- load.sampling.history(file.path(data.path, sampling.history.file))
 further.tac <- further.tac.details(file.path(data.path, further.tac.file))
 can.ages <- load.can.age.data(file.path(data.path, can.age.file))
+ovaryN <- read.csv(file.path(data.path, ovary.N.file))
 cat("All data tables have been loaded ", data.path,"\n")
 
 ################################################################################
@@ -471,6 +477,10 @@ if(verbose){
 ## A simpler variable for the base model
 base.model <- models[[base.model.ind]]
 cat("Base model is ", base.model$path, "\n\n")
+
+## Allotments by country
+can.allotment.percent <- 26.12
+us.allotment.percent <- 73.88
 
 ## Attainment, used in the management performance section
 usa.last.5.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),8]), 1)

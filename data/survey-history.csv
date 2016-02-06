@@ -1,0 +1,12 @@
+year,start.date,end.date,vessels,biomass,cv,hauls.with.samples
+1995,1-Jul,1-Sep,Miller-Freeman Ricker,,,
+1998,6-Jul,27-Aug,Miller-Freeman Ricker,1.534,0.053,105
+2001,15-Jun,18-Aug,Miller-Freeman Ricker,0.862,0.106,57
+2003,29-Jun,1-Sep,Ricker,2.138,0.064,71
+2005,20-Jun,19-Aug,Miller-Freeman,1.376,0.064,47
+2007,20-Jun,21-Aug,Miller-Freeman,0.943,0.077,69
+2009,30-Jun,7-Sep,Miller-Freeman Ricker,1.502,0.01,72
+2011,26-Jun,10-Sep,Bell-Shimada Ricker,0.675,0.118,46
+2012,23-Jun,7-Sep,Bell-Shimada Ricker F/V-Forum-Star,1.279,0.067,94
+2013,13-Jun,11-Sep,Bell-Shimada Ricker,1.929,0.065,67
+2015,15-Jun,14-Sep,Bell-Shimada Ricker,2.5,0.092,78
