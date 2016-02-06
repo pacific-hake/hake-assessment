@@ -248,7 +248,7 @@ make.fishery.N.table <- function(fisheryN,
                      "\\specialcell{\\textbf{Canadian}\\\\\\textbf{Freezer-}\\\\\\textbf{trawl}\\\\\\textbf{(hauls)}}")
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{", font.size, "}{", space.size, "}\\selectfont")
-  return(print(xtable(tab, caption=xcaption, label=xlabel, align = get.align(ncol(tab), first.left = FALSE, just = "c"), digits = c(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1)),
+  return(print(xtable(tab, caption=xcaption, label=xlabel, align = c("c","|c|",rep("l",5),"|l","l","l","l|"), digits = rep(0,ncol(tab)+1)),
                caption.placement = "top", include.rownames = FALSE, table.placement = "H", sanitize.text.function = function(x){x}, size = size.string))
 }
 
