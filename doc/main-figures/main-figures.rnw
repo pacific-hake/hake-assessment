@@ -665,6 +665,7 @@ make.mcmc.vs.mle.plot(base.model,
                       subplot = 2)
 make.mcmc.vs.mle.plot(base.model,
                       end.yr = end.yr,
+                      type = "o",
                       subplot = 8)
 @
 \end{center}
