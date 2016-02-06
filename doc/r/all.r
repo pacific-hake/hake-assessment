@@ -69,6 +69,7 @@ source("tables-decisions.r")
 source("tables-age.r")
 source("tables-parameters.r")
 source("tables-sampling.r")
+source("tables-maturity.r")
 
 ## verbose applies to the SS loading functions as well as this project's functions and the system call
 verbose <- TRUE
@@ -81,6 +82,7 @@ catch.data.file <- "landings-tac-history.csv"
 further.tac.file <- "further-tac-details.csv"
 survey.history.file <- "survey-history.csv"
 sampling.history.file <- "sampling-history.csv"
+ovary.N.file <- "OvarySamples.csv"
 
 exe.file.name <- "ss3.exe"
 starter.file.name <- "starter.ss"
@@ -340,6 +342,8 @@ survey.history <- load.survey.history(file.path(data.path, survey.history.file))
 sampling.history <- load.sampling.history(file.path(data.path, sampling.history.file))
 further.tac <- further.tac.details(file.path(data.path, further.tac.file))
 can.ages <- load.can.age.data(file.path(data.path, can.age.file))
+fisheryN <- read.csv(file.path(data.path, fishery.N.file))
+ovaryN <- read.csv(file.path(data.path, ovary.N.file))
 cat("All data tables have been loaded ", data.path,"\n")
 
 ################################################################################

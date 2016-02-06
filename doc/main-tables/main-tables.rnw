@@ -61,8 +61,13 @@ make.survey.history.table(survey.history,
                           space.size = 12)
 @
 
-% Please label as "tab:main-ovaries"
-\textbf{**MISSING TABLE - Number of ovaries collected.....} 
+<<main.ovaries.table, results='asis', echo=FALSE>>=
+make.maturity.N.table(ovaryN, start.yr=start.yr, end.yr=end.yr-1,
+                        xcaption = "Number of Pacific Hake ovaries collected for histological analysis with maturity determined from different years and different sources.",
+                        xlabel = "tab:main-ovaries",
+                        font.size = 10,
+                        space.size = 10)
+@
 
 
 <<main.parameters.estimated.summary.table, results='asis', echo=FALSE>>=

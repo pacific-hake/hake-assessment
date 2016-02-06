@@ -1,11 +1,12 @@
 year,start.date,end.date,vessels,biomass,cv,hauls.with.samples
-1995,1 July,1 September,Miller-Freeman Ricker,1.518,0.067,69
-1998,6 July,27 August,Miller-Freeman Ricker,1.343,0.049,84
-2001,15 June,18 August,Miller-Freeman Ricker,0.919,0.082,49
-2003,29 June,1 September,Ricker,2.521,0.071,71
-2005,20 June,19 August,Miller-Freeman,1.755,0.085,49
-2007,20 June,21 August,Miller-Freeman,1.123,0.075,130
-2009,30 June,7 September,Miller-Freeman Ricker,1.612,0.1372,61
-2011,26 June,10 September,Bell-Shimada Ricker,0.521,0.1015,59
-2012,23 June,7 September,Bell-Shimada Ricker F/V-Forum-Star,1.381,0.0475,94
-2013,13 June,11 September,Bell-Shimada Ricker,2.423,0.0433,68
+1995,1-Jul,1-Sep,Miller-Freeman Ricker,,,
+1998,6-Jul,27-Aug,Miller-Freeman Ricker,1.534,0.053,105
+2001,15-Jun,18-Aug,Miller-Freeman Ricker,0.862,0.106,57
+2003,29-Jun,1-Sep,Ricker,2.138,0.064,71
+2005,20-Jun,19-Aug,Miller-Freeman,1.376,0.064,47
+2007,20-Jun,21-Aug,Miller-Freeman,0.943,0.077,69
+2009,30-Jun,7-Sep,Miller-Freeman Ricker,1.502,0.01,72
+2011,26-Jun,10-Sep,Bell-Shimada Ricker,0.675,0.118,46
+2012,23-Jun,7-Sep,Bell-Shimada Ricker F/V-Forum-Star,1.279,0.067,94
+2013,13-Jun,11-Sep,Bell-Shimada Ricker,1.929,0.065,67
+2015,15-Jun,14-Sep,Bell-Shimada Ricker,2.5,0.092,78
