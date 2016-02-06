@@ -157,6 +157,9 @@ if(length(last.year.base.model.ind) == 0){
 ################################################################################
 ## Bridge models
 ################################################################################
+if(verbose){
+  cat("\nDEBUG: Loading bridge models \n\n")
+}
 
 bridge.model.dir.names.1 <- c(last.year.base.model.name,
                               "03_UpdatePre2015WtAge")
@@ -204,6 +207,9 @@ if((length(bridge.model.names.1) != length(bridge.model.dir.names.1)) |
 ################################################################################
 ## Sensitivity models
 ################################################################################
+if(verbose){
+  cat("\nDEBUG: Loading sensitivity models \n\n")
+}
 sens.model.dir.names.1 <- c("26_Sensbase_sigmaR_1.0",
                             "27_Sensbase_sigmaR_2.0",
                             "28_Sensbase_h_0.5prior",
@@ -254,6 +260,9 @@ if((length(sens.model.names.1) != length(sens.model.dir.names.1)) |
 ################################################################################
 ## Forecasting
 ################################################################################
+if(verbose){
+  cat("\nDEBUG: Reading forecast values \n\n")
+}
 
 ## catch.levels is a list of N catch levels to run forecasts for
 ## Each element of the list is a vector of length the same as the
@@ -430,6 +439,9 @@ for(i in plot.retro.yrs){
 ################################################################################
 ## Set up lists to use for sensitivity plots and tables
 ################################################################################
+if(verbose){
+  cat("\nDEBUG: Setting up lists for sensitivities \n\n")
+}
 
 ## A vector of all sensitivities for the MLE parameters, derived quantiles, and reference points table
 sens.model.inds.1.for.table <- sens.model.inds.1
@@ -456,6 +468,13 @@ for(sens.model in sens.model.inds.2.for.table){
 ################################################################################
 ## Variables to be used in the knitr code chunks
 ################################################################################
+if(verbose){
+  cat("\nDEBUG: formatting variables\n")
+}
+
+if(verbose){
+  cat("DEBUG: Attainment\n\n")
+}
 
 ## Attainment, used in the management performance section
 usa.last.5.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),8]), 1)
@@ -463,6 +482,9 @@ can.last.5.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %i
 tot.last.5.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),10]), 1)
 tot.last.10.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-10):(end.yr-1),10]), 1)
 
+if(verbose){
+  cat("DEBUG: Catches\n\n")
+}
 ## Recent catches
 last.5.years.of.catch.data <- (max(catches$Year)-4):max(catches$Year)
 last.5.years.total.catch <- catches[catches$Year %in% last.5.years.of.catch.data, "TOTAL"]
@@ -470,6 +492,9 @@ long.term.avge.catch <- mean(catches$TOTAL)
 last.5.years.above.avge <- last.5.years.of.catch.data[last.5.years.total.catch > long.term.avge.catch]
 last.5.years.below.avge <- last.5.years.of.catch.data[last.5.years.total.catch < long.term.avge.catch]
 
+if(verbose){
+  cat("DEBUG: Last year's values\n\n")
+}
 ## last year's values (mostly for the one-page-summary and introduction)
 last.year.landings <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TOTAL), 1)
 last.year.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TAC)
@@ -505,6 +530,9 @@ years.Can.JV.catch.eq.0.recent = years.Can.JV.catch.eq.0(catches)
 
 
 ## New depletion and spawning biomass estimates
+if(verbose){
+  cat("DEBUG: New depletion and spawning biomass estimates\n\n")
+}
 curr.depl.lower <- fmt0(base.model$mcmccalcs$dlower[names(base.model$mcmccalcs$dlower) %in% end.yr] * 100, 1)
 curr.depl.median <- fmt0(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end.yr] * 100, 1)
 curr.depl.upper <- fmt0(base.model$mcmccalcs$dupper[names(base.model$mcmccalcs$dupper) %in% end.yr] * 100, 1)
@@ -520,6 +548,9 @@ prev.bio.upper <- fmt0(base.model$mcmccalcs$supper[names(base.model$mcmccalcs$su
 
 
 ## First forecast year depletion and spawning biomass estimates
+if(verbose){
+  cat("DEBUG: First forecast year depletion and spawning biomass estimates\n\n")
+}
 fore.tac.mcmc <- base.model$forecasts$mcmccalcs[[catch.tac.ind]]
 next.depl.lower.tac.based <- fmt0(fore.tac.mcmc$dlower[names(fore.tac.mcmc$dlower) %in% (end.yr + 1)] * 100, 1)
 next.depl.median.tac.based <- fmt0(fore.tac.mcmc$dmed[names(fore.tac.mcmc$dmed) %in% (end.yr + 1)] * 100, 1)
@@ -532,6 +563,9 @@ next.bio.upper.tac.based <- fmt0(fore.tac.mcmc$supper[names(fore.tac.mcmc$supper
 ## Calculations for exec summary and assessment-section.rnw:
 ##  number of mcmc samples, minimum median biomass,
 ##  years when fishing intensity > 1
+if(verbose){
+  cat("DEBUG: Calculations for exec summary and assessment-section.rnw:\n\n")
+}
 num.mcmc.samples <- dim(base.model$mcmc)[1]
 median.bio.min  <- fmt0(min(base.model$mcmccalcs$smed), 3)  # min median biomass
 median.bio.min.year <- names(which.min(base.model$mcmccalcs$smed)) # year of min
@@ -551,6 +585,9 @@ zero.catch.prob.bio.down.2 <- fmt0(base.model$risks[[2]][1,2])
 
 
 ## Second forecast year depletion and spawning biomass estimates
+if(verbose){
+  cat("DEBUG: Second forecast year depletion and spawning biomass estimates\n\n")
+}
 next2.depl.lower.tac.based <- fmt0(fore.tac.mcmc$dlower[names(fore.tac.mcmc$dlower) %in% (end.yr + 2)] * 100, 1)
 next2.depl.median.tac.based <- fmt0(fore.tac.mcmc$dmed[names(fore.tac.mcmc$dmed) %in% (end.yr + 2)] * 100, 1)
 next2.depl.upper.tac.based <- fmt0(fore.tac.mcmc$dupper[names(fore.tac.mcmc$dupper) %in% (end.yr + 2)] * 100, 1)
@@ -578,6 +615,9 @@ catch.limit.quantiles <- fmt0(make.forecast.catch.posterior.plot(base.model,
 
 ## Estimated numbers at age for fishery for Recruitment section in Exec Summary and main text
 ##  From make.age.comp.fit.plot() which in turn calls age.fits()
+if(verbose){
+  cat("DEBUG: Estimated numbers at age for fishery for Recruitment section\n\n")
+}
 fishery.estimated.age.comp <- base.model$agedbase[base.model$agedbase$Fleet==1,]  #I think that this has ageing error incorporated
 year.class.2010.in.2013 <- fmt0(filter(fishery.estimated.age.comp, Yr==2013, Bin==3)$Exp * 100)
 year.class.2010.in.2014 <- fmt0(filter(fishery.estimated.age.comp, Yr==2014, Bin==4)$Exp * 100)
@@ -594,6 +634,9 @@ mothership.catch <- fmt0(100 * filter(catches, Year == last.data.yr)$atSea_US_MS
 shore.based.catch <- fmt0(100 * filter(catches, Year == last.data.yr)$US_shore / (last.year.us.shore.quota.reallocated), 1)
 
 ## Canadian age data variables
+if(verbose){
+  cat("DEBUG: Canadian age data variables\n\n")
+}
 get.age.prop <- function(vec, place = 1){
   ## returns the age prop and the age itself for the place,
   ## where place is 1=max, 2-second highest, etc.
@@ -604,6 +647,9 @@ get.age.prop <- function(vec, place = 1){
 }
 
 ## Canadian Freezer trawlers
+if(verbose){
+  cat("DEBUG: Canadian Freezer trawlers\n\n")
+}
 last.year.can.ages.ft <- can.ages[[2]][rownames(can.ages[[2]]) == last.data.yr,]
 get.age.prop(last.year.can.ages.ft, 1)
 ft.age.prop.holder <- get.age.prop(last.year.can.ages.ft, 1)
@@ -619,6 +665,9 @@ ft.age.prop.holder <- get.age.prop(last.year.can.ages.ft, 4)
 fourth.freezer.trawler.age.prop.age <- ft.age.prop.holder[1]
 fourth.freezer.trawler.age.prop <- fmt0(ft.age.prop.holder[2] * 100, 1)
 ## Canadian Shoreside
+if(verbose){
+  cat("DEBUG: Canadian Shoreside\n\n")
+}
 last.year.can.ages.ss <- can.ages[[1]][rownames(can.ages[[1]]) == last.data.yr,]
 get.age.prop(last.year.can.ages.ss, 1)
 ss.age.prop.holder <- get.age.prop(last.year.can.ages.ss, 1)
@@ -641,5 +690,8 @@ recruitment.med.since.2010 <- base.model$mcmccalcs$rmed[ which(as.numeric(names(
 years.since.2010.recruitment.med.below.mean <- names(recruitment.med.since.2010[recruitment.med.since.2010  < mean(base.model$mcmccalcs$rmed)])
 
 ## Exploitation values
+if(verbose){
+  cat("DEBUG: Exploitation values\n\n")
+}
 exploitation.med.2010 <- fmt0(base.model$mcmccalcs$fmed["2010"],2)
 exploitation.med.penult.yr <- fmt0(base.model$mcmccalcs$fmed[as.character(end.yr-1)],2)
