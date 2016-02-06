@@ -228,35 +228,34 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
     mle.par <- c(mle.par, b0)
 
     ## Add depletion for 2009
-    d <- model$timeseries[model$timeseries$Yr == 2009,]$SpawnBio
-    d <- d / (b0 * 1000)
-    d <- d * 100  ## To make a percentage
+    d <- 100 * model$derived_quants[paste("Bratio",2009,sep="_"),"Value"]
     mle.par <- c(mle.par, d)
 
     ## Add depletion for end.yr
-    d <- model$timeseries[model$timeseries$Yr == end.yr,]$SpawnBio
-    d <- d / (b0 * 1000)
-    d <- d * 100  ## To make a percentage
+    d <- 100 * model$derived_quants[paste("Bratio",end.yr,sep="_"),"Value"]
     mle.par <- c(mle.par, d)
 
-    ## Add fishing intensity for end.yr
-    spr <- model$sprseries[model$sprseries$Year == end.yr - 1,]$SPR
-    spr40 <- model$sprseries[model$sprseries$Year == end.yr - 1,]$SPR_std
-    fi <- (1 - spr) / (1 - spr40)
+    ## Add fishing intensity for last year
+    fi <- model$derived_quants[paste("SPRratio",end.yr-1,sep="_"),"Value"]
+    fi <- fi * 100
     mle.par <- c(mle.par, fi)
 
     ## Add Female spawning biomass B_f40%
     ## b <- models[[1]]$timeseries[model$timeseries$Yr == end.yr,]
-    mle.par <- c(mle.par, NA)
+    b <- model$derived_quants["SSB_SPRtgt","Value"]/2   #always divide SSB by 2 in single sex model, unless you grab model$SBzero
+    mle.par <- c(mle.par, b)
 
     ## Add SPR MSY-proxy
     mle.par <- c(mle.par, 40)
 
     ## Add Exploitation fraction corresponding to SPR
-    mle.par <- c(mle.par, NA)
+    f <- model$derived_quants["Fstd_SPRtgt","Value"]
+    f <- f * 100
+    mle.par <- c(mle.par, f)
 
     ## Add Yield at Bf_40%
-    mle.par <- c(mle.par, NA)
+    y <- model$derived_quants["TotYield_SPRtgt","Value"]/1000
+    mle.par <- c(mle.par, y)
 
     if(is.null(tab)){
       tab <- as.data.frame(mle.par)
@@ -269,9 +268,9 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
   ## Decimal values
   tab[c(1,3,4),] <- fmt0(tab[c(1,3,4),], 3)
   ## Large numbers with no decimal points but probably commas
-  tab[c(2,5,6,7),] <- fmt0(apply(tab[c(2,5,6,7),], c(1,2), as.numeric))
+  tab[c(2,5,6,7,11,14),] <- fmt0(apply(tab[c(2,5,6,7,11,14),], c(1,2), as.numeric))
   ## Percentages
-  tab[c(8,9,10),] <- paste0(fmt0(apply(tab[c(8,9,10),], c(1,2), as.numeric), 1), "\\%")
+  tab[c(8,9,10,13),] <- paste0(fmt0(apply(tab[c(8,9,10,13),], c(1,2), as.numeric), 1), "\\%")
   ## SPR Percentages row (some may be NA). This is really ugly but works
   tab[12, !is.na(tab[12,])] <- paste0(fmt0(as.numeric(tab[12, !is.na(tab[12,])]), 1), "\\%")
 
@@ -326,7 +325,7 @@ make.short.parameter.estimates.table <- function(model,                ## model 
                                                  space.size = 10       ## Size of the spaces for the table
                                                  ){
   ## Returns an xtable in the proper format for the parameter estimates
-
+print("make.short.parameter.estimates.table")
   calc.ro <- function(x){
     ## Changes from logspace and multiplies by two because it's female only
     return(exp(x) * 2)
@@ -351,40 +350,38 @@ make.short.parameter.estimates.table <- function(model,                ## model 
   mle.par <- c(mle.par, rec)
 
   ## Add B0
-  b0 <- model$SBzero
+  b0 <- model$SBzero     #note that this is divided by 2 in a single sex model
   b0 <- b0 / 1000 ## To make B0 in the thousands
   mle.par <- c(mle.par, b0)
 
   ## Add depletion for 2009
-  d <- model$timeseries[model$timeseries$Yr == 2009,]$SpawnBio
-  d <- d / (b0 * 1000)
-  d <- d * 100  ## To make a percentage
+  d <- 100 * model$derived_quants[paste("Bratio",2009,sep="_"),"Value"]
   mle.par <- c(mle.par, d)
 
   ## Add depletion for end.yr
-  d <- model$timeseries[model$timeseries$Yr == end.yr,]$SpawnBio
-  d <- d / (b0 * 1000)
-  d <- d * 100  ## To make a percentage
+  d <- 100 * model$derived_quants[paste("Bratio",end.yr,sep="_"),"Value"]
   mle.par <- c(mle.par, d)
 
-  ## Add fishing intensity for end.yr
-  spr <- model$sprseries[model$sprseries$Year == end.yr - 1,]$SPR
-  spr40 <- model$sprseries[model$sprseries$Year == end.yr - 1,]$SPR_std
-  fi <- (1 - spr) / (1 - spr40)
+  ## Add fishing intensity for last year
+  fi <- model$derived_quants[paste("SPRratio",end.yr-1,sep="_"),"Value"]
   mle.par <- c(mle.par, fi)
 
   ## Add Female spawning biomass B_f40%
   ## b <- models[[1]]$timeseries[model$timeseries$Yr == end.yr,]
-  mle.par <- c(mle.par, NA)
+  b <- model$derived_quants["SSB_SPRtgt","Value"]/2   #always divide SSB by 2 in single sex model, unless you grab model$SBzero
+  mle.par <- c(mle.par, b)
 
   ## Add SPR MSY-proxy
   mle.par <- c(mle.par, 40)
 
   ## Add Exploitation fraction corresponding to SPR
-  mle.par <- c(mle.par, NA)
+  f <- model$derived_quants["Fstd_SPRtgt","Value"]
+  f <- 100 * f #make a percentage
+  mle.par <- c(mle.par, f)
 
   ## Add Yield at Bf_40%
-  mle.par <- c(mle.par, NA)
+  y <- model$derived_quants["TotYield_SPRtgt","Value"]/1000
+  mle.par <- c(mle.par, y)
 
   calc.mcmc <- function(x){
     mcmc.grep <- unique(grep(paste(posterior.regex, collapse="|"), names(x$mcmc)))
@@ -420,21 +417,25 @@ make.short.parameter.estimates.table <- function(model,                ## model 
     mcmc.meds <- c(mcmc.meds, d)
 
     ## Add fishing intensity for end.yr - 1
-    d <- median(eval(parse(text = paste0("models[[1]]$mcmc$SPRratio_", end.yr - 1))))
+    d <- median(x$mcmc[,paste("SPRratio", end.yr - 1, sep="_")])
     d <- d * 100  ## To make a percentage
     mcmc.meds <- c(mcmc.meds, d)
 
     ## Add Female spawning biomass B_f40%
-    mcmc.meds <- c(mcmc.meds, NA)
+    b <- median(x$mcmc[,"SSB_SPRtgt"])/2
+    mcmc.meds <- c(mcmc.meds, b)
 
     ## Add SPR MSY-proxy
-    mcmc.meds <- c(mcmc.meds, NA)
+    mcmc.meds <- c(mcmc.meds, 40)
 
     ## Add Exploitation fraction corresponding to SPR
-    mcmc.meds <- c(mcmc.meds, NA)
+    f <- median(x$mcmc[,"Fstd_SPRtgt"])
+    f <- 100 * f  
+    mcmc.meds <- c(mcmc.meds, f)
 
     ## Add Yield at Bf_40%
-    mcmc.meds <- c(mcmc.meds, NA)
+    y <- median(x$mcmc[,"TotYield_SPRtgt"])/1000   
+    mcmc.meds <- c(mcmc.meds, y)
     return(mcmc.meds)
   }
 
@@ -450,9 +451,9 @@ make.short.parameter.estimates.table <- function(model,                ## model 
   ## Decimal values
   tab[c(1,3,4),] <- fmt0(tab[c(1,3,4),], 3)
   ## Large numbers with no decimal points but probably commas
-  tab[c(2,5,6,7),] <- fmt0(apply(tab[c(2,5,6,7),], c(1,2), as.numeric))
+  tab[c(2,5,6,7,11,14),] <- fmt0(apply(tab[c(2,5,6,7,11,14),], c(1,2), as.numeric))
   ## Percentages
-  tab[c(8,9,10),] <- paste0(fmt0(apply(tab[c(8,9,10),], c(1,2), as.numeric), 1), "\\%")
+  tab[c(8,9,10,13),] <- paste0(fmt0(apply(tab[c(8,9,10,13),], c(1,2), as.numeric), 1), "\\%")
   ## SPR Percentages row (some may be NA). This is really ugly but works
   tab[12, !is.na(tab[12,])] <- paste0(fmt0(apply(tab[12, !is.na(tab[12,])], 1, as.numeric), 1), "\\%")
 
@@ -488,7 +489,7 @@ make.short.parameter.estimates.table <- function(model,                ## model 
   addtorow$command <- c("\\hline \\\\ \\textbf{\\underline{Parameters}} \\\\",
                         "\\hline \\\\ \\textbf{\\underline{Derived Quantities}} \\\\",
                         "\\hline \\\\ \\textbf{\\underline{Reference Points based on \\emph{F}\\subscr{40\\%}}} \\\\")
-
+print("make.short.parameter.estimates.table")
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(tab, caption=xcaption, label=xlabel, align=get.align(ncol(tab), just="c")),
