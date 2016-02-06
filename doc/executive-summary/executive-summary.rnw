@@ -14,7 +14,6 @@
 \phantomsection  \addcontentsline{toc}{subsection}{Stock}
 This assessment reports the status of the coastal \fishname\ (or \commonname, \emph{\sciencename}) resource off the west coast of the United States and Canada. This stock exhibits seasonal migratory behavior, ranging from offshore and generally southern waters during the winter spawning season to coastal areas between northern California and northern British Columbia during the spring, summer and fall when the fishery is conducted. In years with warmer water temperatures the stock tends to move farther to the North during the summer and older \simplename\ tend to migrate farther than younger fish in all years with catches in the Canadian zone typically consisting of fish greater than four years old. Separate, and much smaller, populations of \simplename\ occurring in the major inlets of the northeast Pacific Ocean, including the Strait of Georgia, Puget Sound, and the Gulf of California, are not included in this analysis.
 
-
 \subsection*{Catches} \label{sec:es-catches}
 \phantomsection  \addcontentsline{toc}{subsection}{Catches} 
 Coast-wide fishery \fishname\ landings averaged \Sexpr{fmt0(mean(catches$TOTAL))}~t from \Sexpr{min(catches$Year)} to \Sexpr{max(catches$Year)}, with a low of \Sexpr{fmt0(min(catches$TOTAL))}~t in \Sexpr{catches$Year[catches$TOTAL==min(catches$TOTAL)]} and a peak of \Sexpr{fmt0(max(catches$TOTAL))}~t in \Sexpr{catches$Year[catches$TOTAL==max(catches$TOTAL)]} (Figure~\ref{fig:es-catches}). Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to the modern fishery. Over the early period, \Sexpr{min(catches$Year)}--1990, most removals were from foreign or joint-venture fisheries. Over all years, the fishery in U.S. waters averaged \Sexpr{fmt0(mean(catches$Ustotal))}~t, or \Sexpr{round(100*mean(catches$Ustotal)/mean(catches$TOTAL),1)}\% of the average total landings, while catch from Canadian waters averaged \Sexpr{fmt0(mean(catches$CANtotal))}~t.  Over the last 10 years, \Sexpr{max(catches$Year)-9}--\Sexpr{max(catches$Year)} (Table~\ref{tab:es-catches}), the total average catch is \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$TOTAL))}~t with U.S. and Canadian catches averaging \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$Ustotal))}~t and \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$CANtotal))}~t, respectively.
@@ -74,7 +73,6 @@ make.survey.biomass.plot(models,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-
 The assessment uses a Bayesian estimation approach, sensitivity analyses, and retrospective investigations to evaluate the potential consequences of parameter uncertainty, alternative structural models, and historical performance of the assessment model, respectively. The Bayesian approach combines prior knowledge about natural mortality, stock-recruitment steepness (a parameter for stock productivity), and several other parameters with likelihoods for acoustic survey biomass indices and age-composition, as well as fishery age composition data. Integrating the joint posterior distribution over model parameters (via Markov Chain Monte Carlo simulation) provides probabilistic inferences about uncertain model parameters and forecasts derived from those parameters. Sensitivity analyses are used to identify alternative structural models that may also be consistent with the data. Retrospective analyses identify possible poor performance of the assessment model with respect to future predictions. In past assessments, closed-loop simulations have provided an insight into how alternative combinations of survey frequency, assessment model selectivity assumptions, and harvest control rules affect expected management outcomes given repeated application of these procedures over the long-term. The results of past closed-loop simulations influence the decisions made for this assessment.
 
 This \Sexpr{assess.yr} assessment retains the structural form of the base assessment model from \Sexpr{last.assess.yr} and retains many
@@ -84,8 +82,6 @@ assessment models with time-varying fishery selectivity led to higher median ave
 biomass ($B_0$), smaller probability of fishery closures, and lower inter-annual variability in catch compared to assessment models with
 time-invariant fishery selectivity. It was found that even a small degree of flexibility in the assessment model fishery selectivity could
 reduce the effects of errors caused by assuming selectivity is constant over time.
-
-
 
 \subsection*{Stock biomass} \label{sec:es-stock-biomass}
 \phantomsection  \addcontentsline{toc}{subsection}{Stock biomass}
@@ -100,10 +96,6 @@ spawning biomass declined throughout the late 2000s, reaching a time-series low 
 The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium, $B_0$) is
 \Sexpr{curr.depl.median}\% but is highly uncertain (with a 95\% posterior credibility interval from \Sexpr{curr.depl.lower}\% to \Sexpr{curr.depl.upper}\%; Table~\ref{tab:es-biomass}).
 The median estimate of the \Sexpr{end.yr} beginning of the year female spawning biomass is \Sexpr{curr.bio.median}~million~t (with a 95\% posterior credibility interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper}~million~t). The estimated \Sexpr{end.yr-1} female spawning biomass is \Sexpr{prev.bio.median} (\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t.
-
-
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
@@ -148,7 +140,6 @@ make.depletion.plot(base.model,
 \label{fig:es-relative-spawning-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
 
 \subsection*{Recruitment} \label{sec:es-recruitment}
 \phantomsection \addcontentsline{toc}{subsection}{Recruitment}
@@ -335,12 +326,10 @@ big the cohort is (i.e., cohort strength is not well know until it is age 2 or g
 
 The JTC presented results from closed-loop simulations evaluating the effect of including potential age-1 indices on management outcomes at the May 6-7 2015 JMC meeting in Victoria, B.C. They found that fitting to an unbiased age-1 survey results in lower catch, lower P(<B10\%) [**what does that mean?? -- Andy guessing: probability of the spawning biomass in ??? falling below 10\% of $B_0$] and a lower average annual variability in catch, but that comparable results in terms of catch could be achieved with a more precise age-2+ survey or alternative harvest control rules.  The simulations assumed an age-1 survey design with consistent, effective, and numerous sampling, which may not be the case for the existing age-1 index.
 
-
 \subsection*{Forecast decision tables} \label{sec:es-forecast-decision-table}
 \phantomsection \addcontentsline{toc}{subsection}{Forecast decision tables}
 
 The median catch limit for \Sexpr{min(forecast.yrs)} based on the default \Ffortyten{} harvest policy is \Sexpr{catch.limit.quantiles["median"]}~t, but has a wide range of uncertainty, with the 2.5\% to 97.5\% range being \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
-
 
 Decision tables give the projected population status (relative spawning biomass) and the fishing intensity (1-SPR$_{40\%}$) relative to target fishing intensity, under different catch alternatives for the base model (Tables~\ref{tab:es-decisions-biomass} and~\ref{tab:es-decisions-spr}). The tables are organized such that the projected outcome for each potential catch level and year (each row) can be evaluated across the quantiles (columns) of the posterior distribution. Table~\ref{tab:es-decisions-biomass} shows projected relative spawning biomass outcomes and Table~\ref{tab:es-decisions-spr} shows projected fishing intensity outcomes relative to the target fishing intensity (based on SPR; see table legend). Figure~\ref{fig:es-forecast-depletion-comparison} shows the projected biomass for several catch alternatives.
 
