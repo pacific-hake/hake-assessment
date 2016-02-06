@@ -4,8 +4,6 @@
 
 \section{ASSESSMENT} \label{sec:assessment}
 
-** indicates something that needs to be checked (or cannot be automated). References not attempted yet. 
-
 \subsection{Modeling history}\label{sec:assessment-modeling-history}
 
 In spite of the relatively short history of fishing, Pacific Hake have surely been subject to a larger number of stock assessments than any marine species off the west coast of the U.S.~and Canada. These assessments have included a large variety of age-structured models. Initially, a cohort analysis tuned to fishery CPUE was used \citep{FrancisSwartzmanEtAl1982}. Later, the cohort analysis was tuned to NMFS triennial acoustic survey estimates of absolute abundance at age \citep{HollowedAdlersteinEtAl1988}. Since 1989, stock-synthesis models using fishery catch-at-age data and acoustic survey estimates of population biomass and age composition have been the primary assessment method \citep{DornMethot1991}.
@@ -24,7 +22,8 @@ While there have been many changes to Pacific Hake management procedures, they h
 
 \subsection{\Sexpr{assess.yr} Scientific Review Group (SRG) review}\label{sec:assessment-2016-review}
 
-**To be added after \Sexpr{assess.yr} review.  [**for 2015 assessment nothing actually got added.]
+To be added after \Sexpr{assess.yr} review.  
+% [**for 2015 assessment nothing actually got added.]
 
 \subsection{\Sexpr{last.assess.yr} Scientific Review Group (SRG) review}\label{sec:assessment-2015-review}
 

@@ -11,9 +11,6 @@
 
 \section{INTRODUCTION} \label{sec:introduction}
 
-** indicates something that needs to be checked (or cannot be automated). For now have concentrated on converting last year's text into \LaTeX. Missing references are listed at the end, though most have just been flagged -- AME will do them all in one go, and then ask for the missing ones.
-
-
 The Joint US-Canada Agreement for \fishname\ (called the Agreement) was signed in 2003 and went into force in 2008 but could not be implemented until 2010.  The committees defined by the Agreement were first formed in 2011 and catch advice in 2012 was the first year for which the process defined by the Agreement was followed.  This is the 
 \Sexpr{c("first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth")[assess.yr - 2011]}
 annual stock assessment conducted under the Agreement process.  
