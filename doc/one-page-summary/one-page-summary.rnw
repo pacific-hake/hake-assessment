@@ -10,20 +10,22 @@
 \phantomsection \addcontentsline{toc}{section}{One Page Summary}
 
 \begin{itemize}
-  \item The stock assessment model for \Sexpr{assess.yr} is similar in structure to the \Sexpr{last.assess.yr} model with addition
-    of fishery data from \Sexpr{end.yr-1}, a new acoustic survey biomass estimate, and minor refinements to data including catch
+  \item The stock assessment model for \Sexpr{assess.yr} is similar in structure to the \Sexpr{last.assess.yr} model with the addition
+    of fishery age compositions from \Sexpr{end.yr-1}, new acoustic survey biomass and age composition estimates for \Sexpr{end.yr-1}, 
+    reanalyzed acoustic survey biomass and age compositions from 1998--2013, and minor refinements to data including catch
     estimates from earlier years.
 
-  \item The stock assessment is fit to an acoustic survey index of abundance and age compositions from the survey and commercial fisheries.
+  \item The stock assessment is fit to an acoustic survey index of abundance as well as age compositions from the survey and commercial fisheries.
 
   \item Coastwide catch in \Sexpr{end.yr-1} was \Sexpr{last.year.landings}~t, out of a
     TAC (adjusted for carryovers) of \Sexpr{last.year.tac}~t. Attainment in the U.S. was \Sexpr{last.year.us.attained}\% of its quota;
     in Canada it was \Sexpr{last.year.can.attained}\%. A variety of factors influenced the attainment of the quota.
 
-  \item The stock is estimated to be near its highest biomass level since the early 1990s as a result of an above average 2008 cohort
-    and a very large 2010 cohort. Recruitment in 2011 is estimated to have been below average. Cohorts from the years 
-    \Sexpr{end.yr-3}--\Sexpr{end.yr-1} have not been observed long enough in the data to estimate their size or even if they are likely to be above or below average.
-    
+  \item The stock is estimated to be near its highest biomass level since 1990 as a result of
+    estimated large 2010 and 2014 cohorts. The 2014 cohort has only been observed once by the commercial fishery,
+    thus its estimate is highly uncertain.  The survey observed high numbers of age-1 hake in 2015, but those data
+    are not used in the base assessment model.
+
   \item The median estimate of \Sexpr{end.yr} relative spawning biomass (spawning biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium, $B_0$) is
     \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
     \Sexpr{curr.depl.upper}\%).
@@ -32,14 +34,16 @@
     million~t (with 95\% interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper} million~t).
 
   \item The spawning biomass in \Sexpr{end.yr} is estimated to have increased from \Sexpr{end.yr-1} due to the large size of the
-    2010 year class.
+    2014 year class.
+
+  \item The default predicted catch level for 2016, based on the default harvest rule, is 839,476 t.
 
   \item As in the past, forecasts are highly uncertain due to lack of information about recruitment in the most recent years.
     Forecasts were conducted across a range of catch levels.
 
   \item Projections setting \Sexpr{forecast.yrs[1]} and \Sexpr{forecast.yrs[2]} catch equal to the \Sexpr{forecast.yrs[1]-1} TAC of
-    \Sexpr{last.year.tac}~t show the median spawning relative biomass estimates declining from \Sexpr{curr.depl.median}\%
+    \Sexpr{last.year.tac}~t show the median spawning relative biomass estimates increasing from \Sexpr{curr.depl.median}\%
     of B\subscr{0} in \Sexpr{end.yr} to \Sexpr{next.depl.median.tac.based}\% in \Sexpr{end.yr+1} and \Sexpr{next2.depl.median.tac.based}\%
-    in \Sexpr{end.yr+2}. %%However, this projection is highly uncertain and shows a \textbf{FROM here on is not correct} 5\% chance of falling below 25\%
-  %%   of B0 in 2 years (by 2017) and a 5\% chance of increasing above 129\% in that same time frame.
+    in \Sexpr{end.yr+2}. However, this projection is highly uncertain and shows a 2\% chance of the spawning biomass falling below 25\%
+     of B0 in 2 years (by 2018) and a 50\% chance of declining from 2017 to 2018.
 \end{itemize}
