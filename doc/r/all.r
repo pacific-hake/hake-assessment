@@ -83,6 +83,7 @@ further.tac.file <- "further-tac-details.csv"
 survey.history.file <- "survey-history.csv"
 sampling.history.file <- "sampling-history.csv"
 ovary.N.file <- "OvarySamples.csv"
+age1.file <- "Age1.csv"
 
 exe.file.name <- "ss3.exe"
 starter.file.name <- "starter.ss"
@@ -343,6 +344,7 @@ sampling.history <- load.sampling.history(file.path(data.path, sampling.history.
 further.tac <- further.tac.details(file.path(data.path, further.tac.file))
 can.ages <- load.can.age.data(file.path(data.path, can.age.file))
 ovaryN <- read.csv(file.path(data.path, ovary.N.file))
+age1index <- read.csv(file.path(data.path, age1.file))
 cat("All data tables have been loaded ", data.path,"\n")
 
 ################################################################################
