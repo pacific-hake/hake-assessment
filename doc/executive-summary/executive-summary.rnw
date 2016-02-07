@@ -293,7 +293,13 @@ make.landings.tac.table(landings.vs.tac,
                         placement = "tbp")
 @
 
-The median fishing intensity was below target in all years except \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]} and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]} (Figure~\ref{fig:es-phase}).
+The median fishing intensity was below target in all years except \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]} and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]} (Figure~\ref{fig:es-fishing-intensity}).
+The median female spawning biomass was above target until \Sexpr{names(median.relative.bio.below.target[1])} and was below target from 1998-2000 and 2006-2011 (Figure~\ref{fig:es-relative-spawning-biomass}). 
+% Andy summarising those years manually, based on the values:
+% \Sexpr{names(median.relative.bio.below.target[-length(median.relative.bio.below.target)])} and \Sexpr{names(median.relative.bio.below.target[length(median.relative.bio.below.target)])}.
+
+The joint history of biomass and $F$-target reference points shows that before
+2007, median fishing intensity was below target and female spawning biomass was mostly above target (Figure~\ref{fig:es-phase}).
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -312,12 +318,6 @@ make.phase.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-The female spawning biomass was above target until \Sexpr{names(median.relative.bio.below.target[1])} and was below target from 1998-2000 and 2006-2011. 
-% Andy summarising those years manually, based on the values:
-% \Sexpr{names(median.relative.bio.below.target[-length(median.relative.bio.below.target)])} and \Sexpr{names(median.relative.bio.below.target[length(median.relative.bio.below.target)])}.
-
-The joint history of biomass and $F$-target reference points shows that before
-2007, median fishing intensity was below target and female spawning biomass was mostly above target (Figure~\ref{fig:es-phase}).
 Between 2007 and 2011, however, fishing intensity ranged from 88\% to 105\% and relative spawning biomass between 0.20 and 0.28.
 Biomass has risen recently with the 2008 and 2010 recruitments and, correspondingly, fishing intensity has fallen below targets. 
 Relative spawning biomass has been above the target since 2012. 
@@ -479,7 +479,7 @@ make.risk.table(base.model,
 @
 
 The population is predicted to increase from 2016 to 2017 with a greater than 50\% probability for all catch levels investigated up to 440,000~t (Table~\ref{tab:es-decisions-biomass} and Figure~\ref{tab:es-risk-year-1}). The model predicts high biomass levels and the predicted probability of dropping below 10\%
-in 2017 is less than 1\% and the maximum probability of dropping below $B_{40\%}$ is 14\% for all catches explored.
+in 2017 is less than 1\% and the maximum probability of dropping below $B_{40\%}$ is 16\% for all catches explored.
 It should be noted that the natural mortality rate has overtaken the growth rate for the 2010 year class, the model
 estimated below average recruitment for the 2011 and 2013 cohorts, but a large predicted 2014 year class will result in increases to the spawning biomass as it enters maturity. The probability that the 2017 spawning
 biomass will be less than the 2016 spawning biomass is greater than 50\% for all catch levels greater than 440,000~t (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
