@@ -266,7 +266,7 @@ make.exploitation.fraction.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 %
 Median fishing intensity is estimated to have declined from \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.penult.yr}\% in \Sexpr{end.yr-1}, while
-the exploitation fraction has decreased from \Sexpr{exploitation.med.2010} in 2010 to \Sexpr{exploitation.med.penult.yr} in \Sexpr{end.yr-1}.  Although there is a considerable amount of uncertainty around these recent estimates, the 95\% posterior credibility interval of ***???? [fishing intensity?? and exploitation fraction??] is below the target for the last three years.
+the exploitation fraction has decreased from \Sexpr{exploitation.med.2010} in 2010 to \Sexpr{exploitation.med.penult.yr} in \Sexpr{end.yr-1}.  Although there is a considerable amount of uncertainty around these recent estimates, the 95\% posterior credibility interval of fishing intensity is below the SPR management target for the last three years.
 % Note that exploitation.med.penult.yr comes out as 0.06, but in Table d 
 %  is 0.065, because the true value is 0.0648.... The text rounds to two decimal
 %  places but Table rounds to three, but rounding is done correctly because of 

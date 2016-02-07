@@ -242,7 +242,7 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
 
     ## Add Female spawning biomass B_f40%
     ## b <- models[[1]]$timeseries[model$timeseries$Yr == end.yr,]
-    b <- model$derived_quants["SSB_SPRtgt","Value"]/2   #always divide SSB by 2 in single sex model, unless you grab model$SBzero
+    b <- model$derived_quants["SSB_SPRtgt","Value"]/2/1000   #always divide SSB by 2 in single sex model, unless you grab model$SBzero; divide by 1000 to be consistent with showing biomass in thousands of tons
     mle.par <- c(mle.par, b)
 
     ## Add SPR MSY-proxy
@@ -282,12 +282,12 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
                  "\\emph{R}\\subscr{0} (millions)",
                  "Steepness (\\emph{h})",
                  "Additional acoustic survey SD",
-                 "2008 recruitment",
-                 "2010 recruitment",
+                 "2008 recruitment (millions)",
+                 "2010 recruitment (millions)",
                  "\\emph{B}\\subscr{0} (thousand t)",
                  "2009 Relative Spawning Biomass",
                  paste0(end.yr, " Relative Spawning Biomass"),
-                 paste0(end.yr - 1, " Fishing intensity: (1-SPR)/(1-SPR\\subscr{40\\%})"),
+                 paste0(end.yr - 1, " Fishing intensity: (1-SPR)/(1-SPR\\subscr{40\\%}; thousand t)"),
                  "Female Spawning Biomass (\\emph{$B_{F_{40_{\\%}}}$})",
                  "SPR\\subscr{MSY-proxy}",
                  "Exploitation Fraction corresponding to SPR",
