@@ -293,7 +293,7 @@ make.landings.tac.table(landings.vs.tac,
                         placement = "tbp")
 @
 
-The median fishing intensity was below target in all years except \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]} and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]} (Figure~\ref{fig:es-phase}).
+The median fishing intensity was below target in all years except \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]} and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]} (Figure~\ref{fig:es-fishing-intensity}).
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
