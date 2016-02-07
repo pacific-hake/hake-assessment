@@ -325,7 +325,6 @@ make.short.parameter.estimates.table <- function(model,                ## model 
                                                  space.size = 10       ## Size of the spaces for the table
                                                  ){
   ## Returns an xtable in the proper format for the parameter estimates
-print("make.short.parameter.estimates.table")
   calc.ro <- function(x){
     ## Changes from logspace and multiplies by two because it's female only
     return(exp(x) * 2)
@@ -364,6 +363,7 @@ print("make.short.parameter.estimates.table")
 
   ## Add fishing intensity for last year
   fi <- model$derived_quants[paste("SPRratio",end.yr-1,sep="_"),"Value"]
+  fi <- fi * 100.0
   mle.par <- c(mle.par, fi)
 
   ## Add Female spawning biomass B_f40%
