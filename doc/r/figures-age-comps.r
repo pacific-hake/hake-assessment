@@ -102,13 +102,13 @@ make.age.comp.bubble.plot <- function(model,                  ## model is an mcm
     if(show.key){
       symbols(0.2 + c(key.yrs, -1),
               c(16.2, 16.2, 16.2, 16.2, -1),
-              circles = sqrt(c(0.01, 0.1, 0.2, 0.4, max.prop)),
+              circles = sqrt(c(1, 10, 25, 50, max.prop)),
               inches = inches,
               add = TRUE,
               xpd = NA,
               fg = fg,
               bg = bg)
-      text(key.yrs + 1.9, c(16.2,16.2,16.2,16.2), c("0.01", "0.1", "0.2", "0.4"), xpd = NA, cex = 0.8)
+      text(key.yrs + 1.1, c(16.2,16.2,16.2,16.2), c("0.01", "0.1", "0.25", "0.5"), xpd = NA, cex = 0.8)
     }
     axis(1, seq(start.yr, end.yr + 5, 5))
     axis(4)

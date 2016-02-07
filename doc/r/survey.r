@@ -87,3 +87,38 @@ make.survey.biomass.plot <- function(models,      ## models is the list returned
   ## axis(2, at=(0:5)*1e6, lab=0:5, las=1)
   par <- oldpar
 }
+
+
+
+make.survey.age1.plot <- function(age1index,   ##
+                                  models,      ## models is the list returned by load.models.
+                                  modelnum = 1 ## the index of the model to show. 
+                                     ){
+  ## It is assumed that the data file has been read in correctly.
+  ## Assumes that there is only one 'CPUE' index and it is the acoustic survey.
+
+  oldpar <- par()
+  par(mar=c(3, 4, 1, 1) + 0.1)
+
+  x <- age1index
+  yrs <- x$Year
+
+  base <- models[[modelnum]]
+  recr1 <- base$natage[base$natage$Time %in% yrs,"1"]
+
+  logAge1 <- log(recr1)
+  logIndex <- log(x$Index)
+  mn <- mean(logAge1)
+  index <- mn*logIndex/mean(logIndex[!is.na(x$Index)])
+  plot(x$Year,recr1/1e6,pch=4,type="b",log="y",ylim=range(c(recr1,exp(index)),na.rm=T)*c(1,1)/1e6,lwd=2,xaxt="n",xlab="Year",ylab="Age-1 Recruitment (billions)",las=1,col=gray(0.7),cex=0.8)
+  points(yrs,exp(index)/1e6,pch=16,col="blue",cex=1.5)
+  points(x$Year[!is.na(x$Index)],recr1/1e6,pch=4,col="black",cex=1,lwd=2)
+  #mn <- mean(x$Age.1[!is.na(x$Age1_Index)])
+  #index <- exp(mn*x$Age1_Index/mean(x$Age1_Index),na.rm=T)
+  #plot(x$Year,x$Age.1/1e6,pch=4,type="b",log="y",ylim=range(c(x$Age.1,index),na.rm=T)/1e6,lwd=2,xaxt="n",xlab="Year",ylab="Age-1 Recruitment (billions)",las=1)
+  #points(x$Year,index/1e6,pch=16,col="blue",cex=1.5)
+  axis(1,at=x$Year)
+  legend("topleft",c("Estimated age-1 recruitment","Scaled acoustic survey age-1 index"),col=c("black","blue"),pch=c(4,16),lty=NA,lwd=2,bty="n")
+  par <- oldpar
+}
+
