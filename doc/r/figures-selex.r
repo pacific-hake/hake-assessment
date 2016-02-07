@@ -34,6 +34,8 @@ calc.tv.selex <- function(model,
   }
   ## Strip off unneeded ages
   for(i in 1:length(selex)){
+    ## Remove the first column because it is age zero fish
+    selex[[i]] <- selex[[i]][,-1]
     cols.to.remove <- NULL
     if(ages[1] > 1){
       cols.to.remove <- (1:(ages[1]-1))
