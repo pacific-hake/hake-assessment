@@ -2,7 +2,8 @@ make.reference.points.table <- function(model,                ## model is an mcm
                                         xcaption = "default", ## Caption to use
                                         xlabel   = "default", ## Latex label to use
                                         font.size = 9,        ## Size of the font for the table
-                                        space.size = 10       ## Size of the spaces for the table
+                                        space.size = 10,       ## Size of the spaces for the table
+                                        placement = "H"       ## Placement of table
                                         ){
   ## Returns an xtable in the proper format for the executive summary reference points
 
@@ -61,5 +62,5 @@ make.reference.points.table <- function(model,                ## model is an mcm
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(tab, caption=xcaption, label=xlabel, align=get.align(ncol(tab), just="c")),
                caption.placement = "top", include.rownames=FALSE, sanitize.text.function=function(x){x},
-               size=size.string, add.to.row=addtorow, table.placement="H"))
+               size=size.string, add.to.row=addtorow, table.placement=placement))
 }

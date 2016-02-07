@@ -86,7 +86,8 @@ make.biomass.table <- function(model,                ## model is an mcmc run and
                                xlabel   = "default", ## Latex label to use
                                font.size = 9,        ## Size of the font for the table
                                space.size = 10,      ## Size of the spaces for the table
-                               digits = 1            ## Number of decimal points
+                               digits = 1,           ## Number of decimal points
+                               placement="H"   ## where to place the table
                                ){
   ## Returns an xtable in the proper format for the executive summary biomass values for the base case mcmc
   ## Biomass quantiles
@@ -126,7 +127,7 @@ make.biomass.table <- function(model,                ## model is an mcmc run and
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(tab.filt, caption=xcaption, label=xlabel, align=get.align(ncol(tab.filt))),
-               caption.placement = "top", add.to.row=addtorow, table.placement="H", include.rownames=FALSE, sanitize.text.function=function(x){x},
+               caption.placement = "top", add.to.row=addtorow, table.placement=placement, include.rownames=FALSE, sanitize.text.function=function(x){x},
                size=size.string))
 }
 
@@ -139,7 +140,8 @@ make.recruitment.table <- function(model,                ## model is an mcmc run
                                    font.size = 9,        ## Size of the font for the table
                                    space.size = 10,      ## Size of the spaces for the table
                                    digits = 1,           ## Number of decimal points in recruitment
-                                   digits.dev = 3        ## Number of decimal points in recruitment deviations
+                                   digits.dev = 3,        ## Number of decimal points in recruitment deviations
+                                   placement="H"   ## where to place the table                                   
                                    ){
   ## Returns an xtable in the proper format for the executive summary recruitment and deviations values for the base case mcmc
   yrs <- start.yr:end.yr
@@ -190,7 +192,7 @@ make.recruitment.table <- function(model,                ## model is an mcmc run
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(tab.filt, caption=xcaption, label=xlabel, align=get.align(ncol(tab.filt))),
-               caption.placement = "top", add.to.row=addtorow, table.placement="H", include.rownames=FALSE, sanitize.text.function=function(x){x},
+               caption.placement = "top", add.to.row=addtorow, table.placement=placement, include.rownames=FALSE, sanitize.text.function=function(x){x},
                size=size.string))
 }
 
@@ -201,7 +203,8 @@ make.fishing.intensity.table <- function(model,                ## model is an mc
                                          xlabel   = "default", ## Latex label to use
                                          font.size = 9,        ## Size of the font for the table
                                          space.size = 10,      ## Size of the spaces for the table
-                                         digits = 1            ## Number of decimal points
+                                         digits = 1,            ## Number of decimal points
+                                         placement="H"   ## where to place the table                                   
                                          ){
   ## Returns an xtable in the proper format for the executive summary fishing intensity and
   ## exploitation fraction values for the base case mcmc
@@ -263,6 +266,6 @@ make.fishing.intensity.table <- function(model,                ## model is an mc
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(tab.filt, caption=xcaption, label=xlabel, align=get.align(ncol(tab.filt)), digits=digits),
-               caption.placement = "top", add.to.row=addtorow, table.placement="H", include.rownames=FALSE, sanitize.text.function=function(x){x},
+               caption.placement = "top", add.to.row=addtorow, table.placement=placement, include.rownames=FALSE, sanitize.text.function=function(x){x},
                size=size.string))
 }

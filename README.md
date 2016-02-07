@@ -222,6 +222,7 @@ __Andy's other notes__
 
 - Use text in main document of last year's, and start converting to .tex.
 - Table 1 and 2 of last year's .pdf -- values should be in **catches**, see **make-catches-table.r** in **catches.r** for an earlier table, and modify to make new ones.
+- if just editing the placement (and maybe more) of a table that is in, say, executive-summary.rnw, then no need to delete knitr-cache. Probably.
 
 Helpful git commands I didn't know:
 

@@ -36,7 +36,8 @@ make.catches.table <- function(catches,              ## The output of the load.c
                                xcaption = "default", ## Caption to use
                                xlabel   = "default", ## Latex label to use
                                font.size = 9,        ## Size of the font for the table
-                               space.size = 10       ## Size of the spaces for the table
+                               space.size = 10,      ## Size of the spaces for the table
+                               placement = "H"       ## Placement of table
                                ){
   ## Returns an xtable in the proper format for the executive summary catches
   if(start.yr > 1991){
@@ -66,7 +67,7 @@ make.catches.table <- function(catches,              ## The output of the load.c
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(catches, caption=xcaption, label=xlabel, align=get.align(ncol(catches))),
-               caption.placement = "top", include.rownames=FALSE, table.placement="H", sanitize.text.function=function(x){x}, size=size.string))
+               caption.placement = "top", include.rownames=FALSE, table.placement=placement, sanitize.text.function=function(x){x}, size=size.string))
 }
 
 make.catches.plot <- function(catches,
@@ -191,7 +192,8 @@ make.landings.tac.table <- function(landings.vs.tac,
                                     xcaption = "default", ## Caption to use
                                     xlabel   = "default", ## Latex label to use
                                     font.size = 9,        ## Size of the font for the table
-                                    space.size = 10       ## Size of the spaces for the table
+                                    space.size = 10,       ## Size of the spaces for the table
+                                    placement = "H"       ## Placement of table
                                     ){
   ## Returns an xtable in the proper format for the executive summary landings vs. TAC for management performance section
   tab <- landings.vs.tac
@@ -217,7 +219,7 @@ make.landings.tac.table <- function(landings.vs.tac,
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{", font.size, "}{", space.size, "}\\selectfont")
   return(print(xtable(tab, caption=xcaption, label=xlabel, align = get.align(ncol(tab), first.left = FALSE, just = "c"), digits = c(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1)),
-               caption.placement = "top", include.rownames = FALSE, table.placement = "H", sanitize.text.function = function(x){x}, size = size.string))
+               caption.placement = "top", include.rownames = FALSE, table.placement = placement, sanitize.text.function = function(x){x}, size = size.string))
 }
 
 years.Can.JV.catch.eq.0 <- function(catches,          ## The output of the load.catches

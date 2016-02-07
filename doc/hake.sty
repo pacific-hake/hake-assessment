@@ -100,6 +100,20 @@
 
 \usepackage{tocloft}                    % Table of Contents
 
+% Change default options for float rules for figure and tables, from:
+%  http://www.tex.ac.uk/FAQ-floats.html  . Also see p55 of
+%  http://tug.ctan.org/tex-archive/info/epslatex/english/epslatex.pdf
+\renewcommand{\topfraction}{.85}
+\renewcommand{\bottomfraction}{.7}
+\renewcommand{\textfraction}{.15}
+\renewcommand{\floatpagefraction}{.66}
+\renewcommand{\dbltopfraction}{.66}
+\renewcommand{\dblfloatpagefraction}{.66}
+\setcounter{topnumber}{9}
+\setcounter{bottomnumber}{9}
+\setcounter{totalnumber}{20}
+\setcounter{dbltopnumber}{9}
+
 \captionsetup[table]{position=above, skip=5pt}
      % To have less whitespace after Table caption.
      % 'above' tells it to put the skip after caption, but you may still

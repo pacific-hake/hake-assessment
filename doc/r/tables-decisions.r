@@ -3,7 +3,8 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
                                 xlabel     = "default", ## Latex label to use
                                 font.size  = 9,         ## Size of the font for the table
                                 space.size = 10,        ## Size of the spaces for the table
-                                which      = "biomass"  ## Which type to build. "biomass" or "spr".
+                                which      = "biomass",  ## Which type to build. "biomass" or "spr".
+                                placement = "H"       ## Placement of table
                                 ){
   ## Returns an xtable in the proper format for the executive summary decision tables
 
@@ -97,7 +98,7 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
                sanitize.text.function = function(x){x},
                size = size.string,
                add.to.row = addtorow,
-               table.placement = "H",
+               table.placement = placement,
                tabular.environment = "tabularx",
                width = "\\textwidth",
                hline.after = NULL))
@@ -110,7 +111,8 @@ make.risk.table <- function(model,                  ## model is an mcmc run and 
                             xcaption   = "default", ## Caption to use
                             xlabel     = "default", ## Latex label to use
                             font.size  = 9,         ## Size of the font for the table
-                            space.size = 10         ## Size of the spaces for the table
+                            space.size = 10,         ## Size of the spaces for the table
+                            placement = "H"       ## Placement of table
                             ){
   ## Returns an xtable in the proper format for the executive summary risk tables
 
@@ -151,7 +153,7 @@ make.risk.table <- function(model,                  ## model is an mcmc run and 
                sanitize.text.function=function(x){x},
                size=size.string,
                add.to.row=addtorow,
-               table.placement="H",
+               table.placement=placement,
                hline.after=NULL,
                tabular.environment = "tabularx",
                width = "\\textwidth",
