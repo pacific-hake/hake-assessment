@@ -323,7 +323,7 @@ make.mcmc.diag.hists.plot(base.model)
 <<main.mcmc.pairs, fig.height=8, fig.width=8>>=
 make.mcmc.diag.pairs.plot(base.model,
                           inc.key.params = TRUE,
-                          recr = c(2008, 2010),
+                          recr = c(2008, 2010, 2014),
                           bratio = end.yr,
                           forecatch = end.yr)
 @
