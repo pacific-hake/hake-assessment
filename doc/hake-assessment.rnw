@@ -19,6 +19,8 @@
 % Had these for YMR Eqns appendix:
 % \renewcommand{\footrulewidth}{0.4pt}
 % \renewcommand{\headrulewidth}{0pt}
+% These are in hake.sty anyway, presumably should not be called twice but
+%  leaving in for now to be safe.
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 
