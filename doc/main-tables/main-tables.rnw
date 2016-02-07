@@ -121,7 +121,7 @@ make.short.parameter.estimates.table(base.model,
                                      posterior.regex = key.posteriors,
                                      end.yr = end.yr,
                                      digits = 3,
-                                     xcaption <- paste0("Select parameters, derived quantities, and reference point estimates for the base model MLE and posterior median (MCMC) estimates with a additional comparison to posterior median estimates from the previous (",end.yr-1,") base model."),
+                                     xcaption <- paste0("Select parameters, derived quantities, and reference point estimates for the base model MLE and posterior median (MCMC) estimates with an additional comparison to posterior median estimates from the previous (",end.yr-1,") base model."),
                                      xlabel <- "tab:main-parameter-estimates",
                                      font.size = 9,
                                      space.size = 10)
@@ -212,5 +212,5 @@ make.short.parameter.estimates.sens.table(retro.list,
                                           space.size = 9)
 @
 
-
+\clearpage
 

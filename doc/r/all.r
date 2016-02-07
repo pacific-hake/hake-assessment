@@ -35,7 +35,8 @@ install.packages.if.needed("PBSmapping", "PBSmapping", github=FALSE)
 install.packages.if.needed("maps", "maps", github=FALSE)
 install.packages.if.needed("coda", "coda", github=FALSE)
 install.packages.if.needed("dplyr", "dplyr", github = FALSE)
-install.packages.if.needed("maptools", github = FALSE)
+install.packages.if.needed("maptools", "maptools", github = FALSE)
+install.packages.if.needed("gtools", "gtools", github = FALSE)
 
 require(nwfscSurvey)
 require(nwfscMapping)
@@ -46,6 +47,7 @@ require(PBSmapping)
 require(maps)
 require(dplyr)
 require(coda)
+require(gtools)
 require(maptools)
 
 source("catches.r")      ## Contains the code to catch/TAC data and figure and table-making code for catch/TAC
@@ -292,7 +294,7 @@ catch.default.policy <- catch.levels[[catch.default.policy.ind]]
 catch.levels.names <- c("No Fishing",
                         "180,000 t",
                         "350,000 t",
-                        paste0(last.data.yr, "TAC: 440,000 t"),
+                        paste0(last.data.yr, " TAC: 440,000 t"),
                         "SPR100",
                         paste0("Default: ",fmt0(catch.default.policy[1])," t"),
                         "stableCatch")
