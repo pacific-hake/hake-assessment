@@ -133,7 +133,7 @@ make.survey.age1.plot(age1index, models, modelnum=base.model.ind)
 \begin{figure}[H]
 \begin{center}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=6.5in, height=5in]{main-figures/maturityNS}
+\includegraphics[width=6.5in, height=4in]{main-figures/maturityNS}
 \end{center}
 %\vspace{0mm}
 \caption{Observed proportion mature-at-length (bubbles with circle size relative to number of samples at length), fitted proportion mature-at-length with an estimated asymptote (lines), and number of samples at length (barplots beneath each panel). Panels show categories of source (top left), year (top right), source and year (bottom left), and month (for the trawl survey only, bottom right).}
@@ -144,22 +144,8 @@ make.survey.age1.plot(age1index, models, modelnum=base.model.ind)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<prop.mature.by.latitude, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
-@
-\end{center}
-%\vspace{0mm}
-\caption{As for Figure~\ref{fig:proportion-mature-by-source} but for two-degree latitude bins. Observed proportion mature-at-length (bubbles with circle size relative to number of samples at length), fitted proportion mature-at-length with an estimated asymptote (lines), and number of samples at length (barplots beneath each panel).}
-\label{fig:main-proportion-mature-by-latitude}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
-<<empirical.weight.at.age, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
-@
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=6.5in, height=8.5in]{main-figures/EWAforDoc}
 \end{center}
 %\vspace{0mm}
 \caption{Empiricial weight-at-age (kg) used in the assessment (numbers, with colors given by the scale at the bottom). Numbers shown in bold were interpolated or extrapolated from adjacent areas.}
