@@ -53,7 +53,7 @@ than 1\% of landings in recent years. During the last five years, catches have b
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
-The biomass estimate and age composition from the acoustic survey conducted in \Sexpr{survey.end.yr} has been added to the survey time series (Figure~\ref{fig:es-survey-biomass}).
+The biomass estimate and age composition from the acoustic survey conducted in \Sexpr{survey.end.yr} have been added to the survey time series (Figure~\ref{fig:es-survey-biomass}); earlier data (1998--2013) were re-analyzed and updated.**OKAY??
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -70,7 +70,7 @@ make.survey.biomass.plot(models,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-The only other new data for this \Sexpr{assess.yr} assessment, that was not in the \Sexpr{last.assess.yr} assessment, are the \Sexpr{last.data.yr} fishery age compositions [** should mention previous data that got updated, and re-analysis of acoustic survey data, yes?].  Total catch and empirical weight-at-age for 2015 are also added to the assessment model this year, but are fixed and not fit to. Various other data types, including data on maturity, have been explored since the 2014 stock assessment, but are not included in the base model for this year.
+The only other new data for this \Sexpr{assess.yr} assessment, that were not in the \Sexpr{last.assess.yr} assessment, are the \Sexpr{last.data.yr} fishery age compositions (and minor refinements to historical catch estimates were made **OKAY??). Total catch and empirical weight-at-age for 2015 are also added to the assessment model this year, but are fixed and not fit to. Various other data types, including data on maturity, have been explored since the 2014 stock assessment, but are not included in the base model for this year.
 
 This Joint Technical Committee (JTC) assessment depends primarily on the fishery landings (\Sexpr{start.yr}--\Sexpr{last.data.yr}),
 acoustic survey biomass estimates and age-compositions (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}; Figure~\ref{fig:es-survey-biomass}),
