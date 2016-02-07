@@ -489,6 +489,7 @@ usa.last.5.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %i
 can.last.5.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),9]), 1)
 tot.last.5.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),10]), 1)
 tot.last.10.years.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-10):(end.yr-1),10]), 1)
+tot.last.year.attainment <- fmt0(mean(landings.vs.tac[landings.vs.tac$Year == (end.yr-1),"ATTAIN"]), 1)
 
 if(verbose){
   cat("DEBUG: Catches\n\n")
