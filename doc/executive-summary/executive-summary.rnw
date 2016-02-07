@@ -97,6 +97,7 @@ unfished equilibrium (Figures~\ref{fig:es-female-spawning-biomass} and~\ref{fig:
 %  next line, presumably because of the knitr stuff (extra blank lines get
 %  included in .tex). Extra space still gets added but is less noticeable.
 %  Fixed it - do not have two knitr chunks back-to-back without text between.
+%  Only seems to work for figures. May need tables at end of paragraphs.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
@@ -139,7 +140,7 @@ between 2000 and 2007. With the aging 1999 year class, median female
 spawning biomass declined throughout the late 2000s, reaching a time-series low of \Sexpr{median.bio.min}~million~t in \Sexpr{median.bio.min.year}. The assessment model estimates that spawning biomass declined from 2014 to 2015 after five years of increases from 2009 to 2014. The estimated increases were the result of a large 2010 cohort and an above-average 2008 cohort surpassing the age at which gains in weight from growth are greater than the loss in weight from natural mortality. The model then estimates an increase from 2015 to 2016 due to an estimated large 2014 year class, which, on average, is similar to the average estimated size of the 2010 year class.
 
 The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium, $B_0$) is
-\Sexpr{curr.depl.median}\% but is highly uncertain (with a 95\% posterior credibility interval from \Sexpr{curr.depl.lower}\% to \Sexpr{curr.depl.upper}\%; Table~\ref{tab:es-biomass}).
+\Sexpr{curr.depl.median}\% but is highly uncertain (with a 95\% posterior credibility interval from \Sexpr{curr.depl.lower}\% to \Sexpr{curr.depl.upper}\%; Table~\ref{tab:es-biomass}). The median estimate of the \Sexpr{end.yr} beginning of the year female spawning biomass is \Sexpr{curr.bio.median}~million~t (with a 95\% posterior credibility interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper}~million~t). The estimated \Sexpr{end.yr-1} female spawning biomass is \Sexpr{prev.bio.median} (\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t.
 %
 <<biomass.table, results='asis', echo=FALSE>>=
 make.biomass.table(base.model,
@@ -153,13 +154,13 @@ make.biomass.table(base.model,
                    placement = "tbp")
 @
 %
-The median estimate of the \Sexpr{end.yr} beginning of the year female spawning biomass is \Sexpr{curr.bio.median}~million~t (with a 95\% posterior credibility interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper}~million~t). The estimated \Sexpr{end.yr-1} female spawning biomass is \Sexpr{prev.bio.median} (\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t.
 
 \subsection*{Recruitment} \label{sec:es-recruitment}
 \phantomsection \addcontentsline{toc}{subsection}{Recruitment}
-The new data available for this assessment do not significantly change the patterns of recruitment estimated in recent assessments. \fishname\ appear
-to have low average recruitment with occasional large year-classes (Figure~\ref{fig:es-recruitment} and Table~\ref{tab:es-recruitment}).
-%
+
+% Tables create extra whitespace in text if in the middle of a paragraph, so
+%  put this here, which currently places table after its first referred. 
+%  If that stops happening then move to after paragraph.
 <<recruitment.table, results='asis', echo=FALSE>>=
 make.recruitment.table(base.model,
                        start.yr = end.yr-10,
@@ -172,7 +173,9 @@ make.recruitment.table(base.model,
                        placement = "tbp")
 @
 %
-Very large year 
+
+The new data available for this assessment do not significantly change the patterns of recruitment estimated in recent assessments. \fishname\ appear
+to have low average recruitment with occasional large year-classes (Figure~\ref{fig:es-recruitment} and Table~\ref{tab:es-recruitment}).
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -192,8 +195,7 @@ make.recruitment.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-classes in 1980, 1984, and 1999 supported much
-of the commercial catch from the 1980s to the mid-2000s. From 2000 to 2007, estimated recruitment was at some of the lowest values
+Very large year classes in 1980, 1984, and 1999 supported much of the commercial catch from the 1980s to the mid-2000s. From 2000 to 2007, estimated recruitment was at some of the lowest values
 in the time-series followed by a relatively large 2008 year class. The current assessment estimates a very strong 2010 year class
 comprising \Sexpr{year.class.2010.in.2013}\% of the coast-wide commercial catch in 2013, \Sexpr{year.class.2010.in.2014}\% of the 2014 catch, and \Sexpr{year.class.2010.in.2015}\% of the 2015 catch. The size of the 2010 year class is more uncertain than older cohorts (other than the 1980 year class),
 but the median estimate is the second highest in the time series (after the 1980 recruitment estimate). 
@@ -301,7 +303,7 @@ make.landings.tac.table(landings.vs.tac,
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+\begin{figure}[tbp]
 \begin{center}
 <<phase.plot, fig.height=5, fig.width=8>>=
 make.phase.plot(base.model,
@@ -411,7 +413,7 @@ make.risk.table(base.model,
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+\begin{figure}[tbp]
 \begin{center}
 <<forecast.depletion.comparison.plot, fig.height=5, fig.width=8>>=
 ## Look at catch.levels and catch.levels.names to decide which to include here
@@ -433,7 +435,7 @@ make.forecast.depletion.comparison.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+\begin{figure}[tbp]
 \begin{center}
 <<forecast.risk.comparison.plot.year.1, fig.height=5, fig.width=8>>=
 make.forecast.risk.comparison.plot(base.model,
@@ -451,7 +453,7 @@ make.forecast.risk.comparison.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+\begin{figure}[tbp]
 \begin{center}
 <<forecast.risk.comparison.plot.year.2, fig.height=5, fig.width=8>>=
 make.forecast.risk.comparison.plot(base.model,
