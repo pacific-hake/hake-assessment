@@ -312,7 +312,7 @@ make.phase.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-The female spawning biomass was above target until \Sexpr{names(median.relative.bio.below.target[1])} and was below target from 1998-2000 and 2006-2011. 
+The median female spawning biomass was above target until \Sexpr{names(median.relative.bio.below.target[1])} and was below target from 1998-2000 and 2006-2011 (Figure~\ref{fig:es-relative-spawning-biomass}). 
 % Andy summarising those years manually, based on the values:
 % \Sexpr{names(median.relative.bio.below.target[-length(median.relative.bio.below.target)])} and \Sexpr{names(median.relative.bio.below.target[length(median.relative.bio.below.target)])}.
 
