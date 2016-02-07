@@ -1,7 +1,5 @@
 %% main-figures.rnw
 
-\clearpage
-
 \section{FIGURES} \label{sec:figures}
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -53,6 +51,7 @@ make.catches.plot(catches, leg.y.loc = 475)
 \label{fig:main-catches}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %% Call the figure directly instead of create it because the data are confidential
@@ -76,7 +75,7 @@ make.catches.plot(catches, leg.y.loc = 475)
 \label{fig:main-us-catch-rates}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
+\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[p]
@@ -104,7 +103,6 @@ make.age.comp.bubble.plot(base.model, subplot = 1)
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[p]
 \begin{center}
@@ -117,10 +115,6 @@ make.survey.biomass.plot(models, modelnum=base.model.ind)
 \label{fig:main-survey-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
-
-make.survey.age1.plot <- function(age1index
-
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[p]
@@ -139,7 +133,7 @@ make.survey.age1.plot(age1index, models, modelnum=base.model.ind)
 \begin{figure}[p]
 \begin{center}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=8in, height=5in]{main-figures/maturityNS}
+\includegraphics[width=6.5in, height=5in]{main-figures/maturityNS}
 \end{center}
 %\vspace{0mm}
 \caption{Observed proportion mature-at-length (bubbles with circle size relative to number of samples at length), fitted proportion mature-at-length with an estimated asymptote (lines), and number of samples at length (barplots beneath each panel). Panels show categories of source (top left), year (top right), source and year (bottom left), and month (for the trawl survey only, bottom right).}
@@ -242,6 +236,7 @@ par <- oldpar
 \label{fig:main-bridge-5-panel}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[p]
@@ -285,6 +280,7 @@ par <- oldpar
 \label{fig:main-bridge-4-panel}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[p]
@@ -453,6 +449,7 @@ make.tv.selex.plot(tv.selex)
 \label{fig:main-tv-selex}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[p]
@@ -538,6 +535,7 @@ make.depletion.plot(base.model,
 \label{fig:main-relative-spawning-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[p]
@@ -642,6 +640,7 @@ make.exploitation.fraction.plot(base.model,
 \label{fig:main-exploitation-fraction}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[p]
@@ -718,6 +717,7 @@ make.forecast.depletion.comparison.plot(base.model,
 \label{fig:main-forecast-depletion-comparison}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[p]
@@ -756,6 +756,7 @@ make.forecast.risk.comparison.plot(base.model,
 \label{fig:main-forecast-risk-comparison-year-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[p]
@@ -797,6 +798,7 @@ par <- oldpar
 \label{fig:main-recruitment-base-alternative-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[p]
@@ -844,15 +846,16 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
                      subplots = 4,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
-                     legendloc = "topleft",
+                     legend = FALSE,
                      end.yr = end.yr)
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity runs representing changes to $\sigma_r$, steepness, and natural mortality parameters.}
+\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity runs representing changes to $\sigma_r$, steepness, and natural mortality parameters. See Figure \ref{fig:main-biomass-base-alternative-1} for legend.}
 \label{fig:main-status-base-alternative-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[p]

@@ -292,7 +292,7 @@ catch.default.policy <- catch.levels[[catch.default.policy.ind]]
 catch.levels.names <- c("No Fishing",
                         "180,000 t",
                         "350,000 t",
-                        paste0(last.data.yr, "TAC: 440,000 t"),
+                        paste0(last.data.yr, " TAC: 440,000 t"),
                         "SPR100",
                         paste0("Default: ",fmt0(catch.default.policy[1])," t"),
                         "stableCatch")
