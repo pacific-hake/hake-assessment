@@ -368,9 +368,9 @@ make.short.parameter.estimates.table <- function(model,                ## model 
   mle.par <- c(mle.par, fi)
 
   ## Add Female spawning biomass B_f40%
-  ## b <- models[[1]]$timeseries[model$timeseries$Yr == end.yr,]
-  ## always divide SSB by 2 in single sex model, unless you grab model$SBzero
-  b <- model$derived_quants["SSB_SPRtgt","Value"] / 2
+  ## Always divide SSB by 2 in single sex model, unless you grab model$SBzero
+  ##  divide by 1000 to be consistent with showing biomass in thousands of tons
+  b <- model$derived_quants["SSB_SPRtgt","Value"] / 2 / 1000
   mle.par <- c(mle.par, b)
 
   ## Add SPR MSY-proxy
