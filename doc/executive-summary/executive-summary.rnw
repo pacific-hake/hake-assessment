@@ -12,7 +12,7 @@
 
 \subsection*{Stock} \label{sec:es-stock}
 \phantomsection  \addcontentsline{toc}{subsection}{Stock}
-This assessment reports the status of the coastal \fishname\ (or \commonname, \emph{\sciencename}) resource off the west coast of the United States and Canada. This stock exhibits seasonal migratory behavior, ranging from offshore and generally southern waters during the winter spawning season to coastal areas between northern California and northern British Columbia during the spring, summer and fall when the fishery is conducted. In years with warmer water temperatures the stock tends to move farther to the North during the summer and older \simplename\ tend to migrate farther than younger fish in all years with catches in the Canadian zone typically consisting of fish greater than four years old. Separate, and much smaller, populations of \simplename\ occurring in the major inlets of the northeast Pacific Ocean, including the Strait of Georgia, Puget Sound, and the Gulf of California, are not included in this analysis.
+This assessment reports the status of the coastal \fishname\ (or \commonname, \emph{\sciencename}) resource off the west coast of the United States and Canada at the start of \Sexpr{assess.yr}. This stock exhibits seasonal migratory behavior, ranging from offshore and generally southern waters during the winter spawning season to coastal areas between northern California and northern British Columbia during the spring, summer and fall when the fishery is conducted. In years with warmer water the stock tends to move farther to the north during the summer. Older \simplename\ tend to migrate farther than younger fish in all years, with catches in the Canadian zone typically consisting of fish greater than four years old. Separate, and much smaller, populations of \simplename\ occurring in the major inlets of the northeast Pacific Ocean, including the Strait of Georgia, Puget Sound, and the Gulf of California, are not included in this analysis.
 
 \subsection*{Catches} \label{sec:es-catches}
 \phantomsection  \addcontentsline{toc}{subsection}{Catches} 
@@ -33,7 +33,7 @@ make.catches.plot(catches,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to the modern fishery. Over the early period, \Sexpr{min(catches$Year)}--1990, most removals were from foreign or joint-venture fisheries. Over all years, the fishery in U.S. waters averaged \Sexpr{fmt0(mean(catches$Ustotal))}~t, or \Sexpr{round(100*mean(catches$Ustotal)/mean(catches$TOTAL),1)}\% of the average total landings, while catch from Canadian waters averaged \Sexpr{fmt0(mean(catches$CANtotal))}~t.  Over the last 10 years, \Sexpr{max(catches$Year)-9}--\Sexpr{max(catches$Year)} (Table~\ref{tab:es-catches}), the total average catch is \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$TOTAL))}~t with U.S. and Canadian catches averaging \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$Ustotal))}~t and \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$CANtotal))}~t, respectively.
+Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to the modern fishery. Over the early period, \Sexpr{min(catches$Year)}--1990, most removals were from foreign or joint-venture fisheries. Over all years, the fishery in U.S. waters averaged \Sexpr{fmt0(mean(catches$Ustotal))}~t, or \Sexpr{round(100*mean(catches$Ustotal)/mean(catches$TOTAL),1)}\% of the average total landings, while catch from Canadian waters averaged \Sexpr{fmt0(mean(catches$CANtotal))}~t.  Over the last 10 years, \Sexpr{max(catches$Year)-9}--\Sexpr{max(catches$Year)} (Table~\ref{tab:es-catches}), the average coastwide catch was \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$TOTAL))}~t with U.S. and Canadian catches averaging \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$Ustotal))}~t and \Sexpr{fmt0(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$CANtotal))}~t, respectively.
 %
 <<total.catches.table, results='asis', echo=FALSE>>=
 make.catches.table(catches,
@@ -53,7 +53,7 @@ than 1\% of landings in recent years. During the last five years, catches have b
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
-The biomass estimate and age composition from the acoustic survey conducted in \Sexpr{survey.end.yr} have been added to the survey time series (Figure~\ref{fig:es-survey-biomass}); earlier data (1998--2013) were re-analyzed and updated this year.
+The biomass estimate and age composition from the acoustic survey conducted in \Sexpr{survey.end.yr} have been added to the survey time series (Figure~\ref{fig:es-survey-biomass}); earlier survey data (1998--2013) were re-analyzed and updated this year.
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -70,23 +70,23 @@ make.survey.biomass.plot(models,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-The only other new data for this \Sexpr{assess.yr} assessment, that were not in the \Sexpr{last.assess.yr} assessment, are the \Sexpr{last.data.yr} fishery age compositions (and minor refinements to historical catch estimates were made). Total catch and empirical weight-at-age for 2015 are also added to the assessment model this year, but are fixed and not included in the model fitting procedure. Various other data types, including data on maturity, have been explored since the 2014 stock assessment, but are not included in the base model for this year.
+The only other new data for this \Sexpr{assess.yr} assessment, that were not in the \Sexpr{last.assess.yr} assessment, are the \Sexpr{last.data.yr} fishery age compositions (and minor refinements to historical catch estimates were made). Total catch and empirical weight-at-age for 2015 are also added to the assessment model this year, but are fixed and not included in the model fitting procedure. Various other data types, including data on maturity, have been explored since the 2014 stock assessment, but are not included in the base model this year.
 
 This Joint Technical Committee (JTC) assessment depends primarily on the fishery landings (\Sexpr{start.yr}--\Sexpr{last.data.yr}),
-acoustic survey biomass estimates and age-compositions (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}; Figure~\ref{fig:es-survey-biomass}),
-as well as fishery age-compositions (1975--\Sexpr{last.data.yr}). While the 2011 survey index value was the lowest in the time-series, 
+acoustic survey biomass estimates (Figure~\ref{fig:es-survey-biomass}) and age-compositions (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}),
+as well as fishery age-compositions (1975--\Sexpr{last.data.yr}). While the 2011 survey index value was the lowest in the time series, 
 the index increased steadily over the four surveys conducted in 2011, 2012, 2013, and 2015. Age-composition data from the aggregated 
 fisheries and the acoustic survey contribute to the assessment model's ability to resolve strong and weak cohorts.
 
-The assessment uses a Bayesian estimation approach, sensitivity analyses, and retrospective investigations to evaluate the potential consequences of parameter uncertainty, alternative structural models, and historical performance of the assessment model, respectively. The Bayesian approach combines prior knowledge about natural mortality, stock-recruitment steepness (a parameter for stock productivity), and several other parameters with likelihoods for acoustic survey biomass indices and age-composition, as well as fishery age composition data. Integrating the joint posterior distribution over model parameters (via Markov Chain Monte Carlo simulation) provides probabilistic inferences about uncertain model parameters and forecasts derived from those parameters. Sensitivity analyses are used to identify alternative structural models that may also be consistent with the data. Retrospective analyses identify possible poor performance of the assessment model with respect to future predictions. In past assessments, closed-loop simulations have provided an insight into how alternative combinations of survey frequency, assessment model selectivity assumptions, and harvest control rules affect expected management outcomes given repeated application of these procedures over the long-term. The results of past closed-loop simulations influence the decisions made for this assessment.
+The assessment uses a Bayesian estimation approach, sensitivity analyses, and retrospective investigations to evaluate the potential consequences of parameter uncertainty, alternative structural models, and historical performance of the assessment model, respectively. The Bayesian approach combines prior knowledge about natural mortality, stock-recruitment steepness (a parameter for stock productivity) and several other parameters, with likelihoods for acoustic survey biomass indices, acoustic survey age-composition data, and fishery age-composition data. Integrating the joint posterior distribution over model parameters (via Markov Chain Monte Carlo simulation) provides probabilistic inferences about uncertain model parameters and forecasts derived from those parameters. Sensitivity analyses are used to identify alternative structural models that may also be consistent with the data. Retrospective analyses identify possible poor performance of the assessment model with respect to future predictions. In past assessments, closed-loop simulations have provided an insight into how alternative combinations of survey frequency, assessment model selectivity assumptions, and harvest control rules affect expected management outcomes given repeated application of these procedures over the long-term. The results of past closed-loop simulations influence the decisions made for this assessment.
 
 This \Sexpr{assess.yr} assessment retains the structural form of the base assessment model from \Sexpr{last.assess.yr} and retains many
-of the previous elements as configured in Stock Synthesis (SS). Analyses conducted in 2014 showed that the time-varying
-selectivity assessment model reduced the magnitude of extreme cohort strength estimates. In closed-loop simulations, management based upon
+of the previous elements as configured in Stock Synthesis (SS). Analyses conducted in 2014 showed that using time-varying (rather than fixed)
+selectivity reduced the magnitude of extreme cohort strength estimates. In closed-loop simulations, management based upon
 assessment models with time-varying fishery selectivity led to higher median average catch, lower risk of falling below 10\% of unfished
 biomass ($B_0$), smaller probability of fishery closures, and lower inter-annual variability in catch compared to assessment models with
 time-invariant fishery selectivity. It was found that even a small degree of flexibility in the assessment model fishery selectivity could
-reduce the effects of errors caused by assuming selectivity is constant over time.
+reduce the effects of errors caused by assuming selectivity is constant over time. Therefore, we retain time-varying selectivity in this assessment.
 
 \subsection*{Stock biomass} \label{sec:es-stock-biomass}
 \phantomsection  \addcontentsline{toc}{subsection}{Stock biomass}
