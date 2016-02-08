@@ -265,7 +265,7 @@ load("./r/model-partest.RData")
 \rfoot{DRAFT - DO NOT CITE} %% The area of the assessment for right footer
 
 %% Authors page
-This document reports the collaborative efforts of the official U.S. and Canadian JTC members.
+This document reports the collaborative efforts of the official U.S. and Canadian JTC members, and others that contributed significantly.
 
 Authors of this document are (in no particular order): \\
 \hspace{4ex}Chris J. Grandin\supscr{2} \\
@@ -290,7 +290,7 @@ Authors of this document are (in no particular order): \\
 
 This DRAFT document is non-citable.
 % Once finalised, uncomment these:
-% This document should be cited as follows: Grandin, C.J., A.C. Hicks, A. Berger, N. Taylor, A.M. Edwards, S. Cox, and I.G. Taylor. 2015.
+% This document should be cited as follows: Grandin, C.J., A.C. Hicks, A. Berger, A.M. Edwards, N. Taylor, S. Cox, and I.G. Taylor. 2015.
 % Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}.
 % Prepared by the Joint Technical Committee of the U.S. and Canada Pacific Hake/Whiting Agreement;
 % National Marine Fishery Service; Canada Department of Fisheries and Oceans. *******~p.
