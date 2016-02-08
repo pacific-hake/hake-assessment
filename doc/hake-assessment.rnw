@@ -211,8 +211,8 @@
 ## ** IMPORTANT** If you want to remake the plots, you must delete this directory.
 ## If you don't, the cached plots from last time will be used.
 ## opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
-##                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
-##                results='show', cache=TRUE, cache.path='knitr-cache/')
+##                 fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
+##               results='show', cache=TRUE, cache.path='knitr-cache/')
 rm(list=ls(all=TRUE))
 opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
                fig.height=4, echo=FALSE, results=FALSE, message=FALSE, warning=FALSE,
@@ -229,6 +229,7 @@ require(xtable)   ## For tables which can be inserted into latex docs with knitr
 require(PBSmapping)
 require(maps)
 require(coda)
+require(gtools)
 require(dplyr)
 ## Load all R code and the model outputs
 load("./r/.RData")
