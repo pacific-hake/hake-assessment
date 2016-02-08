@@ -87,7 +87,7 @@ make.biomass.table <- function(model,                ## model is an mcmc run and
                                font.size = 9,        ## Size of the font for the table
                                space.size = 10,      ## Size of the spaces for the table
                                digits = 1,           ## Number of decimal points
-                               placement="H"   ## where to place the table
+                               placement = "H"       ## where to place the table
                                ){
   ## Returns an xtable in the proper format for the executive summary biomass values for the base case mcmc
   ## Biomass quantiles
@@ -110,8 +110,7 @@ make.biomass.table <- function(model,                ## model is an mcmc run and
   tab.filt <- cbind.data.frame(rownames(tab.filt), tab.filt)
   names(tab.filt)[1] <- "year"
 
-  ## Add latex headers
-  colnames(tab.filt) <- c("\\specialcell{\\textbf{Year}}",
+  colnames(tab.filt) <- c("",
                           "\\specialcell{\\textbf{2.5\\supscr{th}}\\\\\\textbf{percentile}}",
                           "\\specialcell{\\textbf{Median}}",
                           "\\specialcell{\\textbf{97.5\\supscr{th}}\\\\\\textbf{percentile}}",
@@ -119,16 +118,31 @@ make.biomass.table <- function(model,                ## model is an mcmc run and
                           "\\specialcell{\\textbf{Median}}",
                           "\\specialcell{\\textbf{97.5\\supscr{th}}\\\\\\textbf{percentile}}")
 
-  ## Add the extra header spanning multiple columns
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
-  addtorow$command <- c("\\hline & \\multicolumn{3}{|c}{\\specialcell{\\textbf{Spawning biomass}\\\\\\textbf{(thousand t)}}} & \\multicolumn{3}{|c}{\\specialcell{\\textbf{Relative spawning biomass}\\\\\\textbf{(B\\subscr{t}/B\\subscr{0})}}} \\\\")
+  addtorow$pos[[2]] <- nrow(tab.filt)
+  addtorow$command <- c(paste0("\\toprule \\multirow{3}{*}{\\textbf{Year}} & ",
+                               "\\multicolumn{3}{c}{\\specialcell{\\textbf{Spawning Biomass}\\\\\\textbf{(thousand t)}}} & ",
+                               "\\multicolumn{3}{c}{\\specialcell{\\textbf{Relative spawning biomass}\\\\\\textbf{(B\\subscr{t}/B\\subscr{0})}}} \\\\ ",
+                               "\\cmidrule(r){2-4} ",
+                               "\\cmidrule(r){5-7} "),
+                        "\\bottomrule")
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
-  return(print(xtable(tab.filt, caption=xcaption, label=xlabel, align=get.align(ncol(tab.filt))),
-               caption.placement = "top", add.to.row=addtorow, table.placement=placement, include.rownames=FALSE, sanitize.text.function=function(x){x},
-               size=size.string))
+  return(print(xtable(tab.filt,
+                      caption = xcaption,
+                      label = xlabel,
+                      align = get.align(ncol(tab.filt)),
+                      digits = digits),
+               caption.placement = "top",
+               add.to.row = addtorow,
+               table.placement = placement,
+               include.rownames = FALSE,
+               sanitize.text.function = function(x){x},
+               size = size.string,
+               hline.after = c(0),  ## Single line after the column headers
+               booktabs = TRUE))
 }
 
 make.recruitment.table <- function(model,                ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
@@ -140,8 +154,8 @@ make.recruitment.table <- function(model,                ## model is an mcmc run
                                    font.size = 9,        ## Size of the font for the table
                                    space.size = 10,      ## Size of the spaces for the table
                                    digits = 1,           ## Number of decimal points in recruitment
-                                   digits.dev = 3,        ## Number of decimal points in recruitment deviations
-                                   placement="H"   ## where to place the table                                   
+                                   digits.dev = 3,       ## Number of decimal points in recruitment deviations
+                                   placement = "H"       ## where to place the table
                                    ){
   ## Returns an xtable in the proper format for the executive summary recruitment and deviations values for the base case mcmc
   yrs <- start.yr:end.yr
@@ -175,8 +189,7 @@ make.recruitment.table <- function(model,                ## model is an mcmc run
   tab.filt <- cbind.data.frame(rownames(tab.filt), tab.filt)
   names(tab.filt)[1] <- "year"
 
-  ## Add latex headers
-  colnames(tab.filt) <- c("\\specialcell{\\textbf{Year}}",
+  colnames(tab.filt) <- c("",
                           "\\specialcell{\\textbf{2.5\\supscr{th}}\\\\\\textbf{percentile}}",
                           "\\specialcell{\\textbf{Median}}",
                           "\\specialcell{\\textbf{97.5\\supscr{th}}\\\\\\textbf{percentile}}",
@@ -184,16 +197,31 @@ make.recruitment.table <- function(model,                ## model is an mcmc run
                           "\\specialcell{\\textbf{Median}}",
                           "\\specialcell{\\textbf{97.5\\supscr{th}}\\\\\\textbf{percentile}}")
 
-  ## Add the extra header spanning multiple columns
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
-  addtorow$command <- c("\\hline\\multicolumn{1}{|c}{} & \\multicolumn{3}{|c}{\\specialcell{\\textbf{Absolute recruitment}\\\\\\textbf{(millions)}}} & \\multicolumn{3}{|c|}{\\specialcell{\\textbf{Recruitment deviations}}} \\\\")
+  addtorow$pos[[2]] <- nrow(tab.filt)
+  addtorow$command <- c(paste0("\\toprule \\multirow{3}{*}{\\textbf{Year}} & ",
+                               "\\multicolumn{3}{c}{\\specialcell{\\textbf{Absolute recruitment}\\\\\\textbf{(millions)}}} & ",
+                               "\\multicolumn{3}{c}{\\textbf{Recruitment deviations}} \\\\ ",
+                               "\\cmidrule(r){2-4} ",
+                               "\\cmidrule(r){5-7} "),
+                        "\\bottomrule")
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
-  return(print(xtable(tab.filt, caption=xcaption, label=xlabel, align=get.align(ncol(tab.filt))),
-               caption.placement = "top", add.to.row=addtorow, table.placement=placement, include.rownames=FALSE, sanitize.text.function=function(x){x},
-               size=size.string))
+  return(print(xtable(tab.filt,
+                      caption = xcaption,
+                      label = xlabel,
+                      align = get.align(ncol(tab.filt)),
+                      digits = digits),
+               caption.placement = "top",
+               add.to.row = addtorow,
+               table.placement = placement,
+               include.rownames = FALSE,
+               sanitize.text.function = function(x){x},
+               size = size.string,
+               hline.after = c(0),  ## Single line after the column headers
+               booktabs = TRUE))
 }
 
 make.fishing.intensity.table <- function(model,                ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
@@ -203,8 +231,8 @@ make.fishing.intensity.table <- function(model,                ## model is an mc
                                          xlabel   = "default", ## Latex label to use
                                          font.size = 9,        ## Size of the font for the table
                                          space.size = 10,      ## Size of the spaces for the table
-                                         digits = 1,            ## Number of decimal points
-                                         placement="H"   ## where to place the table                                   
+                                         digits = 1,           ## Number of decimal points
+                                         placement = "H"       ## where to place the table
                                          ){
   ## Returns an xtable in the proper format for the executive summary fishing intensity and
   ## exploitation fraction values for the base case mcmc
@@ -249,8 +277,7 @@ make.fishing.intensity.table <- function(model,                ## model is an mc
   tab.filt <- cbind.data.frame(rownames(tab.filt), tab.filt)
   names(tab.filt)[1] <- "year"
 
-  ## Add latex headers
-  colnames(tab.filt) <- c("\\specialcell{\\textbf{Year}}",
+  colnames(tab.filt) <- c("",
                           "\\specialcell{\\textbf{2.5\\supscr{th}}\\\\\\textbf{percentile}}",
                           "\\specialcell{\\textbf{Median}}",
                           "\\specialcell{\\textbf{97.5\\supscr{th}}\\\\\\textbf{percentile}}",
@@ -258,14 +285,29 @@ make.fishing.intensity.table <- function(model,                ## model is an mc
                           "\\specialcell{\\textbf{Median}}",
                           "\\specialcell{\\textbf{97.5\\supscr{th}}\\\\\\textbf{percentile}}")
 
-  ## Add the extra header spanning multiple columns
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
-  addtorow$command <- c("\\hline & \\multicolumn{3}{|c}{\\specialcell{\\textbf{Fishing intensity}}} & \\multicolumn{3}{|c|}{\\specialcell{\\textbf{Exploitation fraction}}} \\\\")
+  addtorow$pos[[2]] <- nrow(tab.filt)
+  addtorow$command <- c(paste0("\\toprule \\multirow{3}{*}{\\textbf{Year}} & ",
+                               "\\multicolumn{3}{c}{\\textbf{Fishing intensity}} & ",
+                               "\\multicolumn{3}{c}{\\textbf{Exploitation fraction}} \\\\ ",
+                               "\\cmidrule(r){2-4} ",
+                               "\\cmidrule(r){5-7} "),
+                        "\\bottomrule")
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
-  return(print(xtable(tab.filt, caption=xcaption, label=xlabel, align=c("c","|","c","|","r","r","r","|","r","r","r","|"), digits=digits),
-               caption.placement = "top", add.to.row=addtorow, table.placement=placement, include.rownames=FALSE, sanitize.text.function=function(x){x},
-               size=size.string))
+  return(print(xtable(tab.filt,
+                      caption = xcaption,
+                      label = xlabel,
+                      align = get.align(ncol(tab.filt)),
+                      digits = digits),
+               caption.placement = "top",
+               add.to.row = addtorow,
+               table.placement = placement,
+               include.rownames = FALSE,
+               sanitize.text.function = function(x){x},
+               size = size.string,
+               hline.after = c(0),  ## Single line after the column headers
+               booktabs = TRUE))
 }
