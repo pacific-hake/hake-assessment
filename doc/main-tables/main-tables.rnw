@@ -211,7 +211,7 @@ make.short.parameter.estimates.sens.table(retro.list,
                                           posterior.regex = key.posteriors,
                                           end.yr = end.yr,
                                           digits = 3,
-                                          xcaption <- paste0("Select parameters, derived quantities, and reference point estimates for retrospective analyses using the base model. Values in italics are implied since they occur after the ending year of the respective retrospective analysis."),
+                                          xcaption <- paste0("Select parameters, derived quantities, and reference point estimates for retrospective analyses using the base model. Some values are implied since they occur after the ending year of the respective retrospective analysis."),
                                           xlabel <- "tab:main-parameter-estimates-retro",
                                           font.size = 7,
                                           space.size = 9)
