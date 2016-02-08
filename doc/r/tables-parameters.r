@@ -491,7 +491,6 @@ make.short.parameter.estimates.table <- function(model,                ## model 
   addtorow$command <- c("\\hline \\\\ \\textbf{\\underline{Parameters}} \\\\",
                         "\\hline \\\\ \\textbf{\\underline{Derived Quantities}} \\\\",
                         "\\hline \\\\ \\textbf{\\underline{Reference Points based on \\emph{F}\\subscr{40\\%}}} \\\\")
-print("make.short.parameter.estimates.table")
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(tab, caption=xcaption, label=xlabel, align=get.align(ncol(tab), just="c")),
