@@ -19,11 +19,41 @@ make.survey.history.table <- function(dat,
                      "\\specialcell{\\textbf{End date}}",
                      "\\specialcell{\\textbf{Vessels}}",
                      "\\specialcell{\\textbf{Biomass}\\\\\\textbf{index}\\\\\\textbf{(million t)}}",
-                     "\\specialcell{\\textbf{Sampling CV\\supscr{2}}}",
+                     "\\specialcell{\\textbf{Sampling CV}",
                      "\\specialcell{\\textbf{Number of}\\\\\\textbf{hauls with bio.}\\\\\\textbf{samples}}")
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(dat, caption=xcaption, label=xlabel, align=get.align(ncol(dat), just = "c")),
+               caption.placement = "top", include.rownames=FALSE, table.placement="H", sanitize.text.function=function(x){x}, size=size.string))
+}
+
+make.survey.extrap.table <- function(dat,
+                                      digits = 3,           ## number of decimal points for biomass and cv
+                                      xcaption = "default", ## Caption to use
+                                      xlabel   = "default", ## Latex label to use
+                                      font.size = 9,        ## Size of the font for the table
+                                      space.size = 10){       ## Size of the spaces for the table
+  ## dat is a data frame containing the survey history
+  ## The vessel names neew to be fixed. They are seperated by spaces, and may or may not have dashes in their names
+  ## The dashes will be replaced with spaces, and the spaces will be replaced by newlines in the output
+
+  tab <- data.frame(
+    year    = dat$year,
+    bioWith = fmt0(dat$withExtrap/1000, digits),
+    cvWith  = fmt0(dat$cvWithExtrap, digits),
+    bioNo   = fmt0(dat$noExtrap/1000, digits),
+    cvNo    = fmt0(dat$cvNoExtrap, digits),
+    bioDB   = fmt0(dat$designBased/1000, digits))
+
+  colnames(tab) <- c("\\specialcell{\\textbf{Year}}",
+                     "\\specialcell{\\textbf{Biomass with}\\\\\\textbf{extrapolation}\\\\\\textbf{(million t)}}",
+                     "\\specialcell{\\textbf{Sampling CV}\\\\\\textbf{with}\\\\\\textbf{extrapolation}}",
+                     "\\specialcell{\\textbf{Biomass no}\\\\\\textbf{extrapolation}\\\\\\textbf{(million t)}}",
+                     "\\specialcell{\\textbf{Sampling CV}\\\\\\textbf{no}\\\\\\textbf{extrapolation}}",
+                     "\\specialcell{\\textbf{Biomass}\\\\\\textbf{Design-based}\\\\\\textbf{(million t)}}")
+  ## Make the size string for font and space size
+  size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
+  return(print(xtable(tab, caption=xcaption, label=xlabel, align=get.align(ncol(tab), just = "c")),
                caption.placement = "top", include.rownames=FALSE, table.placement="H", sanitize.text.function=function(x){x}, size=size.string))
 }
 
@@ -119,6 +149,32 @@ make.survey.age1.plot <- function(age1index,   ##
   #points(x$Year,index/1e6,pch=16,col="blue",cex=1.5)
   axis(1,at=x$Year)
   legend("topleft",c("Estimated age-1 recruitment","Scaled acoustic survey age-1 index"),col=c("black","blue"),pch=c(4,16),lty=NA,lwd=2,bty="n")
+  par <- oldpar
+}
+
+make.survey.biomass.extrap.plot <- function(survey.comparison) {  ## data.frame of the extrapolated and non-extrapolated indices
+
+  oldpar <- par()
+  dat <- survey.comparison[!is.na(survey.comparison$withExtrap),]
+
+  ## Remove non-data years from the data frame
+  survey.dat <- survey.comparison[survey.comparison$index > 0,]
+
+  ests <- data.frame(year=dat$year, obs=dat$withExtrap, se_log=dat$cvWithExtrap)
+  ests$lo <- exp(log(ests$obs)-1.96*ests$se_log)
+  ests$hi <- exp(log(ests$obs)+1.96*ests$se_log)
+  ests$value <- ests$obs
+
+  ests2 <- data.frame(year=dat$year, obs=dat$noExtrap, se_log=dat$cvNoExtrap)
+  ests2$lo <- exp(log(ests2$obs)-1.96*ests2$se_log)
+  ests2$hi <- exp(log(ests2$obs)+1.96*ests2$se_log)
+  ests2$value <- ests2$obs
+
+  par(las=1,mar=c(5, 4, 1, 1) + 0.1,cex.axis=0.9)
+  plotBars.fn(ests$year-0.15,ests,scalar=1e3,ylim=c(0,3),pch=20,xlab="Year",ylab="Biomass Index Estimate (million t)",cex=1.5,las=1,gap=0.05,xaxt="n",ciLwd=3,ciCol=rgb(0,0,0,0.5))
+  plotBars.fn(ests2$year+0.15,ests2,scalar=1e3,pch=17,add=T,cex=1.0,las=1,gap=0.05,ciLwd=3,ciCol=rgb(0,0,1,0.5),col="blue")
+  axis(1,at=ests$year,cex.axis=0.8)
+  legend("topleft",c("With extrapolation","No extrapolation"),col=c("black","blue"),pch=c(16,17))
   par <- oldpar
 }
 

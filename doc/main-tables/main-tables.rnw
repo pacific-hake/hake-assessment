@@ -53,8 +53,17 @@ make.sampling.history.table(sampling.history,
 <<main.survey.history.table, results='asis', echo=FALSE>>=
 make.survey.history.table(survey.history,
                           digits = 3,
-                          xcaption = paste0("Summary of the acoustic surveys from ", survey.start.yr, " to ", survey.end.yr, "."),
+                          xcaption = paste0("Summary of the acoustic surveys from 1995 to ", survey.end.yr, "."),
                           xlabel = "tab:main-survey-history",
+                          font.size = 10,
+                          space.size = 12)
+@
+
+<<main.survey.extrap.table, results='asis', echo=FALSE>>=
+make.survey.extrap.table(survey.comparison,
+                          digits = 3,
+                          xcaption = paste0("Biomass index estimates from the acoustic survey (thousands~t) using kriging with extrapolation, kriging without extrapolation, and design-based methods."),
+                          xlabel = "tab:main-survey-comparison",
                           font.size = 10,
                           space.size = 12)
 @

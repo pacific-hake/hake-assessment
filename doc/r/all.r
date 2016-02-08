@@ -84,6 +84,7 @@ can.age.file <- "canadian-age-data.csv"
 catch.data.file <- "landings-tac-history.csv"
 further.tac.file <- "further-tac-details.csv"
 survey.history.file <- "survey-history.csv"
+survey.comparison.file <- "survey-comparison.csv"
 sampling.history.file <- "fishery-sampling-history.csv"
 ovary.samples.file <- "ovary-samples.csv"
 age.1.file <- "age-1.csv"
@@ -344,6 +345,7 @@ catches <- load.catches(file.path(data.path, catch.data.file))
 landings.vs.tac <- catches[[2]]
 catches <- catches[[1]]
 survey.history <- load.survey.history(file.path(data.path, survey.history.file))
+survey.comparison <- read.csv(file.path(data.path, survey.comparison.file))
 sampling.history <- load.sampling.history(file.path(data.path, sampling.history.file))
 further.tac <- further.tac.details(file.path(data.path, further.tac.file))
 can.ages <- load.can.age.data(file.path(data.path, can.age.file))
@@ -542,6 +544,13 @@ last.year.can.freezer.percent <- fmt0(filter(catches, Year == last.data.yr)$CAN_
                                       as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal) * 100.0, 1)
 years.Can.JV.catch.eq.0.recent = years.Can.JV.catch.eq.0(catches)
 
+## Survey values
+survey.biomass <- survey.history$biomass
+names(survey.biomass) <- as.character(survey.history$year)
+survey.comps <- base.model$dat$agecomp[base.model$dat$agecomp$FltSvy==2,]
+rownames(survey.comps) <- survey.comps$Yr
+extrapolatedPerc <- 100*(survey.comparison$withExtrap-survey.comparison$noExtrap)/survey.comparison$noExtrap
+names(extrapolatedPerc) <- as.character(survey.comparison$year)
 
 ## New depletion and spawning biomass estimates
 if(verbose){

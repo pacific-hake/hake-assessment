@@ -117,6 +117,19 @@ make.survey.biomass.plot(models, modelnum=base.model.ind)
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.survey.extrap.biomass, fig.height=6, fig.width=8>>=
+## modelnum is the model index in models list from which the survey input data are used.
+make.survey.biomass.extrap.plot(survey.comparison)
+@
+\end{center}
+\caption{Acoustic survey biomass indices with and without extrapolation (millions of metric tons). Approximate 95\% confidence intervals are based on only sampling variability (and squid/hake apportionment uncertainty in 2009).}
+\label{fig:main-survey-extrap-biomass}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[p]
 \begin{center}
 <<age.one.index, fig.height=3.5, fig.width=8>>=
