@@ -6,8 +6,8 @@
 %%\setcounter{page}{1}
 
 \clearpage
-\section*{One Page Summary}
-\phantomsection \addcontentsline{toc}{section}{One Page Summary}
+\section*{One-page summary}
+\phantomsection \addcontentsline{toc}{section}{One-page summary}
 
 \begin{itemize}
   \item The stock assessment model for \Sexpr{assess.yr} is similar in structure to the \Sexpr{last.assess.yr} model with the addition
@@ -36,14 +36,24 @@
   \item The spawning biomass in \Sexpr{end.yr} is estimated to have increased from \Sexpr{end.yr-1} due to the large size of the
     2014 year class.
 
-  \item The default predicted catch level for 2016, based on the default harvest rule, is 839,476 t.
+%  \item The default predicted catch level for 2016, based on the default harvest rule, is 839,476~t.  **DOES NOT MENTION uncertainty; suggest replacing with (copied and adapted from Exec Summary):
+    
+  \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
 
   \item As in the past, forecasts are highly uncertain due to lack of information about recruitment in the most recent years.
     Forecasts were conducted across a range of catch levels.
 
   \item Projections setting \Sexpr{forecast.yrs[1]} and \Sexpr{forecast.yrs[2]} catch equal to the \Sexpr{forecast.yrs[1]-1} TAC of
-    \Sexpr{last.year.tac}~t show the median spawning relative biomass estimates increasing from \Sexpr{curr.depl.median}\%
-    of B\subscr{0} in \Sexpr{end.yr} to \Sexpr{next.depl.median.tac.based}\% in \Sexpr{end.yr+1} and \Sexpr{next2.depl.median.tac.based}\%
-    in \Sexpr{end.yr+2}. However, this projection is highly uncertain and shows a 2\% chance of the spawning biomass falling below 25\%
-     of B0 in 2 years (by 2018) and a 50\% chance of declining from 2017 to 2018.
+    \Sexpr{last.year.tac}~t show the estimated median relative spawning biomass increasing from \Sexpr{curr.depl.median}\%
+    in \Sexpr{end.yr} to \Sexpr{next.depl.median.tac.based}\% in \Sexpr{end.yr+1} and \Sexpr{next2.depl.median.tac.based}\%
+    in \Sexpr{end.yr+2}. 
+    However, due to uncertainty there is an estimated 2\% chance of the spawning biomass falling below 25\%
+     of $B_0$ in two years (by 2018). There is an estimated 38\% chance of the spawning biomass declining from 2016 to 2017, and a 50\% chance of it declining from 2017 to 2018.
+    % 2% from Table e. 
+    % Last sentences were just: 
+    % However, this projection is highly uncertain and shows a 2\% chance of the spawning biomass falling below 25\%
+    % of $B_0$ in two years (by 2018) and a 50\% chance of declining from 2017 to 2018.
+     % Last bullet ends up with two values of 83.6%. These seem to be 
+     %  correctly referenced and are not identical in the output, but
+     %  are the same due to rounding.
 \end{itemize}
