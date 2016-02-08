@@ -241,8 +241,9 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
     mle.par <- c(mle.par, fi)
 
     ## Add Female spawning biomass B_f40%
-    ## b <- models[[1]]$timeseries[model$timeseries$Yr == end.yr,]
-    b <- model$derived_quants["SSB_SPRtgt","Value"]/2/1000   #always divide SSB by 2 in single sex model, unless you grab model$SBzero; divide by 1000 to be consistent with showing biomass in thousands of tons
+    ## Always divide SSB by 2 in single sex model, unless you grab model$SBzero
+    ##  divide by 1000 to be consistent with showing biomass in thousands of tons
+    b <-  model$derived_quants["SSB_SPRtgt","Value"] / 2 / 1000
     mle.par <- c(mle.par, b)
 
     ## Add SPR MSY-proxy
@@ -254,7 +255,7 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
     mle.par <- c(mle.par, f)
 
     ## Add Yield at Bf_40%
-    y <- model$derived_quants["TotYield_SPRtgt","Value"]/1000
+    y <- model$derived_quants["TotYield_SPRtgt","Value"] / 1000
     mle.par <- c(mle.par, y)
 
     if(is.null(tab)){
@@ -349,8 +350,8 @@ make.short.parameter.estimates.table <- function(model,                ## model 
   mle.par <- c(mle.par, rec)
 
   ## Add B0
-  b0 <- model$SBzero     #note that this is divided by 2 in a single sex model
-  b0 <- b0 / 1000 ## To make B0 in the thousands
+  b0 <- model$SBzero ## Note that this is divided by 2 in a single sex model
+  b0 <- b0 / 1000    ## To make B0 in the thousands
   mle.par <- c(mle.par, b0)
 
   ## Add depletion for 2009
@@ -368,7 +369,8 @@ make.short.parameter.estimates.table <- function(model,                ## model 
 
   ## Add Female spawning biomass B_f40%
   ## b <- models[[1]]$timeseries[model$timeseries$Yr == end.yr,]
-  b <- model$derived_quants["SSB_SPRtgt","Value"]/2   #always divide SSB by 2 in single sex model, unless you grab model$SBzero
+  ## always divide SSB by 2 in single sex model, unless you grab model$SBzero
+  b <- model$derived_quants["SSB_SPRtgt","Value"] / 2
   mle.par <- c(mle.par, b)
 
   ## Add SPR MSY-proxy
@@ -422,7 +424,7 @@ make.short.parameter.estimates.table <- function(model,                ## model 
     mcmc.meds <- c(mcmc.meds, d)
 
     ## Add Female spawning biomass B_f40%
-    b <- median(x$mcmc[,"SSB_SPRtgt"])/2
+    b <- median(x$mcmc[,"SSB_SPRtgt"]) / 2
     mcmc.meds <- c(mcmc.meds, b)
 
     ## Add SPR MSY-proxy
@@ -430,11 +432,11 @@ make.short.parameter.estimates.table <- function(model,                ## model 
 
     ## Add Exploitation fraction corresponding to SPR
     f <- median(x$mcmc[,"Fstd_SPRtgt"])
-    f <- 100 * f  
+    f <- 100 * f
     mcmc.meds <- c(mcmc.meds, f)
 
     ## Add Yield at Bf_40%
-    y <- median(x$mcmc[,"TotYield_SPRtgt"])/1000   
+    y <- median(x$mcmc[,"TotYield_SPRtgt"]) / 1000
     mcmc.meds <- c(mcmc.meds, y)
     return(mcmc.meds)
   }

@@ -6,7 +6,6 @@
                 %  previous blank page.
 
 \section{TABLES} \label{sec:tables}
-% \vspace{-2mm}
 <<catches.US, results='asis', echo=FALSE>>=
 make.catches.table.US(catches, start.yr=start.yr, end.yr=end.yr,
                    weight.factor=1000,
@@ -16,7 +15,6 @@ make.catches.table.US(catches, start.yr=start.yr, end.yr=end.yr,
                    space.size = 11)
 @
 \vspace{2mm}
-% \clearpage
 
 <<catches.Can, results='asis', echo=FALSE>>=
 make.catches.table.Can(catches, start.yr=start.yr, end.yr=end.yr,
@@ -62,15 +60,14 @@ make.survey.history.table(survey.history,
 @
 
 <<main.ovaries.table, results='asis', echo=FALSE>>=
-make.maturity.N.table(ovary.samples,
-                      start.yr = start.yr,
-                      end.yr = last.data.yr,
-                      xcaption = "Number of Pacific Hake ovaries collected for histological analysis with maturity determined from different years and different sources.",
-                      xlabel = "tab:main-ovaries",
-                      font.size = 10,
-                      space.size = 10)
+make.maturity.samples.table(ovary.samples,
+                            start.yr = start.yr,
+                            end.yr = last.data.yr,
+                            xcaption = "Number of Pacific Hake ovaries collected for histological analysis with maturity determined from different years and different sources.",
+                            xlabel = "tab:main-ovaries",
+                            font.size = 10,
+                            space.size = 10)
 @
-
 
 <<main.parameters.estimated.summary.table, results='asis', echo=FALSE>>=
 make.parameters.estimated.summary.table(base.model,
@@ -175,20 +172,17 @@ make.risk.table(base.model,
                 space.size = 14)
 @
 
-%%\begin{landscape}
 <<main.parameter.estimates.sens.1, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(sens.models.1.for.table,
                                           model.names = sens.model.names.1.for.table,
                                           posterior.regex = key.posteriors,
                                           end.yr = end.yr,
                                           digits = 3,
-                                          xcaption <- paste0("Maximum likelihood estimates (MLE) of select parameters, derived quantities, and reference points for the base model and sensitivity runs (described
-                                            in Section \ref{sec:assessment-sensitivity-analyses})"),
+                                          xcaption <- paste0("Maximum likelihood estimates (MLE) of select parameters, derived quantities, and reference points for the base model and sensitivity runs (described in Section \ref{sec:assessment-sensitivity-analyses})"),
                                           xlabel <- "tab:main-parameter-estimates-sens-1",
                                           font.size = 7,
                                           space.size = 9)
 @
-%%\end{landscape}
 
 <<main.parameter.estimates.sens.2, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(sens.models.2.for.table,
