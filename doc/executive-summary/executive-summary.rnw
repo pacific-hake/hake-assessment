@@ -288,7 +288,7 @@ make.landings.tac.table(landings.vs.tac,
                         end.yr = end.yr-1,
                         xcaption <- "Recent trends in Pacific Hake landings and management decisions.",
                         xlabel <- "tab:es-landings-tac",
-                        font.size = 6,
+                        font.size = 8,
                         space.size = 8,
                         placement = "tbp")
 @
@@ -337,8 +337,8 @@ The estimates are slightly different than those in the \Sexpr{last.assess.yr} as
 make.reference.points.table(base.model,
                             xcaption <- paste0("Summary of median and 95\\% credibility intervals of equilibrium reference points for the \\fishname\\ base assessment model. Equilibrium reference points were computed using ",start.yr,"--",end.yr-1," averages for mean size at age and selectivity at age."),
                             xlabel <- "tab:es-reference.points",
-                            font.size = 10,
-                            space.size = 12,
+                            font.size = 12,
+                            space.size = 14,
                             placement = "tbp")
 @
 
