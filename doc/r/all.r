@@ -549,7 +549,7 @@ survey.biomass <- survey.history$biomass
 names(survey.biomass) <- as.character(survey.history$year)
 survey.comps <- base.model$dat$agecomp[base.model$dat$agecomp$FltSvy==2,]
 rownames(survey.comps) <- survey.comps$Yr
-extrapolatedPerc <- 100*(survey.comparison$withExtrap-survey.comparison$noExtrap)/survey.comparison$noExtrap
+extrapolatedPerc <- 100*(survey.comparison$withExtrap-survey.comparison$noExtrap)/survey.comparison$withExtrap
 names(extrapolatedPerc) <- as.character(survey.comparison$year)
 
 ## New depletion and spawning biomass estimates
