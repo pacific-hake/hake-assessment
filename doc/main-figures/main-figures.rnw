@@ -162,7 +162,7 @@ make.survey.age1.plot(age.1.index,
 \includegraphics[width=6.5in, height=8.5in]{main-figures/EWAforDoc}
 \end{center}
 %\vspace{0mm}
-\caption{Empiricial weight-at-age (kg) used in the assessment (numbers, with colors given by the scale at the bottom). Numbers shown in bold were interpolated or extrapolated from adjacent areas.}
+\caption{Empirical weight-at-age (kg) used in the assessment (numbers, with colors given by the scale at the bottom). Numbers shown in bold were interpolated or extrapolated from adjacent areas.}
 \label{fig:main-empirical.weight.at.age}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
