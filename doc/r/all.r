@@ -710,6 +710,19 @@ if(verbose){
 exploitation.med.2010 <- fmt0(base.model$mcmccalcs$fmed["2010"],2)
 exploitation.med.penult.yr <- fmt0(base.model$mcmccalcs$fmed[as.character(end.yr-1)],2)
 
+## Survey comparisons of biomass from year to year. Use the table, not the value of survey.end.year
+## Next year, we should set survey.end.yr to be what is in the table. Not going to attempt it
+##  with only hours left to submission.
+last.survey.year <- survey.history[nrow(survey.history),]$year
+last.survey.year.biomass <- fmt0(survey.history[nrow(survey.history),]$biomass * 10, 2) ## millions of tonnes
+penult.survey.year <- survey.history[nrow(survey.history) - 1,]$year
+penult.survey.year.biomass <- fmt0(survey.history[nrow(survey.history) - 1,]$biomass * 10, 2)
+antepenult.survey.year <- survey.history[nrow(survey.history) - 2,]$year
+antepenult.survey.year.biomass <- fmt0(survey.history[nrow(survey.history) - 2,]$biomass * 10, 2)
+## How many times higher is the last survey than the one before it?
+last.factor.penult <- fmt0(survey.history[nrow(survey.history),]$biomass / survey.history[nrow(survey.history) - 1,]$biomass, 1)
+## How many times higher is the last survey than the one that was two before it?
+last.factor.antepenult <- fmt0(survey.history[nrow(survey.history),]$biomass / survey.history[nrow(survey.history) - 2,]$biomass, 1)
 
 ## This chunk must stay last in the file
 if(reload.models == "y" | reload.models == "Y" |
