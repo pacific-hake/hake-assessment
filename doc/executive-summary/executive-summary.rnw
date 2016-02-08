@@ -53,7 +53,7 @@ than 1\% of landings in recent years. During the last five years, catches have b
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
-The biomass estimate and age composition from the acoustic survey conducted in \Sexpr{survey.end.yr} have been added to the survey time series (Figure~\ref{fig:es-survey-biomass}); earlier data (1998--2013) were re-analyzed and updated this year.
+The biomass estimate and age composition from the acoustic survey conducted in \Sexpr{survey.end.yr} have been added to the survey time series (Figure~\ref{fig:es-survey-biomass}); earlier survey data (1998--2013) were re-analyzed and updated this year.
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
