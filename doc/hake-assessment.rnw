@@ -19,6 +19,8 @@
 % Had these for YMR Eqns appendix:
 % \renewcommand{\footrulewidth}{0.4pt}
 % \renewcommand{\headrulewidth}{0pt}
+% These are in hake.sty anyway, presumably should not be called twice but
+%  leaving in for now to be safe.
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 
@@ -194,8 +196,11 @@
                             %% Will probably delete footers in main text
                             %%  for final Res Doc.
 
-
+% \color{black}         % AME - looked a bit bolder in .ps, but no different
+                        %  in .pdf
+% \defaultfontfeatures{Color=black} % Need fontspec package I think
 \begin{document}
+% \textcolor{black}
 % \color{black} % AME will sort this out, or try other fonts.
 %% Start by sourcing your R code here. The R environment will persist throughout the latex code,
 %% so anything sourced or required here will be accessible later on in the latex knitr chunks.
