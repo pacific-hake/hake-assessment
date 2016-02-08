@@ -120,7 +120,9 @@ make.survey.biomass.plot(models, modelnum=base.model.ind)
 \begin{figure}[p]
 \begin{center}
 <<age.one.index, fig.height=3.5, fig.width=8>>=
-make.survey.age1.plot(age1index, models, modelnum=base.model.ind)
+make.survey.age1.plot(age.1.index,
+                      models,
+                      modelnum = base.model.ind)
 @
 \end{center}
 %\vspace{0mm}
@@ -912,7 +914,9 @@ make.squid.plot(retro.list,
 \begin{figure}[H]
 \begin{center}
 <<historical.assessments, fig.height=4, fig.width=6.5>>=
-assessment.history.plot(base.model)
+make.assessment.history.plot(base.model,
+                             assessment.history,
+                             end.yr + 2)
 @
 \end{center}
 %\vspace{0mm}

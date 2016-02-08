@@ -64,7 +64,7 @@ source("figures-stock-recruitment.r")
 source("figures-mle-mcmc.r")
 source("figures-overview-map.r")
 source("figures-data.r")
-source("figures-AssessmentHistoryPlot.R")
+source("figures-assessment-history.r")
 
 source("tables-timeseries.r")
 source("tables-reference-points.r")
@@ -84,10 +84,10 @@ can.age.file <- "canadian-age-data.csv"
 catch.data.file <- "landings-tac-history.csv"
 further.tac.file <- "further-tac-details.csv"
 survey.history.file <- "survey-history.csv"
-sampling.history.file <- "sampling-history.csv"
-ovary.N.file <- "OvarySamples.csv"
-age1.file <- "Age1.csv"
-assmnt.history.file <- "HakeAssessHistory.csv"
+sampling.history.file <- "fishery-sampling-history.csv"
+ovary.samples.file <- "ovary-samples.csv"
+age.1.file <- "age-1.csv"
+assessment.history.file <- "assessment-history.csv"
 
 exe.file.name <- "ss3.exe"
 starter.file.name <- "starter.ss"
@@ -347,9 +347,9 @@ survey.history <- load.survey.history(file.path(data.path, survey.history.file))
 sampling.history <- load.sampling.history(file.path(data.path, sampling.history.file))
 further.tac <- further.tac.details(file.path(data.path, further.tac.file))
 can.ages <- load.can.age.data(file.path(data.path, can.age.file))
-ovaryN <- read.csv(file.path(data.path, ovary.N.file))
-age1index <- read.csv(file.path(data.path, age1.file))
-assmntHistory <- read.csv(file.path(data.path,assmnt.history.file))
+ovary.samples <- read.csv(file.path(data.path, ovary.samples.file))
+age.1.index <- read.csv(file.path(data.path, age.1.file))
+assessment.history <- read.csv(file.path(data.path, assessment.history.file), stringsAsFactors = FALSE)
 cat("All data tables have been loaded ", data.path,"\n")
 
 ################################################################################
