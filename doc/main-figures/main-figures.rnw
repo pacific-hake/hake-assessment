@@ -3,7 +3,7 @@
 \section{FIGURES} \label{sec:figures}
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}    % Don't make any bigger as then previous page becomes blank
 <<main.overview.map, fig.height=9>>=
 make.overview.map.plot(r.loc = file.path("..", "r"))
@@ -15,7 +15,7 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%  % Call figure directly
-\begin{figure}[p]
+\begin{figure}[H]
 \vspace{-5mm}  % Chris will hate this
 \begin{center}
 \includegraphics[angle=90,origin=c]{main-figures/backscatter2smaller2.eps} % width=\maxwidth,
@@ -27,7 +27,7 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.data.overview.map, fig.height=4.5, fig.width=8>>=
 make.data.overview.plot(base.model)
@@ -51,11 +51,11 @@ make.catches.plot(catches, leg.y.loc = 475)
 \label{fig:main-catches}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
+% \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %% Call the figure directly instead of create it because the data are confidential
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishDepthsUS}
@@ -75,10 +75,10 @@ make.catches.plot(catches, leg.y.loc = 475)
 \label{fig:main-us-catch-rates}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
+% \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.age.comp.bubbles, fig.height=5, fig.width=8>>=
 layout(matrix(c(1,1), nrow = 2, ncol = 1, byrow=TRUE))
@@ -104,7 +104,7 @@ make.age.comp.bubble.plot(base.model, subplot = 1)
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.survey.biomass, fig.height=6, fig.width=8>>=
 ## modelnum is the model index in models list from which the survey input data are used.
@@ -119,47 +119,32 @@ make.survey.biomass.plot(models, modelnum=base.model.ind)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[p]
 \begin{center}
-<<age.one.index, fig.height=4, fig.width=6.5>>=
+<<age.one.index, fig.height=3.5, fig.width=8>>=
 make.survey.age1.plot(age1index, models, modelnum=base.model.ind)
 @
 \end{center}
 %\vspace{0mm}
 \caption{Preliminary acoustic survey age-1 index overlaid on estimated numbers of age-1 fish (MLE from the base model).}
 \label{fig:main-age-one-index}
-\end{figure}
+%%\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
+%% JOINED ON PAGE
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+%%\begin{figure}[H]
 \begin{center}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=6.5in, height=5in]{main-figures/maturityNS}
+\includegraphics[width=6.5in, height=4in]{main-figures/maturityNS}
 \end{center}
-%\vspace{0mm}
 \caption{Observed proportion mature-at-length (bubbles with circle size relative to number of samples at length), fitted proportion mature-at-length with an estimated asymptote (lines), and number of samples at length (barplots beneath each panel). Panels show categories of source (top left), year (top right), source and year (bottom left), and month (for the trawl survey only, bottom right).}
 \label{fig:main-proportion-mature-by-source}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
-<<prop.mature.by.latitude, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
-@
-\end{center}
-%\vspace{0mm}
-\caption{As for Figure~\ref{fig:proportion-mature-by-source} but for two-degree latitude bins. Observed proportion mature-at-length (bubbles with circle size relative to number of samples at length), fitted proportion mature-at-length with an estimated asymptote (lines), and number of samples at length (barplots beneath each panel).}
-\label{fig:main-proportion-mature-by-latitude}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
-\begin{center}
-<<empirical.weight.at.age, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
-@
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=6.5in, height=8.5in]{main-figures/EWAforDoc}
 \end{center}
 %\vspace{0mm}
 \caption{Empiricial weight-at-age (kg) used in the assessment (numbers, with colors given by the scale at the bottom). Numbers shown in bold were interpolated or extrapolated from adjacent areas.}
@@ -168,7 +153,7 @@ plot(1:10, main="Placeholder dummy figure")
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.bridge.biomass, fig.height=6, fig.width=8>>=
 bridge.density.names <- c("SPB_Virgin",
@@ -191,7 +176,7 @@ make.comparison.plot(models[bridge.model.inds.1],
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.bridge.5.panel, fig.height=8, fig.width=8>>=
 oldpar <- par(no.readonly=TRUE)
@@ -236,10 +221,10 @@ par <- oldpar
 \label{fig:main-bridge-5-panel}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
+% \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.bridge.4.panel, fig.height=8, fig.width=10>>=
 oldpar <- par(no.readonly=TRUE)
@@ -280,10 +265,10 @@ par <- oldpar
 \label{fig:main-bridge-4-panel}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
+% \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.mcmc.diag.m.r0, fig.height=5, fig.width=8>>=
 oldpar <- par(no.readonly=TRUE)
@@ -300,7 +285,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.mcmc.diag.h.extra.sd, fig.height=5, fig.width=8>>=
 oldpar <- par(no.readonly=TRUE)
@@ -318,7 +303,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.mcmc.diag.hists, fig.height=6, fig.width=8>>=
 make.mcmc.diag.hists.plot(base.model)
@@ -331,12 +316,12 @@ make.mcmc.diag.hists.plot(base.model)
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.mcmc.pairs, fig.height=8, fig.width=8>>=
 make.mcmc.diag.pairs.plot(base.model,
                           inc.key.params = TRUE,
-                          recr = c(2008, 2010),
+                          recr = c(2008, 2010, 2014),
                           bratio = end.yr,
                           forecatch = end.yr)
 @
@@ -347,7 +332,7 @@ make.mcmc.diag.pairs.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.mcmc.pairs.recruit.devs, fig.height=8, fig.width=8>>=
 make.mcmc.diag.pairs.plot(base.model,
@@ -361,7 +346,7 @@ make.mcmc.diag.pairs.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.mcmc.survey.fit, fig.height=6, fig.width=8>>=
 make.mcmc.survey.fit.plot(model.partest,
@@ -382,15 +367,15 @@ make.mcmc.survey.fit.plot(model.partest,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.age.comp.fits, fig.height=5, fig.width=8>>=
 oldpar <- par(no.readonly = TRUE)
 ## par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.age.comp.fit.plot(base.model,
+make.age.comp.fit.plot(model.partest,
                        subplot = 1)
-make.age.comp.fit.plot(base.model,
+make.age.comp.fit.plot(model.partest,
                        subplot = 2)
 par <- oldpar
 @
@@ -403,7 +388,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.age.comp.pearson, fig.height=8, fig.width=8>>=
 make.age.comp.pearson.plot(model.partest)
@@ -417,7 +402,7 @@ make.age.comp.pearson.plot(model.partest)
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.prior.posterior, fig.height=6, fig.width=8>>=
 make.mcmc.priors.vs.posts.plot(base.model,
@@ -431,7 +416,7 @@ make.mcmc.priors.vs.posts.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.tv.selex, fig.height=8, fig.width=8>>=
 ## Extract TV selectivity fits by running the calculation function.
@@ -449,10 +434,10 @@ make.tv.selex.plot(tv.selex)
 \label{fig:main-tv-selex}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
+% \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.tv.selex.uncertainty, fig.height=8, fig.width=8>>=
 ## Extract TV selectivity fits by running the calculation function, once for each year span,
@@ -479,7 +464,7 @@ make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.tv.selex.uncertainty.lines, fig.height=8, fig.width=8>>=
 oldpar <- par(no.readonly = TRUE)
@@ -503,7 +488,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.spawning.biomass, fig.height=4.5, fig.width=8>>=
 make.biomass.plot(base.model,
@@ -535,10 +520,10 @@ make.depletion.plot(base.model,
 \label{fig:main-relative-spawning-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
+% \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.recruitment, fig.height=4.5, fig.width=8>>=
 make.recruitment.plot(base.model,
@@ -576,7 +561,7 @@ make.recruitment.dev.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.mcmc.sr.variability, fig.height=8, fig.width=8>>=
 make.mcmc.sr.variability.plot(base.model,
@@ -597,7 +582,7 @@ make.mcmc.sr.variability.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.numbers.at.age, fig.height=8, fig.width=8>>=
 make.numbers.at.age.plot(base.model)
@@ -611,7 +596,7 @@ make.numbers.at.age.plot(base.model)
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.fishing.intensity, fig.height=4.5, fig.width=8>>=
 make.fishing.intensity.plot(base.model,
@@ -640,10 +625,10 @@ make.exploitation.fraction.plot(base.model,
 \label{fig:main-exploitation-fraction}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
+% \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.phase, fig.height=6, fig.width=8>>=
 make.phase.plot(base.model,
@@ -660,7 +645,7 @@ make.phase.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.mle.vs.mcmc, fig.height=5, fig.width=8>>=
 layout(matrix(c(1, 2), nrow = 2, ncol = 1, byrow=TRUE))
@@ -680,7 +665,7 @@ make.mcmc.vs.mle.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.projected.catch.density, fig.height=4.5, fig.width=8>>=
 make.forecast.catch.posterior.plot(base.model,
@@ -717,10 +702,10 @@ make.forecast.depletion.comparison.plot(base.model,
 \label{fig:main-forecast-depletion-comparison}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
+% \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.forecast.risk.comparison.plot.year.1, fig.height=4.5, fig.width=8>>=
 make.forecast.risk.comparison.plot(base.model,
@@ -756,10 +741,10 @@ make.forecast.risk.comparison.plot(base.model,
 \label{fig:main-forecast-risk-comparison-year-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
+% \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.biomass.base.alternative.2, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
@@ -798,10 +783,10 @@ par <- oldpar
 \label{fig:main-recruitment-base-alternative-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
+% \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.base.alternative.3, fig.height=8, fig.width=8>>=
 oldpar <- par(no.readonly=TRUE)
@@ -825,7 +810,7 @@ mtext("Age", side = 1, line = 1, outer = TRUE)
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.biomass.base.alternative.1, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
@@ -855,10 +840,10 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
 \label{fig:main-status-base-alternative-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
+% \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.biomass.recruitment.retrospective, fig.height=8, fig.width=8>>=
 oldpar <- par()
@@ -885,7 +870,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.retrospective.recruitment, fig.height=6, fig.width=8>>=
 ## Number of retro years for the plot. Assumes you've run them.
@@ -909,7 +894,7 @@ make.squid.plot(retro.list,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<main.relative.retrospective.recruitment, fig.height=6, fig.width=8>>=
 make.squid.plot(retro.list,
@@ -924,7 +909,7 @@ make.squid.plot(retro.list,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
 <<historical.assessments, fig.height=6, fig.width=8>>=
 plot(1:10, main="Placeholder dummy figure")

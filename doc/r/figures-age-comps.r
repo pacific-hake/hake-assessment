@@ -120,8 +120,7 @@ make.age.comp.bubble.plot <- function(model,                  ## model is an mcm
 }
 
 make.age.comp.fit.plot <- function(model,       ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
-                                   subplot = 1,  ## 1) fishery or 2) survey
-                                   do.plot = TRUE  ## If FALSE, no plot will be drawn, but the return values will be returned                                   
+                                   subplot = 1  ## 1) fishery or 2) survey
                                    ){
   ## Plot the age compositions for whatever subplot is set to
   oldpar <- par()

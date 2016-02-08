@@ -57,16 +57,21 @@
 %  Then have to refresh FNDB: Start-Programs-MikTex-Settings.
 
 %http://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
-\usepackage[T1]{fontenc}
+\usepackage[T1]{fontenc}     % DO NOT COMMENT OUT - else no < in tables.
 % https://www.sharelatex.com/learn/Font_typefaces
 % \usepackage{tgschola}
 % \usepackage{tgpagella}    % doesn't print well
 % \usepackage{lmodern}        % still a bit thin on screen
-% \usepackage{tgtermes}     % Seemed to look okay, but I had lmodern uncommented
-                            %  also. Will keep investigating.
+% \usepackage{tgtermes}       % Looks okay, but I seem to need previous line
+                            %  uncommented also. But ps2pdf does not do correct
+                            %  font.
+% \usepackage[varg]{txfonts}  % Times text with txfonts math. Gives an error
+% http://ctan.math.ca/tex-archive/info/Free_Math_Font_Survey/en/survey.pdf
+\usepackage{mathptmx}    % Should have Times plus math fonts. 
+% \usepackage{newtxtext,newtxmath}   % Gives \\int already defined error.
 
 %https://www.ctan.org/pkg/urw-arial
-\usepackage[scaled=1.00]{uarial}
+% \usepackage[scaled=1.00]{uarial}
 % Redefine default font to Arial (LaTeX only):
 % \renewcommand{\rmdefault}{ua1} %phv}% Arial vs. Helvetica
 % \renewcommand{\sfdefault}{ua1} %phv}% Arial vs. Helvetica
@@ -81,12 +86,12 @@
 \setlength{\bibhang}{1cm}               % set the DFO overhang
 \setlength{\bibsep}{6pt}                % paragraph spacing
 \usepackage[breaklinks=true,bookmarksopen,bookmarksdepth=3]{hyperref}  % CSAP wants hyperlinks in references
-\usepackage[normalem]{ulem}             % The ulem package: underlining for emphasis
+% \usepackage[normalem]{ulem}             % The ulem package: underlining for emphasis
 \hypersetup{colorlinks, plainpages=true, linkcolor=black, citecolor=black, urlcolor=blue}
 % Create a blue underlined hyperlink (e.g., http://tex.stackexchange.com/questions/233668/new-ulem-command-not-working)
-\newcommand\bluline{\bgroup\markoverwith
-  {\textcolor{blue}{\rule[-0.5ex]{2pt}{0.4pt}}}\ULon} % wtf
-\newcommand\urldfo[2]{ \href{#1}{\bluline{#2}} }
+% \newcommand\bluline{\bgroup\markoverwith
+%   {\textcolor{blue}{\rule[-0.5ex]{2pt}{0.4pt}}}\ULon} % wtf
+% \newcommand\urldfo[2]{ \href{#1}{\bluline{#2}} }
 \renewcommand{\bibname}{References}
 %%%---------END hyperref chicanery----------------
 
