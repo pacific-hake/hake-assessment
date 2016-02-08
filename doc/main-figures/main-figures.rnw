@@ -497,7 +497,7 @@ par <- oldpar
 @
 \end{center}
 \caption{Estimated acoustic (top) and fishery (bottom) selectivity (\Sexpr{end.yr-1})
-  ogives from the posterior distribution}
+  ogives from the posterior distribution.}
 \label{fig:main-tv-selex-uncertainty-lines}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
