@@ -98,7 +98,7 @@ make.survey.age1.plot <- function(age1index,   ##
   ## Assumes that there is only one 'CPUE' index and it is the acoustic survey.
 
   oldpar <- par()
-  par(mar=c(3, 4, 1, 1) + 0.1)
+  par(mar=c(4, 4, 1, 1) + 0.1)
 
   x <- age1index
   yrs <- x$Year
