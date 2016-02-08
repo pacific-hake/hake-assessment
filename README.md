@@ -129,20 +129,20 @@ or in a knitr code chunk:
     data.path               - The absolute path to the data folder, which holds catch and tac tables.
     models.path             - The absolute path to the models folder, which holds sub-directories for the models which have been run.
 
-There are additional elements for model-partest, which is created by running **run.partest.model**. It is saved in a file called
+There are additional elements for model.partest, which is created by running **run.partest.model**. It is saved in a file called
 **model-partest.RData**. It is a copy of base.model with the following additions:
 
-    model-partest$agedbase$Exp           - median of posterior for expected value for age comps
-    model-partest$agedbase$Exp.025       - 2.5% of posterior for expected value for age comps
-    model-partest$agedbase$Exp.975       - 97.5% of posterior for expected value for age comps
-    model-partest$agedbase$Pearson       - median of posterior for pearson residuals for age comps
-    model-partest$agedbase$Pearson.025   - 2.5% of posterior for pearson residuals for age comps
-    model-partest$agedbase$Pearson.975   - 97.5% of posterior for pearson residuals for age comps
-    model-partest$cpue.table             - Table of cpue index values for all posteriors (survey)
-    model-partest$cpue.median            - median of posterior for cpue index values (survey)
-    model-partest$cpue.025               - 2.5% of posterior for cpue index values (survey)
-    model-partest$cpue.975               - 97.5% of posterior for cpue index values (survey)
-    model-partest$like.info              - Likelihood values for all posteriors
+    model.partest$agedbase$Exp           - median of posterior for expected value for age comps
+    model.partest$agedbase$Exp.025       - 2.5% of posterior for expected value for age comps
+    model.partest$agedbase$Exp.975       - 97.5% of posterior for expected value for age comps
+    model.partest$agedbase$Pearson       - median of posterior for pearson residuals for age comps
+    model.partest$agedbase$Pearson.025   - 2.5% of posterior for pearson residuals for age comps
+    model.partest$agedbase$Pearson.975   - 97.5% of posterior for pearson residuals for age comps
+    model.partest$cpue.table             - Table of cpue index values for all posteriors (survey)
+    model.partest$cpue.median            - median of posterior for cpue index values (survey)
+    model.partest$cpue.025               - 2.5% of posterior for cpue index values (survey)
+    model.partest$cpue.975               - 97.5% of posterior for cpue index values (survey)
+    model.partest$like.info              - Likelihood values for all posteriors
 
 ---
 

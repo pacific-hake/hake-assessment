@@ -4,8 +4,6 @@ make.mcmc.priors.vs.posts.plot <- function(model, ## model is an mcmc run and is
   ## Plot the priors vs. posterior density for a particular parameter for the model.
   oldpar <- par()
   par(mfrow=c(2,2),mar=c(3,3,1,1))
-  mle.path <- strsplit(model$mcmcpath, "/")[[1]]
-  mle.path <- mle.path[-length(mle.path)]
   SSplotPars(model$mcmcpath,
              model$path,
              strings = posterior.regex,
