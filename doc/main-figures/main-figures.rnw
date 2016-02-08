@@ -911,8 +911,8 @@ make.squid.plot(retro.list,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<historical.assessments, fig.height=6, fig.width=8>>=
-plot(1:10, main="Placeholder dummy figure")
+<<historical.assessments, fig.height=4, fig.width=6.5>>=
+assessment.history.plot(base.model)
 @
 \end{center}
 %\vspace{0mm}
