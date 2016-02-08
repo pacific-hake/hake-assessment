@@ -21,13 +21,21 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
 
   ## tab.letters are the letters in the table, one for each forecast management action
   ## and a blank for all but the first year in a management action
+  ##additional labels are given for some rows (below letter)
+  rows2Label <- c("d","e","f","g")
+  rowLabels <- list(c("2015","TAC"),c("FI=","100\\%"),c("default","HR"),c("C2016=","C2017"))
   tab.letters <- NULL
   next.ind <- 1
   for(i in 1:length(forecast)){
     tab.letters[next.ind] <- paste0(letters[i],":")
     next.ind <- next.ind + 1
     for(j in 1:(nrow(forecast[[i]])-1)){
-      tab.letters[next.ind] <- ""
+      if(letters[i] %in% rows2Label) {
+        lab <- rowLabels[[which(letters[i]==rows2Label)]]
+        tab.letters[next.ind] <- lab[j]
+      } else {
+        tab.letters[next.ind] <- ""
+      }
       next.ind <- next.ind + 1
     }
   }
