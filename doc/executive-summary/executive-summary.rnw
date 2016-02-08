@@ -358,7 +358,7 @@ and rapid biomass changes.  This leads to a dynamic fishery that potentially tar
 selectivity. This volatility results in a high level of uncertainty in estimates of 
 current stock status and stock projections because with limited data to
 estimate incoming recruitment, the cohorts are fished before the assessment can accurately determine how
-big the cohort is (i.e., cohort strength is not well know until it is age 2 or greater).
+big the cohort is (i.e., cohort strength is not well know until it is at least age 3). %% NGT to be consistent with wording above
 
 The JTC presented results from closed-loop simulations evaluating the effect of including potential age-1 indices on management outcomes at the May 6-7 2015 JMC meeting in Victoria, B.C. They found that fitting to an unbiased age-1 survey results in lower catch, lower probability that spawning biomass falls below 10\% of $B_0$, and a lower average annual variability in catch.  However, comparable results in terms of catch could be achieved with a more precise age-2+ survey or alternative harvest control rules.  The simulations assumed an age-1 survey design with consistent, effective, and numerous sampling, which may not be the case for the existing age-1 index.
 
