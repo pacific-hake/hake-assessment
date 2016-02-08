@@ -412,7 +412,7 @@ make.forecast.depletion.comparison.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-Fishing intensity exceeding 100\% indicates fishing in excess of the $\Fforty$ default harvest rate catch limit. This can happen for the median fishing intensity in projected years because the $\Fforty$ default harvest-rate catch limit is calculated using baseline selectivity from all years, whereas the forecasted catches are removed using selectivity averaged over the last five years. Recent changes in selectivity will thus be reflected in the determination of fishing in excess of the default harvest policy. Alternative catch levels where median fishing intensity is 100\% for three years of projections is provided for comparison (labeled SPR100 **NOT SURE WHAT THAT IS REFERRING TO).
+Fishing intensity exceeding 100\% indicates fishing in excess of the $\Fforty$ default harvest rate catch limit. This can happen for the median fishing intensity in projected years because the $\Fforty$ default harvest-rate catch limit is calculated using baseline selectivity from all years, whereas the forecasted catches are removed using selectivity averaged over the last five years. Recent changes in selectivity will thus be reflected in the determination of fishing in excess of the default harvest policy. Alternative catch levels where median fishing intensity is 100\% for three years of projections is provided for comparison (scenario e: FI=100\%).
 
 % Move to after next paragraph if it appears too early. It shouldn't since
 %  so many tables around.
