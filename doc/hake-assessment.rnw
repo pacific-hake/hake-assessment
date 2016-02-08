@@ -3,6 +3,11 @@
 %% January 2016
 
 \documentclass[12pt]{book}
+%% Allows the numbering of figures/tables to be unique witin a section
+%% - so that clicking table d in the executive summary takes you there, and not to
+%%   the fourth table in the main-tables section
+\usepackage{chngcntr}
+
 \usepackage{hake}
 \usepackage[titletoc,title]{appendix}   % title gives 'Appendix A', not
     % just 'A', but doesn't seem to work, may need article class,
@@ -200,6 +205,9 @@
                         %  in .pdf
 % \defaultfontfeatures{Color=black} % Need fontspec package I think
 \begin{document}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+
 % \textcolor{black}
 % \color{black} % AME will sort this out, or try other fonts.
 %% Start by sourcing your R code here. The R environment will persist throughout the latex code,
