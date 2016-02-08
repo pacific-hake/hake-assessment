@@ -46,6 +46,14 @@
   \item Projections setting \Sexpr{forecast.yrs[1]} and \Sexpr{forecast.yrs[2]} catch equal to the \Sexpr{forecast.yrs[1]-1} TAC of
     \Sexpr{last.year.tac}~t show the estimated median relative spawning biomass increasing from \Sexpr{curr.depl.median}\%
     in \Sexpr{end.yr} to \Sexpr{next.depl.median.tac.based}\% in \Sexpr{end.yr+1} and \Sexpr{next2.depl.median.tac.based}\%
-    in \Sexpr{end.yr+2}. However, this projection is highly uncertain and shows a 2\% chance of the spawning biomass falling below 25\%
-     of $B_0$ in two years (by 2018) and a 50\% chance of declining from 2017 to 2018.
+    in \Sexpr{end.yr+2}. 
+    However, due to uncertainty there is an estimated 2\% chance of the spawning biomass falling below 25\%
+     of $B_0$ in two years (by 2018). There is an estimated 38\% chance of the spawning biomass declining from 2016 to 2017, and a 50\% change from 2017 to 2018.
+    % 2% from Table e. 
+    % Last sentences were just: 
+    % However, this projection is highly uncertain and shows a 2\% chance of the spawning biomass falling below 25\%
+    % of $B_0$ in two years (by 2018) and a 50\% chance of declining from 2017 to 2018.
+     % Last bullet ends up with two values of 83.6%. These seem to be 
+     %  correctly referenced and are not identical in the output, but
+     %  are the same due to rounding.
 \end{itemize}
