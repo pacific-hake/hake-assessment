@@ -6,8 +6,8 @@
 %%\setcounter{page}{1}
 
 \clearpage
-\section*{One-page Summary}
-\phantomsection \addcontentsline{toc}{section}{One Page Summary}
+\section*{One-page summary}
+\phantomsection \addcontentsline{toc}{section}{One-page summary}
 
 \begin{itemize}
   \item The stock assessment model for \Sexpr{assess.yr} is similar in structure to the \Sexpr{last.assess.yr} model with the addition
@@ -36,7 +36,9 @@
   \item The spawning biomass in \Sexpr{end.yr} is estimated to have increased from \Sexpr{end.yr-1} due to the large size of the
     2014 year class.
 
-  \item The default predicted catch level for 2016, based on the default harvest rule, is 839,476~t.
+%  \item The default predicted catch level for 2016, based on the default harvest rule, is 839,476~t.  **DOES NOT MENTION uncertainty; suggest replacing with (copied and adapted from Exec Summary):
+    
+  \item Based on the default harvest rule, the median catch limit for \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
 
   \item As in the past, forecasts are highly uncertain due to lack of information about recruitment in the most recent years.
     Forecasts were conducted across a range of catch levels.
