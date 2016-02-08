@@ -129,10 +129,7 @@ young fish have shown the estimates of recent recruitment to be unreliable prior
 
 The estimated recruitments with uncertainty for each predicted point and the overall stock recruit relationship are provided in (Figure~\ref{fig:main-mcmc.sr.variability}). Extremely large variability about the expectation and about the joint uncertainty of individual recruitment and spawning biomass pairs are evident in this plot. High and low recruitment has been produced throughout the range of observed spawning biomass (Figure~\ref{fig:main-mcmc.sr.variability}).
 
-
-% Thought I could get years from base.model$recruitpars but they're all NA's
-%  for the current model run.
-** The standard deviation of the time series of median recruitment deviation estimates for the years 1971-2012, which are well informed by the age compositions, is 1.36. The standard deviation of the MCMC samples of all recruitment deviations for the years 1946--**2014 (**69 years with \Sexpr{num.mcmc.samples} samples per year, combining both the variability among years and the uncertainty within each year), is **1.51. These values are consistent with the base model value of $\sigma_r = 1.4$.
+The standard deviation of the time series of median recruitment deviation estimates for the years 1971-2012, which are well informed by the age compositions, is \Sexpr{fmt0(sd(base.model$mcmccalcs$devmed[names(base.model$mcmccalcs$devmed) >= 1971 & names(base.model$mcmccalcs$devmed) <= 2012]), 2)}. The standard deviation of the MCMC samples of all recruitment deviations for the years 1946--2014 (\Sexpr{2014 - 1946 + 1} years with \Sexpr{num.mcmc.samples} samples per year, combining both the variability among years and the uncertainty within each year), is **Check calculation** \Sexpr{fmt0(sd(base.model$mcmccalcs$devmed[names(base.model$mcmccalcs$devmed) >= 1946 & names(base.model$mcmccalcs$devmed) <= 2014]), 2)}. These values are consistent with the base model value of $\sigma_r$ = \Sexpr{fmt0(base.model$par[base.model$par$Label=="SR_sigmaR",]$Value, 1)}.
 
 \subsubsub{Exploitation status}
 
