@@ -118,14 +118,10 @@ The new data available for this assessment do not significantly change the estim
 % Can't ascertain previous statement from the figure, but AME checked the values
 %  and it's still true.
 The model currently estimates a small 2011 year class, and smaller than average 2012 and 2013 year classes (median recuitment below the mean of all median recruitments).
-% That's still true for 2016 assessment - see 
+% That's still true for 2016 assessment - see
 %  years.since.2010.recruitment.med.below.mean
 % Though could just say that all three years are smaller than average?
-The 2014 year class appears to be larger than average, but is still highly uncertain.
-There is little or no
-information in the data to estimate the sizes of the \Sexpr{end.yr-1} and \Sexpr{end.yr} year classes. Retrospective analyses of year class strength for
-young fish have shown the estimates of recent recruitment to be unreliable prior to at least age 3 \citep{JTC2013}.
-
+The 2014 year class appears to be larger than average, but is still highly uncertain. There is little or no information in the data to estimate the sizes of the \Sexpr{end.yr-1} and \Sexpr{end.yr} year classes. Retrospective analyses of year class strength for young fish have shown the estimates of recent recruitment to be unreliable prior to at least age 3 \citep{JTC2013}.
 
 The estimated recruitments with uncertainty for each predicted point and the overall stock recruit relationship are provided in (Figure~\ref{fig:main-mcmc.sr.variability}). Extremely large variability about the expectation and about the joint uncertainty of individual recruitment and spawning biomass pairs are evident in this plot. High and low recruitment has been produced throughout the range of observed spawning biomass (Figure~\ref{fig:main-mcmc.sr.variability}).
 
