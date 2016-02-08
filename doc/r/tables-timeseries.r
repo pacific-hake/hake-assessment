@@ -123,7 +123,7 @@ make.biomass.table <- function(model,                ## model is an mcmc run and
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
-  addtorow$command <- c("& \\multicolumn{3}{|c}{\\specialcell{\\textbf{Spawning biomass}\\\\\\textbf{(thousand t)}}} & \\multicolumn{3}{|c|}{\\specialcell{\\textbf{Relative spawning biomass}\\\\\\textbf{(B\\subscr{t}/B\\subscr{0})}}} \\\\")
+  addtorow$command <- c("\\hline & \\multicolumn{3}{|c}{\\specialcell{\\textbf{Spawning biomass}\\\\\\textbf{(thousand t)}}} & \\multicolumn{3}{|c}{\\specialcell{\\textbf{Relative spawning biomass}\\\\\\textbf{(B\\subscr{t}/B\\subscr{0})}}} \\\\")
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(tab.filt, caption=xcaption, label=xlabel, align=get.align(ncol(tab.filt))),
@@ -188,7 +188,7 @@ make.recruitment.table <- function(model,                ## model is an mcmc run
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
-  addtorow$command <- c("& \\multicolumn{3}{|c}{\\specialcell{\\textbf{Absolute recruitment}\\\\\\textbf{(millions)}}} & \\multicolumn{3}{|c|}{\\specialcell{\\textbf{Recruitment deviations}}} \\\\")
+  addtorow$command <- c("\\hline\\multicolumn{1}{|c}{} & \\multicolumn{3}{|c}{\\specialcell{\\textbf{Absolute recruitment}\\\\\\textbf{(millions)}}} & \\multicolumn{3}{|c|}{\\specialcell{\\textbf{Recruitment deviations}}} \\\\")
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(tab.filt, caption=xcaption, label=xlabel, align=get.align(ncol(tab.filt))),
@@ -262,10 +262,10 @@ make.fishing.intensity.table <- function(model,                ## model is an mc
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
-  addtorow$command <- c("& \\multicolumn{3}{|c}{\\specialcell{\\textbf{Fishing intensity}}} & \\multicolumn{3}{|c|}{\\specialcell{\\textbf{Exploitation fraction}}} \\\\")
+  addtorow$command <- c("\\hline & \\multicolumn{3}{|c}{\\specialcell{\\textbf{Fishing intensity}}} & \\multicolumn{3}{|c|}{\\specialcell{\\textbf{Exploitation fraction}}} \\\\")
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
-  return(print(xtable(tab.filt, caption=xcaption, label=xlabel, align=get.align(ncol(tab.filt)), digits=digits),
+  return(print(xtable(tab.filt, caption=xcaption, label=xlabel, align=c("c","|","c","|","r","r","r","|","r","r","r","|"), digits=digits),
                caption.placement = "top", add.to.row=addtorow, table.placement=placement, include.rownames=FALSE, sanitize.text.function=function(x){x},
                size=size.string))
 }
