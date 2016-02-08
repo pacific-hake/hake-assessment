@@ -38,7 +38,7 @@
 
 %  \item The default predicted catch level for 2016, based on the default harvest rule, is 839,476~t.  **DOES NOT MENTION uncertainty; suggest replacing with (copied and adapted from Exec Summary):
     
-  \item Based on the default harvest rule, the median catch limit for \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
+  \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
 
   \item As in the past, forecasts are highly uncertain due to lack of information about recruitment in the most recent years.
     Forecasts were conducted across a range of catch levels.
