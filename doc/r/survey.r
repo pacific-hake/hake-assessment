@@ -19,7 +19,7 @@ make.survey.history.table <- function(dat,
                      "\\specialcell{\\textbf{End date}}",
                      "\\specialcell{\\textbf{Vessels}}",
                      "\\specialcell{\\textbf{Biomass}\\\\\\textbf{index}\\\\\\textbf{(million t)}}",
-                     "\\specialcell{\\textbf{Sampling CV}",
+                     "\\specialcell{\\textbf{Sampling CV}}",
                      "\\specialcell{\\textbf{Number of}\\\\\\textbf{hauls with bio.}\\\\\\textbf{samples}}")
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
