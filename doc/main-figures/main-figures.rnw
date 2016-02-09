@@ -151,7 +151,7 @@ make.survey.age1.plot(age.1.index,
 \includegraphics[width=6.5in, height=4in]{main-figures/maturityNS}
 \end{center}
 \caption{Observed proportion mature-at-length (bubbles with circle size relative to number of samples at length), fitted proportion mature-at-length with an estimated asymptote (lines), and number of samples at length (barplots beneath each panel). Panels show categories of source (top left), year (top right), source and year (bottom left), and month (for the trawl survey only, bottom right).}
-\label{fig:main-proportion-mature-by-source}
+\label{fig:main-proportion-mature-by-NS}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -603,7 +603,7 @@ make.mcmc.sr.variability.plot(base.model,
 make.numbers.at.age.plot(base.model)
 @
 \end{center}
-\caption{Bubble plot of maximum likelihood (MLE) estimates of population numbers at age at the beginning of each year.
+\caption{Bubble plot of maximum likelihood (MLE) estimates of population numbers at age at the beginning of each year, where diagonals follow each year-class through time.
   The red line represents the mean age. The scale of the bubbles is represented in the key where the units are
   billions of fish (with the largest bubble representing about 14 billion age-0 recruits in 1980).}
 \label{fig:main-numbers-at-age}

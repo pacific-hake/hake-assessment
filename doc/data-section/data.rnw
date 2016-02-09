@@ -40,7 +40,7 @@ Some data sources were not included but have been explored, were used for sensit
 
 \item Bottom trawl surveys in the U.S. and Canada (various years and spatial coverage from 1977--2015).
 
-\item NWFSC/SWFSC/PWCC coast-wide juvenile hake and rockfish surveys (2001-2009 **ACH: need to update with recent years). %presume won't change
+\item NWFSC/SWFSC/PWCC coast-wide juvenile hake and rockfish surveys (2001--2015).
 
 \item Bycatch of Pacific Hake in the trawl fishery for pink shrimp off the coast of Oregon, 2004, 2005, 2007 and 2008. 
 
@@ -120,27 +120,26 @@ Fishery-independent data from the Alaska Fisheries Science Center (AFSC) bottom 
 
 The fraction mature, by size and age, is based on data reported in \citet{DornSaunders1997} and has remained unchanged in the base models since the 2006 stock assessment. These data consisted of 782 individual ovary collections based on visual maturity determinations by observers. The highest variability in the percentage of each length bin that was mature within an age group occurred at ages 3 and 4, with virtually all age-1 fish immature and age 4+ hake mature. Within ages 3 and 4, the proportion of mature hake increased with larger sizes, such that only 25\% were mature at 31~cm while 100\% were mature at 41~cm.
 
-Histological samples have been collected during the 2009, 2012, 2013, 2014, and 2015 U.S.~bottom trawl surveys, during the **2012, 2013, and 2015 joint U.S/Canada Hake/Sardine acoustic surveys, and from At-Sea hake Observer Program (ASHOP) observers aboard at-sea fishing vessels in 2013, 2014, and 2015 (Table~\ref{tab:main-ovaries}). In the course of the surveys, length bins were targeted for ovary collection to ensure an even coverage. The protocol for collection from at-sea fishery vessels was to randomly sample one ovary from the three fish randomly sampled for otoliths. Fish were randomly sampled for otoliths every third haul. A fin clip was also collected with most histological samples for genetic determination of stock structure.
+Histological samples have been collected during the 2009, 2012, 2013, 2014, and 2015 U.S.~bottom trawl surveys, during the 2012, 2013, and 2015 joint U.S/Canada Hake/Sardine acoustic surveys, and from At-Sea hake Observer Program (ASHOP) observers aboard at-sea fishing vessels in 2013, 2014, and 2015 (Table~\ref{tab:main-ovaries}). In the course of the surveys, length bins were targeted for ovary collection to ensure an even coverage. The protocol for collection from at-sea fishery vessels was to randomly sample one ovary from the three fish randomly sampled for otoliths. Fish were randomly sampled for otoliths every third haul. A fin clip was also collected with most histological samples for genetic determination of stock structure.
 
 Tissue from each individual ovary was embedded in paraffin, thin-sectioned to 4~$\mu$m, mounted on slides, and stained with hematoxylin and eosin (H\&E) stain. Microscopic examination was done to determine oocyte development and maturity (pers.~comm., Melissa Head, NWFSC). Ovary samples were marked as mature when yolk was present in a healthy viable oocyte. The presence of various oocyte stages was recorded, and a visual estimate of the percentage of the sample that showed atresia was also noted. Size and age of the fish were not used in the determination of maturity.
 
 Oocytes exhibiting atresia were noted with a visual estimate of the percent atresia. If an ovary sample did not have yolk present in a healthy viable oocyte, then it was marked as immature. Specimens were classified as mature if they contained large oocytes with dark-stained vitellogenin yolk or characteristics associated with more advanced stages. Spent ovaries characterized by the presence of large numbers of post ovulatory follicles (POFs) and immature oocytes were also defined as mature. Fish that did not have yolk present but were large or older were not changed to a mature status because of these biological factors. Reader error in the determination of maturity for \fishname\ was negligible (pers.~comm., Melissa Head). Slides of ovary sections from the trawl survey were re-evaluated to ensure consistency in maturity determination.
 
-Developing oocytes that indicated mature and possibly spawning fish were present in samples collected throughout the year. This suggests that \fishname\ are batch spawners with multiple spawning events in a year. It is uncertain the extent to which viable eggs are produced throughout the year and more investigation is required to determine when spawning that contributes to recruitment actually occurs. A trawl/acoustic survey beginning in January 2016 collected histological samples from hake observations, which may help determine the spawning state of \fishname\.  Male hake spawning state may also be useful to investigate to learn more about this.
+Developing oocytes that indicated mature and possibly spawning fish were present in samples collected throughout the year. This suggests that \fishname\ are batch spawners with multiple spawning events in a year. It is uncertain the extent to which viable eggs are produced throughout the year and more investigation is required to determine when spawning that contributes to recruitment actually occurs. A trawl/acoustic survey beginning in January 2016 collected histological samples from hake observations, which may help determine the spawning state of \fishname. Male hake spawning state may also be useful to investigate to learn more about this.
 
-No additional analysis of maturity samples collected in 2015 have been done, but results reported in the \fishname\ assessment from 2015 \citep{JTC2015} indicated that maturity-at-age and length observations show differences across years (Figure~\ref{fig:main-proportion-mature-by-source}). It has been difficult to determine if these difference are due to the source (bottom trawl, acoustic survey, or ASHOP) or the year. Investigating data through **2014 showed that \fishname\ south of 34.5 degrees latitude (approximately Point Conception) mature at a smaller size (Figure~\ref{fig:main-proportion-mature-by-latitude}). The trawl survey is the only source of the three analyzed here that samples in that area, and genetic samples were collected in 2015 to determine if there is any stock structure that could help to explain this. Another interesting observation from the maturity data is that there are large, old fish classified as immature \citep{JTC2015}. It is believed that these fish may be mature, but are ``skip spawners'' and will not be spawning in the upcoming year.
+No additional analysis of maturity samples collected in 2015 have been done, but results reported in the \fishname\ assessment from 2015 \citep{JTC2015} indicated that maturity-at-age and length observations show differences across years (Figure~\ref{fig:main-proportion-mature-by-source}). It has been difficult to determine if these difference are due to the source (bottom trawl, acoustic survey, or ASHOP) or the year. Investigating data through 2014 showed that \fishname\ south of 34.5 degrees latitude (approximately Point Conception) mature at a smaller size (Figure~\ref{fig:main-proportion-mature-by-NS}). The trawl survey is the only source of the three analyzed here that samples in that area, and genetic samples were collected in 2015 to determine if there is any stock structure that could help to explain this. Another interesting observation from the maturity data is that there are large, old fish classified as immature \citep{JTC2015}. It is believed that these fish may be mature, but are ``skip spawners'' and will not be spawning in the upcoming year.
 
 It is unclear how the smaller size at maturity south of Pont Conception fits into the determination of spawning biomass for Pacific Hake. Additionally, fecundity-at-age is ultimately the desired metric to determine spawning biomass. Therefore, we hesitate to move forward with defining a new maturity curve until we complete the following:
 \begin{enumerate}
-  
   \item read ages and histological sample from the 2015 collections,
-  
+
   \item further investigate the smaller maturity-at-length south of Point Conception,
-    
+
   \item determine the significance of batch spawning and viability of spawning events throughout the year,
-    
+
   \item study fecundity as a function of size, age, weight, and batch spawning.
-    
+
 \end{enumerate}
 
 Hopefully, samples collected during the winter 2016 trawl/acoustic survey for \fishname\ will help to address these tasks.
