@@ -342,16 +342,6 @@ make.reference.points.table(base.model,
                             placement = "tbp")
 @
 
-<<reference.points.table.OLD, results='asis', echo=FALSE>>=
-make.reference.points.table.orig(base.model,
-                            xcaption <- paste0("**ORIGINAL TABLE F**. Summary of median and 95\\% credibility intervals of equilibrium reference points for the \\fishname\\ base assessment model. Equilibrium reference points were computed using ",start.yr,"--",end.yr-1," averages for mean size at age and selectivity at age."),
-                            xlabel <- "tab:es-reference.points",
-                            font.size = 12,
-                            space.size = 14,
-                            placement = "H")
-@
-
-
 \subsection*{Unresolved problems and major uncertainties} \label{sec:es-unresolved-problems}
 \phantomsection \addcontentsline{toc}{subsection}{Unresolved problems and major uncertainties}
 Uncertainty measures in the base model underestimate the total uncertainty in the current stock status and projections

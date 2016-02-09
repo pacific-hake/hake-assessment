@@ -204,6 +204,9 @@
 % \color{black}         % AME - looked a bit bolder in .ps, but no different
                         %  in .pdf
 % \defaultfontfeatures{Color=black} % Need fontspec package I think
+
+% \def\thanks#1{{\let\thefootnote\relax\footnote{#1.}\setcounter{footnote}{0}}}
+  % To not have indent on disclaimer.
 \begin{document}
 \counterwithin{figure}{section}
 \counterwithin{table}{section}
@@ -254,10 +257,18 @@ load("./r/model-partest.RData")
 
 %% Title page and author references page
 \thispagestyle{empty}
-\title{\TitleFont DRAFT - Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr} \\ ~\\ ~\\ \includegraphics[width=4in]{hake-picture}}
+\title{\TitleFont DRAFT - Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}\thanks{\noindent Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy.}
+\\ ~\\ ~\\ \includegraphics[width=4in]{hake-picture}}
 
 \author{Joint Technical Committee of the Pacific Hake/Whiting Agreement \\ Between the Governments of the United States and Canada}
+
 \maketitle
+
+
+
+% \vspace{30mm}
+
+
 \newpage
 
 \pagenumbering{roman}
