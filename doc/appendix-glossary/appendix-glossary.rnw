@@ -141,7 +141,8 @@ Management Strategy Evaluation (MSE):  A formal process for evaluating Harvest S
 
 MAP: maximum \emph{a posteriori} probability. See below.
 
-Markov-Chain Monte-Carlo (MCMC): A numerical method used to sample from the posterior distribution (see below) of parameters and derived quantities in a Bayesian analysis. It is more computationally intensive than the maximum likelihood estimate (see above), but provides a more accurate depiction of parameter uncertainty. % See **Stewart et al. (2012) for a discussion of issues related to differences between MCMC and MLE.
+Markov-Chain Monte-Carlo (MCMC): A numerical method used to sample from the posterior distribution (see below) of parameters and derived quantities in a Bayesian analysis. It is more computationally intensive than the maximum likelihood estimate (see above), but provides a more accurate depiction of parameter uncertainty. 
+See \citet{StewartHicksEtAl2013} for a discussion of issues related to differences between MCMC and MLE.
 
 Maximum \emph{a posteriori} probability (MAP) estimate: mode of the posterior distribution used as a point estimate which is similar to the penalized MLE. % This is also referred to as the ``maximum posterior density'' (MPD) in this document. **AME -- check if we use the latter, I don't think I've seen it.
 
