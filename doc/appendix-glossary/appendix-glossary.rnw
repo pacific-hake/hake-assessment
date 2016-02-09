@@ -32,7 +32,7 @@ Agreement (``Treaty''): The Agreement between the government of the United State
 
 AFSC: Alaska Fisheries Science Center (National Marine Fisheries Service).
 
-$B_0$: The estimated average unfished equilibrium female spawning biomass or spawning output if not directly proportional to spawning biomass. **AME -- need a comma somewhere??
+$B_0$: The estimated average unfished equilibrium female spawning biomass or spawning output if not directly proportional to spawning biomass.
 
 $\Bten$: The level of female spawning biomass (output) corresponding to 10\% of average unfished equilibrium female spawning biomass ($B_0$, size of fish stock without fishing; see above). This is the level at which the calculated catch based on the 40:10 harvest control rule (see above) is equal to 0.
 
@@ -47,7 +47,7 @@ California Current Ecosystem: The waters of the continental shelf and slope off 
 
 Carryover: If at the end of the year, there are unharvested allocations, then there are provisions for an amount of these fish to be carried over into the next year's allocation process. The Agreement states that ``[I]f, in any year, a Party's catch is less than its individual TAC, an amount equal to the shortfall shall be added to its individual TAC in the following year, unless otherwise recommended by the JMC. Adjustments under this sub-paragraph shall in no case exceed 15 percent of a Party's unadjusted individual TAC for the year in which the shortfall occurred.''
 
-Case: A combination of the harvest policy ($\Fspr$ and control rule) and simulation assumptions regarding the survey. Cases considered in the MSE are ``Annual'', ``Biennial'', ``Perfect information'', and ``No Fishing''.  **AME -- this mentions MSE, edit it for 2016??? ** And what does the $\Fspr$ part mean??
+Case: A combination of the harvest policy ($\Fspr$ and control rule) and simulation assumptions regarding the survey. Cases considered in the MSE are ``Annual'', ``Biennial'', ``Perfect information'', and ``No Fishing''.
 
 Catchability ($q$): The parameter defining the proportionality between a relative index of stock abundance (often a fishery-independent survey) and the estimated stock abundance available to that survey (as modified by selectivity) in the assessment model.
 
@@ -77,8 +77,7 @@ DOC: United States Department of Commerce. Parent organization of the National M
 
 El Ni\~no: Abnormally warm ocean climate conditions in the California Current Ecosystem (see above) as a result of broad changes in the Eastern Pacific Ocean across the eastern coast of Latin America (centered on Peru) often around the end of the calendar year.
 
-Estimation model: A single run of Stock Synthesis within a combination of Case, Simulation and Year. The directories containing these results are named ``assess2012'' through ``assess2030'' where the year value in this case represents the last year of real or simulated data. The amount of data available to these models is therefore consistent with the stock assessments conducted in the years 2013-2031. There are 18 Estimation Models for each of 999 Simulations within each of 4 Management strategies for a total of 71,928 model results. The estimation models use maximum likelihood estimation, not MCMC.    **AME -- presumably we can comment this one out this year?
-
+Estimation model: A single run of Stock Synthesis within a combination of Case, Simulation and Year. The directories containing these results are named ``assess2012'' through ``assess2030'' where the year value in this case represents the last year of real or simulated data. The amount of data available to these models is therefore consistent with the stock assessments conducted in the years 2013-2031. There are 18 Estimation Models for each of 999 Simulations within each of 4 Management strategies for a total of 71,928 model results. The estimation models use maximum likelihood estimation, not MCMC.
 
 Exploitation fraction: A metric of fishing intensity that represents the total annual catch divided by the estimated population biomass over a range of ages assumed to be vulnerable to the fishery (set to ages $3+$ in recent assessments, including this one). This value is not equivalent to the instantaneous rate of fishing mortality (see below) or the spawning potential ratio (SPR, see below).
 
@@ -110,7 +109,7 @@ intensity.plot = function(target = 0.4, intensity=seq(0, 1/(1-target), 0.01))
     xaxs="i", yaxs="i")
   lines(c(1,1,0), c(0, 0.4, 0.4), lty=2)
   text(0, target+0.04, "Target SPR", pos=4, adj=0.2)
-  }      
+  }
 intensity.plot()
 @
 \end{center}
@@ -118,7 +117,6 @@ intensity.plot()
 \label{fig:glossary-fishing-intensity}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
 
 ** AME has done figure (next page), but need to make terminology on axes consistent with text. It's kind of strange that fishing intensity is defined on left-hand side of (\ref{appendix-glossary-spr}) but is the x-axis in the figure.
 
