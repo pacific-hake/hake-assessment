@@ -151,7 +151,7 @@ make.survey.age1.plot(age.1.index,
 \includegraphics[width=6.5in, height=4in]{main-figures/maturityNS}
 \end{center}
 \caption{Observed proportion mature-at-length (bubbles with circle size relative to number of samples at length), fitted proportion mature-at-length with an estimated asymptote (lines), and number of samples at length (barplots beneath each panel). Panels show categories of source (top left), year (top right), source and year (bottom left), and month (for the trawl survey only, bottom right).}
-\label{fig:main-proportion-mature-by-source}
+\label{fig:main-proportion-mature-by-NS}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
