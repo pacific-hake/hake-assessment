@@ -178,14 +178,14 @@ bridge.model.names.1 <- c(paste0(last.assess.yr, " Base model"),
                           "Update data")
 bridge.model.dir.names.2 <- c(last.year.base.model.name,
                               "40_Add2015Survey_withExtrap_update",
-                              "41_Add2015Catch_FishAcomps_withExtrap")
+                              "41_Add2015Catch_FishAcomps_withExtrap_update")
 ## Bridge model names will be used to make the bridge model plot and its caption.
 bridge.model.names.2 <- c(paste0(last.assess.yr, " Base model"),
                           paste0("Add ", survey.end.yr, " survey series"),
                           paste0("Add ", last.data.yr, " fishery data"))
-bridge.model.dir.names.3 <- c("41_Add2015Catch_FishAcomps_withExtrap",
-                              "41.01_adjustBiasRamping",
-                              "41.02_ChangeSurveyTuning",
+bridge.model.dir.names.3 <- c("41_Add2015Catch_FishAcomps_withExtrap_update",
+                              "41.01_adjustBiasRamping_update",
+                              "41.02_ChangeSurveyTuning_update",
                               "41.03_ChangeAllTuning_update")
 ## Bridge model names will be used to make the bridge model plot and its caption.
 bridge.model.names.3 <- c("Base model pretune",
