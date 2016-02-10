@@ -355,7 +355,11 @@ make.comparison.plot <- function(models,                   ## models is a list o
                       indexUncertainty = indexUncertainty,
                       indexfleets = indexfleets,
                       endyrvec = endyrvec,
-                      new=FALSE)
+                      new=FALSE,
+                      labels = c("Year", "Spawning biomass (t)", "Relative spawning biomass", "Age-0 recruits (1,000s)",
+                                 "Recruitment deviations", "Index", "Log index", "SPR ratio", "Density",
+                                 "Management target", "", "Spawning output",
+                                 "Harvest rate"))
   }else{
     SSplotComparisons(compare.summary,
                       subplots = subplots,
@@ -367,7 +371,11 @@ make.comparison.plot <- function(models,                   ## models is a list o
                       indexUncertainty = indexUncertainty,
                       indexfleets = indexfleets,
                       endyrvec = endyrvec,
-                      new=FALSE)
+                      new=FALSE,
+                      labels = c("Year", "Spawning biomass (t)", "Relative spawning biomass", "Age-0 recruits (1,000s)",
+                                 "Recruitment deviations", "Index", "Log index", "SPR ratio", "Density",
+                                 "Management target", "", "Spawning output",
+                                 "Harvest rate"))
   }
   par <- oldpar
 }
