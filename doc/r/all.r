@@ -146,7 +146,7 @@ forecast.probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 ## Set up models lists - NOTE all are *required* to build the document.
 models.dir.list <- dir(models.path)
 
-base.model.name <- "22_preSRGbase"
+base.model.name <- "39_preSRGbase_updated"
 ## Last year's base model. This is used for the parameter estimates table which compares
 ##  last year's to this year's parameter estimates.
 last.year.base.model.name <- "00_2015hake_basePreSRG"
@@ -177,16 +177,16 @@ bridge.model.dir.names.1 <- c(last.year.base.model.name,
 bridge.model.names.1 <- c(paste0(last.assess.yr, " Base model"),
                           "Update data")
 bridge.model.dir.names.2 <- c(last.year.base.model.name,
-                              "10_Add2015Survey_withExtrap",
-                              "11_Add2015Catch_FishAcomps_withExtrap")
+                              "40_Add2015Survey_withExtrap_update",
+                              "41_Add2015Catch_FishAcomps_withExtrap")
 ## Bridge model names will be used to make the bridge model plot and its caption.
 bridge.model.names.2 <- c(paste0(last.assess.yr, " Base model"),
                           paste0("Add ", survey.end.yr, " survey series"),
                           paste0("Add ", last.data.yr, " fishery data"))
-bridge.model.dir.names.3 <- c("11_Add2015Catch_FishAcomps_withExtrap",
-                              "11.01_adjustBiasRamping",
-                              "11.02_ChangeSurveyTuning",
-                              "11.03_ChangeAllTuning")
+bridge.model.dir.names.3 <- c("41_Add2015Catch_FishAcomps_withExtrap",
+                              "41.01_adjustBiasRamping",
+                              "41.02_ChangeSurveyTuning",
+                              "41.03_ChangeAllTuning_update")
 ## Bridge model names will be used to make the bridge model plot and its caption.
 bridge.model.names.3 <- c("Base model pretune",
                           "Adjust bias ramp",
@@ -220,12 +220,12 @@ if((length(bridge.model.names.1) != length(bridge.model.dir.names.1)) |
 if(verbose){
   cat("\nDEBUG: Loading sensitivity models \n\n")
 }
-sens.model.dir.names.1 <- c("26_Sensbase_sigmaR_1.0",
-                            "27_Sensbase_sigmaR_2.0",
-                            "28_Sensbase_h_0.5prior",
-                            "29_Sensbase_h_1.0fix",
-                            "36_Sensbase_M_SD0.2",
-                            "37_Sensbase_M_SD0.3")
+sens.model.dir.names.1 <- c("46_Sensbase_sigmaR_1.0_update",
+                            "47_Sensbase_sigmaR_2.0_update",
+                            "48_Sensbase_h_0.5prior_update",
+                            "49_Sensbase_h_1.0fix_update",
+                            "51_Sensbase_M_SD0.2_update",
+                            "52_Sensbase_M_SD0.3_update")
 ## Sens model names will be used to make the sensitivity model plot and its caption.
 ## Make sure they are the same length as sens.model.dir.names
 sens.model.names.1 <- c("Sigma R 1.0",
@@ -235,13 +235,13 @@ sens.model.names.1 <- c("Sigma R 1.0",
                         "Natural mortality SD 0.2",
                         "Natural mortality SD 0.3")
 
-sens.model.dir.names.2 <- c("32_Sensbase_Survey_noExtrap",
-                            "33_Sensbase_Age1Index")
+sens.model.dir.names.2 <- c("42_Sensbase_Survey_noExtrap_update",
+                            "50_Sensbase_Age1Index_update")
 sens.model.names.2 <- c("No extrapolation on survey",
                         "Include age-1 index")
-sens.model.dir.names.3 <- c("23_Sensbase_Selmaxage5",
-                            "24_Sensbase_Selmaxage7",
-                            "25_Sensbase_Selmaxage12")
+sens.model.dir.names.3 <- c("43_Sensbase_Selmaxage5_update",
+                            "44_Sensbase_Selmaxage7_update",
+                            "45_Sensbase_Selmaxage12_update")
 sens.model.names.3 <- c("Max. age of selectivity 5",
                         "Max. age of selectivity 7",
                         "Max. age of selectivity 12")
