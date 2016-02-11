@@ -424,7 +424,7 @@ make.short.parameter.estimates.table <- function(model,                ## model 
     mcmc.meds <- c(mcmc.meds, d)
 
     ## Add Female spawning biomass B_f40%
-    b <- median(x$mcmc[,"SSB_SPRtgt"]) / 2
+    b <- median(x$mcmc[,"SSB_SPRtgt"]) / 2 /1000
     mcmc.meds <- c(mcmc.meds, b)
 
     ## Add SPR MSY-proxy
@@ -473,7 +473,7 @@ make.short.parameter.estimates.table <- function(model,                ## model 
                  "2009 Relative Spawning Biomass",
                  paste0(end.yr, " Relative Spawning Biomass"),
                  paste0(end.yr - 1, " Fishing intensity: (1-SPR)/(1-SPR\\subscr{40\\%})"),
-                 "Female Spawning Biomass (\\emph{$B_{F_{40_{\\%}}}$})",
+                 "Female Spawning Biomass (\\emph{$B_{F_{40_{\\%}}}$}; thousant t)",
                  "SPR\\subscr{MSY-proxy}",
                  "Exploitation Fraction corresponding to SPR",
                  "Yield at \\emph{$B_{F_{40_{\\%}}}$} (thousand t)"),
