@@ -785,6 +785,22 @@ param.details <- make.parameters.estimated.summary.table(base.model,
 m.prior <- split.prior.info(param.details[rownames(param.details) == "m.vals",][4], dec.points = 2, first.to.lower = TRUE)
 ## Now use m.prior[1] for name of prior, m.prior[1] for mean, and m.prior[3] for SD.
 
+cohortCatch <- function(cohort,catage,ages=0:20) {
+  cohortYrs <- cohort+ages
+  tmp <- as.matrix(catage[catage$Yr %in% cohortYrs,as.character(ages)])
+  wtatage <- as.matrix(base.model$wtatage[base.model$wtatage$fleet==1 & base.model$wtatage$yr %in% (-1*cohortYrs),paste("X",ages,sep="")])
+  catchWtAtAge <- tmp * wtatage
+
+  ind <- 1:(nrow(tmp)+1)
+  if(length(ind) > length(ages)) {ind <- 1:nrow(tmp)}
+  catchCoh <- diag(catchWtAtAge[,ind])
+  names(catchCoh) <- cohortYrs[1:(nrow(tmp))]
+  return(catchCoh)
+}
+cohort.catch.1999 <- sum(cohortCatch(1999,base.model$catage))
+cohort.catch.2010 <- sum(cohortCatch(2010,base.model$catage))
+
+
 ## This chunk must stay last in the file
 if(reload.models == "y" | reload.models == "Y" |
    run.forecasts == "y" | run.forecasts == "Y" |
