@@ -12,7 +12,7 @@ Fishery-dependent and fishery-independent data sources used here (Figure~\ref{fi
 
 \item Age compositions composed of data from the U.S. fishery (\Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}) and the Canadian fishery (1990--\Sexpr{max.fishery.age.prop[2]}).
 
-\item Biomass indices and age compositions from the Joint U.S.~and Canadian integrated acoustic and trawl survey (\Sexpr{survey.age.years[-length(survey.age.years)]} and \Sexpr{survey.age.years[length(survey.age.years)]}.
+\item Biomass indices and age compositions from the Joint U.S.~and Canadian integrated acoustic and trawl survey (\Sexpr{survey.age.years[-length(survey.age.years)]} and \Sexpr{survey.age.years[length(survey.age.years)]}).
 
 \end{itemize}
 
@@ -20,7 +20,7 @@ The assessment model also used biological relationships derived from external an
 
 \begin{itemize}
 
-\item Mean observed weight-at-age from fishery and survey catches, (1975-\Sexpr{last.data.yr})
+\item Mean observed weight-at-age from fishery and survey catches, (1975-\Sexpr{last.data.yr}).
 
 \item Ageing-error matrices based on cross-read and double-blind-read otoliths.
 
