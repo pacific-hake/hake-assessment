@@ -48,9 +48,9 @@ make.survey.extrap.table <- function(dat,
   dat[is.na(dat)] <- "--"
 
   colnames(dat) <- c("\\specialcell{\\textbf{Year}}",
-                     "\\specialcell{\\textbf{Biomass no}\\\\\\textbf{extrapolation}\\\\\\textbf{(million t)}}",
-                     "\\specialcell{\\textbf{Sampling CV}\\\\\\textbf{no}\\\\\\textbf{extrapolation}}",
                      "\\specialcell{\\textbf{Biomass with}\\\\\\textbf{extrapolation}\\\\\\textbf{(million t)}}",
+                     "\\specialcell{\\textbf{Sampling CV}\\\\\\textbf{no}\\\\\\textbf{extrapolation}}",
+                     "\\specialcell{\\textbf{Biomass no}\\\\\\textbf{extrapolation}\\\\\\textbf{(million t)}}",
                      "\\specialcell{\\textbf{Sampling CV}\\\\\\textbf{with}\\\\\\textbf{extrapolation}}",
                      "\\specialcell{\\textbf{Biomass}\\\\\\textbf{Design-based}\\\\\\textbf{(million t)}}")
   ## Make the size string for font and space size
