@@ -393,12 +393,20 @@ if(run.forecasts == "y" | run.forecasts == "Y"){
   models[[base.model.ind]]$forecasts$mcmccalcs <- forecasts[[3]]
   models[[base.model.ind]]$forecasts$outputs <- forecasts[[4]]
 
+  metrics <- create.metrics(models[[base.model.ind]]$mcmc,
+                             models[[base.model.ind]]$path,
+                             forecast.yrs[-length(forecast.yrs)],
+                             catch.levels,
+                             catch.levels.dir.names)
+
+  models[[base.model.ind]]$metrics$outputs <- metrics
+
   if(verbose){
-    cat("\nDEBUG: Calculated forecasts\n\n")
+    cat("\nDEBUG: Calculated forecasts and metrics\n\n")
   }
 
   ## calc.risk assumes the forecasting step was done correctly
-  risks <- calc.risk(models[[base.model.ind]]$forecasts$outputs,
+  risks <- calc.risk(models[[base.model.ind]]$metrics$outputs,
                      forecast.yrs,
                      catch.levels,
                      catch.levels.dir.names)
