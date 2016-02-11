@@ -281,9 +281,9 @@ catch.levels <- list(rep(0.01, 3),
                      rep(180000,3),
                      rep(350000,3),
                      rep(440000,3),
-                     c(790000,880000,770000),
-                     c(839476,922929,792803),
-                     c(906500,906500,781749))
+                     c(760000,855000,750000),
+                     c(804399,889918,785036),
+                     c(873000,873000,773907))
 
 ## Index for the forecasts list, which one above is the TAC case?
 ## This is used in the one-page summary and the plot comparing several catch cases
@@ -393,12 +393,20 @@ if(run.forecasts == "y" | run.forecasts == "Y"){
   models[[base.model.ind]]$forecasts$mcmccalcs <- forecasts[[3]]
   models[[base.model.ind]]$forecasts$outputs <- forecasts[[4]]
 
+  metrics <- create.metrics(models[[base.model.ind]]$mcmc,
+                             models[[base.model.ind]]$path,
+                             forecast.yrs[-length(forecast.yrs)],
+                             catch.levels,
+                             catch.levels.dir.names)
+
+  models[[base.model.ind]]$metrics$outputs <- metrics
+
   if(verbose){
-    cat("\nDEBUG: Calculated forecasts\n\n")
+    cat("\nDEBUG: Calculated forecasts and metrics\n\n")
   }
 
   ## calc.risk assumes the forecasting step was done correctly
-  risks <- calc.risk(models[[base.model.ind]]$forecasts$outputs,
+  risks <- calc.risk(models[[base.model.ind]]$metrics$outputs,
                      forecast.yrs,
                      catch.levels,
                      catch.levels.dir.names)

@@ -297,6 +297,62 @@ calc.forecast <- function(mcmc,                ## The output of the SS_getMCMC f
               outputs.list))
 }
 
+create.metrics <- function(mcmc,                ## The output of the SS_getMCMC function from the r4ss package as a data.frame
+                          model.dir,           ## The path of the model to run metrics for
+                          metric.yrs,        ## A vector of years to do projections for
+                          catch.levels,        ## catch.levels is a list of N catch levels to run projections for
+                          catch.levels.names) {  ## catch.levels.names is a list of N names for the catch levels given in catch.levels
+
+  ## Run forecasts  on the mcmc model and return the list of outputs.
+  ## returns the list of mcmc calcs from the models
+
+  if(!is.null(catch.levels)){
+    if(length(catch.levels) != length(catch.levels.names)){
+      stop("\ncalc.forecast: Error - catch.levels is not the same length as catch.levels.names!\n")
+    }
+  }
+
+  mcmc.dir <- file.path(model.dir,"mcmc")
+
+  ## outputs.list holds the outputs from the mcmc models as read in by SSgetMCMC
+  outputs.list <- vector(mode="list",length=length(metric.yrs))
+
+  for(i in 1:length(metric.yrs)) {
+    metrics.dir <- file.path(mcmc.dir,paste0("metrics_",i))
+    ## Delete any old forecasts by removing whole forecasts directory recursively, then re-create
+    unlink(metrics.dir, recursive=TRUE)
+    dir.create(metrics.dir)
+
+    for(level.ind in 1:length(catch.levels)) {
+      ## Create a new sub-directory for each catch projection
+      name <- catch.levels.names[level.ind]
+      new.forecast.dir <- file.path(metrics.dir, name)
+      dir.create(new.forecast.dir)
+
+      ## Copy all model files into this new forecast directory
+      file.copy(file.path(mcmc.dir, list.files(mcmc.dir)), new.forecast.dir)
+
+      ## Insert fixed catches into forecast file (depending on i)
+      forecast.file <- file.path(new.forecast.dir, "forecast.ss")
+      fore <- SS_readforecast(forecast.file, Nfleets=1, Nareas=1, verbose=FALSE)
+      fore$Ncatch <- length(forecast.yrs[1:i])
+      fore$ForeCatch <- data.frame(Year=forecast.yrs[1:i], Seas=1, Fleet=1, Catch_or_F=catch.levels[[level.ind]][1:i])
+      SS_writeforecast(fore, dir = new.forecast.dir, overwrite = TRUE, verbose = FALSE)
+
+      ## Evaluate the model using mceval option of ADMB, and retrieve the output
+      shell.command <- paste0("cd ", new.forecast.dir, " & ss3 -mceval")
+      shell(shell.command)
+      mcmc.out <- SSgetMCMC(dir=new.forecast.dir, writecsv=FALSE)$model1
+
+      ## Do quantile calculations and put results in the output lists
+      outputs.list[[i]][[level.ind]] <- mcmc.out
+    }
+    names(outputs.list[[i]]) <- catch.levels.names
+  }
+
+  return(outputs.list)
+}
+
 calc.risk <- function(forecast.outputs,    ## A list of the output of the SS_getMCMC function, 1 for each catch.level
                       forecast.yrs,        ## A vector of years to do projections for
                       catch.levels,        ## catch.levels is a list of N catch levels to run projections for
@@ -330,8 +386,8 @@ calc.risk <- function(forecast.outputs,    ## A list of the output of the SS_get
   for(i in 1:(length(forecast.yrs)-1)){
     yr <- forecast.yrs[i]
     risk.list[[i]] <- data.frame()
-    for(j in 1:length(forecast.outputs)){
-      x <- forecast.outputs[[j]]
+    for(j in 1:length(forecast.outputs[[i]])){
+      x <- forecast.outputs[[i]][[j]]
       risk.list[[i]] <- rbind(risk.list[[i]], metric(x, yr))
     }
   }
