@@ -49,8 +49,7 @@ make.catches.table(catches,
 
 In this stock assessment, the terms catch and landings are used interchangeably. Estimates of discard within the target fishery
 are included, but discarding of \fishname\ in non-target fisheries is not. Discard from all fisheries is estimated to be less
-than 1\% of landings in recent years. During the last five years, catches have been above the long-term average catch (\Sexpr{fmt0(long.term.avge.catch)}~t) in \Sexpr{last.5.years.above.avge[1:(length(last.5.years.above.avge)-1)]} and \Sexpr{last.5.years.above.avge[length(last.5.years.above.avge)]}, and below it in \Sexpr{last.5.years.below.avge[1:(length(last.5.years.below.avge)-1)]} and \Sexpr{last.5.years.below.avge[length(last.5.years.below.avge)]}. Landings between 2001 and 2008 were predominantly comprised of fish from the very large 1999 year class, with the cumulative removal from that cohort exceeding 1.2~million~t.  Through 2015, the total catch of the 2010 year class is estimated to be slightly more than 500,000~t. 
-% Manual to do. [1.2 million and 500,000~t. Please comment here where those numbers are; I expect they won't change much.]
+than 1\% of landings in recent years. During the last five years, catches have been above the long-term average catch (\Sexpr{fmt0(long.term.avge.catch)}~t) in \Sexpr{last.5.years.above.avge[1:(length(last.5.years.above.avge)-1)]} and \Sexpr{last.5.years.above.avge[length(last.5.years.above.avge)]}, and below it in \Sexpr{last.5.years.below.avge[1:(length(last.5.years.below.avge)-1)]} and \Sexpr{last.5.years.below.avge[length(last.5.years.below.avge)]}. Landings between 2001 and 2008 were predominantly comprised of fish from the very large 1999 year class, with the cumulative removal from that cohort estimated at apporximately \Sexpr{fmt0(cohort.catch.1999/1e6,2)}~million~t.  Through \Sexpr{last.data.yr}, the total catch of the 2010 year class is estimated to be about \Sexpr{fmt0(cohort.catch.2010/1e6,2)}~million~t. 
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
@@ -116,7 +115,7 @@ make.biomass.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-that it was below the unfished equilibrium in the 1960s and 1970s due to lower than average recruitment.
+that it was below the unfished equilibrium in the 1960s, at the start of this assessment model, due to lower than average recruitment.
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -484,7 +483,7 @@ make.risk.table(base.model,
                 space.size = 14,
                 placement = "tbp")                                
 @
-The population is predicted to increase from 2016 to 2017 with a greater than 50\% probability for all catch levels investigated up to 440,000~t (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}). The model predicts high biomass levels and the predicted probability of dropping below $B_{10\%}$ (10\% of $B_0$) 
+The population is predicted to decrease from 2016 to 2017 with a less than 50\% probability for all catch levels investigated up to 440,000~t (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}). The model predicts high biomass levels and the predicted probability of dropping below $B_{10\%}$ (10\% of $B_0$) 
 in 2017 is less than 1\% and the maximum probability of dropping below $B_{40\%}$ is 16\% for all catches explored.
 It should be noted that the natural mortality rate has overtaken the growth rate for the 2010 year class, the model
 estimated below average recruitment for the 2011 and 2013 cohorts, but a large predicted 2014 year class will result in increases to the spawning biomass as it enters maturity. The probability that the 2017 spawning
