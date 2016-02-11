@@ -115,7 +115,7 @@ make.biomass.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-that it was below the unfished equilibrium in the 1960s and 1970s due to lower than average recruitment.
+that it was below the unfished equilibrium in the 1960s, at the start of this assessment model, due to lower than average recruitment.
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -483,7 +483,7 @@ make.risk.table(base.model,
                 space.size = 14,
                 placement = "tbp")                                
 @
-The population is predicted to increase from 2016 to 2017 with a greater than 50\% probability for all catch levels investigated up to 440,000~t (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}). The model predicts high biomass levels and the predicted probability of dropping below $B_{10\%}$ (10\% of $B_0$) 
+The population is predicted to decrease from 2016 to 2017 with a less than 50\% probability for all catch levels investigated up to 440,000~t (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}). The model predicts high biomass levels and the predicted probability of dropping below $B_{10\%}$ (10\% of $B_0$) 
 in 2017 is less than 1\% and the maximum probability of dropping below $B_{40\%}$ is 16\% for all catches explored.
 It should be noted that the natural mortality rate has overtaken the growth rate for the 2010 year class, the model
 estimated below average recruitment for the 2011 and 2013 cohorts, but a large predicted 2014 year class will result in increases to the spawning biomass as it enters maturity. The probability that the 2017 spawning
