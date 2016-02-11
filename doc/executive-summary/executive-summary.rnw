@@ -319,7 +319,7 @@ make.phase.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 %
 
-**hard-wired numbers for years and relative biomass
+% Manual to do: **hard-wired numbers for years and relative biomass
 Between 2007 and 2011, however, fishing intensity ranged from 88\% to 105\% and relative spawning biomass between 0.20 and 0.28.
 Biomass has risen recently with the 2008 and 2010 recruitments and, correspondingly, fishing intensity has fallen below targets. 
 Relative spawning biomass has been above the target since 2012. 
@@ -480,7 +480,7 @@ make.risk.table(base.model,
                 space.size = 14,
                 placement = "tbp")                                
 @
-**hard wided for years
+% Manual to do. **hard wided for years
 The population is predicted to increase from 2016 to 2017 with a greater than 50\% probability for all catch levels investigated up to 440,000~t (Table~\ref{tab:es-decisions-biomass} and Figure~\ref{tab:es-risk-year-1}). The model predicts high biomass levels and the predicted probability of dropping below 10\%
 in 2017 is less than 1\% and the maximum probability of dropping below $B_{40\%}$ is 16\% for all catches explored.
 It should be noted that the natural mortality rate has overtaken the growth rate for the 2010 year class, the model
