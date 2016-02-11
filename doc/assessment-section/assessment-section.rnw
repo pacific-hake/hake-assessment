@@ -165,18 +165,18 @@ The population is predicted to increase from 2016 to 2017 with a greater than 50
 
 \subsection{Sensitivity analyses}\label{sec:assessment-sensitivity-analyses}
  % Manual 2016 done
-Sensitivity analyses were conducted to investigate influence of data inputs and structural uncertainty of the base model by investigating how changes to the model affected the estimated values and derived quantities. For expediency, all sensitivity analyses compared MLE estimates rather than MCMC posteriors. Therefore, the values reported below are not directly comparable to the base model values reported elsewhere (see Table~\ref{tab:main-parameter-estimates} for a set of comparisons of the base model to corresponding MLE estimates). The sensitivities include the following:
+Sensitivity analyses were conducted to investigate influence of data inputs and structural uncertainty of the base model by investigating how changes to the model affected the estimated values and derived quantities. For expediency, all sensitivity analyses compared MLE estimates rather than MCMC posteriors. Therefore, the values reported below are not directly comparable to the base model values reported elsewhere (see Tables~\ref{tab:main-parameter-estimates-sens-1} and \ref{tab:main-parameter-estimates-sens-2} for a set of comparisons of the base model to MLE estimates from the following sensitivity models). The sensitivities include the following:
 
 \begin{enumerate}
-  
+
 \item Change the external analysis used to develop the age-2+ input survey biomass index time-series from an approach of using the K-S stratified kriging method with extrapolation to using the K-S stratified kriging method without extrapolation;
-  
+
 \item Include the age-1 survey index as an additional source of information;
-  
+
 \item Assume no cohort-based ageing error (i.e., time invariant ageing error);
-  
+
 \item Consideration of alternative maximum age assumptions for estimating selectivity;
-  
+
 \item Consideration of a higher standard deviation on the prior distribution for natural mortality;
 
 \item Assume higher/lower variation about the stock-recruitment curve ($\sigma_r$); and
