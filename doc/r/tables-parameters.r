@@ -463,20 +463,21 @@ make.short.parameter.estimates.table <- function(model,                ## model 
   tab[is.na(tab)] <- "--"
 
   ## Set the first column to be the names
-  tab <- cbind(c("Natural Mortality (\\emph{M})",
-                 "\\emph{R}\\subscr{0} (millions)",
-                 "Steepness (\\emph{h})",
+  tab <- cbind(c("Natural Mortality ($M$)",
+                 "Unfished recruitment ($R_0$, millions)",
+                 "Steepness ($h$)",
                  "Additional acoustic survey SD",
                  "2008 recruitment",
                  "2010 recruitment",
-                 "\\emph{B}\\subscr{0} (thousand t)",
+                 "Unfished female spawning biomass ($B_0$, thousand~t)",
                  "2009 Relative Spawning Biomass",
                  paste0(end.yr, " Relative Spawning Biomass"),
                  paste0(end.yr - 1, " Fishing intensity: (1-SPR)/(1-SPR\\subscr{40\\%})"),
-                 "Female Spawning Biomass (\\emph{$B_{F_{40_{\\%}}}$}; thousant t)",
-                 "SPR\\subscr{MSY-proxy}",
+                 "Female spawning biomass at $\\Fforty$ ($\\Bforty$, thousand t)",
+                 # Female Spawning Biomass (\\emph{$B_{F_{40_{\\%}}}$}; thousand~t)",
+                 "SPR at $\\Fforty$", # "SPR\\subscr{MSY-proxy}",
                  "Exploitation Fraction corresponding to SPR",
-                 "Yield at \\emph{$B_{F_{40_{\\%}}}$} (thousand t)"),
+                 "Yield at $\\Bforty$ (thousand~t)"),
                tab)
   colnames(tab) <- c("",
                      "\\textbf{MLE}",
