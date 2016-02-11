@@ -189,8 +189,8 @@ make.short.parameter.estimates.sens.table(sens.models.2.for.table,
                                           digits = 3,
                                           xcaption <- paste0("Maximum likelihood estimates (MLE) of select parameters, derived quantities, and reference points for the base model and sensitivity runs."),
                                           xlabel <- "tab:main-parameter-estimates-sens-2",
-                                          font.size = 7,
-                                          space.size = 9)
+                                          font.size = 9,
+                                          space.size = 11)
 @
 
 <<main.parameter.estimates.sens.1, results='asis', echo=FALSE>>=
@@ -201,8 +201,8 @@ make.short.parameter.estimates.sens.table(sens.models.1.for.table,
                                           digits = 3,
                                           xcaption <- paste0("Maximum likelihood estimates (MLE) of select parameters, derived quantities, and reference points for the base model and sensitivity runs (described in Section \ref{sec:assessment-sensitivity-analyses})"),
                                           xlabel <- "tab:main-parameter-estimates-sens-1",
-                                          font.size = 7,
-                                          space.size = 9)
+                                          font.size = 9,
+                                          space.size = 11)
 @
 
 <<main.parameter.estimates.retro, results='asis', echo=FALSE>>=
@@ -213,8 +213,8 @@ make.short.parameter.estimates.sens.table(retro.list,
                                           digits = 3,
                                           xcaption <- paste0("Select parameters, derived quantities, and reference point estimates for retrospective analyses using the base model. Some values are implied since they occur after the ending year of the respective retrospective analysis."),
                                           xlabel <- "tab:main-parameter-estimates-retro",
-                                          font.size = 7,
-                                          space.size = 9)
+                                          font.size = 10,
+                                          space.size = 12)
 @
 
 \clearpage
