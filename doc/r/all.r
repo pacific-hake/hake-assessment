@@ -345,12 +345,12 @@ catches <- load.catches(file.path(data.path, catch.data.file))
 landings.vs.tac <- catches[[2]]
 catches <- catches[[1]]
 survey.history <- load.survey.history(file.path(data.path, survey.history.file))
-survey.comparison <- read.csv(file.path(data.path, survey.comparison.file))
+survey.comparison <- read.csv(file.path(data.path, survey.comparison.file), stringsAsFactors = FALSE)
 sampling.history <- load.sampling.history(file.path(data.path, sampling.history.file))
 further.tac <- further.tac.details(file.path(data.path, further.tac.file))
 can.ages <- load.can.age.data(file.path(data.path, can.age.file))
-ovary.samples <- read.csv(file.path(data.path, ovary.samples.file))
-age.1.index <- read.csv(file.path(data.path, age.1.file))
+ovary.samples <- read.csv(file.path(data.path, ovary.samples.file), stringsAsFactors = FALSE)
+age.1.index <- read.csv(file.path(data.path, age.1.file), stringsAsFactors = FALSE)
 assessment.history <- read.csv(file.path(data.path, assessment.history.file), stringsAsFactors = FALSE)
 cat("All data tables have been loaded ", data.path,"\n")
 
@@ -557,8 +557,20 @@ survey.biomass <- survey.history$biomass
 names(survey.biomass) <- as.character(survey.history$year)
 survey.comps <- base.model$dat$agecomp[base.model$dat$agecomp$FltSvy==2,]
 rownames(survey.comps) <- survey.comps$Yr
-extrapolatedPerc <- 100*(survey.comparison$withExtrap-survey.comparison$noExtrap)/survey.comparison$withExtrap
-names(extrapolatedPerc) <- as.character(survey.comparison$year)
+## Survey extrapolation percentages and years
+survey.extrap.percent <- 100 * (survey.comparison$with.extrap - survey.comparison$no.extrap) / survey.comparison$with.extrap
+names(survey.extrap.percent) <- as.character(survey.comparison$year)
+survey.extrap.percent <- survey.extrap.percent[!is.na(survey.extrap.percent)]
+
+survey.largest.extrap.percent <- fmt0(max(survey.extrap.percent), 2)
+survey.year.of.largest.extrap <- names(survey.extrap.percent[survey.extrap.percent == max(survey.extrap.percent)])
+
+survey.smallest.extrap.percent <- fmt0(min(survey.extrap.percent), 2)
+survey.year.of.smallest.extrap <- names(survey.extrap.percent[survey.extrap.percent == min(survey.extrap.percent)])
+
+survey.average.extrap.percent <- fmt0(mean(survey.extrap.percent), 2)
+
+
 
 ## New depletion and spawning biomass estimates
 if(verbose){
@@ -740,6 +752,29 @@ antepenult.survey.year.biomass <- fmt0(survey.history[nrow(survey.history) - 2,]
 last.factor.penult <- fmt0(survey.history[nrow(survey.history),]$biomass / survey.history[nrow(survey.history) - 1,]$biomass, 1)
 ## How many times higher is the last survey than the one that was two before it?
 last.factor.antepenult <- fmt0(survey.history[nrow(survey.history),]$biomass / survey.history[nrow(survey.history) - 2,]$biomass, 1)
+
+## Get priors informtaion
+split.prior.info <- function(prior.str, dec.points = 1, first.to.lower = FALSE){
+  ## Parses a string like Lognormal(2.0,1.01) and returns a vector of length 3:
+  ## "Lognormal", 2.0, 1.01
+  ## if first.to.lower = TRUE, makes the first letter of the name of the prior lower case.
+  p <- strsplit(prior.str, "\\(")[[1]]
+  if(first.to.lower){
+    ## Make the name of the prior lower case
+    p[1] <- paste0(tolower(substr(p[1], 1, 1)), substr(p[1], 2, nchar(p[1])))
+  }
+  p.type <- p[1]
+  p <- strsplit(p[2], ",")[[1]]
+  p.mean <- fmt0(as.numeric(p[1]), dec.points)
+  p.sd <- fmt0(as.numeric(gsub(")", "", p[2])), dec.points)
+  return(c(p.type, p.mean, p.sd))
+}
+param.details <- make.parameters.estimated.summary.table(base.model,
+                                                         start.rec.dev.yr = recruit.dev.start.yr,
+                                                         end.rec.dev.yr = end.yr,
+                                                         return.xtable = FALSE)
+m.prior <- split.prior.info(param.details[rownames(param.details) == "m.vals",][4], dec.points = 2, first.to.lower = TRUE)
+## Now use m.prior[1] for name of prior, m.prior[1] for mean, and m.prior[3] for SD.
 
 ## This chunk must stay last in the file
 if(reload.models == "y" | reload.models == "Y" |

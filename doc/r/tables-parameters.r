@@ -1,11 +1,13 @@
 make.parameters.estimated.summary.table <- function(model,                ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
-                                                    start.rec.dev.yr, ## First year of estimated recruitment devs
-                                                    end.rec.dev.yr,   ## Last year of estimated recruitment devs
+                                                    start.rec.dev.yr,     ## First year of estimated recruitment devs
+                                                    end.rec.dev.yr,       ## Last year of estimated recruitment devs
                                                     digits = 3,           ## number of decimal points for the estimates
                                                     xcaption = "default", ## Caption to use
                                                     xlabel   = "default", ## Latex label to use
                                                     font.size = 9,        ## Size of the font for the table
-                                                    space.size = 10       ## Size of the spaces for the table
+                                                    space.size = 10,      ## Size of the spaces for the table
+                                                    return.xtable = TRUE  ## If FALSE, will return an R table,
+                                                                          ##  the values of which can be referenced in knitr code chunks.
                                                     ){
   ## Returns an xtable in the proper format for the parameters estimated summary
 
@@ -162,6 +164,10 @@ make.parameters.estimated.summary.table <- function(model,                ## mod
                           paste0("Normal(0,", est.sel[sel.dev.sd], ")"))
 
   tab <- rbind(r0.vals, h.vals, sig.r.vals, rec.dev.vals, m.vals, q.vals, se.vals, age.sel.vals, f.age.sel.vals, f.age.sel.dev.vals)
+
+  if(!return.xtable){
+    return(tab)
+  }
 
   colnames(tab) <- c("\\textbf{Parameter}",
                      "\\specialcell{\\textbf{Number}\\\\\\textbf{estimated}}",
