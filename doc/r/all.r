@@ -612,6 +612,11 @@ if(verbose){
 num.mcmc.samples <- dim(base.model$mcmc)[1]
 median.bio.min  <- fmt0(min(base.model$mcmccalcs$smed), 3)  # min median biomass
 median.bio.min.year <- names(which.min(base.model$mcmccalcs$smed)) # year of min
+median.intensity <- base.model$mcmccalcs$pmed
+median.intensity.2007.to.2011 <- median.intensity[c("2007", "2008", "2009", "2010", "2011")]
+median.intensity.2007.to.2011.min <- fmt0(min(median.intensity.2007.to.2011)*100, 0)
+median.intensity.2007.to.2011.max <- fmt0(max(median.intensity.2007.to.2011)*100, 0)
+# Could replace some of the following ..pmed with median.intensity:
 median.intensity.above.one.all.years <- names(which(base.model$mcmccalcs$pmed > 1))    # includes > end.yr
 median.intensity.above.one.years <- median.intensity.above.one.all.years[
          median.intensity.above.one.all.years < end.yr]  # ones to mention
@@ -619,7 +624,11 @@ median.intensity.2010 <- fmt0(base.model$mcmccalcs$pmed["2010"] * 100, 1)
 median.intensity.penult.yr <- fmt0(base.model$mcmccalcs$pmed[as.character(end.yr-1)] * 100, 1)
 
 median.relative.bio <- base.model$mcmccalcs$dmed
+median.relative.bio.2007.to.2011 <- median.relative.bio[c("2007", "2008", "2009", "2010", "2011")]
+median.relative.bio.2007.to.2011.min <- fmt0(min(median.relative.bio.2007.to.2011), 2)
+median.relative.bio.2007.to.2011.max <- fmt0(max(median.relative.bio.2007.to.2011), 2)
 median.relative.bio.below.target <- median.relative.bio[median.relative.bio < 0.4]     # when below target
+median.relative.bio.above.target.since <- as.numeric(max(names(median.relative.bio.below.target)))+1   # has been above target since
 # Prob biomass declines next year to year after with zero catch:
 zero.catch.prob.bio.down.1 <- fmt0(base.model$risks[[1]][1,2])
 # Prob biomass declines year after next to year after that with zero catch:
