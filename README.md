@@ -161,6 +161,16 @@ There are additional elements for model.partest, which is created by running **r
 
 ---
 
+## Allan's steps to create decision and metrics tables for the hake assessment ##
+
+See 
+
+<https://github.com/cgrandin/hake-assessment/issues/108#issuecomment-183086161>
+
+[Andy tried copy and pasting here but formatting got messed up - can do at a later date.]
+
+
+
 ## How Andy is running it (and see Chris's notes above)
 
 - download from Hake JTC Google Drive the model runs, and put in **hake-assessment\models\** (then 'unzip to here', then remove the .zip file so that **models\** just has the required subdirectories).
