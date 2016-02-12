@@ -69,6 +69,8 @@ Statistical likelihood functions used for data fitting are typical of many stock
 
 Uncertainty of estimated quantities was calculated via Markov Chain Monte Carlo (MCMC) simulations. The bounds of 95\% credibility intervals were calculated as the 2.5\% quantile and the 97.5\% quantile of posterior distributions from the MCMC simulations, to give equal-tailed intervals.
 
+Calculations and figures from Stock Synthesis output were performed using \Sexpr{R.Version()$version.string} \citep{R2015} and many R packages (in particular r4ss and xtable). The use of R, knitr, \LaTeX~and GitHub immensely facilitated the collaborative writing of this document.
+
 \subsection{Modeling results}\label{sec:assessment-modeling-results}
 % Manual 2016 done
 \subsubsection{Changes from \Sexpr{last.assess.yr}}\label{sec:assessment-changes}
