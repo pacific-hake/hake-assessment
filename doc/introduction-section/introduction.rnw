@@ -53,7 +53,7 @@ In \Sexpr{last.data.yr}, all Canadian \fishname\ trips remained subject to 100\%
 
 \subsection{Fisheries}\label{sec:intro-fisheries}
 
-The fishery for the coastal population of \fishname\ occurs along the coasts of northern California, Oregon, Washington, and British Columbia primarily during May-November. The fishery is conducted with mid-water trawls. Foreign fleets dominated the fishery until 1991, when domestic fleets began taking the majority of the catch. Catches were occasionally $>200,000$~t prior to 1986, and since then they have been $>200,000$~t for all except \Sexpr{catches.below.200000.since.1986} years, including \Sexpr{last.data.yr}.
+The fishery for the coastal population of \fishname\ occurs along the coasts of northern California, Oregon, Washington, and British Columbia primarily during May-November. The fishery is conducted with mid-water trawls. Foreign fleets dominated the fishery until 1991, when domestic fleets began taking the majority of the catch. Catches were occasionally greater than 200,000~t prior to 1986, and since then they have been greater than 200,000$~t for all except \Sexpr{catches.below.200000.since.1986} years, including \Sexpr{last.data.yr}.
 
 A more detailed description of the history of the fishery is provided in the 2013 \fishname\ stock assessment \citep{JTC2013}.
 
@@ -67,7 +67,7 @@ The Joint Management Committee (JMC) determined an adjusted (for carryovers) coa
 
 The U.S. adjusted allocation (i.e.~adjusted for carryovers) of \Sexpr{fmt0(last.year.us.tac)}~t was further divided to research, tribal, catcher-processor, mothership, and shore-based sectors. After the tribal allocation of 17.5\% (\Sexpr{fmt0(last.year.us.tribal)}~t), and a \Sexpr{fmt0(last.year.us.research)}~t allocation for research catch and bycatch in non-groundfish fisheries, the \Sexpr{last.data.yr} non-tribal U.S. catch limit of \Sexpr{fmt0(last.year.us.non.tribal)}~t was allocated to the catcher/processor (34\%), mothership (24\%), and shore-based (42\%) commercial sectors.  After reallocation of \Sexpr{fmt0(last.year.us.tribal-last.year.us.tribal.quota.reallocated)}~t of tribal quota to non-tribal sectors on \Sexpr{last.year.us.tribal.reallocate.dates}, the catcher/processor, mothership, and shore-based sectors total quotas were \Sexpr{fmt0(last.year.us.cp.quota.reallocated)}~t, \Sexpr{fmt0(last.year.us.ms.quota.reallocated)}~t, and \Sexpr{fmt0(last.year.us.shore.quota.reallocated)}~t, respectively.
 
-Catch in the at-sea sectors was dominated by age-5 fish from the 2010 year class ($>70$\% of the catch). While the catch from the shore-based sector had a higher proportion of age-7 fish from the 2008 year class (5\%), more than 65\% of this sector's catch was from the 2010 year class.
+Catch in the at-sea sectors was dominated by age-5 fish from the 2010 year class, making up more than 70\% of the total catch. While the catch from the shore-based sector had a higher proportion of age-7 fish from the 2008 year class (5\%), more than 65\% of this sector's catch was from the 2010 year class.
 
 The overall catch of \fishname\ in U.S. waters was much less than anticipated.  Tribal fisheries did not land any hake in 2015. The catcher-processor, mothership, and shore-based fleets caught \Sexpr{catcher.processor.catch}\%, \Sexpr{mothership.catch}\%, and \Sexpr{shore.based.catch}\% of their reallocated quotas, respectively. Overall, \Sexpr{fmt0(last.year.us.not.attained.tonnes)}~t (\Sexpr{last.year.us.not.attained}\%) of the total U.S. adjusted TAC was not caught.
 
