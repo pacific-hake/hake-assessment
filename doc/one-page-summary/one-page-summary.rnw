@@ -23,7 +23,7 @@
 
   \item The stock is estimated to be near its highest biomass level since 1990 as a result of
     estimated large 2010 and 2014 cohorts. The 2014 cohort has only been observed once by the commercial fishery,
-    thus its estimate is highly uncertain.  The survey observed high numbers of age-1 hake in 2015, but those data
+    thus its size is highly uncertain.  The survey observed high numbers of age-1 hake in 2015, but those data
     are not used in the base assessment model.  % Manual to do.
 
   \item The median estimate of \Sexpr{end.yr} relative spawning biomass (spawning biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium, $B_0$) is
