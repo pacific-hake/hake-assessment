@@ -1,6 +1,4 @@
 % data.rnw
-%testing github AMB
-% \clearpage
 
 \section{DATA} \label{sec:data}
 
@@ -50,7 +48,7 @@ Some data sources were not included but have been explored, were used for sensit
 
 \item CalCOFI larval hake production index, 1951-2006. The data source was previously explored and rejected as a potential index of hake spawning stock biomass, and has not been revisited since the 2008 stock assessment.
 
-\item Joint-U.S. and Canada acoustic survey index of age-1 \fishname\ .
+\item Joint-U.S. and Canada acoustic survey index of age-1 \fishname.
 
 \item Histological analysis of ovary samples collected during the 2009, and 2012--2015 NWFSC bottom trawl surveys, the 2012, 2013, and 2015 acoustic surveys, and the at-sea fishery from 2013 through 2015.
 
@@ -66,7 +64,7 @@ The catch of \fishname\ for \Sexpr{start.yr}--\Sexpr{last.data.yr} by nation and
 
 Biological information from the U.S. at-sea commercial \fishname\ fishery was extracted from the NORPAC database. This included length, weight, and age information from the foreign and joint-venture fisheries from 1975--1990, and from the domestic at-sea fishery from 1991--\Sexpr{last.data.yr}. Specifically, these data include sex-specific length and age data which observers collect by selecting fish randomly from each haul for biological data collection and otolith extraction. Biological samples from the U.S. shore-based fishery from 1991--\Sexpr{last.data.yr} were collected by port samplers located where there are substantial landings of \fishname\: primarily Eureka, Newport, Astoria, and Westport. Port samplers routinely take one sample per offload (or trip) consisting of 100 randomly selected fish for individual length and weight and from these, 20 for otolith extraction.
 
-The Canadian domestic fishery is subject to 100\% observer coverage on the four freezer trawler vessels \emph{Viking Enterprise}, \emph{Osprey \#1}, \emph{Northern Alliance}, and \emph{Raw Spirit}, which together make up a large portion of the Canadian catch (\Sexpr{last.year.can.freezer.percent}\% in \Sexpr{last.data.yr}). Their catch exceeded that of the Shoreside vessels for the first time in 2014. The Joint-Venture fishery has 100\% observer coverage on their processing vessels, which in 2011 made up 16\% of the Canadian catch, but has been non-existent since \Sexpr{if(latest.year.can.jv > 2011) stop("Update text in data.rnw") else 2011}. On observed freezer trawler trips, otoliths (for ageing) and lengths are sampled from \fishname\ caught for each haul of the trip. The sampled weight from which biological information is collected must be inferred from length-weight relationships. For electronically observed shoreside trips, port samplers obtain biological data from the landed catch. Observed domestic haul-level information is then aggregated to the trip level to be consistent with the unobserved trips that are sampled in ports.
+The Canadian domestic fishery is subject to 100\% observer coverage on the four freezer trawler vessels \emph{Viking Enterprise}, \emph{Osprey \#1}, \emph{Northern Alliance}, and \emph{Raw Spirit}, which together make up a large portion of the Canadian catch (\Sexpr{last.year.can.freezer.percent}\% in \Sexpr{last.data.yr}). Their catch exceeded that of the Shoreside vessels for the first time in 2014. The Joint-Venture fishery has 100\% observer coverage on their processing vessels, which in 2011 made up 16\% of the Canadian catch, but has been non-existent since\Sexpr{if(latest.year.can.jv > 2011) stop("Update text in data.rnw")}. On observed freezer trawler trips, otoliths (for ageing) and lengths are sampled from \fishname\ caught for each haul of the trip. The sampled weight from which biological information is collected must be inferred from length-weight relationships. For electronically observed shoreside trips, port samplers obtain biological data from the landed catch. Observed domestic haul-level information is then aggregated to the trip level to be consistent with the unobserved trips that are sampled in ports.
 
 %%For the Canadian Joint-Venture fishery, an observer aboard the factory ship estimates the codend weight by measuring the diameter of the codend and doing a spherical volume calculation for each delivery from a companion catcher boat. Length samples are collected every second day of fishing operations, and otoliths are collected once a week. Length and age samples are taken randomly from a given codend. Since the weight of the sample from which biological information is taken is not recorded, sample weight must be inferred from a length-weight relationship applied to all lengths taken and summed over each haul.
 

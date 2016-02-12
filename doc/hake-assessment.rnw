@@ -195,7 +195,7 @@
 %% Headers and footers
 \lhead{}
 \rhead{}
-% \lfoot{Pacific Hake stock assessment 2016} %% Species common name for left footer
+% \lfoot{\fishname\ stock assessment 2016} %% Species common name for left footer
 % \rfoot{DRAFT - DO NOT CITE} %% The area of the assessment for right footer
 %% \rfoot{WP 2012/P02a}     %% Change to appendix number for appendices
                             %% Will probably delete footers in main text
@@ -257,10 +257,10 @@ load("./r/model-partest.RData")
 
 %% Title page and author references page
 \thispagestyle{empty}
-\title{\TitleFont DRAFT - Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}\thanks{\noindent Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy.}
+\title{\TitleFont DRAFT - Status of the \fishname\ (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}\thanks{\noindent Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy.}
 \\ ~\\ ~\\ \includegraphics[width=4in]{hake-picture}}
 
-\author{Joint Technical Committee of the Pacific Hake/Whiting Agreement \\ Between the Governments of the United States and Canada}
+\author{Joint Technical Committee of the \fishname/Whiting Agreement \\ Between the Governments of the United States and Canada}
 
 \maketitle
 
@@ -272,7 +272,7 @@ load("./r/model-partest.RData")
 \newpage
 
 \pagenumbering{roman}
-\lfoot{Pacific Hake stock assessment \Sexpr{assess.yr}} %% Species common name for left footer
+\lfoot{\fishname\ stock assessment \Sexpr{assess.yr}} %% Species common name for left footer
 \rfoot{DRAFT - DO NOT CITE} %% The area of the assessment for right footer
 
 %% Authors page
@@ -302,8 +302,8 @@ Authors of this document are (in no particular order): \\
 This DRAFT document is non-citable.
 % Once finalised, uncomment these and update:
 % This document should be cited as follows: Grandin, C.J., A.C. Hicks, A. Berger, A.M. Edwards, N. Taylor, S. Cox, and I.G. Taylor. 2015.
-% Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}.
-% Prepared by the Joint Technical Committee of the U.S. and Canada Pacific Hake/Whiting Agreement;
+% Status of the \fishname\ (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}.
+% Prepared by the Joint Technical Committee of the U.S. and Canada \fishname/Whiting Agreement;
 % National Marine Fishery Service; Canada Department of Fisheries and Oceans. *******~p.
 % Seem to be a lot of semi-colons in there!
 
