@@ -66,15 +66,19 @@ The Joint Management Committee (JMC) determined an adjusted (for carryovers) coa
 \subsubsub{United States}
 
 The U.S. adjusted allocation (i.e.~adjusted for carryovers) of \Sexpr{fmt0(last.year.us.tac)}~t was further divided to research, tribal, catcher-processor, mothership, and shore-based sectors. After the tribal allocation of 17.5\% (\Sexpr{fmt0(last.year.us.tribal)}~t), and a \Sexpr{fmt0(last.year.us.research)}~t allocation for research catch and bycatch in non-groundfish fisheries, the \Sexpr{last.data.yr} non-tribal U.S. catch limit of \Sexpr{fmt0(last.year.us.non.tribal)}~t was allocated to the catcher/processor (34\%), mothership (24\%), and shore-based (42\%) commercial sectors.  After reallocation of \Sexpr{fmt0(last.year.us.tribal-last.year.us.tribal.quota.reallocated)}~t of tribal quota to non-tribal sectors on \Sexpr{last.year.us.tribal.reallocate.dates}, the catcher/processor, mothership, and shore-based sectors total quotas were \Sexpr{fmt0(last.year.us.cp.quota.reallocated)}~t, \Sexpr{fmt0(last.year.us.ms.quota.reallocated)}~t, and \Sexpr{fmt0(last.year.us.shore.quota.reallocated)}~t, respectively.
+% Manual done 2016.
 
 Catch in the at-sea sectors was dominated by age-5 fish from the 2010 year class, making up more than 70\% of the total catch. While the catch from the shore-based sector had a higher proportion of age-7 fish from the 2008 year class (5\%), more than 65\% of this sector's catch was from the 2010 year class.
+% Manual done 2016.
 
-The overall catch of \fishname\ in U.S. waters was much less than anticipated.  Tribal fisheries did not land any hake in 2015. The catcher-processor, mothership, and shore-based fleets caught \Sexpr{catcher.processor.catch}\%, \Sexpr{mothership.catch}\%, and \Sexpr{shore.based.catch}\% of their reallocated quotas, respectively. Overall, \Sexpr{fmt0(last.year.us.not.attained.tonnes)}~t (\Sexpr{last.year.us.not.attained}\%) of the total U.S. adjusted TAC was not caught.
+The overall catch of \fishname\ in U.S. waters was much less than anticipated.  Tribal fisheries did not land any hake in \Sexpr{last.data.year}. The catcher-processor, mothership, and shore-based fleets caught \Sexpr{catcher.processor.catch}\%, \Sexpr{mothership.catch}\%, and \Sexpr{shore.based.catch}\% of their reallocated quotas, respectively. Overall, \Sexpr{fmt0(last.year.us.not.attained.tonnes)}~t (\Sexpr{last.year.us.not.attained}\%) of the total U.S. adjusted TAC was not caught.
+% Manual done 2016.
 
 The midwater fishery for \fishname\ began on May 15 for the shorebased and at-sea fisheries.  In previous years, the shore-based midwater fishery began on June 15 north of 42$^\circ$ N. latitude, but could fish for hake between 40$^\circ$30' N. and 42$^\circ$ N. latitudes starting on April 1.  In 2015, the shorebased fishery was allowed to fish north of 40$^\circ$30' N. latitude starting May 15, and could fish south of 40$^\circ$30' N. latitude starting on April 15.  Regulations don't allow at-sea processing south of 42$^\circ$ N. latitude at any time during the year.
+% Manual done 2016.
 
 The spring fishery began in May with high catch rates and fish mostly found off Oregon, although some fish were caught off of Westport, WA. The fleets sometimes fished in deeper water than observed in past years (Figure~\ref{fig:main-us-at-sea-depths}). As time progressed, the fishery slowed with periods (typically several days) of slow fishing.  During July and August, the at-sea fishery did not fish hake, but these were the months that the shorebased fishery had the largest monthly catches of the year.  When the at-sea fleet returned in September, the catch rates for the at-sea fleet had declined considerably.  From May through November, catch-rates declined consistently from approximately 50 t/hr to about 5 t/hr (Figure~\ref{fig:main-us-catch-rates}).  Due to the low catch-rates in the fall (for all U.S. fleets), the U.S. utilization rate was \Sexpr{last.year.us.attained}\%.
-
+% Manual done 2016.
 
 \subsubsub{Canada}
 
