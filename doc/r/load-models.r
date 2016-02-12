@@ -297,11 +297,11 @@ calc.forecast <- function(mcmc,                ## The output of the SS_getMCMC f
               outputs.list))
 }
 
-create.metrics <- function(mcmc,                ## The output of the SS_getMCMC function from the r4ss package as a data.frame
-                          model.dir,           ## The path of the model to run metrics for
-                          metric.yrs,        ## A vector of years to do projections for
-                          catch.levels,        ## catch.levels is a list of N catch levels to run projections for
-                          catch.levels.names) {  ## catch.levels.names is a list of N names for the catch levels given in catch.levels
+create.metrics <- function(mcmc,                 ## The output of the SS_getMCMC function from the r4ss package as a data.frame
+                           model.dir,            ## The path of the model to run metrics for
+                           metric.yrs,           ## A vector of years to do projections for
+                           catch.levels,         ## catch.levels is a list of N catch levels to run projections for
+                           catch.levels.names) { ## catch.levels.names is a list of N names for the catch levels given in catch.levels
 
   ## Run forecasts  on the mcmc model and return the list of outputs.
   ## returns the list of mcmc calcs from the models

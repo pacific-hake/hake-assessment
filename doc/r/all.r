@@ -394,10 +394,10 @@ if(run.forecasts == "y" | run.forecasts == "Y"){
   models[[base.model.ind]]$forecasts$outputs <- forecasts[[4]]
 
   metrics <- create.metrics(models[[base.model.ind]]$mcmc,
-                             models[[base.model.ind]]$path,
-                             forecast.yrs[-length(forecast.yrs)],
-                             catch.levels,
-                             catch.levels.dir.names)
+                            models[[base.model.ind]]$path,
+                            forecast.yrs[-length(forecast.yrs)],
+                            catch.levels,
+                            catch.levels.dir.names)
 
   models[[base.model.ind]]$metrics$outputs <- metrics
 

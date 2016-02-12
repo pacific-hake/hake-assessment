@@ -12,22 +12,23 @@ _____________________________________________________________
   This takes some time so make sure you have a fast connection.
 * R (version 3.22 "Fire Safety" or later)
 * R Packages 'knitr', 'xtable', 'r4ss', nwfscSurvey, nwfscMapping, data and their dependencies.
-* Rscript.exe must be on your PATH.
+* Rscript.exe must be on your PATH if you want to use the **buildtex.bat** script.
 
 ---
 ## How to run the code and create hake-assessment.pdf
 
-- You **MUST** load the R environment first. To do this, navigate to the doc/r directory,
+- You **MUST** save the R environment first. To do this, navigate to the doc/r directory,
   start RGui in that directory, and type **source("all.r")**. If it is the first time or you
   are running this, you must answer *y* to the three questions. Once this is finished, do a save.image()
-  to sdave the .RData file in the doc/r directory.
+  to save the .RData file in the doc/r directory.
 
-- Using the command line, navigate to the doc subdirectory and run the buildtex.bat file.
+- Navigate to the doc subdirectory and run the buildtex.bat file.
 
 - To clean up the build, run the cleantex.bat file.
 
 - To remove the cached figures, delete the **knitr-cache** directory and all its contents.
-  If you don't do this, tables and figures built previously will be used.
+  If you don't do this, tables and figures built previously will be used. There is also a script
+  called **freshtex.bat** you can use which will clean everything plus remove the knitr cache.
 
 - To see the output from the knitr part of the process, look at the file **knitrOutput.log**.
 
@@ -75,6 +76,10 @@ The following depicts the object structure of the **models** list:
         models[[N]]$risks[[2]] - Holds the risk values for the third year of forecasts - the second year
         ...
         models[[N]]$risks[[N]] - Holds the risk values for the N+1th year of forecasts - the Nth year
+      models$metrics$outputs[[1]]       - First forecast year metrics, is a list of length of the number of metrics (catch levels)
+      models$metrics$outputs[[2]]       - Second forecast year metrics, is a list of length of the number of metrics (catch levels)
+      ...
+      models$metrics$outputs[[N]]       - Nth forecast year metrics, is a list of length of the number of metrics (catch levels)
       models[[N]]$path      - The path where this model is located
       models[[N]]$ctl.file  - control file name for this model
       models[[N]]$dat.file  - data file name for this model
@@ -110,7 +115,7 @@ The following depicts the object structure of the **models** list:
 
 
 These are the other variables in the global workspace. These can be directly referenced using \Sexpr{} in inline latex code,
-or in a knitr code chunk:
+or in a knitr code chunk. Here are a few of the obvious ones, there are many more in the bottom half of **all.r**:
 
     base.model              - The base model object. Same as models[[base.model.ind]].
     base.model.ind          - Index of the base model as found in the directory.
@@ -169,25 +174,25 @@ There are additional elements for model.partest, which is created by running **r
 
 __GitHub workflow__
 
-- I forked Chris's master repository, and did **git remote add cgrandin https://...** [and he added me to his] so that we can merge each other's commits. **git remove -v** shows that.
+- I forked Chris's master repository, and did **git remote add cgrandin https://github.com/cgrandin/hake-assessment ** [and he added me to his] so that we can merge each other's commits. **git remote -v** shows that.
 - **Allan/Aaron**: to merge my commits (for when Chris isn't on top of it) do:
--  
+-
        git remote add aedwards https://github.com/andrew-edwards/hake-assessment
-  
-- just once. 
+
+- just once.
 - Then do **git fetch** and **merge** as described below, but with **aedwards** instead of **cgrandin**. Note that **aedwards** is just what you call my repository on your machine, it doesn't have to match my user name.
- 
-  
+
+
 - **git com** and **git push** often [I'm using Chris's **git-workshop** shortcuts]
 - **git fetch cgrandin** - fetches his latest version
 - **git diff cgrandin/master** shows me the differences between his and mine. :
 -- + green is on mine not his, red is his not mine [seems like it can look like I've added something but really Chris has removed it; and when merging it should base it on the most recent commits]
-- **git merge cgrandin/master** merges our versions. 
+- **git merge cgrandin/master** merges our versions.
 - remove **knitr-cache** directory, re-run **source("all.r")** and re-run **knitr** to make sure it all still works (I kept forgetting this before pushing).
 - Then **push** (I think a merge automatically does a **commit**?).
-- when get a conflict, open the file in emacs and it has <<<<<<   for the start of a conflicting part, and ========= at the end, so manually fix it. Then **git add <filename>** to confirm that's the one you want (not completely obvious), then commit. See <https://help.github.com/articles/resolving-a-merge-conflict-from-the-command-line/>  
+- when get a conflict, open the file in emacs and it has <<<<<<   for the start of a conflicting part, and ========= at the end, so manually fix it. Then **git add <filename>** to confirm that's the one you want (not completely obvious), then commit. See <https://help.github.com/articles/resolving-a-merge-conflict-from-the-command-line/>
 - We will try and work on different files so that there are no conflicts when we merge.
- 
+
 
 **Undoing a merge**
 
@@ -208,7 +213,7 @@ git reset --merge 33489f0
 **Running MCMC in SS**
 Copy and paste all model output files into new mcmc/ directory.
 
-ss3 -mcmc 999 -mcsave 1 
+ss3 -mcmc 999 -mcsave 1
 
 ss3 -mceval
 
@@ -230,7 +235,7 @@ Helpful git commands I didn't know:
 
 **git log .\doc\hake-assessment.rnw**  - show revision history for a file (syntax not quite right there)
 
-**git checkout <enough numbers of the commit reference to make it unique> .\doc\[filename.rnw] **  - revert back to that version of that file, I think...  
+**git checkout <enough numbers of the commit reference to make it unique> .\doc\[filename.rnw] **  - revert back to that version of that file, I think...
 
 [I can delete this once I know it all automatically] GitHub Colors are explained under The Prompt in the README shown at https://github.com/dahlbyk/posh-git/ . To summarize:
 
@@ -240,3 +245,45 @@ Helpful git commands I didn't know:
 - Yellow means the branch is both ahead of and behind its remote
 
 The +~-! status represents added/modified/removed/conflicted file count in your index (dark green) and/or working directory (dark red).
+
+
+Steps to create decision and metrics tables for the hake assessment
+===================================================================
+*Copied from an issue comment made by Allan H., February 2016*
+
+Create folders for
+- decision table runs
+- next year metrics
+- second year metrics
+
+*Decision table runs*
+---------------------
+
+
+Next year metrics
+------------------
+This is the metrics for a fixed catch in the next year (i.e., for the 2016 assessment, this is the 2016 catch).  In the forecast file, put in the next year's fixed catch. Make sure to enter only next year's catch so that the catch can be determined for the second year and compared to.
+
+Second year metrics
+-------------------
+This is the metrics for the two year forecast. Enter catch for the next two years in the forecast file.
+
+*Catch Levels*
+--------------
+A fixed catch level is easy because you simply enter that catch level. There are a few catch levels that are determined based on specific states. These are listed below and how to determine them.
+
+- B~curr~ = B~nextYr~ : This is the catch that results in an equal probability that the biomass in the current year is equal to the biomass in the next year.  You must iteratively modify the catch until the metric for P(BnextYr>Pcurr) is 50%.  Don't forget to run mceval after modifying the forecast file.
+- med(B~curr~) = med(B~nextYr~) : This is the catch that results in the median spawning biomass next year to equal the median spawning biomass for this year. Iteratively modify the catch until the median spawning biomasses are approximately equal.  Don't forget to run mceval after modifying the forecast file.
+- Stable Catch (Ccurr=CnextYr): This is the catch that results in teh default harvest rule catch for the next being the same. Iteratively enter the catch for the curent year until the median catch next year is the same.  Don't forget to run mceval after modifying the forecast file.
+- SPR=100% : This si the catch that results in a median SPR of 100%. The default harvest rate catch may not have an SPR of 100% because of time-varying selectivity, growth (i.e., weight-at-age), etc.  This gives an indication of the current pattern of fishing and how it relates to the benchmark population.  Iteratively search for the catch that results in a median SPRratio of 1.  Don't forget to run mceval after modifying the forecast file.
+- Default harvest rule: The catch determined by the default harvest rule. Simply copy the median ForeCatch caluclated by SS into the forecast file, so that every mceval uses that fixed catch. Don't forget to run mceval after modifying the forecast file.
+
+*NOTE*: for second year metrics, fix the first year to determine the second year (i.e., fix 2015 catch at median default harvest rate catch, to determine the median default harvest catch for 2016).
+
+Decision Tables
+---------------
+For decision tables, you will need to enter in catches for every year (different than metrics). The R code that will create the directories and forecast files with the catch levels and then run the mceval for each folder is located in **doc/r/load-models.r**
+
+*NOTE*: you can have a zero catch, except for the final forecast year, so I usually enter 0.01 for zero catch.
+
+With the decision tables displaying Bratio and SPR, the final year of forecasted catch is only pertinent for SPR, since Bratio is beginning of the year.
