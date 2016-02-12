@@ -15,7 +15,7 @@
     reanalyzed acoustic survey biomass and age compositions from 1998--2013, and minor refinements to data including catch
     estimates from earlier years.
 
-  \item The stock assessment is fit to an acoustic survey index of abundance as well as age compositions from the survey and commercial fisheries.
+  \item The stock assessment model is fit to an acoustic survey index of abundance as well as age compositions from the survey and commercial fisheries.
 
   \item Coastwide catch in \Sexpr{end.yr-1} was \Sexpr{last.year.landings}~t, out of a
     TAC (adjusted for carryovers) of \Sexpr{last.year.tac}~t. Attainment in the U.S. was \Sexpr{last.year.us.attained}\% of its quota;
@@ -23,7 +23,7 @@
 
   \item The stock is estimated to be near its highest biomass level since 1990 as a result of
     estimated large 2010 and 2014 cohorts. The 2014 cohort has only been observed once by the commercial fishery,
-    thus its estimate is highly uncertain.  The survey observed high numbers of age-1 hake in 2015, but those data
+    thus its size is highly uncertain.  The survey observed high numbers of age-1 hake in 2015, but those data
     are not used in the base assessment model.  % Manual to do.
 
   \item The median estimate of \Sexpr{end.yr} relative spawning biomass (spawning biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium, $B_0$) is
@@ -33,7 +33,7 @@
   \item The median estimate of \Sexpr{end.yr} female spawning biomass is \Sexpr{curr.bio.median}
     million~t (with 95\% interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper} million~t).
 
-  \item The spawning biomass in \Sexpr{end.yr} is estimated to have increased from \Sexpr{end.yr-1} due to the 2014 year-class estimate being well above average size and the estimate of the 2012 year-class being slightly above average. % Manual to do.
+  \item The spawning biomass in \Sexpr{end.yr} is estimated to have increased from \Sexpr{end.yr-1} due to the estimate of the 2014 year-class being well above average size and the estimate of the 2012 year-class being slightly above average. % Manual to do.
 
 %  \item The default predicted catch level for 2016, based on the default harvest rule, is 839,476~t.  **DOES NOT MENTION uncertainty; suggest replacing with (copied and adapted from Exec Summary):
     

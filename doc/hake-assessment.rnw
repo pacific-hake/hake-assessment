@@ -45,6 +45,9 @@
 \usepackage[parfill]{parskip}  % So paragraphs will have a blank line between them
 \setlength{\parskip}{12pt}
 
+\usepackage[yyyymmdd]{datetime}
+\renewcommand{\dateseparator}{--}
+
 % For hyperlinked references (figures and citations, etc.). The bookmarksdepthlevel allows
 %  the TOC to be shown in the bookmarks tree in the output PDF.
 
@@ -264,15 +267,11 @@ load("./r/model-partest.RData")
 
 \maketitle
 
-
-
-% \vspace{30mm}
-
-
 \newpage
 
 \pagenumbering{roman}
-\lfoot{\fishname\ stock assessment \Sexpr{assess.yr}} %% Species common name for left footer
+%% \lfoot{\fishname\ stock assessment \Sexpr{assess.yr} \today} %% Species common name for left footer
+\lfoot{\fishname\ stock assessment \today} %% Species common name for left footer
 \rfoot{DRAFT - DO NOT CITE} %% The area of the assessment for right footer
 
 %% Authors page
@@ -390,7 +389,8 @@ This DRAFT document is non-citable.
 @
 
 <<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
-@     % one .rnw file for all four SS code appendices, since .rnw code is short.
+@
+% one .rnw file for all four SS code appendices, since .rnw code is short.
 
 \end{appendices}
 
