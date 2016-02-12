@@ -38,8 +38,8 @@ make.catches.table.total(catches, start.yr=start.yr, end.yr=end.yr,
 make.landings.tac.table(landings.vs.tac, start.yr=end.yr-10, end.yr=end.yr-1,
                         xcaption = "Recent trends in Pacific Hake landings and management decisions.",
                         xlabel = "tab:main-landings-tac",
-                        font.size = 6,
-                        space.size = 8)
+                        font.size = 8,
+                        space.size = 10)
 @
 
 <<main.sampling.history.table, results='asis', echo=FALSE>>=
