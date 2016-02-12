@@ -9,7 +9,7 @@
 make.overview.map.plot(r.loc = file.path("..", "r"))
 @
 \end{center}
-\caption{Overview map of the area in the Northeast Pacific Ocean occupied by Pacific Hake. Common areas referred to in this document are shown.}
+\caption{Overview map of the area in the Northeast Pacific Ocean occupied by \fishname\. Common areas referred to in this document are shown.}
 \label{fig:main-overview-map}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -21,7 +21,7 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 \includegraphics[angle=90,origin=c]{main-figures/backscatter2smaller2.eps} % width=\maxwidth,
 \end{center}
 \vspace{-5mm}
-\caption{Spatial distribution of acoustic backscatter attributable to Pacific Hake from joint US-Canada acoustic surveys \Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}. Area of the circle is roughly proportional to observed backscatter.}
+\caption{Spatial distribution of acoustic backscatter attributable to \fishname\ from joint US-Canada acoustic surveys \Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}. Area of the circle is roughly proportional to observed backscatter.}
 \label{fig:main-backscatter-map}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -46,7 +46,7 @@ make.data.overview.plot(base.model)
 make.catches.plot(catches, leg.y.loc = 475)
 @
 \end{center}
-\caption{Total Pacific Hake catch used in the assessment by sector, \Sexpr{start.yr}--\Sexpr{last.data.yr}.
+\caption{Total \fishname\ catch used in the assessment by sector, \Sexpr{start.yr}--\Sexpr{last.data.yr}.
   U.S. tribal catches are included in the appropriate sector.}
 \label{fig:main-catches}
 \end{figure}
@@ -933,7 +933,7 @@ make.assessment.history.plot(base.model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Summary of historical Pacific Hake assessment estimates of spawning biomass. Shading represents the approximate 95\% confidence range from the \Sexpr{end.yr} base model.}
+\caption{Summary of historical \fishname\ assessment estimates of spawning biomass. Shading represents the approximate 95\% confidence range from the \Sexpr{end.yr} base model.}
 \label{fig:main-historical-assessments}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

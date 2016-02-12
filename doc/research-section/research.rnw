@@ -12,17 +12,17 @@
 
 %Jim Thorson (NOAA NWFSC) has been leading a project with participation from the JTC (Allan Hicks and Ian Taylor) looking at alternative selectivity parameterizations to be included in Stock Synthesis. The approach is being informed by methods presented at a CAPAM workshop on selectivity, the results of which were published in October 2014.
 
-%\emph{Continue development of the management strategy evaluation (MSE) tools to evaluate major sources of uncertainty relating to data, model structure and the harvest policy for this fishery and compare potential methods to address them. Work with the JMC, SRG, and AP to develop scenarios to investigate, management performance metrics to evaluate the scenarios, and hypotheses related to the life-history, fishery, spatial dynamics, and management of Pacific Hake (\#2 on list from 2014).}
+%\emph{Continue development of the management strategy evaluation (MSE) tools to evaluate major sources of uncertainty relating to data, model structure and the harvest policy for this fishery and compare potential methods to address them. Work with the JMC, SRG, and AP to develop scenarios to investigate, management performance metrics to evaluate the scenarios, and hypotheses related to the life-history, fishery, spatial dynamics, and management of \fishname\ (\#2 on list from 2014).}
 
 %Progress on the MSE is summarized in **Appendix A of this document.
 
-%\emph{Continue to explore alternative indices for juvenile or young (0 and/or 1 year old) Pacific Hake. Initially, the MSE should be used to investigate whether an age-0 or -1 index could reduce stock assessment and management uncertainty enough to improve overall management performance (\#3 on list from 2014).}
+%\emph{Continue to explore alternative indices for juvenile or young (0 and/or 1 year old) \fishname. Initially, the MSE should be used to investigate whether an age-0 or -1 index could reduce stock assessment and management uncertainty enough to improve overall management performance (\#3 on list from 2014).}
 
-%The JTC has explored the use of the preliminary time series of age-1 abundance derived from past acoustic surveys and is currently conducting simulations to investigate the utility of an age-1 index in the assessment of Pacific Hake. It is expected that these results will be available in late 2015 and presented to the MSE steering committee.
+%The JTC has explored the use of the preliminary time series of age-1 abundance derived from past acoustic surveys and is currently conducting simulations to investigate the utility of an age-1 index in the assessment of \fishname. It is expected that these results will be available in late 2015 and presented to the MSE steering committee.
 
 %\emph{Finalize the analysis of recently collected maturity samples and explore ways to include new maturity estimates in the assessment (\#4 from 2014).}
 
-%Analysis of those samples has been completed (see **Section 2.3.1 above). However, the resulting patterns are complex and the best approach for including these results in the stock assessment is not yet clear. The JTC continues to work with biologists to better understand the spawning behavior of Pacific Hake.
+%Analysis of those samples has been completed (see **Section 2.3.1 above). However, the resulting patterns are complex and the best approach for including these results in the stock assessment is not yet clear. The JTC continues to work with biologists to better understand the spawning behavior of \fishname.
 
 
 %\emph{Conduct research to improve the acoustic survey estimates of age and abundance. This includes, but is not limited to, species identification, target verification, target strength and alternative technologies to assist in the survey, as well as improved and more efficient analysis methods (\#8 from 2014).}
@@ -39,7 +39,7 @@
 
 %\emph{Investigate the utility of additional data sources (bottom trawl surveys, length data, etc.) for use in assessment and simulation models (\#16 from 2014).}
 
-%The JTC (Allan and Ian) have been consulting with NWFSC scientists on a paper investigating the information about Pacific Hake contained in acoustic survey, trawl survey, and observer data. Additionally, the JTC continues to investigate the utility of the NWFSC trawl survey with regard to assessing and understanding Pacific Hake. In 2014, more than 1,500 Pacific Hake collected from the NWFSC trawl survey from different years were aged to assist this investigation.
+%The JTC (Allan and Ian) have been consulting with NWFSC scientists on a paper investigating the information about \fishname\ contained in acoustic survey, trawl survey, and observer data. Additionally, the JTC continues to investigate the utility of the NWFSC trawl survey with regard to assessing and understanding \fishname. In 2014, more than 1,500 \fishname\ collected from the NWFSC trawl survey from different years were aged to assist this investigation.
 
 
 
@@ -48,7 +48,7 @@
 
 \subsection{Research and data needs for the future}\label{sec:research-needs}
 
-There are many research projects that could improve the stock assessment for Pacific Hake. The following prioritized list of topics will lead to improved biological understanding and decision-making:
+There are many research projects that could improve the stock assessment for \fishname. The following prioritized list of topics will lead to improved biological understanding and decision-making:
 
 <<research-research-needs-sec, child='../executive-summary/research-needs.rnw'>>=
 @
