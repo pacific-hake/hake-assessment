@@ -11,9 +11,7 @@
 
 \section{INTRODUCTION} \label{sec:introduction}
 
-The Joint US-Canada Agreement for \fishname\ (called the Agreement) was signed in 2003 and went into force in 2008 but could not be implemented until 2010.  The committees defined by the Agreement were first formed in 2011 and catch advice in 2012 was the first year for which the process defined by the Agreement was followed.  This is the 
-\Sexpr{c("first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth")[assess.yr - 2011]}
-annual stock assessment conducted under the Agreement process.  
+The Joint US-Canada Agreement for \fishname\ (called the Agreement) was signed in 2003 and went into force in 2008 but could not be implemented until 2010.  The committees defined by the Agreement were first formed in 2011 and catch advice in 2012 was the first year for which the process defined by the Agreement was followed. This is the \Sexpr{number.to.word(assess.yr - 2011, th = TRUE)} annual stock assessment conducted under the Agreement process.
 
 Under the Agreement, \fishname\ or \commonname\ (\emph{\sciencename}) stock assessments are to be prepared by the Joint Technical Committee (JTC) comprised of both U.S. and Canadian scientists, and reviewed by the Scientific Review Group (SRG), consisting of representatives from both nations. Additionally, the Agreement calls for both of these bodies to include scientists nominated by an Advisory Panel (AP) of fishery stakeholders.
 
