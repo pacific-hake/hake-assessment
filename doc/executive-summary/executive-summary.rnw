@@ -290,7 +290,7 @@ quota in 2002 when utilization was 112\%.
 make.landings.tac.table(landings.vs.tac,
                         start.yr = end.yr-10,
                         end.yr = end.yr-1,
-                        xcaption <- "Recent trends in Pacific Hake landings and management decisions.",
+                        xcaption <- "Recent trends in \\fishname\\ landings and management decisions.",
                         xlabel <- "tab:es-landings-tac",
                         font.size = 8,
                         space.size = 8,
@@ -316,7 +316,7 @@ make.phase.plot(base.model,
                 color = "blue")
 @
 \end{center}
-\caption{Estimated historical path followed by fishing intensity and relative spawning biomass for Pacific Hake with labels
+\caption{Estimated historical path followed by fishing intensity and relative spawning biomass for \fishname\ with labels
   on the start and end years. Gray bars span the 95\% credibility intervals for \Sexpr{end.yr-1} fishing intensity (vertical)
   and relative spawning biomass (horizontal).}
 \label{fig:es-phase}
@@ -493,7 +493,7 @@ biomass will be less than the 2016 spawning biomass is greater than 50\% for all
 \subsection*{Research and data needs} \label{sec:es-research-data-needs}
 \phantomsection \addcontentsline{toc}{subsection}{Research and data needs}
 
-There are many research projects that could improve the stock assessment for Pacific Hake and lead to improved biological understanding and decision-making. The top three are:
+There are many research projects that could improve the stock assessment for \fishname\ and lead to improved biological understanding and decision-making. The top three are:
 
 % research-needs.rnw gets loaded in here and also in 
 %  research-section/research.rnw in main text, and only contains
