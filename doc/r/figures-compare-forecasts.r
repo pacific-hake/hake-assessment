@@ -95,7 +95,7 @@ make.forecast.depletion.comparison.plot <- function(model,        ## model is th
                     legendloc = legend.loc,
                     labels = c("Year",
                                "Spawning biomass (t)",
-                               "Relatvie Spawning Biomass",
+                               "Relative Spawning Biomass",
                                "Age-0 recruits (1,000s)",
                                "Recruitment deviations",
                                "Index",
