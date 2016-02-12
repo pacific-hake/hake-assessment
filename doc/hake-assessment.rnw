@@ -271,7 +271,7 @@ load("./r/model-partest.RData")
 
 \pagenumbering{roman}
 %% \lfoot{\fishname\ stock assessment \Sexpr{assess.yr} \today} %% Species common name for left footer
-\lfoot{\fishname\ stock assessment \today} %% Species common name for left footer
+\lfoot{\fishname\ assessment \today} %% Species common name for left footer
 \rfoot{DRAFT - DO NOT CITE} %% The area of the assessment for right footer
 
 %% Authors page
