@@ -33,28 +33,21 @@
   \item The median estimate of \Sexpr{end.yr} female spawning biomass is \Sexpr{curr.bio.median}
     million~t (with 95\% interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper} million~t).
 
-  \item The spawning biomass in \Sexpr{end.yr} is estimated to have increased from \Sexpr{end.yr-1} due to the large size of the
-    2014 year class. % Manual to do.
+  \item The spawning biomass in \Sexpr{end.yr} is estimated to have increased from \Sexpr{end.yr-1} due to the 2014 year-class estimate being well above average size and the estimate of the 2012 year-class being slightly above average. % Manual to do.
 
 %  \item The default predicted catch level for 2016, based on the default harvest rule, is 839,476~t.  **DOES NOT MENTION uncertainty; suggest replacing with (copied and adapted from Exec Summary):
     
   \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
 
-  \item As in the past, forecasts are highly uncertain due to lack of information about recruitment in the most recent years.
+  \item As in the past, forecasts are highly uncertain due to uncertainty in estimates of recruitment for recent years.
     Forecasts were conducted across a range of catch levels.
 
-  \item Projections setting \Sexpr{forecast.yrs[1]} and \Sexpr{forecast.yrs[2]} catch equal to the \Sexpr{forecast.yrs[1]-1} TAC of
+  \item Projections setting the \Sexpr{forecast.yrs[1]} and \Sexpr{forecast.yrs[2]} catch equal to the \Sexpr{forecast.yrs[1]-1} TAC of
     \Sexpr{last.year.tac}~t show the estimated median relative spawning biomass increasing from \Sexpr{curr.depl.median}\%
-    in \Sexpr{end.yr} to \Sexpr{next.depl.median.tac.based}\% in \Sexpr{end.yr+1} and remaining stable at \Sexpr{next2.depl.median.tac.based}\%
+    in \Sexpr{end.yr} to \Sexpr{next.depl.median.tac.based}\% in \Sexpr{end.yr+1} and remaining somewhat stable near 80\%
     in \Sexpr{end.yr+2}. 
-    However, due to uncertainty there is an estimated 2\% chance of the spawning biomass falling below 25\%
+    However, due to uncertainty there is an estimated 3\% chance of the spawning biomass falling below 25\%
      of $B_0$ in two years (by 2018). There is an estimated 38\% chance of the spawning biomass declining from 2016 to 2017, and a 50\% chance of it declining from 2017 to 2018 under this constant catch level.
     % Manual to do ('remaining stable')
-    % 2% from Table e. 
-    % Last sentences were just: 
-    % However, this projection is highly uncertain and shows a 2\% chance of the spawning biomass falling below 25\%
-    % of $B_0$ in two years (by 2018) and a 50\% chance of declining from 2017 to 2018.
-     % Last bullet ends up with two values of 83.6%. These seem to be 
-     %  correctly referenced and are not identical in the output, but
-     %  are the same due to rounding.
+    % 3% from Table j, 38% from Table i, 50% from Table j
 \end{itemize}
