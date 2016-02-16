@@ -147,14 +147,15 @@ make.mcmc.diag.pairs.plot <- function(model,                 ## model is model w
   par <- oldpar
 }
 
-make.mcmc.survey.fit.plot <- function(model,        ## model is a model with an mcmc run which has the output of the
-                                                    ##  r4ss package's function SSgetMCMC
-                                                    ## It must have also gone through the make.partest.model function so that it
-                                                    ##  it has the cpue.table member which is required by the age.fits function.
-                                      start.yr,     ## Year to start the plot
-                                      end.yr,       ## Year to end the plot
+make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an mcmc run which has the output of the
+                                                     ##  r4ss package's function SSgetMCMC
+                                                     ## It must have also gone through the make.partest.model function so that it
+                                                     ##  it has the cpue.table member which is required by the age.fits function.
+                                      start.yr,      ## Year to start the plot
+                                      end.yr,        ## Year to end the plot
                                       probs = c(0.025, 0.975), ## Confidence interval values lower and upper
-                                      y.max = 5.5e6 ## maximum value for the y-axis
+                                      y.max = 5.5e6, ## maximum value for the y-axis
+                                      leg.cex = 1    ## Legend tect size
                                       ){
   ## Plot the fit of the model to the acoustic survey with 95% C.I.
   oldpar <- par()
@@ -199,6 +200,7 @@ make.mcmc.survey.fit.plot <- function(model,        ## model is a model with an 
                  rgb(1, 0, 0, 0.7),
                  rgb(0, 0, 0.5, 0.7),
                  rgb(0, 0, 1, 0.4)),
+         cex = leg.cex,
          bty = 'n')
   SSplotIndices(model, subplot = 2, add = TRUE, col3 = rgb(1, 0, 0, 0.7))
   axis(1, at = model$cpue$Yr[model$cpue$Use==1], cex.axis = 0.8, tcl = -0.6)

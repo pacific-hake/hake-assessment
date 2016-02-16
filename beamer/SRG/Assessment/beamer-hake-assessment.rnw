@@ -1,0 +1,317 @@
+%\documentclass[handout,xcolor=pdftex,dvipsnames,table]{beamer}
+%\documentclass[draft]{beamer}
+%\documentclass[notesonly]{beamer}
+%\documentclass[notes]{beamer}
+\documentclass[aspectratio=169]{beamer}
+\mode<presentation>
+\usetheme{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
+%\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
+
+%\usefonttheme{serif}
+% font themes: default, professionalfonts, serif, structurebold, structureitalicserif, structuresmallcapsserif
+
+\usepackage{graphicx}
+\usepackage{pgf}
+\usepackage{array}
+
+%\usepackage{beamerarticle}
+%\usepackage{enumitem}
+%\usepackage{beamerthemesplit}
+
+% pdf is displayed in full screen mode automatically
+%\hypersetup{pdfpagemode=FullScreen}
+
+%\setbeamersize{sidebar width left=0.05in}
+\setbeamersize{text margin left=0.1in}
+\setbeamersize{text margin right=0.1in}
+
+\setbeamertemplate{title page}
+{
+%\includegraphics[height=0.5in]{../../images/NOAA.eps}\hspace{5.05in}
+%\includegraphics[height=0.5in]{../../images/NOAA.eps}   %put the DFO logo here?
+\vskip0pt plus 1filll
+\begin{center}
+{\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\
+\vskip22pt
+\insertauthor
+\vskip22pt
+\insertdate
+\end{center}
+\vskip0pt plus 1filll
+}
+
+%\setbeamertemplate{footline}
+%{
+%\begin{beamercolorbox}[wd=.05\paperwidth,ht=0ex,dp=0ex,left]{framenumber in head/foot}%
+%\insertframenumber/\inserttotalframenumber
+%\end{beamercolorbox}%
+%}
+
+\newcounter{saveenumi}
+
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bn}{\begin{enumerate}}
+\newcommand{\en}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+
+%% <<echo=TRUE,  message=TRUE, results='show', warning=TRUE>>=
+%% opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
+%%                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
+%%                results='show', cache=TRUE, cache.path='knitr-cache/')
+<<off-we-go, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
+rm(list=ls(all=TRUE))
+opts_chunk$set(dev = 'cairo_ps', fig.path = 'knitr-cache/', fig.dpi = 300, fig.width = 6,
+               fig.height = 4, out.width = '6in', out.height = '3in', echo = FALSE,
+               results = FALSE, message = FALSE, warning = FALSE,
+               results = 'hide', cache = TRUE, cache.path = 'knitr-cache/')
+
+## Load your R environment here. When you do this, you will need to
+## put the require or library statements that the functions use because the
+## saved environment does not save the libraries as well.
+require(nwfscSurvey)
+require(nwfscMapping)
+require(date)
+require(r4ss)
+require(xtable)   ## For tables which can be inserted into latex docs with knitr
+require(PBSmapping)
+require(maps)
+require(coda)
+require(gtools)
+require(dplyr)
+## Load all R code and the model outputs
+load("../../../doc/r/.RData")
+## Load the model-partest which was previously run for the base model.
+## This object takes a very long time to build so it is stored in binary
+##  on its own.
+load("../../../doc/r/model-partest.RData")
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[Hake Data]{2016 Pacific Hake Stock Assessment Results}
+\author[Hicks]{Pacific Hake JTC}
+%\institute{}
+\date{{\footnotesize SRG meeting -- 2016}}
+
+\begin{document}
+
+\frame[plain]{
+\titlepage
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Survey Fit}
+\begin{center}
+<<mcmc.survey.fit>>=
+make.mcmc.survey.fit.plot(model.partest,
+                          start.yr = survey.start.yr,
+                          end.yr = survey.end.yr,
+                          probs = c(0.025, 0.975),
+                          leg.cex = 0.7,
+                          y.max = 5.5e6)
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Recruitment}
+\begin{center}
+<<recruitment>>=
+make.recruitment.plot(base.model,
+                      equil.yr = unfished.eq.yr,
+                      start.yr = start.yr,
+                      end.yr = end.yr,
+                      color = "blue",
+                      add.mean = TRUE,
+                      add.r0 = TRUE)
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Recruitment Deviations}
+\begin{center}
+<<recruitment.devs>>=
+make.recruitment.dev.plot(base.model,
+                          end.yr = end.yr)
+
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Spawning Biomass}
+\begin{center}
+<<female.spawning.biomass>>=
+make.biomass.plot(base.model,
+                  equil.yr = unfished.eq.yr,
+                  start.yr = start.yr,
+                  end.yr = end.yr,
+                  color = "blue")
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Relative Spawning Biomass}
+\begin{center}
+<<relative.spawning.biomass>>=
+make.depletion.plot(base.model,
+                    start.yr = start.yr,
+                    end.yr = end.yr,
+                    color = "blue")
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Fishing Intensity}
+\begin{center}
+<<fishing.intensity>>=
+make.fishing.intensity.plot(base.model,
+                            start.yr = start.yr,
+                            end.yr = end.yr-1,
+                            color = "blue")
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Exploitation Fraction}
+\begin{center}
+<<exploitation.fraction>>=
+make.exploitation.fraction.plot(base.model,
+                                start.yr = start.yr,
+                                end.yr = end.yr-1,
+                                color = "blue")
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Phase plot}
+\begin{center}
+<<phase>>=
+make.phase.plot(base.model,
+                start.yr = start.yr,
+                end.yr = end.yr,
+                color = "blue")
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Forecast Risk \Sexpr{forecast.yrs[1]}}
+\begin{center}
+<<forecast.risk.comparison.year.1>>=
+make.forecast.risk.comparison.plot(base.model,
+                                   forecast.yrs = forecast.yrs,
+                                   fore.yr = forecast.yrs[1],
+                                   colors = c("black","blue","green","orange","red","tan"),
+                                   pch = c(16,17,17,17,15,18),
+                                   legend.loc = "topleft",
+                                   legend.cex = 0.7)
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Forecast Risk - \Sexpr{forecast.yrs[2]}}
+\begin{center}
+<<forecast.risk.comparison.year.2>>=
+make.forecast.risk.comparison.plot(base.model,
+                                   forecast.yrs = forecast.yrs,
+                                   fore.yr = forecast.yrs[2],
+                                   colors = c("black","blue","green","orange","red","tan"),
+                                   pch = c(16,17,17,17,15,18),
+                                   legend.loc = "topleft",
+                                   legend.cex = 0.7)
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Forecast Relative Spawning Biomass}
+\begin{center}
+<<forecast.depletion.comparison>>=
+## Look at catch.levels and catch.levels.names to decide which to include here
+## models.inds are the indices of those forecast models which will be plotted against each other
+models.inds <- c(1, 2, 3, 4)
+models.names <- catch.levels.names[models.inds]
+make.forecast.depletion.comparison.plot(base.model,
+                                        models.inds,
+                                        models.names,
+                                        start.yr = 2009,
+                                        model.end.yr = end.yr,
+                                        end.yr = forecast.yrs[length(forecast.yrs)],
+                                        legend.loc = "topleft")
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%\section[Outline]{}
+%\frame{\tableofcontents}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{frame}
+%\titlepage
+\frametitle{Bullet Points}
+\begin{itemize}
+\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
+\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
+\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
+\item Nam cursus est eget velit posuere pellentesque
+\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+\end{itemize}
+\end{frame}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+%example of a 2 column
+%\frame{\frametitle{}
+%\begin{columns}
+%  \begin{column}{0.48\textwidth}
+%    \bi
+%
+%    \ei
+%  \end{column}
+%  \begin{column}{0.48\textwidth}
+%    \hspace{0.0in}\includegraphics[scale=0.4]{../../../doc/knitr-cache/main_data_overview_map-1}
+%  \end{column}
+%\end{columns}
+%}
