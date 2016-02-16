@@ -93,7 +93,7 @@ load("../../../doc/r/model-partest.RData")
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title[Hake Assessment]{\Sexpr{assess.yr} Pacific Hake Stock Assessment Results}
-\author[Hicks]{Allan C. Hicks\\JTC}
+\author[Hicks]{Pacific Hake JTC}
 %\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
 
@@ -112,7 +112,6 @@ make.mcmc.survey.fit.plot(model.partest,
                           start.yr = survey.start.yr,
                           end.yr = survey.end.yr,
                           probs = c(0.025, 0.975),
-                          leg.cex = 0.7,
                           y.max = 5.5e6)
 @
 \end{center}
@@ -282,15 +281,15 @@ make.forecast.depletion.comparison.plot(base.model,
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 %\titlepage
 \frametitle{Bullet Points}
 \begin{itemize}
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
-\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
-\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-\item Nam cursus est eget velit posuere pellentesque
-\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+
+\item The population is predicted to decrease from 2016 to 2017 with a less than 50\% probability for all catch levels investigated up to 440,000~t. The model predicts high biomass levels and the predicted probability of dropping below $B_{10\%}$ in 2017 is less than 1\%.
+\item The maximum probability of dropping below $B_{40\%}$ is 16\% for all catches explored
+
 \end{itemize}
 \end{frame}
 
