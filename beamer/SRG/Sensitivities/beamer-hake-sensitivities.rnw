@@ -29,7 +29,6 @@
 \includegraphics[height=0.5in]{../../images/NOAA.eps}
 \hfill
 \includegraphics[height=0.5in]{../../images/DFO.eps}
-
 \vskip0pt plus 1filll
 \begin{center}
 {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\
@@ -88,13 +87,13 @@ load("../../../doc/r/.RData")
 ##  on its own.
 load("../../../doc/r/model-partest.RData")
 @
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[Hake Data]{Fisheries, data, and inputs used in the \Sexpr{assess.yr} Pacific Hake stock assessment}
-\author[Grandin]{Chris J. Grandin\\JTC}
+\title[Hake Sensitivities]{Sensitivities explored in the \Sexpr{assess.yr} Pacific Hake stock assessment}
+\author[Berger]{Aaron M. Berger\\JTC}
 %\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
-
 
 \begin{document}
 
@@ -102,70 +101,33 @@ load("../../../doc/r/model-partest.RData")
 \titlepage
 }
 
-\section{Year in review}
-\frame{\frametitle{Year in review}
+\section{List of sensitivities}
+\frame{\frametitle{List of sensitivities}
   \bi
-    \item March \Sexpr{last.assess.yr}: JMC set an adjusted TAC = \Sexpr{last.year.tac} t
-    \item May \Sexpr{last.assess.yr}: JMC meeting: JTC presented MSE simulation results looking at age-1 index and age 2+ survey precision
-    \item U.S. fisheries started in May with decent catches
-    \item Canadian fisheries
-    \item Return of at-sea fleet in the U.S. saw low catch-rates
-    \item Two JTC public meetings (data then assessment)
-    \item Survey (exploration) for spawning hake started in January aboard the Shimada
+    \item Change the external analysis used to develop the age-2+ input survey biomass index time- 4
+      series from an approach of using the K-S stratified kriging method with extrapolation to 5
+      using the K-S stratified kriging method without extrapolation.
+    \item Include the age-1 survey index as an additional source of information.
+    \item Assume no cohort-based ageing error (i.e., time invariant ageing error).
+    \item Consideration of alternative maximum age assumptions for estimating selectivity.
+    \item Consideration of a higher standard deviation on the prior distribution for natural mortality.
+    \item Assume higher or lower variation about the stock-recruitment curve $\sigma_r$.
+    \item Consideration of alternative values for steepness.
   \ei
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section[Data]{Data}
-\subsection{Summary of data sources used}
-\frame{\frametitle{Summary of data sources used}
-\begin{columns}
-  \begin{column}{0.4\linewidth}
-    \bi
-      \item Fishery-independent
-      \bi
-        \item Acoustic survey (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr})
-        \bi
-          \item Biomass index
-          \item Age compositions
-        \ei
-      \ei
-      \item Fishery-dependent
-      \bi
-        \item Annual catch (\Sexpr{start.yr}--\Sexpr{end.yr})
-        \item Age compositions (1975--\Sexpr{end.yr})
-      \ei
-      \item Externally derived inputs
-      \bi
-        \item Weight-at-age (1975--\Sexpr{end.yr}, survey \& fishery combined)
-        \item Ageing imprecision (from double \& blind reads)
-        \item Maturity schedule (Dorn, mid-1990's)
-      \ei
-    \ei
-  \end{column}
-  \begin{column}{0.6\linewidth}
-    <<data.overview.map, out.width='3.5in'>>=
-      make.data.overview.plot(base.model)
-    @
-  \end{column}
-\end{columns}
-}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section[]{}
-%\frame{\frametitle{}
-
-\section*{}
-\frame{
-    \begin{center}
-        \huge
-        This is the last slide.\\ \pause
-        \vspace{1cm}
-        Any questions?
-    \end{center}
-}
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Biomass sensitivities for alternate survey method and addition of age-1 index}
+\begin{center}
+<<biomass.base.alternative.2>>=
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
+                     subplots = 2,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
+                     end.yr = end.yr)
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}

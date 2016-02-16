@@ -93,7 +93,7 @@ load("../../../doc/r/model-partest.RData")
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title[Hake Assessment]{\Sexpr{assess.yr} Pacific Hake Stock Assessment Results}
-\author[Hicks]{Pacific Hake JTC}
+\author[Hicks]{Allan C. Hicks\\JTC}
 %\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
 

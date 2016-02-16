@@ -92,7 +92,7 @@ load("../../../doc/r/model-partest.RData")
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title[Hake Management]{Management of the \Sexpr{end.yr} Pacific Hake stock assessment}
-\author[Hicks]{Allan C Hicks\\JTC}
+\author[Hicks]{Allan C. Hicks\\JTC}
 %\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
 
