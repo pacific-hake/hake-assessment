@@ -13,6 +13,7 @@
 \usepackage{graphicx}
 \usepackage{pgf}
 \usepackage{array}
+
 %\usepackage{beamerarticle}
 %\usepackage{enumitem}
 %\usepackage{beamerthemesplit}
@@ -26,8 +27,8 @@
 
 \setbeamertemplate{title page}
 {
-\includegraphics[height=0.5in]{../../images/NOAA.eps}\hspace{5.05in}
-\includegraphics[height=0.5in]{../../images/NOAA.eps}   %put the DFO logo here?
+%\includegraphics[height=0.5in]{../../images/NOAA.eps}\hspace{5.05in}
+%\includegraphics[height=0.5in]{../../images/NOAA.eps}   %put the DFO logo here?
 \vskip0pt plus 1filll
 \begin{center}
 {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\
@@ -57,19 +58,112 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[Hake Data]{Fisheries, data, and inputs used in the 2016 Pacific Hake stock assessment}
-\author[Hicks]{Allan C Hicks\\JTC}
+\title[Hake Data]{2016 Pacific Hake Stock Assessment Results}
+\author[Hicks]{Pacific Hake JTC}
 %\institute{}
 \date{{\footnotesize SRG meeting -- 2016}}
-
 
 \begin{document}
 
 \frame[plain]{
 \titlepage
-\begin{center}\hspace{0.5in}\includegraphics[scale=0.3]{../../../doc/knitr-cache/????}\end{center}
+%\begin{center}\hspace{0.5in}\includegraphics[scale=0.3]{../../../doc/knitr-cache/"exploitation_fraction-1.eps"}\end{center}
 }
 
+\begin{frame}
+\frametitle{Survey Fit}
+    \begin{center}
+        \hspace{0.5in}
+        \includegraphics[scale=0.6]{../../../doc/knitr-cache/main_mcmc_survey_fit-1.eps}
+    \end{center}
+\end{frame}
+
+
+
+
+
+\begin{frame}
+\frametitle{Recruitment}
+    \begin{center}
+        \hspace{0.5in}
+        \includegraphics[scale=0.6]{../../../doc/knitr-cache/main_recruitment_devs-1.eps}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Recruitment Deviations}
+    \begin{center}
+        \hspace{0.5in}
+        \includegraphics[scale=0.6]{../../../doc/knitr-cache/main_recruitment-1.eps}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Spawning Biomass}
+    \begin{center}
+        \hspace{0.5in}
+        \includegraphics[scale=0.6]{../../../doc/knitr-cache/spawning_biomass-1.eps}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Relative Spawning Biomass}
+    \begin{center}
+        \hspace{0.5in}
+        \includegraphics[scale=0.6]{../../../doc/knitr-cache/relative_spawning_biomass-1.eps}
+    \end{center}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Fishing Intensity}
+    \begin{center}
+        \hspace{0.5in}
+        \includegraphics[scale=0.6]{../../../doc/knitr-cache/fishing_intensity-1.eps}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Exploitation Fraction}
+    \begin{center}
+        \hspace{0.5in}
+        \includegraphics[scale=0.6]{../../../doc/knitr-cache/exploitation_fraction-1.eps}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Phase plot}
+    \begin{center}
+        \hspace{0.5in}
+        \includegraphics[scale=0.6]{../../../doc/knitr-cache/phase_plot-1.eps}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Forecast Risk}
+    \begin{center}
+        \hspace{0.5in}
+        \includegraphics[scale=0.6]{../../../doc/knitr-cache/forecast_risk_comparison_plot_year_1-1.eps}
+    \end{center}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Forecast Risk - }
+    \begin{center}
+        \hspace{0.5in}
+        \includegraphics[scale=0.6]{../../../doc/knitr-cache/forecast_risk_comparison_plot_year_2-1.eps}
+    \end{center}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Forecast Relative Spawning Biomass }
+    \begin{center}
+        \hspace{0.5in}
+        \includegraphics[scale=0.6]{../../../doc/knitr-cache/forecast_depletion_comparison_plot-1.eps}
+    \end{center}
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\section[Outline]{}
@@ -77,13 +171,19 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{}
-\frame{\frametitle{}
-  \bi
-    \item 
-  \ei
-}
 
+
+\begin{frame}
+%\titlepage
+\frametitle{Bullet Points}
+\begin{itemize}
+\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
+\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
+\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
+\item Nam cursus est eget velit posuere pellentesque
+\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+\end{itemize}
+\end{frame}
 
 
 \end{document}
@@ -96,15 +196,15 @@
 
 
 %example of a 2 column
-\frame{\frametitle{}
-\begin{columns}
-  \begin{column}{0.48\textwidth}
-    \bi
-    
-    \ei
-  \end{column}
-  \begin{column}{0.48\textwidth}
-    \hspace{0.0in}\includegraphics[scale=0.4]{../../../doc/knitr-cache/main_data_overview_map-1}
-  \end{column}
-\end{columns}
-}
+%\frame{\frametitle{}
+%\begin{columns}
+%  \begin{column}{0.48\textwidth}
+%    \bi
+%
+%    \ei
+%  \end{column}
+%  \begin{column}{0.48\textwidth}
+%    \hspace{0.0in}\includegraphics[scale=0.4]{../../../doc/knitr-cache/main_data_overview_map-1}
+%  \end{column}
+%\end{columns}
+%}
