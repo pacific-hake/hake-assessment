@@ -88,10 +88,11 @@ load("../../../doc/r/.RData")
 ##  on its own.
 load("../../../doc/r/model-partest.RData")
 @
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[Hake Data]{Fisheries, data, and inputs used in the \Sexpr{assess.yr} Pacific Hake stock assessment}
-\author[Hicks]{JTC}
+\title[Hake Management]{Management of the \Sexpr{end.yr} Pacific Hake stock assessment}
+\author[Hicks]{Allan C Hicks\\JTC}
 %\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
 
@@ -106,66 +107,7 @@ load("../../../doc/r/model-partest.RData")
 \frame{\frametitle{Year in review}
   \bi
     \item March \Sexpr{last.assess.yr}: JMC set an adjusted TAC = \Sexpr{last.year.tac} t
-    \item May \Sexpr{last.assess.yr}: JMC meeting: JTC presented MSE simulation results looking at age-1 index and age 2+ survey precision
-    \item U.S. fisheries started in May with decent catches
-    \item Canadian fisheries
-    \item Return of at-sea fleet in the U.S. saw low catch-rates
-    \item Two JTC public meetings (data then assessment)
-    \item Survey (exploration) for spawning hake started in January aboard the Shimada
   \ei
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section[Data]{Data}
-\subsection{Summary of data sources used}
-\frame{\frametitle{Summary of data sources used}
-\begin{columns}
-  \begin{column}{0.4\linewidth}
-    \bi
-      \item Fishery-independent
-      \bi
-        \item Acoustic survey (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr})
-        \bi
-          \item Biomass index
-          \item Age compositions
-        \ei
-      \ei
-      \item Fishery-dependent
-      \bi
-        \item Annual catch (\Sexpr{start.yr}--\Sexpr{end.yr})
-        \item Age compositions (1975--\Sexpr{end.yr})
-      \ei
-      \item Externally derived inputs
-      \bi
-        \item Weight-at-age (1975--\Sexpr{end.yr}, survey \& fishery combined)
-        \item Ageing imprecision (from double \& blind reads)
-        \item Maturity schedule (Dorn, mid-1990's)
-      \ei
-    \ei
-  \end{column}
-  \begin{column}{0.6\linewidth}
-    <<data.overview.map, out.width='3.5in'>>=
-      make.data.overview.plot(base.model)
-    @
-  \end{column}
-\end{columns}
-}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section[]{}
-%\frame{\frametitle{}
-
-\section*{}
-\frame{
-    \begin{center}
-        \huge
-        This is the last slide.\\ \pause
-        \vspace{1cm}
-        Any questions?
-    \end{center}
 }
 
 \end{document}
