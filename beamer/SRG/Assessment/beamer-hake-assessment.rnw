@@ -27,8 +27,10 @@
 
 \setbeamertemplate{title page}
 {
-%\includegraphics[height=0.5in]{../../images/NOAA.eps}\hspace{5.05in}
-%\includegraphics[height=0.5in]{../../images/NOAA.eps}   %put the DFO logo here?
+\includegraphics[height=0.5in]{../../images/NOAA.eps}\hspace{5.05in}
+\hfill
+\includegraphics[height=0.5in]{../../images/DFO.eps}
+
 \vskip0pt plus 1filll
 \begin{center}
 {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\
@@ -90,10 +92,10 @@ load("../../../doc/r/model-partest.RData")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[Hake Data]{2016 Pacific Hake Stock Assessment Results}
+\title[Hake Assessment]{\Sexpr{assess.yr} Pacific Hake Stock Assessment Results}
 \author[Hicks]{Pacific Hake JTC}
 %\institute{}
-\date{{\footnotesize SRG meeting -- 2016}}
+\date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
 
 \begin{document}
 

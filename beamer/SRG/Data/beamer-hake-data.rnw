@@ -26,8 +26,10 @@
 
 \setbeamertemplate{title page}
 {
-\includegraphics[height=0.5in]{../../images/NOAA.eps}\hspace{5.05in}
 \includegraphics[height=0.5in]{../../images/NOAA.eps}
+\hfill
+\includegraphics[height=0.5in]{../../images/DFO.eps}
+
 \vskip0pt plus 1filll
 \begin{center}
 {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\
@@ -55,34 +57,56 @@
 \newcommand{\bi}{\begin{itemize}}
 \newcommand{\ei}{\end{itemize}}
 
+%% <<echo=TRUE,  message=TRUE, results='show', warning=TRUE>>=
+%% opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
+%%                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
+%%                results='show', cache=TRUE, cache.path='knitr-cache/')
+<<off-we-go, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
+rm(list=ls(all=TRUE))
+opts_chunk$set(dev = 'cairo_ps', fig.path = 'knitr-cache/', fig.dpi = 300, fig.width = 6,
+               fig.height = 4, out.width = '6in', out.height = '3in', echo = FALSE,
+               results = FALSE, message = FALSE, warning = FALSE,
+               results = 'hide', cache = TRUE, cache.path = 'knitr-cache/')
+
+## Load your R environment here. When you do this, you will need to
+## put the require or library statements that the functions use because the
+## saved environment does not save the libraries as well.
+require(nwfscSurvey)
+require(nwfscMapping)
+require(date)
+require(r4ss)
+require(xtable)   ## For tables which can be inserted into latex docs with knitr
+require(PBSmapping)
+require(maps)
+require(coda)
+require(gtools)
+require(dplyr)
+## Load all R code and the model outputs
+load("../../../doc/r/.RData")
+## Load the model-partest which was previously run for the base model.
+## This object takes a very long time to build so it is stored in binary
+##  on its own.
+load("../../../doc/r/model-partest.RData")
+@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[Hake Data]{Fisheries, data, and inputs used in the 2016 Pacific Hake stock assessment}
-\author[Hicks]{Allan C Hicks\\JTC}
+\title[Hake Data]{Fisheries, data, and inputs used in the \Sexpr{assess.yr} Pacific Hake stock assessment}
+\author[Hicks]{JTC}
 %\institute{}
-\date{{\footnotesize SRG meeting -- 2016}}
+\date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
 
 
 \begin{document}
 
 \frame[plain]{
 \titlepage
-\begin{center}\hspace{0.5in}\includegraphics[scale=0.3]{../../../doc/knitr-cache/main_data_overview_map-1}\end{center}
 }
-%\frame[plain]{\bc\tableofcontents\ec}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\section[Outline]{}
-%\frame{\tableofcontents}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Year in review}
 \frame{\frametitle{Year in review}
   \bi
-    \item March 2015: JMC set an adjusted TAC = 440,000 t
-    \item May 2015: JMC meeting: JTC presented MSE simulation results looking at age-1 index and age 2+ survey precision
+    \item March \Sexpr{last.assess.yr}: JMC set an adjusted TAC = \Sexpr{last.year.tac} t
+    \item May \Sexpr{last.assess.yr}: JMC meeting: JTC presented MSE simulation results looking at age-1 index and age 2+ survey precision
     \item U.S. fisheries started in May with decent catches
     \item Canadian fisheries
     \item Return of at-sea fleet in the U.S. saw low catch-rates
@@ -97,11 +121,11 @@
 \subsection{Summary of data sources used}
 \frame{\frametitle{Summary of data sources used}
 \begin{columns}
-  \begin{column}{0.48\textwidth}
+  \begin{column}{0.4\linewidth}
     \bi
       \item Fishery-independent
       \bi
-        \item Acoustic survey (1998-2015)
+        \item Acoustic survey (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr})
         \bi
           \item Biomass index
           \item Age compositions
@@ -109,19 +133,21 @@
       \ei
       \item Fishery-dependent
       \bi
-        \item Annual catch (1966--2015)
-        \item Age compositions (1975--2015)
+        \item Annual catch (\Sexpr{start.yr}--\Sexpr{end.yr})
+        \item Age compositions (1975--\Sexpr{end.yr})
       \ei
       \item Externally derived inputs
       \bi
-        \item Weight-at-age (1975--2015, survey \& fishery combined)
+        \item Weight-at-age (1975--\Sexpr{end.yr}, survey \& fishery combined)
         \item Ageing imprecision (from double \& blind reads)
         \item Maturity schedule (Dorn, mid-1990's)
       \ei
     \ei
   \end{column}
-  \begin{column}{0.48\textwidth}
-    \hspace{0.0in}\includegraphics[scale=0.4]{../../../doc/knitr-cache/main_data_overview_map-1}
+  \begin{column}{0.6\linewidth}
+    <<data.overview.map, out.width='3.5in'>>=
+      make.data.overview.plot(base.model)
+    @
   \end{column}
 \end{columns}
 }
