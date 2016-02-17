@@ -66,17 +66,13 @@ make.survey.extrap.table <- function(dat,
                size = size.string))
 }
 
-make.survey.biomass.plot <- function(models,      ## models is the list returned by load.models.
-                                     modelnum = 1 ## the index of the model to show. It shouldn't
-                                                  ## really matter on the same assessment though.
-                                     ){
+make.survey.biomass.plot <- function(model){
   ## It is assumed that the data file has been read in correctly.
   ## Assumes that there is only one 'CPUE' index and it is the acoustic survey.
   ## There is no error checking to warn you if there is more than one index.
 
   oldpar <- par()
-  base <- models[[modelnum]]
-  tmp <- base$dat
+  tmp <- model$dat
   numObs <- tmp$N_cpue
   survey.dat <- tmp$CPUE
   ## Remove non-survey years from the data frame
@@ -117,22 +113,18 @@ make.survey.biomass.plot <- function(models,      ## models is the list returned
   ##          y0=qlnorm(.025,meanlog=log(cpue$ob),sdlog=cpue$se_log),
   ##          y1=qlnorm(.975,meanlog=log(cpue$ob),sdlog=cpue$se_log),
   ##          lwd=3, lend=1)
-  ## SSplotIndices(base, subplot=2, add=TRUE, col3=rgb(1,0,0,.7))
+  ## SSplotIndices(model, subplot=2, add=TRUE, col3=rgb(1,0,0,.7))
   ## ##plotBars.fn(ests2$year,ests2,scalar=1e6,ylim=c(0,3),pch=20,xlab="year",ylab="Biomass Index Estimate (million mt)",cex=1.5,las=1,gap=0.05,xaxt="n",ciLwd=3,ciCol=rgb(0,0,1,0.6))
   ## ##plotBars.fn(ests$year,ests,scalar=1e6,ylim=c(0,3),pch=20,add=T,cex=1.5,las=1,gap=0.05,xaxt="n",ciLwd=3,ciCol=gray(0.2))
-  ## axis(1, at=base$cpue$Yr[base$cpue$Use==1], cex.axis=0.8, tcl=-0.6)
+  ## axis(1, at=model$cpue$Yr[model$cpue$Use==1], cex.axis=0.8, tcl=-0.6)
   ## axis(1, at=1990:2020, lab=rep("",length(1990:2020)), cex.axis=0.8, tcl=-0.3)
   ## box()
   ## axis(2, at=(0:5)*1e6, lab=0:5, las=1)
   par <- oldpar
 }
 
-
-
-make.survey.age1.plot <- function(age1index,   ##
-                                  models,      ## models is the list returned by load.models.
-                                  modelnum = 1 ## the index of the model to show. 
-                                  ){
+make.survey.age1.plot <- function(age1index,
+                                  model){
   ## It is assumed that the data file has been read in correctly.
   ## Assumes that there is only one 'CPUE' index and it is the acoustic survey.
 
@@ -142,8 +134,7 @@ make.survey.age1.plot <- function(age1index,   ##
   x <- age1index
   yrs <- x$Year
 
-  base <- models[[modelnum]]
-  recr1 <- base$natage[base$natage$Time %in% yrs,"1"]
+  recr1 <- model$natage[model$natage$Time %in% yrs,"1"]
 
   logAge1 <- log(recr1)
   logIndex <- log(x$Index)

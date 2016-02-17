@@ -7,13 +7,7 @@ run.retrospectives <- function(model,
   ## This will create a 'retrospectives' directory in the same directory as the model resides,
   ##  create a directory for each restrospective year, copy all model files into each directory,
   ##  run the retrospectives, and make a list of the SS_output() call to each
-  ##  and return this list.
   ## Warning - This function will completely delete all previous retrospectives that have been run without notice.
-
-  if(!verbose){
-    flush.console
-    cat("\nRunning retrospectives. Screen may not show output for a while\n\n")
-  }
 
   ## Create the directory 'retrospectives' which will hold the runs
   ##  erasing the directory recursively if necessary
@@ -55,9 +49,7 @@ run.retrospectives <- function(model,
     unlink(covar.file)
     shell.command <- paste0("cd ", retro.dir, " & ss3 ", extras)
     shell(shell.command)
-    retros.list[[retro]] <- SS_output(dir = retro.dir, verbose = verbose)
   }
-  return(retros.list)
 }
 
 run.partest.model <- function(model,
@@ -167,7 +159,6 @@ run.partest.model <- function(model,
   for(irow in 1:num.posts){
     tmp <- readLines(file.path(reports.dir, paste0("Report_", irow,".sso")))
     skip.row <- grep("LIKELIHOOD", tmp)[2]
-##    browser()
     likes <- read.table(file.path(reports.dir, paste0("Report_", irow, ".sso")),
                         skip = skip.row,
                         nrows = 17,

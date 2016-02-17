@@ -60,8 +60,7 @@ The biomass estimate and age composition from the acoustic survey conducted in \
 \begin{center}
 <<survey.biomass, fig.height=5, fig.width=8>>=
 ## modelnum is the model index in models list from which the survey input data are used.
-make.survey.biomass.plot(models,
-                         modelnum = base.model.ind)
+make.survey.biomass.plot(base.model)
 @
 \end{center}
 %\vspace{0mm}
