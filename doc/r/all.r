@@ -524,6 +524,8 @@ last.year.landings <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% 
 last.year.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TAC)
 last.year.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$ATTAIN), 1)
 
+## US landings, TAC, and attainments
+last.year.us.landings <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$Ustotal))
 last.year.us.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
 last.year.us.not.attained <- fmt0(as.numeric(100 - landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
 last.year.us.not.attained.tonnes <- filter(landings.vs.tac, Year == last.data.yr)$TACUSA - filter(landings.vs.tac, Year == last.data.yr)$Ustotal
@@ -538,7 +540,19 @@ last.year.us.tribal.max.landed <- filter(further.tac, Year == last.data.yr)$us.t
 last.year.us.shore.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.shore.reallocated
 last.year.us.cp.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.cp.reallocated
 last.year.us.ms.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.ms.reallocated
+## Last year US catches by fleet
+last.year.us.research.catch <- filter(catches, Year == last.data.yr)$USresearch
+last.year.us.cp.catch <- filter(catches, Year == last.data.yr)$atSea_US_CP
+last.year.us.ms.catch <- filter(catches, Year == last.data.yr)$atSea_US_MS
+last.year.us.shore.catch <- filter(catches, Year == last.data.yr)$US_shore
+## Last year US percent of TAC caught by fleet
+last.year.us.research.catch.percent <- fmt0(last.year.us.research.catch / last.year.us.research * 100, 1)
+last.year.us.cp.catch.percent <- fmt0(last.year.us.cp.catch / last.year.us.cp.quota.reallocated * 100, 1)
+last.year.us.ms.catch.percent <- fmt0(last.year.us.ms.catch / last.year.us.ms.quota.reallocated * 100, 1)
+last.year.us.shore.catch.percent <- fmt0(last.year.us.shore.catch / last.year.us.shore.quota.reallocated * 100, 1)
+last.year.us.tribal.catch.percent <- fmt0(last.year.us.tribal.max.landed / last.year.us.tribal.quota.reallocated * 100, 1)
 
+## Last year Canadian catch and tac
 last.year.can.carryover <- fmt0(filter(further.tac, Year == last.data.yr)$can.carried.over)
 last.year.can.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANATTAIN), 1)   # the percentage
 last.year.can.landings <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal))
