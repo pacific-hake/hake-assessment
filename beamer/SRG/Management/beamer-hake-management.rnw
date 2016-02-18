@@ -106,27 +106,49 @@ if(load.Rdata == "y") {
 \titlepage
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Background}
-\frame{\frametitle{Past management}
+\frame{\frametitle{Past management: Total Allowable Catch}
 \begin{columns}
-  \begin{column}{0.38\textwidth}
+  \begin{column}{0.48\textwidth}
 	  \bi
-	    \item March \Sexpr{last.assess.yr}: JMC set an adjusted TAC = \Sexpr{last.year.tac} t
+	    \item March \Sexpr{last.assess.yr}
+      \bi
+        \item JMC set an adjusted TAC = \Sexpr{last.year.tac} t 
+        \item Harvest rule TAC was 804,576 t 
+      \ei
+      \item When default HR suggests a large catch, TAC is often set less
+      \item Catches are often less than the TAC
 	  \ei
   \end{column}
-  \begin{column}{0.59\textwidth}
-    %\includegraphics[scale=1]{Figures/pastManagement.eps} % width=\maxwidth,
-    Figure of past management here
-	  @
+  \begin{column}{0.48\textwidth}
+    \bc \includegraphics[width=.9\columnwidth]{Figures/ManagementResponse.eps} \ec
   \end{column}
 \end{columns}
 }
+
+%---------------------------------------------------------------
+
+\frame{\frametitle{Past management: Performance}
+  \bc
+  <<main.phase, out.width='0.7\\columnwidth'>>=
+    make.phase.plot(base.model, start.yr = start.yr, end.yr = end.yr, color = "blue")
+  @
+  \ec
+}
+
+
+%---------------------------------------------------------------
 
 \frame{\frametitle{Harvest rule predicted catch for 2016}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-    	\item Predicted catch is \Sexpr{base.model$derived_quants["ForeCatch_2016","Value"]}
+    	\item Forecasted 2016 TAC is \Sexpr{fmt0(median(base.model$mcmc$ForeCatch_2016))} t
+      \bi
+        \item 2.5\% and 97.5\% quantiles: \Sexpr{fmt0(quantile(base.model$mcmc$ForeCatch_2016,probs=0.025))} and \Sexpr{fmt0(quantile(base.model$mcmc$ForeCatch_2016,probs=0.975))}
+        \item $F_{SPR=40\%}$ harvest reate with no 40:10 adjustment
+      \ei
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -136,5 +158,11 @@ if(load.Rdata == "y") {
   \end{column}
 \end{columns}
 }
+
+
+
+
+
+
 
 \end{document}

@@ -125,18 +125,49 @@
 \titlepage
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Background}
-\frame{\frametitle{Past management}
-  \bi
-    \item March 2015: JMC set an adjusted TAC = 440,000 t
-  \ei
+\frame{\frametitle{Past management: Total Allowable Catch}
+\begin{columns}
+  \begin{column}{0.48\textwidth}
+	  \bi
+	    \item March 2015
+      \bi
+        \item JMC set an adjusted TAC = 440,000 t 
+        \item Harvest rule TAC was 804,576 t 
+      \ei
+      \item When default HR suggests a large catch, TAC is often set less
+      \item Catches are often less than the TAC
+	  \ei
+  \end{column}
+  \begin{column}{0.48\textwidth}
+    \bc \includegraphics[width=.9\columnwidth]{Figures/ManagementResponse.eps} \ec
+  \end{column}
+\end{columns}
 }
+
+\frame{\frametitle{Past management: Performance}
+  \bc
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=0.7\columnwidth]{knitr-cache/main_phase-1} 
+
+\end{knitrout}
+  \ec
+}
+
+
+%---------------------------------------------------------------
 
 \frame{\frametitle{Harvest rule predicted catch for 2016}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-    	\item Predicted catch is 
+    	\item Forecasted 2016 TAC is 804,399 t
+      \bi
+        \item 2.5\% and 97.5\% quantiles: 282,653 and 1,852,960
+        \item $F_{SPR=40\%}$ harvest reate with no 40:10 adjustment
+      \ei
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
