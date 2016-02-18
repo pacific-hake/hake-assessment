@@ -527,7 +527,7 @@ last.year.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% 
 last.year.us.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
 last.year.us.not.attained <- fmt0(as.numeric(100 - landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
 last.year.us.not.attained.tonnes <- filter(landings.vs.tac, Year == last.data.yr)$TACUSA - filter(landings.vs.tac, Year == last.data.yr)$Ustotal
-last.year.us.tac <- landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACUS
+last.year.us.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACUS)
 ## Not doing fmt0 here since want to do further calculations
 last.year.us.tribal <- filter(further.tac, Year == last.data.yr)$us.tribal.quota
 last.year.us.research <- filter(further.tac, Year == last.data.yr)$us.research.quota

@@ -87,12 +87,15 @@ load("../../../doc/r/.RData")
 ## This object takes a very long time to build so it is stored in binary
 ##  on its own.
 load("../../../doc/r/model-partest.RData")
+## To avoid scientific notation happening
+## options(scipen = 2)
 @
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[Hake Data]{Fisheries, data, and inputs used in the \Sexpr{assess.yr} Pacific Hake stock assessment}
-\author[Grandin]{Chris J. Grandin\\JTC}
+\title[Hake Data]{Fisheries, data, and inputs used in the \Sexpr{assess.yr} Pacific Hake/Whiting stock assessment}
+\author[Grandin]{Pacific Hake JTC}
 %\institute{}
+\titlegraphic{\includegraphics[height=2]{../../images/hake-on-board.eps}}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
 
 
@@ -105,13 +108,14 @@ load("../../../doc/r/model-partest.RData")
 \section{Year in review}
 \frame{\frametitle{Year in review}
   \bi
-    \item March \Sexpr{last.assess.yr}: JMC set an adjusted TAC = \Sexpr{last.year.tac} t
-    \item May \Sexpr{last.assess.yr}: JMC meeting: JTC presented MSE simulation results looking at age-1 index and age 2+ survey precision
-    \item U.S. fisheries started in May with decent catches
-    \item Canadian fisheries
-    \item Return of at-sea fleet in the U.S. saw low catch-rates
-    \item Two JTC public meetings (data then assessment)
-    \item Survey (exploration) for spawning hake started in January aboard the Shimada
+    \item March \Sexpr{last.assess.yr}: JMC set an adjusted TAC = \Sexpr{last.year.tac} t.
+    \item May \Sexpr{last.assess.yr}: JMC meeting: JTC presented MSE simulation results looking at age-1 index and age 2+ survey precision.
+    \item U.S. fisheries started in May with decent catches.
+    \item Canadian fisheries started in early May and continued until December.
+    \item Return of at-sea fleet in the U.S. saw low catch-rates.
+    \item Many age-1's seen by survey and fisheries as far North as Canada.
+    \item Two JTC public meetings (data then assessment).
+    \item Survey (exploration) for spawning hake from Jan-Feb aboard the Shimada.
   \ei
 }
 
@@ -152,20 +156,55 @@ load("../../../doc/r/model-partest.RData")
 \end{columns}
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Catches}
+\frame{\frametitle{Catches}
+  <<catches>>=
+    make.catches.plot(catches, leg.y.loc = 500, leg.cex = 0.7)
+  @
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section[]{}
-%\frame{\frametitle{}
-
-\section*{}
-\frame{
-    \begin{center}
-        \huge
-        This is the last slide.\\ \pause
-        \vspace{1cm}
-        Any questions?
-    \end{center}
+\section{Fleets}
+\frame{\frametitle{Fleets and allocations}
+  The \Sexpr{end.yr-1} TAC of \Sexpr{last.year.tac} was split between the U.S. and Canada as follows:
+  \bi
+    \item Canada -- \Sexpr{last.year.can.tac} (\Sexpr{paste0(can.allotment.percent, "\\%")})
+      \bi
+        \item Freezer trawlers
+        \item Shoreside
+        \item Joint venture
+      \ei
+    \item United States -- \Sexpr{last.year.us.tac} (\Sexpr{paste0(us.allotment.percent, "\\%")})
+      \bi
+        \item Research and bycatch -- \Sexpr{fmt0(last.year.us.research)} t
+        \item Tribal               -- \Sexpr{fmt0(last.year.us.tribal)} t
+        \item Shore--based         -- \Sexpr{fmt0(last.year.us.shore.quota.reallocated)} t
+        \item Catcher--processor   -- \Sexpr{fmt0(last.year.us.cp.quota.reallocated)} t
+        \item Mothership           -- \Sexpr{fmt0(last.year.us.ms.quota.reallocated)} t
+      \ei
+  \ei
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Canadian quota and catch}
+\frame{\frametitle{Canadian quota and catch}
+  The \Sexpr{end.yr-1} Canadian TAC was \Sexpr{last.year.can.tac}
+  \bi
+    \item Catch by fleet
+      \bi
+        \item Freezer trawlers -- \Sexpr{last.year.can.freezer} t
+        \item Shoreside        -- \Sexpr{last.year.can.shore} t
+        \item Joint venture    -- 0 t (No allocation this year)
+      \ei
+    \item Total Canadian catch -- \Sexpr{last.year.can.landings} t
+    \item \Sexpr{paste0(last.year.can.attained, "\\%")} of Canada's quota was caught.
+  \ei
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
