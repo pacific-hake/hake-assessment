@@ -27,3 +27,9 @@ backscatter2smaller.eps
 *.synctex
 *.snm
 *.nav
+*.rdb
+*.rdx
+beamer/SRG/Assessment/knitr-cache
+beamer/SRG/Data/knitr-cache
+beamer/SRG/Management/knitr-cache
+beamer/SRG/Sensitivities/knitr-cache
