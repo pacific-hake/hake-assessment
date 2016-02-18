@@ -192,6 +192,8 @@ bridge.model.names.3 <- c("Base model pretune",
                           "Adjust bias ramp",
                           "Change survey comp weights",
                           "Change all comp weights")
+                          
+
 
 ## Bridge model indices are used to tell knitr which elements of the models list are to
 ## be plotted together.
@@ -246,24 +248,35 @@ sens.model.names.3 <- c("Max. age of selectivity 5",
                         "Max. age of selectivity 7",
                         "Max. age of selectivity 12")
 
+sens.model.dir.names.4<- "53_Sensbase_AgeError_noCohort_update"
+sens.model.names.4 <- "No cohort ageing error"
+
+                        
+  
+
 ## Sensitivity model indices are used to tell knitr which elements of the models list are to
 ## be plotted together.
 sens.model.inds.1 <- grep(paste(sens.model.dir.names.1, collapse = "|"), models.dir.list)
 sens.model.inds.2 <- grep(paste(sens.model.dir.names.2, collapse = "|"), models.dir.list)
 sens.model.inds.3 <- grep(paste(sens.model.dir.names.3, collapse = "|"), models.dir.list)
+sens.model.inds.4 <- grep(paste(sens.model.dir.names.4, collapse = "|"), models.dir.list)
 if((length(sens.model.inds.1) != length(sens.model.dir.names.1)) |
    (length(sens.model.inds.2) != length(sens.model.dir.names.2)) |
-   (length(sens.model.inds.3) != length(sens.model.dir.names.3))){
+   (length(sens.model.inds.3) != length(sens.model.dir.names.3)) |
+   (length(sens.model.inds.4) != length(sens.model.dir.names.4))){
   stop("One or more of the sensitivity model directory names were not found. Check the names and try again. Directory names listed in all.r are:\n",
        paste0(sens.model.dir.names.1, "\n"),
        "\n",
        paste0(sens.model.dir.names.2, "\n"),
        "\n",
-       paste0(sens.model.dir.names.3, "\n"))
+       paste0(sens.model.dir.names.3, "\n"),
+       "\n",
+       paste0(sens.model.dir.names.4, "\n"))
 }
 if((length(sens.model.names.1) != length(sens.model.dir.names.1)) |
    (length(sens.model.names.2) != length(sens.model.dir.names.2)) |
-   (length(sens.model.names.3) != length(sens.model.dir.names.3))){
+   (length(sens.model.names.3) != length(sens.model.dir.names.3)) |
+   (length(sens.model.names.4) != length(sens.model.dir.names.4))){
   stop("One of the sens.model.names vectors in all.r has a different length than its sens.model.dir.names counterpart. Make sure these two vectors match in length and try again.\n")
 }
 

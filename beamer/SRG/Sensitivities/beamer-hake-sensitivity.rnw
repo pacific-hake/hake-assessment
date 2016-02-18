@@ -1,0 +1,263 @@
+%\documentclass[handout,xcolor=pdftex,dvipsnames,table]{beamer}
+%\documentclass[draft]{beamer}
+%\documentclass[notesonly]{beamer}
+%\documentclass[notes]{beamer}
+\documentclass[aspectratio=169]{beamer}
+\mode<presentation>
+\usetheme{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
+%\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
+
+%\usefonttheme{serif}
+% font themes: default, professionalfonts, serif, structurebold, structureitalicserif, structuresmallcapsserif
+
+\usepackage{graphicx}
+\usepackage{pgf}
+\usepackage{array}
+
+%\usepackage{beamerarticle}
+%\usepackage{enumitem}
+%\usepackage{beamerthemesplit}
+
+% pdf is displayed in full screen mode automatically
+%\hypersetup{pdfpagemode=FullScreen}
+
+%\setbeamersize{sidebar width left=0.05in}
+\setbeamersize{text margin left=0.1in}
+\setbeamersize{text margin right=0.1in}
+
+\setbeamertemplate{title page}
+{
+\includegraphics[height=0.5in]{../../images/NOAA.eps}\hspace{5.05in}
+\hfill
+\includegraphics[height=0.5in]{../../images/DFO.eps}
+
+\vskip0pt plus 1filll
+\begin{center}
+{\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\
+\vskip22pt
+\insertauthor
+\vskip22pt
+\insertdate
+\end{center}
+\vskip0pt plus 1filll
+}
+
+%\setbeamertemplate{footline}
+%{
+%\begin{beamercolorbox}[wd=.05\paperwidth,ht=0ex,dp=0ex,left]{framenumber in head/foot}%
+%\insertframenumber/\inserttotalframenumber
+%\end{beamercolorbox}%
+%}
+
+\newcounter{saveenumi}
+
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bn}{\begin{enumerate}}
+\newcommand{\en}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+
+%% <<echo=TRUE,  message=TRUE, results='show', warning=TRUE>>=
+%% opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
+%%                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
+%%                results='show', cache=TRUE, cache.path='knitr-cache/')
+<<off-we-go, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
+rm(list=ls(all=TRUE))
+opts_chunk$set(dev = 'cairo_ps', fig.path = 'knitr-cache/', fig.dpi = 300, fig.width = 6,
+               fig.height = 4, out.width = '6in', echo = FALSE, #out.height = '3in', 
+               results = FALSE, message = FALSE, warning = FALSE,
+               results = 'hide', cache = TRUE, cache.path = 'knitr-cache/')
+
+## Load your R environment here. When you do this, you will need to
+## put the require or library statements that the functions use because the
+## saved environment does not save the libraries as well.
+require(nwfscSurvey)
+require(nwfscMapping)
+require(date)
+require(r4ss)
+require(xtable)   ## For tables which can be inserted into latex docs with knitr
+require(PBSmapping)
+require(maps)
+require(coda)
+require(gtools)
+require(dplyr)
+## Load all R code and the model outputs
+load.Rdata <- readline(prompt = "Load .Rdata? [y/n] ")
+if(load.Rdata == "y") {
+  rm(list=ls(all=TRUE))
+  load("../../../doc/r/.RData")
+}
+## Load the model-partest which was previously run for the base model.
+## This object takes a very long time to build so it is stored in binary
+##  on its own.
+#load("../../../doc/r/model-partest.RData")
+
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[Hake Data]{2016 Pacific Hake Assessment: Sensitivities and Retrospectives}
+\author[Hicks]{Pacific Hake JTC}
+%\institute{}
+\date{{\footnotesize SRG meeting -- 2016}}
+
+\begin{document}
+
+\frame[plain]{
+\titlepage
+}
+
+%\section[Outline]{}
+%\frame{\tableofcontents}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+%\titlepage
+\frametitle{Other Sources of Uncertainty}
+\begin{itemize}
+  \item Sensitivities
+        \begin{enumerate}
+        \item K-S stratified kriging method without extrapolation
+        \item Include age-1 survey index as an additional source of information
+        \item Assume no cohort-based ageing error (i.e., time invariant ageing error)
+        \item Consideration of alternative maximum age assumptions for estimating selectivity
+        \item Standard key sensitivities
+              \begin{enumerate}
+              \item Natural Mortality: prior SD (0.2, 0.3)
+              \item Steepness: prior mean (0.5) and fixed value (1.0)
+              \item Sigma-R: fixed value (1.0, 2.0)
+              \end{enumerate}
+        \end{enumerate}
+  \item Retrospectives
+        \begin{enumerate}
+        \item Standard: -5 years
+        \item Cohort determination ('squid plots'): -16 years
+        \item Historical assessments: - 25 years
+        \end{enumerate}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Survey Alternatives: Biomass}
+\begin{center}
+<<biomass.alternative.2>>=
+oldpar <- par()
+par(mar = c(2.6, 3.1, 1.1, 1.1))
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
+                     subplots = 2,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
+                     end.yr = end.yr)                            
+par <- oldpar 
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Survey Alternatives: Survey Fit}
+\begin{center}
+<<survey.alternative.2>>=
+oldpar <- par()
+par(mar = c(2.6, 3.1, 1.1, 1.1))
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
+                     subplots = 11,
+                     legendloc = "bottomright",
+                     indexPlotEach=T,
+                     indexfleets = c(2,2,2,2),
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
+                     end.yr = end.yr)                            
+par <- oldpar 
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Survey Alternatives: Recruit Devs}
+\begin{center}
+<<recruit.alternative.2>>=
+oldpar <- par()
+par(mar = c(2.6, 3.1, 1.1, 1.1))
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
+                     subplots = 9,
+                     legendloc = "topleft",
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
+                     end.yr = end.yr)                            
+par <- oldpar 
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Survey Alternatives: Recruit Devs 2014}
+\begin{center}
+<<recruit2014.alternative.2>>=
+sens.density.yr <- last.data.yr - 1
+sens.density.names <- c(paste0("Late_RecrDev_",sens.density.yr))
+oldpar <- par()
+par(mar = c(2.6, 3.1, 1.1, 1.1))
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
+                     subplots = 14,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
+                     legendloc = "topleft",
+                     densitynames = sens.density.names,
+                     ##indexfleets = c(2,2,2,2),
+                     indexPlotEach = TRUE,
+                     end.yr = end.yr)
+mtext("Catch (thousand t)", side = 1, line = 1, outer = TRUE)
+par <- oldpar                           
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Ageing Error: Biomass}
+\begin{center}
+<<ageing.error.1>>=
+oldpar <- par()
+par(mar = c(2.6, 3.1, 1.1, 1.1))
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.4)],
+                     subplots = 2,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
+                     end.yr = end.yr)                            
+par <- oldpar 
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Ageing Error: Recruit Devs}
+\begin{center}
+<<ageing.error.2>>=
+oldpar <- par()
+par(mar = c(2.6, 3.1, 1.1, 1.1))
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.4)],
+                     subplots = 10,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
+                     end.yr = end.yr)                            
+par <- oldpar 
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%\section[Outline]{}
+%\frame{\tableofcontents}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
