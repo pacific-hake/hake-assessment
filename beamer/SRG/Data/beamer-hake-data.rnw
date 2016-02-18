@@ -4,7 +4,7 @@
 %\documentclass[notes]{beamer}
 \documentclass[aspectratio=169]{beamer}
 \mode<presentation>
-\usetheme{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
+\usetheme[compress]{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
 %\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
 
 %\usefonttheme{serif}
@@ -158,7 +158,8 @@ load("../../../doc/r/model-partest.RData")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Catches}
+\section[Catches]{Catches}
+\subsection{Catch history}
 \frame{\frametitle{Catches}
   <<catches>>=
     make.catches.plot(catches, leg.y.loc = 500, leg.cex = 0.7)
@@ -167,7 +168,7 @@ load("../../../doc/r/model-partest.RData")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Fleets}
+\subsection{Fleets and allocations}
 \frame{\frametitle{Fleets and allocations}
   The \Sexpr{end.yr-1} TAC of \Sexpr{last.year.tac} was split between the U.S. and Canada fleets as follows:
   \bi
@@ -189,7 +190,7 @@ load("../../../doc/r/model-partest.RData")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Catch by country}
+\subsection{Catch by country}
 \frame{\frametitle{Catch by country}
   \begin{columns}
     \begin{column}[t]{0.5\linewidth}
@@ -201,9 +202,9 @@ load("../../../doc/r/model-partest.RData")
           \item Shoreside        -- \Sexpr{last.year.can.shore} t   (\Sexpr{paste0(last.year.can.shore.percent, "\\%")})
           \item Joint venture    -- \Sexpr{last.year.can.jv} t      (\Sexpr{paste0(last.year.can.jv.percent, "\\%")})
         \ei
+        \item This was the second year in which the Freezer trawlers caught more than the Shoreside vessels.
         \item Total Canadian catch -- \Sexpr{last.year.can.landings} t
         \item \Sexpr{paste0(last.year.can.attained, "\\%")} of the Canadian quota was caught.
-        \item This was the second year in which the Freezer trawlers caught more than the Shoreside vessels.
       \ei
     \end{column}
     \begin{column}[t]{0.5\linewidth}
@@ -222,6 +223,24 @@ load("../../../doc/r/model-partest.RData")
       \ei
     \end{column}
   \end{columns}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section[Depths]{Depths}
+\subsection{U.S.}
+\frame{\frametitle{U.S. at-sea catch depth distribution}
+  \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/fishDepthsUS}
+
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Canada}
+\frame{\frametitle{Canada catch depth distribution}
+  \begin{center}
+    \includegraphics[width=3in, height=3in]{../../../doc/main-figures/can-bottom-depths}
+  \end{center}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
