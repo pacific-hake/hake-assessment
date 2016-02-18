@@ -1,0 +1,133 @@
+%\documentclass[handout,xcolor=pdftex,dvipsnames,table]{beamer}
+%\documentclass[draft]{beamer}
+%\documentclass[notesonly]{beamer}
+%\documentclass[notes]{beamer}
+\documentclass[aspectratio=169]{beamer}
+\mode<presentation>
+\usetheme{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
+%\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
+
+%\usefonttheme{serif}
+% font themes: default, professionalfonts, serif, structurebold, structureitalicserif, structuresmallcapsserif
+
+\usepackage{graphicx}
+\usepackage{pgf}
+\usepackage{array}
+%\usepackage{beamerarticle}
+%\usepackage{enumitem}
+%\usepackage{beamerthemesplit}
+
+% pdf is displayed in full screen mode automatically
+%\hypersetup{pdfpagemode=FullScreen}
+
+%\setbeamersize{sidebar width left=0.05in}
+\setbeamersize{text margin left=0.1in}
+\setbeamersize{text margin right=0.1in}
+
+\setbeamertemplate{title page}
+{
+\includegraphics[height=0.5in]{../../images/NOAA.eps}
+\hfill
+\includegraphics[height=0.5in]{../../images/DFO.eps}
+\vskip0pt plus 1filll
+\begin{center}
+{\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\
+\vskip22pt
+\insertauthor
+\vskip22pt
+\insertdate
+\end{center}
+\vskip0pt plus 1filll
+}
+
+%\setbeamertemplate{footline}
+%{
+%\begin{beamercolorbox}[wd=.05\paperwidth,ht=0ex,dp=0ex,left]{framenumber in head/foot}%
+%\insertframenumber/\inserttotalframenumber
+%\end{beamercolorbox}%
+%}
+
+\newcounter{saveenumi}
+
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bn}{\begin{enumerate}}
+\newcommand{\en}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+
+%% <<echo=TRUE,  message=TRUE, results='show', warning=TRUE>>=
+%% opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
+%%                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
+%%                results='show', cache=TRUE, cache.path='knitr-cache/')
+<<off-we-go, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
+rm(list=ls(all=TRUE))
+opts_chunk$set(dev = 'cairo_ps', fig.path = 'knitr-cache/', fig.dpi = 300, fig.width = 6,
+               fig.height = 4, out.width = '6in', out.height = '3in', echo = FALSE,
+               results = FALSE, message = FALSE, warning = FALSE,
+               results = 'hide', cache = TRUE, cache.path = 'knitr-cache/')
+
+## Load your R environment here. When you do this, you will need to
+## put the require or library statements that the functions use because the
+## saved environment does not save the libraries as well.
+require(nwfscSurvey)
+require(nwfscMapping)
+require(date)
+require(r4ss)
+require(xtable)   ## For tables which can be inserted into latex docs with knitr
+require(PBSmapping)
+require(maps)
+require(coda)
+require(gtools)
+require(dplyr)
+## Load all R code and the model outputs
+load("../../../doc/r/.RData")
+## Load the model-partest which was previously run for the base model.
+## This object takes a very long time to build so it is stored in binary
+##  on its own.
+load("../../../doc/r/model-partest.RData")
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[Hake Sensitivities]{Sensitivities explored in the \Sexpr{assess.yr} Pacific Hake stock assessment}
+\author[Berger]{Aaron M. Berger\\JTC}
+%\institute{}
+\date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
+
+\begin{document}
+
+\frame[plain]{
+\titlepage
+}
+
+\section{List of sensitivities}
+\frame{\frametitle{List of sensitivities}
+  \bi
+    \item Change the external analysis used to develop the age-2+ input survey biomass index time- 4
+      series from an approach of using the K-S stratified kriging method with extrapolation to 5
+      using the K-S stratified kriging method without extrapolation.
+    \item Include the age-1 survey index as an additional source of information.
+    \item Assume no cohort-based ageing error (i.e., time invariant ageing error).
+    \item Consideration of alternative maximum age assumptions for estimating selectivity.
+    \item Consideration of a higher standard deviation on the prior distribution for natural mortality.
+    \item Assume higher or lower variation about the stock-recruitment curve $\sigma_r$.
+    \item Consideration of alternative values for steepness.
+  \ei
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Biomass sensitivities for alternate survey method and addition of age-1 index}
+\begin{center}
+<<biomass.base.alternative.2>>=
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
+                     subplots = 2,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
+                     end.yr = end.yr)
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

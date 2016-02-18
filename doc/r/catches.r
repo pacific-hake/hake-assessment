@@ -71,7 +71,8 @@ make.catches.table <- function(catches,              ## The output of the load.c
 }
 
 make.catches.plot <- function(catches,
-                              leg.y.loc = 430  ## Y-based location to place the legend
+                              leg.y.loc = 430, ## Y-based location to place the legend
+                              leg.cex = 1      ## Text size for legend
                               ){
   ## Plot the catches in a stacked-barplot with legend
   years <- catches$Year
@@ -92,7 +93,7 @@ make.catches.plot <- function(catches,
   legend(x=0,y=leg.y.loc,
          c("Canadian Foreign","Canadian Joint-Venture","Canadian Shoreside","Canadian Freezer Trawl",
            "U.S. Foreign","U.S. Joint-Venture","U.S. MS","U.S. CP","U.S. Shore-based")[legOrder],
-         bg = "white",horiz=FALSE,xpd=NA,cex=1,ncol=3,fill=cols[legOrder],border=cols[legOrder],bty="n")
+         bg = "white",horiz=FALSE,xpd=NA,cex=leg.cex,ncol=3,fill=cols[legOrder],border=cols[legOrder],bty="n")
   par <- oldpar
 }
 
