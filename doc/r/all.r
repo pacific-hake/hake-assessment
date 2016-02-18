@@ -557,13 +557,21 @@ last.year.can.carryover <- fmt0(filter(further.tac, Year == last.data.yr)$can.ca
 last.year.can.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANATTAIN), 1)   # the percentage
 last.year.can.landings <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal))
 last.year.can.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACCAN)
+last.year.can.tac.jv <- fmt0(filter(further.tac, Year == last.data.yr)$can.jv.tac)
+last.year.can.shoreside.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACCAN - filter(further.tac, Year == last.data.yr)$can.jv.tac)
+
 latest.year.can.jv <- max(filter(catches, CAN_JV > 0)$Year)  # latest year of JV in Canada
 last.year.can.shore <- fmt0(filter(catches, Year == last.data.yr)$CAN_Shoreside)
 last.year.can.freezer <- fmt0(filter(catches, Year == last.data.yr)$CAN_FreezeTrawl)
+last.year.can.jv <- fmt0(filter(catches, Year == last.data.yr)$CAN_JV)
 last.year.can.shore.percent <- fmt0(filter(catches, Year == last.data.yr)$CAN_Shoreside /
-                                    as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal) * 100.0, 1)
+                                       (landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACCAN - filter(further.tac, Year == last.data.yr)$can.jv.tac)
+                                        * 100.0, 1)
 last.year.can.freezer.percent <- fmt0(filter(catches, Year == last.data.yr)$CAN_FreezeTrawl /
-                                      as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal) * 100.0, 1)
+                                       (landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACCAN - filter(further.tac, Year == last.data.yr)$can.jv.tac)
+                                        * 100.0, 1)
+last.year.can.jv.percent <- fmt0(filter(catches, Year == last.data.yr)$CAN_JV /
+                                                                      filter(further.tac, Year == last.data.yr)$can.jv.tac * 100.0, 1)
 years.Can.JV.catch.eq.0.recent = years.Can.JV.catch.eq.0(catches)
 
 ## Survey values
