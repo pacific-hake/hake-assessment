@@ -65,7 +65,7 @@
 <<off-we-go, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
 rm(list=ls(all=TRUE))
 opts_chunk$set(dev = 'cairo_ps', fig.path = 'knitr-cache/', fig.dpi = 300, fig.width = 6,
-               fig.height = 4, out.width = '6in', echo = FALSE, #out.height = '3in', 
+               fig.height = 4, out.width = '6in', out.height = '3in', echo = FALSE, # 
                results = FALSE, message = FALSE, warning = FALSE,
                results = 'hide', cache = TRUE, cache.path = 'knitr-cache/')
 
@@ -98,7 +98,7 @@ if(load.Rdata == "y") {
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title[Hake Data]{2016 Pacific Hake Assessment: Sensitivities and Retrospectives}
-\author[Hicks]{Pacific Hake JTC}
+\author[Berger]{Aaron M. Berger\\JTC}
 %\institute{}
 \date{{\footnotesize SRG meeting -- 2016}}
 
@@ -147,13 +147,13 @@ if(load.Rdata == "y") {
 \begin{center}
 <<biomass.alternative.2>>=
 oldpar <- par()
-par(mar = c(2.6, 3.1, 1.1, 1.1))
+par(mar = c(4.5, 4.1, 1.5, 1.1))
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
                      subplots = 2,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
                      end.yr = end.yr)                            
-par <- oldpar 
 @
+par <- oldpar
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -164,7 +164,7 @@ par <- oldpar
 \begin{center}
 <<survey.alternative.2>>=
 oldpar <- par()
-par(mar = c(2.6, 3.1, 1.1, 1.1))
+par(mar = c(4.5, 4.1, 1.5, 1.1))
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
                      subplots = 11,
                      legendloc = "bottomright",
@@ -184,7 +184,7 @@ par <- oldpar
 \begin{center}
 <<recruit.alternative.2>>=
 oldpar <- par()
-par(mar = c(2.6, 3.1, 1.1, 1.1))
+par(mar = c(4.5, 4.1, 1.5, 1.1))
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
                      subplots = 9,
                      legendloc = "topleft",
@@ -204,7 +204,7 @@ par <- oldpar
 sens.density.yr <- last.data.yr - 1
 sens.density.names <- c(paste0("Late_RecrDev_",sens.density.yr))
 oldpar <- par()
-par(mar = c(2.6, 3.1, 1.1, 1.1))
+par(mar = c(4.5, 3.1, 1.5, 1.1))
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
                      subplots = 14,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
@@ -226,7 +226,7 @@ par <- oldpar
 \begin{center}
 <<ageing.error.1>>=
 oldpar <- par()
-par(mar = c(2.6, 3.1, 1.1, 1.1))
+par(mar = c(4.5, 4.1, 1.5, 1.1))
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.4)],
                      subplots = 2,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
@@ -243,9 +243,10 @@ par <- oldpar
 \begin{center}
 <<ageing.error.2>>=
 oldpar <- par()
-par(mar = c(2.6, 3.1, 1.1, 1.1))
+par(mar = c(4.5, 4.1, 1.5, 1.1))
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.4)],
                      subplots = 10,
+                     legendloc = "topleft",
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
                      end.yr = end.yr)                            
 par <- oldpar 
