@@ -4,7 +4,7 @@
 %\documentclass[notes]{beamer}
 \documentclass[aspectratio=169]{beamer}
 \mode<presentation>
-\usetheme{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
+\usetheme[compress]{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
 %\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
 
 %\usefonttheme{serif}
@@ -13,10 +13,13 @@
 \usepackage{graphicx}
 \usepackage{pgf}
 \usepackage{array}
-
+\usepackage{tabularx}
+\usepackage{booktabs}          %% Used in risk tables
+\usepackage{multirow}          %% Used in decision tables
 %\usepackage{beamerarticle}
 %\usepackage{enumitem}
 %\usepackage{beamerthemesplit}
+\usepackage[T1]{fontenc}  %to use < or > in tables
 
 % pdf is displayed in full screen mode automatically
 %\hypersetup{pdfpagemode=FullScreen}
@@ -101,6 +104,7 @@ if(load.Rdata == "y") {
 \author[Berger]{Aaron M. Berger\\JTC}
 %\institute{}
 \date{{\footnotesize SRG meeting -- 2016}}
+\subtitle{\tiny Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy}
 
 \begin{document}
 
@@ -112,7 +116,7 @@ if(load.Rdata == "y") {
 %\frame{\tableofcontents}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\section{Overview}
 \begin{frame}
 %\titlepage
 \frametitle{Other Sources of Uncertainty}
@@ -142,6 +146,7 @@ if(load.Rdata == "y") {
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
+\section{MLE va MCMC}
 \begin{frame}
 \frametitle{MLE vs MCMC}
 \begin{center}
@@ -151,28 +156,6 @@ if(load.Rdata == "y") {
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{frame}
-%\frametitle{MLE vs MCMC}
-%\begin{columns}
-%  \begin{column}{0.33\textwidth}
-%      <<mle.mcmc.1, out.width='.95\\columnwidth'>>=
-%    	make.mcmc.vs.mle.plot(base.model,
-%                      end.yr = end.yr,
-%                      subplot = 2)
-%    @ 
-%  \end{column}
-%  \begin{column}{0.66\textwidth}
-%    <<mle.mcmc.2, out.width='.95\\columnwidth'>>=
-%    	make.mcmc.vs.mle.plot(base.model,
-%                      end.yr = end.yr,
-%                      type = "o",
-%                      subplot = 8)
-%	  @
-%  \end{column}
-%\end{columns}
-%%%%%%%%%%%%%%%%%%%%%%%
-                      
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{MLE vs MCMC: Biomass}
@@ -204,10 +187,20 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Sensitivity Table - MLE}
-\begin{center}
-\includegraphics[width=5.5in, height=3.5in]{../../../doc/main-figures/SensTable1}
+%\begin{center}
+%\includegraphics[width=5.5in, height=3.5in]{../../../doc/main-figures/SensTable1}
+    <<main.parameter.estimates.sens.2, results='asis', echo=FALSE>>=
+      make.short.parameter.estimates.sens.table(sens.models.2.for.table,
+                                          model.names = sens.model.names.2.for.table,
+                                          posterior.regex = key.posteriors,
+                                          end.yr = end.yr,
+                                          digits = 3,
+                                          xcaption <- NULL,
+                                          xlabel <- "tab:main-parameter-estimates-sens-2",
+                                          font.size = 2,
+                                          space.size = 4)   
 @
-\end{center}
+%\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
  
