@@ -255,6 +255,166 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Maximum Age Full Selectivity: Biomass}
+\begin{center}
+<<selectivity.1>>=
+oldpar <- par()
+par(mar = c(4.5, 4.1, 1.5, 1.1))
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.3)],
+                     subplots = 2,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.3),
+                     end.yr = end.yr)                           
+par <- oldpar 
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Maximum Age Full Selectivity: Estimates}
+\begin{center}
+<<selectivity.2>>=
+oldpar <- par()
+par(mar = c(2.1, 2.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
+layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
+make.selex.plot(base.model, pan.letter = "6")
+make.selex.plot(models[[sens.model.inds.3[1]]], pan.letter = "5")
+make.selex.plot(models[[sens.model.inds.3[2]]], pan.letter = "7")
+make.selex.plot(models[[sens.model.inds.3[3]]], pan.letter = "12")                           
+par <- oldpar 
+mtext("Age", side = 1, line = 1, outer = TRUE)
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%   
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Key Sensitivities: Biomass}
+\begin{center}
+<<keyselect.1>>=
+oldpar <- par()
+par(mar = c(4.5, 4.1, 1.5, 1.1))
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
+                     subplots = 2,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
+                     end.yr = end.yr)                           
+par <- oldpar 
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Key Sensitivities: Status}
+\begin{center}
+<<keyselect.2>>=
+oldpar <- par()
+par(mar = c(4.5, 4.1, 1.5, 1.1))
+make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
+                     subplots = 4,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
+                     end.yr = end.yr)                           
+par <- oldpar 
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Retrospective: Biomass}
+\begin{center}
+<<retro.1>>=
+oldpar <- par()
+par(mar = c(4.5, 4.1, 1.5, 1.1))
+make.comparison.plot(retro.list,
+                     subplots = 2,
+                     model.names = retro.model.names,
+                     legend = FALSE,
+                     is.retro = TRUE)
+par <- oldpar 
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Retrospective: Recruitment}
+\begin{center}
+<<retro.2>>=
+oldpar <- par()
+par(mar = c(4.5, 4.1, 1.5, 1.1))
+make.comparison.plot(retro.list,
+                     subplots = 8,
+                     model.names = retro.model.names,
+                     legend = TRUE,
+                     legendloc = "topleft",
+                     is.retro = TRUE)
+par <- oldpar 
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Retrospective: squid}
+\begin{center}
+<<retro.3>>=
+oldpar <- par()
+par(mar = c(4.5, 4.1, 1.5, 1.1))
+plot.retro.yrs <- retro.yrs
+retro.cohorts <- 1999:2014
+retro.list <- list(base.model)
+for(i in plot.retro.yrs){
+  retro.list[[i + 1]] <- base.model$retros[[i]]
+}
+make.squid.plot(retro.list,
+                subplot = 1,
+                cohorts = retro.cohorts)                          
+par <- oldpar 
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Sensitivity Table}
+\begin{center}
+\includegraphics[width=5.5in, height=3in]{../../../doc/main-figures/SensTable1}
+%\includegraphics[scale=1]{Figures/pastManagement.eps} % width=\maxwidth,
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Sensitivity Table}
+\begin{center}
+\includegraphics[width=5.5in, height=3.5in]{../../../doc/main-figures/SensTable2}
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Sensitivity Table}
+\begin{center}
+\includegraphics[width=5.5in, height=3in]{../../../doc/main-figures/CompareMLE_MCMC}
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 %\section[Outline]{}
 %\frame{\tableofcontents}
 
@@ -262,3 +422,10 @@ par <- oldpar
 
 \end{document}
 
+
+%\subsection{Canada}
+%\frame{\frametitle{Canada catch depth distribution}
+%  \begin{center}
+%    \includegraphics[width=3in, height=3in]{../../../doc/main-figures/can-bottom-depths}
+%  \end{center}
+%}
