@@ -126,7 +126,8 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Background}
+\section{Introduction}
+\subsection{Background}
 \frame{\frametitle{Past management: Total Allowable Catch}
 \begin{columns}
   \begin{column}{0.48\textwidth}
@@ -146,38 +147,119 @@
 \end{columns}
 }
 
+%---------------------------------------------------------------
+
 \frame{\frametitle{Past management: Performance}
-  \bc
+  \begin{columns}
+    \begin{column}{0.28\textwidth}
+      \bi
+        \item Fishing intensity has mostly remained below target
+        \item Biomass has mostly remained above target
+        \item When biomass goes below target, the fishing intesity typically decreases
+      \ei
+    \end{column}
+    \begin{column}{0.68\textwidth}
+    \bc
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=0.7\columnwidth]{knitr-cache/main_phase-1} 
+\includegraphics[width=0.9\columnwidth]{knitr-cache/main_phase-1} 
 
 \end{knitrout}
-  \ec
+    \ec
+    \end{column}
+  \end{columns}
+}
+
+\subsection{Methods}
+\frame{\frametitle{Methods}
+  \bi
+    \item Forecasts are for 2016, 2017, and 2018
+    \bi
+      \item Average fishery selectivity from 2011--2015 used in forecasts
+      \item Mean weight-at-age used
+      \item Used for default catch limit calculations
+    \ei
+    \item Equilibrium calculations
+    \bi
+      \item Base selectivity (used for years before 1991 as well)
+      \item Mean weight-at-age
+      \item Used for $B_0$, $F_{spr}$, $MSY$, etc. 
+    \ei
+    \item Catch streams presented for some specific cases
+    \bi \item We welcome input for additional catch streams \ei
+  \ei
 }
 
 
-%---------------------------------------------------------------
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Forecasts}
+\subsection{Two year forecasts}
 \frame{\frametitle{Harvest rule predicted catch for 2016}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-    	\item Forecasted 2016 TAC is 804,399 t
-      \bi
-        \item 2.5\% and 97.5\% quantiles: 282,653 and 1,852,960
-        \item $F_{SPR=40\%}$ harvest reate with no 40:10 adjustment
-      \ei
+      \item Using the defined $F_{SPR=40\%}$ harvest rate $F_{SPR=40\%}$ harvest reate with a 40:10 adjustment the median forecasted 2016 TAC is  
+      \smallskip
+      \bc {\bf 804,399 t} \ec
+      \smallskip
+      \item 2.5\% and 97.5\% quantiles:\\ 282,653 and 1,852,960 t
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=.95\columnwidth]{knitr-cache/main_projected_catch_density-1} 
+\includegraphics[width=.95\columnwidth]{knitr-cache/main_projected_catch_density_2016-1} 
 
 \end{knitrout}
   \end{column}
 \end{columns}
 }
+
+
+\frame{\frametitle{Harvest rule predicted catch for 2017}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item Using the defined $F_{SPR=40\%}$ harvest rate $F_{SPR=40\%}$ harvest reate with a 40:10 adjustment 
+      \item for 2016 and 2017, the median forecasted 2017 TAC is  
+      \smallskip
+      \bc {\bf 884,485 t} \ec
+      \smallskip
+      \item 2.5\% and 97.5\% quantiles:\\ 314,086 and 2,965,358 t
+    \ei
+  \end{column}
+  \begin{column}{0.59\textwidth}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=.95\columnwidth]{knitr-cache/main_projected_catch_density_2017-1} 
+
+\end{knitrout}
+  \end{column}
+\end{columns}
+}
+
+\subsection{}
+\frame{\frametitle{Two year forecasts}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item 
+    \ei
+  \end{column}
+  \begin{column}{0.59\textwidth}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=.95\columnwidth]{knitr-cache/main_forecast_depletion_comparison_plot-1} 
+
+\end{knitrout}
+  \end{column}
+\end{columns}
+}
+
+
+
+
+
 
 \end{document}

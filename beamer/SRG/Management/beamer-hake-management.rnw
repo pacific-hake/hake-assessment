@@ -107,7 +107,8 @@ if(load.Rdata == "y") {
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Background}
+\section{Introduction}
+\subsection{Background}
 \frame{\frametitle{Past management: Total Allowable Catch}
 \begin{columns}
   \begin{column}{0.48\textwidth}
@@ -130,35 +131,116 @@ if(load.Rdata == "y") {
 %---------------------------------------------------------------
 
 \frame{\frametitle{Past management: Performance}
-  \bc
-  <<main.phase, out.width='0.7\\columnwidth'>>=
-    make.phase.plot(base.model, start.yr = start.yr, end.yr = end.yr, color = "blue")
-  @
-  \ec
+  \begin{columns}
+    \begin{column}{0.28\textwidth}
+      \bi
+        \item Fishing intensity has mostly remained below target
+        \item Biomass has mostly remained above target
+        \item When biomass goes below target, the fishing intesity typically decreases
+      \ei
+    \end{column}
+    \begin{column}{0.68\textwidth}
+    \bc
+    <<main.phase, out.width='0.9\\columnwidth'>>=
+      make.phase.plot(base.model, start.yr = start.yr, end.yr = end.yr, color = "blue")
+    @
+    \ec
+    \end{column}
+  \end{columns}
+}
+
+\subsection{Methods}
+\frame{\frametitle{Methods}
+  \bi
+    \item Forecasts are for 2016, 2017, and 2018
+    \bi
+      \item Average fishery selectivity from 2011--2015 used in forecasts
+      \item Mean weight-at-age used
+      \item Used for default catch limit calculations
+    \ei
+    \item Equilibrium calculations
+    \bi
+      \item Base selectivity (used for years before 1991 as well)
+      \item Mean weight-at-age
+      \item Used for $B_0$, $F_{spr}$, $MSY$, etc. 
+    \ei
+    \item Catch streams presented for some specific cases
+    \bi \item We welcome input for additional catch streams \ei
+  \ei
 }
 
 
-%---------------------------------------------------------------
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Forecasts}
+\subsection{Two year forecasts}
 \frame{\frametitle{Harvest rule predicted catch for 2016}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-    	\item Forecasted 2016 TAC is \Sexpr{fmt0(median(base.model$mcmc$ForeCatch_2016))} t
-      \bi
-        \item 2.5\% and 97.5\% quantiles: \Sexpr{fmt0(quantile(base.model$mcmc$ForeCatch_2016,probs=0.025))} and \Sexpr{fmt0(quantile(base.model$mcmc$ForeCatch_2016,probs=0.975))}
-        \item $F_{SPR=40\%}$ harvest reate with no 40:10 adjustment
-      \ei
+      \item Using the defined $F_{SPR=40\%}$ harvest rate $F_{SPR=40\%}$ harvest reate with a 40:10 adjustment the median forecasted 2016 TAC is  
+      \smallskip
+      \bc {\bf \Sexpr{fmt0(median(base.model$mcmc$ForeCatch_2016))} t} \ec
+      \smallskip
+      \item 2.5\% and 97.5\% quantiles:\\ \Sexpr{fmt0(quantile(base.model$mcmc$ForeCatch_2016,probs=0.025))} and \Sexpr{fmt0(quantile(base.model$mcmc$ForeCatch_2016,probs=0.975))} t
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
-    <<main.projected.catch.density, out.width='.95\\columnwidth'>>=
-			make.forecast.catch.posterior.plot(base.model, fore.yr = end.yr)
-	  @
+    <<main.projected.catch.density.2016, out.width='.95\\columnwidth'>>=
+      make.forecast.catch.posterior.plot(base.model, fore.yr = end.yr)
+    @
   \end{column}
 \end{columns}
 }
 
+
+\frame{\frametitle{Harvest rule predicted catch for 2017}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item Using the defined $F_{SPR=40\%}$ harvest rate $F_{SPR=40\%}$ harvest reate with a 40:10 adjustment 
+      \item for 2016 and 2017, the median forecasted 2017 TAC is  
+      This shoudl be conditioned on a catch of 804,399 frm 2016
+      *******************
+      \smallskip
+      \bc {\bf \Sexpr{fmt0(median(base.model$mcmc$ForeCatch_2017))} t} \ec
+      \smallskip
+      \item 2.5\% and 97.5\% quantiles:\\ \Sexpr{fmt0(quantile(base.model$mcmc$ForeCatch_2017,probs=0.025))} and \Sexpr{fmt0(quantile(base.model$mcmc$ForeCatch_2017,probs=0.975))} t
+    \ei
+  \end{column}
+  \begin{column}{0.59\textwidth}
+    <<main.projected.catch.density.2017, out.width='.95\\columnwidth'>>=
+      make.forecast.catch.posterior.plot(base.model, fore.yr = end.yr+1)
+    @
+  \end{column}
+\end{columns}
+}
+
+\subsection{}
+\frame{\frametitle{Two year forecasts}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item 
+    \ei
+  \end{column}
+  \begin{column}{0.59\textwidth}
+    <<main.forecast.depletion.comparison.plot, out.width='.95\\columnwidth'>>=
+    ## Look at catch.levels and catch.levels.names to decide which to include here
+    ## models.inds are the indices of those forecast models which will be plotted against each other
+    models.inds <- c(1, 2, 3, 4)
+    models.names <- catch.levels.names[models.inds]
+    make.forecast.depletion.comparison.plot(base.model,
+                                            models.inds,
+                                            models.names,
+                                            start.yr = 2009,
+                                            model.end.yr = end.yr,
+                                            end.yr = forecast.yrs[length(forecast.yrs)],
+                                            legend.loc = "topleft")
+    @
+  \end{column}
+\end{columns}
+}
 
 
 
