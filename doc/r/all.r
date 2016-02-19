@@ -192,6 +192,8 @@ bridge.model.names.3 <- c("Base model pretune",
                           "Adjust bias ramp",
                           "Change survey comp weights",
                           "Change all comp weights")
+                          
+
 
 ## Bridge model indices are used to tell knitr which elements of the models list are to
 ## be plotted together.
@@ -246,24 +248,35 @@ sens.model.names.3 <- c("Max. age of selectivity 5",
                         "Max. age of selectivity 7",
                         "Max. age of selectivity 12")
 
+sens.model.dir.names.4<- "53_Sensbase_AgeError_noCohort_update"
+sens.model.names.4 <- "No cohort ageing error"
+
+                        
+  
+
 ## Sensitivity model indices are used to tell knitr which elements of the models list are to
 ## be plotted together.
 sens.model.inds.1 <- grep(paste(sens.model.dir.names.1, collapse = "|"), models.dir.list)
 sens.model.inds.2 <- grep(paste(sens.model.dir.names.2, collapse = "|"), models.dir.list)
 sens.model.inds.3 <- grep(paste(sens.model.dir.names.3, collapse = "|"), models.dir.list)
+sens.model.inds.4 <- grep(paste(sens.model.dir.names.4, collapse = "|"), models.dir.list)
 if((length(sens.model.inds.1) != length(sens.model.dir.names.1)) |
    (length(sens.model.inds.2) != length(sens.model.dir.names.2)) |
-   (length(sens.model.inds.3) != length(sens.model.dir.names.3))){
+   (length(sens.model.inds.3) != length(sens.model.dir.names.3)) |
+   (length(sens.model.inds.4) != length(sens.model.dir.names.4))){
   stop("One or more of the sensitivity model directory names were not found. Check the names and try again. Directory names listed in all.r are:\n",
        paste0(sens.model.dir.names.1, "\n"),
        "\n",
        paste0(sens.model.dir.names.2, "\n"),
        "\n",
-       paste0(sens.model.dir.names.3, "\n"))
+       paste0(sens.model.dir.names.3, "\n"),
+       "\n",
+       paste0(sens.model.dir.names.4, "\n"))
 }
 if((length(sens.model.names.1) != length(sens.model.dir.names.1)) |
    (length(sens.model.names.2) != length(sens.model.dir.names.2)) |
-   (length(sens.model.names.3) != length(sens.model.dir.names.3))){
+   (length(sens.model.names.3) != length(sens.model.dir.names.3)) |
+   (length(sens.model.names.4) != length(sens.model.dir.names.4))){
   stop("One of the sens.model.names vectors in all.r has a different length than its sens.model.dir.names counterpart. Make sure these two vectors match in length and try again.\n")
 }
 
@@ -524,6 +537,8 @@ last.year.landings <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% 
 last.year.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TAC)
 last.year.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$ATTAIN), 1)
 
+## US landings, TAC, and attainments
+last.year.us.landings <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$Ustotal))
 last.year.us.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
 last.year.us.not.attained <- fmt0(as.numeric(100 - landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
 last.year.us.not.attained.tonnes <- filter(landings.vs.tac, Year == last.data.yr)$TACUSA - filter(landings.vs.tac, Year == last.data.yr)$Ustotal
@@ -538,18 +553,38 @@ last.year.us.tribal.max.landed <- filter(further.tac, Year == last.data.yr)$us.t
 last.year.us.shore.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.shore.reallocated
 last.year.us.cp.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.cp.reallocated
 last.year.us.ms.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.ms.reallocated
+## Last year US catches by fleet
+last.year.us.research.catch <- filter(catches, Year == last.data.yr)$USresearch
+last.year.us.cp.catch <- filter(catches, Year == last.data.yr)$atSea_US_CP
+last.year.us.ms.catch <- filter(catches, Year == last.data.yr)$atSea_US_MS
+last.year.us.shore.catch <- filter(catches, Year == last.data.yr)$US_shore
+## Last year US percent of TAC caught by fleet
+last.year.us.research.catch.percent <- fmt0(last.year.us.research.catch / last.year.us.research * 100, 1)
+last.year.us.cp.catch.percent <- fmt0(last.year.us.cp.catch / last.year.us.cp.quota.reallocated * 100, 1)
+last.year.us.ms.catch.percent <- fmt0(last.year.us.ms.catch / last.year.us.ms.quota.reallocated * 100, 1)
+last.year.us.shore.catch.percent <- fmt0(last.year.us.shore.catch / last.year.us.shore.quota.reallocated * 100, 1)
+last.year.us.tribal.catch.percent <- fmt0(last.year.us.tribal.max.landed / last.year.us.tribal.quota.reallocated * 100, 1)
 
+## Last year Canadian catch and tac
 last.year.can.carryover <- fmt0(filter(further.tac, Year == last.data.yr)$can.carried.over)
 last.year.can.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANATTAIN), 1)   # the percentage
 last.year.can.landings <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal))
 last.year.can.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACCAN)
+last.year.can.tac.jv <- fmt0(filter(further.tac, Year == last.data.yr)$can.jv.tac)
+last.year.can.shoreside.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACCAN - filter(further.tac, Year == last.data.yr)$can.jv.tac)
+
 latest.year.can.jv <- max(filter(catches, CAN_JV > 0)$Year)  # latest year of JV in Canada
 last.year.can.shore <- fmt0(filter(catches, Year == last.data.yr)$CAN_Shoreside)
 last.year.can.freezer <- fmt0(filter(catches, Year == last.data.yr)$CAN_FreezeTrawl)
+last.year.can.jv <- fmt0(filter(catches, Year == last.data.yr)$CAN_JV)
 last.year.can.shore.percent <- fmt0(filter(catches, Year == last.data.yr)$CAN_Shoreside /
-                                    as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal) * 100.0, 1)
+                                       (landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACCAN - filter(further.tac, Year == last.data.yr)$can.jv.tac)
+                                        * 100.0, 1)
 last.year.can.freezer.percent <- fmt0(filter(catches, Year == last.data.yr)$CAN_FreezeTrawl /
-                                      as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal) * 100.0, 1)
+                                       (landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACCAN - filter(further.tac, Year == last.data.yr)$can.jv.tac)
+                                        * 100.0, 1)
+last.year.can.jv.percent <- fmt0(filter(catches, Year == last.data.yr)$CAN_JV /
+                                                                      filter(further.tac, Year == last.data.yr)$can.jv.tac * 100.0, 1)
 years.Can.JV.catch.eq.0.recent = years.Can.JV.catch.eq.0(catches)
 
 ## Survey values
