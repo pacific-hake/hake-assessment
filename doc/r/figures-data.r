@@ -91,3 +91,20 @@ make.cumulative.catch.plot <- function(d,   ## Data as found in the xxxx.catch.b
   }
   legend("topleft", legend = yrs, col = cols, lty = lty, lwd = lwd, cex = leg.cex)
 }
+
+make.age.comp.plot <- function(d,
+                               yrs = (year(now())-6):(year(now())-1), ## The years to show on the plot
+                               title = NULL,
+                               title.cex = 1, ## Title text size
+                               bg.col = "blue"){ ## Fill color for the bubble
+  ## This will make a plot of the ages comps found in the data a for the years given by yrs
+  d <- d[rownames(d) %in% yrs,]
+  plotBubbles(t(d),
+              dnam = TRUE,
+              ##xval = rownames(d),
+              bg = bg.col,
+              las = 1,
+              powr = 0.5,
+              size = 0.08,
+              main = title)
+}

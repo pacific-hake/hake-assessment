@@ -76,7 +76,7 @@ require(nwfscMapping)
 require(date)
 require(r4ss)
 require(xtable)   ## For tables which can be inserted into latex docs with knitr
-require(PBSmapping)
+require(PBSmodelling)
 require(maps)
 require(coda)
 require(gtools)
@@ -241,6 +241,26 @@ load("../../../doc/r/.RData")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section[AgeComps]{Age Comps}
+\subsection{Age comp comparison between fleets}
+\frame{\frametitle{Age composition - comparison between fleets}
+  <<age.comp.comparison>>=
+    oldpar <- par
+    par(mar=c(1.1, 1.1, 3.1, 1.1), oma=c(3.1, 3.1, 0, 0))
+    layout(matrix(c(1,2,3,4,5), nrow = 1, ncol = 5, byrow=TRUE))
+    make.age.comp.plot(can.shore.age, bg.col = "brown", title = "CAN\nShoreside")
+    make.age.comp.plot(can.ft.age, bg.col = "salmon", title = "CAN\nFreezerTrawl")
+    make.age.comp.plot(us.shore.age, bg.col = "blue", title = "US\nShoreside")
+    make.age.comp.plot(us.cp.age, bg.col = "royalblue", title = "US\nat-Sea CP")
+    make.age.comp.plot(us.ms.age, bg.col = "darkblue", title = "US\nat-Sea MS")
+    mtext("Year", side = 1, outer = TRUE, line = 2)
+    mtext("Age", side = 2, outer = TRUE, line = 2)
+    par <- oldpar
+  @
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section[Depths]{Depths}
 \subsection{U.S.}
 \frame{\frametitle{U.S. at-sea catch depth distribution}
@@ -252,9 +272,18 @@ load("../../../doc/r/.RData")
 
 \subsection{Canada}
 \frame{\frametitle{Canada catch depth distribution}
-  \begin{center}
-    \includegraphics[width=3in, height=3in]{../../../doc/main-figures/can-bottom-depths}
-  \end{center}
+  \begin{columns}
+    \begin{column}[t]{0.5\linewidth}
+      \begin{center}
+        \includegraphics[width=3in, height=2.5in]{../../../doc/main-figures/can-fishing-depths}
+      \end{center}
+    \end{column}
+    \begin{column}[t]{0.5\linewidth}
+      \begin{center}
+        \includegraphics[width=3in, height=2.5in]{../../../doc/main-figures/can-bottom-depths}
+      \end{center}
+    \end{column}
+  \end{columns}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
