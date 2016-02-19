@@ -53,7 +53,7 @@
 
 \usepackage{alltt}
 \mode<presentation>
-\usetheme{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
+\usetheme[compress]{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
 %\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
 
 %\usefonttheme{serif}
@@ -95,15 +95,20 @@
 \vskip22pt
 \insertdate
 \end{center}
+\vskip50pt
+\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
 \vskip0pt plus 1filll
 }
 
-%\setbeamertemplate{footline}
-%{
-%\begin{beamercolorbox}[wd=.05\paperwidth,ht=0ex,dp=0ex,left]{framenumber in head/foot}%
-%\insertframenumber/\inserttotalframenumber
-%\end{beamercolorbox}%
-%}
+\definecolor{pageCol}{rgb}{0.5,0.5,1.0}
+
+\setbeamertemplate{footline}
+{
+\begin{beamercolorbox}[wd=.05\paperwidth,ht=0ex,dp=0ex,left]{framenumber in head/foot}%
+\insertframenumber/\inserttotalframenumber
+\end{beamercolorbox}%
+}
+\setbeamercolor{footline}{fg=pageCol}
 
 \newcounter{saveenumi}
 
@@ -126,11 +131,14 @@
 \author[Hicks]{Allan C. Hicks\\JTC}
 %\institute{}
 \date{{\footnotesize SRG meeting -- 2016}}
+\subtitle{\tiny Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
 \frame[plain]{
 \titlepage
+%\vspace{1in}
+%{\tiny Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -252,7 +260,9 @@
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item 
+      \item Constant catch stream 440,000 t and less result in increases in spawning biomass
+      \item Catches based on harvest rule calculations result in decreases in spawning biomass
+      \item Unertainty is large and increases the farther it is forecasted
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -268,21 +278,49 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Decision Tables}
+\subsection{Intro}
+\frame{\frametitle{Decision Tables}
+  \bi
+    \item Two decision table formats
+    \bi
+      \item Quantiles from the posterior distribution for spawning biomass and fishing intensity
+      \item Median values when using lower, middle, and upper values of 2014 recruitment estimates
+    \ei
+    \item Catch streams
+    \bi
+      \item \textcolor{gray}{No fishing (zero catch)}
+      \item Constant catch of 180,000 t
+      \item \textcolor{gray}{Constant catch of 350,000 t}
+      \item Constant catch of 440,000 t (2015 TAC)
+      \item Fishing Intensity = 100\% in each year conditioned on fixed catch in previous year
+      \item Median default Harvest Rule in each year conditioned on fixed catch in previous year
+      \item \textcolor{gray}{Median catch in 2017 is the same as fixed catch in 2016}
+    \ei
+    \item More catch streams to be added as determined by SRG/AP/JMC
+  \ei
+}
+
 \subsection{Quantiles}
 \frame{\frametitle{Spawning Biomass}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item 
+      \item 2016 row is the same because it is beginning of the year
+      \item Median (50\%) increases for 440,000 t and less
+      \bi
+        \item stabilizing from 2017 to 2018 with 440,000 t
+      \ei
+      \item Lower 5\% quantile at target spawning biomass in 2016
+      \item 5\% quantile mostly stable with catch of 180,000 t
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
-% latex table generated in R 3.2.3 by xtable 1.8-2 package
-% Thu Feb 18 23:51:53 2016
+% latex table generated in R 3.2.2 by xtable 1.8-0 package
+% Fri Feb 19 15:53:00 2016
 \begin{table}[h]
 \centering
 \label{tab:es-decisions-spr}
-\begingroup\fontsize{9}{11}\selectfont
+{\fontsize{9}{11}\selectfont
 \begin{tabularx}{\textwidth}{|ccc|YYYYY|}
   \hline \multicolumn{3}{|c|}{Within model quantile} & 5\% & 25\% & 50\% & 75\% & 95\%  \\ \hline \multicolumn{3}{|c|}{Management Action} &\multicolumn{5}{c|}{\textbf{Beginning of year}}\\ \cline{1-3}  & Year & Catch (t) & \multicolumn{5}{c|}{\textbf{relative spawning biomass}} \\ \hline  b: & 2016 & 180,000 &  40\% &  58\% &  75\% &  99\% & 142\% \\ 
    & 2017 & 180,000 &  42\% &  62\% &  85\% & 120\% & 206\% \\ 
@@ -297,7 +335,7 @@
   default & 2017 & 889,918 &  29\% &  49\% &  72\% & 107\% & 193\% \\ 
   HR & 2018 & 785,036 &  15\% &  35\% &  64\% & 107\% & 214\% \\ 
    \hline \end{tabularx}
-\endgroup
+}
 \end{table}
 
 
@@ -310,16 +348,18 @@
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item 
+      \item Fishing Intensity is different for all years and rows because it accounts for catch that year
+      \item Less than 25\% probability above target with a catch of 440,000 t
+      \item Default harvest rate is slightly above the target fishing intensity
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
-% latex table generated in R 3.2.3 by xtable 1.8-2 package
-% Thu Feb 18 23:51:53 2016
+% latex table generated in R 3.2.2 by xtable 1.8-0 package
+% Fri Feb 19 15:53:01 2016
 \begin{table}[h]
 \centering
 \label{tab:es-decisions-spr}
-\begingroup\fontsize{9}{11}\selectfont
+{\fontsize{9}{11}\selectfont
 \begin{tabularx}{\textwidth}{|ccc|YYYYY|}
   \hline \multicolumn{3}{|c|}{Within model quantile} & 5\% & 25\% & 50\% & 75\% & 95\%  \\ \hline \multicolumn{3}{|c|}{Management Action} &\multicolumn{5}{c|}{\textbf{Fishing}}\\ \cline{1-3}  & Year & Catch (t) & \multicolumn{5}{c|}{\textbf{Intensity}} \\ \hline  b: & 2016 & 180,000 &  24\% &  33\% &  42\% &  52\% &  72\% \\ 
    & 2017 & 180,000 &  15\% &  24\% &  34\% &  45\% &  64\% \\ 
@@ -334,7 +374,7 @@
   default & 2017 & 889,918 &  59\% &  83\% & 103\% & 119\% & 138\% \\ 
   HR & 2018 & 785,036 &  51\% &  79\% & 103\% & 126\% & 141\% \\ 
    \hline \end{tabularx}
-\endgroup
+}
 \end{table}
 
 
@@ -347,7 +387,7 @@
 \section{Risk Tables}
 \subsection{Risk}
 \frame{\frametitle{Risk table definitions}
-  Probabilities of "bad" things happening at different fixed catch levels
+  Probabilities of ``bad'' things happening at different fixed catch levels
   \bi
     \item Fixed catch in all years previous, and calculate default catch in forecast year
     \item P($B_x < B_y$): Probability that biomass in forecasted year is less than specified biomass
@@ -359,12 +399,12 @@
 %--------------------------------------------------------------
 %\subsection{Fixed 2016 catch}
 \frame{\frametitle{Risk based on fixed 2016 catch}
-% latex table generated in R 3.2.3 by xtable 1.8-2 package
-% Thu Feb 18 23:51:53 2016
+% latex table generated in R 3.2.2 by xtable 1.8-0 package
+% Fri Feb 19 15:53:01 2016
 \begin{table}[H]
 \centering
 \label{default}
-\begingroup\fontsize{11}{12}\selectfont
+{\fontsize{11}{12}\selectfont
 \begin{tabularx}{\textwidth}{lYYYYYY}
   \toprule 
 \specialcell{Catch\\in 2016 } & \specialcell{Probability\\B\subscr{2017}<B\subscr{2016}} & \specialcell{Probability\\B\subscr{2017}<B\subscr{40\%}} & \specialcell{Probability\\B\subscr{2017}<B\subscr{25\%}} & \specialcell{Probability\\B\subscr{2017}<B\subscr{10\%}} & \specialcell{Probability\\Fishing\\intensity\\in 2016\\>40\% Target} & \specialcell{Probability\\2017 Catch\\Target\\<2016 Catch} \\ \midrule 
@@ -377,7 +417,7 @@
   g: 873,000 & 57\% & 16\% & 4\% & 1\% & 62\% & 50\% \\ 
    \bottomrule 
 \end{tabularx}
-\endgroup
+}
 \end{table}
 
 }
@@ -396,12 +436,12 @@
 
 %--------------------------------------------------------------
 \frame{\frametitle{Risk based on fixed 2016 and 2017 catch}
-% latex table generated in R 3.2.3 by xtable 1.8-2 package
-% Thu Feb 18 23:51:53 2016
+% latex table generated in R 3.2.2 by xtable 1.8-0 package
+% Fri Feb 19 15:53:01 2016
 \begin{table}[H]
 \centering
 \label{default}
-\begingroup\fontsize{11}{12}\selectfont
+{\fontsize{11}{12}\selectfont
 \begin{tabularx}{\textwidth}{lYYYYYY}
   \toprule 
 \specialcell{Catch\\in 2017 } & \specialcell{Probability\\B\subscr{2018}<B\subscr{2017}} & \specialcell{Probability\\B\subscr{2018}<B\subscr{40\%}} & \specialcell{Probability\\B\subscr{2018}<B\subscr{25\%}} & \specialcell{Probability\\B\subscr{2018}<B\subscr{10\%}} & \specialcell{Probability\\Fishing\\intensity\\in 2017\\>40\% Target} & \specialcell{Probability\\2018 Catch\\Target\\<2017 Catch} \\ \midrule 
@@ -414,7 +454,7 @@
   g: 873,000 & 70\% & 29\% & 15\% & 3\% & 54\% & 56\% \\ 
    \bottomrule 
 \end{tabularx}
-\endgroup
+}
 \end{table}
 
 }
@@ -461,6 +501,19 @@
 }
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Summary}
+\subsection{}
+\frame{\frametitle{Summary of forecasting}
+  \bi
+    \item Large, but uncertain 2014 year class along with above average 2012 year class results in an increasing population
+    \item Uncertainty is great, but likely above spawning biomass target
+    \item Catches up to 2015 TAC estimate a median spawning biomass to be increasing
+    \item Less than 30\% risk that spawning biomass will be below target in 2 years at all catch levels
+    \smallskip
+    \item Accounting for uncertainty in estimate of 2014 year class???????
+  \ei
+}
 
 
 
