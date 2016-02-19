@@ -37,6 +37,7 @@ install.packages.if.needed("coda", "coda", github=FALSE)
 install.packages.if.needed("dplyr", "dplyr", github = FALSE)
 install.packages.if.needed("maptools", "maptools", github = FALSE)
 install.packages.if.needed("gtools", "gtools", github = FALSE)
+install.packages.if.needed("lubridate", "lubridate", github = FALSE)
 
 require(nwfscSurvey)
 require(nwfscMapping)
@@ -49,6 +50,7 @@ require(dplyr)
 require(coda)
 require(gtools)
 require(maptools)
+require(lubridate)
 
 source("catches.r")      ## Contains the code to catch/TAC data and figure and table-making code for catch/TAC
 source("load-models.r")  ## Contains the code to load the models list from the model directories
@@ -89,6 +91,13 @@ sampling.history.file <- "fishery-sampling-history.csv"
 ovary.samples.file <- "ovary-samples.csv"
 age.1.file <- "age-1.csv"
 assessment.history.file <- "assessment-history.csv"
+## The following are used for cumulative catch plot in the fisheries presentation, not the assessment document
+us.shore.catch.by.month.file <- "us-shore-catch-by-month.csv"
+us.cp.catch.by.month.file <- "us-cp-catch-by-month.csv"
+us.ms.catch.by.month.file <- "us-ms-catch-by-month.csv"
+us.research.catch.by.month.file <- "us-research-catch-by-month.csv"
+can.shore.catch.by.month.file <- "can-shore-catch-by-month.csv"
+can.ft.catch.by.month.file <- "can-ft-catch-by-month.csv"
 
 exe.file.name <- "ss3.exe"
 starter.file.name <- "starter.ss"
@@ -365,6 +374,13 @@ can.ages <- load.can.age.data(file.path(data.path, can.age.file))
 ovary.samples <- read.csv(file.path(data.path, ovary.samples.file), stringsAsFactors = FALSE)
 age.1.index <- read.csv(file.path(data.path, age.1.file), stringsAsFactors = FALSE)
 assessment.history <- read.csv(file.path(data.path, assessment.history.file), stringsAsFactors = FALSE)
+## For cumulative catch plots in the data presentation
+us.shore.catch.by.month <- read.csv(file.path(data.path, us.shore.catch.by.month.file), stringsAsFactors = FALSE)
+us.cp.catch.by.month <- read.csv(file.path(data.path, us.cp.catch.by.month.file), stringsAsFactors = FALSE)
+us.ms.catch.by.month <- read.csv(file.path(data.path, us.ms.catch.by.month.file), stringsAsFactors = FALSE)
+us.research.catch.by.month <- read.csv(file.path(data.path, us.research.catch.by.month.file), stringsAsFactors = FALSE)
+can.shore.catch.by.month <- read.csv(file.path(data.path, can.shore.catch.by.month.file), stringsAsFactors = FALSE)
+can.ft.catch.by.month <- read.csv(file.path(data.path, can.ft.catch.by.month.file), stringsAsFactors = FALSE)
 cat("All data tables have been loaded ", data.path,"\n")
 
 ################################################################################
