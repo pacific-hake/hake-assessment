@@ -4,7 +4,7 @@
 %\documentclass[notes]{beamer}
 \documentclass[aspectratio=169]{beamer}
 \mode<presentation>
-\usetheme{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
+\usetheme[compress]{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
 %\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
 
 %\usefonttheme{serif}
@@ -46,6 +46,8 @@
 \vskip22pt
 \insertdate
 \end{center}
+\vskip50pt
+\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
 \vskip0pt plus 1filll
 }
 
@@ -127,12 +129,14 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
 \author[Hicks]{Allan C. Hicks\\JTC}
 %\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
-
+\subtitle{\tiny Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy}
 
 \begin{document}
 
 \frame[plain]{
 \titlepage
+%\vspace{1in}
+%{\tiny Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -248,7 +252,8 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item 
+      \item Constant catch stream 440,000 t and less results in increase in spawning biomass
+      \item Catches based on harvest rule calculations result in decrease in spawning biomass
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
