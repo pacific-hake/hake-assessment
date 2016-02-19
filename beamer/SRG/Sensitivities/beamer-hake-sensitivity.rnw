@@ -117,6 +117,7 @@ if(load.Rdata == "y") {
 %\titlepage
 \frametitle{Other Sources of Uncertainty}
 \begin{itemize}
+  \item MLE vs MCMC
   \item Sensitivities
         \begin{enumerate}
         \item K-S stratified kriging method without extrapolation
@@ -133,14 +134,83 @@ if(load.Rdata == "y") {
   \item Retrospectives
         \begin{enumerate}
         \item Standard: -5 years
-        \item Cohort determination ('squid plots'): -16 years
+        \item Cohort determination ('squid plot'): -16 years
         \item Historical assessments: - 25 years
         \end{enumerate}
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{MLE vs MCMC}
+\begin{center}
+\includegraphics[width=5.5in, height=3.25in]{../../../doc/main-figures/CompareMLE_MCMC}
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{MLE vs MCMC}
+%\begin{columns}
+%  \begin{column}{0.33\textwidth}
+%      <<mle.mcmc.1, out.width='.95\\columnwidth'>>=
+%    	make.mcmc.vs.mle.plot(base.model,
+%                      end.yr = end.yr,
+%                      subplot = 2)
+%    @ 
+%  \end{column}
+%  \begin{column}{0.66\textwidth}
+%    <<mle.mcmc.2, out.width='.95\\columnwidth'>>=
+%    	make.mcmc.vs.mle.plot(base.model,
+%                      end.yr = end.yr,
+%                      type = "o",
+%                      subplot = 8)
+%	  @
+%  \end{column}
+%\end{columns}
+%%%%%%%%%%%%%%%%%%%%%%%
+                      
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{MLE vs MCMC: Biomass}
+\begin{center}
+<<mle.mcmc.1>>=
+oldpar <- par()
+par(mar = c(4.5, 4.1, 1.5, 1.1))
+make.mcmc.vs.mle.plot(base.model,end.yr = end.yr,subplot = 2)                       
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{MLE vs MCMC: Recruitment}
+\begin{center}
+<<mle.mcmc.2>>=
+oldpar <- par()
+par(mar = c(4.5, 4.1, 1.5, 1.1))
+ make.mcmc.vs.mle.plot(base.model,end.yr = end.yr,type = "o",subplot = 8)                       
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Sensitivity Table - MLE}
+\begin{center}
+\includegraphics[width=5.5in, height=3.5in]{../../../doc/main-figures/SensTable1}
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+ 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Survey Alternatives: Biomass}
@@ -152,8 +222,8 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
                      subplots = 2,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
                      end.yr = end.yr)                            
-@
 par <- oldpar
+@
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -289,7 +359,17 @@ mtext("Age", side = 1, line = 1, outer = TRUE)
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%   
+%%%%%%%%%%%%%%%%%%%%%%% 
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Sensitivity Table - MLE}
+\begin{center}
+\includegraphics[width=5.5in, height=3.25in]{../../../doc/main-figures/SensTable2}
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%  
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -386,34 +466,21 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Sensitivity Table}
+\frametitle{Historical Assessments}
 \begin{center}
-\includegraphics[width=5.5in, height=3in]{../../../doc/main-figures/SensTable1}
-%\includegraphics[scale=1]{Figures/pastManagement.eps} % width=\maxwidth,
+<<retro.4>>=
+oldpar <- par()
+par(mar = c(4.5, 4.1, 1.5, 1.1))
+make.assessment.history.plot(base.model,
+                             assessment.history,
+                             end.yr + 2)                           
+par <- oldpar 
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%  
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Sensitivity Table}
-\begin{center}
-\includegraphics[width=5.5in, height=3.5in]{../../../doc/main-figures/SensTable2}
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Sensitivity Table}
-\begin{center}
-\includegraphics[width=5.5in, height=3in]{../../../doc/main-figures/CompareMLE_MCMC}
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
 
 %\section[Outline]{}
 %\frame{\tableofcontents}
@@ -423,9 +490,4 @@ par <- oldpar
 \end{document}
 
 
-%\subsection{Canada}
-%\frame{\frametitle{Canada catch depth distribution}
-%  \begin{center}
-%    \includegraphics[width=3in, height=3in]{../../../doc/main-figures/can-bottom-depths}
-%  \end{center}
-%}
+
