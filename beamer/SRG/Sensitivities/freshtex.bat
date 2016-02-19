@@ -13,6 +13,6 @@ del *.out
 del *.nav
 del *.snm
 del *.synctex.gz
-del beamer-hake-sensitivities.tex
-del beamer-hake-sensitivities.pdf
+del beamer-hake-sensitivity.tex
+del beamer-hake-sensitivity.pdf
 rmdir /S /Q knitr-cache

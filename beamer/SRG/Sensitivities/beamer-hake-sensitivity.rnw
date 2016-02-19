@@ -388,8 +388,28 @@ par <- oldpar
 \begin{frame}
 \frametitle{Sensitivity Table}
 \begin{center}
-\includegraphics[width=5.5in, height=3.5in]{../../../doc/main-figures/SensTable1}
+\includegraphics[width=5.5in, height=3in]{../../../doc/main-figures/SensTable1}
 %\includegraphics[scale=1]{Figures/pastManagement.eps} % width=\maxwidth,
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Sensitivity Table}
+\begin{center}
+\includegraphics[width=5.5in, height=3.5in]{../../../doc/main-figures/SensTable2}
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Sensitivity Table}
+\begin{center}
+\includegraphics[width=5.5in, height=3in]{../../../doc/main-figures/CompareMLE_MCMC}
 @
 \end{center}
 \end{frame}

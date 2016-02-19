@@ -1,4 +1,7 @@
 base
+svSocket
+formatR
+TinnRcom
 knitr
 xtable
 nwfscSurvey
@@ -12,7 +15,3 @@ coda
 gtools
 sp
 maptools
-foreign
-svSocket
-formatR
-TinnRcom
