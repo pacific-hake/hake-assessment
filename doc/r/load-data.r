@@ -1,3 +1,21 @@
+load.us.age.data <- function(fn ## fn is the filename with relative path
+                             ){
+  ## Reads in the US age data file and returns it as a data frame
+  ## Assumes the age column have the format aXX where XX are numbers 0-N
+  ##  and year is a column which will become the rownames
+  d <- read.csv(fn, stringsAsFactors = FALSE)
+  yrs <- d$year
+  age.match <- grep("a[0-9]+", names(d))
+  age.lab <- names(d)[age.match]
+  age.lab <- gsub("a", "", age.lab)
+  age.df <- d[,age.match]
+  names(age.df) <- age.lab
+  rownames(age.df) <- yrs
+  ## Replace any NA's with zero
+  age.df[is.na(age.df)] <- 0
+  return(age.df)
+}
+
 load.can.age.data <- function(fn ## fn is the filename with relative path
                                 ){
   ## Reads in the canadian age data file and returns it as a list of data frames

@@ -32,11 +32,13 @@ install.packages.if.needed("date", "date", github=FALSE)
 install.packages.if.needed("r4ss", "r4ss/r4ss", github=TRUE)
 install.packages.if.needed("xtable", "xtable", github=FALSE)
 install.packages.if.needed("PBSmapping", "PBSmapping", github=FALSE)
+install.packages.if.needed("PBSmodelling", "PBSmodelling", github=FALSE)
 install.packages.if.needed("maps", "maps", github=FALSE)
 install.packages.if.needed("coda", "coda", github=FALSE)
 install.packages.if.needed("dplyr", "dplyr", github = FALSE)
 install.packages.if.needed("maptools", "maptools", github = FALSE)
 install.packages.if.needed("gtools", "gtools", github = FALSE)
+install.packages.if.needed("lubridate", "lubridate", github = FALSE)
 
 require(nwfscSurvey)
 require(nwfscMapping)
@@ -44,11 +46,13 @@ require(date)
 require(r4ss)
 require(xtable)
 require(PBSmapping)
+require(PBSmodelling)
 require(maps)
 require(dplyr)
 require(coda)
 require(gtools)
 require(maptools)
+require(lubridate)
 
 source("catches.r")      ## Contains the code to catch/TAC data and figure and table-making code for catch/TAC
 source("load-models.r")  ## Contains the code to load the models list from the model directories
@@ -80,7 +84,7 @@ verbose <- TRUE
 data.path <- file.path("..","..","data")
 models.path <- file.path("..","..","models")
 
-can.age.file <- "canadian-age-data.csv"
+can.age.file <- "can-age-data.csv"
 catch.data.file <- "landings-tac-history.csv"
 further.tac.file <- "further-tac-details.csv"
 survey.history.file <- "survey-history.csv"
@@ -89,6 +93,17 @@ sampling.history.file <- "fishery-sampling-history.csv"
 ovary.samples.file <- "ovary-samples.csv"
 age.1.file <- "age-1.csv"
 assessment.history.file <- "assessment-history.csv"
+## The following are used for cumulative catch plot in the data/fisheries presentation, not the assessment document
+us.shore.catch.by.month.file <- "us-shore-catch-by-month.csv"
+us.cp.catch.by.month.file <- "us-cp-catch-by-month.csv"
+us.ms.catch.by.month.file <- "us-ms-catch-by-month.csv"
+us.research.catch.by.month.file <- "us-research-catch-by-month.csv"
+can.shore.catch.by.month.file <- "can-shore-catch-by-month.csv"
+can.ft.catch.by.month.file <- "can-ft-catch-by-month.csv"
+## The following are used for the age comp-by fleet plot in the data/fisheries presentation, not the assessment document
+us.shore.age.data.file <- "us-shore-age-data.csv"
+us.cp.age.data.file <- "us-cp-age-data.csv"
+us.ms.age.data.file <- "us-ms-age-data.csv"
 
 exe.file.name <- "ss3.exe"
 starter.file.name <- "starter.ss"
@@ -192,8 +207,6 @@ bridge.model.names.3 <- c("Base model pretune",
                           "Adjust bias ramp",
                           "Change survey comp weights",
                           "Change all comp weights")
-                          
-
 
 ## Bridge model indices are used to tell knitr which elements of the models list are to
 ## be plotted together.
@@ -248,11 +261,8 @@ sens.model.names.3 <- c("Max. age of selectivity 5",
                         "Max. age of selectivity 7",
                         "Max. age of selectivity 12")
 
-sens.model.dir.names.4<- "53_Sensbase_AgeError_noCohort_update"
+sens.model.dir.names.4 <- "53_Sensbase_AgeError_noCohort_update"
 sens.model.names.4 <- "No cohort ageing error"
-
-                        
-  
 
 ## Sensitivity model indices are used to tell knitr which elements of the models list are to
 ## be plotted together.
@@ -365,6 +375,19 @@ can.ages <- load.can.age.data(file.path(data.path, can.age.file))
 ovary.samples <- read.csv(file.path(data.path, ovary.samples.file), stringsAsFactors = FALSE)
 age.1.index <- read.csv(file.path(data.path, age.1.file), stringsAsFactors = FALSE)
 assessment.history <- read.csv(file.path(data.path, assessment.history.file), stringsAsFactors = FALSE)
+## For cumulative catch plots in the data presentation
+us.shore.catch.by.month <- read.csv(file.path(data.path, us.shore.catch.by.month.file), stringsAsFactors = FALSE)
+us.cp.catch.by.month <- read.csv(file.path(data.path, us.cp.catch.by.month.file), stringsAsFactors = FALSE)
+us.ms.catch.by.month <- read.csv(file.path(data.path, us.ms.catch.by.month.file), stringsAsFactors = FALSE)
+us.research.catch.by.month <- read.csv(file.path(data.path, us.research.catch.by.month.file), stringsAsFactors = FALSE)
+can.shore.catch.by.month <- read.csv(file.path(data.path, can.shore.catch.by.month.file), stringsAsFactors = FALSE)
+can.ft.catch.by.month <- read.csv(file.path(data.path, can.ft.catch.by.month.file), stringsAsFactors = FALSE)
+## For age comps-by fleet plots in the data presentation
+can.shore.age <- can.ages[[1]]
+can.ft.age <- can.ages[[2]]
+us.shore.age <- load.us.age.data(file.path(data.path, us.shore.age.data.file))
+us.cp.age <- load.us.age.data(file.path(data.path, us.cp.age.data.file))
+us.ms.age <- load.us.age.data(file.path(data.path, us.ms.age.data.file))
 cat("All data tables have been loaded ", data.path,"\n")
 
 ################################################################################
