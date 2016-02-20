@@ -21,6 +21,10 @@
 %\usepackage{beamerthemesplit}
 \usepackage[T1]{fontenc}  %to use < or > in tables
 
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newcommand{\specialcell}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+\newcommand{\subscr}[1]{$_{\text{#1}}$}
+
 % pdf is displayed in full screen mode automatically
 %\hypersetup{pdfpagemode=FullScreen}
 
@@ -66,7 +70,7 @@
 %%                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
 %%                results='show', cache=TRUE, cache.path='knitr-cache/')
 <<off-we-go, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
-rm(list=ls(all=TRUE))
+#rm(list=ls(all=TRUE))
 opts_chunk$set(dev = 'cairo_ps', fig.path = 'knitr-cache/', fig.dpi = 300, fig.width = 6,
                fig.height = 4, out.width = '6in', out.height = '3in', echo = FALSE, # 
                results = FALSE, message = FALSE, warning = FALSE,
@@ -112,11 +116,13 @@ if(load.Rdata == "y") {
 \titlepage
 }
 
+
 %\section[Outline]{}
 %\frame{\tableofcontents}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Overview}
+\subsection{}
 \begin{frame}
 %\titlepage
 \frametitle{Other Sources of Uncertainty}
@@ -147,10 +153,21 @@ if(load.Rdata == "y") {
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{MLE va MCMC}
+\subsection{}
 \begin{frame}
 \frametitle{MLE vs MCMC}
 \begin{center}
-\includegraphics[width=5.5in, height=3.25in]{../../../doc/main-figures/CompareMLE_MCMC}
+%\includegraphics[width=5.5in, height=3.25in]{../../../doc/main-figures/CompareMLE_MCMC}
+<<main.parameter.estimates, results='asis', echo=FALSE>>=
+make.short.parameter.estimates.table(base.model,
+                                     models[[last.year.base.model.ind]],
+                                     posterior.regex = key.posteriors,
+                                     end.yr = end.yr,
+                                     digits = 3,
+                                     xcaption = NULL,
+                                     xlabel <- "tab:main-parameter-estimates",
+                                     font.size = 9,
+                                     space.size = 7)
 @
 \end{center}
 \end{frame}
@@ -160,11 +177,11 @@ if(load.Rdata == "y") {
 \begin{frame}
 \frametitle{MLE vs MCMC: Biomass}
 \begin{center}
-<<mle.mcmc.1>>=
-oldpar <- par()
-par(mar = c(4.5, 4.1, 1.5, 1.1))
+<<mle.mcmc.1, out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
+# oldpar <- par()
+# par(mar = c(4.5, 4.1, 1.5, 1.1))
 make.mcmc.vs.mle.plot(base.model,end.yr = end.yr,subplot = 2)                       
-par <- oldpar
+# par <- oldpar
 @
 \end{center}
 \end{frame}
@@ -174,17 +191,19 @@ par <- oldpar
 \begin{frame}
 \frametitle{MLE vs MCMC: Recruitment}
 \begin{center}
-<<mle.mcmc.2>>=
-oldpar <- par()
-par(mar = c(4.5, 4.1, 1.5, 1.1))
+<<mle.mcmc.2, out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
+#oldpar <- par()
+#par(mar = c(4.5, 4.1, 1.5, 1.1))
  make.mcmc.vs.mle.plot(base.model,end.yr = end.yr,type = "o",subplot = 8)                       
-par <- oldpar
+#par <- oldpar
 @
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
+\section{Survey Alts}
+\subsection{}
 \begin{frame}
 \frametitle{Sensitivity Table - MLE}
 %\begin{center}
@@ -284,19 +303,21 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
+\section{Age Error}
+\subsection{}
 \begin{frame}
 \frametitle{Ageing Error: Biomass}
-\begin{center}
-<<ageing.error.1>>=
-oldpar <- par()
-par(mar = c(4.5, 4.1, 1.5, 1.1))
-make.comparison.plot(models[c(base.model.ind, sens.model.inds.4)],
-                     subplots = 2,
-                     model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
-                     end.yr = end.yr)                            
-par <- oldpar 
-@
-\end{center}
+% \begin{center}
+% <<ageing.error.1>>=
+% oldpar <- par()
+% par(mar = c(4.5, 4.1, 1.5, 1.1))
+% make.comparison.plot(models[c(base.model.ind, sens.model.inds.4)],
+%                      subplots = 2,
+%                      model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
+%                      end.yr = end.yr)                            
+% par <- oldpar 
+% @
+% \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -304,21 +325,23 @@ par <- oldpar
 \begin{frame}
 \frametitle{Ageing Error: Recruit Devs}
 \begin{center}
-<<ageing.error.2>>=
-oldpar <- par()
-par(mar = c(4.5, 4.1, 1.5, 1.1))
-make.comparison.plot(models[c(base.model.ind, sens.model.inds.4)],
-                     subplots = 10,
-                     legendloc = "topleft",
-                     model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
-                     end.yr = end.yr)                            
-par <- oldpar 
-@
+% <<ageing.error.2>>=
+% oldpar <- par()
+% par(mar = c(4.5, 4.1, 1.5, 1.1))
+% make.comparison.plot(models[c(base.model.ind, sens.model.inds.4)],
+%                      subplots = 10,
+%                      legendloc = "topleft",
+%                      model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
+%                      end.yr = end.yr)                            
+% par <- oldpar 
+%@
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
+\section{Max Age}
+\subsection{}
 \begin{frame}
 \frametitle{Maximum Age Full Selectivity: Biomass}
 \begin{center}
@@ -365,6 +388,8 @@ mtext("Age", side = 1, line = 1, outer = TRUE)
 %%%%%%%%%%%%%%%%%%%%%%%  
 
 %%%%%%%%%%%%%%%%%%%%%%%
+\section{Key Sens}
+\subsection{}
 \begin{frame}
 \frametitle{Key Sensitivities: Biomass}
 \begin{center}
@@ -399,6 +424,8 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
+\section{Retros}
+\subsection{}
 \begin{frame}
 \frametitle{Retrospective: Biomass}
 \begin{center}

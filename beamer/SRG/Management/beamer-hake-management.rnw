@@ -51,12 +51,15 @@
 \vskip0pt plus 1filll
 }
 
-%\setbeamertemplate{footline}
-%{
-%\begin{beamercolorbox}[wd=.05\paperwidth,ht=0ex,dp=0ex,left]{framenumber in head/foot}%
-%\insertframenumber/\inserttotalframenumber
-%\end{beamercolorbox}%
-%}
+\definecolor{pageCol}{rgb}{0.5,0.5,1.0}
+
+\setbeamertemplate{footline}
+{
+\begin{beamercolorbox}[wd=.05\paperwidth,ht=0ex,dp=0ex,left]{framenumber in head/foot}%
+\insertframenumber/\inserttotalframenumber
+\end{beamercolorbox}%
+}
+\setbeamercolor{footline}{fg=pageCol}
 
 \newcounter{saveenumi}
 
@@ -252,8 +255,9 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Constant catch stream 440,000 t and less results in increase in spawning biomass
-      \item Catches based on harvest rule calculations result in decrease in spawning biomass
+      \item Constant catch stream 440,000 t and less result in increases in spawning biomass
+      \item Catches based on harvest rule calculations result in decreases in spawning biomass
+      \item Unertainty is large and increases the farther it is forecasted
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -277,12 +281,40 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Decision Tables}
+\subsection{Intro}
+\frame{\frametitle{Decision Tables}
+  \bi
+    \item Two decision table formats
+    \bi
+      \item Quantiles from the posterior distribution for spawning biomass and fishing intensity
+      \item Median values when using lower, middle, and upper values of 2014 recruitment estimates
+    \ei
+    \item Catch streams
+    \bi
+      \item \textcolor{gray}{No fishing (zero catch)}
+      \item Constant catch of 180,000 t
+      \item \textcolor{gray}{Constant catch of 350,000 t}
+      \item Constant catch of 440,000 t (2015 TAC)
+      \item Fishing Intensity = 100\% in each year conditioned on fixed catch in previous year
+      \item Median default Harvest Rule in each year conditioned on fixed catch in previous year
+      \item \textcolor{gray}{Median catch in 2017 is the same as fixed catch in 2016}
+    \ei
+    \item More catch streams to be added as determined by SRG/AP/JMC
+  \ei
+}
+
 \subsection{Quantiles}
 \frame{\frametitle{Spawning Biomass}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item 
+      \item 2016 row is the same because it is beginning of the year
+      \item Median (50\%) increases for 440,000 t and less
+      \bi
+        \item stabilizing from 2017 to 2018 with 440,000 t
+      \ei
+      \item Lower 5\% quantile at target spawning biomass in 2016
+      \item 5\% quantile mostly stable with catch of 180,000 t
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -307,7 +339,9 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item 
+      \item Fishing Intensity is different for all years and rows because it accounts for catch that year
+      \item Less than 25\% probability above target with a catch of 440,000 t
+      \item Default harvest rate is slightly above the target fishing intensity
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -332,7 +366,7 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
 \section{Risk Tables}
 \subsection{Risk}
 \frame{\frametitle{Risk table definitions}
-  Probabilities of "bad" things happening at different fixed catch levels
+  Probabilities of ``bad'' things happening at different fixed catch levels
   \bi
     \item Fixed catch in all years previous, and calculate default catch in forecast year
     \item P($B_x < B_y$): Probability that biomass in forecasted year is less than specified biomass
@@ -430,6 +464,19 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
 }
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Summary}
+\subsection{}
+\frame{\frametitle{Summary of forecasting}
+  \bi
+    \item Large, but uncertain 2014 year class along with above average 2012 year class results in an increasing population
+    \item Uncertainty is great, but likely above spawning biomass target
+    \item Catches up to 2015 TAC estimate a median spawning biomass to be increasing
+    \item Less than 30\% risk that spawning biomass will be below target in 2 years at all catch levels
+    \medskip
+    \item Accounting for uncertainty in estimate of 2014 year class???????
+  \ei
+}
 
 
 

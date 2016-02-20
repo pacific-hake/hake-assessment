@@ -33,6 +33,6 @@ make.mcmc.vs.mle.plot <- function(model,        ## model is an mcmc run and is t
                     type = type,
                     mcmc = c(FALSE, TRUE),
                     legendloc = "topleft")
-  axis(2, at = c(0.1, 0.4), cex.axis = 0.8)
+  if(subplot %in% c(3,4)) {axis(2, at = c(0.1, 0.4), cex.axis = 0.8)}
   par <- oldpar
 }
