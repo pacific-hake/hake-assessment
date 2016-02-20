@@ -323,6 +323,18 @@ load("../../../doc/r/.RData")
 
 \section[WeightAge]{Weight-at-age}
 \subsection{Weight-at-age}
+\frame{\frametitle{Weight-at-age by year and cohort}
+  <<wt.at.age>>=
+    oldpar <- par()
+    par(mar=c(4.1, 4.1, 1.1, 1.1), oma=c(0, 0, 0, 0))
+    make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1)
+    par <- oldpar
+  @
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Weight-at-age}
 \frame{\frametitle{Mean weight-at-age by year}
   \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/EWAforDoc.eps}
 }

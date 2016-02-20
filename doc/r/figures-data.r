@@ -108,3 +108,33 @@ make.age.comp.plot <- function(d,
               size = 0.08,
               main = title)
 }
+
+make.wt.at.age.plot <- function(d,
+                                ages,
+                                lwd = 3,
+                                lty = 1,
+                                xlab = "Year",
+                                ylab = "Mean weight-at-age (kg)"){
+  year <- d$year
+  df <- d[, names(d) %in% ages]
+  col.fn <- colorRampPalette(c("darkblue", "blue", "green", "darkgreen"))
+  cols <- col.fn(ncol(df))
+  plot(year, df[,1],
+       type = "l",
+       col = cols[1],
+       xlab = xlab,
+       ylab = ylab,
+       ylim = c(0, max(df)),
+       pch = 20,
+       lwd = lwd,
+       lty = lty)
+  for(i in 2:ncol(df)){
+    lines(year, df[,i],
+          ##type = "b",
+          col = cols[i],
+          pch = 20,
+          lwd = lwd,
+          lty = lty)
+  }
+  text(year[length(year)] + 1, df[nrow(df),], ages, col = cols)
+}

@@ -82,3 +82,32 @@ load.sampling.history <- function(fn ## fn is the filename with relative path
   dat <- read.csv(fn)
   return(dat)
 }
+
+load.wt.at.age <- function(model,
+                           wt.at.age.fn){
+  ## Load in the wtatage file for the model given, and extract the weights-at-age for
+  ##  fleet 2. Return data frame of wt-at-age.
+  fn <- file.path(model$path, wt.at.age.fn)
+  d <- readLines(fn)
+  beg <- grep("Fleet = 2", d)
+  header <- beg + 1
+  ## Extract age column names
+  header <- strsplit(d[header], " +")[[1]]
+  header <- header[-(1:7)]
+  header <- gsub("a", "", header)
+  header <- c("year", header)
+
+  ## Extract weight-at-age data
+  beg <- beg + 3  ## Remove the two header lines and the first age row (-1940)
+  end <- length(d) - 1
+  k <- d[beg:end]
+  k.list <- sapply(k, function(x) strsplit(x, " +"))
+  df <- NULL
+  for(i in 1:length(k.list)){
+    df <- rbind(df, k.list[[i]])
+  }
+  df <- df[,-c(1,3,4,5,6,7)]
+  df <- as.data.frame(apply(df, c(1,2), as.numeric))
+  names(df) <- header
+  return(df)
+}
