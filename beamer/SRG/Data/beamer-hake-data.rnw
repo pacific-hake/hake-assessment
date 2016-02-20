@@ -241,26 +241,6 @@ load("../../../doc/r/.RData")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section[AgeComps]{Age Comps}
-\subsection{Age comp comparison between fleets}
-\frame{\frametitle{Age composition - comparison between fleets}
-  <<age.comp.comparison>>=
-    oldpar <- par
-    par(mar=c(1.1, 1.1, 3.1, 1.1), oma=c(3.1, 3.1, 0, 0))
-    layout(matrix(c(1,2,3,4,5), nrow = 1, ncol = 5, byrow=TRUE))
-    make.age.comp.plot(can.shore.age, bg.col = "brown", title = "CAN\nShoreside")
-    make.age.comp.plot(can.ft.age, bg.col = "salmon", title = "CAN\nFreezerTrawl")
-    make.age.comp.plot(us.shore.age, bg.col = "blue", title = "US\nShoreside")
-    make.age.comp.plot(us.cp.age, bg.col = "royalblue", title = "US\nat-Sea CP")
-    make.age.comp.plot(us.ms.age, bg.col = "darkblue", title = "US\nat-Sea MS")
-    mtext("Year", side = 1, outer = TRUE, line = 2)
-    mtext("Age", side = 2, outer = TRUE, line = 2)
-    par <- oldpar
-  @
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \section[Depths]{Depths}
 \subsection{U.S.}
 \frame{\frametitle{U.S. at-sea catch depth distribution}
@@ -284,6 +264,67 @@ load("../../../doc/r/.RData")
       \end{center}
     \end{column}
   \end{columns}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section[AgeComps]{Age Comps}
+\subsection{Age comp comparison between fleets}
+\frame{\frametitle{Age composition - comparison between fleets}
+  <<age.comp.comparison>>=
+    oldpar <- par
+    par(mar=c(1.1, 1.1, 3.1, 1.1), oma=c(3.1, 3.1, 0, 0))
+    layout(matrix(c(1,2,3,4,5), nrow = 1, ncol = 5, byrow=TRUE))
+    make.age.comp.plot(can.shore.age, bg.col = "brown", title = "CAN\nShoreside")
+    make.age.comp.plot(can.ft.age, bg.col = "salmon", title = "CAN\nFreezerTrawl")
+    make.age.comp.plot(us.shore.age, bg.col = "blue", title = "US\nShoreside")
+    make.age.comp.plot(us.cp.age, bg.col = "royalblue", title = "US\nat-Sea CP")
+    make.age.comp.plot(us.ms.age, bg.col = "darkblue", title = "US\nat-Sea MS")
+    mtext("Year", side = 1, outer = TRUE, line = 2)
+    mtext("Age", side = 2, outer = TRUE, line = 2)
+    par <- oldpar
+  @
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section[Survey]{Survey}
+\subsection{Acoustic survey biomass}
+\frame{\frametitle{Acoustic survey biomass}
+  <<survey.biomass>>=
+    oldpar <- par()
+    par(mar=c(1.1, 1.1, 0, 1.1), oma=c(1.1, 1.1, 0, 0))
+    make.survey.biomass.plot(models,
+                             modelnum = base.model.ind,
+                             xlab = "Year",
+                             ylab = "Biomass (million t)")
+    ##mtext("Year", side = 1, outer = TRUE)
+    par <- oldpar
+  @
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Acoustic survey age compositions}
+\frame{\frametitle{Acoustic survey age compositions}
+  <<survey.age.comps>>=
+    oldpar <- par()
+    par(mar=c(1.1, 1.1, 0, 1.1), oma=c(1.1, 2.1, 0, 0))
+    make.age.comp.bubble.plot(base.model,
+                              subplot = 2,
+                              show.key = TRUE,
+                              key.yrs = c(2000, 2003, 2006, 2009) + 1)
+    mtext("Year", side = 1, outer = TRUE)
+    par <- oldpar
+  @
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section[WeightAge]{Weight-at-age}
+\subsection{Weight-at-age}
+\frame{\frametitle{Mean weight-at-age by year}
+  \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/EWAforDoc.eps}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

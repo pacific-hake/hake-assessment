@@ -66,9 +66,11 @@ make.survey.extrap.table <- function(dat,
                size = size.string))
 }
 
-make.survey.biomass.plot <- function(models,      ## models is the list returned by load.models.
-                                     modelnum = 1 ## the index of the model to show. It shouldn't
-                                                  ## really matter on the same assessment though.
+make.survey.biomass.plot <- function(models,       ## models is the list returned by load.models.
+                                     modelnum = 1, ## the index of the model to show. It shouldn't
+                                                   ## really matter on the same assessment though.
+                                     xlab = "Year",
+                                     ylab = "Biomass Index Estimate (million t)"
                                      ){
   ## It is assumed that the data file has been read in correctly.
   ## Assumes that there is only one 'CPUE' index and it is the acoustic survey.
@@ -104,7 +106,7 @@ make.survey.biomass.plot <- function(models,      ## models is the list returned
   ests2$hi <- exp(log(ests2$obs)+1.96*ests2$se_log)
   ests2$value <- ests2$obs
   par(las=1,mar=c(5, 4, 1, 1) + 0.1,cex.axis=0.9)
-  plotBars.fn(ests2$year,ests2,scalar=1e6,ylim=c(0,3),pch=20,xlab="Year",ylab="Biomass Index Estimate (million t)",cex=1.5,las=1,gap=0.05,xaxt="n",ciLwd=3,ciCol=rgb(0,0,1,0.6))
+  plotBars.fn(ests2$year,ests2,scalar=1e6,ylim=c(0,3),pch=20,xlab=xlab,ylab=ylab,cex=1.5,las=1,gap=0.05,xaxt="n",ciLwd=3,ciCol=rgb(0,0,1,0.6))
   plotBars.fn(ests$year,ests,scalar=1e6,ylim=c(0,3),pch=20,add=T,cex=1.5,las=1,gap=0.05,xaxt="n",ciLwd=3,ciCol=gray(0.2))
   axis(1,at=ests$year,cex.axis=0.8)
 
