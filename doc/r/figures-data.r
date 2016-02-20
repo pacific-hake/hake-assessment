@@ -138,3 +138,12 @@ make.wt.at.age.plot <- function(d,
   }
   text(year[length(year)] + 1, df[nrow(df),], ages, col = cols)
 }
+
+make.age.comp.compare.plot <- function(){
+}
+
+## make.age.comp.bubble.plot(base.model,
+##                           subplot = 2,
+##                           show.key = TRUE,
+##                           key.yrs = c(2000, 2003, 2006, 2009)+1)
+## make.age.comp.bubble.plot(base.model, subplot = 1)
