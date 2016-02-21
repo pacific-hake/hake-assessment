@@ -126,7 +126,7 @@ if(load.Rdata == "y") {
 \subsection{}
 \frame{\frametitle{Outline}
 \bi
-  \item Review of 2014 SRG assessment recommendations
+  \item Review of 2015 SRG assessment recommendations
   \item Model structure and changes from 2015
   \item Fits to data
   \item Estimates and predictions
@@ -134,13 +134,35 @@ if(load.Rdata == "y") {
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{2014 SRG assessment recommendations}
+\frame{\frametitle{2015 SRG assessment recommendations}
+\setbeamercovered{dynamic}
 \bi
   \item Base model fit to survey series starting in 1995 without extrapolation
-  \item Include a sensitivity with age-1 acoustci survey index
+  \bi
+    \item {\bf Response:} The JTC was provided with two new series (with and without extrapolation) that did not include 1995 estimates
+    \item {\bf Response:} The JTC decided to use the series with extrapolation for many reasons
+    \bn
+      \item Pacific Hake are dynamic with high inter-annual variation in spatio-temporal distribution
+      \item Improved methods for extrapolation
+      \item Varying amounts of biomass in extrapolated area each year
+    \en
+  \ei \pause
+  \item Include a sensitivity with age-1 acoustic survey index 
+  \bi
+    \item {\bf Response:} Done and will be presented
+  \ei \pause
   \item Include key sensitivities
+  \bi
+    \item {\bf Response:} Done and will be presented
+  \ei \pause
   \item Ongiong monitoring and research on stock structure
+  \bi
+    \item {\bf Response:} Collection of fin clips in 2015. Working with collaborators to secure funding to analyze them.
+  \ei \pause
   \item Continued collection of ovaries
+  \bi
+    \item {\bf Response:} Many ovaries collected in 2015 and most have been read
+  \ei
 \ei
 }
 
@@ -263,7 +285,7 @@ if(load.Rdata == "y") {
                      densitynames = NULL,
                      end.yr = end.yr)
     make.comparison.plot(models[bridge.model.inds.3],
-                     subplots = 8,
+                     subplots = 9,
                      model.names = bridge.model.names.3,
                      densitynames = NULL,
                      legendloc = "topleft",
@@ -281,10 +303,12 @@ if(load.Rdata == "y") {
   \bi
     \item Updating past fishery data and weight-at-age matrix made indistinguishable difference
     \item The new survey series resulted in small differences due to changes in recruitment estimates
-    \item The 2015 fishery age compositions agreed with survey data, but decreased 2012 and 2013 year classes, and greatly increased the 2014 year class
+    \item The 2015 fishery age compositions agreed with survey data, except in recent years
+    \bi \item Decreased 2012 and 2013 year classes, and greatly increased the 2014 year class 
+    \ei
     \item Re-tuning the model counteracted the effects of adding the 2015 fishery data
     \bi
-      \item 2012 and 2013 year classes were similar to before
+      \item 2012 and 2013 year classes increased to become similar to before
       \item 2014 year class remained large, but uncertain
     \ei
   \ei
