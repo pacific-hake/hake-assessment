@@ -103,6 +103,7 @@ if(load.Rdata == "y") {
   ##  on its own.
   load("../../../doc/r/model-partest.RData")
 }
+source("functionsAssessment.R")
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -128,7 +129,7 @@ if(load.Rdata == "y") {
 \bi
   \item Review of 2015 SRG assessment recommendations
   \item Model structure and changes from 2015
-  \item MCMC diagnostics
+  %\item MCMC diagnostics
   \item Fits to data
   \item Parameter estimates and predictions
 \ei
@@ -289,7 +290,7 @@ if(load.Rdata == "y") {
                      subplots = 9,
                      model.names = bridge.model.names.3,
                      densitynames = NULL,
-                     legendloc = "topleft",
+                     legendloc = "bottomleft",
                      end.yr = end.yr)
    par(oldpar)
   @
@@ -317,36 +318,36 @@ if(load.Rdata == "y") {
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{MCMC diag}
-\subsection{}
-\frame{\frametitle{MCMC trace}
-  \bc
-    <<main.mcmc.diag.m, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-      oldpar <- par(no.readonly=TRUE)
-      par(mar=c(4.1, 4.1, 3.1, 0.1))
-      origPath <- base.model$mcmcpath
-      base.model$mcmcpath <- file.path("..",origPath)
-      make.mcmc.diag.plot(base.model, subplot = 1)
-      base.model$mcmcpath <- origPath
-      par <- oldpar
-    @
-  \ec
-}
+% \section{MCMC diag}
+% \subsection{}
+% \frame{\frametitle{MCMC trace}
+%   \bc
+%     <<main.mcmc.diag.m, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+%       oldpar <- par(no.readonly=TRUE)
+%       par(mar=c(4.1, 4.1, 3.1, 0.1))
+%       origPath <- base.model$mcmcpath
+%       base.model$mcmcpath <- file.path("..",origPath)
+%       make.mcmc.diag.plot(base.model, subplot = 1)
+%       base.model$mcmcpath <- origPath
+%       par <- oldpar
+%     @
+%   \ec
+% }
 
 
-\frame{\frametitle{MCMC tests}
-  \bc
-    <<main.mcmc.diag.hists, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-      origPath <- base.model$mcmcpath
-      base.model$mcmcpath <- file.path("..",origPath)
-      make.mcmc.diag.hists.plot(base.model)
-      base.model$mcmcpath <- origPath
-      # oldpar <- par(no.readonly=TRUE)
-      # par(mar=c(4.1, 4.1, 3.1, 0.1))
-      # par <- oldpar
-    @
-  \ec
-}
+% \frame{\frametitle{MCMC tests}
+%   \bc
+%     <<main.mcmc.diag.hists, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+%       origPath <- base.model$mcmcpath
+%       base.model$mcmcpath <- file.path("..",origPath)
+%       make.mcmc.diag.hists.plot(base.model)
+%       base.model$mcmcpath <- origPath
+%       # oldpar <- par(no.readonly=TRUE)
+%       # par(mar=c(4.1, 4.1, 3.1, 0.1))
+%       # par <- oldpar
+%     @
+%   \ec
+% }
 
 
 
@@ -355,14 +356,122 @@ if(load.Rdata == "y") {
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Fits to data}
 \subsection{}
-\frame{\frametitle{}
+\frame{\frametitle{Fit to the acoustic survey index of abundance (MCMC)}
   \bc
-    <<recruitment.devs>>=
-    make.recruitment.dev.plot(base.model,
-                              end.yr = end.yr)
-
-    @
+  <<mcmc.survey.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+    make.mcmc.survey.fit.plot(model.partest,
+                          start.yr = survey.start.yr,
+                          end.yr = survey.end.yr,
+                          probs = c(0.025, 0.975),
+                          y.max = 5.5e6)
+@
   \ec
+}
+
+%----------------------------------------------------------
+
+\frame{\frametitle{Fit to acoustic survey age comps (MCMC)}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item 1999 cohort often overpredicted
+      \item Young cohorts in 2003--2009 underfit
+      \item 2008 cohort underfit in 2011
+      \item Recent years (2012--2015) show good fits
+    \ei
+  \end{column}
+  \begin{column}{0.59\textwidth}
+    \vspace{-15pt}
+    \bc
+      <<mcmc.survey.age.comp.fits, fig.height=4.4, fig.width=5.5,out.width='1.0\\columnwidth'>>=
+      make.age.comp.fit.plot(model.partest,
+                             subplot = 2)
+     @
+    \ec
+  \end{column}
+\end{columns}
+}
+
+%----------------------------------------------------------
+
+\frame{\frametitle{Fit to acoustic fishery age comps (MCMC)}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item Often see underfitting of big cohorts when they are young
+      \bi \item 2005, 2006, 2008, 2010
+          \item 1984 and 1999 did not show this pattern \ei
+    \ei
+  \end{column}
+  \begin{column}{0.59\textwidth}
+    \vspace{-15pt}
+    \bc
+      <<mcmc.fishery.age.comp.fits, fig.height=5.2, fig.width=6.5,out.width='1.0\\columnwidth'>>=
+      make.age.comp.fit.plot(model.partest,
+                             subplot = 1)
+     @
+    \ec
+  \end{column}
+\end{columns}
+}
+
+%----------------------------------------------------------
+
+\frame{\frametitle{Pearson residual for fit to the acoustic survey age comps (MLE)}
+\begin{columns}
+  \begin{column}{0.48\textwidth}
+    \vspace{-16pt}
+    \bc
+      Survey
+      <<survey.age.comp.pearson, fig.height=8, fig.width=8, out.width='0.95\\columnwidth'>>=
+        make.fleet.age.comp.pearson.plot(model.partest,fleet=2,fleetName="")
+      @
+    \ec
+  \end{column}
+  \begin{column}{0.48\textwidth}
+    \vspace{-16pt}
+    \bc
+      Fishery
+      <<fishery.age.comp.pearson, fig.height=8, fig.width=8, out.width='0.95\\columnwidth'>>=
+        make.fleet.age.comp.pearson.plot(model.partest,fleet=1,fleetName="")
+      @
+    \ec
+  \end{column}
+\end{columns}
+}
+
+%----------------------------------------------------------
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Parameters}
+\subsection{}
+
+\frame{\frametitle{Key parameters}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item 
+    \ei
+  \end{column}
+  \begin{column}{0.59\textwidth}
+    \vspace{-15pt}
+    \bc
+    <<main.prior.posterior, fig.height=6, fig.width=8,out.width='0.95\\columnwidth'>>=
+      origPath <- base.model$path
+      base.model$path <- file.path("..",origPath)
+      origMcmcPath <- base.model$mcmcpath
+      base.model$mcmcpath <- file.path("..",origMcmcPath)
+      make.mcmc.priors.vs.posts.plot(base.model,
+                                   c("SR_BH_steep", "Q_extraSD_2_Acoustic_Survey", "NatM_p_1_Fem_GP_1", "SR_LN")
+      base.model$path <- origPath
+      base.model$mcmcpath <- origMcmcPath
+    @
+    \ec
+  \end{column}
+\end{columns}
 }
 
 %----------------------------------------------------------
@@ -379,12 +488,6 @@ if(load.Rdata == "y") {
 }
 
 
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\section{Derived parameters}
-\subsection{}
 
 
 
