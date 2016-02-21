@@ -438,6 +438,30 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{2014 Recruitment}
 \subsection{}
+\frame{\frametitle{Investigating management options for different options of recent recruitment}
+  \bi
+    \item 
+    \item These are alternative investigations to help understand the outcomes of the base assessment model
+    \bi
+      \item They are not alternative models with an equal probability of representing reality
+      \item 
+    \ei
+  \ei
+}
+
+
+\frame{\frametitle{Model without 2015 fishery age compositions}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item 
+    \ei
+  \end{column}
+  \begin{column}{0.59\textwidth}
+  \end{column}
+\end{columns}
+}
+
 \frame{\frametitle{Spawning biomass for different levels of 2014 recruitment}
 \begin{columns}
   \begin{column}{0.38\textwidth}
