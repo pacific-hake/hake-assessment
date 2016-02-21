@@ -337,6 +337,15 @@ load("../../../doc/r/.RData")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Survey index comparison}
+\frame{\frametitle{Survey index extrapolated/unextrapolated}
+  <<survey.compare.extrap.noextrap>>=
+    make.survey.biomass.extrap.plot(survey.comparison)
+  @
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section[WeightAge]{Weight-at-age}
 \subsection{Weight-at-age}
 \frame{\frametitle{Weight-at-age by year and cohort}
