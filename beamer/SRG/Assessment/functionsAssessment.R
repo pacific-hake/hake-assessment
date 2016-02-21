@@ -7,7 +7,7 @@ make.mcmc.priors.vs.posts.plot <- function(model, ## model is an mcmc run and is
   SSplotPars(model$mcmcpath,
              model$path,
              strings = posterior.regex,
-             newheaders = c("Steepness", "Survey extra SD", "LN(R0)", "Natural mortality"),
+             newheaders = c("Steepness", "Survey extra SD", "Natural mortality", "LN(R0)"),
              nrows = 2,
              ncols = 2,
              new = FALSE)

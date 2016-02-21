@@ -24,6 +24,8 @@
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 \newcommand{\specialcell}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 \newcommand{\subscr}[1]{$_{\text{#1}}$}
+\newcommand{\Fforty}{F_{\text{SPR}=40\%}}       % Needs to be done as $\Fforty$
+\newcommand{\Bforty}{B_{\text{SPR}=40\%}}
 
 % pdf is displayed in full screen mode automatically
 %\hypersetup{pdfpagemode=FullScreen}
@@ -123,7 +125,7 @@ source("functionsAssessment.R")
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{Intro}
+\section{Introduction}
 \subsection{}
 \frame{\frametitle{Outline}
 \bi
@@ -132,6 +134,7 @@ source("functionsAssessment.R")
   %\item MCMC diagnostics
   \item Fits to data
   \item Parameter estimates and predictions
+  \item Summary
 \ei
 }
 
@@ -139,7 +142,7 @@ source("functionsAssessment.R")
 \frame{\frametitle{2015 SRG assessment recommendations}
 \setbeamercovered{dynamic}
 \bi
-  \item Base model fit to survey series starting in 1995 without extrapolation
+  \item {\em Base model fit to survey series starting in 1995 without extrapolation}
   \bi
     \item {\bf Response:} The JTC was provided with two new series (with and without extrapolation) that did not include 1995 estimates
     \item {\bf Response:} The JTC decided to use the series with extrapolation for many reasons
@@ -149,19 +152,19 @@ source("functionsAssessment.R")
       \item Varying amounts of biomass in extrapolated area each year
     \en
   \ei \pause
-  \item Include a sensitivity with age-1 acoustic survey index 
+  \item {\em Include a sensitivity with age-1 acoustic survey index}
   \bi
     \item {\bf Response:} Done and will be presented
   \ei \pause
-  \item Include key sensitivities
+  \item {\em Include key sensitivities}
   \bi
     \item {\bf Response:} Done and will be presented
   \ei \pause
-  \item Ongiong monitoring and research on stock structure
+  \item {\em Ongiong monitoring and research on stock structure}
   \bi
     \item {\bf Response:} Collection of fin clips in 2015. Working with collaborators to secure funding to analyze them.
   \ei \pause
-  \item Continued collection of ovaries
+  \item {\em Continued collection of ovaries}
   \bi
     \item {\bf Response:} Many ovaries collected in 2015 and most have been read
   \ei
@@ -394,7 +397,7 @@ source("functionsAssessment.R")
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Fit to acoustic fishery age comps (MCMC)}
+\frame{\frametitle{Fit to fishery age comps (MCMC)}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
@@ -423,8 +426,10 @@ source("functionsAssessment.R")
     \vspace{-16pt}
     \bc
       Survey
-      <<survey.age.comp.pearson, fig.height=8, fig.width=8, out.width='0.95\\columnwidth'>>=
+      <<survey.age.comp.pearson, fig.height=8, fig.width=8, out.width='0.85\\columnwidth'>>=
+        oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
         make.fleet.age.comp.pearson.plot(model.partest,fleet=2,fleetName="")
+        par(oldpar)
       @
     \ec
   \end{column}
@@ -432,12 +437,15 @@ source("functionsAssessment.R")
     \vspace{-16pt}
     \bc
       Fishery
-      <<fishery.age.comp.pearson, fig.height=8, fig.width=8, out.width='0.95\\columnwidth'>>=
+      <<fishery.age.comp.pearson, fig.height=8, fig.width=8, out.width='0.85\\columnwidth'>>=
+        oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
         make.fleet.age.comp.pearson.plot(model.partest,fleet=1,fleetName="")
+        par(oldpar)
       @
     \ec
   \end{column}
 \end{columns}
+\bc {\scriptsize Closed bubbles are positive residuals (observed > expected) and open bubbles are negative residuals (observed < expected)} \ec
 }
 
 %----------------------------------------------------------
@@ -453,7 +461,9 @@ source("functionsAssessment.R")
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item 
+      \item Asymetric shape of steepness and Extra SD posterior makes median and MLE different
+      \item Additional SD is less than 2015 assessment
+      \item {\em M} is pushing upper end of prior
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -465,7 +475,7 @@ source("functionsAssessment.R")
       origMcmcPath <- base.model$mcmcpath
       base.model$mcmcpath <- file.path("..",origMcmcPath)
       make.mcmc.priors.vs.posts.plot(base.model,
-                                   c("SR_BH_steep", "Q_extraSD_2_Acoustic_Survey", "NatM_p_1_Fem_GP_1", "SR_LN")
+                                   c("SR_BH_steep", "Q_extraSD_2_Acoustic_Survey", "NatM_p_1_Fem_GP_1", "SR_LN"))
       base.model$path <- origPath
       base.model$mcmcpath <- origMcmcPath
     @
@@ -477,213 +487,179 @@ source("functionsAssessment.R")
 %----------------------------------------------------------
 
 
-\frame{\frametitle{Recruitment Deviations}
+\frame{\frametitle{Parameter estimates}
   \bc
-    <<recruitment.devs1>>=
-    make.recruitment.dev.plot(base.model,
-                              end.yr = end.yr)
-
+  <<main.parameter.estimates, results='asis', echo=FALSE>>=
+    make.short.parameter.estimates.table(base.model,
+                                     models[[last.year.base.model.ind]],
+                                     posterior.regex = key.posteriors,
+                                     end.yr = end.yr,
+                                     digits = 3,
+                                     xcaption <- NULL,
+                                     xlabel <- "tab:main-parameter-estimates",
+                                     font.size = 7,
+                                     space.size = 8)
     @
   \ec
 }
 
+\frame{\frametitle{Time-varying selectivity}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item 
+    \ei
+  \end{column}
+  \begin{column}{0.59\textwidth}
+    \vspace{-10pt}
+    \bc
+    <<main.tv.selex, fig.height=8, fig.width=8,out.width='0.8\\columnwidth'>>=
+    ## Extract TV selectivity fits by running the calculation function.
+    tv.selex.start.yr <- 1990
+    tv.selex.ages <- 1:8
+    tv.selex <- calc.tv.selex(base.model,
+                              start.yr = tv.selex.start.yr,
+                              end.yr = last.data.yr,
+                              ages = tv.selex.ages,
+                              probs = c(0.025, 0.975))
+    make.tv.selex.plot(tv.selex)
+    @
+    \ec
+  \end{column}
+\end{columns}
+}
 
+%----------------------------------------------------------
 
+\frame{\frametitle{Time-varying selectivity with uncertainty}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item 
+    \ei
+  \end{column}
+  \begin{column}{0.59\textwidth}
+    \vspace{-10pt}
+    \bc
+    <<main.tv.selex.uncertainty, fig.height=8, fig.width=8, out.width='0.8\\columnwidth'>>=
+    ## Extract TV selectivity fits by running the calculation function, once for each year span,
+    ##  then call the plotting function with them as a list to make a multipanel plot.
+    tv.selex.left <- calc.tv.selex(base.model,
+                                   start.yr = tv.selex.start.yr,
+                                   end.yr = 2001,
+                                   ages = tv.selex.ages,
+                                   probs = c(0.025, 0.975))
+    tv.selex.right <- calc.tv.selex(base.model,
+                                    start.yr = 2002,
+                                    end.yr = last.data.yr,
+                                    ages = tv.selex.ages,
+                                    probs = c(0.025, 0.975))
+    make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
+    @
+    \ec
+  \end{column}
+\end{columns}
+}
 
+%----------------------------------------------------------
 
+\frame{\frametitle{Recruitment Deviations}
+  \vspace{5pt}
+  \bc
+  <<main.recruitment.devs, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+    oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+    make.recruitment.dev.plot(base.model,
+                         end.yr = end.yr)
+    par(oldpar)
+  @
+  \ec
+}
 
+%----------------------------------------------------------
 
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Recruitment}
-\begin{center}
-<<recruitment>>=
-make.recruitment.plot(base.model,
+\frame{\frametitle{Absolute Recruitment}
+  \vspace{-5pt}
+  \bc
+  <<recruitment, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+    make.recruitment.plot(base.model,
                       equil.yr = unfished.eq.yr,
                       start.yr = start.yr,
                       end.yr = end.yr,
                       color = "blue",
                       add.mean = TRUE,
                       add.r0 = TRUE)
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+  @
+  \ec
+}
 
-%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%
+%----------------------------------------------------------
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Spawning Biomass}
-\begin{center}
-<<female.spawning.biomass>>=
-make.biomass.plot(base.model,
+\frame{\frametitle{Spawning Biomass}
+  \vspace{-5pt}
+  \bc
+  <<female.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+    make.biomass.plot(base.model,
                   equil.yr = unfished.eq.yr,
                   start.yr = start.yr,
                   end.yr = end.yr,
                   color = "blue")
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+  @
+  \ec
+}
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Relative Spawning Biomass}
-\begin{center}
-<<relative.spawning.biomass>>=
-make.depletion.plot(base.model,
-                    start.yr = start.yr,
-                    end.yr = end.yr,
-                    color = "blue")
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+%----------------------------------------------------------
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Fishing Intensity}
-\begin{center}
-<<fishing.intensity>>=
-make.fishing.intensity.plot(base.model,
-                            start.yr = start.yr,
-                            end.yr = end.yr-1,
-                            color = "blue")
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+\frame{\frametitle{Relative Spawning Biomass}
+  \vspace{-5pt}
+  \bc
+  <<relative.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+    make.depletion.plot(base.model,
+                  start.yr = start.yr,
+                  end.yr = end.yr,
+                  color = "blue")
+  @
+  \ec
+}
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Exploitation Fraction}
-\begin{center}
-<<exploitation.fraction>>=
-make.exploitation.fraction.plot(base.model,
+%----------------------------------------------------------
+
+\frame{\frametitle{Fishing Intensity and Exploitation Rate}
+  \vspace{-5pt}
+  \bc
+  <<fishing.intensity, fig.height=4, fig.width=8, out.width='0.45\\columnwidth'>>=
+    make.fishing.intensity.plot(base.model,
+                  start.yr = start.yr,
+                  end.yr = end.yr-1,
+                  color = "blue")
+  @
+  <<exploitation, fig.height=4, fig.width=8, out.width='0.45\\columnwidth'>>=
+    make.exploitation.fraction.plot(base.model,
                                 start.yr = start.yr,
                                 end.yr = end.yr-1,
                                 color = "blue")
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Phase plot}
-\begin{center}
-<<phase>>=
-make.phase.plot(base.model,
-                start.yr = start.yr,
-                end.yr = end.yr,
-                color = "blue")
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Forecast Risk \Sexpr{forecast.yrs[1]}}
-\begin{center}
-<<forecast.risk.comparison.year.1>>=
-make.forecast.risk.comparison.plot(base.model,
-                                   forecast.yrs = forecast.yrs,
-                                   fore.yr = forecast.yrs[1],
-                                   colors = c("black","blue","green","orange","red","tan"),
-                                   pch = c(16,17,17,17,15,18),
-                                   legend.loc = "topleft",
-                                   legend.cex = 0.7)
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Forecast Risk - \Sexpr{forecast.yrs[2]}}
-\begin{center}
-<<forecast.risk.comparison.year.2>>=
-make.forecast.risk.comparison.plot(base.model,
-                                   forecast.yrs = forecast.yrs,
-                                   fore.yr = forecast.yrs[2],
-                                   colors = c("black","blue","green","orange","red","tan"),
-                                   pch = c(16,17,17,17,15,18),
-                                   legend.loc = "topleft",
-                                   legend.cex = 0.7)
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Forecast Relative Spawning Biomass}
-\begin{center}
-<<forecast.depletion.comparison>>=
-## Look at catch.levels and catch.levels.names to decide which to include here
-## models.inds are the indices of those forecast models which will be plotted against each other
-models.inds <- c(1, 2, 3, 4)
-models.names <- catch.levels.names[models.inds]
-make.forecast.depletion.comparison.plot(base.model,
-                                        models.inds,
-                                        models.names,
-                                        start.yr = 2009,
-                                        model.end.yr = end.yr,
-                                        end.yr = forecast.yrs[length(forecast.yrs)],
-                                        legend.loc = "topleft")
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%\section[Outline]{}
-%\frame{\tableofcontents}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  @
+  \ec
+}
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-%\titlepage
-\frametitle{Bullet Points}
-\begin{itemize}
+\section{Summary}
+\subsection{}
 
-\item The population is predicted to decrease from 2016 to 2017 with a less than 50\% probability for all catch levels investigated up to 440,000~t. The model predicts high biomass levels and the predicted probability of dropping below $B_{10\%}$ in 2017 is less than 1\%.
-\item The maximum probability of dropping below $B_{40\%}$ is 16\% for all catches explored
-
-\end{itemize}
-\end{frame}
+\frame{\frametitle{Bullet Points}
+  \bi
+  \item The stock is estimated to be near its highest biomass level since 1990 as a result of
+    estimated large 2010 and 2014 cohorts.
+  \item The median estimate of \Sexpr{end.yr} relative spawning biomass is
+    \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
+    \Sexpr{curr.depl.upper}\%).
+  \item The median estimate of \Sexpr{end.yr} female spawning biomass is \Sexpr{curr.bio.median}
+    million~t (with 95\% interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper} million~t).
+  \item The spawning biomass in \Sexpr{end.yr} is estimated to have increased from \Sexpr{end.yr-1} due to the estimate of the 2014 year-class being well above average size and the estimate of the 2012 year-class being slightly above average. % Manual to do.
+  \ei
+}
 
 
 \end{document}
 
-
-
-
-
-
-
-
-%example of a 2 column
-%\frame{\frametitle{}
-%\begin{columns}
-%  \begin{column}{0.48\textwidth}
-%    \bi
-%
-%    \ei
-%  \end{column}
-%  \begin{column}{0.48\textwidth}
-%    \hspace{0.0in}\includegraphics[scale=0.4]{../../../doc/knitr-cache/main_data_overview_map-1}
-%  \end{column}
-%\end{columns}
-%}
