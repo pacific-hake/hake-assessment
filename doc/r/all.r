@@ -210,9 +210,12 @@ bridge.model.names.3 <- c("Base model pretune",
 
 ## Bridge model indices are used to tell knitr which elements of the models list are to
 ## be plotted together.
-bridge.model.inds.1 <- grep(paste(bridge.model.dir.names.1, collapse = "|"), models.dir.list)
-bridge.model.inds.2 <- grep(paste(bridge.model.dir.names.2, collapse = "|"), models.dir.list)
-bridge.model.inds.3 <- grep(paste(bridge.model.dir.names.3, collapse = "|"), models.dir.list)
+inds <- 1:length(models.dir.list)
+names(inds) <- models.dir.list
+bridge.model.inds.1 <- inds[bridge.model.dir.names.1]
+bridge.model.inds.2 <- inds[bridge.model.dir.names.2]
+bridge.model.inds.3 <- inds[bridge.model.dir.names.3]
+
 if((length(bridge.model.inds.1) != length(bridge.model.dir.names.1)) |
    (length(bridge.model.inds.2) != length(bridge.model.dir.names.2)) |
    (length(bridge.model.inds.3) != length(bridge.model.dir.names.3))){
