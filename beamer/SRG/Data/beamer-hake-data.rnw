@@ -323,7 +323,7 @@ load("../../../doc/r/.RData")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Survey and Fishery age composition comparison}
+\subsection{Survey and Fishery age comp comparison}
 \frame{\frametitle{Survey and Fishery age comp comparison}
   <<age.comp.comparison.fishery.survey>>=
     oldpar <- par()
@@ -339,7 +339,7 @@ load("../../../doc/r/.RData")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Survey index comparison}
+\subsection{Survey index extrap/no-extrap comparison}
 \frame{\frametitle{Survey index extrapolated/unextrapolated}
   <<survey.compare.extrap.noextrap>>=
     make.survey.biomass.extrap.plot(survey.comparison)
@@ -349,7 +349,7 @@ load("../../../doc/r/.RData")
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section[Weight-at-age]{Weight-at-age}
-\subsection{Weight-at-age}
+\subsection{Weight-at-age by year and cohort}
 \frame{\frametitle{Weight-at-age by year and cohort}
   <<wt.at.age>>=
     oldpar <- par()
@@ -361,7 +361,7 @@ load("../../../doc/r/.RData")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Weight-at-age}
+\subsection{Mean weight-at-age by year}
 \frame{\frametitle{Mean weight-at-age by year}
   \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/EWAforDoc.eps}
 }
@@ -369,7 +369,6 @@ load("../../../doc/r/.RData")
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Ageing error}
-\subsection{Ageing error}
 \frame{\frametitle{Ageing error}
   \bi
     \item A study was done that indicated ageing error on cohorts around the large 1999 year class.
@@ -415,7 +414,7 @@ load("../../../doc/r/.RData")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Maturity}
+\subsection{Maturity North and South of 34.5$^\circ$ latitude}
 \frame{\frametitle{Maturity North and South of 34.5$^\circ$ latitude}
   \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/maturityNS}
 }
