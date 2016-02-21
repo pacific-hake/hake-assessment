@@ -13,10 +13,17 @@
 \usepackage{graphicx}
 \usepackage{pgf}
 \usepackage{array}
-
+\usepackage{tabularx}
+\usepackage{booktabs}          %% Used in risk tables
+\usepackage{multirow}          %% Used in decision tables
 %\usepackage{beamerarticle}
 %\usepackage{enumitem}
 %\usepackage{beamerthemesplit}
+\usepackage[T1]{fontenc}  %to use < or > in tables
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newcommand{\specialcell}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+\newcommand{\subscr}[1]{$_{\text{#1}}$}
 
 % pdf is displayed in full screen mode automatically
 %\hypersetup{pdfpagemode=FullScreen}
@@ -27,7 +34,7 @@
 
 \setbeamertemplate{title page}
 {
-\includegraphics[height=0.5in]{../../images/NOAA.eps}\hspace{5.05in}
+\includegraphics[height=0.5in]{../../images/NOAA.eps}
 \hfill
 \includegraphics[height=0.5in]{../../images/DFO.eps}
 
@@ -39,15 +46,20 @@
 \vskip22pt
 \insertdate
 \end{center}
+\vskip50pt
+\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
 \vskip0pt plus 1filll
 }
 
-%\setbeamertemplate{footline}
-%{
-%\begin{beamercolorbox}[wd=.05\paperwidth,ht=0ex,dp=0ex,left]{framenumber in head/foot}%
-%\insertframenumber/\inserttotalframenumber
-%\end{beamercolorbox}%
-%}
+\definecolor{pageCol}{rgb}{0.5,0.5,1.0}
+
+\setbeamertemplate{footline}
+{
+\begin{beamercolorbox}[wd=.05\paperwidth,ht=0ex,dp=0ex,left]{framenumber in head/foot}%
+\insertframenumber/\inserttotalframenumber
+\end{beamercolorbox}%
+}
+\setbeamercolor{footline}{fg=pageCol}
 
 \newcounter{saveenumi}
 
@@ -63,11 +75,10 @@
 %%                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
 %%                results='show', cache=TRUE, cache.path='knitr-cache/')
 <<off-we-go, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
-rm(list=ls(all=TRUE))
 opts_chunk$set(dev = 'cairo_ps', fig.path = 'knitr-cache/', fig.dpi = 300, fig.width = 6,
-               fig.height = 4, out.width = '6in', out.height = '3in', echo = FALSE,
+               fig.height = 4, out.width = '6in', echo = FALSE,  # out.height = '3in',
                results = FALSE, message = FALSE, warning = FALSE,
-               results = 'hide', cache = TRUE, cache.path = 'knitr-cache/')
+               results = 'hide', cache = TRUE, cache.path = 'knitr-cache/', trim='{0 0 0 0}',clip)
 
 ## Load your R environment here. When you do this, you will need to
 ## put the require or library statements that the functions use because the
@@ -83,19 +94,25 @@ require(coda)
 require(gtools)
 require(dplyr)
 ## Load all R code and the model outputs
-load("../../../doc/r/.RData")
-## Load the model-partest which was previously run for the base model.
-## This object takes a very long time to build so it is stored in binary
-##  on its own.
-load("../../../doc/r/model-partest.RData")
+load.Rdata <- readline(prompt = "Load .Rdata? [y/n] ")
+if(load.Rdata == "y") {
+  rm(list=ls(all=TRUE))
+  load("../../../doc/r/.RData")
+  ## Load the model-partest which was previously run for the base model.
+  ## This object takes a very long time to build so it is stored in binary
+  ##  on its own.
+  load("../../../doc/r/model-partest.RData")
+}
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title[Hake Assessment]{\Sexpr{assess.yr} Pacific Hake Stock Assessment Results}
-\author[Hicks]{Pacific Hake JTC}
+\author[Hicks]{Allan Hicks\\Pacific Hake JTC}
 %\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
+\subtitle{\tiny Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy}
+
 
 \begin{document}
 
@@ -103,20 +120,202 @@ load("../../../doc/r/model-partest.RData")
 \titlepage
 }
 
+
 %%%%%%%%%%%%%%%%%%%%%%%
+\section{Intro}
+\subsection{}
+\frame{\frametitle{Outline}
+\bi
+  \item Review of 2014 SRG assessment recommendations
+  \item Model structure and changes from 2015
+  \item Fits to data
+  \item Estimates and predictions
+\ei
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{2014 SRG assessment recommendations}
+\bi
+  \item Base model fit to survey series starting in 1995 without extrapolation
+  \item Include a sensitivity with age-1 acoustci survey index
+  \item Include key sensitivities
+  \item Ongiong monitoring and research on stock structure
+  \item Continued collection of ovaries
+\ei
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Changes from 2015}
+\subsection{}
+
 \begin{frame}
-\frametitle{Survey Fit}
-\begin{center}
-<<mcmc.survey.fit>>=
-make.mcmc.survey.fit.plot(model.partest,
-                          start.yr = survey.start.yr,
-                          end.yr = survey.end.yr,
-                          probs = c(0.025, 0.975),
-                          y.max = 5.5e6)
-@
-\end{center}
+\frametitle{Overview of model structure}
+  \bi
+    \item Stock Synthesis version 3.24u compiled with ADMB 11.2
+    \item Updated fishery and survey data through 2014
+    \bi
+      \item Minor changes to past catches
+      \item Updated fishery age and weight observations with new database extractions
+      \item Major changes to survey biomass estimates and age compositions
+    \ei
+    \item Added new data from 2015
+    \bi
+      \item Fishery catch and age compositions
+      \item 2015 acoustic survey biomass estimate
+      \item Updated weight-at-age matrix
+    \ei
+    \item Updated bias adustment ramps for recruitment deviations
+    \item Re-weighted age composition data by fleet using harmonic mean approach
+  \ei
 \end{frame}
+
+
+%----------------------------------------------------------
+
+
+\frame{\frametitle{Bridging to the base model: Update past fishery data}
+  \bc
+  \vspace{-5pt}
+  <<bridge.biomass, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+    oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+    make.comparison.plot(models[bridge.model.inds.1],
+                     subplots = 2,
+                     model.names = bridge.model.names.1,
+                     densitynames = NULL,
+                     end.yr = end.yr)
+   par(oldpar)
+  @
+  \ec
+}
+
+%----------------------------------------------------------
+
+
+\frame{\frametitle{Bridging to the base model: Add new data}
+  \bc
+  \vspace{-5pt}
+  <<bridge.biomass2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+    oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+    make.comparison.plot(models[bridge.model.inds.2],
+                     subplots = 2,
+                     model.names = bridge.model.names.2,
+                     densitynames = NULL,
+                     end.yr = end.yr)
+   par(oldpar)
+  @
+  \ec
+}
+
+
+%----------------------------------------------------------
+
+
+\frame{\frametitle{Bridging to the base model: Add new data}
+  \bc
+  \vspace{-5pt}
+  <<bridge.other, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+    oldpar <- par(mfrow=c(1,2), mar=c(5,4,1,1),no.readonly = TRUE)
+    # make.comparison.plot(models[bridge.model.inds.2],
+    #                  subplots = 4,
+    #                  model.names = bridge.model.names.2,
+    #                  densitynames = NULL,
+    #                  legend = FALSE,
+    #                  end.yr = end.yr)
+    make.comparison.plot(models[bridge.model.inds.2],
+                     subplots = 8,
+                     model.names = bridge.model.names.2,
+                     legendloc = "topleft",
+                     densitynames = NULL,
+                     end.yr = end.yr)
+    make.comparison.plot(models[bridge.model.inds.2],
+                     subplots = 9,
+                     model.names = bridge.model.names.2,
+                     densitynames = NULL,
+                     legend = FALSE,
+                     end.yr = end.yr)
+    # make.comparison.plot(models[bridge.model.inds.2],
+    #                  subplots = 11,
+    #                  model.names = bridge.model.names.2,
+    #                  densitynames = NULL,
+    #                  indexPlotEach = TRUE,
+    #                  indexUncertainty = TRUE,
+    #                  legend = FALSE,
+    #                  end.yr = end.yr)
+   par(oldpar)
+  @
+  \ec
+}
+
+
+%----------------------------------------------------------
+
+
+\frame{\frametitle{Bridging to the base model: Tuning}
+  \bc
+  \vspace{-5pt}
+  <<bridge.tune, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+    oldpar <- par(mfrow=c(1,2), mar=c(5,4,1,1),no.readonly = TRUE)
+    make.comparison.plot(models[bridge.model.inds.3],
+                     subplots = 2,
+                     model.names = bridge.model.names.3,
+                     legend = FALSE,
+                     densitynames = NULL,
+                     end.yr = end.yr)
+    make.comparison.plot(models[bridge.model.inds.3],
+                     subplots = 8,
+                     model.names = bridge.model.names.3,
+                     densitynames = NULL,
+                     legendloc = "topleft",
+                     end.yr = end.yr)
+   par(oldpar)
+  @
+  \ec
+}
+
+
+%----------------------------------------------------------
+
+
+\frame{\frametitle{Bridging to the base model: Summary}
+  \bi
+    \item Updating past fishery data and weight-at-age matrix made indistinguishable difference
+    \item The new survey series resulted in small differences due to changes in recruitment estimates
+    \item The 2015 fishery age compositions agreed with survey data, but decreased 2012 and 2013 year classes, and greatly increased the 2014 year class
+    \item Re-tuning the model counteracted the effects of adding the 2015 fishery data
+    \bi
+      \item 2012 and 2013 year classes were similar to before
+      \item 2014 year class remained large, but uncertain
+    \ei
+  \ei
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%
+\section{Fits to data}
+\subsection{}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Estimated parameters}
+\subsection{}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Derived parameters}
+\subsection{}
+
+
+
+
+
+
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
