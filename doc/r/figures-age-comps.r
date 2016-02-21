@@ -119,6 +119,104 @@ make.age.comp.bubble.plot <- function(model,                  ## model is an mcm
   return(ret.vec)
 }
 
+make.age.comp.compare.bubble.plot <- function(model,                  ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
+                                              start.yr = min(d1$Yr, d2$Yr), ## First year for age comps - default from the data frame
+                                              end.yr = max(d1$Yr, d2$Yr),   ## Last year for age comps - default from the data frame
+                                              show.key = FALSE,       ## Show some sample bubbles at the top with sizes
+                                              key.yrs = NULL,         ## Vector of 4 years for locations to put the key if show.key == TRUE
+                                              inches = 0.12,
+                                              opacity = 80            ## Allows for transparency
+                                              ){
+  ## Plot the age compositions for fishery and survey overlaid
+  oldpar <- par()
+  if(show.key){
+    if(is.null(key.yrs)){
+      stop("make.age.comp.bubble.plot: Error - you must supply a key.yrs vector of 4 years when specifying show.key = TRUE.\n")
+    }else{
+      if(length(key.yrs) != 4){
+        stop("make.age.comp.bubble.plot: Error - key.yrs must be a vector of exactly 4 years when specifying show.key = TRUE.\n")
+      }
+    }
+    par(mar = c(2.1, 4.1, 3.1, 4.1), oma = c(1.1, 1.1, 0, 0), cex.axis = 0.9)
+  }else{
+    par(mar = c(2.1, 4.1, 1.1, 4.1), oma = c(1.1, 1.1, 0, 0), cex.axis = 0.9)
+  }
+  d1 <- model$dat$agecomp[model$dat$agecomp$FltSvy == 1,]
+  d2 <- model$dat$agecomp[model$dat$agecomp$FltSvy == 2,]
+  survey.yrs <- d2$Yr
+  if(end.yr < start.yr){
+    stop("make.age.comp.bubble.plot: Error - end.yr cannot be less than start.yr\n")
+  }
+  for(i in 2:1){
+    dat <- model$dat$agecomp[model$dat$agecomp$FltSvy == i,]
+    if(i == 1){
+      dat <- dat[dat$Yr %in% survey.yrs,]
+    }
+    ages.str <- names(dat)[grep("^a[0-9]+$", names(dat))]
+    ages <- as.numeric(gsub("a", "", ages.str))
+    min.age <- min(ages)
+    max.age <- max(ages)
+    ## Get the maximum proportion and its location within the data
+    age.df <- dat[,names(dat) %in% ages.str]
+    max.prop <- max(age.df)
+    which.max.prop <- which(age.df == max(age.df), arr.ind = TRUE)
+    ## Convert the locations to year and age for return statement
+    which.max.prop <- c(dat$Yr[which.max.prop[1]], ages[which.max.prop[2]])
+
+    x <- data.frame(expand.grid(dat$Yr, min.age:max.age),
+                    prop = unlist(dat[,ages.str]))
+    names(x) <- c("Yr", "Age", "prop")
+    symbols(c(x[,1], -1),
+            c(x[,2], -1),
+            circles = sqrt(c(x[,3], max.prop)),
+            inches = inches,
+            ylim = c(min.age, max.age),
+            xlim = c(start.yr, end.yr),
+            xlab = "",
+            ylab = "",
+            xaxt = "n",
+            add = if(i == 2) FALSE else TRUE,
+            fg = if(i == 2) get.shade("darkblue", opacity + 10) else get.shade("darkred", opacity),
+            bg = if(i == 2) get.shade("blue", opacity + 10) else get.shade("red", opacity))
+    if(i == 2 && show.key){
+      symbols(0.2 + c(key.yrs, -1),
+              c(16.2, 16.2, 16.2, 16.2, -1),
+              circles = sqrt(c(1, 10, 25, 50, max.prop)),
+              inches = inches,
+              add = TRUE,
+              xpd = NA,
+              fg = get.shade("darkblue", opacity + 10),
+              bg = get.shade("darkred", opacity))
+      text(key.yrs + 1.1, c(16.2,16.2,16.2,16.2), c("0.01", "0.1", "0.25", "0.5"), xpd = NA, cex = 0.8)
+      ## Fishery dot
+      symbols(2009.2,
+              16.2,
+              circles = 0.05,
+              inches = inches,
+              add = TRUE,
+              xpd = NA,
+              fg = "darkred",
+              bg = "red")
+      text(2009.6 + 1.1, 16.2, "Fishery", xpd = NA, cex = 0.8)
+      ## Survey dot
+      symbols(2013.2,
+              16.2,
+              circles = 0.05,
+              inches = inches,
+              add = TRUE,
+              xpd = NA,
+              fg = "darkblue",
+              bg = "blue")
+      text(2013.6 + 1.1, 16.2, "Survey", xpd = NA, cex = 0.8)
+    }
+  }
+  axis(1, at = survey.yrs, labels = survey.yrs)
+  axis(4)
+  mtext("Year", side = 1, outer = TRUE)
+  mtext("Age", side = 2, line = -1, outer = TRUE)
+  par <- oldpar
+}
+
 make.age.comp.fit.plot <- function(model,       ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
                                    subplot = 1  ## 1) fishery or 2) survey
                                    ){

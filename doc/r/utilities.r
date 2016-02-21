@@ -1,3 +1,46 @@
+get.shade <- function(color, opacity){
+  # If color is a single R color string or single number,
+  #  returns an rgb string of the specified color and opacity
+  # If color is a vector of cR color strings or numbers,
+  #  returns a vector of rgb strings of the specified color and opacity.
+  # If the opacity argument is non-integer or not between 0 and 99, NULL will be returned.
+  # - opacity - 2-decimal-digit string (00-99), i.e. "20" means 20%
+  # Notes: format of returned string is #RRGGBBAA
+  #        where RR=red, a 2-hexadecimal-digit string
+  #        GG=green, a 2-hexadecimal-digit string
+  #        BB=blue, a 2-hexadecimal-digit string
+  #        AA=alpha or opacity
+  #
+  # The opacity agrument is scalar and will be applied to all colors.
+  if(!(opacity %% 1 == 0) || opacity<0 || opacity>99){
+    cat0(.PROJECT_NAME,"->",currFuncName,"opacity argument must be an integer between 0 and 99.")
+    return(NULL)
+  }
+  colorDEC <- col2rgb(color)
+  if(is.matrix(colorDEC)){
+    colorHEX <- matrix(nrow=3,ncol=ncol(colorDEC))
+    shade <- NULL
+    for(col in 1:ncol(colorDEC)){
+      for(row in 1:nrow(colorDEC)){
+        colorHEX[row,col] <- sprintf("%X", colorDEC[row,col])
+        if(nchar(colorHEX[row,col])==1){
+          colorHEX[row,col] <- paste0("0",colorHEX[row,col])
+        }
+      }
+      shade[col] <- paste0("#",colorHEX[1,col],colorHEX[2,col],colorHEX[3,col],opacity)
+    }
+  }else{
+    colorHEX <- sprintf("%X", colorDEC)
+    for(i in 1:length(colorHEX)){
+      if(nchar(colorHEX[i])==1){
+        colorHEX[i] <- paste0("0",colorHEX[i])
+      }
+    }
+    shade <- paste0("#",colorHEX[1],colorHEX[2],colorHEX[3],opacity)
+  }
+  return(shade)
+}
+
 run.retrospectives <- function(model,
                                yrs = 1:15,            ## A vector of years to subtract from the model's data to run on.
                                remove.blocks = FALSE,

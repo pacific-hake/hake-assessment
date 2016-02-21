@@ -388,6 +388,7 @@ can.ft.age <- can.ages[[2]]
 us.shore.age <- load.us.age.data(file.path(data.path, us.shore.age.data.file))
 us.cp.age <- load.us.age.data(file.path(data.path, us.cp.age.data.file))
 us.ms.age <- load.us.age.data(file.path(data.path, us.ms.age.data.file))
+wt.at.age <- load.wt.at.age(models[[base.model.ind]], weight.at.age.file.name)
 cat("All data tables have been loaded ", data.path,"\n")
 
 ################################################################################

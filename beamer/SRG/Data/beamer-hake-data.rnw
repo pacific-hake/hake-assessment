@@ -321,7 +321,35 @@ load("../../../doc/r/.RData")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Survey and Fishery age composition comparison}
+\frame{\frametitle{Survey and Fishery age comp comparison}
+  <<age.comp.comparison.fishery.survey>>=
+    oldpar <- par()
+    ## NOTE this function is not generalized and needs to be fixed
+    make.age.comp.compare.bubble.plot(base.model,
+                                      start.yr = survey.start.yr,
+                                      end.yr = survey.end.yr,
+                                      show.key = TRUE,
+                                      key.yrs = c(1997, 1999, 2002, 2005)+1)
+    par <- oldpar
+  @
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section[WeightAge]{Weight-at-age}
+\subsection{Weight-at-age}
+\frame{\frametitle{Weight-at-age by year and cohort}
+  <<wt.at.age>>=
+    oldpar <- par()
+    par(mar=c(4.1, 4.1, 1.1, 1.1), oma=c(0, 0, 0, 0))
+    make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1)
+    par <- oldpar
+  @
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Weight-at-age}
 \frame{\frametitle{Mean weight-at-age by year}
   \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/EWAforDoc.eps}
