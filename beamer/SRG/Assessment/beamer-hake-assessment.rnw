@@ -128,8 +128,9 @@ if(load.Rdata == "y") {
 \bi
   \item Review of 2015 SRG assessment recommendations
   \item Model structure and changes from 2015
+  \item MCMC diagnostics
   \item Fits to data
-  \item Estimates and predictions
+  \item Parameter estimates and predictions
 \ei
 }
 
@@ -306,7 +307,7 @@ if(load.Rdata == "y") {
     \item The 2015 fishery age compositions agreed with survey data, except in recent years
     \bi \item Decreased 2012 and 2013 year classes, and greatly increased the 2014 year class 
     \ei
-    \item Re-tuning the model counteracted the effects of adding the 2015 fishery data
+    \item Adjusting bias ramp counteracted the effects of adding the 2015 fishery data
     \bi
       \item 2012 and 2013 year classes increased to become similar to before
       \item 2014 year class remained large, but uncertain
@@ -314,16 +315,70 @@ if(load.Rdata == "y") {
   \ei
 }
 
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{MCMC diag}
+\subsection{}
+\frame{\frametitle{MCMC trace}
+  \bc
+    <<main.mcmc.diag.m, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+      oldpar <- par(no.readonly=TRUE)
+      par(mar=c(4.1, 4.1, 3.1, 0.1))
+      origPath <- base.model$mcmcpath
+      base.model$mcmcpath <- file.path("..",origPath)
+      make.mcmc.diag.plot(base.model, subplot = 1)
+      base.model$mcmcpath <- origPath
+      par <- oldpar
+    @
+  \ec
+}
+
+
+\frame{\frametitle{MCMC tests}
+  \bc
+    <<main.mcmc.diag.hists, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+      origPath <- base.model$mcmcpath
+      base.model$mcmcpath <- file.path("..",origPath)
+      make.mcmc.diag.hists.plot(base.model)
+      base.model$mcmcpath <- origPath
+      # oldpar <- par(no.readonly=TRUE)
+      # par(mar=c(4.1, 4.1, 3.1, 0.1))
+      # par <- oldpar
+    @
+  \ec
+}
+
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Fits to data}
 \subsection{}
+\frame{\frametitle{}
+  \bc
+    <<recruitment.devs>>=
+    make.recruitment.dev.plot(base.model,
+                              end.yr = end.yr)
+
+    @
+  \ec
+}
+
+%----------------------------------------------------------
 
 
+\frame{\frametitle{Recruitment Deviations}
+  \bc
+    <<recruitment.devs1>>=
+    make.recruitment.dev.plot(base.model,
+                              end.yr = end.yr)
+
+    @
+  \ec
+}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\section{Estimated parameters}
-\subsection{}
 
 
 
@@ -359,16 +414,6 @@ make.recruitment.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Recruitment Deviations}
-\begin{center}
-<<recruitment.devs>>=
-make.recruitment.dev.plot(base.model,
-                          end.yr = end.yr)
-
-@
-\end{center}
-\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
