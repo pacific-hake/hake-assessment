@@ -64,6 +64,8 @@
 \newcommand{\en}{\end{enumerate}}
 \newcommand{\bi}{\begin{itemize}}
 \newcommand{\ei}{\end{itemize}}
+\newcommand{\Fforty}{F_{\text{SPR}=40\%}}       % Needs to be done as $\Fforty$
+\newcommand{\Bforty}{B_{\text{SPR}=40\%}}
 
 %% <<echo=TRUE,  message=TRUE, results='show', warning=TRUE>>=
 %% opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
@@ -91,6 +93,7 @@ require(gtools)
 require(dplyr)
 ## Load all R code and the model outputs
 load.Rdata <- readline(prompt = "Load .Rdata? [y/n] ")
+## load.Rdata <- "y"
 if(load.Rdata == "y") {
   rm(list=ls(all=TRUE))
   load("../../../doc/r/.RData")
