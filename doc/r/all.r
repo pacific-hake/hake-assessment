@@ -362,6 +362,8 @@ if(reload.models == "y" | reload.models == "Y"){
         stop("I'm stopping because you aren't sure. Re-source to try again.\n\n")
       }
       smart.load <- TRUE
+    }else{
+      smart.load <- FALSE
     }
   }
 }
