@@ -206,20 +206,21 @@ make.mcmc.vs.mle.plot(base.model,end.yr = end.yr,subplot = 2)
 \subsection{}
 \begin{frame}
 \frametitle{Sensitivity Table - MLE}
+\begin{center}
 %\begin{center}
 %\includegraphics[width=5.5in, height=3.5in]{../../../doc/main-figures/SensTable1}
-    <<main.parameter.estimates.sens.2, results='asis', echo=FALSE>>=
-      make.short.parameter.estimates.sens.table(sens.models.2.for.table,
+<<main.parameter.estimates.sens.2, results='asis', echo=FALSE>>=
+make.short.parameter.estimates.sens.table(sens.models.2.for.table,
                                           model.names = sens.model.names.2.for.table,
                                           posterior.regex = key.posteriors,
                                           end.yr = end.yr,
                                           digits = 3,
                                           xcaption <- NULL,
                                           xlabel <- "tab:main-parameter-estimates-sens-2",
-                                          font.size = 2,
-                                          space.size = 4)   
+                                          font.size = 7,
+                                          space.size = 7)   
 @
-%\end{center}
+\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
  
@@ -227,6 +228,7 @@ make.mcmc.vs.mle.plot(base.model,end.yr = end.yr,subplot = 2)
 \begin{frame}
 \frametitle{Survey Alternatives: Biomass}
 \begin{center}
+%\vspace*{-1cm}
 <<biomass.alternative.2>>=
 oldpar <- par()
 par(mar = c(4.5, 4.1, 1.5, 1.1))
@@ -249,7 +251,7 @@ oldpar <- par()
 par(mar = c(4.5, 4.1, 1.5, 1.1))
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
                      subplots = 11,
-                     legendloc = "bottomright",
+                     legendloc = "bottomleft",
                      indexPlotEach=T,
                      indexfleets = c(2,2,2,2),
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
@@ -269,7 +271,7 @@ oldpar <- par()
 par(mar = c(4.5, 4.1, 1.5, 1.1))
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
                      subplots = 9,
-                     legendloc = "topleft",
+                     legendloc = "bottomleft",
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
                      end.yr = end.yr)                            
 par <- oldpar 
@@ -307,17 +309,17 @@ par <- oldpar
 \subsection{}
 \begin{frame}
 \frametitle{Ageing Error: Biomass}
-% \begin{center}
-% <<ageing.error.1>>=
-% oldpar <- par()
-% par(mar = c(4.5, 4.1, 1.5, 1.1))
-% make.comparison.plot(models[c(base.model.ind, sens.model.inds.4)],
-%                      subplots = 2,
-%                      model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
-%                      end.yr = end.yr)                            
-% par <- oldpar 
-% @
-% \end{center}
+ \begin{center}
+ <<ageing.error.1>>=
+ oldpar <- par()
+ par(mar = c(4.5, 4.1, 1.5, 1.1))
+ make.comparison.plot(models[c(base.model.ind, sens.model.inds.4)],
+                      subplots = 2,
+                      model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
+                      end.yr = end.yr)                            
+ par <- oldpar 
+ @
+ \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -325,16 +327,16 @@ par <- oldpar
 \begin{frame}
 \frametitle{Ageing Error: Recruit Devs}
 \begin{center}
-% <<ageing.error.2>>=
-% oldpar <- par()
-% par(mar = c(4.5, 4.1, 1.5, 1.1))
-% make.comparison.plot(models[c(base.model.ind, sens.model.inds.4)],
-%                      subplots = 10,
-%                      legendloc = "topleft",
-%                      model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
-%                      end.yr = end.yr)                            
-% par <- oldpar 
-%@
+ <<ageing.error.2>>=
+ oldpar <- par()
+ par(mar = c(4.5, 4.1, 1.5, 1.1))
+ make.comparison.plot(models[c(base.model.ind, sens.model.inds.4)],
+                      subplots = 10,
+                      legendloc = "topleft",
+                      model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
+                      end.yr = end.yr)                            
+par <- oldpar 
+@
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -364,32 +366,41 @@ par <- oldpar
 \begin{center}
 <<selectivity.2>>=
 oldpar <- par()
-par(mar = c(2.1, 2.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
+par(mar = c(2.1, 4, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
 layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
 make.selex.plot(base.model, pan.letter = "6")
 make.selex.plot(models[[sens.model.inds.3[1]]], pan.letter = "5")
 make.selex.plot(models[[sens.model.inds.3[2]]], pan.letter = "7")
 make.selex.plot(models[[sens.model.inds.3[3]]], pan.letter = "12")                           
 par <- oldpar 
-mtext("Age", side = 1, line = 1, outer = TRUE)
+mtext("Age", side = 1, line = 0.5, outer = TRUE)
 @
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%% 
 
 %%%%%%%%%%%%%%%%%%%%%%%
+\section{Key Sens}
+\subsection{}
 \begin{frame}
 \frametitle{Sensitivity Table - MLE}
 \begin{center}
-\includegraphics[width=5.5in, height=3.25in]{../../../doc/main-figures/SensTable2}
+<<main.parameter.estimates.sens.1, results='asis', echo=FALSE>>=
+make.short.parameter.estimates.sens.table(sens.models.1.for.table,
+                                          model.names = sens.model.names.1.for.table,
+                                          posterior.regex = key.posteriors,
+                                          end.yr = end.yr,
+                                          digits = 3,
+                                          xcaption <- NULL,
+                                          xlabel <- "tab:main-parameter-estimates-sens-2",
+                                          font.size = 7,
+                                          space.size = 7) 
 @
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%  
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{Key Sens}
-\subsection{}
 \begin{frame}
 \frametitle{Key Sensitivities: Biomass}
 \begin{center}
@@ -435,7 +446,8 @@ par(mar = c(4.5, 4.1, 1.5, 1.1))
 make.comparison.plot(retro.list,
                      subplots = 2,
                      model.names = retro.model.names,
-                     legend = FALSE,
+                     legend = TRUE,
+                     legendloc = "topright",
                      is.retro = TRUE)
 par <- oldpar 
 @
@@ -488,13 +500,13 @@ par <- oldpar
 \begin{frame}
 \frametitle{Historical Assessments}
 \begin{center}
-<<retro.4>>=
-oldpar <- par()
-par(mar = c(4.5, 4.1, 1.5, 1.1))
+<<retro.4, out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
+#oldpar <- par()
+#par(mar = c(4.5, 4.1, 1.5, 1.1))
 make.assessment.history.plot(base.model,
                              assessment.history,
                              end.yr + 2)                           
-par <- oldpar 
+#par <- oldpar 
 @
 \end{center}
 \end{frame}
