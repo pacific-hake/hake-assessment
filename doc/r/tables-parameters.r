@@ -420,7 +420,7 @@ make.short.parameter.estimates.table <- function(model,                ## model 
     mcmc.meds <- c(mcmc.meds, d)
 
     ## Add depletion for 2015
-    d <- median(x$mcmc$Bratio_2015)
+    d <- median(x$mcmc$Bratio_2016)
     d <- d * 100  ## To make a percentage
     mcmc.meds <- c(mcmc.meds, d)
 
@@ -452,6 +452,7 @@ make.short.parameter.estimates.table <- function(model,                ## model 
 
   ## Last year's model MCMC
   last.yr.mcmc.meds <- calc.mcmc(last.yr.model)
+  last.yr.mcmc.meds[10] <- NA   #THIS IS A HACK TO NOT REPORT THE SPR FOR 2015 FROM LAST ASSESSMENT SINCE ACTUAL CATCH WAS NOT KNOWN
   tab <- as.data.frame(cbind(mle.par, mcmc.meds, last.yr.mcmc.meds))
   colnames(tab) <- NULL
 

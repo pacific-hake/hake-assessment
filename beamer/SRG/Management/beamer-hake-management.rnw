@@ -436,8 +436,59 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{2014 Recruitment}
+\section{Recruitment}
 \subsection{}
+\frame{\frametitle{Investigating management options \& relationship with recent recruitment}
+  \begin{columns}
+    \begin{column}{0.48\textwidth}
+      \bi
+        \item 2016 default catch (bottom row) 
+        \bi 
+          \item highly correlated with 2008 and 2010 recruitment
+          \item Not highly correlated with 2014 recruitment
+        \ei
+        \item 2017 catch (not shown)
+        \bi 
+          \item highly correlated more with 2014 recruitment 
+              (\Sexpr{round(cor(base.model$mcmc$ForeCatch_2017,base.model$mcmc$Recr_2014),2)})
+          \item Correlation with 2010 and 2008 recruitments drops to around 0.5 
+        \ei
+      \ei
+    \end{column}
+    \begin{column}{0.49\textwidth}
+    <<main.mcmc.pairs, fig.height=8, fig.width=8, out.width='0.92\\columnwidth'>>=
+      make.mcmc.diag.pairs.plot(base.model,
+                          inc.key.params = TRUE,
+                          recr = c(2008, 2010, 2014),
+                          bratio = end.yr,
+                          forecatch = end.yr)
+    @
+    \end{column}
+  \end{columns}
+}
+
+
+% \frame{\frametitle{Correlations between recruitment deviations}
+%   \begin{columns}
+%     \begin{column}{0.48\textwidth}
+%       \bi
+%         \item 
+%       \ei
+%     \end{column}
+%     \begin{column}{0.49\textwidth}
+%     <<main.mcmc.pairs.recruit.devs, fig.height=8, fig.width=8, out.width='0.9\\columnwidth'>>=
+%       make.mcmc.diag.pairs.plot(base.model,
+%                           inc.key.params = FALSE,
+%                           recr = (end.yr-10):(end.yr-1))
+%     @
+%     \end{column}
+%   \end{columns}
+% }
+
+
+
+
+
 \frame{\frametitle{Investigating management options for different options of recent recruitment}
   \bi
     \item 
