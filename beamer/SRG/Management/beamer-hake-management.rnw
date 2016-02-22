@@ -124,6 +124,14 @@ rowLabs <- rep("",length(ind)*3)
 rowLabs[seq(1,length(ind)*3,3)] <- paste0(letters[ind],":")
 rowLabs[c(5,6,8,9,11,12)] <- c("2015","TAC","FI=","100\\%","default","HR")
 catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
+
+#load additional model #54
+# nm <- length(models)+1
+# thePath <- "../../../models/54_preSRGbase_updated_no2015FisheryComps"
+# models[[nm]] <- SS_output(dir=thePath, verbose = FALSE)
+# models
+# models[[nm]]$mcmc <- data.frame(SSgetMCMC(dir=filepath(thePath,"mcmc"), writecsv=FALSE, verbose = FALSE)$model1)
+# models[[nm]]$mcmcpath <- filepath(thePath,"mcmc")
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -172,7 +180,7 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
       \bi
         \item Fishing intensity has mostly remained below target
         \item Biomass has mostly remained above target
-        \item When biomass goes below target, the fishing intesity typically decreases
+        \item When biomass goes below target, the fishing intensity typically decreases
       \ei
     \end{column}
     \begin{column}{0.68\textwidth}
@@ -255,9 +263,9 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Constant catch stream 440,000 t and less result in increases in spawning biomass
+      \item Constant catch streams lees than 440,000~t result in increases in spawning biomass
       \item Catches based on harvest rule calculations result in decreases in spawning biomass
-      \item Unertainty is large and increases the farther it is forecasted
+      \item Uncertainty is large and increases the farther it is forecasted
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -438,7 +446,7 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Recruitment}
 \subsection{}
-\frame{\frametitle{Investigating management options \& relationship with recent recruitment}
+\frame{\frametitle{Investigating management options \& relationships with recent recruitment}
   \begin{columns}
     \begin{column}{0.48\textwidth}
       \bi
@@ -491,11 +499,10 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
 
 \frame{\frametitle{Investigating management options for different options of recent recruitment}
   \bi
-    \item 
-    \item These are alternative investigations to help understand the outcomes of the base assessment model
+    \item Next are alternative investigations to help understand the outcomes of the base assessment model
     \bi
+      \item They are not meant to replace the base model
       \item They are not alternative models with an equal probability of representing reality
-      \item 
     \ei
   \ei
 }
@@ -505,13 +512,68 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item 
+      \item Forecast with default HR from base model
+      \bi \item 804,399; 889,918; 785,036 \ei
+      \item Without 2015 fishery ages
+      \bi
+        \item 2012 recruitment is slightly higher
+        \item 2014 recruitment is much lower
+      \ei
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
+  <<compare.no2015fishAge, fig.height=5, fig.width=5.5, out.width='0.95\\columnwidth'>>=
+    oldpar <- par(mfrow=c(2,1), mar=c(5,4,1,1),no.readonly = TRUE)
+    make.comparison.plot.mcmc(models[c(base.model.ind, sens.model.inds.5)],
+                     subplots = 2,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.5),
+                     end.yr = end.yr+2,
+                     xlims = c(2008,end.yr+2),
+                     legendloc = "topleft")
+    make.comparison.plot.mcmc(models[c(base.model.ind, sens.model.inds.5)],
+                     subplots = 8,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.5),
+                     end.yr = end.yr+2,
+                     xlims = c(2008,end.yr+2),
+                     legend = FALSE)
+    @
   \end{column}
 \end{columns}
 }
+
+
+\frame{\frametitle{Model without 2015 fishery age compositions: predicted TAC}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item Predicted TAC from the default harvest rule is higher without the 2015 fishery ages
+      \item Subsequent predicted TAC's are lower
+    \ei
+  \end{column}
+  \begin{column}{0.59\textwidth}
+    \begin{table}[h]
+    \centering
+    {\fontsize{9}{11}\selectfont
+    \begin{tabular}{|l|cc|}
+    \hline
+          & \multicolumn{2}{c|}{Forecast TAC} \\ \hline
+          & \multicolumn{2}{c|}{based on default HR} \\ \hline
+          &             & Without 2015\\
+     Year & Base        & fishery ages \\ \hline
+     2016 & 804,399     & 879,761 \\
+     2017 & 889,918     & 653,989 \\
+     2018 & 785,036     & 531,927 \\
+    \hline 
+    \end{tabular}
+    }
+    \end{table}
+  \end{column}
+\end{columns}
+}
+
+
+
+
 
 \frame{\frametitle{Spawning biomass for different levels of 2014 recruitment}
 \begin{columns}
@@ -544,9 +606,10 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
 \subsection{}
 \frame{\frametitle{Summary of forecasting}
   \bi
-    \item Large, but uncertain 2014 year class along with above average 2012 year class results in an increasing population
-    \item Uncertainty is great, but likely above spawning biomass target
-    \item Catches up to 2015 TAC estimate a median spawning biomass to be increasing
+    \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
+    \item Uncertainty is great, but stock is likely above spawning biomass target
+    \item Large, but uncertain 2014 year class along with slightly above average 2012 year class results in an increasing population
+    \item Catches up to 2015 TAC (440,000~t) estimate a median spawning biomass to be increasing
     \item Less than 30\% risk that spawning biomass will be below target in 2 years at all catch levels
     \medskip
     \item Accounting for uncertainty in estimate of 2014 year class???????
