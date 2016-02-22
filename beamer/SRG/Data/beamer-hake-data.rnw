@@ -49,6 +49,8 @@
 %}
 
 \newcounter{saveenumi}
+\newcommand{\specialcell}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+\newcommand{\fishname}{Pacific Hake}
 
 \newcommand{\bc}{\begin{center}}
 \newcommand{\ec}{\end{center}}
@@ -88,9 +90,8 @@ load("../../../doc/r/.RData")
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title[Hake Data]{Fisheries, data, and inputs used in the \Sexpr{assess.yr} Pacific Hake/Whiting stock assessment}
-\author[Grandin]{Pacific Hake JTC}
+\author[Grandin]{\includegraphics[height=1in, width=4in]{../../images/hake-on-board.eps}\\Pacific Hake JTC}
 %\institute{}
-\titlegraphic{\includegraphics[height=2]{../../images/hake-on-board.eps}}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
 
 
@@ -268,7 +269,7 @@ load("../../../doc/r/.RData")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section[AgeComps]{Age Comps}
+\section[Age Comps]{Age Comps}
 \subsection{Age comp comparison between fleets}
 \frame{\frametitle{Age composition - comparison between fleets}
   <<age.comp.comparison>>=
@@ -321,7 +322,7 @@ load("../../../doc/r/.RData")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Survey and Fishery age composition comparison}
+\subsection{Survey and Fishery age comp comparison}
 \frame{\frametitle{Survey and Fishery age comp comparison}
   <<age.comp.comparison.fishery.survey>>=
     oldpar <- par()
@@ -337,8 +338,17 @@ load("../../../doc/r/.RData")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section[WeightAge]{Weight-at-age}
-\subsection{Weight-at-age}
+\subsection{Survey index extrap/no-extrap comparison}
+\frame{\frametitle{Survey index extrapolated/unextrapolated}
+  <<survey.compare.extrap.noextrap>>=
+    make.survey.biomass.extrap.plot(survey.comparison)
+  @
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section[Weight-at-age]{Weight-at-age}
+\subsection{Weight-at-age by year and cohort}
 \frame{\frametitle{Weight-at-age by year and cohort}
   <<wt.at.age>>=
     oldpar <- par()
@@ -350,11 +360,110 @@ load("../../../doc/r/.RData")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Weight-at-age}
+\subsection{Mean weight-at-age by year}
 \frame{\frametitle{Mean weight-at-age by year}
   \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/EWAforDoc.eps}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Ageing error}
+\frame{\frametitle{Ageing error}
+  \bi
+    \item A study was done that indicated ageing error on cohorts around the large 1999 year class.
+    \item Ageing technicians tend to group cohorts into what they know to be a large year class.
+    \item There are now several recent above-average year classes close together, with another possible in 2014.
+    \item A new study should be done to identify biases present in ageing.
+  \ei
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Maturity}
+\subsection{Ovary sampling}
+\frame{\frametitle{Ovary sampling}
+  \begin{columns}
+    \begin{column}[t]{0.5\linewidth}
+      \bi
+        \item Sample sources
+          \bi
+            \item Bottom trawl survey (2009, 2012 -- 2015)
+            \item Acoustic survey (2012 -- 2013, 2015)
+            \item At-sea fishery vessels (2013 -- 2015)
+          \ei
+        \item Length stratified sampling from surveys
+          \bi
+            \item Target numbers for 2cm length bins
+          \ei
+      \ei
+    \end{column}
+    \begin{column}[t]{0.5\linewidth}
+      <<ovary.table, results='asis', echo=FALSE>>=
+        make.maturity.samples.table(ovary.samples,
+                                    start.yr = start.yr,
+                                    end.yr = last.data.yr,
+                                    xcaption = "Number of \\fishname\\ ovaries collected for histological analysis.",
+                                    xlabel = "tab:beamer-ovaries",
+                                    font.size = 10,
+                                    space.size = 10)
+      @
+    \end{column}
+  \end{columns}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Maturity North and South of 34.5$^\circ$ latitude}
+\frame{\frametitle{Maturity North and South of 34.5$^\circ$ latitude}
+  \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/maturityNS}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Fecundity}
+\frame{\frametitle{Fecundity}
+  \bi
+    \item Fecundity-at-age is set to maturity-at-age $*$ weight-at-age in SS3.
+    \item We need a better understanding of:
+      \bi
+        \item Batch spawning.
+        \item Skip spawning.
+        \item How these fit into fecundity which would improve our knowledge of reproductive output.
+      \ei
+    \item The winter acoustic survey may help us with these questions.
+  \ei
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section[Data not used]{Data not used}
+\frame{\frametitle{Data sources \textbf{NOT} used}
+  \bi
+    \item Fishery independent
+      \bi
+        \item Age-1 index from the acoustic survey.
+        \item Length/sex frequencies from the acoustic survey.
+        \item Bottom trawl survey data.
+        \item Juvenile and pre-recruit surveys from SWFSC and PWCC.
+      \ei
+    \item Fishery dependent
+      \bi
+        \item Length frequencies from the fishery.
+        \item Fishery CPUE.
+        \item WCGOP data (bycatch)
+        \item Mexican landings / sample data.
+      \ei
+    \item Externally derived inputs
+      \bi
+        \item Analysis of maturity data.
+        \item Environmental/ecosystem covariates.
+      \ei
+  \ei
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \end{document}

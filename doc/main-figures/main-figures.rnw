@@ -120,7 +120,6 @@ make.survey.biomass.plot(models, modelnum=base.model.ind)
 \begin{figure}[H]
 \begin{center}
 <<main.survey.extrap.biomass, fig.height=6, fig.width=8>>=
-## modelnum is the model index in models list from which the survey input data are used.
 make.survey.biomass.extrap.plot(survey.comparison)
 @
 \end{center}
