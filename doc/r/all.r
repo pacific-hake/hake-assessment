@@ -267,16 +267,21 @@ sens.model.names.3 <- c("Max. age of selectivity 5",
 sens.model.dir.names.4 <- "53_Sensbase_AgeError_noCohort_update"
 sens.model.names.4 <- "No cohort ageing error"
 
+sens.model.dir.names.5 <- "54_preSRGbase_updated_no2015FisheryComps"
+sens.model.names.5 <- "No 2015 fishery ages"
+
 ## Sensitivity model indices are used to tell knitr which elements of the models list are to
 ## be plotted together.
 sens.model.inds.1 <- grep(paste(sens.model.dir.names.1, collapse = "|"), models.dir.list)
 sens.model.inds.2 <- grep(paste(sens.model.dir.names.2, collapse = "|"), models.dir.list)
 sens.model.inds.3 <- grep(paste(sens.model.dir.names.3, collapse = "|"), models.dir.list)
 sens.model.inds.4 <- grep(paste(sens.model.dir.names.4, collapse = "|"), models.dir.list)
+sens.model.inds.5 <- grep(paste(sens.model.dir.names.5, collapse = "|"), models.dir.list)
 if((length(sens.model.inds.1) != length(sens.model.dir.names.1)) |
    (length(sens.model.inds.2) != length(sens.model.dir.names.2)) |
    (length(sens.model.inds.3) != length(sens.model.dir.names.3)) |
-   (length(sens.model.inds.4) != length(sens.model.dir.names.4))){
+   (length(sens.model.inds.4) != length(sens.model.dir.names.4)) |
+   (length(sens.model.inds.5) != length(sens.model.dir.names.5))){
   stop("One or more of the sensitivity model directory names were not found. Check the names and try again. Directory names listed in all.r are:\n",
        paste0(sens.model.dir.names.1, "\n"),
        "\n",
@@ -284,12 +289,15 @@ if((length(sens.model.inds.1) != length(sens.model.dir.names.1)) |
        "\n",
        paste0(sens.model.dir.names.3, "\n"),
        "\n",
-       paste0(sens.model.dir.names.4, "\n"))
+       paste0(sens.model.dir.names.4, "\n"),
+       "\n",
+       paste0(sens.model.dir.names.5, "\n"))
 }
 if((length(sens.model.names.1) != length(sens.model.dir.names.1)) |
    (length(sens.model.names.2) != length(sens.model.dir.names.2)) |
    (length(sens.model.names.3) != length(sens.model.dir.names.3)) |
-   (length(sens.model.names.4) != length(sens.model.dir.names.4))){
+   (length(sens.model.names.4) != length(sens.model.dir.names.4)) |
+   (length(sens.model.names.5) != length(sens.model.dir.names.5))){
   stop("One of the sens.model.names vectors in all.r has a different length than its sens.model.dir.names counterpart. Make sure these two vectors match in length and try again.\n")
 }
 
@@ -344,15 +352,17 @@ catch.levels.dir.names <- c("01_0",
 ################################################################################
 
 reload.models <- readline(prompt = "Reload models (only necessary first time or if you add new models to the models directory)? [y/n] ")
+smart.load <- FALSE
 if(reload.models == "y" | reload.models == "Y"){
-  smart.load <- FALSE
   if(exists("models")){ ## Only ask if the models list exists
-    smart.load <- readline(prompt = "   Use smart load (will only reload newly-added models, thus keeping any forecasting done previously)? [y/n] ")
-    if(smart.load != "y" & smart.load != "Y"){
+    smart.load.query <- readline(prompt = "   Use smart load (will only reload newly-added models, thus keeping any forecasting done previously)? [y/n] ")
+    if(smart.load.query != "y" & smart.load.query != "Y"){
       sure <- readline(prompt = "      Are you sure (your entire models list will be deleted and re-populated)? [y/n] ")
       if(sure != "y" & sure != "Y"){
         stop("I'm stopping because you aren't sure. Re-source to try again.\n\n")
       }
+      smart.load <- TRUE
+    }else{
       smart.load <- TRUE
     }
   }

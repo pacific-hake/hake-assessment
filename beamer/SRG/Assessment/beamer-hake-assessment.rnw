@@ -97,6 +97,7 @@ require(gtools)
 require(dplyr)
 ## Load all R code and the model outputs
 load.Rdata <- readline(prompt = "Load .Rdata? [y/n] ")
+## load.Rdata <- "y"
 if(load.Rdata == "y") {
   rm(list=ls(all=TRUE))
   load("../../../doc/r/.RData")
