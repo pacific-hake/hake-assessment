@@ -194,7 +194,7 @@ print(sau.dat)
     \begin{column}[t]{0.5\linewidth}
       \center{\textbf{\textcolor{blue}{Canada}}} \\
       \bi
-        \item The \Sexpr{end.yr-1} Canadian TAC was \Sexpr{last.year.can.tac}
+        \item The \Sexpr{end.yr-1} Canadian TAC was \Sexpr{last.year.can.tac} t
         \bi
           \item Freezer trawlers -- \Sexpr{last.year.can.freezer} t (\Sexpr{paste0(last.year.can.freezer.percent, "\\%")})
           \item Shoreside        -- \Sexpr{last.year.can.shore} t   (\Sexpr{paste0(last.year.can.shore.percent, "\\%")})
@@ -208,13 +208,13 @@ print(sau.dat)
     \begin{column}[t]{0.5\linewidth}
       \center{\textbf{\textcolor{blue}{United States}}} \\
       \bi
-        \item The \Sexpr{end.yr-1} U.S. TAC was \Sexpr{last.year.us.tac}
+        \item The \Sexpr{end.yr-1} U.S. TAC was \Sexpr{last.year.us.tac} t
           \bi
-            \item Research            -- \Sexpr{fmt0(last.year.us.research.catch)}    (\Sexpr{paste0(last.year.us.research.catch.percent, "\\%")})
-            \item Catcher--processor  -- \Sexpr{fmt0(last.year.us.cp.catch)}          (\Sexpr{paste0(last.year.us.cp.catch.percent, "\\%")})
-            \item Mothership          -- \Sexpr{fmt0(last.year.us.ms.catch)}          (\Sexpr{paste0(last.year.us.ms.catch.percent, "\\%")})
-            \item Shore-based         -- \Sexpr{fmt0(last.year.us.shore.catch)}       (\Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")})
-            \item Tribal              -- \Sexpr{fmt0(last.year.us.tribal.max.landed)} (\Sexpr{paste0(last.year.us.tribal.catch.percent, "\\%")})
+            \item Research            -- \Sexpr{fmt0(last.year.us.research.catch)} t    (\Sexpr{paste0(last.year.us.research.catch.percent, "\\%")})
+            \item Catcher--processor  -- \Sexpr{fmt0(last.year.us.cp.catch)} t          (\Sexpr{paste0(last.year.us.cp.catch.percent, "\\%")})
+            \item Mothership          -- \Sexpr{fmt0(last.year.us.ms.catch)} t          (\Sexpr{paste0(last.year.us.ms.catch.percent, "\\%")})
+            \item Shore-based         -- \Sexpr{fmt0(last.year.us.shore.catch)} t       (\Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")})
+            \item Tribal              -- \Sexpr{fmt0(last.year.us.tribal.max.landed)} t (\Sexpr{paste0(last.year.us.tribal.catch.percent, "\\%")})
           \ei
         \item Total U.S. catch -- \Sexpr{last.year.us.landings} t
         \item \Sexpr{paste0(last.year.us.attained, "\\%")} of the U.S. quota was caught.
