@@ -280,14 +280,14 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
   ## Decimal values
   tab[c(1,3,4),] <- fmt0(tab[c(1,3,4),], 3)
   ## Large numbers with no decimal points but probably commas
-  tab[c(2,5,6,7,11,14),] <- fmt0(apply(tab[c(2,5,6,7,11,14),], c(1,2), as.numeric))
+  tab[c(2,5,6,7,8,12,15),] <- fmt0(apply(tab[c(2,5,6,7,8,12,15),], c(1,2), as.numeric))
   ## Percentages
-  tab[c(8,9,10,13),] <- paste0(fmt0(apply(tab[c(8,9,10,13),], c(1,2), as.numeric), 1), "\\%")
+  tab[c(9,10,11,14),] <- paste0(fmt0(apply(tab[c(9,10,11,14),], c(1,2), as.numeric), 1), "\\%")
   ## SPR Percentages row (some may be NA). This is really ugly but works
-  tab[12, !is.na(tab[12,])] <- paste0(fmt0(as.numeric(tab[12, !is.na(tab[12,])]), 1), "\\%")
+  tab[13, !is.na(tab[13,])] <- paste0(fmt0(as.numeric(tab[13, !is.na(tab[13,])]), 1), "\\%")
 
   ## Replace NAs with dashes
-  tab[is.na(tab)] <- "--"
+  tab[is.na(tab)] <- "\\textbf{--}"
 
   ## Set the first column to be the names
   tab <- cbind(c("Natural Mortality (\\emph{M})",
@@ -476,14 +476,22 @@ make.short.parameter.estimates.table <- function(model,                ## model 
   ## Decimal values
   tab[c(1,3,4),] <- fmt0(tab[c(1,3,4),], 3)
   ## Large numbers with no decimal points but probably commas
-  tab[c(2,5,6,7,11,14),] <- fmt0(apply(tab[c(2,5,6,7,11,14),], c(1,2), as.numeric))
-  ## Percentages
-  tab[c(8,9,10,13),] <- paste0(fmt0(apply(tab[c(8,9,10,13),], c(1,2), as.numeric), 1), "\\%")
+  tab[c(2,5,6,7,8,12,15),] <- fmt0(apply(tab[c(2,5,6,7,8,12,15),], c(1,2), as.numeric))
+  ## Percentages on non-NA elements
+  paste.perc <- function(vec){
+    ## Paste percentages on to all elements of vec that are not NA
+    vec[!is.na(vec)] <- paste0(fmt0(as.numeric(vec[!is.na(vec)]), 1), "\\%")
+    return(vec)
+  }
+  tab[9,] <- paste.perc(tab[9,])
+  tab[10,] <- paste.perc(tab[10,])
+  tab[11,] <- paste.perc(tab[11,])
+  tab[14,] <- paste.perc(tab[14,])
   ## SPR Percentages row (some may be NA). This is really ugly but works
-  tab[12, !is.na(tab[12,])] <- paste0(fmt0(apply(tab[12, !is.na(tab[12,])], 1, as.numeric), 1), "\\%")
+  tab[13, !is.na(tab[13,])] <- paste0(fmt0(apply(tab[13, !is.na(tab[13,])], 1, as.numeric), 1), "\\%")
 
   ## Replace NAs with dashes
-  tab[is.na(tab)] <- "--"
+  tab[is.na(tab)] <- "\\textbf{--}"
 
   ## Set the first column to be the names
   tab <- cbind(c("Natural Mortality ($M$)",
@@ -512,7 +520,7 @@ make.short.parameter.estimates.table <- function(model,                ## model 
   addtorow$pos <- list()
   addtorow$pos[[1]] <- 0
   addtorow$pos[[2]] <- 4
-  addtorow$pos[[3]] <- 10
+  addtorow$pos[[3]] <- 11
   addtorow$command <- c("\\hline \\\\ \\textbf{\\underline{Parameters}} \\\\",
                         "\\hline \\\\ \\textbf{\\underline{Derived Quantities}} \\\\",
                         "\\hline \\\\ \\textbf{\\underline{Reference Points (equilibrium) based on $\\Fforty$}} \\\\")
