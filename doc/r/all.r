@@ -315,6 +315,7 @@ catch.levels <- list(rep(0.01, 3),
                      rep(180000,3),
                      rep(350000,3),
                      rep(440000,3),
+                     rep(500000,3),
                      c(760000,855000,750000),
                      c(804399,889918,785036),
                      c(873000,873000,773907))
@@ -332,6 +333,7 @@ catch.levels.names <- c("No Fishing",
                         "180,000 t",
                         "350,000 t",
                         paste0(last.data.yr, " TAC: 440,000 t"),
+                        "500,000 t",
                         "SPR100",
                         paste0("Default: ",fmt0(catch.default.policy[1])," t"),
                         "stableCatch")
@@ -343,9 +345,10 @@ catch.levels.dir.names <- c("01_0",
                             "02_180000",
                             "03_350000",
                             "04_440000",
-                            "05_SPR100",
-                            "06_DefaultHR",
-                            "07_stableCatch")
+                            "05_500000",
+                            "06_SPR100",
+                            "07_DefaultHR",
+                            "08_stableCatch")
 
 ################################################################################
 ## Model loading questions
