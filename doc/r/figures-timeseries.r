@@ -272,15 +272,23 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
   arrows(sb[-length(sb)], spr[-length(spr)], sb[-1], spr[-1], length=0.09,
          ## col = rgb(0,0,0,0.4))
          col = colvec)
-  points(sb, spr, type = "p", pch = 20)
-  points(sb[length(sb)], spr[length(spr)], pch = 16, col = 1, cex = 1.2)
-  points(sb[1],spr[1], pch = 16, col = 1, cex = 1.2)
-  text(sb[1], spr[1] - 0.025, start.yr, cex = 0.6, pos = 2, offset = 0.15)
+  # add points for each year
+  points(sb, spr, pch = 21, col=1, bg=colvec)
+  # add uncertainty intervals for final year
   segments(sb[length(sb)], spr.lo, sb[length(sb)], spr.hi, col = rgb(0,0,0,0.5))
   segments(sb.lo, spr[length(spr)], sb.hi, spr[length(spr)], col = rgb(0,0,0,0.5))
-  text(sb[length(sb)], spr[length(spr)] + 0.045, end.yr-1, pos = 4, cex = 0.6)
+  # label first and final years
+  text(sb[1], spr[1] - 0.01, start.yr, cex = 0.6, pos = 2, offset = 0.15,
+       col=colvec[1])
+  text(sb[length(sb)], spr[length(spr)] + 0.01, end.yr-1, pos = 4, cex = 0.6,
+       col=colvec[length(spr)-1])
+  # add lines at the reference points
   abline(h = 1, v = 1, lty = 2, col = rgb(0,0,0,0.4))
   abline(h = 1, v = c(0.1,0.4), lty = 2, col = rgb(0,0,0,0.4))
+  # add bigger points for first and final years
+  points(sb[length(sb)], spr[length(spr)], pch = 21, col = 1,
+         bg=colvec[length(spr)-1], cex = 1.2)
+  points(sb[1],spr[1], pch = 21, col = 1, bg=colvec[1], cex = 1.2)
 
   par <- oldpar
 }
