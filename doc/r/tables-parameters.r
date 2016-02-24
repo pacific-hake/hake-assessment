@@ -228,6 +228,11 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
     rec <- rec / 1000 ## To make R in the millions
     mle.par <- c(mle.par, rec)
 
+    ## Add 2014 recruitment
+    rec <- model$recruit[model$recruit$year == 2014,]$pred_recr
+    rec <- rec / 1000 ## To make R in the millions
+    mle.par <- c(mle.par, rec)
+
     ## Add B0
     b0 <- model$SBzero
     b0 <- b0 / 1000 ## To make B0 in the thousands
@@ -291,6 +296,7 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
                  "Additional acoustic survey SD",
                  "2008 recruitment (millions)",
                  "2010 recruitment (millions)",
+                 "2014 recruitment (millions)",
                  "\\emph{B}\\subscr{0} (thousand t)",
                  "2009 Relative Spawning Biomass",
                  paste0(end.yr, " Relative Spawning Biomass"),
@@ -355,6 +361,11 @@ make.short.parameter.estimates.table <- function(model,                ## model 
   rec <- rec / 1000 ## To make R in the millions
   mle.par <- c(mle.par, rec)
 
+  ## Add 2014 recruitment
+  rec <- model$recruit[model$recruit$year == 2014,]$pred_recr
+  rec <- rec / 1000 ## To make R in the millions
+  mle.par <- c(mle.par, rec)
+
   ## Add B0
   b0 <- model$SBzero ## Note that this is divided by 2 in a single sex model
   b0 <- b0 / 1000    ## To make B0 in the thousands
@@ -406,6 +417,11 @@ make.short.parameter.estimates.table <- function(model,                ## model 
 
     ## Add 2010 recruitment
     rec <- median(x$mcmc$Recr_2010)
+    rec <- rec / 1000 ## To make R in the millions
+    mcmc.meds <- c(mcmc.meds, rec)
+
+    ## Add 2014 recruitment
+    rec <- median(x$mcmc$Recr_2014)
     rec <- rec / 1000 ## To make R in the millions
     mcmc.meds <- c(mcmc.meds, rec)
 
@@ -474,8 +490,9 @@ make.short.parameter.estimates.table <- function(model,                ## model 
                  "Unfished recruitment ($R_0$, millions)",
                  "Steepness ($h$)",
                  "Additional acoustic survey SD",
-                 "2008 recruitment",
-                 "2010 recruitment",
+                 "2008 recruitment  (millions)",
+                 "2010 recruitment  (millions)",
+                 "2014 recruitment  (millions)",
                  "Unfished female spawning biomass ($B_0$, thousand~t)",
                  "2009 Relative Spawning Biomass",
                  paste0(end.yr, " Relative Spawning Biomass"),

@@ -151,6 +151,8 @@ source("functionsAssessment.R")
       \item Pacific Hake are dynamic with high inter-annual variation in spatio-temporal distribution
       \item Improved methods for extrapolation
       \item Varying amounts of biomass in extrapolated area each year
+      \item CV for extrapolation seems more reasonable
+      \item We must think about this from a time-series point of view
     \en
   \ei \pause
   \item {\em Include a sensitivity with age-1 acoustic survey index}
@@ -504,14 +506,32 @@ source("functionsAssessment.R")
   \ec
 }
 
-\frame{\frametitle{Time-varying selectivity}
-\begin{columns}
-  \begin{column}{0.38\textwidth}
-    \bi
-      \item 
-    \ei
-  \end{column}
-  \begin{column}{0.59\textwidth}
+\frame{\frametitle{Catchability ($q$)}
+ \bc
+ %\vspace{0.5in}
+  <<histQ, , fig.height=3, fig.width=5.5, out.width='0.69\\columnwidth'>>=
+     oldpar <- par(mar=c(5,4,1,1), no.readonly = TRUE)
+     x <- read.table("Data/posteriorsExtraOutput.sso",header=T)
+     hist(x$Q_2,main="",xlab="Catchbility")
+     abline(v=median(x$Q_2),lwd=3,col=rgb(0,0,0,0.6))
+     par(oldpar)
+  @
+%  $q=$\Sexpr{round(median(x$Q_2),2)}
+  \begin{table}
+    \begin{tabular}{ccc} \hline
+      MLE (2016) & Median (2016)                  & Median (2015) \\ \hline
+       1.14      & \Sexpr{round(median(x$Q_2),2)} & 0.915 \\ \hline
+    \end{tabular}
+  \end{table}
+ \ec
+}
+
+
+%----------------------------------------------------------
+
+ \frame{\frametitle{Time-varying selectivity}
+ \begin{columns}
+  \begin{column}{0.48\textwidth}
     \vspace{-10pt}
     \bc
     <<main.tv.selex, fig.height=8, fig.width=8,out.width='0.8\\columnwidth'>>=
@@ -527,19 +547,7 @@ source("functionsAssessment.R")
     @
     \ec
   \end{column}
-\end{columns}
-}
-
-%----------------------------------------------------------
-
-\frame{\frametitle{Time-varying selectivity with uncertainty}
-\begin{columns}
-  \begin{column}{0.38\textwidth}
-    \bi
-      \item 
-    \ei
-  \end{column}
-  \begin{column}{0.59\textwidth}
+  \begin{column}{0.48\textwidth}
     \vspace{-10pt}
     \bc
     <<main.tv.selex.uncertainty, fig.height=8, fig.width=8, out.width='0.8\\columnwidth'>>=
@@ -560,7 +568,7 @@ source("functionsAssessment.R")
     \ec
   \end{column}
 \end{columns}
-}
+ }
 
 %----------------------------------------------------------
 
@@ -648,9 +656,9 @@ source("functionsAssessment.R")
 \section{Summary}
 \subsection{}
 
-\frame{\frametitle{Bullet Points}
+\frame{\frametitle{Summary}
   \bi
-  \item The stock is estimated to be near its highest biomass level since 1990 as a result of
+  \item The spawning stock is estimated to be near its highest biomass level since 1990 as a result of
     estimated large 2010 and 2014 cohorts.
   \item The median estimate of \Sexpr{end.yr} relative spawning biomass is
     \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
