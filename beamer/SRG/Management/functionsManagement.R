@@ -192,3 +192,9 @@ make.comparison.plot.mcmc <- function(models,                   ## models is a l
   }
   par <- oldpar
 }
+
+
+
+
+
+
