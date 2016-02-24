@@ -146,12 +146,13 @@ make.survey.age1.plot <- function(age1index,   ##
 
   base <- models[[modelnum]]
   recr1 <- base$natage[base$natage$Time %in% yrs,"1"]
+  recrAll <- base$natage[base$natage$Time %in% min(yrs):max(yrs),"1"]
 
   logAge1 <- log(recr1)
   logIndex <- log(x$Index)
   mn <- mean(logAge1)
   index <- mn*logIndex/mean(logIndex[!is.na(x$Index)])
-  plot(x$Year,recr1/1e6,pch=4,type="b",log="y",ylim=range(c(recr1,exp(index)),na.rm=T)*c(1,1)/1e6,lwd=2,xaxt="n",xlab="Year",ylab="Age-1 Recruitment (billions)",las=1,col=gray(0.7),cex=0.8)
+  plot(min(yrs):max(yrs),recrAll/1e6,pch=4,type="b",log="y",ylim=range(c(recr1,exp(index)),na.rm=T)*c(1,1)/1e6,lwd=2,xaxt="n",xlab="Year",ylab="Age-1 Recruitment (billions)",las=1,col=gray(0.7),cex=0.8)
   points(yrs,exp(index)/1e6,pch=16,col="blue",cex=1.5)
   points(x$Year[!is.na(x$Index)],recr1/1e6,pch=4,col="black",cex=1,lwd=2)
   #mn <- mean(x$Age.1[!is.na(x$Age1_Index)])
