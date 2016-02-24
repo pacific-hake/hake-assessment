@@ -22,6 +22,10 @@ make.ci.posterior.table <- function(model,                ## model is an mcmc ru
                     paste0(fmt0(f$plower * 100, digits), "-", fmt0(f$pupper * 100, digits), "\\%"),
                     paste0(fmt0(f$flower * 100, digits), "-", fmt0(f$fupper * 100, digits), "\\%"))
 
+  ## Make current year have dashes for exploitation rate and fishing intensity
+  tab.filt[nrow(tab.filt), ncol(tab.filt)] <- "\\textbf{--}"
+  tab.filt[nrow(tab.filt), ncol(tab.filt) - 1] <- "\\textbf{--}"
+
   ## Add latex headers
   colnames(tab.filt) <- c("\\specialcell{\\textbf{Year}}",
                           "\\specialcell{\\textbf{Female}\\\\\\textbf{spawning}\\\\\\textbf{biomass}\\\\\\textbf{(thousand t)}}",
@@ -61,6 +65,10 @@ make.median.posterior.table <- function(model,                ## model is an mcm
                     fmt0(f$rmed * weight.factor),
                     paste0(fmt0(f$pmed * 100, digits), "\\%"),
                     paste0(fmt0(f$fmed * 100, digits), "\\%"))
+
+  ## Make current year have dashes for exploitation rate and fishing intensity
+  tab.filt[nrow(tab.filt), ncol(tab.filt)] <- "\\textbf{--}"
+  tab.filt[nrow(tab.filt), ncol(tab.filt) - 1] <- "\\textbf{--}"
 
   ## Add latex headers
   colnames(tab.filt) <- c("\\specialcell{\\textbf{Year}}",
