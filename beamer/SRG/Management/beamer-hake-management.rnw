@@ -213,8 +213,6 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
   \ei
 }
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Forecasts}
 \subsection{Two year forecasts}
@@ -222,7 +220,7 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Using the defined $F_{SPR=40\%}$ harvest rate $F_{SPR=40\%}$ harvest reate with a 40:10 adjustment the median forecasted 2016 TAC is  
+      \item Using the defined $F_{SPR=40\%}$ harvest rate with a 40:10 adjustment, the median forecasted 2016 TAC is  
       \smallskip
       \bc {\bf \Sexpr{fmt0(median(base.model$mcmc$ForeCatch_2016))} t} \ec
       \smallskip
@@ -263,7 +261,7 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Constant catch streams lees than 440,000~t result in increases in spawning biomass
+      \item Constant catch streams less than 440,000~t result in increases in spawning biomass
       \item Catches based on harvest rule calculations result in decreases in spawning biomass
       \item Uncertainty is large and increases the farther it is forecasted
     \ei
@@ -310,6 +308,7 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
     \item More catch streams to be added as determined by SRG/AP/JMC
   \ei
 }
+
 
 \subsection{Quantiles}
 \frame{\frametitle{Spawning Biomass}
@@ -508,6 +507,7 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
 }
 
 
+
 \frame{\frametitle{Model without 2015 fishery age compositions}
 \begin{columns}
   \begin{column}{0.38\textwidth}
@@ -516,7 +516,7 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
       \bi \item 804,399; 889,918; 785,036 \ei
       \item Without 2015 fishery ages
       \bi
-        \item 2012 recruitment is slightly higher
+        \item 2008, 2010 and 2012 recruitment is slightly higher
         \item 2014 recruitment is much lower
       \ei
     \ei
@@ -572,33 +572,154 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
 }
 
 
-
-
-
-\frame{\frametitle{Spawning biomass for different levels of 2014 recruitment}
+\frame{\frametitle{Age-1 index: correlation with base recruitment estimates}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item 
+      \item Age-1 index appears to follow estimates of recruitment
+      \item Age-1 hake in 2015 is high
+      \bi \item As seen in the fishery as well \ei
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
+    <<age.one.index, fig.height=3.5, fig.width=6, out.width="0.95\\columnwidth">>=
+      make.survey.age1.plot(age.1.index,
+                      models,
+                      modelnum = base.model.ind)
+   @
   \end{column}
 \end{columns}
 }
 
 
-\frame{\frametitle{Fishing intensity for different levels of 2014 recruitment}
+
+\frame{\frametitle{Age-1 index: estimates of 2008, 2010 and 2014 recruitment}
 \begin{columns}
-  \begin{column}{0.38\textwidth}
-    \bi
-      \item 
-    \ei
+  \begin{column}{0.48\textwidth}
+   \bc
+   <<compare.age1.recr2008, fig.height=5.4, fig.width=5.5, out.width='0.9\\columnwidth'>>=
+     oldpar <- par(mfrow=c(2,1), mar=c(5,4,1,1),no.readonly = TRUE)
+     make.comparison.plot.mcmc(models[c(base.model.ind, sens.model.inds.2[2])],
+                      subplots = 14,
+                      densitynames = "Recr_2008",
+                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2[2]),
+                      end.yr = end.yr,
+                      xlims = c(1990,end.yr),
+                      legendloc = "topright")
+    par(oldpar)
+    @
+    \vspace{-1in}
+   <<compare.age1.recr2010, fig.height=5.4, fig.width=5.5, out.width='0.9\\columnwidth'>>=
+     oldpar <- par(mfrow=c(2,1), mar=c(5,4,1,1),no.readonly = TRUE)
+     make.comparison.plot.mcmc(models[c(base.model.ind, sens.model.inds.2[2])],
+                      subplots = 14,
+                      densitynames = "Recr_2010",
+                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2[2]),
+                      end.yr = end.yr,
+                      xlims = c(1990,end.yr),
+                      legendloc = "topright")
+    par(oldpar)
+     @
+     \ec
   \end{column}
-  \begin{column}{0.59\textwidth}
+  \begin{column}{0.48\textwidth} \bc
+  %\vspace{-1in}
+   <<compare.age1.recr2014, fig.height=5.4, fig.width=5.5, out.width='0.9\\columnwidth'>>=
+     oldpar <- par(mfrow=c(2,1), mar=c(5,4,1,1),no.readonly = TRUE)
+     make.comparison.plot.mcmc(models[c(base.model.ind, sens.model.inds.2[2])],
+                      subplots = 14,
+                      densitynames = "Recr_2014",
+                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2[2]),
+                      end.yr = end.yr,
+                      xlims = c(1990,end.yr),
+                      legend = FALSE)
+    par(oldpar)
+    @
+ \ec
   \end{column}
 \end{columns}
 }
+
+
+
+
+
+% \frame{\frametitle{Spawning biomass for different levels of 2014 recruitment}
+% \begin{columns}
+%   \begin{column}{0.38\textwidth}
+%     \bi
+%       \item 
+%     \ei
+%   \end{column}
+%   \begin{column}{0.59\textwidth}
+
+% \begin{table}[h]
+% \centering
+% \begingroup\fontsize{9}{11}\selectfont
+% \begin{tabularx}{\textwidth}{|ccc|YYY|}
+%   \hline \multicolumn{3}{|c|}{\specialcell{Within model quantile\\of 2014 recruitment}} & 
+%           \specialcell{Lower\\20\%} & \specialcell{Middle\\60\%} & \specialcell{Upper\\20\%} \\ \hline 
+%   \multicolumn{3}{|c|}{Management Action} &\multicolumn{3}{c|}{\textbf{Beginning of year}}\\ 
+%   \cline{1-3}  & Year & Catch (t) & \multicolumn{3}{c|}{\textbf{relative spawning biomass}} \\ 
+%   \hline  b: & 2016 & 180,000 &  60\% &  72\% &  118\% \\ 
+%              & 2017 & 180,000 &  58\% &  82\% &  164\% \\ 
+%              & 2018 & 180,000 &  54\% &  88\% &  181\% \\ 
+%    \hline d: & 2016 & 440,000 &  60\% &  72\% &  118\% \\ 
+%     2015     & 2017 & 440,000 &  52\% &  77\% &  159\% \\ 
+%     TAC      & 2018 & 440,000 &  43\% &  78\% &  172\% \\ 
+%    \hline e: & 2016 & 760,000 &  60\% &  72\% &  118\% \\ 
+%      FI=     & 2017 & 855,000 &  45\% &  70\% &  153\% \\ 
+%     100\%    & 2018 & 750,000 &  30\% &  64\% &  160\% \\ 
+%    \hline f: & 2016 & 804,399 &  60\% &  72\% &  118\% \\ 
+%    default   & 2017 & 889,918 &  45\% &  69\% &  152\% \\ 
+%      HR      & 2018 & 785,036 &  29\% &  62\% &  159\% \\ 
+%    \hline \end{tabularx}
+% \endgroup
+% \end{table}
+
+
+%   \end{column}
+% \end{columns}
+% }
+
+
+% \frame{\frametitle{Fishing intensity for different levels of 2014 recruitment}
+% \begin{columns}
+%   \begin{column}{0.38\textwidth}
+%     \bi
+%       \item 
+%     \ei
+%   \end{column}
+%   \begin{column}{0.59\textwidth}
+
+% \begin{table}[h]
+% \centering
+% \begingroup\fontsize{9}{11}\selectfont
+% \begin{tabularx}{\textwidth}{|ccc|YYY|}
+%   \hline \multicolumn{3}{|c|}{\specialcell{Within model quantile\\of 2014 recruitment}} & 
+%           \specialcell{Lower\\20\%} & \specialcell{Middle\\60\%} & \specialcell{Upper\\20\%} \\ \hline 
+%   \multicolumn{3}{|c|}{Management Action} &\multicolumn{3}{c|}{\textbf{Fishing}}\\ 
+%   \cline{1-3}  & Year & Catch (t) & \multicolumn{3}{c|}{\textbf{Intensity}} \\ 
+%   \hline  b: & 2016 & 180,000 &  47\%  &  44\%  &  32\% \\ 
+%              & 2017 & 180,000 &  49\%  &  35\%  &  19\% \\ 
+%              & 2018 & 180,000 &  50\%  &  34\%  &  17\% \\ 
+%    \hline d: & 2016 & 440,000 &  83\%  &  79\%  &  62\% \\ 
+%     2015     & 2017 & 440,000 &  90\%  &  70\%  &  41\% \\ 
+%     TAC      & 2018 & 440,000 &  96\%  &  70\%  &  38\% \\ 
+%    \hline e: & 2016 & 760,000 &  107\% &  102\% &  86\% \\ 
+%      FI=     & 2017 & 855,000 &  123\% &  102\% &  68\% \\ 
+%     100\%    & 2018 & 750,000 &  131\% &  102\% &  60\% \\ 
+%    \hline f: & 2016 & 804,399 &  109\% &  105\% &  88\% \\ 
+%    default   & 2017 & 889,918 &  125\% &  104\% &  70\% \\ 
+%      HR      & 2018 & 785,036 &  133\% &  105\% &  62\% \\ 
+%    \hline \end{tabularx}
+% \endgroup
+% \end{table}
+
+
+%   \end{column}
+% \end{columns}
+% }
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -612,11 +733,11 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
     \item Catches up to 2015 TAC (440,000~t) estimate a median spawning biomass to be increasing
     \item Less than 30\% risk that spawning biomass will be below target in 2 years at all catch levels
     \medskip
-    \item Accounting for uncertainty in estimate of 2014 year class???????
+    \item The 2014 year class does not affect the 2016 catch decision much, but will be extremely influential next year
   \ei
 }
 
 
 
-
 \end{document}
+
