@@ -509,14 +509,20 @@ source("functionsAssessment.R")
 \frame{\frametitle{Catchability ($q$)}
  \bc
  %\vspace{0.5in}
-  <<histQ, , fig.height=3, fig.width=5.5, out.width='0.8\\columnwidth'>>=
+  <<histQ, , fig.height=3, fig.width=5.5, out.width='0.69\\columnwidth'>>=
      oldpar <- par(mar=c(5,4,1,1), no.readonly = TRUE)
      x <- read.table("Data/posteriorsExtraOutput.sso",header=T)
      hist(x$Q_2,main="",xlab="Catchbility")
      abline(v=median(x$Q_2),lwd=3,col=rgb(0,0,0,0.6))
      par(oldpar)
   @
-  $q=$\Sexpr{round(median(x$Q_2),2)}
+%  $q=$\Sexpr{round(median(x$Q_2),2)}
+  \begin{table}
+    \begin{tabular}{ccc} \hline
+      MLE (2016) & Median (2016)                  & Median (2015) \\ \hline
+       1.14      & \Sexpr{round(median(x$Q_2),2)} & 0.915 \\ \hline
+    \end{tabular}
+  \end{table}
  \ec
 }
 
