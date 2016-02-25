@@ -150,7 +150,7 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
 \frame{\frametitle{Request 1}
   Plot each selectivity at age across years.  \\
   \medskip
-  {\bf Rationale:} Be able to see changes in selectivity across years easily to see how much change occurs for each age.
+  {\bf Rationale:} Be able to see changes in selectivity across years to easily to see how much change occurs for each age.
 }
 
 \frame{\frametitle{Selectivity at age by year}
@@ -189,7 +189,7 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
   Supply fishery age compositions by fleet and year\\
   \medskip
   {\bf Rationale:} Provide fleet specific data for AP to investigate. \\
-  \medskip
+  \medskip \bigskip
   Uploaded file to Google drive.
 }
 
@@ -198,7 +198,7 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
 \section{Request 3}
 \subsection{}
 \frame{\frametitle{Request 3}
-  Add a constant catch of 500,000 t to the decisiona nd risk tables\\
+  Add a constant catch of 500,000 t to the decision and risk tables\\
   \medskip
   {\bf Rationale:} An additional catch level for consideration.
 }
@@ -253,11 +253,6 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
   \end{column}
 \end{columns}
 }
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Risk Tables}
-\subsection{Risk}
 
 %--------------------------------------------------------------
 %\subsection{Fixed 2016 catch}
@@ -318,6 +313,36 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
   \ec
 }
 
+
+\section{????}
+\subsection{}
+\frame{\frametitle{EXTRA}
+}
+
+\frame{\frametitle{Likelihoods when fitting to age-1 index}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item Insignificant change in fits to age compositions and 2+ survey 
+    \ei
+  \end{column}
+  \begin{column}{0.59\textwidth}
+    \begin{table}[h]
+    \centering
+    {\fontsize{9}{11}\selectfont
+    \begin{tabular}{|l|cc|}
+    \hline
+     Likelihood & Base & with age-1 \\ \hline
+     2+ Survey  & -5.22123  &  -5.42076 \\
+     Age comps  & 132.062   &  132.314\\ \hline
+     Sub-Total  & 126.8408  &  126.8932 \\
+    \hline 
+    \end{tabular}
+    }
+    \end{table}
+  \end{column}
+\end{columns}
+}
 
 
 \end{document}
