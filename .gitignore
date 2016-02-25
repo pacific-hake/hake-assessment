@@ -16,6 +16,7 @@ doc/figure/*
 doc/resDoc.tex
 doc/r/old*
 models/*
+models-dev/*
 extra-models/*
 *.pdf
 doc/hake-assessment*.pdf
