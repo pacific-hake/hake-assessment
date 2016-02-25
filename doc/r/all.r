@@ -885,7 +885,6 @@ cohort.catch.2010 <- sum(cohortCatch(2010,base.model$catage))
 ## This chunk must stay last in the file
 if(reload.models == "y" | reload.models == "Y" |
    run.forecasts == "y" | run.forecasts == "Y" |
-   run.partest == "y" | run.partest == "Y" |
    run.retros == "y" | run.retros == "Y"){
   cat("Saving the image to the .RData file.\n\n")
   save.image()
