@@ -105,6 +105,7 @@ if(load.Rdata == "y") {
 # load("../../../doc/r/model-partest.RData")
 
 source("requests.R")
+source("../Management/functionsManagement.R")
 
 metric1 <- NULL
 metric1$mcmc <- base.model$metrics$outputs[[1]][["06_DefaultHR"]]
@@ -169,12 +170,12 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
 %    #layout(matrix(c(1,1,2),ncol=1))
     <<request1a, fig.height=4, out.width='0.6\\columnwidth'>>=
       oldpar <- par(mar=c(4,4,1,1))
-      selexByAge(model, start.yr=tv.selex.start.yr, tv.end.yr=2015,ages=tv.selex.ages)
+      selexByAge(base.model, start.yr=1990, tv.end.yr=2015,ages=1:5)
     par(oldpar)
     @
     <<request1b, fig.height=3, out.width='0.6\\columnwidth'>>=
       oldpar <- par(mar=c(4,4,1,1))
-      selexByAge(model, start.yr=tv.selex.start.yr, tv.end.yr=2015,ages=tv.selex.ages,ylims=c(0,0.03))
+      selexByAge(base.model, start.yr=1990, tv.end.yr=2015,ages=1:5,ylims=c(0,0.03))
     par(oldpar)
     @
     \ec
@@ -187,8 +188,12 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
 \frame{\frametitle{Request 2}
   Supply fishery age compositions by fleet and year\\
   \medskip
-  {\bf Rationale:} Provide fleet specific data for AP to investigate.
+  {\bf Rationale:} Provide fleet specific data for AP to investigate. \\
+  \medskip
+  Uploaded file to Google drive.
 }
+
+
 
 \section{Request 3}
 \subsection{}
@@ -198,21 +203,13 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
   {\bf Rationale:} An additional catch level for consideration.
 }
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Quantiles}
 \frame{\frametitle{Spawning Biomass}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item 2016 row is the same because it is beginning of the year
-      \item Median (50\%) increases for 440,000 t and less
-      \bi
-        \item stabilizing from 2017 to 2018 with 440,000 t
-      \ei
-      \item Lower 5\% quantile at target spawning biomass in 2016
-      \item 5\% quantile mostly stable with catch of 180,000 t
+      \item 
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -237,9 +234,7 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Fishing Intensity is different for all years and rows because it accounts for catch that year
-      \item Less than 25\% probability above target with a catch of 440,000 t
-      \item Default harvest rate is slightly above the target fishing intensity
+      \item 
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -263,15 +258,6 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Risk Tables}
 \subsection{Risk}
-\frame{\frametitle{Risk table definitions}
-  Probabilities of ``bad'' things happening at different fixed catch levels
-  \bi
-    \item Fixed catch in all years previous, and calculate default catch in forecast year
-    \item P($B_x < B_y$): Probability that biomass in forecasted year is less than specified biomass
-    \item FI > 40\% target: Probability that fishing intensity in fixed catch year is greater than the target fishing intensity
-    \item P($C_{y+1} < C_y$): Probability that the calculated catch in forecast year is less than the fixed catch
-  \ei
-}
 
 %--------------------------------------------------------------
 %\subsection{Fixed 2016 catch}
@@ -282,7 +268,7 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
                 xcaption = NULL,
                 font.size = 11,
-                space.size = 12)
+                space.size = 11)
     @
 }
 
@@ -311,7 +297,7 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
                 index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
                 xcaption = NULL,
                 font.size = 11,
-                space.size = 12)
+                space.size = 11)
     @
 }
 
@@ -332,10 +318,6 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
   \ec
 }
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Recruitment}
-\subsection{}
 
 
 \end{document}
