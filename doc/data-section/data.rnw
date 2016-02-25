@@ -94,6 +94,8 @@ Distributions of hake backscatter plotted for each acoustic survey since 1995 il
 
 During the acoustic surveys, mid-water trawls are made opportunistically to determine the species composition of observed acoustic sign and to obtain the length data necessary to scale the acoustic backscatter into biomass (see Table~\ref{tab:main-survey-history} for the number of trawls in each survey year). Biological samples collected from these trawls were post-stratified, based on similarity in size composition, and the composite length frequency was used to characterize the hake size distribution along each transect and to predict the expected backscattering cross section for hake based on the fish size-target strength (TS) relationship. Any potential biases that might be caused by factors such as alternative TS relationships are partially accounted for in catchability, but variability in the estimated survey biomass due to uncertainty in target strength is not explicitly accounted for.
 
+{ \bf Text replacing the existing paragraph on page 11}
+
 Acoustic survey data from 1995 onward have been analyzed using geostatistical techniques (kriging), which accounts for spatial correlation to provide an estimate of total biomass as well as an estimate of the year-specific sampling variability due to patchiness of hake schools and irregular transects \citep{Petitgas1993, RivoirardSimmondsEtAl2000, MelloRose2005, SimmondsMacLennan2006}. Advantages to the kriging approach are discussed in the 2013 stock assessment \citep{JTC2013}. 
 
 For this assessment, the data from all surveys since 1998 were scrutinized and reanalyzed using the same geostatistical techniques, but with more robust assumptions and some corrections. These include:
@@ -112,15 +114,18 @@ For this assessment, the data from all surveys since 1998 were scrutinized and r
 
 \end{itemize}
 
-The net result of these changes is a consistent approach applied to all survey years (Table~\ref{tab:main-kriging-parameters}). Therefore, the biomass indices (Table~\ref{tab:main-survey-history} and Figure~\ref{fig:main-survey-biomass}) and age compositions (Figure~\ref{fig:main-age-comp-bubbles}, top) are new for this assessment and differ from the 2015 assessment \citep{JTC2015}.
-
-Table caption: Summary of key kriging parameters for the acoustic survey as used in the 2015 and 2016 assessments. Search radius is the distance in the transformed space from which observations are drawn to calculate weights in the kriging. Parameters $k$\subscr{min} and $k$\subscr{max} are the minimum and maximum number of data points used to calculate a kriged value. Length scale is a parameter estimated from the variogram for each year.
+The net result of these changes is a consistent approach applied to all survey years from 1998 onwards (Table~\ref{tab:main-kriging-parameters}). Therefore, the biomass indices (Table~\ref{tab:main-survey-history} and Figure~\ref{fig:main-survey-biomass}) and age compositions (Figure~\ref{fig:main-age-comp-bubbles}, top) are new for this assessment and differ from the 2015 assessment \citep{JTC2015}.
 
 
+<<kriging.parameters.table, results='asis', echo=FALSE>>=
+make.kriging.parameters.table(
+                   xcaption = "Summary of key kriging parameters for the acoustic survey as used in the 2015 and 2016 assessments. Search radius is the distance in the transformed space from which observations are drawn to calculate weights in the kriging. Parameters $k$\\subscr{min} and $k$\\subscr{max} are the minimum and maximum number of data points used to calculate a kriged value. Length scale is a parameter estimated from the variogram for each year. [**Table will be moved to the Tables section]",
+                   xlabel = "tab:main-kriging-parameters",
+                   font.size = 11,
+                   space.size = 12)
+@
 
-
-
-
+{\bf End of extra text}
 
 
 Results from research done in 2010 and 2014 on representativeness of the biological data (i.e.~repeated trawls at different depths and spatial locations on the same aggregation of hake) and sensitivity analyses of stratified data showed that trawl sampling and post-stratification is only a small source of variability among all of the sources of variability inherent to the acoustic analysis (see \citealt{StewartForrestEtAl2011}).
