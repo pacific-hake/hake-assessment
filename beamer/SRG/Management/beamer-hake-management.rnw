@@ -94,8 +94,8 @@ require(coda)
 require(gtools)
 require(dplyr)
 ## Load all R code and the model outputs
-load.Rdata <- readline(prompt = "Load .Rdata? [y/n] ")
-## load.Rdata <- "y"
+## load.Rdata <- readline(prompt = "Load .Rdata? [y/n] ")
+load.Rdata <- "y"
 if(load.Rdata == "y") {
   rm(list=ls(all=TRUE))
   load("../../../doc/r/.RData")
@@ -108,10 +108,10 @@ if(load.Rdata == "y") {
 source("functionsManagement.R")
 
 metric1 <- NULL
-metric1$mcmc <- base.model$metrics$outputs[[1]][["06_DefaultHR"]]
+metric1$mcmc <- base.model$metrics$outputs[[1]][["07_DefaultHR"]]
 
 #only show specific catch levels in decision tables
-ind <- c(2,4,5,6)
+ind <- c(2,4,5,6,7)
 decTab <- NULL
 decTab$biomass <- vector(mode="list",length=length(ind))
 decTab$spr <- vector(mode="list",length=length(ind))
@@ -124,7 +124,7 @@ for(i in 1:length(ind)) {
 rowLabs <- rep("",length(ind)*3)
 rowLabs[seq(1,length(ind)*3,3)] <- paste0(letters[ind],":")
 rowLabs[c(5,6,8,9,11,12)] <- c("2015","TAC","FI=","100\\%","default","HR")
-catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
+catchNames <- c("180,000","2015 TAC: 440,000","500,000","FI=100%","default HR")
 
 #load additional model #54
 # nm <- length(models)+1
@@ -245,9 +245,9 @@ catchNames <- c("180,000","2015 TAC: 440,000","FI=100%","default HR")
             conditioned on a fixed 2016 catch of 804,399 t, \\
             the median forecasted 2017 TAC is
       \smallskip
-      \bc {\bf \Sexpr{fmt0(median(base.model$metrics$outputs[[2]][["06_DefaultHR"]]$ForeCatch_2017))} t} \ec
+      \bc {\bf \Sexpr{fmt0(median(base.model$metrics$outputs[[2]][["07_DefaultHR"]]$ForeCatch_2017))} t} \ec
       \smallskip
-      \item 2.5\% and 97.5\% quantiles:\\ \Sexpr{fmt0(quantile(base.model$metrics$outputs[[1]][["06_DefaultHR"]]$ForeCatch_2017,probs=0.025))} and \Sexpr{fmt0(quantile(base.model$metrics$outputs[[1]][["06_DefaultHR"]]$ForeCatch_2017,probs=0.975))} t
+      \item 2.5\% and 97.5\% quantiles:\\ \Sexpr{fmt0(quantile(base.model$metrics$outputs[[1]][["07_DefaultHR"]]$ForeCatch_2017,probs=0.025))} and \Sexpr{fmt0(quantile(base.model$metrics$outputs[[1]][["07_DefaultHR"]]$ForeCatch_2017,probs=0.975))} t
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}

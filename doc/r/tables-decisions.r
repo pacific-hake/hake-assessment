@@ -22,7 +22,7 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
   ## tab.letters are the letters in the table, one for each forecast management action
   ## and a blank for all but the first year in a management action
   ##additional labels are given for some rows (below letter)
-  rows2Label <- c("d","e","f","g")
+  rows2Label <- c("d","f","g","h")
   rowLabels <- list(c("2015","TAC"),c("FI=","100\\%"),c("default","HR"),c("C2016=","C2017"))
   tab.letters <- NULL
   next.ind <- 1
