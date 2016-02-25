@@ -345,5 +345,36 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
 }
 
 
+\frame{\frametitle{EXTRA2}
+}
+
+\frame{\frametitle{Ratio between R0 and B0}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item ln(R0)*1000 was reported, not R0
+    \ei
+  \end{column}
+  \begin{column}{0.59\textwidth}
+    \begin{table}[h]
+    \centering
+    {\fontsize{9}{11}\selectfont
+    \begin{tabular}{|l|ccc|}
+    \hline
+     Parameter & Base &  $\sigma_R=1$ & $\sigma_R=2$ \\ \hline
+     M         & 0.215     & 0.209     & 0.224      \\
+     R0        & 2,665,761 & 1,830,317 & 6,524,011  \\
+     B0        & 2,227     & 1,601     & 5,040      \\ \hline
+     Ratio     & 1,197     & 1,143     & 1,294      \\
+    \hline 
+    \end{tabular}
+    }
+    \end{table}
+  \end{column}
+\end{columns}
+}
+
+
+
 \end{document}
 
