@@ -102,15 +102,15 @@ For this assessment, the data from all surveys since 1998 were scrutinized and r
 
 \begin{itemize}
   
-\item the minimum ($k$\subscr{min}) and maximum ($k$\subscr{max}) number of points used to calculate the value in a cell;
+\item fixing the minimum ($k$\subscr{min}) and maximum ($k$\subscr{max}) number of points used to calculate the value in a cell;
   
 \item standardizing the search radius to be three times the length scale that is estimated from the variogram; 
 
-\item a decay of estimated biomass the farther predictions are made from the end of a transect;
+\item when extrapolating biomass beyond the end of a transect, using a function that decays with distance from the end of the transect;
   
-\item correcting spurious off-transect zeros that were erroneously generated in previous export of data;
+\item correcting spurious off-transect zeros that were erroneously generated in previous exportation of data;
   
-\item all data from 1998 onwards were re-analyzed using an updated version of the EchoPro software with consistent data input files.  
+\item re-analyzing data using an updated version of the EchoPro software with consistent data input files.  
 
 \end{itemize}
 
