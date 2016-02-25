@@ -93,6 +93,7 @@ sampling.history.file <- "fishery-sampling-history.csv"
 ovary.samples.file <- "ovary-samples.csv"
 age.1.file <- "age-1.csv"
 assessment.history.file <- "assessment-history.csv"
+kriging.parameters.file <- "kriging-parameters-1995-2015.csv"
 ## The following are used for cumulative catch plot in the data/fisheries presentation, not the assessment document
 us.shore.catch.by.month.file <- "us-shore-catch-by-month.csv"
 us.cp.catch.by.month.file <- "us-cp-catch-by-month.csv"
@@ -315,6 +316,7 @@ catch.levels <- list(rep(0.01, 3),
                      rep(180000,3),
                      rep(350000,3),
                      rep(440000,3),
+                     rep(500000,3),
                      c(760000,855000,750000),
                      c(804399,889918,785036),
                      c(873000,873000,773907))
@@ -332,6 +334,7 @@ catch.levels.names <- c("No Fishing",
                         "180,000 t",
                         "350,000 t",
                         paste0(last.data.yr, " TAC: 440,000 t"),
+                        "500,000 t",
                         "SPR100",
                         paste0("Default: ",fmt0(catch.default.policy[1])," t"),
                         "stableCatch")
@@ -343,9 +346,10 @@ catch.levels.dir.names <- c("01_0",
                             "02_180000",
                             "03_350000",
                             "04_440000",
-                            "05_SPR100",
-                            "06_DefaultHR",
-                            "07_stableCatch")
+                            "05_500000",
+                            "06_SPR100",
+                            "07_DefaultHR",
+                            "08_stableCatch")
 
 ################################################################################
 ## Model loading questions
@@ -388,6 +392,9 @@ can.ages <- load.can.age.data(file.path(data.path, can.age.file))
 ovary.samples <- read.csv(file.path(data.path, ovary.samples.file), stringsAsFactors = FALSE)
 age.1.index <- read.csv(file.path(data.path, age.1.file), stringsAsFactors = FALSE)
 assessment.history <- read.csv(file.path(data.path, assessment.history.file), stringsAsFactors = FALSE)
+kriging.pars <- read.csv(file.path(data.path, kriging.parameters.file), comment.char="#", stringsAsFactors = FALSE)
+
+    
 ## For cumulative catch plots in the data presentation
 us.shore.catch.by.month <- read.csv(file.path(data.path, us.shore.catch.by.month.file), stringsAsFactors = FALSE)
 us.cp.catch.by.month <- read.csv(file.path(data.path, us.cp.catch.by.month.file), stringsAsFactors = FALSE)

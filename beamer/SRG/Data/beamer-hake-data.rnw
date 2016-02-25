@@ -85,6 +85,8 @@ require(gtools)
 require(dplyr)
 require(lubridate)
 load("../../../doc/r/.RData")
+source("./sea-around-us/sea-around-us.r")
+print(sau.dat)
 ## load("../../../doc/r/model-partest.RData")
 @
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -192,7 +194,7 @@ load("../../../doc/r/.RData")
     \begin{column}[t]{0.5\linewidth}
       \center{\textbf{\textcolor{blue}{Canada}}} \\
       \bi
-        \item The \Sexpr{end.yr-1} Canadian TAC was \Sexpr{last.year.can.tac}
+        \item The \Sexpr{end.yr-1} Canadian TAC was \Sexpr{last.year.can.tac} t
         \bi
           \item Freezer trawlers -- \Sexpr{last.year.can.freezer} t (\Sexpr{paste0(last.year.can.freezer.percent, "\\%")})
           \item Shoreside        -- \Sexpr{last.year.can.shore} t   (\Sexpr{paste0(last.year.can.shore.percent, "\\%")})
@@ -206,13 +208,13 @@ load("../../../doc/r/.RData")
     \begin{column}[t]{0.5\linewidth}
       \center{\textbf{\textcolor{blue}{United States}}} \\
       \bi
-        \item The \Sexpr{end.yr-1} U.S. TAC was \Sexpr{last.year.us.tac}
+        \item The \Sexpr{end.yr-1} U.S. TAC was \Sexpr{last.year.us.tac} t
           \bi
-            \item Research            -- \Sexpr{fmt0(last.year.us.research.catch)}    (\Sexpr{paste0(last.year.us.research.catch.percent, "\\%")})
-            \item Catcher--processor  -- \Sexpr{fmt0(last.year.us.cp.catch)}          (\Sexpr{paste0(last.year.us.cp.catch.percent, "\\%")})
-            \item Mothership          -- \Sexpr{fmt0(last.year.us.ms.catch)}          (\Sexpr{paste0(last.year.us.ms.catch.percent, "\\%")})
-            \item Shore-based         -- \Sexpr{fmt0(last.year.us.shore.catch)}       (\Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")})
-            \item Tribal              -- \Sexpr{fmt0(last.year.us.tribal.max.landed)} (\Sexpr{paste0(last.year.us.tribal.catch.percent, "\\%")})
+            \item Research            -- \Sexpr{fmt0(last.year.us.research.catch)} t    (\Sexpr{paste0(last.year.us.research.catch.percent, "\\%")})
+            \item Catcher--processor  -- \Sexpr{fmt0(last.year.us.cp.catch)} t          (\Sexpr{paste0(last.year.us.cp.catch.percent, "\\%")})
+            \item Mothership          -- \Sexpr{fmt0(last.year.us.ms.catch)} t          (\Sexpr{paste0(last.year.us.ms.catch.percent, "\\%")})
+            \item Shore-based         -- \Sexpr{fmt0(last.year.us.shore.catch)} t       (\Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")})
+            \item Tribal              -- \Sexpr{fmt0(last.year.us.tribal.max.landed)} t (\Sexpr{paste0(last.year.us.tribal.catch.percent, "\\%")})
           \ei
         \item Total U.S. catch -- \Sexpr{last.year.us.landings} t
         \item \Sexpr{paste0(last.year.us.attained, "\\%")} of the U.S. quota was caught.
@@ -238,6 +240,69 @@ load("../../../doc/r/.RData")
     mtext("Cumulative catch (1000 t)", side = 2, outer = TRUE)
     par <- oldpar
   @
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{SAUP}
+\subsection{Sea around us}
+\frame{\frametitle{What is the Sea Around Us project}
+  \bi
+    \item ``Research initiative at The University of British Columbia that assesses the impact of fisheries on the marine ecosystems of the world, and offers mitigating solutions to a range of stakeholders.''
+    \item ``...regularly update [our] products at the scale of countries’ Exclusive Economic Zones, Large Marine Ecosystems, the High Seas and other spatial scales, and as global maps and summaries.''
+    \item ``...emphasize catch time series starting in 1950, and related series (e.g., landed value and catch by flag state, fishing sector and catch type), and fisheries-related information on every maritime country (e.g., government subsidies, marine biodiversity).''
+    \item http://www.seaaroundus.org/
+  \ei
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Sea around us catch reconstruction}
+\frame{\frametitle{Sea around us catch reconstruction}
+\begin{columns}
+  \begin{column}{0.5\linewidth}
+    \bi
+      \item Different catch reconstruction than what the JTC has done.
+        \bi
+          \item Total catch from 2016 assessment relative to SAUP:
+            \bi
+              \item 14 times higher catch (1966 and 1976).
+              \item 73\% lower catch for 1993.
+            \ei
+        \ei
+      \item Some key points about SAUP estimates:
+        \bi
+          \item Data not available, borrowed from other fishery.
+          \item Illegal fishing conservative but major extrapolation.
+          \item U.S. foreign and joint venture catches may be missing (pre-1990).
+          \item Canadian \emph{unreported} large category (subsistence, recreational, artisanal, and discard); discards ratios used from groundfish bottom trawl fishery (1985-1998).
+        \ei
+    \ei
+  \end{column}
+  \begin{column}{0.5\linewidth}
+    <<sea.around.us.total.catch.compare, out.width='3in'>>=
+      make.total.catch.comparison.plot(sau.dat, lwd = 2, lty = 1)
+    @
+  \end{column}
+\end{columns}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Sea around us U.S./Canada}
+\frame{\frametitle{Sea around us U.S./Canada}
+\begin{columns}
+  \begin{column}{0.5\linewidth}
+    <<sea.around.us.us.catch.compare, out.width='3in'>>=
+      make.total.catch.us.comparison.plot(sau.dat, lwd = 2, lty = 1)
+    @
+  \end{column}
+  \begin{column}{0.5\linewidth}
+    <<sea.around.us.can.catch.compare, out.width='3in'>>=
+      make.total.catch.can.comparison.plot(sau.dat, lwd = 2, lty = 1)
+    @
+  \end{column}
+\end{columns}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

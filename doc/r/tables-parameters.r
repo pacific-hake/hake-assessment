@@ -228,6 +228,11 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
     rec <- rec / 1000 ## To make R in the millions
     mle.par <- c(mle.par, rec)
 
+    ## Add 2014 recruitment
+    rec <- model$recruit[model$recruit$year == 2014,]$pred_recr
+    rec <- rec / 1000 ## To make R in the millions
+    mle.par <- c(mle.par, rec)
+
     ## Add B0
     b0 <- model$SBzero
     b0 <- b0 / 1000 ## To make B0 in the thousands
@@ -275,14 +280,14 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
   ## Decimal values
   tab[c(1,3,4),] <- fmt0(tab[c(1,3,4),], 3)
   ## Large numbers with no decimal points but probably commas
-  tab[c(2,5,6,7,11,14),] <- fmt0(apply(tab[c(2,5,6,7,11,14),], c(1,2), as.numeric))
+  tab[c(2,5,6,7,8,12,15),] <- fmt0(apply(tab[c(2,5,6,7,8,12,15),], c(1,2), as.numeric))
   ## Percentages
-  tab[c(8,9,10,13),] <- paste0(fmt0(apply(tab[c(8,9,10,13),], c(1,2), as.numeric), 1), "\\%")
+  tab[c(9,10,11,14),] <- paste0(fmt0(apply(tab[c(9,10,11,14),], c(1,2), as.numeric), 1), "\\%")
   ## SPR Percentages row (some may be NA). This is really ugly but works
-  tab[12, !is.na(tab[12,])] <- paste0(fmt0(as.numeric(tab[12, !is.na(tab[12,])]), 1), "\\%")
+  tab[13, !is.na(tab[13,])] <- paste0(fmt0(as.numeric(tab[13, !is.na(tab[13,])]), 1), "\\%")
 
   ## Replace NAs with dashes
-  tab[is.na(tab)] <- "--"
+  tab[is.na(tab)] <- "\\textbf{--}"
 
   ## Set the first column to be the names
   tab <- cbind(c("Natural Mortality (\\emph{M})",
@@ -291,6 +296,7 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
                  "Additional acoustic survey SD",
                  "2008 recruitment (millions)",
                  "2010 recruitment (millions)",
+                 "2014 recruitment (millions)",
                  "\\emph{B}\\subscr{0} (thousand t)",
                  "2009 Relative Spawning Biomass",
                  paste0(end.yr, " Relative Spawning Biomass"),
@@ -355,6 +361,11 @@ make.short.parameter.estimates.table <- function(model,                ## model 
   rec <- rec / 1000 ## To make R in the millions
   mle.par <- c(mle.par, rec)
 
+  ## Add 2014 recruitment
+  rec <- model$recruit[model$recruit$year == 2014,]$pred_recr
+  rec <- rec / 1000 ## To make R in the millions
+  mle.par <- c(mle.par, rec)
+
   ## Add B0
   b0 <- model$SBzero ## Note that this is divided by 2 in a single sex model
   b0 <- b0 / 1000    ## To make B0 in the thousands
@@ -409,6 +420,11 @@ make.short.parameter.estimates.table <- function(model,                ## model 
     rec <- rec / 1000 ## To make R in the millions
     mcmc.meds <- c(mcmc.meds, rec)
 
+    ## Add 2014 recruitment
+    rec <- median(x$mcmc$Recr_2014)
+    rec <- rec / 1000 ## To make R in the millions
+    mcmc.meds <- c(mcmc.meds, rec)
+
     ## Add B0
     b0 <- median(x$mcmc$SPB_Initial / 2) ## divide by 2 for females
     b0 <- b0 / 1000 ## To make B0 in the thousands
@@ -460,22 +476,31 @@ make.short.parameter.estimates.table <- function(model,                ## model 
   ## Decimal values
   tab[c(1,3,4),] <- fmt0(tab[c(1,3,4),], 3)
   ## Large numbers with no decimal points but probably commas
-  tab[c(2,5,6,7,11,14),] <- fmt0(apply(tab[c(2,5,6,7,11,14),], c(1,2), as.numeric))
-  ## Percentages
-  tab[c(8,9,10,13),] <- paste0(fmt0(apply(tab[c(8,9,10,13),], c(1,2), as.numeric), 1), "\\%")
+  tab[c(2,5,6,7,8,12,15),] <- fmt0(apply(tab[c(2,5,6,7,8,12,15),], c(1,2), as.numeric))
+  ## Percentages on non-NA elements
+  paste.perc <- function(vec){
+    ## Paste percentages on to all elements of vec that are not NA
+    vec[!is.na(vec)] <- paste0(fmt0(as.numeric(vec[!is.na(vec)]), 1), "\\%")
+    return(vec)
+  }
+  tab[9,] <- paste.perc(tab[9,])
+  tab[10,] <- paste.perc(tab[10,])
+  tab[11,] <- paste.perc(tab[11,])
+  tab[14,] <- paste.perc(tab[14,])
   ## SPR Percentages row (some may be NA). This is really ugly but works
-  tab[12, !is.na(tab[12,])] <- paste0(fmt0(apply(tab[12, !is.na(tab[12,])], 1, as.numeric), 1), "\\%")
+  tab[13, !is.na(tab[13,])] <- paste0(fmt0(apply(tab[13, !is.na(tab[13,])], 1, as.numeric), 1), "\\%")
 
   ## Replace NAs with dashes
-  tab[is.na(tab)] <- "--"
+  tab[is.na(tab)] <- "\\textbf{--}"
 
   ## Set the first column to be the names
   tab <- cbind(c("Natural Mortality ($M$)",
                  "Unfished recruitment ($R_0$, millions)",
                  "Steepness ($h$)",
                  "Additional acoustic survey SD",
-                 "2008 recruitment",
-                 "2010 recruitment",
+                 "2008 recruitment  (millions)",
+                 "2010 recruitment  (millions)",
+                 "2014 recruitment  (millions)",
                  "Unfished female spawning biomass ($B_0$, thousand~t)",
                  "2009 Relative Spawning Biomass",
                  paste0(end.yr, " Relative Spawning Biomass"),
@@ -495,7 +520,7 @@ make.short.parameter.estimates.table <- function(model,                ## model 
   addtorow$pos <- list()
   addtorow$pos[[1]] <- 0
   addtorow$pos[[2]] <- 4
-  addtorow$pos[[3]] <- 10
+  addtorow$pos[[3]] <- 11
   addtorow$command <- c("\\hline \\\\ \\textbf{\\underline{Parameters}} \\\\",
                         "\\hline \\\\ \\textbf{\\underline{Derived Quantities}} \\\\",
                         "\\hline \\\\ \\textbf{\\underline{Reference Points (equilibrium) based on $\\Fforty$}} \\\\")

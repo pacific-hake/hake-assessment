@@ -34,7 +34,7 @@
 
 \setbeamertemplate{title page}
 {
-\includegraphics[height=0.5in]{../../images/NOAA.eps}\hspace{5.05in}
+\includegraphics[height=0.5in]{../../images/NOAA.eps}
 \hfill
 \includegraphics[height=0.5in]{../../images/DFO.eps}
 
@@ -46,15 +46,20 @@
 \vskip22pt
 \insertdate
 \end{center}
+\vskip50pt
+\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
 \vskip0pt plus 1filll
 }
 
-%\setbeamertemplate{footline}
-%{
-%\begin{beamercolorbox}[wd=.05\paperwidth,ht=0ex,dp=0ex,left]{framenumber in head/foot}%
-%\insertframenumber/\inserttotalframenumber
-%\end{beamercolorbox}%
-%}
+\definecolor{pageCol}{rgb}{0.5,0.5,1.0}
+
+\setbeamertemplate{footline}
+{
+\begin{beamercolorbox}[wd=.05\paperwidth,ht=0ex,dp=0ex,left]{framenumber in head/foot}%
+\insertframenumber/\inserttotalframenumber
+\end{beamercolorbox}%
+}
+\setbeamercolor{footline}{fg=pageCol}
 
 \newcounter{saveenumi}
 
@@ -74,7 +79,7 @@
 <<off-we-go, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
 #rm(list=ls(all=TRUE))
 opts_chunk$set(dev = 'cairo_ps', fig.path = 'knitr-cache/', fig.dpi = 300, fig.width = 6,
-               fig.height = 4, out.width = '6in', out.height = '3in', echo = FALSE, # 
+               fig.height = 4, out.width = '6in', echo = FALSE, # out.height = '3in',
                results = FALSE, message = FALSE, warning = FALSE,
                results = 'hide', cache = TRUE, cache.path = 'knitr-cache/')
 
@@ -155,7 +160,7 @@ if(load.Rdata == "y") {
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{MLE va MCMC}
+\section{MLE vs MCMC}
 \subsection{}
 \begin{frame}
 \frametitle{MLE vs MCMC}
@@ -169,7 +174,7 @@ make.short.parameter.estimates.table(base.model,
                                      digits = 3,
                                      xcaption = NULL,
                                      xlabel <- "tab:main-parameter-estimates",
-                                     font.size = 9,
+                                     font.size = 7,
                                      space.size = 7)
 @
 \end{center}
@@ -231,10 +236,11 @@ make.short.parameter.estimates.sens.table(sens.models.2.for.table,
 \begin{frame}
 \frametitle{Survey Alternatives: Biomass}
 \begin{center}
-%\vspace*{-1cm}
-<<biomass.alternative.2>>=
-oldpar <- par()
-par(mar = c(4.5, 4.1, 1.5, 1.1))
+\vspace{-5pt}
+<<biomass.alternative.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+#oldpar <- par()
+#par(mar = c(4.5, 4.1, 1.5, 1.1))
+oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
                      subplots = 2,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
@@ -249,9 +255,10 @@ par <- oldpar
 \begin{frame}
 \frametitle{Survey Alternatives: Survey Fit}
 \begin{center}
-<<survey.alternative.2>>=
-oldpar <- par()
-par(mar = c(4.5, 4.1, 1.5, 1.1))
+\vspace{-5pt}
+<<survey.alternative.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+#par(mar = c(4.5, 4.1, 1.5, 1.1))
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
                      subplots = 11,
                      legendloc = "bottomleft",
@@ -269,9 +276,10 @@ par <- oldpar
 \begin{frame}
 \frametitle{Survey Alternatives: Recruit Devs}
 \begin{center}
-<<recruit.alternative.2>>=
-oldpar <- par()
-par(mar = c(4.5, 4.1, 1.5, 1.1))
+\vspace{-5pt}
+<<recruit.alternative.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+#par(mar = c(4.5, 4.1, 1.5, 1.1))
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
                      subplots = 9,
                      legendloc = "bottomleft",
@@ -287,11 +295,12 @@ par <- oldpar
 \begin{frame}
 \frametitle{Survey Alternatives: Recruit Devs 2014}
 \begin{center}
-<<recruit2014.alternative.2>>=
+\vspace{-5pt}
+<<recruit2014.alternative.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
 sens.density.yr <- last.data.yr - 1
 sens.density.names <- c(paste0("Late_RecrDev_",sens.density.yr))
-oldpar <- par()
-par(mar = c(4.5, 3.1, 1.5, 1.1))
+oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+#par(mar = c(4.5, 3.1, 1.5, 1.1))
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
                      subplots = 14,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
@@ -312,27 +321,57 @@ par <- oldpar
 \subsection{}
 \begin{frame}
 \frametitle{Ageing Error: Biomass}
- \begin{center}
- <<ageing.error.1>>=
- oldpar <- par()
- par(mar = c(4.5, 4.1, 1.5, 1.1))
- make.comparison.plot(models[c(base.model.ind, sens.model.inds.4)],
+\begin{columns}
+\begin{column}{0.3\textwidth}
+\bi
+      \item Reduced error (by 55\%) on large cohorts (base)
+      \item Years: 1980, 1984, 1999, 2010
+      \item B0 decrease of 13\%
+      \item Recruitment effect in and around those years
+     \ei
+  \end{column}
+  \begin{column}{0.69\textwidth}
+  \vspace{-5pt}
+    \begin{center}
+     <<ageing.error.1, fig.height=8, fig.width=12, out.width='0.9\\columnwidth'>>=
+     oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+     #par(mar = c(4.5, 4.1, 1.5, 1.1))
+     make.comparison.plot(models[c(base.model.ind, sens.model.inds.4)],
                       subplots = 2,
                       model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
                       end.yr = end.yr)                            
- par <- oldpar 
- @
- \end{center}
-\end{frame}
+     par <- oldpar 
+     @
+     \end{center}
+  \end{column}
+\end{columns}
+\end{frame}  
+
+%\begin{frame}
+%\frametitle{Ageing Error: Biomass}
+% \begin{center}
+% \vspace{-5pt}
+%  <<ageing.error.1, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+% oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+% #par(mar = c(4.5, 4.1, 1.5, 1.1))
+% make.comparison.plot(models[c(base.model.ind, sens.model.inds.4)],
+%                      subplots = 2,
+%                      model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
+%                      end.yr = end.yr)                            
+% par <- oldpar 
+% @
+% \end{center}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Ageing Error: Recruit Devs}
 \begin{center}
- <<ageing.error.2>>=
- oldpar <- par()
- par(mar = c(4.5, 4.1, 1.5, 1.1))
+\vspace{-5pt}
+ <<ageing.error.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+ oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+ #par(mar = c(4.5, 4.1, 1.5, 1.1))
  make.comparison.plot(models[c(base.model.ind, sens.model.inds.4)],
                       subplots = 10,
                       legendloc = "topleft",
@@ -350,9 +389,10 @@ par <- oldpar
 \begin{frame}
 \frametitle{Maximum Age Full Selectivity: Biomass}
 \begin{center}
-<<selectivity.1>>=
-oldpar <- par()
-par(mar = c(4.5, 4.1, 1.5, 1.1))
+\vspace{-5pt}
+<<selectivity.1, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+#par(mar = c(4.5, 4.1, 1.5, 1.1))
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.3)],
                      subplots = 2,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.3),
@@ -366,20 +406,49 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Maximum Age Full Selectivity: Estimates}
-\begin{center}
-<<selectivity.2>>=
-oldpar <- par()
-par(mar = c(2.1, 4, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
-layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
-make.selex.plot(base.model, pan.letter = "6")
-make.selex.plot(models[[sens.model.inds.3[1]]], pan.letter = "5")
-make.selex.plot(models[[sens.model.inds.3[2]]], pan.letter = "7")
-make.selex.plot(models[[sens.model.inds.3[3]]], pan.letter = "12")                           
-par <- oldpar 
-mtext("Age", side = 1, line = 0.5, outer = TRUE)
-@
-\end{center}
-\end{frame}
+\begin{columns}
+\begin{column}{0.3\textwidth}
+\bi
+      \item Max age: 6(base), 5, 7, 12
+      \item Incremental increase (age-6 only)
+      \item No striking evidence for dome-shaped selectivity
+      \item Model convergence suspect at high max age
+    \ei
+  \end{column}
+  \begin{column}{0.69\textwidth}
+  \vspace{-5pt}
+    \begin{center}
+     <<selectivity.2, fig.height=8, fig.width=12, out.width='0.9\\columnwidth'>>=
+     oldpar <- par(mfrow=c(2,2), mar=c(5,4,1,1),no.readonly = TRUE)
+     #par(mar = c(2.1, 4, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
+     layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
+     make.selex.plot(base.model, pan.letter = "base")
+     make.selex.plot(models[[sens.model.inds.3[1]]], pan.letter = "5")
+     make.selex.plot(models[[sens.model.inds.3[2]]], pan.letter = "7")
+     make.selex.plot(models[[sens.model.inds.3[3]]], pan.letter = "12")                           
+     par <- oldpar 
+     mtext("Age", side = 1, line = 0.5, outer = TRUE)
+     @
+     \end{center}
+  \end{column}
+\end{columns}
+\end{frame}    
+    
+%\begin{center}
+%\vspace{-5pt}
+%<<selectivity.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+%oldpar <- par(mfrow=c(2,2), mar=c(5,4,1,1),no.readonly = TRUE)
+%#par(mar = c(2.1, 4, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
+%layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
+%make.selex.plot(base.model, pan.letter = "6")
+%make.selex.plot(models[[sens.model.inds.3[1]]], pan.letter = "5")
+%make.selex.plot(models[[sens.model.inds.3[2]]], pan.letter = "7")
+%make.selex.plot(models[[sens.model.inds.3[3]]], pan.letter = "12")                           
+%par <- oldpar 
+%mtext("Age", side = 1, line = 0.5, outer = TRUE)
+%@
+%\end{center}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%% 
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -407,9 +476,10 @@ make.short.parameter.estimates.sens.table(sens.models.1.for.table,
 \begin{frame}
 \frametitle{Key Sensitivities: Biomass}
 \begin{center}
-<<keyselect.1>>=
-oldpar <- par()
-par(mar = c(4.5, 4.1, 1.5, 1.1))
+\vspace{-5pt}
+<<keyselect.1, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+#par(mar = c(4.5, 4.1, 1.5, 1.1))
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
                      subplots = 2,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
@@ -424,9 +494,10 @@ par <- oldpar
 \begin{frame}
 \frametitle{Key Sensitivities: Status}
 \begin{center}
-<<keyselect.2>>=
-oldpar <- par()
-par(mar = c(4.5, 4.1, 1.5, 1.1))
+\vspace{-5pt}
+<<keyselect.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+#par(mar = c(4.5, 4.1, 1.5, 1.1))
 make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
                      subplots = 4,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
@@ -441,30 +512,23 @@ par <- oldpar
 \section{Retros}
 \subsection{}
 \begin{frame}
-\frametitle{Retrospective: Biomass}
+\frametitle{Retrospectives}
 \begin{center}
-<<retro.1>>=
-oldpar <- par()
-par(mar = c(4.5, 4.1, 1.5, 1.1))
+\vspace{-5pt}
+<<retro.1, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+oldpar <- par(mfrow=c(1,2), mar=c(5,4,1,1),no.readonly = TRUE)
+#par(mar = c(4.5, 4.1, 1.5, 1.1))
+plot.retro.yrs <- 1:5
+retro.list <- list(base.model)
+for(i in plot.retro.yrs){
+  retro.list[[i + 1]] <- base.model$retros[[i]]
+}
 make.comparison.plot(retro.list,
                      subplots = 2,
                      model.names = retro.model.names,
-                     legend = TRUE,
+                     legend = FALSE,
                      legendloc = "topright",
                      is.retro = TRUE)
-par <- oldpar 
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Retrospective: Recruitment}
-\begin{center}
-<<retro.2>>=
-oldpar <- par()
-par(mar = c(4.5, 4.1, 1.5, 1.1))
 make.comparison.plot(retro.list,
                      subplots = 8,
                      model.names = retro.model.names,
@@ -478,12 +542,33 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Retrospective: Recruitment}
+%\begin{center}
+%\vspace{-5pt}
+%<<retro.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+%oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+%#par(mar = c(4.5, 4.1, 1.5, 1.1))
+%make.comparison.plot(retro.list,
+%                     subplots = 8,
+%                     model.names = retro.model.names,
+%                     legend = TRUE,
+%                     legendloc = "topleft",
+%                     is.retro = TRUE)
+%par <- oldpar 
+%@
+%\end{center}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Retrospective: squid}
 \begin{center}
-<<retro.3>>=
-oldpar <- par()
-par(mar = c(4.5, 4.1, 1.5, 1.1))
+\vspace{-5pt}
+<<retro.3, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+#par(mar = c(4.5, 4.1, 1.5, 1.1))
 plot.retro.yrs <- retro.yrs
 retro.cohorts <- 1999:2014
 retro.list <- list(base.model)

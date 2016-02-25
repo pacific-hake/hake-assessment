@@ -195,3 +195,36 @@ make.survey.biomass.extrap.plot <- function(dat){  ## data.frame of the extrapol
   par <- oldpar
 }
 
+make.kriging.parameters.table <- function(krig.pars = kriging.pars,
+                                        xcaption = "default", ## Caption to use
+                                        xlabel   = "default", ## Latex label to use
+                                        font.size = 9,        ## Size of the font for the table
+                                        space.size = 10,       ## Size of the spaces for the table
+                                        placement = "H"       ## Placement of table
+                                        ){
+  ## Returns an xtable in the proper format for the kriging parameters
+    
+  krig.pars[1:10,"SearchRadius"] <- fmt0(as.numeric(krig.pars[1:10,"SearchRadius"]), 2)
+  addtorow <- list()
+  addtorow$pos <- list()
+  addtorow$pos[[1]] <- -1
+  addtorow$pos[[2]] <- 0
+  addtorow$pos[[3]] <- 10
+  addtorow$pos[[4]] <- nrow(krig.pars)
+  addtorow$command <- c(paste0("\\toprule \n",
+                      "Year", "& Search radius", "& $k$\\subscr{min}", "& $k$\\subscr{max} \\\\ \n",
+                        "\\midrule \n"), "\\textbf{2015 assessment}\\\\ \n",
+                        "\\textbf{2016 assessment}\\\\ \n",
+                        "\\bottomrule \n")
+
+  ## Make the size string for font and space size
+  size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
+
+  return(print(xtable(krig.pars, caption=xcaption, label=xlabel,
+               align=c("l","r","c","r","c")),    # first gets ignored
+               caption.placement = "top", include.rownames=FALSE,
+               include.colnames=FALSE,
+               sanitize.text.function=function(x){x},
+               size=size.string, add.to.row=addtorow, table.placement=placement,
+               hline.after = NULL, booktabs=TRUE))
+}
