@@ -32,6 +32,7 @@ backscatter2smaller.eps
 beamer/SRG/Assessment/knitr-cache
 beamer/SRG/Data/knitr-cache
 beamer/SRG/Management/knitr-cache
+beamer/SRG/Requests/knitr-cache
 beamer/SRG/Sensitivities/knitr-cache
 *.tex
 beamer/SRG/Management/beamer-hake-management.tex
