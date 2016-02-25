@@ -205,32 +205,27 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
   ## Returns an xtable in the proper format for the MLE parameter estimates for all the models,
   ##  one for each column
 
-  calc.ro <- function(x){
-    ## Changes from logspace and multiplies by two because it's female only
-    return(exp(x) * 2)
-  }
-
   tab <- NULL
   for(model in models){
     j <- model$par
     p.names <- rownames(j)
     mle.grep <- unique(grep(paste(posterior.regex, collapse="|"), p.names))
     mle.par <- j[mle.grep,]$Value
-    mle.par[2] <- mle.par[2] * 1000 ### To make R millions
+    mle.par[2] <- exp(mle.par[2]) / 1000 ## To make R millions
 
     ## Add 2008 recruitment
     rec <- model$recruit[model$recruit$year == 2008,]$pred_recr
-    rec <- rec / 1000 ## To make R in the millions
+    rec <- rec / 1000
     mle.par <- c(mle.par, rec)
 
     ## Add 2010 recruitment
     rec <- model$recruit[model$recruit$year == 2010,]$pred_recr
-    rec <- rec / 1000 ## To make R in the millions
+    rec <- rec / 1000
     mle.par <- c(mle.par, rec)
 
     ## Add 2014 recruitment
     rec <- model$recruit[model$recruit$year == 2014,]$pred_recr
-    rec <- rec / 1000 ## To make R in the millions
+    rec <- rec / 1000
     mle.par <- c(mle.par, rec)
 
     ## Add B0
@@ -338,32 +333,29 @@ make.short.parameter.estimates.table <- function(model,                ## model 
                                                  space.size = 10       ## Size of the spaces for the table
                                                  ){
   ## Returns an xtable in the proper format for the parameter estimates
-  calc.ro <- function(x){
-    ## Changes from logspace and multiplies by two because it's female only
-    return(exp(x) * 2)
-  }
 
   ## This year's model MLE
   j <- model$par
   p.names <- rownames(j)
   mle.grep <- unique(grep(paste(posterior.regex, collapse="|"), p.names))
   ## mle.names <- j[mle.grep,]$Label
+
   mle.par <- j[mle.grep,]$Value
-  mle.par[2] <- mle.par[2] * 1000 ### To make R millions
+  mle.par[2] <- exp(mle.par[2]) / 1000 ### To make R millions
 
   ## Add 2008 recruitment
   rec <- model$recruit[model$recruit$year == 2008,]$pred_recr
-  rec <- rec / 1000 ## To make R in the millions
+  rec <- rec / 1000
   mle.par <- c(mle.par, rec)
 
   ## Add 2010 recruitment
   rec <- model$recruit[model$recruit$year == 2010,]$pred_recr
-  rec <- rec / 1000 ## To make R in the millions
+  rec <- rec / 1000
   mle.par <- c(mle.par, rec)
 
   ## Add 2014 recruitment
   rec <- model$recruit[model$recruit$year == 2014,]$pred_recr
-  rec <- rec / 1000 ## To make R in the millions
+  rec <- rec / 1000
   mle.par <- c(mle.par, rec)
 
   ## Add B0
@@ -407,22 +399,22 @@ make.short.parameter.estimates.table <- function(model,                ## model 
     mcmc.names <- names(x$mcmc)[mcmc.grep]
     mcmc.par <- x$mcmc[,mcmc.grep]
     mcmc.meds <- apply(mcmc.par, 2, median)
-    mcmc.meds[2] <- mcmc.meds[2] * 1000 # To make R0 in the millions
+    mcmc.meds[2] <- exp(mcmc.meds[2]) / 1000 # To make R0 in the millions
     names(mcmc.meds) <- NULL
 
     ## Add 2008 recruitment
     rec <- median(x$mcmc$Recr_2008)
-    rec <- rec / 1000 ## To make R in the millions
+    rec <- rec / 1000
     mcmc.meds <- c(mcmc.meds, rec)
 
     ## Add 2010 recruitment
     rec <- median(x$mcmc$Recr_2010)
-    rec <- rec / 1000 ## To make R in the millions
+    rec <- rec / 1000
     mcmc.meds <- c(mcmc.meds, rec)
 
     ## Add 2014 recruitment
     rec <- median(x$mcmc$Recr_2014)
-    rec <- rec / 1000 ## To make R in the millions
+    rec <- rec / 1000
     mcmc.meds <- c(mcmc.meds, rec)
 
     ## Add B0
