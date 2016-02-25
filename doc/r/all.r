@@ -392,7 +392,7 @@ can.ages <- load.can.age.data(file.path(data.path, can.age.file))
 ovary.samples <- read.csv(file.path(data.path, ovary.samples.file), stringsAsFactors = FALSE)
 age.1.index <- read.csv(file.path(data.path, age.1.file), stringsAsFactors = FALSE)
 assessment.history <- read.csv(file.path(data.path, assessment.history.file), stringsAsFactors = FALSE)
-kriging.pars <- read.csv(file.path(data.path, kriging.parameters.file), comment.char="#") #stringsAsFactors = FALSE)
+kriging.pars <- read.csv(file.path(data.path, kriging.parameters.file), comment.char="#", stringsAsFactors = FALSE)
 
     
 ## For cumulative catch plots in the data presentation
@@ -885,6 +885,7 @@ cohort.catch.2010 <- sum(cohortCatch(2010,base.model$catage))
 ## This chunk must stay last in the file
 if(reload.models == "y" | reload.models == "Y" |
    run.forecasts == "y" | run.forecasts == "Y" |
+   run.partest == "y" | run.partest == "Y" |
    run.retros == "y" | run.retros == "Y"){
   cat("Saving the image to the .RData file.\n\n")
   save.image()
