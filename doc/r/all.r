@@ -199,7 +199,7 @@ bridge.model.dir.names.2 <- c(last.year.base.model.name,
 bridge.model.names.2 <- c(paste0(last.assess.yr, " Base model"),
                           paste0("Add ", survey.end.yr, " survey series"),
                           paste0("Add ", last.data.yr, " fishery data"))
-bridge.model.dir.names.3 <- c("57_Add2015Catch_FishAcomps_withExtrap_update",
+bridge.model.dir.names.3 <- c("57_Add2015Catch_FishAcomps_withExtrap",
                               "57.01_adjustBiasRamping",
                               "57.02_ChangeSurveyTuning",
                               "57.03_ChangeAllTuning")
