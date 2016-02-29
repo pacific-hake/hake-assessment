@@ -418,7 +418,7 @@ make.forecast.depletion.comparison.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-Fishing intensity exceeding 100\% indicates fishing in excess of the $\Fforty$ default harvest rate catch limit. This can happen for the median fishing intensity in projected years because the $\Fforty$ default harvest-rate catch limit is calculated using baseline selectivity from all years, whereas the forecasted catches are removed using selectivity averaged over the last five years. Recent changes in selectivity will thus be reflected in the determination of fishing in excess of the default harvest policy. Alternative catch levels where median fishing intensity is 100\% for three years of projections is provided for comparison (scenario e: FI=100\%).
+Fishing intensity exceeding 100\% indicates fishing in excess of the $\Fforty$ default harvest rate catch limit. This can happen for the median fishing intensity in projected years because the $\Fforty$ default harvest-rate catch limit is calculated using baseline selectivity from all years, whereas the forecasted catches are removed using selectivity averaged over the last five years. Recent changes in selectivity will thus be reflected in the determination of fishing in excess of the default harvest policy. Alternative catch levels where median fishing intensity is 100\% for three years of projections is provided for comparison (scenario f: FI=100\%).
 
 % Move to after next paragraph if it appears too early. It shouldn't since
 %  so many tables around.
@@ -481,7 +481,7 @@ make.risk.table(base.model,
                 xlabel <- "tab:es-risk-year-2",
                 font.size = 12,
                 space.size = 14,
-                placement = "tbp")                                
+                placement = "tbp")
 @
 The population is predicted to decrease from 2016 to 2017 with a less than 50\% probability for all catch levels investigated up to 440,000~t (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}). The model predicts high biomass levels and the predicted probability of dropping below $B_{10\%}$ (10\% of $B_0$) 
 in 2017 is less than 1\% and the maximum probability of dropping below $B_{40\%}$ is 16\% for all catches explored.
