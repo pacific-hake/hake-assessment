@@ -8,7 +8,7 @@
 %%   the fourth table in the main-tables section
 \usepackage{chngcntr}
 
-\usepackage{hake}
+\usepackage{hake}                 % hake.sty in this directory.
 \usepackage[titletoc,title]{appendix}   % title gives 'Appendix A', not
     % just 'A', but doesn't seem to work, may need article class,
     % but need to see appendix manual.
@@ -278,12 +278,8 @@ load("./r/model-partest.RData")
 
 \pagenumbering{roman}
 
-%% Draft version
-%% \lfoot{\fishname\ assessment \today} %% Species common name for left footer
+%% Draft version.
 %% \rfoot{DRAFT - DO NOT CITE} %% The area of the assessment for right footer
-
-%% Final version
-\lfoot{\fishname\ assessment \Sexpr{assess.yr}} %% Species common name for left footer
 
 %% Authors page
 This document reports the collaborative efforts of the official U.S. and Canadian JTC members, and others that contributed significantly.
@@ -333,7 +329,7 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 138~
 \renewcommand{\thesection}{\arabic{section}} % To number as 1,2,3 not 1.1
 \renewcommand{\theequation}{\arabic{equation}} % where first 1 would be chapter
                                                % number
-\renewcommand{\bibsection}{\section{REFERENCES}} %References as numbered section
+\renewcommand{\bibsection}{\section{REFERENCES}\label{sec:references}} %References as numbered section
 
 % \linenumbers             %% Add line numbers
 % \rightlinenumbers        %% Put line numbers in right margin
@@ -342,9 +338,13 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 138~
                          %%  I think (AME). Probably no need to use.
 
 %% Comment out any un-needed sections from here onwards:
+
+\lfoot{\fishname\ assessment \Sexpr{assess.yr}} %% Species common name for left footer
+\rfoot{One-page summary}
 <<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=
 @
 
+\rfoot{Executive summary}
 <<executive-summary, child='executive-summary/executive-summary.rnw'>>=
 @
 
@@ -358,31 +358,42 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 138~
 % \renewcommand*{\theHfigure}{\arabic{figure}}
 % \setcounter{figure}{0}
 
+\rfoot{Section~\ref{sec:introduction} -- Introduction}
 <<introduction-sec, child='introduction-section/introduction.rnw'>>=
 @
 
+\rfoot{Section~\ref{sec:data} -- Data}
 <<data-sec, child='data-section/data.rnw'>>=
 @
 
+\rfoot{Section~\ref{sec:assessment} -- Assessment}
 <<assessment-sec, child='assessment-section/assessment-section.rnw'>>=
 @
 
+\rfoot{Section~\ref{sec:research} -- Research and data needs}
 <<research-sec, child='research-section/research.rnw'>>=
 @
 
+\rfoot{Section~\ref{sec:acknowledgments} -- Acknowledgments}
 <<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
 @
 
 % \clearpage
 
+\rfoot{Section~\ref{sec:references} -- References}
 \bibliographystyle{hake}
 \bibliography{all}
 
+\clearpage
+\rfoot{Section~\ref{sec:tables} -- Tables}
 <<main-tables, child='main-tables/main-tables.rnw'>>=
 @
 
+\clearpage
+\rfoot{Section~\ref{sec:figures} -- Figures}
 <<main-figures, child='main-figures/main-figures.rnw'>>=
 @
+\clearpage
 
 \addtocontents{toc}{\par {\bf \vspace{10mm} APPENDICES} \par}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
@@ -394,18 +405,22 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 138~
 \renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 \renewcommand{\theequation}{\thechapter.\arabic{equation}}
 
+\rfoot{Appendix~\ref{chap:glossary} -- Glossary}
 <<appendix-glossary, child='appendix-glossary/appendix-glossary.rnw'>>=
 @
 
+\rfoot{Appendix~\ref{chap:canada-fishery-report} -- Canada fishery report}
 <<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-Canada.rnw'>>=
 @
 
+\rfoot{Appendix~\ref{chap:parameters} -- Estimated parameters}
 <<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
 @
 
 <<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
 @
-% one .rnw file for all four SS code appendices, since .rnw code is short.
+% One .rnw file for all four SS code appendices, since .rnw code is short.
+%  It includes the footer code.
 
 \end{appendices}
 
