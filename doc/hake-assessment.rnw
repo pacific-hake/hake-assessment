@@ -311,7 +311,7 @@ Authors of this document are (in no particular order): \\
 %% This DRAFT document is non-citable.
 
 %% Final version
-This document should be cited as follows: Grandin, C.J., A.C. Hicks, A. Berger, A.M. Edwards, N. Taylor, S. Cox, and I.G. Taylor. \Sexpr{assess.yr}.
+This document should be cited as follows: Grandin, C.J., A.C. Hicks, A. Berger, A.M. Edwards, N. Taylor, I.G. Taylor, and S. Cox. \Sexpr{assess.yr}.
 Status of the \fishname\ (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}.
 Prepared by the Joint Technical Committee of the U.S. and Canada \fishname/Whiting Agreement;
 National Marine Fishery Service; Canada Department of Fisheries and Oceans. 138~p.
