@@ -270,6 +270,8 @@ load("./r/model-partest.RData")
 
 \author{Joint Technical Committee of the \fishname/Whiting Agreement \\ Between the Governments of the United States and Canada}
 
+\date{}   % To have no date
+
 \maketitle
 
 \newpage
@@ -333,8 +335,8 @@ National Marine Fishery Service; Canada Department of Fisheries and Oceans. 138~
                                                % number
 \renewcommand{\bibsection}{\section{REFERENCES}} %References as numbered section
 
-\linenumbers             %% Add line numbers
-\rightlinenumbers        %% Put line numbers in right margin
+% \linenumbers             %% Add line numbers
+% \rightlinenumbers        %% Put line numbers in right margin
 %% \modulolinenumbers[5] %% Just number every 5th line. Doesn't restart
                          %%  numbers on each page, but need lineno package
                          %%  I think (AME). Probably no need to use.
