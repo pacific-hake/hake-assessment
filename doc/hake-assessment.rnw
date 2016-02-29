@@ -260,7 +260,12 @@ load("./r/model-partest.RData")
 
 %% Title page and author references page
 \thispagestyle{empty}
-\title{\TitleFont DRAFT - Status of the \fishname\ (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}\thanks{\noindent Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy.}
+
+%% DRAFT version
+%% \title{\TitleFont DRAFT - Status of the \fishname\ (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}\thanks{\noindent Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy.}
+
+%% Final version
+\title{\TitleFont Status of the \fishname\ (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}
 \\ ~\\ ~\\ \includegraphics[width=4in]{hake-picture}}
 
 \author{Joint Technical Committee of the \fishname/Whiting Agreement \\ Between the Governments of the United States and Canada}
@@ -270,9 +275,13 @@ load("./r/model-partest.RData")
 \newpage
 
 \pagenumbering{roman}
-%% \lfoot{\fishname\ stock assessment \Sexpr{assess.yr} \today} %% Species common name for left footer
-\lfoot{\fishname\ assessment \today} %% Species common name for left footer
-\rfoot{DRAFT - DO NOT CITE} %% The area of the assessment for right footer
+
+%% Draft version
+%% \lfoot{\fishname\ assessment \today} %% Species common name for left footer
+%% \rfoot{DRAFT - DO NOT CITE} %% The area of the assessment for right footer
+
+%% Final version
+\lfoot{\fishname\ assessment \Sexpr{assess.yr}} %% Species common name for left footer
 
 %% Authors page
 This document reports the collaborative efforts of the official U.S. and Canadian JTC members, and others that contributed significantly.
@@ -283,8 +292,8 @@ Authors of this document are (in no particular order): \\
 \hspace{4ex}Aaron Berger\supscr{3} \\
 \hspace{4ex}Andrew M. Edwards\supscr{1} \\ %Given the amount of work that Andy has done, there's no way my name should appear before his on the author list
 \hspace{4ex}Nathan Taylor\supscr{1} \\
-\hspace{4ex}Sean Cox\supscr{4} \\
 \hspace{4ex}Ian G. Taylor\supscr{2} \\
+\hspace{4ex}Sean Cox\supscr{4} \\
 \bigskip
 
 \emph{\supscr{1}Fisheries and Oceans Canada, Pacific Biological Station,
@@ -298,13 +307,14 @@ Authors of this document are (in no particular order): \\
 
 \emph{\supscr{4}School of Resource and Environmental Management, Simon Fraser University, TASC I -- Room \#8405, 8888 University Drive, Burnaby, B.C. V5A-1S6, Canada}
 
-This DRAFT document is non-citable.
-% Once finalised, uncomment these and update:
-% This document should be cited as follows: Grandin, C.J., A.C. Hicks, A. Berger, A.M. Edwards, N. Taylor, S. Cox, and I.G. Taylor. 2015.
-% Status of the \fishname\ (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}.
-% Prepared by the Joint Technical Committee of the U.S. and Canada \fishname/Whiting Agreement;
-% National Marine Fishery Service; Canada Department of Fisheries and Oceans. *******~p.
-% Seem to be a lot of semi-colons in there!
+%% Draft version
+%% This DRAFT document is non-citable.
+
+%% Final version
+This document should be cited as follows: Grandin, C.J., A.C. Hicks, A. Berger, A.M. Edwards, N. Taylor, S. Cox, and I.G. Taylor. \Sexpr{assess.yr}.
+Status of the \fishname\ (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}.
+Prepared by the Joint Technical Committee of the U.S. and Canada \fishname/Whiting Agreement;
+National Marine Fishery Service; Canada Department of Fisheries and Oceans. 138~p.
 
 \newpage
 
