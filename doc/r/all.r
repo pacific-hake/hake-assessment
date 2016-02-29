@@ -317,9 +317,9 @@ catch.levels <- list(rep(0.01, 3),
                      rep(350000,3),
                      rep(440000,3),
                      rep(500000,3),
-                     c(760000,855000,750000),
-                     c(804399,889918,785036),
-                     c(873000,873000,773907))
+                     c(785000,900000,825000),
+                     c(830124,955423,837352),
+                     c(928100,928100,820224))
 
 ## Index for the forecasts list, which one above is the TAC case?
 ## This is used in the one-page summary and the plot comparing several catch cases
