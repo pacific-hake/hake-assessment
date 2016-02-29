@@ -18,14 +18,7 @@ Several harvest control rules have been explored for providing catch limits from
 
 While there have been many changes to \fishname\ management procedures, they have not been capricious. Available data have changed over the years, and there have been many advances in the discipline of Fisheries Science. In some ways, the latter has evolved considerably over the course of the historical hake fishery: new statistical techniques and software have evolved (Bayesian vs. maximum likelihood methods for example); and the scientific literature has suggested potentially important biological dynamics to consider (explicit modeling of length-at-age for example). Policies requiring the application of specific control rules have also changed such as the United States' National Standards Guidelines in 2002 and the \Ffortyten{} harvest control rule in The Agreement. Analysts making changes to \fishname\ management procedures have been trying to improve the caliber and relevance of the assessments by responding to new scientific developments, policy requirements, and different reviewers. Until the Management Strategy Evaluation (MSE) that was begun in 2013 \citep{JTC2013}, none of these management procedure changes were evaluated by simulation and quantitatively compared with performance measures.
 
-\subsection{Response to recent review recommendations}\label{sec:assessment-response-review}
-
-\subsection{\Sexpr{assess.yr} Scientific Review Group (SRG) review}\label{sec:assessment-2016-review}
-% Manual 2016 done
-To be added after \Sexpr{assess.yr} review.  
-% [**for 2015 assessment nothing actually got added.]
-
-\subsection{\Sexpr{last.assess.yr} Scientific Review Group (SRG) review}\label{sec:assessment-2015-review}
+\subsection{Response to \Sexpr{last.assess.yr} Scientific Review Group (SRG) review}\label{sec:assessment-response-review}
 % Manual 2016 done
 The Scientific Review Group (SRG) meeting was held from February 24--27, 2015, at Simon Fraser University, Vancouver, B.C, Canada. 
 
@@ -55,9 +48,8 @@ The following are the Assessment Recommendations from the \Sexpr{last.assess.yr}
 
 \end{itemize}
 
-\subsection{Model description}\label{sec:assessment-model-description}
+\subsection{Description of base model}\label{sec:assessment-base-model}
 % Manual 2016 done
-\subsection{Base model}\label{sec:assessment-base-model}
 
 %\Sexpr{if(SSversion != "3.24U") stop("Need to update SS text in assessment-section.rnw.") }
 % 3.24u in 2015 and 2016 assessments.
