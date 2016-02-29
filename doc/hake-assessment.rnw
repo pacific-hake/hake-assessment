@@ -287,7 +287,7 @@ This document reports the collaborative efforts of the official U.S. and Canadia
 Authors of this document are (in no particular order): \\
 \hspace{4ex}Chris J. Grandin\supscr{1} \\
 \hspace{4ex}Allan C. Hicks\supscr{2} \\
-\hspace{4ex}Aaron Berger\supscr{3} \\
+\hspace{4ex}Aaron M. Berger\supscr{3} \\
 \hspace{4ex}Andrew M. Edwards\supscr{1} \\ %Given the amount of work that Andy has done, there's no way my name should appear before his on the author list
 \hspace{4ex}Nathan Taylor\supscr{1} \\
 \hspace{4ex}Ian G. Taylor\supscr{2} \\
@@ -309,7 +309,7 @@ Authors of this document are (in no particular order): \\
 %% This DRAFT document is non-citable.
 
 %% Final version
-This document should be cited as follows: Grandin, C.J., A.C. Hicks, A. Berger, A.M. Edwards, N. Taylor, I.G. Taylor, and S. Cox. \Sexpr{assess.yr}.
+This document should be cited as follows: Grandin, C.J., A.C. Hicks, A.M. Berger, A.M. Edwards, N. Taylor, I.G. Taylor, and S. Cox. \Sexpr{assess.yr}.
 Status of the \fishname\ (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}.
 Prepared by the Joint Technical Committee of the U.S. and Canada \fishname/Whiting Agreement;
 National Marine Fishery Service; Canada Department of Fisheries and Oceans. 138~p.
