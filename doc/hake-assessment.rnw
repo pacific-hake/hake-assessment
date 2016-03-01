@@ -42,6 +42,7 @@
 \usepackage{booktabs}          %% Used in executive summary tables
 \usepackage{tabularx}
 \usepackage{pdflscape}
+\usepackage{lastpage}          %% Allows the citation to reflect the number of pages in the document.
 \usepackage[parfill]{parskip}  % So paragraphs will have a blank line between them
 \setlength{\parskip}{12pt}
 
@@ -313,8 +314,8 @@ This document should be cited as follows:\\
 Grandin, C.J., A.C. Hicks, A.M. Berger, A.M. Edwards, N. Taylor, I.G. Taylor, and S. Cox. \Sexpr{assess.yr}.
 Status of the \fishname\ (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}.
 Prepared by the Joint Technical Committee of the U.S. and Canada \fishname/Whiting Agreement, 
-National Marine Fishery Service and Fisheries and Oceans Canada. xxi~$+$~143~p.
-% Look into \pageref{LastPage} to automate the page number part.
+National Marine Fishery Service and Fisheries and Oceans Canada. xxi~$+$~\pageref{LastPage}~p.
+%% \pageref{LastPage} works for arabic pages, but not roman numerals, which we aren't using next year.
 
 \newpage
 
