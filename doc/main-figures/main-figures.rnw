@@ -699,7 +699,7 @@ make.forecast.catch.posterior.plot(base.model,
 <<main.forecast.depletion.comparison.plot, fig.height=4.5, fig.width=8>>=
 ## Look at catch.levels and catch.levels.names to decide which to include here
 ## models.inds are the indices of those forecast models which will be plotted against each other
-models.inds <- c(1, 2, 3, 4)
+models.inds <- c(1, 2, 3, 4, 7)
 models.names <- catch.levels.names[models.inds]
 make.forecast.depletion.comparison.plot(base.model,
                                         models.inds,
