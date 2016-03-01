@@ -271,7 +271,7 @@ load("./r/model-partest.RData")
 
 \author{Joint Technical Committee of the \fishname/Whiting Agreement \\ Between the Governments of the United States and Canada}
 
-\date{}   % To have no date
+\date{March 1st, 2016}   % Leave empty to have no date
 
 \maketitle
 
