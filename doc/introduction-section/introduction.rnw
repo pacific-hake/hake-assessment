@@ -1,8 +1,8 @@
 % main-doc.rnw
 
 %% Need numbering back to Arabic.
-\pagenumbering{arabic}
-\setcounter{page}{1}
+% \pagenumbering{arabic}
+% \setcounter{page}{1}
 
 \clearpage
 
