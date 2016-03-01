@@ -277,7 +277,9 @@ load("./r/model-partest.RData")
 
 \newpage
 
-\pagenumbering{roman}
+%\pagenumbering{roman}
+\pagenumbering{arabic}
+%\setcounter{page}{1}
 
 %% Draft version.
 %% \rfoot{DRAFT - DO NOT CITE} %% The area of the assessment for right footer
@@ -314,8 +316,7 @@ This document should be cited as follows:\\
 Grandin, C.J., A.C. Hicks, A.M. Berger, A.M. Edwards, N. Taylor, I.G. Taylor, and S. Cox. \Sexpr{assess.yr}.
 Status of the \fishname\ (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}.
 Prepared by the Joint Technical Committee of the U.S. and Canada \fishname/Whiting Agreement,
-National Marine Fisheries Service and Fisheries and Oceans Canada. xxi~$+$~\pageref{LastPage}~p.
-%% \pageref{LastPage} works for arabic pages, but not roman numerals, which we aren't using next year.
+National Marine Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 
 \newpage
 
