@@ -210,7 +210,6 @@ run.partest.model <- function(model,
   for(irow in 1:num.posts){
     tmp <- readLines(file.path(reports.dir, paste0("Report_", irow,".sso")))
     skip.row <- grep("LIKELIHOOD", tmp)[2]
-##    browser()
     likes <- read.table(file.path(reports.dir, paste0("Report_", irow, ".sso")),
                         skip = skip.row,
                         nrows = 17,
@@ -302,6 +301,7 @@ run.partest.model <- function(model,
   model.partest$cpue.975 <- apply(cpue.table, MARGIN = 1, FUN = quantile, probs = 0.975)
 
   model.partest$like.info <- like.info
+
   save(model.partest, file = output.file)
 }
 

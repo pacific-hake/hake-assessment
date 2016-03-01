@@ -333,6 +333,7 @@ make.short.parameter.estimates.table <- function(model,                ## model 
                                                  space.size = 10       ## Size of the spaces for the table
                                                  ){
   ## Returns an xtable in the proper format for the parameter estimates
+  ## For MLE vs median vs median of the last year
 
   ## This year's model MLE
   j <- model$par
@@ -342,6 +343,10 @@ make.short.parameter.estimates.table <- function(model,                ## model 
 
   mle.par <- j[mle.grep,]$Value
   mle.par[2] <- exp(mle.par[2]) / 1000 ### To make R millions
+
+  ## Add Q - Warning - hardwired
+  mle.q <- 1.14
+  mle.par <- c(mle.par, mle.q)
 
   ## Add 2008 recruitment
   rec <- model$recruit[model$recruit$year == 2008,]$pred_recr
@@ -394,13 +399,23 @@ make.short.parameter.estimates.table <- function(model,                ## model 
   y <- model$derived_quants["TotYield_SPRtgt","Value"]/1000
   mle.par <- c(mle.par, y)
 
-  calc.mcmc <- function(x){
+  calc.mcmc <- function(x,
+                        q.choice = 1 ## q == 1 is this year, q == 2 is last year
+                        ){
     mcmc.grep <- unique(grep(paste(posterior.regex, collapse="|"), names(x$mcmc)))
     mcmc.names <- names(x$mcmc)[mcmc.grep]
     mcmc.par <- x$mcmc[,mcmc.grep]
     mcmc.meds <- apply(mcmc.par, 2, median)
     mcmc.meds[2] <- exp(mcmc.meds[2]) / 1000 # To make R0 in the millions
     names(mcmc.meds) <- NULL
+
+    ## Add Q - *Warning* - hardwired values for 2016 assessment
+    if(q.choice == 1){
+      q <- 1.03
+    }else{
+      q <- 0.92
+    }
+    mcmc.meds <- c(mcmc.meds, q)
 
     ## Add 2008 recruitment
     rec <- median(x$mcmc$Recr_2008)
@@ -456,40 +471,46 @@ make.short.parameter.estimates.table <- function(model,                ## model 
   }
 
   ## This year's model MCMC
-  mcmc.meds <- calc.mcmc(model)
+  mcmc.meds <- calc.mcmc(model, q = 1)
 
   ## Last year's model MCMC
-  last.yr.mcmc.meds <- calc.mcmc(last.yr.model)
-  last.yr.mcmc.meds[10] <- NA   #THIS IS A HACK TO NOT REPORT THE SPR FOR 2015 FROM LAST ASSESSMENT SINCE ACTUAL CATCH WAS NOT KNOWN
+  last.yr.mcmc.meds <- calc.mcmc(last.yr.model, q = 2)
+  ## *Warning* THIS IS A HACK TO NOT REPORT THE SPR FOR 2015 FROM LAST ASSESSMENT SINCE ACTUAL CATCH WAS NOT KNOWN
+  last.yr.mcmc.meds[11] <- NA
   tab <- as.data.frame(cbind(mle.par, mcmc.meds, last.yr.mcmc.meds))
   colnames(tab) <- NULL
 
-  ## Format the tables rows depending on what they are
+  ## Format the tables rows depending on what they are.
   ## Decimal values
-  tab[c(1,3,4),] <- fmt0(tab[c(1,3,4),], 3)
+  tab[c(1,3,4,5),] <- fmt0(tab[c(1,3,4,5),], 3)
   ## Large numbers with no decimal points but probably commas
-  tab[c(2,5,6,7,8,12,15),] <- fmt0(apply(tab[c(2,5,6,7,8,12,15),], c(1,2), as.numeric))
+  tab[c(2,6,7,8,9,13,16),] <- fmt0(apply(tab[c(2,6,7,8,9,13,16),], c(1,2), as.numeric))
   ## Percentages on non-NA elements
   paste.perc <- function(vec){
     ## Paste percentages on to all elements of vec that are not NA
     vec[!is.na(vec)] <- paste0(fmt0(as.numeric(vec[!is.na(vec)]), 1), "\\%")
     return(vec)
   }
-  tab[9,] <- paste.perc(tab[9,])
   tab[10,] <- paste.perc(tab[10,])
   tab[11,] <- paste.perc(tab[11,])
-  tab[14,] <- paste.perc(tab[14,])
+  tab[12,] <- paste.perc(tab[12,])
+  tab[15,] <- paste.perc(tab[15,])
   ## SPR Percentages row (some may be NA). This is really ugly but works
-  tab[13, !is.na(tab[13,])] <- paste0(fmt0(apply(tab[13, !is.na(tab[13,])], 1, as.numeric), 1), "\\%")
+  tab[14, !is.na(tab[14,])] <- paste0(fmt0(apply(tab[14, !is.na(tab[14,])], 1, as.numeric), 1), "\\%")
+
+  ## Make first row empty to make the Parameter header appear below the horizontal line
+  tab <- rbind(c("","",""), tab)
 
   ## Replace NAs with dashes
   tab[is.na(tab)] <- "\\textbf{--}"
 
   ## Set the first column to be the names
-  tab <- cbind(c("Natural Mortality ($M$)",
+  tab <- cbind(c("",  ## Necessary because of the rbind(c("","",""), tab) call above
+                 "Natural Mortality ($M$)",
                  "Unfished recruitment ($R_0$, millions)",
                  "Steepness ($h$)",
                  "Additional acoustic survey SD",
+                 "Catchability (q)",
                  "2008 recruitment  (millions)",
                  "2010 recruitment  (millions)",
                  "2014 recruitment  (millions)",
@@ -510,12 +531,12 @@ make.short.parameter.estimates.table <- function(model,                ## model 
 
   addtorow <- list()
   addtorow$pos <- list()
-  addtorow$pos[[1]] <- 0
-  addtorow$pos[[2]] <- 4
-  addtorow$pos[[3]] <- 11
-  addtorow$command <- c("\\hline \\\\ \\textbf{\\underline{Parameters}} \\\\",
-                        "\\hline \\\\ \\textbf{\\underline{Derived Quantities}} \\\\",
-                        "\\hline \\\\ \\textbf{\\underline{Reference Points (equilibrium) based on $\\Fforty$}} \\\\")
+  addtorow$pos[[1]] <- 1
+  addtorow$pos[[2]] <- 6
+  addtorow$pos[[3]] <- 14
+  addtorow$command <- c("\\textbf{\\underline{Parameters}} \\\\",
+                        "\\\\ \\textbf{\\underline{Derived Quantities}} \\\\",
+                        "\\\\ \\textbf{\\underline{Reference Points (equilibrium) based on $\\Fforty$}} \\\\")
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(tab, caption=xcaption, label=xlabel, align=get.align(ncol(tab), just="c")),
