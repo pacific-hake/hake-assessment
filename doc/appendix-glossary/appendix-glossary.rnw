@@ -95,6 +95,8 @@ Fishing intensity: A measure of the magnitude of fishing relative to a specified
 \label{appendix-glossary-spr}
 \ee
 where $xx\%$ is the 40\% proxy. See Figure~\ref{fig:glossary-fishing-intensity}.
+% for 2016 assessment, consider revising definition of Fishing Intensity as discussed 
+% in issue #158: https://github.com/cgrandin/hake-assessment/issues/158
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
