@@ -344,8 +344,8 @@ make.short.parameter.estimates.table <- function(model,                ## model 
   mle.par <- j[mle.grep,]$Value
   mle.par[2] <- exp(mle.par[2]) / 1000 ### To make R millions
 
-  ## Add Q - Warning - hardwired
-  mle.q <- 1.14
+  ## Add Q for MLE
+  mle.q <- round(model$cpue$Calc_Q[1],3)
   mle.par <- c(mle.par, mle.q)
 
   ## Add 2008 recruitment
@@ -411,9 +411,9 @@ make.short.parameter.estimates.table <- function(model,                ## model 
 
     ## Add Q - *Warning* - hardwired values for 2016 assessment
     if(q.choice == 1){
-      q <- 1.03
+      q <- 1.029
     }else{
-      q <- 0.92
+      q <- 0.915
     }
     mcmc.meds <- c(mcmc.meds, q)
 
