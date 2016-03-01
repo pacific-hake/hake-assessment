@@ -232,9 +232,11 @@ make.fishing.intensity.table(base.model,
                              placement = "tbp")
 @
 
-Median fishing intensity on the stock is estimated to have been below the $\Fforty$ target except for the years
+Median fishing intensity on the stock is estimated to have been below the target except for the years
 \Sexpr{median.intensity.above.one.years[1:(length(median.intensity.above.one.years)-1)]} and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]} when spawning biomass was low (Table~\ref{tab:es-fishing-intensity} and Figure~\ref{fig:es-fishing-intensity}).
-%
+% for 2016 assessment, consider revising definition of Fishing Intensity as discussed 
+% in issue #158: https://github.com/cgrandin/hake-assessment/issues/158
+% 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
@@ -384,7 +386,7 @@ make.decision.table(base.model,
                     placement = "tbp")
 @
 
-Decision tables give the projected population status (relative spawning biomass) and the fishing intensity (1-SPR$_{40\%}$) relative to target fishing intensity, under different catch alternatives for the base model (Tables~\ref{tab:es-decisions-biomass} and~\ref{tab:es-decisions-spr}). The tables are organized such that the projected outcome for each potential catch level and year (each row) can be evaluated across the quantiles (columns) of the posterior distribution. Table~\ref{tab:es-decisions-biomass} shows projected relative spawning biomass outcomes and Table~\ref{tab:es-decisions-spr} shows projected fishing intensity outcomes relative to the target fishing intensity (based on SPR; see table legend). Figure~\ref{fig:es-forecast-depletion-comparison} shows the projected biomass for several catch alternatives.
+Decision tables give the projected population status (relative spawning biomass) and the fishing intensity under different catch alternatives for the base model (Tables~\ref{tab:es-decisions-biomass} and~\ref{tab:es-decisions-spr}). The tables are organized such that the projected outcome for each potential catch level and year (each row) can be evaluated across the quantiles (columns) of the posterior distribution. Table~\ref{tab:es-decisions-biomass} shows projected relative spawning biomass outcomes and Table~\ref{tab:es-decisions-spr} shows projected fishing intensity outcomes relative to the target fishing intensity (based on SPR; see table legend). Figure~\ref{fig:es-forecast-depletion-comparison} shows the projected biomass for several catch alternatives.
 
 <<decisions.spr.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,

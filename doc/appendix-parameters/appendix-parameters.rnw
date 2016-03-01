@@ -15,3 +15,5 @@ make.long.parameter.estimates.table(base.model,
                                     font.size = 9,
                                     space.size = 10)
 @
+
+\clearpage

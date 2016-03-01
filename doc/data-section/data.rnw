@@ -196,3 +196,4 @@ A standard deviation of $\phi=0.03$ for this penalty function was used for each 
 
 This parameterization allows for the estimation of time-varying selectivity without allowing large year-to-year changes. However, the current selectivity parameterization is limiting because each individual selectivity-at-age is correlated with the selectivity of other ages. Research into alternative non-parametric time-varying selectivity configurations is ongoing but no clear alternative was available in Stock Synthesis for this assessment.
 
+\clearpage

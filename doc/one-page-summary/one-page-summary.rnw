@@ -33,7 +33,7 @@
   \item The median estimate of \Sexpr{end.yr} female spawning biomass is \Sexpr{curr.bio.median}
     million~t (with 95\% interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper} million~t).
 
-  \item The spawning biomass in \Sexpr{end.yr} is estimated to have increased from \Sexpr{end.yr-1} due to the estimate of the 2014 year-class being well above average size and the estimate of the 2012 year-class being slightly above average. % Manual to do.
+  \item The spawning biomass in \Sexpr{end.yr} is estimated to have increased from \Sexpr{end.yr-1} due to the 2014 year-class likely being well above average size. % and the estimate of the 2012 year-class being slightly above average. % Manual to do.
 
 %  \item The default predicted catch level for 2016, based on the default harvest rule, is 839,476~t.  **DOES NOT MENTION uncertainty; suggest replacing with (copied and adapted from Exec Summary):
     
@@ -50,3 +50,5 @@
     % Manual to do ('remaining stable')
     % 3% from Table j, 38% from Table i, 50% from Table j
 \end{itemize}
+
+\clearpage
