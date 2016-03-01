@@ -169,6 +169,9 @@ make.parameters.estimated.summary.table <- function(model,                ## mod
     return(tab)
   }
 
+  ## Make first row empty to make the Stock Dynamics header appear below the horizontal line
+  tab <- rbind(c("","","",""), tab)
+
   colnames(tab) <- c("\\textbf{Parameter}",
                      "\\specialcell{\\textbf{Number}\\\\\\textbf{estimated}}",
                      "\\specialcell{\\textbf{Bounds}\\\\\\textbf{(low,high)}}",
@@ -176,12 +179,12 @@ make.parameters.estimated.summary.table <- function(model,                ## mod
 
   addtorow <- list()
   addtorow$pos <- list()
-  addtorow$pos[[1]] <- 0
-  addtorow$pos[[2]] <- 5
-  addtorow$pos[[3]] <- 5
-  addtorow$pos[[4]] <- 8
+  addtorow$pos[[1]] <- 1
+  addtorow$pos[[2]] <- 6
+  addtorow$pos[[3]] <- 6
+  addtorow$pos[[4]] <- 9
   addtorow$command <- c("\\textbf{\\underline{Stock dynamics}} \\\\",
-                        "\\textbf{\\underline{Catchability and selectivity (double normal)}} \\\\",
+                        "\\\\ \\textbf{\\underline{Catchability and selectivity (double normal)}} \\\\",
                         "\\emph{Acoustic survey} \\\\",
                         "\\emph{Fishery} \\\\")
 
@@ -281,11 +284,15 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
   ## SPR Percentages row (some may be NA). This is really ugly but works
   tab[13, !is.na(tab[13,])] <- paste0(fmt0(as.numeric(tab[13, !is.na(tab[13,])]), 1), "\\%")
 
+  ## Make first row empty to make the Parameter header appear below the horizontal line
+  tab <- rbind(rep("", length(models)), tab)
+
   ## Replace NAs with dashes
   tab[is.na(tab)] <- "\\textbf{--}"
 
   ## Set the first column to be the names
-  tab <- cbind(c("Natural Mortality (\\emph{M})",
+  tab <- cbind(c("",  ## Necessary because of the rbind(rep("", length(models)), tab) call above
+                 "Natural Mortality (\\emph{M})",
                  "\\emph{R}\\subscr{0} (millions)",
                  "Steepness (\\emph{h})",
                  "Additional acoustic survey SD",
@@ -307,12 +314,12 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
 
   addtorow <- list()
   addtorow$pos <- list()
-  addtorow$pos[[1]] <- 0
-  addtorow$pos[[2]] <- 4
-  addtorow$pos[[3]] <- 10
-  addtorow$command <- c("\\hline \\\\ \\textbf{\\underline{Parameters}} \\\\",
-                        "\\hline \\\\ \\textbf{\\underline{Derived Quantities}} \\\\",
-                        "\\hline \\\\ \\textbf{\\underline{Reference Points based on \\emph{F}\\subscr{40\\%}}} \\\\")
+  addtorow$pos[[1]] <- 1
+  addtorow$pos[[2]] <- 5
+  addtorow$pos[[3]] <- 11
+  addtorow$command <- c("\\textbf{\\underline{Parameters}} \\\\",
+                        "\\\\ \\textbf{\\underline{Derived Quantities}} \\\\",
+                        "\\\\ \\textbf{\\underline{Reference Points based on $\\Fforty$}} \\\\")
 
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
