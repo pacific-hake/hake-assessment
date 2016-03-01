@@ -9,7 +9,7 @@
 make.overview.map.plot(r.loc = file.path("..", "r"))
 @
 \end{center}
-\caption{Overview map of the area in the Northeast Pacific Ocean occupied by \fishname\. Common areas referred to in this document are shown.}
+\caption{Overview map of the area in the Northeast Pacific Ocean occupied by \fishname. Common areas referred to in this document are shown.}
 \label{fig:main-overview-map}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -424,7 +424,7 @@ make.mcmc.priors.vs.posts.plot(base.model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Prior (black lines) and posterior (gray histograms) probability distributions for key parameters in the base model. From the top left, the parameters are: steepness ($h$), natural mortality ($M$), equilibrium log recruitment $\log(R_0)$, and the additional process-error standard deviation for the acoustic survey. The maximum likelihood estimates and associated symmetric uncertainty intervals are also shown (blue lines).}
+\caption{Prior (black lines) and posterior (gray histograms) probability distributions for key parameters in the base model. The parameters are: natural mortality ($M$), equilibrium log recruitment $\log(R_0)$, steepness ($h$), and the additional process-error standard deviation for the acoustic survey. The maximum likelihood estimates and associated symmetric uncertainty intervals are also shown (blue lines).}
 \label{fig:main-prior-posterior}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
