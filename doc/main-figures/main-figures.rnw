@@ -819,7 +819,7 @@ par <- oldpar
 mtext("Age", side = 1, line = 1, outer = TRUE)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass and selectivity for the base model and alternative sensitivity runs representing changes in the age of maximum selectivity from the value of 6 in the base model. Selectivity panels are a) Base model, b) \Sexpr{sens.model.names.3[1]}, c) \Sexpr{sens.model.names.3[2]}, d) \Sexpr{sens.model.names.3[3]}}
+\caption{Maximum likelihood estimates of spawning biomass and selectivity for the base model and alternative sensitivity runs representing changes in the age of maximum selectivity from the value of 6 in the base model. Selectivity panels are a) Base model, b) \Sexpr{sens.model.names.3[1]}, c) \Sexpr{sens.model.names.3[2]}, and d) \Sexpr{sens.model.names.3[3]}.}
 \label{fig:main-base-alternative-3}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
