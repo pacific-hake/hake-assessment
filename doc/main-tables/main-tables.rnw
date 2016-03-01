@@ -70,7 +70,7 @@ make.kriging.parameters.table(
 <<main.survey.extrap.table, results='asis', echo=FALSE>>=
 make.survey.extrap.table(survey.comparison,
                          digits = 3,
-                         xcaption = paste0("Biomass index estimates from the acoustic survey (thousands~t) using kriging with extrapolation, kriging without extrapolation, and design-based methods."),
+                         xcaption = paste0("Biomass index estimates from the acoustic survey (million~t) using kriging with extrapolation, kriging without extrapolation, and design-based methods."),
                          xlabel = "tab:main-survey-comparison",
                          font.size = 10,
                          space.size = 12)
