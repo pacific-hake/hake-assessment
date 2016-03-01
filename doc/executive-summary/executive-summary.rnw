@@ -491,6 +491,7 @@ It should be noted that the natural mortality rate has overtaken the growth rate
 estimated below average recruitment for the 2011 and 2013 cohorts, but a large predicted 2014 year class will result in increases to the spawning biomass as it enters maturity. The probability that the 2017 spawning
 biomass will be less than the 2016 spawning biomass is less than 55\% for all catch levels. (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % Manual 2016 done above.
+\enlargethispage{\baselineskip}
 
 \subsection*{Research and data needs} \label{sec:es-research-data-needs}
 \phantomsection \addcontentsline{toc}{subsection}{Research and data needs}
