@@ -378,7 +378,7 @@ National Marine Fisheries Service and Fisheries and Oceans Canada. \pageref{Last
 <<research-sec, child='research-section/research.rnw'>>=
 @
 
-\rfoot{Section~\ref{sec:acknowledgments} -- Acknowledgments}
+\clearpage
 <<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
 @
 
