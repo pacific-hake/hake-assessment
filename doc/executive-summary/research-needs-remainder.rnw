@@ -2,7 +2,8 @@
 %  the Executive Summary but only into research.rnw in the main text.
 
 \item Continue to explore and develop statistical methods to parameterize time-varying fishery selectivity in the assessment and with regard to forecasting.
-  
+\enlargethispage{\baselineskip}
+
 \item Continue to investigate maturity observations of \fishname\ and explore additional sampling sources to determine fecundity and when spawning occurs. Continue to explore ways to include new maturity estimates in the assessment. This would involve:
 \begin{enumerate}[label=(\alph*)]
   \item Read ages for samples that do not currently have an age.
