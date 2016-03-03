@@ -1,4 +1,4 @@
-## Pacific Hake Joint Technical Committee, January-February 2016
+## Pacific Hake Joint Technical Committee
 ## all.r - Source this file to load all data and functions,
 ##  to run the forecasting and retrospectives for the base model,
 ##  then save the R environment to .RData in this directory. This
@@ -66,27 +66,11 @@ source(file.path(func.dir, "tables-parameters.r"))
 source(file.path(func.dir, "tables-sampling.r"))
 source(file.path(func.dir, "tables-maturity.r"))
 
-## verbose applies to the SS loading functions as well as this project's functions and the system call
-verbose <- TRUE
+source(file.path(func.dir, "verify.r"))
+source("model-setup.r")
+source("retrospective-setup.r")
 
-models.path <- file.path("..","..","models")
-
-exe.file.name <- "ss3.exe"
-starter.file.name <- "starter.ss"
-forecast.file.name <- "forecast.ss"
-weight.at.age.file.name <- "wtatage.ss"
-
-SSversion <- "3.24U"
-
-## Number of retro years for the plot and table. Assumes you've run them.
-plot.retro.yrs <- 1:5
-retro.model.names <- c("Base model", sapply(plot.retro.yrs, function(x) paste0("-", x, if(x == 1) " year" else " years")))
-## Need to re-assemble the list with the base as the first element
-retro.list <- list(models[[base.model.ind]])
-for(i in plot.retro.yrs){
-  retro.list[[i + 1]] <- models[[base.model.ind]]$retros[[i]]
-}
-
+stop()
 ################################################################################
 ## Variables to be used in the knitr code chunks
 ################################################################################
@@ -100,5 +84,3 @@ bridge.models.3 <- models[bridge.model.inds.3]
 sens.models.1 <- models[sens.model.inds.1]
 sens.models.2 <- models[sens.model.inds.2]
 sens.models.3 <- models[sens.model.inds.3]
-
-cat("You should call save.image() if you made changes to the R code which need to be seen by the latex/knitr document.\n\n")

@@ -1,3 +1,23 @@
+print.model.message <- function(model.dir.names, model.names, group, model.type){
+  ## Print out a message stating the model directory names and pretty names,
+  ##  for the group number given. If bridge is TRUE, it is a bridge model group,
+  ##  if bridge is FALSE, it is a sensitivity model group.
+
+  cat0("***")
+  cat0(model.type, " model group ", group, " directories: ")
+  cat(paste0("  ", model.dir.names), sep = "\n")
+  cat0(model.type, " model group ", group, " pretty names: ")
+  cat(paste0("  ", model.names), sep = "\n")
+  cat0("***")
+}
+
+cat0 <- function(...){
+  ## Wrapper function to make cat have no space and insert a newline at the end.
+  ## Inspired by the paste0 function.
+  cat(..., "\n", sep = "")
+}
+
+
 run.retrospectives <- function(model,
                                yrs = 1:15,            ## A vector of years to subtract from the model's data to run on.
                                remove.blocks = FALSE,
