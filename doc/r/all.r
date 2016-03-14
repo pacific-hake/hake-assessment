@@ -10,7 +10,7 @@ rm(list = ls(all = TRUE))
 
 ## The purpose of the r-functions directory is to separate the
 ##  r code which is not commonly changed so that the files which are
-##  can be mode clearly seen.
+##  can be clearly seen.
 func.dir <- "r-functions"
 
 ## Need to source utilities.r before everything because it contains the function
@@ -41,11 +41,11 @@ require(coda)
 require(gtools)
 require(maptools)
 
-source(file.path(func.dir, "catches.r"))      ## Contains the code to catch/TAC data and figure and table-making code for catch/TAC
-source(file.path(func.dir, "load-models.r"))  ## Contains the code to load the models list from the model directories
-source(file.path(func.dir, "survey.r"))       ## Contains the table-making code for survey
-source(file.path(func.dir, "load-data.r"))    ## Contains the code to load data tables, including survey data table
-source(file.path(func.dir, "read-list.r"))    ## Contains the code to read a user file into an R list (for model setup)
+source(file.path(func.dir, "catches.r"))      ## Code for loading the catch/TAC data, making catch figures, and making tables for catch/TAC.
+source(file.path(func.dir, "load-models.r"))  ## Code to load the models from the model directories.
+source(file.path(func.dir, "survey.r"))       ## Code for loading the survey data, making survey figures, and making tables for survey.
+source(file.path(func.dir, "load-data.r"))    ## Code to load data tables from the data directory.
+source(file.path(func.dir, "read-list.r"))    ## Code to read a user file into an R list (for model setup).
 
 source(file.path(func.dir, "figures-timeseries.r"))
 source(file.path(func.dir, "figures-compare-forecasts.r"))
@@ -66,9 +66,30 @@ source(file.path(func.dir, "tables-parameters.r"))
 source(file.path(func.dir, "tables-sampling.r"))
 source(file.path(func.dir, "tables-maturity.r"))
 
-source(file.path(func.dir, "verify.r"))
-source("model-setup.r")
-source("retrospective-setup.r")
+source(file.path(func.dir, "verify.r"))       ## Code to verify the model setup.
+source("model-setup.r")                       ## Code to setup the model names, and start/end years for various things in the models.
+source("forecast-catch-levels.r")             ## Code to setup forecast model runs.
+source("retrospective-setup.r")               ## Code to setup retrospective model runs.
+
+## At this point the model setup has been verified, and an attempt will be made to load the
+## corresponding RData files. If they do not exist, the code will revert to loading from the
+## model outputs and building the model objects. Each model defined in the models-setup.r
+## file will have its own RData file holding the model object as defined in the Readme.md file.
+
+model <- load.model(model.dir,
+                    model.name = base.model.dir.name,
+                    overwrite = FALSE,
+                    yr = 2015,
+                    run.forecasting = FALSE,
+                    forecast.yrs = forecast.yrs,
+                    forecast.probs = forecast.probs,
+                    catch.levels = catch.levels,
+                    catch.levels.dir.names = catch.levels.dir.names,
+                    run.retros = FALSE,
+                    retro.yrs = 1:15,
+                    run.partest = FALSE,
+                    key.posteriors = key.posteriors)
+                    
 
 stop()
 ################################################################################

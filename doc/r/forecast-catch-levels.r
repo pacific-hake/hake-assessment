@@ -14,9 +14,19 @@ catch.levels <- list(rep(0.01, 3),
                      rep(180000,3),
                      rep(350000,3),
                      rep(440000,3),
+                     rep(500000,3),
                      c(760000,855000,750000),
                      c(804399,889918,785036),
                      c(873000,873000,773907))
+
+## -----------------------------------------------------------------------------
+## Index for the forecasts list, which one above is the TAC case?
+## This is used in the one-page summary and the plot comparing several catch cases
+## -----------------------------------------------------------------------------
+catch.tac.ind <- 4
+## The catch as calculated using the default harvest policy.
+catch.default.policy.ind <- 7
+catch.default.policy <- catch.levels[[catch.default.policy.ind]]
 
 ## -----------------------------------------------------------------------------
 ## catch.levels.names is a list of N names for the catch levels given in catch.levels
@@ -26,6 +36,7 @@ catch.levels.names <- c("No Fishing",
                         "180,000 t",
                         "350,000 t",
                         paste0(last.data.yr, " TAC: 440,000 t"),
+                        "500,000 t",
                         "SPR100",
                         paste0("Default: ",fmt0(catch.default.policy[1])," t"),
                         "stableCatch")
@@ -35,19 +46,11 @@ catch.levels.names <- c("No Fishing",
 ##  to be used as the directory names (OS-naming friendly). Use prefixed numbers so that
 ##  the list order is the same as the directory order.
 ## -----------------------------------------------------------------------------
-catch.levels.dir.names <- c("01_0",
-                            "02_180000",
-                            "03_350000",
-                            "04_440000",
-                            "05_SPR100",
-                            "06_DefaultHR",
-                            "07_stableCatch")
-
-## -----------------------------------------------------------------------------
-## Index for the forecasts list, which one above is the TAC case?
-## This is used in the one-page summary and the plot comparing several catch cases
-## -----------------------------------------------------------------------------
-catch.tac.ind <- 4
-## The catch as calculated using the default harvest policy.
-catch.default.policy.ind <- 6
-catch.default.policy <- catch.levels[[catch.default.policy.ind]]
+catch.levels.dir.names <- c("01-0",
+                            "02-180000",
+                            "03-350000",
+                            "04-440000",
+                            "05-500000",
+                            "06-spr-100",
+                            "07-default-hr",
+                            "08-stable-catch")

@@ -65,8 +65,10 @@ if(verbose) cat0("Last survey year: \n  ", survey.end.yr)
 ## Final year of data (This is what is the end year is in the model data files)
 last.data.yr <- end.yr - 1
 if(verbose) cat0("Last year of model data: \n  ", last.data.yr)
-## These will be used to generate the keyposteriors.csv file,
-##  the remaining ones will be put into nuisanceposteriors.csv.
+
+## -----------------------------------------------------------------------------
+## Key posteriors used in the assessment
+## -----------------------------------------------------------------------------
 key.posteriors <- c("NatM_p_1_Fem_GP_1",
                     "SR_LN",
                     "SR_BH_steep",
@@ -210,3 +212,21 @@ verify.models(model.dir, sens.model.dir.names.5, sens.model.names.5)
 if(verbose){
   print.model.message(sens.model.dir.names.5, sens.model.names.5, 5, model.type = "Sensitivity")
 }
+
+## -----------------------------------------------------------------------------
+## List of all models referenced above
+## -----------------------------------------------------------------------------
+## *IMPORTANT* - ALL models must be in this list!
+## Each model directory listed here will have an RData file in it,
+##  or one will be created depending on what is found in the directory.
+##  i.e. mcmc, retrospective, or forecast directories.
+model.list <- c(base.model.dir.name,
+                last.yr.base.model.dir.name,
+                bridge.model.dir.names.1,
+                bridge.model.dir.names.2,
+                bridge.model.dir.names.3,
+                sens.model.dir.names.1,
+                sens.model.dir.names.2,
+                sens.model.dir.names.3,
+                sens.model.dir.names.4,
+                sens.model.dir.names.5)

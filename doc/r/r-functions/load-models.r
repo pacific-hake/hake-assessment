@@ -1,30 +1,51 @@
 load.model <- function(models.dir,                ## Directory name for all models location
                        model.name,                ## Directory name of model to be loaded
-                       load.mcmc = FALSE,         ## Load mcmc and perform mcmc calcs if mcmc dir present in model dir
+                       overwrite = FALSE,         ## Overwrite the RData file?
                        yr,                        ## The year to calculate mcmc values for if load.mcmc = TRUE.
                                                   ##  Should normally be the last year in the time series (without projections).
-                       run.forecasting   = FALSE,
-                       ovwrt.forecasting = FALSE, ## If run.forecasting = TRUE and the forecasting dir exists, it will be overwritten and run again
-                       run.partest       = FALSE,
-                       ovwrt.partest     = FALSE, ## If run.partest = TRUE and the partest dir exists, it will be overwritten and run again
-                       run.retros        = FALSE,
-                       ovwrt.retros      = FALSE, ## If run.retros = TRUE and the retros dir exists, it will be overwritten and run again
+                       run.forecasting = FALSE,   ## Run forecasting for this model?
+                       ## ovwrt.forecasting = FALSE, ## If TRUE and run.forecasting=TRUE and forecast folder exists, re-run forecasting
                        forecast.yrs,              ## Vector of years to run forecasting for if run.forecasting = TRUE
                        forecast.probs,            ## Vector of quantile values if run.forecasting = TRUE
                        catch.levels,              ## Vector of catch levels to run forecasting for if run.forecasting = TRUE
                        catch.levels.dir.names,    ## Vector of catch levels directory names if run.forecasting = TRUE
+                       run.retros = FALSE,        ## Run retrospectives for this model?
+                       ## ovwrt.retros = FALSE,      ## If TRUE and run.retros=TRUE and retrospectives folder exists, re-run retros
                        retro.yrs,                 ## Vector of integers (positives) to run retrospectives for if run.retros = TRUE
+                       run.partest = FALSE,       ## Run partest for this model?
                        key.posteriors,            ## Vector of key posteriors used to create key posteriors file
                        key.posteriors.fn = "keyposteriors.csv",
                        nuisance.posteriors.fn = "nuisanceposteriors.csv",
                        verbose = TRUE){
   ## Load the model given by model.name in from disk,
-  ##  run the requested things for it, and return it.
-  models.dir.names <- file.path(models.dir, dir(models.dir))
-  if(!length(grep(model.name, models.dir.names))){
-    stop("load.model: Couldn't find the model directory '", model.name, "'. Check that it is correct and try again.\n\n")
-  }
+  ##  by first looking for an RData file and attemting to load that.
+  ##  If no RData file exists, the model will be loaded into an R object
+  ##  and saved as an RData file. If overwrite==TRUE and an RData file
+  ##  exists, it will be deleted and a re-load will take place for this model.
+  ##  When this function exits, an RData file will be located in the
+  ##  directory given by model.name.
   model.dir <- file.path(models.dir, model.name)
+  if(!dir.exists(model.dir)){
+    stop("load.model: Error - the directory ", model.dir, " does not exist. Fix the problem and try again.\n")
+  }
+  ## The RData file will have the same name as the directory it is in
+  rdata.file <- file.path(model.dir, paste0(model.dir, ".RData"))
+
+  if(file.exists(rdata.file)){
+    if(overwrite){
+      ## Delete the file
+      unlink(rdata.file)
+    }else{
+      ## Load the RData file into this environment and return the model object
+      local({
+        load(rdata.file)
+      })
+      ## Assumes the model was saved with the object name 'model'
+      return(invisible(model))
+    }
+  }
+
+  ## Do the model load, save the RData file, and return the resulting object
   model <- SS_output(dir = model.dir, verbose = verbose)
   ## Load the data file and control file for the model
   ## Get the file whose name contains "_data.ss" and "_control.ss"
@@ -34,11 +55,19 @@ load.model <- function(models.dir,                ## Directory name for all mode
   ctl.fn.ind <- grep("_control.ss", model.dir.listing)
   if(!length(dat.fn.ind)){
     stop("load.models: Error in model ", model.name,
-         ", there is no data file. A data file is anything followed and ending in _data.ss.\n\n")
+         ", there is no data file. A data file is anything followed by and ending in _data.ss.\n\n")
+  }
+  if(length(dat.fn.ind) > 1){
+    stop("load.models: Error in model ", model.name,
+         ", there is more than one data file. A data file is anything followed by and ending in _data.ss.\n\n")
   }
   if(!length(ctl.fn.ind)){
     stop("load.models: Error in model ", model.name,
-         ", there is more than one data file. A data file is anything followed and ending in _data.ss. Check and make sure there is only one.\n\n")
+         ", there is no control file. A control file is anything followed by and ending in _control.ss.\n\n")
+  }
+  if(length(ctl.fn.ind) > 1){
+    stop("load.models: Error in model ", model.name,
+         ", there is more than one control file. A control file is anything followed by and ending in _control.ss.\n\n")
   }
   dat.fn <- file.path(model.dir, model.dir.listing[dat.fn.ind])
   ctl.fn <- file.path(model.dir, model.dir.listing[ctl.fn.ind])
@@ -48,36 +77,52 @@ load.model <- function(models.dir,                ## Directory name for all mode
   model$ctl.file <- ctl.fn
   model$ctl <- readLines(ctl.fn)
   model$mcmc <- NULL
-  if(load.mcmc){
-    ## If it has an 'mcmc' sub-directory, load that as well
-    mcmc.dir <- file.path(model.dir, "mcmc")
-    if(dir.exists(mcmc.dir)){
-      model$mcmc <- data.frame(SSgetMCMC(dir = mcmc.dir, writecsv = FALSE, verbose = verbose)$model1)
-      model$mcmcpath <- mcmc.dir
-      create.key.nuisance.posteriors.files(model,
-                                           key.posteriors,
-                                           key.posteriors.fn,
-                                           nuisance.posteriors.fn)
-      ## Do the mcmc calculations, e.g. quantiles for SB, SPB, DEPL, RECR, RECRDEVS
-      model$mcmccalcs <- calc.mcmc(model$mcmc)
-    }
-  }
-  if(run.forecasting){
-    cat("load.model: Running forecasts for model located in ", model$path, "...\n\n")
+
+  ## If it has an 'mcmc' sub-directory, load that as well
+  mcmc.dir <- file.path(model.dir, "mcmc")
+  if(dir.exists(mcmc.dir)){
+    model$mcmc <- data.frame(SSgetMCMC(dir = mcmc.dir, writecsv = FALSE, verbose = verbose)$model1)
+    model$mcmcpath <- mcmc.dir
+    create.key.nuisance.posteriors.files(model,
+                                         key.posteriors,
+                                         key.posteriors.fn,
+                                         nuisance.posteriors.fn)
+    ## Do the mcmc calculations, e.g. quantiles for SB, SPB, DEPL, RECR, RECRDEVS
+    model$mcmccalcs <- calc.mcmc(model$mcmc)
+
+    ## Forecasting can only happen for mcmc models. Check to see if the
+    ##  forecasts directory exists
     forecasts.path <- file.path(model$path, "mcmc", "forecasts")
-    if(ovwrt.forecasting){
+    metrics.paths <- file.path(model$path, "mcmc", paste0("metrics-", seq(length(forecast.yrs) - 1)))
+    if(all(dir.exists(c(forecasts.path, metrics.paths)))){
+      if(run.forecasting){
+        ## Delete all the directories and files
+        unlink(forecasts.path, recursive = TRUE)
+        unlink(metrics.paths, recursive = TRUE)
+      }
+    }else if(!run.forecasting & !any(dir.exists(c(forecasts.path, metrics.paths)))){
+      fore.answer <- readline(paste0("load.model: The forecast and metrics directories do not exist for model ", model$path, ". Do you want to run forecasting? [(y)es/(q)uit] "))
+      if(fore.answer == "q" | fore.answer == "Q"){
+        stop("Quitting...\n\n")
+      }
+      run.forecasting <- TRUE
+    }
+    if(run.forecasting){
+      cat0("load.model: Running forecasts for model located in ", model$path, "...\n")
       calc.forecast(model$mcmc,
                     model$path,
                     forecast.yrs,
                     catch.levels,
-                    catch.levels.dir.names)
-
+                    catch.levels.dir.names,
+                    forecast.probs)
       create.metrics(model$mcmc,
                      model$path,
                      forecast.yrs[-length(forecast.yrs)],
                      catch.levels,
                      catch.levels.dir.names)
     }
+
+    ## Load the forecasting results
     forecasts <- fetch.forecast(model$path,
                                 forecast.yrs,
                                 catch.levels.dir.names,
@@ -102,18 +147,23 @@ load.model <- function(models.dir,                ## Directory name for all mode
                        catch.levels)
 
     model$risks <- risks
+    cat0("load.model: Finished running forecasts for model located in ", model$path, "...\n")
   }
-  if(run.partest){
-    cat("load.model:: Running partest\n\n")
-    ## TODO: Separate the running of the partest model with the fetching of it's output.
-    run.partest.model(model, output.file = "model-partest.RData", verbose = verbose)
-    cat("load.model: Partest Completed\n\n")
+
+  retros.dir <- file.path(model$path, "retrospectives")
+  retros.paths <- file.path(retros.dir, paste0("retro-", retro.yrs))
+  if(dir.exists(retros.dir)){
+    if(all(dir.exists(retros.paths))){
+      if(run.retros){
+        unlink(retros.paths, recursive = TRUE)
+      }
+    }else{
+      stop("load.model: Error - The retrospectives directory has missing retrospective runs for model ", model$path, ".\n\n")
+    }
   }
   if(run.retros){
     cat("load.model: Running retrospectives\n\n")
-    if(ovwrt.retros){
-      run.retrospectives(model, yrs = retro.yrs, verbose = verbose)
-    }
+    run.retrospectives(model, yrs = retro.yrs, verbose = verbose)
     model$retros <- list()
     retros.dir <- file.path(model$path, "retrospectives")
     for(retro in 1:length(retro.yrs)){
@@ -121,6 +171,13 @@ load.model <- function(models.dir,                ## Directory name for all mode
       model$retros[[retro]] <- SS_output(dir = retro.dir, verbose = verbose)
     }
     cat("load.model: Retrospectives Completed\n\n")
+  }
+
+  if(run.partest){
+    cat("load.model:: Running partest\n\n")
+    ## TODO: Separate the running of the partest model with the fetching of it's output.
+    run.partest.model(model, output.file = "model-partest.RData", verbose = verbose)
+    cat("load.model: Partest Completed\n\n")
   }
 
   return(model)
@@ -237,7 +294,8 @@ calc.forecast <- function(mcmc,                ## The output of the SS_getMCMC f
                           model.dir,           ## The path of the model to run forecasts for
                           forecast.yrs,        ## A vector of years to do projections for
                           catch.levels,        ## catch.levels is a list of N catch levels to run projections for
-                          catch.levels.names){ ## catch.levels.names is a list of N names for the catch levels given in catch.levels
+                          catch.levels.names,  ## catch.levels.names is a list of N names for the catch levels given in catch.levels
+                          probs = NULL){       ## Probabilities for table
   ## Run forecasts  on the mcmc model.
   if(is.null(probs)){
     stop("\ncalc.forecast: Error - You must supply a probability vector (probs)\n")
