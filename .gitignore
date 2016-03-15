@@ -38,3 +38,4 @@ beamer/SRG/Sensitivities/knitr-cache
 *.tex
 beamer/SRG/Management/beamer-hake-management.tex
 *.ppt*
+beamer/JMC/presentation/knitr-cache
