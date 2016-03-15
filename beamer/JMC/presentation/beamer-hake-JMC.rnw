@@ -193,25 +193,28 @@ catchNames <- c("180,000","2015 TAC: 440,000","500,000","FI=100%","default HR")
 
 \frame{\frametitle{Catches}
   \bc
-  <<catches, fig.height=4, fig.width=7, out.width='0.8\\columnwidth'>>=
+  \vspace{-30pt}
+  <<catches, fig.height=4, fig.width=7, out.width='0.9\\columnwidth'>>=
   make.catches.plot(catches, leg.y.loc = 500, leg.cex = 0.7)
   @
   \ec
 }
 
+%% %----------------------------------------------------------
+
+%% \subsection{Survey index extrap/no-extrap comparison}
+%% \frame{\frametitle{Survey index extrapolated/unextrapolated}
+%%   \bc
+%%   <<survey.compare.extrap.noextrap, fig.height=4, fig.width=7, out.width='0.8\\columnwidth'>>=
+%%   make.survey.biomass.extrap.plot(survey.comparison)
+%%   @
+%%   \ec
+%% }
+
+
 %----------------------------------------------------------
 
-\subsection{Survey index extrap/no-extrap comparison}
-\frame{\frametitle{Survey index extrapolated/unextrapolated}
-  \bc
-  <<survey.compare.extrap.noextrap, fig.height=4, fig.width=7, out.width='0.8\\columnwidth'>>=
-  make.survey.biomass.extrap.plot(survey.comparison)
-  @
-  \ec
-}
-%----------------------------------------------------------
-
-\frame{\frametitle{Fit to the acoustic survey index of abundance (MCMC)}
+\frame{\frametitle{Fit to the acoustic survey index of abundance}
   \bc
   <<mcmc.survey.fit, fig.height=4, fig.width=7, out.width='0.8\\columnwidth'>>=
   make.mcmc.survey.fit.plot(model.partest,
@@ -226,43 +229,36 @@ catchNames <- c("180,000","2015 TAC: 440,000","500,000","FI=100%","default HR")
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Fit to acoustic survey age comps (MCMC)}
-\begin{columns}
-  \begin{column}{0.38\textwidth}
-    \bi
-      \item 1999 cohort often overpredicted
-      \item Young cohorts in 2003--2009 underfit
-      \item 2008 cohort underfit in 2011
-      \item Recent years (2012--2015) show good fits
-    \ei
-  \end{column}
-  \begin{column}{0.59\textwidth}
-    \vspace{-15pt}
-    \bc
-      <<mcmc.survey.age.comp.fits, fig.height=4.4, fig.width=5.5,out.width='1.0\\columnwidth'>>=
-      make.age.comp.fit.plot(model.partest,
-                             subplot = 2)
-     @
-    \ec
-  \end{column}
-\end{columns}
-}
+%% \frame{\frametitle{Fit to acoustic survey age comps}
+%% \begin{columns}
+%%   \begin{column}{0.38\textwidth}
+%%     \bi
+%%       \item 1999 cohort often overpredicted
+%%       \item Young cohorts in 2003--2009 underfit
+%%       \item 2008 cohort underfit in 2011
+%%       \item Recent years (2012--2015) show good fits
+%%     \ei
+%%   \end{column}
+%%   \begin{column}{0.59\textwidth}
+%%     \vspace{-15pt}
+%%     \bc
+%%       <<mcmc.survey.age.comp.fits, fig.height=4.4, fig.width=5.5,out.width='1.0\\columnwidth'>>=
+%%       make.age.comp.fit.plot(model.partest,
+%%                              subplot = 2)
+%%      @
+%%     \ec
+%%   \end{column}
+%% \end{columns}
+%% }
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Fit to fishery age comps (MCMC)}
+\frame{\frametitle{Fit to fishery age comps}
 \begin{columns}
-  \begin{column}{0.38\textwidth}
-    \bi
-      \item Often see underfitting of big cohorts when they are young
-      \bi \item 2005, 2006, 2008, 2010
-          \item 1984 and 1999 did not show this pattern \ei
-    \ei
-  \end{column}
   \begin{column}{0.59\textwidth}
     \vspace{-15pt}
     \bc
-      <<mcmc.fishery.age.comp.fits, fig.height=5.2, fig.width=6.5,out.width='1.0\\columnwidth'>>=
+      <<mcmc.fishery.age.comp.fits, fig.height=5.2, fig.width=7,out.width='1.0\\columnwidth'>>=
       make.age.comp.fit.plot(model.partest,
                              subplot = 1)
      @
@@ -276,19 +272,19 @@ catchNames <- c("180,000","2015 TAC: 440,000","500,000","FI=100%","default HR")
 \subsection{}
 
 
-%----------------------------------------------------------
+%% %----------------------------------------------------------
 
-\frame{\frametitle{Recruitment Deviations}
-  \vspace{5pt}
-  \bc
-  <<main.recruitment.devs, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-    oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-    make.recruitment.dev.plot(base.model,
-                         end.yr = end.yr)
-    par(oldpar)
-  @
-  \ec
-}
+%% \frame{\frametitle{Recruitment Deviations}
+%%   \vspace{5pt}
+%%   \bc
+%%   <<main.recruitment.devs, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+%%     oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+%%     make.recruitment.dev.plot(base.model,
+%%                          end.yr = end.yr)
+%%     par(oldpar)
+%%   @
+%%   \ec
+%% }
 
 %----------------------------------------------------------
 
@@ -322,6 +318,7 @@ catchNames <- c("180,000","2015 TAC: 440,000","500,000","FI=100%","default HR")
   \ec
 }
 
+%----------------------------------------------------------
 
 \frame{\frametitle{Relative Spawning Biomass}
   \vspace{-5pt}
@@ -355,6 +352,29 @@ catchNames <- c("180,000","2015 TAC: 440,000","500,000","FI=100%","default HR")
   \ec
 }
 
+%----------------------------------------------------------
+\begin{frame}
+\frametitle{Retrospective: squid}
+\begin{center}
+\vspace{-5pt}
+<<retro.3, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+#par(mar = c(4.5, 4.1, 1.5, 1.1))
+plot.retro.yrs <- retro.yrs
+retro.cohorts <- 1999:2014
+retro.list <- list(base.model)
+for(i in plot.retro.yrs){
+  retro.list[[i + 1]] <- base.model$retros[[i]]
+}
+make.squid.plot(retro.list,
+                subplot = 1,
+                cohorts = retro.cohorts)                          
+par <- oldpar 
+@
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Management background}
@@ -496,22 +516,22 @@ catchNames <- c("180,000","2015 TAC: 440,000","500,000","FI=100%","default HR")
 \subsection{Intro}
 \frame{\frametitle{Decision Tables}
   \bi
-    \item Two decision table formats
-    \bi
-      \item Quantiles from the posterior distribution for spawning biomass and fishing intensity
-      \item Median values when using lower, middle, and upper values of 2014 recruitment estimates
-    \ei
-    \item Catch streams
+    \item Quantiles from the posterior distribution for 
+      spawning biomass and fishing intensity
+    \item Subset of catch streams included in this talk
     \bi
       \item \textcolor{gray}{No fishing (zero catch)}
       \item Constant catch of 180,000 t
       \item \textcolor{gray}{Constant catch of 350,000 t}
       \item Constant catch of 440,000 t (2015 TAC)
       \item \textcolor{gray}{Constant catch of 500,000 t}
-      \item Fishing Intensity = 100\% in each year conditioned on fixed catch in previous year
-      \item Median default Harvest Rule in each year conditioned on fixed catch in previous year
+      \item Fishing Intensity = 100\% in each year conditioned on 
+        fixed catch in previous year
+      \item Median default Harvest Rule in each year conditioned on 
+        fixed catch in previous year
       \item \textcolor{gray}{Median catch in 2017 is the same as fixed catch in 2016}
     \ei
+    \item Full tables reported in Stock Assessment document
   \ei
 }
 
@@ -686,8 +706,7 @@ catchNames <- c("180,000","2015 TAC: 440,000","500,000","FI=100%","default HR")
 %--------------------------------------------------------------
 \frame{\frametitle{Projecting individual cohorts}
   \bc
-  Add Allan's new figure AtAge.png (perhaps after making into EPS)
-  %% \includegraphics[height=3.5in, natwidth=6,  natheight=5]{../Figures/AtAge.png}
+  \includegraphics[height=3in]{../Figures/AtAge.eps}
   \ec
 }
 
@@ -734,7 +753,7 @@ catchNames <- c("180,000","2015 TAC: 440,000","500,000","FI=100%","default HR")
   \bi
     \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
     \item Uncertainty is great, but stock is likely above spawning biomass target
-    \item Large, but uncertain 2014 year class along with slightly above average 2012 year class results in an increasing population
+    \item Large, but uncertain 2014 year class results in an increasing population
     \item Catches up to 2015 TAC (440,000~t) estimate a median spawning biomass to be increasing
     \item Less than 30\% risk that spawning biomass will be below target in 2 years at all catch levels
     \medskip
