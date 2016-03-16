@@ -155,9 +155,22 @@ catchNames <- c("180,000","2015 TAC: 440,000","500,000","FI=100%","default HR")
 %{\tiny Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy}
 }
 
+
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Overview}
 \subsection{}
+
+\begin{frame}
+\frametitle{Overview of JTC membership}
+  \bi
+    \item Ian Taylor was on leave, temporarily replaced by Aaron Berger
+    \item Nathan Taylor stepped down to be replaced by Andy Edwards
+    \item Allan Hicks stepping down to be replaced by Aaron Berger
+    \item JTC represented at this meeting by Nathan Taylor and Ian Taylor
+  \ei
+\end{frame}
+
+%----------------------------------------------------------
 
 \begin{frame}
 \frametitle{Overview of stock assessment}
@@ -202,29 +215,29 @@ catchNames <- c("180,000","2015 TAC: 440,000","500,000","FI=100%","default HR")
 
 %% %----------------------------------------------------------
 
-%% \subsection{Survey index extrap/no-extrap comparison}
-%% \frame{\frametitle{Survey index extrapolated/unextrapolated}
-%%   \bc
-%%   <<survey.compare.extrap.noextrap, fig.height=4, fig.width=7, out.width='0.8\\columnwidth'>>=
-%%   make.survey.biomass.extrap.plot(survey.comparison)
-%%   @
-%%   \ec
-%% }
+\subsection{Survey index extrap/no-extrap comparison}
+\frame{\frametitle{Survey index}
+  \bc
+  <<survey.compare.extrap.noextrap, fig.height=4, fig.width=7, out.width='0.8\\columnwidth'>>=
+  make.survey.biomass.extrap.plot(survey.comparison)
+  @
+  \ec
+}
 
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Fit to the acoustic survey index of abundance}
-  \bc
-  <<mcmc.survey.fit, fig.height=4, fig.width=7, out.width='0.8\\columnwidth'>>=
-  make.mcmc.survey.fit.plot(model.partest,
-  start.yr = survey.start.yr,
-  end.yr = survey.end.yr,
-  probs = c(0.025, 0.975),
-  y.max = 5.5e6)
-  @
-  \ec
-}
+%% \frame{\frametitle{Fit to the acoustic survey index of abundance}
+%%   \bc
+%%   <<mcmc.survey.fit, fig.height=4, fig.width=7, out.width='0.8\\columnwidth'>>=
+%%   make.mcmc.survey.fit.plot(model.partest,
+%%   start.yr = survey.start.yr,
+%%   end.yr = survey.end.yr,
+%%   probs = c(0.025, 0.975),
+%%   y.max = 5.5e6)
+%%   @
+%%   \ec
+%% }
 
 
 %----------------------------------------------------------
@@ -253,7 +266,7 @@ catchNames <- c("180,000","2015 TAC: 440,000","500,000","FI=100%","default HR")
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Fit to fishery age comps}
+\frame{\frametitle{Fishery age comps}
 \begin{columns}
   \begin{column}{0.59\textwidth}
     \vspace{-15pt}
@@ -288,7 +301,7 @@ catchNames <- c("180,000","2015 TAC: 440,000","500,000","FI=100%","default HR")
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Absolute Recruitment}
+\frame{\frametitle{Recruitment (numbers of fish)}
   \vspace{-5pt}
   \bc
   <<recruitment, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
@@ -354,7 +367,7 @@ catchNames <- c("180,000","2015 TAC: 440,000","500,000","FI=100%","default HR")
 
 %----------------------------------------------------------
 \begin{frame}
-\frametitle{Retrospective: squid}
+\frametitle{Retrospective pattern of recruitment deviate estimates (squid)}
 \begin{center}
 \vspace{-5pt}
 <<retro.3, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
@@ -377,7 +390,7 @@ par <- oldpar
 %----------------------------------------------------------
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Management background}
+\section{Management}
 \subsection{}
 \frame{\frametitle{Past management: Total Allowable Catch}
 \begin{columns}
@@ -400,24 +413,24 @@ par <- oldpar
 
 %---------------------------------------------------------------
 
-\frame{\frametitle{Past management: Performance}
-  \begin{columns}
-    \begin{column}{0.28\textwidth}
-      \bi
-        \item Fishing intensity has mostly remained below target
-        \item Biomass has mostly remained above target
-        \item When biomass goes below target, the fishing intensity typically decreases
-      \ei
-    \end{column}
-    \begin{column}{0.68\textwidth}
-    \bc
-    <<main.phase, out.width='0.9\\columnwidth'>>=
-      make.phase.plot(base.model, start.yr = start.yr, end.yr = end.yr, color = "blue")
-    @
-    \ec
-    \end{column}
-  \end{columns}
-}
+%% \frame{\frametitle{Past management: Performance}
+%%   \begin{columns}
+%%     \begin{column}{0.28\textwidth}
+%%       \bi
+%%         \item Fishing intensity has mostly remained below target
+%%         \item Biomass has mostly remained above target
+%%         \item When biomass goes below target, the fishing intensity typically decreases
+%%       \ei
+%%     \end{column}
+%%     \begin{column}{0.68\textwidth}
+%%     \bc
+%%     <<main.phase, out.width='0.9\\columnwidth'>>=
+%%       make.phase.plot(base.model, start.yr = start.yr, end.yr = end.yr, color = "blue")
+%%     @
+%%     \ec
+%%     \end{column}
+%%   \end{columns}
+%% }
 
 %% \subsection{Methods}
 %% \frame{\frametitle{Methods}
@@ -510,6 +523,78 @@ par <- oldpar
 \end{columns}
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Risk Tables}
+\subsection{Risk}
+\frame{\frametitle{Risk table definitions}
+  Probabilities of ``bad'' things happening at different fixed catch levels
+  \bi
+    \item Fixed catch in all years previous, and calculate default catch in forecast year
+    \item P($B_x < B_y$): Probability that biomass in forecasted year is less than specified biomass
+    \item FI > 40\% target: Probability that fishing intensity in fixed catch year is greater than the target fishing intensity
+    \item P($C_{y+1} < C_y$): Probability that the calculated catch in forecast year is less than the fixed catch
+  \ei
+}
+
+%--------------------------------------------------------------
+%\subsection{Fixed 2016 catch}
+\frame{\frametitle{Risk based on fixed 2016 catch}
+    <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
+      make.risk.table(base.model,
+                forecast.yrs,
+                index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                xcaption = NULL,
+                font.size = 11,
+                space.size = 12)
+    @
+}
+
+%--------------------------------------------------------------
+
+\frame{\frametitle{Risk based on fixed 2016 catch (plot)}
+  \bc
+    <<forecast.risk.comparison.plot.year.1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+      make.forecast.risk.comparison.plot(base.model,
+                   forecast.yrs = forecast.yrs,
+                   fore.yr = forecast.yrs[1],
+                   colors = c("black","blue","green","orange","red","tan"),
+                   pch = c(16,17,17,17,15,18),
+                   legend.loc = "topleft",
+                   legend.cex = 0.8)
+
+    @
+  \ec
+}
+
+%--------------------------------------------------------------
+\frame{\frametitle{Risk based on fixed 2016 and 2017 catch}
+    <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
+      make.risk.table(base.model,
+                forecast.yrs,
+                index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                xcaption = NULL,
+                font.size = 11,
+                space.size = 12)
+    @
+}
+
+%--------------------------------------------------------------
+
+\frame{\frametitle{Risk based on fixed 2016 and 2017 catch (plot)}
+  \bc
+    <<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+      make.forecast.risk.comparison.plot(base.model,
+                   forecast.yrs = forecast.yrs,
+                   fore.yr = forecast.yrs[2],
+                   colors = c("black","blue","green","orange","red","tan"),
+                   pch = c(16,17,17,17,15,18),
+                   legend.loc = "topleft",
+                   legend.cex = 0.7)
+
+    @
+  \ec
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Decision Tables}
@@ -595,78 +680,6 @@ par <- oldpar
 }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Risk Tables}
-\subsection{Risk}
-\frame{\frametitle{Risk table definitions}
-  Probabilities of ``bad'' things happening at different fixed catch levels
-  \bi
-    \item Fixed catch in all years previous, and calculate default catch in forecast year
-    \item P($B_x < B_y$): Probability that biomass in forecasted year is less than specified biomass
-    \item FI > 40\% target: Probability that fishing intensity in fixed catch year is greater than the target fishing intensity
-    \item P($C_{y+1} < C_y$): Probability that the calculated catch in forecast year is less than the fixed catch
-  \ei
-}
-
-%--------------------------------------------------------------
-%\subsection{Fixed 2016 catch}
-\frame{\frametitle{Risk based on fixed 2016 catch}
-    <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
-      make.risk.table(base.model,
-                forecast.yrs,
-                index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                xcaption = NULL,
-                font.size = 11,
-                space.size = 12)
-    @
-}
-
-%--------------------------------------------------------------
-
-\frame{\frametitle{Risk based on fixed 2016 catch (plot)}
-  \bc
-    <<forecast.risk.comparison.plot.year.1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
-      make.forecast.risk.comparison.plot(base.model,
-                   forecast.yrs = forecast.yrs,
-                   fore.yr = forecast.yrs[1],
-                   colors = c("black","blue","green","orange","red","tan"),
-                   pch = c(16,17,17,17,15,18),
-                   legend.loc = "topleft",
-                   legend.cex = 0.8)
-
-    @
-  \ec
-}
-
-%--------------------------------------------------------------
-\frame{\frametitle{Risk based on fixed 2016 and 2017 catch}
-    <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
-      make.risk.table(base.model,
-                forecast.yrs,
-                index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                xcaption = NULL,
-                font.size = 11,
-                space.size = 12)
-    @
-}
-
-%--------------------------------------------------------------
-
-\frame{\frametitle{Risk based on fixed 2016 and 2017 catch (plot)}
-  \bc
-    <<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
-      make.forecast.risk.comparison.plot(base.model,
-                   forecast.yrs = forecast.yrs,
-                   fore.yr = forecast.yrs[2],
-                   colors = c("black","blue","green","orange","red","tan"),
-                   pch = c(16,17,17,17,15,18),
-                   legend.loc = "topleft",
-                   legend.cex = 0.7)
-
-    @
-  \ec
-}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Recruitment}
@@ -674,34 +687,34 @@ par <- oldpar
 
 %--------------------------------------------------------------
 
-\frame{\frametitle{Correlation between default catch and recent recruitment}
-  \begin{columns}
-    \begin{column}{0.48\textwidth}
-      \bi
-        \item 2016 default catch (bottom row) 
-        \bi 
-          \item highly correlated with 2008 and 2010 recruitment
-          \item Not highly correlated with 2014 recruitment
-        \ei
-        \item 2017 catch (not shown)
-        \bi 
-          \item highly correlated more with 2014 recruitment 
-              (\Sexpr{round(cor(base.model$mcmc$ForeCatch_2017,base.model$mcmc$Recr_2014),2)})
-          \item Correlation with 2010 and 2008 recruitments drops to around 0.5 
-        \ei
-      \ei
-    \end{column}
-    \begin{column}{0.49\textwidth}
-    <<main.mcmc.pairs, fig.height=8, fig.width=8, out.width='0.92\\columnwidth'>>=
-      make.mcmc.diag.pairs.plot(base.model,
-                          inc.key.params = TRUE,
-                          recr = c(2008, 2010, 2014),
-                          bratio = end.yr,
-                          forecatch = end.yr)
-    @
-    \end{column}
-  \end{columns}
-}
+%% \frame{\frametitle{Correlation between default catch and recent recruitment}
+%%   \begin{columns}
+%%     \begin{column}{0.48\textwidth}
+%%       \bi
+%%         \item 2016 default catch (bottom row) 
+%%         \bi 
+%%           \item highly correlated with 2008 and 2010 recruitment
+%%           \item Not highly correlated with 2014 recruitment
+%%         \ei
+%%         \item 2017 catch (not shown)
+%%         \bi 
+%%           \item highly correlated more with 2014 recruitment 
+%%               (\Sexpr{round(cor(base.model$mcmc$ForeCatch_2017,base.model$mcmc$Recr_2014),2)})
+%%           \item Correlation with 2010 and 2008 recruitments drops to around 0.5 
+%%         \ei
+%%       \ei
+%%     \end{column}
+%%     \begin{column}{0.49\textwidth}
+%%     <<main.mcmc.pairs, fig.height=8, fig.width=8, out.width='0.92\\columnwidth'>>=
+%%       make.mcmc.diag.pairs.plot(base.model,
+%%                           inc.key.params = TRUE,
+%%                           recr = c(2008, 2010, 2014),
+%%                           bratio = end.yr,
+%%                           forecatch = end.yr)
+%%     @
+%%     \end{column}
+%%   \end{columns}
+%% }
 
 %--------------------------------------------------------------
 \frame{\frametitle{Projecting individual cohorts}
@@ -714,29 +727,29 @@ par <- oldpar
 
 \frame{\frametitle{Estimated cumulative catch for large cohorts}
   \begin{columns}
-    \begin{column}{0.38\textwidth}
+    \begin{column}{0.48\textwidth}
       \bi
       % taking shortcut and copying values calculated below
       % note: 1.24 million = max(cohortCumSum1999/1e6)
       %       0.53 million = max(cohortCumSum2010/1e6)
-    \item Total from 1999 cohort: \\ 1.24 million t
-    \item Total from 1999 cohort through age 5: 0.44 million t
-    \item Total from 2010 cohort through age 5: 0.53 million t
+    \item Total from 1999 cohort ages 1--16: \\ 1,241,000 t
+    \item Total from 1999 cohort ages 1--5:\\ 437,000 t
+    \item Total from 2010 cohort ages 1--5:\\ 529,000 t
       
       \ei
     \end{column}
-    \begin{column}{0.59\textwidth}
+    \begin{column}{0.48\textwidth}
     <<cum.catch, fig.height=5, fig.width=5, out.width="0.85\\columnwidth">>=
      par(mar=c(5,4,1,1))
      cohortCumSum1999 <- cumsum(cohortCatch(1999,base.model$catage))
      cohortCumSum2010 <- cumsum(cohortCatch(2010,base.model$catage))
      ages1999 <- as.numeric(names(cohortCumSum1999)) - 1999
      ages2010 <- as.numeric(names(cohortCumSum2010)) - 2010     
-     plot(ages1999, cohortCumSum1999/1e6, type='l', lwd=3, col=1, las=1, 
-     xlab='Age', ylab='Cumulative catch (millions of t)')
-     lines(ages2010, cohortCumSum2010/1e6, lwd=3, col=2)
-     text('2010 cohort', x=5, y=max(cohortCumSum2010/1e6), col=2, pos=2)
-     text('1999 cohort', x=14, y=max(cohortCumSum1999/1e6), col=1, pos=1)
+     plot(ages1999, cohortCumSum1999/1e3, type='l', lwd=3, col=1, las=1, 
+     xlab='Age', ylab='Cumulative catch (thousands of t)')
+     lines(ages2010, cohortCumSum2010/1e3, lwd=3, col=2)
+     text('2010 cohort', x=5, y=max(cohortCumSum2010/1e3), col=2, pos=2)
+     text('1999 cohort', x=14, y=max(cohortCumSum1999/1e3), col=1, pos=1)
    @
 
     \end{column}
