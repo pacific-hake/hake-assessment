@@ -500,8 +500,8 @@ par <- oldpar
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Constant catch streams less than 440,000~t result in increases in spawning biomass
-      \item Catches based on harvest rule calculations result in decreases in spawning biomass
+      \item Constant catch streams up through 500,000~t result in increases in spawning biomass
+      \item Catches based on harvest rule calculations result in decreases in spawning biomass in 2nd year
       \item Uncertainty is large and increases the farther it is forecasted
     \ei
   \end{column}
@@ -509,15 +509,17 @@ par <- oldpar
     <<main.forecast.depletion.comparison.plot, out.width='.95\\columnwidth'>>=
     ## Look at catch.levels and catch.levels.names to decide which to include here
     ## models.inds are the indices of those forecast models which will be plotted against each other
-    models.inds <- c(1, 2, 3, 4)
+    models.inds <- c(1, 3, 4, 5, 7)
     models.names <- catch.levels.names[models.inds]
     make.forecast.depletion.comparison.plot(base.model,
-                                            ind,
-                                            catchNames,
-                                            start.yr = 2009,
+                                            models.inds,
+                                            models.names,
+                                            start.yr = 2012,
                                             model.end.yr = end.yr,
                                             end.yr = forecast.yrs[length(forecast.yrs)],
-                                            legend.loc = "topleft")
+                                            legend.loc = "topleft", 
+                                            type="l",
+                                            col=rich.colors.short(6)[c(5,2,6,3,1)])
     @
   \end{column}
 \end{columns}
@@ -527,14 +529,38 @@ par <- oldpar
 \section{Risk Tables}
 \subsection{Risk}
 \frame{\frametitle{Risk table definitions}
+  Catch streams  
+  \small{
+  \bi
+  \setlength\itemsep{-.2em}
+      \item a. No fishing (zero catch)
+      \item b. Constant catch of 180,000 t
+      \item c. Constant catch of 350,000 t
+      \item d. Constant catch of 440,000 t (2015 TAC)
+      \item e. Constant catch of 500,000 t
+      \item f. Fishing Intensity = 100\% in each year conditioned on 
+        fixed catch in previous year
+      \item g. Median default Harvest Rule in each year conditioned on 
+        fixed catch in previous year
+      \item h. Median catch in 2017 is the same as fixed catch in 2016
+    \ei
+    }
   Probabilities of ``bad'' things happening at different fixed catch levels
+  \small{
   \bi
     \item Fixed catch in all years previous, and calculate default catch in forecast year
     \item P($B_x < B_y$): Probability that biomass in forecasted year is less than specified biomass
     \item FI > 40\% target: Probability that fishing intensity in fixed catch year is greater than the target fishing intensity
     \item P($C_{y+1} < C_y$): Probability that the calculated catch in forecast year is less than the fixed catch
   \ei
+  }
 }
+
+% calculation of 51% probability in risk table vs. 
+% 100% Fishing Intensity in decision table: 
+% >  mean(models[[3]]$forecasts$outputs[[6]]$SPRratio_2016>1)
+% >  median(models[[3]]$forecasts$outputs[[6]]$SPRratio_2016)
+%
 
 %--------------------------------------------------------------
 %\subsection{Fixed 2016 catch}
@@ -598,36 +624,24 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Decision Tables}
-\subsection{Intro}
-\frame{\frametitle{Decision Tables}
-  \bi
-    \item Quantiles from the posterior distribution for 
-      spawning biomass and fishing intensity
-    \item Subset of catch streams included in this talk
-    \bi
-      \item \textcolor{gray}{No fishing (zero catch)}
-      \item Constant catch of 180,000 t
-      \item \textcolor{gray}{Constant catch of 350,000 t}
-      \item Constant catch of 440,000 t (2015 TAC)
-      \item \textcolor{gray}{Constant catch of 500,000 t}
-      \item Fishing Intensity = 100\% in each year conditioned on 
-        fixed catch in previous year
-      \item Median default Harvest Rule in each year conditioned on 
-        fixed catch in previous year
-      \item \textcolor{gray}{Median catch in 2017 is the same as fixed catch in 2016}
-    \ei
-    \item Full tables reported in Stock Assessment document
-  \ei
-}
+%% \subsection{Intro}
+%% \frame{\frametitle{Decision Tables}
+%%   \bi
+%%     \item Quantiles from the posterior distribution for 
+%%       spawning biomass and fishing intensity
+%%     \item Subset of catch streams included in decision tables
+%%     \item Full tables reported in Stock Assessment document
+%%   \ei
+%% }
 
 
 \subsection{Quantiles}
-\frame{\frametitle{Spawning Biomass}
+\frame{\frametitle{Spawning Biomass Decision Table (excerpt)}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
       \item 2016 row is the same because it is beginning of the year
-      \item Median (50\%) increases for 440,000 t and less
+      \item Median (50\%) increases for 500,000 t and less
       \bi
         \item stabilizing from 2017 to 2018 with 440,000 t
       \ei
@@ -653,7 +667,7 @@ par <- oldpar
 }
 
 
-\frame{\frametitle{Fishing intensity}
+\frame{\frametitle{Fishing intensity Decision Table (excerpt)}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
@@ -765,9 +779,9 @@ par <- oldpar
 \frame{\frametitle{Summary of forecasting}
   \bi
     \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
-    \item Uncertainty is great, but stock is likely above spawning biomass target
+    \item Stock is likely above spawning biomass target
     \item Large, but uncertain 2014 year class results in an increasing population
-    \item Catches up to 2015 TAC (440,000~t) estimate a median spawning biomass to be increasing
+    \item Catches up through 500,000~t estimate a median spawning biomass to be increasing
     \item Less than 30\% risk that spawning biomass will be below target in 2 years at all catch levels
     \medskip
     \item The 2014 year class does not affect the 2016 catch decision much, but will be extremely influential next year

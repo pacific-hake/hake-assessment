@@ -312,20 +312,20 @@ if(verbose){
 ## catch.levels is a list of N catch levels to run forecasts for
 ## Each element of the list is a vector of length the same as the
 ## number of elements in forcast.yrs
-catch.levels <- list(rep(0.01, 3),
-                     rep(180000,3),
-                     rep(350000,3),
-                     rep(440000,3),
-                     rep(500000,3),
-                     c(785000,900000,825000),
-                     c(830124,955423,837352),
-                     c(928100,928100,820224))
+catch.levels <- list(rep(0.01, 3),  # 1
+                     rep(180000,3), # 2
+                     rep(350000,3), # 3
+                     rep(440000,3), # 4
+                     rep(500000,3), # 5
+                     c(785000,900000,825000), # 6
+                     c(830124,955423,837352), # 7
+                     c(928100,928100,820224)) # 8
 
 ## Index for the forecasts list, which one above is the TAC case?
 ## This is used in the one-page summary and the plot comparing several catch cases
 catch.tac.ind <- 4
 ## The catch as calculated using the default harvest policy.
-catch.default.policy.ind <- 6
+catch.default.policy.ind <- 7 # NEEDS MANUAL UPDATE
 catch.default.policy <- catch.levels[[catch.default.policy.ind]]
 
 ## catch.levels.names is a list of N names for the catch levels given in catch.levels
