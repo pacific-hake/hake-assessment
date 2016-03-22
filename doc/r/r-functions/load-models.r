@@ -29,18 +29,18 @@ load.model <- function(models.dir,                ## Directory name for all mode
     stop("load.model: Error - the directory ", model.dir, " does not exist. Fix the problem and try again.\n")
   }
   ## The RData file will have the same name as the directory it is in
-  rdata.file <- file.path(model.dir, paste0(model.dir, ".RData"))
+  rdata.file <- file.path(model.dir, paste0(model.name, ".RData"))
 
   if(file.exists(rdata.file)){
     if(overwrite){
       ## Delete the file
+      cat0("load.model: RData file found in ", model.dir, ". Overwriting...\n")
       unlink(rdata.file)
     }else{
-      ## Load the RData file into this environment and return the model object
-      local({
-        load(rdata.file)
-      })
+      ## Load the RData file into this scope and return the model object
+      cat0("load.model: RData file found in ", model.dir, ". Loading...\n")
       ## Assumes the model was saved with the object name 'model'
+      load(rdata.file)
       return(invisible(model))
     }
   }
@@ -179,7 +179,8 @@ load.model <- function(models.dir,                ## Directory name for all mode
     run.partest.model(model, output.file = "model-partest.RData", verbose = verbose)
     cat("load.model: Partest Completed\n\n")
   }
-
+  ## Save the model as an RData file
+  save(model, file = rdata.file)
   return(model)
 }
 
@@ -446,7 +447,7 @@ fetch.metrics <- function(model.dir,
   outputs.list <- vector(mode = "list", length = length(metric.yrs))
 
   for(i in 1:length(metric.yrs)) {
-    metrics.dir <- file.path(model.dir, "mcmc", paste0("metrics_", i))
+    metrics.dir <- file.path(model.dir, "mcmc", paste0("metrics-", i))
     dir.listing <- dir(metrics.dir)
     if(!identical(catch.levels.names, dir.listing)){
       stop("fetch.metrics: There is a discrepancy between what you have set for catch.levels.names and what appears in the metrics directory '",

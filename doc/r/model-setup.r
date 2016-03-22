@@ -109,8 +109,10 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Bridge models group 1
 ## -----------------------------------------------------------------------------
-bridge.model.dir.names.1 <- c(last.yr.base.model.dir.name, "03_UpdatePre2015WtAge")
-bridge.model.names.1 <- c(last.yr.base.model.name, "Update data")
+bridge.model.dir.names.1 <- c(last.yr.base.model.dir.name,
+                              "03_UpdatePre2015WtAge")
+bridge.model.names.1 <- c(last.yr.base.model.name,
+                          "Update data")
 verify.models(model.dir, bridge.model.dir.names.1, bridge.model.names.1)
 if(verbose){
   print.model.message(bridge.model.dir.names.1, bridge.model.names.1, 1, model.type = "Bridge")

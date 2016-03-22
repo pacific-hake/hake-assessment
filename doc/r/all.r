@@ -76,20 +76,20 @@ source("retrospective-setup.r")               ## Code to setup retrospective mod
 ## model outputs and building the model objects. Each model defined in the models-setup.r
 ## file will have its own RData file holding the model object as defined in the Readme.md file.
 
-model <- load.model(model.dir,
-                    model.name = base.model.dir.name,
-                    overwrite = FALSE,
-                    yr = 2015,
-                    run.forecasting = FALSE,
-                    forecast.yrs = forecast.yrs,
-                    forecast.probs = forecast.probs,
-                    catch.levels = catch.levels,
-                    catch.levels.dir.names = catch.levels.dir.names,
-                    run.retros = FALSE,
-                    retro.yrs = 1:15,
-                    run.partest = FALSE,
-                    key.posteriors = key.posteriors)
-                    
+base.model <- load.model(model.dir,
+                         model.name = base.model.dir.name,
+                         overwrite = FALSE,
+                         yr = 2015,
+                         run.forecasting = FALSE,
+                         forecast.yrs = forecast.yrs,
+                         forecast.probs = forecast.probs,
+                         catch.levels = catch.levels,
+                         catch.levels.dir.names = catch.levels.dir.names,
+                         run.retros = FALSE,
+                         retro.yrs = 1:15,
+                         run.partest = FALSE,
+                         key.posteriors = key.posteriors)
+
 
 stop()
 ################################################################################
