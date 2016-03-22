@@ -90,6 +90,7 @@ base.model <- load.model(model.dir,
                          run.partest = FALSE,
                          key.posteriors = key.posteriors)
 
+cat0("Base model is ", base.model$path)
 
 stop()
 ################################################################################
@@ -98,7 +99,6 @@ stop()
 
 ## Simpler variables for the models, so we can get rid of models list
 base.model <- models[[base.model.ind]]
-cat("Base model is ", base.model$path, "\n\n")
 bridge.models.1 <- models[bridge.model.inds.1]
 bridge.models.2 <- models[bridge.model.inds.2]
 bridge.models.3 <- models[bridge.model.inds.3]

@@ -37,8 +37,14 @@ load.model <- function(models.dir,                ## Directory name for all mode
       cat0("load.model: RData file found in ", model.dir, ". Overwriting...\n")
       unlink(rdata.file)
     }else{
-      ## Load the RData file into this scope and return the model object
       cat0("load.model: RData file found in ", model.dir, ". Loading...\n")
+      if(run.forecasting){
+        cat0("load.model: Warning - You specified to run forecasts but overwrite = FALSE so forecasts were not run.\n")
+      }
+      if(run.retros){
+        cat0("load.model: Warning - You specified to run retrospectives but overwrite = FALSE so retrospectives were not run.\n")
+      }
+      ## Load the RData file into this scope and return the model object
       ## Assumes the model was saved with the object name 'model'
       load(rdata.file)
       return(invisible(model))
@@ -161,17 +167,20 @@ load.model <- function(models.dir,                ## Directory name for all mode
       stop("load.model: Error - The retrospectives directory has missing retrospective runs for model ", model$path, ".\n\n")
     }
   }
+
   if(run.retros){
-    cat("load.model: Running retrospectives\n\n")
+    cat0("load.model: Running retrospectives\n")
     run.retrospectives(model, yrs = retro.yrs, verbose = verbose)
-    model$retros <- list()
-    retros.dir <- file.path(model$path, "retrospectives")
-    for(retro in 1:length(retro.yrs)){
-      retro.dir <- file.path(retros.dir, paste0("retro-", retro.yrs[retro]))
-      model$retros[[retro]] <- SS_output(dir = retro.dir, verbose = verbose)
-    }
-    cat("load.model: Retrospectives Completed\n\n")
   }
+
+  cat0("load.model: Loading retrospectives\n")
+  model$retros <- list()
+  retros.dir <- file.path(model$path, "retrospectives")
+  for(retro in 1:length(retro.yrs)){
+    retro.dir <- file.path(retros.dir, paste0("retro-", retro.yrs[retro]))
+    model$retros[[retro]] <- SS_output(dir = retro.dir, verbose = verbose)
+  }
+  cat("load.model: Retrospectives Completed\n\n")
 
   if(run.partest){
     cat("load.model:: Running partest\n\n")
@@ -410,7 +419,7 @@ create.metrics <- function(mcmc,                 ## The output of the SS_getMCMC
   mcmc.dir <- file.path(model.dir,"mcmc")
 
   for(i in 1:length(metric.yrs)) {
-    metrics.dir <- file.path(mcmc.dir,paste0("metrics_",i))
+    metrics.dir <- file.path(mcmc.dir,paste0("metrics-",i))
     ## Delete any old forecasts by removing whole forecasts directory recursively, then re-create
     unlink(metrics.dir, recursive=TRUE)
     dir.create(metrics.dir)
