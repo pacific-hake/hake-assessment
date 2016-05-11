@@ -370,6 +370,65 @@ number.to.word <- function(x, th = FALSE, cap.first = FALSE){
   return(j)
 }
 
+## *****************************************************************************
+## The following three functions give the ability to assign more than one variable at once.
+## Example Call;  Note the use of set.elems()  AND  `%=%`
+## Right-hand side can be a list or vector
+## set.elems(a, b, c)  %=%  list("hello", 123, list("apples, oranges"))
+## set.elems(d, e, f) %=%  101:103
+## # Results:
+## > a
+## [1] "hello"
+## > b
+## [1] 123
+## > c
+## [[1]]
+## [1] "apples, oranges"
+## > d
+## [1] 101
+## > e
+## [1] 102
+## > f
+## [1] 103
+
+## Generic form
+"%=%" <- function(l, r, ...) UseMethod("%=%")
+
+## Binary Operator
+"%=%.lhs" <- function(l, r, ...) {
+  env <- as.environment(-1)
+  if (length(r) > length(l))
+    warning("RHS has more args than LHS. Only first", length(l), "used.")
+  if (length(l) > length(r))  {
+    warning("LHS has more args than RHS. RHS will be repeated.")
+    r <- extend.to.match(r, l)
+  }
+  for(II in 1:length(l)) {
+    do.call('<-', list(l[[II]], r[[II]]), envir = env)
+  }
+}
+
+## Used if LHS is larger than RHS
+extend.to.match <- function(src, destin) {
+  s <- length(src)
+  d <- length(destin)
+  # Assume that destin is a length when it is a single number and src is not
+  if(d==1 && s>1 && !is.null(as.numeric(destin)))
+    d <- destin
+  dif <- d - s
+  if (dif > 0) {
+    src <- rep(src, ceiling(d/s))[1:d]
+  }
+  return (src)
+}
+
+set.elems <- function(...) {
+  list.tmp <-  as.list(substitute(list(...)))[-1L]
+  class(list.tmp) <-  "lhs"
+  return(list.tmp)
+}
+## *****************************************************************************
+
 cbind.fill <- function(...){
   ## equivalent of cbind(df, xx) where df is an empty data frame.
   nm <- list(...)
@@ -1437,3 +1496,4 @@ function (replist, plot = TRUE, print = FALSE, plotdir = "default",
     }
     return(invisible(returnlist))
 }
+
