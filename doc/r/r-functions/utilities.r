@@ -1,3 +1,32 @@
+verify.catch.levels <- function(lst, inds){
+  ## Ensure the catch levels list is of the correct format
+  ##  also make sure all inds are valid indices of this list
+  curr.func.name <- get.curr.func.name()
+  ## Check that it is a list, and that each item is also a list of length 3
+  if(is.list(lst))
+    j <- lapply(lst, function(x) ifelse(is.list(x) && length(x) == 3, TRUE, FALSE))
+  if(!all(sapply(j, all)))
+    stop(curr.func.name, "Error - catch.levels is not of the correct structure. Fix it in forecast-catch-levels.r\n")
+  ## Check there are no blank names or directory names
+  for(i in 1:length(lst)){
+    catch.level <- lst[[i]]
+    for(j in 1:length(catch.level)){
+      vals <- catch.level[[1]]
+      name <- catch.level[[2]]
+      dir.name <- catch.level[[3]]
+      if(name == ""){
+        stop(curr.func.name, "Error - catch.levels pretty name for item ", i," is blank. Fix it in forecast-catch-levels.r\n")
+      }
+      if(dir.name == ""){
+        stop(curr.func.name, "Error - catch.levels directory name for item ", i," is blank. Fix it in forecast-catch-levels.r\n")
+      }
+    }
+  }
+  ## Check that the inds are valid for this list
+  if(!all((inds > 0 & inds <= length(lst))))
+     stop(curr.func.name, "Error - the indices you have set up for the catch.levels are outside the length of the list. Fix it in forecast-catch-levels.r\n")
+}
+
 print.model.message <- function(model.dir.names, model.names, group, model.type){
   ## Print out a message stating the model directory names and pretty names,
   ##  for the group number given. If bridge is TRUE, it is a bridge model group,
@@ -9,6 +38,54 @@ print.model.message <- function(model.dir.names, model.names, group, model.type)
   cat0(model.type, " model group ", group, " pretty names: ")
   cat(paste0("  ", model.names), sep = "\n")
   cat0("***")
+}
+
+curr.fn.finder <- function(skipframes = 0,
+                           skipnames = "(FUN)|(.+apply)|(replicate)",
+                           ret.if.none = "Not in function",
+                           ret.stack = FALSE,
+                           extra.perf.per.level = "\t"){
+  ## Get the current function name from within the function itself.
+  ## Used to prepend the function name to all messages so that the
+  ## user knows where the message came from.
+  prefix <- sapply(3 + skipframes + 1:sys.nframe(), function(i){
+    currv <- sys.call(sys.parent(n = i))[[1]]
+    return(currv)
+  })
+  prefix[grep(skipnames, prefix)] <- NULL
+  prefix <- gsub("function \\(.*", "do.call", prefix)
+  if(length(prefix)==0){
+    return(ret.if.none)
+  }else if(ret.stack){
+    return(paste(rev(prefix), collapse = "|"))
+  }else{
+    retval <- as.character(unlist(prefix[1]))
+    if(length(prefix) > 1){
+      retval <- paste0(paste(rep(extra.perf.per.level, length(prefix) - 1), collapse = ""), retval)
+    }
+    return(retval)
+  }
+}
+
+catw <- function(..., file = "", sep = " ", fill = FALSE, labels = NULL,
+                 append = FALSE, prefix=0){
+  ## Writes out some information on the calling function to screen
+  if(is.numeric(prefix)){
+    prefix <- curr.fn.finder(skipframes = prefix + 1) ## note: the +1 is there to avoid returning catw itself
+    prefix <- paste0(prefix, ": ")
+  }
+  cat(prefix, ..., format(Sys.time(), "(%Y-%m-%d %H:%M:%S)"), "\n",
+      file = file, sep = sep, fill = fill, labels = labels, append = append)
+}
+
+get.curr.func.name <- function(){
+  ## Returns the calling function's name followed by ": "
+  func.name <- curr.fn.finder(skipframes = 1) # skipframes=1 is there to avoid returning getCurrFunc itself
+  ## Strip extraneous whitespace
+  func.name <- gsub("\t+", "", func.name)
+  func.name <- gsub("\ +", "", func.name)
+  func.name <- paste0(func.name,": ")
+  return(func.name)
 }
 
 cat0 <- function(...){
@@ -281,23 +358,23 @@ number.to.word <- function(x, th = FALSE, cap.first = FALSE){
   ## if th is TRUE, the th version will be returned, e.g. 4 = fourth
   ## if cap.first is TRUE, the first letter will be capitalized
   helper <- function(x){
-      digits <- rev(strsplit(as.character(x), "")[[1]])
-      nDigits <- length(digits)
-      if (nDigits == 1) as.vector(ones[digits])
-      else if (nDigits == 2)
-        if (x <= 19) as.vector(teens[digits[1]])
-        else trim(paste(tens[digits[2]],
-                        Recall(as.numeric(digits[1]))))
-      else if (nDigits == 3) trim(paste(ones[digits[3]], "hundred and",
-                                        Recall(makeNumber(digits[2:1]))))
-      else {
-        nSuffix <- ((nDigits + 2) %/% 3) - 1
-        if (nSuffix > length(suffixes)) stop(paste(x, "is too large!"))
-        trim(paste(Recall(makeNumber(digits[
-          nDigits:(3*nSuffix + 1)])),
-          suffixes[nSuffix],"," ,
-          Recall(makeNumber(digits[(3*nSuffix):1]))))
-      }
+    digits <- rev(strsplit(as.character(x), "")[[1]])
+    nDigits <- length(digits)
+    if(nDigits == 1) as.vector(ones[digits])
+    else if(nDigits == 2)
+      if(x <= 19) as.vector(teens[digits[1]])
+      else trim(paste(tens[digits[2]],
+                      Recall(as.numeric(digits[1]))))
+    else if (nDigits == 3) trim(paste(ones[digits[3]], "hundred and",
+                                      Recall(makeNumber(digits[2:1]))))
+    else {
+      nSuffix <- ((nDigits + 2) %/% 3) - 1
+      if (nSuffix > length(suffixes)) stop(paste(x, "is too large!"))
+      trim(paste(Recall(makeNumber(digits[
+        nDigits:(3*nSuffix + 1)])),
+        suffixes[nSuffix],"," ,
+        Recall(makeNumber(digits[(3*nSuffix):1]))))
+    }
   }
   trim <- function(text){
     ## Tidy leading/trailing whitespace, space before comma
@@ -432,10 +509,10 @@ set.elems <- function(...) {
 cbind.fill <- function(...){
   ## equivalent of cbind(df, xx) where df is an empty data frame.
   nm <- list(...)
-    nm <- lapply(nm, as.matrix)
-    n <- max(sapply(nm, nrow))
-    do.call(cbind, lapply(nm, function (x)
-        rbind(x, matrix(, n-nrow(x), ncol(x)))))
+  nm <- lapply(nm, as.matrix)
+  n <- max(sapply(nm, nrow))
+  do.call(cbind, lapply(nm, function (x)
+    rbind(x, matrix(, n-nrow(x), ncol(x)))))
 }
 
 strip.columns <- function(vec, names){

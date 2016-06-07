@@ -71,37 +71,39 @@ source("model-setup.r")                       ## Code to setup the model names, 
 source("forecast-catch-levels.r")             ## Code to setup forecast model runs.
 source("retrospective-setup.r")               ## Code to setup retrospective model runs.
 
-## At this point the model setup has been verified, and an attempt will be made to load the
-## corresponding RData files. If they do not exist, the code will revert to loading from the
-## model outputs and building the model objects. Each model defined in the models-setup.r
+## At this point the model setup has been verified, and an attempt will be made to create the
+## corresponding RData files. Each model defined in the models-setup.r
 ## file will have its own RData file holding the model object as defined in the Readme.md file.
 
-base.model <- load.model(model.dir,
-                         model.name = base.model.dir.name,
-                         overwrite = FALSE,
-                         yr = 2015,
-                         run.forecasting = FALSE,
-                         forecast.yrs = forecast.yrs,
-                         forecast.probs = forecast.probs,
-                         catch.levels = catch.levels,
-                         catch.levels.dir.names = catch.levels.dir.names,
-                         run.retros = FALSE,
-                         retro.yrs = 1:15,
-                         run.partest = FALSE,
-                         key.posteriors = key.posteriors)
+## Base model:
+create.rdata.file(model.name = base.model.dir.name,
+                  ovwrt.rdata = FALSE,
+                  run.metrics = FALSE,
+                  forecast.yrs = forecast.yrs,
+                  forecast.probs = forecast.probs,
+                  catch.levels = catch.levels,
+                  run.retros = FALSE,
+                  retro.yrs = retro.yrs,
+                  run.partest = FALSE,
+                  key.posteriors = key.posteriors,
+                  verbose = verbose)
 
-cat0("Base model is ", base.model$path)
+## Bridge models
+## lapply(bridge.model.dir.names.1, function(nm){create.rdata.file(model.name = nm, verbose = verbose)})
+## lapply(bridge.model.dir.names.2, function(nm){create.rdata.file(model.name = nm,verbose = verbose)})
+## lapply(bridge.model.dir.names.3, function(nm){create.rdata.file(model.name = nm,verbose = verbose)})
 
-stop()
-################################################################################
-## Variables to be used in the knitr code chunks
-################################################################################
+## Sensitivity models
+## lapply(sens.model.dir.names.1, function(nm){create.rdata.file(model.name = nm)})
+## lapply(sens.model.dir.names.2, function(nm){create.rdata.file(model.name = nm)})
+## lapply(sens.model.dir.names.3, function(nm){create.rdata.file(model.name = nm)})
 
+stop("Stopping....\n\n")
 ## Simpler variables for the models, so we can get rid of models list
-base.model <- models[[base.model.ind]]
-bridge.models.1 <- models[bridge.model.inds.1]
-bridge.models.2 <- models[bridge.model.inds.2]
-bridge.models.3 <- models[bridge.model.inds.3]
-sens.models.1 <- models[sens.model.inds.1]
-sens.models.2 <- models[sens.model.inds.2]
-sens.models.3 <- models[sens.model.inds.3]
+## base.model <- models[[base.model.ind]]
+## bridge.models.1 <- models[bridge.model.inds.1]
+## bridge.models.2 <- models[bridge.model.inds.2]
+## bridge.models.3 <- models[bridge.model.inds.3]
+## sens.models.1 <- models[sens.model.inds.1]
+## sens.models.2 <- models[sens.model.inds.2]
+## sens.models.3 <- models[sens.model.inds.3]
