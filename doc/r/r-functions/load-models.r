@@ -70,18 +70,16 @@ run.forecasts <- function(model,
   create.metrics(model$mcmc,
                  model$mcmcpath,
                  forecast.yrs[-length(forecast.yrs)],
-                 catch.levels,
-                 catch.levels.dir.names)
+                 catch.levels)
 
   model$metrics <- fetch.metrics(model$mcmcpath,
                                  forecast.yrs[-length(forecast.yrs)],
-                                 catch.levels.dir.names)
+                                 catch.levels)
 
   ## calc.risk assumes the forecasting step was done correctly
-  risks <- calc.risk(model$metrics,
-                     forecast.yrs,
-                     catch.levels)
-  model$risks <- risks
+  model$risks <- calc.risk(model$metrics,
+                           forecast.yrs)
+
   cat0(curr.func.name, "Finished running forecasts for model located in ", model$path, "...\n")
 }
 
@@ -284,7 +282,10 @@ create.metrics <- function(mcmc,                 ## The output of the SS_getMCMC
   ## If the directory exists, it will be deleted and all its contents will be
   ##  replaced recursively.
   curr.func.name <- get.curr.func.name()
-
+  ## Extract the catch level names from the list into a vector
+  catch.levels.names <- sapply(catch.levels, "[[", 3)
+  ## Make the catch level values a matrix where the columns represent the cases in catch.names
+  catch.levels <- sapply(catch.levels, "[[", 1)
   metrics.path <- file.path(mcmc.path, "metrics")
   if(dir.exists(metrics.path)){
     unlink(metrics.path, recursive = TRUE)
@@ -294,7 +295,7 @@ create.metrics <- function(mcmc,                 ## The output of the SS_getMCMC
   for(i in 1:length(metric.yrs)){
     metric.path <- file.path(metrics.path, paste0("metrics-",i))
     dir.create(metric.path)
-    for(level.ind in 1:length(catch.levels)){
+    for(level.ind in 1:ncol(catch.levels)){
       ## Create a new sub-directory for each catch projection
       name <- catch.levels.names[level.ind]
       new.forecast.dir <- file.path(metric.path, name)
@@ -309,7 +310,8 @@ create.metrics <- function(mcmc,                 ## The output of the SS_getMCMC
       forecast.file <- file.path(new.forecast.dir, "forecast.ss")
       fore <- SS_readforecast(forecast.file, Nfleets = 1, Nareas = 1, verbose = FALSE)
       fore$Ncatch <- length(forecast.yrs[1:i])
-      fore$ForeCatch <- data.frame(Year = forecast.yrs[1:i], Seas = 1, Fleet = 1, Catch_or_F = catch.levels[[level.ind]][1:i])
+      ## fore$ForeCatch <- data.frame(Year = forecast.yrs[1:i], Seas = 1, Fleet = 1, Catch_or_F = catch.levels[[level.ind]][1:i])
+      fore$ForeCatch <- data.frame(Year = forecast.yrs[1:i], Seas = 1, Fleet = 1, Catch_or_F = catch.levels[,level.ind][1:i])
       SS_writeforecast(fore, dir = new.forecast.dir, overwrite = TRUE, verbose = FALSE)
 
       ## Evaluate the model using mceval option of ADMB, and retrieve the output
@@ -321,26 +323,30 @@ create.metrics <- function(mcmc,                 ## The output of the SS_getMCMC
 
 fetch.metrics <- function(mcmc.path,
                           metric.yrs,
-                          catch.levels.names){
+                          catch.levels){
   ## Fetch the output from previously-run metrics
   ## If the metrics directory does not exist or there is a problem
   ##  loading the metrics, return NULL.
 
   ## outputs.list holds the outputs from the mcmc models as read in by SSgetMCMC
   curr.func.name <- get.curr.func.name()
+
+  ## Extract the catch level names from the list into a vector
+  catch.levels.names <- sapply(catch.levels, "[[", 2)
+
   outputs.list <- vector(mode = "list", length = length(metric.yrs))
   metrics.path <- file.path(mcmc.path, "metrics")
   if(!dir.exists(metrics.path)){
     cat0(curr.func.name, "Warning - metrics directory does not exist for mcmc model: ", mcmc.path, "\n")
     return(NULL)
   }
-  ##tryCatch({
+  tryCatch({
     for(i in 1:length(metric.yrs)){
       metrics.dir <- file.path(mcmc.path, paste0("metrics-", i))
       dir.listing <- dir(metrics.dir)
       if(!identical(catch.levels.names, dir.listing)){
-        stop(curr.func.name, "There is a discrepancy between what you have set for catch.levels.names and what appears in the metrics directory '",
-             metrics.dir,"'. Check the names and try again...\n\n")
+        stop(curr.func.name, "There is a discrepancy between what you have set for the catch.levels names and what appears in the metrics directory '",
+             metrics.dir,"'. Check the names in both and try again...\n\n")
       }
       for(level.ind in 1:length(catch.levels.names)){
         metrics.level.dir <- file.path(metrics.dir, catch.levels.names[level.ind])
@@ -349,20 +355,19 @@ fetch.metrics <- function(mcmc.path,
       }
       names(outputs.list[[i]]) <- catch.levels.names
     }
-  ##}, warning = function(war){
-  ##  cat0(curr.func.name, "Warning - problem loading metrics.\n")
-  ##  cat0(curr.func.name, war$message)
-  ##}, error = function(err){
-  ##  cat0(curr.func.name, "Error - problem loading metrics.\n")
-  ##  cat0(curr.func.name, err$message)
-  ##  return(NULL)
-  ##})
+  }, warning = function(war){
+    cat0(curr.func.name, "Warning - problem loading metrics.\n")
+    cat0(curr.func.name, war$message)
+  }, error = function(err){
+    cat0(curr.func.name, "Error - problem loading metrics.\n")
+    cat0(curr.func.name, err$message)
+    return(NULL)
+  })
   return(outputs.list)
 }
 
 calc.risk <- function(forecast.outputs,    ## A list of the output of the SS_getMCMC function, 1 for each catch.level
-                      forecast.yrs,        ## A vector of years to do projections for
-                      catch.levels){       ## catch.levels is a list of N catch levels to run projections for
+                      forecast.yrs){       ## A vector of years to do projections for
   ## Calculate the probablities of being under several reference points from one forecast year to the next
 
   ## risk.list will hold the probabilities of being under several reference points.

@@ -77,8 +77,8 @@ source("retrospective-setup.r")               ## Code to setup retrospective mod
 
 ## Base model:
 create.rdata.file(model.name = base.model.dir.name,
-                  ovwrt.rdata = FALSE,
-                  run.metrics = FALSE,
+                  ovwrt.rdata = TRUE,
+                  run.metrics = TRUE,
                   forecast.yrs = forecast.yrs,
                   forecast.probs = forecast.probs,
                   catch.levels = catch.levels,

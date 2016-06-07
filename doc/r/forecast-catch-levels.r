@@ -10,7 +10,7 @@ forecast.probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 ##  1. values for catch to forecast
 ##  2. their pretty names
 ##  3. their directory names
-## Each element of the list is a vector of length the same as the
+## Each element of the list is a list of length the same as the
 ## number of elements in forcast.yrs
 ## -----------------------------------------------------------------------------
 catch.levels <- list(list(rep(0.01,  3), "No Fishing", "01-0"),
