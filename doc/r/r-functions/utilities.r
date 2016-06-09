@@ -1,30 +1,18 @@
-verify.catch.levels <- function(lst, inds){
-  ## Ensure the catch levels list is of the correct format
-  ##  also make sure all inds are valid indices of this list
-  curr.func.name <- get.curr.func.name()
-  ## Check that it is a list, and that each item is also a list of length 3
-  if(is.list(lst))
-    j <- lapply(lst, function(x) ifelse(is.list(x) && length(x) == 3, TRUE, FALSE))
-  if(!all(sapply(j, all)))
-    stop(curr.func.name, "Error - catch.levels is not of the correct structure. Fix it in forecast-catch-levels.r\n")
-  ## Check there are no blank names or directory names
-  for(i in 1:length(lst)){
-    catch.level <- lst[[i]]
-    for(j in 1:length(catch.level)){
-      vals <- catch.level[[1]]
-      name <- catch.level[[2]]
-      dir.name <- catch.level[[3]]
-      if(name == ""){
-        stop(curr.func.name, "Error - catch.levels pretty name for item ", i," is blank. Fix it in forecast-catch-levels.r\n")
-      }
-      if(dir.name == ""){
-        stop(curr.func.name, "Error - catch.levels directory name for item ", i," is blank. Fix it in forecast-catch-levels.r\n")
-      }
-    }
-  }
-  ## Check that the inds are valid for this list
-  if(!all((inds > 0 & inds <= length(lst))))
-     stop(curr.func.name, "Error - the indices you have set up for the catch.levels are outside the length of the list. Fix it in forecast-catch-levels.r\n")
+pad.num <- function(num, digits = 0){
+  ## Takes an integer, num and turns it into a string
+  ## If the string is less than digits long, it will
+  ## be prepended with zeroes
+  if(digits < 1) stop("Error in pad.num - digits must be positive\n")
+  sapply(num, function(x){ paste0(rep("0", digits - nchar(as.character(x))), as.character(x))})
+}
+
+t.pn <- function(){
+  ## test pad.num
+  cat("pad.num(0, 1) = ", pad.num(0, 1), "\n")
+  cat("pad.num(1, 2) = ", pad.num(1, 2), "\n")
+  cat("pad.num(10, 2) = ", pad.num(10, 2), "\n")
+  cat("pad.num(10, 3) = ", pad.num(10, 3), "\n")
+  cat("pad.num(10, 0) = ", pad.num(10, 0), "\n")
 }
 
 print.model.message <- function(model.dir.names, model.names, group, model.type){
@@ -117,7 +105,7 @@ run.retrospectives <- function(model,
 
   ## Create a directory for each retrospective, copy files, and run retro
   for(retro in 1:length(yrs)){
-    retro.dir <- file.path(retros.dir, paste0("retro-", yrs[retro]))
+    retro.dir <- file.path(retros.dir, paste0("retro-", pad.num(yrs[retro], 2)))
     unlink(retro.dir, recursive = TRUE)
     dir.create(retro.dir)
 

@@ -72,31 +72,26 @@ run.forecasts <- function(model,
                  forecast.yrs[-length(forecast.yrs)],
                  catch.levels)
 
-  model$metrics <- fetch.metrics(model$mcmcpath,
-                                 forecast.yrs[-length(forecast.yrs)],
-                                 catch.levels)
-
-  ## calc.risk assumes the forecasting step was done correctly
-  model$risks <- calc.risk(model$metrics,
-                           forecast.yrs)
-
   cat0(curr.func.name, "Finished running forecasts for model located in ", model$path, "...\n")
 }
 
-create.rdata.file <- function(models.dir = model.dir,          ## Directory name for all models location
-                              model.name,                      ## Directory name of model to be loaded
-                              ovwrt.rdata = FALSE,             ## Overwrite the RData file if it exists?
-                              run.metrics = FALSE,             ## Run forecasting metrics for this model? *This will overwrite any already run*
-                              forecast.yrs = forecast.yrs,     ## Vector of years to run forecasting for if run.metrics = TRUE
-                              forecast.probs = forecast.probs, ## Vector of quantile values if run.metrics = TRUE
-                              catch.levels = catch.levels,     ## List of catch levels to run forecasting for if run.metrics = TRUE
-                              run.retros = FALSE,              ## Run retrospectives for this model? *This will overwrite any already run*
-                              retro.yrs = retro.yrs,           ## Vector of integers (positives) to run retrospectives for if run.retros = TRUE
-                              run.partest = FALSE,             ## Run partest for this model?
-                              key.posteriors = key.posteriors, ## Vector of key posteriors used to create key posteriors file
-                              key.posteriors.fn = "keyposteriors.csv",
-                              nuisance.posteriors.fn = "nuisanceposteriors.csv",
-                              verbose = FALSE){
+create.rdata.file <- function(
+           models.dir = model.dir,          ## Directory name for all models location
+           model.name,                      ## Directory name of model to be loaded
+           ovwrt.rdata = FALSE,             ## Overwrite the RData file if it exists?
+           run.metrics = FALSE,             ## Run forecasting metrics for this model? *This will overwrite any already run*
+           fore.yrs = forecast.yrs,         ## Vector of years to run forecasting for if run.metrics = TRUE
+           forecast.probs = forecast.probs, ## Vector of quantile values if run.metrics = TRUE
+           forecast.catch.levels = catch.levels, ## List of catch levels to run forecasting for if run.metrics = TRUE
+           load.forecasts = FALSE,          ## Load the forecasts for this model?
+           run.retros = FALSE,              ## Run retrospectives for this model? *This will overwrite any already run*
+           my.retro.yrs = retro.yrs,        ## Vector of integers (positives) to run retrospectives for if run.retros = TRUE
+           load.retros = FALSE,             ## Load retrospectives for this model?
+           run.partest = FALSE,             ## Run partest for this model?
+           key.posteriors = key.posteriors, ## Vector of key posteriors used to create key posteriors file
+           key.posteriors.fn = "keyposteriors.csv",
+           nuisance.posteriors.fn = "nuisanceposteriors.csv",
+           verbose = FALSE){
   ## Create an rdata file to hold the model's data and outputs.
   ## If an RData file exists, and overwrite is FALSE, return immediately.
   ## If no RData file exists, the model will be loaded from outputs into an R list
@@ -109,7 +104,8 @@ create.rdata.file <- function(models.dir = model.dir,          ## Directory name
   curr.func.name <- get.curr.func.name()
   model.dir <- file.path(models.dir, model.name)
   if(!dir.exists(model.dir)){
-    stop(curr.func.name,"Error - the directory ", model.dir, " does not exist. Fix the problem and try again.\n")
+    stop(curr.func.name,"Error - the directory ", model.dir, " does not exist. ",
+         "Fix the problem and try again.\n")
   }
   ## The RData file will have the same name as the directory it is in
   rdata.file <- file.path(model.dir, paste0(model.name, ".RData"))
@@ -118,66 +114,86 @@ create.rdata.file <- function(models.dir = model.dir,          ## Directory name
   if(!ovwrt.rdata){
     if(run.metrics){
       stop(curr.func.name,
-           "Error - You have asked to run forecasting metrics, but set ovwrt.rdata to FALSE.\n")
+           "Error - You have asked to run forecasting metrics, ",
+           "but set ovwrt.rdata to FALSE.\n")
     }
     if(run.retros){
       stop(curr.func.name,
-           "Error - You have asked to run retrospectives, but set ovwrt.rdata to FALSE.\n")
+           "Error - You have asked to run retrospectives, ",
+           "but set ovwrt.rdata to FALSE.\n")
     }
     if(run.partest){
       stop(curr.func.name,
-           "Error - You have asked to run partest, but set ovwrt.rdata to FALSE.\n")
+           "Error - You have asked to run partest, ",
+           "but set ovwrt.rdata to FALSE.\n")
     }
   }
 
   if(file.exists(rdata.file)){
     if(ovwrt.rdata){
       ## Delete the file
-      cat0(curr.func.name, "RData file found in ", model.dir, ". Deleting...\n")
+      cat0(curr.func.name, "RData file found in ", model.dir,
+           ". Deleting...\n")
       unlink(rdata.file)
     }else{
-      cat0(curr.func.name, "RData file found in ", model.dir, ". Using found file.\n")
+      cat0(curr.func.name, "RData file found in ", model.dir,
+           ". Using found file.\n")
       return(invisible())
     }
   }
 
-  ## If this point is reached, no RData file exists so it has to be built from scratch
+  ## If this point is reached, no RData file exists so it
+  ##  has to be built from scratch
   model <- load.ss.files(model.dir)
   if(run.metrics){
     run.forecasts(model,
-                  forecast.yrs,
+                  fore.yrs,
                   forecast.probs,
-                  catch.levels)
+                  forecast.catch.levels)
+  }
+
+  if(load.forecasts){
+    model$metrics <- fetch.metrics(model$mcmcpath,
+                                   fore.yrs[-length(fore.yrs)],
+                                   forecast.catch.levels)
+    model$risks <- calc.risk(model$metrics,
+                             fore.yrs)
   }
 
   retros.dir <- file.path(model$path, "retrospectives")
-  retros.paths <- file.path(retros.dir, paste0("retro-", retro.yrs))
+  retros.paths <- file.path(retros.dir, paste0("retro-", pad.num(my.retro.yrs, 2)))
   if(run.retros){
     if(dir.exists(retros.dir)){
       unlink(retros.dir, recursive = TRUE)
     }
-
     cat0(curr.func.name, "Running retrospectives...\n")
-    run.retrospectives(model, yrs = retro.yrs, verbose = verbose)
+    run.retrospectives(model, yrs = my.retro.yrs, verbose = verbose)
   }
 
-  if(all(dir.exists(retros.paths))){
-    cat0(curr.func.name, "Loading retrospectives...\n")
-    model$retros <- list()
-    retros.dir <- file.path(model$path, "retrospectives")
-    for(retro in 1:length(retro.yrs)){
-      retro.dir <- file.path(retros.dir, paste0("retro-", retro.yrs[retro]))
-      model$retros[[retro]] <- SS_output(dir = retro.dir, verbose = verbose)
+  if(load.retros){
+    if(all(dir.exists(retros.paths))){
+      cat0(curr.func.name, "Loading retrospectives...\n")
+      model$retros <- list()
+      retros.dir <- file.path(model$path, "retrospectives")
+      for(retro in 1:length(my.retro.yrs)){
+        retro.dir <- file.path(retros.dir, paste0("retro-", pad.num(my.retro.yrs[retro], 2)))
+        model$retros[[retro]] <- SS_output(dir = retro.dir, verbose = verbose)
+      }
+      cat0(curr.func.name, "Retrospectives loaded.\n")
+    }else{
+      stop(curr.func.name, "Error - Not all retrospective directories exist.\n",
+           "Look at retrospective-setup.r and your directories ",
+           "to make sure they are both the same\n",
+           "or set run.retros = TRUE.\n")
     }
-    cat0(curr.func.name, "Retrospectives loaded.\n")
-  }else{
-    stop(curr.func.name, "Error - Not all retrospective direcctories exist. Look at retrospective-setup.r and your directories to make sure they are both the same.\n")
   }
 
   if(run.partest){
     cat0(curr.func.name, "Running partest...\n\n")
-    ## TODO: Separate the running of the partest model with the fetching of it's output.
-    run.partest.model(model, output.file = "model-partest.RData", verbose = verbose)
+    ## TODO: Separate the running of the partest model with
+    ##  the fetching of it's output.
+    run.partest.model(model, output.file = "model-partest.RData",
+                      verbose = verbose)
     cat0(curr.func.name, "Partest Completed.\n\n")
   }
   ## Save the model as an RData file
@@ -277,7 +293,7 @@ calc.mcmc <- function(mcmc,            ## mcmc is the output of the SS_getMCMC f
 create.metrics <- function(mcmc,                 ## The output of the SS_getMCMC function from the r4ss package as a data.frame
                            mcmc.path,            ## The path of the model to run metrics for (mcmc)
                            metric.yrs,           ## A vector of years to do projections for
-                           catch.levels){        ## catch.levels is a list length-3 lists of N catch levels to run projections for
+                           catch.levels){        ## catch.levels is a list of lists of N catch levels to run projections for
   ## Run forecasts on the mcmc model as given in the forecast-catch-levels.r file
   ## If the directory exists, it will be deleted and all its contents will be
   ##  replaced recursively.
@@ -293,7 +309,7 @@ create.metrics <- function(mcmc,                 ## The output of the SS_getMCMC
   cat0(curr.func.name, "Running forecasts for model located in ", mcmc.path, "...\n")
   dir.create(metrics.path)
   for(i in 1:length(metric.yrs)){
-    metric.path <- file.path(metrics.path, paste0("metrics-",i))
+    metric.path <- file.path(metrics.path, paste0("metrics-",pad.num(i, 2)))
     dir.create(metric.path)
     for(level.ind in 1:ncol(catch.levels)){
       ## Create a new sub-directory for each catch projection
@@ -332,38 +348,32 @@ fetch.metrics <- function(mcmc.path,
   curr.func.name <- get.curr.func.name()
 
   ## Extract the catch level names from the list into a vector
-  catch.levels.names <- sapply(catch.levels, "[[", 2)
+  catch.levels.names <- sapply(catch.levels, "[[", 3)
 
   outputs.list <- vector(mode = "list", length = length(metric.yrs))
   metrics.path <- file.path(mcmc.path, "metrics")
   if(!dir.exists(metrics.path)){
-    cat0(curr.func.name, "Warning - metrics directory does not exist for mcmc model: ", mcmc.path, "\n")
+    stop(curr.func.name, "Error - metrics directory does not exist ",
+         "for mcmc model: ", mcmc.path, "\n",
+         "Set run.metrics = TRUE to make it.\n")
     return(NULL)
   }
-  tryCatch({
-    for(i in 1:length(metric.yrs)){
-      metrics.dir <- file.path(mcmc.path, paste0("metrics-", i))
-      dir.listing <- dir(metrics.dir)
-      if(!identical(catch.levels.names, dir.listing)){
-        stop(curr.func.name, "There is a discrepancy between what you have set for the catch.levels names and what appears in the metrics directory '",
-             metrics.dir,"'. Check the names in both and try again...\n\n")
-      }
-      for(level.ind in 1:length(catch.levels.names)){
-        metrics.level.dir <- file.path(metrics.dir, catch.levels.names[level.ind])
-        mcmc.out <- SSgetMCMC(dir = metrics.level.dir, writecsv = FALSE)$model1
-        outputs.list[[i]][[level.ind]] <- mcmc.out
-      }
-      names(outputs.list[[i]]) <- catch.levels.names
+  for(i in 1:length(metric.yrs)){
+    metrics.dir <- file.path(metrics.path, paste0("metrics-", pad.num(i, 2)))
+    dir.listing <- dir(metrics.dir)
+    if(!identical(catch.levels.names, dir.listing)){
+      stop(curr.func.name, "There is a discrepancy between what you have set ",
+           "for the catch.levels names and what appears in the metrics directory '",
+           metrics.dir,"'. Check the names in both and try again...\n\n")
     }
-  }, warning = function(war){
-    cat0(curr.func.name, "Warning - problem loading metrics.\n")
-    cat0(curr.func.name, war$message)
-  }, error = function(err){
-    cat0(curr.func.name, "Error - problem loading metrics.\n")
-    cat0(curr.func.name, err$message)
-    return(NULL)
-  })
-  return(outputs.list)
+    for(level.ind in 1:length(catch.levels.names)){
+      metrics.level.dir <- file.path(metrics.dir, catch.levels.names[level.ind])
+      mcmc.out <- SSgetMCMC(dir = metrics.level.dir, writecsv = FALSE)$model1
+      outputs.list[[i]][[level.ind]] <- mcmc.out
+    }
+    names(outputs.list[[i]]) <- catch.levels.names
+  }
+  outputs.list
 }
 
 calc.risk <- function(forecast.outputs,    ## A list of the output of the SS_getMCMC function, 1 for each catch.level
@@ -380,16 +390,16 @@ calc.risk <- function(forecast.outputs,    ## A list of the output of the SS_get
   metric <- function(x, yr){
     out <- NULL
     out[1] <- max(x[,paste0("ForeCatch_",yr)])
-    out[2] <- sum(x[,paste0("SPB_",yr+1)] < x[,paste("SPB",yr,sep="_")])/nrow(x) * 100.0
-    out[3] <- sum(x[,paste0("Bratio_",yr+1)] < 0.40)/nrow(x) * 100.0
-    out[4] <- sum(x[,paste0("Bratio_",yr+1)] < 0.25)/nrow(x) * 100.0
-    out[5] <- sum(x[,paste0("Bratio_",yr+1)] < 0.10)/nrow(x) * 100.0
-    out[6] <- sum(x[,paste0("SPRratio_",yr)] > 1.00)/nrow(x) * 100.0
-    out[7] <- sum(x[,paste0("ForeCatch_",yr+1)] < out[1])/nrow(x) * 100.0
-    return(out)
+    out[2] <- sum(x[,paste0("SPB_", yr + 1)] < x[,paste("SPB", yr, sep = "_")]) / nrow(x) * 100.0
+    out[3] <- sum(x[,paste0("Bratio_", yr + 1)] < 0.40) / nrow(x) * 100.0
+    out[4] <- sum(x[,paste0("Bratio_", yr + 1)] < 0.25) / nrow(x) * 100.0
+    out[5] <- sum(x[,paste0("Bratio_", yr + 1)] < 0.10) / nrow(x) * 100.0
+    out[6] <- sum(x[,paste0("SPRratio_", yr)] > 1.00) / nrow(x) * 100.0
+    out[7] <- sum(x[,paste0("ForeCatch_", yr + 1)] < out[1]) / nrow(x) * 100.0
+    out
   }
   risk.list <- NULL
-  for(i in 1:(length(forecast.yrs)-1)){
+  for(i in 1:(length(forecast.yrs) - 1)){
     yr <- forecast.yrs[i]
     risk.list[[i]] <- data.frame()
     for(j in 1:length(forecast.outputs[[i]])){

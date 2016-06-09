@@ -72,33 +72,55 @@ source("forecast-catch-levels.r")             ## Code to setup forecast model ru
 source("retrospective-setup.r")               ## Code to setup retrospective model runs.
 
 ## At this point the model setup has been verified, and an attempt will be made to create the
-## corresponding RData files. Each model defined in the models-setup.r
+## corresponding RData files. Each model defined in the models-setup.
 ## file will have its own RData file holding the model object as defined in the Readme.md file.
 
 ## Base model:
 create.rdata.file(model.name = base.model.dir.name,
-                  ovwrt.rdata = TRUE,
-                  run.metrics = TRUE,
-                  forecast.yrs = forecast.yrs,
+                  ovwrt.rdata = FALSE,
+                  run.metrics = FALSE,
+                  fore.yrs = forecast.yrs,
                   forecast.probs = forecast.probs,
-                  catch.levels = catch.levels,
+                  forecast.catch.levels = catch.levels,
+                  load.forecasts = TRUE,
                   run.retros = FALSE,
-                  retro.yrs = retro.yrs,
+                  my.retro.yrs = retro.yrs,
+                  load.retros = TRUE,
                   run.partest = FALSE,
                   key.posteriors = key.posteriors,
                   verbose = verbose)
 
 ## Bridge models
-## lapply(bridge.model.dir.names.1, function(nm){create.rdata.file(model.name = nm, verbose = verbose)})
-## lapply(bridge.model.dir.names.2, function(nm){create.rdata.file(model.name = nm,verbose = verbose)})
-## lapply(bridge.model.dir.names.3, function(nm){create.rdata.file(model.name = nm,verbose = verbose)})
+ovrwrt.bridge.rdata.files <- TRUE
+lapply(bridge.model.dir.names.1,
+       function(nm){create.rdata.file(model.name = nm,
+                                      ovwrt.rdata = ovrwrt.bridge.rdata.files,
+                                      verbose = verbose)})
+lapply(bridge.model.dir.names.2,
+       function(nm){create.rdata.file(model.name = nm,
+                                      ovwrt.rdata = ovrwrt.bridge.rdata.files,
+                                      verbose = verbose)})
+lapply(bridge.model.dir.names.3,
+       function(nm){create.rdata.file(model.name = nm,
+                                      ovwrt.rdata = ovrwrt.bridge.rdata.files,
+                                      verbose = verbose)})
 
 ## Sensitivity models
-## lapply(sens.model.dir.names.1, function(nm){create.rdata.file(model.name = nm)})
-## lapply(sens.model.dir.names.2, function(nm){create.rdata.file(model.name = nm)})
-## lapply(sens.model.dir.names.3, function(nm){create.rdata.file(model.name = nm)})
+ovrwrt.sens.rdata.files <- TRUE
+lapply(sens.model.dir.names.1,
+       function(nm){create.rdata.file(model.name = nm,
+                                      ovwrt.rdata = ovrwrt.sens.rdata.files,
+                                      verbose = verbose)})
+lapply(sens.model.dir.names.2,
+       function(nm){create.rdata.file(model.name = nm,
+                                      ovwrt.rdata = ovrwrt.sens.rdata.files,
+                                      verbose = verbose)})
+lapply(sens.model.dir.names.3,
+       function(nm){create.rdata.file(model.name = nm,
+                                      ovwrt.rdata = ovrwrt.sens.rdata.files,
+                                      verbose = verbose)})
 
-stop("Stopping....\n\n")
+
 ## Simpler variables for the models, so we can get rid of models list
 ## base.model <- models[[base.model.ind]]
 ## bridge.models.1 <- models[bridge.model.inds.1]
