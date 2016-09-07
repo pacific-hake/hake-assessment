@@ -3,8 +3,8 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
                                 xlabel     = "default", ## Latex label to use
                                 font.size  = 9,         ## Size of the font for the table
                                 space.size = 10,        ## Size of the spaces for the table
-                                which      = "biomass",  ## Which type to build. "biomass" or "spr".
-                                placement = "H"       ## Placement of table
+                                which      = "biomass", ## Which type to build. "biomass" or "spr".
+                                placement = "H"         ## Placement of table
                                 ){
   ## Returns an xtable in the proper format for the executive summary decision tables
 
@@ -13,6 +13,8 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
   }
   if(which == "biomass"){
     forecast <- model$forecasts$biomass
+    ##:ess-bp-start::browser@nil:##
+browser(expr=is.null(.ESSBP.[["@13@"]]))##:ess-bp-end:##
     table.header <- "\\textbf{Beginning of year relative spawning biomass}"
   }else{
     forecast <- model$forecasts$spr

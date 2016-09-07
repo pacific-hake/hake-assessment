@@ -1,8 +1,7 @@
 ################################################################################
 ## Data table loading
 ################################################################################
-
-data.path <- file.path("..","..","data")
+data.path <- file.path("..", "..", "data")
 
 can.age.file <- "canadian-age-data.csv"
 catch.data.file <- "landings-tac-history.csv"

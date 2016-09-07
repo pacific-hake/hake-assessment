@@ -216,19 +216,20 @@ if(verbose){
 }
 
 ## -----------------------------------------------------------------------------
-## List of all models referenced above
+## Vector of directory names for all models referenced above
 ## -----------------------------------------------------------------------------
-## *IMPORTANT* - ALL models must be in this list!
+## ALL models must be in this list!
 ## Each model directory listed here will have an RData file in it,
 ##  or one will be created depending on what is found in the directory.
 ##  i.e. mcmc, retrospective, or forecast directories.
-model.list <- c(base.model.dir.name,
-                last.yr.base.model.dir.name,
-                bridge.model.dir.names.1,
-                bridge.model.dir.names.2,
-                bridge.model.dir.names.3,
-                sens.model.dir.names.1,
-                sens.model.dir.names.2,
-                sens.model.dir.names.3,
-                sens.model.dir.names.4,
-                sens.model.dir.names.5)
+model.dir.names <- c(base.model.dir.name,
+                     last.yr.base.model.dir.name,
+                     bridge.model.dir.names.1,
+                     bridge.model.dir.names.2,
+                     bridge.model.dir.names.3,
+                     sens.model.dir.names.1,
+                     sens.model.dir.names.2,
+                     sens.model.dir.names.3,
+                     sens.model.dir.names.4,
+                     sens.model.dir.names.5)
+

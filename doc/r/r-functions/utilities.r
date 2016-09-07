@@ -1,3 +1,15 @@
+remove.all.objects.except <- function(vars){
+  # Removes every object in the workspace except for what is in the vars list.
+  # Upon finishing, the workspace will contain whatever is in the vars list,
+  #  plus the object 'remove.all.objects.except' (this function)
+
+  vars <- c(vars, "remove.all.objects.except")
+  keep <- match(x = vars, table = ls(all = TRUE, envir = .GlobalEnv))
+  if(!any(is.na(keep))){
+    rm(list=ls(all = TRUE, envir = .GlobalEnv)[-keep], envir = .GlobalEnv)
+  }
+}
+
 pad.num <- function(num, digits = 0){
   ## Takes an integer, num and turns it into a string
   ## If the string is less than digits long, it will
@@ -81,7 +93,6 @@ cat0 <- function(...){
   ## Inspired by the paste0 function.
   cat(..., "\n", sep = "")
 }
-
 
 run.retrospectives <- function(model,
                                yrs = 1:15,            ## A vector of years to subtract from the model's data to run on.

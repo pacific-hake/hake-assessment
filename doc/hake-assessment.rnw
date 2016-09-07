@@ -222,40 +222,53 @@
 %% Sourcing all code here, then calling the plot functions later will be much faster
 %% and make for more maintanable code.
 %% <<echo=TRUE,  message=TRUE, results='show', warning=TRUE>>=
-<<off-we-go, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
+<<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
 ## Inside this block is R code so comment character is different
 ## cache=TRUE tells knitr to build all the plots into a cache directory
 ## which is defined here as knitr-cache/
 ## When the latex part is run, these plots will be inserted automatically.
-## ** IMPORTANT** If you want to remake the plots, you must delete this directory.
+## If you want to remake the plots, you must delete this directory.
 ## If you don't, the cached plots from last time will be used.
 ## opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
 ##                 fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
 ##               results='show', cache=TRUE, cache.path='knitr-cache/')
-rm(list=ls(all=TRUE))
 opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
                fig.height=4, echo=FALSE, results=FALSE, message=FALSE, warning=FALSE,
                results='hide', cache=TRUE, cache.path='knitr-cache/')
 
-## Load your R environment here. When you do this, you will need to
-## put the require or library statements that the functions use because the
-## saved environment does not save the libraries as well.
-require(nwfscSurvey)
-require(nwfscMapping)
-require(date)
-require(r4ss)
-require(xtable)   ## For tables which can be inserted into latex docs with knitr
-require(PBSmapping)
-require(maps)
-require(coda)
-require(gtools)
-require(dplyr)
-## Load all R code and the model outputs
-load("./r/.RData")
+setwd("r")
+source("r-functions/utilities.r") ## Contains remove.all.objects.except function
+remove.all.objects.except(c("models"))
+
+## Load all R code
+source("all.r")
+
+## If you want to reload all model outputs, uncomment next line
+## rm(models)
+
+## Load the model outputs if they haven't been loaded yet.
+if(!exists("models")){
+  models <- create.models.list(model.dir, model.dir.names)
+}
+## See model-setup.r for the order these should be in
+base.model <- models[[1]]
+last.yr.base.model <- models[[2]]
+bridge.models.1 <- models[[3]]
+bridge.models.2 <- models[[4]]
+bridge.models.3 <- models[[5]]
+sens.models.1 <- models[[6]]
+sens.models.2 <- models[[7]]
+sens.models.3 <- models[[8]]
+sens.models.4 <- models[[9]]
+sens.models.5 <- models[[10]]
+## Load in variables used in \Sexpr{} expressions in text.
+## Needs to come after the models have been defined
+source("custom-knitr-variables.r")
+
 ## Load the model-partest which was previously run for the base model.
-## This object takes a very long time to build so it is stored in binary
-##  on its own.
-load("./r/model-partest.RData")
+if(!exists("model.partest")){
+  load("./model-partest.RData")
+}
 @
 
 %% Title page and author references page
@@ -278,13 +291,11 @@ load("./r/model-partest.RData")
 This document reports the collaborative efforts of the official U.S. and Canadian JTC members, and others that contributed significantly.
 
 Authors of this document are (in no particular order): \\
-\hspace{4ex}Chris J. Grandin\supscr{1} \\
-\hspace{4ex}Allan C. Hicks\supscr{2} \\
-\hspace{4ex}Aaron Berger\supscr{3} \\
-\hspace{4ex}Andrew M. Edwards\supscr{1} \\ %Given the amount of work that Andy has done, there's no way my name should appear before his on the author list
-\hspace{4ex}Nathan Taylor\supscr{1} \\
-\hspace{4ex}Sean Cox\supscr{4} \\
 \hspace{4ex}Ian G. Taylor\supscr{2} \\
+\hspace{4ex}Aaron Berger\supscr{3} \\
+\hspace{4ex}Andrew M. Edwards\supscr{1} \\
+\hspace{4ex}Chris J. Grandin\supscr{1} \\
+\hspace{4ex}Sean Cox\supscr{4} \\
 \bigskip
 
 \emph{\supscr{1}Fisheries and Oceans Canada, Pacific Biological Station,

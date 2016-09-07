@@ -17,12 +17,13 @@ catch.levels <- list(list(rep(0.01,  3), "No Fishing", "01-0"),
                      list(c(760000,855000,750000), "SPR 100", "02-spr-100"))
 
 ## -----------------------------------------------------------------------------
-## Indecis for the forecasts list, which list items above are the TAC case and
+## Indicies for the forecasts list, which list items above are the TAC case and
 ##  default policy case?
 ## This is used in the one-page summary and a plot comparing several catch cases
 ## -----------------------------------------------------------------------------
 catch.tac.ind <- 1
 catch.default.policy.ind <- 2
+catch.default.policy <- catch.levels[[catch.default.policy.ind]]
 
 ## The verify.catch.levels function is in verify.r
 verify.catch.levels(catch.levels,

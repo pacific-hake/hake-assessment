@@ -224,7 +224,6 @@ if(verbose){
   cat("DEBUG: Canadian Shoreside\n\n")
 }
 last.year.can.ages.ss <- can.ages[[1]][rownames(can.ages[[1]]) == last.data.yr,]
-get.age.prop(last.year.can.ages.ss, 1)
 ss.age.prop.holder <- get.age.prop(last.year.can.ages.ss, 1)
 max.shoreside.age.prop.age <- ss.age.prop.holder[1]
 max.shoreside.age.prop <- fmt0(ss.age.prop.holder[2] * 100, 1)
