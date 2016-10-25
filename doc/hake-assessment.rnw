@@ -237,32 +237,17 @@ opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5
                results='hide', cache=TRUE, cache.path='knitr-cache/')
 
 setwd("r")
-source("r-functions/utilities.r") ## Contains remove.all.objects.except function
-remove.all.objects.except(c("models"))
+## source("r-functions/utilities.r") ## Contains remove.all.objects.except function
+## remove.all.objects.except(c("models"))
 
 ## Load all R code
 source("all.r")
 
-## If you want to reload all model outputs, uncomment next line
-## rm(models)
-
-## Load the model outputs if they haven't been loaded yet.
-if(!exists("models")){
-  models <- create.models.list(model.dir, model.dir.names)
+## If you want to reload all model outputs, set to TRUE
+## load.models.into.parent.env function located at bottom of  model-setup.r
+if(TRUE){
+  load.models.into.parent.env()
 }
-## See model-setup.r for the order these should be in
-base.model <- models[[1]]
-last.yr.base.model <- models[[2]]
-bridge.models.1 <- models[[3]]
-bridge.models.2 <- models[[4]]
-bridge.models.3 <- models[[5]]
-sens.models.1 <- models[[6]]
-sens.models.2 <- models[[7]]
-sens.models.3 <- models[[8]]
-sens.models.4 <- models[[9]]
-sens.models.5 <- models[[10]]
-## Load in variables used in \Sexpr{} expressions in text.
-## Needs to come after the models have been defined
 source("custom-knitr-variables.r")
 
 ## Load the model-partest which was previously run for the base model.

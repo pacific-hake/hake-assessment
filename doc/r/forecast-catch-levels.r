@@ -23,7 +23,7 @@ catch.levels <- list(list(rep(0.01,  3), "No Fishing", "01-0"),
 ## -----------------------------------------------------------------------------
 catch.tac.ind <- 1
 catch.default.policy.ind <- 2
-catch.default.policy <- catch.levels[[catch.default.policy.ind]]
+catch.default.policy <- catch.levels[[catch.default.policy.ind]][[1]]
 
 ## The verify.catch.levels function is in verify.r
 verify.catch.levels(catch.levels,

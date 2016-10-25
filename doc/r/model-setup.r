@@ -102,8 +102,10 @@ last.yr.base.model.dir.name <- "00_2015hake_basePreSRG"
 last.yr.base.model.name <- paste(last.assess.yr, "Base model")
 verify.models(model.dir, base.model.dir.name, base.model.name)
 if(verbose){
-  cat0("Last assessment year's base model directory name: \n  ", last.yr.base.model.dir.name)
-  cat0("Last assessment year's base model pretty name: \n  ", last.yr.base.model.name)
+  cat0("Last assessment year's base model directory name: \n  ",
+       last.yr.base.model.dir.name)
+  cat0("Last assessment year's base model pretty name: \n  ",
+       last.yr.base.model.name)
 }
 
 ## -----------------------------------------------------------------------------
@@ -233,3 +235,26 @@ model.dir.names <- c(base.model.dir.name,
                      sens.model.dir.names.4,
                      sens.model.dir.names.5)
 
+## This function must be called from within the first knitr code chunk
+## in the document. It is defined here so that it is in the same place
+## as the other model setup and should be changed if bridge models
+## and sensitivity models change in the model.dir.names above..
+load.models.into.parent.env <- function(){
+  base.model         <<- load.models(model.dir, base.model.dir.name)
+  last.yr.base.model <<- load.models(model.dir, last.yr.base.model.dir.name)
+  bridge.models.1    <<- load.models(model.dir, bridge.model.dir.names.1)
+  bridge.models.2    <<- load.models(model.dir, bridge.model.dir.names.2)
+  bridge.models.3    <<- load.models(model.dir, bridge.model.dir.names.3)
+  sens.models.1      <<- load.models(model.dir, sens.model.dir.names.1)
+  sens.models.2      <<- load.models(model.dir, sens.model.dir.names.2)
+  sens.models.3      <<- load.models(model.dir, sens.model.dir.names.3)
+  sens.models.4      <<- load.models(model.dir, sens.model.dir.names.4)
+  sens.models.5      <<- load.models(model.dir, sens.model.dir.names.5)
+
+  ## Fisrt set includes base and sensitivity group1
+  sens.models.1.for.table <<- c(list(base.model), sens.models.1)
+  ## Second set includes base and sensitivity groups 2 and 3
+  sens.models.2.for.table <<- c(list(base.model), sens.models.2)
+  sens.models.2.for.table <<- c(sens.models.2.for.table,
+                                sens.models.3)
+}

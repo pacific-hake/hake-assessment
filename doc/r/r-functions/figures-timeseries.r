@@ -345,7 +345,6 @@ make.comparison.plot <- function(models,                   ## models is a list o
       endyrvec <- end.yr
     }
   }
-  browser()
   if(is.null(densitynames)){
     SSplotComparisons(compare.summary,
                       subplots = subplots,

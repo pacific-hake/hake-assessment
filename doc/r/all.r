@@ -77,16 +77,16 @@ source("data-tables.r")            ## Set up variables for data tables (from csv
 
 ## Base model:
 create.rdata.file(model.name = base.model.dir.name,
-                  ovwrt.rdata = TRUE,
+                  ovwrt.rdata = FALSE,
                   run.forecasts = FALSE,
                   fore.yrs = forecast.yrs,
                   forecast.probs = forecast.probs,
                   forecast.catch.levels = catch.levels,
-                  load.forecasts = TRUE,
-                  run.retros = TRUE,
+                  load.forecasts = FALSE,
+                  run.retros = FALSE,
                   my.retro.yrs = retro.yrs,
-                  load.retros = TRUE,
-                  run.partest = FALSE,
+                  load.retros = FALSE,
+                  run.partest =FALSE,
                   key.posteriors = key.posteriors,
                   verbose = verbose)
 

@@ -137,7 +137,7 @@ create.rdata.file <- function(
 
   if(load.forecasts){
     model$forecasts <- fetch.forecasts(model$mcmcpath,
-                                       fore.yrs[-length(fore.yrs)],
+                                       fore.yrs, ## [-length(fore.yrs)],
                                        forecast.catch.levels,
                                        probs = forecast.probs)
     model$risks <- calc.risk(model$forecasts,
@@ -283,7 +283,7 @@ run.forecasts <- function(model,
   curr.func.name <- get.curr.func.name()
 
   mcmc.path <- model$mcmcpath
-  forecast.yrs <- forecast.yrs[-length(forecast.yrs)]
+  ## forecast.yrs <- forecast.yrs[-length(forecast.yrs)]
   ## Extract the catch level names from the list into a vector
   catch.levels.names <- sapply(catch.levels, "[[", 3)
   ## Make the catch level values a matrix where the columns represent the cases in catch.names
@@ -294,6 +294,7 @@ run.forecasts <- function(model,
   }
   cat0(curr.func.name, "Running forecasts for model located in ", mcmc.path, "...\n")
   dir.create(forecasts.path)
+
   for(i in 1:length(forecast.yrs)){
     fore.path <- file.path(forecasts.path, paste0("forecast-year-", forecast.yrs[i]))
     dir.create(fore.path)
@@ -360,6 +361,7 @@ fetch.forecasts <- function(mcmc.path,
          "for the catch.levels names \n and what appears in the forecasts directory '",
          fore.path,"'. \n Check the names in both and try again.\n\n")
   }
+
   for(level.ind in 1:length(catch.levels.names)){
     fore.level.path <- file.path(fore.path, catch.levels.names[level.ind])
     mcmc.out <- SSgetMCMC(dir = fore.level.path, writecsv = FALSE)$model1
@@ -435,23 +437,22 @@ create.key.nuisance.posteriors.files <- function(model,
   write.csv(nuisances, nuisance.file, row.names = FALSE)
 }
 
-create.models.list <- function(model.dir,      ## The directory in which all model subdirs reside
-                               model.dir.names ## A vector of the directories (not full path) which
-                                               ## hold the .Rdata files
-                               ){
-  ## Create the list of model output to be used by the document code
-  ## Returns a list of the loaded models, in the same order in which
-  ##  model.list is.
-
-  model.dirs <- file.path(model.dir, model.dir.names, paste0(model.dir.names, ".Rdata"))
-
+## Load model(s) and return as a list if more than one. If only one,
+## return that object.
+load.models <- function(model.dir,
+                        model.dir.names){
   ret.list = NULL
-  for(i in 1:length(model.dirs)){
-    load(model.dirs[i])
+  model.rdata.files <- file.path(model.dir, model.dir.names, paste0(model.dir.names, ".Rdata"))
+  for(i in 1:length(model.rdata.files)){
+    load(model.rdata.files[i])
     ret.list[[i]] <- model
-    model <- NULL
+    rm(model)
   }
-  ret.list
+  if(length(model.dir.names) == 1){
+    ret.list[[1]]
+  }else{
+    ret.list
+  }
 }
 
 delete.all.rdata.files <- function(model.dir){

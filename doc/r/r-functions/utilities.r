@@ -67,17 +67,6 @@ curr.fn.finder <- function(skipframes = 0,
   }
 }
 
-catw <- function(..., file = "", sep = " ", fill = FALSE, labels = NULL,
-                 append = FALSE, prefix=0){
-  ## Writes out some information on the calling function to screen
-  if(is.numeric(prefix)){
-    prefix <- curr.fn.finder(skipframes = prefix + 1) ## note: the +1 is there to avoid returning catw itself
-    prefix <- paste0(prefix, ": ")
-  }
-  cat(prefix, ..., format(Sys.time(), "(%Y-%m-%d %H:%M:%S)"), "\n",
-      file = file, sep = sep, fill = fill, labels = labels, append = append)
-}
-
 get.curr.func.name <- function(){
   ## Returns the calling function's name followed by ": "
   func.name <- curr.fn.finder(skipframes = 1) # skipframes=1 is there to avoid returning getCurrFunc itself
@@ -1573,3 +1562,60 @@ function (replist, plot = TRUE, print = FALSE, plotdir = "default",
     return(invisible(returnlist))
 }
 
+curfnfinder <- function(skipframes=0, skipnames="(FUN)|(.+apply)|(replicate)",
+    retIfNone="Not in function", retStack=FALSE, extraPrefPerLevel="\t")
+{
+  # Get the current function name from within the function itself.
+  # Used to prepend the function name to all messages so that the
+  # user knows where the message came from.
+    prefix<-sapply(3 + skipframes+1:sys.nframe(), function(i){
+            currv<-sys.call(sys.parent(n=i))[[1]]
+            return(currv)
+        })
+    prefix[grep(skipnames, prefix)] <- NULL
+    prefix<-gsub("function \\(.*", "do.call", prefix)
+    if(length(prefix)==0)
+    {
+        return(retIfNone)
+    }
+    else if(retStack)
+    {
+        return(paste(rev(prefix), collapse = "|"))
+    }
+    else
+    {
+        retval<-as.character(unlist(prefix[1]))
+        if(length(prefix) > 1)
+        {
+            retval<-paste(paste(rep(extraPrefPerLevel, length(prefix) - 1), collapse=""), retval, sep="")
+        }
+        return(retval)
+    }
+}
+
+catw <- function(..., file = "", sep = " ", fill = FALSE, labels = NULL,
+    append = FALSE, prefix=0)
+{
+  # writes out some innformation on the calling function to screen
+    if(is.numeric(prefix))
+    {
+        prefix<-curfnfinder(skipframes=prefix+1) #note: the +1 is there to avoid returning catw itself
+        prefix<-paste(prefix, ": ", sep="")
+    }
+    cat(prefix, ..., format(Sys.time(), "(%Y-%m-%d %H:%M:%S)"), "\n",
+        file = file, sep = sep, fill = fill, labels = labels, append = append)
+}
+
+getCurrFunc <- function(){
+  # Returns the calling function's name followed by ": "
+  funcName <- curfnfinder(skipframes=1) # skipframes=1 is there to avoid returning getCurrFunc itself
+  # Strip extraneous whitespace
+  funcName <- gsub("\t+","",funcName)
+  funcName <- gsub("\ +","",funcName)
+  funcName <- paste(funcName,": ",sep="")
+  return(funcName)
+}
+
+cat0 <- function(...){
+  cat(..., "\n", sep="")
+}
