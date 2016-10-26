@@ -1,10 +1,8 @@
 ## Pacific Hake Joint Technical Committee
-## all.r - Source this file to load all data and functions,
-##  to run the forecasting and retrospectives for the base model,
-##  then save the R environment to .RData in this directory. This
-##  will be read in by knitr as a binary file so that multiple
-##  loads don't happen during the latex/knitr build (they are
-##  very slow compared to loading the binary once at the beginning).
+## This is the master file - it loads all packages and sources all
+##  other R source code files.
+## To debug in an R session, run these commands first:
+##  rm(list=ls(all=TRUE));source("all.r");load.models.into.parent.env()
 
 ## The purpose of the r-functions directory is to separate the
 ##  r code which is not commonly changed so that the files which are
@@ -72,8 +70,8 @@ source("retrospective-setup.r")    ## Code to setup retrospective model runs.
 source("data-tables.r")            ## Set up variables for data tables (from csv files).
 
 ## At this point the model setup has been verified, and an attempt will be made to create the
-## corresponding RData files. Each model defined in the models-setup.r
-## file will have its own RData file holding the model object as defined in the Readme.md file.
+##  corresponding RData files. Each model defined in the models-setup.r
+##  file will have its own RData file holding the model object as defined in the Readme.md file.
 
 ## Base model:
 create.rdata.file(model.name = base.model.dir.name,
@@ -86,7 +84,7 @@ create.rdata.file(model.name = base.model.dir.name,
                   run.retros = FALSE,
                   my.retro.yrs = retro.yrs,
                   load.retros = FALSE,
-                  run.partest =FALSE,
+                  run.partest = FALSE,
                   key.posteriors = key.posteriors,
                   verbose = verbose)
 

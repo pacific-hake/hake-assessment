@@ -131,7 +131,6 @@ make.risk.table <- function(model,                  ## model is an mcmc run and 
                             placement = "H"       ## Placement of table
                             ){
   ## Returns an xtable in the proper format for the executive summary risk tables
-
   risk <- model$risks[[index]]
   ## Fix tiny catch of less than 0.49 to zero, only for first (catch) column
   risk[risk[,1] < 0.49, 1] <- 0

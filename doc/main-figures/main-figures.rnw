@@ -14,9 +14,9 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%  % Call figure directly
+%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
-\vspace{-5mm}  % Chris will hate this
+\vspace{-5mm}
 \begin{center}
 \includegraphics[angle=90,origin=c]{main-figures/backscatter2smaller2.eps} % width=\maxwidth,
 \end{center}
@@ -699,7 +699,7 @@ make.forecast.catch.posterior.plot(base.model,
 ## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those forecast models which will be plotted against each other
 models.inds <- c(1, 2, 3, 4)
-models.names <- catch.levels[models.inds][[2]] ## [[2]] corresponds to pretty text catch level name
+models.names <- sapply(catch.levels, "[[", 2) ## pretty catch level name
 make.forecast.depletion.comparison.plot(base.model,
                                         models.inds,
                                         models.names,
@@ -761,7 +761,7 @@ make.forecast.risk.comparison.plot(base.model,
 \begin{figure}[H]
 \begin{center}
 <<main.biomass.base.alternative.2, fig.height=4.5, fig.width=8>>=
-make.comparison.plot(c(base.model, sens.models.2),
+make.comparison.plot(c(list(base.model), sens.models.2),
                      subplots = 2,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
                      end.yr = end.yr)
@@ -780,7 +780,7 @@ sens.density.yr <- last.data.yr - 1
 sens.density.names <- c(paste0("Late_RecrDev_",sens.density.yr))
 oldpar <- par()
 par(mar = c(2.6, 3.1, 1.1, 1.1))
-make.comparison.plot(c(base.model, sens.models.2),
+make.comparison.plot(c(list(base.model), sens.models.2),
                      subplots = 14,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
                      legendloc = "topleft",
@@ -806,14 +806,14 @@ par <- oldpar
 oldpar <- par(no.readonly=TRUE)
 par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
 layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
-make.comparison.plot(c(base.model, sens.models.3),
+make.comparison.plot(c(list(base.model), sens.models.3),
                      subplots = 2,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.3),
                      end.yr = end.yr)
 make.selex.plot(base.model, pan.letter = "a")
-make.selex.plot(sens.models.3[1], pan.letter = "b")
-make.selex.plot(sens.models.3[2], pan.letter = "c")
-make.selex.plot(sens.models.3[3], pan.letter = "d")
+make.selex.plot(sens.models.3[[1]], pan.letter = "b")
+make.selex.plot(sens.models.3[[2]], pan.letter = "c")
+make.selex.plot(sens.models.3[[3]], pan.letter = "d")
 par <- oldpar
 mtext("Age", side = 1, line = 1, outer = TRUE)
 @
@@ -827,7 +827,7 @@ mtext("Age", side = 1, line = 1, outer = TRUE)
 \begin{figure}[H]
 \begin{center}
 <<main.biomass.base.alternative.1, fig.height=4.5, fig.width=8>>=
-make.comparison.plot(c(base.model, sens.models.1),
+make.comparison.plot(c(list(base.model), sens.models.1),
                      subplots = 2,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
                      end.yr = end.yr)
@@ -842,7 +842,7 @@ make.comparison.plot(c(base.model, sens.models.1),
 %% \begin{figure}[H]
 \begin{center}
 <<main.status.base.alternative.1, fig.height=4.5, fig.width=8>>=
-make.comparison.plot(c(base.model, sens.models.1),
+make.comparison.plot(c(list(base.model), sens.models.1),
                      subplots = 4,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
                      legend = FALSE,

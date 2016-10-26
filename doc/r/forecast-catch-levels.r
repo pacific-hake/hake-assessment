@@ -13,16 +13,23 @@ forecast.probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 ## Each element of the list is a list of length equal to the
 ## number of elements in forcast.yrs.
 ## -----------------------------------------------------------------------------
-catch.levels <- list(list(rep(0.01,  3), "No Fishing", "01-0"),
-                     list(c(760000,855000,750000), "SPR 100", "02-spr-100"))
+catch.levels <-
+  list(list(rep(0.01, 3), "No Fishing", "01-0"),
+       list(rep(180000, 3), "180,000 t", "02-180000"),
+       list(rep(350000, 3), "350,000 t", "03-350000"),
+       list(rep(440000, 3), "440,000 t", "04-440000"),
+       list(rep(500000, 3), "500,000 t", "05-500000"),
+       list(c(760000, 855000, 750000), "SPR 100", "06-spr-100"),
+       list(c(804399, 889918, 785036), "Default: 804,399 t", "07-default-hr"),
+       list(c(873000, 873000, 773907), "Stable Catch", "08-stable-catch"))
 
 ## -----------------------------------------------------------------------------
 ## Indicies for the forecasts list, which list items above are the TAC case and
-##  default policy case?
+##  default policy case
 ## This is used in the one-page summary and a plot comparing several catch cases
 ## -----------------------------------------------------------------------------
-catch.tac.ind <- 1
-catch.default.policy.ind <- 2
+catch.tac.ind <- 4
+catch.default.policy.ind <- 7
 catch.default.policy <- catch.levels[[catch.default.policy.ind]][[1]]
 
 ## The verify.catch.levels function is in verify.r

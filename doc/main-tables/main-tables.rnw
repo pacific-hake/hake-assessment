@@ -125,7 +125,7 @@ make.est.numbers.at.age.table(base.model,
 
 <<main.parameter.estimates, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.table(base.model,
-                                     last.year.base.model,
+                                     last.yr.base.model,
                                      posterior.regex = key.posteriors,
                                      end.yr = end.yr,
                                      digits = 3,

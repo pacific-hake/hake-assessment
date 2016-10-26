@@ -269,7 +269,10 @@ cohortCatch <- function(cohort,catage,ages=0:20) {
 cohort.catch.1999 <- sum(cohortCatch(1999,base.model$catage))
 cohort.catch.2010 <- sum(cohortCatch(2010,base.model$catage))
 
-## A vector of all sensitivities for the MLE parameters, derived quantiles, and reference points table
-sens.models.1.for.table <- list(base.model, sens.models.1)
-sens.models.2.for.table <- list(base.model, sens.models.2, sens.models.3)
-
+## Retrospective setup for the document
+retro.model.names <- c(base.model.name, sapply(plot.retro.yrs, function(x) paste0("-", x, if(x == 1) " year" else " years")))
+## Need to assemble the list with the base as the first element
+retro.list <- list(base.model)
+for(i in plot.retro.yrs){
+  retro.list[[i + 1]] <- base.model$retros[[i]]
+}

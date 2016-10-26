@@ -251,10 +251,15 @@ load.models.into.parent.env <- function(){
   sens.models.4      <<- load.models(model.dir, sens.model.dir.names.4)
   sens.models.5      <<- load.models(model.dir, sens.model.dir.names.5)
 
-  ## Fisrt set includes base and sensitivity group1
+  ## Lists of sensitivities for the MLE parameters, derived quantiles,
+  ##  and reference points table
+  ## First set includes base and sensitivity group1
   sens.models.1.for.table <<- c(list(base.model), sens.models.1)
+  sens.model.names.1.for.table <<- c("Base model", sens.model.names.1)
   ## Second set includes base and sensitivity groups 2 and 3
   sens.models.2.for.table <<- c(list(base.model), sens.models.2)
   sens.models.2.for.table <<- c(sens.models.2.for.table,
                                 sens.models.3)
+  sens.model.names.2.for.table <<- c("Base model", sens.model.names.2,
+                                     sens.model.names.3)
 }
