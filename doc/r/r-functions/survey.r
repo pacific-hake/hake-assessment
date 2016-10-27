@@ -66,7 +66,10 @@ make.survey.extrap.table <- function(dat,
                size = size.string))
 }
 
-make.survey.biomass.plot <- function(model){
+make.survey.biomass.plot <- function(model,
+                                     xlab = "Year",
+                                     ylab = "Biomass Index Estimate (million t)"
+                                     ){
   ## It is assumed that the data file has been read in correctly.
   ## Assumes that there is only one 'CPUE' index and it is the acoustic survey.
   ## There is no error checking to warn you if there is more than one index.
@@ -135,6 +138,7 @@ make.survey.age1.plot <- function(age1index,
   yrs <- x$Year
 
   recr1 <- model$natage[model$natage$Time %in% yrs,"1"]
+  recrAll <- model$natage[model$natage$Time %in% min(yrs):max(yrs),"1"]
 
   logAge1 <- log(recr1)
   logIndex <- log(x$Index)

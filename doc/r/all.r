@@ -67,11 +67,11 @@ source(file.path(func.dir, "tables-parameters.r"))
 source(file.path(func.dir, "tables-sampling.r"))
 source(file.path(func.dir, "tables-maturity.r"))
 
-source(file.path(func.dir, "verify.r"))              ## Code to verify the model setup.
-source("model-setup.r")            ## Code to setup the model names, and start/end years for various things in the models.
-source("forecast-catch-levels.r")  ## Code to setup forecast model runs.
-source("retrospective-setup.r")    ## Code to setup retrospective model runs.
-source("data-tables.r")            ## Set up variables for data tables (from csv files).
+source(file.path(func.dir, "verify.r")) ## Code to verify the model setup.
+source("model-setup.r")                 ## Code to setup the model names, and start/end years for various things in the models.
+source("forecast-catch-levels.r")       ## Code to setup forecast model runs.
+source("retrospective-setup.r")         ## Code to setup retrospective model runs.
+source("data-tables.r")                 ## Set up variables for data tables (from csv files).
 
 ## At this point the model setup has been verified, and an attempt will be made to create the
 ##  corresponding RData files. Each model defined in the models-setup.r
@@ -131,5 +131,4 @@ lapply(sens.model.dir.names.5,
        function(nm){create.rdata.file(model.name = nm,
                                       ovwrt.rdata = ovrwrt.sens.rdata.files,
                                       verbose = verbose)})
->>>>>>> model-load
 
