@@ -77,10 +77,10 @@ make.forecast.depletion.comparison.plot <- function(model,        ## model is th
   oldpar <- par()
   par(mar=c(4.5,4,1,1))
   num.models <- length(models.inds)
-  fore.list <- model$forecasts$outputs
+  fore.list <- lapply(model$forecasts[models.inds], "[[", "outputs")
   model.list <- rep(list(model), num.models)
   compare.summary <- SSsummarize(model.list)
-  compare.summary$mcmc <- fore.list[models.inds]
+  compare.summary$mcmc <- fore.list
 
   SSplotComparisons(compare.summary,
                     legendlabels = models.names,
@@ -121,10 +121,10 @@ make.forecast.risk.comparison.plot <- function(model,        ## model is the mod
                                                fore.yr,      ## Forecast year for probabilities
                                                colors = c("black","blue","green","orange","red","tan"),
                                                              ## color is a vector of colors for the lines. This must be the same length
-                                                             ## as the number of rows models[[N]]$risks data frames has
+                                                             ## as the number of rows model$risks data frames has
                                                pch = c(16,17,17,17,15,18),
                                                              ## pch is a vector of symbols. This must be the same length
-                                                             ## as the number of rows models[[N]]$risks data frames has
+                                                             ## as the number of rows model$risks data frames has
                                                legend.cex = 0.7,   ## Text size for the legend
                                                legend.loc = "topleft"){
   oldpar <- par()

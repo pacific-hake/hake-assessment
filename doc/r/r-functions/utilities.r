@@ -1,3 +1,4 @@
+
 get.shade <- function(color, opacity){
   # If color is a single R color string or single number,
   #  returns an rgb string of the specified color and opacity
@@ -41,6 +42,91 @@ get.shade <- function(color, opacity){
   return(shade)
 }
 
+remove.all.objects.except <- function(vars){
+  # Removes every object in the workspace except for what is in the vars list.
+  # Upon finishing, the workspace will contain whatever is in the vars list,
+  #  plus the object 'remove.all.objects.except' (this function)
+
+  vars <- c(vars, "remove.all.objects.except")
+  keep <- match(x = vars, table = ls(all = TRUE, envir = .GlobalEnv))
+  if(!any(is.na(keep))){
+    rm(list=ls(all = TRUE, envir = .GlobalEnv)[-keep], envir = .GlobalEnv)
+  }
+}
+
+pad.num <- function(num, digits = 0){
+  ## Takes an integer, num and turns it into a string
+  ## If the string is less than digits long, it will
+  ## be prepended with zeroes
+  if(digits < 1) stop("Error in pad.num - digits must be positive\n")
+  sapply(num, function(x){ paste0(rep("0", digits - nchar(as.character(x))), as.character(x))})
+}
+
+t.pn <- function(){
+  ## test pad.num
+  cat("pad.num(0, 1) = ", pad.num(0, 1), "\n")
+  cat("pad.num(1, 2) = ", pad.num(1, 2), "\n")
+  cat("pad.num(10, 2) = ", pad.num(10, 2), "\n")
+  cat("pad.num(10, 3) = ", pad.num(10, 3), "\n")
+  cat("pad.num(10, 0) = ", pad.num(10, 0), "\n")
+}
+
+print.model.message <- function(model.dir.names, model.names, group, model.type){
+  ## Print out a message stating the model directory names and pretty names,
+  ##  for the group number given. If bridge is TRUE, it is a bridge model group,
+  ##  if bridge is FALSE, it is a sensitivity model group.
+
+  cat0("***")
+  cat0(model.type, " model group ", group, " directories: ")
+  cat(paste0("  ", model.dir.names), sep = "\n")
+  cat0(model.type, " model group ", group, " pretty names: ")
+  cat(paste0("  ", model.names), sep = "\n")
+  cat0("***")
+}
+
+curr.fn.finder <- function(skipframes = 0,
+                           skipnames = "(FUN)|(.+apply)|(replicate)",
+                           ret.if.none = "Not in function",
+                           ret.stack = FALSE,
+                           extra.perf.per.level = "\t"){
+  ## Get the current function name from within the function itself.
+  ## Used to prepend the function name to all messages so that the
+  ## user knows where the message came from.
+  prefix <- sapply(3 + skipframes + 1:sys.nframe(), function(i){
+    currv <- sys.call(sys.parent(n = i))[[1]]
+    return(currv)
+  })
+  prefix[grep(skipnames, prefix)] <- NULL
+  prefix <- gsub("function \\(.*", "do.call", prefix)
+  if(length(prefix)==0){
+    return(ret.if.none)
+  }else if(ret.stack){
+    return(paste(rev(prefix), collapse = "|"))
+  }else{
+    retval <- as.character(unlist(prefix[1]))
+    if(length(prefix) > 1){
+      retval <- paste0(paste(rep(extra.perf.per.level, length(prefix) - 1), collapse = ""), retval)
+    }
+    return(retval)
+  }
+}
+
+get.curr.func.name <- function(){
+  ## Returns the calling function's name followed by ": "
+  func.name <- curr.fn.finder(skipframes = 1) # skipframes=1 is there to avoid returning getCurrFunc itself
+  ## Strip extraneous whitespace
+  func.name <- gsub("\t+", "", func.name)
+  func.name <- gsub("\ +", "", func.name)
+  func.name <- paste0(func.name,": ")
+  return(func.name)
+}
+
+cat0 <- function(...){
+  ## Wrapper function to make cat have no space and insert a newline at the end.
+  ## Inspired by the paste0 function.
+  cat(..., "\n", sep = "")
+}
+
 run.retrospectives <- function(model,
                                yrs = 1:15,            ## A vector of years to subtract from the model's data to run on.
                                remove.blocks = FALSE,
@@ -50,13 +136,7 @@ run.retrospectives <- function(model,
   ## This will create a 'retrospectives' directory in the same directory as the model resides,
   ##  create a directory for each restrospective year, copy all model files into each directory,
   ##  run the retrospectives, and make a list of the SS_output() call to each
-  ##  and return this list.
   ## Warning - This function will completely delete all previous retrospectives that have been run without notice.
-
-  if(!verbose){
-    flush.console
-    cat("\nRunning retrospectives. Screen may not show output for a while\n\n")
-  }
 
   ## Create the directory 'retrospectives' which will hold the runs
   ##  erasing the directory recursively if necessary
@@ -69,7 +149,7 @@ run.retrospectives <- function(model,
 
   ## Create a directory for each retrospective, copy files, and run retro
   for(retro in 1:length(yrs)){
-    retro.dir <- file.path(retros.dir, paste0("retro-", yrs[retro]))
+    retro.dir <- file.path(retros.dir, paste0("retro-", pad.num(yrs[retro], 2)))
     unlink(retro.dir, recursive = TRUE)
     dir.create(retro.dir)
 
@@ -98,9 +178,7 @@ run.retrospectives <- function(model,
     unlink(covar.file)
     shell.command <- paste0("cd ", retro.dir, " & ss3 ", extras)
     shell(shell.command)
-    retros.list[[retro]] <- SS_output(dir = retro.dir, verbose = verbose)
   }
-  return(retros.list)
 }
 
 run.partest.model <- function(model,
@@ -313,23 +391,23 @@ number.to.word <- function(x, th = FALSE, cap.first = FALSE){
   ## if th is TRUE, the th version will be returned, e.g. 4 = fourth
   ## if cap.first is TRUE, the first letter will be capitalized
   helper <- function(x){
-      digits <- rev(strsplit(as.character(x), "")[[1]])
-      nDigits <- length(digits)
-      if (nDigits == 1) as.vector(ones[digits])
-      else if (nDigits == 2)
-        if (x <= 19) as.vector(teens[digits[1]])
-        else trim(paste(tens[digits[2]],
-                        Recall(as.numeric(digits[1]))))
-      else if (nDigits == 3) trim(paste(ones[digits[3]], "hundred and",
-                                        Recall(makeNumber(digits[2:1]))))
-      else {
-        nSuffix <- ((nDigits + 2) %/% 3) - 1
-        if (nSuffix > length(suffixes)) stop(paste(x, "is too large!"))
-        trim(paste(Recall(makeNumber(digits[
-          nDigits:(3*nSuffix + 1)])),
-          suffixes[nSuffix],"," ,
-          Recall(makeNumber(digits[(3*nSuffix):1]))))
-      }
+    digits <- rev(strsplit(as.character(x), "")[[1]])
+    nDigits <- length(digits)
+    if(nDigits == 1) as.vector(ones[digits])
+    else if(nDigits == 2)
+      if(x <= 19) as.vector(teens[digits[1]])
+      else trim(paste(tens[digits[2]],
+                      Recall(as.numeric(digits[1]))))
+    else if (nDigits == 3) trim(paste(ones[digits[3]], "hundred and",
+                                      Recall(makeNumber(digits[2:1]))))
+    else {
+      nSuffix <- ((nDigits + 2) %/% 3) - 1
+      if (nSuffix > length(suffixes)) stop(paste(x, "is too large!"))
+      trim(paste(Recall(makeNumber(digits[
+        nDigits:(3*nSuffix + 1)])),
+        suffixes[nSuffix],"," ,
+        Recall(makeNumber(digits[(3*nSuffix):1]))))
+    }
   }
   trim <- function(text){
     ## Tidy leading/trailing whitespace, space before comma
@@ -402,13 +480,72 @@ number.to.word <- function(x, th = FALSE, cap.first = FALSE){
   return(j)
 }
 
+## *****************************************************************************
+## The following three functions give the ability to assign more than one variable at once.
+## Example Call;  Note the use of set.elems()  AND  `%=%`
+## Right-hand side can be a list or vector
+## set.elems(a, b, c)  %=%  list("hello", 123, list("apples, oranges"))
+## set.elems(d, e, f) %=%  101:103
+## # Results:
+## > a
+## [1] "hello"
+## > b
+## [1] 123
+## > c
+## [[1]]
+## [1] "apples, oranges"
+## > d
+## [1] 101
+## > e
+## [1] 102
+## > f
+## [1] 103
+
+## Generic form
+"%=%" <- function(l, r, ...) UseMethod("%=%")
+
+## Binary Operator
+"%=%.lhs" <- function(l, r, ...) {
+  env <- as.environment(-1)
+  if (length(r) > length(l))
+    warning("RHS has more args than LHS. Only first", length(l), "used.")
+  if (length(l) > length(r))  {
+    warning("LHS has more args than RHS. RHS will be repeated.")
+    r <- extend.to.match(r, l)
+  }
+  for(II in 1:length(l)) {
+    do.call('<-', list(l[[II]], r[[II]]), envir = env)
+  }
+}
+
+## Used if LHS is larger than RHS
+extend.to.match <- function(src, destin) {
+  s <- length(src)
+  d <- length(destin)
+  # Assume that destin is a length when it is a single number and src is not
+  if(d==1 && s>1 && !is.null(as.numeric(destin)))
+    d <- destin
+  dif <- d - s
+  if (dif > 0) {
+    src <- rep(src, ceiling(d/s))[1:d]
+  }
+  return (src)
+}
+
+set.elems <- function(...) {
+  list.tmp <-  as.list(substitute(list(...)))[-1L]
+  class(list.tmp) <-  "lhs"
+  return(list.tmp)
+}
+## *****************************************************************************
+
 cbind.fill <- function(...){
   ## equivalent of cbind(df, xx) where df is an empty data frame.
   nm <- list(...)
-    nm <- lapply(nm, as.matrix)
-    n <- max(sapply(nm, nrow))
-    do.call(cbind, lapply(nm, function (x)
-        rbind(x, matrix(, n-nrow(x), ncol(x)))))
+  nm <- lapply(nm, as.matrix)
+  n <- max(sapply(nm, nrow))
+  do.call(cbind, lapply(nm, function (x)
+    rbind(x, matrix(, n-nrow(x), ncol(x)))))
 }
 
 strip.columns <- function(vec, names){
@@ -1469,3 +1606,48 @@ function (replist, plot = TRUE, print = FALSE, plotdir = "default",
     }
     return(invisible(returnlist))
 }
+
+curfnfinder <- function(skipframes=0, skipnames="(FUN)|(.+apply)|(replicate)",
+    retIfNone="Not in function", retStack=FALSE, extraPrefPerLevel="\t")
+{
+  # Get the current function name from within the function itself.
+  # Used to prepend the function name to all messages so that the
+  # user knows where the message came from.
+    prefix<-sapply(3 + skipframes+1:sys.nframe(), function(i){
+            currv<-sys.call(sys.parent(n=i))[[1]]
+            return(currv)
+        })
+    prefix[grep(skipnames, prefix)] <- NULL
+    prefix<-gsub("function \\(.*", "do.call", prefix)
+    if(length(prefix)==0)
+    {
+        return(retIfNone)
+    }
+    else if(retStack)
+    {
+        return(paste(rev(prefix), collapse = "|"))
+    }
+    else
+    {
+        retval<-as.character(unlist(prefix[1]))
+        if(length(prefix) > 1)
+        {
+            retval<-paste(paste(rep(extraPrefPerLevel, length(prefix) - 1), collapse=""), retval, sep="")
+        }
+        return(retval)
+    }
+}
+
+catw <- function(..., file = "", sep = " ", fill = FALSE, labels = NULL,
+    append = FALSE, prefix=0)
+{
+  # writes out some innformation on the calling function to screen
+    if(is.numeric(prefix))
+    {
+        prefix<-curfnfinder(skipframes=prefix+1) #note: the +1 is there to avoid returning catw itself
+        prefix<-paste(prefix, ": ", sep="")
+    }
+    cat(prefix, ..., format(Sys.time(), "(%Y-%m-%d %H:%M:%S)"), "\n",
+        file = file, sep = sep, fill = fill, labels = labels, append = append)
+}
+

@@ -219,44 +219,51 @@
 % \color{black} % AME will sort this out, or try other fonts.
 %% Start by sourcing your R code here. The R environment will persist throughout the latex code,
 %% so anything sourced or required here will be accessible later on in the latex knitr chunks.
-%% Note the start and end bracketing for this knitr chunk <<>>= and @.
+%% Note the start and end bracketing for knitr chunks are <<>>= and @.
 %% Sourcing all code here, then calling the plot functions later will be much faster
 %% and make for more maintanable code.
-%% <<echo=TRUE,  message=TRUE, results='show', warning=TRUE>>=
-<<off-we-go, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
+%%<<load-everything, echo=TRUE, message=TRUE, results='show', warning=TRUE>>=
+<<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
 ## Inside this block is R code so comment character is different
 ## cache=TRUE tells knitr to build all the plots into a cache directory
 ## which is defined here as knitr-cache/
 ## When the latex part is run, these plots will be inserted automatically.
-## ** IMPORTANT** If you want to remake the plots, you must delete this directory.
+## If you want to remake the plots, you must delete this directory.
 ## If you don't, the cached plots from last time will be used.
 ## opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
 ##                 fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
 ##               results='show', cache=TRUE, cache.path='knitr-cache/')
-rm(list=ls(all=TRUE))
-opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
-               fig.height=4, echo=FALSE, results=FALSE, message=FALSE, warning=FALSE,
-               results='hide', cache=TRUE, cache.path='knitr-cache/')
+opts_chunk$set(dev = 'cairo_ps',
+               fig.path = 'knitr-cache/',
+               fig.dpi = 96,
+               fig.width = 7.5,
+               fig.height = 4,
+               echo = FALSE,
+               results = FALSE,
+               message = FALSE,
+               warning = FALSE,
+               results = 'hide',
+               cache = TRUE,
+               cache.path = 'knitr-cache/')
+               ##root.dir = "r")
 
-## Load your R environment here. When you do this, you will need to
-## put the require or library statements that the functions use because the
-## saved environment does not save the libraries as well.
-require(nwfscSurvey)
-require(nwfscMapping)
-require(date)
-require(r4ss)
-require(xtable)   ## For tables which can be inserted into latex docs with knitr
-require(PBSmapping)
-require(maps)
-require(coda)
-require(gtools)
-require(dplyr)
-## Load all R code and the model outputs
-load("./r/.RData")
+setwd("r")
+## Load all R code and the package libraries.
+source("all.r")
+
+## If you want to reload all model outputs, set to TRUE
+## The load.models.into.parent.env function is located at bottom of model-setup.r.
+if(TRUE){
+  load.models.into.parent.env()
+}
+## This has to be sourced after loading the models in because it depends
+##  on the model output.
+source("custom-knitr-variables.r")
+
 ## Load the model-partest which was previously run for the base model.
-## This object takes a very long time to build so it is stored in binary
-##  on its own.
-load("./r/model-partest.RData")
+if(!exists("model.partest")){
+  load("./model-partest.RData")
+}
 @
 
 %% Title page and author references page
@@ -288,12 +295,10 @@ load("./r/model-partest.RData")
 This document reports the collaborative efforts of the official U.S. and Canadian members of the Joint Technical Committee, and others that contributed significantly.
 
 Authors of this document are (in no particular order): \\
-\hspace{4ex}Chris J. Grandin\supscr{1} \\
-\hspace{4ex}Allan C. Hicks\supscr{2} \\
-\hspace{4ex}Aaron M. Berger\supscr{3} \\
-\hspace{4ex}Andrew M. Edwards\supscr{1} \\ %Given the amount of work that Andy has done, there's no way my name should appear before his on the author list
-\hspace{4ex}Nathan Taylor\supscr{1} \\
 \hspace{4ex}Ian G. Taylor\supscr{2} \\
+\hspace{4ex}Aaron Berger\supscr{3} \\
+\hspace{4ex}Andrew M. Edwards\supscr{1} \\
+\hspace{4ex}Chris J. Grandin\supscr{1} \\
 \hspace{4ex}Sean Cox\supscr{4} \\
 \bigskip
 

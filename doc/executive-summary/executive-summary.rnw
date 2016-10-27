@@ -60,8 +60,7 @@ The biomass estimate and age composition from the acoustic survey conducted in \
 \begin{center}
 <<survey.biomass, fig.height=5, fig.width=8>>=
 ## modelnum is the model index in models list from which the survey input data are used.
-make.survey.biomass.plot(models,
-                         modelnum = base.model.ind)
+make.survey.biomass.plot(base.model)
 @
 \end{center}
 %\vspace{0mm}
@@ -396,17 +395,17 @@ make.decision.table(base.model,
                     font.size = 12,
                     space.size = 14,
                     which = "spr",
-                    placement = "tbp")                    
+                    placement = "tbp")
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
 <<forecast.depletion.comparison.plot, fig.height=5, fig.width=8>>=
-## Look at catch.levels and catch.levels.names to decide which to include here
+## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those which will be plotted against each other
 models.inds <- c(1, 2, catch.tac.ind, catch.default.policy.ind)
-models.names <- catch.levels.names[models.inds]
+models.names <- sapply(catch.levels, "[[", 2)[models.inds] ## pretty catch level name
 make.forecast.depletion.comparison.plot(base.model,
                                         models.inds,
                                         models.names,

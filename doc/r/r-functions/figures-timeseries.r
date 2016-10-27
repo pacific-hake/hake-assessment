@@ -293,7 +293,7 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
   par <- oldpar
 }
 
-make.squid.plot <- function(models,      ## A list of models to compare (typically base and retrospectives)
+make.squid.plot <- function(models,      ## A list of models to compare (typically base and its retrospectives)
                             subplot = 1, ## 1 = Recruitment devs, 2 = Rec dev strength relative to most recent estimate
                             cohorts){    ## Vector of years to plot the cohorts for
   ## Plot the retrospective recruitment deviations AKA "squid" plot to outline

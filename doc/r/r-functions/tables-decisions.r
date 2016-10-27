@@ -3,19 +3,20 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
                                 xlabel     = "default", ## Latex label to use
                                 font.size  = 9,         ## Size of the font for the table
                                 space.size = 10,        ## Size of the spaces for the table
-                                which      = "biomass",  ## Which type to build. "biomass" or "spr".
-                                placement = "H"       ## Placement of table
+                                which      = "biomass", ## Which type to build. "biomass" or "spr".
+                                placement = "H"         ## Placement of table
                                 ){
   ## Returns an xtable in the proper format for the executive summary decision tables
 
   if(which != "biomass" & which != "spr"){
     stop("make.decisions.table: Error - type '",which,"' is not implemented. Stopping...\n\n")
   }
+  forecast <- model$forecasts
   if(which == "biomass"){
-    forecast <- model$forecasts$biomass
+    num.rows <- nrow(forecast[[1]]$biomass)
     table.header <- "\\textbf{Beginning of year relative spawning biomass}"
   }else{
-    forecast <- model$forecasts$spr
+    num.rows <- nrow(forecast[[1]]$spr)
     table.header <- "\\textbf{Fishing Intensity}"
   }
 
@@ -29,7 +30,7 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
   for(i in 1:length(forecast)){
     tab.letters[next.ind] <- paste0(letters[i],":")
     next.ind <- next.ind + 1
-    for(j in 1:(nrow(forecast[[i]])-1)){
+    for(j in 1:(num.rows - 1)){
       if(letters[i] %in% rows2Label) {
         lab <- rowLabels[[which(letters[i]==rows2Label)]]
         tab.letters[next.ind] <- lab[j]
@@ -41,7 +42,12 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
   }
 
   ## Merge the list elements into a data frame
-  forecast.tab <- fmt0(do.call("rbind", forecast) * 100)
+  ## forecast.tab <- fmt0(do.call("rbind", forecast) * 100)
+  if(which == "biomass"){
+    forecast.tab <- fmt0(do.call("rbind", lapply(forecast, "[[", "biomass")) * 100)
+  }else{
+    forecast.tab <- fmt0(do.call("rbind", lapply(forecast, "[[", "spr")) * 100)
+  }
 
   ## Store years for binding later
   yrs <- rownames(forecast.tab)
@@ -54,7 +60,8 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
   quant.levels <- gsub("%","\\\\%",colnames(forecast.tab))
 
   ## Set any catch less than 1 to be 0
-  c.levels <- unlist(catch.levels)
+  ## c.levels <- unlist(catch.levels)
+  c.levels <- unlist(lapply(catch.levels, "[[", 1))
   c.levels[c.levels < 1] <- 0
   ## Bind the catch levels and years to the correct rows
   forecast.tab <- cbind(tab.letters, yrs, fmt0(c.levels), forecast.tab)
@@ -91,9 +98,10 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
   ## Add the right number of horizontal lines to make the table break in the correct places
   ## A line is not needed at the bottom explains the (length(forecast)-1) statement.
   for(i in 1:(length(forecast)-1)){
-    addtorow$pos[[i+2]] <- i * nrow(forecast[[i]])
+    addtorow$pos[[i+2]] <- i * num.rows
     addtorow$command <- c(addtorow$command, "\\hline ")
   }
+
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(forecast.tab,
@@ -123,7 +131,6 @@ make.risk.table <- function(model,                  ## model is an mcmc run and 
                             placement = "H"       ## Placement of table
                             ){
   ## Returns an xtable in the proper format for the executive summary risk tables
-
   risk <- model$risks[[index]]
   ## Fix tiny catch of less than 0.49 to zero, only for first (catch) column
   risk[risk[,1] < 0.49, 1] <- 0
