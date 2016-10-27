@@ -67,7 +67,8 @@ make.forecast.depletion.comparison.plot <- function(model,        ## model is th
                                                                   ## This will be pasted to Bratio_ for densitynames
                                                                   ## argument to SSplotComparisons
                                                     end.yr,       ## Year to end the plot on
-                                                    legend.loc = "topleft"
+                                                    legend.loc = "topleft",
+                                                    ...
                                                     ){
   ## Plots several forecasts against each other. model is typically the
   ## base model and the forecasts to be plotted are referenced by model.inds
@@ -106,7 +107,8 @@ make.forecast.depletion.comparison.plot <- function(model,        ## model is th
                                ""),
                     btarg = -0.4,
                     staggerpoints = 1990,
-                    spacepoints=200)
+                    spacepoints=200,
+                    ...)
   abline(h=c(0.1,0.4),lty=2,col="grey")
   axis(2,at=c(0.1,0.4),las=1,cex.axis=0.8)
   axis(1,at=seq(start.yr,end.yr,2))
