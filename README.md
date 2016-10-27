@@ -32,25 +32,26 @@ _____________________________________________________________
 
 * Place all model directories in the **models** directory. The base model must have an **mcmc** subdirectory;
   its main directory holds the MPD run and the mcmc subdirectory holds the mcmc run for the same model.
-  
+
 * Navigate to the doc/r directory and setup the model by editing the three files **model-setup.r**,
   **forecast-catch-levels.r**, and **retrospective-setup.r**.
+
+* Edit the **all.r** file. Find the call to **create.rdata.file** and set ovwrt.rdata, run.forecasts,
+  load.forecasts, run.retros, load.retros, and run.partest to TRUE. Each time a model changes, this
+  step needs to be done again. It builds .RData files for each model specified in the **model-setup.r**
+  file.
 
 * start R in the doc/r directory, and issue the command **source("all.r")**. Once this is finished,
   there will be a .RData file in each of the model directories you have set up in the model-setup.r file.
 
-* Open doc/hake-assessment.rnw and find the knitr code chunk called **load-everything**.
-  It is on or about line number 225. This is where the R objects and functions are loaded
-  into knitr for compilation. Make sure that the names set for base.model, last.yr.base.model,
-  bridge.models, and sens.models are set up the same way as in the all.r file (the last assignment in the file).
+* Edit the **all.r** file. Find the call to **create.rdata.file** and set ovwrt.rdata, run.forecasts,
+  load.forecasts, run.retros, load.retros, and run.partest to FALSE.
 
-* Navigate to the doc subdirectory and run the buildtex.bat file.
+* Navigate to the doc subdirectory and run the **buildtex.bat** file.
 
-* To clean up the build, run the cleantex.bat file.
-
-* To remove the cached figures, delete the **knitr-cache** directory and all its contents.
-  If you don't do this, tables and figures built previously will be used. There is also a script
-  called **freshtex.bat** you can use which will clean everything plus remove the knitr cache.
+* To clean up the build, including removal of the cached figures, run the **freshtex.bat** batch file,
+  or manually delete the **knitr-cache** directory. If you don't do this, tables and figures built
+  previously will be used.
 
 * If using buildtex.bat:
    * To see the output from the knitr part of the process, look at the file **knitrOutput.log**.
@@ -68,8 +69,6 @@ _____________________________________________________________
   the model in an mcmc configuration. These will be loaded during the load phase and attached
   as the object **mcmc** to it's parent model object. If there is no **mcmc** directory, or it failed to load,
   the **mcmc** list item will be set to **NULL**.
-
-- When the document is built, a list of models is built by loading each .Rdata file and adding it to the list.
 
 The following depicts the object structure of each model's .RData file:
 
@@ -93,7 +92,6 @@ The following depicts the object structure of each model's .RData file:
         model$risks[[2]] - Holds the risk values for the second year of forecasts
         ...
         model$risks[[N]] - Holds the risk values for the last year of forecasts
-      model$metrics$outputs       - Last forecast year metrics, is a list of length of the number of metrics (catch levels)
       model$path      - The path where this model is located
       model$ctl.file  - control file name for this model
       model$dat.file  - data file name for this model
@@ -172,7 +170,6 @@ There are additional elements for model.partest, which is created by running **r
 
 - download from Hake JTC Google Drive the model runs, and put in **hake-assessment\models\** (then 'unzip to here', then remove the .zip file so that **models\** just has the required subdirectories).
 - **source("all.r")** to reload models and data files and for any changes to R code.
-- **save.image()** to create the **.RData** file, or close R (and **save** workspace).
 - delete **knitr-cache** directory if any tables or figures need to be updated
 - **knit("hake-assessment.rnw")** [or use Chris's batch file - at first I just want to see the warnings]
 - **latex hake-assessment.tex** and **dvips** and **bibtex** if necessary

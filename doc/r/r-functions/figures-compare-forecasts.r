@@ -77,10 +77,10 @@ make.forecast.depletion.comparison.plot <- function(model,        ## model is th
   oldpar <- par()
   par(mar=c(4.5,4,1,1))
   num.models <- length(models.inds)
-  fore.list <- model$forecasts$outputs
+  fore.list <- lapply(model$forecasts[models.inds], "[[", "outputs")
   model.list <- rep(list(model), num.models)
   compare.summary <- SSsummarize(model.list)
-  compare.summary$mcmc <- fore.list[models.inds]
+  compare.summary$mcmc <- fore.list
 
   SSplotComparisons(compare.summary,
                     legendlabels = models.names,

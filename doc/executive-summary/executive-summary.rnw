@@ -392,7 +392,7 @@ make.decision.table(base.model,
                     font.size = 12,
                     space.size = 14,
                     which = "spr",
-                    placement = "tbp")                    
+                    placement = "tbp")
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -402,7 +402,7 @@ make.decision.table(base.model,
 ## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those which will be plotted against each other
 models.inds <- c(1, 2, catch.tac.ind, catch.default.policy.ind)
-models.names <- catch.levels[models.inds][[2]] ## [[2]] correspods to the pretty text catch name
+models.names <- sapply(catch.levels, "[[", 2)[models.inds] ## pretty catch level name
 make.forecast.depletion.comparison.plot(base.model,
                                         models.inds,
                                         models.names,

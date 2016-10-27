@@ -413,8 +413,10 @@ calc.risk <- function(forecast.outputs,    ## A list of the output of the SS_get
   for(i in 1:(length(forecast.yrs) - 1)){
     yr <- forecast.yrs[i]
     risk.list[[i]] <- data.frame()
-    x <- forecast.outputs[[i]]$outputs
-    risk.list[[i]] <- rbind(risk.list[[i]], metric(x, yr))
+    for(case in 1:length(forecast.outputs)){
+      x <- forecast.outputs[[case]]$outputs
+      risk.list[[i]] <- rbind(risk.list[[i]], metric(x, yr))
+    }
   }
   return(risk.list)
 }
