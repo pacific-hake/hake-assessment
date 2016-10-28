@@ -61,7 +61,7 @@
 \insertframenumber/\inserttotalframenumber
 \end{beamercolorbox}%
 }
-\setbeamercolor{footline}{fg=pageCol}
+%% \setbeamercolor{footline}{fg=pageCol}
 
 \newcounter{saveenumi}
 
@@ -76,37 +76,31 @@
 %% opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
 %%                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
 %%                results='show', cache=TRUE, cache.path='knitr-cache/')
-<<off-we-go, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
-opts_chunk$set(dev = 'cairo_ps', fig.path = 'knitr-cache/', fig.dpi = 300, fig.width = 6,
-               fig.height = 4, out.width = '6in', echo = FALSE,  # out.height = '3in',
-               results = FALSE, message = FALSE, warning = FALSE,
-               results = 'hide', cache = TRUE, cache.path = 'knitr-cache/', trim='{0 0 0 0}',clip)
-
-## Load your R environment here. When you do this, you will need to
-## put the require or library statements that the functions use because the
-## saved environment does not save the libraries as well.
-require(nwfscSurvey)
-require(nwfscMapping)
-require(date)
-require(r4ss)
-require(xtable)   ## For tables which can be inserted into latex docs with knitr
-require(PBSmapping)
-require(maps)
-require(coda)
-require(gtools)
-require(dplyr)
-## Load all R code and the model outputs
-load.Rdata <- readline(prompt = "Load .Rdata? [y/n] ")
-## load.Rdata <- "y"
-if(load.Rdata == "y") {
-  rm(list=ls(all=TRUE))
-  load("../../../doc/r/.RData")
-  ## Load the model-partest which was previously run for the base model.
-  ## This object takes a very long time to build so it is stored in binary
-  ##  on its own.
-  load("../../../doc/r/model-partest.RData")
+<<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
+opts_chunk$set(dev = 'cairo_ps',
+               fig.path = 'knitr-cache/',
+               fig.dpi = 96,
+               fig.width = 7.5,
+               fig.height = 4,
+               echo = FALSE,
+               results = FALSE,
+               message = FALSE,
+               warning = FALSE,
+               results = 'hide',
+               cache = TRUE,
+               cache.path = 'knitr-cache/')
+setwd("../../../doc/r")
+## Load all R code and the package libraries.
+source("all.r")
+load.models.into.parent.env()
+## This has to be sourced after loading the models in because it depends
+##  on the model output.
+source("custom-knitr-variables.r")
+## source("functionsAssessment.R")
+## Load the model-partest which was previously run for the base model.
+if(!exists("model.partest")){
+  load("./model-partest.RData")
 }
-source("functionsAssessment.R")
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -209,11 +203,11 @@ source("functionsAssessment.R")
   \vspace{-5pt}
   <<bridge.biomass, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
     oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-    make.comparison.plot(models[bridge.model.inds.1],
-                     subplots = 2,
-                     model.names = bridge.model.names.1,
-                     densitynames = NULL,
-                     end.yr = end.yr)
+    make.comparison.plot(bridge.models.1,
+                         subplots = 2,
+                         model.names = bridge.model.names.1,
+                         densitynames = NULL,
+                         end.yr = end.yr)
    par(oldpar)
   @
   \ec
@@ -227,11 +221,11 @@ source("functionsAssessment.R")
   \vspace{-5pt}
   <<bridge.biomass2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
     oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-    make.comparison.plot(models[bridge.model.inds.2],
-                     subplots = 2,
-                     model.names = bridge.model.names.2,
-                     densitynames = NULL,
-                     end.yr = end.yr)
+    make.comparison.plot(bridge.models.2,
+                         subplots = 2,
+                         model.names = bridge.model.names.2,
+                         densitynames = NULL,
+                         end.yr = end.yr)
    par(oldpar)
   @
   \ec
@@ -246,32 +240,32 @@ source("functionsAssessment.R")
   \vspace{-5pt}
   <<bridge.other, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
     oldpar <- par(mfrow=c(1,2), mar=c(5,4,1,1),no.readonly = TRUE)
-    # make.comparison.plot(models[bridge.model.inds.2],
-    #                  subplots = 4,
-    #                  model.names = bridge.model.names.2,
-    #                  densitynames = NULL,
-    #                  legend = FALSE,
-    #                  end.yr = end.yr)
-    make.comparison.plot(models[bridge.model.inds.2],
-                     subplots = 8,
-                     model.names = bridge.model.names.2,
-                     legendloc = "topleft",
-                     densitynames = NULL,
-                     end.yr = end.yr)
-    make.comparison.plot(models[bridge.model.inds.2],
-                     subplots = 9,
-                     model.names = bridge.model.names.2,
-                     densitynames = NULL,
-                     legend = FALSE,
-                     end.yr = end.yr)
-    # make.comparison.plot(models[bridge.model.inds.2],
-    #                  subplots = 11,
-    #                  model.names = bridge.model.names.2,
-    #                  densitynames = NULL,
-    #                  indexPlotEach = TRUE,
-    #                  indexUncertainty = TRUE,
-    #                  legend = FALSE,
-    #                  end.yr = end.yr)
+    ## make.comparison.plot(bridge.models.2,
+    ##                      subplots = 4,
+    ##                      model.names = bridge.model.names.2,
+    ##                      densitynames = NULL,
+    ##                      legend = FALSE,
+    ##                      end.yr = end.yr)
+    make.comparison.plot(bridge.models.2,
+                         subplots = 8,
+                         model.names = bridge.model.names.2,
+                         legendloc = "topleft",
+                         densitynames = NULL,
+                         end.yr = end.yr)
+    make.comparison.plot(bridge.models.2,
+                         subplots = 9,
+                         model.names = bridge.model.names.2,
+                         densitynames = NULL,
+                         legend = FALSE,
+                         end.yr = end.yr)
+    ## make.comparison.plot(bridge.models.2,
+    ##                      subplots = 11,
+    ##                      model.names = bridge.model.names.2,
+    ##                      densitynames = NULL,
+    ##                      indexPlotEach = TRUE,
+    ##                      indexUncertainty = TRUE,
+    ##                      legend = FALSE,
+    ##                      end.yr = end.yr)
    par(oldpar)
   @
   \ec
@@ -286,13 +280,13 @@ source("functionsAssessment.R")
   \vspace{-5pt}
   <<bridge.tune, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
     oldpar <- par(mfrow=c(1,2), mar=c(5,4,1,1),no.readonly = TRUE)
-    make.comparison.plot(models[bridge.model.inds.3],
+    make.comparison.plot(bridge.models.3,
                      subplots = 2,
                      model.names = bridge.model.names.3,
                      legend = FALSE,
                      densitynames = NULL,
                      end.yr = end.yr)
-    make.comparison.plot(models[bridge.model.inds.3],
+    make.comparison.plot(bridge.models.3,
                      subplots = 9,
                      model.names = bridge.model.names.3,
                      densitynames = NULL,
@@ -478,7 +472,10 @@ source("functionsAssessment.R")
       origMcmcPath <- base.model$mcmcpath
       base.model$mcmcpath <- file.path("..",origMcmcPath)
       make.mcmc.priors.vs.posts.plot(base.model,
-                                   c("SR_BH_steep", "Q_extraSD_2_Acoustic_Survey", "NatM_p_1_Fem_GP_1", "SR_LN"))
+                                     c("SR_BH_steep",
+                                       "Q_extraSD_2_Acoustic_Survey",
+                                       "NatM_p_1_Fem_GP_1",
+                                       "SR_LN"))
       base.model$path <- origPath
       base.model$mcmcpath <- origMcmcPath
     @
@@ -494,14 +491,14 @@ source("functionsAssessment.R")
   \bc
   <<main.parameter.estimates, results='asis', echo=FALSE>>=
     make.short.parameter.estimates.table(base.model,
-                                     models[[last.year.base.model.ind]],
-                                     posterior.regex = key.posteriors,
-                                     end.yr = end.yr,
-                                     digits = 3,
-                                     xcaption <- NULL,
-                                     xlabel <- "tab:main-parameter-estimates",
-                                     font.size = 7,
-                                     space.size = 8)
+                                         last.yr.base.model,
+                                         posterior.regex = key.posteriors,
+                                         end.yr = end.yr,
+                                         digits = 3,
+                                         xcaption <- NULL,
+                                         xlabel <- "tab:main-parameter-estimates",
+                                         font.size = 7,
+                                         space.size = 8)
     @
   \ec
 }
@@ -511,16 +508,16 @@ source("functionsAssessment.R")
  %\vspace{0.5in}
   <<histQ, , fig.height=3, fig.width=5.5, out.width='0.69\\columnwidth'>>=
      oldpar <- par(mar=c(5,4,1,1), no.readonly = TRUE)
-     x <- read.table("Data/posteriorsExtraOutput.sso",header=T)
-     hist(x$Q_2,main="",xlab="Catchbility")
-     abline(v=median(x$Q_2),lwd=3,col=rgb(0,0,0,0.6))
+     x <- read.table("Data/posteriorsExtraOutput.sso", header = TRUE)
+     hist(x$Q_2, main = "", xlab = "Catchbility")
+     abline(v = median(x$Q_2), lwd = 3, col = rgb(0,0,0,0.6))
      par(oldpar)
   @
 %  $q=$\Sexpr{round(median(x$Q_2),2)}
   \begin{table}
     \begin{tabular}{ccc} \hline
       MLE (2016) & Median (2016)                  & Median (2015) \\ \hline
-       1.14      & \Sexpr{round(median(x$Q_2),2)} & 0.915 \\ \hline
+       1.14      & \Sexpr{round(median(x$Q_2), 2)} & 0.915 \\ \hline
     \end{tabular}
   \end{table}
  \ec
@@ -578,7 +575,7 @@ source("functionsAssessment.R")
   <<main.recruitment.devs, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
     make.recruitment.dev.plot(base.model,
-                         end.yr = end.yr)
+                              end.yr = end.yr)
     par(oldpar)
   @
   \ec
@@ -591,12 +588,12 @@ source("functionsAssessment.R")
   \bc
   <<recruitment, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.recruitment.plot(base.model,
-                      equil.yr = unfished.eq.yr,
-                      start.yr = start.yr,
-                      end.yr = end.yr,
-                      color = "blue",
-                      add.mean = TRUE,
-                      add.r0 = TRUE)
+                          equil.yr = unfished.eq.yr,
+                          start.yr = start.yr,
+                          end.yr = end.yr,
+                          color = "blue",
+                          add.mean = TRUE,
+                          add.r0 = TRUE)
   @
   \ec
 }
@@ -608,10 +605,10 @@ source("functionsAssessment.R")
   \bc
   <<female.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.biomass.plot(base.model,
-                  equil.yr = unfished.eq.yr,
-                  start.yr = start.yr,
-                  end.yr = end.yr,
-                  color = "blue")
+                      equil.yr = unfished.eq.yr,
+                      start.yr = start.yr,
+                      end.yr = end.yr,
+                      color = "blue")
   @
   \ec
 }
@@ -623,9 +620,9 @@ source("functionsAssessment.R")
   \bc
   <<relative.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.depletion.plot(base.model,
-                  start.yr = start.yr,
-                  end.yr = end.yr,
-                  color = "blue")
+                        start.yr = start.yr,
+                        end.yr = end.yr,
+                        color = "blue")
   @
   \ec
 }
@@ -637,15 +634,15 @@ source("functionsAssessment.R")
   \bc
   <<fishing.intensity, fig.height=4, fig.width=8, out.width='0.45\\columnwidth'>>=
     make.fishing.intensity.plot(base.model,
-                  start.yr = start.yr,
-                  end.yr = end.yr-1,
-                  color = "blue")
-  @
-  <<exploitation, fig.height=4, fig.width=8, out.width='0.45\\columnwidth'>>=
-    make.exploitation.fraction.plot(base.model,
                                 start.yr = start.yr,
                                 end.yr = end.yr-1,
                                 color = "blue")
+  @
+  <<exploitation, fig.height=4, fig.width=8, out.width='0.45\\columnwidth'>>=
+    make.exploitation.fraction.plot(base.model,
+                                    start.yr = start.yr,
+                                    end.yr = end.yr-1,
+                                    color = "blue")
   @
   \ec
 }
