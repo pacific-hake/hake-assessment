@@ -21,10 +21,12 @@ last.year.landings <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% 
 last.year.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TAC)
 last.year.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$ATTAIN), 1)
 
+## US landings, TAC, and attainments
+last.year.us.landings <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$Ustotal))
 last.year.us.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
 last.year.us.not.attained <- fmt0(as.numeric(100 - landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
 last.year.us.not.attained.tonnes <- filter(landings.vs.tac, Year == last.data.yr)$TACUSA - filter(landings.vs.tac, Year == last.data.yr)$Ustotal
-last.year.us.tac <- landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACUS
+last.year.us.tac <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACUS))
 ## Not doing fmt0 here since want to do further calculations
 last.year.us.tribal <- filter(further.tac, Year == last.data.yr)$us.tribal.quota
 last.year.us.research <- filter(further.tac, Year == last.data.yr)$us.research.quota
@@ -36,10 +38,26 @@ last.year.us.shore.quota.reallocated <- filter(further.tac, Year == last.data.yr
 last.year.us.cp.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.cp.reallocated
 last.year.us.ms.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.ms.reallocated
 
+## Last year US catches by fleet
+last.year.us.research.catch <- filter(catches, Year == last.data.yr)$USresearch
+last.year.us.cp.catch <- filter(catches, Year == last.data.yr)$atSea_US_CP
+last.year.us.ms.catch <- filter(catches, Year == last.data.yr)$atSea_US_MS
+last.year.us.shore.catch <- filter(catches, Year == last.data.yr)$US_shore
+## Last year US percent of TAC caught by fleet
+last.year.us.research.catch.percent <- fmt0(last.year.us.research.catch / last.year.us.research * 100, 1)
+last.year.us.cp.catch.percent <- fmt0(last.year.us.cp.catch / last.year.us.cp.quota.reallocated * 100, 1)
+last.year.us.ms.catch.percent <- fmt0(last.year.us.ms.catch / last.year.us.ms.quota.reallocated * 100, 1)
+last.year.us.shore.catch.percent <- fmt0(last.year.us.shore.catch / last.year.us.shore.quota.reallocated * 100, 1)
+last.year.us.tribal.catch.percent <- fmt0(last.year.us.tribal.max.landed / last.year.us.tribal.quota.reallocated * 100, 1)
+
+## Last year Canadian catch and tac
 last.year.can.carryover <- fmt0(filter(further.tac, Year == last.data.yr)$can.carried.over)
 last.year.can.attained <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANATTAIN), 1)   # the percentage
 last.year.can.landings <- fmt0(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal))
 last.year.can.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACCAN)
+last.year.can.tac.jv <- fmt0(filter(further.tac, Year == last.data.yr)$can.jv.tac)
+last.year.can.shoreside.tac <- fmt0(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACCAN - filter(further.tac, Year == last.data.yr)$can.jv.tac)
+
 latest.year.can.jv <- max(filter(catches, CAN_JV > 0)$Year)  # latest year of JV in Canada
 last.year.can.shore <- fmt0(filter(catches, Year == last.data.yr)$CAN_Shoreside)
 last.year.can.freezer <- fmt0(filter(catches, Year == last.data.yr)$CAN_FreezeTrawl)
@@ -66,8 +84,6 @@ survey.smallest.extrap.percent <- fmt0(min(survey.extrap.percent), 2)
 survey.year.of.smallest.extrap <- names(survey.extrap.percent[survey.extrap.percent == min(survey.extrap.percent)])
 
 survey.average.extrap.percent <- fmt0(mean(survey.extrap.percent), 2)
-
-
 
 ## New depletion and spawning biomass estimates
 curr.depl.lower <- fmt0(base.model$mcmccalcs$dlower[names(base.model$mcmccalcs$dlower) %in% end.yr] * 100, 1)
@@ -268,6 +284,9 @@ cohortCatch <- function(cohort,catage,ages=0:20) {
 }
 cohort.catch.1999 <- sum(cohortCatch(1999,base.model$catage))
 cohort.catch.2010 <- sum(cohortCatch(2010,base.model$catage))
+
+## Load weight-at-age file now that models are loaded
+wt.at.age <- load.wt.at.age(base.model, weight.at.age.file.name)
 
 ## Retrospective setup for the document
 retro.model.names <- c(base.model.name, sapply(plot.retro.yrs, function(x) paste0("-", x, if(x == 1) " year" else " years")))
