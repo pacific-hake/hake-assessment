@@ -506,9 +506,9 @@ if(!exists("model.partest")){
 \frame{\frametitle{Catchability (\emph{q})}
  \bc
   <<histQ, fig.height=2.25, fig.width=5.5>>=
-     oldpar <- par(mar=c(5, 4, 1, 1), no.readonly = TRUE)
+     oldpar <- par(mar=c(3, 4, 0, 0), no.readonly = TRUE)
      x <- read.table("Data/posteriorsExtraOutput.sso", header = TRUE)
-     hist(x$Q_2, main = "")
+     hist(x$Q_2, main = "", xlab = "")
      abline(v = median(x$Q_2), lwd = 3, col = rgb(0,0,0,0.6))
      par(oldpar)
   @
