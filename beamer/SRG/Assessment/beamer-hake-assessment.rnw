@@ -503,21 +503,19 @@ if(!exists("model.partest")){
   \ec
 }
 
-\frame{\frametitle{Catchability ($q$)}
+\frame{\frametitle{Catchability (\emph{q})}
  \bc
- %\vspace{0.5in}
-  <<histQ, , fig.height=3, fig.width=5.5, out.width='0.69\\columnwidth'>>=
-     oldpar <- par(mar=c(5,4,1,1), no.readonly = TRUE)
+  <<histQ, fig.height=2.25, fig.width=5.5>>=
+     oldpar <- par(mar=c(5, 4, 1, 1), no.readonly = TRUE)
      x <- read.table("Data/posteriorsExtraOutput.sso", header = TRUE)
-     hist(x$Q_2, main = "", xlab = "Catchbility")
+     hist(x$Q_2, main = "")
      abline(v = median(x$Q_2), lwd = 3, col = rgb(0,0,0,0.6))
      par(oldpar)
   @
-%  $q=$\Sexpr{round(median(x$Q_2),2)}
   \begin{table}
     \begin{tabular}{ccc} \hline
-      MLE (2016) & Median (2016)                  & Median (2015) \\ \hline
-       1.14      & \Sexpr{round(median(x$Q_2), 2)} & 0.915 \\ \hline
+      MLE (2016) & Median (2016)                   & Median (2015) \\ \hline
+       1.14      & \Sexpr{round(median(x$Q_2), 2)} & 0.915         \\ \hline
     \end{tabular}
   \end{table}
  \ec

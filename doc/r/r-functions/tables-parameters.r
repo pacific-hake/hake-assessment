@@ -513,23 +513,22 @@ make.short.parameter.estimates.table <- function(model,                ## model 
 
   ## Set the first column to be the names
   tab <- cbind(c("",  ## Necessary because of the rbind(c("","",""), tab) call above
-                 "Natural Mortality ($M$)",
-                 "Unfished recruitment ($R_0$, millions)",
-                 "Steepness ($h$)",
+                 "Natural Mortality (\\emph{M})",
+                 "Unfished recruitment (\\emph{R}\\subscr{0}, millions)",
+                 "Steepness (\\emph{h})",
                  "Additional acoustic survey SD",
-                 "Catchability (q)",
+                 "Catchability (\\emph{q})",
                  "2008 recruitment  (millions)",
                  "2010 recruitment  (millions)",
                  "2014 recruitment  (millions)",
-                 "Unfished female spawning biomass ($B_0$, thousand~t)",
+                 "Unfished female spawning biomass (\\emph{B}\\subscr{0}, thousand~t)",
                  "2009 Relative Spawning Biomass",
                  paste0(end.yr, " Relative Spawning Biomass"),
-                 paste0(end.yr - 1, " Fishing intensity: (1-SPR)/(1-SPR\\subscr{40\\%})"),
-                 "Female spawning biomass at $\\Fforty$ ($\\Bforty$, thousand t)",
-                 # Female Spawning Biomass (\\emph{$B_{F_{40_{\\%}}}$}; thousand~t)",
-                 "SPR at $\\Fforty$", # "SPR\\subscr{MSY-proxy}",
+                 paste0(end.yr - 1, " Fishing intensity: (1-SPR)/(1-SPR)\\subscr{40\\%})"),
+                 "Female spawning biomass at \\emph{F}\\subscr{SPR=40\\%} (\\emph{B}\\subscr{SPR=40\\%}, thousand t)",
+                 "SPR at \\emph{F}\\subscr{SPR=40\\%}", # "SPR\\subscr{MSY-proxy}",
                  "Exploitation Fraction corresponding to SPR",
-                 "Yield at $\\Bforty$ (thousand~t)"),
+                 "Yield at \\emph{B}\\subscr{SPR=40\\%} (thousand~t)"),
                tab)
   colnames(tab) <- c("",
                      "\\textbf{MLE}",
@@ -543,7 +542,7 @@ make.short.parameter.estimates.table <- function(model,                ## model 
   addtorow$pos[[3]] <- 14
   addtorow$command <- c("\\textbf{\\underline{Parameters}} \\\\",
                         "\\\\ \\textbf{\\underline{Derived Quantities}} \\\\",
-                        "\\\\ \\textbf{\\underline{Reference Points (equilibrium) based on $\\Fforty$}} \\\\")
+                        "\\\\ \\textbf{\\underline{Reference Points (equilibrium) based on \\emph{F}\\subscr{SPR=40\\%}}} \\\\")
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(tab, caption=xcaption, label=xlabel, align=get.align(ncol(tab), just="c")),
