@@ -14,6 +14,8 @@ func.dir <- "r-functions"
 source(file.path(func.dir, "utilities.r"))
 
 install.packages.if.needed("devtools", "devtools", github=FALSE)
+install.packages.if.needed("caTools", "caTools", github=FALSE)
+install.packages.if.needed("stringi", "stringi", github=FALSE)
 install.packages.if.needed("nwfscSurvey", "nwfsc-assess/nwfscSurvey", github=TRUE)
 install.packages.if.needed("nwfscMapping", "nwfsc-assess/nwfscMapping", github=TRUE)
 install.packages.if.needed("date", "date", github=FALSE)
@@ -26,7 +28,8 @@ install.packages.if.needed("coda", "coda", github=FALSE)
 install.packages.if.needed("dplyr", "dplyr", github = FALSE)
 install.packages.if.needed("maptools", "maptools", github = FALSE)
 install.packages.if.needed("gtools", "gtools", github = FALSE)
-install.packages.if.needed("lubridate", "lubridate", github = FALSE)
+install.packages.if.needed("knitr", "knitr", github = FALSE)
+
 
 require(nwfscSurvey)
 require(nwfscMapping)
@@ -78,17 +81,18 @@ source("data-tables.r")                 ## Set up variables for data tables (fro
 ##  file will have its own RData file holding the model object as defined in the Readme.md file.
 
 ## Base model:
+reload <- FALSE
 create.rdata.file(model.name = base.model.dir.name,
-                  ovwrt.rdata = FALSE,
-                  run.forecasts = FALSE,
+                  ovwrt.rdata = reload,
+                  run.forecasts = reload,
                   fore.yrs = forecast.yrs,
                   forecast.probs = forecast.probs,
                   forecast.catch.levels = catch.levels,
-                  load.forecasts = FALSE,
-                  run.retros = FALSE,
+                  load.forecasts = reload,
+                  run.retros = reload,
                   my.retro.yrs = retro.yrs,
-                  load.retros = FALSE,
-                  run.partest = FALSE,
+                  load.retros = reload,
+                  run.partest = reload,
                   key.posteriors = key.posteriors,
                   verbose = verbose)
 

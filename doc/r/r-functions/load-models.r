@@ -311,7 +311,7 @@ run.forecasts <- function(model,
 
       ## Insert fixed catches into forecast file (depending on i)
       forecast.file <- file.path(new.forecast.dir, "forecast.ss")
-      fore <- SS_readforecast(forecast.file, Nfleets = 1, Nareas = 1, verbose = FALSE)
+      fore <- SS_readforecast(forecast.file, Nfleets = 1, Nareas = 1, nseas = 1, verbose = FALSE)
       fore$Ncatch <- length(forecast.yrs[1:i])
       ## fore$ForeCatch <- data.frame(Year = forecast.yrs[1:i], Seas = 1, Fleet = 1, Catch_or_F = catch.levels[[level.ind]][1:i])
       fore$ForeCatch <- data.frame(Year = forecast.yrs[1:i], Seas = 1, Fleet = 1, Catch_or_F = catch.levels[,level.ind][1:i])
