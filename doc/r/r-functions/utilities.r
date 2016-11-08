@@ -1,3 +1,26 @@
+build.doc <- function(knit.only = FALSE, ## Only knit the document, don't LaTeX it
+                      make.pdf  = TRUE, ## Make the PDF from the Postscript
+                      doc.name  = "hake-assessment"
+                      ){
+  ## Use this function to build to doc entirely from within R
+  ## Make sure you have created the .RData files by sourcing all.r
+  ##  with the create.rdata.file variables set to TRUE.
+  ## Once you have done that and run this function once within an R session,
+  ##  you can go into the first knitr code chunk in hake-assessment.rnw and
+  ##  set the call to load.models.into.parent.env() to FALSE,
+  ##  which will save time for doing the build.
+  knit(paste0(doc.name,".rnw"))
+  if(!knit.only){
+    system(paste0("latex -synctex=1 ", doc.name, ".tex"), invisible = FALSE, show.output.on.console = FALSE) ## Press Enter if the command window pauses
+    system(paste0("bibtex ", doc.name), invisible = FALSE, show.output.on.console = TRUE)
+    system(paste0("latex ", doc.name, ".tex"), invisible = FALSE, show.output.on.console = FALSE) ## Press Enter if the command window pauses
+    system(paste0("latex ", doc.name, ".tex"), invisible = FALSE, show.output.on.console = FALSE) ## Press Enter if the command window pauses
+    system(paste0("dvips ", doc.name,".dvi"), invisible = FALSE, show.output.on.console = TRUE)
+    if(make.pdf){
+      shell(paste0("ps2pdf ", doc.name, ".ps")) ## Not sure why I have to use shell instead of system
+    }
+  }
+}
 
 get.shade <- function(color, opacity){
   # If color is a single R color string or single number,

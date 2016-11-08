@@ -188,12 +188,12 @@ make.survey.biomass.extrap.plot <- function(dat){  ## data.frame of the extrapol
 }
 
 make.kriging.parameters.table <- function(krig.pars = kriging.pars,
-                                        xcaption = "default", ## Caption to use
-                                        xlabel   = "default", ## Latex label to use
-                                        font.size = 9,        ## Size of the font for the table
-                                        space.size = 10,       ## Size of the spaces for the table
-                                        placement = "H"       ## Placement of table
-                                        ){
+                                          xcaption = "default", ## Caption to use
+                                          xlabel   = "default", ## Latex label to use
+                                          font.size = 9,        ## Size of the font for the table
+                                          space.size = 10,       ## Size of the spaces for the table
+                                          placement = "H"       ## Placement of table
+                                          ){
   ## Returns an xtable in the proper format for the kriging parameters
 
   krig.pars[1:10,"SearchRadius"] <- fmt0(as.numeric(krig.pars[1:10,"SearchRadius"]), 2)

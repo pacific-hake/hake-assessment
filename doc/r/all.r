@@ -30,7 +30,6 @@ install.packages.if.needed("maptools", "maptools", github = FALSE)
 install.packages.if.needed("gtools", "gtools", github = FALSE)
 install.packages.if.needed("knitr", "knitr", github = FALSE)
 
-
 require(nwfscSurvey)
 require(nwfscMapping)
 require(date)
@@ -44,6 +43,7 @@ require(coda)
 require(gtools)
 require(maptools)
 require(lubridate)
+require(knitr)
 
 source(file.path(func.dir, "catches.r"))      ## Code for loading the catch/TAC data, making catch figures, and making tables for catch/TAC.
 source(file.path(func.dir, "load-models.r"))  ## Code to load the models from the model directories.

@@ -245,7 +245,6 @@ opts_chunk$set(dev = 'cairo_ps',
                results = 'hide',
                cache = TRUE,
                cache.path = 'knitr-cache/')
-               ##root.dir = "r")
 
 setwd("r")
 ## Load all R code and the package libraries.
