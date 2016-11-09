@@ -49,8 +49,6 @@ _____________________________________________________________
   there will be a .RData file in each of the model directories you have set up in the model-setup.r file,
   each with the same name as the directory that it is in.
 
-* Edit the **all.r** file. Find the call to **create.rdata.file** and set reload back to **FALSE**.
-
 * **Method 1 for building the document** (Without an R interpreter):
   This method is simpler to run, and all logs are recorded into logfiles which can be
   viewed and searched when errors occur.
