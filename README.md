@@ -1,131 +1,158 @@
 ____
 # hake-assessment
 
+**Updated November 9, 2016**
+
 A framework which uses latex and knitr code to build the US/Canadian Pacific hake assessment.
 
 _____________________________________________________________
 
 
 ## Prerequisites
-* MikTex for Windows - the first time you try to run, many packages will be installed automatically.
+* MikTex 2.9 for Windows - the first time you try to run, many packages will be installed automatically.
   This takes some time so make sure you have a fast connection.
-* R (version 3.22 "Fire Safety" or later)
+* R (version 3.3.2 "Sincere Pumpkin Patch")
 * R Packages (will be installed automatically if they are not present):
+    * caTools
     * coda
     * date
     * devtools
     * dplyr
     * gtools
     * knitr
+    * lubridate
     * maps
     * maptools
     * nwfscSurvey
     * nwfscMapping
     * PBSmapping
+    * PBSmodelling
     * r4ss
+    * stringi
     * xtable
 
-* Rscript.exe must be on your PATH if you want to use the **buildtex.bat** script.
+* Rscript.exe must be on your PATH if you want to use
+  **Method 1 for building the document** (explained below).
 
 ---
-## How to run the code and create hake-assessment.pdf
+## How to create hake-assessment.pdf
 
 * Place all model directories in the **models** directory. The base model must have an **mcmc** subdirectory;
-  its main directory holds the MPD run and the mcmc subdirectory holds the mcmc run for the same model.
+  its main directory holds the MPD run and the mcmc subdirectory holds the mcmc run for the same model. The
+  model directory can contain models which aren't used in the assessment, as the ones used are set in the
+  **model-setup.r** file.
 
 * Navigate to the doc/r directory and setup the model by editing the three files **model-setup.r**,
   **forecast-catch-levels.r**, and **retrospective-setup.r**.
 
-* Edit the **all.r** file. Find the call to **create.rdata.file** and set ovwrt.rdata, run.forecasts,
-  load.forecasts, run.retros, load.retros, and run.partest to TRUE. Each time a model changes, this
-  step needs to be done again. It builds .RData files for each model specified in the **model-setup.r**
-  file.
+* Start an R interpreter in the doc/r directory, and issue the command **source("all.r")**. Once this is finished,
+  there will be a .RData file in each of the model directories you have set up in the model-setup.r file,
+  each with the same name as the directory that it is in.
 
-* start R in the doc/r directory, and issue the command **source("all.r")**. Once this is finished,
-  there will be a .RData file in each of the model directories you have set up in the model-setup.r file.
+* Edit the **all.r** file. Find the call to **create.rdata.file** and set reload back to **FALSE**.
 
-* Edit the **all.r** file. Find the call to **create.rdata.file** and set ovwrt.rdata, run.forecasts,
-  load.forecasts, run.retros, load.retros, and run.partest to FALSE.
+* **Method 1 for building the document** (Without an R interpreter):
+  This method is simpler to run, and all logs are recorded into logfiles which can be
+  viewed and searched when errors occur.
 
-* Navigate to the doc subdirectory and run the **buildtex.bat** file.
+  * Navigate to the doc subdirectory and run the **buildtex.bat** file.
+  * To see the output from the knitr part of the process, look at the file **knitrOutput.log**.
+  * To see the output from the Latex part of the process, look at the file **latexOutput.log**.
+  * If the compilation seems to hang, check the two log files to see where it stopped.
 
-* To clean up the build, including removal of the cached figures, run the **freshtex.bat** batch file,
-  or manually delete the **knitr-cache** directory. If you don't do this, tables and figures built
-  previously will be used.
+* **Method 2 for building the document** (With an R interpreter):
+  This method is faster after the first time, because the models will already be loaded into the
+  workspace and won't be reloaded every time you build the document.
 
-* If using buildtex.bat:
-   * To see the output from the knitr part of the process, look at the file **knitrOutput.log**.
-   * To see the output from the Latex part of the process, look at the file **latexOutput.log**.
-   * If the compilation seems to hang, check the two log files to see where it stopped.
+  * Open your R interpreter and change to the doc/r directory.
+  * source("all.r")
+  * setwd("..")
+  * build.doc()
+  * After the first time you do this, the models will be loaded into the R workspace.
+    You can then edit hake-assessment.rnw and set the first knitr code chunk up so that it doesn't
+    load the models every time you build the document. The value in the if statement should be changed to FALSE:
+
+```
+     if(TRUE){
+       load.models.into.parent.env()
+     }
+```
+* To clean up the build, including removal of the cached figures and tables, run the **freshtex.bat** batch file,
+  or manually delete the **knitr-cache** directory. If you don't do this, figures and tables built previously
+  will be used. To keep the cached figures and tables, but remove all other traces of the build including the PDF,
+  run **cleantex.bat**.
+
 
 ---
 
 ## How the R environment is set up
 
-- To recreate any .RData files, i.e. if some model output changes, change the value of the
+* Each model specified in the **model-setup.r** file will be stored as a .RData file
+  within its own model directory.
+
+* To recreate any .RData files, i.e. if some model output changes, change the value of the
   ovwrt.rdata to **TRUE** in the calls to create.rdata.file() in the all.r file.
 
-- Each model sub-directory may have an **mcmc** directory, which itself contains all the files used to run
-  the model in an mcmc configuration. These will be loaded during the load phase and attached
-  as the object **mcmc** to it's parent model object. If there is no **mcmc** directory, or it failed to load,
-  the **mcmc** list item will be set to **NULL**.
+* When the document is built, all of these model .RData files are loaded into the workspace.
 
 The following depicts the object structure of each model's .RData file:
 
-      model$          - All the objects as read in by the SS_output function in the r4ss package
-      model$retros    - A list of MLE retrospective outputs from SS_output
-      model$retros[[1]] - Model run with one year removed
-      model$retros[[2]] - Model run with two years removed
-      ...
-      model$retros[[N]] - Model run with N years removed (depends on user input when sourcing all.r)
-      model$forecasts - A list of forecasts from the mcmc run of the model (for decision tables)
-      model$forecasts[[1]] - A list of 4 items (see below) for the first forecast level
-      model$forecasts[[2]] - A list of 4 items (see below) for the second forecast level
-      ...
-      model$forecasts[[N]] - A list of 4 items (see below) for the last forecast level
-        model$forecasts[[N]]$outputs   - List of mcmc outputs from the forecast models as read in by the SSgetMCMC function
-        model$forecasts[[N]]$mcmccalcs - Calculations done on the mcmc outputs for this forecast model. Same structure as below.
-        model$forecasts[[N]]$biomass   - Forecasts for biomass. The rows are labelled by forecast year.
-        model$forecasts[[N]]$spr       - Forecasts for SPR. The rows are labelled by forecast year.
-      model$risks     - The risk calculations for the executive summary decision table (e.g. P(B2016<B2015))
-        model$risks[[1]] - Holds the risk values for the first year of forecasts
-        model$risks[[2]] - Holds the risk values for the second year of forecasts
-        ...
-        model$risks[[N]] - Holds the risk values for the last year of forecasts
-      model$path      - The path where this model is located
-      model$ctl.file  - control file name for this model
-      model$dat.file  - data file name for this model
-      model$dat       - data file as read in by the SS_readdat function in the r4ss package
-      model$mcmc      - mcmc output from the model as read in by the SSgetMCMC function or NULL if none for this model
-      model$mcmcpath  - The path where this mcmc model is located
-      model$mcmccalcs - calculations done on the mcmc outputs for this model
-        model$mcmccalcs$svirg     - SPB virgin biomass, vector of length 3 (2.5%, 50%, 97.5%)
-        model$mcmccalcs$sinit     - SPB initial biomass, vector of length 3 (2.5%, 50%, 97.5%)
-        model$mcmccalcs$slower    - SPB lower confidence (2.5%)
-        model$mcmccalcs$smed      - SPB median (50%)
-        model$mcmccalcs$supper    - SPB upper confidence (97.5%)
-        model$mcmccalcs$dlower    - Depletion lower confidence (2.5%)
-        model$mcmccalcs$dmed      - Depletion median (50%)
-        model$mcmccalcs$dupper    - Depletion upper confidence (97.5%)
-        model$mcmccalcs$rvirg     - Virgin recruitment, vector of length 3 (2.5%, 50%, 97.5%)
-        model$mcmccalcs$rinit     - Initial recruitment, vector of length 3 (2.5%, 50%, 97.5%)
-        model$mcmccalcs$runfished - Unfished recruitment, vector of length 3 (2.5%, 50%, 97.5%)
-        model$mcmccalcs$rlower    - Recruitment lower confidence (2.5%)
-        model$mcmccalcs$rmed      - Recruitment median (50%)
-        model$mcmccalcs$rupper    - Recruitment upper confidence (97.5%)
-        model$mcmccalcs$devlower  - Recruitment deviations lower confidence (2.5%)
-        model$mcmccalcs$devmed    - Recruitment deviations median (50%)
-        model$mcmccalcs$devupper  - Recruitment deviations upper confidence (97.5%)
-        model$mcmccalcs$plower    - SPR lower confidence (2.5%)
-        model$mcmccalcs$pmed      - SPR median (50%)
-        model$mcmccalcs$pupper    - SPR upper confidence (97.5%)
-        model$mcmccalcs$flower    - Fishing mortality lower confidence (2.5%)
-        model$mcmccalcs$fmed      - Fishing mortality median (50%)
-        model$mcmccalcs$fupper    - Fishing mortality upper confidence (97.5%)
-
+```
+model$          - All the objects as read in by the SS_output function in the r4ss package
+model$retros    - A list of MLE retrospective outputs from SS_output
+model$retros[[1]] - Model run with one year removed
+model$retros[[2]] - Model run with two years removed
+...
+model$retros[[N]] - Model run with N years removed (depends on user input when sourcing all.r)
+model$forecasts - A list of forecasts from the mcmc run of the model (for decision tables)
+model$forecasts[[1]] - A list of 4 items (see below) for the first forecast level
+model$forecasts[[2]] - A list of 4 items (see below) for the second forecast level
+...
+model$forecasts[[N]] - A list of 4 items (see below) for the last forecast level
+  model$forecasts[[N]]$outputs   - List of mcmc outputs from the forecast models as read in by the SSgetMCMC function
+  model$forecasts[[N]]$mcmccalcs - Calculations done on the mcmc outputs for this forecast model. Same structure as below.
+  model$forecasts[[N]]$biomass   - Forecasts for biomass. The rows are labelled by forecast year.
+  model$forecasts[[N]]$spr       - Forecasts for SPR. The rows are labelled by forecast year.
+model$risks     - The risk calculations for the executive summary decision table (e.g. P(B2016<B2015))
+  model$risks[[1]] - Holds the risk values for the first year of forecasts
+  model$risks[[2]] - Holds the risk values for the second year of forecasts
+  ...
+  model$risks[[N]] - Holds the risk values for the last year of forecasts
+model$path      - The path where this model is located
+model$ctl.file  - control file name for this model
+model$dat.file  - data file name for this model
+model$dat       - data file as read in by the SS_readdat function in the r4ss package
+model$mcmc      - mcmc output from the model as read in by the SSgetMCMC function or NULL if none for this model
+model$mcmcpath  - The path where this mcmc model is located
+model$mcmccalcs - calculations done on the mcmc outputs for this model
+  model$mcmccalcs$svirg     - SPB virgin biomass, vector of length 3 (2.5%, 50%, 97.5%)
+  model$mcmccalcs$sinit     - SPB initial biomass, vector of length 3 (2.5%, 50%, 97.5%)
+  model$mcmccalcs$slower    - SPB lower confidence (2.5%)
+  model$mcmccalcs$smed      - SPB median (50%)
+  model$mcmccalcs$supper    - SPB upper confidence (97.5%)
+  model$mcmccalcs$dlower    - Depletion lower confidence (2.5%)
+  model$mcmccalcs$dmed      - Depletion median (50%)
+  model$mcmccalcs$dupper    - Depletion upper confidence (97.5%)
+  model$mcmccalcs$rvirg     - Virgin recruitment, vector of length 3 (2.5%, 50%, 97.5%)
+  model$mcmccalcs$rinit     - Initial recruitment, vector of length 3 (2.5%, 50%, 97.5%)
+  model$mcmccalcs$runfished - Unfished recruitment, vector of length 3 (2.5%, 50%, 97.5%)
+  model$mcmccalcs$rlower    - Recruitment lower confidence (2.5%)
+  model$mcmccalcs$rmed      - Recruitment median (50%)
+  model$mcmccalcs$rupper    - Recruitment upper confidence (97.5%)
+  model$mcmccalcs$devlower  - Recruitment deviations lower confidence (2.5%)
+  model$mcmccalcs$devmed    - Recruitment deviations median (50%)
+  model$mcmccalcs$devupper  - Recruitment deviations upper confidence (97.5%)
+  model$mcmccalcs$plower    - SPR lower confidence (2.5%)
+  model$mcmccalcs$pmed      - SPR median (50%)
+  model$mcmccalcs$pupper    - SPR upper confidence (97.5%)
+  model$mcmccalcs$flower    - Fishing mortality lower confidence (2.5%)
+  model$mcmccalcs$fmed      - Fishing mortality median (50%)
+  model$mcmccalcs$fupper    - Fishing mortality upper confidence (97.5%)
+```
 
 These are the other variables in the global workspace. These can be directly referenced using \Sexpr{} in inline latex code,
-or in a knitr code chunk. Here are a few of the obvious ones, there are many more in the **custom-knitr-variables.r** file:
+or in a knitr code chunk. Here are a few of the obvious ones, there are many more in the **custom-knitr-variables.r** file,
+which is where any new ones should be placed.
 
     base.model              - The base model object.
     unfished.eq.yr          - Unfished equilibrium year. For hake, this is before the start year.
@@ -136,7 +163,7 @@ or in a knitr code chunk. Here are a few of the obvious ones, there are many mor
     assess.yr               - The current assessment year.
     last.assess.yr          - The last year in which an assessment was done.
     forecast.yrs            - A vector of years to forecast for decision tables (e.g. 2015:2017).
-    catch.levels            - A list of vectors of length equal to the number of years in forcast.yrs.
+    catch.levels            - A list of lists of forecast catch levels and their names and directory names..
     catch.default.policy    - A vector of catch limits for the forecast years which corresponds to the default harvest rate.
     data.path               - The absolute path to the data folder, which holds catch and tac tables.
     models.path             - The absolute path to the models folder, which holds sub-directories for the models which have been run.
@@ -158,13 +185,7 @@ There are additional elements for model.partest, which is created by running **r
 
 ---
 
-## How knitr deals with the R environment
-
-- The file **doc/hake-assessment.rnw** has the initial knitr code chunk in it, where the R environment is loaded. Once this is loaded,
-  knitr has full access throughout the document to the environment, and calls to plot or create tables can be made.
-  This is true of child documents as well, e.g. **doc/executive-summary/executive-summary.rnw**.
-
----
+## **Everything from here on is from the 2016 assessment period (Nov 2015 - Mar 2016)**
 
 ## How Andy is running it (and see Chris's notes above)
 
