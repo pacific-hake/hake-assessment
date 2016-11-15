@@ -2,7 +2,7 @@
 ## This is the master file - it loads all packages and sources all
 ##  other R source code files.
 ## To debug in an R session, run these commands first:
-##  rm(list=ls(all=TRUE));source("all.r");load.models.into.parent.env()
+## rm(list=ls(all=TRUE));source("all.r");load.models.into.parent.env();source("custom-knitr-variables.r")
 
 ## The purpose of the r-functions directory is to separate the
 ##  r code which is not commonly changed so that the files which are
@@ -45,9 +45,9 @@ require(maptools)
 require(lubridate)
 require(knitr)
 
-source(file.path(func.dir, "catches.r"))      ## Code for loading the catch/TAC data, making catch figures, and making tables for catch/TAC.
+source(file.path(func.dir, "catches.r"))      ## Code to load the catch/TAC data, making catch figures, and making tables for catch/TAC.
 source(file.path(func.dir, "load-models.r"))  ## Code to load the models from the model directories.
-source(file.path(func.dir, "survey.r"))       ## Code for loading the survey data, making survey figures, and making tables for survey.
+source(file.path(func.dir, "survey.r"))       ## Code to load the survey data, making survey figures, and making tables for survey.
 source(file.path(func.dir, "load-data.r"))    ## Code to load data tables from the data directory.
 source(file.path(func.dir, "read-list.r"))    ## Code to read a user file into an R list (for model setup).
 
@@ -81,23 +81,23 @@ source("data-tables.r")                 ## Set up variables for data tables (fro
 ##  file will have its own RData file holding the model object as defined in the Readme.md file.
 
 ## Base model:
-reload <- FALSE
+reload.all <- FALSE
 create.rdata.file(model.name = base.model.dir.name,
-                  ovwrt.rdata = reload,
-                  run.forecasts = reload,
+                  ovwrt.rdata = reload.all,
+                  run.forecasts = reload.all,
                   fore.yrs = forecast.yrs,
                   forecast.probs = forecast.probs,
                   forecast.catch.levels = catch.levels,
-                  load.forecasts = reload,
-                  run.retros = reload,
+                  load.forecasts = reload.all,
+                  run.retros = reload.all,
                   my.retro.yrs = retro.yrs,
-                  load.retros = reload,
-                  run.partest = reload,
+                  load.retros = reload.all,
+                  run.partest = reload.all,
                   key.posteriors = key.posteriors,
                   verbose = verbose)
 
 ## Bridge models - these variables are set up in model-setup.r
-ovrwrt.bridge.rdata.files <- FALSE
+ovrwrt.bridge.rdata.files <- reload.all
 lapply(bridge.model.dir.names.1,
        function(nm){create.rdata.file(model.name = nm,
                                       ovwrt.rdata = ovrwrt.bridge.rdata.files,
@@ -112,7 +112,7 @@ lapply(bridge.model.dir.names.3,
                                       verbose = verbose)})
 
 ## Sensitivity models - these variables are set up in model-setup.r
-ovrwrt.sens.rdata.files <- FALSE
+ovrwrt.sens.rdata.files <- reload.all
 lapply(sens.model.dir.names.1,
        function(nm){create.rdata.file(model.name = nm,
                                       ovwrt.rdata = ovrwrt.sens.rdata.files,

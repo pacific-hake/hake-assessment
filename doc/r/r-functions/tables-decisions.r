@@ -11,7 +11,9 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
   if(which != "biomass" & which != "spr"){
     stop("make.decisions.table: Error - type '",which,"' is not implemented. Stopping...\n\n")
   }
-  forecast <- model$forecasts
+  forecast <- model$forecasts[[length(model$forecasts)]]
+  forecast.yrs <- as.numeric(names(forecast))
+
   if(which == "biomass"){
     num.rows <- nrow(forecast[[1]]$biomass)
     table.header <- "\\textbf{Beginning of year relative spawning biomass}"
@@ -24,7 +26,10 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
   ## and a blank for all but the first year in a management action
   ##additional labels are given for some rows (below letter)
   rows2Label <- c("d","f","g","h")
-  rowLabels <- list(c("2015","TAC"),c("FI=","100\\%"),c("default","HR"),c("C2016=","C2017"))
+  rowLabels <- list(c(assess.yr - 1,"TAC"),
+                    c("FI=","100\\%"),
+                    c("default","HR"),
+                    c(paste0("C", assess.yr, "="), paste0("C", assess.yr + 1)))
   tab.letters <- NULL
   next.ind <- 1
   for(i in 1:length(forecast)){
@@ -137,7 +142,7 @@ make.risk.table <- function(model,                  ## model is an mcmc run and 
   ## Format all columns except catch (1) to be zero decimal points and have a percent sign
   risk[,-1] <- apply(apply(risk[,-1],2,fmt0),2,paste0,"\\%")
   ## Format the catch column (1) to have no decimal points and the thousands separator
-  risk[,1] <- fmt0(risk[,1])
+  risk[,1] <- fmt0(as.numeric(risk[,1]))
   ## Add letters to the catch for reference with the decision tables
   risk[,1] <- paste0(letters[1:nrow(risk)], ": ", risk[,1])
 

@@ -70,7 +70,7 @@ _____________________________________________________________
     You can then edit hake-assessment.rnw and set the first knitr code chunk up so that it doesn't
     load the models every time you build the document. The value in the if statement should be changed to FALSE:
 
-```
+```R
      if(TRUE){
        load.models.into.parent.env()
      }
@@ -95,27 +95,29 @@ _____________________________________________________________
 
 The following depicts the object structure of each model's .RData file:
 
-```
+```R
 model$          - All the objects as read in by the SS_output function in the r4ss package
 model$retros    - A list of MLE retrospective outputs from SS_output
 model$retros[[1]] - Model run with one year removed
 model$retros[[2]] - Model run with two years removed
 ...
 model$retros[[N]] - Model run with N years removed (depends on user input when sourcing all.r)
-model$forecasts - A list of forecasts from the mcmc run of the model (for decision tables)
-model$forecasts[[1]] - A list of 4 items (see below) for the first forecast level
-model$forecasts[[2]] - A list of 4 items (see below) for the second forecast level
+
+model$forecasts - A list of forecasts, 1 for each year from the mcmc run of the model
+model$forecasts[[1]] - A list, one element for each catch level forecasted for the first year forecast
+model$forecasts[[1]][[1]] - A list of 4 items (see below) for the first forecast level for the first year forecast
+model$forecasts[[1]][[2]] - A list of 4 items (see below) for the second forecast level for the first year forecast
 ...
-model$forecasts[[N]] - A list of 4 items (see below) for the last forecast level
-  model$forecasts[[N]]$outputs   - List of mcmc outputs from the forecast models as read in by the SSgetMCMC function
-  model$forecasts[[N]]$mcmccalcs - Calculations done on the mcmc outputs for this forecast model. Same structure as below.
-  model$forecasts[[N]]$biomass   - Forecasts for biomass. The rows are labelled by forecast year.
-  model$forecasts[[N]]$spr       - Forecasts for SPR. The rows are labelled by forecast year.
-model$risks     - The risk calculations for the executive summary decision table (e.g. P(B2016<B2015))
+model$forecasts[[1]][[N]] - A list of 4 items (see below) for the last forecast level for the first year forecast
+  model$forecasts[[1]][[N]]$outputs   - List of mcmc outputs from the forecast models as read in by the SSgetMCMC function
+  model$forecasts[[1]][[N]]$mcmccalcs - Calculations done on the mcmc outputs for this forecast model. Same structure as below.
+  model$forecasts[[1]][[N]]$biomass   - Forecasts for biomass. The rows are labelled by forecast year.
+  model$forecasts[[1]][[N]]$spr       - Forecasts for SPR. The rows are labelled by forecast year.
+model$risks     - A list, one element for each forecast year except the last year
   model$risks[[1]] - Holds the risk values for the first year of forecasts
   model$risks[[2]] - Holds the risk values for the second year of forecasts
   ...
-  model$risks[[N]] - Holds the risk values for the last year of forecasts
+  model$risks[[N]] - Holds the risk values for the last year - 1 of forecasts
 model$path      - The path where this model is located
 model$ctl.file  - control file name for this model
 model$dat.file  - data file name for this model
@@ -152,34 +154,38 @@ These are the other variables in the global workspace. These can be directly ref
 or in a knitr code chunk. Here are a few of the obvious ones, there are many more in the **custom-knitr-variables.r** file,
 which is where any new ones should be placed.
 
-    base.model              - The base model object.
-    unfished.eq.yr          - Unfished equilibrium year. For hake, this is before the start year.
-    start.yr                - Start year for the model.
-    end.yr                  - End year for the model.
-    survey.start.yr         - First survey year included in the model.
-    survey.end.yr           - Last survey year included in the model.
-    assess.yr               - The current assessment year.
-    last.assess.yr          - The last year in which an assessment was done.
-    forecast.yrs            - A vector of years to forecast for decision tables (e.g. 2015:2017).
-    catch.levels            - A list of lists of forecast catch levels and their names and directory names..
-    catch.default.policy    - A vector of catch limits for the forecast years which corresponds to the default harvest rate.
-    data.path               - The absolute path to the data folder, which holds catch and tac tables.
-    models.path             - The absolute path to the models folder, which holds sub-directories for the models which have been run.
+```R
+base.model              - The base model object.
+unfished.eq.yr          - Unfished equilibrium year. For hake, this is before the start year.
+start.yr                - Start year for the model.
+end.yr                  - End year for the model.
+survey.start.yr         - First survey year included in the model.
+survey.end.yr           - Last survey year included in the model.
+assess.yr               - The current assessment year.
+last.assess.yr          - The last year in which an assessment was done.
+forecast.yrs            - A vector of years to forecast for decision tables (e.g. 2015:2017).
+catch.levels            - A list of lists of forecast catch levels and their names and directory names..
+catch.default.policy    - A vector of catch limits for the forecast years which corresponds to the default harvest rate.
+data.path               - The absolute path to the data folder, which holds catch and tac tables.
+models.path             - The absolute path to the models folder, which holds sub-directories for the models which have been run.
+```
 
 There are additional elements for model.partest, which is created by running **run.partest.model**. It is saved in a file called
 **model-partest.RData**. It is a copy of base.model with the following additions:
 
-    model.partest$agedbase$Exp           - median of posterior for expected value for age comps
-    model.partest$agedbase$Exp.025       - 2.5% of posterior for expected value for age comps
-    model.partest$agedbase$Exp.975       - 97.5% of posterior for expected value for age comps
-    model.partest$agedbase$Pearson       - median of posterior for pearson residuals for age comps
-    model.partest$agedbase$Pearson.025   - 2.5% of posterior for pearson residuals for age comps
-    model.partest$agedbase$Pearson.975   - 97.5% of posterior for pearson residuals for age comps
-    model.partest$cpue.table             - Table of cpue index values for all posteriors (survey)
-    model.partest$cpue.median            - median of posterior for cpue index values (survey)
-    model.partest$cpue.025               - 2.5% of posterior for cpue index values (survey)
-    model.partest$cpue.975               - 97.5% of posterior for cpue index values (survey)
-    model.partest$like.info              - Likelihood values for all posteriors
+```R
+model.partest$agedbase$Exp           - median of posterior for expected value for age comps
+model.partest$agedbase$Exp.025       - 2.5% of posterior for expected value for age comps
+model.partest$agedbase$Exp.975       - 97.5% of posterior for expected value for age comps
+model.partest$agedbase$Pearson       - median of posterior for pearson residuals for age comps
+model.partest$agedbase$Pearson.025   - 2.5% of posterior for pearson residuals for age comps
+model.partest$agedbase$Pearson.975   - 97.5% of posterior for pearson residuals for age comps
+model.partest$cpue.table             - Table of cpue index values for all posteriors (survey)
+model.partest$cpue.median            - median of posterior for cpue index values (survey)
+model.partest$cpue.025               - 2.5% of posterior for cpue index values (survey)
+model.partest$cpue.975               - 97.5% of posterior for cpue index values (survey)
+model.partest$like.info              - Likelihood values for all posteriors
+```
 
 ---
 

@@ -204,9 +204,10 @@ make.kriging.parameters.table <- function(krig.pars = kriging.pars,
   addtorow$pos[[3]] <- 10
   addtorow$pos[[4]] <- nrow(krig.pars)
   addtorow$command <- c(paste0("\\toprule \n",
-                      "Year", "& Search radius", "& $k$\\subscr{min}", "& $k$\\subscr{max} \\\\ \n",
-                        "\\midrule \n"), "\\textbf{2015 assessment}\\\\ \n",
-                        "\\textbf{2016 assessment}\\\\ \n",
+                               "Year", "& Search radius", "& $k$\\subscr{min}", "& $k$\\subscr{max} \\\\ \n",
+                               "\\midrule \n"),
+                        paste0("\\textbf{", last.assess.yr," assessment}\\\\ \n"),
+                        paste0("\\textbf{", assess.yr," assessment}\\\\ \n"),
                         "\\bottomrule \n")
 
   ## Make the size string for font and space size

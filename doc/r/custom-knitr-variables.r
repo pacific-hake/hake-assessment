@@ -138,8 +138,6 @@ zero.catch.prob.bio.down.1 <- fmt0(base.model$risks[[1]][1,2])
 # Prob biomass declines year after next to year after that with zero catch:
 zero.catch.prob.bio.down.2 <- fmt0(base.model$risks[[2]][1,2])
 
-
-
 ## Second forecast year depletion and spawning biomass estimates
 next2.depl.lower.tac.based <- fmt0(fore.tac.mcmc$dlower[names(fore.tac.mcmc$dlower) %in% (end.yr + 2)] * 100, 1)
 next2.depl.median.tac.based <- fmt0(fore.tac.mcmc$dmed[names(fore.tac.mcmc$dmed) %in% (end.yr + 2)] * 100, 1)
