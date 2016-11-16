@@ -76,37 +76,28 @@
 %% opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
 %%                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
 %%                results='show', cache=TRUE, cache.path='knitr-cache/')
-<<off-we-go, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
-#rm(list=ls(all=TRUE))
-opts_chunk$set(dev = 'cairo_ps', fig.path = 'knitr-cache/', fig.dpi = 300, fig.width = 6,
-               fig.height = 4, out.width = '6in', echo = FALSE, # out.height = '3in',
-               results = FALSE, message = FALSE, warning = FALSE,
-               results = 'hide', cache = TRUE, cache.path = 'knitr-cache/')
+<<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
+opts_chunk$set(dev = 'cairo_ps',
+               fig.path = 'knitr-cache/',
+               fig.dpi = 300,
+               fig.width = 6,
+               fig.height = 4,
+               out.width = '6in',
+               echo = FALSE,
+               results = FALSE,
+               message = FALSE,
+               warning = FALSE,
+               results = 'hide',
+               cache = TRUE,
+               cache.path = 'knitr-cache/')
 
-## Load your R environment here. When you do this, you will need to
-## put the require or library statements that the functions use because the
-## saved environment does not save the libraries as well.
-require(nwfscSurvey)
-require(nwfscMapping)
-require(date)
-require(r4ss)
-require(xtable)   ## For tables which can be inserted into latex docs with knitr
-require(PBSmapping)
-require(maps)
-require(coda)
-require(gtools)
-require(dplyr)
-## Load all R code and the model outputs
-load.Rdata <- readline(prompt = "Load .Rdata? [y/n] ")
-## load.Rdata <- "y"
-if(load.Rdata == "y") {
-  rm(list=ls(all=TRUE))
-  load("../../../doc/r/.RData")
-}
-## Load the model-partest which was previously run for the base model.
-## This object takes a very long time to build so it is stored in binary
-##  on its own.
-#load("../../../doc/r/model-partest.RData")
+setwd("../../../doc/r")
+## Load all R code and the package libraries.
+source("all.r")
+load.models.into.parent.env()
+## This has to be sourced after loading the models in because it depends
+##  on the model output.
+source("custom-knitr-variables.r")
 
 @
 
@@ -168,7 +159,7 @@ if(load.Rdata == "y") {
 %\includegraphics[width=5.5in, height=3.25in]{../../../doc/main-figures/CompareMLE_MCMC}
 <<main.parameter.estimates, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.table(base.model,
-                                     models[[last.year.base.model.ind]],
+                                     last.yr.base.model,
                                      posterior.regex = key.posteriors,
                                      end.yr = end.yr,
                                      digits = 3,
@@ -186,10 +177,9 @@ make.short.parameter.estimates.table(base.model,
 \frametitle{MLE vs MCMC: Biomass}
 \begin{center}
 <<mle.mcmc.1, out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
-# oldpar <- par()
-# par(mar = c(4.5, 4.1, 1.5, 1.1))
-make.mcmc.vs.mle.plot(base.model,end.yr = end.yr,subplot = 2)                       
-# par <- oldpar
+make.mcmc.vs.mle.plot(base.model,
+                      end.yr = end.yr,
+                      subplot = 2)
 @
 \end{center}
 \end{frame}
@@ -200,10 +190,10 @@ make.mcmc.vs.mle.plot(base.model,end.yr = end.yr,subplot = 2)
 \frametitle{MLE vs MCMC: Recruitment}
 \begin{center}
 <<mle.mcmc.2, out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
-#oldpar <- par()
-#par(mar = c(4.5, 4.1, 1.5, 1.1))
- make.mcmc.vs.mle.plot(base.model,end.yr = end.yr,type = "o",subplot = 8)                       
-#par <- oldpar
+make.mcmc.vs.mle.plot(base.model,
+                      end.yr = end.yr,
+                      type = "o",
+                      subplot = 8)
 @
 \end{center}
 \end{frame}
@@ -223,29 +213,25 @@ make.short.parameter.estimates.sens.table(sens.models.2.for.table,
                                           posterior.regex = key.posteriors,
                                           end.yr = end.yr,
                                           digits = 3,
-                                          xcaption <- NULL,
-                                          xlabel <- "tab:main-parameter-estimates-sens-2",
+                                          xcaption = NULL,
+                                          xlabel = "tab:main-parameter-estimates-sens-2",
                                           font.size = 7,
-                                          space.size = 7)   
+                                          space.size = 7)
 @
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
- 
+
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Survey Alternatives: Biomass}
 \begin{center}
 \vspace{-5pt}
 <<biomass.alternative.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-#oldpar <- par()
-#par(mar = c(4.5, 4.1, 1.5, 1.1))
-oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
+make.comparison.plot(c(list(base.model), sens.models.2),
                      subplots = 2,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
-                     end.yr = end.yr)                            
-par <- oldpar
+                     end.yr = end.yr)
 @
 \end{center}
 \end{frame}
@@ -257,16 +243,13 @@ par <- oldpar
 \begin{center}
 \vspace{-5pt}
 <<survey.alternative.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-#par(mar = c(4.5, 4.1, 1.5, 1.1))
-make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
+make.comparison.plot(c(list(base.model), sens.models.2),
                      subplots = 11,
                      legendloc = "bottomleft",
                      indexPlotEach=T,
                      indexfleets = c(2,2,2,2),
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
-                     end.yr = end.yr)                            
-par <- oldpar 
+                     end.yr = end.yr)
 @
 \end{center}
 \end{frame}
@@ -278,14 +261,11 @@ par <- oldpar
 \begin{center}
 \vspace{-5pt}
 <<recruit.alternative.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-#par(mar = c(4.5, 4.1, 1.5, 1.1))
-make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
+make.comparison.plot(c(list(base.model), sens.models.2),
                      subplots = 9,
                      legendloc = "bottomleft",
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
-                     end.yr = end.yr)                            
-par <- oldpar 
+                     end.yr = end.yr)
 @
 \end{center}
 \end{frame}
@@ -298,10 +278,8 @@ par <- oldpar
 \vspace{-5pt}
 <<recruit2014.alternative.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
 sens.density.yr <- last.data.yr - 1
-sens.density.names <- c(paste0("Late_RecrDev_",sens.density.yr))
-oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-#par(mar = c(4.5, 3.1, 1.5, 1.1))
-make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
+sens.density.names <- c(paste0("Late_RecrDev_", sens.density.yr))
+make.comparison.plot(c(list(base.model), sens.models.2),
                      subplots = 14,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
                      legendloc = "topleft",
@@ -310,7 +288,6 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
                      indexPlotEach = TRUE,
                      end.yr = end.yr)
 mtext("Catch (thousand t)", side = 1, line = 1, outer = TRUE)
-par <- oldpar                           
 @
 \end{center}
 \end{frame}
@@ -334,31 +311,25 @@ par <- oldpar
   \vspace{-5pt}
     \begin{center}
      <<ageing.error.1, fig.height=8, fig.width=12, out.width='0.9\\columnwidth'>>=
-     oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-     #par(mar = c(4.5, 4.1, 1.5, 1.1))
-     make.comparison.plot(models[c(base.model.ind, sens.model.inds.4)],
-                      subplots = 2,
-                      model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
-                      end.yr = end.yr)                            
-     par <- oldpar 
+     make.comparison.plot(c(list(base.model), list(sens.models.4)),
+                          subplots = 2,
+                          model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
+                          end.yr = end.yr)
      @
      \end{center}
   \end{column}
 \end{columns}
-\end{frame}  
+\end{frame}
 
 %\begin{frame}
 %\frametitle{Ageing Error: Biomass}
 % \begin{center}
 % \vspace{-5pt}
 %  <<ageing.error.1, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-% oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-% #par(mar = c(4.5, 4.1, 1.5, 1.1))
-% make.comparison.plot(models[c(base.model.ind, sens.model.inds.4)],
+% make.comparison.plot(c(list(base.model), sens.models.4),
 %                      subplots = 2,
 %                      model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
-%                      end.yr = end.yr)                            
-% par <- oldpar 
+%                      end.yr = end.yr)
 % @
 % \end{center}
 %\end{frame}
@@ -370,14 +341,11 @@ par <- oldpar
 \begin{center}
 \vspace{-5pt}
  <<ageing.error.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
- oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
- #par(mar = c(4.5, 4.1, 1.5, 1.1))
- make.comparison.plot(models[c(base.model.ind, sens.model.inds.4)],
+ make.comparison.plot(c(list(base.model), list(sens.models.4)),
                       subplots = 10,
                       legendloc = "topleft",
                       model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
-                      end.yr = end.yr)                            
-par <- oldpar 
+                      end.yr = end.yr)
 @
 \end{center}
 \end{frame}
@@ -391,13 +359,10 @@ par <- oldpar
 \begin{center}
 \vspace{-5pt}
 <<selectivity.1, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-#par(mar = c(4.5, 4.1, 1.5, 1.1))
-make.comparison.plot(models[c(base.model.ind, sens.model.inds.3)],
+make.comparison.plot(c(list(base.model), sens.models.3),
                      subplots = 2,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.3),
-                     end.yr = end.yr)                           
-par <- oldpar 
+                     end.yr = end.yr)
 @
 \end{center}
 \end{frame}
@@ -420,36 +385,18 @@ par <- oldpar
     \begin{center}
      <<selectivity.2, fig.height=8, fig.width=12, out.width='0.9\\columnwidth'>>=
      oldpar <- par(mfrow=c(2,2), mar=c(5,4,1,1),no.readonly = TRUE)
-     #par(mar = c(2.1, 4, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
      layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
      make.selex.plot(base.model, pan.letter = "base")
-     make.selex.plot(models[[sens.model.inds.3[1]]], pan.letter = "5")
-     make.selex.plot(models[[sens.model.inds.3[2]]], pan.letter = "7")
-     make.selex.plot(models[[sens.model.inds.3[3]]], pan.letter = "12")                           
-     par <- oldpar 
+     make.selex.plot(sens.models.3[[1]], pan.letter = "5")
+     make.selex.plot(sens.models.3[[2]], pan.letter = "7")
+     make.selex.plot(sens.models.3[[3]], pan.letter = "12")
+     par <- oldpar
      mtext("Age", side = 1, line = 0.5, outer = TRUE)
      @
      \end{center}
   \end{column}
 \end{columns}
-\end{frame}    
-    
-%\begin{center}
-%\vspace{-5pt}
-%<<selectivity.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-%oldpar <- par(mfrow=c(2,2), mar=c(5,4,1,1),no.readonly = TRUE)
-%#par(mar = c(2.1, 4, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
-%layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
-%make.selex.plot(base.model, pan.letter = "6")
-%make.selex.plot(models[[sens.model.inds.3[1]]], pan.letter = "5")
-%make.selex.plot(models[[sens.model.inds.3[2]]], pan.letter = "7")
-%make.selex.plot(models[[sens.model.inds.3[3]]], pan.letter = "12")                           
-%par <- oldpar 
-%mtext("Age", side = 1, line = 0.5, outer = TRUE)
-%@
-%\end{center}
-%\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%% 
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Key Sens}
@@ -466,7 +413,7 @@ make.short.parameter.estimates.sens.table(sens.models.1.for.table,
                                           xcaption <- NULL,
                                           xlabel <- "tab:main-parameter-estimates-sens-2",
                                           font.size = 7,
-                                          space.size = 7) 
+                                          space.size = 7)
 @
 \end{center}
 \end{frame}
@@ -480,10 +427,10 @@ make.short.parameter.estimates.sens.table(sens.models.1.for.table,
 <<keyselect.1, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
-make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
+make.comparison.plot(c(list(base.model), sens.models.1),
                      subplots = 2,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
-                     end.yr = end.yr)                           
+                     end.yr = end.yr)
 par <- oldpar 
 @
 \end{center}
@@ -498,10 +445,10 @@ par <- oldpar
 <<keyselect.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
-make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
+make.comparison.plot(c(list(base.model), sens.models.1),
                      subplots = 4,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
-                     end.yr = end.yr)                           
+                     end.yr = end.yr)
 par <- oldpar 
 @
 \end{center}
@@ -577,8 +524,8 @@ for(i in plot.retro.yrs){
 }
 make.squid.plot(retro.list,
                 subplot = 1,
-                cohorts = retro.cohorts)                          
-par <- oldpar 
+                cohorts = retro.cohorts)
+par <- oldpar
 @
 \end{center}
 \end{frame}
