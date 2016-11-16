@@ -13,6 +13,6 @@ del *.out
 del *.nav
 del *.snm
 del *.synctex.gz
-del beamer-hake-management.tex
-del beamer-hake-management.pdf
+del beamer-hake-requests.tex
+del beamer-hake-requests.pdf
 rmdir /S /Q knitr-cache

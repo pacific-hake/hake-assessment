@@ -126,6 +126,7 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
 }
 
 make.decision.table.pres <- function(model,                  ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
+                                     model.inds,             ## indices of the forecast models you want to show
                                      xcaption   = "default", ## Caption to use
                                      xlabel     = "default", ## Latex label to use
                                      font.size  = 9,         ## Size of the font for the table
@@ -139,8 +140,7 @@ make.decision.table.pres <- function(model,                  ## model is an mcmc
     stop("make.decisions.table: Error - type '",which,"' is not implemented. Stopping...\n\n")
   }
   ## The numbers below index several of the forecast catch levels
-  ind <- c(2, 4, 5, 6, 7)
-  forecast <- model$forecasts[[length(model$forecasts)]][ind]
+  forecast <- model$forecasts[[length(model$forecasts)]][model.inds]
   if(which == "biomass"){
     table.header1 <- "\\textbf{Beginning of year}"
     table.header2 <- "\\textbf{relative spawning biomass}"
@@ -161,12 +161,12 @@ make.decision.table.pres <- function(model,                  ## model is an mcmc
   quant.levels <- gsub("%","\\\\%",colnames(forecast.tab))
 
   ## Set any catch less than 1 to be 0
-  c.levels <- unlist(lapply(catch.levels[ind], "[[", 1))
+  c.levels <- unlist(lapply(catch.levels[model.inds], "[[", 1))
   c.levels[c.levels < 1] <- 0
   ## Bind the catch levels and years to the correct rows
-  row.labs <- rep("", length(ind) * 3)
-  row.labs[seq(1, length(ind) * 3, 3)] <- paste0(letters[ind], ":")
-  row.labs[c(5, 6, 8, 9, 11, 12)] <- c(assess.yr - 1, "TAC", "FI=", "100\\%", "default", "HR")
+  row.labs <- rep("", length(model.inds) * 3)
+  row.labs[seq(1, length(model.inds) * 3, 3)] <- paste0(letters[model.inds], ":")
+  ## row.labs[c(5, 6, 8, 9, 11, 12)] <- c(assess.yr - 1, "TAC", "FI=", "100\\%", "default", "HR")
 
   forecast.tab <- cbind(row.labs, yrs, fmt0(c.levels), forecast.tab)
   colnames(forecast.tab) <- c("",
@@ -201,12 +201,14 @@ make.decision.table.pres <- function(model,                  ## model is an mcmc
   ## Add the right number of horizontal lines to make the table break in the correct places
   ## A line is not needed at the bottom explains the (length(forecast)-1) statement.
   for(i in 1:(length(forecast)-1)){
-    if(which == "biomass"){
-      addtorow$pos[[i+2]] <- i * nrow(forecast[[i]]$biomass)
-    }else{
-      addtorow$pos[[i+2]] <- i * nrow(forecast[[i]]$spr)
+    if(!is.null(forecast[[i]])){
+      if(which == "biomass"){
+        addtorow$pos[[i+2]] <- i * nrow(forecast[[i]]$biomass)
+      }else{
+        addtorow$pos[[i+2]] <- i * nrow(forecast[[i]]$spr)
+      }
+      addtorow$command <- c(addtorow$command, "\\hline ")
     }
-    addtorow$command <- c(addtorow$command, "\\hline ")
   }
 
   ## Make the size string for font and space size
