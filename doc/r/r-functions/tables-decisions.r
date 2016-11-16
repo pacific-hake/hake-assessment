@@ -24,7 +24,7 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
 
   ## tab.letters are the letters in the table, one for each forecast management action
   ## and a blank for all but the first year in a management action
-  ##additional labels are given for some rows (below letter)
+  ## additional labels are given for some rows (below letter)
   rows2Label <- c("d","f","g","h")
   rowLabels <- list(c(assess.yr - 1,"TAC"),
                     c("FI=","100\\%"),
@@ -109,6 +109,109 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
 
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
+  return(print(xtable(forecast.tab,
+                      caption=xcaption,
+                      label=xlabel,
+                      align=c("c","|c","c","c|",quant.cell.defs)),
+               caption.placement = "top",
+               include.rownames = FALSE,
+               include.colnames = FALSE,
+               sanitize.text.function = function(x){x},
+               size = size.string,
+               add.to.row = addtorow,
+               table.placement = placement,
+               tabular.environment = "tabularx",
+               width = "\\textwidth",
+               hline.after = NULL))
+}
+
+make.decision.table.pres <- function(model,                  ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
+                                     xcaption   = "default", ## Caption to use
+                                     xlabel     = "default", ## Latex label to use
+                                     font.size  = 9,         ## Size of the font for the table
+                                     space.size = 10,        ## Size of the spaces for the table
+                                     which      = "biomass", ## Which type to build. "biomass" or "spr".
+                                     placement  = "H"        ## Placement of table
+                                     ){
+  ## Returns an xtable in the proper format for the management presentation in beamer
+
+  if(which != "biomass" & which != "spr"){
+    stop("make.decisions.table: Error - type '",which,"' is not implemented. Stopping...\n\n")
+  }
+  ## The numbers below index several of the forecast catch levels
+  ind <- c(2, 4, 5, 6, 7)
+  forecast <- model$forecasts[[length(model$forecasts)]][ind]
+  if(which == "biomass"){
+    table.header1 <- "\\textbf{Beginning of year}"
+    table.header2 <- "\\textbf{relative spawning biomass}"
+    forecast.tab <- fmt0(do.call("rbind", lapply(forecast, "[[", "biomass")) * 100)
+  }else{
+    table.header1 <- "\\textbf{Fishing}"
+    table.header2 <- "\\textbf{Intensity}"
+    forecast.tab <- fmt0(do.call("rbind", lapply(forecast, "[[", "spr")) * 100)
+  }
+
+  ## Store years for binding later
+  yrs <- rownames(forecast.tab)
+
+  ## Append the escaped % symbols
+  forecast.tab <- apply(forecast.tab, 2, paste0, "\\%")
+
+  ## Change the quantile levels so they have correct latex escape sequence
+  quant.levels <- gsub("%","\\\\%",colnames(forecast.tab))
+
+  ## Set any catch less than 1 to be 0
+  c.levels <- unlist(lapply(catch.levels[ind], "[[", 1))
+  c.levels[c.levels < 1] <- 0
+  ## Bind the catch levels and years to the correct rows
+  row.labs <- rep("", length(ind) * 3)
+  row.labs[seq(1, length(ind) * 3, 3)] <- paste0(letters[ind], ":")
+  row.labs[c(5, 6, 8, 9, 11, 12)] <- c(assess.yr - 1, "TAC", "FI=", "100\\%", "default", "HR")
+
+  forecast.tab <- cbind(row.labs, yrs, fmt0(c.levels), forecast.tab)
+  colnames(forecast.tab) <- c("",
+                              "Year",
+                              "Catch (t)",
+                              quant.levels)
+
+  ## Add the extra header spanning multiple columns
+  addtorow <- list()
+  addtorow$pos <- list()
+  addtorow$pos[[1]] <- -1
+  addtorow$pos[[2]] <- nrow(forecast.tab)
+
+  quant.string <- ""
+  quant.ampersands <- ""
+  quant.cell.defs <- NULL
+  for(i in 1:length(quant.levels)){
+    quant.string <- paste0(quant.string, "& ", quant.levels[i], " ")
+    quant.ampersands <- paste0(quant.ampersands,"& ")
+    quant.cell.defs <- c(quant.cell.defs, "Y")
+  }
+  ## Add the vertical bar to the edge of the last quant cell
+  quant.cell.defs[length(quant.cell.defs)] <- paste0(quant.cell.defs[length(quant.cell.defs)], "|")
+  addtorow$command <- c(paste0("\\hline ",
+                               "\\multicolumn{3}{|c|}{Within model quantile} ", quant.string, " \\\\ ",
+                               "\\hline ",
+                               "\\multicolumn{3}{|c|}{Management Action} &\\multicolumn{",length(quant.levels),"}{c|}{",table.header1,"}\\\\ ",
+                               "\\cline{1-3} ",
+                               " & Year & Catch (t) & \\multicolumn{",length(quant.levels),"}{c|}{",table.header2,"} \\\\ ",
+                               "\\hline "),
+                        "\\hline ")
+  ## Add the right number of horizontal lines to make the table break in the correct places
+  ## A line is not needed at the bottom explains the (length(forecast)-1) statement.
+  for(i in 1:(length(forecast)-1)){
+    if(which == "biomass"){
+      addtorow$pos[[i+2]] <- i * nrow(forecast[[i]]$biomass)
+    }else{
+      addtorow$pos[[i+2]] <- i * nrow(forecast[[i]]$spr)
+    }
+    addtorow$command <- c(addtorow$command, "\\hline ")
+  }
+
+  ## Make the size string for font and space size
+  size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
+
   return(print(xtable(forecast.tab,
                       caption=xcaption,
                       label=xlabel,
