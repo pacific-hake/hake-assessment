@@ -13,5 +13,5 @@ del *.out
 del *.nav
 del *.snm
 del *.synctex.gz
-del beamer-hake-management.tex
-del beamer-hake-management.pdf
+del beamer-hake-JMC.tex
+del beamer-hake-JMC.pdf

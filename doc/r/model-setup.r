@@ -262,4 +262,7 @@ load.models.into.parent.env <- function(){
                                 sens.models.3)
   sens.model.names.2.for.table <<- c("Base model", sens.model.names.2,
                                      sens.model.names.3)
+
+  load("model-partest.RData")
+  model.partest <<- model.partest
 }
