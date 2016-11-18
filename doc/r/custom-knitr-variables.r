@@ -1,3 +1,6 @@
+## Put any variables you intend to use in the text here.
+## The function f() is for formatting and is defined in
+##  r-functions/utilities.r
 
 can.allotment.percent <- 26.12
 us.allotment.percent <- 73.88
@@ -65,7 +68,7 @@ last.year.can.shore.percent <- f(filter(catches, Year == last.data.yr)$CAN_Shore
                                     as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal) * 100.0, 1)
 last.year.can.freezer.percent <- f(filter(catches, Year == last.data.yr)$CAN_FreezeTrawl /
                                       as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal) * 100.0, 1)
-years.Can.JV.catch.eq.0.recent = years.Can.JV.catch.eq.0(catches)
+years.Can.JV.catch.eq.0.recent <- years.Can.JV.catch.eq.0(catches)
 
 ## Survey values
 survey.biomass <- survey.history$biomass
