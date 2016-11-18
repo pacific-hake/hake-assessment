@@ -38,7 +38,7 @@ Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to t
 <<total.catches.table, results='asis', echo=FALSE>>=
 make.catches.table(catches,
                    start.yr = 2006,
-                   end.yr = 2015,
+                   end.yr = assess.yr - 1,
                    weight.factor = 1000,
                    xcaption <- "Recent commercial fishery catch (t). Tribal catches are included where applicable.",
                    xlabel <- "tab:es-catches",
@@ -137,7 +137,7 @@ declined steadily after a peak in the mid- to late-1980s to a low in 2000. This 
 in 2003 as the large 1999 year class matured. The 1999 year class largely supported the fishery for several years due to relatively small recruitments
 between 2000 and 2007. With the aging 1999 year class, median female
 spawning biomass declined throughout the late 2000s, reaching a time-series low of \Sexpr{median.bio.min}~million~t in \Sexpr{median.bio.min.year}. The assessment model estimates that spawning biomass declined from 2014 to 2015 after five years of increases from 2009 to 2014.
-% Manaul 2016 done. Median spawning biomass is: base.model$mcmccalcs$smed  
+% Median spawning biomass is: base.model$mcmccalcs$smed  
 The estimated increases were the result of a large 2010 cohort and an above-average 2008 cohort surpassing the age at which gains in biomass from growth are greater than the loss in biomass from natural mortality. The model then estimates an increase from 2015 to 2016 due to an estimated large 2014 year class, which, on average, is similar to the average estimated size of the 2010 year class.
 % Manual 2016 done.
 
