@@ -47,11 +47,11 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
   }
 
   ## Merge the list elements into a data frame
-  ## forecast.tab <- fmt0(do.call("rbind", forecast) * 100)
+  ## forecast.tab <- f(do.call("rbind", forecast) * 100)
   if(which == "biomass"){
-    forecast.tab <- fmt0(do.call("rbind", lapply(forecast, "[[", "biomass")) * 100)
+    forecast.tab <- f(do.call("rbind", lapply(forecast, "[[", "biomass")) * 100)
   }else{
-    forecast.tab <- fmt0(do.call("rbind", lapply(forecast, "[[", "spr")) * 100)
+    forecast.tab <- f(do.call("rbind", lapply(forecast, "[[", "spr")) * 100)
   }
 
   ## Store years for binding later
@@ -69,7 +69,7 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
   c.levels <- unlist(lapply(catch.levels, "[[", 1))
   c.levels[c.levels < 1] <- 0
   ## Bind the catch levels and years to the correct rows
-  forecast.tab <- cbind(tab.letters, yrs, fmt0(c.levels), forecast.tab)
+  forecast.tab <- cbind(tab.letters, yrs, f(c.levels), forecast.tab)
   colnames(forecast.tab) <- c("",
                               "Year",
                               "Catch (t)",
@@ -144,11 +144,11 @@ make.decision.table.pres <- function(model,                  ## model is an mcmc
   if(which == "biomass"){
     table.header1 <- "\\textbf{Beginning of year}"
     table.header2 <- "\\textbf{relative spawning biomass}"
-    forecast.tab <- fmt0(do.call("rbind", lapply(forecast, "[[", "biomass")) * 100)
+    forecast.tab <- f(do.call("rbind", lapply(forecast, "[[", "biomass")) * 100)
   }else{
     table.header1 <- "\\textbf{Fishing}"
     table.header2 <- "\\textbf{Intensity}"
-    forecast.tab <- fmt0(do.call("rbind", lapply(forecast, "[[", "spr")) * 100)
+    forecast.tab <- f(do.call("rbind", lapply(forecast, "[[", "spr")) * 100)
   }
 
   ## Store years for binding later
@@ -168,7 +168,7 @@ make.decision.table.pres <- function(model,                  ## model is an mcmc
   row.labs[seq(1, length(model.inds) * 3, 3)] <- paste0(letters[model.inds], ":")
   ## row.labs[c(5, 6, 8, 9, 11, 12)] <- c(assess.yr - 1, "TAC", "FI=", "100\\%", "default", "HR")
 
-  forecast.tab <- cbind(row.labs, yrs, fmt0(c.levels), forecast.tab)
+  forecast.tab <- cbind(row.labs, yrs, f(c.levels), forecast.tab)
   colnames(forecast.tab) <- c("",
                               "Year",
                               "Catch (t)",
@@ -245,9 +245,9 @@ make.risk.table <- function(model,                  ## model is an mcmc run and 
   ## Fix tiny catch of less than 0.49 to zero, only for first (catch) column
   risk[risk[,1] < 0.49, 1] <- 0
   ## Format all columns except catch (1) to be zero decimal points and have a percent sign
-  risk[,-1] <- apply(apply(risk[,-1],2,fmt0),2,paste0,"\\%")
+  risk[,-1] <- apply(apply(risk[,-1],2,f),2,paste0,"\\%")
   ## Format the catch column (1) to have no decimal points and the thousands separator
-  risk[,1] <- fmt0(as.numeric(risk[,1]))
+  risk[,1] <- f(as.numeric(risk[,1]))
   ## Add letters to the catch for reference with the decision tables
   risk[,1] <- paste0(letters[1:nrow(risk)], ": ", risk[,1])
 

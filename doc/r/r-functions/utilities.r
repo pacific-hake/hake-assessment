@@ -589,7 +589,7 @@ install.packages.if.needed <- function(package.name, package.install.name, githu
   }
 }
 
-fmt0 <- function(x, dec.points = 0){
+f <- function(x, dec.points = 0){
   ## Format x to have supplied number of decimal points
   ## Make thousands seperated by commas and the number of decimal points given by
   ##  dec.points

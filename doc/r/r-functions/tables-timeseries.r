@@ -16,11 +16,11 @@ make.ci.posterior.table <- function(model,                ## model is an mcmc ru
   ## Filter the values by years
   f <- lapply(model$mcmccalcs, function(x) x[names(x) %in% yrs])
   tab.filt <- cbind(yrs,
-                    paste0(fmt0(f$slower * weight.factor), "-", fmt0(f$supper * weight.factor)),
-                    paste0(fmt0(f$dlower * 100, digits), "-", fmt0(f$dupper * 100, digits), "\\%"),
-                    paste0(fmt0(f$rlower * weight.factor), "-", fmt0(f$rupper * weight.factor)),
-                    paste0(fmt0(f$plower * 100, digits), "-", fmt0(f$pupper * 100, digits), "\\%"),
-                    paste0(fmt0(f$flower * 100, digits), "-", fmt0(f$fupper * 100, digits), "\\%"))
+                    paste0(f(f$slower * weight.factor), "-", f(f$supper * weight.factor)),
+                    paste0(f(f$dlower * 100, digits), "-", f(f$dupper * 100, digits), "\\%"),
+                    paste0(f(f$rlower * weight.factor), "-", f(f$rupper * weight.factor)),
+                    paste0(f(f$plower * 100, digits), "-", f(f$pupper * 100, digits), "\\%"),
+                    paste0(f(f$flower * 100, digits), "-", f(f$fupper * 100, digits), "\\%"))
 
   ## Make current year have dashes for exploitation rate and fishing intensity
   tab.filt[nrow(tab.filt), ncol(tab.filt)] <- "\\textbf{--}"
@@ -60,11 +60,11 @@ make.median.posterior.table <- function(model,                ## model is an mcm
   ## Filter the values by years
   f <- lapply(model$mcmccalcs, function(x) x[names(x) %in% yrs])
   tab.filt <- cbind(yrs,
-                    fmt0(f$smed * weight.factor),
-                    paste0(fmt0(f$dmed * 100, digits), "\\%"),
-                    fmt0(f$rmed * weight.factor),
-                    paste0(fmt0(f$pmed * 100, digits), "\\%"),
-                    paste0(fmt0(f$fmed * 100, digits), "\\%"))
+                    f(f$smed * weight.factor),
+                    paste0(f(f$dmed * 100, digits), "\\%"),
+                    f(f$rmed * weight.factor),
+                    paste0(f(f$pmed * 100, digits), "\\%"),
+                    paste0(f(f$fmed * 100, digits), "\\%"))
 
   ## Make current year have dashes for exploitation rate and fishing intensity
   tab.filt[nrow(tab.filt), ncol(tab.filt)] <- "\\textbf{--}"
@@ -108,8 +108,8 @@ make.biomass.table <- function(model,                ## model is an mcmc run and
   dupper <- model$mcmccalcs$dupper * 100
 
   ## Join the values and apply the formatiing
-  tab <- t(rbind(fmt0(slower,digits),fmt0(smed,digits),fmt0(supper,digits),
-                 paste0(fmt0(dlower,digits),"\\%"),paste0(fmt0(dmed,digits),"\\%"),paste0(fmt0(dupper,digits),"\\%")))
+  tab <- t(rbind(f(slower,digits),f(smed,digits),f(supper,digits),
+                 paste0(f(dlower,digits),"\\%"),paste0(f(dmed,digits),"\\%"),paste0(f(dupper,digits),"\\%")))
 
   ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
   tab.filt <- tab[match(start.yr:end.yr, rownames(tab)),]
@@ -187,8 +187,8 @@ make.recruitment.table <- function(model,                ## model is an mcmc run
   devupper <- devupper[names(devupper) %in% yrs]
 
   ## Join the values and apply the formatiing
-  tab <- t(rbind(fmt0(rlower,digits),fmt0(rmed,digits),fmt0(rupper,digits),
-                 fmt0(devlower,digits.dev),fmt0(devmed,digits.dev),fmt0(devupper,digits.dev)))
+  tab <- t(rbind(f(rlower,digits),f(rmed,digits),f(rupper,digits),
+                 f(devlower,digits.dev),f(devmed,digits.dev),f(devupper,digits.dev)))
 
   ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
   tab.filt <- tab[match(start.yr:end.yr, rownames(tab)),]
@@ -275,8 +275,8 @@ make.fishing.intensity.table <- function(model,                ## model is an mc
   fupper <- fupper[(names(fupper) %in% yrs)]
 
   ## Join the values and apply the formatiing
-  tab <- t(rbind(fmt0(plower,digits),fmt0(pmed,digits),fmt0(pupper,digits),
-                 fmt0(flower,digits),fmt0(fmed,digits),fmt0(fupper,digits)))
+  tab <- t(rbind(f(plower,digits),f(pmed,digits),f(pupper,digits),
+                 f(flower,digits),f(fmed,digits),f(fupper,digits)))
 
   ## Filter for correct years to show
   tab.filt <- tab[match(start.yr:end.yr, rownames(tab)),]

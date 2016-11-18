@@ -96,8 +96,8 @@ make.age.comp.bubble.plot(base.model, subplot = 1)
   for the years \Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}.
   Proportions in each year sum to 1.0 and area of the bubbles are
   proportional to the proportion and consistent in both panels (see key at top).
-  The largest bubble in the survey data is \Sexpr{fmt0(max.survey.age.prop[3] / 100, 2)} for age \Sexpr{max.survey.age.prop[5]}
-  in \Sexpr{max.survey.age.prop[4]} and in the fishery is \Sexpr{fmt0(max.fishery.age.prop[3] / 100, 2)} for age \Sexpr{max.survey.age.prop[5]}
+  The largest bubble in the survey data is \Sexpr{f(max.survey.age.prop[3] / 100, 2)} for age \Sexpr{max.survey.age.prop[5]}
+  in \Sexpr{max.survey.age.prop[4]} and in the fishery is \Sexpr{f(max.fishery.age.prop[3] / 100, 2)} for age \Sexpr{max.survey.age.prop[5]}
   in \Sexpr{max.fishery.age.prop[4]}.}
 \label{fig:main-age-comp-bubbles}
 \end{figure}
@@ -711,7 +711,7 @@ make.forecast.depletion.comparison.plot(base.model,
 \end{center}
 \caption{Time series of relative spawning biomass at the start of each year until \Sexpr{end.yr} as estimated from the base model, and forecast trajectories
   to the start of \Sexpr{forecast.yrs[length(forecast.yrs)]} for several management options from the decision table, with 95\% posterior
-  credibility intervals. The \Sexpr{end.yr} catch of \Sexpr{fmt0(catch.default.policy[1])}~t was calculated using the default
+  credibility intervals. The \Sexpr{end.yr} catch of \Sexpr{f(catch.default.policy[1])}~t was calculated using the default
   harvest policy, as defined in the Agreement.}
 \label{fig:main-forecast-depletion-comparison}
 \end{figure}

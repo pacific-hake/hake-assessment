@@ -8,8 +8,8 @@ make.survey.history.table <- function(dat,
   ## The vessel names neew to be fixed. They are seperated by spaces, and may or may not have dashes in their names
   ## The dashes will be replaced with spaces, and the spaces will be replaced by newlines in the output
 
-  dat$biomass[!is.na(dat$biomass)] <- fmt0(dat$biomass[!is.na(dat$biomass)], digits)
-  dat$cv[!is.na(dat$cv)] <- fmt0(dat$cv[!is.na(dat$cv)], digits)
+  dat$biomass[!is.na(dat$biomass)] <- f(dat$biomass[!is.na(dat$biomass)], digits)
+  dat$cv[!is.na(dat$cv)] <- f(dat$cv[!is.na(dat$cv)], digits)
   dat$vessels <- gsub(" ", "\\\\\\\\", dat$vessels)
   dat$vessels <- gsub("-", " ", dat$vessels)
   dat$vessels <- paste0("\\specialcell{", dat$vessels,"}")
@@ -40,11 +40,11 @@ make.survey.extrap.table <- function(dat,
   dat <- dat[,-2]
 
   ## Format the columns individually, avoiding any NA's
-  dat$no.extrap[!is.na(dat$no.extrap)] <- fmt0(dat$no.extrap[!is.na(dat$no.extrap)] / 1000, digits)
-  dat$with.extrap[!is.na(dat$with.extrap)] <- fmt0(dat$with.extrap[!is.na(dat$with.extrap)] / 1000, digits)
-  dat$design.based[!is.na(dat$design.based)] <- fmt0(dat$design.based[!is.na(dat$design.based)] / 1000, digits)
-  dat$cv.no.extrap[!is.na(dat$cv.no.extrap)] <- paste0(fmt0(100 * dat$cv.no.extrap[!is.na(dat$cv.no.extrap)], 1), "\\%")
-  dat$cv.with.extrap[!is.na(dat$cv.with.extrap)] <- paste0(fmt0(100 * dat$cv.with.extrap[!is.na(dat$cv.with.extrap)], 1), "\\%")
+  dat$no.extrap[!is.na(dat$no.extrap)] <- f(dat$no.extrap[!is.na(dat$no.extrap)] / 1000, digits)
+  dat$with.extrap[!is.na(dat$with.extrap)] <- f(dat$with.extrap[!is.na(dat$with.extrap)] / 1000, digits)
+  dat$design.based[!is.na(dat$design.based)] <- f(dat$design.based[!is.na(dat$design.based)] / 1000, digits)
+  dat$cv.no.extrap[!is.na(dat$cv.no.extrap)] <- paste0(f(100 * dat$cv.no.extrap[!is.na(dat$cv.no.extrap)], 1), "\\%")
+  dat$cv.with.extrap[!is.na(dat$cv.with.extrap)] <- paste0(f(100 * dat$cv.with.extrap[!is.na(dat$cv.with.extrap)], 1), "\\%")
   dat[is.na(dat)] <- "--"
 
   colnames(dat) <- c("\\specialcell{\\textbf{Year}}",
@@ -196,7 +196,7 @@ make.kriging.parameters.table <- function(krig.pars = kriging.pars,
                                           ){
   ## Returns an xtable in the proper format for the kriging parameters
 
-  krig.pars[1:10,"SearchRadius"] <- fmt0(as.numeric(krig.pars[1:10,"SearchRadius"]), 2)
+  krig.pars[1:10,"SearchRadius"] <- f(as.numeric(krig.pars[1:10,"SearchRadius"]), 2)
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1

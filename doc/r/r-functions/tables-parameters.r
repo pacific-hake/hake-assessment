@@ -53,12 +53,12 @@ make.parameters.estimated.summary.table <- function(model,                ## mod
     }
     if(prior.type[vals[p.type]] == "Lognormal"){
       return(paste0(prior.type[vals[p.type]], "(",
-                    fmt0(exp(as.numeric(vals[p.mean])), digits), ",",
-                    fmt0(exp(as.numeric(vals[p.sd])), digits), ")"))
+                    f(exp(as.numeric(vals[p.mean])), digits), ",",
+                    f(exp(as.numeric(vals[p.sd])), digits), ")"))
     }
     return(paste0(prior.type[vals[p.type]], "(",
-                  fmt0(as.numeric(vals[p.mean]), digits), ",",
-                  fmt0(as.numeric(vals[p.sd]), digits), ")"))
+                  f(as.numeric(vals[p.mean]), digits), ",",
+                  f(as.numeric(vals[p.sd]), digits), ")"))
   }
 
   ctl <- model$ctl
@@ -276,13 +276,13 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
 
   ## Format the tables rows depending on what they are
   ## Decimal values
-  tab[c(1,3,4),] <- fmt0(tab[c(1,3,4),], 3)
+  tab[c(1,3,4),] <- f(tab[c(1,3,4),], 3)
   ## Large numbers with no decimal points but probably commas
-  tab[c(2,5,6,7,8,12,15),] <- fmt0(apply(tab[c(2,5,6,7,8,12,15),], c(1,2), as.numeric))
+  tab[c(2,5,6,7,8,12,15),] <- f(apply(tab[c(2,5,6,7,8,12,15),], c(1,2), as.numeric))
   ## Percentages
-  tab[c(9,10,11,14),] <- paste0(fmt0(apply(tab[c(9,10,11,14),], c(1,2), as.numeric), 1), "\\%")
+  tab[c(9,10,11,14),] <- paste0(f(apply(tab[c(9,10,11,14),], c(1,2), as.numeric), 1), "\\%")
   ## SPR Percentages row (some may be NA). This is really ugly but works
-  tab[13, !is.na(tab[13,])] <- paste0(fmt0(as.numeric(tab[13, !is.na(tab[13,])]), 1), "\\%")
+  tab[13, !is.na(tab[13,])] <- paste0(f(as.numeric(tab[13, !is.na(tab[13,])]), 1), "\\%")
 
   ## Make first row empty to make the Parameter header appear below the horizontal line
   tab <- rbind(rep("", length(models)), tab)
@@ -489,13 +489,13 @@ make.short.parameter.estimates.table <- function(model,                ## model 
 
   ## Format the tables rows depending on what they are.
   ## Decimal values
-  tab[c(1,3,4,5),] <- fmt0(tab[c(1,3,4,5),], 3)
+  tab[c(1,3,4,5),] <- f(tab[c(1,3,4,5),], 3)
   ## Large numbers with no decimal points but probably commas
-  tab[c(2,6,7,8,9,13,16),] <- fmt0(apply(tab[c(2,6,7,8,9,13,16),], c(1,2), as.numeric))
+  tab[c(2,6,7,8,9,13,16),] <- f(apply(tab[c(2,6,7,8,9,13,16),], c(1,2), as.numeric))
   ## Percentages on non-NA elements
   paste.perc <- function(vec){
     ## Paste percentages on to all elements of vec that are not NA
-    vec[!is.na(vec)] <- paste0(fmt0(as.numeric(vec[!is.na(vec)]), 1), "\\%")
+    vec[!is.na(vec)] <- paste0(f(as.numeric(vec[!is.na(vec)]), 1), "\\%")
     return(vec)
   }
   tab[10,] <- paste.perc(tab[10,])
@@ -503,7 +503,7 @@ make.short.parameter.estimates.table <- function(model,                ## model 
   tab[12,] <- paste.perc(tab[12,])
   tab[15,] <- paste.perc(tab[15,])
   ## SPR Percentages row (some may be NA). This is really ugly but works
-  tab[14, !is.na(tab[14,])] <- paste0(fmt0(apply(tab[14, !is.na(tab[14,])], 1, as.numeric), 1), "\\%")
+  tab[14, !is.na(tab[14,])] <- paste0(f(apply(tab[14, !is.na(tab[14,])], 1, as.numeric), 1), "\\%")
 
   ## Make first row empty to make the Parameter header appear below the horizontal line
   tab <- rbind(c("","",""), tab)
@@ -598,7 +598,7 @@ make.long.parameter.estimates.table <- function(model,                ## model i
   df <- calc.meds(df, a.sel)
 
   ## Format the values
-  df[,2] <- fmt0(df[,2], digits)
+  df[,2] <- f(df[,2], digits)
 
   ## Make the underscores in the names have a preceeding \ so latex will like it
   param.names <- levels(df[,1])[df[,1]]
