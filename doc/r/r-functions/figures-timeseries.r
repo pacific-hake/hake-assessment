@@ -293,7 +293,7 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
   par <- oldpar
 }
 
-make.squid.plot <- function(models,      ## A list of models to compare (typically base and retrospectives)
+make.squid.plot <- function(models,      ## A list of models to compare (typically base and its retrospectives)
                             subplot = 1, ## 1 = Recruitment devs, 2 = Rec dev strength relative to most recent estimate
                             cohorts){    ## Vector of years to plot the cohorts for
   ## Plot the retrospective recruitment deviations AKA "squid" plot to outline
@@ -343,6 +343,7 @@ make.comparison.plot <- function(models,                   ## models is a list o
     tmp.names <- sapply(models[1:length(models)], "[[", "path")
     model.names <- gsub(".*/","", tmp.names)
   }
+browser()
   compare.summary <- SSsummarize(models)
   endyrvec <- "default"
   ## If it is a retropective plot, compute the end year vector of years so the lines end on the correct years
@@ -379,6 +380,84 @@ make.comparison.plot <- function(models,                   ## models is a list o
                       indexUncertainty = indexUncertainty,
                       indexfleets = indexfleets,
                       endyrvec = endyrvec,
+                      new=FALSE,
+                      labels = c("Year", "Spawning biomass (t)", "Relative spawning biomass", "Age-0 recruits (1,000s)",
+                                 "Recruitment deviations", "Index", "Log index", "SPR ratio", "Density",
+                                 "Management target", "", "Spawning output",
+                                 "Harvest rate"))
+  }
+  par <- oldpar
+}
+
+make.comparison.plot.mcmc <- function(
+            models,                   ## models is a list of model runs to be plotted against of which
+                                      ## each element is the output of the r4ss package's function SSgetMCMC
+            subplots = 1,             ## Same as subplot argument in SSplotComparisons
+            model.names = NULL,       ## vector of model names. Must be same length as models
+            densitynames = NULL,      ## Same as densitynames argument in SSplotComparisons
+            indexPlotEach = FALSE,    ## Same as indexPlotEach argument in SSplotComparisons
+            indexUncertainty = FALSE, ## Same as indexUncertainty argument in SSplotComparisons
+            indexfleets = NULL,       ## Passed to the SSplotComparisons function
+            is.retro = FALSE,         ## Is this a retrospective plot?
+            legend = TRUE,            ## Passed to the SSplotComparisons function
+            legendloc = "topright",   ## Passed to the SSplotComparisons function
+            end.yr = NULL,            ## End year of the plot. If is.retro is TRUE, this is ignored and endyrvec is calculated
+            xlims="default",          ## xlim to zoom on a specific area
+            mcmc = rep(TRUE,length(models))   ## model numbers to plot mcmc instead of MLE
+            ){
+  ## Plot the list of models against each other.
+  ## if model.names is null, the directory names will be used
+  ## Used in the SRG management presentation (beamer)
+  oldpar <- par()
+  if(is.null(model.names)){
+    tmp.names <- sapply(models[1:length(models)], "[[", "path")
+    model.names <- gsub(".*/","", tmp.names)
+  }
+  compare.summary <- SSsummarize(models)
+  compare.summary$mcmc <- vector(mode="list",length=length(models))
+  for(i in 1:length(models)) {
+    compare.summary$mcmc[[i]] <- models[[i]]$mcmc
+  }
+
+  endyrvec <- "default"
+  ## If it is a retrospective plot, compute the end year vector of years so the lines end on the correct years
+  if(is.retro){
+    endyrvec <- compare.summary$endyrs + 1 + (0:-(length(models) - 1))
+  }else{
+    if(!is.null(end.yr)){
+      endyrvec <- end.yr
+    }
+  }
+  if(is.null(densitynames)){
+    SSplotComparisons(compare.summary,
+                      subplots = subplots,
+                      legend = legend,
+                      legendlabels = model.names,
+                      legendloc = legendloc,
+                      indexPlotEach = indexPlotEach,
+                      indexUncertainty = indexUncertainty,
+                      indexfleets = indexfleets,
+                      endyrvec = endyrvec,
+                      xlim=xlims,
+                      mcmc = TRUE,
+                      new=FALSE,
+                      labels = c("Year", "Spawning biomass (t)", "Relative spawning biomass", "Age-0 recruits (1,000s)",
+                                 "Recruitment deviations", "Index", "Log index", "SPR ratio", "Density",
+                                 "Management target", "", "Spawning output",
+                                 "Harvest rate"))
+  }else{
+    SSplotComparisons(compare.summary,
+                      subplots = subplots,
+                      legend = legend,
+                      legendlabels = model.names,
+                      legendloc = legendloc,
+                      densitynames = densitynames,
+                      indexPlotEach = indexPlotEach,
+                      indexUncertainty = indexUncertainty,
+                      indexfleets = indexfleets,
+                      endyrvec = endyrvec,
+                      xlim=xlims,
+                      mcmc = mcmc,
                       new=FALSE,
                       labels = c("Year", "Spawning biomass (t)", "Relative spawning biomass", "Age-0 recruits (1,000s)",
                                  "Recruitment deviations", "Index", "Log index", "SPR ratio", "Density",

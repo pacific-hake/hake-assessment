@@ -14,9 +14,9 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%  % Call figure directly
+%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
-\vspace{-5mm}  % Chris will hate this
+\vspace{-5mm}
 \begin{center}
 \includegraphics[angle=90,origin=c]{main-figures/backscatter2smaller2.eps} % width=\maxwidth,
 \end{center}
@@ -96,8 +96,8 @@ make.age.comp.bubble.plot(base.model, subplot = 1)
   for the years \Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}.
   Proportions in each year sum to 1.0 and area of the bubbles are
   proportional to the proportion and consistent in both panels (see key at top).
-  The largest bubble in the survey data is \Sexpr{fmt0(max.survey.age.prop[3] / 100, 2)} for age \Sexpr{max.survey.age.prop[5]}
-  in \Sexpr{max.survey.age.prop[4]} and in the fishery is \Sexpr{fmt0(max.fishery.age.prop[3] / 100, 2)} for age \Sexpr{max.survey.age.prop[5]}
+  The largest bubble in the survey data is \Sexpr{f(max.survey.age.prop[3] / 100, 2)} for age \Sexpr{max.survey.age.prop[5]}
+  in \Sexpr{max.survey.age.prop[4]} and in the fishery is \Sexpr{f(max.fishery.age.prop[3] / 100, 2)} for age \Sexpr{max.survey.age.prop[5]}
   in \Sexpr{max.fishery.age.prop[4]}.}
 \label{fig:main-age-comp-bubbles}
 \end{figure}
@@ -108,7 +108,7 @@ make.age.comp.bubble.plot(base.model, subplot = 1)
 \begin{center}
 <<main.survey.biomass, fig.height=6, fig.width=8>>=
 ## modelnum is the model index in models list from which the survey input data are used.
-make.survey.biomass.plot(models, modelnum=base.model.ind)
+make.survey.biomass.plot(base.model)
 @
 \end{center}
 \caption{Acoustic survey biomass index (millions of metric tons). Approximate 95\% confidence intervals are based on only sampling variability (\Sexpr{survey.start.yr}--2007, 2011--\Sexpr{survey.end.yr}) in addition to squid/hake apportionment uncertainty (2009, in blue).}
@@ -133,8 +133,7 @@ make.survey.biomass.extrap.plot(survey.comparison)
 \begin{center}
 <<age.one.index, fig.height=3.5, fig.width=8>>=
 make.survey.age1.plot(age.1.index,
-                      models,
-                      modelnum = base.model.ind)
+                      base.model)
 @
 \end{center}
 %\vspace{0mm}
@@ -177,7 +176,7 @@ bridge.density.names <- c("SPB_Virgin",
                           "Late_RecrDev_2014",
                           "SR_BH_steep",
                           "ForeCatch_2016")
-make.comparison.plot(models[bridge.model.inds.1],
+make.comparison.plot(bridge.models.1,
                      subplots = 2,
                      model.names = bridge.model.names.1,
                      densitynames = bridge.density.names,
@@ -196,30 +195,30 @@ make.comparison.plot(models[bridge.model.inds.1],
 oldpar <- par(no.readonly=TRUE)
 par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
 layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
-make.comparison.plot(models[bridge.model.inds.2],
+make.comparison.plot(bridge.models.2,
                      subplots = 2,
                      model.names = bridge.model.names.2,
                      densitynames = bridge.density.names,
                      end.yr = end.yr)
-make.comparison.plot(models[bridge.model.inds.2],
+make.comparison.plot(bridge.models.2,
                      subplots = 4,
                      model.names = bridge.model.names.2,
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      end.yr = end.yr)
-make.comparison.plot(models[bridge.model.inds.2],
+make.comparison.plot(bridge.models.2,
                      subplots = 8,
                      model.names = bridge.model.names.2,
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      end.yr = end.yr)
-make.comparison.plot(models[bridge.model.inds.2],
+make.comparison.plot(bridge.models.2,
                      subplots = 10,
                      model.names = bridge.model.names.2,
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      end.yr = end.yr)
-make.comparison.plot(models[bridge.model.inds.2],
+make.comparison.plot(bridge.models.2,
                      subplots = 11,
                      model.names = bridge.model.names.2,
                      densitynames = bridge.density.names,
@@ -245,27 +244,27 @@ oldpar <- par(no.readonly=TRUE)
 par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
 layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
 ## subplot 2 is spawning output with CI
-make.comparison.plot(models[bridge.model.inds.3],
+make.comparison.plot(bridge.models.3,
                      subplots = 2,
                      model.names = bridge.model.names.3,
                      densitynames = bridge.density.names,
                      end.yr = end.yr)
 ## subplot 4 is spawning output with CI and 0.1, 0.4, and 1.0 lines
-make.comparison.plot(models[bridge.model.inds.3],
+make.comparison.plot(bridge.models.3,
                      subplots = 4,
                      model.names = bridge.model.names.3,
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      end.yr = end.yr)
 ## subplot 8 is recruitment with CI
-make.comparison.plot(models[bridge.model.inds.3],
+make.comparison.plot(bridge.models.3,
                      subplots = 8,
                      model.names = bridge.model.names.3,
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      end.yr = end.yr)
 ## subplot 10 is recruitment devs with CI
-make.comparison.plot(models[bridge.model.inds.3],
+make.comparison.plot(bridge.models.3,
                      subplots = 10,
                      model.names = bridge.model.names.3,
                      densitynames = bridge.density.names,
@@ -697,10 +696,10 @@ make.forecast.catch.posterior.plot(base.model,
 %% \begin{figure}[H]
 \begin{center}
 <<main.forecast.depletion.comparison.plot, fig.height=4.5, fig.width=8>>=
-## Look at catch.levels and catch.levels.names to decide which to include here
+## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those forecast models which will be plotted against each other
-models.inds <- c(1, 2, 3, 4, 7)
-models.names <- catch.levels.names[models.inds]
+models.inds <- c(1, 2, 3, 4)
+models.names <- sapply(catch.levels, "[[", 2) ## pretty catch level name
 make.forecast.depletion.comparison.plot(base.model,
                                         models.inds,
                                         models.names,
@@ -712,7 +711,7 @@ make.forecast.depletion.comparison.plot(base.model,
 \end{center}
 \caption{Time series of relative spawning biomass at the start of each year until \Sexpr{end.yr} as estimated from the base model, and forecast trajectories
   to the start of \Sexpr{forecast.yrs[length(forecast.yrs)]} for several management options from the decision table, with 95\% posterior
-  credibility intervals. The \Sexpr{end.yr} catch of \Sexpr{fmt0(catch.default.policy[1])}~t was calculated using the default
+  credibility intervals. The \Sexpr{end.yr} catch of \Sexpr{f(catch.default.policy[1])}~t was calculated using the default
   harvest policy, as defined in the Agreement.}
 \label{fig:main-forecast-depletion-comparison}
 \end{figure}
@@ -762,7 +761,7 @@ make.forecast.risk.comparison.plot(base.model,
 \begin{figure}[H]
 \begin{center}
 <<main.biomass.base.alternative.2, fig.height=4.5, fig.width=8>>=
-make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
+make.comparison.plot(c(list(base.model), sens.models.2),
                      subplots = 2,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
                      end.yr = end.yr)
@@ -781,7 +780,7 @@ sens.density.yr <- last.data.yr - 1
 sens.density.names <- c(paste0("Late_RecrDev_",sens.density.yr))
 oldpar <- par()
 par(mar = c(2.6, 3.1, 1.1, 1.1))
-make.comparison.plot(models[c(base.model.ind, sens.model.inds.2)],
+make.comparison.plot(c(list(base.model), sens.models.2),
                      subplots = 14,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
                      legendloc = "topleft",
@@ -807,14 +806,14 @@ par <- oldpar
 oldpar <- par(no.readonly=TRUE)
 par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
 layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
-make.comparison.plot(models[c(base.model.ind, sens.model.inds.3)],
+make.comparison.plot(c(list(base.model), sens.models.3),
                      subplots = 2,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.3),
                      end.yr = end.yr)
 make.selex.plot(base.model, pan.letter = "a")
-make.selex.plot(models[[sens.model.inds.3[1]]], pan.letter = "b")
-make.selex.plot(models[[sens.model.inds.3[2]]], pan.letter = "c")
-make.selex.plot(models[[sens.model.inds.3[3]]], pan.letter = "d")
+make.selex.plot(sens.models.3[[1]], pan.letter = "b")
+make.selex.plot(sens.models.3[[2]], pan.letter = "c")
+make.selex.plot(sens.models.3[[3]], pan.letter = "d")
 par <- oldpar
 mtext("Age", side = 1, line = 1, outer = TRUE)
 @
@@ -828,7 +827,7 @@ mtext("Age", side = 1, line = 1, outer = TRUE)
 \begin{figure}[H]
 \begin{center}
 <<main.biomass.base.alternative.1, fig.height=4.5, fig.width=8>>=
-make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
+make.comparison.plot(c(list(base.model), sens.models.1),
                      subplots = 2,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
                      end.yr = end.yr)
@@ -843,7 +842,7 @@ make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
 %% \begin{figure}[H]
 \begin{center}
 <<main.status.base.alternative.1, fig.height=4.5, fig.width=8>>=
-make.comparison.plot(models[c(base.model.ind, sens.model.inds.1)],
+make.comparison.plot(c(list(base.model), sens.models.1),
                      subplots = 4,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
                      legend = FALSE,

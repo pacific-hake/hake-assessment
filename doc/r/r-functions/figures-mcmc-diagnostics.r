@@ -213,3 +213,4 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
   axis(2, at = (0:5)*1e6, lab = 0:5, las = 1)
   par <- oldpar
 }
+

@@ -8,24 +8,24 @@ make.reference.points.table <- function(model,                ## model is an mcm
                                         ){
   ## Returns an xtable in the proper format for the executive summary reference points
 
-  unfish.fem.bio <- fmt0(round(quantile(model$mcmc$SSB_Unfished,prob=c(0.025,0.5,0.975))/2e6,3) * 1000, 0)
-  unfish.recr <- fmt0(round(quantile(model$mcmc$Recr_Virgin,prob=c(0.025,0.5,0.975))/1e6,3) * 1000, 0)
+  unfish.fem.bio <- f(round(quantile(model$mcmc$SSB_Unfished,prob=c(0.025,0.5,0.975))/2e6,3) * 1000, 0)
+  unfish.recr <- f(round(quantile(model$mcmc$Recr_Virgin,prob=c(0.025,0.5,0.975))/1e6,3) * 1000, 0)
 
 
-  f.spawn.bio.bf40 <- fmt0(round(quantile(model$mcmc$SSB_SPRtgt,prob=c(0.025,0.5,0.975))/2e6,3) * 1000, 0)
+  f.spawn.bio.bf40 <- f(round(quantile(model$mcmc$SSB_SPRtgt,prob=c(0.025,0.5,0.975))/2e6,3) * 1000, 0)
   spr.msy.proxy <- c("\\textbf{--}","40\\%","\\textbf{--}")
   exp.frac.spr <- paste0(round(100*quantile(model$mcmc$Fstd_SPRtgt,prob=c(0.025,0.5,0.975)),1), "\\%")
-  yield.bf40 <- fmt0(round(quantile(model$mcmc$TotYield_SPRtgt,prob=c(0.025,0.5,0.975))/1e6,3) * 1000, 0)
+  yield.bf40 <- f(round(quantile(model$mcmc$TotYield_SPRtgt,prob=c(0.025,0.5,0.975))/1e6,3) * 1000, 0)
 
-  fem.spawn.bio.b40 <- fmt0(round(quantile(model$mcmc$SSB_Btgt,prob=c(0.025,0.5,0.975))/2e6,3) * 1000, 0)
+  fem.spawn.bio.b40 <- f(round(quantile(model$mcmc$SSB_Btgt,prob=c(0.025,0.5,0.975))/2e6,3) * 1000, 0)
   spr.b40 <- paste0(round(100*quantile(model$mcmc$SPR_Btgt,prob=c(0.025,0.5,0.975)),1), "\\%")
   exp.frac.b40 <- paste0(round(100*quantile(model$mcmc$Fstd_Btgt,prob=c(0.025,0.5,0.975)),1), "\\%")
-  yield.b40 <- fmt0(round(quantile(model$mcmc$TotYield_Btgt,prob=c(0.025,0.5,0.975))/1e6,3) * 1000, 0)
+  yield.b40 <- f(round(quantile(model$mcmc$TotYield_Btgt,prob=c(0.025,0.5,0.975))/1e6,3) * 1000, 0)
 
-  fem.spawn.bio.bmsy <- fmt0(round(quantile(model$mcmc$SSB_MSY,prob=c(0.025,0.5,0.975))/2e6,3) * 1000, 0)
+  fem.spawn.bio.bmsy <- f(round(quantile(model$mcmc$SSB_MSY,prob=c(0.025,0.5,0.975))/2e6,3) * 1000, 0)
   spr.msy <- paste0(round(100*quantile(model$mcmc$SPR_MSY,prob=c(0.025,0.5,0.975)),1), "\\%")
   exp.frac.sprmsy <- paste0(round(100*quantile(model$mcmc$Fstd_MSY,prob=c(0.025,0.5,0.975)),1), "\\%")
-  msy <- fmt0(round(quantile(model$mcmc$TotYield_MSY,prob=c(0.025,0.5,0.975))/1e6,3) * 1000, 0)
+  msy <- f(round(quantile(model$mcmc$TotYield_MSY,prob=c(0.025,0.5,0.975))/1e6,3) * 1000, 0)
 
   tab <- rbind(unfish.fem.bio, unfish.recr,
                f.spawn.bio.bf40, spr.msy.proxy, exp.frac.spr, yield.bf40,
@@ -76,24 +76,24 @@ make.reference.points.table.orig <- function(model,                ## model is a
                                         ){
   ## Returns an xtable in the proper format for the executive summary reference points
 
-  unfish.fem.bio <- fmt0(round(quantile(model$mcmc$SSB_Unfished,prob=c(0.025,0.5,0.975))/2e6,3) * 1000, 0)
-  unfish.recr <- fmt0(round(quantile(model$mcmc$Recr_Virgin,prob=c(0.025,0.5,0.975))/1e6,3) * 1000, 0)
+  unfish.fem.bio <- f(round(quantile(model$mcmc$SSB_Unfished,prob=c(0.025,0.5,0.975))/2e6,3) * 1000, 0)
+  unfish.recr <- f(round(quantile(model$mcmc$Recr_Virgin,prob=c(0.025,0.5,0.975))/1e6,3) * 1000, 0)
 
 
-  f.spawn.bio.bf40 <- fmt0(round(quantile(model$mcmc$SSB_SPRtgt,prob=c(0.025,0.5,0.975))/2e6,3) * 1000, 0)
+  f.spawn.bio.bf40 <- f(round(quantile(model$mcmc$SSB_SPRtgt,prob=c(0.025,0.5,0.975))/2e6,3) * 1000, 0)
   spr.msy.proxy <- c("\\textbf{--}","40\\%","\\textbf{--}")
   exp.frac.spr <- paste0(round(100*quantile(model$mcmc$Fstd_SPRtgt,prob=c(0.025,0.5,0.975)),1), "\\%")
-  yield.bf40 <- fmt0(round(quantile(model$mcmc$TotYield_SPRtgt,prob=c(0.025,0.5,0.975))/1e6,3) * 1000, 0)
+  yield.bf40 <- f(round(quantile(model$mcmc$TotYield_SPRtgt,prob=c(0.025,0.5,0.975))/1e6,3) * 1000, 0)
 
-  fem.spawn.bio.b40 <- fmt0(round(quantile(model$mcmc$SSB_Btgt,prob=c(0.025,0.5,0.975))/2e6,3) * 1000, 0)
+  fem.spawn.bio.b40 <- f(round(quantile(model$mcmc$SSB_Btgt,prob=c(0.025,0.5,0.975))/2e6,3) * 1000, 0)
   spr.b40 <- paste0(round(100*quantile(model$mcmc$SPR_Btgt,prob=c(0.025,0.5,0.975)),1), "\\%")
   exp.frac.b40 <- paste0(round(100*quantile(model$mcmc$Fstd_Btgt,prob=c(0.025,0.5,0.975)),1), "\\%")
-  yield.b40 <- fmt0(round(quantile(model$mcmc$TotYield_Btgt,prob=c(0.025,0.5,0.975))/1e6,3) * 1000, 0)
+  yield.b40 <- f(round(quantile(model$mcmc$TotYield_Btgt,prob=c(0.025,0.5,0.975))/1e6,3) * 1000, 0)
 
-  fem.spawn.bio.bmsy <- fmt0(round(quantile(model$mcmc$SSB_MSY,prob=c(0.025,0.5,0.975))/2e6,3) * 1000, 0)
+  fem.spawn.bio.bmsy <- f(round(quantile(model$mcmc$SSB_MSY,prob=c(0.025,0.5,0.975))/2e6,3) * 1000, 0)
   spr.msy <- paste0(round(100*quantile(model$mcmc$SPR_MSY,prob=c(0.025,0.5,0.975)),1), "\\%")
   exp.frac.sprmsy <- paste0(round(100*quantile(model$mcmc$Fstd_MSY,prob=c(0.025,0.5,0.975)),1), "\\%")
-  msy <- fmt0(round(quantile(model$mcmc$TotYield_MSY,prob=c(0.025,0.5,0.975))/1e6,3) * 1000, 0)
+  msy <- f(round(quantile(model$mcmc$TotYield_MSY,prob=c(0.025,0.5,0.975))/1e6,3) * 1000, 0)
 
   tab <- rbind(unfish.fem.bio, unfish.recr,
                f.spawn.bio.bf40, spr.msy.proxy, exp.frac.spr, yield.bf40,

@@ -8,8 +8,8 @@ make.survey.history.table <- function(dat,
   ## The vessel names neew to be fixed. They are seperated by spaces, and may or may not have dashes in their names
   ## The dashes will be replaced with spaces, and the spaces will be replaced by newlines in the output
 
-  dat$biomass[!is.na(dat$biomass)] <- fmt0(dat$biomass[!is.na(dat$biomass)], digits)
-  dat$cv[!is.na(dat$cv)] <- fmt0(dat$cv[!is.na(dat$cv)], digits)
+  dat$biomass[!is.na(dat$biomass)] <- f(dat$biomass[!is.na(dat$biomass)], digits)
+  dat$cv[!is.na(dat$cv)] <- f(dat$cv[!is.na(dat$cv)], digits)
   dat$vessels <- gsub(" ", "\\\\\\\\", dat$vessels)
   dat$vessels <- gsub("-", " ", dat$vessels)
   dat$vessels <- paste0("\\specialcell{", dat$vessels,"}")
@@ -40,11 +40,11 @@ make.survey.extrap.table <- function(dat,
   dat <- dat[,-2]
 
   ## Format the columns individually, avoiding any NA's
-  dat$no.extrap[!is.na(dat$no.extrap)] <- fmt0(dat$no.extrap[!is.na(dat$no.extrap)] / 1000, digits)
-  dat$with.extrap[!is.na(dat$with.extrap)] <- fmt0(dat$with.extrap[!is.na(dat$with.extrap)] / 1000, digits)
-  dat$design.based[!is.na(dat$design.based)] <- fmt0(dat$design.based[!is.na(dat$design.based)] / 1000, digits)
-  dat$cv.no.extrap[!is.na(dat$cv.no.extrap)] <- paste0(fmt0(100 * dat$cv.no.extrap[!is.na(dat$cv.no.extrap)], 1), "\\%")
-  dat$cv.with.extrap[!is.na(dat$cv.with.extrap)] <- paste0(fmt0(100 * dat$cv.with.extrap[!is.na(dat$cv.with.extrap)], 1), "\\%")
+  dat$no.extrap[!is.na(dat$no.extrap)] <- f(dat$no.extrap[!is.na(dat$no.extrap)] / 1000, digits)
+  dat$with.extrap[!is.na(dat$with.extrap)] <- f(dat$with.extrap[!is.na(dat$with.extrap)] / 1000, digits)
+  dat$design.based[!is.na(dat$design.based)] <- f(dat$design.based[!is.na(dat$design.based)] / 1000, digits)
+  dat$cv.no.extrap[!is.na(dat$cv.no.extrap)] <- paste0(f(100 * dat$cv.no.extrap[!is.na(dat$cv.no.extrap)], 1), "\\%")
+  dat$cv.with.extrap[!is.na(dat$cv.with.extrap)] <- paste0(f(100 * dat$cv.with.extrap[!is.na(dat$cv.with.extrap)], 1), "\\%")
   dat[is.na(dat)] <- "--"
 
   colnames(dat) <- c("\\specialcell{\\textbf{Year}}",
@@ -66,9 +66,7 @@ make.survey.extrap.table <- function(dat,
                size = size.string))
 }
 
-make.survey.biomass.plot <- function(models,       ## models is the list returned by load.models.
-                                     modelnum = 1, ## the index of the model to show. It shouldn't
-                                                   ## really matter on the same assessment though.
+make.survey.biomass.plot <- function(model,
                                      xlab = "Year",
                                      ylab = "Biomass Index Estimate (million t)"
                                      ){
@@ -77,8 +75,7 @@ make.survey.biomass.plot <- function(models,       ## models is the list returne
   ## There is no error checking to warn you if there is more than one index.
 
   oldpar <- par()
-  base <- models[[modelnum]]
-  tmp <- base$dat
+  tmp <- model$dat
   numObs <- tmp$N_cpue
   survey.dat <- tmp$CPUE
   ## Remove non-survey years from the data frame
@@ -119,22 +116,18 @@ make.survey.biomass.plot <- function(models,       ## models is the list returne
   ##          y0=qlnorm(.025,meanlog=log(cpue$ob),sdlog=cpue$se_log),
   ##          y1=qlnorm(.975,meanlog=log(cpue$ob),sdlog=cpue$se_log),
   ##          lwd=3, lend=1)
-  ## SSplotIndices(base, subplot=2, add=TRUE, col3=rgb(1,0,0,.7))
+  ## SSplotIndices(model, subplot=2, add=TRUE, col3=rgb(1,0,0,.7))
   ## ##plotBars.fn(ests2$year,ests2,scalar=1e6,ylim=c(0,3),pch=20,xlab="year",ylab="Biomass Index Estimate (million mt)",cex=1.5,las=1,gap=0.05,xaxt="n",ciLwd=3,ciCol=rgb(0,0,1,0.6))
   ## ##plotBars.fn(ests$year,ests,scalar=1e6,ylim=c(0,3),pch=20,add=T,cex=1.5,las=1,gap=0.05,xaxt="n",ciLwd=3,ciCol=gray(0.2))
-  ## axis(1, at=base$cpue$Yr[base$cpue$Use==1], cex.axis=0.8, tcl=-0.6)
+  ## axis(1, at=model$cpue$Yr[model$cpue$Use==1], cex.axis=0.8, tcl=-0.6)
   ## axis(1, at=1990:2020, lab=rep("",length(1990:2020)), cex.axis=0.8, tcl=-0.3)
   ## box()
   ## axis(2, at=(0:5)*1e6, lab=0:5, las=1)
   par <- oldpar
 }
 
-
-
-make.survey.age1.plot <- function(age1index,   ##
-                                  models,      ## models is the list returned by load.models.
-                                  modelnum = 1 ## the index of the model to show. 
-                                  ){
+make.survey.age1.plot <- function(age1index,
+                                  model){
   ## It is assumed that the data file has been read in correctly.
   ## Assumes that there is only one 'CPUE' index and it is the acoustic survey.
 
@@ -144,9 +137,8 @@ make.survey.age1.plot <- function(age1index,   ##
   x <- age1index
   yrs <- x$Year
 
-  base <- models[[modelnum]]
-  recr1 <- base$natage[base$natage$Time %in% yrs,"1"]
-  recrAll <- base$natage[base$natage$Time %in% min(yrs):max(yrs),"1"]
+  recr1 <- model$natage[model$natage$Time %in% yrs,"1"]
+  recrAll <- model$natage[model$natage$Time %in% min(yrs):max(yrs),"1"]
 
   logAge1 <- log(recr1)
   logIndex <- log(x$Index)
@@ -196,15 +188,15 @@ make.survey.biomass.extrap.plot <- function(dat){  ## data.frame of the extrapol
 }
 
 make.kriging.parameters.table <- function(krig.pars = kriging.pars,
-                                        xcaption = "default", ## Caption to use
-                                        xlabel   = "default", ## Latex label to use
-                                        font.size = 9,        ## Size of the font for the table
-                                        space.size = 10,       ## Size of the spaces for the table
-                                        placement = "H"       ## Placement of table
-                                        ){
+                                          xcaption = "default", ## Caption to use
+                                          xlabel   = "default", ## Latex label to use
+                                          font.size = 9,        ## Size of the font for the table
+                                          space.size = 10,       ## Size of the spaces for the table
+                                          placement = "H"       ## Placement of table
+                                          ){
   ## Returns an xtable in the proper format for the kriging parameters
-    
-  krig.pars[1:10,"SearchRadius"] <- fmt0(as.numeric(krig.pars[1:10,"SearchRadius"]), 2)
+
+  krig.pars[1:10,"SearchRadius"] <- f(as.numeric(krig.pars[1:10,"SearchRadius"]), 2)
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
@@ -212,9 +204,10 @@ make.kriging.parameters.table <- function(krig.pars = kriging.pars,
   addtorow$pos[[3]] <- 10
   addtorow$pos[[4]] <- nrow(krig.pars)
   addtorow$command <- c(paste0("\\toprule \n",
-                      "Year", "& Search radius", "& $k$\\subscr{min}", "& $k$\\subscr{max} \\\\ \n",
-                        "\\midrule \n"), "\\textbf{2015 assessment}\\\\ \n",
-                        "\\textbf{2016 assessment}\\\\ \n",
+                               "Year", "& Search radius", "& $k$\\subscr{min}", "& $k$\\subscr{max} \\\\ \n",
+                               "\\midrule \n"),
+                        paste0("\\textbf{", last.assess.yr," assessment}\\\\ \n"),
+                        paste0("\\textbf{", assess.yr," assessment}\\\\ \n"),
                         "\\bottomrule \n")
 
   ## Make the size string for font and space size

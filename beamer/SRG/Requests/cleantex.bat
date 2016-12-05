@@ -15,4 +15,3 @@ del *.snm
 del *.synctex.gz
 del beamer-hake-requests.tex
 del beamer-hake-requests.pdf
-rmdir /S /Q knitr-cache

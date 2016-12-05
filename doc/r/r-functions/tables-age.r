@@ -28,7 +28,7 @@ make.est.numbers.at.age.table <- function(model,                ## model is an m
 
   ## Apply division by weight factor and formatting
   f[,-1] <- apply(f[-1], c(1,2), function(x) x / weight.factor)
-  f[,-1] <- apply(f[-1], c(1,2), fmt0)
+  f[,-1] <- apply(f[-1], c(1,2), f)
   f[,1] <- as.character(f[,1])
 
   ## Add latex headers

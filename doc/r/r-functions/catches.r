@@ -62,7 +62,7 @@ make.catches.table <- function(catches,              ## The output of the load.c
   ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
   catches <- catches[catches[,1] >= start.yr & catches[,1] <= end.yr,]
   ## -1 below means leave the years alone and don't comma-seperate them
-  catches[,-1] <-fmt0(catches[-1])
+  catches[,-1] <-f(catches[-1])
 
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
@@ -116,7 +116,7 @@ make.catches.table.US <- function(catches,              ## The output of the loa
   ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
   catches <- catches[catches[,1] >= start.yr & catches[,1] <= end.yr,]
   ## -1 below means leave the years alone and don't comma-seperate them
-  catches[,-1] <-fmt0(catches[-1])
+  catches[,-1] <-f(catches[-1])
 
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
@@ -142,7 +142,7 @@ make.catches.table.Can <- function(catches,              ## The output of the lo
   ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
   catches <- catches[catches[,1] >= start.yr & catches[,1] <= end.yr,]
   ## -1 below means leave the years alone and don't comma-seperate them
-  catches[,-1] <-fmt0(catches[-1])
+  catches[,-1] <-f(catches[-1])
 
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
@@ -177,9 +177,9 @@ make.catches.table.total <- function(catches,              ## The output of the 
 
   ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
   catches <- catches[catches[,1] >= start.yr & catches[,1] <= end.yr,]
-  catches[,-c(1, 5, 6)] <- fmt0(catches[,-c(1, 5, 6)])
+  catches[,-c(1, 5, 6)] <- f(catches[,-c(1, 5, 6)])
 
-  catches[,c(5, 6)] <- fmt0(catches[,c(5, 6)], 1)
+  catches[,c(5, 6)] <- f(catches[,c(5, 6)], 1)
 
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
@@ -201,12 +201,12 @@ make.landings.tac.table <- function(landings.vs.tac,
 
   ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
   tab <- tab[tab$Year >= start.yr & tab$Year <= end.yr,]
-  tab[,-c(1, 8, 9, 10)] <- fmt0(tab[,-c(1, 8, 9, 10)])
+  tab[,-c(1, 8, 9, 10)] <- f(tab[,-c(1, 8, 9, 10)])
 
   ## Round the proportions to one decimal place
-  tab[,8] <- paste0(fmt0(tab[,8], 1),"\\%")
-  tab[,9] <- paste0(fmt0(tab[,9], 1),"\\%")
-  tab[,10] <- paste0(fmt0(tab[,10], 1),"\\%")
+  tab[,8] <- paste0(f(tab[,8], 1),"\\%")
+  tab[,9] <- paste0(f(tab[,9], 1),"\\%")
+  tab[,10] <- paste0(f(tab[,10], 1),"\\%")
   colnames(tab) <- c("\\textbf{Year}",
                      "\\specialcell{\\textbf{US}\\\\\\textbf{landings (t)}}",
                      "\\specialcell{\\textbf{Canadian}\\\\\\textbf{landings (t)}}",

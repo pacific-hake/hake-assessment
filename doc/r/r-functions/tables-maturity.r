@@ -11,7 +11,7 @@ make.maturity.samples.table <- function(ovary.samples,
 
   ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
   tab <- tab[tab$Year >= start.yr & tab$Year <= end.yr,]
-  #tab[,-1] <- fmt0(tab[,-1])
+  #tab[,-1] <- f(tab[,-1])
   tab[is.na(tab)] <- "--"
 
   colnames(tab) <- c("\\textbf{Year}",

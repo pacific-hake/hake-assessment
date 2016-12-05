@@ -74,57 +74,35 @@
 %% opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
 %%                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
 %%                results='show', cache=TRUE, cache.path='knitr-cache/')
-<<off-we-go, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
-opts_chunk$set(dev = 'cairo_ps', fig.path = 'knitr-cache/', fig.dpi = 300, fig.width = 6,
-               fig.height = 4, out.width = '6in', echo = FALSE,  # out.height = '3in',
-               results = FALSE, message = FALSE, warning = FALSE,
-               results = 'hide', cache = TRUE, cache.path = 'knitr-cache/')
+<<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
+opts_chunk$set(dev = 'cairo_ps',
+               fig.path = 'knitr-cache/',
+               fig.dpi = 300,
+               fig.width = 6,
+               fig.height = 4,
+               out.width = '6in',
+               echo = FALSE,
+               results = FALSE,
+               message = FALSE,
+               warning = FALSE,
+               results = 'hide',
+               cache = TRUE,
+               cache.path = 'knitr-cache/')
 
-## Load your R environment here. When you do this, you will need to
-## put the require or library statements that the functions use because the
-## saved environment does not save the libraries as well.
-require(nwfscSurvey)
-require(nwfscMapping)
-require(date)
-require(r4ss)
-require(xtable)   ## For tables which can be inserted into latex docs with knitr
-require(PBSmapping)
-require(maps)
-require(coda)
-require(gtools)
-require(dplyr)
-## Load all R code and the model outputs
-load.Rdata <- readline(prompt = "Load .Rdata? [y/n] ")
-if(load.Rdata == "y") {
-  rm(list=ls(all=TRUE))
-  load("../../../doc/r/.RData")
-}
-## Load the model-partest which was previously run for the base model.
-## This object takes a very long time to build so it is stored in binary
-##  on its own.
-# load("../../../doc/r/model-partest.RData")
+setwd("../../../doc/r")
+## Load all R code and the package libraries.
+source("all.r")
+load.models.into.parent.env()
+## This has to be sourced after loading the models in because it depends
+##  on the model output.
+source("custom-knitr-variables.r")
+source("../../beamer/SRG/Requests/Requests.R")
 
-source("Requests.R")
-source("../Management/functionsManagement.R")
-
-metric1 <- NULL
-metric1$mcmc <- base.model$metrics$outputs[[1]][["06_DefaultHR"]]
-
-#only show specific catch levels in decision tables
-ind <- c(4,5,6,7)
-decTab <- NULL
-decTab$biomass <- vector(mode="list",length=length(ind))
-decTab$spr <- vector(mode="list",length=length(ind))
-catchLevs <- vector(mode="list",length=length(ind))
-for(i in 1:length(ind)) {
-  decTab$biomass[[i]] <- base.model$forecasts$biomass[[ind[i]]]
-  decTab$spr[[i]] <- base.model$forecasts$spr[[ind[i]]]
-  catchLevs[[i]] <- catch.levels[[ind[i]]]
-}
-rowLabs <- rep("",length(ind)*3)
-rowLabs[seq(1,length(ind)*3,3)] <- paste0(letters[ind],":")
-rowLabs[c(2,3,8,9,11,12)] <- c("2015","TAC","FI=","100\\%","default","HR")
-catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
+metric <- NULL
+forecasts <- base.model$forecasts[[1]]
+metric$mcmc <- forecasts[[6]]$outputs
+fore.inds <- c(2, 3, 8, 9, 11, 12)
+fore.names <- c("2015", "TAC", "FI=", "100\\%", "default", "HR")
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -171,12 +149,12 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
     <<request1a, fig.height=4, out.width='0.6\\columnwidth'>>=
       oldpar <- par(mar=c(4,4,1,1))
       selexByAge(base.model, start.yr=1990, tv.end.yr=2015,ages=1:5)
-    par(oldpar)
+      par(oldpar)
     @
     <<request1b, fig.height=3, out.width='0.6\\columnwidth'>>=
       oldpar <- par(mar=c(4,4,1,1))
       selexByAge(base.model, start.yr=1990, tv.end.yr=2015,ages=1:5,ylims=c(0,0.03))
-    par(oldpar)
+      par(oldpar)
     @
     \ec
     \end{column}
@@ -209,20 +187,19 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item 
+      \item
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
   <<decisions.biomass.table, results='asis', echo=FALSE>>=
-    make.decision.table.pres(decTab,
-                        catch.levels=catchLevs,
-                        rowLabs=rowLabs,
-                    xcaption = NULL,
-                    xlabel = "tab:es-decisions-spr",
-                    font.size = 9,
-                    space.size = 11,
-                    which = "biomass",
-                    placement = "h")                    
+    make.decision.table.pres(base.model,
+                             model.inds = fore.inds,
+                             xcaption = NULL,
+                             xlabel = "tab:es-decisions-spr",
+                             font.size = 9,
+                             space.size = 11,
+                             which = "biomass",
+                             placement = "h")
 @
 
   \end{column}
@@ -234,20 +211,19 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item 
+      \item
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
   <<decisions.spr.table, results='asis', echo=FALSE>>=
-    make.decision.table.pres(decTab,
-                        catch.levels=catchLevs,
-                        rowLabs=rowLabs,
-                    xcaption = NULL,
-                    xlabel = "tab:es-decisions-spr",
-                    font.size = 9,
-                    space.size = 11,
-                    which = "spr",
-                    placement = "h")                    
+    make.decision.table.pres(base.model,
+                             model.inds = fore.inds,
+                             xcaption = NULL,
+                             xlabel = "tab:es-decisions-spr",
+                             font.size = 9,
+                             space.size = 11,
+                             which = "spr",
+                             placement = "h")
 @
 
   \end{column}
@@ -259,11 +235,11 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
 \frame{\frametitle{Risk based on fixed 2016 catch}
     <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
       make.risk.table(base.model,
-                forecast.yrs,
-                index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                xcaption = NULL,
-                font.size = 11,
-                space.size = 11)
+                      forecast.yrs,
+                      index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                      xcaption = NULL,
+                      font.size = 11,
+                      space.size = 11)
     @
 }
 
@@ -273,12 +249,12 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
   \bc
     <<forecast.risk.comparison.plot.year.1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
       make.forecast.risk.comparison.plot(base.model,
-                   forecast.yrs = forecast.yrs,
-                   fore.yr = forecast.yrs[1],
-                   colors = c("black","blue","green","orange","red","tan"),
-                   pch = c(16,17,17,17,15,18),
-                   legend.loc = "topleft",
-                   legend.cex = 0.8)
+                                         forecast.yrs = forecast.yrs,
+                                         fore.yr = forecast.yrs[1],
+                                         colors = c("black","blue","green","orange","red","tan"),
+                                         pch = c(16,17,17,17,15,18),
+                                         legend.loc = "topleft",
+                                         legend.cex = 0.8)
 
     @
   \ec
@@ -288,11 +264,11 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
 \frame{\frametitle{Risk based on fixed 2016 and 2017 catch}
     <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
       make.risk.table(base.model,
-                forecast.yrs,
-                index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                xcaption = NULL,
-                font.size = 11,
-                space.size = 11)
+                      forecast.yrs,
+                      index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                      xcaption = NULL,
+                      font.size = 11,
+                      space.size = 11)
     @
 }
 
@@ -302,12 +278,12 @@ catchNames <- c("2015 TAC: 440,000","500,000","FI=100%","default HR")
   \bc
     <<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
       make.forecast.risk.comparison.plot(base.model,
-                   forecast.yrs = forecast.yrs,
-                   fore.yr = forecast.yrs[2],
-                   colors = c("black","blue","green","orange","red","tan"),
-                   pch = c(16,17,17,17,15,18),
-                   legend.loc = "topleft",
-                   legend.cex = 0.7)
+                                         forecast.yrs = forecast.yrs,
+                                         fore.yr = forecast.yrs[2],
+                                         colors = c("black","blue","green","orange","red","tan"),
+                                         pch = c(16,17,17,17,15,18),
+                                         legend.loc = "topleft",
+                                         legend.cex = 0.7)
 
     @
   \ec
