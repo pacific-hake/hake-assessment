@@ -37,7 +37,7 @@ if(verbose) cat0("SS weight-at-age file: \n  ", weight.at.age.file.name)
 ## -----------------------------------------------------------------------------
 ## The version of Stock Synthesis used in this assessment
 ## -----------------------------------------------------------------------------
-ss.version <- "3.30"
+ss.version <- "3.24"
 if(verbose) cat0("SS version: \n  ", ss.version)
 
 ## -----------------------------------------------------------------------------
@@ -87,7 +87,8 @@ if(verbose) cat0("Key posteriors file: \n  ", nuisance.posteriors.file)
 ## -----------------------------------------------------------------------------
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
-base.model.dir.name <- "01_2016base_converted_to_SSv3.30"
+base.model.dir.name <- "55_2016base"
+## "01_2016base_converted_to_SSv3.30"
 base.model.name <- paste(assess.yr, "Base model")
 verify.models(model.dir, base.model.dir.name, base.model.name)
 if(verbose){
