@@ -83,18 +83,16 @@ source("data-tables.r")                 ## Set up variables for data tables (fro
 ## Base model:
 reload.all <- FALSE
 create.rdata.file(model.name = base.model.dir.name,
-                  ovwrt.rdata = reload.all,
+                  ovwrt.rdata = TRUE,
                   run.forecasts = reload.all,
                   fore.yrs = forecast.yrs,
                   forecast.probs = forecast.probs,
                   forecast.catch.levels = catch.levels,
-                  load.forecasts = reload.all,
                   run.retros = reload.all,
                   my.retro.yrs = retro.yrs,
-                  load.retros = reload.all,
                   run.partest = reload.all,
                   key.posteriors = key.posteriors,
-                  verbose = verbose)
+                  verbose = ss.verbose)
 
 ## Bridge models - these variables are set up in model-setup.r
 ovrwrt.bridge.rdata.files <- reload.all

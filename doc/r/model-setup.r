@@ -37,7 +37,7 @@ if(verbose) cat0("SS weight-at-age file: \n  ", weight.at.age.file.name)
 ## -----------------------------------------------------------------------------
 ## The version of Stock Synthesis used in this assessment
 ## -----------------------------------------------------------------------------
-ss.version <- "3.24U"
+ss.version <- "3.30"
 if(verbose) cat0("SS version: \n  ", ss.version)
 
 ## -----------------------------------------------------------------------------
@@ -87,7 +87,7 @@ if(verbose) cat0("Key posteriors file: \n  ", nuisance.posteriors.file)
 ## -----------------------------------------------------------------------------
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
-base.model.dir.name <- "55_2016base"
+base.model.dir.name <- "01_2016base_converted_to_SSv3.30"
 base.model.name <- paste(assess.yr, "Base model")
 verify.models(model.dir, base.model.dir.name, base.model.name)
 if(verbose){
@@ -241,6 +241,20 @@ model.dir.names <- c(base.model.dir.name,
 ## and sensitivity models change in the model.dir.names above..
 load.models.into.parent.env <- function(){
   base.model         <<- load.models(model.dir, base.model.dir.name)
+  ## Error checks:
+  if(is.null(base.model$mcmccalcs)){
+    stop("Error - base.model$mcmccalcs is NULL. Make sure the directory\n",
+            file.path(base.model$path, "mcmc"), " exists and contains valid\n",
+            "   mcmc output, set ovwrt.rdata = TRUE in the create.rdata.file() call\n",
+            "   in all.r, and try again.\n")
+  }
+  if(is.null(base.model$risks)){
+    stop("Error - base.model$risks is NULL. Maybe you forgot to run the forecasting?\n",
+           "   Make sure to setup running and/or loading of forecasts, and\n",
+           "   set ovwrt.rdata = TRUE in the create.rdata.file() call in\n",
+           "   all.r and try again.\n")
+  }
+
   last.yr.base.model <<- load.models(model.dir, last.yr.base.model.dir.name)
   bridge.models.1    <<- load.models(model.dir, bridge.model.dir.names.1)
   bridge.models.2    <<- load.models(model.dir, bridge.model.dir.names.2)

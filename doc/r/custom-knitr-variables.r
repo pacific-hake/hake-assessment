@@ -136,9 +136,10 @@ median.relative.bio.2007.to.2011.min <- f(min(median.relative.bio.2007.to.2011),
 median.relative.bio.2007.to.2011.max <- f(max(median.relative.bio.2007.to.2011), 2)
 median.relative.bio.below.target <- median.relative.bio[median.relative.bio < 0.4]     # when below target
 median.relative.bio.above.target.since <- as.numeric(max(names(median.relative.bio.below.target)))+1   # has been above target since
-# Prob biomass declines next year to year after with zero catch:
+
+## Prob biomass declines next year to year after with zero catch:
 zero.catch.prob.bio.down.1 <- f(base.model$risks[[1]][1,2])
-# Prob biomass declines year after next to year after that with zero catch:
+## Prob biomass declines year after next to year after that with zero catch:
 zero.catch.prob.bio.down.2 <- f(base.model$risks[[2]][1,2])
 
 ## Second forecast year depletion and spawning biomass estimates
