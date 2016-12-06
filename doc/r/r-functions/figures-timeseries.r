@@ -343,7 +343,6 @@ make.comparison.plot <- function(models,                   ## models is a list o
     tmp.names <- sapply(models[1:length(models)], "[[", "path")
     model.names <- gsub(".*/","", tmp.names)
   }
-browser()
   compare.summary <- SSsummarize(models)
   endyrvec <- "default"
   ## If it is a retropective plot, compute the end year vector of years so the lines end on the correct years
