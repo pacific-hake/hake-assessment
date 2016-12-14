@@ -22,6 +22,72 @@ build.doc <- function(knit.only = FALSE, ## Only knit the document, don't LaTeX 
   }
 }
 
+f <- function(x, dec.points = 0){
+  ## Format x to have supplied number of decimal points
+  ## Make thousands seperated by commas and the number of decimal points given by
+  ##  dec.points
+  return(format(round(x,dec.points), big.mark = ",", nsmall = dec.points))
+}
+
+install.packages.if.needed <- function(package.name, package.install.name, github=FALSE){
+  if(github){
+    if(!(package.name %in% rownames(installed.packages()))){
+      devtools::install_github(package.install.name)
+    }
+  }else{
+    if(!(package.name %in% rownames(installed.packages()))){
+      install.packages(package.install.name)
+    }
+  }
+}
+
+split.prior.info <- function(prior.str,
+                             dec.points = 1,
+                             first.to.lower = FALSE){
+  ## Get priors information from prior.str which is a string like
+  ## Lognormal(2.0,1.01)
+  ## Returns a vector of length 3:
+  ## "Lognormal", 2.0, 1.01
+  ## if first.to.lower = TRUE, makes the first letter of the name of the prior lower case.
+  p <- strsplit(prior.str, "\\(")[[1]]
+  if(first.to.lower){
+    ## Make the name of the prior lower case
+    p[1] <- paste0(tolower(substr(p[1], 1, 1)), substr(p[1], 2, nchar(p[1])))
+  }
+  p.type <- p[1]
+  p <- strsplit(p[2], ",")[[1]]
+  p.mean <- f(as.numeric(p[1]), dec.points)
+  p.sd <- f(as.numeric(gsub(")", "", p[2])), dec.points)
+  return(c(p.type, p.mean, p.sd))
+}
+
+cohortCatch <- function(cohort, catage, ages = 0:20) {
+  cohort.yrs <- cohort + ages
+  caa <- as.matrix(catage[catage$Yr %in% cohort.yrs, as.character(ages)])
+  w <- base.model$wtatage
+  w$yr <- w$yr * -1
+  waa <- w[w$fleet == 1 & w$yr %in% cohort.yrs, ]
+  waa <- waa[, names(waa) %in% ages]
+  catch.waa <- as.matrix(caa * waa)
+
+  ind <- 1:(nrow(caa) + 1)
+  if(length(ind) > length(ages)){
+    ind <- 1:nrow(caa)
+  }
+  cohort.catch <- diag(catch.waa[,ind])
+  names(cohort.catch) <- cohort.yrs[1:(nrow(caa))]
+  return(cohort.catch)
+}
+
+get.age.prop <- function(vec, place = 1){
+  ## returns the age prop and the age itself for the place,
+  ## where place is 1=max, 2-second highest, etc.
+  prop <- rev(sort(vec))
+  prop <- prop[place]
+  age <- as.numeric(names(vec[vec == prop]))
+  return(c(age, prop))
+}
+
 get.shade <- function(color, opacity){
   # If color is a single R color string or single number,
   #  returns an rgb string of the specified color and opacity
@@ -319,25 +385,6 @@ strip.columns <- function(vec, names){
   ## Return a vector which is the same as the vector 'vec'
   ## but with the matching col.names removed
   return(vec[!names(vec) %in% names])
-}
-
-install.packages.if.needed <- function(package.name, package.install.name, github=FALSE){
-  if(github){
-    if(!(package.name %in% rownames(installed.packages()))){
-      devtools::install_github(package.install.name)
-    }
-  }else{
-    if(!(package.name %in% rownames(installed.packages()))){
-      install.packages(package.install.name)
-    }
-  }
-}
-
-f <- function(x, dec.points = 0){
-  ## Format x to have supplied number of decimal points
-  ## Make thousands seperated by commas and the number of decimal points given by
-  ##  dec.points
-  return(format(round(x,dec.points), big.mark = ",", nsmall = dec.points))
 }
 
 get.align <- function(num,

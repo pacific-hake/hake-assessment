@@ -195,14 +195,6 @@ shore.based.catch <- f(100 * filter(catches, Year == last.data.yr)$US_shore / (l
 
 ################################################################################
 ## Canadian age data variables
-get.age.prop <- function(vec, place = 1){
-  ## returns the age prop and the age itself for the place,
-  ## where place is 1=max, 2-second highest, etc.
-  prop <- rev(sort(vec))
-  prop <- prop[place]
-  age <- as.numeric(names(vec[vec == prop]))
-  return(c(age, prop))
-}
 ## Canadian Freezer trawlers
 last.year.can.ages.ft <- can.ages[[2]][rownames(can.ages[[2]]) == last.data.yr,]
 get.age.prop(last.year.can.ages.ft, 1)
@@ -262,25 +254,6 @@ last.factor.antepenult <- f(survey.history[nrow(survey.history),]$biomass / surv
 
 ################################################################################
 ## Get priors settings from the control file
-split.prior.info <- function(prior.str,
-                             dec.points = 1,
-                             first.to.lower = FALSE){
-  ## Get priors information from prior.str which is a string like
-  ## Lognormal(2.0,1.01)
-  ## Returns a vector of length 3:
-  ## "Lognormal", 2.0, 1.01
-  ## if first.to.lower = TRUE, makes the first letter of the name of the prior lower case.
-  p <- strsplit(prior.str, "\\(")[[1]]
-  if(first.to.lower){
-    ## Make the name of the prior lower case
-    p[1] <- paste0(tolower(substr(p[1], 1, 1)), substr(p[1], 2, nchar(p[1])))
-  }
-  p.type <- p[1]
-  p <- strsplit(p[2], ",")[[1]]
-  p.mean <- f(as.numeric(p[1]), dec.points)
-  p.sd <- f(as.numeric(gsub(")", "", p[2])), dec.points)
-  return(c(p.type, p.mean, p.sd))
-}
 param.details <- make.parameters.estimated.summary.table(base.model,
                                                          start.rec.dev.yr = recruit.dev.start.yr,
                                                          end.rec.dev.yr = end.yr,
@@ -291,23 +264,6 @@ m.prior <- split.prior.info(param.details[rownames(param.details) == "m.vals",][
 ## Now, in document, use m.prior[1] for name of prior, m.prior[1] for mean, and m.prior[3] for SD.
 
 ################################################################################
-cohortCatch <- function(cohort, catage, ages = 0:20) {
-  cohort.yrs <- cohort + ages
-  caa <- as.matrix(catage[catage$Yr %in% cohort.yrs, as.character(ages)])
-  w <- base.model$wtatage
-  w$yr <- w$yr * -1
-  waa <- w[w$fleet == 1 & w$yr %in% cohort.yrs, ]
-  waa <- waa[, names(waa) %in% ages]
-  catch.waa <- as.matrix(caa * waa)
-
-  ind <- 1:(nrow(caa) + 1)
-  if(length(ind) > length(ages)){
-    ind <- 1:nrow(caa)
-  }
-  cohort.catch <- diag(catch.waa[,ind])
-  names(cohort.catch) <- cohort.yrs[1:(nrow(caa))]
-  return(cohort.catch)
-}
 cohort.catch.1999 <- sum(cohortCatch(1999, base.model$catage))
 cohort.catch.2010 <- sum(cohortCatch(2010, base.model$catage))
 
