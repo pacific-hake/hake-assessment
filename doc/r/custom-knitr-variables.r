@@ -2,9 +2,11 @@
 ## The function f() is for formatting and is defined in
 ##  r-functions/utilities.r
 
+################################################################################
 can.allotment.percent <- 26.12
 us.allotment.percent <- 73.88
 
+################################################################################
 ## Attainment, used in the management performance section
 usa.last.5.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),8]), 1)
 can.last.5.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),9]), 1)
@@ -12,6 +14,7 @@ tot.last.5.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% 
 tot.last.10.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-10):(end.yr-1),10]), 1)
 tot.last.year.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year == (end.yr-1),"ATTAIN"]), 1)
 
+################################################################################
 ## Recent catches
 last.5.years.of.catch.data <- (max(catches$Year)-4):max(catches$Year)
 last.5.years.total.catch <- catches[catches$Year %in% last.5.years.of.catch.data, "TOTAL"]
@@ -19,11 +22,13 @@ long.term.avge.catch <- mean(catches$TOTAL)
 last.5.years.above.avge <- last.5.years.of.catch.data[last.5.years.total.catch > long.term.avge.catch]
 last.5.years.below.avge <- last.5.years.of.catch.data[last.5.years.total.catch < long.term.avge.catch]
 
+################################################################################
 ## last year's values (mostly for the one-page-summary and introduction)
 last.year.landings <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TOTAL), 0)
 last.year.tac <- f(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TAC)
 last.year.attained <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$ATTAIN), 1)
 
+################################################################################
 ## US landings, TAC, and attainments
 last.year.us.landings <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$Ustotal))
 last.year.us.attained <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
@@ -41,6 +46,7 @@ last.year.us.shore.quota.reallocated <- filter(further.tac, Year == last.data.yr
 last.year.us.cp.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.cp.reallocated
 last.year.us.ms.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.ms.reallocated
 
+################################################################################
 ## Last year US catches by fleet
 last.year.us.research.catch <- filter(catches, Year == last.data.yr)$USresearch
 last.year.us.cp.catch <- filter(catches, Year == last.data.yr)$atSea_US_CP
@@ -53,7 +59,8 @@ last.year.us.ms.catch.percent <- f(last.year.us.ms.catch / last.year.us.ms.quota
 last.year.us.shore.catch.percent <- f(last.year.us.shore.catch / last.year.us.shore.quota.reallocated * 100, 1)
 last.year.us.tribal.catch.percent <- f(last.year.us.tribal.max.landed / last.year.us.tribal.quota.reallocated * 100, 1)
 
-## Last year Canadian catch and tac
+################################################################################
+## Last year Canadian catch and TAC
 last.year.can.carryover <- f(filter(further.tac, Year == last.data.yr)$can.carried.over)
 last.year.can.attained <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANATTAIN), 1)   # the percentage
 last.year.can.landings <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal))
@@ -70,6 +77,7 @@ last.year.can.freezer.percent <- f(filter(catches, Year == last.data.yr)$CAN_Fre
                                       as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal) * 100.0, 1)
 years.Can.JV.catch.eq.0.recent <- years.Can.JV.catch.eq.0(catches)
 
+################################################################################
 ## Survey values
 survey.biomass <- survey.history$biomass
 names(survey.biomass) <- as.character(survey.history$year)
@@ -79,41 +87,39 @@ rownames(survey.comps) <- survey.comps$Yr
 survey.extrap.percent <- 100 * (survey.comparison$with.extrap - survey.comparison$no.extrap) / survey.comparison$with.extrap
 names(survey.extrap.percent) <- as.character(survey.comparison$year)
 survey.extrap.percent <- survey.extrap.percent[!is.na(survey.extrap.percent)]
-
 survey.largest.extrap.percent <- f(max(survey.extrap.percent), 2)
 survey.year.of.largest.extrap <- names(survey.extrap.percent[survey.extrap.percent == max(survey.extrap.percent)])
-
 survey.smallest.extrap.percent <- f(min(survey.extrap.percent), 2)
 survey.year.of.smallest.extrap <- names(survey.extrap.percent[survey.extrap.percent == min(survey.extrap.percent)])
-
 survey.average.extrap.percent <- f(mean(survey.extrap.percent), 2)
 
+################################################################################
 ## New depletion and spawning biomass estimates
 curr.depl.lower <- f(base.model$mcmccalcs$dlower[names(base.model$mcmccalcs$dlower) %in% end.yr] * 100, 1)
 curr.depl.median <- f(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end.yr] * 100, 1)
 curr.depl.upper <- f(base.model$mcmccalcs$dupper[names(base.model$mcmccalcs$dupper) %in% end.yr] * 100, 1)
-
 curr.bio.lower <- f(base.model$mcmccalcs$slower[names(base.model$mcmccalcs$slower) %in% end.yr], 3)
 curr.bio.median <- f(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% end.yr], 3)
 curr.bio.upper <- f(base.model$mcmccalcs$supper[names(base.model$mcmccalcs$supper) %in% end.yr], 3)
 
+################################################################################
 ## Estimates of spawning biomass for previous year (calculated in this assessment):
 prev.bio.lower <- f(base.model$mcmccalcs$slower[names(base.model$mcmccalcs$slower) %in% last.data.yr], 3)      # last.data.yr = end.yr-1
 prev.bio.median <- f(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% last.data.yr], 3)
 prev.bio.upper <- f(base.model$mcmccalcs$supper[names(base.model$mcmccalcs$supper) %in% last.data.yr], 3)
 
-
+################################################################################
 ## First forecast year depletion and spawning biomass estimates
 fore.tac.mcmc <- base.model$forecasts$mcmccalcs[[catch.tac.ind]]
 next.depl.lower.tac.based <- f(fore.tac.mcmc$dlower[names(fore.tac.mcmc$dlower) %in% (end.yr + 1)] * 100, 1)
 next.depl.median.tac.based <- f(fore.tac.mcmc$dmed[names(fore.tac.mcmc$dmed) %in% (end.yr + 1)] * 100, 1)
 next.depl.upper.tac.based <- f(fore.tac.mcmc$dupper[names(fore.tac.mcmc$dupper) %in% (end.yr + 1)] * 100, 1)
-
 next.bio.lower.tac.based <- f(fore.tac.mcmc$slower[names(fore.tac.mcmc$slower) %in% (end.yr + 1)] * 100, 1)
 next.bio.median.tac.based <- f(fore.tac.mcmc$smed[names(fore.tac.mcmc$smed) %in% (end.yr + 1)] * 100, 1)
 next.bio.upper.tac.based <- f(fore.tac.mcmc$supper[names(fore.tac.mcmc$supper) %in% (end.yr + 1)] * 100, 1)
 
-## Calculations for exec summary and assessment-section.rnw:
+################################################################################
+## Calculations for executive-summary.rnw and assessment-section.rnw:
 ##  number of mcmc samples, minimum median biomass,
 ##  years when fishing intensity > 1
 num.mcmc.samples <- dim(base.model$mcmc)[1]
@@ -129,7 +135,6 @@ median.intensity.above.one.years <- median.intensity.above.one.all.years[
          median.intensity.above.one.all.years < end.yr]  # ones to mention
 median.intensity.2010 <- f(base.model$mcmccalcs$pmed["2010"] * 100, 1)
 median.intensity.penult.yr <- f(base.model$mcmccalcs$pmed[as.character(end.yr-1)] * 100, 1)
-
 median.relative.bio <- base.model$mcmccalcs$dmed
 median.relative.bio.2007.to.2011 <- median.relative.bio[c("2007", "2008", "2009", "2010", "2011")]
 median.relative.bio.2007.to.2011.min <- f(min(median.relative.bio.2007.to.2011), 2)
@@ -137,23 +142,26 @@ median.relative.bio.2007.to.2011.max <- f(max(median.relative.bio.2007.to.2011),
 median.relative.bio.below.target <- median.relative.bio[median.relative.bio < 0.4]     # when below target
 median.relative.bio.above.target.since <- as.numeric(max(names(median.relative.bio.below.target)))+1   # has been above target since
 
+################################################################################
 ## Prob biomass declines next year to year after with zero catch:
 zero.catch.prob.bio.down.1 <- f(base.model$risks[[1]][1,2])
 ## Prob biomass declines year after next to year after that with zero catch:
 zero.catch.prob.bio.down.2 <- f(base.model$risks[[2]][1,2])
 
+################################################################################
 ## Second forecast year depletion and spawning biomass estimates
 next2.depl.lower.tac.based <- f(fore.tac.mcmc$dlower[names(fore.tac.mcmc$dlower) %in% (end.yr + 2)] * 100, 1)
 next2.depl.median.tac.based <- f(fore.tac.mcmc$dmed[names(fore.tac.mcmc$dmed) %in% (end.yr + 2)] * 100, 1)
 next2.depl.upper.tac.based <- f(fore.tac.mcmc$dupper[names(fore.tac.mcmc$dupper) %in% (end.yr + 2)] * 100, 1)
-
 next2.bio.lower.tac.based <- f(fore.tac.mcmc$slower[names(fore.tac.mcmc$slower) %in% (end.yr + 2)] * 100, 1)
 next2.bio.median.tac.based <- f(fore.tac.mcmc$smed[names(fore.tac.mcmc$smed) %in% (end.yr + 2)] * 100, 1)
 next2.bio.upper.tac.based <- f(fore.tac.mcmc$supper[names(fore.tac.mcmc$supper) %in% (end.yr + 2)] * 100, 1)
 
+################################################################################
 ## number.to.word function located in utilities.r
 catches.below.200000.since.1986 <- number.to.word(length(filter(catches, TOTAL <= 200000, Year > 1986)$Year))
 
+################################################################################
 ## Age composition data for data section
 survey.age.years <- base.model$dat$agecomp[base.model$dat$agecomp$FltSvy == 2,]$Yr
 max.survey.age.prop <- make.age.comp.bubble.plot(base.model,
@@ -162,12 +170,12 @@ max.survey.age.prop <- make.age.comp.bubble.plot(base.model,
 max.fishery.age.prop <- make.age.comp.bubble.plot(base.model,
                                                   subplot = 1,
                                                   do.plot = FALSE)
-
 catch.limit.quantiles <- f(make.forecast.catch.posterior.plot(base.model,
                                    fore.yr = end.yr, do.plot = FALSE) * 1000)
                 # 2.5%, median and 97.5% quantiles of catch limit for assess.yr
                 #  using the default harvest policy; tonnes
 
+################################################################################
 ## Estimated numbers at age for fishery for Recruitment section in Exec Summary and main text
 ##  From make.age.comp.fit.plot() which in turn calls age.fits()
 fishery.estimated.age.comp <- base.model$agedbase[base.model$agedbase$Fleet==1,]  #I think that this has ageing error incorporated
@@ -185,6 +193,7 @@ catcher.processor.catch <- f(100 * filter(catches, Year == last.data.yr)$atSea_U
 mothership.catch <- f(100 * filter(catches, Year == last.data.yr)$atSea_US_MS / (last.year.us.ms.quota.reallocated), 1)
 shore.based.catch <- f(100 * filter(catches, Year == last.data.yr)$US_shore / (last.year.us.shore.quota.reallocated), 1)
 
+################################################################################
 ## Canadian age data variables
 get.age.prop <- function(vec, place = 1){
   ## returns the age prop and the age itself for the place,
@@ -194,7 +203,6 @@ get.age.prop <- function(vec, place = 1){
   age <- as.numeric(names(vec[vec == prop]))
   return(c(age, prop))
 }
-
 ## Canadian Freezer trawlers
 last.year.can.ages.ft <- can.ages[[2]][rownames(can.ages[[2]]) == last.data.yr,]
 get.age.prop(last.year.can.ages.ft, 1)
@@ -225,16 +233,19 @@ ss.age.prop.holder <- get.age.prop(last.year.can.ages.ss, 4)
 fourth.shoreside.age.prop.age <- ss.age.prop.holder[1]
 fourth.shoreside.age.prop <- f(ss.age.prop.holder[2] * 100, 1)
 
+################################################################################
 ## Years for which median recruitment is below the mean of the median
 ##  recruitments for years >2010 and <(end.yr-1) ; end.yr-1 won't be
 ##  well estimated
 recruitment.med.since.2010 <- base.model$mcmccalcs$rmed[ which(as.numeric(names(base.model$mcmccalcs$rmed)) > 2010 & as.numeric(names(base.model$mcmccalcs$rmed)) < (end.yr-1))]
 years.since.2010.recruitment.med.below.mean <- names(recruitment.med.since.2010[recruitment.med.since.2010  < mean(base.model$mcmccalcs$rmed)])
 
+################################################################################
 ## Exploitation values
 exploitation.med.2010 <- f(base.model$mcmccalcs$fmed["2010"],2)
 exploitation.med.penult.yr <- f(base.model$mcmccalcs$fmed[as.character(end.yr-1)],2)
 
+################################################################################
 ## Survey comparisons of biomass from year to year. Use the table, not the value of survey.end.year
 ## Next year, we should set survey.end.yr to be what is in the table. Not going to attempt it
 ##  with only hours left to submission.
@@ -249,9 +260,14 @@ last.factor.penult <- f(survey.history[nrow(survey.history),]$biomass / survey.h
 ## How many times higher is the last survey than the one that was two before it?
 last.factor.antepenult <- f(survey.history[nrow(survey.history),]$biomass / survey.history[nrow(survey.history) - 2,]$biomass, 1)
 
-## Get priors informtaion
-split.prior.info <- function(prior.str, dec.points = 1, first.to.lower = FALSE){
-  ## Parses a string like Lognormal(2.0,1.01) and returns a vector of length 3:
+################################################################################
+## Get priors settings from the control file
+split.prior.info <- function(prior.str,
+                             dec.points = 1,
+                             first.to.lower = FALSE){
+  ## Get priors information from prior.str which is a string like
+  ## Lognormal(2.0,1.01)
+  ## Returns a vector of length 3:
   ## "Lognormal", 2.0, 1.01
   ## if first.to.lower = TRUE, makes the first letter of the name of the prior lower case.
   p <- strsplit(prior.str, "\\(")[[1]]
@@ -269,9 +285,12 @@ param.details <- make.parameters.estimated.summary.table(base.model,
                                                          start.rec.dev.yr = recruit.dev.start.yr,
                                                          end.rec.dev.yr = end.yr,
                                                          return.xtable = FALSE)
-m.prior <- split.prior.info(param.details[rownames(param.details) == "m.vals",][4], dec.points = 2, first.to.lower = TRUE)
-## Now use m.prior[1] for name of prior, m.prior[1] for mean, and m.prior[3] for SD.
+m.prior <- split.prior.info(param.details[rownames(param.details) == "m.vals",][4],
+                            dec.points = 2,
+                            first.to.lower = TRUE)
+## Now, in document, use m.prior[1] for name of prior, m.prior[1] for mean, and m.prior[3] for SD.
 
+################################################################################
 cohortCatch <- function(cohort, catage, ages = 0:20) {
   cohort.yrs <- cohort + ages
   caa <- as.matrix(catage[catage$Yr %in% cohort.yrs, as.character(ages)])
@@ -292,11 +311,16 @@ cohortCatch <- function(cohort, catage, ages = 0:20) {
 cohort.catch.1999 <- sum(cohortCatch(1999, base.model$catage))
 cohort.catch.2010 <- sum(cohortCatch(2010, base.model$catage))
 
+################################################################################
 ## Load weight-at-age file now that models are loaded
 wt.at.age <- load.wt.at.age(base.model, weight.at.age.file.name)
 
-## Retrospective setup for the document
-retro.model.names <- c(base.model.name, sapply(plot.retro.yrs, function(x) paste0("-", x, if(x == 1) " year" else " years")))
+################################################################################
+## Retrospective setup for the document. This must be done after the base.model
+##  object has been fully setup.
+retro.model.names <- c(base.model.name,
+                       sapply(plot.retro.yrs,
+                              function(x) paste0("-", x, if(x == 1) " year" else " years")))
 ## Need to assemble the list with the base as the first element
 retro.list <- list(base.model)
 for(i in plot.retro.yrs){
