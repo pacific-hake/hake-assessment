@@ -15,7 +15,8 @@ kriging.parameters.file <- "kriging-parameters-1995-2015.csv"
 
 ## Canada-specific data
 can.age.file <- "can-age-data.csv"
-can.catch.by.month.file <- "can-catch-by-month.csv"
+can.ft.catch.by.month.file <- "can-ft-catch-by-month.csv"
+can.ss.catch.by.month.file <- "can-ss-catch-by-month.csv"
 
 ## US-specific data
 ## The following are used for cumulative catch plot in the data/fisheries presentation, not the assessment document
@@ -43,11 +44,12 @@ assessment.history <- read.csv(file.path(data.path, assessment.history.file), st
 kriging.pars <- read.csv(file.path(data.path, kriging.parameters.file), comment.char="#", stringsAsFactors = FALSE)
 
 ## For cumulative catch plots in the data presentation
+can.ft.catch.by.month <- read.csv(file.path(data.path, can.ft.catch.by.month.file), stringsAsFactors = FALSE)
+can.shore.catch.by.month <- read.csv(file.path(data.path, can.ss.catch.by.month.file), stringsAsFactors = FALSE)
 us.shore.catch.by.month <- read.csv(file.path(data.path, us.shore.catch.by.month.file), stringsAsFactors = FALSE)
 us.cp.catch.by.month <- read.csv(file.path(data.path, us.cp.catch.by.month.file), stringsAsFactors = FALSE)
 us.ms.catch.by.month <- read.csv(file.path(data.path, us.ms.catch.by.month.file), stringsAsFactors = FALSE)
 us.research.catch.by.month <- read.csv(file.path(data.path, us.research.catch.by.month.file), stringsAsFactors = FALSE)
-can.catch.by.month <- read.csv(file.path(data.path, can.catch.by.month.file), stringsAsFactors = FALSE)
 ## For age comps-by fleet plots in the data presentation
 can.shore.age <- can.ages[[1]]
 can.ft.age <- can.ages[[2]]

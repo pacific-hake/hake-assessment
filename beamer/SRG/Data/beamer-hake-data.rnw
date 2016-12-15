@@ -172,11 +172,11 @@ source("custom-knitr-variables.r")
       \ei
     \item United States -- \Sexpr{last.year.us.tac} (\Sexpr{paste0(us.allotment.percent, "\\%")})
       \bi
-        \item Research and bycatch -- \Sexpr{fmt0(last.year.us.research)} t
-        \item Tribal               -- \Sexpr{fmt0(last.year.us.tribal.quota.reallocated)} t (Reallocated from original allocation of \Sexpr{fmt0(last.year.us.tribal)} t on \Sexpr{last.year.us.tribal.reallocate.dates})
-        \item Shore--based         -- \Sexpr{fmt0(last.year.us.shore.quota.reallocated)} t
-        \item Catcher--processor   -- \Sexpr{fmt0(last.year.us.cp.quota.reallocated)} t
-        \item Mothership           -- \Sexpr{fmt0(last.year.us.ms.quota.reallocated)} t
+        \item Research and bycatch -- \Sexpr{f(last.year.us.research)} t
+        \item Tribal               -- \Sexpr{f(last.year.us.tribal.quota.reallocated)} t (Reallocated from original allocation of \Sexpr{f(last.year.us.tribal)} t on \Sexpr{last.year.us.tribal.reallocate.dates})
+        \item Shore--based         -- \Sexpr{f(last.year.us.shore.quota.reallocated)} t
+        \item Catcher--processor   -- \Sexpr{f(last.year.us.cp.quota.reallocated)} t
+        \item Mothership           -- \Sexpr{f(last.year.us.ms.quota.reallocated)} t
       \ei
   \ei
 }
@@ -205,11 +205,11 @@ source("custom-knitr-variables.r")
       \bi
         \item The \Sexpr{end.yr-1} U.S. TAC was \Sexpr{last.year.us.tac} t
           \bi
-            \item Research            -- \Sexpr{fmt0(last.year.us.research.catch)} t    (\Sexpr{paste0(last.year.us.research.catch.percent, "\\%")})
-            \item Catcher--processor  -- \Sexpr{fmt0(last.year.us.cp.catch)} t          (\Sexpr{paste0(last.year.us.cp.catch.percent, "\\%")})
-            \item Mothership          -- \Sexpr{fmt0(last.year.us.ms.catch)} t          (\Sexpr{paste0(last.year.us.ms.catch.percent, "\\%")})
-            \item Shore-based         -- \Sexpr{fmt0(last.year.us.shore.catch)} t       (\Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")})
-            \item Tribal              -- \Sexpr{fmt0(last.year.us.tribal.max.landed)} t (\Sexpr{paste0(last.year.us.tribal.catch.percent, "\\%")})
+            \item Research            -- \Sexpr{f(last.year.us.research.catch)} t    (\Sexpr{paste0(last.year.us.research.catch.percent, "\\%")})
+            \item Catcher--processor  -- \Sexpr{f(last.year.us.cp.catch)} t          (\Sexpr{paste0(last.year.us.cp.catch.percent, "\\%")})
+            \item Mothership          -- \Sexpr{f(last.year.us.ms.catch)} t          (\Sexpr{paste0(last.year.us.ms.catch.percent, "\\%")})
+            \item Shore-based         -- \Sexpr{f(last.year.us.shore.catch)} t       (\Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")})
+            \item Tribal              -- \Sexpr{f(last.year.us.tribal.max.landed)} t (\Sexpr{paste0(last.year.us.tribal.catch.percent, "\\%")})
           \ei
         \item Total U.S. catch -- \Sexpr{last.year.us.landings} t
         \item \Sexpr{paste0(last.year.us.attained, "\\%")} of the U.S. quota was caught.
@@ -226,11 +226,33 @@ source("custom-knitr-variables.r")
     oldpar <- par(no.readonly = TRUE)
     par(mar = c(2.1, 5.1, 1.1, 1.1), oma = c(2.1, 2.1, 0, 0))
     layout(matrix(c(1,3,2,4,0,5), nrow = 3, ncol = 2, byrow = TRUE))
-    make.cumulative.catch.plot(can.shore.catch.by.month, title = "Canadian Shoreside Catches", leg.cex = 0.7, title.cex = 0.7, cex.axis = 0.7)
-    make.cumulative.catch.plot(can.ft.catch.by.month, title = " Canadian Freezer-trawler Catches", leg.cex = 0.7, title.cex = 0.7, cex.axis = 0.7)
-    make.cumulative.catch.plot(us.shore.catch.by.month, title = "U.S. Shoreside Catches", leg.cex = 0.7, title.cex = 0.7, cex.axis = 0.7)
-    make.cumulative.catch.plot(us.cp.catch.by.month, title = "U.S. Catcher-processor Catches", leg.cex = 0.7, title.cex = 0.7, cex.axis = 0.7)
-    make.cumulative.catch.plot(us.ms.catch.by.month, title = "U.S. Mothership Catches", leg.cex = 0.7, title.cex = 0.7, cex.axis = 0.7)
+    make.cumulative.catch.plot(can.shore.catch.by.month,
+                               title = "Canadian Shoreside Catches",
+                               leg.cex = 0.7,
+                               title.cex = 0.7,
+                               cex.axis = 0.7,
+                               scale = 1e6)
+    make.cumulative.catch.plot(can.ft.catch.by.month,
+                               title = " Canadian Freezer-trawler Catches",
+                               leg.cex = 0.7,
+                               title.cex = 0.7,
+                               cex.axis = 0.7,
+                               scale = 1e6)
+    make.cumulative.catch.plot(us.shore.catch.by.month,
+                               title = "U.S. Shoreside Catches",
+                               leg.cex = 0.7,
+                               title.cex = 0.7,
+                               cex.axis = 0.7)
+    make.cumulative.catch.plot(us.cp.catch.by.month,
+                               title = "U.S. Catcher-processor Catches",
+                               leg.cex = 0.7,
+                               title.cex = 0.7,
+                               cex.axis = 0.7)
+    make.cumulative.catch.plot(us.ms.catch.by.month,
+                               title = "U.S. Mothership Catches",
+                               leg.cex = 0.7,
+                               title.cex = 0.7,
+                               cex.axis = 0.7)
     mtext("Month", side = 1, outer = TRUE)
     mtext("Cumulative catch (1000 t)", side = 2, outer = TRUE)
     par <- oldpar
