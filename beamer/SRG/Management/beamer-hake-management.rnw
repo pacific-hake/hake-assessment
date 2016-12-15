@@ -190,9 +190,9 @@ fore.names <- c("180,000", "2015 TAC: 440,000", "500,000", "FI=100%", "default H
     \bi
       \item Using the defined \emph{F}\subscr{SPR=40\%} harvest rate with a 40:10 adjustment, the median forecasted 2016 TAC is
       \smallskip
-      \bc {\bf \Sexpr{fmt0(median(base.model$mcmc$ForeCatch_2016))} t} \ec
+      \bc {\bf \Sexpr{f(median(base.model$mcmc$ForeCatch_2016))} t} \ec
       \smallskip
-      \item 2.5\% and 97.5\% quantiles:\\ \Sexpr{fmt0(quantile(base.model$mcmc$ForeCatch_2016,probs=0.025))} and \Sexpr{fmt0(quantile(base.model$mcmc$ForeCatch_2016,probs=0.975))} t
+      \item 2.5\% and 97.5\% quantiles:\\ \Sexpr{f(quantile(base.model$mcmc$ForeCatch_2016,probs=0.025))} and \Sexpr{f(quantile(base.model$mcmc$ForeCatch_2016,probs=0.975))} t
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -211,9 +211,9 @@ fore.names <- c("180,000", "2015 TAC: 440,000", "500,000", "FI=100%", "default H
             conditioned on a fixed 2016 catch of 804,399 t, \\
             the median forecasted 2017 TAC is
       \smallskip
-      \bc {\bf \Sexpr{fmt0(median(forecasts[[7]]$outputs$ForeCatch_2017))} t} \ec
+      \bc {\bf \Sexpr{f(median(forecasts[[7]]$outputs$ForeCatch_2017))} t} \ec
       \smallskip
-      \item 2.5\% and 97.5\% quantiles:\\ \Sexpr{fmt0(quantile(forecasts[[7]]$outputs$ForeCatch_2017, probs = 0.025))} and \Sexpr{fmt0(quantile(forecasts[[7]]$outputs$ForeCatch_2017, probs = 0.975))} t
+      \item 2.5\% and 97.5\% quantiles:\\ \Sexpr{f(quantile(forecasts[[7]]$outputs$ForeCatch_2017, probs = 0.025))} and \Sexpr{f(quantile(forecasts[[7]]$outputs$ForeCatch_2017, probs = 0.975))} t
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
