@@ -11,7 +11,7 @@ sampling.history.file <- "fishery-sampling-history.csv"
 ovary.samples.file <- "ovary-samples.csv"
 age.1.file <- "age-1.csv"
 assessment.history.file <- "assessment-history.csv"
-kriging.parameters.file <- "kriging-parameters-1995-2015.csv"
+kriging.parameters.file <- "kriging-parameters.csv"
 
 ## Canada-specific data
 can.age.file <- "can-age-data.csv"
