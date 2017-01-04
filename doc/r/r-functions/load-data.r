@@ -21,7 +21,7 @@ load.can.age.data <- function(fn ## fn is the filename with relative path
   ## Reads in the canadian age data file and returns it as a list of data frames
 
   dat <- readLines(fn)
-  header.line.nums <- grep("^#.*", dat)
+  header.line.nums <- grep("^[[:alpha:]].*$", dat)
   headers <- dat[header.line.nums]
   headers <- gsub("#+ +", "", headers)
   f <- function(x){
