@@ -252,7 +252,7 @@ source("all.r")
 
 ## If you want to reload all model outputs, set to TRUE
 ## The load.models.into.parent.env function is located at bottom of model-setup.r.
-if(FALSE){
+if(TRUE){
   load.models.into.parent.env()
 }
 ## This has to be sourced after loading the models in because it depends

@@ -116,7 +116,7 @@ bridge.model.dir.names.1 <- c(last.yr.base.model.dir.name,
                               "10_UpdatePre2016catches",
                               "11_UpdatePre2016FishComps",
                               "15_Add2016Catch",
-                              "16_Add2016FishComp")
+                              "16_Add2016FishComps")
 bridge.model.names.1 <- c(last.yr.base.model.name,
                           "Update pre-2016 catches",
                           "Update pre-2016 fishery age comps",
