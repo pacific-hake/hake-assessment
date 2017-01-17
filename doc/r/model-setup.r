@@ -87,7 +87,7 @@ if(verbose) cat0("Key posteriors file: \n  ", nuisance.posteriors.file)
 ## -----------------------------------------------------------------------------
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
-base.model.dir.name <- "55_2016base"
+base.model.dir.name <- "19_BasePreSRG_v2"
 ## "01_2016base_converted_to_SSv3.30"
 base.model.name <- paste(assess.yr, "Base model")
 verify.models(model.dir, base.model.dir.name, base.model.name)
@@ -99,7 +99,7 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Last assessment year's base model name and directory
 ## -----------------------------------------------------------------------------
-last.yr.base.model.dir.name <- "00_2015hake_basePreSRG"
+last.yr.base.model.dir.name <- "00_55_2016base"
 last.yr.base.model.name <- paste(last.assess.yr, "Base model")
 verify.models(model.dir, base.model.dir.name, base.model.name)
 if(verbose){
@@ -113,9 +113,15 @@ if(verbose){
 ## Bridge models group 1
 ## -----------------------------------------------------------------------------
 bridge.model.dir.names.1 <- c(last.yr.base.model.dir.name,
-                              "03_UpdatePre2015WtAge")
+                              "10_UpdatePre2016catches",
+                              "11_UpdatePre2016FishComps",
+                              "15_Add2016Catch",
+                              "16_Add2016FishComp")
 bridge.model.names.1 <- c(last.yr.base.model.name,
-                          "Update data")
+                          "Update pre-2016 catches",
+                          "Update pre-2016 fishery age comps",
+                          "Add 2016 catch",
+                          "Add 2016 fishery age comps")
 verify.models(model.dir, bridge.model.dir.names.1, bridge.model.names.1)
 if(verbose){
   print.model.message(bridge.model.dir.names.1, bridge.model.names.1, 1, model.type = "Bridge")
@@ -125,11 +131,13 @@ if(verbose){
 ## Bridge models group 2
 ## -----------------------------------------------------------------------------
 bridge.model.dir.names.2 <- c(last.yr.base.model.dir.name,
-                              "56_Add2015Survey_withExtrap",
-                              "57_Add2015Catch_FishAcomps_withExtrap")
+                              "12_Update1998SurveyIndex",
+                              "13_Update2015SurveyIndexCVonly",
+                              "14_Add1995SurveyIndex")
 bridge.model.names.2 <- c(last.yr.base.model.name,
-                          paste0("Add ", survey.end.yr, " survey series"),
-                          paste0("Add ", last.data.yr, " fishery data"))
+                          "Update 1998 survey index",
+                          "Update 2015 survey cv",
+                          "Add 1995 survey index")
 verify.models(model.dir, bridge.model.dir.names.2, bridge.model.names.2)
 if(verbose){
   print.model.message(bridge.model.dir.names.2, bridge.model.names.2, 2, model.type = "Bridge")
@@ -138,15 +146,13 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Bridge models group 3
 ## -----------------------------------------------------------------------------
-bridge.model.dir.names.3 <- c("57_Add2015Catch_FishAcomps_withExtrap",
-                              "57.01_adjustBiasRamping",
-                              "57.02_ChangeSurveyTuning",
-                              "57.03_ChangeAllTuning")
+bridge.model.dir.names.3 <- c(last.yr.base.model.dir.name,
+                              "17_AdjustBiasRamp",
+                              "18_AdjustTuning")
 ## Bridge model names will be used to make the bridge model plot and its caption.
-bridge.model.names.3 <- c("Base model pretune",
-                          "Adjust bias ramp",
-                          "Change survey comp weights",
-                          "Change all comp weights")
+bridge.model.names.3 <- c(last.yr.base.model.name,
+                          "Adjust recr bias ramp",
+                          "Adjust eff. sample sizes")
 verify.models(model.dir, bridge.model.dir.names.3, bridge.model.names.3)
 if(verbose){
   print.model.message(bridge.model.dir.names.3, bridge.model.names.3, 3, model.type = "Bridge")
@@ -155,18 +161,10 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 1
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.1 <- c("62_Sensbase_sigmaR_1.0",
-                            "63_Sensbase_sigmaR_2.0",
-                            "64_Sensbase_h_0.5prior",
-                            "65_Sensbase_h_1.0fix",
-                            "67_Sensbase_M_SD0.2",
-                            "68_Sensbase_M_SD0.3")
+sens.model.dir.names.1 <- c("31_Sen_sigmaR_1.0",
+                            "32_Sen_sigmaR_2.0")
 sens.model.names.1 <- c("Sigma R 1.0",
-                        "Sigma R 2.0",
-                        "Steepness prior mean 0.5",
-                        "Steepness fixed mean 1.0",
-                        "Natural mortality SD 0.2",
-                        "Natural mortality SD 0.3")
+                        "Sigma R 2.0")
 verify.models(model.dir, sens.model.dir.names.1, sens.model.names.1)
 if(verbose){
   print.model.message(sens.model.dir.names.1, sens.model.names.1, 1, model.type = "Sensitivity")
@@ -175,10 +173,8 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 2
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.2 <- c("58_Sensbase_Survey_noExtrap",
-                            "66_Sensbase_Age1Index")
-sens.model.names.2 <- c("No extrapolation on survey",
-                        "Include age-1 index")
+sens.model.dir.names.2 <- c("20_SenAdjustBiasRampEnd2014")
+sens.model.names.2 <- c("Adjust bias ramp to 2014")
 verify.models(model.dir, sens.model.dir.names.2, sens.model.names.2)
 if(verbose){
   print.model.message(sens.model.dir.names.2, sens.model.names.2, 2, model.type = "Sensitivity")
@@ -187,9 +183,9 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 3
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.3 <- c("59_Sensbase_Selmaxage5",
-                            "60_Sensbase_Selmaxage7",
-                            "61_Sensbase_Selmaxage12")
+sens.model.dir.names.3 <- c("21_SenMaxSelectAge5",
+                            "22_SenMaxSelectAge7",
+                            "23_SenMaxSelectAge10")
 sens.model.names.3 <- c("Max. age of selectivity 5",
                         "Max. age of selectivity 7",
                         "Max. age of selectivity 12")
@@ -201,8 +197,14 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 4
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.4 <- "69_Sensbase_AgeError_noCohort"
-sens.model.names.4 <- "No cohort ageing error"
+sens.model.dir.names.4 <- c("24_Senh0.5prior",
+                            "25_Senh1.0fix",
+                            "26_SenM0.2SD",
+                            "27_SenM0.3SD")
+sens.model.names.4 <- c("Steepness prior = 0.5",
+                        "Fix steepness = 1.0",
+                        "Stdev M = 0.2",
+                        "Stdev M = 0.3")
 verify.models(model.dir, sens.model.dir.names.4, sens.model.names.4)
 if(verbose){
   print.model.message(sens.model.dir.names.4, sens.model.names.4, 4, model.type = "Sensitivity")
@@ -211,8 +213,12 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 5
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.5 <- "70_no2015FisheryComps"
-sens.model.names.5 <- paste("No", last.data.yr, "fishery ages")
+sens.model.dir.names.5 <- c("28_SenAgeErrorNoCohort",
+                            "29_SenAgeError2014NoAdjust",
+                            "30_SenAddAge1Index")
+sens.model.names.5 <- c("Cohort invariant ageing error",
+                        "2014 not adjusted downward",
+                        "Add age-1 index")
 verify.models(model.dir, sens.model.dir.names.5, sens.model.names.5)
 if(verbose){
   print.model.message(sens.model.dir.names.5, sens.model.names.5, 5, model.type = "Sensitivity")
