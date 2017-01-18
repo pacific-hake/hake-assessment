@@ -81,6 +81,29 @@ _____________________________________________________________
   run **cleantex.bat**.
 
 
+__From Chris 18th Jan 2017; prob should incorporate some into the above notes?__:
+
+Edit all.r and set
+	
+	reload.all <- TRUE
+
+then open R in the doc/r directory and run:
+
+	rm(list=ls(all=TRUE));
+	source("all.r");
+	load.models.into.parent.env();
+	source("custom-knitr-variables.r")
+
+this will take a while as it has to run all the forecasts, retrospectives, and create the 999 report files (partest).
+You don’t need to save the workspace when you close R.
+
+Now, edit all.r again and set
+
+	reload.all <- FALSE
+
+or it will do that every time.
+
+
 ---
 
 ## How the R environment is set up
