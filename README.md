@@ -103,6 +103,13 @@ Now, edit all.r again and set
 
 or it will do that every time.
 
+__R Packages__
+
+The code will automatically install packages (from CRAN or GitHub - see **all.r**) that you do not have. But it will not update them (this would be time-consuming each time). If something doesn't work, try and figure out which package it relates to and get the latest version. Andy had a December 2015 version of **r4ss** and got an error (in Jan 2017), but after updating it to the latest version:
+
+	devtools::install_github("r4ss/r4ss")
+
+the error did not occur. It's hard to guarantee that we all have the same versions of the numerous packages, but any issues should crop up when do compare each other's **hake-assessment.tex** and **hake-assessment.pdf** files. 
 
 ---
 
