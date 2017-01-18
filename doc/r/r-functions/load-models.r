@@ -762,9 +762,10 @@ create.key.nuisance.posteriors.files <- function(model,
 }
 
 load.models <- function(model.dir,
-                        model.dir.names){
+                        model.dir.names,
+                        ret.single.list = FALSE){
   ## Load model(s) and return as a list if more than one. If only one,
-  ## return that object.
+  ## return that object or if ret.single.list is TRUE, return a 1-element list.
   ret.list = NULL
   model.rdata.files <- file.path(model.dir, model.dir.names, paste0(model.dir.names, ".Rdata"))
   for(i in 1:length(model.rdata.files)){
@@ -773,9 +774,12 @@ load.models <- function(model.dir,
     rm(model)
   }
   if(length(model.dir.names) == 1){
-    ret.list[[1]]
+    if(ret.single.list){
+      ret.list
+    }else{
+      ret.list[[1]]
+    }
   }else{
     ret.list
   }
 }
-

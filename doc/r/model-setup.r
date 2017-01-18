@@ -57,7 +57,7 @@ if(verbose) cat0("Start year for catch data: \n  ", start.yr)
 end.yr <- assess.yr
 if(verbose) cat0("End year for model: \n  ", end.yr)
 ## First year in the survey timeseries
-survey.start.yr <- 1998
+survey.start.yr <- 1995
 if(verbose) cat0("First survey year: \n  ", survey.start.yr)
 ## Last year in the survey timeseries
 survey.end.yr <- 2015
@@ -173,8 +173,8 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 2
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.2 <- c("20_SenAdjustBiasRampEnd2014")
-sens.model.names.2 <- c("Adjust bias ramp to 2014")
+sens.model.dir.names.2 <- list("20_SenAdjustBiasRampEnd2014")
+sens.model.names.2 <- list("Adjust bias ramp to 2014")
 verify.models(model.dir, sens.model.dir.names.2, sens.model.names.2)
 if(verbose){
   print.model.message(sens.model.dir.names.2, sens.model.names.2, 2, model.type = "Sensitivity")
@@ -267,14 +267,14 @@ load.models.into.parent.env <- function(){
   bridge.models.2    <<- load.models(model.dir, bridge.model.dir.names.2)
   bridge.models.3    <<- load.models(model.dir, bridge.model.dir.names.3)
   sens.models.1      <<- load.models(model.dir, sens.model.dir.names.1)
-  sens.models.2      <<- load.models(model.dir, sens.model.dir.names.2)
+  sens.models.2      <<- load.models(model.dir, sens.model.dir.names.2, TRUE)
   sens.models.3      <<- load.models(model.dir, sens.model.dir.names.3)
   sens.models.4      <<- load.models(model.dir, sens.model.dir.names.4)
   sens.models.5      <<- load.models(model.dir, sens.model.dir.names.5)
 
   ## Lists of sensitivities for the MLE parameters, derived quantiles,
   ##  and reference points table
-  ## First set includes base and sensitivity group1
+  ## First set includes base and sensitivity group 1
   sens.models.1.for.table <<- c(list(base.model), sens.models.1)
   sens.model.names.1.for.table <<- c("Base model", sens.model.names.1)
   ## Second set includes base and sensitivity groups 2 and 3

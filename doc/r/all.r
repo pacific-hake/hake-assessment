@@ -83,7 +83,7 @@ source("data-tables.r")                 ## Set up variables for data tables (fro
 ## Base model:
 reload.all <- FALSE
 create.rdata.file(model.name = base.model.dir.name,
-                  ovwrt.rdata = FALSE,
+                  ovwrt.rdata = reload.all,
                   run.forecasts = reload.all,
                   fore.yrs = forecast.yrs,
                   forecast.probs = forecast.probs,

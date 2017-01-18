@@ -425,6 +425,7 @@ National Marine Fisheries Service and Fisheries and Oceans Canada. \pageref{Last
 <<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
 @
 
+\rfoot{Appendix~\ref{chap:parameters} -- Model code}
 <<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
 @
 % One .rnw file for all four SS code appendices, since .rnw code is short.

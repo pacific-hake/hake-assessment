@@ -189,17 +189,17 @@ make.risk.table(base.model,
                 space.size = 14)
 @
 
-<<main.parameter.estimates.sens.2, results='asis', echo=FALSE>>=
-make.short.parameter.estimates.sens.table(sens.models.2.for.table,
-                                          model.names = sens.model.names.2.for.table,
-                                          posterior.regex = key.posteriors,
-                                          end.yr = end.yr,
-                                          digits = 3,
-                                          xcaption <- paste0("Maximum likelihood estimates (MLE) of select parameters, derived quantities, and reference points for the base model and sensitivity runs."),
-                                          xlabel <- "tab:main-parameter-estimates-sens-2",
-                                          font.size = 9,
-                                          space.size = 11)
-@
+%% <<main.parameter.estimates.sens.2, results='asis', echo=FALSE>>=
+%% make.short.parameter.estimates.sens.table(sens.models.2.for.table,
+%%                                           model.names = sens.model.names.2.for.table,
+%%                                           posterior.regex = key.posteriors,
+%%                                           end.yr = end.yr,
+%%                                           digits = 3,
+%%                                           xcaption <- paste0("Maximum likelihood estimates (MLE) of select parameters, derived quantities, and reference points for the base model and sensitivity runs."),
+%%                                           xlabel <- "tab:main-parameter-estimates-sens-2",
+%%                                           font.size = 9,
+%%                                           space.size = 11)
+%% @
 
 <<main.parameter.estimates.sens.1, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(sens.models.1.for.table,
