@@ -187,6 +187,15 @@ model.partest$cpue.975               - 97.5% of posterior for cpue index values 
 model.partest$like.info              - Likelihood values for all posteriors
 ```
 
+__Quick look at model output__
+
+Within the model's folder, use the R commands:
+
+	require(r4ss)
+	SS_plots(SS_output("./"))
+
+This creates figures and an HTML page with tabs for sets of figures. This is useful for quickly looking at results, especially when MCMCs have not yet been run and so the assessment document will not build yet.
+ 
 ---
 
 ## **Everything from here on is from the 2016 assessment period (Nov 2015 - Mar 2016)**
