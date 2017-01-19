@@ -71,7 +71,8 @@ make.recruitment.plot <- function(model,            ## model is an mcmc run and 
                                   end.yr,           ## Year the timeseries ends (i.e. last year in model)
                                   color = "blue",
                                   add.mean = FALSE,
-                                  add.r0   = FALSE  ## show the posterior distribution for initial recruitment as an envelope
+                                  add.r0   = FALSE, ## show the posterior distribution for initial recruitment as an envelope
+                                  upper.lim = 70
                                   ){
   ## Plots the recruitment for the mcmc given by model
   ## If add.mean = TRUE, the means will be shown and the unfished equilibrium recruitment will not be shown
@@ -95,7 +96,7 @@ make.recruitment.plot <- function(model,            ## model is an mcmc run and 
 
   y <- data.frame(value = rmed, lo = rlower, hi = rupper)
   par(mfrow = c(1,1), las = 1, mar = c(3.5,3.5,1,1), oma = c(0,0,0,0))
-  plotBars.fn(non.equil.yrs, y, scalar = 1, ylim = c(0,35), pch = 20,
+  plotBars.fn(non.equil.yrs, y, scalar = 1, ylim = c(0,upper.lim), pch = 20,
               xlab = "Year", ylab = "Age 0 recruits (billions)",
               cex = 0.8, las = 1, gap = 0, xaxt = "n", ciLwd = 1,
               ciCol = rgb(0,0,1,0.5), mgp = c(2.3,1,0), xlim = range(non.equil.yrs))

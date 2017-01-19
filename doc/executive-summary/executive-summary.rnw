@@ -53,7 +53,13 @@ than 1\% of landings in recent years. During the last five years, catches have b
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
-The biomass estimate and age composition from the acoustic survey conducted in \Sexpr{survey.end.yr} have been added to the survey time series (Figure~\ref{fig:es-survey-biomass}); earlier survey data (1998--2013) were re-analyzed and updated this year.   % Manual done 2016.
+%%The biomass estimate and age composition from the acoustic survey conducted
+%%in \Sexpr{survey.end.yr} have been added to the survey time series
+%%(Figure~\ref{fig:es-survey-biomass}); earlier survey data (1998--2013)
+%%were re-analyzed and updated this year.
+The 1995 survey biomass estimate has been re-analyzed and added back into the
+assessment. The \Sexpr{last.assess.yr} assessment did not include this data point
+due to issues with the older survey data but over the past year the issues were resolved.
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -131,15 +137,25 @@ make.depletion.plot(base.model,
 \label{fig:es-relative-spawning-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-%
-The stock is estimated to have increased rapidly to near unfished equilibrium after two or more large recruitments in the early 1980s, and then
-declined steadily after a peak in the mid- to late-1980s to a low in 2000. This long period of decline was followed by a brief increase to a peak
-in 2003 as the large 1999 year class matured. The 1999 year class largely supported the fishery for several years due to relatively small recruitments
+%-------------------------------------------------------------------------------
+The stock is estimated to have increased rapidly to near unfished equilibrium
+after two or more large recruitments in the early 1980s, and then
+declined steadily after a peak in the mid- to late-1980s to a low in 2000. This
+long period of decline was followed by a brief increase to a peak
+in 2003 as the large 1999 year class matured. The 1999 year class largely
+supported the fishery for several years due to relatively small recruitments
 between 2000 and 2007. With the aging 1999 year class, median female
-spawning biomass declined throughout the late 2000s, reaching a time-series low of \Sexpr{median.bio.min}~million~t in \Sexpr{median.bio.min.year}. The assessment model estimates that spawning biomass declined from 2014 to 2015 after five years of increases from 2009 to 2014.
-% Median spawning biomass is: base.model$mcmccalcs$smed  
-The estimated increases were the result of a large 2010 cohort and an above-average 2008 cohort surpassing the age at which gains in biomass from growth are greater than the loss in biomass from natural mortality. The model then estimates an increase from 2015 to 2016 due to an estimated large 2014 year class, which, on average, is similar to the average estimated size of the 2010 year class.
-% Manual 2016 done.
+spawning biomass declined throughout the late 2000s, reaching a time-series low
+of \Sexpr{median.bio.min}~million~t in \Sexpr{median.bio.min.year}.
+The assessment model estimates that spawning biomass declined from 2014 to 2015
+after five years of increases from 2009 to 2014.
+% Median spawning biomass is: base.model$mcmccalcs$smed
+The estimated increases were the result of a large 2010 cohort and an
+above-average 2008 cohort surpassing the age at which gains in biomass from
+growth are greater than the loss in biomass from natural mortality.
+The model then estimates an increase from 2015 to 2017 due to an estimated
+very large 2014 year class, which, on average, is much larger than the average
+estimated size of the 2010 year class.
 
 The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium, $B_0$) is
 \Sexpr{curr.depl.median}\% but is highly uncertain (with a 95\% posterior credibility interval from \Sexpr{curr.depl.lower}\% to \Sexpr{curr.depl.upper}\%; Table~\ref{tab:es-biomass}). The median estimate of the \Sexpr{end.yr} beginning-of-the-year female spawning biomass is \Sexpr{curr.bio.median}~million~t (with a 95\% posterior credibility interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper}~million~t). The estimated \Sexpr{end.yr-1} female spawning biomass is \Sexpr{prev.bio.median} (\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t.
@@ -189,7 +205,8 @@ make.recruitment.plot(base.model,
                       end.yr = end.yr,
                       color = "blue",
                       add.mean = TRUE,
-                      add.r0 = TRUE)
+                      add.r0 = TRUE,
+                      upper.lim = 135)
 @
 \end{center}
 \caption{Medians (solid circles) and means ($\times$) of the posterior distribution for recruitment (billions of age-0) with 95\% posterior credibility intervals (blue lines). The median of the posterior distribution for mean unfished equilibrium recruitment ($R_0$) is shown as the horizontal dashed line with a 95\% posterior credibility interval shaded between the dotted lines.}
