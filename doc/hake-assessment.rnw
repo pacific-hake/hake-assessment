@@ -269,7 +269,7 @@ if(!exists("model.partest")){
 \thispagestyle{empty}
 
 %% DRAFT version
-%% \title{\TitleFont DRAFT - Status of the \fishname\ (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}\thanks{\noindent Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy.}
+\title{\TitleFont DRAFT - Status of the \fishname\ (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}\thanks{\noindent Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy.}
 
 %% Final version
 \title{\TitleFont Status of the \fishname\ (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}
@@ -277,7 +277,7 @@ if(!exists("model.partest")){
 
 \author{Joint Technical Committee of the \fishname/Whiting Agreement \\ Between the Governments of the United States and Canada}
 
-\date{March 1st, 2016}   % Leave empty to have no date
+\date{January 31st, 2017}   % Leave empty to have no date
 
 \maketitle
 
@@ -294,10 +294,10 @@ if(!exists("model.partest")){
 This document reports the collaborative efforts of the official U.S. and Canadian members of the Joint Technical Committee, and others that contributed significantly.
 
 Authors of this document are (in no particular order): \\
-\hspace{4ex}Ian G. Taylor\supscr{2} \\
 \hspace{4ex}Aaron Berger\supscr{3} \\
-\hspace{4ex}Andrew M. Edwards\supscr{1} \\
 \hspace{4ex}Chris J. Grandin\supscr{1} \\
+\hspace{4ex}Ian G. Taylor\supscr{2} \\
+\hspace{4ex}Andrew M. Edwards\supscr{1} \\
 \hspace{4ex}Sean Cox\supscr{4} \\
 \bigskip
 
@@ -317,7 +317,7 @@ Authors of this document are (in no particular order): \\
 
 %% Final version
 This document should be cited as follows:\\
-Grandin, C.J., A.C. Hicks, A.M. Berger, A.M. Edwards, N. Taylor, I.G. Taylor, and S. Cox. \Sexpr{assess.yr}.
+Berger, A.M., Grandin, C.J., I.G. Taylor, A.M. Edwards, and S. Cox. \Sexpr{assess.yr}.
 Status of the \fishname\ (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}.
 Prepared by the Joint Technical Committee of the U.S. and Canada \fishname/Whiting Agreement,
 National Marine Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.

@@ -11,7 +11,7 @@
 
 \begin{itemize}
   \item The stock assessment model for \Sexpr{assess.yr} is similar in structure to the \Sexpr{last.assess.yr} model with the addition
-    of fishery age compositions from \Sexpr{end.yr-1}, reanalyzed acoustic survey biomass and age compositions from 1995--2015, and minor refinements to data including catch
+    of fishery age compositions from \Sexpr{end.yr-1}, reanalyzed acoustic survey biomass and age compositions for 1995 (completing the reanalyzed acoustic survey time series initiated in the \Sexpr{last.assess.yr} model), and minor refinements to data including catch
     estimates from earlier years.
 
   \item The stock assessment model is fit to an acoustic survey index of abundance as well as age compositions from the survey and commercial fisheries.
@@ -21,7 +21,7 @@
     in Canada it was \Sexpr{last.year.can.attained}\%. A variety of factors influenced the attainment of the quota.
 
   \item The stock is estimated to be at its highest biomass level as a result of estimated large 2010 and 2014 cohorts.
-    The 2014 cohort has only been observed twice by the commercial fishery, thus its size is highly uncertain.
+    The 2014 cohort has not yet been observed by the survey and only twice by the commercial fishery, thus its absolute size is highly uncertain.
 
   \item The median estimate of \Sexpr{end.yr} relative spawning biomass (spawning biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium, $B_0$) is
     \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
@@ -31,7 +31,7 @@
     million~t (with 95\% interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper} million~t).
 
   \item The spawning biomass in \Sexpr{end.yr} is estimated to have increased from \Sexpr{end.yr-1}
-    due to the 2014 year-class likely being well above average size. % and the estimate of the 2012 year-class being slightly above average.
+    due to the 2014 year-class likely being above average size. % and the estimate of the 2012 year-class being slightly above average.
 
   \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
 
