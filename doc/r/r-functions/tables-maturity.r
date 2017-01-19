@@ -19,6 +19,8 @@ make.maturity.samples.table <- function(ovary.samples,
                      "\\specialcell{\\textbf{NWFSC}\\\\\\textbf{Trawl}\\\\\\textbf{Survey}}",
                      "\\specialcell{\\textbf{Acoustic}\\\\\\textbf{Survey/Research}\\\\\\textbf{(Summer)}}",
                      "\\specialcell{\\textbf{Acoustic}\\\\\\textbf{Survey/Research}\\\\\\textbf{(Winter)}}",
+                     "\\specialcell{\\textbf{U.S. At-Sea Hake}\\\\\\textbf{Observer}\\\\\\textbf{Program (Spring)}}",
+                     "\\specialcell{\\textbf{U.S. At-Sea Hake}\\\\\\textbf{Observer}\\\\\\textbf{Program (Fall)}}")
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{", font.size, "}{", space.size, "}\\selectfont")
   return(print(xtable(tab, caption=xcaption,
