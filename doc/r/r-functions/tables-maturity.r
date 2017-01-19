@@ -9,15 +9,16 @@ make.maturity.samples.table <- function(ovary.samples,
   ## Returns an xtable in the proper format for the fishery sample sizes
   tab <- ovary.samples
 
+  ## Table now includes "Total" row so no longer should filter by year range
   ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
-  tab <- tab[tab$Year >= start.yr & tab$Year <= end.yr,]
+  #tab <- tab[tab$Year >= start.yr & tab$Year <= end.yr,]
   #tab[,-1] <- f(tab[,-1])
   tab[is.na(tab)] <- "--"
 
   colnames(tab) <- c("\\textbf{Year}",
                      "\\specialcell{\\textbf{NWFSC}\\\\\\textbf{Trawl}\\\\\\textbf{Survey}}",
-                     "\\specialcell{\\textbf{Acoustic}\\\\\\textbf{Survey}}",
-                     "\\specialcell{\\textbf{At-Sea Hake}\\\\\\textbf{Observer}\\\\\\textbf{Program}}")
+                     "\\specialcell{\\textbf{Acoustic}\\\\\\textbf{Survey/Research}\\\\\\textbf{(Summer)}}",
+                     "\\specialcell{\\textbf{Acoustic}\\\\\\textbf{Survey/Research}\\\\\\textbf{(Winter)}}",
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{", font.size, "}{", space.size, "}\\selectfont")
   return(print(xtable(tab, caption=xcaption,
