@@ -2,13 +2,14 @@ load.ss.files <- function(model.dir,
                           key.posts = key.posteriors, ## Vector of key posteriors used to create key posteriors file
                           key.posts.fn = "keyposteriors.csv",
                           nuisance.posts.fn = "nuisanceposteriors.csv",
-                          verbose = FALSE){
+                          verbose = FALSE,
+                          printstats = FALSE){ ## print info on each model loaded via SS_output
   ## Load all the SS files for output and input, and return the model object.
   ## If MCMC directory is present, load that and perform calculations for mcmc parameters.
 
   curr.func.name <- get.curr.func.name()
   ## Load MPD results
-  model <- SS_output(dir = model.dir, verbose = verbose)
+  model <- SS_output(dir = model.dir, verbose = verbose, printstats = printstats)
 
   ## Load the data file and control file for the model
   ## Get the file whose name contains "_data.ss" and "_control.ss"
@@ -183,6 +184,7 @@ create.rdata.file <- function(
 
   if(run.partest){
     cat0(curr.func.name, "Running partest...\n\n")
+    cat0("working directory is: ",getwd(),"\n")
     ## TODO: Separate the running of the partest model with
     ##  the fetching of it's output.
     run.partest.model(model, output.file = "model-partest.RData",
@@ -510,7 +512,8 @@ run.retrospectives <- function(model,
 
 fetch.retros <- function(retro.path, ## The full or reletive path in which the retrospective directories live
                          retro.yrs,  ## A vector of years for the retrospectives
-                         verbose = FALSE
+                         verbose = FALSE,
+                         printstats = FALSE  ## print info on each model loaded via SS_output
                          ){
   ## Fetch the retrospectives and return a list of each. If there are no retrospective
   ##  directories or there is some other problem, NA will be returned.
@@ -527,7 +530,8 @@ fetch.retros <- function(retro.path, ## The full or reletive path in which the r
     retros.list <- list()
     for(retro in 1:length(retro.yrs)){
       retro.dir <- file.path(retro.path, paste0("retro-", pad.num(retro.yrs[retro], 2)))
-      retros.list[[retro]] <- SS_output(dir = retro.dir, verbose = verbose)
+      retros.list[[retro]] <- SS_output(dir = retro.dir, verbose = verbose,
+                                        printstats = printstats)
     }
     message(curr.func.name, "Retrospectives loaded for '", retro.path, "'")
   }else{
@@ -610,13 +614,19 @@ run.partest.model <- function(model,
     file.copy(file.path(partest.dir, "ss3.par"),
               file.path(reports.dir, paste0("ss3_input", irow, ".par")),
               overwrite = TRUE)
+    # delete existing output files to make sure that if model fails to run,
+    # it won't just copy the same files again and again
+    file.remove(file.path(partest.dir, "Report.sso"))
+    file.remove(file.path(partest.dir, "CompReport.sso"))
+    
     shell.command <- paste0("cd ", partest.dir, " & ss3 -maxfn 0 -phase 10 -nohess")
     if(verbose){
       ## shell doesn't accept the argument show.output.on.console for some reason
       shell(shell.command)
     }else{
       ## This doesn't work!!
-      system(shell.command, show.output.on.console = FALSE)
+      shell(shell.command)
+      #system(shell.command, show.output.on.console = FALSE)
     }
     file.copy(file.path(partest.dir, "ss3.par"),
               file.path(reports.dir, paste0("ss3_output", irow, ".par")),
