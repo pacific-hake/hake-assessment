@@ -116,12 +116,20 @@ create.rdata.file <- function(
     if(run.forecasts){
       stop(curr.func.name,
            "Error - You have asked to run forecasting, ",
-           "but set ovwrt.rdata to FALSE.\n")
+           "but set ovwrt.rdata to FALSE.\n",
+           "Set ovwrt.rdata to TRUE and try again.")
     }
     if(run.retros){
       stop(curr.func.name,
            "Error - You have asked to run retrospectives, ",
-           "but set ovwrt.rdata to FALSE.\n")
+           "but set ovwrt.rdata to FALSE.\n",
+           "Set ovwrt.rdata to TRUE and try again.")
+    }
+    if(run.partest){
+      stop(curr.func.name,
+           "Error - You have asked to run partest, ",
+           "but set ovwrt.rdata to FALSE.\n",
+           "Set ovwrt.rdata to TRUE and try again.")
     }
   }
 
