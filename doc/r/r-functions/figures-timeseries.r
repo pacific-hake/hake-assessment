@@ -86,7 +86,7 @@ make.recruitment.plot <- function(model,            ## model is an mcmc run and 
 
   unfished.eq.r <- model$mcmccalcs$rinit
 
-  non.equil.yrs <- start.yr:end.yr
+  non.equil.yrs <- start.yr:(end.yr - 1)
   yrs <- equil.yr:end.yr
   ## Only include start year to end year
   rlower <- rlower[names(rlower) %in% non.equil.yrs]
@@ -137,7 +137,9 @@ make.recruitment.dev.plot <- function(model,  ## model is an mcmc run and is the
   dev.med <- model$mcmccalcs$devmed
   dev.upper <- model$mcmccalcs$devupper
   dev.yrs <- as.numeric(names(dev.med))
+  dev.yrs <- dev.yrs[dev.yrs <= end.yr]
   y <- data.frame(value = dev.med, lo = dev.lower, hi = dev.upper)
+  y <- y[as.numeric(rownames(y)) <= end.yr,]
 
   plotBars.fn(dev.yrs,
               y,
@@ -153,7 +155,7 @@ make.recruitment.dev.plot <- function(model,  ## model is an mcmc run and is the
               ciLwd = 1,
               ciCol = rgb(0, 0, 1, 0.5),
               mgp = c(2.3, 1, 0),
-              xlim = range(dev.yrs))
+              xlim = c(min(dev.yrs), end.yr))
   axis(1, at = seq(min(dev.yrs) - 1, end.yr, 5))
   abline(h = 0, col = rgb(0, 0, 0, 0.5))
   abline(h = seq(-4, 4, 2), col = rgb(0, 0, 0, 0.5), lty = "13", lwd = 0.5)
