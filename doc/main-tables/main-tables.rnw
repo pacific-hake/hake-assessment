@@ -89,7 +89,7 @@ make.maturity.samples.table(ovary.samples,
 <<main.parameters.estimated.summary.table, results='asis', echo=FALSE>>=
 make.parameters.estimated.summary.table(base.model,
                                         start.rec.dev.yr = recruit.dev.start.yr,
-                                        end.rec.dev.yr = end.yr,
+                                        end.rec.dev.yr = end.yr - 1,
                                         digits = 2,
                                         xcaption = paste0("Summary of estimated model parameters and priors in the base model. The Beta prior is parameterized with a mean and standard deviation. The Lognormal distribution is parameterized with the median and standard deviation in log space."),
                                         xlabel = "tab:main-params-est-summary",

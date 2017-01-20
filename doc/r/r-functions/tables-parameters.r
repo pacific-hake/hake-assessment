@@ -92,7 +92,7 @@ make.parameters.estimated.summary.table <- function(model,                ## mod
   ## Natural mortality is at line 20 of comment-stripped dataframe
   m <- fetch.and.split(ctl, 20)
   m.vals <- c("Natural mortality (\\emph{M})",
-              if(prior.type[h[p.type]] == "Fixed") 1 else "--",
+              if(prior.type[m[p.type]] == "Fixed") "--" else 1,
               paste0("(", m[lo], ",", m[hi], ")"),
               fetch.prior.info(m, digits))
 

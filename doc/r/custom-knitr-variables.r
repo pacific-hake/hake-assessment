@@ -256,7 +256,7 @@ last.factor.antepenult <- f(survey.history[nrow(survey.history),]$biomass / surv
 ## Get priors settings from the control file
 param.details <- make.parameters.estimated.summary.table(base.model,
                                                          start.rec.dev.yr = recruit.dev.start.yr,
-                                                         end.rec.dev.yr = end.yr,
+                                                         end.rec.dev.yr = end.yr - 1,
                                                          return.xtable = FALSE)
 m.prior <- split.prior.info(param.details[rownames(param.details) == "m.vals",][4],
                             dec.points = 2,
