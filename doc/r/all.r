@@ -134,3 +134,8 @@ lapply(sens.model.dir.names.5,
                                       ovwrt.rdata = ovrwrt.sens.rdata.files,
                                       verbose = verbose)})
 
+lapply(sens.model.dir.names.6,
+       function(nm){create.rdata.file(model.name = nm,
+                                      ovwrt.rdata = ovrwrt.sens.rdata.files,
+                                      verbose = verbose)})
+

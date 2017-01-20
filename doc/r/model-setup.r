@@ -225,6 +225,16 @@ if(verbose){
 }
 
 ## -----------------------------------------------------------------------------
+## Sensitivity models group 6
+## -----------------------------------------------------------------------------
+sens.model.dir.names.6 <- list("33_Sen_flexibleTVselex")
+sens.model.names.6 <- list("Stderr on deviations of selex params = 0.3")
+verify.models(model.dir, sens.model.dir.names.6, sens.model.names.6)
+if(verbose){
+  print.model.message(sens.model.dir.names.6, sens.model.names.6, 6, model.type = "Sensitivity")
+}
+
+## -----------------------------------------------------------------------------
 ## Vector of directory names for all models referenced above
 ## -----------------------------------------------------------------------------
 ## ALL models must be in this list!
@@ -240,7 +250,8 @@ model.dir.names <- c(base.model.dir.name,
                      sens.model.dir.names.2,
                      sens.model.dir.names.3,
                      sens.model.dir.names.4,
-                     sens.model.dir.names.5)
+                     sens.model.dir.names.5,
+                     sens.model.dir.names.6)
 
 ## This function must be called from within the first knitr code chunk
 ## in the document. It is defined here so that it is in the same place
@@ -271,6 +282,7 @@ load.models.into.parent.env <- function(){
   sens.models.3      <<- load.models(model.dir, sens.model.dir.names.3)
   sens.models.4      <<- load.models(model.dir, sens.model.dir.names.4)
   sens.models.5      <<- load.models(model.dir, sens.model.dir.names.5)
+  sens.models.6      <<- load.models(model.dir, sens.model.dir.names.6)
 
   ## Lists of sensitivities for the MLE parameters, derived quantiles,
   ##  and reference points table

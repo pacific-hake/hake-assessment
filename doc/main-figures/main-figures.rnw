@@ -826,6 +826,38 @@ mtext("Age", side = 1, line = 1, outer = TRUE)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
+<<main.biomass.base.tv.increase.1, fig.height=4.5, fig.width=8>>=
+make.comparison.plot(c(list(base.model), list(sens.models.6)),
+                     subplots = 2,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.6),
+                     end.yr = end.yr)
+@
+\end{center}
+\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity run representing an increase of the standard error of the deviations of the selectivity parameters.}
+\label{fig:main-biomass-base-tv-increase-1}
+%% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{figure}[H]
+\begin{center}
+<<main.status.base.tv.increase.1, fig.height=4.5, fig.width=8>>=
+make.comparison.plot(c(list(base.model), list(sens.models.6)),
+                     subplots = 4,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.6),
+                     legend = FALSE,
+                     end.yr = end.yr)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity run representing an increase of the standard error of the deviations of the selectivity parameters. See Figure~\ref{fig:main-biomass-base-tv-increase-1} for legend.}
+\label{fig:main-status-base-tv-increase-1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
 <<main.biomass.base.alternative.1, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(c(list(base.model), sens.models.1),
                      subplots = 2,
