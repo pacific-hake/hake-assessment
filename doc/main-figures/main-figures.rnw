@@ -443,7 +443,7 @@ tv.selex <- calc.tv.selex(base.model,
 make.tv.selex.plot(tv.selex)
 @
 \end{center}
-\caption{Mountains plot of time varying fishery selectivity for the base model. Range of selectivity is 0 to 1 in each year.}
+\caption{Mountains plot of median fishery selectivity in each year for the base model. Range of selectivity is 0 to 1 in each year.}
 \label{fig:main-tv-selex}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
