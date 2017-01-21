@@ -11,18 +11,24 @@ make.maturity.samples.table <- function(ovary.samples,
 
   ## Table now includes "Total" row so no longer should filter by year range
   ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
-  #tab <- tab[tab$Year >= start.yr & tab$Year <= end.yr,]
-  #tab[,-1] <- f(tab[,-1])
+                                        #tab <- tab[tab$Year >= start.yr & tab$Year <= end.yr,]
+  ## The next line formats all non-year-column values with a thousands seperator
+  tab[,-1] <- f(tab[,-1])
   tab[is.na(tab)] <- "--"
-
   colnames(tab) <- c("\\textbf{Year}",
                      "\\specialcell{\\textbf{NWFSC}\\\\\\textbf{Trawl}\\\\\\textbf{Survey}}",
                      "\\specialcell{\\textbf{Acoustic}\\\\\\textbf{Survey/Research}\\\\\\textbf{(Summer)}}",
                      "\\specialcell{\\textbf{Acoustic}\\\\\\textbf{Survey/Research}\\\\\\textbf{(Winter)}}",
                      "\\specialcell{\\textbf{U.S. At-Sea Hake}\\\\\\textbf{Observer}\\\\\\textbf{Program (Spring)}}",
-                     "\\specialcell{\\textbf{U.S. At-Sea Hake}\\\\\\textbf{Observer}\\\\\\textbf{Program (Fall)}}")
+                     "\\specialcell{\\textbf{U.S. At-Sea Hake}\\\\\\textbf{Observer}\\\\\\textbf{Program (Fall)}}",
+                     "\\textbf{Total}")
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{", font.size, "}{", space.size, "}\\selectfont")
+  ## Make the totals row all bold
+  tab[nrow(tab),] <- paste0("\\textbf{", tab[nrow(tab),], "}")
+  ## Make the totals column all bold (except for the last on which was made bold on previous call)
+  tab[1:(nrow(tab) - 1), ncol(tab)] <- paste0("\\textbf{", tab[1:(nrow(tab) - 1), ncol(tab)], "}")
+
   return(print(xtable(tab, caption=xcaption,
                       label = xlabel,
                       align = get.align(ncol(tab), first.left = FALSE, just = "c"),

@@ -1,8 +1,8 @@
-Year,Bottom trawl survey,Acoustic Survey/Research,Winter Acoustic Research,U.S. At-sea fishery - Spring,U.S. At-sea fishery - Fall
-2009,263,0,0,0,0
-2012,71,199,0,0,0
-2013,70,254,0,104,103
-2014,276,0,0,105,142
-2015,293,193,0,98,112
-2016,277,26,311,102,100
-Total,1250,672,311,409,457
+Year,Bottom trawl survey,Acoustic Survey/Research,Winter Acoustic Research,U.S. At-sea fishery - Spring,U.S. At-sea fishery - Fall,Total
+2009,263,0,0,0,0,263
+2012,71,199,0,0,0,270
+2013,70,254,0,104,103,531
+2014,276,0,0,105,142,523
+2015,293,193,0,98,112,696
+2016,277,26,311,102,100,816
+Total,1250,672,311,409,457,3099
