@@ -176,7 +176,6 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
            y1 = qlnorm(probs[2], meanlog = log(cpue$ob), sdlog = cpue$se_log),
            lwd = 3,
            lend = 1)
-  browser()
   matplot(x = start.yr:(end.yr + 1),
           ##y = model$cpue.table[1:length(start.yr:end.yr),],
           y = model$cpue.table,
