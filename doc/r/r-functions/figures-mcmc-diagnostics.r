@@ -113,7 +113,7 @@ make.mcmc.diag.pairs.plot <- function(model,                 ## model is model w
     if(is.null(recr)){
       stop("make.mcmc.diag.pairs.plot: Error - if inc.key.params is FALSE, recr must not be null.\n\n")
     }
-    labs <- model$recruitpars$Label[model$recruitpars$Yr %in% recr]
+    labs <- rownames(model$recruitpars)[model$recruitpars$Yr %in% recr]
     df <- m[c(grep("R0",names(m)),
               which(names(m) %in% labs))]
     labels <- c("Equilibrium\nrecruitment\nlog(R0)",
@@ -134,6 +134,7 @@ make.mcmc.diag.pairs.plot <- function(model,                 ## model is model w
     df <- cbind(df, m[str])
     labels <- c(labels, paste0("Default\nharvest\nin ", forecatch))
   }
+  print(str(df))
   pairs(df,
         labels = labels,
         pch = ".",
@@ -176,7 +177,7 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
            y1 = qlnorm(probs[2], meanlog = log(cpue$ob), sdlog = cpue$se_log),
            lwd = 3,
            lend = 1)
-  browser()
+  #browser()
   matplot(x = start.yr:(end.yr + 1),
           ##y = model$cpue.table[1:length(start.yr:end.yr),],
           y = model$cpue.table,

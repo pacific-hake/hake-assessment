@@ -73,7 +73,7 @@ make.tv.selex.plot <- function(selex.list  ## A list of time varying selectivite
   oldpar <- par()
 
   # padding left and right outer margins using oma to make plot less stretched out
-  par(mar=c(4,4,1,1), oma=c(0,4,0,4)) 
+  par(mar=c(4,4,1,1), oma=c(0,8,0,8)) 
   selex.dat <- t(selex.list$median)
 
   mountains(selex.dat,
