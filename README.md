@@ -280,9 +280,11 @@ git reset --merge 33489f0
 
 **Running MCMC in SS**
 
-Copy and paste all model output files into new mcmc/ directory.
+Copy and paste all model output files into new mcmc/ directory. Change starter file to reduce output to screen using:
 
-Commands used by Aaron for model 19 (repeated by Ian for model 41)
+        0       # DOS display detail: 0,1,2
+
+Commands by Ian for model 41 (equivalent to those used by Aaron for model 19)
 
         ss3 -mcmc 12000000 -mcsave 10000 -mcseed 36519
         ss3 -mceval
