@@ -279,22 +279,24 @@ So I get ORIG_HEAD from doing  git lg
 git reset --merge 33489f0
 
 **Running MCMC in SS**
+
 Copy and paste all model output files into new mcmc/ directory.
 
-Commands used by Allan in previous years
+Commands used by Aaron for model 19 (repeated by Ian for model 41)
 
-        ss3 -mcmc 12000000 -mcsave 10000 -mcseed 5242
+        ss3 -mcmc 12000000 -mcsave 10000 -mcseed 36519
         ss3 -mceval
 
-Or to compare with model 19 run by Aaron in 2017, we could use -mcseed 36519 (ADMB default)
-That results in 1200 samples saved.
+Where that seed is the ADMB default. Allan used -mcseed 5242 but there's no reason why that seed is better than any other.
 
-These values have then been combined with starter.ss values of
+The 12 million samples saving 1 in every 10 thousand results in 1200 samples saved.
+
+These values are then been combined with starter.ss values of
 
         201     # MCMC burn-in
         1       # MCMC thinning interval
 
-which will remove the first 201 samples of the 1200 saved (which corresponds to the first 2.01 million in the chain of 12 million) are result in 999 samples reported in the posteriors.sso file.
+which will remove the first 201 samples of the 1200 saved (which corresponds to the first 2.01 million in the chain of 12 million) and result in 999 samples reported in the posteriors.sso file.
 
 
 
