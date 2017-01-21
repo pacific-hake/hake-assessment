@@ -87,7 +87,7 @@ if(verbose) cat0("Key posteriors file: \n  ", nuisance.posteriors.file)
 ## -----------------------------------------------------------------------------
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
-base.model.dir.name <- "19_BasePreSRG_v2"
+base.model.dir.name <- "41_BasePreSRG_v3"
 ## "01_2016base_converted_to_SSv3.30"
 base.model.name <- paste(assess.yr, "Base model")
 verify.models(model.dir, base.model.dir.name, base.model.name)
@@ -148,11 +148,15 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 bridge.model.dir.names.3 <- c(last.yr.base.model.dir.name,
                               "17_AdjustBiasRamp",
-                              "18_AdjustTuning")
+                              "18_AdjustTuning",
+                              "40_SenRecdevMain2014",
+                              "41_BasePreSRG_v3")
 ## Bridge model names will be used to make the bridge model plot and its caption.
 bridge.model.names.3 <- c(last.yr.base.model.name,
-                          "Adjust recr bias ramp",
-                          "Adjust eff. sample sizes")
+                          "Adjust recr. bias ramp",
+                          "Adjust eff. sample sizes",
+                          "Include 2014 in vector of main recr. devs",
+                          "More flexible time-varying selectivity")
 verify.models(model.dir, bridge.model.dir.names.3, bridge.model.names.3)
 if(verbose){
   print.model.message(bridge.model.dir.names.3, bridge.model.names.3, 3, model.type = "Bridge")

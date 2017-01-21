@@ -72,7 +72,8 @@ make.tv.selex.plot <- function(selex.list  ## A list of time varying selectivite
   ## Plot the time-varying selectivity of model
   oldpar <- par()
 
-  par(mar=c(4,4,1,1))
+  # padding left and right outer margins using oma to make plot less stretched out
+  par(mar=c(4,4,1,1), oma=c(0,8,0,8)) 
   selex.dat <- t(selex.list$median)
 
   mountains(selex.dat,
@@ -169,7 +170,8 @@ make.selex.uncertainty.lines.plot <- function(model,
   sel.med <- selex.list$median
 
   if(type == 1){
-    selex <- selex.list$selex[[1]]
+    ## final element of list should be final year
+    selex <- selex.list$selex[[length(selex.list$selex)]]
     ## The indexing below will give you the last year in the series.
     ## Need to check this to make sure it is correct.
     selex.med <- selex.list$median[,ncol(selex.list$med)]
