@@ -87,7 +87,7 @@ if(verbose) cat0("Key posteriors file: \n  ", nuisance.posteriors.file)
 ## -----------------------------------------------------------------------------
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
-base.model.dir.name <- "41_BasePreSRG_v3"
+base.model.dir.name <- "45_BasePreSRG_v4"
 ## "01_2016base_converted_to_SSv3.30"
 base.model.name <- paste(assess.yr, "Base model")
 verify.models(model.dir, base.model.dir.name, base.model.name)
@@ -148,15 +148,15 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 bridge.model.dir.names.3 <- c(last.yr.base.model.dir.name,
                               "17_AdjustBiasRamp",
-                              "18_AdjustTuning",
                               "40_SenRecdevMain2014",
-                              "41_BasePreSRG_v3")
+                              "41_BasePreSRG_v3",
+                              "45_BasePreSRG_v4")
 ## Bridge model names will be used to make the bridge model plot and its caption.
 bridge.model.names.3 <- c(last.yr.base.model.name,
                           "Adjust recr. bias ramp",
-                          "Adjust eff. sample sizes",
                           "Include 2014 in vector of main recr. devs",
-                          "More flexible time-varying selectivity")
+                          "More flexible time-varying selectivity",
+                          "Adjust effective sample sizes")
 verify.models(model.dir, bridge.model.dir.names.3, bridge.model.names.3)
 if(verbose){
   print.model.message(bridge.model.dir.names.3, bridge.model.names.3, 3, model.type = "Bridge")
@@ -165,10 +165,12 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 1
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.1 <- c("31_Sen_sigmaR_1.0",
-                            "32_Sen_sigmaR_2.0")
+sens.model.dir.names.1 <- c("57_Sen45_sigmaR_1.0",
+                            "58_Sen45_sigmaR_2.0",
+                            "62_Sen45_sigmaR_1.51")
 sens.model.names.1 <- c("Sigma R 1.0",
-                        "Sigma R 2.0")
+                        "Sigma R 2.0",
+                        "Sigma R 1.51")
 verify.models(model.dir, sens.model.dir.names.1, sens.model.names.1)
 if(verbose){
   print.model.message(sens.model.dir.names.1, sens.model.names.1, 1, model.type = "Sensitivity")
@@ -177,7 +179,7 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 2
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.2 <- list("20_SenAdjustBiasRampEnd2014")
+sens.model.dir.names.2 <- list("46_Sen45_AdjustBiasRampEnd2014")
 sens.model.names.2 <- list("Adjust bias ramp to 2014")
 verify.models(model.dir, sens.model.dir.names.2, sens.model.names.2)
 if(verbose){
@@ -187,9 +189,9 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 3
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.3 <- c("21_SenMaxSelectAge5",
-                            "22_SenMaxSelectAge7",
-                            "23_SenMaxSelectAge10")
+sens.model.dir.names.3 <- c("47_Sen45MaxSelectAge5",
+                            "48_Sen45MaxSelectAge7",
+                            "49_Sen45MaxSelectAge10")
 sens.model.names.3 <- c("Max. age of selectivity 5",
                         "Max. age of selectivity 7",
                         "Max. age of selectivity 12")
@@ -201,10 +203,10 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 4
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.4 <- c("24_Senh0.5prior",
-                            "25_Senh1.0fix",
-                            "26_SenM0.2SD",
-                            "27_SenM0.3SD")
+sens.model.dir.names.4 <- c("50_Sen45h0.5prior",
+                            "51_Sen45h1.0fix",
+                            "52_Sen45M0.2SD",
+                            "53_Sen45M0.3SD")
 sens.model.names.4 <- c("Steepness prior = 0.5",
                         "Fix steepness = 1.0",
                         "Stdev M = 0.2",
@@ -217,9 +219,9 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 5
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.5 <- c("28_SenAgeErrorNoCohort",
-                            "29_SenAgeError2014NoAdjust",
-                            "30_SenAddAge1Index")
+sens.model.dir.names.5 <- c("54_Sen45AgeErrorNoCohort",
+                            "55_Sen45AgeError2014noAdjust",
+                            "56_Sen45AddAge1Index")
 sens.model.names.5 <- c("Cohort invariant ageing error",
                         "2014 not adjusted downward",
                         "Add age-1 index")
@@ -231,9 +233,9 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 6
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.6 <- c("42_Sen_phi003",
-                            "43_Sen_phi010",
-                            "44_Sen_phi030")
+sens.model.dir.names.6 <- c("59_Sen45_phi003",
+                            "60_Sen45_phi010",
+                            "61_Sen45_phi030")
 sens.model.names.6 <- c("Selectivity phi = 0.03",
                         "Selectivity phi = 0.10",
                         "Selectivity phi = 0.30")
