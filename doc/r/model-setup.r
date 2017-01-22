@@ -231,20 +231,12 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 6
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.6 <- c("34_Sen_flexibleTVselex005",
-                            "35_Sen_flexibleTVselex007",
-                            "36_Sen_flexibleTVselex009",
-                            "37_Sen_flexibleTVselex015",
-                            "38_Sen_flexibleTVselex020",
-                            "39_Sen_flexibleTVselex025",
-                            "33_Sen_flexibleTVselex")
-sens.model.names.6 <- c("Stderr dev of selex = 0.05",
-                        "Stderr dev of selex = 0.07",
-                        "Stderr dev of selex = 0.09",
-                        "Stderr dev of selex = 0.15",
-                        "Stderr dev of selex = 0.20",
-                        "Stderr dev of selex = 0.25",
-                        "Stderr dev of selex = 0.30")
+sens.model.dir.names.6 <- c("42_Sen_phi003",
+                            "43_Sen_phi010",
+                            "44_Sen_phi030")
+sens.model.names.6 <- c("Selectivity phi = 0.03",
+                        "Selectivity phi = 0.10",
+                        "Selectivity phi = 0.30")
 verify.models(model.dir, sens.model.dir.names.6, sens.model.names.6)
 if(verbose){
   print.model.message(sens.model.dir.names.6, sens.model.names.6, 6, model.type = "Sensitivity")
