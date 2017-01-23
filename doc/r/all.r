@@ -90,6 +90,7 @@ create.rdata.file(model.name = base.model.dir.name,
                   forecast.catch.levels = catch.levels,
                   run.retros = reload.all,
                   my.retro.yrs = retro.yrs,
+                  is.base.model = TRUE,
                   run.partest = reload.all,
                   key.posteriors = key.posteriors,
                   verbose = ss.verbose)

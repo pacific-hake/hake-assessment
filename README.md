@@ -1,7 +1,7 @@
 ____
 # hake-assessment
 
-**Updated November 9, 2016**
+**Updated January 23, 2017**
 
 A framework which uses latex and knitr code to build the US/Canadian Pacific hake assessment.
 
@@ -43,11 +43,27 @@ _____________________________________________________________
   **model-setup.r** file.
 
 * Navigate to the doc/r directory and setup the model by editing the three files **model-setup.r**,
-  **forecast-catch-levels.r**, and **retrospective-setup.r**.
+  **forecast-catch-levels.r**, and **retrospective-setup.r**:
 
-* Start an R interpreter in the doc/r directory, and issue the command **source("all.r")**. Once this is finished,
-  there will be a .RData file in each of the model directories you have set up in the model-setup.r file,
-  each with the same name as the directory that it is in.
+  * Edit **all.r** and set
+    ```R
+      reload.all <- TRUE
+    ```
+    then open R in the doc/r directory and run:
+    ```R
+	  rm(list=ls(all=TRUE));
+      source("all.r");
+    ```
+
+    this will take a while as it has to run all the forecasts, retrospectives, and create the 999 report files (partest).
+    You don’t need to save the workspace when you close R. You can see that each model defined in **model-setup.r**
+    now has an RData file inside it with the same name.
+
+    Now, edit all.r again and set
+    ```R
+	  reload.all <- FALSE
+    ```
+    **If you forget this step, it will re-run everything the next time you try to build the document.**
 
 * **Method 1 for building the document** (Without an R interpreter):
   This method is simpler to run, and all logs are recorded into logfiles which can be
@@ -80,32 +96,28 @@ _____________________________________________________________
   will be used. To keep the cached figures and tables, but remove all other traces of the build including the PDF,
   run **cleantex.bat**.
 
+## How to delete all model RData files
 
-__From Chris 18th Jan 2017; prob should incorporate some into the above notes?__:
+* Open R in the doc/r directory and issue the command:
+  ```R
+    delete.rdata.files("../../models")**
+  ```
+* You will need to re-run everything again so take care doing this.
 
-Edit all.r and set
-	
-	reload.all <- TRUE
+## How to debug functions used in the knitr chunks in the **.rnw** files
 
-then open R in the doc/r directory and run:
-
-	rm(list=ls(all=TRUE));
+* Open R in the doc/r directory and issue the commands:
+  ```R
+    rm(list=ls(all=TRUE));
 	source("all.r");
 	load.models.into.parent.env();
 	source("custom-knitr-variables.r")
-
-this will take a while as it has to run all the forecasts, retrospectives, and create the 999 report files (partest).
-You don’t need to save the workspace when you close R.
-
-Now, edit all.r again and set
-
-	reload.all <- FALSE
-
-or it will do that every time.
+  ```
 
 __R Packages__
 
-The code will automatically install packages (from CRAN or GitHub - see **all.r**) that you do not have. But it will not update them (this would be time-consuming each time). If something doesn't work, try and figure out which package it relates to and get the latest version. Andy had a December 2015 version of **r4ss** and got an error (in Jan 2017), but after updating it to the latest version:
+The code will automatically install packages (from CRAN or GitHub - see **all.r**) that you do not have,
+but it will not update them (this would be time-consuming each time). If something doesn't work, try and figure out which package it relates to and get the latest version. Andy had a December 2015 version of **r4ss** and got an error (in Jan 2017), but after updating it to the latest version:
 
 	devtools::install_github("r4ss/r4ss")
 

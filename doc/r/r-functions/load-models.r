@@ -91,6 +91,8 @@ create.rdata.file <- function(
            run.retros = FALSE,              ## Run retrospectives for this model? *This will overwrite any already run*
            my.retro.yrs = retro.yrs,        ## Vector of integers (positives) to run retrospectives for if run.retros = TRUE
            run.partest = FALSE,             ## Run partest for this model?
+           is.base.model = FALSE,           ## Is this the base model? Used to stop errors for non-base-models which have
+                                            ##  an mcmc directory
            key.posteriors = key.posteriors, ## Vector of key posteriors used to create key posteriors file
            key.posteriors.fn = "keyposteriors.csv",
            nuisance.posteriors.fn = "nuisanceposteriors.csv",
@@ -160,14 +162,14 @@ create.rdata.file <- function(
 
   ## message(curr.func.name, "'mcmc' directory does not exist ",
   ##           "for model found in: ", mcmc.path)
-
-  model$forecasts <- fetch.forecasts(model$mcmcpath,
-                                     fore.yrs, ## [-length(fore.yrs)],
-                                     forecast.catch.levels,
-                                     probs = forecast.probs)
-  model$risks <- calc.risk(model$forecasts,
-                           fore.yrs)
-
+  if(is.base.model){
+    model$forecasts <- fetch.forecasts(model$mcmcpath,
+                                       fore.yrs, ## [-length(fore.yrs)],
+                                       forecast.catch.levels,
+                                       probs = forecast.probs)
+    model$risks <- calc.risk(model$forecasts,
+                             fore.yrs)
+  }
   model$retropath <- file.path(model$path, "retrospectives")
   if(is.null(model$retropath)){
     model$retropath <- NA
@@ -186,9 +188,11 @@ create.rdata.file <- function(
   }
 
   ## Try loading retrospectives. If none are found, model$retros will be NA
-  model$retros <- fetch.retros(model$retropath,
-                               my.retro.yrs,
-                               verbose = verbose)
+  if(is.base.model){
+    model$retros <- fetch.retros(model$retropath,
+                                 my.retro.yrs,
+                                 verbose = verbose)
+  }
 
   if(run.partest){
     cat0(curr.func.name, "Running partest...\n\n")
