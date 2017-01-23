@@ -81,7 +81,7 @@ source("data-tables.r")                 ## Set up variables for data tables (fro
 ##  file will have its own RData file holding the model object as defined in the Readme.md file.
 
 ## Base model:
-reload.all <- TRUE
+reload.all <- FALSE
 create.rdata.file(model.name = base.model.dir.name,
                   ovwrt.rdata = reload.all,
                   run.forecasts = reload.all,

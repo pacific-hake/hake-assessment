@@ -197,4 +197,44 @@ A standard deviation of $\phi=0.03$ for this penalty function was used for each 
 
 This parameterization allows for the estimation of time-varying selectivity without allowing large year-to-year changes. However, the current selectivity parameterization is limiting because each individual selectivity-at-age is correlated with the selectivity of other ages. Research into alternative non-parametric time-varying selectivity configurations is ongoing but no clear alternative was available in Stock Synthesis for this assessment.
 
+Testing that \citet{JTC2016} is okay.
+
+
+From 2014:
+
+Appendix C. Details on non-parametric selectivity
+
+For each age $a \geq A_{\text{min}}$ there is a selectivity parameter, $p_a$, for the fishery (for which $A_{\text{min}}=1$) and a parameter $p_a$ for the survey (for which $A_{\text{min}}=2$). The selectivity at age $a$ is computed as
+\eb
+S_a = \exp (S'_a - S'_{\text{max}}),
+\ee
+where
+\eb
+S'_a = \sum_{i = A_{\text{min}}}^a p_i
+\ee
+and 
+\eb
+S'_{\text{max}} = \mbox{max} \{S'_a\}.
+\ee
+Selectivity is fixed at $S_a = 0$ for $a < A_{\text{min}}$. 
+
+This formulation has the properties that the maximum selectivity equals 1, positive values are associated with increasing selectivity between ages $a-1$ and $a$, and negative values are associated with decreasing selectivity between those ages. Beyond the maximum age for which selectivity is estimated (**6 in the base model), $p_a = 0$, resulting in constant selectivity beyond the last estimated value. The condition that maximum selectivity equals 1 results in one fewer degree of freedom than the number of estimated $p_a$. Therefore, $p_{A_{\text{min}}}=0$ can be set for the fishery and for the survey.
+
+%corresponding to the first age of estimated selectivity ($p_1$ for the fishery and $p_2$ for the survey), is fixed at 0. **Add issue - don't understand last two.
+
+Time-varying fishery selectivity is implemented through annual deviations in each of the estimated
+parameters for each age, pa. This is formulated as
+
+
+where the  
+
+are additional parameters estimated in the model. The values of 
+
+are included in an
+additional likelihood component with negative log likelihood proportional to 
+
+
+The value is set to 0.03 in the base model based on a selection process described in the Methods
+section.
+
 \clearpage
