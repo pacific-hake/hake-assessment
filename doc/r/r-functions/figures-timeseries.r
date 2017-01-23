@@ -166,8 +166,8 @@ make.recruitment.dev.plot <- function(model,  ## model is an mcmc run and is the
 make.fishing.intensity.plot <- function(model,            ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
                                         start.yr,         ## Year the timeseries starts (i.e. first year in model)
                                         end.yr,           ## Year the timeseries ends (i.e. last year that values are required for; note that SS calculates a fishing intensity for the final year of the model, but the number is meaningless).
-                                        color = "blue"
-                                        ){
+                                        color = "blue",
+                                        upper.lim = 1.4){
   ## Plots the 1-SPR / 1-SPR40% for the mcmc given by model
   oldpar <- par()
 
@@ -184,7 +184,7 @@ make.fishing.intensity.plot <- function(model,            ## model is an mcmc ru
 
   y <- data.frame(value = pmed, lo = plower, hi = pupper)
   par(mfrow = c(1,1), las = 1, mar = c(3.5,3.5,1,1), oma = c(0,0,0,0))
-  plotBars.fn(yrs, y, scalar = 1, ylim = c(0,1.3), pch = 20,
+  plotBars.fn(yrs, y, scalar = 1, ylim = c(0,upper.lim), pch = 20,
             ## xlab="Year",ylab="Fishing intensity (1-SPR)/(1-SPR_40%)",
             xlab="Year",
             ylab = expression(paste("Fishing intensity", ~~(1-italic(SPR))/(1-italic(SPR)['40%']))),
@@ -200,8 +200,8 @@ make.fishing.intensity.plot <- function(model,            ## model is an mcmc ru
 make.exploitation.fraction.plot <- function(model,            ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
                                             start.yr,         ## Year the timeseries starts (i.e. first year in model)
                                             end.yr,           ## Year the timeseries ends (i.e. last year that values are required for; note that SS calculates an exploitation rate for the final year of the model, but the number is meaningless because that year has no catch).
-                                            color = "blue"
-                                            ){
+                                            color = "blue",
+                                            upper.lim = 0.4){
   ## Plots the exploitation fraction for the mcmc given by model
   oldpar <- par()
 
@@ -219,7 +219,7 @@ make.exploitation.fraction.plot <- function(model,            ## model is an mcm
   y <- data.frame(value=fmed,lo=flower,hi=fupper)
 
   par(mfrow = c(1,1), las = 1, mar = c(3.5,3.5,1,1), oma = c(0,0,0,0))
-  plotBars.fn(yrs, y, scalar = 1, ylim = c(0,0.4), pch = 20, xlab = "Year", ylab = "Exploitation fraction",
+  plotBars.fn(yrs, y, scalar = 1, ylim = c(0,upper.lim), pch = 20, xlab = "Year", ylab = "Exploitation fraction",
               cex = 0.8, las = 1, gap = 0.005, xaxt = "n", ciLwd = 1, ciCol = rgb(0,0,1,0.5),
               mgp = c(2.3,1,0), xlim = range(yrs), yaxs="i")
   axis(1, at = seq(1960, end.yr+4, 5))

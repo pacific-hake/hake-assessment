@@ -206,7 +206,7 @@ make.recruitment.plot(base.model,
                       color = "blue",
                       add.mean = TRUE,
                       add.r0 = TRUE,
-                      upper.lim = 135)
+                      upper.lim = 100)
 @
 \end{center}
 \caption{Medians (solid circles) and means ($\times$) of the posterior distribution for recruitment (billions of age-0) with 95\% posterior credibility intervals (blue lines). The median of the posterior distribution for mean unfished equilibrium recruitment ($R_0$) is shown as the horizontal dashed line with a 95\% posterior credibility interval shaded between the dotted lines.}
@@ -261,7 +261,8 @@ make.fishing.intensity.table(base.model,
 make.fishing.intensity.plot(base.model,
                             start.yr = start.yr,
                             end.yr = end.yr-1,
-                            color = "blue")
+                            color = "blue",
+                            upper.lim = 1.5)
 @
 \end{center}
 \caption{Trend in median fishing intensity (relative to the SPR management target) through \Sexpr{end.yr-1}
@@ -280,7 +281,8 @@ shown relatively similar patterns (Figure~\ref{fig:es-exploitation-fraction} and
 make.exploitation.fraction.plot(base.model,
                                 start.yr = start.yr,
                                 end.yr = end.yr-1,
-                                color = "blue")
+                                color = "blue",
+                                upper.lim = 0.35)
 @
 \end{center}
 \caption{Trend in median exploitation fraction through \Sexpr{end.yr-1} with 95\% posterior credibility intervals.}
