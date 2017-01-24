@@ -894,6 +894,73 @@ make.comparison.plot(c(list(base.model), sens.models.1),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
+<<main.biomass.base.alternative.4, fig.height=4.5, fig.width=8>>=
+make.comparison.plot(c(list(base.model), sens.models.4),
+                     subplots = 2,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
+                     end.yr = end.yr)
+@
+\end{center}
+\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing changing the mean of the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, and changing the standard deviation of the prior for natural mortality from 0.1 to 0.2 or 0.3.}
+\label{fig:main-biomass-base-alternative-4}
+%% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{figure}[H]
+\begin{center}
+<<main.status.base.alternative.4, fig.height=4.5, fig.width=8>>=
+make.comparison.plot(c(list(base.model), sens.models.4),
+                     subplots = 4,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
+                     legend = FALSE,
+                     end.yr = end.yr)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity runs representing changing the mean of the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, and changing the standard deviation of the prior for natural mortality from 0.1 to 0.2 or 0.3. See Figure~\ref{fig:main-biomass-base-alternative-4} for legend.}
+\label{fig:main-status-base-alternative-4}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+% \clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.biomass.base.alternative.5, fig.height=4.5, fig.width=8>>=
+make.comparison.plot(c(list(base.model), sens.models.5),
+                     subplots = 2,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.5),
+                     end.yr = end.yr)
+@
+\end{center}
+\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing changes to **the standard deviation of recruitment variability from the base model's $\sigma_r=$\Sexpr{sigma.r}.}
+\label{fig:main-biomass-base-alternative-5}
+%% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{figure}[H]
+\begin{center}
+<<main.status.base.alternative.1, fig.height=4.5, fig.width=8>>=
+make.comparison.plot(c(list(base.model), sens.models.5),
+                     subplots = 4,
+                     model.names = c(paste0("Base model ", end.yr), sens.model.names.5),
+                     legend = FALSE,
+                     end.yr = end.yr)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity runs representing changes **to the standard deviation of recruitment variability from the base model's $\sigma_r=$\Sexpr{sigma.r}. See Figure~\ref{fig:main-biomass-base-alternative-5} for legend.}
+\label{fig:main-status-base-alternative-5}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+% \clearpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
 <<main.biomass.recruitment.retrospective, fig.height=8, fig.width=8>>=
 oldpar <- par()
 par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))

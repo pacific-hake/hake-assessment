@@ -207,7 +207,7 @@ sens.model.dir.names.4 <- c("50_Sen45h0.5prior",
                             "51_Sen45h1.0fix",
                             "52_Sen45M0.2SD",
                             "53_Sen45M0.3SD")
-sens.model.names.4 <- c("Steepness prior = 0.5",
+sens.model.names.4 <- c("Steepness prior mean = 0.5",
                         "Fix steepness = 1.0",
                         "Stdev M = 0.2",
                         "Stdev M = 0.3")
