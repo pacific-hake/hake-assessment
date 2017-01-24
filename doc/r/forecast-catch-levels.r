@@ -12,16 +12,23 @@ forecast.probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 ##  3. their directory names
 ## Each element of the list is a list of length equal to the
 ## number of elements in forcast.yrs.
+## Constant catch values are somewhat arbitrary, but choosen to span a range
+##    given recent TACs (levels: 01, 02, 03, 05)
+## Contant catch values set at the most recent TAC (level 04)
+## Catches specific to particular situations (SPR100, Default HR, and Stable
+##    catch) are manually solved for following forecast_find_DecisionTable.R
+##    located in .../doc/r
+
 ## -----------------------------------------------------------------------------
 catch.levels <-
   list(list(rep(0.01, 3), "No Fishing", "01-0"),
        list(rep(180000, 3), "180,000 t", "02-180000"),
        list(rep(350000, 3), "350,000 t", "03-350000"),
-       list(rep(440000, 3), "440,000 t", "04-440000"),
-       list(rep(500000, 3), "500,000 t", "05-500000"),
-       list(c(785000, 900000, 825000), "SPR 100", "06-spr-100"),
-       list(c(830124, 955423, 837352), "Default HR", "07-default-hr"),
-       list(c(928100, 928100, 820224), "Stable Catch", "08-stable-catch"))
+       list(rep(497500, 3), "497,500 t", "04-497500"),
+       list(rep(600000, 3), "600,000 t", "05-600000"),
+       list(c(934000, 848000, 698000), "SPR 100", "06-spr-100"),
+       list(c(969840, 843566, 679881), "Default HR", "07-default-hr"),
+       list(c(866263, 866263, 683014), "Stable Catch", "08-stable-catch"))
 
 ## -----------------------------------------------------------------------------
 ## Indicies for the forecasts list, which list items above are the TAC case and
@@ -36,4 +43,3 @@ catch.default.policy <- catch.levels[[catch.default.policy.ind]][[1]]
 verify.catch.levels(catch.levels,
                     c(catch.tac.ind, catch.default.policy.ind),
                     forecast.yrs)
-
