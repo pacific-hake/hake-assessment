@@ -57,7 +57,7 @@ than 1\% of landings in recent years. During the last five years, catches have b
 %%in \Sexpr{survey.end.yr} have been added to the survey time series
 %%(Figure~\ref{fig:es-survey-biomass}); earlier survey data (1998--2013)
 %%were re-analyzed and updated this year.
-There was no survey in \Sexpr{last.data.yr}. New data for this \Sexpr{assess.yr} assessment, that were not in the \Sexpr{last.assess.yr} assessment, are the 1995 survey biomass estimate and the \Sexpr{last.data.yr} fishery catch and fishery age compositions; minor refinements to historical catch estimates were also made. The \Sexpr{last.assess.yr} assessment did not include the 1995 survey biomass estimate due to issues with the older survey data, but those issues have now been resolved.
+There was no survey in \Sexpr{last.data.yr}. New data for this \Sexpr{assess.yr} assessment, that were not in the \Sexpr{last.assess.yr} assessment, are the 1995 survey biomass estimate and the \Sexpr{last.data.yr} fishery catch and fishery age-compositions; minor refinements to historical catch estimates were also made. The \Sexpr{last.assess.yr} assessment did not include the 1995 survey biomass estimate due to issues with the older survey data, but those issues have now been resolved.
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -79,7 +79,7 @@ This Joint Technical Committee (JTC) assessment depends primarily on the fishery
 acoustic survey biomass estimates (Figure~\ref{fig:es-survey-biomass}) and age-compositions (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}),
 as well as fishery age-compositions (1975--\Sexpr{last.data.yr}). While the 2011 survey index value was the lowest in the time series, 
 the index increased steadily over the four surveys conducted in 2011, 2012, 2013, and 2015. Age-composition data from the aggregated 
-fisheries and the acoustic survey contribute to the assessment model's ability to resolve strong and weak cohorts. % Manual 2016 done.
+fisheries and the acoustic survey contribute to the assessment model's ability to resolve strong and weak cohorts. % Manual 2017 done.
 
 The assessment uses a Bayesian estimation approach, sensitivity analyses, and retrospective investigations to evaluate the potential consequences of parameter uncertainty, alternative structural models, and historical performance of the assessment model, respectively. The Bayesian approach combines prior knowledge about natural mortality, stock-recruitment steepness (a parameter for stock productivity) and several other parameters, with likelihoods for acoustic survey biomass indices, acoustic survey age-composition data, and fishery age-composition data. Integrating the joint posterior distribution over model parameters (via Markov Chain Monte Carlo simulation) provides probabilistic inferences about uncertain model parameters and forecasts derived from those parameters. Sensitivity analyses are used to identify alternative structural models that may also be consistent with the data. Retrospective analyses identify possible poor performance of the assessment model with respect to future predictions. In past assessments, closed-loop simulations have provided an insight into how alternative combinations of survey frequency, assessment model selectivity assumptions, and harvest control rules affect expected management outcomes given repeated application of these procedures over the long-term. The results of past closed-loop simulations influence the decisions made for this assessment.
 
@@ -89,7 +89,7 @@ selectivity reduced the magnitude of extreme cohort strength estimates. In close
 assessment models with time-varying fishery selectivity led to higher median average catch, lower risk of falling below 10\% of unfished
 biomass ($B_0$), smaller probability of fishery closures, and lower inter-annual variability in catch compared to assessment models with
 time-invariant fishery selectivity. It was found that even a small degree of flexibility in the assessment model fishery selectivity could
-reduce the effects of errors caused by assuming selectivity is constant over time. Therefore, we retain time-varying selectivity in this assessment.
+reduce the effects of errors caused by assuming selectivity is constant over time. Therefore, we retain time-varying selectivity in this assessment, but with an increase in the allowed magnitude of the annual deviations (else the model estimates an extremely high 2014 year class based on limited data).
 
 \subsection*{Stock biomass} \label{sec:es-stock-biomass}
 \phantomsection  \addcontentsline{toc}{subsection}{Stock biomass}
