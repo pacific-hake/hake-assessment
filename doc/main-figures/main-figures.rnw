@@ -770,7 +770,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing no extrapolation on the acoustic survey estimate and inclusion of an age-1 index.}
+\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity run that sets the full bias ramp adjust period to 2014 instead of 2013.}
 \label{fig:main-biomass-base-alternative-2}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -796,7 +796,7 @@ par <- oldpar
 @
 \end{center}
 %\vspace{0mm}
-\caption{Density plot showing the MLE recruitment deviate estimates for the \Sexpr{sens.density.yr} cohort for the base model and alternative sensitivity runs representing no extrapolation on the acoustic survey estimate and inclusion of an age-1 index.}
+\caption{Density plot showing the MLE recruitment deviate estimates for the \Sexpr{sens.density.yr} cohort for the base model and alternative sensitivity run that sets the full bias ramp adjust period to 2014 instead of 2013.}
 \label{fig:main-recruitment-base-alternative-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
