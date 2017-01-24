@@ -191,18 +191,13 @@ The prior for steepness is based on the median (0.79), 20th (0.67) and 80th (0.8
 
 \subsubsection{Variability on fishery selectivity deviations}\label{sec:data-variability-selectivity}
 
-Time-varying fishery selectivity was introduced in the 2014 assessment and was modelled with yearly deviations applied individually to the parameters for selectivity-at-age (more detail on the parameterization is provided in Appendix C of \citealt{JTC2014}). A penalty function in the form of a normal distribution is applied to each deviation to keep the deviation from straying far from zero, unless the data are overwhelming. The amount of deviation from zero is controlled by a fixed standard deviation, $\phi$.
+Time-varying fishery selectivity was introduced in the 2014 assessment \citep{JTC2014} and is modelled with yearly deviations applied to the selectivity-at-age parameters. A penalty function in the form of a normal distribution is applied to each deviation to keep the deviation from straying far from zero, unless the data are overwhelming. The amount of deviation from zero is controlled by a fixed standard deviation, $\phi$ (explained further below).
 
-A standard deviation of $\phi=0.03$ for this penalty function was used for each age and was estimated externally by treating the deviations as random effects and integrating over them using the Laplace method, as described by \citet{ThorsonHicksEtAl2014}. This estimation procedure was not repeated for this assessment and $\phi=0.03$ was used again.
+Recent assessments \citep{JTC2014, JTC2015, JTC2016} used $\phi=0.03$, which was estimated externally by treating the deviations as random effects and integrating over them using the Laplace method, as described by \citet{ThorsonHicksEtAl2014}. This parameterization allowed for the estimation of time-varying selectivity without allowing large year-to-year changes. However, for this assessment, $\phi=0.03$ led to a record-high 2014 year class, resulting in a huge estimated current biomass (Figures~\ref{fig:main-biomass-base-tv-increase-1} and \ref{fig:main-status-base-tv-increase-1}). The biomass estimates for 2014 and earlier are relatively insensitive to the tested values of $\phi$.
 
-This parameterization allows for the estimation of time-varying selectivity without allowing large year-to-year changes. However, the current selectivity parameterization is limiting because each individual selectivity-at-age is correlated with the selectivity of other ages. Research into alternative non-parametric time-varying selectivity configurations is ongoing but no clear alternative was available in Stock Synthesis for this assessment.
+**Ian to add text explaining $\phi=0.20$, partly based on \citet{ThorsonHicksEtAl2014} and Figures~\ref{fig:main-biomass-base-tv-increase-1} and \ref{fig:main-status-base-tv-increase-1} ($\phi=0.30$ not too different from 0.20).
 
-Testing that \citet{JTC2016} is okay.
-
-
-From 2014:
-
-Appendix C. Details on non-parametric selectivity
+Further details on the time-varying selectivity function are now given.
 
 For each age $a \geq A_{\text{min}}$ there is a selectivity parameter, $p_a$, for the fishery (for which $A_{\text{min}}=1$) and a parameter $p_a$ for the survey (for which $A_{\text{min}}=2$). The selectivity at age $a$ is computed as
 \eb
@@ -218,23 +213,23 @@ S'_{\text{max}} = \mbox{max} \{S'_a\}.
 \ee
 Selectivity is fixed at $S_a = 0$ for $a < A_{\text{min}}$. 
 
-This formulation has the properties that the maximum selectivity equals 1, positive values are associated with increasing selectivity between ages $a-1$ and $a$, and negative values are associated with decreasing selectivity between those ages. Beyond the maximum age for which selectivity is estimated (**6 in the base model), $p_a = 0$, resulting in constant selectivity beyond the last estimated value. The condition that maximum selectivity equals 1 results in one fewer degree of freedom than the number of estimated $p_a$. Therefore, $p_{A_{\text{min}}}=0$ can be set for the fishery and for the survey.
+This formulation has the properties that the maximum selectivity equals 1, positive values are associated with increasing selectivity between ages $a-1$ and $a$, and negative values are associated with decreasing selectivity between those ages. Beyond the maximum age for which selectivity is estimated (6 in the base model), $p_a = 0$ to give constant selectivity beyond the last estimated value. The condition that maximum selectivity equals 1 results in one fewer degree of freedom than the number of estimated $p_a$. Therefore, $p_{A_{\text{min}}}=0$ can be set for the fishery and for the survey.  % Manual 2017 - age 6 in the base model.
 
-%corresponding to the first age of estimated selectivity ($p_1$ for the fishery and $p_2$ for the survey), is fixed at 0. **Add issue - don't understand last two.
+Time-varying fishery selectivity is implemented through annual deviations in the $p_a$, formulated as
+\eb
+p_{ay} = p_a + \epsilon_{ay}
+\ee
+where the $\epsilon_{ay}$ are additional parameters estimated in the model. 
 
-Time-varying fishery selectivity is implemented through annual deviations in each of the estimated
-parameters for each age, pa. This is formulated as
+The values of $\epsilon_{ay}$ are included in an additional likelihood component with negative log-likelihood proportional to 
+\eb
+-\log(\mbox{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6} ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \frac{\epsilon_{ay}^2}{\phi^2},
+% -\log(\mbox{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6} ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \left. \dfrac{\epsilon_{ay}^2}{\phi^2}{\vrule height 24pt width 0pt} \right. ,     % to try and make summations larger; can live with as is.
+\ee
+where $\phi$ is the standard deviation of the normal penalty function.
+% Manual 2017: age 6 and y=1991. Andy thought 1991 might be tv.selex.start.yr
+%  but that has value 1990. Control file says 1991.
 
-
-where the  
-
-are additional parameters estimated in the model. The values of 
-
-are included in an
-additional likelihood component with negative log likelihood proportional to 
-
-
-The value is set to 0.03 in the base model based on a selection process described in the Methods
-section.
+The current selectivity parameterization is limiting because each individual selectivity-at-age is correlated with the selectivity of other ages. In other words, it is difficult to disentangle the correlations. Therefore, we recommend that future research be expended on investigating alternative selectivity patterns that allow for easily interpretable annual variations. Such research is ongoing but no clear alternative was available in Stock Synthesis for this assessment.  % (From 2014 and 2016 assessments).
 
 \clearpage
