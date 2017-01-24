@@ -40,7 +40,7 @@ make.catches.table(catches,
                    start.yr = 2006,
                    end.yr = assess.yr - 1,
                    weight.factor = 1000,
-                   xcaption <- "Recent commercial fishery catch (t). Tribal catches are included in the sector totals. Research Catch includes landed catch associated with research-related activities. Unlanded catch associated with surveys and bycatch in fisheries not targetting hake is not currently included in the model.",
+                   xcaption <- "Recent commercial fishery catch (t). Tribal catches are included in the sector totals. Research catch includes landed catch associated with research-related activities. Unlanded catch associated with surveys and bycatch in fisheries not targetting hake is not currently included in the model.",
                    xlabel <- "tab:es-catches",
                    font.size = 9,
                    space.size = 10,
@@ -57,9 +57,7 @@ than 1\% of landings in recent years. During the last five years, catches have b
 %%in \Sexpr{survey.end.yr} have been added to the survey time series
 %%(Figure~\ref{fig:es-survey-biomass}); earlier survey data (1998--2013)
 %%were re-analyzed and updated this year.
-The 1995 survey biomass estimate has been re-analyzed and added back into the
-assessment. The \Sexpr{last.assess.yr} assessment did not include this data point
-due to issues with the older survey data but over the past year the issues were resolved.
+There was no survey in \Sexpr{last.data.yr}. New data for this \Sexpr{assess.yr} assessment, that were not in the \Sexpr{last.assess.yr} assessment, are the 1995 survey biomass estimate and the \Sexpr{last.data.yr} fishery catch and fishery age compositions; minor refinements to historical catch estimates were also made. The \Sexpr{last.assess.yr} assessment did not include the 1995 survey biomass estimate due to issues with the older survey data, but those issues have now been resolved.
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -75,7 +73,7 @@ make.survey.biomass.plot(base.model)
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-The only other new data for this \Sexpr{assess.yr} assessment, that were not in the \Sexpr{last.assess.yr} assessment, are the \Sexpr{last.data.yr} fishery age compositions (and minor refinements to historical catch estimates were made). Total catch and empirical weight-at-age for \Sexpr{last.data.yr} are also added to the assessment model this year, but are fixed and not included in the model fitting procedure. Various other data types, including data on maturity, have been explored since the 2014 stock assessment, but are not included in the base model this year.
+Various other data types, including data on maturity, have been explored since the 2014 stock assessment, but are not included in the base model this year.
 
 This Joint Technical Committee (JTC) assessment depends primarily on the fishery landings (\Sexpr{start.yr}--\Sexpr{last.data.yr}),
 acoustic survey biomass estimates (Figure~\ref{fig:es-survey-biomass}) and age-compositions (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}),
