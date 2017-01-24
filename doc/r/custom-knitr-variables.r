@@ -268,6 +268,10 @@ cohort.catch.1999 <- sum(cohortCatch(1999, base.model$catage))
 cohort.catch.2010 <- sum(cohortCatch(2010, base.model$catage))
 
 ################################################################################
+## Sigma_r, standard deviation of recruitment variability.
+sigma.r <- f(base.model$sigma_R_in, 2)
+
+################################################################################
 ## Load weight-at-age file now that models are loaded
 wt.at.age <- load.wt.at.age(base.model, weight.at.age.file.name)
 

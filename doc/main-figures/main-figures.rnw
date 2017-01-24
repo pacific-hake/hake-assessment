@@ -868,7 +868,7 @@ make.comparison.plot(c(list(base.model), sens.models.1),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing changes to $\sigma_r$, steepness, and natural mortality parameters.}
+\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing changes to the standard deviation of recruitment variability from the base model's $\sigma_r=$\Sexpr{sigma.r}.}
 \label{fig:main-biomass-base-alternative-1}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -885,7 +885,7 @@ make.comparison.plot(c(list(base.model), sens.models.1),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity runs representing changes to $\sigma_r$, steepness, and natural mortality parameters. See Figure~\ref{fig:main-biomass-base-alternative-1} for legend.}
+\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity runs representing changes to the standard deviation of recruitment variability from the base model's $\sigma_r=$\Sexpr{sigma.r}. See Figure~\ref{fig:main-biomass-base-alternative-1} for legend.}
 \label{fig:main-status-base-alternative-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
