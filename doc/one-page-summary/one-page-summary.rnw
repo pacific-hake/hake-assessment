@@ -1,10 +1,6 @@
 %% one-page-summary.Rnw
 %% Note some variables are global from the calling file (hake-assessent.Rnw)
 
-%% Need numbering back to Arabic.
-%%\pagenumbering{arabic}
-%%\setcounter{page}{1}
-
 \clearpage
 \section*{One-page summary}
 \phantomsection \addcontentsline{toc}{section}{One-page summary}
