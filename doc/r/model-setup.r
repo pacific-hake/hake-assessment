@@ -194,7 +194,7 @@ sens.model.dir.names.3 <- c("47_Sen45MaxSelectAge5",
                             "49_Sen45MaxSelectAge10")
 sens.model.names.3 <- c("Max. age of selectivity 5",
                         "Max. age of selectivity 7",
-                        "Max. age of selectivity 12")
+                        "Max. age of selectivity 10")
 verify.models(model.dir, sens.model.dir.names.3, sens.model.names.3)
 if(verbose){
   print.model.message(sens.model.dir.names.3, sens.model.names.3, 3, model.type = "Sensitivity")
