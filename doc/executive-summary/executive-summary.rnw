@@ -57,7 +57,7 @@ than 1\% of landings in recent years. During the last five years, catches have b
 %%in \Sexpr{survey.end.yr} have been added to the survey time series
 %%(Figure~\ref{fig:es-survey-biomass}); earlier survey data (1998--2013)
 %%were re-analyzed and updated this year.
-There was no survey in \Sexpr{last.data.yr}. New data for this \Sexpr{assess.yr} assessment, that were not in the \Sexpr{last.assess.yr} assessment, are the 1995 survey biomass estimate and the \Sexpr{last.data.yr} fishery catch and fishery age compositions; minor refinements to historical catch estimates were also made. The \Sexpr{last.assess.yr} assessment did not include the 1995 survey biomass estimate due to issues with the older survey data, but those issues have now been resolved.
+There was no survey in \Sexpr{last.data.yr}. New data for this \Sexpr{assess.yr} assessment, that were not in the \Sexpr{last.assess.yr} assessment, are the 1995 survey biomass estimate (with associated age compositions) and the \Sexpr{last.data.yr} fishery catch and fishery age compositions. The mean weight at age for \Sexpr{last.data.yr} was added and minor refinements to historical catch estimates were also made. Finally, there was a minor revision to the 1998 survey biomass estimate (an increase of 2\%). The \Sexpr{last.assess.yr} assessment did not include the 1995 survey biomass estimate due to issues with the older survey data, but those issues have now been resolved, while the revision to the 1998 point was due to discovery of a better set of variables used in the the processing of the acoustic data for that year.
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
