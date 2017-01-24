@@ -844,7 +844,7 @@ make.comparison.plot(c(list(base.model), sens.models.6),
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<main.status.base.tv.increase.1, fig.height=4.5, fig.width=8>>=
+<<main.status.base.tv.increase.6, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(c(list(base.model), sens.models.6),
                      subplots = 4,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.6),
@@ -942,7 +942,7 @@ make.comparison.plot(c(list(base.model), sens.models.5),
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<main.status.base.alternative.1, fig.height=4.5, fig.width=8>>=
+<<main.status.base.alternative.5, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(c(list(base.model), sens.models.5),
                      subplots = 4,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.5),
