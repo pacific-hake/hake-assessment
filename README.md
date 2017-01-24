@@ -84,7 +84,7 @@ _____________________________________________________________
   * build.doc()
   * After the first time you do this, the models will be loaded into the R workspace.
     You can then edit hake-assessment.rnw and set the first knitr code chunk up so that it doesn't
-    load the models every time you build the document. The value in the if statement should be changed to FALSE:
+    load the models every time you build the document. The value in the if statement should be changed to FALSE (remember to change it back before committing):
 
 ```R
      if(TRUE){
@@ -95,6 +95,10 @@ _____________________________________________________________
   or manually delete the **knitr-cache** directory. If you don't do this, figures and tables built previously
   will be used. To keep the cached figures and tables, but remove all other traces of the build including the PDF,
   run **cleantex.bat**.
+
+## If you get unobvious errors that prevent it building
+
+* Try deleting .RData file for the base case. Could be to do with the forecasts.
 
 ## How to delete all model RData files
 
