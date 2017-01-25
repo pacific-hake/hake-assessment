@@ -188,6 +188,7 @@ fishery.estimated.age.comp <- cbind(base.model$catage[base.model$catage$Fleet==1
 year.class.2010.in.2013 <- f(filter(fishery.estimated.age.comp, Yr==2013)$"3" * 100)
 year.class.2010.in.2014 <- f(filter(fishery.estimated.age.comp, Yr==2014)$"4" * 100)
 year.class.2010.in.2015 <- f(filter(fishery.estimated.age.comp, Yr==2015)$"5" * 100)
+year.class.2010.in.2016 <- f(filter(fishery.estimated.age.comp, Yr==2016)$"6" * 100)
 
 catcher.processor.catch <- f(100 * filter(catches, Year == last.data.yr)$atSea_US_CP / (last.year.us.cp.quota.reallocated), 1)
 mothership.catch <- f(100 * filter(catches, Year == last.data.yr)$atSea_US_MS / (last.year.us.ms.quota.reallocated), 1)
