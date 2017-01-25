@@ -20,7 +20,7 @@ make.biomass.plot <- function(model,    ## model is an mcmc run and is the outpu
   non.equil.smed <- smed[names(smed) %in% non.equil.yrs]
 
   plot(non.equil.yrs,
-       non.equil.smed, type = "l", lwd = 3, ylim = c(0, max(supper) + 0.1),
+       non.equil.smed, type = "o", lwd = 2, ylim = c(0, max(supper) + 0.1),
        xlab = "Year", ylab = "Female Spawning Biomass (million t)",
        xlim = range(yrs),cex.axis=0.9, cex.lab = 1, mgp = c(2.3,1,0), yaxs = "i")
 
@@ -53,7 +53,7 @@ make.depletion.plot <- function(model,    ## model is an mcmc run and is the out
 
   par(mfrow = c(1,1), las = 1, mar = c(3.5,3.5,1,1))
 
-  plot(yrs, dmed, type="l", lwd=3, ylim = c(0,1.1*max(dupper)), xlab="Year",
+  plot(yrs, dmed, type="o", lwd=2, ylim = c(0,1.1*max(dupper)), xlab="Year",
        ylab = expression(paste("Relative spawning biomass", ~~~(italic(B[t])/italic(B)[0]))),
        xlim = range(yrs), cex.axis = 0.9,
        cex.lab = 1, mgp = c(2.3,1,0), yaxs = "i")
