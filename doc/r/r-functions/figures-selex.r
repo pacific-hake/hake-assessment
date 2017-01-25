@@ -21,16 +21,29 @@ calc.tv.selex <- function(model,
 
   yrs <- start.yr:end.yr
   selex <- list()
-  selex[[1]] <- matrix(NA, nrow = nrow(model$mcmc), ncol = 16)
-  for(i in 1:nrow(model$mcmc)) {
-    ind <- grep("AgeSel_1P_[1-9]_Fishery", names(model$mcmc))[1:5]
-    selex[[1]][i,] <- randWalkSelex.fn(unlist(c(-1000,
-                                                0, model$mcmc[i, ind],
-                                                0, 0, 0, 0, 0, 0, 0, 0, 0)))
-  }
 
-  for(i in 2:length(yrs)){
-    selex[[i]] <- selexYear.fn(model$mcmc, yrs[i])
+  # changing indexing from 2:length(yrs) to 1:length(yrs)
+  for(i in 1:length(yrs)){
+    # calculate selectivity across MCMC for given year
+    selexYear <- selexYear.fn(model$mcmc, yrs[i])
+    # if selexYear.fn returns NA, there was no deviation in that year,
+    # calculate average selectivity for non-deviation years
+    if(is.null(selexYear)) {
+      # empty matrix
+      selex[[1]] <- matrix(NA, nrow = nrow(model$mcmc), ncol = 16)
+      # loop over MCMC samples
+      for(i in 1:nrow(model$mcmc)) {
+        # get the base selectivity parameters
+        ind <- grep("AgeSel_1P_[1-9]_Fishery", names(model$mcmc))[1:5]
+        # calculation the selectivity function for each sample
+        selex[[1]][i,] <- randWalkSelex.fn(unlist(c(-1000,
+                                                    0, model$mcmc[i, ind],
+                                                    0, 0, 0, 0, 0, 0, 0, 0, 0)))
+      }
+    } else { # not NULL
+      # selexYear.fn provided time-varying selectivity for the given year
+      selex[[i]] <- selexYear
+    }
   }
   ## Strip off unneeded ages
   for(i in 1:length(selex)){
