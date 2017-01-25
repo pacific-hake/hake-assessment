@@ -459,8 +459,10 @@ make.forecast.depletion.comparison.plot(base.model,
 \label{fig:es-forecast-depletion-comparison}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+% Manual 2017 done.
 
 Fishing intensity exceeding 100\% indicates fishing in excess of the $\Fforty$ default harvest rate catch limit. This can happen for the median fishing intensity in projected years because the $\Fforty$ default harvest-rate catch limit is calculated using baseline selectivity from all years, whereas the forecasted catches are removed using selectivity averaged over the last five years. Recent changes in selectivity will thus be reflected in the determination of fishing in excess of the default harvest policy. Alternative catch levels where median fishing intensity is 100\% for three years of projections is provided for comparison (scenario f: FI=100\%).
+% Manual 2017 done.
 
 % Move to after next paragraph if it appears too early. It shouldn't since
 %  so many tables around.
@@ -514,6 +516,7 @@ make.forecast.risk.comparison.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 %
 These metrics summarize the probability of various outcomes from the base model given each potential management action. Although not linear, probabilities can be interpolated from this table for intermediate catch values. Figure~\ref{fig:es-forecast-depletion-comparison} shows the predicted relative spawning biomass trajectory through \Sexpr{forecast.yrs[length(forecast.yrs)]} for several of these management actions. With zero catch for the next two years, the biomass has a \Sexpr{zero.catch.prob.bio.down.1}\% probability of decreasing from \Sexpr{forecast.yrs[1]} to \Sexpr{forecast.yrs[2]}, and a \Sexpr{zero.catch.prob.bio.down.2}\% probability of decreasing from \Sexpr{forecast.yrs[2]} to \Sexpr{forecast.yrs[3]}
+%Manual 2017 done.
 
 <<risk.forecast.year.2.table, results='asis', echo=FALSE>>=
 make.risk.table(base.model,
@@ -525,10 +528,14 @@ make.risk.table(base.model,
                 space.size = 14,
                 placement = "tbp")
 @
-The population is predicted to decrease from 2016 to 2017 with a less than 50\% probability for all catch levels investigated up to 440,000~t (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}). The model predicts high biomass levels and the predicted probability of dropping below $B_{10\%}$ (10\% of $B_0$) 
-in 2017 is less than 1\% and the maximum probability of dropping below $B_{40\%}$ is 13\% for all catches explored.
+The spawning biomass is predicted to decrease from \Sexpr{end.yr} to \Sexp{end.yr+1} with a less than 50\% probability only for the 0~t and 180,000~t catch levels (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
+% 2016 assessment said for 'all catch levels investigated up to 440,000~t'
+%  but that was wrong, looking at the relevant 2016 figures.
+The predicted probability of the spawning biomass dropping below $B_{10\%}$ (10\% of $B_0$)
+at the start of \Sepx{end.yr+1} is less than 1\% and the maximum probability of dropping below $B_{40\%}$ is 17\% for all catches explored (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 It should be noted that the natural mortality rate has overtaken the growth rate for the 2010 year class, the model
-estimated below average recruitment for the 2011 and 2013 cohorts, but a large predicted 2014 year class will result in increases to the spawning biomass as it enters maturity. The probability that the 2017 spawning
+estimated below-average recruitment for the 2011 and 2013 cohorts, but a large predicted 2014 year class will result in increases to the spawning biomass as it enters maturity. 
+The probability that the 2017 spawning
 biomass will be less than the 2016 spawning biomass is less than 55\% for all catch levels. (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % Manual 2016 done above.
 \enlargethispage{\baselineskip}
