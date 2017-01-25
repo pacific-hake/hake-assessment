@@ -376,7 +376,8 @@ spawning biomass, the model predicts a less than 1\% joint probability of being 
 \phantomsection \addcontentsline{toc}{subsection}{Reference points}
 
 Estimates of the \Sexpr{assess.yr} base model reference points with posterior credibility intervals are in Table~\ref{tab:es-reference.points}.
-The estimates are slightly different than those in the \Sexpr{last.assess.yr} assessment, with slightly greater sustainable yields and reference biomasses estimated in this assessment.
+The estimates are slightly different than those in the \Sexpr{last.assess.yr} assessment, with slightly lower sustainable yields and reference biomasses estimated in this assessment.
+% Manual done 2017.
 \enlargethispage{\baselineskip}
 
 <<reference.points.table, results='asis', echo=FALSE>>=
