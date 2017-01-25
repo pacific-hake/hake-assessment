@@ -311,10 +311,11 @@ the exploitation fraction has decreased from \Sexpr{exploitation.med.2010} in 20
 \phantomsection  \addcontentsline{toc}{subsection}{Management performance}
 
 Over the last decade (\Sexpr{end.yr-10}--\Sexpr{end.yr-1}), the mean coast-wide utilization rate (i.e., landings/quota) has been \Sexpr{tot.last.10.years.attainment}\% (Table~\ref{tab:es-landings-tac}).
-From \Sexpr{end.yr-5} to \Sexpr{end.yr-1}, the mean utilization rates differed between the United States (\Sexpr{usa.last.5.years.attainment}\%) and
+Over the last five years (\Sexpr{end.yr-5} to \Sexpr{end.yr-1}), the mean utilization rates differed between the United States (\Sexpr{usa.last.5.years.attainment}\%) and
 Canada (\Sexpr{can.last.5.years.attainment}\%). Total landings last exceeded the coast-wide
 quota in 2002 when utilization was 112\%. 
-% Manual 2016 done.
+% Manual 2017 done. For last sentence just check
+%  landings.vs.tac[landings.vs.tac$Year > 2000, "ATTAIN"]
 
 <<landings.tac.table, results='asis', echo=FALSE>>=
 make.landings.tac.table(landings.vs.tac,
