@@ -341,8 +341,7 @@ The median female spawning biomass was above target in all years except 1968, 19
 % median.relative.bio.below.target
 % Manual done 2017.
 
-The joint history of biomass and $F$-target reference points shows that before
-2007, median fishing intensity was below target and female spawning biomass was mostly above target (Figure~\ref{fig:es-phase}).  % Manual done 2016.
+The joint history of the medians of relative spawning biomass and relative fishing intensity shows that only in 1999 was the median fishing intensity below target and the female spawning biomass above target (Figure~\ref{fig:es-phase}).  % Manual done 2017.
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -362,9 +361,10 @@ make.phase.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 %
 Between 2007 and 2011, however, median fishing intensity ranged from \Sexpr{median.intensity.2007.to.2011.min}\% to \Sexpr{median.intensity.2007.to.2011.max}\% and median relative spawning biomass between \Sexpr{median.relative.bio.2007.to.2011.min} and \Sexpr{median.relative.bio.2007.to.2011.max}.
-Biomass has risen recently with the 2008 and 2010 recruitments and, correspondingly, fishing intensity has fallen below targets. 
-Relative spawning biomass has been above the target since \Sexpr{median.relative.bio.above.target.since}.
-% Manual done 2016. Now automated as much as sensible.
+Biomass has risen recently with the 2008, 2010 and 2014 recruitments, and
+% and, correspondingly, fishing intensity has fallen below targets. 
+relative spawning biomass has been above the target since \Sexpr{median.relative.bio.above.target.since}.
+% Manual done 2017. Based on median.relative.bio.below.target.
 
 While there is large uncertainty in the \Sexpr{end.yr-1} estimates of fishing intensity and relative
 spawning biomass, the model predicts a less than 1\% joint probability of being both above the target fishing intensity in \Sexpr{end.yr-1} and below the target relative spawning biomass at the start of \Sexpr{end.yr}.
