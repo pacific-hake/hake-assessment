@@ -551,9 +551,9 @@ There are many research projects that could improve the stock assessment for \fi
 
 % research-needs.rnw gets loaded in here and also in 
 %  research-section/research.rnw in main text, and only contains
-%  the top few. Saves manually updating.
+%  the top few. Saves manually duplicating.
 <<es-research-sec, child='research-needs.rnw'>>=
 @
 
-\end{enumerate}     % To close off the short list.
+\end{enumerate}     % To close off the short list in research-needs.rnw
 \newpage  
