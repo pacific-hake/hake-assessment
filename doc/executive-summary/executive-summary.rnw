@@ -274,8 +274,8 @@ make.fishing.intensity.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-Exploitation fraction (catch divided by biomass of fish of age 3 and above) has
-shown relatively similar patterns (Figure~\ref{fig:es-exploitation-fraction} and Table~\ref{tab:es-fishing-intensity}).
+Median exploitation fraction (catch divided by biomass of fish of age 3 and above) also peaked in 1999, and then reached even higher values in 2007, 2008 and 2010 (Table~\ref{tab:es-fishing-intensity} and Figure~\ref{fig:es-exploitation-fraction}).
+% Manual 2017 done. 
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -294,12 +294,18 @@ make.exploitation.fraction.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 %
 Median fishing intensity is estimated to have declined from \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.penult.yr}\% in \Sexpr{end.yr-1}, while
-the exploitation fraction has decreased from \Sexpr{exploitation.med.2010} in 2010 to \Sexpr{exploitation.med.penult.yr} in \Sexpr{end.yr-1}.  Although there is a considerable amount of uncertainty around these recent estimates, the 95\% posterior credibility interval of fishing intensity is below the SPR management target for the last three years (Figure~\ref{fig:es-fishing-intensity}).
+the exploitation fraction has decreased from \Sexpr{exploitation.med.2010} in 2010 to \Sexpr{exploitation.med.penult.yr} in \Sexpr{end.yr-1}.  There is a considerable amount of uncertainty around estimates of fishing intensity, with the 95\% posterior credibility interval reaching above the SPR management target for \Sexpr{end.yr-1} (Figure~\ref{fig:es-fishing-intensity}).
+% 2016 assessment we had: '... is below the SPR management target for the 
+%  last three years (Figure~\ref{fig:es-fishing-intensity})'. 
+%  Interestingly, for 2017 the 2016 intensity interval reaches above 1.
+% 
+% 2016 assessment, leave as an explanation:
 % Note that exploitation.med.penult.yr comes out as 0.06, but in Table d 
 %  is 0.065, because the true value is 0.0648.... The text rounds to two decimal
 %  places but Table rounds to three, but rounding is done correctly because of 
 %  the automation; i.e. we haven't incorrectly rounded up to 0.07, which we 
 %  could happen from looking at Table d (if the true value wasn't checked). Nice.
+% Manual 2017 done.
 
 \subsection*{Management performance} \label{sec:es-management-performance}
 \phantomsection  \addcontentsline{toc}{subsection}{Management performance}
