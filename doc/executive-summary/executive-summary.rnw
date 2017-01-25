@@ -274,8 +274,8 @@ make.fishing.intensity.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-Exploitation fraction (catch divided by biomass of fish of age 3 and above) has
-shown relatively similar patterns (Figure~\ref{fig:es-exploitation-fraction} and Table~\ref{tab:es-fishing-intensity}).
+Median exploitation fraction (catch divided by biomass of fish of age 3 and above) also peaked in 1999, and then reached even higher values in 2007, 2008 and 2010 (Table~\ref{tab:es-fishing-intensity} and Figure~\ref{fig:es-exploitation-fraction}).
+% Manual 2017 done. 
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
