@@ -149,9 +149,7 @@ make.mcmc.diag.pairs.plot <- function(model,                 ## model is model w
 }
 
 make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an mcmc run which has the output of the
-                                                     ##  r4ss package's function SSgetMCMC
-                                                     ## It must have also gone through the make.partest.model function so that it
-                                                     ##  it has the cpue.table member which is required by the age.fits function.
+                                                     ##  r4ss package's function SSgetMCMC and has the extra.mcmc member
                                       start.yr,      ## Year to start the plot
                                       end.yr,        ## Year to end the plot
                                       probs = c(0.025, 0.975), ## Confidence interval values lower and upper
@@ -179,14 +177,14 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
            lend = 1)
   matplot(x = start.yr:(end.yr + 1),
           ##y = model$cpue.table[1:length(start.yr:end.yr),],
-          y = model$cpue.table,
+          y = model$extra.mcmc$cpue.table,
           col = rgb(0, 0, 1, 0.03),
           type = 'l',
           add=TRUE,
           lty = 1)
   lines(x = start.yr:(end.yr + 1),
         ## y = model$cpue.median[1:length(start.yr:end.yr)],
-        y = model$cpue.median,
+        y = model$extra.mcmc$cpue.median,
         col = rgb(0, 0, 0.5, 0.7),
         lty = 1,
         lwd = 3)

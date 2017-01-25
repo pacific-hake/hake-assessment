@@ -19,19 +19,19 @@ load.ss.files <- function(model.dir,
   ctl.fn.ind <- grep("_control.ss", model.dir.listing)
   if(!length(dat.fn.ind)){
     stop(curr.func.name, "Error in model ", model.dir,
-         ", there is no data file. A data file is anything followed by and ending in _data.ss.\n\n")
+         ", there is no data file. A data file is any file whose name contains the text _data.ss.\n\n")
   }
   if(length(dat.fn.ind) > 1){
     stop(curr.func.name, "Error in model ", model.dir,
-         ", there is more than one data file. A data file is anything followed by and ending in _data.ss.\n\n")
+         ", there is more than one data file. A data file is any file whose name contains the text  _data.ss.\n\n")
   }
   if(!length(ctl.fn.ind)){
     stop(curr.func.name, "Error in model ", model.dir,
-         ", there is no control file. A control file is anything followed by and ending in _control.ss.\n\n")
+         ", there is no control file. A control file is any file whose name contains the text _control.ss.\n\n")
   }
   if(length(ctl.fn.ind) > 1){
     stop(curr.func.name, "Error in model ", model.dir,
-         ", there is more than one control file. A control file is anything followed by and ending in _control.ss.\n\n")
+         ", there is more than one control file. A control file is any file whose name contains the text _control.ss.\n\n")
   }
   dat.fn <- file.path(model.dir, model.dir.listing[dat.fn.ind])
   ctl.fn <- file.path(model.dir, model.dir.listing[ctl.fn.ind])
@@ -42,15 +42,15 @@ load.ss.files <- function(model.dir,
   model$ctl <- readLines(ctl.fn)
   ## Set default mcmc members to NA. Later code depends on this.
   model$mcmc <- NA
-  model$mcmcpath <- NA
+  ## Set the mcmc path. This doesn't mean it exists.
+  mcmc.dir <- file.path(model.dir, "mcmc")
+  model$mcmcpath <- mcmc.dir
 
   ## If it has an 'mcmc' sub-directory, load that as well
-  mcmc.dir <- file.path(model.dir, "mcmc")
   if(dir.exists(mcmc.dir)){
     model$mcmc <- data.frame(SSgetMCMC(dir = mcmc.dir,
                                        writecsv = FALSE,
                                        verbose = ss.verbose)$model1)
-    model$mcmcpath <- mcmc.dir
     create.key.nuisance.posteriors.files(model,
                                          key.posts,
                                          key.posts.fn,
@@ -66,8 +66,7 @@ delete.rdata.files <- function(
            models.dir = model.dir ## Directory name for all models location
            ){
   ## Delete all rdata files found in the subdirectories of the models.dir
-  ## directory. This is not undo-able so be careful as all forecasts and
-  ## retrospective runs will have to be done again.
+  ## directory.
   dirs <- dir(models.dir)
   rdata.files <- file.path(models.dir, dirs, paste0(dirs, ".rdata"))
   ans <- readline("This operation cannot be undone, are you sure (y/n)? ")
@@ -80,6 +79,16 @@ delete.rdata.files <- function(
   }
 }
 
+delete.dirs <- function(models.dir = model.dir, ## Directory name for all models location
+                        sub.dir = NULL){        ## The subdirectory to delete recursively
+  ## Delete all directories and files of sub.dir
+  dirs <- dir(models.dir)
+  files <- file.path(models.dir, dirs, sub.dir)
+  unlink(files, recursive = TRUE, force = TRUE)
+  cat("All files and directories were deleted from the",
+      sub.dir, "directory in each model directory.\n")
+}
+
 create.rdata.file <- function(
            models.dir = model.dir,          ## Directory name for all models location
            model.name,                      ## Directory name of model to be loaded
@@ -90,9 +99,7 @@ create.rdata.file <- function(
            forecast.catch.levels = catch.levels, ## List of catch levels to run forecasting for if run.forecasts = TRUE
            run.retros = FALSE,              ## Run retrospectives for this model? *This will overwrite any already run*
            my.retro.yrs = retro.yrs,        ## Vector of integers (positives) to run retrospectives for if run.retros = TRUE
-           run.partest = FALSE,             ## Run partest for this model?
-           is.base.model = FALSE,           ## Is this the base model? Used to stop errors for non-base-models which have
-                                            ##  an mcmc directory
+           run.extra.mcmc = FALSE,          ## Run extra mcmc output (a report file for each of the mcmc samples)
            key.posteriors = key.posteriors, ## Vector of key posteriors used to create key posteriors file
            key.posteriors.fn = "keyposteriors.csv",
            nuisance.posteriors.fn = "nuisanceposteriors.csv",
@@ -127,88 +134,96 @@ create.rdata.file <- function(
            "but set ovwrt.rdata to FALSE.\n",
            "Set ovwrt.rdata to TRUE and try again.")
     }
-    if(run.partest){
+    if(run.extra.mcmc){
       stop(curr.func.name,
-           "Error - You have asked to run partest, ",
+           "Error - You have asked to run the extra mcmc output, ",
            "but set ovwrt.rdata to FALSE.\n",
            "Set ovwrt.rdata to TRUE and try again.")
     }
   }
-
   if(file.exists(rdata.file)){
     if(ovwrt.rdata){
       ## Delete the RData file
       cat0(curr.func.name, "RData file found in ", model.dir,
            ". Deleting...\n")
-      unlink(rdata.file)
+      unlink(rdata.file, force = TRUE)
     }else{
       cat0(curr.func.name, "RData file found in ", model.dir, "\n")
       return(invisible())
     }
+  }else{
+    cat0(curr.func.name, "No RData file found in ", model.dir,
+         ". Creating one now.\n")
   }
 
   ## If this point is reached, no RData file exists so it
   ##  has to be built from scratch
   model <- load.ss.files(model.dir)
+
+  ##----------------------------------------------------------------------------
+  ## Run extra mcmc output.
+  model$extra.mcmc.path <- file.path(model$path, "extra-mcmc")
+  if(run.extra.mcmc){
+    run.extra.mcmc.models(model, verbose = verbose)
+  }
+  ##----------------------------------------------------------------------------
+
+  ##----------------------------------------------------------------------------
+  ## Run forecasts
   if(run.forecasts){
     run.forecasts(model,
                   fore.yrs,
                   forecast.probs,
                   forecast.catch.levels)
   }
+  ##----------------------------------------------------------------------------
 
-  ## Try loading forecasts. If there is a problem,
-  ## model$forecasts and model$risks will be NA
-
-  ## message(curr.func.name, "'mcmc' directory does not exist ",
-  ##           "for model found in: ", mcmc.path)
-  if(is.base.model){
-    model$forecasts <- fetch.forecasts(model$mcmcpath,
-                                       fore.yrs, ## [-length(fore.yrs)],
-                                       forecast.catch.levels,
-                                       probs = forecast.probs)
-    model$risks <- calc.risk(model$forecasts,
-                             fore.yrs)
-  }
+  ##----------------------------------------------------------------------------
+  ## Run retrospectives
   model$retropath <- file.path(model$path, "retrospectives")
   if(is.null(model$retropath)){
     model$retropath <- NA
   }
-
-
-  retros.paths <- file.path(model$retropath, paste0("retro-", pad.num(my.retro.yrs, 2)))
   if(run.retros){
-    if(dir.exists(model$retropath)){
-      unlink(model$retropath, recursive = TRUE)
-    }
-    cat0(curr.func.name, "Running retrospectives...\n")
     run.retrospectives(model,
                        yrs = my.retro.yrs,
                        verbose = verbose)
   }
+  ##----------------------------------------------------------------------------
 
-  ## Try loading retrospectives. If none are found, model$retros will be NA
-  if(is.base.model){
-    model$retros <- fetch.retros(model$retropath,
-                                 my.retro.yrs,
-                                 verbose = verbose)
-  }
+  ##----------------------------------------------------------------------------
+  ## Load forecasts.  If none are found or there is a problem, model$forecasts
+  ##  will be NA
+  model$forecasts <- fetch.forecasts(model$mcmcpath,
+                                     fore.yrs,
+                                     forecast.catch.levels,
+                                     fore.probs = forecast.probs)
+  model$risks <- calc.risk(model$forecasts,
+                           fore.yrs)
+  ##----------------------------------------------------------------------------
 
-  if(run.partest){
-    cat0(curr.func.name, "Running partest...\n\n")
-    cat0("working directory is: ",getwd(),"\n")
-    ## TODO: Separate the running of the partest model with
-    ##  the fetching of it's output.
-    run.partest.model(model, output.file = "model-partest.RData",
-                      verbose = verbose)
-    cat0(curr.func.name, "Partest Completed.\n\n")
-  }
+  ##----------------------------------------------------------------------------
+  ## Load retrospectives. If none are found or there is a problem, model$retros
+  ##  will be NA
+  model$retros <- fetch.retros(model$retropath,
+                              my.retro.yrs,
+                              verbose = verbose)
+  ##----------------------------------------------------------------------------
+
+  ##----------------------------------------------------------------------------
+  ## Try loading extra mcmc output. If none are found or there is a problem,
+  ##  model$extra.mcmc will be NA
+  model$extra.mcmc <- fetch.extra.mcmc(model,
+                                       verbose = verbose)
+  ##----------------------------------------------------------------------------
+
   ## Save the model as an RData file
   save(model, file = rdata.file)
   return(invisible())
 }
 
-calc.mcmc <- function(mcmc,            ## mcmc is the output of the SS_getMCMC function from the r4ss package as a data.frame
+calc.mcmc <- function(mcmc,            ## mcmc is the output of the SS_getMCMC
+                                       ##  function from the r4ss package as a data.frame
                       lower = 0.025,   ## Lower quantile for confidence interval calcs
                       upper = 0.975    ## Upper quantile for confidence interval calcs
                       ){
@@ -312,20 +327,18 @@ run.forecasts <- function(model,
   ## Make the catch level values a matrix where the columns represent the cases in catch.names
   catch.levels <- sapply(catch.levels, "[[", 1)
   forecasts.path <- file.path(mcmc.path, "forecasts")
-  if(dir.exists(forecasts.path)){
-    unlink(forecasts.path, recursive = TRUE)
-  }
+
   cat0(curr.func.name, "Running forecasts for model located in ", mcmc.path, "...\n")
-  dir.create(forecasts.path)
+  dir.create(forecasts.path, showWarnings = FALSE)
 
   for(i in 1:length(forecast.yrs)){
     fore.path <- file.path(forecasts.path, paste0("forecast-year-", forecast.yrs[i]))
-    dir.create(fore.path)
+    dir.create(fore.path, showWarnings = FALSE)
     for(level.ind in 1:ncol(catch.levels)){
       ## Create a new sub-directory for each catch projection
       name <- catch.levels.names[level.ind]
       new.forecast.dir <- file.path(fore.path, name)
-      dir.create(new.forecast.dir)
+      dir.create(new.forecast.dir, showWarnings = FALSE)
 
       ## Copy all model files into this new forecast directory
       file.copy(file.path(mcmc.path, list.files(mcmc.path)),
@@ -351,7 +364,7 @@ run.forecasts <- function(model,
 fetch.forecasts <- function(mcmc.path,
                             forecast.yrs,
                             catch.levels,
-                            probs = NULL){ ## Probabilities for table
+                            fore.probs = NULL){ ## Probabilities for table
   ## Fetch the output from previously-run forecasting
   ## If the forecasts directory does not exist or there is a problem
   ##  loading the forecasts, return NA.
@@ -372,8 +385,6 @@ fetch.forecasts <- function(mcmc.path,
   }
   forecasts.path <- file.path(mcmc.path, "forecasts")
   if(!dir.exists(forecasts.path)){
-    message(curr.func.name, "'forecasts' directory does not exist ",
-            "for mcmc model: ", mcmc.path)
     return(NA)
   }
   ## Get the directory listing and choose the last one for loading
@@ -406,8 +417,8 @@ fetch.forecasts <- function(mcmc.path,
       sb.proj.cols <- sb[,names(sb) %in% forecast.yrs]
       spr.proj.cols <- spr[,names(spr) %in% forecast.yrs]
 
-      outputs.list[[i]][[level.ind]]$biomass <- t(apply(sb.proj.cols, 2, quantile, probs=probs))
-      outputs.list[[i]][[level.ind]]$spr <- t(apply(spr.proj.cols, 2, quantile, probs=probs))
+      outputs.list[[i]][[level.ind]]$biomass <- t(apply(sb.proj.cols, 2, quantile, probs=fore.probs))
+      outputs.list[[i]][[level.ind]]$spr <- t(apply(spr.proj.cols, 2, quantile, probs=fore.probs))
       outputs.list[[i]][[level.ind]]$mcmccalcs <- calc.mcmc(mcmc.out)
       outputs.list[[i]][[level.ind]]$outputs <- mcmc.out
       names(outputs.list[[i]]) <- catch.levels.names
@@ -459,11 +470,16 @@ calc.risk <- function(forecast.outputs, ## A list of length = number of forecast
     ## outputs is a list of one data frame per case, for the current year yr
     outputs <- lapply(forecast.outputs[[yr]], "[[", "outputs")
     ## This call calculates the metrics for each element in the list (each catch case)
-    ##  and binds them together into a data frame.
-    risk.list[[yr]] <- do.call("rbind",
-                               lapply(outputs,
-                                      function(x, yr){metric(x, yr)}, yr = forecast.yrs[yr]))
-  }
+    ##  and binds them together into a data frame. If there was a problem,
+    ##  (e.g. a bridge model is set up for forecasting) it will be set to NA.
+    risk.list[[yr]] <- tryCatch({
+      do.call("rbind",
+              lapply(outputs,
+                     function(x, yr){metric(x, yr)}, yr = forecast.yrs[yr]))
+    }, error = function(e){
+      NA
+    })
+    }
   names(risk.list) <- names(forecast.outputs[1:(length(forecast.outputs)-1)])
   return(risk.list)
 }
@@ -481,9 +497,12 @@ run.retrospectives <- function(model,
 
   ## Create the directory 'retrospectives' which will hold the runs
   ##  erasing the directory recursively if necessary
+  if(is.na(model$retropath)){
+    return(invisible())
+  }
+
   retros.dir <- model$retropath
-  unlink(retros.dir, recursive = TRUE)
-  dir.create(retros.dir)
+  dir.create(retros.dir, showWarnings = FALSE)
 
   ## Create a list for the retros' output to be saved to
   retros.list <- list()
@@ -491,8 +510,7 @@ run.retrospectives <- function(model,
   ## Create a directory for each retrospective, copy files, and run retro
   for(retro in 1:length(yrs)){
     retro.dir <- file.path(retros.dir, paste0("retro-", pad.num(yrs[retro], 2)))
-    unlink(retro.dir, recursive = TRUE)
-    dir.create(retro.dir)
+    dir.create(retro.dir, showWarnings = FALSE)
 
     ## Copy all required model files into the retrospective directory
     files.to.copy <- file.path(model$path, c(exe.file.name,
@@ -515,8 +533,8 @@ run.retrospectives <- function(model,
       unlink(ctl.file)
       writeLines(ctl, ctl.file)
     }
-    covar.file <- file.path(retro, "covar.sso")
-    unlink(covar.file)
+    covar.file <- file.path(retro.dir, "covar.sso")
+    file.remove(covar.file)
     shell.command <- paste0("cd ", retro.dir, " & ss3 ", extras)
     shell(shell.command)
   }
@@ -557,37 +575,33 @@ fetch.retros <- function(retro.path, ## The full or reletive path in which the r
   retros.list
 }
 
-run.partest.model <- function(model,
-                              output.file, ## The model object will be stored in binary form here
-                              verbose = TRUE){
-  ## To ensure integration with the knitr loading step, you must
-  ## run this from the Rgui (after you've got a base model loaded) like this:
-  ##
-  ## run.partest.model(base.model, "model-partest.RData")
-  ##
+run.extra.mcmc.models <- function(model, verbose = TRUE){
   ## This Re-runs the model (MLE) once for each posterior
-  ## and fetches information from their respective Report.sso files.
-  ## This is to be run once for the base model, and stored as a binary as
-  ## shown above.
-  if(!verbose){
-    flush.console
-    cat("\nRunning partest. Screen may not show output for a while\n\n")
+  ## and saves the Report.sso files in model$extra.mcmc.path/report
+  curr.func.name <- get.curr.func.name()
+
+  mcmc.dir <- model$mcmcpath
+  if(!dir.exists(mcmc.dir)){
+    return(invisible())
   }
 
-  ## Create the directory partest which will hold the runs
-  ##  erasing the directory recursively if necessary
-  partest.dir <- file.path(model$path, "partest")
-  reports.dir <- file.path(partest.dir, "reports")
-  unlink(partest.dir, recursive=TRUE)
-  dir.create(partest.dir)
-  dir.create(reports.dir)
+  if(!verbose){
+    flush.console
+    cat0(curr.func.name, "Running model for each mcmc sample to get additional mcmc outputs...\n\n")
+  }
 
-  ## Copy all mcmc model files into the partest directory
-  mcmc.dir <- model$mcmcpath
-  file.copy(file.path(mcmc.dir, list.files(mcmc.dir)), partest.dir)
-  posts <- read.table(file.path(partest.dir, "posteriors.sso"), header = TRUE)
+  ## Create the directories extra-mcmc and extra-mcmc/reports
+  ##  which will hold the runs
+  extra.mcmc.dir <- model$extra.mcmc.path
+  dir.create(extra.mcmc.dir, showWarnings = FALSE)
+  reports.dir <- file.path(extra.mcmc.dir, "reports")
+  dir.create(reports.dir, showWarnings = FALSE)
+
+  ## Copy all mcmc model files into the extra-mcmc directory
+  file.copy(file.path(mcmc.dir, list.files(mcmc.dir)), extra.mcmc.dir)
+  posts <- read.table(file.path(extra.mcmc.dir, "posteriors.sso"), header = TRUE)
   ## Change this for testing on smaller subset of posteriors
-  ## num.posts <- 10
+  ## num.posts <- 5
   num.posts <- nrow(posts)
 
   ## create a table of parameter values based on labels in parameters section of Report.sso
@@ -604,34 +618,36 @@ run.partest.model <- function(model,
 
   ## write table of new files
   write.table(x = newpar,
-              file = file.path(partest.dir, "ss3.par"),
+              file = file.path(extra.mcmc.dir, "ss3.par"),
               quote = FALSE, row.names=FALSE)
 
-  start <- SS_readstarter(file.path(partest.dir, "starter.ss"), verbose=verbose)
+  start <- SS_readstarter(file.path(extra.mcmc.dir, "starter.ss"), verbose = verbose)
   ## Change starter file to read from par file
   start$init_values_src <- 1
-  SS_writestarter(start, dir = partest.dir, file = "starter.ss", overwrite = TRUE, verbose=F)
+  SS_writestarter(start, dir = extra.mcmc.dir, file = "starter.ss", overwrite = TRUE, verbose=F)
 
   ## loop over rows of posteriors file
   for(irow in 1:num.posts){
-    if(verbose) {print(irow)}
+    if(verbose){
+      print(irow)
+    }
     ## replace values in newpar table with posteriors values
     ## (excluding 1 and 2 for "Iter" and "Objective_function")
     newpar[newpar$label %in% names(posts), 1] <- as.numeric(posts[irow, -(1:2)])
     write.table(x = newpar,
-                file = file.path(partest.dir, "ss3.par"),
+                file = file.path(extra.mcmc.dir, "ss3.par"),
                 quote = FALSE,
                 row.names = FALSE)
 
-    file.copy(file.path(partest.dir, "ss3.par"),
+    file.copy(file.path(extra.mcmc.dir, "ss3.par"),
               file.path(reports.dir, paste0("ss3_input", irow, ".par")),
               overwrite = TRUE)
     # delete existing output files to make sure that if model fails to run,
     # it won't just copy the same files again and again
-    file.remove(file.path(partest.dir, "Report.sso"))
-    file.remove(file.path(partest.dir, "CompReport.sso"))
-    
-    shell.command <- paste0("cd ", partest.dir, " & ss3 -maxfn 0 -phase 10 -nohess")
+    file.remove(file.path(extra.mcmc.dir, "Report.sso"))
+    file.remove(file.path(extra.mcmc.dir, "CompReport.sso"))
+
+    shell.command <- paste0("cd ", extra.mcmc.dir, " & ss3 -maxfn 0 -phase 10 -nohess")
     if(verbose){
       ## shell doesn't accept the argument show.output.on.console for some reason
       shell(shell.command)
@@ -640,18 +656,51 @@ run.partest.model <- function(model,
       shell(shell.command)
       #system(shell.command, show.output.on.console = FALSE)
     }
-    file.copy(file.path(partest.dir, "ss3.par"),
+    file.copy(file.path(extra.mcmc.dir, "ss3.par"),
               file.path(reports.dir, paste0("ss3_output", irow, ".par")),
               overwrite = TRUE)
-    file.copy(file.path(partest.dir, "Report.sso"),
+    file.copy(file.path(extra.mcmc.dir, "Report.sso"),
               file.path(reports.dir, paste0("Report_", irow, ".sso")),
               overwrite = TRUE)
-    file.copy(file.path(partest.dir, "CompReport.sso"),
+    file.copy(file.path(extra.mcmc.dir, "CompReport.sso"),
               file.path(reports.dir, paste0("CompReport_", irow, ".sso")),
               overwrite = TRUE)
   }
 
-  ## make table to store likelihood components
+  cat0(curr.func.name, "Extra mcmc output model runs completed.\n\n")
+}
+
+fetch.extra.mcmc <- function(model,
+                             verbose = FALSE){
+  ## Create and return a list of stats to attach to the main model by
+  ## looking in path for the report files.
+  extra.mcmc.path <- model$extra.mcmc.path
+  reports.dir <- file.path(extra.mcmc.path, "reports")
+  curr.func.name <- get.curr.func.name()
+  if(is.na(extra.mcmc.path)){
+    return(NA)
+  }
+  if(!dir.exists(extra.mcmc.path)){
+    return(NA)
+  }
+  if(!dir.exists(reports.dir)){
+    return(NA)
+  }
+
+  extra.mcmc.path <- model$extra.mcmc.path
+  ## Get the number of Report.sso files in the directory
+  dir.list <- dir(reports.dir)
+  if(!length(dir.list)){
+    return(NA)
+  }
+  num.reports <- length(grep("^Report_[[:digit:]]+\\.sso$", dir.list))
+  num.comp.reports <- length(grep("^CompReport_[[:digit:]]+\\.sso$", dir.list))
+  posts <- read.table(file.path(extra.mcmc.path, "posteriors.sso"),
+                      header = TRUE,
+                      fill = TRUE,
+                      stringsAsFactors = FALSE)
+
+  ## Data frame to store likelihood components
   like.info <- data.frame(Iter = posts$Iter, stringsAsFactors = FALSE)
   for(lab in c("TOTAL",
                "Equil_catch",
@@ -666,11 +715,11 @@ run.partest.model <- function(model,
                "Age_comp_fishery")){
     like.info[[lab]] <- 0
   }
-
-  for(irow in 1:num.posts){
-    tmp <- readLines(file.path(reports.dir, paste0("Report_", irow,".sso")))
+  for(irow in 1:num.reports){
+    rep.file <- file.path(reports.dir, paste0("Report_", irow,".sso"))
+    tmp <- readLines(rep.file)
     skip.row <- grep("LIKELIHOOD", tmp)[2]
-    likes <- read.table(file.path(reports.dir, paste0("Report_", irow, ".sso")),
+    likes <- read.table(rep.file,
                         skip = skip.row,
                         nrows = 17,
                         fill = TRUE,
@@ -682,21 +731,28 @@ run.partest.model <- function(model,
     like.info[irow, 12] <- as.numeric(likes[17, 4])      ## fleet-specific age comp likelihoods
   }
 
+  ## Make sure the number of rows matches the number of posteriors
+  like.info <- like.info[like.info$Equil_catch != 0 &
+                         like.info$Survey !=0 &
+                         like.info$Age_comp != 0 &
+                         like.info$Recruitment != 0 &
+                         like.info$Parm_priors != 0,]
   if(verbose){
-    cat("\n\nReading comp table\n\n")
+    cat0(curr.func.name, "Reading comp table\n\n")
     flush.console()
   }
   ## read expected proportions and Pearson values for each age comp observations
   tmp <- readLines(file.path(reports.dir, paste0("CompReport_", irow,".sso")))
   skip.row <- grep("Composition_Database", tmp)
-  comp.table <- read.table(file.path(partest.dir, "CompReport.sso"),
+  comp.table <- read.table(file.path(extra.mcmc.path, "CompReport.sso"),
                            skip = skip.row,
                            header = TRUE,
                            fill = TRUE,
                            stringsAsFactors = FALSE)
+
   ## loop to create columns Exp1, Exp2, ..., Exp999 and Pearson1, Pearson2, etc.
-  for(irow in 1:num.posts){
-    if(irow %% 100 == 0){
+  for(irow in 1:num.comp.reports){
+    if(verbose & (irow %% 100 == 0)){
       print(irow)
     }
     tmp <- readLines(file.path(reports.dir, paste0("CompReport_", irow,".sso")))
@@ -706,35 +762,33 @@ run.partest.model <- function(model,
                         header = TRUE,
                         fill = TRUE,
                         stringsAsFactors = FALSE)
-    lab1 <- paste0("Pearson",irow)
-    lab2 <- paste0("Exp",irow)
+    lab1 <- paste0("Pearson", irow)
+    lab2 <- paste0("Exp", irow)
     comp.table[lab1] <- comps$Pearson
     comp.table[lab2] <- comps$Exp
   }
-
   ## filter out values that are not included in agedbase within base model
   comp.table <- comp.table[!is.na(comp.table$N) & comp.table$N>0,]
 
   ## median and quantiles of expected values and Pearsons
-  exp.table <- comp.table[,names(comp.table) %in% paste0("Exp",1:num.posts)]
-  Pearson.table <- comp.table[,names(comp.table) %in% paste0("Pearson",1:num.posts)]
-  exp.median <- apply(exp.table, MARGIN=1, FUN=median)
-  exp.low    <- apply(exp.table, MARGIN=1, FUN=quantile, probs=0.025)
-  exp.high   <- apply(exp.table, MARGIN=1, FUN=quantile, probs=0.975)
-  Pearson.median <- apply(Pearson.table, MARGIN=1, FUN=median)
-  Pearson.low    <- apply(Pearson.table, MARGIN=1, FUN=quantile, probs=0.025)
-  Pearson.high   <- apply(Pearson.table, MARGIN=1, FUN=quantile, probs=0.975)
+  exp.table <- comp.table[,names(comp.table) %in% paste0("Exp", 1:num.comp.reports)]
+  Pearson.table <- comp.table[,names(comp.table) %in% paste0("Pearson", 1:num.comp.reports)]
+  exp.median <- apply(exp.table, MARGIN = 1, FUN = median)
+  exp.low <- apply(exp.table, MARGIN = 1, FUN = quantile, probs = 0.025)
+  exp.high <- apply(exp.table, MARGIN = 1, FUN = quantile, probs = 0.975)
+  Pearson.median <- apply(Pearson.table, MARGIN = 1, FUN = median)
+  Pearson.low <- apply(Pearson.table, MARGIN = 1, FUN = quantile, probs = 0.025)
+  Pearson.high <- apply(Pearson.table, MARGIN = 1, FUN = quantile, probs = 0.975)
 
-  ## confirm that values match between mcmc tables and base model MLE table
-  ## table(base$agedbase$Obs == comp.table$Obs)
-  ## TRUE
-  ##  750
   if(verbose){
-    cat("\n\nReading cpue table\n\n")
+    cat0(curr.func.name, "Reading cpue table\n\n")
     flush.console()
   }
   cpue.table <- NULL
-  for(irow in 1:num.posts){
+  for(irow in 1:num.reports){
+    if(verbose & (irow %% 100 == 0)){
+      print(irow)
+    }
     tmp <- readLines(file.path(reports.dir, paste0("Report_", irow,".sso")))
     skip.row <- grep("INDEX_2", tmp)[2]
     cpue <- read.table(file.path(reports.dir, paste0("Report_", irow,".sso")),
@@ -746,23 +800,25 @@ run.partest.model <- function(model,
     lab1 <- paste0("Exp", irow)
     cpue.table <- cbind(cpue.table, cpue$Exp)
   }
-  model.partest <- model
 
-  model.partest$agedbase$Exp <- exp.median
-  model.partest$agedbase$Exp.025 <- exp.low
-  model.partest$agedbase$Exp.975 <- exp.high
-  model.partest$agedbase$Pearson <- Pearson.median
-  model.partest$agedbase$Pearson.025 <- Pearson.low
-  model.partest$agedbase$Pearson.975 <- Pearson.high
+  ## Build the list of extra mcmc outputs and return
+  extra.mcmc <- model
 
-  model.partest$cpue.table <- cpue.table
-  model.partest$cpue.median <- apply(cpue.table, MARGIN = 1, FUN = median)
-  model.partest$cpue.025 <- apply(cpue.table, MARGIN = 1, FUN = quantile, probs = 0.025)
-  model.partest$cpue.975 <- apply(cpue.table, MARGIN = 1, FUN = quantile, probs = 0.975)
+  extra.mcmc$agedbase$Exp <- exp.median
+  extra.mcmc$agedbase$Exp.025 <- exp.low
+  extra.mcmc$agedbase$Exp.975 <- exp.high
+  extra.mcmc$agedbase$Pearson <- Pearson.median
+  extra.mcmc$agedbase$Pearson.025 <- Pearson.low
+  extra.mcmc$agedbase$Pearson.975 <- Pearson.high
 
-  model.partest$like.info <- like.info
+  extra.mcmc$cpue.table <- cpue.table
+  extra.mcmc$cpue.median <- apply(cpue.table, MARGIN = 1, FUN = median)
+  extra.mcmc$cpue.025 <- apply(cpue.table, MARGIN = 1, FUN = quantile, probs = 0.025)
+  extra.mcmc$cpue.975 <- apply(cpue.table, MARGIN = 1, FUN = quantile, probs = 0.975)
 
-  save(model.partest, file = output.file)
+  extra.mcmc$like.info <- like.info
+
+  extra.mcmc
 }
 
 create.key.nuisance.posteriors.files <- function(model,

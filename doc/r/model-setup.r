@@ -179,8 +179,8 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 2
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.2 <- list("46_Sen45_AdjustBiasRampEnd2014")
-sens.model.names.2 <- list("Adjust bias ramp to 2014")
+sens.model.dir.names.2 <- "46_Sen45_AdjustBiasRampEnd2014"
+sens.model.names.2 <- "Adjust bias ramp to 2014"
 verify.models(model.dir, sens.model.dir.names.2, sens.model.names.2)
 if(verbose){
   print.model.message(sens.model.dir.names.2, sens.model.names.2, 2, model.type = "Sensitivity")
@@ -273,14 +273,14 @@ load.models.into.parent.env <- function(){
   if(is.null(base.model$mcmccalcs)){
     stop("Error - base.model$mcmccalcs is NULL. Make sure the directory\n",
             file.path(base.model$path, "mcmc"), " exists and contains valid\n",
-            "   mcmc output, set ovwrt.rdata = TRUE in the create.rdata.file() call\n",
-            "   in all.r, and try again.\n")
+            "   mcmc output, set ovwrt.rdata = TRUE in the create.rdata.file() calls\n",
+            "   within build() in model-setup.r, and try again.\n")
   }
   if(is.null(base.model$risks)){
     stop("Error - base.model$risks is NULL. Maybe you forgot to run the forecasting?\n",
            "   Make sure to setup running and/or loading of forecasts, and\n",
-           "   set ovwrt.rdata = TRUE in the create.rdata.file() call in\n",
-           "   all.r and try again.\n")
+           "   set ovwrt.rdata = TRUE in the create.rdata.file() calls\n",
+           "   within build() in model-setup.r and try again.\n")
   }
 
   last.yr.base.model <<- load.models(model.dir, last.yr.base.model.dir.name)
@@ -306,6 +306,73 @@ load.models.into.parent.env <- function(){
   sens.model.names.2.for.table <<- c("Base model", sens.model.names.2,
                                      sens.model.names.3)
 
-  load("model-partest.RData")
-  model.partest <<- model.partest
+}
+
+build <- function(run.fore = FALSE,
+                  run.retro = FALSE,
+                  run.extra.mcmc = FALSE){
+  ## Once the model setup has been verified, this function will create the
+  ##  corresponding RData files. Each model defined in the models-setup.r
+  ##  file will have its own RData file holding the model object as defined
+  ##  in the Readme.md file.
+
+  ## Delete old directories for all models
+  if(run.extra.mcmc){
+    delete.dirs(sub.dir = file.path("extra-mcmc"))
+  }
+  if(run.fore){
+    delete.dirs(sub.dir = file.path("mcmc", "forecasts"))
+  }
+  if(run.retro){
+    delete.dirs(sub.dir = file.path("retrospectives"))
+  }
+
+  ## Base model
+  create.rdata.file(model.name = base.model.dir.name,
+                    ovwrt.rdata = ifelse(any(run.fore, run.retro, run.extra.mcmc),
+                                         TRUE,
+                                         FALSE),
+                    run.forecasts = run.fore,
+                    fore.yrs = forecast.yrs,
+                    forecast.probs = forecast.probs,
+                    forecast.catch.levels = catch.levels,
+                    run.retros = run.retro,
+                    my.retro.yrs = retro.yrs,
+                    run.extra.mcmc = run.extra.mcmc,
+                    key.posteriors = key.posteriors,
+                    verbose = ss.verbose)
+
+  ## Bridge and sensitivity models need to be unlisted from their groups
+  ##  and placed into a single list for the FOR loop to work right
+  mnv <- c(unlist(bridge.model.dir.names.1),
+           unlist(bridge.model.dir.names.2),
+           unlist(bridge.model.dir.names.3),
+           unlist(sens.model.dir.names.1),
+           unlist(sens.model.dir.names.2),
+           unlist(sens.model.dir.names.3),
+           unlist(sens.model.dir.names.4),
+           unlist(sens.model.dir.names.5),
+           unlist(sens.model.dir.names.6))
+
+  ## Remove base model from the bridge/sensitivity list
+  mnv <- mnv[-(grep(base.model.dir.name, mnv))]
+  model.names.list <- as.list(unique(mnv))
+
+  ## Bridge/sensitivity models
+  for(model.nm in model.names.list){
+    create.rdata.file(
+      model.name = model.nm,
+      ovwrt.rdata = ifelse(run.extra.mcmc,
+                           TRUE,
+                           FALSE),
+      run.forecasts = FALSE,
+      fore.yrs = forecast.yrs,
+      forecast.probs = forecast.probs,
+      forecast.catch.levels = catch.levels,
+      run.retros = FALSE,
+      my.retro.yrs = retro.yrs,
+      run.extra.mcmc = run.extra.mcmc,
+      key.posteriors = key.posteriors,
+      verbose = ss.verbose)
+  }
 }

@@ -259,10 +259,6 @@ if(TRUE){
 ##  on the model output.
 source("custom-knitr-variables.r")
 
-## Load the model-partest which was previously run for the base model.
-if(!exists("model.partest")){
-  load("./model-partest.RData")
-}
 @
 
 %% Title page and author references page

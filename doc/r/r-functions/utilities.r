@@ -1464,4 +1464,3 @@ catw <- function(..., file = "", sep = " ", fill = FALSE, labels = NULL,
     cat(prefix, ..., format(Sys.time(), "(%Y-%m-%d %H:%M:%S)"), "\n",
         file = file, sep = sep, fill = fill, labels = labels, append = append)
 }
-

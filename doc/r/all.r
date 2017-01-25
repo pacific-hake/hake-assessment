@@ -2,7 +2,10 @@
 ## This is the master file - it loads all packages and sources all
 ##  other R source code files.
 ## To debug in an R session, run these commands first:
-## rm(list=ls(all=TRUE));source("all.r");load.models.into.parent.env();source("custom-knitr-variables.r")
+## source("all.r");load.models.into.parent.env();source("custom-knitr-variables.r")
+
+## Clean your workspace before loading
+rm(list = ls(all = TRUE))
 
 ## The purpose of the r-functions directory is to separate the
 ##  r code which is not commonly changed so that the files which are
@@ -75,68 +78,4 @@ source("model-setup.r")                 ## Code to setup the model names, and st
 source("forecast-catch-levels.r")       ## Code to setup forecast model runs.
 source("retrospective-setup.r")         ## Code to setup retrospective model runs.
 source("data-tables.r")                 ## Set up variables for data tables (from csv files).
-
-## At this point the model setup has been verified, and an attempt will be made to create the
-##  corresponding RData files. Each model defined in the models-setup.r
-##  file will have its own RData file holding the model object as defined in the Readme.md file.
-
-## Base model:
-reload.all <- FALSE
-create.rdata.file(model.name = base.model.dir.name,
-                  ovwrt.rdata = reload.all,
-                  run.forecasts = reload.all,
-                  fore.yrs = forecast.yrs,
-                  forecast.probs = forecast.probs,
-                  forecast.catch.levels = catch.levels,
-                  run.retros = reload.all,
-                  my.retro.yrs = retro.yrs,
-                  is.base.model = TRUE,
-                  run.partest = reload.all,
-                  key.posteriors = key.posteriors,
-                  verbose = ss.verbose)
-
-## Bridge models - these variables are set up in model-setup.r
-ovrwrt.bridge.rdata.files <- reload.all
-lapply(bridge.model.dir.names.1,
-       function(nm){create.rdata.file(model.name = nm,
-                                      ovwrt.rdata = ovrwrt.bridge.rdata.files,
-                                      verbose = verbose)})
-lapply(bridge.model.dir.names.2,
-       function(nm){create.rdata.file(model.name = nm,
-                                      ovwrt.rdata = ovrwrt.bridge.rdata.files,
-                                      verbose = verbose)})
-lapply(bridge.model.dir.names.3,
-       function(nm){create.rdata.file(model.name = nm,
-                                      ovwrt.rdata = ovrwrt.bridge.rdata.files,
-                                      verbose = verbose)})
-
-## Sensitivity models - these variables are set up in model-setup.r
-ovrwrt.sens.rdata.files <- reload.all
-lapply(sens.model.dir.names.1,
-       function(nm){create.rdata.file(model.name = nm,
-                                      ovwrt.rdata = ovrwrt.sens.rdata.files,
-                                      verbose = verbose)})
-lapply(sens.model.dir.names.2,
-       function(nm){create.rdata.file(model.name = nm,
-                                      ovwrt.rdata = ovrwrt.sens.rdata.files,
-                                      verbose = verbose)})
-lapply(sens.model.dir.names.3,
-       function(nm){create.rdata.file(model.name = nm,
-                                      ovwrt.rdata = ovrwrt.sens.rdata.files,
-                                      verbose = verbose)})
-
-lapply(sens.model.dir.names.4,
-       function(nm){create.rdata.file(model.name = nm,
-                                      ovwrt.rdata = ovrwrt.sens.rdata.files,
-                                      verbose = verbose)})
-
-lapply(sens.model.dir.names.5,
-       function(nm){create.rdata.file(model.name = nm,
-                                      ovwrt.rdata = ovrwrt.sens.rdata.files,
-                                      verbose = verbose)})
-
-lapply(sens.model.dir.names.6,
-       function(nm){create.rdata.file(model.name = nm,
-                                      ovwrt.rdata = ovrwrt.sens.rdata.files,
-                                      verbose = verbose)})
 

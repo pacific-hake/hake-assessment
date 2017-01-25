@@ -1,7 +1,7 @@
 ____
 # hake-assessment
 
-**Updated January 23, 2017**
+**Updated January 25, 2017**
 
 A framework which uses latex and knitr code to build the US/Canadian Pacific hake assessment.
 
@@ -35,7 +35,7 @@ _____________________________________________________________
   **Method 1 for building the document** (explained below).
 
 ---
-## How to create hake-assessment.pdf
+## How to create the RData files required for the document to build
 
 * Place all model directories in the **models** directory. The base model must have an **mcmc** subdirectory;
   its main directory holds the MPD run and the mcmc subdirectory holds the mcmc run for the same model. The
@@ -45,25 +45,35 @@ _____________________________________________________________
 * Navigate to the doc/r directory and setup the model by editing the three files **model-setup.r**,
   **forecast-catch-levels.r**, and **retrospective-setup.r**:
 
-  * Edit **all.r** and set
-    ```R
-      reload.all <- TRUE
-    ```
-    then open R in the doc/r directory and run:
-    ```R
-	  rm(list=ls(all=TRUE));
-      source("all.r");
-    ```
+* To build the RData files for the the base model and the bridge/sensitivity models,
+  open R in the doc/r directory and run the following:
+  ```R
+    source("all.r")
+    build(run.fore = TRUE, run.retro = TRUE, run.extra.mcmc = TRUE)
+  ```
 
-    this will take a while as it has to run all the forecasts, retrospectives, and create the 999 report files (partest).
-    You don’t need to save the workspace when you close R. You can see that each model defined in **model-setup.r**
-    now has an RData file inside it with the same name.
+  this will take a while as it has to run the forecasts, retrospectives, and create extra-mcmc output,
+  depending on what you set as arguments.
 
-    Now, edit all.r again and set
-    ```R
-	  reload.all <- FALSE
-    ```
-    **If you forget this step, it will re-run everything the next time you try to build the document.**
+  * All models which have an **mcmc** subdirectory will have extra-mcmc
+    output runs done if you set **run.extra.mcmc = TRUE**.
+
+  * Only the base model will have forecasts run when **run.fore = TRUE**.
+
+  * Only the base model will have retrospectives run when **run.retro = TRUE**.
+
+  * Once finished, you can see that each model defined in **model-setup.r**
+    now has an RData file inside its directory with the same name.
+
+  * If **build()** is called without arguments, the RData files will be built from previously
+    run outputs, i.e. no forecasting, retrospectives, or extra mcmc output will be run.
+
+  * You don’t need to save the workspace when you close R, it isn't used by latex/knitr.
+
+## How to create hake-assessment.pdf
+
+* **The RData files must have been created using the method above before the document can
+  be built.**
 
 * **Method 1 for building the document** (Without an R interpreter):
   This method is simpler to run, and all logs are recorded into logfiles which can be
@@ -86,11 +96,11 @@ _____________________________________________________________
     You can then edit hake-assessment.rnw and set the first knitr code chunk up so that it doesn't
     load the models every time you build the document. The value in the if statement should be changed to FALSE:
 
-```R
-     if(TRUE){
-       load.models.into.parent.env()
-     }
-```
+    ```R
+      if(TRUE){
+        load.models.into.parent.env()
+      }
+    ```
 * To clean up the build, including removal of the cached figures and tables, run the **freshtex.bat** batch file,
   or manually delete the **knitr-cache** directory. If you don't do this, figures and tables built previously
   will be used. To keep the cached figures and tables, but remove all other traces of the build including the PDF,
@@ -100,40 +110,39 @@ _____________________________________________________________
 
 * Open R in the doc/r directory and issue the command:
   ```R
-    delete.rdata.files("../../models")**
+  delete.rdata.files("../../models")**
   ```
-* You will need to re-run everything again so take care doing this.
+* Before you try to build the document again, you will need to run the **build()** function again with
+  all options set to **FALSE** or no arguments to re-create the RData files.
 
 ## How to debug functions used in the knitr chunks in the **.rnw** files
 
-* Open R in the doc/r directory and issue the commands:
+* Open R in the doc/r directory and use this one-liner so that you can use the R history (up and down-arrows)
+  This is important while debugging the R code, because you will need to run this each
+  time you make a change in the code and want to test it, or if you insert a **browser()** command somewhere:
   ```R
-    rm(list=ls(all=TRUE));
-	source("all.r");
-	load.models.into.parent.env();
-	source("custom-knitr-variables.r")
+	source("all.r");load.models.into.parent.env();source("custom-knitr-variables.r")
   ```
+* Cut-and-paste the figure/table code from the knitr chunk you want to debug into R and the output will be exactly
+  what will appear in the document.
 
-__R Packages__
+## Installation of R packages
 
-The code will automatically install packages (from CRAN or GitHub - see **all.r**) that you do not have,
-but it will not update them (this would be time-consuming each time). If something doesn't work, try and figure out which package it relates to and get the latest version. Andy had a December 2015 version of **r4ss** and got an error (in Jan 2017), but after updating it to the latest version:
-
-	devtools::install_github("r4ss/r4ss")
-
-the error did not occur. It's hard to guarantee that we all have the same versions of the numerous packages, but any issues should crop up when do compare each other's **hake-assessment.tex** and **hake-assessment.pdf** files. 
+* The code will automatically install packages from CRAN or GitHub - see the **install.packages.if.needed()** function
+  in **doc/r/r-functions/utilities.r** and the calls to it in **all.r**. Packages won't be updated though. If
+  something doesn't work, try to update the **r4ss** package manually as it changes frequently:
+  ```R
+    devtools::install_github("r4ss/r4ss")
+  ```
+  Other packages may have issues like this, but we have not come across that situation so far.
 
 ---
 
 ## How the R environment is set up
 
-* Each model specified in the **model-setup.r** file will be stored as a .RData file
-  within its own model directory.
-
-* To recreate any .RData files, i.e. if some model output changes, change the value of the
-  ovwrt.rdata to **TRUE** in the calls to create.rdata.file() in the all.r file.
-
-* When the document is built, all of these model .RData files are loaded into the workspace.
+* When the document is built, all of the model RData files which were previously built are loaded into the workspace
+  that is seen by **knitr**. All the lengthy R processes are done ahead of time from the **build()** function to make the
+  document building quick, since RData files are loaded instead of raw model output.
 
 The following depicts the object structure of each model's .RData file:
 
@@ -160,6 +169,18 @@ model$risks     - A list, one element for each forecast year except the last yea
   model$risks[[2]] - Holds the risk values for the second year of forecasts
   ...
   model$risks[[N]] - Holds the risk values for the last year - 1 of forecasts
+model$extra-mcmc- Extra MCMC output obtained by running MLE once for each MCMC sample and extracting output
+  model$extra-mcmc$agedbase$Exp         - median of posterior for expected value for age comps
+  model$extra-mcmc$agedbase$Exp.025     - 2.5% of posterior for expected value for age comps
+  model$extra-mcmc$agedbase$Exp.975     - 97.5% of posterior for expected value for age comps
+  model$extra-mcmc$agedbase$Pearson     - median of posterior for pearson residuals for age comps
+  model$extra-mcmc$agedbase$Pearson.025 - 2.5% of posterior for pearson residuals for age comps
+  model$extra-mcmc$agedbase$Pearson.975 - 97.5% of posterior for pearson residuals for age comps
+  model$extra-mcmc$cpue.table           - Table of cpue index values for all posteriors (survey)
+  model$extra-mcmc$cpue.median          - median of posterior for cpue index values (survey)
+  model$extra-mcmc$cpue.025             - 2.5% of posterior for cpue index values (survey)
+  model$extra-mcmc$cpue.975             - 97.5% of posterior for cpue index values (survey)
+  model$extra-mcmc$like.info            - Likelihood values for all posteriors
 model$path      - The path where this model is located
 model$ctl.file  - control file name for this model
 model$dat.file  - data file name for this model
@@ -212,32 +233,17 @@ data.path               - The absolute path to the data folder, which holds catc
 models.path             - The absolute path to the models folder, which holds sub-directories for the models which have been run.
 ```
 
-There are additional elements for model.partest, which is created by running **run.partest.model**. It is saved in a file called
-**model-partest.RData**. It is a copy of base.model with the following additions:
-
-```R
-model.partest$agedbase$Exp           - median of posterior for expected value for age comps
-model.partest$agedbase$Exp.025       - 2.5% of posterior for expected value for age comps
-model.partest$agedbase$Exp.975       - 97.5% of posterior for expected value for age comps
-model.partest$agedbase$Pearson       - median of posterior for pearson residuals for age comps
-model.partest$agedbase$Pearson.025   - 2.5% of posterior for pearson residuals for age comps
-model.partest$agedbase$Pearson.975   - 97.5% of posterior for pearson residuals for age comps
-model.partest$cpue.table             - Table of cpue index values for all posteriors (survey)
-model.partest$cpue.median            - median of posterior for cpue index values (survey)
-model.partest$cpue.025               - 2.5% of posterior for cpue index values (survey)
-model.partest$cpue.975               - 97.5% of posterior for cpue index values (survey)
-model.partest$like.info              - Likelihood values for all posteriors
-```
-
 __Quick look at model output__
 
-Within the model's folder, use the R commands:
+Open R within the model's folder and use the R commands:
 
 	require(r4ss)
 	SS_plots(SS_output("./"))
 
-This creates figures and an HTML page with tabs for sets of figures. This is useful for quickly looking at results, especially when MCMCs have not yet been run and so the assessment document will not build yet.
- 
+This creates figures and an HTML page with tabs for sets of figures. This is useful for quickly
+looking at results, especially when MCMCs have not yet been run and so the assessment document
+will not build yet.
+
 ---
 
 ## **Everything from here on is from the 2016 assessment period (Nov 2015 - Mar 2016)**

@@ -19,7 +19,7 @@ make.age.comp.pearson.plot <- function(model,                  ## model is an mc
   ## Plot the Pearson residuals for age composition fits for whatever subplot is set to
 
   oldpar <- par()
-  SSplotComps(model,
+  SSplotComps(model$extra.mcmc,
               kind = "AGE",
               subplot = 24,
               printmkt = FALSE,
@@ -263,7 +263,7 @@ make.age.comp.fit.plot <- function(model,       ## model is an mcmc run and is t
   }else{
     cat("make.age.comp.fit.plot: Error - subplot must be either 1 or 2.\n\n")
   }
-  age.fits(dat = model,
+  age.fits(dat = model$extra.mcmc,
            ncol = ncol,
            f = f,
            uncertainty = TRUE,

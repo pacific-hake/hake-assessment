@@ -362,7 +362,7 @@ make.mcmc.diag.pairs.plot(base.model,
 \begin{figure}[H]
 \begin{center}
 <<main.mcmc.survey.fit, fig.height=6, fig.width=8>>=
-make.mcmc.survey.fit.plot(model.partest,
+make.mcmc.survey.fit.plot(base.model,
                           start.yr = survey.start.yr,
                           end.yr = survey.end.yr,
                           probs = c(0.025, 0.975),
@@ -386,9 +386,9 @@ make.mcmc.survey.fit.plot(model.partest,
 oldpar <- par(no.readonly = TRUE)
 ## par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.age.comp.fit.plot(model.partest,
+make.age.comp.fit.plot(base.model,
                        subplot = 1)
-make.age.comp.fit.plot(model.partest,
+make.age.comp.fit.plot(base.model,
                        subplot = 2)
 par <- oldpar
 @
@@ -404,7 +404,7 @@ par <- oldpar
 \begin{figure}[H]
 \begin{center}
 <<main.age.comp.pearson, fig.height=8, fig.width=8>>=
-make.age.comp.pearson.plot(model.partest)
+make.age.comp.pearson.plot(base.model)
 @
 \end{center}
 \caption{Pearson residuals for base model MLE fits to the fishery age composition data.
