@@ -368,8 +368,9 @@ relative spawning biomass has been above the target since \Sexpr{median.relative
 
 While there is large uncertainty in the \Sexpr{end.yr-1} estimates of fishing intensity and relative
 spawning biomass, the model predicts a less than 1\% joint probability of being both above the target fishing intensity in \Sexpr{end.yr-1} and below the target relative spawning biomass at the start of \Sexpr{end.yr}.
-%sum(base.model$mcmc$Bratio_2016<0.4 & base.model$mcmc$SPRratio_2015>1) /nrow(base.model$mcmc)#  this is the joint probability
-% Manual done 2016.
+% sum(base.model$mcmc$Bratio_2017<0.4 & base.model$mcmc$SPRratio_2016>1) /nrow(base.model$mcmc)
+% That is the joint probability, make sure to change dates each year.
+% Manual done 2017.
 
 \subsection*{Reference points} \label{sec:es-reference-points}
 \phantomsection \addcontentsline{toc}{subsection}{Reference points}
