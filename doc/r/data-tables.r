@@ -9,6 +9,7 @@ survey.history.file <- "survey-history.csv"
 survey.comparison.file <- "survey-comparison.csv"
 sampling.history.file <- "fishery-sampling-history.csv"
 ovary.samples.file <- "ovary-samples.csv"
+maturity.ogive.file <- "maturity-ogives.csv"
 age.1.file <- "age-1.csv"
 assessment.history.file <- "assessment-history.csv"
 kriging.parameters.file <- "kriging-parameters.csv"
@@ -39,6 +40,7 @@ sampling.history <- load.sampling.history(file.path(data.path, sampling.history.
 further.tac <- further.tac.details(file.path(data.path, further.tac.file))
 can.ages <- load.can.age.data(file.path(data.path, can.age.file))
 ovary.samples <- read.csv(file.path(data.path, ovary.samples.file), stringsAsFactors = FALSE)
+maturity.ogives <- read.csv(file.path(data.path, maturity.ogive.file), stringsAsFactors = FALSE)
 age.1.index <- read.csv(file.path(data.path, age.1.file), stringsAsFactors = FALSE)
 assessment.history <- read.csv(file.path(data.path, assessment.history.file), stringsAsFactors = FALSE)
 kriging.pars <- read.csv(file.path(data.path, kriging.parameters.file), comment.char="#", stringsAsFactors = FALSE)

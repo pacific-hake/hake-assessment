@@ -1,10 +1,6 @@
 %% one-page-summary.Rnw
 %% Note some variables are global from the calling file (hake-assessent.Rnw)
 
-%% Need numbering back to Arabic.
-%%\pagenumbering{arabic}
-%%\setcounter{page}{1}
-
 \clearpage
 \section*{One-page summary}
 \phantomsection \addcontentsline{toc}{section}{One-page summary}
@@ -20,30 +16,30 @@
     TAC (adjusted for carryovers) of \Sexpr{last.year.tac}~t. Attainment in the U.S. was \Sexpr{last.year.us.attained}\% of its quota;
     in Canada it was \Sexpr{last.year.can.attained}\%. A variety of factors influenced the attainment of the quota.
 
-  \item The stock is estimated to be at its highest biomass level as a result of estimated large 2010 and 2014 cohorts.
+  \item The stock is estimated to be at its highest biomass level since the 1980s as a result of estimated large 2010 and 2014 cohorts.
     The 2014 cohort has not yet been observed by the survey and only twice by the commercial fishery, thus its absolute size is highly uncertain.
 
   \item The median estimate of \Sexpr{end.yr} relative spawning biomass (spawning biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium, $B_0$) is
-    \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
+    \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% credible interval from \Sexpr{curr.depl.lower}\% to
     \Sexpr{curr.depl.upper}\%).
 
   \item The median estimate of \Sexpr{end.yr} female spawning biomass is \Sexpr{curr.bio.median}
-    million~t (with 95\% interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper} million~t).
+    million~t (with 95\% credible interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper} million~t).
 
   \item The spawning biomass in \Sexpr{end.yr} is estimated to have increased from \Sexpr{end.yr-1}
     due to the 2014 year-class likely being above average size. % and the estimate of the 2012 year-class being slightly above average.
 
-  \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
+  \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% credible interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
 
   \item As in the past, forecasts are highly uncertain due to uncertainty in estimates of recruitment for recent years.
     Forecasts were conducted across a range of catch levels.
 
   \item Projections setting the \Sexpr{forecast.yrs[1]} and \Sexpr{forecast.yrs[2]} catch equal to the \Sexpr{forecast.yrs[1]-1} TAC of
-    \Sexpr{last.year.tac}~t show the estimated median relative spawning biomass increasing from \Sexpr{f(100*median(base.model$mcmc$Bratio_2016))}\%
-    in \Sexpr{end.yr} to 87\% in \Sexpr{end.yr+1} and again in \Sexpr{end.yr+2} to 89\%. 
-    However, due to uncertainty there is an estimated 10\% chance of the spawning biomass falling below 40\%
-     of $B_0$ in two years (2018). There is an estimated 33\% chance of the spawning biomass declining from 2016 to 2017, and a 45\% chance of it declining from 2017 to 2018 under this constant catch level.
-    % Manual to do (check this enitre bullet point)
+    \Sexpr{last.year.tac}~t show the estimated median relative spawning biomass increasing from 89\%
+    in \Sexpr{end.yr} to 85\% in \Sexpr{end.yr+1} and again in \Sexpr{end.yr+2} to 79\%. 
+    However, due to uncertainty there is an estimated 16\% chance of the spawning biomass falling below 40\%
+     of $B_0$ in two years (2019). There is an estimated 63\% chance of the spawning biomass declining from 2017 to 2018, and a 80\% chance of it declining from 2018 to 2019 under this constant catch level.
+    % Manual to do (check this enitre bullet point)  -update 1/24/17 AMB
     % 3% from Table j, 38% from Table i, 50% from Table j
 \end{itemize}
 

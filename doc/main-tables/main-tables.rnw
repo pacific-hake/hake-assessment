@@ -9,7 +9,7 @@
 <<catches.US, results='asis', echo=FALSE>>=
 make.catches.table.US(catches, start.yr=start.yr, end.yr=end.yr,
                    weight.factor=1000,
-                   xcaption = paste("Annual catches of \\fishname\\ (t) in U.S. waters by sector, ", start.yr, "-", last.data.yr, ". Tribal catches are included in the sector totals.", sep=""),
+                   xcaption = paste("Annual catches of \\fishname\\ (t) in U.S. waters by sector, ", start.yr, "-", last.data.yr, ". Tribal catches are included in the sector totals. Research Catch includes landed catch associated with research-related activities. Unlanded catch associated with surveys and bycatch in fisheries not targetting hake is not currently included in the model.", sep=""),
                    xlabel = "tab:intro-catches-US",
                    font.size = 10,
                    space.size = 11)
@@ -153,7 +153,7 @@ make.reference.points.table(base.model,
 
 <<main.decisions.biomass.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption <- paste0("Decision tables of forecast quantiles of \\fishname\\ relative spawning biomass at the beginning of the year before fishing. Quantiles from the base model are shown for various harvest alternatives (rows) based on: constant catch levels (rows a, b, c, d, e), the TAC from  ",min(forecast.yrs)-1," (row d), the catch values that result in a median SPR ratio of 1.0 (row f), the median values estimated via the default harvest policy (\\Ffortyten) using the base model (row g), and the catch level that results in a 50\\% probability that the median projected catch will remain the same in ",min(forecast.yrs)," and ",min(forecast.yrs)+1," (row h). Catch in ",max(forecast.yrs)," does not impact the beginning of the year biomass in ",max(forecast.yrs),"."),
+                    xcaption <- paste0("Decision table of forecast quantiles of \\fishname\\ relative spawning biomass at the beginning of the year before fishing. Quantiles from the base model are shown for various harvest alternatives (rows) based on: constant catch levels (rows a, b, c, d, e), including the TAC from  ",min(forecast.yrs)-1," (row d), the catch values that result in a median SPR ratio of 1.0 (row f), the median values estimated via the default harvest policy (\\Ffortyten) using the base model (row g), and the catch level that results in a 50\\% probability that the median projected catch will remain the same in ",min(forecast.yrs)," and ",min(forecast.yrs)+1," (row h). Row~e uses 600,000~t rather than the 500,000~t from last year's assessment, because 500,000~t is essentially row~d. Catch in ",max(forecast.yrs)," does not impact the beginning of the year biomass in ",max(forecast.yrs),"."),
                     xlabel <- "tab:main-decisions-biomass",
                     font.size = 12,
                     space.size = 14,
@@ -162,7 +162,7 @@ make.decision.table(base.model,
 
 <<main.decisions.spr.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption <- paste0("Decision tables of forecast quantiles of \\fishname\\ fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}) for the ",min(forecast.yrs)," -- ",max(forecast.yrs)," catch alternatives presented in Table \\ref{tab:main-decisions-biomass}. Values greater than 100\\% indicate fishing intensities greater than the F\\subscr{40\\%} harvest policy calculated using baseline selectivity."),
+                    xcaption <- paste0("Decision table of forecast quantiles of \\fishname\\ fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}) for the ",min(forecast.yrs)," -- ",max(forecast.yrs)," catch alternatives presented in Table \\ref{tab:main-decisions-biomass}. Values greater than 100\\% indicate fishing intensities greater than the F\\subscr{40\\%} harvest policy calculated using baseline selectivity."),
                     xlabel <- "tab:main-decisions-spr",
                     font.size = 12,
                     space.size = 14,

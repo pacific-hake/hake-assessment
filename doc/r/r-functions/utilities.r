@@ -490,18 +490,36 @@ randWalkSelex.fn <- function(pars,devs=NULL,bounds=NULL) {
 }
 
 selexYear.fn <- function(x, yr, bnds=c(-5,9)) {
+  # get selectivity for a given year from all MCMC samples
+  
   ## specific for hake 2013 and 2014
-  selexPars <- matrix(c(-1000, 0, NA, NA, NA, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow = nrow(x), ncol = 16, byrow = TRUE)
+  ## updated 2017/01/25 to not give error when year value is outside range available
+
+  # define mostly-empty matrix to store selectivity parameters for each mcmc sample
+  selexPars <- matrix(c(-1000, 0, NA, NA, NA, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+                      nrow = nrow(x), ncol = 16, byrow = TRUE)
+  # define matrix to store deviation parameters for given year from each mcmc
   devsPars  <- matrix(NA, ncol = ncol(selexPars), nrow = nrow(x))
 
+  # columns of MCMC output which match names for base parameters
   tmp <- grep("AgeSel_1P_[1-9]_Fishery", names(x))
+  # columns of MCMC output which match names for deviation parameters
   devsInd <- grep("AgeSel_1P_[1-9]_Fishery_DEVadd", names(x))
+  # get all deviation parameters
   allDevsPars <- x[,devsInd]
+  # fill in matrix of selectivity parameters
   selexPars[,3:7] <- as.matrix(x[,tmp[!(tmp %in% devsInd)]])
+  # get column indices associated with deviation parameters
   devsInd <- grep(as.character(yr), names(x)[devsInd])
+  if(length(devsInd)==0){
+    # if year not found in names of deviation parameters, return NULL
+    return(NULL)
+  }
   devsPars[,3:7] <- as.matrix(allDevsPars[,devsInd])
 
+  # define empty matrix to store resulting selectivity
   selex <- matrix(NA,ncol=ncol(selexPars),nrow=nrow(x))
+  # for each year, combine base selectivity parameters and deviations to get selex
   for(i in 1:nrow(selexPars)) {
     selex[i,] <- randWalkSelex.fn(selexPars[i,],devsPars[i,],bounds=bnds)
   }

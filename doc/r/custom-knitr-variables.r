@@ -188,6 +188,7 @@ fishery.estimated.age.comp <- cbind(base.model$catage[base.model$catage$Fleet==1
 year.class.2010.in.2013 <- f(filter(fishery.estimated.age.comp, Yr==2013)$"3" * 100)
 year.class.2010.in.2014 <- f(filter(fishery.estimated.age.comp, Yr==2014)$"4" * 100)
 year.class.2010.in.2015 <- f(filter(fishery.estimated.age.comp, Yr==2015)$"5" * 100)
+year.class.2010.in.2016 <- f(filter(fishery.estimated.age.comp, Yr==2016)$"6" * 100)
 
 catcher.processor.catch <- f(100 * filter(catches, Year == last.data.yr)$atSea_US_CP / (last.year.us.cp.quota.reallocated), 1)
 mothership.catch <- f(100 * filter(catches, Year == last.data.yr)$atSea_US_MS / (last.year.us.ms.quota.reallocated), 1)
@@ -266,6 +267,10 @@ m.prior <- split.prior.info(param.details[rownames(param.details) == "m.vals",][
 ################################################################################
 cohort.catch.1999 <- sum(cohortCatch(1999, base.model$catage))
 cohort.catch.2010 <- sum(cohortCatch(2010, base.model$catage))
+
+################################################################################
+## Sigma_r, standard deviation of recruitment variability.
+sigma.r <- f(base.model$sigma_R_in, 2)
 
 ################################################################################
 ## Load weight-at-age file now that models are loaded

@@ -33,14 +33,14 @@ make.catches.plot(catches,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to the modern fishery. Over the early period, \Sexpr{min(catches$Year)}--1990, most removals were from foreign or joint-venture fisheries. Over all years, the fishery in U.S. waters averaged \Sexpr{f(mean(catches$Ustotal))}~t, or \Sexpr{round(100*mean(catches$Ustotal)/mean(catches$TOTAL),1)}\% of the average total landings, while catch from Canadian waters averaged \Sexpr{f(mean(catches$CANtotal))}~t.  Over the last 10 years, \Sexpr{max(catches$Year)-9}--\Sexpr{max(catches$Year)} (Table~\ref{tab:es-catches}), the average coastwide catch was \Sexpr{f(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$TOTAL))}~t with U.S. and Canadian catches averaging \Sexpr{f(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$Ustotal))}~t and \Sexpr{f(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$CANtotal))}~t, respectively.
+Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to the modern fishery. Over the early period, \Sexpr{min(catches$Year)}--1990, most removals were from foreign or joint-venture fisheries. Over all years, the fishery in U.S. waters averaged \Sexpr{f(mean(catches$Ustotal))}~t, or \Sexpr{round(100*mean(catches$Ustotal)/mean(catches$TOTAL),1)}\% of the average total landings, while catch from Canadian waters averaged \Sexpr{f(mean(catches$CANtotal))}~t.  Over the last 10 years, \Sexpr{max(catches$Year)-9}--\Sexpr{max(catches$Year)} (Table~\ref{tab:es-catches}), the average coastwide catch was \Sexpr{f(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$TOTAL))}~t with U.S. and Canadian catches averaging \Sexpr{f(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$Ustotal))}~t and \Sexpr{f(mean(catches[catches$Year %in% ((max(catches$Year)-9):max(catches$Year)),]$CANtotal))}~t, respectively. The coastwide catch in \Sexpr{end.yr-1} was \Sexpr{last.year.landings}~t, out of a total allowable catch (TAC, adjusted for carryovers) of \Sexpr{last.year.tac}~t. Attainment in the U.S.~was \Sexpr{last.year.us.attained}\% of its quota; in Canada it was \Sexpr{last.year.can.attained}\%.
 %
 <<total.catches.table, results='asis', echo=FALSE>>=
 make.catches.table(catches,
                    start.yr = 2006,
                    end.yr = assess.yr - 1,
                    weight.factor = 1000,
-                   xcaption <- "Recent commercial fishery catch (t). Tribal catches are included where applicable.",
+                   xcaption <- "Recent commercial fishery catch (t). Tribal catches are included in the sector totals. Research catch includes landed catch associated with research-related activities. Unlanded catch associated with surveys and bycatch in fisheries not targetting hake is not currently included in the model.",
                    xlabel <- "tab:es-catches",
                    font.size = 9,
                    space.size = 10,
@@ -49,7 +49,7 @@ make.catches.table(catches,
 
 In this stock assessment, the terms catch and landings are used interchangeably. Estimates of discard within the target fishery
 are included, but discarding of \fishname\ in non-target fisheries is not. Discard from all fisheries is estimated to be less
-than 1\% of landings in recent years. During the last five years, catches have been above the long-term average catch (\Sexpr{f(long.term.avge.catch)}~t) in \Sexpr{last.5.years.above.avge[1:(length(last.5.years.above.avge)-1)]} and \Sexpr{last.5.years.above.avge[length(last.5.years.above.avge)]}, and below it in \Sexpr{last.5.years.below.avge[1:(length(last.5.years.below.avge)-1)]} and \Sexpr{last.5.years.below.avge[length(last.5.years.below.avge)]}. Landings between 2001 and 2008 were predominantly comprised of fish from the very large 1999 year class, with the cumulative removal from that cohort estimated at apporximately \Sexpr{f(cohort.catch.1999/1e6,2)}~million~t.  Through \Sexpr{last.data.yr}, the total catch of the 2010 year class is estimated to be about \Sexpr{f(cohort.catch.2010/1e6,2)}~million~t. 
+than 1\% of landings in recent years. During the last five years, catches have been above the long-term average catch (\Sexpr{f(long.term.avge.catch)}~t) in \Sexpr{last.5.years.above.avge[1:(length(last.5.years.above.avge)-1)]} and \Sexpr{last.5.years.above.avge[length(last.5.years.above.avge)]}, and below it in \Sexpr{last.5.years.below.avge[1:(length(last.5.years.below.avge)-1)]} and \Sexpr{last.5.years.below.avge[length(last.5.years.below.avge)]}. Landings between 2001 and 2008 were predominantly comprised of fish from the very large 1999 year class, with the cumulative removal from that cohort estimated at approximately \Sexpr{f(cohort.catch.1999/1e6,2)}~million~t.  Through \Sexpr{last.data.yr}, the total catch of the 2010 year class is estimated to be about \Sexpr{f(cohort.catch.2010/1e6,2)}~million~t. 
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
@@ -57,10 +57,7 @@ than 1\% of landings in recent years. During the last five years, catches have b
 %%in \Sexpr{survey.end.yr} have been added to the survey time series
 %%(Figure~\ref{fig:es-survey-biomass}); earlier survey data (1998--2013)
 %%were re-analyzed and updated this year.
-The 1995 survey biomass estimate has been re-analyzed and added back into the
-assessment. The \Sexpr{last.assess.yr} assessment did not include this data point
-due to issues with the older survey data but over the past year the issues were resolved.
-%
+There was no survey in \Sexpr{last.data.yr}. New data for this \Sexpr{assess.yr} assessment, that were not in the \Sexpr{last.assess.yr} assessment, are the 1995 survey biomass estimate (with associated age compositions) and the \Sexpr{last.data.yr} fishery catch and fishery age compositions. The mean weight at age for \Sexpr{last.data.yr} was added and minor refinements to historical catch estimates were also made. Finally, there was a minor revision to the 1998 survey biomass estimate (an increase of 2\%). The \Sexpr{last.assess.yr} assessment did not include the 1995 survey biomass estimate due to issues with the older survey data, but those issues have now been resolved, while the revision to the 1998 point was due to discovery of a better set of variables used in the the processing of the acoustic data for that year.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
@@ -75,13 +72,13 @@ make.survey.biomass.plot(base.model)
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-The only other new data for this \Sexpr{assess.yr} assessment, that were not in the \Sexpr{last.assess.yr} assessment, are the \Sexpr{last.data.yr} fishery age compositions (and minor refinements to historical catch estimates were made). Total catch and empirical weight-at-age for \Sexpr{last.data.yr} are also added to the assessment model this year, but are fixed and not included in the model fitting procedure. Various other data types, including data on maturity, have been explored since the 2014 stock assessment, but are not included in the base model this year.
+Various other data types, including data on maturity, have been explored since the 2014 stock assessment, but are not included in the base model this year.
 
 This Joint Technical Committee (JTC) assessment depends primarily on the fishery landings (\Sexpr{start.yr}--\Sexpr{last.data.yr}),
 acoustic survey biomass estimates (Figure~\ref{fig:es-survey-biomass}) and age-compositions (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}),
 as well as fishery age-compositions (1975--\Sexpr{last.data.yr}). While the 2011 survey index value was the lowest in the time series, 
 the index increased steadily over the four surveys conducted in 2011, 2012, 2013, and 2015. Age-composition data from the aggregated 
-fisheries and the acoustic survey contribute to the assessment model's ability to resolve strong and weak cohorts. % Manual 2016 done.
+fisheries and the acoustic survey contribute to the assessment model's ability to resolve strong and weak cohorts. % Manual 2017 done.
 
 The assessment uses a Bayesian estimation approach, sensitivity analyses, and retrospective investigations to evaluate the potential consequences of parameter uncertainty, alternative structural models, and historical performance of the assessment model, respectively. The Bayesian approach combines prior knowledge about natural mortality, stock-recruitment steepness (a parameter for stock productivity) and several other parameters, with likelihoods for acoustic survey biomass indices, acoustic survey age-composition data, and fishery age-composition data. Integrating the joint posterior distribution over model parameters (via Markov Chain Monte Carlo simulation) provides probabilistic inferences about uncertain model parameters and forecasts derived from those parameters. Sensitivity analyses are used to identify alternative structural models that may also be consistent with the data. Retrospective analyses identify possible poor performance of the assessment model with respect to future predictions. In past assessments, closed-loop simulations have provided an insight into how alternative combinations of survey frequency, assessment model selectivity assumptions, and harvest control rules affect expected management outcomes given repeated application of these procedures over the long-term. The results of past closed-loop simulations influence the decisions made for this assessment.
 
@@ -91,7 +88,7 @@ selectivity reduced the magnitude of extreme cohort strength estimates. In close
 assessment models with time-varying fishery selectivity led to higher median average catch, lower risk of falling below 10\% of unfished
 biomass ($B_0$), smaller probability of fishery closures, and lower inter-annual variability in catch compared to assessment models with
 time-invariant fishery selectivity. It was found that even a small degree of flexibility in the assessment model fishery selectivity could
-reduce the effects of errors caused by assuming selectivity is constant over time. Therefore, we retain time-varying selectivity in this assessment.
+reduce the effects of errors caused by assuming selectivity is constant over time. Therefore, we retain time-varying selectivity in this assessment, but with an increase in the allowed magnitude of the annual deviations (else the model estimates an extremely high 2014 year class based on limited data).
 
 \subsection*{Stock biomass} \label{sec:es-stock-biomass}
 \phantomsection  \addcontentsline{toc}{subsection}{Stock biomass}
@@ -154,11 +151,12 @@ The estimated increases were the result of a large 2010 cohort and an
 above-average 2008 cohort surpassing the age at which gains in biomass from
 growth are greater than the loss in biomass from natural mortality.
 The model then estimates an increase from 2015 to 2017 due to an estimated
-very large 2014 year class, which, on average, is much larger than the average
+very large 2014 year class, which is estimated to be much larger than the average
 estimated size of the 2010 year class.
+% Manual 2017 done.
 
 The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium, $B_0$) is
-\Sexpr{curr.depl.median}\% but is highly uncertain (with a 95\% posterior credibility interval from \Sexpr{curr.depl.lower}\% to \Sexpr{curr.depl.upper}\%; Table~\ref{tab:es-biomass}). The median estimate of the \Sexpr{end.yr} beginning-of-the-year female spawning biomass is \Sexpr{curr.bio.median}~million~t (with a 95\% posterior credibility interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper}~million~t). The estimated \Sexpr{end.yr-1} female spawning biomass is \Sexpr{prev.bio.median} (\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t.
+\Sexpr{curr.depl.median}\% but is highly uncertain (with a 95\% posterior credibility interval from \Sexpr{curr.depl.lower}\% to \Sexpr{curr.depl.upper}\%; Table~\ref{tab:es-biomass}). The median estimate of the \Sexpr{end.yr} beginning-of-the-year female spawning biomass is \Sexpr{curr.bio.median}~million~t (with a 95\% posterior credibility interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper}~million~t). The estimate of the \Sexpr{end.yr-1} female spawning biomass is \Sexpr{prev.bio.median} (\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. This is slightly higher than the 1.885~(0.791-4.781)~million~t estimated in the 2016 assessment.
 % Manual 2016 done (text checked).
 <<biomass.table, results='asis', echo=FALSE>>=
 make.biomass.table(base.model,
@@ -184,7 +182,7 @@ make.recruitment.table(base.model,
                        start.yr = end.yr-10,
                        end.yr = end.yr-1,
                        weight.factor = 1000,
-                       xcaption <- "Estimates of recent recruitment (millions of age-0) and recruitment deviations (deviations below zero indicate less than median recruitment and deviations above zero indicate above median recruitment).",
+                       xcaption <- "Estimates of recent recruitment (millions of age-0) and recruitment deviations (deviations below zero indicate less than median recruitment and deviations above zero indicate above-median recruitment).",
                        xlabel <- "tab:es-recruitment",
                        font.size = 12,
                        space.size = 14,,
@@ -216,20 +214,22 @@ make.recruitment.plot(base.model,
 %
 Very large year classes in 1980, 1984, and 1999 supported much of the commercial catch from the 1980s to the mid-2000s. From 2000 to 2007 estimated recruitment was at some of the lowest values
 in the time series, but this was followed by a relatively large 2008 year class. The current assessment estimates a very strong 2010 year class
-comprising \Sexpr{year.class.2010.in.2013}\% of the coast-wide commercial catch in 2013, \Sexpr{year.class.2010.in.2014}\% of the 2014 catch, and \Sexpr{year.class.2010.in.2015}\% of the 2015 catch. The size of the 2010 year class is more uncertain than older cohorts (other than the 1980 year class),
+comprising \Sexpr{year.class.2010.in.2013}\% of the coast-wide commercial catch in 2013, \Sexpr{year.class.2010.in.2014}\% of the 2014 catch, \Sexpr{year.class.2010.in.2015}\% of the 2015 catch and \Sexpr{year.class.2010.in.2016}\% of the 2016 catch. The size of the 2010 year class is more uncertain than older cohorts 
+% (other than the 1980 year class) - removing for 2017 assessment - from Table 12 this
+%  is not true for absolute range of confidence intervals or taking the ratio of upper
+%  and lower bounds 
 but the median estimate is the second highest in the time series (after the 1980 recruitment estimate). 
-The model currently estimates a small 2011 year class, and smaller than average 2012 and 2013 year classes (median recruitment below the mean of all median recruitments).
-% That's still true for 2016 assessment - see 
+The model currently estimates smaller-than-average 2011, 2012 and 2013 year classes (median recruitment below the mean of all median recruitments).
+% Still true for 2017 assessment - see 
 %  years.since.2010.recruitment.med.below.mean
-% Though could just say that all three years are smaller than average?
 % AME put in definition of below-average, else it looks like it contradicts the
 %  median deviations in the table.
-% Allan agrees. Even though the deviation is slightly above average, the 2011 spawning biomass was small enough that the S-R curve had an effect
+% Allan agrees. Even though the deviation is slightly above average, the 2011 spawning biomass was small enough that the S-R curve had an effect [keep this helpful explanation]
 The 2014 year class is likely larger than average and potentially a similar magnitude as the 2010 year class, but is still highly uncertain.
 There is no
 information in the data to estimate the sizes of the \Sexpr{end.yr-1} and \Sexpr{end.yr} year classes. Retrospective analyses of year class strength for
-young fish have shown the estimates of recent recruitment to be unreliable prior to at least age 3.
-% Manual 2016 done.
+young fish have shown the estimates of recent recruitment to be unreliable prior to at least age~3.
+% Manual 2017 done.
 
 \subsection*{Exploitation status} \label{sec:es-exploitation-status}
 \phantomsection  \addcontentsline{toc}{subsection}{Exploitation status}
@@ -248,10 +248,17 @@ make.fishing.intensity.table(base.model,
                              placement = "tbp")
 @
 
-%% for 2017 assessment, base-model candidate 41 has no median fishing intensity estimated above 1 so code in 2 lines below causes error. Commenting out and posting issue
-%% Median fishing intensity on the stock is estimated to have been below the target except for the years
-%% \Sexpr{median.intensity.above.one.years[1:(length(median.intensity.above.one.years)-1)]} and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]} when spawning biomass was low (Table~\ref{tab:es-fishing-intensity} and Figure~\ref{fig:es-fishing-intensity}).
-% for 2016 assessment, consider revising definition of Fishing Intensity as discussed 
+%% for 2017 assessment, base-model candidate 41 has no median fishing intensity estimated above 1 so code in 2 lines below causes error. Commenting out and posting issue. 
+%% Okay for base-model 45, though only year. Keep all this so can easily switch around.
+Median fishing intensity on the stock is estimated to have been below the target except for 
+%% the years \Sexpr{median.intensity.above.one.years[1:(length(median.intensity.above.one.years)-1)]} and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
+%% See 'The median fishing intensity ...' sentence in Management Performance
+%%  Section below, which seeminly didn't give an error when 
+%%  median.intensity.above.one.years was empty. Could adapt that here for 2018,
+%%  not doing for 2017 since this works fine.
+the year \Sexpr{median.intensity.above.one.years}
+when spawning biomass was low (Table~\ref{tab:es-fishing-intensity} (for recent years) and Figure~\ref{fig:es-fishing-intensity}).
+% for 2017 assessment, consider revising definition of Fishing Intensity as discussed 
 % in issue #158: https://github.com/cgrandin/hake-assessment/issues/158
 % 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -271,8 +278,8 @@ make.fishing.intensity.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-Exploitation fraction (catch divided by biomass of fish of age 3 and above) has
-shown relatively similar patterns (Figure~\ref{fig:es-exploitation-fraction} and Table~\ref{tab:es-fishing-intensity}).
+Median exploitation fraction (catch divided by biomass of fish of age 3 and above) also peaked in 1999, and then reached even higher values in 2007, 2008 and 2010 (Table~\ref{tab:es-fishing-intensity} and Figure~\ref{fig:es-exploitation-fraction}).
+% Manual 2017 done. 
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -291,21 +298,28 @@ make.exploitation.fraction.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 %
 Median fishing intensity is estimated to have declined from \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.penult.yr}\% in \Sexpr{end.yr-1}, while
-the exploitation fraction has decreased from \Sexpr{exploitation.med.2010} in 2010 to \Sexpr{exploitation.med.penult.yr} in \Sexpr{end.yr-1}.  Although there is a considerable amount of uncertainty around these recent estimates, the 95\% posterior credibility interval of fishing intensity is below the SPR management target for the last three years (Figure~\ref{fig:es-fishing-intensity}).
+the exploitation fraction has decreased from \Sexpr{exploitation.med.2010} in 2010 to \Sexpr{exploitation.med.penult.yr} in \Sexpr{end.yr-1}.  There is a considerable amount of uncertainty around estimates of fishing intensity, with the 95\% posterior credibility interval reaching above the SPR management target for \Sexpr{end.yr-1} (Figure~\ref{fig:es-fishing-intensity}).
+% 2016 assessment we had: '... is below the SPR management target for the 
+%  last three years (Figure~\ref{fig:es-fishing-intensity})'. 
+%  Interestingly, for 2017 the 2016 intensity interval reaches above 1.
+% 
+% 2016 assessment, leave as an explanation:
 % Note that exploitation.med.penult.yr comes out as 0.06, but in Table d 
 %  is 0.065, because the true value is 0.0648.... The text rounds to two decimal
 %  places but Table rounds to three, but rounding is done correctly because of 
 %  the automation; i.e. we haven't incorrectly rounded up to 0.07, which we 
 %  could happen from looking at Table d (if the true value wasn't checked). Nice.
+% Manual 2017 done.
 
 \subsection*{Management performance} \label{sec:es-management-performance}
 \phantomsection  \addcontentsline{toc}{subsection}{Management performance}
 
 Over the last decade (\Sexpr{end.yr-10}--\Sexpr{end.yr-1}), the mean coast-wide utilization rate (i.e., landings/quota) has been \Sexpr{tot.last.10.years.attainment}\% (Table~\ref{tab:es-landings-tac}).
-From \Sexpr{end.yr-5} to \Sexpr{end.yr-1}, the mean utilization rates differed between the United States (\Sexpr{usa.last.5.years.attainment}\%) and
+Over the last five years (\Sexpr{end.yr-5} to \Sexpr{end.yr-1}), the mean utilization rates differed between the United States (\Sexpr{usa.last.5.years.attainment}\%) and
 Canada (\Sexpr{can.last.5.years.attainment}\%). Total landings last exceeded the coast-wide
 quota in 2002 when utilization was 112\%. 
-% Manual 2016 done.
+% Manual 2017 done. For last sentence just check
+%  landings.vs.tac[landings.vs.tac$Year > 2000, "ATTAIN"]
 
 <<landings.tac.table, results='asis', echo=FALSE>>=
 make.landings.tac.table(landings.vs.tac,
@@ -318,14 +332,16 @@ make.landings.tac.table(landings.vs.tac,
                         placement = "tbp")
 @
 
-The median fishing intensity was below target in all years except \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]} and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]} (Figure~\ref{fig:es-fishing-intensity}).
-The median female spawning biomass was above target until \Sexpr{names(median.relative.bio.below.target[1])} and was below target from 1998-2000 and 2006-2011 (Figure~\ref{fig:es-relative-spawning-biomass}). 
-% Andy summarising those years manually, based on the values:
-% \Sexpr{names(median.relative.bio.below.target[-length(median.relative.bio.below.target)])} and \Sexpr{names(median.relative.bio.below.target[length(median.relative.bio.below.target)])}.
-% Manual done 2016.
+The median fishing intensity was below target in all years except 
+% \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]} and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
+% Only one year for 2017 assessment, so:
+\Sexpr{median.intensity.above.one.years} (Figure~\ref{fig:es-fishing-intensity}).
+The median female spawning biomass was above target in all years except 1968, 1988-2000 and 2007-2011 (Figure~\ref{fig:es-relative-spawning-biomass}).
+% Andy summarising those years manually, based on:
+% median.relative.bio.below.target
+% Manual done 2017.
 
-The joint history of biomass and $F$-target reference points shows that before
-2007, median fishing intensity was below target and female spawning biomass was mostly above target (Figure~\ref{fig:es-phase}).  % Manual done 2016.
+The joint history of the medians of relative spawning biomass and relative fishing intensity shows that only in 1999 was the median fishing intensity below target and the female spawning biomass above target (Figure~\ref{fig:es-phase}).  % Manual done 2017.
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -345,20 +361,23 @@ make.phase.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 %
 Between 2007 and 2011, however, median fishing intensity ranged from \Sexpr{median.intensity.2007.to.2011.min}\% to \Sexpr{median.intensity.2007.to.2011.max}\% and median relative spawning biomass between \Sexpr{median.relative.bio.2007.to.2011.min} and \Sexpr{median.relative.bio.2007.to.2011.max}.
-Biomass has risen recently with the 2008 and 2010 recruitments and, correspondingly, fishing intensity has fallen below targets. 
-Relative spawning biomass has been above the target since \Sexpr{median.relative.bio.above.target.since}.
-% Manual done 2016. Now automated as much as sensible.
+Biomass has risen recently with the 2008, 2010 and 2014 recruitments, and
+% and, correspondingly, fishing intensity has fallen below targets. 
+relative spawning biomass has been above the target since \Sexpr{median.relative.bio.above.target.since}.
+% Manual done 2017. Based on median.relative.bio.below.target.
 
 While there is large uncertainty in the \Sexpr{end.yr-1} estimates of fishing intensity and relative
 spawning biomass, the model predicts a less than 1\% joint probability of being both above the target fishing intensity in \Sexpr{end.yr-1} and below the target relative spawning biomass at the start of \Sexpr{end.yr}.
-%sum(base.model$mcmc$Bratio_2016<0.4 & base.model$mcmc$SPRratio_2015>1) /nrow(base.model$mcmc)#  this is the joint probability
-% Manual done 2016.
+% sum(base.model$mcmc$Bratio_2017<0.4 & base.model$mcmc$SPRratio_2016>1) /nrow(base.model$mcmc)
+% That is the joint probability, make sure to change dates each year.
+% Manual done 2017.
 
 \subsection*{Reference points} \label{sec:es-reference-points}
 \phantomsection \addcontentsline{toc}{subsection}{Reference points}
 
 Estimates of the \Sexpr{assess.yr} base model reference points with posterior credibility intervals are in Table~\ref{tab:es-reference.points}.
-The estimates are slightly different than those in the \Sexpr{last.assess.yr} assessment, with slightly greater sustainable yields and reference biomasses estimated in this assessment.
+The estimates are slightly different than those in the \Sexpr{last.assess.yr} assessment, with slightly lower sustainable yields and reference biomasses estimated in this assessment.
+% Manual done 2017.
 \enlargethispage{\baselineskip}
 
 <<reference.points.table, results='asis', echo=FALSE>>=
@@ -386,9 +405,9 @@ and rapid biomass changes.  This leads to a dynamic fishery that potentially tar
 selectivity. This volatility results in a high level of uncertainty in estimates of
 current stock status and stock projections because with limited data to
 estimate incoming recruitment, the cohorts are fished before the assessment can accurately determine how
-big the cohort is (i.e., cohort strength is not well know until it is at least age 3). %% NGT to be consistent with wording above
+big the cohort is (i.e., cohort strength is not well known until it is at least age 3). This is particularly apparent for this assessment, because the 2014 cohort is potentially very large but is still highly uncertain (Figure~\ref{fig:es-recruitment}).
 
-The JTC presented results from closed-loop simulations evaluating the effect of including potential age-1 indices on management outcomes at the May 6-7 2015 JMC meeting in Victoria, B.C. They found that fitting to an unbiased age-1 survey results in lower catch, lower probability that spawning biomass falls below 10\% of $B_0$, and a lower average annual variability in catch.  However, comparable results in terms of catch could be achieved with a more precise age-2+ survey or alternative harvest control rules.  The simulations assumed an age-1 survey design with consistent, effective, and numerous sampling, which may not be the case for the existing age-1 index.
+The JTC presented results from closed-loop simulations evaluating the effect of including potential age-1 indices on management outcomes at the May 6-7 2015 JMC meeting in Victoria, B.C. They found that fitting to an unbiased age-1 survey results in lower catch, lower probability that spawning biomass falls below 10\% of $B_0$, and a lower average annual variability in catch.  However, comparable results in terms of catch could be achieved with a more precise age-2+ survey or alternative harvest control rules.  The simulations assumed an age-1 survey design with consistent, effective, and numerous sampling, which may not be the case for the existing age-1 index. The age-1 index is not included in the base model but included in a sensitivity run.
 
 \subsection*{Forecast decision tables} \label{sec:es-forecast-decision-table}
 \phantomsection \addcontentsline{toc}{subsection}{Forecast decision tables}
@@ -398,7 +417,7 @@ The median catch limit for \Sexpr{min(forecast.yrs)} based on the default \Ffort
 % May need to move after the next paragraph
 <<decisions.biomass.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption <- paste0("Forecast quantiles of \\fishname\\ relative spawning biomass at the beginning of the year before fishing.  Catch alternatives are based on: constant catch levels (rows a, b, c, d, e), the TAC from  ",min(forecast.yrs)-1," (row d), the catch values that result in a median SPR ratio of 1.0 (row f), the median values estimated via the default harvest policy (\\Ffortyten) for the base (row g), and the catch level that results in a 50\\% probability that the median projected catch will remain the same in ",min(forecast.yrs)," and ",min(forecast.yrs)+1," (row h)."),
+                    xcaption <- paste0("Forecast quantiles of \\fishname\\ relative spawning biomass at the beginning of the year before fishing.  Catch alternatives are based on: constant catch levels (rows a, b, c, d, e), including the TAC from  ",min(forecast.yrs)-1," (row d), the catch values that result in a median SPR ratio of 1.0 (row f), the median values estimated via the default harvest policy (\\Ffortyten) for the base (row g), and the catch level that results in a 50\\% probability that the median projected catch will remain the same in ",min(forecast.yrs)," and ",min(forecast.yrs)+1," (row h). Row~e uses 600,000~t rather than the 500,000~t from last year's assessment, because 500,000~t is essentially row~d. Catch in ",max(forecast.yrs)," does not impact the beginning of the year biomass in ",max(forecast.yrs),"."),
                     xlabel <- "tab:es-decisions-biomass",
                     font.size = 12,
                     space.size = 14,
@@ -525,5 +544,4 @@ There are many research projects that could improve the stock assessment for \fi
 @
 
 \end{enumerate}     % To close off the short list.
-\newpage
-
+\newpage  

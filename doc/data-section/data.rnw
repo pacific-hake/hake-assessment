@@ -135,31 +135,15 @@ Fishery-independent data from the Alaska Fisheries Science Center (AFSC) bottom 
 
 \subsubsection{Maturity}\label{sec:data-maturity}
 
-The fraction mature, by size and age, is based on data reported in \citet{DornSaunders1997} and has remained unchanged in the base models since the 2006 stock assessment. These data consisted of 782 individual ovary collections based on visual maturity determinations by observers. The highest variability in the percentage of each length bin that was mature within an age group occurred at ages 3 and 4, with virtually all age-1 fish immature and age 4+ hake mature. Within ages 3 and 4, the proportion of mature hake increased with larger sizes, such that only 25\% were mature at 31~cm while 100\% were mature at 41~cm.
+The fraction mature, by size and age, is based on data reported in \citet{DornSaunders1997} and has remained unchanged in the base models since the 2006 stock assessment. These data consisted of 782 individual ovary collections based on visual maturity determinations by observers. The proportion maturity by length was converted to estimates of fecundity at age using an estimated growth curve and weight-length relationships estimated in a 2011 model which included length data. The resulting product of maturity and weight results in a relative spawning output of 0.10 at age 2, 0.25 at age 3, 0.40 at age 4, and 0.52 at age 5. Dividing these values by the average weight-at-age relationship indicates that the current model setup is equivalent to assuming that the fraction mature is 41\% at age 2, 69\% at age 3, 84\% at age 4 and 98\% age age 5.
 
-Histological samples have been collected during the 2009, 2012, 2013, 2014, and 2015 U.S.~bottom trawl surveys, during the 2012, 2013, and 2015 joint U.S/Canada Hake/Sardine acoustic surveys, and from At-Sea hake Observer Program (ASHOP) observers aboard at-sea fishing vessels in 2013, 2014, and 2015 (Table~\ref{tab:main-ovaries}). In the course of the surveys, length bins were targeted for ovary collection to ensure an even coverage. The protocol for collection from at-sea fishery vessels was to randomly sample one ovary from the three fish randomly sampled for otoliths. Fish were randomly sampled for otoliths every third haul. A fin clip was also collected with most histological samples for genetic determination of stock structure.
+Histological samples have been collected in recent years from bottom trawl surveys, acoustic surveys, winter and summer acoustic research trips, and from the U.S.~At-Sea hake Observer Program (A-SHOP) observers aboard commercial Catcher-Processor vessels (Table~\ref{tab:main-ovaries}). In the course of the surveys, length bins were targeted for ovary collection to ensure an even coverage. Details on the sampling procedure and histological methods are provided in the 2016 assessment document \citep{JTC2016}.
 
-Tissue from each individual ovary was embedded in paraffin, thin-sectioned to 4~$\mu$m, mounted on slides, and stained with hematoxylin and eosin (H\&E) stain. Microscopic examination was done to determine oocyte development and maturity (pers.~comm., Melissa Head, NWFSC). Ovary samples were marked as mature when yolk was present in a healthy viable oocyte. The presence of various oocyte stages was recorded, and a visual estimate of the percentage of the sample that showed atresia was also noted. Size and age of the fish were not used in the determination of maturity.
+Estimates of maturity-at-length conducted for the 2015 assessment \citep{JTC2015} found similar patterns of maturity-at-length to those reported in \citet{DornSaunders1997}, with the exception of samples from south of 34.5 degrees latitude (Table XXX, Figure~\ref{fig:main-proportion-mature-by-NS}). There are also some large fish classified as immature based on the histological criteria, which may in fact be mature individuals which are ``skip spawners'' and will not be spawning in the upcoming year.
 
-Oocytes exhibiting atresia were noted with a visual estimate of the percent atresia. If an ovary sample did not have yolk present in a healthy viable oocyte, then it was marked as immature. Specimens were classified as mature if they contained large oocytes with dark-stained vitellogenin yolk or characteristics associated with more advanced stages. Spent ovaries characterized by the presence of large numbers of post ovulatory follicles (POFs) and immature oocytes were also defined as mature. Fish that did not have yolk present but were large or older were not changed to a mature status because of these biological factors. Reader error in the determination of maturity for \fishname\ was negligible (pers.~comm., Melissa Head). Slides of ovary sections from the trawl survey were re-evaluated to ensure consistency in maturity determination.
+No new maturity analyses were completed in time for this assessment, but the large set of ovaries associated with the large 2014 cohort, including samples in all four seasons in 2016, is expected to contribute to a thorough analysis of maturity in time for the 2018 stock assessment.
 
-Developing oocytes that indicated mature and possibly spawning fish were present in samples collected throughout the year. This suggests that \fishname\ are batch spawners with multiple spawning events in a year. It is uncertain the extent to which viable eggs are produced throughout the year and more investigation is required to determine when spawning that contributes to recruitment actually occurs. A trawl/acoustic survey beginning in January 2016 collected histological samples from hake observations, which may help determine the spawning state of \fishname. Male hake spawning state may also be useful to investigate to learn more about this.
-
-No additional analysis of maturity samples collected in 2015 have been done, but results reported in the \fishname\ assessment from 2015 \citep{JTC2015} indicated that maturity-at-age and length observations show differences across years. It has been difficult to determine if these difference are due to the source (bottom trawl, acoustic survey, or ASHOP) or the year. Investigating data through 2014 showed that \fishname\ south of 34.5 degrees latitude (approximately Point Conception) mature at a smaller size (Figure~\ref{fig:main-proportion-mature-by-NS}). The trawl survey is the only source of the three analyzed here that samples in that area, and genetic samples were collected in 2015 to determine if there is any stock structure that could help to explain this. Another interesting observation from the maturity data is that there are large, old fish classified as immature \citep{JTC2015}. It is believed that these fish may be mature, but are ``skip spawners'' and will not be spawning in the upcoming year.
-
-It is unclear how the smaller size at maturity south of Point Conception fits into the determination of spawning biomass for \fishname. Additionally, fecundity-at-age is ultimately the desired metric to determine spawning biomass. Therefore, we hesitate to move forward with defining a new maturity curve until we complete the following:
-\begin{enumerate}
-  \item read ages and histological sample from the 2015 collections,
-
-  \item further investigate the smaller maturity-at-length south of Point Conception,
-
-  \item determine the significance of batch spawning and viability of spawning events throughout the year,
-
-  \item study fecundity as a function of size, age, weight, and batch spawning.
-
-\end{enumerate}
-
-Hopefully, samples collected during the winter 2016 trawl/acoustic survey for \fishname\ will help to address these tasks.
+Tissue samples for genetical analyses have been collected from many of the same fish from which ovaries were sampled which may help determine whether the fish south of 34.5 degrees latitude are from the same stock as the rest of the population.
 
 \subsubsection{Ageing error}\label{sec:data-ageing-error}
 
@@ -171,7 +155,8 @@ To account for these observation errors in the model, year-specific ageing-error
 
 A matrix of empirically derived population weight at age by year is used in the current assessment model to translate numbers-at-age directly to biomass-at-age (Figure \ref{fig:main-empirical.weight.at.age}). Mean weight-at-age was calculated from samples pooled from all fisheries and the acoustic survey for the years 1975 to \Sexpr{last.data.yr} (Figure~\ref{fig:main-empirical.weight.at.age}). Past investigations into calculating weight-at-age for the fishery and survey independently showed little impact on model results. Ages 15 and over for each year were pooled and assumed to have a constant weight-at-age. The combinations of age and year with no observations were assumed to change linearly over time between observations at any given age. For those years before and after all the observations at a given age, mean weights were assumed to remain constant prior to the first observation and after the last observation. The number of samples is generally proportional to the amount of catch, so the combinations of year and age with no samples should have relatively little importance in the overall estimates of the population dynamics. The use of empirical weight-at-age is a convenient method to capture the variability in both the weight-at-length relationship within and among years, as well as the variability in length-at-age, without requiring parametric models to represent these relationships. However, this method requires the assumption that observed values are not biased by strong selectivity at length or weight and that the spatial and temporal patterns of the data sources provide a representative view of the underlying population. Simulations performed by \citet{KuriyamaOnoEtAl2015} showed that, in general, using empirical weight-at-age when many observations are available resulted in more accurate estimates of spawning biomass.
 
-For purposes of forecasting, Stock Synthesis does not yet include options for averaging weight-at-age values from recent years as it does with selectivity and other quantities. Therefore, the mean weights at each age in the forecast were set equal to the mean across all years which therefore match the equilibrium and reference point calculations. Mean weight-at-age in \Sexpr{last.data.yr} was typically slightly less than the mean weight-at-age over all years.
+%% Manually update final sentences of this paragraph in future years
+For purposes of forecasting, Stock Synthesis does not yet include options for averaging weight-at-age values from recent years as it does with selectivity and other quantities. Therefore, the mean weights at each age in the forecast were set equal to the mean across all years which therefore match the equilibrium and reference point calculations. Mean weight has been declining for most ages over the past few years and in 2016 was less than the mean weight-at-age over all years for ages 2--13. The 2010 cohort declined in average weight from 2015 to 2016.
 
 \subsubsection{Length-at-age}\label{sec:data-length-at-age}
 
@@ -191,10 +176,45 @@ The prior for steepness is based on the median (0.79), 20th (0.67) and 80th (0.8
 
 \subsubsection{Variability on fishery selectivity deviations}\label{sec:data-variability-selectivity}
 
-Time-varying fishery selectivity was introduced in the 2014 assessment and was modelled with yearly deviations applied individually to the parameters for selectivity-at-age (more detail on the parameterization is provided in Appendix C of \citealt{JTC2014}). A penalty function in the form of a normal distribution is applied to each deviation to keep the deviation from straying far from zero, unless the data are overwhelming. The amount of deviation from zero is controlled by a fixed standard deviation, $\phi$.
+Time-varying fishery selectivity was introduced in the 2014 assessment \citep{JTC2014} and is modelled with yearly deviations applied to the selectivity-at-age parameters. A penalty function in the form of a normal distribution is applied to each deviation to keep the deviation from straying far from zero, unless the data are overwhelming. The amount of deviation from zero is controlled by a fixed standard deviation, $\phi$ (explained further below).
 
-A standard deviation of $\phi=0.03$ for this penalty function was used for each age and was estimated externally by treating the deviations as random effects and integrating over them using the Laplace method, as described by \citet{ThorsonHicksEtAl2014}. This estimation procedure was not repeated for this assessment and $\phi=0.03$ was used again.
+Recent assessments \citep{JTC2014, JTC2015, JTC2016} used $\phi=0.03$, which was estimated externally by treating the deviations as random effects and integrating over them using the Laplace method, as described by \citet{ThorsonHicksEtAl2014}. This parameterization allowed for the estimation of time-varying selectivity without allowing large year-to-year changes. However, for this assessment, $\phi=0.03$ led to a record-high 2014 year class, resulting in a huge estimated current biomass (Figures~\ref{fig:main-biomass-base-tv-increase-1} and \ref{fig:main-status-base-tv-increase-1}). The biomass estimates for 2014 and earlier are relatively insensitive to the tested values of $\phi$.
 
-This parameterization allows for the estimation of time-varying selectivity without allowing large year-to-year changes. However, the current selectivity parameterization is limiting because each individual selectivity-at-age is correlated with the selectivity of other ages. Research into alternative non-parametric time-varying selectivity configurations is ongoing but no clear alternative was available in Stock Synthesis for this assessment.
+**Ian to add text explaining $\phi=0.20$, partly based on \citet{ThorsonHicksEtAl2014} and Figures~\ref{fig:main-biomass-base-tv-increase-1} and \ref{fig:main-status-base-tv-increase-1} ($\phi=0.30$ not too different from 0.20).
+
+Further details on the time-varying selectivity function are now given.
+
+For each age $a \geq A_{\text{min}}$ there is a selectivity parameter, $p_a$, for the fishery (for which $A_{\text{min}}=1$) and a parameter $p_a$ for the survey (for which $A_{\text{min}}=2$). The selectivity at age $a$ is computed as
+\eb
+S_a = \exp (S'_a - S'_{\text{max}}),
+\ee
+where
+\eb
+S'_a = \sum_{i = A_{\text{min}}}^a p_i
+\ee
+and 
+\eb
+S'_{\text{max}} = \mbox{max} \{S'_a\}.
+\ee
+Selectivity is fixed at $S_a = 0$ for $a < A_{\text{min}}$. 
+
+This formulation has the properties that the maximum selectivity equals 1, positive values are associated with increasing selectivity between ages $a-1$ and $a$, and negative values are associated with decreasing selectivity between those ages. Beyond the maximum age for which selectivity is estimated (6 in the base model), $p_a = 0$ to give constant selectivity beyond the last estimated value. The condition that maximum selectivity equals 1 results in one fewer degree of freedom than the number of estimated $p_a$. Therefore, $p_{A_{\text{min}}}=0$ can be set for the fishery and for the survey.  % Manual 2017 - age 6 in the base model.
+
+Time-varying fishery selectivity is implemented through annual deviations in the $p_a$, formulated as
+\eb
+p_{ay} = p_a + \epsilon_{ay}
+\ee
+where the $\epsilon_{ay}$ are additional parameters estimated in the model. 
+
+The values of $\epsilon_{ay}$ are included in an additional likelihood component with negative log-likelihood proportional to 
+\eb
+-\log(\mbox{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6} ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \frac{\epsilon_{ay}^2}{\phi^2},
+% -\log(\mbox{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6} ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \left. \dfrac{\epsilon_{ay}^2}{\phi^2}{\vrule height 24pt width 0pt} \right. ,     % to try and make summations larger; can live with as is.
+\ee
+where $\phi$ is the standard deviation of the normal penalty function.
+% Manual 2017: age 6 and y=1991. Andy thought 1991 might be tv.selex.start.yr
+%  but that has value 1990. Control file says 1991.
+
+The current selectivity parameterization is limiting because each individual selectivity-at-age is correlated with the selectivity of other ages. In other words, it is difficult to disentangle the correlations. Therefore, we recommend that future research be expended on investigating alternative selectivity patterns that allow for easily interpretable annual variations. Such research is ongoing but no clear alternative was available in Stock Synthesis for this assessment.  % (From 2014 and 2016 assessments).
 
 \clearpage
