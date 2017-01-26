@@ -370,7 +370,7 @@ make.comparison.plot <- function(models,                   ## models is a list o
                       new=FALSE,
                       labels = c("Year", "Spawning biomass (t)", "Relative spawning biomass", "Age-0 recruits (1,000s)",
                                  "Recruitment deviations", "Index", "Log index", "SPR ratio", "Density",
-                                 "Management target", "", "Spawning output",
+                                 "", "", "Spawning output",
                                  "Harvest rate"))
   }else{
     SSplotComparisons(compare.summary,
@@ -386,7 +386,7 @@ make.comparison.plot <- function(models,                   ## models is a list o
                       new=FALSE,
                       labels = c("Year", "Spawning biomass (t)", "Relative spawning biomass", "Age-0 recruits (1,000s)",
                                  "Recruitment deviations", "Index", "Log index", "SPR ratio", "Density",
-                                 "Management target", "", "Spawning output",
+                                 "", "", "Spawning output",
                                  "Harvest rate"))
   }
   par <- oldpar
@@ -446,7 +446,7 @@ make.comparison.plot.mcmc <- function(
                       new=FALSE,
                       labels = c("Year", "Spawning biomass (t)", "Relative spawning biomass", "Age-0 recruits (1,000s)",
                                  "Recruitment deviations", "Index", "Log index", "SPR ratio", "Density",
-                                 "Management target", "", "Spawning output",
+                                 "", "", "Spawning output",
                                  "Harvest rate"))
   }else{
     SSplotComparisons(compare.summary,
@@ -464,7 +464,7 @@ make.comparison.plot.mcmc <- function(
                       new=FALSE,
                       labels = c("Year", "Spawning biomass (t)", "Relative spawning biomass", "Age-0 recruits (1,000s)",
                                  "Recruitment deviations", "Index", "Log index", "SPR ratio", "Density",
-                                 "Management target", "", "Spawning output",
+                                 "", "", "Spawning output",
                                  "Harvest rate"))
   }
   par <- oldpar
