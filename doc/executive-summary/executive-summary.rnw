@@ -408,11 +408,12 @@ estimate incoming recruitment, the cohorts are fished before the assessment can 
 big the cohort is (i.e., cohort strength is not well known until it is at least age 3). This is particularly apparent for this assessment, because the 2014 cohort is potentially very large but is still highly uncertain (Figure~\ref{fig:es-recruitment}).
 
 The JTC presented results from closed-loop simulations evaluating the effect of including potential age-1 indices on management outcomes at the May 6-7 2015 JMC meeting in Victoria, B.C. They found that fitting to an unbiased age-1 survey results in lower catch, lower probability that spawning biomass falls below 10\% of $B_0$, and a lower average annual variability in catch.  However, comparable results in terms of catch could be achieved with a more precise age-2+ survey or alternative harvest control rules.  The simulations assumed an age-1 survey design with consistent, effective, and numerous sampling, which may not be the case for the existing age-1 index. The age-1 index is not included in the base model but included in a sensitivity run.
+% Manual 2017 done.
 
 \subsection*{Forecast decision tables} \label{sec:es-forecast-decision-table}
 \phantomsection \addcontentsline{toc}{subsection}{Forecast decision tables}
 
-The median catch limit for \Sexpr{min(forecast.yrs)} based on the default \Ffortyten{} harvest policy is \Sexpr{catch.limit.quantiles["median"]}~t, but has a wide range of uncertainty, with the 2.5\% to 97.5\% range being \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
+The catch limit for \Sexpr{min(forecast.yrs)} based on the default \Ffortyten{} harvest policy has a median of \Sexpr{catch.limit.quantiles["median"]}~t, but there is a wide range of uncertainty, with the 2.5\% to 97.5\% range being \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
 
 % May need to move after the next paragraph
 <<decisions.biomass.table, results='asis', echo=FALSE>>=
@@ -454,12 +455,18 @@ make.forecast.depletion.comparison.plot(base.model,
                                         legend.loc = "topleft")
 @
 \end{center}
-\caption{Time series of estimated relative spawning biomass to \Sexpr{end.yr} from the base model, and forecast trajectories to \Sexpr{forecast.yrs[length(forecast.yrs)]} for several management options from the decision table, with 95\% posterior credibility intervals. The \Sexpr{end.yr} catch of \Sexpr{f(catch.default.policy[1])}~t was calculated using the default harvest policy, as defined in the Agreement.}
+\caption{Time series of estimated relative spawning biomass to \Sexpr{end.yr} from the base model, and forecast trajectories to \Sexpr{forecast.yrs[length(forecast.yrs)]} for several management actions defined in Table~\ref{tab:es-decisions-biomass}, with 95\% posterior credibility intervals.}
+% The \Sexpr{end.yr} catch of \Sexpr{f(catch.default.policy[1])}~t was calculated using the default harvest policy, as defined in the Agreement.}
+% Above commented sentence Was in 2016 but I think is wrong - plot shows the
+%  FI=100% action, so not sure why this talks about default HR (action g).
+%  And no need to define anything here again anyway; now just refer to table.
 \label{fig:es-forecast-depletion-comparison}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+% Manual 2017 done.
 
 Fishing intensity exceeding 100\% indicates fishing in excess of the $\Fforty$ default harvest rate catch limit. This can happen for the median fishing intensity in projected years because the $\Fforty$ default harvest-rate catch limit is calculated using baseline selectivity from all years, whereas the forecasted catches are removed using selectivity averaged over the last five years. Recent changes in selectivity will thus be reflected in the determination of fishing in excess of the default harvest policy. Alternative catch levels where median fishing intensity is 100\% for three years of projections is provided for comparison (scenario f: FI=100\%).
+% Manual 2017 done.
 
 % Move to after next paragraph if it appears too early. It shouldn't since
 %  so many tables around.
@@ -513,6 +520,7 @@ make.forecast.risk.comparison.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 %
 These metrics summarize the probability of various outcomes from the base model given each potential management action. Although not linear, probabilities can be interpolated from this table for intermediate catch values. Figure~\ref{fig:es-forecast-depletion-comparison} shows the predicted relative spawning biomass trajectory through \Sexpr{forecast.yrs[length(forecast.yrs)]} for several of these management actions. With zero catch for the next two years, the biomass has a \Sexpr{zero.catch.prob.bio.down.1}\% probability of decreasing from \Sexpr{forecast.yrs[1]} to \Sexpr{forecast.yrs[2]}, and a \Sexpr{zero.catch.prob.bio.down.2}\% probability of decreasing from \Sexpr{forecast.yrs[2]} to \Sexpr{forecast.yrs[3]}
+%Manual 2017 done.
 
 <<risk.forecast.year.2.table, results='asis', echo=FALSE>>=
 make.risk.table(base.model,
@@ -524,12 +532,20 @@ make.risk.table(base.model,
                 space.size = 14,
                 placement = "tbp")
 @
-The population is predicted to decrease from 2016 to 2017 with a less than 50\% probability for all catch levels investigated up to 440,000~t (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}). The model predicts high biomass levels and the predicted probability of dropping below $B_{10\%}$ (10\% of $B_0$) 
-in 2017 is less than 1\% and the maximum probability of dropping below $B_{40\%}$ is 13\% for all catches explored.
-It should be noted that the natural mortality rate has overtaken the growth rate for the 2010 year class, the model
-estimated below average recruitment for the 2011 and 2013 cohorts, but a large predicted 2014 year class will result in increases to the spawning biomass as it enters maturity. The probability that the 2017 spawning
-biomass will be less than the 2016 spawning biomass is less than 55\% for all catch levels. (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
-% Manual 2016 done above.
+% The spawning biomass is predicted to decrease from \Sexpr{end.yr} to \Sexpr{end.yr+1} with a less than 50\% probability only for the 0~t and 180,000~t catch levels (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}). 
+The probability of the spawning biomass decreasing from \Sexpr{end.yr} to \Sexpr{end.yr+1} is less than 50\% for only the 0~t and 180,000~t catch levels (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}). The highest probability of decrease is 82\%, which is for the default harvest policy.
+% 2016 assessment said for 'all catch levels investigated up to 440,000~t'
+%  but that was wrong, looking at the relevant 2016 figures.
+The predicted probability of the spawning biomass dropping below $B_{10\%}$ (10\% of $B_0$)
+at the start of \Sexpr{end.yr+1} is less than 1\% and the maximum probability of dropping below $B_{40\%}$ is 18\% for all catches explored (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
+It should be noted that the natural mortality rate is larger than the growth rate for the large 2010 year class.
+% Andy presumese that last phrase is still true - not sure where/how to check
+The model estimated below-average recruitment for the 2011, 2012 and 2013 cohorts, but a potentially large 2014 cohort that will result in increases to the spawning biomass as it enters maturity. 
+% 2017: Following sentence replaced with 'The highest probability ...' above,
+%  which fits better:
+% The probability that the 2017 spawning
+% biomass will be less than the 2016 spawning biomass is less than 55\% for all catch levels. (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
+% Manual 2017 done above.
 \enlargethispage{\baselineskip}
 
 \subsection*{Research and data needs} \label{sec:es-research-data-needs}
@@ -539,9 +555,9 @@ There are many research projects that could improve the stock assessment for \fi
 
 % research-needs.rnw gets loaded in here and also in 
 %  research-section/research.rnw in main text, and only contains
-%  the top few. Saves manually updating.
+%  the top few. Saves manually duplicating.
 <<es-research-sec, child='research-needs.rnw'>>=
 @
 
-\end{enumerate}     % To close off the short list.
+\end{enumerate}     % To close off the short list in research-needs.rnw
 \newpage  
