@@ -76,6 +76,15 @@ make.survey.extrap.table(survey.comparison,
                          space.size = 12)
 @
 
+<<main.maturity.ogives.table, results='asis', echo=FALSE>>=
+make.maturity.ogives.table(maturity.ogives,
+                           interval = 2,
+                           xcaption = "Estimated fraction mature at length as shown in Figure~\\ref{fig:main-proportion-mature-by-NS}.",
+                           xlabel = "tab:main-ogives",
+                           font.size = 10,
+                           space.size = 10)
+@
+
 <<main.ovaries.table, results='asis', echo=FALSE>>=
 make.maturity.samples.table(ovary.samples,
                             start.yr = start.yr,
