@@ -50,6 +50,85 @@ make.sampling.history.table(sampling.history,
                             space.size = 10)
 @
 
+\newgeometry{hmargin=1in,vmargin=1in}
+\thispagestyle{lscape}
+\begin{landscape}
+  \centering
+<<main.us.cp.age.data.table, results='asis', echo=FALSE>>=
+make.us.age.data.table(us.cp.age,
+                       fleet = 1,
+                       xcaption = "Age proportions used in the assessment for the U.S. Catcher-processor fleet.",
+                       xlabel = "tab:main-us-cp-age-data",
+                       font.size = 8,
+                       space.size = 10,
+                       decimals = 4)
+@
+
+<<main.us.ms.age.data.table, results='asis', echo=FALSE>>=
+make.us.age.data.table(us.ms.age,
+                       fleet = 2,
+                       xcaption = "Age proportions used in the assessment for the U.S. Mothership fleet.",
+                       xlabel = "tab:main-us-cp-age-data",
+                       font.size = 8,
+                       space.size = 10,
+                       decimals = 4)
+@
+
+<<main.us.shore.age.data.table, results='asis', echo=FALSE>>=
+make.us.age.data.table(us.shore.age,
+                       fleet = 3,
+                       xcaption = "Age proportions used in the assessment for the U.S. Shoreside fleet.",
+                       xlabel = "tab:main-us-cp-age-data",
+                       font.size = 8,
+                       space.size = 10,
+                       decimals = 4)
+@
+\end{landscape}
+\restoregeometry
+\pagestyle{fancy}
+\clearpage
+
+\newgeometry{hmargin=1in,vmargin=1in}
+\thispagestyle{lscape}
+\begin{landscape}
+  \centering
+<<main.can.shore.age.data.table, results='asis', echo=FALSE>>=
+make.can.age.data.table(can.ages,
+                        fleet = 1,
+                        start.yr = 2008,
+                        xcaption = "Age proportions used in the assessment for the Canadian Shoreside fleet.",
+                        xlabel = "tab:main-us-cp-age-data",
+                        font.size = 8,
+                        space.size = 10,
+                        decimals = 4)
+@
+
+<<main.can.ft.age.data.table, results='asis', echo=FALSE>>=
+make.can.age.data.table(can.ages,
+                        fleet = 2,
+                        start.yr = 2008,
+                        xcaption = "Age proportions used in the assessment for the Canadian Freezer Trawler fleet.",
+                        xlabel = "tab:main-us-cp-age-data",
+                        font.size = 8,
+                        space.size = 10,
+                        decimals = 4)
+@
+
+%%<<main.can.jv.age.data.table, results='asis', echo=FALSE>>=
+%%make.can.age.data.table(can.ages,
+%%                        fleet = 3,
+%%                        start.yr = 2008,
+%%                        xcaption = "Age proportions used in the assessment for the Canadian Joint Venture fleet.",
+%%                        xlabel = "tab:main-us-cp-age-data",
+%%                        font.size = 8,
+%%                        space.size = 10,
+%%                        decimals = 4)
+%%@
+\end{landscape}
+\restoregeometry
+\pagestyle{fancy}
+\clearpage
+
 <<main.survey.history.table, results='asis', echo=FALSE>>=
 make.survey.history.table(survey.history,
                           digits = 3,

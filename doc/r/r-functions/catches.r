@@ -66,8 +66,15 @@ make.catches.table <- function(catches,              ## The output of the load.c
 
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
-  return(print(xtable(catches, caption=xcaption, label=xlabel, align=get.align(ncol(catches))),
-               caption.placement = "top", include.rownames=FALSE, table.placement=placement, sanitize.text.function=function(x){x}, size=size.string))
+  return(print(xtable(catches,
+                      caption = xcaption,
+                      label = xlabel,
+                      align = get.align(ncol(catches))),
+               caption.placement = "top",
+               include.rownames = FALSE,
+               table.placement = placement,
+               sanitize.text.function = function(x){x},
+               size = size.string))
 }
 
 make.catches.plot <- function(catches,

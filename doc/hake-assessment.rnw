@@ -41,7 +41,6 @@
 \usepackage{multirow}          %% Used in decision tables
 \usepackage{booktabs}          %% Used in executive summary tables
 \usepackage{tabularx}
-\usepackage{pdflscape}
 \usepackage{lastpage}          %% Allows the citation to reflect the number of pages in the document.
 \usepackage[parfill]{parskip}  % So paragraphs will have a blank line between them
 \setlength{\parskip}{12pt}
