@@ -114,7 +114,7 @@ _____________________________________________________________
 
 * Open R in the doc/r directory and issue the command:
   ```R
-  delete.rdata.files("../../models")**
+  delete.rdata.files("../../models")
   ```
 * Before you try to build the document again, you will need to run the **build()** function again with
   all options set to **FALSE** or no arguments to re-create the RData files.
