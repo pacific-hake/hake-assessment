@@ -62,7 +62,7 @@ A more detailed description of the history of the fishery is provided in the 201
 
 \subsubsection{Overview of the fisheries in \Sexpr{last.data.yr}}\label{sec:intro-fisheries-overview}
 
-The Joint Management Committee (JMC) determined an adjusted (for carryovers) coast-wide catch target of \Sexpr{last.year.tac}~t for \Sexpr{last.data.yr}, with a U.S. allocation of \Sexpr{last.year.us.tac}~t (\Sexpr{us.allotment.percent}\%) and a Canadian allocation of \Sexpr{last.year.can.tac}~t (\Sexpr{can.allotment.percent}\%). A review of the \Sexpr{last.data.yr} fishery is given below.
+The Joint Management Committee (JMC) determined an adjusted (for carryovers) coast-wide catch target of \Sexpr{last.year.tac}~t for \Sexpr{last.data.yr}, with a U.S. allocation of \Sexpr{last.year.us.tac}~t (\Sexpr{us.allotment.percent}\%) and a Canadian allocation of \Sexpr{last.year.can.tac}~t (\Sexpr{can.allotment.percent}\%). The historical catch of \fishname\ for \Sexpr{start.yr}--\Sexpr{last.data.yr} by nation and fishery sector is shown in Figure~\ref{fig:main-catches} and Tables~\ref{tab:intro-catches-US}, \ref{tab:intro-catches-Can} and~\ref{tab:intro-catches-total}. A review of the \Sexpr{last.data.yr} fishery is now given.
 
 \newpage % kludge to avoid dangling heading:
 
@@ -107,6 +107,6 @@ The most abundant year classes in the Canadian Freezer trawler catch were age \S
 
 For an overview of Canadian catch by year and fleet, see Table~\ref{tab:intro-catches-Can}. For \Sexpr{years.Can.JV.catch.eq.0.recent[-length(years.Can.JV.catch.eq.0.recent)]} and \Sexpr{years.Can.JV.catch.eq.0.recent[length(years.Can.JV.catch.eq.0.recent)]} there was no Joint-Venture fishery operating in Canada and this is reflected as zero catch in that sector for those years in Table~\ref{tab:intro-catches-Can}.
 
-% New for 2016 assessment, since Table was not actually referenced in 2015 assessment:
-The total historical U.S, Canadian and coastwide catches of \fishname\ are shown in Table~\ref{tab:intro-catches-total}, together with the percentage of the total catch that came from each country.
+% New for 2016 assessment, since Table was not actually referenced in 2015 assessment. 2017 - moved table reference to earlier.
+% The total historical U.S, Canadian and coastwide catches of \fishname\ are shown in Table~\ref{tab:intro-catches-total}, together with the percentage of the total catch that came from each country.
 
