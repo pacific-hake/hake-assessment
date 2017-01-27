@@ -15,6 +15,7 @@
 
 %**IGT--I took out a bunch of the old Pacific Council-related definitions. The treaty has been in place long enough that we don't need to clutter things with unused phrases.
 %Note: Many of these definitions are relevant to the historical management of \fishname\ and the U.S. Pacific Fishery Management Council process, and are included here only to improve interpretability of previous assessment and background documents.
+\noindent % Required to prevent the first entry's first line from being indented
 
 \leftskip 0.7in
 \parindent -0.7in   % But need to reset to defaults at end of glossary
@@ -28,11 +29,11 @@ ABC: Acceptable biological catch. See below.
 
 Acceptable biological catch (ABC): The acceptable biological catch is a scientific calculation of the sustainable harvest level of a fishery used historically to set the upper limit for fishery removals by the Pacific Fishery Management Council. It is calculated by applying the estimated (or proxy) harvest rate that produces maximum sustainable yield (MSY, see below) to the estimated exploitable stock biomass (the portion of the fish population that can be harvested). For \fishname/whiting, the calculation of the acceptable biological catch and application of the 40:10 adjustment is now replaced with the default harvest rate and the Total Allowable Catch.
 
-Adjusted: A term used to describe TAC or allocations that account for carryovers of uncaught catch from previous years (see Carryover below).
+Adjusted: A term used to describe Total Allowable Catch or allocations that account for carryovers of uncaught catch from previous years (see Carryover below).
 
 Advisory Panel (AP): The advisory panel on \fishname/whiting established by the Agreement.
 
-Agreement (``Treaty''): The Agreement between the government of the United States and the Government of Canada on \fishname/whiting, signed at Seattle, Washington, on November 21, 2003, and entered into force June 25, 2008.
+Agreement (``Treaty''): The Agreement between the government of the United States and the government of Canada on \fishname/whiting, signed at Seattle, Washington, on November 21, 2003, and entered into force June 25, 2008.
 
 AFSC: Alaska Fisheries Science Center (National Marine Fisheries Service).
 
@@ -40,11 +41,11 @@ $B_0$: The estimated average unfished equilibrium female spawning biomass or spa
 
 $\Bten$: The level of female spawning biomass (output) corresponding to 10\% of average unfished equilibrium female spawning biomass ($B_0$, size of fish stock without fishing; see above). This is the level at which the calculated TAC based on the 40:10 adjustment (see above) would reduce the catch to 0.
 
-$\Bforty$: The level of female spawning biomass (output) corresponding to 40\% of average unfished equilibrium female spawning biomass ($B_0$, size of fish stock without fishing; see above). This is the level below which the calculated TAC based on the default harvest policy (see below) is decreased from the value associated with %\Fforty%.
+$\Bforty$: The level of female spawning biomass (output) corresponding to 40\% of average unfished equilibrium female spawning biomass ($B_0$, size of fish stock without fishing; see above). This is the level below which the calculated TAC based on the default harvest policy (see below) is decreased from the value associated with $\Fforty$.
 
 $\Bmsy$: The estimated female spawning biomass (output) which theoretically would produce the maximum sustainable yield (MSY) under equilibrium fishing conditions (constant fishing and average recruitment in every year). Also see $\Bforty$ (above).
 
-Backscatter: The scattering by a target back in the direction of an acoustic source. Specifically, the Nautical Area Scattering Coefficient (a measure of scattering per area, denoted by SA) is frequently referred to as backscatter.
+Backscatter: The scattering by a target back in the direction of an acoustic source. Specifically, the Nautical Area Scattering Coefficient (a measure of scattering per area, denoted by $s_a$) is frequently referred to as backscatter.
 
 California Current Ecosystem: The waters of the continental shelf and slope off the west coast of North America, commonly referring to the area from central California to southern British Columbia.
 
@@ -65,7 +66,7 @@ Closed-loop simulation: A subset of an MSE that iteratively simulates a populati
 
 Cohort: A group of fish born in the same year. Also see recruitment and year-class.
 
-Constant catch: a catch scenario used for forecasting in which the same catch is used in successive years
+Constant catch: a catch scenario used for forecasting in which the same catch is used in successive years.
 %MSE: %Constant catch: One of many ways of setting catch in the MSE. In this case, the catch is set equal to a fixed value in all years unless the available biomass is insufficient to support such removals.
 
 CPUE: Catch-per-unit-effort (see above).
@@ -131,9 +132,9 @@ intensity.plot()
 
 Fishing mortality rate, or instantaneous rate of fishing mortality ($F$): A metric of fishing intensity that is usually reported in relation to the most highly selected ages(s) or length(s), or occasionally as an average over an age range that is vulnerable to the fishery. Because it is an instantaneous rate operating simultaneously with natural mortality, it is not equivalent to exploitation fraction (or percent annual removal; see above) or the spawning potential ratio (SPR, see below).
 
-$\Fmsy$: The rate of fishing mortality estimated to produce the maximum sustainable yield from the stock.
+$\Fmsy$: The rate of fishing mortality estimated to produce the maximum sustainable yield (MSY) from the stock.
 
-Harvest strategy: A formal system for managing a fishery that includes the elements shown in Figure A.1 of \citet{JTC2015}. 
+Harvest strategy: A formal system for managing a fishery that includes the elements shown in Figure A.1 of \citet{JTC2015}.
 
 Harvest control rule: A process for determining an ABC from a stock assessment. Also see default harvest policy (above).
 
@@ -208,7 +209,7 @@ Pacific Fishery Management Council (PFMC): The U.S. organization under which his
 
 \fishname: Common name for \emph{\sciencename}, the species whose offshore stock in the waters of the United States and Canada is subject of this assessment. % **AME -- it's not really the `stock', it's the species. **IGT -- corrected 2017/01/27
 
-Pacific Whiting: an alternative name for \fishname commonly used in the United States.
+Pacific Whiting: an alternative name for \fishname\ commonly used in the United States.
 
 Posterior distribution: The probability distribution for parameters or derived quantities from a Bayesian model representing the result of the prior probability distributions (see below) being updated by the observed data via the likelihood equation. For stock assessments, posterior distributions are approximated via numerical methods; one frequently employed method is MCMC (see above).
 
@@ -222,10 +223,9 @@ Recruits/recruitment: the estimated number of new members in a fish population b
 
 Recruitment deviation: The offset of the recruitment in a given year relative to the stock-recruit function; values occur on a logarithmic scale and are relative to the expected recruitment at a given spawning biomass (see below).
 
-Relative spawning biomass: The ratio of the estimated beginning-of-the-year female spawning biomass to estimated average unfished equilibrium female spawning biomass ($B_0$, see above). Thus, lower values are associated with fewer mature female fish. This term has been introduced in the 2015 stock assessment as a replacement for ``depletion'' which was a source of some confusion. 
-% AME - great, I hate the term depletion....
+Relative spawning biomass: The ratio of the estimated beginning-of-the-year female spawning biomass to estimated average unfished equilibrium female spawning biomass ($B_0$, see above). Thus, lower values are associated with fewer mature female fish. This term was introduced in the 2015 stock assessment as a replacement for ``depletion'' (see above) which was a source of some confusion.
 
-Relative SPR: A measure of fishing intensity transformed to have an interpretation more like $F$: as fishing increases the metric increases. Relative SPR is the ratio of $(1-\mbox{SPR})$ to $(1-40\%$, where 40\% is the target SPR rate.
+Relative SPR: A measure of fishing intensity transformed to have an interpretation more like $F$: as fishing increases the metric increases. Relative SPR is the ratio of $(1-\mbox{SPR})$ to $(1-40\%)$, where 40\% is the target SPR rate.
 
 %%% all these SB* definitions seem to no longer be used (noted in 2017)
 % $SB_0$: The estimated average unfished equilibrium female spawning biomass or spawning output if not directly proportional to spawning biomass. See $B_0$. **AME -- check if we use $SB_0$ anywhere.
@@ -272,7 +272,7 @@ Steepness ($h$): A stock-recruit relationship parameter representing the proport
 
 Stock Synthesis (SS): The age-structured stock assessment model applied in this stock assessment. % For a more detailed description of this model, see \citet{**Methot and Wetzel (2013).
 
-Target strength: The amount of backscatter from an individual acoustic target.
+Target strength (TS): The amount of backscatter from an individual acoustic target.
 
 TAC: Total allowable catch (see below).
 
@@ -285,7 +285,7 @@ Vulnerable biomass: The demographic portion of the stock available for harvest b
 Year-class: A group of fish born in the same year. See also `cohort' and `recruitment'.
 
 %Not found in text in 2017 (but could be added in the future)
-Yield per recruit
+%Yield per recruit
 
 \leftskip 0in      % Guessing this will be correct.
 \parindent 0in     % As in hake.sty
