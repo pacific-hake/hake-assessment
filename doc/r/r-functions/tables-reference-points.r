@@ -35,7 +35,7 @@ make.reference.points.table <- function(model,                ## model is an mcm
              "Unfished recruitment ($R_0$, millions)",
              "Female spawning biomass at $\\Fforty$ (thousand t)",
              "SPR at $\\Fforty$",
-             "Exploitation fraction corresponding to SPR",
+             "Exploitation fraction corresponding to $\\Fforty$",
              "Yield associated with $\\Fforty$ (thousand t)",
              "Female spawning biomass ($B_{40\\%}$, thousand t)",
              "SPR at $B_{40\\%}$",
