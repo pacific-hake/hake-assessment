@@ -64,6 +64,7 @@ source(file.path(func.dir, "figures-mle-mcmc.r"))
 source(file.path(func.dir, "figures-overview-map.r"))
 source(file.path(func.dir, "figures-data.r"))
 source(file.path(func.dir, "figures-assessment-history.r"))
+source(file.path(func.dir, "figures-SPR-illustration-appendix.r"))
 
 source(file.path(func.dir, "tables-timeseries.r"))
 source(file.path(func.dir, "tables-reference-points.r"))
