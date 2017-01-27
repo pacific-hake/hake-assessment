@@ -36,7 +36,7 @@ make.reference.points.table <- function(model,                ## model is an mcm
              "Female spawning biomass at $\\Fforty$ ($\\Bforty$, thousand t)",
              "SPR at $\\Fforty$",
              "Exploitation fraction corresponding to SPR",
-             "Yield at $\\Bforty$ (thousand t)",
+             "Yield associated with $\\Fforty$ (thousand t)",
              "Female spawning biomass ($B_{40\\%}$, thousand t)",
              "SPR at $B_{40\\%}$",
              "Exploitation fraction resulting in $B_{40\\%}$",
