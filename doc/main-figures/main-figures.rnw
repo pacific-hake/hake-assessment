@@ -18,7 +18,7 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 \begin{figure}[H]
 \vspace{-5mm}
 \begin{center}
-\includegraphics[angle=90,origin=c]{main-figures/backscatter2smaller2.eps} % width=\maxwidth,
+\includegraphics[angle=90,origin=c,width=5.5in]{main-figures/hake_survey_1995-15_sA_squareroot_bin_narrow-panel2.eps} % width=\maxwidth,
 \end{center}
 \vspace{-5mm}
 \caption{Spatial distribution of acoustic backscatter attributable to \fishname\ from joint US-Canada acoustic surveys \Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}. Area of the circle is roughly proportional to observed backscatter.}
@@ -468,10 +468,10 @@ tv.selex.right <- calc.tv.selex(base.model,
 make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
 @
 \end{center}
-\caption{Fishery selectivity sampled from posterior probability distribution by year. Black dots and bars indicate
-  the median and 95\% credibility interval, respectively. The shaded polygon also shows the 95\% credibility
-  interval. Range is from 0 to 1 within each year. Selectivity for \Sexpr{tv.selex.start.yr} is shared for all
-  years from \Sexpr{start.yr} to \Sexpr{tv.selex.start.yr}.}
+\caption{Fishery selectivity sampled from posterior probability distribution by year for the base model.
+  Black dots and bars indicate the median and 95\% credibility interval, respectively. The shaded polygon
+  also shows the 95\% credibility interval. Range is from 0 to 1 within each year. Selectivity
+  for \Sexpr{tv.selex.start.yr} is shared for all years from \Sexpr{start.yr} to \Sexpr{tv.selex.start.yr}.}
 \label{fig:main-tv-selex-uncertainty}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -494,8 +494,8 @@ make.selex.uncertainty.lines.plot(base.model,
 par <- oldpar
 @
 \end{center}
-\caption{Estimated acoustic (top) and fishery (bottom) selectivity (\Sexpr{end.yr-1})
-  ogives from the posterior distribution.}
+\caption{Estimated acoustic (top - for all years) and fishery selectivity (bottom - for \Sexpr{end.yr-1} only)
+  ogives from the posterior distribution for the base model.}
 \label{fig:main-tv-selex-uncertainty-lines}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -855,6 +855,81 @@ make.comparison.plot(c(list(base.model), sens.models.6),
 %\vspace{0mm}
 \caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity run representing changes in the standard deviation of the selectivity parameters from the base model's value of $\phi=0.20$. See Figure~\ref{fig:main-biomass-base-tv-increase-1} for legend.} % Manual done 2017.
 \label{fig:main-status-base-tv-increase-1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.tv.selex.sens, fig.height=8, fig.width=8>>=
+## Extract TV selectivity fits by running the calculation function.
+tv.selex.start.yr <- 1990
+tv.selex.ages <- 1:8
+tv.selex <- calc.tv.selex(sens.models.6[1][[1]],
+                          start.yr = tv.selex.start.yr,
+                          end.yr = last.data.yr,
+                          ages = tv.selex.ages,
+                          probs = c(0.025, 0.975))
+make.tv.selex.plot(tv.selex)
+@
+\end{center}
+\caption{Mountains plot of median fishery selectivity in each year for the $\phi=0.03$ sensitity
+  case. Range of selectivity is 0 to 1 in each year. See Figure \ref{fig:main-tv-selex} for the base model.}
+\label{fig:main-tv-selex-sens}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+% \clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.tv.selex.uncertainty.sens, fig.height=8, fig.width=8>>=
+## Extract TV selectivity fits by running the calculation function, once for each year span,
+##  then call the plotting function with them as a list to make a multipanel plot.
+tv.selex.left <- calc.tv.selex(sens.models.6[1][[1]],
+                               start.yr = tv.selex.start.yr,
+                               end.yr = 2001,
+                               ages = tv.selex.ages,
+                               probs = c(0.025, 0.975))
+tv.selex.right <- calc.tv.selex(sens.models.6[1][[1]],
+                                start.yr = 2002,
+                                end.yr = last.data.yr,
+                                ages = tv.selex.ages,
+                                probs = c(0.025, 0.975))
+make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
+@
+\end{center}
+\caption{Fishery selectivity sampled from posterior probability distribution by year for the $\phi=0.03$ sensitity case.
+  Black dots and bars indicate the median and 95\% credibility interval, respectively. The shaded polygon
+  also shows the 95\% credibility interval. Range is from 0 to 1 within each year. Selectivity
+  for \Sexpr{tv.selex.start.yr} is shared for all years from \Sexpr{start.yr} to \Sexpr{tv.selex.start.yr}.
+  See Figure \ref{fig:main-tv-selex-uncertainty} for the base model.}
+\label{fig:main-tv-selex-uncertainty-sens}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.tv.selex.uncertainty.lines.sens, fig.height=8, fig.width=8>>=
+oldpar <- par(no.readonly = TRUE)
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.selex.uncertainty.lines.plot(sens.models.6[1][[1]],
+                                  ages = tv.selex.ages,
+                                  type = 2,
+                                  probs = c(0.025, 0.975))
+make.selex.uncertainty.lines.plot(sens.models.6[1][[1]],
+                                  ages = tv.selex.ages,
+                                  type = 1,
+                                  selex.list = tv.selex,
+                                  probs = c(0.025, 0.975))
+par <- oldpar
+@
+\end{center}
+\caption{Estimated acoustic (top - for all years) and fishery selectivity (bottom - for \Sexpr{end.yr-1} only)
+  ogives from the posterior distribution for the $\phi=0.03$ sensitity case.
+  See Figure \ref{fig:main-tv-selex-uncertainty-lines} for the base model.}
+\label{fig:main-tv-selex-uncertainty-lines-sens}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 

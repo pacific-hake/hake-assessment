@@ -6,7 +6,7 @@ make.can.age.data.table <- function(dat,
                                     font.size = 9,        ## Size of the font for the table
                                     space.size = 10,      ## Size of the spaces for the table
                                     placement = "H",
-                                    decimals = 4
+                                    decimals = 2
                                     ){
   ## Returns an xtable in the proper format for the main tables section for Canadian
   ##  age data.
@@ -17,6 +17,8 @@ make.can.age.data.table <- function(dat,
   dat <- dat[dat[,1] >= start.yr,]
 
   dat[,2] <- as.numeric(f(dat[,2]))
+  ## Make percentages
+  dat[,-c(1,2)] <- dat[,-c(1,2)] * 100
   dat[,-c(1,2)] <- f(dat[,-c(1,2)], decimals)
   ## Add the extra header spanning multiple columns
   addtorow <- list()
@@ -31,11 +33,11 @@ make.can.age.data.table <- function(dat,
   ages.tex <- sub("& $", "\\\\\\\\", ages.tex)
 
   if(fleet == 2 | fleet == 3){
-    addtorow$command <- c(paste0("\\hline \\textbf{Year} & \\specialcell{\\textbf{Number}\\\\\\textbf{of hauls}} & \\multicolumn{", n.age, "}{c}{\\textbf{Age}} \\\\",
+    addtorow$command <- c(paste0("\\hline \\textbf{Year} & \\specialcell{\\textbf{Number}\\\\\\textbf{of hauls}} & \\multicolumn{", n.age, "}{c}{\\textbf{Age (\\% of total for each year)}} \\\\",
                                  "\\hline & & ", ages.tex),
                           "\\hline ")
   }else{
-    addtorow$command <- c(paste0("\\hline \\textbf{Year} & \\specialcell{\\textbf{Number}\\\\\\textbf{of trips}} & \\multicolumn{", n.age, "}{c}{\\textbf{Age}} \\\\",
+    addtorow$command <- c(paste0("\\hline \\textbf{Year} & \\specialcell{\\textbf{Number}\\\\\\textbf{of trips}} & \\multicolumn{", n.age, "}{c}{\\textbf{Age (\\% of total for each year)}} \\\\",
                                  "\\hline & & ", ages.tex),
                           "\\hline ")
   }
@@ -65,7 +67,7 @@ make.us.age.data.table <- function(dat,
                                    font.size = 9,        ## Size of the font for the table
                                    space.size = 10,      ## Size of the spaces for the table
                                    placement = "H",
-                                   decimals = 4
+                                   decimals = 2
                                    ){
 
   ## Returns an xtable in the proper format for the main tables section for US
@@ -73,9 +75,15 @@ make.us.age.data.table <- function(dat,
 
   if(fleet == 1 | fleet == 2){
     dat[,c(2,3)] <- f(dat[,c(2,3)])
+    ## Make percentages
+    dat[,-c(1,2,3)] <- dat[,-c(1,2,3)] * 100
+    ## Make pretty
     dat[,-c(1,2,3)] <- f(dat[,-c(1,2,3)], decimals)
   }else{
     dat[,2] <- f(dat[,2])
+    ## Make percentages
+    dat[,-c(1,2)] <- dat[,-c(1,2)] * 100
+    ## Make pretty
     dat[,-c(1,2)] <- f(dat[,-c(1,2)], decimals)
   }
 
@@ -91,11 +99,11 @@ make.us.age.data.table <- function(dat,
   ## Remove last ampersand
   ages.tex <- sub("& $", "\\\\\\\\", ages.tex)
   if(fleet == 1 | fleet == 2){
-    addtorow$command <- c(paste0("\\hline \\textbf{Year} & \\specialcell{\\textbf{Number}\\\\\\textbf{of fish}} & \\specialcell{\\textbf{Number}\\\\\\textbf{of hauls}} & \\multicolumn{", n.age, "}{c}{\\textbf{Age}} \\\\",
+    addtorow$command <- c(paste0("\\hline \\textbf{Year} & \\specialcell{\\textbf{Number}\\\\\\textbf{of fish}} & \\specialcell{\\textbf{Number}\\\\\\textbf{of hauls}} & \\multicolumn{", n.age, "}{c}{\\textbf{Age (\\% of total for each year)}} \\\\",
                                  "\\hline & & & ", ages.tex),
                           "\\hline ")
   }else{
-    addtorow$command <- c(paste0("\\hline \\textbf{Year} & \\specialcell{\\textbf{Number}\\\\\\textbf{of trips}} & \\multicolumn{", n.age, "}{c}{\\textbf{Age}} \\\\",
+    addtorow$command <- c(paste0("\\hline \\textbf{Year} & \\specialcell{\\textbf{Number}\\\\\\textbf{of trips}} & \\multicolumn{", n.age, "}{c}{\\textbf{Age (\\% of total for each year)}} \\\\",
                                  "\\hline & & ", ages.tex),
                           "\\hline ")
   }

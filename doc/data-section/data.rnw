@@ -6,11 +6,11 @@ Fishery-dependent and fishery-independent data sources used here (Figure~\ref{fi
 
 \begin{itemize}
 
-\item Total catch from all U.S. and Canadian target fisheries (\Sexpr{start.yr}--\Sexpr{last.data.yr}).
+\item Total catch from all U.S. and Canadian target fisheries (\Sexpr{start.yr}--\Sexpr{last.data.yr}; Tables \ref{tab:intro-catches-US}--\ref{tab:intro-catches-total}).
 
-\item Age compositions composed of data from the U.S. fishery (\Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}) and the Canadian fishery (1990--\Sexpr{max.fishery.age.prop[2]}).
+\item Age compositions composed of data from the U.S. fishery (\Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}) and the Canadian fishery (1990--\Sexpr{max.fishery.age.prop[2]}). The last 8 years of these data are shown in Tables \ref{tab:main-us-cp-age-data}--\ref{tab:main-can--age-data}.
 
-\item Biomass indices and age compositions from the Joint U.S.~and Canadian integrated acoustic and trawl survey (\Sexpr{survey.age.years[-length(survey.age.years)]} and \Sexpr{survey.age.years[length(survey.age.years)]}).
+\item Biomass indices and age compositions from the Joint U.S.~and Canadian integrated acoustic and trawl survey (\Sexpr{survey.age.years[-length(survey.age.years)]} and \Sexpr{survey.age.years[length(survey.age.years)]}; Table \ref{tab:main-survey-history}).
 
 \end{itemize}
 
@@ -18,11 +18,11 @@ The assessment model also used biological relationships derived from external an
 
 \begin{itemize}
 
-\item Mean observed weight-at-age from fishery and survey catches, (1975-\Sexpr{last.data.yr}).
+\item Mean observed weight-at-age from fishery and survey catches, (1975-\Sexpr{last.data.yr}; Figure \ref{fig:main-empirical.weight.at.age}).
 
 \item Ageing-error matrices based on cross-read and double-blind-read otoliths.
 
-\item Proportion of female hake maturity by age \citep{DornSaunders1997}.
+\item Proportion of female hake maturity by age \citep{DornSaunders1997}; Table \ref{tab:main-ogives}.
 
 \end{itemize}
 
@@ -50,8 +50,7 @@ Some data sources were not included but have been explored, were used for sensit
 
 \item Joint-U.S. and Canada acoustic survey index of age-1 \fishname.
 
-\item Histological analysis of ovary samples collected during the 2009, and 2012--\Sexpr{last.assess.yr} NWFSC bottom trawl surveys, the 2012, 2013, and 2015 acoustic surveys, and the at-sea fishery from 2013 through 2015.
-
+\item Histological analysis of ovary samples collected in recent years (described in Table~\ref{tab:main-ovaries})
 \end{itemize}
 
 \subsection{Fishery-dependent data}\label{sec:data-fishery-data}
