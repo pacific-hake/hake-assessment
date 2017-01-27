@@ -36,8 +36,8 @@ make.survey.extrap.table <- function(dat,
                                      space.size = 10){       ## Size of the spaces for the table
   ## dat is a data frame containing the survey comparisons.
 
-  ## Remove old.2015 column
-  dat <- dat[,-2]
+  ## Remove 2016 columns
+  dat <- dat[,-grep("2016", names(dat))]
 
   ## Format the columns individually, avoiding any NA's
   dat$no.extrap[!is.na(dat$no.extrap)] <- f(dat$no.extrap[!is.na(dat$no.extrap)] / 1000, digits)
@@ -160,30 +160,40 @@ make.survey.biomass.extrap.plot <- function(dat){  ## data.frame of the extrapol
 
   oldpar <- par()
 
-  ## Remove old.2015 column
-  dat <- dat[,-2]
-
   ## Remove non-data years from the data frame
-  dat <- dat[complete.cases(dat),]
+  ## no longer needed because we're comparing cases with different range of years
+  ## dat <- dat[complete.cases(dat),]
 
+  # values with extrapolation used in base model
   ests <- data.frame(year = dat$year, obs = dat$with.extrap, se_log = dat$cv.with.extrap)
   ests$lo <- exp(log(ests$obs) - 1.96 * ests$se_log)
   ests$hi <- exp(log(ests$obs) + 1.96 * ests$se_log)
   ests$value <- ests$obs
 
+  # without extrapolation
   ests2 <- data.frame(year = dat$year, obs = dat$no.extrap, se_log = dat$cv.no.extrap)
   ests2$lo <- exp(log(ests2$obs) - 1.96 * ests2$se_log)
   ests2$hi <- exp(log(ests2$obs) + 1.96 * ests2$se_log)
   ests2$value <- ests2$obs
 
+  # values used in 2016 assessment
+  ests3 <- data.frame(year = dat$year, obs = dat$with.extrap.2016, se_log = dat$cv.2016)
+  ests3$lo <- exp(log(ests3$obs) - 1.96 * ests3$se_log)
+  ests3$hi <- exp(log(ests3$obs) + 1.96 * ests3$se_log)
+  ests3$value <- ests3$obs
   par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
-  plotBars.fn(ests$year - 0.15, ests,scalar = 1e3, ylim = c(0, 3),
-              pch = 20, xlab="Year", ylab = "Biomass Index Estimate (million t)",
+  plotBars.fn(ests$year, ests,scalar = 1e3, ylim = c(0, 3),
+              pch = 20, xlab="Year", ylab = "Biomass index estimate (million t)",
               cex = 1.5, las = 1, gap = 0.05, xaxt = "n", ciLwd = 3, ciCol = rgb(0, 0, 0, 0.5))
-  plotBars.fn(ests2$year + 0.15, ests2, scalar = 1e3, pch = 17, add = TRUE, cex = 1.0,
+  plotBars.fn(ests2$year + 0.3, ests2, scalar = 1e3, pch = 17, add = TRUE, cex = 1.0,
               las = 1, gap = 0.05, ciLwd = 3, ciCol = rgb(0, 0, 1, 0.5), col = "blue")
+  plotBars.fn(ests3$year - 0.3, ests3, scalar = 1e3, pch = 18, add = TRUE, cex = 1.0,
+              las = 1, gap = 0.05, ciLwd = 3, ciCol = rgb(1, 0, 0, 0.5), col = "red")
   axis(1, at = ests$year, cex.axis = 0.8)
-  legend("topleft", c("With extrapolation", "No extrapolation"), col = c("black", "blue"), pch = c(16, 17))
+  legend("topleft", c("Values used in 2016 assessment",
+                      "Updated time series (with extrapolation, used in base model)",
+                      "Updated time series (no extrapolation)"),
+         col = c("red", "black", "blue"), pch = c(18, 16, 17), bty='n')
   par <- oldpar
 }
 
