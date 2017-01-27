@@ -8,17 +8,21 @@
 % \addcontentsline{toc}{section}{Appendix~\ref{chap:glossary}. Glossary of terms and acronyms}
 % \chapter*{Appendix~\ref{chap:glossary}. Glossary of terms and acronyms}
 
+% NOTE: %MSE will be used to designate definitions associated with past MSE work
+
 \chapter{Glossary of terms and acronyms used in this document}
 \label{chap:glossary}
 
-Note: Many of these definitions are relevant to the historical management of \fishname\ and the U.S. Pacific Fishery Management Council process, and are included here only to improve interpretability of previous assessment and background documents.
+%**IGT--I took out a bunch of the old Pacific Council-related definitions. The treaty has been in place long enough that we don't need to clutter things with unused phrases.
+%Note: Many of these definitions are relevant to the historical management of \fishname\ and the U.S. Pacific Fishery Management Council process, and are included here only to improve interpretability of previous assessment and background documents.
 
 \leftskip 0.7in
 \parindent -0.7in   % But need to reset to defaults at end of glossary
 
-40:10 harvest control rule: The calculation leading to the ABC catch level (see below) for future years. This calculation decreases the catch linearly (given a constant age structure in the population) from the catch implied by the $\Fmsy$ (see below) harvest level when the stock declines below $\Bforty$ (see below) to a value of 0 at $\Bten$.
+%**IGT--the harvest control rule is really the combination of $\Fforty$ AND the 40:10 adjustment, this this definition is misleading.
+%40:10 harvest control rule: The calculation leading to the ABC catch level (see below) for future years. This calculation decreases the catch linearly (given a constant age structure in the population) from the catch implied by the $\Fmsy$ (see below) harvest level when the stock declines below $\Bforty$ (see below) to a value of 0 at $\Bten$.
 
-40:10 adjustment: a reduction in the overall total allowable catch that is triggered when the biomass falls below 40\% of its average equilibrium level in the absence of fishing. This adjustment reduces the total allowable catch on a straight-line basis from the 40\% level such that the total allowable catch would equal zero when the stock is at 10\% of its average equilibrium level in the absence of fishing.
+40:10 adjustment: a reduction in the overall total allowable catch that is triggered when the biomass falls below 40\% of its average equilibrium level in the absence of fishing. This adjustment reduces the total allowable catch on a straight-line basis from the 40\% level such that the total allowable catch would equal zero when the stock is at 10\% of its average equilibrium level in the absence of fishing. This is one component of the default harvest policy (see below).
 
 ABC: Acceptable biological catch. See below.
 
@@ -34,12 +38,11 @@ AFSC: Alaska Fisheries Science Center (National Marine Fisheries Service).
 
 $B_0$: The estimated average unfished equilibrium female spawning biomass or spawning output if not directly proportional to spawning biomass.
 
-$\Bten$: The level of female spawning biomass (output) corresponding to 10\% of average unfished equilibrium female spawning biomass ($B_0$, size of fish stock without fishing; see above). This is the level at which the calculated catch based on the 40:10 harvest control rule (see above) is equal to 0.
+$\Bten$: The level of female spawning biomass (output) corresponding to 10\% of average unfished equilibrium female spawning biomass ($B_0$, size of fish stock without fishing; see above). This is the level at which the calculated TAC based on the 40:10 adjustment (see above) would reduce the catch to 0.
 
-$\Bforty$: The level of female spawning biomass (output) corresponding to 40\% of average unfished equilibrium female spawning biomass ($B_0$, size of fish stock without fishing; see above).
+$\Bforty$: The level of female spawning biomass (output) corresponding to 40\% of average unfished equilibrium female spawning biomass ($B_0$, size of fish stock without fishing; see above). This is the level below which the calculated TAC based on the default harvest policy (see below) is decreased from the value associated with %\Fforty%.
 
-
-$\Bmsy$: The estimated female spawning biomass (output) that produces the maximum sustainable yield (MSY). Also see $\Bforty$.
+$\Bmsy$: The estimated female spawning biomass (output) which theoretically would produce the maximum sustainable yield (MSY) under equilibrium fishing conditions (constant fishing and average recruitment in every year). Also see $\Bforty$ (above).
 
 Backscatter: The scattering by a target back in the direction of an acoustic source. Specifically, the Nautical Area Scattering Coefficient (a measure of scattering per area, denoted by SA) is frequently referred to as backscatter.
 
@@ -47,21 +50,23 @@ California Current Ecosystem: The waters of the continental shelf and slope off 
 
 Carryover: If at the end of the year, there are unharvested allocations, then there are provisions for an amount of these fish to be carried over into the next year's allocation process. The Agreement states that ``[I]f, in any year, a Party's catch is less than its individual TAC, an amount equal to the shortfall shall be added to its individual TAC in the following year, unless otherwise recommended by the JMC. Adjustments under this sub-paragraph shall in no case exceed 15 percent of a Party's unadjusted individual TAC for the year in which the shortfall occurred.''
 
-Case: A combination of the harvest policy ($\Fspr$ and control rule) and simulation assumptions regarding the survey. Cases considered in the MSE are ``Annual'', ``Biennial'', ``Perfect information'', and ``No Fishing''.
+%MSE: Case: A combination of the harvest policy ($\Fspr$ and control rule) and simulation assumptions regarding the survey. Cases considered in the MSE are ``Annual'', ``Biennial'', ``Perfect information'', and ``No Fishing''.
 
 Catchability ($q$): The parameter defining the proportionality between a relative index of stock abundance (often a fishery-independent survey) and the estimated stock abundance available to that survey (as modified by selectivity) in the assessment model.
 
 Catch-per-unit-effort (CPUE): A raw or (frequently) standardized and model-based metric of fishing success based on the catch and relative effort expended to generate that catch. Catch-per-unit-effort is often used as an index of stock abundance in the absence of fishery-independent indices and/or where the two are believed to be proportional.   % See CPUE below.
 
-Catch range: A term used in the MSE to describe simulations in which the JMC decision-making process is modeled very simplistically as replacing any TAC outside of a particular range with the limit of the range, even when this differs from the Default harvest policy (see below). The catch may fall outside the range if the available biomass is insufficient to support such removals.
+%MSE: Catch range: A term used in the MSE to describe simulations in which the JMC decision-making process is modeled very simplistically as replacing any TAC outside of a particular range with the limit of the range, even when this differs from the Default harvest policy (see below). The catch may fall outside the range if the available biomass is insufficient to support such removals.
 
 Catch target: A general term used to describe the catch value used for management. Depending on the context, this may be a limit rather than a target, and may be equal to a TAC, an ABC, the median result of applying the default harvest policy, or some other number. The JTC welcomes input from the JMC on the best terminology to use for these quantities.
 
+% Closed-loop simulation is an MSE-related definition but used in the 2017 assessment
 Closed-loop simulation: A subset of an MSE that iteratively simulates a population using an operating model, generates data from that population and passes it to an estimation model, uses the estimation model and a management strategy to provide management advice, which then feeds back into the operating model to simulate an additional fixed set of time before repeating this process. % This is illustrated in Figure A.2.
 
 Cohort: A group of fish born in the same year. Also see recruitment and year-class.
 
-Constant catch: One of many ways of setting catch in the MSE. In this case, the catch is set equal to a fixed value in all years unless the available biomass is insufficient to support such removals.
+Constant catch: a catch scenario used for forecasting in which the same catch is used in successive years
+%MSE: %Constant catch: One of many ways of setting catch in the MSE. In this case, the catch is set equal to a fixed value in all years unless the available biomass is insufficient to support such removals.
 
 CPUE: Catch-per-unit-effort (see above).
 
@@ -73,11 +78,12 @@ Depletion: Term used for relative spawning biomass (see below) prior to the 2015
 
 DFO: Fisheries and Oceans Canada. Federal organization which delivers programs and services that support sustainable use and development of Canada's waterways and aquatic resources.
 
-DOC: United States Department of Commerce. Parent organization of the National Marine Fisheries Service (NMFS).
+%Not found in text in 2017:
+%DOC: United States Department of Commerce. Parent organization of the National Marine Fisheries Service (NMFS).
 
 El Ni\~no: Abnormally warm ocean climate conditions in the California Current Ecosystem (see above) as a result of broad changes in the Eastern Pacific Ocean across the eastern coast of Latin America (centered on Peru) often around the end of the calendar year.
 
-Estimation model: A single run of Stock Synthesis within a combination of Case, Simulation and Year. The directories containing these results are named ``assess2012'' through ``assess2030'' where the year value in this case represents the last year of real or simulated data. The amount of data available to these models is therefore consistent with the stock assessments conducted in the years 2013-2031. There are 18 Estimation Models for each of 999 Simulations within each of 4 Management strategies for a total of 71,928 model results. The estimation models use maximum likelihood estimation, not MCMC.
+%MSE: Estimation model: A single run of Stock Synthesis within a combination of Case, Simulation and Year. The directories containing these results are named ``assess2012'' through ``assess2030'' where the year value in this case represents the last year of real or simulated data. The amount of data available to these models is therefore consistent with the stock assessments conducted in the years 2013-2031. There are 18 Estimation Models for each of 999 Simulations within each of 4 Management strategies for a total of 71,928 model results. The estimation models use maximum likelihood estimation, not MCMC.
 
 Exploitation fraction: A metric of fishing intensity that represents the total annual catch divided by the estimated population biomass over a range of ages assumed to be vulnerable to the fishery (set to ages $3+$ in recent assessments, including this one). This value is not equivalent to the instantaneous rate of fishing mortality (see below) or the spawning potential ratio (SPR, see below).
 
@@ -89,13 +95,13 @@ $\Fforty$ (F-40 Percent): The rate of fishing mortality estimated to reduce the 
 
 Female spawning biomass: The biomass of mature female fish at the beginning of the year. Occasionally, especially in reference points, this term is used to mean spawning output (expected egg production, see below) when this is not proportional to spawning biomass. See also spawning biomass.
 
-Fishing intensity: A measure of the magnitude of fishing relative to a specified target. In this assessment it is defined as: 
+Fishing intensity: A measure of the magnitude of fishing relative to the SPR target (see SPR below). In this assessment it is defined as: 
 \eb
-\mbox {relative SPR} = \frac{1-\mbox{SPR}}{ 1-\mbox{SPR}_{xx\%}},
+\mbox {fishing intensity} = \frac{1-\mbox{SPR}}{ 1-40\%},
 \label{appendix-glossary-spr}
 \ee
-where $xx\%$ is the 40\% proxy. See Figure~\ref{fig:glossary-fishing-intensity}.
-% for 2016 assessment, consider revising definition of Fishing Intensity as discussed 
+where SPR = 40\% is Spawning Potential Ratio associated with the target harvest rate. See Figure~\ref{fig:glossary-fishing-intensity}.
+% for 2017 assessment, consider revising definition of Fishing Intensity as discussed 
 % in issue #158: https://github.com/cgrandin/hake-assessment/issues/158
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -129,28 +135,33 @@ $\Fmsy$: The rate of fishing mortality estimated to produce the maximum sustaina
 
 Harvest strategy: A formal system for managing a fishery that includes the elements shown in Figure A.1 of \citet{JTC2015}. 
 
-Harvest control rule: A process for determining an ABC from a stock assessment. (See ``40:10 harvest control rule'' above).
+Harvest control rule: A process for determining an ABC from a stock assessment. Also see default harvest policy (above).
 
 Joint Management Committee (JMC): The joint management committee established by the Agreement.
 
 Joint Technical Committee (JTC): The joint technical committee established by the Agreement. The full formal name is ``Joint Technical Committee of the \fishname/whiting Agreement Between the Governments of the United States and Canada''.
 
-kt: Knots (nautical miles per hour).
+%Not found in text in 2017:
+%kt: Knots (nautical miles per hour).
 
 Magnuson-Stevens Fishery Conservation and Management Act: The MSFCMA, sometimes known as the ``Magnuson-Stevens Act'', established the 200-mile fishery conservation zone, the regional fishery management council system, and other provisions of U.S. marine fishery law.
 
 Management Strategy Evaluation (MSE):  A formal process for evaluating Harvest Strategies (see above). % The elements of an MSE are illustrated in Figures~A.1 and A.2 of ***.
 
-MAP: maximum \emph{a posteriori} probability. See below.
+%Not found in text in 2017:
+%MAP: maximum \emph{a posteriori} probability. See below.
 
-Markov-Chain Monte-Carlo (MCMC): A numerical method used to sample from the posterior distribution (see below) of parameters and derived quantities in a Bayesian analysis. It is more computationally intensive than the maximum likelihood estimate (see above), but provides a more accurate depiction of parameter uncertainty. 
+Markov-Chain Monte-Carlo (MCMC): A numerical method used to sample from the posterior distribution (see below) of parameters and derived quantities in a Bayesian analysis. It is more computationally intensive than the maximum likelihood estimate (see below), but provides a more accurate depiction of parameter uncertainty. 
 See \citet{StewartHicksEtAl2013} for a discussion of issues related to differences between MCMC and MLE.
 
-Maximum \emph{a posteriori} probability (MAP) estimate: mode of the posterior distribution used as a point estimate which is similar to the penalized MLE. % This is also referred to as the ``maximum posterior density'' (MPD) in this document. **AME -- check if we use the latter, I don't think I've seen it.
+%Not found in text in 2017:
+%Maximum \emph{a posteriori} probability (MAP) estimate: mode of the posterior distribution used as a point estimate which is similar to the penalized MLE. % This is also referred to as the ``maximum posterior density'' (MPD) in this document. **AME -- check if we use the latter, I don't think I've seen it.
 
-Maximum likelihood estimate (MLE): Sometimes used interchangeably with ``maximum posterior density estimate'' or MPD. A numerical method used to estimate a single value for each of the parameters and derived quantities. It is less computationally intensive than MCMC methods (see below), but parameter uncertainty is less well characterized.
+Maximum likelihood estimate (MLE): %Sometimes used interchangeably with ``maximum posterior density estimate'' or MPD. 
+A numerical method used to estimate a single value for each of the parameters and derived quantities. It is less computationally intensive than MCMC methods (see below), but parameter uncertainty is less well characterized.
 
-Maximum posterior density (MPD) estimate: mode of the posterior distribution used as a point estimate which is similar to the penalized MLE. This is also known as the ``maximum \emph{a posterior} probability'' (MAP).
+%Not found in text in 2017:
+%Maximum posterior density (MPD) estimate: mode of the posterior distribution used as a point estimate which is similar to the penalized MLE. This is also known as the ``maximum \emph{a posterior} probability'' (MAP).
 
 Maximum sustainable yield (MSY): An estimate of the largest average annual catch that can be continuously taken over a long period of time from a stock under prevailing ecological and environmental conditions.
 
@@ -158,7 +169,8 @@ MCMC: Markov-Chain Monte-Carlo (see above).
 
 MLE: Maximum likelihood estimate (see above).
 
-% MPD: Maximum posterior density (see above).
+%Not found in text in 2017:
+%MPD: Maximum posterior density (see above).
 
 MSE: Management Strategy Evaluation (see above).
 
@@ -172,19 +184,21 @@ National Marine Fisheries Service: See NOAA Fisheries below.
 
 NMFS: National Marine Fisheries Service. See NOAA Fisheries below.
 
-NOAA Fisheries: The division of the United States National Oceanic and Atmospheric Administration (NOAA) responsible for conservation and management of offshore fisheries (and inland salmon). This agency was previously known as the National Marine Fisheries Service (NMFS), and both names are commonly used at this time.
+NOAA Fisheries: The division of the United States National Oceanic and Atmospheric Administration (NOAA) responsible for conservation and management of offshore fisheries (and inland salmon). This is also known as the National Marine Fisheries Service (NMFS), and both names are commonly used at this time.
 
 NORPAC: North Pacific Database Program. A database storing U.S. fishery observer data collected at sea.
 
-NWFSC : Northwest Fisheries Science Center. A division of NOAA Fisheries located primarily in Seattle, Washington, but also in Newport, Oregon and other locations.
+NWFSC : Northwest Fisheries Science Center. A NOAA Fisheries Science Center located primarily in Seattle, Washington, but also in Newport, Oregon and other locations.
 
 Operating Model (OM): A model used to simulate data for use in the MSE (see above). The operating model includes components for the stock and fishery dynamics, as well as the simulation of the data sampling process, potentially including observation error. Cases in the MSE represent alternative configurations of the operating model.
 
 OM: Operating Model (see above).
 
-Optimum yield: The amount of fish that will provide the greatest overall benefit to the Nation, particularly with respect to food production and recreational opportunities, and taking into account the protection of marine ecosystems. The OY is developed based on the acceptable biological catch from the fishery, taking into account relevant economic, social, and ecological factors. In the case of overfished fisheries, the OY provides for rebuilding to the target stock abundance.
+%Not found in text in 2017:
+%Optimum yield: The amount of fish that will provide the greatest overall benefit to the Nation, particularly with respect to food production and recreational opportunities, and taking into account the protection of marine ecosystems. The OY is developed based on the acceptable biological catch from the fishery, taking into account relevant economic, social, and ecological factors. In the case of overfished fisheries, the OY provides for rebuilding to the target stock abundance.
 
-OY: Optimum yield (see above).
+%Not found in text in 2017:
+%OY: Optimum yield (see above).
 
 PacFIN: Pacific Coast Fisheries Information Network. A database that provides a central repository for commercial fishery information from Washington, Oregon, and California.
 
@@ -192,7 +206,9 @@ PBS: Pacific Biological Station of Fisheries and Oceans Canada (DFO, see above),
 
 Pacific Fishery Management Council (PFMC): The U.S. organization under which historical stock assessments for \fishname/whiting were conducted.
 
-\fishname/whiting: \emph{\sciencename} are located in the offshore waters of the United States and Canada (not including smaller stocks located in Puget Sound and the Strait of Georgia). % **AME -- it's not really the `stock', it's the species. 
+\fishname: Common name for \emph{\sciencename}, the species whose offshore stock in the waters of the United States and Canada is subject of this assessment. % **AME -- it's not really the `stock', it's the species. **IGT -- corrected 2017/01/27
+
+Pacific Whiting: an alternative name for \fishname commonly used in the United States.
 
 Posterior distribution: The probability distribution for parameters or derived quantities from a Bayesian model representing the result of the prior probability distributions (see below) being updated by the observed data via the likelihood equation. For stock assessments, posterior distributions are approximated via numerical methods; one frequently employed method is MCMC (see above).
 
@@ -202,15 +218,16 @@ $q$: Catchability (see above).
 
 $R_0$: Estimated average level of annual recruitment occurring at $B_0$ (see above).
 
-Recruits/recruitment: A group of fish born in the same year, or the estimated production of new members to a fish population of the same age. Recruitment is reported at a specific life stage, often age~0 or~1, but sometimes corresponding to the age at which the fish first become vulnerable to the fishery. See also cohort and year-class.   %  **AME -- shouldn't first sentence end ``... to a fish population of new members of the same age.'' And maybe `estimated contribution' instead of `estimated production'??
+Recruits/recruitment: the estimated number of new members in a fish population born in the same age. In this assessment, recruitment is reported at age~0. See also cohort and year-class.   %  **AME -- shouldn't first sentence end ``... to a fish population of new members of the same age.'' And maybe `estimated contribution' instead of `estimated production'?? **IGT -- I shortened the definition quite a bit. See if the new one works for you. Do we care if some other assessments define recruitment at a different age (as noted in previous definition)?
 
 Recruitment deviation: The offset of the recruitment in a given year relative to the stock-recruit function; values occur on a logarithmic scale and are relative to the expected recruitment at a given spawning biomass (see below).
 
 Relative spawning biomass: The ratio of the estimated beginning-of-the-year female spawning biomass to estimated average unfished equilibrium female spawning biomass ($B_0$, see above). Thus, lower values are associated with fewer mature female fish. This term has been introduced in the 2015 stock assessment as a replacement for ``depletion'' which was a source of some confusion. 
 % AME - great, I hate the term depletion....
 
-Relative SPR: A measure of fishing intensity transformed to have an interpretation more like $F$: as fishing increases the metric increases. Relative SPR is the ratio of $(1-\mbox{SPR})$ to $(1-\mbox{SPR}_{xx\%})$, where ``xx'' is the proxy or estimated SPR rate that produces MSY.
+Relative SPR: A measure of fishing intensity transformed to have an interpretation more like $F$: as fishing increases the metric increases. Relative SPR is the ratio of $(1-\mbox{SPR})$ to $(1-40\%$, where 40\% is the target SPR rate.
 
+%%% all these SB* definitions seem to no longer be used (noted in 2017)
 % $SB_0$: The estimated average unfished equilibrium female spawning biomass or spawning output if not directly proportional to spawning biomass. See $B_0$. **AME -- check if we use $SB_0$ anywhere.
 
 %$SB_{10\%}$: The level of female spawning biomass (output) corresponding to 10\% of average unfished equilibrium female spawning biomass ($B_0$, size of fish stock without fishing; see above). This is the level at which the calculated catch based on the 40:10 harvest control rule (see above) is equal to 0. See $\Bten$.
@@ -231,24 +248,27 @@ Spawning biomass: Abbreviated term for female spawning biomass (see above).
 
 Spawning output: The total production of eggs (or possibly viable egg equivalents if egg quality is taken into account) given the number of females-at-age (and maturity- and fecundity-at-age).
 
-Spawning potential ratio (SPR): A metric of fishing intensity. The ratio of the spawning output per recruit under a given level of fishing to the estimated spawning output per recruit in the absence of fishing. It achieves a value of one in the absence of fishing and declines toward zero as fishing intensity increases.
+Spawning potential ratio (SPR): A metric of fishing intensity. The ratio of the spawning output per recruit under a given level of fishing to the estimated spawning output per recruit in the absence of fishing. It achieves a value of 100\% in the absence of fishing and declines toward zero as fishing intensity increases.
 
-Spawning stock biomass (SSB): Alternative term for female spawning biomass (see above).
+%Not found in text in 2017:
+%Spawning stock biomass (SSB): Alternative term for female spawning biomass (see above).
 
+SPR: Spawning potential ratio (see above).
 
-SPR: Spawning potential ratio(see above).
+%Not found in text in 2017:
+%SPR$_{MSY}$: The estimated spawning potential ratio that produces the largest sustainable harvest (MSY).
 
-SPR$_{MSY}$: The estimated spawning potential ratio that produces the largest sustainable harvest (MSY).
-
-SPR$_{40\%}$: The estimated spawning potential ratio that stabilizes the female spawning biomass at the MSY-proxy target of $\Bforty$. Also referred to as SPR$_{MSY}$-proxy.
+SPR$_{40\%}$: The target spawning potential ratio, which is associated with the spawning output per recruit equal to 40\% of the spawning output per recruit that would occur in the absence of fishing. Even under equilibrium conditions, SPR$_{40\%}$ would not necessarily result in a relative spawning biomass of B$_{40\%}$.
 
 SS: Stock Synthesis (see below).
 
-SSC: Scientific and Statistical Committee (see above).
+%Not found in text in 2017:
+%SSC: Scientific and Statistical Committee (see above).
 
-STAR Panel: Stock Assessment Review Panel. A panel set up to provide independent review of all stock assessments used by the Pacific Fishery Management Council.
+%Not found in text in 2017:
+%STAR Panel: Stock Assessment Review Panel. A panel set up to provide independent review of all stock assessments used by the Pacific Fishery Management Council.
 
-Steepness ($h$): A stock-recruit relationship parameter representing the proportion of $R_0$ expected (on average) when the female spawning biomass is reduced to 20\% of $B_0$ (i.e.,~when relative spawning biomass is equal to 20\%). This parameter can be thought of one important component to the productivity of the stock.
+Steepness ($h$): A stock-recruit relationship parameter representing the proportion of $R_0$ expected (on average) when the female spawning biomass is reduced to 20\% of $B_0$ (i.e.,~when relative spawning biomass is equal to 20\%). %This parameter can be thought of one important component to the productivity of the stock. **IGT--our sensitivity analyses show that it's not it's NOT actually that important.
 
 Stock Synthesis (SS): The age-structured stock assessment model applied in this stock assessment. % For a more detailed description of this model, see \citet{**Methot and Wetzel (2013).
 
@@ -263,6 +283,9 @@ U.S./Canadian allocation: The division of the total allowable catch of \Sexpr{us
 Vulnerable biomass: The demographic portion of the stock available for harvest by the fishery.
 
 Year-class: A group of fish born in the same year. See also `cohort' and `recruitment'.
+
+%Not found in text in 2017 (but could be added in the future)
+Yield per recruit
 
 \leftskip 0in      % Guessing this will be correct.
 \parindent 0in     % As in hake.sty

@@ -183,8 +183,8 @@
 \newcommand{\Fforty}{F_{\text{SPR}=40\%}}       % Needs to be done as $\Fforty$
 \newcommand{\Ffortyten}{$\Fforty$--40:10}   % harvest control rule, \Ffortyten{}
                                             %  to have a space after
-\newcommand{\Bforty}{B_{\text{SPR}=40\%}}
-\newcommand{\Bten}{B_{\text{SPR}=10\%}}
+\newcommand{\Bforty}{B_{40\%}}
+\newcommand{\Bten}{B_{10\%}}
 \newcommand{\Bzero}{B_{0}}
 \newcommand{\Bmsy}{B_{\text{MSY}}}
 \newcommand{\Fmsy}{F_{\text{MSY}}}
