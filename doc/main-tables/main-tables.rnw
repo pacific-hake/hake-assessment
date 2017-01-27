@@ -1,7 +1,5 @@
 % main-tables.rnw
 
-\clearpage
-
 \vspace{-2mm}   % To shift section heading up. Can't for now get rid of
                 %  previous blank page.
 
@@ -57,31 +55,34 @@ make.sampling.history.table(sampling.history,
 <<main.us.cp.age.data.table, results='asis', echo=FALSE>>=
 make.us.age.data.table(us.cp.age,
                        fleet = 1,
-                       xcaption = "Age proportions used in the assessment for the U.S. Catcher-processor fleet.",
+                       xcaption = paste0("Age proportions (as percentages) used in the assessment for ",
+                                         "the U.S. Catcher-processor fleet."),
                        xlabel = "tab:main-us-cp-age-data",
                        font.size = 8,
                        space.size = 10,
-                       decimals = 4)
+                       decimals = 2)
 @
 
 <<main.us.ms.age.data.table, results='asis', echo=FALSE>>=
 make.us.age.data.table(us.ms.age,
                        fleet = 2,
-                       xcaption = "Age proportions used in the assessment for the U.S. Mothership fleet.",
+                       xcaption = paste0("Age proportions (as percentages) used in the assessment for ",
+                                         "the U.S. Mothership fleet."),
                        xlabel = "tab:main-us-ms-age-data",
                        font.size = 8,
                        space.size = 10,
-                       decimals = 4)
+                       decimals = 2)
 @
 
 <<main.us.shore.age.data.table, results='asis', echo=FALSE>>=
 make.us.age.data.table(us.shore.age,
                        fleet = 3,
-                       xcaption = "Age proportions used in the assessment for the U.S. Shoreside fleet.",
+                       xcaption = paste0("Age proportions (as percentages) used in the assessment for ",
+                                         "the U.S. Shoreside fleet."),
                        xlabel = "tab:main-us-shore-age-data",
                        font.size = 8,
                        space.size = 10,
-                       decimals = 4)
+                       decimals = 2)
 @
 \end{landscape}
 \restoregeometry
@@ -96,22 +97,24 @@ make.us.age.data.table(us.shore.age,
 make.can.age.data.table(can.ages,
                         fleet = 1,
                         start.yr = 2008,
-                        xcaption = "Age proportions used in the assessment for the Canadian Shoreside fleet.",
+                        xcaption = paste0("Age proportions (as percentages) used in the assessment for ",
+                                          "the Canadian Shoreside fleet."),
                         xlabel = "tab:main-can-age-data",
                         font.size = 8,
                         space.size = 10,
-                        decimals = 4)
+                        decimals = 2)
 @
 
 <<main.can.ft.age.data.table, results='asis', echo=FALSE>>=
 make.can.age.data.table(can.ages,
                         fleet = 2,
                         start.yr = 2008,
-                        xcaption = "Age proportions used in the assessment for the Canadian Freezer Trawler fleet.",
+                        xcaption = paste0("Age proportions (as percentages) used in the assessment for ",
+                                          "the Canadian Freezer Trawler fleet."),
                         xlabel = "tab:main-can--age-data",
                         font.size = 8,
                         space.size = 10,
-                        decimals = 4)
+                        decimals = 2)
 @
 
 %%<<main.can.jv.age.data.table, results='asis', echo=FALSE>>=
