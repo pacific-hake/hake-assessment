@@ -231,7 +231,7 @@ Spawning biomass: Abbreviated term for female spawning biomass (see above).
 
 Spawning output: The total production of eggs (or possibly viable egg equivalents if egg quality is taken into account) given the number of females-at-age (and maturity- and fecundity-at-age).
 
-Spawning potential ratio (SPR): A metric of fishing intensity. The ratio of the spawning output per recruit under a given level of fishing to the estimated spawning output per recruit in the absence of fishing; i.e.~for fishing mortality rate $F$
+Spawning potential ratio (SPR): The ratio of the spawning output per recruit under a given level of fishing to the estimated spawning output per recruit in the absence of fishing; i.e.~for fishing mortality rate $F$
 \eb
 \mbox{SPR}(F) = \frac{\mbox{spawning output per recruit with }F}{\mbox{spawning output per recruit with no fishing}}.
 \ee
