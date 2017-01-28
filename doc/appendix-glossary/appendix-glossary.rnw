@@ -101,12 +101,14 @@ Female spawning biomass: The biomass of mature female fish at the beginning of t
 
 Fisheries and Oceans Canada: Federal organization which delivers programs and services that support sustainable use and development of Canada's waterways and aquatic resources.
 
-Fishing intensity: A measure of the magnitude of fishing relative to the SPR target (see SPR below). In this assessment it is defined as:
+Fishing intensity: A measure of the magnitude of fishing relative to the SPR target (see SPR below). In this assessment the SPR target is 40\%, and fishing intensity for a fishing rate $F$ is defined as:
 \eb
-\mbox {fishing intensity} = \frac{1-\mbox{SPR}}{ 1-40\%},
+\mbox {fishing intensity for }F & = & \frac{1-\mbox{SPR}(F)}{1-\mbox{SPR}(\Fforty)}\\
+ & = & \frac{1-\mbox{SPR}(F)}{1-0.4}\\
+ & = & \frac{1-\mbox{SPR}(F)}{0.6},
 \label{appendix-glossary-spr}
 \ee
-where SPR = 40\% is Spawning Potential Ratio associated with the target harvest rate. See Figure~\ref{fig:glossary-fishing-intensity-illustration}.
+where SPR$(F)$ is the spawning potential ratio associated with fishing rate $F$, and $\Fforty$ is the $F$ that gives an SPR of 40\%. See Figure~\ref{fig:glossary-fishing-intensity-illustration}.
 % for 2017 assessment, consider revising definition of Fishing Intensity as discussed 
 % in issue #158: https://github.com/cgrandin/hake-assessment/issues/158
 
@@ -323,7 +325,7 @@ intensity.plot = function(target = 0.4){
 intensity.plot()
 @
 \end{center}
-\caption{Fishing intensity as a function of SPR (top axis) and 1-SPR (bottom axis) as defined in equation (\ref{appendix-glossary-spr}).}
+\caption{Fishing intensity as a function of SPR (top axis) and 1-SPR (bottom axis); given the target SPR of 40\%, the bold line is simply $1/0.6$, as shown in equation (\ref{appendix-glossary-spr}).}
 %  **Need to make terminology the same as the fishing intensity definition.....
 \label{fig:glossary-fishing-intensity-illustration}
 \end{figure}
