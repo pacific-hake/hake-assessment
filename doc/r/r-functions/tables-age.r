@@ -1,6 +1,7 @@
 make.can.age.data.table <- function(dat,
                                     fleet = 1,            ## 1=Can-Shoreside, 2=Can-FT, 3=Can-JV
                                     start.yr,             ## Start the table on this year
+                                    end.yr,
                                     xcaption = "default",
                                     xlabel = "default",
                                     font.size = 9,        ## Size of the font for the table
@@ -14,7 +15,7 @@ make.can.age.data.table <- function(dat,
   n.trip.haul <- as.numeric(dat[[fleet + 3]])
   ages.df <- cbind(n.trip.haul, ages.df)
   dat <- cbind(as.numeric(rownames(ages.df)), ages.df)
-  dat <- dat[dat[,1] >= start.yr,]
+  dat <- dat[dat[,1] >= start.yr & dat[,1] <= end.yr,]
 
   dat[,2] <- as.numeric(f(dat[,2]))
   ## Make percentages
@@ -62,6 +63,8 @@ make.can.age.data.table <- function(dat,
 
 make.us.age.data.table <- function(dat,
                                    fleet = 1,            ## 1=US-CP, 2=US-MS, 3=US-Shoreside
+                                   start.yr,             ## Start the table on this year
+                                   end.yr,
                                    xcaption = "default",
                                    xlabel = "default",
                                    font.size = 9,        ## Size of the font for the table
@@ -86,6 +89,7 @@ make.us.age.data.table <- function(dat,
     ## Make pretty
     dat[,-c(1,2)] <- f(dat[,-c(1,2)], decimals)
   }
+  dat <- dat[dat[,1] >= start.yr & dat[,1] <= end.yr,]
 
   ## Add the extra header spanning multiple columns
   addtorow <- list()
