@@ -23,7 +23,7 @@
 %**IGT--the harvest control rule is really the combination of $\Fforty$ AND the 40:10 adjustment, this this definition is misleading.
 %40:10 harvest control rule: The calculation leading to the ABC catch level (see below) for future years. This calculation decreases the catch linearly (given a constant age structure in the population) from the catch implied by the $\Fmsy$ (see below) harvest level when the stock declines below $\Bforty$ (see below) to a value of 0 at $\Bten$.
 
-40:10 adjustment: a reduction in the overall total allowable catch that is triggered when the biomass falls below 40\% of its equilibrium level in the absence of fishing. This adjustment reduces the total allowable catch on a straight-line basis from the 40\% level such that the total allowable catch would equal zero when the stock is at 10\% of its equilibrium level in the absence of fishing. This is one component of the default harvest policy (see below).
+40:10 adjustment: a reduction in the overall total allowable catch that is triggered when the female spawning biomass falls below 40\% of its unfished equilibrium level. This adjustment reduces the total allowable catch on a straight-line basis from the 40\% level such that the total allowable catch would equal zero when the biomass is at 10\% of its unfished equilibrium level. This is one component of the default harvest policy (see below).
 
 ABC: Acceptable biological catch. See below.
 
