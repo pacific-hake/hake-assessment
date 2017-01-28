@@ -41,7 +41,7 @@ $B_0$: The unfished equilibrium female spawning biomass. %, or spawning output i
 
 $\Bten$: The level of female spawning biomass corresponding to 10\% of unfished equilibrium female spawning biomass, i.e.~$\Bten = 0.1B_0$. This is the level below which the calculated TAC is set to 0, based on the 40:10 adjustment (see above).
 
-$\Bforty$: The level of female spawning biomass corresponding to 40\% of unfished equilibrium female spawning biomass, i.e.~$\Bforty = 0.4B_0$ ($B_0$). This is the level below which the calculated TAC is decreased from the value associated with $\Fforty$, based on the default harvest policy (see below).
+$\Bforty$: The level of female spawning biomass corresponding to 40\% of unfished equilibrium female spawning biomass, i.e.~$\Bforty = 0.4B_0$ ($B_0$). This is the level below which the calculated TAC is decreased from the value associated with $\Fforty$, based on the 40:10 adjustment (see above).
 
 $\Bmsy$: The estimated female spawning biomass (output) which theoretically would produce the maximum sustainable yield (MSY) under equilibrium fishing conditions (constant fishing and average recruitment in every year). Also see $\Bforty$ (above).
 
