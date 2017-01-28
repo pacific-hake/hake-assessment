@@ -98,7 +98,11 @@ The 40\% value is specified in the Agreement.
 
 \Ffortyten{} harvest policy: The default harvest policy (see above).
 
-Female spawning biomass: The biomass of mature female fish at the beginning of the year. Occasionally, especially in reference points, this term is used to mean spawning output (expected egg production, see below) when this is not proportional to spawning biomass. See also spawning biomass.
+Female spawning biomass: The biomass of mature female fish at the beginning of the year. 
+% AME - I can't see how this is consistent with defn of spawning output, so 
+%  commenting out.
+% Occasionally, especially in reference points, this term is used to mean spawning output (expected egg production, see below) when this is not proportional to spawning biomass. 
+Sometimes abbreviated to spawning biomass.
 
 Fisheries and Oceans Canada: Federal organization which delivers programs and services that support sustainable use and development of Canada's waterways and aquatic resources.
 
