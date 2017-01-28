@@ -90,7 +90,7 @@ Exploitation fraction: A metric of fishing intensity that represents the total a
 
 $F$: Instantaneous rate of fishing mortality (or fishing mortality rate); see below.
 
-$\Fforty$: The rate of fishing mortality estimated to reduce the spawning potential ratio (SPR, see below) to 40\%. Therefore, by definition this satisfies
+$\Fforty$: The rate of fishing mortality estimated to give a spawning potential ratio (SPR, see below) of 40\%. Therefore, by definition this satisfies
 \eb
 0.4 = \frac{\mbox{spawning output per recruit with }\Fforty}{\mbox{spawning output per recruit with no fishing}}.
 \ee
