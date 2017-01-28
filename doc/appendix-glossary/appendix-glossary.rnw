@@ -146,7 +146,7 @@ See \citet{StewartHicksEtAl2013} for a discussion of issues related to differenc
 %Maximum \emph{a posteriori} probability (MAP) estimate: mode of the posterior distribution used as a point estimate which is similar to the penalized MLE. % This is also referred to as the ``maximum posterior density'' (MPD) in this document. **AME -- check if we use the latter, I don't think I've seen it.
 
 Maximum likelihood estimate (MLE): %Sometimes used interchangeably with ``maximum posterior density estimate'' or MPD. 
-A numerical method used to estimate a single value for each of the parameters and derived quantities. It is less computationally intensive than MCMC methods (see below), but parameter uncertainty is less well characterized.
+A method used to estimate a single value for each of the parameters and derived quantities. It is less computationally intensive than MCMC methods (see below), but parameter uncertainty is less well determined.
 
 %Not found in text in 2017:
 %Maximum posterior density (MPD) estimate: mode of the posterior distribution used as a point estimate which is similar to the penalized MLE. This is also known as the ``maximum \emph{a posterior} probability'' (MAP).
