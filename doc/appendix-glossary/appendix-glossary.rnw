@@ -94,6 +94,7 @@ $\Fforty$: The rate of fishing mortality estimated to give a spawning potential 
 \eb
 0.4 = \frac{\mbox{spawning output per recruit with }\Fforty}{\mbox{spawning output per recruit with no fishing}}.
 \ee
+The 40\% value is specified in the Agreement.
 
 \Ffortyten{} harvest policy: The default harvest policy (see above).
 
@@ -244,7 +245,8 @@ SPR: Spawning potential ratio (see above).
 %Not found in text in 2017:
 %SPR$_{MSY}$: The estimated spawning potential ratio that produces the largest sustainable harvest (MSY).
 
-SPR$_{40\%}$: The target spawning potential ratio, which is associated with the spawning output per recruit equal to 40\% of the spawning output per recruit that would occur in the absence of fishing. Even under equilibrium conditions, SPR$_{40\%}$ would not necessarily result in a relative spawning biomass of B$_{40\%}$.
+% Not found in text in 2017, but now defining 'target spawning potential ratio' below.
+% SPR$_{40\%}$: The target spawning potential ratio, which is associated with the spawning output per recruit equal to 40\% of the spawning output per recruit that would occur in the absence of fishing. Even under equilibrium conditions, SPR$_{40\%}$ would not necessarily result in a relative spawning biomass of B$_{40\%}$.
 
 SS: Stock Synthesis (see below).
 
@@ -257,6 +259,8 @@ SS: Stock Synthesis (see below).
 Steepness ($h$): A stock-recruit relationship parameter representing the proportion of $R_0$ expected (on average) when the female spawning biomass is reduced to 20\% of $B_0$ (i.e.,~when relative spawning biomass is equal to 20\%). %This parameter can be thought of one important component to the productivity of the stock. **IGT--our sensitivity analyses show that it's not it's NOT actually that important.
 
 Stock Synthesis (SS): The age-structured stock assessment model applied in this stock assessment. % For a more detailed description of this model, see \citet{**Methot and Wetzel (2013).
+
+Target spawning potential ratio: The spawning potential ratio of 40\%, where the 40\% relates to the default harvest rate of $\Fforty$ specified in the Agreement. Even under equilibrium conditions, $\Fforty$ would not necessarily result in a spawning biomass of $B_{40\%}$ because $\Fforty$ is defined in terms of the spawning potential ratio which depends on the spawning output \emph{per recruit}.
 
 Target strength (TS): The amount of backscatter from an individual acoustic target.
 
