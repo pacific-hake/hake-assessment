@@ -37,7 +37,7 @@ Agreement (``Treaty''): The Agreement between the government of the United State
 
 AFSC: Alaska Fisheries Science Center (National Marine Fisheries Service).
 
-$B_0$: The unfished equilibrium female spawning biomass, or spawning output if not directly proportional to spawning biomass.
+$B_0$: The unfished equilibrium female spawning biomass. %, or spawning output if not directly proportional to spawning biomass.
 
 $\Bten$: The level of female spawning biomass (output) corresponding to 10\% of unfished equilibrium female spawning biomass ($B_0$). This is the level below which the calculated TAC based on the 40:10 adjustment (see above) would reduce the catch to 0.
 
