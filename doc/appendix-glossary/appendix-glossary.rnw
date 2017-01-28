@@ -66,7 +66,7 @@ Closed-loop simulation: A subset of an MSE that iteratively simulates a populati
 
 Cohort: A group of fish born in the same year. Also see recruitment and year-class.
 
-Constant catch: a catch scenario used for forecasting in which the same catch is used in successive years.
+Constant catch: A catch scenario used for forecasting in which the same catch is used in successive years.
 %MSE: %Constant catch: One of many ways of setting catch in the MSE. In this case, the catch is set equal to a fixed value in all years unless the available biomass is insufficient to support such removals.
 
 CPUE: Catch-per-unit-effort (see above).
