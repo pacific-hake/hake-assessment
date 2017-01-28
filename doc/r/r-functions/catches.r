@@ -127,8 +127,16 @@ make.catches.table.US <- function(catches,              ## The output of the loa
 
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
-  return(print(xtable(catches, caption=xcaption, label=xlabel, align=get.align(ncol(catches))),
-               caption.placement = "top", include.rownames=FALSE, table.placement="H", sanitize.text.function=function(x){x}, size=size.string))
+  return(print(xtable(catches,
+                      caption = xcaption,
+                      label = xlabel,
+                      align = get.align(ncol(catches))),
+               caption.placement = "top",
+               include.rownames = FALSE,
+               table.placement = "H",
+               tabular.environment = "longtable",
+               sanitize.text.function = function(x){x},
+               size = size.string))
 }
 
 ## Canadian catches only, for all years:
@@ -153,8 +161,16 @@ make.catches.table.Can <- function(catches,              ## The output of the lo
 
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
-  return(print(xtable(catches, caption=xcaption, label=xlabel, align=get.align(ncol(catches))),
-               caption.placement = "top", include.rownames=FALSE, table.placement="H", sanitize.text.function=function(x){x}, size=size.string))
+  return(print(xtable(catches,
+                      caption = xcaption,
+                      label = xlabel,
+                      align = get.align(ncol(catches))),
+               caption.placement = "top",
+               include.rownames = FALSE,
+               table.placement = "H",
+               tabular.environment = "longtable",
+               sanitize.text.function = function(x){x},
+               size = size.string))
 }
 
 ## ** Combine these three functions (this and two above) into one with a switch,
@@ -190,8 +206,16 @@ make.catches.table.total <- function(catches,              ## The output of the 
 
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
-  return(print(xtable(catches, caption=xcaption, label=xlabel, align=get.align(ncol(catches))),
-               caption.placement = "top", include.rownames=FALSE, table.placement="H", sanitize.text.function=function(x){x}, size=size.string))
+  return(print(xtable(catches,
+                      caption = xcaption,
+                      label = xlabel,
+                      align = get.align(ncol(catches))),
+               caption.placement = "top",
+               include.rownames = FALSE,
+               table.placement = "H",
+               tabular.environment = "longtable",
+               sanitize.text.function = function(x){x},
+               size = size.string))
 }
 
 make.landings.tac.table <- function(landings.vs.tac,
@@ -214,20 +238,34 @@ make.landings.tac.table <- function(landings.vs.tac,
   tab[,8] <- paste0(f(tab[,8], 1),"\\%")
   tab[,9] <- paste0(f(tab[,9], 1),"\\%")
   tab[,10] <- paste0(f(tab[,10], 1),"\\%")
+  ## Switch TACCAN and TACUSA columns for consistency
+  tmp <- tab[,6]
+  tab[,6] <- tab[,7]
+  tab[,7] <- tmp
   colnames(tab) <- c("\\textbf{Year}",
                      "\\specialcell{\\textbf{US}\\\\\\textbf{landings (t)}}",
                      "\\specialcell{\\textbf{Canadian}\\\\\\textbf{landings (t)}}",
                      "\\specialcell{\\textbf{Total}\\\\\\textbf{landings (t)}}",
                      "\\specialcell{\\textbf{Coast-wide}\\\\\\textbf{(US+Canada)}\\\\\\textbf{catch}\\\\\\textbf{target (t)}}",
-                     "\\specialcell{\\textbf{Canada}\\\\\\textbf{catch}\\\\\\textbf{target (t)}}",
                      "\\specialcell{\\textbf{US}\\\\\\textbf{catch}\\\\\\textbf{target (t)}}",
+                     "\\specialcell{\\textbf{Canada}\\\\\\textbf{catch}\\\\\\textbf{target (t)}}",
                      "\\specialcell{\\textbf{US}\\\\\\textbf{proportion}\\\\\\textbf{of catch}\\\\\\textbf{target}\\\\\\textbf{removed}}",
                      "\\specialcell{\\textbf{Canada}\\\\\\textbf{proportion}\\\\\\textbf{of catch}\\\\\\textbf{target}\\\\\\textbf{removed}}",
                      "\\specialcell{\\textbf{Total}\\\\\\textbf{proportion}\\\\\\textbf{of catch}\\\\\\textbf{target}\\\\\\textbf{removed}}")
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{", font.size, "}{", space.size, "}\\selectfont")
-  return(print(xtable(tab, caption=xcaption, label=xlabel, align = get.align(ncol(tab), first.left = FALSE, just = "c"), digits = c(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1)),
-               caption.placement = "top", include.rownames = FALSE, table.placement = placement, sanitize.text.function = function(x){x}, size = size.string))
+  return(print(xtable(tab,
+                      caption = xcaption,
+                      label = xlabel,
+                      align = get.align(ncol(tab),
+                                        first.left = FALSE, just = "c"),
+                      digits = c(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1)),
+               caption.placement = "top",
+               include.rownames = FALSE,
+               table.placement = placement,
+               tabular.environment = "longtable",
+               sanitize.text.function = function(x){x},
+               size = size.string))
 }
 
 years.Can.JV.catch.eq.0 <- function(catches,          ## The output of the load.catches

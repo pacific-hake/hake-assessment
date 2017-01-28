@@ -1,9 +1,7 @@
 % main-tables.rnw
 
-\vspace{-2mm}   % To shift section heading up. Can't for now get rid of
-                %  previous blank page.
-
 \section{TABLES} \label{sec:tables}
+\vspace{10mm}
 <<catches.US, results='asis', echo=FALSE>>=
 make.catches.table.US(catches, start.yr=start.yr, end.yr=end.yr,
                    weight.factor=1000,
@@ -12,7 +10,6 @@ make.catches.table.US(catches, start.yr=start.yr, end.yr=end.yr,
                    font.size = 10,
                    space.size = 11)
 @
-\vspace{2mm}
 
 <<catches.Can, results='asis', echo=FALSE>>=
 make.catches.table.Can(catches, start.yr=start.yr, end.yr=end.yr,
