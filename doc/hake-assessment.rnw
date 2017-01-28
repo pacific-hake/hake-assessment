@@ -48,6 +48,10 @@
 \usepackage[yyyymmdd]{datetime}
 \renewcommand{\dateseparator}{--}
 
+% For fitting the backscatter plot
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+
 % For hyperlinked references (figures and citations, etc.). The bookmarksdepthlevel allows
 %  the TOC to be shown in the bookmarks tree in the output PDF.
 

@@ -15,15 +15,22 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+\newgeometry{hmargin=1in,vmargin=1in}
+\thispagestyle{lscape}
+\begin{landscape}
+  \centering
+\begin{figure}[p]
 \vspace{-5mm}
 \begin{center}
-\includegraphics[angle=90,origin=c,width=5.5in]{main-figures/hake_survey_1995-15_sA_squareroot_bin_narrow-panel2.eps} % width=\maxwidth,
+\includegraphics[max size={\paperwidth}{\paperheight}]{main-figures/hake_survey_1995-15_sA_squareroot_bin_narrow-panel2.eps} % width=\maxwidth,
 \end{center}
 \vspace{-5mm}
 \caption{Spatial distribution of acoustic backscatter attributable to \fishname\ from joint US-Canada acoustic surveys \Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}. Area of the circle is roughly proportional to observed backscatter.}
 \label{fig:main-backscatter-map}
 \end{figure}
+\end{landscape}
+\restoregeometry
+\pagestyle{fancy}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
