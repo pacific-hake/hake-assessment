@@ -281,7 +281,7 @@ mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
 \end{center}
-\caption{Bridging models showing the difference between the \Sexpr{end.yr} pre-tuned base model and the sequential addition of the main base model tuning runs (adjusting time periods and levels for recruitment bias and reweighting the survey and fishery compositional data). The red line is equivalent to the \Sexpr{end.yr} base model. Spawning biomass (upper left panel), relative spawning biomass (spawning biomass in each year relative to the unfished equilibrium spawning biomass, upper right), absolute recruitment (lower left), and recruitment deviations (lower right) are shown.}
+\caption{Bridging models showing the difference between the \Sexpr{end.yr} pre-tuned base model, the sequential addition of the main base model tuning runs (adjusting time periods and levels for recruitment bias and reweighting the survey and fishery compositional data), and increased flexability associated with time-varying selectivity (larger standard deviation associated with temporal deviates). The red line is equivalent to the \Sexpr{end.yr} base model. Spawning biomass (upper left panel), relative spawning biomass (spawning biomass in each year relative to the unfished equilibrium spawning biomass, upper right), absolute recruitment (lower left), and recruitment deviations (lower right) are shown.}
 \label{fig:main-bridge-4-panel}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
