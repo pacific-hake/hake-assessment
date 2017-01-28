@@ -238,13 +238,17 @@ make.landings.tac.table <- function(landings.vs.tac,
   tab[,8] <- paste0(f(tab[,8], 1),"\\%")
   tab[,9] <- paste0(f(tab[,9], 1),"\\%")
   tab[,10] <- paste0(f(tab[,10], 1),"\\%")
+  ## Switch TACCAN and TACUSA columns for consistency
+  tmp <- tab[,6]
+  tab[,6] <- tab[,7]
+  tab[,7] <- tmp
   colnames(tab) <- c("\\textbf{Year}",
                      "\\specialcell{\\textbf{US}\\\\\\textbf{landings (t)}}",
                      "\\specialcell{\\textbf{Canadian}\\\\\\textbf{landings (t)}}",
                      "\\specialcell{\\textbf{Total}\\\\\\textbf{landings (t)}}",
                      "\\specialcell{\\textbf{Coast-wide}\\\\\\textbf{(US+Canada)}\\\\\\textbf{catch}\\\\\\textbf{target (t)}}",
-                     "\\specialcell{\\textbf{Canada}\\\\\\textbf{catch}\\\\\\textbf{target (t)}}",
                      "\\specialcell{\\textbf{US}\\\\\\textbf{catch}\\\\\\textbf{target (t)}}",
+                     "\\specialcell{\\textbf{Canada}\\\\\\textbf{catch}\\\\\\textbf{target (t)}}",
                      "\\specialcell{\\textbf{US}\\\\\\textbf{proportion}\\\\\\textbf{of catch}\\\\\\textbf{target}\\\\\\textbf{removed}}",
                      "\\specialcell{\\textbf{Canada}\\\\\\textbf{proportion}\\\\\\textbf{of catch}\\\\\\textbf{target}\\\\\\textbf{removed}}",
                      "\\specialcell{\\textbf{Total}\\\\\\textbf{proportion}\\\\\\textbf{of catch}\\\\\\textbf{target}\\\\\\textbf{removed}}")
