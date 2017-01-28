@@ -127,8 +127,16 @@ make.catches.table.US <- function(catches,              ## The output of the loa
 
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
-  return(print(xtable(catches, caption=xcaption, label=xlabel, align=get.align(ncol(catches))),
-               caption.placement = "top", include.rownames=FALSE, table.placement="H", sanitize.text.function=function(x){x}, size=size.string))
+  return(print(xtable(catches,
+                      caption = xcaption,
+                      label = xlabel,
+                      align = get.align(ncol(catches))),
+               caption.placement = "top",
+               include.rownames = FALSE,
+               table.placement = "H",
+               tabular.environment = "longtable",
+               sanitize.text.function = function(x){x},
+               size = size.string))
 }
 
 ## Canadian catches only, for all years:
@@ -153,8 +161,16 @@ make.catches.table.Can <- function(catches,              ## The output of the lo
 
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
-  return(print(xtable(catches, caption=xcaption, label=xlabel, align=get.align(ncol(catches))),
-               caption.placement = "top", include.rownames=FALSE, table.placement="H", sanitize.text.function=function(x){x}, size=size.string))
+  return(print(xtable(catches,
+                      caption = xcaption,
+                      label = xlabel,
+                      align = get.align(ncol(catches))),
+               caption.placement = "top",
+               include.rownames = FALSE,
+               table.placement = "H",
+               tabular.environment = "longtable",
+               sanitize.text.function = function(x){x},
+               size = size.string))
 }
 
 ## ** Combine these three functions (this and two above) into one with a switch,
@@ -190,8 +206,16 @@ make.catches.table.total <- function(catches,              ## The output of the 
 
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
-  return(print(xtable(catches, caption=xcaption, label=xlabel, align=get.align(ncol(catches))),
-               caption.placement = "top", include.rownames=FALSE, table.placement="H", sanitize.text.function=function(x){x}, size=size.string))
+  return(print(xtable(catches,
+                      caption = xcaption,
+                      label = xlabel,
+                      align = get.align(ncol(catches))),
+               caption.placement = "top",
+               include.rownames = FALSE,
+               table.placement = "H",
+               tabular.environment = "longtable",
+               sanitize.text.function = function(x){x},
+               size = size.string))
 }
 
 make.landings.tac.table <- function(landings.vs.tac,
@@ -226,8 +250,18 @@ make.landings.tac.table <- function(landings.vs.tac,
                      "\\specialcell{\\textbf{Total}\\\\\\textbf{proportion}\\\\\\textbf{of catch}\\\\\\textbf{target}\\\\\\textbf{removed}}")
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{", font.size, "}{", space.size, "}\\selectfont")
-  return(print(xtable(tab, caption=xcaption, label=xlabel, align = get.align(ncol(tab), first.left = FALSE, just = "c"), digits = c(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1)),
-               caption.placement = "top", include.rownames = FALSE, table.placement = placement, sanitize.text.function = function(x){x}, size = size.string))
+  return(print(xtable(tab,
+                      caption = xcaption,
+                      label = xlabel,
+                      align = get.align(ncol(tab),
+                                        first.left = FALSE, just = "c"),
+                      digits = c(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1)),
+               caption.placement = "top",
+               include.rownames = FALSE,
+               table.placement = placement,
+               tabular.environment = "longtable",
+               sanitize.text.function = function(x){x},
+               size = size.string))
 }
 
 years.Can.JV.catch.eq.0 <- function(catches,          ## The output of the load.catches
