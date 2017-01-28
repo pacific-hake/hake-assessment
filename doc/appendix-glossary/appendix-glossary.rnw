@@ -212,7 +212,9 @@ Recruitment deviation: The offset of the recruitment in a given year relative to
 
 Relative spawning biomass: The ratio of the beginning-of-the-year female spawning biomass to the unfished equilibrium female spawning biomass ($B_0$, see above). Thus, lower values are associated with fewer mature female fish. This term was introduced in the 2015 stock assessment as a replacement for ``depletion'' (see above) which was a source of some confusion.
 
-Relative SPR: A measure of fishing intensity transformed to have an interpretation more like $F$: as fishing increases the metric increases. Relative SPR is the ratio of $(1-\mbox{SPR})$ to $(1-40\%)$, where 40\% is the target SPR rate.
+% 2017 AME: same definition as fishing intensity, so deleting, along with only
+%  occurrence in text.
+% Relative SPR: A measure of fishing intensity transformed to have an interpretation more like $F$: as fishing increases the metric increases. Relative SPR is the ratio of $(1-\mbox{SPR})$ to $(1-40\%)$, where 40\% is the target SPR rate.
 
 %%% all these SB* definitions seem to no longer be used (noted in 2017)
 % $SB_0$: The estimated average unfished equilibrium female spawning biomass or spawning output if not directly proportional to spawning biomass. See $B_0$. **AME -- check if we use $SB_0$ anywhere.
