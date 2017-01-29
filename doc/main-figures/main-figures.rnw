@@ -787,24 +787,29 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 %% \begin{figure}[H]
 \begin{center}
 <<main.recruitment.base.alternative.2, fig.height=4.5, fig.width=8>>=
-sens.density.yr <- last.data.yr - 1
-sens.density.names <- c(paste0("Late_RecrDev_",sens.density.yr))
-oldpar <- par()
-par(mar = c(2.6, 3.1, 1.1, 1.1))
 make.comparison.plot(c(list(base.model), sens.models.2),
-                     subplots = 14,
+                     subplots = 4,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
-                     legendloc = "topleft",
-                     densitynames = sens.density.names,
-                     ##indexfleets = c(2,2,2,2),
-                     indexPlotEach = TRUE,
+                     legend = FALSE,
                      end.yr = end.yr)
-mtext("Catch (thousand t)", side = 1, line = 1, outer = TRUE)
-par <- oldpar
+##sens.density.yr <- last.data.yr - 1
+##sens.density.names <- c(paste0("Late_RecrDev_",sens.density.yr))
+##oldpar <- par()
+##par(mar = c(2.6, 3.1, 1.1, 1.1))
+##make.comparison.plot(c(list(base.model), sens.models.2),
+##                     subplots = 14,
+##                     model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
+##                     legendloc = "topleft",
+##                     densitynames = sens.density.names,
+##                     ##indexfleets = c(2,2,2,2),
+##                     indexPlotEach = TRUE,
+##                     end.yr = end.yr)
+##mtext("Catch (thousand t)", side = 1, line = 1, outer = TRUE)
+##par <- oldpar
 @
 \end{center}
 %\vspace{0mm}
-\caption{Density plot showing the MLE recruitment deviate estimates for the \Sexpr{sens.density.yr} cohort for the base model and alternative sensitivity run that sets the full bias ramp adjust period to 2014 instead of 2013.}
+\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity run that sets the full bias ramp adjust period to 2014 instead of 2013.}
 \label{fig:main-recruitment-base-alternative-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -853,16 +858,23 @@ make.comparison.plot(c(list(base.model), sens.models.6),
 %% \begin{figure}[H]
 \begin{center}
 <<main.status.base.tv.increase.6, fig.height=4.5, fig.width=8>>=
+##sens.density.names <- c(paste0("Late_RecrDev_", sens.density.yr))
+oldpar <- par()
+par(mar = c(4.1, 3.1, 1.1, 1.1))
 make.comparison.plot(c(list(base.model), sens.models.6),
-                     subplots = 4,
+                     subplots = 14,
                      model.names = c(paste0("Base model ", end.yr), sens.model.names.6),
-                     legend = FALSE,
+                     legendloc = "topright",
+                     densitynames = c("Recr_2014"),
+                     densityxlab  = "Recruitment in 2014 (billions)",
+                     ##indexfleets = c(2,2,2,2),
+                     indexPlotEach = TRUE,
                      end.yr = end.yr)
+par <- oldpar
 @
 \end{center}
-%\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity run representing changes in the standard deviation of the selectivity parameters from the base model's value of $\phi=0.20$. See Figure~\ref{fig:main-biomass-base-tv-increase-1} for legend.} % Manual done 2017.
-\label{fig:main-status-base-tv-increase-1}
+\caption{Density plot showing the MLE recruitment estimates for the 2014 cohort for the base model and alternative sensitivity run representing changes in the standard deviation of the selectivity parameters from the base model's value of $\phi=0.20$.} % Manual done 2017.
+\label{fig:main-status-base-tv-increase-6}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
