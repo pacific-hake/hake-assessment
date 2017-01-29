@@ -224,8 +224,9 @@ make.landings.tac.table <- function(landings.vs.tac,
                                     xcaption = "default", ## Caption to use
                                     xlabel   = "default", ## Latex label to use
                                     font.size = 9,        ## Size of the font for the table
-                                    space.size = 10,       ## Size of the spaces for the table
-                                    placement = "H"       ## Placement of table
+                                    space.size = 10,      ## Size of the spaces for the table
+                                    placement = "H",      ## Placement of table
+                                    tabular.env = "tabular" ## Type of table
                                     ){
   ## Returns an xtable in the proper format for the executive summary landings vs. TAC for management performance section
   tab <- landings.vs.tac
@@ -263,7 +264,7 @@ make.landings.tac.table <- function(landings.vs.tac,
                caption.placement = "top",
                include.rownames = FALSE,
                table.placement = placement,
-               tabular.environment = "longtable",
+               tabular.environment = tabular.env,
                sanitize.text.function = function(x){x},
                size = size.string))
 }
