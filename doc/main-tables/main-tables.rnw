@@ -34,7 +34,8 @@ make.landings.tac.table(landings.vs.tac, start.yr=end.yr-10, end.yr=end.yr-1,
                         xcaption = "Recent trends in \\fishname\\ landings and management decisions.",
                         xlabel = "tab:main-landings-tac",
                         font.size = 8,
-                        space.size = 10)
+                        space.size = 10,
+                        tabular.env = "longtable")
 @
 
 <<main.sampling.history.table, results='asis', echo=FALSE>>=
