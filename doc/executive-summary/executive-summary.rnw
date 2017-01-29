@@ -540,7 +540,11 @@ The predicted probability of the spawning biomass dropping below $B_{10\%}$ (10\
 at the start of \Sexpr{end.yr+1} is less than 1\% and the maximum probability of dropping below $B_{40\%}$ is 18\% for all catches explored (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 It should be noted that the natural mortality rate is larger than the growth rate for the large 2010 year class.
 % Andy presumese that last phrase is still true - not sure where/how to check
-The model estimated below-average recruitment for the 2011 and 2013 cohorts (near average for the 2012 cohort), but a potentially large 2014 cohort that will result in increases to the spawning biomass as it enters maturity. 
+The model estimated below-average recruitment for the 2011, 2012 and 2013 cohorts, but a potentially large 2014 cohort that will result in increases to the spawning biomass as it enters maturity.
+% Still true for 2017 assessment - see 
+%  years.since.2010.recruitment.med.below.mean
+%  Definition of 'below-average' is given earlier (around line 222 of this file)
+
 % 2017: Following sentence replaced with 'The highest probability ...' above,
 %  which fits better:
 % The probability that the 2017 spawning
