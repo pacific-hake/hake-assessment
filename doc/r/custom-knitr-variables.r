@@ -272,6 +272,15 @@ cohort.catch.2010 <- sum(cohortCatch(2010, base.model$catage))
 ## Sigma_r, standard deviation of recruitment variability.
 sigma.r <- f(base.model$sigma_R_in, 2)
 
+# alternative sigma.r based on all years of recdevs
+sigma.r.alt.allyr <- f(base.model$sigma_R_info$alternative_sigma_R[3],2)
+sigma.r.alt.main <- f(base.model$sigma_R_info$alternative_sigma_R[1],2)
+
+# range of "main" recdevs
+main.recdev.start <- min(base.model$recruit$year[base.model$recruit$biasadj==max(base.model$recruit$biasadj)])
+main.recdev.end <- max(base.model$recruit$year[base.model$recruit$biasadj==max(base.model$recruit$biasadj)])
+
+
 ################################################################################
 ## Load weight-at-age file now that models are loaded
 wt.at.age <- load.wt.at.age(base.model, weight.at.age.file.name)
