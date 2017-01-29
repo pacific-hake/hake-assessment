@@ -444,7 +444,7 @@ make.decision.table(base.model,
 <<forecast.depletion.comparison.plot, fig.height=5, fig.width=8>>=
 ## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those which will be plotted against each other
-models.inds <- c(1, 2, catch.tac.ind, catch.default.policy.ind)
+models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
 models.names <- sapply(catch.levels, "[[", 2)[models.inds] ## pretty catch level name
 make.forecast.depletion.comparison.plot(base.model,
                                         models.inds,
