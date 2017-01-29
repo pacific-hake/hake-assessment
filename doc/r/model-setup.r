@@ -192,9 +192,9 @@ if(verbose){
 sens.model.dir.names.3 <- c("47_Sen45MaxSelectAge5",
                             "48_Sen45MaxSelectAge7",
                             "49_Sen45MaxSelectAge10")
-sens.model.names.3 <- c("Max. age of selectivity 5",
-                        "Max. age of selectivity 7",
-                        "Max. age of selectivity 10")
+sens.model.names.3 <- c("Max. age selectivity 5",
+                        "Max. age selectivity 7",
+                        "Max. age selectivity 10")
 verify.models(model.dir, sens.model.dir.names.3, sens.model.names.3)
 if(verbose){
   print.model.message(sens.model.dir.names.3, sens.model.names.3, 3, model.type = "Sensitivity")
@@ -207,10 +207,10 @@ sens.model.dir.names.4 <- c("50_Sen45h0.5prior",
                             "51_Sen45h1.0fix",
                             "52_Sen45M0.2SD",
                             "53_Sen45M0.3SD")
-sens.model.names.4 <- c("Steepness prior mean = 0.5",
-                        "Fix steepness = 1.0",
-                        "Stdev M = 0.2",
-                        "Stdev M = 0.3")
+sens.model.names.4 <- c("Steepness prior mean 0.5",
+                        "Fix steepness 1.0",
+                        "Natural mortality SD 0.2",
+                        "Natural mortality SD 0.3")
 verify.models(model.dir, sens.model.dir.names.4, sens.model.names.4)
 if(verbose){
   print.model.message(sens.model.dir.names.4, sens.model.names.4, 4, model.type = "Sensitivity")
@@ -222,9 +222,9 @@ if(verbose){
 sens.model.dir.names.5 <- c("54_Sen45AgeErrorNoCohort",
                             "55_Sen45AgeError2014noAdjust",
                             "56_Sen45AddAge1Index")
-sens.model.names.5 <- c("Cohort invariant ageing error",
-                        "2014 not adjusted downward",
-                        "Add age-1 index")
+sens.model.names.5 <- c("Ageing error: cohort invariant",
+                        "Ageing error: standard for 2014",
+                        "Include age-1 index")
 verify.models(model.dir, sens.model.dir.names.5, sens.model.names.5)
 if(verbose){
   print.model.message(sens.model.dir.names.5, sens.model.names.5, 5, model.type = "Sensitivity")
@@ -236,9 +236,9 @@ if(verbose){
 sens.model.dir.names.6 <- c("59_Sen45_phi003",
                             "60_Sen45_phi010",
                             "61_Sen45_phi030")
-sens.model.names.6 <- c("Selectivity phi = 0.03",
-                        "Selectivity phi = 0.10",
-                        "Selectivity phi = 0.30")
+sens.model.names.6 <- c("Selectivity SD 0.03",
+                        "Selectivity SD 0.10",
+                        "Selectivity SD 0.30")
 verify.models(model.dir, sens.model.dir.names.6, sens.model.names.6)
 if(verbose){
   print.model.message(sens.model.dir.names.6, sens.model.names.6, 6, model.type = "Sensitivity")
@@ -296,15 +296,13 @@ load.models.into.parent.env <- function(){
 
   ## Lists of sensitivities for the MLE parameters, derived quantiles,
   ##  and reference points table
-  ## First set includes base and sensitivity group 1
-  sens.models.1.for.table <<- c(list(base.model), sens.models.1)
-  sens.model.names.1.for.table <<- c("Base model", sens.model.names.1)
+  ## First set includes base and sensitivity group 1 and 3
+  sens.models.1.for.table <<- c(list(base.model), sens.models.5, sens.models.6)
+  sens.model.names.1.for.table <<- c("Base model", sens.model.names.5,sens.model.names.6)
   ## Second set includes base and sensitivity groups 2 and 3
-  sens.models.2.for.table <<- c(list(base.model), sens.models.2)
-  sens.models.2.for.table <<- c(sens.models.2.for.table,
-                                sens.models.3)
-  sens.model.names.2.for.table <<- c("Base model", sens.model.names.2,
-                                     sens.model.names.3)
+  sens.models.2.for.table <<- c(list(base.model), sens.models.1, sens.models.4)
+  #sens.models.2.for.table <<- c(sens.models.2.for.table,sens.models.3)
+  sens.model.names.2.for.table <<- c("Base model", sens.model.names.1,sens.model.names.4)
 
 }
 
