@@ -24,19 +24,19 @@ catch.levels <-
   list(list(rep(0.01, 3), "No Fishing", "01-0"),
        list(rep(180000, 3), "180,000 t", "02-180000"),
        list(rep(350000, 3), "350,000 t", "03-350000"),
-       list(rep(497500, 3), "497,500 t", "04-497500"),
-       list(rep(600000, 3), "600,000 t", "05-600000"),
+       list(rep(497500, 3), "2016 TAC: 497,500 t", "04-497500"),
+       list(c(969840, 843566, 679881), "Default Harvest Policy: 969,840 t", "07-default-hr"),
        list(c(934000, 848000, 698000), "FI=100%", "06-spr-100"),
-       list(c(969840, 843566, 679881), "Default HR", "07-default-hr"),
+       list(rep(600000, 3), "600,000 t", "05-600000"),
        list(c(866263, 866263, 683014), "Stable Catch", "08-stable-catch"))
-
+       
 ## -----------------------------------------------------------------------------
 ## Indicies for the forecasts list, which list items above are the TAC case and
 ##  default policy case
 ## This is used in the one-page summary and a plot comparing several catch cases
 ## -----------------------------------------------------------------------------
 catch.tac.ind <- 4
-catch.default.policy.ind <- 6
+catch.default.policy.ind <- 5
 catch.default.policy <- catch.levels[[catch.default.policy.ind]][[1]]
 
 ## The verify.catch.levels function is in verify.r
