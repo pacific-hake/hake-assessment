@@ -12,11 +12,11 @@
   \item Studying fecundity as a function of size, age, weight, and batch spawning. 
 \end{enumerate}
 
-\item Continue to explore alternative indices for juvenile or young (0 and/or 1 year old) \fishname.
+\item Continue to explore alternative indices for juvenile or young (0 and/or 1 year old) \fishname, including investigations into the winter acoustic surveys.
   
 \item Continue to investigate alternative ways to model and forecast recruitment, given the uncertainty present.
   
-\item Conduct further exploration of ageing imprecision and the effects of large cohorts via simulation and blind source age-reading of samples with differing underlying age distributions -- with and without dominant year classes.
+\item Update ageing error calculations given new information from recent double reads.  Conduct further exploration of ageing imprecision and the effects of large cohorts via simulation and blind source age-reading of samples with differing underlying age distributions -- with and without dominant year classes.
  
 \item Continue to collect and analyze life-history data, including weight, maturity and fecundity for \fishname. Explore possible relationships among these life history traits including time-varying changes as well as with body growth and population density. Currently available information is limited and outdated. Continue to explore the possibility of using additional data types (such as length data) within the stock assessment.
   
@@ -24,7 +24,7 @@
   
 \item Evaluate the quantity and quality of historical biological data (prior to 1989 from the Canadian fishery, and prior to 1975 from the U.S. fishery) for use as age-composition and weight-at-age data, and/or any historical indications of abundance fluctuations.
   
-\item Consider alternative methods for treatment of recruitment variability ($\sigma_r$) including the use of prior distributions derived from meta-analytic methods, and for refining existing prior for natural mortality ($M$).
+\item Consider alternative methods for refining existing prior distributions for natural mortality ($M$), including the use of meta-analytic methods.
   
 \item Explore the potential to use acoustic data collected from commercial fishing vessels to study hake distributions, schooling patterns, and other questions of interest. This could be similar to the ``acoustic vessels of opportunity'' program on fishing vessels targeting Pollock in Alaska.
 
