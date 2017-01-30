@@ -9,7 +9,7 @@ make.mcmc.vs.mle.plot <- function(model,        ## model is an mcmc run and is t
   oldpar <- par()
 
   mod.list <- list(model, model)
-  mod.summ <- SSsummarize(mod.list)
+  mod.summ <- SSsummarize(mod.list, SpawnOutputUnits="biomass")
   mod.summ$mcmc <- list(model$mcmc, model$mcmc)
   model.names <- c("MLE","MCMC")
 

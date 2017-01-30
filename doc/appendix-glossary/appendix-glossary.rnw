@@ -43,7 +43,7 @@ $\Bten$: The level of female spawning biomass corresponding to 10\% of unfished 
 
 $\Bforty$: The level of female spawning biomass corresponding to 40\% of unfished equilibrium female spawning biomass, i.e.~$\Bforty = 0.4B_0$. This is the level below which the calculated TAC is decreased from the value associated with $\Fforty$, based on the 40:10 adjustment (see above).
 
-$\Bmsy$: The estimated female spawning biomass (output) which theoretically would produce the maximum sustainable yield (MSY) under equilibrium fishing conditions (constant fishing and average recruitment in every year). Also see $\Bforty$ (above).
+$\Bmsy$: The estimated female spawning biomass which theoretically would produce the maximum sustainable yield (MSY) under equilibrium fishing conditions (constant fishing and average recruitment in every year). Also see $\Bforty$ (above).
 
 Backscatter: The scattering by a target back in the direction of an acoustic source. Specifically, the Nautical Area Scattering Coefficient (a measure of scattering per area) is frequently referred to as backscatter.
 
@@ -92,7 +92,7 @@ $F$: Instantaneous rate of fishing mortality (or fishing mortality rate); see be
 
 $\Fforty$: The rate of fishing mortality estimated to give a spawning potential ratio (SPR, see below) of 40\%. Therefore, by definition this satisfies
 \eb
-0.4 = \frac{\mbox{spawning output per recruit with }\Fforty}{\mbox{spawning output per recruit with no fishing}}.
+0.4 = \frac{\mbox{spawning biomass per recruit with }\Fforty}{\mbox{spawning biomass per recruit with no fishing}}.
 \ee
 The 40\% value is specified in the Agreement.
 
@@ -101,7 +101,7 @@ The 40\% value is specified in the Agreement.
 Female spawning biomass: The biomass of mature female fish at the beginning of the year. 
 % AME - I can't see how this is consistent with defn of spawning output, so 
 %  commenting out.
-% Occasionally, especially in reference points, this term is used to mean spawning output (expected egg production, see below) when this is not proportional to spawning biomass. 
+% Occasionally, especially in reference points, this term is used to mean spawning output when this is not proportional to spawning biomass. 
 Sometimes abbreviated to spawning biomass.
 
 Fisheries and Oceans Canada: Federal organization which delivers programs and services that support sustainable use and development of Canada's waterways and aquatic resources.
@@ -235,11 +235,11 @@ Simulation: A model evaluation under a particular state of nature, including com
 
 Spawning biomass: Abbreviated term for female spawning biomass (see above).
 
-Spawning output: The total production of eggs (or possibly viable egg equivalents if egg quality is taken into account) given the number of females-at-age (and maturity- and fecundity-at-age).
+%Spawning output: The total production of eggs (or possibly viable egg equivalents if egg quality is taken into account) given the number of females-at-age (and maturity- and fecundity-at-age).
 
-Spawning potential ratio (SPR): The ratio of the spawning output per recruit under a given level of fishing to the estimated spawning output per recruit in the absence of fishing; i.e.~for fishing mortality rate $F$
+Spawning potential ratio (SPR): The ratio of the spawning biomass per recruit under a given level of fishing to the estimated spawning biomass per recruit in the absence of fishing; i.e.~for fishing mortality rate $F$
 \eb
-\mbox{SPR}(F) = \frac{\mbox{spawning output per recruit with }F}{\mbox{spawning output per recruit with no fishing}}.
+\mbox{SPR}(F) = \frac{\mbox{spawning biomass per recruit with }F}{\mbox{spawning biomass per recruit with no fishing}}.
 \ee
 Often expressed as a percentage, it achieves a value of 100\% in the absence of fishing and declines toward zero as fishing intensity increases.
 
@@ -252,7 +252,7 @@ SPR: Spawning potential ratio (see above).
 %SPR$_{MSY}$: The estimated spawning potential ratio that produces the largest sustainable harvest (MSY).
 
 % Not found in text in 2017, but now defining 'target spawning potential ratio' below.
-% SPR$_{40\%}$: The target spawning potential ratio, which is associated with the spawning output per recruit equal to 40\% of the spawning output per recruit that would occur in the absence of fishing. Even under equilibrium conditions, SPR$_{40\%}$ would not necessarily result in a relative spawning biomass of B$_{40\%}$.
+% SPR$_{40\%}$: The target spawning potential ratio, which is associated with the spawning biomass per recruit equal to 40\% of the spawning biomass per recruit that would occur in the absence of fishing. Even under equilibrium conditions, SPR$_{40\%}$ would not necessarily result in a relative spawning biomass of B$_{40\%}$.
 
 SS: Stock Synthesis (see below).
 
@@ -266,7 +266,7 @@ Steepness ($h$): A stock-recruit relationship parameter representing the proport
 
 Stock Synthesis (SS): The age-structured stock assessment model applied in this stock assessment. % For a more detailed description of this model, see \citet{**Methot and Wetzel (2013).
 
-Target spawning potential ratio: The spawning potential ratio of 40\%, where the 40\% relates to the default harvest rate of $\Fforty$ specified in the Agreement. Even under equilibrium conditions, $\Fforty$ would not necessarily result in a spawning biomass of $B_{40\%}$ because $\Fforty$ is defined in terms of the spawning potential ratio which depends on the spawning output \emph{per recruit}.
+Target spawning potential ratio: The spawning potential ratio of 40\%, where the 40\% relates to the default harvest rate of $\Fforty$ specified in the Agreement. Even under equilibrium conditions, $\Fforty$ would not necessarily result in a spawning biomass of $B_{40\%}$ because $\Fforty$ is defined in terms of the spawning potential ratio which depends on the spawning biomass \emph{per recruit}.
 
 Target strength (TS): The amount of backscatter from an individual acoustic target.
 
