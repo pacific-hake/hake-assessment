@@ -75,7 +75,7 @@ make.median.posterior.table <- function(model,                ## model is an mcm
                           "\\specialcell{\\textbf{Female}\\\\\\textbf{spawning}\\\\\\textbf{biomass}\\\\\\textbf{(thousand t)}}",
                           "\\specialcell{\\textbf{Relative}\\\\\\textbf{spawning}\\\\\\textbf{biomass}}",
                           "\\specialcell{\\textbf{Age-0}\\\\\\textbf{recruits}\\\\\\textbf{(millions)}}",
-                          "\\specialcell{\\textbf{(1-SPR)}\\\\\\textbf{/}\\\\\\textbf{(1-SPR\\subscr{40\\%})}}",
+                          "\\specialcell{\\textbf{Relative}\\\\\\textbf{fishing}\\\\\\textbf{intensity}}",
                           "\\specialcell{\\textbf{Exploitation}\\\\\\textbf{fraction}}")
 
   ## Make the size string for font and space size

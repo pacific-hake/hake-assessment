@@ -101,7 +101,7 @@ make.SPR.illustration <- function(model){
   text(x=x.legend2, y=0.90*par()$usr[4],
        paste0("SPR = ", sum.Z.txt, "/", sum.M.txt, " = ", SPR.txt), pos=4)
   text(x=x.legend2, y=0.55*par()$usr[4],
-       paste0("Fishing Intensity =\n",
+       paste0("Rel. Fishing Intensity =\n",
               "     (1 - SPR)/(1 - 0.40) =\n",
               "          ", intensity.txt), pos=4)
 }

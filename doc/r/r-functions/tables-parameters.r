@@ -292,7 +292,7 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
 
   ## Set the first column to be the names
   tab <- cbind(c("",  ## Necessary because of the rbind(rep("", length(models)), tab) call above
-                 "Natural Mortality (\\emph{M})",
+                 "Natural mortality (\\emph{M})",
                  "\\emph{R}\\subscr{0} (millions)",
                  "Steepness (\\emph{h})",
                  "Additional acoustic survey SD",
@@ -300,12 +300,12 @@ make.short.parameter.estimates.sens.table <- function(models,               ## A
                  "2010 recruitment (millions)",
                  "2014 recruitment (millions)",
                  "\\emph{B}\\subscr{0} (thousand t)",
-                 "2009 Relative Spawning Biomass",
-                 paste0(end.yr, " Relative Spawning Biomass"),
-                 paste0(end.yr - 1, " Fishing intensity: (1-SPR)/(1-SPR\\subscr{40\\%})"),
-                 "Female Spawning Biomass (\\emph{$B_{F_{40_{\\%}}}$}; thousand t)",
+                 "2009 relative spawning biomass",
+                 paste0(end.yr, " relative spawning biomass"),
+                 paste0(end.yr - 1, " rel. fishing intensity: (1-SPR)/(1-SPR\\subscr{40\\%})"),
+                 "Female spawning biomass (\\emph{$B_{F_{40_{\\%}}}$}; thousand t)",
                  "SPR\\subscr{MSY-proxy}",
-                 "Exploitation Fraction corresponding to SPR",
+                 "Exploitation fraction corresponding to SPR",
                  "Yield at \\emph{$B_{F_{40_{\\%}}}$} (thousand t)"),
                tab)
   ## Need to split up the headers (model names) by words and let them stack on top of each other
@@ -513,7 +513,7 @@ make.short.parameter.estimates.table <- function(model,                ## model 
 
   ## Set the first column to be the names
   tab <- cbind(c("",  ## Necessary because of the rbind(c("","",""), tab) call above
-                 "Natural Mortality (\\emph{M})",
+                 "Natural mortality (\\emph{M})",
                  "Unfished recruitment (\\emph{R}\\subscr{0}, millions)",
                  "Steepness (\\emph{h})",
                  "Additional acoustic survey SD",
@@ -522,12 +522,12 @@ make.short.parameter.estimates.table <- function(model,                ## model 
                  "2010 recruitment  (millions)",
                  "2014 recruitment  (millions)",
                  "Unfished female spawning biomass (\\emph{B}\\subscr{0}, thousand~t)",
-                 "2009 Relative Spawning Biomass",
-                 paste0(end.yr, " Relative Spawning Biomass"),
-                 paste0(end.yr - 1, " Fishing intensity: (1-SPR)/(1-SPR)\\subscr{40\\%})"),
+                 "2009 relative spawning biomass",
+                 paste0(end.yr, " relative spawning biomass"),
+                 paste0(end.yr - 1, " relative fishing intensity: (1-SPR)/(1-SPR)\\subscr{40\\%})"),
                  "Female spawning biomass at \\emph{F}\\subscr{SPR=40\\%} (\\emph{B}\\subscr{SPR=40\\%}, thousand t)",
                  "SPR at \\emph{F}\\subscr{SPR=40\\%}", # "SPR\\subscr{MSY-proxy}",
-                 "Exploitation Fraction corresponding to SPR",
+                 "Exploitation fraction corresponding to SPR",
                  "Yield at \\emph{B}\\subscr{SPR=40\\%} (thousand~t)"),
                tab)
   colnames(tab) <- c("",
