@@ -57,7 +57,7 @@ than 1\% of landings in recent years. During the last five years, catches have b
 %%in \Sexpr{survey.end.yr} have been added to the survey time series
 %%(Figure~\ref{fig:es-survey-biomass}); earlier survey data (1998--2013)
 %%were re-analyzed and updated this year.
-There was no survey in \Sexpr{last.data.yr}. New data for this \Sexpr{assess.yr} assessment, that were not in the \Sexpr{last.assess.yr} assessment, are the 1995 survey biomass estimate (with associated age compositions) and the \Sexpr{last.data.yr} fishery catch and fishery age compositions. The mean weight at age for \Sexpr{last.data.yr} was added and minor refinements to historical catch estimates were also made. Finally, there was a minor revision to the 1998 survey biomass estimate (an increase of 2\%). The \Sexpr{last.assess.yr} assessment did not include the 1995 survey biomass estimate due to issues with the older survey data, but those issues have now been resolved, while the revision to the 1998 point was due to discovery of a better set of variables used in the the processing of the acoustic data for that year.
+There was no survey in \Sexpr{last.data.yr}. New data for this \Sexpr{assess.yr} assessment, that were not in the \Sexpr{last.assess.yr} assessment, are the 1995 survey biomass estimate (with associated age compositions) and the \Sexpr{last.data.yr} fishery catch and fishery age compositions. The mean weight at age for \Sexpr{last.data.yr} was added and minor refinements to historical catch estimates were also made. Finally, there was a minor revision to the 1998 survey biomass estimate (an increase of 2\%). The \Sexpr{last.assess.yr} assessment did not include the 1995 survey biomass estimate due to issues with the older survey data, but those issues have now been resolved.  The revision to the 1998 point was due to discovery of a better set of variables used in the the processing of the acoustic data for that year.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
@@ -88,7 +88,7 @@ selectivity reduced the magnitude of extreme cohort strength estimates. In close
 assessment models with time-varying fishery selectivity led to higher median average catch, lower risk of falling below 10\% of unfished
 biomass ($B_0$), smaller probability of fishery closures, and lower inter-annual variability in catch compared to assessment models with
 time-invariant fishery selectivity. It was found that even a small degree of flexibility in the assessment model fishery selectivity could
-reduce the effects of errors caused by assuming selectivity is constant over time. Therefore, we retain time-varying selectivity in this assessment, but with an increase in the allowed magnitude of the annual deviations (else the model estimates an extremely high 2014 year class based on limited data).
+reduce the effects of errors caused by assuming selectivity is constant over time. Therefore, we retain time-varying selectivity in this assessment, but with an increase in the allowed magnitude of the annual deviations (otherwise the model estimates an extremely high 2014 year class based on limited data).
 
 \subsection*{Stock biomass} \label{sec:es-stock-biomass}
 \phantomsection  \addcontentsline{toc}{subsection}{Stock biomass}
@@ -147,12 +147,12 @@ of \Sexpr{median.bio.min}~million~t in \Sexpr{median.bio.min.year}.
 The assessment model estimates that spawning biomass declined from 2014 to 2015
 after five years of increases from 2009 to 2014.
 % Median spawning biomass is: base.model$mcmccalcs$smed
-The estimated increases were the result of a large 2010 cohort and an
-above-average 2008 cohort surpassing the age at which gains in biomass from
-growth are greater than the loss in biomass from natural mortality.
-The model then estimates an increase from 2015 to 2017 due to an estimated
-very large 2014 year class, which is estimated to be much larger than the average
-estimated size of the 2010 year class.
+These estimated increases were the result of a large 2010 cohort and an above-average
+2008 cohort, and the recent decline is from the 2010 cohort surpassing the age at
+which gains in weight from growth are greater than the loss in weight from natural
+mortality. The model then estimates an increases from 2015 to 2017 due to the estimated
+large 2014 year class, which, on average, is similar to the average estimated size of
+the 2010 year class.
 % Manual 2017 done.
 
 The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium, $B_0$) is
@@ -341,7 +341,7 @@ The median female spawning biomass was above target in all years except 1968, 19
 % median.relative.bio.below.target
 % Manual done 2017.
 
-The joint history of the medians of relative spawning biomass and relative fishing intensity shows that only in 1999 was the median fishing intensity below target and the female spawning biomass above target (Figure~\ref{fig:es-phase}).  % Manual done 2017.
+The joint history of the medians of relative spawning biomass and relative fishing intensity shows that only in 1999 was the median fishing intensity above target and the female spawning biomass below $\Bforty$ (Figure~\ref{fig:es-phase}).  % Manual done 2017.
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -367,7 +367,7 @@ relative spawning biomass has been above the target since \Sexpr{median.relative
 % Manual done 2017. Based on median.relative.bio.below.target.
 
 While there is large uncertainty in the \Sexpr{end.yr-1} estimates of fishing intensity and relative
-spawning biomass, the model predicts a less than 1\% joint probability of being both above the target fishing intensity in \Sexpr{end.yr-1} and below the target relative spawning biomass at the start of \Sexpr{end.yr}.
+spawning biomass, the model predicts a less than 3\% joint probability of being both above the target fishing intensity in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at the start of \Sexpr{end.yr}.
 % sum(base.model$mcmc$Bratio_2017<0.4 & base.model$mcmc$SPRratio_2016>1) /nrow(base.model$mcmc)
 % That is the joint probability, make sure to change dates each year.
 % Manual done 2017.
@@ -405,7 +405,7 @@ and rapid biomass changes.  This leads to a dynamic fishery that potentially tar
 selectivity. This volatility results in a high level of uncertainty in estimates of
 current stock status and stock projections because with limited data to
 estimate incoming recruitment, the cohorts are fished before the assessment can accurately determine how
-big the cohort is (i.e., cohort strength is not well known until it is at least age 3). This is particularly apparent for this assessment, because the 2014 cohort is potentially very large but is still highly uncertain (Figure~\ref{fig:es-recruitment}).
+big the cohort is (i.e., cohort strength is not well known until it is at least age-3). This is particularly apparent for this assessment, because the 2014 cohort is potentially very large but is still highly uncertain (Figure~\ref{fig:es-recruitment}).
 
 The JTC presented results from closed-loop simulations evaluating the effect of including potential age-1 indices on management outcomes at the May 6-7 2015 JMC meeting in Victoria, B.C. They found that fitting to an unbiased age-1 survey results in lower catch, lower probability that spawning biomass falls below 10\% of $B_0$, and a lower average annual variability in catch.  However, comparable results in terms of catch could be achieved with a more precise age-2+ survey or alternative harvest control rules.  The simulations assumed an age-1 survey design with consistent, effective, and numerous sampling, which may not be the case for the existing age-1 index. The age-1 index is not included in the base model but included in a sensitivity run.
 % Manual 2017 done.
