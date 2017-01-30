@@ -184,15 +184,15 @@ Since the 2011 assessment, and again this year, a combination of the informative
 
 \subsubsection{Steepness}\label{sec:data-steepness}
 
-The prior for steepness is based on the median (0.79), 20th (0.67) and 80th (0.87) percentiles from \citeauthor{MyersBowenEtAl1999}'s (\citeyear{MyersBowenEtAl1999}) meta-analysis of the family \emph{Gadidae}, and has been used in U.S. assessments since 2007. This prior is distributed Beta(9.76, 2.80) which translates to a mean of 0.777 and a standard deviation of 0.113. Sensitivities to the variance on the prior on steepness were evaluated in the 2012 and 2013 assessments \citep{JTC2012, JTC2013}.  Sensitivities to the mean of the prior are explored in this assessment (see Section \ref{sec:assessment-sensitivity-analyses}).
+The prior for steepness is based on the median (0.79), 20th (0.67) and 80th (0.87) percentiles from \citeauthor{MyersBowenEtAl1999}'s (\citeyear{MyersBowenEtAl1999}) meta-analysis of the family \emph{Gadidae}, and has been used in U.S. assessments since 2007. This prior is distributed Beta(9.76, 2.80) which translates to a mean of 0.777 and a log-standard deviation of 0.113. Sensitivities to the variance on the prior on steepness were evaluated in the 2012 and 2013 assessments \citep{JTC2012, JTC2013}.  Sensitivities to the mean of the prior are explored in this assessment (see Section \ref{sec:assessment-sensitivity-analyses}).
 
 \subsubsection{Variability on fishery selectivity deviations}\label{sec:data-variability-selectivity}
 
 Time-varying fishery selectivity was introduced in the 2014 assessment \citep{JTC2014} and is modelled with yearly deviations applied to the selectivity-at-age parameters. A penalty function in the form of a normal distribution is applied to each deviation to keep the deviation from straying far from zero, unless the data are overwhelming. The amount of deviation from zero is controlled by a fixed standard deviation, $\phi$ (explained further below).
 
-Recent assessments \citep{JTC2014, JTC2015, JTC2016} used $\phi=0.03$, which was estimated externally by treating the deviations as random effects and integrating over them using the Laplace method, as described by \citet{ThorsonHicksEtAl2014}. This parameterization allowed for the estimation of time-varying selectivity without allowing large year-to-year changes. However, for this assessment, $\phi=0.03$ led to a record-high 2014 year class, resulting in a huge estimated current biomass (Figures~\ref{fig:main-biomass-base-tv-increase-1} and \ref{fig:main-status-base-tv-increase-1}). The biomass estimates for 2014 and earlier are relatively insensitive to the tested values of $\phi$.
+Recent assessments \citep{JTC2014, JTC2015, JTC2016} used $\phi=0.03$, which was estimated externally by treating the deviations as random effects and integrating over them using the Laplace method, as described by \citet{ThorsonHicksEtAl2014}. This parameterization allowed for the estimation of time-varying selectivity without allowing large year-to-year changes. However, for this assessment, $\phi=0.03$ led to a record-high 2014 year class, resulting in a huge estimated current biomass (Figures~\ref{fig:main-biomass-base-tv-increase-1} and \ref{fig:main-status-base-tv-increase-6}). The biomass estimates for 2014 and earlier are relatively insensitive to the tested values of $\phi$.
 
-**Ian to add text explaining $\phi=0.20$, partly based on \citet{ThorsonHicksEtAl2014} and Figures~\ref{fig:main-biomass-base-tv-increase-1} and \ref{fig:main-status-base-tv-increase-1} ($\phi=0.30$ not too different from 0.20).
+**Ian to add text explaining $\phi=0.20$, partly based on \citet{ThorsonHicksEtAl2014} and Figures~\ref{fig:main-biomass-base-tv-increase-1} and \ref{fig:main-status-base-tv-increase-6} ($\phi=0.30$ not too different from 0.20).
 
 Further details on the time-varying selectivity function are now given.
 
@@ -210,7 +210,7 @@ S'_{\text{max}} = \mbox{max} \{S'_a\}.
 \ee
 Selectivity is fixed at $S_a = 0$ for $a < A_{\text{min}}$. 
 
-This formulation has the properties that the maximum selectivity equals 1, positive values are associated with increasing selectivity between ages $a-1$ and $a$, and negative values are associated with decreasing selectivity between those ages. Beyond the maximum age for which selectivity is estimated (6 in the base model), $p_a = 0$ to give constant selectivity beyond the last estimated value. The condition that maximum selectivity equals 1 results in one fewer degree of freedom than the number of estimated $p_a$. Therefore, $p_{A_{\text{min}}}=0$ can be set for the fishery and for the survey.  % Manual 2017 - age 6 in the base model.
+This formulation has the properties that the maximum selectivity equals 1, positive values are associated with increasing selectivity between ages $a-1$ and $a$, and negative values are associated with decreasing selectivity between those ages. Beyond the maximum age for which selectivity is estimated (6 in the base model), $p_a = 0$ gives constant selectivity beyond the last estimated value. The condition that maximum selectivity equals 1 results in one fewer degree of freedom than the number of estimated $p_a$. Therefore, $p_{A_{\text{min}}}=0$ can be set for the fishery and for the survey.  % Manual 2017 - age 6 in the base model.
 
 Time-varying fishery selectivity is implemented through annual deviations in the $p_a$, formulated as
 \eb
