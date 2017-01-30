@@ -199,3 +199,16 @@ make.age.comp.forecast.plot <- function(model,
         side=3, line=0, outer=TRUE, font=2, cex=1.2)
   #dev.off()
 }
+
+# IGT 2017/01/30:
+# make EPS file as a short-term measure for 2017 doc rather than
+# make this figure dynamically
+if(FALSE){
+  setwd('r')
+  cairo_ps(filename =  "../main-figures/main_age_comp_forecast.eps",
+           width = 6.5, height = 4.5, pointsize = 10)
+  # function call runs get.forecast.age.info to make RData file if needed
+  make.age.comp.forecast.plot(base.model, make.missing.RData.file=TRUE)
+  dev.off()
+  setwd('..')
+}
