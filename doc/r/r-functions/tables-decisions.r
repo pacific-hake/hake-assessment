@@ -19,7 +19,7 @@ make.decision.table <- function(model,                  ## model is an mcmc run 
     table.header <- "\\textbf{Beginning of year relative spawning biomass}"
   }else{
     num.rows <- nrow(forecast[[1]]$spr)
-    table.header <- "\\textbf{Relative Fishing Intensity}"
+    table.header <- "\\textbf{Relative fishing intensity}"
   }
 
   ## tab.letters are the letters in the table, one for each forecast management action
