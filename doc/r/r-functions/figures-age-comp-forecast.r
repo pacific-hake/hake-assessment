@@ -1,17 +1,17 @@
 # estimating distribution of forecast catch at age in first forecast year
-# quickly assembed at JMC meeting 3/18/16
-# this file is messy and not generalized but it shouldn't be too hard to generalize it
-# minor improvements made on 1/22/17
+# this file contains two functions:
+#  * get.forecast.age.info (gathers info required for plot)
+#  * make.age.comp.forecast.plot (creates the plot)
 
 get.forecast.age.info <- function(model,
-                                  output.file = "age-comp-forecast-info.Rdata",
+                                  output.file = "age-comp-forecast-info.RData",
                                   nsamples = 999,
                                   verbose = TRUE){
 
   # get info on expected numbers at age, selectivity, and weight-at-age,
-  # from first year of forecast and save as Rdata file
+  # from first year of forecast and save as RData file
 
-  partest.dir <- file.path(model$path, "partest")
+  extra.mcmc.dir <- file.path(model$path, "extra-mcmc")
 
   # empty tables
   sel.table <- NULL
@@ -30,15 +30,15 @@ get.forecast.age.info <- function(model,
 
   # loop over all report files to read them, find the location of lines of interest,
   # and then read those lines as tables
-  # NOTE: THIS TAKES A WHILE AND SHOULD BE COMBINED WITH THE "PARTEST" STUFF
+  # NOTE: THIS TAKES A WHILE AND SHOULD BE COMBINED WITH THE "extra-mcmc" STUFF
   cat("Gathering info on forecast comps from", nsamples, "report files in\n",
-      file.path(partest.dir,"reports"),
+      file.path(extra.mcmc.dir,"reports"),
       "\nThis may take a while\n")
   for(irep in 1:nsamples){
     if(irep %% 100 == 0){
       cat("irep:", irep, "out of", nsamples, "\n")
     }
-    rep <- file.path(partest.dir, paste0("reports/Report_", irep, ".sso"))
+    rep <- file.path(extra.mcmc.dir, paste0("reports/Report_", irep, ".sso"))
 
     # need to reach each report file in full to find position of
     # various quantities because the length of "SPR/YPR_Profile"
@@ -94,22 +94,40 @@ get.forecast.age.info <- function(model,
   # make a list and save it to the chosen output file
   forecast.age.info <- list(natsel.prop = natsel.prop,
                             natselwt.prop = natselwt.prop)
-  cat("saving results to",file.path(partest.dir, output.file),"\n")
-  save(forecast.age.info, file = file.path(partest.dir, output.file))
+  cat("saving results to",file.path(extra.mcmc.dir, output.file),"\n")
+  save(forecast.age.info, file = file.path(extra.mcmc.dir, output.file))
 }
 
+##################################################################################
+
 make.age.comp.forecast.plot <- function(model,
-                                        dir = "partest",
-                                        info.file = "age-comp-forecast-info.Rdata"){
+                                        make.missing.RData.file=FALSE,
+                                        dir = "extra-mcmc",
+                                        info.file = "age-comp-forecast-info.RData"){
   # make plot of estimated distribution of forecast catch at age
   # in first forecast year
 
-  # dir is directory relative to model$path where Rdata is located
-  # info.file is the name of the Rdata file created by get.forecast.age.info
-
-
-  # load output from get.forecast.age.info
-  load(file.path(model$path, dir, info.file))
+  # dir is directory relative to model$path where RData is located
+  # info.file is the name of the RData file created by get.forecast.age.info
+  RData.file <- file.path(model$path, dir, info.file)
+  if(file.exists(RData.file)) {
+    # load output from get.forecast.age.info
+    load(RData.file)
+  } else {
+    cat0("Can't find file: ", RData.file, "\n",
+        " which is required by make.age.comp.forecast.plot\n")
+    if(make.missing.RData.file){
+      cat0(" Running get.forecast.age.info to build RData file\n",
+          " containing info on forecast age comp...\n")
+      get.forecast.age.info(model)
+      load(RData.file)
+    } else {
+      cat0(" make.missing.RData.file is set to FALSE so not making\n",
+          " plot of age comp for first forecast year.\n")
+      return()
+    }
+  }
+  
   # create objects for # expected proportion selected by numbers and by weight
   natsel.prop <- forecast.age.info$natsel.prop
   natselwt.prop <- forecast.age.info$natselwt.prop
