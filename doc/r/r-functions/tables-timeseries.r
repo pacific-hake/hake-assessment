@@ -298,7 +298,7 @@ make.fishing.intensity.table <- function(model,                ## model is an mc
   addtorow$pos[[1]] <- -1
   addtorow$pos[[2]] <- nrow(tab.filt)
   addtorow$command <- c(paste0("\\toprule \\multirow{3}{*}{\\textbf{Year}} & ",
-                               "\\multicolumn{3}{c}{\\textbf{Fishing intensity}} & ",
+                               "\\multicolumn{3}{c}{\\textbf{Relative fishing intensity}} & ",
                                "\\multicolumn{3}{c}{\\textbf{Exploitation fraction}} \\\\ ",
                                "\\cmidrule(r){2-4} ",
                                "\\cmidrule(r){5-7} "),

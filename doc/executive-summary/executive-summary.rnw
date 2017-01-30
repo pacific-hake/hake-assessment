@@ -250,7 +250,7 @@ make.fishing.intensity.table(base.model,
 
 %% for 2017 assessment, base-model candidate 41 has no median fishing intensity estimated above 1 so code in 2 lines below causes error. Commenting out and posting issue. 
 %% Okay for base-model 45, though only year. Keep all this so can easily switch around.
-Median fishing intensity on the stock is estimated to have been below the target except for 
+Median relative fishing intensity on the stock is estimated to have been below the target except for 
 %% the years \Sexpr{median.intensity.above.one.years[1:(length(median.intensity.above.one.years)-1)]} and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
 %% See 'The median fishing intensity ...' sentence in Management Performance
 %%  Section below, which seeminly didn't give an error when 
@@ -297,8 +297,8 @@ make.exploitation.fraction.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-Median fishing intensity is estimated to have declined from \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.penult.yr}\% in \Sexpr{end.yr-1}, while
-the exploitation fraction has decreased from \Sexpr{exploitation.med.2010} in 2010 to \Sexpr{exploitation.med.penult.yr} in \Sexpr{end.yr-1}.  There is a considerable amount of uncertainty around estimates of fishing intensity, with the 95\% posterior credibility interval reaching above the SPR management target for \Sexpr{end.yr-1} (Figure~\ref{fig:es-fishing-intensity}).
+Median relative fishing intensity is estimated to have declined from \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.penult.yr}\% in \Sexpr{end.yr-1}, while
+the exploitation fraction has decreased from \Sexpr{exploitation.med.2010} in 2010 to \Sexpr{exploitation.med.penult.yr} in \Sexpr{end.yr-1}.  There is a considerable amount of uncertainty around estimates of relative fishing intensity, with the 95\% posterior credibility interval reaching above the SPR management target for \Sexpr{end.yr-1} (Figure~\ref{fig:es-fishing-intensity}).
 % 2016 assessment we had: '... is below the SPR management target for the 
 %  last three years (Figure~\ref{fig:es-fishing-intensity})'. 
 %  Interestingly, for 2017 the 2016 intensity interval reaches above 1.
@@ -332,7 +332,7 @@ make.landings.tac.table(landings.vs.tac,
                         placement = "tbp")
 @
 
-The median fishing intensity was below target in all years except 
+The median relative fishing intensity was below target in all years except 
 % \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]} and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
 % Only one year for 2017 assessment, so:
 \Sexpr{median.intensity.above.one.years} (Figure~\ref{fig:es-fishing-intensity}).
@@ -341,7 +341,7 @@ The median female spawning biomass was above the $\Bforty$ reference point in al
 % median.relative.bio.below.target
 % Manual done 2017.
 
-The joint history of the medians of relative spawning biomass and relative fishing intensity shows that only in 1999 was the median fishing intensity above target and the female spawning biomass below $\Bforty$ (Figure~\ref{fig:es-phase}).  % Manual done 2017.
+The joint history of the medians of relative spawning biomass and relative fishing intensity shows that only in 1999 was the median relative fishing intensity above target and the female spawning biomass below $\Bforty$ (Figure~\ref{fig:es-phase}).  % Manual done 2017.
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -353,21 +353,19 @@ make.phase.plot(base.model,
                 color = "blue")
 @
 \end{center}
-\caption{Estimated historical path followed by fishing intensity and relative spawning biomass for \fishname\ with labels
-  on the start and end years. Gray bars span the 95\% credibility intervals for \Sexpr{end.yr-1} fishing intensity (vertical)
-  and relative spawning biomass (horizontal).}
+\caption{Estimated historical path followed by relative fishing intensity and relative spawning biomass for \fishname\ with labels on the start and end years. Gray bars span the 95\% credibility intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical) and relative spawning biomass (horizontal).}
 \label{fig:es-phase}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-Between 2007 and 2011, however, median fishing intensity ranged from \Sexpr{median.intensity.2007.to.2011.min}\% to \Sexpr{median.intensity.2007.to.2011.max}\% and median relative spawning biomass between \Sexpr{median.relative.bio.2007.to.2011.min} and \Sexpr{median.relative.bio.2007.to.2011.max}.
+Between 2007 and 2011, however, median relative fishing intensity ranged from \Sexpr{median.intensity.2007.to.2011.min}\% to \Sexpr{median.intensity.2007.to.2011.max}\% and median relative spawning biomass between \Sexpr{median.relative.bio.2007.to.2011.min} and \Sexpr{median.relative.bio.2007.to.2011.max}.
 Biomass has risen recently with the 2008, 2010 and 2014 recruitments, and
 % and, correspondingly, fishing intensity has fallen below targets. 
 relative spawning biomass has been above the target since \Sexpr{median.relative.bio.above.target.since}.
 % Manual done 2017. Based on median.relative.bio.below.target.
 
-While there is large uncertainty in the \Sexpr{end.yr-1} estimates of fishing intensity and relative
-spawning biomass, the model predicts a less than 4\% joint probability of being both above the target fishing intensity in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at the start of \Sexpr{end.yr}.
+While there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative fishing intensity and relative
+spawning biomass, the model predicts a less than 4\% joint probability of being both above the target relative fishing intensity in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at the start of \Sexpr{end.yr}.
 % sum(base.model$mcmc$Bratio_2017<0.4 & base.model$mcmc$SPRratio_2016>1) /nrow(base.model$mcmc)
 % That is the joint probability, make sure to change dates each year.
 % Manual done 2017.
@@ -426,7 +424,7 @@ make.decision.table(base.model,
                     placement = "tbp")
 @
 
-Decision tables give the projected population status (relative spawning biomass) and the fishing intensity under different catch alternatives for the base model (Tables~\ref{tab:es-decisions-biomass} and~\ref{tab:es-decisions-spr}). The tables are organized such that the projected outcome for each potential catch level and year (each row) can be evaluated across the quantiles (columns) of the posterior distribution. Table~\ref{tab:es-decisions-biomass} shows projected relative spawning biomass outcomes and Table~\ref{tab:es-decisions-spr} shows projected fishing intensity outcomes relative to the target fishing intensity (based on SPR; see table legend). Figure~\ref{fig:es-forecast-depletion-comparison} shows the projected biomass for several catch alternatives.
+Decision tables give the projected population status (relative spawning biomass) and the relative fishing intensity under different catch alternatives for the base model (Tables~\ref{tab:es-decisions-biomass} and~\ref{tab:es-decisions-spr}). The tables are organized such that the projected outcome for each potential catch level and year (each row) can be evaluated across the quantiles (columns) of the posterior distribution. Table~\ref{tab:es-decisions-biomass} shows projected relative spawning biomass outcomes and Table~\ref{tab:es-decisions-spr} shows projected fishing intensity outcomes relative to the target fishing intensity (based on SPR; see table legend). Figure~\ref{fig:es-forecast-depletion-comparison} shows the projected biomass for several catch alternatives.
 
 <<decisions.spr.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
@@ -465,7 +463,7 @@ make.forecast.depletion.comparison.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 % Manual 2017 done.
 
-Fishing intensity exceeding 100\% indicates fishing in excess of the $\Fforty$ default harvest rate catch limit. This can happen for the median fishing intensity in projected years because the $\Fforty$ default harvest-rate catch limit is calculated using baseline selectivity from all years, whereas the forecasted catches are removed using selectivity averaged over the last five years. Recent changes in selectivity will thus be reflected in the determination of fishing in excess of the default harvest policy. Alternative catch levels where median fishing intensity is 100\% for three years of projections is provided for comparison (scenario f: FI=100\%).
+Relative fishing intensity exceeding 100\% indicates fishing in excess of the $\Fforty$ default harvest rate catch limit. This can happen for the median relative fishing intensity in projected years because the $\Fforty$ default harvest-rate catch limit is calculated using baseline selectivity from all years, whereas the forecasted catches are removed using selectivity averaged over the last five years. Recent changes in selectivity will thus be reflected in the determination of fishing in excess of the default harvest policy. Alternative catch levels where median relative fishing intensity is 100\% for three years of projections is provided for comparison (scenario f: FI=100\%).
 % Manual 2017 done.
 
 % Move to after next paragraph if it appears too early. It shouldn't since

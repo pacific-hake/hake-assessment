@@ -187,7 +187,7 @@ make.fishing.intensity.plot <- function(model,            ## model is an mcmc ru
   plotBars.fn(yrs, y, scalar = 1, ylim = c(0,upper.lim), pch = 20,
             ## xlab="Year",ylab="Fishing intensity (1-SPR)/(1-SPR_40%)",
             xlab="Year",
-            ylab = expression(paste("Fishing intensity", ~~(1-italic(SPR))/(1-italic(SPR)['40%']))),
+            ylab = expression(paste("Rel. fishing intensity", ~~(1-italic(SPR))/(1-italic(SPR)['40%']))),
             cex = 0.8, las = 1, gap = 0.02, xaxt = "n", ciLwd = 1, ciCol = rgb(0,0,1,0.5),
             mgp = c(2.3,1,0), xlim = range(yrs), yaxs = "i")
   axis(1, at = seq(1960, end.yr+4, 5))
