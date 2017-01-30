@@ -682,7 +682,7 @@ make.mcmc.vs.mle.plot(base.model,
 @
 \end{center}
 \caption{A comparison of maximum likelihood estimates with 95\% confidence intervals determined from asymptotic variance estimates (red)
-  to the posterior distribution with 95\% credibility intervals (black). The posterior median is shown for spawning output 
+  to the posterior distribution with 95\% credibility intervals (black). The posterior median is shown for spawning biomass 
   while the posterior mean recruitment is displayed in the lower panel to be more comparable to the MLE value.}
 \label{fig:main-mle.vs.mcmc}
 \end{figure}
