@@ -1,3 +1,4 @@
+
 # estimating distribution of forecast catch at age in first forecast year
 # this file contains two functions:
 #  * get.forecast.age.info (gathers info required for plot)
@@ -211,4 +212,19 @@ if(FALSE){
   make.age.comp.forecast.plot(base.model, make.missing.RData.file=TRUE)
   dev.off()
   setwd('..')
+
+  # calculations that could also be made dynamic:
+  round(100*quantile(forecast.age.info$natsel.prop$X3, c(0.025, 0.5, 0.975)))
+  round(100*quantile(forecast.age.info$natsel.prop$X7, c(0.025, 0.5, 0.975)))
+  round(100*quantile(forecast.age.info$natselwt.prop$X3, c(0.025, 0.5, 0.975)))
+  round(100*quantile(forecast.age.info$natselwt.prop$X7, c(0.025, 0.5, 0.975)))
+  ##  2.5%   50% 97.5% 
+  ##    14    52    87 
+  ##  2.5%   50% 97.5% 
+  ##     7    27    52 
+  ##  2.5%   50% 97.5% 
+  ##    10    39    79 
+  ##  2.5%   50% 97.5% 
+  ##    12    36    59 
+
 }
