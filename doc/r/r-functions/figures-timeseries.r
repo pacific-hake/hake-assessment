@@ -304,7 +304,7 @@ make.squid.plot <- function(models,      ## A list of models to compare (typical
   ##  deviation estimates changing for cohorts between assessment years
 
   oldpar <- par()
-  compare.summary <- SSsummarize(models)
+  compare.summary <- SSsummarize(models, SpawnOutputUnits="biomass")
   neg.yr.vec <- seq(0, -(length(models) - 1), -1)
   endyrvec <- compare.summary$endyrs + 1 + neg.yr.vec
   if(subplot == 1){
@@ -348,7 +348,7 @@ make.comparison.plot <- function(models,                   ## models is a list o
     tmp.names <- sapply(models[1:length(models)], "[[", "path")
     model.names <- gsub(".*/","", tmp.names)
   }
-  compare.summary <- SSsummarize(models)
+  compare.summary <- SSsummarize(models, SpawnOutputUnits="biomass")
   endyrvec <- "default"
   ## If it is a retropective plot, compute the end year vector of years so the lines end on the correct years
   if(is.retro){
@@ -418,7 +418,7 @@ make.comparison.plot.mcmc <- function(
     tmp.names <- sapply(models[1:length(models)], "[[", "path")
     model.names <- gsub(".*/","", tmp.names)
   }
-  compare.summary <- SSsummarize(models)
+  compare.summary <- SSsummarize(models, SpawnOutputUnits="biomass")
   compare.summary$mcmc <- vector(mode="list",length=length(models))
   for(i in 1:length(models)) {
     compare.summary$mcmc[[i]] <- models[[i]]$mcmc

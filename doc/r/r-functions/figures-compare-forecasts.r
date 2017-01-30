@@ -80,7 +80,7 @@ make.forecast.depletion.comparison.plot <- function(model,        ## model is th
   num.models <- length(models.inds)
   fore.list <- lapply(model$forecasts[[length(model$forecasts)]][models.inds], "[[", "outputs")
   model.list <- rep(list(model), num.models)
-  compare.summary <- SSsummarize(model.list)
+  compare.summary <- SSsummarize(model.list, SpawnOutputUnits="biomass")
   compare.summary$mcmc <- fore.list
 
   SSplotComparisons(compare.summary,
