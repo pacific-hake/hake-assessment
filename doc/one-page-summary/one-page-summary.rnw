@@ -7,10 +7,10 @@
 
 \begin{itemize}
   \item The stock assessment model for \Sexpr{assess.yr} is similar in structure to the \Sexpr{last.assess.yr} model with the addition
-    of fishery age compositions from \Sexpr{end.yr-1}, reanalyzed acoustic survey biomass and age compositions for 1995 (completing the reanalyzed acoustic survey time series initiated in the \Sexpr{last.assess.yr} model), and minor refinements to data including catch
+    of fishery catch and age compositions from \Sexpr{end.yr-1}, reanalyzed acoustic survey biomass and age compositions for 1995 (completing the reanalyzed acoustic survey time series initiated in the \Sexpr{last.assess.yr} model), and minor refinements to data including catch
     estimates from earlier years.
 
-  \item The stock assessment model is fit to an acoustic survey index of abundance as well as age compositions from the survey and commercial fisheries.
+  \item The stock assessment model is fit to an acoustic survey index of abundance and annual commercial catch, as well as age compositions from the survey and commercial fisheries.
 
   \item Coastwide catch in \Sexpr{end.yr-1} was \Sexpr{last.year.landings}~t, out of a
     TAC (adjusted for carryovers) of \Sexpr{last.year.tac}~t. Attainment in the U.S. was \Sexpr{last.year.us.attained}\% of its quota;
