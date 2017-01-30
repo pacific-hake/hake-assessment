@@ -336,7 +336,7 @@ The median fishing intensity was below target in all years except
 % \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]} and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
 % Only one year for 2017 assessment, so:
 \Sexpr{median.intensity.above.one.years} (Figure~\ref{fig:es-fishing-intensity}).
-The median female spawning biomass was above target in all years except 1968, 1988-2000 and 2007-2011 (Figure~\ref{fig:es-relative-spawning-biomass}).
+The median female spawning biomass was above the $\Bforty$ reference point in all years except 1968, 1998-2000 and 2007-2011 (Figure~\ref{fig:es-relative-spawning-biomass}).
 % Andy summarising those years manually, based on:
 % median.relative.bio.below.target
 % Manual done 2017.
