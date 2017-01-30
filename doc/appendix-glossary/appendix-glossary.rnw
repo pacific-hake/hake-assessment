@@ -106,9 +106,10 @@ Sometimes abbreviated to spawning biomass.
 
 Fisheries and Oceans Canada: Federal organization which delivers programs and services that support sustainable use and development of Canada's waterways and aquatic resources.
 
-Fishing intensity: A measure of the magnitude of fishing relative to the SPR target (see SPR below). In this assessment the SPR target is 40\%, and fishing intensity for a fishing rate $F$ is defined as:
+Fishing intensity (relative fishing intensity): A measure of the magnitude of fishing in relation to the SPR target (see SPR below). In this assessment the SPR target fishing rate is 40\% (i.e., $\Fforty$), and fishing intensity for a fishing rate $F$ is defined as:
 \eb
-\mbox {fishing intensity for }F & = & \frac{1-\mbox{SPR}(F)}{1-\mbox{SPR}(\Fforty)}\\
+\mbox {fishing intensity for }F & = & 1-\mbox{SPR}(F),\\
+\mbox {and relative fishing intensity for }F & = & \frac{1-\mbox{SPR}(F)}{1-\mbox{SPR}(\Fforty)}\\
  & = & \frac{1-\mbox{SPR}(F)}{1-0.4}\\
  & = & \frac{1-\mbox{SPR}(F)}{0.6},
 \label{appendix-glossary-spr}
