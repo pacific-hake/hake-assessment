@@ -1,6 +1,6 @@
 %% hake-assessment.Rnw
 %% Pacific Hake Joint technical committee.
-%% January 2016
+%% January 2017
 
 \documentclass[12pt]{book}
 %% Allows the numbering of figures/tables to be unique witin a section
@@ -419,6 +419,10 @@ National Marine Fisheries Service and Fisheries and Oceans Canada. \pageref{Last
 
 \rfoot{Appendix~\ref{chap:canada-fishery-report} -- Canada fishery report}
 <<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-Canada.rnw'>>=
+@
+
+\rfoot{Appendix~\ref{chap:us-fishery-report} -- United States fishery report}
+<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-US.rnw'>>=
 @
 
 \rfoot{Appendix~\ref{chap:parameters} -- Estimated parameters}

@@ -1,0 +1,12 @@
+%appendix-fishery-report.rnw
+
+\clearpage
+
+\chapter{Report of the \Sexpr{end.yr-1} \fishname\ fishery in the United States} % from the Advisory Panel}
+\label{chap:us-fishery-report}
+
+{\bf Prepared by the United States Advisory Panel and submitted for the Canada/US Joint Management Committee's and the Joint Technical Committee's consideration on Month Day, Year.}
+
+Report forthcoming...
+
+\clearpage
