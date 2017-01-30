@@ -367,7 +367,7 @@ relative spawning biomass has been above the target since \Sexpr{median.relative
 % Manual done 2017. Based on median.relative.bio.below.target.
 
 While there is large uncertainty in the \Sexpr{end.yr-1} estimates of fishing intensity and relative
-spawning biomass, the model predicts a less than 3\% joint probability of being both above the target fishing intensity in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at the start of \Sexpr{end.yr}.
+spawning biomass, the model predicts a less than 4\% joint probability of being both above the target fishing intensity in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at the start of \Sexpr{end.yr}.
 % sum(base.model$mcmc$Bratio_2017<0.4 & base.model$mcmc$SPRratio_2016>1) /nrow(base.model$mcmc)
 % That is the joint probability, make sure to change dates each year.
 % Manual done 2017.
