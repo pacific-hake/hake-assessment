@@ -282,10 +282,18 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
   segments(sb[length(sb)], spr.lo, sb[length(sb)], spr.hi, col = rgb(0,0,0,0.5))
   segments(sb.lo, spr[length(spr)], sb.hi, spr[length(spr)], col = rgb(0,0,0,0.5))
   # label first and final years
-  text(sb[1], spr[1] - 0.01, start.yr, cex = 0.6, pos = 2, offset = 0.15,
+  text(sb[1], spr[1] - 0.01, start.yr, cex = 0.6, pos = 1,
        col=colvec[1])
   text(sb[length(sb)], spr[length(spr)] + 0.01, end.yr-1, pos = 4, cex = 0.6,
        col=colvec[length(spr)-1])
+  # add label to year in upper-left quadrant if there's only one
+  # this facilitates labeling 1999 in the 2017 assessment, but may work for future years
+  upper.left.yrs <- yrs[sb < 0.4 & spr > 1]
+  if(length(upper.left.yrs)==1){
+    text(x=sb[yrs %in% upper.left.yrs], y=spr[yrs %in% upper.left.yrs] + 0.015,
+         labels=upper.left.yrs, pos = 4, cex = 0.6,
+         col=colvec[yrs %in% upper.left.yrs])
+  }
   # add lines at the reference points
   abline(h = 1, v = 1, lty = 2, col = rgb(0,0,0,0.4))
   abline(h = 1, v = c(0.1,0.4), lty = 2, col = rgb(0,0,0,0.4))
