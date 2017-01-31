@@ -144,7 +144,7 @@ supported the fishery for several years due to relatively small recruitments
 between 2000 and 2007. With the aging 1999 year class, median female
 spawning biomass declined throughout the late 2000s, reaching a time-series low
 of \Sexpr{median.bio.min}~million~t in \Sexpr{median.bio.min.year}.
-The assessment model estimates that spawning biomass declined from 2014 to 2015
+The assessment model estimates that median spawning biomass declined from 2014 to 2015
 after five years of increases from 2009 to 2014.
 % Median spawning biomass is: base.model$mcmccalcs$smed
 These estimated increases were the result of a large 2010 cohort and an above-average
@@ -156,7 +156,7 @@ the 2010 year class.
 % Manual 2017 done.
 
 The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium, $B_0$) is
-\Sexpr{curr.depl.median}\% but is highly uncertain (with a 95\% posterior credibility interval from \Sexpr{curr.depl.lower}\% to \Sexpr{curr.depl.upper}\%; Table~\ref{tab:es-biomass}). The median estimate of the \Sexpr{end.yr} beginning-of-the-year female spawning biomass is \Sexpr{curr.bio.median}~million~t (with a 95\% posterior credibility interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper}~million~t). The estimate of the \Sexpr{end.yr-1} female spawning biomass is \Sexpr{prev.bio.median} (\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. This is slightly higher than the 1.885~(0.791-4.781)~million~t estimated in the 2016 assessment.
+\Sexpr{curr.depl.median}\% but is highly uncertain (with a 95\% posterior credibility interval from \Sexpr{curr.depl.lower}\% to \Sexpr{curr.depl.upper}\%; Table~\ref{tab:es-biomass}). The median estimate of the \Sexpr{end.yr} spawning biomass is \Sexpr{curr.bio.median}~million~t (with a 95\% posterior credibility interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper}~million~t). The estimate of the \Sexpr{end.yr-1} female spawning biomass is \Sexpr{prev.bio.median} (\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. This is slightly higher than the 1.885~(0.791-4.781)~million~t estimated in the 2016 assessment.
 % Manual 2016 done (text checked).
 <<biomass.table, results='asis', echo=FALSE>>=
 make.biomass.table(base.model,
