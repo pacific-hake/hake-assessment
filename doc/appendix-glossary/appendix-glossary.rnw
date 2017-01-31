@@ -92,9 +92,9 @@ $F$: Instantaneous rate of fishing mortality (or fishing mortality rate); see be
 
 $\Fforty$: The rate of fishing mortality estimated to give a spawning potential ratio (SPR, see below) of 40\%. Therefore, by definition this satisfies
 \eb
-0.4 = \frac{\mbox{spawning biomass per recruit with }\Fforty}{\mbox{spawning biomass per recruit with no fishing}}.
+0.4 = \frac{\mbox{spawning biomass per recruit with }\Fforty}{\mbox{spawning biomass per recruit with no fishing}},
 \ee
-The 40\% value is specified in the Agreement.
+and SPR$(\Fforty) = 40\%$. The 40\% value is specified in the Agreement.
 
 \Ffortyten{} harvest policy: The default harvest policy (see above).
 
@@ -106,15 +106,21 @@ Sometimes abbreviated to spawning biomass.
 
 Fisheries and Oceans Canada: Federal organization which delivers programs and services that support sustainable use and development of Canada's waterways and aquatic resources.
 
-Fishing intensity (relative fishing intensity): A measure of the magnitude of fishing in relation to the SPR target (see SPR below). In this assessment the SPR target fishing rate is 40\% (i.e., $\Fforty$), and fishing intensity for a fishing rate $F$ is defined as:
+Fishing intensity: A measure of the magnitude of fishing, defined for a fishing rate $F$ as:
 \eb
-\mbox {fishing intensity for }F & = & 1-\mbox{SPR}(F),\\
-\mbox {and relative fishing intensity for }F & = & \frac{1-\mbox{SPR}(F)}{1-\mbox{SPR}(\Fforty)}\\
+\mbox {fishing intensity for }F & = & 1-\mbox{SPR}(F),
+\ee
+where SPR$(F)$ is the spawning potential ratio for the value of $F$. Often given as a percentage. Relative fishing intensity is the fishing intensity relative to that at the SPR target fishing rate $\Fforty$, where $\Fforty$ is the $F$ that gives an SPR of 40\% such that, by definition, SPR$(\Fforty) = 40\%$. Therefore
+\eb
+\mbox{relative fishing intensity for }F & = & \frac{1-\mbox{SPR}(F)}{1-\mbox{SPR}(\Fforty)}\\
  & = & \frac{1-\mbox{SPR}(F)}{1-0.4}\\
  & = & \frac{1-\mbox{SPR}(F)}{0.6},
 \label{appendix-glossary-spr}
 \ee
-where SPR$(F)$ is the spawning potential ratio associated with fishing rate $F$, and $\Fforty$ is the $F$ that gives an SPR of 40\%. See Figure~\ref{fig:glossary-fishing-intensity-illustration}.
+as shown in Figure~\ref{fig:glossary-fishing-intensity-illustration}. For brevity we use $\mbox{SPR}_{40\%} = \mbox{SPR}(\Fforty)$ in the text. Although this simply equals 40\%, it can be helpful to explicitly write:
+\eb
+\mbox{relative fishing intensity for }F & = & \frac{1-\mbox{SPR}(F)}{1-\mbox{SPR}_{40\%}}.
+\ee  
 % for 2017 assessment, consider revising definition of Fishing Intensity as discussed 
 % in issue #158: https://github.com/cgrandin/hake-assessment/issues/158
 
@@ -210,6 +216,8 @@ $R_0$: Estimated annual recruitment at unfished equilibrium.
 Recruits/recruitment: the estimated number of new members in a fish population born in the same age. In this assessment, recruitment is reported at age~0. See also cohort and year-class.   %  **AME -- shouldn't first sentence end ``... to a fish population of new members of the same age.'' And maybe `estimated contribution' instead of `estimated production'?? **IGT -- I shortened the definition quite a bit. See if the new one works for you. Do we care if some other assessments define recruitment at a different age (as noted in previous definition)?
 
 Recruitment deviation: The offset of the recruitment in a given year relative to the stock-recruit function; values occur on a logarithmic scale and are relative to the expected recruitment at a given spawning biomass (see below).
+
+Relative fishing intensity: See definition of fishing intensity.
 
 Relative spawning biomass: The ratio of the beginning-of-the-year female spawning biomass to the unfished equilibrium female spawning biomass ($B_0$, see above). Thus, lower values are associated with fewer mature female fish. This term was introduced in the 2015 stock assessment as a replacement for ``depletion'' (see above) which was a source of some confusion.
 
