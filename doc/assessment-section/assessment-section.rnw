@@ -66,6 +66,8 @@ Uncertainty of estimated quantities was calculated via Markov Chain Monte Carlo 
 
 Calculations and figures from Stock Synthesis output were performed using \Sexpr{R.Version()$version.string} \citep{R2015} and many R packages (in particular r4ss and xtable). The use of R, knitr, \LaTeX~and GitHub immensely facilitated the collaborative writing of this document.
 
+For this assessment document we have updated and refined the Glossary (Appendix~\ref{chap:glossary}), in particular clarifying the definitions of the various terms involved in the default harvest policy.
+
 \subsection{Modeling results}\label{sec:assessment-modeling-results}
 % Manual 2016 done
 \subsubsection{Changes from \Sexpr{last.assess.yr}}\label{sec:assessment-changes}
