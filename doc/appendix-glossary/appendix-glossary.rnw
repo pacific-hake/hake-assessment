@@ -120,7 +120,8 @@ where SPR$(F)$ is the spawning potential ratio for the value of $F$. Often given
 as shown in Figure~\ref{fig:glossary-fishing-intensity-illustration}. For brevity we use $\mbox{SPR}_{40\%} = \mbox{SPR}(\Fforty)$ in the text. Although this simply equals 40\%, it can be helpful to explicitly write:
 \eb
 \mbox{relative fishing intensity for }F & = & \frac{1-\mbox{SPR}(F)}{1-\mbox{SPR}_{40\%}}.
-\ee  
+\ee 
+The calculation of relative fishing intensity is shown graphically in Figure~\ref{fig:glossary-SPR-illustration}.
 % for 2017 assessment, consider revising definition of Fishing Intensity as discussed 
 % in issue #158: https://github.com/cgrandin/hake-assessment/issues/158
 
@@ -250,7 +251,7 @@ Spawning potential ratio (SPR): The ratio of the spawning biomass per recruit un
 \eb
 \mbox{SPR}(F) = \frac{\mbox{spawning biomass per recruit with }F}{\mbox{spawning biomass per recruit with no fishing}}.
 \ee
-Often expressed as a percentage, it achieves a value of 100\% in the absence of fishing and declines toward zero as fishing intensity increases.
+Often expressed as a percentage, it achieves a value of 100\% in the absence of fishing and declines toward zero as fishing intensity increases. See Figure~\ref{fig:glossary-SPR-illustration} for a graphical demonstration of the calculation of SPR.
 
 %Not found in text in 2017:
 %Spawning stock biomass (SSB): Alternative term for female spawning biomass (see above).
@@ -358,7 +359,7 @@ intensity.plot()
 make.SPR.illustration(base.model)
 @
 \end{center}
-\caption{Illustration of the spawning potential ratio (SPR) calculation based on the combination of maturity and fecundity used in the model, as well as the maximum likelihood estimates of natural mortality, selectivity, and fishing mortality in the final year of the base model.}
+\caption{Illustration of the spawning potential ratio (SPR) calculation based on the combination of maturity and fecundity used in the model, using the maximum likelihood estimates of natural mortality, selectivity, and fishing mortality in the final year of the base model.}
 %  **Need to make terminology the same as the fishing intensity definition.....
 \label{fig:glossary-SPR-illustration}
 \end{figure}
