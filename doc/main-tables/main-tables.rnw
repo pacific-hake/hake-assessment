@@ -152,21 +152,13 @@ make.survey.history.table(survey.history,
                           space.size = 12)
 @
 
-%% <<kriging.parameters.table, results='asis', echo=FALSE>>=
-%% make.kriging.parameters.table(
-%%                    xcaption = "Summary of key kriging parameters for the acoustic survey as used in the 2015 and 2016 assessments. Search radius is the distance in the transformed space from which observations are drawn to calculate weights in the kriging. Parameters $k$\\subscr{min} and $k$\\subscr{max} are the minimum and maximum number of data points used to calculate a kriged value. Length scale is a parameter estimated from the variogram for each year. For the 2016 assessment the search radius was calculated as three times the length scale for each year.",
-%%                    xlabel = "tab:main-kriging-parameters",
-%%                    font.size = 11,
-%%                    space.size = 12)
-%% @
-
-<<main.survey.extrap.table, results='asis', echo=FALSE>>=
-make.survey.extrap.table(survey.comparison,
-                         digits = 3,
-                         xcaption = paste0("Biomass index estimates from the acoustic survey (million~t) using kriging with extrapolation, kriging without extrapolation, and design-based methods."),
-                         xlabel = "tab:main-survey-comparison",
-                         font.size = 10,
-                         space.size = 12)
+<<main.survey.summary.table, results='asis', echo=FALSE>>=
+make.survey.summary.table(survey.summary,
+                          digits = 3,
+                          xcaption = paste0("Biomass index estimates from the acoustic survey (million~t) used in the 2016 and 2017 assessments."),
+                          xlabel = "tab:main-survey-comparison",
+                          font.size = 10,
+                          space.size = 12)
 @
 
 <<main.maturity.ogives.table, results='asis', echo=FALSE>>=
