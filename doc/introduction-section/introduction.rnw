@@ -94,7 +94,7 @@ The at-sea fishery maintained relatively consistent catch rates throughout the y
 
 The \Sexpr{last.data.yr} Canadian \fishname\ domestic fishery removed \Sexpr{last.year.can.landings}~t from Canadian waters, which was \Sexpr{last.year.can.attained}\% of the Canadian TAC of \Sexpr{last.year.can.tac}~t.
 
-The shoreside component, made up of vessels landing fresh round product onshore, landed \Sexpr{last.year.can.shore}~t. The freezer trawler component, made up of four vessels which freeze headed and gutted product while at sea, landed \Sexpr{last.year.can.freezer}~t. The year 2014 was the first in which the freezer trawler component of the Canadian fleet landed more hake than the shoreside component.
+The shoreside component, made up of vessels landing fresh round product onshore, landed \Sexpr{last.year.can.shore}~t. The freezer trawler component, made up of four vessels which freeze headed and gutted product while at sea, landed \Sexpr{last.year.can.freezer}~t.
 
 % Paraphrased from Appendix B, no point in repeating lots of it:
 The Canadian fishery began in early March, two months earlier than in \Sexpr{last.data.yr-1}, and the last delivery for the Freezer trawler vessels was in mid-November. Fish were present continuously along the shelf break and on the shelf off the West Coast of Vancouver Island throughout the season. Similar to 2015, there appeared to be a larger hake biomass in Canada than in 2013 and 2014. Bycatch was seldom a problem throughout the year. For further details see the report from the Canadian Advisory Panel (Appendix~\ref{chap:canada-fishery-report}).
