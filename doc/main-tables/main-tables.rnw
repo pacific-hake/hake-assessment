@@ -255,7 +255,7 @@ make.reference.points.table(base.model,
 
 <<main.decisions.biomass.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption <- paste0("Decision table of forecast quantiles of \\fishname\\ relative spawning biomass at the beginning of the year before fishing. Quantiles from the base model are shown for various harvest alternatives (rows) based on: constant catch levels (rows a, b, c, d, e), including the TAC from  ",min(forecast.yrs)-1," (row d), the catch values that result in a median relative fishing intensity of 100\\% (row f), the median values estimated via the default harvest policy (\\Ffortyten) using the base model (row g), and the catch level that results in a 50\\% probability that the median projected catch will remain the same in ",min(forecast.yrs)," and ",min(forecast.yrs)+1," (row h). Row~e uses 600,000~t rather than the 500,000~t from last year's assessment, because 500,000~t is essentially row~d. Catch in ",max(forecast.yrs)," does not impact the beginning of the year biomass in ",max(forecast.yrs),"."),
+                    xcaption <- paste0("Decision table of forecast quantiles of \\fishname\\ relative spawning biomass at the beginning of the year before fishing. Quantiles from the base model are shown for various harvest alternatives (rows) based on: constant catch levels (rows a, b, c, d, e), including the TAC from  ",min(forecast.yrs)-1," (row d), the catch values that result in a median relative fishing intensity of 100\\% (row f), the median values estimated via the default harvest policy (\\Ffortyten) using the base model (row g), and the fishing intensity that results in a 50\\% probability that the median projected catch will remain the same in ",min(forecast.yrs)," and ",min(forecast.yrs)+1," (row h). Row~e uses 600,000~t rather than the 500,000~t from last year's assessment, because 500,000~t is essentially row~d. Catch in ",max(forecast.yrs)," does not impact the beginning of the year biomass in ",max(forecast.yrs),"."),
                     xlabel <- "tab:main-decisions-biomass",
                     font.size = 12,
                     space.size = 14,
@@ -275,7 +275,7 @@ make.decision.table(base.model,
 make.risk.table(base.model,
                 forecast.yrs,
                 index = 1, ## Index in model$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                xcaption <- paste0("Probabilities related to spawning biomass, fishing intensity, and ",end.yr+1," catch limits for alternative ",end.yr," catch options (catch options explained in Table \\ref{tab:main-decisions-biomass})."),
+                xcaption <- paste0("Probabilities related to spawning biomass, relative fishing intensity, and the ",end.yr+1," default harvest policy catch for alternative ",end.yr," catch options (catch options explained in Table \\ref{tab:main-decisions-biomass})."),
                 xlabel <- "tab:main-risk-year-1",
                 font.size = 12,
                 space.size = 14)
@@ -285,7 +285,7 @@ make.risk.table(base.model,
 make.risk.table(base.model,
                 forecast.yrs,
                 index = 2, ## Index in model$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                xcaption <- paste0("Probabilities related to spawning biomass, fishing intensity, and ",end.yr+2," catch limits for alternative ",end.yr+1," catch options (catch options explained in Table \\ref{tab:main-decisions-biomass})."),
+                xcaption <- paste0("Probabilities related to spawning biomass, relative fishing intensity, and the ",end.yr+2," default harvest policy catch for alternative ",end.yr+1," catch options, given the ",end.yr," catch level shown in Table~\\ref{tab:main-risk-year-1} (catch options explained in Table \\ref{tab:main-decisions-biomass})."),
                 xlabel <- "tab:main-risk-year-2",
                 font.size = 12,
                 space.size = 14)
