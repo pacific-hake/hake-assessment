@@ -66,6 +66,41 @@ make.survey.extrap.table <- function(dat,
                size = size.string))
 }
 
+make.survey.summary.table <- function(dat,
+                                      digits = 3,           ## number of decimal points for biomass and cv
+                                      xcaption = "default", ## Caption to use
+                                      xlabel   = "default", ## Latex label to use
+                                      font.size = 9,        ## Size of the font for the table
+                                      space.size = 10){       ## Size of the spaces for the table
+  ## dat is a data frame containing the survey comparisons.
+
+  ## Format the columns individually, avoiding any NA's
+  dat$biomass.2016[!is.na(dat$biomass.2016)] <- f(dat$biomass.2016[!is.na(dat$biomass.2016)] / 1000, digits)
+  dat$biomass.2017[!is.na(dat$biomass.2017)] <- f(dat$biomass.2017[!is.na(dat$biomass.2017)] / 1000, digits)
+
+  dat$cv.2016[!is.na(dat$cv.2016)] <- paste0(f(dat$cv.2016[!is.na(dat$cv.2016)] * 100, 1), "\\%")
+  dat$cv.2017[!is.na(dat$cv.2017)] <- paste0(f(dat$cv.2017[!is.na(dat$cv.2017)] * 100, 1), "\\%")
+
+  dat[is.na(dat)] <- "--"
+
+  colnames(dat) <- c("\\specialcell{\\textbf{Year}}",
+                     "\\specialcell{\\textbf{Biomass estimate}\\\\\\textbf{2016}\\\\\\textbf{(million t)}}",
+                     "\\specialcell{\\textbf{Sampling CV}\\\\\\textbf{2016}}",
+                     "\\specialcell{\\textbf{Biomass estimate}\\\\\\textbf{2017}\\\\\\textbf{(million t)}}",
+                     "\\specialcell{\\textbf{Sampling CV}\\\\\\textbf{2017}}")
+  ## Make the size string for font and space size
+  size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
+  return(print(xtable(dat,
+                      caption = xcaption,
+                      label = xlabel,
+                      align = get.align(ncol(dat), just = "c")),
+               caption.placement = "top",
+               include.rownames = FALSE,
+               table.placement = "H",
+               sanitize.text.function = function(x){x},
+               size = size.string))
+}
+
 make.survey.biomass.plot <- function(model,
                                      xlab = "Year",
                                      ylab = "Biomass Index Estimate (million t)"
