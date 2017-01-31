@@ -5,7 +5,7 @@
 <<catches.US, results='asis', echo=FALSE>>=
 make.catches.table.US(catches, start.yr=start.yr, end.yr=end.yr,
                    weight.factor=1000,
-                   xcaption = paste("Annual catches of \\fishname\\ (t) in U.S. waters by sector, ", start.yr, "-", last.data.yr, ". Tribal catches are included in the sector totals. Research Catch includes landed catch associated with research-related activities. Catch associated with surveys (not landed) and bycatch in fisheries not targetting hake is not currently included in the model.", sep=""),
+                   xcaption = paste("Annual catches of \\fishname\\ (t) in U.S. waters by sector, ", start.yr, "-", last.data.yr, ". Tribal catches are included in the sector totals. Research Catch includes landed catch associated with research-related activities. Catch associated with surveys and discarded bycatch in fisheries not targeting hake is not currently included in the model.", sep=""),
                    xlabel = "tab:intro-catches-US",
                    font.size = 10,
                    space.size = 11)
@@ -155,7 +155,7 @@ make.survey.history.table(survey.history,
 <<main.survey.summary.table, results='asis', echo=FALSE>>=
 make.survey.summary.table(survey.summary,
                           digits = 3,
-                          xcaption = paste0("Biomass index estimates from the acoustic survey (million~t) used in the 2016 and 2017 assessments."),
+                          xcaption = paste0("Biomass indices from the acoustic survey (million~t) used in the 2016 and 2017 assessments."),
                           xlabel = "tab:main-survey-comparison",
                           font.size = 10,
                           space.size = 12)
