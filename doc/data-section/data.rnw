@@ -117,13 +117,9 @@ For the 2016 assessment \citep{JTC2016}, the data from all surveys since 1998 wa
 
 \end{itemize}
 
-<<<<<<< HEAD
-However, the data from the 1995 survey was not in a format that could be processed, so the biomass index and associated age composition for that year were excluded from the model. Those 1995 data have now been processed in the same manner as the subsequent years and included in the time series (Table~\ref{tab:main-survey-comparison}).
-=======
 However, the data from the 1995 survey was not in a format that could be processed, so the biomass estimate and associated age composition for that year were excluded from the model. Those 1995 data have now been processed in the same manner as the subsequent years and included in the time series (Table~\ref{tab:main-survey-comparison}).
->>>>>>> cgrandin/master
 
-As part of that data-processing step, it was discovered that the variogram used in the kriging for the 1998 data required a revision, which resulted in a increase in the biomass index for that year of approximately 2\%, from 1.534 to 1.569 million t, and a decrease in the associated CV from 0.0526 to 0.0479.
+As part of that data-processing step, it was discovered that the variogram used in the kriging for the 1998 data required a revision, which resulted in a increase in the biomass index for that year of approximately 2\%, from 1.534 to 1.569 million~t, and a decrease in the associated CV from 0.0526 to 0.0479.
 
 This model thus includes a full time-series of consistently analyzed survey biomass (Table~\ref{tab:main-survey-history} and Figures~\ref{fig:main-survey-biomass} and \ref{fig:main-survey-extrap-biomass}) and age compositions (Figure~\ref{fig:main-age-comp-bubbles}).
 
