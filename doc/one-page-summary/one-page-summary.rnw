@@ -36,9 +36,9 @@
 
   \item Projections setting the \Sexpr{forecast.yrs[1]} and \Sexpr{forecast.yrs[2]} catch equal to the \Sexpr{forecast.yrs[1]-1} TAC of
     \Sexpr{last.year.tac}~t show the estimated median relative spawning biomass decreasing from 89\%
-    in \Sexpr{end.yr} to 85\% in \Sexpr{end.yr+1} and again in \Sexpr{end.yr+2} to 79\%. 
+    in \Sexpr{end.yr} to 85\% in \Sexpr{end.yr+1} and 79\% in \Sexpr{end.yr+2}. 
     However, due to uncertainty there is an estimated 16\% chance of the spawning biomass falling below 40\%
-     of $B_0$ in two years (2019). There is an estimated 63\% chance of the spawning biomass declining from 2017 to 2018, and a 80\% chance of it declining from 2018 to 2019 under this constant catch level.
+     of $B_0$ in 2019. There is an estimated 63\% chance of the spawning biomass declining from 2017 to 2018, and a 80\% chance of it declining from 2018 to 2019 under this constant catch level.
     % Manual to do (check this enitre bullet point)  -update 1/24/17 AMB
     % 3% from Table j, 38% from Table i, 50% from Table j
 \end{itemize}
