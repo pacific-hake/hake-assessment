@@ -719,7 +719,7 @@ make.forecast.depletion.comparison.plot(base.model,
 @
 \end{center}
 \caption{Time series of relative spawning biomass at the start of each year until \Sexpr{end.yr} as estimated from the base model, and forecast trajectories
-  to the start of \Sexpr{forecast.yrs[length(forecast.yrs)]} for several management options from the decision table, with 95\% posterior
+  to the start of \Sexpr{forecast.yrs[length(forecast.yrs)]} for several management options from the decision table (grey region), with 95\% posterior
   credibility intervals. The \Sexpr{end.yr} catch of \Sexpr{f(catch.default.policy[1])}~t was calculated using the default
   harvest policy, as defined in the Agreement.}
 \label{fig:main-forecast-depletion-comparison}
