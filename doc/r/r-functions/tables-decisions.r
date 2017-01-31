@@ -261,8 +261,8 @@ make.risk.table <- function(model,                  ## model is an mcmc run and 
                                "& \\specialcell{Probability\\\\B\\subscr{",forecast.yrs[index+1],"}<B\\subscr{40\\%}} ",
                                "& \\specialcell{Probability\\\\B\\subscr{",forecast.yrs[index+1],"}<B\\subscr{25\\%}} ",
                                "& \\specialcell{Probability\\\\B\\subscr{",forecast.yrs[index+1],"}<B\\subscr{10\\%}} ",
-                               "& \\specialcell{Probability\\\\",forecast.yrs[index]," fishing\\\\intensity\\\\>F\\subscr{SPR=40\\%}} ",
-                               "& \\specialcell{Probability\\\\",forecast.yrs[index+1]," default\\\\harvest policy\\\\catch\\\\<",forecast.yrs[index]," Catch} \\\\ ",
+                               "& \\specialcell{Probability\\\\",forecast.yrs[index]," relative\\\\fishing\\\\intensity\\\\>100\\%} ",
+                               "& \\specialcell{Probability\\\\",forecast.yrs[index+1]," default\\\\harvest policy\\\\catch\\\\<",forecast.yrs[index]," catch} \\\\ ",
                                "\\midrule \n"),
                         "\\bottomrule \n")
 

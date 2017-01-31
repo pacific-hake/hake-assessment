@@ -80,7 +80,7 @@ as well as fishery age-compositions (1975--\Sexpr{last.data.yr}). While the 2011
 the index increased steadily over the four surveys conducted in 2011, 2012, 2013, and 2015. Age-composition data from the aggregated 
 fisheries and the acoustic survey contribute to the assessment model's ability to resolve strong and weak cohorts. % Manual 2017 done.
 
-The assessment uses a Bayesian estimation approach, sensitivity analyses, and retrospective investigations to evaluate the potential consequences of parameter uncertainty, alternative structural models, and historical performance of the assessment model, respectively. The Bayesian approach combines prior knowledge about natural mortality, stock-recruitment steepness (a parameter for stock productivity) and several other parameters, with likelihoods for acoustic survey biomass indices, acoustic survey age-composition data, and fishery age-composition data. Integrating the joint posterior distribution over model parameters (via Markov Chain Monte Carlo algorithm) provides probabilistic inferences about uncertain model parameters and forecasts derived from those parameters. Sensitivity analyses are used to identify alternative structural models that may also be consistent with the data. Retrospective analyses identify possible poor performance of the assessment model with respect to future predictions. Past assessments have cited results from closed-loop simulations which provide insights into how alternative combinations of survey frequency, assessment model selectivity assumptions, and harvest control rules affect expected management outcomes given repeated application of these procedures over the long-term. The results of past closed-loop simulations influence the decisions made for this assessment.
+The assessment uses a Bayesian estimation approach, sensitivity analyses, and retrospective investigations to evaluate the potential consequences of parameter uncertainty, alternative structural models, and historical performance of the assessment model, respectively. The Bayesian approach combines prior knowledge about natural mortality, stock-recruitment steepness (a parameter for stock productivity) and several other parameters, with likelihoods for acoustic survey biomass indices, acoustic survey age-composition data, and fishery age-composition data. Integrating the joint posterior distribution over model parameters (via the Markov Chain Monte Carlo algorithm) provides probabilistic inferences about uncertain model parameters and forecasts derived from those parameters. Sensitivity analyses are used to identify alternative structural models that may also be consistent with the data. Retrospective analyses identify possible poor performance of the assessment model with respect to future predictions. Past assessments have conducted closed-loop simulations which provide insights into how alternative combinations of survey frequency, assessment model selectivity assumptions, and harvest control rules affect expected management outcomes given repeated application of these procedures over the long-term. The results of past closed-loop simulations influence the decisions made for this assessment.
 
 This \Sexpr{assess.yr} assessment retains the structural form of the base assessment model from \Sexpr{last.assess.yr} as well as many
 of the previous elements as configured in Stock Synthesis (SS). Analyses conducted in 2014 showed that allowing for time-varying (rather than fixed)
@@ -231,10 +231,13 @@ information in the data to estimate the sizes of the \Sexpr{end.yr-1} and \Sexpr
 young fish have shown the estimates of recent recruitment to be unreliable prior to model age-3 (observed at age-2).
 % Manual 2017 done.
 
+\subsection*{Default harvest policy} \label{sec:es-harvest-policy}
+\phantomsection  \addcontentsline{toc}{subsection}{Default harvest policy}
+
+The default \Ffortyten{} harvest policy prescribes the maximum rate of fishing mortality to equal $\Fforty$. This rate gives a spawning potential ratio (SPR) of 40\%, meaning that the spawning biomass per recruit with $\Fforty$ is 40\% of that without fishing. If spawning biomass is below $\Bforty$ (40\% of $B_0$), the policy reduces the TAC linearly until it equals zero at $\Bten$ (10\% of $B_0$). Relative fishing intensity for fishing rate $F$ is $(1-\mbox{SPR}(F))/(1-\mbox{SPR}_{40\%})$, where $\mbox{SPR}_{40\%}$ is the target SPR of 40\%.
+
 \subsection*{Exploitation status} \label{sec:es-exploitation-status}
 \phantomsection  \addcontentsline{toc}{subsection}{Exploitation status}
-
-The default \Ffortyten{} harvest policy prescribes a maximum rate of fishing mortality, $\Fforty$, that gives a spawning potential ratio (SPR) of 40\%, meaning that the spawning biomass per recruit with $\Fforty$ is 40\% of that without fishing. If spawning biomass is below $\Bforty$ (40\% of $B_0$), the policy reduces the TAC linearly until it equals zero at $\Bten$ (10\% of $B_0$). Relative fishing intensity for fishing rate $F$ is $(1-\mbox{SPR}(F))/(1-\mbox{SPR}_{40\%})$, where $\mbox{SPR}_{40\%}$ is the target SPR of 40\%.
 
 % Table may end up too early, if so move to end of this section.
 <<fishing.intensity.table, results='asis', echo=FALSE>>=
@@ -252,7 +255,7 @@ make.fishing.intensity.table(base.model,
 
 %% for 2017 assessment, base-model candidate 41 has no median fishing intensity estimated above 1 so code in 2 lines below causes error. Commenting out and posting issue. 
 %% Okay for base-model 45, though only year. Keep all this so can easily switch around.
-Median relative fishing intensity on the stock is estimated to have been below the target except for 
+Median relative fishing intensity on the stock is estimated to have been below the target of 1.0 except for 
 %% the years \Sexpr{median.intensity.above.one.years[1:(length(median.intensity.above.one.years)-1)]} and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
 %% See 'The median fishing intensity ...' sentence in Management Performance
 %%  Section below, which seeminly didn't give an error when 
@@ -418,7 +421,7 @@ The catch limit for \Sexpr{min(forecast.yrs)} based on the default \Ffortyten{} 
 % May need to move after the next paragraph
 <<decisions.biomass.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption <- paste0("Forecast quantiles of \\fishname\\ relative spawning biomass at the beginning of the year before fishing.  Catch alternatives are based on: constant catch levels (rows a, b, c, d, e), including the TAC from  ",min(forecast.yrs)-1," (row d), the catch values that result in a median relative fishing intensity of 100\\% (row f), the median values estimated via the default harvest policy (\\Ffortyten) for the base model (row g), and the catch level that results in a 50\\% probability that the median projected catch will remain the same in ",min(forecast.yrs)," and ",min(forecast.yrs)+1," (row h). Row~e uses 600,000~t rather than the 500,000~t from last year's assessment, because 500,000~t is essentially row~d. Catch in ",max(forecast.yrs)," does not impact the beginning of the year biomass in ",max(forecast.yrs),"."),
+                    xcaption <- paste0("Forecast quantiles of \\fishname\\ relative spawning biomass at the beginning of the year before fishing.  Catch alternatives are based on: constant catch levels (rows a, b, c, d, e), including the TAC from  ",min(forecast.yrs)-1," (row d), the catch values that result in a median relative fishing intensity of 100\\% (row f), the median values estimated via the default harvest policy (\\Ffortyten) for the base model (row g), and the fishing intensity that results in a 50\\% probability that the median projected catch will remain the same in ",min(forecast.yrs)," and ",min(forecast.yrs)+1," (row h). Row~e uses 600,000~t rather than the 500,000~t from last year's assessment, because 500,000~t is essentially row~d. Catch in ",max(forecast.yrs)," does not impact the beginning of the year biomass in ",max(forecast.yrs),"."),
                     xlabel <- "tab:es-decisions-biomass",
                     font.size = 12,
                     space.size = 14,
@@ -474,7 +477,7 @@ Relative fishing intensity exceeding 100\% indicates fishing in excess of the $\
 make.risk.table(base.model,
                 forecast.yrs,
                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                xcaption <- paste0("Probabilities related to spawning biomass, fishing intensity, and ",end.yr+1," catch limits for alternative ",end.yr," catch options (catch options explained in Table~\\ref{tab:es-decisions-biomass})."),
+                xcaption <- paste0("Probabilities related to spawning biomass, relative fishing intensity, and the ",end.yr+1," default harvest policy catch for alternative ",end.yr," catch options (catch options explained in Table~\\ref{tab:es-decisions-biomass})."),
                 xlabel <- "tab:es-risk-year-1",
                 font.size = 12,
                 space.size = 14,
@@ -496,7 +499,7 @@ make.forecast.risk.comparison.plot(base.model,
                                    legend.cex = 0.7)
 @
 \end{center}
-\caption{Graphical representation of the probabilities related to spawning biomass, fishing intensity, and \Sexpr{end.yr+1} catch limits for alternative \Sexpr{end.yr} catch options (catch options explained in Table~\ref{tab:es-decisions-biomass}) as listed in Table~\ref{tab:es-risk-year-1}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
+\caption{Graphical representation of the probabilities related to spawning biomass, relative fishing intensity, and the \Sexpr{end.yr+1} default harvest policy catch for alternative \Sexpr{end.yr} catch options (catch options explained in Table~\ref{tab:es-decisions-biomass}) as listed in Table~\ref{tab:es-risk-year-1}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
 \label{fig:es-forecast-risk-comparison-year-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -514,7 +517,7 @@ make.forecast.risk.comparison.plot(base.model,
                                    legend.cex = 0.7)
 @
 \end{center}
-\caption{Graphical representation of the probabilities related to spawning biomass, fishing intensity, and \Sexpr{end.yr+2} catch limits for alternative \Sexpr{end.yr+1} catch options (including associated \Sexpr{end.yr} catch; catch options explained in Table~\ref{tab:es-decisions-biomass}) as listed in Table~\ref{tab:es-risk-year-2}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
+\caption{Graphical representation of the probabilities related to spawning biomass, relative fishing intensity, and the \Sexpr{end.yr+2} default harvest policy catch for alternative \Sexpr{end.yr+1} catch options (including associated \Sexpr{end.yr} catch; catch options explained in Table~\ref{tab:es-decisions-biomass}) as listed in Table~\ref{tab:es-risk-year-2}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
 \label{fig:es-forecast-risk-comparison-year-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -526,7 +529,7 @@ These metrics summarize the probability of various outcomes from the base model 
 make.risk.table(base.model,
                 forecast.yrs,
                 index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                xcaption <- paste0("Probabilities related to spawning biomass, fishing intensity, and ",end.yr+2," catch limits for alternative ",end.yr+1," catch options (catch options explained in Table~\\ref{tab:es-decisions-biomass})."),
+                xcaption <- paste0("Probabilities related to spawning biomass, relative fishing intensity, and the ",end.yr+2," default harvest policy catch for alternative ",end.yr+1," catch options, given the ",end.yr," catch level shown in Table~\\ref{tab:es-risk-year-1} (catch options explained in Table~\\ref{tab:es-decisions-biomass})."),
                 xlabel <- "tab:es-risk-year-2",
                 font.size = 12,
                 space.size = 14,
