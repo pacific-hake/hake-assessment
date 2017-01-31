@@ -146,7 +146,7 @@ make.forecast.risk.comparison.plot <- function(model,        ## model is the mod
                    paste0("P(B",fore.yr+1,"<B25%)"),
                    paste0("P(B",fore.yr+1,"<B10%)"),
                    paste0("P(",fore.yr," relative fishing intensity > 100%)"),
-                   paste0("P(",fore.yr+1," default harvest policy catch < ",fore.yr," catch)")
+                   paste0("P(",fore.yr+1," default harvest policy catch < ",fore.yr," catch)"))
 
   matplot(catches, prob.dat,
           xlim=c(0,max(catches)),
