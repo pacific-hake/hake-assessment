@@ -281,7 +281,7 @@ mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
 \end{center}
-\caption{Bridging models showing the difference between the \Sexpr{end.yr} pre-tuned base model, the sequential addition of the main base model tuning runs (adjusting time periods and levels for recruitment bias and reweighting the survey and fishery compositional data), and increased flexability associated with time-varying selectivity (larger standard deviation associated with temporal deviates). The red line is equivalent to the \Sexpr{end.yr} base model. Spawning biomass (upper left panel), relative spawning biomass (spawning biomass in each year relative to the unfished equilibrium spawning biomass, upper right), absolute recruitment (lower left), and recruitment deviations (lower right) are shown.}
+\caption{Bridging models showing the difference between the \Sexpr{end.yr} pre-tuned base model, the sequential addition of the main base model tuning runs (adjusting time periods and levels for recruitment bias and reweighting the survey and fishery compositional data), and increased flexibility associated with time-varying selectivity (larger standard deviation associated with temporal deviates). The red line is equivalent to the \Sexpr{end.yr} base model. Spawning biomass (upper left panel), relative spawning biomass (spawning biomass in each year relative to the unfished equilibrium spawning biomass, upper right), absolute recruitment (lower left), and recruitment deviations (lower right) are shown.}
 \label{fig:main-bridge-4-panel}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -905,7 +905,7 @@ tv.selex <- calc.tv.selex(sens.models.6[1][[1]],
 make.tv.selex.plot(tv.selex)
 @
 \end{center}
-\caption{Mountains plot of median fishery selectivity in each year for the $\phi=0.03$ sensitity
+\caption{Mountains plot of median fishery selectivity in each year for the $\phi=0.03$ sensitivity
   case. Range of selectivity is 0 to 1 in each year. See Figure \ref{fig:main-tv-selex} for the base model.}
 \label{fig:main-tv-selex-sens}
 \end{figure}
@@ -931,7 +931,7 @@ tv.selex.right <- calc.tv.selex(sens.models.6[1][[1]],
 make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
 @
 \end{center}
-\caption{Fishery selectivity sampled from posterior probability distribution by year for the $\phi=0.03$ sensitity case.
+\caption{Fishery selectivity sampled from posterior probability distribution by year for the $\phi=0.03$ sensitivity case.
   Black dots and bars indicate the median and 95\% credibility interval, respectively. The shaded polygon
   also shows the 95\% credibility interval. Range is from 0 to 1 within each year. Selectivity
   for \Sexpr{tv.selex.start.yr} is shared for all years from \Sexpr{start.yr} to \Sexpr{tv.selex.start.yr}.
@@ -959,7 +959,7 @@ par <- oldpar
 @
 \end{center}
 \caption{Estimated acoustic (top - for all years) and fishery selectivity (bottom - for \Sexpr{end.yr-1} only)
-  ogives from the posterior distribution for the $\phi=0.03$ sensitity case.
+  ogives from the posterior distribution for the $\phi=0.03$ sensitivity case.
   See Figure \ref{fig:main-tv-selex-uncertainty-lines} for the base model.}
 \label{fig:main-tv-selex-uncertainty-lines-sens}
 \end{figure}

@@ -73,7 +73,7 @@ The U.S. adjusted allocation (i.e.~adjusted for carryovers) of \Sexpr{last.year.
 % \Sexpr{noquote(last.year.us.tribal.reallocate.dates)}
 % That now has quotes in, so check the above value and do manually (done 2017):
 September 15
-, resutled in final quotas for the catcher/processor, mothership, and shore-based sectors of \Sexpr{f(last.year.us.cp.quota.reallocated)}~t, \Sexpr{f(last.year.us.ms.quota.reallocated)}~t, and \Sexpr{f(last.year.us.shore.quota.reallocated)}~t, respectively.
+, resulted in final quotas for the catcher/processor, mothership, and shore-based sectors of \Sexpr{f(last.year.us.cp.quota.reallocated)}~t, \Sexpr{f(last.year.us.ms.quota.reallocated)}~t, and \Sexpr{f(last.year.us.shore.quota.reallocated)}~t, respectively.
 % Manual done 2016. Is all good for 2017 providing the %ages have not changed.
 
 Catch in the at-sea sectors was dominated by age-2 fish from the 2014 year class (more than 50\% of the total) and age-6 fish from the 2010 year class (around 30\% of the total). The catch from the shore-based sector had an even higher proportion of age-2 fish from the 2014 year class (62\%), with 24\% of this sector's catch coming from the 2010 year class.

@@ -88,7 +88,7 @@ selectivity reduced the magnitude of extreme cohort strength estimates. In close
 assessment models allowing for time-varying fishery selectivity led to higher median average catch, lower risk of falling below 10\% of unfished
 biomass ($B_0$), smaller probability of fishery closures, and lower inter-annual variability in catch compared to assessment models which force
 time-invariant fishery selectivity. Even a small degree of flexibility in the assessment model fishery selectivity could
-reduce the effects of errors caused by assuming selectivity is constant over time. Therefore, we retain time-varying selectivity in this assessment.  The constraint on annual deviaton in selectivity was loosened for this assessment, as the settings used in previous assessments resulted in an extremely large estimate of the 2014 year class without adequate basis (i.e., based upon quite limited data).
+reduce the effects of errors caused by assuming selectivity is constant over time. Therefore, we retain time-varying selectivity in this assessment.  The constraint on annual deviation in selectivity was loosened for this assessment, as the settings used in previous assessments resulted in an extremely large estimate of the 2014 year class without adequate basis (i.e., based upon quite limited data).
 
 \subsection*{Stock biomass} \label{sec:es-stock-biomass}
 \phantomsection  \addcontentsline{toc}{subsection}{Stock biomass}
