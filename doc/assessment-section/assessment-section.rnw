@@ -32,7 +32,7 @@ The following are the Assessment Recommendations from the \Sexpr{last.assess.yr}
   
 \item The list of sensitivity tests presented in the 2016 assessment covers the major axes of uncertainty, and should be continued in the 2017 assessment.
 
-\emph{Response -- The set of key structural uncertainties (i.e., prior on natural mortality, prior on steepness, and $\sigma_r$) were included as sensitivity analyses in the \Sexpr{end.yr} assessment.  Several other sensitivity runs were conducted to gauge the impact of alternative sources of data, model structural assumptions, and parameterizations (see Section~\ref{sec:assessment-sensitivity-analyses}).}
+\emph{Response -- The list of sensitivity tests (i.e., prior on natural mortality, prior on steepness, and $\sigma_r$) was retained this year, as requested. Several other sensitivity runs were conducted to gauge the impact of alternative sources of data, model structural assumptions, and parameterizations (see Section~\ref{sec:assessment-sensitivity-analyses}).}
 
 \item Age-1 index: the SRG supports the continued development of an age-1 index from the acoustic survey, and recommends continuing to run sensitivity tests in future assessments fitted to the age-1 index.
 
@@ -40,7 +40,7 @@ The following are the Assessment Recommendations from the \Sexpr{last.assess.yr}
   
 \item Sensitivity tests that changed $\sigma_r$ (which sets variability around the theoretical recruitment model) from the default value of 1.4 to values of 1.0 and 2.0 resulted in large changes to estimates of R0 and B0. Since this is the only parameter that showed a large impact on population status, we recommend that the value of $\sigma_r$ be explored more fully.
 
-\emph{Response -- In addition to sensitivity runs that applied $\sigma_r$ values of 1.0 and 2.0 as bounds, a value of 1.51 was identified as a possible alternative using the diagnostic outputs provided in r4ss based on the main recruitment deviation time period (1970-2014).  A likelihood profile was also used to evaluate the change in the likelihood surface across a range of plausible $\sigma_r$ values.  Results indicate that the $\sigma_r$ used in the \Sexpr{end.yr} base model (1.4) is at the minimum and is predominantly informed by age data and recruitment.}
+\emph{Response -- In addition to sensitivity runs that applied $\sigma_r$ values of 1.0 and 2.0 as bounds, a value of 1.51 was identified as a possible alternative using the diagnostic outputs provided in the R package `r4ss' based on the main recruitment deviation time period (1970-2014).  A likelihood profile was also used to evaluate the change in the likelihood surface across a range of plausible $\sigma_r$ values.  Results indicate that the $\sigma_r$ used in the \Sexpr{end.yr} base model (1.4) is at the minimum and is predominantly informed by age data and recruitment.}
 
 \item Current biological evidence does not support including Pacific Hake south of Point Conception in the assessment. The SRG encourages continued collection and processing of genetic material to resolve stock structure in the California Current region, especially given increasing catches of Pacific Hake in Mexican waters.
 
