@@ -407,7 +407,7 @@ current stock status and stock projections because, with limited data to
 estimate incoming recruitment, the cohorts are fished before the assessment can accurately determine how
 big the cohort is (i.e., cohort strength is not well known until it is at least age-3). This is particularly apparent for this assessment, because the 2014 cohort is potentially very large but is still highly uncertain (Figure~\ref{fig:es-recruitment}).
 
-The JTC presented results from closed-loop simulations evaluating the effect of including potential age-1 indices on management outcomes at a 2015 JMC meeting in Victoria, B.C. We found that fitting to an unbiased age-1 survey results in lower catch, lower probability that spawning biomass falls below 10\% of $B_0$, and a lower average annual variability in catch.  However, comparable results in terms of catch could be achieved with a more precise age-2+ survey or alternative harvest control rules.  The simulations assumed an age-1 survey design with consistent, effective, and numerous sampling, which may not be the case for the existing age-1 index. The age-1 index is not included in the base model but included in a sensitivity run.
+The JTC presented results from closed-loop simulations evaluating the effect of including potential age-1 indices on management outcomes at a 2015 Joint Management Committee (JMC) meeting in Victoria, B.C. We found that fitting to an unbiased age-1 survey results in lower catch, lower probability that spawning biomass falls below 10\% of $B_0$, and a lower average annual variability in catch.  However, comparable results in terms of catch could be achieved with a more precise age-2+ survey or alternative harvest control rules.  The simulations assumed an age-1 survey design with consistent, effective, and numerous sampling, which may not be the case for the existing age-1 index. The age-1 index is not included in the base model but included in a sensitivity run.
 % Manual 2017 done.
 
 \subsection*{Forecast decision tables} \label{sec:es-forecast-decision-table}
@@ -481,7 +481,7 @@ make.risk.table(base.model,
                 placement = "tbp")                
 @
 
-Management metrics that were identified as important to the Joint Management Committee (JMC) and the Advisory Panel (AP) in 2012 are presented for projections to \Sexpr{forecast.yrs[2:(length(forecast.yrs)-1)]} and \Sexpr{forecast.yrs[length(forecast.yrs)]} (Tables~\ref{tab:es-risk-year-1} and~\ref{tab:es-risk-year-2} and Figures~\ref{fig:es-forecast-risk-comparison-year-1} and~\ref{fig:es-forecast-risk-comparison-year-2}). 
+Management metrics that were identified as important to the JMC and the Advisory Panel (AP) in 2012 are presented for projections to \Sexpr{forecast.yrs[2:(length(forecast.yrs)-1)]} and \Sexpr{forecast.yrs[length(forecast.yrs)]} (Tables~\ref{tab:es-risk-year-1} and~\ref{tab:es-risk-year-2} and Figures~\ref{fig:es-forecast-risk-comparison-year-1} and~\ref{fig:es-forecast-risk-comparison-year-2}). 
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
