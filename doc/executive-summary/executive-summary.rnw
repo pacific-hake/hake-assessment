@@ -343,7 +343,7 @@ The median female spawning biomass was above the $\Bforty$ reference point in al
 % median.relative.bio.below.target
 % Manual done 2017.
 
-The joint history of the medians of relative spawning biomass and relative fishing intensity shows that only in 1999 was the median relative fishing intensity above target and the female spawning biomass below $\Bforty$ (Figure~\ref{fig:es-phase}).  % Manual done 2017.
+The joint history of the medians of relative spawning biomass and relative fishing intensity shows that only in 1999 was the median relative fishing intensity above the target of 1.0 and the female spawning biomass below the reference point of $\Bforty$ (Figure~\ref{fig:es-phase}).  % Manual done 2017.
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -363,7 +363,7 @@ make.phase.plot(base.model,
 Between 2007 and 2011, however, median relative fishing intensity ranged from \Sexpr{median.intensity.2007.to.2011.min}\% to \Sexpr{median.intensity.2007.to.2011.max}\% and median relative spawning biomass between \Sexpr{median.relative.bio.2007.to.2011.min} and \Sexpr{median.relative.bio.2007.to.2011.max}.
 Biomass has risen recently with the 2008, 2010 and 2014 recruitments, and
 % and, correspondingly, fishing intensity has fallen below targets. 
-relative spawning biomass has been above the target since \Sexpr{median.relative.bio.above.target.since}.
+median relative spawning biomass has been above the reference point of 40\% since \Sexpr{median.relative.bio.above.target.since}.
 % Manual done 2017. Based on median.relative.bio.below.target.
 
 While there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative fishing intensity and relative
