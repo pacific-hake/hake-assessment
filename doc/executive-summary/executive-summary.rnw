@@ -517,11 +517,7 @@ make.forecast.risk.comparison.plot(base.model,
                                    legend.cex = 0.7)
 @
 \end{center}
-<<<<<<< HEAD
-\caption{Graphical representation of the probabilities related to spawning biomass, relative fishing intensity, and the \Sexpr{end.yr+2} default harvest policy catch for alternative \Sexpr{end.yr+1} catch options (including associated \Sexpr{end.yr} catch); catch options explained in Table~\ref{tab:es-decisions-biomass} as listed in Table~\ref{tab:es-risk-year-2}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
-=======
-\caption{Graphical representation of the probabilities related to spawning biomass, fishing intensity, and \Sexpr{end.yr+2} catch limits for alternative \Sexpr{end.yr+1} catch options (including associated \Sexpr{end.yr} catch); catch options explained in Table~\ref{tab:es-decisions-biomass}) as listed in Table~\ref{tab:es-risk-year-2}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
->>>>>>> aedwards/master
+\caption{Graphical representation of the probabilities related to spawning biomass, relative fishing intensity, and the \Sexpr{end.yr+2} default harvest policy catch for alternative \Sexpr{end.yr+1} catch options (including associated \Sexpr{end.yr} catch; catch options explained in Table~\ref{tab:es-decisions-biomass}) as listed in Table~\ref{tab:es-risk-year-2}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
 \label{fig:es-forecast-risk-comparison-year-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
