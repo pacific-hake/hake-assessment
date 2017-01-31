@@ -518,7 +518,7 @@ make.biomass.plot(base.model,
                   color = "blue")
 @
 \end{center}
-\caption{Median of the posterior distribution for female spawning biomass at the start of each year ($B_t$) up to \Sexpr{end.yr} (solid line)
+\caption{Median of the posterior distribution for female spawning biomass at the start of each year ($B_t$) for the base model up to \Sexpr{end.yr} (solid line)
   with 95\% posterior credibility intervals (shaded area).}
 \label{fig:main-female-spawning-biomass}
 %% \end{figure}
@@ -535,7 +535,7 @@ make.depletion.plot(base.model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Median (solid line) of the posterior distribution for relative spawning biomass ($B_t/B_0$)
+\caption{Median (solid line) of the posterior distribution for relative spawning biomass ($B_t/B_0$) for the base model
   through \Sexpr{end.yr} with 95\% posterior credibility intervals (shaded area). Dashed horizontal lines show 10\%, 40\% and 100\% levels.}
 \label{fig:main-relative-spawning-biomass}
 \end{figure}
