@@ -536,7 +536,7 @@ make.risk.table(base.model,
 The probability of the spawning biomass decreasing from \Sexpr{end.yr} to \Sexpr{end.yr+1} is less than 50\% for only the 0~t and 180,000~t catch levels (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}). The highest probability of decrease is 82\%, which is for the default harvest policy.
 % 2016 assessment said for 'all catch levels investigated up to 440,000~t'
 %  but that was wrong, looking at the relevant 2016 figures.
-The predicted probability of the spawning biomass dropping below $B_{10\%}$ (10\% of $B_0$)
+The predicted probability of the spawning biomass dropping below $B_{10\%}$ 
 at the start of \Sexpr{end.yr+1} is less than 1\% and the maximum probability of dropping below $B_{40\%}$ is 18\% for all catches explored (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 It should be noted that the natural mortality rate is larger than the growth rate for the large 2010 year class.
 % Andy presumese that last phrase is still true - not sure where/how to check
