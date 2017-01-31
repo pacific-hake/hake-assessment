@@ -83,15 +83,6 @@ survey.biomass <- survey.history$biomass
 names(survey.biomass) <- as.character(survey.history$year)
 survey.comps <- base.model$dat$agecomp[base.model$dat$agecomp$FltSvy==2,]
 rownames(survey.comps) <- survey.comps$Yr
-## Survey extrapolation percentages and years
-survey.extrap.percent <- 100 * (survey.comparison$with.extrap - survey.comparison$no.extrap) / survey.comparison$with.extrap
-names(survey.extrap.percent) <- as.character(survey.comparison$year)
-survey.extrap.percent <- survey.extrap.percent[!is.na(survey.extrap.percent)]
-survey.largest.extrap.percent <- f(max(survey.extrap.percent), 2)
-survey.year.of.largest.extrap <- names(survey.extrap.percent[survey.extrap.percent == max(survey.extrap.percent)])
-survey.smallest.extrap.percent <- f(min(survey.extrap.percent), 2)
-survey.year.of.smallest.extrap <- names(survey.extrap.percent[survey.extrap.percent == min(survey.extrap.percent)])
-survey.average.extrap.percent <- f(mean(survey.extrap.percent), 2)
 
 ################################################################################
 ## New depletion and spawning biomass estimates
