@@ -92,6 +92,8 @@ Age-samples from 59 shoreside trips showed an even higher proportion of age-2 fi
 The at-sea fishery maintained relatively consistent catch rates throughout the year (Figure~\ref{fig:main-us-catch-rates}), averaging around 15 t/hr. Relative to last year, the spring (May--June) fishery saw lower catch rates, whereas the fall (September--November) fishery fared substantially better.  The at-sea fleets sometimes fished in deeper water than observed in past years (Figure~\ref{fig:main-us-at-sea-depths}). During July and August, some operators in the at-sea fishery continued to fish hake, forgoing the usual summer opportunities in Alaskan waters.  The shorebased fishery had the largest monthly catches during July and August.  Due to these moderate but consistent catch-rates throughout the year (for all U.S. fleets), the U.S. utilization rate went up to 71\% from 47\% last year.  
 % Manual done 2017.
 
+\newpage % kludge to avoid dangling heading:
+
 \subsubsub{Canada}
 
 The \Sexpr{last.data.yr} Canadian \fishname\ domestic fishery removed \Sexpr{last.year.can.landings}~t from Canadian waters, which was \Sexpr{last.year.can.attained}\% of the Canadian TAC of \Sexpr{last.year.can.tac}~t.
