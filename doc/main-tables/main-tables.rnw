@@ -5,15 +5,7 @@
 <<catches.US, results='asis', echo=FALSE>>=
 make.catches.table.US(catches, start.yr=start.yr, end.yr=end.yr,
                    weight.factor=1000,
-<<<<<<< HEAD
-<<<<<<< HEAD
-                   xcaption = paste("Annual catches of \\fishname\\ (t) in U.S. waters by sector, ", start.yr, "-", last.data.yr, ". Tribal catches are included in the sector totals. Research Catch includes landed catch associated with research-related activities. Unlanded catch associated with surveys and bycatch in fisheries not targetting hake are not currently included in the model.", sep=""),
-=======
-                   xcaption = paste("Annual catches of \\fishname\\ (t) in U.S. waters by sector, ", start.yr, "-", last.data.yr, ". Tribal catches are included in the sector totals. Research Catch includes landed catch associated with research-related activities. Catch associated with surveys and bycatch in fisheries not targetting hake is not currently included in the model.", sep=""),
->>>>>>> cgrandin/master
-=======
-                   xcaption = paste("Annual catches of \\fishname\\ (t) in U.S. waters by sector, ", start.yr, "-", last.data.yr, ". Tribal catches are included in the sector totals. Research Catch includes landed catch associated with research-related activities. Catch associated with surveys and bycatch in fisheries not targetting hake are not currently included in the model.", sep=""),
->>>>>>> cgrandin/master
+                   xcaption = paste("Annual catches of \\fishname\\ (t) in U.S. waters by sector, ", start.yr, "-", last.data.yr, ". Tribal catches are included in the sector totals. Research Catch includes landed catch associated with research-related activities. Catch associated with surveys and discarded bycatch in fisheries not targeting hake is not currently included in the model.", sep=""),
                    xlabel = "tab:intro-catches-US",
                    font.size = 10,
                    space.size = 11)
