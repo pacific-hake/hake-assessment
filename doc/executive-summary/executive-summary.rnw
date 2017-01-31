@@ -255,7 +255,7 @@ make.fishing.intensity.table(base.model,
 
 %% for 2017 assessment, base-model candidate 41 has no median fishing intensity estimated above 1 so code in 2 lines below causes error. Commenting out and posting issue. 
 %% Okay for base-model 45, though only year. Keep all this so can easily switch around.
-Median relative fishing intensity on the stock is estimated to have been below the target except for 
+Median relative fishing intensity on the stock is estimated to have been below the target of 1.0 except for 
 %% the years \Sexpr{median.intensity.above.one.years[1:(length(median.intensity.above.one.years)-1)]} and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
 %% See 'The median fishing intensity ...' sentence in Management Performance
 %%  Section below, which seeminly didn't give an error when 
