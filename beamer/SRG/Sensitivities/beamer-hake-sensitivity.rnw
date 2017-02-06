@@ -103,10 +103,10 @@ source("custom-knitr-variables.r")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[Hake Data]{2016 Pacific Hake Assessment: Sensitivities and Retrospectives}
-\author[Berger]{Aaron M. Berger\\JTC}
+\title[Hake Data]{\Sexpr{assess.yr} Pacific Hake Assessment: Sensitivities and Retrospectives}
+\author[JTC]{Pacific Hake Joint Technical Committee}
 %\institute{}
-\date{{\footnotesize SRG meeting -- 2016}}
+\date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
 \subtitle{\tiny Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy}
 
 \begin{document}
@@ -272,25 +272,25 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Survey Alternatives: Recruit Devs 2014}
-\begin{center}
-\vspace{-5pt}
-<<recruit2014.alternative.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-sens.density.yr <- last.data.yr - 1
-sens.density.names <- c(paste0("Late_RecrDev_", sens.density.yr))
-make.comparison.plot(c(list(base.model), sens.models.2),
-                     subplots = 14,
-                     model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
-                     legendloc = "topleft",
-                     densitynames = sens.density.names,
-                     ##indexfleets = c(2,2,2,2),
-                     indexPlotEach = TRUE,
-                     end.yr = end.yr)
-mtext("Catch (thousand t)", side = 1, line = 1, outer = TRUE)
-@
-\end{center}
-\end{frame}
+%% \begin{frame}
+%% \frametitle{Survey Alternatives: Recruit Devs 2014}
+%% \begin{center}
+%% \vspace{-5pt}
+%% <<recruit2014.alternative.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+%% sens.density.yr <- last.data.yr - 1
+%% sens.density.names <- c(paste0("Late_RecrDev_", sens.density.yr))
+%% make.comparison.plot(c(list(base.model), sens.models.2),
+%%                      subplots = 14,
+%%                      model.names = c(paste0("Base model ", end.yr), sens.model.names.2),
+%%                      legendloc = "topleft",
+%%                      densitynames = sens.density.names,
+%%                      ##indexfleets = c(2,2,2,2),
+%%                      indexPlotEach = TRUE,
+%%                      end.yr = end.yr)
+%% mtext("Catch (thousand t)", side = 1, line = 1, outer = TRUE)
+%% @
+%% \end{center}
+%% \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -311,7 +311,7 @@ mtext("Catch (thousand t)", side = 1, line = 1, outer = TRUE)
   \vspace{-5pt}
     \begin{center}
      <<ageing.error.1, fig.height=8, fig.width=12, out.width='0.9\\columnwidth'>>=
-     make.comparison.plot(c(list(base.model), list(sens.models.4)),
+     make.comparison.plot(c(list(base.model), sens.models.4),
                           subplots = 2,
                           model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
                           end.yr = end.yr)
@@ -341,7 +341,7 @@ mtext("Catch (thousand t)", side = 1, line = 1, outer = TRUE)
 \begin{center}
 \vspace{-5pt}
  <<ageing.error.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
- make.comparison.plot(c(list(base.model), list(sens.models.4)),
+ make.comparison.plot(c(list(base.model), sens.models.4),
                       subplots = 10,
                       legendloc = "topleft",
                       model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
