@@ -105,7 +105,7 @@ fore.names <- c("180,000", "2015 TAC: 440,000", "500,000", "FI=100%", "default H
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title[Hake Management]{Management outcomes of the \Sexpr{end.yr} Pacific Hake stock assessment}
-\author[Hicks]{Allan C. Hicks\\JTC}
+\author[JTC]{Pacific Hake Joint Technical Committee}
 %\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
 \subtitle{\tiny Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy}
@@ -184,15 +184,15 @@ fore.names <- c("180,000", "2015 TAC: 440,000", "500,000", "FI=100%", "default H
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Forecasts}
 \subsection{Two year forecasts}
-\frame{\frametitle{Harvest rule predicted catch for 2016}
+\frame{\frametitle{Harvest rule predicted catch for \Sexpr{assess.yr}}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
       \item Using the defined \emph{F}\subscr{SPR=40\%} harvest rate with a 40:10 adjustment, the median forecasted 2016 TAC is
       \smallskip
-      \bc {\bf \Sexpr{f(median(base.model$mcmc$ForeCatch_2016))} t} \ec
+      \bc {\bf \Sexpr{f(median(base.model$mcmc[,paste0("ForeCatch_", assess.yr)]))} t} \ec
       \smallskip
-      \item 2.5\% and 97.5\% quantiles:\\ \Sexpr{f(quantile(base.model$mcmc$ForeCatch_2016,probs=0.025))} and \Sexpr{f(quantile(base.model$mcmc$ForeCatch_2016,probs=0.975))} t
+      \item 2.5\% and 97.5\% quantiles:\\ \Sexpr{f(quantile(base.model$mcmc[,paste0("ForeCatch_", assess.yr)],probs=0.025))} and \Sexpr{f(quantile(base.model$mcmc[,paste0("ForeCatch_", assess.yr)],probs=0.975))} t
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}

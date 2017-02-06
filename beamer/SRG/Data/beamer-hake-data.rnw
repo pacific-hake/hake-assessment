@@ -87,7 +87,7 @@ source("custom-knitr-variables.r")
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title[Hake Data]{Fisheries, data, and inputs used in the \Sexpr{assess.yr} Pacific Hake/Whiting stock assessment}
-\author[Grandin]{\includegraphics[height=1in, width=4in]{../../images/hake-on-board.eps}\\Pacific Hake JTC}
+\author[JTC]{\includegraphics[height=1in, width=4in]{../../images/hake-on-board.eps}\\Pacific Hake Joint Technical Committee}
 %\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
 
@@ -103,12 +103,13 @@ source("custom-knitr-variables.r")
   \bi
     \item March \Sexpr{last.assess.yr}: JMC set an adjusted TAC = \Sexpr{last.year.tac} t.
     \item May \Sexpr{last.assess.yr}: JMC meeting: JTC presented MSE simulation results looking at age-1 index and age 2+ survey precision.
-    \item U.S. fisheries started in May with decent catches.
-    \item Canadian fisheries started in early May and continued until December.
+    \item U.S. fisheries started in May.
+    \item Canadian fisheries started in March.
     \item Return of at-sea fleet in the U.S. saw low catch-rates.
-    \item Many age-1's seen by survey and fisheries as far North as Canada.
-    \item Two JTC public meetings (data then assessment).
-    \item Survey (exploration) for spawning hake from Jan-Feb aboard the Shimada.
+    \item Highest proportion of fish caught in U.S. fisheries were age-2's.
+    \item Highest proportion of fish caught in Canadian fisheries were age-6's.
+    \item One JTC public meeting in December.
+    \item Winter survey for spawning hake from Jan-Feb aboard the Shimada.
   \ei
 }
 
@@ -130,12 +131,12 @@ source("custom-knitr-variables.r")
       \ei
       \item Fishery-dependent
       \bi
-        \item Annual catch (\Sexpr{start.yr}--\Sexpr{end.yr})
-        \item Age compositions (1975--\Sexpr{end.yr})
+        \item Annual catch (\Sexpr{start.yr}--\Sexpr{end.yr - 1})
+        \item Age compositions (1975--\Sexpr{end.yr - 1})
       \ei
       \item Externally derived inputs
       \bi
-        \item Weight-at-age (1975--\Sexpr{end.yr}, survey \& fishery combined)
+        \item Weight-at-age (1975--\Sexpr{end.yr - 1}, survey \& fishery combined)
         \item Ageing imprecision (from double \& blind reads)
         \item Maturity schedule (Dorn, mid-1990's)
       \ei
@@ -195,7 +196,6 @@ source("custom-knitr-variables.r")
           \item Shoreside        -- \Sexpr{last.year.can.shore} t   (\Sexpr{paste0(last.year.can.shore.percent, "\\%")})
           \item Joint venture    -- 0 t
         \ei
-        \item This was the second year in which the Freezer trawlers caught more than the Shoreside vessels.
         \item Total Canadian catch -- \Sexpr{last.year.can.landings} t
         \item \Sexpr{paste0(last.year.can.attained, "\\%")} of the Canadian quota was caught.
       \ei
@@ -209,7 +209,7 @@ source("custom-knitr-variables.r")
             \item Catcher--processor  -- \Sexpr{f(last.year.us.cp.catch)} t          (\Sexpr{paste0(last.year.us.cp.catch.percent, "\\%")})
             \item Mothership          -- \Sexpr{f(last.year.us.ms.catch)} t          (\Sexpr{paste0(last.year.us.ms.catch.percent, "\\%")})
             \item Shore-based         -- \Sexpr{f(last.year.us.shore.catch)} t       (\Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")})
-            \item Tribal              -- \Sexpr{f(last.year.us.tribal.max.landed)} t (\Sexpr{paste0(last.year.us.tribal.catch.percent, "\\%")})
+            \item Tribal              -- \Sexpr{f(last.year.us.tribal.max.landed)} t % (\Sexpr{paste0(last.year.us.tribal.catch.percent, "\\%")})
           \ei
         \item Total U.S. catch -- \Sexpr{last.year.us.landings} t
         \item \Sexpr{paste0(last.year.us.attained, "\\%")} of the U.S. quota was caught.
@@ -270,21 +270,21 @@ source("custom-knitr-variables.r")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Canada}
-\frame{\frametitle{Canada catch depth distribution}
-  \begin{columns}
-    \begin{column}[t]{0.5\linewidth}
-      \begin{center}
-        \includegraphics[width=3in, height=2.5in]{../../../doc/main-figures/can-fishing-depths}
-      \end{center}
-    \end{column}
-    \begin{column}[t]{0.5\linewidth}
-      \begin{center}
-        \includegraphics[width=3in, height=2.5in]{../../../doc/main-figures/can-bottom-depths}
-      \end{center}
-    \end{column}
-  \end{columns}
-}
+%\subsection{Canada}
+%\frame{\frametitle{Canada catch depth distribution}
+%  \begin{columns}
+%    \begin{column}[t]{0.5\linewidth}
+%      \begin{center}
+%        \includegraphics[width=3in, height=2.5in]{../../../doc/main-figures/can-fishing-depths}
+%      \end{center}
+%    \end{column}
+%    \begin{column}[t]{0.5\linewidth}
+%      \begin{center}
+%        \includegraphics[width=3in, height=2.5in]{../../../doc/main-figures/can-bottom-depths}
+%      \end{center}
+%    \end{column}
+%  \end{columns}
+%}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -292,14 +292,24 @@ source("custom-knitr-variables.r")
 \subsection{Age comp comparison between fleets}
 \frame{\frametitle{Age composition - comparison between fleets}
   <<age.comp.comparison>>=
+    ## Fix the US age matrices to look like Canada's
+    conv.ages <- function(age.df, rm.cols = 1){
+      rownames(age.df) <- age.df$year
+      age.df <- age.df[,-(1:rm.cols)]
+      colnames(age.df) <- gsub("a", "", colnames(age.df))
+      age.df
+    }
+    us.shore.age.tmp <- conv.ages(us.shore.age, rm.cols = 2)
+    us.cp.age.tmp <- conv.ages(us.cp.age, rm.cols = 3)
+    us.ms.age.tmp <- conv.ages(us.ms.age, rm.cols = 3)
     oldpar <- par
     par(mar=c(1.1, 1.1, 3.1, 1.1), oma=c(3.1, 3.1, 0, 0))
     layout(matrix(c(1,2,3,4,5), nrow = 1, ncol = 5, byrow=TRUE))
     make.age.comp.plot(can.shore.age, bg.col = "brown", title = "CAN\nShoreside")
     make.age.comp.plot(can.ft.age, bg.col = "salmon", title = "CAN\nFreezerTrawl")
-    make.age.comp.plot(us.shore.age, bg.col = "blue", title = "US\nShoreside")
-    make.age.comp.plot(us.cp.age, bg.col = "royalblue", title = "US\nat-Sea CP")
-    make.age.comp.plot(us.ms.age, bg.col = "darkblue", title = "US\nat-Sea MS")
+    make.age.comp.plot(us.shore.age.tmp, bg.col = "blue", title = "US\nShoreside")
+    make.age.comp.plot(us.cp.age.tmp, bg.col = "royalblue", title = "US\nat-Sea CP")
+    make.age.comp.plot(us.ms.age.tmp, bg.col = "darkblue", title = "US\nat-Sea MS")
     mtext("Year", side = 1, outer = TRUE, line = 2)
     mtext("Age", side = 2, outer = TRUE, line = 2)
     par <- oldpar
@@ -309,50 +319,50 @@ source("custom-knitr-variables.r")
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section[Survey]{Survey}
-\subsection{Acoustic survey biomass}
-\frame{\frametitle{Acoustic survey biomass}
-  <<survey.biomass>>=
-    oldpar <- par()
-    par(mar=c(1.1, 1.1, 0, 1.1), oma=c(1.1, 1.1, 0, 0))
-    make.survey.biomass.plot(base.model,
-                             xlab = "Year",
-                             ylab = "Biomass (million t)")
-    ##mtext("Year", side = 1, outer = TRUE)
-    par <- oldpar
-  @
-}
+%% \subsection{Acoustic survey biomass}
+%% \frame{\frametitle{Acoustic survey biomass}
+%%   <<survey.biomass>>=
+%%     oldpar <- par()
+%%     par(mar=c(1.1, 1.1, 0, 1.1), oma=c(1.1, 1.1, 0, 0))
+%%     make.survey.biomass.plot(base.model,
+%%                              xlab = "Year",
+%%                              ylab = "Biomass (million t)")
+%%     ##mtext("Year", side = 1, outer = TRUE)
+%%     par <- oldpar
+%%   @
+%% }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Acoustic survey age compositions}
-\frame{\frametitle{Acoustic survey age compositions}
-  <<survey.age.comps>>=
-    oldpar <- par()
-    par(mar=c(1.1, 1.1, 0, 1.1), oma=c(1.1, 2.1, 0, 0))
-    make.age.comp.bubble.plot(base.model,
-                              subplot = 2,
-                              show.key = TRUE,
-                              key.yrs = c(2000, 2003, 2006, 2009) + 1)
-    mtext("Year", side = 1, outer = TRUE)
-    par <- oldpar
-  @
-}
+%% \subsection{Acoustic survey age compositions}
+%% \frame{\frametitle{Acoustic survey age compositions}
+%%   <<survey.age.comps>>=
+%%     oldpar <- par()
+%%     par(mar=c(1.1, 1.1, 0, 1.1), oma=c(1.1, 2.1, 0, 0))
+%%     make.age.comp.bubble.plot(base.model,
+%%                               subplot = 2,
+%%                               show.key = TRUE,
+%%                               key.yrs = c(2000, 2003, 2006, 2009) + 1)
+%%     mtext("Year", side = 1, outer = TRUE)
+%%     par <- oldpar
+%%   @
+%% }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Survey and Fishery age comp comparison}
-\frame{\frametitle{Survey and Fishery age comp comparison}
-  <<age.comp.comparison.fishery.survey>>=
-    oldpar <- par()
-    ## NOTE this function is not generalized and needs to be fixed
-    make.age.comp.compare.bubble.plot(base.model,
-                                      start.yr = survey.start.yr,
-                                      end.yr = survey.end.yr,
-                                      show.key = TRUE,
-                                      key.yrs = c(1997, 1999, 2002, 2005)+1)
-    par <- oldpar
-  @
-}
+%% \subsection{Survey and Fishery age comp comparison}
+%% \frame{\frametitle{Survey and Fishery age comp comparison}
+%%   <<age.comp.comparison.fishery.survey>>=
+%%     oldpar <- par()
+%%     ## NOTE this function is not generalized and needs to be fixed
+%%     make.age.comp.compare.bubble.plot(base.model,
+%%                                       start.yr = survey.start.yr,
+%%                                       end.yr = survey.end.yr,
+%%                                       show.key = TRUE,
+%%                                       key.yrs = c(1997, 1999, 2002, 2005)+1)
+%%     par <- oldpar
+%%   @
+%% }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -390,7 +400,7 @@ source("custom-knitr-variables.r")
   \bi
     \item A study was done that indicated ageing error on cohorts around the large 1999 year class.
     \item Ageing technicians tend to group cohorts into what they know to be a large year class.
-    \item There are now several recent above-average year classes close together, with another possible in 2014.
+    \item There are now several recent above-average year classes close together.
     \item A new study should be done to identify biases present in ageing.
   \ei
 }
@@ -400,33 +410,34 @@ source("custom-knitr-variables.r")
 \section{Maturity}
 \subsection{Ovary sampling}
 \frame{\frametitle{Ovary sampling}
-  \begin{columns}
-    \begin{column}[t]{0.5\linewidth}
+%  \begin{columns}
+%    \begin{column}[t]{0.5\linewidth}
       \bi
         \item Sample sources
           \bi
-            \item Bottom trawl survey (2009, 2012 -- 2015)
+            \item Bottom trawl survey (2009, 2012 -- 2016)
             \item Acoustic survey (2012 -- 2013, 2015)
-            \item At-sea fishery vessels (2013 -- 2015)
+            \item At-sea fishery vessels (2013 -- 2016)
           \ei
         \item Length stratified sampling from surveys
           \bi
             \item Target numbers for 2cm length bins
           \ei
       \ei
-    \end{column}
-    \begin{column}[t]{0.5\linewidth}
+      \vspace{-3mm}
+%    \end{column}
+%    \begin{column}[t]{0.5\linewidth}
       <<ovary.table, results='asis', echo=FALSE>>=
         make.maturity.samples.table(ovary.samples,
                                     start.yr = start.yr,
                                     end.yr = last.data.yr,
                                     xcaption = "Number of \\fishname\\ ovaries collected for histological analysis.",
                                     xlabel = "tab:beamer-ovaries",
-                                    font.size = 10,
-                                    space.size = 10)
+                                    font.size = 8,
+                                    space.size = 8)
       @
-    \end{column}
-  \end{columns}
+%    \end{column}
+%  \end{columns}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
