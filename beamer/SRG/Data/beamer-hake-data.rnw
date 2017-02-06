@@ -130,12 +130,12 @@ source("custom-knitr-variables.r")
       \ei
       \item Fishery-dependent
       \bi
-        \item Annual catch (\Sexpr{start.yr}--\Sexpr{end.yr})
-        \item Age compositions (1975--\Sexpr{end.yr})
+        \item Annual catch (\Sexpr{start.yr}--\Sexpr{end.yr - 1})
+        \item Age compositions (1975--\Sexpr{end.yr - 1})
       \ei
       \item Externally derived inputs
       \bi
-        \item Weight-at-age (1975--\Sexpr{end.yr}, survey \& fishery combined)
+        \item Weight-at-age (1975--\Sexpr{end.yr - 1}, survey \& fishery combined)
         \item Ageing imprecision (from double \& blind reads)
         \item Maturity schedule (Dorn, mid-1990's)
       \ei
@@ -195,7 +195,6 @@ source("custom-knitr-variables.r")
           \item Shoreside        -- \Sexpr{last.year.can.shore} t   (\Sexpr{paste0(last.year.can.shore.percent, "\\%")})
           \item Joint venture    -- 0 t
         \ei
-        \item This was the second year in which the Freezer trawlers caught more than the Shoreside vessels.
         \item Total Canadian catch -- \Sexpr{last.year.can.landings} t
         \item \Sexpr{paste0(last.year.can.attained, "\\%")} of the Canadian quota was caught.
       \ei
@@ -270,21 +269,21 @@ source("custom-knitr-variables.r")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Canada}
-\frame{\frametitle{Canada catch depth distribution}
-  \begin{columns}
-    \begin{column}[t]{0.5\linewidth}
-      \begin{center}
-        \includegraphics[width=3in, height=2.5in]{../../../doc/main-figures/can-fishing-depths}
-      \end{center}
-    \end{column}
-    \begin{column}[t]{0.5\linewidth}
-      \begin{center}
-        \includegraphics[width=3in, height=2.5in]{../../../doc/main-figures/can-bottom-depths}
-      \end{center}
-    \end{column}
-  \end{columns}
-}
+%\subsection{Canada}
+%\frame{\frametitle{Canada catch depth distribution}
+%  \begin{columns}
+%    \begin{column}[t]{0.5\linewidth}
+%      \begin{center}
+%        \includegraphics[width=3in, height=2.5in]{../../../doc/main-figures/can-fishing-depths}
+%      \end{center}
+%    \end{column}
+%    \begin{column}[t]{0.5\linewidth}
+%      \begin{center}
+%        \includegraphics[width=3in, height=2.5in]{../../../doc/main-figures/can-bottom-depths}
+%      \end{center}
+%    \end{column}
+%  \end{columns}
+%}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -292,14 +291,24 @@ source("custom-knitr-variables.r")
 \subsection{Age comp comparison between fleets}
 \frame{\frametitle{Age composition - comparison between fleets}
   <<age.comp.comparison>>=
+    ## Fix the US age matrices to look like Canada's
+    conv.ages <- function(age.df, rm.cols = 1){
+      rownames(age.df) <- age.df$year
+      age.df <- age.df[,-(1:rm.cols)]
+      colnames(age.df) <- gsub("a", "", colnames(age.df))
+      age.df
+    }
+    us.shore.age.tmp <- conv.ages(us.shore.age, rm.cols = 2)
+    us.cp.age.tmp <- conv.ages(us.cp.age, rm.cols = 3)
+    us.ms.age.tmp <- conv.ages(us.ms.age, rm.cols = 3)
     oldpar <- par
     par(mar=c(1.1, 1.1, 3.1, 1.1), oma=c(3.1, 3.1, 0, 0))
     layout(matrix(c(1,2,3,4,5), nrow = 1, ncol = 5, byrow=TRUE))
     make.age.comp.plot(can.shore.age, bg.col = "brown", title = "CAN\nShoreside")
     make.age.comp.plot(can.ft.age, bg.col = "salmon", title = "CAN\nFreezerTrawl")
-    make.age.comp.plot(us.shore.age, bg.col = "blue", title = "US\nShoreside")
-    make.age.comp.plot(us.cp.age, bg.col = "royalblue", title = "US\nat-Sea CP")
-    make.age.comp.plot(us.ms.age, bg.col = "darkblue", title = "US\nat-Sea MS")
+    make.age.comp.plot(us.shore.age.tmp, bg.col = "blue", title = "US\nShoreside")
+    make.age.comp.plot(us.cp.age.tmp, bg.col = "royalblue", title = "US\nat-Sea CP")
+    make.age.comp.plot(us.ms.age.tmp, bg.col = "darkblue", title = "US\nat-Sea MS")
     mtext("Year", side = 1, outer = TRUE, line = 2)
     mtext("Age", side = 2, outer = TRUE, line = 2)
     par <- oldpar
