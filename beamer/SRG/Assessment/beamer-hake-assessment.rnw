@@ -97,10 +97,6 @@ load.models.into.parent.env()
 ##  on the model output.
 source("custom-knitr-variables.r")
 ## source("functionsAssessment.R")
-## Load the model-partest which was previously run for the base model.
-if(!exists("model.partest")){
-  load("./model-partest.RData")
-}
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -124,8 +120,8 @@ if(!exists("model.partest")){
 \subsection{}
 \frame{\frametitle{Outline}
 \bi
-  \item Review of 2015 SRG assessment recommendations
-  \item Model structure and changes from 2015
+  \item Review of \Sexpr{last.assess.yr} SRG assessment recommendations
+  \item Model structure and changes from \Sexpr{last.assess.yr}
   %\item MCMC diagnostics
   \item Fits to data
   \item Parameter estimates and predictions
@@ -134,7 +130,7 @@ if(!exists("model.partest")){
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{2015 SRG assessment recommendations}
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations}
 \setbeamercovered{dynamic}
 \bi
   \item {\em Base model fit to survey series starting in 1995 without extrapolation}
@@ -159,31 +155,30 @@ if(!exists("model.partest")){
   \ei \pause
   \item {\em Ongiong monitoring and research on stock structure}
   \bi
-    \item {\bf Response:} Collection of fin clips in 2015. Working with collaborators to secure funding to analyze them.
+    \item {\bf Response:} Collection of fin clips in \Sexpr{last.assess.yr}. Working with collaborators to secure funding to analyze them.
   \ei \pause
   \item {\em Continued collection of ovaries}
   \bi
-    \item {\bf Response:} Many ovaries collected in 2015 and most have been read
+    \item {\bf Response:} Many ovaries collected in \Sexpr{last.assess.yr} and most have been read
   \ei
 \ei
 }
 
-
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{Changes from 2015}
+\section{Changes from \Sexpr{last.assess.yr}}
 \subsection{}
 
 \begin{frame}
 \frametitle{Overview of model structure}
   \bi
-    \item Stock Synthesis version 3.24u compiled with ADMB 11.2
-    \item Updated fishery and survey data through 2014
+    \item Stock Synthesis version \Sexpr{ss.version} compiled with ADMB \Sexpr{admb.version}
+    \item Updated fishery and survey data through \Sexpr{last.assess.yr - 1}
     \bi
       \item Minor changes to past catches
       \item Updated fishery age and weight observations with new database extractions
       \item Major changes to survey biomass estimates and age compositions
     \ei
-    \item Added new data from 2015
+    \item Added new data from \Sexpr{last.assess.yr}
     \bi
       \item Fishery catch and age compositions
       \item 2015 acoustic survey biomass estimate
@@ -194,9 +189,7 @@ if(!exists("model.partest")){
   \ei
 \end{frame}
 
-
 %----------------------------------------------------------
-
 
 \frame{\frametitle{Bridging to the base model: Update past fishery data}
   \bc
@@ -215,7 +208,6 @@ if(!exists("model.partest")){
 
 %----------------------------------------------------------
 
-
 \frame{\frametitle{Bridging to the base model: Add new data}
   \bc
   \vspace{-5pt}
@@ -231,9 +223,7 @@ if(!exists("model.partest")){
   \ec
 }
 
-
 %----------------------------------------------------------
-
 
 \frame{\frametitle{Bridging to the base model: Add new data}
   \bc
@@ -271,9 +261,7 @@ if(!exists("model.partest")){
   \ec
 }
 
-
 %----------------------------------------------------------
-
 
 \frame{\frametitle{Bridging to the base model: Tuning}
   \bc
@@ -297,25 +285,22 @@ if(!exists("model.partest")){
   \ec
 }
 
-
 %----------------------------------------------------------
-
 
 \frame{\frametitle{Bridging to the base model: Summary}
   \bi
     \item Updating past fishery data and weight-at-age matrix made indistinguishable difference
     \item The new survey series resulted in small differences due to changes in recruitment estimates
-    \item The 2015 fishery age compositions agreed with survey data, except in recent years
-    \bi \item Decreased 2012 and 2013 year classes, and greatly increased the 2014 year class 
+    \item The \Sexpr{last.assess.yr} fishery age compositions agreed with survey data, except in recent years
+    \bi \item Decreased 2012 and 2013 year classes, and greatly increased the 2014 year class
     \ei
-    \item Adjusting bias ramp counteracted the effects of adding the 2015 fishery data
+    \item Adjusting bias ramp counteracted the effects of adding the \Sexpr{last.assess.yr} fishery data
     \bi
       \item 2012 and 2013 year classes increased to become similar to before
       \item 2014 year class remained large, but uncertain
     \ei
   \ei
 }
-
 
 %%%%%%%%%%%%%%%%%%%%%%%
 % \section{MCMC diag}
@@ -349,22 +334,18 @@ if(!exists("model.partest")){
 %   \ec
 % }
 
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Fits to data}
 \subsection{}
 \frame{\frametitle{Fit to the acoustic survey index of abundance (MCMC)}
   \bc
   <<mcmc.survey.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-    make.mcmc.survey.fit.plot(model.partest,
+    make.mcmc.survey.fit.plot(base.model,
                           start.yr = survey.start.yr,
                           end.yr = survey.end.yr,
                           probs = c(0.025, 0.975),
                           y.max = 5.5e6)
-@
+  @
   \ec
 }
 
@@ -384,7 +365,7 @@ if(!exists("model.partest")){
     \vspace{-15pt}
     \bc
       <<mcmc.survey.age.comp.fits, fig.height=4.4, fig.width=5.5,out.width='1.0\\columnwidth'>>=
-      make.age.comp.fit.plot(model.partest,
+      make.age.comp.fit.plot(base.model,
                              subplot = 2)
      @
     \ec
@@ -407,7 +388,7 @@ if(!exists("model.partest")){
     \vspace{-15pt}
     \bc
       <<mcmc.fishery.age.comp.fits, fig.height=5.2, fig.width=6.5,out.width='1.0\\columnwidth'>>=
-      make.age.comp.fit.plot(model.partest,
+      make.age.comp.fit.plot(base.model,
                              subplot = 1)
      @
     \ec
@@ -425,7 +406,7 @@ if(!exists("model.partest")){
       Survey
       <<survey.age.comp.pearson, fig.height=8, fig.width=8, out.width='0.85\\columnwidth'>>=
         oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-        make.fleet.age.comp.pearson.plot(model.partest,fleet=2,fleetName="")
+        make.fleet.age.comp.pearson.plot(base.model,fleet=2,fleetName="")
         par(oldpar)
       @
     \ec
@@ -436,7 +417,7 @@ if(!exists("model.partest")){
       Fishery
       <<fishery.age.comp.pearson, fig.height=8, fig.width=8, out.width='0.85\\columnwidth'>>=
         oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-        make.fleet.age.comp.pearson.plot(model.partest,fleet=1,fleetName="")
+        make.fleet.age.comp.pearson.plot(base.model,fleet=1,fleetName="")
         par(oldpar)
       @
     \ec
@@ -447,10 +428,6 @@ if(!exists("model.partest")){
 
 %----------------------------------------------------------
 
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
 \section{Parameters}
 \subsection{}
 
@@ -486,7 +463,6 @@ if(!exists("model.partest")){
 
 %----------------------------------------------------------
 
-
 \frame{\frametitle{Parameter estimates}
   \bc
   <<main.parameter.estimates, results='asis', echo=FALSE>>=
@@ -495,14 +471,14 @@ if(!exists("model.partest")){
                                          posterior.regex = key.posteriors,
                                          end.yr = end.yr,
                                          digits = 3,
-                                         xcaption <- NULL,
-                                         xlabel <- "tab:main-parameter-estimates",
+                                         xcaption = NULL,
+                                         xlabel = "tab:main-parameter-estimates",
                                          font.size = 7,
                                          space.size = 8)
     @
   \ec
 }
-
+%% The posteriorsExtraOutput.sso needs to be changed for the new assessment year
 \frame{\frametitle{Catchability (\emph{q})}
  \bc
   <<histQ, fig.height=2.25, fig.width=5.5>>=

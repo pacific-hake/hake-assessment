@@ -38,6 +38,8 @@ if(verbose) cat0("SS weight-at-age file: \n  ", weight.at.age.file.name)
 ## The version of Stock Synthesis used in this assessment
 ## -----------------------------------------------------------------------------
 ss.version <- "3.24"
+## The version of ADMB that this version of SS was compiled with
+admb.version <- "11.2"
 if(verbose) cat0("SS version: \n  ", ss.version)
 
 ## -----------------------------------------------------------------------------
