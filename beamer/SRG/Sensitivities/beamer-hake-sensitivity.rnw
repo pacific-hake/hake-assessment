@@ -164,7 +164,6 @@ make.short.parameter.estimates.table(base.model,
                                      end.yr = end.yr,
                                      digits = 3,
                                      xcaption = NULL,
-                                     xlabel <- "tab:main-parameter-estimates",
                                      font.size = 7,
                                      space.size = 7)
 @
@@ -174,7 +173,7 @@ make.short.parameter.estimates.table(base.model,
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{MLE vs MCMC: Biomass}
+\frametitle{MLE vs MCMC - Biomass}
 \begin{center}
 <<mle.mcmc.1, out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
 make.mcmc.vs.mle.plot(base.model,
@@ -187,7 +186,7 @@ make.mcmc.vs.mle.plot(base.model,
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{MLE vs MCMC: Recruitment}
+\frametitle{MLE vs MCMC - Recruitment}
 \begin{center}
 <<mle.mcmc.2, out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
 make.mcmc.vs.mle.plot(base.model,
@@ -241,6 +240,8 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
+\section{$\phi$}
+\subsection{}
 \begin{frame}
 \frametitle{Sensitivities to $\phi$}
 \begin{center}
@@ -303,77 +304,20 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\section{Age Error}
-\subsection{}
-\begin{frame}
-\frametitle{Ageing Error: Biomass}
-\begin{columns}
-\begin{column}{0.3\textwidth}
-\bi
-      \item Reduced error (by 55\%) on large cohorts (base)
-      \item Years: 1980, 1984, 1999, 2010
-      \item B0 decrease of 13\%
-      \item Recruitment effect in and around those years
-     \ei
-  \end{column}
-  \begin{column}{0.69\textwidth}
-  \vspace{-5pt}
-    \begin{center}
-     <<ageing.error.1, fig.height=8, fig.width=12, out.width='0.9\\columnwidth'>>=
-     make.comparison.plot(c(list(base.model), sens.models.4),
-                          subplots = 2,
-                          model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
-                          end.yr = end.yr)
-     @
-     \end{center}
-  \end{column}
-\end{columns}
-\end{frame}
-
-%\begin{frame}
-%\frametitle{Ageing Error: Biomass}
-% \begin{center}
-% \vspace{-5pt}
-%  <<ageing.error.1, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-% make.comparison.plot(c(list(base.model), sens.models.4),
-%                      subplots = 2,
-%                      model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
-%                      end.yr = end.yr)
-% @
-% \end{center}
-%\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Ageing Error: Recruit Devs}
-\begin{center}
-\vspace{-5pt}
- <<ageing.error.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
- make.comparison.plot(c(list(base.model), sens.models.4),
-                      subplots = 10,
-                      legendloc = "topleft",
-                      model.names = c(paste0("Base model ", end.yr), sens.model.names.4),
-                      end.yr = end.yr)
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
 \section{Max Age}
 \subsection{}
 \begin{frame}
-\frametitle{Maximum Age Full Selectivity: Biomass}
+\frametitle{Maximum Age Full Selectivity - Biomass}
 \begin{center}
 \vspace{-5pt}
-<<selectivity.1, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+<<max.age.sensitivity.biomass, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(c(list(base.model), sens.models.3),
                      subplots = 2,
-                     model.names = c(paste0("Base model ", end.yr), sens.model.names.3),
+                     model.names = c("Base model", sens.model.names.3),
                      end.yr = end.yr)
+par <- oldpar
 @
 \end{center}
 \end{frame}
@@ -381,7 +325,7 @@ make.comparison.plot(c(list(base.model), sens.models.3),
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Maximum Age Full Selectivity: Estimates}
+\frametitle{Maximum Age Full Selectivity - Estimates}
 \begin{columns}
 \begin{column}{0.3\textwidth}
 \bi
@@ -394,7 +338,7 @@ make.comparison.plot(c(list(base.model), sens.models.3),
   \begin{column}{0.69\textwidth}
   \vspace{-5pt}
     \begin{center}
-     <<selectivity.2, fig.height=8, fig.width=12, out.width='0.9\\columnwidth'>>=
+     <<max.age.sensitivity.b.selectivities, fig.height=8, fig.width=12, out.width='0.9\\columnwidth'>>=
      oldpar <- par(mfrow=c(2,2), mar=c(5,4,1,1),no.readonly = TRUE)
      layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
      make.selex.plot(base.model, pan.letter = "base")
@@ -410,39 +354,21 @@ make.comparison.plot(c(list(base.model), sens.models.3),
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{Key Sens}
+\section{Other Sensitivities}
 \subsection{}
 \begin{frame}
 \frametitle{Sensitivity Table - MLE}
 \begin{center}
-<<main.parameter.estimates.sens.1, results='asis', echo=FALSE>>=
-make.short.parameter.estimates.sens.table(sens.models.1.for.table,
-                                          model.names = sens.model.names.1.for.table,
-                                          posterior.regex = key.posteriors,
-                                          end.yr = end.yr,
-                                          digits = 3,
-                                          xcaption <- NULL,
-                                          xlabel <- "tab:main-parameter-estimates-sens-2",
-                                          font.size = 7,
-                                          space.size = 7)
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%  
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Key Sensitivities: Biomass}
-\begin{center}
-\vspace{-5pt}
-<<keyselect.1, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-#par(mar = c(4.5, 4.1, 1.5, 1.1))
-make.comparison.plot(c(list(base.model), sens.models.1),
-                     subplots = 2,
-                     model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
-                     end.yr = end.yr)
-par <- oldpar 
+<<other.sensitivities.table, results='asis', echo=FALSE>>=
+make.short.parameter.estimates.sens.table(
+  c(list(base.model), sens.models.4),
+    model.names = c("Base model", sens.model.names.4),
+    posterior.regex = key.posteriors,
+    end.yr = end.yr,
+    digits = 3,
+    xcaption <- NULL,
+    font.size = 7,
+    space.size = 7)
 @
 \end{center}
 \end{frame}
@@ -450,17 +376,39 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Key Sensitivities: Status}
+\frametitle{Other Sensitivities - Biomass}
 \begin{center}
 \vspace{-5pt}
-<<keyselect.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+<<other.sensitivities.biomass, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+#oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
-make.comparison.plot(c(list(base.model), sens.models.1),
-                     subplots = 4,
-                     model.names = c(paste0("Base model ", end.yr), sens.model.names.1),
-                     end.yr = end.yr)
-par <- oldpar 
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 0))
+make.comparison.plot(
+  c(list(base.model), sens.models.4),
+  subplots = 2,
+  model.names = c("Base model ", sens.model.names.4),
+  end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Other Sensitivities - Status}
+\begin{center}
+\vspace{-5pt}
+<<other.sensitivities.recr, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+oldpar <- par()
+par(mar = c(4.5, 4.1, 1.5, 1.1))
+make.comparison.plot(
+  c(list(base.model), sens.models.4),
+  subplots = 4,
+  model.names = c("Base model", sens.model.names.4),
+  end.yr = end.yr)
+par <- oldpar
 @
 \end{center}
 \end{frame}
@@ -493,7 +441,7 @@ make.comparison.plot(retro.list,
                      legend = TRUE,
                      legendloc = "topleft",
                      is.retro = TRUE)
-par <- oldpar 
+par <- oldpar
 @
 \end{center}
 \end{frame}
@@ -501,7 +449,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %\begin{frame}
-%\frametitle{Retrospective: Recruitment}
+%\frametitle{Retrospective - Recruitment}
 %\begin{center}
 %\vspace{-5pt}
 %<<retro.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
@@ -521,7 +469,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Retrospective: squid}
+\frametitle{Retrospective - Squid}
 \begin{center}
 \vspace{-5pt}
 <<retro.3, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
@@ -551,12 +499,12 @@ par <- oldpar
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 make.assessment.history.plot(base.model,
                              assessment.history,
-                             end.yr + 2)                           
-#par <- oldpar 
+                             end.yr + 2)
+#par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%  
+%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
