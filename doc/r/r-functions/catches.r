@@ -284,3 +284,60 @@ further.tac.details <- function(fn){ ## fn is the filename with relative path
   further.tac <- read.csv(fn, header = TRUE, sep = ",", comment.char = "#")
   return(further.tac)
 }
+
+make.catches.table.us.ap <- function(catches,              ## The data frame of catches in the format of data/us-ap-catch.csv.
+                                     xcaption = "default", ## Caption to use
+                                     xlabel   = "default", ## Latex label to use
+                                     font.size = 9,        ## Size of the font for the table
+                                     space.size = 10,      ## Size of the spaces for the table
+                                     placement = "H"       ## Placement of table
+                                     ){
+  ## Returns an xtable for the US AP appendix
+  make.true.NA <- function(x){
+    ## Change <NA> to NA
+    if(is.character(x) || is.factor(x)){
+      is.na(x) <- x %in% c("NA", "<NA>")
+      x
+    }else{
+      as.numeric(x)
+    }
+  }
+
+  colnames(catches)[1] <- ""
+  nr <- nrow(catches)
+  nc <- ncol(catches)
+  ## Make value cells be comma-separated
+  catches[-c(nr - 1, nr), -1] <- f(catches[-c(nr - 1, nr), -1])
+
+  ## Change factorized version <NA> to NA
+  catches <- apply(catches, c(1,2), make.true.NA)
+  catches <- apply(catches, c(1,2), function(x){gsub("NA", NA, x)})
+  ## Replace NA with --
+  catches[is.na(catches)] <- ""
+
+  ## Make percent cells have percent signs
+  catches[c(nr - 1, nr), -1] <- sapply(catches[c(nr - 1, nr), -1], paste0, "\\%")
+  ## Fix Total for Util Init. Alloc cell
+  catches[nr - 1, nc] <- ""
+
+  ## Make leading percent signs escaped
+  catches[c(nr - 1, nr),1] <- paste0("\\", catches[c(nr - 1, nr),1])
+  ## Make column and row headers bold
+  catches[,1] <- paste0("\\textbf{", catches[,1], "}")
+  colnames(catches)[-1] <- paste0("\\textbf{", colnames(catches)[-1], "}")
+  ## Make it so that the first row heading doesn't appear.
+  ##  This must be a space and not the null string
+  colnames(catches)[1] <- " "
+
+  ## Make the size string for font and space size
+  size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
+  return(print(xtable(catches,
+                      caption = xcaption,
+                      label = xlabel,
+                      align = get.align(ncol(catches))),
+               caption.placement = "top",
+               include.rownames = FALSE,
+               table.placement = placement,
+               sanitize.text.function = function(x){x},
+               size = size.string))
+}

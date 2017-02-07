@@ -26,6 +26,7 @@ us.shore.catch.by.month.file <- "us-shore-catch-by-month.csv"
 us.cp.catch.by.month.file <- "us-cp-catch-by-month.csv"
 us.ms.catch.by.month.file <- "us-ms-catch-by-month.csv"
 us.research.catch.by.month.file <- "us-research-catch-by-month.csv"
+us.ap.catch.file <- "us-ap-catch.csv"
 ## The following are used for the age comp-by fleet plot in the data/fisheries presentation, not the assessment document
 us.shore.age.data.file <- "us-shore-age-data.csv"
 us.cp.age.data.file <- "us-cp-age-data.csv"
@@ -54,6 +55,7 @@ us.shore.catch.by.month <- read.csv(file.path(data.path, us.shore.catch.by.month
 us.cp.catch.by.month <- read.csv(file.path(data.path, us.cp.catch.by.month.file), stringsAsFactors = FALSE)
 us.ms.catch.by.month <- read.csv(file.path(data.path, us.ms.catch.by.month.file), stringsAsFactors = FALSE)
 us.research.catch.by.month <- read.csv(file.path(data.path, us.research.catch.by.month.file), stringsAsFactors = FALSE)
+us.ap.catch <- read.csv(file.path(data.path, us.ap.catch.file), stringsAsFactors = FALSE) ##, row.names = 1)
 ## For age comps-by fleet plots in the data presentation
 can.shore.age <- can.ages[[1]]
 can.ft.age <- can.ages[[2]]
