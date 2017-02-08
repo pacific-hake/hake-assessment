@@ -202,9 +202,7 @@ Sensitivity analyses were conducted to investigate influence of data inputs and 
 
 \item Assume higher/lower variation about the stock-recruitment curve ($\sigma_r$);
 
-\item Consideration of alternative values for steepness; and
-
-\item Change in the external analysis used to develop the age-2+ input survey biomass index time series from an approach of using the K-S stratified kriging method with extrapolation to using the K-S stratified kriging method without extrapolation.
+\item Consideration of alternative values for steepness;
 
 \end{enumerate}
 
