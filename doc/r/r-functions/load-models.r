@@ -626,6 +626,20 @@ run.extra.mcmc.models <- function(model, verbose = TRUE){
   start$init_values_src <- 1
   SS_writestarter(start, dir = extra.mcmc.dir, file = "starter.ss", overwrite = TRUE, verbose=F)
 
+  ## modify control file to make bias adjustment of recruit devs = 1.0 for all years
+  ## this is required to match specification used by MCMC as noted in
+  ## "Spawner-Recruitment" section of SS User Manual and described in
+  ## Methot & Taylor (2011)
+  ctl.lines <- readLines(file.path(extra.mcmc.dir, start$ctlfile))
+  bias.adjust.line.num <- grep("Maximum bias adjustment in MPD", ctl.lines)
+  if(length(bias.adjust.line.num)==0){
+    # alternative label used in control.ss_new file
+    bias.adjust.line.num <- grep("max_bias_adj_in_MPD", ctl.lines)
+  }
+  ctl.lines[bias.adjust.line.num] <-
+    "-1      # Maximum bias adjustment in MPD (set to -1 for extra.mcmc only)"
+  writeLines(ctl.lines, file.path(extra.mcmc.dir, start$ctlfile))
+
   ## loop over rows of posteriors file
   for(irow in 1:num.posts){
     if(verbose){
@@ -699,6 +713,7 @@ fetch.extra.mcmc <- function(model,
                       header = TRUE,
                       fill = TRUE,
                       stringsAsFactors = FALSE)
+  message(curr.func.name, "Reading extra MCMC output from", extra.mcmc.path)
 
   ## Data frame to store likelihood components
   like.info <- data.frame(Iter = posts$Iter, stringsAsFactors = FALSE)
@@ -715,9 +730,26 @@ fetch.extra.mcmc <- function(model,
                "Age_comp_fishery")){
     like.info[[lab]] <- 0
   }
+
+  ## Objects to store selectivity, select*wt, and numbers at age
+  sel.table <- NULL
+  selwt.table <- NULL
+  natage.table <- NULL
+
+  ## unique strings associated with rows reporting selectivity and numbers at age
+  sel.text1 <- paste0(model$endyr+1, "_1Asel")
+  sel.text2 <- paste0(model$endyr+1, "_1_sel*wt")
+  natage.text <- "Z_AT_AGE_Annual_2 With_fishery"
+
+  ## Object to store total biomass
+  Bio_all <- NULL
+
+  ## loop over all report files to extract quantities
   for(irow in 1:num.reports){
+    # read full report file as strings
     rep.file <- file.path(reports.dir, paste0("Report_", irow,".sso"))
     tmp <- readLines(rep.file)
+    # find section on likelihoods and read as a table
     skip.row <- grep("LIKELIHOOD", tmp)[2]
     likes <- read.table(rep.file,
                         skip = skip.row,
@@ -726,9 +758,39 @@ fetch.extra.mcmc <- function(model,
                         row.names = NULL,
                         col.names = 1:4,
                         stringsAsFactors = FALSE)
+    # extract likelihoods from table and make numeric
     like.info[irow, 2:10] <- as.numeric(likes$X2[3:11])  ## fleet-aggregated likelihoods
     like.info[irow, 11] <- as.numeric(likes[17, 3])      ## fleet-specific age comp likelihoods
     like.info[irow, 12] <- as.numeric(likes[17, 4])      ## fleet-specific age comp likelihoods
+
+    # find lines in report file containing unique strings related to selectivity
+    sel.line1 <- grep(sel.text1, tmp)
+    sel.line2 <- grep(sel.text2, tmp, fixed=TRUE)
+
+    # read individual rows of selectivity info
+    sel.row1 <- read.table(file=rep.file, skip=sel.line1-1, nrow=1)
+    sel.row2 <- read.table(file=rep.file, skip=sel.line2-1, nrow=1)
+
+    # read numbers at age table based on start and end lines and length of table
+    natage.line.start <- grep("NUMBERS_AT_AGE_Annual_2 With_fishery", tmp)
+    natage.line.end <- grep("Z_AT_AGE_Annual_2 With_fishery", tmp)-3
+    natage.N.lines <- natage.line.end - natage.line.start
+    natage.allrows <- read.table(file=rep.file, skip=natage.line.start,
+                                 nrow=natage.N.lines, header=TRUE)
+    # subset all rows to select first forecast year
+    natage.row <- natage.allrows[natage.allrows$Year==model$endyr + 1,]
+
+    # add rows to tables of values for each MCMC sample
+    sel.table <- rbind(sel.table, sel.row1)
+    selwt.table <- rbind(selwt.table, sel.row2)
+    natage.table <- rbind(natage.table, natage.row)
+
+    # read time series table to get total biomass
+    # (in the future we could add more things from the timeseries table)
+    ts.start <- grep("^TIME_SERIES", tmp) + 1 # row with header
+    ts.end <- grep("^SPR_series", tmp) - 2 # final row
+    ts <- read.table(rep.file, header=TRUE, skip=ts.start-1, nrows=ts.end - ts.start)
+    Bio_all <- cbind(Bio_all, ts$Bio_all)
   }
 
   ## Make sure the number of rows matches the number of posteriors
@@ -737,6 +799,30 @@ fetch.extra.mcmc <- function(model,
                          like.info$Age_comp != 0 &
                          like.info$Recruitment != 0 &
                          like.info$Parm_priors != 0,]
+
+  ## Process selectivity values
+  # remove initial columns (containing stuff like Gender and Year)
+  natage.table.slim <- natage.table[,-(1:3)]
+  sel.table.slim <- sel.table[,-(1:7)]
+  selwt.table.slim <- selwt.table[,-(1:7)]
+
+  # selected biomass by age is product of numbers*selectivity*weight at each age
+  natselwt <- natage.table.slim*selwt.table.slim
+  # selected numbers by age is product of numbers*selectivity at each age
+  natsel <- natage.table.slim*sel.table.slim
+
+  # define new objects to store proportions by age
+  natsel.prop <- natsel
+  natselwt.prop <- natselwt
+
+  # create tables of proportions by dividing by sum of each row
+  for(irow in 1:num.reports){
+    natsel.prop[irow,] <- natsel[irow,]/sum(natsel[irow,])
+    natselwt.prop[irow,] <- natselwt[irow,]/sum(natselwt[irow,])
+  }
+
+
+
   if(verbose){
     cat0(curr.func.name, "Reading comp table\n\n")
     flush.console()
@@ -780,11 +866,13 @@ fetch.extra.mcmc <- function(model,
   Pearson.low <- apply(Pearson.table, MARGIN = 1, FUN = quantile, probs = 0.025)
   Pearson.high <- apply(Pearson.table, MARGIN = 1, FUN = quantile, probs = 0.975)
 
+  # get index fits from CPUE table
   if(verbose){
     cat0(curr.func.name, "Reading cpue table\n\n")
     flush.console()
   }
   cpue.table <- NULL
+  Q.vector <- NULL
   for(irow in 1:num.reports){
     if(verbose & (irow %% 100 == 0)){
       print(irow)
@@ -799,11 +887,13 @@ fetch.extra.mcmc <- function(model,
                        stringsAsFactors = FALSE)
     lab1 <- paste0("Exp", irow)
     cpue.table <- cbind(cpue.table, cpue$Exp)
+    Q.vector <- c(Q.vector, cpue$Calc_Q[1]) # values are the same for all rows
   }
 
   ## Build the list of extra mcmc outputs and return
   extra.mcmc <- model
 
+  # add information on posterior distribution to existing agedbase data frame
   extra.mcmc$agedbase$Exp <- exp.median
   extra.mcmc$agedbase$Exp.025 <- exp.low
   extra.mcmc$agedbase$Exp.975 <- exp.high
@@ -811,13 +901,30 @@ fetch.extra.mcmc <- function(model,
   extra.mcmc$agedbase$Pearson.025 <- Pearson.low
   extra.mcmc$agedbase$Pearson.975 <- Pearson.high
 
+  # add new table to output containing info on posterior distribution of index fits
   extra.mcmc$cpue.table <- cpue.table
   extra.mcmc$cpue.median <- apply(cpue.table, MARGIN = 1, FUN = median)
   extra.mcmc$cpue.025 <- apply(cpue.table, MARGIN = 1, FUN = quantile, probs = 0.025)
   extra.mcmc$cpue.975 <- apply(cpue.table, MARGIN = 1, FUN = quantile, probs = 0.975)
-
+  extra.mcmc$Q_vector <- Q.vector
+  
+  # add new table of info on posterior distributions of likelihoods
   extra.mcmc$like.info <- like.info
 
+  # add new table vectors containing expected proportions in first forecast year
+  extra.mcmc$natsel.prop <- natsel.prop
+  extra.mcmc$natselwt.prop <- natselwt.prop
+
+  # add info on distribution of total biomass to existing time series data frame
+  extra.mcmc$timeseries$Bio_all <- apply(Bio_all, MARGIN = 1, FUN = median)
+  extra.mcmc$timeseries$Bio_all.0.025 <- apply(Bio_all, MARGIN = 1,
+                                               FUN = quantile, probs = 0.025)
+  extra.mcmc$timeseries$Bio_all.0.975 <- apply(Bio_all, MARGIN = 1,
+                                               FUN = quantile, probs = 0.975)
+
+  message(curr.func.name, paste("Completed read of extra MCMC output."))
+
+  # return results
   extra.mcmc
 }
 
