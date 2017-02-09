@@ -215,3 +215,16 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
   par <- oldpar
 }
 
+####
+
+make.mcmc.catchability.plot <- function(model){
+  # histogram of catchability
+  # settings are similar to those used by SSplotPars
+  par(mar=c(3,3,1,1))
+  hist(model$extra.mcmc$Q_vector,
+       breaks = seq(0,1.1*max(model$extra.mcmc$Q_vector),.05),
+       xlab = "Acoustic survey catchability (Q)",
+       col = "gray60", border = "gray60", xaxs='i', yaxs='i', main="")
+  abline(v = median(model$extra.mcmc$Q_vector), col = rgb(0,0,0,.5), lwd = 2, lty = 3)
+  abline(h = 0)
+}
