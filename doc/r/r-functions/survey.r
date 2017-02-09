@@ -138,8 +138,10 @@ make.survey.biomass.plot <- function(model,
   ests2$hi <- exp(log(ests2$obs)+1.96*ests2$se_log)
   ests2$value <- ests2$obs
   par(las=1,mar=c(5, 4, 1, 1) + 0.1,cex.axis=0.9)
-  plotBars.fn(ests2$year,ests2,scalar=1e6,ylim=c(0,3),pch=20,xlab=xlab,ylab=ylab,cex=1.5,las=1,gap=0.05,xaxt="n",ciLwd=3,ciCol=rgb(0,0,1,0.6))
-  plotBars.fn(ests$year,ests,scalar=1e6,ylim=c(0,3),pch=20,add=T,cex=1.5,las=1,gap=0.05,xaxt="n",ciLwd=3,ciCol=gray(0.2))
+  plotBars.fn(ests2$year,ests2,scalar=1e6,ylim=c(0,3),pch=20,xlab=xlab,ylab=ylab,
+              cex=1.5,las=1,gap=0.05,xaxt="n",ciLwd=3,ciCol=rgb(0,0,1,0.6),yaxs='i')
+  plotBars.fn(ests$year,ests,scalar=1e6,ylim=c(0,3),pch=20,add=TRUE,cex=1.5,las=1,
+              gap=0.05,xaxt="n",ciLwd=3,ciCol=gray(0.2))
   axis(1,at=ests$year,cex.axis=0.8)
 
   ## Acoustic survey fits
@@ -217,7 +219,7 @@ make.survey.biomass.extrap.plot <- function(dat){  ## data.frame of the extrapol
   ests3$hi <- exp(log(ests3$obs) + 1.96 * ests3$se_log)
   ests3$value <- ests3$obs
   par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
-  plotBars.fn(ests$year, ests,scalar = 1e3, ylim = c(0, 3),
+  plotBars.fn(ests$year, ests,scalar = 1e3, ylim = c(0, 3), yaxs='i',
               pch = 20, xlab="Year", ylab = "Biomass index estimate (million t)",
               cex = 1.5, las = 1, gap = 0.05, xaxt = "n", ciLwd = 3, ciCol = rgb(0, 0, 0, 0.5))
   plotBars.fn(ests2$year + 0.3, ests2, scalar = 1e3, pch = 17, add = TRUE, cex = 1.0,
