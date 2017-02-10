@@ -102,7 +102,7 @@ source("custom-knitr-variables.r")
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title[Hake Assessment]{\Sexpr{assess.yr} Pacific Hake Stock Assessment Results}
-\author[Hicks]{Allan Hicks\\Pacific Hake JTC}
+\author[JTC]{Pacific Hake Joint Technical Committee}
 %\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
 \subtitle{\tiny Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy}
@@ -133,33 +133,31 @@ source("custom-knitr-variables.r")
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations}
 \setbeamercovered{dynamic}
 \bi
-  \item {\em Base model fit to survey series starting in 1995 without extrapolation}
+  \item {\em Continue with base model fit to survey series starting in 1995 with limited extrapolation}
   \bi
-    \item {\bf Response:} The JTC was provided with two new series (with and without extrapolation) that did not include 1995 estimates
-    \item {\bf Response:} The JTC decided to use the series with extrapolation for many reasons
+    \item {\bf Response:} The 2017 base model continues to use the survey biomass time series with limited extrapolation (as discussed last year)
+    \item {\bf Response:} The 2017 base model includes several updates relative to the 2016 time series
     \bn
-      \item Pacific Hake are dynamic with high inter-annual variation in spatio-temporal distribution
-      \item Improved methods for extrapolation
-      \item Varying amounts of biomass in extrapolated area each year
-      \item CV for extrapolation seems more reasonable
-      \item We must think about this from a time-series point of view
+      \item Additon of the 1995 survey biomass estimate (point estimate and CV) 
+      \item Update to 1998 survey biomass estimate (point estimate and CV)
+      \item Update to 2015 survey biomass (CV only)
     \en
   \ei \pause
   \item {\em Include a sensitivity with age-1 acoustic survey index}
   \bi
     \item {\bf Response:} Done and will be presented
   \ei \pause
-  \item {\em Include key sensitivities}
+  \item {\em Continue the evalution of identified key sensitivity runs; further explore sigma-R}
   \bi
     \item {\bf Response:} Done and will be presented
   \ei \pause
-  \item {\em Ongiong monitoring and research on stock structure}
+  \item {\em Ongoing monitoring and research on stock structure}
   \bi
-    \item {\bf Response:} Collection of fin clips in \Sexpr{last.assess.yr}. Working with collaborators to secure funding to analyze them.
+    \item {\bf Response:} The JTC supports the collection/processing of genetic material and other research to evaluate stock strucutre.
   \ei \pause
   \item {\em Continued collection of ovaries}
   \bi
-    \item {\bf Response:} Many ovaries collected in \Sexpr{last.assess.yr} and most have been read
+    \item {\bf Response:} Many ovaries collected in \Sexpr{last.assess.yr}, including during all four seasons and doubled collections from Canadian shoreside fishery. No new analysis in time for this assessment, but thourough analysis anticipated for 2018.
   \ei
 \ei
 }
@@ -176,31 +174,40 @@ source("custom-knitr-variables.r")
     \bi
       \item Minor changes to past catches
       \item Updated fishery age and weight observations with new database extractions
-      \item Major changes to survey biomass estimates and age compositions
+      \item Additon of 1995 survey biomass estimate and age compositions
+      \item Minor changes to survey biomass estimates (1998, 2015: CV only) and age compositions (1998)
     \ei
     \item Added new data from \Sexpr{last.assess.yr}
     \bi
       \item Fishery catch and age compositions
-      \item 2015 acoustic survey biomass estimate
       \item Updated weight-at-age matrix
     \ei
-    \item Updated bias adustment ramps for recruitment deviations
+    \item Updated bias adustment ramps for recruitment deviations 
+    \item Updated main recruitment deviate estimation period
     \item Re-weighted age composition data by fleet using harmonic mean approach
+    \item More flexible time-varying fishery selectivity
   \ei
 \end{frame}
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Bridging to the base model: Update past fishery data}
+\frame{\frametitle{Bridging to the base model: Fishery data}
   \bc
   \vspace{-5pt}
-  <<bridge.biomass, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-    oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+  <<bridge.biomasss, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+    oldpar <- par(mfrow=c(1,2), mar=c(5,4,1,1),no.readonly = TRUE)
     make.comparison.plot(bridge.models.1,
-                         subplots = 2,
-                         model.names = bridge.model.names.1,
-                         densitynames = NULL,
-                         end.yr = end.yr)
+                     subplots = 2,
+                     model.names = bridge.model.names.1,
+                     densitynames = NULL,
+                     legendloc = "topleft",
+                     end.yr = end.yr)
+    make.comparison.plot(bridge.models.1,
+                     subplots = 9,
+                     model.names = bridge.model.names.1,
+                     densitynames = NULL,
+                     legend = FALSE,
+                     end.yr = end.yr)
    par(oldpar)
   @
   \ec
@@ -208,7 +215,7 @@ source("custom-knitr-variables.r")
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Bridging to the base model: Add new data}
+\frame{\frametitle{Bridging to the base model: survey data}
   \bc
   \vspace{-5pt}
   <<bridge.biomass2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
@@ -225,7 +232,7 @@ source("custom-knitr-variables.r")
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Bridging to the base model: Add new data}
+\frame{\frametitle{Bridging to the base model: survey data}
   \bc
   \vspace{-5pt}
   <<bridge.other, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
@@ -237,16 +244,18 @@ source("custom-knitr-variables.r")
     ##                      legend = FALSE,
     ##                      end.yr = end.yr)
     make.comparison.plot(bridge.models.2,
-                         subplots = 8,
-                         model.names = bridge.model.names.2,
-                         legendloc = "topleft",
-                         densitynames = NULL,
-                         end.yr = end.yr)
-    make.comparison.plot(bridge.models.2,
                          subplots = 9,
                          model.names = bridge.model.names.2,
                          densitynames = NULL,
                          legend = FALSE,
+                         end.yr = end.yr)
+    make.comparison.plot(bridge.models.2,
+                         subplots = 11,
+                         model.names = bridge.model.names.2,
+                         densitynames = NULL,
+                         legendloc = "topleft",
+                         indexPlotEach = TRUE,
+                         indexUncertainty = TRUE,
                          end.yr = end.yr)
     ## make.comparison.plot(bridge.models.2,
     ##                      subplots = 11,
@@ -271,14 +280,14 @@ source("custom-knitr-variables.r")
     make.comparison.plot(bridge.models.3,
                      subplots = 2,
                      model.names = bridge.model.names.3,
-                     legend = FALSE,
                      densitynames = NULL,
+                     legendloc = "topleft",
                      end.yr = end.yr)
     make.comparison.plot(bridge.models.3,
                      subplots = 9,
                      model.names = bridge.model.names.3,
                      densitynames = NULL,
-                     legendloc = "bottomleft",
+                     legend = FALSE,
                      end.yr = end.yr)
    par(oldpar)
   @
@@ -289,14 +298,15 @@ source("custom-knitr-variables.r")
 
 \frame{\frametitle{Bridging to the base model: Summary}
   \bi
-    \item Updating past fishery data and weight-at-age matrix made indistinguishable difference
-    \item The new survey series resulted in small differences due to changes in recruitment estimates
-    \item The \Sexpr{last.assess.yr} fishery age compositions agreed with survey data, except in recent years
-    \bi \item Decreased 2012 and 2013 year classes, and greatly increased the 2014 year class
+    \item Updating past fishery data made indistinguishable difference
+    \item Additon of 1995 and updates to 1998 and 2015 survey biomass estimates had minor influence on results
+    \item Adding 2016 fishery data influenced stock size (suggesting above average 2014 year-class)
+    \bi \item Fishery data sole information on the size of the 2014 year-class, the survey will sample these fish for the first time in summer 2017 as age-3s
     \ei
-    \item Adjusting bias ramp counteracted the effects of adding the \Sexpr{last.assess.yr} fishery data
+    \item Adjusting bias ramp and main recruitment deviate period (inc. 2014) had a minor influence on results
     \bi
-      \item 2012 and 2013 year classes increased to become similar to before
+      \item Though difference was negligible compared to addition of 2016 fishery composition data
+      \item 2013 year class decreased slightly
       \item 2014 year class remained large, but uncertain
     \ei
   \ei
@@ -357,8 +367,9 @@ source("custom-knitr-variables.r")
     \bi
       \item 1999 cohort often overpredicted
       \item Young cohorts in 2003--2009 underfit
-      \item 2008 cohort underfit in 2011
-      \item Recent years (2012--2015) show good fits
+      \item 2008 and 2009 cohort underfit in 2011
+      \item Recent years (2012--2015) show good fits, including 2010 cohort
+      \item Survey has not 'seen' 2014 cohort yet
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -379,9 +390,9 @@ source("custom-knitr-variables.r")
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Often see underfitting of big cohorts when they are young
-      \bi \item 2005, 2006, 2008, 2010
-          \item 1984 and 1999 did not show this pattern \ei
+      \item Big 1999 and 2010 cohorts seem to fit particularly well
+      \item Some over- and under-fitting in 1980 and 1984 cohorts
+      \item Other recent above-average sized cohorts (2005, 2006, 2008) are often underfit when young
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -482,21 +493,19 @@ source("custom-knitr-variables.r")
 \frame{\frametitle{Catchability (\emph{q})}
  \bc
   <<histQ, fig.height=2.25, fig.width=5.5>>=
-     oldpar <- par(mar=c(3, 4, 0, 0), no.readonly = TRUE)
-     x <- read.table("Data/posteriorsExtraOutput.sso", header = TRUE)
-     hist(x$Q_2, main = "", xlab = "")
-     abline(v = median(x$Q_2), lwd = 3, col = rgb(0,0,0,0.6))
-     par(oldpar)
+     # new code that is dynamic
+     make.mcmc.catchability.plot(base.model)
   @
   \begin{table}
-    \begin{tabular}{ccc} \hline
-      MLE (2016) & Median (2016)                   & Median (2015) \\ \hline
-       1.14      & \Sexpr{round(median(x$Q_2), 2)} & 0.915         \\ \hline
+    \begin{tabular}{cccc} \hline
+      MLE (2017) & Median (2017) & Median (2016) & Median (2015) \\ \hline
+       \Sexpr{round(base.model$cpue$Calc_Q[1],2)}  & 
+          \Sexpr{round(median(base.model$extra.mcmc$Q_vector), 2)} & 
+              1.04 & 0.92         \\ \hline
     \end{tabular}
   \end{table}
  \ec
 }
-
 
 %----------------------------------------------------------
 
