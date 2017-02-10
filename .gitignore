@@ -40,5 +40,6 @@ beamer/SRG/Management/beamer-hake-management.tex
 *.ppt*
 beamer/JMC/presentation/knitr-cache
 !admin/*.pdf
+admin/HakeMSEOptions2017-19.pdf
 *.docx
 *.doc

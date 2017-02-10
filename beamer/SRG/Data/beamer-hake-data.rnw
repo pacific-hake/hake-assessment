@@ -102,12 +102,15 @@ source("custom-knitr-variables.r")
 \frame{\frametitle{Year in review}
   \bi
     \item March \Sexpr{last.assess.yr}: JMC set an adjusted TAC = \Sexpr{last.year.tac} t.
-    \item May \Sexpr{last.assess.yr}: JMC meeting: JTC presented MSE simulation results looking at age-1 index and age 2+ survey precision.
-    \item U.S. fisheries started in May.
+    %% \item May \Sexpr{last.assess.yr}: JMC meeting: JTC presented MSE simulation results looking at age-1 index and age 2+ survey precision.
+    \item U.S. fisheries started in April.
     \item Canadian fisheries started in March.
-    \item Return of at-sea fleet in the U.S. saw low catch-rates.
+    %% \item Return of at-sea fleet in the U.S. saw low catch-rates.
     \item Highest proportion of fish caught in U.S. fisheries were age-2's.
     \item Highest proportion of fish caught in Canadian fisheries were age-6's.
+    \item In the US, the age-2's were mostly caught in the fall which is a
+          similar pattern to 2012.
+    \item Highest catch since 2006.
     \item One JTC public meeting in December.
     \item Winter survey for spawning hake from Jan-Feb aboard the Shimada.
   \ei
@@ -155,7 +158,7 @@ source("custom-knitr-variables.r")
 \section[Catches]{Catches}
 \subsection{Catch history}
 \frame{\frametitle{Catches}
-  <<catches>>=
+  <<catches, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
     make.catches.plot(catches, leg.y.loc = 500, leg.cex = 0.7)
   @
 }
@@ -270,22 +273,10 @@ source("custom-knitr-variables.r")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\subsection{Canada}
-%\frame{\frametitle{Canada catch depth distribution}
-%  \begin{columns}
-%    \begin{column}[t]{0.5\linewidth}
-%      \begin{center}
-%        \includegraphics[width=3in, height=2.5in]{../../../doc/main-figures/can-fishing-depths}
-%      \end{center}
-%    \end{column}
-%    \begin{column}[t]{0.5\linewidth}
-%      \begin{center}
-%        \includegraphics[width=3in, height=2.5in]{../../../doc/main-figures/can-bottom-depths}
-%      \end{center}
-%    \end{column}
-%  \end{columns}
-%}
-
+\subsection{Canada}
+\frame{\frametitle{Canada bottom depth distribution}
+  \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/can-bottom-depths}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section[Age Comps]{Age Comps}
@@ -395,15 +386,15 @@ source("custom-knitr-variables.r")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Ageing error}
-\frame{\frametitle{Ageing error}
-  \bi
-    \item A study was done that indicated ageing error on cohorts around the large 1999 year class.
-    \item Ageing technicians tend to group cohorts into what they know to be a large year class.
-    \item There are now several recent above-average year classes close together.
-    \item A new study should be done to identify biases present in ageing.
-  \ei
-}
+%% \section{Ageing error}
+%% \frame{\frametitle{Ageing error}
+%%   \bi
+%%     \item A study was done that indicated ageing error on cohorts around the large 1999 year class.
+%%     \item Ageing technicians tend to group cohorts into what they know to be a large year class.
+%%     \item There are now several recent above-average year classes close together.
+%%     \item A new study should be done to identify biases present in ageing.
+%%   \ei
+%% }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -468,11 +459,12 @@ source("custom-knitr-variables.r")
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section[Data not used]{Data not used}
-\frame{\frametitle{Data sources \textbf{NOT} used}
+\frame{\frametitle{Data sources \textbf{NOT} used in the base model}
   \bi
     \item Fishery independent
       \bi
-        \item Age-1 index from the acoustic survey.
+        \item Age-1 index from the acoustic survey (there is a sensitivity
+              which includes this).
         \item Length/sex frequencies from the acoustic survey.
         \item Bottom trawl survey data.
         \item Juvenile and pre-recruit surveys from SWFSC and PWCC.

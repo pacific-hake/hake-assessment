@@ -14,13 +14,17 @@ make.ci.posterior.table <- function(model,                ## model is an mcmc ru
   yrs <- start.yr:end.yr
 
   ## Filter the values by years
-  f <- lapply(model$mcmccalcs, function(x) x[names(x) %in% yrs])
+  df <- lapply(model$mcmccalcs, function(x) x[names(x) %in% yrs])
+  tot.bm.025 <- model$extra.mcmc$timeseries$Bio_all.0.025[model$extra.mcmc$timeseries$Yr %in% yrs]
+  tot.bm.975 <- model$extra.mcmc$timeseries$Bio_all.0.975[model$extra.mcmc$timeseries$Yr %in% yrs]
+
   tab.filt <- cbind(yrs,
-                    paste0(f(f$slower * weight.factor), "-", f(f$supper * weight.factor)),
-                    paste0(f(f$dlower * 100, digits), "-", f(f$dupper * 100, digits), "\\%"),
-                    paste0(f(f$rlower * weight.factor), "-", f(f$rupper * weight.factor)),
-                    paste0(f(f$plower * 100, digits), "-", f(f$pupper * 100, digits), "\\%"),
-                    paste0(f(f$flower * 100, digits), "-", f(f$fupper * 100, digits), "\\%"))
+                    paste0(f(df$slower * weight.factor), "-", f(df$supper * weight.factor)),
+                    paste0(f(df$dlower * 100, digits), "-", f(df$dupper * 100, digits), "\\%"),
+                    paste0(f(tot.bm.025 / weight.factor), "-", f(tot.bm.975 / weight.factor)),
+                    paste0(f(df$rlower * weight.factor), "-", f(df$rupper * weight.factor)),
+                    paste0(f(df$plower * 100, digits), "-", f(df$pupper * 100, digits), "\\%"),
+                    paste0(f(df$flower * 100, digits), "-", f(df$fupper * 100, digits), "\\%"))
 
   ## Make current year have dashes for exploitation rate and fishing intensity
   tab.filt[nrow(tab.filt), ncol(tab.filt)] <- "\\textbf{--}"
@@ -30,15 +34,23 @@ make.ci.posterior.table <- function(model,                ## model is an mcmc ru
   colnames(tab.filt) <- c("\\specialcell{\\textbf{Year}}",
                           "\\specialcell{\\textbf{Female}\\\\\\textbf{spawning}\\\\\\textbf{biomass}\\\\\\textbf{(thousand t)}}",
                           "\\specialcell{\\textbf{Relative}\\\\\\textbf{spawning}\\\\\\textbf{biomass}}",
+                          "\\specialcell{\\textbf{Total}\\\\\\textbf{biomass}\\\\\\textbf{(thousand t)}}",
                           "\\specialcell{\\textbf{Age-0}\\\\\\textbf{recruits}\\\\\\textbf{(millions)}}",
                           "\\specialcell{\\textbf{(1-SPR)}\\\\\\textbf{/}\\\\\\textbf{(1-SPR\\subscr{40\\%})}}",
                           "\\specialcell{\\textbf{Exploitation}\\\\\\textbf{fraction}}")
 
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
-  return(print(xtable(tab.filt, caption=xcaption, label=xlabel, align=get.align(ncol(tab.filt)), digits=digits),
-               caption.placement = "top", table.placement="H", include.rownames=FALSE, sanitize.text.function=function(x){x},
-               size=size.string))
+  return(print(xtable(tab.filt,
+                      caption = xcaption,
+                      label = xlabel,
+                      align = get.align(ncol(tab.filt)),
+                      digits = digits),
+               caption.placement = "top",
+               table.placement = "H",
+               include.rownames = FALSE,
+               sanitize.text.function = function(x){x},
+               size = size.string))
 
 }
 
@@ -58,13 +70,16 @@ make.median.posterior.table <- function(model,                ## model is an mcm
   yrs <- start.yr:end.yr
 
   ## Filter the values by years
-  f <- lapply(model$mcmccalcs, function(x) x[names(x) %in% yrs])
+  df <- lapply(model$mcmccalcs, function(x) x[names(x) %in% yrs])
+  tot.bm <- model$extra.mcmc$timeseries$Bio_all[model$extra.mcmc$timeseries$Yr %in% yrs]
+
   tab.filt <- cbind(yrs,
-                    f(f$smed * weight.factor),
-                    paste0(f(f$dmed * 100, digits), "\\%"),
-                    f(f$rmed * weight.factor),
-                    paste0(f(f$pmed * 100, digits), "\\%"),
-                    paste0(f(f$fmed * 100, digits), "\\%"))
+                    f(df$smed * weight.factor),
+                    paste0(f(df$dmed * 100, digits), "\\%"),
+                    f(tot.bm / weight.factor),
+                    f(df$rmed * weight.factor),
+                    paste0(f(df$pmed * 100, digits), "\\%"),
+                    paste0(f(df$fmed * 100, digits), "\\%"))
 
   ## Make current year have dashes for exploitation rate and fishing intensity
   tab.filt[nrow(tab.filt), ncol(tab.filt)] <- "\\textbf{--}"
@@ -74,15 +89,23 @@ make.median.posterior.table <- function(model,                ## model is an mcm
   colnames(tab.filt) <- c("\\specialcell{\\textbf{Year}}",
                           "\\specialcell{\\textbf{Female}\\\\\\textbf{spawning}\\\\\\textbf{biomass}\\\\\\textbf{(thousand t)}}",
                           "\\specialcell{\\textbf{Relative}\\\\\\textbf{spawning}\\\\\\textbf{biomass}}",
+                          "\\specialcell{\\textbf{Total}\\\\\\textbf{biomass}\\\\\\textbf{(thousand t)}}",
                           "\\specialcell{\\textbf{Age-0}\\\\\\textbf{recruits}\\\\\\textbf{(millions)}}",
                           "\\specialcell{\\textbf{Relative}\\\\\\textbf{fishing}\\\\\\textbf{intensity}}",
                           "\\specialcell{\\textbf{Exploitation}\\\\\\textbf{fraction}}")
 
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
-  return(print(xtable(tab.filt, caption=xcaption, label=xlabel, align=get.align(ncol(tab.filt)), digits=digits),
-               caption.placement = "top", table.placement="H", include.rownames=FALSE, sanitize.text.function=function(x){x},
-               size=size.string))
+  return(print(xtable(tab.filt,
+                      caption = xcaption,
+                      label = xlabel,
+                      align = get.align(ncol(tab.filt)),
+                      digits = digits),
+               caption.placement = "top",
+               table.placement = "H",
+               include.rownames = FALSE,
+               sanitize.text.function = function(x){x},
+               size = size.string))
 
 }
 
@@ -108,8 +131,12 @@ make.biomass.table <- function(model,                ## model is an mcmc run and
   dupper <- model$mcmccalcs$dupper * 100
 
   ## Join the values and apply the formatiing
-  tab <- t(rbind(f(slower,digits),f(smed,digits),f(supper,digits),
-                 paste0(f(dlower,digits),"\\%"),paste0(f(dmed,digits),"\\%"),paste0(f(dupper,digits),"\\%")))
+  tab <- t(rbind(f(slower, digits),
+                 f(smed, digits),
+                 f(supper, digits),
+                 paste0(f(dlower, digits), "\\%"),
+                 paste0(f(dmed, digits), "\\%"),
+                 paste0(f(dupper, digits), "\\%")))
 
   ## Filter for correct years to show and make thousand-seperated numbers (year assumed to be column 1)
   tab.filt <- tab[match(start.yr:end.yr, rownames(tab)),]
