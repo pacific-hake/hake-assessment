@@ -129,24 +129,24 @@ source("custom-knitr-variables.r")
   \item MLE vs MCMC
   \item Sensitivities
         \begin{enumerate}
-        \item Include age-1 survey index as an additional source of information
-        \item Assume no cohort-based ageing error (i.e., time invariant ageing error)
-        \item No reduction in ageing error associated with the estimated large 2014 recruitment class
-        \item Adjustment to the last year for full bias correction in recruitment
-        \item Consideration of alternative standard deviations for time-varying selectivity
-        \item Consideration of alternative maximum age assumptions for estimating selectivity
-        \item Assume higher/lower variation about the stock-recruitment curve ($\sigma_r$)
+        \item Age-1 survey index
+        \item No cohort-based ageing error
+        \item No reduction in ageing error for 2014
+        \item Adjustment to last year for full bias correction in recruitment
+        \item Standard deviations ($\phi$) for time-varying selectivity
+        \item Maximum age assumptions for estimating selectivity
+        \item Variation of recruitment ($\sigma_r$)
         \item Standard sensitivities
-              \begin{enumerate}
+              \begin{itemize}
               \item Natural Mortality: prior SD (0.2, 0.3)
               \item Steepness: prior mean (0.5) and fixed value (1.0)
-              \end{enumerate}
+              \end{itemize}
         \end{enumerate}
   \item Retrospectives
         \begin{enumerate}
-        \item Standard: -\Sexpr{max(plot.retro.yrs)} years
-        \item Cohort determination ('squid plot'): -\Sexpr{max(retro.yrs)} years
-        \item Historical assessments: - \Sexpr{assess.yr - 1991 + 1} years
+        \item Standard %: -\Sexpr{max(plot.retro.yrs)} years
+        \item Cohort determination ('squid plot') %: -\Sexpr{max(retro.yrs)} years
+        \item Historical assessments %: - \Sexpr{assess.yr - 1991 + 1} years
         \end{enumerate}
 \end{itemize}
 \end{frame}
