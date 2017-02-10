@@ -103,7 +103,7 @@ source("custom-knitr-variables.r")
   \bi
     \item March \Sexpr{last.assess.yr}: JMC set an adjusted TAC = \Sexpr{last.year.tac} t.
     \item May \Sexpr{last.assess.yr}: JMC meeting: JTC presented MSE simulation results looking at age-1 index and age 2+ survey precision.
-    \item U.S. fisheries started in May.
+    \item U.S. fisheries started in April.
     \item Canadian fisheries started in March.
     \item Return of at-sea fleet in the U.S. saw low catch-rates.
     \item Highest proportion of fish caught in U.S. fisheries were age-2's.
@@ -155,7 +155,7 @@ source("custom-knitr-variables.r")
 \section[Catches]{Catches}
 \subsection{Catch history}
 \frame{\frametitle{Catches}
-  <<catches>>=
+  <<catches, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
     make.catches.plot(catches, leg.y.loc = 500, leg.cex = 0.7)
   @
 }
