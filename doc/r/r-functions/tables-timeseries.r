@@ -15,12 +15,8 @@ make.ci.posterior.table <- function(model,                ## model is an mcmc ru
 
   ## Filter the values by years
   df <- lapply(model$mcmccalcs, function(x) x[names(x) %in% yrs])
-  tot.bm.025 <- model$extra.mcmc$timeseries$Bio_all.0.025
-  tot.bm.975 <- model$extra.mcmc$timeseries$Bio_all.0.975
-  len <- length(tot.bm.025)
-  ## Remove the first two and last two values in the total biomass vectors
-  tot.bm.025 <- tot.bm.025[-c(1, 2, len - 1, len)]
-  tot.bm.975 <- tot.bm.975[-c(1, 2, len - 1, len)]
+  tot.bm.025 <- model$extra.mcmc$timeseries$Bio_all.0.025[model$extra.mcmc$timeseries$Yr %in% yrs]
+  tot.bm.975 <- model$extra.mcmc$timeseries$Bio_all.0.975[model$extra.mcmc$timeseries$Yr %in% yrs]
 
   tab.filt <- cbind(yrs,
                     paste0(f(df$slower * weight.factor), "-", f(df$supper * weight.factor)),
@@ -75,10 +71,7 @@ make.median.posterior.table <- function(model,                ## model is an mcm
 
   ## Filter the values by years
   df <- lapply(model$mcmccalcs, function(x) x[names(x) %in% yrs])
-  tot.bm <- model$extra.mcmc$timeseries$Bio_all
-  len <- length(tot.bm)
-  ## Remove the first two and last two values in the total biomass vector
-  tot.bm <- tot.bm[-c(1, 2, len - 1, len)]
+  tot.bm <- model$extra.mcmc$timeseries$Bio_all[model$extra.mcmc$timeseries$Yr %in% yrs]
 
   tab.filt <- cbind(yrs,
                     f(df$smed * weight.factor),
