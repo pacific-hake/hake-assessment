@@ -169,6 +169,7 @@ make.multiple.tv.selex.uncertainty.plots <- function(tv.sel.list ## A list of ou
 
 make.selex.uncertainty.lines.plot <- function(model,
                                               ages = 1:8,
+                                              year = end.yr-1, # final fishing year
                                               type = 1, ## 1 = Fishery, any other value is the survey
                                               selex.list = NULL,  ## A list of time varying selectivites as returned by calc.tv.selex
                                                                   ## *Only used when type=1 (fishery)
@@ -181,47 +182,55 @@ make.selex.uncertainty.lines.plot <- function(model,
   oldpar <- par()
   par(mar=c(4,4,1,1))
   sel.med <- selex.list$median
-
+  yrs <- as.numeric(names(sel.med))
   if(type == 1){
-    ## final element of list should be final year
-    selex <- selex.list$selex[[length(selex.list$selex)]]
-    ## The indexing below will give you the last year in the series.
-    ## Need to check this to make sure it is correct.
-    selex.med <- selex.list$median[,ncol(selex.list$med)]
-    selex.lower <- selex.list$lower[,ncol(selex.list$lower)]
-    selex.upper <- selex.list$upper[,ncol(selex.list$upper)]
+    ## get matrix of selectivity at age from all MCMC samples for chosen year
+    selex <- selex.list$selex[[which(yrs==year)]]
+    ## get vectors of medians and intervals for chosen year
+    selex.med <- selex.list$median[,which(yrs==year)]
+    selex.lower <- selex.list$lower[,which(yrs==year)]
+    selex.upper <- selex.list$upper[,which(yrs==year)]
     seg.color <- rgb(0.1, 0.1, 1, 0.8)
   }else{
+    # survey catch is simpler because it doesn't change over time
     selex <- model$mcmc[,grep("Selex_std_2_Fem_A_", names(model$mcmc))]
     selex.med <- apply(selex,2,median)
     selex.lower <- apply(selex, 2, quantile, prob = probs[1])
     selex.upper <- apply(selex, 2, quantile, prob = probs[2])
     seg.color <- rgb(1,0.1,0.1,0.8)
   }
+  # make empty plot
   plot(ages,
        selex.med[ages],
-       type = "b",
+       type = "n",
        ylim = c(0, 1),
        pch = 20,
        xlab = "Age",
        ylab = "Selectivity",
        xaxt = "n",
        las = 1)
+  # loop over MCMC samples and make lines for each one
   for(i in 1:nrow(selex)) {
     lines(ages, selex[i, ages], col = rgb(0, 0, 0, 0.1))
   }
+  # add vertical segments
   segments(ages,
            selex.upper[ages],
            ages,
            selex.lower[ages],
            col = seg.color,
            lwd = 3)
+  # add points with connecting lines
   points(ages,
          selex.med[ages],
+         type='b',
+         lwd = 2,
          pch = 16,
          cex = 1.5,
          col = seg.color)
+  # add x-axis
   axis(1, at = ages)
+  # restore parameters
   par <- oldpar
 
 }
