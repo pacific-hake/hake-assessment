@@ -202,7 +202,7 @@ make.short.parameter.estimates.table(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{Age error and age-1 index}
+\section{Age error, age-1 index}
 \subsection{}
 \begin{frame}
 \frametitle{Sensitivities to age error and inclusion of age-1 index -- Biomass}
