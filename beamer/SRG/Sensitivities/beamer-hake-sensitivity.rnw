@@ -125,10 +125,10 @@ source("custom-knitr-variables.r")
 \begin{frame}
 %\titlepage
 \frametitle{Overview}
-\begin{itemize}
+\begin{enumerate}
   \item MLE vs MCMC
   \item Sensitivities
-        \begin{enumerate}
+        \begin{itemize}
         \item Age-1 survey index
         \item No cohort-based ageing error
         \item No reduction in ageing error for 2014
@@ -141,20 +141,48 @@ source("custom-knitr-variables.r")
               \item Natural Mortality: prior SD (0.2, 0.3)
               \item Steepness: prior mean (0.5) and fixed value (1.0)
               \end{itemize}
-        \end{enumerate}
+        \end{itemize}
   \item Retrospectives
-        \begin{enumerate}
+        \begin{itemize}
         \item Standard %: -\Sexpr{max(plot.retro.yrs)} years
         \item Cohort determination ('squid plot') %: -\Sexpr{max(retro.yrs)} years
         \item Historical assessments %: - \Sexpr{assess.yr - 1991 + 1} years
-        \end{enumerate}
-\end{itemize}
+        \end{itemize}
+\end{enumerate}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{MLE vs MCMC}
 \subsection{}
+\begin{frame}
+\frametitle{MLE vs MCMC -- Biomass}
+\begin{center}
+<<mle.mcmc.1, out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
+make.mcmc.vs.mle.plot(base.model,
+                      end.yr = end.yr,
+                      subplot = 2)
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{MLE vs MCMC -- Recruitment}
+\begin{center}
+<<mle.mcmc.2, out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
+make.mcmc.vs.mle.plot(base.model,
+                      end.yr = end.yr,
+                      type = "o",
+                      subplot = 8)
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{MLE vs MCMC}
 \begin{center}
@@ -174,35 +202,27 @@ make.short.parameter.estimates.table(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{MLE vs MCMC - Biomass}
-\begin{center}
-<<mle.mcmc.1, out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
-make.mcmc.vs.mle.plot(base.model,
-                      end.yr = end.yr,
-                      subplot = 2)
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{MLE vs MCMC - Recruitment}
-\begin{center}
-<<mle.mcmc.2, out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
-make.mcmc.vs.mle.plot(base.model,
-                      end.yr = end.yr,
-                      type = "o",
-                      subplot = 8)
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
 \section{Age error and age-1 index}
 \subsection{}
+\begin{frame}
+\frametitle{Sensitivities to age error and inclusion of age-1 index -- Biomass}
+\begin{center}
+\vspace{-5pt}
+<<age.error.sensitivity.biomass, fig.height=4.5, fig.width=8>>=
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 0))
+make.comparison.plot(
+  c(list(base.model), sens.models.5),
+  subplots = 2,
+  model.names = c("Base model", sens.model.names.5),
+  end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Sensitivities to age error and inclusion of age-1 index}
 \begin{center}
@@ -223,18 +243,19 @@ make.short.parameter.estimates.sens.table(
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
+\section{$\sigma_r$}
+\subsection{}
 \begin{frame}
-\frametitle{Sensitivities to age error and inclusion of age-1 index - Biomass}
+\frametitle{Sensitivities to $\sigma_r$ -- Biomass}
 \begin{center}
 \vspace{-5pt}
-<<age.error.sensitivity.biomass, fig.height=4.5, fig.width=8>>=
+<<sigma.r.sensitivity.biomass, fig.height=4.5, fig.width=8>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
-make.comparison.plot(
-  c(list(base.model), sens.models.5),
-  subplots = 2,
-  model.names = c("Base model", sens.model.names.5),
-  end.yr = end.yr)
+make.comparison.plot(c(list(base.model), sens.models.1),
+                     subplots = 2,
+                     model.names = c("Base model", sens.model.names.1),
+                     end.yr = end.yr)
 par <- oldpar
 @
 \end{center}
@@ -242,8 +263,6 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{$\sigma_r$}
-\subsection{}
 \begin{frame}
 \frametitle{Sensitivities to $\sigma_r$}
 \begin{center}
@@ -265,48 +284,10 @@ make.short.parameter.estimates.sens.table(
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Sensitivities to $\sigma_r$ - Biomass}
-\begin{center}
-\vspace{-5pt}
-<<sigma.r.sensitivity.biomass, fig.height=4.5, fig.width=8>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 0))
-make.comparison.plot(c(list(base.model), sens.models.1),
-                     subplots = 2,
-                     model.names = c("Base model", sens.model.names.1),
-                     end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
 \section{$\phi$}
 \subsection{}
 \begin{frame}
-\frametitle{Sensitivities to $\phi$}
-\begin{center}
-\vspace{-5pt}
-<<phi.sensitivity.table, results='asis', echo=FALSE>>=
-make.short.parameter.estimates.sens.table(
-  c(list(base.model), sens.models.6),
-  model.names = c("Base model", sens.model.names.6),
-  posterior.regex = key.posteriors,
-  end.yr = end.yr,
-  digits = 3,
-  xcaption = NULL,
-  font.size = 7,
-  space.size = 7)
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Sensitivities to $\phi$ - Biomass}
+\frametitle{Sensitivities to $\phi$ -- Biomass}
 \begin{center}
 \vspace{-5pt}
 <<phi.sensitivity.biomass, fig.height=4.5, fig.width=8>>=
@@ -325,7 +306,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Sensitivities to $\phi$ - Density}
+\frametitle{Sensitivities to $\phi$ -- Density}
 \begin{center}
 \vspace{-5pt}
 <<phi.sensitivity.density, fig.height=4.5, fig.width=8>>=
@@ -347,10 +328,30 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Sensitivities to $\phi$}
+\begin{center}
+\vspace{-5pt}
+<<phi.sensitivity.table, results='asis', echo=FALSE>>=
+make.short.parameter.estimates.sens.table(
+  c(list(base.model), sens.models.6),
+  model.names = c("Base model", sens.model.names.6),
+  posterior.regex = key.posteriors,
+  end.yr = end.yr,
+  digits = 3,
+  xcaption = NULL,
+  font.size = 7,
+  space.size = 7)
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
 \section{Max Age}
 \subsection{}
 \begin{frame}
-\frametitle{Maximum Age Full Selectivity - Biomass}
+\frametitle{Maximum Age Full Selectivity -- Biomass}
 \begin{center}
 \vspace{-5pt}
 <<max.age.sensitivity.biomass, fig.height=4.5, fig.width=8>>=
@@ -368,7 +369,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Maximum Age Full Selectivity - Estimates}
+\frametitle{Maximum Age Full Selectivity -- Estimates}
 \begin{columns}
 \begin{column}{0.3\textwidth}
 \bi
@@ -395,31 +396,13 @@ par <- oldpar
   \end{column}
 \end{columns}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Standard Sensitivities}
 \subsection{}
 \begin{frame}
-\frametitle{Sensitivity Table - MLE}
-\begin{center}
-<<standard.sensitivities.table, results='asis', echo=FALSE>>=
-make.short.parameter.estimates.sens.table(
-  c(list(base.model), sens.models.4),
-    model.names = c("Base model", sens.model.names.4),
-    posterior.regex = key.posteriors,
-    end.yr = end.yr,
-    digits = 3,
-    xcaption <- NULL,
-    font.size = 7,
-    space.size = 7)
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Standard Sensitivities - Biomass}
+\frametitle{Standard Sensitivities -- Biomass}
 \begin{center}
 \vspace{-5pt}
 <<standard.sensitivities.biomass, fig.height=4.5, fig.width=8>>=
@@ -433,6 +416,25 @@ make.comparison.plot(
   model.names = c("Base model ", sens.model.names.4),
   end.yr = end.yr)
 par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Sensitivity Table -- MLE}
+\begin{center}
+<<standard.sensitivities.table, results='asis', echo=FALSE>>=
+make.short.parameter.estimates.sens.table(
+  c(list(base.model), sens.models.4),
+    model.names = c("Base model", sens.model.names.4),
+    posterior.regex = key.posteriors,
+    end.yr = end.yr,
+    digits = 3,
+    xcaption <- NULL,
+    font.size = 7,
+    space.size = 7)
 @
 \end{center}
 \end{frame}
@@ -473,7 +475,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %\begin{frame}
-%\frametitle{Retrospective - Recruitment}
+%\frametitle{Retrospective -- Recruitment}
 %\begin{center}
 %\vspace{-5pt}
 %<<retro.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
@@ -493,7 +495,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Retrospective - Squid}
+\frametitle{Retrospective -- Squid}
 \begin{center}
 \vspace{-5pt}
 <<retro.3, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
@@ -529,6 +531,18 @@ make.assessment.history.plot(base.model,
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Summary}
+\begin{itemize}
+\item In general, sensitivities show no significant departure from base model
+\item All show large estimated increases in recent spawning biomass (driven by 2010 and 2014 cohorts)
+\item ***
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 
 
 
