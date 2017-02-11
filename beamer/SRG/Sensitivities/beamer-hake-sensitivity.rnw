@@ -264,6 +264,23 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+\frametitle{Sensitivities to $\sigma_r$ -- Relative biomass}
+\begin{center}
+\vspace{-5pt}
+<<sigma.r.sensitivity.rel.biomass, fig.height=4.5, fig.width=8>>=
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 0))
+make.comparison.plot(c(list(base.model), sens.models.1),
+                     subplots = 4,
+                     model.names = c("Base model", sens.model.names.1),
+                     end.yr = end.yr)
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
 \frametitle{Sensitivities to $\sigma_r$}
 \begin{center}
 %\begin{center}
@@ -399,7 +416,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{Standard Sensitivities}
+\section{$M$ and $h$}
 \subsection{}
 \begin{frame}
 \frametitle{Standard Sensitivities -- Biomass}
@@ -444,11 +461,12 @@ make.short.parameter.estimates.sens.table(
 \section{Retros}
 \subsection{}
 \begin{frame}
-\frametitle{Retrospectives}
+\frametitle{Retrospectives -- Biomass}
 \begin{center}
 \vspace{-5pt}
 <<retro.1, fig.height=5, fig.width=10>>=
-oldpar <- par(mfrow=c(1,2), mar=c(5,4,1,1),no.readonly = TRUE)
+oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+#oldpar <- par(mfrow=c(1,2), mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 plot.retro.yrs <- 1:5
 retro.list <- list(base.model)
@@ -458,15 +476,15 @@ for(i in plot.retro.yrs){
 make.comparison.plot(retro.list,
                      subplots = 2,
                      model.names = retro.model.names,
-                     legend = FALSE,
+                     legend = TRUE,
                      legendloc = "topright",
                      is.retro = TRUE)
-make.comparison.plot(retro.list,
-                     subplots = 8,
-                     model.names = retro.model.names,
-                     legend = TRUE,
-                     legendloc = "topleft",
-                     is.retro = TRUE)
+#make.comparison.plot(retro.list,
+#                     subplots = 8,
+#                     model.names = retro.model.names,
+#                     legend = TRUE,
+#                     legendloc = "topleft",
+#                     is.retro = TRUE)
 par <- oldpar
 @
 \end{center}
@@ -474,23 +492,23 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-%\begin{frame}
-%\frametitle{Retrospective -- Recruitment}
-%\begin{center}
-%\vspace{-5pt}
-%<<retro.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-%oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-%#par(mar = c(4.5, 4.1, 1.5, 1.1))
-%make.comparison.plot(retro.list,
-%                     subplots = 8,
-%                     model.names = retro.model.names,
-%                     legend = TRUE,
-%                     legendloc = "topleft",
-%                     is.retro = TRUE)
-%par <- oldpar 
-%@
-%\end{center}
-%\end{frame}
+\begin{frame}
+\frametitle{Retrospective -- Recruitment}
+\begin{center}
+\vspace{-5pt}
+<<retro.2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+#par(mar = c(4.5, 4.1, 1.5, 1.1))
+make.comparison.plot(retro.list,
+                     subplots = 8,
+                     model.names = retro.model.names,
+                     legend = TRUE,
+                     legendloc = "topleft",
+                     is.retro = TRUE)
+par <- oldpar 
+@
+\end{center}
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -557,6 +575,8 @@ make.assessment.history.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
+\section{Summary}
+\subsection{}
 \begin{frame}
 \frametitle{Summary}
 \begin{itemize}
