@@ -70,7 +70,7 @@ _____________________________________________________________
     forecasting, retrospectives, or extra mcmc output will be run.
 
   * To delete all existing Rdata files and rebuild them again from the model outputs,
-    run the following in the doc/r directory:
+    open R in the doc/r directory and run the following::
     ```R
       source("all.r")
       delete.rdata.files()
@@ -97,10 +97,12 @@ _____________________________________________________________
   This method is faster after the first time, because the models will already be loaded into the
   workspace and won't be reloaded every time you build the document.
 
-  * Open your R interpreter and change to the doc/r directory.
-  * source("all.r")
-  * setwd("..")
-  * build.doc()
+  * Open R in the doc/r directory and run the following:
+    ```R
+      source("all.r")
+      setwd("..")
+      build.doc()
+    ```
   * After the first time you do this, the models will be loaded into the R workspace.
     You can then edit hake-assessment.rnw and set the first knitr code chunk up so that it doesn't
     load the models every time you build the document. The value in the if statement should be changed to FALSE (remember to change it back before committing):
@@ -121,7 +123,7 @@ _____________________________________________________________
 
 ## How to delete all model RData files
 
-* Open R in the doc/r directory and issue the command:
+* Open R in the doc/r directory and run the following:
   ```R
     delete.rdata.files()
   ```
