@@ -55,12 +55,13 @@ make.us.age.data.table(us.cp.age,
                        fleet = 1,
                        start.yr = 2008,
                        end.yr = last.data.yr,
-                       xcaption = paste0("Most recent 9 years ",
-                                         "of age proportion data (as percentages) used in the assessment for ",
-                                         "the U.S. Catcher-processor fleet."),
+                       xcaption = paste0("Recent age proportion data used in the assessment for ",
+                                         "the U.S. Catcher-processor fleet. Proportions are ",
+                                         "calculated from numbers of individuals in each age group. ",
+                                         "Age 15 is an accumulator group."),
                        xlabel = "tab:main-us-cp-age-data",
-                       font.size = 8,
-                       space.size = 10,
+                       font.size = 12,
+                       space.size = 13,
                        decimals = 2)
 @
 
@@ -69,26 +70,36 @@ make.us.age.data.table(us.ms.age,
                        fleet = 2,
                        start.yr = 2008,
                        end.yr = last.data.yr,
-                       xcaption = paste0("Most recent 9 years ",
-                                         "of age proportion data (as percentages) used in the assessment for ",
-                                         "the U.S. Mothership fleet."),
+                       xcaption = paste0("Recent age proportion data used in the assessment for ",
+                                         "the U.S. Mothership fleet. Proportions are ",
+                                         "calculated from numbers of individuals in each age group. ",
+                                         "Age 15 is an accumulator group."),
                        xlabel = "tab:main-us-ms-age-data",
-                       font.size = 8,
-                       space.size = 10,
+                       font.size = 12,
+                       space.size = 13,
                        decimals = 2)
 @
+\end{landscape}
+\restoregeometry
+\pagestyle{fancy}
+\clearpage
 
+\newgeometry{hmargin=1in,vmargin=1in}
+\thispagestyle{lscape}
+\begin{landscape}
+  \centering
 <<main.us.shore.age.data.table, results='asis', echo=FALSE>>=
 make.us.age.data.table(us.shore.age,
                        fleet = 3,
                        start.yr = 2008,
                        end.yr = last.data.yr,
-                       xcaption = paste0("Most recent 9 years ",
-                                         "of age proportion data (as percentages) used in the assessment for ",
-                                         "the U.S. Shoreside fleet."),
+                       xcaption = paste0("Recent age proportion data used in the assessment for ",
+                                         "the U.S. Shoreside fleet. Proportions are ",
+                                         "calculated from numbers of individuals in each age group. ",
+                                         "Age 15 is an accumulator group."),
                        xlabel = "tab:main-us-shore-age-data",
-                       font.size = 8,
-                       space.size = 10,
+                       font.size = 12,
+                       space.size = 13,
                        decimals = 2)
 @
 \end{landscape}
@@ -105,12 +116,13 @@ make.can.age.data.table(can.ages,
                         fleet = 1,
                         start.yr = 2008,
                         end.yr = last.data.yr,
-                       xcaption = paste0("Most recent 9 years ",
-                                         "of age proportion data (as percentages) used in the assessment for ",
-                                         "the Canadian Shoreside fleet."),
+                       xcaption = paste0("Recent age proportion data used in the assessment for ",
+                                         "the Canadian Shorside fleet. Proportions are ",
+                                         "calculated from numbers of individuals in each age group. ",
+                                         "Age 15 is an accumulator group."),
                        xlabel = "tab:main-can-shore-age-data",
-                       font.size = 8,
-                       space.size = 10,
+                       font.size = 12,
+                       space.size = 13,
                        decimals = 2)
 @
 
@@ -119,12 +131,13 @@ make.can.age.data.table(can.ages,
                         fleet = 2,
                         start.yr = 2008,
                         end.yr = last.data.yr,
-                        xcaption = paste0("Most recent 9 years ",
-                                          "of age proportion data (as percentages) used in the assessment for ",
-                                          "the Canadian Freezer Trawler fleet."),
+                       xcaption = paste0("Recent age proportion data used in the assessment for ",
+                                         "the Canadian Freezer Trawler fleet. Proportions are ",
+                                         "calculated from numbers of individuals in each age group. ",
+                                         "Age 15 is an accumulator group."),
                         xlabel = "tab:main-can-ft-age-data",
-                        font.size = 8,
-                        space.size = 10,
+                        font.size = 12,
+                        space.size = 13,
                         decimals = 2)
 @
 

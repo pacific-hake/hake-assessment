@@ -1,7 +1,7 @@
 ____
 # hake-assessment
 
-**Updated January 25, 2017**
+**Updated February 11, 2017**
 
 A framework which uses latex and knitr code to build the US/Canadian Pacific hake assessment.
 
@@ -65,8 +65,17 @@ _____________________________________________________________
   * Once finished, you can see that each model defined in **model-setup.r**
     now has an RData file inside its directory with the same name.
 
-  * If **build()** is called without arguments, the RData files will be built from previously
-    run outputs, i.e. no forecasting, retrospectives, or extra mcmc output will be run.
+  * If **build()** is called without arguments, any RData files which do not exist
+    in their model directories will be built from the model outputs, i.e. no
+    forecasting, retrospectives, or extra mcmc output will be run.
+
+  * To delete all existing Rdata files and rebuild them again from the model outputs,
+    run the following in the doc/r directory:
+    ```R
+      source("all.r")
+      delete.rdata.files()
+      build()
+    ```
 
   * You don’t need to save the workspace when you close R, it isn't used by latex/knitr.
 
@@ -114,7 +123,7 @@ _____________________________________________________________
 
 * Open R in the doc/r directory and issue the command:
   ```R
-  delete.rdata.files("../../models")
+    delete.rdata.files()
   ```
 * Before you try to build the document again, you will need to run the **build()** function again with
   all options set to **FALSE** or no arguments to re-create the RData files.
@@ -173,18 +182,18 @@ model$risks     - A list, one element for each forecast year except the last yea
   model$risks[[2]] - Holds the risk values for the second year of forecasts
   ...
   model$risks[[N]] - Holds the risk values for the last year - 1 of forecasts
-model$extra-mcmc- Extra MCMC output obtained by running MLE once for each MCMC sample and extracting output
-  model$extra-mcmc$agedbase$Exp         - median of posterior for expected value for age comps
-  model$extra-mcmc$agedbase$Exp.025     - 2.5% of posterior for expected value for age comps
-  model$extra-mcmc$agedbase$Exp.975     - 97.5% of posterior for expected value for age comps
-  model$extra-mcmc$agedbase$Pearson     - median of posterior for pearson residuals for age comps
-  model$extra-mcmc$agedbase$Pearson.025 - 2.5% of posterior for pearson residuals for age comps
-  model$extra-mcmc$agedbase$Pearson.975 - 97.5% of posterior for pearson residuals for age comps
-  model$extra-mcmc$cpue.table           - Table of cpue index values for all posteriors (survey)
-  model$extra-mcmc$cpue.median          - median of posterior for cpue index values (survey)
-  model$extra-mcmc$cpue.025             - 2.5% of posterior for cpue index values (survey)
-  model$extra-mcmc$cpue.975             - 97.5% of posterior for cpue index values (survey)
-  model$extra-mcmc$like.info            - Likelihood values for all posteriors
+model$extra.mcmc- Extra MCMC output obtained by running MLE once for each MCMC sample and extracting output
+  model$extra.mcmc$agedbase$Exp         - median of posterior for expected value for age comps
+  model$extra.mcmc$agedbase$Exp.025     - 2.5% of posterior for expected value for age comps
+  model$extra.mcmc$agedbase$Exp.975     - 97.5% of posterior for expected value for age comps
+  model$extra.mcmc$agedbase$Pearson     - median of posterior for pearson residuals for age comps
+  model$extra.mcmc$agedbase$Pearson.025 - 2.5% of posterior for pearson residuals for age comps
+  model$extra.mcmc$agedbase$Pearson.975 - 97.5% of posterior for pearson residuals for age comps
+  model$extra.mcmc$cpue.table           - Table of cpue index values for all posteriors (survey)
+  model$extra.mcmc$cpue.median          - median of posterior for cpue index values (survey)
+  model$extra.mcmc$cpue.025             - 2.5% of posterior for cpue index values (survey)
+  model$extra.mcmc$cpue.975             - 97.5% of posterior for cpue index values (survey)
+  model$extra.mcmc$like.info            - Likelihood values for all posteriors
 model$path      - The path where this model is located
 model$ctl.file  - control file name for this model
 model$dat.file  - data file name for this model
