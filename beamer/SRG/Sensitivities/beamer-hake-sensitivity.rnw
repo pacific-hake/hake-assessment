@@ -498,6 +498,29 @@ par <- oldpar
 \frametitle{Retrospective -- Squid}
 \begin{center}
 \vspace{-5pt}
+<<baby.squid, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+#par(mar = c(4.5, 4.1, 1.5, 1.1))
+plot.retro.yrs <- retro.yrs
+retro.cohorts <- c(2010, 2007, 2009)     # Selecting three years as examples
+retro.list <- list(base.model)
+for(i in plot.retro.yrs){
+  retro.list[[i + 1]] <- base.model$retros[[i]]
+}
+make.squid.plot(retro.list,
+                subplot = 1,
+                cohorts = retro.cohorts)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Retrospective -- Squid}
+\begin{center}
+\vspace{-5pt}
 <<retro.3, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
@@ -515,6 +538,7 @@ par <- oldpar
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
