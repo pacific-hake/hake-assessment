@@ -103,6 +103,7 @@ _____________________________________________________________
       setwd("..")
       build.doc()
     ```
+
   * After the first time you do this, the models will be loaded into the R workspace.
     You can then edit hake-assessment.rnw and set the first knitr code chunk up so that it doesn't
     load the models every time you build the document. The value in the if statement should be changed to FALSE (remember to change it back before committing):
