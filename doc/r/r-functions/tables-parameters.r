@@ -418,9 +418,9 @@ make.short.parameter.estimates.table <- function(model,                ## model 
 
     ## Add Q - *Warning* - hardwired values for 2016 assessment
     if(q.choice == 1){
-      q <- 1.029
+      q <- round(median(base.model$extra.mcmc$Q_vector), 3)
     }else{
-      q <- 0.915
+      q <- round(median(last.yr.base.model$extra.mcmc$Q_vector), 3)
     }
     mcmc.meds <- c(mcmc.meds, q)
 
