@@ -98,8 +98,10 @@ source("custom-knitr-variables.r")
 metric <- NULL
 forecasts <- base.model$forecasts[[1]]
 metric$mcmc <- forecasts[[7]]$outputs
-fore.inds <- c(2, 4, 5, 6, 7)
-fore.names <- c("180,000", "2015 TAC: 440,000", "500,000", "FI=100%", "default HR")
+## models.inds are the indices of those which will be plotted against each other
+## next 2 lines copied from executive-summary.rnw  (manual 2017)
+models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
+models.names <- sapply(catch.levels, "[[", 2)[models.inds] ## pretty catch level name
 history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update to file in 2017
 
 @
@@ -194,13 +196,13 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
       \smallskip
       \bc {\bf \Sexpr{catch.limit.quantiles["median"]} t} \ec
       \smallskip
-      \item 2.5\% and 97.5\% quantiles:\\ \Sexpr{catch.limit.quantiles["lower"]} and \Sexpr{catch.limit.quantiles["upper"]} t
+      \item 2.5\% and 97.5\% quantiles:\\ \Sexpr{catch.limit.quantiles["lower"]} and \Sexpr{catch.limit.quantiles["upper"]} t\thanks{Note: quantile values include correction relative to pre-review draft document}
     \ei
   \end{column}
-  \begin{column}{0.59\textwidth}
-    <<main.projected.catch.density.2016, out.width='.95\\columnwidth'>>=
+  \begin{column}{0.65\textwidth}
+    <<main.projected.catch.density, out.width='.99\\columnwidth'>>=
       make.forecast.catch.posterior.plot(base.model, fore.yr = end.yr)
-    @
+      @
   \end{column}
 \end{columns}
 }
@@ -209,16 +211,16 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Constant catch streams less than 440,000~t result in increases in spawning biomass
-      \item Catches based on harvest rule calculations result in decreases in spawning biomass
+      \item Catch stream 180,000~t results in increases in spawning biomass
+      \item Catch streams 350,000~t and above result in decreases in spawning biomass
       \item Uncertainty is large and increases the farther it is forecasted
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
     <<main.forecast.depletion.comparison.plot, out.width='.95\\columnwidth'>>=
       make.forecast.depletion.comparison.plot(base.model,
-                                              fore.inds,
-                                              fore.names,
+                                              models.inds,
+                                              models.names,
                                               start.yr = 2009,
                                               model.end.yr = end.yr,
                                               end.yr = forecast.yrs[length(forecast.yrs)],
@@ -239,13 +241,14 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
       \item Quantiles from the posterior distribution for spawning biomass and fishing intensity
       \item Median values when using lower, middle, and upper values of 2014 recruitment estimates
     \ei
-    \item Catch streams
+    \item Catch streams % text and which are gray is all manual 2017
     \bi
-      \item \textcolor{gray}{No fishing (zero catch)}
+      \item No fishing (zero catch)
       \item Constant catch of 180,000 t
-      \item \textcolor{gray}{Constant catch of 350,000 t}
-      \item Constant catch of 440,000 t (2015 TAC)
-      \item Fishing Intensity = 100\% in each year conditioned on fixed catch in previous year
+      \item Constant catch of 350,000 t
+      \item Constant catch of 497,500 t (2016 TAC)
+      \item \textcolor{gray}{Constant catch of 600,000 t}
+      \item \textcolor{gray}{Fishing Intensity = 100\% in each year conditioned on fixed catch in previous year}
       \item Median default Harvest Rule in each year conditioned on fixed catch in previous year
       \item \textcolor{gray}{Median catch in 2017 is the same as fixed catch in 2016}
     \ei
@@ -254,24 +257,20 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
 }
 
 
-\subsection{Quantiles}
-\frame{\frametitle{Spawning Biomass}
+\subsection{Spawning Biomass}
+\frame{\frametitle{Relative Spawning Biomass}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item 2016 row is the same because it is beginning of the year
-      \item Median (50\%) increases for 440,000 t and less
-      \bi
-        \item stabilizing from 2017 to 2018 with 440,000 t
-      \ei
-      \item Lower 5\% quantile at target spawning biomass in 2016
-      \item 5\% quantile mostly stable with catch of 180,000 t
+      \item Relative spawning biomass is high in \Sexpr{end.yr} due to large 2010 and 2014 cohorts.
+      \item Lower 5\% quantile near $B_{40\%}$ in \Sexpr{end.yr}
+      \item Median (50\%) decreases in \Sexpr{end.yr+1} and \Sexpr{end.yr+2} for catches of 350,000~t and above
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
   <<decisions.biomass.table, results='asis', echo=FALSE>>=
     make.decision.table.pres(base.model,
-                             fore.inds,
+                             models.inds,
                              xcaption = NULL,
                              xlabel = "tab:es-decisions-spr",
                              font.size = 9,
@@ -299,7 +298,7 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
 
 %--------------------------------------------------------------
 %\subsection{Fixed 2016 catch}
-\frame{\frametitle{Risk based on fixed 2016 catch}
+\frame{\frametitle{Risk based on fixed \Sexpr{end.yr} catch}
     <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
       make.risk.table(base.model,
                       forecast.yrs,
@@ -312,7 +311,7 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
 
 %--------------------------------------------------------------
 
-\frame{\frametitle{Risk based on fixed 2016 catch (plot)}
+\frame{\frametitle{Risk based on fixed \Sexpr{end.yr} catch (plot)}
   \bc
     <<forecast.risk.comparison.plot.year.1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
       make.forecast.risk.comparison.plot(base.model,
@@ -328,7 +327,7 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
 }
 
 %--------------------------------------------------------------
-\frame{\frametitle{Risk based on fixed 2016 and 2017 catch}
+\frame{\frametitle{Risk based on fixed \Sexpr{end.yr} and \Sexpr{end.yr+1} catch}
     <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
       make.risk.table(base.model,
                       forecast.yrs,
@@ -341,7 +340,7 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
 
 %--------------------------------------------------------------
 
-\frame{\frametitle{Risk based on fixed 2016 and 2017 catch (plot)}
+\frame{\frametitle{Risk based on fixed \Sexpr{end.yr} and \Sexpr{end.yr+1} catch (plot)}
   \bc
     <<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
       make.forecast.risk.comparison.plot(base.model,
@@ -356,6 +355,32 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
   \ec
 }
 
+
+%% %%%%%%%%%%%%%%%%%%%%%%% 
+%% \frame{\frametitle{Forecast age compositions in numbers and in weight for \Sexpr{end.yr} fishery catch}
+  
+%%   \begin{columns}
+%%     \begin{column}{0.3\textwidth}
+%%       \bi
+%%     \item Age-3 fish from 2014 cohort expected to dominate catch in \Sexpr{end.yr}
+%%       \bi
+%%     %% \item \Sexpr{round(100*quantile(forecast.age.info$natsel.prop$X3, c(0.025, 0.5, 0.975)))}\% by numbers 
+%%     %% \item \Sexpr{round(100*quantile(forecast.age.info$natselwt.prop$X3, c(0.025, 0.5, 0.975)))}\% by weight
+%%       \ei
+%%     \item Proportions highly uncertain
+%%       \ei
+%%     \end{column}
+%%     \begin{column}{0.7\textwidth}
+
+%%       <<main.age.comp.forecast, fig.height=3.5, fig.width=6>>=
+%%       make.age.comp.forecast.plot(base.model)
+%%       @
+%%       %% \caption{Forecast age compositions in numbers and in weight for the 2017 fishery catch (combined across all sectors in both countries). Gray bars show median estimates. Thick black lines show 50\% credibility intervals and thin black lines show 95\% credibility intervals. These estimates are based on the posterior distribution for selectivity averaged across the most recent 5 years and the distribution for expected numbers at age at the start of 2017 (See Table~\ref{tab:main-est.numbers.at.age} for all estimated numbers-at-age). The panel on the right is scaled based on the weight at each age averaged across all years.}
+%%     \end{column}
+%%   \end{columns}
+%% }
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Recruitment}
 \subsection{}
@@ -363,16 +388,17 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
   \begin{columns}
     \begin{column}{0.48\textwidth}
       \bi
-        \item 2016 default catch (bottom row) 
+        \item \Sexpr{end.yr} default catch limit (bottom row) 
         \bi 
-          \item highly correlated with 2008 and 2010 recruitment
-          \item Not highly correlated with 2014 recruitment
+          \item highly correlated with 2014 recruitment
+          \item less correlated with 2010 recruitment
         \ei
-        \item 2017 catch (not shown)
+        \item \Sexpr{end.yr+1} default catch limit (not shown)
         \bi 
-          \item highly correlated more with 2014 recruitment 
-              (\Sexpr{round(cor(base.model$mcmc$ForeCatch_2017,base.model$mcmc$Recr_2014),2)})
-          \item Correlation with 2010 and 2008 recruitments drops to around 0.5 
+          \item correlated even more with 2014 recruitment 
+              (\Sexpr{round(cor(base.model$mcmc$ForeCatch_2018,
+                base.model$mcmc$Recr_2014),2)})
+          \item Correlation with 2010 and 2008 is less than 0.5 
         \ei
       \ei
     \end{column}
@@ -389,80 +415,80 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
 }
 
 
-\frame{\frametitle{Investigating management options for different options of recent recruitment}
-  \bi
-    \item Next are alternative investigations to help understand the outcomes of the base assessment model
-    \bi
-      \item They are not meant to replace the base model
-      \item They are not alternative models with an equal probability of representing reality
-    \ei
-  \ei
-}
+%% \frame{\frametitle{Investigating management options for different options of recent recruitment}
+%%   \bi
+%%     \item Next are alternative investigations to help understand the outcomes of the base assessment model
+%%     \bi
+%%       \item They are not meant to replace the base model
+%%       \item They are not alternative models with an equal probability of representing reality
+%%     \ei
+%%   \ei
+%% }
 
 
 
-\frame{\frametitle{Model without 2015 fishery age compositions}
-\begin{columns}
-  \begin{column}{0.38\textwidth}
-    \bi
-      \item Forecast with default HR from base model
-      \bi \item 804,399; 889,918; 785,036 \ei
-      \item Without 2015 fishery ages
-      \bi
-        \item 2008, 2010 and 2012 recruitment is slightly higher
-        \item 2014 recruitment is much lower
-      \ei
-    \ei
-  \end{column}
-  \begin{column}{0.59\textwidth}
-  <<compare.no2015fishAge, fig.height=5, fig.width=5.5, out.width='0.95\\columnwidth'>>=
-    oldpar <- par(mfrow=c(2,1), mar=c(5,4,1,1),no.readonly = TRUE)
-    make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
-                              subplots = 2,
-                              model.names = c(paste0("Base model ", end.yr), sens.model.names.5),
-                              end.yr = end.yr+2,
-                              xlims = c(2008,end.yr+2),
-                              legendloc = "topleft")
-    make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
-                              subplots = 8,
-                              model.names = c(paste0("Base model ", end.yr), sens.model.names.5),
-                              end.yr = end.yr+2,
-                              xlims = c(2008,end.yr+2),
-                              legend = FALSE)
-    @
-  \end{column}
-\end{columns}
-}
+%% \frame{\frametitle{Model without 2015 fishery age compositions}
+%% \begin{columns}
+%%   \begin{column}{0.38\textwidth}
+%%     \bi
+%%       \item Forecast with default HR from base model
+%%       \bi \item 804,399; 889,918; 785,036 \ei
+%%       \item Without 2015 fishery ages
+%%       \bi
+%%         \item 2008, 2010 and 2012 recruitment is slightly higher
+%%         \item 2014 recruitment is much lower
+%%       \ei
+%%     \ei
+%%   \end{column}
+%%   \begin{column}{0.59\textwidth}
+%%   <<compare.no2015fishAge, fig.height=5, fig.width=5.5, out.width='0.95\\columnwidth'>>=
+%%     oldpar <- par(mfrow=c(2,1), mar=c(5,4,1,1),no.readonly = TRUE)
+%%     make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
+%%                               subplots = 2,
+%%                               model.names = c(paste0("Base model ", end.yr), sens.model.names.5),
+%%                               end.yr = end.yr+2,
+%%                               xlims = c(2008,end.yr+2),
+%%                               legendloc = "topleft")
+%%     make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
+%%                               subplots = 8,
+%%                               model.names = c(paste0("Base model ", end.yr), sens.model.names.5),
+%%                               end.yr = end.yr+2,
+%%                               xlims = c(2008,end.yr+2),
+%%                               legend = FALSE)
+%%     @
+%%   \end{column}
+%% \end{columns}
+%% }
 
 
-\frame{\frametitle{Model without 2015 fishery age compositions: predicted TAC}
-\begin{columns}
-  \begin{column}{0.38\textwidth}
-    \bi
-      \item Predicted TAC from the default harvest rule is higher without the 2015 fishery ages
-      \item Subsequent predicted TAC's are lower
-    \ei
-  \end{column}
-  \begin{column}{0.59\textwidth}
-    \begin{table}[h]
-    \centering
-    {\fontsize{9}{11}\selectfont
-    \begin{tabular}{|l|cc|}
-    \hline
-          & \multicolumn{2}{c|}{Forecast TAC} \\ \hline
-          & \multicolumn{2}{c|}{based on default HR} \\ \hline
-          &             & Without 2015\\
-     Year & Base        & fishery ages \\ \hline
-     2016 & 804,399     & 879,761 \\
-     2017 & 889,918     & 653,989 \\
-     2018 & 785,036     & 531,927 \\
-    \hline 
-    \end{tabular}
-    }
-    \end{table}
-  \end{column}
-\end{columns}
-}
+%% \frame{\frametitle{Model without 2015 fishery age compositions: predicted TAC}
+%% \begin{columns}
+%%   \begin{column}{0.38\textwidth}
+%%     \bi
+%%       \item Predicted TAC from the default harvest rule is higher without the 2015 fishery ages
+%%       \item Subsequent predicted TAC's are lower
+%%     \ei
+%%   \end{column}
+%%   \begin{column}{0.59\textwidth}
+%%     \begin{table}[h]
+%%     \centering
+%%     {\fontsize{9}{11}\selectfont
+%%     \begin{tabular}{|l|cc|}
+%%     \hline
+%%           & \multicolumn{2}{c|}{Forecast TAC} \\ \hline
+%%           & \multicolumn{2}{c|}{based on default HR} \\ \hline
+%%           &             & Without 2015\\
+%%      Year & Base        & fishery ages \\ \hline
+%%      2016 & 804,399     & 879,761 \\
+%%      2017 & 889,918     & 653,989 \\
+%%      2018 & 785,036     & 531,927 \\
+%%     \hline 
+%%     \end{tabular}
+%%     }
+%%     \end{table}
+%%   \end{column}
+%% \end{columns}
+%% }
 
 
 \frame{\frametitle{Age-1 index: correlation with base recruitment estimates}
@@ -488,12 +514,12 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
 \frame{\frametitle{Summary of forecasting}
   \bi
     \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
-    \item Uncertainty is great, but stock is likely above spawning biomass target
-    \item Large, but uncertain 2014 year class along with slightly above average 2012 year class results in an increasing population
-    \item Catches up to 2015 TAC (440,000~t) estimate a median spawning biomass to be increasing
-    \item Less than 30\% risk that spawning biomass will be below target in 2 years at all catch levels
+    \item Uncertainty is great, but stock is likely above well above $B_{40\%}$
+    \item Forecasts strongly influenced by size of large but uncertain 2014 year class
+    \item Aging 2010 cohort declining due to fishing and natural mortality contributes to median spawning biomass declining with catch at 350,000~t and above
+    \item Risk is 30\% or less that spawning biomass will be below $B_{40\%}$ in 2 years at all catch levels
     \medskip
-    \item The 2014 year class does not affect the 2016 catch decision much, but will be extremely influential next year
+    \item Last year we wrote ``The 2014 year class does not affect the 2016 catch decision much, but will be extremely influential next year''. The first part may have been less accurate but the second one still likely true.
   \ei
 }
 
