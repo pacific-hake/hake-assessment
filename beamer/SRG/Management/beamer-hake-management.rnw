@@ -100,6 +100,8 @@ forecasts <- base.model$forecasts[[1]]
 metric$mcmc <- forecasts[[7]]$outputs
 fore.inds <- c(2, 4, 5, 6, 7)
 fore.names <- c("180,000", "2015 TAC: 440,000", "500,000", "FI=100%", "default HR")
+history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update to file in 2017
+
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -128,7 +130,7 @@ fore.names <- c("180,000", "2015 TAC: 440,000", "500,000", "FI=100%", "default H
 	    \item March \Sexpr{last.assess.yr}
       \bi
         \item JMC set an adjusted TAC = \Sexpr{last.year.tac} t 
-        \item Harvest rule TAC was 804,576 t 
+        \item Harvest rule TAC was \Sexpr{f(history.info$AssessTac[history.info$Year==last.assess.yr])}
       \ei
       \item When default HR suggests a large catch, TAC is often set less
       \item Catches are often less than the TAC
@@ -188,37 +190,16 @@ fore.names <- c("180,000", "2015 TAC: 440,000", "500,000", "FI=100%", "default H
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Using the defined \emph{F}\subscr{SPR=40\%} harvest rate with a 40:10 adjustment, the median forecasted 2016 TAC is
+      \item Using the defined \emph{F}\subscr{SPR=40\%} harvest rate with a 40:10 adjustment, the median forecasted \Sexpr{end.yr} TAC is
       \smallskip
-      \bc {\bf \Sexpr{f(median(base.model$mcmc[,paste0("ForeCatch_", assess.yr)]))} t} \ec
+      \bc {\bf \Sexpr{catch.limit.quantiles["median"]} t} \ec
       \smallskip
-      \item 2.5\% and 97.5\% quantiles:\\ \Sexpr{f(quantile(base.model$mcmc[,paste0("ForeCatch_", assess.yr)],probs=0.025))} and \Sexpr{f(quantile(base.model$mcmc[,paste0("ForeCatch_", assess.yr)],probs=0.975))} t
+      \item 2.5\% and 97.5\% quantiles:\\ \Sexpr{catch.limit.quantiles["lower"]} and \Sexpr{catch.limit.quantiles["upper"]} t
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
     <<main.projected.catch.density.2016, out.width='.95\\columnwidth'>>=
       make.forecast.catch.posterior.plot(base.model, fore.yr = end.yr)
-    @
-  \end{column}
-\end{columns}
-}
-
-\frame{\frametitle{Harvest rule predicted catch for 2017}
-\begin{columns}
-  \begin{column}{0.38\textwidth}
-    \bi
-      \item Using the defined \emph{F}\subscr{SPR=40\%} harvest rate with a 40:10 adjustment for 2017\\
-            conditioned on a fixed 2016 catch of 804,399 t, \\
-            the median forecasted 2017 TAC is
-      \smallskip
-      \bc {\bf \Sexpr{f(median(forecasts[[7]]$outputs$ForeCatch_2017))} t} \ec
-      \smallskip
-      \item 2.5\% and 97.5\% quantiles:\\ \Sexpr{f(quantile(forecasts[[7]]$outputs$ForeCatch_2017, probs = 0.025))} and \Sexpr{f(quantile(forecasts[[7]]$outputs$ForeCatch_2017, probs = 0.975))} t
-    \ei
-  \end{column}
-  \begin{column}{0.59\textwidth}
-    <<main.projected.catch.density.next.year, out.width='.95\\columnwidth'>>=
-      make.forecast.catch.posterior.plot(metric, fore.yr = end.yr+1)
     @
   \end{column}
 \end{columns}
