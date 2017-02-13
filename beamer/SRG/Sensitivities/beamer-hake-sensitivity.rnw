@@ -135,9 +135,9 @@ source("custom-knitr-variables.r")
         \item No cohort-based ageing error
         \item \red{No reduction in ageing error for 2014}
         % \item Adjustment to last year for full bias correction in recruitment
-        \item \red{Standard deviations ($\phi$) for time-varying selectivity}
-        \item Maximum age assumptions for estimating selectivity
         \item Variation of recruitment ($\sigma_r$)
+        \item Maximum age assumptions for estimating selectivity
+        \item \red{Standard deviations ($\phi$) for time-varying selectivity}
         \item Natural Mortality: prior SD (0.2, 0.3)
         \item Steepness: prior mean (0.5) and fixed value (1.0)
         \end{itemize}
@@ -300,8 +300,59 @@ make.short.parameter.estimates.sens.table(
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{$\phi$}
+\section{Selectivity}
 \subsection{}
+\begin{frame}
+\frametitle{Maximum Age Full Selectivity -- Estimates}
+\begin{columns}
+\begin{column}{0.3\textwidth}
+\bi
+      \item Max age: 6(base), 5, 7, 12
+      \item Incremental increase (age-6 only)
+      \item No striking evidence for dome-shaped selectivity
+      \item Model convergence suspect at high max age
+    \ei
+  \end{column}
+  \begin{column}{0.69\textwidth}
+  \vspace{-5pt}
+    \begin{center}
+     <<max.age.sensitivity.b.selectivities, fig.height=8, fig.width=12, out.width='0.9\\columnwidth'>>=
+     oldpar <- par(mfrow=c(2,2), mar=c(5,4,1,1),no.readonly = TRUE)
+     layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
+     make.selex.plot(base.model, pan.letter = "base")
+     make.selex.plot(sens.models.3[[1]], pan.letter = "5")
+     make.selex.plot(sens.models.3[[2]], pan.letter = "7")
+     make.selex.plot(sens.models.3[[3]], pan.letter = "12")
+     par <- oldpar
+     mtext("Age", side = 1, line = 0.5, outer = TRUE)
+     @
+     \end{center}
+  \end{column}
+\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Sensitivities to Maximum Age Full Selectivity -- Biomass}
+\begin{center}
+\vspace{-5pt}
+<<max.age.sensitivity.biomass, fig.height=4.5, fig.width=8>>=
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 0))
+make.comparison.plot(c(list(base.model), sens.models.3),
+                     subplots = 2,
+                     model.names = c("Base model", sens.model.names.3),
+                     end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\section{$\phi$}
+%\subsection{}
 \begin{frame}
 \frametitle{Sensitivities to $\phi$ -- Biomass}
 \begin{center}
@@ -364,61 +415,10 @@ make.short.parameter.estimates.sens.table(
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{Max Age}
-\subsection{}
-\begin{frame}
-\frametitle{Maximum Age Full Selectivity -- Biomass}
-\begin{center}
-\vspace{-5pt}
-<<max.age.sensitivity.biomass, fig.height=4.5, fig.width=8>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 0))
-make.comparison.plot(c(list(base.model), sens.models.3),
-                     subplots = 2,
-                     model.names = c("Base model", sens.model.names.3),
-                     end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Maximum Age Full Selectivity -- Estimates}
-\begin{columns}
-\begin{column}{0.3\textwidth}
-\bi
-      \item Max age: 6(base), 5, 7, 12
-      \item Incremental increase (age-6 only)
-      \item No striking evidence for dome-shaped selectivity
-      \item Model convergence suspect at high max age
-    \ei
-  \end{column}
-  \begin{column}{0.69\textwidth}
-  \vspace{-5pt}
-    \begin{center}
-     <<max.age.sensitivity.b.selectivities, fig.height=8, fig.width=12, out.width='0.9\\columnwidth'>>=
-     oldpar <- par(mfrow=c(2,2), mar=c(5,4,1,1),no.readonly = TRUE)
-     layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
-     make.selex.plot(base.model, pan.letter = "base")
-     make.selex.plot(sens.models.3[[1]], pan.letter = "5")
-     make.selex.plot(sens.models.3[[2]], pan.letter = "7")
-     make.selex.plot(sens.models.3[[3]], pan.letter = "12")
-     par <- oldpar
-     mtext("Age", side = 1, line = 0.5, outer = TRUE)
-     @
-     \end{center}
-  \end{column}
-\end{columns}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
 \section{$M$ and $h$}
 \subsection{}
 \begin{frame}
-\frametitle{Standard Sensitivities -- Biomass}
+\frametitle{Steepness and Natural Mortality -- Biomass}
 \begin{center}
 \vspace{-5pt}
 <<standard.sensitivities.biomass, fig.height=4.5, fig.width=8>>=
@@ -439,7 +439,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Sensitivity Table -- MLE}
+\frametitle{Sensitivities to Steepness and Natural Mortality}
 \begin{center}
 <<standard.sensitivities.table, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(
