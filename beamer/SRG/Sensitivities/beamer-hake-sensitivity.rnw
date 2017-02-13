@@ -131,11 +131,11 @@ source("custom-knitr-variables.r")
   \item MLE vs MCMC
   \item Sensitivities
         \begin{itemize}
-        \item \red{Age-1 survey index}
+        \item Age-1 survey index
         \item No cohort-based ageing error
-        \item No reduction in ageing error for 2014
-        \item Adjustment to last year for full bias correction in recruitment
-        \item Standard deviations ($\phi$) for time-varying selectivity
+        \item \red{No reduction in ageing error for 2014}
+        % \item Adjustment to last year for full bias correction in recruitment
+        \item \red{Standard deviations ($\phi$) for time-varying selectivity}
         \item Maximum age assumptions for estimating selectivity
         \item Variation of recruitment ($\sigma_r$)
         \item Natural Mortality: prior SD (0.2, 0.3)
