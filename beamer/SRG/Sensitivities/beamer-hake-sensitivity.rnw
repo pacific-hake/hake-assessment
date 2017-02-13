@@ -52,6 +52,7 @@
 }
 
 \definecolor{pageCol}{rgb}{0.5,0.5,1.0}
+\definecolor{red}{rgb}{1, 0, 0}
 
 \setbeamertemplate{footline}
 {
@@ -71,6 +72,7 @@
 \newcommand{\ei}{\end{itemize}}
 \newcommand{\Fforty}{F_{\text{SPR}=40\%}}       % Needs to be done as $\Fforty$
 \newcommand{\Bforty}{B_{\text{SPR}=40\%}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
 
 %% <<echo=TRUE,  message=TRUE, results='show', warning=TRUE>>=
 %% opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
@@ -129,18 +131,15 @@ source("custom-knitr-variables.r")
   \item MLE vs MCMC
   \item Sensitivities
         \begin{itemize}
-        \item Age-1 survey index
+        \item \red{Age-1 survey index}
         \item No cohort-based ageing error
         \item No reduction in ageing error for 2014
         \item Adjustment to last year for full bias correction in recruitment
         \item Standard deviations ($\phi$) for time-varying selectivity
         \item Maximum age assumptions for estimating selectivity
         \item Variation of recruitment ($\sigma_r$)
-        \item Standard sensitivities
-              \begin{itemize}
-              \item Natural Mortality: prior SD (0.2, 0.3)
-              \item Steepness: prior mean (0.5) and fixed value (1.0)
-              \end{itemize}
+        \item Natural Mortality: prior SD (0.2, 0.3)
+        \item Steepness: prior mean (0.5) and fixed value (1.0)
         \end{itemize}
   \item Retrospectives
         \begin{itemize}
