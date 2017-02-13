@@ -172,6 +172,7 @@ max.fishery.age.prop <- make.age.comp.bubble.plot(base.model,
                                                   do.plot = FALSE)
 catch.limit.quantiles <- f(as.numeric(quantile(base.model$mcmc[[paste0("ForeCatch_", end.yr)]],
                                                probs=c(0.025, 0.5, 0.975))))
+names(catch.limit.quantiles) <- c("lower", "median", "upper")
                 # 2.5%, median and 97.5% quantiles of catch limit for assess.yr
                 #  using the default harvest policy; tonnes
 
