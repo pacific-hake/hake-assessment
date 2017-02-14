@@ -2,7 +2,7 @@
 %\documentclass[draft]{beamer}
 %\documentclass[notesonly]{beamer}
 %\documentclass[notes]{beamer}
-\documentclass[aspectratio=169]{beamer}
+\documentclass{beamer}  % [aspectratio=169]
 \mode<presentation>
 \usetheme[compress]{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
 %\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
@@ -84,7 +84,7 @@ opts_chunk$set(dev = 'cairo_ps',
                fig.dpi = 300,
                fig.width = 6,
                fig.height = 4,
-               out.width = '6in',
+               out.width = '4.5in',
                echo = FALSE,
                results = FALSE,
                message = FALSE,
@@ -204,10 +204,11 @@ make.short.parameter.estimates.table(base.model,
 \section{Age error, age-1 index}
 \subsection{}
 \begin{frame}
-\frametitle{Sensitivities to age error and inclusion of age-1 index -- Biomass}
+\frametitle{Age error and inclusion of age-1 index -- Biomass}
 \begin{center}
-\vspace{-5pt}
-<<age.error.sensitivity.biomass, fig.height=4.5, fig.width=8>>=
+\vspace{5pt}
+% <<age.error.sensitivity.biomass, fig.height=4.5, fig.width=8>>=
+<<age.error.sensitivity.biomass, out.width='4.5in'>>= 
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(
@@ -247,8 +248,9 @@ make.short.parameter.estimates.sens.table(
 \begin{frame}
 \frametitle{Sensitivities to $\sigma_r$ -- Biomass}
 \begin{center}
-\vspace{-5pt}
-<<sigma.r.sensitivity.biomass, fig.height=4.5, fig.width=8>>=
+\vspace{5pt}
+% <<sigma.r.sensitivity.biomass, fig.height=4.5, fig.width=5>>=
+<<sigma.r.sensitivity.biomass, fig.height=4.5, out.width='4.5in'>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(c(list(base.model), sens.models.1),
@@ -265,8 +267,9 @@ par <- oldpar
 \begin{frame}
 \frametitle{Sensitivities to $\sigma_r$ -- Relative biomass}
 \begin{center}
-\vspace{-5pt}
-<<sigma.r.sensitivity.rel.biomass, fig.height=4.5, fig.width=8>>=
+\vspace{5pt}
+% <<sigma.r.sensitivity.rel.biomass, fig.height=4.5, fig.width=8>>=
+<<sigma.r.sensitivity.rel.biomass, fig.height=4.5, out.width='4.5in'>>=    
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(c(list(base.model), sens.models.1),
@@ -334,10 +337,11 @@ make.short.parameter.estimates.sens.table(
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Sensitivities to Maximum Age of Estimated Selectivity -- Biomass}
+\frametitle{Maximum Age of Estimated Selectivity -- Biomass}
 \begin{center}
-\vspace{-5pt}
-<<max.age.sensitivity.biomass, fig.height=4.5, fig.width=8>>=
+\vspace{5pt}
+% fig.width=8>>=
+<<max.age.sensitivity.biomass, fig.height=4.5, out.width='4.5in'>>=  
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(c(list(base.model), sens.models.3),
@@ -356,8 +360,9 @@ par <- oldpar
 \begin{frame}
 \frametitle{Sensitivities to $\phi$ -- Biomass}
 \begin{center}
-\vspace{-5pt}
-<<phi.sensitivity.biomass, fig.height=4.5, fig.width=8>>=
+\vspace{5pt}
+% , fig.width=8>>=
+<<phi.sensitivity.biomass, fig.height=4.5, out.width='4.5in'>>=  
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(
@@ -375,8 +380,9 @@ par <- oldpar
 \begin{frame}
 \frametitle{Sensitivities to $\phi$ -- Density}
 \begin{center}
-\vspace{-5pt}
-<<phi.sensitivity.density, fig.height=4.5, fig.width=8>>=
+\vspace{5pt}
+% fig.width=8>>=
+<<phi.sensitivity.density, fig.height=4.5, out.width='4.5in'>>=  
 oldpar <- par()
 par(mar = c(7.1, 3.1, 0, 0))
 make.comparison.plot(
@@ -420,8 +426,9 @@ make.short.parameter.estimates.sens.table(
 \begin{frame}
 \frametitle{Steepness and Natural Mortality -- Biomass}
 \begin{center}
-\vspace{-5pt}
-<<standard.sensitivities.biomass, fig.height=4.5, fig.width=8>>=
+\vspace{5pt}
+%, fig.width=8>>=
+<<standard.sensitivities.biomass, fig.height=4.5>>= 
 #oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 oldpar <- par()
