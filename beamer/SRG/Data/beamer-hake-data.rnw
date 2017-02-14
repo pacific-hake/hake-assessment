@@ -3,6 +3,7 @@
 %\documentclass[notesonly]{beamer}
 %\documentclass[notes]{beamer}
 \documentclass[aspectratio=169]{beamer}
+% \documentclass{beamer}
 \mode<presentation>
 \usetheme[compress]{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
 %\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
@@ -146,7 +147,7 @@ source("custom-knitr-variables.r")
     \ei
   \end{column}
   \begin{column}{0.6\linewidth}
-    <<data.overview.map, out.width='3.5in'>>=
+    <<data.overview.map, out.width='3.5in', out.width='0.9\\columnwidth'>>=
       make.data.overview.plot(base.model)
     @
   \end{column}
@@ -417,15 +418,15 @@ source("custom-knitr-variables.r")
       \ei
       \vspace{-3mm}
 %    \end{column}
-%    \begin{column}[t]{0.5\linewidth}
-      <<ovary.table, results='asis', echo=FALSE>>=
+    %\begin{column}[t]{0.5\linewidth}
+      <<ovary.table, results='asis', echo=FALSE, out.width='0.9\\columnwidth'>>=
         make.maturity.samples.table(ovary.samples,
                                     start.yr = start.yr,
                                     end.yr = last.data.yr,
                                     xcaption = "Number of \\fishname\\ ovaries collected for histological analysis.",
                                     xlabel = "tab:beamer-ovaries",
-                                    font.size = 8,
-                                    space.size = 8)
+                                    font.size = 6,
+                                    space.size = 7)
       @
 %    \end{column}
 %  \end{columns}
