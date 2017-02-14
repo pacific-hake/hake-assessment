@@ -138,7 +138,7 @@ source("custom-knitr-variables.r")
         \item Variation of recruitment ($\sigma_r$)
         \item Maximum age assumptions for estimating selectivity
         \item \red{Standard deviations ($\phi$) for time-varying selectivity}
-        \item Natural Mortality: prior SD (0.2, 0.3)
+        \item Natural mortality: prior SD (0.2, 0.3)
         \item Steepness: prior mean (0.5) and fixed value (1.0)
         \end{itemize}
   \item Retrospectives
@@ -303,12 +303,12 @@ make.short.parameter.estimates.sens.table(
 \section{Selectivity}
 \subsection{}
 \begin{frame}
-\frametitle{Maximum Age Full Selectivity -- Estimates}
+\frametitle{Maximum Age of Estimated Selectivity -- Estimates}
 \begin{columns}
 \begin{column}{0.3\textwidth}
 \bi
-      \item Max age: 6(base), 5, 7, 12
-      \item Incremental increase (age-6 only)
+      \item Max age: 6(base), 5, 7, 10
+      % \item Incremental increase (age-6 only)
       \item No striking evidence for dome-shaped selectivity
       \item Model convergence suspect at high max age
     \ei
@@ -334,7 +334,7 @@ make.short.parameter.estimates.sens.table(
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Sensitivities to Maximum Age Full Selectivity -- Biomass}
+\frametitle{Sensitivities to Maximum Age of Estimated Selectivity -- Biomass}
 \begin{center}
 \vspace{-5pt}
 <<max.age.sensitivity.biomass, fig.height=4.5, fig.width=8>>=
@@ -581,7 +581,7 @@ make.assessment.history.plot(base.model,
 \begin{itemize}
 \item In general, sensitivities show no significant departure from base model
 \item All show large estimated increases in recent spawning biomass (driven by 2010 and 2014 cohorts)
-\item ***
+\item Retrospectives re-iterate that 2014 cohort is still uncertain
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
