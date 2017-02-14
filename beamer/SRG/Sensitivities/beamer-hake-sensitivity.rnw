@@ -304,31 +304,31 @@ make.short.parameter.estimates.sens.table(
 \subsection{}
 \begin{frame}
 \frametitle{Maximum Age of Estimated Selectivity -- Estimates}
-\begin{columns}
-\begin{column}{0.3\textwidth}
-\bi
-      \item Max age: 6(base), 5, 7, 10
-      % \item Incremental increase (age-6 only)
-      \item No striking evidence for dome-shaped selectivity
-      \item Model convergence suspect at high max age
-    \ei
-  \end{column}
-  \begin{column}{0.69\textwidth}
+%\begin{columns}
+%\begin{column}{0.3\textwidth}
+%\bi
+%      \item Max age: 6(base), 5, 7, 10
+%      % \item Incremental increase (age-6 only)
+%      \item No striking evidence for dome-shaped selectivity
+%      \item Model convergence suspect at high max age
+%    \ei
+%  \end{column}
+%  \begin{column}{0.69\textwidth}
   \vspace{-5pt}
     \begin{center}
-     <<max.age.sensitivity.b.selectivities, fig.height=8, fig.width=12, out.width='0.9\\columnwidth'>>=
+     <<max.age.sensitivity.b.selectivities, fig.height=6.5, fig.width=12, out.width='0.9\\columnwidth'>>=
      oldpar <- par(mfrow=c(2,2), mar=c(5,4,1,1),no.readonly = TRUE)
      layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
      make.selex.plot(base.model, pan.letter = "base")
      make.selex.plot(sens.models.3[[1]], pan.letter = "5")
      make.selex.plot(sens.models.3[[2]], pan.letter = "7")
-     make.selex.plot(sens.models.3[[3]], pan.letter = "12")
+     make.selex.plot(sens.models.3[[3]], pan.letter = "10")
      par <- oldpar
      mtext("Age", side = 1, line = 0.5, outer = TRUE)
      @
      \end{center}
-  \end{column}
-\end{columns}
+%  \end{column}
+%\end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
