@@ -2,7 +2,7 @@
 %\documentclass[draft]{beamer}
 %\documentclass[notesonly]{beamer}
 %\documentclass[notes]{beamer}
-\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
 \mode<presentation>
 \usetheme{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
 %\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
@@ -79,10 +79,9 @@
 <<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
 opts_chunk$set(dev = 'cairo_ps',
                fig.path = 'knitr-cache/',
-               fig.dpi = 300,
-               fig.width = 6,
+               fig.dpi = 96,
+               fig.width = 7.5,
                fig.height = 4,
-               out.width = '4.5in',
                echo = FALSE,
                results = FALSE,
                message = FALSE,
@@ -522,7 +521,7 @@ source("custom-knitr-variables.r")
   \begin{column}{0.48\textwidth}
     \vspace{-10pt}
     \bc
-    <<main.tv.selex, fig.height=12, fig.width=10,out.width='1.0\\columnwidth'>>=
+    <<main.tv.selex, fig.height=12, fig.width=10,out.width='0.8\\columnwidth'>>=
     ## Extract TV selectivity fits by running the calculation function.
     tv.selex.start.yr <- 1990
     tv.selex.ages <- 1:8
@@ -538,7 +537,7 @@ source("custom-knitr-variables.r")
   \begin{column}{0.48\textwidth}
     \vspace{-10pt}
     \bc
-    <<main.tv.selex.uncertainty, fig.height=12, fig.width=10, out.width='1.0\\columnwidth'>>=
+    <<main.tv.selex.uncertainty, fig.height=12, fig.width=10, out.width='0.8\\columnwidth'>>=
     ## Extract TV selectivity fits by running the calculation function, once for each year span,
     ##  then call the plotting function with them as a list to make a multipanel plot.
     tv.selex.left <- calc.tv.selex(base.model,
@@ -596,7 +595,7 @@ source("custom-knitr-variables.r")
   \begin{column}{0.5\textwidth}
   \vspace{-10pt}
   \bc
-  <<main.numbers.at.age, fig.height=12, fig.width=10,out.width='1.0\\columnwidth'>>=
+  <<main.numbers.at.age, fig.height=12, fig.width=10,out.width='0.8\\columnwidth'>>=
     make.numbers.at.age.plot(base.model)
   @
   \ec
@@ -638,13 +637,13 @@ source("custom-knitr-variables.r")
 \frame{\frametitle{Fishing Intensity and Exploitation Rate}
   \vspace{-5pt}
   \bc
-  <<fishing.intensity, fig.height=4, fig.width=8, out.width='0.65\\columnwidth'>>=
+  <<fishing.intensity, fig.height=4, fig.width=8, out.width='0.45\\columnwidth'>>=
     make.fishing.intensity.plot(base.model,
                                 start.yr = start.yr,
                                 end.yr = end.yr-1,
                                 color = "blue")
   @
-  <<exploitation, fig.height=4, fig.width=8, out.width='0.65\\columnwidth'>>=
+  <<exploitation, fig.height=4, fig.width=8, out.width='0.45\\columnwidth'>>=
     make.exploitation.fraction.plot(base.model,
                                     start.yr = start.yr,
                                     end.yr = end.yr-1,
