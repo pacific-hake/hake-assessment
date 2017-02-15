@@ -138,7 +138,7 @@ source("custom-knitr-variables.r")
     \item {\bf Response:} The 2017 base model continues to use the survey biomass time series with limited extrapolation (as discussed last year)
     \item {\bf Response:} The 2017 base model includes several updates relative to the 2016 time series
     \bn
-      \item Additon of the 1995 survey biomass estimate (point estimate and CV) 
+      \item Addition of the 1995 survey biomass estimate (point estimate and CV) 
       \item Update to 1998 survey biomass estimate (point estimate and CV)
       \item Update to 2015 survey biomass (CV only)
     \en
