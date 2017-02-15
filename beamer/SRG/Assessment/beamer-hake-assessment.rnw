@@ -148,7 +148,7 @@ source("custom-knitr-variables.r")
   \bi
     \item {\bf Response:} Done and will be presented
   \ei \pause
-  \item {\em Continue the evalution of identified key sensitivity runs; further explore sigma-R}
+  \item {\em Continue the evaluation of identified key sensitivity runs; further explore sigma-R}
   \bi
     \item {\bf Response:} Done and will be presented
   \ei 
@@ -163,11 +163,11 @@ source("custom-knitr-variables.r")
 \bi
   \item {\em Ongoing monitoring and research on stock structure}
   \bi
-    \item {\bf Response:} The JTC supports the collection/processing of genetic material and other research to evaluate stock strucutre.
+    \item {\bf Response:} The JTC supports the collection/processing of genetic material and other research to evaluate stock structure.
   \ei \pause
   \item {\em Continued collection of ovaries}
   \bi
-    \item {\bf Response:} Many ovaries collected in \Sexpr{last.assess.yr}, including during all four seasons and doubled collections from Canadian shoreside fishery. No new analysis in time for this assessment, but thourough analysis anticipated for 2018.
+    \item {\bf Response:} Many ovaries collected in \Sexpr{last.assess.yr}, including during all four seasons and doubled collections from Canadian shoreside fishery. No new analysis in time for this assessment, but thorough analysis anticipated for 2018.
   \ei
 \ei
 }
@@ -184,7 +184,7 @@ source("custom-knitr-variables.r")
     \bi
       \item Minor changes to past catches
       \item Updated fishery age and weight observations with new database extractions
-      \item Additon of 1995 survey biomass estimate and age compositions
+      \item Addition of 1995 survey biomass estimate and age compositions
       \item Minor changes to survey biomass estimates (1998, 2015: CV only) and age compositions (1998)
     \ei
     \item Added new data from \Sexpr{last.assess.yr}
@@ -192,7 +192,7 @@ source("custom-knitr-variables.r")
       \item Fishery catch and age compositions
       \item Updated weight-at-age matrix
     \ei
-    \item Updated bias adustment ramps for recruitment deviations 
+    \item Updated bias adjustment ramps for recruitment deviations 
     \item Updated main recruitment deviate estimation period
     \item Re-weighted age composition data by fleet using harmonic mean approach
     \item More flexible time-varying fishery selectivity
@@ -309,7 +309,7 @@ source("custom-knitr-variables.r")
 \frame{\frametitle{Bridging to the base model: Summary}
   \bi
     \item Updating past fishery data made indistinguishable difference
-    \item Additon of 1995 and updates to 1998 and 2015 survey biomass estimates had minor influence on results
+    \item Addition of 1995 and updates to 1998 and 2015 survey biomass estimates had minor influence on results
     \item Adding 2016 fishery data influenced stock size (suggesting above average 2014 year-class)
     \bi \item Fishery data sole information on the size of the 2014 year-class, the survey will sample these fish for the first time in summer 2017 as age-3s
         \item 2013 year class decreased slightly
@@ -373,7 +373,7 @@ source("custom-knitr-variables.r")
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item 1999 cohort often overpredicted
+      \item 1999 cohort often over-predicted
       \item Young cohorts in 2003--2009 underfit
       \item 2008 and 2009 cohort underfit in 2011
       \item Recent years (2012--2015) show good fits, including 2010 cohort
@@ -454,7 +454,7 @@ source("custom-knitr-variables.r")
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Asymetric shape of steepness and Extra SD posterior makes median and MLE different
+      \item Asymmetric shape of steepness and Extra SD posterior makes median and MLE different
       \item Additional SD is less than 2015 assessment
       \item {\em M} is pushing upper end of prior
     \ei
@@ -669,7 +669,7 @@ source("custom-knitr-variables.r")
     \Sexpr{curr.depl.upper}\%).
   \item The median estimate of \Sexpr{end.yr} female spawning biomass is \Sexpr{curr.bio.median}
     million~t (with 95\% interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper} million~t).
-  \item The spawning biomass in \Sexpr{end.yr} is estimated to have increased from \Sexpr{end.yr-1} due to the estimate of the 2014 year-class being well above average size.  The 2010 year-class remains prevelant, making up the 2nd largest proportion-by-age (numbers of fish) in the stock. % Manual to do.
+  \item The spawning biomass in \Sexpr{end.yr} is estimated to have increased from \Sexpr{end.yr-1} due to the estimate of the 2014 year-class being well above average size.  The 2010 year-class remains prevalent, making up the 2nd largest proportion-by-age (numbers of fish) in the stock. % Manual to do.
   \ei
 }
 
