@@ -1,3 +1,76 @@
+make.input.age.data.table <- function(model,
+                                      fleet = 1,            ## 1=Fishery, 2=Survey
+                                      start.yr,             ## Start the table on this year
+                                      end.yr,
+                                      xcaption = "default",
+                                      xlabel = "default",
+                                      font.size = 9,        ## Size of the font for the table
+                                      space.size = 10,      ## Size of the spaces for the table
+                                      placement = "H",
+                                      decimals = 2
+                                      ){
+  ## Returns an xtable in the proper format for the main tables section for combined
+  ##  fishery or survey age data.
+  ##  age data.
+
+  ## Get ages from header names
+  age.df <- model$dat$agecomp
+  nm <- colnames(age.df)
+  yr <- age.df$Yr
+  flt <- age.df$FltSvy
+  n.samp <- age.df$Nsamp
+  ages.ind <- grep("^a[[:digit:]]+$", nm)
+  ages <- gsub("^a([[:digit:]]+)$", "\\1", nm[ages.ind])
+  ages.tex <- do.call("paste", as.list(ages))
+  ## Remove last ampersand
+  ages.tex <- sub("& $", "\\\\\\\\", ages.tex)
+
+  ## Construct age data frame
+  age.df <- age.df[,ages.ind]
+  age.df <- t(apply(age.df, 1, function(x){x / sum(x)}))
+  age.headers <- paste0("\\multicolumn{1}{c}{\\textbf{", ages, "}} & ")
+  age.df <- cbind(yr, n.samp, flt, age.df)
+
+  ## Fishery or survey?
+  age.df <- age.df[age.df[,"flt"] == fleet,]
+  ## Remove fleet information from data frame
+  age.df <- age.df[,-3]
+  ## Extract years
+  age.df <- age.df[age.df[,"yr"] >= start.yr & age.df[,"yr"] <= end.yr,]
+
+  ## Make number of samples pretty
+  age.df[,2] <- as.numeric(f(age.df[,2]))
+  ## Make percentages for age proportions
+  age.df[,-c(1,2)] <- age.df[,-c(1,2)] * 100
+  age.df[,-c(1,2)] <- f(age.df[,-c(1,2)], decimals)
+  ## Add the extra header spanning multiple columns
+  addtorow <- list()
+  addtorow$pos <- list()
+  addtorow$pos[[1]] <- -1
+  addtorow$pos[[2]] <- nrow(age.df)
+
+  addtorow$command <- c(paste0("\\hline \\textbf{Year} & \\specialcell{\\textbf{Number}\\\\\\textbf{of samples}} & \\multicolumn{", length(ages), "}{c}{\\textbf{Age (\\% of total for each year)}} \\\\",
+                                 "\\hline & & ", ages.tex),
+                          "\\hline ")
+
+  ## Make the size string for font and space size
+  size.string <- paste0("\\fontsize{", font.size,"}{", space.size,"}\\selectfont")
+
+  return(print(xtable(age.df,
+                      caption = xcaption,
+                      label = xlabel,
+                      align = get.align(ncol(age.df))),
+               caption.placement = "top",
+               include.rownames = FALSE,
+               include.colnames = FALSE,
+               sanitize.text.function = function(x){x},
+               size = size.string,
+               add.to.row = addtorow,
+               table.placement = placement,
+               tabular.environment = "tabular",
+               hline.after = NULL))
+}
+
 make.can.age.data.table <- function(dat,
                                     fleet = 1,            ## 1=Can-Shoreside, 2=Can-FT, 3=Can-JV
                                     start.yr,             ## Start the table on this year

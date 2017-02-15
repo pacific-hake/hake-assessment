@@ -96,13 +96,8 @@ load.models.into.parent.env()
 ## This has to be sourced after loading the models in because it depends
 ##  on the model output.
 source("custom-knitr-variables.r")
-source("../../beamer/SRG/Requests/Requests.R")
+## source("../../beamer/SRG/Requests/Requests.R")
 
-metric <- NULL
-forecasts <- base.model$forecasts[[1]]
-metric$mcmc <- forecasts[[6]]$outputs
-fore.inds <- c(2, 3, 8, 9, 11, 12)
-fore.names <- c("2015", "TAC", "FI=", "100\\%", "default", "HR")
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -126,229 +121,277 @@ fore.names <- c("2015", "TAC", "FI=", "100\\%", "default", "HR")
 %---------------------------------------------------------------
 
 \frame{\frametitle{Request 1}
-  Plot each selectivity at age across years.  \\
-  \medskip
-  {\bf Rationale:} Be able to see changes in selectivity across years to easily to see how much change occurs for each age.
+  Show sensitivities to $\phi$ including the age-1 index.\\
+  %\medskip
+  % {\bf Rationale:} .
+
 }
 
-\frame{\frametitle{Selectivity at age by year}
-  \begin{columns}
-    \begin{column}{0.28\textwidth}
-      \bi
-        \item Age 1 selectivity is very small
-        \item Ranges from 0.00328--0.00810
-        \bi
-          \item 0.00810 in 2011
-          \item 0.00588 in 2015
-        \ei
-      \ei
-    \end{column}
-    \begin{column}{0.68\textwidth}
-    \bc
-%    #layout(matrix(c(1,1,2),ncol=1))
-    <<request1a, fig.height=4, out.width='0.6\\columnwidth'>>=
-      oldpar <- par(mar=c(4,4,1,1))
-      selexByAge(base.model, start.yr=1990, tv.end.yr=2015,ages=1:5)
-      par(oldpar)
-    @
-    <<request1b, fig.height=3, out.width='0.6\\columnwidth'>>=
-      oldpar <- par(mar=c(4,4,1,1))
-      selexByAge(base.model, start.yr=1990, tv.end.yr=2015,ages=1:5,ylims=c(0,0.03))
-      par(oldpar)
-    @
-    \ec
-    \end{column}
-  \end{columns}
-}
-
-\section{Request 2}
-\subsection{}
-\frame{\frametitle{Request 2}
-  Supply fishery age compositions by fleet and year\\
-  \medskip
-  {\bf Rationale:} Provide fleet specific data for AP to investigate. \\
-  \medskip \bigskip
-  Uploaded file to Google drive.
-}
-
-
-
-\section{Request 3}
-\subsection{}
-\frame{\frametitle{Request 3}
-  Add a constant catch of 500,000 t to the decision and risk tables\\
-  \medskip
-  {\bf Rationale:} An additional catch level for consideration.
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Quantiles}
-\frame{\frametitle{Spawning Biomass}
-\begin{columns}
-  \begin{column}{0.38\textwidth}
-    \bi
-      \item
-    \ei
-  \end{column}
-  \begin{column}{0.59\textwidth}
-  <<decisions.biomass.table, results='asis', echo=FALSE>>=
-    make.decision.table.pres(base.model,
-                             model.inds = fore.inds,
-                             xcaption = NULL,
-                             xlabel = "tab:es-decisions-spr",
-                             font.size = 9,
-                             space.size = 11,
-                             which = "biomass",
-                             placement = "h")
+%%%%%%%%%%%%%%%%%%%%%%%
+%\section{$\phi$}
+%\subsection{}
+\begin{frame}
+\frametitle{Sensitivities to $\phi$ -- Biomass}
+\begin{center}
+\vspace{5pt}
+% , fig.width=8>>=
+<<phi.sensitivity.biomass, fig.height=4.5, out.width='4.5in'>>=  
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 0))
+make.comparison.plot(
+  c(list(base.model), sens.models.7),
+  subplots = 2,
+  model.names = c(paste0("Base model ", end.yr), sens.model.names.7),
+  end.yr = end.yr)
+par <- oldpar
 @
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
 
-  \end{column}
-\end{columns}
-}
-
-
-\frame{\frametitle{Fishing intensity}
-\begin{columns}
-  \begin{column}{0.38\textwidth}
-    \bi
-      \item
-    \ei
-  \end{column}
-  \begin{column}{0.59\textwidth}
-  <<decisions.spr.table, results='asis', echo=FALSE>>=
-    make.decision.table.pres(base.model,
-                             model.inds = fore.inds,
-                             xcaption = NULL,
-                             xlabel = "tab:es-decisions-spr",
-                             font.size = 9,
-                             space.size = 11,
-                             which = "spr",
-                             placement = "h")
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Sensitivities to $\phi$ -- Density}
+\begin{center}
+\vspace{5pt}
+% fig.width=8>>=
+<<phi.sensitivity.density, fig.height=4.5, out.width='4.5in'>>=  
+oldpar <- par()
+par(mar = c(7.1, 3.1, 0, 0))
+make.comparison.plot(
+  c(list(base.model), sens.models.7),
+  subplots = 14,
+  model.names = c(paste0("Base model ", end.yr), sens.model.names.7),
+  legendloc = "topright",
+  densitynames = c("Recr_2014"),
+  densityxlab  = "Recruitment in 2014 (billions)",
+  indexPlotEach = TRUE,
+  end.yr = end.yr)
+par <- oldpar
 @
-
-  \end{column}
-\end{columns}
-}
-
-%--------------------------------------------------------------
-%\subsection{Fixed 2016 catch}
-\frame{\frametitle{Risk based on fixed 2016 catch}
-    <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
-      make.risk.table(base.model,
-                      forecast.yrs,
-                      index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                      xcaption = NULL,
-                      font.size = 11,
-                      space.size = 11)
-    @
-}
-
-%--------------------------------------------------------------
-
-\frame{\frametitle{Risk based on fixed 2016 catch (plot)}
-  \bc
-    <<forecast.risk.comparison.plot.year.1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
-      make.forecast.risk.comparison.plot(base.model,
-                                         forecast.yrs = forecast.yrs,
-                                         fore.yr = forecast.yrs[1],
-                                         colors = c("black","blue","green","orange","red","tan"),
-                                         pch = c(16,17,17,17,15,18),
-                                         legend.loc = "topleft",
-                                         legend.cex = 0.8)
-
-    @
-  \ec
-}
-
-%--------------------------------------------------------------
-\frame{\frametitle{Risk based on fixed 2016 and 2017 catch}
-    <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
-      make.risk.table(base.model,
-                      forecast.yrs,
-                      index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                      xcaption = NULL,
-                      font.size = 11,
-                      space.size = 11)
-    @
-}
-
-%--------------------------------------------------------------
-
-\frame{\frametitle{Risk based on fixed 2016 and 2017 catch (plot)}
-  \bc
-    <<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
-      make.forecast.risk.comparison.plot(base.model,
-                                         forecast.yrs = forecast.yrs,
-                                         fore.yr = forecast.yrs[2],
-                                         colors = c("black","blue","green","orange","red","tan"),
-                                         pch = c(16,17,17,17,15,18),
-                                         legend.loc = "topleft",
-                                         legend.cex = 0.7)
-
-    @
-  \ec
-}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{????}
-\subsection{}
-\frame{\frametitle{EXTRA}
-}
+%% \frame{\frametitle{Selectivity at age by year}
+%%   \begin{columns}
+%%     \begin{column}{0.28\textwidth}
+%%       \bi
+%%         \item Age 1 selectivity is very small
+%%         \item Ranges from 0.00328--0.00810
+%%         \bi
+%%           \item 0.00810 in 2011
+%%           \item 0.00588 in 2015
+%%         \ei
+%%       \ei
+%%     \end{column}
+%%     \begin{column}{0.68\textwidth}
+%%     \bc
+%% %    #layout(matrix(c(1,1,2),ncol=1))
+%%     <<request1a, fig.height=4, out.width='0.6\\columnwidth'>>=
+%%       oldpar <- par(mar=c(4,4,1,1))
+%%       selexByAge(base.model, start.yr=1990, tv.end.yr=2015,ages=1:5)
+%%       par(oldpar)
+%%     @
+%%     <<request1b, fig.height=3, out.width='0.6\\columnwidth'>>=
+%%       oldpar <- par(mar=c(4,4,1,1))
+%%       selexByAge(base.model, start.yr=1990, tv.end.yr=2015,ages=1:5,ylims=c(0,0.03))
+%%       par(oldpar)
+%%     @
+%%     \ec
+%%     \end{column}
+%%   \end{columns}
+%% }
 
-\frame{\frametitle{Likelihoods when fitting to age-1 index}
-\begin{columns}
-  \begin{column}{0.38\textwidth}
-    \bi
-      \item Insignificant change in fits to age compositions and 2+ survey 
-    \ei
-  \end{column}
-  \begin{column}{0.59\textwidth}
-    \begin{table}[h]
-    \centering
-    {\fontsize{9}{11}\selectfont
-    \begin{tabular}{|l|cc|}
-    \hline
-     Likelihood & Base & with age-1 \\ \hline
-     2+ Survey  & -5.22123  &  -5.42076 \\
-     Age comps  & 132.062   &  132.314\\ \hline
-     Sub-Total  & 126.8408  &  126.8932 \\
-    \hline 
-    \end{tabular}
-    }
-    \end{table}
-  \end{column}
-\end{columns}
-}
+%% \section{Request 2}
+%% \subsection{}
+%% \frame{\frametitle{Request 2}
+%%   Supply fishery age compositions by fleet and year\\
+%%   \medskip
+%%   {\bf Rationale:} Provide fleet specific data for AP to investigate. \\
+%%   \medskip \bigskip
+%%   Uploaded file to Google drive.
+%% }
 
 
-\frame{\frametitle{EXTRA2}
-}
 
-\frame{\frametitle{Ratio between R0 and B0}
-\begin{columns}
-  \begin{column}{0.38\textwidth}
-    \bi
-      \item ln(R0)*1000 was reported, not R0
-    \ei
-  \end{column}
-  \begin{column}{0.59\textwidth}
-    \begin{table}[h]
-    \centering
-    {\fontsize{9}{11}\selectfont
-    \begin{tabular}{|l|ccc|}
-    \hline
-     Parameter & Base &  $\sigma_R=1$ & $\sigma_R=2$ \\ \hline
-     M         & 0.215     & 0.209     & 0.224      \\
-     R0        & 2,665,761 & 1,830,317 & 6,524,011  \\
-     B0        & 2,227     & 1,601     & 5,040      \\ \hline
-     Ratio     & 1,197     & 1,143     & 1,294      \\
-    \hline 
-    \end{tabular}
-    }
-    \end{table}
-  \end{column}
-\end{columns}
-}
+%% \section{Request 3}
+%% \subsection{}
+%% \frame{\frametitle{Request 3}
+%%   Add a constant catch of 500,000 t to the decision and risk tables\\
+%%   \medskip
+%%   {\bf Rationale:} An additional catch level for consideration.
+%% }
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \subsection{Quantiles}
+%% \frame{\frametitle{Spawning Biomass}
+%% \begin{columns}
+%%   \begin{column}{0.38\textwidth}
+%%     \bi
+%%       \item
+%%     \ei
+%%   \end{column}
+%%   \begin{column}{0.59\textwidth}
+%%   <<decisions.biomass.table, results='asis', echo=FALSE>>=
+%%     make.decision.table.pres(base.model,
+%%                              model.inds = fore.inds,
+%%                              xcaption = NULL,
+%%                              xlabel = "tab:es-decisions-spr",
+%%                              font.size = 9,
+%%                              space.size = 11,
+%%                              which = "biomass",
+%%                              placement = "h")
+%% @
+
+%%   \end{column}
+%% \end{columns}
+%% }
+
+
+%% \frame{\frametitle{Fishing intensity}
+%% \begin{columns}
+%%   \begin{column}{0.38\textwidth}
+%%     \bi
+%%       \item
+%%     \ei
+%%   \end{column}
+%%   \begin{column}{0.59\textwidth}
+%%   <<decisions.spr.table, results='asis', echo=FALSE>>=
+%%     make.decision.table.pres(base.model,
+%%                              model.inds = fore.inds,
+%%                              xcaption = NULL,
+%%                              xlabel = "tab:es-decisions-spr",
+%%                              font.size = 9,
+%%                              space.size = 11,
+%%                              which = "spr",
+%%                              placement = "h")
+%% @
+
+%%   \end{column}
+%% \end{columns}
+%% }
+
+%% %--------------------------------------------------------------
+%% %\subsection{Fixed 2016 catch}
+%% \frame{\frametitle{Risk based on fixed 2016 catch}
+%%     <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
+%%       make.risk.table(base.model,
+%%                       forecast.yrs,
+%%                       index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+%%                       xcaption = NULL,
+%%                       font.size = 11,
+%%                       space.size = 11)
+%%     @
+%% }
+
+%% %--------------------------------------------------------------
+
+%% \frame{\frametitle{Risk based on fixed 2016 catch (plot)}
+%%   \bc
+%%     <<forecast.risk.comparison.plot.year.1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+%%       make.forecast.risk.comparison.plot(base.model,
+%%                                          forecast.yrs = forecast.yrs,
+%%                                          fore.yr = forecast.yrs[1],
+%%                                          colors = c("black","blue","green","orange","red","tan"),
+%%                                          pch = c(16,17,17,17,15,18),
+%%                                          legend.loc = "topleft",
+%%                                          legend.cex = 0.8)
+
+%%     @
+%%   \ec
+%% }
+
+%% %--------------------------------------------------------------
+%% \frame{\frametitle{Risk based on fixed 2016 and 2017 catch}
+%%     <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
+%%       make.risk.table(base.model,
+%%                       forecast.yrs,
+%%                       index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+%%                       xcaption = NULL,
+%%                       font.size = 11,
+%%                       space.size = 11)
+%%     @
+%% }
+
+%% %--------------------------------------------------------------
+
+%% \frame{\frametitle{Risk based on fixed 2016 and 2017 catch (plot)}
+%%   \bc
+%%     <<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+%%       make.forecast.risk.comparison.plot(base.model,
+%%                                          forecast.yrs = forecast.yrs,
+%%                                          fore.yr = forecast.yrs[2],
+%%                                          colors = c("black","blue","green","orange","red","tan"),
+%%                                          pch = c(16,17,17,17,15,18),
+%%                                          legend.loc = "topleft",
+%%                                          legend.cex = 0.7)
+
+%%     @
+%%   \ec
+%% }
+
+
+%% \section{????}
+%% \subsection{}
+%% \frame{\frametitle{EXTRA}
+%% }
+
+%% \frame{\frametitle{Likelihoods when fitting to age-1 index}
+%% \begin{columns}
+%%   \begin{column}{0.38\textwidth}
+%%     \bi
+%%       \item Insignificant change in fits to age compositions and 2+ survey 
+%%     \ei
+%%   \end{column}
+%%   \begin{column}{0.59\textwidth}
+%%     \begin{table}[h]
+%%     \centering
+%%     {\fontsize{9}{11}\selectfont
+%%     \begin{tabular}{|l|cc|}
+%%     \hline
+%%      Likelihood & Base & with age-1 \\ \hline
+%%      2+ Survey  & -5.22123  &  -5.42076 \\
+%%      Age comps  & 132.062   &  132.314\\ \hline
+%%      Sub-Total  & 126.8408  &  126.8932 \\
+%%     \hline 
+%%     \end{tabular}
+%%     }
+%%     \end{table}
+%%   \end{column}
+%% \end{columns}
+%% }
+
+
+%% \frame{\frametitle{EXTRA2}
+%% }
+
+%% \frame{\frametitle{Ratio between R0 and B0}
+%% \begin{columns}
+%%   \begin{column}{0.38\textwidth}
+%%     \bi
+%%       \item ln(R0)*1000 was reported, not R0
+%%     \ei
+%%   \end{column}
+%%   \begin{column}{0.59\textwidth}
+%%     \begin{table}[h]
+%%     \centering
+%%     {\fontsize{9}{11}\selectfont
+%%     \begin{tabular}{|l|ccc|}
+%%     \hline
+%%      Parameter & Base &  $\sigma_R=1$ & $\sigma_R=2$ \\ \hline
+%%      M         & 0.215     & 0.209     & 0.224      \\
+%%      R0        & 2,665,761 & 1,830,317 & 6,524,011  \\
+%%      B0        & 2,227     & 1,601     & 5,040      \\ \hline
+%%      Ratio     & 1,197     & 1,143     & 1,294      \\
+%%     \hline 
+%%     \end{tabular}
+%%     }
+%%     \end{table}
+%%   \end{column}
+%% \end{columns}
+%% }
 
 
 
