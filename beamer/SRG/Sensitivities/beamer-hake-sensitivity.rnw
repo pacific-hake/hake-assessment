@@ -147,7 +147,7 @@ source("custom-knitr-variables.r")
   \item Retrospectives
         \begin{itemize}
         \item Standard %: -\Sexpr{max(plot.retro.yrs)} years
-        \item Cohort determination ('squid plot') %: -\Sexpr{max(retro.yrs)} years
+        \item Cohort determination (`squid plot') %: -\Sexpr{max(retro.yrs)} years
         \item Historical assessments %: - \Sexpr{assess.yr - 1991 + 1} years
         \end{itemize}
 \end{enumerate}
@@ -600,7 +600,7 @@ make.assessment.history.plot(base.model,
 \vspace{-2cm}
 \begin{itemize}
 \item In general, sensitivities show no significant departure from base model
-\item All show large estimated increases in recent spawning biomass (driven by 2010 and 2014 cohorts)
+\item All show large likely increases in recent spawning biomass (driven by 2010 and 2014 cohorts)
 \item Retrospectives re-iterate that 2014 cohort is still uncertain
 \end{itemize}
 \end{frame}
