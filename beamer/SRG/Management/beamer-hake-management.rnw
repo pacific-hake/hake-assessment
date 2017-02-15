@@ -2,7 +2,8 @@
 %\documentclass[draft]{beamer}
 %\documentclass[notesonly]{beamer}
 %\documentclass[notes]{beamer}
-\documentclass[aspectratio=169]{beamer}
+\documentclass{beamer}
+%\documentclass[aspectratio=169]{beamer}
 \mode<presentation>
 \usetheme[compress]{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
 %\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
@@ -260,21 +261,21 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
 \subsection{Spawning Biomass}
 \frame{\frametitle{Relative Spawning Biomass}
 \begin{columns}
-  \begin{column}{0.38\textwidth}
+  \begin{column}{0.33\textwidth}
     \bi
       \item Relative spawning biomass is high in \Sexpr{end.yr} due to large 2010 and 2014 cohorts.
       \item Lower 5\% quantile near $B_{40\%}$ in \Sexpr{end.yr}
       \item Median (50\%) decreases in \Sexpr{end.yr+1} and \Sexpr{end.yr+2} for catches of 350,000~t and above
     \ei
   \end{column}
-  \begin{column}{0.59\textwidth}
+  \begin{column}{0.65\textwidth}
   <<decisions.biomass.table, results='asis', echo=FALSE>>=
     make.decision.table.pres(base.model,
                              models.inds,
                              xcaption = NULL,
                              xlabel = "tab:es-decisions-spr",
-                             font.size = 9,
-                             space.size = 11,
+                             font.size = 8,
+                             space.size = 10,
                              which = "biomass",
                              placement = "h")
 @
@@ -297,15 +298,14 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
 }
 
 %--------------------------------------------------------------
-%\subsection{Fixed 2016 catch}
 \frame{\frametitle{Risk based on fixed \Sexpr{end.yr} catch}
     <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
       make.risk.table(base.model,
                       forecast.yrs,
                       index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
                       xcaption = NULL,
-                      font.size = 11,
-                      space.size = 12)
+                      font.size = 8,
+                      space.size = 11)
     @
 }
 
@@ -333,8 +333,8 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
                       forecast.yrs,
                       index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
                       xcaption = NULL,
-                      font.size = 11,
-                      space.size = 12)
+                      font.size = 8,
+                      space.size = 11)
     @
 }
 
@@ -357,11 +357,11 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
 
 
 %%%%%%%%%%%%%%%%%%%%%%% 
-\frame{\frametitle{Forecast age compositions in numbers and in weight for \Sexpr{end.yr} fishery catch}
+\frame{\frametitle{Forecast age compositions for \Sexpr{end.yr} fishery catch}
 \begin{columns}
-  \begin{column}{0.3\textwidth}
+  \begin{column}{0.35\textwidth}
     \bi
-  \item Age-3 fish from 2014 cohort expected to dominate catch in \Sexpr{end.yr}
+  \item Age-3 fish from 2014 cohort expected be large proportion of \Sexpr{end.yr} catch
     \bi
     \item \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$X3),0)}\% by numbers 
     \item \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$X3),0)}\% by weight 
@@ -374,9 +374,9 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
   \item Proportions highly uncertain
     \ei
   \end{column}
-  \begin{column}{0.7\textwidth}
+  \begin{column}{0.65\textwidth}
 
-    <<main.age.comp.forecast, fig.height=3.5, fig.width=6>>=
+    <<main.age.comp.forecast, fig.height=3.5, fig.width=5.5>>=
     make.age.comp.forecast.plot(base.model)
     @
   \end{column}
@@ -393,15 +393,21 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
       \bi
         \item \Sexpr{end.yr} default catch limit (bottom row) 
         \bi 
-          \item highly correlated with 2014 recruitment
-          \item less correlated with 2010 recruitment
+          \item highly correlated with 2014 recruitment 
+            (\Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr)],
+                base.model$mcmc$Recr_2014),2)})
+          \item less correlated with 2010 recruitment 
+            (\Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr)],
+                base.model$mcmc$Recr_2010),2)})
         \ei
         \item \Sexpr{end.yr+1} default catch limit (not shown)
         \bi 
           \item correlated even more with 2014 recruitment 
-              (\Sexpr{round(cor(base.model$mcmc$ForeCatch_2018,
+              (\Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr+1)],
                 base.model$mcmc$Recr_2014),2)})
-          \item Correlation with 2010 and 2008 is less than 0.5 
+          \item correlation with 2010 is lower 
+            (\Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr+1)],
+                base.model$mcmc$Recr_2010),2)})
         \ei
       \ei
     \end{column}
