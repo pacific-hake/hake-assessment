@@ -83,7 +83,7 @@ if(FALSE){
   cairo_ps(filename =  "../main-figures/main_age_comp_forecast.eps",
            width = 6.5, height = 4.5, pointsize = 10)
   # function call runs get.forecast.age.info to make RData file if needed
-  make.age.comp.forecast.plot(base.model)
+  make.age.comp.forecast.plot(base.model, make.missing.RData.file=TRUE)
   dev.off()
   setwd('..')
 
