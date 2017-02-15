@@ -3,7 +3,7 @@
 %\documentclass[notesonly]{beamer}
 %\documentclass[notes]{beamer}
 \documentclass[aspectratio=169]{beamer}
-% \documentclass{beamer}
+%\documentclass{beamer}
 \mode<presentation>
 \usetheme[compress]{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
 %\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
@@ -104,15 +104,15 @@ source("custom-knitr-variables.r")
   \bi
     \item March \Sexpr{last.assess.yr}: JMC set an adjusted TAC = \Sexpr{last.year.tac} t.
     %% \item May \Sexpr{last.assess.yr}: JMC meeting: JTC presented MSE simulation results looking at age-1 index and age 2+ survey precision.
-    \item U.S. fisheries started in April.
-    \item Canadian fisheries started in March.
+    \item U.S. and Canadian fisheries both started in April.
     %% \item Return of at-sea fleet in the U.S. saw low catch-rates.
     \item Highest proportion of fish caught in U.S. fisheries were age-2's.
     \item Highest proportion of fish caught in Canadian fisheries were age-6's.
     \item In the US, the age-2's were mostly caught in the fall which is a
           similar pattern to 2012.
-    \item Highest catch since 2006.
+    \item Highest coastwide catch since 2006.
     \item One JTC public meeting in December.
+    \item No summer acoustic survey in 2016.
     \item Winter survey for spawning hake from Jan-Feb aboard the Shimada.
   \ei
 }
