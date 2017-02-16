@@ -80,15 +80,28 @@ calc.tv.selex <- function(model,
               upper = selex.upper))
 }
 
-make.tv.selex.plot <- function(selex.list  ## A list of time varying selectivites as returned by calc.tv.selex
-                               ){
+make.tv.selex.plot <- function(selex.list,
+                               mcmc=TRUE){
+  # input selex.list is a list of time varying selectivites
+  # as returned by calc.tv.selex (in the mcmc case)
+  # or just the model object (in the MLE case)
+  
   ## Plot the time-varying selectivity of model
   oldpar <- par()
 
   # padding left and right outer margins using oma to make plot less stretched out
-  par(mar=c(4,4,1,1), oma=c(0,8,0,8)) 
-  selex.dat <- t(selex.list$median)
-
+  par(mar=c(4,4,1,1), oma=c(0,8,0,8))
+  if(mcmc){
+    selex.dat <- t(selex.list$median)
+  }else{
+    # in the MLE case, selex.list is the model object created by SS_output
+    agesel <- selex.list$agesel # get selectivity at age
+    selex.dat <- agesel[agesel$factor=="Asel" &
+                          agesel$fleet==1 &
+                            agesel$year %in% 1990:2016, ] # subset rows (manual 2017)
+    rownames(selex.dat) <- selex.dat$year # add row names for year
+    selex.dat <- selex.dat[,paste(1:8)] # subset columns
+  }
   mountains(selex.dat,
             yvec = as.numeric(rownames(selex.dat)),
             rev = TRUE,
