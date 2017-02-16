@@ -192,7 +192,7 @@ par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(
   c(list(base.model), sens.models.8),
   subplots = 2,
-  model.names = c(paste0("Base model ", end.yr), sens.model.names.8),
+  model.names = c(paste0("1991-2016 phi=0.20, base model"), sens.model.names.8),
   legendloc = "topleft",
   end.yr = end.yr)
 par <- oldpar
@@ -213,7 +213,7 @@ par(mar = c(7.1, 3.1, 0, 0))
 make.comparison.plot(
   c(list(base.model), sens.models.8),
   subplots = 14,
-  model.names = c(paste0("Base model ", end.yr), sens.model.names.8),
+  model.names = c(paste0("1991-2016 phi=0.20, base model"), sens.model.names.8),
   legendloc = "topright",
   densitynames = c("Recr_2014"),
   densityxlab  = "Recruitment in 2014 (billions)",
