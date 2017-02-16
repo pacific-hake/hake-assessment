@@ -255,10 +255,10 @@ sens.model.dir.names.7 <- c("56_Sen45AddAge1Index",
                             "64_Sen_phi010_age1_index",
                             "65_Sen_phi030_age1_index")
 sens.model.names.7 <- c("Include age-1 index",
-                        "Selectivity SD 0.03",
-                        "Selectivity SD 0.03 w/age1",
-                        "Selectivity SD 0.10 w/age1",
-                        "Selectivity SD 0.30 w/age1")
+                        "Selectivity phi=0.03",
+                        "Selectivity phi=0.03, age-1",
+                        "Selectivity phi=0.10, age-1",
+                        "Selectivity phi=0.30, age-1")
 verify.models(model.dir, sens.model.dir.names.7, sens.model.names.7)
 if(verbose){
   print.model.message(sens.model.dir.names.7, sens.model.names.7, 7, model.type = "Sensitivity")
