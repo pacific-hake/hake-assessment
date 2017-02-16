@@ -181,13 +181,52 @@ par <- oldpar
 
 }
 
-\frame{\frametitle{Request 3}
-  ..\\
-  %\medskip
-  % {\bf Rationale:} .
-
+\frame{\frametitle{Request 4 - slide 1}
+  MCMC chain = 24,000,000 with 2000 samples..\\
+  \begin{figure}[p]
+    \vspace{-5mm}
+    \begin{center}
+      \includegraphics[max size={\paperwidth}{\paperheight}]{Mexplore.eps} % width=\maxwidth,
+    \end{center}
+  \end{figure}
 }
 
+\frame{\frametitle{Request 4 - slide 2}
+  MCMC chain = 24,000,000 with 2000 samples.\\
+  \begin{figure}[p]
+    \vspace{-5mm}
+    \begin{center}
+      \includegraphics[max size={\paperwidth}{\paperheight}]{Hexplore.eps} % width=\maxwidth,
+    \end{center}
+  \end{figure}
+}
+\frame{\frametitle{Request 4 - slide 3}
+  MCMC chain = 24,000,000 with 2000 samples.\\
+  \begin{figure}[p]
+    \vspace{-5mm}
+    \begin{center}
+      \includegraphics[max size={\paperwidth}{\paperheight}]{mcmcNuisance.eps} % width=\maxwidth,
+    \end{center}
+  \end{figure}
+}
+\frame{\frametitle{Request 4 - slide 4}
+  MCMC chain = 24,000,000 with 2000 samples.\\
+  \begin{figure}[p]
+    \vspace{-5mm}
+    \begin{center}
+      \includegraphics[max size={\paperwidth}{\paperheight}]{pairs1.eps} % width=\maxwidth,
+    \end{center}
+  \end{figure}
+}
+\frame{\frametitle{Request 4 - slide 5}
+  MCMC chain = 24,000,000 with 2000 samples.\\
+  \begin{figure}[p]
+    \vspace{-5mm}
+    \begin{center}
+      \includegraphics[max size={\paperwidth}{\paperheight}]{pairs2.eps} % width=\maxwidth,
+    \end{center}
+  \end{figure}
+}
 %% \frame{\frametitle{Selectivity at age by year}
 %%   \begin{columns}
 %%     \begin{column}{0.28\textwidth}
