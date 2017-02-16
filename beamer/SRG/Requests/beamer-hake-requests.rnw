@@ -186,7 +186,7 @@ par <- oldpar
   \begin{figure}[p]
     \vspace{-5mm}
     \begin{center}
-      \includegraphics[max size={\paperwidth}{\paperheight}]{Mexplore.eps} % width=\maxwidth,
+      \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{Mexplore.eps} % width=\maxwidth,
     \end{center}
   \end{figure}
 }
@@ -196,7 +196,7 @@ par <- oldpar
   \begin{figure}[p]
     \vspace{-5mm}
     \begin{center}
-      \includegraphics[max size={\paperwidth}{\paperheight}]{Hexplore.eps} % width=\maxwidth,
+      \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{Hexplore.eps} % width=\maxwidth,
     \end{center}
   \end{figure}
 }
@@ -205,16 +205,15 @@ par <- oldpar
   \begin{figure}[p]
     \vspace{-5mm}
     \begin{center}
-      \includegraphics[max size={\paperwidth}{\paperheight}]{mcmcNuisance.eps} % width=\maxwidth,
+      \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{Qexplore.eps} % width=\maxwidth,
     \end{center}
   \end{figure}
-}
-\frame{\frametitle{Request 4 - slide 4}
+}\frame{\frametitle{Request 4 - slide 4}
   MCMC chain = 24,000,000 with 2000 samples.\\
   \begin{figure}[p]
     \vspace{-5mm}
     \begin{center}
-      \includegraphics[max size={\paperwidth}{\paperheight}]{pairs1.eps} % width=\maxwidth,
+      \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{R0explore.eps} % width=\maxwidth,
     \end{center}
   \end{figure}
 }
@@ -223,7 +222,25 @@ par <- oldpar
   \begin{figure}[p]
     \vspace{-5mm}
     \begin{center}
-      \includegraphics[max size={\paperwidth}{\paperheight}]{pairs2.eps} % width=\maxwidth,
+      \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{mcmcNuisance.eps} % width=\maxwidth,
+    \end{center}
+  \end{figure}
+}
+\frame{\frametitle{Request 4 - slide 6}
+  MCMC chain = 24,000,000 with 2000 samples.\\
+  \begin{figure}[p]
+    \vspace{-5mm}
+    \begin{center}
+      \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{pairs1.eps} % width=\maxwidth,
+    \end{center}
+  \end{figure}
+}
+\frame{\frametitle{Request 4 - slide 7}
+  MCMC chain = 24,000,000 with 2000 samples.\\
+  \begin{figure}[p]
+    \vspace{-5mm}
+    \begin{center}
+      \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{pairs2.eps} % width=\maxwidth,
     \end{center}
   \end{figure}
 }
