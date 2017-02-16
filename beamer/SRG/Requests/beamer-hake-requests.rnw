@@ -177,7 +177,7 @@ par <- oldpar
 \section[Request 2]{Request 2}
 \subsection{}
 \frame{\frametitle{Request 2}
-  Sensitivity analysis that includes deviations on selectivity parameters from 1991-2008 using $\Phi=0.03$, and uses $\Phi=0.20$ for 2009-2016.\\
+  Sensitivity analysis that includes deviations on selectivity parameters from 1991-2008 using $\phi=0.03$, and uses $\phi=0.20$ for 2009-2016.\\
   %\medskip
   % {\bf Rationale:} .
 }
@@ -185,7 +185,7 @@ par <- oldpar
 \section[Request 3]{Request 3}
 \subsection{}
 \frame{\frametitle{Request 3}
-  Sensitivity analysis that includes deviations on selectivity parameters from 1991-2015 using $\Phi=0.03$, and uses $\Phi=0.20$ for 2016. 
+  Sensitivity analysis that includes deviations on selectivity parameters from 1991-2015 using $\phi=0.03$, and uses $\phi=0.20$ for 2016. 
   }
 
 \section[Request 4]{Request 4}
