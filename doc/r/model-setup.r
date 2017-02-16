@@ -250,10 +250,12 @@ if(verbose){
 ## Sensitivity models group 7 - Request from SRG
 ## -----------------------------------------------------------------------------
 sens.model.dir.names.7 <- c("56_Sen45AddAge1Index",
+                            "59_Sen45_phi003",
                             "63_Sen_phi003_age1_index",
                             "64_Sen_phi010_age1_index",
                             "65_Sen_phi030_age1_index")
 sens.model.names.7 <- c("Include age-1 index",
+                        "Selectivity SD 0.03",
                         "Selectivity SD 0.03 w/age1",
                         "Selectivity SD 0.10 w/age1",
                         "Selectivity SD 0.30 w/age1")
