@@ -263,7 +263,7 @@ par <- oldpar
 \section[Request 4]{Request 4}
 \subsection{}
 \frame{\frametitle{Request 4 - slide 1}
-  MCMC chain = 24,000,000 with 2000 samples..\\
+  MCMC chain = 24,000,000 with 1998 samples..\\
   \begin{figure}[p]
     \vspace{-5mm}
     \begin{center}
@@ -273,7 +273,7 @@ par <- oldpar
 }
 
 \frame{\frametitle{Request 4 - slide 2}
-  MCMC chain = 24,000,000 with 2000 samples.\\
+  MCMC chain = 24,000,000 with 1998 samples.\\
   \begin{figure}[p]
     \vspace{-5mm}
     \begin{center}
@@ -282,7 +282,7 @@ par <- oldpar
   \end{figure}
 }
 \frame{\frametitle{Request 4 - slide 3}
-  MCMC chain = 24,000,000 with 2000 samples.\\
+  MCMC chain = 24,000,000 with 1998 samples.\\
   \begin{figure}[p]
     \vspace{-5mm}
     \begin{center}
@@ -290,7 +290,7 @@ par <- oldpar
     \end{center}
   \end{figure}
 }\frame{\frametitle{Request 4 - slide 4}
-  MCMC chain = 24,000,000 with 2000 samples.\\
+  MCMC chain = 24,000,000 with 1998 samples.\\
   \begin{figure}[p]
     \vspace{-5mm}
     \begin{center}
@@ -299,7 +299,7 @@ par <- oldpar
   \end{figure}
 }
 \frame{\frametitle{Request 4 - slide 5}
-  MCMC chain = 24,000,000 with 2000 samples.\\
+  MCMC chain = 24,000,000 with 1998 samples.\\
   \begin{figure}[p]
     \vspace{-5mm}
     \begin{center}
@@ -308,7 +308,7 @@ par <- oldpar
   \end{figure}
 }
 \frame{\frametitle{Request 4 - slide 6}
-  MCMC chain = 24,000,000 with 2000 samples.\\
+  MCMC chain = 24,000,000 with 1998 samples.\\
   \begin{figure}[p]
     \vspace{-5mm}
     \begin{center}
