@@ -29,7 +29,7 @@ make.mcmc.sr.variability.plot <- function(model,   ## model is an mcmc run and i
   par(mar = c(4, 1.5, 1, 1) + 0.1)
   plot(0,
        type = 'n',
-       xlim = c(0, 0.3),
+       xlim = c(0, 0.8),
        ylim = c(0, 7),
        xaxs = 'i',
        yaxs = 'i',
@@ -38,15 +38,16 @@ make.mcmc.sr.variability.plot <- function(model,   ## model is an mcmc run and i
        #ylab=expression(paste("Recruitment relative to", R[0])))
        xlab = "",
        ylab = "")
-  r.vec <- seq(0, par()$usr[4], length=100)
+  r.vec <- seq(0, par()$usr[4], length=200)
   polygon(y = c(0, r.vec, max(r.vec)),
-          x = c(0, dlnorm(x = r.vec, meanlog= 1 , sdlog = model$sigma_R_in), 0),
+          x = c(0, dlnorm(x = r.vec, meanlog= 0 , sdlog = model$sigma_R_in), 0),
           border = NA,
           col = rgb(0, 0, 0, 0.2))
   ## horizontal lines for mean and median
-  lines(c(0, dlnorm(x = 1, meanlog = 1, sdlog = model$sigma_R_in)),
+  lines(c(0, dlnorm(x = 1, meanlog = 0, sdlog = model$sigma_R_in)),
         y = c(1, 1), lty = 2, col = 1)
-  abline(h = adj, lty = 2, col = 2)
+  lines(c(0, dlnorm(x = adj, meanlog = 0, sdlog = model$sigma_R_in)),
+        y = c(adj, adj), lty = 2, col = 2)
   axis(2, at = c(0, adj, 1, nrow(model$mcmc)), lab = rep("", 4), las = 1)
   mtext("Distribution relative to unfished equilibrium",side=4,line=-2,adj=0.8)
 
