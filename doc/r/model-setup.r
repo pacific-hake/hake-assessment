@@ -270,9 +270,9 @@ if(verbose){
 sens.model.dir.names.8 <- c("59_Sen45_phi003",
                             "66_Sen45_block_sel_2016_SRG_request2",
                             "67_Sen45_block_sel_2016_SRG_request3")
-sens.model.names.8 <- c("1991-2016 phi = 0.03",
-                        "2009-2016 phi = 0.20",
-                        "2016 phi = 0.20")
+sens.model.names.8 <- c("1991-2016 phi=0.03",
+                        "1991-2008 phi=0.03, 2009-2016 phi=0.20",
+                        "1991-2015 phi=0.03, 2016 phi=0.20")
 verify.models(model.dir, sens.model.dir.names.8, sens.model.names.8)
 if(verbose){
   print.model.message(sens.model.dir.names.8, sens.model.names.8, 8, model.type = "Sensitivity")
