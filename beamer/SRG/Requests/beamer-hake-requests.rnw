@@ -176,9 +176,9 @@ par <- oldpar
 \section[Requests 2 and 3]{Requests 2 and 3}
 \subsection{}
 \frame{\frametitle{Requests 2 and 3}
-  Sensitivity analysis that includes deviations on selectivity parameters from 1991-2008 using $\Phi=0.03$, and uses $\Phi=0.20$ for 2009-2016 and;
+  Sensitivity analysis that includes deviations on selectivity parameters from 1991-2008 using $\Phi=0.03$, and uses $\Phi=0.20$ for 2009-2016 and; \\
 
- Sensitivity analysis that includes deviations on selectivity parameters from 1991-2015 using $\Phi=0.03$, and uses $\Phi=0.20$ for 2016.\\
+  Sensitivity analysis that includes deviations on selectivity parameters from 1991-2015 using $\Phi=0.03$, and uses $\Phi=0.20$ for 2016.\\
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -247,13 +247,13 @@ par <- oldpar
     \begin{column}{0.5\textwidth}
     <<mountains.request2, fig.height=6, out.width='0.99\\columnwidth'>>=
     make.tv.selex.plot(sens.models.8[[2]], mcmc=FALSE) # phi = 0.03 up to 2008, and 0.20 for 2009-2016
-    title(main=sens.model.names.8[[2]]) #, cex.main=0.8)
+    title(main = sens.model.names.8[[2]], cex.main = .7)
     @
     \end{column}
     \begin{column}{0.5\textwidth}
     <<mountains.request3, fig.height=6, out.width='0.99\\columnwidth'>>=
     make.tv.selex.plot(sens.models.8[[3]], mcmc=FALSE) # phi = 0.03 up to 2015, and 0.20 for 2016
-    title(main=sens.model.names.8[[3]])
+    title(main=sens.model.names.8[[3]], cex.main = .7)
     @
     \end{column}
   \end{columns}
