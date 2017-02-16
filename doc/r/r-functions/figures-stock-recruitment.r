@@ -25,12 +25,30 @@ make.mcmc.sr.variability.plot <- function(model,   ## model is an mcmc run and i
 
   layout(mat = matrix(2:1, nrow = 1), widths = c(5, 1))
 
+  # get quantities of interest and calculate lognormal distribution
+  # over a range of values
+  ymax <- 7
+  r.vec <- seq(0, ymax, length=1000)
+  sigma_R <- model$sigma_R_in
+  meanlog <- (-sigma_R^2)/2
+  dlnorm.vec <- dlnorm(x = r.vec, meanlog = meanlog , sdlog = sigma_R)
+
+  ## note: to check that this parameterization seems right,
+  ## commands like the following were used
+  #  sigma_R <- 1.4
+  #  meanlog <- (-sigma_R^2)/2
+  #  z <- rlnorm(n=1e6, meanlog=meanlog, sdlog=sigma_R)
+  #  mean(z); median(z); sd(log(z))
+  #  [1] 1.001241  # should be close to 1
+  #  [1] 0.3750798 # should be close to 0.38
+  #  [1] 1.400605  # should be close to 1.4
+  
   ## plot of density on right-hand side
   par(mar = c(4, 1.5, 1, 1) + 0.1)
   plot(0,
        type = 'n',
-       xlim = c(0, 0.8),
-       ylim = c(0, 7),
+       xlim = c(0, max(dlnorm.vec)),
+       ylim = c(0, ymax),
        xaxs = 'i',
        yaxs = 'i',
        axes = FALSE,
@@ -38,16 +56,15 @@ make.mcmc.sr.variability.plot <- function(model,   ## model is an mcmc run and i
        #ylab=expression(paste("Recruitment relative to", R[0])))
        xlab = "",
        ylab = "")
-  r.vec <- seq(0, par()$usr[4], length=200)
   polygon(y = c(0, r.vec, max(r.vec)),
-          x = c(0, dlnorm(x = r.vec, meanlog= 0 , sdlog = model$sigma_R_in), 0),
+          x = c(0, dlnorm.vec, 0),
           border = NA,
           col = rgb(0, 0, 0, 0.2))
   ## horizontal lines for mean and median
-  lines(c(0, dlnorm(x = 1, meanlog = 0, sdlog = model$sigma_R_in)),
-        y = c(1, 1), lty = 2, col = 1)
-  lines(c(0, dlnorm(x = adj, meanlog = 0, sdlog = model$sigma_R_in)),
-        y = c(adj, adj), lty = 2, col = 2)
+  lines(c(0, dlnorm(x = 1, meanlog = meanlog, sdlog = sigma_R)),
+        y = c(1, 1), lty = 1, col = 1)
+  lines(c(0, dlnorm(x = adj, meanlog = meanlog, sdlog = sigma_R)),
+        y = c(adj, adj), lty = 1, col = 2)
   axis(2, at = c(0, adj, 1, nrow(model$mcmc)), lab = rep("", 4), las = 1)
   mtext("Distribution relative to unfished equilibrium",side=4,line=-2,adj=0.8)
 
