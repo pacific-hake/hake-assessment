@@ -173,6 +173,30 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Sensitivities to $\phi$ -- Density}
+\begin{center}
+%\vspace{5pt}
+% fig.width=8>>=
+<<phi.sensitivity.density.2010, fig.height=4.5, out.width='4.5in'>>=  
+oldpar <- par()
+par(mar = c(7.1, 3.1, 0, 0))
+make.comparison.plot(
+  c(list(base.model), sens.models.7),
+  subplots = 14,
+  model.names = c(paste0("Base model, phi=0.20, no age-1"), sens.model.names.7),
+  legendloc = "topright",
+  densitynames = c("Recr_2010"),
+  densityxlab  = "Recruitment in 2010 (billions)",
+  indexPlotEach = TRUE,
+  end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 \section[Requests 2 and 3]{Requests 2 and 3}
 \subsection{}
 \frame{\frametitle{Requests 2 and 3}
@@ -217,6 +241,30 @@ make.comparison.plot(
   legendloc = "topright",
   densitynames = c("Recr_2014"),
   densityxlab  = "Recruitment in 2014 (billions)",
+  indexPlotEach = TRUE,
+  end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{$\phi=0.20$ for two time periods -- Density}
+\begin{center}
+% \vspace{5pt}
+% fig.width=8>>=
+<<phi.req2.3.sensitivity.density.2010, fig.height=4.5, out.width='4.5in'>>=  
+oldpar <- par()
+par(mar = c(7.1, 3.1, 0, 0))
+make.comparison.plot(
+  c(list(base.model), sens.models.8),
+  subplots = 14,
+  model.names = c(paste0("1991-2016 phi=0.20, base model"), sens.model.names.8),
+  legendloc = "topright",
+  densitynames = c("Recr_2010"),
+  densityxlab  = "Recruitment in 2010 (billions)",
   indexPlotEach = TRUE,
   end.yr = end.yr)
 par <- oldpar
