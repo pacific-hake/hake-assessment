@@ -115,7 +115,7 @@ source("custom-knitr-variables.r")
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Request 1}
+\section[Request 1]{Request 1}
 \subsection{}
 
 %---------------------------------------------------------------
@@ -174,13 +174,22 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+\section[Request 2]{Request 2}
+\subsection{}
 \frame{\frametitle{Request 2}
-  MCMC diagnostics on a longer chain for the base model.\\
+  Sensitivity analysis that includes deviations on selectivity parameters from 1991-2008 using $\Phi=0.03$, and uses $\Phi=0.20$ for 2009-2016.\\
   %\medskip
   % {\bf Rationale:} .
-
 }
 
+\section[Request 3]{Request 3}
+\subsection{}
+\frame{\frametitle{Request 3}
+  Sensitivity analysis that includes deviations on selectivity parameters from 1991-2015 using $\Phi=0.03$, and uses $\Phi=0.20$ for 2016. 
+  }
+
+\section[Request 4]{Request 4}
+\subsection{}
 \frame{\frametitle{Request 4 - slide 1}
   MCMC chain = 24,000,000 with 2000 samples..\\
   \begin{figure}[p]
@@ -235,15 +244,7 @@ par <- oldpar
     \end{center}
   \end{figure}
 }
-\frame{\frametitle{Request 4 - slide 7}
-  MCMC chain = 24,000,000 with 2000 samples.\\
-  \begin{figure}[p]
-    \vspace{-5mm}
-    \begin{center}
-      \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{pairs2.eps} % width=\maxwidth,
-    \end{center}
-  \end{figure}
-}
+
 %% \frame{\frametitle{Selectivity at age by year}
 %%   \begin{columns}
 %%     \begin{column}{0.28\textwidth}
