@@ -133,7 +133,7 @@ source("custom-knitr-variables.r")
 \begin{frame}
 \frametitle{Sensitivities to $\phi$ -- Biomass}
 \begin{center}
-\vspace{5pt}
+%\vspace{5pt}
 <<phi.sensitivity.biomass, fig.height=4.5, out.width='4.5in'>>=  
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
@@ -153,7 +153,7 @@ par <- oldpar
 \begin{frame}
 \frametitle{Sensitivities to $\phi$ -- Density}
 \begin{center}
-\vspace{5pt}
+%\vspace{5pt}
 % fig.width=8>>=
 <<phi.sensitivity.density, fig.height=4.5, out.width='4.5in'>>=  
 oldpar <- par()
@@ -185,7 +185,7 @@ par <- oldpar
 \begin{frame}
 \frametitle{$\phi=0.20$ for two time periods -- Biomass}
 \begin{center}
-\vspace{5pt}
+% \vspace{5pt}
 <<phi.req2.3.sensitivity.biomass, fig.height=4.5, out.width='4.5in'>>=  
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
@@ -205,7 +205,7 @@ par <- oldpar
 \begin{frame}
 \frametitle{$\phi=0.20$ for two time periods -- Density}
 \begin{center}
-\vspace{5pt}
+% \vspace{5pt}
 % fig.width=8>>=
 <<phi.req2.3.sensitivity.density, fig.height=4.5, out.width='4.5in'>>=  
 oldpar <- par()
