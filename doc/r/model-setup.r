@@ -265,6 +265,20 @@ if(verbose){
 }
 
 ## -----------------------------------------------------------------------------
+## Sensitivity models group 8 - Request from SRG
+## -----------------------------------------------------------------------------
+sens.model.dir.names.8 <- c("59_Sen45_phi003",
+                            "66_Sen45_block_sel_2016_SRG_request2",
+                            "67_Sen45_block_sel_2016_SRG_request3")
+sens.model.names.8 <- c("1991-2016 = 0.03",
+                        "2009-2016 = 0.20",
+                        "2016 = 0.2")
+verify.models(model.dir, sens.model.dir.names.8, sens.model.names.8)
+if(verbose){
+  print.model.message(sens.model.dir.names.8, sens.model.names.8, 8, model.type = "Sensitivity")
+}
+
+## -----------------------------------------------------------------------------
 ## Vector of directory names for all models referenced above
 ## -----------------------------------------------------------------------------
 ## ALL models must be in this list!
@@ -282,7 +296,8 @@ model.dir.names <- c(base.model.dir.name,
                      sens.model.dir.names.4,
                      sens.model.dir.names.5,
                      sens.model.dir.names.6,
-                     sens.model.dir.names.7)
+                     sens.model.dir.names.7,
+                     sens.model.dir.names.8)
 
 ## This function must be called from within the first knitr code chunk
 ## in the document. It is defined here so that it is in the same place
@@ -315,6 +330,7 @@ load.models.into.parent.env <- function(){
   sens.models.5      <<- load.models(model.dir, sens.model.dir.names.5)
   sens.models.6      <<- load.models(model.dir, sens.model.dir.names.6)
   sens.models.7      <<- load.models(model.dir, sens.model.dir.names.7)
+  sens.models.8      <<- load.models(model.dir, sens.model.dir.names.8)
 
   ## Lists of sensitivities for the MLE parameters, derived quantiles,
   ##  and reference points table
@@ -373,7 +389,8 @@ build <- function(run.fore = FALSE,
            unlist(sens.model.dir.names.4),
            unlist(sens.model.dir.names.5),
            unlist(sens.model.dir.names.6),
-           unlist(sens.model.dir.names.7))
+           unlist(sens.model.dir.names.7),
+           unlist(sens.model.dir.names.8))
 
   ## Remove base model from the bridge/sensitivity list
   mnv <- mnv[-(grep(base.model.dir.name, mnv))]
