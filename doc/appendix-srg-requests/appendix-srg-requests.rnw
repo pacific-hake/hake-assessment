@@ -3,9 +3,81 @@
 \chapter{Scientific Review Group (SRG) requests}
 \label{chap:srg-requests}
 
-The SRG meeting took p,ace on Feb 13-16, 2017 in Vancouver, B.C., Canada. The group had several requests for
+The SRG meeting took place on Feb 13-16, 2017 in Vancouver, B.C., Canada. The group had several requests for
 model sensitivities and other modeling issues which are addressed here.
 
+1. MCMC chain of 24,000,000:
+A request was made to run the MCMC chain out to a length double that of the presented model in an attempt to
+improve the diagnostics of the chain. The resulting diagnostics are shown here, and are comparable to
+similar figures in the main document.
 
+\begin{figure}[p]
+  \vspace{-5mm}
+  \begin{center}
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{../beamer/SRG/Requests/Mexplore.eps} % width=\maxwidth,
+  \end{center}
+  \vspace{-5mm}
+  \caption{MCMC diagnostics for the natural mortality parameter.
+  Compare with the base model figure \ref{fig:main-mcmc.diag.m.r0}.}
+  \label{fig:srg-m}
+\end{figure}
+
+\begin{figure}[p]
+  \vspace{-5mm}
+  \begin{center}
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{../beamer/SRG/Requests/Hexplore.eps} % width=\maxwidth,
+  \end{center}
+  \vspace{-5mm}
+  \caption{MCMC diagnostics for the steepness parameter.
+  Compare with the base model figure \ref{fig:main-mcmc.diag.h.extra.sd}.}
+  \label{fig:srg-h}
+\end{figure}
+
+\begin{figure}[p]
+  \vspace{-5mm}
+  \begin{center}
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{../beamer/SRG/Requests/Qexplore.eps} % width=\maxwidth,
+  \end{center}
+  \vspace{-5mm}
+  \caption{MCMC diagnostics for the catchability parameter.}
+  \label{fig:srg-q}
+\end{figure}
+
+\begin{figure}[p]
+  \vspace{-5mm}
+  \begin{center}
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{../beamer/SRG/Requests/R0explore.eps} % width=\maxwidth,
+  \end{center}
+  \vspace{-5mm}
+  \caption{MCMC diagnostics for the initial recruitment parameter.
+  Compare with the base model figure \ref{fig:main-mcmc.diag.m.r0}.}
+  \label{fig:srg-r0}
+\end{figure}
+
+\begin{figure}[p]
+  \vspace{-5mm}
+  \begin{center}
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{../beamer/SRG/Requests/mcmcNuisance.eps} % width=\maxwidth,
+  \end{center}
+  \vspace{-5mm}
+  \caption{Summary histograms of MCMC diagnostics for all base model
+  parameters along with derived quantities for the time-series of
+  spawning biomass, and relative spawning biomass. Compare with
+  the base model in figure \ref{fig:main-mcmc.diag.hists}.}
+  \label{fig:srg-nuisance}
+\end{figure}
+
+\begin{figure}[p]
+  \vspace{-5mm}
+  \begin{center}
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{../beamer/SRG/Requests/pairs1.eps} % width=\maxwidth,
+  \end{center}
+  \vspace{-5mm}
+  \caption{Posterior correlations among key base-model parameters and derived
+  quantities. Numbers refer to the absolute correlation coefficients, with font
+  size proportional to the square root of the coefficient.
+  Compoare with the base model in figure \ref{fig:main-mcmc-pairs}.}
+\label{fig:srg-pairs}
+\end{figure}
 
 \clearpage
