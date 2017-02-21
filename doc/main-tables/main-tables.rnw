@@ -156,6 +156,54 @@ make.can.age.data.table(can.ages,
 \pagestyle{fancy}
 \clearpage
 
+\newgeometry{hmargin=1in,vmargin=1in}
+\thispagestyle{lscape}
+\begin{landscape}
+  \centering
+<<main.all.age.data.fishery.table, results='asis', echo=FALSE>>=
+make.input.age.data.table(base.model,
+                          fleet = 1,
+                          start.yr = start.yr.age.comps,
+                          end.yr = last.data.yr,
+                          xcaption = paste0("Aggregated fishery age proportion data used in the base model. Proportions are ",
+                                            "calculated from numbers of individuals in each age group. ",
+                                            "Age 15 is an accumulator group."),
+                          xlabel = "tab:main-all-age-data-fishery",
+                          font.size = 8,
+                          space.size = 9,
+                          decimals = 2)
+@
+
+\end{landscape}
+\restoregeometry
+\pagestyle{fancy}
+\clearpage
+
+\newgeometry{hmargin=1in,vmargin=1in}
+\thispagestyle{lscape}
+\begin{landscape}
+  \centering
+<<main.all.age.data.survey.table, results='asis', echo=FALSE>>=
+make.input.age.data.table(base.model,
+                          fleet = 2,
+                          start.yr = survey.start.yr,
+                          end.yr = survey.end.yr,
+                          xcaption = paste0("Survey age proportion data used in the base model. Proportions are ",
+                                            "calculated from numbers of individuals in each age group. ",
+                                            "Age 15 is an accumulator group."),
+                          xlabel = "tab:main-all-age-data-survey",
+                          font.size = 12,
+                          space.size = 13,
+                          decimals = 2)
+@
+
+\end{landscape}
+\restoregeometry
+\pagestyle{fancy}
+\clearpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 <<main.survey.history.table, results='asis', echo=FALSE>>=
 make.survey.history.table(survey.history,
                           digits = 3,

@@ -19,8 +19,13 @@ make.input.age.data.table <- function(model,
   yr <- age.df$Yr
   flt <- age.df$FltSvy
   n.samp <- age.df$Nsamp
+  ## Get ages from column names
   ages.ind <- grep("^a[[:digit:]]+$", nm)
   ages <- gsub("^a([[:digit:]]+)$", "\\1", nm[ages.ind])
+  ## Make all bold
+  ages <- paste0("\\textbf{", ages, "}")
+  ages <- paste(ages, " & ")
+  ## Make the ages vector a string
   ages.tex <- do.call("paste", as.list(ages))
   ## Remove last ampersand
   ages.tex <- sub("& $", "\\\\\\\\", ages.tex)
@@ -39,10 +44,10 @@ make.input.age.data.table <- function(model,
   age.df <- age.df[age.df[,"yr"] >= start.yr & age.df[,"yr"] <= end.yr,]
 
   ## Make number of samples pretty
-  age.df[,2] <- as.numeric(f(age.df[,2]))
+  age.df[,2] <- f(age.df[,2])
   ## Make percentages for age proportions
-  age.df[,-c(1,2)] <- age.df[,-c(1,2)] * 100
-  age.df[,-c(1,2)] <- f(age.df[,-c(1,2)], decimals)
+  age.df[,-c(1,2)] <- as.numeric(age.df[,-c(1,2)]) * 100
+  age.df[,-c(1,2)] <- f(as.numeric(age.df[,-c(1,2)]), decimals)
   ## Add the extra header spanning multiple columns
   addtorow <- list()
   addtorow$pos <- list()

@@ -54,6 +54,9 @@ if(verbose) cat0("Unfished equilibrium year: \n  ", unfished.eq.yr)
 ## Start year for the models
 start.yr <- 1966
 if(verbose) cat0("Start year for catch data: \n  ", start.yr)
+## Start year for the fishery age comps
+start.yr.age.comps <- 1975
+if(verbose) cat0("Start year for fishery age comps data: \n  ", start.yr.age.comps)
 ## The last non-forecast year in the model. This is the year for which the
 ## mcmc outputs will be used in reference point calculations.
 end.yr <- assess.yr
