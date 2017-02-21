@@ -242,50 +242,55 @@ make.maturity.samples.table(ovary.samples,
 @
 
 <<main.parameters.estimated.summary.table, results='asis', echo=FALSE>>=
-make.parameters.estimated.summary.table(base.model,
-                                        start.rec.dev.yr = recruit.dev.start.yr,
-                                        end.rec.dev.yr = end.yr - 1,
-                                        digits = 2,
-                                        xcaption = paste0("Summary of estimated model parameters and priors in the base model. The Beta prior is parameterized with a mean and standard deviation. The Lognormal distribution is parameterized with the median and standard deviation in log space."),
-                                        xlabel = "tab:main-params-est-summary",
-                                        font.size = 10,
-                                        space.size = 12)
+make.parameters.estimated.summary.table(
+  base.model,
+  start.rec.dev.yr = recruit.dev.start.yr,
+  end.rec.dev.yr = end.yr - 1,
+  digits = 2,
+  xcaption = paste0("Summary of estimated model parameters and priors in the base model. The Beta prior is parameterized with a mean and standard deviation. The Lognormal distribution is parameterized with the median and standard deviation in log space."),
+  xlabel = "tab:main-params-est-summary",
+  font.size = 10,
+  space.size = 12)
 @
 
 <<main.median.posterior.table, results='asis', echo=FALSE>>=
-make.median.posterior.table(base.model,
-                            start.yr = start.yr,
-                            end.yr = end.yr,
-                            digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
-                            xcaption = paste0("Time-series of median posterior population estimates from the base model. Relative spawning biomass is spawning biomass relative to the unfished equilibrium ($\\Bzero$). Total biomass includes females and males of all ages. Exploitation fraction is total catch divided by total age-3+ biomass. Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%})."),
-                            xlabel = "tab:main-median-posterior",
-                            font.size = 8,
-                            space.size = 10)
+make.median.posterior.table(
+  base.model,
+  start.yr = start.yr,
+  end.yr = end.yr,
+  digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
+  xcaption = paste0("Time-series of median posterior population estimates from the base model. Relative spawning biomass is spawning biomass relative to the unfished equilibrium ($\\Bzero$). Total biomass includes females and males of all ages. Exploitation fraction is total catch divided by total age-3+ biomass. Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%})."),
+  xlabel = "tab:main-median-posterior",
+  font.size = 8,
+  space.size = 10)
 @
 
 <<main.ci.posterior.table, results='asis', echo=FALSE>>=
-make.ci.posterior.table(base.model,
-                        start.yr = start.yr,
-                        end.yr = end.yr,
-                        digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
-                        xcaption = paste0("Time-series of 95\\% posterior credibility intervals for the quantities shown in Table \\ref{tab:main-median-posterior}."),
-                        xlabel = "tab:main-ci-posterior",
-                        font.size = 8,
-                        space.size = 10)
+make.ci.posterior.table(
+  base.model,
+  start.yr = start.yr,
+  end.yr = end.yr,
+  digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
+  xcaption = paste0("Time-series of 95\\% posterior credibility intervals for the quantities shown in Table \\ref{tab:main-median-posterior}."),
+  xlabel = "tab:main-ci-posterior",
+  font.size = 8,
+  space.size = 10)
 @
 
 <<main.est.numbers.at.age.table, results='asis', echo=FALSE>>=
-make.est.numbers.at.age.table(base.model,
-                              start.yr = start.yr,
-                              end.yr = end.yr,
-                              weight.factor = 1000,
-                              plus.group = 15,
-                              table.type = 1,
-                              csv.dir = output.csv.dir,
-                              xcaption = paste0("Estimated numbers-at-age at the beginning of the year from the base model (MLE; million)."),
-                              xlabel = "tab:main-est.numbers.at.age",
-                              font.size = 8,
-                              space.size = 10)
+make.est.numbers.at.age.table(
+  base.model,
+  start.yr = start.yr,
+  end.yr = end.yr,
+  weight.factor = 1000,
+  plus.group = 15,
+  table.type = 1,
+  csv.dir = output.csv.dir,
+  xcaption = paste0("Estimated numbers-at-age at the beginning ",
+                    "of the year from the base model (MLE; million)."),
+  xlabel = "tab:main-est-numbers-at-age",
+  font.size = 8,
+  space.size = 10)
 @
 
 \newgeometry{hmargin=1in,vmargin=1in}
@@ -293,15 +298,17 @@ make.est.numbers.at.age.table(base.model,
 \begin{landscape}
   \centering
 <<main.est.exp.rate.at.age.table, results='asis', echo=FALSE>>=
-make.est.numbers.at.age.table(base.model,
-                              start.yr = start.yr,
-                              end.yr = last.data.yr,
-                              table.type = 2,
-                              csv.dir = output.csv.dir,
-                              xcaption = paste0("Estimated exploitation rate-at-age at the middle of the year from the base model (MLE; million)."),
-                              xlabel = "tab:main-est.exp.rate.at.age",
-                              font.size = 7,
-                              space.size = 8)
+make.est.numbers.at.age.table(
+  base.model,
+  start.yr = start.yr,
+  end.yr = last.data.yr,
+  table.type = 2,
+  csv.dir = output.csv.dir,
+  xcaption = paste0("Estimated exploitation rate-at-age at the middle ",
+                    "of the year from the base model (MLE)."),
+  xlabel = "tab:main-est-exp-rate-at-age",
+  font.size = 7,
+  space.size = 8)
 @
 
 \end{landscape}
@@ -314,15 +321,63 @@ make.est.numbers.at.age.table(base.model,
 \begin{landscape}
   \centering
 <<main.est.catch.at.age.table, results='asis', echo=FALSE>>=
-make.est.numbers.at.age.table(base.model,
-                              start.yr = start.yr,
-                              end.yr = last.data.yr,
-                              table.type = 3,
-                              csv.dir = output.csv.dir,
-                              xcaption = paste0("Estimated catch-at-age at the beginning of the year from the base model (MLE; million)."),
-                              xlabel = "tab:main-est.catch.at.age",
-                              font.size = 7,
-                              space.size = 8)
+make.est.numbers.at.age.table(
+  base.model,
+  start.yr = start.yr,
+  end.yr = last.data.yr,
+  table.type = 3,
+  csv.dir = output.csv.dir,
+  xcaption = paste0("Estimated catch-at-age in numbers at the ",
+                    "beginning of the year from the base model (MLE; thousands)."),
+  xlabel = "tab:main-est-catch-at-age",
+  font.size = 7,
+  space.size = 8)
+@
+
+\end{landscape}
+\restoregeometry
+\pagestyle{fancy}
+\clearpage
+
+\newgeometry{hmargin=1in,vmargin=1in}
+\thispagestyle{lscape}
+\begin{landscape}
+  \centering
+<<main.est.catch.at.age.biomass.table, results='asis', echo=FALSE>>=
+make.est.numbers.at.age.table(
+  base.model,
+  start.yr = start.yr,
+  end.yr = end.yr,
+  table.type = 4,
+  csv.dir = output.csv.dir,
+  xcaption = paste0("Estimated catch-at-age in biomass at the beginning ",
+                    "of the year from the base model (MLE; metric tons)."),
+  xlabel = "tab:main-est-catch-at-age-biomass",
+  font.size = 7,
+  space.size = 8)
+@
+
+\end{landscape}
+\restoregeometry
+\pagestyle{fancy}
+\clearpage
+
+\newgeometry{hmargin=1in,vmargin=1in}
+\thispagestyle{lscape}
+\begin{landscape}
+  \centering
+<<main.est.biomass.at.age.table, results='asis', echo=FALSE>>=
+make.est.numbers.at.age.table(
+  base.model,
+  start.yr = start.yr,
+  end.yr = last.data.yr,
+  table.type = 5,
+  csv.dir = output.csv.dir,
+  xcaption = paste0("Estimated biomass-at-age at the beginning ",
+                    "of the year from the base model (MLE; thousand metric tons)."),
+  xlabel = "tab:main-est-biomass-at-age",
+  font.size = 7,
+  space.size = 8)
 @
 
 \end{landscape}
@@ -331,15 +386,20 @@ make.est.numbers.at.age.table(base.model,
 \clearpage
 
 <<main.parameter.estimates, results='asis', echo=FALSE>>=
-make.short.parameter.estimates.table(base.model,
-                                     last.yr.base.model,
-                                     posterior.regex = key.posteriors,
-                                     end.yr = end.yr,
-                                     digits = 3,
-                                     xcaption <- paste0("Select parameters, derived quantities, and reference point estimates for the base model MLE and posterior median (MCMC) estimates with an additional comparison to posterior median estimates from the previous (",end.yr-1,") base model."),
-                                     xlabel <- "tab:main-parameter-estimates",
-                                     font.size = 9,
-                                     space.size = 10)
+make.short.parameter.estimates.table(
+  base.model,
+  last.yr.base.model,
+  posterior.regex = key.posteriors,
+  end.yr = end.yr,
+  digits = 3,
+  xcaption <- paste0("Select parameters, derived quantities, ",
+                     "and reference point estimates for the base model ",
+                     "MLE and posterior median (MCMC) estimates with ",
+                     "an additional comparison to posterior median ",
+                     "estimates from the previous (",end.yr-1,") base model."),
+  xlabel <- "tab:main-parameter-estimates",
+  font.size = 9,
+  space.size = 10)
 @
 
 <<main.reference.points.table, results='asis', echo=FALSE>>=

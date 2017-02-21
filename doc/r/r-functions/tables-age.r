@@ -281,8 +281,36 @@ make.est.numbers.at.age.table <- function(model,                ## model is an m
     colnames(dat)[1] <- "Year"
   }else if(table.type == 4){
     ## Catch-at-age in biomass
+    c.age <- model$catage[model$catage[,"Yr"] >= start.yr & model$catage[,"Yr"] <= end.yr, ]
+    yrs <- as.character(c.age[,"Yr"])
+    c.age <- c.age[,-(1:10)]
+    wt.at.age <- model$wtatage[model$wtatage$fleet == 1,]
+    wt.at.age <- wt.at.age[,-(1:6)]
+    dat <- c.age * wt.at.age
+    csv.dat <- cbind(yrs, dat)
+    colnames(csv.dat)[1] <- "Year"
+    write.csv(csv.dat, file.path(csv.dir, "estimated-catch-at-age-biomass.csv"), row.names = FALSE)
+
+    dat <- f(dat)
+    dat <- cbind(yrs, dat)
+    colnames(dat)[1] <- "Year"
   }else if(table.type == 5){
     ## Biomass-at-age
+    dat <- model$natage[model$natage$"Beg/Mid" == "B", -c(1:6,8:11)]
+    dat <- dat[dat$Yr %in% yrs,]
+    yrs <- as.character(dat[,"Yr"])
+    dat <- dat[,-1]
+    wt.at.age <- model$wtatage[model$wtatage$fleet == 1,]
+    wt.at.age <- wt.at.age[,-(1:6)]
+    dat <- dat * wt.at.age
+    dat <- cbind(yrs, dat)
+    names(dat)[1] <- "Year"
+    write.csv(dat, file.path(csv.dir, "estimated-biomass-at-age.csv"), row.names = FALSE)
+
+    ## Apply division by weight factor and formatting
+    dat[,-1] <- apply(dat[-1], c(1,2), function(x) x / weight.factor)
+    dat[,-1] <- apply(dat[-1], c(1,2), f)
+    dat[,1] <- as.character(dat[,1])
   }else{
     return(invisible())
   }
