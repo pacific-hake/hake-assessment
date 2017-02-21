@@ -22,6 +22,10 @@ if(verbose) cat0("Last assessment year: \n  ", last.assess.yr)
 model.dir <- file.path("..", "..", "models")
 if(verbose) cat0("Models directory: \n  ", model.dir)
 
+## Output CSV directory for outputs of at-age which are calculated by the
+## make.est.numbers.at.age.table function (in r-functions/tables-age.r)
+output.csv.dir <- file.path("..", "out-csv")
+
 ## -----------------------------------------------------------------------------
 ## File names which must exists in each model directory
 ## -----------------------------------------------------------------------------

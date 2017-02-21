@@ -280,11 +280,55 @@ make.est.numbers.at.age.table(base.model,
                               end.yr = end.yr,
                               weight.factor = 1000,
                               plus.group = 15,
-                              xcaption = paste0("Estimated numbers at age at the beginning of the year from the base model (MLE; million)."),
+                              table.type = 1,
+                              csv.dir = output.csv.dir,
+                              xcaption = paste0("Estimated numbers-at-age at the beginning of the year from the base model (MLE; million)."),
                               xlabel = "tab:main-est.numbers.at.age",
                               font.size = 8,
                               space.size = 10)
 @
+
+\newgeometry{hmargin=1in,vmargin=1in}
+\thispagestyle{lscape}
+\begin{landscape}
+  \centering
+<<main.est.exp.rate.at.age.table, results='asis', echo=FALSE>>=
+make.est.numbers.at.age.table(base.model,
+                              start.yr = start.yr,
+                              end.yr = last.data.yr,
+                              table.type = 2,
+                              csv.dir = output.csv.dir,
+                              xcaption = paste0("Estimated exploitation rate-at-age at the middle of the year from the base model (MLE; million)."),
+                              xlabel = "tab:main-est.exp.rate.at.age",
+                              font.size = 7,
+                              space.size = 8)
+@
+
+\end{landscape}
+\restoregeometry
+\pagestyle{fancy}
+\clearpage
+
+\newgeometry{hmargin=1in,vmargin=1in}
+\thispagestyle{lscape}
+\begin{landscape}
+  \centering
+<<main.est.catch.at.age.table, results='asis', echo=FALSE>>=
+make.est.numbers.at.age.table(base.model,
+                              start.yr = start.yr,
+                              end.yr = last.data.yr,
+                              table.type = 3,
+                              csv.dir = output.csv.dir,
+                              xcaption = paste0("Estimated catch-at-age at the beginning of the year from the base model (MLE; million)."),
+                              xlabel = "tab:main-est.catch.at.age",
+                              font.size = 7,
+                              space.size = 8)
+@
+
+\end{landscape}
+\restoregeometry
+\pagestyle{fancy}
+\clearpage
 
 <<main.parameter.estimates, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.table(base.model,

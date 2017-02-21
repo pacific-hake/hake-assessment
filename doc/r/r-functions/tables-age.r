@@ -213,6 +213,9 @@ make.est.numbers.at.age.table <- function(model,                ## model is an m
                                           end.yr,               ## end.yr is the last year to show in the table
                                           weight.factor = 1000, ## divide catches by this factor
                                           plus.group = 15,      ## ages this and older will be grouped in table
+                                          table.type = 1,       ## 1=NAA, 2=Exploitation Rate by age
+                                                                ## 3=CAA in number, 4=CAA in biomass, 5=Biomass at age
+                                          csv.dir = "out-csv",  ## The outputs will be written to a csv file in this directory
                                           xcaption = "default", ## Caption to use
                                           xlabel   = "default", ## Latex label to use
                                           font.size = 9,        ## Size of the font for the table
@@ -221,33 +224,81 @@ make.est.numbers.at.age.table <- function(model,                ## model is an m
   ## Returns an xtable in the proper format for the main tables section for credibility intervals for biomass,
   ##  relative biomass, recruitment, fishing intensity, and exploitation fraction
 
+  ## Make sure the csv directory exists
+  if(!dir.exists(csv.dir)){
+    dir.create(csv.dir)
+  }
+
   yrs <- start.yr:end.yr
 
   ## Filter the values by years
-  f <- model$natage[model$natage$"Beg/Mid" == "B", -c(1:6,8:11)]
-  ## If above line gets changed then change in all.r also.
-  f <- f[f$Yr %in% yrs,]
-  ## Group ages greater than or equal to plus.group together by summing
-  max.age <- max(as.numeric(names(f[,-1])))
-  plus.ages <- plus.group:max.age
-  f.plus <- f[,names(f) %in% plus.ages]
-  f.minus <- f[,!names(f) %in% plus.ages]
-  f <- cbind(f.minus, apply(f.plus, 1, sum))
-  names(f)[ncol(f)] <- paste0(plus.group, "+")
-  names(f)[1] <- "Year"
+  if(table.type == 1){
+    ## Numbers-at-age
+    dat <- model$natage[model$natage$"Beg/Mid" == "B", -c(1:6,8:11)]
+    dat <- dat[dat$Yr %in% yrs,]
+    ## Group ages greater than or equal to plus.group together by summing
+    max.age <- max(as.numeric(names(dat[,-1])))
+    plus.ages <- plus.group:max.age
+    dat.plus <- dat[,names(dat) %in% plus.ages]
+    dat.minus <- dat[,!names(dat) %in% plus.ages]
+    dat <- cbind(dat.minus, apply(dat.plus, 1, sum))
+    names(dat)[ncol(dat)] <- paste0(plus.group, "+")
+    names(dat)[1] <- "Year"
+    write.csv(dat, file.path(csv.dir, "estimated-numbers-at-age.csv"), row.names = FALSE)
 
-  ## Apply division by weight factor and formatting
-  f[,-1] <- apply(f[-1], c(1,2), function(x) x / weight.factor)
-  f[,-1] <- apply(f[-1], c(1,2), f)
-  f[,1] <- as.character(f[,1])
+    ## Apply division by weight factor and formatting
+    dat[,-1] <- apply(dat[-1], c(1,2), function(x) x / weight.factor)
+    dat[,-1] <- apply(dat[-1], c(1,2), f)
+    dat[,1] <- as.character(dat[,1])
+  }else if(table.type == 2){
+    ## Exploitation rate at age
+    ## Extract catch-at-age by year and remove extraneous columns
+    c.age <- model$catage[model$catage[,"Yr"] >= start.yr & model$catage[,"Yr"] <= end.yr, ]
+    c.age <- c.age[,-(1:10)]
+    ## Extract catch-at-age by year and remove extraneous columns
+    n.age <- model$natage[model$natage$"Beg/Mid" == "M", -c(1:6,8:11)]
+    n.age <- n.age[n.age[,"Yr"] >= start.yr & n.age[,"Yr"] <= end.yr,]
+    yrs <- n.age[,"Yr"]
+    ## Remove year column, do calculation and add year column back
+    n.age <- n.age[,-1]
+    dat <- f((c.age / n.age) * 100, 2)
+    dat <- cbind(as.character(yrs), dat)
+    colnames(dat)[1] <- "Year"
+    write.csv(dat, file.path(csv.dir, "estimated-exploitation-at-age.csv"), row.names = FALSE)
+  }else if(table.type == 3){
+    ## Catch-at-age in numbers
+    ## Extract catch-at-age by year and remove extraneous columns
+    c.age <- model$catage[model$catage[,"Yr"] >= start.yr & model$catage[,"Yr"] <= end.yr, ]
+    yrs <- as.character(c.age[,"Yr"])
+    c.age <- c.age[,-(1:10)]
+    csv.dat <- c.age
+    csv.dat <- cbind(yrs, csv.dat)
+    colnames(csv.dat)[1] <- "Year"
+    write.csv(csv.dat, file.path(csv.dir, "estimated-catch-at-age.csv"), row.names = FALSE)
 
+    c.age <- f(c.age)
+    dat <- cbind(yrs, c.age)
+    colnames(dat)[1] <- "Year"
+  }else if(table.type == 4){
+    ## Catch-at-age in biomass
+  }else if(table.type == 5){
+    ## Biomass-at-age
+  }else{
+    return(invisible())
+  }
   ## Add latex headers
-  colnames(f) <- sapply(colnames(f), function(x) paste0("\\textbf{",x,"}"))
+  colnames(dat) <- sapply(colnames(dat), function(x) paste0("\\textbf{", x, "}"))
 
   ## Make the size string for font and space size
-  size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
-  return(print(xtable(f, caption=xcaption, label=xlabel, align=get.align(ncol(f))),
-               caption.placement = "top", table.placement="H", include.rownames=FALSE, sanitize.text.function=function(x){x},
-               size=size.string))
+  size.string <- paste0("\\fontsize{", font.size, "}{", space.size, "}\\selectfont")
+  return(print(xtable(dat,
+                      caption = xcaption,
+                      label = xlabel,
+                      align = get.align(ncol(dat))),
+               caption.placement = "top",
+               table.placement = "H",
+               include.rownames = FALSE,
+               sanitize.text.function = function(x){x},
+               size = size.string))
 
 }
