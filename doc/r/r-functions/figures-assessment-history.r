@@ -63,6 +63,7 @@ make.assessment.history.plot <- function(base,
   legCol <- legPch <- rep(NA, nrow(xx))
 
   par(mar = c(3, 3, 1, 6) + 0.1, mgp = c(2, 1, 0))
+  ymax <- 1.05*max(xx[,yearInd], na.rm = TRUE)
   plot(range(years),
        range(xx[,yearInd], na.rm = TRUE),
        type = "n",
@@ -70,6 +71,8 @@ make.assessment.history.plot <- function(base,
        ylab = "Spawning Biomass (million t)",
        las = 1,
        xlim = c(min(years), max(years)),
+       ylim = c(0, ymax),
+       yaxs = "i",
        cex.axis = 0.9,
        cex.lab = 1)
   for(i in 1:(nrow(xx) - 1)){
@@ -85,6 +88,8 @@ make.assessment.history.plot <- function(base,
           type = "o",
           cex = 0.7)
   }
+  # add x-axis mark for final year (without label if too close to nearest decade mark)
+  axis(1, at=max(years), label=ifelse(max(years)%%10 < 2, "", max(years)))
   i <- i + 1
   legCol[i] <- rgb(0, 0, 0, 0.8)
   lwds[i] <- 3

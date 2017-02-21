@@ -1,6 +1,7 @@
 make.forecast.catch.posterior.plot <- function(model,         ## model is the model for which mcmc runs with different forecasts
                                                               ## has been made
                                                fore.yr,       ## Forecast year to make the plot with
+                                               xmax = 4000,   ## max x value (could be more dynamic)
                                                do.plot = TRUE ## If FALSE, no plot will be drawn, but the return values will be returned
                                                ){
   if(do.plot){
@@ -19,12 +20,13 @@ make.forecast.catch.posterior.plot <- function(model,         ## model is the mo
        type = "l",
        lty = 1,
        pch = 16,
-       xlim = c(0, 2500),
+       xlim = c(0, xmax),
        xaxs = "i",
        yaxs = "i",
        ylim = c(0, max(dens$y) * 1.02), lwd = 3, main="", xaxt = "n")
 
-    axis(1, at = seq(0, 2600, 200))
+    axis(1, at = seq(0, xmax, 200), lab=rep("", length(seq(0, xmax, 200))))
+    axis(1, at = seq(0, xmax, 400))
     mtext("Density", side = 2, line = 0.5, las = 0)
   }
   yy <- dens
@@ -134,7 +136,7 @@ make.forecast.risk.comparison.plot <- function(model,        ## model is the mod
                                                legend.cex = 0.7,   ## Text size for the legend
                                                legend.loc = "topleft"){
   oldpar <- par()
-  par(mar=c(4.5,4.5,1,1))
+  par(mar=c(4.5,4.5,1,1), xpd=TRUE) # xpd=TRUE allows points to overlap box around plot
   prob.dat <- model$risks[fore.yr == forecast.yrs][[1]]
   ## Sort the table by catches
   prob.dat <- prob.dat[order(prob.dat[,1]),]
@@ -152,18 +154,31 @@ make.forecast.risk.comparison.plot <- function(model,        ## model is the mod
                    paste0("P(",fore.yr," relative fishing intensity > 100%)"),
                    paste0("P(",fore.yr+1," default harvest policy catch < ",fore.yr," catch)"))
 
+  # make empty plot
   matplot(catches, prob.dat,
           xlim=c(0,max(catches)),
           ylim=c(0,1),
+          las=1,
+          yaxs="i",
           xaxt="n",
           ylab="Probability",
           xlab=paste0("Catch in ",fore.yr," ('000 t)"),
+          type="n")
+  # add x-axis
+  axis(1, at=catches, cex.axis=0.9, las=2)
+  # add plot with points (now on top of axes)
+  matplot(catches, prob.dat,
+          add=TRUE,
           type="b",
           lty=2,
           pch=pch,
           col=colors)
+  # restore clipping to plot region
+  par(xpd=FALSE)
+  # add line at 50% and horizontal axis
   abline(h=0.5, lty=2, lwd=1, col="grey")
-  axis(1, at=catches, cex.axis=0.9, las=2)
+
+  # add legend
   legend(legend.loc, legend.text, col=colors, lty=1, lwd=2, pch=pch, cex=legend.cex, bty="n")
   par <- oldpar
 }

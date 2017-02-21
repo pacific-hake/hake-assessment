@@ -48,6 +48,6 @@ Table 15: ¡§Log Rec. deviations¡¨ should be ¡§Log rec. deviations¡¨
 Table 17: some columns have a space after the dash.
 Table 20: final column, 27% and 24% should have a number after the decimal place.
 Table 22: ¡§2017 ¡V 2019¡¨ no spaces on either side of the dash.
-Figure 38: the upper bound of x-axis needs to be extended so that the 97.5% upper limit is shown.
-Figure 39, 40, 41, 47 and most of the later plots: remove the space between 0 and the axis on the y-axis.
+D - Figure 38: the upper bound of x-axis needs to be extended so that the 97.5% upper limit is shown.
+D - [Fixed 40, 41, and 60, skipping plots dependent on r4ss for now] Figure 39, 40, 41, 47 and most of the later plots: remove the space between 0 and the axis on the y-axis.
 
