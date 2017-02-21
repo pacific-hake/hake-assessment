@@ -31,8 +31,8 @@ make.sampling.history.table <- function(dat,
   return(print(xtable(dat,
                       caption = xcaption,
                       label = xlabel,
-                      # align = c("c", "|Y", "|Y", "Y", "Y", "Y", "Y", "Y|", "Y", "Y", "Y", "Y|")),
-                      align = c("c", "|r", "|r", "r", "r", "r", "r", "r|", "r", "r", "r", "r|")),
+                      align = c("c", "|Y", "|Y", "Y", "Y", "Y", "Y", "Y|", "Y", "Y", "Y", "Y|")),
+                      # align = c("c", "|r", "|r", "r", "r", "r", "r", "r|", "r", "r", "r", "r|")),    # Andy trying unsuccessfully to right justify columns
                       # align = get.align(ncol(dat))), # cannot use since need |
                caption.placement = "top",
                add.to.row = addtorow,
