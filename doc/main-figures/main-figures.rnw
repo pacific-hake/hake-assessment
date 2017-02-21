@@ -611,7 +611,7 @@ make.numbers.at.age.plot(base.model)
 \end{center}
 \caption{Bubble plot of maximum likelihood (MLE) estimates of population numbers at age at the beginning of each year, where diagonals follow each year-class through time.
   The red line represents the mean age. The scale of the bubbles is represented in the key where the units are
-  billions of fish (with the largest bubble representing about 14 billion age-0 recruits in 1980). See Table~\ref{tab:main-est.numbers.at.age} for values.}
+  billions of fish (with the largest bubble representing about 14 billion age-0 recruits in 1980). See Table~\ref{tab:main-est-numbers-at-age} for values.}
 \label{fig:main-numbers-at-age}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -772,7 +772,7 @@ make.forecast.risk.comparison.plot(base.model,
 %% \begin{center}
 %% \includegraphics[width=6.5in, height=4.5in]{main-figures/main_age_comp_forecast.eps}
 %% \end{center}
-%% \caption{Forecast age compositions in numbers and in weight for the 2017 fishery catch (combined across all sectors in both countries). Gray bars show median estimates. Thick black lines show 50\% credibility intervals and thin black lines show 95\% credibility intervals. These estimates are based on the posterior distribution for selectivity averaged across the most recent 5 years and the distribution for expected numbers at age at the start of 2017 (See Table~\ref{tab:main-est.numbers.at.age} for all estimated numbers-at-age). The panel on the right is scaled based on the weight at each age averaged across all years.}
+%% \caption{Forecast age compositions in numbers and in weight for the 2017 fishery catch (combined across all sectors in both countries). Gray bars show median estimates. Thick black lines show 50\% credibility intervals and thin black lines show 95\% credibility intervals. These estimates are based on the posterior distribution for selectivity averaged across the most recent 5 years and the distribution for expected numbers at age at the start of 2017 (See Table~\ref{tab:main-est-numbers-at-age} for all estimated numbers-at-age). The panel on the right is scaled based on the weight at each age averaged across all years.}
 %% \label{fig:main-age-comp-forecast}
 %% \end{figure}
 %% %%%%%%%%%%%%%%%%%%%%%%%
@@ -787,7 +787,7 @@ make.forecast.risk.comparison.plot(base.model,
 make.age.comp.forecast.plot(base.model)
 @
 \end{center}
-\caption{Forecast age compositions in numbers and in weight for the 2017 fishery catch (combined across all sectors in both countries). Gray bars show median estimates. Thick black lines show 50\% credibility intervals and thin black lines show 95\% credibility intervals. These estimates are based on the posterior distribution for selectivity averaged across the most recent 5 years and the distribution for expected numbers at age at the start of 2017 (See Table~\ref{tab:main-est.numbers.at.age} for all estimated numbers-at-age). The panel on the right is scaled based on the weight at each age averaged across all years.}
+\caption{Forecast age compositions in numbers and in weight for the 2017 fishery catch (combined across all sectors in both countries). Gray bars show median estimates. Thick black lines show 50\% credibility intervals and thin black lines show 95\% credibility intervals. These estimates are based on the posterior distribution for selectivity averaged across the most recent 5 years and the distribution for expected numbers at age at the start of 2017 (See Table~\ref{tab:main-est-numbers-at-age} for all estimated numbers-at-age). The panel on the right is scaled based on the weight at each age averaged across all years.}
 \label{fig:main-age-comp-forecast}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
