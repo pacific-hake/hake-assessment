@@ -31,7 +31,7 @@ make.maturity.samples.table <- function(ovary.samples,
 
   return(print(xtable(tab, caption=xcaption,
                       label = xlabel,
-                      align = get.align(ncol(tab), first.left = FALSE, just = "c"),
+                      align = get.align(ncol(tab), first.left = FALSE, just = "r"),
                       digits = rep(0, ncol(tab) + 1)),
                caption.placement = "top",
                include.rownames = FALSE,
