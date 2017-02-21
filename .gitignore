@@ -43,4 +43,5 @@ beamer/JMC/presentation/knitr-cache
 admin/HakeMSEOptions2017-19.pdf
 *.docx
 *.doc
+doc/out-csv/*.*
 doc/main-figures/hake_survey_1995-15_sA_squareroot_bin_narrow-panel2_bitmap100.eps
