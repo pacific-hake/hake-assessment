@@ -388,6 +388,32 @@ make.est.numbers.at.age.table(
 \pagestyle{fancy}
 \clearpage
 
+\newgeometry{hmargin=1in,vmargin=1in}
+\thispagestyle{lscape}
+\begin{landscape}
+  \centering
+<<main.cohort.effects.table, results='asis', echo=FALSE>>=
+make.cohort.table(base.model,
+                  c(1999, 2010, 2014),
+                  start.yr,
+                  last.data.yr,
+                  xcaption = paste0("Key weights for strong cohorts by age. ",
+                                    "Start biomass is the biomass at ",
+                                    "the beginning of the year; Catch weight ",
+                                    "is the catch for the cohort for the year; ",
+                                    "M is the weight attributed to natural mortality; ",
+                                    "and Surving biomass is the weight of the cohort ",
+                                    "at the beginning of the year based on the weight-",
+                                    "at-age from the previous year."),
+                  xlabel = "tab:main-cohort-effects",
+                  font.size = 10,
+                  space.size = 11)
+@
+\end{landscape}
+\restoregeometry
+\pagestyle{fancy}
+\clearpage
+
 <<main.parameter.estimates, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.table(
   base.model,
