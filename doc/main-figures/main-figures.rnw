@@ -290,7 +290,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.mcmc.diag.m.r0, fig.height=5, fig.width=8>>=
+<<main.mcmc.diag.m.r0, fig.height=4.8, fig.width=8>>=
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
@@ -299,7 +299,7 @@ make.mcmc.diag.plot(base.model, subplot = 2)
 par <- oldpar
 @
 \end{center}
-\caption{Summary of MCMC diagnostics for natural mortality (upper panels) and log(\emph{R\subscr{0}}) (lower panels) in the base model.}
+\caption{Summary of MCMC diagnostics for natural mortality (upper panels) and log(\emph{R\subscr{0}}) (lower panels) in the base model. Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; smoothed values, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
 \label{fig:main-mcmc.diag.m.r0}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -307,7 +307,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.mcmc.diag.h.extra.sd, fig.height=5, fig.width=8>>=
+<<main.mcmc.diag.h.extra.sd, fig.height=4.8, fig.width=8>>=
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
@@ -317,7 +317,7 @@ par <- oldpar
 @
 \end{center}
 \caption{Summary of MCMC diagnostics for steepness (upper panels) and the additional standard deviation (SD)
-  in the survey index (lower panels) in the base model.}
+  in the survey index (lower panels) in the base model. Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; smoothed values, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
 \label{fig:main-mcmc.diag.h.extra.sd}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -330,7 +330,7 @@ make.mcmc.diag.hists.plot(base.model)
 @
 \end{center}
 \caption{Summary histograms of MCMC diagnostics for all base model parameters along with derived
-  quantities for the time-series of spawning biomass, and relative spawning biomass.}
+  quantities for the time-series of spawning biomass, and relative spawning biomass. The level of autocorrelation in the chain (distribution across lag times, i.e. distance between samples in the chain, shown in the top right panel) influences the effective sample size (top left panel) used to estimate posterior distributions. The Geweke statistic (lower left panel) tests for equality between means located in the first part of the chain against means in the last part of the chain. The Heidelberger and Welch statistic (lower right panel) tests if the sampled values come from a stationarity distribution by comparing different sections of the chain.}
 \label{fig:main-mcmc.diag.hists}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
