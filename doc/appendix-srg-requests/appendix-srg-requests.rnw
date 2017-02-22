@@ -172,7 +172,8 @@ make.comparison.plot(
                     {../beamer/SRG/Requests/Mexplore.eps} % width=\maxwidth,
   \end{center}
   \vspace{-5mm}
-  \caption{MCMC diagnostics for the natural mortality parameter.
+  \caption{MCMC diagnostics for the natural mortality parameter 
+  for a chain length of 24,000,000.
   Figure~\ref{fig:main-mcmc.diag.m.r0} shows the same plot for the
   base model with a chain length of 12,000,000.}
   \label{fig:srg-m}
@@ -185,7 +186,8 @@ make.comparison.plot(
                     {../beamer/SRG/Requests/Hexplore.eps} % width=\maxwidth,
   \end{center}
   \vspace{-5mm}
-  \caption{MCMC diagnostics for the steepness parameter.
+  \caption{MCMC diagnostics for the steepness parameter
+  for a chain length of 24,000,000.    
   Figure~\ref{fig:main-mcmc.diag.h.extra.sd} shows the same plot for the
   base model with a chain length of 12,000,000.}
   \label{fig:srg-h}
@@ -198,7 +200,8 @@ make.comparison.plot(
                     {../beamer/SRG/Requests/Qexplore.eps} % width=\maxwidth,
   \end{center}
   \vspace{-5mm}
-  \caption{MCMC diagnostics for the catchability parameter.}
+  \caption{MCMC diagnostics for the catchability parameter
+  for a chain length of 24,000,000.}
   \label{fig:srg-q}
 \end{figure}
 
@@ -209,7 +212,8 @@ make.comparison.plot(
                     {../beamer/SRG/Requests/R0explore.eps} % width=\maxwidth,
   \end{center}
   \vspace{-5mm}
-  \caption{MCMC diagnostics for the initial recruitment parameter.
+  \caption{MCMC diagnostics for the initial recruitment parameter
+  for a chain length of 24,000,000.    
   Figure~\ref{fig:main-mcmc.diag.m.r0} shows the same plot for the
   base model with a chain length of 12,000,000.}
   \label{fig:srg-r0}
@@ -222,9 +226,10 @@ make.comparison.plot(
                     {../beamer/SRG/Requests/mcmcNuisance.eps} % width=\maxwidth,
   \end{center}
   \vspace{-5mm}
-  \caption{Summary histograms of MCMC diagnostics for all base model
-  parameters along with derived quantities for the time-series of
-  spawning biomass, and relative spawning biomass.
+  \caption{Summary histograms of MCMC diagnostics 
+  for all base model parameters together with the derived time series of
+  spawning biomass and relative spawning biomass.
+  This is for a chain length of 24,000,000;
   Figure~\ref{fig:main-mcmc.diag.hists} shows the same plot for the
   base model with a chain length of 12,000,000.}
   \label{fig:srg-nuisance}
@@ -236,9 +241,11 @@ make.comparison.plot(
     \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]
                     {../beamer/SRG/Requests/pairs1.eps} % width=\maxwidth,
   \end{center}
-  \vspace{-5mm}
+  % \vspace{-5mm}
   \caption{Posterior correlations among key base-model parameters and derived
-  quantities. Numbers refer to the absolute correlation coefficients, with font
+  quantities
+  for a chain length of 24,000,000. 
+  Numbers refer to the absolute correlation coefficients, with font
   size proportional to the square root of the coefficient.
   Figure~\ref{fig:main-mcmc-pairs} shows the same plot for the
   base model with a chain length of 12,000,000.}
