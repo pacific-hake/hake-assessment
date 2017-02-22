@@ -41,14 +41,8 @@ convergence diagnostics, and data summary tables which are addressed here.
 
 \item Prepare a table for the major cohorts of catch weight, natural mortality
   weight and surviving weight by age for inclusion in the final assessment
-  document going to the JMC. Calculations for each age and year are
-  shown for biomass (Table~\ref{tab:main-est-biomass-at-age}),
-  exploitation rate (Table~\ref{tab:main-est-exp-rate-at-age}),
-  catch numbers (Table~\ref{tab:main-est-catch-at-age}) and
-  catch weight (Table~\ref{tab:main-est-catch-at-age-biomass}).
-  The resulting requested values (including natural mortality) for the
-  main cohorts are are shown in Table~\ref{tab:main-cohort-effects}.
-  
+  document going to the JMC. The requested values are shown in XX.
+
 \end{enumerate}
 
 \begin{figure}[H]
@@ -181,9 +175,9 @@ make.comparison.plot(
   \end{center}
   \vspace{-5mm}
   \caption{MCMC diagnostics for the natural mortality parameter 
-  for a chain length of 24,000,000.
+  for a chain length of 24,000,000 and 1,998 samples.
   Figure~\ref{fig:main-mcmc.diag.m.r0} shows the same plot for the
-  base model with a chain length of 12,000,000.}
+  base model with a chain length of 12,000,000 and 999 samples.}
   \label{fig:srg-m}
 \end{figure}
 
@@ -195,9 +189,9 @@ make.comparison.plot(
   \end{center}
   \vspace{-5mm}
   \caption{MCMC diagnostics for the steepness parameter
-  for a chain length of 24,000,000.    
+  for a chain length of 24,000,000 and 1,998 samples.    
   Figure~\ref{fig:main-mcmc.diag.h.extra.sd} shows the same plot for the
-  base model with a chain length of 12,000,000.}
+  base model with a chain length of 12,000,000 and 999 samples.}
   \label{fig:srg-h}
 \end{figure}
 
@@ -211,9 +205,9 @@ make.comparison.plot(
   % \caption{MCMC diagnostics for the catchability parameter
   \caption{MCMC diagnostics for the additional standard deviation (SD)
   in the survey index
-  for a chain length of 24,000,000.
+  for a chain length of 24,000,000 and 1,998 samples.
   Figure~\ref{fig:main-mcmc.diag.h.extra.sd} shows the same plot for the
-  base model with a chain length of 12,000,000.}
+  base model with a chain length of 12,000,000 and 999 samples.}
   \label{fig:srg-q}
 \end{figure}
 
@@ -225,9 +219,9 @@ make.comparison.plot(
   \end{center}
   \vspace{-5mm}
   \caption{MCMC diagnostics for the initial recruitment parameter
-  for a chain length of 24,000,000.    
+  for a chain length of 24,000,000 and 1,998 samples.    
   Figure~\ref{fig:main-mcmc.diag.m.r0} shows the same plot for the
-  base model with a chain length of 12,000,000.}
+  base model with a chain length of 12,000,000 and 999 samples.}
   \label{fig:srg-r0}
 \end{figure}
 
@@ -241,9 +235,9 @@ make.comparison.plot(
   \caption{Summary histograms of MCMC diagnostics 
   for all base model parameters together with the derived time series of
   spawning biomass and relative spawning biomass.
-  This is for a chain length of 24,000,000;
+  This is for a chain length of 24,000,000 with 1,998 samples;
   Figure~\ref{fig:main-mcmc.diag.hists} shows the same plot for the
-  base model with a chain length of 12,000,000.}
+  base model with a chain length of 12,000,000 and 999 samples.}
   \label{fig:srg-nuisance}
 \end{figure}
 
