@@ -84,7 +84,7 @@ make.parameters.estimated.summary.table <- function(model,                ## mod
   ## The number of them comes from the arguments to this function (for now)
   rec.dev.lb <- fetch.and.split(ctl, 64)[1]
   rec.dev.ub <- fetch.and.split(ctl, 65)[1]
-  rec.dev.vals <- c(paste0("Log Rec. deviations: ", start.rec.dev.yr, "--", end.rec.dev.yr),
+  rec.dev.vals <- c(paste0("Log recruitment deviations: ", start.rec.dev.yr, "--", end.rec.dev.yr),
                     end.rec.dev.yr - start.rec.dev.yr + 1,
                     paste0("(", rec.dev.lb, ",", rec.dev.ub, ")"),
                     "Lognormal(0,\\emph{$\\sigma_r$})")

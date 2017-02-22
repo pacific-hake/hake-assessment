@@ -5,6 +5,8 @@ D = Done.
 N = Not done [with explanation why]
 ??? = Andy not sure, someone please check
 
+[The "s got corrupted somewhere along the way, but this is still readable.]
+
 D - p. 22 [24] ¡§first formed in 2011 and 2012 was the first year¡¨ should be ¡§first formed in 2011, and 2012 was the first year¡¨
 N [we discussed last year and I think concluded that Pacific whiting is not the common name, but a colloquial name; also re-ordered for clarity] - p. 22 ¡§Pacific Hake (or Pacific whiting¡¨ here whiting should be capitalized, presumably.
 D [actually deleted to avoid repitition] - p. 24 ¡§Pacific Hake , also referred to as Pacific whiting ,¡¨ remove the spaces before each of the commas.
@@ -44,8 +46,8 @@ D - p. 62 ¡§Hakes of the world (family Merlucciidae).¡¨ Here the Merlucciidae sh
 D - p. 62 ¡§an example of Atlantic cod (Gadus morhua)¡¨ species name should be in italics ¡§Gadus morhua¡¨
 N [Hard/impossible to do with the vertical lines, which are needed] Table 5: numbers should be right aligned.
 D - Table 14: numbers should be right aligned.
-Table 15: ¡§Log Rec. deviations¡¨ should be ¡§Log rec. deviations¡¨
-Table 17: some columns have a space after the dash.
+D [and spelt out 'recruitment' as there's space] -Table 15: ¡§Log Rec. deviations¡¨ should be ¡§Log rec. deviations¡¨
+N [that was done on purporse to keep numbers lining up and the dashes lined up, although it didn't work perfectly (though no spaces would look worse)] -  Table 17: some columns have a space after the dash.
 Table 20: final column, 27% and 24% should have a number after the decimal place.
 Table 22: ¡§2017 ¡V 2019¡¨ no spaces on either side of the dash.
 D - Figure 38: the upper bound of x-axis needs to be extended so that the 97.5% upper limit is shown.
