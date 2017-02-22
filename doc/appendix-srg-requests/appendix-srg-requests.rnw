@@ -200,8 +200,12 @@ make.comparison.plot(
                     {../beamer/SRG/Requests/Qexplore.eps} % width=\maxwidth,
   \end{center}
   \vspace{-5mm}
-  \caption{MCMC diagnostics for the catchability parameter
-  for a chain length of 24,000,000.}
+  % \caption{MCMC diagnostics for the catchability parameter
+  \caption{MCMC diagnostics for the additional standard deviation (SD)
+  in the survey index
+  for a chain length of 24,000,000.
+  Figure~\ref{fig:main-mcmc.diag.h.extra.sd} shows the same plot for the
+  base model with a chain length of 12,000,000.}
   \label{fig:srg-q}
 \end{figure}
 
