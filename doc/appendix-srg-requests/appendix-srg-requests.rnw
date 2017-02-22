@@ -14,23 +14,23 @@ convergence diagnostics, and data summary tables which are addressed here.
   deviation values while including the age-1 index. The reason for
   this inclusion is that the age-1 index provides the only data-driven
   piece of information on cohort size currently available. Sensitivity
-  runs were conducted and are shown in Figure~\ref{fig:phi.sensitivity.age1}
-  and Figure~\ref{fig:age.1.index.fit}.
+  runs were conducted and are shown in Figures~\ref{fig:phi.sensitivity.age1}
+  and~\ref{fig:age.1.index.fit}.
 
 \item Conduct sensitivity analysis that includes deviations on selectivity
   parameters from 1991-2008 using a standard deviation value of 0.03 and 0.20
   for 2009-2016. Sensitivity runs were conducted and are shown in
-  Figure~\ref{fig:phi.req2.3.sensitivity} and Figure~\ref{fig:mountains.MLE.2}.
+  Figures~\ref{fig:phi.req2.3.sensitivity} and~\ref{fig:mountains.MLE.2}.
 
 \item Conduct sensitivity analysis that includes deviations on selectivity
   parameters from 1991-2015 using a standard deviation value of 0.03 and
   0.20 for 2016. Sensitivity runs were conducted and are shown in
-  Figure~\ref{fig:phi.req2.3.sensitivity} and Figure~\ref{fig:mountains.MLE.3}.
+  Figures~\ref{fig:phi.req2.3.sensitivity} and~\ref{fig:mountains.MLE.3}.
 
 \item Run the base model with a MCMC chain of 24,000,000. This request was made
   to run the MCMC chain out to a length double that of the presented model in
   an attempt to identify any improvement in the diagnostics of the chain. The
-  resulting diagnostics are shown in Figure~\ref{fig:srg-m}--Figure~\ref{fig:srg-pairs},
+  resulting diagnostics are shown in Figures~\ref{fig:srg-m}-\ref{fig:srg-pairs},
   and are comparable to similar figures in the main document.
 
 \item Prepare a table of exploitation rate by age and year for inclusion in
