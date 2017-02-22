@@ -330,3 +330,124 @@ make.est.numbers.at.age.table <- function(model,                ## model is an m
                size = size.string))
 
 }
+
+make.cohort.table <- function(model,
+                              cohorts,              ## a vector of cohort years which are to appear in the table
+                              start.yr,             ## year to start the at-age matrix calcs
+                              end.yr,               ## year to end the  at-age matrix calcs
+                              weight.factor = 1000, ## divide catches by this factor
+                              xcaption = "default",
+                              xlabel   = "default",
+                              font.size = 9,
+                              space.size = 10       ## Size of the spacing for the table
+                              ){
+  ## Returns an xtable in the proper format for cohort's start biomass,
+  ## catch weight, natural mortality weight, and surviving biomass all by age
+
+  if(!length(cohorts)){
+    return(invisible())
+  }
+
+  get.cohorts <- function(d, cohorts){
+    ## Returns a list of the cohort values for data frame d
+    ## cohorts is a vector of the years you want the cohort
+    ## info for. Diagonals of the data frame d make up these cohorts.
+    ## Assumes the year is in column 1.
+    coh.inds <- as.character(which(d[,1] %in% cohorts) - 1)
+    delta <- row(d[-1]) - col(d[-1])
+    coh.list <- split(as.matrix(d[,-1]), delta)
+    lapply(coh.inds, function(x){get(x, coh.list)})
+  }
+
+  ## Extract the numbers-at-age
+  naa <- model$natage[model$natage$"Beg/Mid" == "B", -c(1:6,8:11)]
+  naa <- naa[naa$Yr >= start.yr & naa$Yr <= end.yr,]
+  coh.naa <- get.cohorts(naa, cohorts)
+
+  ## Extract weight-at-age for the fishery (fleet 1)
+  waa <- model$wtatage[model$wtatage$fleet == 1,]
+  waa <- waa[,-(2:6)]
+  waa$yr <- -waa$yr
+  coh.waa <- get.cohorts(waa, cohorts)
+
+  ## Catch-at-age
+  caa <- model$catage
+  caa <- caa[,-c(1:6,8:10)]
+  coh.caa <- get.cohorts(caa, cohorts)
+  ages <- 0:(ncol(caa) - 2)
+
+  ## Start biomass-at-age
+  baa <- cbind(naa$Yr, naa[-1] * waa[-1] / weight.factor)
+  coh.baa <- get.cohorts(baa, cohorts)
+
+  ## Catch weight
+  coh.catch <- lapply(1:length(coh.waa),
+                      function(i, waa, caa){waa[[i]] * caa[[i]] / weight.factor},
+                      waa = coh.waa, caa = coh.caa)
+
+  ## Natural mortality weight
+  coh.m <- lapply(1:length(coh.baa),
+                      function(i, baa, catch){baa[[i]] - catch[[i]]},
+                      baa = coh.baa, catch = coh.catch)
+
+  ## Surviving biomass
+  ## Get the weights-at-age for the year before the cohorts of interest.
+  coh.waa.prev <- get.cohorts(waa, cohorts - 1)
+  ## Throw away the first one so the weight-at-age applied
+  ## to the numbers-at-age in the current year is one less.
+  coh.waa.prev <- lapply(coh.waa.prev, function(x){x[-1]})
+  coh.surv <- lapply(1:length(coh.naa),
+                      function(i, waa, naa){waa[[i]] * naa[[i]] / weight.factor},
+                      waa = coh.waa.prev, naa = coh.naa)
+  ## Bind the individual cohort value vectors into matrices
+  coh.sum <- lapply(1:length(coh.naa),
+                    function(i, baa, catch, m, surv){
+                      do.call(cbind, list(f(baa[[i]], 1),
+                                          f(catch[[i]], 1),
+                                          f(m[[i]], 1),
+                                          f(surv[[i]], 1)))},
+                    baa = coh.baa,
+                    catch = coh.catch,
+                    m = coh.m,
+                    surv = coh.surv)
+  ## Add a column in the first column for the ages
+  coh.sum <- append(coh.sum, list(as.data.frame(ages)), after = 0)
+  ## Bind the list of cohort value matrices into a single ragged matrix
+  n <- max(sapply(coh.sum, nrow))
+  coh.sum.mat <- do.call(cbind,
+                         lapply(coh.sum, function(x){
+                           rbind(x, matrix(, n - nrow(x), ncol(x)))}))
+  coh.sum.mat <- as.data.frame(coh.sum.mat)
+
+  ## Add latex headers
+  colnames(coh.sum.mat) <- c("\\textbf{Age}",
+                             rep(c("\\specialcell{\\textbf{Start}\\\\\\textbf{Biomass}\\\\\\textbf{(000s t)}}",
+                                   "\\specialcell{\\textbf{Catch}\\\\\\textbf{Weight}\\\\\\textbf{(000s t)}}",
+                                   "\\specialcell{\\textbf{M}\\\\\\textbf{(000s t)}}",
+                                   "\\specialcell{\\textbf{Surviving}\\\\\\textbf{Biomass}\\\\\\textbf{(000s t)}}"),
+                                 length(cohorts)))
+  ## Add the extra header spanning multiple columns
+  addtorow <- list()
+  addtorow$pos <- list()
+  addtorow$pos[[1]] <- -1
+  addtorow$command <- "\\hline "
+  for(i in 1:length(cohorts)){
+    addtorow$command <- paste0(addtorow$command,
+                               " & \\multicolumn{4}{c}{\\textbf{",
+                               cohorts[i],
+                               " cohort}}")
+  }
+  addtorow$command <- paste0(addtorow$command, " \\\\")
+  size.string <- paste0("\\fontsize{", font.size, "}{", space.size, "}\\selectfont")
+  return(print(xtable(coh.sum.mat,
+                      caption = xcaption,
+                      label = xlabel,
+                      align = get.align(ncol(coh.sum.mat))),
+               caption.placement = "top",
+               add.to.row = addtorow,
+               table.placement = "H",
+               include.rownames = FALSE,
+               sanitize.text.function = function(x){x},
+               size = size.string))
+
+}
