@@ -361,8 +361,18 @@ make.cohort.table <- function(model,
 
   ## Extract the numbers-at-age
   naa <- model$natage[model$natage$"Beg/Mid" == "B", -c(1:6,8:11)]
+  # numbers at age in next year
+  naa.next <- naa[naa$Yr >= start.yr+1 & naa$Yr <= end.yr+1,]
+  # numbers at age in same year
   naa <- naa[naa$Yr >= start.yr & naa$Yr <= end.yr,]
+  naa.next$Yr <- naa.next$Yr-1 # change year to match other 
+  
   coh.naa <- get.cohorts(naa, cohorts)
+
+  # cohort numbers at age in next year (
+  coh.naa.next <- get.cohorts(naa.next, cohorts-1)
+  ## Throw away the first one so that this represents shifted by 1 year values
+  coh.naa.next <- lapply(coh.naa.next, function(x){x[-1]})
 
   ## Extract weight-at-age for the fishery (fleet 1)
   waa <- model$wtatage[model$wtatage$fleet == 1,]
@@ -385,10 +395,10 @@ make.cohort.table <- function(model,
                       function(i, waa, caa){waa[[i]] * caa[[i]] / weight.factor},
                       waa = coh.waa, caa = coh.caa)
 
-  ## Natural mortality weight
-  coh.m <- lapply(1:length(coh.baa),
-                      function(i, baa, catch){baa[[i]] - catch[[i]]},
-                      baa = coh.baa, catch = coh.catch)
+  ## ## Natural mortality weight (old way of calculating)
+  ## coh.m <- lapply(1:length(coh.baa),
+  ##                     function(i, baa, catch){baa[[i]] - catch[[i]]},
+  ##                     baa = coh.baa, catch = coh.catch)
 
   ## Surviving biomass
   ## Get the weights-at-age for the year before the cohorts of interest.
@@ -396,9 +406,19 @@ make.cohort.table <- function(model,
   ## Throw away the first one so the weight-at-age applied
   ## to the numbers-at-age in the current year is one less.
   coh.waa.prev <- lapply(coh.waa.prev, function(x){x[-1]})
+
   coh.surv <- lapply(1:length(coh.naa),
                       function(i, waa, naa){waa[[i]] * naa[[i]] / weight.factor},
-                      waa = coh.waa.prev, naa = coh.naa)
+                     waa = coh.waa, naa = coh.naa.next)
+
+  ## Natural mortality weight (new way of calculating based on coh.surv above)
+  coh.m <- lapply(1:length(coh.surv),
+                      function(i, baa, catch, surv){baa[[i]] - surv[[i]] - catch[[i]]},
+                      baa = coh.baa, catch = coh.catch, surv = coh.surv)
+
+  ## trying again as the above came out funny
+  ##coh.m = coh.baa - coh.surv - coh.catch
+  
   ## Bind the individual cohort value vectors into matrices
   coh.sum <- lapply(1:length(coh.naa),
                     function(i, baa, catch, m, surv){
