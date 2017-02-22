@@ -21,6 +21,8 @@ convergence diagnostics, and data summary tables which are addressed here.
   parameters from 1991-2008 using a standard deviation value of 0.03 and 0.20
   for 2009-2016. Sensitivity runs were conducted and are shown in
   Figures~\ref{fig:phi.req2.3.sensitivity} and~\ref{fig:mountains.MLE.2}.
+  For comparison, Figure~\ref{fig:mountains.MLE.1} shows the selectivity from
+  a previous sensitivity run. 
 
 \item Conduct sensitivity analysis that includes deviations on selectivity
   parameters from 1991-2015 using a standard deviation value of 0.03 and
