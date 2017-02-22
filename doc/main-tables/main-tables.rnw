@@ -327,8 +327,8 @@ make.est.numbers.at.age.table(
   end.yr = last.data.yr,
   table.type = 2,
   csv.dir = output.csv.dir,
-  xcaption = paste0("Estimated exploitation rate-at-age at the middle ",
-                    "of the year from the base model (MLE)."),
+  xcaption = paste0("Estimated exploitation-rate-at-age at the middle ",
+                    "of the year from the base model (MLE; percentage of age class removed by fishing)."),
   xlabel = "tab:main-est-exp-rate-at-age",
   font.size = 7,
   space.size = 8)
