@@ -41,7 +41,13 @@ convergence diagnostics, and data summary tables which are addressed here.
 
 \item Prepare a table for the major cohorts of catch weight, natural mortality
   weight and surviving weight by age for inclusion in the final assessment
-  document going to the JMC. The requested values are shown in XX.
+   document going to the JMC. Calculations for each age and year are
+   shown for biomass (Table~\ref{tab:main-est-biomass-at-age}),
+   exploitation rate (Table~\ref{tab:main-est-exp-rate-at-age}),
+   catch numbers (Table~\ref{tab:main-est-catch-at-age}) and
+   catch weight (Table~\ref{tab:main-est-catch-at-age-biomass}).
+   The resulting requested values (including natural mortality) for the
+   main cohorts are are shown in Table~\ref{tab:main-cohort-effects}.
 
 \end{enumerate}
 
