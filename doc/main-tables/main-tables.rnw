@@ -330,8 +330,8 @@ make.est.numbers.at.age.table(
   end.yr = last.data.yr,
   table.type = 2,
   csv.dir = output.csv.dir,
-  xcaption = paste0("Estimated exploitation-rate-at-age at the middle ",
-                    "of the year from the base model (MLE; percentage of age class removed by fishing)."),
+  xcaption = paste0("Estimated exploitation-rate-at-age ",
+                    "for each year from the base model (MLE; percentage of age class removed by fishing)."),
   xlabel = "tab:main-est-exp-rate-at-age",
   font.size = 7,
   space.size = 8)
@@ -353,8 +353,8 @@ make.est.numbers.at.age.table(
   end.yr = last.data.yr,
   table.type = 3,
   csv.dir = output.csv.dir,
-  xcaption = paste0("Estimated catch-at-age in numbers at the ",
-                    "beginning of the year from the base model (MLE; thousands)."),
+  xcaption = paste0("Estimated catch-at-age in numbers ",
+                    "for each year from the base model (MLE; thousands)."),
   xlabel = "tab:main-est-catch-at-age",
   font.size = 7,
   space.size = 8)
@@ -376,8 +376,8 @@ make.est.numbers.at.age.table(
   end.yr = end.yr,
   table.type = 4,
   csv.dir = output.csv.dir,
-  xcaption = paste0("Estimated catch-at-age in biomass at the beginning ",
-                    "of the year from the base model (MLE; metric tons)."),
+  xcaption = paste0("Estimated catch-at-age in biomass ",
+                    "for each year from the base model (MLE; metric tons)."),
   xlabel = "tab:main-est-catch-at-age-biomass",
   font.size = 7,
   space.size = 8)
