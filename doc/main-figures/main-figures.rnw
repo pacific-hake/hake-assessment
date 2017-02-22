@@ -299,7 +299,7 @@ make.mcmc.diag.plot(base.model, subplot = 2)
 par <- oldpar
 @
 \end{center}
-\caption{Summary of MCMC diagnostics for natural mortality (upper panels) and log(\emph{R\subscr{0}}) (lower panels) in the base model. Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; smoothed values, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
+\caption{Summary of MCMC diagnostics for natural mortality (upper panels) and log(\emph{R\subscr{0}}) (lower panels) in the base model. Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; cummulative running mean with 5th and 95th percentiles, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
 \label{fig:main-mcmc.diag.m.r0}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -317,7 +317,7 @@ par <- oldpar
 @
 \end{center}
 \caption{Summary of MCMC diagnostics for steepness (upper panels) and the additional standard deviation (SD)
-  in the survey index (lower panels) in the base model. Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; smoothed values, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
+  in the survey index (lower panels) in the base model. Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; cummulative running mean with 5th and 95th percentiles, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
 \label{fig:main-mcmc.diag.h.extra.sd}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
