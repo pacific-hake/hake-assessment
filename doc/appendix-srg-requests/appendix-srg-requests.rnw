@@ -3,22 +3,43 @@
 \chapter{Scientific Review Group (SRG) requests}
 \label{chap:srg-requests}
 
-The SRG meeting took place on Feb 13-16, 2017 in Vancouver, B.C., Canada. The group had several requests for further
-model sensitivities, model convergence diagnostics, and data summary tables which are addressed here.
+The SRG meeting took place on Feb 13-16, 2017 in Vancouver, B.C., Canada.
+The group had several requests for further model sensitivities, model
+convergence diagnostics, and data summary tables which are addressed here.
 
 \begin{enumerate}
 
-\item Conduct sensitivity analysis to the standard deviation associated with time-varying selectivity (phi) across a range of standard deviation values while including the age-1 index.  The reason for this inclusion is that the age-1 index provides the only data-driven piece of information on cohort size currently available.  Sensitivity runs were conducted and are shown in Figure~\ref{fig:phi.sensitivity.age1} and Figure~\ref{fig:age.1.index.fit}.
+\item Conduct sensitivity analysis to the standard deviation associated
+  with time-varying selectivity (phi) across a range of standard
+  deviation values while including the age-1 index. The reason for
+  this inclusion is that the age-1 index provides the only data-driven
+  piece of information on cohort size currently available. Sensitivity
+  runs were conducted and are shown in Figure~\ref{fig:phi.sensitivity.age1}
+  and Figure~\ref{fig:age.1.index.fit}.
 
-\item Conduct sensitivity analysis that includes deviations on selectivity parameters from 1991-2008 using a standard deviation value of 0.03 and 0.20 for 2009-2016. Sensitivity runs were conducted and are shown in Figure~\ref{fig:phi.req2.3.sensitivity} and Figure~\ref{fig:mountains.MLE.2}.
- 
-\item Conduct sensitivity analysis that includes deviations on selectivity parameters from 1991-2015 using a standard deviation value of 0.03 and 0.20 for 2016. Sensitivity runs were conducted and are shown in Figure~\ref{fig:phi.req2.3.sensitivity} and Figure~\ref{fig:mountains.MLE.3}.
+\item Conduct sensitivity analysis that includes deviations on selectivity
+  parameters from 1991-2008 using a standard deviation value of 0.03 and 0.20
+  for 2009-2016. Sensitivity runs were conducted and are shown in
+  Figure~\ref{fig:phi.req2.3.sensitivity} and Figure~\ref{fig:mountains.MLE.2}.
 
-\item Run the base model with a MCMC chain of 24,000,000.  This request was made to run the MCMC chain out to a length double that of the presented model in an attempt to identify any improvement in the diagnostics of the chain. The resulting diagnostics are shown in Figure~\ref{fig:srg-m} - Figure~\ref{fig:srg-pairs}, and are comparable to similar figures in the main document.
+\item Conduct sensitivity analysis that includes deviations on selectivity
+  parameters from 1991-2015 using a standard deviation value of 0.03 and
+  0.20 for 2016. Sensitivity runs were conducted and are shown in
+  Figure~\ref{fig:phi.req2.3.sensitivity} and Figure~\ref{fig:mountains.MLE.3}.
 
-\item Prepare a table of exploitation rate by age and year for inclusion in the final assessment document going to the JMC.  The requested values are shown in Table~\ref{tab:main-est-exp-rate-at-age}.
+\item Run the base model with a MCMC chain of 24,000,000. This request was made
+  to run the MCMC chain out to a length double that of the presented model in
+  an attempt to identify any improvement in the diagnostics of the chain. The
+  resulting diagnostics are shown in Figure~\ref{fig:srg-m}--Figure~\ref{fig:srg-pairs},
+  and are comparable to similar figures in the main document.
 
-\item Prepare a table for the major cohorts of catch weight, natural mortality weight and surviving weight by age for inclusion in the final assessment document going to the JMC.  The requested values are shown in XX.
+\item Prepare a table of exploitation rate by age and year for inclusion in
+  the final assessment document going to the JMC. The requested values are
+  shown in Table~\ref{tab:main-est-exp-rate-at-age}.
+
+\item Prepare a table for the major cohorts of catch weight, natural mortality
+  weight and surviving weight by age for inclusion in the final assessment
+  document going to the JMC. The requested values are shown in XX.
 
 \end{enumerate}
 
@@ -43,7 +64,9 @@ make.comparison.plot(
   end.yr = end.yr)
 @
 \end{center}
-\caption{Sensitivity to the standard deviation associated with time-varying selectivity (phi) across a range of standard deviation values while including the age-1 index.}
+\caption{Sensitivity to the standard deviation associated
+  with time-varying selectivity (phi) across a range of
+  standard deviation values while including the age-1 index.}
 \label{fig:phi.sensitivity.age1}
 \end{figure}
 
@@ -69,7 +92,9 @@ make.comparison.plot(
   end.yr = end.yr)
 @
 \end{center}
-\caption{Sensitivity to including the age-1 index when the standard deviation associated with time-varying selectivity (phi) is 0.03 or 0.20 as in the base model.}
+\caption{Sensitivity to including the age-1 index when
+  the standard deviation associated with time-varying
+  selectivity (phi) is 0.03 or 0.20 as in the base model.}
 \label{fig:age.1.index.fit}
 \end{figure}
 
@@ -95,7 +120,9 @@ make.comparison.plot(
   end.yr = end.yr)
 @
 \end{center}
-\caption{Sensitivity analysis that includes deviations on selectivity parameters of 0.03 and 0.20 across different time periods as specified in the legend.}
+\caption{Sensitivity analysis that includes deviations on
+  selectivity parameters of 0.03 and 0.20 across different
+  time periods as specified in the legend.}
 \label{fig:phi.req2.3.sensitivity}
 \end{figure}
 
@@ -106,7 +133,8 @@ make.comparison.plot(
     make.tv.selex.plot(sens.models.8[[1]], mcmc=FALSE) # model59, phi = 0.03 for all years
 @
 \end{center}
-\caption{Mountains plot of median fishery selectivity in recent years using deviations on selectivity parameters of 0.03 for all years.}
+\caption{Mountains plot of median fishery selectivity in recent
+  years using deviations on selectivity parameters of 0.03 for all years.}
 \label{fig:mountains.MLE.1}
 \end{figure}
 
@@ -117,7 +145,9 @@ make.comparison.plot(
     make.tv.selex.plot(sens.models.8[[2]], mcmc=FALSE) # phi = 0.03 up to 2008, and 0.20 for 2009-2016
 @
 \end{center}
-\caption{Mountains plot of median fishery selectivity in recent years using deviations on selectivity parameters of 0.03 up to 2008 and 0.20 for 2009-2016.}
+\caption{Mountains plot of median fishery selectivity
+  in recent years using deviations on selectivity
+  parameters of 0.03 up to 2008 and 0.20 for 2009--2016.}
 \label{fig:mountains.MLE.2}
 \end{figure}
 
@@ -128,7 +158,9 @@ make.comparison.plot(
     make.tv.selex.plot(sens.models.8[[3]], mcmc=FALSE) # phi = 0.03 up to 2015, and 0.20 for 2016
 @
 \end{center}
-\caption{Mountains plot of median fishery selectivity in recent years using deviations on selectivity parameters of 0.03 up to 2015 and 0.20 for 2016.}
+\caption{Mountains plot of median fishery selectivity
+  in recent years using deviations on selectivity
+  parameters of 0.03 up to 2015 and 0.20 for 2016.}
 \label{fig:mountains.MLE.3}
 \end{figure}
 
@@ -136,29 +168,34 @@ make.comparison.plot(
 \begin{figure}[p]
   \vspace{-5mm}
   \begin{center}
-    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{../beamer/SRG/Requests/Mexplore.eps} % width=\maxwidth,
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]
+                    {../beamer/SRG/Requests/Mexplore.eps} % width=\maxwidth,
   \end{center}
   \vspace{-5mm}
   \caption{MCMC diagnostics for the natural mortality parameter.
-  Compare with the base model figure \ref{fig:main-mcmc.diag.m.r0}.}
+  Figure~\ref{fig:main-mcmc.diag.m.r0} shows the same plot for the
+  base model with a chain length of 12,000,000.}
   \label{fig:srg-m}
 \end{figure}
 
 \begin{figure}[p]
   \vspace{-5mm}
   \begin{center}
-    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{../beamer/SRG/Requests/Hexplore.eps} % width=\maxwidth,
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]
+                    {../beamer/SRG/Requests/Hexplore.eps} % width=\maxwidth,
   \end{center}
   \vspace{-5mm}
   \caption{MCMC diagnostics for the steepness parameter.
-  Compare with the base model figure \ref{fig:main-mcmc.diag.h.extra.sd}.}
+  Figure~\ref{fig:main-mcmc.diag.h.extra.sd} shows the same plot for the
+  base model with a chain length of 12,000,000.}
   \label{fig:srg-h}
 \end{figure}
 
 \begin{figure}[p]
   \vspace{-5mm}
   \begin{center}
-    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{../beamer/SRG/Requests/Qexplore.eps} % width=\maxwidth,
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]
+                    {../beamer/SRG/Requests/Qexplore.eps} % width=\maxwidth,
   \end{center}
   \vspace{-5mm}
   \caption{MCMC diagnostics for the catchability parameter.}
@@ -168,37 +205,43 @@ make.comparison.plot(
 \begin{figure}[p]
   \vspace{-5mm}
   \begin{center}
-    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{../beamer/SRG/Requests/R0explore.eps} % width=\maxwidth,
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]
+                    {../beamer/SRG/Requests/R0explore.eps} % width=\maxwidth,
   \end{center}
   \vspace{-5mm}
   \caption{MCMC diagnostics for the initial recruitment parameter.
-  Compare with the base model figure \ref{fig:main-mcmc.diag.m.r0}.}
+  Figure~\ref{fig:main-mcmc.diag.m.r0} shows the same plot for the
+  base model with a chain length of 12,000,000.}
   \label{fig:srg-r0}
 \end{figure}
 
 \begin{figure}[p]
   \vspace{-5mm}
   \begin{center}
-    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{../beamer/SRG/Requests/mcmcNuisance.eps} % width=\maxwidth,
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]
+                    {../beamer/SRG/Requests/mcmcNuisance.eps} % width=\maxwidth,
   \end{center}
   \vspace{-5mm}
   \caption{Summary histograms of MCMC diagnostics for all base model
   parameters along with derived quantities for the time-series of
-  spawning biomass, and relative spawning biomass. Compare with
-  the base model in figure \ref{fig:main-mcmc.diag.hists}.}
+  spawning biomass, and relative spawning biomass.
+  Figure~\ref{fig:main-mcmc.diag.hists} shows the same plot for the
+  base model with a chain length of 12,000,000.}
   \label{fig:srg-nuisance}
 \end{figure}
 
 \begin{figure}[p]
   \vspace{-5mm}
   \begin{center}
-    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{../beamer/SRG/Requests/pairs1.eps} % width=\maxwidth,
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]
+                    {../beamer/SRG/Requests/pairs1.eps} % width=\maxwidth,
   \end{center}
   \vspace{-5mm}
   \caption{Posterior correlations among key base-model parameters and derived
   quantities. Numbers refer to the absolute correlation coefficients, with font
   size proportional to the square root of the coefficient.
-  Compoare with the base model in figure \ref{fig:main-mcmc-pairs}.}
+  Figure~\ref{fig:main-mcmc-pairs} shows the same plot for the
+  base model with a chain length of 12,000,000.}
 \label{fig:srg-pairs}
 \end{figure}
 
