@@ -143,15 +143,13 @@ Note that all values used here are based on maximum likelihood estimates (MLEs),
 
 Here are the detailed calculations. 
 
-For clarity the exact numbers are taken from the published tables (which are necessarily rounded), so any minor differences in these calculations compared to the published calculations are likely due to rounded errors. 
-
-An exception is the weight-at-age numbers....
-
-********the model output (rather than the rounded values shown in the tables), but this should not make a difference to the results.
+For clarity the exact numbers are taken from the published tables (which are necessarily rounded), so any minor differences in these calculations compared to the published calculations are likely due to rounded errors. Exact numbers are used for the weight-at-age values and the natural mortality estimate (since the rounding for these can make more of a difference).
 
 \section{1999 cohort}
 
 \subsection{Numbers at age and proportion surviving}
+
+Numbers are the numbers \emph{at the start of the year}. 
 
 <<>>=
 # From the estimated numbers at the beginning of each year shown in
@@ -162,13 +160,13 @@ num.age.2 =  7202        # millions of individuals that are age 2
 num.age.3 =  5757        # millions of individuals that are age 3
 @ 
 
-The proportion of individuals surviving from age-0 to age-1 is:
+The proportion of individuals surviving from age-0 to (the start of the year in which they are) age-1 is:
 <<>>=
 prop.to.age.1 = num.age.1 / num.age.0
 prop.to.age.1
 @ 
 
-\noindent Note: the above lines show the calculations and result; {\tt >} indicates a calculation, and {\tt [1]} indicates a printout of the result.
+\noindent [Note that the above lines show the calculations and result; {\tt >} indicates a calculation, and {\tt [1]} indicates a printout of the result.]
 
 The proportion of individuals surviving from age-0 to age-2 is:
 <<>>=
@@ -191,15 +189,15 @@ which gives an annual survival rate of
 exp(-M)
 @ 
 
-This is essentially the same as the value calculated above for the proportion surviving to age-1 ({\tt prop.to.age.1}).
+This is essentially the same as the value calculated above for the proportion surviving to age-1 ({\tt prop.to.age.1}); slight difference is due to rounding of numbers at age.
 
-Aside: To confirm that that slight difference is due to rounding, if we use the precise values we get:
+%Aside: To confirm that that slight difference is due to rounding, if we use the precise values we get:
 % nat = tbl_df(base.model$natage)
 % select(filter(nat, Yr %in% c(1999, 2000)), c(7,10,12,13,14))
 % base.model$par[1,"Value_again"]
-<<>>=
-8939.69  / 11090.3             # num.age.1 / num.age.1 
-@ 
+%<<>>=
+%8939.69  / 11090.3             # num.age.1 / num.age.1 
+%@ 
 % The model and our assessment document tables use the precise values, but here it's simpler to see where numbers come from by using the values straight out of the assessment tables.
 
 \subsection{Starting biomass at age}
@@ -232,7 +230,7 @@ In the assessment model (as for most such models) half of the annual natural mor
 
 % The catch is calculated as the estimated percentage of the age class removed by fishing, from Table 22. 
 
-So to get the `Catch Weight' in Table 25 we take the starting biomass, multiply by the half-of-the-natural-mortality term (the {\tt exp(-M/2)} term below) multiplied by the proportion of the age class removed by fishing (which we get from Table 22, converting percentage to proportion):
+So to get the `Catch Weight' in Table 25 we take the starting biomass and multiply it by the half-of-the-natural-mortality term (the {\tt exp(-M/2)} term below) and then multiply by the proportion of the age class removed by fishing (which we get from Table 22, converting percentage to proportion):
 <<>>=
 catch.weight.age.0 = start.biomass.age.0 * exp(-M/2)* 0
                                         # 0 is the 0% caught from Table 22
@@ -252,7 +250,7 @@ These numbers agree with Table 25 (with rounding errors).
 
 \subsection{Biomass of mortality at each age}
 
-The biomass of mortality at each age is the sum of the `early mortality', which is assumed to occur before fishing, and the `late mortality' that occurs after fishing. The early mortality is the biomass at the start of the year multiplied by the {\tt 1 - exp(-M/2)} term (representing half the annual mortality). The `late mortality' is calculated as the starting biomass minus the early mortality minus the catch, all then multiplied by the {\tt 1 - exp(-M/2)} term. These calculations give the  `M' column in Table 25:
+The biomass of mortality at each age is the sum of the `early mortality', which is assumed to occur before fishing, and the `late mortality' that occurs after fishing. The early mortality is the biomass at the start of the year multiplied by the {\tt 1 - exp(-M/2)} term (representing half the annual mortality). The `late mortality' is calculated as the starting biomass minus the early mortality minus the catch, all then multiplied by the {\tt 1 - exp(-M/2)} term (representing the second half of the  annual mortality). These calculations give the  `M' column in Table 25:
 <<>>=
 mort.early.weight.age.0 = start.biomass.age.0 * (1 - exp(-M/2))
 mort.late.weight.age.0 = (start.biomass.age.0 - mort.early.weight.age.0 - 
@@ -295,6 +293,29 @@ surv.biomass.age.2
 surv.biomass.age.3 =  start.biomass.age.3 - catch.weight.age.3 - mort.weight.age.3
 surv.biomass.age.3
 @ 
+
+These agree with Table 25.
+
+\subsection{Summary for 1999 cohort}
+
+So the proportion of individuals surviving from age-0 to (the start of) age-3 is
+<<>>=
+prop.to.age.3
+@ 
+
+The total catch of that cohort to the start of age-3 (i.e. catch of age-0, age-1 and age-2) is:
+<<>>=
+catch.weight.to.age.3 = catch.weight.age.0 + catch.weight.age.1 + catch.weight.age.2
+catch.weight.to.age.3
+@ 
+in 000s~t.
+
+The total biomass of the mortality of that cohort to the start of age-3 (i.e. total mortality of age-0, age-1 and age-2) is:
+<<>>=
+mort.weight.to.age.3 = mort.weight.age.0 + mort.weight.age.1 + mort.weight.age.2
+mort.weight.to.age.3
+@ 
+in 000s~t.
 
 \end{document}
 
