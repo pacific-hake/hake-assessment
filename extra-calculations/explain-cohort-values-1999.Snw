@@ -301,19 +301,19 @@ So the proportion of individuals surviving from age-0 to (the start of) age-3 is
 prop.to.age.3
 @ 
 
-The total catch of that cohort to the start of age-3 (i.e. catch of age-0, age-1 and age-2) is:
+The total catch (in 000s~t) of age-2 is:
 <<>>=
-catch.weight.to.age.3 = catch.weight.age.0 + catch.weight.age.1 + catch.weight.age.2
-catch.weight.to.age.3
+catch.weight.age.2
 @ 
-in 000s~t.
-
-The total biomass of the mortality of that cohort to the start of age-3 (i.e. total mortality of age-0, age-1 and age-2) is:
+and the total mortality (in 000s~t) of age-2 is:
 <<>>=
-mort.weight.to.age.3 = mort.weight.age.0 + mort.weight.age.1 + mort.weight.age.2
-mort.weight.to.age.3
+mort.weight.age.2
 @ 
-in 000s~t.
+with the ratio of catch over total mortality of age-2 being:
+<<>>=
+catch.ratio.age.2 = catch.weight.age.2 / (catch.weight.age.2 + mort.weight.age.2)
+catch.ratio.age.2
+@ 
 
 \end{document}
 
