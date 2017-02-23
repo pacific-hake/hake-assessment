@@ -141,11 +141,9 @@ Note that all values used here are based on maximum likelihood estimates (MLEs),
 
 \section{Calculations}
 
-Here are the detailed calculations. 
+Here are the detailed calculations to obatin Table~25, using the annual estimated numbers-at-age (Table~20), percentage of each age class removed by fishing (Table~22), mean weight-at-age (Figure~12) and estimated natural mortality rate (Table~26).
 
 For clarity the exact numbers are taken from the published tables (which are necessarily rounded), so any minor differences in these calculations compared to the published calculations are likely due to rounded errors. Exact numbers are used for the weight-at-age values and the natural mortality estimate (since the rounding for these can make more of a difference).
-
-\section{1999 cohort}
 
 \subsection{Numbers at age and proportion surviving}
 
