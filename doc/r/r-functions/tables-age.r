@@ -336,6 +336,7 @@ make.cohort.table <- function(model,
                               start.yr,             ## year to start the at-age matrix calcs
                               end.yr,               ## year to end the  at-age matrix calcs
                               weight.factor = 1000, ## divide catches by this factor
+                              csv.dir = "out-csv",  ## The outputs will be written to a csv file in this directory
                               xcaption = "default",
                               xlabel   = "default",
                               font.size = 9,
@@ -346,6 +347,11 @@ make.cohort.table <- function(model,
 
   if(!length(cohorts)){
     return(invisible())
+  }
+
+  ## Make sure the csv directory exists
+  if(!dir.exists(csv.dir)){
+    dir.create(csv.dir)
   }
 
   get.cohorts <- function(d, cohorts){
@@ -419,6 +425,45 @@ make.cohort.table <- function(model,
   ## trying again as the above came out funny
   ##coh.m = coh.baa - coh.surv - coh.catch
   
+  ##----------------------------------------------------------------------------
+  ## write the CSV
+  ## Bind the individual cohort value vectors into matrices
+  csv.coh.sum <-
+    lapply(1:length(coh.naa),
+           function(i, baa, catch, m, surv){
+             do.call(cbind, list(baa[[i]],
+                                 catch[[i]],
+                                 m[[i]],
+                                 surv[[i]]))},
+           baa = coh.baa,
+           catch = coh.catch,
+           m = coh.m,
+           surv = coh.surv)
+  ## Add a column in the first column for the ages
+  csv.coh.sum <- append(csv.coh.sum, list(as.data.frame(ages)), after = 0)
+  ## Bind the list of cohort value matrices into a single ragged matrix
+  n <- max(sapply(csv.coh.sum, nrow))
+  csv.coh.sum.mat <- do.call(cbind,
+                             lapply(csv.coh.sum, function(x){
+                               rbind(x, matrix(, n - nrow(x), ncol(x)))}))
+  csv.coh.sum.mat <- as.data.frame(csv.coh.sum.mat)
+  csv.headers <- lapply(1:length(cohorts),
+                        function(i, cohort){
+                          c(paste(cohort[i], "Start Biomass"),
+                            paste(cohort[i], "Catch Weight"),
+                            paste(cohort[i], "M Weight"),
+                            paste(cohort[i], "Surviving Biomass"))},
+                        cohort = cohorts)
+  csv.headers <- c("Age", unlist(csv.headers))
+  colnames(csv.coh.sum.mat) <- csv.headers
+  write.csv(csv.coh.sum.mat,
+            file.path(csv.dir, "cohort-effects.csv"),
+            row.names = FALSE,
+            na = "")
+  ##----------------------------------------------------------------------------
+
+  ##----------------------------------------------------------------------------
+  ## Create the latex table (same steps as above but with nice formatting
   ## Bind the individual cohort value vectors into matrices
   coh.sum <- lapply(1:length(coh.naa),
                     function(i, baa, catch, m, surv){
@@ -446,6 +491,8 @@ make.cohort.table <- function(model,
                                    "\\specialcell{\\textbf{M}\\\\\\textbf{(000s t)}}",
                                    "\\specialcell{\\textbf{Surviving}\\\\\\textbf{Biomass}\\\\\\textbf{(000s t)}}"),
                                  length(cohorts)))
+  ##----------------------------------------------------------------------------
+
   ## Add the extra header spanning multiple columns
   addtorow <- list()
   addtorow$pos <- list()

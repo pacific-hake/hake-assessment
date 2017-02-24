@@ -397,6 +397,7 @@ make.cohort.table(base.model,
                   c(1999, 2010, 2014),
                   start.yr,
                   last.data.yr,
+                  csv.dir = output.csv.dir,
                   xcaption = paste0(
                       # "Age-dependent Key weights for strong cohorts by age. ",
                                     "For the strong cohorts, calculations of ",
