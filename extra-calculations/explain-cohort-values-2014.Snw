@@ -1,5 +1,5 @@
-% explain-cohort-values-1999.Snw - detailed calculations to explain the
-%  numbers for 1999 cohort in Table 25 of the 2017 hake assessment. 
+% explain-cohort-values-2014.Snw - detailed calculations to explain the
+%  numbers for 2014 cohort in Table 25 of the 2017 hake assessment. 
 %  This document is spelling out the calculations for others to see, and
 %  so is purposefully not written in the most efficient way. 
 %  Andrew Edwards, 23/2/17.
@@ -108,9 +108,9 @@
 
 
 \begin{center}
-{\LARGE Details regarding calculations of 1999 cohort}
+{\LARGE Details regarding calculations of 2014 cohort}
   
-  {\tt explain-cohort-values-1999.Snw}
+  {\tt explain-cohort-values-2014.Snw}
 
 % \chapter{Create index for Ser.~ B: all hooks, 1995, 1996 and 2003-2014 series}
 
@@ -151,11 +151,11 @@ Numbers are the numbers \emph{at the start of the year}.
 
 <<>>=
 # From the estimated numbers at the beginning of each year shown in
-#  Table 20, following the 1999 cohort along a diagonal:
-num.age.0 = 11090        # millions of individuals that are age 0 
-num.age.1 =  8940        # millions of individuals that are age 1
-num.age.2 =  7202        # millions of individuals that are age 2 
-num.age.3 =  5757        # millions of individuals that are age 3
+#  Table 20, following the 2014 cohort along a diagonal:
+num.age.0 = 10501        # millions of individuals that are age 0 
+num.age.1 =  8465        # millions of individuals that are age 1
+num.age.2 =  6812        # millions of individuals that are age 2 
+num.age.3 =  5126        # millions of individuals that are age 3
 @ 
 
 The proportion of individuals surviving from age-0 to (the start of the year in which they are) age-1 is:
@@ -191,7 +191,7 @@ This is essentially the same as the value calculated above for the proportion su
 
 %Aside: To confirm that that slight difference is due to rounding, if we use the precise values we get:
 % nat = tbl_df(base.model$natage)
-% select(filter(nat, Yr %in% c(1999, 2000)), c(7,10,12,13,14))
+% select(filter(nat, Yr %in% c(2014, 2000)), c(7,10,12,13,14))
 % base.model$par[1,"Value_again"]
 %<<>>=
 %8939.69  / 11090.3             # num.age.1 / num.age.1 
@@ -200,12 +200,12 @@ This is essentially the same as the value calculated above for the proportion su
 
 \subsection{Starting biomass at age}
 
-Now we need the mean weight of individuals of each age class; this differs from year to year based on data. So these numbers are taken from the colourful Figure~12, and are \emph{for the 1999 cohort}. Since the numbers are in the figure are rounded (for clarity), I'm using the actual numbers from the data (when rounded these then match the figure):
+Now we need the mean weight of individuals of each age class; this differs from year to year based on data. So these numbers are taken from the colourful Figure~12, and are \emph{for the 2014 cohort}. Since the numbers are in the figure are rounded (for clarity), I'm using the actual numbers from the data (when rounded these then match the figure): % wt.at.age[24:28, 1:5]
 <<>>=
-weight.age.0 = 0.0152           # weight of age.0, kg
-weight.age.1 = 0.1899           # weight of age.1, kg
-weight.age.2 = 0.2867           # weight of age.2, kg
-weight.age.3 = 0.4575           # weight of age.3, kg
+weight.age.0 = 0.0148           # weight of age.0, kg
+weight.age.1 = 0.0759           # weight of age.1, kg
+weight.age.2 = 0.2439           # weight of age.2, kg
+weight.age.3 = 0.3831           # weight of age.3, kg - **using 2016 value**
 @ 
 
 The `Starting Biomass' for a particular age in Table 25 is then just the number of individuals times the mean weight:
@@ -220,7 +220,7 @@ start.biomass.age.3 = num.age.3 * weight.age.3
 start.biomass.age.3
 @ 
 
-These match the values in Table 25.
+These match the values in Table 25. The age-3 value is based on assuming the 2016 value for mean weight of an age-3 fish.
 
 \subsection{Catch weight at each age}
 
@@ -233,18 +233,18 @@ So to get the `Catch Weight' in Table 25 we take the starting biomass and multip
 catch.weight.age.0 = start.biomass.age.0 * exp(-M/2)* 0
                                         # 0 is the 0% caught from Table 22
 catch.weight.age.0
-catch.weight.age.1 = start.biomass.age.1 * exp(-M/2) * 0.0005 
-                                        # 0.0005 is the 0.05% caught
+catch.weight.age.1 = start.biomass.age.1 * exp(-M/2) * 0.0017 
+                                        # 0.0017 is the 0.17% caught
 catch.weight.age.1
-catch.weight.age.2 = start.biomass.age.2 * exp(-M/2) * 0.0085
-                                        # 0.0085 is the 0.85% caught
+catch.weight.age.2 = start.biomass.age.2 * exp(-M/2) * 0.0688
+                                        # 0.0688 is the 6.88% caught
 catch.weight.age.2
-catch.weight.age.3 = start.biomass.age.3 * exp(-M/2) * 0.0274
-                                        # 0.0274 is the 2.74% caught
+catch.weight.age.3 = start.biomass.age.3 * exp(-M/2) * NA
+                                        # NA  - don't know this yet
 catch.weight.age.3
 @ 
 
-These numbers agree with Table 25 (with rounding errors).
+These numbers agree with Table 25 (with rounding errors). {\tt NA} means `not applicable' since we don't know the catch of 2014 age-3's yet.
 
 \subsection{Biomass of mortality at each age}
 
@@ -294,7 +294,7 @@ surv.biomass.age.3
 
 These agree with Table 25.
 
-\subsection{Summary for 1999 cohort}
+\subsection{Summary for 2014 cohort}
 
 So the proportion of individuals surviving from age-0 to (the start of) age-3 is
 <<>>=
@@ -558,7 +558,7 @@ print(egDataTab, table.placement="tp", caption.placement="top",
 # filter(dataOrig, AphiaID == 105814)
 # Gives:
 # 105814 NS-IBTS 2012       1    3 Sciliorhinus caniculus      340
-# 105814 NS-IBTS 1999       1    3  Scyliorhinus canicula      580
+# 105814 NS-IBTS 2014       1    3  Scyliorhinus canicula      580
 # 105814 NS-IBTS 2014       1    5  Scyliorhinus canicula      370
 # Great, two names. Go with Scyliorhinus canicula (Smallspotted Catshark 
 #  [Sharks of the world, Compagno et al.])
