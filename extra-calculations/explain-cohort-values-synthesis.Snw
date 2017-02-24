@@ -1,0 +1,647 @@
+% explain-cohort-values-synthesis.Snw - synthesis of previous calculations.
+%  This document is spelling out the calculations for others to see, and
+%  so is purposefully not written in the most efficient way. 
+%  Andrew Edwards, 23/2/17.
+% nSeaFungAnalysis.Snw - analysis of data that Julia downloaded based on
+%  Fung et al., that I first imported into nSeaFungImport.Snw. 3/11/15.
+
+\documentclass[12pt]{article}   
+
+\textheight 213mm  
+\topmargin -10mm  
+\addtolength{\textwidth}{1.0in}
+\addtolength{\oddsidemargin}{-0.5in}
+
+\usepackage{mathptmx}    % Should have Times plus math fonts. 
+
+\usepackage{Sweave}
+\usepackage{epsfig}
+% \usepackage{rotating}           % For sideways table
+% \usepackage{lineno}
+\usepackage{amsmath}       % for \text for x_min, for \dfrac
+% \usepackage{cancel}        % for \cancel
+\usepackage{natbib}
+
+\usepackage{graphicx}
+
+\bibliographystyle{natbib}
+
+% \linenumbers
+
+\newcommand{\eb}{\begin{eqnarray}}
+\newcommand{\ee}{\end{eqnarray}}
+\newcommand{\xmin}{x_{\mathrm{min}}}
+\newcommand{\xmax}{x_{\mathrm{max}}}
+\newcommand{\logten}{\log_{\mathrm{10}}}
+\newcommand{\logtwo}{\log_{\mathrm{2}}}
+
+\newcommand\onefig[2]{    % filename is #1, text is #2
+  \begin{figure}[tp]
+  \begin{center}
+   % \includegraphics[width=6in,height=7in,keepaspectratio=TRUE]{#1.eps} \\  % RH much better control
+  \epsfxsize=6in
+  \epsfbox{#1.eps}
+  \end{center}
+  \caption{#2 }
+  \label{fig:#1} 
+  \end{figure}
+  \clearpage
+}
+
+\newcommand\twofig[3]{   % figure #1 under #2, caption text #3
+  \begin{figure}[tp]     %  label will be #1
+  \centering
+%  \epsfxsize=6in
+%  \epsfysize=3.5in
+  \begin{tabular}{c}
+  %	\includegraphics[width=6in,height=3.5in,keepaspectratio=TRUE]{#1.eps} \\  % RH much better control
+  %	\includegraphics[width=6in,height=3.5in,keepaspectratio=TRUE]{#2.eps}
+  \epsfbox{#1.eps} \\
+  \epsfbox{#2.eps}
+  \end{tabular}
+  \caption{#3}
+  \label{fig:#1}
+  \end{figure}
+  \clearpage
+}
+
+\newcommand\threefig[4]{    % figure #1 then #2 then #3, 
+  \begin{figure}[htp]       %  caption text #4, label will be #1
+  \centering
+  \begin{tabular}{c}
+%	\includegraphics[width=6in,height=2.5in,keepaspectratio=TRUE]{#1.eps} \\  % RH much better control
+%	\includegraphics[width=6in,height=2.5in,keepaspectratio=TRUE]{#2.eps} \\
+%	\includegraphics[width=6in,height=2.5in,keepaspectratio=TRUE]{#3.eps}
+  \vspace{-20mm} 
+  \epsfbox{#1.eps} \\
+  \vspace{-20mm} 
+  \epsfbox{#2.eps} \\
+   \vspace{-20mm} 
+  \epsfbox{#3.eps}
+  \end{tabular}
+  \caption{#4}
+  \label{fig:#1}
+  \end{figure}
+}
+
+\renewcommand{\baselinestretch}{1.2}
+
+\begin{document}
+
+\SweaveOpts{pdf=FALSE, echo=TRUE, results=verbatim}
+% Most useful options (with defaults):
+% echo        = TRUE     - includes R code in output file
+% keep.source = FALSE    - when echoing, if TRUE then original source is copied to the file, otherwise deparsed source is echoed.
+% eval        = TRUE     - if FALSE then chunk is not evaluated
+% results     = VERBATIM - R output included verbatim, if TEX output is already proper latex and included as is, 
+%                          if HIDE then all output is completely suppressed (but the code executed - good for admb) results options should all be lower case (else get warnings)
+% pdf         = TRUE     - whether .pdf figures shall be generated
+% eps         = TRUE     - whether .eps figures shall be generated
+% strip.white = FALSE    - if true then blank lines at beginning and end of output are removed. If all, then all blank lines are removed.
+% width       = 6        - width of figures in inches
+% height      = 6        - height of figures in inches
+% fig         = FALSE    - whether the code chunk produces graphical output (only one per chunk)
+
+% \setkeys{Gin}{width=6in}     % from googling sweave figure bigger.
+%  It will set this for the rest of document [doesn't width do that in the above?]
+
+
+\begin{center}
+{\LARGE Synthesis of calculations regarding 1999, 2010 and 2014 cohorts}
+  
+  {\tt explain-cohort-values-synthesis.Snw}
+
+% \chapter{Create index for Ser.~ B: all hooks, 1995, 1996 and 2003-2014 series}
+
+Andrew M.~Edwards
+
+\today{}
+\end{center}
+
+<<setupR, echo=FALSE, results=hide>>=
+require(dplyr)
+#require(xtable)
+#require(gplots)                 # for plotCI
+# require(boot)
+# require(PBSmapping)             # for .createIDs
+rm(list=ls())
+
+#source("../s_dplyr_funcs.r")     # helper functions that allow string arguments,
+                                #  by Sebastian Kranz.
+figheight = 7 # 6 
+figwidth = 5.7  
+@ 
+
+\section{Issue}
+
+The new Table 25 in the final 2017 hake assessment document (dated 22 February 2017) shows, for strong cohorts, the calculations of what happens to the biomass at each age. Intuitively it is not obvious that the catches for each cohort agree with the declines shown in the estimated numbers-at-age in Table~20. 
+
+Note that all values used here are based on maximum likelihood estimates (MLEs), which is what is in the Tables, and so do not account for uncertainty.
+
+\section{Synthesis}
+
+The calculations in {\tt explain-cohort-values-1999.pdf}, {\tt explain-cohort-values-2010.pdf} and {\tt explain-cohort-values-2014.pdf} showed in detail how Table 25 is calculated. The files are the same format for easy comparison (just flip between them to compare numbers).
+
+In summary, 
+
+\noindent 1999 cohort: 51.9\% survived to the start of age-3, ~3.8\% of age-2 mortality was catch.
+
+\noindent 2010 cohort: 50.7\% survived to the start of age-3, 12.4\% of age-2 mortality was catch.
+
+\noindent 2014 cohort: 48.8\% survived to the start of age-3, 24.8\% of age-2 mortality was catch.
+
+So the survival of individuals to the start of age-3 is indeed lower for the 2014 cohort, due to the larger catch.
+
+If there was no catch at all, the estimated survival would just be due to to three years of natural mortality, calculated as:
+<<>>=
+M = 0.21557
+surv.no.fishing.to.age.3 = exp(-3*M)
+surv.no.fishing.to.age.3
+@ 
+i.e. \Sexpr{round(surv.no.fishing.to.age.3*100, 1)}\%.
+
+From the earlier conference call I have written on my copy of Table 20 that someone said that two of the above numbers were:
+
+\noindent 1999 cohort: 52\% survived to the start of age-3.
+
+\noindent 2014 cohort: 51\% survived to the start of age-3.
+
+The 52\% agrees with what is calculated above, but the 51\% does not. It is actually 48.8\%. This can be verified manually from Table 20 as 5126/10501.
+
+So people were saying the difference in survival between the cohorts was only 1\%, when in fact it was 3.1\%. 
+
+So, 3.1\% of (roughly) 10~billion fish (Table 20) is
+<<>>=
+0.031 * 10000000000
+@ 
+i.e.~310,000,000 fish. Most of these are caught as age-2, with an average weight of 0.2439~kg (using the 2014 cohort value). Thus the total difference in catch of age-2's between the 1999 cohort and the 2014 cohort is
+<<>>=
+310000000 * 0.2439
+@ 
+kg, which is
+<<>>=
+310000000 * 0.2439 / 1000
+@ 
+tonnes.
+
+Table~25 has a difference of 99,100-15,600, i.e.
+<<>>=
+99100-15600
+@ 
+
+This is close enough to the above value of 75609 (given approximations made \emph{on this page}). 
+
+On the phone people approximated it as being a difference of only 2,000 or 3,000~t. This is due to erroneously calculating the 2014 cohort as having 51\% survival to age-3 instead of the correct value of 48.1\%. 
+
+\end{document}
+
+<<>>=
+stop("ending here")
+@
+
+
+
+
+
+
+
+\subsection{Numbers at age and proportion surviving}
+
+Numbers are the numbers \emph{at the start of the year}. 
+
+<<>>=
+# From the estimated numbers at the beginning of each year shown in
+#  Table 20, following the 2014 cohort along a diagonal:
+num.age.0 = 10501        # millions of individuals that are age 0 
+num.age.1 =  8465        # millions of individuals that are age 1
+num.age.2 =  6812        # millions of individuals that are age 2 
+num.age.3 =  5126        # millions of individuals that are age 3
+@ 
+
+The proportion of individuals surviving from age-0 to (the start of the year in which they are) age-1 is:
+<<>>=
+prop.to.age.1 = num.age.1 / num.age.0
+prop.to.age.1
+@ 
+
+\noindent [Note that the above lines show the calculations and result; {\tt >} indicates a calculation, and {\tt [1]} indicates a printout of the result.]
+
+The proportion of individuals surviving from age-0 to age-2 is:
+<<>>=
+prop.to.age.2 = num.age.2 / num.age.0
+prop.to.age.2
+@ 
+
+The proportion of individuals surviving from age-0 to age-3 is:
+<<>>=
+prop.to.age.3 = num.age.3 / num.age.0
+prop.to.age.3
+@ 
+
+The MLE for natural mortality ($M$) is
+<<>>=
+M = 0.21557      # natural mortality MLE from Table 26, using exact estimate
+@ 
+which gives an annual survival rate of
+<<>>=
+exp(-M)
+@ 
+
+This is essentially the same as the value calculated above for the proportion surviving to age-1 ({\tt prop.to.age.1}); slight difference is due to rounding of numbers at age.
+
+%Aside: To confirm that that slight difference is due to rounding, if we use the precise values we get:
+% nat = tbl_df(base.model$natage)
+% select(filter(nat, Yr %in% c(2014, 2000)), c(7,10,12,13,14))
+% base.model$par[1,"Value_again"]
+%<<>>=
+%8939.69  / 11090.3             # num.age.1 / num.age.1 
+%@ 
+% The model and our assessment document tables use the precise values, but here it's simpler to see where numbers come from by using the values straight out of the assessment tables.
+
+\subsection{Starting biomass at age}
+
+Now we need the mean weight of individuals of each age class; this differs from year to year based on data. So these numbers are taken from the colourful Figure~12, and are \emph{for the 2014 cohort}. Since the numbers are in the figure are rounded (for clarity), I'm using the actual numbers from the data (when rounded these then match the figure): % wt.at.age[24:28, 1:5]
+<<>>=
+weight.age.0 = 0.0148           # weight of age.0, kg
+weight.age.1 = 0.0759           # weight of age.1, kg
+weight.age.2 = 0.2439           # weight of age.2, kg
+weight.age.3 = 0.3831           # weight of age.3, kg - **using 2016 value**
+@ 
+
+The `Starting Biomass' for a particular age in Table 25 is then just the number of individuals times the mean weight:
+<<>>=
+start.biomass.age.0 = num.age.0 * weight.age.0
+start.biomass.age.0
+start.biomass.age.1 = num.age.1 * weight.age.1
+start.biomass.age.1
+start.biomass.age.2 = num.age.2 * weight.age.2
+start.biomass.age.2
+start.biomass.age.3 = num.age.3 * weight.age.3
+start.biomass.age.3
+@ 
+
+These match the values in Table 25. The age-3 value is based on assuming the 2016 value for mean weight of an age-3 fish.
+
+\subsection{Catch weight at each age}
+
+In the assessment model (as for most such models) half of the annual natural mortality is taken off the start-of-year biomass, then the catch is taken off, then the remaining half of the natural mortality is taken off. 
+
+% The catch is calculated as the estimated percentage of the age class removed by fishing, from Table 22. 
+
+So to get the `Catch Weight' in Table 25 we take the starting biomass and multiply it by the half-of-the-natural-mortality term (the {\tt exp(-M/2)} term below) and then multiply by the proportion of the age class removed by fishing (which we get from Table 22, converting percentage to proportion):
+<<>>=
+catch.weight.age.0 = start.biomass.age.0 * exp(-M/2)* 0
+                                        # 0 is the 0% caught from Table 22
+catch.weight.age.0
+catch.weight.age.1 = start.biomass.age.1 * exp(-M/2) * 0.0017 
+                                        # 0.0017 is the 0.17% caught
+catch.weight.age.1
+catch.weight.age.2 = start.biomass.age.2 * exp(-M/2) * 0.0688
+                                        # 0.0688 is the 6.88% caught
+catch.weight.age.2
+catch.weight.age.3 = start.biomass.age.3 * exp(-M/2) * NA
+                                        # NA  - don't know this yet
+catch.weight.age.3
+@ 
+
+These numbers agree with Table 25 (with rounding errors). {\tt NA} means `not applicable' since we don't know the catch of 2014 age-3's yet.
+
+\subsection{Biomass of mortality at each age}
+
+The biomass of mortality at each age is the sum of the `early mortality', which is assumed to occur before fishing, and the `late mortality' that occurs after fishing. The early mortality is the biomass at the start of the year multiplied by the {\tt 1 - exp(-M/2)} term (representing half the annual mortality). The `late mortality' is calculated as the starting biomass minus the early mortality minus the catch, all then multiplied by the {\tt 1 - exp(-M/2)} term (representing the second half of the  annual mortality). These calculations give the  `M' column in Table 25:
+<<>>=
+mort.early.weight.age.0 = start.biomass.age.0 * (1 - exp(-M/2))
+mort.late.weight.age.0 = (start.biomass.age.0 - mort.early.weight.age.0 - 
+               catch.weight.age.0) * (1 - exp(-M/2))
+mort.weight.age.0 = mort.early.weight.age.0 + mort.late.weight.age.0
+mort.weight.age.0
+
+
+mort.early.weight.age.1 = start.biomass.age.1 * (1 - exp(-M/2))
+mort.late.weight.age.1 = (start.biomass.age.1 - mort.early.weight.age.1 - 
+               catch.weight.age.1) * (1 - exp(-M/2))
+mort.weight.age.1 = mort.early.weight.age.1 + mort.late.weight.age.1
+mort.weight.age.1
+
+mort.early.weight.age.2 = start.biomass.age.2 * (1 - exp(-M/2))
+mort.late.weight.age.2 = (start.biomass.age.2 - mort.early.weight.age.2 - 
+               catch.weight.age.2) * (1 - exp(-M/2))
+mort.weight.age.2 = mort.early.weight.age.2 + mort.late.weight.age.2
+mort.weight.age.2
+
+mort.early.weight.age.3 = start.biomass.age.3 * (1 - exp(-M/2))
+mort.late.weight.age.3 = (start.biomass.age.3 - mort.early.weight.age.3 - 
+               catch.weight.age.3) * (1 - exp(-M/2))
+mort.weight.age.3 = mort.early.weight.age.3 + mort.late.weight.age.3
+mort.weight.age.3
+@ 
+
+These agree with the `M' column in Table 25.
+
+\subsection{Surviving biomass}
+
+Surviving biomass is just the starting biomass minus the catch weight minus the mortality:
+<<>>=
+surv.biomass.age.0 =  start.biomass.age.0 - catch.weight.age.0 - mort.weight.age.0
+surv.biomass.age.0
+surv.biomass.age.1 =  start.biomass.age.1 - catch.weight.age.1 - mort.weight.age.1
+surv.biomass.age.1
+surv.biomass.age.2 =  start.biomass.age.2 - catch.weight.age.2 - mort.weight.age.2
+surv.biomass.age.2
+surv.biomass.age.3 =  start.biomass.age.3 - catch.weight.age.3 - mort.weight.age.3
+surv.biomass.age.3
+@ 
+
+These agree with Table 25.
+
+\subsection{Summary for 2014 cohort}
+
+So the proportion of individuals surviving from age-0 to (the start of) age-3 is
+<<>>=
+prop.to.age.3
+@ 
+
+The total catch (in 000s~t) of age-2 is:
+<<>>=
+catch.weight.age.2
+@ 
+and the total mortality (in 000s~t) of age-2 is:
+<<>>=
+mort.weight.age.2
+@ 
+with the ratio of catch over total mortality of age-2 being:
+<<>>=
+catch.ratio.age.2 = catch.weight.age.2 / (catch.weight.age.2 + mort.weight.age.2)
+catch.ratio.age.2
+@ 
+
+\end{document}
+
+<<>>=
+stop("ending here")
+@
+
+<<>>=
+redo.eight = FALSE #FALSE       # whether or not to redo the eight methods
+                               #  of calculation for every year - took
+                               #  over two hours for nSea15analysis1.Snw,
+                               #  so be good to make parallel. LCD method is
+                               #  I think what took the time (on 3 million
+                               #  data points). Should be quicker for 
+                               #  nSeaFungAnalysis.Snw, since dataset is 
+                               #  about 1/3 of the size.
+
+if(redo.eight) 
+  { load("nSeaFungImport.RData")     
+    stop("check results end up the same since I've now added the ungroup(data)
+          below and haven't re-run before. Then delete this line.")
+    } else
+  { load("nSeaFungAnalysis.RData") 
+    redo.eight=FALSE }         # else it loads in previous, which can be TRUE.
+source("../PLBfunctions.r")
+
+data = ungroup(data)           # otherwise groups carry on.
+data
+summary(data)
+@ 
+
+The local data frame {\tt data} has a unique row for every combination of year, species code and length class, as checked by:
+<<>>=
+unique = dim(summarise(group_by(data, Year, SpecCode, LngtClass), count=n()))[1]
+unique
+if( unique != dim(data)[1]) stop("something wrong with 'data'")
+@
+
+The `Number' column in {\tt data} is the number of observed individuals of that species in that length class in that year. `bodyMass' is the body mass of such an individual, as calculated by {\tt LWa * LngtClass$^{{\tt LWb}}$} in {\tt nSeaFungImport.Snw} (and by Julia).
+
+<<dataSumm, echo=FALSE, results=hide>>=
+dataSumm = summarise(group_by(data, Year), 
+    uniqLngtClass = length(unique(LngtClass)), 
+    uniqSpec = length(unique(SpecCode)), 
+    medNumber = median(Number), medBodyMass = median(bodyMass))
+@
+
+
+<<defineFunction, echo=FALSE, results=hide>>=
+dataSummTab = xtable(round(dataSumm), caption="Summary of the data available
+  for each year. For each year, `uniqLngtClass' is the number of unique
+  length classes, `uniqSpec' is the number of unique species, `medNumber'
+  is the median number of individuals (where `Number' is length-class-specific
+  and species-specific), and `medBodyMass' is the median body mass (where
+  body mass is also length-class-specific and species-specific). All values 
+  rounded to nearest integer (which is why `medNumber' comes out all 0, since
+  it's per hour, not an integer).", 
+  lab="tab:dataSumm", digits = 0)    # Number of digits after decimal
+
+postscript("dataSumm.eps", height = figheight/1.5, width = figwidth,
+           horizontal=FALSE,  paper="special")  
+
+par(omi = c(0.14, 0, 0.1, 0.15))      # outer margins in inches
+par(mfrow=c(2,2)) #7,1))
+
+oldmai = par("mai")    #   0.6732 0.5412 0.5412 0.2772  inches I think,
+                       #    may be indpt of fig size 
+par(mai=c(0.3, 0.5, 0.08, 0))  # Affects all four figures if don't change agaiin
+# par(xaxs="i", yaxs="i")    # Have to define here for hist
+par(mgp=c(2.0, 0.5, 0))    # puts axes labels closer I think
+par(cex = 0.8)             # With no option all text comes out a bit small
+
+# Each of these plots a panel for one column of dataSumm, showing how
+#  they vary with time.
+plot(dataSumm$Year, dataSumm$uniqLngtClass, xlab="Year", 
+     ylab="No. unique length classes", type="o", 
+     ylim=c(0, max(dataSumm$uniqLngtClass)))
+plot(dataSumm$Year, dataSumm$uniqSpec, xlab="Year", 
+     ylab="No. unique species", type="o", ylim=c(0, max(dataSumm$uniqSpec)))
+plot(dataSumm$Year, dataSumm$medNumber, xlab="Year", 
+     ylab="Median number (per hour)", type="o", ylim=c(0, max(dataSumm$medNumber)))
+plot(dataSumm$Year, dataSumm$medBodyMass, xlab="Year", 
+     ylab="Median body mass (g)", type="o", ylim=c(0, max(dataSumm$medBodyMass)))
+
+dev.off()
+@ 
+
+<<results=tex, echo=FALSE>>=
+print(dataSummTab, table.placement="tp", caption.placement="top",
+    include.rownames = FALSE) #, sanitize.text.function=function(x){x})  # was !ht
+@
+
+Table~\ref{tab:dataSumm} and Figure~\ref{fig:dataSumm} show the data summarised by year. 
+
+....Can write text to describe results.....
+
+% ***HERE**There is a clear jump in 2004 of the number of unique length classes, and a gradual increase in the number of unique species identified each year (though with a recent drop). The increase and decline in the median number in each species-specific length class may be of interest (or not), and the jump in median body mass may well be due to the decline in observed species (and it may not be as pronounced when species-specific length-weight conversions get used). 
+
+
+% {\noindent \bf Q1.} Julia, see the above paragraph. We may well need to understand some of this to interpret the final results. I'm hoping you might know about changes in survey protocols, or how comparable the data might be from year-to-year. 
+
+\onefig{dataSumm}{Time series of the four columns shown in Table~\ref{tab:dataSumm}. Median number and median body mass are simply based on the species-specific and length-class-specific numbers and body masses, and so can't be easily interpreted for these data.}
+
+\medskip
+
+Only reruns the calculations when the input data changes (the {\tt redo.eight} switch). This code calculates, using my {\tt eightMethods.count()} function, the slope or exponent for each method, plus plots the figure showing the eight methods, all for each year in turn. Any resulting postscript files are huge (because it plots lots of points for the LCD and MLE methods - at least it did for the earlier NSea15 dataset - these may actually be smaller because we're not plotting a point for every fish, but stick with .png for now), so I've changed to {\tt .png} files, which are manageable. % These are in the separate zip file {\tt nSeaFungAnalysis-allYears.7z}, and can be scrolled through one year at a time. 
+
+<<doEachYear, echo=FALSE, results=hide>>=
+
+if(redo.eight) {           # Redo method-dependent fits
+  fullYears = unique(data$Year)
+  fullResults = data.frame()
+  for(ii in fullYears)
+    {
+    eightMethodsRes = eightMethods.count(data = data, oneYear = ii, 
+        figName = "nSeaFung")
+    fullResults = rbind(fullResults, eightMethodsRes)
+    # print(paste("Have done ", oneYear))  - can't print in console - try message
+    }
+}
+@ 
+
+<<plotFig, echo=FALSE, results=hide>>=
+# Now need to plot time series with confidence intervals for each method. So
+#  eight panels, each of a time series. Like the confPlot ones but sideways.
+
+postscript("nSeaFungTrends.eps", height = figheight, width = figwidth,
+           horizontal=FALSE,  paper="special")  
+
+par(omi = c(0.14, 0, 0.1, 0.15))      # outer margins in inches
+par(mfrow=c(4,2)) #7,1))
+
+oldmai = par("mai")    #   0.6732 0.5412 0.5412 0.2772  inches I think,
+                       #    may be indpt of fig size 
+par(mai=c(0.3, 0.5, 0.08, 0))  # Affects all four figures if don't change agaiin
+# par(xaxs="i", yaxs="i")    # Have to define here for hist
+par(mgp=c(2.0, 0.5, 0))    # puts axes labels closer I think
+par(cex = 0.8)             # With no option all text comes out a bit small
+vertThick = 1              # Thickness for vertical lines
+
+# yLim = c(min(fullResults$confMin, na.rm=TRUE), 
+#     max(fullResults$confMax, na.rm=TRUE))   # -54, 41 due to LT method for
+                                              #  original nSea15 dataset.
+# Can have common y axis for five methods (after inspecting results):
+fullResFive = filter(fullResults, Method %in% c("LBmiz", "LBbiom", "LBNbiom",
+    "LCD", "MLE"))
+yLim = c(min(fullResFive$confMin), max(fullResFive$confMax))
+
+# Each of these plots a panel for one method. Define xLim if the default
+#  (integer-based calculation) is not suitable
+
+# No need to return anything from timeSerPlot, did for confPlot because it
+#  sorted the multiple confidence intervals from the simulated data.
+
+# Want to use weighted linear regression with weights based on 
+#  1/(stdErr^2) where stdErr is the standard error of the estimate for b 
+#  for each year, because the stdErr's have some variability.
+
+trendResults = data.frame()  # Will have one row of trend results for each method
+
+res = timeSerPlot(filter(fullResults, Method == "Llin"), legName = "(a) Llin",
+            method = "Llin", weightReg=TRUE)    
+trendResults = rbind(trendResults, res)
+
+
+res = timeSerPlot(filter(fullResults, Method == "LT"), legName = "(b) LT",
+            yLab="", method = "LT", weightReg=TRUE)
+trendResults = rbind(trendResults, res)
+
+res = timeSerPlot(filter(fullResults, Method == "LTplus1"), 
+    legName = "(c) LTplus1", method = "LTplus1", weightReg=TRUE) 
+trendResults = rbind(trendResults, res)
+
+res = timeSerPlot(filter(fullResults, Method == "LBmiz"), legName = "(d) LBmiz",
+            yLim=yLim, yLab="", method = "LBmiz", weightReg=TRUE)
+trendResults = rbind(trendResults, res)
+
+res = timeSerPlot(filter(fullResults, Method == "LBbiom"), 
+    legName = "(e) LBbiom", yLim=yLim, method = "LBbiom", weightReg=TRUE)
+trendResults = rbind(trendResults, res)
+
+res = timeSerPlot(filter(fullResults, Method == "LBNbiom"), 
+    legName = "(f) LBNbiom", yLim=yLim, yLab="", method = "LBNbiom", 
+    weightReg=TRUE)
+trendResults = rbind(trendResults, res)
+
+res = timeSerPlot(filter(fullResults, Method == "LCD"), legName = "(g) LCD",
+    yLim=yLim, method = "LCD", weightReg=TRUE)
+trendResults = rbind(trendResults, res)
+
+res = timeSerPlot(filter(fullResults, Method == "MLE"), legName = "(h) MLE",
+    yLim=yLim, yLab="", method = "MLE", legPos = "bottomleft", 
+    weightReg=TRUE)
+trendResults = rbind(trendResults, res)
+
+mtext("Year", side=1, outer=TRUE, line=-0.2, cex=0.8)
+
+dev.off()
+
+trendResultsTab = xtable(select(trendResults, -adjRsquared), 
+  caption="Summary of weighted regression analysis 
+  of trend through time of the estimated exponent $b$, as estimated using each 
+  of the eight methods. `Trend' is the estimated annual trend, with 
+  95\\% confidence intervals given by `Low' and `High'; 
+  p is the p-value for the probability that the trend is significantly
+  different to 0, and $R^2$ is the coefficient of determination.
+  If $p \\geq 0.05$ then the trend can be considered not 
+  significantly different to 0. If $p<0.05$ then a negative trend indicates
+  a statistically significant decline in the exponent over time, and 
+  a positive trend indicates a statistically significant increase.", 
+  lab="tab:trendRes")
+@ 
+
+
+Figure \ref{fig:nSeaFungTrends} shows the results from using each method in turn to estimate $b$ for each year. A weighted linear regression is fit to the resulting time series of estimates of $b$, to look for any trend (a weighted regression is used because we have estimates of the variance of each estimate of $b$, and these variances do vary between years). Statistical results for the trend analyses are given in Table~\ref{tab:trendRes}. 
+
+The results suggest no significant change in $b$ when using three of the methods (namely LT, LTplus1 and MLE) to estimate $b$, yet a significant negative decline when using the remaining five methods. Thus, five methods imply a steepening of the size spectrum over time, whereas three methods imply no change. This demonstrates how methodological differences can lead to differing ecological conclusions.
+
+
+\onefig{nSeaFungTrends}{For each method in turn, the estimated exponents $b$ (circles) and 95\% confidence intervals (vertical bars) are shown for every year. The fit of a weighted linear regression with 95\% confidence interval is shown as red lines if the trend can be considered statistically significant from 0 ($p<0.05$), and in grey if the trend is not statistically significantly different from 0 ($p \geq 0.05$). The y-axes are the same for (d)-(h). Statistical properties of trends are given in Table~\ref{tab:trendRes}.} 
+  
+<<results=tex, echo=FALSE>>=
+print(trendResultsTab, table.placement="tp", caption.placement="top",
+    include.rownames = FALSE, sanitize.text.function=function(x){x})  # was !ht
+@ 
+
+<<exampleData, echo=FALSE, results=hide>>=
+# example lines of data, to maybe have as a table in Part 2 manuscript.
+egData = data[c(1:6, (dim(data)[1]-5):(dim(data)[1])), ] 
+egData = mutate(egData, Biomass = Number * bodyMass)
+names(egData) = c("Year", "Species", "Length class (cm)", "Number (h$^{-1}$)", "alpha",          "beta", "Body mass (g)", "Total biomass (g)")
+egDataTab = xtable(egData, digits=c(0, 0, 0, 0, 3, 4, 4, 2, 2), 
+  caption="Example data (first six and last six rows) from the ** data set, to demonstrate the information available. Each row represents a unique combination of year, species and length class. `Number' gives the number of individuals (per hour of **trawling) observed for that combination, and can be non-integer because counts of individual fish are scaled by tow duration**. Fish lengths are assigned into length classes, where the value of `Length class' (cm) is the minimum value of the length bin; for this data set fish were usually assigned to 1-cm length classes, and occasionally 0.5~cm. Parameters $\\alpha$ and $\\beta$ are the length-weight coefficients for each particular species, and `Body mass' (g) is the resulting estimated body mass for individuals of that species and length class. `Biomass' (g) is the total biomass of individuals for each row.**TO DO manually: **Change to $\\alpha$ and $\\beta$. Replace SpecCode by actual species name. Add in rows of $\\cdot \\cdot \\cdot$. Manually split column headers over two rows.", lab="tab:egData")  # digits[1] is row.names
+@ 
+
+<<results=tex, echo=FALSE>>=
+print(egDataTab, table.placement="tp", caption.placement="top",
+    include.rownames = FALSE) #, sanitize.text.function=function(x){x})  # was !ht
+# To get particular species names:
+# load("ibtsQ1cpuelength.RData")
+# dataOrig = tbl_df(q1)
+# filter(dataOrig, AphiaID == 105814)
+# Gives:
+# 105814 NS-IBTS 2012       1    3 Sciliorhinus caniculus      340
+# 105814 NS-IBTS 2014       1    3  Scyliorhinus canicula      580
+# 105814 NS-IBTS 2014       1    5  Scyliorhinus canicula      370
+# Great, two names. Go with Scyliorhinus canicula (Smallspotted Catshark 
+#  [Sharks of the world, Compagno et al.])
+# 154675: Lumpenus lampretaeformis  (Snakeblenny)
+# 274304: Microchirus variegatus (Thickback SOle
+
+@ 
+
+
+
+<<>>=
+postscript("nSeaFungCheck.eps", height = figheight/2, width = figwidth,
+           horizontal=FALSE,  paper="special")  
+plot(filter(fullResults, Method=="MLE")$stdErr)
+dev.off()
+@ 
+
+\onefig{nSeaFungCheck}{Plotting the standard errors for the MLE method, to check that {\tt bvec} in {\tt eightMethods.count()} is fine enough -- originally had it too coarse which only resulted in about four unique standard errors. ***Check this in other code, just make {\tt bvec} coarser and re-run.}
+% data no longer seem to be a table_df   - correct
+
+<<save>>=>>=
+save.image(file="nSeaFungAnalysis.RData")   # save everything again, even if
+                                           #  redo.eight = FALSE
+@ 
+
+\end{document}
