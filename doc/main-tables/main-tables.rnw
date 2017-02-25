@@ -304,7 +304,7 @@ make.est.numbers.at.age.table(
 make.est.numbers.at.age.table(
   base.model,
   start.yr = start.yr,
-  end.yr = last.data.yr,
+  end.yr = last.data.yr+1,
   table.type = 5,
   csv.dir = output.csv.dir,
   xcaption = paste0("Estimated biomass-at-age at the beginning ",
@@ -396,7 +396,7 @@ make.est.numbers.at.age.table(
 make.cohort.table(base.model,
                   c(1999, 2010, 2014),
                   start.yr,
-                  last.data.yr,
+                  last.data.yr+1,
                   xcaption = paste0(
                       # "Age-dependent Key weights for strong cohorts by age. ",
                                     "For the strong cohorts, calculations of ",

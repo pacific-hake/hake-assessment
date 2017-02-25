@@ -300,7 +300,23 @@ make.est.numbers.at.age.table <- function(model,                ## model is an m
     dat <- dat[dat$Yr %in% yrs,]
     yrs <- as.character(dat[,"Yr"])
     dat <- dat[,-1]
+    ## get weight-at-age matrix (currently the same matrix for fleet = -1, 0, 1, and 2)
     wt.at.age <- model$wtatage[model$wtatage$fleet == 1,]
+    ## if needed, add years using mean across years
+    missing.yrs <- as.numeric(yrs)[!as.numeric(yrs) %in% abs(wt.at.age$yr)] 
+    if(length(missing.yrs)>0){
+      # get mean vector (assuming it is the one associated with -1966)
+      mean.wt.at.age <- wt.at.age[wt.at.age$yr==-1966,]
+      # loop over missing years (if any present)
+      for(iyr in 1:length(missing.yrs)){
+        mean.wt.at.age$yr <- missing.yrs[iyr]
+        wt.at.age <- rbind(wt.at.age, mean.wt.at.age) 
+      }
+      # sort by year just in case the missing years weren't contiguous
+      # (this is probably not needed)
+      wt.at.age <- wt.at.age[order(abs(wt.at.age$yr)),]
+    }
+    # strip off initial columns of wt.at.age matrix
     wt.at.age <- wt.at.age[,-(1:6)]
     dat <- dat * wt.at.age
     dat <- cbind(yrs, dat)
@@ -366,6 +382,8 @@ make.cohort.table <- function(model,
   # numbers at age in same year
   naa <- naa[naa$Yr >= start.yr & naa$Yr <= end.yr,]
   naa.next$Yr <- naa.next$Yr-1 # change year to match other 
+  # vector of years for use in other places
+  yrs <- naa$Yr
   
   coh.naa <- get.cohorts(naa, cohorts)
 
@@ -376,13 +394,32 @@ make.cohort.table <- function(model,
 
   ## Extract weight-at-age for the fishery (fleet 1)
   waa <- model$wtatage[model$wtatage$fleet == 1,]
+  ## if needed, add years to weight-at-age matrix using mean across years
+  missing.yrs <- as.numeric(yrs)[!as.numeric(yrs) %in% abs(waa$yr)] 
+  if(length(missing.yrs)>0){
+    # get mean vector (assuming it is the one associated with -1966)
+    mean.waa <- waa[waa$yr==-1966,]
+    # loop over missing years (if any present)
+    for(iyr in 1:length(missing.yrs)){
+      mean.waa$yr <- missing.yrs[iyr]
+      waa <- rbind(waa, mean.waa) 
+    }
+    # sort by year just in case the missing years weren't contiguous
+    # (this is probably not needed)
+    waa <- waa[order(abs(waa$yr)),]
+  }
+  # strip off initial columns of waa matrix (except year)
   waa <- waa[,-(2:6)]
-  waa$yr <- -waa$yr
+  waa$yr <- abs(waa$yr)
   coh.waa <- get.cohorts(waa, cohorts)
 
   ## Catch-at-age
   caa <- model$catage
   caa <- caa[,-c(1:6,8:10)]
+  # add a row of zeros to make dimensions match other matrices
+  # (which may include forecast year)
+  # not bothering to make this more complicated like waa above
+  caa <- rbind(caa, c(max(caa$Yr)+1, rep(0, ncol(caa)-1)))
   coh.caa <- get.cohorts(caa, cohorts)
   ages <- 0:(ncol(caa) - 2)
 
@@ -395,18 +432,6 @@ make.cohort.table <- function(model,
                       function(i, waa, caa){waa[[i]] * caa[[i]] / weight.factor},
                       waa = coh.waa, caa = coh.caa)
 
-  ## ## Natural mortality weight (old way of calculating)
-  ## coh.m <- lapply(1:length(coh.baa),
-  ##                     function(i, baa, catch){baa[[i]] - catch[[i]]},
-  ##                     baa = coh.baa, catch = coh.catch)
-
-  ## Surviving biomass
-  ## Get the weights-at-age for the year before the cohorts of interest.
-  coh.waa.prev <- get.cohorts(waa, cohorts - 1)
-  ## Throw away the first one so the weight-at-age applied
-  ## to the numbers-at-age in the current year is one less.
-  coh.waa.prev <- lapply(coh.waa.prev, function(x){x[-1]})
-
   coh.surv <- lapply(1:length(coh.naa),
                       function(i, waa, naa){waa[[i]] * naa[[i]] / weight.factor},
                      waa = coh.waa, naa = coh.naa.next)
@@ -416,9 +441,6 @@ make.cohort.table <- function(model,
                       function(i, baa, catch, surv){baa[[i]] - surv[[i]] - catch[[i]]},
                       baa = coh.baa, catch = coh.catch, surv = coh.surv)
 
-  ## trying again as the above came out funny
-  ##coh.m = coh.baa - coh.surv - coh.catch
-  
   ## Bind the individual cohort value vectors into matrices
   coh.sum <- lapply(1:length(coh.naa),
                     function(i, baa, catch, m, surv){
@@ -430,6 +452,11 @@ make.cohort.table <- function(model,
                     catch = coh.catch,
                     m = coh.m,
                     surv = coh.surv)
+  ## Remove entries in all but the first column (baa is only known value)
+  ## Not bothering to figure out how to do this with lapply
+  for(i in 1:length(coh.sum)){
+    coh.sum[[i]][nrow(coh.sum[[i]]), -1] <- NA
+  }
   ## Add a column in the first column for the ages
   coh.sum <- append(coh.sum, list(as.data.frame(ages)), after = 0)
   ## Bind the list of cohort value matrices into a single ragged matrix
