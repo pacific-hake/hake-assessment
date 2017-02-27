@@ -356,7 +356,8 @@ make.cohort.table <- function(model,
                               xcaption = "default",
                               xlabel   = "default",
                               font.size = 9,
-                              space.size = 10       ## Size of the spacing for the table
+                              space.size = 10,      ## Size of the spacing for the table
+                              scalebox = '1.0'      ## attempt to allow table to be narrower
                               ){
   ## Returns an xtable in the proper format for cohort's start biomass,
   ## catch weight, natural mortality weight, and surviving biomass all by age
@@ -544,6 +545,6 @@ make.cohort.table <- function(model,
                table.placement = "H",
                include.rownames = FALSE,
                sanitize.text.function = function(x){x},
-               size = size.string))
+               size = size.string, scalebox=scalebox))
 
 }
