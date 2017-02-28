@@ -193,7 +193,8 @@ make.survey.age1.plot <- function(age1index,
   par <- oldpar
 }
 
-make.survey.biomass.extrap.plot <- function(dat){  ## data.frame of the extrapolated and non-extrapolated indices
+make.survey.biomass.extrap.plot <- function(dat,        ## data.frame of different indices
+                                            show=1:3){  ## vector of which values to show
 
   oldpar <- par()
 
@@ -219,18 +220,25 @@ make.survey.biomass.extrap.plot <- function(dat){  ## data.frame of the extrapol
   ests3$hi <- exp(log(ests3$obs) + 1.96 * ests3$se_log)
   ests3$value <- ests3$obs
   par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
-  plotBars.fn(ests$year, ests,scalar = 1e3, ylim = c(0, 3), yaxs='i',
-              pch = 20, xlab="Year", ylab = "Biomass index estimate (million t)",
-              cex = 1.5, las = 1, gap = 0.05, xaxt = "n", ciLwd = 3, ciCol = rgb(0, 0, 0, 0.5))
-  plotBars.fn(ests2$year + 0.3, ests2, scalar = 1e3, pch = 17, add = TRUE, cex = 1.0,
-              las = 1, gap = 0.05, ciLwd = 3, ciCol = rgb(0, 0, 1, 0.5), col = "blue")
-  plotBars.fn(ests3$year - 0.3, ests3, scalar = 1e3, pch = 18, add = TRUE, cex = 1.0,
-              las = 1, gap = 0.05, ciLwd = 3, ciCol = rgb(1, 0, 0, 0.5), col = "red")
+
+  if(2 %in% show){
+    plotBars.fn(ests$year, ests,scalar = 1e3, ylim = c(0, 3), yaxs='i',
+                pch = 20, xlab="Year", ylab = "Biomass index estimate (million t)",
+                cex = 1.5, las = 1, gap = 0.05, xaxt = "n", ciLwd = 3, ciCol = rgb(0, 0, 0, 0.5))
+  }
+  if(1 %in% show){
+    plotBars.fn(ests3$year - 0.3, ests3, scalar = 1e3, pch = 18, add = TRUE, cex = 1.0,
+                las = 1, gap = 0.05, ciLwd = 3, ciCol = rgb(1, 0, 0, 0.5), col = "red")
+  }
+  if(3 %in% show){
+    plotBars.fn(ests2$year + 0.3, ests2, scalar = 1e3, pch = 17, add = TRUE, cex = 1.0,
+                las = 1, gap = 0.05, ciLwd = 3, ciCol = rgb(0, 0, 1, 0.5), col = "blue")
+  }
   axis(1, at = ests$year, cex.axis = 0.8)
   legend("topleft", c("Values used in 2016 assessment",
                       "Updated time series (with extrapolation, used in base model)",
-                      "Updated time series (no extrapolation)"),
-         col = c("red", "black", "blue"), pch = c(18, 16, 17), bty='n')
+                      "Updated time series (no extrapolation)")[show],
+         col = c("red", "black", "blue")[show], pch = c(18, 16, 17)[show], bty='n')
   par <- oldpar
 }
 
