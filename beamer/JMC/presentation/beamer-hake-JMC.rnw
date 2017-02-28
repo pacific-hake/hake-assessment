@@ -738,7 +738,7 @@ make.cohort.table(base.model,
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Age-1 index appears to follow estimates of recruitment
+      \item Age-1 index appears to qualitatively follow estimates of recruitment
       \item Age-1 hake in 2015 is high
       \bi \item As seen in the fishery as well \ei
     \ei
