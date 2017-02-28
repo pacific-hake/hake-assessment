@@ -664,7 +664,7 @@ make.squid.plot(retro.list,
   \begin{column}{0.35\textwidth}
     \bi
   \item Dependent on assumptions about selectivity 
-  \item Age-3 fish from 2014 cohort expected be large proportion of \Sexpr{end.yr} catch
+  \item Age-3 fish from 2014 cohort expected to be large proportion of \Sexpr{end.yr} catch
     \bi
     \item \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$X3),0)}\% by numbers 
     \item \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$X3),0)}\% by weight 
