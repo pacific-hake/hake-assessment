@@ -785,7 +785,7 @@ make.cohort.table(base.model,
 \frame{\frametitle{Summary}
   \bi
     \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
-    \item Uncertainty is great, but stock is likely above well above $B_{40\%}$
+    \item Uncertainty is great, but stock is likely well above $B_{40\%}$
     \item Forecasts strongly influenced by size of large but uncertain 2014 year class
     \item Aging 2010 cohort declining due to fishing and natural mortality contributes to median spawning biomass declining with catch at 350,000~t and above
     \item Risk is 30\% or less that spawning biomass will be below $B_{40\%}$ in 2 years at all catch levels
