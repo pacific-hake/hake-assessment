@@ -486,7 +486,8 @@ make.squid.plot(retro.list,
     \item P($B_t < B_{XX}$): Probability that biomass in forecasted year ($B_t$) is less than the specified biomass $B_{XX}$
   %  \item FI > 40\% target: Probability that fishing intensity in fixed catch year is greater than the target fishing intensity
     \item P(relative fishing intensity $> 100\%$)  
-    \item P($C_{y+1} < C_y$): Probability that the calculated catch in forecast year is less than the fixed catch
+    % \item P($C_{y+1} < C_y$): Probability that the calculated catch in forecast year is less than the fixed catch
+    \item P(default harvest policy catch for 2018 $<$ fixed catch in 2017)  
   \ei
 }
 
