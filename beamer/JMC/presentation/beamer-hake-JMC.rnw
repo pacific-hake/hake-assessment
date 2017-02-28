@@ -393,6 +393,24 @@ make.squid.plot(retro.list,
 
 %----------------------------------------------------------
 
+\frame{\frametitle{Age-1 index: correlation with base recruitment estimates}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item Age-1 index appears to qualitatively follow estimates of recruitment
+      \item Age-1 hake in 2015 is high
+      \bi \item As seen in the fishery as well \ei
+    \ei
+  \end{column}
+  \begin{column}{0.59\textwidth}
+    <<age.one.index, fig.height=3.5, fig.width=6, out.width="0.95\\columnwidth">>=
+      make.survey.age1.plot(age.1.index, base.model)
+    @
+  \end{column}
+\end{columns}
+}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Management and forecasts}
 \subsection{}
@@ -689,7 +707,7 @@ make.squid.plot(retro.list,
 \begin{columns}
   \begin{column}{0.35\textwidth}
     \bi
-  \item Dependent on assumptions about selectivity 
+  \item Dependent on assumptions about selectivity and weight 
   \item Age-3 fish from 2014 cohort expected to be large proportion of \Sexpr{end.yr} catch
     \bi
     \item \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$X3),0)}\% by numbers 
@@ -760,23 +778,6 @@ make.cohort.table(base.model,
 %%   \end{columns}
 %% }
 
-\frame{\frametitle{Age-1 index: correlation with base recruitment estimates}
-\begin{columns}
-  \begin{column}{0.38\textwidth}
-    \bi
-      \item Age-1 index appears to qualitatively follow estimates of recruitment
-      \item Age-1 hake in 2015 is high
-      \bi \item As seen in the fishery as well \ei
-    \ei
-  \end{column}
-  \begin{column}{0.59\textwidth}
-    <<age.one.index, fig.height=3.5, fig.width=6, out.width="0.95\\columnwidth">>=
-      make.survey.age1.plot(age.1.index, base.model)
-    @
-  \end{column}
-\end{columns}
-}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -785,7 +786,7 @@ make.cohort.table(base.model,
 \frame{\frametitle{Summary}
   \bi
     \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
-    \item Uncertainty is great, but stock is likely well above $B_{40\%}$
+    \item Uncertainty is large, but stock is likely well above $B_{40\%}$
     \item Forecasts strongly influenced by size of large but uncertain 2014 year class
     \item Aging 2010 cohort declining due to fishing and natural mortality contributes to median spawning biomass declining with catch at 350,000~t and above
     \item Risk is 30\% or less that spawning biomass will be below $B_{40\%}$ in 2 years at all catch levels
