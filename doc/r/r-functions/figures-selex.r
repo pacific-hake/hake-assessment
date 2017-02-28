@@ -81,7 +81,12 @@ calc.tv.selex <- function(model,
 }
 
 make.tv.selex.plot <- function(selex.list,
+                               oma=c(0,8,0,8), # bad way to make the plot skinnier
                                mcmc=TRUE){
+  # note from Ian: use of outer margins to make plot skinnier was a hack 
+  #                that I used because I didn't understand the figure layout options.
+  #                This should be replaced by specifying fig width and height.
+  
   # input selex.list is a list of time varying selectivites
   # as returned by calc.tv.selex (in the mcmc case)
   # or just the model object (in the MLE case)
@@ -90,7 +95,7 @@ make.tv.selex.plot <- function(selex.list,
   oldpar <- par()
 
   # padding left and right outer margins using oma to make plot less stretched out
-  par(mar=c(4,4,1,1), oma=c(0,8,0,8))
+  par(mar=c(4,4,1,1), oma=oma)
   if(mcmc){
     selex.dat <- t(selex.list$median)
   }else{
