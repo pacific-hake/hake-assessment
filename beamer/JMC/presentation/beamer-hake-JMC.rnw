@@ -482,7 +482,7 @@ make.squid.plot(retro.list,
 \frame{\frametitle{Risk table definitions}
   Probabilities of ``bad'' things happening at different fixed catch levels
   \bi
-    \item Fixed catch in all years previous, and calculate default catch in forecast year
+  %  \item Fixed catch in all years previous, and calculate default catch in forecast year
     \item P($B_x < B_y$): Probability that biomass in forecasted year is less than specified biomass
     \item FI > 40\% target: Probability that fishing intensity in fixed catch year is greater than the target fishing intensity
     \item P($C_{y+1} < C_y$): Probability that the calculated catch in forecast year is less than the fixed catch
