@@ -244,10 +244,12 @@ make.est.numbers.at.age.table <- function(model,                ## model is an m
     dat <- cbind(dat.minus, apply(dat.plus, 1, sum))
     names(dat)[ncol(dat)] <- paste0(plus.group, "+")
     names(dat)[1] <- "Year"
-    write.csv(dat, file.path(csv.dir, "estimated-numbers-at-age.csv"), row.names = FALSE)
 
-    ## Apply division by weight factor and formatting
+    ## Apply division by weight factor 
     dat[,-1] <- apply(dat[-1], c(1,2), function(x) x / weight.factor)
+    ## Write to CSV before formatting
+    write.csv(dat, file.path(csv.dir, "estimated-numbers-at-age.csv"), row.names = FALSE)
+    ## Apply formatting
     dat[,-1] <- apply(dat[-1], c(1,2), f)
     dat[,1] <- as.character(dat[,1])
   }else if(table.type == 2){
@@ -321,10 +323,12 @@ make.est.numbers.at.age.table <- function(model,                ## model is an m
     dat <- dat * wt.at.age
     dat <- cbind(yrs, dat)
     names(dat)[1] <- "Year"
-    write.csv(dat, file.path(csv.dir, "estimated-biomass-at-age.csv"), row.names = FALSE)
 
     ## Apply division by weight factor and formatting
     dat[,-1] <- apply(dat[-1], c(1,2), function(x) x / weight.factor)
+    ## Write to CSV before formatting
+    write.csv(dat, file.path(csv.dir, "estimated-biomass-at-age.csv"), row.names = FALSE)
+    ## Apply formatting
     dat[,-1] <- apply(dat[-1], c(1,2), f)
     dat[,1] <- as.character(dat[,1])
   }else{
@@ -464,6 +468,11 @@ make.cohort.table <- function(model,
            catch = coh.catch,
            m = coh.m,
            surv = coh.surv)
+  ## Remove entries in all but the first column (baa is only known value)
+  ## Not bothering to figure out how to do this with lapply
+  for(i in 1:length(csv.coh.sum)){
+    csv.coh.sum[[i]][nrow(csv.coh.sum[[i]]), -1] <- NA
+  }
   ## Add a column in the first column for the ages
   csv.coh.sum <- append(csv.coh.sum, list(as.data.frame(ages)), after = 0)
   ## Bind the list of cohort value matrices into a single ragged matrix
