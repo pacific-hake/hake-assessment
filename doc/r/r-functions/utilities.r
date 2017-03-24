@@ -29,6 +29,54 @@ f <- function(x, dec.points = 0){
   return(format(round(x,dec.points), big.mark = ",", nsmall = dec.points))
 }
 
+## -----------------------------------------------------------------------------
+## Functions to make table generation easier
+## Latex newline
+latex.nline <- " \\\\ "
+latex.hline <- " \\hline "
+latex.amp <- function(n = 1){
+  ## Returns a string with n ampersands seperated by spaces. The string will
+  ##  have one leading and one trailing space.
+  paste0(rep(" &", n), " ", collapse = "")
+}
+
+latex.paste <- function(vec){
+  ## Returns a string comprised of each element in the vector vec with an
+  ##  ampersand in between. The string will have one leading and one
+  ##  trailing space.
+  paste(" ", vec, " ", collapse = " & ")
+}
+
+latex.bold <- function(txt){
+  ## Returns the given text with the latex \\textbf{} macro around it
+  paste0("\\textbf{", txt, "}")
+}
+
+latex.mlc <- function(latex.vec, make.bold = TRUE){
+  ## Returns a string which has been glued together using multi-line-cell
+  ##  macro for latex. If make.bold is TRUE, the \textbf macro will be
+  ##  inserted.
+  if(make.bold){
+    latex.vec <- sapply(latex.vec, latex.bold)
+  }
+  latex.str <- paste(latex.vec, collapse = latex.nline)
+  paste0("\\mlc{", latex.str, "}")
+}
+
+latex.mcol <- function(ncol, just, txt){
+  ## Returns the given text with the latex \\multicolumn{} macro around it
+  ## ncol - the number of columns
+  ## orient - justification, e.g. "l", "c", or "r" for left, center, right
+  paste0("\\multicolumn{", ncol, "}{", just, "}{", txt, "}")
+}
+
+latex.size.str <- function(fnt.size, spc.size){
+  ## Returns a string which has the given font size and space size applied
+  paste0("\\fontsize{", fnt.size, "}{", spc.size, "}\\selectfont")
+}
+
+## -----------------------------------------------------------------------------
+
 install.packages.if.needed <- function(package.name, package.install.name, github=FALSE){
   if(github){
     if(!(package.name %in% rownames(installed.packages()))){

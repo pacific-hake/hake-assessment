@@ -174,7 +174,9 @@
 \newcommand{\eor}[2]{{#1$\Vert$#2}}
 %% bM - makes equations larger
 \newcommand{\bM}[1]{\mathlarger{\mathlarger{#1}}}
-%% Allow newline breaks in a table cell: syntax is \specialcell{first line\\secondline}
+%% Multi-line-cell in an xtable
+%% syntax is \mlc{first line\\secondline}
+\newcommand{\mlc}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 \newcommand{\specialcell}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 \newcommand{\fishname}{Pacific Hake}        % \fishname\   to have a space after
 \newcommand{\commonname}{Pacific whiting}

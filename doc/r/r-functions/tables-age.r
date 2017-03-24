@@ -23,17 +23,14 @@ make.input.age.data.table <- function(model,
   ages.ind <- grep("^a[[:digit:]]+$", nm)
   ages <- gsub("^a([[:digit:]]+)$", "\\1", nm[ages.ind])
   ## Make all bold
-  ages <- paste0("\\textbf{", ages, "}")
-  ages <- paste(ages, " & ")
-  ## Make the ages vector a string
-  ages.tex <- do.call("paste", as.list(ages))
-  ## Remove last ampersand
-  ages.tex <- sub("& $", "\\\\\\\\", ages.tex)
+  ages <- latex.bold(ages)
+  ## Put ampersands in between each item and add newline to end
+  ages.tex <- paste0(latex.paste(ages), latex.nline)
 
   ## Construct age data frame
   age.df <- age.df[,ages.ind]
   age.df <- t(apply(age.df, 1, function(x){x / sum(x)}))
-  age.headers <- paste0("\\multicolumn{1}{c}{\\textbf{", ages, "}} & ")
+  age.headers <- paste0(latex.mcol(1, "c", ages), latex.amp())
   age.df <- cbind(yr, n.samp, flt, age.df)
 
   ## Fishery or survey?
@@ -54,12 +51,23 @@ make.input.age.data.table <- function(model,
   addtorow$pos[[1]] <- -1
   addtorow$pos[[2]] <- nrow(age.df)
 
-  addtorow$command <- c(paste0("\\hline \\textbf{Year} & \\specialcell{\\textbf{Number}\\\\\\textbf{of samples}} & \\multicolumn{", length(ages), "}{c}{\\textbf{Age (\\% of total for each year)}} \\\\",
-                                 "\\hline & & ", ages.tex),
-                          "\\hline ")
+  addtorow$command <-
+    c(paste0(latex.hline,
+             latex.bold("Year"),
+             latex.amp(),
+             latex.mlc(c("Number", "of samples")),
+             latex.amp(),
+             latex.mcol(length(ages),
+                        "c",
+                        latex.bold("Age (\\% of total for each year)")),
+             latex.nline,
+             latex.hline,
+             latex.amp(2),
+             ages.tex),
+      latex.hline)
 
   ## Make the size string for font and space size
-  size.string <- paste0("\\fontsize{", font.size,"}{", space.size,"}\\selectfont")
+  size.string <- latex.size.str(font.size, space.size)
 
   return(print(xtable(age.df,
                       caption = xcaption,
@@ -87,8 +95,8 @@ make.can.age.data.table <- function(dat,
                                     placement = "H",
                                     decimals = 2
                                     ){
-  ## Returns an xtable in the proper format for the main tables section for Canadian
-  ##  age data.
+  ## Returns an xtable in the proper format for the main tables section for
+  ##  Canadian age data.
   ages.df <- dat[[fleet]]
   n.trip.haul <- as.numeric(dat[[fleet + 3]])
   ages.df <- cbind(n.trip.haul, ages.df)
@@ -105,24 +113,32 @@ make.can.age.data.table <- function(dat,
   addtorow$pos[[1]] <- -1
   addtorow$pos[[2]] <- nrow(dat)
   age.headers <- colnames(dat)[grep("^[[:digit:]].*", colnames(dat))]
-  n.age <- length(age.headers)
-  ages <- paste0("\\multicolumn{1}{c}{\\textbf{", 1:(n.age), "}} & ")
-  ages.tex <- do.call("paste", as.list(ages))
-  ## Remove last ampersand
-  ages.tex <- sub("& $", "\\\\\\\\", ages.tex)
+  ages.tex <- latex.paste(latex.bold(1:length(age.headers)))
 
   if(fleet == 2 | fleet == 3){
-    addtorow$command <- c(paste0("\\hline \\textbf{Year} & \\specialcell{\\textbf{Number}\\\\\\textbf{of hauls}} & \\multicolumn{", n.age, "}{c}{\\textbf{Age (\\% of total for each year)}} \\\\",
-                                 "\\hline & & ", ages.tex),
-                          "\\hline ")
+    mlc <- latex.mlc(c("Number", "of hauls"))
   }else{
-    addtorow$command <- c(paste0("\\hline \\textbf{Year} & \\specialcell{\\textbf{Number}\\\\\\textbf{of trips}} & \\multicolumn{", n.age, "}{c}{\\textbf{Age (\\% of total for each year)}} \\\\",
-                                 "\\hline & & ", ages.tex),
-                          "\\hline ")
+    mlc <- latex.mlc(c("Number", "of trips"))
   }
+  addtorow$command <-
+    c(paste0(latex.hline,
+             latex.bold("Year"),
+             latex.amp(),
+             mlc,
+             latex.amp(),
+             latex.mcol(length(age.headers),
+                        "c",
+                        latex.bold("Age (\\% of total for each year)")),
+             latex.nline,
+             latex.hline,
+             latex.amp(2),
+             ages.tex,
+             latex.nline),
+      latex.hline)
+
 
   ## Make the size string for font and space size
-  size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
+  size.string <- latex.size.str(font.size, space.size)
 
   return(print(xtable(dat,
                       caption = xcaption,
@@ -140,19 +156,29 @@ make.can.age.data.table <- function(dat,
 }
 
 make.us.age.data.table <- function(dat,
-                                   fleet = 1,            ## 1=US-CP, 2=US-MS, 3=US-Shoreside
-                                   start.yr,             ## Start the table on this year
+                                   fleet = 1,
+                                   start.yr,
                                    end.yr,
                                    xcaption = "default",
                                    xlabel = "default",
-                                   font.size = 9,        ## Size of the font for the table
-                                   space.size = 10,      ## Size of the spaces for the table
+                                   font.size = 9,
+                                   space.size = 10,
                                    placement = "H",
                                    decimals = 2
                                    ){
 
   ## Returns an xtable in the proper format for the main tables section for US
   ##  age data.
+  ##
+  ## fleet - 1=US-CP, 2=US-MS, 3=US-Shoreside
+  ## start.yr - start the table on this year
+  ## end.yr - end the table on this year
+  ## xcaption - caption to appear in the calling document
+  ## xlabel - the label used to reference the table in latex
+  ## font.size - size of the font for the table
+  ## space.size - size of the vertical spaces for the table
+  ## placement - latex code for placement of table
+  ## decimals - number of decimals in the numbers in the table
 
   if(fleet == 1 | fleet == 2){
     dat[,c(2,3)] <- f(dat[,c(2,3)])
@@ -175,23 +201,36 @@ make.us.age.data.table <- function(dat,
   addtorow$pos[[1]] <- -1
   addtorow$pos[[2]] <- nrow(dat)
   age.headers <- colnames(dat)[grep("^a.*", colnames(dat))]
-  n.age <- length(age.headers)
-  ages <- paste0("\\multicolumn{1}{c}{\\textbf{", 1:(n.age), "}} & ")
-  ages.tex <- do.call("paste", as.list(ages))
-  ## Remove last ampersand
-  ages.tex <- sub("& $", "\\\\\\\\", ages.tex)
+  ages.tex <- latex.paste(latex.bold(1:length(age.headers)))
+
   if(fleet == 1 | fleet == 2){
-    addtorow$command <- c(paste0("\\hline \\textbf{Year} & \\specialcell{\\textbf{Number}\\\\\\textbf{of fish}} & \\specialcell{\\textbf{Number}\\\\\\textbf{of hauls}} & \\multicolumn{", n.age, "}{c}{\\textbf{Age (\\% of total for each year)}} \\\\",
-                                 "\\hline & & & ", ages.tex),
-                          "\\hline ")
+    mlc <- latex.mlc(c("Number", "of hauls"))
   }else{
-    addtorow$command <- c(paste0("\\hline \\textbf{Year} & \\specialcell{\\textbf{Number}\\\\\\textbf{of trips}} & \\multicolumn{", n.age, "}{c}{\\textbf{Age (\\% of total for each year)}} \\\\",
-                                 "\\hline & & ", ages.tex),
-                          "\\hline ")
+    mlc <- latex.mlc(c("Number", "of trips"))
   }
+  addtorow$command <-
+    c(paste0(latex.hline,
+             latex.bold("Year"),
+             latex.amp(),
+             ifelse(fleet == 1 | fleet == 2,
+                    paste0(latex.mlc(c("Number", "of fish")), latex.amp()),
+                    ""),
+             mlc,
+             latex.amp(),
+             latex.mcol(length(age.headers),
+                        "c",
+                        latex.bold("Age (\\% of total for each year)")),
+             latex.nline,
+             latex.hline,
+             ifelse(fleet == 1 | fleet == 2,
+                    latex.amp(3),
+                    latex.amp(2)),
+             ages.tex,
+             latex.nline),
+      latex.hline)
 
   ## Make the size string for font and space size
-  size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
+  size.string <- latex.size.str(font.size, space.size)
 
   return(print(xtable(dat,
                       caption = xcaption,
@@ -335,10 +374,10 @@ make.est.numbers.at.age.table <- function(model,                ## model is an m
     return(invisible())
   }
   ## Add latex headers
-  colnames(dat) <- sapply(colnames(dat), function(x) paste0("\\textbf{", x, "}"))
+  colnames(dat) <- sapply(colnames(dat), latex.bold)
 
   ## Make the size string for font and space size
-  size.string <- paste0("\\fontsize{", font.size, "}{", space.size, "}\\selectfont")
+  size.string <- latex.size.str(font.size, space.size)
   return(print(xtable(dat,
                       caption = xcaption,
                       label = xlabel,
@@ -392,7 +431,7 @@ make.cohort.table <- function(model,
   naa.next <- naa[naa$Yr >= start.yr+1 & naa$Yr <= end.yr+1,]
   ## Numbers at age in same year
   naa <- naa[naa$Yr >= start.yr & naa$Yr <= end.yr,]
-  
+
   ## Change year to match other
   naa.next$Yr <- naa.next$Yr - 1
   # vector of years for use in other places
@@ -408,14 +447,14 @@ make.cohort.table <- function(model,
   ## Extract weight-at-age for the fishery (fleet 1)
   waa <- model$wtatage[model$wtatage$fleet == 1,]
   ## if needed, add years to weight-at-age matrix using mean across years
-  missing.yrs <- as.numeric(yrs)[!as.numeric(yrs) %in% abs(waa$yr)] 
+  missing.yrs <- as.numeric(yrs)[!as.numeric(yrs) %in% abs(waa$yr)]
   if(length(missing.yrs)>0){
     # get mean vector (assuming it is the one associated with -1966)
     mean.waa <- waa[waa$yr==-1966,]
     # loop over missing years (if any present)
     for(iyr in 1:length(missing.yrs)){
       mean.waa$yr <- missing.yrs[iyr]
-      waa <- rbind(waa, mean.waa) 
+      waa <- rbind(waa, mean.waa)
     }
     # sort by year just in case the missing years weren't contiguous
     # (this is probably not needed)
@@ -442,17 +481,24 @@ make.cohort.table <- function(model,
 
   ## Catch weight
   coh.catch <- lapply(1:length(coh.waa),
-                      function(i, waa, caa){waa[[i]] * caa[[i]] / weight.factor},
-                      waa = coh.waa, caa = coh.caa)
+                      function(i, waa, caa){
+                        waa[[i]] * caa[[i]] / weight.factor},
+                      waa = coh.waa,
+                      caa = coh.caa)
 
   coh.surv <- lapply(1:length(coh.naa),
-                     function(i, waa, naa){waa[[i]] * naa[[i]] / weight.factor},
-                     waa = coh.waa, naa = coh.naa.next)
+                     function(i, waa, naa){
+                       waa[[i]] * naa[[i]] / weight.factor},
+                     waa = coh.waa,
+                     naa = coh.naa.next)
 
   ## Natural mortality weight
   coh.m <- lapply(1:length(coh.surv),
-                  function(i, baa, catch, surv){baa[[i]] - surv[[i]] - catch[[i]]},
-                  baa = coh.baa, catch = coh.catch, surv = coh.surv)
+                  function(i, baa, catch, surv){
+                    baa[[i]] - surv[[i]] - catch[[i]]},
+                  baa = coh.baa,
+                  catch = coh.catch,
+                  surv = coh.surv)
 
   ##----------------------------------------------------------------------------
   ## write the CSV
@@ -524,27 +570,30 @@ make.cohort.table <- function(model,
   coh.sum.mat <- as.data.frame(coh.sum.mat)
 
   ## Add latex headers
-  colnames(coh.sum.mat) <- c("\\textbf{Age}",
-                             rep(c("\\specialcell{\\textbf{Start}\\\\\\textbf{Biomass}\\\\\\textbf{(000s t)}}",
-                                   "\\specialcell{\\textbf{Catch}\\\\\\textbf{Weight}\\\\\\textbf{(000s t)}}",
-                                   "\\specialcell{\\textbf{M}\\\\\\textbf{(000s t)}}",
-                                   "\\specialcell{\\textbf{Surviving}\\\\\\textbf{Biomass}\\\\\\textbf{(000s t)}}"),
-                                 length(cohorts)))
+  colnames(coh.sum.mat) <-
+    c(latex.bold("Age"),
+      rep(c(latex.mlc(c("Start", "Biomass", "000s t")),
+            latex.mlc(c("Catch", "Weight", "000s t")),
+            latex.mlc(c("M", "000s t")),
+            latex.mlc(c("Surviving", "Biomass", "000s t"))),
+          length(cohorts)))
   ##----------------------------------------------------------------------------
 
   ## Add the extra header spanning multiple columns
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
-  addtorow$command <- "\\hline "
+  addtorow$command <- latex.hline
   for(i in 1:length(cohorts)){
-    addtorow$command <- paste0(addtorow$command,
-                               " & \\multicolumn{4}{c}{\\textbf{",
-                               cohorts[i],
-                               " cohort}}")
+    addtorow$command <-
+      paste0(addtorow$command,
+             latex.amp(),
+             latex.mcol(4,
+                        "c",
+                        latex.bold(paste(cohorts[i], " cohort"))))
   }
-  addtorow$command <- paste0(addtorow$command, " \\\\")
-  size.string <- paste0("\\fontsize{", font.size, "}{", space.size, "}\\selectfont")
+  addtorow$command <- paste0(addtorow$command, latex.nline)
+  size.string <- latex.size.str(font.size, space.size)
   return(print(xtable(coh.sum.mat,
                       caption = xcaption,
                       label = xlabel,
