@@ -448,7 +448,7 @@ make.decision.table(base.model,
                     xlabel <- "tab:main-decisions-biomass",
                     font.size = 12,
                     space.size = 14,
-                    which = "biomass")
+                    type = "biomass")
 @
 
 <<main.decisions.spr.table, results='asis', echo=FALSE>>=
@@ -457,7 +457,7 @@ make.decision.table(base.model,
                     xlabel <- "tab:main-decisions-spr",
                     font.size = 12,
                     space.size = 14,
-                    which = "spr")
+                    type = "spr")
 @
 
 <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=

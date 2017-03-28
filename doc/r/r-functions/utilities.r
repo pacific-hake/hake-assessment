@@ -66,13 +66,32 @@ latex.mlc <- function(latex.vec, make.bold = TRUE){
 latex.mcol <- function(ncol, just, txt){
   ## Returns the given text with the latex \\multicolumn{} macro around it
   ## ncol - the number of columns
-  ## orient - justification, e.g. "l", "c", or "r" for left, center, right
+  ## just - justification, e.g. "l", "c", or "r" for left, center, right
   paste0("\\multicolumn{", ncol, "}{", just, "}{", txt, "}")
+}
+
+latex.mrow <- function(nrow, just, txt){
+  ## Returns the given text with the latex \\multicolumn{} macro around it
+  ## nrow - the number of rows
+  ## just - justification, e.g. "l", "c", or "r" for left, center, right
+  paste0("\\multirow{", nrow, "}{", just, "}{", txt, "}")
 }
 
 latex.size.str <- function(fnt.size, spc.size){
   ## Returns a string which has the given font size and space size applied
   paste0("\\fontsize{", fnt.size, "}{", spc.size, "}\\selectfont")
+}
+
+latex.cline <- function(cols){
+  ## Draw a horizontal line across the columns specified
+  ##  cols is a string in this format: "1-3" which means
+  ##  the line should go across columns 1 to 3.
+  paste0("\\cline{", cols, "}")
+}
+
+latex.subscr <- function(main.txt, subscr.txt){
+  ## Returns a latex string with main.txt subscripted by subscr.txt
+  paste0(main.txt, "\\subscr{", subscr.txt, "}")
 }
 
 ## -----------------------------------------------------------------------------

@@ -632,7 +632,7 @@ make.squid.plot(retro.list,
                              xlabel = "tab:es-decisions-spr",
                              font.size = 8,
                              space.size = 10,
-                             which = "biomass",
+                             type = "biomass",
                              placement = "h")
 @
 
@@ -657,7 +657,7 @@ make.squid.plot(retro.list,
 %%                              xlabel = "tab:es-decisions-spr",
 %%                              font.size = 9,
 %%                              space.size = 11,
-%%                              which = "spr",
+%%                              type = "spr",
 %%                              placement = "h")
 %% @
 

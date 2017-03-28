@@ -275,7 +275,7 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
                              xlabel = "tab:es-decisions-spr",
                              font.size = 8,
                              space.size = 10,
-                             which = "biomass",
+                             type = "biomass",
                              placement = "h")
 @
 
