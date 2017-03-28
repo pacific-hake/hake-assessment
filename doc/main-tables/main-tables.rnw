@@ -236,8 +236,6 @@ make.maturity.ogives.table(maturity.ogives,
 
 <<main.ovaries.table, results='asis', echo=FALSE>>=
 make.maturity.samples.table(ovary.samples,
-                            start.yr = start.yr,
-                            end.yr = last.data.yr,
                             xcaption = "Number of \\fishname\\ ovaries collected for histological analysis with maturity determined from different years and different sources. Numbers for 2016 are preliminary and may be adjusted when preparation of the samples is completed.",
                             xlabel = "tab:main-ovaries",
                             font.size = 10,
