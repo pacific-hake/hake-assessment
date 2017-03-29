@@ -52,6 +52,16 @@ latex.bold <- function(txt){
   paste0("\\textbf{", txt, "}")
 }
 
+latex.italics <- function(txt){
+  ## Returns the given text with the latex \\emph{} macro around it
+  paste0("\\emph{", txt, "}")
+}
+
+latex.under <- function(txt){
+  ## Returns the given text with the latex \\underline{} macro around it
+  paste0("\\underline{", txt, "}")
+}
+
 latex.mlc <- function(latex.vec, make.bold = TRUE){
   ## Returns a string which has been glued together using multi-line-cell
   ##  macro for latex. If make.bold is TRUE, the \textbf macro will be
