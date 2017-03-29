@@ -434,8 +434,8 @@ make.short.parameter.estimates.table(
 
 <<main.reference.points.table, results='asis', echo=FALSE>>=
 make.reference.points.table(base.model,
-                            xcaption <- paste0("Summary of median and 95\\% credibility intervals of equilibrium reference points for the \\fishname\\ base assessment model. Equilibrium reference points were computed using ", start.yr, "--", end.yr-1, " averages for mean size at age and selectivity at age."),
-                            xlabel <- "tab:main-reference-points",
+                            xcaption = paste0("Summary of median and 95\\% credibility intervals of equilibrium reference points for the \\fishname\\ base assessment model. Equilibrium reference points were computed using ", start.yr, "--", end.yr-1, " averages for mean size at age and selectivity at age."),
+                            xlabel = "tab:main-reference-points",
                             font.size = 10,
                             space.size = 12)
 @

@@ -222,50 +222,59 @@ create.rdata.file <- function(
   return(invisible())
 }
 
-calc.mcmc <- function(mcmc,            ## mcmc is the output of the SS_getMCMC
-                                       ##  function from the r4ss package as a data.frame
-                      lower = 0.025,   ## Lower quantile for confidence interval calcs
-                      upper = 0.975    ## Upper quantile for confidence interval calcs
-                      ){
-  ## Do the mcmc calculations, e.g. quantiles for SB, SPB, DEPL, RECR, RECRDEVS, SPR
-  ## Returns a list of them all
+calc.mcmc <- function(mcmc,
+                      lower = 0.025,
+                      upper = 0.975){
+  ## Return a list of mcmc calculations, e.g. quantiles for various values
+  ##
+  ## mcmc - is the output of the SS_getMCMC function from the r4ss
+  ##  package as a data.frame
+  ## lower - lower quantile for confidence interval calcs
+  ## upper - upper quantile for confidence interval calcs
 
-  ## 2e6 used here because biomass will be shown in the millions of tonnes and it is female only
+  ## 2e6 used here because biomass will be shown in the millions of tonnes
+  ##  and it is female only.
   spb <- mcmc[,grep("SPB",names(mcmc))]/2e6
-  svirg <- quantile(spb[,names(spb) == "SPB_Virgin"], c(lower, 0.5, upper))
-  sinit <- quantile(spb[,names(spb) == "SPB_Initial"], c(lower, 0.5, upper))
+  svirg <- quantile(spb[,names(spb) == "SPB_Virgin"],
+                    c(lower, 0.5, upper))
+  sinit <- quantile(spb[,names(spb) == "SPB_Initial"],
+                    c(lower, 0.5, upper))
 
-  ## sinit.post is saved here so that depletion calculations can be done for each posterior,
+  ## sinit.post is saved here so that depletion calculations can be done for
+  ##  each posterior,
   sinit.post <- spb[,names(spb) == "SPB_Initial"]
 
-  names(spb) <- gsub("SPB_","",names(spb))
+  names(spb) <- gsub("SPB_", "", names(spb))
   cols.to.strip <- c("Virgin", "Initial")
   spb <- strip.columns(spb, cols.to.strip)
 
-  slower <- apply(spb,2,quantile,prob=lower)
-  smed   <- apply(spb,2,quantile,prob=0.5)
-  supper <- apply(spb,2,quantile,prob=upper)
+  slower <- apply(spb, 2, quantile, prob = lower)
+  smed   <- apply(spb, 2, quantile, prob = 0.5)
+  supper <- apply(spb, 2, quantile, prob = upper)
 
-  depl   <- apply(spb,2,function(x){x/sinit.post})
-  dlower <- apply(depl,2,quantile,prob=lower)
-  dmed   <- apply(depl,2,quantile,prob=0.5)
-  dupper <- apply(depl,2,quantile,prob=upper)
+  depl   <- apply(spb, 2, function(x){x / sinit.post})
+  dlower <- apply(depl, 2, quantile, prob = lower)
+  dmed   <- apply(depl, 2, quantile, prob = 0.5)
+  dupper <- apply(depl, 2, quantile, prob = upper)
 
   ## 1e6 used here because recruitment will be shown in the millions of tonnes
-  recr <- mcmc[,grep("Recr_",names(mcmc))]/1e6
-  recr <- recr[,-grep("Fore",names(recr))]
-  names(recr) <- gsub("Recr_","",names(recr))
-  rvirg <- quantile(recr[,names(recr) == "Virgin"], c(lower, 0.5, upper))
-  rinit <- quantile(recr[,names(recr) == "Initial"], c(lower, 0.5, upper))
-  runfished <- quantile(recr[,names(recr) == "Unfished"], c(lower, 0.5, upper))
+  recr <- mcmc[,grep("Recr_", names(mcmc))] / 1e6
+  recr <- recr[,-grep("Fore", names(recr))]
+  names(recr) <- gsub("Recr_", "", names(recr))
+  rvirg <- quantile(recr[,names(recr) == "Virgin"],
+                    c(lower, 0.5, upper))
+  rinit <- quantile(recr[,names(recr) == "Initial"],
+                    c(lower, 0.5, upper))
+  runfished <- quantile(recr[,names(recr) == "Unfished"],
+                        c(lower, 0.5, upper))
 
-  cols.to.strip <- c("Virgin", "Initial","Unfished")
+  cols.to.strip <- c("Virgin", "Initial", "Unfished")
   recr <- strip.columns(recr, cols.to.strip)
 
-  rmed <- apply(recr, 2, quantile, prob=0.5)
+  rmed <- apply(recr, 2, quantile, prob = 0.5)
   rmean <- apply(recr, 2, mean)
-  rlower <- apply(recr, 2, quantile,prob=lower)
-  rupper <- apply(recr, 2, quantile,prob=upper)
+  rlower <- apply(recr, 2, quantile,prob = lower)
+  rupper <- apply(recr, 2, quantile,prob = upper)
 
   dev <- mcmc[,c(grep("Early_InitAge_", names(mcmc)),
                  grep("Early_RecrDev_", names(mcmc)),
@@ -280,36 +289,131 @@ calc.mcmc <- function(mcmc,            ## mcmc is the output of the SS_getMCMC
 
   ## Change the Early_Init names to be the correct preceeding years
   start.yr <- as.numeric(min(names(dev)))
-  early <- grep("Early_InitAge_",names(dev))
+  early <- grep("Early_InitAge_", names(dev))
   num.early.yrs <- length(early)
   early.yrs <- seq(start.yr - num.early.yrs, start.yr - 1, 1)
   late.yrs <- names(dev[-early])
   names(dev) <- c(as.character(early.yrs), late.yrs)
 
-  devlower <- apply(dev, 2, quantile, prob=lower)
-  devmed <- apply(dev, 2, quantile, prob=0.5)
-  devupper <- apply(dev, 2, quantile, prob=upper)
+  devlower <- apply(dev, 2, quantile, prob = lower)
+  devmed <- apply(dev, 2, quantile, prob = 0.5)
+  devupper <- apply(dev, 2, quantile, prob = upper)
 
   spr <- mcmc[,grep("SPRratio_", names(mcmc))]
   names(spr) <- gsub("SPRratio_", "", names(spr))
 
-  plower <- apply(spr, 2, quantile, prob=lower)
-  pmed <- apply(spr, 2, quantile, prob=0.5)
-  pupper <- apply(spr, 2, quantile, prob=upper)
+  plower <- apply(spr, 2, quantile, prob = lower)
+  pmed <- apply(spr, 2, quantile, prob = 0.5)
+  pupper <- apply(spr, 2, quantile, prob = upper)
 
   f <- mcmc[,grep("F_", names(mcmc))]
   names(f) <- gsub("F_", "", names(f))
-  flower <- apply(f, 2, quantile, prob=lower)
-  fmed   <- apply(f, 2, quantile, prob=0.5)
-  fupper <- apply(f, 2, quantile, prob=upper)
+  flower <- apply(f, 2, quantile, prob = lower)
+  fmed   <- apply(f, 2, quantile, prob = 0.5)
+  fupper <- apply(f, 2, quantile, prob = upper)
 
-  list(svirg=svirg, sinit=sinit, slower=slower, smed=smed, supper=supper,
-       dlower=dlower, dmed=dmed, dupper=dupper,
-       rvirg=rvirg, rinit=rinit, runfihed=runfished,
-       rlower=rlower, rmed=rmed, rupper=rupper, rmean=rmean,
-       devlower=devlower, devmed=devmed, devupper=devupper,
-       plower=plower, pmed=pmed, pupper=pupper,
-       flower=flower, fmed=fmed, fupper=fupper)
+  ## Calculations for the reference points table
+  probs <- c(lower, 0.5, upper)
+  unfish.fem.bio <-
+    f(round(quantile(mcmc$SSB_Unfished,
+                     prob = probs) / 2e6, 3) * 1000,
+      0)
+  unfish.recr <-
+    f(round(quantile(mcmc$Recr_Virgin,
+                     prob = probs) / 1e6, 3) * 1000,
+      0)
+  f.spawn.bio.bf40 <-
+    f(round(quantile(mcmc$SSB_SPRtgt,
+                     prob = probs) / 2e6, 3) * 1000,
+      0)
+  spr.msy.proxy <- c(latex.bold("--"),
+                     "40\\%",
+                     latex.bold("--"))
+  exp.frac.spr <-
+    paste0(f(100 * quantile(mcmc$Fstd_SPRtgt,
+                            prob = probs),
+             1),
+           "\\%")
+  yield.bf40 <-
+    f(round(quantile(mcmc$TotYield_SPRtgt,
+                     prob = probs) / 1e6, 3) * 1000,
+      0)
+  fem.spawn.bio.b40 <-
+    f(round(quantile(mcmc$SSB_Btgt,
+                     prob = probs) / 2e6, 3) * 1000,
+      0)
+  spr.b40 <-
+    paste0(f(100 * quantile(mcmc$SPR_Btgt,
+                            prob = probs),
+             1),
+           "\\%")
+  exp.frac.b40 <-
+    paste0(f(100 * quantile(mcmc$Fstd_Btgt,
+                            prob = probs),
+             1),
+           "\\%")
+  yield.b40 <-
+    f(round(quantile(mcmc$TotYield_Btgt,
+                     prob = probs) / 1e6, 3) * 1000,
+      0)
+  fem.spawn.bio.bmsy <-
+    f(round(quantile(mcmc$SSB_MSY,
+                     prob = probs) / 2e6, 3) * 1000,
+      0)
+  spr.msy <- paste0(f(100 * quantile(mcmc$SPR_MSY,
+                                     prob = probs),
+                      1),
+                    "\\%")
+  exp.frac.sprmsy <-
+    paste0(f(100 * quantile(mcmc$Fstd_MSY,
+                            prob = probs),
+             1),
+           "\\%")
+  msy <-
+    f(round(quantile(mcmc$TotYield_MSY,
+                     prob = probs) / 1e6, 3) * 1000,
+      0)
+  ## Return a list of the calculated values
+  sapply(c("svirg",
+           "sinit",
+           "slower",
+           "smed",
+           "supper",
+           "dlower",
+           "dmed",
+           "dupper",
+           "rvirg",
+           "rinit",
+           "runfished",
+           "rlower",
+           "rmed",
+           "rupper",
+           "rmean",
+           "devlower",
+           "devmed",
+           "devupper",
+           "plower",
+           "pmed",
+           "pupper",
+           "flower",
+           "fmed",
+           "fupper",
+           ## Reference points
+           "unfish.fem.bio",
+           "unfish.recr",
+           "f.spawn.bio.bf40",
+           "spr.msy.proxy",
+           "exp.frac.spr",
+           "yield.bf40",
+           "fem.spawn.bio.b40",
+           "spr.b40",
+           "exp.frac.b40",
+           "yield.b40",
+           "fem.spawn.bio.bmsy",
+           "spr.msy",
+           "exp.frac.sprmsy",
+           "msy"),
+         function(x){get(x)})
 }
 
 run.forecasts <- function(model,

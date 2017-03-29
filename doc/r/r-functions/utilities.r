@@ -104,6 +104,11 @@ latex.subscr <- function(main.txt, subscr.txt){
   paste0(main.txt, "\\subscr{", subscr.txt, "}")
 }
 
+latex.supscr <- function(main.txt, supscr.txt){
+  ## Returns a latex string with main.txt superscripted by supscr.txt
+  paste0(main.txt, "\\supscr{", supscr.txt, "}")
+}
+
 ## -----------------------------------------------------------------------------
 
 install.packages.if.needed <- function(package.name, package.install.name, github=FALSE){
