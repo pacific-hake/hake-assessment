@@ -33,6 +33,7 @@ f <- function(x, dec.points = 0){
 ## Functions to make table generation easier
 ## Latex newline
 latex.nline <- " \\\\ "
+## Horizontal line
 latex.hline <- " \\hline "
 latex.amp <- function(n = 1){
   ## Returns a string with n ampersands seperated by spaces. The string will
@@ -94,9 +95,19 @@ latex.size.str <- function(fnt.size, spc.size){
 
 latex.cline <- function(cols){
   ## Draw a horizontal line across the columns specified
-  ##  cols is a string in this format: "1-3" which means
+  ## cols - a string in this format: "1-3" which means
   ##  the line should go across columns 1 to 3.
   paste0("\\cline{", cols, "}")
+}
+
+latex.cmidr <- function(cols, trim = "r"){
+  ## Draw a horizontal line across the columns specified
+  ## cols - a string in this format: "1-3" which means
+  ##  the line should go across columns 1 to 3.
+  ## trim - can be l, r, or lr and tells it to trim the
+  ##  line a bit so that if there are two lines they don't
+  ##  touch in the middle. (See booktabs package)
+  paste0("\\cmidrule(", trim, "){", cols, "}")
 }
 
 latex.subscr <- function(main.txt, subscr.txt){
