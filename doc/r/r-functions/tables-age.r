@@ -1,17 +1,25 @@
 make.input.age.data.table <- function(model,
-                                      fleet = 1,            ## 1=Fishery, 2=Survey
-                                      start.yr,             ## Start the table on this year
+                                      fleet = 1,
+                                      start.yr,
                                       end.yr,
                                       xcaption = "default",
                                       xlabel = "default",
-                                      font.size = 9,        ## Size of the font for the table
-                                      space.size = 10,      ## Size of the spaces for the table
+                                      font.size = 9,
+                                      space.size = 10,
                                       placement = "H",
-                                      decimals = 2
-                                      ){
-  ## Returns an xtable in the proper format for the main tables section for combined
-  ##  fishery or survey age data.
-  ##  age data.
+                                      decimals = 2){
+  ## Returns an xtable in the proper format for the main tables section for
+  ##  combined fishery or survey age data
+  ##
+  ## fleet - 1 = Fishery, 2 = Survey
+  ## start.yr - start the table on this year
+  ## end.yr - end the table on this year
+  ## xcaption - caption to appear in the calling document
+  ## xlabel - the label used to reference the table in latex
+  ## font.size - size of the font for the table
+  ## space.size - size of the vertical spaces for the table
+  ## placement - latex code for placement of table
+  ## decimals - number of decimals in the numbers in the table
 
   ## Get ages from header names
   age.df <- model$dat$agecomp
@@ -55,7 +63,8 @@ make.input.age.data.table <- function(model,
     c(paste0(latex.hline,
              latex.bold("Year"),
              latex.amp(),
-             latex.mlc(c("Number", "of samples")),
+             latex.mlc(c("Number",
+                         "of samples")),
              latex.amp(),
              latex.mcol(length(ages),
                         "c",
@@ -85,18 +94,28 @@ make.input.age.data.table <- function(model,
 }
 
 make.can.age.data.table <- function(dat,
-                                    fleet = 1,            ## 1=Can-Shoreside, 2=Can-FT, 3=Can-JV
-                                    start.yr,             ## Start the table on this year
+                                    fleet = 1,
+                                    start.yr,
                                     end.yr,
                                     xcaption = "default",
                                     xlabel = "default",
-                                    font.size = 9,        ## Size of the font for the table
-                                    space.size = 10,      ## Size of the spaces for the table
+                                    font.size = 9,
+                                    space.size = 10,
                                     placement = "H",
-                                    decimals = 2
-                                    ){
+                                    decimals = 2){
   ## Returns an xtable in the proper format for the main tables section for
   ##  Canadian age data.
+  ##
+  ## fleet - 1 = Can-Shoreside, 2 = Can-FT, 3 = Can-JV
+  ## start.yr - start the table on this year
+  ## end.yr - end the table on this year
+  ## xcaption - caption to appear in the calling document
+  ## xlabel - the label used to reference the table in latex
+  ## font.size - size of the font for the table
+  ## space.size - size of the vertical spaces for the table
+  ## placement - latex code for placement of table
+  ## decimals - number of decimals in the numbers in the table
+
   ages.df <- dat[[fleet]]
   n.trip.haul <- as.numeric(dat[[fleet + 3]])
   ages.df <- cbind(n.trip.haul, ages.df)
@@ -116,9 +135,11 @@ make.can.age.data.table <- function(dat,
   ages.tex <- latex.paste(latex.bold(1:length(age.headers)))
 
   if(fleet == 2 | fleet == 3){
-    mlc <- latex.mlc(c("Number", "of hauls"))
+    mlc <- latex.mlc(c("Number",
+                       "of hauls"))
   }else{
-    mlc <- latex.mlc(c("Number", "of trips"))
+    mlc <- latex.mlc(c("Number",
+                       "of trips"))
   }
   addtorow$command <-
     c(paste0(latex.hline,
@@ -164,8 +185,7 @@ make.us.age.data.table <- function(dat,
                                    font.size = 9,
                                    space.size = 10,
                                    placement = "H",
-                                   decimals = 2
-                                   ){
+                                   decimals = 2){
 
   ## Returns an xtable in the proper format for the main tables section for US
   ##  age data.
@@ -204,16 +224,19 @@ make.us.age.data.table <- function(dat,
   ages.tex <- latex.paste(latex.bold(1:length(age.headers)))
 
   if(fleet == 1 | fleet == 2){
-    mlc <- latex.mlc(c("Number", "of hauls"))
+    mlc <- latex.mlc(c("Number",
+                       "of hauls"))
   }else{
-    mlc <- latex.mlc(c("Number", "of trips"))
+    mlc <- latex.mlc(c("Number",
+                       "of trips"))
   }
   addtorow$command <-
     c(paste0(latex.hline,
              latex.bold("Year"),
              latex.amp(),
              ifelse(fleet == 1 | fleet == 2,
-                    paste0(latex.mlc(c("Number", "of fish")), latex.amp()),
+                    paste0(latex.mlc(c("Number",
+                                       "of fish")), latex.amp()),
                     ""),
              mlc,
              latex.amp(),
@@ -432,19 +455,29 @@ make.est.numbers.at.age.table <- function(model,
 }
 
 make.cohort.table <- function(model,
-                              cohorts,              ## a vector of cohort years which are to appear in the table
-                              start.yr,             ## year to start the at-age matrix calcs
-                              end.yr,               ## year to end the  at-age matrix calcs
-                              weight.factor = 1000, ## divide catches by this factor
-                              csv.dir = "out-csv",  ## The outputs will be written to a csv file in this directory
+                              cohorts,
+                              start.yr,
+                              end.yr,
+                              weight.factor = 1000,
+                              csv.dir = "out-csv",
                               xcaption = "default",
                               xlabel   = "default",
                               font.size = 9,
-                              space.size = 10,      ## Size of the spacing for the table
-                              scalebox = '1.0'      ## attempt to allow table to be narrower
-                              ){
+                              space.size = 10,
+                              scalebox = "1.0"){
   ## Returns an xtable in the proper format for cohort's start biomass,
   ## catch weight, natural mortality weight, and surviving biomass all by age
+  ##
+  ## model - an mcmc run, output of the r4ss package's function SSgetMCMC()
+  ## cohorts - a vector of cohort years which are to appear in the table
+  ## start.yr - the first year to show in the table
+  ## end.yr - the last year to show in the table
+  ## weight.factor - divide catches by this factor
+  ## xcaption - caption to appear in the calling document
+  ## xlabel - the label used to reference the table in latex
+  ## font.size - size of the font for the table
+  ## space.size - size of the vertical spaces for the table
+  ## scalebox - attempt to allow table to be narrower
 
   if(!length(cohorts)){
     return(invisible())
@@ -613,10 +646,17 @@ make.cohort.table <- function(model,
   ## Add latex headers
   colnames(coh.sum.mat) <-
     c(latex.bold("Age"),
-      rep(c(latex.mlc(c("Start", "Biomass", "000s t")),
-            latex.mlc(c("Catch", "Weight", "000s t")),
-            latex.mlc(c("M", "000s t")),
-            latex.mlc(c("Surviving", "Biomass", "000s t"))),
+      rep(c(latex.mlc(c("Start",
+                        "Biomass",
+                        "000s t")),
+            latex.mlc(c("Catch",
+                        "Weight",
+                        "000s t")),
+            latex.mlc(c("M",
+                        "000s t")),
+            latex.mlc(c("Surviving",
+                        "Biomass",
+                        "000s t"))),
           length(cohorts)))
   ##----------------------------------------------------------------------------
 
@@ -631,7 +671,8 @@ make.cohort.table <- function(model,
              latex.amp(),
              latex.mcol(4,
                         "c",
-                        latex.bold(paste(cohorts[i], " cohort"))))
+                        latex.bold(paste(cohorts[i],
+                                         " cohort"))))
   }
   addtorow$command <- paste0(addtorow$command, latex.nline)
   size.string <- latex.size.str(font.size, space.size)
@@ -644,6 +685,6 @@ make.cohort.table <- function(model,
                table.placement = "H",
                include.rownames = FALSE,
                sanitize.text.function = function(x){x},
-               size = size.string, scalebox=scalebox))
-
+               size = size.string,
+               scalebox = scalebox))
 }

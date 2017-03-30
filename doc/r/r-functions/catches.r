@@ -42,7 +42,6 @@ load.catches <- function(fn){
 make.catches.table <- function(catches,
                                start.yr,
                                end.yr,
-                               weight.factor = 1000,
                                xcaption = "default",
                                xlabel   = "default",
                                font.size = 9,
@@ -53,7 +52,6 @@ make.catches.table <- function(catches,
   ## catches - output of the load.catches function above.
   ## start.yr - the first year to show in the table
   ## end.yr - the last year to show in the table
-  ## weight.factor - divide catches by this factor
   ## xcaption - caption to appear in the calling document
   ## xlabel - the label used to reference the table in latex
   ## font.size - size of the font for the table
@@ -218,7 +216,6 @@ make.catches.plot <- function(catches,
 make.catches.table.US <- function(catches,
                                   start.yr,
                                   end.yr,
-                                  weight.factor = 1000,
                                   xcaption = "default",
                                   xlabel   = "default",
                                   font.size = 9,
@@ -228,7 +225,6 @@ make.catches.table.US <- function(catches,
   ## catches - output of the load.catches function above.
   ## start.yr - the first year to show in the table
   ## end.yr - the last year to show in the table
-  ## weight.factor - divide catches by this factor
   ## xcaption - caption to appear in the calling document
   ## xlabel - the label used to reference the table in latex
   ## font.size - size of the font for the table
@@ -273,7 +269,6 @@ make.catches.table.US <- function(catches,
 make.catches.table.Can <- function(catches,
                                    start.yr,
                                    end.yr,
-                                   weight.factor = 1000,
                                    xcaption = "default",
                                    xlabel   = "default",
                                    font.size = 9,
@@ -283,7 +278,6 @@ make.catches.table.Can <- function(catches,
   ## catches - output of the load.catches function above.
   ## start.yr - the first year to show in the table
   ## end.yr - the last year to show in the table
-  ## weight.factor - divide catches by this factor
   ## xcaption - caption to appear in the calling document
   ## xlabel - the label used to reference the table in latex
   ## font.size - size of the font for the table
@@ -324,7 +318,6 @@ make.catches.table.Can <- function(catches,
 make.catches.table.total <- function(catches,
                                      start.yr,
                                      end.yr,
-                                     weight.factor = 1000,
                                      xcaption = "default",
                                      xlabel   = "default",
                                      font.size = 9,
@@ -335,7 +328,6 @@ make.catches.table.total <- function(catches,
   ## catches - output of the load.catches function above.
   ## start.yr - the first year to show in the table
   ## end.yr - the last year to show in the table
-  ## weight.factor - divide catches by this factor
   ## xcaption - caption to appear in the calling document
   ## xlabel - the label used to reference the table in latex
   ## font.size - size of the font for the table
@@ -388,7 +380,6 @@ make.landings.tac.table <- function(landings.vs.tac,
   ## landings.vs.tac - data frame read in from the csv file
   ## start.yr - the first year to show in the table
   ## end.yr - the last year to show in the table
-  ## weight.factor - divide catches by this factor
   ## xcaption - caption to appear in the calling document
   ## xlabel - the label used to reference the table in latex
   ## font.size - size of the font for the table
