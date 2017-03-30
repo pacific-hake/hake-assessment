@@ -302,7 +302,7 @@ make.est.numbers.at.age.table(
 make.est.numbers.at.age.table(
   base.model,
   start.yr = start.yr,
-  end.yr = last.data.yr+1,
+  end.yr = last.data.yr + 1,
   table.type = 5,
   csv.dir = output.csv.dir,
   xcaption = paste0("Estimated biomass-at-age at the beginning ",
@@ -371,7 +371,7 @@ make.est.numbers.at.age.table(
 make.est.numbers.at.age.table(
   base.model,
   start.yr = start.yr,
-  end.yr = end.yr,
+  end.yr = last.data.yr,
   table.type = 4,
   csv.dir = output.csv.dir,
   xcaption = paste0("Estimated catch-at-age in biomass ",

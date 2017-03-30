@@ -76,9 +76,9 @@ make.ci.posterior.table <- function(model,
                                       "(millions)")),
                           latex.mlc(c("(1-SPR)",
                                       "/",
-                                      "(1-",
-                                      latex.subscr("SPR", "40\\%"),
-                                      ")")),
+                                      paste0("(1-",
+                                             latex.subscr("SPR", "40\\%"),
+                                             ")"))),
                           latex.mlc(c("Exploitation",
                                       "fraction")))
 

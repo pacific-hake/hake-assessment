@@ -1,5 +1,5 @@
 ################################################################################
-## Data table loading
+## Data tables (input and output)
 ################################################################################
 data.path <- file.path("..", "..", "data")
 
@@ -63,3 +63,12 @@ us.shore.age <- load.us.age.data(file.path(data.path, us.shore.age.data.file))
 us.cp.age <- load.us.age.data(file.path(data.path, us.cp.age.data.file))
 us.ms.age <- load.us.age.data(file.path(data.path, us.ms.age.data.file))
 cat("All data tables have been loaded ", data.path,"\n")
+
+##------------------------------------------------------------------------------
+## Output data tables
+out.est.naa.file <- "estimated-numbers-at-age.csv"
+out.est.eaa.file <- "estimated-exploitation-at-age.csv"
+out.est.caa.file <- "estimated-catch-at-age.csv"
+out.est.caa.bio.file <- "estimated-catch-at-age-biomass.csv"
+out.est.baa.file <- "estimated-biomass-at-age.csv"
+##------------------------------------------------------------------------------
