@@ -184,8 +184,8 @@ make.biomass.table <- function(model,
                                space.size = 10,
                                digits = 1,
                                placement = "H"){
-  ## Returns an xtable in the proper format for the executive summary biomass values for the base case mcmc
-  ## Biomass quantiles
+  ## Returns an xtable in the proper format for the executive summary biomass
+  ##  values for the base case mcmc biomass quantiles
   ##
   ## model - an mcmc run, output of the r4ss package's function SSgetMCMC()
   ## start.yr - the first year to show in the table
@@ -283,7 +283,8 @@ make.recruitment.table <- function(model,
                                    digits = 1,
                                    digits.dev = 3,
                                    placement = "H"){
-  ## Returns an xtable in the proper format for the executive summary recruitment and deviations values for the base case mcmc
+  ## Returns an xtable in the proper format for the executive summary
+  ##  recruitment and deviations values for the base case mcmc
   ##
   ## model - an mcmc run, output of the r4ss package's function SSgetMCMC()
   ## start.yr - the first year to show in the table

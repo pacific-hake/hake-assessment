@@ -4,117 +4,96 @@
 
 \documentclass[12pt]{book}
 %% Allows the numbering of figures/tables to be unique witin a section
-%% - so that clicking table d in the executive summary takes you there, and not to
-%%   the fourth table in the main-tables section
+%%  so that clicking table d in the executive summary takes you there, and not
+%%  to the fourth table in the main-tables section
 \usepackage{chngcntr}
 
-\usepackage{hake}                 % hake.sty in this directory.
-\usepackage[titletoc,title]{appendix}   % title gives 'Appendix A', not
-    % just 'A', but doesn't seem to work, may need article class,
-    % but need to see appendix manual.
+\usepackage{hake}
+%% title gives 'Appendix A', not
+%% just 'A', but doesn't seem to work, may need article class,
+%% but need to see appendix manual.
+\usepackage[titletoc,title]{appendix}
 
 \usepackage{cite}
-%% need array when specifying a ragged right column:  >{\raggedright\arraybackslash}{p2in}.
+%% need array when specifying a ragged right column:
+%%  >{\raggedright\arraybackslash}{p2in}.
 \usepackage{longtable,array}
 %% \renewcommand{\chaptername}{Appendix}
 %% \addto\captionsenglish{\renewcommand\chaptername{Part}}
-\usepackage{import}            % for figures in chapter subdirectories
-\usepackage{float}             % Allow figures and tables to be controlled better (avoid the floating).
+%% For figures in chapter subdirectories
+\usepackage{import}
+%% Allow figures and tables to be controlled better (avoid the floating).
+\usepackage{float}
 
-% Had these for YMR Eqns appendix:
-% \renewcommand{\footrulewidth}{0.4pt}
-% \renewcommand{\headrulewidth}{0pt}
-% These are in hake.sty anyway, presumably should not be called twice but
-%  leaving in for now to be safe.
-% \usepackage[T1]{fontenc}
-% \usepackage{lmodern}
-
-\usepackage{alltt}             %% Allows symbols inside a verbatim-type section
-\usepackage{listings}          %% For code listing with syntax highlighting
-\usepackage{graphicx}          %% For inclusion of figures
-\usepackage{verbatim,fancyvrb} %% verbatim package allows blocks with special characters to be shown easily.
-% \usepackage{xifthen}           %% provides \ifthenelse and \isempty
-% \usepackage{color, colortbl}
-% \usepackage{arydshln}          %% For dashed lines in tables (has to be loaded after other stuff)
-% \usepackage{pdfpages}          %% So we can import PDFs into the document if necessary
-\usepackage{multicol}          %% Used innecessary for decision tables
-\usepackage{multirow}          %% Used in decision tables
-\usepackage{booktabs}          %% Used in executive summary tables
+%% Allows symbols inside a verbatim-type section
+\usepackage{alltt}
+%% For code listing with syntax highlighting
+\usepackage{listings}
+%% For inclusion of figures
+\usepackage{graphicx}
+%% verbatim package allows blocks with special characters to be shown easily.
+\usepackage{verbatim,fancyvrb}
+%% Used innecessary for decision tables
+\usepackage{multicol}
+%% Used in decision tables
+\usepackage{multirow}
+%% Used in executive summary tables
+\usepackage{booktabs}
+%% Used in decision tables and others so vertical lines line up properly.
 \usepackage{tabularx}
-\usepackage{lastpage}          %% Allows the citation to reflect the number of pages in the document.
-\usepackage[parfill]{parskip}  % So paragraphs will have a blank line between them
+%% Allows the citation to reflect the number of pages in the document.
+\usepackage{lastpage}
+%% So paragraphs will have a blank line between them.
+\usepackage[parfill]{parskip}
 \setlength{\parskip}{12pt}
 
 \usepackage[yyyymmdd]{datetime}
 \renewcommand{\dateseparator}{--}
 
-% For fitting the backscatter plot
+%% For fitting the backscatter plot
 \usepackage{graphicx}
 \usepackage[export]{adjustbox}
 
-% For hyperlinked references (figures and citations, etc.). The bookmarksdepthlevel allows
-%  the TOC to be shown in the bookmarks tree in the output PDF.
-
-%% START - COMMENTED OUT TO AVOID HYPERREF COLLISIONS
-%% \usepackage[bookmarks,bookmarksopen,bookmarksdepth=4]{hyperref}
-
-%% \hypersetup{                   % Set up the hyperref options here
-%%     pdftitle={Arrowtooth Flounder},
-%%     pdfauthor={Chris Grandin},
-%%     pdfsubject={Stock Assessment},
-%%     %pdfkeywords={keyword1, keyword2},
-%%     bookmarksnumbered=true,
-%%     bookmarksopen=true,
-%%     bookmarksopenlevel=1,
-%%     colorlinks=false,   % Must be false for CSAS submission. This makes it harder to find the links but they stupidly require it.
-%%     hidelinks=true,     % Necessary to remove boxes around hyperlinks for submission
-%%     %linkcolor=blue,    % Commented out for the submission
-%%     %allcolors=blue,    % Commented out for the submission
-%%     %citecolor=cyan,    % Commented out for the submission
-%%     pdfstartview=Fit,
-%%     pdfpagemode=UseOutlines,
-%%     breaklinks=true     % Allows the list of figures and tables to have wrapping text (since they are actually hyperlinks).
-%%     %pdfpagelayout=TwoPageRight
-%% }
-%% END - COMMENTED OUT TO AVOID HYPERREF COLLISIONS
-
 %% Use the following codes for references within the document.
-%%   chap: chapter       %% only for Appendices I think
+%% Example of label format - fig:catch
+%%   chap: chapter - for Appendices
 %%    sec: section
-%% subsec: subsection    %% AME: it should do these automatically using sec:
+%% subsec: subsection
 %%   fig: figure
 %%    tab: table
-%%     eq: equation      %% AME: usually don't use anything for equations
+%%     eq: equation
 %%    lst: code listing
 %%    itm: enumerated list item
-%%    app: appendix subsection  %%AME: not needed
-\usepackage{xspace}            %% Something to do with spaces after macros.
-\usepackage{hypcap}            %% So links will anchor at figure, not caption
-\usepackage{subfig}            %% For two-panel plots
-% \usepackage{scrextend}         %% For indenting blocks of text with 'addmargin'
-%  AME took out since led to a warning
-% \usepackage{relsize}           %% For mathlarger, which makes equations bigger
-\usepackage{algorithm}         %% For display of pseudocode
-\usepackage{algpseudocode}     %% For display of pseudocode
-\usepackage{linegoal}          %% For display of pseudocode
-% \usepackage{lineno}          %% For adding line numbers that don't
-                               %% restart each page
-\newcommand*{\TitleFont}{%
-      \usefont{\encodingdefault}{\rmdefault}{b}{n}%
-      \fontsize{20}{24}%
+%%    app: appendix subsection
+%% Something to do with spaces after macros.
+\usepackage{xspace}
+%% So links will anchor at figure, not caption
+\usepackage{hypcap}
+%% For two-panel plots
+\usepackage{subfig}
+%% For display of pseudocode
+\usepackage{algorithm}
+%% For display of pseudocode
+\usepackage{algpseudocode}
+%% For display of pseudocode
+\usepackage{linegoal}
+\newcommand*{\TitleFont}{
+      \usefont{\encodingdefault}{\rmdefault}{b}{n}
+      \fontsize{20}{24}
       \selectfont}
 
-%% A \Let command for defining assignments within the algorithmic environment which
-%% supports automatic indentation when the second argument is too long to fit
-%% on one line
+%% A \Let command for defining assignments within the algorithmic environment
+%%  which supports automatic indentation when the second argument is too long
+%%  to fit on one line
 \newcommand*{\Let}[2]{\State #1 $\gets$
 \parbox[t]{\linegoal}{#2\strut}}
 %% A \State command that supports automatic indentation when the argument's
-%% content is too long to fit on one line
+%%  content is too long to fit on one line
 \newcommand*{\LongState}[1]{\State
 \parbox[t]{\linegoal}{#1\strut}}
 
-\usepackage{enumitem}          % To remove spacing between list items [noitemsep,nolistsep]
+%% To remove spacing between list items [noitemsep,nolistsep]
+\usepackage{enumitem}
 \newlist{longitem}{enumerate}{5}
 \setlist[longitem,1]{label=\arabic*)}
 \setlist[longitem,2]{label=\alph*)}
@@ -123,72 +102,35 @@
 \setlist[longitem,5]{label=\alph*)}
 
 \definecolor{rowclr}{RGB}{255, 192, 203}
-%% Y - For centering cell values in a tabularx using stretched cells (X)
+%% For centering cell values in a tabularx using stretched cells (X)
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 \newcommand{\sQuote}[1]{`#1'}
 \newcommand{\dQuote}[1]{``#1''}
 \newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
 \newcommand{\gfrac}[2]{\genfrac{}{}{}{0}{#1}{#2}}
-\newcolumntype{C}{>{\centering\arraybackslash}p{2em}} %% For centered, even columns in a table. Use 'C' instead of 'c'
+%% For centered, even columns in a table. Use 'C' instead of 'c'
+\newcolumntype{C}{>{\centering\arraybackslash}p{2em}}
 
-\newcommand\bestfig[6]{ % #1=filename, #2=main caption, #3=figure height, #4=short caption #5=file extension #6=directory
-	%% Needs package epstopdf to work
-	\begin{figure}[htpb] %[htbp]
-	\centering
-	\ifthenelse{ \isempty{#5} \OR \equal{#5}{eps} }
-		{\includegraphics[width=6.5in,height=#3in,keepaspectratio=TRUE]{#6#1.eps}}
-		{\setlength\fboxsep{0pt}
-		 \setlength\fboxrule{0pt}
-		 \fbox{\includegraphics[width=6.5in,height=#3in,keepaspectratio=TRUE]{#6#1.#5}}}
-	%% source: http://xelatex.blogspot.ca/2008/03/newcommand-with-optional-argument.html
-	\ifthenelse{\isempty{#4}}
-		{\caption[#2]{#2}}  % \vspace{-2ex}} AME removing
-		{\caption[#4]{#2}}  % \vspace{-2ex}}  ``
-	\label{fig:#1}
-	\end{figure}
-        }
-
-
-% http://tex.stackexchange.com/questions/25249/how-do-i-use-a-particular-font-for-a-small-section-of-text-in-my-document  :
 \newenvironment{codefont}{\fontfamily{pcr}\selectfont}{\par}
-% See use in appendices.
 
-\lstset{breakatwhitespace=TRUE,title=\lstname,breaklines=TRUE,breakautoindent=FALSE,basicstyle=\ttfamily\footnotesize}  % numberstyle=\tiny\color{gray}
-   % http://texdoc.net/texmf-dist/doc/latex/listings/listings.pdf
+%% http://texdoc.net/texmf-dist/doc/latex/listings/listings.pdf
+\lstset{breakatwhitespace=TRUE,
+  title=\lstname,
+  breaklines=TRUE,
+  breakautoindent=FALSE,
+  basicstyle=\ttfamily\footnotesize}
 
-%% ** Declare global variables (commands) here **
-%% Filenames used for this project
-\newcommand{\rdata}{.RData}
-\newcommand{\rfile}{example.r}
-\newcommand{\texfile}{example.tex}
-\newcommand{\rnwexamplefile}{example.Rnw}
-\newcommand{\rnwmaindocfile}{maindoc.Rnw}
-\newcommand{\rnwappendixonefile}{appendix-1.Rnw}
-
-%% Next two lines provide the LaTeX and TeX symbols (from xspace package)
-\newcommand{\latex}{\LaTeX\xspace}
-\newcommand{\tex}{\TeX\xspace}
-%% Allows the Sexpr command to be shown as text in the final document for example reasons
-\newcommand{\ShowSexpr}[1]{\texttt{{\char`\\}Sexpr\{#1\}}}
-%% eor - Show two things with a vertical bar between them
-\newcommand{\eor}[2]{{#1$\Vert$#2}}
-%% bM - makes equations larger
-\newcommand{\bM}[1]{\mathlarger{\mathlarger{#1}}}
 %% Multi-line-cell in an xtable
 %% syntax is \mlc{first line\\secondline}
 \newcommand{\mlc}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
-\newcommand{\specialcell}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
-\newcommand{\fishname}{Pacific Hake}        % \fishname\   to have a space after
+\newcommand{\fishname}{Pacific Hake}
 \newcommand{\commonname}{Pacific whiting}
 \newcommand{\sciencename}{Merluccius productus}
 \newcommand{\simplename}{hake}
-\newcommand{\Avuln}{Age-at-50\%-vulnerability}
-\newcommand{\Amat}{Age-at-50\%-maturity}
-\newcommand{\amat}{age-at-50\%-maturity}
-\newcommand{\bc}{British Columbia}
-\newcommand{\Fforty}{F_{\text{SPR}=40\%}}       % Needs to be done as $\Fforty$
-\newcommand{\Ffortyten}{$\Fforty$--40:10}   % harvest control rule, \Ffortyten{}
-                                            %  to have a space after
+%% Needs to be done as $\Fforty$
+\newcommand{\Fforty}{F_{\text{SPR}=40\%}}
+%% Harvest control rule, \Ffortyten{} to have a space after
+\newcommand{\Ffortyten}{$\Fforty$--40:10}
 \newcommand{\Bforty}{B_{40\%}}
 \newcommand{\Bten}{B_{10\%}}
 \newcommand{\Bzero}{B_{0}}
@@ -196,48 +138,23 @@
 \newcommand{\Fmsy}{F_{\text{MSY}}}
 \newcommand{\Fspr}{F_{\text{SPR}}}
 
-%% For subscripts in text mode
+%% For subscripts and superscripts in text mode
 \newcommand{\subscr}[1]{$_{\text{#1}}$}
 \newcommand{\supscr}[1]{$^{\text{#1}}$}
-% degree symbol
-% \newcommand{\deg}{$^{\text{o}}$}
 %% Headers and footers
 \lhead{}
 \rhead{}
-% \lfoot{\fishname\ stock assessment 2016} %% Species common name for left footer
-% \rfoot{DRAFT - DO NOT CITE} %% The area of the assessment for right footer
-%% \rfoot{WP 2012/P02a}     %% Change to appendix number for appendices
-                            %% Will probably delete footers in main text
-                            %%  for final Res Doc.
+%% \lfoot{\fishname\ stock assessment 2016}
+%% \rfoot{DRAFT - DO NOT CITE}
 
-% \color{black}         % AME - looked a bit bolder in .ps, but no different
-                        %  in .pdf
-% \defaultfontfeatures{Color=black} % Need fontspec package I think
+%% To not have indent on disclaimer.
+%% \def\thanks#1{{\let\thefootnote\relax\footnote{#1.}\setcounter{footnote}{0}}}
 
-% \def\thanks#1{{\let\thefootnote\relax\footnote{#1.}\setcounter{footnote}{0}}}
-  % To not have indent on disclaimer.
 \begin{document}
 \counterwithin{figure}{section}
 \counterwithin{table}{section}
 
-% \textcolor{black}
-% \color{black} % AME will sort this out, or try other fonts.
-%% Start by sourcing your R code here. The R environment will persist throughout the latex code,
-%% so anything sourced or required here will be accessible later on in the latex knitr chunks.
-%% Note the start and end bracketing for knitr chunks are <<>>= and @.
-%% Sourcing all code here, then calling the plot functions later will be much faster
-%% and make for more maintanable code.
-%%<<load-everything, echo=TRUE, message=TRUE, results='show', warning=TRUE>>=
 <<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
-## Inside this block is R code so comment character is different
-## cache=TRUE tells knitr to build all the plots into a cache directory
-## which is defined here as knitr-cache/
-## When the latex part is run, these plots will be inserted automatically.
-## If you want to remake the plots, you must delete this directory.
-## If you don't, the cached plots from last time will be used.
-## opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
-##                 fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
-##               results='show', cache=TRUE, cache.path='knitr-cache/')
 opts_chunk$set(dev = 'cairo_ps',
                fig.path = 'knitr-cache/',
                fig.dpi = 96,
@@ -256,7 +173,8 @@ setwd("r")
 source("all.r")
 
 ## If you want to reload all model outputs, set to TRUE
-## The load.models.into.parent.env function is located at bottom of model-setup.r.
+## The load.models.into.parent.env function is located at bottom
+##  of model-setup.r.
 if(TRUE){
   load.models.into.parent.env()
 }
@@ -270,30 +188,38 @@ source("custom-knitr-variables.r")
 \thispagestyle{empty}
 
 %% DRAFT version
-%% \title{\TitleFont Status of the \fishname\ (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}\thanks{\noindent Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy.}
+%% \title{\TitleFont Status of the \fishname\ (whiting) stock in U.S. and
+%% Canadian waters in \Sexpr{assess.yr}\thanks{\noindent Disclaimer: This
+%% information is distributed solely for the purpose of pre-dissemination
+%% peer review under applicable information quality guidelines. It does not
+%% represent and should not be construed to represent any agency determination
+%% or policy.}
 %% \\ ~\\ ~\\ \includegraphics[width=4in]{hake-picture}}
 
 %% Final version
-\title{\TitleFont Status of the \fishname\ (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}
+\title{\TitleFont Status of the \fishname\ (whiting) stock in U.S. and Canadian
+  waters in \Sexpr{assess.yr}
 \\ ~\\ ~\\ \includegraphics[width=4in]{hake-picture}}
 
-\author{Joint Technical Committee of the \fishname/Whiting Agreement \\ Between the Governments of the United States and Canada}
+\author{Joint Technical Committee of the \fishname/Whiting Agreement \\ Between
+  the Governments of the United States and Canada}
 
-\date{February 22, 2017}   % Leave empty to have no date
+\date{February 22, 2017}
 
 \maketitle
 
 \newpage
 
-%\pagenumbering{roman}
 \pagenumbering{arabic}
 \setcounter{page}{2}
 
 %% Draft version.
-%% \rfoot{DRAFT - DO NOT CITE} %% The area of the assessment for right footer
+%% \rfoot{DRAFT - DO NOT CITE}
 
 %% Authors page
-This document reports the collaborative efforts of the official U.S. and Canadian members of the Joint Technical Committee, and others that contributed significantly.
+This document reports the collaborative efforts of the official U.S. and
+Canadian members of the Joint Technical Committee, and others that
+contributed significantly.
 
 Authors of this document are (in no particular order): \\
 \hspace{4ex}Aaron Berger\supscr{1} \\
@@ -303,53 +229,57 @@ Authors of this document are (in no particular order): \\
 \hspace{4ex}Sean Cox\supscr{4} \\
 \bigskip
 
-\emph{\supscr{1}Northwest Fisheries Science Center, National Marine Fisheries Service, National Oceanic and Atmospheric Administration, U.S. Department of Commerce.
-  2032 SE OSU Dr. Bldg. 955, Newport, OR 97365-5275, USA}
+\emph{\supscr{1}Northwest Fisheries Science Center, National Marine
+  Fisheries Service, National Oceanic and Atmospheric Administration,
+  U.S. Department of Commerce. 2032 SE OSU Dr. Bldg. 955, Newport, OR
+  97365-5275, USA}
 
 \emph{\supscr{2}Fisheries and Oceans Canada, Pacific Biological Station,
   3190 Hammond Bay Road, Nanaimo, BC V9T 6N7, Canada}
 
-\emph{\supscr{3}Northwest Fisheries Science Center, National Marine Fisheries Service, National Oceanic and Atmospheric Administration, U.S. Department of Commerce.
-  2725 Montlake Blvd. East, Seattle, WA 98112-2097, USA}
+\emph{\supscr{3}Northwest Fisheries Science Center, National Marine Fisheries
+  Service, National Oceanic and Atmospheric Administration, U.S. Department of
+  Commerce. 2725 Montlake Blvd. East, Seattle, WA 98112-2097, USA}
 
-\emph{\supscr{4}School of Resource and Environmental Management, Simon Fraser University, TASC I -- Room \#8405, 8888 University Drive, Burnaby, B.C. V5A-1S6, Canada}
+\emph{\supscr{4}School of Resource and Environmental Management, Simon Fraser
+  University, TASC I -- Room \#8405, 8888 University Drive, Burnaby, B.C.
+  V5A-1S6, Canada}
 
 %% Draft version
 %% This DRAFT document is non-citable.
 
 %% Final version
 This document should be cited as follows:\\
-Berger, A.M., Grandin, C.J., I.G. Taylor, A.M. Edwards, and S. Cox. \Sexpr{assess.yr}.
-Status of the \fishname\ (whiting) stock in U.S. and Canadian waters in \Sexpr{assess.yr}.
-Prepared by the Joint Technical Committee of the U.S. and Canada \fishname/Whiting Agreement,
-National Marine Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
+Berger, A.M., Grandin, C.J., I.G. Taylor, A.M. Edwards, and S. Cox.
+\Sexpr{assess.yr}. Status of the \fishname\ (whiting) stock in
+U.S. and Canadian waters in \Sexpr{assess.yr}. Prepared by the Joint Technical
+Committee of the U.S. and Canada \fishname/Whiting Agreement, National Marine
+Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 
 \newpage
 
-\input{preamble}            %% Table of contents, etc.
-% \setcounter{chapter}{0}
-% \setcounter{table}{0}
-% \setcounter{figure}{0}
+%% Table of contents, etc.
+\input{preamble}
 \setcounter{secnumdepth}{5} %% To number subsubheadings-ish
 
-\renewcommand{\thetable}{\alph{table}}       % Exec summary number Tables a,b,c.
+%% Executive summary number Tables a,b,c.
+\renewcommand{\thetable}{\alph{table}}
 
 \renewcommand{\thefigure}{\alph{figure}}
-%\renewcommand*{\theHfigure}{\alph{figure}}   % Trying to get hyperrefs correct
-\renewcommand{\thesection}{\arabic{section}} % To number as 1,2,3 not 1.1
-\renewcommand{\theequation}{\arabic{equation}} % where first 1 would be chapter
-                                               % number
-\renewcommand{\bibsection}{\section{REFERENCES}\label{sec:references}} %References as numbered section
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\theequation}{\arabic{equation}}
 
-% \linenumbers             %% Add line numbers
-% \rightlinenumbers        %% Put line numbers in right margin
-%% \modulolinenumbers[5] %% Just number every 5th line. Doesn't restart
-                         %%  numbers on each page, but need lineno package
-                         %%  I think (AME). Probably no need to use.
+\renewcommand{\bibsection}{\section{REFERENCES}\label{sec:references}}
 
-%% Comment out any un-needed sections from here onwards:
+%% Add line numbers
+%% \linenumbers
+%% Put line numbers in right margin
+%% \rightlinenumbers
+%% Just number every 5th line. Doesn't restart numbers on each page, but need
+%%  lineno package
+%% \modulolinenumbers[5]
 
-\lfoot{\fishname\ assessment \Sexpr{assess.yr}} %% Species common name for left footer
+\lfoot{\fishname\ assessment \Sexpr{assess.yr}}
 \rfoot{One-page summary}
 <<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=
 @
@@ -358,15 +288,11 @@ National Marine Fisheries Service and Fisheries and Oceans Canada. \pageref{Last
 <<executive-summary, child='executive-summary/executive-summary.rnw'>>=
 @
 
-\renewcommand{\thetable}{\arabic{table}}    % Now number Tables 1,2,3,...
+\renewcommand{\thetable}{\arabic{table}}
 \setcounter{table}{0}
 
 \renewcommand{\thefigure}{\arabic{figure}}
 \setcounter{figure}{0}
-% Trying to make refs in pdf work, from 
-%  http://tex.stackexchange.com/questions/26469/two-table-counters-and-hyperref-links :
-% \renewcommand*{\theHfigure}{\arabic{figure}}
-% \setcounter{figure}{0}
 
 \rfoot{Section~\ref{sec:introduction} -- Introduction}
 <<introduction-sec, child='introduction-section/introduction.rnw'>>=
@@ -387,8 +313,6 @@ National Marine Fisheries Service and Fisheries and Oceans Canada. \pageref{Last
 \clearpage
 <<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
 @
-
-% \clearpage
 
 \rfoot{Section~\ref{sec:references} -- References}
 \bibliographystyle{hake}
@@ -438,38 +362,7 @@ National Marine Fisheries Service and Fisheries and Oceans Canada. \pageref{Last
 \rfoot{Appendix~\ref{chap:parameters} -- Model code}
 <<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
 @
-% One .rnw file for all four SS code appendices, since .rnw code is short.
-%  It includes the footer code.
 
 \end{appendices}
 
 \end{document}
-
-%% AME moving extra notes to here:
-
-%% Used when you need to insert outside documents:
-%% \setcounter{page}{68}
-
-%% % Have a spurious blank page before tables, need to get rid of. Think it may
-%% %  possibly be due to not having all the references defined yet, so it may
-%% %  get resolved.
-
-% Tried using appendix package, so may not need AME's manual \renumbering of
-%  sections etc., but it seems to work. Either way it treats appendices
-%  as chapters and formats them differently to sections in the Table of 
-%  Contents (bold and no dots). Could try and fix if needed and if time.
-
-%% Now want to number sections, tables etc. as A.1, A.2, etc.
-%% Thought these wouldn't be with the appendix package, as
-%%  automatic, but may need them even if use \begin{appendices}:
-
-% \lfoot{\cname}   % Add this in to have Appendix A etc. as the left footer.
-
-% Appendices:
-%\addto\captionsenglish{\renewcommand\chaptername{Appendix}} - supposed to 
-%  add 'Appendix' to Appendix title, but didn't seem to work, nor did:
-% \renewcommand{\chaptername}{Appendix}       % after \begin{appendices} 
-
-% What AME used to use (before appendix package) to change the numbering in
-%  appendices. May be automatic now, but not needed
-

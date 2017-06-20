@@ -1,7 +1,6 @@
-build.doc <- function(knit.only = FALSE, ## Only knit the document, don't LaTeX it
-                      make.pdf  = TRUE, ## Make the PDF from the Postscript
-                      doc.name  = "hake-assessment"
-                      ){
+build.doc <- function(knit.only = FALSE,
+                      make.pdf  = TRUE,
+                      doc.name  = "hake-assessment"){
   ## Use this function to build to doc entirely from within R
   ## Make sure you have created the .RData files by sourcing all.r
   ##  with the create.rdata.file variables set to TRUE.
@@ -9,15 +8,30 @@ build.doc <- function(knit.only = FALSE, ## Only knit the document, don't LaTeX 
   ##  you can go into the first knitr code chunk in hake-assessment.rnw and
   ##  set the call to load.models.into.parent.env() to FALSE,
   ##  which will save time for doing the build.
+  ##
+  ## knit.only - Only run knitr, not latex
+  ## make.pdf - TRUE to make the pdf, if FALSE it will only go as far as
+  ##  postscript.
+
   knit(paste0(doc.name,".rnw"))
   if(!knit.only){
-    system(paste0("latex -synctex=1 ", doc.name, ".tex"), invisible = FALSE, show.output.on.console = FALSE) ## Press Enter if the command window pauses
-    system(paste0("bibtex ", doc.name), invisible = FALSE, show.output.on.console = TRUE)
-    system(paste0("latex ", doc.name, ".tex"), invisible = FALSE, show.output.on.console = FALSE) ## Press Enter if the command window pauses
-    system(paste0("latex ", doc.name, ".tex"), invisible = FALSE, show.output.on.console = FALSE) ## Press Enter if the command window pauses
-    system(paste0("dvips ", doc.name,".dvi"), invisible = FALSE, show.output.on.console = TRUE)
+    system(paste0("latex -synctex=1 ", doc.name, ".tex"),
+           invisible = FALSE,
+           show.output.on.console = FALSE)
+    system(paste0("bibtex ", doc.name),
+           invisible = FALSE,
+           show.output.on.console = TRUE)
+    system(paste0("latex ", doc.name, ".tex"),
+           invisible = FALSE,
+           show.output.on.console = FALSE)
+    system(paste0("latex ", doc.name, ".tex"),
+           invisible = FALSE,
+           show.output.on.console = FALSE)
+    system(paste0("dvips ", doc.name,".dvi"),
+           invisible = FALSE,
+           show.output.on.console = TRUE)
     if(make.pdf){
-      shell(paste0("ps2pdf ", doc.name, ".ps")) ## Not sure why I have to use shell instead of system
+      shell(paste0("ps2pdf ", doc.name, ".ps"))
     }
   }
 }
@@ -122,7 +136,9 @@ latex.supscr <- function(main.txt, supscr.txt){
 
 ## -----------------------------------------------------------------------------
 
-install.packages.if.needed <- function(package.name, package.install.name, github=FALSE){
+install.packages.if.needed <- function(package.name,
+                                       package.install.name,
+                                       github = FALSE){
   if(github){
     if(!(package.name %in% rownames(installed.packages()))){
       devtools::install_github(package.install.name)
@@ -141,11 +157,15 @@ split.prior.info <- function(prior.str,
   ## Lognormal(2.0,1.01)
   ## Returns a vector of length 3:
   ## "Lognormal", 2.0, 1.01
-  ## if first.to.lower = TRUE, makes the first letter of the name of the prior lower case.
+  ## If first.to.lower = TRUE, makes the first letter of the name of the prior
+  ##  lower case.
   p <- strsplit(prior.str, "\\(")[[1]]
   if(first.to.lower){
     ## Make the name of the prior lower case
-    p[1] <- paste0(tolower(substr(p[1], 1, 1)), substr(p[1], 2, nchar(p[1])))
+    p[1] <- paste0(tolower(substr(p[1], 1, 1)),
+                   substr(p[1],
+                          2,
+                          nchar(p[1])))
   }
   p.type <- p[1]
   p <- strsplit(p[2], ",")[[1]]
