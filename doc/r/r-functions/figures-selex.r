@@ -101,9 +101,9 @@ make.tv.selex.plot <- function(selex.list,
   }else{
     # in the MLE case, selex.list is the model object created by SS_output
     agesel <- selex.list$agesel # get selectivity at age
-    selex.dat <- agesel[agesel$factor=="Asel" &
-                          agesel$fleet==1 &
-                            agesel$year %in% 1990:2016, ] # subset rows (manual 2017)
+    selex.dat <- agesel[agesel$Factor=="Asel" &
+                          agesel$Fleet==1 &
+                            agesel$Yr %in% 1990:2016, ] # subset rows (manual 2017)
     rownames(selex.dat) <- selex.dat$year # add row names for year
     selex.dat <- selex.dat[,paste(1:8)] # subset columns
   }
