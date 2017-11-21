@@ -274,12 +274,16 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 8 - Request from SRG
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.8 <- c("59_Sen45_phi003",
-                            "66_Sen45_block_sel_2016_SRG_request2",
-                            "67_Sen45_block_sel_2016_SRG_request3")
-sens.model.names.8 <- c("1991-2016 phi=0.03",
-                        "1991-2008 phi=0.03, 2009-2016 phi=0.20",
-                        "1991-2015 phi=0.03, 2016 phi=0.20")
+## sens.model.dir.names.8 <- c("59_Sen45_phi003",
+##                             "66_Sen45_block_sel_2016_SRG_request2",
+##                             "67_Sen45_block_sel_2016_SRG_request3")
+## sens.model.names.8 <- c("1991-2016 phi=0.03",
+##                         "1991-2008 phi=0.03, 2009-2016 phi=0.20",
+##                         "1991-2015 phi=0.03, 2016 phi=0.20")
+sens.model.dir.names.8 <- c("02_2017base_3.30",
+                            "03_2017base_3.30_tv_pars")
+sens.model.names.8 <- c("Base model SS version 3.30",
+                        "Base 3.30 with TV pars mimic base 2017")
 verify.models(model.dir, sens.model.dir.names.8, sens.model.names.8)
 if(verbose){
   print.model.message(sens.model.dir.names.8, sens.model.names.8, 8, model.type = "Sensitivity")
@@ -403,8 +407,13 @@ build <- function(run.fore = FALSE,
   mnv <- mnv[-(grep(base.model.dir.name, mnv))]
   model.names.list <- as.list(unique(mnv))
 
+  ss.version.tmp = ss.version
   ## Bridge/sensitivity models
   for(model.nm in model.names.list){
+    if(model.nm == "02_2017base_3.30" |
+       model.nm == "03_2017base_3.30_tv_pars"){
+      ss.version.tmp = "3.30"
+    }
     create.rdata.file(
       model.name = model.nm,
       ovwrt.rdata = ifelse(run.extra.mcmc,
@@ -418,6 +427,7 @@ build <- function(run.fore = FALSE,
       my.retro.yrs = retro.yrs,
       run.extra.mcmc = run.extra.mcmc,
       key.posteriors = key.posteriors,
+      ss.version = ss.version.tmp,
       verbose = ss.verbose)
   }
 }

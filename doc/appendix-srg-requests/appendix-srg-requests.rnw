@@ -114,13 +114,13 @@ layout(matrix(c(1, 2), nrow = 2, ncol = 1, byrow=TRUE))
 make.comparison.plot(
   c(list(base.model), sens.models.8),
   subplots = 2,
-  model.names = c(paste0("1991-2016 phi=0.20, base model"), sens.model.names.8),
+  model.names = sens.model.names.8,
   legendloc = "topleft",
   end.yr = end.yr)
 make.comparison.plot(
   c(list(base.model), sens.models.8),
   subplots = 14,
-  model.names = c(paste0("1991-2016 phi=0.20, base model"), sens.model.names.8),
+  model.names = sens.model.names.8,
   legendloc = "topright",
   densitynames = c("Recr_2014"),
   densityxlab  = "Recruitment in 2014 (billions)",

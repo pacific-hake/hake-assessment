@@ -3,9 +3,11 @@ load.ss.files <- function(model.dir,
                           key.posts.fn = "keyposteriors.csv",
                           nuisance.posts.fn = "nuisanceposteriors.csv",
                           verbose = FALSE,
-                          printstats = FALSE){ ## print info on each model loaded via SS_output
+                          printstats = FALSE, ## print info on each model loaded via SS_output
+                          ss.version = "3.24"){
   ## Load all the SS files for output and input, and return the model object.
   ## If MCMC directory is present, load that and perform calculations for mcmc parameters.
+  ## ss.version determines which version of SS_readdat() is used.
 
   curr.func.name <- get.curr.func.name()
   ## Load MPD results
@@ -103,6 +105,7 @@ create.rdata.file <- function(
            key.posteriors = key.posteriors, ## Vector of key posteriors used to create key posteriors file
            key.posteriors.fn = "keyposteriors.csv",
            nuisance.posteriors.fn = "nuisanceposteriors.csv",
+           ss.version = "3.24",
            verbose = FALSE){
   ## Create an rdata file to hold the model's data and outputs.
   ## If an RData file exists, and overwrite is FALSE, return immediately.
@@ -113,6 +116,7 @@ create.rdata.file <- function(
   ## Assumes the files model-setup.r, retrospective-setup.r, and forecast-catch-levels.r
   ##  have been sourced (for default values of args).
   ## Assumes utilities.r has been sourced.
+  ## ss.version determines which version of SS_readdat() is used.
   curr.func.name <- get.curr.func.name()
   model.dir <- file.path(models.dir, model.name)
   if(!dir.exists(model.dir)){
@@ -158,7 +162,8 @@ create.rdata.file <- function(
 
   ## If this point is reached, no RData file exists so it
   ##  has to be built from scratch
-  model <- load.ss.files(model.dir)
+  model <- load.ss.files(model.dir,
+                         ss.version = ss.version)
 
   ##----------------------------------------------------------------------------
   ## Run extra mcmc output.
