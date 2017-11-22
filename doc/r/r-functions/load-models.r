@@ -710,8 +710,8 @@ run.extra.mcmc.models <- function(model, verbose = TRUE){
   file.copy(file.path(mcmc.dir, list.files(mcmc.dir)), extra.mcmc.dir)
   posts <- read.table(file.path(extra.mcmc.dir, "posteriors.sso"), header = TRUE)
   ## Change this for testing on smaller subset of posteriors
-  ## num.posts <- 5
-  num.posts <- nrow(posts)
+  num.posts <- 5
+  ## num.posts <- nrow(posts)
 
   ## create a table of parameter values based on labels in parameters section of Report.sso
   newpar <- data.frame(value = c(1, model$parameters$Value),
@@ -748,6 +748,9 @@ run.extra.mcmc.models <- function(model, verbose = TRUE){
   ctl.lines[bias.adjust.line.num] <-
     "-1      # Maximum bias adjustment in MPD (set to -1 for extra.mcmc only)"
   writeLines(ctl.lines, file.path(extra.mcmc.dir, start$ctlfile))
+
+  ## Remove brackets in newpar labels so that the names match column names in posts
+  newpar$label <- gsub("\\(([0-9])\\)", ".\\1.", newpar$label)
 
   ## loop over rows of posteriors file
   for(irow in 1:num.posts){
@@ -887,7 +890,7 @@ fetch.extra.mcmc <- function(model,
     natage.allrows <- read.table(file=rep.file, skip=natage.line.start,
                                  nrow=natage.N.lines, header=TRUE)
     # subset all rows to select first forecast year
-    natage.row <- natage.allrows[natage.allrows$Year==model$endyr + 1,]
+    natage.row <- natage.allrows[natage.allrows$Yr==model$endyr + 1,]
 
     # add rows to tables of values for each MCMC sample
     sel.table <- rbind(sel.table, sel.row1)
@@ -910,21 +913,21 @@ fetch.extra.mcmc <- function(model,
                          like.info$Parm_priors != 0,]
 
   ## Process selectivity values
-  # remove initial columns (containing stuff like Gender and Year)
+  ## remove initial columns (containing stuff like Gender and Year)
   natage.table.slim <- natage.table[,-(1:3)]
   sel.table.slim <- sel.table[,-(1:7)]
   selwt.table.slim <- selwt.table[,-(1:7)]
 
-  # selected biomass by age is product of numbers*selectivity*weight at each age
+  ## selected biomass by age is product of numbers*selectivity*weight at each age
   natselwt <- natage.table.slim*selwt.table.slim
-  # selected numbers by age is product of numbers*selectivity at each age
+  ## selected numbers by age is product of numbers*selectivity at each age
   natsel <- natage.table.slim*sel.table.slim
 
-  # define new objects to store proportions by age
+  ## define new objects to store proportions by age
   natsel.prop <- natsel
   natselwt.prop <- natselwt
 
-  # create tables of proportions by dividing by sum of each row
+  ## create tables of proportions by dividing by sum of each row
   for(irow in 1:num.reports){
     natsel.prop[irow,] <- natsel[irow,]/sum(natsel[irow,])
     natselwt.prop[irow,] <- natselwt[irow,]/sum(natselwt[irow,])
@@ -988,9 +991,10 @@ fetch.extra.mcmc <- function(model,
     }
     tmp <- readLines(file.path(reports.dir, paste0("Report_", irow,".sso")))
     skip.row <- grep("INDEX_2", tmp)[2]
+    ncpue <- nrow(model$dat$CPUE[model$dat$CPUE$index > 0,])
     cpue <- read.table(file.path(reports.dir, paste0("Report_", irow,".sso")),
                        skip = skip.row,
-                       nrows = model$dat$N_cpue, ## number of survey index points
+                       nrows = ncpue, ## number of survey index points
                        header = TRUE,
                        fill = TRUE,
                        stringsAsFactors = FALSE)
@@ -1002,7 +1006,7 @@ fetch.extra.mcmc <- function(model,
   ## Build the list of extra mcmc outputs and return
   extra.mcmc <- model
 
-  # add information on posterior distribution to existing agedbase data frame
+  ## add information on posterior distribution to existing agedbase data frame
   extra.mcmc$agedbase$Exp <- exp.median
   extra.mcmc$agedbase$Exp.025 <- exp.low
   extra.mcmc$agedbase$Exp.975 <- exp.high
@@ -1010,21 +1014,21 @@ fetch.extra.mcmc <- function(model,
   extra.mcmc$agedbase$Pearson.025 <- Pearson.low
   extra.mcmc$agedbase$Pearson.975 <- Pearson.high
 
-  # add new table to output containing info on posterior distribution of index fits
+  ## add new table to output containing info on posterior distribution of index fits
   extra.mcmc$cpue.table <- cpue.table
   extra.mcmc$cpue.median <- apply(cpue.table, MARGIN = 1, FUN = median)
   extra.mcmc$cpue.025 <- apply(cpue.table, MARGIN = 1, FUN = quantile, probs = 0.025)
   extra.mcmc$cpue.975 <- apply(cpue.table, MARGIN = 1, FUN = quantile, probs = 0.975)
   extra.mcmc$Q_vector <- Q.vector
-  
-  # add new table of info on posterior distributions of likelihoods
+
+  ## add new table of info on posterior distributions of likelihoods
   extra.mcmc$like.info <- like.info
 
-  # add new table vectors containing expected proportions in first forecast year
+  ## add new table vectors containing expected proportions in first forecast year
   extra.mcmc$natsel.prop <- natsel.prop
   extra.mcmc$natselwt.prop <- natselwt.prop
 
-  # add info on distribution of total biomass to existing time series data frame
+  ## add info on distribution of total biomass to existing time series data frame
   extra.mcmc$timeseries$Bio_all <- apply(Bio_all, MARGIN = 1, FUN = median)
   extra.mcmc$timeseries$Bio_all.0.025 <- apply(Bio_all, MARGIN = 1,
                                                FUN = quantile, probs = 0.025)
@@ -1033,7 +1037,6 @@ fetch.extra.mcmc <- function(model,
 
   message(curr.func.name, paste("Completed read of extra MCMC output."))
 
-  # return results
   extra.mcmc
 }
 
