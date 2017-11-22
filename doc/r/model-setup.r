@@ -96,9 +96,9 @@ if(verbose) cat0("Key posteriors file: \n  ", nuisance.posteriors.file)
 ## -----------------------------------------------------------------------------
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
-base.model.dir.name <- "45_BasePreSRG_v4"
-## "01_2016base_converted_to_SSv3.30"
-base.model.name <- paste(assess.yr, "Base model")
+base.model.dir.name <- "03_2017base_3.30_tv_pars"
+##base.model.dir.name <- "45_BasePreSRG_v4"
+base.model.name <- paste(assess.yr, "Base model SS 3.30")
 verify.models(model.dir, base.model.dir.name, base.model.name)
 if(verbose){
   cat0("Base model directory name: \n  ", base.model.dir.name)
@@ -274,16 +274,16 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 8 - Request from SRG
 ## -----------------------------------------------------------------------------
-## sens.model.dir.names.8 <- c("59_Sen45_phi003",
-##                             "66_Sen45_block_sel_2016_SRG_request2",
-##                             "67_Sen45_block_sel_2016_SRG_request3")
-## sens.model.names.8 <- c("1991-2016 phi=0.03",
-##                         "1991-2008 phi=0.03, 2009-2016 phi=0.20",
-##                         "1991-2015 phi=0.03, 2016 phi=0.20")
-sens.model.dir.names.8 <- c("02_2017base_3.30",
-                            "03_2017base_3.30_tv_pars")
-sens.model.names.8 <- c("Base model SS version 3.30",
-                        "Base 3.30 with TV pars mimic base 2017")
+sens.model.dir.names.8 <- c("59_Sen45_phi003",
+                            "66_Sen45_block_sel_2016_SRG_request2",
+                            "67_Sen45_block_sel_2016_SRG_request3")
+sens.model.names.8 <- c("1991-2016 phi=0.03",
+                        "1991-2008 phi=0.03, 2009-2016 phi=0.20",
+                        "1991-2015 phi=0.03, 2016 phi=0.20")
+## sens.model.dir.names.8 <- c("02_2017base_3.30",
+##                             "03_2017base_3.30_tv_pars")
+## sens.model.names.8 <- c("Base model SS version 3.30",
+##                         "Base 3.30 with TV pars mimic base 2017")
 verify.models(model.dir, sens.model.dir.names.8, sens.model.names.8)
 if(verbose){
   print.model.message(sens.model.dir.names.8, sens.model.names.8, 8, model.type = "Sensitivity")
@@ -375,6 +375,11 @@ build <- function(run.fore = FALSE,
   }
 
   ## Base model
+  ss.version.tmp = ss.version
+  if(base.model.dir.name == "02_2017base_3.30" |
+     base.model.dir.name == "03_2017base_3.30_tv_pars"){
+    ss.version.tmp = "3.30"
+  }
   create.rdata.file(model.name = base.model.dir.name,
                     ovwrt.rdata = ifelse(any(run.fore, run.retro, run.extra.mcmc),
                                          TRUE,
@@ -387,6 +392,7 @@ build <- function(run.fore = FALSE,
                     my.retro.yrs = retro.yrs,
                     run.extra.mcmc = run.extra.mcmc,
                     key.posteriors = key.posteriors,
+                    ss.version = ss.version.tmp,
                     verbose = ss.verbose)
 
   ## Bridge and sensitivity models need to be unlisted from their groups

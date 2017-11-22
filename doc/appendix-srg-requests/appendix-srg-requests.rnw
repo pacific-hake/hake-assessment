@@ -160,17 +160,17 @@ make.comparison.plot(
 \end{figure}
 
 
-\begin{figure}[H]
-\begin{center}
-<<mountains.MLE.3, fig.height=10, fig.width=8>>=
-    make.tv.selex.plot(sens.models.8[[3]], mcmc=FALSE) # phi = 0.03 up to 2015, and 0.20 for 2016
-@
-\end{center}
-\caption{Mountains plot of median fishery selectivity
-  in recent years using deviations on selectivity
-  parameters of 0.03 up to 2015 and 0.20 for 2016.}
-\label{fig:mountains.MLE.3}
-\end{figure}
+%% \begin{figure}[H]
+%% \begin{center}
+%% <<mountains.MLE.3, fig.height=10, fig.width=8>>=
+%%     make.tv.selex.plot(sens.models.8[[3]], mcmc=FALSE) # phi = 0.03 up to 2015, and 0.20 for 2016
+%% @
+%% \end{center}
+%% \caption{Mountains plot of median fishery selectivity
+%%   in recent years using deviations on selectivity
+%%   parameters of 0.03 up to 2015 and 0.20 for 2016.}
+%% \label{fig:mountains.MLE.3}
+%% \end{figure}
 
 
 \begin{figure}[p]

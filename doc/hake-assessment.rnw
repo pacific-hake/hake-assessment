@@ -279,55 +279,55 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 %%  lineno package
 %% \modulolinenumbers[5]
 
-\lfoot{\fishname\ assessment \Sexpr{assess.yr}}
-\rfoot{One-page summary}
-<<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=
-@
+%% \lfoot{\fishname\ assessment \Sexpr{assess.yr}}
+%% \rfoot{One-page summary}
+%% <<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=
+%% @
 
 \rfoot{Executive summary}
 <<executive-summary, child='executive-summary/executive-summary.rnw'>>=
 @
 
-\renewcommand{\thetable}{\arabic{table}}
-\setcounter{table}{0}
+%% \renewcommand{\thetable}{\arabic{table}}
+%% \setcounter{table}{0}
 
-\renewcommand{\thefigure}{\arabic{figure}}
-\setcounter{figure}{0}
+%% \renewcommand{\thefigure}{\arabic{figure}}
+%% \setcounter{figure}{0}
 
-\rfoot{Section~\ref{sec:introduction} -- Introduction}
-<<introduction-sec, child='introduction-section/introduction.rnw'>>=
-@
+%% \rfoot{Section~\ref{sec:introduction} -- Introduction}
+%% <<introduction-sec, child='introduction-section/introduction.rnw'>>=
+%% @
 
-\rfoot{Section~\ref{sec:data} -- Data}
-<<data-sec, child='data-section/data.rnw'>>=
-@
+%% \rfoot{Section~\ref{sec:data} -- Data}
+%% <<data-sec, child='data-section/data.rnw'>>=
+%% @
 
-\rfoot{Section~\ref{sec:assessment} -- Assessment}
-<<assessment-sec, child='assessment-section/assessment-section.rnw'>>=
-@
+%% \rfoot{Section~\ref{sec:assessment} -- Assessment}
+%% <<assessment-sec, child='assessment-section/assessment-section.rnw'>>=
+%% @
 
-\rfoot{Section~\ref{sec:research} -- Research and data needs}
-<<research-sec, child='research-section/research.rnw'>>=
-@
+%% \rfoot{Section~\ref{sec:research} -- Research and data needs}
+%% <<research-sec, child='research-section/research.rnw'>>=
+%% @
 
-\clearpage
-<<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
-@
+%% \clearpage
+%% <<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
+%% @
 
 \rfoot{Section~\ref{sec:references} -- References}
 \bibliographystyle{hake}
 \bibliography{all}
 
-\newpage
-\rfoot{Section~\ref{sec:tables} -- Tables}
-<<main-tables, child='main-tables/main-tables.rnw'>>=
-@
+%% \newpage
+%% \rfoot{Section~\ref{sec:tables} -- Tables}
+%% <<main-tables, child='main-tables/main-tables.rnw'>>=
+%% @
 
-\clearpage
-\rfoot{Section~\ref{sec:figures} -- Figures}
-<<main-figures, child='main-figures/main-figures.rnw'>>=
-@
-\clearpage
+%% \clearpage
+%% \rfoot{Section~\ref{sec:figures} -- Figures}
+%% <<main-figures, child='main-figures/main-figures.rnw'>>=
+%% @
+%% \clearpage
 
 \addtocontents{toc}{\par {\bf \vspace{10mm} APPENDICES} \par}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
@@ -339,29 +339,29 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 \renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 \renewcommand{\theequation}{\thechapter.\arabic{equation}}
 
-\rfoot{Appendix~\ref{chap:srg-requests} -- SRG requests}
-<<appendix-srg-requests, child='appendix-srg-requests/appendix-srg-requests.rnw'>>=
-@
+%% \rfoot{Appendix~\ref{chap:test-ss-3.30} -- Bridge from SS v3.24 to v3.30}
+%% <<appendix-test-ss-3.30, child='appendix-test-ss-3.30/appendix-test-ss-3.30.rnw'>>=
+%% @
 
-\rfoot{Appendix~\ref{chap:glossary} -- Glossary}
-<<appendix-glossary, child='appendix-glossary/appendix-glossary.rnw'>>=
-@
+%% \rfoot{Appendix~\ref{chap:glossary} -- Glossary}
+%% <<appendix-glossary, child='appendix-glossary/appendix-glossary.rnw'>>=
+%% @
 
-\rfoot{Appendix~\ref{chap:canada-fishery-report} -- Canada fishery report}
-<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-Canada.rnw'>>=
-@
+%% \rfoot{Appendix~\ref{chap:canada-fishery-report} -- Canada fishery report}
+%% <<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-Canada.rnw'>>=
+%% @
 
-\rfoot{Appendix~\ref{chap:us-fishery-report} -- United States fishery report}
-<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-US.rnw'>>=
-@
+%% \rfoot{Appendix~\ref{chap:us-fishery-report} -- United States fishery report}
+%% <<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-US.rnw'>>=
+%% @
 
-\rfoot{Appendix~\ref{chap:parameters} -- Estimated parameters}
-<<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
-@
+%% \rfoot{Appendix~\ref{chap:parameters} -- Estimated parameters}
+%% <<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
+%% @
 
-\rfoot{Appendix~\ref{chap:parameters} -- Model code}
-<<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
-@
+%% \rfoot{Appendix~\ref{chap:parameters} -- Model code}
+%% <<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
+%% @
 
 \end{appendices}
 
