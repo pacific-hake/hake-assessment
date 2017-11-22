@@ -97,7 +97,7 @@ make.forecast.depletion.comparison.plot <- function(model,        ## model is th
                     minbthresh = 0,
                     subplots = 4,
                     plot = TRUE,
-                    mcmc = rep(TRUE,4),
+                    mcmc = rep(TRUE, length(model.list)),
                     xlim = c(start.yr,end.yr),
                     legendloc = legend.loc,
                     labels = c("Year",
