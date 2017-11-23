@@ -181,22 +181,27 @@ make.survey.biomass.plot <- function(model,
   ## Remove non-survey years from the data frame
   survey.dat <- survey.dat[survey.dat$index > 0,]
 
-  ests <- survey.dat
+  ests <- as.list(survey.dat)
+  ests$lo <- as.numeric(ests$lo)
+  ests$hi <- as.numeric(ests$hi)
+  ests$obs <- as.numeric(ests$obs)
+  ests$se_log<- as.numeric(ests$se_log)
+
   ## Hard-coded 2009 for Hake survey squid year
-  tmpSE <- ests[ests$year == 2009, "se_log"]
-  ests[ests$year == 2009, "se_log"] <- 0.0682 ## se without squid inflation
+  tmpSE <- ests$se_log[ests$year == 2009]
+  ests$se_log[ests$year == 2009] <- 0.0682 ## se without squid inflation
   ests$lo <- exp(log(ests$obs) - 1.96 * ests$se_log)
   ests$hi <- exp(log(ests$obs) + 1.96 * ests$se_log)
   ests$value <- ests$obs
 
   ests2 <- ests
   ests2$se_log <- NA
-  ests2[ests2$year == 2009,"se_log"] <- tmpSE ## se without squid inflation
+  ests2$se_log[ests2$year == 2009] <- tmpSE ## se without squid inflation
   ests2$lo <- exp(log(ests2$obs) - 1.96 * ests2$se_log)
   ests2$hi <- exp(log(ests2$obs) + 1.96 * ests2$se_log)
   ests2$value <- ests2$obs
-  par(las=1,mar=c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
-  plotBars.fn(ests2$year,
+  par(las=1, mar=c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
+  plotBars.fn(as.numeric(ests2$year),
               ests2,
               scalar = 1e6,
               ylim = c(0,3),
@@ -210,7 +215,7 @@ make.survey.biomass.plot <- function(model,
               ciLwd = 3,
               ciCol = rgb(0, 0, 1, 0.6),
               yaxs = 'i')
-  plotBars.fn(ests$year,
+  plotBars.fn(as.numeric(ests$year),
               ests,
               scalar = 1e6,
               ylim = c(0, 3),
