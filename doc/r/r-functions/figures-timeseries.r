@@ -373,7 +373,7 @@ make.comparison.plot <- function(models,                   ## models is a list o
                       legendlabels = model.names,
                       legendloc = legendloc,
                       indexPlotEach = indexPlotEach,
-                      indexUncertainty = indexUncertainty,
+                      indexncertainty = indexUncertainty,
                       indexfleets = indexfleets,
                       endyrvec = endyrvec,
                       new=FALSE,

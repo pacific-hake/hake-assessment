@@ -102,8 +102,10 @@ make.age.comp.bubble.plot <- function(model,                  ## model is an mcm
   max.age <- max(ages)
   ## Get the maximum proportion and its location within the data
   age.df <- dat[,names(dat) %in% ages.str]
-  max.prop <- max(age.df)
-  which.max.prop <- which(age.df == max(age.df), arr.ind = TRUE)
+  age.df <- as.matrix(age.df)
+  age.vec <- as.numeric(age.df)
+  max.prop <- max(age.vec)
+  which.max.prop <- which(age.df == max(age.vec), arr.ind = TRUE)
   ## Convert the locations to year and age for return statement
   which.max.prop <- c(dat$Yr[which.max.prop[1]], ages[which.max.prop[2]])
 
