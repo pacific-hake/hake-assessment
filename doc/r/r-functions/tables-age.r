@@ -37,7 +37,11 @@ make.input.age.data.table <- function(model,
 
   ## Construct age data frame
   age.df <- age.df[,ages.ind]
-  age.df <- t(apply(age.df, 1, function(x){x / sum(x)}))
+  age.df <- t(apply(age.df,
+                    1,
+                    function(x){
+                      as.numeric(x) / sum(as.numeric(x))
+                    }))
   age.headers <- paste0(latex.mcol(1, "c", ages), latex.amp())
   age.df <- cbind(yr, n.samp, flt, age.df)
 
@@ -49,7 +53,7 @@ make.input.age.data.table <- function(model,
   age.df <- age.df[age.df[,"yr"] >= start.yr & age.df[,"yr"] <= end.yr,]
 
   ## Make number of samples pretty
-  age.df[,2] <- f(age.df[,2])
+  age.df[,2] <- f(as.numeric(age.df[,2]))
   ## Make percentages for age proportions
   age.df[,-c(1,2)] <- as.numeric(age.df[,-c(1,2)]) * 100
   age.df[,-c(1,2)] <- f(as.numeric(age.df[,-c(1,2)]), decimals)
@@ -309,13 +313,15 @@ make.est.numbers.at.age.table <- function(model,
   caa <- model$catage
   waa <- model$wtatage
 
-  n.age.b <- naa[naa$"Beg/Mid" == "B", -c(1:6, 8:11)]
+  n.age.b <- naa[naa$"Beg/Mid" == "B", -c(1:7, 9:12)]
   n.age.b <- n.age.b[n.age.b$Yr %in% yrs,]
-  n.age.m <- naa[naa$"Beg/Mid" == "M", -c(1:6, 8:11)]
+  n.age.m <- naa[naa$"Beg/Mid" == "M", -c(1:7, 9:12)]
   n.age.m <- n.age.m[n.age.m$Yr %in% yrs,]
 
+  ## caa <- caa[caa$Era != "INIT",]
   c.age <- caa[caa$Yr %in% yrs,]
   c.age <- c.age[, -(1:10)]
+
   ## Get weight-at-age matrix (currently the same matrix for fleet = -1,
   ##  0, 1, and 2)
   wt.at.age <- waa[waa$fleet == 1,]
@@ -364,7 +370,8 @@ make.est.numbers.at.age.table <- function(model,
     dat <- cbind(yrs, c.age)
   }else if(table.type == 4){
     ## Catch-at-age in biomass
-    wt.at.age <- wt.at.age[,-(1:6)]
+    wt.at.age <- wt.at.age[wt.at.age$yr %in% yrs,]
+    wt.at.age <- wt.at.age[,-c(1:6, 28)]
     dat <- c.age * wt.at.age
     csv.dat <- cbind(yrs, dat)
     colnames(csv.dat)[1] <- "Year"
@@ -392,7 +399,8 @@ make.est.numbers.at.age.table <- function(model,
       ## sort by year just in case the missing years weren't contiguous
       wt.at.age <- wt.at.age[order(abs(wt.at.age$yr)),]
     }
-    wt.at.age <- wt.at.age[,-(1:6)]
+    wt.at.age <- wt.at.age[wt.at.age$yr %in% yrs,]
+    wt.at.age <- wt.at.age[,-c(1:6, 28)]
     dat <- dat * wt.at.age
     dat <- cbind(yrs, dat)
     names(dat)[1] <- "Year"
@@ -500,7 +508,7 @@ make.cohort.table <- function(model,
   }
 
   ## Extract the numbers-at-age
-  naa <- model$natage[model$natage$"Beg/Mid" == "B", -c(1:6,8:11)]
+  naa <- model$natage[model$natage$"Beg/Mid" == "B", -c(1:7, 9:12)]
   ## Numbers at age in next year
   naa.next <- naa[naa$Yr >= start.yr+1 & naa$Yr <= end.yr+1,]
   ## Numbers at age in same year
@@ -535,7 +543,7 @@ make.cohort.table <- function(model,
     waa <- waa[order(abs(waa$yr)),]
   }
   # strip off initial columns of waa matrix (except year)
-  waa <- waa[,-(2:6)]
+  waa <- waa[,-c(2:6, 28)]
   waa$yr <- abs(waa$yr)
   coh.waa <- get.cohorts(waa, cohorts)
 
@@ -550,7 +558,8 @@ make.cohort.table <- function(model,
   ages <- 0:(ncol(caa) - 2)
 
   ## Start biomass-at-age
-  baa <- cbind(naa$Yr, naa[-1] * waa[-1] / weight.factor)
+  waa <- waa[waa$yr %in% yrs,]
+  baa <- cbind(naa$Yr, naa[,-1] * waa[,-1] / weight.factor)
   coh.baa <- get.cohorts(baa, cohorts)
 
   ## Catch weight

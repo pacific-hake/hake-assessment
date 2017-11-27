@@ -602,8 +602,8 @@ randWalkSelex.fn <- function(pars,devs=NULL,bounds=NULL) {
 }
 
 selexYear.fn <- function(x, yr, bnds=c(-5,9)) {
-  # get selectivity for a given year from all MCMC samples
-  
+  ## get selectivity for a given year from all MCMC samples
+
   ## specific for hake 2013 and 2014
   ## updated 2017/01/25 to not give error when year value is outside range available
 
@@ -613,25 +613,25 @@ selexYear.fn <- function(x, yr, bnds=c(-5,9)) {
   # define matrix to store deviation parameters for given year from each mcmc
   devsPars  <- matrix(NA, ncol = ncol(selexPars), nrow = nrow(x))
 
-  # columns of MCMC output which match names for base parameters
-  tmp <- grep("AgeSel_1P_[1-9]_Fishery", names(x))
-  # columns of MCMC output which match names for deviation parameters
-  devsInd <- grep("AgeSel_1P_[1-9]_Fishery_DEVadd", names(x))
-  # get all deviation parameters
+  ## columns of MCMC output which match names for base parameters
+  tmp <- grep("AgeSel_P[1-9]_Fishery.1.", names(x))
+  ## columns of MCMC output which match names for deviation parameters
+  devsInd <- grep("AgeSel_P[1-9]_Fishery.1._DEVadd_[1-9]+", names(x))
+  ## get all deviation parameters
   allDevsPars <- x[,devsInd]
-  # fill in matrix of selectivity parameters
+  ## fill in matrix of selectivity parameters
   selexPars[,3:7] <- as.matrix(x[,tmp[!(tmp %in% devsInd)]])
-  # get column indices associated with deviation parameters
+  ## get column indices associated with deviation parameters
   devsInd <- grep(as.character(yr), names(x)[devsInd])
   if(length(devsInd)==0){
-    # if year not found in names of deviation parameters, return NULL
+    ## if year not found in names of deviation parameters, return NULL
     return(NULL)
   }
   devsPars[,3:7] <- as.matrix(allDevsPars[,devsInd])
 
-  # define empty matrix to store resulting selectivity
+  ## define empty matrix to store resulting selectivity
   selex <- matrix(NA,ncol=ncol(selexPars),nrow=nrow(x))
-  # for each year, combine base selectivity parameters and deviations to get selex
+  ## for each year, combine base selectivity parameters and deviations to get selex
   for(i in 1:nrow(selexPars)) {
     selex[i,] <- randWalkSelex.fn(selexPars[i,],devsPars[i,],bounds=bnds)
   }
@@ -777,6 +777,7 @@ mcmc.out <- function (directory = "c:/mydirectory/", run = "mymodel/", file = "k
     }
     mcmcdata <- read.table(filename, header = header, sep = sep, 
         fill = TRUE)
+
     if (names == TRUE) {
         nameout <- file.path(directory, run, namefile)
         namedata <- read.table(nameout, header = FALSE, sep = "", 
@@ -790,6 +791,7 @@ mcmc.out <- function (directory = "c:/mydirectory/", run = "mymodel/", file = "k
         if (length(colNames) != numparams) 
             cat("numparams argument overidden by length of colNames argument\n")
         numparams <- length(colNames)
+
         mcmcdata <- mcmcdata[, colNames]
         if (length(colNames) == 1) {
             mcmcdata <- data.frame(mcmcdata)
@@ -1817,4 +1819,405 @@ function (file = "forecast.ss", Nfleets, Nareas, nseas, version = "3.30",
         }
     }
     return(mylist)
+}
+
+SSplotPars <-
+function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter value", 
+    ylab = "Density", postfile = "posteriors.sso", showpost = TRUE, 
+    showprior = TRUE, showmle = TRUE, showinit = TRUE, showrecdev = TRUE, 
+    priorinit = TRUE, priorfinal = TRUE, showlegend = TRUE, fitrange = FALSE, 
+    xaxs = "i", xlim = NULL, ylim = NULL, verbose = TRUE, nrows = 3, 
+    ncols = 3, ltyvec = c(1, 1, 3, 4), colvec = c("blue", "red", 
+        "black", "gray60", rgb(0, 0, 0, 0.5)), new = TRUE, pdf = FALSE, 
+    pwidth = 6.5, pheight = 5, punits = "in", ptsize = 10, returntable = FALSE, 
+    strings = c(), exact = FALSE, newheaders = NULL, burn = 0, 
+    thin = 1, ctlfile = "control.ss_new") 
+{
+    GetPrior <- function(Ptype, Pmin, Pmax, Pr, Psd, Pval) {
+        Ptype2 <- NA
+        if (is.character(Ptype)) {
+            if (Ptype == "No_prior") 
+                Ptype2 <- -1
+            if (Ptype == "Normal") 
+                Ptype2 <- 0
+            if (Ptype == "Sym_Beta") 
+                Ptype2 <- 1
+            if (Ptype == "Full_Beta") 
+                Ptype2 <- 2
+            if (Ptype == "Log_Norm") 
+                Ptype2 <- 3
+            if (Ptype == "Log_Norm_adjusted") 
+                Ptype2 <- 4
+        }
+        else {
+            Ptype2 <- Ptype
+        }
+        if (is.na(Ptype2)) {
+            Ptype2 <- as.numeric(Ptype)
+        }
+        if (is.na(Ptype2)) {
+            cat("problem with prior type interpretation. Ptype:", 
+                Ptype, " Ptype2:", Ptype2, "\n")
+        }
+        Pconst <- 1e-04
+        if (Ptype2 == -1) {
+            Prior_Like <- rep(0, length(Pval))
+        }
+        if (Ptype2 == 0) {
+            Prior_Like <- 0.5 * ((Pval - Pr)/Psd)^2
+        }
+        if (Ptype2 == 1) {
+            mu <- -(Psd * (log((Pmax + Pmin) * 0.5 - Pmin))) - 
+                (Psd * (log(0.5)))
+            Prior_Like <- -(mu + (Psd * (log(Pval - Pmin + Pconst))) + 
+                (Psd * (log(1 - ((Pval - Pmin - Pconst)/(Pmax - 
+                  Pmin))))))
+        }
+        if (Ptype2 == 2) {
+            mu <- (Pr - Pmin)/(Pmax - Pmin)
+            tau <- (Pr - Pmin) * (Pmax - Pr)/(Psd^2) - 1
+            Bprior <- tau * mu
+            Aprior <- tau * (1 - mu)
+            if (Bprior <= 1 | Aprior <= 1) {
+                cat(" bad Beta prior\n")
+            }
+            Prior_Like <- (1 - Bprior) * log(Pconst + Pval - 
+                Pmin) + (1 - Aprior) * log(Pconst + Pmax - Pval)
+            -(1 - Bprior) * log(Pconst + Pr - Pmin) - (1 - Aprior) * 
+                log(Pconst + Pmax - Pr)
+        }
+        if (Ptype2 == 3) {
+            Prior_Like <- 0.5 * ((log(Pval) - Pr)/Psd)^2
+        }
+        if (Ptype2 == 4) {
+            if (Pmin > 0) {
+                Prior_Like <- 0.5 * ((log(Pval) - Pr + 0.5 * 
+                  Psd^2)/Psd)^2
+            }
+            else {
+                cat("cannot do prior in log space for parm with min <=0.0\n")
+            }
+        }
+        return(Prior_Like)
+    }
+    fullpostfile <- paste(dir, postfile, sep = "/")
+    fullrepfile <- file.path(mle.dir, repfile)
+    fullctlfile <- paste(dir, ctlfile, sep = "/")
+    postfileinfo <- file.info(fullpostfile)$size
+    repfileinfo <- file.info(fullrepfile)$size
+    ctlfileinfo <- file.info(fullctlfile)$size
+    if (is.na(repfileinfo)) 
+        stop("Missing rep file:", fullrepfile)
+    if (repfileinfo == 0) 
+        stop("Empty rep file:", fullrepfile)
+    goodctl <- TRUE
+    if (is.na(ctlfileinfo)) {
+        cat("Missing control.ss_new file. Assuming recdev limits are -5 & 5.\n")
+        goodctl <- FALSE
+    }
+    else {
+        if (ctlfileinfo == 0) {
+            cat("Empty control.ss_new file. Assuming recdev limits are -5 & 5.\n")
+            goodctl <- FALSE
+        }
+    }
+    if (showpost & is.na(postfileinfo)) {
+        cat("Missing posteriors file: ", postfile, ", changing input to 'showpost=FALSE'\n", 
+            sep = "")
+        showpost <- FALSE
+    }
+    if (showpost & !is.na(postfile) & postfileinfo == 0) {
+        cat("Empty posteriors file: ", postfile, ", changing input to 'showpost=FALSE'\n", 
+            sep = "")
+        showpost <- FALSE
+    }
+    if (showpost & !is.na(postfileinfo) & postfileinfo > 0) {
+        test <- readLines(fullpostfile, n = 20)
+        if (length(test) > 10) {
+            posts <- read.table(fullpostfile, header = TRUE)
+            names(posts)[names(posts) == "SR_LN.R0."] <- "SR_LN(R0)"
+            cat("read", nrow(posts), "lines in", postfile, "\n")
+            posts <- posts[seq(burn + 1, nrow(posts), thin), 
+                ]
+            if (burn > 0 | thin > 1) {
+                cat("length of posteriors after burnin-in and thinning:", 
+                  nrow(posts), "\n")
+            }
+        }
+        else {
+            cat("Posteriors file has fewer than 10 rows, changing input to 'showpost=FALSE'\n")
+            showpost <- FALSE
+        }
+    }
+    if (!is.na(repfileinfo) & repfileinfo > 0) {
+        replines <- readLines(fullrepfile, n = 2000)
+        parstart <- grep("PARAMETERS", replines)[2]
+        parend <- grep("DERIVED_QUANTITIES", replines)[2]
+        nrows2 <- parend - parstart - 3
+        partable <- read.table(fullrepfile, header = FALSE, nrows = nrows2, 
+            skip = parstart, as.is = TRUE, fill = TRUE, row.names = paste(1:nrows2), 
+            col.names = 1:60, stringsAsFactors = FALSE)
+        partable <- partable[, 1:15]
+        temp <- as.character(partable[1, ])
+        names(partable) <- temp
+        partable <- partable[-1, ]
+        rownames(partable) <- 1:nrow(partable)
+        test <- grep("Number_of_active_parameters", partable$Num)
+        if (length(test) > 0) 
+            partable <- partable[1:(test - 1), ]
+        partable[partable == "_"] <- NA
+        partable$Active_Cnt <- as.numeric(as.character(partable$Active_Cnt))
+        partable$Label <- as.character(partable$Label)
+        for (i in (1:ncol(partable))[!names(partable) %in% c("Label", 
+                                                             "Status", "PR_type")]) {
+          if( i != 13){
+            partable[, i] <- as.numeric(as.character(partable[ ,i]))
+          }
+        }
+    }
+    allnames <- partable$Label[!is.na(partable$Active_Cnt)]
+    if (!is.null(strings)) {
+        goodnames <- NULL
+        if (exact) 
+            goodnames <- allnames[allnames %in% strings]
+        else for (i in 1:length(strings)) goodnames <- c(goodnames, 
+            grep(strings[i], allnames, value = TRUE))
+        goodnames <- unique(goodnames)
+        cat("parameters matching input vector 'strings':\n")
+        print(goodnames)
+        if (length(goodnames) == 0) {
+            cat("No active parameters match input vector 'strings'.\n")
+            return()
+        }
+    }
+    else {
+        goodnames <- allnames
+    }
+    badpars <- grep("Impl_err_", goodnames)
+    if (length(badpars) > 0) 
+        goodnames <- goodnames[-badpars]
+    stds <- partable$Parm_StDev[partable$Label %in% goodnames]
+    if (showmle & (min(is.na(stds)) == 1 || min(stds, na.rm = TRUE) <= 
+        0)) {
+        cat("Some parameters have std. dev. values in Report.sso equal to 0.\n", 
+            "  Asymptotic uncertainty estimates will not be shown.\n", 
+            "  Try re-running the model with the Hessian but no MCMC.\n")
+    }
+    recdevmin <- -5
+    recdevmin <- 5
+    recdevlabels <- c("Early_RecrDev_", "Early_InitAge_", "Main_InitAge_", 
+        "Main_RecrDev_", "ForeRecr_", "Late_RecrDev_")
+    if (showrecdev & goodctl) {
+        ctllines <- readLines(fullctlfile)
+        iline <- grep("#min rec_dev", ctllines)
+        if (length(iline) == 1) {
+            recdevmin <- as.numeric(strsplit(ctllines[iline], 
+                " #")[[1]][1])
+            recdevmax <- as.numeric(strsplit(ctllines[iline + 
+                1], " #")[[1]][1])
+            readrecdev <- as.numeric(strsplit(ctllines[iline + 
+                2], " #")[[1]][1])
+            if (is.na(readrecdev) | readrecdev == 1) 
+                cat("This function does not yet display recdev values read from ctl file.\n")
+        }
+    }
+    else {
+        goodnames <- goodnames[!substr(goodnames, 1, 9) %in% 
+            substr(recdevlabels, 1, 9)]
+    }
+    npars <- length(goodnames)
+    if (verbose & is.null(xlim)) {
+        if (fitrange) {
+            cat("Plotting range is scaled to fit parameter estimates.\n", 
+                "  Change input to 'fitrange=FALSE' to get full parameter range.\n")
+        }
+        else {
+            cat("Plotting range is equal to input limits on parameters.\n", 
+                "  Range can be scaled to fit estimates by setting input 'fitrange=TRUE'.\n")
+        }
+    }
+    if (new & !pdf) {
+        dev.new(width = pwidth, height = pheight, pointsize = ptsize, 
+            record = TRUE)
+    }
+    if (pdf) {
+        pdffile <- paste(dir, "/SSplotPars_", format(Sys.time(), 
+            "%d-%b-%Y_%H.%M"), ".pdf", sep = "")
+        pdf(file = pdffile, width = pwidth, height = pheight)
+        if (verbose) 
+            cat("PDF file with plots will be: ", pdffile, "\n")
+    }
+    if (new) 
+        par(mfcol = c(nrows, ncols), mar = c(2, 1, 2, 1), oma = c(2, 
+            2, 0, 0))
+    if (verbose) 
+        cat("Making plots of parameters:\n")
+    if (length(grep("DEVrwalk", x = goodnames)) > 0) {
+        cat("\nNOTE: This model contains random walk deviates which are not\n", 
+            "fully implemented. Prior and bounds unavailable, so these are skipped\n", 
+            "and fitrange is set to TRUE for those parameters.\n\n")
+    }
+    for (ipar in 1:npars) {
+        parname <- goodnames[ipar]
+        if (verbose) 
+            cat("    ", parname, "\n")
+        parline <- partable[partable$Label == parname, ]
+        initval <- parline$Init
+        finalval <- parline$Value
+        parsd <- parline$Parm_StDev
+        Pmin <- parline$Min
+        Pmax <- parline$Max
+        Ptype <- parline$Pr_type
+        Psd <- parline$Pr_SD
+        Pr <- parline$Prior
+        if (substr(parname, 1, 9) %in% substr(recdevlabels, 1, 
+            9)) {
+            initval <- 0
+            Pmin <- recdevmin
+            Pmax <- recdevmax
+            Ptype <- 0
+            Pr <- 0
+            Psd <- partable$Value[partable$Label == "SR_sigmaR"]
+        }
+        isdev <- FALSE
+        if (length(grep("DEVrwalk", x = parname)) == 1) {
+            initval <- 0
+            isdev <- TRUE
+        }
+        ymax <- 0
+        xmin <- NULL
+        xmax <- NULL
+        if (!isdev) {
+          x <- seq(Pmin, Pmax, length = 5000)
+            negL_prior <- GetPrior(Ptype = Ptype, Pmin = Pmin, 
+                Pmax = Pmax, Pr = Pr, Psd = Psd, Pval = x)
+            prior <- exp(-1 * negL_prior)
+        }
+        else {
+            x <- finalval + seq(-4 * parsd, 4 * parsd, length = 5000)
+        }
+        if (!isdev & showprior) {
+            prior <- prior/(sum(prior) * mean(diff(x)))
+            ymax <- max(ymax, max(prior), na.rm = TRUE)
+        }
+        if (showmle) {
+            if (!is.na(parsd) && parsd > 0) {
+                mle <- dnorm(x, finalval, parsd)
+                mlescale <- 1/(sum(mle) * mean(diff(x)))
+                mle <- mle * mlescale
+                ymax <- max(ymax, max(mle), na.rm = TRUE)
+                xmin <- qnorm(0.001, finalval, parsd)
+                xmax <- qnorm(0.999, finalval, parsd)
+            }
+            else {
+                xmin <- xmax <- finalval
+            }
+        }
+        goodpost <- FALSE
+        if (showpost) {
+            jpar <- (1:ncol(posts))[names(posts) == parname]
+            if (length(jpar) == 1) {
+                post <- posts[, jpar]
+                xmin <- min(xmin, quantile(post, 0.001))
+                xmax <- max(xmax, quantile(post, 0.999))
+                goodpost <- TRUE
+            }
+            else {
+                cat("Error! parameter '", parname, "', not found in '", 
+                  postfile, "'.\n", sep = "")
+            }
+        }
+        if (is.null(xlim)) {
+            if (fitrange & ((!is.na(parsd) && parsd != 0) | showpost)) {
+                if (showinit) {
+                  xmin <- min(initval, xmin, na.rm = TRUE)
+                  xmax <- max(initval, xmax, na.rm = TRUE)
+                }
+                xmin <- max(Pmin, xmin, na.rm = TRUE)
+                xmax <- min(Pmax, xmax, na.rm = TRUE)
+            }
+            else {
+                if (!isdev) 
+                  xmin <- Pmin
+                if (!isdev) 
+                  xmax <- Pmax
+            }
+            xlim2 <- c(xmin, xmax)
+        }
+        else {
+            xlim2 <- xlim
+        }
+        if (showpost & goodpost) {
+            jpar <- (1:ncol(posts))[names(posts) == parname]
+            post <- posts[, jpar]
+            breakvec <- seq(xmin, xmax, length = 50)
+            if (min(breakvec) > min(post)) 
+                breakvec <- c(min(post), breakvec)
+            if (max(breakvec) < max(post)) 
+                breakvec <- c(breakvec, max(post))
+            posthist <- hist(post, plot = FALSE, breaks = breakvec)
+            postmedian <- median(post)
+            ymax <- max(ymax, max(posthist$density), na.rm = FALSE)
+        }
+        if (is.null(newheaders)) 
+            header <- parname
+        else header <- newheaders[ipar]
+        if (is.null(ylim)) 
+            ylim2 <- c(0, 1.1 * ymax)
+        else ylim2 <- ylim
+        plot(0, type = "n", xlim = xlim2, ylim = ylim2, xaxs = xaxs, 
+            yaxs = "i", xlab = "", ylab = "", main = header, 
+            cex.main = 1, axes = FALSE)
+        axis(1)
+        colval <- colvec[4]
+        if (showpost & goodpost) {
+            plot(posthist, add = TRUE, freq = FALSE, col = colval, 
+                border = colval)
+            abline(v = postmedian, col = colvec[5], lwd = 2, 
+                lty = ltyvec[3])
+        }
+        if (!isdev & showprior) {
+            lines(x, prior, lwd = 2, lty = ltyvec[2])
+        }
+        if (showmle) {
+            if (!is.na(parsd) && parsd > 0) {
+                lines(x, mle, col = colvec[1], lwd = 1, lty = ltyvec[1])
+                lines(rep(finalval, 2), c(0, dnorm(finalval, 
+                  finalval, parsd) * mlescale), col = colvec[1], 
+                  lty = ltyvec[1])
+            }
+            else {
+                abline(v = finalval, col = colvec[1], lty = ltyvec[1])
+            }
+        }
+        if (showinit) {
+            par(xpd = NA)
+            points(initval, -0.02 * ymax, col = colvec[2], pch = 17, 
+                cex = 1.2)
+            par(xpd = FALSE)
+        }
+        box()
+        if (max(par("mfg")[1:2]) == 1) {
+            mtext(xlab, side = 1, line = 0.5, outer = TRUE)
+            mtext(ylab, side = 2, line = 0.5, outer = TRUE)
+            if (showlegend) {
+                showvec <- c(showprior, showmle, showpost, showpost, 
+                  showinit)
+                legend("topleft", cex = 1.2, bty = "n", pch = c(NA, 
+                  NA, 15, NA, 17)[showvec], lty = c(ltyvec[2], 
+                  ltyvec[1], NA, ltyvec[3], NA)[showvec], lwd = c(2, 
+                  1, NA, 2, NA)[showvec], col = c(colvec[3], 
+                  colvec[1], colvec[4], colvec[5], colvec[2])[showvec], 
+                  pt.cex = c(1, 1, 2, 1, 1)[showvec], legend = c("prior", 
+                    "max. likelihood", "posterior", "posterior median", 
+                    "initial value")[showvec])
+            }
+        }
+    }
+    if (pdf) {
+        dev.off()
+    }
+    if (returntable) {
+        return(partable[partable$Label %in% goodnames, ])
+    }
 }

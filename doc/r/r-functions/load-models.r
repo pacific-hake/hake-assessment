@@ -19,13 +19,14 @@ load.ss.files <- function(model.dir,
   model.dir.listing <- dir(model.dir)
   dat.fn.ind <- grep("_data.ss", model.dir.listing)
   ctl.fn.ind <- grep("_control.ss", model.dir.listing)
+  par.fn.ind <- grep("ss3.par", model.dir.listing)
   if(!length(dat.fn.ind)){
     stop(curr.func.name, "Error in model ", model.dir,
          ", there is no data file. A data file is any file whose name contains the text _data.ss.\n\n")
   }
   if(length(dat.fn.ind) > 1){
     stop(curr.func.name, "Error in model ", model.dir,
-         ", there is more than one data file. A data file is any file whose name contains the text  _data.ss.\n\n")
+         ", there is more than one data file. A data file is any file whose name contains the text _data.ss.\n\n")
   }
   if(!length(ctl.fn.ind)){
     stop(curr.func.name, "Error in model ", model.dir,
@@ -37,11 +38,14 @@ load.ss.files <- function(model.dir,
   }
   dat.fn <- file.path(model.dir, model.dir.listing[dat.fn.ind])
   ctl.fn <- file.path(model.dir, model.dir.listing[ctl.fn.ind])
+  par.fn <- file.path(model.dir, model.dir.listing[par.fn.ind])
   model$path <- model.dir
   model$dat.file <- dat.fn
   model$dat <- SS_readdat(dat.fn, version = ss.version, verbose = ss.verbose)
   model$ctl.file <- ctl.fn
   model$ctl <- readLines(ctl.fn)
+  model$par.file <- par.fn
+  model$par <- readLines(par.fn)
   ## Set default mcmc members to NA. Later code depends on this.
   model$mcmc <- NA
   ## Set the mcmc path. This doesn't mean it exists.
@@ -211,8 +215,8 @@ create.rdata.file <- function(
   ## Load retrospectives. If none are found or there is a problem, model$retros
   ##  will be NA
   model$retros <- fetch.retros(model$retropath,
-                              my.retro.yrs,
-                              verbose = verbose)
+                               my.retro.yrs,
+                               verbose = verbose)
   ##----------------------------------------------------------------------------
 
   ##----------------------------------------------------------------------------

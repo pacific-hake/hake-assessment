@@ -81,7 +81,7 @@ if(verbose) cat0("Last year of model data: \n  ", last.data.yr)
 key.posteriors <- c("NatM_p_1_Fem_GP_1",
                     "SR_LN",
                     "SR_BH_steep",
-                    "Q_extraSD_2_Acoustic_Survey")
+                    "Q_extraSD_?[0-9]?_Acoustic_Survey")
 if(verbose){
   cat0("***")
   cat0("Key posteriors in this assessment:")
@@ -349,9 +349,13 @@ load.models.into.parent.env <- function(){
   sens.models.1.for.table <<- c(list(base.model), sens.models.5, sens.models.6)
   sens.model.names.1.for.table <<- c("Base model", sens.model.names.5,sens.model.names.6)
   ## Second set includes base and sensitivity groups 2 and 3
-  sens.models.2.for.table <<- c(list(base.model), sens.models.1, sens.models.4)
-  #sens.models.2.for.table <<- c(sens.models.2.for.table,sens.models.3)
-  sens.model.names.2.for.table <<- c("Base model", sens.model.names.1,sens.model.names.4)
+
+  ## Removing the sens group 4 from this because it's causing problems when
+  ## running make.short.parameter.estimates.sens.table()
+  ##sens.models.2.for.table <<- c(list(base.model), sens.models.1, sens.models.4)
+  ##sens.model.names.2.for.table <<- c("Base model", sens.model.names.1,sens.model.names.4)
+  sens.models.2.for.table <<- c(list(base.model), sens.models.1)
+  sens.model.names.2.for.table <<- c("Base model", sens.model.names.1)
 
 }
 

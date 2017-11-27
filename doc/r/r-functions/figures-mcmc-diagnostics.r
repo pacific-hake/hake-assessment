@@ -35,7 +35,7 @@ make.mcmc.diag.plot <- function(model,      ## model is an mcmc run and is the o
    colnames <- c("SR_BH_steep")
    label <- "h (steepness)"
   }else if(subplot == 4){
-    colnames <- c("Q_extraSD_2_Acoustic_Survey")
+    colnames <- c("Q_extraSD_Acoustic_Survey(2)")
     label <- "Extra SD in survey"
   }
   oldpar <- par()
@@ -170,19 +170,30 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
        ylab = "Biomass index (million t)")
   dat <- model$dat
   cpue <- dat$CPUE[dat$CPUE$index > 0,]
-  segments(x0 = cpue$year,
-           y0 = qlnorm(probs[1], meanlog = log(cpue$ob), sdlog = cpue$se_log),
-           y1 = qlnorm(probs[2], meanlog = log(cpue$ob), sdlog = cpue$se_log),
+  segments(x0 = as.numeric(cpue$year),
+           y0 = qlnorm(probs[1], meanlog = log(as.numeric(cpue$obs)), sdlog = as.numeric(cpue$se_log)),
+           y1 = qlnorm(probs[2], meanlog = log(as.numeric(cpue$obs)), sdlog = as.numeric(cpue$se_log)),
            lwd = 3,
            lend = 1)
-  matplot(x = start.yr:(end.yr + 1),
+  surv.yrs <- c(1995,
+                1998,
+                2001,
+                2003,
+                2005,
+                2007,
+                2009,
+                2011,
+                2012,
+                2013,
+                2015)
+  matplot(x = surv.yrs, #as.numeric(start.yr):(as.numeric(end.yr)),
           ##y = model$cpue.table[1:length(start.yr:end.yr),],
           y = model$extra.mcmc$cpue.table,
           col = rgb(0, 0, 1, 0.03),
           type = 'l',
           add=TRUE,
           lty = 1)
-  lines(x = start.yr:(end.yr + 1),
+  lines(x = surv.yrs, #as.numeric(start.yr):(as.numeric(end.yr) + 1),
         ## y = model$cpue.median[1:length(start.yr:end.yr)],
         y = model$extra.mcmc$cpue.median,
         col = rgb(0, 0, 0.5, 0.7),

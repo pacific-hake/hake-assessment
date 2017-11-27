@@ -120,12 +120,12 @@ make.age.comp.bubble.plot <- function(model,                  ## model is an mcm
                   prop = unlist(dat[,ages.str]))
   names(x) <- c("Yr", "Age", "prop")
   if(do.plot){
-    symbols(c(x[,1], -1),
-            c(x[,2], -1),
-            circles = sqrt(c(x[,3], max.prop)),
+    symbols(c(as.numeric(as.character(x[,1])), -1),
+            c(as.numeric(as.character(x[,2])), -1),
+            circles = sqrt(c(as.numeric(as.character(x[,3])), max.prop)),
             inches = inches,
             ylim = c(min.age, max.age),
-            xlim = c(start.yr, end.yr),
+            xlim = c(as.numeric(start.yr), as.numeric(end.yr)),
             xlab = "",
             ylab = label,
             xaxt = "n",
@@ -142,11 +142,11 @@ make.age.comp.bubble.plot <- function(model,                  ## model is an mcm
               bg = bg)
       text(key.yrs + 1.1, c(16.2,16.2,16.2,16.2), c("0.01", "0.1", "0.25", "0.5"), xpd = NA, cex = 0.8)
     }
-    axis(1, seq(start.yr, end.yr + 5, 5))
+    axis(1, seq(as.numeric(start.yr), as.numeric(end.yr) + 5, 5))
     axis(4)
     par <- oldpar
   }
-  ret.vec <- c(start.yr, end.yr, max.prop, which.max.prop)
+  ret.vec <- c(as.numeric(start.yr), as.numeric(end.yr), max.prop, which.max.prop)
   names(ret.vec) <- c("start.yr", "end.yr", "max.prop", "max.prop.yr", "max.prop.age")
   return(ret.vec)
 }

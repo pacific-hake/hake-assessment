@@ -325,24 +325,25 @@ make.short.parameter.estimates.sens.table <- function(models,
 
   tab <- NULL
   for(model in models){
-    j <- model$par
-    p.names <- rownames(j)
+    parms <- model$estimated_non_dev_parameters
+    p.names <- rownames(parms)
     mle.grep <- unique(grep(paste(posterior.regex, collapse="|"), p.names))
-    mle.par <- j[mle.grep,]$Value
+
+    mle.par <- parms[mle.grep,]$Value
     mle.par[2] <- exp(mle.par[2]) / 1000 ## To make R millions
 
     ## Add 2008 recruitment
-    rec <- model$recruit[model$recruit$year == 2008,]$pred_recr
+    rec <- model$recruit[model$recruit$Yr == 2008,]$pred_recr
     rec <- rec / 1000
     mle.par <- c(mle.par, rec)
 
     ## Add 2010 recruitment
-    rec <- model$recruit[model$recruit$year == 2010,]$pred_recr
+    rec <- model$recruit[model$recruit$Yr == 2010,]$pred_recr
     rec <- rec / 1000
     mle.par <- c(mle.par, rec)
 
     ## Add 2014 recruitment
-    rec <- model$recruit[model$recruit$year == 2014,]$pred_recr
+    rec <- model$recruit[model$recruit$Yr == 2014,]$pred_recr
     rec <- rec / 1000
     mle.par <- c(mle.par, rec)
 
@@ -374,9 +375,9 @@ make.short.parameter.estimates.sens.table <- function(models,
     mle.par <- c(mle.par, 40)
 
     ## Add Exploitation fraction corresponding to SPR
-    f <- model$derived_quants["Fstd_SPRtgt", "Value"]
-    f <- f * 100
-    mle.par <- c(mle.par, f)
+    f1 <- model$derived_quants["Fstd_SPRtgt", "Value"]
+    f1 <- f1 * 100
+    mle.par <- c(mle.par, f1)
 
     ## Add Yield at Bf_40%
     y <- model$derived_quants["TotYield_SPRtgt", "Value"] / 1000
@@ -506,12 +507,12 @@ make.short.parameter.estimates.table <- function(model,
   ## space.size - size of the vertical spaces for the table
 
   ## This year's model MLE
-  j <- model$par
-  p.names <- rownames(j)
+  parms <- model$estimated_non_dev_parameters
+  p.names <- rownames(parms)
   mle.grep <- unique(grep(paste(posterior.regex, collapse="|"), p.names))
-  ## mle.names <- j[mle.grep,]$Label
+  mle.names <- p.names[mle.grep]
 
-  mle.par <- j[mle.grep,]$Value
+  mle.par <- parms[mle.grep,]$Value
   mle.par[2] <- exp(mle.par[2]) / 1000 ### To make R millions
 
   ## Add Q for MLE
@@ -519,17 +520,17 @@ make.short.parameter.estimates.table <- function(model,
   mle.par <- c(mle.par, mle.q)
 
   ## Add 2008 recruitment
-  rec <- model$recruit[model$recruit$year == 2008,]$pred_recr
+  rec <- model$recruit[model$recruit$Yr == 2008,]$pred_recr
   rec <- rec / 1000
   mle.par <- c(mle.par, rec)
 
   ## Add 2010 recruitment
-  rec <- model$recruit[model$recruit$year == 2010,]$pred_recr
+  rec <- model$recruit[model$recruit$Yr == 2010,]$pred_recr
   rec <- rec / 1000
   mle.par <- c(mle.par, rec)
 
   ## Add 2014 recruitment
-  rec <- model$recruit[model$recruit$year == 2014,]$pred_recr
+  rec <- model$recruit[model$recruit$Yr == 2014,]$pred_recr
   rec <- rec / 1000
   mle.par <- c(mle.par, rec)
 
@@ -561,9 +562,9 @@ make.short.parameter.estimates.table <- function(model,
   mle.par <- c(mle.par, 40)
 
   ## Add Exploitation fraction corresponding to SPR
-  f <- model$derived_quants["Fstd_SPRtgt", "Value"]
-  f <- 100 * f ## make a percentage
-  mle.par <- c(mle.par, f)
+  f1 <- model$derived_quants["Fstd_SPRtgt", "Value"]
+  f1 <- 100 * f1 ## make a percentage
+  mle.par <- c(mle.par, f1)
 
   ## Add Yield at Bf_40%
   y <- model$derived_quants["TotYield_SPRtgt", "Value"] / 1000
