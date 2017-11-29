@@ -22,25 +22,25 @@ calc.tv.selex <- function(model,
   yrs <- start.yr:end.yr
   selex <- list()
 
-  # changing indexing from 2:length(yrs) to 1:length(yrs)
+  ## changing indexing from 2:length(yrs) to 1:length(yrs)
   for(i in 1:length(yrs)){
-    # calculate selectivity across MCMC for given year
+    ## calculate selectivity across MCMC for given year
     selexYear <- selexYear.fn(model$mcmc, yrs[i])
-    # if selexYear.fn returns NA, there was no deviation in that year,
-    # calculate average selectivity for non-deviation years
+    ## if selexYear.fn returns NA, there was no deviation in that year,
+    ## calculate average selectivity for non-deviation years
     if(is.null(selexYear)) {
-      # empty matrix
+      ## empty matrix
       selex[[1]] <- matrix(NA, nrow = nrow(model$mcmc), ncol = 16)
-      # loop over MCMC samples
+      ## loop over MCMC samples
       for(i in 1:nrow(model$mcmc)) {
-        # get the base selectivity parameters
-        ind <- grep("AgeSel_1P_[1-9]_Fishery", names(model$mcmc))[1:5]
-        # calculation the selectivity function for each sample
+        ## get the base selectivity parameters
+        ind <- grep("AgeSel_P[1-9]_Fishery.1.", names(model$mcmc))[1:5]
+        ## calculation the selectivity function for each sample
         selex[[1]][i,] <- randWalkSelex.fn(unlist(c(-1000,
                                                     0, model$mcmc[i, ind],
                                                     0, 0, 0, 0, 0, 0, 0, 0, 0)))
       }
-    } else { # not NULL
+    } else { ## not NULL
       # selexYear.fn provided time-varying selectivity for the given year
       selex[[i]] <- selexYear
     }
@@ -101,9 +101,9 @@ make.tv.selex.plot <- function(selex.list,
   }else{
     # in the MLE case, selex.list is the model object created by SS_output
     agesel <- selex.list$agesel # get selectivity at age
-    selex.dat <- agesel[agesel$factor=="Asel" &
-                          agesel$fleet==1 &
-                            agesel$year %in% 1990:2016, ] # subset rows (manual 2017)
+    selex.dat <- agesel[agesel$Factor=="Asel" &
+                          agesel$Fleet==1 &
+                            agesel$Yr %in% 1990:2016, ] # subset rows (manual 2017)
     rownames(selex.dat) <- selex.dat$year # add row names for year
     selex.dat <- selex.dat[,paste(1:8)] # subset columns
   }

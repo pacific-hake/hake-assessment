@@ -278,13 +278,12 @@ sigma.r.alt.allyr <- f(base.model$sigma_R_info$alternative_sigma_R[3],2)
 sigma.r.alt.main <- f(base.model$sigma_R_info$alternative_sigma_R[1],2)
 
 # range of "main" recdevs
-main.recdev.start <- min(base.model$recruit$year[base.model$recruit$era=="Main"])
-main.recdev.end <- max(base.model$recruit$year[base.model$recruit$era=="Main"])
+main.recdev.start <- min(base.model$recruit$Yr[base.model$recruit$era=="Main"])
+main.recdev.end <- max(base.model$recruit$Yr[base.model$recruit$era=="Main"])
 
 # range of "main" bias adjustement period for recdevs
-main.recdevbias.start <- min(base.model$recruit$year[base.model$recruit$biasadj==max(base.model$recruit$biasadj)])
-main.recdevbias.end <- max(base.model$recruit$year[base.model$recruit$biasadj==max(base.model$recruit$biasadj)])
-
+main.recdevbias.start <- min(base.model$recruit$Yr[base.model$recruit$biasadj==max(base.model$recruit$biasadj)])
+main.recdevbias.end <- max(base.model$recruit$Yr[base.model$recruit$biasadj==max(base.model$recruit$biasadj)])
 
 ################################################################################
 ## Load weight-at-age file now that models are loaded

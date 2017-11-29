@@ -81,7 +81,7 @@ if(verbose) cat0("Last year of model data: \n  ", last.data.yr)
 key.posteriors <- c("NatM_p_1_Fem_GP_1",
                     "SR_LN",
                     "SR_BH_steep",
-                    "Q_extraSD_2_Acoustic_Survey")
+                    "Q_extraSD_?[0-9]?_Acoustic_Survey")
 if(verbose){
   cat0("***")
   cat0("Key posteriors in this assessment:")
@@ -96,9 +96,9 @@ if(verbose) cat0("Key posteriors file: \n  ", nuisance.posteriors.file)
 ## -----------------------------------------------------------------------------
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
-base.model.dir.name <- "45_BasePreSRG_v4"
-## "01_2016base_converted_to_SSv3.30"
-base.model.name <- paste(assess.yr, "Base model")
+base.model.dir.name <- "03_2017base_3.30_tv_pars"
+##base.model.dir.name <- "45_BasePreSRG_v4"
+base.model.name <- paste(assess.yr, "Base model SS 3.30")
 verify.models(model.dir, base.model.dir.name, base.model.name)
 if(verbose){
   cat0("Base model directory name: \n  ", base.model.dir.name)
@@ -280,6 +280,10 @@ sens.model.dir.names.8 <- c("59_Sen45_phi003",
 sens.model.names.8 <- c("1991-2016 phi=0.03",
                         "1991-2008 phi=0.03, 2009-2016 phi=0.20",
                         "1991-2015 phi=0.03, 2016 phi=0.20")
+## sens.model.dir.names.8 <- c("02_2017base_3.30",
+##                             "03_2017base_3.30_tv_pars")
+## sens.model.names.8 <- c("Base model SS version 3.30",
+##                         "Base 3.30 with TV pars mimic base 2017")
 verify.models(model.dir, sens.model.dir.names.8, sens.model.names.8)
 if(verbose){
   print.model.message(sens.model.dir.names.8, sens.model.names.8, 8, model.type = "Sensitivity")
@@ -345,9 +349,13 @@ load.models.into.parent.env <- function(){
   sens.models.1.for.table <<- c(list(base.model), sens.models.5, sens.models.6)
   sens.model.names.1.for.table <<- c("Base model", sens.model.names.5,sens.model.names.6)
   ## Second set includes base and sensitivity groups 2 and 3
-  sens.models.2.for.table <<- c(list(base.model), sens.models.1, sens.models.4)
-  #sens.models.2.for.table <<- c(sens.models.2.for.table,sens.models.3)
-  sens.model.names.2.for.table <<- c("Base model", sens.model.names.1,sens.model.names.4)
+
+  ## Removing the sens group 4 from this because it's causing problems when
+  ## running make.short.parameter.estimates.sens.table()
+  ##sens.models.2.for.table <<- c(list(base.model), sens.models.1, sens.models.4)
+  ##sens.model.names.2.for.table <<- c("Base model", sens.model.names.1,sens.model.names.4)
+  sens.models.2.for.table <<- c(list(base.model), sens.models.1)
+  sens.model.names.2.for.table <<- c("Base model", sens.model.names.1)
 
 }
 
@@ -371,6 +379,11 @@ build <- function(run.fore = FALSE,
   }
 
   ## Base model
+  ss.version.tmp = ss.version
+  if(base.model.dir.name == "02_2017base_3.30" |
+     base.model.dir.name == "03_2017base_3.30_tv_pars"){
+    ss.version.tmp = "3.30"
+  }
   create.rdata.file(model.name = base.model.dir.name,
                     ovwrt.rdata = ifelse(any(run.fore, run.retro, run.extra.mcmc),
                                          TRUE,
@@ -383,6 +396,7 @@ build <- function(run.fore = FALSE,
                     my.retro.yrs = retro.yrs,
                     run.extra.mcmc = run.extra.mcmc,
                     key.posteriors = key.posteriors,
+                    ss.version = ss.version.tmp,
                     verbose = ss.verbose)
 
   ## Bridge and sensitivity models need to be unlisted from their groups
@@ -403,8 +417,13 @@ build <- function(run.fore = FALSE,
   mnv <- mnv[-(grep(base.model.dir.name, mnv))]
   model.names.list <- as.list(unique(mnv))
 
+  ss.version.tmp = ss.version
   ## Bridge/sensitivity models
   for(model.nm in model.names.list){
+    if(model.nm == "02_2017base_3.30" |
+       model.nm == "03_2017base_3.30_tv_pars"){
+      ss.version.tmp = "3.30"
+    }
     create.rdata.file(
       model.name = model.nm,
       ovwrt.rdata = ifelse(run.extra.mcmc,
@@ -418,6 +437,7 @@ build <- function(run.fore = FALSE,
       my.retro.yrs = retro.yrs,
       run.extra.mcmc = run.extra.mcmc,
       key.posteriors = key.posteriors,
+      ss.version = ss.version.tmp,
       verbose = ss.verbose)
   }
 }

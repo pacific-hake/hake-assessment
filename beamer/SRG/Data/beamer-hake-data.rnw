@@ -50,7 +50,8 @@
 %}
 
 \newcounter{saveenumi}
-\newcommand{\specialcell}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+%% syntax is \mlc{first line\\secondline}
+\newcommand{\mlc}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 \newcommand{\fishname}{Pacific Hake}
 
 \newcommand{\bc}{\begin{center}}

@@ -3,9 +3,11 @@ load.ss.files <- function(model.dir,
                           key.posts.fn = "keyposteriors.csv",
                           nuisance.posts.fn = "nuisanceposteriors.csv",
                           verbose = FALSE,
-                          printstats = FALSE){ ## print info on each model loaded via SS_output
+                          printstats = FALSE, ## print info on each model loaded via SS_output
+                          ss.version = "3.24"){
   ## Load all the SS files for output and input, and return the model object.
   ## If MCMC directory is present, load that and perform calculations for mcmc parameters.
+  ## ss.version determines which version of SS_readdat() is used.
 
   curr.func.name <- get.curr.func.name()
   ## Load MPD results
@@ -17,13 +19,14 @@ load.ss.files <- function(model.dir,
   model.dir.listing <- dir(model.dir)
   dat.fn.ind <- grep("_data.ss", model.dir.listing)
   ctl.fn.ind <- grep("_control.ss", model.dir.listing)
+  par.fn.ind <- grep("ss3.par", model.dir.listing)
   if(!length(dat.fn.ind)){
     stop(curr.func.name, "Error in model ", model.dir,
          ", there is no data file. A data file is any file whose name contains the text _data.ss.\n\n")
   }
   if(length(dat.fn.ind) > 1){
     stop(curr.func.name, "Error in model ", model.dir,
-         ", there is more than one data file. A data file is any file whose name contains the text  _data.ss.\n\n")
+         ", there is more than one data file. A data file is any file whose name contains the text _data.ss.\n\n")
   }
   if(!length(ctl.fn.ind)){
     stop(curr.func.name, "Error in model ", model.dir,
@@ -35,11 +38,14 @@ load.ss.files <- function(model.dir,
   }
   dat.fn <- file.path(model.dir, model.dir.listing[dat.fn.ind])
   ctl.fn <- file.path(model.dir, model.dir.listing[ctl.fn.ind])
+  par.fn <- file.path(model.dir, model.dir.listing[par.fn.ind])
   model$path <- model.dir
   model$dat.file <- dat.fn
   model$dat <- SS_readdat(dat.fn, version = ss.version, verbose = ss.verbose)
   model$ctl.file <- ctl.fn
   model$ctl <- readLines(ctl.fn)
+  model$par.file <- par.fn
+  model$par <- readLines(par.fn)
   ## Set default mcmc members to NA. Later code depends on this.
   model$mcmc <- NA
   ## Set the mcmc path. This doesn't mean it exists.
@@ -103,6 +109,7 @@ create.rdata.file <- function(
            key.posteriors = key.posteriors, ## Vector of key posteriors used to create key posteriors file
            key.posteriors.fn = "keyposteriors.csv",
            nuisance.posteriors.fn = "nuisanceposteriors.csv",
+           ss.version = "3.24",
            verbose = FALSE){
   ## Create an rdata file to hold the model's data and outputs.
   ## If an RData file exists, and overwrite is FALSE, return immediately.
@@ -113,6 +120,7 @@ create.rdata.file <- function(
   ## Assumes the files model-setup.r, retrospective-setup.r, and forecast-catch-levels.r
   ##  have been sourced (for default values of args).
   ## Assumes utilities.r has been sourced.
+  ## ss.version determines which version of SS_readdat() is used.
   curr.func.name <- get.curr.func.name()
   model.dir <- file.path(models.dir, model.name)
   if(!dir.exists(model.dir)){
@@ -158,7 +166,8 @@ create.rdata.file <- function(
 
   ## If this point is reached, no RData file exists so it
   ##  has to be built from scratch
-  model <- load.ss.files(model.dir)
+  model <- load.ss.files(model.dir,
+                         ss.version = ss.version)
 
   ##----------------------------------------------------------------------------
   ## Run extra mcmc output.
@@ -206,8 +215,8 @@ create.rdata.file <- function(
   ## Load retrospectives. If none are found or there is a problem, model$retros
   ##  will be NA
   model$retros <- fetch.retros(model$retropath,
-                              my.retro.yrs,
-                              verbose = verbose)
+                               my.retro.yrs,
+                               verbose = verbose)
   ##----------------------------------------------------------------------------
 
   ##----------------------------------------------------------------------------
@@ -744,6 +753,9 @@ run.extra.mcmc.models <- function(model, verbose = TRUE){
     "-1      # Maximum bias adjustment in MPD (set to -1 for extra.mcmc only)"
   writeLines(ctl.lines, file.path(extra.mcmc.dir, start$ctlfile))
 
+  ## Remove brackets in newpar labels so that the names match column names in posts
+  newpar$label <- gsub("\\(([0-9])\\)", ".\\1.", newpar$label)
+
   ## loop over rows of posteriors file
   for(irow in 1:num.posts){
     if(verbose){
@@ -882,7 +894,7 @@ fetch.extra.mcmc <- function(model,
     natage.allrows <- read.table(file=rep.file, skip=natage.line.start,
                                  nrow=natage.N.lines, header=TRUE)
     # subset all rows to select first forecast year
-    natage.row <- natage.allrows[natage.allrows$Year==model$endyr + 1,]
+    natage.row <- natage.allrows[natage.allrows$Yr==model$endyr + 1,]
 
     # add rows to tables of values for each MCMC sample
     sel.table <- rbind(sel.table, sel.row1)
@@ -905,21 +917,21 @@ fetch.extra.mcmc <- function(model,
                          like.info$Parm_priors != 0,]
 
   ## Process selectivity values
-  # remove initial columns (containing stuff like Gender and Year)
+  ## remove initial columns (containing stuff like Gender and Year)
   natage.table.slim <- natage.table[,-(1:3)]
   sel.table.slim <- sel.table[,-(1:7)]
   selwt.table.slim <- selwt.table[,-(1:7)]
 
-  # selected biomass by age is product of numbers*selectivity*weight at each age
+  ## selected biomass by age is product of numbers*selectivity*weight at each age
   natselwt <- natage.table.slim*selwt.table.slim
-  # selected numbers by age is product of numbers*selectivity at each age
+  ## selected numbers by age is product of numbers*selectivity at each age
   natsel <- natage.table.slim*sel.table.slim
 
-  # define new objects to store proportions by age
+  ## define new objects to store proportions by age
   natsel.prop <- natsel
   natselwt.prop <- natselwt
 
-  # create tables of proportions by dividing by sum of each row
+  ## create tables of proportions by dividing by sum of each row
   for(irow in 1:num.reports){
     natsel.prop[irow,] <- natsel[irow,]/sum(natsel[irow,])
     natselwt.prop[irow,] <- natselwt[irow,]/sum(natselwt[irow,])
@@ -983,9 +995,10 @@ fetch.extra.mcmc <- function(model,
     }
     tmp <- readLines(file.path(reports.dir, paste0("Report_", irow,".sso")))
     skip.row <- grep("INDEX_2", tmp)[2]
+    ncpue <- nrow(model$dat$CPUE[model$dat$CPUE$index > 0,])
     cpue <- read.table(file.path(reports.dir, paste0("Report_", irow,".sso")),
                        skip = skip.row,
-                       nrows = model$dat$N_cpue, ## number of survey index points
+                       nrows = ncpue, ## number of survey index points
                        header = TRUE,
                        fill = TRUE,
                        stringsAsFactors = FALSE)
@@ -997,7 +1010,7 @@ fetch.extra.mcmc <- function(model,
   ## Build the list of extra mcmc outputs and return
   extra.mcmc <- model
 
-  # add information on posterior distribution to existing agedbase data frame
+  ## add information on posterior distribution to existing agedbase data frame
   extra.mcmc$agedbase$Exp <- exp.median
   extra.mcmc$agedbase$Exp.025 <- exp.low
   extra.mcmc$agedbase$Exp.975 <- exp.high
@@ -1005,21 +1018,21 @@ fetch.extra.mcmc <- function(model,
   extra.mcmc$agedbase$Pearson.025 <- Pearson.low
   extra.mcmc$agedbase$Pearson.975 <- Pearson.high
 
-  # add new table to output containing info on posterior distribution of index fits
+  ## add new table to output containing info on posterior distribution of index fits
   extra.mcmc$cpue.table <- cpue.table
   extra.mcmc$cpue.median <- apply(cpue.table, MARGIN = 1, FUN = median)
   extra.mcmc$cpue.025 <- apply(cpue.table, MARGIN = 1, FUN = quantile, probs = 0.025)
   extra.mcmc$cpue.975 <- apply(cpue.table, MARGIN = 1, FUN = quantile, probs = 0.975)
   extra.mcmc$Q_vector <- Q.vector
-  
-  # add new table of info on posterior distributions of likelihoods
+
+  ## add new table of info on posterior distributions of likelihoods
   extra.mcmc$like.info <- like.info
 
-  # add new table vectors containing expected proportions in first forecast year
+  ## add new table vectors containing expected proportions in first forecast year
   extra.mcmc$natsel.prop <- natsel.prop
   extra.mcmc$natselwt.prop <- natselwt.prop
 
-  # add info on distribution of total biomass to existing time series data frame
+  ## add info on distribution of total biomass to existing time series data frame
   extra.mcmc$timeseries$Bio_all <- apply(Bio_all, MARGIN = 1, FUN = median)
   extra.mcmc$timeseries$Bio_all.0.025 <- apply(Bio_all, MARGIN = 1,
                                                FUN = quantile, probs = 0.025)
@@ -1028,7 +1041,6 @@ fetch.extra.mcmc <- function(model,
 
   message(curr.func.name, paste("Completed read of extra MCMC output."))
 
-  # return results
   extra.mcmc
 }
 

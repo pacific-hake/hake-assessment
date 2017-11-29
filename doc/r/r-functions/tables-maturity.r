@@ -35,12 +35,12 @@ make.maturity.samples.table <- function(ovary.samples,
                   "Observer",
                   "Program (Fall)")),
       latex.bold("Total"))
-  ## Make the size string for font and space size
+
   size.string <- latex.size.str(font.size, space.size)
   ## Make the totals row all bold
   tab[nrow(tab),] <- latex.bold(tab[nrow(tab),])
-  ## Make the totals column all bold (except for the last on which was made bold
-  ##  on previous call)
+  ## Make the totals column all bold (except for the last one which was
+  ##  made bold on previous call)
   tab[1:(nrow(tab) - 1), ncol(tab)] <-
     latex.bold(tab[1:(nrow(tab) - 1), ncol(tab)])
 
