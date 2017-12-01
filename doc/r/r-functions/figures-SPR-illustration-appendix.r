@@ -1,6 +1,5 @@
 make.SPR.illustration <- function(model){
   # graphic for appendix to illustrate how SPR is calculated
-  
   col1 <- 'grey20'
   col2 <- 'grey70'
 
@@ -18,7 +17,7 @@ make.SPR.illustration <- function(model){
                                               cols], 1))
   # average weight at age
   wt.vec.avg <- as.numeric(head(model$wtatage[model$wtatage$fleet==-1 &
-                                                model$wtatage$yr==-1966,
+                                                model$wtatage$yr==1966,
                                               cols], 1))
 
   # ending year weight at age
@@ -31,9 +30,9 @@ make.SPR.illustration <- function(model){
                                               model$natage$"Beg/Mid"=="B",
                                             cols])
   # M and Z at age for final year
-  M_at_age.endyr <- as.numeric(model$M_at_age[model$M_at_age$Year==model$endyr,
+  M_at_age.endyr <- as.numeric(model$M_at_age[model$M_at_age$Yr==model$endyr,
                                               cols])
-  Z_at_age.endyr <- as.numeric(model$Z_at_age[model$Z_at_age$Year==model$endyr,
+  Z_at_age.endyr <- as.numeric(model$Z_at_age[model$Z_at_age$Yr==model$endyr,
                                               cols])
   F_at_age.endyr <- Z_at_age.endyr - M_at_age.endyr
 
