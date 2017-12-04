@@ -19,7 +19,7 @@ load.ss.files <- function(model.dir,
   model.dir.listing <- dir(model.dir)
   dat.fn.ind <- grep("_data.ss", model.dir.listing)
   ctl.fn.ind <- grep("_control.ss", model.dir.listing)
-  par.fn.ind <- grep("ss.par", model.dir.listing)
+  par.fn.ind <- grep("ss3.par", model.dir.listing)
   if(!length(dat.fn.ind)){
     stop(curr.func.name, "Error in model ", model.dir,
          ", there is no data file. A data file is any file whose name contains the text _data.ss.\n\n")
@@ -466,7 +466,7 @@ run.forecasts <- function(model,
       SS_writeforecast(fore, dir = new.forecast.dir, overwrite = TRUE, verbose = FALSE)
 
       ## Evaluate the model using mceval option of ADMB, and retrieve the output
-      shell.command <- paste0("cd ", new.forecast.dir, " & ss -mceval")
+      shell.command <- paste0("cd ", new.forecast.dir, " & ss3 -mceval")
       shell(shell.command)
     }
   }
@@ -648,7 +648,7 @@ run.retrospectives <- function(model,
     }
     covar.file <- file.path(retro.dir, "covar.sso")
     file.remove(covar.file)
-    shell.command <- paste0("cd ", retro.dir, " & ss ", extras)
+    shell.command <- paste0("cd ", retro.dir, " & ss3 ", extras)
     shell(shell.command)
   }
 }
@@ -730,7 +730,7 @@ run.extra.mcmc.models <- function(model, verbose = TRUE){
   newpar$label[newpar$label == "SR_LN(R0)"] <- "SR_LN.R0."
   ## write table of new files
   write.table(x = newpar,
-              file = file.path(extra.mcmc.dir, "ss.par"),
+              file = file.path(extra.mcmc.dir, "ss3.par"),
               quote = FALSE, row.names=FALSE)
 
   start <- SS_readstarter(file.path(extra.mcmc.dir, "starter.ss"), verbose = verbose)
@@ -764,11 +764,11 @@ run.extra.mcmc.models <- function(model, verbose = TRUE){
     ## (excluding 1 and 2 for "Iter" and "Objective_function")
     newpar[newpar$label %in% names(posts), 1] <- as.numeric(posts[irow, -(1:2)])
     write.table(x = newpar,
-                file = file.path(extra.mcmc.dir, "ss.par"),
+                file = file.path(extra.mcmc.dir, "ss3.par"),
                 quote = FALSE,
                 row.names = FALSE)
 
-    file.copy(file.path(extra.mcmc.dir, "ss.par"),
+    file.copy(file.path(extra.mcmc.dir, "ss3.par"),
               file.path(reports.dir, paste0("ss_input", irow, ".par")),
               overwrite = TRUE)
     # delete existing output files to make sure that if model fails to run,
@@ -776,7 +776,7 @@ run.extra.mcmc.models <- function(model, verbose = TRUE){
     file.remove(file.path(extra.mcmc.dir, "Report.sso"))
     file.remove(file.path(extra.mcmc.dir, "CompReport.sso"))
 
-    shell.command <- paste0("cd ", extra.mcmc.dir, " & ss -maxfn 0 -phase 10 -nohess")
+    shell.command <- paste0("cd ", extra.mcmc.dir, " & ss3 -maxfn 0 -phase 10 -nohess")
     if(verbose){
       ## shell doesn't accept the argument show.output.on.console for some reason
       shell(shell.command)
@@ -785,7 +785,7 @@ run.extra.mcmc.models <- function(model, verbose = TRUE){
       shell(shell.command)
       #system(shell.command, show.output.on.console = FALSE)
     }
-    file.copy(file.path(extra.mcmc.dir, "ss.par"),
+    file.copy(file.path(extra.mcmc.dir, "ss3.par"),
               file.path(reports.dir, paste0("ss_output", irow, ".par")),
               overwrite = TRUE)
     file.copy(file.path(extra.mcmc.dir, "Report.sso"),

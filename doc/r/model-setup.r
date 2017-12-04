@@ -29,7 +29,7 @@ output.csv.dir <- file.path("..", "out-csv")
 ## -----------------------------------------------------------------------------
 ## File names which must exists in each model directory
 ## -----------------------------------------------------------------------------
-exe.file.name <- "ss.exe"
+exe.file.name <- "ss3.exe"
 if(verbose) cat0("SS executable file: \n  ", exe.file.name)
 starter.file.name <- "starter.ss"
 if(verbose) cat0("SS starter file: \n  ", starter.file.name)
@@ -158,14 +158,14 @@ if(verbose){
 bridge.model.dir.names.3 <- c(last.yr.base.model.dir.name,
                               "17_AdjustBiasRamp",
                               "40_SenRecdevMain2014",
-                              "41_BasePreSRG_v3",
-                              "45_BasePreSRG_v4")
+                              "41_BasePreSRG_v3") #,
+                              #"45_BasePreSRG_v4")
 ## Bridge model names will be used to make the bridge model plot and its caption.
 bridge.model.names.3 <- c(last.yr.base.model.name,
                           "Adjust recr. bias ramp",
                           "Include 2014 in vector of main recr. devs",
-                          "More flexible time-varying selectivity",
-                          "Adjust effective sample sizes")
+                          "More flexible time-varying selectivity") #,
+                          #"Adjust effective sample sizes")
 verify.models(model.dir, bridge.model.dir.names.3, bridge.model.names.3)
 if(verbose){
   print.model.message(bridge.model.dir.names.3, bridge.model.names.3, 3, model.type = "Bridge")
