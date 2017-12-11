@@ -78,10 +78,10 @@ if(verbose) cat0("Last year of model data: \n  ", last.data.yr)
 ## -----------------------------------------------------------------------------
 ## Key posteriors used in the assessment
 ## -----------------------------------------------------------------------------
-key.posteriors <- c("NatM_p_1_Fem_GP_1",
+key.posteriors <- c("NatM",
                     "SR_LN",
                     "SR_BH_steep",
-                    "Q_extraSD_Acoustic_Survey(2)")
+                    "Q_extraSD")
 if(verbose){
   cat0("***")
   cat0("Key posteriors in this assessment:")
