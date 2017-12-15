@@ -35,7 +35,7 @@ make.mcmc.diag.plot <- function(model,      ## model is an mcmc run and is the o
    colnames <- c("SR_BH_steep")
    label <- "h (steepness)"
   }else if(subplot == 4){
-    colnames <- c("Q_extraSD_Acoustic_Survey(2)")
+    colnames <- c("Q_extraSD_Acoustic_Survey.2.")
     label <- "Extra SD in survey"
   }
   oldpar <- par()
