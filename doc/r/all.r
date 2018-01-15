@@ -32,6 +32,7 @@ install.packages.if.needed("dplyr", "dplyr", github = FALSE)
 install.packages.if.needed("maptools", "maptools", github = FALSE)
 install.packages.if.needed("gtools", "gtools", github = FALSE)
 install.packages.if.needed("knitr", "knitr", github = FALSE)
+install.packages.if.needed("lubridate", "lubridate", github = FALSE)
 
 require(nwfscSurvey)
 require(nwfscMapping)
