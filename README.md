@@ -49,7 +49,7 @@ _____________________________________________________________
   open R in the doc/r directory and run the following:
   ```R
     source("all.r")
-    build(run.fore = TRUE, run.retro = TRUE, run.extra.mcmc = TRUE)
+    build()
   ```
 
   this will take a while as it has to run the forecasts, retrospectives, and create extra-mcmc output,
