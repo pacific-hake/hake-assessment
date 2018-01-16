@@ -413,11 +413,9 @@ build <- function(run.fore = FALSE,
            unlist(sens.model.dir.names.7),
            unlist(sens.model.dir.names.8))
 
-  ## Remove base model from the bridge/sensitivity list
-  mnv <- mnv[-(grep(base.model.dir.name, mnv))]
   model.names.list <- as.list(unique(mnv))
 
-  ss.version.tmp = ss.version
+  ss.version.tmp <- ss.version
   ## Bridge/sensitivity models
   for(model.nm in model.names.list){
     if(model.nm == "02_2017base_3.30" |

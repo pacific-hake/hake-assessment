@@ -881,7 +881,7 @@ fetch.extra.mcmc <- function(model,
     # find lines in report file containing unique strings related to selectivity
     sel.line1 <- grep(sel.text1, tmp)
     sel.line2 <- grep(sel.text2, tmp, fixed=TRUE)
-
+    cat("Loading report file: ", rep.file, "\n")
     # read individual rows of selectivity info
     sel.row1 <- read.table(file=rep.file, skip=sel.line1-1, nrow=1)
     sel.row2 <- read.table(file=rep.file, skip=sel.line2-1, nrow=1)
