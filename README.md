@@ -77,6 +77,9 @@ _____________________________________________________________
       build()
     ```
 
+  * To re-run the forecasts (deleting previous ones) then
+    build(run.fore = TRUE, run.retro = TRUE, run.extra.mcmc = TRUE)
+
   * You don’t need to save the workspace when you close R, it isn't used by latex/knitr.
 
 ## How to create hake-assessment.pdf
