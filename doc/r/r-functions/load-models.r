@@ -892,7 +892,10 @@ fetch.extra.mcmc <- function(model,
     natage.N.lines <- natage.line.end - natage.line.start
     natage.allrows <- read.table(file=rep.file, skip=natage.line.start,
                                  nrow=natage.N.lines, header=TRUE)
-    # subset all rows to select first forecast year
+    ## subset all rows to select first forecast year
+    nms <- colnames(natage.allrows)
+    nms[nms == "Year"] <- "Yr"
+    colnames(natage.allrows) <- nms
     natage.row <- natage.allrows[natage.allrows$Yr==model$endyr + 1,]
 
     # add rows to tables of values for each MCMC sample
@@ -935,8 +938,6 @@ fetch.extra.mcmc <- function(model,
     natsel.prop[irow,] <- natsel[irow,]/sum(natsel[irow,])
     natselwt.prop[irow,] <- natselwt[irow,]/sum(natselwt[irow,])
   }
-
-
 
   if(verbose){
     cat0(curr.func.name, "Reading comp table\n\n")
