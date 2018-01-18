@@ -415,15 +415,15 @@ make.fishing.intensity.table(base.model,
 @
 
 %% for 2017 assessment, base-model candidate 41 has no median fishing intensity
-%%  estimated above 1 so code in 2 lines below causes error. Commenting out 
+%%  estimated above 1 so code in 2 lines below causes error. Commenting out
 %%  and posting issue.
-%% Okay for base-model 45, though only year. Keep all this so can easily switch 
+%% Okay for base-model 45, though only year. Keep all this so can easily switch
 %%  around.
 Median relative fishing intensity on the stock is estimated to have been below
 the target of 1.0 except for
-%% the years 
-%%  \Sexpr{median.intensity.above.one.years[1:(length(median.intensity.above.one.years)-1)]} 
-%% and 
+%% the years
+%%  \Sexpr{median.intensity.above.one.years[1:(length(median.intensity.above.one.years)-1)]}
+%% and
 %%  \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
 %% See 'The median fishing intensity ...' sentence in Management Performance
 %%  Section below, which seeminly didn't give an error when
@@ -432,7 +432,7 @@ the target of 1.0 except for
 the year \Sexpr{median.intensity.above.one.years}
 when spawning biomass was low (Table~\ref{tab:es-fishing-intensity} (for recent
 years) and Figure~\ref{fig:es-fishing-intensity}).
-% for 2017 assessment, consider revising definition of Fishing Intensity as 
+% for 2017 assessment, consider revising definition of Fishing Intensity as
 % discussed
 % in issue #158: https://github.com/cgrandin/hake-assessment/issues/158
 %
@@ -448,8 +448,8 @@ make.fishing.intensity.plot(base.model,
 @
 \end{center}
 \caption{Trend in median relative fishing intensity (relative to the SPR
-         management target) through \Sexpr{end.yr-1} with 95\% posterior 
-         credibility intervals. The management target defined in the Agreement is 
+         management target) through \Sexpr{end.yr-1} with 95\% posterior
+         credibility intervals. The management target defined in the Agreement is
          shown as a horizontal line at 1.0.}
 \label{fig:es-fishing-intensity}
 \end{figure}
@@ -472,7 +472,7 @@ make.exploitation.fraction.plot(base.model,
                                 upper.lim = 0.35)
 @
 \end{center}
-\caption{Trend in median exploitation fraction (catch divided by age-3+ biomass) 
+\caption{Trend in median exploitation fraction (catch divided by age-3+ biomass)
          through \Sexpr{end.yr-1} with 95\% posterior credibility intervals.}
 \label{fig:es-exploitation-fraction}
 \end{figure}
@@ -501,10 +501,13 @@ interval reaching above the SPR management target for \Sexpr{end.yr-1}
 \subsection*{Management performance} \label{sec:es-management-performance}
 \phantomsection  \addcontentsline{toc}{subsection}{Management performance}
 
-Over the last decade (\Sexpr{end.yr-10}--\Sexpr{end.yr-1}), the mean coast-wide utilization rate (i.e., landings/quota) has been \Sexpr{tot.last.10.years.attainment}\% (Table~\ref{tab:es-landings-tac}).
-Over the last five years (\Sexpr{end.yr-5} to \Sexpr{end.yr-1}), the mean utilization rates differed between the United States (\Sexpr{usa.last.5.years.attainment}\%) and
-Canada (\Sexpr{can.last.5.years.attainment}\%). Total landings last exceeded the coast-wide
-quota in 2002 when utilization was 112\%.
+Over the last decade (\Sexpr{end.yr-10}--\Sexpr{end.yr-1}), the mean coast-wide
+utilization rate (i.e., landings/quota) has been
+\Sexpr{tot.last.10.years.attainment}\% (Table~\ref{tab:es-landings-tac}).  Over
+the last five years (\Sexpr{end.yr-5} to \Sexpr{end.yr-1}), the mean utilization
+rates differed between the United States (\Sexpr{usa.last.5.years.attainment}\%)
+and Canada (\Sexpr{can.last.5.years.attainment}\%). Total landings last exceeded
+the coast-wide quota in 2002 when utilization was 112\%.
 % Manual 2017 done. For last sentence just check
 %  landings.vs.tac[landings.vs.tac$Year > 2000, "ATTAIN"]
 
@@ -512,7 +515,8 @@ quota in 2002 when utilization was 112\%.
 make.landings.tac.table(landings.vs.tac,
                         start.yr = end.yr-10,
                         end.yr = end.yr-1,
-                        xcaption <- "Recent trends in \\fishname\\ landings and management decisions.",
+                        xcaption <- "Recent trends in \\fishname\\ landings and
+                                     management decisions.",
                         xlabel <- "tab:es-landings-tac",
                         font.size = 8,
                         space.size = 8,
@@ -520,15 +524,22 @@ make.landings.tac.table(landings.vs.tac,
 @
 
 The median relative fishing intensity was below target in all years except
-% \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]} and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
+% \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]}
+% and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
 % Only one year for 2017 assessment, so:
 \Sexpr{median.intensity.above.one.years} (Figure~\ref{fig:es-fishing-intensity}).
-The median female spawning biomass was above the $\Bforty$ reference point in all years except 1968, 1998-2000 and 2007-2011 (Figure~\ref{fig:es-relative-spawning-biomass}).
+The median female spawning biomass was above the $\Bforty$ reference point in
+all years except 1968, 1998-2000 and 2007-2011
+(Figure~\ref{fig:es-relative-spawning-biomass}).
 % Andy summarising those years manually, based on:
 % median.relative.bio.below.target
 % Manual done 2017.
 
-The joint history of the medians of relative spawning biomass and relative fishing intensity shows that only in 1999 was the median relative fishing intensity above the target of 1.0 and the female spawning biomass below the reference point of $\Bforty$ (Figure~\ref{fig:es-phase}).  % Manual done 2017.
+The joint history of the medians of relative spawning biomass and relative
+fishing intensity shows that only in 1999 was the median relative fishing
+intensity above the target of 1.0 and the female spawning biomass below the
+reference point of $\Bforty$ (Figure~\ref{fig:es-phase}).
+% Manual done 2017.
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -540,19 +551,31 @@ make.phase.plot(base.model,
                 color = "blue")
 @
 \end{center}
-\caption{Estimated historical path followed by medians of relative fishing intensity and relative spawning biomass for \fishname\ with labels on the start and end years (and 1999). Gray bars span the 95\% credibility intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical) and relative spawning biomass (horizontal).}
+\caption{Estimated historical path followed by medians of relative fishing
+         intensity and relative spawning biomass for \fishname\ with labels on the
+         start and end years (and 1999). Gray bars span the 95\% credibility
+         intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical) and
+         relative spawning biomass (horizontal).}
 \label{fig:es-phase}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-Between 2007 and 2011, however, median relative fishing intensity ranged from \Sexpr{median.intensity.2007.to.2011.min}\% to \Sexpr{median.intensity.2007.to.2011.max}\% and median relative spawning biomass between \Sexpr{median.relative.bio.2007.to.2011.min} and \Sexpr{median.relative.bio.2007.to.2011.max}.
-Biomass has risen recently with the 2008, 2010 and 2014 recruitments, and
+Between 2007 and 2011, however, median relative fishing intensity ranged from
+\Sexpr{median.intensity.2007.to.2011.min}\% to
+\Sexpr{median.intensity.2007.to.2011.max}\% and median relative spawning biomass
+between \Sexpr{median.relative.bio.2007.to.2011.min} and
+\Sexpr{median.relative.bio.2007.to.2011.max}.  Biomass has risen recently with
+the 2008, 2010 and 2014 recruitments, and
 % and, correspondingly, fishing intensity has fallen below targets.
-median relative spawning biomass has been above the reference point of 40\% since \Sexpr{median.relative.bio.above.target.since}.
+median relative spawning biomass has been above the reference point of 40\%
+since \Sexpr{median.relative.bio.above.target.since}.
 % Manual done 2017. Based on median.relative.bio.below.target.
 
-While there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative fishing intensity and relative
-spawning biomass, the model predicts a less than 4\% joint probability of being both above the target relative fishing intensity in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at the start of \Sexpr{end.yr}.
+While there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative
+fishing intensity and relative spawning biomass, the model predicts a less than
+4\% joint probability of being both above the target relative fishing intensity
+in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at
+the start of \Sexpr{end.yr}.
 % sum(base.model$mcmc$Bratio_2017<0.4 & base.model$mcmc$SPRratio_2016>1) /nrow(base.model$mcmc)
 % That is the joint probability, make sure to change dates each year.
 % Manual done 2017.
@@ -560,50 +583,93 @@ spawning biomass, the model predicts a less than 4\% joint probability of being 
 \subsection*{Reference points} \label{sec:es-reference-points}
 \phantomsection \addcontentsline{toc}{subsection}{Reference points}
 
-Estimates of the \Sexpr{assess.yr} base model reference points with posterior credibility intervals are in Table~\ref{tab:es-reference.points}.
-The estimates are slightly different than those in the \Sexpr{last.assess.yr} assessment, with slightly lower sustainable yields and reference biomasses estimated in this assessment.
+Estimates of the \Sexpr{assess.yr} base model reference points with posterior
+credibility intervals are in Table~\ref{tab:es-reference.points}.  The estimates
+are slightly different than those in the \Sexpr{last.assess.yr} assessment, with
+slightly lower sustainable yields and reference biomasses estimated in this
+assessment.
 % Manual done 2017.
 \enlargethispage{\baselineskip}
 
 <<reference.points.table, results='asis', echo=FALSE>>=
 make.reference.points.table(base.model,
-                            xcaption <- paste0("Summary of median and 95\\% credibility intervals of equilibrium reference points for the \\fishname\\ base assessment model. Equilibrium reference points were computed using ",start.yr,"--",end.yr-1," averages for mean size-at-age and selectivity-at-age."),
+                            xcaption <- paste0("Summary of median and 95\\%
+                             credibility intervals of equilibrium reference points
+                             for the \\fishname\\ base assessment model.
+                             Equilibrium reference points were computed using ",
+                             start.yr,"--",end.yr-1," averages for mean
+                             size-at-age and selectivity-at-age."),
                             xlabel <- "tab:es-reference.points",
                             font.size = 12,
                             space.size = 14,
                             placement = "tbp")
 @
 
-\subsection*{Unresolved problems and major uncertainties} \label{sec:es-unresolved-problems}
+\subsection*{Unresolved problems and major uncertainties}\label{sec:es-unresolved-problems}
 \phantomsection \addcontentsline{toc}{subsection}{Unresolved problems and major uncertainties}
-Uncertainty measures in the base model underestimate the total uncertainty in the current stock status and projections
-because they do not account for possible alternative structural models for \simplename\ population dynamics and fishery processes
-(e.g., selectivity), the effects of data-weighting schemes, and the scientific basis for prior probability distributions.
-To address structural uncertainties, the JTC investigated a range of alternative models, and we present a subset of key sensitivity
-analyses in the main document.
+Uncertainty measures in the base model underestimate the total uncertainty in
+the current stock status and projections because they do not account for
+possible alternative structural models for \simplename\ population dynamics and
+fishery processes (e.g., selectivity), the effects of data-weighting schemes,
+and the scientific basis for prior probability distributions.  To address
+structural uncertainties, the JTC investigated a range of alternative models,
+and we present a subset of key sensitivity analyses in the main document.
 
-%**Update from main text**Uncertainty in the best method for calculating acoustic survey biomass is a particular focus and
-%results from a model fit to an alternative set of survey biomass values are presented in the decision tables alongside the base model results.
+%**Update from main text**Uncertainty in the best method for calculating acoustic
+% survey biomass is a particular focus and
+% results from a model fit to an alternative set of survey biomass values are
+% presented in the decision tables alongside the base model results.
 
-The \fishname\ stock displays a very high recruitment variability relative to other west coast groundfish stocks, resulting in large
-and rapid biomass changes.  This leads to a dynamic fishery that potentially targets strong cohorts resulting in time-varying fishery
-selectivity. This volatility results in a high level of uncertainty in estimates of
-current stock status and stock projections because, with limited data to
-estimate incoming recruitment, the cohorts are fished before the assessment can accurately determine how
-big the cohort is (i.e., cohort strength is not well known until it is at least age-3). This is particularly apparent for this assessment, because the 2014 cohort is potentially very large but is still highly uncertain (Figure~\ref{fig:es-recruitment}).
+The \fishname\ stock displays a very high recruitment variability relative to
+other west coast groundfish stocks, resulting in large and rapid biomass
+changes.  This leads to a dynamic fishery that potentially targets strong
+cohorts resulting in time-varying fishery selectivity. This volatility results
+in a high level of uncertainty in estimates of current stock status and stock
+projections because, with limited data to estimate incoming recruitment, the
+cohorts are fished before the assessment can accurately determine how big the
+cohort is (i.e., cohort strength is not well known until it is at least
+age-3). This is particularly apparent for this assessment, because the 2014
+cohort is potentially very large but is still highly uncertain
+(Figure~\ref{fig:es-recruitment}).
 
-The JTC presented results from closed-loop simulations evaluating the effect of including potential age-1 indices on management outcomes at a 2015 Joint Management Committee (JMC) meeting in Victoria, B.C. We found that fitting to an unbiased age-1 survey results in lower catch, lower probability that spawning biomass falls below 10\% of $B_0$, and a lower average annual variability in catch.  However, comparable results in terms of catch could be achieved with a more precise age-2+ survey or alternative harvest control rules.  The simulations assumed an age-1 survey design with consistent, effective, and numerous sampling, which may not be the case for the existing age-1 index. The age-1 index is not included in the base model but included in a sensitivity run.
+The JTC presented results from closed-loop simulations evaluating the effect of
+including potential age-1 indices on management outcomes at a 2015 Joint
+Management Committee (JMC) meeting in Victoria, B.C. We found that fitting to an
+unbiased age-1 survey results in lower catch, lower probability that spawning
+biomass falls below 10\% of $B_0$, and a lower average annual variability in
+catch.  However, comparable results in terms of catch could be achieved with a
+more precise age-2+ survey or alternative harvest control rules.  The
+simulations assumed an age-1 survey design with consistent, effective, and
+numerous sampling, which may not be the case for the existing age-1 index. The
+age-1 index is not included in the base model but included in a sensitivity run.
 % Manual 2017 done.
 
 \subsection*{Forecast decision tables} \label{sec:es-forecast-decision-table}
 \phantomsection \addcontentsline{toc}{subsection}{Forecast decision tables}
 
-The catch limit for \Sexpr{min(forecast.yrs)} based on the default \Ffortyten{} harvest policy has a median of \Sexpr{catch.limit.quantiles["median"]}~t with a wide range of uncertainty, the 2.5\% to 97.5\% range being \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
+The catch limit for \Sexpr{min(forecast.yrs)} based on the default \Ffortyten{}
+harvest policy has a median of \Sexpr{catch.limit.quantiles["median"]}~t with a
+wide range of uncertainty, the 2.5\% to 97.5\% range being
+\Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
 
 % May need to move after the next paragraph
 <<decisions.biomass.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption <- paste0("Forecast quantiles of \\fishname\\ relative spawning biomass at the beginning of the year before fishing.  Catch alternatives are based on: constant catch levels (rows a, b, c, d, e), including the TAC from  ",min(forecast.yrs)-1," (row d), the catch values that result in a median relative fishing intensity of 100\\% (row f), the median values estimated via the default harvest policy (\\Ffortyten) for the base model (row g), and the fishing intensity that results in a 50\\% probability that the median projected catch will remain the same in ",min(forecast.yrs)," and ",min(forecast.yrs)+1," (row h). Row~e uses 600,000~t rather than the 500,000~t from last year's assessment, because 500,000~t is essentially row~d. Catch in ",max(forecast.yrs)," does not impact the beginning of the year biomass in ",max(forecast.yrs),"."),
+                    xcaption <- paste0("Forecast quantiles of \\fishname\\
+                     relative spawning biomass at the beginning of the year
+                     before fishing.  Catch alternatives are based on: constant
+                     catch levels (rows a, b, c, d, e), including the TAC from  ",
+                     min(forecast.yrs)-1," (row d), the catch values that result
+                     in a median relative fishing intensity of 100\\% (row f),
+                     the median values estimated via the default harvest policy
+                     (\\Ffortyten) for the base model (row g), and the fishing
+                     intensity that results in a 50\\% probability that the median
+                     projected catch will remain the same in ",min(forecast.yrs),
+                     " and ",min(forecast.yrs)+1," (row h). Row~e uses 600,000~t
+                     rather than the 500,000~t from last year's assessment,
+                     because 500,000~t is essentially row~d. Catch in ",
+                     max(forecast.yrs)," does not impact the beginning of the
+                     year biomass in ",max(forecast.yrs),"."),
                     xlabel <- "tab:es-decisions-biomass",
                     font.size = 12,
                     space.size = 14,
@@ -611,11 +677,28 @@ make.decision.table(base.model,
                     placement = "tbp")
 @
 
-Decision tables give the projected population status (relative spawning biomass) and the relative fishing intensity under different catch alternatives for the base model (Tables~\ref{tab:es-decisions-biomass} and~\ref{tab:es-decisions-spr}). The tables are organized such that the projected outcome for each potential catch level and year (each row) can be evaluated across the quantiles (columns) of the posterior distribution. Table~\ref{tab:es-decisions-biomass} shows projected relative spawning biomass outcomes and Table~\ref{tab:es-decisions-spr} shows projected fishing intensity outcomes relative to the target fishing intensity (based on SPR; see table legend). Figure~\ref{fig:es-forecast-depletion-comparison} shows the projected biomass for several catch alternatives.
+Decision tables give the projected population status (relative spawning biomass)
+and the relative fishing intensity under different catch alternatives for the
+base model (Tables~\ref{tab:es-decisions-biomass}
+and~\ref{tab:es-decisions-spr}). The tables are organized such that the
+projected outcome for each potential catch level and year (each row) can be
+evaluated across the quantiles (columns) of the posterior
+distribution. Table~\ref{tab:es-decisions-biomass} shows projected relative
+spawning biomass outcomes and Table~\ref{tab:es-decisions-spr} shows projected
+fishing intensity outcomes relative to the target fishing intensity (based on
+SPR; see table legend). Figure~\ref{fig:es-forecast-depletion-comparison} shows
+the projected biomass for several catch alternatives.
 
 <<decisions.spr.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption <- paste0("Forecast quantiles of \\fishname\\ relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}) for the ",min(forecast.yrs),"--",max(forecast.yrs)," catch alternatives presented in Table~\\ref{tab:es-decisions-biomass}. Values greater than 100\\% indicate relative fishing intensities greater than the $\\Fforty$ harvest policy calculated using baseline selectivity."),
+                    xcaption <- paste0("Forecast quantiles of \\fishname\\
+                     relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%})
+                     for the ",min(forecast.yrs),"--",max(forecast.yrs)," catch
+                     alternatives presented in
+                     Table~\\ref{tab:es-decisions-biomass}. Values greater than
+                     100\\% indicate relative fishing intensities greater than
+                     the $\\Fforty$ harvest policy calculated using baseline
+                     selectivity."),
                     xlabel <- "tab:es-decisions-spr",
                     font.size = 12,
                     space.size = 14,
@@ -630,18 +713,24 @@ make.decision.table(base.model,
 ## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those which will be plotted against each other
 models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
-models.names <- sapply(catch.levels, "[[", 2)[models.inds] ## pretty catch level name
+models.names <- sapply(catch.levels, "[[", 2)[models.inds]
+                       ## pretty catch level name
 make.forecast.depletion.comparison.plot(base.model,
                                         models.inds,
                                         models.names,
                                         start.yr = 2009,
                                         model.end.yr = end.yr,
-                                        end.yr = forecast.yrs[length(forecast.yrs)],
+                                        end.yr =forecast.yrs[length(forecast.yrs)],
                                         legend.loc = "topleft")
 @
 \end{center}
-\caption{Time series of estimated relative spawning biomass to \Sexpr{end.yr} from the base model, and forecast trajectories to \Sexpr{forecast.yrs[length(forecast.yrs)]} for several management actions defined in Table~\ref{tab:es-decisions-biomass} (grey region), with 95\% posterior credibility intervals.}
-% The \Sexpr{end.yr} catch of \Sexpr{f(catch.default.policy[1])}~t was calculated using the default harvest policy, as defined in the Agreement.}
+\caption{Time series of estimated relative spawning biomass to \Sexpr{end.yr}
+         from the base model, and forecast trajectories to
+         \Sexpr{forecast.yrs[length(forecast.yrs)]} for several management actions
+         defined in Table~\ref{tab:es-decisions-biomass} (grey region), with 95\%
+         posterior credibility intervals.}
+% The \Sexpr{end.yr} catch of \Sexpr{f(catch.default.policy[1])}~t was calculated
+%  using the default harvest policy, as defined in the Agreement.}
 % Above commented sentence Was in 2016 but I think is wrong - plot shows the
 %  FI=100% action, so not sure why this talks about default HR (action g).
 %  And no need to define anything here again anyway; now just refer to table.
@@ -650,7 +739,16 @@ make.forecast.depletion.comparison.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 % Manual 2017 done.
 
-Relative fishing intensity exceeding 100\% indicates fishing in excess of the $\Fforty$ default harvest rate catch limit. This can happen for the median relative fishing intensity in projected years because the $\Fforty$ default harvest-rate catch limit is calculated using baseline selectivity from all years, whereas the forecasted catches are removed using selectivity averaged over the last five years. Recent changes in selectivity will thus be reflected in the determination of fishing in excess of the default harvest policy. Alternative catch levels where median relative fishing intensity is 100\% for three years of projections are provided for comparison (scenario f: FI=100\%).
+Relative fishing intensity exceeding 100\% indicates fishing in excess of the
+$\Fforty$ default harvest rate catch limit. This can happen for the median
+relative fishing intensity in projected years because the $\Fforty$ default
+harvest-rate catch limit is calculated using baseline selectivity from all
+years, whereas the forecasted catches are removed using selectivity averaged
+over the last five years. Recent changes in selectivity will thus be reflected
+in the determination of fishing in excess of the default harvest
+policy. Alternative catch levels where median relative fishing intensity is
+100\% for three years of projections are provided for comparison (scenario f:
+FI=100\%).
 % Manual 2017 done.
 
 % Move to after next paragraph if it appears too early. It shouldn't since
@@ -658,15 +756,26 @@ Relative fishing intensity exceeding 100\% indicates fishing in excess of the $\
 <<risk.forecast.year.1.table, results='asis', echo=FALSE>>=
 make.risk.table(base.model,
                 forecast.yrs,
-                index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                xcaption <- paste0("Probabilities related to spawning biomass, relative fishing intensity, and the ",end.yr+1," default harvest policy catch for alternative ",end.yr," catch options (catch options explained in Table~\\ref{tab:es-decisions-biomass})."),
+                index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
+                           ##  forecast year 2 compared to forecast year 1
+                xcaption <- paste0("Probabilities related to spawning biomass,
+                             relative fishing intensity, and the ",end.yr+1,
+                             " default harvest policy catch for alternative ",
+                             end.yr," catch options (catch options explained in
+                             Table~\\ref{tab:es-decisions-biomass})."),
                 xlabel <- "tab:es-risk-year-1",
                 font.size = 12,
                 space.size = 14,
                 placement = "tbp")
 @
 
-Management metrics that were identified as important to the JMC and the Advisory Panel (AP) in 2012 are presented for projections to \Sexpr{forecast.yrs[2:(length(forecast.yrs)-1)]} and \Sexpr{forecast.yrs[length(forecast.yrs)]} (Tables~\ref{tab:es-risk-year-1} and~\ref{tab:es-risk-year-2} and Figures~\ref{fig:es-forecast-risk-comparison-year-1} and~\ref{fig:es-forecast-risk-comparison-year-2}).
+Management metrics that were identified as important to the JMC and the Advisory
+Panel (AP) in 2012 are presented for projections to
+\Sexpr{forecast.yrs[2:(length(forecast.yrs)-1)]} and
+\Sexpr{forecast.yrs[length(forecast.yrs)]} (Tables~\ref{tab:es-risk-year-1}
+and~\ref{tab:es-risk-year-2} and
+Figures~\ref{fig:es-forecast-risk-comparison-year-1}
+and~\ref{fig:es-forecast-risk-comparison-year-2}).
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -675,13 +784,20 @@ Management metrics that were identified as important to the JMC and the Advisory
 make.forecast.risk.comparison.plot(base.model,
                                    forecast.yrs = forecast.yrs,
                                    fore.yr = forecast.yrs[1],
-                                   colors = c("black","blue","green","orange","red","tan"),
+                                   colors = c("black","blue","green","orange",
+                                              "red","tan"),
                                    pch = c(16,17,17,17,15,18),
                                    legend.loc = "topleft",
                                    legend.cex = 0.7)
 @
 \end{center}
-\caption{Graphical representation of the probabilities related to spawning biomass, relative fishing intensity, and the \Sexpr{end.yr+1} default harvest policy catch for alternative \Sexpr{end.yr} catch options (catch options explained in Table~\ref{tab:es-decisions-biomass}) as listed in Table~\ref{tab:es-risk-year-1}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
+\caption{Graphical representation of the probabilities related to spawning
+         biomass, relative fishing intensity, and the \Sexpr{end.yr+1} default
+         harvest policy catch for alternative \Sexpr{end.yr} catch options (catch
+         options explained in Table~\ref{tab:es-decisions-biomass}) as listed in
+         Table~\ref{tab:es-risk-year-1}. The symbols indicate points that were
+         computed directly from model output and lines interpolate between the
+         points.}
 \label{fig:es-forecast-risk-comparison-year-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -693,39 +809,75 @@ make.forecast.risk.comparison.plot(base.model,
 make.forecast.risk.comparison.plot(base.model,
                                    forecast.yrs = forecast.yrs,
                                    fore.yr = forecast.yrs[2],
-                                   colors = c("black","blue","green","orange","red","tan"),
+                                   colors = c("black","blue","green","orange",
+                                              "red","tan"),
                                    pch = c(16,17,17,17,15,18),
                                    legend.loc = "topleft",
                                    legend.cex = 0.7)
 @
 \end{center}
-\caption{Graphical representation of the probabilities related to spawning biomass, relative fishing intensity, and the \Sexpr{end.yr+2} default harvest policy catch for alternative \Sexpr{end.yr+1} catch options (including associated \Sexpr{end.yr} catch; catch options explained in Table~\ref{tab:es-decisions-biomass}) as listed in Table~\ref{tab:es-risk-year-2}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
+\caption{Graphical representation of the probabilities related to spawning
+biomass, relative fishing intensity, and the \Sexpr{end.yr+2} default harvest
+policy catch for alternative \Sexpr{end.yr+1} catch options (including
+associated \Sexpr{end.yr} catch; catch options explained in
+Table~\ref{tab:es-decisions-biomass}) as listed in
+Table~\ref{tab:es-risk-year-2}. The symbols indicate points that were computed
+directly from model output and lines interpolate between the points.}
 \label{fig:es-forecast-risk-comparison-year-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-These metrics summarize the probability of various outcomes from the base model given each potential management action. Although not linear, probabilities can be interpolated from these results for intermediate catch values. Figure~\ref{fig:es-forecast-depletion-comparison} shows the predicted relative spawning biomass trajectory through \Sexpr{forecast.yrs[length(forecast.yrs)]} for several of these management actions. With zero catch for the next two years, the biomass has a \Sexpr{zero.catch.prob.bio.down.1}\% probability of decreasing from \Sexpr{forecast.yrs[1]} to \Sexpr{forecast.yrs[2]}, and a \Sexpr{zero.catch.prob.bio.down.2}\% probability of decreasing from \Sexpr{forecast.yrs[2]} to \Sexpr{forecast.yrs[3]}.
+These metrics summarize the probability of various outcomes from the base model
+given each potential management action. Although not linear, probabilities can
+be interpolated from these results for intermediate catch
+values. Figure~\ref{fig:es-forecast-depletion-comparison} shows the predicted
+relative spawning biomass trajectory through
+\Sexpr{forecast.yrs[length(forecast.yrs)]} for several of these management
+actions. With zero catch for the next two years, the biomass has a
+\Sexpr{zero.catch.prob.bio.down.1}\% probability of decreasing from
+\Sexpr{forecast.yrs[1]} to \Sexpr{forecast.yrs[2]}, and a
+\Sexpr{zero.catch.prob.bio.down.2}\% probability of decreasing from
+\Sexpr{forecast.yrs[2]} to \Sexpr{forecast.yrs[3]}.
 %Manual 2017 done.
 
 <<risk.forecast.year.2.table, results='asis', echo=FALSE>>=
 make.risk.table(base.model,
                 forecast.yrs,
-                index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                xcaption <- paste0("Probabilities related to spawning biomass, relative fishing intensity, and the ",end.yr+2," default harvest policy catch for alternative ",end.yr+1," catch options, given the ",end.yr," catch level shown in Table~\\ref{tab:es-risk-year-1} (catch options explained in Table~\\ref{tab:es-decisions-biomass})."),
+                index = 2, ## Index in models[[]]$risks to use, e.g.
+                           ##  1 means forecast year 2 compared to forecast year 1
+                xcaption <- paste0("Probabilities related to spawning biomass,
+                 relative fishing intensity, and the ",end.yr+2," default harvest
+                 policy catch for alternative ",end.yr+1," catch options, given
+                 the ",end.yr," catch level shown in
+                 Table~\\ref{tab:es-risk-year-1} (catch options explained in
+                 Table~\\ref{tab:es-decisions-biomass})."),
                 xlabel <- "tab:es-risk-year-2",
                 font.size = 12,
                 space.size = 14,
                 placement = "tbp")
 @
-% The spawning biomass is predicted to decrease from \Sexpr{end.yr} to \Sexpr{end.yr+1} with a less than 50\% probability only for the 0~t and 180,000~t catch levels (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
-The probability of the spawning biomass decreasing from \Sexpr{end.yr} to \Sexpr{end.yr+1} is less than 50\% for only the 0~t and 180,000~t catch levels (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}). The highest probability of decrease is 82\%, which is for the default harvest policy.
+% The spawning biomass is predicted to decrease from \Sexpr{end.yr} to
+%  \Sexpr{end.yr+1} with a less than 50\% probability only for the 0~t and
+%  180,000~t catch levels (Table~\ref{tab:es-risk-year-1} and
+%  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
+The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
+\Sexpr{end.yr+1} is less than 50\% for only the 0~t and 180,000~t catch levels
+(Table~\ref{tab:es-risk-year-1} and
+Figure~\ref{fig:es-forecast-risk-comparison-year-1}). The highest probability of
+decrease is 82\%, which is for the default harvest policy.
 % 2016 assessment said for 'all catch levels investigated up to 440,000~t'
 %  but that was wrong, looking at the relevant 2016 figures.
-The predicted probability of the spawning biomass dropping below $B_{10\%}$
-at the start of \Sexpr{end.yr+1} is less than 1\% and the maximum probability of dropping below $B_{40\%}$ is 18\% for all catches explored (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
-It should be noted that the natural mortality rate is larger than the current and future growth rate for the large 2010 year class.
+The predicted probability of the spawning biomass dropping below $B_{10\%}$ at
+the start of \Sexpr{end.yr+1} is less than 1\% and the maximum probability of
+dropping below $B_{40\%}$ is 18\% for all catches explored
+(Table~\ref{tab:es-risk-year-1} and
+Figure~\ref{fig:es-forecast-risk-comparison-year-1}).  It should be noted that
+the natural mortality rate is larger than the current and future growth rate for
+the large 2010 year class.
 % Andy presumese that last phrase is still true - not sure where/how to check
-The model estimated below-average recruitment for the 2011, 2012 and 2013 cohorts, but a potentially large 2014 cohort that will result in increases to the spawning biomass as it continues to mature.
+The model estimated below-average recruitment for the 2011, 2012 and 2013
+cohorts, but a potentially large 2014 cohort that will result in increases to
+the spawning biomass as it continues to mature.
 % Still true for 2017 assessment - see
 %  years.since.2010.recruitment.med.below.mean
 %  Definition of 'below-average' is given earlier (around line 222 of this file)
@@ -733,14 +885,18 @@ The model estimated below-average recruitment for the 2011, 2012 and 2013 cohort
 % 2017: Following sentence replaced with 'The highest probability ...' above,
 %  which fits better:
 % The probability that the 2017 spawning
-% biomass will be less than the 2016 spawning biomass is less than 55\% for all catch levels. (Table~\ref{tab:es-risk-year-1} and Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
+% biomass will be less than the 2016 spawning biomass is less than 55\% for all 
+%  catch levels. (Table~\ref{tab:es-risk-year-1} and 
+%  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % Manual 2017 done above.
 \enlargethispage{\baselineskip}
 
 \subsection*{Research and data needs} \label{sec:es-research-data-needs}
 \phantomsection \addcontentsline{toc}{subsection}{Research and data needs}
 
-There are many research projects that could improve the stock assessment for \fishname\ and lead to improved biological understanding and decision-making. The top three are:
+There are many research projects that could improve the stock assessment for
+\fishname\ and lead to improved biological understanding and
+decision-making. The top three are:
 
 % research-needs.rnw gets loaded in here and also in
 %  research-section/research.rnw in main text, and only contains
