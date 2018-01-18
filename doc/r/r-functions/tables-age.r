@@ -324,7 +324,7 @@ make.est.numbers.at.age.table <- function(model,
 
   ## Get weight-at-age matrix (currently the same matrix for fleet = -1,
   ##  0, 1, and 2)
-  wt.at.age <- waa[waa$fleet == 1,]
+  wt.at.age <- waa[waa$Fleet == 1,]
 
   if(table.type == 1){
     ## Numbers-at-age
@@ -527,7 +527,7 @@ make.cohort.table <- function(model,
   coh.naa.next <- lapply(coh.naa.next, function(x){x[-1]})
 
   ## Extract weight-at-age for the fishery (fleet 1)
-  waa <- model$wtatage[model$wtatage$fleet == 1,]
+  waa <- model$wtatage[model$wtatage$Fleet == 1,]
   ## if needed, add years to weight-at-age matrix using mean across years
   missing.yrs <- as.numeric(yrs)[!as.numeric(yrs) %in% abs(waa$Yr)]
   if(length(missing.yrs)>0){
