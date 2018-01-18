@@ -178,7 +178,7 @@ cohortCatch <- function(cohort, catage, ages = 0:20) {
   cohort.yrs <- cohort + ages
   caa <- as.matrix(catage[catage$Yr %in% cohort.yrs, as.character(ages)])
   w <- base.model$wtatage
-  waa <- w[w$fleet == 1 & w$yr %in% cohort.yrs, ]
+  waa <- w[w$fleet == 1 & w$Yr %in% cohort.yrs, ]
   waa <- waa[, names(waa) %in% ages]
   catch.waa <- as.matrix(caa * waa)
 
@@ -550,7 +550,7 @@ plotBars.fn <- function(x,y,gap=0,scalar=1e6,add=F,ciCol="black",ciLty=1,ciLwd=1
   if(!add) plot(x,y$value/scalar,...)
   if(add) points(x,y$value/scalar,...)
   segments(x,y$lo/scalar,x,y$value/scalar-gap,col=ciCol,lty=ciLty,lwd=ciLwd)
-  segments(x,y$hi/scalar,x,y$value/scalar+gap,col=ciCol,lty=ciLty,lwd=ciLwd) 
+  segments(x,y$hi/scalar,x,y$value/scalar+gap,col=ciCol,lty=ciLty,lwd=ciLwd)
 }
 
 panel.letter <- function(letter){
@@ -761,11 +761,11 @@ biomass_fraction_plots <- function(replist, selected=FALSE){
   title(main=ifelse(selected, "Estimated fractions of selected biomass", "Estimated fractions of total biomass"))
 }
 
-mcmc.out <- function (directory = "c:/mydirectory/", run = "mymodel/", file = "keyposteriors.csv", 
-    namefile = "postplotnames.sso", names = FALSE, headernames = TRUE, 
-    numparams = 1, closeall = TRUE, burn = 0, thin = 1, scatter = FALSE, 
-    surface = FALSE, surf1 = 1, surf2 = 2, stats = FALSE, plots = TRUE, 
-    header = TRUE, sep = ",", print = FALSE, new = T, colNames = NULL) 
+mcmc.out <- function (directory = "c:/mydirectory/", run = "mymodel/", file = "keyposteriors.csv",
+    namefile = "postplotnames.sso", names = FALSE, headernames = TRUE,
+    numparams = 1, closeall = TRUE, burn = 0, thin = 1, scatter = FALSE,
+    surface = FALSE, surf1 = 1, surf2 = 2, stats = FALSE, plots = TRUE,
+    header = TRUE, sep = ",", print = FALSE, new = T, colNames = NULL)
 {
     if (print == TRUE) {
     }
@@ -775,12 +775,12 @@ mcmc.out <- function (directory = "c:/mydirectory/", run = "mymodel/", file = "k
     if (!file.exists(filename)) {
         stop("file doesn't exist:\n", filename)
     }
-    mcmcdata <- read.table(filename, header = header, sep = sep, 
+    mcmcdata <- read.table(filename, header = header, sep = sep,
         fill = TRUE)
 
     if (names == TRUE) {
         nameout <- file.path(directory, run, namefile)
-        namedata <- read.table(nameout, header = FALSE, sep = "", 
+        namedata <- read.table(nameout, header = FALSE, sep = "",
             colClasses = "character", fill = TRUE)
         numparams <- as.numeric(namedata[1, 1])
         for (j in 1:numparams) {
@@ -788,7 +788,7 @@ mcmc.out <- function (directory = "c:/mydirectory/", run = "mymodel/", file = "k
         }
     }
     if (!is.null(colNames)) {
-        if (length(colNames) != numparams) 
+        if (length(colNames) != numparams)
             cat("numparams argument overidden by length of colNames argument\n")
         numparams <- length(colNames)
 
@@ -804,11 +804,11 @@ mcmc.out <- function (directory = "c:/mydirectory/", run = "mymodel/", file = "k
     mcmcobject <- mcmc(mcthinned)
     draws <- length(mcmcobject[, 1])
     if (plots == TRUE) {
-        if (new) 
+        if (new)
             dev.new(record = TRUE)
-        if (numparams == 5 || numparams == 9 || numparams == 
+        if (numparams == 5 || numparams == 9 || numparams ==
             13 || numparams == 17) {
-            plot(0, 0, xlab = "", ylab = "", frame.plot = FALSE, 
+            plot(0, 0, xlab = "", ylab = "", frame.plot = FALSE,
                 yaxt = "n", xaxt = "n", type = "n")
         }
         for (i in 1:numparams) {
@@ -816,35 +816,35 @@ mcmc.out <- function (directory = "c:/mydirectory/", run = "mymodel/", file = "k
             traceplot(mcmcobject[, i], smooth = TRUE)
             mtext("Value", side = 2, line = 3, font = 1, cex = 0.8)
             if (names | headernames) {
-                mtext(names(mcmcdata)[i], side = 3, adj = 0, 
+                mtext(names(mcmcdata)[i], side = 3, adj = 0,
                   line = 2, font = 2, cex = 1)
             }
             else {
-                mtext(paste("param", i), side = 3, adj = 0, line = 2, 
+                mtext(paste("param", i), side = 3, adj = 0, line = 2,
                   font = 2, cex = 1)
             }
             lowest <- min(mcmcobject[, i])
             highest <- max(mcmcobject[, i])
-            plot(c(seq(1, draws, by = 1)), c(lowest, rep(c(highest), 
-                (draws - 1))), xlab = "Iterations", ylab = "", 
+            plot(c(seq(1, draws, by = 1)), c(lowest, rep(c(highest),
+                (draws - 1))), xlab = "Iterations", ylab = "",
                 yaxt = "n", type = "n")
             if (!exists("running")) {
                 cat("skipping running average section because function 'running' is needed\n")
             }
             else {
-                lines(running(mcmcobject[, i], fun = median, 
+                lines(running(mcmcobject[, i], fun = median,
                   allow.fewer = TRUE, width = draws))
-                fun <- function(x, prob) quantile(x, probs = prob, 
+                fun <- function(x, prob) quantile(x, probs = prob,
                   names = FALSE)
-                lines(running(mcmcobject[, i], fun = fun, prob = 0.05, 
+                lines(running(mcmcobject[, i], fun = fun, prob = 0.05,
                   allow.fewer = TRUE, width = draws), col = "GREY")
-                lines(running(mcmcobject[, i], fun = fun, prob = 0.95, 
+                lines(running(mcmcobject[, i], fun = fun, prob = 0.95,
                   allow.fewer = TRUE, width = draws), col = "GREY")
             }
             par(ann = FALSE)
-            autocorr.plot(mcmcobject[, i], auto.layout = FALSE, 
+            autocorr.plot(mcmcobject[, i], auto.layout = FALSE,
                 lag.max = 20, ask = FALSE)
-            mtext("Autocorrelation", side = 2, line = 3, font = 1, 
+            mtext("Autocorrelation", side = 2, line = 3, font = 1,
                 cex = 0.8)
             mtext("Lag", side = 1, line = 3, font = 1, cex = 0.8)
             lines(seq(1, 20, by = 1), rep(0.1, 20), col = "GREY")
@@ -857,38 +857,38 @@ mcmc.out <- function (directory = "c:/mydirectory/", run = "mymodel/", file = "k
     if (stats == TRUE) {
         dev.new()
         par(mar = c(0, 0, 3, 0))
-        plot(0, ylab = "", xlab = "", type = "n", xlim = c(0, 
-            25), ylim = c(0, 25), main = "Summary statistics for key parameters", 
+        plot(0, ylab = "", xlab = "", type = "n", xlim = c(0,
+            25), ylim = c(0, 25), main = "Summary statistics for key parameters",
             axes = FALSE)
         text(0.001, 25, "Parameter", font = 2, cex = 0.9, adj = 0)
-        text(4, 25, "Median (0.05-0.95)", font = 2, cex = 0.9, 
+        text(4, 25, "Median (0.05-0.95)", font = 2, cex = 0.9,
             adj = 0)
         text(13, 25, "AC Lag 1", font = 2, cex = 0.9, adj = 0)
         text(16.5, 25, "Eff. N", font = 2, cex = 0.9, adj = 0)
         text(19, 25, "Geweke-Z", font = 2, cex = 0.9, adj = 0)
         text(22.5, 25, "Heidel-W", font = 2, cex = 0.9, adj = 0)
         for (i in 1:numparams) {
-            text(0, (25 - i), paste("param", i), font = 1, cex = 0.9, 
+            text(0, (25 - i), paste("param", i), font = 1, cex = 0.9,
                 adj = 0)
             med <- quantile(mcmcobject[, i], probs = 0.5, names = FALSE)
-            range <- quantile(mcmcobject[, i], probs = c(0.05, 
+            range <- quantile(mcmcobject[, i], probs = c(0.05,
                 0.95), names = FALSE)
-            text(3.2, 25 - i, paste(signif(round(med, 6), 6), 
-                "(", paste(signif(round(range[1], 6), 6), "-", 
-                  signif(round(range[2], 6), 6)), ")"), font = 1, 
+            text(3.2, 25 - i, paste(signif(round(med, 6), 6),
+                "(", paste(signif(round(range[1], 6), 6), "-",
+                  signif(round(range[2], 6), 6)), ")"), font = 1,
                 cex = 0.9, adj = 0)
-            l1.ac <- acf(mcmcobject[, i], lag.max = 1, type = "correlation", 
+            l1.ac <- acf(mcmcobject[, i], lag.max = 1, type = "correlation",
                 plot = F)
             acoruse <- round(l1.ac$acf[2], 6)
             text(13, 25 - i, acoruse, font = 1, cex = 0.9, adj = 0)
             effsize <- effectiveSize(mcmcobject[, i])
-            text(16.5, 25 - i, round(min(effsize, draws), 0), 
+            text(16.5, 25 - i, round(min(effsize, draws), 0),
                 font = 1, cex = 0.9, adj = 0)
             if (acoruse > 0.4) {
                 gewuse <- "None"
             }
             if (acoruse <= 0.4) {
-                geweke <- geweke.diag(mcmcobject[, i], frac1 = 0.1, 
+                geweke <- geweke.diag(mcmcobject[, i], frac1 = 0.1,
                   frac2 = 0.5)
                 gewuse <- round(geweke$z, 3)
             }
@@ -916,8 +916,8 @@ mcmc.out <- function (directory = "c:/mydirectory/", run = "mymodel/", file = "k
     if (surface == TRUE) {
         dev.new()
         par(new = FALSE)
-        hist2d(mcmcobject[, surf1], mcmcobject[, surf2], nbins = 100, 
-            na.rm = TRUE, xlab = paste("parameter", surf1), ylab = paste("parameter", 
+        hist2d(mcmcobject[, surf1], mcmcobject[, surf2], nbins = 100,
+            na.rm = TRUE, xlab = paste("parameter", surf1), ylab = paste("parameter",
                 surf2), show = TRUE, col = c("GREY", topo.colors(20)))
     }
 }
@@ -925,31 +925,31 @@ mcmc.out <- function (directory = "c:/mydirectory/", run = "mymodel/", file = "k
 ## Hack here - needed to show MLE on the plot, so I had to change this r4ss function
 ##  so that refile is set to the MLE dir.
 SSplotPars <-
-function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter value", 
-    ylab = "Density", postfile = "posteriors.sso", showpost = TRUE, 
-    showprior = TRUE, showmle = TRUE, showinit = TRUE, showrecdev = TRUE, 
-    priorinit = TRUE, priorfinal = TRUE, showlegend = TRUE, fitrange = FALSE, 
-    xaxs = "i", xlim = NULL, ylim = NULL, verbose = TRUE, nrows = 3, 
-    ncols = 3, ltyvec = c(1, 1, 3, 4), colvec = c("blue", "red", 
-        "black", "gray60", rgb(0, 0, 0, 0.5)), new = TRUE, pdf = FALSE, 
-    pwidth = 6.5, pheight = 5, punits = "in", ptsize = 10, returntable = FALSE, 
-    strings = c(), exact = FALSE, newheaders = NULL, burn = 0, 
-    thin = 1, ctlfile = "control.ss_new") 
+function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter value",
+    ylab = "Density", postfile = "posteriors.sso", showpost = TRUE,
+    showprior = TRUE, showmle = TRUE, showinit = TRUE, showrecdev = TRUE,
+    priorinit = TRUE, priorfinal = TRUE, showlegend = TRUE, fitrange = FALSE,
+    xaxs = "i", xlim = NULL, ylim = NULL, verbose = TRUE, nrows = 3,
+    ncols = 3, ltyvec = c(1, 1, 3, 4), colvec = c("blue", "red",
+        "black", "gray60", rgb(0, 0, 0, 0.5)), new = TRUE, pdf = FALSE,
+    pwidth = 6.5, pheight = 5, punits = "in", ptsize = 10, returntable = FALSE,
+    strings = c(), exact = FALSE, newheaders = NULL, burn = 0,
+    thin = 1, ctlfile = "control.ss_new")
 {
     GetPrior <- function(Ptype, Pmin, Pmax, Pr, Psd, Pval) {
         Ptype2 <- NA
         if (is.character(Ptype)) {
-            if (Ptype == "No_prior") 
+            if (Ptype == "No_prior")
                 Ptype2 <- -1
-            if (Ptype == "Normal") 
+            if (Ptype == "Normal")
                 Ptype2 <- 0
-            if (Ptype == "Sym_Beta") 
+            if (Ptype == "Sym_Beta")
                 Ptype2 <- 1
-            if (Ptype == "Full_Beta") 
+            if (Ptype == "Full_Beta")
                 Ptype2 <- 2
-            if (Ptype == "Log_Norm") 
+            if (Ptype == "Log_Norm")
                 Ptype2 <- 3
-            if (Ptype == "Log_Norm_adjusted") 
+            if (Ptype == "Log_Norm_adjusted")
                 Ptype2 <- 4
         }
         else {
@@ -959,7 +959,7 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
             Ptype2 <- as.numeric(Ptype)
         }
         if (is.na(Ptype2)) {
-            cat("problem with prior type interpretation. Ptype:", 
+            cat("problem with prior type interpretation. Ptype:",
                 Ptype, " Ptype2:", Ptype2, "\n")
         }
         Pconst <- 1e-04
@@ -970,10 +970,10 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
             Prior_Like <- 0.5 * ((Pval - Pr)/Psd)^2
         }
         if (Ptype2 == 1) {
-            mu <- -(Psd * (log((Pmax + Pmin) * 0.5 - Pmin))) - 
+            mu <- -(Psd * (log((Pmax + Pmin) * 0.5 - Pmin))) -
                 (Psd * (log(0.5)))
-            Prior_Like <- -(mu + (Psd * (log(Pval - Pmin + Pconst))) + 
-                (Psd * (log(1 - ((Pval - Pmin - Pconst)/(Pmax - 
+            Prior_Like <- -(mu + (Psd * (log(Pval - Pmin + Pconst))) +
+                (Psd * (log(1 - ((Pval - Pmin - Pconst)/(Pmax -
                   Pmin))))))
         }
         if (Ptype2 == 2) {
@@ -984,9 +984,9 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
             if (Bprior <= 1 | Aprior <= 1) {
                 cat(" bad Beta prior\n")
             }
-            Prior_Like <- (1 - Bprior) * log(Pconst + Pval - 
+            Prior_Like <- (1 - Bprior) * log(Pconst + Pval -
                 Pmin) + (1 - Aprior) * log(Pconst + Pmax - Pval)
-            -(1 - Bprior) * log(Pconst + Pr - Pmin) - (1 - Aprior) * 
+            -(1 - Bprior) * log(Pconst + Pr - Pmin) - (1 - Aprior) *
                 log(Pconst + Pmax - Pr)
         }
         if (Ptype2 == 3) {
@@ -994,7 +994,7 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
         }
         if (Ptype2 == 4) {
             if (Pmin > 0) {
-                Prior_Like <- 0.5 * ((log(Pval) - Pr + 0.5 * 
+                Prior_Like <- 0.5 * ((log(Pval) - Pr + 0.5 *
                   Psd^2)/Psd)^2
             }
             else {
@@ -1009,9 +1009,9 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
     postfileinfo <- file.info(fullpostfile)$size
     repfileinfo <- file.info(fullrepfile)$size
     ctlfileinfo <- file.info(fullctlfile)$size
-    if (is.na(repfileinfo)) 
+    if (is.na(repfileinfo))
         stop("Missing rep file:", fullrepfile)
-    if (repfileinfo == 0) 
+    if (repfileinfo == 0)
         stop("Empty rep file:", fullrepfile)
     goodctl <- TRUE
     if (is.na(ctlfileinfo)) {
@@ -1025,12 +1025,12 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
         }
     }
     if (showpost & is.na(postfileinfo)) {
-        cat("Missing posteriors file: ", postfile, ", changing input to 'showpost=FALSE'\n", 
+        cat("Missing posteriors file: ", postfile, ", changing input to 'showpost=FALSE'\n",
             sep = "")
         showpost <- FALSE
     }
     if (showpost & !is.na(postfile) & postfileinfo == 0) {
-        cat("Empty posteriors file: ", postfile, ", changing input to 'showpost=FALSE'\n", 
+        cat("Empty posteriors file: ", postfile, ", changing input to 'showpost=FALSE'\n",
             sep = "")
         showpost <- FALSE
     }
@@ -1040,10 +1040,10 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
             posts <- read.table(fullpostfile, header = TRUE)
             names(posts)[names(posts) == "SR_LN.R0."] <- "SR_LN(R0)"
             cat("read", nrow(posts), "lines in", postfile, "\n")
-            posts <- posts[seq(burn + 1, nrow(posts), thin), 
+            posts <- posts[seq(burn + 1, nrow(posts), thin),
                 ]
             if (burn > 0 | thin > 1) {
-                cat("length of posteriors after burnin-in and thinning:", 
+                cat("length of posteriors after burnin-in and thinning:",
                   nrow(posts), "\n")
             }
         }
@@ -1057,8 +1057,8 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
         parstart <- grep("PARAMETERS", replines)[2]
         parend <- grep("DERIVED_QUANTITIES", replines)[2]
         nrows2 <- parend - parstart - 3
-        partable <- read.table(fullrepfile, header = FALSE, nrows = nrows2, 
-            skip = parstart, as.is = TRUE, fill = TRUE, row.names = paste(1:nrows2), 
+        partable <- read.table(fullrepfile, header = FALSE, nrows = nrows2,
+            skip = parstart, as.is = TRUE, fill = TRUE, row.names = paste(1:nrows2),
             col.names = 1:60)
         partable <- partable[, 1:15]
         temp <- as.character(partable[1, ])
@@ -1066,23 +1066,23 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
         partable <- partable[-1, ]
         rownames(partable) <- 1:nrow(partable)
         test <- grep("Number_of_active_parameters", partable$Num)
-        if (length(test) > 0) 
+        if (length(test) > 0)
             partable <- partable[1:(test - 1), ]
         partable[partable == "_"] <- NA
         partable$Active_Cnt <- as.numeric(as.character(partable$Active_Cnt))
         partable$Label <- as.character(partable$Label)
-        for (i in (1:ncol(partable))[!names(partable) %in% c("Label", 
+        for (i in (1:ncol(partable))[!names(partable) %in% c("Label",
             "Status", "PR_type")]) {
-            partable[, i] <- as.numeric(as.character(partable[, 
+            partable[, i] <- as.numeric(as.character(partable[,
                 i]))
         }
     }
     allnames <- partable$Label[!is.na(partable$Active_Cnt)]
     if (!is.null(strings)) {
         goodnames <- NULL
-        if (exact) 
+        if (exact)
             goodnames <- allnames[allnames %in% strings]
-        else for (i in 1:length(strings)) goodnames <- c(goodnames, 
+        else for (i in 1:length(strings)) goodnames <- c(goodnames,
             grep(strings[i], allnames, value = TRUE))
         goodnames <- unique(goodnames)
         cat("parameters matching input vector 'strings':\n")
@@ -1096,72 +1096,72 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
         goodnames <- allnames
     }
     badpars <- grep("Impl_err_", goodnames)
-    if (length(badpars) > 0) 
+    if (length(badpars) > 0)
         goodnames <- goodnames[-badpars]
     stds <- partable$Parm_StDev[partable$Label %in% goodnames]
-    if (showmle & (min(is.na(stds)) == 1 || min(stds, na.rm = TRUE) <= 
+    if (showmle & (min(is.na(stds)) == 1 || min(stds, na.rm = TRUE) <=
         0)) {
-        cat("Some parameters have std. dev. values in Report.sso equal to 0.\n", 
-            "  Asymptotic uncertainty estimates will not be shown.\n", 
+        cat("Some parameters have std. dev. values in Report.sso equal to 0.\n",
+            "  Asymptotic uncertainty estimates will not be shown.\n",
             "  Try re-running the model with the Hessian but no MCMC.\n")
     }
     recdevmin <- -5
     recdevmin <- 5
-    recdevlabels <- c("Early_RecrDev_", "Early_InitAge_", "Main_InitAge_", 
+    recdevlabels <- c("Early_RecrDev_", "Early_InitAge_", "Main_InitAge_",
         "Main_RecrDev_", "ForeRecr_", "Late_RecrDev_")
     if (showrecdev & goodctl) {
         ctllines <- readLines(fullctlfile)
         iline <- grep("#min rec_dev", ctllines)
         if (length(iline) == 1) {
-            recdevmin <- as.numeric(strsplit(ctllines[iline], 
+            recdevmin <- as.numeric(strsplit(ctllines[iline],
                 " #")[[1]][1])
-            recdevmax <- as.numeric(strsplit(ctllines[iline + 
+            recdevmax <- as.numeric(strsplit(ctllines[iline +
                 1], " #")[[1]][1])
-            readrecdev <- as.numeric(strsplit(ctllines[iline + 
+            readrecdev <- as.numeric(strsplit(ctllines[iline +
                 2], " #")[[1]][1])
-            if (is.na(readrecdev) | readrecdev == 1) 
+            if (is.na(readrecdev) | readrecdev == 1)
                 cat("This function does not yet display recdev values read from ctl file.\n")
         }
     }
     else {
-        goodnames <- goodnames[!substr(goodnames, 1, 9) %in% 
+        goodnames <- goodnames[!substr(goodnames, 1, 9) %in%
             substr(recdevlabels, 1, 9)]
     }
     npars <- length(goodnames)
     if (verbose & is.null(xlim)) {
         if (fitrange) {
-            cat("Plotting range is scaled to fit parameter estimates.\n", 
+            cat("Plotting range is scaled to fit parameter estimates.\n",
                 "  Change input to 'fitrange=FALSE' to get full parameter range.\n")
         }
         else {
-            cat("Plotting range is equal to input limits on parameters.\n", 
+            cat("Plotting range is equal to input limits on parameters.\n",
                 "  Range can be scaled to fit estimates by setting input 'fitrange=TRUE'.\n")
         }
     }
     if (new & !pdf) {
-        dev.new(width = pwidth, height = pheight, pointsize = ptsize, 
+        dev.new(width = pwidth, height = pheight, pointsize = ptsize,
             record = TRUE)
     }
     if (pdf) {
-        pdffile <- paste(dir, "/SSplotPars_", format(Sys.time(), 
+        pdffile <- paste(dir, "/SSplotPars_", format(Sys.time(),
             "%d-%b-%Y_%H.%M"), ".pdf", sep = "")
         pdf(file = pdffile, width = pwidth, height = pheight)
-        if (verbose) 
+        if (verbose)
             cat("PDF file with plots will be: ", pdffile, "\n")
     }
-    if (new) 
-        par(mfcol = c(nrows, ncols), mar = c(2, 1, 2, 1), oma = c(2, 
+    if (new)
+        par(mfcol = c(nrows, ncols), mar = c(2, 1, 2, 1), oma = c(2,
             2, 0, 0))
-    if (verbose) 
+    if (verbose)
         cat("Making plots of parameters:\n")
     if (length(grep("DEVrwalk", x = goodnames)) > 0) {
-        cat("\nNOTE: This model contains random walk deviates which are not\n", 
-            "fully implemented. Prior and bounds unavailable, so these are skipped\n", 
+        cat("\nNOTE: This model contains random walk deviates which are not\n",
+            "fully implemented. Prior and bounds unavailable, so these are skipped\n",
             "and fitrange is set to TRUE for those parameters.\n\n")
     }
     for (ipar in 1:npars) {
         parname <- goodnames[ipar]
-        if (verbose) 
+        if (verbose)
             cat("    ", parname, "\n")
         parline <- partable[partable$Label == parname, ]
         initval <- parline$Init
@@ -1172,7 +1172,7 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
         Ptype <- parline$PR_type
         Psd <- parline$Pr_SD
         Pr <- parline$Prior
-        if (substr(parname, 1, 9) %in% substr(recdevlabels, 1, 
+        if (substr(parname, 1, 9) %in% substr(recdevlabels, 1,
             9)) {
             initval <- 0
             Pmin <- recdevmin
@@ -1191,7 +1191,7 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
         xmax <- NULL
         if (!isdev) {
             x <- seq(Pmin, Pmax, length = 5000)
-            negL_prior <- GetPrior(Ptype = Ptype, Pmin = Pmin, 
+            negL_prior <- GetPrior(Ptype = Ptype, Pmin = Pmin,
                 Pmax = Pmax, Pr = Pr, Psd = Psd, Pval = x)
             prior <- exp(-1 * negL_prior)
         }
@@ -1225,7 +1225,7 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
                 goodpost <- TRUE
             }
             else {
-                cat("Error! parameter '", parname, "', not found in '", 
+                cat("Error! parameter '", parname, "', not found in '",
                   postfile, "'.\n", sep = "")
             }
         }
@@ -1239,9 +1239,9 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
                 xmax <- min(Pmax, xmax, na.rm = TRUE)
             }
             else {
-                if (!isdev) 
+                if (!isdev)
                   xmin <- Pmin
-                if (!isdev) 
+                if (!isdev)
                   xmax <- Pmax
             }
             xlim2 <- c(xmin, xmax)
@@ -1253,29 +1253,29 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
             jpar <- (1:ncol(posts))[names(posts) == parname]
             post <- posts[, jpar]
             breakvec <- seq(xmin, xmax, length = 50)
-            if (min(breakvec) > min(post)) 
+            if (min(breakvec) > min(post))
                 breakvec <- c(min(post), breakvec)
-            if (max(breakvec) < max(post)) 
+            if (max(breakvec) < max(post))
                 breakvec <- c(breakvec, max(post))
             posthist <- hist(post, plot = FALSE, breaks = breakvec)
             postmedian <- median(post)
             ymax <- max(ymax, max(posthist$density), na.rm = FALSE)
         }
-        if (is.null(newheaders)) 
+        if (is.null(newheaders))
             header <- parname
         else header <- newheaders[ipar]
-        if (is.null(ylim)) 
+        if (is.null(ylim))
             ylim2 <- c(0, 1.1 * ymax)
         else ylim2 <- ylim
-        plot(0, type = "n", xlim = xlim2, ylim = ylim2, xaxs = xaxs, 
-            yaxs = "i", xlab = "", ylab = "", main = header, 
+        plot(0, type = "n", xlim = xlim2, ylim = ylim2, xaxs = xaxs,
+            yaxs = "i", xlab = "", ylab = "", main = header,
             cex.main = 1, axes = FALSE)
         axis(1)
         colval <- colvec[4]
         if (showpost & goodpost) {
-            plot(posthist, add = TRUE, freq = FALSE, col = colval, 
+            plot(posthist, add = TRUE, freq = FALSE, col = colval,
                 border = colval)
-            abline(v = postmedian, col = colvec[5], lwd = 2, 
+            abline(v = postmedian, col = colvec[5], lwd = 2,
                 lty = ltyvec[3])
         }
         if (!isdev & showprior) {
@@ -1284,8 +1284,8 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
         if (showmle) {
             if (!is.na(parsd) && parsd > 0) {
                 lines(x, mle, col = colvec[1], lwd = 1, lty = ltyvec[1])
-                lines(rep(finalval, 2), c(0, dnorm(finalval, 
-                  finalval, parsd) * mlescale), col = colvec[1], 
+                lines(rep(finalval, 2), c(0, dnorm(finalval,
+                  finalval, parsd) * mlescale), col = colvec[1],
                   lty = ltyvec[1])
             }
             else {
@@ -1294,7 +1294,7 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
         }
         if (showinit) {
             par(xpd = NA)
-            points(initval, -0.02 * ymax, col = colvec[2], pch = 17, 
+            points(initval, -0.02 * ymax, col = colvec[2], pch = 17,
                 cex = 1.2)
             par(xpd = FALSE)
         }
@@ -1303,15 +1303,15 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
             mtext(xlab, side = 1, line = 0.5, outer = TRUE)
             mtext(ylab, side = 2, line = 0.5, outer = TRUE)
             if (showlegend) {
-                showvec <- c(showprior, showmle, showpost, showpost, 
+                showvec <- c(showprior, showmle, showpost, showpost,
                   showinit)
-                legend("topleft", cex = 1.2, bty = "n", pch = c(NA, 
-                  NA, 15, NA, 17)[showvec], lty = c(ltyvec[2], 
-                  ltyvec[1], NA, ltyvec[3], NA)[showvec], lwd = c(2, 
-                  1, NA, 2, NA)[showvec], col = c(colvec[3], 
-                  colvec[1], colvec[4], colvec[5], colvec[2])[showvec], 
-                  pt.cex = c(1, 1, 2, 1, 1)[showvec], legend = c("prior", 
-                    "max. likelihood", "posterior", "posterior median", 
+                legend("topleft", cex = 1.2, bty = "n", pch = c(NA,
+                  NA, 15, NA, 17)[showvec], lty = c(ltyvec[2],
+                  ltyvec[1], NA, ltyvec[3], NA)[showvec], lwd = c(2,
+                  1, NA, 2, NA)[showvec], col = c(colvec[3],
+                  colvec[1], colvec[4], colvec[5], colvec[2])[showvec],
+                  pt.cex = c(1, 1, 2, 1, 1)[showvec], legend = c("prior",
+                    "max. likelihood", "posterior", "posterior median",
                     "initial value")[showvec])
             }
         }
@@ -1326,15 +1326,15 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
 
 ## Included here because there is no way to disable the title
 SSplotData <-
-function (replist, plot = TRUE, print = FALSE, plotdir = "default", 
-    fleetcol = "default", datatypes = "all", fleets = "all", 
-    fleetnames = "default", ghost = FALSE, pwidth = 6.5, pheight = 5, 
-    punits = "in", res = 300, ptsize = 10, cex.main = 1, margins = c(5.1, 
-        2.1, 2.1, 8.1), cex = 2, lwd = 12, datasize = TRUE, maxsize = 0.5, 
-    alphasize = 1, both = T, show.title = TRUE, verbose = TRUE) 
+function (replist, plot = TRUE, print = FALSE, plotdir = "default",
+    fleetcol = "default", datatypes = "all", fleets = "all",
+    fleetnames = "default", ghost = FALSE, pwidth = 6.5, pheight = 5,
+    punits = "in", res = 300, ptsize = 10, cex.main = 1, margins = c(5.1,
+        2.1, 2.1, 8.1), cex = 2, lwd = 12, datasize = TRUE, maxsize = 0.5,
+    alphasize = 1, both = T, show.title = TRUE, verbose = TRUE)
 {
     pngfun <- function(file, caption = NA) {
-        png(filename = file, width = pwidth, height = pheight, 
+        png(filename = file, width = pwidth, height = pheight,
             units = punits, res = res, pointsize = ptsize)
         plotinfo <- rbind(plotinfo, data.frame(file = file, caption = caption))
         return(plotinfo)
@@ -1344,9 +1344,9 @@ function (replist, plot = TRUE, print = FALSE, plotdir = "default",
     endyr <- replist$endyr
     nfleets <- replist$nfleets
     nfishfleets <- replist$nfishfleets
-    if (fleetnames[1] == "default") 
+    if (fleetnames[1] == "default")
         fleetnames <- replist$FleetNames
-    if (plotdir == "default") 
+    if (plotdir == "default")
         plotdir <- replist$inputs$dir
     catch <- SSplotCatch(replist, plot = F, print = F, verbose = FALSE)
     catch <- catch$totobscatchmat
@@ -1364,17 +1364,17 @@ function (replist, plot = TRUE, print = FALSE, plotdir = "default",
     tagdbase2 <- replist$tagdbase2
     mnwgt <- replist$mnwgt
     discard <- replist$discard
-    typetable <- matrix(c("catch", "Catch", "cpue", "Abundance indices", 
-        "lendbase", "Length compositions", "sizedbase", "Size compositions", 
-        "agedbase", "Age compositions", "condbase", "Conditional age-at-length compositions", 
-        "ghostagedbase", "Ghost age compositions", "ghostcondbase", 
-        "Ghost conditional age-at-length compositions", "ghostlendbase", 
-        "Ghost length compositions", "ladbase", "Mean length-at-age", 
-        "wadbase", "Mean weight-at-age", "mnwgt", "Mean body weight", 
-        "discard", "Discards", "tagdbase1", "Tagging data", "tagdbase2", 
+    typetable <- matrix(c("catch", "Catch", "cpue", "Abundance indices",
+        "lendbase", "Length compositions", "sizedbase", "Size compositions",
+        "agedbase", "Age compositions", "condbase", "Conditional age-at-length compositions",
+        "ghostagedbase", "Ghost age compositions", "ghostcondbase",
+        "Ghost conditional age-at-length compositions", "ghostlendbase",
+        "Ghost length compositions", "ladbase", "Mean length-at-age",
+        "wadbase", "Mean weight-at-age", "mnwgt", "Mean body weight",
+        "discard", "Discards", "tagdbase1", "Tagging data", "tagdbase2",
         "Tagging data"), ncol = 2, byrow = TRUE)
-    if (!ghost) 
-        typetable <- typetable[-grep("ghost", typetable[, 1]), 
+    if (!ghost)
+        typetable <- typetable[-grep("ghost", typetable[, 1]),
             ]
     typenames <- typetable[, 1]
     typelabels <- typetable[, 2]
@@ -1393,9 +1393,9 @@ function (replist, plot = TRUE, print = FALSE, plotdir = "default",
                   size <- dat[dat[, ifleet] > 0, fleetnames[ifleet]]
                 }
                 if (typename %in% c("cpue")) {
-                  allyrs <- dat$Yr[dat$Use > 0 & dat$FleetNum == 
+                  allyrs <- dat$Yr[dat$Use > 0 & dat$FleetNum ==
                     ifleet]
-                  size <- 1/dat$SE[dat$Use > 0 & dat$FleetNum == 
+                  size <- 1/dat$SE[dat$Use > 0 & dat$FleetNum ==
                     ifleet]
                 }
                 if (typename %in% c("mnwgt", "discard")) {
@@ -1411,41 +1411,41 @@ function (replist, plot = TRUE, print = FALSE, plotdir = "default",
                   yrs <- floor(allyrs[unique.index])
                   size.sorted <- size[unique.index][order(yrs)]
                   yrs.sorted <- yrs[order(yrs)]
-                  typetable <- rbind(typetable, data.frame(yr = yrs.sorted, 
-                    fleet = ifleet, itype = ntypes, typename = typename, 
+                  typetable <- rbind(typetable, data.frame(yr = yrs.sorted,
+                    fleet = ifleet, itype = ntypes, typename = typename,
                     size = size.sorted, stringsAsFactors = FALSE))
                 }
             }
         }
     }
-    if (fleets[1] == "all") 
+    if (fleets[1] == "all")
         fleets <- 1:nfleets
-    if (datatypes[1] == "all") 
+    if (datatypes[1] == "all")
         datatypes <- typenames
-    typetable2 <- typetable[typetable$fleet %in% fleets & typetable$typename %in% 
+    typetable2 <- typetable[typetable$fleet %in% fleets & typetable$typename %in%
         datatypes, ]
     ntypes <- max(typetable2$itype)
     fleets <- sort(unique(typetable2$fleet))
     nfleets2 <- length(fleets)
     if (fleetcol[1] == "default") {
-        if (nfleets2 > 3) 
+        if (nfleets2 > 3)
             fleetcol <- rich.colors.short(nfleets2 + 1)[-1]
-        if (nfleets2 == 1) 
+        if (nfleets2 == 1)
             fleetcol <- "grey40"
-        if (nfleets2 == 2) 
+        if (nfleets2 == 2)
             fleetcol <- rich.colors.short(nfleets2)
-        if (nfleets2 == 3) 
+        if (nfleets2 == 3)
             fleetcol <- c("blue", "red", "green3")
     }
     else {
-        if (length(fleetcol) < nfleets2) 
+        if (length(fleetcol) < nfleets2)
             fleetcol = rep(fleetcol, nfleets2)
     }
     plotdata <- function(datasize) {
         par(mar = margins)
         xlim <- c(-1, 1) + range(typetable2$yr, na.rm = TRUE)
         yval <- 0
-        ymax <- sum(as.data.frame(table(typetable2$fleet, typetable2$itype))$Freq > 
+        ymax <- sum(as.data.frame(table(typetable2$fleet, typetable2$itype))$Freq >
             0)
         main.temp <- if (datasize) {
             "Data by type and year, circle area is relative to precision within data type"
@@ -1456,24 +1456,24 @@ function (replist, plot = TRUE, print = FALSE, plotdir = "default",
         if(!show.title){
           main.temp <- ""
         }
-        plot(0, xlim = xlim, ylim = c(0, ymax + 2 * ntypes + 
-            0.5), axes = FALSE, xaxs = "i", yaxs = "i", type = "n", 
+        plot(0, xlim = xlim, ylim = c(0, ymax + 2 * ntypes +
+            0.5), axes = FALSE, xaxs = "i", yaxs = "i", type = "n",
             xlab = "Year", ylab = "", main = main.temp, cex.main = cex.main)
         xticks <- 5 * round(xlim[1]:xlim[2]/5)
         abline(v = xticks, col = "grey", lty = 3)
         axistable <- data.frame(fleet = rep(NA, ymax), yval = NA)
         itick <- 1
         for (itype in rev(unique(typetable2$itype))) {
-            typetable2$size[typetable2$itype == itype] <- typetable2$size[typetable2$itype == 
-                itype]/max(typetable2$size[typetable2$itype == 
+            typetable2$size[typetable2$itype == itype] <- typetable2$size[typetable2$itype ==
+                itype]/max(typetable2$size[typetable2$itype ==
                 itype])
-            typename <- unique(typetable2$typename[typetable2$itype == 
+            typename <- unique(typetable2$typename[typetable2$itype ==
                 itype])
             for (ifleet in rev(fleets)) {
-                yrs <- typetable2$yr[typetable2$fleet == ifleet & 
+                yrs <- typetable2$yr[typetable2$fleet == ifleet &
                   typetable2$itype == itype]
                 if (length(yrs) > 0) {
-                  size.cex <- typetable2$size[typetable2$fleet == 
+                  size.cex <- typetable2$size[typetable2$fleet ==
                     ifleet & typetable2$itype == itype]
                   yval <- yval + 1
                   x <- min(yrs):max(yrs)
@@ -1481,31 +1481,31 @@ function (replist, plot = TRUE, print = FALSE, plotdir = "default",
                   y <- rep(yval, n)
                   y[!x %in% yrs] <- NA
                   solo <- rep(FALSE, n)
-                  if (n == 1) 
+                  if (n == 1)
                     solo <- 1
-                  if (n == 2 & yrs[2] != yrs[1] + 1) 
+                  if (n == 2 & yrs[2] != yrs[1] + 1)
                     solo <- rep(TRUE, 2)
                   if (n >= 3) {
-                    for (i in 2:(n - 1)) if (is.na(y[i - 1]) & 
-                      is.na(y[i + 1])) 
+                    for (i in 2:(n - 1)) if (is.na(y[i - 1]) &
+                      is.na(y[i + 1]))
                       solo[i] <- TRUE
-                    if (is.na(y[2])) 
+                    if (is.na(y[2]))
                       solo[1] <- TRUE
-                    if (is.na(y[n - 1])) 
+                    if (is.na(y[n - 1]))
                       solo[n] <- TRUE
                   }
                   if (!datasize) {
-                    points(x[solo], y[solo], pch = 16, cex = 1, 
+                    points(x[solo], y[solo], pch = 16, cex = 1,
                       col = fleetcol[fleets == ifleet])
-                    lines(x, y, lwd = lwd, col = fleetcol[fleets == 
+                    lines(x, y, lwd = lwd, col = fleetcol[fleets ==
                       ifleet])
                   }
                   else {
                     x <- x[!is.na(y)]
                     y <- y[!is.na(y)]
-                    symbols(x = x, y = y, circles = sqrt(size.cex) * 
-                      maxsize, bg = adjustcolor(fleetcol[fleets == 
-                      ifleet], alpha.f = alphasize), add = TRUE, 
+                    symbols(x = x, y = y, circles = sqrt(size.cex) *
+                      maxsize, bg = adjustcolor(fleetcol[fleets ==
+                      ifleet], alpha.f = alphasize), add = TRUE,
                       inches = FALSE)
                   }
                   axistable[itick, ] <- c(ifleet, yval)
@@ -1513,17 +1513,17 @@ function (replist, plot = TRUE, print = FALSE, plotdir = "default",
                 }
             }
             yval <- yval + 2
-            if (itype != 1) 
+            if (itype != 1)
                 abline(h = yval + 0.3, col = "grey", lty = 3)
-            text(mean(xlim), yval - 0.3, typelabels[typenames == 
+            text(mean(xlim), yval - 0.3, typelabels[typenames ==
                 typename], font = 2)
         }
-        axis(4, at = axistable$yval, labels = fleetnames[axistable$fleet], 
+        axis(4, at = axistable$yval, labels = fleetnames[axistable$fleet],
             las = 1)
         box()
         axis(1, at = xticks)
     }
-    if (plot & (!datasize | both)) 
+    if (plot & (!datasize | both))
         plotdata(datasize = FALSE)
     if (print) {
         file <- file.path(plotdir, "data_plot.png")
@@ -1533,12 +1533,12 @@ function (replist, plot = TRUE, print = FALSE, plotdir = "default",
         dev.off()
     }
     if (datasize) {
-        if (plot) 
+        if (plot)
             plotdata(datasize = TRUE)
         if (print) {
             file <- file.path(plotdir, "data_plot2.png")
-            caption <- paste("Data presence by year for each fleet, where circle area is relative <br> ", 
-                "within a data type, and proportional to precision for indices and compositions, <br> ", 
+            caption <- paste("Data presence by year for each fleet, where circle area is relative <br> ",
+                "within a data type, and proportional to precision for indices and compositions, <br> ",
                 "and absolute catch for catches")
             plotinfo <- pngfun(file = file, caption = caption)
             plotdata(datasize)
@@ -1598,14 +1598,14 @@ catw <- function(..., file = "", sep = " ", fill = FALSE, labels = NULL,
 }
 
 SS_readforecast <-
-function (file = "forecast.ss", Nfleets, Nareas, nseas, version = "3.30", 
-    readAll = FALSE, verbose = TRUE) 
+function (file = "forecast.ss", Nfleets, Nareas, nseas, version = "3.30",
+    readAll = FALSE, verbose = TRUE)
 {
-    if (!(version == "3.24" | version == "3.30" | version == 
+    if (!(version == "3.24" | version == "3.30" | version ==
         3.3)) {
         stop("version must be either 3.24 or 3.30")
     }
-    if (verbose) 
+    if (verbose)
         cat("running SS_readforecast\n")
     forecast <- readLines(file, warn = F)
     mylist <- list()
@@ -1617,7 +1617,7 @@ function (file = "forecast.ss", Nfleets, Nareas, nseas, version = "3.30",
         mysplit <- strsplit(forecast[i], split = "[[:blank:]]+")[[1]]
         mysplit <- mysplit[mysplit != ""]
         nums <- suppressWarnings(as.numeric(mysplit))
-        if (sum(is.na(nums)) > 0) 
+        if (sum(is.na(nums)) > 0)
             maxcol <- min((1:length(nums))[is.na(nums)]) - 1
         else maxcol <- length(nums)
         if (maxcol > 0) {
@@ -1713,34 +1713,34 @@ function (file = "forecast.ss", Nfleets, Nareas, nseas, version = "3.30",
             if (verbose) {
                 cat("reading section on fleet- and area-specific inputs based on 3.24 format\n")
             }
-            mylist$max_totalcatch_by_fleet <- allnums[i:(i + 
+            mylist$max_totalcatch_by_fleet <- allnums[i:(i +
                 Nfleets - 1)]
             i <- i + Nfleets
-            if (verbose) 
-                cat("  max_totalcatch_by_fleet =", mylist$max_totalcatch_by_fleet, 
+            if (verbose)
+                cat("  max_totalcatch_by_fleet =", mylist$max_totalcatch_by_fleet,
                   "\n")
-            mylist$max_totalcatch_by_area <- allnums[i:(i + Nareas - 
+            mylist$max_totalcatch_by_area <- allnums[i:(i + Nareas -
                 1)]
             i <- i + Nareas
-            if (verbose) 
-                cat("  max_totalcatch_by_area =", mylist$max_totalcatch_by_area, 
+            if (verbose)
+                cat("  max_totalcatch_by_area =", mylist$max_totalcatch_by_area,
                   "\n")
-            mylist$fleet_assignment_to_allocation_group <- allnums[i:(i + 
+            mylist$fleet_assignment_to_allocation_group <- allnums[i:(i +
                 Nfleets - 1)]
             i <- i + Nfleets
-            if (verbose) 
-                cat("  fleet_assignment_to_allocation_group =", 
-                  mylist$fleet_assignment_to_allocation_group, 
+            if (verbose)
+                cat("  fleet_assignment_to_allocation_group =",
+                  mylist$fleet_assignment_to_allocation_group,
                   "\n")
-            if (any(mylist$fleet_assignment_to_allocation_group != 
+            if (any(mylist$fleet_assignment_to_allocation_group !=
                 0)) {
                 mylist$N_allocation_groups <- max(mylist$fleet_assignment_to_allocation_group)
-                allocation_among_groups <- allnums[i:(i + mylist$N_allocation_groups * 
+                allocation_among_groups <- allnums[i:(i + mylist$N_allocation_groups *
                   nseas - 1)]
                 i <- i + mylist$N_allocation_groups * nseas
-                mylist$allocation_among_groups <- as.data.frame(t(array(data = allocation_among_groups, 
+                mylist$allocation_among_groups <- as.data.frame(t(array(data = allocation_among_groups,
                   dim = c(mylist$N_allocation_groups, nseas))))
-                colnames(mylist$allocation_among_groups) <- paste0("Grp", 
+                colnames(mylist$allocation_among_groups) <- paste0("Grp",
                   1:mylist$N_allocation_groups)
             }
             else {
@@ -1755,14 +1755,14 @@ function (file = "forecast.ss", Nfleets, Nareas, nseas, version = "3.30",
                 ForeCatch <- NULL
             }
             else {
-                ForeCatch <- data.frame(matrix(allnums[i:(i + 
-                  Ncatch * 4 - 1)], nrow = Ncatch, ncol = 4, 
+                ForeCatch <- data.frame(matrix(allnums[i:(i +
+                  Ncatch * 4 - 1)], nrow = Ncatch, ncol = 4,
                   byrow = TRUE))
                 i <- i + Ncatch * 4
-                names(ForeCatch) <- c("Year", "Seas", "Fleet", 
+                names(ForeCatch) <- c("Year", "Seas", "Fleet",
                   "Catch_or_F")
                 if (verbose) {
-                  cat("  Catch inputs (Ncatch = ", Ncatch, ")\n", 
+                  cat("  Catch inputs (Ncatch = ", Ncatch, ")\n",
                     sep = "")
                   print(ForeCatch)
                 }
@@ -1788,22 +1788,22 @@ function (file = "forecast.ss", Nfleets, Nareas, nseas, version = "3.30",
                 i <- i + 4
             }else{
                 all9999 <- which(allnums == -9999)
-                ForeCatch.end <- min(all9999[all9999 > i]) - 
+                ForeCatch.end <- min(all9999[all9999 > i]) -
                   1
                 Nvals <- (ForeCatch.end - i + 1)
                 if (Nvals%%4 != 0) {
-                  stop("Error in read of input forecast catch.\n", 
-                    "Number of values should be a multiple of 4.\n", 
-                    "Values:\n", paste(allnums[i:ForeCatch.end], 
+                  stop("Error in read of input forecast catch.\n",
+                    "Number of values should be a multiple of 4.\n",
+                    "Values:\n", paste(allnums[i:ForeCatch.end],
                       collapse = "\n"))
                 }
-                ForeCatch <- data.frame(matrix(allnums[i:ForeCatch.end], 
+                ForeCatch <- data.frame(matrix(allnums[i:ForeCatch.end],
                                                nrow = Nvals/4, ncol = 4, byrow = TRUE))
                 i <- ForeCatch.end + 5
-                names(ForeCatch) <- c("Year", "Seas", "Fleet", 
+                names(ForeCatch) <- c("Year", "Seas", "Fleet",
                   "Catch_or_F")
                 if (verbose) {
-                  cat("  Catch inputs (Ncatch = ", Nvals/4, ")\n", 
+                  cat("  Catch inputs (Ncatch = ", Nvals/4, ")\n",
                     sep = "")
                   print(ForeCatch)
                 }
@@ -1811,7 +1811,7 @@ function (file = "forecast.ss", Nfleets, Nareas, nseas, version = "3.30",
         }
         mylist$ForeCatch <- ForeCatch
         if (allnums[i] == 999) {
-            if (verbose) 
+            if (verbose)
                 cat("read of forecast file complete (final value = 999)\n")
         }
         else {
@@ -1822,31 +1822,31 @@ function (file = "forecast.ss", Nfleets, Nareas, nseas, version = "3.30",
 }
 
 SSplotPars <-
-function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter value", 
-    ylab = "Density", postfile = "posteriors.sso", showpost = TRUE, 
-    showprior = TRUE, showmle = TRUE, showinit = TRUE, showrecdev = TRUE, 
-    priorinit = TRUE, priorfinal = TRUE, showlegend = TRUE, fitrange = FALSE, 
-    xaxs = "i", xlim = NULL, ylim = NULL, verbose = TRUE, nrows = 3, 
-    ncols = 3, ltyvec = c(1, 1, 3, 4), colvec = c("blue", "red", 
-        "black", "gray60", rgb(0, 0, 0, 0.5)), new = TRUE, pdf = FALSE, 
-    pwidth = 6.5, pheight = 5, punits = "in", ptsize = 10, returntable = FALSE, 
-    strings = c(), exact = FALSE, newheaders = NULL, burn = 0, 
-    thin = 1, ctlfile = "control.ss_new") 
+function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter value",
+    ylab = "Density", postfile = "posteriors.sso", showpost = TRUE,
+    showprior = TRUE, showmle = TRUE, showinit = TRUE, showrecdev = TRUE,
+    priorinit = TRUE, priorfinal = TRUE, showlegend = TRUE, fitrange = FALSE,
+    xaxs = "i", xlim = NULL, ylim = NULL, verbose = TRUE, nrows = 3,
+    ncols = 3, ltyvec = c(1, 1, 3, 4), colvec = c("blue", "red",
+        "black", "gray60", rgb(0, 0, 0, 0.5)), new = TRUE, pdf = FALSE,
+    pwidth = 6.5, pheight = 5, punits = "in", ptsize = 10, returntable = FALSE,
+    strings = c(), exact = FALSE, newheaders = NULL, burn = 0,
+    thin = 1, ctlfile = "control.ss_new")
 {
     GetPrior <- function(Ptype, Pmin, Pmax, Pr, Psd, Pval) {
         Ptype2 <- NA
         if (is.character(Ptype)) {
-            if (Ptype == "No_prior") 
+            if (Ptype == "No_prior")
                 Ptype2 <- -1
-            if (Ptype == "Normal") 
+            if (Ptype == "Normal")
                 Ptype2 <- 0
-            if (Ptype == "Sym_Beta") 
+            if (Ptype == "Sym_Beta")
                 Ptype2 <- 1
-            if (Ptype == "Full_Beta") 
+            if (Ptype == "Full_Beta")
                 Ptype2 <- 2
-            if (Ptype == "Log_Norm") 
+            if (Ptype == "Log_Norm")
                 Ptype2 <- 3
-            if (Ptype == "Log_Norm_adjusted") 
+            if (Ptype == "Log_Norm_adjusted")
                 Ptype2 <- 4
         }
         else {
@@ -1856,7 +1856,7 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
             Ptype2 <- as.numeric(Ptype)
         }
         if (is.na(Ptype2)) {
-            cat("problem with prior type interpretation. Ptype:", 
+            cat("problem with prior type interpretation. Ptype:",
                 Ptype, " Ptype2:", Ptype2, "\n")
         }
         Pconst <- 1e-04
@@ -1867,10 +1867,10 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
             Prior_Like <- 0.5 * ((Pval - Pr)/Psd)^2
         }
         if (Ptype2 == 1) {
-            mu <- -(Psd * (log((Pmax + Pmin) * 0.5 - Pmin))) - 
+            mu <- -(Psd * (log((Pmax + Pmin) * 0.5 - Pmin))) -
                 (Psd * (log(0.5)))
-            Prior_Like <- -(mu + (Psd * (log(Pval - Pmin + Pconst))) + 
-                (Psd * (log(1 - ((Pval - Pmin - Pconst)/(Pmax - 
+            Prior_Like <- -(mu + (Psd * (log(Pval - Pmin + Pconst))) +
+                (Psd * (log(1 - ((Pval - Pmin - Pconst)/(Pmax -
                   Pmin))))))
         }
         if (Ptype2 == 2) {
@@ -1881,9 +1881,9 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
             if (Bprior <= 1 | Aprior <= 1) {
                 cat(" bad Beta prior\n")
             }
-            Prior_Like <- (1 - Bprior) * log(Pconst + Pval - 
+            Prior_Like <- (1 - Bprior) * log(Pconst + Pval -
                 Pmin) + (1 - Aprior) * log(Pconst + Pmax - Pval)
-            -(1 - Bprior) * log(Pconst + Pr - Pmin) - (1 - Aprior) * 
+            -(1 - Bprior) * log(Pconst + Pr - Pmin) - (1 - Aprior) *
                 log(Pconst + Pmax - Pr)
         }
         if (Ptype2 == 3) {
@@ -1891,7 +1891,7 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
         }
         if (Ptype2 == 4) {
             if (Pmin > 0) {
-                Prior_Like <- 0.5 * ((log(Pval) - Pr + 0.5 * 
+                Prior_Like <- 0.5 * ((log(Pval) - Pr + 0.5 *
                   Psd^2)/Psd)^2
             }
             else {
@@ -1906,9 +1906,9 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
     postfileinfo <- file.info(fullpostfile)$size
     repfileinfo <- file.info(fullrepfile)$size
     ctlfileinfo <- file.info(fullctlfile)$size
-    if (is.na(repfileinfo)) 
+    if (is.na(repfileinfo))
         stop("Missing rep file:", fullrepfile)
-    if (repfileinfo == 0) 
+    if (repfileinfo == 0)
         stop("Empty rep file:", fullrepfile)
     goodctl <- TRUE
     if (is.na(ctlfileinfo)) {
@@ -1922,12 +1922,12 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
         }
     }
     if (showpost & is.na(postfileinfo)) {
-        cat("Missing posteriors file: ", postfile, ", changing input to 'showpost=FALSE'\n", 
+        cat("Missing posteriors file: ", postfile, ", changing input to 'showpost=FALSE'\n",
             sep = "")
         showpost <- FALSE
     }
     if (showpost & !is.na(postfile) & postfileinfo == 0) {
-        cat("Empty posteriors file: ", postfile, ", changing input to 'showpost=FALSE'\n", 
+        cat("Empty posteriors file: ", postfile, ", changing input to 'showpost=FALSE'\n",
             sep = "")
         showpost <- FALSE
     }
@@ -1937,10 +1937,10 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
             posts <- read.table(fullpostfile, header = TRUE)
             names(posts)[names(posts) == "SR_LN.R0."] <- "SR_LN(R0)"
             cat("read", nrow(posts), "lines in", postfile, "\n")
-            posts <- posts[seq(burn + 1, nrow(posts), thin), 
+            posts <- posts[seq(burn + 1, nrow(posts), thin),
                 ]
             if (burn > 0 | thin > 1) {
-                cat("length of posteriors after burnin-in and thinning:", 
+                cat("length of posteriors after burnin-in and thinning:",
                   nrow(posts), "\n")
             }
         }
@@ -1954,8 +1954,8 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
         parstart <- grep("PARAMETERS", replines)[2]
         parend <- grep("DERIVED_QUANTITIES", replines)[2]
         nrows2 <- parend - parstart - 3
-        partable <- read.table(fullrepfile, header = FALSE, nrows = nrows2, 
-            skip = parstart, as.is = TRUE, fill = TRUE, row.names = paste(1:nrows2), 
+        partable <- read.table(fullrepfile, header = FALSE, nrows = nrows2,
+            skip = parstart, as.is = TRUE, fill = TRUE, row.names = paste(1:nrows2),
             col.names = 1:60, stringsAsFactors = FALSE)
         partable <- partable[, 1:15]
         temp <- as.character(partable[1, ])
@@ -1963,12 +1963,12 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
         partable <- partable[-1, ]
         rownames(partable) <- 1:nrow(partable)
         test <- grep("Number_of_active_parameters", partable$Num)
-        if (length(test) > 0) 
+        if (length(test) > 0)
             partable <- partable[1:(test - 1), ]
         partable[partable == "_"] <- NA
         partable$Active_Cnt <- as.numeric(as.character(partable$Active_Cnt))
         partable$Label <- as.character(partable$Label)
-        for (i in (1:ncol(partable))[!names(partable) %in% c("Label", 
+        for (i in (1:ncol(partable))[!names(partable) %in% c("Label",
                                                              "Status", "PR_type")]) {
           if( i != 13){
             partable[, i] <- as.numeric(as.character(partable[ ,i]))
@@ -1978,9 +1978,9 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
     allnames <- partable$Label[!is.na(partable$Active_Cnt)]
     if (!is.null(strings)) {
         goodnames <- NULL
-        if (exact) 
+        if (exact)
             goodnames <- allnames[allnames %in% strings]
-        else for (i in 1:length(strings)) goodnames <- c(goodnames, 
+        else for (i in 1:length(strings)) goodnames <- c(goodnames,
             grep(strings[i], allnames, value = TRUE))
         goodnames <- unique(goodnames)
         cat("parameters matching input vector 'strings':\n")
@@ -1994,72 +1994,72 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
         goodnames <- allnames
     }
     badpars <- grep("Impl_err_", goodnames)
-    if (length(badpars) > 0) 
+    if (length(badpars) > 0)
         goodnames <- goodnames[-badpars]
     stds <- partable$Parm_StDev[partable$Label %in% goodnames]
-    if (showmle & (min(is.na(stds)) == 1 || min(stds, na.rm = TRUE) <= 
+    if (showmle & (min(is.na(stds)) == 1 || min(stds, na.rm = TRUE) <=
         0)) {
-        cat("Some parameters have std. dev. values in Report.sso equal to 0.\n", 
-            "  Asymptotic uncertainty estimates will not be shown.\n", 
+        cat("Some parameters have std. dev. values in Report.sso equal to 0.\n",
+            "  Asymptotic uncertainty estimates will not be shown.\n",
             "  Try re-running the model with the Hessian but no MCMC.\n")
     }
     recdevmin <- -5
     recdevmin <- 5
-    recdevlabels <- c("Early_RecrDev_", "Early_InitAge_", "Main_InitAge_", 
+    recdevlabels <- c("Early_RecrDev_", "Early_InitAge_", "Main_InitAge_",
         "Main_RecrDev_", "ForeRecr_", "Late_RecrDev_")
     if (showrecdev & goodctl) {
         ctllines <- readLines(fullctlfile)
         iline <- grep("#min rec_dev", ctllines)
         if (length(iline) == 1) {
-            recdevmin <- as.numeric(strsplit(ctllines[iline], 
+            recdevmin <- as.numeric(strsplit(ctllines[iline],
                 " #")[[1]][1])
-            recdevmax <- as.numeric(strsplit(ctllines[iline + 
+            recdevmax <- as.numeric(strsplit(ctllines[iline +
                 1], " #")[[1]][1])
-            readrecdev <- as.numeric(strsplit(ctllines[iline + 
+            readrecdev <- as.numeric(strsplit(ctllines[iline +
                 2], " #")[[1]][1])
-            if (is.na(readrecdev) | readrecdev == 1) 
+            if (is.na(readrecdev) | readrecdev == 1)
                 cat("This function does not yet display recdev values read from ctl file.\n")
         }
     }
     else {
-        goodnames <- goodnames[!substr(goodnames, 1, 9) %in% 
+        goodnames <- goodnames[!substr(goodnames, 1, 9) %in%
             substr(recdevlabels, 1, 9)]
     }
     npars <- length(goodnames)
     if (verbose & is.null(xlim)) {
         if (fitrange) {
-            cat("Plotting range is scaled to fit parameter estimates.\n", 
+            cat("Plotting range is scaled to fit parameter estimates.\n",
                 "  Change input to 'fitrange=FALSE' to get full parameter range.\n")
         }
         else {
-            cat("Plotting range is equal to input limits on parameters.\n", 
+            cat("Plotting range is equal to input limits on parameters.\n",
                 "  Range can be scaled to fit estimates by setting input 'fitrange=TRUE'.\n")
         }
     }
     if (new & !pdf) {
-        dev.new(width = pwidth, height = pheight, pointsize = ptsize, 
+        dev.new(width = pwidth, height = pheight, pointsize = ptsize,
             record = TRUE)
     }
     if (pdf) {
-        pdffile <- paste(dir, "/SSplotPars_", format(Sys.time(), 
+        pdffile <- paste(dir, "/SSplotPars_", format(Sys.time(),
             "%d-%b-%Y_%H.%M"), ".pdf", sep = "")
         pdf(file = pdffile, width = pwidth, height = pheight)
-        if (verbose) 
+        if (verbose)
             cat("PDF file with plots will be: ", pdffile, "\n")
     }
-    if (new) 
-        par(mfcol = c(nrows, ncols), mar = c(2, 1, 2, 1), oma = c(2, 
+    if (new)
+        par(mfcol = c(nrows, ncols), mar = c(2, 1, 2, 1), oma = c(2,
             2, 0, 0))
-    if (verbose) 
+    if (verbose)
         cat("Making plots of parameters:\n")
     if (length(grep("DEVrwalk", x = goodnames)) > 0) {
-        cat("\nNOTE: This model contains random walk deviates which are not\n", 
-            "fully implemented. Prior and bounds unavailable, so these are skipped\n", 
+        cat("\nNOTE: This model contains random walk deviates which are not\n",
+            "fully implemented. Prior and bounds unavailable, so these are skipped\n",
             "and fitrange is set to TRUE for those parameters.\n\n")
     }
     for (ipar in 1:npars) {
         parname <- goodnames[ipar]
-        if (verbose) 
+        if (verbose)
             cat("    ", parname, "\n")
         parline <- partable[partable$Label == parname, ]
         initval <- parline$Init
@@ -2070,7 +2070,7 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
         Ptype <- parline$Pr_type
         Psd <- parline$Pr_SD
         Pr <- parline$Prior
-        if (substr(parname, 1, 9) %in% substr(recdevlabels, 1, 
+        if (substr(parname, 1, 9) %in% substr(recdevlabels, 1,
             9)) {
             initval <- 0
             Pmin <- recdevmin
@@ -2089,7 +2089,7 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
         xmax <- NULL
         if (!isdev) {
           x <- seq(Pmin, Pmax, length = 5000)
-            negL_prior <- GetPrior(Ptype = Ptype, Pmin = Pmin, 
+            negL_prior <- GetPrior(Ptype = Ptype, Pmin = Pmin,
                 Pmax = Pmax, Pr = Pr, Psd = Psd, Pval = x)
             prior <- exp(-1 * negL_prior)
         }
@@ -2123,7 +2123,7 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
                 goodpost <- TRUE
             }
             else {
-                cat("Error! parameter '", parname, "', not found in '", 
+                cat("Error! parameter '", parname, "', not found in '",
                   postfile, "'.\n", sep = "")
             }
         }
@@ -2137,9 +2137,9 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
                 xmax <- min(Pmax, xmax, na.rm = TRUE)
             }
             else {
-                if (!isdev) 
+                if (!isdev)
                   xmin <- Pmin
-                if (!isdev) 
+                if (!isdev)
                   xmax <- Pmax
             }
             xlim2 <- c(xmin, xmax)
@@ -2151,29 +2151,29 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
             jpar <- (1:ncol(posts))[names(posts) == parname]
             post <- posts[, jpar]
             breakvec <- seq(xmin, xmax, length = 50)
-            if (min(breakvec) > min(post)) 
+            if (min(breakvec) > min(post))
                 breakvec <- c(min(post), breakvec)
-            if (max(breakvec) < max(post)) 
+            if (max(breakvec) < max(post))
                 breakvec <- c(breakvec, max(post))
             posthist <- hist(post, plot = FALSE, breaks = breakvec)
             postmedian <- median(post)
             ymax <- max(ymax, max(posthist$density), na.rm = FALSE)
         }
-        if (is.null(newheaders)) 
+        if (is.null(newheaders))
             header <- parname
         else header <- newheaders[ipar]
-        if (is.null(ylim)) 
+        if (is.null(ylim))
             ylim2 <- c(0, 1.1 * ymax)
         else ylim2 <- ylim
-        plot(0, type = "n", xlim = xlim2, ylim = ylim2, xaxs = xaxs, 
-            yaxs = "i", xlab = "", ylab = "", main = header, 
+        plot(0, type = "n", xlim = xlim2, ylim = ylim2, xaxs = xaxs,
+            yaxs = "i", xlab = "", ylab = "", main = header,
             cex.main = 1, axes = FALSE)
         axis(1)
         colval <- colvec[4]
         if (showpost & goodpost) {
-            plot(posthist, add = TRUE, freq = FALSE, col = colval, 
+            plot(posthist, add = TRUE, freq = FALSE, col = colval,
                 border = colval)
-            abline(v = postmedian, col = colvec[5], lwd = 2, 
+            abline(v = postmedian, col = colvec[5], lwd = 2,
                 lty = ltyvec[3])
         }
         if (!isdev & showprior) {
@@ -2182,8 +2182,8 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
         if (showmle) {
             if (!is.na(parsd) && parsd > 0) {
                 lines(x, mle, col = colvec[1], lwd = 1, lty = ltyvec[1])
-                lines(rep(finalval, 2), c(0, dnorm(finalval, 
-                  finalval, parsd) * mlescale), col = colvec[1], 
+                lines(rep(finalval, 2), c(0, dnorm(finalval,
+                  finalval, parsd) * mlescale), col = colvec[1],
                   lty = ltyvec[1])
             }
             else {
@@ -2192,7 +2192,7 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
         }
         if (showinit) {
             par(xpd = NA)
-            points(initval, -0.02 * ymax, col = colvec[2], pch = 17, 
+            points(initval, -0.02 * ymax, col = colvec[2], pch = 17,
                 cex = 1.2)
             par(xpd = FALSE)
         }
@@ -2201,15 +2201,15 @@ function (dir = "c:/path/", mle.dir, repfile = "Report.sso", xlab = "Parameter v
             mtext(xlab, side = 1, line = 0.5, outer = TRUE)
             mtext(ylab, side = 2, line = 0.5, outer = TRUE)
             if (showlegend) {
-                showvec <- c(showprior, showmle, showpost, showpost, 
+                showvec <- c(showprior, showmle, showpost, showpost,
                   showinit)
-                legend("topleft", cex = 1.2, bty = "n", pch = c(NA, 
-                  NA, 15, NA, 17)[showvec], lty = c(ltyvec[2], 
-                  ltyvec[1], NA, ltyvec[3], NA)[showvec], lwd = c(2, 
-                  1, NA, 2, NA)[showvec], col = c(colvec[3], 
-                  colvec[1], colvec[4], colvec[5], colvec[2])[showvec], 
-                  pt.cex = c(1, 1, 2, 1, 1)[showvec], legend = c("prior", 
-                    "max. likelihood", "posterior", "posterior median", 
+                legend("topleft", cex = 1.2, bty = "n", pch = c(NA,
+                  NA, 15, NA, 17)[showvec], lty = c(ltyvec[2],
+                  ltyvec[1], NA, ltyvec[3], NA)[showvec], lwd = c(2,
+                  1, NA, 2, NA)[showvec], col = c(colvec[3],
+                  colvec[1], colvec[4], colvec[5], colvec[2])[showvec],
+                  pt.cex = c(1, 1, 2, 1, 1)[showvec], legend = c("prior",
+                    "max. likelihood", "posterior", "posterior median",
                     "initial value")[showvec])
             }
         }
