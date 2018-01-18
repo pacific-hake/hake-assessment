@@ -370,7 +370,7 @@ make.est.numbers.at.age.table <- function(model,
     dat <- cbind(yrs, c.age)
   }else if(table.type == 4){
     ## Catch-at-age in biomass
-    wt.at.age <- wt.at.age[wt.at.age$yr %in% yrs,]
+    wt.at.age <- wt.at.age[wt.at.age$Yr %in% yrs,]
     wt.at.age <- wt.at.age[,-c(1:6, 28)]
     dat <- c.age * wt.at.age
     csv.dat <- cbind(yrs, dat)
@@ -387,19 +387,19 @@ make.est.numbers.at.age.table <- function(model,
     dat <- n.age.b
     dat <- dat[,-1]
     ## If needed, add years using mean across years
-    missing.yrs <- as.numeric(yrs)[!as.numeric(yrs) %in% abs(wt.at.age$yr)]
+    missing.yrs <- as.numeric(yrs)[!as.numeric(yrs) %in% abs(wt.at.age$Yr)]
     if(length(missing.yrs) > 0){
       ## get mean vector (assuming it is the one associated with -1966)
-      mean.wt.at.age <- wt.at.age[wt.at.age$yr == -1966,]
+      mean.wt.at.age <- wt.at.age[wt.at.age$Yr == -1966,]
       ## loop over missing years (if any present)
       for(iyr in 1:length(missing.yrs)){
-        mean.wt.at.age$yr <- missing.yrs[iyr]
+        mean.wt.at.age$Yr <- missing.yrs[iyr]
         wt.at.age <- rbind(wt.at.age, mean.wt.at.age)
       }
       ## sort by year just in case the missing years weren't contiguous
-      wt.at.age <- wt.at.age[order(abs(wt.at.age$yr)),]
+      wt.at.age <- wt.at.age[order(abs(wt.at.age$Yr)),]
     }
-    wt.at.age <- wt.at.age[wt.at.age$yr %in% yrs,]
+    wt.at.age <- wt.at.age[wt.at.age$Yr %in% yrs,]
     wt.at.age <- wt.at.age[,-c(1:6, 28)]
     dat <- dat * wt.at.age
     dat <- cbind(yrs, dat)
@@ -529,22 +529,22 @@ make.cohort.table <- function(model,
   ## Extract weight-at-age for the fishery (fleet 1)
   waa <- model$wtatage[model$wtatage$fleet == 1,]
   ## if needed, add years to weight-at-age matrix using mean across years
-  missing.yrs <- as.numeric(yrs)[!as.numeric(yrs) %in% abs(waa$yr)]
+  missing.yrs <- as.numeric(yrs)[!as.numeric(yrs) %in% abs(waa$Yr)]
   if(length(missing.yrs)>0){
     # get mean vector (assuming it is the one associated with -1966)
-    mean.waa <- waa[waa$yr==-1966,]
+    mean.waa <- waa[waa$Yr==-1966,]
     # loop over missing years (if any present)
     for(iyr in 1:length(missing.yrs)){
-      mean.waa$yr <- missing.yrs[iyr]
+      mean.waa$Yr <- missing.yrs[iyr]
       waa <- rbind(waa, mean.waa)
     }
     # sort by year just in case the missing years weren't contiguous
     # (this is probably not needed)
-    waa <- waa[order(abs(waa$yr)),]
+    waa <- waa[order(abs(waa$Yr)),]
   }
   # strip off initial columns of waa matrix (except year)
   waa <- waa[,-c(2:6, 28)]
-  waa$yr <- abs(waa$yr)
+  waa$Yr <- abs(waa$Yr)
   coh.waa <- get.cohorts(waa, cohorts)
 
   ## Catch-at-age
@@ -558,7 +558,7 @@ make.cohort.table <- function(model,
   ages <- 0:(ncol(caa) - 2)
 
   ## Start biomass-at-age
-  waa <- waa[waa$yr %in% yrs,]
+  waa <- waa[waa$Yr %in% yrs,]
   baa <- cbind(naa$Yr, naa[,-1] * waa[,-1] / weight.factor)
   coh.baa <- get.cohorts(baa, cohorts)
 
