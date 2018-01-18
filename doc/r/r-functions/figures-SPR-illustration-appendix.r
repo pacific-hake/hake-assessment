@@ -17,12 +17,12 @@ make.SPR.illustration <- function(model){
                                               cols], 1))
   # average weight at age
   wt.vec.avg <- as.numeric(head(model$wtatage[model$wtatage$fleet==-1 &
-                                                model$wtatage$yr==1966,
+                                                model$wtatage$Yr==1966,
                                               cols], 1))
 
   # ending year weight at age
   wt.vec.endyr <- as.numeric(head(model$wtatage[model$wtatage$fleet==-1 &
-                                                  abs(model$wtatage$yr)==model$endyr,
+                                                  abs(model$wtatage$Yr)==model$endyr,
                                                 cols], 1))
 
   # numbers at age in equilibrium
@@ -55,7 +55,7 @@ make.SPR.illustration <- function(model){
   axis(1, at=-1:22)
   axis(2, las=1)
   mtext("Numbers per recruit", font=2, cex=1, at=0, adj=0)
-  legend(x=x.legend, y=1, fill=c(col2, col1), border=NA, 
+  legend(x=x.legend, y=1, fill=c(col2, col1), border=NA,
          legend=c("No fishing","With fishing"), bty='n')
 
   # make plot of biomass per recruit
