@@ -180,7 +180,6 @@ cohortCatch <- function(cohort, catage, ages = 0:20) {
   w <- base.model$wtatage
   waa <- w[w$Fleet == 1 & w$Yr %in% cohort.yrs, ]
   waa <- waa[, names(waa) %in% ages]
-  browser()
   catch.waa <- as.matrix(caa * waa)
 
   ind <- 1:(nrow(caa) + 1)
