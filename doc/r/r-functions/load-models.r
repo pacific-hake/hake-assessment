@@ -243,25 +243,25 @@ calc.mcmc <- function(mcmc,
 
   ## 2e6 used here because biomass will be shown in the millions of tonnes
   ##  and it is female only.
-  spb <- mcmc[,grep("SSB",names(mcmc))]/2e6
-  svirg <- quantile(spb[,names(spb) == "SSB_Virgin"],
+  ssb <- mcmc[,grep("SSB",names(mcmc))]/2e6
+  svirg <- quantile(ssb[,names(ssb) == "SSB_Virgin"],
                     c(lower, 0.5, upper))
-  sinit <- quantile(spb[,names(spb) == "SSB_Initial"],
+  sinit <- quantile(ssb[,names(ssb) == "SSB_Initial"],
                     c(lower, 0.5, upper))
 
   ## sinit.post is saved here so that depletion calculations can be done for
   ##  each posterior,
-  sinit.post <- spb[,names(spb) == "SSB_Initial"]
+  sinit.post <- ssb[,names(ssb) == "SSB_Initial"]
 
-  names(spb) <- gsub("SSB_", "", names(spb))
+  names(ssb) <- gsub("SSB_", "", names(ssb))
   cols.to.strip <- c("Virgin", "Initial")
-  spb <- strip.columns(spb, cols.to.strip)
+  ssb <- strip.columns(ssb, cols.to.strip)
 
-  slower <- apply(spb, 2, quantile, prob = lower)
-  smed   <- apply(spb, 2, quantile, prob = 0.5)
-  supper <- apply(spb, 2, quantile, prob = upper)
+  slower <- apply(ssb, 2, quantile, prob = lower)
+  smed   <- apply(ssb, 2, quantile, prob = 0.5)
+  supper <- apply(ssb, 2, quantile, prob = upper)
 
-  depl   <- apply(spb, 2, function(x){x / sinit.post})
+  depl   <- apply(ssb, 2, function(x){x / sinit.post})
   dlower <- apply(depl, 2, quantile, prob = lower)
   dmed   <- apply(depl, 2, quantile, prob = 0.5)
   dupper <- apply(depl, 2, quantile, prob = upper)
