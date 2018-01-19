@@ -61,7 +61,7 @@ load.ss.files <- function(model.dir,
                                          key.posts,
                                          key.posts.fn,
                                          nuisance.posts.fn)
-    ## Do the mcmc calculations, e.g. quantiles for SB, SPB, DEPL, RECR, RECRDEVS
+    ## Do the mcmc calculations, e.g. quantiles for SB, SSB, DEPL, RECR, RECRDEVS
     model$mcmccalcs <- calc.mcmc(model$mcmc)
 
   }
@@ -243,17 +243,17 @@ calc.mcmc <- function(mcmc,
 
   ## 2e6 used here because biomass will be shown in the millions of tonnes
   ##  and it is female only.
-  spb <- mcmc[,grep("SPB",names(mcmc))]/2e6
-  svirg <- quantile(spb[,names(spb) == "SPB_Virgin"],
+  spb <- mcmc[,grep("SSB",names(mcmc))]/2e6
+  svirg <- quantile(spb[,names(spb) == "SSB_Virgin"],
                     c(lower, 0.5, upper))
-  sinit <- quantile(spb[,names(spb) == "SPB_Initial"],
+  sinit <- quantile(spb[,names(spb) == "SSB_Initial"],
                     c(lower, 0.5, upper))
 
   ## sinit.post is saved here so that depletion calculations can be done for
   ##  each posterior,
-  sinit.post <- spb[,names(spb) == "SPB_Initial"]
+  sinit.post <- spb[,names(spb) == "SSB_Initial"]
 
-  names(spb) <- gsub("SPB_", "", names(spb))
+  names(spb) <- gsub("SSB_", "", names(spb))
   cols.to.strip <- c("Virgin", "Initial")
   spb <- strip.columns(spb, cols.to.strip)
 
@@ -563,14 +563,14 @@ calc.risk <- function(forecast.outputs, ## A list of length = number of forecast
   metric <- function(x, yr){
     out <- NULL
     out[1] <- max(x[, paste0("ForeCatch_", yr)])
-    out[2] <- sum(x[, paste0("SPB_", yr + 1)] < x[, paste0("SPB_", yr)]) / nrow(x) * 100.0
+    out[2] <- sum(x[, paste0("SSB_", yr + 1)] < x[, paste0("SSB_", yr)]) / nrow(x) * 100.0
     out[3] <- sum(x[, paste0("Bratio_", yr + 1)] < 0.40) / nrow(x) * 100.0
     out[4] <- sum(x[, paste0("Bratio_", yr + 1)] < 0.25) / nrow(x) * 100.0
     out[5] <- sum(x[, paste0("Bratio_", yr + 1)] < 0.10) / nrow(x) * 100.0
     out[6] <- sum(x[, paste0("SPRratio_", yr)] > 1.00) / nrow(x) * 100.0
     out[7] <- sum(x[, paste0("ForeCatch_", yr + 1)] < out[1]) / nrow(x) * 100.0
     names(out) <- c(paste0("ForeCatch_", yr),
-                    paste0("SPB_", yr + 1, "<SPB_", yr),
+                    paste0("SSB_", yr + 1, "<SSB_", yr),
                     paste0("Bratio_", yr + 1, "<0.40"),
                     paste0("Bratio_", yr + 1, "<0.25"),
                     paste0("Bratio_", yr + 1, "<0.10"),
