@@ -39,16 +39,28 @@ make.catches.table.Can(catches,
 @
 
 <<catches.total, results='asis', echo=FALSE>>=
-make.catches.table.total(catches, start.yr=start.yr, end.yr=end.yr,
-                   xcaption = paste("Total U.S., Canadian and coastwide catches  of \\fishname\\ (t) from ", start.yr, "-", last.data.yr, ". The percentage of the total catch from each country's waters is also given.", sep=""),
-                   xlabel = "tab:intro-catches-total",
-                   font.size = 11,
-                   space.size = 12)
+make.catches.table.total(catches,
+                         start.yr=start.yr,
+                         end.yr=end.yr,
+                         xcaption = paste("Total U.S., Canadian and coastwide
+                           catches  of \\fishname\\ (t) from ",
+                           start.yr,
+                           "-",
+                           last.data.yr,
+                           ". The percentage of the total catch from each
+                           country's waters is also given.",
+                           sep=""),
+                         xlabel = "tab:intro-catches-total",
+                         font.size = 11,
+                         space.size = 12)
 @
 
 <<main.landings.tac.table, results='asis', echo=FALSE>>=
-make.landings.tac.table(landings.vs.tac, start.yr=end.yr-10, end.yr=end.yr-1,
-                        xcaption = "Recent trends in \\fishname\\ landings and management decisions.",
+make.landings.tac.table(landings.vs.tac,
+                        start.yr=end.yr-10,
+                        end.yr=end.yr-1,
+                        xcaption = "Recent trends in \\fishname\\ landings and
+                           management decisions.",
                         xlabel = "tab:main-landings-tac",
                         font.size = 8,
                         space.size = 10,
@@ -57,7 +69,18 @@ make.landings.tac.table(landings.vs.tac, start.yr=end.yr-10, end.yr=end.yr-1,
 
 <<main.sampling.history.table, results='asis', echo=FALSE>>=
 make.sampling.history.table(sampling.history,
-                            xcaption = "Annual summary of U.S. and Canadian fishery sampling included in this stock assessment. Canadian, foreign, joint-venture and at-sea sectors are in number of hauls sampled for age-composition, the shore-based sector is in number of trips. A dash (--) indicates there was no catch to sample. A number indicates how many samples from the catch were taken. The number of fish with otoliths sampled per haul has varied over time but is typically small (current protocols for the U.S. At-Sea sectors is 2 fish per haul).",
+                            xcaption = "Annual summary of U.S. and Canadian
+                              fishery sampling included in this stock
+                              assessment. Canadian, foreign, joint-venture and
+                              at-sea sectors are in number of hauls sampled for
+                              age-composition, the shore-based sector is in
+                              number of trips. A dash (--) indicates there was
+                              no catch to sample. A number indicates how many
+                              samples from the catch were taken. The number of
+                              fish with otoliths sampled per haul has varied
+                              over time but is typically small (current
+                              protocols for the U.S. At-Sea sectors is 2~fish
+                              per haul).",
                             xlabel = "tab:main-sampling-history",
                             font.size = 8,
                             space.size = 10)
@@ -72,10 +95,10 @@ make.us.age.data.table(us.cp.age,
                        fleet = 1,
                        start.yr = 2008,
                        end.yr = last.data.yr,
-                       xcaption = paste0("Recent age proportion data used in the assessment for ",
-                                         "the U.S. Catcher-processor fleet. Proportions are ",
-                                         "calculated from numbers of individuals in each age group. ",
-                                         "Age 15 is an accumulator group."),
+                       xcaption = paste0("Recent age proportion data used in
+                         the assessment for the U.S. Catcher-processor fleet.
+                         Proportions are calculated from numbers of individuals
+                         in each age group. Age 15 is an accumulator group."),
                        xlabel = "tab:main-us-cp-age-data",
                        font.size = 12,
                        space.size = 13,
@@ -87,10 +110,11 @@ make.us.age.data.table(us.ms.age,
                        fleet = 2,
                        start.yr = 2008,
                        end.yr = last.data.yr,
-                       xcaption = paste0("Recent age proportion data used in the assessment for ",
-                                         "the U.S. Mothership fleet. Proportions are ",
-                                         "calculated from numbers of individuals in each age group. ",
-                                         "Age 15 is an accumulator group."),
+                       xcaption = paste0("Recent age proportion data used in 
+                         the assessment for the U.S. Mothership fleet. 
+                         Proportions are calculated from numbers of 
+                         individuals in each age group. Age 15 is an 
+                         accumulator group."),
                        xlabel = "tab:main-us-ms-age-data",
                        font.size = 12,
                        space.size = 13,
