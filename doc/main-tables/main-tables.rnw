@@ -3,19 +3,39 @@
 \section{TABLES} \label{sec:tables}
 \vspace{10mm}
 <<catches.US, results='asis', echo=FALSE>>=
-make.catches.table.US(catches, start.yr=start.yr, end.yr=end.yr,
-                   xcaption = paste("Annual catches of \\fishname\\ (t) in U.S. waters by sector, ", start.yr, "-", last.data.yr, ". Tribal catches are included in the sector totals. Research Catch includes landed catch associated with research-related activities. Catch associated with surveys and discarded bycatch in fisheries not targeting hake is not currently included in the model.", sep=""),
-                   xlabel = "tab:intro-catches-US",
-                   font.size = 10,
-                   space.size = 11)
+make.catches.table.US(catches,
+                      start.yr=start.yr,
+                      end.yr=end.yr,
+                      xcaption = paste("Annual catches of \\fishname\\ (t) in
+                        U.S. waters by sector, ",
+                        start.yr,
+                        "-",
+                        last.data.yr,
+                        ". Tribal catches are included in the sector totals.
+                        Research Catch includes landed catch associated with
+                        research-related activities. Catch associated with
+                        surveys and discarded bycatch in fisheries not targeting
+                        hake is not currently included in the model.",
+                        sep=""),
+                      xlabel = "tab:intro-catches-US",
+                      font.size = 10,
+                      space.size = 11)
 @
 
 <<catches.Can, results='asis', echo=FALSE>>=
-make.catches.table.Can(catches, start.yr=start.yr, end.yr=end.yr,
-                   xcaption = paste("Annual catches of \\fishname\\ (t) in Canadian  waters by sector, ", start.yr, "-", last.data.yr, ".", sep=""),
-                   xlabel = "tab:intro-catches-Can",
-                   font.size = 11,
-                   space.size = 12)
+make.catches.table.Can(catches,
+                       start.yr=start.yr,
+                       end.yr=end.yr,
+                       xcaption = paste("Annual catches of \\fishname\\ (t) in
+                         Canadian  waters by sector, ",
+                         start.yr,
+                         "-",
+                         last.data.yr,
+                         ".",
+                         sep=""),
+                       xlabel = "tab:intro-catches-Can",
+                       font.size = 11,
+                       space.size = 12)
 @
 
 <<catches.total, results='asis', echo=FALSE>>=
