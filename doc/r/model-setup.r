@@ -423,7 +423,7 @@ build <- function(run.fore = FALSE,
   for(model.nm in model.names.list){
     if(model.nm == "02_2017base_3.30" |
        model.nm == "03_2017base_3.30_tv_pars"  |
-       base.model.dir.name == "2018.18_temporary_base"){
+       model.nm == "2018.18_temporary_base"){
       ss.version.tmp = "3.30"
     }
     create.rdata.file(
