@@ -941,8 +941,8 @@ increased from the base model value of 0.1 to 0.2 and 0.3. Maximum likelihood
 estimates of natural mortality increased from
 \Sexpr{round(base.model$parameters$Value[1],3)} for the base model (prior
 standard deviation of 0.1) to
-\Sexpr{round(sens.models.4[[which(sens.model.names.4=="Natural mortality SD
-0.3")]]$parameters$Value[1],3)} for the sensitivity run with the prior standard
+\Sexpr{round(sens.models.4[[which(sens.model.names.4=="Natural mortality SD 0.3")]]$parameters$Value[1],3)} 
+for the sensitivity run with the prior standard
 deviation set to 0.3. In addition to allowing a higher estimated value for
 natural mortality, the broader prior in M also increased the overall scale of
 the population, the estimated stock status relative to $B_0$, and the
@@ -955,8 +955,8 @@ The mean of the prior distribution on steepness was decreased from 0.777 (base)
 to 0.5, and steepness was also fixed at 1.0. The decrease in the mean of the
 prior resulted in a change in the maximum likelihood estimate of steepness
 \Sexpr{round(base.model$parameters["SR_BH_steep","Value"],3)} to
-\Sexpr{round(sens.models.4[[which(sens.model.names.4=="Steepness prior mean
-0.5")]]$parameters["SR_BH_steep","Value"],3)}. However, neither steepness
+\Sexpr{round(sens.models.4[[which(sens.model.names.4=="Steepness prior mean 0.5")]]$parameters["SR_BH_steep","Value"],3)}. 
+However, neither steepness
 sensitivity had a strong impact on the overall model results
 (Figures~\ref{fig:main-biomass-base-alternative-4} and
 \ref{fig:main-status-base-alternative-4}). The small influence of steepness on
