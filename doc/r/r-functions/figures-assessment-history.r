@@ -10,7 +10,7 @@ make.assessment.history.plot <- function(base,
   ## 	lines(yrvec,upper,lty=3,col=color)
   ## }
 
-  ## The csv file should be set up with blanks for SPB in the most recent year
+  ## The csv file should be set up with blanks for SSB in the most recent year
   ##  it is read in from all.r
   xx <- assessment.history
   xx <- xx[xx$Value == "SB million mt",]
@@ -22,11 +22,11 @@ make.assessment.history.plot <- function(base,
 
   yearInd <- grep("X", names(xx))
   years <- as.numeric(substring(names(xx[yearInd]), 2))
-  latestAssess <- base$mcmc[,grep("SPB", names(base$mcmc))][,-c(1, 2)]
+  latestAssess <- base$mcmc[,grep("SSB", names(base$mcmc))][,-c(1, 2)]
   latestYrs <- as.numeric(substring(names(latestAssess), 5))
 
   xx[nrow(xx), paste0("X", years[years %in% latestYrs])] <-
-    apply(latestAssess, 2, median)[paste0("SPB_", years[years %in% latestYrs])] / 2e6
+    apply(latestAssess, 2, median)[paste0("SSB_", years[years %in% latestYrs])] / 2e6
 
   slower <- base$mcmccalcs$slower
   supper <- base$mcmccalcs$supper
