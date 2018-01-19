@@ -523,7 +523,10 @@ series of median recruitment deviation estimates for the years 1970-2014, which
 are informed by the age compositions, is
 \Sexpr{f(sd(base.model$mcmccalcs$devmed[names(base.model$mcmccalcs$devmed) >=
 1970 & names(base.model$mcmccalcs$devmed) <= 2014]), 2)}.
-% This value is consistent with the base model value of $\sigma_r = \Sexpr{f(base.model$par[base.model$par$Label=="SR_sigmaR",]$Value, 1)}$.
+% This value is consistent with the base model value of 
+% $\sigma_r = [backslash]Sexpr{f(base.model$par[base.model$par$Label=="SR_sigmaR",]$Value, 1)}$.
+% [backslash] to avoid Sexpr being calculated - .par no longer loaded in.
+% Should probably include the sentence - using \Sexpr{base.model$sigma_R_in}
 %\newpage
 
 \subsubsub{Exploitation status}
