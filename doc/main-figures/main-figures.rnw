@@ -176,7 +176,7 @@ make.survey.age1.plot(age.1.index,
 \begin{figure}[H]
 \begin{center}
 <<main.bridge.biomass, fig.height=6, fig.width=8>>=
-bridge.density.names <- c("SPB_Virgin",
+bridge.density.names <- c("SSB_Virgin",
                           "R0",
                           "Main_RecrDev_2010",
                           "Late_RecrDev_2012",
@@ -329,7 +329,7 @@ par <- oldpar
 make.mcmc.diag.hists.plot(base.model)
 @
 \end{center}
-\caption{Summary histograms of MCMC diagnostics for all base model parameters 
+\caption{Summary histograms of MCMC diagnostics for all base model parameters
   %along with derived
   %quantities for the time-series of spawning biomass, and relative spawning biomass.
   together with the derived time series of
@@ -684,7 +684,7 @@ make.mcmc.vs.mle.plot(base.model,
 @
 \end{center}
 \caption{A comparison of maximum likelihood estimates with 95\% confidence intervals determined from asymptotic variance estimates (red)
-  to the posterior distribution with 95\% credibility intervals (black). The posterior median is shown for spawning biomass 
+  to the posterior distribution with 95\% credibility intervals (black). The posterior median is shown for spawning biomass
   while the posterior mean recruitment is displayed in the lower panel to be more comparable to the MLE value.}
 \label{fig:main-mle.vs.mcmc}
 \end{figure}
@@ -796,7 +796,7 @@ make.age.comp.forecast.plot(base.model)
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-  
+
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
