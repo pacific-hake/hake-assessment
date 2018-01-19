@@ -42,7 +42,7 @@ make.mcmc.sr.variability.plot <- function(model,   ## model is an mcmc run and i
   #  [1] 1.001241  # should be close to 1
   #  [1] 0.3750798 # should be close to 0.38
   #  [1] 1.400605  # should be close to 1.4
-  
+
   ## plot of density on right-hand side
   par(mar = c(4, 1.5, 1, 1) + 0.1)
   plot(0,
@@ -93,7 +93,7 @@ make.mcmc.sr.variability.plot <- function(model,   ## model is an mcmc run and i
 
   r.ratio <- model$mcmc[names(model$mcmc) %in% c("Recr_Virgin", paste0("Recr_", yrs))]
   mn.r.virg <- median(r.ratio[,1])
-  b.ratio <- model$mcmc[names(model$mcmc) %in% c("SPB_Virgin", paste0("SPB_", yrs))]
+  b.ratio <- model$mcmc[names(model$mcmc) %in% c("SSB_Virgin", paste0("SSB_", yrs))]
 
   ## standardize relative to equilibrium
   b.ratio <- b.ratio / b.ratio[,1]

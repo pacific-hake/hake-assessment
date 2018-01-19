@@ -208,11 +208,11 @@ model$dat       - data file as read in by the SS_readdat function in the r4ss pa
 model$mcmc      - mcmc output from the model as read in by the SSgetMCMC function or NULL if none for this model
 model$mcmcpath  - The path where this mcmc model is located
 model$mcmccalcs - calculations done on the mcmc outputs for this model
-  model$mcmccalcs$svirg     - SPB virgin biomass, vector of length 3 (2.5%, 50%, 97.5%)
-  model$mcmccalcs$sinit     - SPB initial biomass, vector of length 3 (2.5%, 50%, 97.5%)
-  model$mcmccalcs$slower    - SPB lower confidence (2.5%)
-  model$mcmccalcs$smed      - SPB median (50%)
-  model$mcmccalcs$supper    - SPB upper confidence (97.5%)
+  model$mcmccalcs$svirg     - SSB virgin biomass, vector of length 3 (2.5%, 50%, 97.5%)
+  model$mcmccalcs$sinit     - SSB initial biomass, vector of length 3 (2.5%, 50%, 97.5%)
+  model$mcmccalcs$slower    - SSB lower confidence (2.5%)
+  model$mcmccalcs$smed      - SSB median (50%)
+  model$mcmccalcs$supper    - SSB upper confidence (97.5%)
   model$mcmccalcs$dlower    - Depletion lower confidence (2.5%)
   model$mcmccalcs$dmed      - Depletion median (50%)
   model$mcmccalcs$dupper    - Depletion upper confidence (97.5%)

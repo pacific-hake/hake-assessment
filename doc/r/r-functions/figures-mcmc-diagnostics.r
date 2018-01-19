@@ -62,7 +62,7 @@ make.mcmc.diag.hists.plot <- function(model ## model is an mcmc run and is the o
   mcmc.stats <- mcmc.nuisance(model$mcmcpath,
                               run = "",
                               labelstrings = c(model$parameters$Label,
-                                               "SPB_",
+                                               "SSB_",
                                                "Bratio_"),
                               bothfiles = TRUE)
   par <- oldpar
