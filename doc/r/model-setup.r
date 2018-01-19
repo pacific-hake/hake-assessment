@@ -97,7 +97,8 @@ if(verbose) cat0("Key posteriors file: \n  ", nuisance.posteriors.file)
 ## -----------------------------------------------------------------------------
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
-base.model.dir.name <- "03_2017base_3.30_tv_pars"
+base.model.dir.name <- "2018.18_temporary_base"
+##base.model.dir.name <- "03_2017base_3.30_tv_pars"
 ##base.model.dir.name <- "45_BasePreSRG_v4"
 base.model.name <- paste(assess.yr, "Base model SS 3.30")
 verify.models(model.dir, base.model.dir.name, base.model.name)
@@ -382,7 +383,8 @@ build <- function(run.fore = FALSE,
   ## Base model
   ss.version.tmp = ss.version
   if(base.model.dir.name == "02_2017base_3.30" |
-     base.model.dir.name == "03_2017base_3.30_tv_pars"){
+     base.model.dir.name == "03_2017base_3.30_tv_pars" |
+     base.model.dir.name == "2018.18_temporary_base"){
     ss.version.tmp = "3.30"
   }
   create.rdata.file(model.name = base.model.dir.name,
