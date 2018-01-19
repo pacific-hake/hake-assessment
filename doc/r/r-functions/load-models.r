@@ -41,6 +41,7 @@ load.ss.files <- function(model.dir,
   par.fn <- file.path(model.dir, model.dir.listing[par.fn.ind])
   model$path <- model.dir
   model$dat.file <- dat.fn
+browser()
   model$dat <- SS_readdat(dat.fn, version = ss.version, verbose = ss.verbose)
   model$ctl.file <- ctl.fn
   model$ctl <- readLines(ctl.fn)

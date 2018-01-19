@@ -2,7 +2,7 @@
 ## Set verbosity for this project (R code) and SS shell calls
 ## -----------------------------------------------------------------------------
 verbose <- TRUE
-ss.verbose <- FALSE
+ss.verbose <- TRUE #FALSE
 
 ## -----------------------------------------------------------------------------
 ## Year for this assessment - default is current year
