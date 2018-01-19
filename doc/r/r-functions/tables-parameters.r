@@ -604,7 +604,7 @@ make.short.parameter.estimates.table <- function(model,
     mcmc.meds <- c(mcmc.meds, rec)
 
     ## Add B0
-    b0 <- median(x$mcmc$SPB_Initial / 2) ## divide by 2 for females
+    b0 <- median(x$mcmc$SSB_Initial / 2) ## divide by 2 for females
     b0 <- b0 / 1000 ## To make B0 in the thousands
     mcmc.meds <- c(mcmc.meds, b0)
 
