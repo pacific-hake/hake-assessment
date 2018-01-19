@@ -46,7 +46,7 @@ browser()
   model$ctl.file <- ctl.fn
   model$ctl <- readLines(ctl.fn)
   model$par.file <- par.fn
-  model$par <- readLines(par.fn)
+  ## model$par <- readLines(par.fn)
   ## Set default mcmc members to NA. Later code depends on this.
   model$mcmc <- NA
   ## Set the mcmc path. This doesn't mean it exists.
