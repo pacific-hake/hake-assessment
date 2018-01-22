@@ -322,9 +322,13 @@ Copy and paste all model output files into new mcmc/ directory. Change starter f
 
         0       # DOS display detail: 0,1,2
 
-Commands by Ian for model 41 (equivalent to those used by Aaron for model 19)
+Commands by Ian in 2017:
 
         ss3 -mcmc 12000000 -mcsave 10000 -mcseed 36519
+        ss3 -mceval
+
+Commands used for "2018.18_temporary_base" model just to get some MCMC results:
+        ss3 -mcmc 12000 -mcsave 10 -mcseed 36519
         ss3 -mceval
 
 Where that seed is the ADMB default. Allan used -mcseed 5242 but there's no reason why that seed is better than any other.
