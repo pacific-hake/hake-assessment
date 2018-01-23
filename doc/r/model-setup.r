@@ -7,8 +7,7 @@ ss.verbose <- FALSE
 ## -----------------------------------------------------------------------------
 ## Year for this assessment - default is current year
 ## -----------------------------------------------------------------------------
-## assess.yr <- as.numeric(substr(Sys.Date(), 1, 4))
-assess.yr <- as.numeric(substr(Sys.Date(), 1, 4)) - 1
+assess.yr <- 2018
 if(verbose) cat0("Assessment year: \n  ", assess.yr)
 
 ## -----------------------------------------------------------------------------
