@@ -83,4 +83,4 @@ source("retrospective-setup.r")         ## Code to setup retrospective model run
 source("data-tables.r")                 ## Set up variables for data tables (from csv files).
 
 source("SSplotNumbers.r") ## Necessary to incorporate changes to make SS 3.30 work
-source("SS_output.r") ## Changed this function to work with new column names in wtatage file for SS 3.30.10
+
