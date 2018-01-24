@@ -49,6 +49,7 @@
 
 \usepackage[yyyymmdd]{datetime}
 \renewcommand{\dateseparator}{--}
+\newdateformat{usvardate}{\monthname[\THEMONTH] \ordinal{DAY}, \THEYEAR}
 
 %% For fitting the backscatter plot
 \usepackage{graphicx}
@@ -204,7 +205,7 @@ source("custom-knitr-variables.r")
 \author{Joint Technical Committee of the \fishname/Whiting Agreement \\ Between
   the Governments of the United States and Canada}
 
-\date{February 22, 2017}
+\date{\usvardate \today}
 
 \maketitle
 
