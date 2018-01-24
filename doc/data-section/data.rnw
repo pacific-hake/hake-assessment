@@ -282,6 +282,7 @@ likely due to age-composition than the environment, although 2013 showed some
 warmer than average sea-surface temperatures. In 2015, sea-surface temperatures
 were warmer again, resulting in a northern shift in the overall hake
 distribution.
+**Add something about 2017 survey.
 %%El Ni\~no conditions were prevalent in \Sexpr{last.assess.yr}, but an extreme 
 %% northern distribution was not observed by the survey.  More \fishname\ were 
 %% observed in Canadian waters, but a large amount of backscatter was observed 
@@ -301,8 +302,8 @@ for in catchability, but variability in the estimated survey biomass due to
 uncertainty in target strength is not explicitly accounted for in the
 assessment.
 
-Acoustic survey data from 1995 onward have been analyzed using geostatistical
-techniques (kriging), which accounts for spatial correlation to provide an
+Acoustic survey data from 1995 onward have been analyzed using the kriging 
+geostatistical technique, which accounts for spatial correlation to provide an
 estimate of total biomass as well as an estimate of the year-specific sampling
 variability due to patchiness of hake schools and irregular transects
 \citep{Petitgas1993, RivoirardSimmondsEtAl2000, MelloRose2005,
@@ -310,7 +311,7 @@ SimmondsMacLennan2006}. Advantages to the kriging approach are discussed in the
 2013 stock assessment \citep{JTC2013}.
 
 For the 2016 assessment \citep{JTC2016}, the data from all surveys since 1998
-was scrutinized and reanalyzed using consistent assumptions. These include:
+were scrutinized and reanalyzed using consistent assumptions. These include:
 
 \begin{itemize}
   
@@ -333,9 +334,10 @@ was scrutinized and reanalyzed using consistent assumptions. These include:
 
 However, the data from the 1995 survey was not in a format that could be
 processed, so the biomass estimate and associated age composition for that year
-were excluded from the model. Those 1995 data have now been processed in the
-same manner as the subsequent years and included in the time series
-(Table~\ref{tab:main-survey-comparison}).
+were excluded from the model in 2016. For the 2017 assessment \citep{JTC2017},
+the 1995 data were processed in the
+same manner as the subsequent years and included in that 
+assessment and the current 2018 one (Table~\ref{tab:main-survey-comparison}).
 
 As part of that data-processing step, it was discovered that the variogram used
 in the kriging for the 1998 data required a revision, which resulted in a
