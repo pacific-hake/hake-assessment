@@ -376,6 +376,7 @@ make.mcmc.diag.pairs.plot(base.model,
 make.mcmc.survey.fit.plot(base.model,
                           start.yr = survey.start.yr,
                           end.yr = survey.end.yr,
+                          surv.yrs = surv.yrs,
                           probs = c(0.025, 0.975),
                           y.max = 5.5e6)
 @
@@ -448,7 +449,7 @@ tv.selex.start.yr <- 1990
 tv.selex.ages <- 1:8
 tv.selex <- calc.tv.selex(base.model,
                           start.yr = tv.selex.start.yr,
-                          end.yr = last.data.yr,
+                          end.yr = last.data.yr - 1,
                           ages = tv.selex.ages,
                           probs = c(0.025, 0.975))
 make.tv.selex.plot(tv.selex)
@@ -473,7 +474,7 @@ tv.selex.left <- calc.tv.selex(base.model,
                                probs = c(0.025, 0.975))
 tv.selex.right <- calc.tv.selex(base.model,
                                 start.yr = 2002,
-                                end.yr = last.data.yr,
+                                end.yr = last.data.yr - 1,
                                 ages = tv.selex.ages,
                                 probs = c(0.025, 0.975))
 make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
@@ -495,10 +496,12 @@ oldpar <- par(no.readonly = TRUE)
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
 make.selex.uncertainty.lines.plot(base.model,
                                   ages = tv.selex.ages,
+                                  year = last.data.yr - 1,
                                   type = 2,
                                   probs = c(0.025, 0.975))
 make.selex.uncertainty.lines.plot(base.model,
                                   ages = tv.selex.ages,
+                                  year = last.data.yr - 1,
                                   type = 1,
                                   selex.list = tv.selex,
                                   probs = c(0.025, 0.975))
