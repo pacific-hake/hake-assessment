@@ -7,8 +7,7 @@ ss.verbose <- FALSE
 ## -----------------------------------------------------------------------------
 ## Year for this assessment - default is current year
 ## -----------------------------------------------------------------------------
-## assess.yr <- as.numeric(substr(Sys.Date(), 1, 4))
-assess.yr <- as.numeric(substr(Sys.Date(), 1, 4)) - 1
+assess.yr <- 2018
 if(verbose) cat0("Assessment year: \n  ", assess.yr)
 
 ## -----------------------------------------------------------------------------
@@ -70,7 +69,21 @@ if(verbose) cat0("End year for model: \n  ", end.yr)
 survey.start.yr <- 1995
 if(verbose) cat0("First survey year: \n  ", survey.start.yr)
 ## Last year in the survey timeseries
-survey.end.yr <- 2015
+survey.end.yr <- 2017
+## Years in which the survey took place
+surv.yrs <- c(1995,
+              1998,
+              2001,
+              2003,
+              2005,
+              2007,
+              2009,
+              2011,
+              2012,
+              2013,
+              2015,
+              2017)
+
 if(verbose) cat0("Last survey year: \n  ", survey.end.yr)
 ## Final year of data (This is what is the end year is in the model data files)
 last.data.yr <- end.yr - 1

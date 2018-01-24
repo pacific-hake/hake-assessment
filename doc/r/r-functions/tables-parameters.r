@@ -83,9 +83,9 @@ make.parameters.estimated.summary.table <- function(model,
   ## Remove all lines that start with a comment
   ctl <- ctl[-grep("^#.*", ctl)]
 
-  ## R0 is at line 48 of comment-stripped dataframe. Get it's values which can
+  ## R0 is at line 46 of comment-stripped dataframe. Get it's values which can
   ##  be indexed by the variables defined above
-  r0 <- fetch.and.split(ctl, 48)
+  r0 <- fetch.and.split(ctl, 46)
   r0.vals <- c(paste0("Log(",
                       latex.subscr(latex.italics("R"),
                                    "0"),
@@ -94,8 +94,8 @@ make.parameters.estimated.summary.table <- function(model,
                paste0("(", r0[lo], ",", r0[hi], ")"),
                prior.type[r0[p.type]])
 
-  ## Steepness is at line 49 of comment-stripped dataframe
-  h <- fetch.and.split(ctl, 49)
+  ## Steepness is at line 47 of comment-stripped dataframe
+  h <- fetch.and.split(ctl, 47)
   h.vals <- c(paste0("Steepness (",
                      latex.italics("h"),
                      ")"),
@@ -103,8 +103,8 @@ make.parameters.estimated.summary.table <- function(model,
               paste0("(", h[lo], ",", h[hi], ")"),
               fetch.prior.info(h, digits))
 
-  ## Recruitment variability (sigma_r) is at line 50 of comment-stripped dataframe
-  sig.r <- fetch.and.split(ctl, 50)
+  ## Recruitment variability (sigma_r) is at line 48 of comment-stripped dataframe
+  sig.r <- fetch.and.split(ctl, 48)
   sig.r.vals <- c(paste0("Recruitment variability (",
                          latex.italics("$\\sigma_r$"),
                          ")"),
@@ -118,11 +118,11 @@ make.parameters.estimated.summary.table <- function(model,
                     "NA",
                   fetch.prior.info(sig.r, digits))
 
-  ## Recruitment devs, lower and upper bound found on lines 54 and 55 of
+  ## Recruitment devs, lower and upper bound found on lines 66 and 67 of
   ##  comment-stripped dataframe
   ## The number of them comes from the arguments to this function (for now)
-  rec.dev.lb <- fetch.and.split(ctl, 54)[1]
-  rec.dev.ub <- fetch.and.split(ctl, 55)[1]
+  rec.dev.lb <- fetch.and.split(ctl, 66)[1]
+  rec.dev.ub <- fetch.and.split(ctl, 67)[1]
   rec.dev.vals <- c(paste0("Log recruitment deviations: ",
                            start.rec.dev.yr,
                            "--",
@@ -137,8 +137,8 @@ make.parameters.estimated.summary.table <- function(model,
                            latex.italics("$\\sigma_r$"),
                            ")"))
 
-  ## Natural mortality is at line 27 of comment-stripped dataframe
-  m <- fetch.and.split(ctl, 27)
+  ## Natural mortality is at line 25 of comment-stripped dataframe
+  m <- fetch.and.split(ctl, 25)
   m.vals <- c(paste0("Natural mortality (",
                      latex.italics("M"),
                      ")"),
@@ -156,8 +156,8 @@ make.parameters.estimated.summary.table <- function(model,
               "NA",
               "Analytic solution")
 
-  ## Survey additional value for SE is at line 78 of comment-stripped dataframe
-  se <- fetch.and.split(ctl, 78)
+  ## Survey additional value for SE is at line 77 of comment-stripped dataframe
+  se <- fetch.and.split(ctl, 77)
   se.vals <- c("Additional value for survey log(SE)",
                if(prior.type[se[p.type]] == "Fixed")
                  1
@@ -166,8 +166,8 @@ make.parameters.estimated.summary.table <- function(model,
                paste0("(", se[lo], ",", se[hi], ")"),
                fetch.prior.info(se, digits))
 
-  ## Number of survey selectivities is on line 82 of comment-stripped dataframe
-  num.sel <- fetch.and.split(ctl, 82)
+  ## Number of survey selectivities is on line 81 of comment-stripped dataframe
+  num.sel <- fetch.and.split(ctl, 81)
   grep.num.sel <- grep("#", num.sel)
   if(length(grep.num.sel) > 0){
     num.sel <- num.sel[1:(grep.num.sel - 1)]
@@ -194,16 +194,16 @@ make.parameters.estimated.summary.table <- function(model,
                     paste0("(", est.sel[lo], ",", est.sel[hi], ")"),
                     fetch.prior.info(est.sel, digits))
 
-  ## Number of fishery selectivities is on line 81 of comment-stripped dataframe
-  num.sel <- fetch.and.split(ctl, 81)
+  ## Number of fishery selectivities is on line 80 of comment-stripped dataframe
+  num.sel <- fetch.and.split(ctl, 80)
   grep.num.sel <- grep("#", num.sel)
   if(length(grep.num.sel) > 0){
     num.sel <- num.sel[1:(grep.num.sel - 1)]
   }
   num.sel <- as.numeric(num.sel[length(num.sel)])
   ## num.sel is the number of selectivity entries in the file for survey
-  ## Age-0 starts on line 83 of comment-stripped dataframe
-  line.num <- 83
+  ## Age-0 starts on line 82 of comment-stripped dataframe
+  line.num <- 82
   ages.estimated <- NULL
   for(i in line.num:(line.num + num.sel)){
     age.sel <- fetch.and.split(ctl, i)

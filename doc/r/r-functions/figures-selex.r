@@ -63,7 +63,8 @@ calc.tv.selex <- function(model,
       colnames(selex[[i]]) <- ages
     }else{
       cat("calc.tv.selex: Warning - length of ages vector (",length(ages),
-          ") not equal to the number of columns in the selectivity data (",ncol(selex[[i]]),") for year ",yrs[i],"\n", sep="")
+          ") not equal to the number of columns in the selectivity data (",
+          ncol(selex[[i]]),") for year ",yrs[i],"\n", sep="")
     }
   }
 

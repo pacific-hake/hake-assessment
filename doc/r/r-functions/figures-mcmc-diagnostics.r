@@ -152,6 +152,7 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
                                                      ##  r4ss package's function SSgetMCMC and has the extra.mcmc member
                                       start.yr,      ## Year to start the plot
                                       end.yr,        ## Year to end the plot
+                                      surv.yrs,      ## Years in which the survey took place
                                       probs = c(0.025, 0.975), ## Confidence interval values lower and upper
                                       y.max = 5.5e6, ## maximum value for the y-axis
                                       leg.cex = 1    ## Legend tect size
@@ -175,17 +176,7 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
            y1 = qlnorm(probs[2], meanlog = log(as.numeric(cpue$obs)), sdlog = as.numeric(cpue$se_log)),
            lwd = 3,
            lend = 1)
-  surv.yrs <- c(1995,
-                1998,
-                2001,
-                2003,
-                2005,
-                2007,
-                2009,
-                2011,
-                2012,
-                2013,
-                2015)
+
   matplot(x = surv.yrs, #as.numeric(start.yr):(as.numeric(end.yr)),
           ##y = model$cpue.table[1:length(start.yr:end.yr),],
           y = model$extra.mcmc$cpue.table,

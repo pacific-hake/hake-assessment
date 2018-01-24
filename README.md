@@ -126,6 +126,9 @@ _____________________________________________________________
 
 * Try deleting .RData file for the base case. Could be to do with the forecasts.
 
+* The error during **one-page-summary.rnw** that says **object 'catch.limit.quantiles' not found** is because projections haven't built properly. Chris/Ian fixed this on 23-01-2018 (it was building fine on morning of 19-01-2018 before a new **models/2018.18\_temporary\_base/** was uploaded). 
+
+ 
 ## How to delete all model RData files
 
 * Open R in the doc/r directory and run the following:
