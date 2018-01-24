@@ -134,7 +134,7 @@ Westport. Port samplers routinely take one sample per offload (or trip)
 consisting of 100 randomly selected fish for individual length and weight, and
 from these 20 are randomly subsampled for otolith extraction.
 
-The Canadian domestic fishery is subject to 100\% observer coverage on the four
+**The Canadian domestic fishery is subject to 100\% observer coverage on the four
 freezer trawler vessels \emph{Viking Enterprise}, \emph{Osprey \#1},
 \emph{Northern Alliance}, and \emph{Raw Spirit}, which together make up a large
 portion of the Canadian catch (\Sexpr{last.year.can.freezer.percent}\% in
@@ -166,7 +166,7 @@ the primary unit for the at-sea fisheries. Since detailed haul-level information
 is not recorded on trip landings documentation in the shore-based fishery, and
 hauls sampled in the at-sea fishery cannot be aggregated to a comparable trip
 level, there is no least common denominator for aggregating at-sea and
-shore-based fishery samples. As a result, sample sizes are simply the summed
+shore-based fishery samples. **[Still true, yes?]As a result, sample sizes are simply the summed
 hauls and trips for fishery biological data. The magnitude of this sampling
 among sectors and over time is presented in
 Table~\ref{tab:main-sampling-history}.
@@ -177,7 +177,7 @@ landed catch by fishery and year when sampling occurred. A description of the
 analytical steps for expanding the age compositions can be found in recent stock
 assessment documents \citep{JTC2013, JTC2014}.
 
-The aggregate fishery age-composition data
+**The aggregate fishery age-composition data
 (\Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}) confirm the
 well-known pattern of very large cohorts born in 1980, 1984 and 1999
 (Figure~\ref{fig:main-age-comp-bubbles} and
@@ -196,7 +196,7 @@ cohort was largest in both Canadian fleets (Tables
 cohort was the largest for the aggregated data
 (Table~\ref{tab:main-all-age-data-fishery}).
 
-The above-average 2005 and 2006 year classes declined in proportion in the 2011
+**The above-average 2005 and 2006 year classes declined in proportion in the 2011
 fishery samples, but have persisted in small proportions since that time in the
 fishery catch, although are much reduced recently due to mortality and the
 overwhelming 2008 and 2010 cohorts. We caution that proportion-at-age data
@@ -207,7 +207,7 @@ these data to estimate the absolute size of incoming cohorts, which becomes more
 precise after they have been observed several times (i.e., encountered by the
 fishery and survey over several years).
 
-Both the weight- and length-at-age information suggest that hake growth has
+**Both the weight- and length-at-age information suggest that hake growth has
 changed markedly over time (see Figure~7 in
 \citealt{StewartForrestEtAl2011}). This is particularly evident in the frequency
 of larger fish ($>55$~cm) before 1990 and a shift to much smaller fish in more
@@ -231,8 +231,8 @@ stock assessment \citep{JTC2013}.
 
 An acoustic survey of age 2$+$ hake was included in this assessment, while
 bottom trawl and pre-recruit sources were not used. An age-1 index derived from
-acoustic survey data was explored as a sensitivity to the base model.  See the
-2013 stock assessment \citep{JTC2013} for a more thorough description and
+acoustic survey data was explored as a sensitivity to the base model.  See 
+\citet{JTC2013} for a more thorough description and
 history of these fishery-independent data sources.
 
 \subsubsection{Acoustic survey}\label{sec:data-acoustic-survey}
