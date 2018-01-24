@@ -200,6 +200,7 @@ source("custom-knitr-variables.r")
 %% Final version
 \title{\TitleFont Status of the \fishname\ (whiting) stock in U.S. and Canadian
   waters in \Sexpr{assess.yr}
+  \\ ~\\ DRAFT for submission to Scientific Review Group
 \\ ~\\ ~\\ \includegraphics[width=4in]{hake-picture}}
 
 \author{Joint Technical Committee of the \fishname/Whiting Agreement \\ Between
@@ -280,7 +281,10 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 %%  lineno package
 %% \modulolinenumbers[5]
 
-\lfoot{\fishname\ assessment \Sexpr{assess.yr}}
+\lfoot{
+       DRAFT --
+       \fishname\ assessment \Sexpr{assess.yr}
+       }
 \rfoot{One-page summary}
 <<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=
 @
