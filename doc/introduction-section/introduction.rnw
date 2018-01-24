@@ -26,7 +26,7 @@ nations. Additionally, the Agreement calls for both of these bodies to include
 scientists nominated by an Advisory Panel (AP) of fishery stakeholders.
 
 The data sources for this assessment include an acoustic survey, annual fishery
-catch as well as survey and fishery age-composition data. The assessment depends
+catch, as well as survey and fishery age-composition data. The assessment depends
 primarily upon the acoustic survey biomass index time-series for information on
 the scale of the current hake stock. Age-composition data from the aggregated
 fishery and the acoustic survey provide additional information allowing the
@@ -43,7 +43,7 @@ uncertainty to provide results that can be probabilistically interpreted. From a
 range of alternate models investigated by the JTC, a subset of sensitivity
 analyses are also reported in order to provide a broad qualitative comparison of
 structural uncertainty with respect to the base case. These sensitivity analyses
-are thoroughly described in this assessment document. The structural assumptions
+are thoroughly described in this assessment document. **The structural assumptions
 of this \Sexpr{assess.yr} base model are effectively the same as the
 \Sexpr{last.assess.yr} base model, including time-varying fishery selectivity.
 
@@ -54,7 +54,9 @@ of North America, generally ranging in latitude from 25$^\circ$N~to 55$^\circ$N
 (see Figure~\ref{fig:main-overview-map} for an overview map). It is among 18
 species of hake from four genera (being the majority of the family Merluccidae),
 which are found in both hemispheres of the Atlantic and Pacific Oceans
-\citep{AlheitPitcher1995, LlorisMatallanasEtAl2005}. The coastal stock of
+\citep{AlheitPitcher1995, LlorisMatallanasEtAl2005}. 
+** % [Just verify the next sentence]
+The coastal stock of
 \fishname\ is currently the most abundant groundfish population in the
 California Current system. Smaller populations of this species occur in the
 major inlets of the Northeast Pacific Ocean, including the Strait of Georgia,
@@ -84,7 +86,9 @@ migration \citep{Dorn1995b, AgostiniFrancisEtAl2006}. In contrast, La Ni\~na
 conditions (colder water, such as in 2001) result in a southward shift in the
 stock's distribution, with a much smaller proportion of the population found in
 Canadian waters, as seen in the 2001 survey
-(Figure~\ref{fig:main-backscatter-map}). The research on links between migration
+(Figure~\ref{fig:main-backscatter-map}). 
+% Presumably next sentence can just stay same for 2018:
+**The research on links between migration
 of different age classes and environmental variables is anticipated to be
 updated in the years ahead to take advantage of the data that have been
 collected in the years since the previous analyses were conducted.
@@ -110,9 +114,10 @@ repeated in this assessment, although further research on this topic is needed.
 \subsection{Management of \fishname\ }\label{sec:intro-management}
 
 Since implementation of the Magnuson-Stevens Fishery Conservation and Management
-Act in the United States and the declaration of a 200~mile fishery conservation
-zone in both countries in the late 1970s, annual quotas (or catch targets) have
-been used to limit the catch of \fishname\ in both zones. Scientists from both
+Act in the U.S. and the declaration of a 200~mile fishery conservation
+zone in the U.S. and Canada in the late 1970s, annual quotas (or catch targets) 
+have been used to limit the catch of \fishname\ in both country's waters.
+Scientists from both
 countries historically collaborated through the Technical Subcommittee of the
 Canada-U.S. Groundfish Committee (TSC), and there were informal agreements on
 the adoption of annual fishing policies. During the 1990s, however,
