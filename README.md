@@ -1,4 +1,4 @@
-____
+﻿____
 # hake-assessment
 
 **Updated February 11, 2017**
@@ -327,7 +327,7 @@ Commands by Ian in 2017:
         ss3 -mcmc 12000000 -mcsave 10000 -mcseed 36519
         ss3 -mceval
 
-Commands used for "2018.18_temporary_base" model just to get some MCMC results:
+Commands used for "2018.18_temporary_base" and “2018.19_add_2017_tv_select” models just to get some MCMC results:
         ss3 -mcmc 12000 -mcsave 10 -mcseed 36519
         ss3 -mceval
 
