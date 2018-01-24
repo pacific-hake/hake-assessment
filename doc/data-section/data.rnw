@@ -13,7 +13,7 @@ Fishery-dependent and fishery-independent data sources used here
 
 \item Age compositions composed of data from the U.S. fishery
   (\Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}) and the
-  Canadian fishery (1990--\Sexpr{max.fishery.age.prop[2]}). The last 9 years of
+  Canadian fishery (1990--\Sexpr{max.fishery.age.prop[2]}). The last **9 years of
   these data are shown in Tables
   \ref{tab:main-us-cp-age-data}--\ref{tab:main-can-ft-age-data}, and the
   aggregated data for all years shown in
@@ -42,6 +42,7 @@ analysis of auxiliary data. These include:
 
 \end{itemize}
 
+**[Don't think this needs updating -- someone else check]
 Some data sources were not included but have been explored, were used for
 sensitivity analyses, or were included in previous stock assessments, but not in
 this stock assessment. Data sources not discussed here have either been
