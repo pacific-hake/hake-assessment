@@ -547,7 +547,7 @@ resulted in more accurate estimates of spawning biomass.
 For purposes of forecasting, Stock Synthesis does not yet include options for
 averaging weight-at-age values from recent years as it does with selectivity and
 other quantities. Therefore, the mean weights at each age in the forecast were
-set equal to the mean across all years which therefore match the equilibrium and
+set equal to the mean across all years -- they therefore match the equilibrium and
 reference point calculations. Mean weight has been declining for most ages over
 the past few years and in 2016 was less than the mean weight-at-age over all
 years for ages 2--13. The 2010 cohort declined in average weight from 2015 to
