@@ -57,7 +57,8 @@ JTC2013}. Selectivity has also been modeled in several ways: it has been
 invariant \citep{JTC2012, JTC2013}, time-varying with \citep{HelserDornEtAl2002}
 and without \citep{Dorn1994, DornSaunders1997, JTC2012, JTC2013} a random walk,
 age-based \citep{Dorn1994, DornSaunders1997, JTC2012, JTC2013} and length-based
-\citep{HelserMartell2007}.
+\citep{HelserMartell2007}. **Maybe add something about last year's assessment
+\citep{JTC2017}.
 
 Several harvest control rules have been explored for providing catch limits from
 these stock assessments. \fishname\ stock assessments have presented decision
@@ -71,7 +72,9 @@ to the cases examined in the assessment documents, there have been many more
 requested at assorted review panel meetings.
 
 While there have been many changes to \fishname\ management procedures, they
-have not been capricious. Available data have changed over the years, and there
+have not been capricious.
+%% capricious: subject to whims.
+Available data have changed over the years, and there
 have been many advances in the discipline of fisheries science. In some ways,
 the latter has evolved considerably over the course of the historical hake
 fishery: new statistical techniques and software have evolved (Bayesian
