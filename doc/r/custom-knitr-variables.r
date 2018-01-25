@@ -300,3 +300,10 @@ retro.list <- list(base.model)
 for(i in plot.retro.yrs){
   retro.list[[i + 1]] <- base.model$retros[[i]]
 }
+
+################################################################################
+## Define number of 'recent' years for several tables at the start of
+##  main-tables.rnw.
+num.recent.yrs <- 10
+
+

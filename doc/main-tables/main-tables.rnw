@@ -57,8 +57,8 @@ make.catches.table.total(catches,
 
 <<main.landings.tac.table, results='asis', echo=FALSE>>=
 make.landings.tac.table(landings.vs.tac,
-                        start.yr=end.yr-10,
-                        end.yr=end.yr-1,
+                        start.yr = end.yr - num.recent.yrs,
+                        end.yr = end.yr-1,
                         xcaption = "Recent trends in \\fishname\\ landings and
                            management decisions.",
                         xlabel = "tab:main-landings-tac",
@@ -93,7 +93,7 @@ make.sampling.history.table(sampling.history,
 <<main.us.cp.age.data.table, results='asis', echo=FALSE>>=
 make.us.age.data.table(us.cp.age,
                        fleet = 1,
-                       start.yr = 2008,
+                       start.yr = end.yr - num.recent.yrs,
                        end.yr = last.data.yr,
                        xcaption = paste0("Recent age proportion data used in
                          the assessment for the U.S. Catcher-processor fleet.
@@ -108,7 +108,7 @@ make.us.age.data.table(us.cp.age,
 <<main.us.ms.age.data.table, results='asis', echo=FALSE>>=
 make.us.age.data.table(us.ms.age,
                        fleet = 2,
-                       start.yr = 2008,
+                       start.yr = end.yr - num.recent.yrs,
                        end.yr = last.data.yr,
                        xcaption = paste0("Recent age proportion data used in 
                          the assessment for the U.S. Mothership fleet. 
@@ -132,7 +132,7 @@ make.us.age.data.table(us.ms.age,
 <<main.us.shore.age.data.table, results='asis', echo=FALSE>>=
 make.us.age.data.table(us.shore.age,
                        fleet = 3,
-                       start.yr = 2008,
+                       start.yr = end.yr - num.recent.yrs,
                        end.yr = last.data.yr,
                        xcaption = paste0("Recent age proportion data used in the assessment for ",
                                          "the U.S. Shoreside fleet. Proportions are ",
@@ -155,7 +155,7 @@ make.us.age.data.table(us.shore.age,
 <<main.can.shore.age.data.table, results='asis', echo=FALSE>>=
 make.can.age.data.table(can.ages,
                         fleet = 1,
-                        start.yr = 2008,
+                        start.yr = end.yr - num.recent.yrs,
                         end.yr = last.data.yr,
                        xcaption = paste0("Recent age proportion data used in the assessment for ",
                                          "the Canadian Shoreside fleet. Proportions are ",
@@ -170,7 +170,7 @@ make.can.age.data.table(can.ages,
 <<main.can.ft.age.data.table, results='asis', echo=FALSE>>=
 make.can.age.data.table(can.ages,
                         fleet = 2,
-                        start.yr = 2008,
+                        start.yr = end.yr - num.recent.yrs,
                         end.yr = last.data.yr,
                        xcaption = paste0("Recent age proportion data used in the assessment for ",
                                          "the Canadian Freezer Trawler fleet. Proportions are ",
@@ -185,7 +185,7 @@ make.can.age.data.table(can.ages,
 %%<<main.can.jv.age.data.table, results='asis', echo=FALSE>>=
 %%make.can.age.data.table(can.ages,
 %%                        fleet = 3,
-%%                        start.yr = 2008,
+%%                        start.yr = end.yr - num.recent.yrs, # NEED end.yr
 %%                        xcaption = "Age proportions used in the assessment for the Canadian Joint Venture fleet.",
 %%                        xlabel = "tab:main-us-cp-age-data",
 %%                        font.size = 8,
