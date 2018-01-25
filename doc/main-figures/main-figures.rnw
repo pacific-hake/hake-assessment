@@ -40,7 +40,7 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 make.data.overview.plot(base.model)
 @
 \end{center}
-\caption{Overview of data used in this assessment, 
+\caption{Overview of data used in this assessment,
   \Sexpr{start.yr}--\Sexpr{last.data.yr}.
   Circle areas are proportional to the precision within the data type.}
 \label{fig:main-data-overview}
@@ -122,9 +122,9 @@ make.age.comp.bubble.plot(base.model, subplot = 1)
 make.survey.biomass.plot(base.model)
 @
 \end{center}
-\caption{Acoustic survey biomass index (millions of metric tons). 
-  Approximate 95\% confidence intervals (black bars) are based on sampling 
-  variability; blue bars for 2009 include additional uncertainty due to  
+\caption{Acoustic survey biomass index (millions of metric tons).
+  Approximate 95\% confidence intervals (black bars) are based on sampling
+  variability; blue bars for 2009 include additional uncertainty due to
   squid/hake apportionment.}
 \label{fig:main-survey-biomass}
 \end{figure}
@@ -137,11 +137,11 @@ make.survey.biomass.plot(base.model)
 make.survey.biomass.extrap.plot(survey.comparison)
 @
 \end{center}
-\caption{**Updated acoustic survey biomass indices with and without extrapolation 
-  (millions of metric tons) relative to the index used \Sexpr{last.assess.yr}. 
-  Approximate 95\% confidence intervals are based on only sampling variability 
-  (and squid/hake apportionment uncertainty in 2009). See 
-  Table~\ref{tab:main-survey-comparison} for values used in the base model 
+\caption{**Updated acoustic survey biomass indices with and without extrapolation
+  (millions of metric tons) relative to the index used \Sexpr{last.assess.yr}.
+  Approximate 95\% confidence intervals are based on only sampling variability
+  (and squid/hake apportionment uncertainty in 2009). See
+  Table~\ref{tab:main-survey-comparison} for values used in the base model
   and the 2016 assessment.}
 \label{fig:main-survey-extrap-biomass}
 \end{figure}
@@ -204,8 +204,8 @@ make.comparison.plot(bridge.models.1,
 \end{center}
 \caption{**Bridging models comparison showing the \Sexpr{last.assess.yr} base model
   and the terminal model from sequentially updating all pre-\Sexpr{last.assess.yr}
-  data.  This included updating fishery catch and age-compositions as well as 
-  weight-at-age information.  The points disconnected from the time-series on the 
+  data.  This included updating fishery catch and age-compositions as well as
+  weight-at-age information.  The points disconnected from the time-series on the
   left side show the unfished equilibrium spawning biomass estimates.}
 \label{fig:main-bridge-biomass}
 \end{figure}
@@ -253,13 +253,13 @@ mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
 \end{center}
-\caption{**Bridging models showing the difference between the 
-  \Sexpr{last.assess.yr} base model and the sequential addition of the new 
-  acoustic survey time-series (\Sexpr{survey.start.yr}--\Sexpr{last.data.yr}) 
-  and then the new \Sexpr{last.data.yr} fishery data.  Spawning biomass 
-  (upper panel), relative spawning biomass (spawning biomass in each year 
-  relative to the unfished equilibrium spawning biomass, middle left), 
-  absolute recruitment (middle right), recruitment deviations (lower left), 
+\caption{**Bridging models showing the difference between the
+  \Sexpr{last.assess.yr} base model and the sequential addition of the new
+  acoustic survey time-series (\Sexpr{survey.start.yr}--\Sexpr{last.data.yr})
+  and then the new \Sexpr{last.data.yr} fishery data.  Spawning biomass
+  (upper panel), relative spawning biomass (spawning biomass in each year
+  relative to the unfished equilibrium spawning biomass, middle left),
+  absolute recruitment (middle right), recruitment deviations (lower left),
   and survey index (lower right) are shown.}
 \label{fig:main-bridge-5-panel}
 \end{figure}
@@ -304,15 +304,15 @@ mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
 \end{center}
-\caption{**Bridging models showing the difference between the \Sexpr{end.yr} 
-  pre-tuned base model, the sequential addition of the main base model tuning 
-  runs (adjusting time periods and levels for recruitment bias and reweighting 
-  the survey and fishery compositional data), and increased flexibility 
-  associated with time-varying selectivity (larger standard deviation 
-  associated with temporal deviates). The red line is equivalent to the 
-  \Sexpr{end.yr} base model. Spawning biomass (upper left panel), relative 
-  spawning biomass (spawning biomass in each year relative to the unfished 
-  equilibrium spawning biomass, upper right), absolute recruitment (lower left), 
+\caption{**Bridging models showing the difference between the \Sexpr{end.yr}
+  pre-tuned base model, the sequential addition of the main base model tuning
+  runs (adjusting time periods and levels for recruitment bias and reweighting
+  the survey and fishery compositional data), and increased flexibility
+  associated with time-varying selectivity (larger standard deviation
+  associated with temporal deviates). The red line is equivalent to the
+  \Sexpr{end.yr} base model. Spawning biomass (upper left panel), relative
+  spawning biomass (spawning biomass in each year relative to the unfished
+  equilibrium spawning biomass, upper right), absolute recruitment (lower left),
   and recruitment deviations (lower right) are shown.}
 \label{fig:main-bridge-4-panel}
 \end{figure}
@@ -451,8 +451,10 @@ par <- oldpar
 make.age.comp.pearson.plot(base.model)
 @
 \end{center}
-\caption{Pearson residuals for base model MLE fits to the fishery age composition data.
-  Closed bubbles are positive residuals (observed > expected) and open bubbles are
+\caption{**[Not building, but no error shows up?! May get fixed automatically]. 
+  Pearson residuals for base model MLE fits to the fishery age 
+  composition data. Closed bubbles are positive residuals (observed > expected) 
+  and open bubbles are
   negative residuals (observed < expected).}
 \label{fig:main-age-comp-pearson}
 \end{figure}

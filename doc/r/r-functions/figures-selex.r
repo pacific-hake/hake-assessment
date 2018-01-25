@@ -84,14 +84,14 @@ calc.tv.selex <- function(model,
 make.tv.selex.plot <- function(selex.list,
                                oma=c(0,8,0,8), # bad way to make the plot skinnier
                                mcmc=TRUE){
-  # note from Ian: use of outer margins to make plot skinnier was a hack 
+  # note from Ian: use of outer margins to make plot skinnier was a hack
   #                that I used because I didn't understand the figure layout options.
   #                This should be replaced by specifying fig width and height.
-  
+
   # input selex.list is a list of time varying selectivites
   # as returned by calc.tv.selex (in the mcmc case)
   # or just the model object (in the MLE case)
-  
+
   ## Plot the time-varying selectivity of model
   oldpar <- par()
 
