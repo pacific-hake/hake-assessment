@@ -39,12 +39,12 @@ weight.at.age.file.name <- "wtatage.ss"
 if(verbose) cat0("SS weight-at-age file: \n  ", weight.at.age.file.name)
 
 ## -----------------------------------------------------------------------------
-## The version of Stock Synthesis used in this assessment
+## The version of SS and ADMB used in this assessment
 ## -----------------------------------------------------------------------------
-ss.version <- "3.24"
-## The version of ADMB that this version of SS was compiled with
-admb.version <- "11.2"
+ss.version <- "3.30"
 if(verbose) cat0("SS version: \n  ", ss.version)
+admb.version <- "11.2"
+if(verbose) cat0("ADMB version: \n  ", admb.version)
 
 ## -----------------------------------------------------------------------------
 ## Data start and endpoint variables
@@ -111,9 +111,7 @@ if(verbose) cat0("Key posteriors file: \n  ", nuisance.posteriors.file)
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
 base.model.dir.name <- "2018.18_temporary_base"
-##base.model.dir.name <- "03_2017base_3.30_tv_pars"
-##base.model.dir.name <- "45_BasePreSRG_v4"
-base.model.name <- paste(assess.yr, "Base model SS 3.30")
+base.model.name <- paste0(assess.yr, "Base model SS 3.30")
 verify.models(model.dir, base.model.dir.name, base.model.name)
 if(verbose){
   cat0("Base model directory name: \n  ", base.model.dir.name)
@@ -124,7 +122,7 @@ if(verbose){
 ## Last assessment year's base model name and directory
 ## -----------------------------------------------------------------------------
 last.yr.base.model.dir.name <- "00_55_2016base"
-last.yr.base.model.name <- paste(last.assess.yr, "Base model")
+last.yr.base.model.name <- paste(last.assess.yr, "Base model SS 3.24")
 verify.models(model.dir, base.model.dir.name, base.model.name)
 if(verbose){
   cat0("Last assessment year's base model directory name: \n  ",
@@ -173,8 +171,7 @@ if(verbose){
 bridge.model.dir.names.3 <- c(last.yr.base.model.dir.name,
                               "17_AdjustBiasRamp",
                               "40_SenRecdevMain2014",
-                              "41_BasePreSRG_v3") #,
-                              #"45_BasePreSRG_v4")
+                              "41_BasePreSRG_v3")
 ## Bridge model names will be used to make the bridge model plot and its caption.
 bridge.model.names.3 <- c(last.yr.base.model.name,
                           "Adjust recr. bias ramp",
@@ -189,12 +186,10 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 1
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.1 <- c("57_Sen45_sigmaR_1.0",
-                            "58_Sen45_sigmaR_2.0",
-                            "62_Sen45_sigmaR_1.51")
-sens.model.names.1 <- c("Sigma R 1.0",
-                        "Sigma R 2.0",
-                        "Sigma R 1.51")
+sens.model.dir.names.1 <- c("2018.19.03_sigmaR_fix_low",
+                            "2018.19.04_sigmaR_fix_high")
+sens.model.names.1 <- c("Sigma R 0.5",
+                        "Sigma R 1.8")
 verify.models(model.dir, sens.model.dir.names.1, sens.model.names.1)
 if(verbose){
   print.model.message(sens.model.dir.names.1, sens.model.names.1, 1, model.type = "Sensitivity")
@@ -394,12 +389,6 @@ build <- function(run.fore = FALSE,
   }
 
   ## Base model
-  ss.version.tmp = ss.version
-  if(base.model.dir.name == "02_2017base_3.30" |
-     base.model.dir.name == "03_2017base_3.30_tv_pars" |
-     base.model.dir.name == "2018.18_temporary_base"){
-    ss.version.tmp = "3.30"
-  }
   create.rdata.file(model.name = base.model.dir.name,
                     ovwrt.rdata = ifelse(any(run.fore, run.retro, run.extra.mcmc),
                                          TRUE,
@@ -412,7 +401,7 @@ build <- function(run.fore = FALSE,
                     my.retro.yrs = retro.yrs,
                     run.extra.mcmc = run.extra.mcmc,
                     key.posteriors = key.posteriors,
-                    ss.version = ss.version.tmp,
+                    ss.version = ss.version,
                     verbose = ss.verbose)
 
   ## Bridge and sensitivity models need to be unlisted from their groups
@@ -431,13 +420,43 @@ build <- function(run.fore = FALSE,
 
   model.names.list <- as.list(unique(mnv))
 
-  ss.version.tmp <- ss.version
   ## Bridge/sensitivity models
   for(model.nm in model.names.list){
-    if(model.nm == "02_2017base_3.30" |
-       model.nm == "03_2017base_3.30_tv_pars"  |
-       model.nm == "2018.18_temporary_base"){
-      ss.version.tmp = "3.30"
+    ss.version.tmp <- ss.version
+    if(model.nm == "00_55_2016base" |
+       model.nm == "10_UpdatePre2016catches" |
+       model.nm == "11_UpdatePre2016FishComps" |
+       model.nm == "15_Add2016Catch" |
+       model.nm == "16_Add2016FishComps" |
+       model.nm == "12_Update1998SurveyIndex" |
+       model.nm == "13_Update2015SurveyIndexCVonly" |
+       model.nm == "14_Add1995SurveyIndex" |
+       model.nm == "17_AdjustBiasRamp" |
+       model.nm == "40_SenRecdevMain2014" |
+       model.nm == "41_BasePreSRG_v3" |
+       model.nm == "46_Sen45_AdjustBiasRampEnd2014" |
+       model.nm == "47_Sen45MaxSelectAge5" |
+       model.nm == "48_Sen45MaxSelectAge7" |
+       model.nm == "49_Sen45MaxSelectAge10" |
+       model.nm == "50_Sen45h0.5prior" |
+       model.nm == "51_Sen45h1.0fix" |
+       model.nm == "52_Sen45M0.2SD" |
+       model.nm == "53_Sen45M0.3SD" |
+       model.nm == "54_Sen45AgeErrorNoCohort" |
+       model.nm == "55_Sen45AgeError2014noAdjust" |
+       model.nm == "56_Sen45AddAge1Index" |
+       model.nm == "59_Sen45_phi003" |
+       model.nm == "60_Sen45_phi010" |
+       model.nm == "61_Sen45_phi030" |
+       model.nm == "56_Sen45AddAge1Index" |
+       model.nm == "59_Sen45_phi003" |
+       model.nm == "63_Sen_phi003_age1_index" |
+       model.nm == "64_Sen_phi010_age1_index" |
+       model.nm == "65_Sen_phi030_age1_index" |
+       model.nm == "59_Sen45_phi003" |
+       model.nm == "66_Sen45_block_sel_2016_SRG_request2" |
+       model.nm == "67_Sen45_block_sel_2016_SRG_request3"){
+      ss.version.tmp = "3.24"
     }
     create.rdata.file(
       model.name = model.nm,
