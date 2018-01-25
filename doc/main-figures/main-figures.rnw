@@ -123,9 +123,9 @@ make.survey.biomass.plot(base.model)
 @
 \end{center}
 \caption{Acoustic survey biomass index (millions of metric tons). 
-  Approximate 95\% confidence intervals are based on only sampling variability 
-  (\Sexpr{survey.start.yr}--2007, 2011--\Sexpr{survey.end.yr}) in addition to 
-  squid/hake apportionment uncertainty (2009, in blue).}
+  Approximate 95\% confidence intervals (black bars) are based on sampling 
+  variability; blue bars for 2009 include additional uncertainty due to  
+  squid/hake apportionment.}
 \label{fig:main-survey-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
