@@ -1,6 +1,7 @@
 \clearpage
 
-\chapter{Scientific Review Group (SRG) requests}
+\chapter{Scientific Review Group (SRG) requests from 
+  \Sexpr{assess.yr} meeting}
 \label{chap:srg-requests}
 
 This appendix will contain any results requested at the upcoming

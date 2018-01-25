@@ -1094,12 +1094,16 @@ recruitment deviations over a broad range of $\sigma_r$ values, and the theory
 proposed by \citet{MethotTaylor2011} suggests that the status-quo value of 1.4
 is reasonable.
 
-**Several additional sensitivity runs were completed in response to SRG requests
-during the Feb 13-16, 2017 meeting in Vancouver, B.C., Canada (see
-Appendix~\ref{chap:srg-requests}).  These include model sensitivity to the
-standard deviation associated with time-varying selectivity, further inclusion
-of the age-1 index, and model convergence diagnostics when using a longer MCMC
-chain.
+Any additional sensitivity runs arising from the Scientific Review Group 
+meeting to be held from 26th February to 1st March 2018 will be documented
+in Appendix~\ref{chap:srg-requests} and briefly summarised here.
+
+%%**Several additional sensitivity runs were completed in response to SRG requests
+%%during the Feb 13-16, 2017 meeting in Vancouver, B.C., Canada (see
+%%Appendix~\ref{chap:srg-requests}).  These include model sensitivity to the
+%%standard deviation associated with time-varying selectivity, further inclusion
+%%of the age-1 index, and model convergence diagnostics when using a longer MCMC
+%%chain.
 
 %%Several key underlying structural model assumptions were identified that have persisted across many previous hake assessments, and thus warrant revisiting periodically as a set of reference sensitivity examinations to new base models.  Those identified here include the specification of natural mortality, the level of variation assumed about the stock-recruitment relationship ($\sigma_r$), and the resiliency of the stock in terms of recruitment (steepness).  The sensitivity of the base model to changes in the input $\sigma_r$ and to the prior distributions for natural mortality and steepness were explored.  The standard deviation of the prior distribution on natural mortality was increased from 0.1 (as in the base model) to 0.2 and 0.3.  The mean of the prior distribution on steepness was decreased from 0.777 (base) to 0.500, and steepness was also fixed at 1.0.  The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative high (2.0) and low (1.0) states.  These key sensitivities had little effect on the overall estimated population trend throughout the time series (Figure~\ref{fig:main-biomass-base-alternative-1}), but they do have a significant impact on the estimated scale of the population (quite different estimates of $B_0$ and $R_0$ parameters; Table~\ref{tab:main-parameter-estimates-sens-1}).  The least influential in terms of relative spawning biomass (Figure~\ref{fig:main-status-base-alternative-1}) as compared to the base model is fixing steepness to 1.0, changing the prior mean on steepness, and moderately changing the prior standard deviation on natural mortality (0.2).  The greatest difference in stock status compared to the base model results from changing the input for $\sigma_r$.  Estimates of natural mortality increased from 0.215 for the base model (prior standard deviation of 0.1) to 0.250 for the sensitivity run with the prior standard deviation set to 0.3.  When the mean of the prior distribution for steepness was changed from 0.777 (base model) to 0.5, the estimate for steepness decreased from 0.861 to 0.602.
 
