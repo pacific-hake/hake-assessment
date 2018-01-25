@@ -339,6 +339,7 @@ the 1995 data were processed in the
 same manner as the subsequent years and included in that 
 assessment and the current 2018 one (Table~\ref{tab:main-survey-comparison}).
 
+**[can prob delete this paragraph as was reported last year and accepted]
 As part of that data-processing step, it was discovered that the variogram used
 in the kriging for the 1998 data required a revision, which resulted in a
 increase in the biomass index for that year of approximately 2\%, from 1.534 to
@@ -360,7 +361,7 @@ showed that trawl sampling and post-stratification is only a small source of
 variability among all of the sources of variability inherent to the acoustic
 analysis (see \citealt{StewartForrestEtAl2011}).
 
-Estimated age-2+ biomass in the survey has increased steadily over the four most
+**Estimated age-2+ biomass in the survey has increased steadily over the four most
 recent surveys conducted in 2011-2013 and 2015. The 2015 survey biomass index is
 \Sexpr{f(survey.biomass["2015"], 2)} million metric tons, which is
 \Sexpr{f(survey.biomass["2015"]/survey.biomass["2012"],2)} times the 2012 survey
@@ -425,7 +426,9 @@ Fishery-independent data from the Alaska Fisheries Science Center (AFSC) bottom
 trawl survey, the Northwest Fishery Science Center (NWFSC) bottom trawl survey,
 the NWFSC and Pacific Whiting Conservation Cooperative (PWCC) pre-recruit survey
 were not used in this assessment. More information on these data sources is
-given in the 2013 stock assessment \citep{JTC2013}.
+given in the 2013 stock assessment \citep{JTC2013}. **Should DFO surveys be
+mentioned also (thought they were mentioned/implied earlier)? 
+Maybe check \citep{JTC2013}.
 
 \subsection{Externally analyzed data}\label{sec:data-externally-analyzed-data}
 
@@ -440,7 +443,7 @@ fecundity-at-age using an estimated growth curve and weight-length relationships
 estimated in a 2011 model which included length data. The resulting product of
 maturity and weight results in a relative contribution for each age to the
 female spawning biomass of 0.10 at age-2, 0.25 at age-3, 0.40 at age-4, and 0.52
-at age-5. Dividing these values by the average weight-at-age relationship
+at age-5. **Dividing these values by the average weight-at-age relationship
 indicates that the current model setup is equivalent to assuming that the
 fraction mature is 41\% at age-2, 69\% at age-3, 84\% at age-4 and 98\% at
 age-5.
@@ -462,7 +465,7 @@ classified as immature based on the histological criteria, which may in fact be
 mature individuals which are ``skip spawners'' and will not be spawning in the
 upcoming year.
 
-No new maturity analyses were completed in time for this assessment, but the
+**No new maturity analyses were completed in time for this assessment, but the
 large set of ovaries associated with the large 2014 cohort, including samples in
 all four seasons in 2016, is expected to contribute to a thorough analysis of
 maturity in time for the 2018 stock assessment.
@@ -502,7 +505,7 @@ routine to estimate both ageing error and the cohort effect. The resultant
 ageing error was similar to the ageing error derived from the 2008 analysis. The
 application of the cohort-specific ageing error was similar between assessments
 since 2011, with the ageing-error standard deviation reduced by a factor of 0.55
-for the largest cohorts: 1980, 1984, 1999, 2010, and 2014. In the 2014 base
+for the largest cohorts: 1980, 1984, 1999, 2010, and 2014. **In the 2014 base
 model \citep{JTC2014}, the 2008 cohort was also included in this set, but
 current estimates show this year-class to be enough less than the four largest
 that a reduction in ageing was not included for the 2008 year class in the 2015
