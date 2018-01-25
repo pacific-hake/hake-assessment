@@ -275,7 +275,8 @@ various terms involved in the default harvest policy.
 
 \subsection{Modeling results}\label{sec:assessment-modeling-results}
 % Manual 2018 (in progress)
-\subsubsection{Changes from \Sexpr{last.assess.yr}}\label{sec:assessment-changes}
+\subsubsection{Changes from \Sexpr{last.assess.yr} **In progress by Ian}\label{sec:assessment-changes}
+
 
 A set of `bridging' models was constructed to evaluate the component-specific
 effects of all changes to the base model from \Sexpr{last.assess.yr} to
@@ -413,7 +414,8 @@ perhaps drawing on commented-out text below.
 
 %[** this section was empty last year....]
 
-\subsubsection{Assessment model results}\label{sec:assessment-model-results}
+\subsubsection{Assessment model results  **Once base model is finalised update
+  whole section**}\label{sec:assessment-model-results}
 \subsubsub{Model Fit}
 
 For the base model, the MCMC chain was the same length as in the
@@ -721,7 +723,7 @@ by the posterior distribution is a better representation of the uncertainty when
 compared to asymptotic approximations about the maximum likelihood estimates
 (MLE) because it allows for asymmetry (Figure~\ref{fig:main-prior-posterior};
 also see \citet{JTC2012} for further discussion and
-examples). Table~\ref{tab:main-parameter-estimates} shows that most key derived
+examples). **Table~\ref{tab:main-parameter-estimates} shows that most key derived
 quantities from the posterior distribution are larger than their respective MLEs
 (e.g., median biomass, recruitment, and relative spawning biomass), however some
 parameter estimates (e.g., steepness and catchability) are
@@ -747,7 +749,7 @@ greater, will in most circumstances continue to result in highly uncertain
 estimates of current stock status and even less-certain projections of the stock
 trajectory.
 
-The JTC continues to be committed to advancing MSE analyses, through further
+**The JTC continues to be committed to advancing MSE analyses, through further
 internal technical developments and by coordinating research with other
 scientists in the region engaging in similar research.  In particular, the JTC
 aspires to advance MSE research in 2017 by collaborating with a new
@@ -774,16 +776,18 @@ Section~\ref{sec:intro-management} and Appendix~\ref{chap:glossary}).  The
 estimates are slightly different than the estimates in the previous
 \Sexpr{last.assess.yr} assessment with slightly smaller equilibrium yields and
 biomasses estimated in this assessment.
+**Mention that other reference points are also given, plus maybe mention DFO
+ones as per Issue \#335.
 
 \subsection{Model projections}\label{sec:assessment-model-projections}
  % Manual 2017 done
-The median catch limit for \Sexpr{min(forecast.yrs)} based on the default
+**The median catch limit for \Sexpr{min(forecast.yrs)} based on the default
 \Ffortyten{} harvest policy is \Sexpr{catch.limit.quantiles["median"]}~t, but
 has a wide range of uncertainty (Figure~\ref{fig:main-projected-catch-density}),
 with the 2.5\% to 97.5\% range being
 \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
 
-Decision tables give projected population status (relative spawning biomass) and
+**Decision tables give projected population status (relative spawning biomass) and
 relative fishing intensity under different catch alternatives for the base model
 (Tables~\ref{tab:main-decisions-biomass} and~\ref{tab:main-decisions-spr}). The
 tables are organized such that the projected outcome for each potential catch
@@ -793,7 +797,7 @@ relative spawning biomass outcomes, and Table~\ref{tab:main-decisions-spr} shows
 projected fishing intensity outcomes relative to the 100\% target (based on SPR;
 see table legend).
 
-Relative fishing intensity exceeding 100\% indicates fishing in excess of the
+**Relative fishing intensity exceeding 100\% indicates fishing in excess of the
 $\Fforty$ default harvest rate catch limit. This can happen for the median
 relative fishing intensity in \Sexpr{forecast.yrs[1:(length(forecast.yrs)-1)]}
 and \Sexpr{forecast.yrs[length(forecast.yrs)]} because the $\Fforty$ default
@@ -804,8 +808,7 @@ in the determination of overfishing. An alternative catch level where median
 relative fishing intensity is 100\% is provided for comparison (catch
 alternative e: FI=100\%).
 
-
-Management metrics that were identified as important to the Joint Management
+**Management metrics that were identified as important to the Joint Management
 Committee (JMC) and the Advisory Panel (AP) in 2012 are presented for
 projections to \Sexpr{forecast.yrs[2:(length(forecast.yrs)-1)]} and
 \Sexpr{forecast.yrs[length(forecast.yrs)]} (Tables~\ref{tab:main-risk-year-1}
@@ -825,8 +828,7 @@ Figure~\ref{fig:main-forecast-risk-comparison-year-1}), and a probability of
 to \Sexpr{forecast.yrs[3]} (Table~\ref{tab:main-risk-year-2} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-2}).
 
-
-The spawning biomass is predicted to decrease from 2017 to 2018 with a greater
+**The spawning biomass is predicted to decrease from 2017 to 2018 with a greater
 than 50\% probability for catch levels investigated that were at or above
 350,000~t (Table~\ref{tab:main-decisions-biomass} and
 Figure~\ref{fig:main-forecast-depletion-comparison}). The model predicts high
@@ -844,7 +846,7 @@ Figure~\ref{fig:main-forecast-risk-comparison-year-1}).
 % this paragraph can be made a bit more dynamics in the future 
 % (though it would be hard to completely automate)
 % values are from code in /r/r-functions/figures-age-comp-forecast.r
-The age composition of the catch in 2017 is forecast to be 52\% age-3 fish from
+**The age composition of the catch in 2017 is forecast to be 52\% age-3 fish from
 the 2014 year-class and 27\% age-7 fish from the 2010 year-class
 (Figure~\ref{fig:main-age-comp-forecast}). However, those estimates are highly
 uncertain with the 95\% credibility interval for the age-3 fraction spanning
@@ -856,7 +858,7 @@ these two cohorts, with 39\% and 36\%, respectively.
 
 \subsection{Sensitivity analyses}\label{sec:assessment-sensitivity-analyses}
  % Manual 2016 done
-Sensitivity analyses were conducted to investigate influence of data inputs and
+**Sensitivity analyses were conducted to investigate influence of data inputs and
 structural uncertainty of the base model by investigating how changes to the
 model affected the estimated values and derived quantities. For expediency, all
 sensitivity analyses compared MLE estimates rather than MCMC
@@ -867,6 +869,7 @@ Tables~\ref{tab:main-parameter-estimates-sens-2} and
 model to MLE estimates from the following sensitivity models). The sensitivities
 include the following:
 
+**UPDATE:
 \begin{enumerate}
 
 \item Include the age-1 survey index as an additional source of information;
@@ -892,7 +895,7 @@ include the following:
 
 \end{enumerate}
 
-In general, none of the sensitivities resulted in any significant departure from
+**In general, none of the sensitivities resulted in any significant departure from
 the main population dynamics of the base model; all models showed large
 estimated increases in spawning biomass in recent years that continues to be
 driven by the large 2010 cohort and the 2014 cohort.
@@ -913,7 +916,7 @@ driven by the large 2010 cohort and the 2014 cohort.
 % even though this is generlaized, it is not very general since the index 
 % number of the list is used
 
-The sensitivity of the base model to the inclusion of the age-1 survey index
+**The sensitivity of the base model to the inclusion of the age-1 survey index
 provides an additional source of information about the recruitment of different
 year classes (see discussion in Section~\ref{sec:data-acoustic-survey}), which
 can be particularly useful for the most recent years when little information on
@@ -931,7 +934,7 @@ Beverton-Holt stock-recruitment relationship; the most prominent of these
 reductions is for the 2014 year-class, where the estimated standard error of the
 deviate is reduced by 38\%.
 
-The impact of assuming a time-invariant ageing error vector instead of a
+**The impact of assuming a time-invariant ageing error vector instead of a
 cohort-based ageing error matrix (as in the base model) was evaluated.  The
 largest changes to model results are associated with estimates of equilibrium
 unfished biomass ($B_0$ under the time-invariant assumption decreases by 13\%),
@@ -946,7 +949,7 @@ as in the base model), it would result in a small positive impact on estimates
 of spawning biomass in the most recent years
 (Figure~\ref{fig:main-biomass-base-alternative-5}).
 
-The consideration of alternative standard deviations ($\phi$) for time-varying
+**The consideration of alternative standard deviations ($\phi$) for time-varying
 selectivity is discussed earlier in
 section~\ref{sec:data-variability-selectivity}. In short, low values of the
 parameter $\phi$ controlling the flexibility in time-varying selectivity
@@ -966,7 +969,7 @@ Figures~\ref{fig:main-biomass-base-tv-increase-1} and
 \ref{fig:main-status-base-tv-increase-6}). The biomass estimates for 2014 and
 earlier appear relatively insensitive to all tested values of $\phi$.
 
-Figures~\ref{fig:main-tv-selex-sens} and
+**Figures~\ref{fig:main-tv-selex-sens} and
 \ref{fig:main-tv-selex-uncertainty-sens} show estimated selectivities with
 uncertainty for each year for the $\phi=0.03$ case, which can be compared to
 Figures~\ref{fig:main-tv-selex} and \ref{fig:main-tv-selex-uncertainty} for the
@@ -998,7 +1001,7 @@ associated with the less flexible model shown in
 Figure~\ref{fig:main-tv-selex-uncertainty-lines-sens}.
 
 
-Selectivity in the base model is asymptotic, such that all ages equal to or
+**Selectivity in the base model is asymptotic, such that all ages equal to or
 greater than the specified maximum age (age-6) are fully selected.  Three
 alternative maximum age values (5, 7, and 10) were considered to investigate the
 asymptotic properties of fishery and survey selectivity patterns and the impact
@@ -1007,7 +1010,7 @@ time series are similar, irrespective of maximum age
 (Figure~\ref{fig:main-base-alternative-3}).  However, absolute levels of
 spawning biomass are different, particularly for the age-10 case, mainly as a
 result of scaling the population through estimated $B_0$ and $R_0$ parameters.
-The most similar levels of spawning biomass compared to the base model are
+**The most similar levels of spawning biomass compared to the base model are
 reached when using a maximum age of 5 throughout all but the most recent years
 in the time series, when setting the maximum age to 7 is most similar.  A
 logical feature of many selectivity patterns is the incremental increase
@@ -1022,7 +1025,7 @@ preserved in the base model (maximum age of~6).
 % but I think that it was confusing to read and harder to update. I am splitting
 % it into sections for each parameter. Feel free to recombine if you wish this 
 % year or in the future.
-Several key underlying structural model assumptions were identified that have
+**Several key underlying structural model assumptions were identified that have
 persisted across many previous hake assessments, and thus warrant revisiting
 periodically as a set of reference sensitivity examinations to new base models.
 Those identified here include the specification of natural mortality, the level
@@ -1030,7 +1033,7 @@ of variation assumed about the stock-recruitment relationship ($\sigma_r$), and
 the resiliency of the stock in terms of recruitment (steepness).
 
 % section below on natural mortality sensitivity
-The standard deviation of the prior distribution on natural mortality was
+**The standard deviation of the prior distribution on natural mortality was
 increased from the base model value of 0.1 to 0.2 and 0.3. Maximum likelihood
 estimates of natural mortality increased from
 \Sexpr{round(base.model$parameters$Value[1],3)} for the base model (prior
@@ -1045,7 +1048,7 @@ uncertainty in spawning biomass on both absolute and relative scales
 and~\ref{fig:main-status-base-alternative-4}).
 
 % section below on steepness sensitivity
-The mean of the prior distribution on steepness was decreased from 0.777 (base)
+**The mean of the prior distribution on steepness was decreased from 0.777 (base)
 to 0.5, and steepness was also fixed at 1.0. The decrease in the mean of the
 prior resulted in a change in the maximum likelihood estimate of steepness
 \Sexpr{round(base.model$parameters["SR_BH_steep","Value"],3)} to
@@ -1058,7 +1061,7 @@ model results is related to the relatively large $\sigma_r$ value which allows
 the recruitments to deviate far from the underlying stock-recruit relationship
 (Figure~\ref{fig:main-mcmc.sr.variability}).
 
-The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative
+**The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative
 high (2.0) and low (1.0) states. An additional value of 1.51 was added this
 year.  The value of 1.51 is based on the suggestion of \citet{MethotTaylor2011}
 that $\sigma_r$ could be tuned using a combination of the variability among the
@@ -1091,7 +1094,7 @@ recruitment deviations over a broad range of $\sigma_r$ values, and the theory
 proposed by \citet{MethotTaylor2011} suggests that the status-quo value of 1.4
 is reasonable.
 
-Several additional sensitivity runs were completed in response to SRG requests
+**Several additional sensitivity runs were completed in response to SRG requests
 during the Feb 13-16, 2017 meeting in Vancouver, B.C., Canada (see
 Appendix~\ref{chap:srg-requests}).  These include model sensitivity to the
 standard deviation associated with time-varying selectivity, further inclusion
@@ -1101,7 +1104,7 @@ chain.
 %%Several key underlying structural model assumptions were identified that have persisted across many previous hake assessments, and thus warrant revisiting periodically as a set of reference sensitivity examinations to new base models.  Those identified here include the specification of natural mortality, the level of variation assumed about the stock-recruitment relationship ($\sigma_r$), and the resiliency of the stock in terms of recruitment (steepness).  The sensitivity of the base model to changes in the input $\sigma_r$ and to the prior distributions for natural mortality and steepness were explored.  The standard deviation of the prior distribution on natural mortality was increased from 0.1 (as in the base model) to 0.2 and 0.3.  The mean of the prior distribution on steepness was decreased from 0.777 (base) to 0.500, and steepness was also fixed at 1.0.  The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative high (2.0) and low (1.0) states.  These key sensitivities had little effect on the overall estimated population trend throughout the time series (Figure~\ref{fig:main-biomass-base-alternative-1}), but they do have a significant impact on the estimated scale of the population (quite different estimates of $B_0$ and $R_0$ parameters; Table~\ref{tab:main-parameter-estimates-sens-1}).  The least influential in terms of relative spawning biomass (Figure~\ref{fig:main-status-base-alternative-1}) as compared to the base model is fixing steepness to 1.0, changing the prior mean on steepness, and moderately changing the prior standard deviation on natural mortality (0.2).  The greatest difference in stock status compared to the base model results from changing the input for $\sigma_r$.  Estimates of natural mortality increased from 0.215 for the base model (prior standard deviation of 0.1) to 0.250 for the sensitivity run with the prior standard deviation set to 0.3.  When the mean of the prior distribution for steepness was changed from 0.777 (base model) to 0.5, the estimate for steepness decreased from 0.861 to 0.602.
 
 \subsection{Retrospective analyses}\label{sec:assessment-retrospective-analyses}
-Retrospective analyses were performed by iteratively removing the terminal
+**Retrospective analyses were performed by iteratively removing the terminal
 years' data and estimating the parameters under the assumptions of the base
 model. Models with 4 or 5 years of data removed had little to no information
 available regarding the high 2010 year class, and therefore estimated quite
@@ -1111,7 +1114,7 @@ information about the size of the 2010 cohort
 contains some information about the size of the 2014 cohort, but with even 1
 year of data removed that estimate declines significantly.
 
-Overall, there is little retrospective change to the relative spawning biomass
+**Overall, there is little retrospective change to the relative spawning biomass
 trajectory up to the mid-2000s, and most retrospective change occurs in the
 final years of the retrospective model. Retrospective estimates over the last 5
 years have been both positively and negatively biased.  In the last 4 years, the
@@ -1120,7 +1123,7 @@ years of data resulted in the assessment substantially over-estimating the
 status in the terminal year, which is likely related to the dynamics introduced
 by the large 2010 cohort and the high observed survey biomass index in 2009.
 
-Figure~\ref{fig:main-retrospective.recruitment} shows the retrospective patterns
+**Figure~\ref{fig:main-retrospective.recruitment} shows the retrospective patterns
 of estimated recruitment deviations for various cohorts. The magnitude of the
 deviation is not well estimated until several ($\sim$4-7) years of fishery
 catch-at-age data and survey age-composition data have been collected on the
@@ -1139,7 +1142,7 @@ some may not stabilize until the cohort approaches an age upwards of 7 years
 old. This illustrates that multiple observations of each cohort are needed in
 order to more accurately determine their recruitment strength.
 
- A comparison of the actual assessment models used in each year since
+** A comparison of the actual assessment models used in each year since
 \Sexpr{min(assessment.history$Year)} is shown in
 Figure~\ref{fig:main-historical-assessments}. There have been substantial
 differences in model structural assumptions and thus results submitted each
@@ -1158,7 +1161,3 @@ spawning biomass are fairly consistent with recent assessments, although the
 model structure has remained relatively consistent, and the uncertainty
 intervals associated with recent assessments bracket the majority of the
 historical estimates.
-
-
-
-
