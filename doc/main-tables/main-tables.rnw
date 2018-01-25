@@ -110,10 +110,10 @@ make.us.age.data.table(us.ms.age,
                        fleet = 2,
                        start.yr = end.yr - num.recent.yrs,
                        end.yr = last.data.yr,
-                       xcaption = paste0("Recent age proportion data used in 
-                         the assessment for the U.S. Mothership fleet. 
-                         Proportions are calculated from numbers of 
-                         individuals in each age group. Age 15 is an 
+                       xcaption = paste0("Recent age proportion data used in
+                         the assessment for the U.S. Mothership fleet.
+                         Proportions are calculated from numbers of
+                         individuals in each age group. Age 15 is an
                          accumulator group."),
                        xlabel = "tab:main-us-ms-age-data",
                        font.size = 12,
@@ -437,16 +437,19 @@ make.cohort.table(base.model,
                   start.yr,
                   last.data.yr+1,
                   csv.dir = output.csv.dir,
-                  xcaption = paste0("For the strong cohorts, calculations of ",
-                                    "what happens to the biomass at each age. ",
-                                    "Start Biomass is the biomass at ",
-                                    "the beginning of the year, Catch Weight ",
-                                    "is the catch for the cohort for the year, ",
-                                    "M is the biomass attributed to natural mortality, ",
-                                    "and Surviving Biomass is what survives to the ",
-                                    "end of the year. Surviving Biomass does not ",
-                                    "equal the Start Biomass in the following year ",
-                                    "because the empirical weights-at-age change between years."),
+                  xcaption = paste0("For the strong cohorts, calculations of
+                                    what happens to the biomass at each age.
+                                    Start Biomass is the biomass at
+                                    the beginning of the year, Catch Weight
+                                    is the catch for the cohort for the year,
+                                    M is the biomass attributed to natural
+                                    mortality, and Surviving Biomass is what
+                                    survives to the end of the year. Surviving
+                                    Biomass does not
+                                    equal the Start Biomass in the following year
+                                    because the empirical weights-at-age
+                                    change between years. Estimated quantities are
+                                    MLEs."),
                   xlabel = "tab:main-cohort-effects",
                   font.size = 10,
                   space.size = 11)
