@@ -78,7 +78,7 @@ Available data have changed over the years, and there
 have been many advances in the discipline of fisheries science. In some ways,
 the latter has evolved considerably over the course of the historical hake
 fishery: new statistical techniques and software have evolved (Bayesian
-vs. maximum likelihood methods for example); and the scientific literature has
+vs. maximum likelihood methods for example), and the scientific literature has
 suggested potentially important biological dynamics to consider (explicit
 modeling of length-at-age for example). Policies requiring the application of
 specific control rules have also changed such as the United States' National
@@ -91,6 +91,9 @@ none of these management procedure changes were evaluated by simulation and
 quantitatively compared with performance measures.
 
 \subsection{Response to \Sexpr{last.assess.yr} Scientific Review Group (SRG) review}\label{sec:assessment-response-review}
+
+**From 2017 assessment: may want to use the same answers for 2018 assessment,
+depending on the questions.
 % Manual 2016 done
 The Scientific Review Group (SRG) meeting was held from February 23--25, 2016, at the Watertown Hotel, Seattle, WA, USA. 
 
@@ -188,6 +191,9 @@ from the JTC:
 
 %\Sexpr{if(ss.version != "3.24U") stop("Need to update SS text in assessment-section.rnw.") }
 % 3.24u in 2015 and 2016 assessments.
+**[Needs careful updating - ss.version will at some point presumably be set to
+3.30. And assess.yr is automatically updated to be 2018, but this doesn't mean
+that the text is valid].
 The \Sexpr{assess.yr} base model is structurally an update of the base model in
 the \Sexpr{last.assess.yr} stock assessment. Stock Synthesis
 \citep{MethotWetzel2013} version \Sexpr{ss.version} was used, the same as for
@@ -213,7 +219,7 @@ at age 2 for the acoustic survey (because age-1 fish are mainly excluded from
 the sampling design) and age-1 for the fishery until a maximum age of 6 (all
 fish 6 and older have the same selectivity).
 
-Prior probability distributions remained unchanged from \Sexpr{last.assess.yr}
+**Prior probability distributions remained unchanged from \Sexpr{last.assess.yr}
 and fixed values are used for several parameters. For the base model, the
 instantaneous rate of natural mortality ($M$) is estimated with a
 \Sexpr{m.prior[1]} prior having a median of \Sexpr{m.prior[2]} and a standard
@@ -236,7 +242,7 @@ estimate calculated analytically as shown by \citet{LudwigWalters1981}. Maturity
 and fecundity relationships are assumed to be time-invariant and fixed values
 remain unchanged from recent assessments.
 
-Statistical likelihood functions used for data fitting are typical of many stock
+**Statistical likelihood functions used for data fitting are typical of many stock
 assessments. The acoustic survey index of abundance was fit via a log-normal
 likelihood function, using the observed (and extra 2009) sampling variability,
 estimated via kriging, as year-specific weighting. An additional constant and
@@ -259,7 +265,7 @@ the 2.5\% quantile and the 97.5\% quantile of posterior distributions from the
 MCMC simulations, to give equal-tailed intervals.
 
 Calculations and figures from Stock Synthesis output were performed using
-\Sexpr{R.Version()$version.string} \citep{R2015} and many R packages (in
+\Sexpr{R.Version()$version.string} \citep{R2017} and many R packages (in
 particular r4ss and xtable). The use of R, knitr, \LaTeX~and GitHub immensely
 facilitated the collaborative writing of this document.
 
