@@ -40,7 +40,9 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 make.data.overview.plot(base.model)
 @
 \end{center}
-\caption{Overview of data used in this assessment, \Sexpr{start.yr}--\Sexpr{last.data.yr}.}
+\caption{Overview of data used in this assessment, 
+  \Sexpr{start.yr}--\Sexpr{last.data.yr}.
+  Circle areas are proportional to the precision within the data type.}
 \label{fig:main-data-overview}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
