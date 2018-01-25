@@ -69,7 +69,8 @@ make.catches.plot(catches, leg.y.loc = 475)
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishDepthsUS}
 \end{center}
-\caption{Distribution of fishing depths (left) and bottom depths (right), in fathoms, of \fishname\ catches in the U.S. at-sea fleet from 2008--\Sexpr{last.data.yr}.}
+\caption{Distribution of fishing depths (left) and bottom depths (right), in fathoms, of \fishname\ catches in the U.S. at-sea fleet from 2008--\Sexpr{last.data.yr}.
+**Check this shows 2017 when all data uploaded.}
 \label{fig:main-us-at-sea-depths}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -80,7 +81,8 @@ make.catches.plot(catches, leg.y.loc = 475)
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishCatchRatesUS}
 \end{center}
-\caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in the U.S. at-sea fleet in \Sexpr{last.data.yr}.}
+\caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in the U.S. at-sea fleet in \Sexpr{last.data.yr}.
+**Check this shows 2017 when all data uploaded.}
 \label{fig:main-us-catch-rates}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -120,7 +122,10 @@ make.age.comp.bubble.plot(base.model, subplot = 1)
 make.survey.biomass.plot(base.model)
 @
 \end{center}
-\caption{Acoustic survey biomass index (millions of metric tons). Approximate 95\% confidence intervals are based on only sampling variability (\Sexpr{survey.start.yr}--2007, 2011--\Sexpr{survey.end.yr}) in addition to squid/hake apportionment uncertainty (2009, in blue).}
+\caption{Acoustic survey biomass index (millions of metric tons). 
+  Approximate 95\% confidence intervals are based on only sampling variability 
+  (\Sexpr{survey.start.yr}--2007, 2011--\Sexpr{survey.end.yr}) in addition to 
+  squid/hake apportionment uncertainty (2009, in blue).}
 \label{fig:main-survey-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
