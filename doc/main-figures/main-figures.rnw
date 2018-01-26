@@ -702,7 +702,11 @@ make.phase.plot(base.model,
                 color = "blue")
 @
 \end{center}
-\caption{Estimated historical path followed by medians of relative fishing intensity and relative spawning biomass for \fishname\ with labels on the start and end years (and 1999). Gray bars span the 95\% credibility intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical) and relative spawning biomass (horizontal).}
+\caption{Estimated historical path followed by medians of relative fishing 
+  intensity and relative spawning biomass for \fishname\ with labels on the 
+  start and end years (and 1999). Gray bars span the 95\% credibility 
+  intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical) 
+  and relative spawning biomass (horizontal).}
 \label{fig:main-phase}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
