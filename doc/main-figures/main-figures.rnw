@@ -137,7 +137,7 @@ make.survey.biomass.plot(base.model)
 make.survey.biomass.extrap.plot(survey.comparison, show = 2:3)
 @
 \end{center}
-\caption{Updated acoustic survey biomass indices with and without extrapolation
+\caption{Acoustic survey biomass indices with and without extrapolation
   (millions of metric tons).
   Approximate 95\% confidence intervals are based on only sampling variability
   (and squid/hake apportionment uncertainty in 2009). See

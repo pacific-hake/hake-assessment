@@ -375,8 +375,8 @@ make.survey.biomass.extrap.plot <- function(dat,
   axis(1, at = ests$year, cex.axis = 0.8)
   legend("topleft",
          c("Values used in 2016 assessment",
-           "Updated time series (with extrapolation, used in base model)",
-           "Updated time series (no extrapolation)")[show],
+           "Acoustic survey time series (with extrapolation, used in base model)",
+           "Acoustic survey time series (no extrapolation)")[show],
          col = c("red", "black", "blue")[show],
          pch = c(18, 16, 17)[show],
          bty = 'n')
