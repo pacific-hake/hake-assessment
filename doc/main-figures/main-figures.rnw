@@ -593,8 +593,7 @@ make.recruitment.plot(base.model,
                       end.yr = end.yr,
                       color = "blue",
                       add.mean = TRUE,
-                      add.r0 = TRUE,
-                      upper.lim = 100)
+                      add.r0 = TRUE)
 @
 \end{center}
 \caption{Medians (solid circles) and means (x) of the posterior distribution for recruitment (billions of age-0) with
