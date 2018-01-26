@@ -451,9 +451,9 @@ par <- oldpar
 make.age.comp.pearson.plot(base.model)
 @
 \end{center}
-\caption{**[Not building, but no error shows up?! May get fixed automatically]. 
-  Pearson residuals for base model MLE fits to the fishery age 
-  composition data. Closed bubbles are positive residuals (observed > expected) 
+\caption{**[Not building, but no error shows up?! May get fixed automatically].
+  Pearson residuals for base model MLE fits to the fishery age
+  composition data. Closed bubbles are positive residuals (observed > expected)
   and open bubbles are
   negative residuals (observed < expected).}
 \label{fig:main-age-comp-pearson}
@@ -531,11 +531,11 @@ layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
 make.selex.uncertainty.lines.plot(base.model,
                                   ages = tv.selex.ages,
                                   year = last.data.yr - 1,
-                                  type = 2,
+                                  type = 2,   # this is survey, don't think year gets used
                                   probs = c(0.025, 0.975))
 make.selex.uncertainty.lines.plot(base.model,
                                   ages = tv.selex.ages,
-                                  year = last.data.yr - 1,
+                                  year = last.data.yr - 1,   # think this should be end.yr-1
                                   type = 1,
                                   selex.list = tv.selex,
                                   probs = c(0.025, 0.975))
