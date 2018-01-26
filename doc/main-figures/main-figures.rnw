@@ -901,7 +901,11 @@ par <- oldpar
 mtext("Age", side = 1, line = 1, outer = TRUE)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass and selectivity for the base model and alternative sensitivity runs representing changes in the age of maximum selectivity from the value of 6 in the base model. Selectivity panels are a) Base model, b) \Sexpr{sens.model.names.3[1]}, c) \Sexpr{sens.model.names.3[2]}, and d) \Sexpr{sens.model.names.3[3]}.}
+\caption{**[Presumably won't need changing]Maximum likelihood estimates of spawning biomass
+  and selectivity for the base model and alternative sensitivity runs representing changes
+  in the age of maximum selectivity from the value of 6 in the base model. Selectivity panels
+  are a) Base model, b) \Sexpr{sens.model.names.3[1]}, c) \Sexpr{sens.model.names.3[2]},
+  and d) \Sexpr{sens.model.names.3[3]}.}
 \label{fig:main-base-alternative-3}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -916,7 +920,9 @@ make.comparison.plot(c(list(base.model), sens.models.6),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity run representing changes in the standard deviation of the selectivity parameters from the base model's value of $\phi=0.20$.} % Manual done 2017.
+\caption{**Maximum likelihood estimates of spawning biomass for the base model and 
+  alternative sensitivity run representing changes in the standard deviation of the 
+  selectivity parameters from the base model's value of $\phi=0.20$.} % Manual done 2017.
 \label{fig:main-biomass-base-tv-increase-1}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -940,11 +946,16 @@ make.comparison.plot(c(list(base.model), sens.models.6),
 par <- oldpar
 @
 \end{center}
-\caption{Density plot showing the MLE recruitment estimates for the 2014 cohort for the base model and alternative sensitivity run representing changes in the standard deviation of the selectivity parameters from the base model's value of $\phi=0.20$.} % Manual done 2017.
+\caption{**Density plot showing the MLE recruitment estimates for the
+  2014 cohort for the base model and alternative sensitivity run representing
+  changes in the standard deviation of the selectivity parameters from the
+  base model's value of $\phi=0.20$.} % Manual done 2017.
 \label{fig:main-status-base-tv-increase-6}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%% These three figures were in 2017 assessment. Commented out for now, may be needed
+%%  in 2018 assessment.
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 %% \begin{center}
@@ -1030,7 +1041,10 @@ make.comparison.plot(c(list(base.model), sens.models.1),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing changes to the standard deviation of recruitment variability from the base model's $\sigma_r=$\Sexpr{sigma.r}.}
+\caption{**Maximum likelihood estimates of spawning biomass for the base model
+  and alternative sensitivity runs representing changes to the standard 
+  deviation of recruitment variability from the base model's
+  $\sigma_r=$\Sexpr{sigma.r}.}
 \label{fig:main-biomass-base-alternative-1}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1047,7 +1061,11 @@ make.comparison.plot(c(list(base.model), sens.models.1),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity runs representing changes to the standard deviation of recruitment variability from the base model's $\sigma_r=$\Sexpr{sigma.r}. See Figure~\ref{fig:main-biomass-base-alternative-1} for legend.}
+\caption{**Maximum likelihood estimates of stock status (relative
+  spawning biomass) for the base model and alternative sensitivity
+  runs representing changes to the standard deviation of recruitment
+  variability from the base model's $\sigma_r=$\Sexpr{sigma.r}.
+  See Figure~\ref{fig:main-biomass-base-alternative-1} for legend.}
 \label{fig:main-status-base-alternative-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1063,7 +1081,11 @@ make.comparison.plot(c(list(base.model), sens.models.4),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing changing the mean of the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, and changing the standard deviation of the prior for natural mortality from 0.1 to 0.2 or 0.3.}
+\caption{**Maximum likelihood estimates of spawning biomass for the base 
+  model and alternative sensitivity runs representing changing the mean of 
+  the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, and 
+  changing the standard deviation of the prior for natural mortality from 
+  0.1 to 0.2 or 0.3.}
 \label{fig:main-biomass-base-alternative-4}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1080,7 +1102,12 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity runs representing changing the mean of the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, and changing the standard deviation of the prior for natural mortality from 0.1 to 0.2 or 0.3. See Figure~\ref{fig:main-biomass-base-alternative-4} for legend.}
+\caption{**Maximum likelihood estimates of stock status (relative 
+  spawning biomass) for the base model and alternative sensitivity runs 
+  representing changing the mean of the prior for steepness from 1.0 to 0.5, 
+  fixing steepness at 1.0, and changing the standard deviation of the prior 
+  for natural mortality from 0.1 to 0.2 or 0.3. See 
+  Figure~\ref{fig:main-biomass-base-alternative-4} for legend.}
 \label{fig:main-status-base-alternative-4}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1096,7 +1123,12 @@ make.comparison.plot(c(list(base.model), sens.models.5),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing time/cohort-invariant ageing error (no downward adjustments for large labelled cohorts), not adjusting the 2014 cohort ageing error downwards (i.e., labelling it a not-very-large cohort at this point) and adding in the age-1 index as a separate data source on recruitment strength.}
+\caption{**Maximum likelihood estimates of spawning biomass for the base 
+  model and alternative sensitivity runs representing time/cohort-invariant 
+  ageing error (no downward adjustments for large labelled cohorts), not 
+  adjusting the 2014 cohort ageing error downwards (i.e., labelling it a 
+  not-very-large cohort at this point) and adding in the age-1 index as a 
+  separate data source on recruitment strength.}
 \label{fig:main-biomass-base-alternative-5}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1113,7 +1145,13 @@ make.comparison.plot(c(list(base.model), sens.models.5),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity runs representing time/cohort-invariant ageing error (no downward adjustments for large labelled cohorts), not adjusting the 2014 cohort ageing error downwards (i.e., labelling it a not-very-large cohort at this point) and adding in the age-1 index as a separate data source on recruitment strength. See Figure~\ref{fig:main-biomass-base-alternative-5} for legend.}
+\caption{**Maximum likelihood estimates of stock status (relative spawning 
+  biomass) for the base model and alternative sensitivity runs representing 
+  time/cohort-invariant ageing error (no downward adjustments for large 
+  labelled cohorts), not adjusting the 2014 cohort ageing error downwards 
+  (i.e., labelling it a not-very-large cohort at this point) and adding in 
+  the age-1 index as a separate data source on recruitment strength. See 
+  Figure~\ref{fig:main-biomass-base-alternative-5} for legend.}
 \label{fig:main-status-base-alternative-5}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
