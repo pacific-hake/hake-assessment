@@ -6,7 +6,7 @@ make.input.age.data.table <- function(model,
                                       xlabel = "default",
                                       font.size = 9,
                                       space.size = 10,
-                                      placement = "H",
+                                      placement = "htbp",
                                       decimals = 2){
   ## Returns an xtable in the proper format for the main tables section for
   ##  combined fishery or survey age data
