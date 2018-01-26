@@ -123,7 +123,6 @@ make.us.age.data.table(us.ms.age,
 \end{landscape}
 \restoregeometry
 \pagestyle{fancy}
-\clearpage
 
 \newgeometry{hmargin=1in,vmargin=1in}
 \thispagestyle{lscape}
@@ -146,7 +145,6 @@ make.us.age.data.table(us.shore.age,
 \end{landscape}
 \restoregeometry
 \pagestyle{fancy}
-\clearpage
 
 \newgeometry{hmargin=1in,vmargin=1in}
 \thispagestyle{lscape}
@@ -195,7 +193,6 @@ make.can.age.data.table(can.ages,
 \end{landscape}
 \restoregeometry
 \pagestyle{fancy}
-\clearpage
 
 \newgeometry{hmargin=1in,vmargin=1in}
 \thispagestyle{lscape}
@@ -221,7 +218,6 @@ make.input.age.data.table(base.model,
 \end{landscape}
 \restoregeometry
 \pagestyle{fancy}
-\clearpage
 
 \newgeometry{hmargin=1in,vmargin=1in}
 \thispagestyle{lscape}
@@ -244,8 +240,6 @@ make.input.age.data.table(base.model,
 \end{landscape}
 \restoregeometry
 \pagestyle{fancy}
-\clearpage
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 <<main.survey.history.table, results='asis', echo=FALSE>>=
