@@ -260,7 +260,7 @@ make.survey.history.table(survey.history,
 <<main.survey.summary.table, results='asis', echo=FALSE>>=
 make.survey.summary.table(survey.summary,
                           digits = 3,
-                          xcaption = paste0("Biomass indices from the acoustic survey (million~t) used in the 2016 and 2017 assessments."),
+                          xcaption = paste0("Biomass indices from the acoustic survey (million~t) used in this assessment."),
                           xlabel = "tab:main-survey-comparison",
                           font.size = 10,
                           space.size = 12)

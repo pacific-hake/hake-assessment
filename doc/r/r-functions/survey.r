@@ -122,6 +122,8 @@ make.survey.summary.table <- function(dat,
                                       font.size = 9,
                                       space.size = 10){
   ## Returns an xtable for the survey summary data from the csv file
+  ## Remove 2016 assessment columns which show the difference in the 1998
+  ## survey estimate (removed for 2018 assessment, see issue #337 on GitHub)
   ##
   ## dat is a data frame containing the survey summary info
   ## digits - number of decimal points for biomass and CV values
@@ -143,17 +145,24 @@ make.survey.summary.table <- function(dat,
 
   dat[is.na(dat)] <- "--"
 
+  ## Remove 2016 assessment year columns
+  dat <- dat[,-c(2,3)]
+
+  ## colnames(dat) <- c(latex.bold("Year"),
+  ##                    latex.mlc(c("Biomass estimate",
+  ##                                "2016",
+  ##                                "(million t)")),
+  ##                    latex.mlc(c("Sampling CV",
+  ##                                "2016")),
+  ##                    latex.mlc(c("Biomass estimate",
+  ##                                "2017",
+  ##                                "(million t)")),
+  ##                    latex.mlc(c("Sampling CV",
+  ##                                "2017")))
   colnames(dat) <- c(latex.bold("Year"),
                      latex.mlc(c("Biomass estimate",
-                                 "2016",
                                  "(million t)")),
-                     latex.mlc(c("Sampling CV",
-                                 "2016")),
-                     latex.mlc(c("Biomass estimate",
-                                 "2017",
-                                 "(million t)")),
-                     latex.mlc(c("Sampling CV",
-                                 "2017")))
+                     latex.mlc(c("Sampling CV")))
 
   size.string <- latex.size.str(font.size, space.size)
   print(xtable(dat,
