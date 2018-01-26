@@ -72,7 +72,7 @@ make.recruitment.plot <- function(model,            ## model is an mcmc run and 
                                   color = "blue",
                                   add.mean = FALSE,
                                   add.r0   = FALSE, ## show the posterior distribution for initial recruitment as an envelope
-                                  upper.lim = 70
+                                  upper.lim = NULL  ## upper limit of y-axis (specify if necessary, else will be automatic)
                                   ){
   ## Plots the recruitment for the mcmc given by model
   ## If add.mean = TRUE, the means will be shown and the unfished equilibrium recruitment will not be shown
@@ -93,8 +93,12 @@ make.recruitment.plot <- function(model,            ## model is an mcmc run and 
   rmed <- rmed[names(rmed) %in% non.equil.yrs]
   rupper <- rupper[names(rupper) %in% non.equil.yrs]
   rmean <- rmean[names(rmean) %in% non.equil.yrs]
+  if(is.null(upper.lim)){
+     upper.lim = max(rupper)
+  }
 
   y <- data.frame(value = rmed, lo = rlower, hi = rupper)
+
   par(mfrow = c(1,1), las = 1, mar = c(3.5,3.5,1,1), oma = c(0,0,0,0))
   plotBars.fn(non.equil.yrs, y, scalar = 1, ylim = c(0,upper.lim), pch = 20,
               xlab = "Year", ylab = "Age 0 recruits (billions)",
@@ -288,12 +292,19 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
        col=colvec[length(spr)-1])
   # add label to year in upper-left quadrant if there's only one
   # this facilitates labeling 1999 in the 2017 assessment, but may work for future years
-  upper.left.yrs <- yrs[sb < 0.4 & spr > 1]
-  if(length(upper.left.yrs)==1){
-    text(x=sb[yrs %in% upper.left.yrs], y=spr[yrs %in% upper.left.yrs] + 0.015,
-         labels=upper.left.yrs, pos = 4, cex = 0.6,
-         col=colvec[yrs %in% upper.left.yrs])
-  }
+  # For 2018 (early base run) there are three, showing all looks confusing (but having none
+  #   means the caption needs editing). Why not just show the highest rel fishing intensity.
+  # upper.left.yrs <- yrs[sb < 0.4 & spr > 1]
+  # if(length(upper.left.yrs)==1){
+  #   text(x=sb[yrs %in% upper.left.yrs], y=spr[yrs %in% upper.left.yrs] + 0.015,
+  #     labels=upper.left.yrs, pos = 4, cex = 0.6,
+  #     col=colvec[yrs %in% upper.left.yrs])
+  #   }
+  highest.fish.int.yr <- yrs[which.max(spr)]
+  text(x=sb[yrs %in% highest.fish.int.yr], y=spr[yrs %in% highest.fish.int.yr] + 0.015,
+       labels=highest.fish.int.yr, pos = 4, cex = 0.6,
+       col=colvec[yrs %in% highest.fish.int.yr])
+
   # add lines at the reference points
   abline(h = 1, v = 1, lty = 2, col = rgb(0,0,0,0.4))
   abline(h = 1, v = c(0.1,0.4), lty = 2, col = rgb(0,0,0,0.4))

@@ -341,8 +341,7 @@ make.recruitment.plot(base.model,
                       end.yr = end.yr,
                       color = "blue",
                       add.mean = TRUE,
-                      add.r0 = TRUE,
-                      upper.lim = 100)
+                      add.r0 = TRUE)
 @
 \end{center}
 \caption{Medians (solid circles) and means ($\times$) of the posterior
@@ -591,7 +590,7 @@ the start of \Sexpr{end.yr}.
 \phantomsection \addcontentsline{toc}{subsection}{Reference points}
 
 Estimates of the \Sexpr{assess.yr} base model reference points with posterior
-credibility intervals are in Table~\ref{tab:es-reference.points}. 
+credibility intervals are in Table~\ref{tab:es-reference.points}.
 **The estimates
 are slightly different than those in the \Sexpr{last.assess.yr} assessment, with
 slightly lower sustainable yields and reference biomasses estimated in this
