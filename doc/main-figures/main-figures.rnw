@@ -820,12 +820,12 @@ make.forecast.risk.comparison.plot(base.model,
 make.age.comp.forecast.plot(base.model)
 @
 \end{center}
-\caption{Forecast age compositions in numbers and in weight for the 2017 fishery catch 
+\caption{Forecast age compositions in numbers and in weight for the \Sexpr{end.yr} fishery catch 
   (combined across all sectors in both countries). Gray bars show median estimates. 
   Thick black lines show 50\% credibility intervals and thin black lines show 95\% 
   credibility intervals. These estimates are based on the posterior distribution for 
-  selectivity averaged across the most recent 5 years and the distribution for expected 
-  numbers at age at the start of 2017 (see Table~\ref{tab:main-est-numbers-at-age} for 
+  selectivity averaged across the most recent five years and the distribution for expected 
+  numbers at age at the start of \Sexpr{end.yr} (see Table~\ref{tab:main-est-numbers-at-age} for 
   the MLEs for numbers-at-age for all years). The panel on the right is scaled based on 
   the weight at each age averaged across all years.}
 \label{fig:main-age-comp-forecast}
