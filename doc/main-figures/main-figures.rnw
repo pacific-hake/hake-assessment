@@ -134,15 +134,14 @@ make.survey.biomass.plot(base.model)
 \begin{figure}[H]
 \begin{center}
 <<main.survey.extrap.biomass, fig.height=6, fig.width=8>>=
-make.survey.biomass.extrap.plot(survey.comparison)
+make.survey.biomass.extrap.plot(survey.comparison, show = 2:3)
 @
 \end{center}
-\caption{**Updated acoustic survey biomass indices with and without extrapolation
-  (millions of metric tons) relative to the index used \Sexpr{last.assess.yr}.
+\caption{Updated acoustic survey biomass indices with and without extrapolation
+  (millions of metric tons).
   Approximate 95\% confidence intervals are based on only sampling variability
   (and squid/hake apportionment uncertainty in 2009). See
-  Table~\ref{tab:main-survey-comparison} for values used in the base model
-  and the 2016 assessment.}
+  Table~\ref{tab:main-survey-comparison} for values used in the base model}
 \label{fig:main-survey-extrap-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
