@@ -651,7 +651,9 @@ make.numbers.at.age.plot(base.model)
 \end{center}
 \caption{Bubble plot of maximum likelihood (MLE) estimates of population numbers at age at the beginning of each year, where diagonals follow each year-class through time.
   The red line represents the mean age. The scale of the bubbles is represented in the key where the units are
-  billions of fish (**with the largest bubble representing about 14 billion age-0 recruits in 1980).
+  billions of fish (**with the largest bubble representing 
+  \Sexpr{round(max(base.model$natage[base.model$natage$"Beg/Mid"=="B",paste(0:20)])/1e6,1)}~billion
+  age-0 recruits in 1980).
   See Table~\ref{tab:main-est-numbers-at-age} for values.}
 \label{fig:main-numbers-at-age}
 \end{figure}

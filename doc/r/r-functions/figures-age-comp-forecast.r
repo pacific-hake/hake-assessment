@@ -75,19 +75,10 @@ make.age.comp.forecast.plot <- function(model){
   ##       side=3, line=0, outer=TRUE, font=2, cex=1.2)
 }
 
-# IGT 2017/01/30:
-# make EPS file as a short-term measure for 2017 doc rather than
-# make this figure dynamically
 if(FALSE){
-  setwd('r')
-  cairo_ps(filename =  "../main-figures/main_age_comp_forecast.eps",
-           width = 6.5, height = 4.5, pointsize = 10)
-  # function call runs get.forecast.age.info to make RData file if needed
-  make.age.comp.forecast.plot(base.model, make.missing.RData.file=TRUE)
-  dev.off()
-  setwd('..')
-
-  # calculations that could also be made dynamic:
+  # calculating fractions (in numbers or biomass) associated with
+  # big cohorts expected for 2017 fishery
+  # these could be made dynamic if these values are needed anywhere
   round(100*quantile(forecast.age.info$natsel.prop$X3, c(0.025, 0.5, 0.975)))
   round(100*quantile(forecast.age.info$natsel.prop$X7, c(0.025, 0.5, 0.975)))
   round(100*quantile(forecast.age.info$natselwt.prop$X3, c(0.025, 0.5, 0.975)))
