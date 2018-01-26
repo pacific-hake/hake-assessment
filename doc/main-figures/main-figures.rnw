@@ -843,7 +843,8 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity run that sets the full bias ramp adjust period to 2014 instead of 2013.}
+\caption{**Maximum likelihood estimates of spawning biomass for the base model and alternative 
+  sensitivity run that sets the full bias ramp adjust period to 2014 instead of 2013.}
 \label{fig:main-biomass-base-alternative-2}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -874,7 +875,8 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity run that sets the full bias ramp adjust period to 2014 instead of 2013.}
+\caption{**Maximum likelihood estimates of stock status (relative spawning biomass) for the base 
+  model and alternative sensitivity run that sets the full bias ramp adjust period to 2014 instead of 2013.}
 \label{fig:main-recruitment-base-alternative-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
