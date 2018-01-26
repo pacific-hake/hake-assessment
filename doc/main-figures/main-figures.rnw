@@ -701,11 +701,11 @@ make.phase.plot(base.model,
                 color = "blue")
 @
 \end{center}
-\caption{Estimated historical path followed by medians of relative fishing 
+\caption{Estimated historical path followed by medians of relative fishing
   intensity and relative spawning biomass for \fishname. Start and end years are
   labelled, as is the year with the highest relative fishing intensity.
-  Gray bars span the 95\% credibility 
-  intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical) 
+  Gray bars span the 95\% credibility
+  intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical)
   and relative spawning biomass (horizontal).}
 \label{fig:main-phase}
 \end{figure}
@@ -758,7 +758,7 @@ models.names <- sapply(catch.levels, "[[", 2)[models.inds] ## pretty catch level
 make.forecast.depletion.comparison.plot(base.model,
                                         models.inds,
                                         models.names,
-                                        start.yr = 2009,
+                                        start.yr = forecast.yrs[length(forecast.yrs)] - 10,
                                         model.end.yr = end.yr,
                                         end.yr = forecast.yrs[length(forecast.yrs)],
                                         legend.loc = "topleft")
