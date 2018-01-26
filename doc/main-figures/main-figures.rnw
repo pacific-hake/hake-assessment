@@ -616,7 +616,8 @@ make.recruitment.dev.plot(base.model,
 \caption{Medians (solid circles) of the posterior distribution for log-scale recruitment deviations with
   95\% posterior credibility intervals (blue lines). Recruitment deviations for the years \Sexpr{recruit.dev.start.yr}--\Sexpr{start.yr-1}
   are used to calculate the numbers at age in \Sexpr{start.yr}, the initial year of the model. Deviations for
-  the years 1970--2012 are constrained to sum to zero while deviations outside this range do not have a constraint.}
+  the years **[hardwired - check if correct]
+  1970--2012 are constrained to sum to zero while deviations outside this range do not have a constraint.}
 \label{fig:main-recruitment-devs}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
