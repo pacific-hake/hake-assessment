@@ -701,11 +701,11 @@ make.phase.plot(base.model,
                 color = "blue")
 @
 \end{center}
-\caption{Estimated historical path followed by medians of relative fishing 
+\caption{Estimated historical path followed by medians of relative fishing
   intensity and relative spawning biomass for \fishname. Start and end years are
   labelled, as is the year with the highest relative fishing intensity.
-  Gray bars span the 95\% credibility 
-  intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical) 
+  Gray bars span the 95\% credibility
+  intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical)
   and relative spawning biomass (horizontal).}
 \label{fig:main-phase}
 \end{figure}
@@ -758,7 +758,7 @@ models.names <- sapply(catch.levels, "[[", 2)[models.inds] ## pretty catch level
 make.forecast.depletion.comparison.plot(base.model,
                                         models.inds,
                                         models.names,
-                                        start.yr = 2009,
+                                        start.yr = forecast.yrs[length(forecast.yrs)] - 10,
                                         model.end.yr = end.yr,
                                         end.yr = forecast.yrs[length(forecast.yrs)],
                                         legend.loc = "topleft")
@@ -812,19 +812,6 @@ make.forecast.risk.comparison.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 % \clearpage
 
-%% %%%%%%%%%%%%%%%%%%%%%%%
-%%%%% old code to include .eps file for non-dynamic version of figure
-%% \begin{figure}[H]
-%% \begin{center}
-%% \includegraphics[width=6.5in, height=4.5in]{main-figures/main_age_comp_forecast.eps}
-%% \end{center}
-%% \caption{Forecast age compositions in numbers and in weight for the 2017 fishery catch (combined across all sectors in both countries). Gray bars show median estimates. Thick black lines show 50\% credibility intervals and thin black lines show 95\% credibility intervals. These estimates are based on the posterior distribution for selectivity averaged across the most recent 5 years and the distribution for expected numbers at age at the start of 2017 see Table~\ref{tab:main-est-numbers-at-age} for the MLEs for numbers-at-age for all years). The panel on the right is scaled based on the weight at each age averaged across all years.}
-%% \label{fig:main-age-comp-forecast}
-%% \end{figure}
-%% %%%%%%%%%%%%%%%%%%%%%%%
-%% % \clearpage
-
-
 %%%%%%%%%%%%%%%%%%%%%%%
 %% new (2017-02-08) commands to run code to build figure dynamically
 \begin{figure}[H]
@@ -833,7 +820,14 @@ make.forecast.risk.comparison.plot(base.model,
 make.age.comp.forecast.plot(base.model)
 @
 \end{center}
-\caption{Forecast age compositions in numbers and in weight for the 2017 fishery catch (combined across all sectors in both countries). Gray bars show median estimates. Thick black lines show 50\% credibility intervals and thin black lines show 95\% credibility intervals. These estimates are based on the posterior distribution for selectivity averaged across the most recent 5 years and the distribution for expected numbers at age at the start of 2017 (see Table~\ref{tab:main-est-numbers-at-age} for the MLEs for numbers-at-age for all years). The panel on the right is scaled based on the weight at each age averaged across all years.}
+\caption{Forecast age compositions in numbers and in weight for the \Sexpr{end.yr} fishery catch 
+  (combined across all sectors in both countries). Gray bars show median estimates. 
+  Thick black lines show 50\% credibility intervals and thin black lines show 95\% 
+  credibility intervals. These estimates are based on the posterior distribution for 
+  selectivity averaged across the most recent five years and the distribution for expected 
+  numbers at age at the start of \Sexpr{end.yr} (see Table~\ref{tab:main-est-numbers-at-age} for 
+  the MLEs for numbers-at-age for all years). The panel on the right is scaled based on 
+  the weight at each age averaged across all years.}
 \label{fig:main-age-comp-forecast}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -849,7 +843,8 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity run that sets the full bias ramp adjust period to 2014 instead of 2013.}
+\caption{**Maximum likelihood estimates of spawning biomass for the base model and alternative 
+  sensitivity run that sets the full bias ramp adjust period to 2014 instead of 2013.}
 \label{fig:main-biomass-base-alternative-2}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -880,7 +875,8 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity run that sets the full bias ramp adjust period to 2014 instead of 2013.}
+\caption{**Maximum likelihood estimates of stock status (relative spawning biomass) for the base 
+  model and alternative sensitivity run that sets the full bias ramp adjust period to 2014 instead of 2013.}
 \label{fig:main-recruitment-base-alternative-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -905,7 +901,11 @@ par <- oldpar
 mtext("Age", side = 1, line = 1, outer = TRUE)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass and selectivity for the base model and alternative sensitivity runs representing changes in the age of maximum selectivity from the value of 6 in the base model. Selectivity panels are a) Base model, b) \Sexpr{sens.model.names.3[1]}, c) \Sexpr{sens.model.names.3[2]}, and d) \Sexpr{sens.model.names.3[3]}.}
+\caption{**[Presumably won't need changing]Maximum likelihood estimates of spawning biomass
+  and selectivity for the base model and alternative sensitivity runs representing changes
+  in the age of maximum selectivity from the value of 6 in the base model. Selectivity panels
+  are a) Base model, b) \Sexpr{sens.model.names.3[1]}, c) \Sexpr{sens.model.names.3[2]},
+  and d) \Sexpr{sens.model.names.3[3]}.}
 \label{fig:main-base-alternative-3}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -920,7 +920,9 @@ make.comparison.plot(c(list(base.model), sens.models.6),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity run representing changes in the standard deviation of the selectivity parameters from the base model's value of $\phi=0.20$.} % Manual done 2017.
+\caption{**Maximum likelihood estimates of spawning biomass for the base model and 
+  alternative sensitivity run representing changes in the standard deviation of the 
+  selectivity parameters from the base model's value of $\phi=0.20$.} % Manual done 2017.
 \label{fig:main-biomass-base-tv-increase-1}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -944,11 +946,16 @@ make.comparison.plot(c(list(base.model), sens.models.6),
 par <- oldpar
 @
 \end{center}
-\caption{Density plot showing the MLE recruitment estimates for the 2014 cohort for the base model and alternative sensitivity run representing changes in the standard deviation of the selectivity parameters from the base model's value of $\phi=0.20$.} % Manual done 2017.
+\caption{**Density plot showing the MLE recruitment estimates for the
+  2014 cohort for the base model and alternative sensitivity run representing
+  changes in the standard deviation of the selectivity parameters from the
+  base model's value of $\phi=0.20$.} % Manual done 2017.
 \label{fig:main-status-base-tv-increase-6}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%% These three figures were in 2017 assessment. Commented out for now, may be needed
+%%  in 2018 assessment.
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 %% \begin{center}
@@ -1034,7 +1041,10 @@ make.comparison.plot(c(list(base.model), sens.models.1),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing changes to the standard deviation of recruitment variability from the base model's $\sigma_r=$\Sexpr{sigma.r}.}
+\caption{**Maximum likelihood estimates of spawning biomass for the base model
+  and alternative sensitivity runs representing changes to the standard 
+  deviation of recruitment variability from the base model's
+  $\sigma_r=$\Sexpr{sigma.r}.}
 \label{fig:main-biomass-base-alternative-1}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1051,7 +1061,11 @@ make.comparison.plot(c(list(base.model), sens.models.1),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity runs representing changes to the standard deviation of recruitment variability from the base model's $\sigma_r=$\Sexpr{sigma.r}. See Figure~\ref{fig:main-biomass-base-alternative-1} for legend.}
+\caption{**Maximum likelihood estimates of stock status (relative
+  spawning biomass) for the base model and alternative sensitivity
+  runs representing changes to the standard deviation of recruitment
+  variability from the base model's $\sigma_r=$\Sexpr{sigma.r}.
+  See Figure~\ref{fig:main-biomass-base-alternative-1} for legend.}
 \label{fig:main-status-base-alternative-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1067,7 +1081,11 @@ make.comparison.plot(c(list(base.model), sens.models.4),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing changing the mean of the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, and changing the standard deviation of the prior for natural mortality from 0.1 to 0.2 or 0.3.}
+\caption{**Maximum likelihood estimates of spawning biomass for the base 
+  model and alternative sensitivity runs representing changing the mean of 
+  the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, and 
+  changing the standard deviation of the prior for natural mortality from 
+  0.1 to 0.2 or 0.3.}
 \label{fig:main-biomass-base-alternative-4}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1084,7 +1102,12 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity runs representing changing the mean of the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, and changing the standard deviation of the prior for natural mortality from 0.1 to 0.2 or 0.3. See Figure~\ref{fig:main-biomass-base-alternative-4} for legend.}
+\caption{**Maximum likelihood estimates of stock status (relative 
+  spawning biomass) for the base model and alternative sensitivity runs 
+  representing changing the mean of the prior for steepness from 1.0 to 0.5, 
+  fixing steepness at 1.0, and changing the standard deviation of the prior 
+  for natural mortality from 0.1 to 0.2 or 0.3. See 
+  Figure~\ref{fig:main-biomass-base-alternative-4} for legend.}
 \label{fig:main-status-base-alternative-4}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1100,7 +1123,12 @@ make.comparison.plot(c(list(base.model), sens.models.5),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative sensitivity runs representing time/cohort-invariant ageing error (no downward adjustments for large labelled cohorts), not adjusting the 2014 cohort ageing error downwards (i.e., labelling it a not-very-large cohort at this point) and adding in the age-1 index as a separate data source on recruitment strength.}
+\caption{**Maximum likelihood estimates of spawning biomass for the base 
+  model and alternative sensitivity runs representing time/cohort-invariant 
+  ageing error (no downward adjustments for large labelled cohorts), not 
+  adjusting the 2014 cohort ageing error downwards (i.e., labelling it a 
+  not-very-large cohort at this point) and adding in the age-1 index as a 
+  separate data source on recruitment strength.}
 \label{fig:main-biomass-base-alternative-5}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1117,7 +1145,13 @@ make.comparison.plot(c(list(base.model), sens.models.5),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity runs representing time/cohort-invariant ageing error (no downward adjustments for large labelled cohorts), not adjusting the 2014 cohort ageing error downwards (i.e., labelling it a not-very-large cohort at this point) and adding in the age-1 index as a separate data source on recruitment strength. See Figure~\ref{fig:main-biomass-base-alternative-5} for legend.}
+\caption{**Maximum likelihood estimates of stock status (relative spawning 
+  biomass) for the base model and alternative sensitivity runs representing 
+  time/cohort-invariant ageing error (no downward adjustments for large 
+  labelled cohorts), not adjusting the 2014 cohort ageing error downwards 
+  (i.e., labelling it a not-very-large cohort at this point) and adding in 
+  the age-1 index as a separate data source on recruitment strength. See 
+  Figure~\ref{fig:main-biomass-base-alternative-5} for legend.}
 \label{fig:main-status-base-alternative-5}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1146,7 +1180,9 @@ mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
 \end{center}
-\caption{Estimates of spawning biomass at the start of each year (top) and recruitment (bottom) for the base model and retrospective runs (based on MLE model runs).}
+\caption{Estimates of spawning biomass at the start of each year (top) 
+  and recruitment (bottom) for the base model and retrospective runs 
+  (based on MLE model runs).}
 \label{fig:main-biomass-recruitment-retrospective}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1170,7 +1206,16 @@ make.squid.plot(retro.list,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Retrospective analysis of recruitment deviations from maximum likelihood estimate (MLE) models over the last \Sexpr{length(plot.retro.yrs)+1} years. Recruitment deviations are the log-scale differences between recruitment estimated by the model and expected recruitment from the spawner-recruit relationship. Lines represent estimated recruitment deviations for cohorts from \Sexpr{min(retro.cohorts)} to \Sexpr{max(retro.cohorts)}, with cohort birth year marked at the right of each color-coded line. Values are estimated by models using data available only up to the year in which each cohort was a given age.}
+\caption{Retrospective analysis of recruitment deviations from maximum 
+  likelihood estimate (MLE) models over the last 
+  \Sexpr{length(plot.retro.yrs)+1} years. Recruitment deviations are 
+  the log-scale differences between recruitment estimated by the model 
+  and expected recruitment from the spawner-recruit relationship. 
+  Lines represent estimated recruitment deviations for cohorts from 
+  \Sexpr{min(retro.cohorts)} to \Sexpr{max(retro.cohorts)}, with cohort 
+  birth year marked at the right of each color-coded line. Values are 
+  estimated by models using data available only up to the year in which 
+  each cohort was a given age.}
 \label{fig:main-retrospective.recruitment}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1185,7 +1230,9 @@ make.squid.plot(retro.list,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Retrospective recruitment estimates shown in Figure \ref{fig:main-retrospective.recruitment} scaled relative to the most recent estimate of the strength of each cohort.}
+\caption{Retrospective recruitment estimates shown in
+  Figure \ref{fig:main-retrospective.recruitment} scaled
+  relative to the most recent estimate of the strength of each cohort.}
 \label{fig:main-relative-retrospective.recruitment}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1200,7 +1247,9 @@ make.assessment.history.plot(base.model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Summary of historical \fishname\ assessment estimates of spawning biomass. Shading represents the approximate 95\% confidence range from the \Sexpr{end.yr} base model.}
+\caption{Summary of historical \fishname\ assessment estimates of spawning
+  biomass. Shading represents the approximate 95\% confidence range from the
+  \Sexpr{end.yr} base model.}
 \label{fig:main-historical-assessments}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
