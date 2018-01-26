@@ -351,17 +351,17 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 \rfoot{Appendix~\ref{chap:srg-requests} -- SRG requests}
 <<appendix-srg-requests, child='appendix-srg-requests/appendix-srg-requests-2018.rnw'>>=
 @
- 
+
 \rfoot{Appendix~\ref{chap:glossary} -- Glossary}
 <<appendix-glossary, child='appendix-glossary/appendix-glossary.rnw'>>=
 @
 
 \rfoot{Appendix~\ref{chap:canada-fishery-report} -- Canada fishery report}
-<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-Canada.rnw'>>=
+<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-Canada-2017.rnw'>>=
 @
 
 \rfoot{Appendix~\ref{chap:us-fishery-report} -- United States fishery report}
-<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-US.rnw'>>=
+<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-US-2017.rnw'>>=
 @
 
 \rfoot{Appendix~\ref{chap:parameters} -- Estimated parameters}

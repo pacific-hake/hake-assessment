@@ -1,8 +1,8 @@
-%appendix-fishery-report.rnw
+%appendix-fishery-report-2016.rnw
 
 \clearpage
 
-\chapter{Report of the \Sexpr{end.yr-1} \fishname\ fishery in the United States} % from the Advisory Panel}
+\chapter{Report of the 2016 \fishname\ fishery in the United States} % from the Advisory Panel}
 \label{chap:us-fishery-report}
 
 {\bf Prepared by the United States Advisory Panel and submitted for the Canada/US Joint Management Committee's and the Joint Technical Committee's consideration on January 31, 2017.}
