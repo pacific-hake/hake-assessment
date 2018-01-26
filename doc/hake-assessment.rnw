@@ -361,7 +361,7 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 @
 
 \rfoot{Appendix~\ref{chap:us-fishery-report} -- United States fishery report}
-<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-US.rnw'>>=
+<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-US-2017.rnw'>>=
 @
 
 \rfoot{Appendix~\ref{chap:parameters} -- Estimated parameters}
