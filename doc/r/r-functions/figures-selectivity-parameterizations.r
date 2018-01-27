@@ -4,7 +4,7 @@
 # read two model, one for status-quo (old) approach, one for the (alt)ernernative
 if(FALSE){
   mod.old <- SS_output(file.path(models.dir, '2018.19_add_2017_tv_select'))
-  mod.alt <- SS_output(file.path(models.dir, '2018.19.10_semiPara_tvSelect_sig0.695'))
+  mod.alt <- SS_output(file.path(models.dir, '2018.19.22_semiPara_tvSelect_sig0.695'))
 }
 
 ###########################################################
@@ -142,7 +142,7 @@ add_label("(c)")
 axis(1, at=0:8); axis(2); box()
 abline(h=0, col='grey', lty=3)
 mtext("Alternative selectivity parameterization", side=3, line=1,
-      outer=TRUE, adj=.9)
+      outer=TRUE, adj=.97)
 
 # second plot showing cumulative sum of parameters
 plot(ages[sub], S_prime_base_alt[sub], type='l', lwd=4, yaxs='i', axes=FALSE,
