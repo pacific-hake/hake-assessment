@@ -325,7 +325,7 @@ Copy and paste all model output files into new mcmc/ directory. Change starter f
 
         0       # DOS display detail: 0,1,2
 
-Commands by Ian in 2017:
+***Commands used in 2017:***
 
         ss3 -mcmc 12000000 -mcsave 10000 -mcseed 36519
         ss3 -mceval
@@ -344,6 +344,21 @@ These values are then been combined with starter.ss values of
         1       # MCMC thinning interval
 
 which will remove the first 201 samples of the 1200 saved (which corresponds to the first 2.01 million in the chain of 12 million) and result in 999 samples reported in the posteriors.sso file.
+
+***Commands for 2018:***
+
+        ss3 -mcmc 24000000 -mcsave 10000 -mcseed 36519
+        ss3 -mceval
+
+The 24 million samples saving 1 in every 10 thousand results in 2400 samples saved.
+These values are then been combined with starter.ss values of
+
+        400     # MCMC burn-in
+        1       # MCMC thinning interval
+
+to get 2000 total samples.
+Note: changing value in starter file to "0 # run display detail (0,1,2)" may
+speed up the MCMC a tiny bit.
 
 
 
