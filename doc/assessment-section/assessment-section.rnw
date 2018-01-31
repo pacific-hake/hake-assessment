@@ -102,6 +102,85 @@ The following are the Assessment Recommendations from the 2017
 SRG report, as listed from highest to lowest priority, and associated responses
 from the JTC:
 
+\begin{itemize}
+  
+\item In the current assessment, the change from $\Phi = 0.03$ to $\Phi = 0.2$
+  has a large effect on fisheries selectivity in all years, as well as on the
+  estimate of 2017 female spawning biomass. The SRG is concerned about the
+  broad-reaching impact of this change, intended to reduce an anomalously high
+  2014 recruitment estimate informed solely by fishery catch-at-age data. As
+  discussed above, the SRG recommends continued work on evaluating the impact of
+  flexibility in time-varying selectivity and a more objective way of determining
+  an appropriate value of $\Phi$ (or other parameterizations of time-varying
+  selectivity) for future assessments.
+
+  \emph{Response -- }
+
+\item The next priority for 2018 is processing the archived ovary collections of
+  Pacific Hake, and re-estimating the maturity schedule based on histological
+  techniques. Three issues are of particular interest: addressing the question of
+  different maturity schedules north and south of Point Conception (34.5$^\circ$~N);
+  bringing the stock assessment up to date given that the current assessment is
+  based on information more than 20 years old from Dorn and Saunders (1997); and
+  assessing whether maturity is more dependent upon age or upon weight. If
+  maturity is more dependent on weight, then the assessment model would need
+  revisions to obtain maturity-at-age from the empirical weight-at-age-and-year
+  matrices, resulting in variable proportions of mature fish-at-age in each year.
+
+  \emph{Response -- }
+  
+\item The SRG notes that MCMC convergence diagnostics for the 2017 base model
+  pointed towards the need for a longer MCMC chain (24~million rather than 
+  12~million in length) in the 2017 assessment. We recommend that for the 2018
+  assessment, the JTC investigate running longer MCMC chains, into retaining a
+  higher number of samples than the current 999 samples for greater precision, and
+  look into more efficient methods of obtaining Bayesian posteriors if available
+  (e.g., **Monnahan et al. 2016).
+
+  \emph{Response -- }
+  
+\item The list of sensitivity tests presented in the 2017 assessment covers the
+  major axes of uncertainty and should be continued in future assessments,
+  including the sensitivity tests for alternative values for $\sigma_r$ (which sets
+  variability around the theoretical recruitment model) of 1.0 and 2.0. The SRG
+  requests that future assessments, beginning with 2018, include the following key
+  sensitivity tests: natural mortality, stock-recruit steepness ($h$), $\sigma_r$,
+  inclusion of the age-1 index, and exploring the degree of flexibility in time-varying
+  selectivity or the $\Phi$ parameter, as well as any others the JTC deems appropriate.
+
+  \emph{Response -- }
+  
+\item The SRG supports continued development of an age-1 index from the acoustic
+  survey, and recommends continuing to run sensitivity tests in future assessments
+  fitted to the current provisional age-1 index. This index is most important in
+  years where auxiliary information is needed to assess the likelihood of small or
+  large recruitment events that are influential in projections, but highly
+  uncertain.
+
+  \emph{Response -- }
+  
+\item Current biological evidence does not support including Pacific Hake south
+  of Point Conception (34.5$^\circ$~N) in the assessment. The SRG encourages
+  ongoing collection and analysis of genetic material in both Canadian and US
+  waters to resolve stock structure in the California Current.
+
+  \emph{Response -- }
+  
+\item The following two recommendations are to fulfil requests for specific
+  information by the AP representatives:
+ \begin{itemize}
+   \item A table providing exploitation rates by age and year be added to 
+     future assessment documents.
+   \item A table in future assessment documents reporting on the model
+     estimates of the annual weight of each cohorts that is caught,
+     dies from natural mortality, and lives, by year.
+  \end{itemize}
+  
+  \emph{Response -- }
+  
+
+\end{itemize}
+
 
 
 **From 2017 assessment: may want to use the same answers for 2018 assessment,
