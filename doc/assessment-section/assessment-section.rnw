@@ -121,7 +121,7 @@ from the JTC:
   techniques. Three issues are of particular interest: addressing the question of
   different maturity schedules north and south of Point Conception (34.5$^\circ$~N);
   bringing the stock assessment up to date given that the current assessment is
-  based on information more than 20 years old from Dorn and Saunders (1997); and
+  based on information more than 20 years old from \citet{DornSaunders1997}; and
   assessing whether maturity is more dependent upon age or upon weight. If
   maturity is more dependent on weight, then the assessment model would need
   revisions to obtain maturity-at-age from the empirical weight-at-age-and-year
@@ -138,10 +138,10 @@ from the JTC:
   assessment, the JTC investigate running longer MCMC chains, into retaining a
   higher number of samples than the current 999 samples for greater precision, and
   look into more efficient methods of obtaining Bayesian posteriors if available
-  (e.g., **Monnahan et al. 2016).
+  (e.g., \citealt{MonnahanThorsonEtAl17}).
 
-  \emph{Response -- } **We ran the MCMC algorithm for ** iterations
-  and retained \Sexpr{num.mcmc.samples} for the base model. **..
+  \emph{Response -- } **We ran the MCMC algorithm for **gazillions of** iterations
+  and retained \Sexpr{num.mcmc.samples} for the base model. **.....
   
 \item The list of sensitivity tests presented in the 2017 assessment covers the
   major axes of uncertainty and should be continued in future assessments,
@@ -152,7 +152,7 @@ from the JTC:
   inclusion of the age-1 index, and exploring the degree of flexibility in time-varying
   selectivity or the $\Phi$ parameter, as well as any others the JTC deems appropriate.
 
-  \emph{Response -- }
+  \emph{Response -- **}
   
 \item The SRG supports continued development of an age-1 index from the acoustic
   survey, and recommends continuing to run sensitivity tests in future assessments
@@ -161,7 +161,7 @@ from the JTC:
   large recruitment events that are influential in projections, but highly
   uncertain.
 
-  \emph{Response -- }
+  \emph{Response -- **}
   
 \item Current biological evidence does not support including Pacific Hake south
   of Point Conception (34.5$^\circ$~N) in the assessment. The SRG encourages
