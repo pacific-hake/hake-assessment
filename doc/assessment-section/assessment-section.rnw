@@ -114,7 +114,7 @@ from the JTC:
   an appropriate value of $\Phi$ (or other parameterizations of time-varying
   selectivity) for future assessments.
 
-  \emph{Response -- }
+  \emph{Response -- } **See Issue \#310.
 
 \item The next priority for 2018 is processing the archived ovary collections of
   Pacific Hake, and re-estimating the maturity schedule based on histological
@@ -127,7 +127,10 @@ from the JTC:
   revisions to obtain maturity-at-age from the empirical weight-at-age-and-year
   matrices, resulting in variable proportions of mature fish-at-age in each year.
 
-  \emph{Response -- }
+  \emph{Response -- } We estimated a new maturity ogive based on
+    1,947 samples with ages from north of 34.44$^\circ$~N, as discussed in
+    **section ??. **Confirm which further points of the SRG request this
+    did or did not address. **Maybe also see notes in Issue \#325. 
   
 \item The SRG notes that MCMC convergence diagnostics for the 2017 base model
   pointed towards the need for a longer MCMC chain (24~million rather than 
@@ -137,7 +140,8 @@ from the JTC:
   look into more efficient methods of obtaining Bayesian posteriors if available
   (e.g., **Monnahan et al. 2016).
 
-  \emph{Response -- }
+  \emph{Response -- } **We ran the MCMC algorithm for ** iterations
+  and retained \Sexpr{num.mcmc.samples} for the base model. **..
   
 \item The list of sensitivity tests presented in the 2017 assessment covers the
   major axes of uncertainty and should be continued in future assessments,
@@ -164,7 +168,7 @@ from the JTC:
   ongoing collection and analysis of genetic material in both Canadian and US
   waters to resolve stock structure in the California Current.
 
-  \emph{Response -- }
+  \emph{Response -- **The JTC supports this recommendation.}
   
 \item The following two recommendations are to fulfil requests for specific
   information by the AP representatives:
@@ -183,29 +187,11 @@ from the JTC:
 
 
 
-**From 2017 assessment: may want to use the same answers for 2018 assessment,
-depending on the questions.
-% Manual 2016 done
+**From 2017 assessment: have deleted some but keeping some here for reference before
+deleting....
 
 \begin{itemize}
 
-\item Given the information and analyses presented to the SRG this meeting, the
-  SRG agrees with the decision to fit the 2016 base assessment model to the 
-  survey biomass time series with limited extrapolation. This decision should 
-  be continued for the 2017 base assessment model.
-
-\emph{Response -- The acoustic survey biomass index included in the 
-  \Sexpr{end.yr} base model continues to use the survey biomass time series 
-  with limited extrapolation, which includes the incorporation of a tapering 
-  function to ensure extrapolated biomass goes to zero the further the 
-  prediction was from observed data.  The 2016 assessment did not include the 
-  1995 survey biomass estimate due to issues with the older survey data, but 
-  those issues have now been resolved so the \Sexpr{end.yr} base model now 
-  includes the reanalyzed (following procedures described in \citet{JTC2016}, 
-  Section~\ref{sec:data-acoustic-survey}) 1995 estimate.  The 1998 survey 
-  estimate was also revised due to a discovery of a better set of variables 
-  used in the processing of the acoustic data for that year.}
-  
 \item The list of sensitivity tests presented in the 2016 assessment covers 
   the major axes of uncertainty, and should be continued in the 2017 assessment.
 
@@ -241,14 +227,6 @@ depending on the questions.
   surface across a range of plausible $\sigma_r$ values.  Results indicate that 
   the $\sigma_r$ used in the \Sexpr{end.yr} base model (1.4) is near the 
   minimum and is predominantly informed by age data and recruitment.}
-
-\item Current biological evidence does not support including Pacific Hake south 
-  of Point Conception in the assessment. The SRG encourages continued 
-  collection and processing of genetic material to resolve stock structure in 
-  the California Current region, especially given increasing catches of Pacific 
-  Hake in Mexican waters.
-
-\emph{Response -- The JTC supports this recommendation.}
 
 \item The SRG continues to support collection of ovaries across the range of 
   Pacific Hake and further estimation of maturity schedules based on 
