@@ -331,6 +331,7 @@ Copy and paste all model output files into new mcmc/ directory. Change starter f
         ss3 -mceval
 
 Commands used for "2018.18_temporary_base" and “2018.19_add_2017_tv_select” models just to get some MCMC results:
+
         ss3 -mcmc 12000 -mcsave 10 -mcseed 36519
         ss3 -mceval
 
