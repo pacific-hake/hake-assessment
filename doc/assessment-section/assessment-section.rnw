@@ -180,7 +180,21 @@ from the JTC:
      dies from natural mortality, and lives, by year.
   \end{itemize}
   
-  \emph{Response -- }
+  \emph{Response -- The exploitation rates by age and year 
+    were included in the final version of the 2017
+    assessment \citep{JTC2017} as Table~22. We also presented   
+    estimated biomass-at-age at the beginning of each year (Table~21),
+    and catch-at-age in numbers (Table~23) and biomass (Table~24) for each year.
+    We included the requested estimated fate of cohorts for strong cohorts
+    only (Table~25).}
+    
+    \emph{These tables are included in this \Sexpr{assess.yr} assessment as 
+    Tables~\ref{tab:main-est-exp-rate-at-age},
+    \ref{tab:main-est-biomass-at-age}, \ref{tab:main-est-catch-at-age},
+    \ref{tab:main-est-catch-at-age-biomass} and \ref{tab:main-cohort-effects}
+    respectively. **Clarify if cohort table was only requested for strong
+    cohorts -- I kind of think it was but the SRG report doesn't specify; will 
+    make an Issue to discuss.}
   
 
 \end{itemize}
