@@ -715,4 +715,53 @@ ongoing but no clear alternative was available in Stock Synthesis for this
 assessment.  
 % (From 2014 and 2016 assessments).
 
+\subsubsection{Age composition likelihood}\label{sec:data-age-comp-likelihood}
+The base model includes a change in likelihood and data-weighting method 
+applied to the age composition data. The 2017 assessment, like those before it,
+used a multinomial likelihood and the tuning method of \citet{McAllisterIanelli1997}
+for weighting the age compositions. This tuning method involves
+iteratively adjusting a multiplier on the the input sample sizes until they are
+roughly equal to the harmonic mean of the effective sample sizes, where the
+effective sample size is dependent on how well the model expectation matches
+the observed values. For this assessment, a new Dirichlet-Multinomial (D-M) likehood
+was adoped, as proposed by \citet{ThorsonEtAl2017Dirichlet}. The primary benefit
+of the D-M approach is that instead of manually iterating the sample size multiplier,
+an estimated parameter serves to automatically adjust the weight given to
+the composition data. This increases efficiency of the assessment process, removes the
+subject choice of how many iterations are required in the previous approach,
+and also ensures that the results of model sensitivities, retrospective analyses, 
+and likelihood profiles will all be automatically tuned, rather than having the
+age composition given the same weight as the base model.
+
+The likelihood, equation (10) in \citet{ThorsonEtAl2017Dirichlet}, is as follows,
+\eb
+L(\bm{\pi},\theta|\bm{\tilde{\pi}},n) = 
+  \frac{\Gamma(n+1)}{\prod\limits_{a=1}^{a_{max}} \Gamma(n\tilde{\pi}_a + 1)} 
+  \frac{\Gamma(\theta n)}{\Gamma(n + \theta n)} 
+  \prod\limits_{a=1}^{a_{max}} \frac{\Gamma(n \tilde{\pi}_a + \theta n \pi_a)}{\Gamma(\theta n\pi_a)}
+\ee
+where $n$ is the input sample size, $\tilde{\pi}_a$ are the observed proportions 
+at each age $a$, and $\pi_a$ are the corresponding expected proportions at 
+each age as estimated by the model. The notation $\bm{\tilde{\pi}}$ and 
+$\bm{\pi}$ is used to designate the vectors of these proportions.
+
+The effective sample size associated with this likelihood is given by
+\eb
+n_{eff} = \frac{1}{1 + \theta} + n \frac{\theta}{1 + \theta}
+\ee
+
+For the input samples sizes used in this assessment, which are based on the 
+number of trips or hauls, are large enough that the $1/(1 + \theta)$ term
+is insignificant compared to the $n \theta / (1 + \theta)$ term, which means
+that $\theta / (1 + \theta)$ can be compare to the sample size 
+multipliers used in the McAllister-Ianelli data weighting method. 
+
+See \citet{ThorsonEtAl2017Dirichlet} for the derivation of this likelihood and
+more detail on the simulation study used to test it.
+
+The implementation of the D-M likelihood in SS has $\log(\theta)$ as the estimated
+parameter in order to ensure that $\theta$ remains positive.
+
+
+
 \clearpage
