@@ -14,6 +14,8 @@
 %% but need to see appendix manual.
 \usepackage[titletoc,title]{appendix}
 
+%% for bold math symbols
+\usepackage{bm}
 \usepackage{cite}
 %% need array when specifying a ragged right column:
 %%  >{\raggedright\arraybackslash}{p2in}.
