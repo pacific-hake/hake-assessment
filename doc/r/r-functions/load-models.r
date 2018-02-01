@@ -720,7 +720,7 @@ run.extra.mcmc.models <- function(model, verbose = TRUE){
   num.posts <- nrow(posts)
 
   ## create a table of parameter values based on labels in parameters section of Report.sso
-  newpar <- data.frame(value = c(1, model$parameters$Value, 999),
+  newpar <- data.frame(value = c(1, model$parameters$Value, num.posts),
                        hash = "#",
                        label = c("dummy_parm", model$parameters$Label, "checksum"),
                        stringsAsFactors = FALSE)
@@ -763,8 +763,7 @@ run.extra.mcmc.models <- function(model, verbose = TRUE){
       print(irow)
     }
     ## replace values in newpar table with posteriors values
-    ## (excluding 1 and 2 for "Iter" and "Objective_function")
-    newpar[newpar$label %in% names(posts), 1] <- as.numeric(posts[irow, -(1:2)])
+    newpar$label[!is.na(match(names(posts), newpar$label))]
     write.table(x = newpar,
                 file = file.path(extra.mcmc.dir, "ss3.par"),
                 quote = FALSE,
@@ -773,8 +772,8 @@ run.extra.mcmc.models <- function(model, verbose = TRUE){
     file.copy(file.path(extra.mcmc.dir, "ss3.par"),
               file.path(reports.dir, paste0("ss_input", irow, ".par")),
               overwrite = TRUE)
-    # delete existing output files to make sure that if model fails to run,
-    # it won't just copy the same files again and again
+    ## delete existing output files to make sure that if model fails to run,
+    ## it won't just copy the same files again and again
     file.remove(file.path(extra.mcmc.dir, "Report.sso"))
     file.remove(file.path(extra.mcmc.dir, "CompReport.sso"))
 
@@ -785,7 +784,7 @@ run.extra.mcmc.models <- function(model, verbose = TRUE){
     }else{
       ## This doesn't work!!
       shell(shell.command)
-      #system(shell.command, show.output.on.console = FALSE)
+      ## system(shell.command, show.output.on.console = FALSE)
     }
     file.copy(file.path(extra.mcmc.dir, "ss3.par"),
               file.path(reports.dir, paste0("ss_output", irow, ".par")),
