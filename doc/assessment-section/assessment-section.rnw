@@ -90,36 +90,122 @@ the Management Strategy Evaluation (MSE) that was begun in 2013 \citep{JTC2013},
 none of these management procedure changes were evaluated by simulation and
 quantitatively compared with performance measures.
 
-\subsection{Response to \Sexpr{last.assess.yr} Scientific Review Group (SRG) review}\label{sec:assessment-response-review}
+\subsection{Response to 2017 Scientific Review Group (SRG) review}\label{sec:assessment-response-review}
 
-**From 2017 assessment: may want to use the same answers for 2018 assessment,
-depending on the questions.
-% Manual 2016 done
-The Scientific Review Group (SRG) meeting was held from February 23--25, 2016, at the Watertown Hotel, Seattle, WA, USA. 
+**For 2018 assessment -- 2017 responses to 2016 SRG comments are still copied
+below for now.
 
-The following are the Assessment Recommendations from the \Sexpr{last.assess.yr}
+The Scientific Review Group (SRG) meeting was held from February 14--16, 2017, at the 
+Morris J.~Wosk Centre for Dialogue, Vancouver, BC, Canada.
+
+The following are the Assessment Recommendations from the 2017
 SRG report, as listed from highest to lowest priority, and associated responses
 from the JTC:
 
 \begin{itemize}
-
-\item Given the information and analyses presented to the SRG this meeting, the
-  SRG agrees with the decision to fit the 2016 base assessment model to the 
-  survey biomass time series with limited extrapolation. This decision should 
-  be continued for the 2017 base assessment model.
-
-\emph{Response -- The acoustic survey biomass index included in the 
-  \Sexpr{end.yr} base model continues to use the survey biomass time series 
-  with limited extrapolation, which includes the incorporation of a tapering 
-  function to ensure extrapolated biomass goes to zero the further the 
-  prediction was from observed data.  The 2016 assessment did not include the 
-  1995 survey biomass estimate due to issues with the older survey data, but 
-  those issues have now been resolved so the \Sexpr{end.yr} base model now 
-  includes the reanalyzed (following procedures described in \citet{JTC2016}, 
-  Section~\ref{sec:data-acoustic-survey}) 1995 estimate.  The 1998 survey 
-  estimate was also revised due to a discovery of a better set of variables 
-  used in the processing of the acoustic data for that year.}
   
+\item In the current assessment, the change from $\Phi = 0.03$ to $\Phi = 0.2$
+  has a large effect on fisheries selectivity in all years, as well as on the
+  estimate of 2017 female spawning biomass. The SRG is concerned about the
+  broad-reaching impact of this change, intended to reduce an anomalously high
+  2014 recruitment estimate informed solely by fishery catch-at-age data. As
+  discussed above, the SRG recommends continued work on evaluating the impact of
+  flexibility in time-varying selectivity and a more objective way of determining
+  an appropriate value of $\Phi$ (or other parameterizations of time-varying
+  selectivity) for future assessments.
+
+  \emph{Response -- } **See Issue \#310.
+
+\item The next priority for 2018 is processing the archived ovary collections of
+  Pacific Hake, and re-estimating the maturity schedule based on histological
+  techniques. Three issues are of particular interest: addressing the question of
+  different maturity schedules north and south of Point Conception (34.5$^\circ$~N);
+  bringing the stock assessment up to date given that the current assessment is
+  based on information more than 20 years old from \citet{DornSaunders1997}; and
+  assessing whether maturity is more dependent upon age or upon weight. If
+  maturity is more dependent on weight, then the assessment model would need
+  revisions to obtain maturity-at-age from the empirical weight-at-age-and-year
+  matrices, resulting in variable proportions of mature fish-at-age in each year.
+
+  \emph{Response -- } We estimated a new maturity ogive based on
+    1,947 samples with ages from north of 34.44$^\circ$~N, as discussed in
+    **section ??. **Confirm which further points of the SRG request this
+    did or did not address. **Maybe also see notes in Issue \#325. 
+  
+\item The SRG notes that MCMC convergence diagnostics for the 2017 base model
+  pointed towards the need for a longer MCMC chain (24~million rather than 
+  12~million in length) in the 2017 assessment. We recommend that for the 2018
+  assessment, the JTC investigate running longer MCMC chains, into retaining a
+  higher number of samples than the current 999 samples for greater precision, and
+  look into more efficient methods of obtaining Bayesian posteriors if available
+  (e.g., \citealt{MonnahanThorsonEtAl17}).
+
+  \emph{Response -- } **We ran the MCMC algorithm for **gazillions of** iterations
+  and retained \Sexpr{num.mcmc.samples} for the base model. **.....
+  
+\item The list of sensitivity tests presented in the 2017 assessment covers the
+  major axes of uncertainty and should be continued in future assessments,
+  including the sensitivity tests for alternative values for $\sigma_r$ (which sets
+  variability around the theoretical recruitment model) of 1.0 and 2.0. The SRG
+  requests that future assessments, beginning with 2018, include the following key
+  sensitivity tests: natural mortality, stock-recruit steepness ($h$), $\sigma_r$,
+  inclusion of the age-1 index, and exploring the degree of flexibility in time-varying
+  selectivity or the $\Phi$ parameter, as well as any others the JTC deems appropriate.
+
+  \emph{Response -- **}
+  
+\item The SRG supports continued development of an age-1 index from the acoustic
+  survey, and recommends continuing to run sensitivity tests in future assessments
+  fitted to the current provisional age-1 index. This index is most important in
+  years where auxiliary information is needed to assess the likelihood of small or
+  large recruitment events that are influential in projections, but highly
+  uncertain.
+
+  \emph{Response -- **}
+  
+\item Current biological evidence does not support including Pacific Hake south
+  of Point Conception (34.5$^\circ$~N) in the assessment. The SRG encourages
+  ongoing collection and analysis of genetic material in both Canadian and US
+  waters to resolve stock structure in the California Current.
+
+  \emph{Response -- **The JTC supports this recommendation.}
+  
+\item The following two recommendations are to fulfil requests for specific
+  information by the AP representatives:
+ \begin{itemize}
+   \item A table providing exploitation rates by age and year be added to 
+     future assessment documents.
+   \item A table in future assessment documents reporting on the model
+     estimates of the annual weight of each cohorts that is caught,
+     dies from natural mortality, and lives, by year.
+  \end{itemize}
+  
+  \emph{Response -- The exploitation rates by age and year 
+    were included in the final version of the 2017
+    assessment \citep{JTC2017} as Table~22. We also presented   
+    estimated biomass-at-age at the beginning of each year (Table~21),
+    and catch-at-age in numbers (Table~23) and biomass (Table~24) for each year.
+    We included the requested estimated fate of cohorts for strong cohorts
+    only (Table~25).}
+    
+    \emph{These tables are included in this \Sexpr{assess.yr} assessment as 
+    Tables~\ref{tab:main-est-exp-rate-at-age},
+    \ref{tab:main-est-biomass-at-age}, \ref{tab:main-est-catch-at-age},
+    \ref{tab:main-est-catch-at-age-biomass} and \ref{tab:main-cohort-effects}
+    respectively. **Clarify if cohort table was only requested for strong
+    cohorts -- I kind of think it was but the SRG report doesn't specify; will 
+    make an Issue to discuss.}
+  
+
+\end{itemize}
+
+
+
+**From 2017 assessment: have deleted some but keeping some here for reference before
+deleting....
+
+\begin{itemize}
+
 \item The list of sensitivity tests presented in the 2016 assessment covers 
   the major axes of uncertainty, and should be continued in the 2017 assessment.
 
@@ -155,14 +241,6 @@ from the JTC:
   surface across a range of plausible $\sigma_r$ values.  Results indicate that 
   the $\sigma_r$ used in the \Sexpr{end.yr} base model (1.4) is near the 
   minimum and is predominantly informed by age data and recruitment.}
-
-\item Current biological evidence does not support including Pacific Hake south 
-  of Point Conception in the assessment. The SRG encourages continued 
-  collection and processing of genetic material to resolve stock structure in 
-  the California Current region, especially given increasing catches of Pacific 
-  Hake in Mexican waters.
-
-\emph{Response -- The JTC supports this recommendation.}
 
 \item The SRG continues to support collection of ovaries across the range of 
   Pacific Hake and further estimation of maturity schedules based on 
