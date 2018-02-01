@@ -13,15 +13,15 @@ make.SPR.illustration <- function(model){
   cols <- paste(ages)
 
   # get vector of maturity * fecundity from wtatage matrix
-  matfec.vec <- as.numeric(head(model$wtatage[model$wtatage$fleet==-2,
+  matfec.vec <- as.numeric(head(model$wtatage[model$wtatage$Fleet==-2,
                                               cols], 1))
   # average weight at age
-  wt.vec.avg <- as.numeric(head(model$wtatage[model$wtatage$fleet==-1 &
+  wt.vec.avg <- as.numeric(head(model$wtatage[model$wtatage$Fleet==-1 &
                                                 model$wtatage$Yr==1966,
                                               cols], 1))
 
   # ending year weight at age
-  wt.vec.endyr <- as.numeric(head(model$wtatage[model$wtatage$fleet==-1 &
+  wt.vec.endyr <- as.numeric(head(model$wtatage[model$wtatage$Fleet==-1 &
                                                   abs(model$wtatage$Yr)==model$endyr,
                                                 cols], 1))
 
