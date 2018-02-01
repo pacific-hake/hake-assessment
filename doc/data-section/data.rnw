@@ -688,15 +688,56 @@ degree of freedom than the number of estimated $p_a$. Therefore,
 $p_{A_{\text{min}}}=0$ can be set for the fishery and for the survey.  
 %% Manual 2017 - age 6 in the base model.
 
-Time-varying fishery selectivity is implemented through annual deviations in the
-$p_a$, formulated as
+% new text added January 2018
+The implementation of time-varying selectivity in the assessments from 2014 to 
+2017 all used an option available in  Stock Synthesis 3.24 where 
+annual deviations to the selectivity parameters were applied after a 
+logistic transformation to keep the time-varying parameters within a 
+set of bounds.
+
+Given parameter bounds $p_a^{low}$ and $p_a^{high}$, the base parameter $p_a$ 
+is transformed into $\tilde{p_a}$ via the equation
+
+\eb
+\tilde{p}_a = \frac{1}{2}\log\left(\frac{p_a^{high} - p_a^{low} + 
+    2\cdot 10^{-7}}{p_a - p_a^{low} + 10^{-7}} - 1\right)
+\ee
+
+where the small constants in the numerator and denominator are included to 
+ensure that $\tilde{p_a}$ is finite even when $p_a$ is on a bound.
+
+The deviations are applied in this transformed space, as
+
+\eb
+\tilde{p}_{ay} = \tilde{p}_a + \epsilon_{ay}
+\ee
+
+where the $\epsilon_{ay}$ are additional parameters estimated in the model.
+
+The resulting value is then back-transformed into the standard parameter space
+using the formula
+
+\eb
+p_{ay} = p_a^{low} + \frac{ p_a^{high} - p_a^{low} }{ 1 + \exp{\left( -2 \tilde{p}_{ay} \right) } } 
+\label{data-selectivity-transformation}
+\ee
+
+%%%logistic transformation and back transformation as written in TPL file for SS:
+%temp=log((MGparm_1(j,2)-MGparm_1(j,1)+0.0000002)/(MGparm(j)-MGparm_1(j,1)+0.0000001)-1.)/(-2.);   // transform the base parameter
+%temp+=MGparm(k+1);     //  add the offset  Note that offset value is in the transform space
+%temp1=MGparm_1(j,1)+(MGparm_1(j,2)-MGparm_1(j,1))/(1.+mfexp(-2.*temp));   // backtransform
+
+In Stock Synthesis 3.30, this logistic transformation is no longer available, so
+the deviations are applied directly to the base parameter:
+
 \eb
 p_{ay} = p_a + \epsilon_{ay}
 \ee
-where the $\epsilon_{ay}$ are additional parameters estimated in the model. 
 
-The values of $\epsilon_{ay}$ are included in an additional likelihood component
+where the $\epsilon_{ay}$ are the parameter deviations estimated in the model.
+These deviations are included in an additional likelihood component 
 with negative log-likelihood proportional to
+
 \eb
 -\log(\mbox{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6} 
   ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \frac{\epsilon_{ay}^2}{\phi^2},
@@ -705,6 +746,22 @@ with negative log-likelihood proportional to
 where $\phi$ is the standard deviation of the normal penalty function.
 % Manual 2017: age 6 and y=1991. Andy thought 1991 might be tv.selex.start.yr
 %  but that has value 1990. Control file says 1991.
+
+The logistic transformation proved unnecessary as the bounds on the selectivity 
+parameters were somewhat arbitrary, and none of the deviations led to parameters
+approaching these bounds. To calculate a new value of $\phi$ to apply in the 
+standard parameter space that corresponded to the $\phi = 0.20$ applied in the 
+transformed parameter space in last years assessment, the derivative of 
+equation (\ref{data-selectivity-transformation}) was calculated with respect
+to $\tilde{p}_{ay}$, given the bounds of -5 to 9 used for all time-varying 
+selectivity parameters. The resulting value of 7 at the mid-point between the 
+bounds is an approximation to the relative impact of a deviation in the 
+logistic parameter space to one in the standard parameter space. Thus, a value 
+of $\phi = 1.40$ was chosen to approximate the value of $\phi = 0.20$ applied
+in the transformed parameter space in the 2017 assessment.
+
+** Update paragraph below to reflect discussion with SRG and/or alternative 
+selectivity sensitivity analysis
 
 The current selectivity parameterization is limiting because each individual
 selectivity-at-age is correlated with the selectivity of other ages. In other
@@ -750,7 +807,7 @@ The effective sample size associated with this likelihood is given by
 n_{eff} = \frac{1}{1 + \theta} + n \frac{\theta}{1 + \theta}
 \ee
 
-For the input samples sizes used in this assessment, which are based on the 
+The input samples sizes used in this assessment, which are based on the 
 number of trips or hauls, are large enough that the $1/(1 + \theta)$ term
 is insignificant compared to the $n \theta / (1 + \theta)$ term, which means
 that $\theta / (1 + \theta)$ can be compare to the sample size 

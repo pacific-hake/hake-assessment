@@ -364,28 +364,26 @@ In short, these included the following
 \begin{itemize}
   \item Update the Stock Synthesis modeling software from version 3.24 to 
     version 3.30.
-  \item Update data from years prior to 2017 (mostly just additional ages
-    from the end of 2016 that weren't available in time for last year's 
-    assessment)
+  \item Update data from years prior to 2017
   \item Add 2017 total catch
   \item Add 2017 survey biomass estimate
   \item Add 2017 survey age composition
   \item Add 2017 fishery ages and updated associated settings related to 
     recruitment
   \item Tune the model (apply the McAllister-Ianelli data-weighting method)
+  \item Switch to Dirichlet-Multinomial likelihood for age compositions
+  \item Update the estimates of maturity and fecundity
 \end{itemize}
 
-In general, these changes mimic the steps routinely applied, with the except of 
-the change in software version. Stock Synthesis version 3.30 includes a large
+In general, these changes mimic the steps routinely applied, with a few 
+exceptions requiring additional explanation. 
+Stock Synthesis (SS) version 3.30 includes a large
 number of new features and behind-the-scenes changes which are described in
 detail in \citet{MethotEtAl2018}. It has been extensively tested prior to 
-release and used for at least six production stock assessments for species
-managed under the Pacific Fishery Management Council (including four 
-rockfish species as well as Lingcod, and California Scorpionfish).
+release and used in 2017 for at least six stock assessments for species
+managed under the Pacific Fishery Management Council.
 
-% Ian: paragraph below could be shortened if I'm able to complete an Appendix
-% related to selectivity parameterization
-One change between Stock Synthesis versions with significance for this 
+One change between the two Stock Synthesis versions with significance for this 
 assessment is a change in the options for how time-varying parameters 
 are represented. In SS 3.24,
 time-varying parameters could have a logistic transformation applied to assure
@@ -397,23 +395,24 @@ parameter values more difficult and appropriate adjustment of parameter bounds
 made the transformation unnecessary. Recent hake assessments used the 
 logistic transformation for the time-varying selectivity parameters, so
 the conversion of the 2017 assessment to the newer software required an
-adaption to account for this option no longer being available. In particular, 
+adaptation to account for this option no longer being available. In particular, 
 the $\phi$ parameter controlling the flexibility of the
 variability of the fishery selectivity (which was increased from $\phi=0.03$
 in the 2016 assessment to $\phi=0.20$ in the 2017 assessment) no longer
 had the same effect when applied in the standard instead of logistic 
-parameter space.
-Through trial and error, a value of $\phi=1.50$, applied in the standard 
-parameter space, was found to be a close approximation to the $\phi=0.20$ 
-applied in the logistic parameters space in the 2017 assessment. This
-approximation was found to be reasonably close as measured both by both 
-the resulting pattern of fishery selectivity over time and the 
-overall estimated spawning biomass and other model outputs.
+parameter space. An analysis of the transforamtion, 
+described in section~\ref{sec:data-variability-selectivity}, estimated that 
+the $\phi=0.20$ applied in the logistic parameters space in the 2017 assessment
+could be converted to $\phi=1.40$, applied in the standard parameter space.  
+Exploration of higher and lower $\phi$ values confirmed that the model 
+with $\phi=1.40$ provided the best approximation to the 2017 base model 
+as measured both by both the resulting pattern of fishery selectivity over 
+time and the estimated time series of spawning biomass.
 
-**This change is discussed in more detail in Appendix XX on parameterization of
-selectivity.
-% Ian is working on writing this appendix, expanding on Appendix C in the
-% 2014 assessment
+The bridging step ``Update data from years prior to 2017'' was primarily a 
+change to the fishery ages, where a few additional samples from previous years, 
+especially from the end of 2016 that weren't available in time for last year's
+assessment were now included.
 
 The bridging step ``Add 2017 fishery ages and updated associated settings 
 related to recruitment'' combined multiple elements that should always  
@@ -425,19 +424,30 @@ equally balanced aroundn the stock-recruit relationship. If forecast deviations
 were included in this vector, this zero-sum constraint would have the potential
 to cause those forecast deviations to differ from zero, even in the absence of 
 any data for the forecast years. 
-
 The addition of the 2017 fishery data, which included small numbers of age-1
 fish from the 2016 cohort, meant that it was now necessary to 
 shift the endpoint of the main vector of recruitment deviations
 to include 2016. 2017 was including in the vector of forecast deviations 
 since there is not yet any information available on the 2017 cohort. 
-
 The settings related to avoiding bias in recruitment estimation, based on 
 the method proposed by \citet{MethotTaylor2011},  were
 also shifted by 1 year as part of this same bridging step, to account for 
 the addition of information about recruitment for the 2016 cohort.
+Finally, this bridging step also shifted the ending year of the deviations
+in the selectivity parameters from 2016 to 2017 since there was now fishery
+data in 2017.
+
+The bridging step 
+``Switch to Dirichlet-Multinomial likelihood for age compositions'' 
+represents an replacement of the McAllister-Ianelli data-weighting method
+(applied in the previous bridging step) with a new approach described in
+more detail in the section~\ref{sec:data-age-comp-likelihood}. 
+
+**Add text on the bridging step 
+``Update the estimates of maturity and fecundity''.
     
 **Add text about which of the itemized bridge steps had which effect,
+including references to figures comparing model results,
 perhaps drawing on commented-out text below.
 
 %% These changes included updating historic
