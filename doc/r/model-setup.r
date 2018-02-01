@@ -110,7 +110,7 @@ if(verbose) cat0("Key posteriors file: \n  ", nuisance.posteriors.file)
 ## -----------------------------------------------------------------------------
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
-base.model.dir.name <- "2018.18_temporary_base"
+base.model.dir.name <- "2018.40_base_model"
 base.model.name <- paste0(assess.yr, "Base model SS 3.30")
 verify.models(model.dir, base.model.dir.name, base.model.name)
 if(verbose){
@@ -135,15 +135,11 @@ if(verbose){
 ## Bridge models group 1
 ## -----------------------------------------------------------------------------
 bridge.model.dir.names.1 <- c(last.yr.base.model.dir.name,
-                              "10_UpdatePre2016catches",
-                              "11_UpdatePre2016FishComps",
-                              "15_Add2016Catch",
-                              "16_Add2016FishComps")
+                              "2018.31_convert_to_3.30",
+                              "2018.32_update_pre-2017_data")
 bridge.model.names.1 <- c(last.yr.base.model.name,
-                          "Update pre-2016 catches",
-                          "Update pre-2016 fishery age comps",
-                          "Add 2016 catch",
-                          "Add 2016 fishery age comps")
+                          "Convert to SS 3.30",
+                          "Update pre-2017 data")
 verify.models(model.dir, bridge.model.dir.names.1, bridge.model.names.1)
 if(verbose){
   print.model.message(bridge.model.dir.names.1, bridge.model.names.1, 1, model.type = "Bridge")
@@ -153,13 +149,17 @@ if(verbose){
 ## Bridge models group 2
 ## -----------------------------------------------------------------------------
 bridge.model.dir.names.2 <- c(last.yr.base.model.dir.name,
-                              "12_Update1998SurveyIndex",
-                              "13_Update2015SurveyIndexCVonly",
-                              "14_Add1995SurveyIndex")
+                              "2018.32_update_pre-2017_data",
+                              "2018.33_add_2017_catch",
+                              "2018.34_add_2017_survey_bio",
+                              "2018.35_add_2017_survey_ages",
+                              "2018.36_add_2017_fishery_ages")
 bridge.model.names.2 <- c(last.yr.base.model.name,
-                          "Update 1998 survey index",
-                          "Update 2015 survey cv",
-                          "Add 1995 survey index")
+                          "Result of first bridging model set",
+                          "Add 2017 total catch",
+                          "Add 2017 survey biomass estimate",
+                          "Add 2017 survey age comps",
+                          "Add 2017 fishery age comps")
 verify.models(model.dir, bridge.model.dir.names.2, bridge.model.names.2)
 if(verbose){
   print.model.message(bridge.model.dir.names.2, bridge.model.names.2, 2, model.type = "Bridge")
@@ -169,14 +169,16 @@ if(verbose){
 ## Bridge models group 3
 ## -----------------------------------------------------------------------------
 bridge.model.dir.names.3 <- c(last.yr.base.model.dir.name,
-                              "17_AdjustBiasRamp",
-                              "40_SenRecdevMain2014",
-                              "41_BasePreSRG_v3")
+                              "2018.36_add_2017_fishery_ages",
+                              "2018.37_apply_McAllister-Ianelli_tuning",
+                              "2018.38_change_to_Dirichlet-Multinomial_tuning",
+                              "2018.39_update_maturity_ogive")
 ## Bridge model names will be used to make the bridge model plot and its caption.
 bridge.model.names.3 <- c(last.yr.base.model.name,
-                          "Adjust recr. bias ramp",
-                          "Include 2014 in vector of main recr. devs",
-                          "More flexible time-varying selectivity") #,
+                          "Result of second bridging model set",
+                          "Apply McAllister-Ianelli data weighting",
+                          "Change to Dirichlet-Multinomial data weighting",
+                          "Update maturity ogive (= base model)") #,
                           #"Adjust effective sample sizes")
 verify.models(model.dir, bridge.model.dir.names.3, bridge.model.names.3)
 if(verbose){
