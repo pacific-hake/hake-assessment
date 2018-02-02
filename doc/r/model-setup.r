@@ -425,7 +425,8 @@ build <- function(run.fore = FALSE,
   ## Bridge/sensitivity models
   for(model.nm in model.names.list){
     ss.version.tmp <- ss.version
-    if(model.nm == "00_55_2016base" |
+    if(model.nm == "00_45_2017base" |
+       model.nm == "00_55_2016base" |
        model.nm == "10_UpdatePre2016catches" |
        model.nm == "11_UpdatePre2016FishComps" |
        model.nm == "15_Add2016Catch" |
