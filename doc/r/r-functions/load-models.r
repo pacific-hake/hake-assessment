@@ -19,7 +19,7 @@ load.ss.files <- function(model.dir,
   model.dir.listing <- dir(model.dir)
   dat.fn.ind <- grep("_data.ss", model.dir.listing)
   ctl.fn.ind <- grep("_control.ss", model.dir.listing)
-  par.fn.ind <- grep("ss3.par", model.dir.listing)
+  par.fn.ind <- grep("ss.par", model.dir.listing)
   if(!length(dat.fn.ind)){
     stop(curr.func.name, "Error in model ", model.dir,
          ", there is no data file. A data file is any file whose name contains the text _data.ss.\n\n")
@@ -732,7 +732,7 @@ run.extra.mcmc.models <- function(model, verbose = TRUE){
   newpar$label[newpar$label == "SR_LN(R0)"] <- "SR_LN.R0."
   ## write table of new files
   write.table(x = newpar,
-              file = file.path(extra.mcmc.dir, "ss3.par"),
+              file = file.path(extra.mcmc.dir, "ss.par"),
               quote = FALSE, row.names=FALSE)
 
   start <- SS_readstarter(file.path(extra.mcmc.dir, "starter.ss"), verbose = verbose)
@@ -765,11 +765,11 @@ run.extra.mcmc.models <- function(model, verbose = TRUE){
     ## replace values in newpar table with posteriors values
     newpar$label[!is.na(match(names(posts), newpar$label))]
     write.table(x = newpar,
-                file = file.path(extra.mcmc.dir, "ss3.par"),
+                file = file.path(extra.mcmc.dir, "ss.par"),
                 quote = FALSE,
                 row.names = FALSE)
 
-    file.copy(file.path(extra.mcmc.dir, "ss3.par"),
+    file.copy(file.path(extra.mcmc.dir, "ss.par"),
               file.path(reports.dir, paste0("ss_input", irow, ".par")),
               overwrite = TRUE)
     ## delete existing output files to make sure that if model fails to run,
@@ -786,7 +786,7 @@ run.extra.mcmc.models <- function(model, verbose = TRUE){
       shell(shell.command)
       ## system(shell.command, show.output.on.console = FALSE)
     }
-    file.copy(file.path(extra.mcmc.dir, "ss3.par"),
+    file.copy(file.path(extra.mcmc.dir, "ss.par"),
               file.path(reports.dir, paste0("ss_output", irow, ".par")),
               overwrite = TRUE)
     file.copy(file.path(extra.mcmc.dir, "Report.sso"),
