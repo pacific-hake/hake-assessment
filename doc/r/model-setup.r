@@ -121,7 +121,7 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Last assessment year's base model name and directory
 ## -----------------------------------------------------------------------------
-last.yr.base.model.dir.name <- "00_55_2016base"
+last.yr.base.model.dir.name <- "00_45_2017base"
 last.yr.base.model.name <- paste(last.assess.yr, "Base model SS 3.24")
 verify.models(model.dir, base.model.dir.name, base.model.name)
 if(verbose){
