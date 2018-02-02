@@ -482,7 +482,7 @@ tv.selex.start.yr <- 1990
 tv.selex.ages <- 1:8
 tv.selex <- calc.tv.selex(base.model,
                           start.yr = tv.selex.start.yr,
-                          end.yr = last.data.yr - 1,
+                          end.yr = last.data.yr,
                           ages = tv.selex.ages,
                           probs = c(0.025, 0.975))
 make.tv.selex.plot(tv.selex)
@@ -507,7 +507,7 @@ tv.selex.left <- calc.tv.selex(base.model,
                                probs = c(0.025, 0.975))
 tv.selex.right <- calc.tv.selex(base.model,
                                 start.yr = 2002,
-                                end.yr = last.data.yr - 1,
+                                end.yr = last.data.yr,
                                 ages = tv.selex.ages,
                                 probs = c(0.025, 0.975))
 make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
@@ -529,12 +529,12 @@ oldpar <- par(no.readonly = TRUE)
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
 make.selex.uncertainty.lines.plot(base.model,
                                   ages = tv.selex.ages,
-                                  year = last.data.yr - 1,
+                                  year = last.data.yr,
                                   type = 2,   # this is survey, don't think year gets used
                                   probs = c(0.025, 0.975))
 make.selex.uncertainty.lines.plot(base.model,
                                   ages = tv.selex.ages,
-                                  year = last.data.yr - 1,   # think this should be end.yr-1
+                                  year = last.data.yr,   # think this should be end.yr-1
                                   type = 1,
                                   selex.list = tv.selex,
                                   probs = c(0.025, 0.975))
