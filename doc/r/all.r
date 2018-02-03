@@ -82,5 +82,5 @@ source("forecast-catch-levels.r")       ## Code to setup forecast model runs.
 source("retrospective-setup.r")         ## Code to setup retrospective model runs.
 source("data-tables.r")                 ## Set up variables for data tables (from csv files).
 
-source("SSplotNumbers.r") ## Necessary to incorporate changes to make SS 3.30 work
+## source("SSplotNumbers.r") ## Necessary to incorporate changes to make SS 3.30 work
 
