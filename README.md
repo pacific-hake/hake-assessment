@@ -358,6 +358,12 @@ These values are then been combined with starter.ss values of
         1       # MCMC thinning interval
 
 to get 2000 total samples.
+
+Ran a second chain in 2018 with alternative seed to compare multi-chain convergence diagnostics
+
+        ss3 -mcmc 24000000 -mcsave 10000 -mcseed 89041
+        ss3 -mceval
+
 Note: changing value in starter file to "0 # run display detail (0,1,2)" may
 speed up the MCMC a tiny bit.
 
