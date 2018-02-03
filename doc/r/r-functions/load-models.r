@@ -716,20 +716,22 @@ run.extra.mcmc.models <- function(model, verbose = TRUE){
   file.copy(file.path(mcmc.dir, list.files(mcmc.dir)), extra.mcmc.dir)
   posts <- read.table(file.path(extra.mcmc.dir, "posteriors.sso"), header = TRUE)
   ## Change this for testing on smaller subset of posteriors
-  ## num.posts <- 5
   num.posts <- nrow(posts)
-
+  checksum <- 999 # just a code, unrelated to num.posts
   ## create a table of parameter values based on labels in parameters section of Report.sso
-  newpar <- data.frame(value = c(1, model$parameters$Value, num.posts),
+  newpar <- data.frame(value = c(1, model$parameters$Value, checksum),
                        hash = "#",
-                       label = c("dummy_parm", model$parameters$Label, "checksum"),
+                       label = c("dummy_parm", model$parameters$Label, "checksum999"),
                        stringsAsFactors = FALSE)
 
   ## add hash before first column name
   names(newpar)[1] <- "#value"
 
-  ## change label for R0 parameter to match R's conversion in "posts"
-  newpar$label[newpar$label == "SR_LN(R0)"] <- "SR_LN.R0."
+  ## change labels parameters like "SR_LN(R0)" to "SR_LN.R0."
+  ## to match what read.table does to posteriors.sso
+  newpar$label <- gsub(pattern="(", replacement=".", newpar$label, fixed=TRUE)
+  newpar$label <- gsub(pattern=")", replacement=".", newpar$label, fixed=TRUE)
+  
   ## write table of new files
   write.table(x = newpar,
               file = file.path(extra.mcmc.dir, "ss.par"),
@@ -755,20 +757,21 @@ run.extra.mcmc.models <- function(model, verbose = TRUE){
   writeLines(ctl.lines, file.path(extra.mcmc.dir, start$ctlfile))
 
   ## Remove brackets in newpar labels so that the names match column names in posts
+  ## this line may be redundant with the gsub commands above
   newpar$label <- gsub("\\(([0-9])\\)", ".\\1.", newpar$label)
 
   ## loop over rows of posteriors file
   for(irow in 1:num.posts){
     if(verbose){
-      print(irow)
+      cat("irow:", irow, "natM:", newpar[2], "\n")
     }
     ## replace values in newpar table with posteriors values
-    newpar$label[!is.na(match(names(posts), newpar$label))]
+    ## (excluding 1 and 2 for "Iter" and "Objective_function")
+    newpar[newpar$label %in% names(posts), 1] <- as.numeric(posts[irow, -(1:2)])
     write.table(x = newpar,
                 file = file.path(extra.mcmc.dir, "ss.par"),
                 quote = FALSE,
                 row.names = FALSE)
-
     file.copy(file.path(extra.mcmc.dir, "ss.par"),
               file.path(reports.dir, paste0("ss_input", irow, ".par")),
               overwrite = TRUE)
