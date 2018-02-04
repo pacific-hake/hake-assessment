@@ -155,6 +155,7 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
                                       surv.yrs,      ## Years in which the survey took place
                                       probs = c(0.025, 0.975), ## Confidence interval values lower and upper
                                       y.max = 5.5e6, ## maximum value for the y-axis
+                                      samples = 1000, ## how many lines to show
                                       leg.cex = 1    ## Legend tect size
                                       ){
   ## Plot the fit of the model to the acoustic survey with 95% C.I.
@@ -177,16 +178,22 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
            lwd = 3,
            lend = 1)
 
-  matplot(x = surv.yrs, #as.numeric(start.yr):(as.numeric(end.yr)),
-          ##y = model$cpue.table[1:length(start.yr:end.yr),],
-          y = model$extra.mcmc$cpue.table,
+  # subsamble to help the lines be more visible
+  nsamp <- ncol(model$extra.mcmc$cpue.table) # total samples
+  subsample <- floor(seq(1, nsamp, length.out=samples)) # subset (floor to get integers)
+  
+  # lines showing expected survey values include in-between years
+  # where no survey took place and therefore are not included in surv.yrs
+  matplot(x = start.yr:end.yr,
+          y = model$extra.mcmc$cpue.table[1:length(start.yr:end.yr), subsample],
+          ##y = model$extra.mcmc$cpue.table,
           col = rgb(0, 0, 1, 0.03),
           type = 'l',
           add=TRUE,
           lty = 1)
-  lines(x = surv.yrs, #as.numeric(start.yr):(as.numeric(end.yr) + 1),
-        ## y = model$cpue.median[1:length(start.yr:end.yr)],
-        y = model$extra.mcmc$cpue.median,
+  lines(x = start.yr:end.yr,
+        y = model$extra.mcmc$cpue.median[1:length(start.yr:end.yr)],
+        ##y = model$extra.mcmc$cpue.median,
         col = rgb(0, 0, 0.5, 0.7),
         lty = 1,
         lwd = 3)

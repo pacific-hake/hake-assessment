@@ -999,7 +999,9 @@ fetch.extra.mcmc <- function(model,
     }
     tmp <- readLines(file.path(reports.dir, paste0("Report_", irow,".sso")))
     skip.row <- grep("INDEX_2", tmp)[2]
-    ncpue <- nrow(model$dat$CPUE[model$dat$CPUE$index > 0,])
+    # number of CPUE values includes dummy values for in-between years
+    # reading these values is needed to get expected survey biomass in those years
+    ncpue <- nrow(model$dat$CPUE)
     cpue <- read.table(file.path(reports.dir, paste0("Report_", irow,".sso")),
                        skip = skip.row,
                        nrows = ncpue, ## number of survey index points
