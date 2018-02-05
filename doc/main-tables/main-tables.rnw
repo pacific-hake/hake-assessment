@@ -532,6 +532,10 @@ make.risk.table(base.model,
                 space.size = 14)
 @
 
+\newgeometry{hmargin=1in,vmargin=1in}
+\thispagestyle{lscape}
+\begin{landscape}
+  \centering
 <<main.parameter.estimates.sens.2, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(sens.models.2.for.table,
                                           model.names = sens.model.names.2.for.table,
@@ -543,6 +547,9 @@ make.short.parameter.estimates.sens.table(sens.models.2.for.table,
                                           font.size = 9,
                                           space.size = 11)
 @
+\end{landscape}
+\restoregeometry
+\pagestyle{fancy}
 
 <<main.parameter.estimates.sens.1, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(sens.models.1.for.table,
