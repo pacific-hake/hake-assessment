@@ -94,14 +94,16 @@ In this stock assessment, the terms catch and landings are used
 interchangeably. Estimates of discard within the target fishery are included,
 but discarding of \fishname\ in non-target fisheries is not. Discard from all
 fisheries is estimated to be less than 1\% of landings in recent years.
-** % should be automatic but should double check some numbers
 During
 the last five years, catches have been above the long-term average catch
 (\Sexpr{f(long.term.avge.catch)}~t) in
 \Sexpr{last.5.years.above.avge[1:(length(last.5.years.above.avge)-1)]} and
 \Sexpr{last.5.years.above.avge[length(last.5.years.above.avge)]}, and below it
-in \Sexpr{last.5.years.below.avge[1:(length(last.5.years.below.avge)-1)]} and
-\Sexpr{last.5.years.below.avge[length(last.5.years.below.avge)]}. Landings
+in \Sexpr{last.5.years.below.avge}.
+% in \Sexpr{last.5.years.below.avge[1:(length(last.5.years.below.avge)-1)]}.
+% and \Sexpr{last.5.years.below.avge[length(last.5.years.below.avge)]}.
+% Include above two lines if length(last.5.years.below.avge) > 1.
+Landings
 between 2001 and 2008 were predominantly comprised of fish from the very large
 1999 year class, with the cumulative removal (through \Sexpr{end.yr-1}) from
 that cohort estimated at approximately
