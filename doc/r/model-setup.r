@@ -188,15 +188,13 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 1
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.1 <- c("2018.40_base_model",
-                            "2018.40.01_h_prior_mean_low",
+sens.model.dir.names.1 <- c("2018.40.01_h_prior_mean_low",
                             "2018.40.02_h_fix_high",
                             "2018.40.03_sigmaR_fix_low",
                             "2018.40.04_sigmaR_fix_high",
                             "2018.40.05_M_0.2SD",
                             "2018.40.06_M_0.3SD")
-sens.model.names.1 <- c("Base Case",
-                        "Steepness Mean Prior Low (0.5)",
+sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
                         "Steepness Fix 1.0",
                         "Sigma R 1.0",
                         "Sigma R 1.8",
@@ -210,13 +208,11 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 2
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.2 <- c("2018.40_base_model",
-                            "2018.40.16_age1Survey",
+sens.model.dir.names.2 <- c("2018.40.16_age1Survey",
                             "2018.40.14_ageError_noCohort",
                             "2018.40.15_compWeight_HarmonicMean",
                             "2018.40.19_USageComp")
-sens.model.names.2 <- c("Base Case",
-                        "Add Age 1 Index",
+sens.model.names.2 <- c("Add Age 1 Index",
                         "Ageing Error (cohort invariant)",
                         "Harmonic Mean Data Weighting",
                         "U.S. At-Sea Age Comps (Weighted by Month)")
@@ -228,15 +224,13 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 3
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.3 <- c("2018.40_base_model",
-                            "2018.40.07_maxSel_Age5",
+sens.model.dir.names.3 <- c("2018.40.07_maxSel_Age5",
                             "2018.40.08_maxSel_Age7",
                             "2018.40.09_maxSel_Age10",
                             "2018.40.11_tvSelect_phi_xtralow",
                             "2018.40.12_tvSelect_phi_low",
                             "2018.40.13_tvSelect_phi_high")
-sens.model.names.3 <- c("Base Case",
-                        "Max. age selectivity 5",
+sens.model.names.3 <- c("Max. age selectivity 5",
                         "Max. age selectivity 7",
                         "Max. age selectivity 10",
                         "Phi t.v. selectivity (0.21)",
@@ -250,11 +244,9 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 4
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.4 <- c("2018.40_base_model",
-                            "2018.40.10_semiPara_tvSelect_sig0.695",
+sens.model.dir.names.4 <- c("2018.40.10_semiPara_tvSelect_sig0.695",
                             "2018.40.20_semiPara_tvSelect_sig1.0")
-sens.model.names.4 <- c("Base Case",
-                        "Semi-Parametric t.v selectivity (0.695)",
+sens.model.names.4 <- c("Semi-Parametric t.v selectivity (0.695)",
                         "Semi-Parametric t.v. selectivity (1.0)")
 verify.models(model.dir, sens.model.dir.names.4, sens.model.names.4)
 if(verbose){
