@@ -1011,11 +1011,11 @@ can be particularly useful for the most recent years when little information on
 cohort strength is otherwise available.  Compared to the base model, estimates
 of spawning biomass throughout most of the time series are similar, but do
 diverge near the end of the time series
-(Figures~\ref{fig:main-biomass-base-alternative-5} and
-\ref{fig:main-status-base-alternative-5}; \Sexpr{end.yr} estimates are
+(Figures~\ref{fig:main-biomass-base-alternative-2} and
+\ref{fig:main-status-base-alternative-2}; \Sexpr{end.yr} estimates are
 \Sexpr{f(100*sens.models.1.for.table[[1]]$derived_quants["Bratio_2017","Value"],1)}\%
 of unfished biomass for the base model and
-\Sexpr{f(100*sens.models.1.for.table[[4]]$derived_quants["Bratio_2017","Value"],1)}\%
+\Sexpr{f(100*sens.models.1.for.table[[8]]$derived_quants["Bratio_2017","Value"],1)}\%
 for the age-1 index model). In terms of recruitment, the age-1 index tends to
 reduce uncertainty associated with the estimated deviations from the
 Beverton-Holt stock-recruitment relationship; the most prominent of these
@@ -1035,7 +1035,7 @@ with each age.  If the 2014 year class was not considered to be a major
 recruitment year (and thus ageing error for this cohort was not reduced by 55\%
 as in the base model), it would result in a small positive impact on estimates
 of spawning biomass in the most recent years
-(Figure~\ref{fig:main-biomass-base-alternative-5}).
+(Figure~\ref{fig:main-biomass-base-alternative-2}).
 
 **The consideration of alternative standard deviations ($\phi$) for time-varying
 selectivity is discussed earlier in
@@ -1048,45 +1048,44 @@ there is a record-high estimate for the 2014 year class (the median being 2.5
 times larger than any other in the time series)
 %2.5 times value from looking at sort(sens.models.6[[1]]$mcmccalcs$rmed)
 resulting in a huge estimated current biomass
-(Figures~\ref{fig:main-biomass-base-tv-increase-1} and
-\ref{fig:main-status-base-tv-increase-6}).  Models with more flexible
+(Figures~\ref{fig:main-base-alternative-3}).  Models with more flexible
 selectivity ($\phi=0.20$, chosen for the base model, and $\phi=0.30$) had
 estimates of the 2014 recruitment at a similar magnitude to the 2010 cohort
-(Table~\ref{tab:main-parameter-estimates-sens-1},
-Figures~\ref{fig:main-biomass-base-tv-increase-1} and
-\ref{fig:main-status-base-tv-increase-6}). The biomass estimates for 2014 and
+(Table~\ref{tab:main-parameter-estimates-sens-2},
+Figures~\ref{fig:main-recruit-base-tv-increase-1}). The biomass estimates for 2014 and
 earlier appear relatively insensitive to all tested values of $\phi$.
 
-**Figures~\ref{fig:main-tv-selex-sens} and
-\ref{fig:main-tv-selex-uncertainty-sens} show estimated selectivities with
-uncertainty for each year for the $\phi=0.03$ case, which can be compared to
-Figures~\ref{fig:main-tv-selex} and \ref{fig:main-tv-selex-uncertainty} for the
-base model. Figure~\ref{fig:main-tv-selex-uncertainty-lines-sens} shows the
-uncertainty between the MCMC samples for 2016 fishery selectivity and can be
-compared with the same figure for the base model
-(Figure~\ref{fig:main-tv-selex-uncertainty-lines}). Most notably, the
-variability between samples for the base model is larger than for the
-$\phi=0.03$. The median 2016 fishery selectivity estimates also show strong
-differences, with the largest being a selectivity value for age-2 in the base
-model of almost 0.4 compared to 0.1 in the model with less flexible
-selectivity. This difference indicates that the base model is attributing the
-large proportion of age-2 fish in the 2016 fishery to a combination of high
-recruitment and increasing targeting of this cohort, and not just very high
-recruitment. Figures \ref{fig:main-tv-selex-uncertainty-lines-sens} and
-\ref{fig:main-tv-selex-uncertainty-lines} also indicate that the base model has
-more cases of dome-shaped selectivity in 2016 among the 999 sets of selectivity
-parameters from the MCMC sampling, all associated with a peak at an age younger
-than age-6. The data support an increase in age-2 selectivity in 2016, but the
-selectivity curves that peak at ages 3, 4, or 5 are less clearly connected to
-any pattern in the data. However, the parameterization of selectivity used in
-this assessment represents the selectivity at each year as an offset from the
-previous year. Therefore, allowing the flexibility for selectivity at age-2 to
-increase requires a decrease in the offset associated with each additional
-age. Thus, the additional variability between ages 2 and 6 in
-Figure~\ref{fig:main-tv-selex-uncertainty-lines} appears to be a necessary
-condition of allowing the age-2 selectivity to increase above the value
-associated with the less flexible model shown in
-Figure~\ref{fig:main-tv-selex-uncertainty-lines-sens}.
+%%AMB - commented below out for now
+%%**Figures~\ref{fig:main-tv-selex-sens} and
+%%ref{fig:main-tv-selex-uncertainty-sens} show estimated selectivities with
+%%uncertainty for each year for the $\phi=0.03$ case, which can be compared to
+%%Figures~\ref{fig:main-tv-selex} and \ref{fig:main-tv-selex-uncertainty} for the
+%%base model. Figure~\ref{fig:main-tv-selex-uncertainty-lines-sens} shows the
+%%uncertainty between the MCMC samples for 2016 fishery selectivity and can be
+%%compared with the same figure for the base model
+%%(Figure~\ref{fig:main-tv-selex-uncertainty-lines}). Most notably, the
+%%variability between samples for the base model is larger than for the
+%%$\phi=0.03$. The median 2016 fishery selectivity estimates also show strong
+%%differences, with the largest being a selectivity value for age-2 in the base
+%%model of almost 0.4 compared to 0.1 in the model with less flexible
+%%selectivity. This difference indicates that the base model is attributing the
+%%large proportion of age-2 fish in the 2016 fishery to a combination of high
+%%recruitment and increasing targeting of this cohort, and not just very high
+%%recruitment. Figures \ref{fig:main-tv-selex-uncertainty-lines-sens} and
+%%\ref{fig:main-tv-selex-uncertainty-lines} also indicate that the base model has
+%%more cases of dome-shaped selectivity in 2016 among the 999 sets of selectivity
+%%parameters from the MCMC sampling, all associated with a peak at an age younger
+%%than age-6. The data support an increase in age-2 selectivity in 2016, but the
+%%selectivity curves that peak at ages 3, 4, or 5 are less clearly connected to
+%%any pattern in the data. However, the parameterization of selectivity used in
+%%this assessment represents the selectivity at each year as an offset from the
+%%previous year. Therefore, allowing the flexibility for selectivity at age-2 to
+%%increase requires a decrease in the offset associated with each additional
+%%age. Thus, the additional variability between ages 2 and 6 in
+%%Figure~\ref{fig:main-tv-selex-uncertainty-lines} appears to be a necessary
+%%condition of allowing the age-2 selectivity to increase above the value
+%%associated with the less flexible model shown in
+%%Figure~\ref{fig:main-tv-selex-uncertainty-lines-sens}.
 
 
 **Selectivity in the base model is asymptotic, such that all ages equal to or
@@ -1126,31 +1125,31 @@ increased from the base model value of 0.1 to 0.2 and 0.3. Maximum likelihood
 estimates of natural mortality increased from
 \Sexpr{round(base.model$parameters$Value[1],3)} for the base model (prior
 standard deviation of 0.1) to
-\Sexpr{round(sens.models.4[[which(sens.model.names.4=="Natural mortality SD 0.3")]]$parameters$Value[1],3)} 
+\Sexpr{round(sens.models.1[[which(sens.model.names.1=="Natual Mortality (SD=0.3)")]]$parameters$Value[1],3)} 
 for the sensitivity run with the prior standard
 deviation set to 0.3. In addition to allowing a higher estimated value for
 natural mortality, the broader prior in M also increased the overall scale of
 the population, the estimated stock status relative to $B_0$, and the
 uncertainty in spawning biomass on both absolute and relative scales
-(Figures~\ref{fig:main-biomass-base-alternative-4} 
-and~\ref{fig:main-status-base-alternative-4}).
+(Figures~\ref{fig:main-biomass-base-alternative-1} 
+and~\ref{fig:main-status-base-alternative-1}).
 
 % section below on steepness sensitivity
 **The mean of the prior distribution on steepness was decreased from 0.777 (base)
 to 0.5, and steepness was also fixed at 1.0. The decrease in the mean of the
 prior resulted in a change in the maximum likelihood estimate of steepness
 \Sexpr{round(base.model$parameters["SR_BH_steep","Value"],3)} to
-\Sexpr{round(sens.models.4[[which(sens.model.names.4=="Steepness prior mean 0.5")]]$parameters["SR_BH_steep","Value"],3)}. 
+\Sexpr{round(sens.models.1[[which(sens.model.names.1=="Steepness Mean Prior Low (0.5)")]]$parameters["SR_BH_steep","Value"],3)}. 
 However, neither steepness
 sensitivity had a strong impact on the overall model results
-(Figures~\ref{fig:main-biomass-base-alternative-4} and
-\ref{fig:main-status-base-alternative-4}). The small influence of steepness on
+(Figures~\ref{fig:main-biomass-base-alternative-1} and
+\ref{fig:main-status-base-alternative-1}). The small influence of steepness on
 model results is related to the relatively large $\sigma_r$ value which allows
 the recruitments to deviate far from the underlying stock-recruit relationship
 (Figure~\ref{fig:main-mcmc.sr.variability}).
 
 **The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative
-high (2.0) and low (1.0) states. An additional value of 1.51 was added this
+high (1.8) and low (1.0) states. An additional value of 1.51 was added this
 year.  The value of 1.51 is based on the suggestion of \citet{MethotTaylor2011}
 that $\sigma_r$ could be tuned using a combination of the variability among the
 estimated deviations and the uncertainty around the estimates using the formula
@@ -1173,7 +1172,7 @@ of $\sigma_r$. This resulted in little change in the overall scale of the
 population (Figure~\ref{fig:main-biomass-base-alternative-1}) prior to the final
 year, but the higher $\sigma_r$ values resulted in initial conditions that
 diverged more from $B_0$, resulting in very different estimates of stock status
-(Table~\ref{tab:main-parameter-estimates-sens-2},
+(Table~\ref{tab:main-parameter-estimates-sens-1},
 Figure~\ref{fig:main-status-base-alternative-1}). The impact on the likelihood
 of different $\sigma_r$ values is primarily in improved fit to the age
 compositions with higher $\sigma_r$, but little change in the fit to the survey

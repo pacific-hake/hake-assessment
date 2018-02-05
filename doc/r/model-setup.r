@@ -361,17 +361,17 @@ load.models.into.parent.env <- function(){
 
   ## Lists of sensitivities for the MLE parameters, derived quantiles,
   ##  and reference points table
-  ## First set includes base and sensitivity group 1 and 3
-  sens.models.1.for.table <<- c(list(base.model), sens.models.5, sens.models.6)
-  sens.model.names.1.for.table <<- c("Base model", sens.model.names.5,sens.model.names.6)
-  ## Second set includes base and sensitivity groups 2 and 3
+  ## First set includes base and sensitivity group 1 and 2
+  sens.models.1.for.table <<- c(list(base.model), sens.models.1, sens.models.2)
+  sens.model.names.1.for.table <<- c("Base model", sens.model.names.1,sens.model.names.2)
+  ## Second set includes base and sensitivity groups 3 and 4
 
   ## Removing the sens group 4 from this because it's causing problems when
   ## running make.short.parameter.estimates.sens.table()
   ##sens.models.2.for.table <<- c(list(base.model), sens.models.1, sens.models.4)
   ##sens.model.names.2.for.table <<- c("Base model", sens.model.names.1,sens.model.names.4)
-  sens.models.2.for.table <<- c(list(base.model), sens.models.1)
-  sens.model.names.2.for.table <<- c("Base model", sens.model.names.1)
+  sens.models.2.for.table <<- c(list(base.model), sens.models.3, sens.models.4)
+  sens.model.names.2.for.table <<- c("Base model", sens.model.names.3, sens.model.names.4)
 
 }
 
