@@ -429,40 +429,7 @@ build <- function(run.fore = FALSE,
   ## Bridge/sensitivity models
   for(model.nm in model.names.list){
     ss.version.tmp <- ss.version
-    if(model.nm == "00_45_2017base" |
-       model.nm == "00_55_2016base" |
-       model.nm == "10_UpdatePre2016catches" |
-       model.nm == "11_UpdatePre2016FishComps" |
-       model.nm == "15_Add2016Catch" |
-       model.nm == "16_Add2016FishComps" |
-       model.nm == "12_Update1998SurveyIndex" |
-       model.nm == "13_Update2015SurveyIndexCVonly" |
-       model.nm == "14_Add1995SurveyIndex" |
-       model.nm == "17_AdjustBiasRamp" |
-       model.nm == "40_SenRecdevMain2014" |
-       model.nm == "41_BasePreSRG_v3" |
-       model.nm == "46_Sen45_AdjustBiasRampEnd2014" |
-       model.nm == "47_Sen45MaxSelectAge5" |
-       model.nm == "48_Sen45MaxSelectAge7" |
-       model.nm == "49_Sen45MaxSelectAge10" |
-       model.nm == "50_Sen45h0.5prior" |
-       model.nm == "51_Sen45h1.0fix" |
-       model.nm == "52_Sen45M0.2SD" |
-       model.nm == "53_Sen45M0.3SD" |
-       model.nm == "54_Sen45AgeErrorNoCohort" |
-       model.nm == "55_Sen45AgeError2014noAdjust" |
-       model.nm == "56_Sen45AddAge1Index" |
-       model.nm == "59_Sen45_phi003" |
-       model.nm == "60_Sen45_phi010" |
-       model.nm == "61_Sen45_phi030" |
-       model.nm == "56_Sen45AddAge1Index" |
-       model.nm == "59_Sen45_phi003" |
-       model.nm == "63_Sen_phi003_age1_index" |
-       model.nm == "64_Sen_phi010_age1_index" |
-       model.nm == "65_Sen_phi030_age1_index" |
-       model.nm == "59_Sen45_phi003" |
-       model.nm == "66_Sen45_block_sel_2016_SRG_request2" |
-       model.nm == "67_Sen45_block_sel_2016_SRG_request3"){
+    if(model.nm == "00_45_2017base"){
       ss.version.tmp = "3.24"
     }
     create.rdata.file(
