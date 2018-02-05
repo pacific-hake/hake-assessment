@@ -486,7 +486,6 @@ make.cohort.table <- function(model,
   ## font.size - size of the font for the table
   ## space.size - size of the vertical spaces for the table
   ## scalebox - attempt to allow table to be narrower
-
   if(!length(cohorts)){
     return(invisible())
   }
@@ -507,8 +506,12 @@ make.cohort.table <- function(model,
     lapply(coh.inds, function(x){get(x, coh.list)})
   }
 
+  # vector of ages used in population dynamics
+  ages <- 0:model$accuage
+
   ## Extract the numbers-at-age
-  naa <- model$natage[model$natage$"Beg/Mid" == "B", -c(1:7, 9:12)]
+  naa <- model$natage[model$natage$"Beg/Mid" == "B",
+                      names(model$natage) %in% c("Yr",ages)]
   ## Numbers at age in next year
   naa.next <- naa[naa$Yr >= start.yr+1 & naa$Yr <= end.yr+1,]
   ## Numbers at age in same year
@@ -519,9 +522,12 @@ make.cohort.table <- function(model,
   # vector of years for use in other places
   yrs <- naa$Yr
 
-  coh.naa <- get.cohorts(naa, cohorts)
+  ## Subset to match range of years:
+  naa <- naa[naa$Yr %in% yrs,]
+  naa.next <- naa.next[naa.next$Yr %in% yrs,]
 
-  ## Cohort numbers at age in next year
+  ## Cohort numbers at age 
+  coh.naa <- get.cohorts(naa, cohorts)
   coh.naa.next <- get.cohorts(naa.next, cohorts - 1)
   ## Throw away the first one so that this represents shifted by 1 year values
   coh.naa.next <- lapply(coh.naa.next, function(x){x[-1]})
@@ -542,23 +548,19 @@ make.cohort.table <- function(model,
     # (this is probably not needed)
     waa <- waa[order(abs(waa$Yr)),]
   }
-  # strip off initial columns of waa matrix (except year)
-  waa <- waa[,-c(2:6, 28)]
+  # weight-at-age matrix may have negative values for year
   waa$Yr <- abs(waa$Yr)
+  # subset years and columns
+  waa <- waa[waa$Yr %in% yrs, names(waa) %in% c("Yr", ages)]
   coh.waa <- get.cohorts(waa, cohorts)
 
   ## Catch-at-age
   caa <- model$catage
-  caa <- caa[,-c(1:6,8:10)]
-  # add a row of zeros to make dimensions match other matrices
-  # (which may include forecast year)
-  # not bothering to make this more complicated like waa above
-  caa <- rbind(caa, c(max(caa$Yr)+1, rep(0, ncol(caa)-1)))
+  # subset years and columns
+  caa <- caa[caa$Yr %in% yrs, names(caa) %in% c("Yr", ages)]
   coh.caa <- get.cohorts(caa, cohorts)
-  ages <- 0:(ncol(caa) - 2)
 
-  ## Start biomass-at-age
-  waa <- waa[waa$Yr %in% yrs,]
+  ## Start-of-year biomass-at-age
   baa <- cbind(naa$Yr, naa[,-1] * waa[,-1] / weight.factor)
   coh.baa <- get.cohorts(baa, cohorts)
 
