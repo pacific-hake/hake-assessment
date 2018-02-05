@@ -188,10 +188,20 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 1
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.1 <- c("2018.19.03_sigmaR_fix_low",
-                            "2018.19.04_sigmaR_fix_high")
-sens.model.names.1 <- c("Sigma R 0.5",
-                        "Sigma R 1.8")
+sens.model.dir.names.1 <- c("2018.40_base_model",
+                            "2018.40.01_h_prior_mean_low",
+                            "2018.40.02_h_fix_high",
+                            "2018.40.03_sigmaR_fix_low",
+                            "2018.40.04_sigmaR_fix_high",
+                            "2018.40.05_M_0.2SD",
+                            "2018.40.06_M_0.3SD")
+sens.model.names.1 <- c("Base Case",
+                        "Steepness Mean Prior Low (0.5)",
+                        "Steepness Fix 1.0",
+                        "Sigma R 1.0",
+                        "Sigma R 1.8",
+                        "Natural Mortality (SD=0.2)"
+                        "Natual Mortality (SD=0.3)")
 verify.models(model.dir, sens.model.dir.names.1, sens.model.names.1)
 if(verbose){
   print.model.message(sens.model.dir.names.1, sens.model.names.1, 1, model.type = "Sensitivity")
@@ -200,8 +210,16 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 2
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.2 <- "46_Sen45_AdjustBiasRampEnd2014"
-sens.model.names.2 <- "Adjust bias ramp to 2014"
+sens.model.dir.names.2 <- c("2018.40_base_model",
+                            "2018.40.16_age1Survey",
+                            "2018.40.14_ageError_noCohort",
+                            "2018.40.15_compWeight_HarmonicMean",
+                            "2018.40.19_USageComp")
+sens.model.names.2 <- c("Base Case",
+                        "Add Age 1 Index",
+                        "Ageing Error (cohort invariant)",
+                        "Harmonic Mean Data Weighting",
+                        "U.S. At-Sea Age Comps (Weighted by Month)")
 verify.models(model.dir, sens.model.dir.names.2, sens.model.names.2)
 if(verbose){
   print.model.message(sens.model.dir.names.2, sens.model.names.2, 2, model.type = "Sensitivity")
@@ -210,12 +228,20 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 3
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.3 <- c("47_Sen45MaxSelectAge5",
-                            "48_Sen45MaxSelectAge7",
-                            "49_Sen45MaxSelectAge10")
-sens.model.names.3 <- c("Max. age selectivity 5",
+sens.model.dir.names.3 <- c("2018.40_base_model",
+                            "2018.40.07_maxSel_Age5",
+                            "2018.40.08_maxSel_Age7",
+                            "2018.40.09_maxSel_Age10",
+                            "2018.40.11_tvSelect_phi_xtralow",
+                            "2018.40.12_tvSelect_phi_low",
+                            "2018.40.13_tvSelect_phi_high")
+sens.model.names.3 <- c("Base Case",
+                        "Max. age selectivity 5",
                         "Max. age selectivity 7",
-                        "Max. age selectivity 10")
+                        "Max. age selectivity 10",
+                        "Phi t.v. selectivity (0.21)",
+                        "Phi t.v. selectivity (0.70)",
+                        "Phi t.v. selectivity (2.10)")
 verify.models(model.dir, sens.model.dir.names.3, sens.model.names.3)
 if(verbose){
   print.model.message(sens.model.dir.names.3, sens.model.names.3, 3, model.type = "Sensitivity")
@@ -224,74 +250,60 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 4
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.4 <- c("50_Sen45h0.5prior",
-                            "51_Sen45h1.0fix",
-                            "52_Sen45M0.2SD",
-                            "53_Sen45M0.3SD")
-sens.model.names.4 <- c("Steepness prior mean 0.5",
-                        "Fix steepness 1.0",
-                        "Natural mortality SD 0.2",
-                        "Natural mortality SD 0.3")
+sens.model.dir.names.4 <- c("2018.40_base_model",
+                            "2018.40.10_semiPara_tvSelect_sig0.695",
+                            "2018.40.20_semiPara_tvSelect_sig1.0")
+sens.model.names.4 <- c("Base Case",
+                        "Semi-Parametric t.v selectivity (0.695)",
+                        "Semi-Parametric t.v. selectivity (1.0)")
 verify.models(model.dir, sens.model.dir.names.4, sens.model.names.4)
 if(verbose){
   print.model.message(sens.model.dir.names.4, sens.model.names.4, 4, model.type = "Sensitivity")
 }
 
 ## -----------------------------------------------------------------------------
-## Sensitivity models group 5
+## Sensitivity models group 5  - dummy for now
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.5 <- c("54_Sen45AgeErrorNoCohort",
-                            "55_Sen45AgeError2014noAdjust",
-                            "56_Sen45AddAge1Index")
-sens.model.names.5 <- c("Ageing error: cohort invariant",
-                        "Ageing error: standard for 2014",
-                        "Include age-1 index")
+sens.model.dir.names.5 <- c("2018.40_base_model",
+                            "2018.40_base_model")
+sens.model.names.5 <- c("Base Case",
+                        "Base Case")
 verify.models(model.dir, sens.model.dir.names.5, sens.model.names.5)
 if(verbose){
   print.model.message(sens.model.dir.names.5, sens.model.names.5, 5, model.type = "Sensitivity")
 }
 
 ## -----------------------------------------------------------------------------
-## Sensitivity models group 6
+## Sensitivity models group 6   - dummy for now
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.6 <- c("59_Sen45_phi003",
-                            "60_Sen45_phi010",
-                            "61_Sen45_phi030")
-sens.model.names.6 <- c("Selectivity SD 0.03",
-                        "Selectivity SD 0.10",
-                        "Selectivity SD 0.30")
+sens.model.dir.names.6 <- c("2018.40_base_model",
+                            "2018.40_base_model")
+sens.model.names.6 <- c("Base Case",
+                        "Base Case")
 verify.models(model.dir, sens.model.dir.names.6, sens.model.names.6)
 if(verbose){
   print.model.message(sens.model.dir.names.6, sens.model.names.6, 6, model.type = "Sensitivity")
 }
 
 ## -----------------------------------------------------------------------------
-## Sensitivity models group 7 - Request from SRG
+## Sensitivity models group 7 - Request from SRG   - dummy for now
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.7 <- c("56_Sen45AddAge1Index",
-                            "59_Sen45_phi003",
-                            "63_Sen_phi003_age1_index",
-                            "64_Sen_phi010_age1_index",
-                            "65_Sen_phi030_age1_index")
-sens.model.names.7 <- c("Include age-1 index",
-                        "Selectivity phi=0.03",
-                        "Selectivity phi=0.03, age-1",
-                        "Selectivity phi=0.10, age-1",
-                        "Selectivity phi=0.30, age-1")
+sens.model.dir.names.7 <- c("2018.40_base_model",
+                            "2018.40_base_model")
+sens.model.names.7 <- c("Base Case",
+                        "Base Case")
 verify.models(model.dir, sens.model.dir.names.7, sens.model.names.7)
 if(verbose){
   print.model.message(sens.model.dir.names.7, sens.model.names.7, 7, model.type = "Sensitivity")
 }
 
 ## -----------------------------------------------------------------------------
-## Sensitivity models group 8 - Request from SRG
+## Sensitivity models group 8 - Request from SRG  - dummy for now
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.8 <- c("59_Sen45_phi003",
-                            "66_Sen45_block_sel_2016_SRG_request2",
-                            "67_Sen45_block_sel_2016_SRG_request3")
-sens.model.names.8 <- c("1991-2016 phi=0.03",
-                        "1991-2008 phi=0.03, 2009-2016 phi=0.20",
-                        "1991-2015 phi=0.03, 2016 phi=0.20")
+sens.model.dir.names.8 <- c("2018.40_base_model",
+                            "2018.40_base_model")
+sens.model.names.8 <- c("Base Case",
+                        "Base Case")
 ## sens.model.dir.names.8 <- c("02_2017base_3.30",
 ##                             "03_2017base_3.30_tv_pars")
 ## sens.model.names.8 <- c("Base model SS version 3.30",
