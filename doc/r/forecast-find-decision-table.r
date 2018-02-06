@@ -11,8 +11,7 @@ baseModel <- "2018.40_base_model"
 ######################################
 # Forecasts
 # Calculate the median recommended (default) catches for 2018-2020
-# Copy  baseModel/mcmc/derived_posteriors.sso, forecast.ss, starter.ss,
-#  2018hake_control.ss, 2018hake_data.ss,
+# Copy  baseModel/mcmc/ files
 # into new DecisionTable/defaultHR/
 out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/defaultHR/derived_posteriors.sso"),
@@ -23,29 +22,30 @@ median(out$ForeCatch_2018)   # 725983.5  2/6/18
 ## _Yr Seas Fleet Catch(or_F)
 # 2018 1 1 725983.5
 
-# run mceval (ss3 -mceval), and find
-#  median 2019 catch
+# ss3 -mceval
+#  to find median 2019 catch:
 out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/defaultHR/derived_posteriors.sso"),
                   header=T)
-median(out$ForeCatch_2019)   #843566  1/23/17
+median(out$ForeCatch_2019)   #600991  2/6/18
 
-updated to here
+# now fix this catch for 2019 in the forecast.ss file, run mceval, and find
+#  median 2020 catch
 
-# now fix this catch for 2018 in the forecast.ss file, run mceval, and find
-#  median 2019 catch
 out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/defaultHR/derived_posteriors.sso"),
                   header=T)
-head(out[,c("ForeCatch_2017","ForeCatch_2018")])
-median(out$ForeCatch_2019)   #679881   1/23/17
+head(out[,c("ForeCatch_2018","ForeCatch_2019")])
+median(out$ForeCatch_2020)   #532476.5   2/6/18
+
 # run mceval
 # double check
 out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/defaultHR/derived_posteriors.sso"),
                   header=T)
-head(out[,c("ForeCatch_2017","ForeCatch_2018","ForeCatch_2019")])
+head(out[,c("ForeCatch_2018","ForeCatch_2019","ForeCatch_2020")])
 
+**got to here**
 
 # median SPR=100
 # set the catch for 2017, run mceval, until the median SPRratio_2017 is really
