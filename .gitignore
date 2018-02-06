@@ -15,6 +15,8 @@ doc/cache/*
 doc/figure/*
 doc/resDoc.tex
 doc/r/old*
+doc/r/r-functions/SS_forecast_hake.r
+doc/r/r-functions/SS_forecast_r4ss.r
 models/*
 models-dev/*
 extra-models/*
@@ -45,5 +47,8 @@ admin/HakeMSEOptions2017-19.pdf
 *.doc
 doc/out-csv/*.*
 beamer/*/out-csv/*.*
-doc/main-figures/hake_survey_1995-15_sA_squareroot_bin_narrow-panel2_bitmap100.eps
 doc/r/out-csv
+doc/main-figures/hake_survey_1995-15_sA_squareroot_bin_narrow-panel2_bitmap100.eps
+doc/main-figures/hake_survey_1995-17_NewNArrow.eps
+doc/main-figures/hake_survey_1995-17_sA_squareroot_bin_300dpi.eps
+doc/main-figures/hake_survey_1995-17_sA_squareroot_bin_300dpi_v2.eps
