@@ -22,7 +22,7 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 \begin{figure}[p]
 \vspace{-5mm}
 \begin{center}
-\includegraphics[max size={\paperwidth}{\paperheight}]{main-figures/hake_survey_1995-15_sA_squareroot_bin_narrow-panel2.eps} % width=\maxwidth,
+\includegraphics[max size={\paperwidth}{1.1*\paperheight}]{main-figures/hake_survey_1995-17_NoArrow.eps} % width=\maxwidth,
 \end{center}
 \vspace{-5mm}
 \caption{Spatial distribution of acoustic backscatter attributable to \fishname\ from joint US-Canada acoustic surveys \Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}. Area of the circle is roughly proportional to observed backscatter.}
