@@ -99,7 +99,7 @@ layout(matrix(c(1,1), nrow = 2, ncol = 1, byrow=TRUE))
 make.age.comp.bubble.plot(base.model,
                           subplot = 2,
                           show.key = TRUE,
-                          key.yrs = c(2000, 2003, 2006, 2009)+1,
+                          key.yrs = c(1985, 1991, 1997, 2003),
                           start.yr = min(base.model$dat$agecomp$"Yr"),
                           end.yr = max(base.model$dat$agecomp$"Yr"))
 make.age.comp.bubble.plot(base.model, subplot = 1,
