@@ -948,10 +948,10 @@ make.comparison.plot(c(list(base.model), sens.models.3),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.3),
                      end.yr = end.yr)
-make.selex.plot(base.model, pan.letter = "a")
-make.selex.plot(sens.models.3[[1]], pan.letter = "b")
-make.selex.plot(sens.models.3[[2]], pan.letter = "c")
-make.selex.plot(sens.models.3[[3]], pan.letter = "d")
+make.selex.plot(base.model, pan.letter = "a", years = end.yr-1)
+make.selex.plot(sens.models.3[[1]], pan.letter = "b", years = end.yr-1)
+make.selex.plot(sens.models.3[[2]], pan.letter = "c", years = end.yr-1)
+make.selex.plot(sens.models.3[[3]], pan.letter = "d", years = end.yr-1)
 par <- oldpar
 mtext("Age", side = 1, line = 1, outer = TRUE)
 @
