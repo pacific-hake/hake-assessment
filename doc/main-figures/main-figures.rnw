@@ -1252,7 +1252,7 @@ make.squid.plot(retro.list,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<historical.assessments, fig.height=4, fig.width=6.5>>=
+<<historical.assessments, fig.height=4.5, fig.width=6.5>>=
 make.assessment.history.plot(base.model,
                              assessment.history,
                              end.yr + 2)

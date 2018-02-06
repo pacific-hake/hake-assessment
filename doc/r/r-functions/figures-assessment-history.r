@@ -95,7 +95,7 @@ make.assessment.history.plot <- function(base,
   # axis(1, at=max(years), label=ifelse(max(years)%%10 %in% c(0:2,8:9), "", max(years)))
   ## NEW: add little tick marks for wide range of years
   ##      to avoid gap at end (e.g. ticks up to 2018, then gap at 2019)
-  axis(1, at=1950:2030, labels=rep("", length(1950:2030)))
+  axis(1, at=1950:2030, labels=rep("", length(1950:2030)), tcl = -0.3)
   
   # add values for base model
   i <- i + 1
