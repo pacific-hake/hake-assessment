@@ -11,8 +11,7 @@ baseModel <- "2018.40_base_model"
 ######################################
 # Forecasts
 # Calculate the median recommended (default) catches for 2018-2020
-# Copy  baseModel/mcmc/derived_posteriors.sso, forecast.ss, starter.ss,
-#  2018hake_control.ss, 2018hake_data.ss,
+# Copy  baseModel/mcmc/ files
 # into new DecisionTable/defaultHR/
 out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/defaultHR/derived_posteriors.sso"),
