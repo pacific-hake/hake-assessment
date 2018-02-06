@@ -1,12 +1,39 @@
 make.selex.plot <- function(model,
                             subplot = 2,
                             agefactors = "Asel",
-                            years = 1966,
+                            years = c(1966, end.yr-2, end.yr-1),
                             fleetnames = c("Fishery","Survey"),
                             showmain = FALSE,
                             pan.letter = NULL){  ## If not null, this character will be placed on the panel
   ## Make a single selectivity plot for the MLE model provided
-  SSplotSelex(model, subplot = subplot, agefactors = agefactors,
+
+  # this function is a bit of a hack and in the future
+  # it might be better to just copy the plotAllSel function
+  # within SSplotSelex from r4ss into hake-assessment
+
+  # fishery selectivity is reported for start year and all time-varying years
+  # survey selectivity is reported for the start year and the end year
+  # so input years = c(1966, 2016, 2017) will return 3 lines for the fishery
+  # and 2 lines for the survey, the second of which is redundant so omitted from plot
+
+  # vector of colors
+  cols=c('blue', rgb(0,seq(0.8,0.6,length=2),0.8), rgb(1,0,0,.7), NA)
+  # table of plot characteristics, which matches format
+  # of output returned (invisibly) by SSplotSelex
+  infotable <- data.frame(Fleet  = c(1,1,1,2,2),
+                          Sex    = 1,
+                          Yr     = years[c(1,2,3,1,2)], 
+                          ifleet = c(1,1,1,2,2),
+                          FleetName = c(rep("Fishery",3), "Survey", ""),
+                          longname  = c("Fishery (avg.)", "Fishery 2016",
+                              "Fishery 2017", "Survey", ""),
+                          Yr_range  = c(1966, 2016:2017, 1966, end.yr-1),
+                          col       = cols,
+                          lty       = c(1,2,4,1,1),
+                          lwd       = c(4,2,2,3,NA),
+                          pch       = c(NA,NA,NA,NA,NA),
+                          stringsAsFactors=FALSE)
+  SSplotSelex(model, infotable=infotable, subplot = subplot, agefactors = agefactors,
               years = years, fleetnames = fleetnames, showmain = showmain)
   if(!is.null(pan.letter)){
     panel.letter(pan.letter)
