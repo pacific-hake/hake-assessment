@@ -1,9 +1,13 @@
 make.selex.plot <- function(model,
                             subplot = 2,
                             agefactors = "Asel",
+                            years = 1966,
+                            fleetnames = c("Fishery","Survey"),
+                            showmain = FALSE,
                             pan.letter = NULL){  ## If not null, this character will be placed on the panel
   ## Make a single selectivity plot for the MLE model provided
-  SSplotSelex(model, subplot = subplot, agefactors = agefactors)
+  SSplotSelex(model, subplot = subplot, agefactors = agefactors,
+              years = years, fleetnames = fleetnames, showmain = showmain)
   if(!is.null(pan.letter)){
     panel.letter(pan.letter)
   }
