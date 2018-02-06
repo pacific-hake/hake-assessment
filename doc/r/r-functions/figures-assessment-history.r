@@ -2,16 +2,9 @@ make.assessment.history.plot <- function(base,
                                          assessment.history, ## data as read in from the csv file
                                          end.yr){
   ## History of assessments plot
-  ## addpoly <- function(yrvec, lower, upper, color){ # add shaded uncertainty intervals behind line
-  ## 	lower[lower<0] <- 0 # max of value or 0
-  ## 	shadeCol <- rgb(t(col2rgb(color)),alpha=0.2*255,maxColorValue=255)
-  ## 	polygon(x=c(yrvec,rev(yrvec)),y=c(lower,rev(upper)), border=NA,col=shadeCol)
-  ## 	lines(yrvec,lower,lty=3,col=color)
-  ## 	lines(yrvec,upper,lty=3,col=color)
-  ## }
 
   ## The csv file should be set up with blanks for SSB in the most recent year
-  ##  it is read in from all.r
+  ##  it is read in data-tables.r which is sourced in all.r
   xx <- assessment.history
   xx <- xx[xx$Value == "SB million mt",]
   xx <- xx[!(xx$Model == "TINSS STAR update" |
@@ -22,7 +15,7 @@ make.assessment.history.plot <- function(base,
 
   yearInd <- grep("X", names(xx))
   years <- as.numeric(substring(names(xx[yearInd]), 2))
-  latestAssess <- base$mcmc[,grep("SSB", names(base$mcmc))][,-c(1, 2)]
+  latestAssess <- base$mcmc[,grep("SSB_[0-9]", names(base$mcmc))]
   latestYrs <- as.numeric(substring(names(latestAssess), 5))
 
   xx[nrow(xx), paste0("X", years[years %in% latestYrs])] <-
@@ -35,35 +28,41 @@ make.assessment.history.plot <- function(base,
   ## The colors for the assessment years.
   ## Need to add a new one at the beginning
   ##  every year
-  cols = c(rgb(0.44, 0.1,  0.1),
-           rgb(0.1,  0.1,  0.44),
-           rgb(1,    0.1,  0.6),
-           rgb(1,    0.8,  0),
-           rgb(0,    1,    1),
-           rgb(0.5,  0,    0.5),
-           rgb(0.18, 0.55, 0.34),
-           rgb(0,    0,    0.8),
-           rgb(0,    0.8,  0.8),
-           rgb(0.25, 0.88, 0.82, 0.7),
-           rgb(0.5,  1,    0.8,  0.7),
-           rgb(1,    0.84, 0,    0.7),
-           rgb(0,    0.75, 1,    0.7),
-           rgb(1,    0,    1,    0.7),
-           rgb(0.5,  0.5,  0.2,  1),
-           rgb(0.85, 0.65, 0.13, 0.7),
-           rgb(0.27, 0.51, 0.71),
-           rgb(0.13, 0.70, 0.67),
-           rgb(1,    0,    1),
-           rgb(1,    0,    0),
-           rgb(0,    0,    1),
-           rgb(0,    0.8,  0))
-
+  cols = c(rgb(0.44, 0.1,  0.1),       # 1991
+           rgb(0.1,  0.1,  0.44),      # 1992
+           rgb(1,    0.1,  0.6),       # 1993
+           rgb(1,    0.8,  0),         # 1994
+           rgb(0,    1,    1),         # 1995
+           rgb(0.5,  0,    0.5),       # 1996
+           rgb(0.18, 0.55, 0.34),      # 1997
+           rgb(0,    0,    0.8),       # 1999
+           rgb(0,    0.8,  0.8),       # 2002
+           rgb(0.25, 0.88, 0.82, 0.7), # 2004
+           rgb(0.5,  1,    0.8,  0.7), # 2005
+           rgb(1,    0.84, 0,    0.7), # 2006
+           rgb(0,    0.75, 1,    0.7), # 2007
+           rgb(1,    0,    1,    0.7), # 2008
+           rgb(0.5,  0.5,  0.2,  1),   # 2009
+           rgb(0.85, 0.65, 0.13, 0.7), # 2010
+           rgb(0.27, 0.51, 0.71),      # 2011
+           rgb(0.13, 0.70, 0.67),      # 2012
+           rgb(1,    0,    1),         # 2013
+           rgb(1,    0,    0),         # 2014
+           rgb(0,    0,    1),         # 2015
+           rgb(0,    0.8,  0),         # 2016 
+           rgb(1,    0.5,  0))         # 2017
+  # final line for base model is dark gray by default
+  
+  # set line widths and plot characters
   lwds <- c(rep(1,nrow(xx)-1), 3)
   pchs <- rep(c(18, 15, 17, 4, 20, 3), 4) ## repeat it more than necessary
   legCol <- legPch <- rep(NA, nrow(xx))
 
+  # set parameters for margins and axes
   par(mar = c(3, 3, 1, 6) + 0.1, mgp = c(2, 1, 0))
   ymax <- 1.05*max(xx[,yearInd], na.rm = TRUE)
+
+  # make empty plot
   plot(range(years),
        range(xx[,yearInd], na.rm = TRUE),
        type = "n",
@@ -75,11 +74,15 @@ make.assessment.history.plot <- function(base,
        yaxs = "i",
        cex.axis = 0.9,
        cex.lab = 1)
+  # loop over rows in the table of values to add lines
   for(i in 1:(nrow(xx) - 1)){
     legCol[i] <- cols[yrs == xx$Year[i]]
-    if(sum(xx$Year == xx$Year[i]) > 1) {  ## put a symbol on it to differentiate years
+    # if there is more than one assessment within a year,
+    # put a symbol on it to differentiate years
+    if(sum(xx$Year == xx$Year[i]) > 1) { 
       legPch[i] <- pchs[i]
     }
+    # add lines
     lines(years,
           xx[i, yearInd],
           col = legCol[i],
@@ -88,23 +91,34 @@ make.assessment.history.plot <- function(base,
           type = "o",
           cex = 0.7)
   }
-  # add x-axis mark for final year (without label if too close to nearest decade mark)
-  axis(1, at=max(years), label=ifelse(max(years)%%10 < 2, "", max(years)))
+  ## OLD: add x-axis mark for final year (without label if too close to nearest decade mark)
+  # axis(1, at=max(years), label=ifelse(max(years)%%10 %in% c(0:2,8:9), "", max(years)))
+  ## NEW: add little tick marks for wide range of years
+  ##      to avoid gap at end (e.g. ticks up to 2018, then gap at 2019)
+  axis(1, at=1950:2030, labels=rep("", length(1950:2030)))
+  
+  # add values for base model
   i <- i + 1
+  # color in legend
   legCol[i] <- rgb(0, 0, 0, 0.8)
   lwds[i] <- 3
+  # add more transparency (0.6 instead of 0.8 to help see other lines)
   tmpCol <- rgb(t(col2rgb(legCol[i])),
                 alpha = 0.6 * 255,
                 maxColorValue = 255)
+  # add line
   lines(years,
         xx[i, yearInd],
         col = tmpCol,
         lwd = lwds[i])
   yrs <- years[years %in% latestYrs]
+  # make polygon showing uncertainty around base model
+  # addpoly function is defined in utilities.r
   addpoly(yrs,
           slower[names(slower) %in% yrs],
           supper[names(supper) %in% yrs],
           "black")
+  # add legend
   legend(end.yr + 0.5,
          7.15,
          paste(xx$Year, xx$Model),
