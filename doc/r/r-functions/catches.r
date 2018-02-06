@@ -173,7 +173,8 @@ make.catches.plot <- function(catches,
                  ylab = "",
                  cex.lab = 1,
                  xaxt = "n",
-                 mgp = c(2.2, 1, 0))
+                 mgp = c(2.2, 1, 0),
+                 ylim = c(0, 475))
   axis(1, at = tmp, labels = years, line = -0.12)
   grid(NA, NULL, lty = 1, lwd = 1)
   mtext("Catch (thousand t)",

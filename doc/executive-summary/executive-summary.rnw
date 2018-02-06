@@ -41,7 +41,7 @@ landings averaged \Sexpr{f(mean(catches$TOTAL))}~t from
 \begin{center}
 <<total.catches, fig.height=4, fig.width=8>>=
 make.catches.plot(catches,
-                  leg.y.loc = 520) ## leg.y.loc is y-coord to place legend at
+                  leg.y.loc = 650) ## leg.y.loc is y-coord to place legend at
 @
 \end{center}
 %\vspace{0mm}

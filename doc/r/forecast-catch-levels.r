@@ -24,12 +24,12 @@ catch.levels <-
   list(list(rep(0.01, 3), "No Fishing", "01-0"),
        list(rep(180000, 3), "180,000 t", "02-180000"),
        list(rep(350000, 3), "350,000 t", "03-350000"),
-       list(rep(497500, 3), "2016 TAC: 497,500 t", "04-497500"),
+       list(rep(597500, 3), "2017 TAC: 597,500 t", "04-597500"),
        list(rep(600000, 3), "600,000 t", "05-600000"),
        list(c(934000, 848000, 698000), "FI=100%", "06-spr-100"),
        list(c(969840, 843566, 679881), "Default Harvest Policy: 969,840 t", "07-default-hr"),
        list(c(866263, 866263, 683014), "Stable Catch", "08-stable-catch"))
-        
+
 ## -----------------------------------------------------------------------------
 ## Indicies for the forecasts list, which list items above are the TAC case and
 ##  default policy case

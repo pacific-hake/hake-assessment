@@ -55,7 +55,7 @@ make.data.overview.plot(base.model)
 \begin{center}
 <<main.total.catches, fig.height=5, fig.width=8>>=
 ## leg.y.loc is y-coord to place legend at
-make.catches.plot(catches, leg.y.loc = 475)
+make.catches.plot(catches, leg.y.loc = 550)
 @
 \end{center}
 \caption{Total \fishname\ catch used in the assessment by sector, \Sexpr{start.yr}--\Sexpr{last.data.yr}.
