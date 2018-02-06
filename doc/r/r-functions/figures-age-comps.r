@@ -136,7 +136,7 @@ make.age.comp.bubble.plot <- function(model,                  ## model is an mcm
               xpd = NA,
               fg = fg,
               bg = bg)
-      text(key.yrs + 1.1, c(16.2,16.2,16.2,16.2), c("0.01", "0.1", "0.25", "0.5"), xpd = NA, cex = 0.8)
+      text(key.yrs + 2.2, c(16.2,16.2,16.2,16.2), c("0.01", "0.1", "0.25", "0.5"), xpd = NA, cex = 0.8)
     }
     axis(1, seq(as.numeric(start.yr), as.numeric(end.yr) + 5, 5))
     axis(4)
