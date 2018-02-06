@@ -22,7 +22,7 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 \begin{figure}[p]
 \vspace{-5mm}
 \begin{center}
-\includegraphics[max size={\paperwidth}{1.1*\paperheight}]{main-figures/hake_survey_1995-17_NoArrow.eps} % width=\maxwidth,
+\includegraphics[max size={\paperwidth}{\paperheight}]{main-figures/hake_survey_1995-17_NoArrow.eps} % width=\maxwidth,
 \end{center}
 \vspace{-5mm}
 \caption{Spatial distribution of acoustic backscatter attributable to \fishname\
@@ -1209,7 +1209,7 @@ par <- oldpar
 <<main.retrospective.recruitment, fig.height=6, fig.width=8>>=
 ## Number of retro years for the plot. Assumes you've run them.
 plot.retro.yrs <- retro.yrs
-retro.cohorts <- 2000:2015
+retro.cohorts <- 1999:2015
 ##retro.model.names <- c("Base model", sapply(plot.retro.yrs, function(x) paste0("-", x, if(x == 1) " year" else " years")))
 ## Need to re-assemble the list with the base as the first element
 retro.list <- list(base.model)
