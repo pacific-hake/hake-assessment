@@ -111,7 +111,7 @@ out <- read.table(file.path(SSdir,baseModel,
                   header=T)
 head(out[,c("ForeCatch_2018","ForeCatch_2019","ForeCatch_2020")])
 median(out$ForeCatch_2019)   #626954      2/6/18
-median(out$ForeCatch_2020)   #556785.5    2/6/18
+median(out$ForeCatch_2020)   #556785.5, round to 556786    2/6/18
 
 # 2/6/18:
 # 2018catch  2019catch
