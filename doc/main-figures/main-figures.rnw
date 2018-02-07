@@ -25,7 +25,7 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 \includegraphics[max size={\paperwidth}{\paperheight}]{main-figures/hake_survey_1995-17_NoArrow.eps} % width=\maxwidth,
 \end{center}
 \vspace{-5mm}
-\caption{Spatial distribution of acoustic backscatter attributable to \fishname\
+\caption{Spatial distribution of acoustic backscatter attributable to age-2 and older \fishname\
   from joint US-Canada acoustic surveys
   \Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}. Area of the circle is roughly
   proportional to observed backscatter. Figure produced by Julia Clemons (NOAA).}
