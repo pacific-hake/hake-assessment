@@ -35,7 +35,7 @@ catch.levels <-
 ##  default policy case
 ## This is used in the one-page summary and a plot comparing several catch cases
 ## -----------------------------------------------------------------------------
-catch.tac.ind <- 4
+catch.tac.ind <- 5
 catch.default.policy.ind <- 7
 catch.default.policy <- catch.levels[[catch.default.policy.ind]][[1]]
 
