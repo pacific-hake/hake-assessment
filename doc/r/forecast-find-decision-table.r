@@ -16,7 +16,8 @@ baseModel <- "2018.40_base_model"
 out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/defaultHR/derived_posteriors.sso"),
                   header=T)
-# no catches input into forecast.ss file to determine median 2018 catch (?)
+# with no catch specified for 2018 in forecast.ss it determines the median
+#  2018 catch.
 median(out$ForeCatch_2018)   # 725983.5  2/6/18
 # now fix this catch for 2018 near the end of the forecast.ss file (keeping
 #  a line starting with -9999)
@@ -38,14 +39,15 @@ out <- read.table(file.path(SSdir,baseModel,
                   header=T)
 head(out[,c("ForeCatch_2018","ForeCatch_2019")])
 median(out$ForeCatch_2020)   #532476.5   2/6/18. Second time 538263.5
-
+                             # Third time 538263.5, as expected (as had more
+                             #  confidence in second value).
 # run mceval after putting in 2020 median catch (though not really needed)
 # double check
 out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/defaultHR/derived_posteriors.sso"),
                   header=T)
 head(out[,c("ForeCatch_2018","ForeCatch_2019","ForeCatch_2020")])
-median(out$ForeCatch_2020)   #532476
+median(out$ForeCatch_2020)   #538263
 
 # median SPR=100
 # Copy  baseModel/mcmc/ files into new DecisionTable/SPR100
