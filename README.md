@@ -1,4 +1,4 @@
-﻿____
+____
 # hake-assessment
 
 **Updated February 11, 2017**
@@ -82,6 +82,14 @@ _____________________________________________________________
     build(run.fore = TRUE, run.retro = TRUE, run.extra.mcmc = TRUE)
 
   * You don’t need to save the workspace when you close R, it isn't used by latex/knitr.
+
+  * In 2018, when running
+     build(TRUE, TRUE, TRUE)
+  we sometimes got an error 
+     line 2001 did not have 226 elements
+  (see Issue #362), but then doing
+     build()
+  works.  
 
 ## How to create hake-assessment.pdf
 
