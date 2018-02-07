@@ -690,7 +690,7 @@ $p_{A_{\text{min}}}=0$ can be set for the fishery and for the survey.
 
 % new text added January 2018
 The implementation of time-varying selectivity in the assessments from 2014 to 
-2017 all used an option available in  Stock Synthesis 3.24 where 
+2017 all used an option available in Stock Synthesis 3.24 where 
 annual deviations to the selectivity parameters were applied after a 
 logistic transformation to keep the time-varying parameters within a 
 set of bounds.
@@ -781,11 +781,11 @@ iteratively adjusting a multiplier on the the input sample sizes until they are
 roughly equal to the harmonic mean of the effective sample sizes, where the
 effective sample size is dependent on how well the model expectation matches
 the observed values. For this assessment, a new Dirichlet-Multinomial (D-M) likehood
-was adoped, as proposed by \citet{ThorsonEtAl2017Dirichlet}. The primary benefit
+was adopted, as proposed by \citet{ThorsonEtAl2017Dirichlet}. The primary benefit
 of the D-M approach is that instead of manually iterating the sample size multiplier,
 an estimated parameter serves to automatically adjust the weight given to
 the composition data. This increases efficiency of the assessment process, removes the
-subject choice of how many iterations are required in the previous approach,
+subjective choice of how many iterations are required in the previous approach,
 and also ensures that the results of model sensitivities, retrospective analyses, 
 and likelihood profiles will all be automatically tuned, rather than having the
 age composition given the same weight as the base model.
