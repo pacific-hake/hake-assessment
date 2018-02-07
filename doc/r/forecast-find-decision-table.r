@@ -101,15 +101,14 @@ median(out$SPRratio_2020)   # 509000 = 0.9999575   2/6/18
 
 
 
-**updated years to here**
-# constant catch
-#  set the catch for 2017, run mceval, until the median foreCatch_2018 is the same
+# constant catch - create constantCatch/ directory.
+#  set the catch for 2018, run mceval, until the median foreCatch_2019 is the same
 out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/constantCatch/derived_posteriors.sso"),
                   header=T)
-head(out[,c("ForeCatch_2017","ForeCatch_2018","ForeCatch_2019")])
-median(out$ForeCatch_2018)   #866263      1/23/27
-median(out$ForeCatch_2019)   #683014      1/23/17
+head(out[,c("ForeCatch_2018","ForeCatch_2019","ForeCatch_2020")])
+median(out$ForeCatch_2019)   #866263      1/23/27
+median(out$ForeCatch_2020)   #683014      1/23/17
 
 
 
