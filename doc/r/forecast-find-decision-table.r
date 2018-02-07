@@ -47,33 +47,59 @@ out <- read.table(file.path(SSdir,baseModel,
 head(out[,c("ForeCatch_2018","ForeCatch_2019","ForeCatch_2020")])
 median(out$ForeCatch_2020)   #532476
 
-**got to here**
-
 # median SPR=100
-# Copy  baseModel/mcmc/ files
-# into new DecisionTable/SPR100
+# Copy  baseModel/mcmc/ files into new DecisionTable/SPR100
 
-# Set the catch for 2018, run mceval, until the median SPRratio_2018 is really
-#  close to 1
+# Set the catch for 2018 in forecast.ss, run mceval, iterate until the
+#  median SPRratio_2018 is really close to 1
 out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/SPR100/derived_posteriors.sso"),
                   header=T)
 head(out[,c("ForeCatch_2018","ForeCatch_2019","ForeCatch_2020")])
-median(out$SPRratio_2018)   #934000  =  0.9996     1/23/17
+median(out$SPRratio_2018)   #639000  = 1.000057  2/6/18.
+# 2/6/18:
+# catch    median(out$SPRratio_2018)
+# 700000   1.038065
+# 650000   1.007145
+# 640000   1.000695
+# 639000   1.000057   **closest**
+# 638000   0.9994135
+# So doing three sig figs (as Aaron did last year), closest to 1 is
+#  639000
+
 # set the catch for 2019, run mceval, until the median SPRratio_2019 is really
 #  close to 1
 out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/SPR100/derived_posteriors.sso"),
                   header=T)
 head(out[,c("ForeCatch_2018","ForeCatch_2019","ForeCatch_2020")])
-median(out$SPRratio_2019)   #848000  = 0.9999     1/23/17
+median(out$SPRratio_2019)   #554000  = 0.9999655     2/6/18
+# 2/6/18:
+# 2019catch    median(out$SPRratio_2019)
+# 639000       1.05902
+# 540000       0.9897115
+# 555000       1.00141
+# 550000       0.997531
+# 554000       0.9999655 **closest**
+
+
 # set the catch for 2020, run mceval, until the median SPRratio_2020 is really
 #  close to 1
 out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/SPR100/derived_posteriors.sso"),
                   header=T)
 head(out[,c("ForeCatch_2018","ForeCatch_2019","ForeCatch_2020")])
-median(out$SPRratio_2020)   #698000  = 1.0001     1/23/17
+median(out$SPRratio_2020)   # 509000 = 0.9999575   2/6/18
+# 2/6/18:
+# 2020catch    median(out$SPRratio_2020)
+# 554000       1.035885
+# 500000       0.9920595
+# 505000       0.99752
+# 506000       0.997954
+# 510000       1.000805
+# 509000       0.9999575 **closest**
+
+
 
 **updated years to here**
 # constant catch
