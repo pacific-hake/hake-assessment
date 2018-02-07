@@ -48,8 +48,7 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 \end{center}
 \vspace{-5mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-1 \fishname\
-  from joint US-Canada acoustic surveys
-  \Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}. Age-1 \fishname\ are not fully sampled 
+  from joint US-Canada acoustic surveys 2003 --\Sexpr{survey.end.yr}. Age-1 \fishname\ are not fully sampled 
   during the acoustic survey and were not explicitly considered during establishment of the 
   survey sampling design. The area of the circle is roughly
   proportional to observed backscatter. Figure produced by Julia Clemons (NOAA).}
