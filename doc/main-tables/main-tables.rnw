@@ -541,6 +541,7 @@ make.short.parameter.estimates.sens.table(sens.models.2.for.table,
                                           model.names = sens.model.names.2.for.table,
                                           posterior.regex = key.posteriors,
                                           end.yr = end.yr,
+                                          age.1 = FALSE,
                                           digits = 3,
                                           xcaption <- paste0("Maximum likelihood estimates (MLE) of select parameters, derived quantities, and reference points for the base model and key sensitivity runs (described in Section~\\ref{sec:assessment-sensitivity-analyses})."),
                                           xlabel <- "tab:main-parameter-estimates-sens-2",
@@ -551,26 +552,35 @@ make.short.parameter.estimates.sens.table(sens.models.2.for.table,
 \restoregeometry
 \pagestyle{fancy}
 
+\newgeometry{hmargin=1in,vmargin=1in}
+\thispagestyle{lscape}
+\begin{landscape}
+  \centering
 <<main.parameter.estimates.sens.1, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(sens.models.1.for.table,
                                           model.names = sens.model.names.1.for.table,
                                           posterior.regex = key.posteriors,
                                           end.yr = end.yr,
+                                          age.1 = TRUE,
                                           digits = 3,
-                                          xcaption <- paste0("Maximum likelihood estimates (MLE) of select parameters, derived quantities, and reference points for the base model and sensitivity runs (described in Section~\\ref{sec:assessment-sensitivity-analyses})."),
-                                          xlabel <- "tab:main-parameter-estimates-sens-1",
+                                          xcaption = paste0("Maximum likelihood estimates (MLE) of select parameters, derived quantities, and reference points for the base model and sensitivity runs (described in Section~\\ref{sec:assessment-sensitivity-analyses})."),
+                                          xlabel = "tab:main-parameter-estimates-sens-1",
                                           font.size = 9,
                                           space.size = 11)
 @
+\end{landscape}
+\restoregeometry
+\pagestyle{fancy}
 
 <<main.parameter.estimates.retro, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(retro.list,
                                           model.names = retro.model.names,
                                           posterior.regex = key.posteriors,
                                           end.yr = end.yr,
+                                          age.1 = FALSE,
                                           digits = 3,
-                                          xcaption <- paste0("Select parameters, derived quantities, and reference point estimates for retrospective analyses using the base model. Some values are implied since they occur after the ending year of the respective retrospective analysis."),
-                                          xlabel <- "tab:main-parameter-estimates-retro",
+                                          xcaption = paste0("Select parameters, derived quantities, and reference point estimates for retrospective analyses using the base model. Some values are implied since they occur after the ending year of the respective retrospective analysis."),
+                                          xlabel = "tab:main-parameter-estimates-retro",
                                           font.size = 10,
                                           space.size = 12)
 @
