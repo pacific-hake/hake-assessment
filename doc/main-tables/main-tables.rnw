@@ -493,8 +493,6 @@ make.decision.table(base.model,
                      50\\% probability that the median projected catch will
                      remain the same in ",min(forecast.yrs),
                      " and ",min(forecast.yrs)+1," (row h).
-                     **Row~e uses 600,000~t rather than the 500,000~t from last
-                     year's assessment, because 500,000~t is essentially row~d.
                      Catch in ",max(forecast.yrs)," does not impact the
                      beginning of the year biomass in ",max(forecast.yrs),"."),
                     xlabel <- "tab:main-decisions-biomass",

@@ -668,15 +668,14 @@ make.decision.table(base.model,
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
                      catch levels (rows a, b, c, d, e), including the TAC from  ",
-                     min(forecast.yrs)-1," (row d), the catch values that result
+                     min(forecast.yrs)-1," (row e), the catch values that result
                      in a median relative fishing intensity of 100\\% (row f),
                      the median values estimated via the default harvest policy
                      (\\Ffortyten) for the base model (row g), and the fishing
                      intensity that results in a 50\\% probability that the median
                      projected catch will remain the same in ",min(forecast.yrs),
-                     " and ",min(forecast.yrs)+1," (row h). Row~e uses 600,000~t
-                     rather than the 500,000~t from last year's assessment,
-                     because 500,000~t is essentially row~d. Catch in ",
+                     " and ",min(forecast.yrs)+1," (row h).
+                     Catch in ",
                      max(forecast.yrs)," does not impact the beginning of the
                      year biomass in ",max(forecast.yrs),"."),
                     xlabel <- "tab:es-decisions-biomass",
