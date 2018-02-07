@@ -238,7 +238,7 @@ data, and a new approach for parameterizing time-varying selectivity in the base
 model. The \Sexpr{assess.yr} base model includes an acoustic data time series from 1995 to 2017,
 where estimates of abundance from the survey followed the same procedures as in 
 \Sexpr{last.assess.yr}.  An updated maturity ogive was estimated and incorporated into the
-\Sexpr{asess.yr} base model (see section~\ref{sec:data-maturity}). The Dirichlet-Multinomial (D-M)
+\Sexpr{assess.yr} base model (see section~\ref{sec:data-maturity}). The Dirichlet-Multinomial (D-M)
 likehood approach (\citet{ThorsonEtAl2017Dirichlet}) was used to estimate the weights
 associated with age compostion data, rather than iteratively tuning the sample size multiplier
 as in previous assessments (see section~\ref{sec:data-age-comp-likelihood}). Time-varying fishery
@@ -460,17 +460,16 @@ perhaps drawing on commented-out text below.
 
 %[** this section was empty last year....]
 
-\subsubsection{Assessment model results  **Once base model is finalised update
-  whole section**}\label{sec:assessment-model-results}
+\subsubsection{Assessment model results}\label{sec:assessment-model-results}
 \subsubsub{Model Fit}
 
-**For the base model, the MCMC chain was the same length as in the
-\Sexpr{last.assess.yr} assessment \citep{JTC2016}. This included 12,000,000
-iterations with the first 2,010,000 discarded to eliminate `burn-in' effects and
+For the base model, the MCMC chain length was increased from the 12 million in the
+\Sexpr{last.assess.yr} assessment \citep{JTC2017} to a chain length of 24 million. This
+resulted in the first 4,000,000 discarded to eliminate `burn-in' effects and
 retaining each 10,000th value thereafter, resulting in \Sexpr{num.mcmc.samples}
 samples from the posterior distributions for model parameters and derived
 quantities. Stationarity of the posterior distribution for model parameters was
-re-assessed via a suite of standard diagnostic tests. The objective function, as
+re-assessed via a suite of standard single-chain and multi-chain diagnostic tests. The objective function, as
 well as all estimated parameters and derived quantities, showed good mixing
 during the chain, no evidence for lack of convergence, and low autocorrelation
 (Figures~\ref{fig:main-mcmc.diag.m.r0}
