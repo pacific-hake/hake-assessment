@@ -107,10 +107,19 @@ out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/constantCatch/derived_posteriors.sso"),
                   header=T)
 head(out[,c("ForeCatch_2018","ForeCatch_2019","ForeCatch_2020")])
-median(out$ForeCatch_2019)   #866263      1/23/27
-median(out$ForeCatch_2020)   #683014      1/23/17
+median(out$ForeCatch_2019)   #626954      2/6/18
+median(out$ForeCatch_2020)   #556785.5    2/6/18
 
-
-
+# 2/6/18:
+# 2018catch  2019catch
+# 400000     688012.5
+# 500000     661409
+# 600000     634363
+# 620000     628865
+# 626000     627216.5
+# 627000     626942
+# 626960     626952.5
+# 626954     626954.5  **closest** (rounding down)
+# 626955     626954.5
 
 
