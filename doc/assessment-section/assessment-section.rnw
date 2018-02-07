@@ -480,10 +480,13 @@ critical values more frequently than expected via random chance
 (Figure~\ref{fig:main-mcmc.diag.hists}). Traceplots show that the MCMC chain was
 well behaved and had little autocorrelation
 (Figures~\ref{fig:main-mcmc.diag.m.r0} and
-\ref{fig:main-mcmc.diag.h.extra.sd}). Correlations among key parameters were
+\ref{fig:main-mcmc.diag.h.extra.sd}). The Gelman-Rubin multi-chain diagnostic test, 
+which compares within chain variance to among chain variance, further indicated that 
+convergence was adquately achieved (Figure~\ref{fig:main-mcmc.diag.gelrub}). 
+Correlations among key parameters were
 generally low, with the exception of natural mortality, $M$, and the unexploited
-equilibrium recruitment level, $\log(R_0)$;
-**Figure~\ref{fig:main-mcmc-pairs}. Derived quantities for recruitment in 2008 and
+equilibrium recruitment level, $\log(R_0)$ (Figure~\ref{fig:main-mcmc-pairs}). 
+Derived quantities for recruitment in 2008 and
 2010 as well as the relationship between relative spawning biomass in
 \Sexpr{end.yr} with both the default harvest catch in \Sexpr{end.yr} and
 recruitment in 2014 were highly correlated as expected given the dependencies
