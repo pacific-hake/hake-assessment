@@ -303,6 +303,7 @@ make.short.parameter.estimates.sens.table <- function(models,
                                                       model.names,
                                                       posterior.regex,
                                                       end.yr,
+                                                      age.1 = FALSE,
                                                       digits = 3,
                                                       xcaption = "default",
                                                       xlabel   = "default",
@@ -317,6 +318,7 @@ make.short.parameter.estimates.sens.table <- function(models,
   ## posterior.regex - a vector of the posterior names to search for
   ##  (partial names will be matched)
   ## end.yr - the last year to include
+  ## age.1 - if TRUE, add the age-1 index parameter to the table
   ## digits - number of decimal points for the estimates
   ## xcaption - caption to appear in the calling document
   ## xlabel - the label used to reference the table in latex
@@ -326,6 +328,7 @@ make.short.parameter.estimates.sens.table <- function(models,
   tab <- NULL
   for(model in models){
     parms <- model$estimated_non_dev_parameters
+
     p.names <- rownames(parms)
     mle.grep <- unique(grep(paste(posterior.regex, collapse="|"), p.names))
 
@@ -368,20 +371,35 @@ make.short.parameter.estimates.sens.table <- function(models,
     ## Add Female spawning biomass B_f40%
     ## Always divide SSB by 2 in single sex model, unless you grab model$SBzero
     ##  divide by 1000 to be consistent with showing biomass in thousands of tons
-    b <-  model$derived_quants["SSB_SPRtgt", "Value"] / 2 / 1000
+    b <-  model$derived_quants["SSB_SPR", "Value"] / 2 / 1000
     mle.par <- c(mle.par, b)
 
     ## Add SPR MSY-proxy
     mle.par <- c(mle.par, 40)
 
     ## Add Exploitation fraction corresponding to SPR
-    f1 <- model$derived_quants["Fstd_SPRtgt", "Value"]
+    f1 <- model$derived_quants["Fstd_SPR", "Value"]
     f1 <- f1 * 100
     mle.par <- c(mle.par, f1)
 
     ## Add Yield at Bf_40%
-    y <- model$derived_quants["TotYield_SPRtgt", "Value"] / 1000
+    y <- model$derived_quants["Dead_Catch_SPR", "Value"] / 1000
     mle.par <- c(mle.par, y)
+
+    ## Special case - if the sensitivity does not include steepness as
+    ##  an estimated parameter, insert an NA.
+    if(length(mle.par) == 14){
+      mle.par <- c(mle.par[1:2],
+                   NA,
+                   mle.par[-(1:2)])
+    }
+    ## If the sensitivity does not include the age 1 index as
+    ##  an estimated parameter, insert an NA.
+    if(age.1 & length(mle.par) == 15){
+      mle.par <- c(mle.par[1:4],
+                   NA,
+                   mle.par[-(1:4)])
+    }
 
     if(is.null(tab)){
       tab <- as.data.frame(mle.par)
@@ -392,58 +410,125 @@ make.short.parameter.estimates.sens.table <- function(models,
 
   ## Format the tables rows depending on what they are
   ## Decimal values
-  tab[c(1, 3, 4),] <- f(tab[c(1, 3, 4),], 3)
+  if(age.1){
+    tab[c(1, 3, 4, 5),] <- f(tab[c(1, 3, 4, 5),], 3)
+  }else{
+    tab[c(1, 3, 4),] <- f(tab[c(1, 3, 4),], 3)
+  }
+
   ## Large numbers with no decimal points but probably commas
-  tab[c(2, 5, 6, 7, 8, 12, 15),] <-
-    f(apply(tab[c(2, 5, 6, 7, 8, 12, 15),], c(1, 2), as.numeric))
+  tab[c(2,
+        ifelse(age.1, 6, 5),
+        ifelse(age.1, 7, 6),
+        ifelse(age.1, 8, 7),
+        ifelse(age.1, 9, 8),
+        ifelse(age.1, 13, 12),
+        ifelse(age.1, 16, 15)),] <-
+    f(apply(tab[c(2,
+                  ifelse(age.1, 6, 5),
+                  ifelse(age.1, 7, 6),
+                  ifelse(age.1, 8, 7),
+                  ifelse(age.1, 9, 8),
+                  ifelse(age.1, 13, 12),
+                  ifelse(age.1, 16, 15)),],
+                c(1, 2), as.numeric))
   ## Percentages
-  tab[c(9, 10, 11, 14),] <-
-    paste0(f(apply(tab[c(9, 10, 11, 14),], c(1, 2), as.numeric), 1), "\\%")
+  tab[c(ifelse(age.1, 10, 9),
+                         ifelse(age.1, 11, 10),
+                         ifelse(age.1, 12, 11),
+                         ifelse(age.1, 15, 14)),] <-
+    paste0(f(apply(tab[c(ifelse(age.1, 10, 9),
+                         ifelse(age.1, 11, 10),
+                         ifelse(age.1, 12, 11),
+                         ifelse(age.1, 15, 14)),],
+                   c(1, 2), as.numeric), 1), "\\%")
   ## SPR Percentages row (some may be NA). This is really ugly but works
-  tab[13, !is.na(tab[13,])] <-
-    paste0(f(as.numeric(tab[13, !is.na(tab[13,])]), 1), "\\%")
+  tab[ifelse(age.1, 14, 13),
+      !is.na(tab[ifelse(age.1, 14, 13),])] <-
+    paste0(f(as.numeric(tab[ifelse(age.1, 14, 13),
+                            !is.na(tab[ifelse(age.1, 14, 13),])]), 1), "\\%")
 
   ## Make first row empty to make the Parameter header appear below the
   ##  horizontal line
   tab <- rbind(rep("", length(models)), tab)
 
-  ## Replace NAs with dashes
-  tab[is.na(tab)] <- latex.bold("--")
+  ## replace "   NA" with dashes
+  tab <- as.data.frame(lapply(tab,
+                              function(x){
+                                gsub(" +NA",
+                                     paste0("\\", latex.bold("--")),
+                                     x)
+                              }))
 
   ## Set the first column to be the names
   ## The first empty string is necessary because of the
   ##  rbind(rep("", length(models)), tab) call above
-  tab <- cbind(c("",
-                 paste0("Natural mortality (",
-                        latex.italics("M"),
-                        ")"),
-                 paste0(latex.subscr(latex.italics("R"), "0"),
-                        " (millions)"),
-                 paste0("Steepness (",
-                        latex.italics("h"),
-                        ")"),
-                 "Additional acoustic survey SD",
-                 "2008 recruitment (millions)",
-                 "2010 recruitment (millions)",
-                 "2014 recruitment (millions)",
-                 paste0(latex.subscr(latex.italics("B"), "0"),
-                        " (thousand t)"),
-                 "2009 relative spawning biomass",
-                 paste0(end.yr,
-                        " relative spawning biomass"),
-                 paste0(end.yr - 1,
-                        " rel. fishing intensity: (1-SPR)/(1-",
-                        latex.subscr("SPR", "40\\%"),
-                        ")"),
-                 paste0("Female spawning biomass (",
-                        latex.italics("$B_{F_{40_{\\%}}}$"),
-                        "; thousand t)"),
-                 latex.subscr("SPR", "MSY-proxy"),
-                 "Exploitation fraction corresponding to SPR",
-                 paste0("Yield at ",
-                        latex.italics("$B_{F_{40_{\\%}}}$"),
-                        " (thousand t)")),
-               tab)
+  if(age.1){
+    tab <- cbind(c("",
+                   paste0("Natural mortality (",
+                          latex.italics("M"),
+                          ")"),
+                   paste0(latex.subscr(latex.italics("R"), "0"),
+                          " (millions)"),
+                   paste0("Steepness (",
+                          latex.italics("h"),
+                          ")"),
+                   "Additional acoustic survey SD",
+                   "Addition of age-1 index",
+                   "2008 recruitment (millions)",
+                   "2010 recruitment (millions)",
+                   "2014 recruitment (millions)",
+                   paste0(latex.subscr(latex.italics("B"), "0"),
+                          " (thousand t)"),
+                   "2009 relative spawning biomass",
+                   paste0(end.yr,
+                          " relative spawning biomass"),
+                   paste0(end.yr - 1,
+                          " rel. fishing intensity: (1-SPR)/(1-",
+                          latex.subscr("SPR", "40\\%"),
+                          ")"),
+                   paste0("Female spawning biomass (",
+                          latex.italics("$B_{F_{40_{\\%}}}$"),
+                          "; thousand t)"),
+                   latex.subscr("SPR", "MSY-proxy"),
+                   "Exploitation fraction corresponding to SPR",
+                   paste0("Yield at ",
+                          latex.italics("$B_{F_{40_{\\%}}}$"),
+                          " (thousand t)")),
+                 tab)
+  }else{
+    tab <- cbind(c("",
+                   paste0("Natural mortality (",
+                          latex.italics("M"),
+                          ")"),
+                   paste0(latex.subscr(latex.italics("R"), "0"),
+                          " (millions)"),
+                   paste0("Steepness (",
+                          latex.italics("h"),
+                          ")"),
+                   "Additional acoustic survey SD",
+                   "2008 recruitment (millions)",
+                   "2010 recruitment (millions)",
+                   "2014 recruitment (millions)",
+                   paste0(latex.subscr(latex.italics("B"), "0"),
+                          " (thousand t)"),
+                   "2009 relative spawning biomass",
+                   paste0(end.yr,
+                          " relative spawning biomass"),
+                   paste0(end.yr - 1,
+                          " rel. fishing intensity: (1-SPR)/(1-",
+                          latex.subscr("SPR", "40\\%"),
+                          ")"),
+                   paste0("Female spawning biomass (",
+                          latex.italics("$B_{F_{40_{\\%}}}$"),
+                          "; thousand t)"),
+                   latex.subscr("SPR", "MSY-proxy"),
+                   "Exploitation fraction corresponding to SPR",
+                   paste0("Yield at ",
+                          latex.italics("$B_{F_{40_{\\%}}}$"),
+                          " (thousand t)")),
+                 tab)
+  }
   ## Need to split up the headers (model names) by words and let them stack on
   ##  top of each other
   model.names.str <- unlist(lapply(gsub(" ",
@@ -456,8 +541,8 @@ make.short.parameter.estimates.sens.table <- function(models,
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- 1
-  addtorow$pos[[2]] <- 5
-  addtorow$pos[[3]] <- 11
+  addtorow$pos[[2]] <- ifelse(age.1, 6, 5)
+  addtorow$pos[[3]] <- ifelse(age.1, 12, 11)
   addtorow$command <-
     c(paste0(latex.bold(latex.under("Parameters")),
              latex.nline),
@@ -803,6 +888,14 @@ make.long.parameter.estimates.table <- function(model,
     df <- rbind(df, d)
     return(df)
   }
+
+  ## Add Dirichlet-Multinomial parameter
+  ## currently only 1 value so calc.meds doesn't work due to 
+  ## getting a vector instead of a data.frame with names in header
+  dm <- data.frame(param = "ln.EffN_mult._1",
+                   p.med = median(mc$ln.EffN_mult._1))
+  df <- rbind(df, dm)
+  
   ## Add all Early_InitAge parameters
   ei <- mc[,grep("Early_InitAge_[0-9]+", mc.names)]
   df <- calc.meds(df, ei)

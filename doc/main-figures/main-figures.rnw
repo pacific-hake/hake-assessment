@@ -72,8 +72,7 @@ make.catches.plot(catches, leg.y.loc = 550)
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishDepthsUS}
 \end{center}
-\caption{Distribution of fishing depths (left) and bottom depths (right), in fathoms, of \fishname\ catches in the U.S. at-sea fleet from 2008--\Sexpr{last.data.yr}.
-**Check this shows 2017 when all data uploaded.}
+\caption{Distribution of fishing depths (left) and bottom depths (right), in fathoms, of \fishname\ catches in the U.S. at-sea fleet from 2008--\Sexpr{last.data.yr}.}
 \label{fig:main-us-at-sea-depths}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -84,8 +83,7 @@ make.catches.plot(catches, leg.y.loc = 550)
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishCatchRatesUS}
 \end{center}
-\caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in the U.S. at-sea fleet in \Sexpr{last.data.yr}.
-**Check this shows 2017 when all data uploaded.}
+\caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in the U.S. at-sea fleet in \Sexpr{last.data.yr}.}
 \label{fig:main-us-catch-rates}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -124,7 +122,7 @@ make.age.comp.bubble.plot(base.model, subplot = 1,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.survey.biomass, fig.height=6, fig.width=8>>=
+<<main.survey.biomass, fig.height=4.5, fig.width=8>>=
 ## modelnum is the model index in models list from which the survey input data are used.
 make.survey.biomass.plot(base.model)
 @
@@ -134,13 +132,13 @@ make.survey.biomass.plot(base.model)
   variability; blue bars for 2009 include additional uncertainty due to
   squid/hake apportionment.}
 \label{fig:main-survey-biomass}
-\end{figure}
+%% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
+%% JOINED ON PAGE
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+%% \begin{figure}[H]
 \begin{center}
-<<main.survey.extrap.biomass, fig.height=6, fig.width=8>>=
+<<main.survey.extrap.biomass, fig.height=4.5, fig.width=8>>=
 make.survey.biomass.extrap.plot(survey.comparison, show = 2:3)
 @
 \end{center}
@@ -154,9 +152,9 @@ make.survey.biomass.extrap.plot(survey.comparison, show = 2:3)
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[p]
+\begin{figure}[H]
 \begin{center}
-<<age.one.index, fig.height=3.5, fig.width=8>>=
+<<age.one.index, fig.height=4.5, fig.width=8>>=
 make.survey.age1.plot(age.1.index,
                       base.model)
 @
@@ -164,17 +162,25 @@ make.survey.age1.plot(age.1.index,
 %\vspace{0mm}
 \caption{Preliminary acoustic survey age-1 index overlaid on estimated numbers of age-1 fish (MLE from the base model).}
 \label{fig:main-age-one-index}
-%%\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-%% JOINED ON PAGE
-%%%%%%%%%%%%%%%%%%%%%%%
-%%\begin{figure}[H]
+\end{figure}
+
+\begin{figure}[H]
 \begin{center}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=6.5in, height=4in]{main-figures/maturityNS}
+\includegraphics[width=6.5in, height=6.5in]{main-figures/maturity_plots}
 \end{center}
-\caption{Observed proportion mature-at-length (bubbles with circle size relative to number of samples at length), fitted proportion mature-at-length with an estimated asymptote (lines), and number of samples at length (barplots beneath each panel). Panels show categories of source (top left), year (top right), source and year (bottom left), and month (for the trawl survey only, bottom right).}
-\label{fig:main-proportion-mature-by-NS}
+\caption{Fraction of fish mature at age North and South of 34.44$^\circ$N 
+  (upper panel) and comparison of old and new fecundity relationships 
+  (lower panel). The old fecundity relationship (black line in lower plot)
+  was a product of the 
+  maturity at length reported by \citet{DornSaunders1997} and the weight
+  at length estimated in 2011, converted to age using a parametric 
+  growth curve estimated in 2011. 
+  The new fecundity relationship (purple line in lower plot) is the product 
+  of the mean weight at age
+  averaged across all years (green line) and the maturity at age (blue line).
+  Samples from South of 34.44$^\circ$N were not included in the estimates.}
+\label{fig:main-maturity}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -372,8 +378,20 @@ make.mcmc.diag.hists.plot(base.model)
   %quantities for the time-series of spawning biomass, and relative spawning biomass.
   together with the derived time series of
   spawning biomass and relative spawning biomass.
-  The level of autocorrelation in the chain (distribution across lag times, i.e. distance between samples in the chain, shown in the top right panel) influences the effective sample size (top left panel) used to estimate posterior distributions. The Geweke statistic (lower left panel) tests for equality between means located in the first part of the chain against means in the last part of the chain. The Heidelberger and Welch statistic (lower right panel) tests if the sampled values come from a stationarity distribution by comparing different sections of the chain.}
+  The level of autocorrelation in the chain (distribution across lag times, i.e. distance between samples in the chain, shown in the top left panel) influences the effective sample size (top right panel) used to estimate posterior distributions. The Geweke statistic (lower left panel) tests for equality between means located in the first part of the chain against means in the last part of the chain. The Heidelberger and Welch statistic (lower right panel) tests if the sampled values come from a stationarity distribution by comparing different sections of the chain.}
 \label{fig:main-mcmc.diag.hists}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=6.5in, height=8.5in]{main-figures/KeyParameterGelman_MultChain}
+\end{center}
+%\vspace{0mm}
+\caption{Gelman-Rubin plot showing the development of the scale-reduction (shrink factor) across the chain length for key posterior parameter distributions. A factor close to 1 indicates that between chain variance and within chain variance are equal. Values much greater than 1.1 indicate a notable difference between chains and the possible lack of achieving a converged stationary posterior distribution.}
+\label{fig:main-mcmc.diag.gelrub}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
