@@ -127,11 +127,11 @@ from the JTC:
   revisions to obtain maturity-at-age from the empirical weight-at-age-and-year
   matrices, resulting in variable proportions of mature fish-at-age in each year.
 
-  \emph{Response -- **The JTC worked with the Northwest Fisheries Science Center
+  \emph{Response -- The JTC worked with the Northwest Fisheries Science Center
     to estimate a new functional maturity ogive based on histological examination
     of 1,947 ovary samples with ages from north of 34.44$^\circ$~N, as discussed
-    in sections~\ref{sec:data-maturity}, \ref{sec:assessment-modeling-results}, 
-    and \ref{sec:assessment-sensitivity-analyses}. The samples were collected in
+    in sections~\ref{sec:data-maturity},~\ref{sec:assessment-modeling-results}, 
+    and~\ref{sec:assessment-sensitivity-analyses}. The samples were collected in
     2016 and 2017 from the NWFSC bottom trawl survey, the acoustic survey (summer and winter 
   research cruises), and the At-Sea Hake Observer Program (U.S. 
   catcher-processors and motherships).  Small sample sizes remain a 
@@ -180,8 +180,7 @@ from the JTC:
   uncertain.
 
   \emph{Response -- The 2018 assessment included a sensitivity model run that 
-  incorporated the acoustic survey age-1 index (see Figure~\ref{fig:main-biomass-base-alternative-2} 
-  and Figure~\ref{fig:main-status-base-alternative-2}).  The age-1 index time series was 
+  incorporated the acoustic survey age-1 index (see Figures~\ref{fig:main-backscatter-map-age1},~\ref{fig:main-biomass-base-alternative-2}, and~\ref{fig:main-status-base-alternative-2}).  The age-1 index time series was 
   extended to include the age-1 estimate for 2017. The age-1 index is used 
   in this stock assessment as a sensitivity because the survey is not specifically
   designed to survey age-1 hake and uncertainty associated with each estimate is 
@@ -468,7 +467,11 @@ For the base model, the MCMC chain length was increased from the 12 million in t
 resulted in the first 4,000,000 discarded to eliminate `burn-in' effects and
 retaining each 10,000th value thereafter, resulting in \Sexpr{num.mcmc.samples}
 samples from the posterior distributions for model parameters and derived
-quantities. Stationarity of the posterior distribution for model parameters was
+quantities. The Dirichlet-Multinomial (D-M) weighting parameters (theta) were fixed at the MLE
+estimates during MCMC evaluations, because they were occasionally hitting 
+the upper bound of 1.0 for the sample size multiplier.  This results in the theta 
+parameters having almost no impact on the model results, such that the MCMC algorithm has little
+information about that dimension. Stationarity of the posterior distribution for model parameters was
 re-assessed via a suite of standard single-chain and multi-chain diagnostic tests. The objective function, as
 well as all estimated parameters and derived quantities, showed good mixing
 during the chain, no evidence for lack of convergence, and low autocorrelation
@@ -480,7 +483,7 @@ critical values more frequently than expected via random chance
 (Figure~\ref{fig:main-mcmc.diag.hists}). Traceplots show that the MCMC chain was
 well behaved and had little autocorrelation
 (Figures~\ref{fig:main-mcmc.diag.m.r0} and
-\ref{fig:main-mcmc.diag.h.extra.sd}). The Gelman-Rubin multi-chain diagnostic test, 
+~\ref{fig:main-mcmc.diag.h.extra.sd}). The Gelman-Rubin multi-chain diagnostic test, 
 which compares within chain variance to among chain variance, further indicated that 
 convergence was adquately achieved (Figure~\ref{fig:main-mcmc.diag.gelrub}). 
 Correlations among key parameters were
@@ -558,21 +561,25 @@ parameter is examined as sensitivity runs (see section~\ref{sec:assessment-sensi
 Other parameters showed updating from non-informative priors to stationary posterior
 distributions.
 
-**The \Sexpr{assess.yr} base model increased the level of variation (standard
-deviation) associated with time-varying fishery selectivity, effectively
+The \Sexpr{assess.yr} base model specified a similar level of variation (standard
+deviation) associated with time-varying fishery selectivity to that in the 
+\Sexpr{last.assess.yr} base model, effectively
 allowing the model more flexibility (i.e., a lower penalty on the overall
 likelihood) to fit to data that suggests high variability among years for each
-age.  This increase in the allowed magnitude of the annual deviations lead to
-more plausible results (otherwise the model estimates an unrealistically large
-2014 year class) given limited data on the 2014 recruitment class, uncertainty
-with spatial changes in fish availability (due to movement), and recent
+age. This value is 1.4 in Stock Synthesis version \Sexpr{ss.version}). This level
+of variation led to results that were more consistent with the 2017 acoustic survey
+biomass estimate and reasonable fits to the fishery age composition data, while maintaining that  
+there is considerable uncertainty associated with spatial changes in fish availability (due to movement) and recent
 variability in oceanographic conditions.  Estimated selectivity deviations from
 2010 to 2012 are the largest in recent years (Figures~\ref{fig:main-tv-selex}
 and~\ref{fig:main-tv-selex-uncertainty}). Fishery selectivity from 2010 through
 2012 show a more rapid increase in selectivity-at-age than most other years
 since 2005 (almost fully selected by age-4 in 2010 and 2012, and by age-3 in
 2011).  Fishery selectivity on age-2 fish was the highest throughout the time
-series in 2016.  Even though the survey selectivity is time invariant, the
+series in 2016.  The selectivity of age-3 fish by the fishery in 2017 (2014 cohort) 
+was similar to that for the 1999 and 2010 large cohorts (age-3 in 2002 and 2013, respectively; 
+Figure~\ref{fig:main-tv-selex-uncertainty}). Even though the 
+survey selectivity is time invariant, the
 posterior shows a broad band of uncertainty between ages 2 and 5
 (Figure~\ref{fig:main-tv-selex-uncertainty-lines}). Fishery selectivity is
 likewise very uncertain (Figures~\ref{fig:main-tv-selex-uncertainty}
@@ -583,7 +590,7 @@ reflect time-varying mortality processes.
 
 \subsubsub{Stock biomass}
 
-**The base stock assessment model indicates that since the 1960s, \fishname\
+The base stock assessment model indicates that since the 1960s, \fishname\
 female spawning biomass has ranged from well below to near unfished equilibrium
 (Figures~\ref{fig:main-female-spawning-biomass}
 and~\ref{fig:main-relative-spawning-biomass} and
@@ -601,13 +608,14 @@ reaching a time-series low of \Sexpr{median.bio.min}~million~t in
 \Sexpr{median.bio.min.year}. The assessment model estimates that spawning
 biomass declined slightly from 2014 to 2015 after five years of increases from
 2009 to 2014. These estimated increases were the result of a large 2010 cohort
-and an above-average 2008 cohort, and the recent decline is from the 2010 cohort
+and an above-average 2008 cohort, and the decline in 2015 and 2016 is from the 2010 cohort
 surpassing the age at which gains in weight from growth are greater than the
-loss in weight from natural mortality. The model estimates increases from 2015
-to 2017 due to the large 2014 year class, which, on average, is estimated to be
-similar to the size of the 2010 year class.
+loss in weight from natural mortality. The model estimates an increase from 2016
+to 2017 due to the large 2014 year class, which is estimated to be the fifth highest
+recruitment in the time series, and a slight decrease from 2017 to 2018 due, in part, to
+the model fit of the acoustic survey index (Figure~\ref{fig:main-bridge-5-panel}).
 
-**The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning
+The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning
 biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium,
 $B_0$) is \Sexpr{curr.depl.median}\% but is highly uncertain (with a 95\%
 posterior credibility interval from \Sexpr{curr.depl.lower}\% to
@@ -623,7 +631,7 @@ from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper}~million~t). The estimated
 
 \subsubsub{Recruitment}
 
-**The new data available for this assessment do not significantly change the
+The new data available for this assessment do not significantly change the
 estimated patterns of recruitment. \fishname\ appear to have low average
 recruitment with occasional large year-classes
 (Figures~\ref{fig:main-recruitment} and \ref{fig:main-recruitment-devs},
