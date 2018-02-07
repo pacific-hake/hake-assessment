@@ -41,7 +41,7 @@ head(out[,c("ForeCatch_2018","ForeCatch_2019")])
 median(out$ForeCatch_2020)   #532476.5   2/6/18. Second time 538263.5
                              # Third time 538263.5, as expected (as had more
                              #  confidence in second value). Fourth (using rounded
-                             # value for 2018) is also 538263.5.
+                             # value for 2018) is 538263.
 # run mceval after putting in 2020 median catch (though not really needed)
 # double check
 out <- read.table(file.path(SSdir,baseModel,
