@@ -18,8 +18,9 @@ out <- read.table(file.path(SSdir,baseModel,
                   header=T)
 # no catches input into forecast.ss file to determine median 2018 catch (?)
 median(out$ForeCatch_2018)   # 725983.5  2/6/18
-# now fix this catch for 2018 near the end of the forecast.ss file:
-## _Yr Seas Fleet Catch(or_F)
+# now fix this catch for 2018 near the end of the forecast.ss file (keeping
+#  a line starting with -9999)
+# _Yr Seas Fleet Catch(or_F)
 # 2018 1 1 725983.5
 
 # ss3 -mceval
@@ -36,14 +37,15 @@ out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/defaultHR/derived_posteriors.sso"),
                   header=T)
 head(out[,c("ForeCatch_2018","ForeCatch_2019")])
-median(out$ForeCatch_2020)   #532476.5   2/6/18
+median(out$ForeCatch_2020)   #532476.5   2/6/18. Second time 538263.5
 
-# run mceval
+# run mceval after putting in 2020 median catch (though not really needed)
 # double check
 out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/defaultHR/derived_posteriors.sso"),
                   header=T)
 head(out[,c("ForeCatch_2018","ForeCatch_2019","ForeCatch_2020")])
+median(out$ForeCatch_2020)   #532476
 
 **got to here**
 
