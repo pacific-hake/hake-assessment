@@ -130,8 +130,8 @@ from the JTC:
   \emph{Response -- **The JTC worked with the Northwest Fisheries Science Center
     to estimate a new functional maturity ogive based on histological examination
     of 1,947 ovary samples with ages from north of 34.44$^\circ$~N, as discussed
-    in sections~\ref{sec:data-maturity}, \ref{sec:assessment-modeling-results}, 
-    and \ref{sec:assessment-sensitivity-analyses}. The samples were collected in
+    in sections~\ref{sec:data-maturity},~\ref{sec:assessment-modeling-results}, 
+    and~\ref{sec:assessment-sensitivity-analyses}. The samples were collected in
     2016 and 2017 from the NWFSC bottom trawl survey, the acoustic survey (summer and winter 
   research cruises), and the At-Sea Hake Observer Program (U.S. 
   catcher-processors and motherships).  Small sample sizes remain a 
@@ -480,7 +480,7 @@ critical values more frequently than expected via random chance
 (Figure~\ref{fig:main-mcmc.diag.hists}). Traceplots show that the MCMC chain was
 well behaved and had little autocorrelation
 (Figures~\ref{fig:main-mcmc.diag.m.r0} and
-\ref{fig:main-mcmc.diag.h.extra.sd}). The Gelman-Rubin multi-chain diagnostic test, 
+~\ref{fig:main-mcmc.diag.h.extra.sd}). The Gelman-Rubin multi-chain diagnostic test, 
 which compares within chain variance to among chain variance, further indicated that 
 convergence was adquately achieved (Figure~\ref{fig:main-mcmc.diag.gelrub}). 
 Correlations among key parameters were
@@ -558,21 +558,25 @@ parameter is examined as sensitivity runs (see section~\ref{sec:assessment-sensi
 Other parameters showed updating from non-informative priors to stationary posterior
 distributions.
 
-**The \Sexpr{assess.yr} base model increased the level of variation (standard
-deviation) associated with time-varying fishery selectivity, effectively
+The \Sexpr{assess.yr} base model specified a similar level of variation (standard
+deviation) associated with time-varying fishery selectivity to that in the 
+\Sexpr{last.assess.yr} base model, effectively
 allowing the model more flexibility (i.e., a lower penalty on the overall
 likelihood) to fit to data that suggests high variability among years for each
-age.  This increase in the allowed magnitude of the annual deviations lead to
-more plausible results (otherwise the model estimates an unrealistically large
-2014 year class) given limited data on the 2014 recruitment class, uncertainty
-with spatial changes in fish availability (due to movement), and recent
+age. This value is 1.4 in Stock Synthesis version \Sexpr{ss.version}). This level
+of variation led to results that were more consistent with the 2017 acoustic survey
+biomass estimate and reasonable fits to the fishery age composition data, while maintaining that  
+there is considerable uncertainty associated with spatial changes in fish availability (due to movement) and recent
 variability in oceanographic conditions.  Estimated selectivity deviations from
 2010 to 2012 are the largest in recent years (Figures~\ref{fig:main-tv-selex}
 and~\ref{fig:main-tv-selex-uncertainty}). Fishery selectivity from 2010 through
 2012 show a more rapid increase in selectivity-at-age than most other years
 since 2005 (almost fully selected by age-4 in 2010 and 2012, and by age-3 in
 2011).  Fishery selectivity on age-2 fish was the highest throughout the time
-series in 2016.  Even though the survey selectivity is time invariant, the
+series in 2016.  The selectivity of age-3 fish by the fishery in 2017 (2014 cohort) 
+was similar to that for the 1999 and 2010 large cohorts (age-3 in 2002 and 2013, respectively; 
+Figure~\ref{fig:main-tv-selex-uncertainty}). Even though the 
+survey selectivity is time invariant, the
 posterior shows a broad band of uncertainty between ages 2 and 5
 (Figure~\ref{fig:main-tv-selex-uncertainty-lines}). Fishery selectivity is
 likewise very uncertain (Figures~\ref{fig:main-tv-selex-uncertainty}
