@@ -127,7 +127,7 @@ from the JTC:
   revisions to obtain maturity-at-age from the empirical weight-at-age-and-year
   matrices, resulting in variable proportions of mature fish-at-age in each year.
 
-  \emph{Response -- **The JTC worked with the Northwest Fisheries Science Center
+  \emph{Response -- The JTC worked with the Northwest Fisheries Science Center
     to estimate a new functional maturity ogive based on histological examination
     of 1,947 ovary samples with ages from north of 34.44$^\circ$~N, as discussed
     in sections~\ref{sec:data-maturity},~\ref{sec:assessment-modeling-results}, 
@@ -180,8 +180,7 @@ from the JTC:
   uncertain.
 
   \emph{Response -- The 2018 assessment included a sensitivity model run that 
-  incorporated the acoustic survey age-1 index (see Figure~\ref{fig:main-biomass-base-alternative-2} 
-  and Figure~\ref{fig:main-status-base-alternative-2}).  The age-1 index time series was 
+  incorporated the acoustic survey age-1 index (see Figures~\ref{fig:main-backscatter-map-age1},~\ref{fig:main-biomass-base-alternative-2}, and~\ref{fig:main-status-base-alternative-2}).  The age-1 index time series was 
   extended to include the age-1 estimate for 2017. The age-1 index is used 
   in this stock assessment as a sensitivity because the survey is not specifically
   designed to survey age-1 hake and uncertainty associated with each estimate is 
@@ -468,7 +467,11 @@ For the base model, the MCMC chain length was increased from the 12 million in t
 resulted in the first 4,000,000 discarded to eliminate `burn-in' effects and
 retaining each 10,000th value thereafter, resulting in \Sexpr{num.mcmc.samples}
 samples from the posterior distributions for model parameters and derived
-quantities. Stationarity of the posterior distribution for model parameters was
+quantities. The Dirichlet-Multinomial (D-M) weighting parameters (theta) were fixed at the MLE
+estimates during MCMC evaluations, because they were occasionally hitting 
+the upper bound of 1.0 for the sample size multiplier.  This results in the theta 
+parameters having almost no impact on the model results, such that the MCMC algorithm has little
+information about that dimension. Stationarity of the posterior distribution for model parameters was
 re-assessed via a suite of standard single-chain and multi-chain diagnostic tests. The objective function, as
 well as all estimated parameters and derived quantities, showed good mixing
 during the chain, no evidence for lack of convergence, and low autocorrelation
@@ -587,7 +590,7 @@ reflect time-varying mortality processes.
 
 \subsubsub{Stock biomass}
 
-**The base stock assessment model indicates that since the 1960s, \fishname\
+The base stock assessment model indicates that since the 1960s, \fishname\
 female spawning biomass has ranged from well below to near unfished equilibrium
 (Figures~\ref{fig:main-female-spawning-biomass}
 and~\ref{fig:main-relative-spawning-biomass} and
@@ -605,13 +608,14 @@ reaching a time-series low of \Sexpr{median.bio.min}~million~t in
 \Sexpr{median.bio.min.year}. The assessment model estimates that spawning
 biomass declined slightly from 2014 to 2015 after five years of increases from
 2009 to 2014. These estimated increases were the result of a large 2010 cohort
-and an above-average 2008 cohort, and the recent decline is from the 2010 cohort
+and an above-average 2008 cohort, and the decline in 2015 and 2016 is from the 2010 cohort
 surpassing the age at which gains in weight from growth are greater than the
-loss in weight from natural mortality. The model estimates increases from 2015
-to 2017 due to the large 2014 year class, which, on average, is estimated to be
-similar to the size of the 2010 year class.
+loss in weight from natural mortality. The model estimates an increase from 2016
+to 2017 due to the large 2014 year class, which is estimated to be the fifth highest
+recruitment in the time series, and a slight decrease from 2017 to 2018 due, in part, to
+the model fit of the acoustic survey index (Figure~\ref{fig:main-bridge-5-panel}).
 
-**The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning
+The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning
 biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium,
 $B_0$) is \Sexpr{curr.depl.median}\% but is highly uncertain (with a 95\%
 posterior credibility interval from \Sexpr{curr.depl.lower}\% to
@@ -627,7 +631,7 @@ from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper}~million~t). The estimated
 
 \subsubsub{Recruitment}
 
-**The new data available for this assessment do not significantly change the
+The new data available for this assessment do not significantly change the
 estimated patterns of recruitment. \fishname\ appear to have low average
 recruitment with occasional large year-classes
 (Figures~\ref{fig:main-recruitment} and \ref{fig:main-recruitment-devs},
