@@ -115,8 +115,9 @@ make.parameters.estimated.summary.table <- function(model,
                   if(sig.r[p.type] < 0 & sig.r[phase] > 0)
                     paste0("(", sig.r[lo], ",", sig.r[hi], ")")
                   else
-                    "NA",
-                  fetch.prior.info(sig.r, digits))
+                    "--",
+                  sig.r[3])
+                  ##fetch.prior.info(sig.r, digits))
 
   ## Recruitment devs, lower and upper bound found on lines 66 and 67 of
   ##  comment-stripped dataframe
@@ -153,7 +154,7 @@ make.parameters.estimated.summary.table <- function(model,
                      latex.italics("q"),
                      ")"),
               1,
-              "NA",
+              "--",
               "Analytic solution")
 
   ## Survey additional value for SE is at line 77 of comment-stripped dataframe
@@ -164,7 +165,8 @@ make.parameters.estimated.summary.table <- function(model,
                else
                  "--",
                paste0("(", se[lo], ",", se[hi], ")"),
-               fetch.prior.info(se, digits))
+               "Uniform")
+               ##fetch.prior.info(se, digits))
 
   ## Number of survey selectivities is on line 81 of comment-stripped dataframe
   num.sel <- fetch.and.split(ctl, 81)
@@ -177,11 +179,11 @@ make.parameters.estimated.summary.table <- function(model,
   ## Age-0 starts on line 104 of comment-stripped dataframe
   line.num <- 104
   ages.estimated <- NULL
-  for(i in line.num:(line.num + num.sel)){
+  for(i in line.num:(line.num + num.sel - 1)){
     age.sel <- fetch.and.split(ctl, i)
     if(age.sel[phase] > 0){
       ## This age plus one is being estimated
-      ages.estimated <- c(ages.estimated, i - line.num)
+      ages.estimated <- c(ages.estimated, i - line.num + 1)
       ## Use the last line to get the values
       est.sel <- age.sel
     }
@@ -192,7 +194,8 @@ make.parameters.estimated.summary.table <- function(model,
                            max(ages.estimated)),
                     length(ages.estimated),
                     paste0("(", est.sel[lo], ",", est.sel[hi], ")"),
-                    fetch.prior.info(est.sel, digits))
+                    "Uniform")
+                    ##fetch.prior.info(est.sel, digits))
 
   ## Number of fishery selectivities is on line 80 of comment-stripped dataframe
   num.sel <- fetch.and.split(ctl, 80)
@@ -220,7 +223,8 @@ make.parameters.estimated.summary.table <- function(model,
                              max(ages.estimated)),
                       length(ages.estimated),
                       paste0("(", est.sel[lo], ",", est.sel[hi], ")"),
-                      fetch.prior.info(est.sel, digits))
+                      "Uniform")
+                      ##fetch.prior.info(est.sel, digits))
 
   ## Selectivity deviations for fishery. Uses last line to get values, assumes
   ##  all are the same
@@ -235,10 +239,21 @@ make.parameters.estimated.summary.table <- function(model,
              max(ages.estimated),
              ")"),
       length(ages.estimated) * length(est.sel[start.yr.sel]:est.sel[end.yr.sel]),
-      "NA",
+      "--",
       paste0("Normal(0,",
-             est.sel[sel.dev.sd],
+             ##est.sel[sel.dev.sd],
+             model$parameters["AgeSel_P3_Fishery(1)_dev_se", "Value"],
              ")"))
+
+  ## Dirichlet-Multinomial likelihood parameters
+  dm <- fetch.and.split(ctl, 124)
+  dm.vals <- c(paste0("Dirichlet-Multinomial likelihood (",
+                       latex.italics("$\\log(\\theta)$"),
+                      ")"),
+               2,
+               paste0("(", dm[lo], ",", dm[hi], ")"),
+               "Uniform")
+               ##fetch.prior.info(dm, digits))
 
   tab <- rbind(r0.vals,
                h.vals,
@@ -249,7 +264,8 @@ make.parameters.estimated.summary.table <- function(model,
                se.vals,
                age.sel.vals,
                f.age.sel.vals,
-               f.age.sel.dev.vals)
+               f.age.sel.dev.vals,
+               dm.vals)
 
   if(!return.xtable){
     return(tab)
@@ -273,15 +289,19 @@ make.parameters.estimated.summary.table <- function(model,
   addtorow$pos[[2]] <- 6
   addtorow$pos[[3]] <- 6
   addtorow$pos[[4]] <- 9
+  addtorow$pos[[5]] <- 11
   addtorow$command <-
     c(paste0(latex.bold(latex.under("Stock Dynamics")),
              latex.nline),
       paste0(latex.nline,
-             latex.bold(latex.under("Catchability and selectivity (double normal)")),
+             latex.bold(latex.under("Catchability and selectivity")),
              latex.nline),
       paste0(latex.bold(latex.italics("Acoustic Survey")),
              latex.nline),
       paste0(latex.bold(latex.italics("Fishery")),
+             latex.nline),
+      paste0(latex.nline,
+             latex.bold(latex.under("Data weighting")),
              latex.nline))
 
   ## Make the size string for font and space size
