@@ -370,8 +370,20 @@ make.mcmc.diag.hists.plot(base.model)
   %quantities for the time-series of spawning biomass, and relative spawning biomass.
   together with the derived time series of
   spawning biomass and relative spawning biomass.
-  The level of autocorrelation in the chain (distribution across lag times, i.e. distance between samples in the chain, shown in the top right panel) influences the effective sample size (top left panel) used to estimate posterior distributions. The Geweke statistic (lower left panel) tests for equality between means located in the first part of the chain against means in the last part of the chain. The Heidelberger and Welch statistic (lower right panel) tests if the sampled values come from a stationarity distribution by comparing different sections of the chain.}
+  The level of autocorrelation in the chain (distribution across lag times, i.e. distance between samples in the chain, shown in the top left panel) influences the effective sample size (top right panel) used to estimate posterior distributions. The Geweke statistic (lower left panel) tests for equality between means located in the first part of the chain against means in the last part of the chain. The Heidelberger and Welch statistic (lower right panel) tests if the sampled values come from a stationarity distribution by comparing different sections of the chain.}
 \label{fig:main-mcmc.diag.hists}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=6.5in, height=8.5in]{main-figures/KeyParameterGelman_MultChain}
+\end{center}
+%\vspace{0mm}
+\caption{Gelman-Rubin plot showing the development of the scale-reduction (shrink factor) across the chain length for key posterior parameter distributions. A factor close to 1 indicates that between chain variance and within chain variance are equal. Values much greater than 1.1 indicate a notable difference between chains and the possible lack of achieving a converged stationary posterior distribution.}
+\label{fig:main-mcmc.diag.gelrub}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
