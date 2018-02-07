@@ -37,6 +37,30 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
+\newgeometry{hmargin=1in,vmargin=1in}
+\thispagestyle{lscape}
+\begin{landscape}
+  \centering
+\begin{figure}[p]
+\vspace{-5mm}
+\begin{center}
+\includegraphics[max size={\paperwidth}{\paperheight}]{main-figures/age1hake_2003-17_timeseries.eps} % width=\maxwidth,
+\end{center}
+\vspace{-5mm}
+\caption{Spatial distribution of acoustic backscatter attributable to age-1 \fishname\
+  from joint US-Canada acoustic surveys
+  \Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}. Age-1 \fishname\ are not fully sampled 
+  during the acoustic survey and were not explicitly considered during establishment of the 
+  survey sampling design. The area of the circle is roughly
+  proportional to observed backscatter. Figure produced by Julia Clemons (NOAA).}
+\label{fig:main-backscatter-map-age1}
+\end{figure}
+\end{landscape}
+\restoregeometry
+\pagestyle{fancy}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
 <<main.data.overview.map, fig.height=4.5, fig.width=8>>=
