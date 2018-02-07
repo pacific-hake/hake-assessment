@@ -485,7 +485,7 @@ make.decision.table(base.model,
                      the year before fishing. Quantiles from the base model are
                      shown for various harvest alternatives (rows) based on:
                      constant catch levels (rows a, b, c, d, e), including the
-                     TAC from ",min(forecast.yrs)-1," (row d), the catch values
+                     TAC from ",min(forecast.yrs)-1," (row e), the catch values
                      that result in a median relative fishing intensity of
                      100\\% (row f), the median values estimated via the
                      default harvest policy (\\Ffortyten) using the base model
