@@ -737,7 +737,7 @@ make.exploitation.fraction.plot(base.model,
                                 upper.lim = 0.35)
 @
 \end{center}
-\caption{Trend in median exploitation fraction (catch divided by biomass of fish of age-3 and above) through \Sexpr{end.yr-1} with 95\% posterior credibility intervals.}
+\caption{Trend in median exploitation fraction (catch divided by biomass of fish of age-2 and above) through \Sexpr{end.yr-1} with 95\% posterior credibility intervals.}
 \label{fig:main-exploitation-fraction}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

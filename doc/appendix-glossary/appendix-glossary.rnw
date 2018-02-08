@@ -86,7 +86,7 @@ El Ni\~no: Abnormally warm ocean climate conditions in the California Current Ec
 
 %MSE: Estimation model: A single run of Stock Synthesis within a combination of Case, Simulation and Year. The directories containing these results are named ``assess2012'' through ``assess2030'' where the year value in this case represents the last year of real or simulated data. The amount of data available to these models is therefore consistent with the stock assessments conducted in the years 2013-2031. There are 18 Estimation Models for each of 999 Simulations within each of 4 Management strategies for a total of 71,928 model results. The estimation models use maximum likelihood estimation, not MCMC.
 
-Exploitation fraction: A metric of fishing intensity that represents the total annual catch divided by the estimated population biomass over a range of ages assumed to be vulnerable to the fishery (set to ages $3+$ in recent assessments, including this one). This value is not equivalent to the instantaneous rate of fishing mortality (see below) or the spawning potential ratio (SPR, see below).
+Exploitation fraction: A metric of fishing intensity that represents the total annual catch divided by the estimated population biomass over a range of ages assumed to be vulnerable to the fishery (set to ages $2+$ in this assessments; note that in previous assessments is was $3+$). This value is not equivalent to the instantaneous rate of fishing mortality (see below) or the spawning potential ratio (SPR, see below).
 
 $F$: Instantaneous rate of fishing mortality (or fishing mortality rate); see below.
 

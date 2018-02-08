@@ -639,20 +639,21 @@ Tables~\ref{tab:main-median-posterior} and \ref{tab:main-ci-posterior}). Very
 large year classes in 1980, 1984, and 1999 supported much of the commercial
 catch from the 1980s to the mid-2000s. From 2000 to 2007, estimated recruitment
 was at some of the lowest values in the time-series followed by a moderately
-large 2008 year class. The current assessment estimates a very strong 2010 year
+large 2008 year class. The current assessment continues to estimate a very strong 2010 year
 class (Figure~\ref{fig:main-numbers-at-age}) comprising
 \Sexpr{year.class.2010.in.2013}\% of the coast-wide commercial catch in 2013,
 \Sexpr{year.class.2010.in.2014}\% of the 2014 catch,
-\Sexpr{year.class.2010.in.2015}\% of the 2015 catch, and 35\% of the 2016
-catch. The current assessment also estimates a strong 2014 year class
-(Figure~\ref{fig:main-numbers-at-age}) comprising 47\% of the 2016 catch. The
-size of the 2014 year class remains highly uncertain, more so than cohorts that
-have been observed for more years, but the median estimate suggests that it is
-one of the higher estimates in the time series.
-% Can't ascertain previous statement from the figure, but AME checked the values
-%  and it's still true.
+\Sexpr{year.class.2010.in.2015}\% of the 2015 catch,
+33\% of the 2016 catch, and
+40\% of the 2017 catch.
+The current assessment also estimates a strong 2014 year class
+(Figure~\ref{fig:main-numbers-at-age}) comprising 50\% of the 2016 catch and 33\% of the 2017
+catch. Although the absolute size of the 2014 year class remains highly uncertain, at least more so than
+cohorts that have been observed for more years, two years of fishery data and one year of survey data
+suggest that it is one of the higher estimates in the time series.
 
-**The model currently estimates small 2011 and 2013 year classes (median
+
+The model currently estimates small 2011, 2013, and 2015 year classes (median
 recruitment below the mean of all median recruitments) and a slightly above
 average 2012 year class.
 % That's still true for 2016 assessment - see
@@ -663,51 +664,47 @@ There is little or no information in the data to estimate the sizes of the
 class strength for young fish have shown the estimates of recent recruitment to
 be unreliable prior to at least age-3 \citep{JTC2013}.
 
-**The estimated recruitments with uncertainty for each predicted point and the
+The estimated recruitments with uncertainty for each predicted point and the
 overall stock recruit relationship are provided in
 Figure~\ref{fig:main-mcmc.sr.variability}. Extremely large variability about the
 expectation and about the joint uncertainty of individual recruitment and
 spawning biomass pairs are evident in this plot. High and low recruitments have
 been produced throughout the range of observed spawning biomass
 (Figure~\ref{fig:main-mcmc.sr.variability}). The standard deviation of the time
-series of median recruitment deviation estimates for the years 1970-2014, which
+series of median recruitment deviation estimates for the years 1970-2015, which
 are informed by the age compositions, is
 \Sexpr{f(sd(base.model$mcmccalcs$devmed[names(base.model$mcmccalcs$devmed) >=
-1970 & names(base.model$mcmccalcs$devmed) <= 2014]), 2)}.
-% This value is consistent with the base model value of 
-% $\sigma_r = [backslash]Sexpr{f(base.model$par[base.model$par$Label=="SR_sigmaR",]$Value, 1)}$.
-% [backslash] to avoid Sexpr being calculated - .par no longer loaded in.
-% Should probably include the sentence - using \Sexpr{base.model$sigma_R_in}
-%\newpage
+1970 & names(base.model$mcmccalcs$devmed) <= 2015]), 2)}. This value is consistent
+with the base model value of \Sexpr{base.model$sigma_R_in}.
+
 
 \subsubsub{Exploitation status}
 
-**Median relative fishing intensity on the stock is estimated to have been below
+Median relative fishing intensity on the stock is estimated to have been below
 the SPR$_{40\%}$ target except for the year 1999 when spawning biomass was low
 (Figure~\ref{fig:main-fishing-intensity} and
 Tables~\ref{tab:main-median-posterior} and \ref{tab:main-ci-posterior}). It
 should be noted, however, that the median relative fishing intensity was close
-to the target in 2007, 2008 and 2010, but harvest in those years did not exceed
+to the target in 2008 and 2010, but harvest in those years did not exceed
 the catch limits that were specified, based on the best available science and
 harvest control rules in place at the time. Exploitation fraction (catch divided
-by biomass of fish of age-3 and above) has shown relatively similar patterns
+by biomass of fish of age-2 and above) has shown relatively similar patterns
 (Figure~\ref{fig:main-exploitation-fraction} and and
 Tables~\ref{tab:main-median-posterior} and
 \ref{tab:main-ci-posterior}). Although similar patterns, the exploitation
 fraction does not necessarily correspond to fishing intensity because fishing
 intensity more directly accounts for age-structure of both the population and
-the catch. For example, relative fishing intensity remained nearly constant from
-2012 to 2013 but the exploitation fraction declined in these years because of
-the large estimated proportion of 2-year-old fish in 2012. Median relative
-fishing intensity is estimated to have declined from
-\Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.penult.yr}\%
-in \Sexpr{last.data.yr}, while the exploitation fraction has decreased from
-\Sexpr{exploitation.med.2010} in 2010 to \Sexpr{exploitation.med.penult.yr} in
-\Sexpr{last.data.yr}. Although there is a considerable amount of imprecision
+the catch. Median relative fishing intensity is estimated to have declined from
+\Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.2015}\%
+in 2015, after which it increased to \Sexpr{median.intensity.2017}\% in 2017.
+The exploitation fraction has decreased from
+\Sexpr{exploitation.med.2010} in 2010 to \Sexpr{exploitation.med.2015} in
+2015 and then increased to \Sexpr{exploitation.med.2017} in 2017.
+Although there is a considerable amount of imprecision
 around these recent estimates due to uncertainty in recruitment and spawning
 biomass, the 95\% posterior credibility interval of relative fishing intensity
 was below the SPR management target from 2013 through 2015.  The median estimate
-for 2016 is well below the management target, however the 95\% posterior
+for 2016 and 2017 is well below the management target, however the 95\% posterior
 credibility interval does include the target level due to the aforementioned
 uncertainties.
 
