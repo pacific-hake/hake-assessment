@@ -22,8 +22,8 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 \begin{figure}[p]
 \vspace{-5mm}
 \begin{center}
-%\includegraphics[max size={\paperwidth}{\paperheight}]{main-figures/hake_survey_1995-17_sA_squareroot_bin_narrow-panel.eps} %% width=\maxwidth,
-\includegraphics[max size={\paperwidth}{\paperheight}]{main-figures/hake_survey_1995-17_NoArrow.eps} %% width=\maxwidth,
+\includegraphics[max size={\paperwidth}{\paperheight}]
+  {main-figures/age1hake_03-17_NASC_BiomassAtAge_color.eps}
 \end{center}
 \vspace{-5mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-2 and older \fishname\
