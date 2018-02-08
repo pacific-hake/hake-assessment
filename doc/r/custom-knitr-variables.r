@@ -134,6 +134,8 @@ median.intensity.above.one.all.years <- names(which(base.model$mcmccalcs$pmed > 
 median.intensity.above.one.years <- median.intensity.above.one.all.years[
          median.intensity.above.one.all.years < end.yr]  # ones to mention
 median.intensity.2010 <- f(base.model$mcmccalcs$pmed["2010"] * 100, 1)
+median.intensity.2015 <- f(base.model$mcmccalcs$pmed["2015"] * 100, 1)
+median.intensity.2017 <- f(base.model$mcmccalcs$pmed["2017"] * 100, 1)
 median.intensity.penult.yr <- f(base.model$mcmccalcs$pmed[as.character(end.yr-1)] * 100, 1)
 median.relative.bio <- base.model$mcmccalcs$dmed
 median.relative.bio.2007.to.2011 <- median.relative.bio[c("2007", "2008", "2009", "2010", "2011")]
@@ -237,6 +239,8 @@ years.since.2010.recruitment.med.below.mean <- names(recruitment.med.since.2010[
 ################################################################################
 ## Exploitation values
 exploitation.med.2010 <- f(base.model$mcmccalcs$fmed["2010"],2)
+exploitation.med.2015 <- f(base.model$mcmccalcs$fmed["2015"],2)
+exploitation.med.2017 <- f(base.model$mcmccalcs$fmed["2017"],2)
 exploitation.med.penult.yr <- f(base.model$mcmccalcs$fmed[as.character(end.yr-1)],2)
 
 ################################################################################
