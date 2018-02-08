@@ -29,7 +29,10 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 \caption{Spatial distribution of acoustic backscatter attributable to age-2 and older \fishname\
   from joint US-Canada acoustic surveys
   \Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}. Area of the circle is roughly
-  proportional to observed backscatter. Figure produced by Julia Clemons (NOAA).}
+  proportional to observed backscatter. 
+  Histograms show survey-estimated biomass for ages 2 and up, with major cohorts
+  highlighted in color.
+  Figure produced by Julia Clemons (NOAA).}
 \label{fig:main-backscatter-map}
 \end{figure}
 \end{landscape}
