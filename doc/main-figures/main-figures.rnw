@@ -20,11 +20,12 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 \begin{landscape}
   \centering
 \begin{figure}[p]
-\vspace{-5mm}
+% \vspace{-5mm}
 \begin{center}
-\includegraphics[max size={\paperwidth}{\paperheight}]{main-figures/hake_survey_1995-17_NoArrow.eps} % width=\maxwidth,
+\includegraphics[max size={1.1\paperwidth}{1.1\paperheight}]
+  {main-figures/hake_survey_1995-17_sA_squareroot_bin_narrow-panel.eps}
 \end{center}
-\vspace{-5mm}
+% \vspace{-5mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-2 and older \fishname\
   from joint US-Canada acoustic surveys
   \Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}. Area of the circle is roughly
@@ -42,11 +43,12 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 \begin{landscape}
   \centering
 \begin{figure}[p]
-\vspace{-5mm}
+% \vspace{-5mm}
 \begin{center}
-\includegraphics[max size={\paperwidth}{\paperheight}]{main-figures/age1hake_2003-17_timeseries.eps} % width=\maxwidth,
+\includegraphics[max size={0.92\paperwidth}{0.92\paperheight}]
+  {main-figures/age1hake_2003-17_timeseries.eps}
 \end{center}
-\vspace{-5mm}
+% \vspace{-5mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-1 \fishname\
   from joint US-Canada acoustic surveys 2003 --\Sexpr{survey.end.yr}. Age-1 \fishname\ are not fully sampled 
   during the acoustic survey and were not explicitly considered during establishment of the 
