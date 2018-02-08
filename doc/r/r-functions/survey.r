@@ -268,7 +268,7 @@ make.survey.age1.plot <- function(age1index,
        lwd = 2,
        xaxt = "n",
        xlab = "Year",
-       ylab = "Age-1 Recruitment (billions)",
+       ylab = "Estimated age-1 fish (billions)",
        las = 1,
        col = gray(0.7),
        cex = 0.8)
