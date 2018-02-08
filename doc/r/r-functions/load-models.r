@@ -210,6 +210,7 @@ create.rdata.file <- function(
                                      forecast.catch.levels,
                                      fore.probs = forecast.probs)
   model$risks <- calc.risk(model$forecasts,
+                           forecast.catch.levels,
                            fore.yrs)
   ##----------------------------------------------------------------------------
 
@@ -546,6 +547,7 @@ fetch.forecasts <- function(mcmc.path,
 calc.risk <- function(forecast.outputs, ## A list of length = number of forecast years.
                                         ## Each element of the list is a list of the output of the
                                         ## SS_getMCMC function, 1 for each catch.level
+                      catch.levels,     ## The catches to use in the table
                       forecast.yrs){    ## A vector of years to do projections for
   ## Calculate the probablities of being under several reference points from one forecast year to the next
   ## risk.list will hold the probabilities of being under several reference points.
@@ -555,6 +557,9 @@ calc.risk <- function(forecast.outputs, ## A list of length = number of forecast
   ##  several reference points for the first two years in the forecast.yrs vector
   ## If forecast.outputs is NA, NA will be returned, otherwise the risk.list will be returned.
 
+  ## Make the catch level values a matrix where the columns represent the cases in catch.names
+  catch.levels <- sapply(catch.levels, "[[", 1)
+
   if(length(forecast.outputs) == 1){
     if(is.na(forecast.outputs)){
       return(NA)
@@ -562,9 +567,9 @@ calc.risk <- function(forecast.outputs, ## A list of length = number of forecast
   }
   curr.func.name <- get.curr.func.name()
 
-  metric <- function(x, yr){
+  metric <- function(case.ind, x, yr, yr.ind){
     out <- NULL
-    out[1] <- max(x[, paste0("ForeCatch_", yr)])
+    out[1] <- catch.levels[yr.ind, case.ind]
     out[2] <- sum(x[, paste0("SSB_", yr + 1)] < x[, paste0("SSB_", yr)]) / nrow(x) * 100.0
     out[3] <- sum(x[, paste0("Bratio_", yr + 1)] < 0.40) / nrow(x) * 100.0
     out[4] <- sum(x[, paste0("Bratio_", yr + 1)] < 0.25) / nrow(x) * 100.0
@@ -589,12 +594,16 @@ calc.risk <- function(forecast.outputs, ## A list of length = number of forecast
     ##  (e.g. a bridge model is set up for forecasting) it will be set to NA.
     risk.list[[yr]] <- tryCatch({
       do.call("rbind",
-              lapply(outputs,
-                     function(x, yr){metric(x, yr)}, yr = forecast.yrs[yr]))
+              lapply(1:length(outputs),
+                     function(ind, yr, yr.ind){
+                       metric(ind, outputs[[ind]], yr, yr.ind)
+                     },
+                     yr = forecast.yrs[yr],
+                     yr.ind = yr))
     }, error = function(e){
       NA
     })
-    }
+  }
   names(risk.list) <- names(forecast.outputs[1:(length(forecast.outputs)-1)])
   return(risk.list)
 }
