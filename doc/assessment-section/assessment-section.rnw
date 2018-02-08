@@ -824,7 +824,7 @@ characterization of uncertainty when applied to proposed management procedures.
 \subsection{Reference points}\label{sec:assessment-reference-points}
  % Manual 2017 done
 We report estimates of the base reference points (e.g., relative to $\Fforty$,
-$\Bforty$, &\Bmsy$, and MSY) with posterior credibility intervals in
+$\Bforty$, $\Bmsy$, and MSY) with posterior credibility intervals in
 Table~\ref{tab:main-reference-points}. Only those based on $\Fforty$ explicitly
 relate to target reference points per the treaty Agreement (see
 Section~\ref{sec:intro-management} and Appendix~\ref{chap:glossary}).  The
@@ -851,7 +851,7 @@ relative spawning biomass outcomes, and Table~\ref{tab:main-decisions-spr} shows
 projected fishing intensity outcomes relative to the 100\% target (based on SPR;
 see table legend).
 
-**Relative fishing intensity exceeding 100\% indicates fishing in excess of the
+Relative fishing intensity exceeding 100\% indicates fishing in excess of the
 $\Fforty$ default harvest rate catch limit. This can happen for the median
 relative fishing intensity in \Sexpr{forecast.yrs[1:(length(forecast.yrs)-1)]}
 and \Sexpr{forecast.yrs[length(forecast.yrs)]} because the $\Fforty$ default
@@ -862,7 +862,7 @@ in the determination of overfishing. An alternative catch level where median
 relative fishing intensity is 100\% is provided for comparison (catch
 alternative e: FI=100\%).
 
-**Management metrics that were identified as important to the Joint Management
+Management metrics that were first identified as important to the Joint Management
 Committee (JMC) and the Advisory Panel (AP) in 2012 are presented for
 projections to \Sexpr{forecast.yrs[2:(length(forecast.yrs)-1)]} and
 \Sexpr{forecast.yrs[length(forecast.yrs)]} (Tables~\ref{tab:main-risk-year-1}
