@@ -398,9 +398,14 @@ represents an replacement of the McAllister-Ianelli data-weighting method
 (applied in the previous bridging step) with a new approach described in
 more detail in the section~\ref{sec:data-age-comp-likelihood}. 
 
-**Add text on the bridging step 
-``Update the estimates of maturity and fecundity''.
-    
+The final bridging step ``Update the estimates of maturity and fecundity''
+represents an update to the estimated fecundity at age as discussed in 
+section~\ref{sec:data-maturity}.
+
+The first few bridging steps had relatively little impact on model results,
+with only subtle differences visible in the time series of spawning biomass
+(Figure~\ref{fig:main-bridge-biomass}).
+
 **Add text about which of the itemized bridge steps had which effect,
 including references to figures comparing model results,
 perhaps drawing on commented-out text below.
