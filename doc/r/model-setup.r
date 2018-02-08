@@ -140,6 +140,7 @@ bridge.model.dir.names.1 <- c(last.yr.base.model.dir.name,
 bridge.model.names.1 <- c(last.yr.base.model.name,
                           "Convert to SS 3.30",
                           "Update pre-2017 data")
+bridge.model.end.yr.1 <- end.yr - 1 # all models end 1 year earlier
 verify.models(model.dir, bridge.model.dir.names.1, bridge.model.names.1)
 if(verbose){
   print.model.message(bridge.model.dir.names.1, bridge.model.names.1, 1, model.type = "Bridge")
@@ -160,6 +161,7 @@ bridge.model.names.2 <- c(last.yr.base.model.name,
                           "Add 2017 survey biomass estimate",
                           "Add 2017 survey age comps",
                           "Add 2017 fishery age comps")
+bridge.model.end.yr.2 <- end.yr - c(1,1,0,0,0,0) # subtract 1 year from first 2 models
 verify.models(model.dir, bridge.model.dir.names.2, bridge.model.names.2)
 if(verbose){
   print.model.message(bridge.model.dir.names.2, bridge.model.names.2, 2, model.type = "Bridge")
@@ -180,6 +182,7 @@ bridge.model.names.3 <- c(last.yr.base.model.name,
                           "Change to Dirichlet-Multinomial data weighting",
                           "Update maturity ogive (= base model)") #,
                           #"Adjust effective sample sizes")
+bridge.model.end.yr.3 <- end.yr # all models end in the current end.yr
 verify.models(model.dir, bridge.model.dir.names.3, bridge.model.names.3)
 if(verbose){
   print.model.message(bridge.model.dir.names.3, bridge.model.names.3, 3, model.type = "Bridge")
