@@ -244,9 +244,6 @@ exploitation.med.2017 <- f(base.model$mcmccalcs$fmed["2017"],2)
 exploitation.med.penult.yr <- f(base.model$mcmccalcs$fmed[as.character(end.yr-1)],2)
 
 ################################################################################
-## Survey comparisons of biomass from year to year. Use the table, not the value of survey.end.year
-## Next year, we should set survey.end.yr to be what is in the table. Not going to attempt it
-##  with only hours left to submission.
 last.survey.year <- survey.history[nrow(survey.history),]$year
 last.survey.year.biomass <- f(survey.history[nrow(survey.history),]$biomass * 10, 2) ## millions of tonnes
 penult.survey.year <- survey.history[nrow(survey.history) - 1,]$year
