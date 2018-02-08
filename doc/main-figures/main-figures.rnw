@@ -46,7 +46,8 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 \vspace{-5mm}
 \begin{center}
 \includegraphics[max size={\paperwidth}{\paperheight}]
-  {main-figures/age1hake_03-17_NASC_narrow-panel.eps}
+%  {main-figures/age1hake_03-17_NASC_narrow-panel.eps}
+   {main-figures/age1-use-me.eps}     % Download from Google Drive
 \end{center}
 \vspace{-5mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-1 \fishname\
