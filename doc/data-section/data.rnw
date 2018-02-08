@@ -37,8 +37,8 @@ analysis of auxiliary data. These include:
 
 \item Ageing-error matrices based on cross-read and double-blind-read otoliths.
 
-\item Proportion of female hake maturity by age \citep{DornSaunders1997}; 
-  Table~\ref{tab:main-ogives}.
+\item Proportion of female hake maturity by age; 
+  Table~\ref{tab:main-ogives} and Figure~\ref{fig:main-maturity}.
 
 \end{itemize}
 
@@ -441,8 +441,8 @@ values were converted to fecundity at age using a parametric growth curve
 estimated in 2011 from a model that included length data.
 
 For this assessment, a new age-based maturity ogive 
-(Figure~\ref{fig:main-proportion-mature-by-NS}) was developed using histological
-estimates 
+(Table~\ref{tab:main-ogives} and Figure~\ref{fig:main-maturity}) 
+was developed using histological estimates 
 of functional maturity from 1,947 ovaries that were associated with age estimates.
 These samples were collected from bottom the acoustic survey, 
 winter and summer acoustic research trips, from
@@ -461,7 +461,7 @@ averaged across all years to get a new estimate of fecundity at age. Samples
 from ages 15 and above were pooled for both the maturity and weight at age 
 estimation due to limited sample sizes, and the age 15+ estimates were 
 applied to ages 15-20 for purposes of modeling 
-the population dynamics (Figure~\ref{fig:main-proportion-mature-by-NS}).
+the population dynamics (Figure~\ref{fig:main-maturity}).
 
 Some fish at almost every age were found to be functionally immature based
 on the histological criteria, which is a combination of ``skip spawners'' 

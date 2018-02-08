@@ -262,8 +262,7 @@ make.survey.summary.table(survey.summary,
 
 <<main.maturity.ogives.table, results='asis', echo=FALSE>>=
 make.maturity.ogives.table(maturity.ogives,
-                           interval = 2,
-                           xcaption = "Estimated fraction mature at length as shown in Figure~\\ref{fig:main-proportion-mature-by-NS}.",
+                           xcaption = "Information on maturity and fecundity used in this assessment as shown in Figure~\\ref{fig:main-maturity}. The sample sizes refer to the samples for which age readings and histological estimates of maturity were available, not the mean weight column which relied on a larger set of values. The new fecundity estimate is the product of the maturity and mean weight values while the old fecundity was the result of an older length-based maturity estimate converted to ages. Other than for the old fecundity relationship, the values reported for ages 15 and above represent average across all samples in this range.",
                            xlabel = "tab:main-ogives",
                            font.size = 10,
                            space.size = 10)

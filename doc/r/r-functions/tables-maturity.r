@@ -58,9 +58,7 @@ make.maturity.samples.table <- function(ovary.samples,
 }
 
 
-
 make.maturity.ogives.table <- function(maturity.ogives,
-                                       interval = 2,
                                        xcaption = "default",
                                        xlabel   = "default",
                                        font.size = 10,
@@ -68,23 +66,26 @@ make.maturity.ogives.table <- function(maturity.ogives,
   ## Returns an xtable
   ##
   ## maturity.ogives - data as read in from the csv file
-  ## interval - subset values divisible by this length (cm)
   ## xcaption - caption to appear in the calling document
   ## xlabel - the label used to reference the table in latex
   ## font.size - size of the font for the table
   ## space.size - size of the vertical spaces for the table
 
-
   tab <- maturity.ogives
-  tab <- tab[tab$length.cm %% interval == 0,]
 
   ## format all non-year-column values with a thousands seperator
   colnames(tab) <-
-    c(latex.bold("Length (cm)"),
-      latex.mlc(c("Dorn and",
-                  "Saunders (1997)")),
-      latex.mlc(c("2015",
-                "assessment")))
+    c(latex.bold("Age"),
+      latex.mlc(c("Number of",
+                  "samples")),
+      latex.mlc(c("Old",
+                  "fecundity")),
+      latex.mlc(c("New",
+                  "fecundity")),
+      latex.mlc(c("Maturity",
+                  "ogive")),
+      latex.mlc(c("Mean",
+                  "weight")))
   ## Make the size string for font and space size
   size.string <- latex.size.str(font.size, space.size)
 
@@ -94,7 +95,7 @@ make.maturity.ogives.table <- function(maturity.ogives,
                align = get.align(ncol(tab),
                                  first.left = FALSE,
                                  just = "c"),
-               digits = c(0, 0, 2, 2)),
+               digits = c(0, 0, 0, 3, 3, 3, 3)),
         caption.placement = "top",
         include.rownames = FALSE,
         table.placement = "H",
