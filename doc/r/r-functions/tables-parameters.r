@@ -660,24 +660,25 @@ make.short.parameter.estimates.table <- function(model,
   ## Add Female spawning biomass B_f40%
   ## Always divide SSB by 2 in single sex model, unless you grab model$SBzero
   ##  divide by 1000 to be consistent with showing biomass in thousands of tons
-  b <- model$derived_quants["SSB_SPRtgt", "Value"] / 2 / 1000
+  b <- model$derived_quants["SSB_SPR", "Value"] / 2 / 1000
   mle.par <- c(mle.par, b)
 
   ## Add SPR MSY-proxy
   mle.par <- c(mle.par, 40)
 
   ## Add Exploitation fraction corresponding to SPR
-  f1 <- model$derived_quants["Fstd_SPRtgt", "Value"]
+  f1 <- model$derived_quants["Fstd_SPR", "Value"]
   f1 <- 100 * f1 ## make a percentage
   mle.par <- c(mle.par, f1)
 
   ## Add Yield at Bf_40%
-  y <- model$derived_quants["TotYield_SPRtgt", "Value"] / 1000
+  y <- model$derived_quants["Dead_Catch_SPR", "Value"] / 1000
   mle.par <- c(mle.par, y)
 
   calc.mcmc <- function(x,
                         q.choice = 1 ## q == 1 is this year, q == 2 is last year
                         ){
+    ss.version <- x$SS_versionNumeric
     mcmc.grep <-
       unique(grep(paste(posterior.regex, collapse="|"), names(x$mcmc)))
     mcmc.names <- names(x$mcmc)[mcmc.grep]
@@ -689,7 +690,8 @@ make.short.parameter.estimates.table <- function(model,
     if(q.choice == 1){
       q <- round(median(base.model$extra.mcmc$Q_vector), 3)
     }else{
-      q <- round(median(last.yr.base.model$extra.mcmc$Q_vector), 3)
+      ## q <- round(median(last.yr.base.model$extra.mcmc$Q_vector), 3)
+      q <- 0.94
     }
     mcmc.meds <- c(mcmc.meds, q)
 
@@ -729,19 +731,31 @@ make.short.parameter.estimates.table <- function(model,
     mcmc.meds <- c(mcmc.meds, d)
 
     ## Add Female spawning biomass B_f40%
-    b <- median(x$mcmc[,"SSB_SPRtgt"]) / 2 /1000
+    if(ss.version == 3.3){
+      b <- median(x$mcmc[,"SSB_SPR"]) / 2 /1000
+    }else{
+      b <- median(x$mcmc[,"SSB_SPRtgt"]) / 2 /1000
+    }
     mcmc.meds <- c(mcmc.meds, b)
 
     ## Add SPR MSY-proxy
     mcmc.meds <- c(mcmc.meds, 40)
 
     ## Add Exploitation fraction corresponding to SPR
-    f <- median(x$mcmc[,"Fstd_SPRtgt"])
+    if(ss.version == 3.3){
+      f <- median(x$mcmc[,"Fstd_SPR"])
+    }else{
+      f <- median(x$mcmc[,"Fstd_SPRtgt"])
+    }
     f <- 100 * f
     mcmc.meds <- c(mcmc.meds, f)
 
     ## Add Yield at Bf_40%
-    y <- median(x$mcmc[,"TotYield_SPRtgt"]) / 1000
+    if(ss.version == 3.3){
+      y <- median(x$mcmc[,"Dead_Catch_SPR"]) / 1000
+    }else{
+      y <- median(x$mcmc[,"TotYield_SPRtgt"]) / 1000
+    }
     mcmc.meds <- c(mcmc.meds, y)
     return(mcmc.meds)
   }
