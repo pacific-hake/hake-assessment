@@ -280,9 +280,11 @@ will not build yet.
 ## Survey map
 
 For 2018, Julia Clemons produced the multi-year panel plots from the surveys. Andy converted to .eps using
+
 ```
-pdf2ps hake_survey_1995-17_sA_squareroot_bin_narrow-panel.pdf hake_survey_1995-17_sA_squareroot_bin_narrow-panel.eps
+pdf2ps <filename>.pdf <filename>.eps
 ```
+
 which is a ghostscript command. Seems to be fine in document (may not be a properly encapsulated .eps, but we resize it anyway and it looks good and is zoomable).
 
 ## **Everything from here on is from the 2016 assessment period (Nov 2015 - Mar 2016)**

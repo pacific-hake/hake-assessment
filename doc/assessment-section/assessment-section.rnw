@@ -3,7 +3,7 @@
 % \clearpage
 
 \section{ASSESSMENT}\label{sec:assessment}
-% Manual 2016 done
+% Manual 2018 done
 \subsection{Modeling history}\label{sec:assessment-modeling-history}
 
 In spite of the relatively short history of fishing, \fishname\ have surely been
@@ -398,14 +398,9 @@ represents an replacement of the McAllister-Ianelli data-weighting method
 (applied in the previous bridging step) with a new approach described in
 more detail in the section~\ref{sec:data-age-comp-likelihood}. 
 
-The final bridging step ``Update the estimates of maturity and fecundity''
-represents an update to the estimated fecundity at age as discussed in 
-section~\ref{sec:data-maturity}.
-
-The first few bridging steps had relatively little impact on model results,
-with only subtle differences visible in the time series of spawning biomass
-(Figure~\ref{fig:main-bridge-biomass}).
-
+**Add text on the bridging step 
+``Update the estimates of maturity and fecundity''.
+    
 **Add text about which of the itemized bridge steps had which effect,
 including references to figures comparing model results,
 perhaps drawing on commented-out text below.
@@ -719,7 +714,7 @@ uncertainties.
 
 \subsubsub{Management performance}
 
-**Over the last decade (\Sexpr{end.yr-10}--\Sexpr{end.yr-1}), the mean coast-wide
+Over the last decade (\Sexpr{end.yr-10}--\Sexpr{end.yr-1}), the mean coast-wide
 utilization rate (i.e., landings/quota) has been
 \Sexpr{tot.last.10.years.attainment}\% and catches have generally been below
 coast-wide targets (Table~\ref{tab:main-landings-tac}). From \Sexpr{end.yr-5} to
@@ -770,7 +765,7 @@ start of \Sexpr{end.yr}.
 %sum(base.model$mcmc[paste0("Bratio_", assess.yr)] <0.4 & base.model$mcmc[paste0("SPRratio_",assess.yr - 1)] > 1) /nrow(base.model$mcmc)
 
 \subsection{Model uncertainty}\label{sec:assessment-model-uncertainty}
- % Manual 2017 done
+ % Manual 2018 done
 The base assessment model integrates over the substantial uncertainty associated
 with several important model parameters including: acoustic survey catchability
 ($q$), the magnitude of the stock (via the $\log(R_0)$ parameter for equilibrium
@@ -781,22 +776,24 @@ by the posterior distribution is a better representation of the uncertainty when
 compared to asymptotic approximations about the maximum likelihood estimates
 (MLE) because it allows for asymmetry (Figure~\ref{fig:main-prior-posterior};
 also see \citet{JTC2012} for further discussion and
-examples). **Table~\ref{tab:main-parameter-estimates} shows that most key derived
+examples). **(this sentence still needs checking)Table~\ref{tab:main-parameter-estimates} shows that most key derived
 quantities from the posterior distribution are larger than their respective MLEs
 (e.g., median biomass, recruitment, and relative spawning biomass), however some
 parameter estimates (e.g., steepness and catchability) are
 smaller. Figure~\ref{fig:main-mle.vs.mcmc} shows the MLE and Bayesian (from
 MCMC) estimates as well as the skewed uncertainty in the posterior distributions
-for spawning biomass and recruitment for each year.
+for spawning biomass and recruitment for each year.  Median estimates of spawning 
+biomass and recruitment from the posterior distribution are slightly larger than their respective
+MLEs, but the 95\% credibility (posterior median) and confidence (MLE) intervals considerably overlap. 
 
 Uncertainty measures in the base model underestimate the total uncertainty in
 the current stock status and projections because they do not account for
 alternative structural models for hake population dynamics and fishery processes
-(e.g., recruitment, selectivity), the effects of alternative data-weighting
-choices, and the scientific basis for prior probability distributions. To
-address structural uncertainties, the JTC investigated a range of alternative
-models, and we present a subset of key sensitivity analyses in the main
-document.
+(e.g., recruitment, selectivity, or spatial fleet or population structure), the 
+effects of alternative data-weighting choices, and the scientific basis for prior 
+probability distributions. To address structural uncertainties, the JTC investigated 
+a range of alternative models, and we present the key sensitivity analyses along with
+a suite of other informative sensitivity analyses in the main document.
 
 The \fishname\ stock displays a very high degree of recruitment variability,
 perhaps the largest of any west coast groundfish stock, resulting in large and
@@ -807,12 +804,12 @@ greater, will in most circumstances continue to result in highly uncertain
 estimates of current stock status and even less-certain projections of the stock
 trajectory.
 
-**The JTC continues to be committed to advancing MSE analyses, through further
+The JTC continues to be committed to advancing MSE analyses, through further
 internal technical developments and by coordinating research with other
 scientists in the region engaging in similar research.  In particular, the JTC
-aspires to advance MSE research in 2017 by collaborating with a new
-post-doctoral scientist that will be dedicated to MSE-related
-analyses. Incorporating feedback from JMC/AP/SRG/MSE Advisory Panels will ensure
+aspires to advance MSE research in 2018 by collaborating with the Treaty MSE Working
+Group and a post-doctoral scientist dedicated to developing MSE models. 
+Incorporating feedback from JMC/AP/SRG/MSE Working Group will ensure
 that the operating model is able to provide insight into the important questions
 defined by these groups.  Specifically, the development of MSE tools to evaluate
 major sources of uncertainty relating to data, model structure and the harvest
@@ -826,26 +823,25 @@ characterization of uncertainty when applied to proposed management procedures.
 
 \subsection{Reference points}\label{sec:assessment-reference-points}
  % Manual 2017 done
-We report estimates of the base reference points (relative to $\Fforty$,
-$\Bforty$, and MSY) with posterior credibility intervals in
+We report estimates of the base reference points (e.g., relative to $\Fforty$,
+$\Bforty$, &\Bmsy$, and MSY) with posterior credibility intervals in
 Table~\ref{tab:main-reference-points}. Only those based on $\Fforty$ explicitly
 relate to target reference points per the treaty Agreement (see
 Section~\ref{sec:intro-management} and Appendix~\ref{chap:glossary}).  The
-estimates are slightly different than the estimates in the previous
-\Sexpr{last.assess.yr} assessment with slightly smaller equilibrium yields and
+estimates are slightly different than the estimates in the 
+\Sexpr{last.assess.yr} assessment with **(check this after TAble 26 builds) slightly smaller equilibrium yields and
 biomasses estimated in this assessment.
-**Mention that other reference points are also given, plus maybe mention DFO
-ones as per Issue \#335.
+
 
 \subsection{Model projections}\label{sec:assessment-model-projections}
- % Manual 2017 done
-**The median catch limit for \Sexpr{min(forecast.yrs)} based on the default
+ % Manual 2018 done
+The median catch limit for \Sexpr{min(forecast.yrs)} based on the default
 \Ffortyten{} harvest policy is \Sexpr{catch.limit.quantiles["median"]}~t, but
 has a wide range of uncertainty (Figure~\ref{fig:main-projected-catch-density}),
 with the 2.5\% to 97.5\% range being
 \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
 
-**Decision tables give projected population status (relative spawning biomass) and
+Decision tables give projected population status (relative spawning biomass) and
 relative fishing intensity under different catch alternatives for the base model
 (Tables~\ref{tab:main-decisions-biomass} and~\ref{tab:main-decisions-spr}). The
 tables are organized such that the projected outcome for each potential catch
