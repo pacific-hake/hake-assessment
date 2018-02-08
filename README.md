@@ -1,4 +1,4 @@
-﻿____
+____
 # hake-assessment
 
 **Updated February 11, 2017**
@@ -82,6 +82,14 @@ _____________________________________________________________
     build(run.fore = TRUE, run.retro = TRUE, run.extra.mcmc = TRUE)
 
   * You don’t need to save the workspace when you close R, it isn't used by latex/knitr.
+
+  * In 2018, when running
+     build(TRUE, TRUE, TRUE)
+  we sometimes got an error 
+     line 2001 did not have 226 elements
+  (see Issue #362), but then doing
+     build()
+  works.  
 
 ## How to create hake-assessment.pdf
 
@@ -268,6 +276,14 @@ looking at results, especially when MCMCs have not yet been run and so the asses
 will not build yet.
 
 ---
+
+## Survey map
+
+For 2018, Julia Clemons produced the multi-year panel plots from the surveys. Andy converted to .eps using
+```
+pdf2ps hake_survey_1995-17_sA_squareroot_bin_narrow-panel.pdf hake_survey_1995-17_sA_squareroot_bin_narrow-panel.eps
+```
+which is a ghostscript command. Seems to be fine in document (may not be a properly encapsulated .eps, but we resize it anyway and it looks good and is zoomable).
 
 ## **Everything from here on is from the 2016 assessment period (Nov 2015 - Mar 2016)**
 
