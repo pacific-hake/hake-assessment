@@ -326,8 +326,9 @@ calc.mcmc <- function(mcmc,
 
   ## Calculations for the reference points table
   probs <- c(lower, 0.5, upper)
+
   unfish.fem.bio <-
-    f(round(quantile(mcmc$SSB_Unfished,
+    f(round(quantile(mcmc$SSB_Virgin,
                      prob = probs) / 2e6, 3) * 1000,
       0)
   unfish.recr <-
@@ -335,19 +336,19 @@ calc.mcmc <- function(mcmc,
                      prob = probs) / 1e6, 3) * 1000,
       0)
   f.spawn.bio.bf40 <-
-    f(round(quantile(mcmc$SSB_SPRtgt,
+    f(round(quantile(mcmc$SSB_SPR,
                      prob = probs) / 2e6, 3) * 1000,
       0)
   spr.msy.proxy <- c(latex.bold("--"),
                      "40\\%",
                      latex.bold("--"))
   exp.frac.spr <-
-    paste0(f(100 * quantile(mcmc$Fstd_SPRtgt,
+    paste0(f(100 * quantile(mcmc$Fstd_SPR,
                             prob = probs),
              1),
            "\\%")
   yield.bf40 <-
-    f(round(quantile(mcmc$TotYield_SPRtgt,
+    f(round(quantile(mcmc$Dead_Catch_SPR,
                      prob = probs) / 1e6, 3) * 1000,
       0)
   fem.spawn.bio.b40 <-
@@ -365,7 +366,7 @@ calc.mcmc <- function(mcmc,
              1),
            "\\%")
   yield.b40 <-
-    f(round(quantile(mcmc$TotYield_Btgt,
+    f(round(quantile(mcmc$Dead_Catch_Btgt,
                      prob = probs) / 1e6, 3) * 1000,
       0)
   fem.spawn.bio.bmsy <-
@@ -382,9 +383,10 @@ calc.mcmc <- function(mcmc,
              1),
            "\\%")
   msy <-
-    f(round(quantile(mcmc$TotYield_MSY,
+    f(round(quantile(mcmc$Dead_Catch_MSY,
                      prob = probs) / 1e6, 3) * 1000,
       0)
+
   ## Return a list of the calculated values
   sapply(c("svirg",
            "sinit",
