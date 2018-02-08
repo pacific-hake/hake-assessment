@@ -210,15 +210,13 @@ from the JTC:
     and catch-at-age in numbers (Table~23) and biomass (Table~24) for each year.
     We included the requested estimated fate of cohorts for the strongest cohorts
     only (Table~25) to restrict the length of the assessment document.  Tables that
-    include the fate of other cohorts can be accommodated upon request.}
-    
-    \emph{These tables are included in this \Sexpr{assess.yr} assessment as 
+    include the fate of other cohorts can be accommodated upon request. These tables 
+    are included in this \Sexpr{assess.yr} assessment as 
     Tables~\ref{tab:main-est-exp-rate-at-age},
     \ref{tab:main-est-biomass-at-age}, \ref{tab:main-est-catch-at-age},
     \ref{tab:main-est-catch-at-age-biomass} and \ref{tab:main-cohort-effects}
     respectively.}
-  
-
+    
 \end{itemize}
 
 
@@ -732,22 +730,22 @@ suggested that hake were less aggregated in Canada and availability had
 declined. In 2016, the utilization rate increased but remained below pre-2015
 levels, despite the total 2016 catch being one of the highest in recent years.
 This is in large part due to increasing catch targets as biomass continues to
-increase.  Total landings last exceeded the coast-wide quota in 2002 when
-utilization was 112\%.
+increase.  The utilization rate in 2017 continued to increase from the 2015 low in
+both the United States and Canada. Total landings last exceeded the coast-wide quota 
+in 2002 when utilization was 112\%.
 
-**The median relative fishing intensity was below target in all years except 
+The median relative fishing intensity was below target in all years throughout the time series
+%the 1999 year used to be just above 1 but now estimated to be just below 1
 % \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]} and 
 % Manual 2017 done - comment out above line if only one year, include it if
 %  length(median.intensity.above.one.years) > 1
-\Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
+%\Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
 (Figure~\ref{fig:main-fishing-intensity}).  The female spawning biomass was
-above target all years except in
-\Sexpr{names(median.relative.bio.below.target[1])}, from 1998-2000, and from
-2006-2011.
+above target all years except from 1999-2000 and from 2007-2011.
 % Andy summarising those years manually, based on the values:
 % \Sexpr{names(median.relative.bio.below.target[-length(median.relative.bio.below.target)])} and \Sexpr{names(median.relative.bio.below.target[length(median.relative.bio.below.target)])}.
 
-**The joint history of biomass and $F$-based target reference points shows that
+The joint history of biomass and $F$-based target reference points shows that
 before 2007, median relative fishing intensity was below target and female
 spawning biomass was mostly above $\Bforty$
 (Figure~\ref{fig:main-phase}). Between 2007 and 2011, however, median relative
@@ -759,7 +757,7 @@ the 2008, 2010, and 2014 recruitments and, correspondingly, relative fishing
 intensity has fallen well below targets. Relative spawning biomass has been
 above the target since \Sexpr{median.relative.bio.above.target.since}. While
 there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative fishing
-intensity and relative spawning biomass, the model predicts a less than 4\%
+intensity and relative spawning biomass, the model predicts a less than 6\%
 joint probability of being both above the target relative fishing intensity in
 \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at the
 start of \Sexpr{end.yr}.

@@ -20,12 +20,11 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 \begin{landscape}
   \centering
 \begin{figure}[p]
-% \vspace{-5mm}
+\vspace{-5mm}
 \begin{center}
-\includegraphics[max size={1.1\paperwidth}{1.1\paperheight}]
-  {main-figures/hake_survey_1995-17_sA_squareroot_bin_narrow-panel.eps}
+\includegraphics[max size={\paperwidth}{\paperheight}]{main-figures/hake_survey_1995-17_sA_squareroot_bin_narrow-panel.eps} %% width=\maxwidth,
 \end{center}
-% \vspace{-5mm}
+\vspace{-5mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-2 and older \fishname\
   from joint US-Canada acoustic surveys
   \Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}. Area of the circle is roughly
@@ -43,12 +42,11 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 \begin{landscape}
   \centering
 \begin{figure}[p]
-% \vspace{-5mm}
+\vspace{-5mm}
 \begin{center}
-\includegraphics[max size={0.92\paperwidth}{0.92\paperheight}]
-  {main-figures/age1hake_2003-17_timeseries.eps}
+\includegraphics[max size={\paperwidth}{\paperheight}]{main-figures/age1hake_2003-17_timeseries.eps} % width=\maxwidth,
 \end{center}
-% \vspace{-5mm}
+\vspace{-5mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-1 \fishname\
   from joint US-Canada acoustic surveys 2003 --\Sexpr{survey.end.yr}. Age-1 \fishname\ are not fully sampled 
   during the acoustic survey and were not explicitly considered during establishment of the 
@@ -147,7 +145,7 @@ make.age.comp.bubble.plot(base.model, subplot = 1,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.survey.biomass, fig.height=4.5, fig.width=8>>=
+<<main.survey.biomass, fig.height=6, fig.width=8>>=
 ## modelnum is the model index in models list from which the survey input data are used.
 make.survey.biomass.plot(base.model)
 @
@@ -157,13 +155,13 @@ make.survey.biomass.plot(base.model)
   variability; blue bars for 2009 include additional uncertainty due to
   squid/hake apportionment.}
 \label{fig:main-survey-biomass}
-%% \end{figure}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-%% JOINED ON PAGE
+
 %%%%%%%%%%%%%%%%%%%%%%%
-%% \begin{figure}[H]
+\begin{figure}[H]
 \begin{center}
-<<main.survey.extrap.biomass, fig.height=4.5, fig.width=8>>=
+<<main.survey.extrap.biomass, fig.height=6, fig.width=8>>=
 make.survey.biomass.extrap.plot(survey.comparison, show = 2:3)
 @
 \end{center}
@@ -177,9 +175,9 @@ make.survey.biomass.extrap.plot(survey.comparison, show = 2:3)
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+\begin{figure}[p]
 \begin{center}
-<<age.one.index, fig.height=4.5, fig.width=8>>=
+<<age.one.index, fig.height=3.5, fig.width=8>>=
 make.survey.age1.plot(age.1.index,
                       base.model)
 @
@@ -187,25 +185,17 @@ make.survey.age1.plot(age.1.index,
 %\vspace{0mm}
 \caption{Preliminary acoustic survey age-1 index overlaid on estimated numbers of age-1 fish (MLE from the base model).}
 \label{fig:main-age-one-index}
-\end{figure}
-
-\begin{figure}[H]
+%%\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\begin{figure}[H]
 \begin{center}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=6.5in, height=6.5in]{main-figures/maturity_plots}
+\includegraphics[width=6.5in, height=4in]{main-figures/maturityNS}
 \end{center}
-\caption{Fraction of fish mature at age North and South of 34.44$^\circ$N 
-  (upper panel) and comparison of old and new fecundity relationships 
-  (lower panel). The old fecundity relationship (black line in lower plot)
-  was a product of the 
-  maturity at length reported by \citet{DornSaunders1997} and the weight
-  at length estimated in 2011, converted to age using a parametric 
-  growth curve estimated in 2011. 
-  The new fecundity relationship (purple line in lower plot) is the product 
-  of the mean weight at age
-  averaged across all years (green line) and the maturity at age (blue line).
-  Samples from South of 34.44$^\circ$N were not included in the estimates.}
-\label{fig:main-maturity}
+\caption{Observed proportion mature-at-length (bubbles with circle size relative to number of samples at length), fitted proportion mature-at-length with an estimated asymptote (lines), and number of samples at length (barplots beneath each panel). Panels show categories of source (top left), year (top right), source and year (bottom left), and month (for the trawl survey only, bottom right).}
+\label{fig:main-proportion-mature-by-NS}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1018,13 +1008,14 @@ mtext("Age", side = 1, line = 1, outer = TRUE)
 \begin{center}
 <<main.recruit.base.tv.increase.1, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(c(list(base.model), sens.models.3),
+                     legend = FALSE,                                   
                      subplots = 10,
                      model.names = c(base.model.name, sens.model.names.3),
                      end.yr = end.yr)
 @
 \end{center}
 \caption{Maximum likelihood estimates of recruitment deviations
-  for the base model and alternative sensitivity runs representing changes
+  for the base model and alternative sensitivity runs (refer to the legend below) representing changes
   in the age of maximum selectivity from the value of 6 in the base model and the standard
   deviation ('phi') associated with time-varying selectivity.}
 \label{fig:main-recruit-base-tv-increase-1}
@@ -1048,6 +1039,7 @@ par(mar = c(4.1, 3.1, 1.1, 1.1))
 #                     indexPlotEach = TRUE,
 #                     end.yr = end.yr)
 make.comparison.plot(c(list(base.model), sens.models.3),
+                     legendloc = "bottomleft",
                      subplots = 12,
                      model.names = c(base.model.name, sens.model.names.3),
                      end.yr = end.yr)
@@ -1182,6 +1174,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 \begin{center}
 <<main.recruit.base.alternative.4, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(c(list(base.model), sens.models.4),
+                     legendloc = "topleft",
                      subplots = 10,
                      model.names = c(base.model.name, sens.model.names.4),
                      end.yr = end.yr)

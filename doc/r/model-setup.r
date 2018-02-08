@@ -215,7 +215,7 @@ sens.model.dir.names.2 <- c("2018.40.16_age1Survey",
 sens.model.names.2 <- c("Add Age 1 Index",
                         "Ageing Error (cohort invariant)",
                         "Harmonic Mean Data Weighting",
-                        "U.S. At-Sea Age Comps (Weighted by Month)")
+                        "U.S. Comps Weighted by Month")
 verify.models(model.dir, sens.model.dir.names.2, sens.model.names.2)
 if(verbose){
   print.model.message(sens.model.dir.names.2, sens.model.names.2, 2, model.type = "Sensitivity")

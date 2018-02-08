@@ -142,7 +142,7 @@ median.relative.bio.2007.to.2011 <- median.relative.bio[c("2007", "2008", "2009"
 median.relative.bio.2007.to.2011.min <- f(min(median.relative.bio.2007.to.2011), 2)
 median.relative.bio.2007.to.2011.max <- f(max(median.relative.bio.2007.to.2011), 2)
 median.relative.bio.below.target <- median.relative.bio[median.relative.bio < 0.4]     # when below target
-median.relative.bio.above.target.since <- as.numeric(max(names(median.relative.bio.below.target)))+1   # has been above target since
+median.relative.bio.above.target.since <- max(as.numeric(names(median.relative.bio.below.target)),na.rm=T)+1   # has been above target since
 
 ################################################################################
 ## Prob biomass declines next year to year after with zero catch:
