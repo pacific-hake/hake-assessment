@@ -621,51 +621,29 @@ far from zero, unless the data are overwhelming. The amount of deviation from
 zero is controlled by a fixed standard deviation, $\phi$ (explained further
 below).
 
-**Ian to update anyway (Issue \#310).
-
-**Recent assessments \citep{JTC2014, JTC2015, JTC2016} used $\phi=0.03$, which was
-estimated externally by treating the deviations as random effects and
+The 2017 assessment \citep{JTC2017} increased the value of $\phi$ from 0.03 
+to 0.20 for a variety of reasons, including reports of unusual ocean conditions
+in recent years and good performance of the more flexible selectivity in past
+management strategy evaluations \citep{JTC2014}. However, the most compelling 
+reason for the change was that the large catch of age-2 fish in 2016 caused 
+the model with less flexible selectivity produced implausible estimates of 
+2014 recruitment, values about 3-times larger than the 1999 and 2010 cohorts.
+This was inconsistent with the qualititative comparison to the age-1 index,
+and the fishery age-compostion was not believed to be sufficiently reliable to 
+support such a large estimate. The original basis for the $\phi=0.03$ value
+was a method of treating the deviations as random effects and
 integrating over them using the Laplace method, as described by
-\citet{ThorsonHicksEtAl2014}. This value allowed for the estimation of
-time-varying selectivity without allowing large year-to-year changes. This year,
-the JTC explored flexibility of the fishery selectivity parameter, because
-$\phi=0.03$ led to a record-high estimate for the 2014 year class -- see
-Section~\ref{sec:assessment-sensitivity-analyses}.
+\citet{ThorsonHicksEtAl2014}. Repeating that approach has continued to produce
+low values for $\phi$.
 
-%However, for this assessment, $\phi=0.03$ led to a record-high estimate for the 
-% 2014 year class (2.5 times larger than the any other in the time series), 
-% 2.5 times value from looking at sort(sens.models.6[[1]]$mcmccalcs$rmed)
-% resulting in a huge estimated current biomass 
-% (Figures~\ref{fig:main-biomass-base-tv-increase-1} and 
-% \ref{fig:main-status-base-tv-increase-6}). The biomass estimates for 2014 and 
-% earlier are relatively insensitive to the tested values of $\phi$.
+A new parameterization for the selectivity deviations was explored 
+for this year, based on the recent work of of \citet{Xu2018}, 
+in an effort to produce a more objective way determine the degree of 
+flexibility. However, further testing of this approached was believed
+necessary before making the change. Therefore, the alternative
+parameterization was only used for a sensitivity analysis 
+(described in Section~\ref{sec:assessment-sensitivity-analyses}).
 
-**The choice of a more flexible fishery selectivity parameter value of $\phi=0.20$
-for this assessment instead of the less flexible $\phi=0.03$ used in recent
-assessments was based on multiple criteria. First, ocean conditions in recent
-years have been reported as unusual, resulting in potentially greater changes in
-fishing behavior than in the past, suggesting that the extra flexibility may be
-necessary to model the observed age compositions. Second, the model with
-$\phi=0.20$ estimated similar magnitude for the 2010 and 2014 recruitments,
-which is more consistent with the age-1 index
-(Figure~\ref{fig:main-age-one-index}) than models with less flexible fishery
-selectivity. Third, a model with $\phi=0.20$ performed well when explored in the
-Management Strategy Evaluation \citep{JTC2014}. In the MSE, two levels of
-flexibility in the estimation model, $\phi=0.05$ and $\phi=0.20$ were
-considered, as well as a case without time-varying selectivity ($\phi=0$), all
-relative to a value of $\phi=0.20$ in the operating model. Under these
-assumptions, models with time-varying selectivity had similar performance and
-both performed better than the model without that feature (Table A.5 in
-\citet{JTC2014}). However, the estimation model with more flexible selectivity
-($\phi=0.20$) had equal or slightly better performance in most areas, including
-a lower probability of estimating the stock below $\Bten$ and a lower average
-annual variability in the catch.
-
-Finally, the JTC notes that modeling time-varying selectivity is an active area
-of research in fisheries science that we hope to benefit from and contribute
-to. For instance, exploring ways of representing potential targeting of large
-cohorts may allow better estimation of past patterns as well as improve forecast
-accuracy.
 
 Further details on the time-varying selectivity function are now given.
 
@@ -766,18 +744,6 @@ bounds is an approximation to the relative impact of a deviation in the
 logistic parameter space to one in the standard parameter space. Thus, a value 
 of $\phi = 1.40$ was chosen to approximate the value of $\phi = 0.20$ applied
 in the transformed parameter space in the 2017 assessment.
-
-** Update paragraph below to reflect discussion with SRG and/or alternative 
-selectivity sensitivity analysis
-
-The current selectivity parameterization is limiting because each individual
-selectivity-at-age is correlated with the selectivity of other ages. In other
-words, it is difficult to disentangle the correlations. Therefore, we recommend
-that future research be expended on investigating alternative selectivity
-patterns that allow for easily interpretable annual variations. Such research is
-ongoing but no clear alternative was available in Stock Synthesis for this
-assessment.  
-% (From 2014 and 2016 assessments).
 
 \subsubsection{Age composition likelihood}\label{sec:data-age-comp-likelihood}
 The base model includes a change in likelihood and data-weighting method 

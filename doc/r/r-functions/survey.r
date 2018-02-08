@@ -285,7 +285,7 @@ make.survey.age1.plot <- function(age1index,
          lwd = 2)
   axis(1, at = x$Year)
   legend("topleft",
-         c("Estimated age-1 recruitment",
+         c("Model-estimated age-1 fish",
            "Scaled acoustic survey age-1 index"),
          col = c("black", "blue"),
          pch = c(4,16),
