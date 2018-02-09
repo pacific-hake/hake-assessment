@@ -448,7 +448,7 @@ given in the 2013 stock assessment \citep{JTC2013}.
 The maturity and fecundity relationships were updated in the 2018 base model.
 Previously, fecundity was based on the product of the maturity at length reported 
 by \citet{DornSaunders1997} and the weight at length estimated in 2011. These
-values were converted to fecundity at age using a parametric growth curve 
+values were converted to fecundity-at-age using a parametric growth curve 
 estimated in 2011 from a model that included length data.
 
 For this assessment, a new age-based maturity ogive 
@@ -467,9 +467,9 @@ length-based relationships (Figure~11 in \citet{JTC2017}), with the fish from
 South of Point Conception maturing at earlier ages and smaller sizes. These
 fish were excluded from the maturity estimates.
 
-The new age-based maturity ogive was multiplied by the mean weight at age
-averaged across all years to get a new estimate of fecundity at age. Samples
-from ages 15 and above were pooled for both the maturity and weight at age 
+The new age-based maturity ogive was multiplied by the mean weight-at-age
+averaged across all years to get a new estimate of fecundity-at-age. Samples
+from ages 15 and above were pooled for both the maturity and weight-at-age 
 estimation due to limited sample sizes, and the age 15+ estimates were 
 applied to ages 15-20 for purposes of modeling 
 the population dynamics (Figure~\ref{fig:main-maturity}).
