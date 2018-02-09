@@ -13,7 +13,7 @@ Fishery-dependent and fishery-independent data sources used here
 
 \item Age compositions composed of data from the U.S. fishery
   (\Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}) and the
-  Canadian fishery (1990--\Sexpr{max.fishery.age.prop[2]}). The last **9 years of
+  Canadian fishery (1990--\Sexpr{max.fishery.age.prop[2]}). The last 10 years of
   these data are shown in Tables
   \ref{tab:main-us-cp-age-data}--\ref{tab:main-can-ft-age-data}, and the
   aggregated data for all years shown in
@@ -37,12 +37,12 @@ analysis of auxiliary data. These include:
 
 \item Ageing-error matrices based on cross-read and double-blind-read otoliths.
 
-\item Proportion of female hake maturity by age; 
+\item Proportion of female hake maturity by age, as developed from 
+histological analyses of ovary samples collected in recent years 
   Table~\ref{tab:main-ogives} and Figure~\ref{fig:main-maturity}.
 
 \end{itemize}
 
-**[Don't think this needs updating -- someone else check]
 Some data sources were not included but have been explored, were used for
 sensitivity analyses, or were included in previous stock assessments, but not in
 this stock assessment. Data sources not discussed here have either been
@@ -84,8 +84,6 @@ additional data sources are:
 
 \item NWFSC winter 2016 acoustic research survey of spawning \fishname.
 
-\item Histological analysis of ovary samples collected in recent years (described 
-  in Table~\ref{tab:main-ovaries}).
 \end{itemize}
 
 \subsection{Fishery-dependent data}\label{sec:data-fishery-data}
