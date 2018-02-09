@@ -67,6 +67,7 @@ source(file.path(func.dir, "figures-data.r"))
 source(file.path(func.dir, "figures-assessment-history.r"))
 source(file.path(func.dir, "figures-age-comp-forecast.r"))
 source(file.path(func.dir, "figures-SPR-illustration-appendix.r"))
+source(file.path(func.dir, "figures-selectivity-parameterizations.r"))
 
 source(file.path(func.dir, "tables-timeseries.r"))
 source(file.path(func.dir, "tables-reference-points.r"))

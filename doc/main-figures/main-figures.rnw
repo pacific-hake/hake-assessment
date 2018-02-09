@@ -29,7 +29,7 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
   from joint US-Canada acoustic surveys
   \Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}. Area of the circle is roughly
   proportional to observed backscatter. 
-  Histograms show survey-estimated biomass for ages 2 and older, with major cohorts
+  Histograms show survey-estimated biomass for ages 2 to 20, with major cohorts
   highlighted in color.
   Figure produced by Julia Clemons (NOAA).}
 \label{fig:main-backscatter-map}
@@ -1144,7 +1144,31 @@ par <- oldpar
 %%   See Figure \ref{fig:main-tv-selex-uncertainty-lines} for the base model.}
 %% \label{fig:main-tv-selex-uncertainty-lines-sens}
 %% \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%% 
+
+\begin{figure}[H]
+\begin{center}
+<<main.selectivity.illustration, fig.height=9, fig.width=8>>=
+make.selectivity.illustration(mod.old = base.model, 
+                              mod.alt = sens.models.4[[2]],
+                              yr1 = 1990, # baseline year
+                              yr2 = 1991) # year to illustrate with deviations
+@
+\end{center}
+\caption{Illustration of parameterization of time-varying selectivity as
+  represented in the base model (left) and the semi-parametric approach 
+  used in sensitivity analyses (right). Panels show transformation from 
+  estimated parameters (a) to cumulative sum up to each age (b) and the resulting
+  selectivity after exponential transforamtion and rescaling to have maximum 1.0 (c),
+  as described by equations (1) through (3).
+  In the base model, the deviations (red lines) are applied to the 
+  baseline parameters, resulting
+  in a new set of parameters which are transformed in the same way, as shown in the 
+  blue lines in (a) through (c). In the alternative approach, the deviations are 
+  applied as exponential offsets to the resulting selectivity (e).}
+\label{fig:main-selectivity-illustration}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
