@@ -100,21 +100,31 @@ from the JTC:
 
 \begin{itemize}
   
-\item In the current assessment, the change from $\Phi = 0.03$ to $\Phi = 0.2$
+\item In the current assessment, the change from $\phi = 0.03$ to $\phi = 0.2$
   has a large effect on fisheries selectivity in all years, as well as on the
   estimate of 2017 female spawning biomass. The SRG is concerned about the
   broad-reaching impact of this change, intended to reduce an anomalously high
   2014 recruitment estimate informed solely by fishery catch-at-age data. As
   discussed above, the SRG recommends continued work on evaluating the impact of
   flexibility in time-varying selectivity and a more objective way of determining
-  an appropriate value of $\Phi$ (or other parameterizations of time-varying
+  an appropriate value of $\phi$ (or other parameterizations of time-varying
   selectivity) for future assessments.
 
-  \emph{Response -- **The JTC has conducted several analyses in response to this request.
-  -Convert to SS3.30 including change in transformation of time-varying SD parameter
-  -Evaluate alternative phi parameters in sensitivity trials
-  -Explore models that use a new semi-parametric approach to setting the time-varying
-  sigma-s parameter and reduction in correlation among ages.}
+  \emph{Response -- The JTC has conducted several analyses in response to this 
+    request including evaluating alternative $\phi$ values in sensitivity trials 
+    and exploring an alternative ``semi-parametric'' parameterization of the 
+    approach to setting the time-varying, all described in 
+    Section~\ref{sec:assessment-sensitivity-analyses}. Although the 
+    semi-parametric option shows promise, no alternative considered was a clear
+    improvement over the status-quo parameterization with with the larger $\phi$ 
+    value (previously $\phi = 0.2$ but converted to $\phi = 1.4$ after
+    removing a logistic transformation as described in 
+    Section~\ref{sec:assessment-changes}). 
+    The data from 2017 suggests that the 2014 cohort was more 
+    in line with the estimates of from the model with more flexible fishery 
+    selectivity, providing support for maintaining that flexibility for this 
+    year.}
+}
 
 \item The next priority for 2018 is processing the archived ovary collections of
   Pacific Hake, and re-estimating the maturity schedule based on histological
@@ -128,15 +138,26 @@ from the JTC:
   matrices, resulting in variable proportions of mature fish-at-age in each year.
 
   \emph{Response -- The JTC worked with the Northwest Fisheries Science Center
-    to estimate a new functional maturity ogive based on histological examination
-    of 1,947 ovary samples with ages from north of 34.44$^\circ$~N, as discussed
-    in sections~\ref{sec:data-maturity},~\ref{sec:assessment-modeling-results}, 
-    and~\ref{sec:assessment-sensitivity-analyses}. The samples were collected in
-    2016 and 2017 from the NWFSC bottom trawl survey, the acoustic survey (summer and winter 
-  research cruises), and the At-Sea Hake Observer Program (U.S. 
-  catcher-processors and motherships).  Small sample sizes remain a 
-    point of concern for estimates from south of Point Conception, with more than 
-    10 samples available for ages 1-3 only.}  
+    (NWFSC) to estimate a new functional maturity ogive included in the base model
+    which is based on histological examination of 1,947 ovary samples with ages 
+    from north of 34.44$^\circ$~N, as discussed in 
+    sections~\ref{sec:data-maturity},~\ref{sec:assessment-modeling-results}, 
+    and~\ref{sec:assessment-sensitivity-analyses}. 
+    A thorough analysis of whether maturity is more dependent upon age or 
+    upon weight has not yet been completed although the greatest variability
+    in weight occurs at older ages which are mostly mature.
+    Models were explored that assumed fecundity at age varied over 
+    time in proportion to mean weight at age, but the impact of that 
+    alternative assumption was small due to the 
+    weak link between recruitment and spawning biomass and the 
+    lack of information about weight at age in the unfished equilibrium.
+    Further analysis of the relationships 
+    between fecundity, age, and weight would depend on collecting whole ovaries
+    rather than ovary samples. The difference in 
+    maturity between fish sampled north and south of Point Conception is strongly
+    evident when considering maturity at age as well as maturity at length, and
+    NWFSC is seeking to conduct genetic analyses that could test whether
+    the southern samples are from a distinct stock.}
   
 \item The SRG notes that MCMC convergence diagnostics for the 2017 base model
   pointed towards the need for a longer MCMC chain (24~million rather than 
@@ -163,7 +184,7 @@ from the JTC:
   requests that future assessments, beginning with 2018, include the following key
   sensitivity tests: natural mortality, stock-recruit steepness ($h$), $\sigma_r$,
   inclusion of the age-1 index, and exploring the degree of flexibility in time-varying
-  selectivity or the $\Phi$ parameter, as well as any others the JTC deems appropriate.
+  selectivity or the $\phi$ parameter, as well as any others the JTC deems appropriate.
 
   \emph{Response -- The 2018 assessment included all of the key sensitivities that
   the SRG requested.  Many other sensitivity model runs were conducted during the
