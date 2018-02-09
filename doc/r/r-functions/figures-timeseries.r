@@ -5,7 +5,7 @@ make.biomass.plot <- function(model,    ## model is an mcmc run and is the outpu
                               color = "blue"
                               ){
   oldpar <- par()
-
+browser()
   slower <- model$mcmccalcs$slower
   smed <- model$mcmccalcs$smed
   supper <- model$mcmccalcs$supper
@@ -39,7 +39,7 @@ make.biomass.plot <- function(model,    ## model is an mcmc run and is the outpu
        lab = rep("",length(seq(1960, end.yr+4, 1))), tcl = -0.3)
   axis(1,
        at = yrs[1],
-       lab = paste0("Unfished\nequilibrium (", start.yr - 2, ")"),
+       lab = paste0("Unfished\nequilibrium (", equil.yr, ")"),
        cex.axis = 0.9,
        mgp = c(3,2.5,0))
   box()
