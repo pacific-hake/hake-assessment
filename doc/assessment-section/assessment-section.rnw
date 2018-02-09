@@ -145,16 +145,16 @@ from the JTC:
     A thorough analysis of whether maturity is more dependent upon age or 
     upon weight has not yet been completed although the greatest variability
     in weight occurs at older ages which are mostly mature.
-    Models were explored that assumed fecundity at age varied over 
-    time in proportion to mean weight at age, but the impact of that 
+    Models were explored that assumed fecundity-at-age varied over 
+    time in proportion to mean weight-at-age, but the impact of that 
     alternative assumption was small due to the 
     weak link between recruitment and spawning biomass and the 
-    lack of information about weight at age in the unfished equilibrium.
+    lack of information about weight-at-age in the unfished equilibrium.
     Further analysis of the relationships 
     between fecundity, age, and weight would depend on collecting whole ovaries
     rather than ovary samples. The difference in 
     maturity between fish sampled north and south of Point Conception is strongly
-    evident when considering maturity at age as well as maturity at length, and
+    evident when considering maturity-at-age as well as maturity at length, and
     NWFSC is seeking to conduct genetic analyses that could test whether
     the southern samples are from a distinct stock.}
   
@@ -440,7 +440,7 @@ switch to the new likelihood was based on practical considerations, but the
 overall model results showed little impact of the switch.
 
 The final bridging step ``Update the estimates of maturity and fecundity''
-represents an update to the estimated fecundity at age as discussed in 
+represents an update to the estimated fecundity-at-age as discussed in 
 section~\ref{sec:data-maturity}. This caused a visible change in the time series
 of spawning biomass (Figure~\ref{fig:main-bridge-4-panel}) 
 as the fecundity of all cohorts were different and the less
@@ -473,12 +473,26 @@ For the base model, the MCMC chain length was increased from the 12 million in t
 resulted in the first 4,000,000 discarded to eliminate `burn-in' effects and
 retaining each 10,000th value thereafter, resulting in \Sexpr{num.mcmc.samples}
 samples from the posterior distributions for model parameters and derived
-quantities. The Dirichlet-Multinomial (D-M) weighting parameters (theta) were fixed at the MLE
-estimates during MCMC evaluations, because they were occasionally hitting 
-the upper bound of 1.0 for the sample size multiplier.  This results in the theta 
-parameters having almost no impact on the model results, such that the MCMC algorithm has little
-information about that dimension. Stationarity of the posterior distribution for model parameters was
-re-assessed via a suite of standard single-chain and multi-chain diagnostic tests. The objective function, as
+quantities. Initial MCMC explorations indicated that the $\log(\theta)$
+Dirichlet-Multinomial (D-M) weighting parameter for the survey
+was not being sampled efficiently due to many samples occurring in a part of
+parameter space where the effective sample size multiplier, $\theta/(1+\theta)$,
+is between 0.99 and 1.0. In this area, the input sample sizes are 
+given full weight and the likelihood surface is almost completely flat 
+with respect to this parameter.
+Therefore, to improve MCMC convergence, $\log(\theta_{\mbox{surv}})$ 
+was fixed at the MLE estimate of $\log(\theta_{\mbox{surv}})$ = \Sexpr{log.theta.survey}, 
+corresponding to a weight of 
+$\theta_{\mbox{surv}}/(1+\theta_{\mbox{surv}})$ = \Sexpr{DM.weight.survey}. 
+The D-M parameter for the fishery weights was well sampled by the MCMC, 
+with a median estimate of 
+$\log(\theta_{\mbox{fish}})$ = \Sexpr{log.theta.fishery.median} and an associated
+median weight of 
+$\theta_{\mbox{fish}}/(1+\theta_{\mbox{fish}})$ = \Sexpr{DM.weight.fishery.median}.
+
+Stationarity of the posterior distribution for model parameters was
+re-assessed via a suite of standard single-chain and multi-chain diagnostic tests. 
+The objective function, as
 well as all estimated parameters and derived quantities, showed good mixing
 during the chain, no evidence for lack of convergence, and low autocorrelation
 (Figures~\ref{fig:main-mcmc.diag.m.r0}
