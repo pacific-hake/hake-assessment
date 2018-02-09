@@ -20,12 +20,30 @@ make.biomass.plot <- function(model,    ## model is an mcmc run and is the outpu
   non.equil.smed <- smed[names(smed) %in% non.equil.yrs]
 
   plot(non.equil.yrs,
-       non.equil.smed, type = "o", lwd = 2, ylim = c(0, max(supper) + 0.1),
-       xlab = "Year", ylab = "Female Spawning Biomass (million t)",
-       xlim = range(yrs),cex.axis=0.9, cex.lab = 1, mgp = c(2.3,1,0), yaxs = "i")
+       non.equil.smed,
+       type = "o",
+       lwd = 2,
+       ylim = c(0, max(supper) + 0.1),
+       xlab = "Year",
+       ylab = "Female Spawning Biomass (million t)",
+       xlim = range(yrs),
+       cex.axis =0.9,
+       cex.lab = 1,
+       mgp = c(2.3,1,0),
+       yaxs = "i",
+       xaxt = "n",
+       yaxs = "i")
 
-  axis(1,at = end.yr, cex.axis=0.9)
-  axis(1,at = yrs[1], labels = "Unfished\nequilibrium", cex.axis = 0.9, mgp = c(3,1.5,0))
+  axis(1, at = seq(1960, end.yr+4, 5))
+  axis(1,
+       at = seq(1960, end.yr+4, 1),
+       lab = rep("",length(seq(1960, end.yr+4, 1))), tcl = -0.3)
+  axis(1,
+       at = yrs[1],
+       lab = paste0("Unfished\nequilibrium (", equil.yr, ")"),
+       cex.axis = 0.9,
+       mgp = c(3,2.5,0))
+  box()
   points(equil.yr, unfished.eq.s[2], pch=16)
   arrows(equil.yr, unfished.eq.s[1], equil.yr, unfished.eq.s[3],
          angle = 90, code = 3, length = 0.06, col = color)
@@ -53,14 +71,26 @@ make.depletion.plot <- function(model,    ## model is an mcmc run and is the out
 
   par(mfrow = c(1,1), las = 1, mar = c(3.5,3.5,1,1))
 
-  plot(yrs, dmed, type="o", lwd=2, ylim = c(0,1.1*max(dupper)), xlab="Year",
+  plot(yrs,
+       dmed,
+       type = "o",
+       lwd = 2,
+       ylim = c(0,1.1*max(dupper)),
+       xlab = "Year",
        ylab = expression(paste("Relative spawning biomass", ~~~(italic(B[t])/italic(B)[0]))),
-       xlim = range(yrs), cex.axis = 0.9,
-       cex.lab = 1, mgp = c(2.3,1,0), yaxs = "i")
+       xlim = range(yrs),
+       cex.axis = 0.9,
+       cex.lab = 1,
+       mgp = c(2.3,1,0),
+       xaxt = "n",
+       yaxs = "i")
+  axis(1, at = seq(1960, end.yr+4, 5))
+  axis(1,
+       at = seq(1960, end.yr+4, 1),
+       lab = rep("",length(seq(1960, end.yr+4, 1))), tcl = -0.3)
+  axis(2,at = c(0.1,0.4), cex.axis = 0.8)
   addpoly(yrs, dlower, dupper, color)
   abline(h = c(0.1,0.4,1), lty = 2,col = gray(0.5))
-  axis(2,at = c(0.1,0.4), cex.axis = 0.8)
-  axis(1, at = end.yr, cex.axis = 0.9)
   mtext("Year", side = 1,cex = 1.1, outer = TRUE, line = 1.4)
   par <- oldpar
 }
