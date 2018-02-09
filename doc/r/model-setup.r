@@ -111,7 +111,7 @@ if(verbose) cat0("Key posteriors file: \n  ", nuisance.posteriors.file)
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
 base.model.dir.name <- "2018.40_base_model"
-base.model.name <- paste0(assess.yr, "Base model SS 3.30")
+base.model.name <- paste0(assess.yr, " Base model SS 3.30")
 verify.models(model.dir, base.model.dir.name, base.model.name)
 if(verbose){
   cat0("Base model directory name: \n  ", base.model.dir.name)
