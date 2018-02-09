@@ -578,13 +578,21 @@ calc.risk <- function(forecast.outputs, ## A list of length = number of forecast
     out[5] <- sum(x[, paste0("Bratio_", yr + 1)] < 0.10) / nrow(x) * 100.0
     out[6] <- sum(x[, paste0("SPRratio_", yr)] > 1.00) / nrow(x) * 100.0
     out[7] <- sum(x[, paste0("ForeCatch_", yr + 1)] < out[1]) / nrow(x) * 100.0
+    ## DFO values
+    out[8] <- sum(x[, paste0("SSB_", yr)] > x[, "SSB_MSY"]) / nrow(x) * 100.0
+    out[9] <- sum(x[, paste0("SSB_", yr)] > 0.4 * x[, "SSB_MSY"]) / nrow(x) * 100.0
+    out[10] <- sum(x[, paste0("SSB_", yr)] > 0.8 * x[, "SSB_MSY"]) / nrow(x) * 100.0
     names(out) <- c(paste0("ForeCatch_", yr),
                     paste0("SSB_", yr + 1, "<SSB_", yr),
                     paste0("Bratio_", yr + 1, "<0.40"),
                     paste0("Bratio_", yr + 1, "<0.25"),
                     paste0("Bratio_", yr + 1, "<0.10"),
                     paste0("SPRratio_", yr, ">1.00"),
-                    paste0("ForeCatch_", yr + 1, "<ForeCatch_", yr))
+                    paste0("ForeCatch_", yr + 1, "<ForeCatch_", yr),
+                    ## DFO values
+                    paste0("SSB_", yr, ">SSB_MSY"),
+                    paste0("SSB_", yr, ">0.4SSB_MSY"),
+                    paste0("SSB_", yr, ">0.8SSB_MSY"))
     out
   }
   risk.list <- vector(mode = "list", length = length(forecast.yrs) - 1)

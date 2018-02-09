@@ -342,6 +342,8 @@ make.risk.table <- function(model,
   ## placement - latex code for placement of table
 
   risk <- model$risks[[index]]
+  ## Remove last 3 columns which are DFO values
+  risk <- risk[,-((ncol(risk)-2):ncol(risk))]
   ## Fix tiny catch of less than 0.49 to zero, only for first (catch) column
   risk[risk[,1] < 0.49, 1] <- 0
   ## Format all columns except catch (1) to be zero decimal points and have a

@@ -307,4 +307,6 @@ for(i in plot.retro.yrs){
 ##  main-tables.rnw.
 num.recent.yrs <- 10
 
-
+## Canadian provisional reference points
+dfo2018 <- base.model$risks[[1]][,(ncol(base.model$risks[[1]])-2):ncol(base.model$risks[[1]])]
+dfo2019 <- base.model$risks[[2]][,(ncol(base.model$risks[[2]])-2):ncol(base.model$risks[[2]])]
