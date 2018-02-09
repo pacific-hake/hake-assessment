@@ -991,77 +991,105 @@ as in the base model), it would result in a small positive impact on estimates
 of spawning biomass in the most recent years
 (Figure~\ref{fig:main-biomass-base-alternative-2}).
 
-**The consideration of alternative standard deviations ($\phi$) for time-varying
+% Manual 2018: text below updated (but could use proofreading)
+Three types of alternative setups for selectivity were explored in sensitivity
+analyses: alternative assumptions about the age beyond which selectivity 
+is assumed constant, alternative values of the $\phi$ parameter 
+controlling the degree of flexibility of annual variation in the 
+fishery selectivity, and an alternative parameterization of the 
+time-varying selectivity. The methods and results of each will be
+described in turn.
+
+Fishery and survey selectivity in the base model is modeled as changing 
+from each age to the next up to age 6 beyond which it is assumed constant. 
+Three alternative maximum selectivity age values (5, 7, and 10) were considered to 
+investigate the
+asymptotic properties of fishery and survey selectivity patterns and the impact
+maximum selectivity age has on model behavior. For each alternative option
+all of the ages with estimated fishery selectivity had annual deviations 
+estimated for the corresponding parameters. Thus, a change from age-6 to
+age-7 as the maximum selectivity age was associated with 29 additional 
+parameters, 1 each for the additional age in the fishery and the selectivity 
+% Manual 2018: parameter counts below aren't dynamic
+and 27 deviations for the years 1991 to 2017.
+
+The Estimated population trends 
+throughout the time series are similar, irrespective of maximum selectivity age
+(Figures~\ref{fig:main-base-alternative-3}-\ref{fig:main-index-base-tv-increase-1}).
+However, absolute levels of
+spawning biomass are different, particularly for the age-10 case. Under all
+alternatives, the base model pattern of a decline in survey 
+selectivity between ages 3 and 4 remained, and was either increased or repeated
+at additional ages (Figure~\ref{fig:main-base-alternative-3}). 
+The likely cause of this zig-zag pattern is the 
+interaction of the biennial timing for much of the survey history with large 
+cohorts. The 1999 cohort made up the majority of the observed ages in the survey
+when they were age 2, 4, 6, and 8, while the 2010 and 2014 cohorts have 
+primarily been observed when they were age 3, 5, or 7. Thus, any 
+differences in the dynamics of these cohorts, such as difference in natural
+mortalty, which aren't represented in the model, would lead to a shift
+in selectivity between the even- and odd-numbered ages. 
+The choice of age 6 as the maximum was retained in the base model as it
+was more flexible than the choice of age 5 while those with higher ages 
+produces less plausible patterns of selectivity.
+
+The consideration of alternative standard deviations ($\phi$) for time-varying
 selectivity is discussed earlier in
 section~\ref{sec:data-variability-selectivity}. In short, low values of the
 parameter $\phi$ controlling the flexibility in time-varying selectivity
-resulted in potentially implausibly high estimates of the 2014 recruitment as
-this was the only available explanation of the large proportion of age-2 fish in
-the 2016 fishery. For example, with $\phi=0.03$, as used in recent assessments,
-there is a record-high estimate for the 2014 year class (the median being 2.5
-times larger than any other in the time series)
-%2.5 times value from looking at sort(sens.models.6[[1]]$mcmccalcs$rmed)
-resulting in a huge estimated current biomass
-(Figures~\ref{fig:main-base-alternative-3}).  Models with more flexible
-selectivity ($\phi=0.20$, chosen for the base model, and $\phi=0.30$) had
-estimates of the 2014 recruitment at a similar magnitude to the 2010 cohort
-(Table~\ref{tab:main-parameter-estimates-sens-2},
-Figures~\ref{fig:main-recruit-base-tv-increase-1}). The biomass estimates for 2014 and
-earlier appear relatively insensitive to all tested values of $\phi$.
+resulted in potentially implausibly high estimates recent recruitments. The
+values of $\phi$ explored in the previous assessment were 0.03, 0.10, 
+and 0.30, as alternatives to the 0.20 used in the base model. 
+As discussed in Section~\ref{sec:data-variability-selectivity}), the change
+change to the new version of Stock Synthesis required an adjustment to the
+interpretation of these values, with a multiplier of 7.0 resulting in
+approximately equivalent dynamics. Thus, the base model value is 1.40, and
+alternatives explored as sensitivity analyses were 0.21, 0.70, and 2.10.
+The addition of the 2017 fishery age compositions and the 2017 survey biomass
+estimate and age compositions led to more precise estimates of the 2014
+recruitment, regardless of the value of $\phi$. However, the 2016 recruitment,
+which is only informed by the 2017 fishery age composition, is strongly
+linked to the choice of $\phi$, where the model with the smallest $\phi$ 
+at 0.21 (equilvalent to $\phi=0.03$ in the previous setup) estimates 
+the 2016 recruitment deviation as the highest in the time series 
+(Figure~\ref{fig:main-recruit-base-tv-increase-1}) and provides the worst 
+fit to the recent survey biomass estimates 
+(Figure~\ref{fig:main-index-base-tv-increase-1}).
 
-%%AMB - commented below out for now
-%%**Figures~\ref{fig:main-tv-selex-sens} and
-%%ref{fig:main-tv-selex-uncertainty-sens} show estimated selectivities with
-%%uncertainty for each year for the $\phi=0.03$ case, which can be compared to
-%%Figures~\ref{fig:main-tv-selex} and \ref{fig:main-tv-selex-uncertainty} for the
-%%base model. Figure~\ref{fig:main-tv-selex-uncertainty-lines-sens} shows the
-%%uncertainty between the MCMC samples for 2016 fishery selectivity and can be
-%%compared with the same figure for the base model
-%%(Figure~\ref{fig:main-tv-selex-uncertainty-lines}). Most notably, the
-%%variability between samples for the base model is larger than for the
-%%$\phi=0.03$. The median 2016 fishery selectivity estimates also show strong
-%%differences, with the largest being a selectivity value for age-2 in the base
-%%model of almost 0.4 compared to 0.1 in the model with less flexible
-%%selectivity. This difference indicates that the base model is attributing the
-%%large proportion of age-2 fish in the 2016 fishery to a combination of high
-%%recruitment and increasing targeting of this cohort, and not just very high
-%%recruitment. Figures \ref{fig:main-tv-selex-uncertainty-lines-sens} and
-%%\ref{fig:main-tv-selex-uncertainty-lines} also indicate that the base model has
-%%more cases of dome-shaped selectivity in 2016 among the 999 sets of selectivity
-%%parameters from the MCMC sampling, all associated with a peak at an age younger
-%%than age-6. The data support an increase in age-2 selectivity in 2016, but the
-%%selectivity curves that peak at ages 3, 4, or 5 are less clearly connected to
-%%any pattern in the data. However, the parameterization of selectivity used in
-%%this assessment represents the selectivity at each year as an offset from the
-%%previous year. Therefore, allowing the flexibility for selectivity at age-2 to
-%%increase requires a decrease in the offset associated with each additional
-%%age. Thus, the additional variability between ages 2 and 6 in
-%%Figure~\ref{fig:main-tv-selex-uncertainty-lines} appears to be a necessary
-%%condition of allowing the age-2 selectivity to increase above the value
-%%associated with the less flexible model shown in
-%%Figure~\ref{fig:main-tv-selex-uncertainty-lines-sens}.
+The alternative ``semi-parametric'' setup for selectivity based on the work of 
+\citet{Xu2018} (differs from the status-quo approach in that the deviations 
+are applied to the resulting selectivity estimates, not to the original 
+parameters, and the resulting selectivity ogive is no longer constrained 
+between 0 and 1. This was expected to reduce correlation among the deviation 
+parameters, because a positive deviation at a younger age no longer leads to
+a rescaling of the selectivity pattern at all ages. Indeed, there are only 
+2 pairs of parameters with correlations above 0.7 or below -0.7 in the 
+semi-parametric model that most closely matched the based model 
+($M$ and $log(R_0)$ were positively correlated, and the deviation for 
+selectivity at age 1 in 2017 was negatively correlated with 2016 recruitment).
+This is in contrast to the base model, which had 36 parameter pairs with
+correlations above 0.7 or below -0.7, of which 34 of the pairs were 
+between two of the selectivity deviations. The Laplace method of 
+\citet{ThorsonHicksEtAl2014} also provided an estimate of the 
+variance parameter for the semi-parametric selectivity, 
+at $\sigma_s = 0.695$, which provided more plausible results than when this 
+method was applied to the status-quo selectivity setup. 
 
+However, the model with $\sigma_s = 0.695$ had higher estimates of 2016 
+and worse fits to the recent survey biomass estimates (Figures~
+\ref{fig:main-biomass-base-alternative-4}-
+\ref{fig:main-index-base-alternative-4}). Increasing $\sigma_s$ to 1.0
+provided the additional flexibility required to give more plausible estimates
+of this cohort that has only been observed as age-1 in the 2017 fishery.
+However, relying on the subjective choice of $\sigma_s = 1.0$ removed one of
+the potential benefits of the semi-parametric approach. Given that an MCMC
+chain of 24-million samples has been adequate to overcome the inefficient 
+sampling caused by high parameter correlations in the status-quo approach,
+the parameter selectivity was kept as before for this assessment, with the
+hopes that the semi-parametric setup could be further explored in the year 
+ahead for potential inclusion in a future hake assessment.
 
-**Selectivity in the base model is asymptotic, such that all ages equal to or
-greater than the specified maximum age (age-6) are fully selected.  Three
-alternative maximum age values (5, 7, and 10) were considered to investigate the
-asymptotic properties of fishery and survey selectivity patterns and the impact
-maximum age has on model behavior.  Estimated population trends throughout the
-time series are similar, irrespective of maximum age
-(Figure~\ref{fig:main-base-alternative-3}).  However, absolute levels of
-spawning biomass are different, particularly for the age-10 case, mainly as a
-result of scaling the population through estimated $B_0$ and $R_0$ parameters.
-**The most similar levels of spawning biomass compared to the base model are
-reached when using a maximum age of 5 throughout all but the most recent years
-in the time series, when setting the maximum age to 7 is most similar.  A
-logical feature of many selectivity patterns is the incremental increase
-(decrease) in relative selectivity with age as the fully selected age is
-approached (moved away from).  For each of the three alternative maximum age
-values, the estimated MLE selectivity-at-age estimates are not continually
-increasing for survey (age-5, 7, and 12) and fishery (age-7, 10) selectivity
-patterns (Figure~\ref{fig:main-base-alternative-3}).  This feature is mostly
-preserved in the base model (maximum age of~6).
-
+** CONTINUE REVISION HERE
 % IGT 2017: formerly the remainder of this section was a single long paragraph,
 % but I think that it was confusing to read and harder to update. I am splitting
 % it into sections for each parameter. Feel free to recombine if you wish this 
