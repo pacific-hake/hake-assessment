@@ -20,12 +20,29 @@ make.biomass.plot <- function(model,    ## model is an mcmc run and is the outpu
   non.equil.smed <- smed[names(smed) %in% non.equil.yrs]
 
   plot(non.equil.yrs,
-       non.equil.smed, type = "o", lwd = 2, ylim = c(0, max(supper) + 0.1),
-       xlab = "Year", ylab = "Female Spawning Biomass (million t)",
-       xlim = range(yrs),cex.axis=0.9, cex.lab = 1, mgp = c(2.3,1,0), yaxs = "i")
+       non.equil.smed,
+       type = "o",
+       lwd = 2,
+       ylim = c(0, max(supper) + 0.1),
+       xlab = "Year",
+       ylab = "Female Spawning Biomass (million t)",
+       xlim = range(yrs),
+       cex.axis =0.9,
+       cex.lab = 1,
+       mgp = c(2.3,1,0),
+       yaxs = "i",
+       xaxt = "n", yaxs = "i")
 
-  axis(1,at = end.yr, cex.axis=0.9)
-  axis(1,at = yrs[1], labels = "Unfished\nequilibrium", cex.axis = 0.9, mgp = c(3,1.5,0))
+  axis(1, at = seq(1960, end.yr+4, 5))
+  axis(1,
+       at = seq(1960, end.yr+4, 1),
+       lab = rep("",length(seq(1960, end.yr+4, 1))), tcl = -0.3)
+  axis(1,
+       at = yrs[1],
+       lab = paste0("Unfished\nequilibrium (", start.yr - 2, ")"),
+       cex.axis = 0.9,
+       mgp = c(3,2.5,0))
+  box()
   points(equil.yr, unfished.eq.s[2], pch=16)
   arrows(equil.yr, unfished.eq.s[1], equil.yr, unfished.eq.s[3],
          angle = 90, code = 3, length = 0.06, col = color)
