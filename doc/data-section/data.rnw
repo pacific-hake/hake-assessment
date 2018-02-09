@@ -646,7 +646,7 @@ low values for $\phi$.
 A new parameterization for the selectivity deviations was explored 
 for this year, based on the recent work of of \citet{Xu2018}, 
 in an effort to produce a more objective way determine the degree of 
-flexibility. However, further testing of this approached was believed
+flexibility. However, further testing of this approach was believed
 necessary before making the change. Therefore, the alternative
 parameterization was only used for a sensitivity analysis 
 (described in Section~\ref{sec:assessment-sensitivity-analyses}).
@@ -790,7 +790,7 @@ n_{eff} = \frac{1}{1 + \theta} + n \frac{\theta}{1 + \theta}
 The input samples sizes used in this assessment, which are based on the 
 number of trips or hauls, are large enough that the $1/(1 + \theta)$ term
 is insignificant compared to the $n \theta / (1 + \theta)$ term, which means
-that $\theta / (1 + \theta)$ can be compare to the sample size 
+that $\theta / (1 + \theta)$ can be compared to the sample size 
 multipliers used in the McAllister-Ianelli data weighting method. 
 
 See \citet{ThorsonEtAl2017Dirichlet} for the derivation of this likelihood and
