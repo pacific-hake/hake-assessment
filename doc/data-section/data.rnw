@@ -288,8 +288,12 @@ majority of the hake distribution was again found in U.S. waters, which is more
 likely due to age-composition than the environment, although 2013 showed some
 warmer than average sea-surface temperatures. In 2015, sea-surface temperatures
 were warmer again, resulting in a northern shift in the overall hake
-distribution.
-**Add something about 2017 survey.
+distribution.  The distribution of \fishname\ in 2017 was more latitudinally uniform
+than observed in recent years.  This is likely a result of having large proportions of young
+(2014 cohort) and old (2010 cohort) fish in the population in 2017 
+(Figure~\ref{fig:main-backscatter-map}) in addition to prevailing environmental
+conditions. 
+
 %%El Ni\~no conditions were prevalent in \Sexpr{last.assess.yr}, but an extreme 
 %% northern distribution was not observed by the survey.  More \fishname\ were 
 %% observed in Canadian waters, but a large amount of backscatter was observed 
@@ -318,7 +322,9 @@ SimmondsMacLennan2006}. Advantages to the kriging approach are discussed in the
 2013 stock assessment \citep{JTC2013}.
 
 For the 2016 assessment \citep{JTC2016}, the data from all surveys since 1998
-were scrutinized and reanalyzed using consistent assumptions. These include:
+were scrutinized and reanalyzed using consistent assumptions.  The same analytical
+procedure was carried out during the reanalysis of 1995 survey data (\citep{JTC2017}) and 
+during the prepartion of 2017 survey data. These include:
 
 \begin{itemize}
   
@@ -339,12 +345,12 @@ were scrutinized and reanalyzed using consistent assumptions. These include:
 
 \end{itemize}
 
-However, the data from the 1995 survey was not in a format that could be
-processed, so the biomass estimate and associated age composition for that year
-were excluded from the model in 2016. For the 2017 assessment \citep{JTC2017},
-the 1995 data were processed in the
-same manner as the subsequent years and included in that
-assessment and this one (Table~\ref{tab:main-survey-comparison}).
+%However, the data from the 1995 survey was not in a format that could be
+%processed, so the biomass estimate and associated age composition for that year
+%were excluded from the model in 2016. For the 2017 assessment \citep{JTC2017},
+%the 1995 data were processed in the
+%same manner as the subsequent years and included in that
+%assessment and this one (Table~\ref{tab:main-survey-comparison}).
 
 %% **[can prob delete this paragraph as was reported last year and accepted]
 %% As part of that data-processing step, it was discovered that the variogram used
@@ -355,11 +361,12 @@ assessment and this one (Table~\ref{tab:main-survey-comparison}).
 %% from 0.092 to 0.0829. That change came too late for inclusion in the previous
 %% assessment document but is included in this present analysis.
 
-This model thus includes a full time-series of consistently analyzed survey
+Thus, a full time-series of consistently analyzed survey
 biomass (Table~\ref{tab:main-survey-history} and
 Figures~\ref{fig:main-survey-biomass} and \ref{fig:main-survey-extrap-biomass})
 and age compositions (Figure~\ref{fig:main-age-comp-bubbles} and
-Table~\ref{tab:main-all-age-data-survey}).
+Table~\ref{tab:main-all-age-data-survey}) are being input into the assessment
+model.
 
 Results from research done in 2010 and 2014 on representativeness of the
 biological data (i.e.~repeated trawls at different depths and spatial locations
@@ -368,15 +375,14 @@ showed that trawl sampling and post-stratification is only a small source of
 variability among all of the sources of variability inherent to the acoustic
 analysis (see \citealt{StewartForrestEtAl2011}).
 
-**Estimated age-2+ biomass in the survey has increased steadily over the four most
-recent surveys conducted in 2011-2013 and 2015. The 2015 survey biomass index is
-\Sexpr{f(survey.biomass["2015"], 2)} million metric tons, which is
-\Sexpr{f(survey.biomass["2015"]/survey.biomass["2012"],2)} times the 2012 survey
-biomass index and \Sexpr{f(survey.biomass["2015"]/survey.biomass["2011"],2)}
-times the 2011 acoustic survey biomass index
-(Table~\ref{tab:main-survey-history} and
-Figure~\ref{fig:main-survey-biomass}). The 2015 survey age composition was made
-up of \Sexpr{survey.comps["2015","a5"]}\% age-5 fish from the 2010 year-class.
+Estimated age-2+ biomass in the survey increased steadily from
+surveys conducted in 2011-2013 and 2015. The 2017 survey biomass index declined
+from the 2015 estimate to \Sexpr{f(survey.biomass["2017"], 2)} million metric tons, 
+which is \Sexpr{f(survey.biomass["2017"]/survey.biomass["2015"],2)} times the 2015 survey
+biomass index (Table~\ref{tab:main-survey-history} and
+Figure~\ref{fig:main-survey-biomass}). The 2017 survey age composition was made
+up of \Sexpr{survey.comps["2017","a7"]}\% age-7 fish from the 2010 year-class
+and \Sexpr{survey.comps["2017","a3"]}\% age-3 fish from the 2014 year-class.
 
 The acoustic survey biomass index included in the base model
 (Table~\ref{tab:main-survey-history}) includes an estimate of biomass outside
@@ -431,17 +437,15 @@ estimated recruitment reasonably well (Figure~\ref{fig:main-age-one-index}). The
 
 Fishery-independent data from the Alaska Fisheries Science Center (AFSC) bottom
 trawl survey, the Northwest Fishery Science Center (NWFSC) bottom trawl survey,
-the NWFSC and Pacific Whiting Conservation Cooperative (PWCC) pre-recruit survey
-were not used in this assessment. More information on these data sources is
-given in the 2013 stock assessment \citep{JTC2013}. **Should DFO surveys be
-mentioned also (thought they were mentioned/implied earlier)? 
-Maybe check \citep{JTC2013}.
+the NWFSC and Pacific Whiting Conservation Cooperative (PWCC) pre-recruit survey,
+or any other DFO surveys were not used in this assessment. More information on these data sources is
+given in the 2013 stock assessment \citep{JTC2013}.
 
 \subsection{Externally analyzed data}\label{sec:data-externally-analyzed-data}
 
 \subsubsection{Maturity and fecundity}\label{sec:data-maturity}
 
-The maturity and fecundity relationships were updated for this 2018 model.
+The maturity and fecundity relationships were updated in the 2018 base model.
 Previously, fecundity was based on the product of the maturity at length reported 
 by \citet{DornSaunders1997} and the weight at length estimated in 2011. These
 values were converted to fecundity at age using a parametric growth curve 
@@ -510,11 +514,12 @@ routine to estimate both ageing error and the cohort effect. The resultant
 ageing error was similar to the ageing error derived from the 2008 analysis. The
 application of the cohort-specific ageing error was similar between assessments
 since 2011, with the ageing-error standard deviation reduced by a factor of 0.55
-for the largest cohorts: 1980, 1984, 1999, 2010, and 2014. **In the 2014 base
+for the largest cohorts: 1980, 1984, 1999, 2010, and 2014. In the 2014 base
 model \citep{JTC2014}, the 2008 cohort was also included in this set, but
 current estimates show this year-class to be enough less than the four largest
 that a reduction in ageing was not included for the 2008 year class in the 2015
-assessment \citep{JTC2015} as well as this assessment. Also, the model presented
+assessment \citep{JTC2015}, the 2016 assessment \citep{JTC2016}, as well as this 
+assessment. Also, the model presented
 here does not include the reduction in ageing error for age-1 fish under the
 assumption that they never represent a large enough proportion of the samples to
 cause the cohort-effect. A sensitivity analysis without any cohort ageing error
@@ -548,7 +553,7 @@ population. Simulations performed by \citet{KuriyamaOnoEtAl2015} showed that, in
 general, using empirical weight-at-age when many observations are available
 resulted in more accurate estimates of spawning biomass.
 
-%% Manually update final sentences of this paragraph in future years
+%% Manually update final sentences of this paragraph in future years, 2018 done
 For purposes of forecasting, Stock Synthesis does not yet include options for
 averaging weight-at-age values from recent years as it does with selectivity and
 other quantities. Therefore, the mean weights at each age in the forecast were
@@ -636,7 +641,7 @@ low values for $\phi$.
 A new parameterization for the selectivity deviations was explored 
 for this year, based on the recent work of of \citet{Xu2018}, 
 in an effort to produce a more objective way determine the degree of 
-flexibility. However, further testing of this approached was believed
+flexibility. However, further testing of this approach was believed
 necessary before making the change. Therefore, the alternative
 parameterization was only used for a sensitivity analysis 
 (described in Section~\ref{sec:assessment-sensitivity-analyses}).
@@ -780,7 +785,7 @@ n_{eff} = \frac{1}{1 + \theta} + n \frac{\theta}{1 + \theta}
 The input samples sizes used in this assessment, which are based on the 
 number of trips or hauls, are large enough that the $1/(1 + \theta)$ term
 is insignificant compared to the $n \theta / (1 + \theta)$ term, which means
-that $\theta / (1 + \theta)$ can be compare to the sample size 
+that $\theta / (1 + \theta)$ can be compared to the sample size 
 multipliers used in the McAllister-Ianelli data weighting method. 
 
 See \citet{ThorsonEtAl2017Dirichlet} for the derivation of this likelihood and
