@@ -20,17 +20,16 @@ make.overview.map.plot(r.loc = file.path("..", "r"))
 \begin{landscape}
   \centering
 \begin{figure}[p]
-\vspace{-5mm}
 \begin{center}
-\includegraphics[max size={\paperwidth}{\paperheight}]
-  {main-figures/age1hake_03-17_NASC_BiomassAtAge_color.eps}
+\includegraphics[max size={1.08\paperwidth}{1.08\paperheight}]
+  {main-figures/age2plushake_03-17_NASC_BiomassAtAge_color.eps}
 \end{center}
-\vspace{-5mm}
+\vspace{-3mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-2 and older \fishname\
   from joint US-Canada acoustic surveys
   \Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}. Area of the circle is roughly
   proportional to observed backscatter. 
-  Histograms show survey-estimated biomass for ages 2 and up, with major cohorts
+  Histograms show survey-estimated biomass for ages 2 and older, with major cohorts
   highlighted in color.
   Figure produced by Julia Clemons (NOAA).}
 \label{fig:main-backscatter-map}
