@@ -916,16 +916,16 @@ include the following:
 \item Consideration of a higher standard deviation on the prior distribution 
   for natural mortality;
 
-\item Consideration of alternative values for steepness.
+\item Consideration of alternative values for steepness;
 
 \item Assume higher/lower variation about the stock-recruitment curve 
-  ($\sigma_r$); and
-
+  ($\sigma_r$); 
+  
 \item Include the age-1 survey index as an additional source of information;
 
 \item Assume no cohort-based ageing error (i.e., time invariant ageing error);
 
-\item Use of the McAllister-Ianelli method for data-weighting
+\item Use of the McAllister-Ianelli method for data-weighting;
 
 \item Use of an alternative method for aggregating the age compostitions from
   the U.S. fishery (weighting by the catch within each month)
@@ -934,10 +934,10 @@ include the following:
   selectivity;
 
 \item Consideration of alternative standard deviations for time-varying 
-  selectivity;
+  selectivity; and
 
 \item Consideration of an alternative parameterization for time-varying 
-  selectivity;
+  selectivity.
 
 \end{enumerate}
 
