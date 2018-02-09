@@ -142,32 +142,29 @@ Westport. Port samplers routinely take one sample per offload (or trip)
 consisting of 100 randomly selected fish for individual length and weight, and
 from these 20 are randomly subsampled for otolith extraction.
 
-**The Canadian domestic fishery is subject to 100\% observer coverage on the four
+The Canadian domestic fishery is subject to 100\% observer coverage on the four
 freezer trawler vessels \emph{Viking Enterprise}, \emph{Osprey \#1},
 \emph{Northern Alliance}, and \emph{Raw Spirit}, which together make up a large
 portion of the Canadian catch (\Sexpr{last.year.can.freezer.percent}\% in
-\Sexpr{last.data.yr}). Their catch exceeded that of the Shoreside vessels for
-the first time in 2014 (prior to 2013 the shoreside sector caught more than
-double that of the freezer-trawl sector), again in 2015, and nearly equal in
-2016. The Joint-Venture fishery has 100\% observer coverage on their processing
-vessels, which in 2011 made up 16\% of the Canadian catch, but has been
-non-existent since that time. On observed freezer trawler trips, otoliths (for
-ageing) and lengths are sampled from \fishname\ caught for each haul of the
-trip. The sampled weight from which biological information is collected must be
-inferred from length-weight relationships. For electronically observed shoreside
-trips, port samplers obtain biological data from the landed catch. Observed
-domestic haul-level information is then aggregated to the trip level to be
-consistent with the unobserved trips that are sampled in ports.
+\Sexpr{last.data.yr}). The Joint-Venture fishery has 100\% observer coverage on
+their processing vessels, which in 2017 made up 6.1\% of the Canadian catch.
+On observed freezer trawler trips, otoliths (for ageing) and lengths are sampled
+from \fishname\ caught for each haul of the trip. The sampled weight from which
+biological information is collected must be inferred from length-weight
+relationships. For electronically observed shoreside trips, port samplers obtain
+biological data from the landed catch. Observed domestic haul-level information
+is then aggregated to the trip level to be consistent with the unobserved trips
+that are sampled in ports.
 
-%%For the Canadian Joint-Venture fishery, an observer aboard the factory ship
-%% estimates the codend weight by measuring the diameter of the codend and doing a
-%% spherical volume calculation for each delivery from a companion catcher
-%% boat. Length samples are collected every second day of fishing operations, and
-%% otoliths are collected once a week. Length and age samples are taken randomly
-%% from a given codend. Since the weight of the sample from which biological
-%% information is taken is not recorded, sample weight must be inferred from a
-%% length-weight relationship applied to all lengths taken and summed over each
-%% haul.
+For the Canadian Joint-Venture fishery, an observer aboard the factory ship
+estimates the codend weight by measuring the diameter of the codend and doing a
+spherical volume calculation for each delivery from a companion catcher
+boat. Length samples are collected every second day of fishing operations, and
+otoliths are collected once a week. Length and age samples are taken randomly
+from a given codend. Since the weight of the sample from which biological
+information is taken is not recorded, sample weight must be inferred from a
+length-weight relationship applied to all lengths taken and summed over each
+haul.
 
 The sampling unit for the shore-based fisheries is the trip, while the haul is
 the primary unit for the at-sea fisheries. Since detailed haul-level information
