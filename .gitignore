@@ -42,6 +42,7 @@ beamer/SRG/Management/beamer-hake-management.tex
 *.ppt*
 beamer/JMC/presentation/knitr-cache
 !admin/*.pdf
+admin/2018-assessment/*
 admin/HakeMSEOptions2017-19.pdf
 *.docx
 *.doc
@@ -56,3 +57,5 @@ doc/main-figures/age1-test.eps
 doc/main-figures/age1-use-me.eps
 doc/main-figures/age1hake_03-17_NASC_narrow-panel-chris.eps
 doc/main-figures/age1hake_03-17_NASC_narrow-panel-use.eps
+doc/main-figures/age2plushake_03-17_NASC_BiomassAtAge_color.eps
+doc/main-figures/age1hake_03-17_NASC_BiomassAtAge_color.eps
