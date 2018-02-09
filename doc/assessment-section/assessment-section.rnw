@@ -870,31 +870,31 @@ Figure~\ref{fig:main-forecast-risk-comparison-year-1}), and a probability of
 to \Sexpr{forecast.yrs[3]} (Table~\ref{tab:main-risk-year-2} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-2}).
 
-**The spawning biomass is predicted to decrease from 2017 to 2018 with a greater
+The spawning biomass is predicted to decrease from 2018 to 2019 with a greater
 than 50\% probability for catch levels investigated that were at or above
 350,000~t (Table~\ref{tab:main-decisions-biomass} and
 Figure~\ref{fig:main-forecast-depletion-comparison}). The model predicts high
-biomass levels and the predicted probability of dropping below 10\% in 2018 is
-less than 1\% and the probability of dropping below $B_{40\%}$ is less than 18\%
+biomass levels and the predicted probability of dropping below 10\% in 2019 is
+less than 1\% and the probability of dropping below $B_{40\%}$ is less than 24\%
 for all catches explored (Table~\ref{tab:main-risk-year-1}). It should be noted
 that the natural mortality rate has overtaken the growth rate for the 2010 year
-class, the model estimated below average recruitment for the 2011 and 2013
-cohorts, but a large predicted 2014 year class will result in increases to the
-spawning biomass as it enters maturity. The probability that the 2018 spawning
-biomass will be less than the 2017 spawning biomass ranges from 17\% to 82\%
+class and the model estimated below average recruitment for the 2011 and 2013
+cohorts, but the above average predicted 2014 year class will result in an increase to the
+spawning biomass as it enters maturity. The probability that the 2019 spawning
+biomass will be less than the 2018 spawning biomass ranges from 37\% to 74\%
 depending on the catch level (Table~\ref{tab:main-risk-year-1} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-1}).
 
 % this paragraph can be made a bit more dynamics in the future 
 % (though it would be hard to completely automate)
 % values are from code in /r/r-functions/figures-age-comp-forecast.r
-**The age composition of the catch in 2017 is forecast to be 52\% age-3 fish from
-the 2014 year-class and 27\% age-7 fish from the 2010 year-class
+The age composition of the catch in 2018 is forecast to be 42\% age-4 fish from
+the 2014 year-class and 23\% age-8 fish from the 2010 year-class
 (Figure~\ref{fig:main-age-comp-forecast}). However, those estimates are highly
-uncertain with the 95\% credibility interval for the age-3 fraction spanning
-14\%--87\%. Due to the lower average weight at age 3 vs. 7, the expected
-proportion of the 2017 catch by weight is expected to be roughly equal among
-these two cohorts, with 39\% and 36\%, respectively.
+uncertain with the 95\% credibility interval for the age-4 fraction spanning
+19\%--62\%. Due to the lower average weight at age 4 vs. 8, the expected
+proportion of the 2018 catch by weight is expected to be more similar between
+these two cohorts, with 38\% and 31\%, respectively.
 
 \enlargethispage{\baselineskip}
 
@@ -1177,37 +1177,37 @@ in Appendix~\ref{chap:srg-requests} and briefly summarised here.
 %%Several key underlying structural model assumptions were identified that have persisted across many previous hake assessments, and thus warrant revisiting periodically as a set of reference sensitivity examinations to new base models.  Those identified here include the specification of natural mortality, the level of variation assumed about the stock-recruitment relationship ($\sigma_r$), and the resiliency of the stock in terms of recruitment (steepness).  The sensitivity of the base model to changes in the input $\sigma_r$ and to the prior distributions for natural mortality and steepness were explored.  The standard deviation of the prior distribution on natural mortality was increased from 0.1 (as in the base model) to 0.2 and 0.3.  The mean of the prior distribution on steepness was decreased from 0.777 (base) to 0.500, and steepness was also fixed at 1.0.  The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative high (2.0) and low (1.0) states.  These key sensitivities had little effect on the overall estimated population trend throughout the time series (Figure~\ref{fig:main-biomass-base-alternative-1}), but they do have a significant impact on the estimated scale of the population (quite different estimates of $B_0$ and $R_0$ parameters; Table~\ref{tab:main-parameter-estimates-sens-1}).  The least influential in terms of relative spawning biomass (Figure~\ref{fig:main-status-base-alternative-1}) as compared to the base model is fixing steepness to 1.0, changing the prior mean on steepness, and moderately changing the prior standard deviation on natural mortality (0.2).  The greatest difference in stock status compared to the base model results from changing the input for $\sigma_r$.  Estimates of natural mortality increased from 0.215 for the base model (prior standard deviation of 0.1) to 0.250 for the sensitivity run with the prior standard deviation set to 0.3.  When the mean of the prior distribution for steepness was changed from 0.777 (base model) to 0.5, the estimate for steepness decreased from 0.861 to 0.602.
 
 \subsection{Retrospective analyses}\label{sec:assessment-retrospective-analyses}
-**Retrospective analyses were performed by iteratively removing the terminal
+Retrospective analyses were performed by iteratively removing the terminal
 years' data and estimating the parameters under the assumptions of the base
-model. Models with 4 or 5 years of data removed had little to no information
-available regarding the high 2010 year class, and therefore estimated quite
-different trends in biomass relative to more recent models that contained
-information about the size of the 2010 cohort
-(Figure~\ref{fig:main-biomass-recruitment-retrospective}).  The base model
-contains some information about the size of the 2014 cohort, but with even 1
-year of data removed that estimate declines significantly.
+model. Models with 3, 4, or 5 years of data removed had information
+available regarding the high 2010 year class, but did not yet have information on the
+2014 year class (Figure~\ref{fig:main-biomass-recruitment-retrospective}).  Models 
+with 1 and 2 years of data removed were just beginning to receive data on age-2 and age-1, respectively,
+individuals to to predict the size of the 2014 year class.  The base model now has three
+years of data to estimate the size of the 2014 cohort, and the uncertainty around this
+estimate, while still large, has been considerably reduced compared to one year ago
+(Figure~\ref{fig:main-biomass-recruitment-retrospective}).
 
-**Overall, there is little retrospective change to the relative spawning biomass
+Overall, there is little retrospective change to the relative spawning biomass
 trajectory up to the mid-2000s, and most retrospective change occurs in the
 final years of the retrospective model. Retrospective estimates over the last 5
-years have been both positively and negatively biased.  In the last 4 years, the
-stock assessment has retrospectively underestimated the status, but removing 5
-years of data resulted in the assessment substantially over-estimating the
-status in the terminal year, which is likely related to the dynamics introduced
-by the large 2010 cohort and the high observed survey biomass index in 2009.
+years have been predominantly positively biased.  In the last 4 years, the
+stock assessment has retrospectively overestimated the status in the terminal year, 
+which is likely related to the dynamics introduced by the large 2010 and 2014 cohorts 
+and the high observed survey biomass index in 2009.
 
-**Figure~\ref{fig:main-retrospective.recruitment} shows the retrospective patterns
+Figure~\ref{fig:main-retrospective.recruitment} shows the retrospective patterns
 of estimated recruitment deviations for various cohorts. The magnitude of the
 deviation is not well estimated until several ($\sim$4-7) years of fishery
 catch-at-age data and survey age-composition data have been collected on the
 cohort.  Very strong and weak cohorts tend to be identified in the model at a
 younger age than intermediate cohorts.  For example, the strong 2010 cohort has
-been fairly well determined in the model by age 3 and the weak 2007 cohort by
+been fairly well determined in the model by age-3 and the weak 2007 cohort by
 age 5.  Estimated recruitment deviations for the 2014 cohort appear to be
-similar to the 2010 cohort.  One major difference between the 2010 and 2014
+similar to other large cohorts (1999, 2008, and 2010).  One major difference between the 2010 and 2014
 cohorts is that by age-3 the 2010 cohort had been fully sampled by the acoustic
 survey (when they were age-3 in the assessment model), whereas the 2014 cohort
-will not be sampled by the survey until they are age-4 in the assessment
+was not sampled by the survey until they were age-4 in the assessment
 model. The variability among cohort estimates relative to their estimated size
 in the base model (Figure~\ref{fig:main-relative-retrospective.recruitment})
 further indicates that the estimates can start to improve as early as age-3, but
@@ -1215,7 +1215,7 @@ some may not stabilize until the cohort approaches an age upwards of 7 years
 old. This illustrates that multiple observations of each cohort are needed in
 order to more accurately determine their recruitment strength.
 
-** A comparison of the actual assessment models used in each year since
+A comparison of the actual assessment models used in each year since
 \Sexpr{min(assessment.history$Year)} is shown in
 Figure~\ref{fig:main-historical-assessments}. There have been substantial
 differences in model structural assumptions and thus results submitted each
@@ -1230,7 +1230,8 @@ catchability was fixed at 1.0. The fixing of survey catchability had the effect
 of driving the estimate of initial biomass upward, which in turn scaled the
 entire biomass trajectory up, leading to higher estimates of relative spawning
 biomass than in more recent years. The \Sexpr{end.yr} base model estimates of
-spawning biomass are fairly consistent with recent assessments, although the
-model structure has remained relatively consistent, and the uncertainty
-intervals associated with recent assessments bracket the majority of the
+spawning biomass for recent years has declined relative to recent assessments.  Although
+the model structure has remained relatively consistent in recent years, the 2017 acousitc 
+survey biomass estimate was lower than what previous models would have predicted.
+The uncertainty interval associated with the \Sexpr{end.yr} assessment brackets the majority of the
 historical estimates.
