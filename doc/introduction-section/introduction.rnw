@@ -192,9 +192,9 @@ were allocated a TAC of \Sexpr{last.year.can.tac}~t, including
 \Sexpr{last.data.yr - 1}. Canadian priority lies with the domestic fishery, but
 when there is determined to be an excess of fish for which there is not enough
 domestic processing capacity, fisheries managers give consideration to a
-joint-venture fishery in which foreign processor vessels are allowed to accept
-codends from Canadian catcher vessels while at sea. **The last joint-venture
-program was conducted in \Sexpr{latest.year.can.jv}.
+Joint Venture fishery in which foreign processor vessels are allowed to accept
+codends from Canadian catcher vessels while at sea. There was a Joint Venture
+fishery conducted in \Sexpr{latest.year.can.jv}.
 
 In \Sexpr{last.data.yr}, all Canadian \fishname\ trips remained subject to 100\%
 observer coverage, by either electronic monitoring for the shoreside component
@@ -204,7 +204,7 @@ by the groundfish Dockside Monitoring Program (DMP). Retention of all catch,
 with the exception of prohibited species, was mandatory. The retention of
 groundfish other than Sablefish, Mackerel, Walleye Pollock, and Pacific Halibut
 on non-observed but electronically monitored, dedicated \fishname\ trips, was
-not allowed to exceed 10\% of the landed catch weight. **The bycatch allowance for
+not allowed to exceed 10\% of the landed catch weight. The bycatch allowance for
 Walleye Pollock was 30\% of the total landed weight.
 
 \subsection{Fisheries}\label{sec:intro-fisheries}
