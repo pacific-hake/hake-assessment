@@ -999,19 +999,21 @@ make.comparison.plot(c(list(base.model), sens.models.3),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.3),
                      end.yr = end.yr)
-make.selex.plot(base.model, pan.letter = "a", years = end.yr-1)
-make.selex.plot(sens.models.3[[1]], pan.letter = "b", years = end.yr-1)
-make.selex.plot(sens.models.3[[2]], pan.letter = "c", years = end.yr-1)
-make.selex.plot(sens.models.3[[3]], pan.letter = "d", years = end.yr-1)
+make.selex.plot(base.model, pan.letter = "a")
+make.selex.plot(sens.models.3[[1]], pan.letter = "b")
+make.selex.plot(sens.models.3[[2]], pan.letter = "c")
+make.selex.plot(sens.models.3[[3]], pan.letter = "d")
 par <- oldpar
 mtext("Age", side = 1, line = 1, outer = TRUE)
 @
 \end{center}
 \caption{Top panel shows maximum likelihood estimates of spawning biomass
-  and selectivity for the base model and alternative sensitivity runs representing changes
-  in the age of maximum selectivity from the value of 6 in the base model and the standard
+  and selectivity for the base model and alternative sensitivity runs 
+  representing changes in the age of maximum selectivity from the value 
+  of 6 in the base model and the standard
   deviation ($\phi$) associated with time-varying selectivity.
-  Lower panels show selectivity in \Sexpr{end.yr-1} for
+  Lower panels show baseline selectivity for both fleets and 
+  time-varying fishery selectivity for the two most recent years for
   a) Base model, b) \Sexpr{sens.model.names.3[1]}, c) \Sexpr{sens.model.names.3[2]},
   and d) \Sexpr{sens.model.names.3[3]}.}
 \label{fig:main-base-alternative-3}
@@ -1166,7 +1168,7 @@ make.selectivity.illustration(mod.old = base.model,
   baseline parameters, resulting
   in a new set of parameters which are transformed in the same way, as shown in the 
   blue lines in (a) through (c). In the alternative approach, the deviations are 
-  applied as exponential offsets to the resulting selectivity (e).}
+  applied as exponential offsets to the resulting selectivity (f).}
 \label{fig:main-selectivity-illustration}
 \end{figure}
 
