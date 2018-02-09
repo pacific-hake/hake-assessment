@@ -30,7 +30,6 @@ make.biomass.plot <- function(model,    ## model is an mcmc run and is the outpu
        cex.axis =0.9,
        cex.lab = 1,
        mgp = c(2.3,1,0),
-       yaxs = "i",
        xaxt = "n",
        yaxs = "i")
 
@@ -130,10 +129,22 @@ make.recruitment.plot <- function(model,            ## model is an mcmc run and 
   y <- data.frame(value = rmed, lo = rlower, hi = rupper)
 
   par(mfrow = c(1,1), las = 1, mar = c(3.5,3.5,1,1), oma = c(0,0,0,0))
-  plotBars.fn(non.equil.yrs, y, scalar = 1, ylim = c(0,upper.lim), pch = 20,
-              xlab = "Year", ylab = "Age 0 recruits (billions)",
-              cex = 0.8, las = 1, gap = 0, xaxt = "n", ciLwd = 1,
-              ciCol = rgb(0,0,1,0.5), mgp = c(2.3,1,0), xlim = range(non.equil.yrs))
+  plotBars.fn(non.equil.yrs,
+              y,
+              scalar = 1,
+              ylim = c(0,upper.lim),
+              pch = 20,
+              xlab = "Year",
+              ylab = "Age 0 recruits (billions)",
+              cex = 0.8,
+              las = 1,
+              gap = 0,
+              xaxt = "n",
+              ciLwd = 1,
+              ciCol = rgb(0,0,1,0.5),
+              mgp = c(2.3,1,0),
+              xlim = range(non.equil.yrs),
+              xaxt = "n")
   ## AME tried ylim = c(0,max(y$hi)) in above line, but 2014 recruitment
   ##  goes up to 80, squishing everything else down too much.
   if(add.mean){
@@ -143,11 +154,22 @@ make.recruitment.plot <- function(model,            ## model is an mcmc run and 
                 data.frame(value = unfished.eq.r[2],
                            lo = unfished.eq.r[1],
                            hi = unfished.eq.r[3]),
-                scalar = 1, pch = 4, cex = 0.8, las = 1, gap = 0, ciLwd = 1,
-                ciCol = rgb(0,0,1,0.5), add = TRUE)
+                scalar = 1,
+                pch = 4,
+                cex = 0.8,
+                las = 1,
+                gap = 0,
+                ciLwd = 1,
+                ciCol = rgb(0,0,1,0.5),
+                xaxt = "n",
+                add = TRUE)
     legend("topleft","Unfished equilibrium recruitment",pch=4,bty="n")
   }
-  axis(1, at = seq(equil.yr + 1, end.yr, 5))
+  axis(1, at = seq(1960, end.yr+4, 5))
+  axis(1,
+       at = seq(1960, end.yr+4, 1),
+       lab = rep("",length(seq(1960, end.yr+4, 1))), tcl = -0.3)
+  ##axis(1, at = seq(equil.yr + 1, end.yr, 5))
   abline(h = 0, col = rgb(0,0,0,0.5))
 
   if(add.r0){
