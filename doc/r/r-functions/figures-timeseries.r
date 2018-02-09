@@ -212,7 +212,11 @@ make.recruitment.dev.plot <- function(model,  ## model is an mcmc run and is the
               ciCol = rgb(0, 0, 1, 0.5),
               mgp = c(2.3, 1, 0),
               xlim = c(min(dev.yrs), end.yr))
-  axis(1, at = seq(min(dev.yrs) - 1, end.yr, 5))
+  ##axis(1, at = seq(min(dev.yrs) - 1, end.yr, 5))
+  axis(1, at = seq(min(dev.yrs) - 1, end.yr+4, 5))
+  axis(1,
+       at = seq(min(dev.yrs) - 1, end.yr+4, 1),
+       lab = rep("",length(seq(min(dev.yrs) - 1, end.yr+4, 1))), tcl = -0.3)
   abline(h = 0, col = rgb(0, 0, 0, 0.5))
   abline(h = seq(-4, 4, 2), col = rgb(0, 0, 0, 0.5), lty = "13", lwd = 0.5)
 
