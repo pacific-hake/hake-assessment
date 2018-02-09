@@ -87,6 +87,10 @@ load.wt.at.age <- function(model,
                            wt.at.age.fn){
   ## Load in the wtatage file for the model given, and extract the weights-at-age for
   ##  fleet 2. Return data frame of wt-at-age.
+
+  ## IGT 2018: this function might be redundant with model$wtatage
+  ##           but it's better not to change at a late stage in the process
+  
   fn <- file.path(model$path, wt.at.age.fn)
   d <- readLines(fn)
   beg <- grep("Fleet = 2", d)
@@ -104,7 +108,10 @@ load.wt.at.age <- function(model,
   k.list <- sapply(k, function(x) strsplit(x, " +"))
   df <- NULL
   for(i in 1:length(k.list)){
-    df <- rbind(df, k.list[[i]])
+    # rbind values but only if not NULL or a comment
+    if(length(k.list[[i]]) > 0 && k.list[[i]][1]!="#"){
+      df <- rbind(df, k.list[[i]])
+    }
   }
   df <- df[,-c(1,3,4,5,6,7)]
   df <- as.data.frame(apply(df, c(1,2), as.numeric))

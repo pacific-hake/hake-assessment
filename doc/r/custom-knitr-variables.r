@@ -141,7 +141,7 @@ median.relative.bio <- base.model$mcmccalcs$dmed
 median.relative.bio.2007.to.2011 <- median.relative.bio[c("2007", "2008", "2009", "2010", "2011")]
 median.relative.bio.2007.to.2011.min <- f(min(median.relative.bio.2007.to.2011), 2)
 median.relative.bio.2007.to.2011.max <- f(max(median.relative.bio.2007.to.2011), 2)
-median.relative.bio.below.target <- median.relative.bio[median.relative.bio < 0.4]     # when below target
+median.relative.bio.below.target <- median.relative.bio[names(median.relative.bio) %in% start.yr:end.yr & median.relative.bio < 0.4]     # when below target
 median.relative.bio.above.target.since <- max(as.numeric(names(median.relative.bio.below.target)),na.rm=T)+1   # has been above target since
 
 ################################################################################
@@ -233,7 +233,7 @@ fourth.shoreside.age.prop <- f(ss.age.prop.holder[2] * 100, 1)
 ## Years for which median recruitment is below the mean of the median
 ##  recruitments for years >2010 and <(end.yr-1) ; end.yr-1 won't be
 ##  well estimated
-recruitment.med.since.2010 <- base.model$mcmccalcs$rmed[ which(as.numeric(names(base.model$mcmccalcs$rmed)) > 2010 & as.numeric(names(base.model$mcmccalcs$rmed)) < (end.yr-1))]
+recruitment.med.since.2010 <- base.model$mcmccalcs$rmed[ which(names(base.model$mcmccalcs$rmed) %in% 2010:end.yr & names(base.model$mcmccalcs$rmed) %in% start.yr:(end.yr-1))]
 years.since.2010.recruitment.med.below.mean <- names(recruitment.med.since.2010[recruitment.med.since.2010  < mean(base.model$mcmccalcs$rmed)])
 
 ################################################################################
@@ -310,3 +310,19 @@ num.recent.yrs <- 10
 ## Canadian provisional reference points
 dfo2018 <- base.model$risks[[1]][,(ncol(base.model$risks[[1]])-2):ncol(base.model$risks[[1]])]
 dfo2019 <- base.model$risks[[2]][,(ncol(base.model$risks[[2]])-2):ncol(base.model$risks[[2]])]
+
+################################################################################
+## values of Dirichlet-Multinomial data weighting parameters
+
+# MLE estimates of parameters
+log.theta.fishery <- round(base.model$parameters["ln(EffN_mult)_1","Value"],3)
+log.theta.survey <- round(base.model$parameters["ln(EffN_mult)_2","Value"],3)
+# non-log MLE estimates
+theta.fishery <- exp(base.model$parameters["ln(EffN_mult)_1","Value"])
+theta.survey <- exp(base.model$parameters["ln(EffN_mult)_2","Value"])
+# approximate MLE weights
+DM.weight.fishery <- round(theta.fishery/(1+theta.fishery),3)
+DM.weight.survey <- round(theta.survey/(1+theta.survey),3)
+# MCMC medians for the fishery (survey value fixed at MLE)
+log.theta.fishery.median <- round(median(base.model$mcmc$ln.EffN_mult._1),3)
+DM.weight.fishery.median <- round(median(exp(base.model$mcmc$ln.EffN_mult._1)/(1+exp(base.model$mcmc$ln.EffN_mult._1))),3)
