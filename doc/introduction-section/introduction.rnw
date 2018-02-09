@@ -335,37 +335,29 @@ The \Sexpr{last.data.yr} Canadian \fishname\ domestic fishery removed
 \Sexpr{last.year.can.tac}~t.
 
 The shoreside component, made up of vessels landing fresh round product onshore,
-landed \Sexpr{last.year.can.shore}~t. The freezer trawler component, made up of
-**four vessels which freeze headed and gutted product while at sea, landed
-\Sexpr{last.year.can.freezer}~t.
+landed \Sexpr{last.year.can.shore}~t. The freezer trawler component, 
+which freezes headed and gutted product while at sea, landed
+\Sexpr{last.year.can.freezer}~t. For the first time since 2011
+there was a Joint Venture fishery (running from 21 August to 19 September),
+delivering 5,608~t to a Dutch vessel.
 
 % Paraphrased from Appendix B, no point in repeating lots of it:
-**The Canadian fishery began in early March, two months earlier than in
-\Sexpr{last.data.yr-1}, and the last delivery for the freezer trawler vessels
-was in mid-November. Fish were present continuously along the shelf break and on
-the shelf off the West Coast of Vancouver Island throughout the season. Similar
-to 2015, there appeared to be a larger hake biomass in Canada than in 2013 and
-2014. Bycatch was seldom a problem throughout the year. For further details see
+Fishing started in April, in the southern area off Vancouver Island. 
+A majority of the Canadian
+production was HGT (headed, gutted and tail off), by both shoreside and freezer vessels,
+with a very small
+amount of mince and whole round produced shoreside. The Canadian hake shoreside
+TAC was harvested by freezer vessels and vessels that delivered fresh fish to shoreside
+plants. Overall fleet participation was up from 2016 due to good hake abundance
+and other reasons.
+
+Fish were 
+continuously present throughout the season along the shelf break and on the 
+shelf off the west coast of Vancouver Island. Similarly to 2016, there appeared to be a
+larger hake biomass in Canada compared to previous years. 
+For further details see
 the report from the Canadian Advisory Panel
 (Appendix~\ref{chap:canada-fishery-report}).
-
-% Shoreside deliveries continued to the end of December. In late May, the
-% vessels made a move westward, further offshore, to avoid large aggregations of
-% age-1 hake that were appearing on the shelf. Many fishermen reported that these
-% aggregations were the largest, acoustically, that they had seen in
-% years. Gradually, these aggregations covered more and more of the southwest of
-% the fishing grounds off the West coast of Vancouver Island, so fishing vessels
-% moved North, into deeper water, to avoid the small fish. Industry reported an
-% overall larger hake biomass in Canada compared to the last two years.
-
-% In mid-August, at the request of industry, DFO permitted the harvest of
-% offshore hake for the production of fish meal. This required special permission
-% from the Minister of Fisheries and Oceans, as the production of fish meal is
-% usually disallowed according to the Fisheries and Oceans act. This request was
-% made in response to poor market conditions in \Sexpr{last.data.yr-1}, which were
-% expected to continue into \Sexpr{last.data.yr}. However, the markets were better
-% than expected, and with poor prices for landed fish meal, the fleet processed
-% only 68~t for this fishery.
 
 The most abundant year classes in the Canadian Freezer trawler catch were age
 \Sexpr{max.freezer.trawler.age.prop.age} at
@@ -381,21 +373,13 @@ Canadian Shoreside catch were age \Sexpr{max.shoreside.age.prop.age} at
 \Sexpr{second.shoreside.age.prop}\%, age \Sexpr{third.shoreside.age.prop.age} at
 \Sexpr{third.shoreside.age.prop}\%, and age
 \Sexpr{fourth.shoreside.age.prop.age} at \Sexpr{fourth.shoreside.age.prop}\%.
-% Deleting, as already noted above that they started two months earlier in 2017:
-% The distribution of catch by month remained similar to other years, with the 
-%  summer months showing the greatest catch.
 
 For an overview of Canadian catch by year and fleet, see
 Table~\ref{tab:intro-catches-Can}. For
-\Sexpr{years.Can.JV.catch.eq.0.recent[-length(years.Can.JV.catch.eq.0.recent)]}
-and
-\Sexpr{years.Can.JV.catch.eq.0.recent[length(years.Can.JV.catch.eq.0.recent)]}
-there was no Joint-Venture fishery operating in Canada and this is reflected as
-zero catch in that sector for those years in Table~\ref{tab:intro-catches-Can}.
-
-% New for 2016 assessment, since Table was not actually referenced in 2015 
-%  assessment. 2017 - moved table reference to earlier.
-% The total historical U.S, Canadian and coastwide catches of \fishname\ are 
-%  shown in Table~\ref{tab:intro-catches-total}, together with the percentage of 
-%  the total catch that came from each country.
+some years
+% \Sexpr{years.Can.JV.catch.eq.0.recent[-length(years.Can.JV.catch.eq.0.recent)]}
+% and
+% \Sexpr{years.Can.JV.catch.eq.0.recent[length(years.Can.JV.catch.eq.0.recent)]}
+there was no Joint Venture fishery operating in Canada, as reflected
+by the relevent zeros in Table~\ref{tab:intro-catches-Can}.
 
