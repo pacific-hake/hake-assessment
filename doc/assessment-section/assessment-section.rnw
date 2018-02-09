@@ -308,7 +308,7 @@ various terms involved in the default harvest policy.
 
 \subsection{Modeling results}\label{sec:assessment-modeling-results}
 % Manual 2018 (in progress)
-\subsubsection{Changes from \Sexpr{last.assess.yr} **In progress by Ian}\label{sec:assessment-changes}
+\subsubsection{Changes from \Sexpr{last.assess.yr} }\label{sec:assessment-changes}
 
 
 A set of `bridging' models was constructed to evaluate the component-specific
@@ -900,48 +900,56 @@ these two cohorts, with 38\% and 31\%, respectively.
 
 \subsection{Sensitivity analyses}\label{sec:assessment-sensitivity-analyses}
  % Manual 2016 done
-**Sensitivity analyses were conducted to investigate influence of data inputs and
+Sensitivity analyses were conducted to investigate influence of data inputs and
 structural uncertainty of the base model by investigating how changes to the
 model affected the estimated values and derived quantities. For expediency, all
 sensitivity analyses compared MLE estimates rather than MCMC
 posteriors. Therefore, the values reported below are not directly comparable to
 the base model values reported elsewhere (see
-Tables~\ref{tab:main-parameter-estimates-sens-2} and
-\ref{tab:main-parameter-estimates-sens-1} for a set of comparisons of the base
+Tables~\ref{tab:main-parameter-estimates-sens-1} and
+\ref{tab:main-parameter-estimates-sens-2} for a set of comparisons of the base
 model to MLE estimates from the following sensitivity models). The sensitivities
 include the following:
 
-**UPDATE:
 \begin{enumerate}
+
+\item Consideration of a higher standard deviation on the prior distribution 
+  for natural mortality;
+
+\item Consideration of alternative values for steepness.
+
+\item Assume higher/lower variation about the stock-recruitment curve 
+  ($\sigma_r$); and
 
 \item Include the age-1 survey index as an additional source of information;
 
 \item Assume no cohort-based ageing error (i.e., time invariant ageing error);
 
-\item No reduction in ageing error associated with the estimated large 2014
-  recruitment class;
+\item Use of the McAllister-Ianelli method for data-weighting
+
+\item Use of an alternative method for aggregating the age compostitions from
+  the U.S. fishery (weighting by the catch within each month)
+  
+\item Consideration of alternative maximum age assumptions for estimating 
+  selectivity;
 
 \item Consideration of alternative standard deviations for time-varying 
   selectivity;
 
-\item Consideration of alternative maximum age assumptions for estimating 
+\item Consideration of an alternative parameterization for time-varying 
   selectivity;
-
-\item Consideration of a higher standard deviation on the prior distribution 
-  for natural mortality;
-
-\item Assume higher/lower variation about the stock-recruitment curve 
-  ($\sigma_r$); and
-
-\item Consideration of alternative values for steepness.
 
 \end{enumerate}
 
-**In general, none of the sensitivities resulted in any significant departure from
+In general, none of the sensitivities resulted in any significant departure from
 the main population dynamics of the base model; all models showed large
 estimated increases in spawning biomass in recent years that continues to be
-driven by the large 2010 cohort and the 2014 cohort.
+driven by the large 2010 cohort and the 2014 cohort. The overall scale of the 
+population was impacted by various alternative assumptions, and the highly 
+uncertain size of the 2016 cohort was more variable across sensitivity analyes
+than earlier cohorts which have been observed in more years.
 
+%%% 2018: commented text below leftover from 2017 document
 %%The sensitivity of the base model to changes in the survey biomass estimates
 %%as a result of not using the new extrapolation algorithm was conducted to
 %%evaluate the impact of assuming negligible biomass outside the surveyed area, 
@@ -1052,7 +1060,23 @@ the population model being restricted in the time-invariant case to fitting
 age-composition data with a stationary level of measurement error associated
 with each age.
 
-% Manual 2018: text below updated (but could use proofreading)
+As noted in the description of assessment changes in 
+Section~\ref{sec:assessment-changes}, the base model used a new
+Dirichlet-Multinomial likelihood which includes two additional estimated 
+parameters which automatically weight each of the fishery and survey age 
+compositions. This produced higher weights on the age compositions but 
+generally very similar results to the McAllister-Ianelli method used in 
+previous assessments, where the input samples sizes are iteratively 
+adjusted by a multiplier to make the arithmetic mean of the input 
+sample size approximately equal to the harmonic mean of the effective 
+sample sizes.
+
+** Aaron, can you add something about the following:
+Use of an alternative method for aggregating the age compostitions from
+the U.S. fishery (weighting by the catch within each month)
+
+
+% Manual 2018
 Three types of alternative setups for selectivity were explored in sensitivity
 analyses: alternative assumptions about the age beyond which selectivity 
 is assumed constant, alternative values of the $\phi$ parameter 
