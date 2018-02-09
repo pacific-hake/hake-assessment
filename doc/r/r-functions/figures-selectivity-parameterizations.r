@@ -150,7 +150,7 @@ make.selectivity.illustration <- function(
   # first plot showing parameters by age
   plot(ages[sub], selpar_base_alt[sub], type='l', lwd=4,
        ylim=ylim1, xlim=xlim, xlab="", ylab="", axes=FALSE)
-  add_label("(c)")
+  add_label("(d)")
   axis(1, at=0:8); axis(2); box()
   abline(h=0, col='grey', lty=3)
   mtext("Semi-parametric parameterization", side=3, line=1,
@@ -160,13 +160,13 @@ make.selectivity.illustration <- function(
   plot(ages[sub], S_prime_base_alt[sub], type='l', lwd=4, yaxs='i', axes=FALSE,
        xlim=xlim, xlab="", ylab="",
        ylim=ylim2)
-  add_label("(d)")
+  add_label("(e)")
   axis(1, at=0:8); axis(2); box()
 
   # third plot showing resulting selectivity
   plot(ages, S_base_alt_B, type='l', lwd=4, xlim=xlim, yaxs='i',  axes=FALSE,
        ylim=ylim3, xlab="", ylab="")
-  add_label("(e)")
+  add_label("(f)")
   axis(1, at=0:8); axis(2); box()
   lines(ages, S_adj_alt_B, type='l', lwd=2, col=4)
   abline(h=c(0, 1), col='grey', lty=3)

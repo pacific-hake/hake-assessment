@@ -1166,7 +1166,7 @@ make.selectivity.illustration(mod.old = base.model,
   baseline parameters, resulting
   in a new set of parameters which are transformed in the same way, as shown in the 
   blue lines in (a) through (c). In the alternative approach, the deviations are 
-  applied as exponential offsets to the resulting selectivity (e).}
+  applied as exponential offsets to the resulting selectivity (f).}
 \label{fig:main-selectivity-illustration}
 \end{figure}
 
