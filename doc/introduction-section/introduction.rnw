@@ -43,9 +43,11 @@ uncertainty to provide results that can be probabilistically interpreted. From a
 range of alternate models investigated by the JTC, a subset of sensitivity
 analyses are also reported in order to provide a broad qualitative comparison of
 structural uncertainty with respect to the base case. These sensitivity analyses
-are thoroughly described in this assessment document. **The structural assumptions
+are thoroughly described in this assessment document. The structural assumptions
 of this \Sexpr{assess.yr} base model are effectively the same as the
-\Sexpr{last.assess.yr} base model, including time-varying fishery selectivity.
+\Sexpr{last.assess.yr} base model \citep{JTC2017}, though we incorporate
+new approaches for weighting composition data and parameterizing
+time-varying selectivity.
 
 \subsection{Stock structure and life history}\label{sec:intro-stock-structure}
 
@@ -80,13 +82,16 @@ continental shelf break, with highest densities located over bottom depths of
 Older \fishname\ exhibit the greatest northern migration each season, with two-
 and three-year old fish rarely observed in Canadian waters north of southern
 Vancouver Island. During El Ni\~no events (warm ocean conditions, such as 1998
-and 2015), a larger proportion of the stock migrates into Canadian waters,
+and 2015), a larger proportion of the stock migrates into Canadian waters
+(Figure~\ref{fig:main-backscatter-map}),
 apparently due to intensified northward transport during the period of active
 migration \citep{Dorn1995b, AgostiniFrancisEtAl2006}. In contrast, La Ni\~na
 conditions (colder water, such as in 2001) result in a southward shift in the
 stock's distribution, with a much smaller proportion of the population found in
 Canadian waters, as seen in the 2001 survey
-(Figure~\ref{fig:main-backscatter-map}). 
+(Figure~\ref{fig:main-backscatter-map}).
+The distribution of age-1 fish also changes between years
+(Figure~\ref{fig:main-backscatter-map-age1}).
 % Presumably next sentence can just stay same for 2018:
 The research on links between migration
 of different age classes and environmental variables is anticipated to be
@@ -131,7 +136,9 @@ biological catch at \Sexpr{us.allotment.percent}\% and
 adhered to since ratification of the Agreement.
 
 Throughout the last decade, the total coast-wide catch has tracked harvest
-targets reasonably well (Table~\ref{tab:main-landings-tac}). Since 1999, catch
+targets reasonably well.
+%  (Table~\ref{tab:main-landings-tac})    % so Table 4 isn't ref'ed before 1-3
+Since 1999, catch
 targets have been determined using an $\Fforty$ default harvest rate with a
 40:10 adjustment. This decreases the catch linearly from the catch target at a
 relative spawning biomass of 40\% and above, to zero catch at relative spawning
@@ -230,7 +237,10 @@ with a U.S. allocation of \Sexpr{last.year.us.tac}~t
 catch of \fishname\ for \Sexpr{start.yr}--\Sexpr{last.data.yr} by nation and
 fishery sector is shown in Figure~\ref{fig:main-catches} and
 Tables~\ref{tab:intro-catches-US}, \ref{tab:intro-catches-Can}
-and~\ref{tab:intro-catches-total}. A review of the \Sexpr{last.data.yr} fishery
+and~\ref{tab:intro-catches-total}.
+Table~\ref{tab:main-landings-tac} shows recent catches in relation to targets
+(see Section~\ref{sec:assessment-model-results}).
+A review of the \Sexpr{last.data.yr} fishery now
 follows.
 
 \newpage % kludge to avoid dangling heading:
@@ -270,7 +280,8 @@ starting on April 15.  Regulations do not allow at-sea processing south of
 % Manual done 2017.
 
 The overall catch of \fishname\ in U.S. waters was substantially greater than in
-the previous year and catch rates were considerably higher throughout the year
+2016, reaching the highest values ever recorded (Table~\ref{tab:intro-catches-US}).
+Throughout 2017, catches were considerably higher than in 2016
 (Figure~\ref{fig:main-us-catch-rates}). Initial database extractions reported minor amounts
 of hake catch by tribal fisheries in \Sexpr{last.data.yr}.  However, the
 U.S. advisory panel report on the \Sexpr{last.data.yr} fishery
@@ -282,7 +293,9 @@ assessment preparation process, thereby precluding an update to the overall
 catch this year (see section~\ref{sec:data-total-catch}).  However, this amount of catch 
 is negligible relative to the total catch, and a sensitivity to the inclusion of this 
 catch in the \Sexpr{assess.yr} base model resulted in negligible influence on model 
-results and subsequent management forecasts. The catcher-processor, mothership, and
+results and subsequent management forecasts
+**refer to sensitivity section explicitly once it's updated with the sens run
+. The catcher-processor, mothership, and
 shore-based fleets caught \Sexpr{catcher.processor.catch}\%,
 \Sexpr{mothership.catch}\%, and \Sexpr{shore.based.catch}\% of their final
 reallocated quotas, respectively. Overall,
@@ -349,13 +362,13 @@ production was HGT (headed, gutted and tail off), by both shoreside and freezer 
 with a very small
 amount of mince and whole round produced shoreside. The Canadian hake shoreside
 TAC was harvested by freezer vessels and vessels that delivered fresh fish to shoreside
-plants. Overall fleet participation was up from 2016 due to good hake abundance
-and other reasons.
+plants.
 
 Fish were 
 continuously present throughout the season along the shelf break and on the 
 shelf off the west coast of Vancouver Island. Similarly to 2016, there appeared to be a
-larger hake biomass in Canada compared to previous years. 
+larger hake biomass in Canada compared to previous years, which is one reason 
+why overall fleet participation was up from 2016.
 For further details see
 the report from the Canadian Advisory Panel
 (Appendix~\ref{chap:canada-fishery-report}).
@@ -382,5 +395,5 @@ some years
 % and
 % \Sexpr{years.Can.JV.catch.eq.0.recent[length(years.Can.JV.catch.eq.0.recent)]}
 there was no Joint Venture fishery operating in Canada, as reflected
-by the relevent zeros in Table~\ref{tab:intro-catches-Can}.
+by the relevant zeros in Table~\ref{tab:intro-catches-Can}.
 
