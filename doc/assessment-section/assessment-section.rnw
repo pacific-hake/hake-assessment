@@ -963,7 +963,10 @@ include the following:
 
 \item Use of an alternative method for aggregating the age compostitions from
   the U.S. fishery (weighting by the catch within each month)
-  
+
+\item Correction to catch to account for double counting of the Canadian JV
+  catch from 2007 to present, and missing US tribal catch for 2016 and 2017.
+
 \item Consideration of alternative maximum age assumptions for estimating 
   selectivity;
 
@@ -1129,9 +1132,23 @@ subsampling protocols should be developed to account for seasonality in catch-at
 protocols are especially critical during survey years or years of high abundance when large 
 sample sizes are expected or when ageing laboratory resources are limited.         
  
-Aaron, can you add something about the following:
+**Aaron, can you add something about the following:
 Use of an alternative method for aggregating the age compostitions from
 the U.S. fishery (weighting by the catch within each month)
+
+An error in the code which extracts and calculates the catch for Canadian fisheries was found
+late in the assessment process. The JV catch was erroneously being added to the Shoreside
+catch, resulting in the values being added to the total catch twice. This error was for
+each year the JV fishery took place since 2007 including 2007, 2008, 2010, 2011, and 2017.
+In addition, some U.S. tribal catch was not reported in time to be added to the base model.
+There was some fish ticket information which was missing at all levels. The values which
+changed were for the 2016 and 2017 seasons and were 2,522.75 t and 6405.86 t respectively.
+These values were added to the base model catch values, and the JV values were subtracted to
+create one sensitivity which is included in
+Figures~\ref{fig:main-biomass-base-alternative-2} and \ref{fig:main-status-base-alternative-2}.
+The sensitivity shows that running the base model with the corrected values shows no
+difference in the model outcome, with the trajectories overlapping
+for the entirety of the time series.
 
 
 % Manual 2018
