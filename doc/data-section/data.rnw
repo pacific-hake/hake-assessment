@@ -628,35 +628,42 @@ far from zero, unless the data are overwhelming. The amount of deviation from
 zero is controlled by a fixed standard deviation, $\phi$ (explained further
 below).
 
-The 2017 assessment \citep{JTC2017} increased the value of $\phi$ from 0.03 
+The 2017 assessment \citep{JTC2017} increased the value of $\phi$ from the
+previously-used value of 0.03 
 to 0.20 for a variety of reasons, including reports of unusual ocean conditions
 in recent years and good performance of the more flexible selectivity in past
 management strategy evaluations \citep{JTC2014}. However, the most compelling 
 reason for the change was that the large catch of age-2 fish in 2016 caused 
-the model with less flexible selectivity produced implausible estimates of 
-2014 recruitment, values about 3-times larger than the 1999 and 2010 cohorts.
+the model with less flexible selectivity ($\phi=0.03$) produced implausible 
+estimates of 
+2014 recruitment, values about three times larger than the very large 1999 and 2010 cohorts.
 This was inconsistent with the qualititative comparison to the age-1 index,
 and the fishery age-compostion was not believed to be sufficiently reliable to 
 support such a large estimate. The original basis for the $\phi=0.03$ value
 was a method of treating the deviations as random effects and
 integrating over them using the Laplace method, as described by
 \citet{ThorsonHicksEtAl2014}. Repeating that approach has continued to produce
-low values for $\phi$.
+similarly low values for $\phi$.
 
 A new parameterization for the selectivity deviations was explored 
-for this year, based on the recent work of of \citet{Xu2018}, 
-in an effort to produce a more objective way determine the degree of 
+this year, based on the recent work of \citet{Xu2018}, 
+in an effort to produce a more objective way of determining the degree of 
 flexibility. However, further testing of this approach was believed
-necessary before making the change. Therefore, the alternative
-parameterization was only used for a sensitivity analysis 
-(described in Section~\ref{sec:assessment-sensitivity-analyses}).
-
+necessary before making the change and so it 
+was only used for a sensitivity analysis 
+(see Section~\ref{sec:assessment-sensitivity-analyses}).
 
 Further details on the time-varying selectivity function are now given.
 
-For each age $a \geq A_{\text{min}}$ there is a selectivity parameter, $p_a$,
-for the fishery (for which $A_{\text{min}}=1$) and a parameter $p_a$ for the
-survey (for which $A_{\text{min}}=2$). The selectivity at age $a$ is computed as
+For each age $a \geq A_{\text{min}}$, where $A_{\text{min}}$ is the minimum age
+for which selectivity is allowed to be non-zero, 
+there is an incremental selectivity parameter, $p_a$,
+for the fishery (for which $A_{\text{min}}=1$). There is also an equivalent
+$p_a$ for the
+survey (for which $A_{\text{min}}=2$), but to keep the notation simple we do 
+not distinguish them here because the following calculations are the same for the
+survey and the fishery.
+The selectivity at age $a$ is computed as
 \eb
 S_a = \exp (S'_a - S'_{\text{max}}),
 \ee
@@ -671,19 +678,20 @@ S'_{\text{max}} = \mbox{max} \{S'_a\}.
 Selectivity is fixed at $S_a = 0$ for $a < A_{\text{min}}$. 
 
 This formulation has the properties that the maximum selectivity equals 1,
-positive values are associated with increasing selectivity between ages $a-1$
+positive values of $p_a$ are associated with increasing selectivity between ages $a-1$
 and $a$, and negative values are associated with decreasing selectivity between
 those ages. Beyond the maximum age for which selectivity is estimated (6 in the
-base model), $p_a = 0$ gives constant selectivity beyond the last estimated
+base model for the fishery and the survey),
+$p_a = 0$ gives constant selectivity beyond the last estimated
 value. The condition that maximum selectivity equals 1 results in one fewer
 degree of freedom than the number of estimated $p_a$. Therefore,
 $p_{A_{\text{min}}}=0$ can be set for the fishery and for the survey.  
-%% Manual 2017 - age 6 in the base model.
+%% Manual 2017 - age 6 in the base model. Presumably unchanged in 2018.
 
 % new text added January 2018
 The implementation of time-varying selectivity in the assessments from 2014 to 
 2017 all used an option available in Stock Synthesis 3.24 where 
-annual deviations to the selectivity parameters were applied after a 
+annual deviations to the selectivity parameters were applied after the following 
 logistic transformation to keep the time-varying parameters within a 
 set of bounds.
 
