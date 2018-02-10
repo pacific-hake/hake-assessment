@@ -43,8 +43,11 @@ uncertainty to provide results that can be probabilistically interpreted. From a
 range of alternate models investigated by the JTC, a subset of sensitivity
 analyses are also reported in order to provide a broad qualitative comparison of
 structural uncertainty with respect to the base case. These sensitivity analyses
-are thoroughly described in this assessment document. The structural assumptions
-of this \Sexpr{assess.yr} base model are effectively the same as the
+are thoroughly described in this assessment document. 
+The structural assumptions
+of this \Sexpr{assess.yr} base model,
+implemented using version \Sexpr{ss.version} of the Stock Synthesis software
+\citep{MethotWetzel2013}, are effectively the same as the
 \Sexpr{last.assess.yr} base model \citep{JTC2017}, though we incorporate
 new approaches for weighting composition data and parameterizing
 time-varying selectivity.
@@ -243,7 +246,7 @@ Table~\ref{tab:main-landings-tac} shows recent catches in relation to targets
 A review of the \Sexpr{last.data.yr} fishery now
 follows.
 
-\newpage % kludge to avoid dangling heading:
+% \newpage % kludge to avoid dangling heading:
 
 \subsubsub{United States}
 
@@ -279,7 +282,7 @@ starting on April 15.  Regulations do not allow at-sea processing south of
 42$^\circ$N latitude at any time during the year.
 % Manual done 2017.
 
-** [Rewrite paragraph below after finalizing the tables and dynamic numbers]
+** [Rewrite paragraph below, if necessary, after finalizing the tables and dynamic numbers]
 The overall catch of \fishname\ in U.S. waters was substantially greater than in
 2016, reaching the highest values ever recorded (Table~\ref{tab:intro-catches-US}).
 Throughout 2017, catches were considerably higher than in 2016
