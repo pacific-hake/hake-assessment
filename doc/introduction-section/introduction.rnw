@@ -269,17 +269,19 @@ starting on April 15.  Regulations do not allow at-sea processing south of
 42$^\circ$N latitude at any time during the year.
 % Manual done 2017.
 
+** [Rewrite paragraph below after finalizing the tables and dynamic numbers]
 The overall catch of \fishname\ in U.S. waters was substantially greater than in
 the previous year and catch rates were considerably higher throughout the year
 (Figure~\ref{fig:main-us-catch-rates}). Initial database extractions reported minor amounts
 of hake catch by tribal fisheries in \Sexpr{last.data.yr}.  However, the
 U.S. advisory panel report on the \Sexpr{last.data.yr} fishery
-(Appendix~\ref{chap:us-fishery-report}) indicated a tribal catch of 6,012 mt.
+(Appendix~\ref{chap:us-fishery-report}) indicated a tribal catch of 6,012 t.
 Through discussions with the Washington Department of Fish and Wildlife and a U.S.
 advisory panel member, the Joint Technical Committee was made aware of missing fish tickets
 in the regional (PacFIN) database. These discrepencies were not resolved until late in the
 assessment preparation process, thereby precluding an update to the overall
-catch this year (see section~\ref{sec:data-total-catch}).  However, this amount of catch 
+catch this year (see Section~\ref{sec:data-total-catch}).  
+However, this amount of catch 
 is negligible relative to the total catch, and a sensitivity to the inclusion of this 
 catch in the \Sexpr{assess.yr} base model resulted in negligible influence on model 
 results and subsequent management forecasts. The catcher-processor, mothership, and
@@ -292,11 +294,12 @@ caught.  For further details see the report from the U.S. Advisory Panel
 (Appendix~\ref{chap:us-fishery-report}).
 % Manual done 2018, best I can tell the below is still correct.
 
-In both U.S. at-sea sectors (CP and MS) the most common cohort in the spring
-fishery was age-7 and age-3 fish associated with the 2010 and 2014 year-classes, 
+In both U.S. at-sea sectors (CP and MS) the most common cohorts in the spring
+fishery were age-7 and age-3 fish associated with the 2010 and 2014 year-classes, 
 but by the fall, both sectors were catching a majority of age-3 fish. In
 total, 44\% of the CP catch was age-3 and 33\% was age-7
-(Table~\ref{tab:main-us-cp-age-data}). For the MS sector, the total for the year
+(proportions by numbers here and below; Table~\ref{tab:main-us-cp-age-data}). 
+For the MS sector, the total for the year
 was 47\% age-3 and 33\% age-7 (Table~\ref{tab:main-us-ms-age-data}). These
 totals were based on samples from 273 and 536 hauls, respectively, in each sector
 (Table~\ref{tab:main-sampling-history}).  Age-samples from 110 shoreside trips
@@ -317,13 +320,14 @@ The at-sea fishery maintained relatively high catch rates throughout the
 year (Figure~\ref{fig:main-us-catch-rates}), averaging around 30 t/hr in the spring
 (May--June) and 20 t/hr in the fall (September--November). Relative
 to last year, both the spring and fall fisheries saw a considerable increase in catch 
-rates.  The at-sea fleets sometimes fished in shallower water than observed in the past 
+rates.  The median fishing depth for the at-sea fleets was shallower than in the past 
 10 years (Figure~\ref{fig:main-us-at-sea-depths}). During July and August, some operators
 in the at-sea fishery continued to fish hake, forgoing the usual summer
 opportunities in Alaskan waters.  The shorebased fishery had the largest monthly
 catches during June, July, and August.  Due to high catch-rates throughout the year 
 for all U.S. fleets, as compared to recent years, the U.S. utilization rate continued to
-increase from recent years from 47\% in 2015 to 71\% in 2016 to 79\% in 2017.
+increase from recent years from 47\% in 2015 to 71\% in 2016 to 79\% in 2017,
+even with the increases in TAC over that period.
 % Manual done 2018.
 
 % \newpage % kludge to avoid dangling heading:
@@ -360,7 +364,8 @@ For further details see
 the report from the Canadian Advisory Panel
 (Appendix~\ref{chap:canada-fishery-report}).
 
-The most abundant year classes in the Canadian Freezer trawler catch were age
+The most abundant year classes (by numbers) in the Canadian Freezer trawler 
+catch were age
 \Sexpr{max.freezer.trawler.age.prop.age} at
 \Sexpr{max.freezer.trawler.age.prop}\%, age
 \Sexpr{second.freezer.trawler.age.prop.age} at
