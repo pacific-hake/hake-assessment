@@ -946,8 +946,9 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 \caption{Maximum likelihood estimates of spawning biomass for the base model and alternative
   sensitivity runs that represent changes in data: adding an age-1 index of abundance,
   incorporating ageing error that is cohort invariant, using the harmonic mean approach to
-  weight composition data, and accounting for seasonal age sampling in the aggregation of age
-  composition information.}
+  weight composition data, accounting for seasonal age sampling in the aggregation of age
+  composition information, and removing catch which was double-counted for the
+  Canadian JV fishery and adding U.S. tribal catch which was missed for 2016 and 2017.}
 \label{fig:main-biomass-base-alternative-2}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -979,10 +980,8 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 \end{center}
 %\vspace{0mm}
 \caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base
-  model and alternative sensitivity runs that represent changes in data: adding an age-1 index of abundance,
-  incorporating ageing error that is cohort invariant, using the harmonic mean approach to
-  weight composition data, and accounting for seasonal age sampling in the aggregation of age
-  composition information.}
+  model and alternative sensitivity runs that represent changes in data.
+  See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-status-base-alternative-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
