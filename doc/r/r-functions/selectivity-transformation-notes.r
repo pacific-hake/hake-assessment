@@ -56,6 +56,10 @@ last.yr.base.model$SelAgeAdj$Par4[last.yr.base.model$SelAgeAdj$FleetSvy==1 & las
 # calculation above
 
 
+### NOTE: approach used in linear model below has been replaced by
+###       taking the derivative of the transformation function,
+###       which results in a 7:1 ratio or a new phi of 1.40.
+
 # Linear model fit to range of values indicates slope of about 0.1485
 # This indicates that removing the transformation would be best approximated
 # by changing the old phi = 0.20 to phi = 0.20/0.1485 ~ 1.35
