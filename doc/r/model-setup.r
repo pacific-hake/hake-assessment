@@ -202,7 +202,7 @@ sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
                         "Sigma R 1.0",
                         "Sigma R 1.8",
                         "Natural Mortality (SD=0.2)",
-                        "Natual Mortality (SD=0.3)")
+                        "Natural Mortality (SD=0.3)")
 verify.models(model.dir, sens.model.dir.names.1, sens.model.names.1)
 if(verbose){
   print.model.message(sens.model.dir.names.1, sens.model.names.1, 1, model.type = "Sensitivity")

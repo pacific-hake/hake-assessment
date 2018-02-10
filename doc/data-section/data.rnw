@@ -118,7 +118,7 @@ are monitored by at-sea observers. Observers use volume/density
 methods to estimate total catch. Canadian shoreside landings are recorded by
 dockside monitors using total catch weights provided by processing plants.
 
-Late in the 2018 stock assessment cycle, several fish ticket discrepencies were
+Late in the 2018 stock assessment cycle, several fish ticket discrepancies were
 identified related to total tribal catch levels.  Fish tickets recorded by the Makah Indian Tribe,
 the Washington Department of Fish and Wildlife, and as archived in the PacFIN database did not match, 
 resulting in an underestimate of total catch in 2016 (1677 mt, change of 0.5\%) and 2017 (6172 mt, 
@@ -325,7 +325,7 @@ SimmondsMacLennan2006}. Advantages to the kriging approach are discussed in the
 For the 2016 assessment \citep{JTC2016}, the data from all surveys since 1998
 were scrutinized and reanalyzed using consistent assumptions.  The same analytical
 procedure was carried out during the reanalysis of 1995 survey data (\citep{JTC2017}) and 
-during the prepartion of 2017 survey data. These include:
+during the preparation of 2017 survey data. These include:
 
 \begin{itemize}
   
@@ -607,7 +607,7 @@ of new information on $M$, there has been little option to update the prior.
 
 \subsubsection{Steepness}\label{sec:data-steepness}
 
-The prior for the steepness parameter of the stock-recruiment function
+The prior for the steepness parameter of the stock-recruitment function
 is based on the median (0.79) and the 20th (0.67) and 80th
 (0.87) percentiles from \citeauthor{MyersBowenEtAl1999}'s
 (\citeyear{MyersBowenEtAl1999}) meta-analysis of the family \emph{Gadidae}, and
@@ -637,8 +637,8 @@ reason for the change was that the large catch of age-2 fish in 2016 caused
 the model with less flexible selectivity ($\phi=0.03$) produced implausible 
 estimates of 
 2014 recruitment, values about three times larger than the very large 1999 and 2010 cohorts.
-This was inconsistent with the qualititative comparison to the age-1 index,
-and the fishery age-compostion was not believed to be sufficiently reliable to 
+This was inconsistent with the qualitative comparison to the age-1 index,
+and the fishery age-composition was not believed to be sufficiently reliable to 
 support such a large estimate. The original basis for the $\phi=0.03$ value
 was a method of treating the deviations as random effects and
 integrating over them using the Laplace method, as described by
@@ -768,7 +768,7 @@ for weighting the age compositions. This tuning method involves
 iteratively adjusting a multiplier on the the input sample sizes until they are
 roughly equal to the harmonic mean of the effective sample sizes, where the
 effective sample size is dependent on how well the model expectation matches
-the observed values. For this assessment, a new Dirichlet-Multinomial (D-M) likehood
+the observed values. For this assessment, a new Dirichlet-Multinomial (D-M) likelihood
 was adopted, as proposed by \citet{ThorsonEtAl2017Dirichlet}. The primary benefit
 of the D-M approach is that instead of manually iterating the sample size multiplier,
 an estimated parameter serves to automatically adjust the weight given to
@@ -781,9 +781,9 @@ age composition given the same weight as the base model.
 The likelihood, equation (10) in \citet{ThorsonEtAl2017Dirichlet}, is as follows,
 \eb
 L(\bm{\pi},\theta|\bm{\tilde{\pi}},n) = 
-  \frac{\Gamma(n+1)}{\prod\limits_{a=1}^{a_{max}} \Gamma(n\tilde{\pi}_a + 1)} 
+  \frac{\Gamma(n+1)}{\prod\limits_{a=1}^{a_{\mbox{max}}} \Gamma(n\tilde{\pi}_a + 1)} 
   \frac{\Gamma(\theta n)}{\Gamma(n + \theta n)} 
-  \prod\limits_{a=1}^{a_{max}} \frac{\Gamma(n \tilde{\pi}_a + \theta n \pi_a)}{\Gamma(\theta n\pi_a)}
+  \prod\limits_{a=1}^{a_{\mbox{max}}} \frac{\Gamma(n \tilde{\pi}_a + \theta n \pi_a)}{\Gamma(\theta n\pi_a)}
 \ee
 where $n$ is the input sample size, $\tilde{\pi}_a$ are the observed proportions 
 at each age $a$, and $\pi_a$ are the corresponding expected proportions at 
@@ -792,7 +792,7 @@ $\bm{\pi}$ is used to designate the vectors of these proportions.
 
 The effective sample size associated with this likelihood is given by
 \eb
-n_{eff} = \frac{1}{1 + \theta} + n \frac{\theta}{1 + \theta}
+n_{\mbox{eff}} = \frac{1}{1 + \theta} + n \frac{\theta}{1 + \theta}
 \ee
 
 The input samples sizes used in this assessment, which are based on the 

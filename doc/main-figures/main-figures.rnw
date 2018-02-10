@@ -760,7 +760,7 @@ make.phase.plot(base.model,
 \end{center}
 \caption{Estimated historical path followed by medians of relative fishing
   intensity and relative spawning biomass for \fishname. Start and end years are
-  labelled, as is the year with the highest relative fishing intensity.
+  labeled, as is the year with the highest relative fishing intensity.
   Gray bars span the 95\% credibility
   intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical)
   and relative spawning biomass (horizontal).}
@@ -1161,7 +1161,7 @@ make.selectivity.illustration(mod.old = base.model,
   represented in the base model (left) and the semi-parametric approach 
   used in sensitivity analyses (right). Panels show transformation from 
   estimated parameters (a) to cumulative sum up to each age (b) and the resulting
-  selectivity after exponential transforamtion and rescaling to have maximum 1.0 (c),
+  selectivity after exponential transformation and rescaling to have maximum 1.0 (c),
   as described by equations (1) through (3).
   In the base model, the deviations (red lines) are applied to the 
   baseline parameters, resulting
