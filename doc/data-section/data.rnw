@@ -580,8 +580,8 @@ use of both year-specific and cohort-specific growth) have not been very
 successful for hake. Models have had great difficulty in making predictions that
 mimic the observed data. This was particularly evident in the residuals to the
 length-frequency data from models prior to 2011. We have not revisited the
-potential avenues for explicitly modeling variability in length- and weight-at
-age in this model, but retain the empirical approach to weight-at-age used since
+potential avenues for explicitly modeling variability in length- and weight-at-age
+in this model, but retain the empirical approach to weight-at-age used since
 2011 and described above.
 
 \subsection{Estimated parameters and prior probability distributions}\label{sec:data-estimated-parameters}
