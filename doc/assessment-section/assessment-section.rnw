@@ -1059,10 +1059,10 @@ resuled in a model where the standard deviation of the MLE estimates of
 recruitment deviations in the period with the most informative data was 
 \Sexpr{round(sens.models.1[[which(sens.model.names.1=="Sigma R 1.0")]]$sigma_R_info$SD_of_devs[1],2)},
 suggesting that the data were inconsistent with the lower value of $\sigma_r$.
-The high value, $\sigma_r = 1.8$, resulted in a model with a higher 
-standard deviation for the estimated recruitment deviations, at 
-\Sexpr{round(sens.models.1[[which(sens.model.names.1=="Sigma R 1.0")]]$sigma_R_info$SD_of_devs[1],2)}.
-The high $\sigma_r$ model had a larger difference between the unfished
+The high value, $\sigma_r = 1.8$, resulted in a model with a more
+consistent standard deviation for the estimated recruitment deviations, at 
+\Sexpr{round(sens.models.1[[which(sens.model.names.1=="Sigma R 1.8")]]$sigma_R_info$SD_of_devs[1],2)}.
+However, the high $\sigma_r$ model had a larger difference between the unfished
 equilibrium and the initial year of the model 
 (Table~\ref{tab:main-parameter-estimates-sens-1}; 
 Figures~\ref{fig:main-biomass-base-alternative-1} and
@@ -1075,8 +1075,8 @@ estimated deviations and the uncertainty around the estimates using the formula
 where $\mbox{Var}(\hat{r})$ is the variance among deviations and
 $\mbox{SE}(\hat{r}_y)$ is the standard error of each estimate 
 produced a suggested
-$\sigma_r$ of \Sexpr{sigma.r.alt.allyr}, which was very similar to the
-status-quo base-model value of 1.4.
+$\sigma_r$ of \Sexpr{sigma.r.alt.allyr}, which was similar to the
+base-model value of 1.4.
 
 % Manual 2018: updated the "Bratio" years in paragraph below
 The sensitivity of the base model to the inclusion of the age-1 survey index
