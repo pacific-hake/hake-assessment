@@ -255,15 +255,15 @@ data, and a new approach for parameterizing time-varying selectivity in the base
 model. The \Sexpr{assess.yr} base model includes an acoustic data time series from 1995 to 2017,
 where estimates of abundance from the survey followed the same procedures as in 
 \Sexpr{last.assess.yr}.  An updated maturity ogive was estimated and incorporated into the
-\Sexpr{assess.yr} base model (see section~\ref{sec:data-maturity}). The Dirichlet-Multinomial (D-M)
+\Sexpr{assess.yr} base model (see Section~\ref{sec:data-maturity}). The Dirichlet-Multinomial (D-M)
 likehood approach (\citet{ThorsonEtAl2017Dirichlet}) was used to estimate the weights
 associated with age compostion data, rather than iteratively tuning the sample size multiplier
-as in previous assessments (see section~\ref{sec:data-age-comp-likelihood}). Time-varying fishery
+as in previous assessments (see Section~\ref{sec:data-age-comp-likelihood}). Time-varying fishery
 selectivity is retained in the \Sexpr{assess.yr} base model with the magnitude of the allowable deviations effectively
 unchanged from 0.20 used in the \Sexpr{last.assess.yr} base model to a value of 1.4.
 In Stock Synthesis version \Sexpr{ss.version}, deviations associated with time-varying
 selectivity are no longer logistically transformed such that 1.4 is effectively the same
-as 0.2 (see section~\ref{sec:data-variability-selectivity}). Otherwise, the general parameterization of
+as 0.2 (see Section~\ref{sec:data-variability-selectivity}). Otherwise, the general parameterization of
 selectivity was retained, although additional parameters were required to
 estimate an additional year of deviations. The acoustic survey selectivity is
 assumed to not change over time. Selectivity curves were modeled as
@@ -376,7 +376,7 @@ variability of the fishery selectivity (which was increased from $\phi=0.03$
 in the 2016 assessment to $\phi=0.20$ in the 2017 assessment) no longer
 had the same effect when applied in the standard instead of logistic 
 parameter space. An analysis of the transforamtion, 
-described in section~\ref{sec:data-variability-selectivity}, estimated that 
+described in Section~\ref{sec:data-variability-selectivity}, estimated that 
 the $\phi=0.20$ applied in the logistic parameters space in the 2017 assessment
 could be converted to $\phi=1.40$, applied in the standard parameter space.  
 Exploration of higher and lower $\phi$ values confirmed that the model 
@@ -435,13 +435,13 @@ were not sequential, but rather alternative data-weighting approaches that
 produced similar results (Figure~\ref{fig:main-bridge-4-panel}).
 The Dirichlet-Multinomial method represents an replacement of the status-quo
 McAllister-Ianelli data-weighting method as described in
-section~\ref{sec:data-age-comp-likelihood}. The choice to
+Section~\ref{sec:data-age-comp-likelihood}. The choice to
 switch to the new likelihood was based on practical considerations, but the
 overall model results showed little impact of the switch.
 
 The final bridging step ``Update the estimates of maturity and fecundity''
 represents an update to the estimated fecundity-at-age as discussed in 
-section~\ref{sec:data-maturity}. This caused a visible change in the time series
+Section~\ref{sec:data-maturity}. This caused a visible change in the time series
 of spawning biomass (Figure~\ref{fig:main-bridge-4-panel}) 
 as the fecundity of all cohorts were different and the less
 smooth maturity ogive leads to larger variability in the time series of spawning
@@ -577,7 +577,7 @@ sensitivity to steepness values found in previous hake assessments. The natural
 mortality parameter, on the other hand, is shifted to the right of the prior
 distribution and the prior may be constraining the posterior distribution. Broadening
 the prior distribution by increasing the prior standard deviation for the natural mortality  
-parameter is examined as sensitivity runs (see section~\ref{sec:assessment-sensitivity-analyses}).
+parameter is examined as sensitivity runs (see Section~\ref{sec:assessment-sensitivity-analyses}).
 Other parameters showed updating from non-informative priors to stationary posterior
 distributions.
 
@@ -588,20 +588,30 @@ allowing the model more flexibility (i.e., a lower penalty on the overall
 likelihood) to fit to data that suggests high variability among years for each
 age. This value is 1.4 in Stock Synthesis version \Sexpr{ss.version}). This level
 of variation led to results that were more consistent with the 2017 acoustic survey
-biomass estimate and reasonable fits to the fishery age composition data, while maintaining that  
-there is considerable uncertainty associated with spatial changes in fish availability (due to movement) and recent
+biomass estimate and reasonable fits to the fishery age composition data, 
+while maintaining that there is considerable uncertainty associated with 
+spatial changes in fish availability (due to movement) and recent
 variability in oceanographic conditions.  Estimated selectivity deviations from
 2010 to 2012 are the largest in recent years (Figures~\ref{fig:main-tv-selex}
-and~\ref{fig:main-tv-selex-uncertainty}). Fishery selectivity from 2010 through
-2012 show a more rapid increase in selectivity-at-age than most other years
-since 2005 (almost fully selected by age-4 in 2010 and 2012, and by age-3 in
-2011).  Fishery selectivity on age-2 fish was the highest throughout the time
+and~\ref{fig:main-tv-selex-uncertainty}). The median selectivity peaks at age 4 
+in 2010 and 2012 and at age 3 in 2011 suggesting targeting of the younger cohorts
+in those years. This pattern is consistent with the 2008 cohort appearing strong 
+in the fishery age compositions initially, but decreasing in prominence 
+from 2013 onward (Figures~\ref{fig:main-age-comp-fits} and 
+\ref{fig:main-retrospective.recruitment}).
+Fishery selectivity on age-2 fish was the highest throughout the time
 series in 2016.  The selectivity of age-3 fish by the fishery in 2017 (2014 cohort) 
-was similar to that for the 1999 and 2010 large cohorts (age-3 in 2002 and 2013, respectively; 
+was similar to that for the 1999 and 2010 large cohorts 
+(age-3 in 2002 and 2013, respectively; 
 Figure~\ref{fig:main-tv-selex-uncertainty}). Even though the 
 survey selectivity is time invariant, the
 posterior shows a broad band of uncertainty between ages 2 and 5
-(Figure~\ref{fig:main-tv-selex-uncertainty-lines}). Fishery selectivity is
+(Figure~\ref{fig:main-tv-selex-uncertainty-lines}). The decline in 
+survey selectivity between ages 3 and 4 may be an artifact of the interaction
+between large cohorts and the biennial timing of recent surveys, with the
+1999 cohort occuring in the survey at ages 2 and 4 but not 3 
+while the 2010 and 2014 cohorts occurred at ages 3 and 5 but not age 4.
+Fishery selectivity is
 likewise very uncertain (Figures~\ref{fig:main-tv-selex-uncertainty}
 and~\ref{fig:main-tv-selex-uncertainty-lines}), but in spite of this
 uncertainty, changes in year-to-year patterns in the estimates are still
@@ -1109,7 +1119,7 @@ The influence of an alternative approach for calculating the 2017 fishery age
 composition was also explored through sensitivity model evaluations. In most years, 
 nearly all the available \fishname\ otoliths caught in U.S. waters are aged and then 
 used, along with data from Canada, to develop an annual age composition for 
-the fishery (see section~\ref{sec:data-fishery-biological-data}). High catch levels in 2017, resulting
+the fishery (see Section~\ref{sec:data-fishery-biological-data}). High catch levels in 2017, resulting
 from high estimates of abundance and associated TACs, and it being a survey year has 
 led to an increase in the total number of otoliths sampled for ageing.  For 2017, 
 nearly 77\% (2,369 out of 3,090) of the U.S. at-sea sectors otoliths were aged in time
@@ -1166,7 +1176,8 @@ spawning biomass are different, particularly for the age-10 case. Under all
 alternatives, the base model pattern of a decline in survey 
 selectivity between ages 3 and 4 remained, and was either increased or repeated
 at additional ages (Figure~\ref{fig:main-base-alternative-3}). 
-The likely cause of this zig-zag pattern is the 
+As noted in Section~\ref{sec:assessment-model-results}, a potential 
+cause of this zig-zag pattern is the 
 interaction of the biennial timing for much of the survey history with large 
 cohorts. The 1999 cohort made up the majority of the observed ages in the survey
 when they were age 2, 4, 6, and 8, while the 2010 and 2014 cohorts have 
@@ -1180,7 +1191,7 @@ produces less plausible patterns of selectivity.
 
 The consideration of alternative standard deviations ($\phi$) for time-varying
 selectivity is discussed earlier in
-section~\ref{sec:data-variability-selectivity}. In short, low values of the
+Section~\ref{sec:data-variability-selectivity}. In short, low values of the
 parameter $\phi$ controlling the flexibility in time-varying selectivity
 resulted in potentially implausibly high estimates recent recruitments. The
 values of $\phi$ explored in the previous assessment were 0.03, 0.10, 
