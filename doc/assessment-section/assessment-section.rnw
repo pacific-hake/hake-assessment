@@ -336,22 +336,22 @@ spawning biomass per recruit.
 
 
 A set of `bridging' models was constructed to evaluate the component-specific
-effects of all changes to the base model from \Sexpr{last.assess.yr} to
-\Sexpr{assess.yr}. 
+effects of all changes from the \Sexpr{last.assess.yr} base model to
+the \Sexpr{assess.yr} base model.
 
 In short, these included the following
 \begin{itemize}
   \item Update the Stock Synthesis modeling software from version 3.24 to 
     version 3.30.
-  \item Update data from years prior to 2017
-  \item Add 2017 total catch
-  \item Add 2017 survey biomass estimate
-  \item Add 2017 survey age composition
-  \item Add 2017 fishery ages and updated associated settings related to 
-    recruitment
-  \item Tune the model (apply the McAllister-Ianelli data-weighting method)
-  \item Switch to Dirichlet-Multinomial likelihood for age compositions
-  \item Update the estimates of maturity and fecundity
+  \item Update data from years prior to 2017.
+  \item Add 2017 total catch.
+  \item Add 2017 survey biomass estimate.
+  \item Add 2017 survey age composition.
+  \item Add 2017 fishery ages and update associated settings related to 
+    recruitment.
+  \item Tune the model (apply the McAllister-Ianelli data-weighting method).
+  \item Switch to Dirichlet-Multinomial likelihood for age compositions.
+  \item Update the estimates of maturity and fecundity.
 \end{itemize}
 
 In general, these changes mimic the steps routinely applied, with a few 
@@ -365,8 +365,8 @@ managed under the Pacific Fishery Management Council.
 One change between the two Stock Synthesis versions with significance for this 
 assessment is a change in the options for how time-varying parameters 
 are represented. In SS 3.24,
-time-varying parameters could have a logistic transformation applied to assure
-that adjusted parameter value stays within bounds of base parameter. The 
+time-varying parameters could have a logistic transformation applied to ensure
+that adjusted parameter values stay within certain bounds. The 
 parameter deviations were applied in a logistic space and the resulting values
 were transformed back into the normal parameter space. This option was not
 included in SS version 3.30 because it was found to make interpretation of the
@@ -381,18 +381,18 @@ in the 2016 assessment to $\phi=0.20$ in the 2017 assessment) no longer
 had the same effect when applied in the standard instead of logistic 
 parameter space. An analysis of the transformation, 
 described in Section~\ref{sec:data-variability-selectivity}, estimated that 
-the $\phi=0.20$ applied in the logistic parameters space in the 2017 assessment
-could be converted to $\phi=1.40$, applied in the standard parameter space.  
-Exploration of higher and lower $\phi$ values confirmed that the model 
-with $\phi=1.40$ provided the best approximation to the 2017 base model 
-as measured both by both the resulting pattern of fishery selectivity over 
+the $\phi=0.20$ applied in the logistic parameter space in the 2017 assessment
+could be converted to $\Phi=1.40$ applied in the standard parameter space.  
+Exploration of higher and lower $\Phi$ values confirmed that the model 
+with $\Phi=1.40$ provided the best approximation to the 2017 base model 
+as measured by both the resulting pattern of fishery selectivity over 
 time and the estimated time series of spawning biomass. Overall the results
 of the switch to SS 3.30 had only subtle impacts on the model results
 (Figure~\ref{fig:main-bridge-biomass}).
 
 The bridging step ``Update data from years prior to 2017'' was primarily a 
 change to the fishery ages, where a few additional samples from previous years, 
-especially from the end of 2016 that weren't available in time for last year's
+especially from the end of 2016 that were not available in time for the \Sexpr{last.assess.yr}
 assessment were now included. These changes were small enough that they had
 little impact on the model results (Figure~\ref{fig:main-bridge-biomass}).
 
@@ -410,11 +410,11 @@ estimates without those data (Figure~\ref{fig:main-bridge-5-panel}).
 
 The addition of the fishery ages in
 ``Add 2017 fishery ages and updated associated settings 
-related to recruitment'' combined multiple elements that should always  
+related to recruitment'' combined multiple elements that should  
 be associated with each other. The assessment model separates the main 
 vector of recruitment deviations from those applied in the forecast, 
 because the deviations in 
-the 'main' period are modeled as summing to zero, to ensure that they are
+the `main' period are modeled as summing to zero to ensure that they are
 equally balanced around the stock-recruit relationship. If forecast deviations
 were included in this vector, this zero-sum constraint would have the potential
 to cause those forecast deviations to differ from zero, even in the absence of 
@@ -437,7 +437,7 @@ The bridging steps
 and ``Switch to Dirichlet-Multinomial likelihood for age compositions''
 were not sequential, but rather alternative data-weighting approaches that
 produced similar results (Figure~\ref{fig:main-bridge-4-panel}).
-The Dirichlet-Multinomial method represents an replacement of the status-quo
+The Dirichlet-Multinomial method represents a replacement of the status-quo
 McAllister-Ianelli data-weighting method as described in
 Section~\ref{sec:data-age-comp-likelihood}. The choice to
 switch to the new likelihood was based on practical considerations, but the
@@ -449,13 +449,14 @@ Section~\ref{sec:data-maturity}. This caused a visible change in the time series
 of spawning biomass (Figure~\ref{fig:main-bridge-4-panel}) 
 as the fecundity of all cohorts were different and the less
 smooth maturity ogive leads to larger variability in the time series of spawning
-biomass. The new fecundity estimates have a larger increase from age 2 to age 3
-(Figure~\ref{fig:main-maturity}) causing a more abrupt increase in 
+biomass. The new fecundity has a larger increase from age~2 to age~3
+than that used previously
+(Figure~\ref{fig:main-maturity}), causing a more abrupt increase in 
 spawning biomass in years where large cohorts reach age 3, such as 
 1983, 1987, 2002, and 2013. These increases are
 followed by faster declines in spawning biomass when the cohorts reach age 5
-as the updated fecundity estimates show smaller increase from age 4 to 5 
-than the previous estimates, such that the loss due to mortality is greater
+as the updated fecundity shows a smaller increase from age~4 to~5 
+than that used previously, such that the loss due to mortality is greater
 in comparison. The estimated decline in fecundity due to 
 senescence and skip spawning from age 13 onward also reduces the estimates of
 spawning biomass at the initial equilibrium and in the early part of the time
@@ -463,7 +464,7 @@ series where there were more old individuals than in the more recent years with
 higher fishing intensity. In spite of these changes to the estimated
 spawning biomass, this bridging step had little impact
 on recruitment, since the stock-recruit relationship indicates a 
-relatively weak link between spawning biomass and recruitment.
+relatively weak link between spawning biomass and recruitment (see below).
 
 %\subsubsection{Model selection and evaluation}\label{sec:assessment-model-selection}
 
