@@ -30,7 +30,14 @@
   large cohorts via simulation and blind source age-reading of samples with 
   differing underlying age distributions -- with and without dominant year 
   classes.
- 
+  
+\item Conduct further exploration into potential biases that could arise by 
+  aggregating age composition information across fishing sectors using an annual 
+  time step when less than 100\% of sampled otoliths are aged. As needed, develop 
+  protocols for ageing laboratories to subsample the otoliths available for a given 
+  year to ensure the resulting age composition accounts for seasonal differences 
+  in catch-at-age and is represenative of the annual catch.    
+   
 \item Continue to collect and analyze life-history data, including weight, 
   maturity and fecundity for \fishname. Explore possible relationships among 
   these life history traits including time-varying changes as well as with body 
