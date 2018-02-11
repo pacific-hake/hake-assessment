@@ -839,7 +839,7 @@ start of \Sexpr{end.yr}.
  % Manual 2018 done
 The base assessment model integrates over the substantial uncertainty associated
 with several important model parameters including: acoustic survey catchability
-($q$), the magnitude of the stock (via the $\log(R_0)$ parameter for equilibrium
+($q$), the magnitude of the stock (via the $R_0$ parameter for equilibrium
 recruitment), productivity of the stock (via the steepness parameter, $h$, of
 the stock-recruitment relationship), the rate of natural mortality ($M$), annual
 selectivity for key ages, and recruitment deviations. The uncertainty portrayed
@@ -847,7 +847,7 @@ by the posterior distribution is a better representation of the uncertainty when
 compared to asymptotic approximations about the maximum likelihood estimates
 (MLE) because it allows for asymmetry (Figure~\ref{fig:main-prior-posterior};
 also see \citet{JTC2012} for further discussion and
-examples). **(this sentence still needs checking)Table~\ref{tab:main-parameter-estimates} shows that most key derived
+examples). Table~\ref{tab:main-parameter-estimates} shows that most key derived
 quantities from the posterior distribution are larger than their respective MLEs
 (e.g., median biomass, recruitment, and relative spawning biomass), however some
 parameter estimates (e.g., steepness and catchability) are
@@ -869,7 +869,7 @@ a suite of other informative sensitivity analyses in the main document.
 The \fishname\ stock displays a very high degree of recruitment variability,
 perhaps the largest of any west coast groundfish stock, resulting in large and
 rapid biomass changes. This volatility, coupled with a dynamic fishery that
-potentially targets strong cohorts resulting in time-varying selectivity, and
+potentially targets strong cohorts (resulting in time-varying selectivity), and
 little data to inform incoming recruitment until the cohort is at least age-2 or
 greater, will in most circumstances continue to result in highly uncertain
 estimates of current stock status and even less-certain projections of the stock
