@@ -681,7 +681,7 @@ This formulation has the properties that the maximum selectivity equals 1,
 positive values of $p_a$ are associated with increasing selectivity between ages $a-1$
 and $a$, and negative values are associated with decreasing selectivity between
 those ages. Beyond the maximum age for which selectivity is estimated (6 in the
-base model for the fishery and the survey),
+base model for both the fishery and the survey),
 $p_a = 0$ gives constant selectivity beyond the last estimated
 value. The condition that maximum selectivity equals 1 results in one fewer
 degree of freedom than the number of estimated $p_a$. Therefore,
@@ -690,35 +690,33 @@ $p_{A_{\text{min}}}=0$ can be set for the fishery and for the survey.
 
 % new text added January 2018
 The implementation of time-varying selectivity in the assessments from 2014 to 
-2017 all used an option available in Stock Synthesis 3.24 where 
+2017 used an option available in Stock Synthesis 3.24 whereby 
 annual deviations to the selectivity parameters were applied after the following 
-logistic transformation to keep the time-varying parameters within a 
-set of bounds.
+logistic transformation (which is not available in Stock Synthesis 3.30) 
+to keep the time-varying parameters within a set of bounds.
 
-Given parameter bounds $p_a^{low}$ and $p_a^{high}$, the base parameter $p_a$ 
-is transformed into $\tilde{p_a}$ via the equation
-
+Given bounds $p_{\text{low}}$ and $p_{\text{high}}$ such that 
+$p_{\text{low}} \leq p_a \leq p_{\text{high}}$,
+the base parameters $p_a$ 
+are transformed into $\tilde{p_a}$ via the equation
 \eb
-\tilde{p}_a = \frac{1}{2}\log\left(\frac{p_a^{high} - p_a^{low} + 
-    2\cdot 10^{-7}}{p_a - p_a^{low} + 10^{-7}} - 1\right)
+\tilde{p}_a = \frac{1}{2}\log\left(\frac{p_{\text{high}} - p_{\text{low}} + 
+    2 \times 10^{-7}}{p_a - p_{\text{low}} + 10^{-7}} - 1\right)
 \ee
-
 where the small constants in the numerator and denominator are included to 
 ensure that $\tilde{p_a}$ is finite even when $p_a$ is on a bound.
 
-The deviations are applied in this transformed space, as
-
+The deviations are applied in this transformed space as
 \eb
-\tilde{p}_{ay} = \tilde{p}_a + \epsilon_{ay}
+\tilde{p}_{ay} = \tilde{p}_a + \epsilon'_{ay}
 \ee
-
-where the $\epsilon_{ay}$ are additional parameters estimated in the model.
+where the $\epsilon'_{ay}$ are additional parameters estimated in the model.
 
 The resulting value is then back-transformed into the standard parameter space
-using the formula
-
+via
 \eb
-p_{ay} = p_a^{low} + \frac{ p_a^{high} - p_a^{low} }{ 1 + \exp{\left( -2 \tilde{p}_{ay} \right) } } 
+p_{ay} = p_{\text{low}} + \frac{ p_{\text{high}} - p_{\text{low}} }
+                               { 1 + \exp{\left( -2 \tilde{p}_{ay} \right) } } 
 \label{data-selectivity-transformation}
 \ee
 
@@ -729,15 +727,12 @@ p_{ay} = p_a^{low} + \frac{ p_a^{high} - p_a^{low} }{ 1 + \exp{\left( -2 \tilde{
 
 In Stock Synthesis 3.30, this logistic transformation is no longer available, so
 the deviations are applied directly to the base parameter:
-
 \eb
 p_{ay} = p_a + \epsilon_{ay}
 \ee
-
 where the $\epsilon_{ay}$ are the parameter deviations estimated in the model.
 These deviations are included in an additional likelihood component 
 with negative log-likelihood proportional to
-
 \eb
 -\log(\mbox{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6} 
   ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \frac{\epsilon_{ay}^2}{\phi^2},
@@ -746,18 +741,21 @@ with negative log-likelihood proportional to
 where $\phi$ is the standard deviation of the normal penalty function.
 % Manual 2017: age 6 and y=1991. Andy thought 1991 might be tv.selex.start.yr
 %  but that has value 1990. Control file says 1991.
+Note that there is such a log-likelihood component for both the fishery and the
+survey selectivities.
 
 The logistic transformation proved unnecessary as the bounds on the selectivity 
 parameters were somewhat arbitrary, and none of the deviations led to parameters
 approaching these bounds. To calculate a new value of $\phi$ to apply in the 
-standard parameter space that corresponded to the $\phi = 0.20$ applied in the 
-transformed parameter space in last years assessment, the derivative of 
-equation (\ref{data-selectivity-transformation}) was calculated with respect
-to $\tilde{p}_{ay}$, given the bounds of -5 to 9 used for all time-varying 
-selectivity parameters. The resulting value of 7 at the mid-point between the 
+standard parameter space that corresponds to the $\phi = 0.20$ use in the 
+transformed parameter space in the 2017 assessment \citep{JTC2017}, the derivative 
+of~(\ref{data-selectivity-transformation}) with respect
+to $\tilde{p}_{ay}$
+was calculated, with $p_{\text{low}} = -5$ and $p_{\text{high}} = 9$ for the bounds.
+The resulting value of 7 at the mid-point between the 
 bounds is an approximation to the relative impact of a deviation in the 
-logistic parameter space to one in the standard parameter space. Thus, a value 
-of $\phi = 1.40$ was chosen to approximate the value of $\phi = 0.20$ applied
+logistic parameter space to one in the standard parameter space. The resulting
+value of $\Phi = 1.40$ approximates the value of $\phi = 0.20$ used
 in the transformed parameter space in the 2017 assessment.
 
 \subsubsection{Age composition likelihood}\label{sec:data-age-comp-likelihood}
