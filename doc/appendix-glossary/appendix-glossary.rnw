@@ -140,6 +140,8 @@ Joint Technical Committee (JTC): The joint technical committee established by th
 %Not found in text in 2017:
 %kt: Knots (nautical miles per hour).
 
+Logistic transformation: A mathematical transformation used to translate between numbers bounded within some range to numbers on the real line ($-\infty$ to $+\infty$).
+
 Magnuson-Stevens Fishery Conservation and Management Act: The MSFCMA, sometimes known as the ``Magnuson-Stevens Act'', established the 200-mile fishery conservation zone, the regional fishery management council system, and other provisions of U.S. marine fishery law.
 
 Management Strategy Evaluation (MSE):  A formal process for evaluating Harvest Strategies (see above). % The elements of an MSE are illustrated in Figures~A.1 and A.2 of ***.
@@ -244,6 +246,8 @@ SD: Standard deviation. A measure of variability within a sample.
 Simulation: A model evaluation under a particular state of nature, including combinations of parameters controlling stock productivity, stock status, and the time series of recruitment deviations. In this assessment, there are 999 simulations used to characterize alternative states of nature, each of which are based on a sample from the posterior distribution of the parameters, as calculated using MCMC, for a particular model (e.g., the base model).
 
 Spawning biomass: Abbreviated term for female spawning biomass (see above).
+
+Spawning biomass per recruit: The expected lifetime contribution of an age-0 recruit, calculated as the sum across all ages of the product of spawning biomass at each age and the probability of surviving to that age. See Figure~\ref{fig:glossary-SPR-illustration} for a graphical demonstration of the calculation of this value, which is found in both numerator and denominator of the Spawning potential ratio (SPR, see below).
 
 %Spawning output: The total production of eggs (or possibly viable egg equivalents if egg quality is taken into account) given the number of females-at-age (and maturity- and fecundity-at-age).
 
