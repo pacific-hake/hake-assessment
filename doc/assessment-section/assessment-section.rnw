@@ -117,15 +117,15 @@ from the JTC:
     and exploring an alternative ``semi-parametric'' parameterization of the 
     approach to setting the time-varying, all described in 
     Section~\ref{sec:assessment-sensitivity-analyses}. Although the 
-    semi-parametric option shows promise, no alternative considered was a clear
+    semi-parametric option shows promise, no considered alternative was a clear
     improvement over the status-quo parameterization with with the larger $\phi$ 
-    value (previously $\phi = 0.2$ but converted to $\phi = 1.4$ after
+    value (previously $\phi = 0.2$ but now converted to $\Phi = 1.4$ after
     removing a logistic transformation as described in 
     Section~\ref{sec:assessment-changes}). 
-    The data from 2017 suggests that the 2014 cohort was more 
-    in line with the estimates of from the model with more flexible fishery 
-    selectivity, providing support for maintaining that flexibility for this 
-    year.}
+    The data from 2017 suggest that the 2014 cohort was more 
+    in line with the estimates from the model with more (rather than less) flexible
+    fishery selectivity (larger $\phi$), providing support for maintaining that 
+    flexibility for this year.}
 
 \item The next priority for 2018 is processing the archived ovary collections of
   Pacific Hake, and re-estimating the maturity schedule based on histological
@@ -153,10 +153,10 @@ from the JTC:
     weak link between recruitment and spawning biomass and the 
     lack of information about weight-at-age in the unfished equilibrium.
     Further analysis of the relationships 
-    between fecundity, age, and weight would depend on collecting whole ovaries
+    between fecundity, age, and weight would depend upon collecting whole ovaries
     rather than ovary samples. The difference in 
     maturity between fish sampled north and south of Point Conception is strongly
-    evident when considering maturity-at-age as well as maturity at length, and
+    evident when considering maturity-at-age as well as maturity-at-length, and
     NWFSC is seeking to conduct genetic analyses that could test whether
     the southern samples are from a distinct stock.}
   
@@ -174,7 +174,7 @@ from the JTC:
   In addition to standard single chain MCMC convergence 
   diagnostics, we also evaluated multi-chain diagnostics (Gelman-Rubin) that compares
   within chain and among chain variance to further diagnose convergence.  The R package
-  'adnuts' has recently been incorporated into the new 12.0 version of ADMB, and we expect to 
+  `adnuts' has recently been incorporated into the new 12.0 version of ADMB, and we expect to 
   further explore more efficient methods for obtaining Bayesian posteriors once 
   Stock Synthesis has been compiled and fully tested with this new version.} 
   
@@ -236,7 +236,7 @@ from the JTC:
     are included in this \Sexpr{assess.yr} assessment as 
     Tables~\ref{tab:main-est-exp-rate-at-age},
     \ref{tab:main-est-biomass-at-age}, \ref{tab:main-est-catch-at-age},
-    \ref{tab:main-est-catch-at-age-biomass} and \ref{tab:main-cohort-effects}
+    \ref{tab:main-est-catch-at-age-biomass} and \ref{tab:main-cohort-effects},
     respectively.}
     
 \end{itemize}
