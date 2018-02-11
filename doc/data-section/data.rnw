@@ -734,11 +734,11 @@ where the $\epsilon_{ay}$ are the parameter deviations estimated in the model.
 These deviations are included in an additional likelihood component 
 with negative log-likelihood proportional to
 \eb
--\log(text{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6} 
-  ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \frac{\epsilon_{ay}^2}{\phi^2},
-% -\log(text{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6} ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \left. \dfrac{\epsilon_{ay}^2}{\phi^2}{\vrule height 24pt width 0pt} \right. ,     % to try and make summations larger; can live with as is.
+-\log(\text{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6} 
+  ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \frac{\epsilon_{ay}^2}{\Phi^2},
+% -\log(\text{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6} ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \left. \dfrac{\epsilon_{ay}^2}{\phi^2}{\vrule height 24pt width 0pt} \right. ,     % to try and make summations larger; can live with as is.
 \ee
-where $\phi$ is the standard deviation of the normal penalty function.
+where $\Phi$ is the standard deviation of the normal penalty function.
 % Manual 2017: age 6 and y=1991. Andy thought 1991 might be tv.selex.start.yr
 %  but that has value 1990. Control file says 1991.
 Note that there is such a log-likelihood component for both the fishery and the
@@ -746,7 +746,7 @@ survey selectivities.
 
 The logistic transformation proved unnecessary as the bounds on the selectivity 
 parameters were somewhat arbitrary, and none of the deviations led to parameters
-approaching these bounds. To calculate a new value of $\phi$ to apply in the 
+approaching these bounds. To calculate a value of $\Phi$ to apply in the 
 standard parameter space that corresponds to the $\phi = 0.20$ use in the 
 transformed parameter space in the 2017 assessment \citep{JTC2017}, the derivative 
 of~(\ref{data-selectivity-transformation}) with respect
@@ -787,7 +787,7 @@ survey data and $\theta_{\text{fish}}$ for the fishery data).
 The likelihood function is given by equation (10) of 
 \citet{ThorsonEtAl2017Dirichlet}, and is
 \eb
-L(\bm{\pi},\theta|\bm{\tilde{\pi}},n) = 
+\text{L}(\bm{\pi},\theta|\bm{\tilde{\pi}},n) = 
   \frac{\Gamma(n+1)}{\prod\limits_{a=1}^{A_{\scriptscriptstyle{\text{max}}}} \Gamma(n\tilde{\pi}_a + 1)} 
   \frac{\Gamma(\theta n)}{\Gamma(n + \theta n)} 
   \prod\limits_{a=1}^{A_{\scriptscriptstyle{\text{max}}}} \frac{\Gamma(n \tilde{\pi}_a + \theta n \pi_a)}{\Gamma(\theta n\pi_a)}
