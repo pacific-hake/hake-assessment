@@ -249,23 +249,24 @@ from the JTC:
 The \Sexpr{assess.yr} base model is predominantly an update of the base model in
 the \Sexpr{last.assess.yr} stock assessment. Stock Synthesis
 \citep{MethotWetzel2013} version \Sexpr{ss.version} was used, which is a significant update to
-the software version (3.24U) used in the previous assessment \citep{JTC2016}.  In addition
+the software version (3.24U) used in the previous assessment \citep{JTC2017}.  In addition
 to the new version of Stock Synthesis, the largest changes between the
-\Sexpr{assess.yr} and \Sexpr{last.assess.yr} stock assessments is the addition of another
-year of acoustic survey data, a new maturity ogive, a new approach for weighting composition
+\Sexpr{last.assess.yr} and \Sexpr{assess.yr} stock assessments are the addition of another
+year of acoustic survey and fishery data, a new maturity ogive, a new approach for weighting composition
 data, and a new approach for parameterizing time-varying selectivity in the base
-model. The \Sexpr{assess.yr} base model includes an acoustic data time series from 1995 to 2017,
+model.
+
+The \Sexpr{assess.yr} base model includes an acoustic data time series from 1995 to 2017,
 where estimates of abundance from the survey followed the same procedures as in 
-\Sexpr{last.assess.yr}.  An updated maturity ogive was estimated and incorporated into the
+\Sexpr{last.assess.yr} \citep{JTC2017}.  An updated maturity ogive was estimated and incorporated into the
 \Sexpr{assess.yr} base model (see Section~\ref{sec:data-maturity}). The Dirichlet-Multinomial (D-M)
-likelihood approach (\citet{ThorsonEtAl2017Dirichlet}) was used to estimate the weights
-associated with age composition data, rather than iteratively tuning the sample size multiplier
+likelihood approach \citep{ThorsonEtAl2017Dirichlet} was used to estimate the weights
+associated with age-composition data, rather than iteratively tuning the sample size multiplier
 as in previous assessments (see Section~\ref{sec:data-age-comp-likelihood}). Time-varying fishery
 selectivity is retained in the \Sexpr{assess.yr} base model with the magnitude of the allowable deviations effectively
-unchanged from 0.20 used in the \Sexpr{last.assess.yr} base model to a value of 1.4.
-In Stock Synthesis version \Sexpr{ss.version}, deviations associated with time-varying
-selectivity are no longer logistically transformed such that 1.4 is effectively the same
-as 0.2 (see Section~\ref{sec:data-variability-selectivity}). Otherwise, the general parameterization of
+unchanged from the $\phi=0.20$ used in the \Sexpr{last.assess.yr} base model to
+an equivalent value of $\Phi = 1.4$ (see Section~\ref{sec:data-variability-selectivity}).
+Otherwise, the general parameterization of
 selectivity was retained, although additional parameters were required to
 estimate an additional year of deviations. The acoustic survey selectivity is
 assumed to not change over time. Selectivity curves were modeled as
@@ -278,22 +279,22 @@ Prior probability distributions remained unchanged from \Sexpr{last.assess.yr}
 and fixed values are used for several parameters. For the base model, the
 instantaneous rate of natural mortality ($M$) is estimated with a
 \Sexpr{m.prior[1]} prior having a median of \Sexpr{m.prior[2]} and a standard
-deviation (in log-space) of 0.1 (described further in
+deviation (in log-space) of 0.1 (see
 Section~\ref{sec:data-natural-mortality}). The stock-recruitment function is a
 Beverton-Holt parameterization, with the log of the mean unexploited recruitment
 freely estimated. This assessment uses the same Beta-distributed prior for
 stock-recruit steepness ($h$), based on \citet{MyersBowenEtAl1999}, that has
 been applied since 2011 \citep{StewartForrestEtAl2011, JTC2012, JTC2013,
 JTC2014, JTC2015, JTC2016, JTC2017}. Year-specific recruitment deviations were estimated
-from 1966--2017 as well as the years \Sexpr{assess.yr}, \Sexpr{assess.yr+1}, and
+from 1966-2017 as well as the years \Sexpr{assess.yr}, \Sexpr{assess.yr+1}, and
 \Sexpr{assess.yr+2} for purposes of forecasting. The standard deviation,
 $\sigma_r$, of recruitment variability, serving as both a recruitment deviation
 constraint and bias-correction term, is fixed at a value of
 \Sexpr{base.model$sigma_R_in} in this assessment. This value is based on
 consistency with the observed variability in the time series of recruitment
-deviation estimates, and is the same as assumed in 2013, 2014, 2015, 2016, and
+deviation estimates, and is the same as assumed in assessments from 2013 to
 \Sexpr{last.assess.yr}. Survey catchability was set at the median unbiased
-estimate calculated analytically as shown by \citet{LudwigWalters1981}. Maturity
+estimate calculated analytically as per \citet{LudwigWalters1981}. Maturity
 and fecundity relationships are assumed to be time-invariant and fixed values
 were updated using the new maturity ogive discussed earlier.
 
@@ -305,7 +306,8 @@ additive standard deviation on the log-scale component is included, which was
 freely estimated to accommodate unaccounted-for sources of process and
 observation error. A Dirichlet-Multinomial (D-M) likelihood was applied to age-composition data,
 with input sample sizes equal to the sum of the number of trips or hauls actually sampled across all
-fishing fleets, and the number of trawl sets in the research surveys. A weighting parameter for the fishery
+fishing fleets or the number of trawl sets in the research surveys (see Section~\ref{sec:data-age-comp-likelihood}).
+A weighting parameter for the fishery
 and the survey age compositions was specified and then estimated in the model fitting procedure.
 to allow for additional sources of process and observation error. This process resulted in
 automatically tuned input sample sizes.  Tuning quantities did not change in assessments from 2012 to
@@ -324,9 +326,9 @@ Calculations and figures from Stock Synthesis output were performed using
 particular r4ss and xtable). The use of R, knitr, \LaTeX~and GitHub immensely
 facilitated the collaborative writing of this document.
 
-For this assessment document, we have further refined the Glossary
-(Appendix~\ref{chap:glossary}), in particular clarifying the definitions of the
-various terms involved in the default harvest policy.
+For this assessment document, we have slightly refined the Glossary
+(Appendix~\ref{chap:glossary}), adding an explicit definition of
+spawning biomass per recruit.
 
 \subsection{Modeling results}\label{sec:assessment-modeling-results}
 % Manual 2018 (in progress)
