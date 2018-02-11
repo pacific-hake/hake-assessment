@@ -236,6 +236,11 @@ fourth.shoreside.age.prop <- f(ss.age.prop.holder[2] * 100, 1)
 recruitment.med.since.2010 <- base.model$mcmccalcs$rmed[ which(names(base.model$mcmccalcs$rmed) %in% 2010:end.yr & names(base.model$mcmccalcs$rmed) %in% start.yr:(end.yr-1))]
 years.since.2010.recruitment.med.below.mean <- names(recruitment.med.since.2010[recruitment.med.since.2010  < mean(base.model$mcmccalcs$rmed)])
 
+
+################################################################################
+## Estimated recruitment in 2014 to discuss in Recruitment subsubsection, in billions
+recruitment.med.in.2014 <- f(base.model$mcmccalcs$rmed["2014"], 3)
+
 ################################################################################
 ## Exploitation values
 exploitation.med.2010 <- f(base.model$mcmccalcs$fmed["2010"],2)

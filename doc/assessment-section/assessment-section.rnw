@@ -706,6 +706,13 @@ catch. Although the absolute size of the 2014 year class remains highly uncertai
 cohorts that have been observed for more years, two years of fishery data and one year of survey data
 suggest that it is one of the higher estimates in the time series.
 
+The extra data in the 2018 assessment has reduced the median estimate of the
+2014 year class to 
+\Sexpr{recruitment.med.in.2014}~billion fish (Table~\ref{tab:main-median-posterior}),
+from the 12.105~billion estimated in the 2017 assessment (Table~18 of \citealt{JTC2017}).
+Yet the 2014 year class remains the fifth largest estimated recruitment, albeit
+with large uncertainty (Table~\ref{tab:main-ci-posterior} and 
+Figure~\ref{fig:main-recruitment}).
 
 The model currently estimates small 2011, 2013, and 2015 year classes (median
 recruitment below the mean of all median recruitments) and a slightly above
