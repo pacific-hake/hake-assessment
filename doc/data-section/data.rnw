@@ -734,9 +734,9 @@ where the $\epsilon_{ay}$ are the parameter deviations estimated in the model.
 These deviations are included in an additional likelihood component 
 with negative log-likelihood proportional to
 \eb
--\log(\mbox{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6} 
+-\log(text{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6} 
   ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \frac{\epsilon_{ay}^2}{\phi^2},
-% -\log(\mbox{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6} ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \left. \dfrac{\epsilon_{ay}^2}{\phi^2}{\vrule height 24pt width 0pt} \right. ,     % to try and make summations larger; can live with as is.
+% -\log(text{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6} ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \left. \dfrac{\epsilon_{ay}^2}{\phi^2}{\vrule height 24pt width 0pt} \right. ,     % to try and make summations larger; can live with as is.
 \ee
 where $\phi$ is the standard deviation of the normal penalty function.
 % Manual 2017: age 6 and y=1991. Andy thought 1991 might be tv.selex.start.yr
@@ -759,52 +759,63 @@ value of $\Phi = 1.40$ approximates the value of $\phi = 0.20$ used
 in the transformed parameter space in the 2017 assessment.
 
 \subsubsection{Age composition likelihood}\label{sec:data-age-comp-likelihood}
-The base model includes a change in likelihood and data-weighting method 
-applied to the age composition data. The 2017 assessment, like those before it,
+The base model includes a change in the likelihood and data-weighting method 
+applied to the age composition data. The 2017 assessment \citep{JTC2017},
+like those before it,
 used a multinomial likelihood and the tuning method of \citet{McAllisterIanelli1997}
 for weighting the age compositions. This tuning method involves
-iteratively adjusting a multiplier on the the input sample sizes until they are
+iteratively adjusting a multiplier of the input sample sizes until they are
 roughly equal to the harmonic mean of the effective sample sizes, where the
 effective sample size is dependent on how well the model expectation matches
 the observed values. For this assessment, a new Dirichlet-Multinomial (D-M) likelihood
-was adopted, as proposed by \citet{ThorsonEtAl2017Dirichlet}. The primary benefit
+was adopted, as proposed by \citet{ThorsonEtAl2017Dirichlet}
+and tested by them on a simplified version of the 2015 \fishname\
+model \citep{JTC2015}.
+The primary benefit
 of the D-M approach is that instead of manually iterating the sample size multiplier,
-an estimated parameter serves to automatically adjust the weight given to
+an estimated parameter, $\theta$, serves to automatically adjust the weight given to
 the composition data. This increases efficiency of the assessment process, removes the
 subjective choice of how many iterations are required in the previous approach,
 and also ensures that the results of model sensitivities, retrospective analyses, 
 and likelihood profiles will all be automatically tuned, rather than having the
-age composition given the same weight as the base model.
+age compositions given the same weight as the base model.
+Note that the following description holds for both the survey data and the
+fishery data, but, again, for simplicitly we do not make the distinction here
+(other than to note that we consequently estimate $\theta_{\text{surv}}$ for the 
+survey data and $\theta_{\text{fish}}$ for the fishery data).
 
-The likelihood, equation (10) in \citet{ThorsonEtAl2017Dirichlet}, is as follows,
+The likelihood function is given by equation (10) of 
+\citet{ThorsonEtAl2017Dirichlet}, and is
 \eb
 L(\bm{\pi},\theta|\bm{\tilde{\pi}},n) = 
-  \frac{\Gamma(n+1)}{\prod\limits_{a=1}^{a_{\mbox{max}}} \Gamma(n\tilde{\pi}_a + 1)} 
+  \frac{\Gamma(n+1)}{\prod\limits_{a=1}^{A_{\scriptscriptstyle{\text{max}}}} \Gamma(n\tilde{\pi}_a + 1)} 
   \frac{\Gamma(\theta n)}{\Gamma(n + \theta n)} 
-  \prod\limits_{a=1}^{a_{\mbox{max}}} \frac{\Gamma(n \tilde{\pi}_a + \theta n \pi_a)}{\Gamma(\theta n\pi_a)}
+  \prod\limits_{a=1}^{A_{\scriptscriptstyle{\text{max}}}} \frac{\Gamma(n \tilde{\pi}_a + \theta n \pi_a)}{\Gamma(\theta n\pi_a)}
+% not sure why A_\mbox{max} or A_\text{max} wouldn't work, \scriptscriptstyle does
 \ee
-where $n$ is the input sample size, $\tilde{\pi}_a$ are the observed proportions 
-at each age $a$, and $\pi_a$ are the corresponding expected proportions at 
-each age as estimated by the model. The notation $\bm{\tilde{\pi}}$ and 
-$\bm{\pi}$ is used to designate the vectors of these proportions.
+where 
+$\tilde{\pi}_a$ is the observed proportion at age $a$,
+$\pi_a$ is the corresponding expected proportion at age $a$ estimated
+by the model,
+$\bm{\tilde{\pi}}$ and $\bm{\pi}$ designate the vectors of these proportions,
+$A_{\text{max}}$ is the maximum age in the model,
+and $n$ is the input sample size. The parameter $\theta$ is defined as a
+linear scaling parameter such that $\theta n$ is the variance-inflation parameter 
+of the Dirichlet-Multinomial distribution (see \citealt{ThorsonEtAl2017Dirichlet}).
 
 The effective sample size associated with this likelihood is given by
 \eb
-n_{\mbox{eff}} = \frac{1}{1 + \theta} + n \frac{\theta}{1 + \theta}
+n_{\text{eff}} = \frac{1}{1 + \theta} + \frac{n \theta}{1 + \theta}
 \ee
-
 The input samples sizes used in this assessment, which are based on the 
 number of trips or hauls, are large enough that the $1/(1 + \theta)$ term
 is insignificant compared to the $n \theta / (1 + \theta)$ term, which means
 that $\theta / (1 + \theta)$ can be compared to the sample size 
 multipliers used in the McAllister-Ianelli data weighting method. 
 
-See \citet{ThorsonEtAl2017Dirichlet} for the derivation of this likelihood and
-more detail on the simulation study used to test it.
-
-The implementation of the D-M likelihood in SS has $\log(\theta)$ as the estimated
-parameter in order to ensure that $\theta$ remains positive.
-
-
+See \citet{ThorsonEtAl2017Dirichlet} for the derivation of the likelihood and
+more details on the hake-based simulation study used to test it. The
+implementation of the D-M likelihood in Stock Synthesis has $\log \theta$ as the
+estimated parameter in order to ensure that $\theta$ remains positive.
 
 \clearpage
