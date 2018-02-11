@@ -659,17 +659,27 @@ to 2017 due to the large 2014 year class, which is estimated to be the fifth hig
 recruitment in the time series, and a slight decrease from 2017 to 2018 due, in part, to
 the model fit of the acoustic survey index (Figure~\ref{fig:main-bridge-5-panel}).
 
-The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning
+The median estimate of the \Sexpr{end.yr} relative spawning biomass (female spawning
 biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium,
 $B_0$) is \Sexpr{curr.depl.median}\% but is highly uncertain (with a 95\%
 posterior credibility interval from \Sexpr{curr.depl.lower}\% to
 \Sexpr{curr.depl.upper}\%; see Tables~\ref{tab:main-median-posterior} and
-\ref{tab:main-ci-posterior}). The median estimate of the \Sexpr{end.yr}
-beginning of the year female spawning biomass is
+\ref{tab:main-ci-posterior}). The median estimate of the
+female spawning biomass at the start of \Sexpr{end.yr} is
 \Sexpr{curr.bio.median}~million~t (with a 95\% posterior credibility interval
-from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper}~million~t). The estimated
-\Sexpr{end.yr-1} female spawning biomass is \Sexpr{prev.bio.median}
-(\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t.
+from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper}~million~t). 
+
+The estimated
+\Sexpr{end.yr-1} female spawning biomass is 
+\Sexpr{prev.bio.median}~(\Sexpr{prev.bio.lower}-\Sexpr{prev.bio.upper})~million~t.
+In the 2017 assessment, the equivalent estimate of 2017 female spawning biomass was
+2.129~(0.763-7.445)~million~t. Thus the 2018-estimated median is smaller than the 2017-estimated
+median, while the 2018 credible interval remains within the 2017 interval. The additional
+data in the 2018 assessment has reduced the uncertainty of the 2017 biomass, and
+decreased the median partly due to the impact of the survey biomass estimate.
+
+
+
 
 % \newpage % kludge to avoid dangling heading:
 
