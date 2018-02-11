@@ -172,8 +172,8 @@ from the JTC:
   including alternative chain lengths (12 million and 24 million), sample lengths 
   (1,200, 999 saved after burn-in; and 2,400, 2,000 saved after burn-in), and chains.
   In addition to standard single chain MCMC convergence 
-  diagnostics, we also evaluated multi-chain diagnostics (Gelman-Rubin) that compares
-  within chain and among chain variance to further diagnose convergence.  The R package
+  diagnostics, we also evaluated multi-chain diagnostics (Gelman-Rubin) that compare
+  within-chain and among-chain variances to further diagnose convergence.  The R package
   `adnuts' has recently been incorporated into the new 12.0 version of ADMB, and we expect to 
   further explore more efficient methods for obtaining Bayesian posteriors once 
   Stock Synthesis has been compiled and fully tested with this new version.} 
@@ -187,7 +187,7 @@ from the JTC:
   inclusion of the age-1 index, and exploring the degree of flexibility in time-varying
   selectivity or the $\phi$ parameter, as well as any others the JTC deems appropriate.
 
-  \emph{Response -- The 2018 assessment included all of the key sensitivities that
+  \emph{Response -- The 2018 assessment includes all of the key sensitivities that
   the SRG requested.  Many other sensitivity model runs were conducted during the
   development of the base model and to explore different than base model assumptions, 
   including sources of data, model structural assumptions, and parameterizations. 
@@ -201,8 +201,8 @@ from the JTC:
   large recruitment events that are influential in projections, but highly
   uncertain.
 
-  \emph{Response -- The 2018 assessment included a sensitivity model run that 
-  incorporated the acoustic survey age-1 index (see Figures~\ref{fig:main-backscatter-map-age1},~\ref{fig:main-biomass-base-alternative-2}, and~\ref{fig:main-status-base-alternative-2}).  The age-1 index time series was 
+  \emph{Response -- The 2018 assessment includes a sensitivity model run that 
+  incorporates the acoustic survey age-1 index (see Figures~\ref{fig:main-backscatter-map-age1},~\ref{fig:main-biomass-base-alternative-2}, and~\ref{fig:main-status-base-alternative-2}).  The age-1 index time series was 
   extended to include the age-1 estimate for 2017. The age-1 index is used 
   in this stock assessment as a sensitivity because the survey is not specifically
   designed to survey age-1 hake and uncertainty associated with each estimate is 
