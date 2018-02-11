@@ -479,46 +479,52 @@ For the base model, the MCMC chain length was increased from the 12 million in t
 resulted in the first 4,000,000 discarded to eliminate `burn-in' effects and
 retaining each 10,000th value thereafter, resulting in \Sexpr{num.mcmc.samples}
 samples from the posterior distributions for model parameters and derived
-quantities. Initial MCMC explorations indicated that the $\log(\theta)$
-Dirichlet-Multinomial (D-M) weighting parameter for the survey
+quantities. Initial MCMC explorations indicated that $\log
+\theta_{\text{surv}}$, the log of the $\theta$ parameter associated with the survey
+data in the
+Dirichlet-Multinomial (D-M) weighting,
 was not being sampled efficiently due to many samples occurring in a part of
-parameter space where the effective sample size multiplier, $\theta/(1+\theta)$,
+parameter space where the effective sample size multiplier, $\theta_{\text{surv}}/(1+\theta_{\text{surv}})$,
 is between 0.99 and 1.0. In this area, the input sample sizes are 
 given full weight and the likelihood surface is almost completely flat 
 with respect to this parameter.
-Therefore, to improve MCMC convergence, $\log(\theta_{\mbox{surv}})$ 
-was fixed at the MLE estimate of $\log(\theta_{\mbox{surv}})$ = \Sexpr{log.theta.survey}, 
+Therefore, to improve MCMC convergence, $\log \theta_{\text{surv}}$ 
+was fixed at the MLE estimate of \Sexpr{log.theta.survey}, 
 corresponding to a weight of 
-$\theta_{\mbox{surv}}/(1+\theta_{\mbox{surv}})$ = \Sexpr{DM.weight.survey}. 
+$\theta_{\text{surv}}/(1+\theta_{\text{surv}}) = \Sexpr{DM.weight.survey}$. 
 The D-M parameter for the fishery weights was well sampled by the MCMC, 
 with a median estimate of 
-$\log(\theta_{\mbox{fish}})$ = \Sexpr{log.theta.fishery.median} and an associated
+$\log \theta_{\text{fish}} = \Sexpr{log.theta.fishery.median}$ and an associated
 median weight of 
-$\theta_{\mbox{fish}}/(1+\theta_{\mbox{fish}})$ = \Sexpr{DM.weight.fishery.median}.
+$\theta_{\text{fish}}/(1+\theta_{\text{fish}}) = \Sexpr{DM.weight.fishery.median}$.
 
 Stationarity of the posterior distribution for model parameters was
 re-assessed via a suite of standard single-chain and multi-chain diagnostic tests. 
 The objective function, as
 well as all estimated parameters and derived quantities, showed good mixing
 during the chain, no evidence for lack of convergence, and low autocorrelation
-(Figures~\ref{fig:main-mcmc.diag.m.r0}
+(results for some key parameters are shown in Figures~\ref{fig:main-mcmc.diag.m.r0}
 and~\ref{fig:main-mcmc.diag.h.extra.sd}). Correlation-corrected effective sample
 sizes were sufficient to summarize the posterior distributions and neither the
 Geweke nor the Heidelberger and Welch statistics for these parameters exceeded
 critical values more frequently than expected via random chance
-(Figure~\ref{fig:main-mcmc.diag.hists}). Traceplots show that the MCMC chain was
-well behaved and had little autocorrelation
-(Figures~\ref{fig:main-mcmc.diag.m.r0} and
-~\ref{fig:main-mcmc.diag.h.extra.sd}). The Gelman-Rubin multi-chain diagnostic test, 
-which compares within chain variance to among chain variance, further indicated that 
+(Figure~\ref{fig:main-mcmc.diag.hists}).
+% [repetition:]
+% Traceplots show that the MCMC chain was
+% well behaved and had little autocorrelation
+% (Figures~\ref{fig:main-mcmc.diag.m.r0} and
+% ~\ref{fig:main-mcmc.diag.h.extra.sd}).
+The Gelman-Rubin multi-chain diagnostic test, 
+which compares within-chain variance to among-chain variance, further indicated that 
 convergence was adequately achieved (Figure~\ref{fig:main-mcmc.diag.gelrub}). 
 Correlations among key parameters were
-generally low, with the exception of natural mortality, $M$, and the unexploited
-equilibrium recruitment level, $\log(R_0)$ (Figure~\ref{fig:main-mcmc-pairs}). 
+generally low, with the exception of natural mortality, $M$, and the logarithm
+of the unexploited
+equilibrium recruitment level, $\log R_0$, (Figure~\ref{fig:main-mcmc-pairs}). 
 Derived quantities for recruitment in 2008 and
 2010 as well as the relationship between relative spawning biomass in
-\Sexpr{end.yr} with both the default harvest catch in \Sexpr{end.yr} and
-recruitment in 2014 were highly correlated as expected given the dependencies
+\Sexpr{end.yr} with both the catch from default harvest rule in \Sexpr{end.yr} 
+and the recruitment in 2014 being highly correlated, as to be expected given the dependencies
 among these quantities (Figure~\ref{fig:main-mcmc-pairs}). An examination of
 deviations in recruitment (log-scale differences between estimated and expected
 recruitment values) from recent years
@@ -527,15 +533,15 @@ correlation
 (\Sexpr{round(cor(base.model$mcmc$Main_RecrDev_2008,base.model$mcmc$Main_RecrDev_2010),2)})
 between the 2008 and 2010 recruitment deviations. This continues to be likely
 caused by the relative proportion of these two cohorts being better informed by
-recent age composition data than the absolute magnitude of these recruitments.
+recent age-composition data than the absolute magnitude of these recruitments.
 
 The base model fit to the acoustic survey biomass index
-(Figure~\ref{fig:main-mcmc-survey-fit}, Figure~\ref{fig:main-survey-extrap-biomass})
+(Figures~\ref{fig:main-survey-extrap-biomass} and~\ref{fig:main-mcmc-survey-fit})
 remains similar to the \Sexpr{last.assess.yr} base model up through 2013. The addition of the 2017
 survey biomass estimate resulted in a downward shift in the fit to the 2015 survey data
 point and a leveling off of the biomass trend over recent years (Figure~\ref{fig:main-bridge-5-panel}). 
 The 2001 data point continues to be well below any model predictions that were evaluated, 
-and no direct cause for this is known.  The survey did began earlier that year than all other surveys
+and no direct cause for this is known.  The survey did begin earlier that year than all other surveys
 between 1995 and 2009 (Table~\ref{tab:main-survey-history}), which may explain
 some portion of the anomaly, along with El Ni\~no conditions and age
 structure. The 2009 index is much higher than any predicted value observed
@@ -562,7 +568,7 @@ fishery).  Age composition from the 2015 acoustic survey also indicated that the
 was the first time the survey was able to sample the 2014 year-class, and it confirmed
 that the 2014 year-class (53\% of the catch for that year) was above average. The
 pattern for the 2010 year-class was expected given the strength of that cohort
-from the 2012 fishery composition data onward, and thus are fit well by the
+from the fishery composition data from 2012 onward, and thus are fit well by the
 model. Combined, the 2015, 2016, and 2017 fishery age composition data and the 2017
 acoustic survey age composition data suggest that 2014 was likely a strong recruitment 
 year, and the model was able to adequately
@@ -574,25 +580,27 @@ exploitation rate and catch (in numbers and in biomass) for each age class in
 each year are given in
 Tables~\ref{tab:main-est-numbers-at-age}-\ref{tab:main-est-catch-at-age-biomass}.
 For the major cohorts, the resulting age-specific catch, natural mortality and
-survival biomasses are given in Table~\ref{tab:main-cohort-effects}.
+surviving biomasses are given in Table~\ref{tab:main-cohort-effects}.
 
 Posterior distributions for both steepness and natural mortality are strongly
 influenced by priors (Figure~\ref{fig:main-prior-posterior}). The posterior for
 steepness was not updated much by the data, as expected given the low
 sensitivity to steepness values found in previous hake assessments. The natural
 mortality parameter, on the other hand, is shifted to the right of the prior
-distribution and the prior may be constraining the posterior distribution. Broadening
+distribution and the prior may be constraining the posterior distribution from shifting
+further. Broadening
 the prior distribution by increasing the prior standard deviation for the natural mortality  
-parameter is examined as sensitivity runs (see Section~\ref{sec:assessment-sensitivity-analyses}).
+parameter is examined in sensitivity runs (see Section~\ref{sec:assessment-sensitivity-analyses}).
 Other parameters showed updating from non-informative priors to stationary posterior
 distributions.
 
 The \Sexpr{assess.yr} base model specified a similar level of variation (standard
-deviation) associated with time-varying fishery selectivity to that in the 
+deviation of $\Phi = 1.4$) associated with time-varying fishery selectivity to that of
+$\phi = 0.20$ in the 
 \Sexpr{last.assess.yr} base model, effectively
-allowing the model more flexibility (i.e., a lower penalty on the overall
+allowing the model flexibility (i.e., a lower penalty on the overall
 likelihood) to fit to data that suggests high variability among years for each
-age. This value is 1.4 in Stock Synthesis version \Sexpr{ss.version}). This level
+age. This level
 of variation led to results that were more consistent with the 2017 acoustic survey
 biomass estimate and reasonable fits to the fishery age composition data, 
 while maintaining that there is considerable uncertainty associated with 
@@ -605,8 +613,8 @@ in those years. This pattern is consistent with the 2008 cohort appearing strong
 in the fishery age compositions initially, but decreasing in prominence 
 from 2013 onward (Figures~\ref{fig:main-age-comp-fits} and 
 \ref{fig:main-retrospective.recruitment}).
-Fishery selectivity on age-2 fish was the highest throughout the time
-series in 2016.  The selectivity of age-3 fish by the fishery in 2017 (2014 cohort) 
+Fishery selectivity on age-2 fish was at its highest
+in 2016.  The selectivity of age-3 fish by the fishery in 2017 (2014 cohort) 
 was similar to that for the 1999 and 2010 large cohorts 
 (age-3 in 2002 and 2013, respectively; 
 Figure~\ref{fig:main-tv-selex-uncertainty}). Even though the 
