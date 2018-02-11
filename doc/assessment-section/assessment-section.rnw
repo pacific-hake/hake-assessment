@@ -958,8 +958,8 @@ than 50\% probability for catch levels investigated above
 0~t (Table~\ref{tab:main-risk-year-1} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-1}). The model predicts high
 biomass levels and the predicted probability of the spawning biomass dropping below 
-$B_{10/%}$ ($0.1B_0$) in 2019 is
-less than 1\% and the probability of dropping below $B_{40\%}$ is less than 24\%
+$\Bten$ ($0.1B_0$) in 2019 is
+less than 1\% and the probability of dropping below $\Bforty$ is less than 24\%
 for all catches explored (Table~\ref{tab:main-risk-year-1}). It should be noted
 that the natural mortality rate has overtaken the growth rate for the 2010 year
 class and the model estimated below average recruitment for the 2011 and 2013
@@ -989,7 +989,7 @@ structural uncertainty of the base model by investigating how changes to the
 model affected the estimated values and derived quantities. For expediency, all
 sensitivity analyses compared MLE estimates rather than MCMC
 posteriors. Therefore, the values reported below are not directly comparable to
-the base model values reported elsewhere (see
+the base model MCMC values reported elsewhere (see
 Tables~\ref{tab:main-parameter-estimates-sens-1} and
 \ref{tab:main-parameter-estimates-sens-2} for a set of comparisons of the base
 model to MLE estimates from the following sensitivity models). The sensitivities
@@ -1021,11 +1021,13 @@ include the following:
   selectivity;
 
 \item Consideration of alternative standard deviations for time-varying 
-  selectivity; and
+  selectivity;
 
 \item Consideration of an alternative parameterization for time-varying 
-  selectivity.
+  selectivity; and
 
+\item *****Catch corrections, as discussed in Section ****.
+  
 \end{enumerate}
 
 In general, none of the sensitivities resulted in any significant departure from
@@ -1056,7 +1058,7 @@ than earlier cohorts which have been observed in more years.
 Several key underlying structural model assumptions were identified that have
 persisted across many previous hake assessments, and thus warrant revisiting
 periodically as a set of reference sensitivity examinations to new base models.
-Those identified here include the specification of natural mortality, the level
+Those identified here (as noted above) include the specification of natural mortality, the level
 of variation assumed about the stock-recruitment relationship ($\sigma_r$), and
 the resiliency of the stock in terms of recruitment (steepness).
 
@@ -1069,20 +1071,21 @@ estimates of natural mortality increased from
 standard deviation of 0.1) to
 \Sexpr{round(sens.models.1[[which(sens.model.names.1=="Natural Mortality (SD=0.3)")]]$parameters$Value[1],3)} 
 for the sensitivity run with the prior standard
-deviation set to 0.3. In addition to allowing a higher estimated value for
+deviation set to 0.3 (Table~\ref{tab:main-parameter-estimates-sens-1}). In addition to allowing a higher estimated value for
 natural mortality, the broader prior in M also increased the overall scale of
 the population, the estimated stock status relative to $B_0$, and the
 uncertainty in spawning biomass on both absolute and relative scales
-(Figures~\ref{fig:main-biomass-base-alternative-1} 
+(Table~\ref{tab:main-parameter-estimates-sens-1} and Figures~\ref{fig:main-biomass-base-alternative-1} 
 and~\ref{fig:main-status-base-alternative-1}).
 
 % section below on steepness sensitivity
 % No change needed in 2018 (so far)
 The mean of the prior distribution on steepness was decreased from 0.777 (base)
-to 0.5, and steepness was also fixed at 1.0. The decrease in the mean of the
-prior resulted in a change in the maximum likelihood estimate of steepness
-\Sexpr{round(base.model$parameters["SR_BH_steep","Value"],3)} to
-\Sexpr{round(sens.models.1[[which(sens.model.names.1=="Steepness Mean Prior Low (0.5)")]]$parameters["SR_BH_steep","Value"],3)}. 
+to 0.5, and, separately, steepness was fixed at 1.0. The decrease in the mean of the
+prior resulted in a change in the maximum likelihood estimate of steepness from
+\Sexpr{f(base.model$parameters["SR_BH_steep","Value"],3)} to
+\Sexpr{f(sens.models.1[[which(sens.model.names.1=="Steepness Mean Prior Low (0.5)")]]$parameters["SR_BH_steep","Value"],3)}
+(Table~\ref{tab:main-parameter-estimates-sens-1}). 
 However, neither steepness
 sensitivity had a strong impact on the overall model results
 (Figures~\ref{fig:main-biomass-base-alternative-1} and
@@ -1104,16 +1107,16 @@ consistent standard deviation for the estimated recruitment deviations, at
 \Sexpr{round(sens.models.1[[which(sens.model.names.1=="Sigma R 1.8")]]$sigma_R_info$SD_of_devs[1],2)}.
 However, the high $\sigma_r$ model had a larger difference between the unfished
 equilibrium and the initial year of the model 
-(Table~\ref{tab:main-parameter-estimates-sens-1}; 
+(Table~\ref{tab:main-parameter-estimates-sens-1} and  
 Figures~\ref{fig:main-biomass-base-alternative-1} and
 \ref{fig:main-status-base-alternative-1}). The method of \citet{MethotTaylor2011}
-which considers a combination of the variability among the
+considers a combination of the variability among the
 estimated deviations and the uncertainty around the estimates using the formula
 \eb
 \sigma_r^2 = \mbox{Var}(\hat{r}) + \overline{\mbox{SE}({\hat r}_y)}^2,
 \ee
 where $\mbox{Var}(\hat{r})$ is the variance among deviations and
-$\mbox{SE}(\hat{r}_y)$ is the standard error of each estimate 
+$\mbox{SE}(\hat{r}_y)$ is the standard error of each estimate. It 
 produced a suggested
 $\sigma_r$ of \Sexpr{sigma.r.alt.allyr}, which was similar to the
 base-model value of 1.4.
@@ -1150,16 +1153,16 @@ with each age.
 As noted in the description of assessment changes in 
 Section~\ref{sec:assessment-changes}, the base model used a new
 Dirichlet-Multinomial likelihood which includes two additional estimated 
-parameters which automatically weight each of the fishery and survey age 
+parameters that automatically weight each of the fishery and survey age 
 compositions. This produced higher weights on the age compositions but 
 generally very similar results to the McAllister-Ianelli method used in 
-previous assessments, where the input samples sizes are iteratively 
+previous assessments, whereby the input samples sizes are iteratively 
 adjusted by a multiplier to make the arithmetic mean of the input 
 sample size approximately equal to the harmonic mean of the effective 
 sample sizes.
 
 The influence of an alternative approach for calculating the 2017 fishery age
-composition was also explored through sensitivity model evaluations. In most years, 
+composition was also explored. In most years, 
 nearly all the available \fishname\ otoliths caught in U.S. waters are aged and then 
 used, along with data from Canada, to develop an annual age composition for 
 the fishery (see Section~\ref{sec:data-fishery-biological-data}). High catch levels in 2017, resulting
@@ -1173,7 +1176,8 @@ to bias when the unread otoliths are also from later in the year when aggregatin
 age composition. In response, the JTC calculated a monthly catch weighted 
 annual composition for the U.S. at-sea sectors, and then combined that with the compositions
 from other sectors following standard procedures \citep{JTC2013, JTC2014}. The result 
-was minor differences in the overall fishery age composition: less than a 0.4\% change for 
+was minor differences in the overall fishery age composition (Table~\ref{tab:main-parameter-estimates-sens-1}):
+less than a 0.4\% change for 
 all ages except the 2014 cohort (increase 2.1\%) and the 2010 cohort (decrease 1.0\%).  
 These relatively minor differences also had little to no influence on estimates of spawning
 biomass (Figure~\ref{fig:main-biomass-base-alternative-2}) or stock status 
@@ -1182,10 +1186,6 @@ subsampling protocols should be developed to account for seasonality in catch-at
 protocols are especially critical during survey years or years of high abundance when large 
 sample sizes are expected or when ageing laboratory resources are limited.         
  
-**Aaron, can you add something about the following:
-Use of an alternative method for aggregating the age compositions from
-the U.S. fishery (weighting by the catch within each month)
-
 An error in the code which extracts and calculates the catch for Canadian fisheries was found
 late in the assessment process. The JV catch was erroneously being added to the Shoreside
 catch, resulting in the values being added to the total catch twice. This error was for
@@ -1204,7 +1204,7 @@ for the entirety of the time series.
 % Manual 2018
 Three types of alternative setups for selectivity were explored in sensitivity
 analyses: alternative assumptions about the age beyond which selectivity 
-is assumed constant, alternative values of the $\phi$ parameter 
+is assumed constant, alternative values of the $\Phi$ parameter 
 controlling the degree of flexibility of annual variation in the 
 fishery selectivity, and an alternative ``semi-parametric'' 
 parameterization of the 
@@ -1225,7 +1225,7 @@ parameters, 1 each for the additional age in the fishery and the selectivity
 % Manual 2018: parameter counts below aren't dynamic
 and 27 deviations for the years 1991 to 2017.
 
-The Estimated population trends 
+The estimated population trends 
 throughout the time series are similar, irrespective of maximum selectivity age
 (Figures~\ref{fig:main-base-alternative-3}-\ref{fig:main-index-base-tv-increase-1}).
 However, absolute levels of
@@ -1239,8 +1239,9 @@ interaction of the biennial timing for much of the survey history with large
 cohorts. The 1999 cohort made up the majority of the observed ages in the survey
 when they were age 2, 4, 6, and 8, while the 2010 and 2014 cohorts have 
 primarily been observed when they were age 3, 5, or 7. Thus, any 
-differences in the dynamics of these cohorts, such as difference in natural
-mortality, which aren't represented in the model, would lead to a shift
+differences in the dynamics of these cohorts that are not represented in the model,
+such as differences in natural
+mortality, would lead to a shift
 in selectivity between the even- and odd-numbered ages. 
 The choice of age 6 as the maximum was retained in the base model as it
 was more flexible than the choice of age 5 while those with higher ages 
