@@ -294,7 +294,7 @@ make.median.posterior.table(
   start.yr = start.yr,
   end.yr = end.yr,
   digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
-  xcaption = paste0("Time-series of median posterior population estimates from the base model. Relative spawning biomass is spawning biomass relative to the unfished equilibrium ($\\Bzero$). Total biomass includes females and males of all ages. Exploitation fraction is total catch divided by total age-3+ biomass. Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%})."),
+  xcaption = paste0("Time-series of median posterior population estimates from the base model. Relative spawning biomass is spawning biomass relative to the unfished equilibrium ($\\Bzero$). Total biomass includes females and males of all ages. Exploitation fraction is total catch divided by total age-2+ biomass. Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%})."),
   xlabel = "tab:main-median-posterior",
   font.size = 8,
   space.size = 10)

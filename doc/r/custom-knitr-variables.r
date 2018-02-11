@@ -244,6 +244,7 @@ recruitment.med.in.2014 <- f(base.model$mcmccalcs$rmed["2014"], 3)
 ################################################################################
 ## Exploitation values
 exploitation.med.2010 <- f(base.model$mcmccalcs$fmed["2010"],2)
+exploitation.med.2011 <- f(base.model$mcmccalcs$fmed["2011"],2)
 exploitation.med.2015 <- f(base.model$mcmccalcs$fmed["2015"],2)
 exploitation.med.2017 <- f(base.model$mcmccalcs$fmed["2017"],2)
 exploitation.med.penult.yr <- f(base.model$mcmccalcs$fmed[as.character(end.yr-1)],2)

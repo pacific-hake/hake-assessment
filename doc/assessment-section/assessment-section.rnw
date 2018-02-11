@@ -742,13 +742,17 @@ with the base model value of \Sexpr{base.model$sigma_R_in}.
 \subsubsub{Exploitation status}
 
 Median relative fishing intensity on the stock is estimated to have been below
-the SPR$_{40\%}$ target except for the year 1999 when spawning biomass was low
+the SPR$_{40\%}$ for all years
+% sort(median.intensity)    % 2017 assessment 1999 was slightly over
 (Figure~\ref{fig:main-fishing-intensity} and
 Tables~\ref{tab:main-median-posterior} and \ref{tab:main-ci-posterior}). It
 should be noted, however, that the median relative fishing intensity was close
 to the target in 2008 and 2010, but harvest in those years did not exceed
 the catch limits that were specified, based on the best available science and
-harvest control rules in place at the time. Exploitation fraction (catch divided
+harvest control rules in place at the time.
+% Also close in 1999 but no TAC then according to landings.vs.tac[34,], so
+%  don't mention 1999.
+Exploitation fraction (catch divided
 by biomass of fish of age-2 and above) has shown relatively similar patterns
 (Figure~\ref{fig:main-exploitation-fraction} and and
 Tables~\ref{tab:main-median-posterior} and
@@ -759,15 +763,15 @@ the catch. Median relative fishing intensity is estimated to have declined from
 \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.2015}\%
 in 2015, after which it increased to \Sexpr{median.intensity.2017}\% in 2017.
 The exploitation fraction has decreased from
-\Sexpr{exploitation.med.2010} in 2010 to \Sexpr{exploitation.med.2015} in
+\Sexpr{exploitation.med.2011} in 2011 to \Sexpr{exploitation.med.2015} in
 2015 and then increased to \Sexpr{exploitation.med.2017} in 2017.
 Although there is a considerable amount of imprecision
 around these recent estimates due to uncertainty in recruitment and spawning
 biomass, the 95\% posterior credibility interval of relative fishing intensity
-was below the SPR management target from 2013 through 2015.  The median estimate
-for 2016 and 2017 is well below the management target, however the 95\% posterior
-credibility interval does include the target level due to the aforementioned
-uncertainties.
+was below the SPR management target from 2012 through 2015 (Figure~\ref{fig:main-fishing-intensity}).
+The median estimates
+for 2016 and 2017 are below the management target, however the 95\% posterior
+credibility intervals do include the target level.
 
 % Note that exploitation.med.penult.yr comes out as 0.06, but in Table d 
 %  is 0.065, because the true value is 0.0648.... The text rounds to two decimal
