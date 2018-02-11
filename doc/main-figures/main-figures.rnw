@@ -197,7 +197,7 @@ make.survey.age1.plot(age.1.index,
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=6.5in, height=6.5in]{main-figures/maturity_plots}
 \end{center}
-\caption{Fraction of fish mature at age North and South of 34.44$^\circ$N 
+\caption{Fraction of fish mature at each age North and South of 34.44$^\circ$N 
   (upper panel) and comparison of old and new fecundity relationships 
   (lower panel). The old fecundity relationship (black line in lower plot)
   was a product of the 
@@ -205,8 +205,8 @@ make.survey.age1.plot(age.1.index,
   at length estimated in 2011, converted to age using a parametric 
   growth curve estimated in 2011. 
   The new fecundity relationship (purple line in lower plot) is the product 
-  of the mean weight at age
-  averaged across all years (green line) and the maturity at age (blue line).
+  of the mean weight-at-age
+  averaged across all years (green line) and the maturity-at-age (blue line).
   Samples from South of 34.44$^\circ$N were not included in the estimates.}
 \label{fig:main-maturity}
 \end{figure}
@@ -760,7 +760,7 @@ make.phase.plot(base.model,
 \end{center}
 \caption{Estimated historical path followed by medians of relative fishing
   intensity and relative spawning biomass for \fishname. Start and end years are
-  labelled, as is the year with the highest relative fishing intensity.
+  labeled, as is the year with the highest relative fishing intensity.
   Gray bars span the 95\% credibility
   intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical)
   and relative spawning biomass (horizontal).}
@@ -946,8 +946,9 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 \caption{Maximum likelihood estimates of spawning biomass for the base model and alternative
   sensitivity runs that represent changes in data: adding an age-1 index of abundance,
   incorporating ageing error that is cohort invariant, using the harmonic mean approach to
-  weight composition data, and accounting for seasonal age sampling in the aggregation of age
-  composition information.}
+  weight composition data, accounting for seasonal age sampling in the aggregation of age
+  composition information, and removing catch which was double-counted for the
+  Canadian JV fishery and adding U.S. tribal catch which was missed for 2016 and 2017.}
 \label{fig:main-biomass-base-alternative-2}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -979,10 +980,8 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 \end{center}
 %\vspace{0mm}
 \caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base
-  model and alternative sensitivity runs that represent changes in data: adding an age-1 index of abundance,
-  incorporating ageing error that is cohort invariant, using the harmonic mean approach to
-  weight composition data, and accounting for seasonal age sampling in the aggregation of age
-  composition information.}
+  model and alternative sensitivity runs that represent changes in data.
+  See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-status-base-alternative-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1162,7 +1161,7 @@ make.selectivity.illustration(mod.old = base.model,
   represented in the base model (left) and the semi-parametric approach 
   used in sensitivity analyses (right). Panels show transformation from 
   estimated parameters (a) to cumulative sum up to each age (b) and the resulting
-  selectivity after exponential transforamtion and rescaling to have maximum 1.0 (c),
+  selectivity after exponential transformation and rescaling to have maximum 1.0 (c),
   as described by equations (1) through (3).
   In the base model, the deviations (red lines) are applied to the 
   baseline parameters, resulting

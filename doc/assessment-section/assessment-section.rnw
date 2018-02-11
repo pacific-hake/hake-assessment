@@ -190,7 +190,7 @@ from the JTC:
   development of the base model and to explore different than base model assumptions, 
   including sources of data, model structural assumptions, and parameterizations. 
   The main sensitivity runs, including those related to time-varying selectivity,
-  are discussed further under section~\ref{sec:assessment-sensitivity-analyses}.}
+  are discussed further under Section~\ref{sec:assessment-sensitivity-analyses}.}
   
 \item The SRG supports continued development of an age-1 index from the acoustic
   survey, and recommends continuing to run sensitivity tests in future assessments
@@ -213,7 +213,7 @@ from the JTC:
 
   \emph{Response -- The JTC continues to support this recommendation.}
   
-\item The following two recommendations are to fulfil requests for specific
+\item The following two recommendations are to fulfill requests for specific
   information by the AP representatives:
  \begin{itemize}
    \item A table providing exploitation rates by age and year be added to 
@@ -256,8 +256,8 @@ model. The \Sexpr{assess.yr} base model includes an acoustic data time series fr
 where estimates of abundance from the survey followed the same procedures as in 
 \Sexpr{last.assess.yr}.  An updated maturity ogive was estimated and incorporated into the
 \Sexpr{assess.yr} base model (see Section~\ref{sec:data-maturity}). The Dirichlet-Multinomial (D-M)
-likehood approach (\citet{ThorsonEtAl2017Dirichlet}) was used to estimate the weights
-associated with age compostion data, rather than iteratively tuning the sample size multiplier
+likelihood approach (\citet{ThorsonEtAl2017Dirichlet}) was used to estimate the weights
+associated with age composition data, rather than iteratively tuning the sample size multiplier
 as in previous assessments (see Section~\ref{sec:data-age-comp-likelihood}). Time-varying fishery
 selectivity is retained in the \Sexpr{assess.yr} base model with the magnitude of the allowable deviations effectively
 unchanged from 0.20 used in the \Sexpr{last.assess.yr} base model to a value of 1.4.
@@ -301,7 +301,7 @@ likelihood function, using the observed (and extra 2009) sampling variability,
 estimated via kriging, as year-specific weighting. An additional constant and
 additive standard deviation on the log-scale component is included, which was
 freely estimated to accommodate unaccounted-for sources of process and
-observation error. A Dirichlet-Multinomial (D-M) likehood was applied to age-composition data,
+observation error. A Dirichlet-Multinomial (D-M) likelihood was applied to age-composition data,
 with input sample sizes equal to the sum of the number of trips or hauls actually sampled across all
 fishing fleets, and the number of trawl sets in the research surveys. A weighting parameter for the fishery
 and the survey age compositions was specified and then estimated in the model fitting procedure.
@@ -375,7 +375,7 @@ the $\phi$ parameter controlling the flexibility of the
 variability of the fishery selectivity (which was increased from $\phi=0.03$
 in the 2016 assessment to $\phi=0.20$ in the 2017 assessment) no longer
 had the same effect when applied in the standard instead of logistic 
-parameter space. An analysis of the transforamtion, 
+parameter space. An analysis of the transformation, 
 described in Section~\ref{sec:data-variability-selectivity}, estimated that 
 the $\phi=0.20$ applied in the logistic parameters space in the 2017 assessment
 could be converted to $\phi=1.40$, applied in the standard parameter space.  
@@ -393,7 +393,7 @@ assessment were now included. These changes were small enough that they had
 little impact on the model results (Figure~\ref{fig:main-bridge-biomass}).
 
 The addition of 2017 catch allowed the ending year of the model to be 
-extended to 2018, but the estimates for 2018 remaining hightly uncertain 
+extended to 2018, but the estimates for 2018 remaining highly uncertain 
 (Figure~\ref{fig:main-bridge-5-panel}) in the absence of additional information 
 about recent recruitment.
 The change with the biggest impact was the addition of the 2017 survey biomass 
@@ -411,7 +411,7 @@ be associated with each other. The assessment model separates the main
 vector of recruitment deviations from those applied in the forecast, 
 because the deviations in 
 the 'main' period are modeled as summing to zero, to ensure that they are
-equally balanced aroundn the stock-recruit relationship. If forecast deviations
+equally balanced around the stock-recruit relationship. If forecast deviations
 were included in this vector, this zero-sum constraint would have the potential
 to cause those forecast deviations to differ from zero, even in the absence of 
 any data for the forecast years. 
@@ -459,7 +459,7 @@ series where there were more old individuals than in the more recent years with
 higher fishing intensity. In spite of these changes to the estimated
 spawning biomass, this bridging step had little impact
 on recruitment, since the stock-recruit relationship indicates a 
-relatively weak link between spawning bimoass and recruitment.
+relatively weak link between spawning biomass and recruitment.
 
 %\subsubsection{Model selection and evaluation}\label{sec:assessment-model-selection}
 
@@ -505,7 +505,7 @@ well behaved and had little autocorrelation
 (Figures~\ref{fig:main-mcmc.diag.m.r0} and
 ~\ref{fig:main-mcmc.diag.h.extra.sd}). The Gelman-Rubin multi-chain diagnostic test, 
 which compares within chain variance to among chain variance, further indicated that 
-convergence was adquately achieved (Figure~\ref{fig:main-mcmc.diag.gelrub}). 
+convergence was adequately achieved (Figure~\ref{fig:main-mcmc.diag.gelrub}). 
 Correlations among key parameters were
 generally low, with the exception of natural mortality, $M$, and the unexploited
 equilibrium recruitment level, $\log(R_0)$ (Figure~\ref{fig:main-mcmc-pairs}). 
@@ -556,7 +556,7 @@ fishery).  Age composition from the 2015 acoustic survey also indicated that the
 was the first time the survey was able to sample the 2014 year-class, and it confirmed
 that the 2014 year-class (53\% of the catch for that year) was above average. The
 pattern for the 2010 year-class was expected given the strength of that cohort
-from the 2012 fishery composition data onwards, and thus are fit well by the
+from the 2012 fishery composition data onward, and thus are fit well by the
 model. Combined, the 2015, 2016, and 2017 fishery age composition data and the 2017
 acoustic survey age composition data suggest that 2014 was likely a strong recruitment 
 year, and the model was able to adequately
@@ -609,7 +609,7 @@ posterior shows a broad band of uncertainty between ages 2 and 5
 (Figure~\ref{fig:main-tv-selex-uncertainty-lines}). The decline in 
 survey selectivity between ages 3 and 4 may be an artifact of the interaction
 between large cohorts and the biennial timing of recent surveys, with the
-1999 cohort occuring in the survey at ages 2 and 4 but not 3 
+1999 cohort occurring in the survey at ages 2 and 4 but not 3 
 while the 2010 and 2014 cohorts occurred at ages 3 and 5 but not age 4.
 Fishery selectivity is
 likewise very uncertain (Figures~\ref{fig:main-tv-selex-uncertainty}
@@ -971,9 +971,12 @@ include the following:
 
 \item Use of the McAllister-Ianelli method for data-weighting;
 
-\item Use of an alternative method for aggregating the age compostitions from
+\item Use of an alternative method for aggregating the age compositions from
   the U.S. fishery (weighting by the catch within each month)
-  
+
+\item Correction to catch to account for double counting of the Canadian JV
+  catch from 2007 to present, and missing US tribal catch for 2016 and 2017.
+
 \item Consideration of alternative maximum age assumptions for estimating 
   selectivity;
 
@@ -990,7 +993,7 @@ the main population dynamics of the base model; all models showed large
 estimated increases in spawning biomass in recent years that continues to be
 driven by the large 2010 cohort and the 2014 cohort. The overall scale of the 
 population was impacted by various alternative assumptions, and the highly 
-uncertain size of the 2016 cohort was more variable across sensitivity analyes
+uncertain size of the 2016 cohort was more variable across sensitivity analyses
 than earlier cohorts which have been observed in more years.
 
 %%% 2018: commented text below leftover from 2017 document
@@ -1024,7 +1027,7 @@ increased from the base model value of 0.1 to 0.2 and 0.3. Maximum likelihood
 estimates of natural mortality increased from
 \Sexpr{round(base.model$parameters$Value[1],3)} for the base model (prior
 standard deviation of 0.1) to
-\Sexpr{round(sens.models.1[[which(sens.model.names.1=="Natual Mortality (SD=0.3)")]]$parameters$Value[1],3)} 
+\Sexpr{round(sens.models.1[[which(sens.model.names.1=="Natural Mortality (SD=0.3)")]]$parameters$Value[1],3)} 
 for the sensitivity run with the prior standard
 deviation set to 0.3. In addition to allowing a higher estimated value for
 natural mortality, the broader prior in M also increased the overall scale of
@@ -1052,14 +1055,14 @@ the recruitments to deviate far from the underlying stock-recruit relationship
 % Manual 2018
 The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative
 high (1.8) and low (1.0) states. The low value, $\sigma_r = 1.0$, 
-resuled in a model where the standard deviation of the MLE estimates of 
+resulted in a model where the standard deviation of the MLE estimates of 
 recruitment deviations in the period with the most informative data was 
 \Sexpr{round(sens.models.1[[which(sens.model.names.1=="Sigma R 1.0")]]$sigma_R_info$SD_of_devs[1],2)},
 suggesting that the data were inconsistent with the lower value of $\sigma_r$.
-The high value, $\sigma_r = 1.8$, resulted in a model with a higher 
-standard deviation for the estimated recruitment deviations, at 
-\Sexpr{round(sens.models.1[[which(sens.model.names.1=="Sigma R 1.0")]]$sigma_R_info$SD_of_devs[1],2)}.
-The high $\sigma_r$ model had a larger difference between the unfished
+The high value, $\sigma_r = 1.8$, resulted in a model with a more
+consistent standard deviation for the estimated recruitment deviations, at 
+\Sexpr{round(sens.models.1[[which(sens.model.names.1=="Sigma R 1.8")]]$sigma_R_info$SD_of_devs[1],2)}.
+However, the high $\sigma_r$ model had a larger difference between the unfished
 equilibrium and the initial year of the model 
 (Table~\ref{tab:main-parameter-estimates-sens-1}; 
 Figures~\ref{fig:main-biomass-base-alternative-1} and
@@ -1072,8 +1075,8 @@ estimated deviations and the uncertainty around the estimates using the formula
 where $\mbox{Var}(\hat{r})$ is the variance among deviations and
 $\mbox{SE}(\hat{r}_y)$ is the standard error of each estimate 
 produced a suggested
-$\sigma_r$ of \Sexpr{sigma.r.alt.allyr}, which was very similar to the
-status-quo base-model value of 1.4.
+$\sigma_r$ of \Sexpr{sigma.r.alt.allyr}, which was similar to the
+base-model value of 1.4.
 
 % Manual 2018: updated the "Bratio" years in paragraph below
 The sensitivity of the base model to the inclusion of the age-1 survey index
@@ -1139,9 +1142,23 @@ subsampling protocols should be developed to account for seasonality in catch-at
 protocols are especially critical during survey years or years of high abundance when large 
 sample sizes are expected or when ageing laboratory resources are limited.         
  
-Aaron, can you add something about the following:
-Use of an alternative method for aggregating the age compostitions from
+**Aaron, can you add something about the following:
+Use of an alternative method for aggregating the age compositions from
 the U.S. fishery (weighting by the catch within each month)
+
+An error in the code which extracts and calculates the catch for Canadian fisheries was found
+late in the assessment process. The JV catch was erroneously being added to the Shoreside
+catch, resulting in the values being added to the total catch twice. This error was for
+each year the JV fishery took place since 2007 including 2007, 2008, 2010, 2011, and 2017.
+In addition, some U.S. tribal catch was not reported in time to be added to the base model.
+There was some fish ticket information which was missing at all levels. The values which
+changed were for the 2016 and 2017 seasons and were 2,522.75 t and 6405.86 t respectively.
+These values were added to the base model catch values, and the JV values were subtracted to
+create one sensitivity which is included in
+Figures~\ref{fig:main-biomass-base-alternative-2} and \ref{fig:main-status-base-alternative-2}.
+The sensitivity shows that running the base model with the corrected values shows no
+difference in the model outcome, with the trajectories overlapping
+for the entirety of the time series.
 
 
 % Manual 2018
@@ -1183,7 +1200,7 @@ cohorts. The 1999 cohort made up the majority of the observed ages in the survey
 when they were age 2, 4, 6, and 8, while the 2010 and 2014 cohorts have 
 primarily been observed when they were age 3, 5, or 7. Thus, any 
 differences in the dynamics of these cohorts, such as difference in natural
-mortalty, which aren't represented in the model, would lead to a shift
+mortality, which aren't represented in the model, would lead to a shift
 in selectivity between the even- and odd-numbered ages. 
 The choice of age 6 as the maximum was retained in the base model as it
 was more flexible than the choice of age 5 while those with higher ages 
@@ -1206,7 +1223,7 @@ estimate and age compositions led to more precise estimates of the 2014
 recruitment, regardless of the value of $\phi$. However, the 2016 recruitment,
 which is only informed by the 2017 fishery age composition, is strongly
 linked to the choice of $\phi$, where the model with the smallest $\phi$ 
-at 0.21 (equilvalent to $\phi=0.03$ in the previous setup) estimates 
+at 0.21 (equivalent to $\phi=0.03$ in the previous setup) estimates 
 the 2016 recruitment deviation as the highest in the time series 
 (Figure~\ref{fig:main-recruit-base-tv-increase-1}) and provides the worst 
 fit to the recent survey biomass estimates 
@@ -1262,7 +1279,7 @@ ahead for potential inclusion in a future hake assessment.
 
 Any additional sensitivity runs arising from the Scientific Review Group 
 meeting to be held from 26th February to 1st March 2018 will be documented
-in Appendix~\ref{chap:srg-requests} and briefly summarised here.
+in Appendix~\ref{chap:srg-requests} and briefly summarized here.
 
 %%**Several additional sensitivity runs were completed in response to SRG requests
 %%during the Feb 13-16, 2017 meeting in Vancouver, B.C., Canada (see
@@ -1308,7 +1325,7 @@ was not sampled by the survey until they were age-4 in the assessment
 model. The variability among cohort estimates relative to their estimated size
 in the base model (Figure~\ref{fig:main-relative-retrospective.recruitment})
 further indicates that the estimates can start to improve as early as age-3, but
-some may not stabilize until the cohort approaches an age upwards of 7 years
+some may not stabilize until the cohort approaches an age upward of 7 years
 old. This illustrates that multiple observations of each cohort are needed in
 order to more accurately determine their recruitment strength.
 
@@ -1328,7 +1345,7 @@ of driving the estimate of initial biomass upward, which in turn scaled the
 entire biomass trajectory up, leading to higher estimates of relative spawning
 biomass than in more recent years. The \Sexpr{end.yr} base model estimates of
 spawning biomass for recent years has declined relative to recent assessments.  Although
-the model structure has remained relatively consistent in recent years, the 2017 acousitc 
+the model structure has remained relatively consistent in recent years, the 2017 acoustic 
 survey biomass estimate was lower than what previous models would have predicted.
 The uncertainty interval associated with the \Sexpr{end.yr} assessment brackets the majority of the
 historical estimates.
