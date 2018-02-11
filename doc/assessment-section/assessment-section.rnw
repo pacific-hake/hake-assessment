@@ -422,10 +422,11 @@ any data for the forecast years.
 The addition of the 2017 fishery data, which included small numbers of age-1
 fish from the 2016 cohort, meant that it was now necessary to 
 shift the endpoint of the main vector of recruitment deviations
-to include 2016. 2017 was including in the vector of forecast deviations 
-since there is not yet any information available on the 2017 cohort. 
+to include 2016. 
+% 2017 was including [**not included???] in the vector of forecast deviations 
+% since there is not yet any information available on the 2017 cohort. 
 The settings related to avoiding bias in recruitment estimation, based on 
-the method proposed by \citet{MethotTaylor2011},  were
+the method proposed by \citet{MethotTaylor2011}, were
 also shifted by 1 year as part of this same bridging step, to account for 
 the addition of information about recruitment for the 2016 cohort.
 Finally, this bridging step also shifted the ending year of the deviations
