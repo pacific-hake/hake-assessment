@@ -91,6 +91,96 @@ began, initiated in 2013 \citep{JTC2013} and now being revisited in 2018,
 none of these management procedure changes were evaluated by simulation and
 quantitatively compared with performance measures.
 
+\subsection{Description of base model}\label{sec:assessment-base-model}
+
+%\Sexpr{if(ss.version != "3.24U") stop("Need to update SS text in assessment-section.rnw.") }
+% 3.24u in 2015 and 2016 assessments.
+The \Sexpr{assess.yr} base model is predominantly an update of the base model in
+the \Sexpr{last.assess.yr} stock assessment. Stock Synthesis
+\citep{MethotWetzel2013} version \Sexpr{ss.version} was used 
+for the first time this year, which is a significant update to
+the software version (3.24U) used in the previous assessment \citep{JTC2017}.  In addition
+to the new version of Stock Synthesis, the largest changes between the
+\Sexpr{last.assess.yr} and \Sexpr{assess.yr} stock assessments are the addition of another
+year of acoustic survey and fishery data, a new maturity ogive, a new approach for weighting composition
+data, and a new approach for parameterizing time-varying selectivity in the base
+model.
+
+The \Sexpr{assess.yr} base model includes an acoustic data time series from 1995 to 2017,
+where estimates of abundance from the survey followed the same procedures as in 
+\Sexpr{last.assess.yr} \citep{JTC2017}.  An updated maturity ogive was estimated and incorporated into the
+\Sexpr{assess.yr} base model (see Section~\ref{sec:data-maturity}). The Dirichlet-Multinomial (D-M)
+likelihood approach \citep{ThorsonEtAl2017Dirichlet} was used to estimate the weights
+associated with age-composition data, rather than iteratively tuning the sample size multiplier
+as in previous assessments (see Section~\ref{sec:data-age-comp-likelihood}). Time-varying fishery
+selectivity is retained in the \Sexpr{assess.yr} base model with the magnitude of the allowable deviations effectively
+unchanged from the $\phi=0.20$ used in the \Sexpr{last.assess.yr} base model to
+an equivalent value of $\Phi = 1.4$ (see Section~\ref{sec:data-variability-selectivity}).
+Otherwise, the general parameterization of
+selectivity was retained, although additional parameters were required to
+estimate an additional year of deviations. The acoustic survey selectivity is
+assumed to not change over time. Selectivity curves were modeled as
+non-parametric functions estimating age-specific values for each age beginning
+at age 2 for the acoustic survey (because age-1 fish are mainly excluded from
+the sampling design) and age-1 for the fishery until a maximum age of 6 (all
+fish 6 and older have the same selectivity).
+
+Prior probability distributions remained unchanged from \Sexpr{last.assess.yr}
+and fixed values are used for several parameters. For the base model, the
+instantaneous rate of natural mortality ($M$) is estimated with a
+\Sexpr{m.prior[1]} prior having a median of \Sexpr{m.prior[2]} and a standard
+deviation (in log-space) of 0.1 (see
+Section~\ref{sec:data-natural-mortality}). The stock-recruitment function is a
+Beverton-Holt parameterization, with the log of the mean unexploited recruitment
+freely estimated. This assessment uses the same Beta-distributed prior for
+stock-recruit steepness ($h$), based on \citet{MyersBowenEtAl1999}, that has
+been applied since 2011 \citep{StewartForrestEtAl2011, JTC2012, JTC2013,
+JTC2014, JTC2015, JTC2016, JTC2017}. Year-specific recruitment deviations were estimated
+from 1966-2017 as well as the years \Sexpr{assess.yr}, \Sexpr{assess.yr+1}, and
+\Sexpr{assess.yr+2} for purposes of forecasting. The standard deviation,
+$\sigma_r$, of recruitment variability, serving as both a recruitment deviation
+constraint and bias-correction term, is fixed at a value of
+\Sexpr{base.model$sigma_R_in} in this assessment. This value is based on
+consistency with the observed variability in the time series of recruitment
+deviation estimates, and is the same as assumed in assessments from 2013 to
+\Sexpr{last.assess.yr}. Survey catchability was set at the median unbiased
+estimate calculated analytically as per \citet{LudwigWalters1981}. Maturity
+and fecundity relationships are assumed to be time-invariant and fixed values
+were updated using the new maturity ogive discussed earlier.
+
+Statistical likelihood functions used for data fitting are typical of many stock
+assessments. The acoustic survey index of abundance was fit via a log-normal
+likelihood function, using the observed (and extra 2009) sampling variability,
+estimated via kriging, as year-specific weighting. An additional constant and
+additive standard deviation on the log-scale component is included, which was
+freely estimated to accommodate unaccounted-for sources of process and
+observation error. A Dirichlet-Multinomial (D-M) likelihood was applied to age-composition data,
+with input sample sizes equal to the sum of the number of trips or hauls actually sampled across all
+fishing fleets or the number of trawl sets in the research surveys (see Section~\ref{sec:data-age-comp-likelihood}).
+A weighting parameter for the fishery
+and the survey age compositions was specified and then estimated in the model fitting procedure.
+to allow for additional sources of process and observation error. This process resulted in
+automatically tuned input sample sizes.  Tuning quantities did not change in assessments from 2012 to
+2015, however additional tuning was required in 2016 and 2017 given the
+updated acoustic survey index composition data and refinements to fishery
+composition data. Tuning quantities changed again this year with the addition of the
+new D-M data weighting (tuning) approach.
+
+Uncertainty of estimated quantities was calculated via Markov Chain Monte Carlo
+(MCMC) simulations. The bounds of 95\% credibility intervals were calculated as
+the 2.5\% quantile and the 97.5\% quantile of posterior distributions from the
+MCMC simulations, to give equal-tailed intervals.
+
+Calculations and figures from Stock Synthesis output were performed using
+\Sexpr{R.Version()$version.string} \citep{R2017} and many R packages (in
+particular r4ss and xtable). The use of R, knitr, \LaTeX~and GitHub immensely
+facilitated the collaborative writing of this document.
+
+For this assessment document, we have slightly refined the Glossary
+(Appendix~\ref{chap:glossary}), adding an explicit definition of
+spawning biomass per recruit.
+
+
 \subsection{Response to 2017 Scientific Review Group (SRG) review}\label{sec:assessment-response-review}
 
 The Scientific Review Group (SRG) meeting was held from February 14--16, 2017, at the 
@@ -240,96 +330,6 @@ from the JTC:
     respectively.}
     
 \end{itemize}
-
-
-\subsection{Description of base model}\label{sec:assessment-base-model}
-
-%\Sexpr{if(ss.version != "3.24U") stop("Need to update SS text in assessment-section.rnw.") }
-% 3.24u in 2015 and 2016 assessments.
-The \Sexpr{assess.yr} base model is predominantly an update of the base model in
-the \Sexpr{last.assess.yr} stock assessment. Stock Synthesis
-\citep{MethotWetzel2013} version \Sexpr{ss.version} was used 
-for the first time this year, which is a significant update to
-the software version (3.24U) used in the previous assessment \citep{JTC2017}.  In addition
-to the new version of Stock Synthesis, the largest changes between the
-\Sexpr{last.assess.yr} and \Sexpr{assess.yr} stock assessments are the addition of another
-year of acoustic survey and fishery data, a new maturity ogive, a new approach for weighting composition
-data, and a new approach for parameterizing time-varying selectivity in the base
-model.
-
-The \Sexpr{assess.yr} base model includes an acoustic data time series from 1995 to 2017,
-where estimates of abundance from the survey followed the same procedures as in 
-\Sexpr{last.assess.yr} \citep{JTC2017}.  An updated maturity ogive was estimated and incorporated into the
-\Sexpr{assess.yr} base model (see Section~\ref{sec:data-maturity}). The Dirichlet-Multinomial (D-M)
-likelihood approach \citep{ThorsonEtAl2017Dirichlet} was used to estimate the weights
-associated with age-composition data, rather than iteratively tuning the sample size multiplier
-as in previous assessments (see Section~\ref{sec:data-age-comp-likelihood}). Time-varying fishery
-selectivity is retained in the \Sexpr{assess.yr} base model with the magnitude of the allowable deviations effectively
-unchanged from the $\phi=0.20$ used in the \Sexpr{last.assess.yr} base model to
-an equivalent value of $\Phi = 1.4$ (see Section~\ref{sec:data-variability-selectivity}).
-Otherwise, the general parameterization of
-selectivity was retained, although additional parameters were required to
-estimate an additional year of deviations. The acoustic survey selectivity is
-assumed to not change over time. Selectivity curves were modeled as
-non-parametric functions estimating age-specific values for each age beginning
-at age 2 for the acoustic survey (because age-1 fish are mainly excluded from
-the sampling design) and age-1 for the fishery until a maximum age of 6 (all
-fish 6 and older have the same selectivity).
-
-Prior probability distributions remained unchanged from \Sexpr{last.assess.yr}
-and fixed values are used for several parameters. For the base model, the
-instantaneous rate of natural mortality ($M$) is estimated with a
-\Sexpr{m.prior[1]} prior having a median of \Sexpr{m.prior[2]} and a standard
-deviation (in log-space) of 0.1 (see
-Section~\ref{sec:data-natural-mortality}). The stock-recruitment function is a
-Beverton-Holt parameterization, with the log of the mean unexploited recruitment
-freely estimated. This assessment uses the same Beta-distributed prior for
-stock-recruit steepness ($h$), based on \citet{MyersBowenEtAl1999}, that has
-been applied since 2011 \citep{StewartForrestEtAl2011, JTC2012, JTC2013,
-JTC2014, JTC2015, JTC2016, JTC2017}. Year-specific recruitment deviations were estimated
-from 1966-2017 as well as the years \Sexpr{assess.yr}, \Sexpr{assess.yr+1}, and
-\Sexpr{assess.yr+2} for purposes of forecasting. The standard deviation,
-$\sigma_r$, of recruitment variability, serving as both a recruitment deviation
-constraint and bias-correction term, is fixed at a value of
-\Sexpr{base.model$sigma_R_in} in this assessment. This value is based on
-consistency with the observed variability in the time series of recruitment
-deviation estimates, and is the same as assumed in assessments from 2013 to
-\Sexpr{last.assess.yr}. Survey catchability was set at the median unbiased
-estimate calculated analytically as per \citet{LudwigWalters1981}. Maturity
-and fecundity relationships are assumed to be time-invariant and fixed values
-were updated using the new maturity ogive discussed earlier.
-
-Statistical likelihood functions used for data fitting are typical of many stock
-assessments. The acoustic survey index of abundance was fit via a log-normal
-likelihood function, using the observed (and extra 2009) sampling variability,
-estimated via kriging, as year-specific weighting. An additional constant and
-additive standard deviation on the log-scale component is included, which was
-freely estimated to accommodate unaccounted-for sources of process and
-observation error. A Dirichlet-Multinomial (D-M) likelihood was applied to age-composition data,
-with input sample sizes equal to the sum of the number of trips or hauls actually sampled across all
-fishing fleets or the number of trawl sets in the research surveys (see Section~\ref{sec:data-age-comp-likelihood}).
-A weighting parameter for the fishery
-and the survey age compositions was specified and then estimated in the model fitting procedure.
-to allow for additional sources of process and observation error. This process resulted in
-automatically tuned input sample sizes.  Tuning quantities did not change in assessments from 2012 to
-2015, however additional tuning was required in 2016 and 2017 given the
-updated acoustic survey index composition data and refinements to fishery
-composition data. Tuning quantities changed again this year with the addition of the
-new D-M data weighting (tuning) approach.
-
-Uncertainty of estimated quantities was calculated via Markov Chain Monte Carlo
-(MCMC) simulations. The bounds of 95\% credibility intervals were calculated as
-the 2.5\% quantile and the 97.5\% quantile of posterior distributions from the
-MCMC simulations, to give equal-tailed intervals.
-
-Calculations and figures from Stock Synthesis output were performed using
-\Sexpr{R.Version()$version.string} \citep{R2017} and many R packages (in
-particular r4ss and xtable). The use of R, knitr, \LaTeX~and GitHub immensely
-facilitated the collaborative writing of this document.
-
-For this assessment document, we have slightly refined the Glossary
-(Appendix~\ref{chap:glossary}), adding an explicit definition of
-spawning biomass per recruit.
 
 \subsection{Modeling results}\label{sec:assessment-modeling-results}
 % Manual 2018 (in progress)
