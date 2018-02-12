@@ -23,8 +23,7 @@ maturity ogive.
   \item Coastwide catch in \Sexpr{end.yr-1} was the largest on record at \Sexpr{last.year.landings}~t,
 out of a Total Allowable Catch (adjusted for carryovers) of \Sexpr{last.year.tac}~t. Attainment in
 the U.S. was \Sexpr{last.year.us.attained}\% of its quota; in Canada it was
-\Sexpr{last.year.can.attained}\%. A variety of factors influenced the attainment
-of the quota.
+\Sexpr{last.year.can.attained}\%. 
 
   \item The stock is estimated to have been at relatively high levels since
     2013, due to large estimated 2010 and 2014 cohorts.
