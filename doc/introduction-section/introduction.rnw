@@ -297,7 +297,7 @@ catch this year (see Section~\ref{sec:data-total-catch}).
 However, this amount of catch is small relative to the total catch, 
 and a sensitivity to the inclusion of this 
 catch in the 2017 base model resulted in negligible influence on model 
-results and subsequent management forecasts. The catcher-processor, mothership, and
+results. The catcher-processor, mothership, and
 shore-based fleets caught \Sexpr{catcher.processor.catch}\%,
 \Sexpr{mothership.catch}\%, and \Sexpr{shore.based.catch}\% of their final
 reallocated quotas, respectively. Overall,
