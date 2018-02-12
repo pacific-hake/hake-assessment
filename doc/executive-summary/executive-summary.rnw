@@ -113,21 +113,17 @@ total catch of the 2010 year class is estimated to be about
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
-%%The biomass estimate and age composition from the acoustic survey conducted
-%%in \Sexpr{survey.end.yr} have been added to the survey time series
-%%(Figure~\ref{fig:es-survey-biomass}); earlier survey data (1998--2013)
-%%were re-analyzed and updated this year.
-**There was no survey in \Sexpr{last.data.yr}. New data for this \Sexpr{assess.yr}
-assessment, that were not in the \Sexpr{last.assess.yr} assessment, are the 1995
-survey biomass estimate (with associated age compositions) and the
+The biomass estimate and age composition from the acoustic survey conducted
+in \Sexpr{survey.end.yr} have been added to the survey time series
+(Figure~\ref{fig:es-survey-biomass}). 
+
+**
+New data for this \Sexpr{assess.yr}
+assessment, that were not in the \Sexpr{last.assess.yr} assessment, 
+are the
 \Sexpr{last.data.yr} fishery catch and fishery age compositions. The mean 
-weight-at-age for \Sexpr{last.data.yr} was added and minor refinements to historical
-catch estimates were also made. Finally, there was a minor revision to the 1998
-survey biomass estimate (an increase of 2\%). The \Sexpr{last.assess.yr}
-assessment did not include the 1995 survey biomass estimate due to issues with
-the older survey data, but those issues have now been resolved.  The revision to
-the 1998 point was due to discovery of a better set of variables used in the
-processing of the acoustic data for that year.
+weight-at-age for \Sexpr{last.data.yr} was also added and minor refinements to historical
+catch estimates were also made. 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
