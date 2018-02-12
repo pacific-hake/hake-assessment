@@ -909,6 +909,13 @@ estimates are slightly different than the estimates in the
 \Sexpr{last.assess.yr} assessment with smaller equilibrium yields, spawning biomass, and
 recruitments (particularly for the 2014 year class) estimated in this assessment.
 
+As part of the DFO Sustainable Fisheries Framework, \citet{DFO2009} suggested
+a provisional limit reference point of $0.4\Bmsy$ and an upper stock reference
+point of $0.8\Bmsy$. We note that the probabilities of the female spawning biomass
+at the start of \Sexpr{assess.yr} being above these points are both 100\% -- 
+i.e.~the stock is estimated to be in the provisional `healthy zone'.
+% Manual 2018 done. See dfo2018 and dfo2019 data.frames (change names next
+%  year to be more generic).
 
 \subsection{Model projections}\label{sec:assessment-model-projections}
  % Manual 2018 done
@@ -985,6 +992,15 @@ uncertain with the 95\% credibility interval for the age-4 fraction spanning
 19\%--62\%. Due to the lower average weight at age 4 vs.~8, the expected
 proportion of the 2018 catch by weight is expected to be more similar between
 these two cohorts, at 38\% and 31\%, respectively.
+
+With respect to the DFO provisional reference points, even with the largest
+\Sexpr{assess.yr} catch of 725,984~t given in Table~\ref{tab:main-risk-year-1},
+the stock is expected to be in the healthy zone at the start of \Sexpr{assess.yr+1}
+with a probability of 96\%.
+% Manual done 2018. See dfo2019
+
+
+
 
 % \enlargethispage{\baselineskip}
 
