@@ -459,7 +459,10 @@ make.fishing.intensity.plot(base.model,
 Median exploitation fraction (catch divided by biomass of fish of age-2 and
 above) peaked in 1999, and then reached even higher values in 2006 and 2008
 (Table~\ref{tab:es-fishing-intensity} and
-Figure~\ref{fig:es-exploitation-fraction}).
+Figure~\ref{fig:es-exploitation-fraction}). Note that in previous assessments
+exploitation fraction was defined in terms of fish age-3 and above, but we
+revised the definition this year because age-2 fish are often caught by the
+fishery.
 % Manual 2018 done.
 %
 %%%%%%%%%%%%%%%%%%%%%%%
