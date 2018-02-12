@@ -801,7 +801,7 @@ and also ensures that the results of model sensitivities, retrospective analyses
 and likelihood profiles will all be automatically tuned, rather than having the
 age compositions given the same weight as the base model.
 Note that the following description holds for both the survey data and the
-fishery data, but, again, for simplicitly we do not make the distinction here
+fishery data, but, again, for simplicity we do not make the distinction here
 (other than to note that we consequently estimate $\theta_{\text{surv}}$ for the 
 survey data and $\theta_{\text{fish}}$ for the fishery data).
 
