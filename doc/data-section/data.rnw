@@ -82,7 +82,7 @@ additional data sources are:
 
 \item Joint-U.S. and Canada acoustic survey index of age-1 \fishname.
 
-\item NWFSC winter 2016 and 2017 acoustic research survey of spawning \fishname.
+\item NWFSC winter 2016 and 2017 acoustic research surveys of spawning \fishname.
 
 \end{itemize}
 
@@ -281,7 +281,7 @@ illustrate the variable spatial patterns of age-2+ hake across years
 (Figure~\ref{fig:main-backscatter-map}). This variability is
 due in part to changes in the composition of the the (age-2+) population 
 (older \fishname\ tend to migrate farther north), and partly due to 
-evironmental/climate factors. 
+environmental and/or climatic factors. 
 The 1998 acoustic survey is notable because it shows an
 extremely northward distribution that is thought to be related to the strong
 1997-1998 El Ni\~no. In contrast, the distribution of hake during the 2001
@@ -293,10 +293,10 @@ likely due to age-composition than the environment, although 2013 showed some
 warmer than average sea-surface temperatures. In 2015, sea-surface temperatures
 were warmer again, resulting in a northern shift in the overall hake
 distribution.  The distribution of \fishname\ in 2017 was more latitudinally uniform
-than observed in recent years.  This is likely a result of having large proportions 
-two cohorts (2010 and 2014 year-classes) in 2017 as opposed to many years where
+than observed in recent years.  This is likely a result of having large proportions of
+two cohorts (2010 and 2014 year-classes) in 2017 as opposed to many other years when
 a single cohort is dominant in the observed samples
-(Figure~\ref{fig:main-backscatter-map}) in addition to prevailing environmental
+(Figure~\ref{fig:main-backscatter-map}), in addition to prevailing environmental
 conditions. 
 
 %%El Ni\~no conditions were prevalent in \Sexpr{last.assess.yr}, but an extreme 
