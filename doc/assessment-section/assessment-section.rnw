@@ -248,7 +248,8 @@ from the JTC:
 % 3.24u in 2015 and 2016 assessments.
 The \Sexpr{assess.yr} base model is predominantly an update of the base model in
 the \Sexpr{last.assess.yr} stock assessment. Stock Synthesis
-\citep{MethotWetzel2013} version \Sexpr{ss.version} was used, which is a significant update to
+\citep{MethotWetzel2013} version \Sexpr{ss.version} was used 
+for the first time this year, which is a significant update to
 the software version (3.24U) used in the previous assessment \citep{JTC2017}.  In addition
 to the new version of Stock Synthesis, the largest changes between the
 \Sexpr{last.assess.yr} and \Sexpr{assess.yr} stock assessments are the addition of another
@@ -461,7 +462,7 @@ than that used previously, such that the loss due to mortality is greater
 in comparison. The estimated decline in fecundity due to 
 senescence and skip spawning from age 13 onward also reduces the estimates of
 spawning biomass at the initial equilibrium and in the early part of the time
-series where there were more old individuals than in the more recent years with
+series where there were more old individuals than in the following years with
 higher fishing intensity. In spite of these changes to the estimated
 spawning biomass, this bridging step had little impact
 on recruitment, since the stock-recruit relationship indicates a 
@@ -475,9 +476,9 @@ relatively weak link between spawning biomass and recruitment (see below).
 \subsubsub{Model Fit}
 
 For the base model, the MCMC chain length was increased from the 12 million in the
-\Sexpr{last.assess.yr} assessment \citep{JTC2017} to a chain length of 24 million. This
-resulted in the first 4,000,000 discarded to eliminate `burn-in' effects and
-retaining each 10,000th value thereafter, resulting in \Sexpr{num.mcmc.samples}
+\Sexpr{last.assess.yr} assessment \citep{JTC2017} to a chain length of 24 million. 
+The first 4,000,000 values were discarded to eliminate `burn-in' effects and 
+each 10,000th value thereafter was retained, resulting in 2,000
 samples from the posterior distributions for model parameters and derived
 quantities. Initial MCMC explorations indicated that $\log
 \theta_{\text{surv}}$, the log of the $\theta$ parameter associated with the survey
@@ -545,9 +546,14 @@ and no direct cause for this is known.  The survey did begin earlier that year t
 between 1995 and 2009 (Table~\ref{tab:main-survey-history}), which may explain
 some portion of the anomaly, along with El Ni\~no conditions and age
 structure. The 2009 index is much higher than any predicted value observed
-during model evaluation. The uncertainty of this point is also higher than in
+during model evaluation. The uncertainty of this point 
+(both modeled and actual) is also higher than in
 other years, due to the presence of large numbers of Humboldt Squid during the
-survey. The MLE and median posterior density estimate underfit the 2015 survey
+survey. Humboldt Squid have similar Target Strength to hake
+which could introduce bias in the biomass estimate for that year, and 
+which also likely influenced hake population dynamics through predation in that year.
+
+The MLE and median posterior density estimate underfit the 2015 survey
 index and overfit the 2017 survey index. This is likely due to fishery data suggesting 
 slightly different population dynamics than the survey in recent years.  This phenomenon can arise
 when the fishery gets a prominent signal about age-1 fish, as it did in 2015,
@@ -566,7 +572,7 @@ fishery) and age-7 fish from the 2010 year-class (40\% of the catch in the
 fishery).  Age composition from the 2015 acoustic survey also indicated that the
 2010 year-class was large (59\% of the catch for that year).  The 2017 acoustic survey
 was the first time the survey was able to sample the 2014 year-class, and it confirmed
-that the 2014 year-class (53\% of the catch for that year) was above average. The
+that the 2014 year-class (53\% of the catch for that year) was indicated above average. The
 pattern for the 2010 year-class was expected given the strength of that cohort
 from the fishery composition data from 2012 onward, and thus are fit well by the
 model. Combined, the 2015, 2016, and 2017 fishery age composition data and the 2017
@@ -825,7 +831,7 @@ fishing intensity ranged from \Sexpr{median.intensity.2007.to.2011.min}\% to
 between \Sexpr{median.relative.bio.2007.to.2011.min} and
 \Sexpr{median.relative.bio.2007.to.2011.max}. Biomass has risen recently with
 the 2008, 2010, and 2014 recruitments and, correspondingly, relative fishing
-intensity has fallen well below targets. Relative spawning biomass has been
+intensity fell well below targets. Relative spawning biomass has been
 above the target since \Sexpr{median.relative.bio.above.target.since}. While
 there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative fishing
 intensity and relative spawning biomass, the model predicts a less than 6\%
@@ -870,8 +876,8 @@ The \fishname\ stock displays a very high degree of recruitment variability,
 perhaps the largest of any west coast groundfish stock, resulting in large and
 rapid biomass changes. This volatility, coupled with a dynamic fishery that
 potentially targets strong cohorts (resulting in time-varying selectivity), and
-little data to inform incoming recruitment until the cohort is at least age-2 or
-greater, will in most circumstances continue to result in highly uncertain
+little data to inform incoming recruitment until the cohort is at least age-2, 
+will in most circumstances continue to result in highly uncertain
 estimates of current stock status and even less-certain projections of the stock
 trajectory.
 
@@ -978,7 +984,7 @@ the 2014 year-class and 23\% age-8 fish from the 2010 year-class
 uncertain with the 95\% credibility interval for the age-4 fraction spanning
 19\%--62\%. Due to the lower average weight at age 4 vs.~8, the expected
 proportion of the 2018 catch by weight is expected to be more similar between
-these two cohorts, with 38\% and 31\%, respectively.
+these two cohorts, at 38\% and 31\%, respectively.
 
 % \enlargethispage{\baselineskip}
 
@@ -989,10 +995,9 @@ structural uncertainty of the base model by investigating how changes to the
 model affected the estimated values and derived quantities. For expediency, all
 sensitivity analyses compared MLE estimates rather than MCMC
 posteriors. Therefore, the values reported below are not directly comparable to
-the base model MCMC values reported elsewhere (see
-Tables~\ref{tab:main-parameter-estimates-sens-1} and
-\ref{tab:main-parameter-estimates-sens-2} for a set of comparisons of the base
-model to MLE estimates from the following sensitivity models). The sensitivities
+the base model MCMC values reported elsewhere. For a comparison of the base model
+MCMC and MLE estimates, see Tables~\ref{tab:main-parameter-estimates-sens-1} and
+\ref{tab:main-parameter-estimates-sens-2}. The sensitivities
 include the following:
 
 \begin{enumerate}
