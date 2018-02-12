@@ -503,14 +503,14 @@ interval reaching above the SPR management target for \Sexpr{end.yr-1}
 \phantomsection  \addcontentsline{toc}{subsection}{Management performance}
 
 Over the last decade (\Sexpr{end.yr-10}--\Sexpr{end.yr-1}), the mean coast-wide
-utilization rate (i.e., landings/quota) has been
-\Sexpr{tot.last.10.years.attainment}\% (Table~\ref{tab:es-landings-tac}). **Over
+utilization rate (proportion of catch target removed) has been
+\Sexpr{tot.last.10.years.attainment}\% (Table~\ref{tab:es-landings-tac}). Over
 the last five years (\Sexpr{end.yr-5} to \Sexpr{end.yr-1}), the mean utilization
 rates differed between the United States (\Sexpr{usa.last.5.years.attainment}\%)
 and Canada (\Sexpr{can.last.5.years.attainment}\%). Total landings last exceeded
 the coast-wide quota in 2002 when utilization was 112\%.
-% Manual 2017 done. For last sentence just check
-%  landings.vs.tac[landings.vs.tac$Year > 2000, "ATTAIN"]
+% Manual 2018 done. For last sentence just check
+%  landings.vs.tac[landings.vs.tac$Year > 2000, c("Year", "ATTAIN")]
 
 <<landings.tac.table, results='asis', echo=FALSE>>=
 make.landings.tac.table(landings.vs.tac,
@@ -524,24 +524,28 @@ make.landings.tac.table(landings.vs.tac,
                         placement = "tbp")
 @
 
-**The median relative fishing intensity was below target in all years except
+The median relative fishing intensity was below target in all years
 % \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]}
 % and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
 % Only one year for 2017 assessment, so:
-\Sexpr{median.intensity.above.one.years} (Figure~\ref{fig:es-fishing-intensity}).
+%  except \Sexpr{median.intensity.above.one.years}
+%  No years below for 2018
+(Figure~\ref{fig:es-fishing-intensity}).
 The median female spawning biomass was above the $\Bforty$ reference point in
-all years except 1968, 1998-2000 and 2007-2011
+% 2017 assessment: all years except 1968, 1998-2000 and 2007-2011
+all years except 1999-2000 and 2007-2011 
 (Figure~\ref{fig:es-relative-spawning-biomass}).
 % Andy summarising those years manually, based on:
 % median.relative.bio.below.target
-% Manual done 2017.
+% Manual done 2018.
 
-**The joint history of the medians of relative spawning biomass and relative
-fishing intensity shows that only in 1999 was the median relative fishing
-intensity above the target of 1.0 and the female spawning biomass below the
+The joint history of the medians of relative spawning biomass and relative
+fishing intensity shows that the median relative fishing
+intensity has never been above the target of 1.0 when the female spawning biomass
+is below the
 reference point of $\Bforty$ (Figure~\ref{fig:es-phase}).
-% Manual done 2017.
-%
+% 2017 - only in 1999 was it both (just)
+% Manual done 2018.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
@@ -561,25 +565,26 @@ make.phase.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-Between 2007 and 2011, however, median relative fishing intensity ranged from
+Between 2007 and 2011, median relative fishing intensity ranged from
 \Sexpr{median.intensity.2007.to.2011.min}\% to
 \Sexpr{median.intensity.2007.to.2011.max}\% and median relative spawning biomass
 between \Sexpr{median.relative.bio.2007.to.2011.min} and
-\Sexpr{median.relative.bio.2007.to.2011.max}.  Biomass has risen recently with
+\Sexpr{median.relative.bio.2007.to.2011.max}.  Biomass has risen from the 2010 low with
 the 2008, 2010 and 2014 recruitments, and
 % and, correspondingly, fishing intensity has fallen below targets.
 median relative spawning biomass has been above the reference point of 40\%
 since \Sexpr{median.relative.bio.above.target.since}.
-% Manual done 2017. Based on median.relative.bio.below.target.
+% Manual done 2018. Based on median.relative.bio.below.target.
 
-**While there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative
+While there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative
 fishing intensity and relative spawning biomass, the model predicts a less than
-4\% joint probability of being both above the target relative fishing intensity
+6\% joint probability of being both above the target relative fishing intensity
 in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at
 the start of \Sexpr{end.yr}.
-% sum(base.model$mcmc$Bratio_2017<0.4 & base.model$mcmc$SPRratio_2016>1) /nrow(base.model$mcmc)
-% That is the joint probability, make sure to change dates each year.
-% Manual done 2017.
+% sum(base.model$mcmc$Bratio_2018<0.4 & base.model$mcmc$SPRratio_2017>1) /nrow(base.model$mcmc)
+% That is the joint probability, make sure to change dates each year and
+% update % in text.
+% Manual done 2018.
 
 \subsection*{Reference points} \label{sec:es-reference-points}
 \phantomsection \addcontentsline{toc}{subsection}{Reference points}
