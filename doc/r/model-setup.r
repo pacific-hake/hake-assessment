@@ -84,6 +84,10 @@ surv.yrs <- c(1995,
               2015,
               2017)
 
+# tick marks for time series plot
+big.ticks <- seq(1970, end.yr+4, 5)
+little.ticks <- start.yr:max(big.ticks)
+
 if(verbose) cat0("Last survey year: \n  ", survey.end.yr)
 ## Final year of data (This is what is the end year is in the model data files)
 last.data.yr <- end.yr - 1
