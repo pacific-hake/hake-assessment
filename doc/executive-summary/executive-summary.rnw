@@ -322,7 +322,7 @@ make.recruitment.table(base.model,
 @
 %
 
-**The new data available for this assessment do not significantly change the
+The new data available for this assessment do not significantly change the
 pattern of recruitment estimated in recent assessments. \fishname\ appear to
 have low average recruitment with occasional large year-classes
 (Table~\ref{tab:es-recruitment} and Figure~\ref{fig:es-recruitment}).
@@ -361,28 +361,24 @@ commercial catch in 2013, \Sexpr{year.class.2010.in.2014}\% of the 2014 catch,
 the 2010 year class in the 2016 catch is due to the large influx of the 2014
 year class (47\% of the 2016 catch was age-2 fish from the 2014 year class,
 which was similar to the proportion of age-2 fish, 41\%, from the 2010 year
-class in 2012).  The size of the 2010 year class is more uncertain than older
-cohorts
-% (other than the 1980 year class) - removing for 2017 assessment -
-%  from Table 12 this is not true for absolute range of confidence intervals
-%  or taking the ratio of upper and lower bounds
-but the median estimate is the second highest in the time series (after that for
-1980). The model currently estimates smaller-than-average 2011, 2012 and 2013
-year classes (median recruitment below the mean of all median recruitments).
-% Still true for 2017 assessment - see
+class in 2012).  The median of the estimated size of the 2010 year class is
+the second highest in the time series (after that for
+1980). The model currently estimates smaller-than-average 2011, 2012, 2013,
+2015 and 2017 year classes (median recruitment below the mean of all median recruitments).
+% Done for for 2018 assessment - see
 %  years.since.2010.recruitment.med.below.mean
 % AME put in definition of below-average, else it looks like it contradicts the
 %  median deviations in the table.
 % Allan agrees. Even though the deviation is slightly above average, the 2011
 %  spawning biomass was small enough that the S-R curve had an effect
 %  [keep this helpful explanation]
-The 2014 year class is likely larger than average and potentially a similar
-magnitude as the 2010 year class, but is still highly uncertain.
+The 2014 year class is likely larger than average though not as large as 
+the 2010 year class.
 There is no information in the data to estimate the sizes of the
 \Sexpr{end.yr-1} and \Sexpr{end.yr} year classes. Retrospective analyses of year
 class strength for young fish have shown the estimates of recent recruitment to
 be unreliable prior to model age-3 (observed at age-2).
-% Manual 2017 done.
+% Manual 2018 done.
 
 \subsection*{Default harvest policy} \label{sec:es-harvest-policy}
 \phantomsection  \addcontentsline{toc}{subsection}{Default harvest policy}
