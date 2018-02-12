@@ -417,8 +417,9 @@ make.fishing.intensity.table(base.model,
 %%  and posting issue.
 %% Okay for base-model 45, though only year. Keep all this so can easily switch
 %%  around.
-**Median relative fishing intensity on the stock is estimated to have been below
-the target of 1.0 except for
+Median relative fishing intensity on the stock is estimated to have been below
+the target of 1.0 
+%% except for
 %% the years
 %%  \Sexpr{median.intensity.above.one.years[1:(length(median.intensity.above.one.years)-1)]}
 %% and
@@ -427,9 +428,11 @@ the target of 1.0 except for
 %%  Section below, which seeminly didn't give an error when
 %%  median.intensity.above.one.years was empty. Could adapt that here for 2018,
 %%  not doing for 2017 since this works fine.
-the year \Sexpr{median.intensity.above.one.years}
-when spawning biomass was low (Table~\ref{tab:es-fishing-intensity} (for recent
-years) and Figure~\ref{fig:es-fishing-intensity}).
+%% the year \Sexpr{median.intensity.above.one.years}
+%% when spawning biomass was low 
+for all years
+(see Table~\ref{tab:es-fishing-intensity} for recent
+years, and Figure~\ref{fig:es-fishing-intensity}).
 % for 2017 assessment, consider revising definition of Fishing Intensity as
 % discussed
 % in issue #158: https://github.com/cgrandin/hake-assessment/issues/158
@@ -453,11 +456,11 @@ make.fishing.intensity.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-Median exploitation fraction (catch divided by biomass of fish of age 3 and
-above) also peaked in 1999, and then reached even higher values in 2007, 2008
-and 2010 (Table~\ref{tab:es-fishing-intensity} and
+Median exploitation fraction (catch divided by biomass of fish of age-2 and
+above) peaked in 1999, and then reached even higher values in 2006 and 2008
+(Table~\ref{tab:es-fishing-intensity} and
 Figure~\ref{fig:es-exploitation-fraction}).
-% Manual 2017 done.
+% Manual 2018 done.
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -478,7 +481,7 @@ make.exploitation.fraction.plot(base.model,
 %
 Median relative fishing intensity is estimated to have declined from
 \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.penult.yr}\%
-in \Sexpr{end.yr-1}, while the exploitation fraction has decreased from
+in \Sexpr{end.yr-1}, while the exploitation fraction has increased from
 \Sexpr{exploitation.med.2010} in 2010 to \Sexpr{exploitation.med.penult.yr} in
 \Sexpr{end.yr-1}.  There is a considerable amount of uncertainty around
 estimates of relative fishing intensity, with the 95\% posterior credibility
@@ -494,7 +497,7 @@ interval reaching above the SPR management target for \Sexpr{end.yr-1}
 %  places but Table rounds to three, but rounding is done correctly because of
 %  the automation; i.e. we haven't incorrectly rounded up to 0.07, which we
 %  could happen from looking at Table d (if the true value wasn't checked). Nice.
-% Manual 2017 done.
+% Manual 2018 done.
 
 \subsection*{Management performance} \label{sec:es-management-performance}
 \phantomsection  \addcontentsline{toc}{subsection}{Management performance}
