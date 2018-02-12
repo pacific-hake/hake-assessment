@@ -6,12 +6,12 @@
 \phantomsection \addcontentsline{toc}{section}{One-page summary}
 
 \begin{itemize}
-  \item **The stock assessment model for \Sexpr{assess.yr} is similar in structure
-to the \Sexpr{last.assess.yr} model. Updates to the data include the addition of
-fishery catch and age compositions from \Sexpr{end.yr-1}, reanalyzed acoustic
-survey biomass and age compositions for 1995 (completing the reanalyzed acoustic
-survey time series initiated in the \Sexpr{last.assess.yr} model), and other
-minor refinements such as catch estimates from earlier years.
+  \item The stock assessment model for \Sexpr{assess.yr} is similar in structure
+to the \Sexpr{last.assess.yr} model. Updates to the data include:
+the biomass estimate and age composition from the acoustic survey conducted
+in \Sexpr{survey.end.yr}, fishery catch and age compositions from \Sexpr{end.yr-1},
+weight-at-age data for \Sexpr{last.data.yr}, and calculation of a new age-based
+maturity ogive.
 
   \item The stock assessment model is fit to an acoustic survey index of
 abundance and annual commercial catch, as well as age compositions from the

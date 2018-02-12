@@ -115,7 +115,7 @@ total catch of the 2010 year class is estimated to be about
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
 The biomass estimate and age composition from the acoustic survey conducted
 in \Sexpr{survey.end.yr} have been added to the survey time series
-(Figure~\ref{fig:es-survey-biomass}). A new age-baed maturity ogive was
+(Figure~\ref{fig:es-survey-biomass}). A new age-based maturity ogive was
 developed for this assessment, replacing the previous ogive that was based on
 estimates of maturity-at-length from 1997 and weight-at-length  from 2011.
 Further new data for this \Sexpr{assess.yr}
