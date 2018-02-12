@@ -1384,15 +1384,16 @@ differences in model structural assumptions and thus results submitted each
 year, which can clearly be seen by looking at the spawning biomass
 trajectories. The variability between models, especially early on in the time
 series, is larger than the uncertainty (95\% credibility interval) reported in
-any single model in recent years. One important avenue which was investigated
+any single model in recent years. One important avenue that was investigated
 between 2004 and 2007 was the inclusion of several different, but fixed, survey
 catchability ($q$) values followed by a span of years (2008 to present) where it
 was freely estimated by the model. In all years prior to 2004, survey
 catchability was fixed at 1.0. The fixing of survey catchability had the effect
 of driving the estimate of initial biomass upward, which in turn scaled the
 entire biomass trajectory up, leading to higher estimates of relative spawning
-biomass than in more recent years. The \Sexpr{end.yr} base model estimates of
-spawning biomass for recent years has declined relative to recent assessments.  Although
+biomass than in more recent assessments. The median estimates of
+spawning biomass for recent years have declined in the \Sexpr{end.yr} asssessment relative
+to recent assessments.  Although
 the model structure has remained relatively consistent in recent years, the 2017 acoustic 
 survey biomass estimate was lower than what previous models would have predicted.
 The uncertainty interval associated with the \Sexpr{end.yr} assessment brackets the majority of the
