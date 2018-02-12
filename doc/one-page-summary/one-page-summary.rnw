@@ -17,20 +17,18 @@ in \Sexpr{survey.end.yr}, fishery catch and age compositions from \Sexpr{end.yr-
 weight-at-age data for \Sexpr{last.data.yr}, and calculation of a new age-based
 maturity ogive.
 
-  \item The model was update to include new approaches for weighting composition data
+  \item The model was updated to include new approaches for weighting age-composition data
     and for parameterizing time-varying selectivity.
 
   \item Coastwide catch in \Sexpr{end.yr-1} was \Sexpr{last.year.landings}~t -- the
     largest on record --
 out of a TAC (adjusted for carryovers) of \Sexpr{last.year.tac}~t. Attainment in
 the U.S. was \Sexpr{last.year.us.attained}\% of its quota; in Canada it was
-\Sexpr{last.year.can.attained}\%. ** A variety of factors influenced the attainment
+\Sexpr{last.year.can.attained}\%. A variety of factors influenced the attainment
 of the quota.
 
-  \item **The stock is estimated to be at its highest biomass level since the
-1980s as a result of estimated large 2010 and 2014 cohorts.  The 2014 cohort has
-not yet been observed by the survey and only twice by the commercial fishery,
-thus its absolute size is highly uncertain.
+  \item The stock is estimated to have been at relatively high levels since
+    2013, due to large estimated 2010 and 2014 cohorts.
 
   \item The median estimate of \Sexpr{end.yr} relative spawning biomass
 (female spawning biomass at the start of \Sexpr{end.yr} divided by that at unfished
