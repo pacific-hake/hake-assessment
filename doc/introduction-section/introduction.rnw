@@ -282,25 +282,22 @@ starting on April 15.  Regulations do not allow at-sea processing south of
 42$^\circ$N latitude at any time during the year.
 % Manual done 2017.
 
-** [Rewrite paragraph below, if necessary, after finalizing the tables and dynamic numbers]
 The overall catch of \fishname\ in U.S. waters was substantially greater than in
 2016, reaching the highest values ever recorded (Table~\ref{tab:intro-catches-US}).
 Throughout 2017, catches were considerably higher than in 2016
-(Figure~\ref{fig:main-us-catch-rates}). Initial database extractions reported minor amounts
-of hake catch by tribal fisheries in \Sexpr{last.data.yr}.  However, the
-U.S. advisory panel report on the \Sexpr{last.data.yr} fishery
+(Figure~\ref{fig:main-us-catch-rates}). Initial database extractions 
+reported small amounts of hake catch by tribal fisheries in 2017.  
+However, the U.S. advisory panel report on the \Sexpr{last.data.yr} fishery
 (Appendix~\ref{chap:us-fishery-report}) indicated a tribal catch of 6,012 t.
 Through discussions with the Washington Department of Fish and Wildlife and a U.S.
 advisory panel member, the Joint Technical Committee was made aware of missing fish tickets
 in the regional (PacFIN) database. These discrepancies were not resolved until late in the
 assessment preparation process, thereby precluding an update to the overall
 catch this year (see Section~\ref{sec:data-total-catch}).  
-However, this amount of catch 
-is negligible relative to the total catch, and a sensitivity to the inclusion of this 
-catch in the \Sexpr{assess.yr} base model resulted in negligible influence on model 
-results and subsequent management forecasts
-**refer to sensitivity section explicitly once it's updated with the sens run
-. The catcher-processor, mothership, and
+However, this amount of catch is small relative to the total catch, 
+and a sensitivity to the inclusion of this 
+catch in the 2017 base model resulted in negligible influence on model 
+results and subsequent management forecasts. The catcher-processor, mothership, and
 shore-based fleets caught \Sexpr{catcher.processor.catch}\%,
 \Sexpr{mothership.catch}\%, and \Sexpr{shore.based.catch}\% of their final
 reallocated quotas, respectively. Overall,
