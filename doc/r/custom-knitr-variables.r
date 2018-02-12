@@ -124,8 +124,8 @@ next.bio.upper.tac.based <- f(fore.tac.mcmc$supper[names(fore.tac.mcmc$supper) %
 ##  number of mcmc samples, minimum median biomass,
 ##  years when fishing intensity > 1
 num.mcmc.samples <- dim(base.model$mcmc)[1]
-median.bio.min  <- f(min(base.model$mcmccalcs$smed), 3)  # min median biomass
-median.bio.min.year <- names(which.min(base.model$mcmccalcs$smed)) # year of min
+median.bio.min  <- f(min(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% start.yr:end.yr]), 3)  # min median biomass
+median.bio.min.year <- names(which.min(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% start.yr:end.yr])) # year of min
 median.intensity <- base.model$mcmccalcs$pmed
 median.intensity.2007.to.2011 <- median.intensity[c("2007", "2008", "2009", "2010", "2011")]
 median.intensity.2007.to.2011.min <- f(min(median.intensity.2007.to.2011)*100, 0)
