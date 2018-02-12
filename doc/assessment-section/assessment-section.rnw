@@ -1365,11 +1365,12 @@ age 5.  Estimated recruitment deviations for the 2014 cohort appear to be
 similar to other large cohorts (1999, 2008, and 2010), though with the extra year
 of data in this year's assessment the 2014 cohort appears to maybe be more similar
 to the 2008 cohort rather than the 1999 and 2010 cohorts (which are the largest).
-One major difference between the 2010 and 2014
-cohorts is that by age-3 the 2010 cohort had been fully sampled by the acoustic
-survey (when they were age-3 in the assessment model), whereas the 2014 cohort
-was not sampled by the survey until they were age-4 in the assessment
-model. The variability among cohort estimates relative to their estimated size
+% One major difference between the 2010 and 2014
+% cohorts is that by age-3 the 2010 cohort had been fully sampled by the acoustic
+% survey (when they were age-3 in the assessment model), whereas the 2014 cohort
+% was not sampled by the survey until they were age-4 in the assessment
+% model.
+The variability among cohort estimates relative to their estimated size
 in the base model (Figure~\ref{fig:main-relative-retrospective.recruitment})
 further indicates that the estimates can start to improve as early as age-3, but
 some may not stabilize until the cohort approaches an age upward of 7 years
