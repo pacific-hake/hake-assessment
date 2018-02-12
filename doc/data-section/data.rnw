@@ -142,9 +142,10 @@ consistent and accurate accounting of total removals.
 Third, small changes to the pre-2017 catch in the U.S. fisheries
 were inadvertently left out of the ``Update data from years prior to 2017''
 bridging step described in Section~\ref{sec:assessment-changes}.
-Taken together, the net effect of these changes was an average change of 
-0.5\% in total catch over the years 2007 to 2017. The total change 
-was 15,798 t over a period with total catch of over 300,000,000~t.
+%Taken together, the net effect of these changes was an average change of 
+%0.5\% in total catch over the years 2007 to 2017. 
+The total net effect of these changes from 2007 to 2017
+was 15,798~t, which is around 0.5\% of the total catch of over 3,000,000~t.
 
 \subsubsection{Fishery biological data}\label{sec:data-fishery-biological-data}
 
