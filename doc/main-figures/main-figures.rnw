@@ -1340,7 +1340,8 @@ make.assessment.history.plot(base.model,
 \end{center}
 %\vspace{0mm}
 \caption{Summary of historical \fishname\ assessment estimates of spawning
-  biomass. Shading represents the approximate 95\% confidence range from the
+  biomass. Estimates are MLEs or MCMC medians depending on the model structure.
+  Shading represents the approximate 95\% confidence range from the
   \Sexpr{end.yr} base model.}
 \label{fig:main-historical-assessments}
 \end{figure}
