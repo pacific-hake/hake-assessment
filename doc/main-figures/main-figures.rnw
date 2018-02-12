@@ -197,12 +197,13 @@ make.survey.age1.plot(age.1.index,
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=6.5in, height=6.5in]{main-figures/maturity_plots}
 \end{center}
-\caption{Fraction of fish mature at each age North and South of 34.44$^\circ$N 
+\caption{Fraction of fish that are mature at each age north and south of
+  34.44$^\circ$N 
   (upper panel) and comparison of old and new fecundity relationships 
   (lower panel). The old fecundity relationship (black line in lower plot)
   was a product of the 
-  maturity at length reported by \citet{DornSaunders1997} and the weight
-  at length estimated in 2011, converted to age using a parametric 
+  maturity-at-length reported by \citet{DornSaunders1997} and the 
+  weight-at-length estimated in 2011, converted to age using a parametric 
   growth curve estimated in 2011. 
   The new fecundity relationship (purple line in lower plot) is the product 
   of the mean weight-at-age
@@ -242,7 +243,7 @@ make.comparison.plot(bridge.models.1,
                      end.yr = bridge.model.end.yr.1)
 @
 \end{center}
-\caption{Bridging models comparison showing the \Sexpr{last.assess.yr} base model
+\caption{Bridging models showing the \Sexpr{last.assess.yr} base model
   and the results of converting that model to Stock Synthesis version 3.30 and then
   updating the pre-\Sexpr{last.assess.yr} data.  
   The points disconnected from the time-series on the
@@ -347,11 +348,11 @@ par <- oldpar
 \end{center}
 \caption{Bridging models showing the difference between the
   \Sexpr{last.assess.yr} base model, the result of the second set of changes
-  shown in Figure~\ref{fig:main-bridge-5-panel} above, and the result
-  of tuning the model using the McAllister-Ianelli data-weighting method
+  shown in Figure~\ref{fig:main-bridge-5-panel} above, the result
+  of tuning the model using the McAllister-Ianelli data-weighting method,
   the change to the new Dirichlet-Multinomial data-weighting method, and
-  the update of the maturity ogive, where that last step is the final
-  change to make the base model (shown by the red line in the plots).
+  the update of the maturity ogive. That last step is the final
+  change to arrive at the \Sexpr{assess.yr} base model (shown by the red line in the plots).
   Spawning biomass (upper left panel), relative
   spawning biomass (spawning biomass in each year relative to the unfished
   equilibrium spawning biomass, upper right), absolute recruitment (lower left),
@@ -408,7 +409,7 @@ make.mcmc.diag.hists.plot(base.model)
   %quantities for the time-series of spawning biomass, and relative spawning biomass.
   together with the derived time series of
   spawning biomass and relative spawning biomass.
-  The level of autocorrelation in the chain (distribution across lag times, i.e. distance between samples in the chain, shown in the top left panel) influences the effective sample size (top right panel) used to estimate posterior distributions. The Geweke statistic (lower left panel) tests for equality between means located in the first part of the chain against means in the last part of the chain. The Heidelberger and Welch statistic (lower right panel) tests if the sampled values come from a stationarity distribution by comparing different sections of the chain.}
+  The level of autocorrelation in the chain (distribution across lag times, i.e. distance between samples in the chain, shown in the top left panel) influences the effective sample size (top right panel) used to estimate posterior distributions. The Geweke statistic (lower left panel) tests for equality between means located in the first part of the chain against means in the last part of the chain. The Heidelberger and Welch statistic (lower right panel) tests if the sampled values come from a stationary distribution by comparing different sections of the chain.}
 \label{fig:main-mcmc.diag.hists}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -493,7 +494,8 @@ par <- oldpar
 \end{center}
 \caption{Base model fit to the observed fishery (top) and acoustic survey (bottom) age composition data.
   Colored bars show observed proportions with colors following each cohort across years.
-  Points with intervals indicate median expected proportions and 95\% uncertainty intervals from the MCMC.}
+  Points with intervals indicate median expected proportions and 95\% credibility
+  intervals from the MCMC calculations.}
 \label{fig:main-age-comp-fits}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -522,7 +524,7 @@ make.mcmc.priors.vs.posts.plot(base.model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Prior (black lines) and posterior (gray histograms) probability distributions for key parameters in the base model. The parameters are: natural mortality ($M$), equilibrium log recruitment $\log(R_0)$, steepness ($h$), and the additional process-error standard deviation for the acoustic survey. The maximum likelihood estimates and associated symmetric uncertainty intervals are also shown (blue lines).}
+\caption{Prior (black lines) and posterior (gray histograms) distributions for key parameters in the base model. The parameters are: natural mortality ($M$), equilibrium log recruitment $\log(R_0)$, steepness ($h$), and the additional process-error standard deviation for the acoustic survey. The maximum likelihood estimates and associated symmetric uncertainty intervals are also shown (blue lines).}
 \label{fig:main-prior-posterior}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -595,8 +597,8 @@ make.selex.uncertainty.lines.plot(base.model,
 par <- oldpar
 @
 \end{center}
-\caption{Estimated acoustic (top - for all years) and fishery selectivity (bottom - for \Sexpr{end.yr-1} only)
-  ogives from the posterior distribution for the base model.}
+\caption{Estimated acoustic (top -- for all years) and fishery selectivities (bottom -- for \Sexpr{end.yr-1} only)
+  from the posterior distribution for the base model.}
 \label{fig:main-tv-selex-uncertainty-lines}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -670,7 +672,7 @@ make.recruitment.dev.plot(base.model,
   95\% posterior credibility intervals (blue lines). Recruitment deviations for the years \Sexpr{recruit.dev.start.yr}--\Sexpr{start.yr-1}
   are used to calculate the numbers at age in \Sexpr{start.yr}, the initial year of the model. Deviations for
   the years \Sexpr{main.recdev.start}--\Sexpr{main.recdev.end} are constrained to sum to zero while
-  deviations outside this range are represented as separate vectors which do not have that constraint.}
+  deviations outside this range are represented as separate values that do not have that constraint.}
 \label{fig:main-recruitment-devs}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1009,7 +1011,7 @@ mtext("Age", side = 1, line = 1, outer = TRUE)
   and selectivity for the base model and alternative sensitivity runs 
   representing changes in the age of maximum selectivity from the value 
   of 6 in the base model and the standard
-  deviation ($\phi$) associated with time-varying selectivity.
+  deviation ($\Phi$) associated with time-varying selectivity.
   Lower panels show baseline selectivity for both fleets and 
   time-varying fishery selectivity for the two most recent years for
   a) Base model, b) \Sexpr{sens.model.names.3[1]}, c) \Sexpr{sens.model.names.3[2]},
@@ -1032,7 +1034,7 @@ make.comparison.plot(c(list(base.model), sens.models.3),
 \caption{Maximum likelihood estimates of recruitment deviations
   for the base model and alternative sensitivity runs (refer to the legend below) representing changes
   in the age of maximum selectivity from the value of 6 in the base model and the standard
-  deviation ('phi') associated with time-varying selectivity.}
+  deviation ($\Phi$) associated with time-varying selectivity.}
 \label{fig:main-recruit-base-tv-increase-1}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1064,7 +1066,7 @@ par <- oldpar
 \caption{Maximum likelihood estimates of the fit to the survey biomass index
   for the base model and alternative sensitivity runs representing changes
   in the age of maximum selectivity from the value of 6 in the base model and the standard
-  deviation ('phi') associated with time-varying selectivity.}
+  deviation ($\Phi$) associated with time-varying selectivity.}
 \label{fig:main-index-base-tv-increase-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

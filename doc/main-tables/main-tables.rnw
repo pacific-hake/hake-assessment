@@ -441,7 +441,10 @@ make.cohort.table(base.model,
                                     Biomass does not
                                     equal the Start Biomass in the following year
                                     because the empirical weights-at-age
-                                    change between years. Estimated quantities are
+                                    change between years (for ",
+                                    assess.yr,
+                                    " the mean weights-at-age are used).
+                                    Estimated quantities are
                                     MLEs."),
                   xlabel = "tab:main-cohort-effects",
                   font.size = 10,
@@ -540,7 +543,7 @@ make.short.parameter.estimates.sens.table(sens.models.1.for.table,
                                           end.yr = end.yr,
                                           age.1 = TRUE,
                                           digits = 3,
-                                          xcaption = paste0("Maximum likelihood estimates (MLE) of select parameters, derived quantities, and reference points for the base model and sensitivity runs (described in Section~\\ref{sec:assessment-sensitivity-analyses})."),
+                                          xcaption = paste0("Maximum likelihood estimates (MLE) of select parameters, derived quantities, and reference points for the base model and some sensitivity runs (described in Section~\\ref{sec:assessment-sensitivity-analyses})."),
                                           xlabel = "tab:main-parameter-estimates-sens-1",
                                           font.size = 9,
                                           space.size = 11)
@@ -560,7 +563,7 @@ make.short.parameter.estimates.sens.table(sens.models.2.for.table,
                                           end.yr = end.yr,
                                           age.1 = FALSE,
                                           digits = 3,
-                                          xcaption <- paste0("Maximum likelihood estimates (MLE) of select parameters, derived quantities, and reference points for the base model and sensitivity runs (described in Section~\\ref{sec:assessment-sensitivity-analyses})."),
+                                          xcaption <- paste0("Maximum likelihood estimates (MLE) of select parameters, derived quantities, and reference points for the base model and further sensitivity runs (described in Section~\\ref{sec:assessment-sensitivity-analyses})."),
                                           xlabel <- "tab:main-parameter-estimates-sens-2",
                                           font.size = 9,
                                           space.size = 11)

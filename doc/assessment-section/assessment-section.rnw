@@ -169,7 +169,9 @@ new D-M data weighting (tuning) approach.
 Uncertainty of estimated quantities was calculated via Markov Chain Monte Carlo
 (MCMC) simulations. The bounds of 95\% credibility intervals were calculated as
 the 2.5\% quantile and the 97.5\% quantile of posterior distributions from the
-MCMC simulations, to give equal-tailed intervals.
+MCMC simulations, to give equal-tailed intervals. The Stock Synthesis input
+files for the based model are given in 
+Appendices~\ref{chap:data-file}-\ref{chap:weight-at-age-file}.
 
 Calculations and figures from Stock Synthesis output were performed using
 \Sexpr{R.Version()$version.string} \citep{R2017} and many R packages (in
