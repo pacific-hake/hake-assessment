@@ -659,7 +659,7 @@ age-1 index is not included in the base model but included in a sensitivity run.
 
 The catch limit for \Sexpr{min(forecast.yrs)} based on the default \Ffortyten{}
 harvest policy has a median of \Sexpr{catch.limit.quantiles["median"]}~t with a
-wide range of uncertainty, the 2.5\% to 97.5\% range being
+wide range of uncertainty, the 95\% credibility interval being
 \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
 
 % May need to move after the next paragraph
@@ -746,9 +746,9 @@ make.forecast.depletion.comparison.plot(base.model,
 \label{fig:es-forecast-depletion-comparison}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-% Manual 2017 done.
+% Manual 2018 done (nothing to change though?).
 
-Relative fishing intensity exceeding 100\% indicates fishing in excess of the
+A relative fishing intensity above 100\% indicates fishing greater than the
 $\Fforty$ default harvest rate catch limit. This can happen for the median
 relative fishing intensity in projected years because the $\Fforty$ default
 harvest-rate catch limit is calculated using baseline selectivity from all
@@ -842,12 +842,12 @@ be interpolated from these results for intermediate catch
 values. Figure~\ref{fig:es-forecast-depletion-comparison} shows the predicted
 relative spawning biomass trajectory through
 \Sexpr{forecast.yrs[length(forecast.yrs)]} for several of these management
-actions. **With zero catch for the next two years, the biomass has a
+actions. With zero catch for the next two years, the biomass has a
 \Sexpr{zero.catch.prob.bio.down.1}\% probability of decreasing from
 \Sexpr{forecast.yrs[1]} to \Sexpr{forecast.yrs[2]}, and a
 \Sexpr{zero.catch.prob.bio.down.2}\% probability of decreasing from
 \Sexpr{forecast.yrs[2]} to \Sexpr{forecast.yrs[3]}.
-%Manual 2017 done.
+%Manual 2018 done, though all automated.
 
 <<risk.forecast.year.2.table, results='asis', echo=FALSE>>=
 make.risk.table(base.model,
@@ -869,26 +869,28 @@ make.risk.table(base.model,
 %  \Sexpr{end.yr+1} with a less than 50\% probability only for the 0~t and
 %  180,000~t catch levels (Table~\ref{tab:es-risk-year-1} and
 %  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
-**The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
-\Sexpr{end.yr+1} is less than 50\% for only the 0~t and 180,000~t catch levels
+The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
+\Sexpr{end.yr+1} is less than 50\% for only the 0~t catch level
 (Table~\ref{tab:es-risk-year-1} and
 Figure~\ref{fig:es-forecast-risk-comparison-year-1}). The highest probability of
-decrease is 82\%, which is for the default harvest policy.
-% 2016 assessment said for 'all catch levels investigated up to 440,000~t'
-%  but that was wrong, looking at the relevant 2016 figures.
+decrease is 77\%, which is for the default harvest policy
+(row~g in Table~\ref{tab:es-risk-year-1}).
 The predicted probability of the spawning biomass dropping below $B_{10\%}$ at
 the start of \Sexpr{end.yr+1} is less than 1\% and the maximum probability of
-dropping below $B_{40\%}$ is 18\% for all catches explored
+dropping below $B_{40\%}$ is 24\% for all catches explored
 (Table~\ref{tab:es-risk-year-1} and
-Figure~\ref{fig:es-forecast-risk-comparison-year-1}).  It should be noted that
-the natural mortality rate is larger than the current and future growth rate for
-the large 2010 year class.
+Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
+% It should be noted that
+% the natural mortality rate is larger than the current and future growth rate for
+% the large 2010 year class.
 % Andy presumese that last phrase is still true - not sure where/how to check
-The model estimated below-average recruitment for the 2011, 2012 and 2013
-cohorts, but a potentially large 2014 cohort that will result in increases to
+% 2018 - probably not worth saying that any more.
+The model estimated below-average recruitment for the 2011, 2012, 2013, 2015 and 2017
+cohorts, but a potentially large 2014 cohort that may result in increases to
 the spawning biomass as it continues to mature.
 % Still true for 2017 assessment - see
 %  years.since.2010.recruitment.med.below.mean
+%   2018 assessment. 
 %  Definition of 'below-average' is given earlier (around line 222 of this file)
 
 % 2017: Following sentence replaced with 'The highest probability ...' above,
@@ -897,7 +899,7 @@ the spawning biomass as it continues to mature.
 % biomass will be less than the 2016 spawning biomass is less than 55\% for all
 %  catch levels. (Table~\ref{tab:es-risk-year-1} and
 %  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
-% Manual 2017 done above.
+% Manual 2018 done above.
 \enlargethispage{\baselineskip}
 
 \subsection*{Research and data needs} \label{sec:es-research-data-needs}
