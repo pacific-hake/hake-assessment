@@ -591,11 +591,11 @@ the start of \Sexpr{end.yr}.
 
 Estimates of the \Sexpr{assess.yr} base model reference points with posterior
 credibility intervals are in Table~\ref{tab:es-reference.points}.
-**The estimates
+The estimates
 are slightly different than those in the \Sexpr{last.assess.yr} assessment, with
-slightly lower sustainable yields and reference biomasses estimated in this
-assessment.
-% Manual done 2017.
+lower sustainable yields and reference points estimated in this
+assessment (except for SPR at $\Bforty$ and SPR at MSY).
+% Manual done 2018.
 \enlargethispage{\baselineskip}
 
 <<reference.points.table, results='asis', echo=FALSE>>=
