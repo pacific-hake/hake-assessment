@@ -1286,7 +1286,7 @@ S_{ay} = S_a \cdot \exp(\epsilon_{ay})
 where the $S_{ay}$ are derived as described in equations (1)-(3), the 
 $\epsilon_{ay}$ are the selectivity deviations, $\sigma_s$ is
 the parameter which controls the variability in the deviations 
-(equivalent to $\phi$ in the base model parameterization), and the 
+(equivalent to $\Phi$ in the base model parameterization), and the 
 likelihood contribution for the $\epsilon_{ay}$ parameters is 
 from treating the deviations as normal random variables with 
 standard deviation $\sigma_s$, $N(0, \sigma_s)$.
@@ -1308,9 +1308,9 @@ at $\sigma_s = 0.695$, which provided more plausible results than when this
 method was applied to the status-quo selectivity setup. 
 
 However, the model with $\sigma_s = 0.695$ had higher estimates of 2016 
-and worse fits to the recent survey biomass estimates (Figures~
-\ref{fig:main-biomass-base-alternative-4}-
-\ref{fig:main-index-base-alternative-4}). Increasing $\sigma_s$ to 1.0
+and worse fits to the recent survey biomass estimates 
+(Figures~\ref{fig:main-biomass-base-alternative-4}-\ref{fig:main-index-base-alternative-4}).
+Increasing $\sigma_s$ to 1.0
 provided the additional flexibility required to give more plausible estimates
 of this cohort that has only been observed as age-1 in the 2017 fishery.
 However, relying on the subjective choice of $\sigma_s = 1.0$ removed one of
@@ -1362,7 +1362,10 @@ cohort.  Very strong and weak cohorts tend to be identified in the model at a
 younger age than intermediate cohorts.  For example, the strong 2010 cohort has
 been fairly well determined in the model by age-3 and the weak 2007 cohort by
 age 5.  Estimated recruitment deviations for the 2014 cohort appear to be
-similar to other large cohorts (1999, 2008, and 2010).  One major difference between the 2010 and 2014
+similar to other large cohorts (1999, 2008, and 2010), though with the extra year
+of data in this year's assessment the 2014 cohort appears to maybe be more similar
+to the 2008 cohort rather than the 1999 and 2010 cohorts (which are the largest).
+One major difference between the 2010 and 2014
 cohorts is that by age-3 the 2010 cohort had been fully sampled by the acoustic
 survey (when they were age-3 in the assessment model), whereas the 2014 cohort
 was not sampled by the survey until they were age-4 in the assessment
