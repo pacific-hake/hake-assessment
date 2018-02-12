@@ -8,12 +8,12 @@
 \begin{itemize}
   \item The stock assessment model for \Sexpr{assess.yr} is similar in structure
 to the \Sexpr{last.assess.yr} model. It is fit to an acoustic survey index of
-abundance and annual commercial catch, as well as age compositions from the
+abundance, annual commercial catch data, and age-composition data from the
 survey and commercial fisheries.
 
   \item Updates to the data include:
-the biomass estimate and age composition from the acoustic survey conducted
-in \Sexpr{survey.end.yr}, fishery catch and age compositions from \Sexpr{end.yr-1},
+the biomass estimate and age-composition data from the acoustic survey conducted
+in \Sexpr{survey.end.yr}, fishery catch and age-composition data from \Sexpr{end.yr-1},
 weight-at-age data for \Sexpr{last.data.yr}, and calculation of a new age-based
 maturity ogive.
 
@@ -26,9 +26,9 @@ the U.S. was \Sexpr{last.year.us.attained}\% of its quota; in Canada it was
 \Sexpr{last.year.can.attained}\%. 
 
   \item The stock is estimated to have been at relatively high levels since
-    2013, due to large estimated 2010 and 2014 cohorts.
+    2013 due to large estimated 2010 and 2014 cohorts.
 
-  \item The median estimate of \Sexpr{end.yr} relative spawning biomass
+  \item The median estimate of the \Sexpr{end.yr} relative spawning biomass
 (female spawning biomass at the start of \Sexpr{end.yr} divided by that at unfished
 equilibrium, $B_0$) is \Sexpr{curr.depl.median}\% but is highly uncertain (with
 95\% credible interval from \Sexpr{curr.depl.lower}\% to
@@ -61,7 +61,7 @@ of the spawning biomass falling below 40\% of $B_0$ in \Sexpr{end.yr+2}. There i
 estimated 73\% chance of the spawning biomass declining from \Sexpr{end.yr} to 
 \Sexpr{end.yr+1}, and a
 82\% chance of it declining from \Sexpr{end.yr+1} to 
-\Sexpr{end.yr+2} under this constant catch level.
+\Sexpr{end.yr+2} under this constant level of catch.
     % Manual to do (check this enitre bullet point)  -update 1/24/17 AMB
     % 3% from Table j, 38% from Table i, 50% from Table j
     % 2018, have automated the years. 2/11/18 AME.
