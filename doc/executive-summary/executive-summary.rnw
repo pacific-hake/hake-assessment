@@ -19,7 +19,7 @@ offshore and generally southern waters during the winter spawning season to
 coastal areas between northern California and northern British Columbia during
 the spring, summer and fall when the fishery is conducted. In years with warmer
 water the stock tends to move farther to the north during the summer. Older
-\simplename\ tend to migrate farther than younger fish in all years, with
+\simplename\ tend to migrate farther north than younger fish in all years, with
 catches in the Canadian zone typically consisting of fish greater than four
 years old. Separate, and much smaller, populations of \simplename\ occurring in
 the major inlets of the northeast Pacific Ocean, including the Strait of
@@ -113,7 +113,7 @@ total catch of the 2010 year class is estimated to be about
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
-The biomass estimate and age composition from the acoustic survey conducted
+The biomass index and age composition from the acoustic survey conducted
 in \Sexpr{survey.end.yr} have been added to the survey time series
 (Figure~\ref{fig:es-survey-biomass}). A new age-based maturity ogive was
 developed for this assessment, replacing the previous ogive that was based on
@@ -141,12 +141,10 @@ make.survey.biomass.plot(base.model)
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-Various other data types, including data on maturity, have been explored since
-the 2014 stock assessment, but are not included in the base model this year.
 
 This Joint Technical Committee (JTC) assessment depends primarily on the fishery
 landings (\Sexpr{start.yr}--\Sexpr{last.data.yr}), acoustic survey biomass
-estimates (Figure~\ref{fig:es-survey-biomass}) and age-compositions
+indices (Figure~\ref{fig:es-survey-biomass}) and age-compositions
 (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}), as well as fishery
 age-compositions (1975--\Sexpr{last.data.yr}). The 2011 survey index value
 was the lowest in the time series, and was followed by the index increasing
@@ -188,11 +186,11 @@ time-invariant fishery selectivity. Even a small degree of flexibility in the
 assessment model fishery selectivity could reduce the effects of errors caused
 by assuming selectivity is constant over time. Therefore, we retain time-varying
 selectivity in this assessment, albeit with a new parameterization due to a
-change in Stock Synthesis. The constraint on the annual deviation in
-selectivity was loosened in the 2017 assessment because the settings used in previous
+change in Stock Synthesis. The assumed variability of the annual deviations in
+selectivity was increased in the 2017 assessment because the settings used in previous
 assessments resulted in an extremely large estimate of the 2014 year class
 without adequate basis (i.e., based upon quite limited data). We retained the equivalent
-deviation here. We also included a new approach for automatically weighting composition
+assumed variability here. We also included a new approach for automatically weighting composition
 data.
 
 \subsection*{Stock biomass} \label{sec:es-stock-biomass} \phantomsection
@@ -266,17 +264,19 @@ above-average 2008 year class. The subsequent decline is from the 2010 year clas
 surpassing the age at which gains in weight from growth are greater than the
 loss in weight from natural mortality.
 The 2014 year class is estimated to be large, though not as large as the 1999
-and 2010 year classes.
+and 2010 year classes, which combined with the fishing mortality on these 
+cohorts, has resulted in a fairly flat trajectory over the past 6 years.
 % Manual 2018 done.
 
 The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning
 biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium,
-$B_0$) is \Sexpr{curr.depl.median}\% but is highly uncertain (with a 95\%
+$B_0$) is \Sexpr{curr.depl.median}\%. However, the uncertain around that median
+is large, wwith a 95\%
 posterior credibility interval from \Sexpr{curr.depl.lower}\% to
-\Sexpr{curr.depl.upper}\%; Table~\ref{tab:es-biomass}). The median estimate of
+\Sexpr{curr.depl.upper}\% (Table~\ref{tab:es-biomass}). The median estimate of
 the \Sexpr{end.yr} spawning biomass is \Sexpr{curr.bio.median}~million~t (with a
 95\% posterior credibility interval from \Sexpr{curr.bio.lower} to
-\Sexpr{curr.bio.upper}~million~t). The estimate of the \Sexpr{end.yr-1} female
+\Sexpr{curr.bio.upper}~million~t). The median estimate of the \Sexpr{end.yr-1} female
 spawning biomass is \Sexpr{prev.bio.median}
 (\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. This is a lower
 median than the 2.129~(0.763-7.445)~million~t estimated in the \Sexpr{end.yr-1}
@@ -364,7 +364,7 @@ which was similar to the proportion of age-2 fish, 41\%, from the 2010 year
 class in 2012).  The median of the estimated size of the 2010 year class is
 the second highest in the time series (after that for
 1980). The model currently estimates smaller-than-average 2011, 2012, 2013,
-2015 and 2017 year classes (median recruitment below the mean of all median recruitments).
+and 2015 year classes (median recruitment below the mean of all median recruitments).
 % Done for for 2018 assessment - see
 %  years.since.2010.recruitment.med.below.mean
 % AME put in definition of below-average, else it looks like it contradicts the
@@ -654,7 +654,7 @@ catch.  However, comparable results in terms of catch could be achieved with a
 more precise age-2+ survey or alternative harvest control rules.  The
 simulations assumed an age-1 survey design with consistent, effective, and
 numerous sampling, which may not be the case for the existing age-1 index. The
-age-1 index is not included in the base model but included in a sensitivity run.
+age-1 index is not included in the base model but is included in a sensitivity run.
 % Manual 2018 done.
 
 \subsection*{Forecast decision tables} \label{sec:es-forecast-decision-table}
@@ -888,9 +888,9 @@ Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % the large 2010 year class.
 % Andy presumese that last phrase is still true - not sure where/how to check
 % 2018 - probably not worth saying that any more.
-The model estimated below-average recruitment for the 2011, 2012, 2013, 2015 and 2017
-cohorts, but a potentially large 2014 cohort that may result in increases to
-the spawning biomass as it continues to mature.
+The model estimated below-average recruitment for the 2011, 2012, 2013, and 2015
+cohorts, but above average 2014 and 2016 cohorts that may result in increases to
+the spawning biomass as they mature and increase in weight. 
 % Still true for 2017 assessment - see
 %  years.since.2010.recruitment.med.below.mean
 %   2018 assessment.
