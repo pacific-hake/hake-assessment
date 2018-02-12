@@ -698,9 +698,9 @@ evaluated across the quantiles (columns) of the posterior
 distribution. Table~\ref{tab:es-decisions-biomass} shows projected relative
 spawning biomass outcomes and Table~\ref{tab:es-decisions-spr} shows projected
 fishing intensity outcomes relative to the target fishing intensity (based on
-SPR; see table legend). Figure~\ref{fig:es-forecast-depletion-comparison} shows
+SPR -- see table legend). Figure~\ref{fig:es-forecast-depletion-comparison} shows
 the projected biomass for several catch alternatives.
-
+%
 <<decisions.spr.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
                     xcaption <- paste0("Forecast quantiles of \\fishname\\
@@ -717,6 +717,21 @@ make.decision.table(base.model,
                     type = "spr",
                     placement = "tbp")
 @
+
+\clearpage  % 2018: Then forces Table i and Fig j to be on same page, and j/k.
+
+A relative fishing intensity above 100\% indicates fishing greater than the
+$\Fforty$ default harvest rate catch limit. This can happen for the median
+relative fishing intensity in projected years because the $\Fforty$ default
+harvest-rate catch limit is calculated using baseline selectivity from all
+years, whereas the forecasted catches are removed using selectivity averaged
+over the last five years. Recent changes in selectivity will thus be reflected
+in the determination of fishing in excess of the default harvest
+policy. Alternative catch levels where median relative fishing intensity is
+100\% for three years of projections are provided for comparison (scenario f:
+FI=100\%).
+% Manual 2018 done.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -751,18 +766,32 @@ make.forecast.depletion.comparison.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 % Manual 2018 done (nothing to change though?).
 
-A relative fishing intensity above 100\% indicates fishing greater than the
-$\Fforty$ default harvest rate catch limit. This can happen for the median
-relative fishing intensity in projected years because the $\Fforty$ default
-harvest-rate catch limit is calculated using baseline selectivity from all
-years, whereas the forecasted catches are removed using selectivity averaged
-over the last five years. Recent changes in selectivity will thus be reflected
-in the determination of fishing in excess of the default harvest
-policy. Alternative catch levels where median relative fishing intensity is
-100\% for three years of projections are provided for comparison (scenario f:
-FI=100\%).
-% Manual 2018 done.
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tbp]
+\begin{center}
+<<forecast.risk.comparison.plot.year.1, fig.height=5, fig.width=8>>=
+make.forecast.risk.comparison.plot(base.model,
+                                   forecast.yrs = forecast.yrs,
+                                   fore.yr = forecast.yrs[1],
+                                   colors = c("black","blue","green","orange",
+                                              "red","tan"),
+                                   pch = c(16,17,17,17,15,18),
+                                   legend.loc = "topleft",
+                                   legend.cex = 0.7)
+@
+\end{center}
+\caption{Graphical representation of the probabilities related to spawning
+         biomass, relative fishing intensity, and the \Sexpr{end.yr+1} default
+         harvest policy catch for alternative \Sexpr{end.yr} catch options (catch
+         options explained in Table~\ref{tab:es-decisions-biomass}) as listed in
+         Table~\ref{tab:es-risk-year-1}. The symbols indicate points that were
+         computed directly from model output and lines interpolate between the
+         points.}
+\label{fig:es-forecast-risk-comparison-year-1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%
 % Move to after next paragraph if it appears too early. It shouldn't since
 %  so many tables around.
 <<risk.forecast.year.1.table, results='asis', echo=FALSE>>=
@@ -789,30 +818,6 @@ and~\ref{tab:es-risk-year-2} and
 Figures~\ref{fig:es-forecast-risk-comparison-year-1}
 and~\ref{fig:es-forecast-risk-comparison-year-2}).
 %
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tbp]
-\begin{center}
-<<forecast.risk.comparison.plot.year.1, fig.height=5, fig.width=8>>=
-make.forecast.risk.comparison.plot(base.model,
-                                   forecast.yrs = forecast.yrs,
-                                   fore.yr = forecast.yrs[1],
-                                   colors = c("black","blue","green","orange",
-                                              "red","tan"),
-                                   pch = c(16,17,17,17,15,18),
-                                   legend.loc = "topleft",
-                                   legend.cex = 0.7)
-@
-\end{center}
-\caption{Graphical representation of the probabilities related to spawning
-         biomass, relative fishing intensity, and the \Sexpr{end.yr+1} default
-         harvest policy catch for alternative \Sexpr{end.yr} catch options (catch
-         options explained in Table~\ref{tab:es-decisions-biomass}) as listed in
-         Table~\ref{tab:es-risk-year-1}. The symbols indicate points that were
-         computed directly from model output and lines interpolate between the
-         points.}
-\label{fig:es-forecast-risk-comparison-year-1}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
