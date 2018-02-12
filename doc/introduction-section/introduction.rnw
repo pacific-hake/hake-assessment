@@ -49,7 +49,7 @@ of this \Sexpr{assess.yr} base model,
 implemented using version \Sexpr{ss.version} of the Stock Synthesis software
 \citep{MethotWetzel2013}, are effectively the same as the
 \Sexpr{last.assess.yr} base model \citep{JTC2017}, though we incorporate
-new approaches for weighting composition data and parameterizing
+new approaches for weighting composition data and for parameterizing
 time-varying selectivity.
 
 \subsection{Stock structure and life history}\label{sec:intro-stock-structure}

@@ -7,17 +7,21 @@
 
 \begin{itemize}
   \item The stock assessment model for \Sexpr{assess.yr} is similar in structure
-to the \Sexpr{last.assess.yr} model. Updates to the data include:
+to the \Sexpr{last.assess.yr} model. It is fit to an acoustic survey index of
+abundance and annual commercial catch, as well as age compositions from the
+survey and commercial fisheries.
+
+  \item Updates to the data include:
 the biomass estimate and age composition from the acoustic survey conducted
 in \Sexpr{survey.end.yr}, fishery catch and age compositions from \Sexpr{end.yr-1},
 weight-at-age data for \Sexpr{last.data.yr}, and calculation of a new age-based
 maturity ogive.
 
-  \item The stock assessment model is fit to an acoustic survey index of
-abundance and annual commercial catch, as well as age compositions from the
-survey and commercial fisheries.
+  \item The model was update to include new approaches for weighting composition data
+    and for parameterizing time-varying selectivity.
 
-  \item Coastwide catch in \Sexpr{end.yr-1} was \Sexpr{last.year.landings}~t,
+  \item Coastwide catch in \Sexpr{end.yr-1} was \Sexpr{last.year.landings}~t -- the
+    largest on record --
 out of a TAC (adjusted for carryovers) of \Sexpr{last.year.tac}~t. Attainment in
 the U.S. was \Sexpr{last.year.us.attained}\% of its quota; in Canada it was
 \Sexpr{last.year.can.attained}\%. ** A variety of factors influenced the attainment
@@ -29,19 +33,18 @@ not yet been observed by the survey and only twice by the commercial fishery,
 thus its absolute size is highly uncertain.
 
   \item The median estimate of \Sexpr{end.yr} relative spawning biomass
-(spawning biomass at the start of \Sexpr{end.yr} divided by that at unfished
-equilibrium, $B_0$) is \Sexpr{curr.depl.median}\% but is **highly uncertain (with
+(female spawning biomass at the start of \Sexpr{end.yr} divided by that at unfished
+equilibrium, $B_0$) is \Sexpr{curr.depl.median}\% but is highly uncertain (with
 95\% credible interval from \Sexpr{curr.depl.lower}\% to
 \Sexpr{curr.depl.upper}\%).
 
-  \item The median estimate of \Sexpr{end.yr} female spawning biomass is
+  \item The median estimate of female spawning biomass at the start
+    of \Sexpr{end.yr} is
 \Sexpr{curr.bio.median} million~t (with 95\% credible interval from
-\Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper} million~t).
-
-  \item **The spawning biomass in \Sexpr{end.yr} is estimated to have increased
-from \Sexpr{end.yr-1} due to the 2014 year-class likely being above average
-size.
-    % and the estimate of the 2012 year-class being slightly above average.
+\Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper} million~t). This is
+a decrease from the \Sexpr{end.yr-1} median of \Sexpr{prev.bio.median}~million~t
+(though its 95\% credible interval is 
+\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper}~million~t).
 
   \item Based on the default harvest rule, the estimated median catch limit for
 \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with
