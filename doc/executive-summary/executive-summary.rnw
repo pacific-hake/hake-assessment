@@ -259,7 +259,7 @@ very large 1999 year class matured. The 1999 year class largely supported the fi
 for several years due to relatively small recruitments between 2000 and
 2007. With the aging 1999 year class, median female spawning biomass declined
 throughout the late 2000s, reaching a time-series low of
-**\Sexpr{median.bio.min}~million~t in \Sexpr{median.bio.min.year}.  The assessment
+\Sexpr{median.bio.min}~million~t in \Sexpr{median.bio.min.year}.  The assessment
 model estimates that median spawning biomass then peaked again in 2013 and 2014 due
 to a very large 2010 year class and an
 above-average 2008 year class. The subsequent decline is from the 2010 year class
