@@ -264,16 +264,16 @@ above-average 2008 year class. The subsequent decline is from the 2010 year clas
 surpassing the age at which gains in weight from growth are greater than the
 loss in weight from natural mortality.
 The 2014 year class is estimated to be large, though not as large as the 1999
-and 2010 year classes, which combined with the fishing mortality on these 
-cohorts, has resulted in a fairly flat trajectory over the past 6 years.
+and 2010 year classes, which, combined with the fishing mortality on these 
+cohorts, has resulted in a relatively constant biomass since 2013.
 % Manual 2018 done.
 
 The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning
 biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium,
-$B_0$) is \Sexpr{curr.depl.median}\%. However, the uncertain around that median
-is large, wwith a 95\%
+$B_0$) is \Sexpr{curr.depl.median}\%. However, the uncertainty
+is large, with a 95\%
 posterior credibility interval from \Sexpr{curr.depl.lower}\% to
-\Sexpr{curr.depl.upper}\% (Table~\ref{tab:es-biomass}). The median estimate of
+\Sexpr{curr.depl.upper}\% (Table~\ref{tab:es-biomass}). The estimate of
 the \Sexpr{end.yr} spawning biomass is \Sexpr{curr.bio.median}~million~t (with a
 95\% posterior credibility interval from \Sexpr{curr.bio.lower} to
 \Sexpr{curr.bio.upper}~million~t). The median estimate of the \Sexpr{end.yr-1} female
@@ -889,7 +889,7 @@ Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % Andy presumese that last phrase is still true - not sure where/how to check
 % 2018 - probably not worth saying that any more.
 The model estimated below-average recruitment for the 2011, 2012, 2013, and 2015
-cohorts, but above average 2014 and 2016 cohorts that may result in increases to
+cohorts, but above-average 2014 and 2016 cohorts that may result in increases to
 the spawning biomass as they mature and increase in weight. 
 % Still true for 2017 assessment - see
 %  years.since.2010.recruitment.med.below.mean
