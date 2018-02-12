@@ -119,9 +119,9 @@ in \Sexpr{survey.end.yr} have been added to the survey time series
 developed for this assessment, replacing the previous ogive that was based on
 estimates of maturity-at-length from 1997 and weight-at-length  from 2011.
 Further new data for this \Sexpr{assess.yr}
-assessment, that were not in the \Sexpr{last.assess.yr} assessment, 
+assessment, that were not in the \Sexpr{last.assess.yr} assessment,
 are the
-\Sexpr{last.data.yr} fishery catch and fishery age compositions, and the mean 
+\Sexpr{last.data.yr} fishery catch and fishery age compositions, and the mean
 weight-at-age for \Sexpr{last.data.yr}.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -187,7 +187,7 @@ inter-annual variability in catch compared to assessment models which force
 time-invariant fishery selectivity. Even a small degree of flexibility in the
 assessment model fishery selectivity could reduce the effects of errors caused
 by assuming selectivity is constant over time. Therefore, we retain time-varying
-selectivity in this assessment, albeit with a new parameterization due to a 
+selectivity in this assessment, albeit with a new parameterization due to a
 change in Stock Synthesis. The constraint on the annual deviation in
 selectivity was loosened in the 2017 assessment because the settings used in previous
 assessments resulted in an extremely large estimate of the 2014 year class
@@ -278,12 +278,11 @@ the \Sexpr{end.yr} spawning biomass is \Sexpr{curr.bio.median}~million~t (with a
 95\% posterior credibility interval from \Sexpr{curr.bio.lower} to
 \Sexpr{curr.bio.upper}~million~t). The estimate of the \Sexpr{end.yr-1} female
 spawning biomass is \Sexpr{prev.bio.median}
-(\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t.
-This is **slightly
-higher than the 2.129~(0.763-7.445)~million~t estimated in the \Sexpr{end.yr-1}
+(\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. This is a lower
+median than the 2.129~(0.763-7.445)~million~t estimated in the \Sexpr{end.yr-1}
+assessment, though the credibility interval lies within that from the \Sexpr{end.yr-1}
 assessment.
-% Manual 2018: updated numbers in final sentence, just have to check if
-%  `slightly higher' still true.
+% Manual 2018: updated numbers in final sentence and revised text.
 <<biomass.table, results='asis', echo=FALSE>>=
 make.biomass.table(base.model,
                    start.yr = end.yr-9,
