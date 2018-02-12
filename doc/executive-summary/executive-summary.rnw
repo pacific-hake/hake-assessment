@@ -372,7 +372,7 @@ the second highest in the time series (after that for
 % Allan agrees. Even though the deviation is slightly above average, the 2011
 %  spawning biomass was small enough that the S-R curve had an effect
 %  [keep this helpful explanation]
-The 2014 year class is likely larger than average though not as large as 
+The 2014 year class is likely larger than average though not as large as
 the 2010 year class.
 There is no information in the data to estimate the sizes of the
 \Sexpr{end.yr-1} and \Sexpr{end.yr} year classes. Retrospective analyses of year
@@ -405,7 +405,7 @@ make.fishing.intensity.table(base.model,
                                           intensity,
                                           (1-SPR)/(1-SPR\\subscr{40\\%}),
                                           and exploitation fraction (catch
-                                          divided by age-3+ biomass).",
+                                          divided by age-2+ biomass).",
                              xlabel <- "tab:es-fishing-intensity",
                              font.size = 12,
                              space.size = 14,
@@ -418,7 +418,7 @@ make.fishing.intensity.table(base.model,
 %% Okay for base-model 45, though only year. Keep all this so can easily switch
 %%  around.
 Median relative fishing intensity on the stock is estimated to have been below
-the target of 1.0 
+the target of 1.0
 %% except for
 %% the years
 %%  \Sexpr{median.intensity.above.one.years[1:(length(median.intensity.above.one.years)-1)]}
@@ -429,7 +429,7 @@ the target of 1.0
 %%  median.intensity.above.one.years was empty. Could adapt that here for 2018,
 %%  not doing for 2017 since this works fine.
 %% the year \Sexpr{median.intensity.above.one.years}
-%% when spawning biomass was low 
+%% when spawning biomass was low
 for all years
 (see Table~\ref{tab:es-fishing-intensity} for recent
 years, and Figure~\ref{fig:es-fishing-intensity}).
@@ -473,7 +473,7 @@ make.exploitation.fraction.plot(base.model,
                                 upper.lim = 0.35)
 @
 \end{center}
-\caption{Trend in median exploitation fraction (catch divided by age-3+ biomass)
+\caption{Trend in median exploitation fraction (catch divided by age-2+ biomass)
          through \Sexpr{end.yr-1} with 95\% posterior credibility intervals.}
 \label{fig:es-exploitation-fraction}
 \end{figure}
@@ -533,7 +533,7 @@ The median relative fishing intensity was below target in all years
 (Figure~\ref{fig:es-fishing-intensity}).
 The median female spawning biomass was above the $\Bforty$ reference point in
 % 2017 assessment: all years except 1968, 1998-2000 and 2007-2011
-all years except 1999-2000 and 2007-2011 
+all years except 1999-2000 and 2007-2011
 (Figure~\ref{fig:es-relative-spawning-biomass}).
 % Andy summarising those years manually, based on:
 % median.relative.bio.below.target
@@ -619,7 +619,7 @@ the current stock status and projections because they do not account for
 possible alternative structural models for \simplename\ population dynamics and
 fishery processes (e.g., selectivity), the effects of data-weighting schemes,
 and the scientific basis for prior probability distributions.  To address such
-structural uncertainties, we performed sensitivity analyses to investigate a 
+structural uncertainties, we performed sensitivity analyses to investigate a
 range of alternative models,
 and present the key sensitivity analyses in the main document.
 
@@ -890,7 +890,7 @@ cohorts, but a potentially large 2014 cohort that may result in increases to
 the spawning biomass as it continues to mature.
 % Still true for 2017 assessment - see
 %  years.since.2010.recruitment.med.below.mean
-%   2018 assessment. 
+%   2018 assessment.
 %  Definition of 'below-average' is given earlier (around line 222 of this file)
 
 % 2017: Following sentence replaced with 'The highest probability ...' above,
