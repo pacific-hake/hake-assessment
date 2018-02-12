@@ -230,7 +230,6 @@ Authors of this document are (in no particular order): \\
 \hspace{4ex}Ian G. Taylor\supscr{2} \\
 \hspace{4ex}Chris J. Grandin\supscr{1} \\
 \hspace{4ex}Aaron Berger\supscr{3} \\
-\hspace{4ex}Sean Cox\supscr{4} \\
 \bigskip
 
 \emph{\supscr{1}Pacific Biological Station, Fisheries and Oceans Canada,
@@ -245,20 +244,16 @@ Authors of this document are (in no particular order): \\
   U.S. Department of Commerce, 2032 SE OSU Dr. Bldg. 955, Newport, OR
   97365-5275, USA}
 
-\emph{\supscr{4}School of Resource and Environmental Management, Simon Fraser
-  University, TASC I -- Room \#8405, 8888 University Drive, Burnaby, B.C.
-  V5A 1S6, Canada}
-
 %% Draft version
-%% This DRAFT document is non-citable.
+This DRAFT document is non-citable.
 
 %% Final version
-This document should be cited as follows:\\
-Edwards, A.M., I.G. Taylor, C.J. Grandin, A.M. Berger, and S. Cox.
-\Sexpr{assess.yr}. Status of the \fishname\ (whiting) stock in
-U.S. and Canadian waters in \Sexpr{assess.yr}. Prepared by the Joint Technical
-Committee of the U.S. and Canada \fishname/Whiting Agreement, National Marine
-Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
+%This document should be cited as follows:\\
+%Edwards, A.M., I.G. Taylor, C.J. Grandin, and A.M. Berger.
+%\Sexpr{assess.yr}. Status of the \fishname\ (whiting) stock in
+%U.S. and Canadian waters in \Sexpr{assess.yr}. Prepared by the Joint Technical
+%Committee of the U.S. and Canada \fishname/Whiting Agreement, National Marine
+%Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 
 \newpage
 
