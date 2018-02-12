@@ -148,12 +148,12 @@ This Joint Technical Committee (JTC) assessment depends primarily on the fishery
 landings (\Sexpr{start.yr}--\Sexpr{last.data.yr}), acoustic survey biomass
 estimates (Figure~\ref{fig:es-survey-biomass}) and age-compositions
 (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}), as well as fishery
-age-compositions (1975--\Sexpr{last.data.yr}). **While the 2011 survey index value
-was the lowest in the time series, the index increased steadily over the four
-surveys conducted in 2011, 2012, 2013, and 2015. Age-composition data from the
+age-compositions (1975--\Sexpr{last.data.yr}). The 2011 survey index value
+was the lowest in the time series, and was followed by the index increasing
+in 2012, 2013, and 2015, and then declining in 2017. Age-composition data from the
 aggregated fisheries and the acoustic survey contribute to the assessment
 model's ability to resolve strong and weak cohorts.
-% Manual 2017 done.
+% Manual 2018 done.
 
 **a new approach for weighting composition
 data, and a new approach for parameterizing time-varying selectivity in the base
