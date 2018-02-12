@@ -119,23 +119,23 @@ methods to estimate total catch. Canadian shoreside landings are recorded by
 dockside monitors using total catch weights provided by processing plants.
 
 Three independent issues in the calculation of total 
-catch that were identified late in the assessment process and could not be
-included in the base model so were explored in a sensitivity analysis 
+catch were identified late in the assessment process and could not be
+included in the base model. These were explored in a sensitivity analysis 
 described in Section~\ref{sec:assessment-sensitivity-analyses}.
-The impact of these changes was small. The first issue was an error 
-in the code which extracts and calculates the catch 
+The impact of these changes was very small. The first issue was an error 
+in the code that extracts and calculates the catch 
 for Canadian fisheries. The Joint Venture catch was erroneously 
 being added to the Shoreside catch, resulting in the values being 
 added to the total catch twice. This error was for each of the five 
 years within the past decade when the JV fishery took place: 
 2007, 2008, 2010, 2011, and 2017.
-Second, several fish ticket discrepancies were
+Second, several fish-ticket discrepancies were
 identified related to total tribal catch levels.  
 Fish tickets recorded by the Makah Indian Tribe,
 the Washington Department of Fish and Wildlife, and as archived 
 in the PacFIN database did not match, 
-resulting in an underestimate of total catch in 2016 (1677 mt, 
-change of 0.5\%) and 2017 (6172 mt, change of 1.4\%). 
+resulting in an underestimate of total catch in 2016 (1,677~t, 
+change of 0.5\%) and 2017 (6,172~t, change of 1.4\%). 
 Improving the tracking and archival of tribal fish tickets has been 
 identified as a future data need (Section~\ref{sec:research}) to ensure 
 consistent and accurate accounting of total removals.        
@@ -144,7 +144,7 @@ were inadvertently left out of the ``Update data from years prior to 2017''
 bridging step described in Section~\ref{sec:assessment-changes}.
 Taken together, the net effect of these changes was an average change of 
 0.5\% in total catch over the years 2007 to 2017. The total change 
-was 15,798 t over a period with total catch of 3.05 million t.
+was 15,798 t over a period with total catch of over 300,000,000~t.
 
 \subsubsection{Fishery biological data}\label{sec:data-fishery-biological-data}
 
