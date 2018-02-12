@@ -219,12 +219,12 @@ sens.model.dir.names.2 <- c("2018.40.16_age1Survey",
                             "2018.40.14_ageError_noCohort",
                             "2018.40.15_compWeight_HarmonicMean",
                             "2018.40.19_USageComp",
-                            "2018.40.21_corrected_jv_tribal_catch")
+                            "2018.40.25_alternativeCatch")
 sens.model.names.2 <- c("Add Age 1 Index",
                         "Ageing Error (cohort invariant)",
                         "Harmonic Mean Data Weighting",
                         "U.S. Comps Weighted by Month",
-                        "Adjust catch for JV and tribal")
+                        "Alternative catch stream")
 verify.models(model.dir, sens.model.dir.names.2, sens.model.names.2)
 if(verbose){
   print.model.message(sens.model.dir.names.2, sens.model.names.2, 2, model.type = "Sensitivity")
