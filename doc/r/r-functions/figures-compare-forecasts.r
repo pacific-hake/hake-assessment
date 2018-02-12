@@ -146,6 +146,8 @@ make.forecast.risk.comparison.plot <- function(model,        ## model is the mod
   catches <- round(prob.dat[,1] / 1000.0, 0)
   ## Remove catches from the table
   prob.dat <- prob.dat[,-1]
+  ## Remove last three columns, which are DFO reference points
+  prob.dat <- prob.dat[,-((ncol(prob.dat) - 2):ncol(prob.dat))]
 
   legend.text <- c(paste0("P(B",fore.yr+1,"<B",fore.yr,"): Stock declines in ",fore.yr+1),
                    paste0("P(B",fore.yr+1,"<B40%)"),
