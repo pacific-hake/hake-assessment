@@ -505,8 +505,7 @@ par <- oldpar
 make.age.comp.pearson.plot(base.model)
 @
 \end{center}
-\caption{**[Not building, but no error shows up?! May get fixed automatically].
-  Pearson residuals for base model MLE fits to the fishery age
+\caption{Pearson residuals for base model MLE fits to the fishery age
   composition data. Closed bubbles are positive residuals (observed > expected)
   and open bubbles are
   negative residuals (observed < expected).}
