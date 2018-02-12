@@ -20,9 +20,8 @@ maturity ogive.
   \item The model was updated to include new approaches for weighting age-composition data
     and for parameterizing time-varying selectivity.
 
-  \item Coastwide catch in \Sexpr{end.yr-1} was \Sexpr{last.year.landings}~t -- the
-    largest on record --
-out of a TAC (adjusted for carryovers) of \Sexpr{last.year.tac}~t. Attainment in
+  \item Coastwide catch in \Sexpr{end.yr-1} was the largest on record at \Sexpr{last.year.landings}~t,
+out of a Total Allowable Catch (adjusted for carryovers) of \Sexpr{last.year.tac}~t. Attainment in
 the U.S. was \Sexpr{last.year.us.attained}\% of its quota; in Canada it was
 \Sexpr{last.year.can.attained}\%. A variety of factors influenced the attainment
 of the quota.
@@ -49,20 +48,26 @@ a decrease from the \Sexpr{end.yr-1} median of \Sexpr{prev.bio.median}~million~t
 95\% credible interval from \Sexpr{catch.limit.quantiles["lower"]} to
 \Sexpr{catch.limit.quantiles["upper"]}~t).
 
-  \item As in the past, forecasts are highly uncertain due to uncertainty in
-estimates of recruitment for recent years.  Forecasts were conducted across a
+  \item As in the past, projections are highly uncertain due to uncertainty in
+estimates of recruitment for recent years. Projections were conducted across a
 range of catch levels.
 
-  \item **Projections setting the \Sexpr{forecast.yrs[1]} and
-\Sexpr{forecast.yrs[2]} catch equal to the \Sexpr{forecast.yrs[1]-1} TAC of
+  \item Projections setting the \Sexpr{forecast.yrs[1]} and
+\Sexpr{forecast.yrs[2]} catch equal to the \Sexpr{forecast.yrs[1]-1} Total
+Allowable Catch of
 \Sexpr{last.year.tac}~t show the estimated median relative spawning biomass
-decreasing from 89\% in \Sexpr{end.yr} to 85\% in \Sexpr{end.yr+1} and 79\% in
-\Sexpr{end.yr+2}.  However, due to uncertainty there is an estimated 16\% chance
-of the spawning biomass falling below 40\% of $B_0$ in 2019. There is an
-estimated 63\% chance of the spawning biomass declining from 2017 to 2018, and a
-80\% chance of it declining from 2018 to 2019 under this constant catch level.
+decreasing from 67\% in \Sexpr{end.yr} to 59\% in \Sexpr{end.yr+1} and 50\% in
+\Sexpr{end.yr+2}. However, due to uncertainty there is an estimated 36\% chance
+of the spawning biomass falling below 40\% of $B_0$ in \Sexpr{end.yr+2}. There is an
+estimated 73\% chance of the spawning biomass declining from \Sexpr{end.yr} to 
+\Sexpr{end.yr+1}, and a
+82\% chance of it declining from \Sexpr{end.yr+1} to 
+\Sexpr{end.yr+2} under this constant catch level.
     % Manual to do (check this enitre bullet point)  -update 1/24/17 AMB
     % 3% from Table j, 38% from Table i, 50% from Table j
+    % 2018, have automated the years. 2/11/18 AME.
+    % 67%, 59%, 50% from Table g, row e
+    % 36% from Table j, 73% from Table i, 82% from Table j
 \end{itemize}
 
 \clearpage
