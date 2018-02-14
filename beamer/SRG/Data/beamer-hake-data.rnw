@@ -437,7 +437,7 @@ source("custom-knitr-variables.r")
 
 \subsection{Maturity North and South of 34.5$^\circ$ latitude}
 \frame{\frametitle{Maturity North and South of 34.5$^\circ$ latitude}
-  \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/maturityNS}
+  \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/maturity_plots}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
