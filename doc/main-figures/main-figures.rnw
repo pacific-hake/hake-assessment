@@ -282,6 +282,7 @@ make.comparison.plot(bridge.models.2,
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      end.yr = bridge.model.end.yr.2)
+box()
 make.comparison.plot(bridge.models.2,
                      subplots = 11,
                      model.names = bridge.model.names.2,
@@ -342,6 +343,7 @@ make.comparison.plot(bridge.models.3,
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      end.yr = bridge.model.end.yr.3)
+box()
 mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
@@ -1029,6 +1031,7 @@ make.comparison.plot(c(list(base.model), sens.models.3),
                      subplots = 10,
                      model.names = c(base.model.name, sens.model.names.3),
                      end.yr = end.yr)
+box()
 @
 \end{center}
 \caption{Maximum likelihood estimates of recruitment deviations
@@ -1216,6 +1219,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
                      subplots = 10,
                      model.names = c(base.model.name, sens.model.names.4),
                      end.yr = end.yr)
+box()
 @
 \end{center}
 \caption{Maximum likelihood estimates of recruitment deviations
