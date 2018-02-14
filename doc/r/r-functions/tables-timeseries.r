@@ -177,6 +177,8 @@ make.median.posterior.table <- function(model,
                df$rmed * weight.factor,
                df$pmed * 100,
                df$fmed * 100)
+  ## Remove last year from Rel. Fishing intensity and Exploiotation fraction columns
+  dat[nrow(dat), (ncol(dat)-1):ncol(dat)] <- NA
   colnames(dat) <- c("Year",
                      "Female spawning biomass (thousand t)",
                      "Relative spawning biomass (%)",
