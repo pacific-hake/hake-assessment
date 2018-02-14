@@ -2,6 +2,7 @@ make.input.age.data.table <- function(model,
                                       fleet = 1,
                                       start.yr,
                                       end.yr,
+                                      csv.dir = "out-csv",
                                       xcaption = "default",
                                       xlabel = "default",
                                       font.size = 9,
@@ -21,6 +22,10 @@ make.input.age.data.table <- function(model,
   ## placement - latex code for placement of table
   ## decimals - number of decimals in the numbers in the table
 
+  if(!dir.exists(csv.dir)){
+    dir.create(csv.dir)
+  }
+
   ## Get ages from header names
   age.df <- model$dat$agecomp
   nm <- colnames(age.df)
@@ -29,9 +34,9 @@ make.input.age.data.table <- function(model,
   n.samp <- age.df$Nsamp
   ## Get ages from column names
   ages.ind <- grep("^a[[:digit:]]+$", nm)
-  ages <- gsub("^a([[:digit:]]+)$", "\\1", nm[ages.ind])
+  ages.num <- gsub("^a([[:digit:]]+)$", "\\1", nm[ages.ind])
   ## Make all bold
-  ages <- latex.bold(ages)
+  ages <- latex.bold(ages.num)
   ## Put ampersands in between each item and add newline to end
   ages.tex <- paste0(latex.paste(ages), latex.nline)
 
@@ -82,6 +87,21 @@ make.input.age.data.table <- function(model,
   ## Make the size string for font and space size
   size.string <- latex.size.str(font.size, space.size)
 
+  ##----------------------------------------------------------------------------
+  ## Write the CSV
+  cnames <- colnames(age.df)
+  cnames[3:length(cnames)] <- ages.num
+  ## Add + for plus group
+  cnames[length(cnames)] <- paste0(cnames[length(cnames)], "+")
+  colnames(age.df) <- cnames
+  write.csv(age.df,
+            file.path(csv.dir,
+                      ifelse(fleet == 1,
+                             "fishery-input-age-proportions.csv",
+                             "survey-input-age-proportions.csv")),
+            na = "")
+
+  ##----------------------------------------------------------------------------
   return(print(xtable(age.df,
                       caption = xcaption,
                       label = xlabel,

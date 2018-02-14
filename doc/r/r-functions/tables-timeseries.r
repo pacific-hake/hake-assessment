@@ -99,6 +99,7 @@ make.median.posterior.table <- function(model,
                                         start.yr,
                                         end.yr,
                                         weight.factor = 1000,
+                                        csv.dir = "out-csv",
                                         xcaption = "default",
                                         xlabel   = "default",
                                         font.size = 9,
@@ -117,6 +118,10 @@ make.median.posterior.table <- function(model,
   ## font.size - size of the font for the table
   ## space.size - size of the vertical spaces for the table
   ## digits - number of decimal points on % columns
+
+  if(!dir.exists(csv.dir)){
+    dir.create(csv.dir)
+  }
 
   yrs <- start.yr:end.yr
 
@@ -139,7 +144,7 @@ make.median.posterior.table <- function(model,
   tab.filt[nrow(tab.filt), ncol(tab.filt)] <- latex.bold("--")
   tab.filt[nrow(tab.filt), ncol(tab.filt) - 1] <- latex.bold("--")
 
-    ## Add latex headers
+  ## Add latex headers
   colnames(tab.filt) <- c(latex.bold("Year"),
                           latex.mlc(c("Female",
                                       "spawning",
@@ -162,6 +167,29 @@ make.median.posterior.table <- function(model,
                                       "fraction")))
 
   size.string <- latex.size.str(font.size, space.size)
+
+  ##----------------------------------------------------------------------------
+  ## write the CSV
+  dat <- cbind(yrs,
+               df$smed * weight.factor,
+               df$dmed * 100,
+               tot.bm / weight.factor,
+               df$rmed * weight.factor,
+               df$pmed * 100,
+               df$fmed * 100)
+  colnames(dat) <- c("Year",
+                     "Female spawning biomass (thousand t)",
+                     "Relative spawning biomass (%)",
+                     "Total biomass (thousand t)",
+                     "Age-0 recruits (millions)",
+                     "Relative fishing intensity (%)",
+                     "Exploitation fraction (%)")
+  write.csv(dat,
+            file.path(csv.dir,
+                      "median-population-estimates.csv"),
+            row.names = FALSE,
+            na = "")
+
   print(xtable(tab.filt,
                caption = xcaption,
                label = xlabel,
