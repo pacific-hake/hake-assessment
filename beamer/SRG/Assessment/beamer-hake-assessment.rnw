@@ -218,6 +218,7 @@ source("custom-knitr-variables.r")
                      densitynames = NULL,
                      legend = FALSE,
                      end.yr = end.yr)
+    box()
    par(oldpar)
   @
   \ec
@@ -259,6 +260,7 @@ source("custom-knitr-variables.r")
                          densitynames = NULL,
                          legend = FALSE,
                          end.yr = end.yr)
+    box()
     make.comparison.plot(bridge.models.2,
                          subplots = 11,
                          model.names = bridge.model.names.2,
@@ -299,6 +301,7 @@ source("custom-knitr-variables.r")
                      densitynames = NULL,
                      legend = FALSE,
                      end.yr = end.yr)
+    box()
    par(oldpar)
   @
   \ec
