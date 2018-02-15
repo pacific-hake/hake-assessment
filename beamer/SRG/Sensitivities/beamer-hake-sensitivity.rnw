@@ -462,6 +462,7 @@ make.short.parameter.estimates.sens.table(
     model.names = c("Base model", sens.model.names.4),
     posterior.regex = key.posteriors,
     end.yr = end.yr,
+    age.1 = TRUE,
     digits = 3,
     xcaption <- NULL,
     font.size = 6.5,
