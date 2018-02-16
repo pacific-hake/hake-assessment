@@ -152,7 +152,7 @@ maturity.ogive.figure <- function(){
 
   # second plot
   plot(0, type='l', lwd=3, xlim=c(1, 20), ylim=c(0,1.1), #yaxs='i',
-       xlab="", ylab="Weight (kg) or fecundity, ", axes=FALSE)
+       xlab="", ylab="Weight (kg) or fecundity", axes=FALSE)
   axis(1, at=1:20)
   axis(2, las=1)
   abline(h=seq(0,1,.2), col='grey')
