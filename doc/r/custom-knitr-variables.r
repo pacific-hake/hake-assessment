@@ -72,10 +72,13 @@ last.year.can.shoreside.tac <- f(landings.vs.tac[landings.vs.tac$Year %in% (end.
 latest.year.can.jv <- max(filter(catches, CAN_JV > 0)$Year)  # latest year of JV in Canada
 last.year.can.shore <- f(filter(catches, Year == last.data.yr)$CAN_Shoreside)
 last.year.can.freezer <- f(filter(catches, Year == last.data.yr)$CAN_FreezeTrawl)
+last.year.can.jv <- f(filter(catches, Year == last.data.yr)$CAN_JV)
 last.year.can.shore.percent <- f(filter(catches, Year == last.data.yr)$CAN_Shoreside /
                                     as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal) * 100.0, 1)
 last.year.can.freezer.percent <- f(filter(catches, Year == last.data.yr)$CAN_FreezeTrawl /
                                       as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal) * 100.0, 1)
+last.year.can.jv.percent <- f(filter(catches, Year == last.data.yr)$CAN_JV /
+                                    as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal) * 100.0, 1)
 years.Can.JV.catch.eq.0.recent <- years.Can.JV.catch.eq.0(catches)
 
 ################################################################################

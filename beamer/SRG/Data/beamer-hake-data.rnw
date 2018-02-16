@@ -105,16 +105,15 @@ source("custom-knitr-variables.r")
   \bi
     \item March \Sexpr{last.assess.yr}: JMC set an adjusted TAC = \Sexpr{last.year.tac} t.
     %% \item May \Sexpr{last.assess.yr}: JMC meeting: JTC presented MSE simulation results looking at age-1 index and age 2+ survey precision.
-    \item U.S. and Canadian fisheries both started in April.
+    \item U.S. and Canadian fisheries predominantly started in May (some Shoreside catch in April).
     %% \item Return of at-sea fleet in the U.S. saw low catch-rates.
-    \item Highest proportion of fish caught in U.S. fisheries were age-2's.
-    \item Highest proportion of fish caught in Canadian fisheries were age-6's.
-    \item In the US, the age-2's were mostly caught in the fall which is a
-          similar pattern to 2012.
-    \item Highest coastwide catch since 2006.
-    \item One JTC public meeting in December.
-    \item No summer acoustic survey in 2016.
-    \item Winter survey for spawning hake from Jan-Feb aboard the Shimada.
+    \item Highest proportion of fish caught in U.S. At-Sea fisheries were age-3 and age-7 for U.S. Shoreside.
+    \item Highest proportion of fish caught in Canadian fisheries were age-7.
+    \item In the U.S., seasonal patterns in catch-at-age were again observed (higher proportion age-3 in fall).
+    \item Highest coastwide catch in time-series, 33\% increase from last year.
+    \item One JTC public meeting in December - in general, all stakeholders report good fishing conditions in 2017.
+    \item Summer 2017 acoustic survey biomass estimate was 1.418 million tons (decline of 34\% from 2015 survey).
+    \item Second winter survey from Jan-Feb 2017 aboard the Shimada.
   \ei
 }
 
@@ -143,7 +142,7 @@ source("custom-knitr-variables.r")
       \bi
         \item Weight-at-age (1975--\Sexpr{end.yr - 1}, survey \& fishery combined)
         \item Ageing imprecision (from double \& blind reads)
-        \item Maturity schedule (Dorn, mid-1990's)
+        \item Maturity schedule (updated; NWFSC, 2017)
       \ei
     \ei
   \end{column}
@@ -160,9 +159,12 @@ source("custom-knitr-variables.r")
 \section[Catches]{Catches}
 \subsection{Catch history}
 \frame{\frametitle{Catches}
-  <<catches, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-    make.catches.plot(catches, leg.y.loc = 500, leg.cex = 0.7)
+ \begin{figure}
+ \centering
+  <<catches, fig.height=4.8, fig.width=8, out.width='0.8\\columnwidth'>>=  
+    make.catches.plot(catches, leg.y.loc = 550, leg.cex = 0.7)
   @
+\end{figure}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -199,7 +201,7 @@ source("custom-knitr-variables.r")
         \bi
           \item Freezer trawlers -- \Sexpr{last.year.can.freezer} t (\Sexpr{paste0(last.year.can.freezer.percent, "\\%")})
           \item Shoreside        -- \Sexpr{last.year.can.shore} t   (\Sexpr{paste0(last.year.can.shore.percent, "\\%")})
-          \item Joint venture    -- 0 t
+          \item Joint venture    -- \Sexpr{last.year.can.jv} t   (\Sexpr{paste0(last.year.can.jv.percent, "\\%")})
         \ei
         \item Total Canadian catch -- \Sexpr{last.year.can.landings} t
         \item \Sexpr{paste0(last.year.can.attained, "\\%")} of the Canadian quota was caught.
@@ -221,6 +223,26 @@ source("custom-knitr-variables.r")
       \ei
     \end{column}
   \end{columns}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Base model catch}
+\frame{\frametitle{Base model catch}
+  \bi
+    \item Errors in the calcualtion of total catch were identified very late in the 2018 assessment cycle.
+    %% \item May \Sexpr{last.assess.yr}: JMC meeting: JTC presented MSE simulation results looking at age-1 index and age 2+ survey precision.
+    \item Minor differences in total catch used in base model resulting from:
+      \bi
+        \item  Double counting of Canadian JV catch (2007, 2008, 2010, 2011, and 2017).
+        \item  Fish ticket discrepancies related to total tribal catch (2016 and 2017).
+        \item  Minor updates to pre-2017 catch in U.S. fisheries (2007-2017).
+      \ei
+    %% \item Return of at-sea fleet in the U.S. saw low catch-rates.
+    \item In combination, these resulted in minor changes to total catch (-3\% to +2\%)  
+    \item JTC evaluated model sensitivity to updated catch stream.
+    \item Identified need to improve tracking and archiving of tribal U.S. catch in regional database (PacFIN).
+  \ei
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -270,7 +292,6 @@ source("custom-knitr-variables.r")
 \subsection{U.S.}
 \frame{\frametitle{U.S. at-sea catch depth distribution}
   \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/fishDepthsUS}
-
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -307,6 +328,13 @@ source("custom-knitr-variables.r")
     mtext("Age", side = 2, outer = TRUE, line = 2)
     par <- oldpar
   @
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Age comp comparison for survey}
+\frame{\frametitle{Survey age composition and acoustic backscatter}
+  \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/age2plushake_03-17_NASC_BiomassAtAge_color}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -361,9 +389,12 @@ source("custom-knitr-variables.r")
 
 \subsection{Survey index extrap/no-extrap comparison}
 \frame{\frametitle{Survey index extrapolated/unextrapolated}
-  <<survey.compare.extrap.noextrap>>=
-    make.survey.biomass.extrap.plot(survey.comparison)
+\begin{figure}
+\centering
+  <<survey.compare.extrap.noextrap, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+    make.survey.biomass.extrap.plot(survey.comparison, show = 2:3)
   @
+\end{figure}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -383,7 +414,10 @@ source("custom-knitr-variables.r")
 
 \subsection{Mean weight-at-age by year}
 \frame{\frametitle{Mean weight-at-age by year}
-  \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/EWAforDoc.eps}
+\begin{figure}
+  \centering
+  \includegraphics[width=4in, height=3in]{../../../doc/main-figures/EWAforDoc.eps}
+\end{figure}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -408,9 +442,9 @@ source("custom-knitr-variables.r")
       \bi
         \item Sample sources
           \bi
-            \item Bottom trawl survey (2009, 2012 -- 2016)
-            \item Acoustic survey (2012 -- 2013, 2015)
-            \item At-sea fishery vessels (2013 -- 2016)
+            \item Bottom trawl survey (2009, 2012 -- 2017)
+            \item Acoustic survey (2012 -- 2013, 2015 -- 2017)
+            \item At-sea fishery vessels (2013 -- 2017)
           \ei
         \item Length stratified sampling from surveys
           \bi
@@ -437,7 +471,12 @@ source("custom-knitr-variables.r")
 
 \subsection{Maturity North and South of 34.5$^\circ$ latitude}
 \frame{\frametitle{Maturity North and South of 34.5$^\circ$ latitude}
-  \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/maturity_plots}
+\begin{figure}
+\centering
+ <<maturity.ogive.figure, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+    maturity.ogive.figure()
+  @
+\end{figure}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -445,14 +484,14 @@ source("custom-knitr-variables.r")
 \subsection{Fecundity}
 \frame{\frametitle{Fecundity}
   \bi
-    \item Fecundity-at-age is set to maturity-at-age $*$ weight-at-age in SS3.
+    \item Fecundity-at-age is set to maturity-at-age $*$ mean weight-at-age in SS3.
     \item We need a better understanding of:
       \bi
         \item Batch spawning.
-        \item Skip spawning.
-        \item How these fit into fecundity which would improve our knowledge of reproductive output.
+        \item Links between fecundity and size, age, and weight.
+        \item How these provide further information about factors that influence time-varying reproductive output.
       \ei
-    \item The winter acoustic survey may help us with these questions.
+    \item A continuation of the winter acoustic survey may provide further information about these questions.
   \ei
 }
 
@@ -480,7 +519,6 @@ source("custom-knitr-variables.r")
       \ei
     \item Externally derived inputs
       \bi
-        \item Analysis of maturity data.
         \item Environmental/ecosystem covariates.
       \ei
   \ei
