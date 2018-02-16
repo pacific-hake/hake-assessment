@@ -194,8 +194,9 @@ make.survey.age1.plot(age.1.index,
 
 \begin{figure}[H]
 \begin{center}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=6.5in, height=6.5in]{main-figures/maturity_plots}
+<<maturity.ogive.figure, fig.height=7.5, fig.width=7.5>>=
+maturity.ogive.figure()
+@
 \end{center}
 \caption{Fraction of fish that are mature at each age north and south of
   34.44$^\circ$N 
@@ -205,10 +206,10 @@ make.survey.age1.plot(age.1.index,
   maturity-at-length reported by \citet{DornSaunders1997} and the 
   weight-at-length estimated in 2011, converted to age using a parametric 
   growth curve estimated in 2011. 
-  The new fecundity relationship (purple line in lower plot) is the product 
+  The new fecundity relationship (purple line) is the product 
   of the mean weight-at-age
-  averaged across all years (green line) and the maturity-at-age (blue line).
-  Samples from South of 34.44$^\circ$N were not included in the estimates.}
+  averaged across all years (green line) and the maturity-at-age for the samples
+  collected from North of 34.44$^\circ$N (blue line in upper plot).}
 \label{fig:main-maturity}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
