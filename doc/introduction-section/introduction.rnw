@@ -118,6 +118,11 @@ management \citep{ResslerHolmesEtAl2007, HamelEtAl2015}.  The 2015 \fishname\
 stock assessment document presented a sensitivity analysis where hake mortality
 was linked to the Humboldt Squid index \citep{JTC2015}. This sensitivity was not
 repeated in this assessment, although further research on this topic is needed.
+Ongoing research investigating abiotic (environmental conditions) and biotic 
+(e.g., euphasid distribution and abundance) drivers of hake distribution could
+provide insight into how the hake population is linked with broader ecosystem
+considerations.
+ 
 
 \subsection{Management of \fishname\ }\label{sec:intro-management}
 
@@ -226,10 +231,8 @@ May-November. The fishery is conducted with mid-water trawls. Foreign fleets
 dominated the fishery until 1991, when domestic fleets began taking the majority
 of the catch. Catches were occasionally greater than 200,000~t prior to 1986,
 and since then they have been greater than 200,000~t for all except
-\Sexpr{catches.below.200000.since.1986} years.
-
-A more detailed description of the history of the fishery is provided by
-\citet{JTC2013}.
+\Sexpr{catches.below.200000.since.1986} years. A more detailed description of
+the history of the fishery is provided by \citet{JTC2013}.
 
 \subsubsection{Overview of the fisheries in \Sexpr{last.data.yr}}\label{sec:intro-fisheries-overview}
 

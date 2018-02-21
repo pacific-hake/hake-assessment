@@ -70,7 +70,7 @@ JTC2013}). The above is only a small fraction of the number of management
 procedures that have actually been investigated. There have been many other
 combinations of data, assessment models and harvest control rules. In addition
 to the cases examined in the assessment documents, there have been many more
-requested at assorted review panel meetings.
+requested at review panel meetings.
 
 While there have been many changes to \fishname\ management procedures, each one 
 has been considered carefully. Available data have changed over the years, and there
@@ -158,7 +158,7 @@ observation error. A Dirichlet-Multinomial (D-M) likelihood was applied to age-c
 with input sample sizes equal to the sum of the number of trips or hauls actually sampled across all
 fishing fleets or the number of trawl sets in the research surveys (see Section~\ref{sec:data-age-comp-likelihood}).
 A weighting parameter for the fishery
-and the survey age compositions was specified and then estimated in the model fitting procedure.
+and the survey age compositions was specified and then estimated in the model fitting procedure
 to allow for additional sources of process and observation error. This process resulted in
 automatically tuned input sample sizes.  Tuning quantities did not change in assessments from 2012 to
 2015, however additional tuning was required in 2016 and 2017 given the
@@ -207,10 +207,10 @@ from the JTC:
   \emph{Response -- The JTC has conducted several analyses in response to this 
     request including evaluating alternative $\phi$ values in sensitivity trials 
     and exploring an alternative ``semi-parametric'' parameterization of the 
-    approach to setting the time-varying, all described in 
+    approach to specifying time-varying selectivity, all described in 
     Section~\ref{sec:assessment-sensitivity-analyses}. Although the 
     semi-parametric option shows promise, no considered alternative was a clear
-    improvement over the status-quo parameterization with with the larger $\phi$ 
+    improvement over the status-quo parameterization with the larger $\phi$ 
     value (previously $\phi = 0.2$ but now converted to $\Phi = 1.4$ after
     removing a logistic transformation as described in 
     Section~\ref{sec:assessment-changes}). 
@@ -379,7 +379,7 @@ logistic transformation for the time-varying selectivity parameters, so
 the conversion of the 2017 assessment to the newer software required an
 adaptation to account for this option no longer being available. In particular, 
 the $\phi$ parameter controlling the flexibility of the
-variability of the fishery selectivity (which was increased from $\phi=0.03$
+variability associated with fishery selectivity (which was increased from $\phi=0.03$
 in the 2016 assessment to $\phi=0.20$ in the 2017 assessment) no longer
 had the same effect when applied in the standard instead of logistic 
 parameter space. An analysis of the transformation, 
@@ -389,7 +389,7 @@ could be converted to $\Phi=1.40$ applied in the standard parameter space.
 Exploration of higher and lower $\Phi$ values confirmed that the model 
 with $\Phi=1.40$ provided the best approximation to the 2017 base model 
 as measured by both the resulting pattern of fishery selectivity over 
-time and the estimated time series of spawning biomass. Overall the results
+time and the estimated time series of spawning biomass. Overall, the results
 of the switch to SS 3.30 had only subtle impacts on the model results
 (Figure~\ref{fig:main-bridge-biomass}).
 
@@ -486,7 +486,7 @@ quantities. Initial MCMC explorations indicated that $\log
 \theta_{\text{surv}}$, the log of the $\theta$ parameter associated with the survey
 data in the
 Dirichlet-Multinomial (D-M) weighting,
-was not being sampled efficiently due to many samples occurring in a part of
+was not being sampled efficiently due to many samples occurring in a part of the
 parameter space where the effective sample size multiplier, $\theta_{\text{surv}}/(1+\theta_{\text{surv}})$,
 is between 0.99 and 1.0. In this area, the input sample sizes are 
 given full weight and the likelihood surface is almost completely flat 
