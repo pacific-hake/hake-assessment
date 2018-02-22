@@ -191,8 +191,8 @@ source("custom-knitr-variables.r")
       ADMB \Sexpr{admb.version}
     \item New approach to weighting age-composition data
     \item New parameterization for time-varying selectivity
-    \item Usual update of bias adjustment ramps for recruitment deviations 
-    \item Usual update of main recruitment deviate estimation period
+    % \item Usual update of bias adjustment ramps for recruitment deviations 
+    % \item Usual update of main recruitment deviate estimation period
   \ei
 \end{frame}
 
