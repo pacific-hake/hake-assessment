@@ -342,14 +342,13 @@ Placeholders:
     \item Age data make little further difference, however (**new fig)
     \item The alternative Dirichlet-multinomial data weighting gives slight
       changes, in particular pulling down early biomass (and $B_0$).
-    \item New maturity ogive adds variability when large cohorts reach ages 3 and
+    \item New maturity ogive adds variability to spawning biomass
+      when large cohorts reach ages 3 and
       higher, though little impact on recruitment.
     \item Other bridging steps have minimal impact.
    \ei
   % Last year: ``Fishery data sole information on the size of the 2014 year-class''
 }
-
-\end{document}   % Just while updating slides in order
 
 %%%%%%%%%%%%%%%%%%%%%%%
 % \section{MCMC diag}
@@ -408,7 +407,7 @@ Placeholders:
       \item Young cohorts in 2003--2009 underfit
       \item 2008 and 2009 cohort underfit in 2011
       \item Recent years (2012--2015) show good fits, including 2010 cohort
-      \item Survey has not 'seen' 2014 cohort yet
+      \item Survey has now `seen' 2014 cohort yet
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -448,7 +447,7 @@ Placeholders:
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Pearson residual for fit to the acoustic survey age comps (MLE)}
+\frame{\frametitle{Pearson residual for fit to the age data (MLE)}
 \begin{columns}
   \begin{column}{0.48\textwidth}
     \vspace{-16pt}
