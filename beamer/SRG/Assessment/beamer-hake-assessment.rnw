@@ -117,7 +117,7 @@ source("custom-knitr-variables.r")
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction}
+\section{Outline}
 \subsection{}
 \frame{\frametitle{Outline}
 \bi
@@ -131,6 +131,7 @@ source("custom-knitr-variables.r")
 }
 
 %----------------------------------------------------------
+\section{**\Sexpr{last.assess.yr} SRG recommendations}
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations}
 \setbeamercovered{dynamic}
 \bi
@@ -177,25 +178,21 @@ source("custom-knitr-variables.r")
 \subsection{}
 
 \begin{frame}
-\frametitle{Overview of model structure}
+\frametitle{Changes from \Sexpr{last.assess.yr} assessment}
   \bi
-    \item Stock Synthesis version \Sexpr{ss.version} compiled with ADMB \Sexpr{admb.version}
-    \item Updated fishery and survey data through \Sexpr{last.assess.yr - 1}
-    \bi
-      \item Minor changes to past catches
-      \item Updated fishery age and weight observations with new database extractions
-      \item Addition of 1995 survey biomass estimate and age compositions
-      \item Minor changes to survey biomass estimates (1998, 2015: CV only) and age compositions (1998)
-    \ei
     \item Added new data from \Sexpr{last.assess.yr}
     \bi
-      \item Fishery catch and age compositions
-      \item Updated weight-at-age matrix
+      \item Survey age data and biomass index for \Sexpr{survey.end.yr}
+      \item Fishery catch-and-age compositions for \Sexpr{last.assess.yr}
+      \item Weight-at-age values for \Sexpr{last.assess.yr}
     \ei
-    \item Updated bias adjustment ramps for recruitment deviations 
-    \item Updated main recruitment deviate estimation period
-    \item Re-weighted age composition data by fleet using harmonic mean approach
-    \item More flexible time-varying fishery selectivity
+    \item Updated maturity ogive
+    \item Stock Synthesis version \Sexpr{ss.version} compiled with
+      ADMB \Sexpr{admb.version}
+    \item New approach to weighting age-composition data
+    \item New parameterization for time-varying selectivity
+    \item Usual update of bias adjustment ramps for recruitment deviations 
+    \item Usual update of main recruitment deviate estimation period
   \ei
 \end{frame}
 
