@@ -180,10 +180,10 @@ source("custom-knitr-variables.r")
 \begin{frame}
 \frametitle{Changes from \Sexpr{last.assess.yr} assessment}
   \bi
-    \item Added new data from \Sexpr{last.assess.yr}
+    \item Added new data from \Sexpr{last.assess.yr}:
     \bi
       \item Survey age data and biomass index for \Sexpr{survey.end.yr}
-      \item Fishery catch-and-age compositions for \Sexpr{last.assess.yr}
+      \item Fishery catch and age data for \Sexpr{last.assess.yr}
       \item Weight-at-age values for \Sexpr{last.assess.yr}
     \ei
     \item Updated maturity ogive
@@ -198,7 +198,26 @@ source("custom-knitr-variables.r")
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Bridging to the base model: Fishery data}
+\begin{frame}
+\frametitle{Changes from \Sexpr{last.assess.yr} assessment}
+
+Placeholders:
+
+**Explain updated maturity ogive - first check if in data section
+
+**Explain Stock Synthesis version \Sexpr{ss.version} compiled with
+      ADMB \Sexpr{admb.version}
+
+**Explain New approach to weighting age-composition data
+
+**Explain  New parameterization for time-varying selectivity
+\end{frame}
+
+%----------------------------------------------------------
+
+
+\frame{\frametitle{Bridging to the base model: update SS and
+    pre-\Sexpr{assess.yr-1} data}
   \bc
   \vspace{-5pt}
   <<bridge.biomasss, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
@@ -208,13 +227,13 @@ source("custom-knitr-variables.r")
                      model.names = bridge.model.names.1,
                      densitynames = NULL,
                      legendloc = "topleft",
-                     end.yr = end.yr)
+                     end.yr = bridge.model.end.yr.1)
     make.comparison.plot(bridge.models.1,
                      subplots = 9,
                      model.names = bridge.model.names.1,
                      densitynames = NULL,
                      legend = FALSE,
-                     end.yr = end.yr)
+                     end.yr = bridge.model.end.yr.1)
     box()
    par(oldpar)
   @
@@ -223,7 +242,7 @@ source("custom-knitr-variables.r")
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Bridging to the base model: survey data}
+\frame{\frametitle{Bridging to the base model: fishery and survey data}
   \bc
   \vspace{-5pt}
   <<bridge.biomass2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
@@ -232,7 +251,7 @@ source("custom-knitr-variables.r")
                          subplots = 2,
                          model.names = bridge.model.names.2,
                          densitynames = NULL,
-                         end.yr = end.yr)
+                         end.yr = bridge.model.end.yr.2)
    par(oldpar)
   @
   \ec
@@ -240,7 +259,7 @@ source("custom-knitr-variables.r")
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Bridging to the base model: survey data}
+\frame{\frametitle{Bridging to the base model: fishery and survey data}
   \bc
   \vspace{-5pt}
   <<bridge.other, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
@@ -256,7 +275,7 @@ source("custom-knitr-variables.r")
                          model.names = bridge.model.names.2,
                          densitynames = NULL,
                          legend = FALSE,
-                         end.yr = end.yr)
+                         end.yr = bridge.model.end.yr.2)
     box()
     make.comparison.plot(bridge.models.2,
                          subplots = 11,
@@ -265,7 +284,7 @@ source("custom-knitr-variables.r")
                          legendloc = "topleft",
                          indexPlotEach = TRUE,
                          indexUncertainty = TRUE,
-                         end.yr = end.yr)
+                         end.yr = bridge.model.end.yr.2)
     ## make.comparison.plot(bridge.models.2,
     ##                      subplots = 11,
     ##                      model.names = bridge.model.names.2,
@@ -281,7 +300,17 @@ source("custom-knitr-variables.r")
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Bridging to the base model: Tuning}
+\frame{\frametitle{Bridging to the base model: fishery and survey data in
+    different order}
+  \bc
+  \includegraphics[height=3in]{compare2_spawnbio_uncertainty_landscape.eps}
+  \ec
+}
+
+%----------------------------------------------------------
+
+\frame{\frametitle{Bridging to the base model: alternative data weightings and 
+    new maturity ogive}
   \bc
   \vspace{-5pt}
   <<bridge.tune, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
@@ -291,13 +320,13 @@ source("custom-knitr-variables.r")
                      model.names = bridge.model.names.3,
                      densitynames = NULL,
                      legendloc = "topleft",
-                     end.yr = end.yr)
+                     end.yr = bridge.model.end.yr.3)
     make.comparison.plot(bridge.models.3,
                      subplots = 9,
                      model.names = bridge.model.names.3,
                      densitynames = NULL,
                      legend = FALSE,
-                     end.yr = end.yr)
+                     end.yr = bridge.model.end.yr.3)
     box()
    par(oldpar)
   @
@@ -308,16 +337,17 @@ source("custom-knitr-variables.r")
 
 \frame{\frametitle{Bridging to the base model: Summary}
   \bi
-    \item Updating past fishery data made indistinguishable difference
-    \item Addition of 1995 and updates to 1998 and 2015 survey biomass estimates had minor influence on results
-    \item Adding 2016 fishery data influenced stock size (suggesting above average 2014 year-class)
-    \bi \item Fishery data sole information on the size of the 2014 year-class, the survey will sample these fish for the first time in summer 2017 as age-3s
-        \item 2013 year class decreased slightly
-        \item 2014 year class remained large, but uncertain
-    \ei
-    \item Adjusting bias ramp and main recruitment deviate period (inc. 2014) had a minor influence on results
-    \item More flexible time-varying selectivity -> size of 2014 year class
-  \ei
+    \item Including the \Sexpr{last.survey.year} index appears to make the
+      biggest difference, pulling down the recent estimates of biomass.
+    \item Age data make little further difference, however (**new fig)
+    \item The alternative Dirichlet-multinomial data weighting gives slight
+      changes, in particular pulling down early biomass (and $B_0$).
+    \item New maturity ogive adds variability to spawning biomass
+      when large cohorts reach ages 3 and
+      higher, though little impact on recruitment.
+    \item Other bridging steps have minimal impact.
+   \ei
+  % Last year: ``Fishery data sole information on the size of the 2014 year-class''
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -377,7 +407,7 @@ source("custom-knitr-variables.r")
       \item Young cohorts in 2003--2009 underfit
       \item 2008 and 2009 cohort underfit in 2011
       \item Recent years (2012--2015) show good fits, including 2010 cohort
-      \item Survey has not 'seen' 2014 cohort yet
+      \item Survey has now `seen' 2014 cohort yet
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -417,7 +447,7 @@ source("custom-knitr-variables.r")
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Pearson residual for fit to the acoustic survey age comps (MLE)}
+\frame{\frametitle{Pearson residual for fit to the age data (MLE)}
 \begin{columns}
   \begin{column}{0.48\textwidth}
     \vspace{-16pt}
