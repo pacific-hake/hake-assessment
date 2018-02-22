@@ -484,9 +484,8 @@ Placeholders:
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Asymmetric shape of steepness and Extra SD posterior makes median and MLE different
-      \item Additional SD is less than 2015 assessment
-      \item {\em M} is pushing upper end of prior
+      \item Prior for natural mortality looks to be constraining posterior
+      \item Posterior for steepness does not shift much from prior
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -498,10 +497,7 @@ Placeholders:
       origMcmcPath <- base.model$mcmcpath
       base.model$mcmcpath <- file.path("..",origMcmcPath)
       make.mcmc.priors.vs.posts.plot(base.model,
-                                     c("NatM_p_1_Fem_GP_1",
-                                       "SR_LN",
-                                       "SR_BH_steep",
-                                       "Q_extraSD_2_Acoustic_Survey"))
+                                     key.posteriors)
       base.model$path <- origPath
       base.model$mcmcpath <- origMcmcPath
     @
