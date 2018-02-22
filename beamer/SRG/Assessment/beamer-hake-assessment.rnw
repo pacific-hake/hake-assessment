@@ -509,6 +509,7 @@ Placeholders:
 %----------------------------------------------------------
 
 \frame{\frametitle{Parameter estimates}
+  \vspace{-5pt}  
   \bc
   <<main.parameter.estimates, results='asis', echo=FALSE>>=
     make.short.parameter.estimates.table(base.model,
