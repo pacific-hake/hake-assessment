@@ -208,13 +208,13 @@ source("custom-knitr-variables.r")
                      model.names = bridge.model.names.1,
                      densitynames = NULL,
                      legendloc = "topleft",
-                     end.yr = end.yr)
+                     end.yr = bridge.model.end.yr.1)
     make.comparison.plot(bridge.models.1,
                      subplots = 9,
                      model.names = bridge.model.names.1,
                      densitynames = NULL,
                      legend = FALSE,
-                     end.yr = end.yr)
+                     end.yr = bridge.model.end.yr.1)
     box()
    par(oldpar)
   @
