@@ -339,7 +339,9 @@ Placeholders:
   \bi
     \item Including the \Sexpr{last.survey.year} index appears to make the
       biggest difference, pulling down the recent estimates of biomass.
-    \item Age data make little further difference, however (**new fig)
+    \item Age data make little further difference, however adding the fishery
+      age data before adding the survey does partly pull down biomass in 2016 and
+      2017.
     \item The alternative Dirichlet-multinomial data weighting gives slight
       changes, in particular pulling down early biomass (and $B_0$).
     \item New maturity ogive adds variability to spawning biomass
