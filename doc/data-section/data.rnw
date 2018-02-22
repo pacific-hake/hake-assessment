@@ -2,7 +2,7 @@
 
 \section{DATA} \label{sec:data}
 
-Fishery-dependent and fishery-independent data sources used here
+Fishery-dependent and fishery-independent data sources used in the 2018 assessment
 (Figure~\ref{fig:main-data-overview}) include:
 
 \begin{itemize}
@@ -104,7 +104,8 @@ timing (see Figure~5 in \citealt{JTC2014}). The U.S. shore-based landings are
 from the Pacific Fishery Information Network (PacFIN). Foreign and joint-venture
 catches for 1981--1990 and domestic at-sea catches for
 1991--\Sexpr{last.data.yr} are estimated from the AFSC's and, subsequently, the
-NWFSC's at-sea hake observer programs stored in the NORPAC database. Canadian
+NWFSC's at-sea hake observer programs stored in the NORPAC (North Pacific Groundfish
+and Halibut Observer) database. Canadian
 Joint-Venture catches from 1989 are from the Groundfish Biological (GFBio)
 database, the shore-based landings from 1989 to 1995 are from the Groundfish
 Catch (GFCatch) database, from 1996 to March 31, 2007 from the Pacific Harvest
@@ -271,7 +272,8 @@ States and Canada. A detailed history of the acoustic survey is given by
 \citet{StewartForrestEtAl2011}. The acoustic surveys performed in
 \Sexpr{survey.age.years[-length(survey.age.years)]} and
 \Sexpr{survey.age.years[length(survey.age.years)]} were used in this assessment
-(Table~\ref{tab:main-survey-history}). The acoustic survey samples all waters
+(Table~\ref{tab:main-survey-history}). The acoustic survey samples transects 
+representing all waters
 off the coasts of the U.S. and Canada thought to contain all portions of the
 \fishname\ stock age-2 and older. Age-0 and age-1 hake have been historically
 excluded from the survey efforts, due to largely different schooling behavior
@@ -347,7 +349,7 @@ SimmondsMacLennan2006}. Advantages to the kriging approach are discussed in the
 
 For the 2016 assessment \citep{JTC2016}, the data from all surveys since 1998
 were scrutinized and reanalyzed using consistent assumptions.  The same analytical
-procedure was carried out during the reanalysis of 1995 survey data (\citep{JTC2017}) and 
+procedure was carried out during the reanalysis of 1995 survey data \citep{JTC2017} and 
 during the preparation of 2017 survey data. These include:
 
 \begin{itemize}
@@ -362,7 +364,7 @@ during the preparation of 2017 survey data. These include:
   that decays with distance from the end of the transect;
   
 \item correcting spurious off-transect zeros that were erroneously generated in
-  previous exportation of data;
+  previous exportation of data; and
   
 \item re-analyzing data using an updated version of the EchoPro software with
   consistent data input files.
@@ -481,7 +483,7 @@ For this assessment, a new age-based maturity ogive
 (Table~\ref{tab:main-ogives} and Figure~\ref{fig:main-maturity}) 
 was developed using histological estimates 
 of functional maturity from 1,947 ovaries that were associated with age estimates.
-These samples were collected from bottom the acoustic survey, 
+These samples were collected from the acoustic survey, 
 winter and summer acoustic research trips, from
 the U.S.~At-Sea Hake Observer Program (A-SHOP) observers aboard commercial
 Catcher-Processor vessels, and from the U.S. West Coast bottom trawl survey. 
@@ -655,7 +657,7 @@ to 0.20 for a variety of reasons, including reports of unusual ocean conditions
 in recent years and good performance of the more flexible selectivity in past
 management strategy evaluations \citep{JTC2014}. However, the most compelling 
 reason for the change was that the large catch of age-2 fish in 2016 caused 
-the model with less flexible selectivity ($\phi=0.03$) produced implausible 
+the model with less flexible selectivity ($\phi=0.03$) to produce implausible 
 estimates of 
 2014 recruitment, values about three times larger than the very large 1999 and 2010 cohorts.
 This was inconsistent with the qualitative comparison to the age-1 index,
@@ -668,13 +670,13 @@ similarly low values for $\phi$.
 
 A new parameterization for the selectivity deviations was explored 
 this year, based on the recent work of \citet{Xu2018}, 
-in an effort to produce a more objective way of determining the degree of 
+in an effort to produce a more objective way to determine the degree of 
 flexibility. However, further testing of this approach was believed
 necessary before making the change and so it 
 was only used for a sensitivity analysis 
 (see Section~\ref{sec:assessment-sensitivity-analyses}).
 
-Further details on the time-varying selectivity function are now given.
+Further details on the time-varying selectivity function are provided.
 
 For each age $a \geq A_{\text{min}}$, where $A_{\text{min}}$ is the minimum age
 for which selectivity is allowed to be non-zero, 
