@@ -597,7 +597,7 @@ Placeholders:
   <<main.recruitment.devs, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
     make.recruitment.dev.plot(base.model,
-                              end.yr = end.yr)
+                              end.yr = end.yr-1)
     par(oldpar)
   @
   \ec
