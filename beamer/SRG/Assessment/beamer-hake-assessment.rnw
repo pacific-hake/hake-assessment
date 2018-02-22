@@ -180,10 +180,10 @@ source("custom-knitr-variables.r")
 \begin{frame}
 \frametitle{Changes from \Sexpr{last.assess.yr} assessment}
   \bi
-    \item Added new data from \Sexpr{last.assess.yr}
+    \item Added new data from \Sexpr{last.assess.yr}:
     \bi
       \item Survey age data and biomass index for \Sexpr{survey.end.yr}
-      \item Fishery catch-and-age compositions for \Sexpr{last.assess.yr}
+      \item Fishery catch and age data for \Sexpr{last.assess.yr}
       \item Weight-at-age values for \Sexpr{last.assess.yr}
     \ei
     \item Updated maturity ogive
@@ -198,7 +198,26 @@ source("custom-knitr-variables.r")
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Bridging to the base model: Fishery data}
+\begin{frame}
+\frametitle{Changes from \Sexpr{last.assess.yr} assessment}
+
+Placeholders:
+
+**Explain updated maturity ogive - first check if in data section
+
+**Explain Stock Synthesis version \Sexpr{ss.version} compiled with
+      ADMB \Sexpr{admb.version}
+
+**Explain New approach to weighting age-composition data
+
+**Explain  New parameterization for time-varying selectivity
+\end{frame}
+
+%----------------------------------------------------------
+
+
+\frame{\frametitle{Bridging to the base model: update SS and
+    pre-\Sexpr{assess.yr-1} data}
   \bc
   \vspace{-5pt}
   <<bridge.biomasss, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
@@ -223,7 +242,7 @@ source("custom-knitr-variables.r")
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Bridging to the base model: survey data}
+\frame{\frametitle{Bridging to the base model: fishery and survey data}
   \bc
   \vspace{-5pt}
   <<bridge.biomass2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
@@ -232,7 +251,7 @@ source("custom-knitr-variables.r")
                          subplots = 2,
                          model.names = bridge.model.names.2,
                          densitynames = NULL,
-                         end.yr = end.yr)
+                         end.yr = bridge.model.end.yr.2)
    par(oldpar)
   @
   \ec
@@ -240,7 +259,7 @@ source("custom-knitr-variables.r")
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Bridging to the base model: survey data}
+\frame{\frametitle{Bridging to the base model: fishery and survey data}
   \bc
   \vspace{-5pt}
   <<bridge.other, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
@@ -256,7 +275,7 @@ source("custom-knitr-variables.r")
                          model.names = bridge.model.names.2,
                          densitynames = NULL,
                          legend = FALSE,
-                         end.yr = end.yr)
+                         end.yr = bridge.model.end.yr.2)
     box()
     make.comparison.plot(bridge.models.2,
                          subplots = 11,
@@ -265,7 +284,7 @@ source("custom-knitr-variables.r")
                          legendloc = "topleft",
                          indexPlotEach = TRUE,
                          indexUncertainty = TRUE,
-                         end.yr = end.yr)
+                         end.yr = bridge.model.end.yr.2)
     ## make.comparison.plot(bridge.models.2,
     ##                      subplots = 11,
     ##                      model.names = bridge.model.names.2,
@@ -281,7 +300,8 @@ source("custom-knitr-variables.r")
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Bridging to the base model: Tuning}
+\frame{\frametitle{Bridging to the base model: data-weighting and 
+    new maturity ogive}
   \bc
   \vspace{-5pt}
   <<bridge.tune, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
@@ -291,13 +311,13 @@ source("custom-knitr-variables.r")
                      model.names = bridge.model.names.3,
                      densitynames = NULL,
                      legendloc = "topleft",
-                     end.yr = end.yr)
+                     end.yr = bridge.model.end.yr.3)
     make.comparison.plot(bridge.models.3,
                      subplots = 9,
                      model.names = bridge.model.names.3,
                      densitynames = NULL,
                      legend = FALSE,
-                     end.yr = end.yr)
+                     end.yr = bridge.model.end.yr.3)
     box()
    par(oldpar)
   @
@@ -319,6 +339,8 @@ source("custom-knitr-variables.r")
     \item More flexible time-varying selectivity -> size of 2014 year class
   \ei
 }
+
+\end{document}   % Just while updating slides in order
 
 %%%%%%%%%%%%%%%%%%%%%%%
 % \section{MCMC diag}
