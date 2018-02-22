@@ -300,6 +300,14 @@ Placeholders:
 
 %----------------------------------------------------------
 
+\frame{\frametitle{Bridging to the base model: fishery and survey data in
+    different order}
+
+  placeholder
+}
+
+%----------------------------------------------------------
+
 \frame{\frametitle{Bridging to the base model: data-weighting and 
     new maturity ogive}
   \bc
