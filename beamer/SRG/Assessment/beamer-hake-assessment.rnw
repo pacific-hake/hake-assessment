@@ -527,7 +527,7 @@ Placeholders:
   \ec
 }
 %% The posteriorsExtraOutput.sso needs to be changed for the new assessment year
-\frame{\frametitle{Catchability (\emph{q})}
+\frame{\frametitle{Catchability (\emph{q}) posterior and values for recent assessments}
  \bc
   <<histQ, fig.height=2.25, fig.width=5.5>>=
      # new code that is dynamic
@@ -535,10 +535,12 @@ Placeholders:
   @
   \begin{table}
     \begin{tabular}{cccc} \hline
-      MLE (2017) & Median (2017) & Median (2016) & Median (2015) \\ \hline
-       \Sexpr{round(base.model$cpue$Calc_Q[1],2)}  & 
+      MLE (\Sexpr{assess.yr}) & Median (\Sexpr{assess.yr}) & 
+        Median (2017) & Median (2016) \\
+      \hline
+      \Sexpr{round(base.model$cpue$Calc_Q[1],2)}  & 
           \Sexpr{round(median(base.model$extra.mcmc$Q_vector), 2)} & 
-              1.03 & 0.92         \\ \hline
+              0.94 & 1.03         \\ \hline
     \end{tabular}
   \end{table}
  \ec
