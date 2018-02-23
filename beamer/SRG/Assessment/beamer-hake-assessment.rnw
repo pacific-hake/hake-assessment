@@ -119,7 +119,7 @@ source("custom-knitr-variables.r")
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Outline}
 \subsection{}
-\frame{\frametitle{Outline}
+\frame{\frametitle{**Outline}
 \bi
   \item Review of \Sexpr{last.assess.yr} SRG assessment recommendations
   \item Model structure and changes from \Sexpr{last.assess.yr}
@@ -131,34 +131,33 @@ source("custom-knitr-variables.r")
 }
 
 %----------------------------------------------------------
-\section{**\Sexpr{last.assess.yr} SRG recommendations}
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations}
+\section{\Sexpr{last.assess.yr} SRG recommendations}
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
+    (highest to lowest priority)}
 \setbeamercovered{dynamic}
 \bi
-  \item {\em Continue with base model fit to survey series starting in 1995 with limited extrapolation}
-  \bi
-    \item {\bf Response:} The 2017 base model continues to use the survey biomass time series with limited extrapolation (as discussed last year)
-    \item {\bf Response:} The 2017 base model includes several updates relative to the 2016 time series
+  \item Concern about broad-reaching impact of increasing the flexibility of
+    time-varying selectivity, parameterised by $\phi$:
+    \bi
+      \item It was changed from $\phi=0.03$ to $\phi=0.20$, to reduce an
+        anomalously high estimate of 2014 recruitment based solely on fishery
+        catch-at-age data.
+      \item Recommend continued work on evaluating impact, and more objective way
+        of determining appropriate value of $\phi$ for future assessments.
+      \item {\bf Response:} {\em ***}
+    \ei
+  \item Re-estimate maturity ogive based on histological techniques to:
     \bn
-      \item Addition of the 1995 survey biomass estimate (point estimate and CV)
-      \item Update to 1998 survey biomass estimate (point estimate and CV)
-      \item Update to 2015 survey biomass (CV only)
+      \item address question of different maturity schedules north and south of
+        Point Conception;
+      \item use up-to-date data to replace 20-year-old information;
+      \item assess whether maturity is more dependent upon age or upon weight.
     \en
-  \ei \pause
-  \item {\em Include a sensitivity with age-1 acoustic survey index}
-  \bi
-    \item {\bf Response:} Done and will be presented
-  \ei \pause
-  \item {\em Continue the evaluation of identified key sensitivity runs; further explore sigma-R}
-  \bi
-    \item {\bf Response:} Done and will be presented
-  \ei
 \ei
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%
-
 %----------------------------------------------------------
+
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations}
 \setbeamercovered{dynamic}
 \bi
