@@ -772,16 +772,18 @@ year's assessment,\\
 
 \frame{\frametitle{Summary}
   \bi
+  \item Model continues to fit the age data particularly well.
   \item The spawning stock is estimated to have remained relatively constant
     since 2013. 
   \item The 2014 recruitment is likely not as large as the 2010 recruitment.
-  \item The 2014 cohort now comprises about twice the biomass of the 2010 cohort.
+  \item The 2014 cohort now comprises about twice the biomass of the 2010 cohort
+    (based on MLEs).
   \item The median estimate of \Sexpr{end.yr} relative spawning biomass is
     \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
     \Sexpr{curr.depl.upper}\%).
-  \item The median estimate of \Sexpr{end.yr} female spawning biomass is \Sexpr{curr.bio.median}
-    million~t (with 95\% interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper} million~t).
-  \item The spawning biomass in \Sexpr{end.yr} is estimated to have increased from \Sexpr{end.yr-1} due to the estimate of the 2014 year-class being well above average size.  The 2010 year-class remains prevalent, making up the 2nd largest proportion-by-age (numbers of fish) in the stock. % Manual to do.
+  \item The median estimate of \Sexpr{end.yr} female spawning biomass is 
+    \Sexpr{curr.bio.median}~million~t 
+    (\Sexpr{curr.bio.lower}-\Sexpr{curr.bio.upper}~million~t).
   \ei
 }
 
