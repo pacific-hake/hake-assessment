@@ -184,19 +184,41 @@ source("custom-knitr-variables.r")
   \item 2017 MCMC diagnostics point towards need for longer MCMC chain 
     (24~million rather than 12~million). Recommend:
     \bn
-      \item longer chains;
-      \item retaining more samples than the usual 999;
-      \item look into more efficient methods of obtaining posterios, if available. 
+      \item Longer chains.\\
+      {\bf Response:} {\em Done. Ran MCMC to a length of 24~million, with first 
+          4~million discarded. Also looked into multi-chain diagnostics to
+          further diagrnose convergence.}\\
+      ~\\
+      \item Retaining more samples than the usual 999.
+      {\bf Response:} {\em Done. Retained 2,000 samples to characterise posterior
+          distributions.}\\        
+      ~\\
+      \item Look into more efficient methods of obtaining posteriors,
+        if available.\\
+      {\bf Response:} {\em The R package} `adnuts' {\em has more efficient methods
+        for obtaining posteriors. It has recently been included in ADMB but not
+        yet fully tested in Stock Synthesis.}
     \en
-  \item Include specific sensitivity tests
-  \item {\bf Response:} {\em All included in assessment -- further sensitivities
-      were performed during the work process}    
-  \item Continue to run sensitivity tests fitted to the provisional age-1 index.
-  \item {\bf Response:} {\em Done (Figure 3, 47 and 48). Recall that the survey is
-      not specifically designed to survey age-1 hake, and resulting uncertainty is
-      not quantified.}
 \ei
 }
+
+%----------------------------------------------------------
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
+    (continued)}
+\setbeamercovered{dynamic}
+\bi
+  \item Continue including sensitivity tests from 2017 assessment.\\
+  {\bf Response:} {\em Done. All included in assessment (and more) --
+      further sensitivities were performed during the work process}\\   
+  ~\\    
+  \item Continue to run sensitivity tests fitted to the provisional age-1 index.\\
+  \item {\bf Response:} {\em Done (Figure 3, 47 and 48). Recall that the survey is
+      not specifically designed to survey age-1 hake, and resulting uncertainty is
+      not quantified.}\\
+\ei
+}
+
 
 %----------------------------------------------------------
 
@@ -207,7 +229,7 @@ source("custom-knitr-variables.r")
   \item Current evidence does not support including hake south of Point Conception.
      Encourage ongoing colleaction and analysis of genetic material to resolve 
      stock structure.
-  \item {\bf Response:} {\em JTC continues to support this}
+  \item {\bf Response:} {\em JTC continues to support this.}
   \item AP requests:
     \bi
       \item Include table providing exploitation rates by age and year
