@@ -526,13 +526,14 @@ Placeholders:
     @
   \ec
 }
-%% The posteriorsExtraOutput.sso needs to be changed for the new assessment year
+
 \frame{\frametitle{Catchability (\emph{q}) posterior and values for recent assessments}
  \bc
   <<histQ, fig.height=2.25, fig.width=5.5>>=
      # new code that is dynamic
      make.mcmc.catchability.plot(base.model)
   @
+  ##  Manually update the q values and years in this table (done 2018)
   \begin{table}
     \begin{tabular}{cccc} \hline
       MLE (\Sexpr{assess.yr}) & Median (\Sexpr{assess.yr}) & 
