@@ -303,7 +303,7 @@ Placeholders:
 \frame{\frametitle{Bridging to the base model: fishery and survey data in
     different order}
   \bc
-  \includegraphics[height=3in]{compare2_spawnbio_uncertainty_landscape.eps}
+  \includegraphics[height=3in]{Figures/compare2_spawnbio_uncertainty_landscape.eps}
   \ec
 }
 
@@ -339,7 +339,9 @@ Placeholders:
   \bi
     \item Including the \Sexpr{last.survey.year} index appears to make the
       biggest difference, pulling down the recent estimates of biomass.
-    \item Age data make little further difference, however (**new fig)
+    \item Age data make little further difference, however adding the fishery
+      age data before adding the survey does partly pull down biomass in 2016 and
+      2017.
     \item The alternative Dirichlet-multinomial data weighting gives slight
       changes, in particular pulling down early biomass (and $B_0$).
     \item New maturity ogive adds variability to spawning biomass
@@ -484,9 +486,8 @@ Placeholders:
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Asymmetric shape of steepness and Extra SD posterior makes median and MLE different
-      \item Additional SD is less than 2015 assessment
-      \item {\em M} is pushing upper end of prior
+      \item Prior for natural mortality looks to be constraining posterior
+      \item Posterior for steepness does not shift much from prior
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -498,10 +499,7 @@ Placeholders:
       origMcmcPath <- base.model$mcmcpath
       base.model$mcmcpath <- file.path("..",origMcmcPath)
       make.mcmc.priors.vs.posts.plot(base.model,
-                                     c("NatM_p_1_Fem_GP_1",
-                                       "SR_LN",
-                                       "SR_BH_steep",
-                                       "Q_extraSD_2_Acoustic_Survey"))
+                                     key.posteriors)
       base.model$path <- origPath
       base.model$mcmcpath <- origMcmcPath
     @
@@ -513,6 +511,7 @@ Placeholders:
 %----------------------------------------------------------
 
 \frame{\frametitle{Parameter estimates}
+  \vspace{-5pt}  
   \bc
   <<main.parameter.estimates, results='asis', echo=FALSE>>=
     make.short.parameter.estimates.table(base.model,
@@ -528,7 +527,7 @@ Placeholders:
   \ec
 }
 %% The posteriorsExtraOutput.sso needs to be changed for the new assessment year
-\frame{\frametitle{Catchability (\emph{q})}
+\frame{\frametitle{Catchability (\emph{q}) posterior and values for recent assessments}
  \bc
   <<histQ, fig.height=2.25, fig.width=5.5>>=
      # new code that is dynamic
@@ -536,10 +535,12 @@ Placeholders:
   @
   \begin{table}
     \begin{tabular}{cccc} \hline
-      MLE (2017) & Median (2017) & Median (2016) & Median (2015) \\ \hline
-       \Sexpr{round(base.model$cpue$Calc_Q[1],2)}  & 
+      MLE (\Sexpr{assess.yr}) & Median (\Sexpr{assess.yr}) & 
+        Median (2017) & Median (2016) \\
+      \hline
+      \Sexpr{round(base.model$cpue$Calc_Q[1],2)}  & 
           \Sexpr{round(median(base.model$extra.mcmc$Q_vector), 2)} & 
-              1.03 & 0.92         \\ \hline
+              0.94 & 1.03         \\ \hline
     \end{tabular}
   \end{table}
  \ec
@@ -596,7 +597,7 @@ Placeholders:
   <<main.recruitment.devs, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
     make.recruitment.dev.plot(base.model,
-                              end.yr = end.yr)
+                              end.yr = end.yr-1)
     par(oldpar)
   @
   \ec
