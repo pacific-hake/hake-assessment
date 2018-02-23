@@ -339,8 +339,8 @@ Placeholders:
   \bi
     \item Including the \Sexpr{last.survey.year} index appears to make the
       biggest difference, pulling down the recent estimates of biomass.
-    \item Age data make little further difference, however adding the fishery
-      age data before adding the survey does partly pull down biomass in 2016 and
+    \item Age data make little further difference, although adding the fishery
+      age data before adding the survey index does partly pull down biomass in 2016 and
       2017.
     \item The alternative Dirichlet-multinomial data weighting gives slight
       changes, in particular pulling down early biomass (and $B_0$).
@@ -670,9 +670,10 @@ Placeholders:
       \hline
     \end{tabular}
   \end{table}
-  \\
+  ~\\
 So while the median estimate of $B_{\Sexpr{end.yr-1}}$ has declined from last
-year's assessment, the credible interval remains within the range of last year's.
+year's assessment,\\
+~~the credible interval remains within the range of last year's.
 }
 
 %----------------------------------------------------------
@@ -720,7 +721,7 @@ year's assessment, the credible interval remains within the range of last year's
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Summary}
+\section{**Summary}
 \subsection{}
 
 \frame{\frametitle{Summary}
