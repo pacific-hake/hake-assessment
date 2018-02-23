@@ -667,7 +667,7 @@ make.recruitment.plot(base.model,
 \begin{center}
 <<main.recruitment.devs, fig.height=4.5, fig.width=8>>=
 make.recruitment.dev.plot(base.model,
-                          end.yr = end.yr - 1)
+                          end.yr = end.yr)
 
 @
 \end{center}

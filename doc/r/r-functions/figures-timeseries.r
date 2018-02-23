@@ -115,7 +115,8 @@ make.recruitment.plot <- function(model,            ## model is an mcmc run and 
 
   unfished.eq.r <- model$mcmccalcs$rinit
 
-  non.equil.yrs <- start.yr:(end.yr - 1)
+  #non.equil.yrs <- start.yr:(end.yr - 1) # former setting to exclude final year
+  non.equil.yrs <- start.yr:end.yr
   yrs <- equil.yr:end.yr
   ## Only include start year to end year
   rlower <- rlower[names(rlower) %in% non.equil.yrs]
@@ -197,6 +198,7 @@ make.recruitment.dev.plot <- function(model,  ## model is an mcmc run and is the
   y <- data.frame(value = dev.med, lo = dev.lower, hi = dev.upper)
   y <- y[as.numeric(rownames(y)) <= end.yr,]
 
+  par(mfrow = c(1,1), las = 1, mar = c(3.5,3.5,1,1), oma = c(0,0,0,0))
   plotBars.fn(dev.yrs,
               y,
               scalar = 1,
@@ -205,7 +207,6 @@ make.recruitment.dev.plot <- function(model,  ## model is an mcmc run and is the
               xlab = "Year",
               ylab = "Log-scale recruitment deviations ",
               cex = 0.8,
-              las = 1,
               gap = 0,
               xaxt = "n",
               ciLwd = 1,
