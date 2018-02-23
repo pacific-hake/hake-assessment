@@ -653,6 +653,30 @@ Placeholders:
 
 %----------------------------------------------------------
 
+\frame{\frametitle{Spawning Biomass (million~t)}
+
+% Adding this manual table for 2018 to compare biomass estimates
+  \begin{table}
+    \begin{tabular}{cccc} \hline
+      Calculation & Low & Median & High \\
+      \hline
+      \Sexpr{assess.yr-1} assessment $B_{\Sexpr{end.yr-1}}$ & 
+         0.763 & 2.129 & 7.445 \\
+      \Sexpr{assess.yr} assessment $B_{\Sexpr{end.yr-1}}$ & 
+         \Sexpr{prev.bio.lower} & \Sexpr{prev.bio.median} & 
+         \Sexpr{prev.bio.upper} \\
+      \Sexpr{assess.yr} assessment $B_{\Sexpr{end.yr}}$ & \Sexpr{curr.bio.lower} & 
+         \Sexpr{curr.bio.median} & \Sexpr{curr.bio.upper} \\
+      \hline
+    \end{tabular}
+  \end{table}
+  \\
+So while the median estimate of $B_{\Sexpr{end.yr-1}}$ has declined from last
+year's assessment, the credible interval remains within the range of last year's.
+}
+
+%----------------------------------------------------------
+
 \frame{\frametitle{Relative Spawning Biomass}
   \vspace{-5pt}
   \bc
