@@ -681,7 +681,8 @@ Placeholders:
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Exploitation Rate}
+\frame{\frametitle{Exploitation Fraction (ages $2+$, previous
+    assessments used $3+$)}
   \vspace{-5pt}
   \bc
   <<exploitation, fig.height=4, fig.width=8, out.width='0.8\\columnwidth'>>=
