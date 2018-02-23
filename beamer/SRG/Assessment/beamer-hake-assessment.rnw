@@ -623,7 +623,7 @@ Placeholders:
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Numbers-at-Age}
+\frame{\frametitle{Numbers-at-age (billions)}
 \begin{columns}
   \begin{column}{0.5\textwidth}
   \vspace{-10pt}
@@ -667,16 +667,24 @@ Placeholders:
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Fishing Intensity and Exploitation Rate}
+\frame{\frametitle{Fishing Intensity}
   \vspace{-5pt}
   \bc
-  <<fishing.intensity, fig.height=4, fig.width=8, out.width='0.45\\columnwidth'>>=
+  <<fishing.intensity, fig.height=4, fig.width=8, out.width='0.8\\columnwidth'>>=
     make.fishing.intensity.plot(base.model,
                                 start.yr = start.yr,
                                 end.yr = end.yr-1,
                                 color = "blue")
   @
-  <<exploitation, fig.height=4, fig.width=8, out.width='0.45\\columnwidth'>>=
+  \ec
+}
+
+%----------------------------------------------------------
+
+\frame{\frametitle{Exploitation Rate}
+  \vspace{-5pt}
+  \bc
+  <<exploitation, fig.height=4, fig.width=8, out.width='0.8\\columnwidth'>>=
     make.exploitation.fraction.plot(base.model,
                                     start.yr = start.yr,
                                     end.yr = end.yr-1,
@@ -684,7 +692,6 @@ Placeholders:
   @
   \ec
 }
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
