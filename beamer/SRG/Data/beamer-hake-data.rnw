@@ -405,8 +405,8 @@ source("custom-knitr-variables.r")
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section[Weight-at-age]{Weight-at-age}
-\subsection{Weight-at-age by year and cohort}
-\frame{\frametitle{Weight-at-age by year and cohort}
+\subsection{Mean weight-at-age by year}
+\frame{\frametitle{Mean weight-at-age by year}
   <<wt.at.age>>=
     oldpar <- par()
     par(mar=c(4.1, 4.1, 1.1, 1.1), oma=c(0, 0, 0, 0))
