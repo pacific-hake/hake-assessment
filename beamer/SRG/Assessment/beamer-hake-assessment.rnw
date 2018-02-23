@@ -140,7 +140,7 @@ source("custom-knitr-variables.r")
     \item {\bf Response:} The 2017 base model continues to use the survey biomass time series with limited extrapolation (as discussed last year)
     \item {\bf Response:} The 2017 base model includes several updates relative to the 2016 time series
     \bn
-      \item Addition of the 1995 survey biomass estimate (point estimate and CV) 
+      \item Addition of the 1995 survey biomass estimate (point estimate and CV)
       \item Update to 1998 survey biomass estimate (point estimate and CV)
       \item Update to 2015 survey biomass (CV only)
     \en
@@ -152,7 +152,7 @@ source("custom-knitr-variables.r")
   \item {\em Continue the evaluation of identified key sensitivity runs; further explore sigma-R}
   \bi
     \item {\bf Response:} Done and will be presented
-  \ei 
+  \ei
 \ei
 }
 
@@ -191,7 +191,7 @@ source("custom-knitr-variables.r")
       ADMB \Sexpr{admb.version}
     \item New approach to weighting age-composition data
     \item New parameterization for time-varying selectivity
-    % \item Usual update of bias adjustment ramps for recruitment deviations 
+    % \item Usual update of bias adjustment ramps for recruitment deviations
     % \item Usual update of main recruitment deviate estimation period
   \ei
 \end{frame}
@@ -307,7 +307,7 @@ Placeholders:
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Bridging to the base model: alternative data weightings and 
+\frame{\frametitle{Bridging to the base model: alternative data weightings and
     new maturity ogive}
   \bc
   \vspace{-5pt}
@@ -509,7 +509,7 @@ Placeholders:
 %----------------------------------------------------------
 
 \frame{\frametitle{Parameter estimates}
-  \vspace{-5pt}  
+  \vspace{-5pt}
   \bc
   <<main.parameter.estimates, results='asis', echo=FALSE>>=
     make.short.parameter.estimates.table(base.model,
@@ -533,11 +533,11 @@ Placeholders:
   % Manually update the q values and years in this table (done 2018)
   \begin{table}
     \begin{tabular}{cccc} \hline
-      MLE (\Sexpr{assess.yr}) & Median (\Sexpr{assess.yr}) & 
+      MLE (\Sexpr{assess.yr}) & Median (\Sexpr{assess.yr}) &
         Median (2017) & Median (2016) \\
       \hline
-      \Sexpr{round(base.model$cpue$Calc_Q[1],2)}  & 
-          \Sexpr{round(median(base.model$extra.mcmc$Q_vector), 2)} & 
+      \Sexpr{round(base.model$cpue$Calc_Q[1],2)}  &
+          \Sexpr{round(median(base.model$extra.mcmc$Q_vector), 2)} &
               0.94 & 1.03         \\
       \hline
     \end{tabular}
@@ -621,6 +621,54 @@ Placeholders:
 
 %----------------------------------------------------------
 
+\frame{\frametitle{Estimate of 2014 cohort}
+
+% Adding this manual table for 2018 and doing calculations here for speed,
+%  I don't think the calculations are done elsewhere
+<<prop.biomass.large.cohorts>>=
+# From Table 21 for 2018 row, saved in estimated-biomass-at-age.csv
+biomass.at.age.2018 = c(34.557289, 152.714604, 359.43649, 28.0393296,
+                        1061.277907, 58.9803062, 116.9505844, 25.32548799,
+                        514.6287136, 41.35217625, 77.17102616, 0.3495839498,
+                        14.4567962, 15.86944226, 0.3951070504, 4.249532704,
+                        0.05743363776, 1.089124992, 0.1856510976, 5.949318912,
+                        1.349550848)
+biomass.2018.total = sum(biomass.at.age.2018)
+biomass.2018.prop.age4 = biomass.at.age.2018[5]/biomass.2018.total
+biomass.2018.prop.age8 = biomass.at.age.2018[9]/biomass.2018.total
+@
+The 2014 cohort is estimated to be large, though likely not as large as 2010.\\
+
+~\\
+
+Extra data reduces its uncertainty from that in the 2017 assessment:
+
+% Adding this manual table for 2018 to compare 2014 recruitment estimates 
+%  (Tables 18 and 19 each year)
+  \begin{table}
+    \begin{tabular}{cccc} \hline
+      Calculation (millions) & Low & Median & High \\
+      \hline
+      \Sexpr{assess.yr-1} assessment recruitment in 2014 &
+         2,184 & 12,105 & 90,735 \\
+      \Sexpr{assess.yr} assessment recruitment in 2014 &      
+         4,137 & 8,583 & 20,562 \\      
+      \hline
+    \end{tabular}
+  \end{table}
+  ~\\
+
+At the start of 2018 (from Table 21, page 89):\\
+\bi
+\item 2010 cohort is estimated to make up \Sexpr{f(biomass.2018.prop.age8*100)}\% 
+  of the biomass\\
+\item 2014 cohort is estimated to make up \Sexpr{f(biomass.2018.prop.age4*100)}\%
+  of the biomass
+\ei
+}
+
+%----------------------------------------------------------
+
 \frame{\frametitle{Numbers-at-age (billions)}
 \begin{columns}
   \begin{column}{0.5\textwidth}
@@ -635,7 +683,7 @@ Placeholders:
 }
 
 %----------------------------------------------------------
-
+    
 \frame{\frametitle{Spawning Biomass}
   \vspace{-5pt}
   \bc
@@ -658,12 +706,12 @@ Placeholders:
     \begin{tabular}{cccc} \hline
       Calculation & Low & Median & High \\
       \hline
-      \Sexpr{assess.yr-1} assessment $B_{\Sexpr{end.yr-1}}$ & 
+      \Sexpr{assess.yr-1} assessment $B_{\Sexpr{end.yr-1}}$ &
          0.763 & 2.129 & 7.445 \\
-      \Sexpr{assess.yr} assessment $B_{\Sexpr{end.yr-1}}$ & 
-         \Sexpr{prev.bio.lower} & \Sexpr{prev.bio.median} & 
+      \Sexpr{assess.yr} assessment $B_{\Sexpr{end.yr-1}}$ &
+         \Sexpr{prev.bio.lower} & \Sexpr{prev.bio.median} &
          \Sexpr{prev.bio.upper} \\
-      \Sexpr{assess.yr} assessment $B_{\Sexpr{end.yr}}$ & \Sexpr{curr.bio.lower} & 
+      \Sexpr{assess.yr} assessment $B_{\Sexpr{end.yr}}$ & \Sexpr{curr.bio.lower} &
          \Sexpr{curr.bio.median} & \Sexpr{curr.bio.upper} \\
       \hline
     \end{tabular}
@@ -724,9 +772,10 @@ year's assessment,\\
 
 \frame{\frametitle{Summary}
   \bi
-  \item The spawning stock is estimated to be near its highest biomass level since 1990 as a result of
-    estimated large 2010 and 2014 cohorts. The 2014 cohort has not yet been observed by the
-    survey and only twice by the commercial fishery, thus its absolute size is highly uncertain.
+  \item The spawning stock is estimated to have remained relatively constant
+    since 2013. 
+  \item The 2014 recruitment is likely not as large as the 2010 recruitment.
+  \item The 2014 cohort now comprises about twice the biomass of the 2010 cohort.
   \item The median estimate of \Sexpr{end.yr} relative spawning biomass is
     \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
     \Sexpr{curr.depl.upper}\%).
