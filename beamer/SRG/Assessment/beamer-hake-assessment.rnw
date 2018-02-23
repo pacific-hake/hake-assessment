@@ -145,7 +145,7 @@ source("custom-knitr-variables.r")
       \item Recommend continued work on evaluating impact of this, and more
         objective way of determining appropriate value of $\phi$ for future
         assessments.
-      \item {\bf Response:} {\em ***}
+      {\bf Response:} {\em ***}
     \ei
 \ei
 }
@@ -161,7 +161,8 @@ source("custom-knitr-variables.r")
       \item Address question of different maturity schedules north and south of
         Point Conception.\\
         {\bf Response:} {\em There is strong evidence for a difference and NWFSC
-          is seeking to conduct genetic analyses to see if distinct stocks.}\\
+          is seeking to conduct genetic analyses to see if north and south stocks
+          are distinct.}\\
         ~\\
       \item Use up-to-date data to replace 20-year-old information.\\
         {\bf Response:} {\em Analysed 1,947 ovary samples to estimate a new
@@ -189,7 +190,7 @@ source("custom-knitr-variables.r")
           4~million discarded. Also looked into multi-chain diagnostics to
           further diagrnose convergence.}\\
       ~\\
-      \item Retaining more samples than the usual 999.
+      \item Retaining more samples than the usual 999.\\
       {\bf Response:} {\em Done. Retained 2,000 samples to characterise posterior
           distributions.}\\        
       ~\\
@@ -213,7 +214,7 @@ source("custom-knitr-variables.r")
       further sensitivities were performed during the work process}\\   
   ~\\    
   \item Continue to run sensitivity tests fitted to the provisional age-1 index.\\
-  \item {\bf Response:} {\em Done (Figure 3, 47 and 48). Recall that the survey is
+  {\bf Response:} {\em Done (Figures 3, 47 and 48). Recall that the survey is
       not specifically designed to survey age-1 hake, and resulting uncertainty is
       not quantified.}\\
 \ei
@@ -228,15 +229,17 @@ source("custom-knitr-variables.r")
 \bi
   \item Current evidence does not support including hake south of Point Conception.
      Encourage ongoing colleaction and analysis of genetic material to resolve 
-     stock structure.
-  \item {\bf Response:} {\em JTC continues to support this.}
+     stock structure.\\
+  {\bf Response:} {\em JTC continues to support this.}\\
+  ~\\
   \item AP requests:
     \bi
-      \item Include table providing exploitation rates by age and year
-      \item  {\bf Response:} {\em Done. Table~22 (and in 2017 document).}
+      \item Include table providing exploitation rates by age and year\\
+      {\bf Response:} {\em Done. Table~22 (and in 2017 document).}\\
+      ~\\
       \item Table estimating of the annual weight of each cohort that is caught,
-         dies from natural mortality, and lives, by year.
-      \item  {\bf Response:} {\em Done (for strongest cohorts only) as Table~25 
+         dies from natural mortality, and lives, by year.\\
+      {\bf Response:} {\em Done (for strongest cohorts only) as Table~25 
           (and in 2017 document). Also annual biomass-at-age and catch-at-age 
           (numbers and biomass) as Tables~21, 23~and~24 (and in 2017 document).}
     \ei
