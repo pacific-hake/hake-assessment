@@ -530,10 +530,9 @@ Placeholders:
 \frame{\frametitle{Catchability (\emph{q}) posterior and values for recent assessments}
  \bc
   <<histQ, fig.height=2.25, fig.width=5.5>>=
-     # new code that is dynamic
      make.mcmc.catchability.plot(base.model)
   @
-  ##  Manually update the q values and years in this table (done 2018)
+  % Manually update the q values and years in this table (done 2018)
   \begin{table}
     \begin{tabular}{cccc} \hline
       MLE (\Sexpr{assess.yr}) & Median (\Sexpr{assess.yr}) & 
@@ -541,7 +540,8 @@ Placeholders:
       \hline
       \Sexpr{round(base.model$cpue$Calc_Q[1],2)}  & 
           \Sexpr{round(median(base.model$extra.mcmc$Q_vector), 2)} & 
-              0.94 & 1.03         \\ \hline
+              0.94 & 1.03         \\
+      \hline
     \end{tabular}
   \end{table}
  \ec
