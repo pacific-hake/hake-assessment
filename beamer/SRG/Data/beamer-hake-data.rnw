@@ -105,12 +105,12 @@ source("custom-knitr-variables.r")
   \bi
     \item March \Sexpr{last.assess.yr}: JMC set an adjusted TAC = \Sexpr{last.year.tac} t.
     %% \item May \Sexpr{last.assess.yr}: JMC meeting: JTC presented MSE simulation results looking at age-1 index and age 2+ survey precision.
-    \item U.S. and Canadian fisheries predominantly started in May (some Shoreside catch in April).
+    \item U.S. and Canadian fisheries predominantly started in May (Canadian Shoreside catch in April).
     %% \item Return of at-sea fleet in the U.S. saw low catch-rates.
     \item Highest proportion of fish caught in U.S. At-Sea fisheries were age-3 and age-7 for U.S. Shoreside.
     \item Highest proportion of fish caught in Canadian fisheries were age-7.
     \item In the U.S., seasonal patterns in catch-at-age were again observed (higher proportion age-3 in fall).
-    \item Highest coastwide catch in time-series, 33\% increase from last year.
+    \item Highest coastwide catch ever, 33\% increase from last year.
     \item One JTC public meeting in December - in general, all stakeholders report good fishing conditions in 2017.
     \item Summer 2017 acoustic survey biomass estimate was 1.418 million tons (decline of 34\% from 2015 survey).
     \item Second winter survey from Jan-Feb 2017 aboard the Shimada.
@@ -147,9 +147,10 @@ source("custom-knitr-variables.r")
     \ei
   \end{column}
   \begin{column}{0.6\linewidth}
-    <<data.overview.map, out.width='3.5in', out.width='0.9\\columnwidth'>>=
-      make.data.overview.plot(base.model)
-    @
+    \includegraphics[width=\maxwidth, height=3in]{../../../beamer/SRG/Data/data_overview_map-1_backup}
+%%    <<data.overview.map, out.width='3.5in', out.width='0.9\\columnwidth'>>=
+%%      make.data.overview.plot(base.model)
+%%    @
   \end{column}
 \end{columns}
 }
@@ -212,11 +213,13 @@ source("custom-knitr-variables.r")
       \bi
         \item The \Sexpr{end.yr-1} U.S. TAC was \Sexpr{last.year.us.tac} t
           \bi
-            \item Research            -- \Sexpr{f(last.year.us.research.catch)} t    (\Sexpr{paste0(last.year.us.research.catch.percent, "\\%")})
+            %\item Research            -- \Sexpr{f(last.year.us.research.catch)} t    (\Sexpr{paste0(last.year.us.research.catch.percent, "\\%")})
             \item Catcher--processor  -- \Sexpr{f(last.year.us.cp.catch)} t          (\Sexpr{paste0(last.year.us.cp.catch.percent, "\\%")})
             \item Mothership          -- \Sexpr{f(last.year.us.ms.catch)} t          (\Sexpr{paste0(last.year.us.ms.catch.percent, "\\%")})
             \item Shore-based         -- \Sexpr{f(last.year.us.shore.catch)} t       (\Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")})
-            \item Tribal              -- \Sexpr{f(last.year.us.tribal.max.landed)} t % (\Sexpr{paste0(last.year.us.tribal.catch.percent, "\\%")})
+            \bi
+                \item Tribal              -- 6,172 t%\Sexpr{f(last.year.us.tribal.max.landed)} t % (\Sexpr{paste0(last.year.us.tribal.catch.percent, "\\%")})
+            \ei
           \ei
         \item Total U.S. catch -- \Sexpr{last.year.us.landings} t
         \item \Sexpr{paste0(last.year.us.attained, "\\%")} of the U.S. quota was caught.
@@ -248,7 +251,7 @@ source("custom-knitr-variables.r")
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Cumulative catch}
-\frame{\frametitle{Cumulative catch}
+\frame{\frametitle{Cumulative catch by month}
   <<cumulative.catches>>=
     oldpar <- par(no.readonly = TRUE)
     par(mar = c(2.1, 5.1, 1.1, 1.1), oma = c(2.1, 2.1, 0, 0))
@@ -298,7 +301,10 @@ source("custom-knitr-variables.r")
 
 \subsection{Canada}
 \frame{\frametitle{Canada bottom depth distribution}
-  \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/can-bottom-depths}
+\begin{figure}
+ \centering
+  \includegraphics[width=6in, height=3in]{../../../doc/main-figures/can-bottom-depths}
+\end{figure}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -340,19 +346,18 @@ source("custom-knitr-variables.r")
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section[Survey]{Survey}
-%% \subsection{Acoustic survey biomass}
-%% \frame{\frametitle{Acoustic survey biomass}
-%%   <<survey.biomass>>=
-%%     oldpar <- par()
-%%     par(mar=c(1.1, 1.1, 0, 1.1), oma=c(1.1, 1.1, 0, 0))
-%%     make.survey.biomass.plot(base.model,
-%%                              xlab = "Year",
-%%                              ylab = "Biomass (million t)")
-%%     ##mtext("Year", side = 1, outer = TRUE)
-%%     par <- oldpar
-%%   @
-%% }
-
+ \subsection{Acoustic survey biomass}
+ \frame{\frametitle{Acoustic survey biomass}
+   \begin{figure}
+\centering
+  <<survey.compare.extrap.noextrap, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+    make.survey.biomass.plot(base.model,
+                              xlab = "Year",
+                              ylab = "Biomass (million t)")
+  @
+\end{figure}
+}
+ 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% \subsection{Acoustic survey age compositions}
@@ -387,15 +392,15 @@ source("custom-knitr-variables.r")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Survey index extrap/no-extrap comparison}
-\frame{\frametitle{Survey index extrapolated/unextrapolated}
-\begin{figure}
-\centering
-  <<survey.compare.extrap.noextrap, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-    make.survey.biomass.extrap.plot(survey.comparison, show = 2:3)
-  @
-\end{figure}
-}
+%%\subsection{Survey index extrap/no-extrap comparison}
+%%\frame{\frametitle{Survey index extrapolated/unextrapolated}
+%%\begin{figure}
+%%\centering
+%%  <<survey.compare.extrap.noextrap, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+%%    make.survey.biomass.extrap.plot(survey.comparison, show = 2:3)
+%%  @
+%%\end{figure}
+%%}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -469,8 +474,8 @@ source("custom-knitr-variables.r")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Maturity North and South of 34.5$^\circ$ latitude}
-\frame{\frametitle{Maturity North and South of 34.5$^\circ$ latitude}
+\subsection{Updated maturity and fecundity estimates}
+\frame{\frametitle{Updated maturity and fecundity estimates}
 \begin{figure}
 \centering
  <<maturity.ogive.figure, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
@@ -484,7 +489,7 @@ source("custom-knitr-variables.r")
 \subsection{Fecundity}
 \frame{\frametitle{Fecundity}
   \bi
-    \item Fecundity-at-age is set to maturity-at-age $*$ mean weight-at-age in SS3.
+    \item Fecundity-at-age is set to maturity-at-age $*$ mean weight-at-age in Stock Synthesis.
     \item We need a better understanding of:
       \bi
         \item Batch spawning.
@@ -514,7 +519,7 @@ source("custom-knitr-variables.r")
       \bi
         \item Length frequencies from the fishery.
         \item Fishery CPUE.
-        \item WCGOP data (bycatch)
+        \item Bycatch in non-target fisheries
         \item Mexican landings / sample data.
       \ei
     \item Externally derived inputs
