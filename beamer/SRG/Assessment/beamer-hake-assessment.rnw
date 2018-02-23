@@ -139,11 +139,12 @@ source("custom-knitr-variables.r")
   \item Concern about broad-reaching impact of increasing the flexibility of
     time-varying selectivity, parameterised by $\phi$:
     \bi
-      \item It was changed from $\phi=0.03$ to $\phi=0.20$, to reduce an
-        anomalously high estimate of 2014 recruitment based solely on fishery
+      \item In 2017 it was changed from $\phi=0.03$ to $\phi=0.20$ to reduce an
+        anomalously high estimate of 2014 recruitment driven solely on fishery
         catch-at-age data.
-      \item Recommend continued work on evaluating impact, and more objective way
-        of determining appropriate value of $\phi$ for future assessments.
+      \item Recommend continued work on evaluating impact of this, and more
+        objective way of determining appropriate value of $\phi$ for future
+        assessments.
       \item {\bf Response:} {\em ***}
     \ei
   \item Re-estimate maturity ogive based on histological techniques to:
@@ -158,19 +159,73 @@ source("custom-knitr-variables.r")
 
 %----------------------------------------------------------
 
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations}
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
+    (continued)}
 \setbeamercovered{dynamic}
 \bi
-  \item {\em Ongoing monitoring and research on stock structure}
-  \bi
-    \item {\bf Response:} The JTC supports the collection/processing of genetic material and other research to evaluate stock structure.
-  \ei \pause
-  \item {\em Continued collection of ovaries}
-  \bi
-    \item {\bf Response:} Many ovaries collected in \Sexpr{last.assess.yr}, including during all four seasons and doubled collections from Canadian shoreside fishery. No new analysis in time for this assessment, but thorough analysis anticipated for 2018.
-  \ei
+  \item Re-estimate maturity ogive based on histological techniques to:
+    \bn
+      \item address question of different maturity schedules north and south of
+        Point Conception\\
+        {\bf Response:} {\em There is strong evidence for a difference -- NWFSC
+          seeking to conduct genetic analyses to see if distinct stocks}
+      \item use up-to-date data to replace 20-year-old information\\
+        {\bf Response:} {\em Analysed 1,947 ovary samples to estimate a new
+          maturity ogive (as shown in Data talk) -- used in base model (and 
+          previous one used as a sensitivity)}\\
+      \item assess whether maturity is more dependent upon age or upon weight
+        {\bf Response:} {\em Not completed, though greatest variability in 
+          weight occurs for older fish that are mostly mature}
+          \en
 \ei
 }
+
+%----------------------------------------------------------
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
+    (continued)}
+\setbeamercovered{dynamic}
+\bi
+  \item 2017 MCMC diagnostics point towards need for longer MCMC chain 
+    (24~million rather than 12~million). Recommend:
+    \bn
+      \item longer chains;
+      \item retaining more samples than the usual 999;
+      \item look into more efficient methods of obtaining posterios, if available. 
+    \en
+  \item Include specific sensitivity tests
+  \item {\bf Response:} {\em All included in assessment -- further sensitivities
+      were performed during the work process}    
+  \item Continue to run sensitivity tests fitted to the provisional age-1 index.
+  \item {\bf Response:} {\em Done (Figure 3, 47 and 48). Recall that the survey is
+      not specifically designed to survey age-1 hake, and resulting uncertainty is
+      not quantified.}
+\ei
+}
+
+%----------------------------------------------------------
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
+    (continued)}
+\setbeamercovered{dynamic}
+\bi
+  \item Current evidence does not support including hake south of Point Conception.
+     Encourage ongoing colleaction and analysis of genetic material to resolve 
+     stock structure.
+  \item {\bf Response:} {\em JTC continues to support this}
+  \item AP requests:
+    \bi
+      \item Include table providing exploitation rates by age and year
+      \item  {\bf Response:} {\em Done. Table~22 (and in 2017 document).}
+      \item Table estimating of the annual weight of each cohort that is caught,
+         dies from natural mortality, and lives, by year.
+      \item  {\bf Response:} {\em Done (for strongest cohorts only) as Table~25 
+          (and in 2017 document). Also annual biomass-at-age and catch-at-age 
+          (numbers and biomass) as Tables~21, 23~and~24 (and in 2017 document).}
+    \ei
+\ei
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Changes from \Sexpr{last.assess.yr}}
