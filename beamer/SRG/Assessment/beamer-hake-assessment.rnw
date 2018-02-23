@@ -203,8 +203,6 @@ source("custom-knitr-variables.r")
 
 Placeholders:
 
-**Explain updated maturity ogive - first check if in data section
-
 **Explain Stock Synthesis version \Sexpr{ss.version} compiled with
       ADMB \Sexpr{admb.version}
 
