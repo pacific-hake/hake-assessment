@@ -134,7 +134,7 @@ source("custom-knitr-variables.r")
 \section{\Sexpr{last.assess.yr} SRG recommendations}
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
     (highest to lowest priority)}
-\setbeamercovered{dynamic}
+% \setbeamercovered{dynamic}
 \bi
   \item Concern about broad-reaching impact of increasing the flexibility of
     time-varying selectivity, parameterised by $\phi$:
@@ -147,13 +147,6 @@ source("custom-knitr-variables.r")
         assessments.
       \item {\bf Response:} {\em ***}
     \ei
-  \item Re-estimate maturity ogive based on histological techniques to:
-    \bn
-      \item address question of different maturity schedules north and south of
-        Point Conception;
-      \item use up-to-date data to replace 20-year-old information;
-      \item assess whether maturity is more dependent upon age or upon weight.
-    \en
 \ei
 }
 
@@ -165,18 +158,20 @@ source("custom-knitr-variables.r")
 \bi
   \item Re-estimate maturity ogive based on histological techniques to:
     \bn
-      \item address question of different maturity schedules north and south of
-        Point Conception\\
-        {\bf Response:} {\em There is strong evidence for a difference -- NWFSC
-          seeking to conduct genetic analyses to see if distinct stocks}
-      \item use up-to-date data to replace 20-year-old information\\
+      \item Address question of different maturity schedules north and south of
+        Point Conception.\\
+        {\bf Response:} {\em There is strong evidence for a difference and NWFSC
+          is seeking to conduct genetic analyses to see if distinct stocks.}\\
+        ~\\
+      \item Use up-to-date data to replace 20-year-old information.\\
         {\bf Response:} {\em Analysed 1,947 ovary samples to estimate a new
-          maturity ogive (as shown in Data talk) -- used in base model (and 
-          previous one used as a sensitivity)}\\
-      \item assess whether maturity is more dependent upon age or upon weight
+          maturity ogive (as shown in Data talk). Now used in base model and 
+          previous ogive used in a sensitivity test.}\\
+        ~\\        
+      \item Assess whether maturity is more dependent upon age or upon weight.\\
         {\bf Response:} {\em Not completed, though greatest variability in 
-          weight occurs for older fish that are mostly mature}
-          \en
+          weight occurs for older fish that are mostly mature.}
+      \en
 \ei
 }
 
