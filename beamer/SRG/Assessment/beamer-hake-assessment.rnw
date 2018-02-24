@@ -123,7 +123,7 @@ source("custom-knitr-variables.r")
 \bi
   \item Review of \Sexpr{last.assess.yr} SRG assessment recommendations
   \item Model structure and changes from \Sexpr{last.assess.yr}
-  %\item MCMC diagnostics
+  \item **Show some MCMC diagnostics (uncomment what's already below)
   \item Fits to data
   \item Parameter estimates and predictions
   \item Summary
@@ -188,7 +188,7 @@ source("custom-knitr-variables.r")
       \item Longer chains.\\
       {\bf Response:} {\em Done. Ran MCMC to a length of 24~million, with first 
           4~million discarded. Also looked into multi-chain diagnostics to
-          further diagrnose convergence.}\\
+          further diagnose convergence.}\\
       ~\\
       \item Retaining more samples than the usual 999.\\
       {\bf Response:} {\em Done. Retained 2,000 samples to characterise posterior
@@ -336,15 +336,40 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
   \item So $\Phi = 1.40$ has equivalent flexibility to $\phi=0.20$.
   \item This is a technical update, not really a structural change (is included
     in first bridging step).
+  \item Different values of $\Phi$ will be explored.
 \ei
 \end{frame}
 
 %----------------------------------------------------------
 
 \begin{frame}
-\frametitle{**Changes from \Sexpr{last.assess.yr} assessment}
+\frametitle{New approach to weighting age-composition data}
 
-**Explain New approach to weighting age-composition data
+\bi
+  \item 2017 (and earlier) assessments used:
+  \bi
+    \item multinomial likelihood function;
+    \item tuning method for weighting age composition data, by manually iteratively
+      adjusting a multiplier of the input sample sizes until they 
+      roughly equal the harmonic mean of the effective sample sizes
+      (McAllister \& Ianelli, 1997).
+  \ei
+  ~\\
+  \item Here use a new Dirichlet-Multinomial likelihood (Thorson et al., 
+    {\em Fisheries Research}, 2017):
+  \bi
+    \item Estimated parameter, $\theta$, automatically adjusts the weight given to
+       the composition data. 
+    \item Removes need for manual iterative reweighting (and subjective choice of
+      how many iterations to do).
+    \item Ensures results of model sensitivities, retrospective analyses, 
+       and likelihood profiles are all automatically tuned, rather than having
+       same weights as the base model.
+    \item Increases efficiency of the assessment process
+    \item Was tested on a simplified version of the 2015 hake assessment model.
+    \item We estimate $\theta_{\text{surv}}$ and $\theta_{\text{fish}}$.
+  \ei
+\ei
 \end{frame}
 
 %----------------------------------------------------------
