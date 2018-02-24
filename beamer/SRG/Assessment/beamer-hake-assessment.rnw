@@ -134,7 +134,7 @@ source("custom-knitr-variables.r")
 \section{\Sexpr{last.assess.yr} SRG recommendations}
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
     (highest to lowest priority)}
-% \setbeamercovered{dynamic}
+% \setbeamercovered{dynamic}   % need for \pause
 \bi
   \item Concern about broad-reaching impact of increasing the flexibility of
     time-varying selectivity, parameterised by $\phi$:
@@ -154,7 +154,7 @@ source("custom-knitr-variables.r")
 
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
     (continued)}
-\setbeamercovered{dynamic}
+% \setbeamercovered{dynamic}
 \bi
   \item Re-estimate maturity ogive based on histological techniques to:
     \bn
@@ -180,7 +180,7 @@ source("custom-knitr-variables.r")
 
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
     (continued)}
-\setbeamercovered{dynamic}
+% \setbeamercovered{dynamic}
 \bi
   \item 2017 MCMC diagnostics point towards need for longer MCMC chain 
     (24~million rather than 12~million). Recommend:
@@ -207,7 +207,7 @@ source("custom-knitr-variables.r")
 
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
     (continued)}
-\setbeamercovered{dynamic}
+% \setbeamercovered{dynamic}
 \bi
   \item Continue including sensitivity tests from 2017 assessment.\\
   {\bf Response:} {\em Done. All included in assessment (and more) --
@@ -225,7 +225,7 @@ source("custom-knitr-variables.r")
 
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
     (continued)}
-\setbeamercovered{dynamic}
+% \setbeamercovered{dynamic}
 \bi
   \item Current evidence does not support including hake south of Point Conception.
      Encourage ongoing collection and analysis of genetic material to resolve 
@@ -262,10 +262,10 @@ source("custom-knitr-variables.r")
       \item Weight-at-age values for \Sexpr{last.assess.yr}
     \ei
     \item Updated maturity ogive
-    \item Stock Synthesis version \Sexpr{ss.version} compiled with
-      ADMB \Sexpr{admb.version}
-    \item New approach to weighting age-composition data
+    \item Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U)
+      and compiled with ADMB \Sexpr{admb.version}
     \item New parameterization for time-varying selectivity
+    \item New approach to weighting age-composition data      
     % \item Usual update of bias adjustment ramps for recruitment deviations
     % \item Usual update of main recruitment deviate estimation period
   \ei
@@ -276,18 +276,55 @@ source("custom-knitr-variables.r")
 \begin{frame}
 \frametitle{Changes from \Sexpr{last.assess.yr} assessment}
 
-Placeholders:
-
-**Explain Stock Synthesis version \Sexpr{ss.version} compiled with
-      ADMB \Sexpr{admb.version}
-
-**Explain New approach to weighting age-composition data
-
-**Explain  New parameterization for time-varying selectivity
+Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
+\bi
+  \item Behind-the-scenes changes and new features.
+  \item Extensively tested prior to release.
+  \item Used in at least six assessments in 2017.
+  \item However, time-varying parameters can no longer have a logistic 
+    transformation -- changed because interpretation of the parameter values was
+    previously difficult and appropriate parameter bounds make the
+    transformation unnecessary.
+  \item Therefore requires a {\em new parameterization for time-varying 
+      selectivity}.
+\ei
 \end{frame}
 
 %----------------------------------------------------------
 
+\begin{frame}
+\frametitle{Time-varying fishery selectivity}
+
+\bi
+  \item Used since 2014 assessment.
+  \item Deviations are applied to selectivity-at-age parameters.
+  \item Normally distributed penalty function applied to keep deviations
+    straying too far from zero.
+  \item Deviation is controlled by fixed standard deviation parameter $\phi$.
+  ~\\
+  \item In 2017 $\phi=0.20$ used, an increase from previously-used $\phi=0.03$; 
+    i.e.~in 2017 greater deviation (more flexibility) was allowed, because:
+    \bi
+      \item such a large proportion of 2014 cohort in 2017 age data (age-2 fish)
+        that $\phi=0.03$ produced implausible estimates of 2014 recruitment
+        (about three times larger than 1999 and 2010 recruitments).
+      \item $\phi=0.03$ estimates of 2014 recruitment were inconsistent 
+        with the qualitative comparison to the age-1 index.
+      \item good performance of higher $\phi$ in past MSE.
+    \ei
+\ei
+\end{frame}
+
+
+%----------------------------------------------------------
+
+\begin{frame}
+\frametitle{**Changes from \Sexpr{last.assess.yr} assessment}
+
+**Explain New approach to weighting age-composition data
+\end{frame}
+
+%----------------------------------------------------------
 
 \frame{\frametitle{Bridging to the base model: update SS and
     pre-\Sexpr{assess.yr-1} data}
