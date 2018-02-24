@@ -386,8 +386,8 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
   \bi
     \item Estimated parameter, $\theta$, automatically adjusts the weight given to
        the composition data. 
-    \item Removes need for manual iterative reweighting (and subjective choice of
-      how many iterations to do).
+    \item Removes need for manual iterative reweighting (and the subjective
+      choice of how many iterations to do).
     \item Ensures results of model sensitivities, retrospective analyses, 
        and likelihood profiles are all automatically tuned, rather than having
        same weights as the base model.
@@ -746,10 +746,35 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
     \ec
   \end{column}
 \end{columns}
- }
+}
 
 %----------------------------------------------------------
 
+\frame{\frametitle{Weighting of age data: $\theta_{\text{surv}}$ and
+    $\theta_{\text{fish}}$}
+  \bi
+    \item Initial MCMC explorations indicated $\log \theta_{\text{surv}}$
+      not being sampled efficiently.
+    \bi
+      \item Was due to many samples occurring in a part of parameter space
+        where the effective sample size multiplier, 
+        $\theta_{\text{surv}}/(1+\theta_{\text{surv}})$, is between 0.99 and 1.0.
+      \item Likelihood surface (w.r.t. $\theta_{\text{surv}}$) is almost completely
+        flat in this area, and input sample sizes given full weight.
+      \item To improve MCMC convergence, $\log \theta_{\text{surv}}$ 
+        was fixed at the MLE estimate of \Sexpr{log.theta.survey}, 
+        corresponding to a weight of 
+        $\theta_{\text{surv}}/(1+\theta_{\text{surv}}) = \Sexpr{DM.weight.survey}$. 
+    \ei
+    \item $\log \theta_{\text{fish}}$ well sampled with median estimate of 
+        \Sexpr{log.theta.fishery.median} and associated weight of 
+        $\theta_{\text{fish}}/(1+\theta_{\text{fish}}) = 
+        \Sexpr{DM.weight.fishery.median}$.
+  \ei
+}
+
+%----------------------------------------------------------
+ 
 \frame{\frametitle{Recruitment Deviations}
   \vspace{5pt}
   \bc
