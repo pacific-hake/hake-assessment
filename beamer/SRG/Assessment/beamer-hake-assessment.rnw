@@ -134,43 +134,119 @@ source("custom-knitr-variables.r")
 \section{\Sexpr{last.assess.yr} SRG recommendations}
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
     (highest to lowest priority)}
-\setbeamercovered{dynamic}
+% \setbeamercovered{dynamic}
 \bi
   \item Concern about broad-reaching impact of increasing the flexibility of
     time-varying selectivity, parameterised by $\phi$:
     \bi
-      \item It was changed from $\phi=0.03$ to $\phi=0.20$, to reduce an
-        anomalously high estimate of 2014 recruitment based solely on fishery
+      \item In 2017 it was changed from $\phi=0.03$ to $\phi=0.20$ to reduce an
+        anomalously high estimate of 2014 recruitment driven solely on fishery
         catch-at-age data.
-      \item Recommend continued work on evaluating impact, and more objective way
-        of determining appropriate value of $\phi$ for future assessments.
-      \item {\bf Response:} {\em ***}
+      \item Recommend continued work on evaluating impact of this, and more
+        objective way of determining appropriate value of $\phi$ for future
+        assessments.
+      {\bf Response:} {\em ***}
     \ei
+\ei
+}
+
+%----------------------------------------------------------
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
+    (continued)}
+\setbeamercovered{dynamic}
+\bi
   \item Re-estimate maturity ogive based on histological techniques to:
     \bn
-      \item address question of different maturity schedules north and south of
-        Point Conception;
-      \item use up-to-date data to replace 20-year-old information;
-      \item assess whether maturity is more dependent upon age or upon weight.
+      \item Address question of different maturity schedules north and south of
+        Point Conception.\\
+        {\bf Response:} {\em There is strong evidence for a difference and NWFSC
+          is seeking to conduct genetic analyses to see if north and south stocks
+          are distinct.}\\
+        ~\\
+      \item Use up-to-date data to replace 20-year-old information.\\
+        {\bf Response:} {\em Analysed 1,947 ovary samples to estimate a new
+          maturity ogive (as shown in Data talk). Now used in base model and 
+          previous ogive used in a sensitivity test.}\\
+        ~\\        
+      \item Assess whether maturity is more dependent upon age or upon weight.\\
+        {\bf Response:} {\em Not completed, though greatest variability in 
+          weight occurs for older fish that are mostly mature.}
+      \en
+\ei
+}
+
+%----------------------------------------------------------
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
+    (continued)}
+\setbeamercovered{dynamic}
+\bi
+  \item 2017 MCMC diagnostics point towards need for longer MCMC chain 
+    (24~million rather than 12~million). Recommend:
+    \bn
+      \item Longer chains.\\
+      {\bf Response:} {\em Done. Ran MCMC to a length of 24~million, with first 
+          4~million discarded. Also looked into multi-chain diagnostics to
+          further diagrnose convergence.}\\
+      ~\\
+      \item Retaining more samples than the usual 999.\\
+      {\bf Response:} {\em Done. Retained 2,000 samples to characterise posterior
+          distributions.}\\        
+      ~\\
+      \item Look into more efficient methods of obtaining posteriors,
+        if available.\\
+      {\bf Response:} {\em The R package} `adnuts' {\em has more efficient methods
+        for obtaining posteriors. It has recently been included in ADMB but not
+        yet fully tested in Stock Synthesis.}
     \en
 \ei
 }
 
 %----------------------------------------------------------
 
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations}
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
+    (continued)}
 \setbeamercovered{dynamic}
 \bi
-  \item {\em Ongoing monitoring and research on stock structure}
-  \bi
-    \item {\bf Response:} The JTC supports the collection/processing of genetic material and other research to evaluate stock structure.
-  \ei \pause
-  \item {\em Continued collection of ovaries}
-  \bi
-    \item {\bf Response:} Many ovaries collected in \Sexpr{last.assess.yr}, including during all four seasons and doubled collections from Canadian shoreside fishery. No new analysis in time for this assessment, but thorough analysis anticipated for 2018.
-  \ei
+  \item Continue including sensitivity tests from 2017 assessment.\\
+  {\bf Response:} {\em Done. All included in assessment (and more) --
+      further sensitivities were performed during the work process}\\   
+  ~\\    
+  \item Continue to run sensitivity tests fitted to the provisional age-1 index.\\
+  {\bf Response:} {\em Done (Figures 3, 47 and 48). Recall that the survey is
+      not specifically designed to survey age-1 hake, and resulting uncertainty is
+      not quantified.}\\
 \ei
 }
+
+
+%----------------------------------------------------------
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
+    (continued)}
+\setbeamercovered{dynamic}
+\bi
+  \item Current evidence does not support including hake south of Point Conception.
+     Encourage ongoing collection and analysis of genetic material to resolve 
+     stock structure.\\
+  {\bf Response:} {\em JTC continues to support this and collections have 
+    continued in the 2017 survey.}\\
+  ~\\
+  \item AP requests:
+    \bi
+      \item Include table providing exploitation rates by age and year\\
+      {\bf Response:} {\em Done. Table~22 (and in 2017 document).}\\
+      ~\\
+      \item Table estimating of the annual weight of each cohort that is caught,
+         dies from natural mortality, and lives, by year.\\
+      {\bf Response:} {\em Done (for strongest cohorts only) as Table~25 
+          (and in 2017 document). Also annual biomass-at-age and catch-at-age 
+          (numbers and biomass) as Tables~21, 23~and~24 (and in 2017 document).}
+    \ei
+\ei
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Changes from \Sexpr{last.assess.yr}}
