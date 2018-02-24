@@ -302,19 +302,42 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
     straying too far from zero.
   \item Deviation is controlled by fixed standard deviation parameter $\phi$.
   ~\\
-  \item In 2017 $\phi=0.20$ used, an increase from previously-used $\phi=0.03$; 
+  \item In 2017 we used $\phi=0.20$, an increase from previous $\phi=0.03$; 
     i.e.~in 2017 greater deviation (more flexibility) was allowed, because:
     \bi
-      \item such a large proportion of 2014 cohort in 2017 age data (age-2 fish)
-        that $\phi=0.03$ produced implausible estimates of 2014 recruitment
+      \item The large proportion of 2014 cohort in 2017 age data (age-2 fish)
+        meant that $\phi=0.03$ produced implausible estimates of 2014 recruitment
         (about three times larger than 1999 and 2010 recruitments).
       \item $\phi=0.03$ estimates of 2014 recruitment were inconsistent 
         with the qualitative comparison to the age-1 index.
-      \item good performance of higher $\phi$ in past MSE.
+      \item Good performance of higher $\phi$ in past MSE work.
     \ei
 \ei
 \end{frame}
 
+
+%----------------------------------------------------------
+
+\begin{frame}
+\frametitle{Time-varying fishery selectivity}
+
+\bi
+  \item Previously-used logistic transformation not available in Stock Synthesis
+    3.30 (and proved unnecessary as bounds were not approached).
+  \item Deviations now applied directly to the un-transformed incremental 
+    selectivity parameters $p_a$ (page~41).
+  \item We define $\Phi$ to be the standard deviation of the normally-distributed
+    penalty distribution of the deviations.
+  \item Based on the previous bounds, equivalent flexibility was found
+    to occur with 
+    \begin{equation}
+    \nonumber \Phi = 7 \phi
+    \end{equation}
+  \item So $\Phi = 1.40$ has equivalent flexibility to $\phi=0.20$.
+  \item This is a technical update, not really a structural change (is included
+    in first bridging step).
+\ei
+\end{frame}
 
 %----------------------------------------------------------
 
