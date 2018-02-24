@@ -20,7 +20,7 @@ make.age.comp.pearson.plot <- function(model,                  ## model is an mc
   ## Plot the Pearson residuals for age composition fits for whatever subplot is set to
 
   oldpar <- par()
-  SSplotComps(model$extra.mcmc,
+  SSplotComps(model,
               kind = "AGE",
               subplot = 24,
               fleetnames = c("Fishery","Survey"))
@@ -63,6 +63,7 @@ make.age.comp.bubble.plot <- function(model,                  ## model is an mcm
                                       key.yrs = NULL,         ## Vector of 4 years for locations to put the key if show.key == TRUE
                                       fg = gray(level=0.1, alpha=0.5),
                                       bg = gray(level=0.5, alpha=0.5),
+                                      cohortlines = c(),      ## Vector of cohorts for which diagonal lines would be drawn
                                       inches = 0.12,
                                       do.plot = TRUE          ## If FALSE, no plot will be drawn, but the return values will be returned
                                       ){
@@ -137,6 +138,12 @@ make.age.comp.bubble.plot <- function(model,                  ## model is an mcm
               fg = fg,
               bg = bg)
       text(key.yrs + 2.2, c(16.2,16.2,16.2,16.2), c("0.01", "0.1", "0.25", "0.5"), xpd = NA, cex = 0.8)
+    }
+    if(length(cohortlines > 0)){
+      for(icohort in 1:length(cohortlines)){
+        lines(c(cohortlines[icohort],cohortlines[icohort]+model$accuage),
+              c(0,model$accuage),col="red")
+      }
     }
     axis(1, seq(as.numeric(start.yr), as.numeric(end.yr) + 5, 5))
     axis(4)
