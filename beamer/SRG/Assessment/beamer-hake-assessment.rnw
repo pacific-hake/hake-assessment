@@ -342,6 +342,32 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
 
 %----------------------------------------------------------
 
+\frame{\frametitle{Bridging to the base model: update SS and
+    pre-\Sexpr{assess.yr-1} data}
+  \bc
+  \vspace{-5pt}
+  <<bridge.biomasss, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+    oldpar <- par(mfrow=c(1,2), mar=c(5,4,1,1),no.readonly = TRUE)
+    make.comparison.plot(bridge.models.1,
+                     subplots = 2,
+                     model.names = bridge.model.names.1,
+                     densitynames = NULL,
+                     legendloc = "topleft",
+                     end.yr = bridge.model.end.yr.1)
+    make.comparison.plot(bridge.models.1,
+                     subplots = 9,
+                     model.names = bridge.model.names.1,
+                     densitynames = NULL,
+                     legend = FALSE,
+                     end.yr = bridge.model.end.yr.1)
+    box()
+   par(oldpar)
+  @
+  \ec
+}
+
+%----------------------------------------------------------
+
 \begin{frame}
 \frametitle{New approach to weighting age-composition data}
 
@@ -371,32 +397,6 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
   \ei
 \ei
 \end{frame}
-
-%----------------------------------------------------------
-
-\frame{\frametitle{Bridging to the base model: update SS and
-    pre-\Sexpr{assess.yr-1} data}
-  \bc
-  \vspace{-5pt}
-  <<bridge.biomasss, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
-    oldpar <- par(mfrow=c(1,2), mar=c(5,4,1,1),no.readonly = TRUE)
-    make.comparison.plot(bridge.models.1,
-                     subplots = 2,
-                     model.names = bridge.model.names.1,
-                     densitynames = NULL,
-                     legendloc = "topleft",
-                     end.yr = bridge.model.end.yr.1)
-    make.comparison.plot(bridge.models.1,
-                     subplots = 9,
-                     model.names = bridge.model.names.1,
-                     densitynames = NULL,
-                     legend = FALSE,
-                     end.yr = bridge.model.end.yr.1)
-    box()
-   par(oldpar)
-  @
-  \ec
-}
 
 %----------------------------------------------------------
 
