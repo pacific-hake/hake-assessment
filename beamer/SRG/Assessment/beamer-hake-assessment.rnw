@@ -693,7 +693,7 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
   <<main.recruitment.devs, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
     make.recruitment.dev.plot(base.model,
-                              end.yr = end.yr-1)
+                              end.yr = end.yr)
     par(oldpar)
   @
   \ec
@@ -708,7 +708,7 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
     make.recruitment.plot(base.model,
                           equil.yr = unfished.eq.yr,
                           start.yr = start.yr,
-                          end.yr = end.yr-1,
+                          end.yr = end.yr,
                           color = "blue",
                           add.mean = TRUE,
                           add.r0 = TRUE)
