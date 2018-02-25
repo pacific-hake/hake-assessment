@@ -549,7 +549,7 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
 
 %----------------------------------------------------------
 
-\section{Parameters}
+\section{Estimated quantities}
 \subsection{}
 
 \frame{\frametitle{Key parameters}
@@ -579,23 +579,6 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
 }
 
 %----------------------------------------------------------
-
-\frame{\frametitle{Parameter estimates}
-  \vspace{-5pt}
-  \bc
-  <<main.parameter.estimates, results='asis', echo=FALSE>>=
-    make.short.parameter.estimates.table(base.model,
-                                         last.yr.base.model,
-                                         posterior.regex = key.posteriors,
-                                         end.yr = end.yr,
-                                         digits = 3,
-                                         xcaption = NULL,
-                                         xlabel = "tab:main-parameter-estimates",
-                                         font.size = 7,
-                                         space.size = 8)
-    @
-  \ec
-}
 
 \frame{\frametitle{Catchability (\emph{q}) posterior and values for recent assessments}
  \bc
@@ -686,7 +669,26 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
 }
 
 %----------------------------------------------------------
- 
+
+\frame{\frametitle{Key quantities}
+  \vspace{-5pt}
+  \bc
+  <<main.parameter.estimates, results='asis', echo=FALSE>>=
+    make.short.parameter.estimates.table(base.model,
+                                         last.yr.base.model,
+                                         posterior.regex = key.posteriors,
+                                         end.yr = end.yr,
+                                         digits = 3,
+                                         xcaption = NULL,
+                                         xlabel = "tab:main-parameter-estimates",
+                                         font.size = 7,
+                                         space.size = 8)
+    @
+  \ec
+}
+
+%----------------------------------------------------------
+
 \frame{\frametitle{Recruitment Deviations}
   \vspace{5pt}
   \bc
