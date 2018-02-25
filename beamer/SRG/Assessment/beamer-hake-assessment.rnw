@@ -124,7 +124,7 @@ source("custom-knitr-variables.r")
   \item Model changes from \Sexpr{last.assess.yr}
   \item Show some MCMC diagnostics
   \item Fits to data
-  \item Parameter estimates and predictions
+  \item Estimates of key quantities
   \item Response to \Sexpr{last.assess.yr} SRG assessment recommendations    
   \item Summary
 \ei
