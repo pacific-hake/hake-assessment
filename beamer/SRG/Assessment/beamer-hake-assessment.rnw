@@ -176,7 +176,7 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
 %----------------------------------------------------------
 
 \begin{frame}
-\frametitle{Time-varying fishery selectivity}
+\frametitle{Time-varying fishery selectivity ($\phi$)}
 
 \bi
   \item Used since 2014 assessment.
@@ -202,7 +202,7 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
 %----------------------------------------------------------
 
 \begin{frame}
-\frametitle{Time-varying fishery selectivity}
+\frametitle{Time-varying fishery selectivity ($\phi$ becomes $\Phi$)}
 
 \bi
   \item Previously-used logistic transformation not available in Stock Synthesis
@@ -877,8 +877,20 @@ year's assessment,\\
       \item Recommend continued work on evaluating impact of this, and more
         objective way of determining appropriate value of $\phi$ for future
         assessments.
-      {\bf Response:} {\em ***}
     \ei
+    {\bf Response:} {\em $\phi=0.20$ is $\Phi=1.40$ -- we retained this for
+        base model.}\\
+    \bi  
+       \item {\em 2018 assessment suggests 2014 recruitment is more in line
+        with 2017 assessment's estimate that used $\phi=0.20$
+        rather than estimates that used a lower $\phi$. This is regardless of the
+        value of $\Phi$ used in 2018 assessment (Sensitivities talk).}
+       \item {\em The estimate of 2016 recruitment with $\Phi=0.21$ ($\phi=0.03$) 
+        is highest ever and provides worse fit to survey biomass index than higher
+        values of $\Phi$ (Sensitivities talk).}
+      \ei
+      {\em Also investigated the `semi-parametric' approach of Xu
+          et~al. (under review).}
 \ei
 }
 
