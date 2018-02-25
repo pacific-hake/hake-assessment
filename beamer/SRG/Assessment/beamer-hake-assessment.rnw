@@ -102,7 +102,8 @@ source("custom-knitr-variables.r")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[Hake Assessment]{\Sexpr{assess.yr} Pacific Hake Stock Assessment Results}
+\title[Hake Assessment]{\Sexpr{assess.yr} Pacific Hake Stock Assessment Methods
+  and Results}
 \author[JTC]{Pacific Hake Joint Technical Committee}
 %\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
