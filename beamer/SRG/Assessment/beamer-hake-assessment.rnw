@@ -708,7 +708,7 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
     make.recruitment.plot(base.model,
                           equil.yr = unfished.eq.yr,
                           start.yr = start.yr,
-                          end.yr = end.yr,
+                          end.yr = end.yr-1,
                           color = "blue",
                           add.mean = TRUE,
                           add.r0 = TRUE)
