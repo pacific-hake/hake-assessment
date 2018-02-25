@@ -148,7 +148,9 @@ source("custom-knitr-variables.r")
     \item Updated maturity ogive
     \item Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U)
       and compiled with ADMB \Sexpr{admb.version}
-    \item Modified parameterisation for time-varying selectivity
+    \bi 
+      \item Necessitates modified parameterisation for time-varying selectivity
+    \ei
     \item New approach to weighting age-composition data      
     % \item Usual update of bias adjustment ramps for recruitment deviations
     % \item Usual update of main recruitment deviate estimation period
@@ -182,14 +184,14 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
 \bi
   \item Used since 2014 assessment.
   \item Deviations are applied to selectivity-at-age parameters.
-  \item Normally distributed penalty function applied to keep deviations
+  \item Normally-distributed penalty function applied to keep deviations
     straying too far from zero.
   \item Deviation is controlled by fixed standard deviation parameter $\phi$.
   ~\\
-  \item In 2017 we used $\phi=0.20$, an increase from previous $\phi=0.03$; 
-    i.e.~in 2017 greater deviation (more flexibility) was allowed, because:
+  \item In 2017 we used $\phi=0.20$, an increase from previous $\phi=0.03$.  
+    In 2017 greater deviation (more flexibility) was allowed because:
     \bi
-      \item The large proportion of 2014 cohort in 2017 age data (age-2 fish)
+      \item The large proportion of 2014 cohort in 2016 age data (age-2 fish)
         meant that $\phi=0.03$ produced implausible estimates of 2014 recruitment
         (about three times larger than 1999 and 2010 recruitments).
       \item $\phi=0.03$ estimates of 2014 recruitment were inconsistent 
@@ -691,7 +693,7 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
 %----------------------------------------------------------
 
 \frame{\frametitle{Recruitment Deviations}
-  \vspace{5pt}
+  \vspace{-5pt}
   \bc
   <<main.recruitment.devs, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
@@ -746,7 +748,7 @@ Extra data reduces its uncertainty from that in the 2017 assessment:
 % Adding this manual table for 2018 to compare 2014 recruitment estimates 
 %  (Tables 18 and 19 each year)
   \begin{table}
-    \begin{tabular}{cccc} \hline
+    \begin{tabular}{ccrc} \hline
       Calculation (millions) & Low & Median & High \\
       \hline
       \Sexpr{assess.yr-1} assessment recruitment in 2014 &
@@ -985,7 +987,7 @@ year's assessment,\\
       \item Include table providing exploitation rates by age and year\\
       {\bf Response:} {\em Done. Table~22 (and in 2017 document).}\\
       ~\\
-      \item Table estimating of the annual weight of each cohort that is caught,
+      \item Table estimating the annual weight of each cohort that is caught,
          dies from natural mortality, and lives, by year.\\
       {\bf Response:} {\em Done (for strongest cohorts only) as Table~25 
           (and in 2017 document). Also annual biomass-at-age and catch-at-age 
