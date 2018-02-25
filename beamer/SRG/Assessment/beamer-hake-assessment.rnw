@@ -148,7 +148,7 @@ source("custom-knitr-variables.r")
     \item Updated maturity ogive
     \item Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U)
       and compiled with ADMB \Sexpr{admb.version}
-    \item Modified parameterization for time-varying selectivity
+    \item Modified parameterisation for time-varying selectivity
     \item New approach to weighting age-composition data      
     % \item Usual update of bias adjustment ramps for recruitment deviations
     % \item Usual update of main recruitment deviate estimation period
@@ -169,7 +169,7 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
     transformation -- changed because interpretation of the parameter values was
     previously difficult and appropriate parameter bounds make the
     transformation unnecessary.
-  \item Therefore requires a {\em modified} parameterization for time-varying 
+  \item Therefore requires a {\em modified} parameterisation for time-varying 
       selectivity.
 \ei
 \end{frame}
