@@ -122,8 +122,8 @@ source("custom-knitr-variables.r")
 \frame{\frametitle{**Outline}
 \bi
   \item Review of \Sexpr{last.assess.yr} SRG assessment recommendations
-  \item Model structure and changes from \Sexpr{last.assess.yr}
-  \item **Show some MCMC diagnostics (uncomment what's already below)
+  \item Model changes from \Sexpr{last.assess.yr}
+  \item Show some MCMC diagnostics
   \item Fits to data
   \item Parameter estimates and predictions
   \item Summary
@@ -528,7 +528,28 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
 
 %----------------------------------------------------------
 
-% This one didn't work (23/2/18) - look into.
+% Hardwiring this since two attempts aren't working.
+\frame{\frametitle{MCMC diagnostics for all parameters and spawning biomass}
+  \bc
+  \includegraphics[height=2.8in]{../../../doc/knitr-cache/main_mcmc_diag_hists-1.eps}
+  \ec
+}
+%----------------------------------------------------------
+
+% This didn't work either (25/2/18) even though code is same as in 
+%  main-figures.rnw - an extra \ appears in a path name.
+% \frame{\frametitle{MCMC diagnostics for all parameters and spawning biomass}
+%   \bc
+%   <<main.mcmc.diag.hists, fig.height=4, fig.width=8, 
+%      out.width='0.95\\columnwidth'>>=
+%   make.mcmc.diag.hists.plot(base.model)
+%   @
+%   \ec
+%}
+
+%----------------------------------------------------------
+
+% This doesn't work (23/2/18), Allan had commented out in 2016.
 % \frame{\frametitle{MCMC tests}
 %   \bc
 %     <<main.mcmc.diag.hists, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
@@ -542,6 +563,13 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
 %     @
 %   \ec
 % }
+
+\frame{\frametitle{MCMC diagnostics -- Gelman-Rubin plot for key parameters}
+ \bc
+  \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+  \includegraphics[height=2.9in]{../../../doc/main-figures/KeyParameterGelman_MultChain}
+ \ec
+}
 
 %----------------------------------------------------------
 \section{Fits to data}
