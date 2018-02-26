@@ -189,7 +189,7 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
   \item Deviation is controlled by fixed standard deviation parameter $\phi$.
   ~\\
   \item In 2017 we used $\phi=0.20$, an increase from previous $\phi=0.03$.  
-    In 2017 greater deviation (more flexibility) was allowed because:
+    In 2017 this greater deviation (more flexibility) was used because:
     \bi
       \item The large proportion of 2014 cohort in 2016 age data (age-2 fish)
         meant that $\phi=0.03$ produced implausible estimates of 2014 recruitment
@@ -277,7 +277,7 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
     \item Ensures results of model sensitivities, retrospective analyses, 
        and likelihood profiles are all automatically tuned, rather than having
        same weights as the base model.
-    \item Increases efficiency of the assessment process
+    \item Increases efficiency of the assessment process.
     \item Was tested on a simplified version of the 2015 hake assessment model.
     \item We estimate $\theta_{\text{surv}}$ and $\theta_{\text{fish}}$.
   \ei
@@ -479,10 +479,9 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
   \begin{column}{0.38\textwidth}
     \bi
       \item 1999 cohort often over-predicted
-      \item Young cohorts in 2003--2009 underfit
-      \item 2008 and 2009 cohort underfit in 2011
-      \item Recent years (2012--2015) show good fits, including 2010 cohort
-      \item Survey has now `seen' 2014 cohort yet
+      \item Young cohorts in 2003-2011 underfit
+      \item Recent years (2012-2017) show good fits, including 2010 cohort
+      \item Survey has now `seen' 2014 cohort
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -739,7 +738,8 @@ biomass.2018.total = sum(biomass.at.age.2018)
 biomass.2018.prop.age4 = biomass.at.age.2018[5]/biomass.2018.total
 biomass.2018.prop.age8 = biomass.at.age.2018[9]/biomass.2018.total
 @
-The 2014 cohort is estimated to be large, though likely not as large as 2010.\\
+The 2014 cohort is estimated to be large -- only 5\% chance of being larger than
+  2010.\\
 
 ~\\
 
@@ -877,7 +877,7 @@ year's assessment,\\
     time-varying selectivity, parameterised by $\phi$:
     \bi
       \item In 2017 it was changed from $\phi=0.03$ to $\phi=0.20$ to reduce an
-        anomalously high estimate of 2014 recruitment driven solely on fishery
+        anomalously high estimate of 2014 recruitment driven solely by fishery
         catch-at-age data.
       \item Recommend continued work on evaluating impact of this, and more
         objective way of determining appropriate value of $\phi$ for future
@@ -1005,7 +1005,7 @@ year's assessment,\\
   \item Model continues to fit the age data particularly well.
   \item The spawning stock is estimated to have remained relatively constant
     since 2013. 
-  \item The 2014 recruitment is likely not as large as the 2010 recruitment.
+  \item The 2014 recruitment has only 5\% chance of being as large as the 2010 recruitment.
   \item The 2014 cohort now comprises about twice the biomass of the 2010 cohort
     (based on MLEs).
   \item The median estimate of \Sexpr{end.yr} relative spawning biomass is
