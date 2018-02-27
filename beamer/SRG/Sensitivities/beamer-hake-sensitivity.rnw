@@ -520,7 +520,7 @@ par <- oldpar
 %\section{$\phi$}
 %\subsection{}
 \begin{frame}
-\frametitle{Sensitivities to $\phi$ -- Biomass}
+\frametitle{Sensitivities to $\Phi$ -- Biomass}
 \begin{center}
 \vspace{5pt}
 % , fig.width=8>>=
@@ -546,7 +546,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Sensitivities to $\phi$ -- Density}
+\frametitle{Sensitivities to $\Phi$ -- Density}
 \begin{center}
 \vspace{5pt}
 % fig.width=8>>=
@@ -576,7 +576,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Sensitivities to $\phi$ -- Density}
+\frametitle{Sensitivities to $\Phi$ -- Density}
 \begin{center}
 \vspace{5pt}
 % fig.width=8>>=
@@ -606,7 +606,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Sensitivities to $\phi$}
+\frametitle{Sensitivities to $\Phi$}
 \begin{center}
 \vspace{-5pt}
 <<phi.sensitivity.table, results='asis', echo=FALSE>>=
@@ -858,7 +858,7 @@ make.assessment.history.plot(base.model,
 \vspace{-2cm}
 \begin{itemize}
 \item In general, sensitivities show no significant departure from base model
-\item All except phi = 0.21 show a decrease in spawning biomass from 2017
+\item All except $\Phi$ = 0.21 show a decrease in spawning biomass from 2017
 \item The new data weighting scheme does not significantly affect the 2018 biomass estimate
 \item Small changes in catch do not significantly affect the biomass estimate time series
 \item Retrospectives re-iterate that 2014 cohort is still uncertain
