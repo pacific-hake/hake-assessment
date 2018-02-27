@@ -575,7 +575,7 @@ addpoly <- function(yrvec, lower, upper, color = 1, shade.col = NULL){
   lines(yrvec, upper, lty = 3, col = color)
 }
 
-randWalkSelex.fn <- function(pars,devs=NULL,transform=FALSE,bounds=NULL) {
+randWalkSelex.fn <- function(pars,devs=NULL,Phi=1.4,transform=FALSE,bounds=NULL) {
   ## calculates the selectivity from the random walk parameters in SS (option 17)
   ## -1000 means to set equal to 0
   ## assumes that this is all pars from age 0 to max age
@@ -592,7 +592,8 @@ randWalkSelex.fn <- function(pars,devs=NULL,transform=FALSE,bounds=NULL) {
           tmp <- tmp + devs[a]
           pars[a] <- bounds[1]+(bounds[2]-bounds[1])/(1+exp(-2*tmp))
         }else{
-          pars[a] <- pars[a] + devs[a]
+          ## in 3.30, there's no transformation, but the devs are scaled by the SE (Phi)
+          pars[a] <- pars[a] + Phi*devs[a]
         }
       }
     }
