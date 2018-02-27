@@ -371,6 +371,38 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+\frametitle{Estimated age-1 fish -- Base model}
+\begin{center}
+\vspace{-5pt}
+<<age.1.estimated.base.fig>>=
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 0))
+make.survey.age1.plot(age.1.index,
+                      base.model)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{frame}
+%% \frametitle{Estimated age-1 fish -- Add age-1 index}
+%% \begin{center}
+%% \vspace{-5pt}
+%% <<age.1.estimated.fig>>=
+%% oldpar <- par()
+%% par(mar = c(7.1, 4.1, 0, 0))
+%% make.survey.age1.plot(age.1.index,
+%%                       sens.models.2[1])
+%% par <- oldpar
+%% @
+%% \end{center}
+%% \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
 \frametitle{Sensitivities to age error and inclusion of age-1 index}
 \begin{center}
 \vspace{-5pt}
