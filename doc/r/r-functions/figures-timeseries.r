@@ -415,7 +415,8 @@ make.comparison.plot <- function(models,                   ## models is a list o
                                  is.retro = FALSE,         ## Is this a retrospective plot?
                                  legend = TRUE,            ## Passed to the SSplotComparisons function
                                  legendloc = "topright",   ## Passed to the SSplotComparisons function
-                                 end.yr = NULL             ## End year of the plot. If is.retro is TRUE, this is ignored and endyrvec is calculated
+                                 end.yr = NULL,            ## End year of the plot. If is.retro is TRUE, this is ignored and endyrvec is calculated
+                                 verbose = FALSE
                                  ){
   ## Plot the list of models against each other.
   ## if model.names is null, the directory names will be used
@@ -448,7 +449,8 @@ make.comparison.plot <- function(models,                   ## models is a list o
                       labels = c("Year", "Spawning biomass (t)", "Relative spawning biomass", "Age-0 recruits (1,000s)",
                                  "Recruitment deviations", "Index", "Log index", "SPR ratio", "Density",
                                  "", "", "Spawning output",
-                                 "Harvest rate"))
+                                 "Harvest rate"),
+                      verbose = verbose)
   }else{
     SSplotComparisons(compare.summary,
                       subplots = subplots,
@@ -465,7 +467,8 @@ make.comparison.plot <- function(models,                   ## models is a list o
                       labels = c("Year", "Spawning biomass (t)", "Relative spawning biomass", "Age-0 recruits (1,000s)",
                                  "Recruitment deviations", "Index", "Log index", "SPR ratio", "Density",
                                  "", "", "Spawning output",
-                                 "Harvest rate"))
+                                 "Harvest rate"),
+                      verbose = verbose)
   }
   par <- oldpar
 }

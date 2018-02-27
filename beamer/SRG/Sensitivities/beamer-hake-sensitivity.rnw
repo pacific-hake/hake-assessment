@@ -86,9 +86,9 @@
 opts_chunk$set(dev = 'cairo_ps',
                fig.path = 'knitr-cache/',
                fig.dpi = 300,
-               fig.width = 6,
+               fig.width = 7.5,
                fig.height = 4,
-               out.width = '4.5in',
+               ##out.width = '4.5in',
                echo = FALSE,
                results = FALSE,
                message = FALSE,
@@ -109,7 +109,7 @@ source("custom-knitr-variables.r")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[Hake Data]{\Sexpr{assess.yr} Pacific Hake Assessment: Sensitivities and Retrospectives}
+\title[Hake Sensitivities]{\Sexpr{assess.yr} Pacific Hake Assessment: Sensitivities and Retrospectives}
 \author[JTC]{Pacific Hake Joint Technical Committee}
 %\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
@@ -131,6 +131,7 @@ source("custom-knitr-variables.r")
 \begin{frame}
 %\titlepage
 \frametitle{Overview}
+\fontsize{11pt}{2}\selectfont
 \begin{enumerate}
   \item MLE vs MCMC for the base model
   \item Sensitivities
@@ -146,6 +147,7 @@ source("custom-knitr-variables.r")
         \item Alternative maximum age assumptions for estimating selectivity
         \item Alternative SD for time-varying selectivity
         \item Alternative parameterization for time-varying selectivity
+        \item Weight-at-age schemes to calculate Fecundity (2018 SRG request)
         \end{itemize}
   \item Retrospectives
         \begin{itemize}
@@ -164,7 +166,7 @@ source("custom-knitr-variables.r")
 \frametitle{MLE vs MCMC -- Biomass}
 \begin{center}
 % , out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
-<<mle.mcmc.1>>=
+<<mle.mcmc.1, fig.height=3.5>>=
 make.mcmc.vs.mle.plot(base.model,
                       end.yr = end.yr,
                       subplot = 2)
@@ -178,7 +180,7 @@ make.mcmc.vs.mle.plot(base.model,
 \frametitle{MLE vs MCMC -- Recruitment}
 \begin{center}
 %, out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
-<<mle.mcmc.2>>= 
+<<mle.mcmc.2, fig.height=3.5>>= 
 make.mcmc.vs.mle.plot(base.model,
                       end.yr = end.yr,
                       type = "o",
@@ -216,7 +218,7 @@ make.short.parameter.estimates.table(base.model,
 \begin{center}
 \vspace{5pt}
 %, fig.width=8>>=
-<<hm.biomass.fig, fig.height=4.5>>= 
+<<hm.biomass.fig>>= 
 #oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 oldpar <- par()
@@ -276,7 +278,7 @@ make.short.parameter.estimates.sens.table(
 \begin{center}
 \vspace{5pt}
 %, fig.width=8>>=
-<<sigmar.biomass.fig, fig.height=4.5>>= 
+<<sigmar.biomass.fig>>= 
 #oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 oldpar <- par()
@@ -291,6 +293,26 @@ make.comparison.plot(
                   sens.model.names.1[4]),
   end.yr = end.yr)
 par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{$\sigma_r$ -- Recruitment deviations}
+\begin{center}
+\vspace{-8pt}
+<<sigmar.recdevs.figure>>=
+make.comparison.plot(
+  c(list(base.model),
+    sens.models.1[3],
+    sens.models.1[4]),
+  model.names = c("Base model",
+                  sens.model.names.1[3],
+                  sens.model.names.1[4]),
+  subplots = 10,
+  end.yr = end.yr)
 @
 \end{center}
 \end{frame}
@@ -349,6 +371,38 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+\frametitle{Estimated age-1 fish -- Base model}
+\begin{center}
+\vspace{-5pt}
+<<age.1.estimated.base.fig>>=
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 0))
+make.survey.age1.plot(age.1.index,
+                      base.model)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{frame}
+%% \frametitle{Estimated age-1 fish -- Add age-1 index}
+%% \begin{center}
+%% \vspace{-5pt}
+%% <<age.1.estimated.fig>>=
+%% oldpar <- par()
+%% par(mar = c(7.1, 4.1, 0, 0))
+%% make.survey.age1.plot(age.1.index,
+%%                       sens.models.2[1])
+%% par <- oldpar
+%% @
+%% \end{center}
+%% \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
 \frametitle{Sensitivities to age error and inclusion of age-1 index}
 \begin{center}
 \vspace{-5pt}
@@ -378,7 +432,7 @@ make.short.parameter.estimates.sens.table(
 \begin{frame}
 \frametitle{McAllister-Ianelli method for data-weighting - Biomass}
 \begin{center}
-<<harmonicmean.sensitivity.biomass, fig.height=4.5, out.width='4.5in'>>=  
+<<harmonicmean.sensitivity.biomass>>=  
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(
@@ -398,7 +452,7 @@ par <- oldpar
 \begin{frame}
 \frametitle{U.S. age comps weighted by month - Biomass}
 \begin{center}
-<<usagecompsweight.sensitivity.biomass, fig.height=4.5, out.width='4.5in'>>=  
+<<usagecompsweight.sensitivity.biomass>>=  
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(
@@ -418,7 +472,7 @@ par <- oldpar
 \begin{frame}
 \frametitle{Alternative catch stream - Biomass}
 \begin{center}
-<<altcatchstream.sensitivity.biomass, fig.height=4.5, out.width='4.5in'>>=  
+<<altcatchstream.sensitivity.biomass>>=  
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(
@@ -475,7 +529,7 @@ make.short.parameter.estimates.sens.table(
   \vspace{-5pt}
     \begin{center}
      % , out.width='0.9\\columnwidth'>>=
-     <<max.age.sensitivity.b.selectivities, fig.height=8.5, fig.width=12>>=
+     <<max.age.sensitivity.b.selectivities>>=
      oldpar <- par(mfrow=c(2,2), mar=c(5,4,1,1),no.readonly = TRUE)
      layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
      make.selex.plot(base.model, pan.letter = "base")
@@ -497,7 +551,7 @@ make.short.parameter.estimates.sens.table(
 \begin{center}
 \vspace{5pt}
 % fig.width=8>>=
-<<max.age.sensitivity.biomass, fig.height=4.5, out.width='4.5in'>>=  
+<<max.age.sensitivity.biomass>>=  
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(c(list(base.model),
@@ -520,11 +574,11 @@ par <- oldpar
 %\section{$\phi$}
 %\subsection{}
 \begin{frame}
-\frametitle{Sensitivities to $\phi$ -- Biomass}
+\frametitle{Sensitivities to $\Phi$ -- Biomass}
 \begin{center}
 \vspace{5pt}
 % , fig.width=8>>=
-<<phi.sensitivity.biomass, fig.height=4.5, out.width='4.5in'>>=  
+<<phi.sensitivity.biomass>>=  
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(
@@ -546,11 +600,11 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Sensitivities to $\phi$ -- Density}
+\frametitle{Sensitivities to $\Phi$ -- Density}
 \begin{center}
 \vspace{5pt}
 % fig.width=8>>=
-<<phi.sensitivity.density.2014, fig.height=4.5, out.width='4.5in'>>=  
+<<phi.sensitivity.density.2014>>=  
 oldpar <- par()
 par(mar = c(7.1, 3.1, 0, 0))
 make.comparison.plot(
@@ -576,11 +630,11 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Sensitivities to $\phi$ -- Density}
+\frametitle{Sensitivities to $\Phi$ -- Density}
 \begin{center}
 \vspace{5pt}
 % fig.width=8>>=
-<<phi.sensitivity.density.2016, fig.height=4.5, out.width='4.5in'>>=  
+<<phi.sensitivity.density.2016>>=  
 oldpar <- par()
 par(mar = c(7.1, 3.1, 0, 0))
 make.comparison.plot(
@@ -606,7 +660,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Sensitivities to $\phi$}
+\frametitle{Sensitivities to $\Phi$}
 \begin{center}
 \vspace{-5pt}
 <<phi.sensitivity.table, results='asis', echo=FALSE>>=
@@ -638,7 +692,7 @@ make.short.parameter.estimates.sens.table(
 \begin{center}
 \vspace{5pt}
 % , fig.width=8>>=
-<<semi.sensitivity.biomass, fig.height=4.5, out.width='4.5in'>>=  
+<<semi.sensitivity.biomass>>=  
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(
@@ -660,7 +714,7 @@ par <- oldpar
 \begin{center}
 \vspace{5pt}
 % fig.width=8>>=
-<<semi.sensitivity.density.2014, fig.height=4.5, out.width='4.5in'>>=  
+<<semi.sensitivity.density.2014>>=  
 oldpar <- par()
 par(mar = c(7.1, 3.1, 0, 0))
 make.comparison.plot(
@@ -686,7 +740,7 @@ par <- oldpar
 \begin{center}
 \vspace{5pt}
 % fig.width=8>>=
-<<semi.sensitivity.density.2016, fig.height=4.5, out.width='4.5in'>>=  
+<<semi.sensitivity.density.2016>>=  
 oldpar <- par()
 par(mar = c(7.1, 3.1, 0, 0))
 make.comparison.plot(
@@ -729,6 +783,30 @@ make.short.parameter.estimates.sens.table(
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
+\section{Weight-at-age}
+\subsection{}
+\begin{frame}
+\frametitle{Weight-at-age schemes to calculate fecundity -- Biomass}
+\begin{center}
+\vspace{5pt}
+% , fig.width=8>>=
+<<wtatage.sensitivity.biomass>>=  
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 0))
+make.comparison.plot(
+  c(list(base.model),
+    sens.models.5),
+  subplots = 2,
+  model.names = c(paste0("Base model ", end.yr),
+                  sens.model.names.5),
+  end.yr = end.yr + 2)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
 \section{Retros}
 \subsection{}
 \begin{frame}
@@ -737,9 +815,11 @@ make.short.parameter.estimates.sens.table(
 \vspace{-5pt}
 % , fig.height=5, fig.width=10>>=
 <<retro.1>>=
-oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+##oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #oldpar <- par(mfrow=c(1,2), mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 0))
 plot.retro.yrs <- 1:5
 retro.list <- list(base.model)
 for(i in plot.retro.yrs){
@@ -769,7 +849,7 @@ par <- oldpar
 \begin{center}
 \vspace{-5pt}
 %, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-<<retro.2>>=
+<<retro.2, fig.height=3.5>>=
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 make.comparison.plot(retro.list,
@@ -790,7 +870,7 @@ par <- oldpar
 \begin{center}
 \vspace{-5pt}
 % , fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-<<baby.squid>>=
+<<baby.squid, fig.height=3.5>>=
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 plot.retro.yrs <- retro.yrs
@@ -815,7 +895,7 @@ par <- oldpar
 \vspace{-5pt}
 %, out.width='0.9\\columnwidth'>>=   Keep following values else 
 %   years get too close to the tendrils 
-<<retro.3, fig.height=4.5, fig.width=8>>= 
+<<retro.3, fig.height=3.5>>= 
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 plot.retro.yrs <- retro.yrs
@@ -858,7 +938,7 @@ make.assessment.history.plot(base.model,
 \vspace{-2cm}
 \begin{itemize}
 \item In general, sensitivities show no significant departure from base model
-\item All except phi = 0.21 show a decrease in spawning biomass from 2017
+\item All except $\Phi$ = 0.21 show a decrease in spawning biomass from 2017
 \item The new data weighting scheme does not significantly affect the 2018 biomass estimate
 \item Small changes in catch do not significantly affect the biomass estimate time series
 \item Retrospectives re-iterate that 2014 cohort is still uncertain
