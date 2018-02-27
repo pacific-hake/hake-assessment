@@ -22,7 +22,9 @@ make.age.comp.pearson.plot(sens.models.3[[1]])
   to 5, showing MLE fits to the age
   composition data. Closed bubbles are positive residuals (observed > expected)
   and open bubbles are
-  negative residuals (observed < expected).}
+  negative residuals (observed < expected).
+  Bubbles in Figures~\ref{fig:main-age-comp-pearson-sens-1}-\ref{fig:main-age-comp-pearson-sens-3}
+  are the same scale, even though the legends are different.}
 \label{fig:main-age-comp-pearson-sens-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
