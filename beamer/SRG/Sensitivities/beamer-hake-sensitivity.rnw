@@ -86,9 +86,9 @@
 opts_chunk$set(dev = 'cairo_ps',
                fig.path = 'knitr-cache/',
                fig.dpi = 300,
-               fig.width = 6,
+               fig.width = 7.5,
                fig.height = 4,
-               out.width = '4.5in',
+               ##out.width = '4.5in',
                echo = FALSE,
                results = FALSE,
                message = FALSE,
@@ -109,7 +109,7 @@ source("custom-knitr-variables.r")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[Hake Data]{\Sexpr{assess.yr} Pacific Hake Assessment: Sensitivities and Retrospectives}
+\title[Hake Sensitivities]{\Sexpr{assess.yr} Pacific Hake Assessment: Sensitivities and Retrospectives}
 \author[JTC]{Pacific Hake Joint Technical Committee}
 %\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
@@ -146,6 +146,7 @@ source("custom-knitr-variables.r")
         \item Alternative maximum age assumptions for estimating selectivity
         \item Alternative SD for time-varying selectivity
         \item Alternative parameterization for time-varying selectivity
+        \item Weight-at-age schemes to calculate Fecundity (2018 SRG request)
         \end{itemize}
   \item Retrospectives
         \begin{itemize}
@@ -729,6 +730,30 @@ make.short.parameter.estimates.sens.table(
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
+\section{Weight-at-age}
+\subsection{}
+\begin{frame}
+\frametitle{Weight-at-age schemes to calculate fecundity -- Biomass}
+\begin{center}
+\vspace{5pt}
+% , fig.width=8>>=
+<<wtatage.sensitivity.biomass>>=  
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 0))
+make.comparison.plot(
+  c(list(base.model),
+    sens.models.5),
+  subplots = 2,
+  model.names = c(paste0("Base model ", end.yr),
+                  sens.model.names.5),
+  end.yr = end.yr + 2)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
 \section{Retros}
 \subsection{}
 \begin{frame}
@@ -737,9 +762,11 @@ make.short.parameter.estimates.sens.table(
 \vspace{-5pt}
 % , fig.height=5, fig.width=10>>=
 <<retro.1>>=
-oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+##oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #oldpar <- par(mfrow=c(1,2), mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 0))
 plot.retro.yrs <- 1:5
 retro.list <- list(base.model)
 for(i in plot.retro.yrs){

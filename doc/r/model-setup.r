@@ -263,12 +263,12 @@ if(verbose){
 }
 
 ## -----------------------------------------------------------------------------
-## Sensitivity models group 5  - dummy for now
+## Sensitivity models group 5  - Different weight-at-age schemes (SRG request)
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.5 <- c("2018.40_base_model",
-                            "2018.40_base_model")
-sens.model.names.5 <- c("Base Case",
-                        "Base Case")
+sens.model.dir.names.5 <- c("2018.40.29_fecundity_matrix1",
+                            "2018.40.30_fecundity_matrix2")
+sens.model.names.5 <- c("Fecundity using yearly weight-at-age matrix",
+                        "Fecundity with pre-1975 and post-2017 avgs.")
 verify.models(model.dir, sens.model.dir.names.5, sens.model.names.5)
 if(verbose){
   print.model.message(sens.model.dir.names.5, sens.model.names.5, 5, model.type = "Sensitivity")
