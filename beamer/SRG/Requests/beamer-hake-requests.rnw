@@ -334,8 +334,8 @@ SSplotComparisons(SSsummarize(c(list(base.model),
 %--------------------------------------------------------------
 
 \section[Request 4]{Request 4}
- \subsection{A reminder...}
-\frame{\frametitle{A reminder...}
+ \subsection{}
+\frame{\frametitle{Request 4 -- extra MCMC run. A reminder...}
   \bi
     \item Conduct short and long MCMC runs using sensitivity model  
     \item Today: short run = 12 million chain with 1,000 samples after burn-in period
@@ -344,6 +344,7 @@ SSplotComparisons(SSsummarize(c(list(base.model),
               \item use wt-at-age matrix (rather than vector of overall mean) along with new maturity ogive to calculate fecundity
               \item this results in fecundity being time-varying from 1975-2017
               \item use the mean wt-at-age from 1975-1979 to calculate fecundity for pre-1975 period (including equilibirum assumption)
+              \item use the mean wt-at-age from 2015-2017 to calculate fecundity for 2017 and onward
           \ei
      \item Compare alternative fecundity sensitivity model with base model:
           \bi
@@ -411,7 +412,23 @@ SSplotComparisons(SSsummarize(c(list(base.model),
 \frame{\frametitle{Request 5 -- residuals with maximum age of selectivity set to 5, 6, 7 and
     10}
   ~\\
-  ~~~~~~See updated assessment document
+  ~~~~~~See updated assessment document, pages 149-152.
 }
+
+\section[Bonus changes]{Bonus changes}
+\subsection{}
+\frame{\frametitle{Bonus changes}
+  \begin{itemize}
+    \item New ``Age-2+ biomass'' column in Tables 18 and 19 (pages 86-87).
+    \item Fix to exploitation rate at age in Table 22 (page 90) -- now based on biomass
+      at the start of the year rather than the middle of the year.
+    \item Figure 28 (selectivity uncertainties) corrected (page 125).
+    \item Suggest removing `new approach for parameterizing time-varying selectivity' from one-page summary
+      (and call it 'modified' elsewhere).
+    \item Most of Trevor's typos.
+    \item Further comments from Jaclyn.
+  \end{itemize}      
+}
+
 
 \end{document}
