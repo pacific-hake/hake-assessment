@@ -731,7 +731,7 @@ $p_{\text{low}} \leq p_a \leq p_{\text{high}}$,
 the base parameters $p_a$ 
 are transformed into $\tilde{p_a}$ via the equation
 \eb
-\tilde{p}_a = \frac{1}{2}\log\left(\frac{p_{\text{high}} - p_{\text{low}} + 
+\tilde{p}_a = - \frac{1}{2}\log\left(\frac{p_{\text{high}} - p_{\text{low}} + 
     2 \times 10^{-7}}{p_a - p_{\text{low}} + 10^{-7}} - 1\right)
 \ee
 where the small constants in the numerator and denominator are included to 
