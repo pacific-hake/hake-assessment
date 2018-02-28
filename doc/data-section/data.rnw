@@ -103,8 +103,8 @@ resolution. This has allowed a more detailed investigation of shifts in fishery
 timing (see Figure~5 in \citealt{JTC2014}). The U.S. shore-based landings are
 from the Pacific Fishery Information Network (PacFIN). Foreign and joint-venture
 catches for 1981--1990 and domestic at-sea catches for
-1991--\Sexpr{last.data.yr} are estimated from the AFSC's and, subsequently, the
-NWFSC's at-sea hake observer programs stored in the NORPAC (North Pacific Groundfish
+1991--\Sexpr{last.data.yr} are estimated from the AFSC and, subsequently, the
+NWFSC at-sea hake observer programs stored in the NORPAC (North Pacific Groundfish
 and Halibut Observer) database. Canadian
 Joint-Venture catches from 1989 are from the Groundfish Biological (GFBio)
 database, the shore-based landings from 1989 to 1995 are from the Groundfish
@@ -633,7 +633,7 @@ of new information on $M$, there has been little option to update the prior.
 The prior for the steepness parameter of the stock-recruitment function
 is based on the median (0.79) and the 20th (0.67) and 80th
 (0.87) percentiles from \citeauthor{MyersBowenEtAl1999}'s
-(\citeyear{MyersBowenEtAl1999}) meta-analysis of the family \emph{Gadidae}, and
+(\citeyear{MyersBowenEtAl1999}) meta-analysis of the family Gadidae, and
 has been used in U.S. assessments since 2007. This prior has a beta distribution
 with parameters 9.76 and 2.80, which translate to a mean of 0.777 and a log-standard
 deviation of 0.113. Sensitivities to the variance on the prior on steepness were
