@@ -129,13 +129,94 @@ source("custom-knitr-variables.r")
  \end{itemize}
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Weight-at-age -- Relative spawning biomass}
+\begin{center}
+\vspace{-4pt}
+<<wtatage.relbio.figure>>=
+make.comparison.plot(
+  c(list(base.model),
+    sens.models.5[2]),
+  model.names = c("Base model",
+                  sens.model.names.5[2]),
+  subplots = 3,
+  end.yr = end.yr + 2)
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Weight-at-age -- Fishing intensity}
+\begin{center}
+\vspace{-4pt}
+<<wtatage.fi.figure>>=
+SSplotComparisons(SSsummarize(c(list(base.model),
+                                sens.models.5[2])),
+                  subplot = 6,
+                  new = FALSE,
+                  legendloc = "bottomright",
+                  legendlabels = c("Base model",
+                                   sens.model.names.5[2]))
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{$\sigma_r$ -- Relative spawning biomass}
+\begin{center}
+\vspace{-4pt}
+<<sigmar.relbio.figure>>=
+make.comparison.plot(
+  c(list(base.model),
+    sens.models.1[3],
+    sens.models.1[4]),
+  model.names = c("Base model",
+                  sens.model.names.1[3],
+                  sens.model.names.1[4]),
+  subplots = 3,
+  end.yr = end.yr)
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{$\sigma_r$ -- Fishing intensity}
+\begin{center}
+\vspace{-4pt}
+<<sigmar.fi.figure>>=
+SSplotComparisons(SSsummarize(c(list(base.model),
+                                sens.models.1[3],
+                                sens.models.1[4])),
+                  subplot = 6,
+                  new = FALSE,
+                  legendloc = "bottomright",
+                  legendlabels = c("Base model",
+                                   sens.model.names.1[3],
+                                   sens.model.names.1[4]))
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 %---------------------------------------------------------------
 
 \section[Request 2]{Request 2}
 \subsection{}
 
 \frame{\frametitle{Request 2}
- Show a table of likelihood components for sensitivity analyses (Dirichlet vs. Harmonic mean)
+ Show a table of likelihood components for sensitivity analyses (Dirichlet vs. Harmonic mean). Include:
+ \begin{itemize}
+   \item Base model
+   \item Sensitivity model
+   \item Likelihood contributions
+ \end{itemize}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -160,5 +241,110 @@ source("custom-knitr-variables.r")
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-\end{document}
+%--------------------------------------------------------------
+\section[Request 3]{Request 3}
+\subsection{}
+\frame{\frametitle{Request 3}
+  Include 440,000 catch option in decision tables and figures.
+}
 
+%--------------------------------------------------------------
+
+\frame{\frametitle{Decision table for relative spawning biomass}
+  <<main.decisions.biomass.table, results='asis', echo=FALSE>>=
+  make.decision.table(base.model,
+                      xcaption <- NULL,
+                      font.size = 4,
+                      space.size = 6,
+                      type = "biomass")
+  @
+}
+
+%--------------------------------------------------------------
+
+\frame{\frametitle{Decision table for relative fishing intensity}
+  <<main.decisions.spr.table, results='asis', echo=FALSE>>=
+    make.decision.table(base.model,
+                        xcaption <- NULL,
+                        font.size = 4,
+                        space.size = 6,
+                        type = "spr")
+  @
+}
+  
+%--------------------------------------------------------------
+\frame{\frametitle{Risk based on fixed \Sexpr{end.yr} catch}
+    <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
+      make.risk.table(base.model,
+                      forecast.yrs,
+                      index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                      xcaption = NULL,
+                      font.size = 10,
+                      space.size = 11)
+    @
+}
+
+
+%--------------------------------------------------------------
+
+\frame{\frametitle{Risk based on fixed \Sexpr{end.yr} catch (plot)}
+  \bc
+    <<forecast.risk.comparison.plot.year.1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+      make.forecast.risk.comparison.plot(base.model,
+                                         forecast.yrs = forecast.yrs,
+                                         fore.yr = forecast.yrs[1],
+                                         colors = c("black","blue","green","orange","red","tan"),
+                                         pch = c(16,17,17,17,15,18),
+                                         legend.loc = "topleft",
+                                         legend.cex = 0.8)
+
+    @
+  \ec
+}
+
+%--------------------------------------------------------------
+\frame{\frametitle{Risk based on fixed \Sexpr{end.yr} and \Sexpr{end.yr+1} catch}
+    <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
+      make.risk.table(base.model,
+                      forecast.yrs,
+                      index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                      xcaption = NULL,
+                      font.size = 10,
+                      space.size = 11)
+    @
+}
+
+%--------------------------------------------------------------
+
+\frame{\frametitle{Risk based on fixed \Sexpr{end.yr} and \Sexpr{end.yr+1} catch (plot)}
+  \bc
+    <<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+      make.forecast.risk.comparison.plot(base.model,
+                                         forecast.yrs = forecast.yrs,
+                                         fore.yr = forecast.yrs[2],
+                                         colors = c("black","blue","green","orange","red","tan"),
+                                         pch = c(16,17,17,17,15,18),
+                                         legend.loc = "topleft",
+                                         legend.cex = 0.7)
+
+    @
+  \ec
+}
+
+%--------------------------------------------------------------
+
+\section[Request 4]{Request 4}
+\subsection{}
+  \frame{\frametitle{Request 4 -- conduct MCMC run for alternative weight-at-age}
+}
+
+%--------------------------------------------------------------
+\section[Request 5]{Request 5}
+\subsection{}
+\frame{\frametitle{Request 5 -- residuals with maximum age of selectivity set to 5, 6, 7 and
+    10}
+  ~\\
+  ~~~~~~See updated assessment document
+}
+
+\end{document}
