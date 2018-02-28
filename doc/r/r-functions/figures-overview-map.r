@@ -375,6 +375,8 @@ make.overview.map.plot <- function(r.loc = getwd()){
   arrows(-133.5, 54.45, -132.5, 54.45, length = 0.05)
   text(-126.2, 48.5, "Strait of\nJuan de Fuca", adj = 1, cex = 0.7)
   arrows(-126.2, 48.5, -124.7, 48.5, length = 0.05)
+  text(-122, 34, "Point\nConception", adj = 1, cex = 0.7)
+  arrows(-122, 34, -120.7, 34.44, length = 0.05)
 
   text(-128, 39, "California Current LME", cex = 1.4, srt = 285)
   text(-138, 56.8, "Gulf Of Alaska\nLME", cex = 0.9, srt = 300)
