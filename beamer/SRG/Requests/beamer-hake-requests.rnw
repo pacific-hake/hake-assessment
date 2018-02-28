@@ -334,8 +334,75 @@ SSplotComparisons(SSsummarize(c(list(base.model),
 %--------------------------------------------------------------
 
 \section[Request 4]{Request 4}
-\subsection{}
-  \frame{\frametitle{Request 4 -- conduct MCMC run for alternative weight-at-age}
+ \subsection{A reminder...}
+\frame{\frametitle{A reminder...}
+  \bi
+    \item Conduct short and long MCMC runs using sensitivity model  
+    \item Today: short run = 12 million chain with 1,000 samples after burn-in period
+    \item Model specification as different from base model:
+          \bi 
+              \item use wt-at-age matrix (rather than vector of overall mean) along with new maturity ogive to calculate fecundity
+              \item this results in fecundity being time-varying from 1975-2017
+              \item use the mean wt-at-age from 1975-1979 to calculate fecundity for pre-1975 period (including equilibirum assumption)
+          \ei
+     \item Compare alternative fecundity sensitivity model with base model:
+          \bi
+             \item Relative spawning biomass 2018  
+             \item Forecast catch from HCR 2018 
+             \item Probability of stock status (Depletion) less than 40\% and 10\% 
+          \ei         
+  \ei
+}
+
+
+ \subsection{Relative spawning biomass}
+\frame{\frametitle{Relative spawning biomass}
+\begin{columns}
+  \begin{column}{0.4\linewidth}
+  \bi
+      \item Relative 2018 spawning biomass - base model: 66.7\%
+      \item Relative 2018 spawning biomass - t.v. fecundity (75-79 equil): 41.4\%
+  \ei
+\end{column}
+\begin{column}{0.6\linewidth}
+    \begin{figure}
+    \centering
+       \includegraphics[width=3in, height=3in]{../../../beamer/SRG/Requests/Figures/compare4_Bratio_uncertainty.eps}
+    \end{figure}
+\end{column}
+\end{columns}
+}
+
+ \subsection{Spawning biomass}
+\frame{\frametitle{Spawning biomass}
+\begin{figure}
+  \centering
+  \includegraphics[width=4in, height=3in]{../../../beamer/SRG/Requests/Figures/compare2_spawnbio_uncertainty.eps}
+\end{figure}
+}
+
+ \subsection{Recruitment}
+\frame{\frametitle{Recruitment}
+\begin{figure}
+  \centering
+  \includegraphics[width=4in, height=3in]{../../../beamer/SRG/Requests/Figures/compare10_recdevs_uncertainty.eps}
+\end{figure}
+}
+
+ \subsection{Forecast catch from HCR 2018}
+\frame{\frametitle{Forecast catch from HCR 2018}
+\begin{figure}
+  \centering
+  \includegraphics[width=4in, height=3in]{../../../beamer/SRG/Requests/Figures/CompareMCMC_tvFecund_ForCatch2018.eps}
+\end{figure}
+}
+
+ \subsection{Probability 2018 stock status}
+\frame{\frametitle{Probability 2018 stock status}
+\begin{figure}
+  \centering
+  \includegraphics[width=4in, height=3in]{../../../beamer/SRG/Requests/Figures/CompareMCMC_tvFecund_ForCatch2018prob.eps}
+\end{figure}
 }
 
 %--------------------------------------------------------------
