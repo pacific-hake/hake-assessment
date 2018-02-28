@@ -381,6 +381,13 @@ SSplotComparisons(SSsummarize(c(list(base.model),
   \ei
 }
 
+ \subsection{Spawning biomass}
+\frame{\frametitle{Spawning biomass}
+\begin{figure}
+  \centering
+  \includegraphics[width=4in, height=3in]{../../../beamer/SRG/Requests/Figures/compare2_spawnbio_uncertainty.eps}
+\end{figure}
+}
 
  \subsection{Relative spawning biomass}
 \frame{\frametitle{Relative spawning biomass}
@@ -400,13 +407,6 @@ SSplotComparisons(SSsummarize(c(list(base.model),
 \end{columns}
 }
 
- \subsection{Spawning biomass}
-\frame{\frametitle{Spawning biomass}
-\begin{figure}
-  \centering
-  \includegraphics[width=4in, height=3in]{../../../beamer/SRG/Requests/Figures/compare2_spawnbio_uncertainty.eps}
-\end{figure}
-}
 
  \subsection{Recruitment}
 \frame{\frametitle{Recruitment}
