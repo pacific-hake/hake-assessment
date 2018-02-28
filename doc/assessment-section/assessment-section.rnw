@@ -846,7 +846,8 @@ start of \Sexpr{end.yr}.
 \subsection{Model uncertainty}\label{sec:assessment-model-uncertainty}
  % Manual 2018 done
 The base assessment model integrates over the substantial uncertainty associated
-with several important model parameters including: the magnitude of the stock
+with several important model parameters including: acoustic survey catchability
+($q$), the magnitude of the stock
 (via the $R_0$ parameter for equilibrium
 recruitment), productivity of the stock (via the steepness parameter, $h$, of
 the stock-recruitment relationship), the rate of natural mortality ($M$), annual
