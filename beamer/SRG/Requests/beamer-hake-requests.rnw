@@ -205,6 +205,32 @@ SSplotComparisons(SSsummarize(c(list(base.model),
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}
+  \frametitle{$\sigma_r$ -- mean recruitment (1966--2017) vs. $R_0$ }
+  \begin{columns}
+    \begin{column}{0.4\linewidth}
+      \bi
+    \item Theory behind tuning of $\sigma_r$ is based on getting consistency
+      between equilibrium value and time series
+    \item Base model has equilibrium recruitment ($R_0$) which is
+      relatively consistent with the estimated mean recruitment 
+      over the timeseries (1966--2017)
+      \ei
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \begin{figure}
+        \centering
+        <<sigmar.recr.figure, fig.height=5, fig.width=5, out.width='0.9\\columnwidth'>>=
+        make.R0.vs.meanRecruitment.fig()
+        @
+      \end{figure}
+    \end{column}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
 %---------------------------------------------------------------
 
 \section[Request 2]{Request 2}
