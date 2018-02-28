@@ -31,6 +31,10 @@ make.ci.posterior.table <- function(model,
     extra$timeseries$Bio_all.0.025[extra$timeseries$Yr %in% yrs]
   tot.bm.975 <-
     extra$timeseries$Bio_all.0.975[extra$timeseries$Yr %in% yrs]
+  smry.bm.025 <-
+    extra$timeseries$Bio_smry.0.025[extra$timeseries$Yr %in% yrs]
+  smry.bm.975 <-
+    extra$timeseries$Bio_smry.0.975[extra$timeseries$Yr %in% yrs]
 
   tab.filt <- cbind(yrs,
                     paste0(f(df$slower * weight.factor),
@@ -42,6 +46,9 @@ make.ci.posterior.table <- function(model,
                     paste0(f(tot.bm.025 / weight.factor),
                            "-",
                            f(tot.bm.975 / weight.factor)),
+                    paste0(f(smry.bm.025 / weight.factor),
+                           "-",
+                           f(smry.bm.975 / weight.factor)),
                     paste0(f(df$rlower * weight.factor),
                            "-",
                            f(df$rupper * weight.factor)),
@@ -68,6 +75,9 @@ make.ci.posterior.table <- function(model,
                                       "spawning",
                                       "biomass")),
                           latex.mlc(c("Total",
+                                      "biomass",
+                                      "(thousand t)")),
+                          latex.mlc(c("Age-2+",
                                       "biomass",
                                       "(thousand t)")),
                           latex.mlc(c("Age-0",
@@ -131,11 +141,14 @@ make.median.posterior.table <- function(model,
   ts <- model$extra.mcmc$timeseries
   tot.bm <-
     ts$Bio_all[ts$Yr %in% yrs]
+  smry.bm <-
+    ts$Bio_smry[ts$Yr %in% yrs]
 
   tab.filt <- cbind(yrs,
                     f(df$smed * weight.factor),
                     paste0(f(df$dmed * 100, digits), "\\%"),
                     f(tot.bm / weight.factor),
+                    f(smry.bm / weight.factor),
                     f(df$rmed * weight.factor),
                     paste0(f(df$pmed * 100, digits), "\\%"),
                     paste0(f(df$fmed * 100, digits), "\\%"))
@@ -156,9 +169,11 @@ make.median.posterior.table <- function(model,
                           latex.mlc(c("Total",
                                       "biomass",
                                       "(thousand t)")),
+                          latex.mlc(c("Age-2+",
+                                      "biomass",
+                                      "(thousand t)")),
                           latex.mlc(c("Age-0",
                                       "recruits",
-                                      "",
                                       "(millions)")),
                           latex.mlc(c("Relative",
                                       "fishing",
@@ -174,6 +189,7 @@ make.median.posterior.table <- function(model,
                df$smed * weight.factor,
                df$dmed * 100,
                tot.bm / weight.factor,
+               smry.bm / weight.factor,
                df$rmed * weight.factor,
                df$pmed * 100,
                df$fmed * 100)
@@ -183,6 +199,7 @@ make.median.posterior.table <- function(model,
                      "Female spawning biomass (thousand t)",
                      "Relative spawning biomass (%)",
                      "Total biomass (thousand t)",
+                     "Age-2+ biomass (thousand t)",
                      "Age-0 recruits (millions)",
                      "Relative fishing intensity (%)",
                      "Exploitation fraction (%)")
