@@ -264,7 +264,7 @@ above-average 2008 year class. The subsequent decline is from the 2010 year clas
 surpassing the age at which gains in weight from growth are greater than the
 loss in weight from natural mortality.
 The 2014 year class is estimated to be large, though not as large as the 1999
-and 2010 year classes, which, combined with the fishing mortality on these 
+and 2010 year classes, which, combined with the fishing mortality on these
 cohorts, has resulted in a relatively constant biomass since 2013.
 % Manual 2018 done.
 
@@ -671,7 +671,9 @@ make.decision.table(base.model,
                     xcaption <- paste0("Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
-                     catch levels (rows a, b, c, d, e), including the TAC from  ",
+                     catch levels (rows a, b, c, d, e), including
+                     catch from ",min(forecast.yrs)-1," (row d) and
+                     the TAC from ",
                      min(forecast.yrs)-1," (row e), the catch values that result
                      in a median relative fishing intensity of 100\\% (row f),
                      the median values estimated via the default harvest policy
@@ -895,7 +897,7 @@ Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % 2018 - probably not worth saying that any more.
 The model estimated below-average recruitment for the 2011, 2012, 2013, and 2015
 cohorts, but above-average 2014 and 2016 cohorts that may result in increases to
-the spawning biomass as they mature and increase in weight. 
+the spawning biomass as they mature and increase in weight.
 % Still true for 2017 assessment - see
 %  years.since.2010.recruitment.med.below.mean
 %   2018 assessment.
