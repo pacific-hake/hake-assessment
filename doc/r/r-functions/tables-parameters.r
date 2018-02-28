@@ -406,16 +406,24 @@ make.short.parameter.estimates.sens.table <- function(models,
     y <- model$derived_quants["Dead_Catch_SPR", "Value"] / 1000
     mle.par <- c(mle.par, y)
 
+    ## Add Likelihoods - there are 8 to 10 of them
+    j <- model$likelihoods_used
+    like <- model$likelihoods_used$value
+    like.flt <- model$likelihoods_by_fleet
+    ## Add Total and Survey likelihoods
+    mle.par <- c(mle.par, like[c(1,4)])
+    mle.par <- c(mle.par, as.numeric(like.flt[nrow(like.flt), c(4,3)]))
+    mle.par <- c(mle.par, like[c(6,8,9)])
     ## Special case - if the sensitivity does not include steepness as
     ##  an estimated parameter, insert an NA.
-    if(length(mle.par) == 14){
+    if(length(mle.par) == 21){
       mle.par <- c(mle.par[1:2],
                    NA,
                    mle.par[-(1:2)])
     }
     ## If the sensitivity does not include the age 1 index as
     ##  an estimated parameter, insert an NA.
-    if(age.1 & length(mle.par) == 15){
+    if(age.1 & length(mle.par) == 22){
       mle.par <- c(mle.par[1:4],
                    NA,
                    mle.par[-(1:4)])
@@ -454,9 +462,9 @@ make.short.parameter.estimates.sens.table <- function(models,
                 c(1, 2), as.numeric))
   ## Percentages
   tab[c(ifelse(age.1, 10, 9),
-                         ifelse(age.1, 11, 10),
-                         ifelse(age.1, 12, 11),
-                         ifelse(age.1, 15, 14)),] <-
+        ifelse(age.1, 11, 10),
+        ifelse(age.1, 12, 11),
+        ifelse(age.1, 15, 14)),] <-
     paste0(f(apply(tab[c(ifelse(age.1, 10, 9),
                          ifelse(age.1, 11, 10),
                          ifelse(age.1, 12, 11),
@@ -467,6 +475,17 @@ make.short.parameter.estimates.sens.table <- function(models,
       !is.na(tab[ifelse(age.1, 14, 13),])] <-
     paste0(f(as.numeric(tab[ifelse(age.1, 14, 13),
                             !is.na(tab[ifelse(age.1, 14, 13),])]), 1), "\\%")
+
+  ## Likelihoods - Possibly commas and 2 decimal points
+  if(age.1){
+    tab[17:23,] <-
+      f(apply(tab[17:23,],
+              c(1, 2), as.numeric), 2)
+  }else{
+    tab[16:22,] <-
+      f(apply(tab[16:22,],
+              c(1, 2), as.numeric), 2)
+  }
 
   ## Make first row empty to make the Parameter header appear below the
   ##  horizontal line
@@ -514,7 +533,14 @@ make.short.parameter.estimates.sens.table <- function(models,
                    "Exploitation fraction corresponding to SPR",
                    paste0("Yield at ",
                           latex.italics("$B_{F_{40_{\\%}}}$"),
-                          " (thousand t)")),
+                          " (thousand t)"),
+                   "Total",
+                   "Survey",
+                   "Survey age compositions",
+                   "Fishery age compositions",
+                   "Recruitment",
+                   "Parameter priors",
+                   "Parameter deviations"),
                  tab)
   }else{
     tab <- cbind(c("",
@@ -546,7 +572,14 @@ make.short.parameter.estimates.sens.table <- function(models,
                    "Exploitation fraction corresponding to SPR",
                    paste0("Yield at ",
                           latex.italics("$B_{F_{40_{\\%}}}$"),
-                          " (thousand t)")),
+                          " (thousand t)"),
+                   "Total",
+                   "Survey",
+                   "Survey age compositions",
+                   "Fishery age compositions",
+                   "Recruitment",
+                   "Parameter priors",
+                   "Parameter deviations"),
                  tab)
   }
   ## Need to split up the headers (model names) by words and let them stack on
@@ -563,6 +596,7 @@ make.short.parameter.estimates.sens.table <- function(models,
   addtorow$pos[[1]] <- 1
   addtorow$pos[[2]] <- ifelse(age.1, 6, 5)
   addtorow$pos[[3]] <- ifelse(age.1, 12, 11)
+  addtorow$pos[[4]] <- ifelse(age.1, 17, 16)
   addtorow$command <-
     c(paste0(latex.bold(latex.under("Parameters")),
              latex.nline),
@@ -571,6 +605,9 @@ make.short.parameter.estimates.sens.table <- function(models,
              latex.nline),
       paste0(latex.nline,
              latex.bold(latex.under("Reference Points based on $\\Fforty$")),
+             latex.nline),
+      paste0(latex.nline,
+             latex.bold(latex.under("Negative log likelihoods")),
              latex.nline))
 
   ## Make the size string for font and space size
