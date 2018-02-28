@@ -331,6 +331,12 @@ SSplotComparisons(SSsummarize(c(list(base.model),
   \ec
 }
 
+%--------------------------------------------------------------
+
+\section[Request 4]{Request 4}
+\subsection{}
+  \frame{\frametitle{Request 4 -- conduct MCMC run for alternative weight-at-age}
+}
 
 %--------------------------------------------------------------
 \section[Request 5]{Request 5}
