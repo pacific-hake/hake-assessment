@@ -400,7 +400,7 @@ assessment were now included. These changes were small enough that they had
 little impact on the model results (Figure~\ref{fig:main-bridge-biomass}).
 
 The addition of 2017 catch allowed the ending year of the model to be 
-extended to 2018, but the estimates for 2018 remaining highly uncertain 
+extended to 2018, but the estimates for 2018 remained highly uncertain 
 (Figure~\ref{fig:main-bridge-5-panel}) in the absence of additional information 
 about recent recruitment.
 The change with the biggest impact was the addition of the 2017 survey biomass 
@@ -846,8 +846,8 @@ start of \Sexpr{end.yr}.
 \subsection{Model uncertainty}\label{sec:assessment-model-uncertainty}
  % Manual 2018 done
 The base assessment model integrates over the substantial uncertainty associated
-with several important model parameters including: acoustic survey catchability
-($q$), the magnitude of the stock (via the $R_0$ parameter for equilibrium
+with several important model parameters including: the magnitude of the stock
+(via the $R_0$ parameter for equilibrium
 recruitment), productivity of the stock (via the steepness parameter, $h$, of
 the stock-recruitment relationship), the rate of natural mortality ($M$), annual
 selectivity for key ages, and recruitment deviations. The uncertainty portrayed
@@ -1177,7 +1177,7 @@ Dirichlet-Multinomial likelihood which includes two additional estimated
 parameters that automatically weight each of the fishery and survey age 
 compositions. This produced higher weights on the age compositions but 
 generally very similar results to the McAllister-Ianelli method used in 
-previous assessments, whereby the input samples sizes are iteratively 
+previous assessments, whereby the input sample sizes are iteratively 
 adjusted by a multiplier to make the arithmetic mean of the input 
 sample size approximately equal to the harmonic mean of the effective 
 sample sizes.
@@ -1267,7 +1267,7 @@ The consideration of alternative standard deviations ($\Phi$) for time-varying
 selectivity is discussed earlier in
 Section~\ref{sec:data-variability-selectivity}. In short, low values of the
 parameter $\Phi$ controlling the flexibility in time-varying selectivity
-resulted in potentially implausibly high estimates recent recruitments. The
+resulted in potentially implausibly high estimates of recent recruitments. The
 values of the related $\phi$ explored in the 2017 assessment \citep{JTC2017}
 were 0.03, 0.10, 
 and 0.30, as alternatives to the 0.20 used in the base model. 
@@ -1323,7 +1323,7 @@ variance parameter for the semi-parametric selectivity,
 at $\sigma_s = 0.695$, which provided more plausible results than when this 
 method was applied to the status-quo selectivity setup. 
 
-However, the model with $\sigma_s = 0.695$ had higher estimates of 2016 
+However, the model with $\sigma_s = 0.695$ had higher estimates of 2016 recruitment
 and worse fits to the recent survey biomass estimates 
 (Figures~\ref{fig:main-biomass-base-alternative-4}-\ref{fig:main-index-base-alternative-4}).
 Increasing $\sigma_s$ to 1.0
@@ -1357,7 +1357,7 @@ model. Models with 3, 4, or 5 years of data removed had information
 available regarding the high 2010 year class, but did not yet have information on the
 2014 year class (Figure~\ref{fig:main-biomass-recruitment-retrospective}).  Models 
 with 1 and 2 years of data removed were just beginning to receive data on age-2 and age-1, respectively,
-individuals to to predict the size of the 2014 year class.  The base model now has three
+individuals to predict the size of the 2014 year class.  The base model now has three
 years of data to estimate the size of the 2014 cohort, and the uncertainty around this
 estimate, while still large, has been considerably reduced compared to one year ago
 (Figure~\ref{fig:main-biomass-recruitment-retrospective}).
@@ -1379,7 +1379,7 @@ younger age than intermediate cohorts.  For example, the strong 2010 cohort has
 been fairly well determined in the model by age-3 and the weak 2007 cohort by
 age 5.  Estimated recruitment deviations for the 2014 cohort appear to be
 similar to other large cohorts (1999, 2008, and 2010), though with the extra year
-of data in this year's assessment the 2014 cohort appears to maybe be more similar
+of data in this year's assessment the 2014 cohort appears to be more similar
 to the 2008 cohort rather than the 1999 and 2010 cohorts (which are the largest).
 % One major difference between the 2010 and 2014
 % cohorts is that by age-3 the 2010 cohort had been fully sampled by the acoustic
