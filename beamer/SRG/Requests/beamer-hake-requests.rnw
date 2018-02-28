@@ -70,6 +70,8 @@
 \newcommand{\en}{\end{enumerate}}
 \newcommand{\bi}{\begin{itemize}}
 \newcommand{\ei}{\end{itemize}}
+\newcommand{\Fforty}{F_{\text{SPR}=40\%}}       % Needs to be done as $\Fforty$
+\newcommand{\Bforty}{B_{\text{SPR}=40\%}}
 
 %% <<echo=TRUE,  message=TRUE, results='show', warning=TRUE>>=
 %% opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
@@ -79,9 +81,9 @@
 opts_chunk$set(dev = 'cairo_ps',
                fig.path = 'knitr-cache/',
                fig.dpi = 300,
-               fig.width = 6,
+               fig.width = 7.5,
                fig.height = 4,
-               out.width = '6in',
+               ##out.width = '4.5in',
                echo = FALSE,
                results = FALSE,
                message = FALSE,
@@ -104,7 +106,7 @@ source("custom-knitr-variables.r")
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title[Hake Management]{SRG Assessment Requests}
-\author[Hicks]{JTC}
+\author[JTC]{JTC}
 %\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
 \subtitle{\tiny Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy}
@@ -119,515 +121,44 @@ source("custom-knitr-variables.r")
 \section[Request 1]{Request 1}
 \subsection{}
 
+\frame{\frametitle{Request 1}
+ Graph of relative biomass and fishing intensity over time, reflecting two sensitivity analyses:
+ \begin{itemize}
+   \item Weight-at-age
+   \item $\sigma_r$
+ \end{itemize}
+}
+
 %---------------------------------------------------------------
 
-\frame{\frametitle{Request 1}
-  Show sensitivities to $\phi$ including the age-1 index.\\
-  %\medskip
-  % {\bf Rationale:} .
-
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%
-%\section{$\phi$}
-%\subsection{}
-\begin{frame}
-\frametitle{Sensitivities to $\phi$ -- Biomass}
-\begin{center}
-%\vspace{5pt}
-<<phi.sensitivity.biomass, fig.height=4.5, out.width='4.5in'>>=  
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 0))
-make.comparison.plot(
-  c(list(base.model), sens.models.7),
-  subplots = 2,
-  model.names = c(paste0("Base model, phi=0.20, no age-1"), sens.model.names.7),
-  legendloc = "topleft",
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Sensitivities to $\phi$ -- Density}
-\begin{center}
-%\vspace{5pt}
-% fig.width=8>>=
-<<phi.sensitivity.density, fig.height=4.5, out.width='4.5in'>>=  
-oldpar <- par()
-par(mar = c(7.1, 3.1, 0, 0))
-make.comparison.plot(
-  c(list(base.model), sens.models.7),
-  subplots = 14,
-  model.names = c(paste0("Base model, phi=0.20, no age-1"), sens.model.names.7),
-  legendloc = "topright",
-  densitynames = c("Recr_2014"),
-  densityxlab  = "Recruitment in 2014 (billions)",
-  indexPlotEach = TRUE,
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Sensitivities to $\phi$ -- Density}
-\begin{center}
-%\vspace{5pt}
-% fig.width=8>>=
-<<phi.sensitivity.density.2010, fig.height=4.5, out.width='4.5in'>>=  
-oldpar <- par()
-par(mar = c(7.1, 3.1, 0, 0))
-make.comparison.plot(
-  c(list(base.model), sens.models.7),
-  subplots = 14,
-  model.names = c(paste0("Base model, phi=0.20, no age-1"), sens.model.names.7),
-  legendloc = "topright",
-  densitynames = c("Recr_2010"),
-  densityxlab  = "Recruitment in 2010 (billions)",
-  indexPlotEach = TRUE,
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Fit to age-1 index (log-scale)}
-\begin{center}
-<<age.1.index.fit.log, fig.height=4.5, out.width='4.5in'>>=
-oldpar <- par()
-par(mar = c(7.1, 5.1, 1, 0))
-make.comparison.plot(
-  sens.models.7[c(1,3)],
-  subplots = 12,
-  model.names = sens.model.names.7[c(1,3)],
-  legendloc = "topleft",
-  indexPlotEach = FALSE,
-  indexfleets=3, indexUncertainty=TRUE,
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Fit to age-1 index (absolute-scale)}
-\begin{center}
-<<age.1.index.fit, fig.height=4.5, out.width='4.5in'>>=
-oldpar <- par()
-par(mar = c(7.1, 5.1, 1, 0))
-make.comparison.plot(
-  sens.models.7[c(1,3)],
-  subplots = 11,
-  model.names = sens.model.names.7[c(1,3)],
-  legendloc = "topleft",
-  indexPlotEach = FALSE,
-  indexfleets=3, indexUncertainty=TRUE,
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-                  
-\section[Requests 2 and 3]{Requests 2 and 3}
+\section[Request 2]{Request 2}
 \subsection{}
-\frame{\frametitle{Requests 2 and 3}
-  Sensitivity analysis that includes deviations on selectivity parameters from 1991-2008 using $\Phi=0.03$, and uses $\Phi=0.20$ for 2009-2016 and; \\
 
-  Sensitivity analysis that includes deviations on selectivity parameters from 1991-2015 using $\Phi=0.03$, and uses $\Phi=0.20$ for 2016.\\
+\frame{\frametitle{Request 2}
+ Show a table of likelihood components for sensitivity analyses (Dirichlet vs. Harmonic mean)
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{$\phi=0.20$ for two time periods -- Biomass}
+\frametitle{Request 2}
 \begin{center}
-% \vspace{5pt}
-<<phi.req2.3.sensitivity.biomass, fig.height=4.5, out.width='4.5in'>>=  
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 0))
-make.comparison.plot(
-  c(list(base.model), sens.models.8),
-  subplots = 2,
-  model.names = c(paste0("1991-2016 phi=0.20, base model"), sens.model.names.8),
-  legendloc = "topleft",
-  end.yr = end.yr)
-par <- oldpar
+<<request2.table, results='asis', echo=FALSE>>=
+ make.short.parameter.estimates.sens.table(
+   c(list(base.model),
+     sens.models.2[3]),
+   model.names = c("Base model",
+                   sens.model.names.2[3]),
+   posterior.regex = key.posteriors,
+   end.yr = end.yr,
+   age.1 = FALSE,
+   xcaption = NULL,
+   digits = 3,
+   font.size = 4,
+   space.size = 5)
 @
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{$\phi=0.20$ for two time periods -- Density}
-\begin{center}
-% \vspace{5pt}
-% fig.width=8>>=
-<<phi.req2.3.sensitivity.density, fig.height=4.5, out.width='4.5in'>>=  
-oldpar <- par()
-par(mar = c(7.1, 3.1, 0, 0))
-make.comparison.plot(
-  c(list(base.model), sens.models.8),
-  subplots = 14,
-  model.names = c(paste0("1991-2016 phi=0.20, base model"), sens.model.names.8),
-  legendloc = "topright",
-  densitynames = c("Recr_2014"),
-  densityxlab  = "Recruitment in 2014 (billions)",
-  indexPlotEach = TRUE,
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{$\phi=0.20$ for two time periods -- Density}
-\begin{center}
-% \vspace{5pt}
-% fig.width=8>>=
-<<phi.req2.3.sensitivity.density.2010, fig.height=4.5, out.width='4.5in'>>=  
-oldpar <- par()
-par(mar = c(7.1, 3.1, 0, 0))
-make.comparison.plot(
-  c(list(base.model), sens.models.8),
-  subplots = 14,
-  model.names = c(paste0("1991-2016 phi=0.20, base model"), sens.model.names.8),
-  legendloc = "topright",
-  densitynames = c("Recr_2010"),
-  densityxlab  = "Recruitment in 2010 (billions)",
-  indexPlotEach = TRUE,
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-\frame{\frametitle{Selectivity at age by year (base model vs. $\phi = 0.03$)}
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-    <<mountains.MLE.base, fig.height=6, out.width='0.99\\columnwidth'>>=
-    make.tv.selex.plot(base.model, mcmc=FALSE)
-    title(main="Base model (phi = 0.20)")
-    @
-    \end{column}
-    \begin{column}{0.5\textwidth}
-    <<mountains.phi0.03, fig.height=6, out.width='0.99\\columnwidth'>>=
-    make.tv.selex.plot(sens.models.8[[1]], mcmc=FALSE) # model59, phi = 0.03 for all years
-    title(main=sens.model.names.8[[1]])
-    @
-    \end{column}
-  \end{columns}
-}
-
-\frame{\frametitle{Selectivity at age by year (requests 2 and 3)}
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-    <<mountains.request2, fig.height=6, out.width='0.99\\columnwidth'>>=
-    make.tv.selex.plot(sens.models.8[[2]], mcmc=FALSE) # phi = 0.03 up to 2008, and 0.20 for 2009-2016
-    title(main = sens.model.names.8[[2]], cex.main = .7)
-    @
-    \end{column}
-    \begin{column}{0.5\textwidth}
-    <<mountains.request3, fig.height=6, out.width='0.99\\columnwidth'>>=
-    make.tv.selex.plot(sens.models.8[[3]], mcmc=FALSE) # phi = 0.03 up to 2015, and 0.20 for 2016
-    title(main=sens.model.names.8[[3]], cex.main = .7)
-    @
-    \end{column}
-  \end{columns}
-}
-
-
-\section[Request 4]{Request 4}
-\subsection{}
-\frame{\frametitle{Request 4 - slide 1}
-  MCMC chain = 24,000,000 with 1998 samples..\\
-  \begin{figure}[p]
-    \vspace{-5mm}
-    \begin{center}
-      \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{Mexplore.eps} % width=\maxwidth,
-    \end{center}
-  \end{figure}
-}
-
-\frame{\frametitle{Request 4 - slide 2}
-  MCMC chain = 24,000,000 with 1998 samples.\\
-  \begin{figure}[p]
-    \vspace{-5mm}
-    \begin{center}
-      \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{Hexplore.eps} % width=\maxwidth,
-    \end{center}
-  \end{figure}
-}
-\frame{\frametitle{Request 4 - slide 3}
-  MCMC chain = 24,000,000 with 1998 samples.\\
-  \begin{figure}[p]
-    \vspace{-5mm}
-    \begin{center}
-      \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{Qexplore.eps} % width=\maxwidth,
-    \end{center}
-  \end{figure}
-}\frame{\frametitle{Request 4 - slide 4}
-  MCMC chain = 24,000,000 with 1998 samples.\\
-  \begin{figure}[p]
-    \vspace{-5mm}
-    \begin{center}
-      \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{R0explore.eps} % width=\maxwidth,
-    \end{center}
-  \end{figure}
-}
-\frame{\frametitle{Request 4 - slide 5}
-  MCMC chain = 24,000,000 with 1998 samples.\\
-  \begin{figure}[p]
-    \vspace{-5mm}
-    \begin{center}
-      \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{mcmcNuisance.eps} % width=\maxwidth,
-    \end{center}
-  \end{figure}
-}
-\frame{\frametitle{Request 4 - slide 6}
-  MCMC chain = 24,000,000 with 1998 samples.\\
-  \begin{figure}[p]
-    \vspace{-5mm}
-    \begin{center}
-      \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{pairs1.eps} % width=\maxwidth,
-    \end{center}
-  \end{figure}
-}
-
-%% \frame{\frametitle{Selectivity at age by year}
-%%   \begin{columns}
-%%     \begin{column}{0.28\textwidth}
-%%       \bi
-%%         \item Age 1 selectivity is very small
-%%         \item Ranges from 0.00328--0.00810
-%%         \bi
-%%           \item 0.00810 in 2011
-%%           \item 0.00588 in 2015
-%%         \ei
-%%       \ei
-%%     \end{column}
-%%     \begin{column}{0.68\textwidth}
-%%     \bc
-%% %    #layout(matrix(c(1,1,2),ncol=1))
-%%     <<request1a, fig.height=4, out.width='0.6\\columnwidth'>>=
-%%       oldpar <- par(mar=c(4,4,1,1))
-%%       selexByAge(base.model, start.yr=1990, tv.end.yr=2015,ages=1:5)
-%%       par(oldpar)
-%%     @
-%%     <<request1b, fig.height=3, out.width='0.6\\columnwidth'>>=
-%%       oldpar <- par(mar=c(4,4,1,1))
-%%       selexByAge(base.model, start.yr=1990, tv.end.yr=2015,ages=1:5,ylims=c(0,0.03))
-%%       par(oldpar)
-%%     @
-%%     \ec
-%%     \end{column}
-%%   \end{columns}
-%% }
-
-%% \section{Request 2}
-%% \subsection{}
-%% \frame{\frametitle{Request 2}
-%%   Supply fishery age compositions by fleet and year\\
-%%   \medskip
-%%   {\bf Rationale:} Provide fleet specific data for AP to investigate. \\
-%%   \medskip \bigskip
-%%   Uploaded file to Google drive.
-%% }
-
-
-
-%% \section{Request 3}
-%% \subsection{}
-%% \frame{\frametitle{Request 3}
-%%   Add a constant catch of 500,000 t to the decision and risk tables\\
-%%   \medskip
-%%   {\bf Rationale:} An additional catch level for consideration.
-%% }
-
-%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% \subsection{Quantiles}
-%% \frame{\frametitle{Spawning Biomass}
-%% \begin{columns}
-%%   \begin{column}{0.38\textwidth}
-%%     \bi
-%%       \item
-%%     \ei
-%%   \end{column}
-%%   \begin{column}{0.59\textwidth}
-%%   <<decisions.biomass.table, results='asis', echo=FALSE>>=
-%%     make.decision.table.pres(base.model,
-%%                              model.inds = fore.inds,
-%%                              xcaption = NULL,
-%%                              xlabel = "tab:es-decisions-spr",
-%%                              font.size = 9,
-%%                              space.size = 11,
-%%                              which = "biomass",
-%%                              placement = "h")
-%% @
-
-%%   \end{column}
-%% \end{columns}
-%% }
-
-
-%% \frame{\frametitle{Fishing intensity}
-%% \begin{columns}
-%%   \begin{column}{0.38\textwidth}
-%%     \bi
-%%       \item
-%%     \ei
-%%   \end{column}
-%%   \begin{column}{0.59\textwidth}
-%%   <<decisions.spr.table, results='asis', echo=FALSE>>=
-%%     make.decision.table.pres(base.model,
-%%                              model.inds = fore.inds,
-%%                              xcaption = NULL,
-%%                              xlabel = "tab:es-decisions-spr",
-%%                              font.size = 9,
-%%                              space.size = 11,
-%%                              which = "spr",
-%%                              placement = "h")
-%% @
-
-%%   \end{column}
-%% \end{columns}
-%% }
-
-%% %--------------------------------------------------------------
-%% %\subsection{Fixed 2016 catch}
-%% \frame{\frametitle{Risk based on fixed 2016 catch}
-%%     <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
-%%       make.risk.table(base.model,
-%%                       forecast.yrs,
-%%                       index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-%%                       xcaption = NULL,
-%%                       font.size = 11,
-%%                       space.size = 11)
-%%     @
-%% }
-
-%% %--------------------------------------------------------------
-
-%% \frame{\frametitle{Risk based on fixed 2016 catch (plot)}
-%%   \bc
-%%     <<forecast.risk.comparison.plot.year.1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
-%%       make.forecast.risk.comparison.plot(base.model,
-%%                                          forecast.yrs = forecast.yrs,
-%%                                          fore.yr = forecast.yrs[1],
-%%                                          colors = c("black","blue","green","orange","red","tan"),
-%%                                          pch = c(16,17,17,17,15,18),
-%%                                          legend.loc = "topleft",
-%%                                          legend.cex = 0.8)
-
-%%     @
-%%   \ec
-%% }
-
-%% %--------------------------------------------------------------
-%% \frame{\frametitle{Risk based on fixed 2016 and 2017 catch}
-%%     <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
-%%       make.risk.table(base.model,
-%%                       forecast.yrs,
-%%                       index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-%%                       xcaption = NULL,
-%%                       font.size = 11,
-%%                       space.size = 11)
-%%     @
-%% }
-
-%% %--------------------------------------------------------------
-
-%% \frame{\frametitle{Risk based on fixed 2016 and 2017 catch (plot)}
-%%   \bc
-%%     <<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
-%%       make.forecast.risk.comparison.plot(base.model,
-%%                                          forecast.yrs = forecast.yrs,
-%%                                          fore.yr = forecast.yrs[2],
-%%                                          colors = c("black","blue","green","orange","red","tan"),
-%%                                          pch = c(16,17,17,17,15,18),
-%%                                          legend.loc = "topleft",
-%%                                          legend.cex = 0.7)
-
-%%     @
-%%   \ec
-%% }
-
-
-%% \section{????}
-%% \subsection{}
-%% \frame{\frametitle{EXTRA}
-%% }
-
-%% \frame{\frametitle{Likelihoods when fitting to age-1 index}
-%% \begin{columns}
-%%   \begin{column}{0.38\textwidth}
-%%     \bi
-%%       \item Insignificant change in fits to age compositions and 2+ survey 
-%%     \ei
-%%   \end{column}
-%%   \begin{column}{0.59\textwidth}
-%%     \begin{table}[h]
-%%     \centering
-%%     {\fontsize{9}{11}\selectfont
-%%     \begin{tabular}{|l|cc|}
-%%     \hline
-%%      Likelihood & Base & with age-1 \\ \hline
-%%      2+ Survey  & -5.22123  &  -5.42076 \\
-%%      Age comps  & 132.062   &  132.314\\ \hline
-%%      Sub-Total  & 126.8408  &  126.8932 \\
-%%     \hline 
-%%     \end{tabular}
-%%     }
-%%     \end{table}
-%%   \end{column}
-%% \end{columns}
-%% }
-
-
-%% \frame{\frametitle{EXTRA2}
-%% }
-
-%% \frame{\frametitle{Ratio between R0 and B0}
-%% \begin{columns}
-%%   \begin{column}{0.38\textwidth}
-%%     \bi
-%%       \item ln(R0)*1000 was reported, not R0
-%%     \ei
-%%   \end{column}
-%%   \begin{column}{0.59\textwidth}
-%%     \begin{table}[h]
-%%     \centering
-%%     {\fontsize{9}{11}\selectfont
-%%     \begin{tabular}{|l|ccc|}
-%%     \hline
-%%      Parameter & Base &  $\sigma_R=1$ & $\sigma_R=2$ \\ \hline
-%%      M         & 0.215     & 0.209     & 0.224      \\
-%%      R0        & 2,665,761 & 1,830,317 & 6,524,011  \\
-%%      B0        & 2,227     & 1,601     & 5,040      \\ \hline
-%%      Ratio     & 1,197     & 1,143     & 1,294      \\
-%%     \hline 
-%%     \end{tabular}
-%%     }
-%%     \end{table}
-%%   \end{column}
-%% \end{columns}
-%% }
-
-
 
 \end{document}
 
