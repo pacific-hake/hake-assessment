@@ -414,40 +414,8 @@ source("custom-knitr-variables.r")
 
 %--------------------------------------------------------------
 
-\frame{\frametitle{Residuals with maximum age of selectivity set to 5}
-  \bc
-  <<app.srg.age.comp.pearson.sens.1, fig.height=3.8, fig.width=6>>=
-    make.age.comp.pearson.plot(sens.models.3[[1]])
-  @
-  \ec
-}
-
-%--------------------------------------------------------------
-
-\frame{\frametitle{Residuals with maximum age of selectivity set to 6 (base model)}
-  \bc
-  \includegraphics[width=6in]{../../../doc/knitr-cache/main_age_comp_pearson-1}
-  \ec
-}
-
-%--------------------------------------------------------------
-
-\frame{\frametitle{Residuals with maximum age of selectivity set to 7}
-  \bc
-  <<app.srg.age.comp.pearson.sens.2, fig.height=3.8, fig.width=6>>=
-    make.age.comp.pearson.plot(sens.models.3[[2]])
-  @
-  \ec
-}
-
-%--------------------------------------------------------------
-
-\frame{\frametitle{Residuals with maximum age of selectivity set to 10}
-  \bc
-  <<app.srg.age.comp.pearson.sens.3, fig.height=3.8, fig.width=6>>=
-    make.age.comp.pearson.plot(sens.models.3[[3]])
-  @
-  \ec
+\frame{\frametitle{Residuals with maximum age of selectivity set to 5, 6, 7 and
+    10 - see updated document}
 }
 
 \end{document}
