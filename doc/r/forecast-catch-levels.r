@@ -13,7 +13,7 @@ forecast.probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 ## Each element of the list is a list of length equal to the
 ## number of elements in forcast.yrs.
 ## Constant catch values are somewhat arbitrary, but choosen to span a range
-##    given recent TACs (levels: 01, 02, 03, 05)
+##    given recent TACs (levels: 01, 02, 03, 05), and, for 2018, the previous year's catch
 ## Contant catch values set at the most recent TAC (level 04)
 ## Catches specific to particular situations (SPR100, Default HR, and Stable
 ##    catch) are manually solved for following forecast-find-decision-table.r
@@ -24,7 +24,7 @@ catch.levels <-
   list(list(rep(0.01, 3), "No Fishing", "01-0"),
        list(rep(180000, 3), "180,000 t", "02-180000"),
        list(rep(350000, 3), "350,000 t", "03-350000"),
-       list(rep(500000, 3), "500,000 t", "04-500000"),
+       list(rep(440000, 3), "2017 catch: 440,000 t", "04-440000"),
        list(rep(597500, 3), "2017 TAC: 597,500 t", "05-597500"),
        list(c(639000, 554000, 509000), "FI=100%", "06-spr-100"),
        list(c(725984, 600991, 538263), "Default Harvest Policy", "07-default-hr"),
