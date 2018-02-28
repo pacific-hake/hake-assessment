@@ -879,9 +879,8 @@ fetch.extra.mcmc <- function(model,
   sel.text2 <- paste0(model$endyr+1, "_1_sel*wt")
   natage.text <- "Z_AT_AGE_Annual_2 With_fishery"
 
-  ## Objects to store total biomass and age 2+ biomass (summary biomass)
+  ## Object to store total biomass
   Bio_all <- NULL
-  Bio_smry <- NULL
 
   ## loop over all report files to extract quantities
   for(irow in 1:num.reports){
@@ -933,7 +932,6 @@ fetch.extra.mcmc <- function(model,
     ts.end <- grep("^SPR_series", tmp) - 2 # final row
     ts <- read.table(rep.file, header=TRUE, skip=ts.start-1, nrows=ts.end - ts.start)
     Bio_all <- cbind(Bio_all, ts$Bio_all)
-    Bio_smry <- cbind(Bio_smry, ts$Bio_smry)
   }
 
   ## Make sure the number of rows matches the number of posteriors
@@ -1064,11 +1062,6 @@ fetch.extra.mcmc <- function(model,
   extra.mcmc$timeseries$Bio_all.0.025 <- apply(Bio_all, MARGIN = 1,
                                                FUN = quantile, probs = 0.025)
   extra.mcmc$timeseries$Bio_all.0.975 <- apply(Bio_all, MARGIN = 1,
-                                               FUN = quantile, probs = 0.975)
-  extra.mcmc$timeseries$Bio_smry <- apply(Bio_smry, MARGIN = 1, FUN = median)
-  extra.mcmc$timeseries$Bio_smry.0.025 <- apply(Bio_smry, MARGIN = 1,
-                                               FUN = quantile, probs = 0.025)
-  extra.mcmc$timeseries$Bio_smry.0.975 <- apply(Bio_smry, MARGIN = 1,
                                                FUN = quantile, probs = 0.975)
 
   message(curr.func.name, paste("Completed read of extra MCMC output."))

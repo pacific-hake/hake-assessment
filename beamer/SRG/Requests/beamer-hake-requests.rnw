@@ -344,6 +344,7 @@ SSplotComparisons(SSsummarize(c(list(base.model),
               \item use wt-at-age matrix (rather than vector of overall mean) along with new maturity ogive to calculate fecundity
               \item this results in fecundity being time-varying from 1975-2017
               \item use the mean wt-at-age from 1975-1979 to calculate fecundity for pre-1975 period (including equilibirum assumption)
+              \item use the mean wt-at-age from 2015-2017 to calculate fecundity for 2017 and onward
           \ei
      \item Compare alternative fecundity sensitivity model with base model:
           \bi
