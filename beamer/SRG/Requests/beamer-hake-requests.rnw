@@ -422,9 +422,11 @@ SSplotComparisons(SSsummarize(c(list(base.model),
     \item New ``Age-2+ biomass'' column in Tables 18 and 19 (pages 86-87).
     \item Fix to exploitation rate at age in Table 22 (page 90) -- now based on biomass
       at the start of the year rather than the middle of the year.
+    \item Likelihoods added to Tables 32-34 (pages 98-100).
     \item Figure 28 (selectivity uncertainties) corrected (page 125).
     \item Suggest removing `new approach for parameterizing time-varying selectivity' from one-page summary
       (and call it 'modified' elsewhere).
+    \item Point Conception added to Figure 1 map (page 101).
     \item Most of Trevor's typos.
     \item Further comments from Jaclyn.
   \end{itemize}      
