@@ -129,13 +129,56 @@ source("custom-knitr-variables.r")
  \end{itemize}
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Weight-at-age -- Relative spawning biomass}
+\begin{center}
+\vspace{-5pt}
+<<wtatage.figure>>=
+make.comparison.plot(
+  c(list(base.model),
+    sens.models.5[2]),
+  model.names = c("Base model",
+                  sens.model.names.5[2]),
+  subplots = 3,
+  end.yr = end.yr + 2)
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{$\sigma_r$ -- Relative spawning biomass}
+\begin{center}
+\vspace{-5pt}
+<<sigmar.figure>>=
+make.comparison.plot(
+  c(list(base.model),
+    sens.models.1[3],
+    sens.models.1[4]),
+  model.names = c("Base model",
+                  sens.model.names.1[3],
+                  sens.model.names.1[4]),
+  subplots = 3,
+  end.yr = end.yr)
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 %---------------------------------------------------------------
 
 \section[Request 2]{Request 2}
 \subsection{}
 
 \frame{\frametitle{Request 2}
- Show a table of likelihood components for sensitivity analyses (Dirichlet vs. Harmonic mean)
+ Show a table of likelihood components for sensitivity analyses (Dirichlet vs. Harmonic mean). Include:
+ \begin{itemize}
+   \item Base model
+   \item Sensitivity model
+   \item Likelihood contributions
+ \end{itemize}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%
