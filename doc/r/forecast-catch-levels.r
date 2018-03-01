@@ -40,7 +40,7 @@ alt.catch.levels <-
        list(rep(597500, 3), "2017 TAC: 597,500 t", "05-597500"),
        list(c(668000, 582000, 535000), "FI=100%", "06-spr-100"),
        list(c(583970, 517889, 473043), "Default Harvest Policy", "07-default-hr"),
-     **  list(c(626954, 626954, 556786), "Stable Catch", "08-stable-catch"))
+       list(c(531342, 531342, 477594), "Stable Catch", "08-stable-catch"))
 
 ## -----------------------------------------------------------------------------
 ## Indices for the forecasts list, which list items above are the TAC case and
