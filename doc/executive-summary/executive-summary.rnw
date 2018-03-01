@@ -918,20 +918,26 @@ related to fecundity:
 \begin{itemize}
   
    \item add time-varying fecundity by multiplying the weight-at-age matrix (rather than 
-   an overall mean weight-at-age vector as in the base model) and the new maturity ogive 
-   to get annual estimates of fecundity from 1975--2017;
-   \item set pre-1975 weight-at-age where empirical data are not available to the mean 
-   weight-at-age over 1975--1979;
-   \item set equilibrium weight-at-age conditions to the mean weight-at-age from 1975--1979; and
-   \item set forecast years (including 2017 due to current configurations in Stock Synthesis) 
-   weight-at-age to the mean weight-at-age over 2015--2017. 
-  
+     an overall mean weight-at-age vector as in the base model) and the new maturity ogive 
+     to get annual estimates of fecundity from 1975--2017;
+   \item set equilibrium and 1966-1974 fecundity (where empirical data are not available) 
+     to the product of maturity and mean weight-at-age over 1975--1979;
+   \item set forecast year fecundity (including 2017 due to current configurations in Stock Synthesis) 
+     weight-at-age to the product of maturity and mean weight-at-age over 2015--2017. 
+
 \end{itemize}
 
 Decision tables, reference points, probabilities associated with alternative
 forecast catch levels, and comparisons to the base model are presented for the 
 \altshort\ in Appendix~\ref{chap:srg-requests}. The difference between the results
 is predominantly due to the assumptions about equilibrium weight-at-age. 
+
+An inconsistency in this alternative model is that the the mean weight-at-age 
+across all years is still used for the calculation of
+stock biomass in the years outside the range with empirical data (1975--2017),
+rather than the short-term averages (1975--1979 or 2015--2017). A brief examination of
+the sensitivity of the alternative model to removing this inconsistency showed
+relatively little change to this difference.
 
 \enlargethispage{\baselineskip}
 
