@@ -329,7 +329,7 @@ make.risk.table(alt.base.model,
 \caption{A comparison of MCMC posterior median estimates and 95\% credibility
   intervals of relative spawning biomass for the base model (blue line) and the
   \altlong\ (red line). Relative spawning biomass (depletion) at the start of 2018 is estimated
-  to be 67\% for the base model and 41\% for the alternative model.}
+  to be 67\% for the base model and 41\% for the \altshort.}
 \label{fig:main-sens-alt-status}
 \end{figure}
 
@@ -352,7 +352,7 @@ make.risk.table(alt.base.model,
   {main-figures/CompareMCMC_tvFecund_ForCatch2018prob.eps}
 \end{center}
 \caption{Posterior estimates of 2018 forecast catch for the base model and the \altlong. The boxplot central tendency represents the posterior median (value reported at the top). Probability of 2018 stock status (relative spawning biomass) going below
-  B40\%, B20\%, and B10\% are also shown.}
+  $\Bforty$, $B_{20\%}$, and $\Bten$ are also shown.}
 \label{fig:main-sens-alt-status}
 \end{figure}
 
