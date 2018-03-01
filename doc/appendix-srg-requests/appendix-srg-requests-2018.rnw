@@ -92,7 +92,7 @@ make.age.comp.pearson.plot(sens.models.3[[3]])
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<phase.plot.alt, fig.height=5, fig.width=8>>=
+<<app.phase.plot.alt, fig.height=5, fig.width=8>>=
 make.phase.plot(alt.base.model,
                 start.yr = start.yr,
                 end.yr = end.yr,
@@ -108,7 +108,7 @@ make.phase.plot(alt.base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-<<reference.points.table.alt, results='asis', echo=FALSE>>=
+<<app.reference.points.table.alt, results='asis', echo=FALSE>>=
 make.reference.points.table(alt.base.model,
                             xcaption <- paste0("Summary of median and 95\\%
                              credibility intervals of equilibrium reference points
@@ -123,7 +123,7 @@ make.reference.points.table(alt.base.model,
 @
 
 
-<<decisions.biomass.table.alt, results='asis', echo=FALSE>>=
+<<app.decisions.biomass.table.alt, results='asis', echo=FALSE>>=
 make.decision.table(alt.base.model,
                     xcaption <- paste0("Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
@@ -149,7 +149,7 @@ make.decision.table(alt.base.model,
                     catch.levels = catch.levels.alt)
 @
 
-<<decisions.spr.table.alt, results='asis', echo=FALSE>>=
+<<app.decisions.spr.table.alt, results='asis', echo=FALSE>>=
 make.decision.table(alt.base.model,
                     xcaption <- paste0("Forecast quantiles of \\fishname\\
                      relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%})
@@ -170,7 +170,7 @@ make.decision.table(alt.base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<forecast.depletion.comparison.plot.alt, fig.height=5, fig.width=8>>=
+<<app.forecast.depletion.comparison.plot.alt, fig.height=5, fig.width=8>>=
 ## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those which will be plotted against each other
 models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
@@ -202,7 +202,7 @@ make.forecast.depletion.comparison.plot(alt.base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<forecast.risk.comparison.plot.year.1.alt, fig.height=5, fig.width=8>>=
+<<app.forecast.risk.comparison.plot.year.1.alt, fig.height=5, fig.width=8>>=
 make.forecast.risk.comparison.plot(alt.base.model,
                                    forecast.yrs = forecast.yrs,
                                    fore.yr = forecast.yrs[1],
@@ -224,7 +224,7 @@ make.forecast.risk.comparison.plot(alt.base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-<<risk.forecast.year.1.table.alt, results='asis', echo=FALSE>>=
+<<app.risk.forecast.year.1.table.alt, results='asis', echo=FALSE>>=
 make.risk.table(alt.base.model,
                 forecast.yrs,
                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
@@ -243,7 +243,7 @@ make.risk.table(alt.base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<forecast.risk.comparison.plot.year.2.alt, fig.height=5, fig.width=8>>=
+<<app.forecast.risk.comparison.plot.year.2.alt, fig.height=5, fig.width=8>>=
 make.forecast.risk.comparison.plot(alt.base.model,
                                    forecast.yrs = forecast.yrs,
                                    fore.yr = forecast.yrs[2],
@@ -265,7 +265,7 @@ directly from model output and lines interpolate between the points.}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-<<risk.forecast.year.2.table.alt, results='asis', echo=FALSE>>=
+<<app.risk.forecast.year.2.table.alt, results='asis', echo=FALSE>>=
 make.risk.table(alt.base.model,
                 forecast.yrs,
                 index = 2, ## Index in models[[]]$risks to use, e.g.
