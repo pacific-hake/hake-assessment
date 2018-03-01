@@ -288,7 +288,7 @@ make.risk.table(alt.base.model,
 \includegraphics[width=\maxwidth, height=3.5in]
   {main-figures/compare2_spawnbio_uncertainty.eps}
 \end{center}
-\caption{Caption here...}
+\caption{A comparison of MCMC posterior median estimates and 95\% credibility intervals of spawning biomass for the base model (blue line) and the alternative time-varying fecundity model (red line)}
 \label{fig:main-sens-alt-trend}
 \end{figure}
 
@@ -299,7 +299,7 @@ make.risk.table(alt.base.model,
 \includegraphics[width=\maxwidth, height=3.5in]
   {main-figures/compare4_Bratio_uncertainty.eps}
 \end{center}
-\caption{Caption here...}
+\caption{A comparison of MCMC posterior median estimates and 95\% credibility intervals of relative spawning biomass for the base model (blue line) and the alternative time-varying fecundity model (red line)}
 \label{fig:main-sens-alt-status}
 \end{figure}
 
@@ -310,7 +310,7 @@ make.risk.table(alt.base.model,
 \includegraphics[width=\maxwidth, height=3.5in]
   {main-figures/compare10_recdevs_uncertainty.eps}
 \end{center}
-\caption{Caption here...}
+\caption{A comparison of MCMC posterior median estimates and 95\% credibility intervals of recruitment deviations for the base model (blue line) and the alternative time-varying fecundity model (red line)}
 \label{fig:main-sens-alt-status}
 \end{figure}
 
@@ -318,10 +318,10 @@ make.risk.table(alt.base.model,
 
 \begin{figure}[tbp]
 \begin{center}
-\includegraphics[width=\maxwidth, height=3.5in]
+\includegraphics[width=\maxwidth, height=5in]
   {main-figures/CompareMCMC_tvFecund_ForCatch2018prob.eps}
 \end{center}
-\caption{Caption here...}
+\caption{Posterior estimates of 2018 forecast catch for the base model and the alternative time-varying fecundity model.  The boxplot central tendency represents the posterior median (value reported at the top). Probability of 2018 stock status (relative spawning biomass) going below B40\%, B20\%, adn B10\% are also shown.}
 \label{fig:main-sens-alt-status}
 \end{figure}
 
