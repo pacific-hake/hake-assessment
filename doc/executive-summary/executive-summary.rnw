@@ -911,6 +911,27 @@ the spawning biomass as they mature and increase in weight.
 %  catch levels. (Table~\ref{tab:es-risk-year-1} and
 %  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % Manual 2018 done above.
+During the 2018 Scientific Review Group meeting (SRG), an additional sensitivity model was
+evaluated at the request of the SRG that resulted in a plausible alternative to the 
+base model.  This alternative model includes the following changes from the base model
+related to fecundity:
+
+\begin{itemize}
+  
+   \item add time-varying fecundity by multiplying the weight-at-age matrix (rather than 
+   an overall mean weight-at-age vector as in the base model) and the new maturity ogive 
+   to get annual estimates of fecundity from 1975--2017;
+   \item set pre-1975 weight-at-age where empirical data are not available to the mean 
+   weight-at-age over 1975--1979;
+   \item set equilibrium weight-at-age conditions to the mean weight-at-age from 1975--1979; and
+   \item set forecast year (including 2017 due to current configurations in Stock Synthesis) 
+   weight-at-age to the mean weight-at-age over 2015--2017. 
+  
+\end{itemize}
+
+Decision tables, reference points, probabilities associated with alternative
+forecast catch levels, and comparisons to the base model are presented for the 
+alternative model in Appendix~\ref{chap:srg-requests}. 
 \enlargethispage{\baselineskip}
 
 \subsection*{Research and data needs} \label{sec:es-research-data-needs}
