@@ -7,7 +7,6 @@
 This appendix contains results requested at the
 Scientific Review Group meeting held from 26th February to 1st
 March 2018 in Lynnwood, WA, USA.
-% Use appendix-srg-requests.rnw as a template, which was for 2017.
 
 \section{Residuals for sensitivity runs with different maximum age of selectivity}
 
@@ -109,14 +108,14 @@ some results from the \altshort\ to those of the based model run.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<app.phase.plot.alt, fig.height=5, fig.width=8>>=
+<<phase.plot.alt, fig.height=5, fig.width=8>>=
 make.phase.plot(alt.base.model,
                 start.yr = start.yr,
                 end.yr = end.yr,
                 color = "blue")
 @
 \end{center}
-\caption{For the \altshort, estimated historical path followed by medians of relative fishing
+\caption{Estimated historical path followed by medians of relative fishing
          intensity and relative spawning biomass for \fishname\ with labels on the
          start and end years (and 1999). Gray bars span the 95\% credibility
          intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical) and
@@ -125,10 +124,11 @@ make.phase.plot(alt.base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-<<app.reference.points.table.alt, results='asis', echo=FALSE>>=
+<<reference.points.table.alt, results='asis', echo=FALSE>>=
 make.reference.points.table(alt.base.model,
-                            xcaption <- paste0("For the \\altshort, summary of median and 95\\%
-                             credibility intervals of equilibrium reference points.
+                            xcaption <- paste0("Summary of median and 95\\%
+                             credibility intervals of equilibrium reference points
+                             for the \\fishname\\ time-varying fecundity assessment model.
                              Equilibrium reference points were computed using ",
                              start.yr,"--",end.yr-1," averages for mean
                              size-at-age and selectivity-at-age."),
@@ -139,9 +139,9 @@ make.reference.points.table(alt.base.model,
 @
 
 
-<<app.decisions.biomass.table.alt, results='asis', echo=FALSE>>=
+<<decisions.biomass.table.alt, results='asis', echo=FALSE>>=
 make.decision.table(alt.base.model,
-                    xcaption <- paste0("For the \\altshort, forecast quantiles of \\fishname\\
+                    xcaption <- paste0("Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
                      catch levels (rows a, b, c, d, e), including
@@ -150,7 +150,7 @@ make.decision.table(alt.base.model,
                      min(forecast.yrs)-1," (row e), the catch values that result
                      in a median relative fishing intensity of 100\\% (row f),
                      the median values estimated via the default harvest policy
-                     (\\Ffortyten) (row g), and the fishing
+                     (\\Ffortyten) for the time-varying fecundity model (row g), and the fishing
                      intensity that results in a 50\\% probability that the median
                      projected catch will remain the same in ",min(forecast.yrs),
                      " and ",min(forecast.yrs)+1," (row h).
@@ -161,13 +161,12 @@ make.decision.table(alt.base.model,
                     font.size = 12,
                     space.size = 14,
                     type = "biomass",
-                    placement = "tbp",
-                    catch.levels = alt.catch.levels)
+                    placement = "tbp")
 @
 
-<<app.decisions.spr.table.alt, results='asis', echo=FALSE>>=
+<<decisions.spr.table.alt, results='asis', echo=FALSE>>=
 make.decision.table(alt.base.model,
-                    xcaption <- paste0("For the \\altshort, forecast quantiles of \\fishname\\
+                    xcaption <- paste0("Forecast quantiles of \\fishname\\
                      relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%})
                      for the ",min(forecast.yrs),"--",max(forecast.yrs)," catch
                      alternatives presented in
@@ -179,18 +178,17 @@ make.decision.table(alt.base.model,
                     font.size = 12,
                     space.size = 14,
                     type = "spr",
-                    placement = "tbp",
-                    catch.levels = alt.catch.levels)
+                    placement = "tbp")
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<app.forecast.depletion.comparison.plot.alt, fig.height=5, fig.width=8>>=
+<<forecast.depletion.comparison.plot.alt, fig.height=5, fig.width=8>>=
 ## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those which will be plotted against each other
 models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
-models.names <- sapply(alt.catch.levels, "[[", 2)[models.inds]
+models.names <- sapply(catch.levels, "[[", 2)[models.inds]
                        ## pretty catch level name
 make.forecast.depletion.comparison.plot(alt.base.model,
                                         models.inds,
@@ -201,8 +199,8 @@ make.forecast.depletion.comparison.plot(alt.base.model,
                                         legend.loc = "topleft")
 @
 \end{center}
-\caption{For the \altshort, time series of estimated relative spawning biomass to \Sexpr{end.yr}
-         and forecast trajectories to
+\caption{Time series of estimated relative spawning biomass to \Sexpr{end.yr}
+         from the time-varying fecundity model, and forecast trajectories to
          \Sexpr{forecast.yrs[length(forecast.yrs)]} for several management actions
          defined in Table~\ref{tab:decisions-biomass-alt} (grey region), with 95\%
          posterior credibility intervals.}
@@ -218,7 +216,7 @@ make.forecast.depletion.comparison.plot(alt.base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<app.forecast.risk.comparison.plot.year.1.alt, fig.height=5, fig.width=8>>=
+<<forecast.risk.comparison.plot.year.1.alt, fig.height=5, fig.width=8>>=
 make.forecast.risk.comparison.plot(alt.base.model,
                                    forecast.yrs = forecast.yrs,
                                    fore.yr = forecast.yrs[1],
@@ -229,7 +227,7 @@ make.forecast.risk.comparison.plot(alt.base.model,
                                    legend.cex = 0.7)
 @
 \end{center}
-\caption{For the \altshort, graphical representation of the probabilities related to spawning
+\caption{Graphical representation of the probabilities related to spawning
          biomass, relative fishing intensity, and the \Sexpr{end.yr+1} default
          harvest policy catch for alternative \Sexpr{end.yr} catch options (catch
          options explained in Table~\ref{tab:decisions-biomass-alt}) as listed in
@@ -240,12 +238,12 @@ make.forecast.risk.comparison.plot(alt.base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-<<app.risk.forecast.year.1.table.alt, results='asis', echo=FALSE>>=
+<<risk.forecast.year.1.table.alt, results='asis', echo=FALSE>>=
 make.risk.table(alt.base.model,
                 forecast.yrs,
                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
                            ##  forecast year 2 compared to forecast year 1
-                xcaption <- paste0("For the \\altshort, probabilities related to spawning biomass,
+                xcaption <- paste0("Probabilities related to spawning biomass,
                              relative fishing intensity, and the ",end.yr+1,
                              " default harvest policy catch for alternative ",
                              end.yr," catch options (catch options explained in
@@ -259,7 +257,7 @@ make.risk.table(alt.base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<app.forecast.risk.comparison.plot.year.2.alt, fig.height=5, fig.width=8>>=
+<<forecast.risk.comparison.plot.year.2.alt, fig.height=5, fig.width=8>>=
 make.forecast.risk.comparison.plot(alt.base.model,
                                    forecast.yrs = forecast.yrs,
                                    fore.yr = forecast.yrs[2],
@@ -270,7 +268,7 @@ make.forecast.risk.comparison.plot(alt.base.model,
                                    legend.cex = 0.7)
 @
 \end{center}
-\caption{For the \altshort, graphical representation of the probabilities related to spawning
+\caption{Graphical representation of the probabilities related to spawning
 biomass, relative fishing intensity, and the \Sexpr{end.yr+2} default harvest
 policy catch for alternative \Sexpr{end.yr+1} catch options (including
 associated \Sexpr{end.yr} catch; catch options explained in
@@ -281,12 +279,12 @@ directly from model output and lines interpolate between the points.}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-<<app.risk.forecast.year.2.table.alt, results='asis', echo=FALSE>>=
+<<risk.forecast.year.2.table.alt, results='asis', echo=FALSE>>=
 make.risk.table(alt.base.model,
                 forecast.yrs,
                 index = 2, ## Index in models[[]]$risks to use, e.g.
                            ##  1 means forecast year 2 compared to forecast year 1
-                xcaption <- paste0("For the \\altshort, probabilities related to spawning biomass,
+                xcaption <- paste0("Probabilities related to spawning biomass,
                  relative fishing intensity, and the ",end.yr+2," default harvest
                  policy catch for alternative ",end.yr+1," catch options, given
                  the ",end.yr," catch level shown in
@@ -304,7 +302,7 @@ make.risk.table(alt.base.model,
 \includegraphics[width=\maxwidth, height=3.5in]
   {main-figures/compare2_spawnbio_uncertainty.eps}
 \end{center}
-\caption{A comparison of MCMC posterior median estimates and 95\% credibility intervals of spawning biomass for the base model (blue line) and the \altlong\ (red line)}
+\caption{A comparison of MCMC posterior median estimates and 95\% credibility intervals of spawning biomass for the base model (blue line) and the alternative time-varying fecundity model (red line).}
 \label{fig:main-sens-alt-trend}
 \end{figure}
 
@@ -315,7 +313,7 @@ make.risk.table(alt.base.model,
 \includegraphics[width=\maxwidth, height=3.5in]
   {main-figures/compare4_Bratio_uncertainty.eps}
 \end{center}
-\caption{A comparison of MCMC posterior median estimates and 95\% credibility intervals of relative spawning biomass for the base model (blue line) and the \altlong\ (red line)}
+\caption{A comparison of MCMC posterior median estimates and 95\% credibility intervals of relative spawning biomass for the base model (blue line) and the alternative time-varying fecundity model (red line). Relative spawning biomass (depletion) at the start of 2018 is estimated to be 67\% for the base model and 41\% for the alternative model.}
 \label{fig:main-sens-alt-status}
 \end{figure}
 
@@ -326,7 +324,7 @@ make.risk.table(alt.base.model,
 \includegraphics[width=\maxwidth, height=3.5in]
   {main-figures/compare10_recdevs_uncertainty.eps}
 \end{center}
-\caption{A comparison of MCMC posterior median estimates and 95\% credibility intervals of recruitment deviations for the base model (blue line) and the \altlong\ (red line)}
+\caption{A comparison of MCMC posterior median estimates and 95\% credibility intervals of recruitment deviations for the base model (blue line) and the alternative time-varying fecundity model (red line). }
 \label{fig:main-sens-alt-status}
 \end{figure}
 
@@ -337,6 +335,7 @@ make.risk.table(alt.base.model,
 \includegraphics[width=\maxwidth, height=5in]
   {main-figures/CompareMCMC_tvFecund_ForCatch2018prob.eps}
 \end{center}
+
 \caption{Posterior estimates of 2018 forecast catch for the base model and the \altlong. The boxplot central tendency represents the posterior median (value reported at the top). Probability of 2018 stock status (relative spawning biomass) going below 
   B40\%, B20\%, and B10\% are also shown.}
 \label{fig:main-sens-alt-status}
