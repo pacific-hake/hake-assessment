@@ -38,7 +38,7 @@ alt.catch.levels <-
        list(rep(350000, 3), "350,000 t", "03-350000"),
        list(rep(440000, 3), "2017 catch: 440,000 t", "04-440000"),
        list(rep(597500, 3), "2017 TAC: 597,500 t", "05-597500"),
-     **  list(c(639000, 554000, 509000), "FI=100%", "06-spr-100"),
+       list(c(668000, 582000, 535000), "FI=100%", "06-spr-100"),
        list(c(583970, 517889, 473043), "Default Harvest Policy", "07-default-hr"),
      **  list(c(626954, 626954, 556786), "Stable Catch", "08-stable-catch"))
 
