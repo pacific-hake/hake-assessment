@@ -146,7 +146,7 @@ make.decision.table(alt.base.model,
                     space.size = 14,
                     type = "biomass",
                     placement = "tbp",
-                    catch.levels = catch.levels.alt)
+                    catch.levels = alt.catch.levels)
 @
 
 <<app.decisions.spr.table.alt, results='asis', echo=FALSE>>=
@@ -164,7 +164,7 @@ make.decision.table(alt.base.model,
                     space.size = 14,
                     type = "spr",
                     placement = "tbp",
-                    catch.levels = catch.levels.alt)
+                    catch.levels = alt.catch.levels)
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -174,7 +174,7 @@ make.decision.table(alt.base.model,
 ## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those which will be plotted against each other
 models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
-models.names <- sapply(catch.levels, "[[", 2)[models.inds]
+models.names <- sapply(alt.catch.levels, "[[", 2)[models.inds]
                        ## pretty catch level name
 make.forecast.depletion.comparison.plot(alt.base.model,
                                         models.inds,
