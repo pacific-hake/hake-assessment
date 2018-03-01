@@ -117,7 +117,7 @@ make.median.posterior.table(
   space.size = 10)
 @
 
-%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% 
 \begin{figure}[H]
 \begin{center}
 <<app.phase.plot.alt, fig.height=5, fig.width=8>>=
@@ -127,7 +127,7 @@ make.phase.plot(alt.base.model,
                 color = "blue")
 @
 \end{center}
-\caption{Estimated historical path followed by medians of relative fishing
+\caption{For the \altshort, estimated historical path followed by medians of relative fishing
          intensity and relative spawning biomass for \fishname\ with labels on the
          start and end years (and 1999). Gray bars span the 95\% credibility
          intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical) and
@@ -138,9 +138,8 @@ make.phase.plot(alt.base.model,
 
 <<app.reference.points.table.alt, results='asis', echo=FALSE>>=
 make.reference.points.table(alt.base.model,
-                            xcaption <- paste0("Summary of median and 95\\%
-                             credibility intervals of equilibrium reference points
-                             for the \\fishname\\ time-varying fecundity assessment model.
+                            xcaption <- paste0("For the \\altshort, summary of median and 95\\%
+                             credibility intervals of equilibrium reference points.
                              Equilibrium reference points were computed using ",
                              start.yr,"--",end.yr-1," averages for mean
                              size-at-age and selectivity-at-age."),
@@ -153,7 +152,7 @@ make.reference.points.table(alt.base.model,
 
 <<app.decisions.biomass.table.alt, results='asis', echo=FALSE>>=
 make.decision.table(alt.base.model,
-                    xcaption <- paste0("Forecast quantiles of \\fishname\\
+                    xcaption <- paste0("For the \\altshort, forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
                      catch levels (rows a, b, c, d, e), including
@@ -162,7 +161,7 @@ make.decision.table(alt.base.model,
                      min(forecast.yrs)-1," (row e), the catch values that result
                      in a median relative fishing intensity of 100\\% (row f),
                      the median values estimated via the default harvest policy
-                     (\\Ffortyten) for the time-varying fecundity model (row g), and the fishing
+                     (\\Ffortyten) (row g), and the fishing
                      intensity that results in a 50\\% probability that the median
                      projected catch will remain the same in ",min(forecast.yrs),
                      " and ",min(forecast.yrs)+1," (row h).
@@ -179,7 +178,7 @@ make.decision.table(alt.base.model,
 
 <<app.decisions.spr.table.alt, results='asis', echo=FALSE>>=
 make.decision.table(alt.base.model,
-                    xcaption <- paste0("Forecast quantiles of \\fishname\\
+                    xcaption <- paste0("For the \\altshort, forecast quantiles of \\fishname\\
                      relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%})
                      for the ",min(forecast.yrs),"--",max(forecast.yrs)," catch
                      alternatives presented in
@@ -213,8 +212,8 @@ make.forecast.depletion.comparison.plot(alt.base.model,
                                         legend.loc = "topleft")
 @
 \end{center}
-\caption{Time series of estimated relative spawning biomass to \Sexpr{end.yr}
-         from the time-varying fecundity model, and forecast trajectories to
+\caption{For the \\altshort, time series of estimated relative spawning biomass to \Sexpr{end.yr}
+         and forecast trajectories to
          \Sexpr{forecast.yrs[length(forecast.yrs)]} for several management actions
          defined in Table~\ref{tab:decisions-biomass-alt} (grey region), with 95\%
          posterior credibility intervals.}
@@ -241,7 +240,7 @@ make.forecast.risk.comparison.plot(alt.base.model,
                                    legend.cex = 0.7)
 @
 \end{center}
-\caption{Graphical representation of the probabilities related to spawning
+\caption{For the \altshort, graphical representation of the probabilities related to spawning
          biomass, relative fishing intensity, and the \Sexpr{end.yr+1} default
          harvest policy catch for alternative \Sexpr{end.yr} catch options (catch
          options explained in Table~\ref{tab:decisions-biomass-alt}) as listed in
@@ -257,7 +256,7 @@ make.risk.table(alt.base.model,
                 forecast.yrs,
                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
                            ##  forecast year 2 compared to forecast year 1
-                xcaption <- paste0("Probabilities related to spawning biomass,
+                xcaption <- paste0("For the \\altshort, probabilities related to spawning biomass,
                              relative fishing intensity, and the ",end.yr+1,
                              " default harvest policy catch for alternative ",
                              end.yr," catch options (catch options explained in
@@ -282,7 +281,7 @@ make.forecast.risk.comparison.plot(alt.base.model,
                                    legend.cex = 0.7)
 @
 \end{center}
-\caption{Graphical representation of the probabilities related to spawning
+\caption{For the \altshort, graphical representation of the probabilities related to spawning
 biomass, relative fishing intensity, and the \Sexpr{end.yr+2} default harvest
 policy catch for alternative \Sexpr{end.yr+1} catch options (including
 associated \Sexpr{end.yr} catch; catch options explained in
@@ -298,7 +297,7 @@ make.risk.table(alt.base.model,
                 forecast.yrs,
                 index = 2, ## Index in models[[]]$risks to use, e.g.
                            ##  1 means forecast year 2 compared to forecast year 1
-                xcaption <- paste0("Probabilities related to spawning biomass,
+                xcaption <- paste0("For the \\altshort, probabilities related to spawning biomass,
                  relative fishing intensity, and the ",end.yr+2," default harvest
                  policy catch for alternative ",end.yr+1," catch options, given
                  the ",end.yr," catch level shown in
