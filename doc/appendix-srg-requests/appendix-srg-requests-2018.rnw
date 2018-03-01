@@ -92,11 +92,11 @@ make.age.comp.pearson.plot(sens.models.3[[3]])
 
 During the 2018 Scientific Review Group (SRG) meeting, the SRG requested an additional
 model run. This \altshort\ includes changes related to fecundity, as described
-in the Executive Summary. For this \altshort\, the following figures and tables 
-are the equivalent to those for the based model run presented in the 
+in the Executive Summary. For this \altshort\, the following figures and tables
+are the equivalent to those for the based model run presented in the
 Executive Summary.
 
-For the \altshort\, there is an estimated 
+For the \altshort\, there is an estimated
 16.4\% joint probability of being both above the target relative fishing intensity
 in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at
 the start of \Sexpr{end.yr}.
@@ -147,7 +147,8 @@ make.reference.points.table(alt.base.model,
                             xlabel <- "tab:reference-points-alt",
                             font.size = 12,
                             space.size = 14,
-                            placement = "tbp")
+                            placement = "tbp",
+                            catch.levels = alt.catch.levels)
 @
 
 
@@ -173,7 +174,8 @@ make.decision.table(alt.base.model,
                     font.size = 12,
                     space.size = 14,
                     type = "biomass",
-                    placement = "tbp")
+                    placement = "tbp",
+                    catch.levels = alt.catch.levels)
 @
 
 <<decisions.spr.table.alt, results='asis', echo=FALSE>>=
@@ -200,7 +202,7 @@ make.decision.table(alt.base.model,
 ## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those which will be plotted against each other
 models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
-models.names <- sapply(catch.levels, "[[", 2)[models.inds]
+models.names <- sapply(alt.catch.levels, "[[", 2)[models.inds]
                        ## pretty catch level name
 make.forecast.depletion.comparison.plot(alt.base.model,
                                         models.inds,
@@ -348,7 +350,7 @@ make.risk.table(alt.base.model,
   {main-figures/CompareMCMC_tvFecund_ForCatch2018prob.eps}
 \end{center}
 
-\caption{Posterior estimates of 2018 forecast catch for the base model and the \altlong. The boxplot central tendency represents the posterior median (value reported at the top). Probability of 2018 stock status (relative spawning biomass) going below 
+\caption{Posterior estimates of 2018 forecast catch for the base model and the \altlong. The boxplot central tendency represents the posterior median (value reported at the top). Probability of 2018 stock status (relative spawning biomass) going below
   B40\%, B20\%, and B10\% are also shown.}
 \label{fig:main-sens-alt-status}
 \end{figure}
