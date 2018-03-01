@@ -30,8 +30,21 @@ catch.levels <-
        list(c(725984, 600991, 538263), "Default Harvest Policy", "07-default-hr"),
        list(c(626954, 626954, 556786), "Stable Catch", "08-stable-catch"))
 
+## This is for the alternative 2018 MCMC run in Appendix A, from
+##   forecast-find-decision-table-alt.r
 ## -----------------------------------------------------------------------------
-## Indicies for the forecasts list, which list items above are the TAC case and
+alt.catch.levels <-
+  list(list(rep(0.01, 3), "No Fishing", "01-0"),
+       list(rep(180000, 3), "180,000 t", "02-180000"),
+       list(rep(350000, 3), "350,000 t", "03-350000"),
+       list(rep(440000, 3), "2017 catch: 440,000 t", "04-440000"),
+       list(rep(597500, 3), "2017 TAC: 597,500 t", "05-597500"),
+       list(c(668000, 582000, 535000), "FI=100%", "06-spr-100"),
+       list(c(583970, 517889, 473043), "Default Harvest Policy", "07-default-hr"),
+       list(c(531342, 531342, 477594), "Stable Catch", "08-stable-catch"))
+
+## -----------------------------------------------------------------------------
+## Indices for the forecasts list, which list items above are the TAC case and
 ##  default policy case
 ## This is used in the one-page summary and a plot comparing several catch cases
 ## -----------------------------------------------------------------------------
