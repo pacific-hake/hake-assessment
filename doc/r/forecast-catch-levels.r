@@ -30,7 +30,8 @@ catch.levels <-
        list(c(725984, 600991, 538263), "Default Harvest Policy", "07-default-hr"),
        list(c(626954, 626954, 556786), "Stable Catch", "08-stable-catch"))
 
-## This is for the alternative 2018 MCMC run in Appendix A.
+## This is for the alternative 2018 MCMC run in Appendix A, from
+##   forecast-find-decision-table-alt.r
 ## -----------------------------------------------------------------------------
 alt.catch.levels <-
   list(list(rep(0.01, 3), "No Fishing", "01-0"),
