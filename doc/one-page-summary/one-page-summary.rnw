@@ -17,8 +17,7 @@ in \Sexpr{survey.end.yr}, fishery catch and age-composition data from \Sexpr{end
 weight-at-age data for \Sexpr{last.data.yr}, and calculation of a new age-based
 maturity ogive.
 
-  \item The model was updated to include new approaches for weighting age-composition data
-    and for parameterizing time-varying selectivity.
+  \item The model was updated to include a new non-iterative approach for weighting age-composition data.
 
   \item Coastwide catch in \Sexpr{end.yr-1} was the largest on record at \Sexpr{last.year.landings}~t,
 out of a Total Allowable Catch (adjusted for carryovers) of \Sexpr{last.year.tac}~t. Attainment in

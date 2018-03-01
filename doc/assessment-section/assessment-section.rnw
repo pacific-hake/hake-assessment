@@ -103,8 +103,7 @@ the software version (3.24U) used in the previous assessment \citep{JTC2017}.  I
 to the new version of Stock Synthesis, the largest changes between the
 \Sexpr{last.assess.yr} and \Sexpr{assess.yr} stock assessments are the addition of another
 year of acoustic survey and fishery data, a new maturity ogive, a new approach for weighting composition
-data, and a new approach for parameterizing time-varying selectivity in the base
-model.
+data, and a modification of the parameterization for time-varying selectivity.
 
 The \Sexpr{assess.yr} base model includes an acoustic data time series from 1995 to 2017,
 where estimates of abundance from the survey followed the same procedures as in 
