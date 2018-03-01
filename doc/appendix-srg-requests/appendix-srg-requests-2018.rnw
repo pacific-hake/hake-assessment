@@ -87,7 +87,7 @@ make.age.comp.pearson.plot(sens.models.3[[3]])
 %%%%%%%%%%%%%%%%%%%%%%%
 %% Alternate decision tables and risk plots
 
-\subsection*{Alternate time-varying Fecundity model - \altlong}  % \altlong
+\subsection*{\altlong\ -- **name to be agreed upon**}  % \altlong
                                         % defined in hake-assessment.rnw
 
 %%%%%%%%%%%%%%%%%%%%%%%
