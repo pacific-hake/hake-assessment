@@ -97,7 +97,7 @@ are the equivalent to those for the based model run presented in the
 Executive Summary.
 
 For the \altshort\, there is an estimated 
-16\% joint probability of being both above the target relative fishing intensity
+16.4\% joint probability of being both above the target relative fishing intensity
 in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at
 the start of \Sexpr{end.yr}.
 % sum(alt.base.model$mcmc$Bratio_2018<0.4 & alt.base.model$mcmc$SPRratio_2017>1) /nrow(alt.base.model$mcmc)
