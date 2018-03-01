@@ -146,7 +146,7 @@
 \newcommand{\supscr}[1]{$^{\text{#1}}$}
 
 \newcommand{\altshort}{alternative run}
-\newcommand{\altlong}{**TO BE AGREED UPON**}
+\newcommand{\altlong}{alternative time-varying fecundity run}
 
 %% Headers and footers
 \lhead{}
