@@ -4,17 +4,19 @@
   \Sexpr{assess.yr} meeting}
 \label{chap:srg-requests}
 
-This appendix will contain any results requested at the upcoming
-Scientific Review Group meeting to be held from 26th February to 1st
-March 2018.
+This appendix contains results requested at the
+Scientific Review Group meeting held from 26th February to 1st
+March 2018 in Lynnwood, WA, USA.
 % Use appendix-srg-requests.rnw as a template, which was for 2017.
 
-\clearpage
+\section{Residuals for sensitivity runs with different maximum age of selectivity}
 
-\subsection*{Residuals for model maximum age of selectivity sensitivities}
+Figures~\ref{fig:main-age-comp-pearson-sens-1}}-\ref{fig:main-age-comp-pearson-sens-3}
+show the Pearson residual plots of the age composition data for different values
+of maximum age of selectivity, as per the sensitivity analyses in the main text.
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+\begin{figure}[tbp]
 \begin{center}
 <<app.srg.age.comp.pearson.sens.1, fig.height=8, fig.width=8>>=
 make.age.comp.pearson.plot(sens.models.3[[1]])
@@ -87,7 +89,7 @@ make.age.comp.pearson.plot(sens.models.3[[3]])
 %%%%%%%%%%%%%%%%%%%%%%%
 %% Alternate decision tables and risk plots
 
-\subsection*{\altlong\}  % \altlong defined in hake-assessment.rnw
+\section{\altlong\ }  % \altlong defined in hake-assessment.rnw
 
 During the 2018 Scientific Review Group (SRG) meeting, the SRG requested an additional
 model run. This \altshort\ includes changes related to fecundity, as described
@@ -101,6 +103,8 @@ in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at
 the start of \Sexpr{end.yr}.
 % sum(alt.base.model$mcmc$Bratio_2018<0.4 & alt.base.model$mcmc$SPRratio_2017>1) /nrow(alt.base.model$mcmc)
 % That is the joint probability.
+Figures~\ref{fig:main-sens-alt-trend}-\ref{fig:main-sens-alt-status} compare
+some results from the \altshort\ to those of the based model run.
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
@@ -333,7 +337,8 @@ make.risk.table(alt.base.model,
 \includegraphics[width=\maxwidth, height=5in]
   {main-figures/CompareMCMC_tvFecund_ForCatch2018prob.eps}
 \end{center}
-\caption{Posterior estimates of 2018 forecast catch for the base model and the \altlong. The boxplot central tendency represents the posterior median (value reported at the top). Probability of 2018 stock status (relative spawning biomass) going below B40\%, B20\%, and B10\% are also shown.}
+\caption{Posterior estimates of 2018 forecast catch for the base model and the \altlong. The boxplot central tendency represents the posterior median (value reported at the top). Probability of 2018 stock status (relative spawning biomass) going below 
+  B40\%, B20\%, and B10\% are also shown.}
 \label{fig:main-sens-alt-status}
 \end{figure}
 
