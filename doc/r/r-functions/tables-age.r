@@ -369,8 +369,8 @@ make.est.numbers.at.age.table <- function(model,
   }else if(table.type == 2){
     ## Exploitation rate at age
     ## Remove year column, do calculation and add year column back
-    n.age.m <- n.age.m[,-1]
-    dat <- f((c.age / n.age.m) * 100, 2)
+    n.age.b <- n.age.b[,-1]
+    dat <- f((c.age / n.age.b) * 100, 2)
     dat <- cbind(as.character(yrs), dat)
     colnames(dat)[1] <- "Year"
     write.csv(dat,
