@@ -87,8 +87,20 @@ make.age.comp.pearson.plot(sens.models.3[[3]])
 %%%%%%%%%%%%%%%%%%%%%%%
 %% Alternate decision tables and risk plots
 
-\subsection*{\altlong\ -- **name to be agreed upon**}  % \altlong
-                                        % defined in hake-assessment.rnw
+\subsection*{\altlong\}  % \altlong defined in hake-assessment.rnw
+
+During the 2018 Scientific Review Group (SRG) meeting, the SRG requested an additional
+model run. This \altshort\ includes changes related to fecundity, as described
+in the Executive Summary. For this \altshort\, the following figures and tables 
+are the equivalent to those for the based model run presented in the 
+Executive Summary.
+
+For the \altshort\, there is an estimated 
+16\% joint probability of being both above the target relative fishing intensity
+in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at
+the start of \Sexpr{end.yr}.
+% sum(alt.base.model$mcmc$Bratio_2018<0.4 & alt.base.model$mcmc$SPRratio_2017>1) /nrow(alt.base.model$mcmc)
+% That is the joint probability.
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
