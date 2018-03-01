@@ -43,16 +43,9 @@ histological analyses of ovary samples collected in recent years
 
 \end{itemize}
 
-Some data sources were not included but have been explored, were used for
+Some data sources were not included in the base model, but have been explored or used for
 sensitivity analyses, or were included in previous stock assessments but not in
-this one. 
-
-Trevor:
-This
-assessment does not conduct some sensitivity analyses, or explored the
-inclusion of some data sources, that were included in previous stock
-assessments.
-
+this one.
 Data sources not discussed here have either been
 discussed at past \fishname\ assessment review meetings or are discussed in more
 detail in the 2013 stock assessment document \citep{JTC2013}.  Some of these
@@ -641,7 +634,7 @@ of new information on $M$, there has been little option to update the prior.
 The prior for the steepness parameter of the stock-recruitment function
 is based on the median (0.79) and the 20th (0.67) and 80th
 (0.87) percentiles from \citeauthor{MyersBowenEtAl1999}'s
-(\citeyear{MyersBowenEtAl1999}) meta-analysis of the family \emph{Gadidae}, and
+(\citeyear{MyersBowenEtAl1999}) meta-analysis of the family Gadidae, and
 has been used in U.S. assessments since 2007. This prior has a beta distribution
 with parameters 9.76 and 2.80, which translate to a mean of 0.777 and a log-standard
 deviation of 0.113. Sensitivities to the variance on the prior on steepness were

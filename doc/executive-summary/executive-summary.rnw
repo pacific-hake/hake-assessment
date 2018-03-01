@@ -372,7 +372,8 @@ and 2015 year classes (median recruitment below the mean of all median recruitme
 % Allan agrees. Even though the deviation is slightly above average, the 2011
 %  spawning biomass was small enough that the S-R curve had an effect
 %  [keep this helpful explanation]
-The 2014 year class is likely larger than average though not as large as
+The 2014 year class is likely larger than average yet has only a 
+\Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of being larger than
 the 2010 year class.
 There is no information in the data to estimate the sizes of the
 \Sexpr{end.yr-1} and \Sexpr{end.yr} year classes. Retrospective analyses of year

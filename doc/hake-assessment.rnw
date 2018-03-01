@@ -147,8 +147,6 @@
 %% Headers and footers
 \lhead{}
 \rhead{}
-%% \lfoot{\fishname\ stock assessment 2016}
-%% \rfoot{DRAFT - DO NOT CITE}
 
 %% To not have indent on disclaimer.
 %% \def\thanks#1{{\let\thefootnote\relax\footnote{#1.}\setcounter{footnote}{0}}}
@@ -190,24 +188,15 @@ source("custom-knitr-variables.r")
 %% Title page and author references page
 \thispagestyle{empty}
 
-%% DRAFT version
-%% \title{\TitleFont Status of the \fishname\ (whiting) stock in U.S. and
-%% Canadian waters in \Sexpr{assess.yr}\thanks{\noindent Disclaimer: This
+\title{\TitleFont Status of the \fishname\ (whiting) stock in U.S. and Canadian
+  waters in \Sexpr{assess.yr}
+%% Uncomment for DRAFT:
+%%  \\ ~\\ DRAFT for submission to Scientific Review Group
+%%  \thanks{\noindent Disclaimer: This
 %% information is distributed solely for the purpose of pre-dissemination
 %% peer review under applicable information quality guidelines. It does not
 %% represent and should not be construed to represent any agency determination
 %% or policy.}
-%% \\ ~\\ ~\\ \includegraphics[width=4in]{hake-picture}}
-
-%% Final version
-\title{\TitleFont Status of the \fishname\ (whiting) stock in U.S. and Canadian
-  waters in \Sexpr{assess.yr}
-  \\ ~\\ DRAFT for submission to Scientific Review Group
-  \thanks{\noindent Disclaimer: This
- information is distributed solely for the purpose of pre-dissemination
- peer review under applicable information quality guidelines. It does not
- represent and should not be construed to represent any agency determination
- or policy.}
 \\ ~\\ ~\\ \includegraphics[width=4in]{hake-picture}}
 
 \author{Joint Technical Committee of the \fishname/Whiting Agreement \\ Between
@@ -250,15 +239,15 @@ Authors of this document are (in no particular order): \\
   97365-5275, USA}
 
 %% Draft version
-This DRAFT document is non-citable.
+%% This DRAFT document is non-citable.
 
 %% Final version
-%This document should be cited as follows:\\
-%Edwards, A.M., I.G. Taylor, C.J. Grandin, and A.M. Berger.
-%\Sexpr{assess.yr}. Status of the \fishname\ (whiting) stock in
-%U.S. and Canadian waters in \Sexpr{assess.yr}. Prepared by the Joint Technical
-%Committee of the U.S. and Canada \fishname/Whiting Agreement, National Marine
-%Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
+This document should be cited as follows:\\
+Edwards, A.M., I.G. Taylor, C.J. Grandin, and A.M. Berger.
+\Sexpr{assess.yr}. Status of the \fishname\ (whiting) stock in
+U.S. and Canadian waters in \Sexpr{assess.yr}. Prepared by the Joint Technical
+Committee of the U.S. and Canada \fishname/Whiting Agreement, National Marine
+Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 
 \newpage
 
@@ -284,7 +273,7 @@ This DRAFT document is non-citable.
 %% \modulolinenumbers[5]
 
 \lfoot{
-       DRAFT --
+       % DRAFT --
        \fishname\ assessment \Sexpr{assess.yr}
        }
 \rfoot{One-page summary}
