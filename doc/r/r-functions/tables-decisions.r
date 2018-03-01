@@ -4,7 +4,8 @@ make.decision.table <- function(model,
                                 font.size  = 9,
                                 space.size = 10,
                                 type      = "biomass",
-                                placement  = "H"){
+                                placement  = "H",
+                                catch.levels = catch.levels){
   ## Returns an xtable in the proper format for the executive summary decision
   ##  tables
   ##
@@ -15,7 +16,8 @@ make.decision.table <- function(model,
   ## space.size - size of the vertical spaces for the table
   ## type - type to build. "biomass" or "spr"
   ## placement - latex code for placement of table
-
+  ## catch.levels - catch levels for tables, need the option for 2018 Appendix A
+  ##  alternate run
   if(type != "biomass" & type != "spr"){
     stop("make.decisions.table: Error - type '",
          type,
