@@ -325,28 +325,6 @@ if(verbose){
   print.model.message(sens.model.dir.names.8, sens.model.names.8, 8, model.type = "Sensitivity")
 }
 
-## -----------------------------------------------------------------------------
-## Vector of directory names for all models referenced above
-## -----------------------------------------------------------------------------
-## ALL models must be in this list!
-## Each model directory listed here will have an RData file in it,
-##  or one will be created depending on what is found in the directory.
-##  i.e. mcmc, retrospective, or forecast directories.
-## model.dir.names <- c(base.model.dir.name,
-##                      alt.base.model.dir.name,
-##                      last.yr.base.model.dir.name,
-##                      bridge.model.dir.names.1,
-##                      bridge.model.dir.names.2,
-##                      bridge.model.dir.names.3,
-##                      sens.model.dir.names.1,
-##                      sens.model.dir.names.2,
-##                      sens.model.dir.names.3,
-##                      sens.model.dir.names.4,
-##                      sens.model.dir.names.5,
-##                      sens.model.dir.names.6,
-##                      sens.model.dir.names.7,
-##                      sens.model.dir.names.8)
-
 ## This function must be called from within the first knitr code chunk
 ## in the document. It is defined here so that it is in the same place
 ## as the other model setup and should be changed if bridge models
