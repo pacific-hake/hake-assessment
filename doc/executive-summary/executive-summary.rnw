@@ -930,7 +930,9 @@ related to fecundity:
 
 Decision tables, reference points, probabilities associated with alternative
 forecast catch levels, and comparisons to the base model are presented for the 
-\altshort\ in Appendix~\ref{chap:srg-requests}. 
+\altshort\ in Appendix~\ref{chap:srg-requests}. The difference between the results
+is predominantly due to the assumptions about equilibrium weight-at-age. 
+
 \enlargethispage{\baselineskip}
 
 \subsection*{Research and data needs} \label{sec:es-research-data-needs}
