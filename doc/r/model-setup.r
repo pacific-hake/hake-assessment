@@ -123,6 +123,17 @@ if(verbose){
 }
 
 ## -----------------------------------------------------------------------------
+## Alternative base model name and directory
+## -----------------------------------------------------------------------------
+alt.base.model.dir.name <- "2018.40.30_fecundity_matrix2"
+alt.base.model.name <- paste0(assess.yr, " Alt base model SS 3.30")
+verify.models(model.dir, alt.base.model.dir.name, alt.base.model.name)
+if(verbose){
+  cat0("Alt. base model directory name: \n  ", alt.base.model.dir.name)
+  cat0("Alt. base model pretty name: \n  ", alt.base.model.name)
+}
+
+## -----------------------------------------------------------------------------
 ## Last assessment year's base model name and directory
 ## -----------------------------------------------------------------------------
 last.yr.base.model.dir.name <- "00_45_2017base"
@@ -321,19 +332,20 @@ if(verbose){
 ## Each model directory listed here will have an RData file in it,
 ##  or one will be created depending on what is found in the directory.
 ##  i.e. mcmc, retrospective, or forecast directories.
-model.dir.names <- c(base.model.dir.name,
-                     last.yr.base.model.dir.name,
-                     bridge.model.dir.names.1,
-                     bridge.model.dir.names.2,
-                     bridge.model.dir.names.3,
-                     sens.model.dir.names.1,
-                     sens.model.dir.names.2,
-                     sens.model.dir.names.3,
-                     sens.model.dir.names.4,
-                     sens.model.dir.names.5,
-                     sens.model.dir.names.6,
-                     sens.model.dir.names.7,
-                     sens.model.dir.names.8)
+## model.dir.names <- c(base.model.dir.name,
+##                      alt.base.model.dir.name,
+##                      last.yr.base.model.dir.name,
+##                      bridge.model.dir.names.1,
+##                      bridge.model.dir.names.2,
+##                      bridge.model.dir.names.3,
+##                      sens.model.dir.names.1,
+##                      sens.model.dir.names.2,
+##                      sens.model.dir.names.3,
+##                      sens.model.dir.names.4,
+##                      sens.model.dir.names.5,
+##                      sens.model.dir.names.6,
+##                      sens.model.dir.names.7,
+##                      sens.model.dir.names.8)
 
 ## This function must be called from within the first knitr code chunk
 ## in the document. It is defined here so that it is in the same place
@@ -341,6 +353,7 @@ model.dir.names <- c(base.model.dir.name,
 ## and sensitivity models change in the model.dir.names above..
 load.models.into.parent.env <- function(){
   base.model         <<- load.models(model.dir, base.model.dir.name)
+  alt.base.model     <<- load.models(model.dir, alt.base.model.dir.name)
   ## Error checks:
   if(is.null(base.model$mcmccalcs)){
     stop("Error - base.model$mcmccalcs is NULL. Make sure the directory\n",
@@ -350,6 +363,19 @@ load.models.into.parent.env <- function(){
   }
   if(is.null(base.model$risks)){
     stop("Error - base.model$risks is NULL. Maybe you forgot to run the forecasting?\n",
+           "   Make sure to setup running and/or loading of forecasts, and\n",
+           "   set ovwrt.rdata = TRUE in the create.rdata.file() calls\n",
+           "   within build() in model-setup.r and try again.\n")
+  }
+
+  if(is.null(alt.base.model$mcmccalcs)){
+    stop("Error - alt.base.model$mcmccalcs is NULL. Make sure the directory\n",
+            file.path(alt.base.model$path, "mcmc"), " exists and contains valid\n",
+            "   mcmc output, set ovwrt.rdata = TRUE in the create.rdata.file() calls\n",
+            "   within build() in model-setup.r, and try again.\n")
+  }
+  if(is.null(alt.base.model$risks)){
+    stop("Error - alt.base.model$risks is NULL. Maybe you forgot to run the forecasting?\n",
            "   Make sure to setup running and/or loading of forecasts, and\n",
            "   set ovwrt.rdata = TRUE in the create.rdata.file() calls\n",
            "   within build() in model-setup.r and try again.\n")
@@ -404,7 +430,23 @@ build <- function(run.fore = FALSE,
   }
 
   ## Base model
-  create.rdata.file(model.name = base.model.dir.name,
+  ## create.rdata.file(model.name = base.model.dir.name,
+  ##                   ovwrt.rdata = ifelse(any(run.fore, run.retro, run.extra.mcmc),
+  ##                                        TRUE,
+  ##                                        FALSE),
+  ##                   run.forecasts = run.fore,
+  ##                   fore.yrs = forecast.yrs,
+  ##                   forecast.probs = forecast.probs,
+  ##                   forecast.catch.levels = catch.levels,
+  ##                   run.retros = run.retro,
+  ##                   my.retro.yrs = retro.yrs,
+  ##                   run.extra.mcmc = run.extra.mcmc,
+  ##                   key.posteriors = key.posteriors,
+  ##                   ss.version = ss.version,
+  ##                   verbose = ss.verbose)
+
+  ## Alternative base model
+  create.rdata.file(model.name = alt.base.model.dir.name,
                     ovwrt.rdata = ifelse(any(run.fore, run.retro, run.extra.mcmc),
                                          TRUE,
                                          FALSE),
