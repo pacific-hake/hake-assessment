@@ -90,6 +90,18 @@ make.age.comp.pearson.plot(sens.models.3[[3]])
 \subsection*{\altlong\ -- **name to be agreed upon**}  % \altlong
                                         % defined in hake-assessment.rnw
 
+<<app.median.posterior.table.alt, results='asis', echo=FALSE>>=
+make.median.posterior.table(
+  alt.base.model,
+  start.yr = start.yr,
+  end.yr = end.yr,
+  digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
+  xcaption = paste0("Time-series of median posterior population estimates from the time-varying fecundity model. Relative spawning biomass is spawning biomass relative to the unfished equilibrium ($\\Bzero$). Total biomass includes females and males of all ages ages 0 and above. Age-2+ biomass includes females and males ages 2 and above. Exploitation fraction is total catch divided by total age-2+ biomass. Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%})."),
+  xlabel = "tab:app-median-posterior-alt",
+  font.size = 8,
+  space.size = 10)
+@
+
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
