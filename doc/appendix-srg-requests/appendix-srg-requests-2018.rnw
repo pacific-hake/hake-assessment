@@ -315,7 +315,7 @@ make.risk.table(alt.base.model,
 \includegraphics[width=\maxwidth, height=3.5in]
   {main-figures/compare2_spawnbio_uncertainty.eps}
 \end{center}
-\caption{A comparison of MCMC posterior median estimates and 95\% credibility intervals of spawning biomass for the base model (blue line) and the \altlong\ (red line)}
+\caption{A comparison of MCMC posterior median estimates and 95\% credibility intervals of spawning biomass for the base model (blue line) and the \altlong\ (red line).}
 \label{fig:main-sens-alt-trend}
 \end{figure}
 
@@ -340,7 +340,7 @@ make.risk.table(alt.base.model,
 \includegraphics[width=\maxwidth, height=3.5in]
   {main-figures/compare10_recdevs_uncertainty.eps}
 \end{center}
-\caption{A comparison of MCMC posterior median estimates and 95\% credibility intervals of recruitment deviations for the base model (blue line) and the \altlong\ (red line)}
+\caption{A comparison of MCMC posterior median estimates and 95\% credibility intervals of recruitment deviations for the base model (blue line) and the \altlong\ (red line).}
 \label{fig:main-sens-alt-status}
 \end{figure}
 
