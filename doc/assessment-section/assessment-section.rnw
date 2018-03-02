@@ -1408,7 +1408,7 @@ catchability was fixed at 1.0. The fixing of survey catchability had the effect
 of driving the estimate of initial biomass upward, which in turn scaled the
 entire biomass trajectory up, leading to higher estimates of relative spawning
 biomass than in more recent assessments. The median estimates of
-spawning biomass for recent years have declined in the \Sexpr{end.yr} asssessment relative
+spawning biomass for recent years have declined in the \Sexpr{end.yr} assessment relative
 to recent assessments.  Although
 the model structure has remained relatively consistent in recent years, the 2017 acoustic 
 survey biomass estimate was lower than what previous models would have predicted.
