@@ -310,10 +310,11 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 <<research-sec, child='research-section/research.rnw'>>=
 @
 
-\clearpage
+% \clearpage
 <<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
 @
 
+\clearpage
 \rfoot{Section~\ref{sec:references} -- References}
 \bibliographystyle{hake}
 \bibliography{all}
