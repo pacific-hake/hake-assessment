@@ -169,7 +169,7 @@ freezer trawler vessels \emph{Viking Enterprise}, \emph{Osprey \#1},
 \emph{Northern Alliance}, and \emph{Raw Spirit}, which together make up a large
 portion of the Canadian catch (\Sexpr{last.year.can.freezer.percent}\% in
 \Sexpr{last.data.yr}). The Joint-Venture fishery has 100\% observer coverage on
-their processing vessels, which in 2017 made up 6.1\% of the Canadian catch.
+their processing vessels, which in 2017 made up 6.5\% of the Canadian catch.
 On observed freezer trawler trips, otoliths (for ageing) and lengths are sampled
 from \fishname\ caught for each haul of the trip. The sampled weight from which
 biological information is collected must be inferred from length-weight
