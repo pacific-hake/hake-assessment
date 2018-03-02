@@ -110,7 +110,7 @@ make.median.posterior.table(
   start.yr = start.yr,
   end.yr = end.yr,
   digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
-  xcaption = paste0("Time-series of median posterior population estimates from the \\altlong. Relative spawning biomass is spawning biomass relative to the unfished equilibrium ($\\Bzero$). Total biomass includes females and males of all ages ages 0 and above. Age-2+ biomass includes females and males ages 2 and above. Exploitation fraction is total catch divided by total age-2+ biomass. Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%})."),
+  xcaption = paste0("Time series of median posterior population estimates from the \\altlong. Relative spawning biomass is spawning biomass relative to the unfished equilibrium ($\\Bzero$). Total biomass includes females and males of all ages ages 0 and above. Age-2+ biomass includes females and males ages 2 and above. Exploitation fraction is total catch divided by total age-2+ biomass. Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%})."),
   xlabel = "tab:app-median-posterior-alt",
   font.size = 8,
   space.size = 10)
@@ -124,13 +124,14 @@ make.ci.posterior.table(
   start.yr = start.yr,
   end.yr = end.yr,
   digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
-  xcaption = paste0("Time-series of 95\\% posterior credibility intervals for the quantities shown in Table \\ref{tab:app-median-posterior-alt}."),
+  xcaption = paste0("Time series of 95\\% posterior credibility intervals for the quantities shown in
+      Table~\\ref{tab:app-median-posterior-alt} for the \\altlong."),
   xlabel = "tab:app-ci-posterior-alt",
   font.size = 8,
   space.size = 10)
 @
 
-%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[H]
 \begin{center}
