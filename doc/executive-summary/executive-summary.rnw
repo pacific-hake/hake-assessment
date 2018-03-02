@@ -372,7 +372,7 @@ and 2015 year classes (median recruitment below the mean of all median recruitme
 % Allan agrees. Even though the deviation is slightly above average, the 2011
 %  spawning biomass was small enough that the S-R curve had an effect
 %  [keep this helpful explanation]
-The 2014 year class is likely larger than average yet has only a 
+The 2014 year class is likely larger than average yet has only a
 \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of being larger than
 the 2010 year class.
 There is no information in the data to estimate the sizes of the
@@ -581,8 +581,8 @@ since \Sexpr{median.relative.bio.above.target.since}.
 % Manual done 2018. Based on median.relative.bio.below.target.
 
 While there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative
-fishing intensity and relative spawning biomass, the model estimates a less than
-6\% joint probability of being both above the target relative fishing intensity
+fishing intensity and relative spawning biomass, the model estimates a
+5.7\% joint probability of being both above the target relative fishing intensity
 in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at
 the start of \Sexpr{end.yr}.
 % sum(base.model$mcmc$Bratio_2018<0.4 & base.model$mcmc$SPRratio_2017>1) /nrow(base.model$mcmc)
@@ -689,7 +689,8 @@ make.decision.table(base.model,
                     font.size = 12,
                     space.size = 14,
                     type = "biomass",
-                    placement = "tbp")
+                    placement = "tbp",
+                    catch.levels = catch.levels)
 @
 
 Decision tables give the projected population status (relative spawning biomass)
@@ -718,7 +719,8 @@ make.decision.table(base.model,
                     font.size = 12,
                     space.size = 14,
                     type = "spr",
-                    placement = "tbp")
+                    placement = "tbp",
+                    catch.levels = catch.levels)
 @
 
 \clearpage  % 2018: Then forces Table i and Fig j to be on same page, and j/k.
@@ -912,26 +914,33 @@ the spawning biomass as they mature and increase in weight.
 %  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % Manual 2018 done above.
 During the 2018 Scientific Review Group meeting (SRG), an additional sensitivity model was
-evaluated at the request of the SRG that resulted in a plausible alternative to the 
+evaluated at the request of the SRG that resulted in a plausible alternative to the
 base model.  This alternative model includes the following changes from the base model
 related to fecundity:
 
 \begin{itemize}
-  
-   \item add time-varying fecundity by multiplying the weight-at-age matrix (rather than 
-   an overall mean weight-at-age vector as in the base model) and the new maturity ogive 
+
+   \item add time-varying fecundity by multiplying the weight-at-age matrix (rather than
+   an overall mean weight-at-age vector as in the base model) and the new maturity ogive
    to get annual estimates of fecundity from 1975--2017;
-   \item set pre-1975 weight-at-age where empirical data are not available to the mean 
-   weight-at-age over 1975--1979;
-   \item set equilibrium weight-at-age conditions to the mean weight-at-age from 1975--1979; and
-   \item set forecast year (including 2017 due to current configurations in Stock Synthesis) 
-   weight-at-age to the mean weight-at-age over 2015--2017. 
-  
+   \item set equilibrium and 1966-1974 fecundity (where empirical data are not available) 
+   to the product of maturity and mean weight-at-age over 1975--1979;
+   \item set forecast year fecundity (including 2017 due to current configurations in Stock Synthesis) 
+   weight-at-age to the product of maturity and mean weight-at-age over 2015--2017. 
 \end{itemize}
 
 Decision tables, reference points, probabilities associated with alternative
 forecast catch levels, and comparisons to the base model are presented for the 
-alternative model in Appendix~\ref{chap:srg-requests}. 
+\altshort\ in Appendix~\ref{chap:srg-requests}. The difference between the results
+is predominantly due to the assumptions about equilibrium weight-at-age. 
+
+An inconsistency in this \altshort\ is that the the mean weight-at-age 
+across all years is still used for the calculation of
+stock biomass in the years outside the range with empirical data (1975--2017),
+rather than the short-term averages (1975--1979 or 2015--2017). A brief examination of
+the sensitivity of the alternative model to removing this inconsistency showed
+relatively little change to this difference.
+
 \enlargethispage{\baselineskip}
 
 \subsection*{Research and data needs} \label{sec:es-research-data-needs}
