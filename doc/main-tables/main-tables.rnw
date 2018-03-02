@@ -366,7 +366,7 @@ make.est.numbers.at.age.table(
   table.type = 2,
   csv.dir = output.csv.dir,
   xcaption = paste0("Estimated exploitation-rate-at-age ",
-      "(catch-at-age divided by biomass-at-age at the beginning of the year)",
+      "(catch-at-age divided by biomass-at-age at the beginning of the year) ",
       "for each year from the base model (MLE; percentage of age class removed by fishing)."),
   xlabel = "tab:main-est-exp-rate-at-age",
   font.size = 7,
