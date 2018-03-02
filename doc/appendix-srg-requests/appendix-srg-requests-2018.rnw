@@ -117,6 +117,21 @@ make.median.posterior.table(
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%
+
+<<app.ci.posterior.table.alt, results='asis', echo=FALSE>>=
+make.ci.posterior.table(
+  alt.base.model,
+  start.yr = start.yr,
+  end.yr = end.yr,
+  digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
+  xcaption = paste0("Time-series of 95\\% posterior credibility intervals for the quantities shown in Table \\ref{tab:app-median-posterior-alt}."),
+  xlabel = "tab:app-ci-posterior-alt",
+  font.size = 8,
+  space.size = 10)
+@
+
+%%%%%%%%%%%%%%%%%%%%%%% 
+
 \begin{figure}[H]
 \begin{center}
 <<app.phase.plot.alt, fig.height=5, fig.width=8>>=

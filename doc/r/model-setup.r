@@ -408,20 +408,20 @@ build <- function(run.fore = FALSE,
   }
 
   ## Base model
-  ## create.rdata.file(model.name = base.model.dir.name,
-  ##                   ovwrt.rdata = ifelse(any(run.fore, run.retro, run.extra.mcmc),
-  ##                                        TRUE,
-  ##                                        FALSE),
-  ##                   run.forecasts = run.fore,
-  ##                   fore.yrs = forecast.yrs,
-  ##                   forecast.probs = forecast.probs,
-  ##                   forecast.catch.levels = catch.levels,
-  ##                   run.retros = run.retro,
-  ##                   my.retro.yrs = retro.yrs,
-  ##                   run.extra.mcmc = run.extra.mcmc,
-  ##                   key.posteriors = key.posteriors,
-  ##                   ss.version = ss.version,
-  ##                   verbose = ss.verbose)
+  create.rdata.file(model.name = base.model.dir.name,
+                    ovwrt.rdata = ifelse(any(run.fore, run.retro, run.extra.mcmc),
+                                         TRUE,
+                                         FALSE),
+                    run.forecasts = run.fore,
+                    fore.yrs = forecast.yrs,
+                    forecast.probs = forecast.probs,
+                    forecast.catch.levels = catch.levels,
+                    run.retros = run.retro,
+                    my.retro.yrs = retro.yrs,
+                    run.extra.mcmc = run.extra.mcmc,
+                    key.posteriors = key.posteriors,
+                    ss.version = ss.version,
+                    verbose = ss.verbose)
 
   ## Alternative base model
   create.rdata.file(model.name = alt.base.model.dir.name,
