@@ -102,7 +102,7 @@ in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at
 the start of \Sexpr{end.yr}.
 % sum(alt.base.model$mcmc$Bratio_2018<0.4 & alt.base.model$mcmc$SPRratio_2017>1) /nrow(alt.base.model$mcmc)
 % That is the joint probability.
-Figures~\ref{fig:main-sens-alt-trend}-\ref{fig:main-sens-alt-status} compare
+Figures~\ref{fig:app-sens-alt-trend}-\ref{fig:app-sens-alt-status-3} compare
 some results from the \altshort\ to those of the based model run.
 
 <<app.median.posterior.table.alt, results='asis', echo=FALSE>>=
@@ -316,7 +316,7 @@ make.risk.table(alt.base.model,
   {main-figures/compare2_spawnbio_uncertainty.eps}
 \end{center}
 \caption{A comparison of MCMC posterior median estimates and 95\% credibility intervals of spawning biomass for the base model (blue line) and the \altlong\ (red line).}
-\label{fig:main-sens-alt-trend}
+\label{fig:app-sens-alt-trend}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -330,7 +330,7 @@ make.risk.table(alt.base.model,
   intervals of relative spawning biomass for the base model (blue line) and the
   \altlong\ (red line). Relative spawning biomass (depletion) at the start of 2018 is estimated
   to be 67\% for the base model and 41\% for the \altshort.}
-\label{fig:main-sens-alt-status}
+\label{fig:app-sens-alt-status}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -341,7 +341,7 @@ make.risk.table(alt.base.model,
   {main-figures/compare10_recdevs_uncertainty.eps}
 \end{center}
 \caption{A comparison of MCMC posterior median estimates and 95\% credibility intervals of recruitment deviations for the base model (blue line) and the \altlong\ (red line).}
-\label{fig:main-sens-alt-status}
+\label{fig:app-sens-alt-status-2}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -353,7 +353,7 @@ make.risk.table(alt.base.model,
 \end{center}
 \caption{Posterior estimates of 2018 forecast catch for the base model and the \altlong. The boxplot central tendency represents the posterior median (value reported at the top). Probability of 2018 stock status (relative spawning biomass) going below
   $\Bforty$, $B_{20\%}$, and $\Bten$ are also shown.}
-\label{fig:main-sens-alt-status}
+\label{fig:app-sens-alt-status-3}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%
