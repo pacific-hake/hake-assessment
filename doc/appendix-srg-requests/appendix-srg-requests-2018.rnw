@@ -406,10 +406,10 @@ make.phase.plot(alt.base.model,
                 color = "blue")
 @
 \end{center}
-\caption{For the base model (top) and \altshort (bottom), 
+\caption{For the base model (top) and \altshort\ (bottom), 
          estimated historical path followed by medians of relative fishing
          intensity and relative spawning biomass for \fishname\ with labels on the
-         start and end years (and 1999). Gray bars span the 95\% credibility
+         start and end years (and 1999 or 2010). Gray bars span the 95\% credibility
          intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical) and
          relative spawning biomass (horizontal).}
 \label{fig:phase-alt}
