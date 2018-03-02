@@ -396,13 +396,18 @@ make.comparison.plot.mcmc(list(base.model, alt.base.model), subplot=6,
 \begin{figure}[tbp]
 \begin{center}
 <<app.phase.plot.alt, fig.height=4.5, fig.width=8>>=
+make.phase.plot(base.model,
+                start.yr = start.yr,
+                end.yr = end.yr,
+                color = "blue")
 make.phase.plot(alt.base.model,
                 start.yr = start.yr,
                 end.yr = end.yr,
                 color = "blue")
 @
 \end{center}
-\caption{For the \altshort, estimated historical path followed by medians of relative fishing
+\caption{For the base model (top) and \altshort (bottom), 
+         estimated historical path followed by medians of relative fishing
          intensity and relative spawning biomass for \fishname\ with labels on the
          start and end years (and 1999). Gray bars span the 95\% credibility
          intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical) and
