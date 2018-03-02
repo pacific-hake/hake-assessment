@@ -93,8 +93,7 @@ make.age.comp.pearson.plot(sens.models.3[[3]])
 During the 2018 Scientific Review Group (SRG) meeting, the SRG requested an additional
 model run. This \altshort\ includes changes related to fecundity, as described
 in the Executive Summary. For this \altshort\, the following figures and tables
-are the equivalent to those for the based model run presented in the
-Executive Summary.
+are the equivalent to those presented earlier for the base model run.
 
 For the \altshort\, there is an estimated
 16.4\% joint probability of being both above the target relative fishing intensity
@@ -111,11 +110,13 @@ make.median.posterior.table(
   start.yr = start.yr,
   end.yr = end.yr,
   digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
-  xcaption = paste0("Time-series of median posterior population estimates from the time-varying fecundity model. Relative spawning biomass is spawning biomass relative to the unfished equilibrium ($\\Bzero$). Total biomass includes females and males of all ages ages 0 and above. Age-2+ biomass includes females and males ages 2 and above. Exploitation fraction is total catch divided by total age-2+ biomass. Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%})."),
+  xcaption = paste0("Time-series of median posterior population estimates from the \\altlong. Relative spawning biomass is spawning biomass relative to the unfished equilibrium ($\\Bzero$). Total biomass includes females and males of all ages ages 0 and above. Age-2+ biomass includes females and males ages 2 and above. Exploitation fraction is total catch divided by total age-2+ biomass. Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%})."),
   xlabel = "tab:app-median-posterior-alt",
   font.size = 8,
   space.size = 10)
 @
+
+%%%%%%%%%%%%%%%%%%%%%%%
 
 <<app.ci.posterior.table.alt, results='asis', echo=FALSE>>=
 make.ci.posterior.table(
@@ -130,6 +131,7 @@ make.ci.posterior.table(
 @
 
 %%%%%%%%%%%%%%%%%%%%%%% 
+
 \begin{figure}[H]
 \begin{center}
 <<app.phase.plot.alt, fig.height=5, fig.width=8>>=
