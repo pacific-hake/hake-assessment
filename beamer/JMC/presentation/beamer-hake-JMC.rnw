@@ -94,8 +94,8 @@ opts_chunk$set(dev = 'cairo_ps',
 
 setwd("../../../doc/r")
 ## Load all R code and the package libraries.
-source("all.r")
-load.models.into.parent.env()
+#source("all.r")
+#load.models.into.parent.env()
 ## This has to be sourced after loading the models in because it depends
 ##  on the model output.
 source("custom-knitr-variables.r")
@@ -156,16 +156,16 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
 \begin{frame}
 \frametitle{Overview of stock assessment}
   \bi
-    \item No change to general modeling approach
-    \item No new acoustic survey biomass (but reanalysis of 1995 now complete)
-    \item New 2016 fishery data
+    \item Little change to general modeling approach
+    \item New 2017 acoustic survey biomass and age data
+    \item New 2017 fishery data
     \item Coastwide catch in \Sexpr{end.yr-1} was \Sexpr{last.year.landings}~t, 
       out of a TAC (adjusted for carryovers) of \Sexpr{last.year.tac}~t. 
       Attainment in the U.S. was \Sexpr{last.year.us.attained}\% of its quota;
       in Canada it was \Sexpr{last.year.can.attained}\%.
     \item Large 2010 cohort continues to make up large fraction of catches
-    \item 2014 cohort appears large as well
-    \item Stock estimated to be at its highest biomass level since the 1980s
+    \item 2014 cohort also estimated large, but not as big as expected last year
+    \item Stock estimated lower than last year due to lower survey biomass
     \item The median estimate of \Sexpr{end.yr} relative spawning biomass is
   \Sexpr{curr.depl.median}\% \\ 
   (with 95\% interval from \Sexpr{curr.depl.lower}\% to \Sexpr{curr.depl.upper}\%)
@@ -199,8 +199,8 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
 \subsection{Survey index extrap/no-extrap comparison}
 \frame{\frametitle{Survey index}
   \bc
-  <<survey.compare.extrap.noextrap, fig.height=4, fig.width=7, out.width='0.8\\columnwidth'>>=
-  make.survey.biomass.extrap.plot(survey.comparison, show=1:2)
+  <<survey.index, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+  make.survey.biomass.plot(base.model, xlab = "Year", ylab = "Biomass (million t)")
   @
   \ec
 }
@@ -208,42 +208,41 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
 
 %----------------------------------------------------------
 
-%% \frame{\frametitle{Fit to the acoustic survey index of abundance}
-%%   \bc
-%%   <<mcmc.survey.fit, fig.height=4, fig.width=7, out.width='0.8\\columnwidth'>>=
-%%   make.mcmc.survey.fit.plot(model.partest,
-%%   start.yr = survey.start.yr,
-%%   end.yr = survey.end.yr,
-%%   probs = c(0.025, 0.975),
-%%   y.max = 5.5e6)
-%%   @
-%%   \ec
-%% }
+\frame{\frametitle{Fit to the acoustic survey index of abundance}
+  \bc
+  <<mcmc.survey.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+    make.mcmc.survey.fit.plot(base.model,
+                          start.yr = survey.start.yr,
+                          end.yr = survey.end.yr,
+                          probs = c(0.025, 0.975),
+                          y.max = 5.5e6)
+  @
+  \ec
+}
 
 
 %----------------------------------------------------------
 
-%% \frame{\frametitle{Fit to acoustic survey age comps}
-%% \begin{columns}
-%%   \begin{column}{0.38\textwidth}
-%%     \bi
-%%       \item 1999 cohort often overpredicted
-%%       \item Young cohorts in 2003--2009 underfit
-%%       \item 2008 cohort underfit in 2011
-%%       \item Recent years (2012--2015) show good fits
-%%     \ei
-%%   \end{column}
-%%   \begin{column}{0.59\textwidth}
-%%     \vspace{-15pt}
-%%     \bc
-%%       <<mcmc.survey.age.comp.fits, fig.height=4.4, fig.width=5.5,out.width='1.0\\columnwidth'>>=
-%%       make.age.comp.fit.plot(model.partest,
-%%                              subplot = 2)
-%%      @
-%%     \ec
-%%   \end{column}
-%% \end{columns}
-%% }
+\frame{\frametitle{Fit to acoustic survey age comps}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item 1999 cohort overpredicted when it was younger
+      \item 2011 compositions show less good fits
+      \item Recent years (2012--2017) show good fits
+    \ei
+  \end{column}
+  \begin{column}{0.59\textwidth}
+    \vspace{-10pt}
+    \bc
+      <<mcmc.survey.age.comp.fits, fig.height=4.4, fig.width=5.5,out.width='1.0\\columnwidth'>>=
+      make.age.comp.fit.plot(base.model,
+                             subplot = 2)
+     @
+    \ec
+  \end{column}
+\end{columns}
+}
 
 %----------------------------------------------------------
 \subsection{}
@@ -330,21 +329,24 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
 %----------------------------------------------------------
 
 \frame{\frametitle{Fishing Intensity and Exploitation Rate}
-  \vspace{-5pt}
-  \bc
-  <<fishing.intensity, fig.height=4, fig.width=8, out.width='0.45\\columnwidth'>>=
-    make.fishing.intensity.plot(base.model,
-                                start.yr = start.yr,
-                                end.yr = end.yr-1,
-                                color = "blue")
-  @
-  <<exploitation, fig.height=4, fig.width=8, out.width='0.45\\columnwidth'>>=
-    make.exploitation.fraction.plot(base.model,
-                                    start.yr = start.yr,
-                                    end.yr = end.yr-1,
-                                    color = "blue")
-  @
-  \ec
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      <<fishing.intensity, fig.height=4, fig.width=6, out.width='0.99\\columnwidth'>>=
+      make.fishing.intensity.plot(base.model,
+      start.yr = start.yr,
+      end.yr = end.yr-1,
+      color = "blue")
+      @
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      <<exploitation, fig.height=4, fig.width=6, out.width='0.99\\columnwidth'>>=
+      make.exploitation.fraction.plot(base.model,
+      start.yr = start.yr,
+      end.yr = end.yr-1,
+      color = "blue")
+      @
+    \end{column}
+  \end{columns}
 }
 
 %----------------------------------------------------------
@@ -352,9 +354,9 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
 \frametitle{Retrospective pattern of recruitment deviate estimates (squid)}
 \begin{center}
 \vspace{-5pt}
-<<retro.3, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+<<retro.3, fig.height=5, fig.width=8, out.width='0.9\\columnwidth'>>=
 plot.retro.yrs <- retro.yrs
-retro.cohorts <- 1999:2014
+retro.cohorts <- 1999:(end.yr-2)
 retro.list <- list(base.model)
 for(i in plot.retro.yrs){
   retro.list[[i + 1]] <- base.model$retros[[i]]
@@ -372,21 +374,13 @@ make.squid.plot(retro.list,
   \begin{columns}
     \begin{column}{0.3\textwidth}
       \bi
-        \item More flexible time-varying selectivity chosen for 2017 assessment
-        \item Age compositions of recent catches were inconsistent with assumptions about selectivity used in previous assessment
-        \item Old assumptions produced implausible estimates of 2014 recruitment
+        \item More flexible time-varying selectivity retained from 2017 assessment
+        \item Age compositions from 2017 fishery support the flexible added last year 
       \ei
     \end{column}
     \begin{column}{0.35\textwidth}
     <<mountains.MLE.base, fig.height=8, fig.width=5, out.width='0.9\\columnwidth'>>=
     make.tv.selex.plot(base.model, oma=rep(0,4), mcmc=FALSE)
-    title(main="2017 assessment")
-    @
-    \end{column}
-    \begin{column}{0.35\textwidth}
-    <<mountains.phi0.03, fig.height=8, fig.width=5,  out.width='0.9\\columnwidth'>>=
-    make.tv.selex.plot(sens.models.8[[1]], oma=rep(0,4), mcmc=FALSE) # model59, phi = 0.03 for all years
-    title(main="Less flexible pattern used in 2016")
     @
     \end{column}
   \end{columns}
@@ -396,15 +390,17 @@ make.squid.plot(retro.list,
 
 \frame{\frametitle{Age-1 index: correlation with base recruitment estimates}
 \begin{columns}
-  \begin{column}{0.38\textwidth}
+  \begin{column}{0.35\textwidth}
     \bi
-      \item Age-1 index appears to qualitatively follow estimates of recruitment
-      \item Age-1 hake in 2015 is high
-      \bi \item As seen in the fishery as well \ei
+      \item Age-1 index continues to track model predictions 
+        in spite of not being directly included in the model
+      \item Age-1 hake in 2017 is above average but lower than 2015, 
+        supporting model estimate of 2016 as above average but lower than 
+        2014 and 2010 cohorts.
     \ei
   \end{column}
-  \begin{column}{0.59\textwidth}
-    <<age.one.index, fig.height=3.5, fig.width=6, out.width="0.95\\columnwidth">>=
+  \begin{column}{0.65\textwidth}
+    <<age.one.index, fig.height=4, fig.width=6.5, out.width="0.95\\columnwidth">>=
       make.survey.age1.plot(age.1.index, base.model)
     @
   \end{column}
@@ -417,7 +413,7 @@ make.squid.plot(retro.list,
 \subsection{}
 \frame{\frametitle{Past management: Total Allowable Catch}
 \begin{columns}
-  \begin{column}{0.48\textwidth}
+  \begin{column}{0.4\textwidth}
 	  \bi
 	    \item March \Sexpr{last.assess.yr}
       \bi
@@ -428,8 +424,8 @@ make.squid.plot(retro.list,
       \item Catches are often less than the TAC
 	  \ei
   \end{column}
-  \begin{column}{0.48\textwidth}
-    \bc \includegraphics[width=.9\columnwidth]{../../SRG/Management/Figures/ManagementResponse.eps} \ec
+  \begin{column}{0.6\textwidth}
+    \bc \includegraphics[width=.95\columnwidth]{../../SRG/Management/Figures/ManagementResponse.eps} \ec
   \end{column}
 \end{columns}
 }
@@ -482,17 +478,19 @@ make.squid.plot(retro.list,
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Using the defined \emph{F}\subscr{SPR=40\%} harvest rate with a 40:10 adjustment, the median forecasted \Sexpr{end.yr} TAC is
+      \item Using the defined \emph{F}\subscr{SPR=40\%} harvest rate with a 40:10 adjustment, the median forecasted 2018 TAC is
       \smallskip
-      \bc {\bf \Sexpr{catch.limit.quantiles["median"]} t} \ec
+      \bc {\bf   725,984 t} \ec
       \smallskip
-      \item 2.5\% and 97.5\% quantiles:\\ \Sexpr{catch.limit.quantiles["lower"]} and \Sexpr{catch.limit.quantiles["upper"]}~t
+      \item 2.5\% and 97.5\% quantiles:\\   270,948 and 1,881,590~t
     \ei
   \end{column}
-  \begin{column}{0.59\textwidth}
-    <<main.projected.catch.density, out.width='.95\\columnwidth'>>=
-      make.forecast.catch.posterior.plot(base.model, fore.yr = end.yr)
-    @
+  \begin{column}{0.65\textwidth}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=.99\columnwidth]{knitr-cache/main_projected_catch_density-1} 
+
+\end{knitrout}
   \end{column}
 \end{columns}
 }
@@ -503,8 +501,8 @@ make.squid.plot(retro.list,
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Catch stream 180,000~t results in increases in spawning biomass
-      \item Catch streams 350,000~t and above result in decreases in spawning biomass
+      \item Catch stream 180,000~t results in stable spawning biomass relative to 2018
+      \item Catch streams 350,000~t and above result in decreases in spawning biomass relative to 2018
       \item Uncertainty is large and increases the farther it is forecasted
     \ei
   \end{column}
@@ -708,18 +706,18 @@ make.squid.plot(retro.list,
 \begin{columns}
   \begin{column}{0.35\textwidth}
     \bi
-  \item Dependent on assumptions about selectivity and weight 
-  \item Age-3 fish from 2014 cohort expected to be large proportion of \Sexpr{end.yr} catch
+  \item Dependent on assumptions about selectivity 
+  \item Age-8 fish from 2010 cohort expected to remain significant
     \bi
-    \item \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$X3),0)}\% by numbers 
-    \item \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$X3),0)}\% by weight 
+    \item \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$X8),0)}\% by numbers 
+    \item \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$X8),0)}\% by weight 
     \ei
-  \item Age-7 fish from 2010 cohort expected to remain significant
+  \item Age-4 fish from 2014 cohort expected be largest proportion
     \bi
-    \item \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$X7),0)}\% by numbers 
-    \item \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$X7),0)}\% by weight 
+    \item \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$X4),0)}\% by numbers 
+    \item \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$X4),0)}\% by weight 
     \ei
-  \item Proportions highly uncertain
+  \item Age-2 fish from 2016 cohort expected above average as well (still highly uncertain)
     \ei
   \end{column}
   \begin{column}{0.65\textwidth}
@@ -730,6 +728,7 @@ make.squid.plot(retro.list,
   \end{column}
 \end{columns}
 }
+
 
 %--------------------------------------------------------------
 
@@ -749,35 +748,46 @@ make.cohort.table(base.model,
 }
 
 
-%% \frame{\frametitle{Estimated cumulative catch for large cohorts}
-%%   \begin{columns}
-%%     \begin{column}{0.48\textwidth}
-%%       \bi
-%%         % taking shortcut and copying values calculated below
-%%         % note: 1.24 million = max(cohortCumSum1999/1e6)
-%%         %       0.53 million = max(cohortCumSum2010/1e6)
-%%         \item Total from 1999 cohort ages 1--16: \\ 1,241,000 t
-%%         \item Total from 1999 cohort ages 1--5:\\ 437,000 t
-%%         \item Total from 2010 cohort ages 1--5:\\ 529,000 t
-%%       \ei
-%%     \end{column}
-%%     \begin{column}{0.48\textwidth}
-%%     <<cum.catch, fig.height=5, fig.width=5, out.width="0.85\\columnwidth">>=
-%%      par(mar=c(5,4,1,1))
-%%      cohortCumSum1999 <- cumsum(cohortCatch(1999,base.model$catage))
-%%      cohortCumSum2010 <- cumsum(cohortCatch(2010,base.model$catage))
-%%      ages1999 <- as.numeric(names(cohortCumSum1999)) - 1999
-%%      ages2010 <- as.numeric(names(cohortCumSum2010)) - 2010
-%%      plot(ages1999, cohortCumSum1999/1e3, type='l', lwd=3, col=1, las=1,
-%%      xlab='Age', ylab='Cumulative catch (thousands of t)')
-%%      lines(ages2010, cohortCumSum2010/1e3, lwd=3, col=2)
-%%      text('2010 cohort', x=5, y=max(cohortCumSum2010/1e3), col=2, pos=2)
-%%      text('1999 cohort', x=14, y=max(cohortCumSum1999/1e3), col=1, pos=1)
-%%    @
+\frame{\frametitle{Estimated cumulative catch for large cohorts}
+  \begin{columns}
+     cohortCumSum1999 <- cumsum(cohortCatch(1999,base.model$catage))
+     cohortCumSum2010 <- cumsum(cohortCatch(2010,base.model$catage))
+     cohortCumSum2014 <- cumsum(cohortCatch(2014,base.model$catage))
+     ages1999 <- as.numeric(names(cohortCumSum1999)) - 1999
+     ages2010 <- as.numeric(names(cohortCumSum2010)) - 2010
+     ages2014 <- as.numeric(names(cohortCumSum2014)) - 2014
+    \begin{column}{0.48\textwidth}
+      \bi
+        % taking shortcut and copying values calculated below
+        % note: 1.24 million = max(cohortCumSum1999/1e6)
+        %       0.53 million = max(cohortCumSum2010/1e6)
+        \item Total from 1999 cohort ages 1--16: \\ 1,241,000 t
+        \item Total from 1999 cohort ages 1--7:\\ f(max(cohortCumSum1999[ages1999 <= 7])) t
+        \item Total from 2010 cohort ages 1--7:\\ f(max(cohortCumSum2010)) t
+        \item Total from 2014 cohort ages 1--3:\\ f(max(cohortCumSum2014)) t
+      \ei
+    \end{column}
+    \begin{column}{0.48\textwidth}
+    <<cum.catch, fig.height=5, fig.width=5, out.width="0.85\\columnwidth">>=
+     cohortCumSum1999 <- cumsum(cohortCatch(1999,base.model$catage))
+     cohortCumSum2010 <- cumsum(cohortCatch(2010,base.model$catage))
+     cohortCumSum2014 <- cumsum(cohortCatch(2014,base.model$catage))
+     ages1999 <- as.numeric(names(cohortCumSum1999)) - 1999
+     ages2010 <- as.numeric(names(cohortCumSum2010)) - 2010
+     ages2014 <- as.numeric(names(cohortCumSum2014)) - 2014
+     par(mar=c(5,4,1,1))
+     plot(ages1999, cohortCumSum1999/1e3, type='l', lwd=3, col=1, las=1,
+     xlab='Age', ylab='Cumulative catch (thousands of t)')
+     lines(ages2010, cohortCumSum2010/1e3, lwd=3, col=2)
+     lines(ages2014, cohortCumSum2014/1e3, lwd=3, col=4)
+     text('2014 cohort', x=5, y=max(cohortCumSum2014/1e3), col=4, pos=2)
+     text('2010 cohort', x=7, y=max(cohortCumSum2010/1e3), col=2, pos=2)
+     text('1999 cohort', x=16, y=max(cohortCumSum1999/1e3), col=1, pos=1)
+   @
 
-%%     \end{column}
-%%   \end{columns}
-%% }
+    \end{column}
+  \end{columns}
+}
 
 
 
@@ -787,12 +797,11 @@ make.cohort.table(base.model,
 \frame{\frametitle{Summary}
   \bi
     \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
-    \item Uncertainty is large, but stock is likely well above $B_{40\%}$
-    \item Forecasts strongly influenced by size of large but uncertain 2014 year class
+    \item Uncertainty is large, but stock is likely above $B_{40\%}$ and fishing intensity likely to have been below 100\%. 
+    \item Forecasts strongly influenced by size of large but uncertain 2014 cohort 
+      and very uncertain 2016 cohort
     \item Aging 2010 cohort declining due to fishing and natural mortality contributes to median spawning biomass declining with catch at 350,000~t and above
-    \item Risk is 30\% or less that spawning biomass will be below $B_{40\%}$ in 2 years at all catch levels
-    \medskip
-    \item Last year we wrote ``The 2014 year class does not affect the 2016 catch decision much, but will be extremely influential next year''. The first part may have been less accurate but the second one still likely true with respect to the 2017 catch decision.
+    \item Higher risk of falling below $B_{40\%}$ in 2 years than in last year's assessment
   \ei
 }
 
