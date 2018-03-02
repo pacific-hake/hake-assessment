@@ -281,6 +281,14 @@ m.prior <- split.prior.info(param.details[rownames(param.details) == "m.vals",][
 cohort.catch.1999 <- sum(cohortCatch(1999, base.model$catage))
 cohort.catch.2010 <- sum(cohortCatch(2010, base.model$catage))
 
+## cumulative sums for use in JMC presentation
+cohortCumSum1999 <- cumsum(cohortCatch(1999,base.model$catage))
+cohortCumSum2010 <- cumsum(cohortCatch(2010,base.model$catage))
+cohortCumSum2014 <- cumsum(cohortCatch(2014,base.model$catage))
+ages1999 <- as.numeric(names(cohortCumSum1999)) - 1999
+ages2010 <- as.numeric(names(cohortCumSum2010)) - 2010
+ages2014 <- as.numeric(names(cohortCumSum2014)) - 2014
+
 ################################################################################
 ## Sigma_r, standard deviation of recruitment variability.
 sigma.r <- f(base.model$sigma_R_in, 2)
@@ -337,3 +345,5 @@ DM.weight.survey <- round(theta.survey/(1+theta.survey),3)
 # MCMC medians for the fishery (survey value fixed at MLE)
 log.theta.fishery.median <- round(median(base.model$mcmc$ln.EffN_mult._1),3)
 DM.weight.fishery.median <- round(median(exp(base.model$mcmc$ln.EffN_mult._1)/(1+exp(base.model$mcmc$ln.EffN_mult._1))),3)
+
+

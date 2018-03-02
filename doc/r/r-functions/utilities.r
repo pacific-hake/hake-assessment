@@ -1,5 +1,6 @@
 build.doc <- function(knit.only = FALSE,
                       make.pdf  = TRUE,
+                      make.bib  = TRUE,
                       doc.name  = "hake-assessment"){
   ## Use this function to build to doc entirely from within R
   ## Make sure you have created the .RData files by sourcing all.r
@@ -18,9 +19,11 @@ build.doc <- function(knit.only = FALSE,
     system(paste0("latex -synctex=1 ", doc.name, ".tex"),
            invisible = FALSE,
            show.output.on.console = FALSE)
-    system(paste0("bibtex ", doc.name),
-           invisible = FALSE,
-           show.output.on.console = TRUE)
+    if(make.bib){
+      system(paste0("bibtex ", doc.name),
+             invisible = FALSE,
+             show.output.on.console = TRUE)
+    }
     system(paste0("latex ", doc.name, ".tex"),
            invisible = FALSE,
            show.output.on.console = FALSE)
@@ -174,7 +177,7 @@ split.prior.info <- function(prior.str,
   return(c(p.type, p.mean, p.sd))
 }
 
-cohortCatch <- function(cohort, catage, ages = 0:20) {
+cohortCatch <- function(cohort, catage, ages = 0:20, trim.forecast=TRUE) {
   cohort.yrs <- cohort + ages
   caa <- as.matrix(catage[catage$Yr %in% cohort.yrs, as.character(ages)])
   w <- base.model$wtatage
@@ -188,6 +191,9 @@ cohortCatch <- function(cohort, catage, ages = 0:20) {
   }
   cohort.catch <- diag(catch.waa[,ind])
   names(cohort.catch) <- cohort.yrs[1:(nrow(caa))]
+  if(trim.forecast){
+    cohort.catch <- cohort.catch[names(cohort.catch) < end.yr]
+  }
   return(cohort.catch)
 }
 
