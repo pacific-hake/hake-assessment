@@ -134,6 +134,7 @@ make.catches.table <- function(catches,
 }
 
 make.catches.plot <- function(catches,
+                              mar = c(4, 4, 6, 2) + 0.1,
                               leg.y.loc = 430,
                               leg.cex = 1){
   ## Plot the catches in a stacked-barplot with legend
@@ -163,7 +164,7 @@ make.catches.plot <- function(catches,
   legOrder <- c(6, 5, 2, 1, 4, 3, NA, NA, 9, 8, 7)
   oldpar <- par()
   par(las = 1,
-      mar = c(4, 4, 6, 2) + 0.1,
+      mar = mar,
       cex.axis = 0.9)
   tmp <- barplot(t(as.matrix(catches)) / 1000,
                  beside = FALSE,

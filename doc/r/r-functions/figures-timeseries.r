@@ -479,6 +479,7 @@ make.comparison.plot.mcmc <- function(
             subplots = 1,             ## Same as subplot argument in SSplotComparisons
             model.names = NULL,       ## vector of model names. Must be same length as models
             densitynames = NULL,      ## Same as densitynames argument in SSplotComparisons
+            densityxlab = NULL,       ## X-axis label
             indexPlotEach = FALSE,    ## Same as indexPlotEach argument in SSplotComparisons
             indexUncertainty = FALSE, ## Same as indexUncertainty argument in SSplotComparisons
             indexfleets = NULL,       ## Passed to the SSplotComparisons function
@@ -536,6 +537,7 @@ make.comparison.plot.mcmc <- function(
                       legendlabels = model.names,
                       legendloc = legendloc,
                       densitynames = densitynames,
+                      densityxlabs = densityxlab,
                       indexPlotEach = indexPlotEach,
                       indexUncertainty = indexUncertainty,
                       indexfleets = indexfleets,
