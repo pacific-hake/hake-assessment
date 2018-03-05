@@ -96,8 +96,8 @@ opts_chunk$set(dev = 'cairo_ps',
 
 setwd("../../../doc/r")
 ## Load all R code and the package libraries.
-#source("all.r")
-#load.models.into.parent.env()
+source("all.r")
+load.models.into.parent.env()
 ## This has to be sourced after loading the models in because it depends
 ##  on the model output.
 source("custom-knitr-variables.r")
@@ -187,7 +187,7 @@ base.and.alt.names <- c("Base model","Alternative time-varying fecundity run")
       (with 95\% interval from \Sexpr{curr.depl.lower}\% to \Sexpr{curr.depl.upper}\%).
     \item Large 2010 cohort continues to make up large fraction of catches.
     \item 2014 cohort also estimated large, but not as big as expected last year.
-    \item Default harvest rule estimated median catch limit.
+    \item Default harvest rule estimated median catch limit
       for \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t \\ 
       (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} 
       to \Sexpr{catch.limit.quantiles["upper"]}~t).
