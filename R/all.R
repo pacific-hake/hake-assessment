@@ -1,0 +1,83 @@
+# Pacific Hake Joint Technical Committee
+# This is the master file - it loads all packages and sources all
+#  other R source code files.
+#
+# To debug in an R session, run these 3 commands first:
+# source(file.path(here::here(), "R/all.r"));load.models.into.parent.env();source(file.path(here::here(), "R/custom-knitr-variables.r"))
+
+library(nwfscSurvey)
+library(nwfscMapping)
+library(date)
+library(r4ss)
+library(xtable)
+library(PBSmapping)
+library(PBSmodelling)
+library(maps)
+library(dplyr)
+library(coda)
+library(gtools)
+library(maptools)
+library(lubridate)
+library(knitr)
+library(dplyr)
+library(ggplot2)
+library(grid)
+library(gridExtra)
+library(purrr)
+library(cowplot)
+library(kableExtra)
+library(gfplot)
+
+rootd <- here::here()
+rootd.R <- file.path(rootd, "R")
+rootd.admin <- file.path(rootd, "data")
+rootd.data <- file.path(rootd, "data")
+rootd.data.prep <- file.path(rootd, "data-prep")
+rootd.doc <- file.path(rootd, "doc")
+rootd.extra.calcs <- file.path(rootd, "extra-calculations")
+rootd.models <- file.path(rootd, "models")
+rootd.pres <- file.path(rootd, "beamer")
+
+source(file.path(rootd.R, "utilities.r"))
+source(file.path(rootd.R, "catches.r"))
+source(file.path(rootd.R, "load-models.r"))
+source(file.path(rootd.R, "survey.r"))
+source(file.path(rootd.R, "load-data.r"))
+source(file.path(rootd.R, "read-list.r"))
+source(file.path(rootd.R, "figures-timeseries.r"))
+source(file.path(rootd.R, "figures-compare-forecasts.r"))
+source(file.path(rootd.R, "figures-mcmc-diagnostics.r"))
+source(file.path(rootd.R, "figures-age-comps.r"))
+source(file.path(rootd.R, "figures-selex.r"))
+source(file.path(rootd.R, "figures-stock-recruitment.r"))
+source(file.path(rootd.R, "figures-mle-mcmc.r"))
+source(file.path(rootd.R, "figures-overview-map.r"))
+source(file.path(rootd.R, "figures-data.r"))
+source(file.path(rootd.R, "figures-assessment-history.r"))
+source(file.path(rootd.R, "figures-age-comp-forecast.r"))
+source(file.path(rootd.R, "figures-SPR-illustration-appendix.r"))
+source(file.path(rootd.R, "figures-selectivity-parameterizations.r"))
+source(file.path(rootd.R, "figures-maturity-ogive.r"))
+source(file.path(rootd.R, "figures-R0-vs-meanRecruitment.r"))
+source(file.path(rootd.R, "tables-timeseries.r"))
+source(file.path(rootd.R, "tables-reference-points.r"))
+source(file.path(rootd.R, "tables-decisions.r"))
+source(file.path(rootd.R, "tables-age.r"))
+source(file.path(rootd.R, "tables-parameters.r"))
+source(file.path(rootd.R, "tables-sampling.r"))
+source(file.path(rootd.R, "tables-maturity.r"))
+source(file.path(rootd.R, "model-setup.r"))
+source(file.path(rootd.R, "forecast-catch-levels.r"))
+source(file.path(rootd.R, "retrospective-setup.r"))
+source(file.path(rootd.R, "data-tables.r"))
+
+## source("SSplotNumbers.r") ## Necessary to incorporate changes to make SS 3.30 work
+
+## ggplot globals for project
+ggplot2::theme_set(gfplot::theme_pbs())
+scale_colour_continuous <- scale_colour_viridis_c
+scale_fill_continuous <- scale_fill_viridis_c
+
+sensitivity_colors <- c("#000000", RColorBrewer::brewer.pal(8L, "Dark2"))
+scale_colour_discrete <- function(...) scale_colour_manual(..., values = sensitivity_colors)
+scale_fill_discrete <- function(...) scale_fill_manual(... , values = sensitivity_colors)

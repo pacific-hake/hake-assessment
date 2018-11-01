@@ -172,6 +172,82 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
        ylab = "Biomass index (million t)")
   dat <- model$dat
   cpue <- dat$CPUE[dat$CPUE$index > 0,]
+  ## segments(x0 = as.numeric(cpue$year),
+  ##          y0 = qlnorm(probs[1], meanlog = log(as.numeric(cpue$obs)), sdlog = as.numeric(cpue$se_log)),
+  ##          y1 = qlnorm(probs[2], meanlog = log(as.numeric(cpue$obs)), sdlog = as.numeric(cpue$se_log)),
+  ##          lwd = 3,
+  ##          lend = 1)
+
+  # subsamble to help the lines be more visible
+  nsamp <- ncol(model$extra.mcmc$cpue.table) # total samples
+  subsample <- floor(seq(1, nsamp, length.out=samples)) # subset (floor to get integers)
+
+  # lines showing expected survey values include in-between years
+  # where no survey took place and therefore are not included in surv.yrs
+  matplot(x = start.yr:end.yr,
+          y = model$extra.mcmc$cpue.table[1:length(start.yr:end.yr), subsample],
+          ##y = model$extra.mcmc$cpue.table,
+          col = rgb(0, 0, 1, 0.03),
+          type = 'l',
+          add=TRUE,
+          lty = 1)
+  lines(x = start.yr:end.yr,
+        y = model$extra.mcmc$cpue.median[1:length(start.yr:end.yr)],
+        ##y = model$extra.mcmc$cpue.median,
+        col = rgb(0, 0, 0.5, 0.7),
+        lty = 1,
+        lwd = 3)
+  ## legend('topleft',
+  ##        legend = c("Observed survey biomass (with MLE estimates of 95% intervals)",
+  ##                   "MLE estimates of expected survey biomass",
+  ##                   "Median MCMC estimate of expected survey biomass",
+  ##                   "MCMC samples of estimates of expected survey biomass"),
+  ##        lwd = c(NA,3,3,1),
+  ##        pch = c(21, NA, NA, NA),
+  ##        bg = 'white',
+  ##        text.col = gray(0.6),
+  ##        col = c(1,
+  ##                rgb(1, 0, 0, 0.7),
+  ##                rgb(0, 0, 0.5, 0.7),
+  ##                rgb(0, 0, 1, 0.4)),
+  ##        cex = leg.cex,
+  ##        bty = 'n')
+  ## SSplotIndices(model, subplot = 2, add = TRUE, col3 = rgb(1, 0, 0, 0.7))
+  axis(1, at = model$cpue$Yr[model$cpue$Use==1], cex.axis = 0.8, tcl = -0.6)
+  axis(1,
+       at = (start.yr-4):(end.yr+7),
+       lab = rep("", length((start.yr-4):(end.yr+7))),
+       cex.axis = 0.8,
+       tcl = -0.3)
+  box()
+  axis(2, at = (0:5)*1e6, lab = 0:5, las = 1)
+  par <- oldpar
+}
+
+make.mcmc.survey.fit.plot.old <- function(model,         ## model is a model with an mcmc run which has the output of the
+                                                     ##  r4ss package's function SSgetMCMC and has the extra.mcmc member
+                                      start.yr,      ## Year to start the plot
+                                      end.yr,        ## Year to end the plot
+                                      surv.yrs,      ## Years in which the survey took place
+                                      probs = c(0.025, 0.975), ## Confidence interval values lower and upper
+                                      y.max = 5.5e6, ## maximum value for the y-axis
+                                      samples = 1000, ## how many lines to show
+                                      leg.cex = 1    ## Legend tect size
+                                      ){
+  ## Plot the fit of the model to the acoustic survey with 95% C.I.
+  oldpar <- par()
+  par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
+  plot(0,
+       type = 'n',
+       xlim = c(start.yr-0.5, end.yr+0.5),
+       xaxs = 'i',
+       ylim = c(0, y.max),
+       yaxs = 'i',
+       axes = FALSE,
+       xlab = "Year",
+       ylab = "Biomass index (million t)")
+  dat <- model$dat
+  cpue <- dat$CPUE[dat$CPUE$index > 0,]
   segments(x0 = as.numeric(cpue$year),
            y0 = qlnorm(probs[1], meanlog = log(as.numeric(cpue$obs)), sdlog = as.numeric(cpue$se_log)),
            y1 = qlnorm(probs[2], meanlog = log(as.numeric(cpue$obs)), sdlog = as.numeric(cpue$se_log)),
@@ -181,7 +257,7 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
   # subsamble to help the lines be more visible
   nsamp <- ncol(model$extra.mcmc$cpue.table) # total samples
   subsample <- floor(seq(1, nsamp, length.out=samples)) # subset (floor to get integers)
-  
+
   # lines showing expected survey values include in-between years
   # where no survey took place and therefore are not included in surv.yrs
   matplot(x = start.yr:end.yr,
