@@ -1,8 +1,6 @@
 ################################################################################
 ## Data tables (input and output)
 ################################################################################
-data.path <- file.path("..", "..", "data")
-
 catch.data.file <- "landings-tac-history.csv"
 further.tac.file <- "further-tac-details.csv"
 survey.history.file <- "survey-history.csv"
@@ -33,38 +31,38 @@ us.shore.age.data.file <- "us-shore-age-data.csv"
 us.cp.age.data.file <- "us-cp-age-data.csv"
 us.ms.age.data.file <- "us-ms-age-data.csv"
 
-cat("Loading all data tables (csv files) from ", data.path, "\n")
-catches <- load.catches(file.path(data.path, catch.data.file))
+cat("Loading all data tables (csv files) from ", rootd.data, "\n")
+catches <- load.catches(file.path(rootd.data, catch.data.file))
 landings.vs.tac <- catches[[2]]
 catches <- catches[[1]]
-survey.history <- load.survey.history(file.path(data.path, survey.history.file))
-survey.comparison <- read.csv(file.path(data.path, survey.comparison.file), stringsAsFactors = FALSE)
-survey.summary <- read.csv(file.path(data.path, survey.summary.file), stringsAsFactors = FALSE)
-sampling.history <- load.sampling.history(file.path(data.path, sampling.history.file))
-further.tac <- further.tac.details(file.path(data.path, further.tac.file))
-can.ages <- load.can.age.data(file.path(data.path, can.age.file))
-ovary.samples <- read.csv(file.path(data.path, ovary.samples.file), stringsAsFactors = FALSE)
-maturity.ogives <- read.csv(file.path(data.path, maturity.ogives.file), stringsAsFactors = FALSE)
-maturity.samples <- read.csv(file.path(data.path, maturity.samples.file), stringsAsFactors = FALSE)
-age.1.index <- read.csv(file.path(data.path, age.1.file), stringsAsFactors = FALSE)
-assessment.history <- read.csv(file.path(data.path, assessment.history.file), stringsAsFactors = FALSE)
-kriging.pars <- read.csv(file.path(data.path, kriging.parameters.file), comment.char="#", stringsAsFactors = FALSE)
+survey.history <- load.survey.history(file.path(rootd.data, survey.history.file))
+survey.comparison <- read.csv(file.path(rootd.data, survey.comparison.file), stringsAsFactors = FALSE)
+survey.summary <- read.csv(file.path(rootd.data, survey.summary.file), stringsAsFactors = FALSE)
+sampling.history <- load.sampling.history(file.path(rootd.data, sampling.history.file))
+further.tac <- further.tac.details(file.path(rootd.data, further.tac.file))
+can.ages <- load.can.age.data(file.path(rootd.data, can.age.file))
+ovary.samples <- read.csv(file.path(rootd.data, ovary.samples.file), stringsAsFactors = FALSE)
+maturity.ogives <- read.csv(file.path(rootd.data, maturity.ogives.file), stringsAsFactors = FALSE)
+maturity.samples <- read.csv(file.path(rootd.data, maturity.samples.file), stringsAsFactors = FALSE)
+age.1.index <- read.csv(file.path(rootd.data, age.1.file), stringsAsFactors = FALSE)
+assessment.history <- read.csv(file.path(rootd.data, assessment.history.file), stringsAsFactors = FALSE)
+kriging.pars <- read.csv(file.path(rootd.data, kriging.parameters.file), comment.char="#", stringsAsFactors = FALSE)
 
 ## For cumulative catch plots in the data presentation
-can.ft.catch.by.month <- read.csv(file.path(data.path, can.ft.catch.by.month.file), stringsAsFactors = FALSE)
-can.shore.catch.by.month <- read.csv(file.path(data.path, can.ss.catch.by.month.file), stringsAsFactors = FALSE)
-us.shore.catch.by.month <- read.csv(file.path(data.path, us.shore.catch.by.month.file), stringsAsFactors = FALSE)
-us.cp.catch.by.month <- read.csv(file.path(data.path, us.cp.catch.by.month.file), stringsAsFactors = FALSE)
-us.ms.catch.by.month <- read.csv(file.path(data.path, us.ms.catch.by.month.file), stringsAsFactors = FALSE)
-us.research.catch.by.month <- read.csv(file.path(data.path, us.research.catch.by.month.file), stringsAsFactors = FALSE)
-us.ap.catch <- read.csv(file.path(data.path, us.ap.catch.file), stringsAsFactors = FALSE) ##, row.names = 1)
+can.ft.catch.by.month <- read.csv(file.path(rootd.data, can.ft.catch.by.month.file), stringsAsFactors = FALSE)
+can.shore.catch.by.month <- read.csv(file.path(rootd.data, can.ss.catch.by.month.file), stringsAsFactors = FALSE)
+us.shore.catch.by.month <- read.csv(file.path(rootd.data, us.shore.catch.by.month.file), stringsAsFactors = FALSE)
+us.cp.catch.by.month <- read.csv(file.path(rootd.data, us.cp.catch.by.month.file), stringsAsFactors = FALSE)
+us.ms.catch.by.month <- read.csv(file.path(rootd.data, us.ms.catch.by.month.file), stringsAsFactors = FALSE)
+us.research.catch.by.month <- read.csv(file.path(rootd.data, us.research.catch.by.month.file), stringsAsFactors = FALSE)
+us.ap.catch <- read.csv(file.path(rootd.data, us.ap.catch.file), stringsAsFactors = FALSE) ##, row.names = 1)
 ## For age comps-by fleet plots in the data presentation
 can.shore.age <- can.ages[[1]]
 can.ft.age <- can.ages[[2]]
-us.shore.age <- load.us.age.data(file.path(data.path, us.shore.age.data.file))
-us.cp.age <- load.us.age.data(file.path(data.path, us.cp.age.data.file))
-us.ms.age <- load.us.age.data(file.path(data.path, us.ms.age.data.file))
-cat("All data tables have been loaded ", data.path,"\n")
+us.shore.age <- load.us.age.data(file.path(rootd.data, us.shore.age.data.file))
+us.cp.age <- load.us.age.data(file.path(rootd.data, us.cp.age.data.file))
+us.ms.age <- load.us.age.data(file.path(rootd.data, us.ms.age.data.file))
+cat("All data tables have been loaded ", rootd.data, "\n")
 
 ##------------------------------------------------------------------------------
 ## Output data tables

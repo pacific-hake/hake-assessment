@@ -750,7 +750,7 @@ run.extra.mcmc.models <- function(model, verbose = TRUE){
   ## to match what read.table does to posteriors.sso
   newpar$label <- gsub(pattern="(", replacement=".", newpar$label, fixed=TRUE)
   newpar$label <- gsub(pattern=")", replacement=".", newpar$label, fixed=TRUE)
-  
+
   ## write table of new files
   write.table(x = newpar,
               file = file.path(extra.mcmc.dir, "ss.par"),

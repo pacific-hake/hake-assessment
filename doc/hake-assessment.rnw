@@ -173,20 +173,9 @@ opts_chunk$set(dev = 'cairo_ps',
                cache = TRUE,
                cache.path = 'knitr-cache/')
 
-setwd("r")
-## Load all R code and the package libraries.
-source("all.r")
-
-## If you want to reload all model outputs, set to TRUE
-## The load.models.into.parent.env function is located at bottom
-##  of model-setup.r.
-if(TRUE){
-  load.models.into.parent.env()
-}
-## This has to be sourced after loading the models in because it depends
-##  on the model output.
-source("custom-knitr-variables.r")
-
+source(file.path(here::here(), "R", "all.R"))
+load.models.into.parent.env()
+source(file.path(rootd.R, "custom-knitr-variables.R"))
 @
 
 %% Title page and author references page
@@ -277,8 +266,7 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 %% \modulolinenumbers[5]
 
 \lfoot{
-       % DRAFT --
-       \fishname\ assessment \Sexpr{assess.yr}
+       DRAFT -- \fishname\ assessment \Sexpr{assess.yr}
        }
 \rfoot{One-page summary}
 <<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=
@@ -319,10 +307,10 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 \bibliographystyle{hake}
 \bibliography{all}
 
-\newpage
-\rfoot{Section~\ref{sec:tables} -- Tables}
-<<main-tables, child='main-tables/main-tables.rnw'>>=
-@
+%% \newpage
+%% \rfoot{Section~\ref{sec:tables} -- Tables}
+%% <<main-tables, child='main-tables/main-tables.rnw'>>=
+%% @
 
 \clearpage
 \rfoot{Section~\ref{sec:figures} -- Figures}
@@ -340,9 +328,9 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 \renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 \renewcommand{\theequation}{\thechapter.\arabic{equation}}
 
-%%\rfoot{Appendix~\ref{chap:test-ss-3.30} -- Bridge from SS v3.24 to v3.30}
-%%<<appendix-test-ss-3.30, child='appendix-test-ss-3.30/appendix-test-ss-3.30.rnw'>>=
-%%@
+%% \rfoot{Appendix~\ref{chap:test-ss-3.30} -- Bridge from SS v3.24 to v3.30}
+%% <<appendix-test-ss-3.30, child='appendix-test-ss-3.30/appendix-test-ss-3.30.rnw'>>=
+%% @
 
 \rfoot{Appendix~\ref{chap:srg-requests} -- SRG requests}
 <<appendix-srg-requests, child='appendix-srg-requests/appendix-srg-requests-2018.rnw'>>=
@@ -364,9 +352,9 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 <<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
 @
 
-\rfoot{Appendix~\ref{chap:parameters} -- Model code}
-<<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
-@
+%% \rfoot{Appendix~\ref{chap:parameters} -- Model code}
+%% <<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
+%% @
 
 \end{appendices}
 

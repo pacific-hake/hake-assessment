@@ -97,7 +97,7 @@ are the equivalent to those presented earlier for the base model run.
 
 For the \altshort\, there is an estimated 47.8\% probability of being below $\Bforty$
 at the start of 2018 and a 18.4\% probability that the 2017 fishing intensity was above
-the target. There is an estimated 16.4\% joint probability of being both 
+the target. There is an estimated 16.4\% joint probability of being both
 above the target relative fishing intensity
 in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at
 the start of \Sexpr{end.yr}.
@@ -111,7 +111,7 @@ the start of \Sexpr{end.yr}.
 % not sure how to make Table references dynamic links for A.1-A.7, I suppose it just
 % requires adding a \label to each table (or at least the first and last).
 Tables A.1-A.7 provide information on this \altshort\, including time series tables,
-reference points, decision tables, and risk tables. 
+reference points, decision tables, and risk tables.
 Figures~\ref{fig:forecast-depletion-comparison-alt}-\ref{fig:forecast-risk-comparison-year-2-alt}
 illustrate the forecast depletion and risk probabilities in those tables.
 
@@ -357,9 +357,9 @@ make.comparison.plot.mcmc(list(base.model, alt.base.model), subplot=4,
 @
 \end{center}
 \caption{A comparison of MCMC posterior median estimates and 95\% credibility
-  intervals of spawning biomass (upper panel) and relative spawning biomass 
+  intervals of spawning biomass (upper panel) and relative spawning biomass
   (lower panel) for the base model (blue line) and the
-  \altlong\ (red line). Relative spawning biomass (depletion) at the start of 2018 
+  \altlong\ (red line). Relative spawning biomass (depletion) at the start of 2018
   is estimated to be 67\% for the base model and 41\% for the \altshort.}
 \label{fig:app-sens-alt-trend}
 \end{figure}
@@ -406,7 +406,7 @@ make.phase.plot(alt.base.model,
                 color = "blue")
 @
 \end{center}
-\caption{For the base model (top) and \altshort\ (bottom), 
+\caption{For the base model (top) and \altshort\ (bottom),
          estimated historical path followed by medians of relative fishing
          intensity and relative spawning biomass for \fishname\ with labels on the
          start and end years (and 1999 or 2010). Gray bars span the 95\% credibility
@@ -429,17 +429,18 @@ make.phase.plot(alt.base.model,
 
 %%%%%%%%%%%%%%%%%%%%%%
 
-\begin{figure}[tbp]
-\begin{center}
-<<app.sens.alt.status.3, fig.height=4.5, fig.width=8>>=
-  base.and.alt.names <- c("Base model","Alternative time-varying fecundity run")
-  make.comparison.plot.mcmc(list(base.model, alt.base.model), 
-  model.names=base.and.alt.names, subplot=14, densitynames="ForeCatch_2018")
-@
-\end{center}
-\caption{Posterior estimates of 2018 default harvest control rule catch for 
-  the base model and the \altlong.}
-\label{fig:app-sens-alt-status-3}
-\end{figure}
+%% Nov 3, 2018 - this was broken so I commented it out
+%% \begin{figure}[tbp]
+%% \begin{center}
+%% <<app.sens.alt.status.3, fig.height=4.5, fig.width=8>>=
+%%   base.and.alt.names <- c("Base model","Alternative time-varying fecundity run")
+%%   make.comparison.plot.mcmc(list(base.model, alt.base.model),
+%%   model.names=base.and.alt.names, subplot=14, densitynames="ForeCatch_2018")
+%% @
+%% \end{center}
+%% \caption{Posterior estimates of 2018 default harvest control rule catch for
+%%   the base model and the \altlong.}
+%% \label{fig:app-sens-alt-status-3}
+%% \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%
