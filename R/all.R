@@ -73,8 +73,6 @@ source(file.path(rootd.R, "retrospective-setup.R"))
 source(file.path(rootd.R, "data-tables.R"))
 source(file.path(rootd.R, "SS_output.R"))
 
-## source("SSplotNumbers.R") ## Necessary to incorporate changes to make SS 3.30 work
-
 ## ggplot globals for project
 ggplot2::theme_set(gfplot::theme_pbs())
 scale_colour_continuous <- scale_colour_viridis_c
