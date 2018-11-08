@@ -307,10 +307,10 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 \bibliographystyle{hake}
 \bibliography{all}
 
-%% \newpage
-%% \rfoot{Section~\ref{sec:tables} -- Tables}
-%% <<main-tables, child='main-tables/main-tables.rnw'>>=
-%% @
+\newpage
+\rfoot{Section~\ref{sec:tables} -- Tables}
+<<main-tables, child='main-tables/main-tables.rnw'>>=
+@
 
 \clearpage
 \rfoot{Section~\ref{sec:figures} -- Figures}
