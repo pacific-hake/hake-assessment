@@ -90,7 +90,6 @@ load.wt.at.age <- function(model,
 
   ## IGT 2018: this function might be redundant with model$wtatage
   ##           but it's better not to change at a late stage in the process
-  
   fn <- file.path(model$path, wt.at.age.fn)
   d <- readLines(fn)
   beg <- grep("Fleet = 2", d)

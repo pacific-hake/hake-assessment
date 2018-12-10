@@ -14,9 +14,6 @@ model-partest.RData
 doc/cache/*
 doc/figure/*
 doc/resDoc.tex
-doc/r/old*
-doc/r/r-functions/SS_forecast_hake.r
-doc/r/r-functions/SS_forecast_r4ss.r
 models/*
 models-dev/*
 extra-models/*
@@ -46,9 +43,8 @@ admin/2018-assessment/*
 admin/HakeMSEOptions2017-19.pdf
 *.docx
 *.doc
-doc/out-csv/*.*
+out-csv/*.*
 beamer/*/out-csv/*.*
-doc/r/out-csv
 doc/main-figures/hake_survey_1995-15_sA_squareroot_bin_narrow-panel2_bitmap100.eps
 doc/main-figures/hake_survey_1995-17_NewNArrow.eps
 doc/main-figures/hake_survey_1995-17_sA_squareroot_bin_300dpi.eps
@@ -59,3 +55,6 @@ doc/main-figures/age1hake_03-17_NASC_narrow-panel-chris.eps
 doc/main-figures/age1hake_03-17_NASC_narrow-panel-use.eps
 doc/main-figures/age2plushake_03-17_NASC_BiomassAtAge_color.eps
 doc/main-figures/age1hake_03-17_NASC_BiomassAtAge_color.eps
+.Rproj.user
+
+*synctex*

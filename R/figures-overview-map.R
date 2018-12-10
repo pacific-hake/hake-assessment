@@ -1,7 +1,4 @@
-make.overview.map.plot <- function(r.loc = getwd()){
-  ## Create the overview map for the hake assessment
-  ## r.loc is necessary so that the code can be run from latex
-  ## and a reletive path can be given to locate the r directory
+make.overview.map.plot <- function(path){
   oldpar <- par()
 
   ## California coast
@@ -312,7 +309,7 @@ make.overview.map.plot <- function(r.loc = getwd()){
   INPFCareaNames[1,c("X", "Y")] <- c(-126.15, 47.75)
 
   print("Created PSMFCareasPBS, PSMFCareaNames, INPFCareasPBS, and INPFCareaNames")
-  EEZ <- importShapefile(file.path(r.loc, "map-data", "eez", "Pacific-EEZ-dissolve-dd.shp"), readDBF = TRUE)
+  EEZ <- importShapefile(file.path(path, "eez", "Pacific-EEZ-dissolve-dd.shp"), readDBF = TRUE)
   ## tmp <- importShapefile("C:\\Mapping\\Shapefiles\\DepthContours_4Survey_dd.shp",readDBF=T)
   ## depth30f <- tmp[tmp$PID==1,]
   ## depth100f <- tmp[tmp$PID==2,]
@@ -331,21 +328,21 @@ make.overview.map.plot <- function(r.loc = getwd()){
   tmp <- joinPolys(EEZ, INPFCareasPBS[INPFCareasPBS$PID == 4,], operation = "INT")
   tmp <- joinPolys(EEZ, INPFCareasPBS, operation = "INT")
 
-  LMEoffshore <- importShapefile(file.path(r.loc, "map-data", "lme-66-offshore", "LME66-Offshore.shp"), readDBF = TRUE)
-  LME <- importShapefile(file.path(r.loc, "map-data", "lme-66", "LME66.shp"), readDBF = TRUE)
-  province <- importShapefile(file.path(r.loc, "map-data", "province", "province.shp"), readDBF = TRUE)
+  LMEoffshore <- importShapefile(file.path(path, "lme-66-offshore", "LME66-Offshore.shp"), readDBF = TRUE)
+  LME <- importShapefile(file.path(path, "lme-66", "LME66.shp"), readDBF = TRUE)
+  province <- importShapefile(file.path(path, "province", "province.shp"), readDBF = TRUE)
   alberta <- attributes(province)$PolyData[attributes(province)$PolyData$NAME == "Alberta", "PID"]
   CCLME <- attributes(LME)$PolyData[attributes(LME)$PolyData$LME_NAME == "California Current", "PID"]
   GOALME <- attributes(LME)$PolyData[attributes(LME)$PolyData$LME_NAME == "Gulf of Alaska", "PID"]
 
-  port.lats <- read.csv(file.path(r.loc, "map-data","port-lats.csv"))
+  port.lats <- read.csv(file.path(path,"port-lats.csv"))
   cities <- c("Newport", "Westport", "Astoria", "Eureka", "Charleston (Coos Bay)")
   cities <- port.lats[port.lats$Name %in% cities,]
 
   ## par(mar = c(4, 4, 0, 0) + 0.1, las = 1)
   plotMap(westCoastLL, tck = c(-0.02), xlim = c(-140, -113.0), ylim = c(29.9, 59.1), col = gray(0.8))
   addLines(wc.states.inland.pbs)
-  map("state", add = TRUE, region = c("Idaho", "Montana", "Nevada", "Arizona"))
+  maps::map("state", add = TRUE, region = c("Idaho", "Montana", "Nevada", "Arizona"))
   addLines(province, polyProps = data.frame(PID = alberta))
   addLines(province, polyProps = data.frame(PID = 12, SID = c(123)))
   ## Found this by x <- addLines(LMEoffshore) then looking at x
@@ -383,5 +380,3 @@ make.overview.map.plot <- function(r.loc = getwd()){
 
   par <- oldpar
 }
-
-

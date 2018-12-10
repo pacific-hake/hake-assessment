@@ -19,12 +19,12 @@ if(verbose) cat0("Last assessment year: \n  ", last.assess.yr)
 ## -----------------------------------------------------------------------------
 ## Directory in which the model directories reside
 ## -----------------------------------------------------------------------------
-model.dir <- file.path("..", "..", "models")
+model.dir <- rootd.models
 if(verbose) cat0("Models directory: \n  ", model.dir)
 
 ## Output CSV directory for outputs of at-age which are calculated by the
 ## make.est.numbers.at.age.table function (in r-functions/tables-age.r)
-output.csv.dir <- file.path("..", "out-csv")
+output.csv.dir <- file.path(rootd, "out-csv")
 
 ## -----------------------------------------------------------------------------
 ## File names which must exists in each model directory
@@ -85,7 +85,7 @@ surv.yrs <- c(1995,
               2017)
 
 # tick marks for time series plot
-big.ticks <- seq(1970, end.yr+4, 5)
+big.ticks <- seq(1970, end.yr + 4, 5)
 little.ticks <- start.yr:max(big.ticks)
 
 if(verbose) cat0("Last survey year: \n  ", survey.end.yr)
@@ -116,7 +116,6 @@ if(verbose) cat0("Key posteriors file: \n  ", nuisance.posteriors.file)
 ## -----------------------------------------------------------------------------
 base.model.dir.name <- "2018.40_base_model"
 base.model.name <- paste0(assess.yr, " Base model SS 3.30")
-verify.models(model.dir, base.model.dir.name, base.model.name)
 if(verbose){
   cat0("Base model directory name: \n  ", base.model.dir.name)
   cat0("Base model pretty name: \n  ", base.model.name)
@@ -127,7 +126,6 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 alt.base.model.dir.name <- "2018.40.30_fecundity_matrix2"
 alt.base.model.name <- paste0(assess.yr, " Alt base model SS 3.30")
-verify.models(model.dir, alt.base.model.dir.name, alt.base.model.name)
 if(verbose){
   cat0("Alt. base model directory name: \n  ", alt.base.model.dir.name)
   cat0("Alt. base model pretty name: \n  ", alt.base.model.name)
@@ -136,9 +134,9 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Last assessment year's base model name and directory
 ## -----------------------------------------------------------------------------
-last.yr.base.model.dir.name <- "00_45_2017base"
+##last.yr.base.model.dir.name <- "00_45_2017base"
+last.yr.base.model.dir.name <- "2018.40_base_model"
 last.yr.base.model.name <- paste(last.assess.yr, "Base model SS 3.24")
-verify.models(model.dir, base.model.dir.name, base.model.name)
 if(verbose){
   cat0("Last assessment year's base model directory name: \n  ",
        last.yr.base.model.dir.name)
@@ -156,10 +154,6 @@ bridge.model.names.1 <- c(last.yr.base.model.name,
                           "Convert to SS 3.30",
                           "Update pre-2017 data")
 bridge.model.end.yr.1 <- end.yr - 1 # all models end 1 year earlier
-verify.models(model.dir, bridge.model.dir.names.1, bridge.model.names.1)
-if(verbose){
-  print.model.message(bridge.model.dir.names.1, bridge.model.names.1, 1, model.type = "Bridge")
-}
 
 ## -----------------------------------------------------------------------------
 ## Bridge models group 2
@@ -176,11 +170,7 @@ bridge.model.names.2 <- c(last.yr.base.model.name,
                           "Add 2017 survey biomass estimate",
                           "Add 2017 survey age comps",
                           "Add 2017 fishery age comps")
-bridge.model.end.yr.2 <- end.yr - c(1,1,0,0,0,0) # subtract 1 year from first 2 models
-verify.models(model.dir, bridge.model.dir.names.2, bridge.model.names.2)
-if(verbose){
-  print.model.message(bridge.model.dir.names.2, bridge.model.names.2, 2, model.type = "Bridge")
-}
+bridge.model.end.yr.2 <- end.yr - c(1, 1, 0, 0, 0, 0) # subtract 1 year from first 2 models
 
 ## -----------------------------------------------------------------------------
 ## Bridge models group 3
@@ -198,10 +188,6 @@ bridge.model.names.3 <- c(last.yr.base.model.name,
                           "Update maturity ogive (= base model)") #,
                           #"Adjust effective sample sizes")
 bridge.model.end.yr.3 <- end.yr # all models end in the current end.yr
-verify.models(model.dir, bridge.model.dir.names.3, bridge.model.names.3)
-if(verbose){
-  print.model.message(bridge.model.dir.names.3, bridge.model.names.3, 3, model.type = "Bridge")
-}
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 1
@@ -218,10 +204,6 @@ sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
                         "Sigma R 1.8",
                         "Natural Mortality (SD=0.2)",
                         "Natural Mortality (SD=0.3)")
-verify.models(model.dir, sens.model.dir.names.1, sens.model.names.1)
-if(verbose){
-  print.model.message(sens.model.dir.names.1, sens.model.names.1, 1, model.type = "Sensitivity")
-}
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 2
@@ -236,10 +218,6 @@ sens.model.names.2 <- c("Add Age 1 Index",
                         "Harmonic Mean Data Weighting",
                         "U.S. Comps Weighted by Month",
                         "Alternative catch stream")
-verify.models(model.dir, sens.model.dir.names.2, sens.model.names.2)
-if(verbose){
-  print.model.message(sens.model.dir.names.2, sens.model.names.2, 2, model.type = "Sensitivity")
-}
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 3
@@ -256,10 +234,6 @@ sens.model.names.3 <- c("Max. age selectivity 5",
                         "Phi t.v. selectivity (0.21)",
                         "Phi t.v. selectivity (0.70)",
                         "Phi t.v. selectivity (2.10)")
-verify.models(model.dir, sens.model.dir.names.3, sens.model.names.3)
-if(verbose){
-  print.model.message(sens.model.dir.names.3, sens.model.names.3, 3, model.type = "Sensitivity")
-}
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 4
@@ -268,10 +242,6 @@ sens.model.dir.names.4 <- c("2018.40.10_semiPara_tvSelect_sig0.695",
                             "2018.40.20_semiPara_tvSelect_sig1.0")
 sens.model.names.4 <- c("Semi-Parametric t.v selectivity (0.695)",
                         "Semi-Parametric t.v. selectivity (1.0)")
-verify.models(model.dir, sens.model.dir.names.4, sens.model.names.4)
-if(verbose){
-  print.model.message(sens.model.dir.names.4, sens.model.names.4, 4, model.type = "Sensitivity")
-}
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 5  - Different weight-at-age schemes (SRG request)
@@ -280,10 +250,6 @@ sens.model.dir.names.5 <- c("2018.40.29_fecundity_matrix1",
                             "2018.40.30_fecundity_matrix2")
 sens.model.names.5 <- c("Fecundity using yearly weight-at-age matrix",
                         "Fecundity with pre-1975 and post-2017 avgs.")
-verify.models(model.dir, sens.model.dir.names.5, sens.model.names.5)
-if(verbose){
-  print.model.message(sens.model.dir.names.5, sens.model.names.5, 5, model.type = "Sensitivity")
-}
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 6   - dummy for now
@@ -292,10 +258,6 @@ sens.model.dir.names.6 <- c("2018.40_base_model",
                             "2018.40_base_model")
 sens.model.names.6 <- c("Base Case",
                         "Base Case")
-verify.models(model.dir, sens.model.dir.names.6, sens.model.names.6)
-if(verbose){
-  print.model.message(sens.model.dir.names.6, sens.model.names.6, 6, model.type = "Sensitivity")
-}
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 7 - Request from SRG   - dummy for now
@@ -304,10 +266,6 @@ sens.model.dir.names.7 <- c("2018.40_base_model",
                             "2018.40_base_model")
 sens.model.names.7 <- c("Base Case",
                         "Base Case")
-verify.models(model.dir, sens.model.dir.names.7, sens.model.names.7)
-if(verbose){
-  print.model.message(sens.model.dir.names.7, sens.model.names.7, 7, model.type = "Sensitivity")
-}
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 8 - Request from SRG  - dummy for now
@@ -320,10 +278,6 @@ sens.model.names.8 <- c("Base Case",
 ##                             "03_2017base_3.30_tv_pars")
 ## sens.model.names.8 <- c("Base model SS version 3.30",
 ##                         "Base 3.30 with TV pars mimic base 2017")
-verify.models(model.dir, sens.model.dir.names.8, sens.model.names.8)
-if(verbose){
-  print.model.message(sens.model.dir.names.8, sens.model.names.8, 8, model.type = "Sensitivity")
-}
 
 ## This function must be called from within the first knitr code chunk
 ## in the document. It is defined here so that it is in the same place

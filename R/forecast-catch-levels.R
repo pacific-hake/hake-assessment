@@ -51,8 +51,3 @@ alt.catch.levels <-
 catch.tac.ind <- 5
 catch.default.policy.ind <- 7
 catch.default.policy <- catch.levels[[catch.default.policy.ind]][[1]]
-
-## The verify.catch.levels function is in verify.r
-verify.catch.levels(catch.levels,
-                    c(catch.tac.ind, catch.default.policy.ind),
-                    forecast.yrs)
