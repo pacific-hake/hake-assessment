@@ -38,12 +38,12 @@ beamer/SRG/Sensitivities/knitr-cache
 beamer/SRG/Management/beamer-hake-management.tex
 *.ppt*
 beamer/JMC/presentation/knitr-cache
-!admin/*.pdf
-admin/2018-assessment/*
-admin/HakeMSEOptions2017-19.pdf
+admin/*
 *.docx
 *.doc
 out-csv/*.*
+doc/out-csv/*.*
+papers/*
 beamer/*/out-csv/*.*
 doc/main-figures/hake_survey_1995-15_sA_squareroot_bin_narrow-panel2_bitmap100.eps
 doc/main-figures/hake_survey_1995-17_NewNArrow.eps
