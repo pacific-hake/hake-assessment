@@ -647,13 +647,15 @@ run.retrospectives <- function(model,
     dir.create(retro.dir, showWarnings = FALSE)
 
     ## Copy all required model files into the retrospective directory
-    files.to.copy <- file.path(model$path, c(exe.file.name,
-                                             starter.file.name,
-                                             forecast.file.name,
-                                             weight.at.age.file.name,
-                                             model$ctl.file,
-                                             model$dat.file))
-    file.copy(file.path(model$path, files.to.copy), retro.dir)
+
+    files.to.copy <- c(file.path(model$path, c(exe.file.name,
+                                               starter.file.name,
+                                               forecast.file.name,
+                                               weight.at.age.file.name)),
+                       model$ctl.file,
+                       model$dat.file)
+    file.copy(files.to.copy, retro.dir)
+
     starter.file <- file.path(retro.dir, starter.file.name)
     starter <- SS_readstarter(starter.file, verbose = verbose)
     starter$retro_yr <- -yrs[retro]
@@ -694,8 +696,10 @@ fetch.retros <- function(retro.path, ## The full or reletive path in which the r
     retros.list <- list()
     for(retro in 1:length(retro.yrs)){
       retro.dir <- file.path(retro.path, paste0("retro-", pad.num(retro.yrs[retro], 2)))
-      retros.list[[retro]] <- SS_output(dir = retro.dir, verbose = verbose,
-                                        printstats = printstats)
+      retros.list[[retro]] <- SS_output(dir = retro.dir,
+                                        verbose = verbose,
+                                        printstats = printstats,
+                                        covar = FALSE)
     }
     message(curr.func.name, "Retrospectives loaded for '", retro.path, "'")
   }else{
