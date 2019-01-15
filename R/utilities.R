@@ -934,6 +934,38 @@ mcmc.out <- function (directory = "c:/mydirectory/", run = "mymodel/", file = "k
     }
 }
 
+# Multiply the weight-at-age by the maturity vector and reproduce output to match SS wtatage file format
+fec <- function(d = tibble::as.tibble(readClipboard()),
+                mat = c(0.000,
+                        0.000,
+                        0.261,
+                        0.839,
+                        0.961,
+                        0.920,
+                        0.928,
+                        0.926,
+                        0.957,
+                        0.944,
+                        0.980,
+                        0.962,
+                        1.000,
+                        0.958,
+                        0.955,
+                        0.900,
+                        0.900,
+                        0.900,
+                        0.900,
+                        0.900,
+                        0.900)){
+    k <- apply(d, 1, function(x){j=strsplit(as.character(x),"\\s+")[[1]];j})
+    pre <- t(k[1:7,])
+    j <- apply(k, c(1,2), as.numeric)
+    x <- j[-(1:7),]
+    y <- t(x * mat)
+    z <- cbind(pre, y)
+    write.table(z, "wtatage.txt", quote = FALSE, row.names = FALSE, col.names = FALSE)
+}
+
 ## ## Hack here - needed to show MLE on the plot, so I had to change this r4ss function
 ## ##  so that refile is set to the MLE dir.
 ## SSplotPars <-
