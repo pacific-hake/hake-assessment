@@ -113,16 +113,22 @@ total catch of the 2010 year class is estimated to be about
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
-The biomass index and age composition from the acoustic survey conducted
-in \Sexpr{survey.end.yr} have been added to the survey time series
-(Figure~\ref{fig:es-survey-biomass}). A new age-based maturity ogive was
-developed for this assessment, replacing the previous ogive that was based on
-estimates of maturity-at-length from 1997 and weight-at-length  from 2011.
-Further new data for this \Sexpr{assess.yr}
-assessment, that were not in the \Sexpr{last.assess.yr} assessment,
-are the
-\Sexpr{last.data.yr} fishery catch and fishery age compositions, and the mean
-weight-at-age for \Sexpr{last.data.yr}.
+The U.S. government shutdown affected the data used in the \Sexpr{assess.yr}
+assessment. U.S. age data were not available, and Canadian age data could not
+be used as they are not necessarily representative of the coastwide stock. Usually U.S.
+and Canadian age data are combined as there is only one fleet in the model. Only total \Sexpr{last.data.yr} catch
+was added to the model this year. U.S. catch was extracted before the government shutdown took place,
+after hake fishing had finished for the year.
+%% The biomass index and age composition from the acoustic survey conducted
+%% in \Sexpr{survey.end.yr} have been added to the survey time series
+%% (Figure~\ref{fig:es-survey-biomass}). A new age-based maturity ogive was
+%% developed for this assessment, replacing the previous ogive that was based on
+%% estimates of maturity-at-length from 1997 and weight-at-length  from 2011.
+%% Further new data for this \Sexpr{assess.yr}
+%% assessment, that were not in the \Sexpr{last.assess.yr} assessment,
+%% are the
+%% \Sexpr{last.data.yr} fishery catch and fishery age compositions, and the mean
+%% weight-at-age for \Sexpr{last.data.yr}.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
@@ -922,18 +928,18 @@ related to fecundity:
    \item add time-varying fecundity by multiplying the weight-at-age matrix (rather than
    an overall mean weight-at-age vector as in the base model) and the new maturity ogive
    to get annual estimates of fecundity from 1975-2017;
-   \item set equilibrium and 1966-1974 fecundity (where empirical data are not available) 
+   \item set equilibrium and 1966-1974 fecundity (where empirical data are not available)
    to the product of maturity and mean weight-at-age over 1975-1979;
-   \item set forecast-year fecundity (including 2017 due to current configurations in Stock Synthesis) 
-   weight-at-age to the product of maturity and mean weight-at-age over 2015-2017. 
+   \item set forecast-year fecundity (including 2017 due to current configurations in Stock Synthesis)
+   weight-at-age to the product of maturity and mean weight-at-age over 2015-2017.
 \end{itemize}
 
 Decision tables, reference points, probabilities associated with alternative
-forecast catch levels, and comparisons to the base model are presented for the 
+forecast catch levels, and comparisons to the base model are presented for the
 \altshort\ in Appendix~\ref{chap:srg-requests}. The difference between the results
-is predominantly due to the assumptions about equilibrium weight-at-age. 
+is predominantly due to the assumptions about equilibrium weight-at-age.
 
-An inconsistency in this \altshort\ is that the the mean weight-at-age 
+An inconsistency in this \altshort\ is that the the mean weight-at-age
 across all years is still used for the calculation of
 stock biomass in the years outside the range with empirical data (1975-2017),
 rather than the short-term averages (1975-1979 or 2015-2017). A brief examination of
