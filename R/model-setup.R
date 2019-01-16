@@ -91,7 +91,9 @@ little.ticks <- start.yr:max(big.ticks)
 if(verbose) cat0("Last survey year: \n  ", survey.end.yr)
 ## Final year of data (This is what is the end year is in the model data files)
 last.data.yr <- end.yr - 1
+last.age.yr <- end.yr - 2
 if(verbose) cat0("Last year of model data: \n  ", last.data.yr)
+if(verbose) cat0("Last year of age data: \n  ", last.age.yr)
 
 ## -----------------------------------------------------------------------------
 ## Key posteriors used in the assessment

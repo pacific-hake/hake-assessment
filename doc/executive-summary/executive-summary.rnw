@@ -133,8 +133,6 @@ after hake fishing had finished for the year.
 \begin{figure}[tbp]
 \begin{center}
 <<survey.biomass, fig.height=5, fig.width=8>>=
-## modelnum is the model index in models list from which the survey input
-##  data are used.
 make.survey.biomass.plot(base.model)
 @
 \end{center}
@@ -146,18 +144,16 @@ make.survey.biomass.plot(base.model)
 \label{fig:es-survey-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-%
 
 This Joint Technical Committee (JTC) assessment depends primarily on the fishery
 landings (\Sexpr{start.yr}--\Sexpr{last.data.yr}), acoustic survey biomass
 indices (Figure~\ref{fig:es-survey-biomass}) and age-compositions
 (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}), as well as fishery
-age-compositions (1975--\Sexpr{last.data.yr}). The 2011 survey index value
+age-compositions (1975--\Sexpr{last.age.yr}). The 2011 survey index value
 was the lowest in the time series, and was followed by the index increasing
 in 2012, 2013, and 2015, and then declining in 2017. Age-composition data from the
 aggregated fisheries and the acoustic survey contribute to the assessment
 model's ability to resolve strong and weak cohorts.
-% Manual 2018 done.
 
 The assessment uses a Bayesian estimation approach, sensitivity analyses, and
 retrospective investigations to evaluate the potential consequences of parameter
