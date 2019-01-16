@@ -7,9 +7,8 @@
 \label{chap:data-file}
 
 \begin{codefont}
- 
-\lstinputlisting{\Sexpr{sub("../", "", 
-    file.path(base.model$dat.file) ) }}
+
+\lstinputlisting{\Sexpr{base.model$dat.file}}
 
 \end{codefont}
 
@@ -26,9 +25,8 @@
 \label{chap:control-file}
 
 \begin{codefont}
- 
-\lstinputlisting{\Sexpr{sub("../", "", 
-    file.path(base.model$ctl.file) ) }}   % $
+
+\lstinputlisting{\Sexpr{base.model$ctl.file}}
 
 \end{codefont}
 
@@ -39,9 +37,8 @@
 \label{chap:starter-file}
 
 \begin{codefont}
- 
-\lstinputlisting{\Sexpr{sub("../", "", 
-    file.path(base.model$path,starter.file.name) ) }} 
+
+\lstinputlisting{\Sexpr{file.path(base.model$path, starter.file.name)}}
                 % $ [so emacs renders properly]
 
 \end{codefont}
@@ -54,9 +51,8 @@
 \label{chap:forecast-file}
 
 \begin{codefont}
- 
-\lstinputlisting{\Sexpr{sub("../", "", 
-    file.path(base.model$path,forecast.file.name) ) }}  % $
+
+\lstinputlisting{\Sexpr{file.path(base.model$path, forecast.file.name)}}
 
 \end{codefont}
 
@@ -68,10 +64,7 @@
 \label{chap:weight-at-age-file}
 
 \begin{codefont}
- 
-\lstinputlisting{\Sexpr{sub("../", "", 
-    file.path(base.model$path,weight.at.age.file.name) ) }}   % $
+
+\lstinputlisting{\Sexpr{file.path(base.model$path, weight.at.age.file.name)}}
 
 \end{codefont}
-
-
