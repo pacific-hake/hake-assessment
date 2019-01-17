@@ -935,35 +935,63 @@ mcmc.out <- function (directory = "c:/mydirectory/", run = "mymodel/", file = "k
 }
 
 # Multiply the weight-at-age by the maturity vector and reproduce output to match SS wtatage file format
-fec <- function(d = tibble::as.tibble(readClipboard()),
-                mat = c(0.000,
-                        0.000,
-                        0.261,
-                        0.839,
-                        0.961,
-                        0.920,
-                        0.928,
-                        0.926,
-                        0.957,
-                        0.944,
-                        0.980,
-                        0.962,
-                        1.000,
-                        0.958,
-                        0.955,
-                        0.900,
-                        0.900,
-                        0.900,
-                        0.900,
-                        0.900,
-                        0.900)){
+# Writes output to a text file for easy insertion back into the wtatage file
+fec.wtatage <- function(d = tibble::as.tibble(readClipboard()),
+                        mat = c(0.000,
+                                0.000,
+                                0.261,
+                                0.839,
+                                0.961,
+                                0.920,
+                                0.928,
+                                0.926,
+                                0.957,
+                                0.944,
+                                0.980,
+                                0.962,
+                                1.000,
+                                0.958,
+                                0.955,
+                                0.900,
+                                0.900,
+                                0.900,
+                                0.900,
+                                0.900,
+                                0.900)){
     k <- apply(d, 1, function(x){j=strsplit(as.character(x),"\\s+")[[1]];j})
     pre <- t(k[1:7,])
     j <- apply(k, c(1,2), as.numeric)
     x <- j[-(1:7),]
     y <- t(x * mat)
+    pre[,2] <- paste0(" ", pre[,2])
+    pre[,3] <- paste0("    ", pre[,3])
+    pre[,4] <- paste0("      ", pre[,4])
+    pre[,5] <- paste0("  ", pre[,5])
+    pre[,6] <- paste0("     ", pre[,6])
+    pre[,7] <- "    -2"
+    y <- f(y, 4)
     z <- cbind(pre, y)
     write.table(z, "wtatage.txt", quote = FALSE, row.names = FALSE, col.names = FALSE)
+}
+
+# Calculate the average values for the weights-at-age as pasted from an SS wtatage file.
+# Writes output to a text file for easy insertion back into the wtatage file
+# Written in 2019 for use in fecundity/weight-at-age changes
+avg.wtatage <- function(d = tibble::as.tibble(readClipboard()),
+                        year = 2018){
+  k <- apply(d, 1, function(x){j=strsplit(as.character(x),"\\s+")[[1]];j})
+  pre <- t(k[1:7,])[1,]
+  pre[2] <- year
+  pre[2] <- paste0(" ", pre[2])
+  pre[3] <- paste0("    ", pre[3])
+  pre[4] <- paste0("      ", pre[4])
+  pre[5] <- paste0("  ", pre[5])
+  pre[6] <- paste0("     ", pre[6])
+  j <- apply(k, c(1,2), as.numeric)
+  x <- j[-(1:7),]
+  y <- t(x)
+  z <- t((c(pre, f(apply(y, 2, mean), 4))))
+  write.table(z, "avg-wtatage.txt", quote = FALSE, row.names = FALSE, col.names = FALSE)
 }
 
 ## ## Hack here - needed to show MLE on the plot, so I had to change this r4ss function
