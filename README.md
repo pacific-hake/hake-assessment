@@ -1,7 +1,7 @@
 ____
 # hake-assessment
 
-**Updated February 11, 2017**
+**Updated January 17, 2018**
 
 A framework which uses latex and knitr code to build the US/Canadian Pacific hake assessment.
 
@@ -11,14 +11,19 @@ _____________________________________________________________
 ## Prerequisites
 * MikTex 2.9 for Windows - the first time you try to run, many packages will be installed automatically.
   This takes some time so make sure you have a fast connection.
-* R (version 3.3.2 "Sincere Pumpkin Patch")
+* R (version 3.5.1 "Feather Spray")
 * R Packages (will be installed automatically if they are not present):
     * caTools
     * coda
+    * cowplot
     * date
     * devtools
     * dplyr
+    * ggplot2
+    * grid
+    * gridExtra
     * gtools
+    * kableExtra
     * knitr
     * lubridate
     * maps
@@ -26,8 +31,11 @@ _____________________________________________________________
     * nwfscSurvey
     * nwfscMapping
     * PBSmapping
+    * purrr
     * PBSmodelling
+    * RColorBrewer
     * r4ss
+    * scales
     * stringi
     * xtable
 
@@ -46,13 +54,12 @@ _____________________________________________________________
   **forecast-catch-levels.r**, and **retrospective-setup.r**:
 
 * To build the RData files for the the base model and the bridge/sensitivity models,
-  open R in the doc/r directory and run the following:
+  run the following:
   ```R
-    source("all.r")
-    build(T, T, T)
+    source("R/all.r")
+    build(TRUE, TRUE, TRUE)
   ```
 
-  [where the full **build()** command is **build(run.fore = TRUE, run.retro = TRUE, run.extra.mcmc = TRUE)**];
   this will take a while as it has to run the forecasts, retrospectives, and create extra-mcmc output,
   depending on what you set as arguments.
 
@@ -71,25 +78,17 @@ _____________________________________________________________
     forecasting, retrospectives, or extra mcmc output will be run.
 
   * To delete all existing Rdata files and rebuild them again from the model outputs,
-    open R in the doc/r directory and run the following::
+    run the following:
     ```R
-      source("all.r")
+      source("R/all.r")
       delete.rdata.files()
       build()
     ```
 
   * To re-run the forecasts (deleting previous ones) then
+  ```R
     build(run.fore = TRUE, run.retro = TRUE, run.extra.mcmc = TRUE)
-
-  * You don’t need to save the workspace when you close R, it isn't used by latex/knitr.
-
-  * In 2018, when running
-     build(TRUE, TRUE, TRUE)
-  we sometimes got an error 
-     line 2001 did not have 226 elements
-  (see Issue #362), but then doing
-     build()
-  works.  
+  ```
 
 ## How to create hake-assessment.pdf
 
@@ -109,10 +108,10 @@ _____________________________________________________________
   This method is faster after the first time, because the models will already be loaded into the
   workspace and won't be reloaded every time you build the document.
 
-  * Open R in the doc/r directory and run the following:
+  * Run the following:
     ```R
-      source("all.r")
-      setwd("..")
+      source("R/all.r")
+      setwd("doc")
       build.doc()
     ```
 
@@ -134,12 +133,12 @@ _____________________________________________________________
 
 * Try deleting .RData file for the base case. Could be to do with the forecasts.
 
-* The error during **one-page-summary.rnw** that says **object 'catch.limit.quantiles' not found** is because projections haven't built properly. Chris/Ian fixed this on 23-01-2018 (it was building fine on morning of 19-01-2018 before a new **models/2018.18\_temporary\_base/** was uploaded). 
+* The error during **one-page-summary.rnw** that says **object 'catch.limit.quantiles' not found** is because projections haven't built properly. Chris/Ian fixed this on 23-01-2018 (it was building fine on morning of 19-01-2018 before a new **models/2018.18\_temporary\_base/** was uploaded).
 
- 
+
 ## How to delete all model RData files
 
-* Open R in the doc/r directory and run the following:
+* Run the following:
   ```R
     delete.rdata.files()
   ```
@@ -148,11 +147,11 @@ _____________________________________________________________
 
 ## How to debug functions used in the knitr chunks in the **.rnw** files
 
-* Open R in the doc/r directory and use this one-liner so that you can use the R history (up and down-arrows)
+* Open R and use this one-liner so that you can use the R history (up and down-arrows)
   This is important while debugging the R code, because you will need to run this each
   time you make a change in the code and want to test it, or if you insert a **browser()** command somewhere:
   ```R
-	source("all.r");load.models.into.parent.env();source("custom-knitr-variables.r")
+	source(file.path(here::here(), "R/all.r"));load.models.into.parent.env();source(file.path(here::here(), "R/custom-knitr-variables.r"))
   ```
 * Cut-and-paste the figure/table code from the knitr chunk you want to debug into R and the output will be exactly
   what will appear in the document.
@@ -385,6 +384,18 @@ Ran a second chain in 2018 with alternative seed to compare multi-chain converge
 Note: changing value in starter file to "0 # run display detail (0,1,2)" may
 speed up the MCMC a tiny bit.
 
+***Commands for 2019:***
+
+        ss3 -mcmc 24000000 -mcsave 10000 -mcseed 36519
+        ss3 -mceval
+
+The 24 million samples saving 1 in every 10 thousand results in 2400 samples saved.
+These values are then been combined with starter.ss values of
+
+        400     # MCMC burn-in
+        1       # MCMC thinning interval
+
+to get 2000 total samples.
 
 
 __Andy's other notes__
