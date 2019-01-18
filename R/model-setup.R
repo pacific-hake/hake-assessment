@@ -116,7 +116,7 @@ if(verbose) cat0("Key posteriors file: \n  ", nuisance.posteriors.file)
 ## -----------------------------------------------------------------------------
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
-base.model.dir.name <- "2019.01_base_model"
+base.model.dir.name <- "2019.01.00_base_model"
 base.model.name <- paste0(assess.yr, " Base model")
 if(verbose){
   cat0("Base model directory name: \n  ", base.model.dir.name)
@@ -158,12 +158,12 @@ bridge.model.end.yr.1 <- end.yr - 1 # all models end 1 year earlier
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 1
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.1 <- c("2019.00.01_h_prior_mean_low",
-                            "2019.00.02_h_fix_high",
-                            "2019.00.03_sigmaR_fix_low",
-                            "2019.00.04_sigmaR_fix_high",
-                            "2019.00.05_M_0.2SD",
-                            "2019.00.06_M_0.3SD")
+sens.model.dir.names.1 <- c("2019.01.01_h_prior_mean_low",
+                            "2019.01.02_h_fix_high",
+                            "2019.01.03_sigmaR_fix_low",
+                            "2019.01.04_sigmaR_fix_high",
+                            "2019.01.05_M_0.2SD",
+                            "2019.01.06_M_0.3SD")
 sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
                         "Steepness Fix 1.0",
                         "Sigma R 1.0",
@@ -174,22 +174,22 @@ sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 2
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.2 <- c("2019.00.16_age1Survey",
-                            "2019.00.14_ageError_noCohort")
-                            #"2019.00.15_compWeight_HarmonicMean")
+sens.model.dir.names.2 <- c("2019.01.16_age1Survey",
+                            "2019.01.14_ageError_noCohort",
+                            "2019.01.15_compWeight_HarmonicMean")
 sens.model.names.2 <- c("Add Age 1 Index",
-                        "Ageing Error (cohort invariant)")
-                        #"Harmonic Mean Data Weighting")
+                        "Ageing Error (cohort invariant)",
+                        "Harmonic Mean Data Weighting")
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 3
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.3 <- c("2019.00.07_maxSel_Age5",
-                            "2019.00.08_maxSel_Age7",
-                            "2019.00.09_maxSel_Age10",
-                            "2019.00.11_tvSelect_phi_xtralow",
-                            "2019.00.12_tvSelect_phi_low",
-                            "2019.00.13_tvSelect_phi_high")
+sens.model.dir.names.3 <- c("2019.01.07_maxSel_Age5",
+                            "2019.01.08_maxSel_Age7",
+                            "2019.01.09_maxSel_Age10",
+                            "2019.01.11_tvSelect_phi_xtralow",
+                            "2019.01.12_tvSelect_phi_low",
+                            "2019.01.13_tvSelect_phi_high")
 sens.model.names.3 <- c("Max. age selectivity 5",
                         "Max. age selectivity 7",
                         "Max. age selectivity 10",
@@ -200,18 +200,18 @@ sens.model.names.3 <- c("Max. age selectivity 5",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 4
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.4 <- c("2019.00.10_semiPara_tvSelect_sig0.695",
-                            "2019.00.20_semiPara_tvSelect_sig1.0")
+sens.model.dir.names.4 <- c("2019.01.10_semiPara_tvSelect_sig0.695",
+                            "2019.01.20_semiPara_tvSelect_sig1.0")
 sens.model.names.4 <- c("Semi-Parametric t.v selectivity (0.695)",
                         "Semi-Parametric t.v. selectivity (1.0)")
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 5  - Different weight-at-age schemes (SRG request)
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.5 <- c("2019.00.29_fecundity_matrix1",
-                            "2019.00.31_fecundity_matrix3")
-sens.model.names.5 <- c("Fecundity using yearly weight-at-age matrix",
-                        "Fecundity with pre-1975 and post-2017 avgs.")
+## sens.model.dir.names.5 <- c("2019.01.29_fecundity_matrix1",
+##                             "2019.01.31_fecundity_matrix3")
+## sens.model.names.5 <- c("Fecundity using yearly weight-at-age matrix",
+##                         "Fecundity with pre-1975 and post-2017 avgs.")
 
 ## This function must be called from within the first knitr code chunk
 ## in the document. It is defined here so that it is in the same place
