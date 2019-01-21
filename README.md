@@ -56,7 +56,7 @@ _____________________________________________________________
 * To build the RData files for the the base model and the bridge/sensitivity models,
   run the following:
   ```R
-    source("R/all.r")
+    source(file.path(here::here(), "R/all.r"))
     build(TRUE, TRUE, TRUE)
   ```
 
@@ -80,7 +80,7 @@ _____________________________________________________________
   * To delete all existing Rdata files and rebuild them again from the model outputs,
     run the following:
     ```R
-      source("R/all.r")
+      source(file.path(here::here(), "R/all.r"))
       delete.rdata.files()
       build()
     ```
@@ -110,8 +110,8 @@ _____________________________________________________________
 
   * Run the following:
     ```R
-      source("R/all.r")
-      setwd("doc")
+      source(file.path(here::here(), "R/all.r"))
+      setwd(file.path(here::here(), "doc"))
       build.doc()
     ```
 
@@ -140,6 +140,7 @@ _____________________________________________________________
 
 * Run the following:
   ```R
+    source(file.path(here::here(), "R/all.r"))
     delete.rdata.files()
   ```
 * Before you try to build the document again, you will need to run the **build()** function again with
