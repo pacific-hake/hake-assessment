@@ -205,6 +205,14 @@ sens.model.dir.names.4 <- c("2019.02.10_semiPara_tvSelect_sig0.695",
 sens.model.names.4 <- c("Semi-Parametric t.v selectivity (0.695)",
                         "Semi-Parametric t.v. selectivity (1.0)")
 
+## -----------------------------------------------------------------------------
+## Sensitivity models group 5  - Different weight-at-age schemes (SRG request)
+## -----------------------------------------------------------------------------
+## sens.model.dir.names.5 <- c("2019.02.29_fecundity_matrix1",
+##                             "2019.02.31_fecundity_matrix3")
+## sens.model.names.5 <- c("Fecundity using yearly weight-at-age matrix",
+##                         "Fecundity with pre-1975 and post-2017 avgs.")
+
 ## This function must be called from within the first knitr code chunk
 ## in the document. It is defined here so that it is in the same place
 ## as the other model setup and should be changed if bridge models
