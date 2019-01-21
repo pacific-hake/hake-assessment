@@ -60,6 +60,8 @@ _____________________________________________________________
     build(TRUE, TRUE, TRUE)
   ```
 
+  [or just ```source("all.r")``` if you are in the right directory]
+
   this will take a while as it has to run the forecasts, retrospectives, and create extra-mcmc output,
   depending on what you set as arguments.
 
