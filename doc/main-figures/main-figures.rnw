@@ -244,7 +244,9 @@ make.comparison.plot(bridge.models.1,
                      end.yr = bridge.model.end.yr.1)
 @
 \end{center}
-\caption{Bridging models showing the \Sexpr{last.assess.yr} base model
+\caption{**Show this as nothing really changes, so can just show biomass plot
+  (and verify that nothing changes in the next figure)....
+  **Bridging models showing the \Sexpr{last.assess.yr} base model
   and the results of converting that model to Stock Synthesis version 3.30 and then
   updating the pre-\Sexpr{last.assess.yr} data.
   The points disconnected from the time-series on the
@@ -252,6 +254,122 @@ make.comparison.plot(bridge.models.1,
 \label{fig:main-bridge-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+
+% See commit 7c57cf7a12 for four-panel plot code
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.bridge.5.panel.1, fig.height=8, fig.width=8>>=
+oldpar <- par(no.readonly=TRUE)
+par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
+layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
+make.comparison.plot(bridge.models.1,
+                     subplots = 2,
+                     model.names = bridge.model.names.1,
+                     densitynames = bridge.density.names,
+                     end.yr = bridge.model.end.yr.1)
+make.comparison.plot(bridge.models.1,
+                     subplots = 4,
+                     model.names = bridge.model.names.1,
+                     densitynames = bridge.density.names,
+                     legend = FALSE,
+                     end.yr = bridge.model.end.yr.1)
+make.comparison.plot(bridge.models.1,
+                     subplots = 8,
+                     model.names = bridge.model.names.1,
+                     densitynames = bridge.density.names,
+                     legend = FALSE,
+                     end.yr = bridge.model.end.yr.1)
+make.comparison.plot(bridge.models.1,
+                     subplots = 10,
+                     model.names = bridge.model.names.1,
+                     densitynames = bridge.density.names,
+                     legend = FALSE,
+                     end.yr = bridge.model.end.yr.1)
+box()
+make.comparison.plot(bridge.models.1,
+                     subplots = 11,
+                     model.names = bridge.model.names.1,
+                     densitynames = bridge.density.names,
+                     indexPlotEach = TRUE,
+                     indexUncertainty = TRUE,
+                     legend = FALSE,
+                     end.yr = bridge.model.end.yr.1)
+mtext("Year", side = 1, line = 1, outer = TRUE)
+par <- oldpar
+@
+\end{center}
+\caption{**Bridging models showing the difference between the
+  \Sexpr{last.assess.yr} base model, and ****
+  and the sequential addition of the new
+  survey and fishery data. Spawning biomass
+  (upper panel), relative spawning biomass (spawning biomass in each year
+  relative to the unfished equilibrium spawning biomass, middle left),
+  absolute recruitment (middle right), recruitment deviations (lower left),
+  and survey index (lower right) are shown.}
+\label{fig:main-bridge-5-panel.1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+% \clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.bridge.5.panel.2, fig.height=8, fig.width=8>>=
+oldpar <- par(no.readonly=TRUE)
+par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
+layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
+make.comparison.plot(bridge.models.2,
+                     subplots = 2,
+                     model.names = bridge.model.names.2,
+                     densitynames = bridge.density.names,
+                     end.yr = bridge.model.end.yr.2)
+make.comparison.plot(bridge.models.2,
+                     subplots = 4,
+                     model.names = bridge.model.names.2,
+                     densitynames = bridge.density.names,
+                     legend = FALSE,
+                     end.yr = bridge.model.end.yr.2)
+make.comparison.plot(bridge.models.2,
+                     subplots = 8,
+                     model.names = bridge.model.names.2,
+                     densitynames = bridge.density.names,
+                     legend = FALSE,
+                     end.yr = bridge.model.end.yr.2)
+make.comparison.plot(bridge.models.2,
+                     subplots = 10,
+                     model.names = bridge.model.names.2,
+                     densitynames = bridge.density.names,
+                     legend = FALSE,
+                     end.yr = bridge.model.end.yr.2)
+box()
+make.comparison.plot(bridge.models.2,
+                     subplots = 11,
+                     model.names = bridge.model.names.2,
+                     densitynames = bridge.density.names,
+                     indexPlotEach = TRUE,
+                     indexUncertainty = TRUE,
+                     legend = FALSE,
+                     end.yr = bridge.model.end.yr.2)
+mtext("Year", side = 1, line = 1, outer = TRUE)
+par <- oldpar
+@
+\end{center}
+\caption{**Bridging models showing the difference between the
+  \Sexpr{last.assess.yr} base model, the result of the first set of changes
+  shown in Figure~\ref{fig:main-bridge-5-panel.1}  can delete: **Figure~\ref{fig:main-bridge-biomass} above,
+  and** the sequential addition of the new
+  survey and fishery data. Spawning biomass
+  (upper panel), relative spawning biomass (spawning biomass in each year
+  relative to the unfished equilibrium spawning biomass, middle left),
+  absolute recruitment (middle right), recruitment deviations (lower left),
+  and survey index (lower right) are shown.}
+\label{fig:main-bridge-5-panel.2}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+% \clearpage
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]

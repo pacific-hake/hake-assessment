@@ -255,6 +255,7 @@ load.models.into.parent.env <- function(){
 
   last.yr.base.model <<- load.models(model.dir, last.yr.base.model.dir.name)
   bridge.models.1    <<- load.models(model.dir, bridge.model.dir.names.1)
+  bridge.models.2    <<- load.models(model.dir, bridge.model.dir.names.2)
   sens.models.1      <<- load.models(model.dir, sens.model.dir.names.1)
   sens.models.2      <<- load.models(model.dir, sens.model.dir.names.2, TRUE)
   sens.models.3      <<- load.models(model.dir, sens.model.dir.names.3)
@@ -315,6 +316,7 @@ build <- function(run.fore = FALSE,
   ## Bridge and sensitivity models need to be unlisted from their groups
   ##  and placed into a single list for the FOR loop to work right
   mnv <- c(unlist(bridge.model.dir.names.1),
+           unlist(bridge.model.dir.names.2),
            unlist(sens.model.dir.names.1),
            unlist(sens.model.dir.names.2),
            unlist(sens.model.dir.names.3),
