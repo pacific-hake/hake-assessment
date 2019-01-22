@@ -1,3 +1,11 @@
+weight.at.age.heatmap <- function(model){
+  ## Weight-at-age heatmap plot including extrapolated years using ggplot.
+  ## Original code not available
+
+  wtatage <- model$wtatage
+browser()
+}
+
 barfun <- function(x, y, x.pos="left", plot=TRUE, ...){
   #make barplot-like shape which is really a polygon
   if(any(sort(x)!=x)){
@@ -149,4 +157,3 @@ if(FALSE){
   make.size.at.age.plot(df2, type='len')
   make.size.at.age.plot(df2, type='wt')
 }
-
