@@ -153,27 +153,27 @@ bridge.model.dir.names.1 <- c(last.yr.base.model.dir.name,
                               "2019.02.40_update_historic_catch",
                               "2019.02.41_add_2018_catch",
                               "2019.02.42_wtatage_2018",
-                              "2019.02.43_h_INIT_095")
+                              "2019.02.43_h_INIT_095",
+                              "2019.02.44_proj_wtatage")
 bridge.model.names.1 <- c(last.yr.base.model.name,
                           "Corrected historic catch",
                           "Add 2018 total catch",
                           "Add 2018 weight-at-age",
-                          "Change initial steepness")
-bridge.model.end.yr.1 <- end.yr - c(1, 1, 0, 0, 0) # subtract 1 year from first two models
+                          "Change initial steepness",
+                          "Use 2018 wtatage for projections")
+bridge.model.end.yr.1 <- end.yr - c(1, 1, 0, 0, 0, 0) # subtract 1 year from first two models
 
 
 ## -----------------------------------------------------------------------------
 ## Bridge models group 2
 ## -----------------------------------------------------------------------------
 bridge.model.dir.names.2 <- c(last.yr.base.model.dir.name,
-                              "2019.02.43_h_INIT_095",
                               "2019.02.44_proj_wtatage",
                               "2019.02.45_fecundity_time_varying")
 bridge.model.names.2 <- c(last.yr.base.model.name,
                           "Result of first bridging model set",
-                          "Use 2018 wtatage for projections",
                           "Time-varying fecundity")
-bridge.model.end.yr.2 <- end.yr - c(1, 0, 0, 0) # subtract 1 year from first 2 models
+bridge.model.end.yr.2 <- end.yr - c(1, 0, 0) # subtract 1 year from first 2 models
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 1
