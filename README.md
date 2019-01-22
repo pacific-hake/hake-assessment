@@ -60,6 +60,8 @@ _____________________________________________________________
     build(TRUE, TRUE, TRUE)
   ```
 
+  [or just ```source("all.r")``` if you are in the right directory]
+
   this will take a while as it has to run the forecasts, retrospectives, and create extra-mcmc output,
   depending on what you set as arguments.
 
@@ -398,6 +400,7 @@ These values are then been combined with starter.ss values of
 
 to get 2000 total samples.
 
+Once the MCMC has finished, copy all the files into a new **mcmc/** folder, run **clean.bat** and run **ss3.exe** to generate the MPD results.
 
 __Andy's other notes__
 
