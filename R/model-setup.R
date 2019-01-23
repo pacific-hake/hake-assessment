@@ -228,8 +228,20 @@ sens.model.names.4 <- c("Semi-Parametric t.v selectivity (0.695)",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 5  - Different weight-at-age schemes
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.5 <- c("2019.02.35_fecundity_early")
+sens.model.dir.names.5 <- c("2019.02.35_fecundity")
 sens.model.names.5 <- c("Early weight-at-age as 1975-1979 average")
+
+## -----------------------------------------------------------------------------
+## Sensitivity models group 6 - more weight-at-age options, may merge with 5
+## -----------------------------------------------------------------------------
+sens.model.dir.names.6 <- c("2019.02.37_fecundity",
+                            "2019.02.33_fecundity",
+                            "2019.02.35_fecundity",
+                            "2019.02.34_fecundity")
+sens.model.names.6 <- c("Constant fecundity, run 37",
+                        "Constant fecundity, run 33",
+                        "Run 35",
+                        "Run 34")
 
 ## This function must be called from within the first knitr code chunk
 ## in the document. It is defined here so that it is in the same place
@@ -259,6 +271,7 @@ load.models.into.parent.env <- function(){
   sens.models.3      <<- load.models(model.dir, sens.model.dir.names.3)
   sens.models.4      <<- load.models(model.dir, sens.model.dir.names.4)
   sens.models.5      <<- load.models(model.dir, sens.model.dir.names.5)
+  sens.models.6      <<- load.models(model.dir, sens.model.dir.names.6)
 
   ## Lists of sensitivities for the MLE parameters, derived quantiles,
   ##  and reference points table
@@ -271,9 +284,12 @@ load.models.into.parent.env <- function(){
   ## running make.short.parameter.estimates.sens.table()
   ##sens.models.2.for.table <<- c(list(base.model), sens.models.1, sens.models.4)
   ##sens.model.names.2.for.table <<- c("Base model", sens.model.names.1,sens.model.names.4)
-  sens.models.2.for.table <<- c(list(base.model), sens.models.3, sens.models.4, sens.models.5)
-  sens.model.names.2.for.table <<- c("Base model", sens.model.names.3, sens.model.names.4, sens.model.names.5)
+  sens.models.2.for.table <<- c(list(base.model), sens.models.3, sens.models.4)
+  sens.model.names.2.for.table <<- c("Base model", sens.model.names.3, sens.model.names.4)
 
+  ## Third set
+  sens.models.3.for.table <<- c(list(base.model), sens.models.5, sens.models.6)
+  sens.model.names.3.for.table <<- c("Base model", sens.model.names.5, sens.model.names.6)
 }
 
 build <- function(run.fore = FALSE,
@@ -319,7 +335,8 @@ build <- function(run.fore = FALSE,
            unlist(sens.model.dir.names.2),
            unlist(sens.model.dir.names.3),
            unlist(sens.model.dir.names.4),
-           unlist(sens.model.dir.names.5))
+           unlist(sens.model.dir.names.5),
+           unlist(sens.model.dir.names.6))
 
   model.names.list <- as.list(unique(mnv))
 
