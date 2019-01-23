@@ -150,10 +150,30 @@ if(verbose){
 ## Bridge models group 1
 ## -----------------------------------------------------------------------------
 bridge.model.dir.names.1 <- c(last.yr.base.model.dir.name,
-                              "2018.40.25_alternativeCatch")
+                              "2019.02.40_update_historic_catch",
+                              "2019.02.41_add_2018_catch",
+                              "2019.02.42_wtatage_2018",
+                              "2019.02.43_h_INIT_095",
+                              "2019.02.44_proj_wtatage")
 bridge.model.names.1 <- c(last.yr.base.model.name,
-                          "Alternative catch stream")
-bridge.model.end.yr.1 <- end.yr - 1 # all models end 1 year earlier
+                          "Corrected historic catch",
+                          "Add 2018 total catch",
+                          "Add 2018 weight-at-age",
+                          "Change initial steepness",
+                          "Use 2018 wtatage for projections")
+bridge.model.end.yr.1 <- end.yr - c(1, 1, 0, 0, 0, 0) # subtract 1 year from first two models
+
+
+## -----------------------------------------------------------------------------
+## Bridge models group 2
+## -----------------------------------------------------------------------------
+bridge.model.dir.names.2 <- c(last.yr.base.model.dir.name,
+                              "2019.02.44_proj_wtatage",
+                              "2019.02.45_fecundity_time_varying")
+bridge.model.names.2 <- c(last.yr.base.model.name,
+                          "Result of first bridging model set",
+                          "Time-varying fecundity (= base model)")
+bridge.model.end.yr.2 <- end.yr - c(1, 0, 0) # subtract 1 year from first 2 models
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 1
@@ -206,12 +226,10 @@ sens.model.names.4 <- c("Semi-Parametric t.v selectivity (0.695)",
                         "Semi-Parametric t.v. selectivity (1.0)")
 
 ## -----------------------------------------------------------------------------
-## Sensitivity models group 5  - Different weight-at-age schemes (SRG request)
+## Sensitivity models group 5  - Different weight-at-age schemes
 ## -----------------------------------------------------------------------------
-## sens.model.dir.names.5 <- c("2019.02.29_fecundity_matrix1",
-##                             "2019.02.31_fecundity_matrix3")
-## sens.model.names.5 <- c("Fecundity using yearly weight-at-age matrix",
-##                         "Fecundity with pre-1975 and post-2017 avgs.")
+sens.model.dir.names.5 <- c("2019.02.35_fecundity_early")
+sens.model.names.5 <- c("Early weight-at-age as 1975-1979 average")
 
 ## This function must be called from within the first knitr code chunk
 ## in the document. It is defined here so that it is in the same place
@@ -235,11 +253,12 @@ load.models.into.parent.env <- function(){
 
   last.yr.base.model <<- load.models(model.dir, last.yr.base.model.dir.name)
   bridge.models.1    <<- load.models(model.dir, bridge.model.dir.names.1)
+  bridge.models.2    <<- load.models(model.dir, bridge.model.dir.names.2)
   sens.models.1      <<- load.models(model.dir, sens.model.dir.names.1)
   sens.models.2      <<- load.models(model.dir, sens.model.dir.names.2, TRUE)
   sens.models.3      <<- load.models(model.dir, sens.model.dir.names.3)
   sens.models.4      <<- load.models(model.dir, sens.model.dir.names.4)
-  ##sens.models.5      <<- load.models(model.dir, sens.model.dir.names.5)
+  sens.models.5      <<- load.models(model.dir, sens.model.dir.names.5)
 
   ## Lists of sensitivities for the MLE parameters, derived quantiles,
   ##  and reference points table
@@ -252,8 +271,8 @@ load.models.into.parent.env <- function(){
   ## running make.short.parameter.estimates.sens.table()
   ##sens.models.2.for.table <<- c(list(base.model), sens.models.1, sens.models.4)
   ##sens.model.names.2.for.table <<- c("Base model", sens.model.names.1,sens.model.names.4)
-  sens.models.2.for.table <<- c(list(base.model), sens.models.3, sens.models.4)
-  sens.model.names.2.for.table <<- c("Base model", sens.model.names.3, sens.model.names.4)
+  sens.models.2.for.table <<- c(list(base.model), sens.models.3, sens.models.4, sens.models.5)
+  sens.model.names.2.for.table <<- c("Base model", sens.model.names.3, sens.model.names.4, sens.model.names.5)
 
 }
 
@@ -295,10 +314,12 @@ build <- function(run.fore = FALSE,
   ## Bridge and sensitivity models need to be unlisted from their groups
   ##  and placed into a single list for the FOR loop to work right
   mnv <- c(unlist(bridge.model.dir.names.1),
+           unlist(bridge.model.dir.names.2),
            unlist(sens.model.dir.names.1),
            unlist(sens.model.dir.names.2),
            unlist(sens.model.dir.names.3),
-           unlist(sens.model.dir.names.4))
+           unlist(sens.model.dir.names.4),
+           unlist(sens.model.dir.names.5))
 
   model.names.list <- as.list(unique(mnv))
 
