@@ -1,10 +1,33 @@
 weight.at.age.heatmap <- function(model,
-                                  fleet = 0){
+                                  fleet = 0,
+                                  last.yr = 2021,
+                                  proj.line.color = "royalblue",
+                                  proj.line.width = 1,
+                                  # mean ages were read directly off
+                                  # the plot in 2018 assessment doc
+                                  longterm.mean.ages = c(0.02,
+                                                         0.09,
+                                                         0.25,
+                                                         0.38,
+                                                         0.48,
+                                                         0.53,
+                                                         0.58,
+                                                         0.65,
+                                                         0.72,
+                                                         0.79,
+                                                         0.86,
+                                                         0.93,
+                                                         0.97,
+                                                         1.07,
+                                                         1.01,
+                                                         1.03)){
   ## Weight-at-age heatmap plot including extrapolated years using ggplot.
   ## Original code not available
   ## Max age is set to 15 as we don't know what was extrapolated above that
   ##  and the figure in the assessment doc is only to 15
   ## fleet is number as seen in SS wtatage.ss file for fleet column
+  ## Years after end of data up to last.yr will be projection years,
+  ##  and simply copies of the last year of w-a data
 
   ## Toggle data frame for which values are extrapolated values
   input.yrs <- 1975:2017
@@ -73,6 +96,23 @@ weight.at.age.heatmap <- function(model,
   extrap <- bind_rows(extrap, j) %>%
     arrange(Yr)
 
+  ## Add projection years
+  last.data.yr <- max(wa$Yr)
+  if(last.yr > last.data.yr){
+    num.proj.yrs <- last.yr - last.data.yr
+    for(n in 1:num.proj.yrs){
+      last.wa.row <- wa[nrow(wa),]
+      yr <- last.wa.row$Yr
+      last.wa.row$Yr <- last.wa.row$Yr + 1
+      wa <- rbind(wa, last.wa.row)
+      ## Set up extrapolation data frame
+      last.ex.row <- extrap[nrow(extrap),]
+      yr <- last.ex.row$Yr
+      last.ex.row$Yr <- last.ex.row$Yr + 1
+      extrap <- rbind(extrap, last.ex.row)
+    }
+  }
+
   wa1 <- wa2 <- wa[,-1]
   extrap1 <- extrap[,-1]
   wa1[!extrap1] <- NA
@@ -84,7 +124,27 @@ weight.at.age.heatmap <- function(model,
   w1 <- reshape2::melt(wa1, id.vars = "Yr")
   w2 <- reshape2::melt(wa2, id.vars = "Yr")
 
-  colors <- colorRampPalette(c("red", "yellow", "green", "blue"))(15)
+  ages <- as.numeric(levels(unique(w$variable)))
+  nage <- length(ages)
+
+  colors <- colorRampPalette(c("red",
+                               "yellow",
+                               "green",
+                               "dodgerblue"))(nage - 1)
+  avg <- data.frame(Yr = min(w$Yr) - 2,
+                    variable = ages,
+                    value = longterm.mean.ages)
+  w <- as.data.frame(rbind(w, avg))
+  w$Yr <- as.integer(w$Yr)
+  w$value <- as.numeric(w$value)
+
+  w1 <- as.data.frame(rbind(w1, avg))
+  w1$Yr <- as.integer(w1$Yr)
+  w1$value <- as.numeric(w1$value)
+
+  w2 <- as.data.frame(rbind(w2, avg))
+  w2$Yr <- as.integer(w2$Yr)
+  w2$value <- as.numeric(w2$value)
 
   g <- ggplot(w)+
     geom_tile(aes(x = variable, y = Yr, fill = value)) +
@@ -101,11 +161,22 @@ weight.at.age.heatmap <- function(model,
                                  f(w1$value, 2))),
               fontface = "bold") +
     theme(legend.title = element_blank()) +
-    scale_y_continuous(breaks = seq(min(wa$Yr), max(wa$Yr), 1)) +
+    scale_y_continuous(breaks = seq(min(w$Yr), max(w$Yr), 1),
+                       labels = c("mean",
+                                  "",
+                                  seq(min(w$Yr),
+                                      max(w$Yr),
+                                      1)[-c(1,2)])) +
     ylab("Year") +
     xlab("Age") +
     coord_cartesian(expand = FALSE)
 
+  if(last.yr > last.data.yr){
+    ## Add line separating projections
+    g <- g + geom_hline(yintercept = last.data.yr + 0.5,
+                        color = proj.line.color,
+                        size = proj.line.width)
+  }
   g
 }
 
