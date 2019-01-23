@@ -1212,14 +1212,14 @@ for the base model and alternative sensitivity runs representing the use of a se
 \begin{figure}[H]
 \begin{center}
 <<main.biomass.base.alternative.5, fig.height=4.5, fig.width=8>>=
-make.comparison.plot(c(list(base.model), sens.models.5),
+make.comparison.plot(c(list(base.model), list(sens.models.5)),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.5),
                      end.yr = end.yr)
 @
 \end{center}
 \caption{Maximum likelihood estimates of spawning biomass for the base
-  model and alternative sensitivity run that sets the unfished and 
+  model and alternative sensitivity run that sets the unfished and
   pre-1975 weights-at-age (and therefore fecundity) to the mean from 1975-1979.}
 \label{fig:main-biomass-base-alternative-5}
 %% \end{figure}
@@ -1229,7 +1229,7 @@ make.comparison.plot(c(list(base.model), sens.models.5),
 %% \begin{figure}[H]
 \begin{center}
 <<main.status.base.alternative.5, fig.height=4.5, fig.width=8>>=
-make.comparison.plot(c(list(base.model), sens.models.5),
+make.comparison.plot(c(list(base.model), list(sens.models.5)),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.5),
                      legend = FALSE,
@@ -1238,8 +1238,8 @@ make.comparison.plot(c(list(base.model), sens.models.5),
 \end{center}
 %\vspace{0mm}
 \caption{Maximum likelihood estimates of stock status (relative
-  spawning biomass) for the base model 
-  and alternative sensitivity run that sets the unfished and 
+  spawning biomass) for the base model
+  and alternative sensitivity run that sets the unfished and
   pre-1975 weights-at-age (and therefore fecundity) to the mean from 1975-1979.
   Figure~\ref{fig:main-biomass-base-alternative-5} for legend.}
 \label{fig:main-status-base-alternative-5}
