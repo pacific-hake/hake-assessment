@@ -126,12 +126,12 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Alternative base model name and directory
 ## -----------------------------------------------------------------------------
-## alt.base.model.dir.name <- "2018.40.30_fecundity_matrix2"
-## alt.base.model.name <- paste0(assess.yr, " Alt base model SS 3.30")
-## if(verbose){
-##   cat0("Alt. base model directory name: \n  ", alt.base.model.dir.name)
-##   cat0("Alt. base model pretty name: \n  ", alt.base.model.name)
-## }
+alt.base.model.1.dir.name <- "2019.02.36_fecundity"
+alt.base.model.1.name <- paste0(assess.yr, " Short-term pre-1975 wt at age")
+alt.base.model.2.dir.name <- "2019.02.32_fecundity"
+alt.base.model.2.name <- paste0(assess.yr, " Long-term pre-1975 wt at age")
+alt.base.model.3.dir.name <- "2019.02.38_fecundity"
+alt.base.model.3.name <- paste0(assess.yr, " TV Fec, short-term pre-1975 wt at age")
 
 ## -----------------------------------------------------------------------------
 ## Last assessment year's base model name and directory
@@ -330,13 +330,13 @@ build <- function(run.fore = FALSE,
       ovwrt.rdata = ifelse(run.extra.mcmc,
                            TRUE,
                            FALSE),
-      run.forecasts = FALSE,
+      run.forecasts = run.fore,
       fore.yrs = forecast.yrs,
       forecast.probs = forecast.probs,
       forecast.catch.levels = catch.levels,
-      run.retros = FALSE,
+      run.retros = run.retro,
       my.retro.yrs = retro.yrs,
-      run.extra.mcmc = FALSE,
+      run.extra.mcmc = run.extra.mcmc,
       key.posteriors = key.posteriors,
       ss.version = ss.version,
       verbose = ss.verbose)
