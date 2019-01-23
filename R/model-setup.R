@@ -288,8 +288,8 @@ load.models.into.parent.env <- function(){
   sens.model.names.2.for.table <<- c("Base model", sens.model.names.3, sens.model.names.4)
 
   ## Third set
-  sens.models.3.for.table <<- c(list(base.model), sens.models.5, sens.models.6)
-  sens.model.names.3.for.table <<- c("Base model", sens.model.names.5, sens.model.names.6)
+  sens.models.3.for.table <<- c(list(base.model), list(sens.models.5), sens.models.6)
+  sens.model.names.3.for.table <<- c("Base model", list(sens.model.names.5), sens.model.names.6)
 }
 
 build <- function(run.fore = FALSE,
