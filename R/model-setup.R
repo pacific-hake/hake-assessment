@@ -124,7 +124,8 @@ if(verbose){
 }
 
 ## -----------------------------------------------------------------------------
-## Alternative base model name and directory
+## Alternative base model names and directories (runs we want MCMC results for,
+##  not necessarily considering as alt runs for 2019).
 ## -----------------------------------------------------------------------------
 alt.base.model.1.dir.name <- "2019.02.36_fecundity"
 alt.base.model.1.name <- paste0(assess.yr, " Short-term pre-1975 wt at age")
@@ -264,6 +265,9 @@ load.models.into.parent.env <- function(){
   }
 
   last.yr.base.model <<- load.models(model.dir, last.yr.base.model.dir.name)
+  alt.base.model.1   <<- load.models(model.dir, alt.base.model.1.dir.name)
+  alt.base.model.2   <<- load.models(model.dir, alt.base.model.2.dir.name)
+  alt.base.model.3   <<- load.models(model.dir, alt.base.model.3.dir.name)
   bridge.models.1    <<- load.models(model.dir, bridge.model.dir.names.1)
   bridge.models.2    <<- load.models(model.dir, bridge.model.dir.names.2)
   sens.models.1      <<- load.models(model.dir, sens.model.dir.names.1)
@@ -329,7 +333,10 @@ build <- function(run.fore = FALSE,
 
   ## Bridge and sensitivity models need to be unlisted from their groups
   ##  and placed into a single list for the FOR loop to work right
-  mnv <- c(unlist(bridge.model.dir.names.1),
+  mnv <- c(alt.base.model.1.dir.name,
+           alt.base.model.2.dir.name,
+           alt.base.model.3.dir.name,
+           unlist(bridge.model.dir.names.1),
            unlist(bridge.model.dir.names.2),
            unlist(sens.model.dir.names.1),
            unlist(sens.model.dir.names.2),
