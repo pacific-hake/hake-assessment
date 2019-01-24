@@ -11,7 +11,7 @@ baseModel <- "2019.02.00_base_model"
 ######################################
 # Forecasts
 # Calculate the median recommended (default) catches for 2019-2021
-#  to put into Default Harvest Policy in foecast-catch-levels.r
+#  to put into Default Harvest Policy in forcast-catch-levels.r
 # Copy  baseModel/mcmc/ files
 # into new DecisionTable/defaultHR/
 out <- read.table(file.path(SSdir,baseModel,
@@ -21,7 +21,7 @@ out <- read.table(file.path(SSdir,baseModel,
 #  2019 catch.
 median(out$ForeCatch_2019)   # 609186 1/24/19
 # now fix this catch for 2019 near the end of the forecast.ss file (keeping
-#  a line starting with -9999)
+#  a line at end starting with -9999)
 # _Yr Seas Fleet Catch(or_F)
 # 2019 1 1 609186
 
@@ -48,17 +48,29 @@ out <- read.table(file.path(SSdir,baseModel,
                   header=T)
 head(out[,c("ForeCatch_2019","ForeCatch_2020","ForeCatch_2021")])
 median(out$ForeCatch_2021)   #411668
-HERE
+
 # median SPR=100
 # Copy  baseModel/mcmc/ files into new DecisionTable/SPR100
 
-# Set the catch for 2018 in forecast.ss, run mceval, iterate until the
-#  median SPRratio_2018 is really close to 1
+# Set the catch for 2019 in forecast.ss, run mceval, iterate until the
+#  median SPRratio_2019 is really close to 1
 out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/SPR100/derived_posteriors.sso"),
                   header=T)
-head(out[,c("ForeCatch_2018","ForeCatch_2019","ForeCatch_2020")])
-median(out$SPRratio_2018)   #639000  = 1.000057  2/6/18.
+
+head(out[,c("ForeCatch_2019","ForeCatch_2020","ForeCatch_2021")])
+median(out$SPRratio_2019)   # 543000  0.9996595   1/24/19
+# 1/24/19:
+# catch   median(out$SPRratio_2019)
+# 700000  1.098525
+# 600000  1.039015
+# 550000  1.004855
+# 545000  1.001155
+# 544000  1.000410
+# 543000  0.9996595  **closest**
+# 540000  0.997409
+# Doing three sig figs (as Aaron did for 2017).
+
 # 2/6/18:
 # catch    median(out$SPRratio_2018)
 # 700000   1.038065
@@ -69,13 +81,23 @@ median(out$SPRratio_2018)   #639000  = 1.000057  2/6/18.
 # So doing three sig figs (as Aaron did last year), closest to 1 is
 #  639000
 
-# set the catch for 2019, run mceval, until the median SPRratio_2019 is really
+# set the catch for 2020, run mceval, until the median SPRratio_2020 is really
 #  close to 1
 out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/SPR100/derived_posteriors.sso"),
                   header=T)
-head(out[,c("ForeCatch_2018","ForeCatch_2019","ForeCatch_2020")])
-median(out$SPRratio_2019)   #554000  = 0.9999655     2/6/18
+head(out[,c("ForeCatch_2019","ForeCatch_2020","ForeCatch_2021")])
+median(out$SPRratio_2020)   #  478000 =  0.99991  1/24/19
+# 1/24/19:
+# 2020catch  median(out$SPRratio_2020)
+# 450000     0.975583
+# 475000     0.9968005
+# 477000     0.9990865
+# 478000     0.99991  **closest**
+# 479000     1.000725
+# 480000     1.00123
+# 500000     1.01745
+
 # 2/6/18:
 # 2019catch    median(out$SPRratio_2019)
 # 639000       1.05902
@@ -84,14 +106,22 @@ median(out$SPRratio_2019)   #554000  = 0.9999655     2/6/18
 # 550000       0.997531
 # 554000       0.9999655 **closest**
 
-
-# set the catch for 2020, run mceval, until the median SPRratio_2020 is really
+# set the catch for 2021, run mceval, until the median SPRratio_2021 is really
 #  close to 1
 out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/SPR100/derived_posteriors.sso"),
                   header=T)
-head(out[,c("ForeCatch_2018","ForeCatch_2019","ForeCatch_2020")])
-median(out$SPRratio_2020)   # 509000 = 0.9999575   2/6/18
+head(out[,c("ForeCatch_2019","ForeCatch_2020","ForeCatch_2021")])
+median(out$SPRratio_2021)   # 399000  = 1.000265  1/24/19
+# 2/24/19:
+# 2021catch  median(out$SPRratio_2021)
+# 350000     0.949519
+# 390000     0.991492
+# 392000     0.9947935
+# 398000     0.999231
+# 399000     1.000265  **closest**
+# 400000     1.001390
+
 # 2/6/18:
 # 2020catch    median(out$SPRratio_2020)
 # 554000       1.035885
@@ -101,7 +131,7 @@ median(out$SPRratio_2020)   # 509000 = 0.9999575   2/6/18
 # 510000       1.000805
 # 509000       0.9999575 **closest**
 
-
+HERE
 
 # constant catch - create constantCatch/ directory.
 #  set the catch for 2018, run mceval, until the median foreCatch_2019 is the same
