@@ -171,63 +171,66 @@ create.rdata.file <- function(
   model <- load.ss.files(model.dir,
                          ss.version = ss.version)
 
-  ##----------------------------------------------------------------------------
-  ## Run extra mcmc output.
-  model$extra.mcmc.path <- file.path(model$path, "extra-mcmc")
-  if(run.extra.mcmc){
-    run.extra.mcmc.models(model, verbose = verbose)
+  ## Check to make sure mcmc path exists and run forecasts etc if it does
+  if(dir.exists(model$mcmcpath)){
+    ##----------------------------------------------------------------------------
+    ## Run extra mcmc output.
+    model$extra.mcmc.path <- file.path(model$path, "extra-mcmc")
+    if(run.extra.mcmc){
+      run.extra.mcmc.models(model, verbose = verbose)
+    }
+    ##----------------------------------------------------------------------------
+
+    ##----------------------------------------------------------------------------
+    ## Run forecasts
+    if(run.forecasts){
+      run.forecasts(model,
+                    fore.yrs,
+                    forecast.probs,
+                    forecast.catch.levels)
+    }
+    ##----------------------------------------------------------------------------
+
+    ##----------------------------------------------------------------------------
+    ## Run retrospectives
+    model$retropath <- file.path(model$path, "retrospectives")
+    if(is.null(model$retropath)){
+      model$retropath <- NA
+    }
+    if(run.retros){
+      run.retrospectives(model,
+                         yrs = my.retro.yrs,
+                         verbose = verbose)
+    }
+    ##----------------------------------------------------------------------------
+
+    ##----------------------------------------------------------------------------
+    ## Load forecasts.  If none are found or there is a problem, model$forecasts
+    ##  will be NA
+    model$forecasts <- fetch.forecasts(model$mcmcpath,
+                                       fore.yrs,
+                                       forecast.catch.levels,
+                                       fore.probs = forecast.probs)
+    model$risks <- calc.risk(model$forecasts,
+                             forecast.catch.levels,
+                             fore.yrs)
+    ##----------------------------------------------------------------------------
+
+    ##----------------------------------------------------------------------------
+    ## Load retrospectives. If none are found or there is a problem, model$retros
+    ##  will be NA
+    model$retros <- fetch.retros(model$retropath,
+                                 my.retro.yrs,
+                                 verbose = verbose)
+    ##----------------------------------------------------------------------------
+
+    ##----------------------------------------------------------------------------
+    ## Try loading extra mcmc output. If none are found or there is a problem,
+    ##  model$extra.mcmc will be NA
+    model$extra.mcmc <- fetch.extra.mcmc(model,
+                                         verbose = verbose)
+    ##----------------------------------------------------------------------------
   }
-  ##----------------------------------------------------------------------------
-
-  ##----------------------------------------------------------------------------
-  ## Run forecasts
-  if(run.forecasts){
-    run.forecasts(model,
-                  fore.yrs,
-                  forecast.probs,
-                  forecast.catch.levels)
-  }
-  ##----------------------------------------------------------------------------
-
-  ##----------------------------------------------------------------------------
-  ## Run retrospectives
-  model$retropath <- file.path(model$path, "retrospectives")
-  if(is.null(model$retropath)){
-    model$retropath <- NA
-  }
-  if(run.retros){
-    run.retrospectives(model,
-                       yrs = my.retro.yrs,
-                       verbose = verbose)
-  }
-  ##----------------------------------------------------------------------------
-
-  ##----------------------------------------------------------------------------
-  ## Load forecasts.  If none are found or there is a problem, model$forecasts
-  ##  will be NA
-  model$forecasts <- fetch.forecasts(model$mcmcpath,
-                                     fore.yrs,
-                                     forecast.catch.levels,
-                                     fore.probs = forecast.probs)
-  model$risks <- calc.risk(model$forecasts,
-                           forecast.catch.levels,
-                           fore.yrs)
-  ##----------------------------------------------------------------------------
-
-  ##----------------------------------------------------------------------------
-  ## Load retrospectives. If none are found or there is a problem, model$retros
-  ##  will be NA
-  model$retros <- fetch.retros(model$retropath,
-                               my.retro.yrs,
-                               verbose = verbose)
-  ##----------------------------------------------------------------------------
-
-  ##----------------------------------------------------------------------------
-  ## Try loading extra mcmc output. If none are found or there is a problem,
-  ##  model$extra.mcmc will be NA
-  model$extra.mcmc <- fetch.extra.mcmc(model,
-                                       verbose = verbose)
-  ##----------------------------------------------------------------------------
 
   ## Save the model as an RData file
   save(model, file = rdata.file)
