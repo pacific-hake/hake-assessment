@@ -13,7 +13,7 @@ forecast.probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 ## Each element of the list is a list of length equal to the
 ## number of elements in forcast.yrs.
 ## Constant catch values are somewhat arbitrary, but choosen to span a range
-##    given recent TACs (levels: 01, 02, 03, 05), and, for 2018, the previous year's catch
+##    given recent TACs (levels: 01, 02, 03, 05), and, for 2018 onwards, the previous year's catch
 ## Contant catch values set at the most recent TAC (level 04)
 ## Catches specific to particular situations (SPR100, Default HR, and Stable
 ##    catch) are manually solved for following forecast-find-decision-table.r
@@ -30,6 +30,7 @@ catch.levels <-
        list(c(609186, 514682, 411668), "Default Harvest Policy", "07-default-hr"),
        list(c(534774, 534774, 426014), "Stable Catch", "08-stable-catch"))
 
+## NEEDS UPDATING for 2019 and doing for all three extra MCMC runs
 ## This is for the alternative 2018 MCMC run in Appendix A, from
 ##   forecast-find-decision-table-alt.r
 ## -----------------------------------------------------------------------------
