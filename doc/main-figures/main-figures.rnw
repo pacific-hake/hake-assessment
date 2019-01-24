@@ -224,9 +224,11 @@ weight.at.age.heatmap(base.model)
 @
 \end{center}
 %\vspace{0mm}
-\caption{Empirical weight-at-age (kg) used in the assessment. Numbers shown in
-  bold were interpolated or extrapolated from adjacent areas or years. Values above the
-  blue line were used in projection years.}
+\caption{Empirical weight-at-age (kg) used for the base model. Numbers shown in
+  bold were interpolated or extrapolated from adjacent ages or years. Data are
+  only available from 1975-2017 (between the two blue lines). Remaining values
+  are used for the early and late years, with alternative assumptions tested in
+  sensitivity runs.}
 \label{fig:main-empirical.weight.at.age}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

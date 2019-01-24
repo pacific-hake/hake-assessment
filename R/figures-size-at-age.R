@@ -3,6 +3,8 @@ weight.at.age.heatmap <- function(model,
                                   last.yr = 2021,
                                   proj.line.color = "royalblue",
                                   proj.line.width = 1,
+                                  # For 2019 we have no 2018 data:
+                                  last.data.yr = 2017,
                                   # mean ages were read directly off
                                   # the plot in 2018 assessment doc
                                   longterm.mean.ages = c(0.02,
@@ -96,8 +98,8 @@ weight.at.age.heatmap <- function(model,
   extrap <- bind_rows(extrap, j) %>%
     arrange(Yr)
 
-  ## Add projection years
-  last.data.yr <- max(wa$Yr)
+  ## Add projection years (now includes 2018 for 2019 assessment)
+  # last.data.yr <- max(wa$Yr)
   if(last.yr > last.data.yr){
     num.proj.yrs <- last.yr - last.data.yr
     for(n in 1:num.proj.yrs){
@@ -169,6 +171,10 @@ weight.at.age.heatmap <- function(model,
                                       1)[-c(1,2)])) +
     ylab("Year") +
     xlab("Age") +
+    ## Add line separating pre-1975 and data:
+    geom_hline(yintercept = input.yrs[1] - 0.5,
+               color = proj.line.color,
+               size = proj.line.width) +
     coord_cartesian(expand = FALSE)
 
   if(last.yr > last.data.yr){
