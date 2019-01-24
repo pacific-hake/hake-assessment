@@ -232,7 +232,7 @@ sens.model.dir.names.5 <- c("2019.02.35_fecundity")
 sens.model.names.5 <- c("Early weight-at-age as 1975-1979 average")
 
 ## -----------------------------------------------------------------------------
-## Sensitivity models group 6 - more weight-at-age options, may merge with 5
+## Sensitivity models group 6 - more weight-at-age options, may merge with 5 (change main-figures heatmaps if do)
 ## -----------------------------------------------------------------------------
 sens.model.dir.names.6 <- c("2019.02.37_fecundity",
                             "2019.02.33_fecundity",
