@@ -131,16 +131,27 @@ median(out$SPRratio_2021)   # 399000  = 1.000265  1/24/19
 # 510000       1.000805
 # 509000       0.9999575 **closest**
 
-HERE
-
 # constant catch - create constantCatch/ directory.
-#  set the catch for 2018, run mceval, until the median foreCatch_2019 is the same
+#  set the catch for 2019, run mceval, until the median foreCatch_2020 is the same
 out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/constantCatch/derived_posteriors.sso"),
                   header=T)
-head(out[,c("ForeCatch_2018","ForeCatch_2019","ForeCatch_2020")])
-median(out$ForeCatch_2019)   #626954      2/6/18
-median(out$ForeCatch_2020)   #556785.5, round to 556786    2/6/18
+head(out[,c("ForeCatch_2019","ForeCatch_2020","ForeCatch_2021")])
+median(out$ForeCatch_2020)   #   534774 1/24/19
+median(out$ForeCatch_2021)   #   426014  (rounding up) 1/24/19
+# 1/24/19:
+# 2019catch  2020catch
+# 400000     572271
+# 500000     545169.5
+# 520000     539278
+# 530000     535956
+# 532000     535442
+# 534500     534840
+# 534750     534779.5
+# 534770     534775
+# 534773     534774
+# 534774     534774  **closest**
+# 534775     534774
 
 # 2/6/18:
 # 2018catch  2019catch

@@ -28,7 +28,7 @@ TODO       list(rep(440000, 3), "2017 catch: 440,000 t", "04-440000"),
 TODO       list(rep(597500, 3), "2017 TAC: 597,500 t", "05-597500"),
        list(c(543000, 478000, 399000), "FI=100%", "06-spr-100"),
        list(c(609186, 514682, 411668), "Default Harvest Policy", "07-default-hr"),
-TODO       list(c(626954, 626954, 556786), "Stable Catch", "08-stable-catch"))
+       list(c(534774, 534774, 426014), "Stable Catch", "08-stable-catch"))
 
 ## This is for the alternative 2018 MCMC run in Appendix A, from
 ##   forecast-find-decision-table-alt.r
