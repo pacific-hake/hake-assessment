@@ -3,53 +3,52 @@
 #  to get the catch levels to put into forecast-catch-levels.r.
 # Aaron updated numbers 1/23/17
 # Andy updating numbers 2/6/18.
+# Andy and Chris updating numbers 1/24/19.
 
-# SSdir <- "C:/Users/Aaron.Berger/Documents/GitHub/hake-assessment/models"
-SSdir <- "../../models"
-baseModel <- "2018.40_base_model"
+SSdir <- file.path(here::here(), "models")
+baseModel <- "2019.02.00_base_model"
 
 ######################################
 # Forecasts
-# Calculate the median recommended (default) catches for 2018-2020
+# Calculate the median recommended (default) catches for 2019-2021
+#  to put into Default Harvest Policy in foecast-catch-levels.r
 # Copy  baseModel/mcmc/ files
 # into new DecisionTable/defaultHR/
 out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/defaultHR/derived_posteriors.sso"),
                   header=T)
-# with no catch specified for 2018 in forecast.ss it determines the median
-#  2018 catch.
-median(out$ForeCatch_2018)   # 725984 (actually ...3.5) 2/6/18
-# now fix this catch for 2018 near the end of the forecast.ss file (keeping
+# with no catch specified for 2019 in forecast.ss it determines the median
+#  2019 catch.
+median(out$ForeCatch_2019)   # 609186 1/24/19
+# now fix this catch for 2019 near the end of the forecast.ss file (keeping
 #  a line starting with -9999)
 # _Yr Seas Fleet Catch(or_F)
-# 2018 1 1 725984
+# 2019 1 1 609186
 
 # ss3 -mceval
-#  to find median 2019 catch:
+#  to find median 2020 catch:
 out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/defaultHR/derived_posteriors.sso"),
                   header=T)
-median(out$ForeCatch_2019)   #600991  2/6/18
+median(out$ForeCatch_2020)   # 514682 (actually ...1.5)  1/24/19
 
-# now fix this catch for 2019 in the forecast.ss file, run mceval, and find
-#  median 2020 catch
+# now fix this catch for 2020 in the forecast.ss file, run mceval, and find
+#  median 2021 catch
 
 out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/defaultHR/derived_posteriors.sso"),
                   header=T)
-head(out[,c("ForeCatch_2018","ForeCatch_2019")])
-median(out$ForeCatch_2020)   #532476.5   2/6/18. Second time 538263.5
-                             # Third time 538263.5, as expected (as had more
-                             #  confidence in second value). Fourth (using rounded
-                             # value for 2018) is 538263.
-# run mceval after putting in 2020 median catch (though not really needed)
+head(out[,c("ForeCatch_2019","ForeCatch_2020")])
+median(out$ForeCatch_2021)   # 411668  1/24/19
+
+# run mceval after putting in 2021 median catch (though not really needed)
 # double check
 out <- read.table(file.path(SSdir,baseModel,
                             "DecisionTable/defaultHR/derived_posteriors.sso"),
                   header=T)
-head(out[,c("ForeCatch_2018","ForeCatch_2019","ForeCatch_2020")])
-median(out$ForeCatch_2020)   #538263
-
+head(out[,c("ForeCatch_2019","ForeCatch_2020","ForeCatch_2021")])
+median(out$ForeCatch_2021)   #411668
+HERE
 # median SPR=100
 # Copy  baseModel/mcmc/ files into new DecisionTable/SPR100
 
