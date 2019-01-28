@@ -24,7 +24,7 @@ catch.levels <-
   list(list(rep(0.01, 3), "No Fishing", "01-0"),
        list(rep(180000, 3), "180,000 t", "02-180000"),
        list(rep(350000, 3), "350,000 t", "03-350000"),
-       list(rep(416000, 3), "2018 catch: 416000 t", "04-416000"),
+       list(rep(416000, 3), "2018 catch: 416,000 t", "04-416000"),
        list(rep(597500, 3), "2018 TAC: 597,500 t", "05-597500"),
        list(rep(NA, 3), "FI=100%", "06-spr-100"),
        list(rep(NA, 3), "Default Harvest Policy", "07-default-hr"),
