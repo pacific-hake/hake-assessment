@@ -184,12 +184,12 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \title{\TitleFont Status of the \fishname\ (whiting) stock in U.S. and Canadian
   waters in \Sexpr{assess.yr}
 %% Uncomment for DRAFT:
-%%  \\ ~\\ DRAFT for submission to Scientific Review Group
-%%  \thanks{\noindent Disclaimer: This
-%% information is distributed solely for the purpose of pre-dissemination
-%% peer review under applicable information quality guidelines. It does not
-%% represent and should not be construed to represent any agency determination
-%% or policy.}
+  \\ ~\\ DRAFT for submission to Scientific Review Group
+  \thanks{\noindent Disclaimer: This
+ information is distributed solely for the purpose of pre-dissemination
+ peer review under applicable information quality guidelines. It does not
+ represent and should not be construed to represent any agency determination
+ or policy.}
 \\ ~\\ ~\\ \includegraphics[width=4in]{hake-picture}}
 
 \author{Joint Technical Committee of the \fishname/Whiting Agreement \\ Between
@@ -232,15 +232,15 @@ Authors of this document are (in no particular order): \\
   97365-5275, USA}
 
 %% Draft version
-%% This DRAFT document is non-citable.
+This DRAFT document is non-citable.
 
 %% Final version
-This document should be cited as follows:\\
-Edwards, A.M., I.G. Taylor, C.J. Grandin, and A.M. Berger.
-\Sexpr{assess.yr}. Status of the \fishname\ (whiting) stock in
-U.S. and Canadian waters in \Sexpr{assess.yr}. Prepared by the Joint Technical
-Committee of the U.S. and Canada \fishname/Whiting Agreement, National Marine
-Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
+%%This document should be cited as follows:\\
+%%Edwards, A.M., I.G. Taylor, C.J. Grandin, and A.M. Berger.
+%%\Sexpr{assess.yr}. Status of the \fishname\ (whiting) stock in
+%%U.S. and Canadian waters in \Sexpr{assess.yr}. Prepared by the Joint Technical
+%%Committee of the U.S. and Canada \fishname/Whiting Agreement, National Marine
+%%Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 
 \newpage
 
@@ -332,9 +332,9 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 %% <<appendix-test-ss-3.30, child='appendix-test-ss-3.30/appendix-test-ss-3.30.rnw'>>=
 %% @
 
-\rfoot{Appendix~\ref{chap:srg-requests} -- SRG requests}
-<<appendix-srg-requests, child='appendix-srg-requests/appendix-srg-requests-2018.rnw'>>=
-@
+%% \rfoot{Appendix~\ref{chap:srg-requests} -- SRG requests}
+%% <<appendix-srg-requests, child='appendix-srg-requests/appendix-srg-requests-2018.rnw'>>=
+%% @
 
 \rfoot{Appendix~\ref{chap:glossary} -- Glossary}
 <<appendix-glossary, child='appendix-glossary/appendix-glossary.rnw'>>=
@@ -352,9 +352,9 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 <<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
 @
 
-%% \rfoot{Appendix~\ref{chap:parameters} -- Model code}
-%% <<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
-%% @
+\rfoot{Appendix~\ref{chap:parameters} -- Model code}
+<<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
+@
 
 \end{appendices}
 

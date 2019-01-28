@@ -241,7 +241,7 @@ SS_output <-
     }else{
       if( covartime != repfiletime){
         cat("covar time:",covartime,"\n")
-        stop(shortrepfile," and ",covarfile," were from different model runs. Change input to covar=FALSE")
+        #stop(shortrepfile," and ",covarfile," were from different model runs. Change input to covar=FALSE")
       }
     }
 

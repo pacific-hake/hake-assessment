@@ -7,7 +7,7 @@ ss.verbose <- FALSE
 ## -----------------------------------------------------------------------------
 ## Year for this assessment - default is current year
 ## -----------------------------------------------------------------------------
-assess.yr <- 2018
+assess.yr <- 2019
 if(verbose) cat0("Assessment year: \n  ", assess.yr)
 
 ## -----------------------------------------------------------------------------
@@ -91,7 +91,9 @@ little.ticks <- start.yr:max(big.ticks)
 if(verbose) cat0("Last survey year: \n  ", survey.end.yr)
 ## Final year of data (This is what is the end year is in the model data files)
 last.data.yr <- end.yr - 1
+last.age.yr <- end.yr - 2
 if(verbose) cat0("Last year of model data: \n  ", last.data.yr)
+if(verbose) cat0("Last year of age data: \n  ", last.age.yr)
 
 ## -----------------------------------------------------------------------------
 ## Key posteriors used in the assessment
@@ -114,29 +116,30 @@ if(verbose) cat0("Key posteriors file: \n  ", nuisance.posteriors.file)
 ## -----------------------------------------------------------------------------
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
-base.model.dir.name <- "2018.40_base_model"
-base.model.name <- paste0(assess.yr, " Base model SS 3.30")
+base.model.dir.name <- "2019.02.00_base_model"
+base.model.name <- paste0(assess.yr, " Base model")
 if(verbose){
   cat0("Base model directory name: \n  ", base.model.dir.name)
   cat0("Base model pretty name: \n  ", base.model.name)
 }
 
 ## -----------------------------------------------------------------------------
-## Alternative base model name and directory
+## Alternative base model names and directories (runs we want MCMC results for,
+##  not necessarily considering as alt runs for 2019).
 ## -----------------------------------------------------------------------------
-alt.base.model.dir.name <- "2018.40.30_fecundity_matrix2"
-alt.base.model.name <- paste0(assess.yr, " Alt base model SS 3.30")
-if(verbose){
-  cat0("Alt. base model directory name: \n  ", alt.base.model.dir.name)
-  cat0("Alt. base model pretty name: \n  ", alt.base.model.name)
-}
+alt.base.model.1.dir.name <- "2019.02.36_fecundity"
+alt.base.model.1.name <- paste0(assess.yr, " Short-term pre-1975 wt at age")
+alt.base.model.2.dir.name <- "2019.02.32_fecundity"
+alt.base.model.2.name <- paste0(assess.yr, " Long-term pre-1975 wt at age")
+alt.base.model.3.dir.name <- "2019.02.38_fecundity"
+alt.base.model.3.name <- paste0(assess.yr, " TV Fec, short-term pre-1975 wt at age")
 
 ## -----------------------------------------------------------------------------
 ## Last assessment year's base model name and directory
 ## -----------------------------------------------------------------------------
 ##last.yr.base.model.dir.name <- "00_45_2017base"
 last.yr.base.model.dir.name <- "2018.40_base_model"
-last.yr.base.model.name <- paste(last.assess.yr, "Base model SS 3.24")
+last.yr.base.model.name <- paste(last.assess.yr, "Base model")
 if(verbose){
   cat0("Last assessment year's base model directory name: \n  ",
        last.yr.base.model.dir.name)
@@ -148,56 +151,40 @@ if(verbose){
 ## Bridge models group 1
 ## -----------------------------------------------------------------------------
 bridge.model.dir.names.1 <- c(last.yr.base.model.dir.name,
-                              "2018.31_convert_to_3.30",
-                              "2018.32_update_pre-2017_data")
+                              "2019.02.40_update_historic_catch",
+                              "2019.02.41_add_2018_catch",
+                              "2019.02.42_wtatage_2018",
+                              "2019.02.43_h_INIT_095",
+                              "2019.02.44_proj_wtatage")
 bridge.model.names.1 <- c(last.yr.base.model.name,
-                          "Convert to SS 3.30",
-                          "Update pre-2017 data")
-bridge.model.end.yr.1 <- end.yr - 1 # all models end 1 year earlier
+                          "Corrected historic catch",
+                          "Add 2018 total catch",
+                          "Add 2018 weight-at-age",
+                          "Change initial steepness",
+                          "Use 2018 wtatage for projections")
+bridge.model.end.yr.1 <- end.yr - c(1, 1, 0, 0, 0, 0) # subtract 1 year from first two models
+
 
 ## -----------------------------------------------------------------------------
 ## Bridge models group 2
 ## -----------------------------------------------------------------------------
 bridge.model.dir.names.2 <- c(last.yr.base.model.dir.name,
-                              "2018.32_update_pre-2017_data",
-                              "2018.33_add_2017_catch",
-                              "2018.34_add_2017_survey_bio",
-                              "2018.35_add_2017_survey_ages",
-                              "2018.36_add_2017_fishery_ages")
+                              "2019.02.44_proj_wtatage",
+                              "2019.02.45_fecundity_time_varying")
 bridge.model.names.2 <- c(last.yr.base.model.name,
                           "Result of first bridging model set",
-                          "Add 2017 total catch",
-                          "Add 2017 survey biomass estimate",
-                          "Add 2017 survey age comps",
-                          "Add 2017 fishery age comps")
-bridge.model.end.yr.2 <- end.yr - c(1, 1, 0, 0, 0, 0) # subtract 1 year from first 2 models
-
-## -----------------------------------------------------------------------------
-## Bridge models group 3
-## -----------------------------------------------------------------------------
-bridge.model.dir.names.3 <- c(last.yr.base.model.dir.name,
-                              "2018.36_add_2017_fishery_ages",
-                              "2018.37_apply_McAllister-Ianelli_tuning",
-                              "2018.38_change_to_Dirichlet-Multinomial_tuning",
-                              "2018.39_update_maturity_ogive")
-## Bridge model names will be used to make the bridge model plot and its caption.
-bridge.model.names.3 <- c(last.yr.base.model.name,
-                          "Result of second bridging model set",
-                          "Apply McAllister-Ianelli data weighting",
-                          "Change to Dirichlet-Multinomial data weighting",
-                          "Update maturity ogive (= base model)") #,
-                          #"Adjust effective sample sizes")
-bridge.model.end.yr.3 <- end.yr # all models end in the current end.yr
+                          "Time-varying fecundity (= base model)")
+bridge.model.end.yr.2 <- end.yr - c(1, 0, 0) # subtract 1 year from first 2 models
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 1
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.1 <- c("2018.40.01_h_prior_mean_low",
-                            "2018.40.02_h_fix_high",
-                            "2018.40.03_sigmaR_fix_low",
-                            "2018.40.04_sigmaR_fix_high",
-                            "2018.40.05_M_0.2SD",
-                            "2018.40.06_M_0.3SD")
+sens.model.dir.names.1 <- c("2019.02.01_h_prior_mean_low",
+                            "2019.02.02_h_fix_high",
+                            "2019.02.03_sigmaR_fix_low",
+                            "2019.02.04_sigmaR_fix_high",
+                            "2019.02.05_M_0.2SD",
+                            "2019.02.06_M_0.3SD")
 sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
                         "Steepness Fix 1.0",
                         "Sigma R 1.0",
@@ -208,26 +195,22 @@ sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 2
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.2 <- c("2018.40.16_age1Survey",
-                            "2018.40.14_ageError_noCohort",
-                            "2018.40.15_compWeight_HarmonicMean",
-                            "2018.40.19_USageComp",
-                            "2018.40.25_alternativeCatch")
+sens.model.dir.names.2 <- c("2019.02.16_age1Survey",
+                            "2019.02.14_ageError_noCohort",
+                            "2019.02.15_compWeight_HarmonicMean")
 sens.model.names.2 <- c("Add Age 1 Index",
                         "Ageing Error (cohort invariant)",
-                        "Harmonic Mean Data Weighting",
-                        "U.S. Comps Weighted by Month",
-                        "Alternative catch stream")
+                        "Harmonic Mean Data Weighting")
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 3
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.3 <- c("2018.40.07_maxSel_Age5",
-                            "2018.40.08_maxSel_Age7",
-                            "2018.40.09_maxSel_Age10",
-                            "2018.40.11_tvSelect_phi_xtralow",
-                            "2018.40.12_tvSelect_phi_low",
-                            "2018.40.13_tvSelect_phi_high")
+sens.model.dir.names.3 <- c("2019.02.07_maxSel_Age5",
+                            "2019.02.08_maxSel_Age7",
+                            "2019.02.09_maxSel_Age10",
+                            "2019.02.11_tvSelect_phi_xtralow",
+                            "2019.02.12_tvSelect_phi_low",
+                            "2019.02.13_tvSelect_phi_high")
 sens.model.names.3 <- c("Max. age selectivity 5",
                         "Max. age selectivity 7",
                         "Max. age selectivity 10",
@@ -238,46 +221,28 @@ sens.model.names.3 <- c("Max. age selectivity 5",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 4
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.4 <- c("2018.40.10_semiPara_tvSelect_sig0.695",
-                            "2018.40.20_semiPara_tvSelect_sig1.0")
+sens.model.dir.names.4 <- c("2019.02.10_semiPara_tvSelect_sig0.695",
+                            "2019.02.20_semiPara_tvSelect_sig1.0")
 sens.model.names.4 <- c("Semi-Parametric t.v selectivity (0.695)",
                         "Semi-Parametric t.v. selectivity (1.0)")
 
 ## -----------------------------------------------------------------------------
-## Sensitivity models group 5  - Different weight-at-age schemes (SRG request)
+## Sensitivity models group 5  - Different weight-at-age schemes
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.5 <- c("2018.40.29_fecundity_matrix1",
-                            "2018.40.30_fecundity_matrix2")
-sens.model.names.5 <- c("Fecundity using yearly weight-at-age matrix",
-                        "Fecundity with pre-1975 and post-2017 avgs.")
+sens.model.dir.names.5 <- c("2019.02.35_fecundity")
+sens.model.names.5 <- c("Early weight-at-age as 1975-1979 average")
 
 ## -----------------------------------------------------------------------------
-## Sensitivity models group 6   - dummy for now
+## Sensitivity models group 6 - more weight-at-age options, may merge with 5 (change main-figures heatmaps if do)
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.6 <- c("2018.40_base_model",
-                            "2018.40_base_model")
-sens.model.names.6 <- c("Base Case",
-                        "Base Case")
-
-## -----------------------------------------------------------------------------
-## Sensitivity models group 7 - Request from SRG   - dummy for now
-## -----------------------------------------------------------------------------
-sens.model.dir.names.7 <- c("2018.40_base_model",
-                            "2018.40_base_model")
-sens.model.names.7 <- c("Base Case",
-                        "Base Case")
-
-## -----------------------------------------------------------------------------
-## Sensitivity models group 8 - Request from SRG  - dummy for now
-## -----------------------------------------------------------------------------
-sens.model.dir.names.8 <- c("2018.40_base_model",
-                            "2018.40_base_model")
-sens.model.names.8 <- c("Base Case",
-                        "Base Case")
-## sens.model.dir.names.8 <- c("02_2017base_3.30",
-##                             "03_2017base_3.30_tv_pars")
-## sens.model.names.8 <- c("Base model SS version 3.30",
-##                         "Base 3.30 with TV pars mimic base 2017")
+sens.model.dir.names.6 <- c("2019.02.37_fecundity",
+                            "2019.02.33_fecundity",
+                            "2019.02.35_fecundity",
+                            "2019.02.34_fecundity")
+sens.model.names.6 <- c("Constant fecundity, run 37",
+                        "Constant fecundity, run 33",
+                        "Run 35",
+                        "Run 34")
 
 ## This function must be called from within the first knitr code chunk
 ## in the document. It is defined here so that it is in the same place
@@ -285,7 +250,6 @@ sens.model.names.8 <- c("Base Case",
 ## and sensitivity models change in the model.dir.names above..
 load.models.into.parent.env <- function(){
   base.model         <<- load.models(model.dir, base.model.dir.name)
-  alt.base.model     <<- load.models(model.dir, alt.base.model.dir.name)
   ## Error checks:
   if(is.null(base.model$mcmccalcs)){
     stop("Error - base.model$mcmccalcs is NULL. Make sure the directory\n",
@@ -300,31 +264,18 @@ load.models.into.parent.env <- function(){
            "   within build() in model-setup.r and try again.\n")
   }
 
-  if(is.null(alt.base.model$mcmccalcs)){
-    stop("Error - alt.base.model$mcmccalcs is NULL. Make sure the directory\n",
-            file.path(alt.base.model$path, "mcmc"), " exists and contains valid\n",
-            "   mcmc output, set ovwrt.rdata = TRUE in the create.rdata.file() calls\n",
-            "   within build() in model-setup.r, and try again.\n")
-  }
-  if(is.null(alt.base.model$risks)){
-    stop("Error - alt.base.model$risks is NULL. Maybe you forgot to run the forecasting?\n",
-           "   Make sure to setup running and/or loading of forecasts, and\n",
-           "   set ovwrt.rdata = TRUE in the create.rdata.file() calls\n",
-           "   within build() in model-setup.r and try again.\n")
-  }
-
   last.yr.base.model <<- load.models(model.dir, last.yr.base.model.dir.name)
+  alt.base.model.1   <<- load.models(model.dir, alt.base.model.1.dir.name)
+  alt.base.model.2   <<- load.models(model.dir, alt.base.model.2.dir.name)
+  alt.base.model.3   <<- load.models(model.dir, alt.base.model.3.dir.name)
   bridge.models.1    <<- load.models(model.dir, bridge.model.dir.names.1)
   bridge.models.2    <<- load.models(model.dir, bridge.model.dir.names.2)
-  bridge.models.3    <<- load.models(model.dir, bridge.model.dir.names.3)
   sens.models.1      <<- load.models(model.dir, sens.model.dir.names.1)
   sens.models.2      <<- load.models(model.dir, sens.model.dir.names.2, TRUE)
   sens.models.3      <<- load.models(model.dir, sens.model.dir.names.3)
   sens.models.4      <<- load.models(model.dir, sens.model.dir.names.4)
   sens.models.5      <<- load.models(model.dir, sens.model.dir.names.5)
   sens.models.6      <<- load.models(model.dir, sens.model.dir.names.6)
-  sens.models.7      <<- load.models(model.dir, sens.model.dir.names.7)
-  sens.models.8      <<- load.models(model.dir, sens.model.dir.names.8)
 
   ## Lists of sensitivities for the MLE parameters, derived quantiles,
   ##  and reference points table
@@ -340,6 +291,9 @@ load.models.into.parent.env <- function(){
   sens.models.2.for.table <<- c(list(base.model), sens.models.3, sens.models.4)
   sens.model.names.2.for.table <<- c("Base model", sens.model.names.3, sens.model.names.4)
 
+  ## Third set
+  sens.models.3.for.table <<- c(list(base.model), list(sens.models.5), sens.models.6)
+  sens.model.names.3.for.table <<- c("Base model", list(sens.model.names.5), sens.model.names.6)
 }
 
 build <- function(run.fore = FALSE,
@@ -377,58 +331,38 @@ build <- function(run.fore = FALSE,
                     ss.version = ss.version,
                     verbose = ss.verbose)
 
-  ## Alternative base model
-  create.rdata.file(model.name = alt.base.model.dir.name,
-                    ovwrt.rdata = ifelse(any(run.fore, run.retro, run.extra.mcmc),
-                                         TRUE,
-                                         FALSE),
-                    run.forecasts = run.fore,
-                    fore.yrs = forecast.yrs,
-                    forecast.probs = forecast.probs,
-                    forecast.catch.levels = alt.catch.levels,
-                    run.retros = run.retro,
-                    my.retro.yrs = retro.yrs,
-                    run.extra.mcmc = run.extra.mcmc,
-                    key.posteriors = key.posteriors,
-                    ss.version = ss.version,
-                    verbose = ss.verbose)
-
   ## Bridge and sensitivity models need to be unlisted from their groups
   ##  and placed into a single list for the FOR loop to work right
-  mnv <- c(unlist(bridge.model.dir.names.1),
+  mnv <- c(alt.base.model.1.dir.name,
+           alt.base.model.2.dir.name,
+           alt.base.model.3.dir.name,
+           unlist(bridge.model.dir.names.1),
            unlist(bridge.model.dir.names.2),
-           unlist(bridge.model.dir.names.3),
            unlist(sens.model.dir.names.1),
            unlist(sens.model.dir.names.2),
            unlist(sens.model.dir.names.3),
            unlist(sens.model.dir.names.4),
            unlist(sens.model.dir.names.5),
-           unlist(sens.model.dir.names.6),
-           unlist(sens.model.dir.names.7),
-           unlist(sens.model.dir.names.8))
+           unlist(sens.model.dir.names.6))
 
   model.names.list <- as.list(unique(mnv))
 
   ## Bridge/sensitivity models
   for(model.nm in model.names.list){
-    ss.version.tmp <- ss.version
-    if(model.nm == "00_45_2017base"){
-      ss.version.tmp = "3.24"
-    }
     create.rdata.file(
       model.name = model.nm,
       ovwrt.rdata = ifelse(run.extra.mcmc,
                            TRUE,
                            FALSE),
-      run.forecasts = FALSE,
+      run.forecasts = run.fore,
       fore.yrs = forecast.yrs,
       forecast.probs = forecast.probs,
       forecast.catch.levels = catch.levels,
-      run.retros = FALSE,
+      run.retros = run.retro,
       my.retro.yrs = retro.yrs,
       run.extra.mcmc = run.extra.mcmc,
       key.posteriors = key.posteriors,
-      ss.version = ss.version.tmp,
+      ss.version = ss.version,
       verbose = ss.verbose)
   }
 }

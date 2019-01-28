@@ -217,11 +217,18 @@ maturity.ogive.figure()
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=6.5in, height=8.5in]{main-figures/EWAforDoc}
+%\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+%\includegraphics[width=6.5in, height=8.5in]{main-figures/EWAforDoc}
+<<main.weight.at.age, fig.height=9, fig.width=8>>=
+weight.at.age.heatmap(base.model)
+@
 \end{center}
 %\vspace{0mm}
-\caption{Empirical weight-at-age (kg) used in the assessment (numbers, with colors given by the scale at the bottom). Numbers shown in bold were interpolated or extrapolated from adjacent areas.}
+\caption{Empirical weight-at-age (kg) used for the base model. Numbers shown in
+  bold were interpolated or extrapolated from adjacent ages or years. Data are
+  only available from 1975-2017 (between the two blue lines). Remaining values
+  are used for the early and late years, with alternative assumptions tested in
+  sensitivity runs.}
 \label{fig:main-empirical.weight.at.age}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -245,18 +252,22 @@ make.comparison.plot(bridge.models.1,
 @
 \end{center}
 \caption{Bridging models showing the \Sexpr{last.assess.yr} base model
-  and the results of converting that model to Stock Synthesis version 3.30 and then
-  updating the pre-\Sexpr{last.assess.yr} data.
+  and the results of updating the historic catch, adding the 2018 catch
+  (the only data available for 2018), adding the 2018 weights-at-age as the
+  average from 2015-2017 (and running the model to 2018), changing the
+  initial value used for steepness, and using the 2018 weights-at-age (rather
+  than the overall mean) for projections.
   The points disconnected from the time-series on the
   left side show the unfished equilibrium spawning biomass estimates.}
 \label{fig:main-bridge-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+% See commit 7c57cf7a12 for four-panel plot code
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.bridge.5.panel, fig.height=8, fig.width=8>>=
+<<main.bridge.5.panel.2, fig.height=8, fig.width=8>>=
 oldpar <- par(no.readonly=TRUE)
 par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
 layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
@@ -298,72 +309,19 @@ par <- oldpar
 \end{center}
 \caption{Bridging models showing the difference between the
   \Sexpr{last.assess.yr} base model, the result of the first set of changes
-  shown in Figure~\ref{fig:main-bridge-biomass} above,
-  and the sequential addition of the new
-  survey and fishery data. Spawning biomass
+  shown in Figure~\ref{fig:main-bridge-biomass}
+  and the incorporation of time-varying fecundity.
+  Panels are spawning biomass
   (upper panel), relative spawning biomass (spawning biomass in each year
   relative to the unfished equilibrium spawning biomass, middle left),
   absolute recruitment (middle right), recruitment deviations (lower left),
-  and survey index (lower right) are shown.}
-\label{fig:main-bridge-5-panel}
+  and survey index (lower right).}
+\label{fig:main-bridge-5-panel.2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 % \clearpage
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
-<<main.bridge.4.panel, fig.height=8, fig.width=10>>=
-oldpar <- par(no.readonly=TRUE)
-par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
-layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
-## subplot 2 is spawning output with CI
-make.comparison.plot(bridge.models.3,
-                     subplots = 2,
-                     model.names = bridge.model.names.3,
-                     densitynames = bridge.density.names,
-                     end.yr = bridge.model.end.yr.3)
-## subplot 4 is spawning output with CI and 0.1, 0.4, and 1.0 lines
-make.comparison.plot(bridge.models.3,
-                     subplots = 4,
-                     model.names = bridge.model.names.3,
-                     densitynames = bridge.density.names,
-                     legend = FALSE,
-                     end.yr = bridge.model.end.yr.3)
-## subplot 8 is recruitment with CI
-make.comparison.plot(bridge.models.3,
-                     subplots = 8,
-                     model.names = bridge.model.names.3,
-                     densitynames = bridge.density.names,
-                     legend = FALSE,
-                     end.yr = bridge.model.end.yr.3)
-## subplot 10 is recruitment devs with CI
-make.comparison.plot(bridge.models.3,
-                     subplots = 10,
-                     model.names = bridge.model.names.3,
-                     densitynames = bridge.density.names,
-                     legend = FALSE,
-                     end.yr = bridge.model.end.yr.3)
-box()
-mtext("Year", side = 1, line = 1, outer = TRUE)
-par <- oldpar
-@
-\end{center}
-\caption{Bridging models showing the difference between the
-  \Sexpr{last.assess.yr} base model, the result of the second set of changes
-  shown in Figure~\ref{fig:main-bridge-5-panel} above, the result
-  of tuning the model using the McAllister-Ianelli data-weighting method,
-  the change to the new Dirichlet-Multinomial data-weighting method, and
-  the update of the maturity ogive. That last step is the final
-  change to arrive at the \Sexpr{assess.yr} base model (shown by the red line in the plots).
-  Spawning biomass (upper left panel), relative
-  spawning biomass (spawning biomass in each year relative to the unfished
-  equilibrium spawning biomass, upper right), absolute recruitment (lower left),
-  and recruitment deviations (lower right) are shown.}
-\label{fig:main-bridge-4-panel}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-% \clearpage
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
@@ -814,8 +772,8 @@ make.forecast.catch.posterior.plot(base.model,
 ## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those forecast models which will be plotted against each other
 models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
-#models.names <- sapply(catch.levels, "[[", 2) ## pretty catch level name
-models.names <- sapply(catch.levels, "[[", 2)[models.inds] ## pretty catch level name
+#models.names <- sapply(base.model$catch.levels, "[[", 2) ## pretty catch level name
+models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty catch level name
 make.forecast.depletion.comparison.plot(base.model,
                                         models.inds,
                                         models.names,
@@ -827,7 +785,7 @@ make.forecast.depletion.comparison.plot(base.model,
 \end{center}
 \caption{Time series of relative spawning biomass at the start of each year until \Sexpr{end.yr} as estimated from the base model, and forecast trajectories
   to the start of \Sexpr{forecast.yrs[length(forecast.yrs)]} for several management options from the decision table (grey region), with 95\% posterior
-  credibility intervals. The \Sexpr{end.yr} catch of \Sexpr{f(catch.default.policy[1])}~t was calculated using the default
+  credibility intervals. The \Sexpr{end.yr} catch of \Sexpr{f(base.model$catch.default.policy[1])}~t was calculated using the default
   harvest policy, as defined in the Agreement.}
 \label{fig:main-forecast-depletion-comparison}
 \end{figure}
@@ -1251,6 +1209,127 @@ for the base model and alternative sensitivity runs representing the use of a se
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 % \clearpage
+
+%% heatmaps for sensitivity runs - need to re-order once decided on an order
+%% (see GitHub Issue).
+%% Do 32 first to verify that it's same as base - be handy to have here to
+%% compare to the next ones. Need the MCMC ones also. And do short names to
+%% read okay in captions.
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+% Using .a since doesn't correspond to a sens group
+<<main.weight.at.age.sens.a, fig.height=9, fig.width=8>>=
+# Run 37 (verified same heatmap as 35)
+weight.at.age.heatmap(sens.models.6[[1]])
+@
+\end{center}
+%\vspace{0mm}
+\caption{Empirical weight-at-age (kg) used for sensitivity run
+  \Sexpr{sens.model.names.6[1]}. Numbers shown in
+  bold were interpolated or extrapolated from adjacent ages or years. Data are
+  only available from 1975-2017 (between the two blue lines). Remaining values
+  are used for the early and late years.}
+\label{fig:main-empirical.weight.at.age.sens.a}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.weight.at.age.sens.b, fig.height=9, fig.width=8>>=
+# Run 33 (verified same heatmap as 34)
+weight.at.age.heatmap(sens.models.6[[2]])
+@
+\end{center}
+%\vspace{0mm}
+\caption{Empirical weight-at-age (kg) used for sensitivity run
+  \Sexpr{sens.model.names.6[2]}. Numbers shown in
+  bold were interpolated or extrapolated from adjacent ages or years. Data are
+  only available from 1975-2017 (between the two blue lines). Remaining values
+  are used for the early and late years.}
+\label{fig:main-empirical.weight.at.age.sens.b}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.biomass.base.alternative.5, fig.height=4.5, fig.width=8>>=
+make.comparison.plot(c(list(base.model), list(sens.models.5)),
+                     subplots = 2,
+                     model.names = c(base.model.name, sens.model.names.5),
+                     end.yr = end.yr)
+@
+\end{center}
+\caption{Maximum likelihood estimates of spawning biomass for the base
+  model and alternative sensitivity run that sets the unfished and
+  pre-1975 weights-at-age (and therefore fecundity) to the mean from 1975-1979.}
+\label{fig:main-biomass-base-alternative-5}
+%% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{figure}[H]
+\begin{center}
+<<main.status.base.alternative.5, fig.height=4.5, fig.width=8>>=
+make.comparison.plot(c(list(base.model), list(sens.models.5)),
+                     subplots = 4,
+                     model.names = c(base.model.name, sens.model.names.5),
+                     legend = FALSE,
+                     end.yr = end.yr)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Maximum likelihood estimates of stock status (relative
+  spawning biomass) for the base model
+  and alternative sensitivity run that sets the unfished and
+  pre-1975 weights-at-age (and therefore fecundity) to the mean from 1975-1979.
+  Figure~\ref{fig:main-biomass-base-alternative-5} for legend.}
+\label{fig:main-status-base-alternative-5}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+% \clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.biomass.base.alternative.6, fig.height=4.5, fig.width=8>>=
+make.comparison.plot(c(list(base.model), sens.models.6),
+                     subplots = 2,
+                     model.names = c(base.model.name, sens.model.names.6),
+                     end.yr = end.yr)
+@
+\end{center}
+\caption{Maximum likelihood estimates of spawning biomass for the base
+  model and alternative sensitivity runs that set the **TO UPDATEunfished and
+  pre-1975 weights-at-age (and therefore fecundity) to the mean from 1975-1979.}
+\label{fig:main-biomass-base-alternative-6}
+%% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{figure}[H]
+\begin{center}
+<<main.status.base.alternative.6, fig.height=4.5, fig.width=8>>=
+make.comparison.plot(c(list(base.model), sens.models.6),
+                     subplots = 4,
+                     model.names = c(base.model.name, sens.model.names.6),
+                     legend = FALSE,
+                     end.yr = end.yr)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Maximum likelihood estimates of stock status (relative
+  spawning biomass) for the base model
+  and alternative sensitivity runs that set **TO UPDATE the unfished and
+  pre-1975 weights-at-age (and therefore fecundity) to the mean from 1975-1979.
+  Figure~\ref{fig:main-biomass-base-alternative-6} for legend.}
+\label{fig:main-status-base-alternative-6}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+% \clearpage
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
