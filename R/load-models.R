@@ -207,12 +207,15 @@ create.rdata.file <- function(
     ##----------------------------------------------------------------------------
     ## Load forecasts.  If none are found or there is a problem, model$forecasts
     ##  will be NA
+    model$catch.levels <- fetch.catch.levels(model,
+                                             forecast.catch.levels)
+    model$catch.default.policy <- model$catch.levels[[catch.default.policy.ind]][[1]]
     model$forecasts <- fetch.forecasts(model$mcmcpath,
                                        fore.yrs,
-                                       forecast.catch.levels,
+                                       model$catch.levels,
                                        fore.probs = forecast.probs)
     model$risks <- calc.risk(model$forecasts,
-                             forecast.catch.levels,
+                             model$catch.levels,
                              fore.yrs)
     ##----------------------------------------------------------------------------
 
@@ -433,19 +436,69 @@ calc.mcmc <- function(mcmc,
          function(x){get(x)})
 }
 
-calc.catch.levels <- function(model,
-                              forecast.yrs,
-                              catch.levels,
-                              tol = 0.0001,
-                              spr.catch.tol = 100,
-                              stable.catch.tol = 1){
+fetch.catch.levels <- function(model,
+                               catch.levels,
+                               catch.levels.path = "catch-levels",
+                               spr.100.path = "spr-100",
+                               default.hr.path = "default-hr",
+                               stable.catch.path = "stable-catch"){
+  ## Assumes calc.catch.levels() has been run and the forecast files
+  ##  are populated with 3 forecast years.
   ## Return a list of 3-element lists of vectors of 3 catch levels corresponding to:
   ## a) SPR-100%
   ## b) Default harvest policy
   ## c) Stable catch
 
   ## Return object looks the same as the catch.levels object but with three more elements.
+  mcmc.path <- model$mcmcpath
+  catch.levels.path <- file.path(mcmc.path, catch.levels.path)
+  spr.100.path <- file.path(catch.levels.path, spr.100.path)
+  default.hr.path <- file.path(catch.levels.path, default.hr.path)
+  stable.catch.path <- file.path(catch.levels.path, stable.catch.path)
 
+  forecast.file <- file.path(spr.100.path, "forecast.ss")
+  fore <- SS_readforecast(forecast.file,
+                          Nfleets = 1,
+                          Nareas = 1,
+                          nseas = 1,
+                          verbose = FALSE)
+  fore$ForeCatch
+  catch.levels[[length(catch.levels) + 1]] <-
+    list(fore$ForeCatch$Catch_or_F, "FI=100%", "06-spr-100")
+
+  forecast.file <- file.path(default.hr.path, "forecast.ss")
+  fore <- SS_readforecast(forecast.file,
+                          Nfleets = 1,
+                          Nareas = 1,
+                          nseas = 1,
+                          verbose = FALSE)
+  fore$ForeCatch
+  catch.levels[[length(catch.levels) + 1]] <-
+    list(fore$ForeCatch$Catch_or_F, "Default Harvest Policy", "07-default-hr")
+
+  forecast.file <- file.path(spr.100.path, "forecast.ss")
+  fore <- SS_readforecast(forecast.file,
+                          Nfleets = 1,
+                          Nareas = 1,
+                          nseas = 1,
+                          verbose = FALSE)
+  fore$ForeCatch
+  catch.levels[[length(catch.levels) + 1]] <-
+    list(fore$ForeCatch$Catch_or_F, "Stable Catch", "08-stable-catch")
+
+  catch.levels
+}
+
+calc.catch.levels <- function(model,
+                              forecast.yrs,
+                              catch.levels,
+                              tol = 0.0001,
+                              spr.catch.tol = 100,
+                              stable.catch.tol = 1,
+                              catch.levels.path = "catch-levels",
+                              spr.100.path = "spr-100",
+                              default.hr.path = "default-hr",
+                              stable.catch.path = "stable-catch"){
   ## tol is how close to get the SPR to 1 before stopping.
   ## spr.catch.tol is the SPR catch tolerance. If upper and lower catch values bracketing
   ## the actual catch corresponding to SPR 100%, stop there. 100 should be sufficient usually
@@ -454,10 +507,10 @@ calc.catch.levels <- function(model,
   ##  1 tonne of each other.
 
   mcmc.path <- model$mcmcpath
-  catch.levels.path <- file.path(mcmc.path, "catch-levels")
-  spr.100.path <- file.path(catch.levels.path, "spr-100")
-  default.hr.path <- file.path(catch.levels.path, "default-hr")
-  stable.catch.path <- file.path(catch.levels.path, "stable-catch")
+  catch.levels.path <- file.path(mcmc.path, catch.levels.path)
+  spr.100.path <- file.path(catch.levels.path, spr.100.path)
+  default.hr.path <- file.path(catch.levels.path, default.hr.path)
+  stable.catch.path <- file.path(catch.levels.path, stable.catch.path)
 
   dir.create(catch.levels.path, showWarnings = FALSE)
   dir.create(spr.100.path, showWarnings = FALSE)
@@ -589,12 +642,22 @@ calc.catch.levels <- function(model,
     shell.command <- paste0("cd ", stable.catch.path, " & ss3 -mceval")
     shell(shell.command)
   }
-
-  k <- catch.levels
-  k[[length(k) +1 ]] <- list(spr.100.catch, "FI=100%", "06-spr-100")
-  k[[length(k) +1 ]] <- list(default.hr.catch, "Default Harvest Policy", "07-default-hr")
-  k[[length(k) +1 ]] <- list(stable.catch, "Stable Catch", "08-stable-catch")
-  k
+  fore <- SS_readforecast(forecast.file,
+                          Nfleets = 1,
+                          Nareas = 1,
+                          nseas = 1,
+                          verbose = FALSE)
+  fore$Ncatch <- length(forecast.yrs[1:length(forecast.yrs)])
+  fore$ForeCatch <- data.frame(Year = forecast.yrs[1:length(forecast.yrs)],
+                               Seas = 1,
+                               Fleet = 1,
+                               Catch_or_F = stable.catch[1:length(forecast.yrs)])
+  SS_writeforecast(fore,
+                   dir = stable.catch.path,
+                   overwrite = TRUE,
+                   verbose = FALSE)
+  shell.command <- paste0("cd ", stable.catch.path, " & ss3 -mceval")
+  shell(shell.command)
 }
 
 run.forecasts <- function(model,

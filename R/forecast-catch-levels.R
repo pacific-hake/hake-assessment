@@ -26,23 +26,13 @@ catch.levels <-
        list(rep(350000, 3), "350,000 t", "03-350000"),
        list(rep(416000, 3), "2018 catch: 416000 t", "04-416000"),
        list(rep(597500, 3), "2018 TAC: 597,500 t", "05-597500"))
-
-## NEEDS UPDATING for 2019 and doing for all three extra MCMC runs
-## This is for the alternative 2018 MCMC run in Appendix A, from
-##   forecast-find-decision-table-alt.r
-## -----------------------------------------------------------------------------
-alt.catch.levels <-
-  list(list(rep(0.01, 3), "No Fishing", "01-0"),
-       list(rep(180000, 3), "180,000 t", "02-180000"),
-       list(rep(350000, 3), "350,000 t", "03-350000"),
-       list(rep(440000, 3), "2017 catch: 440,000 t", "04-440000"),
-       list(rep(597500, 3), "2017 TAC: 597,500 t", "05-597500"),
-       list(c(NA, NA, NA), "FI=100%", "06-spr-100"),
-       list(c(NA, NA, NA), "Default Harvest Policy", "07-default-hr"),
-       list(c(NA, NA, NA), "Stable Catch", "08-stable-catch"))
-       ## list(c(668000, 582000, 535000), "FI=100%", "06-spr-100"),
-       ## list(c(583970, 517889, 473043), "Default Harvest Policy", "07-default-hr"),
-       ## list(c(531342, 531342, 477594), "Stable Catch", "08-stable-catch"))
+## 3 additional catch levels will be added for each model,
+##  see the calc.catch.levels() and fetch.catch.levels() functions
+##  for details. Each model object will have its own copy of catch.levels.
+## The custom rows in order are:
+## SPR-100
+## Default HR catch
+## Stable catch
 
 ## -----------------------------------------------------------------------------
 ## Indices for the forecasts list, which list items above are the TAC case and
@@ -51,4 +41,3 @@ alt.catch.levels <-
 ## -----------------------------------------------------------------------------
 catch.tac.ind <- 5
 catch.default.policy.ind <- 7
-## catch.default.policy <- catch.levels[[catch.default.policy.ind]][[1]]

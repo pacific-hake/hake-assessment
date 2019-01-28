@@ -772,8 +772,8 @@ make.forecast.catch.posterior.plot(base.model,
 ## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those forecast models which will be plotted against each other
 models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
-#models.names <- sapply(catch.levels, "[[", 2) ## pretty catch level name
-models.names <- sapply(catch.levels, "[[", 2)[models.inds] ## pretty catch level name
+#models.names <- sapply(base.model$catch.levels, "[[", 2) ## pretty catch level name
+models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty catch level name
 make.forecast.depletion.comparison.plot(base.model,
                                         models.inds,
                                         models.names,
@@ -785,7 +785,7 @@ make.forecast.depletion.comparison.plot(base.model,
 \end{center}
 \caption{Time series of relative spawning biomass at the start of each year until \Sexpr{end.yr} as estimated from the base model, and forecast trajectories
   to the start of \Sexpr{forecast.yrs[length(forecast.yrs)]} for several management options from the decision table (grey region), with 95\% posterior
-  credibility intervals. The \Sexpr{end.yr} catch of \Sexpr{f(catch.default.policy[1])}~t was calculated using the default
+  credibility intervals. The \Sexpr{end.yr} catch of \Sexpr{f(base.model$catch.default.policy[1])}~t was calculated using the default
   harvest policy, as defined in the Agreement.}
 \label{fig:main-forecast-depletion-comparison}
 \end{figure}
@@ -1213,7 +1213,7 @@ for the base model and alternative sensitivity runs representing the use of a se
 %% heatmaps for sensitivity runs - need to re-order once decided on an order
 %% (see GitHub Issue).
 %% Do 32 first to verify that it's same as base - be handy to have here to
-%% compare to the next ones. Need the MCMC ones also. And do short names to 
+%% compare to the next ones. Need the MCMC ones also. And do short names to
 %% read okay in captions.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]

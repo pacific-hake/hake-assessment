@@ -506,7 +506,7 @@ make.decision.table(base.model,
                     font.size = 12,
                     space.size = 14,
                     type = "biomass",
-                    catch.levels = catch.levels)
+                    catch.levels = base.model$catch.levels)
 @
 
 <<main.decisions.spr.table, results='asis', echo=FALSE>>=
@@ -516,7 +516,7 @@ make.decision.table(base.model,
                     font.size = 12,
                     space.size = 14,
                     type = "spr",
-                    catch.levels = catch.levels)
+                    catch.levels = base.model$catch.levels)
 @
 
 <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
@@ -615,4 +615,3 @@ make.short.parameter.estimates.sens.table(retro.list,
 @
 
 \clearpage
-

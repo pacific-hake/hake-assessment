@@ -4,8 +4,7 @@ make.decision.table <- function(model,
                                 font.size  = 9,
                                 space.size = 10,
                                 type      = "biomass",
-                                placement  = "H",
-                                catch.levels = catch.levels){
+                                placement  = "H"){
   ## Returns an xtable in the proper format for the executive summary decision
   ##  tables
   ##
@@ -16,8 +15,6 @@ make.decision.table <- function(model,
   ## space.size - size of the vertical spaces for the table
   ## type - type to build. "biomass" or "spr"
   ## placement - latex code for placement of table
-  ## catch.levels - catch levels for tables, need the option for 2018 Appendix A
-  ##  alternate run
   if(type != "biomass" & type != "spr"){
     stop("make.decisions.table: Error - type '",
          type,
@@ -85,8 +82,8 @@ make.decision.table <- function(model,
                        "\\\\%",
                        colnames(forecast.tab))
   ## Set any catch less than 1 to be 0
-  ## c.levels <- unlist(catch.levels)
-  c.levels <- unlist(lapply(catch.levels, "[[", 1))
+  ## c.levels <- unlist(model$catch.levels)
+  c.levels <- unlist(lapply(model$catch.levels, "[[", 1))
   c.levels[c.levels < 1] <- 0
   ## Bind the catch levels and years to the correct rows
   forecast.tab <- cbind(tab.letters, yrs, f(c.levels), forecast.tab)
@@ -223,7 +220,7 @@ make.decision.table.pres <- function(model,
                        colnames(forecast.tab))
 
   ## Set any catch less than 1 to be 0
-  c.levels <- unlist(lapply(catch.levels[model.inds], "[[", 1))
+  c.levels <- unlist(lapply(model$catch.levels[model.inds], "[[", 1))
   c.levels[c.levels < 1] <- 0
   ## Bind the catch levels and years to the correct rows
   row.labs <- rep("", length(model.inds) * 3)
