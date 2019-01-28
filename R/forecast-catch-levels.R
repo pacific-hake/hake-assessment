@@ -13,11 +13,13 @@ forecast.probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 ## Each element of the list is a list of length equal to the
 ## number of elements in forcast.yrs.
 ## Constant catch values are somewhat arbitrary, but choosen to span a range
-##    given recent TACs (levels: 01, 02, 03, 05), and, for 2018 onwards, the previous year's catch
+##  given recent TACs (levels: 01, 02, 03, 05), and, for 2018 onwards, the
+##  previous year's catch
 ## Contant catch values set at the most recent TAC (level 04)
-## Catches specific to particular situations (SPR100, Default HR, and Stable
-##    catch) are manually solved for following forecast-find-decision-table.r
-##    located in .../doc/r
+## 3 additional catch levels will be added for each model,
+##  see the calc.catch.levels() and fetch.catch.levels() functions
+##  is load-models.R for details. The NA's below will be populated in each model
+##  by the routines.
 
 ## -----------------------------------------------------------------------------
 catch.levels <-
@@ -29,10 +31,6 @@ catch.levels <-
        list(rep(NA, 3), "FI=100%", "06-spr-100"),
        list(rep(NA, 3), "Default Harvest Policy", "07-default-hr"),
        list(rep(NA, 3), "Stable Catch", "08-stable-catch"))
-
-## 3 additional catch levels will be added for each model,
-##  see the calc.catch.levels() and fetch.catch.levels() functions
-##  for details. The NA's above will be populated in each model.
 
 ## -----------------------------------------------------------------------------
 ## Indices for the forecasts list, which list items above are the TAC case and
