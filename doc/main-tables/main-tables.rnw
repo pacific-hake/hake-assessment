@@ -616,3 +616,27 @@ make.short.parameter.estimates.sens.table(retro.list,
 
 \clearpage
 
+% Ugly, but wanted to get it in quickly. Should be a function like all the other tables.
+% Don't think we need to specify 'fecundity when varying' in only one column -
+% not sure why we do in Google one. Andy will check with Chris in the morning.
+\begin{table}
+\centering
+\begin{tabular}{ccccc}
+\hline
+Model run when  & Model run when & Time-varying & Pre-1975 & Pre-1975 \\ 
+2018 onwards       & 2018 onwards &  fecundity? & weight-at-age & weight-at-age\\
+weight-at-age is   &  weight-at-age (and & & is 1975-1979? & is 1975-2017?\\
+mean from 2015-2017; &  fecundity when varying) & & & \\
+full MCMC          & is mean from 1975-2017; & & & \\
+                   & MLE only & & & \\
+  \hline
+Base model & 34	& Y &   & Y\\
+38         & 35 & Y & Y &  \\	
+32         & 33 &   &   & Y\\
+36         & 37 &   & Y &  \\
+\hline
+\end{tabular}
+\caption{Summary of models runs that consider alternative assumptions concerning
+  weight-at-age and time-vary fecundity.
+  \label{tab:main-wtatage-runs}}
+\end{table}
