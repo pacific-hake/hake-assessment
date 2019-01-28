@@ -1212,21 +1212,24 @@ for the base model and alternative sensitivity runs representing the use of a se
 
 %% heatmaps for sensitivity runs - need to re-order once decided on an order
 %% (see GitHub Issue).
+%% 32 = base, 34 =33, 38=36, 35=37.
 %% Do 32 first to verify that it's same as base - be handy to have here to
-%% compare to the next ones. Need the MCMC ones also. And do short names to 
+%% compare to the next ones. Need the MCMC ones also. And do short names to
 %% read okay in captions.
+
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
 % Using .a since doesn't correspond to a sens group
 <<main.weight.at.age.sens.a, fig.height=9, fig.width=8>>=
-# Run 37 (verified same heatmap as 35)
-weight.at.age.heatmap(sens.models.6[[1]])
+# Run 32 (same as base)
+weight.at.age.heatmap(alt.base.model.2)
 @
 \end{center}
 %\vspace{0mm}
-\caption{Empirical weight-at-age (kg) used for sensitivity run
-  \Sexpr{sens.model.names.6[1]}. Numbers shown in
+\caption{Empirical weight-at-age (kg) used for sensitivity run 32 and the base
+  model (Figure~\ref{fig:main-empirical.weight.at.age}).
+  Numbers shown in
   bold were interpolated or extrapolated from adjacent ages or years. Data are
   only available from 1975-2017 (between the two blue lines). Remaining values
   are used for the early and late years.}
@@ -1243,12 +1246,49 @@ weight.at.age.heatmap(sens.models.6[[2]])
 @
 \end{center}
 %\vspace{0mm}
-\caption{Empirical weight-at-age (kg) used for sensitivity run
-  \Sexpr{sens.model.names.6[2]}. Numbers shown in
+\caption{Empirical weight-at-age (kg) used for sensitivity runs 33 and 34.
+  Numbers shown in
   bold were interpolated or extrapolated from adjacent ages or years. Data are
   only available from 1975-2017 (between the two blue lines). Remaining values
   are used for the early and late years.}
 \label{fig:main-empirical.weight.at.age.sens.b}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main.weight.at.age.sens.c, fig.height=9, fig.width=8>>=
+# Run 36 (verified same heatmap as 38)
+weight.at.age.heatmap(alt.base.model.1)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Empirical weight-at-age (kg) used for sensitivity runs
+  36 and 38. (**confirm they match once 36 runs okay - wtatage.ss files are good). Numbers shown in
+  bold were interpolated or extrapolated from adjacent ages or years. Data are
+  only available from 1975-2017 (between the two blue lines). Remaining values
+  are used for the early and late years.}
+\label{fig:main-empirical.weight.at.age.sens.c}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+% Using .a since doesn't correspond to a sens group
+<<main.weight.at.age.sens.d, fig.height=9, fig.width=8>>=
+# Run 37 (verified same heatmap as 35)
+weight.at.age.heatmap(sens.models.6[[1]])
+@
+\end{center}
+%\vspace{0mm}
+\caption{Empirical weight-at-age (kg) used for sensitivity runs
+  35 and 37. Numbers shown in
+  bold were interpolated or extrapolated from adjacent ages or years. Data are
+  only available from 1975-2017 (between the two blue lines). Remaining values
+  are used for the early and late years.}
+\label{fig:main-empirical.weight.at.age.sens.d}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
