@@ -49,10 +49,11 @@ make.assessment.history.plot <- function(base,
            rgb(1,    0,    1),         # 2013
            rgb(1,    0,    0),         # 2014
            rgb(0,    0,    1),         # 2015
-           rgb(0,    0.8,  0),         # 2016 
-           rgb(1,    0.5,  0))         # 2017
+           rgb(0,    0.8,  0),         # 2016
+           rgb(1,    0.5,  0),         # 2017
+           rgb(0.7,    0.7,  0.7))         # 2018
   # final line for base model is dark gray by default
-  
+
   # set line widths and plot characters
   lwds <- c(rep(1,nrow(xx)-1), 3)
   pchs <- rep(c(18, 15, 17, 4, 20, 3), 4) ## repeat it more than necessary
@@ -79,7 +80,7 @@ make.assessment.history.plot <- function(base,
     legCol[i] <- cols[yrs == xx$Year[i]]
     # if there is more than one assessment within a year,
     # put a symbol on it to differentiate years
-    if(sum(xx$Year == xx$Year[i]) > 1) { 
+    if(sum(xx$Year == xx$Year[i]) > 1) {
       legPch[i] <- pchs[i]
     }
     # add lines
@@ -96,7 +97,7 @@ make.assessment.history.plot <- function(base,
   ## NEW: add little tick marks for wide range of years
   ##      to avoid gap at end (e.g. ticks up to 2018, then gap at 2019)
   axis(1, at=1950:2030, labels=rep("", length(1950:2030)), tcl = -0.3)
-  
+
   # add values for base model
   i <- i + 1
   # color in legend

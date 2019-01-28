@@ -35,7 +35,7 @@ last.year.us.landings <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% 
 last.year.us.attained <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
 last.year.us.not.attained <- f(as.numeric(100 - landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
 last.year.us.not.attained.tonnes <- filter(landings.vs.tac, Year == last.data.yr)$TACUSA - filter(landings.vs.tac, Year == last.data.yr)$Ustotal
-last.year.us.tac <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACUS))
+last.year.us.tac <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACUSA))
 ## Not doing f here since want to do further calculations
 last.year.us.tribal <- filter(further.tac, Year == last.data.yr)$us.tribal.quota
 last.year.us.research <- filter(further.tac, Year == last.data.yr)$us.research.quota
@@ -345,5 +345,3 @@ DM.weight.survey <- round(theta.survey/(1+theta.survey),3)
 # MCMC medians for the fishery (survey value fixed at MLE)
 log.theta.fishery.median <- round(median(base.model$mcmc$ln.EffN_mult._1),3)
 DM.weight.fishery.median <- round(median(exp(base.model$mcmc$ln.EffN_mult._1)/(1+exp(base.model$mcmc$ln.EffN_mult._1))),3)
-
-

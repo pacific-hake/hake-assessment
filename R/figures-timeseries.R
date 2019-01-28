@@ -18,7 +18,7 @@ make.biomass.plot <- function(model,    ## model is an mcmc run and is the outpu
   start.equil.diff <- start.yr - equil.yr
   non.equil.yrs <- yrs[-(1:start.equil.diff)]
   non.equil.smed <- smed[names(smed) %in% non.equil.yrs]
-  
+
   plot(non.equil.yrs,
        non.equil.smed,
        type = "o",

@@ -1,4 +1,192 @@
-barfun <- function(x, y, x.pos="left", plot=TRUE, ...){
+weight.at.age.heatmap <- function(model,
+                                  fleet = 0,
+                                  last.yr = 2021,
+                                  proj.line.color = "royalblue",
+                                  proj.line.width = 1,
+                                  # For 2019 we have no 2018 data:
+                                  last.data.yr = 2017,
+                                  # mean ages were read directly off
+                                  # the plot in 2018 assessment doc
+                                  longterm.mean.ages = c(0.02,
+                                                         0.09,
+                                                         0.25,
+                                                         0.38,
+                                                         0.48,
+                                                         0.53,
+                                                         0.58,
+                                                         0.65,
+                                                         0.72,
+                                                         0.79,
+                                                         0.86,
+                                                         0.93,
+                                                         0.97,
+                                                         1.07,
+                                                         1.01,
+                                                         1.03)){
+  ## Weight-at-age heatmap plot including extrapolated years using ggplot.
+  ## Original code not available
+  ## Max age is set to 15 as we don't know what was extrapolated above that
+  ##  and the figure in the assessment doc is only to 15
+  ## fleet is number as seen in SS wtatage.ss file for fleet column
+  ## Years after end of data up to last.yr will be projection years,
+  ##  and simply copies of the last year of w-a data
+
+  ## Toggle data frame for which values are extrapolated values
+  input.yrs <- 1975:2017
+  extrap = list(
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1), #1975
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1976
+    c(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1977
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1978
+    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1979
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1980
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1981
+    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1982
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1983
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1984
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1985
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1986
+    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1987
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1988
+    c(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1989
+    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0), #1990
+    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0), #1991
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1992
+    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1993
+    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1994
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1995
+    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0), #1996
+    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1997
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1998
+    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1999
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2000
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2001
+    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2002
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2003
+    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2004
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2005
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2006
+    c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2007
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2008
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2009
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2010
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2011
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2012
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2013
+    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2014
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2015
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2016
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)) #2017
+  names(extrap) <- input.yrs
+
+  extrap <- as_tibble(cbind(input.yrs, t(bind_rows(extrap))))
+
+  wa <- as_tibble(model$wtatage) %>%
+    dplyr::filter(Fleet == fleet) %>%
+    select(-c(Seas, Sex, Bio_Pattern, BirthSeas, Fleet, comment)) %>%
+     dplyr::filter(Yr > 0)
+
+  wa <- wa[,1:17]
+  names(extrap) <- names(wa)
+
+  ## wa and extrap are in the same format but extrap needs more rows for fully extrapolated years
+  ##  before and after
+
+  j <- subset(wa, !(wa$Yr %in% extrap$Yr))
+  j[,2:17] <- c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+  extrap <- bind_rows(extrap, j) %>%
+    arrange(Yr)
+
+  ## Add projection years (now includes 2018 for 2019 assessment)
+  # last.data.yr <- max(wa$Yr)
+  if(last.yr > last.data.yr){
+    num.proj.yrs <- last.yr - last.data.yr
+    for(n in 1:num.proj.yrs){
+      last.wa.row <- wa[nrow(wa),]
+      yr <- last.wa.row$Yr
+      last.wa.row$Yr <- last.wa.row$Yr + 1
+      wa <- rbind(wa, last.wa.row)
+      ## Set up extrapolation data frame
+      last.ex.row <- extrap[nrow(extrap),]
+      yr <- last.ex.row$Yr
+      last.ex.row$Yr <- last.ex.row$Yr + 1
+      extrap <- rbind(extrap, last.ex.row)
+    }
+  }
+
+  wa1 <- wa2 <- wa[,-1]
+  extrap1 <- extrap[,-1]
+  wa1[!extrap1] <- NA
+  wa2[extrap1 == 1] <- NA
+  wa1 <- cbind(Yr = wa$Yr, wa1)
+  wa2 <- cbind(Yr = wa$Yr, wa2)
+
+  w <- reshape2::melt(wa, id.vars = "Yr")
+  w1 <- reshape2::melt(wa1, id.vars = "Yr")
+  w2 <- reshape2::melt(wa2, id.vars = "Yr")
+
+  ages <- as.numeric(levels(unique(w$variable)))
+  nage <- length(ages)
+
+  colors <- colorRampPalette(c("red",
+                               "yellow",
+                               "green",
+                               "dodgerblue"))(nage - 1)
+  avg <- data.frame(Yr = min(w$Yr) - 2,
+                    variable = ages,
+                    value = longterm.mean.ages)
+  w <- as.data.frame(rbind(w, avg))
+  w$Yr <- as.integer(w$Yr)
+  w$value <- as.numeric(w$value)
+
+  w1 <- as.data.frame(rbind(w1, avg))
+  w1$Yr <- as.integer(w1$Yr)
+  w1$value <- as.numeric(w1$value)
+
+  w2 <- as.data.frame(rbind(w2, avg))
+  w2$Yr <- as.integer(w2$Yr)
+  w2$value <- as.numeric(w2$value)
+
+  g <- ggplot(w)+
+    geom_tile(aes(x = variable, y = Yr, fill = value)) +
+    scale_fill_gradientn(colors = colors, guide = FALSE) +
+    geom_text(aes(x = w2$variable,
+                  y = w2$Yr,
+                  label = ifelse(is.na(w2$value),
+                                 "",
+                                 f(w2$value, 2)))) +
+    geom_text(aes(x = w1$variable,
+                  y = w1$Yr,
+                  label = ifelse(is.na(w1$value),
+                                 "",
+                                 f(w1$value, 2))),
+              fontface = "bold") +
+    theme(legend.title = element_blank()) +
+    scale_y_continuous(breaks = seq(min(w$Yr), max(w$Yr), 1),
+                       labels = c("mean",
+                                  "",
+                                  seq(min(w$Yr),
+                                      max(w$Yr),
+                                      1)[-c(1,2)])) +
+    ylab("Year") +
+    xlab("Age") +
+    ## Add line separating pre-1975 and data:
+    geom_hline(yintercept = input.yrs[1] - 0.5,
+               color = proj.line.color,
+               size = proj.line.width) +
+    coord_cartesian(expand = FALSE)
+
+  if(last.yr > last.data.yr){
+    ## Add line separating projections
+    g <- g + geom_hline(yintercept = last.data.yr + 0.5,
+                        color = proj.line.color,
+                        size = proj.line.width)
+  }
+  g
+}
+
+barfun <- function(x, y, x.pos="left", plot=1, ...){
   #make barplot-like shape which is really a polygon
   if(any(sort(x)!=x)){
     stop("x must be a vector of strictly increasing values")
@@ -149,4 +337,3 @@ if(FALSE){
   make.size.at.age.plot(df2, type='len')
   make.size.at.age.plot(df2, type='wt')
 }
-

@@ -113,22 +113,26 @@ total catch of the 2010 year class is estimated to be about
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
-The biomass index and age composition from the acoustic survey conducted
-in \Sexpr{survey.end.yr} have been added to the survey time series
-(Figure~\ref{fig:es-survey-biomass}). A new age-based maturity ogive was
-developed for this assessment, replacing the previous ogive that was based on
-estimates of maturity-at-length from 1997 and weight-at-length  from 2011.
-Further new data for this \Sexpr{assess.yr}
-assessment, that were not in the \Sexpr{last.assess.yr} assessment,
-are the
-\Sexpr{last.data.yr} fishery catch and fishery age compositions, and the mean
-weight-at-age for \Sexpr{last.data.yr}.
+The U.S. government shutdown affected the data used in the \Sexpr{assess.yr}
+assessment. U.S. age data were not available, and Canadian age data could not
+be used as they are not necessarily representative of the coastwide stock. Usually U.S.
+and Canadian age data are combined as there is only one fleet in the model. Only total \Sexpr{last.data.yr} catch
+was added to the model this year. U.S. catch was extracted before the government shutdown took place,
+after hake fishing had finished for the year.
+%% The biomass index and age composition from the acoustic survey conducted
+%% in \Sexpr{survey.end.yr} have been added to the survey time series
+%% (Figure~\ref{fig:es-survey-biomass}). A new age-based maturity ogive was
+%% developed for this assessment, replacing the previous ogive that was based on
+%% estimates of maturity-at-length from 1997 and weight-at-length  from 2011.
+%% Further new data for this \Sexpr{assess.yr}
+%% assessment, that were not in the \Sexpr{last.assess.yr} assessment,
+%% are the
+%% \Sexpr{last.data.yr} fishery catch and fishery age compositions, and the mean
+%% weight-at-age for \Sexpr{last.data.yr}.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
 <<survey.biomass, fig.height=5, fig.width=8>>=
-## modelnum is the model index in models list from which the survey input
-##  data are used.
 make.survey.biomass.plot(base.model)
 @
 \end{center}
@@ -140,18 +144,16 @@ make.survey.biomass.plot(base.model)
 \label{fig:es-survey-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-%
 
 This Joint Technical Committee (JTC) assessment depends primarily on the fishery
 landings (\Sexpr{start.yr}--\Sexpr{last.data.yr}), acoustic survey biomass
 indices (Figure~\ref{fig:es-survey-biomass}) and age-compositions
 (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}), as well as fishery
-age-compositions (1975--\Sexpr{last.data.yr}). The 2011 survey index value
+age-compositions (1975--\Sexpr{last.age.yr}). The 2011 survey index value
 was the lowest in the time series, and was followed by the index increasing
 in 2012, 2013, and 2015, and then declining in 2017. Age-composition data from the
 aggregated fisheries and the acoustic survey contribute to the assessment
 model's ability to resolve strong and weak cohorts.
-% Manual 2018 done.
 
 The assessment uses a Bayesian estimation approach, sensitivity analyses, and
 retrospective investigations to evaluate the potential consequences of parameter
@@ -690,7 +692,7 @@ make.decision.table(base.model,
                     space.size = 14,
                     type = "biomass",
                     placement = "tbp",
-                    catch.levels = catch.levels)
+                    catch.levels = base.model$catch.levels)
 @
 
 Decision tables give the projected population status (relative spawning biomass)
@@ -720,7 +722,7 @@ make.decision.table(base.model,
                     space.size = 14,
                     type = "spr",
                     placement = "tbp",
-                    catch.levels = catch.levels)
+                    catch.levels = base.model$catch.levels)
 @
 
 \clearpage  % 2018: Then forces Table i and Fig j to be on same page, and j/k.
@@ -745,7 +747,7 @@ FI=100\%).
 ## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those which will be plotted against each other
 models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
-models.names <- sapply(catch.levels, "[[", 2)[models.inds]
+models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds]
                        ## pretty catch level name
 make.forecast.depletion.comparison.plot(base.model,
                                         models.inds,
@@ -761,7 +763,7 @@ make.forecast.depletion.comparison.plot(base.model,
          \Sexpr{forecast.yrs[length(forecast.yrs)]} for several management actions
          defined in Table~\ref{tab:es-decisions-biomass} (grey region), with 95\%
          posterior credibility intervals.}
-% The \Sexpr{end.yr} catch of \Sexpr{f(catch.default.policy[1])}~t was calculated
+% The \Sexpr{end.yr} catch of \Sexpr{f(base.model$catch.default.policy[1])}~t was calculated
 %  using the default harvest policy, as defined in the Agreement.}
 % Above commented sentence Was in 2016 but I think is wrong - plot shows the
 %  FI=100% action, so not sure why this talks about default HR (action g).
@@ -922,18 +924,18 @@ related to fecundity:
    \item add time-varying fecundity by multiplying the weight-at-age matrix (rather than
    an overall mean weight-at-age vector as in the base model) and the new maturity ogive
    to get annual estimates of fecundity from 1975-2017;
-   \item set equilibrium and 1966-1974 fecundity (where empirical data are not available) 
+   \item set equilibrium and 1966-1974 fecundity (where empirical data are not available)
    to the product of maturity and mean weight-at-age over 1975-1979;
-   \item set forecast-year fecundity (including 2017 due to current configurations in Stock Synthesis) 
-   weight-at-age to the product of maturity and mean weight-at-age over 2015-2017. 
+   \item set forecast-year fecundity (including 2017 due to current configurations in Stock Synthesis)
+   weight-at-age to the product of maturity and mean weight-at-age over 2015-2017.
 \end{itemize}
 
 Decision tables, reference points, probabilities associated with alternative
-forecast catch levels, and comparisons to the base model are presented for the 
+forecast catch levels, and comparisons to the base model are presented for the
 \altshort\ in Appendix~\ref{chap:srg-requests}. The difference between the results
-is predominantly due to the assumptions about equilibrium weight-at-age. 
+is predominantly due to the assumptions about equilibrium weight-at-age.
 
-An inconsistency in this \altshort\ is that the the mean weight-at-age 
+An inconsistency in this \altshort\ is that the the mean weight-at-age
 across all years is still used for the calculation of
 stock biomass in the years outside the range with empirical data (1975-2017),
 rather than the short-term averages (1975-1979 or 2015-2017). A brief examination of

@@ -23,17 +23,21 @@ make.selex.plot <- function(model,
   # of output returned (invisibly) by SSplotSelex
   infotable <- data.frame(Fleet  = c(1,1,1,2,2),
                           Sex    = 1,
-                          Yr     = years[c(1,2,3,1,2)], 
+                          Yr     = years[c(1,2,3,1,2)],
                           ifleet = c(1,1,1,2,2),
-                          FleetName = c(rep("Fishery",3), "Survey", ""),
-                          longname  = c("Fishery (avg.)", "Fishery 2016",
-                              "Fishery 2017", "Survey", ""),
-                          Yr_range  = c(1966, 2016:2017, 1966, end.yr-1),
+                          FleetName = c(rep("Fishery", 3), "Survey", ""),
+                          longname  = c("Fishery (avg.)",
+                                        "Fishery 2016",
+                                        "Fishery 2017",
+                                        "Survey", ""),
+                          Yr_range  = c(1966, 2017:2018, 1966, end.yr-1),
                           col       = cols,
                           lty       = c(1,2,4,1,1),
                           lwd       = c(4,2,2,3,NA),
                           pch       = c(NA,NA,NA,NA,NA),
                           stringsAsFactors=FALSE)
+  ## Remove rows where col is NA. This is a hack to fix when the model doesn't have age data for the last year
+  infotable <- infotable[!is.na(infotable$col),]
   SSplotSelex(model, infotable=infotable, subplot = subplot, agefactors = agefactors,
               years = years, fleetnames = fleetnames, showmain = showmain)
   if(!is.null(pan.letter)){
@@ -101,6 +105,9 @@ calc.tv.selex <- function(model,
   }
 
   selex.median <- as.data.frame(lapply(selex, function(x){apply(x, 2, median)}))
+  if(length(selex.median) + 1 == length(yrs)){
+    yrs <- yrs[-length(yrs)]
+  }
   names(selex.median) <- yrs
   selex.lower <- as.data.frame(lapply(selex, function(x){apply(x, 2, quantile, prob = probs[1])}))
   names(selex.lower) <- yrs
@@ -236,6 +243,9 @@ make.selex.uncertainty.lines.plot <- function(model,
   yrs <- as.numeric(names(sel.med))
   if(type == 1){
     ## get matrix of selectivity at age from all MCMC samples for chosen year
+    if(!year %in% yrs){
+      year = yrs[length(yrs)]
+    }
     selex <- selex.list$selex[[which(yrs==year)]]
     ## get vectors of medians and intervals for chosen year
     selex.med <- selex.list$median[,which(yrs==year)]
