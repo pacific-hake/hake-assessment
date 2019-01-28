@@ -462,9 +462,8 @@ fetch.catch.levels <- function(model,
                           Nareas = 1,
                           nseas = 1,
                           verbose = FALSE)
-  fore$ForeCatch
-  catch.levels[[length(catch.levels) + 1]] <-
-    list(fore$ForeCatch$Catch_or_F, "FI=100%", "06-spr-100")
+
+  catch.levels[[6]][[1]] <- fore$ForeCatch$Catch_or_F
 
   forecast.file <- file.path(default.hr.path, "forecast.ss")
   fore <- SS_readforecast(forecast.file,
@@ -472,19 +471,15 @@ fetch.catch.levels <- function(model,
                           Nareas = 1,
                           nseas = 1,
                           verbose = FALSE)
-  fore$ForeCatch
-  catch.levels[[length(catch.levels) + 1]] <-
-    list(fore$ForeCatch$Catch_or_F, "Default Harvest Policy", "07-default-hr")
+  catch.levels[[7]][[1]] <- fore$ForeCatch$Catch_or_F
 
-  forecast.file <- file.path(spr.100.path, "forecast.ss")
+  forecast.file <- file.path(stable.catch.path, "forecast.ss")
   fore <- SS_readforecast(forecast.file,
                           Nfleets = 1,
                           Nareas = 1,
                           nseas = 1,
                           verbose = FALSE)
-  fore$ForeCatch
-  catch.levels[[length(catch.levels) + 1]] <-
-    list(fore$ForeCatch$Catch_or_F, "Stable Catch", "08-stable-catch")
+  catch.levels[[8]][[1]] <- fore$ForeCatch$Catch_or_F
 
   catch.levels
 }
@@ -670,17 +665,18 @@ run.forecasts <- function(model,
   curr.func.name <- get.curr.func.name()
 
   mcmc.path <- model$mcmcpath
-  ## forecast.yrs <- forecast.yrs[-length(forecast.yrs)]
-  ## Extract the catch level names from the list into a vector
-  catch.levels.names <- sapply(catch.levels, "[[", 3)
-  ## Make the catch level values a matrix where the columns represent the cases in catch.names
-  catch.levels <- sapply(catch.levels, "[[", 1)
-  forecasts.path <- file.path(mcmc.path, "forecasts")
 
   ## Calculate and add on model-custom catch levels
   calc.catch.levels(model,
                     forecast.yrs,
                     catch.levels)
+  catch.levels <- fetch.catch.levels(model, catch.levels)
+
+  ## Extract the catch level names from the list into a vector
+  catch.levels.names <- sapply(catch.levels, "[[", 3)
+  ## Make the catch level values a matrix where the columns represent the cases in catch.names
+  catch.levels <- sapply(catch.levels, "[[", 1)
+  forecasts.path <- file.path(mcmc.path, "forecasts")
 
   cat0(curr.func.name, "Running forecasts for model located in ", mcmc.path, "...\n")
   dir.create(forecasts.path, showWarnings = FALSE)
@@ -700,10 +696,16 @@ run.forecasts <- function(model,
 
       ## Insert fixed catches into forecast file (depending on i)
       forecast.file <- file.path(new.forecast.dir, "forecast.ss")
-      fore <- SS_readforecast(forecast.file, Nfleets = 1, Nareas = 1, nseas = 1, verbose = FALSE)
+      fore <- SS_readforecast(forecast.file,
+                              Nfleets = 1,
+                              Nareas = 1,
+                              nseas = 1,
+                              verbose = FALSE)
       fore$Ncatch <- length(forecast.yrs[1:i])
-      ## fore$ForeCatch <- data.frame(Year = forecast.yrs[1:i], Seas = 1, Fleet = 1, Catch_or_F = catch.levels[[level.ind]][1:i])
-      fore$ForeCatch <- data.frame(Year = forecast.yrs[1:i], Seas = 1, Fleet = 1, Catch_or_F = catch.levels[,level.ind][1:i])
+      fore$ForeCatch <- data.frame(Year = forecast.yrs[1:i],
+                                   Seas = 1,
+                                   Fleet = 1,
+                                   Catch_or_F = catch.levels[,level.ind][1:i])
       SS_writeforecast(fore, dir = new.forecast.dir, overwrite = TRUE, verbose = FALSE)
 
       ## Evaluate the model using mceval option of ADMB, and retrieve the output

@@ -25,14 +25,14 @@ catch.levels <-
        list(rep(180000, 3), "180,000 t", "02-180000"),
        list(rep(350000, 3), "350,000 t", "03-350000"),
        list(rep(416000, 3), "2018 catch: 416000 t", "04-416000"),
-       list(rep(597500, 3), "2018 TAC: 597,500 t", "05-597500"))
+       list(rep(597500, 3), "2018 TAC: 597,500 t", "05-597500"),
+       list(rep(NA, 3), "FI=100%", "06-spr-100"),
+       list(rep(NA, 3), "Default Harvest Policy", "07-default-hr"),
+       list(rep(NA, 3), "Stable Catch", "08-stable-catch"))
+
 ## 3 additional catch levels will be added for each model,
 ##  see the calc.catch.levels() and fetch.catch.levels() functions
-##  for details. Each model object will have its own copy of catch.levels.
-## The custom rows in order are:
-## SPR-100
-## Default HR catch
-## Stable catch
+##  for details. The NA's above will be populated in each model.
 
 ## -----------------------------------------------------------------------------
 ## Indices for the forecasts list, which list items above are the TAC case and
