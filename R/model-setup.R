@@ -351,7 +351,7 @@ build <- function(run.fore = FALSE,
   for(model.nm in model.names.list){
     create.rdata.file(
       model.name = model.nm,
-      ovwrt.rdata = ifelse(run.extra.mcmc,
+      ovwrt.rdata = ifelse(any(run.fore, run.retro, run.extra.mcmc),
                            TRUE,
                            FALSE),
       run.forecasts = run.fore,
