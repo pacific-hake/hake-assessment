@@ -515,11 +515,12 @@ relatively weak link between spawning biomass and recruitment (see below).
 
 \subsubsection{Weights-at-age and fecundity (**new for 2019, need to reference this from elsewhere)}
 
-**Andy: just want to get the weight-at-age part written up
-today (it may be better in a separate section). 
+**Andy: 
 Needs carefully reading later. Taking from my write-up in Issue \#469.
-This assumes we cannot use the US weight-at-age data -- if we can then some of this will
-need to be updated.
+This text mostly assumes we cannot use the US weight-at-age data (also need 
+to mention that we used 2015-2017 for 2018 but not to fit it).
+If we can use US data then some of this will
+need to be updated....
 
 In 2018 the SRG requested an alternative model run that used time-varying
 fecundity \citep{JTC2018}. We have done this in the 2019 base model, and 
@@ -542,7 +543,7 @@ a) ``Add time-varying fecundity by multiplying the weight-at-age matrix (rather 
    to get annual estimates of fecundity from 1975-2017.''
 
 We have done this in the 2019 base model (for the updated time period
-1975-2018) because it is more consistent with time-varying weight-at-age 
+1975-2017 **update if get 2018 ages) because it is more consistent with time-varying weight-at-age 
 than the non-time varying fecundity used in the 2018 base model. That
 fecundity multiplied the maturity ogive by an average weight-at-age
 to give age-dependent fecundity that was constant in time. Sensitivity
