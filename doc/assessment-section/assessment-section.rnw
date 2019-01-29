@@ -513,25 +513,25 @@ relatively weak link between spawning biomass and recruitment (see below).
 
 %[** this section has been empty for the past few years....]
 
-\subsubsection{Fecundity (**new for 2019, need to reference this from elsewhere)}
+\subsubsection{Weights-at-age and fecundity (**new for 2019, need to reference this from elsewhere)}
 
 **Andy: just want to get the weight-at-age part written up
 today (it may be better in a separate section). 
-Nees carefully reading later. Taking from my write-up in Issue \#469.
+Needs carefully reading later. Taking from my write-up in Issue \#469.
 This assumes we cannot use the US weight-at-age data -- if we can then some of this will
 need to be updated.
 
-In 2018 the SRG-requested alternative model run used time-varying
-fecundity. We have done this in the 2019 base model, and ran
-three model runs with alternative assumptions about weights-at-age
-for years without data. For a given year, fecundity is the
+In 2018 the SRG requested an alternative model run that used time-varying
+fecundity \citep{JTC2018}. We have done this in the 2019 base model, and 
+plus three model runs with alternative assumptions about the weights-at-age
+for the years without data. For a given year, fecundity is the
 (element-wise) product of the maturity ogive and the weight-at-age 
 vector for that year. Thus, the alternative weight-at-age assumptions
 affect the fecundity. We also tested these four alternative assumptions
 when using non-time-varying fecundity. The eight combinations are summarised
 in Table~\ref{tab:main-wtatage-runs}, and the four weight-at-age assumptions
 are shown in the heatmaps in 
-Figures~\ref{fig:main-empirical.weight.at.age.sens.a}-{fig:main-empirical.weight.at.age.sens.d}.
+Figures~\ref{fig:main-empirical.weight.at.age.sens.a}-\ref{fig:main-empirical.weight.at.age.sens.d}.
 The eight runs are now explained in the context of the 2018 assessment.
 
 There were four components to the SRG-requested alternative model run that
@@ -542,13 +542,13 @@ a) ``Add time-varying fecundity by multiplying the weight-at-age matrix (rather 
    to get annual estimates of fecundity from 1975-2017.''
 
 We have done this in the 2019 base model (for the updated time period
-1975-2017) because it is more consistent with time-varying weight-at-age 
+1975-2018) because it is more consistent with time-varying weight-at-age 
 than the non-time varying fecundity used in the 2018 base model. That
 fecundity multiplied the maturity ogive by an average weight-at-age
 to give age-dependent fecundity that was constant in time. Sensitivity
 runs 34, 35 and 38 also use time-varying fecundity.
-Non-time-varying fecundity is examined in sensitivity runs 32, 33, 36 and 37.
-**HERE**
+Non-time-varying fecundity is examined in sensitivity runs 32, 33, 36 and~37.
+
 
 b) ``Set equilibrium and 1966-1974 fecundity (where empirical data are not
 available) to the product of maturity and the mean weight-at-age averaged 
@@ -619,7 +619,7 @@ early years, as per (b) above).
 These changes meant that Stock Synthesis did not converge, but this was overcome
 by changing the initial value for the numerical algorithms (not the prior) of
 the steepness of paramater $h$ from 0.88 to 0.95. This was done for the new base
-case (bridging model 43 shows no effect, **see section **).
+case (bridging run~43 shows no effect, **see section **).
 
 \subsubsection{Assessment model results}\label{sec:assessment-model-results}
 \subsubsub{Model Fit}
