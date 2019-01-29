@@ -72,7 +72,8 @@ total allowable catch (TAC, adjusted for carryovers) of
 \Sexpr{last.year.tac}~t. Attainment in the U.S.~was
 \Sexpr{last.year.us.attained}\% of its quota; in Canada it was
 \Sexpr{last.year.can.attained}\%.
-%
+**Check Issue \#495.
+% 
 <<total.catches.table, results='asis', echo=FALSE>>=
 make.catches.table(catches,
                    start.yr = 2006,
@@ -113,7 +114,7 @@ total catch of the 2010 year class is estimated to be about
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
-The U.S. government shutdown affected the data used in the \Sexpr{assess.yr}
+**The U.S. government shutdown affected the data used in the \Sexpr{assess.yr}
 assessment. U.S. age data were not available, and Canadian age data could not
 be used as they are not necessarily representative of the coastwide stock. Usually U.S.
 and Canadian age data are combined as there is only one fleet in the model. Only total \Sexpr{last.data.yr} catch
@@ -175,7 +176,7 @@ expected management outcomes given repeated application of these procedures over
 the long-term. The results of past closed-loop simulations influence the
 decisions made for this assessment.
 
-This \Sexpr{assess.yr} assessment retains the structural form of the base
+**This \Sexpr{assess.yr} assessment retains the structural form of the base
 assessment model from \Sexpr{last.assess.yr} as well as many of the previous
 elements as configured in Stock Synthesis. Analyses conducted in 2014
 showed that allowing for time-varying (rather than fixed) selectivity reduced
@@ -197,7 +198,7 @@ data.
 
 \subsection*{Stock biomass} \label{sec:es-stock-biomass} \phantomsection
 \addcontentsline{toc}{subsection}{Stock biomass}
-The base stock assessment model
+**The base stock assessment model
 indicates that since the 1960s, \fishname\ female spawning biomass has ranged
 from well below to near (and above) unfished equilibrium
 (Figures~\ref{fig:es-female-spawning-biomass}
@@ -270,7 +271,7 @@ and 2010 year classes, which, combined with the fishing mortality on these
 cohorts, has resulted in a relatively constant biomass since 2013.
 % Manual 2018 done.
 
-The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning
+**The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning
 biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium,
 $B_0$) is \Sexpr{curr.depl.median}\%. However, the uncertainty
 is large, with a 95\%
@@ -324,7 +325,7 @@ make.recruitment.table(base.model,
 @
 %
 
-The new data available for this assessment do not significantly change the
+**The new data available for this assessment do not significantly change the
 pattern of recruitment estimated in recent assessments. \fishname\ appear to
 have low average recruitment with occasional large year-classes
 (Table~\ref{tab:es-recruitment} and Figure~\ref{fig:es-recruitment}).
@@ -420,7 +421,7 @@ make.fishing.intensity.table(base.model,
 %%  and posting issue.
 %% Okay for base-model 45, though only year. Keep all this so can easily switch
 %%  around.
-Median relative fishing intensity on the stock is estimated to have been below
+**Median relative fishing intensity on the stock is estimated to have been below
 the target of 1.0
 %% except for
 %% the years
@@ -459,13 +460,13 @@ make.fishing.intensity.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-Median exploitation fraction (catch divided by biomass of fish of age-2 and
+**Median exploitation fraction (catch divided by biomass of fish of age-2 and
 above) peaked in 1999, and then reached even higher values in 2006 and 2008
 (Table~\ref{tab:es-fishing-intensity} and
-Figure~\ref{fig:es-exploitation-fraction}). Note that in previous assessments
-exploitation fraction was defined in terms of fish age-3 and above, but we
-revised the definition this year because age-2 fish are often caught by the
-fishery.
+Figure~\ref{fig:es-exploitation-fraction}). Note that in earlier assessments the
+exploitation fraction was defined in terms of fish age-3 and above, but in
+the 2018 assessment (and here) we revised the definition year because age-2
+fish are often caught by the fishery.
 % Manual 2018 done.
 %
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -489,7 +490,7 @@ Median relative fishing intensity is estimated to have declined from
 \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.penult.yr}\%
 in \Sexpr{end.yr-1}, while the exploitation fraction has increased from
 \Sexpr{exploitation.med.2010} in 2010 to \Sexpr{exploitation.med.penult.yr} in
-\Sexpr{end.yr-1}.  There is a considerable amount of uncertainty around
+\Sexpr{end.yr-1}. There is a considerable amount of uncertainty around
 estimates of relative fishing intensity, with the 95\% posterior credibility
 interval reaching above the SPR management target for \Sexpr{end.yr-1}
 (Figure~\ref{fig:es-fishing-intensity}).
@@ -508,7 +509,7 @@ interval reaching above the SPR management target for \Sexpr{end.yr-1}
 \subsection*{Management performance} \label{sec:es-management-performance}
 \phantomsection  \addcontentsline{toc}{subsection}{Management performance}
 
-Over the last decade (\Sexpr{end.yr-10}--\Sexpr{end.yr-1}), the mean coast-wide
+**Over the last decade (\Sexpr{end.yr-10}--\Sexpr{end.yr-1}), the mean coast-wide
 utilization rate (proportion of catch target removed) has been
 \Sexpr{tot.last.10.years.attainment}\% (Table~\ref{tab:es-landings-tac}). Over
 the last five years (\Sexpr{end.yr-5} to \Sexpr{end.yr-1}), the mean utilization
@@ -530,7 +531,7 @@ make.landings.tac.table(landings.vs.tac,
                         placement = "tbp")
 @
 
-The median relative fishing intensity was below target in all years
+**The median relative fishing intensity was below target in all years
 % \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]}
 % and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
 % Only one year for 2017 assessment, so:
@@ -545,7 +546,7 @@ all years except 1999-2000 and 2007-2011
 % median.relative.bio.below.target
 % Manual done 2018.
 
-The joint history of the medians of relative spawning biomass and relative
+**The joint history of the medians of relative spawning biomass and relative
 fishing intensity shows that the median relative fishing
 intensity has never been above the target of 1.0 when the female spawning biomass
 is below the
@@ -582,7 +583,7 @@ median relative spawning biomass has been above the reference point of 40\%
 since \Sexpr{median.relative.bio.above.target.since}.
 % Manual done 2018. Based on median.relative.bio.below.target.
 
-While there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative
+**While there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative
 fishing intensity and relative spawning biomass, the model estimates a
 5.7\% joint probability of being both above the target relative fishing intensity
 in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at
@@ -595,7 +596,7 @@ the start of \Sexpr{end.yr}.
 \subsection*{Reference points} \label{sec:es-reference-points}
 \phantomsection \addcontentsline{toc}{subsection}{Reference points}
 
-Estimates of the \Sexpr{assess.yr} base model reference points with posterior
+**Estimates of the \Sexpr{assess.yr} base model reference points with posterior
 credibility intervals are in Table~\ref{tab:es-reference.points}.
 The estimates
 are slightly different than those in the \Sexpr{last.assess.yr} assessment, with
@@ -624,7 +625,7 @@ Measures of uncertainty in the base model underestimate the total uncertainty in
 the current stock status and projections because they do not account for
 possible alternative structural models for \simplename\ population dynamics and
 fishery processes (e.g., selectivity), the effects of data-weighting schemes,
-and the scientific basis for prior probability distributions.  To address such
+and the scientific basis for prior probability distributions. To address such
 structural uncertainties, we performed sensitivity analyses to investigate a
 range of alternative models,
 and present the key sensitivity analyses in the main document.
