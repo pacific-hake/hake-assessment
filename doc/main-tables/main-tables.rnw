@@ -506,7 +506,7 @@ make.decision.table(base.model,
                     font.size = 12,
                     space.size = 14,
                     type = "biomass",
-                    catch.levels = catch.levels)
+                    catch.levels = base.model$catch.levels)
 @
 
 <<main.decisions.spr.table, results='asis', echo=FALSE>>=
@@ -516,7 +516,7 @@ make.decision.table(base.model,
                     font.size = 12,
                     space.size = 14,
                     type = "spr",
-                    catch.levels = catch.levels)
+                    catch.levels = base.model$catch.levels)
 @
 
 <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
@@ -614,8 +614,6 @@ make.short.parameter.estimates.sens.table(retro.list,
                                           space.size = 12)
 @
 
-\clearpage
-
 % Ugly, but wanted to get it in quickly. Should be a function like all the other tables.
 % Don't think we need to specify 'fecundity when varying' in only one column -
 % not sure why we do in Google one. Andy will check with Chris in the morning.
@@ -648,3 +646,5 @@ Base model & 34	& Y &   & Y\\
   to results and is fixed for all 2019 runs, as described in Section~**bridging-when-written).
   \label{tab:main-wtatage-runs}}
 \end{table}
+
+\clearpage

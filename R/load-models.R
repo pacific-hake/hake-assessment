@@ -174,20 +174,20 @@ create.rdata.file <- function(
   ## Check to make sure mcmc path exists and run forecasts etc if it does
   if(dir.exists(model$mcmcpath)){
     ##----------------------------------------------------------------------------
-    ## Run extra mcmc output.
-    model$extra.mcmc.path <- file.path(model$path, "extra-mcmc")
-    if(run.extra.mcmc){
-      run.extra.mcmc.models(model, verbose = verbose)
-    }
-    ##----------------------------------------------------------------------------
-
-    ##----------------------------------------------------------------------------
     ## Run forecasts
     if(run.forecasts){
       run.forecasts(model,
                     fore.yrs,
                     forecast.probs,
                     forecast.catch.levels)
+    }
+    ##----------------------------------------------------------------------------
+
+    ##----------------------------------------------------------------------------
+    ## Run extra mcmc output.
+    model$extra.mcmc.path <- file.path(model$path, "extra-mcmc")
+    if(run.extra.mcmc){
+      run.extra.mcmc.models(model, verbose = verbose)
     }
     ##----------------------------------------------------------------------------
 
@@ -207,12 +207,15 @@ create.rdata.file <- function(
     ##----------------------------------------------------------------------------
     ## Load forecasts.  If none are found or there is a problem, model$forecasts
     ##  will be NA
+    model$catch.levels <- fetch.catch.levels(model,
+                                             forecast.catch.levels)
+    model$catch.default.policy <- model$catch.levels[[catch.default.policy.ind]][[1]]
     model$forecasts <- fetch.forecasts(model$mcmcpath,
                                        fore.yrs,
-                                       forecast.catch.levels,
+                                       model$catch.levels,
                                        fore.probs = forecast.probs)
     model$risks <- calc.risk(model$forecasts,
-                             forecast.catch.levels,
+                             model$catch.levels,
                              fore.yrs)
     ##----------------------------------------------------------------------------
 
@@ -433,16 +436,242 @@ calc.mcmc <- function(mcmc,
          function(x){get(x)})
 }
 
+fetch.catch.levels <- function(model,
+                               catch.levels,
+                               catch.levels.path = "catch-levels",
+                               spr.100.path = "spr-100",
+                               default.hr.path = "default-hr",
+                               stable.catch.path = "stable-catch"){
+  ## Assumes calc.catch.levels() has been run and the forecast files
+  ##  are populated with 3 forecast years.
+  ## Return a list of 3-element lists of vectors of 3 catch levels corresponding to:
+  ## a) SPR-100%
+  ## b) Default harvest policy
+  ## c) Stable catch
+
+  ## Return object looks the same as the catch.levels object but with three more elements.
+  mcmc.path <- model$mcmcpath
+  catch.levels.path <- file.path(mcmc.path, catch.levels.path)
+  spr.100.path <- file.path(catch.levels.path, spr.100.path)
+  default.hr.path <- file.path(catch.levels.path, default.hr.path)
+  stable.catch.path <- file.path(catch.levels.path, stable.catch.path)
+
+  forecast.file <- file.path(spr.100.path, "forecast.ss")
+  fore <- SS_readforecast(forecast.file,
+                          Nfleets = 1,
+                          Nareas = 1,
+                          nseas = 1,
+                          verbose = FALSE)
+
+  catch.levels[[6]][[1]] <- fore$ForeCatch$Catch_or_F
+
+  forecast.file <- file.path(default.hr.path, "forecast.ss")
+  fore <- SS_readforecast(forecast.file,
+                          Nfleets = 1,
+                          Nareas = 1,
+                          nseas = 1,
+                          verbose = FALSE)
+  catch.levels[[7]][[1]] <- fore$ForeCatch$Catch_or_F
+
+  forecast.file <- file.path(stable.catch.path, "forecast.ss")
+  fore <- SS_readforecast(forecast.file,
+                          Nfleets = 1,
+                          Nareas = 1,
+                          nseas = 1,
+                          verbose = FALSE)
+  catch.levels[[8]][[1]] <- fore$ForeCatch$Catch_or_F
+
+  catch.levels
+}
+
+calc.catch.levels <- function(model,
+                              forecast.yrs,
+                              catch.levels,
+                              tol = 0.0001,
+                              spr.catch.tol = 100,
+                              stable.catch.tol = 1,
+                              catch.levels.path = "catch-levels",
+                              spr.100.path = "spr-100",
+                              default.hr.path = "default-hr",
+                              stable.catch.path = "stable-catch"){
+  ## tol is how close to get the SPR to 1 before stopping.
+  ## spr.catch.tol is the SPR catch tolerance. If upper and lower catch values bracketing
+  ## the actual catch corresponding to SPR 100%, stop there. 100 should be sufficient usually
+  ## stable.catch.tol is how many tonnes to use for tolerance for stable catch.
+  ##  i.e. if 1, the catch values for the first two projected years must be within
+  ##  1 tonne of each other.
+
+  mcmc.path <- model$mcmcpath
+  catch.levels.path <- file.path(mcmc.path, catch.levels.path)
+  spr.100.path <- file.path(catch.levels.path, spr.100.path)
+  default.hr.path <- file.path(catch.levels.path, default.hr.path)
+  stable.catch.path <- file.path(catch.levels.path, stable.catch.path)
+
+  dir.create(catch.levels.path, showWarnings = FALSE)
+  dir.create(spr.100.path, showWarnings = FALSE)
+  dir.create(default.hr.path, showWarnings = FALSE)
+  dir.create(stable.catch.path, showWarnings = FALSE)
+
+  file.copy(file.path(mcmc.path,
+                      list.files(mcmc.path)),
+            file.path(spr.100.path,
+                      list.files(mcmc.path)),
+            copy.mode = TRUE)
+  file.copy(file.path(mcmc.path,
+                      list.files(mcmc.path)),
+            file.path(default.hr.path,
+                      list.files(mcmc.path)),
+            copy.mode = TRUE)
+  file.copy(file.path(mcmc.path,
+                      list.files(mcmc.path)),
+            file.path(stable.catch.path,
+                      list.files(mcmc.path)),
+            copy.mode = TRUE)
+
+  ## SPR 100
+  tol <- 0.00005
+  forecast.file <- file.path(spr.100.path, "forecast.ss")
+  spr.100.catch <- vector(length = length(forecast.yrs), mode = "numeric")
+  for(i in 1:length(forecast.yrs)){
+    fore <- SS_readforecast(forecast.file,
+                            Nfleets = 1,
+                            Nareas = 1,
+                            nseas = 1,
+                            verbose = FALSE)
+    fore$Ncatch <- length(forecast.yrs[1:i])
+    upper <- spr.100.catch[i] <- median(model$mcmc[paste0("ForeCatch_",
+                                                          forecast.yrs[i])][[1]])
+    lower <- 0
+    repeat{
+      fore$ForeCatch <- data.frame(Year = forecast.yrs[1:i],
+                                   Seas = 1,
+                                   Fleet = 1,
+                                   Catch_or_F = spr.100.catch[1:i])
+      SS_writeforecast(fore,
+                       dir = spr.100.path,
+                       overwrite = TRUE,
+                       verbose = FALSE)
+      shell.command <- paste0("cd ", spr.100.path, " & ss3 -mceval")
+      shell(shell.command)
+      out <- read.table(file.path(spr.100.path,
+                                  "derived_posteriors.sso"),
+                        header = TRUE)
+      spr <- median(out[paste0("SPRratio_", forecast.yrs[i])][[1]])
+      if(abs(spr - 1) < tol |
+         abs(upper - lower) < spr.catch.tol){
+        ## Sometimes, upper and lower can end up close to equal,
+        ##  but the tolerance is still not met. In this case, assume
+        ##  the catch creates an SPR of 100% even though it is slightly off.
+        break
+      }
+      if(spr - 1 > 0){
+        upper <- spr.100.catch[i]
+        spr.100.catch[i] <- (lower + spr.100.catch[i]) / 2.0
+      }else{
+        lower <- spr.100.catch[i]
+        spr.100.catch[i] <- (upper + spr.100.catch[i]) / 2.0
+      }
+    }
+  }
+
+  ## Default harvest policy
+  forecast.file <- file.path(default.hr.path, "forecast.ss")
+  default.hr.catch <- vector(length = length(forecast.yrs), mode = "numeric")
+  for(i in 1:length(forecast.yrs)){
+    out <- read.table(file.path(default.hr.path,
+                                "derived_posteriors.sso"),
+                      header = TRUE)
+    default.hr.catch[i] <- median(out[paste0("ForeCatch_",
+                                             forecast.yrs[i])][[1]])
+    fore <- SS_readforecast(forecast.file,
+                            Nfleets = 1,
+                            Nareas = 1,
+                            nseas = 1,
+                            verbose = FALSE)
+    fore$Ncatch <- length(forecast.yrs[1:i])
+    fore$ForeCatch <- data.frame(Year = forecast.yrs[1:i],
+                                 Seas = 1,
+                                 Fleet = 1,
+                                 Catch_or_F = default.hr.catch[1:i])
+    SS_writeforecast(fore,
+                     dir = default.hr.path,
+                     overwrite = TRUE,
+                     verbose = FALSE)
+    shell.command <- paste0("cd ", default.hr.path, " & ss3 -mceval")
+    shell(shell.command)
+  }
+
+  ## Stable catch
+  forecast.file <- file.path(stable.catch.path, "forecast.ss")
+  stable.catch <- vector(length = length(forecast.yrs), mode = "numeric")
+  out <- read.table(file.path(stable.catch.path,
+                              "derived_posteriors.sso"),
+                    header = TRUE)
+  repeat{
+    out <- read.table(file.path(stable.catch.path,
+                                "derived_posteriors.sso"),
+                      header = TRUE)
+    stable.catch[1] <- median(out[paste0("ForeCatch_",
+                                         forecast.yrs[1])][[1]])
+    stable.catch[2] <- median(out[paste0("ForeCatch_",
+                                         forecast.yrs[2])][[1]])
+    stable.catch[3] <- median(out[paste0("ForeCatch_",
+                                         forecast.yrs[3])][[1]])
+    if(abs(stable.catch[1] - stable.catch[2]) < 1){
+      break
+    }
+    fore <- SS_readforecast(forecast.file,
+                            Nfleets = 1,
+                            Nareas = 1,
+                            nseas = 1,
+                            verbose = FALSE)
+    fore$Ncatch <- length(forecast.yrs[1])
+    fore$ForeCatch <- data.frame(Year = forecast.yrs[1],
+                                 Seas = 1,
+                                 Fleet = 1,
+                                 Catch_or_F = (stable.catch[1] + stable.catch[2]) / 2)
+    SS_writeforecast(fore,
+                     dir = stable.catch.path,
+                     overwrite = TRUE,
+                     verbose = FALSE)
+    shell.command <- paste0("cd ", stable.catch.path, " & ss3 -mceval")
+    shell(shell.command)
+  }
+  fore <- SS_readforecast(forecast.file,
+                          Nfleets = 1,
+                          Nareas = 1,
+                          nseas = 1,
+                          verbose = FALSE)
+  fore$Ncatch <- length(forecast.yrs[1:length(forecast.yrs)])
+  fore$ForeCatch <- data.frame(Year = forecast.yrs[1:length(forecast.yrs)],
+                               Seas = 1,
+                               Fleet = 1,
+                               Catch_or_F = stable.catch[1:length(forecast.yrs)])
+  SS_writeforecast(fore,
+                   dir = stable.catch.path,
+                   overwrite = TRUE,
+                   verbose = FALSE)
+  shell.command <- paste0("cd ", stable.catch.path, " & ss3 -mceval")
+  shell(shell.command)
+}
+
 run.forecasts <- function(model,
                           forecast.yrs,
                           forecast.probs,
                           catch.levels){
   ## Run forecasting for the model supplied. If there is no mcmc component
   ##  to the model, an error will be given and the program will be stopped.
+
   curr.func.name <- get.curr.func.name()
 
   mcmc.path <- model$mcmcpath
-  ## forecast.yrs <- forecast.yrs[-length(forecast.yrs)]
+
+  ## Calculate and add on model-custom catch levels
+  calc.catch.levels(model,
+                    forecast.yrs,
+                    catch.levels)
+  catch.levels <- fetch.catch.levels(model, catch.levels)
+
   ## Extract the catch level names from the list into a vector
   catch.levels.names <- sapply(catch.levels, "[[", 3)
   ## Make the catch level values a matrix where the columns represent the cases in catch.names
@@ -467,10 +696,16 @@ run.forecasts <- function(model,
 
       ## Insert fixed catches into forecast file (depending on i)
       forecast.file <- file.path(new.forecast.dir, "forecast.ss")
-      fore <- SS_readforecast(forecast.file, Nfleets = 1, Nareas = 1, nseas = 1, verbose = FALSE)
+      fore <- SS_readforecast(forecast.file,
+                              Nfleets = 1,
+                              Nareas = 1,
+                              nseas = 1,
+                              verbose = FALSE)
       fore$Ncatch <- length(forecast.yrs[1:i])
-      ## fore$ForeCatch <- data.frame(Year = forecast.yrs[1:i], Seas = 1, Fleet = 1, Catch_or_F = catch.levels[[level.ind]][1:i])
-      fore$ForeCatch <- data.frame(Year = forecast.yrs[1:i], Seas = 1, Fleet = 1, Catch_or_F = catch.levels[,level.ind][1:i])
+      fore$ForeCatch <- data.frame(Year = forecast.yrs[1:i],
+                                   Seas = 1,
+                                   Fleet = 1,
+                                   Catch_or_F = catch.levels[,level.ind][1:i])
       SS_writeforecast(fore, dir = new.forecast.dir, overwrite = TRUE, verbose = FALSE)
 
       ## Evaluate the model using mceval option of ADMB, and retrieve the output
@@ -478,7 +713,6 @@ run.forecasts <- function(model,
       shell(shell.command)
     }
   }
-
   cat0(curr.func.name, "Finished running forecasts for model located in ", model$path, "...\n")
 }
 
