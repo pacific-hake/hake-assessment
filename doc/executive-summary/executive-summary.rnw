@@ -918,32 +918,8 @@ the spawning biomass as they mature and increase in weight.
 %  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % Manual 2018 done above.
 
-During the 2018 Scientific Review Group (SRG) meeting, the SRG requested an alternative
-run. This alternative run includes the following changes from the base model,
-related to fecundity:
-
-\begin{itemize}
-
-   \item add time-varying fecundity by multiplying the weight-at-age matrix (rather than
-   an overall mean weight-at-age vector as in the base model) and the new maturity ogive
-   to get annual estimates of fecundity from 1975-2017;
-   \item set equilibrium and 1966-1974 fecundity (where empirical data are not available)
-   to the product of maturity and mean weight-at-age over 1975-1979;
-   \item set forecast-year fecundity (including 2017 due to current configurations in Stock Synthesis)
-   weight-at-age to the product of maturity and mean weight-at-age over 2015-2017.
-\end{itemize}
-
-Decision tables, reference points, probabilities associated with alternative
-forecast catch levels, and comparisons to the base model are presented for the
-\altshort\ in Appendix~\ref{chap:srg-requests}. The difference between the results
-is predominantly due to the assumptions about equilibrium weight-at-age.
-
-An inconsistency in this \altshort\ is that the the mean weight-at-age
-across all years is still used for the calculation of
-stock biomass in the years outside the range with empirical data (1975-2017),
-rather than the short-term averages (1975-1979 or 2015-2017). A brief examination of
-the sensitivity of the alternative run to removing this inconsistency showed
-relatively little change in results.
+**Mention time-varying fecundity here maybe. And likely earlier as a major
+change to 2018 base model. SRG-requested fecundity run was mentioned here last year.
 
 \enlargethispage{\baselineskip}
 
