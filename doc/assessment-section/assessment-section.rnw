@@ -543,8 +543,7 @@ fecundity used an multiplied the maturity ogive by an average weight-at-age
 to give age-dependent fecundity that was constant in time.
 Non-time-varying fecundity is examined
 in sensitivity runs 32, 33, 36 and 37 (fecundity-related runs are summarised in
-Table ** [to be based on https://docs.google.com/spreadsheets/d/17kSbmyr85OT0gFbrh7MtXfuTEQSeivA1Gu4iTJvFsvk/edit\#gid=0
-].
+Table~\ref{tab:main-wtatage-runs}).
 
 b) ``Set equilibrium and 1966-1974 fecundity (where empirical data are not
 available) to the product of maturity and the mean weight-at-age averaged 
@@ -592,9 +591,11 @@ weight-at-age for the 2018 weight-at-age and therefore for the 2018 fecundity
 therefore seems sensible to use the same fecundities for the projections (rather
 than the average over all years). 
 
-Sensitivity runs 33, 34, 35 and 37 set the 2018 weight-at-age (and fecundity for
+Sensitivity runs 33, 34, 35 and 37 tested the alternative assumption of setting
+the 2018 weight-at-age (and fecundity for
 2018 and forecast years when the fecundity is time-varying) to be the mean from
-1975-2017.
+1975-2017. Results from these runs are based on MLE only (we show MCMC results
+for the other three runs).
 
 d) During the 2018 SRG meeting it was further realised that: ``An inconsistency
 in this alternative run is that the the mean weight-at-age
