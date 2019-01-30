@@ -480,13 +480,14 @@ given in the 2013 stock assessment \citep{JTC2013}.
 
 \subsubsection{Maturity and fecundity}\label{sec:data-maturity}
 
-The maturity and fecundity relationships were updated for the 2018 base model.
+**The maturity and fecundity relationships were updated for the 2018 assessment
+\citep{JTC2018}.
 Previously, fecundity was based on the product of the maturity-at-length reported 
 by \citet{DornSaunders1997} and the weight-at-length estimated in 2011. These
 values were converted to fecundity-at-age using a parametric growth curve 
 estimated in 2011 from a model that included length data.
 
-For this assessment, a new age-based maturity ogive 
+In 2018, a new age-based maturity ogive 
 (Table~\ref{tab:main-ogives} and Figure~\ref{fig:main-maturity}) 
 was developed using histological estimates 
 of functional maturity from 1,947 ovaries that were associated with age estimates.
@@ -553,6 +554,7 @@ for the largest cohorts: 1980, 1984, 1999, 2010, and 2014. In the 2014 base
 model \citep{JTC2014}, the 2008 cohort was also included in this set, but
 current estimates show this year-class to be enough less than the four largest
 that a reduction in ageing was not included for the 2008 year class in the 
+**[presumably include JTC2018, and verify same holds for 2019 assessment]
 2015-2017 assessments \citep{JTC2015, JTC2016, JTC2017} or this 2018
 assessment. Also, the model presented
 here does not include the reduction in ageing error for age-1 fish under the
@@ -566,13 +568,13 @@ A matrix of empirically derived population weight-at-age by year is used in the
 current assessment model to translate numbers-at-age directly to biomass-at-age
 (Figure \ref{fig:main-empirical.weight.at.age}). Mean weight-at-age was
 calculated from samples pooled from all fisheries and the acoustic survey for
-the years 1975 to \Sexpr{last.data.yr}
+the years 1975 to \Sexpr{max.fishery.age.prop[2]}
 (Figure~\ref{fig:main-empirical.weight.at.age}). Past investigations into
 calculating weight-at-age for the fishery and survey independently showed little
 impact on model results. Ages 15 and above for each year were pooled and assumed
 to have the same weight. The combinations of age and year with no
 observations were assumed to change linearly over time between observations at
-any given age. Mean weights were assumed to remain constant prior to the first 
+any given age. **[think about]Mean weights were assumed to remain constant prior to the first 
 observation and after the last observation within the range of years in the 
 matrix. The number of samples is generally proportional
 to the amount of catch, so the combinations of year and age with no samples
@@ -589,9 +591,10 @@ general, using empirical weight-at-age when many observations are available
 resulted in more accurate estimates of spawning biomass.
 
 %% Manually update final sentences of this paragraph in future years, 2018 done
+**[maybe defer to later detailed discussion in 3.2.4, or move that discussion here]
 For purposes of forecasting, the mean weights at each age in the forecast were
 set equal to the mean across all years -- they therefore match the equilibrium and
-reference point calculations. Mean weight has been declining for most ages over
+reference point calculations. **Mean weight has been declining for most ages over
 the past few years, but did increase slightly in 2017 from recent lows in 2016. 
 
 
