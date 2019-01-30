@@ -20,7 +20,7 @@ extra-models/*
 *.pdf
 doc/hake-assessment*.pdf
 doc/hake-assessment*.tex
-doc/knitr-cache
+doc/knitr-cache*
 models*/*
 backscatter2.eps
 backscatter2smaller.eps
