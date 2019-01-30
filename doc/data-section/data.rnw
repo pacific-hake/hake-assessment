@@ -2,7 +2,7 @@
 
 \section{DATA} \label{sec:data}
 
-Fishery-dependent and fishery-independent data sources used in the 2018 assessment
+Fishery-dependent and fishery-independent data sources used in this \Sexpr{assess.yr} assessment
 (Figure~\ref{fig:main-data-overview}) include:
 
 \begin{itemize}
@@ -11,7 +11,7 @@ Fishery-dependent and fishery-independent data sources used in the 2018 assessme
   (\Sexpr{start.yr}--\Sexpr{last.data.yr}; Tables
   \ref{tab:intro-catches-US}--\ref{tab:intro-catches-total}).
 
-\item Age compositions composed of data from the U.S. fishery
+\item **Age compositions composed of data from the U.S. fishery
   (\Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}) and the
   Canadian fishery (1990--\Sexpr{max.fishery.age.prop[2]}). The last 10 years of
   these data are shown in Tables
@@ -26,7 +26,7 @@ Fishery-dependent and fishery-independent data sources used in the 2018 assessme
   Tables~\ref{tab:main-all-age-data-survey} and~\ref{tab:main-survey-history}).
 
 \item Mean observed weight-at-age from fishery and survey catches
-  (1975-\Sexpr{last.data.yr}; Figure \ref{fig:main-empirical.weight.at.age}).
+  (1975-\Sexpr{max.fishery.age.prop[2]}; Figure~\ref{fig:main-empirical.weight.at.age}).
 
 \end{itemize}
 
@@ -120,6 +120,11 @@ are monitored by at-sea observers. Observers use volume/density
 methods to estimate total catch. Canadian shoreside landings are recorded by
 dockside monitors using total catch weights provided by processing plants.
 
+**The three independent issues in the calculation of total catch that were identified
+late in the 2018 assessment process \citep{JTC2018} have been rectified here. Minor
+updates to catches from 2013, 2015, 2016 and 2017 have ben made (totalling $<300$~t).
+
+**[Added above paragraph, presumably can just delete this one]:
 Three independent issues in the calculation of total 
 catch were identified late in the assessment process and could not be
 included in the base model. These were explored in a sensitivity analysis 
@@ -154,22 +159,22 @@ was 15,798~t, which is around 0.5\% of the total catch of over 3,000,000~t.
 Biological information from the U.S. at-sea commercial \fishname\ fishery was
 extracted from the NORPAC database. This included length, weight, and age
 information from the foreign and joint-venture fisheries from 1975--1990, and
-from the domestic at-sea fishery from 1991--\Sexpr{last.data.yr}. Specifically,
+from the domestic at-sea fishery from 1991--\Sexpr{max.fishery.age.prop[2]}. Specifically,
 these data include sex-specific length and age data which observers collect by
 selecting fish randomly from each haul for biological data collection and
 otolith extraction. Biological samples from the U.S. shore-based fishery from
-1991--\Sexpr{last.data.yr} were collected by port samplers located where there
+1991--\Sexpr{max.fishery.age.prop[2]} were collected by port samplers located where there
 are substantial landings of \fishname: primarily Eureka, Newport, Astoria, and
 Westport. Port samplers routinely take one sample per offload (or trip)
 consisting of 100 randomly selected fish for individual length and weight, and
 from these 20 are randomly subsampled for otolith extraction.
 
-The Canadian domestic fishery is subject to 100\% observer coverage on the four
+**The Canadian domestic fishery is subject to 100\% observer coverage on the four
 freezer trawler vessels \emph{Viking Enterprise}, \emph{Osprey \#1},
 \emph{Northern Alliance}, and \emph{Raw Spirit}, which together make up a large
 portion of the Canadian catch (\Sexpr{last.year.can.freezer.percent}\% in
 \Sexpr{last.data.yr}). The Joint-Venture fishery has 100\% observer coverage on
-their processing vessels, which in 2017 made up 6.5\% of the Canadian catch.
+their processing vessels, which in **2017 made up 6.5\% of the Canadian catch.
 On observed freezer trawler trips, otoliths (for ageing) and lengths are sampled
 from \fishname\ caught for each haul of the trip. The sampled weight from which
 biological information is collected must be inferred from length-weight
@@ -204,7 +209,7 @@ landed catch by fishery and year when sampling occurred. A description of the
 analytical steps for expanding the age compositions can be found in recent stock
 assessment documents \citep{JTC2013, JTC2014}.
 
-The aggregate fishery age-composition data
+**The aggregate fishery age-composition data
 (\Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}) confirm the
 well-known pattern of very large cohorts born in 1980, 1984 and 1999
 (Figure~\ref{fig:main-age-comp-bubbles} and
@@ -225,7 +230,7 @@ cohort was largest in both Canadian fleets and the U.S. shoreside fleet. The 201
 cohort was the largest (40\%) and the 2014 cohort second largest (33\%) for the 
 aggregated data (Table~\ref{tab:main-all-age-data-fishery}).
 
-We caution that proportion-at-age data contains information about the relative 
+**We caution that proportion-at-age data contains information about the relative 
 numbers-at-age, and these can be affected by changing recruitment, selectivity 
 or fishing mortality, making these data difficult to interpret on their own. 
 For example, the above-average 2005 and 2006 year classes declined in proportion 
@@ -236,7 +241,7 @@ these data to estimate the absolute sizes of incoming cohorts, which become more
 precise after they have been observed several times (i.e., encountered by the
 fishery and survey over several years).
 
-Both the weight- and length-at-age information suggest that hake growth has
+**Both the weight- and length-at-age information suggest that hake growth has
 changed markedly over time (see Figure~7 in
 \citealt{StewartForrestEtAl2011}). This is particularly evident in the frequency
 of larger fish ($>55$~cm) before 1990 and a shift to much smaller fish in more
@@ -283,6 +288,7 @@ and differences in expected location during the summer months when the survey
 takes place. Observations of age-1 hake are recorded during the survey, 
 and an age-1 index is estimated (described below), but is only included in a 
 sensitivity analysis.
+**With no survey in 2018, this section is unchanged from \citet{JTC2018}. %okay?
 
 
 %%A survey was completed in \Sexpr{survey.end.yr} that covered U.S. and Canadian wa%%ters from the U.S./Mexico border to north of Haida Gwaii 
