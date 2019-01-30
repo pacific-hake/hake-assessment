@@ -625,6 +625,7 @@ important distributions are discussed in detail below.
 
 \subsubsection{Natural Mortality}\label{sec:data-natural-mortality}
 
+[**just confirm we do this sensitivity]
 Since the 2011 assessment, and again this year, a combination of the informative
 prior for natural mortality 
 used in previous Canadian assessments and results from analyses using
@@ -640,6 +641,7 @@ of new information on $M$, there has been little option to update the prior.
 
 \subsubsection{Steepness}\label{sec:data-steepness}
 
+[**just confirm we do this sensitivity]
 The prior for the steepness parameter of the stock-recruitment function
 is based on the median (0.79) and the 20th (0.67) and 80th
 (0.87) percentiles from \citeauthor{MyersBowenEtAl1999}'s
@@ -659,7 +661,7 @@ selectivity-at-age parameters. A penalty function in the form of a normal
 distribution is applied to each deviation to keep the deviation from straying
 far from zero, unless the data are overwhelming. The amount of deviation from
 zero is controlled by a fixed standard deviation, $\phi$ (explained further
-below).
+below **remove that if we shorten the stuff below).
 
 The 2017 assessment \citep{JTC2017} increased the value of $\phi$ from the
 previously-used value of 0.03 
@@ -678,15 +680,20 @@ integrating over them using the Laplace method, as described by
 \citet{ThorsonHicksEtAl2014}. Repeating that approach has continued to produce
 similarly low values for $\phi$.
 
+**[Check Xu ref comes out okay in bib (I can't knit right now)]. **Check
+sensitivity was done.
 A new parameterization for the selectivity deviations was explored 
-this year, based on the recent work of \citet{Xu2018}, 
+in 2018, based on the work of \citet{Xu2019}, 
 in an effort to produce a more objective way to determine the degree of 
 flexibility. However, further testing of this approach was believed
 necessary before making the change and so it 
 was only used for a sensitivity analysis 
 (see Section~\ref{sec:assessment-sensitivity-analyses}).
 
-Further details on the time-varying selectivity function are provided.
+
+Further details on the time-varying selectivity function are provided,
+as described by \citet{JTC2018}.**Could delete these details, but maybe best to
+keep in as expect $\Phi$ will still get discussed.
 
 For each age $a \geq A_{\text{min}}$, where $A_{\text{min}}$ is the minimum age
 for which selectivity is allowed to be non-zero, 
@@ -784,7 +791,7 @@ standard parameter space that corresponds to the $\phi = 0.20$ use in the
 transformed parameter space in the 2017 assessment \citep{JTC2017}, the derivative 
 of~(\ref{data-selectivity-transformation}) with respect
 to $\tilde{p}_{ay}$
-was calculated, with $p_{\text{low}} = -5$ and $p_{\text{high}} = 9$ for the bounds.
+was calculated by \citet{JTC2018}, with $p_{\text{low}} = -5$ and $p_{\text{high}} = 9$ for the bounds.
 The resulting value of 7 at the mid-point between the 
 bounds is an approximation to the relative impact of a deviation in the 
 logistic parameter space to one in the standard parameter space. The resulting
@@ -792,7 +799,9 @@ value of $\Phi = 1.40$ approximates the value of $\phi = 0.20$ used
 in the transformed parameter space in the 2017 assessment.
 
 \subsubsection{Age composition likelihood}\label{sec:data-age-comp-likelihood}
-The base model includes a change in the likelihood and data-weighting method 
+**Not changed from 2018, but may be best to keep in or shorten, asin for reference.
+
+**The base model includes a change in the likelihood and data-weighting method 
 applied to the age composition data. The 2017 assessment \citep{JTC2017},
 like those before it,
 used a multinomial likelihood and the tuning method of \citet{McAllisterIanelli1997}
@@ -817,7 +826,7 @@ fishery data, but, again, for simplicity we do not make the distinction here
 (other than to note that we consequently estimate $\theta_{\text{surv}}$ for the 
 survey data and $\theta_{\text{fish}}$ for the fishery data).
 
-The likelihood function is given by equation (10) of 
+**The likelihood function is given by equation (10) of 
 \citet{ThorsonEtAl2017Dirichlet}, and is
 \eb
 \text{L}(\bm{\pi},\theta|\bm{\tilde{\pi}},n) = 
@@ -836,7 +845,7 @@ and $n$ is the input sample size. The parameter $\theta$ is defined as a
 linear scaling parameter such that $\theta n$ is the variance-inflation parameter 
 of the Dirichlet-Multinomial distribution (see \citealt{ThorsonEtAl2017Dirichlet}).
 
-The effective sample size associated with this likelihood is given by
+**The effective sample size associated with this likelihood is given by
 \eb
 n_{\text{eff}} = \frac{1}{1 + \theta} + \frac{n \theta}{1 + \theta}
 \ee
@@ -846,7 +855,7 @@ is insignificant compared to the $n \theta / (1 + \theta)$ term, which means
 that $\theta / (1 + \theta)$ can be compared to the sample size 
 multipliers used in the McAllister-Ianelli data weighting method. 
 
-See \citet{ThorsonEtAl2017Dirichlet} for the derivation of the likelihood and
+**See \citet{ThorsonEtAl2017Dirichlet} for the derivation of the likelihood and
 more details on the hake-based simulation study used to test it. The
 implementation of the D-M likelihood in Stock Synthesis has $\log \theta$ as the
 estimated parameter in order to ensure that $\theta$ remains positive.
