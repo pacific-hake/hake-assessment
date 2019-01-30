@@ -75,6 +75,7 @@ source(file.path(rootd.R, "forecast-catch-levels.R"))
 source(file.path(rootd.R, "retrospective-setup.R"))
 source(file.path(rootd.R, "data-tables.R"))
 source(file.path(rootd.R, "SS_output.R"))
+## source(file.path(rootd.R, "SS_readdat.R"))
 ## source(file.path(rootd.R, "SSgetMCMC.R"))
 ## source(file.path(rootd.R, "SSplotSelex.R"))
 

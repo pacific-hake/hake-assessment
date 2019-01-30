@@ -298,12 +298,40 @@ load.models.into.parent.env <- function(){
 
 build <- function(run.fore = FALSE,
                   run.retro = FALSE,
-                  run.extra.mcmc = FALSE){
+                  run.extra.mcmc = FALSE,
+                  model.name = NA){
   ## Once the model setup has been verified, this function will create the
   ##  corresponding RData files. Each model defined in the models-setup.r
   ##  file will have its own RData file holding the model object as defined
   ##  in the Readme.md file.
 
+  ## if model name (directory name) is included, only that one will be built
+  ## otherwise, all will be.
+
+  if(!is.na(model.name)){
+    if(run.extra.mcmc){
+      delete.dirs(sub.dir = file.path(model.name, "extra-mcmc"))
+    }
+    if(run.fore){
+      delete.dirs(sub.dir = file.path(model.name, "mcmc", "forecasts"))
+    }
+    if(run.retro){
+      delete.dirs(sub.dir = file.path(model.name, "retrospectives"))
+    }
+    create.rdata.file(model.name = model.name,
+                      ovwrt.rdata = TRUE,
+                      run.forecasts = run.fore,
+                      fore.yrs = forecast.yrs,
+                      forecast.probs = forecast.probs,
+                      forecast.catch.levels = catch.levels,
+                      run.retros = run.retro,
+                      my.retro.yrs = retro.yrs,
+                      run.extra.mcmc = run.extra.mcmc,
+                      key.posteriors = key.posteriors,
+                      ss.version = ss.version,
+                      verbose = ss.verbose)
+    return(invisible())
+  }
   ## Delete old directories for all models
   if(run.extra.mcmc){
     delete.dirs(sub.dir = file.path("extra-mcmc"))
@@ -344,6 +372,10 @@ build <- function(run.fore = FALSE,
            unlist(sens.model.dir.names.4),
            unlist(sens.model.dir.names.5),
            unlist(sens.model.dir.names.6))
+
+  ## Subtract out the last year base model from mnv
+  mnv <- mnv[! mnv %in% last.yr.base.model.dir.name]
+  mnv <- mnv[! mnv %in% "2019.02.32_fecundity"]
 
   model.names.list <- as.list(unique(mnv))
 
