@@ -935,7 +935,9 @@ run.retrospectives <- function(model,
       writeLines(ctl, ctl.file)
     }
     covar.file <- file.path(retro.dir, "covar.sso")
-    file.remove(covar.file)
+    if(file.exists(covar.file)){
+      unlink(covar.file)
+    }
     shell.command <- paste0("cd ", retro.dir, " & ss3 ", extras)
     shell(shell.command)
   }

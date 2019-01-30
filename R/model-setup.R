@@ -375,7 +375,6 @@ build <- function(run.fore = FALSE,
 
   ## Subtract out the last year base model from mnv
   mnv <- mnv[! mnv %in% last.yr.base.model.dir.name]
-  mnv <- mnv[! mnv %in% "2019.02.32_fecundity"]
 
   model.names.list <- as.list(unique(mnv))
 
