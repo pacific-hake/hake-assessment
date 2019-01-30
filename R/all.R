@@ -5,8 +5,6 @@
 # To debug in an R session, run these 3 commands first:
 # source(file.path(here::here(), "R/all.r"));load.models.into.parent.env();source(file.path(here::here(), "R/custom-knitr-variables.r"))
 
-library(scales)
-library(RColorBrewer)
 library(nwfscSurvey)
 library(nwfscMapping)
 library(date)
@@ -28,7 +26,6 @@ library(gridExtra)
 library(purrr)
 library(cowplot)
 library(kableExtra)
-##library(gfplot)
 
 rootd <- here::here()
 rootd.R <- file.path(rootd, "R")
@@ -81,9 +78,9 @@ source(file.path(rootd.R, "SS_output.R"))
 
 ## ggplot globals for project
 ##ggplot2::theme_set(gfplot::theme_pbs())
-##scale_colour_continuous <- scale_colour_viridis_c
-##scale_fill_continuous <- scale_fill_viridis_c
+scale_colour_continuous <- scale_colour_viridis_c
+scale_fill_continuous <- scale_fill_viridis_c
 
-##sensitivity_colors <- c("#000000", RColorBrewer::brewer.pal(8L, "Dark2"))
-##scale_colour_discrete <- function(...) scale_colour_manual(..., values = sensitivity_colors)
-##scale_fill_discrete <- function(...) scale_fill_manual(... , values = sensitivity_colors)
+sensitivity_colors <- c("#000000", RColorBrewer::brewer.pal(8L, "Dark2"))
+scale_colour_discrete <- function(...) scale_colour_manual(..., values = sensitivity_colors)
+scale_fill_discrete <- function(...) scale_fill_manual(... , values = sensitivity_colors)
