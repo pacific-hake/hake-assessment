@@ -72,6 +72,7 @@ total allowable catch (TAC, adjusted for carryovers) of
 \Sexpr{last.year.tac}~t. Attainment in the U.S.~was
 \Sexpr{last.year.us.attained}\% of its quota; in Canada it was
 \Sexpr{last.year.can.attained}\%.
+**Check Issue \#495.
 %
 <<total.catches.table, results='asis', echo=FALSE>>=
 make.catches.table(catches,
@@ -113,7 +114,7 @@ total catch of the 2010 year class is estimated to be about
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
-The U.S. government shutdown affected the data used in the \Sexpr{assess.yr}
+**The U.S. government shutdown affected the data used in the \Sexpr{assess.yr}
 assessment. U.S. age data were not available, and Canadian age data could not
 be used as they are not necessarily representative of the coastwide stock. Usually U.S.
 and Canadian age data are combined as there is only one fleet in the model. Only total \Sexpr{last.data.yr} catch
@@ -175,7 +176,7 @@ expected management outcomes given repeated application of these procedures over
 the long-term. The results of past closed-loop simulations influence the
 decisions made for this assessment.
 
-This \Sexpr{assess.yr} assessment retains the structural form of the base
+**This \Sexpr{assess.yr} assessment retains the structural form of the base
 assessment model from \Sexpr{last.assess.yr} as well as many of the previous
 elements as configured in Stock Synthesis. Analyses conducted in 2014
 showed that allowing for time-varying (rather than fixed) selectivity reduced
@@ -197,7 +198,7 @@ data.
 
 \subsection*{Stock biomass} \label{sec:es-stock-biomass} \phantomsection
 \addcontentsline{toc}{subsection}{Stock biomass}
-The base stock assessment model
+**The base stock assessment model
 indicates that since the 1960s, \fishname\ female spawning biomass has ranged
 from well below to near (and above) unfished equilibrium
 (Figures~\ref{fig:es-female-spawning-biomass}
@@ -270,7 +271,7 @@ and 2010 year classes, which, combined with the fishing mortality on these
 cohorts, has resulted in a relatively constant biomass since 2013.
 % Manual 2018 done.
 
-The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning
+**The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning
 biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium,
 $B_0$) is \Sexpr{curr.depl.median}\%. However, the uncertainty
 is large, with a 95\%
@@ -324,7 +325,7 @@ make.recruitment.table(base.model,
 @
 %
 
-The new data available for this assessment do not significantly change the
+**The new data available for this assessment do not significantly change the
 pattern of recruitment estimated in recent assessments. \fishname\ appear to
 have low average recruitment with occasional large year-classes
 (Table~\ref{tab:es-recruitment} and Figure~\ref{fig:es-recruitment}).
@@ -420,7 +421,7 @@ make.fishing.intensity.table(base.model,
 %%  and posting issue.
 %% Okay for base-model 45, though only year. Keep all this so can easily switch
 %%  around.
-Median relative fishing intensity on the stock is estimated to have been below
+**Median relative fishing intensity on the stock is estimated to have been below
 the target of 1.0
 %% except for
 %% the years
@@ -459,13 +460,13 @@ make.fishing.intensity.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-Median exploitation fraction (catch divided by biomass of fish of age-2 and
+**Median exploitation fraction (catch divided by biomass of fish of age-2 and
 above) peaked in 1999, and then reached even higher values in 2006 and 2008
 (Table~\ref{tab:es-fishing-intensity} and
-Figure~\ref{fig:es-exploitation-fraction}). Note that in previous assessments
-exploitation fraction was defined in terms of fish age-3 and above, but we
-revised the definition this year because age-2 fish are often caught by the
-fishery.
+Figure~\ref{fig:es-exploitation-fraction}). Note that in earlier assessments the
+exploitation fraction was defined in terms of fish age-3 and above, but in
+the 2018 assessment (and here) we revised the definition year because age-2
+fish are often caught by the fishery.
 % Manual 2018 done.
 %
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -489,7 +490,7 @@ Median relative fishing intensity is estimated to have declined from
 \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.penult.yr}\%
 in \Sexpr{end.yr-1}, while the exploitation fraction has increased from
 \Sexpr{exploitation.med.2010} in 2010 to \Sexpr{exploitation.med.penult.yr} in
-\Sexpr{end.yr-1}.  There is a considerable amount of uncertainty around
+\Sexpr{end.yr-1}. There is a considerable amount of uncertainty around
 estimates of relative fishing intensity, with the 95\% posterior credibility
 interval reaching above the SPR management target for \Sexpr{end.yr-1}
 (Figure~\ref{fig:es-fishing-intensity}).
@@ -508,7 +509,7 @@ interval reaching above the SPR management target for \Sexpr{end.yr-1}
 \subsection*{Management performance} \label{sec:es-management-performance}
 \phantomsection  \addcontentsline{toc}{subsection}{Management performance}
 
-Over the last decade (\Sexpr{end.yr-10}--\Sexpr{end.yr-1}), the mean coast-wide
+**Over the last decade (\Sexpr{end.yr-10}--\Sexpr{end.yr-1}), the mean coast-wide
 utilization rate (proportion of catch target removed) has been
 \Sexpr{tot.last.10.years.attainment}\% (Table~\ref{tab:es-landings-tac}). Over
 the last five years (\Sexpr{end.yr-5} to \Sexpr{end.yr-1}), the mean utilization
@@ -530,7 +531,7 @@ make.landings.tac.table(landings.vs.tac,
                         placement = "tbp")
 @
 
-The median relative fishing intensity was below target in all years
+**The median relative fishing intensity was below target in all years
 % \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]}
 % and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
 % Only one year for 2017 assessment, so:
@@ -545,7 +546,7 @@ all years except 1999-2000 and 2007-2011
 % median.relative.bio.below.target
 % Manual done 2018.
 
-The joint history of the medians of relative spawning biomass and relative
+**The joint history of the medians of relative spawning biomass and relative
 fishing intensity shows that the median relative fishing
 intensity has never been above the target of 1.0 when the female spawning biomass
 is below the
@@ -582,7 +583,7 @@ median relative spawning biomass has been above the reference point of 40\%
 since \Sexpr{median.relative.bio.above.target.since}.
 % Manual done 2018. Based on median.relative.bio.below.target.
 
-While there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative
+**While there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative
 fishing intensity and relative spawning biomass, the model estimates a
 5.7\% joint probability of being both above the target relative fishing intensity
 in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at
@@ -595,7 +596,7 @@ the start of \Sexpr{end.yr}.
 \subsection*{Reference points} \label{sec:es-reference-points}
 \phantomsection \addcontentsline{toc}{subsection}{Reference points}
 
-Estimates of the \Sexpr{assess.yr} base model reference points with posterior
+**Estimates of the \Sexpr{assess.yr} base model reference points with posterior
 credibility intervals are in Table~\ref{tab:es-reference.points}.
 The estimates
 are slightly different than those in the \Sexpr{last.assess.yr} assessment, with
@@ -606,12 +607,12 @@ assessment (except for SPR at $\Bforty$ and SPR at MSY).
 
 <<reference.points.table, results='asis', echo=FALSE>>=
 make.reference.points.table(base.model,
-                            xcaption <- paste0("Summary of median and 95\\%
+                            xcaption <- paste0("**Summary of median and 95\\%
                              credibility intervals of equilibrium reference points
                              for the \\fishname\\ base assessment model.
-                             Equilibrium reference points were computed using ",
+                             **Equilibrium reference points were computed using ",
                              start.yr,"--",end.yr-1," averages for mean
-                             size-at-age and selectivity-at-age."),
+                             weight-at-age and selectivity-at-age."),
                             xlabel <- "tab:es-reference.points",
                             font.size = 12,
                             space.size = 14,
@@ -624,7 +625,7 @@ Measures of uncertainty in the base model underestimate the total uncertainty in
 the current stock status and projections because they do not account for
 possible alternative structural models for \simplename\ population dynamics and
 fishery processes (e.g., selectivity), the effects of data-weighting schemes,
-and the scientific basis for prior probability distributions.  To address such
+and the scientific basis for prior probability distributions. To address such
 structural uncertainties, we performed sensitivity analyses to investigate a
 range of alternative models,
 and present the key sensitivity analyses in the main document.
@@ -643,9 +644,10 @@ projections because, with limited data to estimate incoming recruitment, the
 cohorts are fished before the assessment can accurately determine how big the
 cohort is (i.e., cohort strength is not well known until it is at least
 age-3).
-% **This is particularly apparent for this assessment, because the 2014
-% cohort is potentially very large but is still highly uncertain
-% (Figure~\ref{fig:es-recruitment}).
+
+**Maybe something like: This is particularly apparent for this assessment, because the **2014
+ cohort is potentially very large but is still highly uncertain
+ (Figure~\ref{fig:es-recruitment}).
 
 In a 2015 Joint Management Committee (JMC) meeting, the JTC presented results
 from closed-loop simulations to evaluate the effect of
@@ -658,7 +660,7 @@ more precise age-2+ survey or alternative harvest control rules.  The
 simulations assumed an age-1 survey design with consistent, effective, and
 numerous sampling, which may not be the case for the existing age-1 index. The
 age-1 index is not included in the base model but is included in a sensitivity run.
-% Manual 2018 done.
+% Manual 2019 done.
 
 \subsection*{Forecast decision tables} \label{sec:es-forecast-decision-table}
 \phantomsection \addcontentsline{toc}{subsection}{Forecast decision tables}
@@ -671,7 +673,7 @@ wide range of uncertainty, the 95\% credibility interval being
 % May need to move after the next paragraph
 <<decisions.biomass.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption <- paste0("Forecast quantiles of \\fishname\\
+                    xcaption <- paste0("**Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
                      catch levels (rows a, b, c, d, e), including
@@ -709,7 +711,7 @@ the projected biomass for several catch alternatives.
 %
 <<decisions.spr.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption <- paste0("Forecast quantiles of \\fishname\\
+                    xcaption <- paste0("**Forecast quantiles of \\fishname\\
                      relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%})
                      for the ",min(forecast.yrs),"--",max(forecast.yrs)," catch
                      alternatives presented in
@@ -727,7 +729,7 @@ make.decision.table(base.model,
 
 \clearpage  % 2018: Then forces Table i and Fig j to be on same page, and j/k.
 
-A relative fishing intensity above 100\% indicates fishing greater than the
+**A relative fishing intensity above 100\% indicates fishing greater than the
 $\Fforty$ default harvest rate catch limit. This can happen for the median
 relative fishing intensity in projected years because the $\Fforty$ default
 harvest-rate catch limit is calculated using baseline selectivity from all
@@ -817,7 +819,7 @@ make.risk.table(base.model,
                 placement = "tbp")
 @
 
-Management metrics that were identified as important to the JMC and the Advisory
+**Management metrics that were identified as important to the JMC and the Advisory
 Panel (AP) in 2012 are presented for projections to
 \Sexpr{forecast.yrs[2:(length(forecast.yrs)-1)]} and
 \Sexpr{forecast.yrs[length(forecast.yrs)]} (Tables~\ref{tab:es-risk-year-1}
@@ -884,7 +886,7 @@ make.risk.table(base.model,
 %  \Sexpr{end.yr+1} with a less than 50\% probability only for the 0~t and
 %  180,000~t catch levels (Table~\ref{tab:es-risk-year-1} and
 %  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
-The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
+**The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
 \Sexpr{end.yr+1} is less than 50\% for only the 0~t catch level
 (Table~\ref{tab:es-risk-year-1} and
 Figure~\ref{fig:es-forecast-risk-comparison-year-1}). The highest probability of
@@ -915,32 +917,9 @@ the spawning biomass as they mature and increase in weight.
 %  catch levels. (Table~\ref{tab:es-risk-year-1} and
 %  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % Manual 2018 done above.
-During the 2018 Scientific Review Group (SRG) meeting, the SRG requested an alternative
-run. This alternative run includes the following changes from the base model,
-related to fecundity:
 
-\begin{itemize}
-
-   \item add time-varying fecundity by multiplying the weight-at-age matrix (rather than
-   an overall mean weight-at-age vector as in the base model) and the new maturity ogive
-   to get annual estimates of fecundity from 1975-2017;
-   \item set equilibrium and 1966-1974 fecundity (where empirical data are not available)
-   to the product of maturity and mean weight-at-age over 1975-1979;
-   \item set forecast-year fecundity (including 2017 due to current configurations in Stock Synthesis)
-   weight-at-age to the product of maturity and mean weight-at-age over 2015-2017.
-\end{itemize}
-
-Decision tables, reference points, probabilities associated with alternative
-forecast catch levels, and comparisons to the base model are presented for the
-\altshort\ in Appendix~\ref{chap:srg-requests}. The difference between the results
-is predominantly due to the assumptions about equilibrium weight-at-age.
-
-An inconsistency in this \altshort\ is that the the mean weight-at-age
-across all years is still used for the calculation of
-stock biomass in the years outside the range with empirical data (1975-2017),
-rather than the short-term averages (1975-1979 or 2015-2017). A brief examination of
-the sensitivity of the alternative run to removing this inconsistency showed
-relatively little change in results.
+**Mention time-varying fecundity here maybe. And likely earlier as a major
+change to 2018 base model. SRG-requested fecundity run was mentioned here last year.
 
 \enlargethispage{\baselineskip}
 
