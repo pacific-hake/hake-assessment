@@ -614,4 +614,37 @@ make.short.parameter.estimates.sens.table(retro.list,
                                           space.size = 12)
 @
 
+% Ugly, but wanted to get it in quickly. Should be a function like all the other tables.
+% Don't think we need to specify 'fecundity when varying' in only one column -
+% not sure why we do in Google one. Andy will check with Chris in the morning.
+\begin{table}
+\centering
+\begin{tabular}{ccccc}
+\hline
+Model run when  & Model run when & Time-varying & Pre-1975 & Pre-1975 \\ 
+2018 onwards       & 2018 onwards &  fecundity? & weight-at-age & weight-at-age\\
+weight-at-age is   &  weight-at-age (and & & is 1975-1979? & is 1975-2017?\\
+mean from 2015-2017; &  fecundity when varying) & & & \\
+full MCMC          & is mean from 1975-2017; & & & \\
+                   & MLE only & & & \\
+  \hline
+Base model & 34	& Y &   & Y\\
+38         & 35 & Y & Y &  \\	
+32         & 33 &   &   & Y\\
+36         & 37 &   & Y &  \\
+\hline
+           & 2018 base & &   & Y\\ 
+2018 alternative$^*$ &    & Y & Y & \\  
+\hline
+\end{tabular}
+\caption{Summary of models runs that consider alternative assumptions concerning
+  weight-at-age and time-vary fecundity. Results from the MCMC runs 32, 36 and 38
+  are given in Appendices **, ** and **. $^*$Note that this run contained the
+  inconsistency noted on page~23 of \citet{JTC2018}, in that the time-varying fecundity
+  was based on the weight-at-age assumptions described here, but the spawning biomass
+  calculations were still based on the 1975-2017 mean (this made little difference
+  to results and is fixed for all 2019 runs, as described in Section~**bridging-when-written).
+  \label{tab:main-wtatage-runs}}
+\end{table}
+
 \clearpage

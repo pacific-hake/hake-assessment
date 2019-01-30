@@ -230,7 +230,7 @@ sens.model.names.4 <- c("Semi-Parametric t.v selectivity (0.695)",
 ## Sensitivity models group 5  - Different weight-at-age schemes
 ## -----------------------------------------------------------------------------
 sens.model.dir.names.5 <- c("2019.02.35_fecundity")
-sens.model.names.5 <- c("Early weight-at-age as 1975-1979 average")
+sens.model.names.5 <- c("Early weight-at-age as 1975-1979 average") # **35 is below also so can delete
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 6 - more weight-at-age options, may merge with 5 (change main-figures heatmaps if do)
