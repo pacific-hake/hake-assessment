@@ -116,7 +116,7 @@ if(verbose) cat0("Key posteriors file: \n  ", nuisance.posteriors.file)
 ## -----------------------------------------------------------------------------
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
-base.model.dir.name <- "2019.02.00_base_model"
+base.model.dir.name <- "2019.03.00_base_model"
 base.model.name <- paste0(assess.yr, " Base model")
 if(verbose){
   cat0("Base model directory name: \n  ", base.model.dir.name)
@@ -265,9 +265,9 @@ load.models.into.parent.env <- function(){
   }
 
   last.yr.base.model <<- load.models(model.dir, last.yr.base.model.dir.name)
-  alt.base.model.1   <<- load.models(model.dir, alt.base.model.1.dir.name)
-  alt.base.model.2   <<- load.models(model.dir, alt.base.model.2.dir.name)
-  alt.base.model.3   <<- load.models(model.dir, alt.base.model.3.dir.name)
+  ## alt.base.model.1   <<- load.models(model.dir, alt.base.model.1.dir.name)
+  ## alt.base.model.2   <<- load.models(model.dir, alt.base.model.2.dir.name)
+  ## alt.base.model.3   <<- load.models(model.dir, alt.base.model.3.dir.name)
   bridge.models.1    <<- load.models(model.dir, bridge.model.dir.names.1)
   bridge.models.2    <<- load.models(model.dir, bridge.model.dir.names.2)
   sens.models.1      <<- load.models(model.dir, sens.model.dir.names.1)
@@ -279,14 +279,14 @@ load.models.into.parent.env <- function(){
   ## Lists of sensitivities for the MLE parameters, derived quantiles,
   ##  and reference points table
   ## First set includes base and sensitivity group 1 and 2
-  ## sens.models.1.for.table <<- c(list(base.model), sens.models.1, sens.models.2)
-  ## sens.model.names.1.for.table <<- c("Base model", sens.model.names.1,sens.model.names.2)
+  sens.models.1.for.table <<- c(list(base.model), sens.models.1, sens.models.2)
+  sens.model.names.1.for.table <<- c("Base model", sens.model.names.1,sens.model.names.2)
   ## Second set includes base and sensitivity groups 3 and 4
 
   ## Removing the sens group 4 from this because it's causing problems when
   ## running make.short.parameter.estimates.sens.table()
-  ##sens.models.2.for.table <<- c(list(base.model), sens.models.1, sens.models.4)
-  ##sens.model.names.2.for.table <<- c("Base model", sens.model.names.1,sens.model.names.4)
+  sens.models.2.for.table <<- c(list(base.model), sens.models.1, sens.models.4)
+  sens.model.names.2.for.table <<- c("Base model", sens.model.names.1,sens.model.names.4)
   ## sens.models.2.for.table <<- c(list(base.model), sens.models.3, sens.models.4)
   ## sens.model.names.2.for.table <<- c("Base model", sens.model.names.3, sens.model.names.4)
 
@@ -360,9 +360,9 @@ build <- function(run.fore = FALSE,
 
   ## Bridge and sensitivity models need to be unlisted from their groups
   ##  and placed into a single list for the FOR loop to work right
-  mnv <- c(alt.base.model.1.dir.name,
-           alt.base.model.2.dir.name,
-           alt.base.model.3.dir.name,
+  mnv <- c(#alt.base.model.1.dir.name,
+           #alt.base.model.2.dir.name,
+           #alt.base.model.3.dir.name,
            unlist(bridge.model.dir.names.1),
            unlist(bridge.model.dir.names.2),
            unlist(sens.model.dir.names.1),
@@ -373,16 +373,6 @@ build <- function(run.fore = FALSE,
 
   ## Subtract out the last year base model from mnv
   mnv <- mnv[! mnv %in% last.yr.base.model.dir.name]
-  ## Place any runs which have mcmc folders but you don't want to run forecasting, etc for
-  ## To do forecasting, etc. for a model on it's own later:
-  ## build(TRUE, TRUE, TRUE, model.name = "2019.03.52_fecundity")
-  mnv <- mnv[! mnv %in% "2019.03.52_fecundity"]
-  mnv <- mnv[! mnv %in% "2019.03.53_fecundity"]
-  mnv <- mnv[! mnv %in% "2019.03.54_fecundity"]
-  mnv <- mnv[! mnv %in% "2019.03.55_fecundity"]
-  mnv <- mnv[! mnv %in% "2019.03.56_fecundity"]
-  mnv <- mnv[! mnv %in% "2019.03.57_fecundity"]
-  mnv <- mnv[! mnv %in% "2019.03.58_fecundity"]
 
   model.names.list <- as.list(unique(mnv))
 
