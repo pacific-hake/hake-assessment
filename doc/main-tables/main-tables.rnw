@@ -636,13 +636,13 @@ Model run when  & Model run when & Time-varying & Pre-1975 & Pre-1975 \\
 weight-at-age is   &  weight-at-age is & & is 1975-1979? & is 1975-2018?\\
 mean from 1975-2018 & mean from 2016-2018 & & & \\
   \hline
-Base model & 34	& Y &   & Y\\
-38         & 35 & Y & Y &  \\
-32         & 33 &   &   & Y\\
-36         & 37 &   & Y &  \\
+Base model & 54	& Y &   & Y\\
+55$^*$     & 58 & Y & Y &  \\
+53         & 52 &   &   & Y\\
+57$^*$     & 56 &   & Y &  \\
 \hline
-           & 2018 base & &   & Y\\
-2018 alternative$^*$ &    & Y & Y & \\
+2018 base &    &    &   & Y\\
+          & 2018 alternative$^*$ & Y & Y & \\
 \hline
 \end{tabular}
 \end{table}
