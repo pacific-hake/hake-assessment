@@ -4,23 +4,22 @@ weight.at.age.heatmap <- function(model,
                                   proj.line.color = "royalblue",
                                   proj.line.width = 1,
                                   last.data.yr = 2018,
-                                  # mean ages were read directly off
-                                  # the plot in 2018 assessment doc
+                                  # mean ages need to be updated every year
                                   longterm.mean.ages = c(0.02,
                                                          0.09,
                                                          0.25,
                                                          0.38,
-                                                         0.48,
+                                                         0.49,
                                                          0.53,
                                                          0.58,
                                                          0.65,
-                                                         0.72,
-                                                         0.79,
+                                                         0.71,
+                                                         0.78,
                                                          0.86,
-                                                         0.93,
-                                                         0.97,
-                                                         1.07,
-                                                         1.01,
+                                                         0.92,
+                                                         0.96,
+                                                         1.06,
+                                                         1.00,
                                                          1.03)){
   ## Weight-at-age heatmap plot including extrapolated years using ggplot.
   ## Original code not available
