@@ -100,7 +100,7 @@ make.catches.plot(catches, leg.y.loc = 550)
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishDepthsUS}
 \end{center}
-\caption{Distribution of fishing depths (left) and bottom depths (right), in fathoms, of \fishname\ catches in the U.S. at-sea fleet from 2008--\Sexpr{last.data.yr}.}
+\caption{Distribution of fishing depths (left) and bottom depths (right), in fathoms, of \fishname\ catches in the U.S. at-sea fleet from 2014--\Sexpr{last.data.yr}.}
 \label{fig:main-us-at-sea-depths}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -111,7 +111,7 @@ make.catches.plot(catches, leg.y.loc = 550)
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishCatchRatesUS}
 \end{center}
-\caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in the U.S. at-sea fleet in \Sexpr{last.data.yr}.}
+\caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in the U.S. at-sea fleet from 2014--\Sexpr{last.data.yr}.}
 \label{fig:main-us-catch-rates}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1224,7 +1224,7 @@ for the base model and alternative sensitivity runs representing the use of a se
 % Using .a since doesn't correspond to a sens group
 <<main.weight.at.age.sens.a, fig.height=9, fig.width=8>>=
 # Run 32 (same as base)
-weight.at.age.heatmap(sens.models.5[[1]])
+weight.at.age.heatmap(alt.base.model.2)
 @
 \end{center}
 %\vspace{0mm}
@@ -1243,7 +1243,7 @@ weight.at.age.heatmap(sens.models.5[[1]])
 \begin{center}
 <<main.weight.at.age.sens.b, fig.height=9, fig.width=8>>=
 # Run 33 (verified same heatmap as 34)
-weight.at.age.heatmap(sens.models.5[[2]])
+weight.at.age.heatmap(sens.models.6[[2]])
 @
 \end{center}
 %\vspace{0mm}
@@ -1261,7 +1261,7 @@ weight.at.age.heatmap(sens.models.5[[2]])
 \begin{center}
 <<main.weight.at.age.sens.c, fig.height=9, fig.width=8>>=
 # Run 36 (verified same heatmap as 38)
-weight.at.age.heatmap(sens.models.5[[7]])
+weight.at.age.heatmap(alt.base.model.1)
 @
 \end{center}
 %\vspace{0mm}
@@ -1279,7 +1279,7 @@ weight.at.age.heatmap(sens.models.5[[7]])
 \begin{center}
 <<main.weight.at.age.sens.d, fig.height=9, fig.width=8>>=
 # Run 37 (verified same heatmap as 35)
-weight.at.age.heatmap(sens.models.5[[4]])
+weight.at.age.heatmap(sens.models.6[[1]])
 @
 \end{center}
 %\vspace{0mm}
@@ -1296,7 +1296,7 @@ weight.at.age.heatmap(sens.models.5[[4]])
 \begin{figure}[H]
 \begin{center}
 <<main.biomass.base.alternative.5, fig.height=4.5, fig.width=8>>=
-make.comparison.plot(c(list(base.model), sens.models.5),
+make.comparison.plot(c(list(base.model), list(sens.models.5)),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.5),
                      end.yr = end.yr)
@@ -1314,7 +1314,7 @@ make.comparison.plot(c(list(base.model), sens.models.5),
 %% \begin{figure}[H]
 \begin{center}
 <<main.status.base.alternative.5, fig.height=4.5, fig.width=8>>=
-make.comparison.plot(c(list(base.model), sens.models.5),
+make.comparison.plot(c(list(base.model), list(sens.models.5)),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.5),
                      legend = FALSE,
@@ -1336,10 +1336,10 @@ make.comparison.plot(c(list(base.model), sens.models.5),
 \begin{figure}[H]
 \begin{center}
 <<main.biomass.base.alternative.6, fig.height=4.5, fig.width=8>>=
-#make.comparison.plot(c(list(base.model), sens.models.6),
-#                     subplots = 2,
-#                     model.names = c(base.model.name, sens.model.names.6),
-#                     end.yr = end.yr)
+make.comparison.plot(c(list(base.model), sens.models.6),
+                     subplots = 2,
+                     model.names = c(base.model.name, sens.model.names.6),
+                     end.yr = end.yr)
 @
 \end{center}
 \caption{**Maximum likelihood estimates of spawning biomass for the base
@@ -1353,11 +1353,11 @@ make.comparison.plot(c(list(base.model), sens.models.5),
 %% \begin{figure}[H]
 \begin{center}
 <<main.status.base.alternative.6, fig.height=4.5, fig.width=8>>=
-#make.comparison.plot(c(list(base.model), sens.models.6),
-#                     subplots = 4,
-#                     model.names = c(base.model.name, sens.model.names.6),
-#                     legend = FALSE,
-#                     end.yr = end.yr)
+make.comparison.plot(c(list(base.model), sens.models.6),
+                     subplots = 4,
+                     model.names = c(base.model.name, sens.model.names.6),
+                     legend = FALSE,
+                     end.yr = end.yr)
 @
 \end{center}
 %\vspace{0mm}
