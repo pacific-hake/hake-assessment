@@ -619,15 +619,17 @@ make.short.parameter.estimates.sens.table(retro.list,
 % not sure why we do in Google one. Andy will check with Chris in the morning.
 \begin{table}
 \caption{Summary of models runs that consider alternative assumptions concerning
-  weight-at-age and time-vary fecundity. Results from the MCMC runs 32, 36 and 38
-  are given in Appendices **, ** and **. $^*$Note that this run contained the
-  inconsistency noted on page~23 of \citet{JTC2018}, in that the time-varying fecundity
-  was based on the weight-at-age assumptions described here, but the spawning biomass
-  calculations were still based on the 1975-2017 mean (this made little difference
-  to results and is fixed for all 2019 runs, as described in
-  Section~**bridging-when-written) **Make headers neater. Andy to update based when
-  updating run numbers for figures.
-  \label{tab:main-wtatage-runs}}
+  weight-at-age and time-vary fecundity, plus the two related runs from 2018.
+  Results from the MCMC runs **32, 36 and 38
+  are given in Appendices **, ** and **. $^a$Due to the configuration of Stock Synthesis
+  (noted on page~23 of \citealt{JTC2018}), these runs necessitated setting the
+  2018 (not 2019) weight-at-age
+  onwards to be the mean from 1975-2018. $^b$Similarly,
+  for the 2018 alternative run, the 2017 weight-at-age onwards was
+  the mean from 2015-2017. $^c$The 2018 onwards weight-at-age was the mean from 1975-2017.  
+  **Refer to Section~**bridging-when-written **Make headers neater (use the
+  other table commands, I forget for now). 
+ \label{tab:main-wtatage-runs}}
 \centering
 \begin{tabular}{ccccc}
 \hline
@@ -637,12 +639,12 @@ weight-at-age is   &  weight-at-age is & & is 1975-1979? & is 1975-2018?\\
 mean from 1975-2018 & mean from 2016-2018 & & & \\
   \hline
 Base model & 54	& Y &   & Y\\
-55$^*$     & 58 & Y & Y &  \\
+55$^a$     & 58 & Y & Y &  \\
 53         & 52 &   &   & Y\\
-57$^*$     & 56 &   & Y &  \\
+57$^a$     & 56 &   & Y &  \\
 \hline
-2018 base &    &    &   & Y\\
-          & 2018 alternative$^*$ & Y & Y & \\
+2018 base$^c$ &    &    &   & Y\\
+          & 2018 alternative$^b$ & Y & Y & \\
 \hline
 \end{tabular}
 \end{table}
