@@ -172,11 +172,11 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
        ylab = "Biomass index (million t)")
   dat <- model$dat
   cpue <- dat$CPUE[dat$CPUE$index > 0,]
-  ## segments(x0 = as.numeric(cpue$year),
-  ##          y0 = qlnorm(probs[1], meanlog = log(as.numeric(cpue$obs)), sdlog = as.numeric(cpue$se_log)),
-  ##          y1 = qlnorm(probs[2], meanlog = log(as.numeric(cpue$obs)), sdlog = as.numeric(cpue$se_log)),
-  ##          lwd = 3,
-  ##          lend = 1)
+  segments(x0 = as.numeric(cpue$year),
+           y0 = qlnorm(probs[1], meanlog = log(as.numeric(cpue$obs)), sdlog = as.numeric(cpue$se_log)),
+           y1 = qlnorm(probs[2], meanlog = log(as.numeric(cpue$obs)), sdlog = as.numeric(cpue$se_log)),
+           lwd = 3,
+           lend = 1)
 
   # subsamble to help the lines be more visible
   nsamp <- ncol(model$extra.mcmc$cpue.table) # total samples
@@ -197,22 +197,22 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
         col = rgb(0, 0, 0.5, 0.7),
         lty = 1,
         lwd = 3)
-  ## legend('topleft',
-  ##        legend = c("Observed survey biomass (with MLE estimates of 95% intervals)",
-  ##                   "MLE estimates of expected survey biomass",
-  ##                   "Median MCMC estimate of expected survey biomass",
-  ##                   "MCMC samples of estimates of expected survey biomass"),
-  ##        lwd = c(NA,3,3,1),
-  ##        pch = c(21, NA, NA, NA),
-  ##        bg = 'white',
-  ##        text.col = gray(0.6),
-  ##        col = c(1,
-  ##                rgb(1, 0, 0, 0.7),
-  ##                rgb(0, 0, 0.5, 0.7),
-  ##                rgb(0, 0, 1, 0.4)),
-  ##        cex = leg.cex,
-  ##        bty = 'n')
-  ## SSplotIndices(model, subplot = 2, add = TRUE, col3 = rgb(1, 0, 0, 0.7))
+  legend('topleft',
+         legend = c("Observed survey biomass (with MLE estimates of 95% intervals)",
+                    "MLE estimates of expected survey biomass",
+                    "Median MCMC estimate of expected survey biomass",
+                    "MCMC samples of estimates of expected survey biomass"),
+         lwd = c(NA,3,3,1),
+         pch = c(21, NA, NA, NA),
+         bg = 'white',
+         text.col = gray(0.6),
+         col = c(1,
+                 rgb(1, 0, 0, 0.7),
+                 rgb(0, 0, 0.5, 0.7),
+                 rgb(0, 0, 1, 0.4)),
+         cex = leg.cex,
+         bty = 'n')
+  SSplotIndices(model, subplot = 2, add = TRUE, col3 = rgb(1, 0, 0, 0.7))
   axis(1, at = model$cpue$Yr[model$cpue$Use==1], cex.axis = 0.8, tcl = -0.6)
   axis(1,
        at = (start.yr-4):(end.yr+7),
