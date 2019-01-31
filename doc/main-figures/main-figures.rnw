@@ -136,7 +136,7 @@ make.age.comp.bubble.plot(base.model, subplot = 1,
                           end.yr = max(base.model$dat$agecomp$"Yr"))
 @
 \end{center}
-\caption{Age compositions for the acoustic survey (top) and the aggregate fishery (bottom, all sectors combined)
+\caption{**[check numbers make sense]Age compositions for the acoustic survey (top) and the aggregate fishery (bottom, all sectors combined)
   for the years \Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}.
   Proportions in each year sum to 1.0 and area of the bubbles are
   proportional to the proportion and consistent in both panels (see key at top).
@@ -198,7 +198,7 @@ make.survey.age1.plot(age.1.index,
 maturity.ogive.figure()
 @
 \end{center}
-\caption{Fraction of fish that are mature at each age north and south of
+\caption{**Fraction of fish that are mature at each age north and south of
   34.44$^\circ$N
   (upper panel) and comparison of old and new fecundity relationships
   (lower panel). The old fecundity relationship (black line in lower plot)
@@ -224,9 +224,9 @@ weight.at.age.heatmap(base.model)
 @
 \end{center}
 %\vspace{0mm}
-\caption{Empirical weight-at-age (kg) used for the base model. Numbers shown in
+\caption{**update (and move blue line) Empirical weight-at-age (kg) used for the base model. Numbers shown in
   bold were interpolated or extrapolated from adjacent ages or years. Data are
-  only available from 1975-2017 (between the two blue lines). Remaining values
+  only available from 1975-**2017 (between the two blue lines). Remaining values
   are used for the early and late years, with alternative assumptions tested in
   sensitivity runs.}
 \label{fig:main-empirical.weight.at.age}
@@ -251,7 +251,7 @@ make.comparison.plot(bridge.models.1,
                      end.yr = bridge.model.end.yr.1)
 @
 \end{center}
-\caption{Bridging models showing the \Sexpr{last.assess.yr} base model
+\caption{**Bridging models showing the \Sexpr{last.assess.yr} base model
   and the results of updating the historic catch, adding the 2018 catch
   (the only data available for 2018), adding the 2018 weights-at-age as the
   average from 2015-2017 (and running the model to 2018), changing the
@@ -307,7 +307,7 @@ mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
 \end{center}
-\caption{Bridging models showing the difference between the
+\caption{**Bridging models showing the difference between the
   \Sexpr{last.assess.yr} base model, the result of the first set of changes
   shown in Figure~\ref{fig:main-bridge-biomass}
   and the incorporation of time-varying fecundity.
@@ -382,7 +382,8 @@ make.mcmc.diag.hists.plot(base.model)
 \includegraphics[width=6.5in, height=7.5in]{main-figures/KeyParameterGelman_MultChain}
 \end{center}
 %\vspace{0mm}
-\caption{Gelman-Rubin plot showing the development of the scale-reduction (shrink factor) across the chain length for key posterior parameter distributions. A factor close to 1 indicates that between chain variance and within chain variance are equal. Values much greater than 1.1 indicate a notable difference between chains and the possible lack of achieving a converged stationary posterior distribution.}
+\caption{**This is not automated - be nice to have included automatically. Needs
+  updating for 2019 at least. Gelman-Rubin plot showing the development of the scale-reduction (shrink factor) across the chain length for key posterior parameter distributions. A factor close to 1 indicates that between chain variance and within chain variance are equal. Values much greater than 1.1 indicate a notable difference between chains and the possible lack of achieving a converged stationary posterior distribution.}
 \label{fig:main-mcmc.diag.gelrub}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -862,7 +863,7 @@ make.comparison.plot(c(list(base.model), sens.models.1),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base
+\caption{**Maximum likelihood estimates of spawning biomass for the base
   model and alternative sensitivity runs representing changing the mean of
   the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, lower (1.0) and higher
   (1.8) levels of sigma-R, and changing the standard deviation of the prior for natural mortality from
@@ -883,7 +884,7 @@ make.comparison.plot(c(list(base.model), sens.models.1),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative
+\caption{**Maximum likelihood estimates of stock status (relative
   spawning biomass) for the base model and alternative sensitivity runs
   representing changing the mean of the prior for steepness from 1.0 to 0.5,
   fixing steepness at 1.0, lower (1.0) and higher
@@ -905,7 +906,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative
+\caption{**Maximum likelihood estimates of spawning biomass for the base model and alternative
   sensitivity runs that represent changes in data: adding an age-1 index of abundance,
   incorporating ageing error that is cohort invariant, using the harmonic mean approach to
   weight composition data, accounting for seasonal age sampling in the aggregation of age
@@ -941,7 +942,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base
+\caption{**Maximum likelihood estimates of stock status (relative spawning biomass) for the base
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-status-base-alternative-2}
@@ -968,7 +969,7 @@ par <- oldpar
 mtext("Age", side = 1, line = 1, outer = TRUE)
 @
 \end{center}
-\caption{Top panel shows maximum likelihood estimates of spawning biomass
+\caption{**Top panel shows maximum likelihood estimates of spawning biomass
   and selectivity for the base model and alternative sensitivity runs
   representing changes in the age of maximum selectivity from the value
   of 6 in the base model and the standard
@@ -993,7 +994,7 @@ make.comparison.plot(c(list(base.model), sens.models.3),
 box()
 @
 \end{center}
-\caption{Maximum likelihood estimates of recruitment deviations
+\caption{**Maximum likelihood estimates of recruitment deviations
   for the base model and alternative sensitivity runs (refer to the legend below) representing changes
   in the age of maximum selectivity from the value of 6 in the base model and the standard
   deviation ($\Phi$) associated with time-varying selectivity.}
@@ -1022,7 +1023,7 @@ make.comparison.plot(c(list(base.model), sens.models.3),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of the fit to the survey biomass index
+\caption{**Maximum likelihood estimates of the fit to the survey biomass index
   for the base model and alternative sensitivity runs representing changes
   in the age of maximum selectivity from the value of 6 in the base model and the standard
   deviation ($\Phi$) associated with time-varying selectivity.}
@@ -1117,7 +1118,7 @@ make.selectivity.illustration(mod.old = base.model,
                               yr2 = 1991) # year to illustrate with deviations
 @
 \end{center}
-\caption{Illustration of parameterization of time-varying selectivity as
+\caption{**Illustration of parameterization of time-varying selectivity as
   represented in the base model (left) and the semi-parametric approach
   used in sensitivity analyses (right). Panels show transformation from
   estimated parameters (a) to cumulative sum up to each age (b) and the resulting
@@ -1141,7 +1142,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model
+\caption{**Maximum likelihood estimates of spawning biomass for the base model
   and alternative sensitivity runs representing the use of a semi-parametric approach
   for implementing time-varying selectivity (sigma-S).}
 \label{fig:main-biomass-base-alternative-4}
@@ -1160,7 +1161,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative
+\caption{**Maximum likelihood estimates of stock status (relative
   spawning biomass) for the base model and alternative sensitivity runs representing the use of a semi-parametric approach
   for implementing time-varying selectivity (sigma-S).
   See Figure~\ref{fig:main-biomass-base-alternative-4} for legend.}
@@ -1181,7 +1182,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 box()
 @
 \end{center}
-\caption{Maximum likelihood estimates of recruitment deviations
+\caption{**Maximum likelihood estimates of recruitment deviations
 for the base model and alternative sensitivity runs representing the use of a semi-parametric approach
   for implementing time-varying selectivity (sigma-S).
   See Figure~\ref{fig:main-biomass-base-alternative-4} for legend.}
@@ -1201,7 +1202,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of the fit to the survey index of abundance
+\caption{**Maximum likelihood estimates of the fit to the survey index of abundance
 for the base model and alternative sensitivity runs representing the use of a semi-parametric approach
   for implementing time-varying selectivity (sigma-S).
   See Figure~\ref{fig:main-biomass-base-alternative-4} for legend.}
@@ -1227,7 +1228,7 @@ weight.at.age.heatmap(alt.base.model.2)
 @
 \end{center}
 %\vspace{0mm}
-\caption{Empirical weight-at-age (kg) used for sensitivity run 32 and the base
+\caption{**Andy to update run numbers and blue line. Empirical weight-at-age (kg) used for sensitivity run 32 and the base
   model (Figure~\ref{fig:main-empirical.weight.at.age}).
   Numbers shown in
   bold were interpolated or extrapolated from adjacent ages or years. Data are
@@ -1246,7 +1247,7 @@ weight.at.age.heatmap(sens.models.6[[2]])
 @
 \end{center}
 %\vspace{0mm}
-\caption{Empirical weight-at-age (kg) used for sensitivity runs 33 and 34.
+\caption{**Andy to update run numbers and blue line. Empirical weight-at-age (kg) used for sensitivity runs 33 and 34.
   Numbers shown in
   bold were interpolated or extrapolated from adjacent ages or years. Data are
   only available from 1975-2017 (between the two blue lines). Remaining values
@@ -1264,7 +1265,7 @@ weight.at.age.heatmap(alt.base.model.1)
 @
 \end{center}
 %\vspace{0mm}
-\caption{Empirical weight-at-age (kg) used for sensitivity runs
+\caption{**Andy to update run numbers and blue line. Empirical weight-at-age (kg) used for sensitivity runs
   36 and 38. (**confirm they match once 36 runs okay - wtatage.ss files are good). Numbers shown in
   bold were interpolated or extrapolated from adjacent ages or years. Data are
   only available from 1975-2017 (between the two blue lines). Remaining values
@@ -1276,14 +1277,13 @@ weight.at.age.heatmap(alt.base.model.1)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-% Using .a since doesn't correspond to a sens group
 <<main.weight.at.age.sens.d, fig.height=9, fig.width=8>>=
 # Run 37 (verified same heatmap as 35)
 weight.at.age.heatmap(sens.models.6[[1]])
 @
 \end{center}
 %\vspace{0mm}
-\caption{Empirical weight-at-age (kg) used for sensitivity runs
+\caption{**Andy to update run numbers and blue line. Empirical weight-at-age (kg) used for sensitivity runs
   35 and 37. Numbers shown in
   bold were interpolated or extrapolated from adjacent ages or years. Data are
   only available from 1975-2017 (between the two blue lines). Remaining values
@@ -1302,8 +1302,9 @@ make.comparison.plot(c(list(base.model), list(sens.models.5)),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base
-  model and alternative sensitivity run that sets the unfished and
+\caption{**Maximum likelihood estimates of spawning biomass for the base
+  model and alternative sensitivity run that sets ....(use run numbers and refer
+  to table) the unfished and
   pre-1975 weights-at-age (and therefore fecundity) to the mean from 1975-1979.}
 \label{fig:main-biomass-base-alternative-5}
 %% \end{figure}
@@ -1321,7 +1322,7 @@ make.comparison.plot(c(list(base.model), list(sens.models.5)),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative
+\caption{**Maximum likelihood estimates of stock status (relative
   spawning biomass) for the base model
   and alternative sensitivity run that sets the unfished and
   pre-1975 weights-at-age (and therefore fecundity) to the mean from 1975-1979.
@@ -1341,7 +1342,7 @@ make.comparison.plot(c(list(base.model), sens.models.6),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base
+\caption{**Maximum likelihood estimates of spawning biomass for the base
   model and alternative sensitivity runs that set the **TO UPDATEunfished and
   pre-1975 weights-at-age (and therefore fecundity) to the mean from 1975-1979.}
 \label{fig:main-biomass-base-alternative-6}
@@ -1360,7 +1361,7 @@ make.comparison.plot(c(list(base.model), sens.models.6),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative
+\caption{**Maximum likelihood estimates of stock status (relative
   spawning biomass) for the base model
   and alternative sensitivity runs that set **TO UPDATE the unfished and
   pre-1975 weights-at-age (and therefore fecundity) to the mean from 1975-1979.

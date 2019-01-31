@@ -625,7 +625,7 @@ make.short.parameter.estimates.sens.table(retro.list,
   was based on the weight-at-age assumptions described here, but the spawning biomass
   calculations were still based on the 1975-2017 mean (this made little difference
   to results and is fixed for all 2019 runs, as described in
-  Section~**bridging-when-written) **Make headers neater. And update based when
+  Section~**bridging-when-written) **Make headers neater. Andy to update based when
   updating run numbers for figures.
   \label{tab:main-wtatage-runs}}
 \centering
