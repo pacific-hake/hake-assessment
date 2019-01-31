@@ -3,8 +3,7 @@ weight.at.age.heatmap <- function(model,
                                   last.yr = 2021,
                                   proj.line.color = "royalblue",
                                   proj.line.width = 1,
-                                  # For 2019 we have no 2018 data:
-                                  last.data.yr = 2017,
+                                  last.data.yr = 2018,
                                   # mean ages were read directly off
                                   # the plot in 2018 assessment doc
                                   longterm.mean.ages = c(0.02,
@@ -32,7 +31,7 @@ weight.at.age.heatmap <- function(model,
   ##  and simply copies of the last year of w-a data
 
   ## Toggle data frame for which values are extrapolated values
-  input.yrs <- 1975:2017
+  input.yrs <- 1975:last.data.yr
   extrap = list(
     c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1), #1975
     c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1976
@@ -73,10 +72,11 @@ weight.at.age.heatmap <- function(model,
     c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2011
     c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2012
     c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2013
-    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2014
+    c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2014
     c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2015
     c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2016
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)) #2017
+    c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2017
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)) #2018
   names(extrap) <- input.yrs
 
   extrap <- as_tibble(cbind(input.yrs, t(bind_rows(extrap))))
