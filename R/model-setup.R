@@ -116,7 +116,7 @@ if(verbose) cat0("Key posteriors file: \n  ", nuisance.posteriors.file)
 ## -----------------------------------------------------------------------------
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
-base.model.dir.name <- "2019.03.00_base_model"
+base.model.dir.name <- "2019.03.00_base"
 base.model.name <- paste0(assess.yr, " Base model")
 if(verbose){
   cat0("Base model directory name: \n  ", base.model.dir.name)
@@ -151,30 +151,28 @@ if(verbose){
 ## Bridge models group 1
 ## -----------------------------------------------------------------------------
 bridge.model.dir.names.1 <- c(last.yr.base.model.dir.name,
-                              "2019.02.40_update_historic_catch",
-                              "2019.02.41_add_2018_catch",
-                              "2019.02.42_wtatage_2018",
-                              "2019.02.43_h_INIT_095",
-                              "2019.02.44_proj_wtatage")
+                              "2019.03.40_update_historic_catch",
+                              "2019.03.46_update_historic_comp",
+                              "2019.03.47_update_historic_wtage")
 bridge.model.names.1 <- c(last.yr.base.model.name,
-                          "Corrected historic catch",
-                          "Add 2018 total catch",
-                          "Add 2018 weight-at-age",
-                          "Change initial steepness",
-                          "Use 2018 wtatage for projections")
-bridge.model.end.yr.1 <- end.yr - c(1, 1, 0, 0, 0, 0) # subtract 1 year from first two models
+                          "Update historic catch",
+                          "Update historic comps",
+                          "Update historic weights")
+bridge.model.end.yr.1 <- end.yr - c(1, 1, 1, 1) # subtract 1 year from all 4 models
 
 
 ## -----------------------------------------------------------------------------
 ## Bridge models group 2
 ## -----------------------------------------------------------------------------
 bridge.model.dir.names.2 <- c(last.yr.base.model.dir.name,
-                              "2019.02.44_proj_wtatage",
-                              "2019.02.45_fecundity_time_varying")
+                              "2019.03.41_add_2018_catch",
+                              "2019.03.42_add_2018_comp_wtatage",
+                              "2019.03.45_fecundity_time_varying")
 bridge.model.names.2 <- c(last.yr.base.model.name,
-                          "Result of first bridging model set",
+                          "Add 2018 catch",
+                          "Add 2018 comps and weights",
                           "Time-varying fecundity (= base model)")
-bridge.model.end.yr.2 <- end.yr - c(1, 0, 0) # subtract 1 year from first 2 models
+bridge.model.end.yr.2 <- end.yr - c(1, 0, 0, 0) # subtract 1 year from first 1 models
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 1
