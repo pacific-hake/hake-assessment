@@ -614,7 +614,7 @@ make.short.parameter.estimates.sens.table(retro.list,
                                           space.size = 12)
 @
 
-% Ugly, but wanted to get it in quickly. Should be a function like all the other tables.
+% Ugly, but wanted to get it in quickly. 
 % Don't think we need to specify 'fecundity when varying' in only one column -
 % not sure why we do in Google one. Andy will check with Chris in the morning.
 \begin{table}
@@ -632,11 +632,9 @@ make.short.parameter.estimates.sens.table(retro.list,
 \begin{tabular}{ccccc}
 \hline
 Model run when  & Model run when & Time-varying & Pre-1975 & Pre-1975 \\
-2018 onwards       & 2018 onwards &  fecundity? & weight-at-age & weight-at-age\\
-weight-at-age is   &  weight-at-age (and & & is 1975-1979? & is 1975-2017?\\
-mean from 2015-2017; &  fecundity when varying) & & & \\
-full MCMC          & is mean from 1975-2017; & & & \\
-                   & MLE only & & & \\
+2019 onwards       & 2018 onwards &  fecundity? & weight-at-age & weight-at-age\\
+weight-at-age is   &  weight-at-age is & & is 1975-1979? & is 1975-2018?\\
+mean from 1975-2018 & mean from 2016-2018 & & & \\
   \hline
 Base model & 34	& Y &   & Y\\
 38         & 35 & Y & Y &  \\
