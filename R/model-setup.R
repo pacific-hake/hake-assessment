@@ -127,12 +127,12 @@ if(verbose){
 ## Alternative base model names and directories (runs we want MCMC results for,
 ##  not necessarily considering as alt runs for 2019).
 ## -----------------------------------------------------------------------------
-alt.base.model.1.dir.name <- "2019.02.36_fecundity"
-alt.base.model.1.name <- paste0(assess.yr, " Short-term pre-1975 wt at age")
-alt.base.model.2.dir.name <- "2019.02.32_fecundity"
-alt.base.model.2.name <- paste0(assess.yr, " Long-term pre-1975 wt at age")
-alt.base.model.3.dir.name <- "2019.02.38_fecundity"
-alt.base.model.3.name <- paste0(assess.yr, " TV Fec, short-term pre-1975 wt at age")
+## alt.base.model.1.dir.name <- "2019.02.36_fecundity"
+## alt.base.model.1.name <- paste0(assess.yr, " Short-term pre-1975 wt at age")
+## alt.base.model.2.dir.name <- "2019.02.32_fecundity"
+## alt.base.model.2.name <- paste0(assess.yr, " Long-term pre-1975 wt at age")
+## alt.base.model.3.dir.name <- "2019.02.38_fecundity"
+## alt.base.model.3.name <- paste0(assess.yr, " TV Fec, short-term pre-1975 wt at age")
 
 ## -----------------------------------------------------------------------------
 ## Last assessment year's base model name and directory
@@ -229,20 +229,20 @@ sens.model.names.4 <- c("Semi-Parametric t.v selectivity (0.695)",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 5  - Different weight-at-age schemes
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.5 <- c("2019.02.35_fecundity")
-sens.model.names.5 <- c("Early weight-at-age as 1975-1979 average") # **35 is below also so can delete
-
-## -----------------------------------------------------------------------------
-## Sensitivity models group 6 - more weight-at-age options, may merge with 5 (change main-figures heatmaps if do)
-## -----------------------------------------------------------------------------
-sens.model.dir.names.6 <- c("2019.02.37_fecundity",
-                            "2019.02.33_fecundity",
-                            "2019.02.35_fecundity",
-                            "2019.02.34_fecundity")
-sens.model.names.6 <- c("Constant fecundity, run 37",
-                        "Constant fecundity, run 33",
-                        "Run 35",
-                        "Run 34")
+sens.model.dir.names.5 <- c("2019.03.52_fecundity",
+                            "2019.03.53_fecundity",
+                            "2019.03.54_fecundity",
+                            "2019.03.55_fecundity",
+                            "2019.03.56_fecundity",
+                            "2019.03.57_fecundity",
+                            "2019.03.58_fecundity")
+sens.model.names.5 <- c("Early weight-age 1975-2018 mean, late is 2016-2018 mean",             #52
+                        "Early weight-age 1975-2018 mean, late is 1975-2018 mean",             #53
+                        "TV Fecund, early weight-age 1975-2018 mean, late is 2016-2018 mean",  #54
+                        "TV Fecund, early weight-age 1975-1979 mean, late is 1975-2018 mean*", #55
+                        "Early weight-age 1975-1979 mean, late is 2016-2018 mean",             #56
+                        "Early weight-age 1975-1979 mean, late is 1975-2018 mean*",            #57
+                        "TV Fecund, early weight-age 1975-1979 mean, late is 2016-2018 mean")  #58
 
 ## This function must be called from within the first knitr code chunk
 ## in the document. It is defined here so that it is in the same place
@@ -275,25 +275,24 @@ load.models.into.parent.env <- function(){
   sens.models.3      <<- load.models(model.dir, sens.model.dir.names.3)
   sens.models.4      <<- load.models(model.dir, sens.model.dir.names.4)
   sens.models.5      <<- load.models(model.dir, sens.model.dir.names.5)
-  sens.models.6      <<- load.models(model.dir, sens.model.dir.names.6)
 
   ## Lists of sensitivities for the MLE parameters, derived quantiles,
   ##  and reference points table
   ## First set includes base and sensitivity group 1 and 2
-  sens.models.1.for.table <<- c(list(base.model), sens.models.1, sens.models.2)
-  sens.model.names.1.for.table <<- c("Base model", sens.model.names.1,sens.model.names.2)
+  ## sens.models.1.for.table <<- c(list(base.model), sens.models.1, sens.models.2)
+  ## sens.model.names.1.for.table <<- c("Base model", sens.model.names.1,sens.model.names.2)
   ## Second set includes base and sensitivity groups 3 and 4
 
   ## Removing the sens group 4 from this because it's causing problems when
   ## running make.short.parameter.estimates.sens.table()
   ##sens.models.2.for.table <<- c(list(base.model), sens.models.1, sens.models.4)
   ##sens.model.names.2.for.table <<- c("Base model", sens.model.names.1,sens.model.names.4)
-  sens.models.2.for.table <<- c(list(base.model), sens.models.3, sens.models.4)
-  sens.model.names.2.for.table <<- c("Base model", sens.model.names.3, sens.model.names.4)
+  ## sens.models.2.for.table <<- c(list(base.model), sens.models.3, sens.models.4)
+  ## sens.model.names.2.for.table <<- c("Base model", sens.model.names.3, sens.model.names.4)
 
   ## Third set
-  sens.models.3.for.table <<- c(list(base.model), list(sens.models.5), sens.models.6)
-  sens.model.names.3.for.table <<- c("Base model", list(sens.model.names.5), sens.model.names.6)
+  ## sens.models.3.for.table <<- c(list(base.model), list(sens.models.5), sens.models.6)
+  ## sens.model.names.3.for.table <<- c("Base model", list(sens.model.names.5), sens.model.names.6)
 }
 
 build <- function(run.fore = FALSE,
@@ -370,11 +369,20 @@ build <- function(run.fore = FALSE,
            unlist(sens.model.dir.names.2),
            unlist(sens.model.dir.names.3),
            unlist(sens.model.dir.names.4),
-           unlist(sens.model.dir.names.5),
-           unlist(sens.model.dir.names.6))
+           unlist(sens.model.dir.names.5))
 
   ## Subtract out the last year base model from mnv
   mnv <- mnv[! mnv %in% last.yr.base.model.dir.name]
+  ## Place any runs which have mcmc folders but you don't want to run forecasting, etc for
+  ## To do forecasting, etc. for a model on it's own later:
+  ## build(TRUE, TRUE, TRUE, model.name = "2019.03.52_fecundity")
+  mnv <- mnv[! mnv %in% "2019.03.52_fecundity"]
+  mnv <- mnv[! mnv %in% "2019.03.53_fecundity"]
+  mnv <- mnv[! mnv %in% "2019.03.54_fecundity"]
+  mnv <- mnv[! mnv %in% "2019.03.55_fecundity"]
+  mnv <- mnv[! mnv %in% "2019.03.56_fecundity"]
+  mnv <- mnv[! mnv %in% "2019.03.57_fecundity"]
+  mnv <- mnv[! mnv %in% "2019.03.58_fecundity"]
 
   model.names.list <- as.list(unique(mnv))
 
