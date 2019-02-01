@@ -627,16 +627,18 @@ make.short.parameter.estimates.sens.table(retro.list,
   onwards to be the mean from 1975-2018. $^b$Similarly,
   for the 2018 alternative run, the 2017 weight-at-age onwards was
   the mean from 2015-2017. $^c$The 2018 onwards weight-at-age was the mean from 1975-2017.  
-  **Refer to Section~**bridging-when-written **Make headers neater (use the
-  other table commands, I forget for now). 
- \label{tab:main-wtatage-runs}}
+  See Section~\ref{sec:assessment-weights} for more details and
+  Figures~\ref{fig:main-empirical.weight.at.age.sens.a}-\ref{fig:main-empirical.weight.at.age.sens.d}
+  for the various weight-at-age assumptions.}
+ \label{tab:main-wtatage-runs}
 \centering
 \begin{tabular}{ccccc}
 \hline
 Model run when  & Model run when & Time-varying & Pre-1975 & Pre-1975 \\
 2019 onwards       & 2018 onwards &  fecundity? & weight-at-age & weight-at-age\\
 weight-at-age is   &  weight-at-age is & & is 1975-1979? & is 1975-2018?\\
-mean from 1975-2018 & mean from 2016-2018 & & & \\
+mean from & mean from & & & \\
+1975-2018 & 2016-2018 & & & \\  
   \hline
 Base model & 54	& Y &   & Y\\
 55$^a$     & 58 & Y & Y &  \\
