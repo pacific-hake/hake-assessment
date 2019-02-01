@@ -100,7 +100,7 @@ make.catches.plot(catches, leg.y.loc = 550)
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishDepthsUS}
 \end{center}
-\caption{Distribution of fishing depths (left) and bottom depths (right), in fathoms, of \fishname\ catches in the U.S. at-sea fleet from 2008--\Sexpr{last.data.yr}.}
+\caption{Distribution of fishing depths (left) and bottom depths (right), in fathoms, of \fishname\ catches in the U.S. at-sea fleet from 2014--\Sexpr{last.data.yr}.}
 \label{fig:main-us-at-sea-depths}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -111,7 +111,8 @@ make.catches.plot(catches, leg.y.loc = 550)
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishCatchRatesUS}
 \end{center}
-\caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in the U.S. at-sea fleet in \Sexpr{last.data.yr}.}
+\caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in
+  the U.S. at-sea fleet from 2014--\Sexpr{last.data.yr}.}
 \label{fig:main-us-catch-rates}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
