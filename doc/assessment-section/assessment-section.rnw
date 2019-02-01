@@ -193,21 +193,17 @@ A Glossary of terms appears in Appendix~\ref{chap:glossary}.
 
 \subsection{Response to 2018 Scientific Review Group (SRG) review}\label{sec:assessment-response-review}
 
-**Andy will update this when can build doc again, at the moment it's just part 1
-as I needed that the other day.
+The Scientific Review Group (SRG) meeting was held from February 26 to March 2, 2018
+at the Lynnwood Convention Center, Lynnwood, WA, USA.
 
-**The Scientific Review Group (SRG) meeting was held from February 14--16, 2017, at the 
-Morris J.~Wosk Centre for Dialogue, Vancouver, BC, Canada.
 
-**The following are the Assessment Recommendations from the 2017
+The following are the `Assessment Recommendations and Conclusions' from the 2018
 SRG report, and associated responses from the JTC:
-
-The SRG has several recommendations for future iterations of the hake stock assessment.
 
 1. The stock assessment results and stock status are highly sensitive to two aspects of the
 model:
 
-(i) Weights-at-age: Maturity-at-age was recalculated in the 2018 assessment
+(i) \underline{Weights-at-age}: Maturity-at-age was recalculated in the 2018 assessment
 based on an analysis of ovaries collected during the fishery and survey in
 recent years to produce an empirical vector of the proportion mature (i.e., that
 will likely spawn) at each age.  Spawning biomass in the base-case model is
@@ -225,7 +221,7 @@ this sensitivity an assumption was made that for calculating spawning biomass in
 2018 and future projections, average weight-at-age in the most recent 3 years of
 data be used; and for calculating spawning biomass in the unfished state and
 years before 1975, the average weight-at-age in the first 5 years of data
-(1975-1979) be used. [The alternative model maintained the base model’s approach
+(1975-1979) be used. [The alternative model maintained the base model's approach
 for estimating total biomass prior to 1975 and also in projections (using the
 weights-at-age averaged over 1975 to 2017). The SRG has requested that the JTC
 apply calculations for these periods consistent with decisions taken at this
@@ -235,11 +231,123 @@ environmental drivers, and fishing-induced evolution. {\bf The SRG requests that
 JTC examine the historical weights-at-age data, evaluate approaches for
 parameterizing fecundity-at-age for years without data (pre-1975), and evaluate
 other methods of deriving biological reference points such as $B_0$}.
-\emph{Response -- **write something here referencing the new section below.}
+
+\emph{Response -- **write something short here referencing the new Section \ref{sec:assessment-weights}}
 
 
-(ii) ...
+(ii) \underline{Variance in recruitment deviations ($\sigma_R$)}:
+The SRG notes the high sensitivity of the
+model to the variance parameter assumed for recruitment deviations ($\sigma_R$, a
+parameter that is not directly observable). While the spawning biomass trajectories across
+values of $\sigma_R$ were very close to one another, the corresponding estimates of $R_0$ led
+to widely different estimates of stock status (relative spawning biomass). The JTC
+presented evidence that supported the value used in the assessment. {\bf The SRG
+encourages the JTC to explore methods for parameterizing recruitment and/or
+estimating $\sigma_R$ that would reduce model sensitivity to the value of this
+constraint}.
 
+% From Issue \#468:
+\emph{Response -- We thought of three avenues: 
+  (a) Try estimating $\sigma_R$ in MCMC runs while testing semi-parametric selectivity.
+  (b) Try estimating recruitment autocorellation to see what impact that has on the model
+  and whether it reduces sensitivity to choice of $\sigma_R$. 
+  (c) Use the Template Model Builder (TMB)
+  code developed by Nis Jacobsen for the Management Strategy Evaluation to explore
+  random effects treatment of recruitment variability.
+  However, due to time constraints (because of the US Government Shutdown), the JTC has 
+  been unable to investigate these.}
+
+2. The SRG notes that when setting values for other parameters that cannot be estimated
+directly with confidence, the choice of values should be made using methods that are
+objective, repeatable, and depend on fits to the observed data rather than on the model's
+subsequent estimates of biomass or recruitment. One clear example is setting the parameter
+controlling time-varying fishery selectivity ($\Phi$), with a goal of establishing repeatable steps
+for setting $\Phi$ each year. The SRG recommends that the JTC provide a review of how
+time-varying selectivity is parameterized and estimated in other assessments.
+
+\emph{Response -- **Due to time constraints the JTC has been unable to do this.} 
+   % (no need to keep mentioning the Shutdown, just for the first one)
+
+3. After reviewing the sensitivity analysis for minor corrections to the catch series, the SRG
+agrees that the assessment results were not significantly affected. {\bf However, the coding and
+database errors should be rectified as soon as possible.}
+
+\emph{Response -- **(Okay?:) These were rectified during the 2018 meeting (for the alternative catch stream
+sensitivity run), and have been permanently fixed.}
+
+
+4. The new histological analysis of ovaries for maturity, like previous analyses, showed a
+distinct difference in the percent of hake that are mature at age 2 and age 3 between areas,
+with a greater proportion mature south of Point Conception (34.47$^\circ$N). These data suggest
+that there may be two populations of hake, north and south of this boundary. The SRG also
+notes that ovaries collected in Canada were not used to update the maturity ogive. The hake
+found in Canada are generally older age fish and including samples of these fish in the
+maturity analysis should improve the robustness of the maturity ogive. The SRG strongly
+supports the planned genetic analyses to determine whether there are also genetic
+differences between these two southern regions and other regions as well. In addition,
+the SRG notes that Canadian samples should be included in the maturity analysis.
+
+\emph{Response -- **Use Ian's Issue \#464 text and refs.}
+
+
+5. The 2018 assessment diverged from past practice in its approach to determining the data
+weights applied to the age-composition data. Past assessments used an iterative approach
+(sometimes referred to as the McAllister-Ianelli approach) to arrive at these weightings. The
+2018 assessment incorporates the weightings as estimable parameters, thereby eliminating
+the need for iterative reweighting. This streamlines the assessment process and the SRG
+considers it to be a sensible and useful improvement. {\bf However, the SRG requests that the
+JTC provide thorough documentation of all changes in methods of data weighting.}
+
+\emph{Response -- **Issue \#463}
+
+6. The issue of data weighting remains a significant technical challenge for stock assessments
+(such as the Pacific hake assessment) that integrate information of different forms (e.g.,
+biomass indices and age compositions) from different sources (e.g., different fishing sectors).
+The SRG notes that the JTC has considered alternative schemes for data weighting such as
+the Francis (2011) method. {\bf The SRG notes that it would be useful for such explorations
+to be documented in future assessment reports, and requests that JTC perform a
+sensitivity analysis for this method in future assessments.}
+
+A potential issue related to data weighting that should be explored in the next assessment is
+the JTC's approach to deriving the initial set of data weightings associated with the fishery
+and survey age-composition observations. Table 5 in the assessment document shows the
+annual number of at-sea hauls and shore-based trips from which fish ages were incorporated
+into the age-composition series and the document states that ``initial sample sizes are simply
+the summed hauls and trips''. If there are changes in the number of fish associated with each
+sample unit (haul or trip) over time, one would expect a corresponding change in the
+information content of an age-composition sample. For example, there may have been more
+fish per sample in early years than later years, implying that the assessment model should
+provide a better fit to early samples than to later samples. The approach taken to deriving the
+initial data weights could account for changes in the number of fish per sampling unit.
+Alternatively, the Dirichlet multinomial parameter that accounts for variability in the age-
+composition observations could include a time-varying component to account for changes in
+the number of fish per sampling unit. {\bf The SRG recommends that the JTC include
+information in the next assessment on the annual numbers of fish underlying each
+annual age-composition observation and present an analysis of the potential influence
+of changes in sampling.}
+
+\emph{Response -- **Refer to Aaron's new sampling heatmap figure. Due to time constraints,
+  the JTC was unable to analyse the potential influence of changes in sampling.}
+
+7. {\bf The SRG requests that the estimates of total age-2$+$ biomass be included in Table 18 of
+the assessment report in the future.}
+
+\emph{Response -- This was done for the published version of the 2018
+  assessment, and for the 2019 (and future) assessments.}
+
+8. {\bf The SRG recommends that the JTC produce a table showing changes in model
+structure and parameterization that have been implemented since 2011 as a standard
+table to be included in the assessment document.}
+
+\emph{Response -- Due to time constraints the JTC has been unable to do this.} 
+
+Finally, we note that we have complied with the following request from the 2017 SRG
+concerning the sensitivity tests to perform in all future assessments:
+
+{\bf The SRG requests that future assessments, beginning with 2018, include the following key
+  sensitivity tests: natural mortality, stock-recruit steepness ($h$), $\sigma_r$,
+  inclusion of the age-1 index, and exploring the degree of flexibility in time-varying
+  selectivity or the $\phi$ parameter, as well as any others the JTC deems appropriate.}
 
 
 **These are all from the 2018 assessment (based on 2017 SRG); keep for now for
