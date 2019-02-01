@@ -1,4 +1,4 @@
-% assessment-section.rnw
+﻿% assessment-section.rnw
 
 % \clearpage
 
@@ -390,7 +390,7 @@ reference, then delete:
 
 \subsubsection{Changes from \Sexpr{last.assess.yr} }\label{sec:assessment-changes}
 
-**Update once bridging finalised
+**Update once bridging finalised - done 1/31/19, AMB
 
 A set of `bridging' models was constructed to evaluate the component-specific
 effects of all changes from the \Sexpr{last.assess.yr} base model to
@@ -398,132 +398,77 @@ the \Sexpr{assess.yr} base model.
 
 In short, these included the following
 \begin{itemize}
-  \item Update the Stock Synthesis modeling software from version 3.24 to 
-    version 3.30.
-  \item Update data from years prior to 2017.
-  \item Add 2017 total catch.
-  \item Add 2017 survey biomass estimate.
-  \item Add 2017 survey age composition.
-  \item Add 2017 fishery ages and update associated settings related to 
-    recruitment.
-  \item Tune the model (apply the McAllister-Ianelli data-weighting method).
-  \item Switch to Dirichlet-Multinomial likelihood for age compositions.
-  \item Update the estimates of maturity and fecundity.
+  \item Update catch data from years prior to 2018.
+  \item Update age composition data from years prior to 2018.
+  \item Update weight-at-age data from years prior to 2018
+  \item Add 2018 total catch.
+  \item Add 2018 survey age composition and weight-at-age data.
+  \item Change fecundity (calcualted as weight-at-age multiplied by maturity) 
+  from being time-invariant (using a single catch-weighted average of weight-at-age
+  over all years) to time-varying (using year-specific weight-at-age).    
 \end{itemize}
 
-In general, these changes mimic the steps routinely applied, with a few 
-exceptions requiring additional explanation. 
-**Prob delete rest of this: Stock Synthesis (SS) version 3.30 includes a large
-number of new features and behind-the-scenes changes which are described in
-detail in \citet{MethotEtAl2018}. It has been extensively tested prior to 
-release and used in 2017 for at least six stock assessments for species
-managed under the Pacific Fishery Management Council.
+In general, these changes mimic the steps routinely applied, with a single 
+exception requiring additional explanation. 
 
-**Think can delete all this [double check $\Phi$ explained elsewhere]
-One change between the two Stock Synthesis versions with significance for this 
-assessment is a change in the options for how time-varying parameters 
-are represented. In SS 3.24,
-time-varying parameters could have a logistic transformation applied to ensure
-that adjusted parameter values stay within certain bounds. The 
-parameter deviations were applied in a logistic space and the resulting values
-were transformed back into the normal parameter space. This option was not
-included in SS version 3.30 because it was found to make interpretation of the
-parameter values more difficult and appropriate adjustment of parameter bounds
-made the transformation unnecessary. Recent hake assessments used the 
-logistic transformation for the time-varying selectivity parameters, so
-the conversion of the 2017 assessment to the newer software required an
-adaptation to account for this option no longer being available. In particular, 
-the $\phi$ parameter controlling the flexibility of the
-variability associated with fishery selectivity (which was increased from $\phi=0.03$
-in the 2016 assessment to $\phi=0.20$ in the 2017 assessment) no longer
-had the same effect when applied in the standard instead of logistic 
-parameter space. An analysis of the transformation, 
-described in Section~\ref{sec:data-variability-selectivity}, estimated that 
-the $\phi=0.20$ applied in the logistic parameter space in the 2017 assessment
-could be converted to $\Phi=1.40$ applied in the standard parameter space.  
-Exploration of higher and lower $\Phi$ values confirmed that the model 
-with $\Phi=1.40$ provided the best approximation to the 2017 base model 
-as measured by both the resulting pattern of fishery selectivity over 
-time and the estimated time series of spawning biomass. Overall, the results
-of the switch to SS 3.30 had only subtle impacts on the model results
-(Figure~\ref{fig:main-bridge-biomass}).
-
-**The bridging step ``Update data from years prior to 2017'' was primarily a 
-change to the fishery ages, where a few additional samples from previous years, 
-especially from the end of 2016 that were not available in time for the \Sexpr{last.assess.yr}
+The first set of bridging steps were conducted to ``Update'' data prior to 2018. 
+This primarily included minor adjustments in catch, fishery age composition, and
+weight-at-age values, where a few additional samples from previous years, 
+especially from the end of 2017 that were not available in time for the \Sexpr{last.assess.yr}
 assessment were now included. These changes were small enough that they had
 little impact on the model results (Figure~\ref{fig:main-bridge-biomass}).
 
 The addition of 2018 catch allowed the model to be 
-extended to the start of 2019, but the estimates for 2019 remaining highly uncertain 
+extended to the start of 2019, but the estimates for 2019 remained highly uncertain 
 (Figure~\ref{fig:main-bridge-5-panel}) in the absence of additional information 
 about recent recruitment.
-The change with the biggest impact was **
 %the addition of the 2017 survey biomass 
 %estimate, which reduced the estimated size of the 2014 year class, bringing 
 %down the estimated spawning biomass at the end of the time series as well as 
 %reducing the uncertainty.
-**The addition of the age compositions for the 
-% survey and
-fishery had relatively little additional impact on the biomass
-estimates, indicating that the observed ages were consistent with the model
-estimates without those data (**Figure~\ref{fig:main-bridge-5-panel}).
+The addition of 2018 fishery age composition information 
+% and survey
+had relatively little additional impact on the biomass
+estimates, indicating that the observed 2018 ages were consistent with the model
+estimates without those data (**Figure~\ref{fig:main-bridge-5-panel}).  However, 
+the addition of these data did slightly alter recent recruitment
+estimates, including an increase in the estimated size of the 2016 year class.
 
-**The addition of the fishery ages in
-``Add 2017 fishery ages and updated associated settings 
-related to recruitment'' combined multiple elements that should  
-be associated with each other. The assessment model separates the main 
+In addition to fishery ages, this bridging step also included adding 2018 weight-at-age
+data and updating other associated settings related to recruitment, combining multiple 
+elements that should be associated with each other. The assessment model separates the main 
 vector of recruitment deviations from those applied in the forecast, 
 because the deviations in 
 the `main' period are modeled as summing to zero to ensure that they are
 equally balanced around the stock-recruit relationship. If forecast deviations
 were included in this vector, this zero-sum constraint would have the potential
 to cause those forecast deviations to differ from zero, even in the absence of 
-any data for the forecast years. 
-The addition of the 2017 fishery data, which included small numbers of age-1
-fish from the 2016 cohort, meant that it was now necessary to 
-shift the endpoint of the main vector of recruitment deviations
-to include 2016. 
-% 2017 was including [**not included???] in the vector of forecast deviations 
-% since there is not yet any information available on the 2017 cohort. 
-The settings related to avoiding bias in recruitment estimation, based on 
-the method proposed by \citet{MethotTaylor2011}, were
+any data for the forecast years. The addition of the 2018 fishery data, which
+included a relatively higher number of age-1 fish from the 2017 cohort and
+age-2 fish from the 2016 cohort, meant that
+it was necessary to shift the endpoint of the main vector of recruitment deviations
+to include 2017. The settings related to avoiding bias in recruitment estimation, 
+based on the method proposed by \citet{MethotTaylor2011}, were
 also shifted by 1 year as part of this same bridging step, to account for 
-the addition of information about recruitment for the 2016 cohort.
+the addition of information about recruitment for the 2017 cohort.
 Finally, this bridging step also shifted the ending year of the deviations
-in the selectivity parameters from 2016 to 2017 since there was now fishery
-data in 2017.
+in the selectivity parameters from 2017 to 2018 since there was now fishery
+data in 2018.
 
-**The bridging steps 
-``Tune the model (apply the McAllister-Ianelli data-weighting method)''
-and ``Switch to Dirichlet-Multinomial likelihood for age compositions''
-were not sequential, but rather alternative data-weighting approaches that
-produced similar results (Figure~\ref{fig:main-bridge-4-panel}).
-The Dirichlet-Multinomial method represents a replacement of the status-quo
-McAllister-Ianelli data-weighting method as described in
-Section~\ref{sec:data-age-comp-likelihood}. The choice to
-switch to the new likelihood was based on practical considerations, but the
-overall model results showed little impact of the switch.
-
-**The final bridging step ``Update the estimates of maturity and fecundity''
-represents an update to the estimated fecundity-at-age as discussed in 
-Section~\ref{sec:data-maturity}. This caused a visible change in the time series
+The final bridging step (Time-varying fecundity (= base model), as discussed
+in Section~\ref{sec:data-maturity})
+resulted in the biggest change to current biomass and became the 2019 base model.  Fecundity
+(calcualted as weight-at-age multiplied by maturity) changed from being time-invariant
+(i.e., using a single catch-weighted average of weight-at-age over all years)
+to time-varying. In this case, fecundity was based on year specific weight-at-age
+over years with data (1975-2018). For periods without data (pre-1975 and post-2018), 
+catch-weighted average weight-at-age was used (see Section~\ref{sec:data-maturity}
+and Section~\ref{sec:data-weight-at-age}for more details).  The results of this
+step caused a visible change in the time series
 of spawning biomass (Figure~\ref{fig:main-bridge-4-panel}) 
-as the fecundity of all cohorts were different and the less
-smooth maturity ogive leads to larger variability in the time series of spawning
-biomass. The new fecundity has a larger increase from age~2 to age~3
-than that used previously
-(Figure~\ref{fig:main-maturity}), causing a more abrupt increase in 
-spawning biomass in years where large cohorts reach age 3, such as 
-1983, 1987, 2002, and 2013. These increases are
-followed by faster declines in spawning biomass when the cohorts reach age 5
-as the updated fecundity shows a smaller increase from age~4 to~5 
-than that used previously, such that the loss due to mortality is greater
-in comparison. The estimated decline in fecundity due to 
-senescence and skip spawning from age 13 onward also reduces the estimates of
-spawning biomass at the initial equilibrium and in the early part of the time
-series where there were more old individuals than in the following years with
-higher fishing intensity. In spite of these changes to the estimated
+as the fecundity of all cohorts were different leading to variability in the
+time series of spawning
+biomass. In spite of these changes to the estimated
 spawning biomass, this bridging step had little impact
 on recruitment, since the stock-recruit relationship indicates a 
 relatively weak link between spawning biomass and recruitment (see below).
