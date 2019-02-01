@@ -644,13 +644,8 @@ the sensitivity of the alternative run to removing this inconsistency showed
 relatively little change in results.''
 
 This inconsistency is resolved for all runs in 2019.
-% [Hence wtatage.ss has -2018 rows for fecundity
-%  and for the weight-at-age matrices]. 
-
-These changes meant that Stock Synthesis did not converge, but this was overcome
-by changing the initial value for the numerical algorithms (not the prior) of
-the steepness of paramater $h$ from 0.88 to 0.95. This was done for the new base
-case (bridging **run~43 shows no effect, **see section **).
+% Hence wtatage.ss has -2018 rows for fecundity
+%  and for the weight-at-age matrices.
 
 \subsubsection{Assessment model results}\label{sec:assessment-model-results}
 \subsubsub{Model Fit}
