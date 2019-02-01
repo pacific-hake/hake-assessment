@@ -444,7 +444,7 @@ resulted in the biggest change to current biomass and became the 2019 base model
 (i.e., using a single catch-weighted average of weight-at-age over all years)
 to time-varying. In this case, fecundity was based on year specific weight-at-age
 over years with data (1975-2018). For periods without data (pre-1975 and post-2018), 
-catch-weighted average weight-at-age was used (see Section~\ref{sec:data-maturity}
+catch-weighted average weight-at-age was used (see Section~\ref{sec:assessment-weights}
 and Section~\ref{sec:data-weight-at-age}for more details).  The results of this
 step caused a visible change in the time series
 of spawning biomass (Figure~\ref{fig:main-bridge-4-panel}) 
