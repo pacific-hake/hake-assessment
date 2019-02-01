@@ -1,4 +1,4 @@
-% assessment-section.rnw
+﻿% assessment-section.rnw
 
 % \clearpage
 
@@ -193,21 +193,17 @@ A Glossary of terms appears in Appendix~\ref{chap:glossary}.
 
 \subsection{Response to 2018 Scientific Review Group (SRG) review}\label{sec:assessment-response-review}
 
-**Andy will update this when can build doc again, at the moment it's just part 1
-as I needed that the other day.
+The Scientific Review Group (SRG) meeting was held from February 26 to March 2, 2018
+at the Lynnwood Convention Center, Lynnwood, WA, USA.
 
-**The Scientific Review Group (SRG) meeting was held from February 14--16, 2017, at the 
-Morris J.~Wosk Centre for Dialogue, Vancouver, BC, Canada.
 
-**The following are the Assessment Recommendations from the 2017
+The following are the `Assessment Recommendations and Conclusions' from the 2018
 SRG report, and associated responses from the JTC:
-
-The SRG has several recommendations for future iterations of the hake stock assessment.
 
 1. The stock assessment results and stock status are highly sensitive to two aspects of the
 model:
 
-(i) Weights-at-age: Maturity-at-age was recalculated in the 2018 assessment
+(i) \underline{Weights-at-age}: Maturity-at-age was recalculated in the 2018 assessment
 based on an analysis of ovaries collected during the fishery and survey in
 recent years to produce an empirical vector of the proportion mature (i.e., that
 will likely spawn) at each age.  Spawning biomass in the base-case model is
@@ -225,7 +221,7 @@ this sensitivity an assumption was made that for calculating spawning biomass in
 2018 and future projections, average weight-at-age in the most recent 3 years of
 data be used; and for calculating spawning biomass in the unfished state and
 years before 1975, the average weight-at-age in the first 5 years of data
-(1975-1979) be used. [The alternative model maintained the base model’s approach
+(1975-1979) be used. [The alternative model maintained the base model's approach
 for estimating total biomass prior to 1975 and also in projections (using the
 weights-at-age averaged over 1975 to 2017). The SRG has requested that the JTC
 apply calculations for these periods consistent with decisions taken at this
@@ -235,162 +231,130 @@ environmental drivers, and fishing-induced evolution. {\bf The SRG requests that
 JTC examine the historical weights-at-age data, evaluate approaches for
 parameterizing fecundity-at-age for years without data (pre-1975), and evaluate
 other methods of deriving biological reference points such as $B_0$}.
-\emph{Response -- **write something here referencing the new section below.}
+
+\emph{Response -- **write something short here referencing the new Section \ref{sec:assessment-weights}}
 
 
-(ii) ...
+(ii) \underline{Variance in recruitment deviations ($\sigma_R$)}:
+The SRG notes the high sensitivity of the
+model to the variance parameter assumed for recruitment deviations ($\sigma_R$, a
+parameter that is not directly observable). While the spawning biomass trajectories across
+values of $\sigma_R$ were very close to one another, the corresponding estimates of $R_0$ led
+to widely different estimates of stock status (relative spawning biomass). The JTC
+presented evidence that supported the value used in the assessment. {\bf The SRG
+encourages the JTC to explore methods for parameterizing recruitment and/or
+estimating $\sigma_R$ that would reduce model sensitivity to the value of this
+constraint}.
+
+% From Issue \#468:
+\emph{Response -- We thought of three avenues: 
+  (a) Try estimating $\sigma_R$ in MCMC runs while testing semi-parametric selectivity.
+  (b) Try estimating recruitment autocorellation to see what impact that has on the model
+  and whether it reduces sensitivity to choice of $\sigma_R$. 
+  (c) Use the Template Model Builder (TMB)
+  code developed by Nis Jacobsen for the Management Strategy Evaluation to explore
+  random effects treatment of recruitment variability.
+  However, due to time constraints (because of the US Government Shutdown), the JTC has 
+  been unable to investigate these.}
+
+2. The SRG notes that when setting values for other parameters that cannot be estimated
+directly with confidence, the choice of values should be made using methods that are
+objective, repeatable, and depend on fits to the observed data rather than on the model's
+subsequent estimates of biomass or recruitment. One clear example is setting the parameter
+controlling time-varying fishery selectivity ($\Phi$), with a goal of establishing repeatable steps
+for setting $\Phi$ each year. The SRG recommends that the JTC provide a review of how
+time-varying selectivity is parameterized and estimated in other assessments.
+
+\emph{Response -- **Due to time constraints the JTC has been unable to do this.} 
+   % (no need to keep mentioning the Shutdown, just for the first one)
+
+3. After reviewing the sensitivity analysis for minor corrections to the catch series, the SRG
+agrees that the assessment results were not significantly affected. {\bf However, the coding and
+database errors should be rectified as soon as possible.}
+
+\emph{Response -- **(Okay?:) These were rectified during the 2018 meeting (for the alternative catch stream
+sensitivity run), and have been permanently fixed.}
 
 
+4. The new histological analysis of ovaries for maturity, like previous analyses, showed a
+distinct difference in the percent of hake that are mature at age 2 and age 3 between areas,
+with a greater proportion mature south of Point Conception (34.47$^\circ$N). These data suggest
+that there may be two populations of hake, north and south of this boundary. The SRG also
+notes that ovaries collected in Canada were not used to update the maturity ogive. The hake
+found in Canada are generally older age fish and including samples of these fish in the
+maturity analysis should improve the robustness of the maturity ogive. The SRG strongly
+supports the planned genetic analyses to determine whether there are also genetic
+differences between these two southern regions and other regions as well. In addition,
+the SRG notes that Canadian samples should be included in the maturity analysis.
 
-**These are all from the 2018 assessment (based on 2017 SRG); keep for now for
-reference, then delete:
+\emph{Response -- **Use Ian's Issue \#464 text and refs.}
 
-\begin{itemize}
-  
-\item In the current assessment, the change from $\phi = 0.03$ to $\phi = 0.2$
-  has a large effect on fisheries selectivity in all years, as well as on the
-  estimate of 2017 female spawning biomass. The SRG is concerned about the
-  broad-reaching impact of this change, intended to reduce an anomalously high
-  2014 recruitment estimate informed solely by fishery catch-at-age data. As
-  discussed above, the SRG recommends continued work on evaluating the impact of
-  flexibility in time-varying selectivity and a more objective way of determining
-  an appropriate value of $\phi$ (or other parameterizations of time-varying
-  selectivity) for future assessments.
 
-  \emph{Response -- The JTC has conducted several analyses in response to this 
-    request including evaluating alternative $\phi$ values in sensitivity trials 
-    and exploring an alternative ``semi-parametric'' parameterization of the 
-    approach to specifying time-varying selectivity, all described in 
-    Section~\ref{sec:assessment-sensitivity-analyses}. Although the 
-    semi-parametric option shows promise, no considered alternative was a clear
-    improvement over the status-quo parameterization with the larger $\phi$ 
-    value (previously $\phi = 0.2$ but now converted to $\Phi = 1.4$ after
-    removing a logistic transformation as described in 
-    Section~\ref{sec:assessment-changes}). 
-    The data from 2017 suggest that the 2014 cohort was more 
-    in line with the estimates from the model with more (rather than less) flexible
-    fishery selectivity (larger $\phi$), providing support for maintaining that 
-    flexibility for this year.}
+5. The 2018 assessment diverged from past practice in its approach to determining the data
+weights applied to the age-composition data. Past assessments used an iterative approach
+(sometimes referred to as the McAllister-Ianelli approach) to arrive at these weightings. The
+2018 assessment incorporates the weightings as estimable parameters, thereby eliminating
+the need for iterative reweighting. This streamlines the assessment process and the SRG
+considers it to be a sensible and useful improvement. {\bf However, the SRG requests that the
+JTC provide thorough documentation of all changes in methods of data weighting.}
 
-\item The next priority for 2018 is processing the archived ovary collections of
-  Pacific Hake, and re-estimating the maturity schedule based on histological
-  techniques. Three issues are of particular interest: addressing the question of
-  different maturity schedules north and south of Point Conception (34.5$^\circ$~N);
-  bringing the stock assessment up to date given that the current assessment is
-  based on information more than 20 years old from \citet{DornSaunders1997}; and
-  assessing whether maturity is more dependent upon age or upon weight. If
-  maturity is more dependent on weight, then the assessment model would need
-  revisions to obtain maturity-at-age from the empirical weight-at-age-and-year
-  matrices, resulting in variable proportions of mature fish-at-age in each year.
+\emph{Response -- **Issue \#463}
 
-  \emph{Response -- The JTC worked with the Northwest Fisheries Science Center
-    (NWFSC) to estimate a new functional maturity ogive included in the base model
-    which is based on histological examination of 1,947 ovary samples with ages 
-    from north of 34.44$^\circ$~N, as discussed in 
-    sections~\ref{sec:data-maturity},~\ref{sec:assessment-modeling-results}, 
-    and~\ref{sec:assessment-sensitivity-analyses}. 
-    A thorough analysis of whether maturity is more dependent upon age or 
-    upon weight has not yet been completed although the greatest variability
-    in weight occurs at older ages which are mostly mature.
-    Models were explored that assumed fecundity-at-age varied over 
-    time in proportion to mean weight-at-age, but the impact of that 
-    alternative assumption was small due to the 
-    weak link between recruitment and spawning biomass and the 
-    lack of information about weight-at-age in the unfished equilibrium.
-    Further analysis of the relationships 
-    between fecundity, age, and weight would depend upon collecting whole ovaries
-    rather than ovary samples. The difference in 
-    maturity between fish sampled north and south of Point Conception is strongly
-    evident when considering maturity-at-age as well as maturity-at-length, and
-    NWFSC is seeking to conduct genetic analyses that could test whether
-    the southern samples are from a distinct stock.}
-  
-\item The SRG notes that MCMC convergence diagnostics for the 2017 base model
-  pointed towards the need for a longer MCMC chain (24~million rather than 
-  12~million in length) in the 2017 assessment. We recommend that for the 2018
-  assessment, the JTC investigate running longer MCMC chains, into retaining a
-  higher number of samples than the current 999 samples for greater precision, and
-  look into more efficient methods of obtaining Bayesian posteriors if available
-  (e.g., \citealt{MonnahanThorsonEtAl17}).
+6. The issue of data weighting remains a significant technical challenge for stock assessments
+(such as the Pacific hake assessment) that integrate information of different forms (e.g.,
+biomass indices and age compositions) from different sources (e.g., different fishing sectors).
+The SRG notes that the JTC has considered alternative schemes for data weighting such as
+the Francis (2011) method. {\bf The SRG notes that it would be useful for such explorations
+to be documented in future assessment reports, and requests that JTC perform a
+sensitivity analysis for this method in future assessments.}
 
-  \emph{Response -- The JTC ran multiple MCMC algorithms in response to this request,
-  including alternative chain lengths (12 million and 24 million), sample lengths 
-  (1,200, 999 saved after burn-in; and 2,400, 2,000 saved after burn-in), and chains.
-  In addition to standard single chain MCMC convergence 
-  diagnostics, we also evaluated multi-chain diagnostics (Gelman-Rubin) that compare
-  within-chain and among-chain variances to further diagnose convergence.  The R package
-  `adnuts' has recently been incorporated into the new 12.0 version of ADMB, and we expect to 
-  further explore more efficient methods for obtaining Bayesian posteriors once 
-  Stock Synthesis has been compiled and fully tested with this new version.} 
-  
-\item The list of sensitivity tests presented in the 2017 assessment covers the
-  major axes of uncertainty and should be continued in future assessments,
-  including the sensitivity tests for alternative values for $\sigma_r$ (which sets
-  variability around the theoretical recruitment model) of 1.0 and 2.0. The SRG
-  requests that future assessments, beginning with 2018, include the following key
+A potential issue related to data weighting that should be explored in the next assessment is
+the JTC's approach to deriving the initial set of data weightings associated with the fishery
+and survey age-composition observations. Table 5 in the assessment document shows the
+annual number of at-sea hauls and shore-based trips from which fish ages were incorporated
+into the age-composition series and the document states that ``initial sample sizes are simply
+the summed hauls and trips''. If there are changes in the number of fish associated with each
+sample unit (haul or trip) over time, one would expect a corresponding change in the
+information content of an age-composition sample. For example, there may have been more
+fish per sample in early years than later years, implying that the assessment model should
+provide a better fit to early samples than to later samples. The approach taken to deriving the
+initial data weights could account for changes in the number of fish per sampling unit.
+Alternatively, the Dirichlet multinomial parameter that accounts for variability in the age-
+composition observations could include a time-varying component to account for changes in
+the number of fish per sampling unit. {\bf The SRG recommends that the JTC include
+information in the next assessment on the annual numbers of fish underlying each
+annual age-composition observation and present an analysis of the potential influence
+of changes in sampling.}
+
+\emph{Response -- **Refer to Aaron's new sampling heatmap figure. Due to time constraints,
+  the JTC was unable to analyse the potential influence of changes in sampling.}
+
+7. {\bf The SRG requests that the estimates of total age-2$+$ biomass be included in Table 18 of
+the assessment report in the future.}
+
+\emph{Response -- This was done for the published version of the 2018
+  assessment, and for the 2019 (and future) assessments.}
+
+8. {\bf The SRG recommends that the JTC produce a table showing changes in model
+structure and parameterization that have been implemented since 2011 as a standard
+table to be included in the assessment document.}
+
+\emph{Response -- Due to time constraints the JTC has been unable to do this.} 
+
+Finally, we note that we have complied with the following request from the 2017 SRG
+concerning the sensitivity tests to perform in all future assessments:
+
+{\bf The SRG requests that future assessments, beginning with 2018, include the following key
   sensitivity tests: natural mortality, stock-recruit steepness ($h$), $\sigma_r$,
   inclusion of the age-1 index, and exploring the degree of flexibility in time-varying
-  selectivity or the $\phi$ parameter, as well as any others the JTC deems appropriate.
+  selectivity or the $\phi$ parameter, as well as any others the JTC deems appropriate.}
 
-  \emph{Response -- The 2018 assessment includes all of the key sensitivities that
-  the SRG requested.  Many other sensitivity model runs were conducted during the
-  development of the base model and to explore different than base model assumptions, 
-  including sources of data, model structural assumptions, and parameterizations. 
-  The main sensitivity runs, including those related to time-varying selectivity,
-  are discussed further under Section~\ref{sec:assessment-sensitivity-analyses}.}
-  
-\item The SRG supports continued development of an age-1 index from the acoustic
-  survey, and recommends continuing to run sensitivity tests in future assessments
-  fitted to the current provisional age-1 index. This index is most important in
-  years where auxiliary information is needed to assess the likelihood of small or
-  large recruitment events that are influential in projections, but highly
-  uncertain.
-
-  \emph{Response -- The 2018 assessment includes a sensitivity model run that 
-  incorporates the acoustic survey age-1 index (see Figures~\ref{fig:main-backscatter-map-age1},~\ref{fig:main-biomass-base-alternative-2}, and~\ref{fig:main-status-base-alternative-2}).  The age-1 index time series was 
-  extended to include the age-1 estimate for 2017. The age-1 index is used 
-  in this stock assessment as a sensitivity because the survey is not specifically
-  designed to survey age-1 hake and uncertainty associated with each estimate is 
-  unknown.}
-  
-\item Current biological evidence does not support including Pacific Hake south
-  of Point Conception (34.5$^\circ$~N) in the assessment. The SRG encourages
-  ongoing collection and analysis of genetic material in both Canadian and US
-  waters to resolve stock structure in the California Current.
-
-  \emph{Response -- The JTC continues to support this recommendation.}
-  
-\item The following two recommendations are to fulfill requests for specific
-  information by the AP representatives:
- \begin{itemize}
-   \item A table providing exploitation rates by age and year be added to 
-     future assessment documents.
-   \item A table in future assessment documents reporting on the model
-     estimates of the annual weight of each cohorts that is caught,
-     dies from natural mortality, and lives, by year.
-  \end{itemize}
-  
-  \emph{Response -- The exploitation rates by age and year 
-    were included in the final version of the 2017
-    assessment \citep{JTC2017} as Table~22. We also presented   
-    estimated biomass-at-age at the beginning of each year (Table~21),
-    and catch-at-age in numbers (Table~23) and biomass (Table~24) for each year.
-    We included the requested estimated fate of cohorts for the strongest cohorts
-    only (Table~25) to restrict the length of the assessment document.  Tables that
-    include the fate of other cohorts can be accommodated upon request. These tables 
-    are included in this \Sexpr{assess.yr} assessment as 
-    Tables~\ref{tab:main-est-exp-rate-at-age},
-    \ref{tab:main-est-biomass-at-age}, \ref{tab:main-est-catch-at-age},
-    \ref{tab:main-est-catch-at-age-biomass} and \ref{tab:main-cohort-effects},
-    respectively.}
-    
-\end{itemize}
 
 \subsection{Modeling results}\label{sec:assessment-modeling-results}
 
 \subsubsection{Changes from \Sexpr{last.assess.yr} }\label{sec:assessment-changes}
 
-**Update once bridging finalised
+**Update once bridging finalised - done 1/31/19, AMB
 
 A set of `bridging' models was constructed to evaluate the component-specific
 effects of all changes from the \Sexpr{last.assess.yr} base model to
@@ -398,141 +362,86 @@ the \Sexpr{assess.yr} base model.
 
 In short, these included the following
 \begin{itemize}
-  \item Update the Stock Synthesis modeling software from version 3.24 to 
-    version 3.30.
-  \item Update data from years prior to 2017.
-  \item Add 2017 total catch.
-  \item Add 2017 survey biomass estimate.
-  \item Add 2017 survey age composition.
-  \item Add 2017 fishery ages and update associated settings related to 
-    recruitment.
-  \item Tune the model (apply the McAllister-Ianelli data-weighting method).
-  \item Switch to Dirichlet-Multinomial likelihood for age compositions.
-  \item Update the estimates of maturity and fecundity.
+  \item Update catch data from years prior to 2018.
+  \item Update age composition data from years prior to 2018.
+  \item Update weight-at-age data from years prior to 2018
+  \item Add 2018 total catch.
+  \item Add 2018 survey age composition and weight-at-age data.
+  \item Change fecundity (calcualted as weight-at-age multiplied by maturity) 
+  from being time-invariant (using a single catch-weighted average of weight-at-age
+  over all years) to time-varying (using year-specific weight-at-age).    
 \end{itemize}
 
-In general, these changes mimic the steps routinely applied, with a few 
-exceptions requiring additional explanation. 
-**Prob delete rest of this: Stock Synthesis (SS) version 3.30 includes a large
-number of new features and behind-the-scenes changes which are described in
-detail in \citet{MethotEtAl2018}. It has been extensively tested prior to 
-release and used in 2017 for at least six stock assessments for species
-managed under the Pacific Fishery Management Council.
+In general, these changes mimic the steps routinely applied, with a single 
+exception requiring additional explanation. 
 
-**Think can delete all this [double check $\Phi$ explained elsewhere]
-One change between the two Stock Synthesis versions with significance for this 
-assessment is a change in the options for how time-varying parameters 
-are represented. In SS 3.24,
-time-varying parameters could have a logistic transformation applied to ensure
-that adjusted parameter values stay within certain bounds. The 
-parameter deviations were applied in a logistic space and the resulting values
-were transformed back into the normal parameter space. This option was not
-included in SS version 3.30 because it was found to make interpretation of the
-parameter values more difficult and appropriate adjustment of parameter bounds
-made the transformation unnecessary. Recent hake assessments used the 
-logistic transformation for the time-varying selectivity parameters, so
-the conversion of the 2017 assessment to the newer software required an
-adaptation to account for this option no longer being available. In particular, 
-the $\phi$ parameter controlling the flexibility of the
-variability associated with fishery selectivity (which was increased from $\phi=0.03$
-in the 2016 assessment to $\phi=0.20$ in the 2017 assessment) no longer
-had the same effect when applied in the standard instead of logistic 
-parameter space. An analysis of the transformation, 
-described in Section~\ref{sec:data-variability-selectivity}, estimated that 
-the $\phi=0.20$ applied in the logistic parameter space in the 2017 assessment
-could be converted to $\Phi=1.40$ applied in the standard parameter space.  
-Exploration of higher and lower $\Phi$ values confirmed that the model 
-with $\Phi=1.40$ provided the best approximation to the 2017 base model 
-as measured by both the resulting pattern of fishery selectivity over 
-time and the estimated time series of spawning biomass. Overall, the results
-of the switch to SS 3.30 had only subtle impacts on the model results
-(Figure~\ref{fig:main-bridge-biomass}).
-
-**The bridging step ``Update data from years prior to 2017'' was primarily a 
-change to the fishery ages, where a few additional samples from previous years, 
-especially from the end of 2016 that were not available in time for the \Sexpr{last.assess.yr}
+The first set of bridging steps were conducted to ``Update'' data prior to 2018. 
+This primarily included minor adjustments in catch, fishery age composition, and
+weight-at-age values, where a few additional samples from previous years, 
+especially from the end of 2017 that were not available in time for the \Sexpr{last.assess.yr}
 assessment were now included. These changes were small enough that they had
 little impact on the model results (Figure~\ref{fig:main-bridge-biomass}).
 
 The addition of 2018 catch allowed the model to be 
-extended to the start of 2019, but the estimates for 2019 remaining highly uncertain 
+extended to the start of 2019, but the estimates for 2019 remained highly uncertain 
 (Figure~\ref{fig:main-bridge-5-panel}) in the absence of additional information 
 about recent recruitment.
-The change with the biggest impact was **
 %the addition of the 2017 survey biomass 
 %estimate, which reduced the estimated size of the 2014 year class, bringing 
 %down the estimated spawning biomass at the end of the time series as well as 
 %reducing the uncertainty.
-**The addition of the age compositions for the 
-% survey and
-fishery had relatively little additional impact on the biomass
-estimates, indicating that the observed ages were consistent with the model
-estimates without those data (**Figure~\ref{fig:main-bridge-5-panel}).
+The addition of 2018 fishery age composition information 
+% and survey
+had relatively little additional impact on the biomass
+estimates, indicating that the observed 2018 ages were consistent with the model
+estimates without those data (**Figure~\ref{fig:main-bridge-5-panel}).  However, 
+the addition of these data did slightly alter recent recruitment
+estimates, including an increase in the estimated size of the 2016 year class.
 
-**The addition of the fishery ages in
-``Add 2017 fishery ages and updated associated settings 
-related to recruitment'' combined multiple elements that should  
-be associated with each other. The assessment model separates the main 
+In addition to fishery ages, this bridging step also included adding 2018 weight-at-age
+data and updating other associated settings related to recruitment, combining multiple 
+elements that should be associated with each other. The assessment model separates the main 
 vector of recruitment deviations from those applied in the forecast, 
 because the deviations in 
 the `main' period are modeled as summing to zero to ensure that they are
 equally balanced around the stock-recruit relationship. If forecast deviations
 were included in this vector, this zero-sum constraint would have the potential
 to cause those forecast deviations to differ from zero, even in the absence of 
-any data for the forecast years. 
-The addition of the 2017 fishery data, which included small numbers of age-1
-fish from the 2016 cohort, meant that it was now necessary to 
-shift the endpoint of the main vector of recruitment deviations
-to include 2016. 
-% 2017 was including [**not included???] in the vector of forecast deviations 
-% since there is not yet any information available on the 2017 cohort. 
-The settings related to avoiding bias in recruitment estimation, based on 
-the method proposed by \citet{MethotTaylor2011}, were
+any data for the forecast years. The addition of the 2018 fishery data, which
+included a relatively higher number of age-1 fish from the 2017 cohort and
+age-2 fish from the 2016 cohort, meant that
+it was necessary to shift the endpoint of the main vector of recruitment deviations
+to include 2017. The settings related to avoiding bias in recruitment estimation, 
+based on the method proposed by \citet{MethotTaylor2011}, were
 also shifted by 1 year as part of this same bridging step, to account for 
-the addition of information about recruitment for the 2016 cohort.
+the addition of information about recruitment for the 2017 cohort.
 Finally, this bridging step also shifted the ending year of the deviations
-in the selectivity parameters from 2016 to 2017 since there was now fishery
-data in 2017.
+in the selectivity parameters from 2017 to 2018 since there was now fishery
+data in 2018.
 
-**The bridging steps 
-``Tune the model (apply the McAllister-Ianelli data-weighting method)''
-and ``Switch to Dirichlet-Multinomial likelihood for age compositions''
-were not sequential, but rather alternative data-weighting approaches that
-produced similar results (Figure~\ref{fig:main-bridge-4-panel}).
-The Dirichlet-Multinomial method represents a replacement of the status-quo
-McAllister-Ianelli data-weighting method as described in
-Section~\ref{sec:data-age-comp-likelihood}. The choice to
-switch to the new likelihood was based on practical considerations, but the
-overall model results showed little impact of the switch.
-
-**The final bridging step ``Update the estimates of maturity and fecundity''
-represents an update to the estimated fecundity-at-age as discussed in 
-Section~\ref{sec:data-maturity}. This caused a visible change in the time series
+The final bridging step (Time-varying fecundity (= base model), as discussed
+in Section~\ref{sec:data-maturity})
+resulted in the biggest change to current biomass and became the 2019 base model.  Fecundity
+(calcualted as weight-at-age multiplied by maturity) changed from being time-invariant
+(i.e., using a single catch-weighted average of weight-at-age over all years)
+to time-varying. In this case, fecundity was based on year specific weight-at-age
+over years with data (1975-2018). For periods without data (pre-1975 and post-2018), 
+catch-weighted average weight-at-age was used (see Section~\ref{sec:data-maturity}
+and Section~\ref{sec:data-weight-at-age}for more details).  The results of this
+step caused a visible change in the time series
 of spawning biomass (Figure~\ref{fig:main-bridge-4-panel}) 
-as the fecundity of all cohorts were different and the less
-smooth maturity ogive leads to larger variability in the time series of spawning
-biomass. The new fecundity has a larger increase from age~2 to age~3
-than that used previously
-(Figure~\ref{fig:main-maturity}), causing a more abrupt increase in 
-spawning biomass in years where large cohorts reach age 3, such as 
-1983, 1987, 2002, and 2013. These increases are
-followed by faster declines in spawning biomass when the cohorts reach age 5
-as the updated fecundity shows a smaller increase from age~4 to~5 
-than that used previously, such that the loss due to mortality is greater
-in comparison. The estimated decline in fecundity due to 
-senescence and skip spawning from age 13 onward also reduces the estimates of
-spawning biomass at the initial equilibrium and in the early part of the time
-series where there were more old individuals than in the following years with
-higher fishing intensity. In spite of these changes to the estimated
+as the fecundity of all cohorts were different leading to variability in the
+time series of spawning
+biomass. In spite of these changes to the estimated
 spawning biomass, this bridging step had little impact
-on recruitment, since the stock-recruit relationship indicates a 
+on recruitment, since the stock-recruit relationship indicates a
 relatively weak link between spawning biomass and recruitment (see below).
 
 %\subsubsection{Model selection and evaluation}\label{sec:assessment-model-selection}
 
 %[** this section has been empty for the past few years....]
 
-\subsubsection{Weights-at-age and fecundity (**new for 2019, need to reference this from elsewhere)}
+\subsubsection{Weights-at-age and fecundity (**new for 2019, need to reference this from elsewhere)}\label{sec:assessment-weights}
 
 **Andy: 
 Needs carefully reading later. Taking from my write-up in Issue \#469.
@@ -542,15 +451,15 @@ If we can use US data then some of this will
 need to be updated....
 
 In 2018 the SRG requested an alternative model run that used time-varying
-fecundity \citep{JTC2018}. We have done this in the 2019 base model, and 
-plus three model runs with alternative assumptions about the weights-at-age
+fecundity \citep{JTC2018}. We have used time-varying fecundity in the 2019 base model,
+and in three model runs with alternative assumptions about the weights-at-age
 for the years without data. For a given year, fecundity is the
 (element-wise) product of the maturity ogive and the weight-at-age 
 vector for that year. Thus, the alternative weight-at-age assumptions
 affect the fecundity. We also tested these four alternative assumptions
 when using non-time-varying fecundity. The eight combinations are summarised
 in Table~\ref{tab:main-wtatage-runs}, and the four weight-at-age assumptions
-are shown in the heatmaps in 
+are shown in the heatmaps in  
 Figures~\ref{fig:main-empirical.weight.at.age.sens.a}-\ref{fig:main-empirical.weight.at.age.sens.d}.
 The eight runs are now explained in the context of the 2018 assessment.
 
@@ -562,35 +471,38 @@ a) ``Add time-varying fecundity by multiplying the weight-at-age matrix (rather 
    to get annual estimates of fecundity from 1975-2017.''
 
 We have done this in the 2019 base model (for the updated time period
-1975-2017 **update if get 2018 ages) because it is more consistent with time-varying weight-at-age 
-than the non-time varying fecundity used in the 2018 base model. That
-fecundity multiplied the maturity ogive by an average weight-at-age
+1975-2018) because it is more consistent with time-varying weight-at-age 
+than the non-time varying fecundity used in the 2018 base model. The
+fecundity for the 2018 base model came from multiplying the maturity ogive by
+an average weight-at-age vector
 to give age-dependent fecundity that was constant in time. Sensitivity
-runs 34, 35 and 38 also use time-varying fecundity.
-Non-time-varying fecundity is examined in sensitivity runs 32, 33, 36 and~37.
-
+runs 54, 55 and~58 retain the time-varying fecundity of the base model.
+Sensitivity runs 52, 53, 56 and~57 use non-time-varying fecundity, as per the
+2018 base model (Table~\ref{tab:main-wtatage-runs}).
 
 b) ``Set equilibrium and 1966-1974 fecundity (where empirical data are not
 available) to the product of maturity and the mean weight-at-age averaged 
 over 1975-1979.'' 
 
 We have not done this in the 2019 base model, but are using the long-term average
-(1975-2017 [**will be 2018 if we update wtatage data]) for the equilibrium and
-the 1966-1974 fecundity, as for the 2018 base model. Using the fecundity based on
-1975-1979 is examined in sensitivity runs 35, 36, 37 and 38.
+(1975-2018) for the equilibrium and
+1966-1974 fecundity, as for the 2018 base model. Using instead the fecundity based on
+1975-1979 is examined in sensitivity runs 55, 56, 57 and~58.
 
-We did not use the 1975-1979 fecundity because **Aaron to write something here.
-Here are our notes based on
-discussions at the JTC meeting:
+We did not use the 1975-1979 fecundity because 
 
-At our JTC planning meeting, Aaron Berger showed plots of sample sizes
+**Aaron to write something here. Here are the rough notes that Andy wrote based on our JTC notes and memory, when
+we had to assume that we couldn't get your input:
+
+**At our JTC planning meeting, Aaron Berger showed plots of sample sizes
 (unavailable for this document). For instance, there was only one (if we
 remember correctly) age-15 fish in 1976, which then gets used as the 1975 value
-(see the bold value for 1975 in XXFigure 13). The same holds for age-14. If we
+(see the bold value for 1975 in Figure~\ref{fig:main-empirical.weight.at.age}).
+The same holds for age-14. If we
 (CG and AE) remember correctly, the sample sizes were generally low for the
 early years. thus, using the average of the first five years of data for all of
 the early years does not seem justified. In particular, the single age-15 fish
-in 1976 is the heaviest fish on record (by 360g). Our JTC notes say that:
+in 1976 is the heaviest fish on record (by 360~g). Our JTC notes say that:
 ``Aaron's analysis suggests that there's not compelling evidence that we should
 use those short-term averages for the pre-data years or the forecast as opposed
 to the status-quo of the long-term average across all years.'' Thus, although we
@@ -606,21 +518,31 @@ average across all years.''
 
 c) ``Set forecast-year fecundity (including 2017 due to current configurations in
 Stock Synthesis) weight-at-age to the product of maturity and mean weight-at-age
-over 2015-2017.'' **Aaron to update [and presumably the SS configuration issue
-needs to be thought about again] -- this is what we have: 
-Aaron's analysis did not find compelling evidence to use a
-short-term average for the forecasts (see above quote). However, since the 2018
-age data are unavailable for the assessment, we have used the 2015-2017 average
-weight-at-age for the 2018 weight-at-age and therefore for the 2018 fecundity
-(this serendipitously avoids the Stock Synthesis configuration issue). It
-therefore seems sensible to use the same fecundities for the projections (rather
-than the average over all years). 
+over 2015-2017.'' 
 
-Sensitivity runs 33, 34, 35 and 37 tested the alternative assumption of setting
-the 2018 weight-at-age (and fecundity for
-2018 and forecast years when the fecundity is time-varying) to be the mean from
-1975-2017. Results from these runs are based on MLE only (we show MCMC results
-for the other three runs).
+We found no compelling evidence to use the short-term mean
+(2016-2018) for the forecasts [**Aaron to maybe expand why]. 
+
+Also, the `current configuration of Stock Synthesis' issue is the
+requirement that the forecast years' weights-at-age be either (i)~the same as the
+pre-data (pre-1975) years, or (ii)~the same as the final year of data (2018). 
+Thus, we cannot set the forecast years' weights-at-age to be the mean of 
+2016-2018 without setting the 2018 weights-at-age to be this, which seems
+inappropriate for the base model (but is tested in runs~52, 54, 56 and~58).
+So, for the 2019 base model
+we retained the 2018 base model's assumption of using the mean from 1975-2018 for
+projections (which satisfies the requirement (i) of Stock Synthesis just described).
+
+Similarly, we cannot set the forecast year's weights-at-age to be the mean of 
+1975-2018 when the pre-1975 weight-at-age is 1975-1979, without setting the 2018 weights-at-age
+to also be the mean from 2016-2018. This setting is done for model runs 55 and~57, but precludes
+run~55 from being a sensible base model because the 2018 weights-at-age are not
+the true 2018 data (and run~57 does not use time-varying fecundity). Run~53 uses
+the same weight-at-assumptions as the base model but does not use time-varying fecundity.
+
+% Aside for 2019. When we didn't have the 2018 age data we set it to be the mean
+% from 2016-2018, which serendipitously avoided the configuration issue, and so 
+% we had the equivalent to run 54 as the base case.
 
 d) During the 2018 SRG meeting it was further realised that: ``An inconsistency
 in this alternative run is that the the mean weight-at-age
@@ -630,16 +552,9 @@ rather than the short-term averages (1975-1979 or 2015-2017). A brief examinatio
 the sensitivity of the alternative run to removing this inconsistency showed
 relatively little change in results.''
 
-Therefore, to acheive consistency in the 2019 base run we use the 2015-2017 mean
-weight-at-age for the forecasts (but stick with the long-term average for the
-early years, as per (b) above). 
-% [Hence wtatage.ss has -2018 rows for fecundity
-%  and for the weight-at-age matrices]. 
-
-These changes meant that Stock Synthesis did not converge, but this was overcome
-by changing the initial value for the numerical algorithms (not the prior) of
-the steepness of paramater $h$ from 0.88 to 0.95. This was done for the new base
-case (bridging run~43 shows no effect, **see section **).
+This inconsistency is resolved for all runs in 2019.
+% Hence wtatage.ss has -2018 rows for fecundity
+%  and for the weight-at-age matrices.
 
 \subsubsection{Assessment model results}\label{sec:assessment-model-results}
 \subsubsub{Model Fit}

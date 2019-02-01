@@ -100,7 +100,7 @@ make.catches.plot(catches, leg.y.loc = 550)
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishDepthsUS}
 \end{center}
-\caption{Distribution of fishing depths (left) and bottom depths (right), in fathoms, of \fishname\ catches in the U.S. at-sea fleet from 2008--\Sexpr{last.data.yr}.}
+\caption{Distribution of fishing depths (left) and bottom depths (right), in fathoms, of \fishname\ catches in the U.S. at-sea fleet from 2014--\Sexpr{last.data.yr}.}
 \label{fig:main-us-at-sea-depths}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -111,7 +111,8 @@ make.catches.plot(catches, leg.y.loc = 550)
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishCatchRatesUS}
 \end{center}
-\caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in the U.S. at-sea fleet in \Sexpr{last.data.yr}.}
+\caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in
+  the U.S. at-sea fleet from 2014--\Sexpr{last.data.yr}.}
 \label{fig:main-us-catch-rates}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -224,9 +225,9 @@ weight.at.age.heatmap(base.model)
 @
 \end{center}
 %\vspace{0mm}
-\caption{**update (and move blue line) Empirical weight-at-age (kg) used for the base model. Numbers shown in
+\caption{Empirical weight-at-age (kg) used for the base model. Numbers shown in
   bold were interpolated or extrapolated from adjacent ages or years. Data are
-  only available from 1975-**2017 (between the two blue lines). Remaining values
+  only available from 1975--\Sexpr{max.fishery.age.prop[2]} (between the two blue lines). Remaining values
   are used for the early and late years, with alternative assumptions tested in
   sensitivity runs.}
 \label{fig:main-empirical.weight.at.age}
