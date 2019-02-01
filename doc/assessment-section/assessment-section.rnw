@@ -372,8 +372,6 @@ concerning the sensitivity tests to perform in all future assessments:
 
 \subsubsection{Changes from \Sexpr{last.assess.yr} }\label{sec:assessment-changes}
 
-**Update once bridging finalised - done 1/31/19, AMB
-
 A set of `bridging' models was constructed to evaluate the component-specific
 effects of all changes from the \Sexpr{last.assess.yr} base model to
 the \Sexpr{assess.yr} base model.
@@ -397,12 +395,12 @@ The first set of bridging steps were conducted to ``Update'' data prior to 2018.
 This primarily included minor adjustments in catch, fishery age composition, and
 weight-at-age values, where a few additional samples from previous years, 
 especially from the end of 2017 that were not available in time for the \Sexpr{last.assess.yr}
-assessment were now included. These changes were small enough that they had
+assessment were included. These changes were small enough that they had
 little impact on the model results (Figure~\ref{fig:main-bridge-biomass}).
 
 The addition of 2018 catch allowed the model to be 
 extended to the start of 2019, but the estimates for 2019 remained highly uncertain 
-(Figure~\ref{fig:main-bridge-5-panel}) in the absence of additional information 
+(Figure~\ref{fig:main-bridge-5-panel.2}) in the absence of additional information 
 about recent recruitment.
 %the addition of the 2017 survey biomass 
 %estimate, which reduced the estimated size of the 2014 year class, bringing 
@@ -412,9 +410,11 @@ The addition of 2018 fishery age composition information
 % and survey
 had relatively little additional impact on the biomass
 estimates, indicating that the observed 2018 ages were consistent with the model
-estimates without those data (**Figure~\ref{fig:main-bridge-5-panel}).  However, 
-the addition of these data did slightly alter recent recruitment
-estimates, including an increase in the estimated size of the 2016 year class.
+estimates without those data (Figure~\ref{fig:main-bridge-5-panel.2}).  However, 
+the addition of these data did alter recent recruitment
+estimates, including an increase in the estimated size of the 2016 year class and
+a reduction in the uncertainty associated with the relative recruitment strength of 
+the 2016 and 2017 year classes.
 
 In addition to fishery ages, this bridging step also included adding 2018 weight-at-age
 data and updating other associated settings related to recruitment, combining multiple 
@@ -425,8 +425,8 @@ the `main' period are modeled as summing to zero to ensure that they are
 equally balanced around the stock-recruit relationship. If forecast deviations
 were included in this vector, this zero-sum constraint would have the potential
 to cause those forecast deviations to differ from zero, even in the absence of 
-any data for the forecast years. The addition of the 2018 fishery data, which
-included a relatively higher number of age-1 fish from the 2017 cohort and
+any data for the forecast years. The addition of the 2018 fishery composition data, which
+included a relatively high proportion of age-1 fish from the 2017 cohort and
 age-2 fish from the 2016 cohort, meant that
 it was necessary to shift the endpoint of the main vector of recruitment deviations
 to include 2017. The settings related to avoiding bias in recruitment estimation, 
@@ -437,17 +437,17 @@ Finally, this bridging step also shifted the ending year of the deviations
 in the selectivity parameters from 2017 to 2018 since there was now fishery
 data in 2018.
 
-The final bridging step (Time-varying fecundity (= base model), as discussed
-in Section~\ref{sec:data-maturity})
-resulted in the biggest change to current biomass and became the 2019 base model.  Fecundity
-(calcualted as weight-at-age multiplied by maturity) changed from being time-invariant
-(i.e., using a single catch-weighted average of weight-at-age over all years)
-to time-varying. In this case, fecundity was based on year specific weight-at-age
-over years with data (1975-2018). For periods without data (pre-1975 and post-2018), 
-catch-weighted average weight-at-age was used (see Section~\ref{sec:assessment-weights}
-and Section~\ref{sec:data-weight-at-age}for more details).  The results of this
+The final bridging step involved changing the structural assumptions about fecundity (discussed further
+in Section~\ref{sec:assessment-weights}) and resulted in the 2019 base model.  The switch from time-invariant to time-varying
+fecundity resulted in the biggest bridging change to current biomass.  Fecundity
+(calcualted as weight-at-age multiplied by maturity) changed from being defined by a 
+single catch-weighted average of weight-at-age applied to all years to being defined
+by year-specific weight-at-ages covering the time period with data (1975-2018). 
+For periods without data (pre-1975 and post-2018), 
+catch-weighted average weight-at-age was used (however see Section~\ref{sec:assessment-weights}
+for discussion on alternatives).  The results of this bridging 
 step caused a visible change in the time series
-of spawning biomass (Figure~\ref{fig:main-bridge-4-panel}) 
+of spawning biomass (Figure~\ref{fig:main-bridge-5-panel.2}) 
 as the fecundity of all cohorts were different leading to variability in the
 time series of spawning
 biomass. In spite of these changes to the estimated
