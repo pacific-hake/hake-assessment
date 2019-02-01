@@ -1,9 +1,8 @@
 weight.at.age.heatmap <- function(model,
-                                  fleet = 0,
-                                  last.yr = 2021,
+                                  fleet = 1,
                                   proj.line.color = "royalblue",
                                   proj.line.width = 1,
-                                  last.data.yr = 2018,
+                                  proj.line.yr = 2018,
                                   # mean ages need to be updated every year
                                   longterm.mean.ages = c(0.02,
                                                          0.09,
@@ -30,6 +29,11 @@ weight.at.age.heatmap <- function(model,
   ##  and simply copies of the last year of w-a data
 
   ## Toggle data frame for which values are extrapolated values
+  last.data.yr <- 2018
+  if(proj.line.yr != last.data.yr){
+    warning("Projection line year does not equal the last data year. ",
+            "Check weight.at.age.heatmap() and make sure values are correct.")
+  }
   input.yrs <- 1975:last.data.yr
   extrap = list(
     c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1), #1975
@@ -97,22 +101,7 @@ weight.at.age.heatmap <- function(model,
   extrap <- bind_rows(extrap, j) %>%
     arrange(Yr)
 
-  ## Add projection years (now includes 2018 for 2019 assessment)
-  # last.data.yr <- max(wa$Yr)
-  if(last.yr > last.data.yr){
-    num.proj.yrs <- last.yr - last.data.yr
-    for(n in 1:num.proj.yrs){
-      last.wa.row <- wa[nrow(wa),]
-      yr <- last.wa.row$Yr
-      last.wa.row$Yr <- last.wa.row$Yr + 1
-      wa <- rbind(wa, last.wa.row)
-      ## Set up extrapolation data frame
-      last.ex.row <- extrap[nrow(extrap),]
-      yr <- last.ex.row$Yr
-      last.ex.row$Yr <- last.ex.row$Yr + 1
-      extrap <- rbind(extrap, last.ex.row)
-    }
-  }
+  last.yr <- max(wa$Yr)
 
   wa1 <- wa2 <- wa[,-1]
   extrap1 <- extrap[,-1]
@@ -178,7 +167,7 @@ weight.at.age.heatmap <- function(model,
 
   if(last.yr > last.data.yr){
     ## Add line separating projections
-    g <- g + geom_hline(yintercept = last.data.yr + 0.5,
+    g <- g + geom_hline(yintercept = proj.line.yr + 0.5,
                         color = proj.line.color,
                         size = proj.line.width)
   }
