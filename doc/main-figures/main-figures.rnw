@@ -252,13 +252,9 @@ make.comparison.plot(bridge.models.1,
                      end.yr = bridge.model.end.yr.1)
 @
 \end{center}
-\caption{**Bridging models showing the \Sexpr{last.assess.yr} base model
-  and the results of updating the historic catch, adding the 2018 catch
-  (the only data available for 2018), adding the 2018 weights-at-age as the
-  average from 2015-2017 (and running the model to 2018), changing the
-  initial value used for steepness, and using the 2018 weights-at-age (rather
-  than the overall mean) for projections.
-  The points disconnected from the time-series on the
+\caption{Bridging models showing the \Sexpr{last.assess.yr} base model
+  and the results of sequentially updating historic catch data, historic age composition data, 
+  and then historic weight-at-age data.  The points disconnected from the time-series on the
   left side show the unfished equilibrium spawning biomass estimates.}
 \label{fig:main-bridge-biomass}
 \end{figure}
@@ -308,11 +304,13 @@ mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
 \end{center}
-\caption{**Bridging models showing the difference between the
-  \Sexpr{last.assess.yr} base model, the result of the first set of changes
-  shown in Figure~\ref{fig:main-bridge-biomass}
-  and the incorporation of time-varying fecundity.
-  Panels are spawning biomass
+\caption{Bridging models showing the \Sexpr{last.assess.yr} base model
+  and the results of sequentially building upon updates shown in 
+  Figure~\ref{fig:main-bridge-biomass} by adding the 2018 catch data, adding 
+  the 2018 age composition and weight-at-age data, and then finally changing to 
+  time-varying fecundity which became the base model. See 
+  Section~\ref{sec:assessment-weights} for further details about modeling 
+  time-varying fecundity.  Panels are spawning biomass
   (upper panel), relative spawning biomass (spawning biomass in each year
   relative to the unfished equilibrium spawning biomass, middle left),
   absolute recruitment (middle right), recruitment deviations (lower left),
