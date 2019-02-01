@@ -525,7 +525,7 @@ spawning biomass at the initial equilibrium and in the early part of the time
 series where there were more old individuals than in the following years with
 higher fishing intensity. In spite of these changes to the estimated
 spawning biomass, this bridging step had little impact
-on recruitment, since the stock-recruit relationship indicates a 
+on recruitment, since the stock-recruit relationship indicates a
 relatively weak link between spawning biomass and recruitment (see below).
 
 %\subsubsection{Model selection and evaluation}\label{sec:assessment-model-selection}
@@ -542,15 +542,15 @@ If we can use US data then some of this will
 need to be updated....
 
 In 2018 the SRG requested an alternative model run that used time-varying
-fecundity \citep{JTC2018}. We have done this in the 2019 base model, and 
-plus three model runs with alternative assumptions about the weights-at-age
+fecundity \citep{JTC2018}. We have used time-varying fecundity in the 2019 base model,
+and in three model runs with alternative assumptions about the weights-at-age
 for the years without data. For a given year, fecundity is the
 (element-wise) product of the maturity ogive and the weight-at-age 
 vector for that year. Thus, the alternative weight-at-age assumptions
 affect the fecundity. We also tested these four alternative assumptions
 when using non-time-varying fecundity. The eight combinations are summarised
 in Table~\ref{tab:main-wtatage-runs}, and the four weight-at-age assumptions
-are shown in the heatmaps in 
+are shown in the heatmaps in  
 Figures~\ref{fig:main-empirical.weight.at.age.sens.a}-\ref{fig:main-empirical.weight.at.age.sens.d}.
 The eight runs are now explained in the context of the 2018 assessment.
 
@@ -566,8 +566,8 @@ We have done this in the 2019 base model (for the updated time period
 than the non-time varying fecundity used in the 2018 base model. That
 fecundity multiplied the maturity ogive by an average weight-at-age
 to give age-dependent fecundity that was constant in time. Sensitivity
-runs 34, 35 and 38 also use time-varying fecundity.
-Non-time-varying fecundity is examined in sensitivity runs 32, 33, 36 and~37.
+runs 54, 55 and 58 also use time-varying fecundity.
+Non-time-varying fecundity is examined in sensitivity runs 52, 53, 56 and~57.
 
 
 b) ``Set equilibrium and 1966-1974 fecundity (where empirical data are not
@@ -577,7 +577,7 @@ over 1975-1979.''
 We have not done this in the 2019 base model, but are using the long-term average
 (1975-2017 [**will be 2018 if we update wtatage data]) for the equilibrium and
 the 1966-1974 fecundity, as for the 2018 base model. Using the fecundity based on
-1975-1979 is examined in sensitivity runs 35, 36, 37 and 38.
+1975-1979 is examined in sensitivity runs 55, 56, 57 and 58.
 
 We did not use the 1975-1979 fecundity because **Aaron to write something here.
 Here are our notes based on
@@ -590,7 +590,7 @@ remember correctly) age-15 fish in 1976, which then gets used as the 1975 value
 (CG and AE) remember correctly, the sample sizes were generally low for the
 early years. thus, using the average of the first five years of data for all of
 the early years does not seem justified. In particular, the single age-15 fish
-in 1976 is the heaviest fish on record (by 360g). Our JTC notes say that:
+in 1976 is the heaviest fish on record (by 360~g). Our JTC notes say that:
 ``Aaron's analysis suggests that there's not compelling evidence that we should
 use those short-term averages for the pre-data years or the forecast as opposed
 to the status-quo of the long-term average across all years.'' Thus, although we
@@ -616,10 +616,10 @@ weight-at-age for the 2018 weight-at-age and therefore for the 2018 fecundity
 therefore seems sensible to use the same fecundities for the projections (rather
 than the average over all years). 
 
-Sensitivity runs 33, 34, 35 and 37 tested the alternative assumption of setting
+Sensitivity runs 53, **was base so switch around, 55 and 57 tested the alternative assumption of setting
 the 2018 weight-at-age (and fecundity for
 2018 and forecast years when the fecundity is time-varying) to be the mean from
-1975-2017. Results from these runs are based on MLE only (we show MCMC results
+1975-2017. **Results from these runs are based on MLE only (we show MCMC results
 for the other three runs).
 
 d) During the 2018 SRG meeting it was further realised that: ``An inconsistency
@@ -639,7 +639,7 @@ early years, as per (b) above).
 These changes meant that Stock Synthesis did not converge, but this was overcome
 by changing the initial value for the numerical algorithms (not the prior) of
 the steepness of paramater $h$ from 0.88 to 0.95. This was done for the new base
-case (bridging run~43 shows no effect, **see section **).
+case (bridging **run~43 shows no effect, **see section **).
 
 \subsubsection{Assessment model results}\label{sec:assessment-model-results}
 \subsubsub{Model Fit}
