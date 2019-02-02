@@ -393,6 +393,11 @@ These values are then been combined with starter.ss values of
 
 to get 2000 total samples.
 
+Ran a second chain in 2019 with alternative seed to compare multi-chain convergence diagnostics
+
+        ss3 -mcmc 24000000 -mcsave 10000 -mcseed 91438
+        ss3 -mceval
+
 Once the MCMC has finished, copy all the files into a new **mcmc/** folder, run **clean.bat** and run **ss3.exe** to generate the MPD results.
 
 __Andy's other notes__
