@@ -226,12 +226,12 @@ weight.at.age.heatmap(base.model)
 \end{center}
 %\vspace{0mm}
 \caption{Empirical weight-at-age (kg) used for the base model. 
-  Numbers shown in
-  bold were interpolated or extrapolated from adjacent ages or years. Data are
-  only available from 1975--\Sexpr{max.fishery.age.prop[2]}.
+  Data are only available from 1975--\Sexpr{max.fishery.age.prop[2]}.
   Values based on assumptions for the early and late years are shown
   outside the blue lines (see Table~\ref{tab:main-wtatage-runs});
   alternative assumptions were tested in sensitivity runs.
+  Bold values represent unavailable data -- between the blue lines
+  such weights were interpolated or extrapolated from adjacent ages or years.
   The sample-weighted mean weight-at-age is shown at the bottom.}
 \label{fig:main-empirical.weight.at.age}
 \end{figure}
@@ -1274,12 +1274,12 @@ weight.at.age.heatmap(sens.models.5[[2]])
 \caption{Empirical weight-at-age (kg) used for sensitivity
   run~53 and the base
   model (Figure~\ref{fig:main-empirical.weight.at.age}).
-  Numbers shown in
-  bold were interpolated or extrapolated from adjacent ages or years. Data are
-  only available from 1975--\Sexpr{max.fishery.age.prop[2]}.
+  Data are only available from 1975--\Sexpr{max.fishery.age.prop[2]}.
   Values based on assumptions for the early and late years are shown
-  outside the blue lines (see Table~\ref{tab:main-wtatage-runs}),
-  with the sample-weighted mean shown at the bottom.}
+  outside the blue lines (see Table~\ref{tab:main-wtatage-runs}).
+  Bold values represent unavailable data -- between the blue lines
+  such weights were interpolated or extrapolated from adjacent ages or years.
+  The sample-weighted mean weight-at-age is shown at the bottom.}
 \label{fig:main-empirical.weight.at.age.sens.a}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
