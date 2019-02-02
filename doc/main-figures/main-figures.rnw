@@ -225,7 +225,8 @@ weight.at.age.heatmap(base.model)
 @
 \end{center}
 %\vspace{0mm}
-\caption{Empirical weight-at-age (kg) used for the base model. 
+\caption{Empirical weight-at-age (kg) values used for the base model
+  (the values match the colours). 
   Data are only available from 1975--\Sexpr{max.fishery.age.prop[2]}.
   Values based on assumptions for the early and late years are shown
   outside the blue lines (see Table~\ref{tab:main-wtatage-runs});
@@ -1271,7 +1272,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 weight.at.age.heatmap(sens.models.5[[2]])
 @
 \end{center}
-\caption{Empirical weight-at-age (kg) used for sensitivity
+\caption{Empirical weight-at-age (kg) values used for sensitivity
   run~53 and the base
   model (Figure~\ref{fig:main-empirical.weight.at.age}).
   Data are only available from 1975--\Sexpr{max.fishery.age.prop[2]}.
@@ -1292,7 +1293,7 @@ weight.at.age.heatmap(sens.models.5[[2]])
 weight.at.age.heatmap(sens.models.5[[4]], proj.line.yr=2017)
 @
 \end{center}
-\caption{Empirical weight-at-age (kg) used for sensitivity
+\caption{Empirical weight-at-age (kg) values used for sensitivity
   runs~55 and~57. Details are as in
   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}. Note
   the 2018 values have to be assumed (the top blue line is different to
@@ -1310,7 +1311,7 @@ weight.at.age.heatmap(sens.models.5[[4]], proj.line.yr=2017)
 weight.at.age.heatmap(sens.models.5[[3]], proj.line.yr=2017)
 @
 \end{center}
-\caption{Empirical weight-at-age (kg) used for sensitivity
+\caption{Empirical weight-at-age (kg) values used for sensitivity
   runs~52 and~54. Details are as in
   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}. Note
   the 2018 values have to be assumed (the top blue line is different to
