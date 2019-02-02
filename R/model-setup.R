@@ -307,8 +307,8 @@ load.models.into.parent.env <- function(){
 
   ## Removing the sens group 4 from this because it's causing problems when
   ## running make.short.parameter.estimates.sens.table()
-  sens.models.2.for.table <<- c(list(base.model), sens.models.1, sens.models.4)
-  sens.model.names.2.for.table <<- c("Base model", sens.model.names.1,sens.model.names.4)
+  sens.models.2.for.table <<- c(list(base.model), sens.models.4)
+  sens.model.names.2.for.table <<- c("Base model", sens.model.names.4)
   ## sens.models.2.for.table <<- c(list(base.model), sens.models.3, sens.models.4)
   ## sens.model.names.2.for.table <<- c("Base model", sens.model.names.3, sens.model.names.4)
 
