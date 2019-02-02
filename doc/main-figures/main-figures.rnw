@@ -1290,7 +1290,7 @@ weight.at.age.heatmap(sens.models.5[[4]], proj.line.yr=2017)
 @
 \end{center}
 \caption{Empirical weight-at-age (kg) used for sensitivity
-  runs~55 and~57. Details are as in 
+  runs~55 and~57. Details are as in
   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}. Note
   the 2018 values have to be assumed (the top blue line is different to
   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}), as described
@@ -1303,12 +1303,12 @@ weight.at.age.heatmap(sens.models.5[[4]], proj.line.yr=2017)
 \begin{figure}[H]
 \begin{center}
 <<main.weight.at.age.sens.c, fig.height=9, fig.width=8>>=
-# Run 54 (**verified same heatmap as 52)
-weight.at.age.heatmap(sens.models.5[[3]])
+# Run 54 (verified same heatmap as 52)
+weight.at.age.heatmap(sens.models.5[[3]], proj.line.yr=2017)
 @
 \end{center}
 \caption{Empirical weight-at-age (kg) used for sensitivity
-  runs~52 and~**54. Details are as in 
+  runs~52 and~54. Details are as in
   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}. Note
   the 2018 values have to be assumed (the top blue line is different to
   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}), as described
@@ -1321,16 +1321,16 @@ weight.at.age.heatmap(sens.models.5[[3]])
 \begin{figure}[H]
 \begin{center}
 <<main.weight.at.age.sens.d, fig.height=9, fig.width=8>>=
-# Run 58 (verified same heatmap as 56)
-weight.at.age.heatmap(sens.models.5[[7]])
+# Run 56 (verified same heatmap as 58)
+weight.at.age.heatmap(sens.models.5[[5]], proj.line.yr=2017)
 @
 \end{center}
 \caption{Empirical weight-at-age (kg) used for sensitivity
-  runs~56 and~**58. Numbers shown in
-  bold were interpolated or extrapolated from adjacent ages or years. Data are
-  only available from 1975--\Sexpr{max.fishery.age.prop[2]} (between the two blue lines),
-  with the sample-weighted mean shown at the bottom.
-  Remaining values are used for the early and late years.}
+  runs~56 and~58. Details are as in
+  Figure~\ref{fig:main-empirical.weight.at.age.sens.a}. Note
+  the 2018 values have to be assumed (the top blue line is different to
+  Figure~\ref{fig:main-empirical.weight.at.age.sens.a}), as described
+  in Table~\ref{tab:main-wtatage-runs}.}
 \label{fig:main-empirical.weight.at.age.sens.d}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
