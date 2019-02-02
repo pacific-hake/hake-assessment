@@ -53,24 +53,17 @@ _____________________________________________________________
 * Navigate to the doc/r directory and setup the model by editing the three files **model-setup.r**,
   **forecast-catch-levels.r**, and **retrospective-setup.r**:
 
-* To build the RData files for the the base model and the bridge/sensitivity models,
-  run the following:
+* ***To build the RData files for the the base model and all other models with mcmc folders,
+  run the batch file `build-rdata-files.bat`. This will take a long time as it is running forecasting,
+  retrospectives, and extra-mcmc routines. Note that this file needs to be custom-made each year as it
+  calls the build() function for individual models.***
+
+* Once the batch file above has been run and finished, you need to build the RData files for the the
+  models with only MLE runs (they don't have an mcmc folder in them). Run the following:
   ```R
     source(file.path(here::here(), "R/all.r"))
-    build(TRUE, TRUE, TRUE)
+    build()
   ```
-
-  [or just ```source("all.r")``` if you are in the right directory]
-
-  this will take a while as it has to run the forecasts, retrospectives, and create extra-mcmc output,
-  depending on what you set as arguments.
-
-  * All models which have an **mcmc** subdirectory will have extra-mcmc
-    output runs done if you set **run.extra.mcmc = TRUE**.
-
-  * Only the base model will have forecasts run when **run.fore = TRUE**.
-
-  * Only the base model will have retrospectives run when **run.retro = TRUE**.
 
   * Once finished, you can see that each model defined in **model-setup.r**
     now has an RData file inside its directory with the same name.
@@ -87,9 +80,9 @@ _____________________________________________________________
       build()
     ```
 
-  * To re-run the forecasts (deleting previous ones) then
+  * To re-run items for a given model (deleting previous ones), do the following:
   ```R
-    build(run.fore = TRUE, run.retro = TRUE, run.extra.mcmc = TRUE)
+    build(run.fore = TRUE, run.retro = TRUE, run.extra.mcmc = TRUE, model.name = "model-directory-name")
   ```
 
 ## How to create hake-assessment.pdf
