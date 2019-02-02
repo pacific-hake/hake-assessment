@@ -225,11 +225,14 @@ weight.at.age.heatmap(base.model)
 @
 \end{center}
 %\vspace{0mm}
-\caption{Empirical weight-at-age (kg) used for the base model. Numbers shown in
+\caption{Empirical weight-at-age (kg) used for the base model. 
+  Numbers shown in
   bold were interpolated or extrapolated from adjacent ages or years. Data are
-  only available from 1975--\Sexpr{max.fishery.age.prop[2]} (between the two blue lines). Remaining values
-  are used for the early and late years, with alternative assumptions tested in
-  sensitivity runs.}
+  only available from 1975--\Sexpr{max.fishery.age.prop[2]}.
+  Values based on assumptions for the early and late years are shown
+  outside the blue lines (see Table~\ref{tab:main-wtatage-runs});
+  alternative assumptions were tested in sensitivity runs.
+  The sample-weighted mean weight-at-age is shown at the bottom.}
 \label{fig:main-empirical.weight.at.age}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
