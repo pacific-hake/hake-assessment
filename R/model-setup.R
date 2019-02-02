@@ -340,6 +340,10 @@ build <- function(run.fore = FALSE,
                       run.extra.mcmc = run.extra.mcmc,
                       key.posteriors = key.posteriors,
                       ss.version = ss.version,
+                      exe.file.name = exe.file.name,
+                      starter.file.name = starter.file.name,
+                      forecast.file.name = forecast.file.name,
+                      weight.at.age.file.name = weight.at.age.file.name,
                       verbose = ss.verbose)
     return(invisible())
   }
@@ -368,6 +372,10 @@ build <- function(run.fore = FALSE,
                     run.extra.mcmc = run.extra.mcmc,
                     key.posteriors = key.posteriors,
                     ss.version = ss.version,
+                    exe.file.name = exe.file.name,
+                    starter.file.name = starter.file.name,
+                    forecast.file.name = forecast.file.name,
+                    weight.at.age.file.name = weight.at.age.file.name,
                     verbose = ss.verbose)
 
   ## Bridge and sensitivity models need to be unlisted from their groups
@@ -404,6 +412,10 @@ build <- function(run.fore = FALSE,
       run.extra.mcmc = run.extra.mcmc,
       key.posteriors = key.posteriors,
       ss.version = ss.version,
+      exe.file.name = exe.file.name,
+      starter.file.name = starter.file.name,
+      forecast.file.name = forecast.file.name,
+      weight.at.age.file.name = weight.at.age.file.name,
       verbose = ss.verbose)
   }
 }
