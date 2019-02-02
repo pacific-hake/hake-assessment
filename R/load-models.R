@@ -1322,9 +1322,7 @@ create.rdata.file <- function(
     if(run.extra.mcmc){
       run.extra.mcmc.models(model, verbose = verbose)
     }
-    if(is.null(model$retropath)){
-      model$retropath <- NA
-    }
+    model$retropath <- file.path(model$path, "retrospectives")
     if(run.retros){
       run.retrospectives(model,
                          yrs = my.retro.yrs,
