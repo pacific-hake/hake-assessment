@@ -241,13 +241,13 @@ sens.model.dir.names.5 <- c("2019.03.52_fecundity",
                             "2019.03.56_fecundity",
                             "2019.03.57_fecundity",
                             "2019.03.58_fecundity")
-sens.model.names.5 <- c("52",
-                        "53",
-                        "54",
-                        "55",
-                        "56",
-                        "57",
-                        "58")
+sens.model.names.5 <- c("Run 52",
+                        "Run 53",
+                        "Run 54",
+                        "Run 55",
+                        "Run 56",
+                        "Run 57",
+                        "Run 58")
 ## sens.model.names.5 <- c("Early weight-age 1975-2018 mean, late is 2016-2018 mean",             #52
 ##                         "Early weight-age 1975-2018 mean, late is 1975-2018 mean",             #53
 ##                         "TV Fecund, early weight-age 1975-2018 mean, late is 2016-2018 mean",  #54
