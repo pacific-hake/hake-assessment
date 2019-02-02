@@ -1313,50 +1313,27 @@ create.rdata.file <- function(
                          ss.version = ss.version)
 
   if(dir.exists(model$mcmcpath)){
-    cl <- makeCluster(3)
-    doParallel::registerDoParallel(cl)
-    foreach(i = 1:3,
-            .packages = c("doParallel",
-                          "r4ss"),
-            .export = c("run.forecasts",
-                        "get.curr.func.name",
-                        "curr.fn.finder",
-                        "run.extra.mcmc.models",
-                        "run.retrospectives",
-                        "calc.catch.levels",
-                        "fetch.catch.levels",
-                        "cat0",
-                        "pad.num")) %dopar% {
-      if(i == 1){
-        if(run.fore){
-          run.forecasts(model,
-                        fore.yrs,
-                        forecast.probs,
-                        forecast.catch.levels)
-        }
-      }
-      if(i == 2){
-        if(run.extra.mcmc){
-          run.extra.mcmc.models(model, verbose = verbose)
-        }
-      }
-      if(i == 3){
-        if(is.null(model$retropath)){
-          model$retropath <- NA
-        }
-        if(run.retros){
-          run.retrospectives(model,
-                             yrs = my.retro.yrs,
-                             exe.file.name = exe.file.name,
-                             starter.file.name = starter.file.name,
-                             forecast.file.name = forecast.file.name,
-                             weight.at.age.file.name = weight.at.age.file.name,
-                             verbose = verbose)
-        }
-      }
+    if(run.fore){
+      run.forecasts(model,
+                    fore.yrs,
+                    forecast.probs,
+                    forecast.catch.levels)
     }
-    parallel::stopCluster(cl)
-    doParallel::registerDoSeq()
+    if(run.extra.mcmc){
+      run.extra.mcmc.models(model, verbose = verbose)
+    }
+    if(is.null(model$retropath)){
+      model$retropath <- NA
+    }
+    if(run.retros){
+      run.retrospectives(model,
+                         yrs = my.retro.yrs,
+                         exe.file.name = exe.file.name,
+                         starter.file.name = starter.file.name,
+                         forecast.file.name = forecast.file.name,
+                         weight.at.age.file.name = weight.at.age.file.name,
+                         verbose = verbose)
+    }
 
     ##----------------------------------------------------------------------------
     ## Load forecasts.  If none are found or there is a problem, model$forecasts

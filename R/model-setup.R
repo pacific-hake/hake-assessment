@@ -124,17 +124,6 @@ if(verbose){
 }
 
 ## -----------------------------------------------------------------------------
-## Alternative base model names and directories (runs we want MCMC results for,
-##  not necessarily considering as alt runs for 2019).
-## -----------------------------------------------------------------------------
-## alt.base.model.1.dir.name <- "2019.02.36_fecundity"
-## alt.base.model.1.name <- paste0(assess.yr, " Short-term pre-1975 wt at age")
-## alt.base.model.2.dir.name <- "2019.02.32_fecundity"
-## alt.base.model.2.name <- paste0(assess.yr, " Long-term pre-1975 wt at age")
-## alt.base.model.3.dir.name <- "2019.02.38_fecundity"
-## alt.base.model.3.name <- paste0(assess.yr, " TV Fec, short-term pre-1975 wt at age")
-
-## -----------------------------------------------------------------------------
 ## Last assessment year's base model name and directory
 ## -----------------------------------------------------------------------------
 ##last.yr.base.model.dir.name <- "00_45_2017base"
@@ -203,20 +192,19 @@ sens.model.names.2 <- c("Add Age 1 Index",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 3
 ## -----------------------------------------------------------------------------
-##Group 3 not used for 2019 assessment
-##sens.model.dir.names.3 <- c("2019.02.07_maxSel_Age5",
-##                            "2019.02.08_maxSel_Age7",
-##                            "2019.02.09_maxSel_Age10",
-##                            "2019.02.11_tvSelect_phi_xtralow",
-##                            "2019.02.12_tvSelect_phi_low",
-##                            "2019.02.13_tvSelect_phi_high")
-##sens.model.names.3 <- c("Max. age selectivity 5",
-##                        "Max. age selectivity 7",
-##                        "Max. age selectivity 10",
-##                        "Phi t.v. selectivity (0.21)",
-##                        "Phi t.v. selectivity (0.70)",
-##                        "Phi t.v. selectivity (2.10)")
-##
+sens.model.dir.names.3 <- c("2019.03.07_maxSel_Age5",
+                            "2019.03.08_maxSel_Age7",
+                            "2019.03.09_maxSel_Age10",
+                            "2019.03.11_tvSelect_phi_xtralow",
+                            "2019.03.12_tvSelect_phi_low",
+                            "2019.03.13_tvSelect_phi_high")
+sens.model.names.3 <- c("Max. age selectivity 5",
+                        "Max. age selectivity 7",
+                        "Max. age selectivity 10",
+                        "Phi t.v. selectivity (0.21)",
+                        "Phi t.v. selectivity (0.70)",
+                        "Phi t.v. selectivity (2.10)")
+
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 4
 ## -----------------------------------------------------------------------------
@@ -230,9 +218,8 @@ sens.model.names.4 <- c("Phi t.v. selectivity (0.21)",
                         "Phi t.v. selectivity (2.10)",
                         "Semi-Parametric t.v selectivity (0.695)",
                         "Semi-Parametric t.v. selectivity (1.0)")
-
 ## -----------------------------------------------------------------------------
-## Sensitivity models group 5  - Different weight-at-age schemes (first group)
+## Sensitivity models group 5  - Different weight-at-age schemes
 ## -----------------------------------------------------------------------------
 sens.model.dir.names.5 <- c("2019.03.52_fecundity",
                             "2019.03.53_fecundity",
@@ -240,30 +227,6 @@ sens.model.dir.names.5 <- c("2019.03.52_fecundity",
 sens.model.names.5 <- c("Run 52",
                         "Run 53",
                         "Run 54")
-
-## -----------------------------------------------------------------------------
-## Sensitivity models group 6  - Different weight-at-age schemes (second group)
-## -----------------------------------------------------------------------------
-sens.model.dir.names.6 <- c("2019.03.55_fecundity",
-                            "2019.03.56_fecundity",
-                            "2019.03.57_fecundity",
-                            "2019.03.58_fecundity")
-sens.model.names.6 <- c("Run 55",
-                        "Run 56",
-                        "Run 57",
-                        "Run 58")
-
-
-## sens.model.names.5 <- c("Early weight-age 1975-2018 mean, late is 2016-2018 mean",             #52
-##                         "Early weight-age 1975-2018 mean, late is 1975-2018 mean",             #53
-##                         "TV Fecund, early weight-age 1975-2018 mean, late is 2016-2018 mean",  #54
-##                         "TV Fecund, early weight-age 1975-1979 mean, late is 1975-2018 mean*", #55
-##                         "Early weight-age 1975-1979 mean, late is 2016-2018 mean",             #56
-##                         "Early weight-age 1975-1979 mean, late is 1975-2018 mean*",            #57
-##                         "TV Fecund, early weight-age 1975-1979 mean, late is 2016-2018 mean")  #58
-
-
-
 
 ## This function must be called from within the first knitr code chunk
 ## in the document. It is defined here so that it is in the same place
@@ -286,17 +249,13 @@ load.models.into.parent.env <- function(){
   }
 
   last.yr.base.model <<- load.models(model.dir, last.yr.base.model.dir.name)
-  ## alt.base.model.1   <<- load.models(model.dir, alt.base.model.1.dir.name)
-  ## alt.base.model.2   <<- load.models(model.dir, alt.base.model.2.dir.name)
-  ## alt.base.model.3   <<- load.models(model.dir, alt.base.model.3.dir.name)
   bridge.models.1    <<- load.models(model.dir, bridge.model.dir.names.1)
   bridge.models.2    <<- load.models(model.dir, bridge.model.dir.names.2)
   sens.models.1      <<- load.models(model.dir, sens.model.dir.names.1)
   sens.models.2      <<- load.models(model.dir, sens.model.dir.names.2, TRUE)
-  ## sens.models.3      <<- load.models(model.dir, sens.model.dir.names.3)
+  sens.models.3      <<- load.models(model.dir, sens.model.dir.names.3)
   sens.models.4      <<- load.models(model.dir, sens.model.dir.names.4)
   sens.models.5      <<- load.models(model.dir, sens.model.dir.names.5)
-  sens.models.6      <<- load.models(model.dir, sens.model.dir.names.6)
 
   ## Lists of sensitivities for the MLE parameters, derived quantiles,
   ##  and reference points table
@@ -307,14 +266,14 @@ load.models.into.parent.env <- function(){
 
   ## Removing the sens group 4 from this because it's causing problems when
   ## running make.short.parameter.estimates.sens.table()
-  sens.models.2.for.table <<- c(list(base.model), sens.models.4)
-  sens.model.names.2.for.table <<- c("Base model", sens.model.names.4)
+  sens.models.2.for.table <<- c(list(base.model), sens.models.1, sens.models.4)
+  sens.model.names.2.for.table <<- c("Base model", sens.model.names.1,sens.model.names.4)
   ## sens.models.2.for.table <<- c(list(base.model), sens.models.3, sens.models.4)
   ## sens.model.names.2.for.table <<- c("Base model", sens.model.names.3, sens.model.names.4)
 
   ## Third set
-  sens.models.3.for.table <<- c(list(base.model), sens.models.5, sens.models.6)
-  sens.model.names.3.for.table <<- c("Base model", sens.model.names.5, sens.model.names.6)
+  sens.models.3.for.table <<- c(list(base.model), list(sens.models.5), sens.models.6)
+  sens.model.names.3.for.table <<- c("Base model", list(sens.model.names.5), sens.model.names.6)
 }
 
 build <- function(run.fore = FALSE,
@@ -341,7 +300,7 @@ build <- function(run.fore = FALSE,
     }
     create.rdata.file(model.name = model.name,
                       ovwrt.rdata = TRUE,
-                      run.forecasts = run.fore,
+                      run.fore = run.fore,
                       fore.yrs = forecast.yrs,
                       forecast.probs = forecast.probs,
                       forecast.catch.levels = catch.levels,
@@ -370,10 +329,12 @@ build <- function(run.fore = FALSE,
 
   ## Base model
   create.rdata.file(model.name = base.model.dir.name,
-                    ovwrt.rdata = ifelse(any(run.fore, run.retro, run.extra.mcmc),
+                    ovwrt.rdata = ifelse(any(run.fore,
+                                             run.retro,
+                                             run.extra.mcmc),
                                          TRUE,
                                          FALSE),
-                    run.forecasts = run.fore,
+                    run.fore = run.fore,
                     fore.yrs = forecast.yrs,
                     forecast.probs = forecast.probs,
                     forecast.catch.levels = catch.levels,
@@ -390,31 +351,30 @@ build <- function(run.fore = FALSE,
 
   ## Bridge and sensitivity models need to be unlisted from their groups
   ##  and placed into a single list for the FOR loop to work right
-  mnv <- c(#alt.base.model.1.dir.name,
-           #alt.base.model.2.dir.name,
-           #alt.base.model.3.dir.name,
-           unlist(bridge.model.dir.names.1),
+  mnv <- c(unlist(bridge.model.dir.names.1),
            unlist(bridge.model.dir.names.2),
            unlist(sens.model.dir.names.1),
            unlist(sens.model.dir.names.2),
-           #unlist(sens.model.dir.names.3),
+           unlist(sens.model.dir.names.3),
            unlist(sens.model.dir.names.4),
-           unlist(sens.model.dir.names.5),
-           unlist(sens.model.dir.names.6))
+           unlist(sens.model.dir.names.5))
 
   ## Subtract out the last year base model from mnv
   mnv <- mnv[! mnv %in% last.yr.base.model.dir.name]
 
+  ## If a model appears in more than one of the above lists, only process it once
   model.names.list <- as.list(unique(mnv))
 
   ## Bridge/sensitivity models
   for(model.nm in model.names.list){
     create.rdata.file(
       model.name = model.nm,
-      ovwrt.rdata = ifelse(any(run.fore, run.retro, run.extra.mcmc),
+      ovwrt.rdata = ifelse(any(run.fore,
+                               run.retro,
+                               run.extra.mcmc),
                            TRUE,
                            FALSE),
-      run.forecasts = run.fore,
+      run.fore = run.fore,
       fore.yrs = forecast.yrs,
       forecast.probs = forecast.probs,
       forecast.catch.levels = catch.levels,
