@@ -1349,7 +1349,7 @@ make.comparison.plot(c(list(base.model), sens.models.5),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{**Maximum likelihood estimates of spawning biomass for the base
+\caption{**Maximum likelihood estimates **Can do MCMC plots** of spawning biomass for the base
   model and alternative sensitivity run that sets ....(use run numbers and refer
   to table) the unfished and
   pre-1975 weights-at-age (and therefore fecundity) to the mean from 1975-1979.}
@@ -1369,7 +1369,7 @@ make.comparison.plot(c(list(base.model), sens.models.5),
 @
 \end{center}
 %\vspace{0mm}
-\caption{**Maximum likelihood estimates of stock status (relative
+\caption{**Maximum likelihood estimates **Can do MCMC of stock status (relative
   spawning biomass) for the base model
   and alternative sensitivity run that sets the unfished and
   pre-1975 weights-at-age (and therefore fecundity) to the mean from 1975-1979.
@@ -1383,10 +1383,10 @@ make.comparison.plot(c(list(base.model), sens.models.5),
 \begin{figure}[H]
 \begin{center}
 <<main.biomass.base.alternative.6, fig.height=4.5, fig.width=8>>=
-#make.comparison.plot(c(list(base.model), sens.models.6),
-#                     subplots = 2,
-#                     model.names = c(base.model.name, sens.model.names.6),
-#                     end.yr = end.yr)
+make.comparison.plot(c(list(base.model), sens.models.6),
+                     subplots = 2,
+                     model.names = c(base.model.name, sens.model.names.6),
+                     end.yr = end.yr)
 @
 \end{center}
 \caption{**Maximum likelihood estimates of spawning biomass for the base
@@ -1400,14 +1400,14 @@ make.comparison.plot(c(list(base.model), sens.models.5),
 %% \begin{figure}[H]
 \begin{center}
 <<main.status.base.alternative.6, fig.height=4.5, fig.width=8>>=
-#make.comparison.plot(c(list(base.model), sens.models.6),
-#                     subplots = 4,
-#                     model.names = c(base.model.name, sens.model.names.6),
-#                     legend = FALSE,
-#                     end.yr = end.yr)
+make.comparison.plot(c(list(base.model), sens.models.6),
+                     subplots = 4,
+                     model.names = c(base.model.name, sens.model.names.6),
+                     legend = FALSE,
+                     end.yr = end.yr)
 @
 \end{center}
-%\vspace{0mm}
+
 \caption{**Maximum likelihood estimates of stock status (relative
   spawning biomass) for the base model
   and alternative sensitivity runs that set **TO UPDATE the unfished and
