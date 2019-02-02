@@ -192,19 +192,19 @@ sens.model.names.2 <- c("Add Age 1 Index",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 3
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.3 <- c("2019.03.07_maxSel_Age5",
-                            "2019.03.08_maxSel_Age7",
-                            "2019.03.09_maxSel_Age10",
-                            "2019.03.11_tvSelect_phi_xtralow",
-                            "2019.03.12_tvSelect_phi_low",
-                            "2019.03.13_tvSelect_phi_high")
-sens.model.names.3 <- c("Max. age selectivity 5",
-                        "Max. age selectivity 7",
-                        "Max. age selectivity 10",
-                        "Phi t.v. selectivity (0.21)",
-                        "Phi t.v. selectivity (0.70)",
-                        "Phi t.v. selectivity (2.10)")
-
+##sens.model.dir.names.3 <- c("2019.03.07_maxSel_Age5",
+##                            "2019.03.08_maxSel_Age7",
+##                            "2019.03.09_maxSel_Age10",
+##                            "2019.03.11_tvSelect_phi_xtralow",
+##                            "2019.03.12_tvSelect_phi_low",
+##                            "2019.03.13_tvSelect_phi_high")
+##sens.model.names.3 <- c("Max. age selectivity 5",
+##                        "Max. age selectivity 7",
+##                        "Max. age selectivity 10",
+##                        "Phi t.v. selectivity (0.21)",
+##                        "Phi t.v. selectivity (0.70)",
+##                        "Phi t.v. selectivity (2.10)")
+##
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 4
 ## -----------------------------------------------------------------------------
@@ -253,7 +253,7 @@ load.models.into.parent.env <- function(){
   bridge.models.2    <<- load.models(model.dir, bridge.model.dir.names.2)
   sens.models.1      <<- load.models(model.dir, sens.model.dir.names.1)
   sens.models.2      <<- load.models(model.dir, sens.model.dir.names.2, TRUE)
-  sens.models.3      <<- load.models(model.dir, sens.model.dir.names.3)
+  #sens.models.3      <<- load.models(model.dir, sens.model.dir.names.3)
   sens.models.4      <<- load.models(model.dir, sens.model.dir.names.4)
   sens.models.5      <<- load.models(model.dir, sens.model.dir.names.5)
 
@@ -355,7 +355,7 @@ build <- function(run.fore = FALSE,
            unlist(bridge.model.dir.names.2),
            unlist(sens.model.dir.names.1),
            unlist(sens.model.dir.names.2),
-           unlist(sens.model.dir.names.3),
+           #unlist(sens.model.dir.names.3),
            unlist(sens.model.dir.names.4),
            unlist(sens.model.dir.names.5))
 
