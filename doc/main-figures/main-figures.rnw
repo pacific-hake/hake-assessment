@@ -869,7 +869,8 @@ make.comparison.plot(c(list(base.model), sens.models.1),
 \caption{Maximum likelihood estimates of spawning biomass for the base
   model and alternative sensitivity runs representing changing the mean of
   the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, lower (1.0) and higher
-  (1.8) levels of sigma-R, and changing the standard deviation of the prior for natural mortality from
+  (1.8) levels of variation assumed about the stock-recruitment relationship 
+  ($\sigma_r$), and changing the standard deviation of the prior for natural mortality from
   0.1 to 0.2 or 0.3.}
 \label{fig:main-biomass-base-alternative-1}
 %% \end{figure}
@@ -889,11 +890,8 @@ make.comparison.plot(c(list(base.model), sens.models.1),
 %\vspace{0mm}
 \caption{Maximum likelihood estimates of stock status (relative
   spawning biomass) for the base model and alternative sensitivity runs
-  representing changing the mean of the prior for steepness from 1.0 to 0.5,
-  fixing steepness at 1.0, lower (1.0) and higher
-  (1.8) levels of sigma-R, and changing the standard deviation of the prior
-  for natural mortality from 0.1 to 0.2 or 0.3. See
-  Figure~\ref{fig:main-biomass-base-alternative-1} for legend.}
+  representing changing key parameters. See
+  Figure~\ref{fig:main-biomass-base-alternative-1} for sensitivity descriptions.}
 \label{fig:main-status-base-alternative-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -910,8 +908,8 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 @
 \end{center}
 \caption{Maximum likelihood estimates of spawning biomass for the base model and alternative
-  sensitivity runs that represent changes in data: adding an age-1 index of abundance,
-  using the harmonic mean approach to weight composition data, and using the
+  sensitivity runs that represent the following changes in data: adding an age-1 index of abundance,
+  using the McAllister-Ianelli approach to weight composition data, and using the
   Francis approach to weight composition data.}
 \label{fig:main-biomass-base-alternative-2}
 %% \end{figure}
@@ -1153,10 +1151,12 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 \begin{figure}[H]
 \begin{center}
 <<main.selectivity.illustration, fig.height=9, fig.width=8>>=
+temp <- grep("tvSelect_sig", sapply(sens.models.4, "[[", "path"))[1]
 make.selectivity.illustration(mod.old = base.model,
-                              mod.alt = sens.models.4[[2]],
+                              mod.alt = sens.models.4[[temp]],
                               yr1 = 1990, # baseline year
                               yr2 = 1991) # year to illustrate with deviations
+rm(temp)
 @
 \end{center}
 \caption{Illustration of parameterization of time-varying selectivity as
@@ -1186,7 +1186,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 \caption{Maximum likelihood estimates of spawning biomass for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
-  semi-parametric approach for implementing time-varying selectivity (sigma-S).}
+  semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).}
 \label{fig:main-biomass-base-alternative-4}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1206,7 +1206,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 \caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
-  semi-parametric approach for implementing time-varying selectivity (sigma-S).
+  semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).
   See Figure~\ref{fig:main-biomass-base-alternative-4} for legend.}
 \label{fig:main-status-base-alternative-4}
 \end{figure}
@@ -1228,7 +1228,7 @@ box()
 \caption{Maximum likelihood estimates of recruitment deviations for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
-  semi-parametric approach for implementing time-varying selectivity (sigma-S).
+  semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).
   See Figure~\ref{fig:main-biomass-base-alternative-4} for legend.}
 \label{fig:main-recruit-base-alternative-4}
 %% \end{figure}
@@ -1249,7 +1249,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 \caption{Maximum likelihood estimates of the fit to the survey index of abundance
   for the base model and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
-  semi-parametric approach for implementing time-varying selectivity (sigma-S).
+  semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).
   See Figure~\ref{fig:main-biomass-base-alternative-4} for legend.}
 \label{fig:main-index-base-alternative-4}
 \end{figure}
