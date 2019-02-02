@@ -97,164 +97,6 @@ delete.dirs <- function(models.dir = model.dir, ## Directory name for all models
       sub.dir, "directory in each model directory.\n")
 }
 
-create.rdata.file <- function(
-           models.dir = model.dir,          ## Directory name for all models location
-           model.name,                      ## Directory name of model to be loaded
-           ovwrt.rdata = FALSE,             ## Overwrite the RData file if it exists?
-           run.forecasts = FALSE,           ## Run forecasting metrics for this model? *This will overwrite any already run*
-           fore.yrs = forecast.yrs,         ## Vector of years to run forecasting for if run.metrics = TRUE
-           forecast.probs = forecast.probs, ## Vector of quantile values if run.metrics = TRUE
-           forecast.catch.levels = catch.levels, ## List of catch levels to run forecasting for if run.forecasts = TRUE
-           run.retros = FALSE,              ## Run retrospectives for this model? *This will overwrite any already run*
-           my.retro.yrs = retro.yrs,        ## Vector of integers (positives) to run retrospectives for if run.retros = TRUE
-           run.extra.mcmc = FALSE,          ## Run extra mcmc output (a report file for each of the mcmc samples)
-           key.posteriors = key.posteriors, ## Vector of key posteriors used to create key posteriors file
-           key.posteriors.fn = "keyposteriors.csv",
-           nuisance.posteriors.fn = "nuisanceposteriors.csv",
-           ss.version = "3.30",
-           verbose = FALSE){
-  ## Create an rdata file to hold the model's data and outputs.
-  ## If an RData file exists, and overwrite is FALSE, return immediately.
-  ## If no RData file exists, the model will be loaded from outputs into an R list
-  ##  and saved as an RData file in the correct directory.
-  ## When this function exits, an RData file will be located in the
-  ##  directory given by model.name.
-  ## Assumes the files model-setup.r, retrospective-setup.r, and forecast-catch-levels.r
-  ##  have been sourced (for default values of args).
-  ## Assumes utilities.r has been sourced.
-  ## ss.version determines which version of SS_readdat() is used.
-  curr.func.name <- get.curr.func.name()
-  model.dir <- file.path(models.dir, model.name)
-  if(!dir.exists(model.dir)){
-    stop(curr.func.name,"Error - the directory ", model.dir, " does not exist. ",
-         "Fix the problem and try again.\n")
-  }
-  ## The RData file will have the same name as the directory it is in
-  rdata.file <- file.path(model.dir, paste0(model.name, ".RData"))
-  if(!ovwrt.rdata){
-    if(run.forecasts){
-      stop(curr.func.name,
-           "Error - You have asked to run forecasting, ",
-           "but set ovwrt.rdata to FALSE.\n",
-           "Set ovwrt.rdata to TRUE and try again.")
-    }
-    if(run.retros){
-      stop(curr.func.name,
-           "Error - You have asked to run retrospectives, ",
-           "but set ovwrt.rdata to FALSE.\n",
-           "Set ovwrt.rdata to TRUE and try again.")
-    }
-    if(run.extra.mcmc){
-      stop(curr.func.name,
-           "Error - You have asked to run the extra mcmc output, ",
-           "but set ovwrt.rdata to FALSE.\n",
-           "Set ovwrt.rdata to TRUE and try again.")
-    }
-  }
-  if(file.exists(rdata.file)){
-    if(ovwrt.rdata){
-      ## Delete the RData file
-      cat0(curr.func.name, "RData file found in ", model.dir,
-           ". Deleting...\n")
-      unlink(rdata.file, force = TRUE)
-    }else{
-      cat0(curr.func.name, "RData file found in ", model.dir, "\n")
-      return(invisible())
-    }
-  }else{
-    cat0(curr.func.name, "No RData file found in ", model.dir,
-         ". Creating one now.\n")
-  }
-
-  ## If this point is reached, no RData file exists so it
-  ##  has to be built from scratch
-  model <- load.ss.files(model.dir,
-                         ss.version = ss.version)
-
-  ## Check to make sure mcmc path exists and run forecasts etc if it does
-  if(dir.exists(model$mcmcpath)){
-    ##----------------------------------------------------------------------------
-    ## Run forecasts
-    if(run.forecasts){
-      run.forecasts(model,
-                    fore.yrs,
-                    forecast.probs,
-                    forecast.catch.levels)
-    }
-    ##----------------------------------------------------------------------------
-
-    ##----------------------------------------------------------------------------
-    ## Run extra mcmc output.
-    model$extra.mcmc.path <- file.path(model$path, "extra-mcmc")
-    if(run.extra.mcmc){
-      run.extra.mcmc.models(model, verbose = verbose)
-    }
-    ##----------------------------------------------------------------------------
-
-    ##----------------------------------------------------------------------------
-    ## Run retrospectives
-    model$retropath <- file.path(model$path, "retrospectives")
-    if(is.null(model$retropath)){
-      model$retropath <- NA
-    }
-    if(run.retros){
-      run.retrospectives(model,
-                         yrs = my.retro.yrs,
-                         verbose = verbose)
-    }
-    ##----------------------------------------------------------------------------
-
-    ##----------------------------------------------------------------------------
-    ## Load forecasts.  If none are found or there is a problem, model$forecasts
-    ##  will be NA
-    if(dir.exists(file.path(model$mcmcpath, "forecasts"))){
-      model$catch.levels <- fetch.catch.levels(model,
-                                               forecast.catch.levels)
-      model$catch.default.policy <- model$catch.levels[[catch.default.policy.ind]][[1]]
-      model$forecasts <- fetch.forecasts(model$mcmcpath,
-                                         fore.yrs,
-                                         model$catch.levels,
-                                         fore.probs = forecast.probs)
-      model$risks <- calc.risk(model$forecasts,
-                               model$catch.levels,
-                               fore.yrs)
-    }else{
-      model$catch.levels <- NA
-      model$catch.default.policy <- NA
-      model$forecasts <- NA
-      model$risks <- NA
-    }
-    ##----------------------------------------------------------------------------
-
-    ##----------------------------------------------------------------------------
-    ## Load retrospectives. If none are found or there is a problem, model$retros
-    ##  will be NA
-    if(dir.exists(model$retropath)){
-      model$retros <- fetch.retros(model$retropath,
-                                   my.retro.yrs,
-                                   verbose = verbose)
-    }else{
-      model$retros <- NA
-    }
-    ##----------------------------------------------------------------------------
-
-    ##----------------------------------------------------------------------------
-    ## Try loading extra mcmc output. If none are found or there is a problem,
-    ##  model$extra.mcmc will be NA
-    if(dir.exists(model$extra.mcmc.path)){
-      model$extra.mcmc <- fetch.extra.mcmc(model,
-                                           verbose = verbose)
-    }else{
-      model$extra.mcmc <- NA
-    }
-    ##----------------------------------------------------------------------------
-  }
-
-  ## Save the model as an RData file
-  save(model, file = rdata.file)
-  return(invisible())
-}
-
 calc.mcmc <- function(mcmc,
                       lower = 0.025,
                       upper = 0.975){
@@ -887,6 +729,10 @@ run.retrospectives <- function(model,
                                yrs = 1:15,            ## A vector of years to subtract from the model's data to run on.
                                remove.blocks = FALSE,
                                extras = "-nox",       ## Extra switches for the command line.
+                               exe.file.name = "ss3.exe",
+                               starter.file.name = "starter.ss",
+                               forecast.file.name = "forecast.ss",
+                               weight.at.age.file.name = "wtatage.ss",
                                verbose = TRUE){
   ## Runs retrospectives for the given model and for the vector of years given
   ## This will create a 'retrospectives' directory in the same directory as the model resides,
@@ -1386,4 +1232,158 @@ load.models <- function(model.dir,
   }else{
     ret.list
   }
+}
+
+create.rdata.file <- function(
+           models.dir = model.dir,          ## Directory name for all models location
+           model.name,                      ## Directory name of model to be loaded
+           ovwrt.rdata = FALSE,             ## Overwrite the RData file if it exists?
+           run.fore = FALSE,                ## Run forecasting metrics for this model? *This will overwrite any already run*
+           fore.yrs = forecast.yrs,         ## Vector of years to run forecasting for if run.metrics = TRUE
+           forecast.probs = forecast.probs, ## Vector of quantile values if run.metrics = TRUE
+           forecast.catch.levels = catch.levels, ## List of catch levels to run forecasting for if run.fore = TRUE
+           run.retros = FALSE,              ## Run retrospectives for this model? *This will overwrite any already run*
+           my.retro.yrs = retro.yrs,        ## Vector of integers (positives) to run retrospectives for if run.retros = TRUE
+           run.extra.mcmc = FALSE,          ## Run extra mcmc output (a report file for each of the mcmc samples)
+           key.posteriors = key.posteriors, ## Vector of key posteriors used to create key posteriors file
+           key.posteriors.fn = "keyposteriors.csv",
+           nuisance.posteriors.fn = "nuisanceposteriors.csv",
+           ss.version = "3.30",
+           exe.file.name = "ss3.exe",
+           starter.file.name = "starter.ss",
+           forecast.file.name = "forecast.ss",
+           weight.at.age.file.name = "wtatage.ss",
+           verbose = FALSE){
+  ## Create an rdata file to hold the model's data and outputs.
+  ## If an RData file exists, and overwrite is FALSE, return immediately.
+  ## If no RData file exists, the model will be loaded from outputs into an R list
+  ##  and saved as an RData file in the correct directory.
+  ## When this function exits, an RData file will be located in the
+  ##  directory given by model.name.
+  ## Assumes the files model-setup.r, retrospective-setup.r, and forecast-catch-levels.r
+  ##  have been sourced (for default values of args).
+  ## Assumes utilities.r has been sourced.
+  ## ss.version determines which version of SS_readdat() is used.
+  curr.func.name <- get.curr.func.name()
+  model.dir <- file.path(models.dir, model.name)
+  if(!dir.exists(model.dir)){
+    stop(curr.func.name,"Error - the directory ", model.dir, " does not exist. ",
+         "Fix the problem and try again.\n")
+  }
+  ## The RData file will have the same name as the directory it is in
+  rdata.file <- file.path(model.dir, paste0(model.name, ".RData"))
+  if(!ovwrt.rdata){
+    if(run.fore){
+      stop(curr.func.name,
+           "Error - You have asked to run forecasting, ",
+           "but set ovwrt.rdata to FALSE.\n",
+           "Set ovwrt.rdata to TRUE and try again.")
+    }
+    if(run.retros){
+      stop(curr.func.name,
+           "Error - You have asked to run retrospectives, ",
+           "but set ovwrt.rdata to FALSE.\n",
+           "Set ovwrt.rdata to TRUE and try again.")
+    }
+    if(run.extra.mcmc){
+      stop(curr.func.name,
+           "Error - You have asked to run the extra mcmc output, ",
+           "but set ovwrt.rdata to FALSE.\n",
+           "Set ovwrt.rdata to TRUE and try again.")
+    }
+  }
+  if(file.exists(rdata.file)){
+    if(ovwrt.rdata){
+      ## Delete the RData file
+      cat0(curr.func.name, "RData file found in ", model.dir,
+           ". Deleting...\n")
+      unlink(rdata.file, force = TRUE)
+    }else{
+      cat0(curr.func.name, "RData file found in ", model.dir, "\n")
+      return(invisible())
+    }
+  }else{
+    cat0(curr.func.name, "No RData file found in ", model.dir,
+         ". Creating one now.\n")
+  }
+
+  ## If this point is reached, no RData file exists so it
+  ##  has to be built from scratch
+  model <- load.ss.files(model.dir,
+                         ss.version = ss.version)
+
+  if(dir.exists(model$mcmcpath)){
+    if(run.fore){
+      run.forecasts(model,
+                    fore.yrs,
+                    forecast.probs,
+                    forecast.catch.levels)
+    }
+    if(run.extra.mcmc){
+      run.extra.mcmc.models(model, verbose = verbose)
+    }
+    if(is.null(model$retropath)){
+      model$retropath <- NA
+    }
+    if(run.retros){
+      run.retrospectives(model,
+                         yrs = my.retro.yrs,
+                         exe.file.name = exe.file.name,
+                         starter.file.name = starter.file.name,
+                         forecast.file.name = forecast.file.name,
+                         weight.at.age.file.name = weight.at.age.file.name,
+                         verbose = verbose)
+    }
+
+    ##----------------------------------------------------------------------------
+    ## Load forecasts.  If none are found or there is a problem, model$forecasts
+    ##  will be NA
+    if(dir.exists(file.path(model$mcmcpath, "forecasts"))){
+      model$catch.levels <- fetch.catch.levels(model,
+                                               forecast.catch.levels)
+      model$catch.default.policy <- model$catch.levels[[catch.default.policy.ind]][[1]]
+      model$forecasts <- fetch.forecasts(model$mcmcpath,
+                                         fore.yrs,
+                                         model$catch.levels,
+                                         fore.probs = forecast.probs)
+      model$risks <- calc.risk(model$forecasts,
+                               model$catch.levels,
+                               fore.yrs)
+    }else{
+      model$catch.levels <- NA
+      model$catch.default.policy <- NA
+      model$forecasts <- NA
+      model$risks <- NA
+    }
+    ##----------------------------------------------------------------------------
+
+    ##----------------------------------------------------------------------------
+    ## Load retrospectives. If none are found or there is a problem, model$retros
+    ##  will be NA
+    model$retropath <- file.path(model$path, "retrospectives")
+    if(dir.exists(model$retropath)){
+      model$retros <- fetch.retros(model$retropath,
+                                   my.retro.yrs,
+                                   verbose = verbose)
+    }else{
+      model$retros <- NA
+    }
+    ##----------------------------------------------------------------------------
+
+    ##----------------------------------------------------------------------------
+    ## Try loading extra mcmc output. If none are found or there is a problem,
+    ##  model$extra.mcmc will be NA
+    model$extra.mcmc.path <- file.path(model$path, "extra-mcmc")
+    if(dir.exists(model$extra.mcmc.path)){
+      model$extra.mcmc <- fetch.extra.mcmc(model,
+                                           verbose = verbose)
+    }else{
+      model$extra.mcmc <- NA
+    }
+    ##----------------------------------------------------------------------------
+  }
+
+  ## Save the model as an RData file
+  save(model, file = rdata.file)
+  return(invisible())
 }

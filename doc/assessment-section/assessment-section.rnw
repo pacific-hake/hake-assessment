@@ -1136,18 +1136,9 @@ include the following:
   
 \item Include the age-1 survey index as an additional source of information;
 
-\item Assume no cohort-based ageing error (i.e., time invariant ageing error);
-
 \item Use of the McAllister-Ianelli method for data-weighting;
 
-\item Use of an alternative method for aggregating the age compositions from
-  the U.S. fishery (weighting by the catch within each month)
-
-\item Consideration of an alternative catch stream which addresses a 
-  few issues related to the annual catch in recent years.
-
-\item Consideration of alternative maximum age assumptions for estimating 
-  selectivity;
+\item Use of the Francis method for data-weighting;
 
 \item Consideration of alternative standard deviations for time-varying 
   selectivity; and
@@ -1162,7 +1153,7 @@ the main population dynamics of the base model; all models showed large
 estimated increases in spawning biomass in recent years that continues to be
 driven by the large 2010 cohort and the 2014 cohort. The overall scale of the 
 population was impacted by various alternative assumptions, and the highly 
-uncertain size of the 2016 cohort was more variable across sensitivity analyses
+uncertain size of the recent large cohorts were more variable across sensitivity analyses
 than earlier cohorts which have been observed in more years.
 
 %%% 2018: commented text below leftover from 2017 document
@@ -1190,7 +1181,7 @@ of variation assumed about the stock-recruitment relationship ($\sigma_r$), and
 the resiliency of the stock in terms of recruitment (steepness).
 
 % section below on natural mortality sensitivity
-% No change needed in 2018 (so far)
+% Done KFJ 2019
 The standard deviation of the prior distribution on natural mortality was
 increased from the base model value of 0.1 to 0.2 and 0.3. Maximum likelihood
 estimates of natural mortality increased from
@@ -1199,22 +1190,22 @@ standard deviation of 0.1) to
 \Sexpr{round(sens.models.1[[which(sens.model.names.1=="Natural Mortality (SD=0.3)")]]$parameters$Value[1],3)} 
 for the sensitivity run with the prior standard
 deviation set to 0.3 (Table~\ref{tab:main-parameter-estimates-sens-1}). In addition to allowing a higher estimated value for
-natural mortality, the broader prior in M also increased the overall scale of
+natural mortality, the broader prior on M also increased the overall scale of
 the population, the estimated stock status relative to $B_0$, and the
 uncertainty in spawning biomass on both absolute and relative scales
 (Table~\ref{tab:main-parameter-estimates-sens-1} and Figures~\ref{fig:main-biomass-base-alternative-1} 
 and~\ref{fig:main-status-base-alternative-1}).
 
 % section below on steepness sensitivity
-% No change needed in 2018 (so far)
+% Done KFJ 2019
 The mean of the prior distribution on steepness was decreased from 0.777 (base)
-to 0.5, and, separately, steepness was fixed at 1.0. The decrease in the mean of the
+to 0.5 and, separately, steepness was fixed at 1.0. The decrease in the mean of the
 prior resulted in a change in the maximum likelihood estimate of steepness from
 \Sexpr{f(base.model$parameters["SR_BH_steep","Value"],3)} to
 \Sexpr{f(sens.models.1[[which(sens.model.names.1=="Steepness Mean Prior Low (0.5)")]]$parameters["SR_BH_steep","Value"],3)}
 (Table~\ref{tab:main-parameter-estimates-sens-1}). 
 However, neither steepness
-sensitivity had a strong impact on the overall model results
+sensitivity analysis had a strong impact on the overall model results
 (Figures~\ref{fig:main-biomass-base-alternative-1} and
 \ref{fig:main-status-base-alternative-1}). The small influence of steepness on
 model results is related to the relatively large $\sigma_r$ value which allows
@@ -1222,7 +1213,7 @@ the recruitments to deviate far from the underlying stock-recruit relationship
 (Figure~\ref{fig:main-mcmc.sr.variability}).
 
 % section below on sigma_r 
-% Manual 2018
+% Done KFJ 2019
 The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative
 high (1.8) and low (1.0) states. The low value, $\sigma_r = 1.0$, 
 resulted in a model where the standard deviation of the MLE estimates of 
@@ -1232,8 +1223,10 @@ suggesting that the data were inconsistent with the lower value of $\sigma_r$.
 The high value, $\sigma_r = 1.8$, resulted in a model with a more
 consistent standard deviation for the estimated recruitment deviations, at 
 \Sexpr{round(sens.models.1[[which(sens.model.names.1=="Sigma R 1.8")]]$sigma_R_info$SD_of_devs[1],2)}.
-However, the high $\sigma_r$ model had a larger difference between the unfished
-equilibrium and the initial year of the model 
+However, the high $\sigma_r$ model had a larger difference between the 
+spawning biomass at unfished
+equilibrium and the spawning biomass at the initial year of the model 
+than the low $\sigma_r$ model 
 (Table~\ref{tab:main-parameter-estimates-sens-1} and  
 Figures~\ref{fig:main-biomass-base-alternative-1} and
 \ref{fig:main-status-base-alternative-1}). The method of \citet{MethotTaylor2011}
@@ -1249,6 +1242,7 @@ $\sigma_r$ of \Sexpr{sigma.r.alt.allyr}, which was similar to the
 base-model value of 1.4.
 
 % Manual 2018: updated the "Bratio" years in paragraph below
+% Done KFJ 2019
 The sensitivity of the base model to the inclusion of the age-1 survey index
 provides an additional source of information about the recruitment of different
 year classes (see discussion in Section~\ref{sec:data-acoustic-survey}), which
@@ -1264,133 +1258,149 @@ of unfished biomass for the base model and
 \Sexpr{f(100*sens.models.1.for.table[[8]]$derived_quants["Bratio_2018","Value"],1)}\%
 for the age-1 index model). This change is likely due to the base model
 underfitting the age-1 index estimates of the size of the 2014 and 2016 cohorts
-(Figure~\ref{fig:main-age-one-index}). These changes are subtle, however
-since the base model generally tracks the trends in the age-1 index well.
+(Figure~\ref{fig:main-age-one-index}). These changes are subtle
+because the base model generally tracks the trends in the age-1 index well.
 
-% Manual 2018: didn't change much other than shrinking this paragraph a bit from 2017
-The impact of assuming a time-invariant ageing error vector instead of a
-cohort-based ageing error matrix (as in the base model) was evaluated.  The
-largest changes to model results are associated with estimates of equilibrium
-unfished biomass and thus relative spawning biomass 
-(Table~\ref{tab:main-parameter-estimates-sens-1}).  These differences stem from
-the population model being restricted in the time-invariant case to fitting
-age-composition data with a stationary level of measurement error associated
-with each age.
+% Manual 2018: removed in 2019
+% The impact of assuming a time-invariant ageing error vector instead of a
+% cohort-based ageing error matrix (as in the base model) was evaluated.  The
+% largest changes to model results are associated with estimates of equilibrium
+% unfished biomass and thus relative spawning biomass 
+% (Table~\ref{tab:main-parameter-estimates-sens-1}).  These differences stem from
+% the population model being restricted in the time-invariant case to fitting
+% age-composition data with a stationary level of measurement error associated
+% with each age.
 
-As noted in the description of assessment changes in 
-Section~\ref{sec:assessment-changes}, the base model used a new
-Dirichlet-Multinomial likelihood which includes two additional estimated 
-parameters that automatically weight each of the fishery and survey age 
-compositions. This produced higher weights on the age compositions but 
-generally very similar results to the McAllister-Ianelli method used in 
-previous assessments, whereby the input samples sizes are iteratively 
-adjusted by a multiplier to make the arithmetic mean of the input 
+% section below on composition weighting
+% Done KFJ 2019
+The sensitivity of the use of the 
+Dirichlet-Multinomial likelihood, implemented in 2018,
+which uses two estimated 
+parameters to automatically weight each of the fishery and survey age 
+compositions, was assessed by comparing the weightings to the 
+McAllister-Ianelli and Francis methods. 
+Both alternative methods iteratively adjust the input sample sizes
+using a derived multiplier.
+The McAllister-Ianelli method, which was used in assessments prior to 2018, 
+attempts to make the arithmetic mean of the input 
 sample size approximately equal to the harmonic mean of the effective 
-sample sizes.
+sample size.
+The Francis method attempts to make the fit of the expected mean age 
+lie within the uncertainty intervals at a rate which is consistent 
+with variability expected based on the adjusted sample sizes.
+The Dirichlet-Multinomial method 
+estimated higher weights on the age compositions but 
+generally very similar results to the McAllister-Ianelli method.
+Whereas, the Francis method increased the weighting of the fishery
+composition data resulting in a similar time series of biomass, though 
+slightly reduced in scale. 
 
-The influence of an alternative approach for calculating the 2017 fishery age
-composition was also explored. In most years, 
-nearly all the available \fishname\ otoliths caught in U.S. waters are aged and then 
-used, along with data from Canada, to develop an annual age composition for 
-the fishery (see Section~\ref{sec:data-fishery-biological-data}). High catch levels in 2017, resulting
-from high estimates of abundance and associated TACs, and it being a survey year has 
-led to an increase in the total number of otoliths sampled for ageing.  For 2017, 
-nearly 77\% (2,369 out of 3,090) of the U.S. at-sea sectors otoliths were aged in time
-for this assessment (typically greater than 95\% are aged).  Recently, the 
-seasonality of catch-at-age has become even more apparent with the large 2010 and 2014 cohorts, resulting in
-younger individuals being caught in larger proportions later in the year. This can lead
-to bias when the unread otoliths are also from later in the year when aggregating to a single annual
-age composition. In response, the JTC calculated a monthly catch weighted 
-annual composition for the U.S. at-sea sectors, and then combined that with the compositions
-from other sectors following standard procedures \citep{JTC2013, JTC2014}. The result 
-was minor differences in the overall fishery age composition (Table~\ref{tab:main-parameter-estimates-sens-1}):
-less than a 0.4\% change for 
-all ages except the 2014 cohort (increase 2.1\%) and the 2010 cohort (decrease 1.0\%).  
-These relatively minor differences also had little to no influence on estimates of spawning
-biomass (Figure~\ref{fig:main-biomass-base-alternative-2}) or stock status 
-(Figure~\ref{fig:main-status-base-alternative-2}) in 2018. Nonetheless, otolith
-subsampling protocols should be developed to account for seasonality in catch-at-age.  Such
-protocols are especially critical during survey years or years of high abundance when large 
-sample sizes are expected or when ageing laboratory resources are limited.         
+% Removed in 2019 by KFJ
+% The influence of an alternative approach for calculating the 2017 fishery age
+% composition was also explored. In most years, 
+% nearly all the available \fishname\ otoliths caught in U.S. waters are aged and then 
+% used, along with data from Canada, to develop an annual age composition for 
+% the fishery (see Section~\ref{sec:data-fishery-biological-data}). High catch levels in 2017, resulting
+% from high estimates of abundance and associated TACs, and it being a survey year has 
+% led to an increase in the total number of otoliths sampled for ageing.  For 2017, 
+% nearly 77\% (2,369 out of 3,090) of the U.S. at-sea sectors otoliths were aged in time
+% for this assessment (typically greater than 95\% are aged).  Recently, the 
+% seasonality of catch-at-age has become even more apparent with the large 2010 and 2014 cohorts, resulting in
+% younger individuals being caught in larger proportions later in the year. This can lead
+% to bias when the unread otoliths are also from later in the year when aggregating to a single annual
+% age composition. In response, the JTC calculated a monthly catch weighted 
+% annual composition for the U.S. at-sea sectors, and then combined that with the compositions
+% from other sectors following standard procedures \citep{JTC2013, JTC2014}. The result 
+% was minor differences in the overall fishery age composition (Table~\ref{tab:main-parameter-estimates-sens-1}):
+% less than a 0.4\% change for 
+% all ages except the 2014 cohort (increase 2.1\%) and the 2010 cohort (decrease 1.0\%).  
+% These relatively minor differences also had little to no influence on estimates of spawning
+% biomass (Figure~\ref{fig:main-biomass-base-alternative-2}) or stock status 
+% (Figure~\ref{fig:main-status-base-alternative-2}) in 2018. Nonetheless, otolith
+% subsampling protocols should be developed to account for seasonality in catch-at-age.  Such
+% protocols are especially critical during survey years or years of high abundance when large 
+% sample sizes are expected or when ageing laboratory resources are limited.         
 
-The ``Consideration of an alternative catch stream'' sensitivity analysis
-explores the combined impact of the three independent issues in the calculation 
-of total catch that were identified late in the assessment process (as 
-described at the end of Section~\ref{sec:data-total-catch}). 
-The average change in catch for the period in question, 2007 to 2017, was 0.5\%
-which was too small to make a noticable impact in the time series of spawning biomass
-(Figures~\ref{fig:main-biomass-base-alternative-2} and 
-\ref{fig:main-status-base-alternative-2}).
+% Removed in 2019 by KFJ
+% The ``Consideration of an alternative catch stream'' sensitivity analysis
+% explores the combined impact of the three independent issues in the calculation 
+% of total catch that were identified late in the assessment process (as 
+% described at the end of Section~\ref{sec:data-total-catch}). 
+% The average change in catch for the period in question, 2007 to 2017, was 0.5\%
+% which was too small to make a noticable impact in the time series of spawning biomass
+% (Figures~\ref{fig:main-biomass-base-alternative-2} and 
+% \ref{fig:main-status-base-alternative-2}).
 
-
+% section below on selectivity
 % Manual 2018
-Three types of alternative setups for selectivity were explored in sensitivity
-analyses: alternative assumptions about the age beyond which selectivity 
-is assumed constant, alternative values of the $\Phi$ parameter 
+% Done KFJ 2019
+The following two types of alternative setups for selectivity were explored in sensitivity
+analyses: alternative values of the $\Phi$ parameter 
 controlling the degree of flexibility of annual variation in the 
-fishery selectivity, and an alternative ``semi-parametric'' 
+fishery selectivity and an alternative ``semi-parametric'' 
 parameterization of the 
 time-varying selectivity. The methods and results of each will be
 described in turn.
 
-% Manual 2018: lots of changes to paragraphs below
-Fishery and survey selectivity in the base model is modeled as changing 
-from each age to the next up to age 6 beyond which it is assumed constant. 
-Three alternative maximum selectivity age values (5, 7, and 10) were considered to 
-investigate the
-asymptotic properties of fishery and survey selectivity patterns and the impact
-maximum selectivity age has on model behavior. For each alternative option
-all of the ages with estimated fishery selectivity had annual deviations 
-estimated for the corresponding parameters. Thus, a change from age-6 to
-age-7 as the maximum selectivity age was associated with 29 additional 
-parameters, 1 each for the additional age in the fishery and the selectivity 
-% Manual 2018: parameter counts below aren't dynamic
-and 27 deviations for the years 1991 to 2017.
+% Removed by KFJ in 2019
+% Fishery and survey selectivity in the base model is modeled as changing 
+% from each age to the next up to age 6 beyond which it is assumed constant. 
+% Three alternative maximum selectivity age values (5, 7, and 10) were considered to 
+% investigate the
+% asymptotic properties of fishery and survey selectivity patterns and the impact
+% maximum selectivity age has on model behavior. For each alternative option
+% all of the ages with estimated fishery selectivity had annual deviations 
+% estimated for the corresponding parameters. Thus, a change from age-6 to
+% age-7 as the maximum selectivity age was associated with 29 additional 
+% parameters, 1 each for the additional age in the fishery and the selectivity 
+% % parameter counts below aren't dynamic
+% and 27 deviations for the years 1991 to 2017.
 
-The estimated population trends 
-throughout the time series are similar, irrespective of maximum selectivity age
-(Figures~\ref{fig:main-base-alternative-3}-\ref{fig:main-index-base-tv-increase-1}).
-However, absolute levels of
-spawning biomass are different, particularly for the age-10 case. Under all
-alternatives, the base model pattern of a decline in survey 
-selectivity between ages 3 and 4 remained, and was either increased or repeated
-at additional ages (Figure~\ref{fig:main-base-alternative-3}). 
-As noted in Section~\ref{sec:assessment-model-results}, a potential 
-cause of this zig-zag pattern is the 
-interaction of the biennial timing for much of the survey history with large 
-cohorts. The 1999 cohort made up the majority of the observed ages in the survey
-when they were age 2, 4, 6, and 8, while the 2010 and 2014 cohorts have 
-primarily been observed when they were age 3, 5, or 7. Thus, any 
-differences in the dynamics of these cohorts that are not represented in the model,
-such as differences in natural
-mortality, would lead to a shift
-in selectivity between the even- and odd-numbered ages. 
-The choice of age 6 as the maximum was retained in the base model as it
-was more flexible than the choice of age 5 while those with higher ages 
-produces less plausible patterns of selectivity.
+% The estimated population trends 
+% throughout the time series are similar, irrespective of maximum selectivity age
+% (Figures~\ref{fig:main-base-alternative-3}-\ref{fig:main-index-base-tv-increase-1}).
+% However, absolute levels of
+% spawning biomass are different, particularly for the age-10 case. Under all
+% alternatives, the base model pattern of a decline in survey 
+% selectivity between ages 3 and 4 remained, and was either increased or repeated
+% at additional ages (Figure~\ref{fig:main-base-alternative-3}). 
+% As noted in Section~\ref{sec:assessment-model-results}, a potential 
+% cause of this zig-zag pattern is the 
+% interaction of the biennial timing for much of the survey history with large 
+% cohorts. The 1999 cohort made up the majority of the observed ages in the survey
+% when they were age 2, 4, 6, and 8, while the 2010 and 2014 cohorts have 
+% primarily been observed when they were age 3, 5, or 7. Thus, any 
+% differences in the dynamics of these cohorts that are not represented in the model,
+% such as differences in natural
+% mortality, would lead to a shift
+% in selectivity between the even- and odd-numbered ages. 
+% The choice of age 6 as the maximum was retained in the base model as it
+% was more flexible than the choice of age 5 while those with higher ages 
+% produces less plausible patterns of selectivity.
 
 The consideration of alternative standard deviations ($\Phi$) for time-varying
 selectivity is discussed earlier in
 Section~\ref{sec:data-variability-selectivity}. In short, low values of the
 parameter $\Phi$ controlling the flexibility in time-varying selectivity
 resulted in potentially implausibly high estimates recent recruitments. The
-values of the related $\phi$ explored in the 2017 assessment \citep{JTC2017}
-were 0.03, 0.10, 
-and 0.30, as alternatives to the 0.20 used in the base model. 
-As discussed in Section~\ref{sec:data-variability-selectivity}, the change
-to the new version of Stock Synthesis required 
-appropriate values of $\Phi$, with 
-$\Phi = 7 \phi$
-resulting in
-approximately equivalent dynamics. Thus, the base model value is $\Phi = 1.40$, and
+% values of the related $\phi$ explored in the 2017 assessment \citep{JTC2017}
+% were 0.03, 0.10, 
+% and 0.30, as alternatives to the 0.20 used in the base model. 
+% As discussed in Section~\ref{sec:data-variability-selectivity}, the change
+% to the new version of Stock Synthesis required 
+% appropriate values of $\Phi$, with 
+% $\Phi = 7 \phi$
+% resulting in
+% approximately equivalent dynamics. Thus, the 
+base model value is $\Phi = 1.40$, and
 alternatives explored as sensitivity analyses were 0.21, 0.70, and 2.10.
 The addition of the 2017 fishery age compositions and the 2017 survey biomass
 estimate and age compositions led to more precise estimates of the 2014
 recruitment, regardless of the value of $\Phi$. However, the 2016 recruitment,
-which is only informed by the 2017 fishery age composition, is strongly
+which is only informed by the 2017 and 2018 fishery age compositions, is strongly
 linked to the choice of $\Phi$, where the model with the smallest $\Phi$ 
-at 0.21 (equivalent to $\phi=0.03$ in the previous setup) estimates 
-the 2016 recruitment deviation as the highest in the time series 
+at 0.21 estimates 
+the 2016 and 2017 recruitment deviations as the highest in the time series 
 (Figure~\ref{fig:main-recruit-base-tv-increase-1}) and provides the worst 
 fit to the recent survey biomass estimates 
 (Figure~\ref{fig:main-index-base-tv-increase-1}).
@@ -1417,36 +1427,40 @@ This alternative parameterization was expected
 to reduce correlation among the deviation 
 parameters, because a positive deviation at a younger age no longer leads to
 a rescaling of the selectivity pattern at all ages. Indeed, there are only 
-2 pairs of parameters with correlations above 0.7 or below -0.7 in the 
-semi-parametric model that most closely matched the based model 
-($M$ and $log(R_0)$ were positively correlated, and the deviation for 
-selectivity at age 1 in 2017 was negatively correlated with 2016 recruitment).
-This is in contrast to the base model, which had 36 parameter pairs with
-correlations above 0.7 or below -0.7, of which 34 of the pairs were 
-between two of the selectivity deviations. The Laplace method of 
-\citet{ThorsonHicksEtAl2014} also provided an estimate of the 
-variance parameter for the semi-parametric selectivity, 
-at $\sigma_s = 0.695$, which provided more plausible results than when this 
-method was applied to the status-quo selectivity setup. 
+7 pairs of parameters with correlations above 0.7 or below -0.7 in the 
+semi-parametric model that most closely matched the base model 
+($M$ and $log(R_0)$ were positively correlated and the deviations for 
+selectivity at ages 1 and 3 in 2017 and 1, 2, and 4 in 2018 were 
+correlated with each other or 2016 or 2017 recruitment).
+This is in contrast to the base model, which had 38 parameter pairs with
+correlations above 0.7 or below -0.7, of which 35 of the pairs were 
+between two of the selectivity deviations. 
+% The Laplace method of 
+% \citet{ThorsonHicksEtAl2014} also provided an estimate of the 
+% variance parameter for the semi-parametric selectivity, 
+% at $\sigma_s = 0.695$, which provided more plausible results than when this 
+% method was applied to the status-quo selectivity setup. 
 
-However, the model with $\sigma_s = 0.695$ had higher estimates of 2016 
+However, the model with $\sigma_s = 0.695$ had higher estimates of 2016
+and 2017 recruits 
 and worse fits to the recent survey biomass estimates 
 (Figures~\ref{fig:main-biomass-base-alternative-4}-\ref{fig:main-index-base-alternative-4}).
 Increasing $\sigma_s$ to 1.0
 provided the additional flexibility required to give more plausible estimates
-of this cohort that has only been observed as age-1 in the 2017 fishery.
+of this cohort that has only been observed as age-1 and age-2 fish in the fishery.
 However, relying on the subjective choice of $\sigma_s = 1.0$ removed one of
 the potential benefits of the semi-parametric approach. Given that an MCMC
 chain of 24-million samples has been adequate to overcome the inefficient 
 sampling caused by high parameter correlations in the status-quo approach,
 the parameter selectivity was kept as before for this assessment, with the
 hopes that the semi-parametric setup could be further explored in the year 
-ahead for potential inclusion in a future hake assessment.
+ahead for potential inclusion in a future assessments.
 
 Any additional sensitivity runs arising from the Scientific Review Group 
-meeting to be held from 26th February to 1st March 2018 will be documented
+meeting to be held from 19th February to 22nd February 2019 will be documented
 in Appendix~\ref{chap:srg-requests} and briefly summarized here.
 
+% 2019 SRG - 
 %%**Several additional sensitivity runs were completed in response to SRG requests
 %%during the Feb 13-16, 2017 meeting in Vancouver, B.C., Canada (see
 %%Appendix~\ref{chap:srg-requests}).  These include model sensitivity to the
