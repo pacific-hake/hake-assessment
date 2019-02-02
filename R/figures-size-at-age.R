@@ -21,19 +21,15 @@ weight.at.age.heatmap <- function(model,
                                                          1.00,
                                                          1.03)){
   ## Weight-at-age heatmap plot including extrapolated years using ggplot.
-  ## Original code not available
+  ## Original code not available during shutdown.
   ## Max age is set to 15 as we don't know what was extrapolated above that
   ##  and the figure in the assessment doc is only to 15
   ## fleet is number as seen in SS wtatage.ss file for fleet column
   ## Years after end of data up to last.yr will be projection years,
-  ##  and simply copies of the last year of w-a data
 
   ## Toggle data frame for which values are extrapolated values
   last.data.yr <- 2018
-  if(proj.line.yr != last.data.yr){
-    warning("Projection line year does not equal the last data year. ",
-            "Check weight.at.age.heatmap() and make sure values are correct.")
-  }
+
   input.yrs <- 1975:last.data.yr
   extrap = list(
     c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1), #1975
@@ -83,6 +79,14 @@ weight.at.age.heatmap <- function(model,
   names(extrap) <- input.yrs
 
   extrap <- as_tibble(cbind(input.yrs, t(bind_rows(extrap))))
+
+  if(proj.line.yr != last.data.yr){    # assume only different by one due to SS configuration
+      # want years above the blue line to bold:
+      extrap[nrow(extrap), 2:ncol(extrap)] <- rep(1, ncol(extrap)-1)
+      # warning("Projection line year does not equal the last data year. ",
+      #         "Check weight.at.age.heatmap() and make sure values are correct.")
+  }
+
 
   wa <- as_tibble(model$wtatage) %>%
     dplyr::filter(Fleet == fleet) %>%
