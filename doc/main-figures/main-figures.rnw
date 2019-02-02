@@ -1214,7 +1214,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 \begin{center}
 <<main.recruit.base.alternative.4, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(c(list(base.model), sens.models.4),
-                     legendloc = "topleft",
+                     legend = FALSE,,
                      subplots = 10,
                      model.names = c(base.model.name, sens.model.names.4),
                      end.yr = end.yr)
