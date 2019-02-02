@@ -284,7 +284,7 @@ load.models.into.parent.env <- function(){
   bridge.models.2    <<- load.models(model.dir, bridge.model.dir.names.2)
   sens.models.1      <<- load.models(model.dir, sens.model.dir.names.1)
   sens.models.2      <<- load.models(model.dir, sens.model.dir.names.2, TRUE)
-  sens.models.3      <<- load.models(model.dir, sens.model.dir.names.3)
+  ## sens.models.3      <<- load.models(model.dir, sens.model.dir.names.3)
   sens.models.4      <<- load.models(model.dir, sens.model.dir.names.4)
   sens.models.5      <<- load.models(model.dir, sens.model.dir.names.5)
 
@@ -379,7 +379,7 @@ build <- function(run.fore = FALSE,
            unlist(bridge.model.dir.names.2),
            unlist(sens.model.dir.names.1),
            unlist(sens.model.dir.names.2),
-           unlist(sens.model.dir.names.3),
+           #unlist(sens.model.dir.names.3),
            unlist(sens.model.dir.names.4),
            unlist(sens.model.dir.names.5))
 
