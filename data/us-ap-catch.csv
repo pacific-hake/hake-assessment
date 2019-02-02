@@ -1,7 +1,4 @@
-,SS,CP,MS,Tribal,Total
-Init. Alloc. (5/15),152326,123312,87044,77251,439933
-Rev. Alloc. (9/14),169546,137252,96884,36251,439933
-Catch,144396,136960,66427,6012,353796
-Remaining,25150,291,30457,30239,86137
-% Util Init. Alloc.,95,111,76,0.08,80
-% Util Rev. Alloc.,85,100,69,17,80
+,U.S. TAC,Shoreside (SS),Catcher/Processor (CP) ,Mothership (MS)
+Allocation (mt),441433,169127,136912,96644
+Catch (mt),312349,129180,116074,67095
+% Utilization,70.80%,76.40%,84.80%,69.40%
