@@ -33,6 +33,7 @@ last.year.attained <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (en
 ## US landings, TAC, and attainments
 last.year.us.landings <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$Ustotal))
 last.year.us.attained <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
+last.2year.us.attained.diff <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN - landings.vs.tac[landings.vs.tac$Year %in% (end.yr-2),]$USATTAIN), 0)
 last.year.us.not.attained <- f(as.numeric(100 - landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
 last.year.us.not.attained.tonnes <- filter(landings.vs.tac, Year == last.data.yr)$TACUSA - filter(landings.vs.tac, Year == last.data.yr)$Ustotal
 last.year.us.tac <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACUSA))
@@ -64,6 +65,7 @@ last.year.us.tribal.catch.percent <- f(last.year.us.tribal.max.landed / last.yea
 ## Last year Canadian catch and TAC
 last.year.can.carryover <- f(filter(further.tac, Year == last.data.yr)$can.carried.over)
 last.year.can.attained <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANATTAIN), 1)   # the percentage
+last.2year.can.attained.diff <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANATTAIN - landings.vs.tac[landings.vs.tac$Year %in% (end.yr-2),]$CANATTAIN), 0)
 last.year.can.landings <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal))
 last.year.can.tac <- f(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACCAN)
 last.year.can.tac.jv <- f(filter(further.tac, Year == last.data.yr)$can.jv.tac)
