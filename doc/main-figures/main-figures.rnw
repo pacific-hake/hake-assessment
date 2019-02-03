@@ -226,7 +226,7 @@ weight.at.age.heatmap(base.model)
 \end{center}
 %\vspace{0mm}
 \caption{Empirical weight-at-age (kg) values used for the base model
-  (the values match the colours). 
+  (the values match the colours).
   Data are only available from 1975--\Sexpr{max.fishery.age.prop[2]}.
   Values based on assumptions for the early and late years are shown
   outside the blue lines (see Table~\ref{tab:main-wtatage-runs});
@@ -869,7 +869,7 @@ make.comparison.plot(c(list(base.model), sens.models.1),
 \caption{Maximum likelihood estimates of spawning biomass for the base
   model and alternative sensitivity runs representing changing the mean of
   the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, lower (1.0) and higher
-  (1.8) levels of variation assumed about the stock-recruitment relationship 
+  (1.8) levels of variation assumed about the stock-recruitment relationship
   ($\sigma_r$), and changing the standard deviation of the prior for natural mortality from
   0.1 to 0.2 or 0.3.}
 \label{fig:main-biomass-base-alternative-1}
@@ -1290,7 +1290,7 @@ weight.at.age.heatmap(sens.models.5[[2]])
 \begin{center}
 <<main.weight.at.age.sens.b, fig.height=9, fig.width=8>>=
 # Run 55 (verified same heatmap as 57)
-weight.at.age.heatmap(sens.models.5[[4]], proj.line.yr=2017)
+weight.at.age.heatmap(sens.models.6[[1]], proj.line.yr=2017)
 @
 \end{center}
 \caption{Empirical weight-at-age (kg) values used for sensitivity
@@ -1326,7 +1326,7 @@ weight.at.age.heatmap(sens.models.5[[3]], proj.line.yr=2017)
 \begin{center}
 <<main.weight.at.age.sens.d, fig.height=9, fig.width=8>>=
 # Run 56 (verified same heatmap as 58)
-weight.at.age.heatmap(sens.models.5[[5]], proj.line.yr=2017)
+weight.at.age.heatmap(sens.models.6[[2]], proj.line.yr=2017)
 @
 \end{center}
 \caption{Empirical weight-at-age (kg) used for sensitivity
