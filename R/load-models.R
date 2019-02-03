@@ -70,21 +70,16 @@ load.ss.files <- function(model.dir,
   return(model)
 }
 
-delete.rdata.files <- function(
-           models.dir = model.dir ## Directory name for all models location
-           ){
+delete.rdata.files <- function(models.dir = model.dir,
+                               dont.del = last.yr.base.model.dir.name){
   ## Delete all rdata files found in the subdirectories of the models.dir
   ## directory.
   dirs <- dir(models.dir)
+  dirs <- dirs[! dirs %in% dont.del]
   rdata.files <- file.path(models.dir, dirs, paste0(dirs, ".rdata"))
-  ans <- readline("This operation cannot be undone, are you sure (y/n)? ")
-  if(ans == "Y" | ans == "y"){
-    unlink(rdata.files, force = TRUE)
-    cat(paste0("Deleted ", rdata.files, "\n"))
-    cat("All rdata files were deleted.\n")
-  }else{
-    cat("No files were deleted.\n")
-  }
+  unlink(rdata.files, force = TRUE)
+  cat(paste0("Deleted ", rdata.files, "\n"))
+  cat("All rdata files except for last year's base model were deleted\n")
 }
 
 delete.dirs <- function(models.dir = model.dir, ## Directory name for all models location
