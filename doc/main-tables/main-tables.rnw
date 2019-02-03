@@ -505,8 +505,7 @@ make.decision.table(base.model,
                     xlabel <- "tab:main-decisions-biomass",
                     font.size = 12,
                     space.size = 14,
-                    type = "biomass",
-                    catch.levels = base.model$catch.levels)
+                    type = "biomass")
 @
 
 <<main.decisions.spr.table, results='asis', echo=FALSE>>=
@@ -515,8 +514,7 @@ make.decision.table(base.model,
                     xlabel <- "tab:main-decisions-spr",
                     font.size = 12,
                     space.size = 14,
-                    type = "spr",
-                    catch.levels = base.model$catch.levels)
+                    type = "spr")
 @
 
 <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
@@ -614,7 +612,7 @@ make.short.parameter.estimates.sens.table(retro.list,
                                           space.size = 12)
 @
 
-% Ugly, but wanted to get it in quickly. 
+% Ugly, but wanted to get it in quickly.
 % Don't think we need to specify 'fecundity when varying' in only one column -
 % not sure why we do in Google one. Andy will check with Chris in the morning.
 \begin{table}
@@ -626,7 +624,7 @@ make.short.parameter.estimates.sens.table(retro.list,
   2018 (not 2019) weight-at-age
   onwards to be the mean from 1975-2018. $^b$Similarly,
   for the 2018 alternative run, the 2017 weight-at-age onwards was
-  the mean from 2015-2017. $^c$The 2018 onwards weight-at-age was the mean from 1975-2017.  
+  the mean from 2015-2017. $^c$The 2018 onwards weight-at-age was the mean from 1975-2017.
   See Section~\ref{sec:assessment-weights} for more details and
   Figures~\ref{fig:main-empirical.weight.at.age.sens.a}-\ref{fig:main-empirical.weight.at.age.sens.d}
   for the various weight-at-age assumptions.}
@@ -638,7 +636,7 @@ Model run when  & Model run when & Time-varying & Pre-1975 & Pre-1975 \\
 2019 onwards       & 2018 onwards &  fecundity? & weight-at-age & weight-at-age\\
 weight-at-age is   &  weight-at-age is & & is 1975-1979? & is 1975-2018?\\
 mean from & mean from & & & \\
-1975-2018 & 2016-2018 & & & \\  
+1975-2018 & 2016-2018 & & & \\
   \hline
 Base model & 54	& Y &   & Y\\
 55$^a$     & 58 & Y & Y &  \\
