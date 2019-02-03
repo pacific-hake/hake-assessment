@@ -9,7 +9,7 @@
   \item The stock assessment model for \Sexpr{assess.yr} is similar in structure
 to the \Sexpr{last.assess.yr} model. It is fit to an acoustic survey index of
 abundance, annual commercial catch data, and age-composition data from the
-survey and commercial fisheries.
+survey and commercial fisheries.  
 
   \item Updates to the data include:
 %%the biomass estimate and age-composition data from the acoustic survey conducted
@@ -19,6 +19,9 @@ weight-at-age data, addition of fishery catch and age-composition data
 from \Sexpr{end.yr-1}, and addition of weight-at-age data for \Sexpr{last.data.yr}.
 
   \item The model was updated to include year-specific fecundity from 1975-\Sexpr{last.data.yr}.
+  However, limited exploratory and supplementary analyses could be completed for 
+the \Sexpr{assess.yr} assessment as a result of the U.S. government shutdown
+considerably delaying delivery of U.S. age data and reducing JTC preparatory time.
 
   \item Coastwide catch in \Sexpr{end.yr-1} was the second largest on record at
     \Sexpr{last.year.landings}~t [t represents metric tons],
