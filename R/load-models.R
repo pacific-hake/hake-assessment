@@ -1264,6 +1264,7 @@ create.rdata.file <- function(
   ##  have been sourced (for default values of args).
   ## Assumes utilities.r has been sourced.
   ## ss.version determines which version of SS_readdat() is used.
+
   curr.func.name <- get.curr.func.name()
   model.dir <- file.path(models.dir, model.name)
   if(!dir.exists(model.dir)){
@@ -1320,6 +1321,7 @@ create.rdata.file <- function(
                     forecast.catch.levels)
     }
     if(run.extra.mcmc){
+      model$extra.mcmc.path = file.path(model$path, "extra-mcmc")
       run.extra.mcmc.models(model, verbose = verbose)
     }
     model$retropath <- file.path(model$path, "retrospectives")
