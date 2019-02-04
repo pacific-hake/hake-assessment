@@ -503,7 +503,9 @@ make.catches.table.us.ap <- function(catches,
   nr <- nrow(catches)
   nc <- ncol(catches)
   ## Make value cells be comma-separated
-  catches[-c(nr - 1, nr), -1] <- f(catches[-c(nr - 1, nr), -1])
+  catches[!grepl("\\%", catches[, 1]), -1] <- apply(
+    catches[!grepl("\\%", catches[, 1]), -1], 1:2, 
+    function(x) format(as.numeric(x), big.mark = ","))
 
   ## Change factorized version <NA> to NA
   catches <- apply(catches, c(1,2), make.true.NA)
@@ -512,15 +514,18 @@ make.catches.table.us.ap <- function(catches,
   catches[is.na(catches)] <- ""
 
   ## Make percent cells have percent signs
-  catches[c(nr - 1, nr), -1] <-
-    sapply(catches[c(nr - 1, nr), -1], paste0, "\\%")
+  catches <- apply(catches, 1:2, function(x) gsub("\\%", "\\\\%", x))
   ## Fix Total for Util Init. Alloc cell
-  catches[nr - 1, nc] <- ""
+  catches[
+    grep("Init", catches[, 1], ignore.case = TRUE), 
+    grep("total", colnames(catches), ignore.case = TRUE)] <- ""
 
-  ## Make leading percent signs escaped
-  catches[c(nr - 1, nr),1] <- paste0("\\", catches[c(nr - 1, nr),1])
   ## Make column and row headers bold
   catches[,1] <- latex.bold(catches[,1])
+  colnames(catches) <- gsub("\\.{2}", " ", colnames(catches))
+  colnames(catches) <- gsub(" (\\D+)\\.$", " \\(\\1\\)", colnames(catches))
+  colnames(catches) <- gsub("US |U.S ", "U.S. ", colnames(catches))
+  colnames(catches) <- gsub("([[:lower:]])\\.([[:upper:]])", "\\1 \\2", colnames(catches))
   colnames(catches)[-1] <- latex.bold(colnames(catches)[-1])
   ## Make it so that the first row heading doesn't appear.
   ##  This must be a space and not the null string
