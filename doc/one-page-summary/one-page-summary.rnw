@@ -2,28 +2,34 @@
 %% Note some variables are global from the calling file (hake-assessent.Rnw)
 
 \clearpage
-\section*{**One-page summary}
+\section*{One-page summary}
 \phantomsection \addcontentsline{toc}{section}{One-page summary}
 
 \begin{itemize}
   \item The stock assessment model for \Sexpr{assess.yr} is similar in structure
 to the \Sexpr{last.assess.yr} model. It is fit to an acoustic survey index of
 abundance, annual commercial catch data, and age-composition data from the
-survey and commercial fisheries.
+survey and commercial fisheries.  
 
   \item Updates to the data include:
-the biomass estimate and age-composition data from the acoustic survey conducted
-in \Sexpr{survey.end.yr}, fishery catch and age-composition data from \Sexpr{end.yr-1},
-weight-at-age data for \Sexpr{last.data.yr}, and calculation of a new age-based
-maturity ogive.
+%%the biomass estimate and age-composition data from the acoustic survey conducted
+%%in \Sexpr{survey.end.yr},
+minor changes to historical (pre-\Sexpr{end.yr-1}) catch, age composition and
+weight-at-age data, addition of \Sexpr{end.yr-1} fishery catch and age-composition
+data, and addition of \Sexpr{last.data.yr} weight-at-age data.
 
-  \item The model was updated to include a new non-iterative approach for weighting age-composition data.
+  \item The model was updated to include year-specific fecundity from 1975-\Sexpr{last.data.yr}.
+  However, limited exploratory and supplementary analyses could be completed for 
+the \Sexpr{assess.yr} assessment as a result of the U.S. government shutdown
+considerably delaying delivery of U.S. age data and reducing JTC preparatory time.
 
   \item Coastwide catch in \Sexpr{end.yr-1} was the second largest on record at
     \Sexpr{last.year.landings}~t [t represents metric tons],
 out of a Total Allowable Catch (adjusted for carryovers) of \Sexpr{last.year.tac}~t. Attainment in
-the U.S. was \Sexpr{last.year.us.attained}\% of its quota; in Canada it was
-\Sexpr{last.year.can.attained}\%.
+the U.S. was \Sexpr{last.year.us.attained}\% of its quota (\Sexpr{last.2year.us.attained.diff}
+point change from last year); in Canada it was
+\Sexpr{last.year.can.attained}\% (\Sexpr{last.2year.can.attained.diff}
+point change from last year).
 
   \item The stock is estimated to have been at relatively high levels since
     2013 due to large estimated 2010 and 2014 cohorts.
@@ -46,7 +52,7 @@ a decrease from the \Sexpr{end.yr-1} median of \Sexpr{prev.bio.median}~million~t
     above the target relative fishing intensity in \Sexpr{end.yr-1}
     and below the $\Bforty$ (40\% of $B_0$) reference point
     % relative spawning biomass level
-    at the start of \Sexpr{end.yr} is less than 6\%.
+    at the start of \Sexpr{end.yr} is less than 10\%.
 
   \item Based on the default harvest rule, the estimated median catch limit for
 \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with
@@ -55,24 +61,22 @@ a decrease from the \Sexpr{end.yr-1} median of \Sexpr{prev.bio.median}~million~t
 
   \item As in the past, projections are highly uncertain due to uncertainty in
 estimates of recruitment for recent years. Projections were conducted across a
-range of catch levels.
-
-  \item Projections setting the \Sexpr{forecast.yrs[1]} and
+range of catch levels. Projections setting the \Sexpr{forecast.yrs[1]} and
 \Sexpr{forecast.yrs[2]} catch equal to the \Sexpr{forecast.yrs[1]-1} Total
 Allowable Catch of
 \Sexpr{last.year.tac}~t show the estimated median relative spawning biomass
-decreasing from 67\% in \Sexpr{end.yr} to 59\% in \Sexpr{end.yr+1} and 50\% in
-\Sexpr{end.yr+2}. However, due to uncertainty there is an estimated 36\% chance
+decreasing from 64\% in \Sexpr{end.yr} to 59\% in \Sexpr{end.yr+1} and 49\% in
+\Sexpr{end.yr+2}. However, due to uncertainty there is an estimated 40\% chance
 of the spawning biomass falling below 40\% of $B_0$ in \Sexpr{end.yr+2}. There is an
-estimated 73\% chance of the spawning biomass declining from \Sexpr{end.yr} to
+estimated 72\% chance of the spawning biomass declining from \Sexpr{end.yr} to
 \Sexpr{end.yr+1}, and a
-82\% chance of it declining from \Sexpr{end.yr+1} to
+86\% chance of it declining from \Sexpr{end.yr+1} to
 \Sexpr{end.yr+2} under this constant level of catch.
-    % Manual to do (check this enitre bullet point)  -update 1/24/17 AMB
+    % Manual to do (check this enitre bullet point)  
     % 3% from Table j, 38% from Table i, 50% from Table j
     % 2018, have automated the years. 2/11/18 AME.
-    % 67%, 59%, 50% from Table g, row e
-    % 36% from Table j, 73% from Table i, 82% from Table j
+    % 64%, 59%, 49% from Table g, row e
+    % 40% from Table j, 72% from Table i, 86% from Table j
 \end{itemize}
 
 \clearpage

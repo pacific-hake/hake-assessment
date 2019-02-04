@@ -33,6 +33,7 @@ last.year.attained <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (en
 ## US landings, TAC, and attainments
 last.year.us.landings <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$Ustotal))
 last.year.us.attained <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
+last.2year.us.attained.diff <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN - landings.vs.tac[landings.vs.tac$Year %in% (end.yr-2),]$USATTAIN), 0)
 last.year.us.not.attained <- f(as.numeric(100 - landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
 last.year.us.not.attained.tonnes <- filter(landings.vs.tac, Year == last.data.yr)$TACUSA - filter(landings.vs.tac, Year == last.data.yr)$Ustotal
 last.year.us.tac <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACUSA))
@@ -64,6 +65,7 @@ last.year.us.tribal.catch.percent <- f(last.year.us.tribal.max.landed / last.yea
 ## Last year Canadian catch and TAC
 last.year.can.carryover <- f(filter(further.tac, Year == last.data.yr)$can.carried.over)
 last.year.can.attained <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANATTAIN), 1)   # the percentage
+last.2year.can.attained.diff <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANATTAIN - landings.vs.tac[landings.vs.tac$Year %in% (end.yr-2),]$CANATTAIN), 0)
 last.year.can.landings <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal))
 last.year.can.tac <- f(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACCAN)
 last.year.can.tac.jv <- f(filter(further.tac, Year == last.data.yr)$can.jv.tac)
@@ -196,6 +198,7 @@ year.class.2010.in.2013 <- f(filter(fishery.estimated.age.comp, Yr==2013)$"3" * 
 year.class.2010.in.2014 <- f(filter(fishery.estimated.age.comp, Yr==2014)$"4" * 100)
 year.class.2010.in.2015 <- f(filter(fishery.estimated.age.comp, Yr==2015)$"5" * 100)
 year.class.2010.in.2016 <- f(filter(fishery.estimated.age.comp, Yr==2016)$"6" * 100)
+year.class.2010.in.2018 <- f(filter(fishery.estimated.age.comp, Yr==2018)$"8" * 100)
 
 catcher.processor.catch <- f(100 * filter(catches, Year == last.data.yr)$atSea_US_CP / (last.year.us.cp.quota.reallocated), 1)
 mothership.catch <- f(100 * filter(catches, Year == last.data.yr)$atSea_US_MS / (last.year.us.ms.quota.reallocated), 1)
@@ -249,6 +252,7 @@ prob.percent.2014.rec.gt.2010.rec <- f(mean(base.model$mcmc$Recr_2014 > base.mod
 ################################################################################
 ## Exploitation values
 exploitation.med.2010 <- f(base.model$mcmccalcs$fmed["2010"],2)
+exploitation.med.2012 <- f(base.model$mcmccalcs$fmed["2012"],2)
 exploitation.med.2011 <- f(base.model$mcmccalcs$fmed["2011"],2)
 exploitation.med.2015 <- f(base.model$mcmccalcs$fmed["2015"],2)
 exploitation.med.2017 <- f(base.model$mcmccalcs$fmed["2017"],2)
