@@ -233,8 +233,8 @@ weight.at.age.heatmap(base.model)
   alternative assumptions were tested in sensitivity runs.
   Bold values between 1975--\Sexpr{max.fishery.age.prop[2]} represent unavailable
   data such that weights were interpolated or extrapolated from adjacent ages or years.
-  The sample-weighted mean weight-at-age is shown at the bottom.
-}
+  The sample-weighted mean weight-at-age is shown at the bottom.}
+\label{fig:main-empirical.weight.at.age}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
