@@ -755,7 +755,7 @@ average (e.g., a five year period similar to selectivity).
 However, Stock Synthesis does not currently have the desired settings to do this
 appropriately; therefore, the long-term average fecundity-at-age was used
 (see Section~\ref{sec:assessment-response-review} and
-Section~\ref{sec:sec:assessment-weights} for further details.)   
+Section~\ref{sec:assessment-weights} for further details.)   
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -868,20 +868,6 @@ directly from model output and lines interpolate between the points.}
 \label{fig:es-forecast-risk-comparison-year-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-%
-These metrics summarize the probability of various outcomes from the base model
-given each potential management action. Although not linear, probabilities can
-be interpolated from these results for intermediate catch
-values. Figure~\ref{fig:es-forecast-depletion-comparison} shows the predicted
-relative spawning biomass trajectory through
-\Sexpr{forecast.yrs[length(forecast.yrs)]} for several of these management
-actions. With zero catch for the next two years, the biomass has a
-\Sexpr{zero.catch.prob.bio.down.1}\% probability of decreasing from
-\Sexpr{forecast.yrs[1]} to \Sexpr{forecast.yrs[2]}, and a
-\Sexpr{zero.catch.prob.bio.down.2}\% probability of decreasing from
-\Sexpr{forecast.yrs[2]} to \Sexpr{forecast.yrs[3]}.
-%Manual 2019 done, though all automated.
-
 <<risk.forecast.year.2.table, results='asis', echo=FALSE>>=
 make.risk.table(base.model,
                 forecast.yrs,
@@ -898,6 +884,20 @@ make.risk.table(base.model,
                 space.size = 14,
                 placement = "tbp")
 @
+%
+These metrics summarize the probability of various outcomes from the base model
+given each potential management action. Although not linear, probabilities can
+be interpolated from these results for intermediate catch
+values. Figure~\ref{fig:es-forecast-depletion-comparison} shows the predicted
+relative spawning biomass trajectory through
+\Sexpr{forecast.yrs[length(forecast.yrs)]} for several of these management
+actions. With zero catch for the next two years, the biomass has a
+\Sexpr{zero.catch.prob.bio.down.1}\% probability of decreasing from
+\Sexpr{forecast.yrs[1]} to \Sexpr{forecast.yrs[2]}, and a
+\Sexpr{zero.catch.prob.bio.down.2}\% probability of decreasing from
+\Sexpr{forecast.yrs[2]} to \Sexpr{forecast.yrs[3]}.
+%Manual 2019 done, though all automated.
+
 % The spawning biomass is predicted to decrease from \Sexpr{end.yr} to
 %  \Sexpr{end.yr+1} with a less than 50\% probability only for the 0~t and
 %  180,000~t catch levels (Table~\ref{tab:es-risk-year-1} and
