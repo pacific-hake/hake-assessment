@@ -15,8 +15,8 @@ survey and commercial fisheries.
 %%the biomass estimate and age-composition data from the acoustic survey conducted
 %%in \Sexpr{survey.end.yr},
 minor changes to historical (pre-\Sexpr{end.yr-1}) catch, age composition and
-weight-at-age data, addition of fishery catch and age-composition data
-from \Sexpr{end.yr-1}, and addition of weight-at-age data for \Sexpr{last.data.yr}.
+weight-at-age data, addition of \Sexpr{end.yr-1} fishery catch and age-composition
+data, and addition of \Sexpr{last.data.yr} weight-at-age data.
 
   \item The model was updated to include year-specific fecundity from 1975-\Sexpr{last.data.yr}.
   However, limited exploratory and supplementary analyses could be completed for 
@@ -61,9 +61,7 @@ a decrease from the \Sexpr{end.yr-1} median of \Sexpr{prev.bio.median}~million~t
 
   \item As in the past, projections are highly uncertain due to uncertainty in
 estimates of recruitment for recent years. Projections were conducted across a
-range of catch levels.
-
-  \item Projections setting the \Sexpr{forecast.yrs[1]} and
+range of catch levels. Projections setting the \Sexpr{forecast.yrs[1]} and
 \Sexpr{forecast.yrs[2]} catch equal to the \Sexpr{forecast.yrs[1]-1} Total
 Allowable Catch of
 \Sexpr{last.year.tac}~t show the estimated median relative spawning biomass
