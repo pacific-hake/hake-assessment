@@ -223,7 +223,7 @@ contributed significantly.
   Fisheries Service, National Oceanic and Atmospheric Administration,
   U.S. Department of Commerce, 2032 SE OSU Dr. Bldg. 955, Newport, OR
   97365-5275, USA}
-  
+
 \emph{\supscr{2}Pacific Biological Station, Fisheries and Oceans Canada,
   3190 Hammond Bay Road, Nanaimo, B.C. V9T 6N7, Canada}
 
@@ -341,7 +341,7 @@ This DRAFT document is non-citable.
 @
 
 \rfoot{Appendix~\ref{chap:canada-fishery-report} -- Canada fishery report}
-<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-Canada-2017.rnw'>>=
+<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-Canada-2018.rnw'>>=
 @
 
 \rfoot{Appendix~\ref{chap:us-fishery-report} -- United States fishery report}

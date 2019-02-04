@@ -1,3 +1,22 @@
+fix.posteriors <- function(dir){
+
+  do.it <- function(file){
+    posts <- read.table(file.path(dir, file),
+                        header = TRUE,
+                        fill = TRUE,
+                        stringsAsFactors = FALSE)
+    if(all(grepl("^[[:digit:]]",
+                 posts[,1])))
+      return(posts)
+    write.table(posts[1:(grep("\\D+", posts[,1])[1] - 1),],
+                file.path(dir, file),
+                quote = FALSE,
+                row.names = FALSE)
+  }
+  do.it("posteriors.sso")
+  do.it("derived_posteriors.sso")
+}
+
 load.ss.files <- function(model.dir,
                           key.posts = key.posteriors, ## Vector of key posteriors used to create key posteriors file
                           key.posts.fn = "keyposteriors.csv",
@@ -54,6 +73,7 @@ load.ss.files <- function(model.dir,
 
   ## If it has an 'mcmc' sub-directory, load that as well
   if(dir.exists(mcmc.dir)){
+    fix.posteriors(mcmc.dir)
     model$mcmc <- data.frame(SSgetMCMC(dir = mcmc.dir,
                                        writecsv = FALSE,
                                        verbose = ss.verbose)$model1)
