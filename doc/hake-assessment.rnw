@@ -332,9 +332,9 @@ This DRAFT document is non-citable.
 %% <<appendix-test-ss-3.30, child='appendix-test-ss-3.30/appendix-test-ss-3.30.rnw'>>=
 %% @
 
-%% \rfoot{Appendix~\ref{chap:srg-requests} -- SRG requests}
-%% <<appendix-srg-requests, child='appendix-srg-requests/appendix-srg-requests-2018.rnw'>>=
-%% @
+\rfoot{Appendix~\ref{chap:srg-requests} -- SRG requests}
+<<appendix-srg-requests, child='appendix-srg-requests/appendix-srg-requests-2019.rnw'>>=
+@
 
 \rfoot{Appendix~\ref{chap:glossary} -- Glossary}
 <<appendix-glossary, child='appendix-glossary/appendix-glossary.rnw'>>=
