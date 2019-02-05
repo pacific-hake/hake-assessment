@@ -142,6 +142,7 @@ median.intensity.above.one.years <- median.intensity.above.one.all.years[
 median.intensity.2010 <- f(base.model$mcmccalcs$pmed["2010"] * 100, 1)
 median.intensity.2015 <- f(base.model$mcmccalcs$pmed["2015"] * 100, 1)
 median.intensity.2017 <- f(base.model$mcmccalcs$pmed["2017"] * 100, 1)
+median.intensity.2018 <- f(base.model$mcmccalcs$pmed["2018"] * 100, 1)
 median.intensity.penult.yr <- f(base.model$mcmccalcs$pmed[as.character(end.yr-1)] * 100, 1)
 median.relative.bio <- base.model$mcmccalcs$dmed
 median.relative.bio.2007.to.2011 <- median.relative.bio[c("2007", "2008", "2009", "2010", "2011")]
@@ -245,9 +246,10 @@ years.since.2010.recruitment.med.below.mean <- names(recruitment.med.since.2010[
 
 
 ################################################################################
-## Estimated recruitment in 2014 to discuss in Recruitment subsubsection, in billions
+## Estimated recruitment in 2014 (and 2016) to discuss in Recruitment subsubsection, in billions
 recruitment.med.in.2014 <- f(base.model$mcmccalcs$rmed["2014"], 3)
 prob.percent.2014.rec.gt.2010.rec <- f(mean(base.model$mcmc$Recr_2014 > base.model$mcmc$Recr_2010) * 100, 1)
+recruitment.med.in.2016 <- f(base.model$mcmccalcs$rmed["2016"], 3)
 
 ################################################################################
 ## Exploitation values
@@ -256,6 +258,7 @@ exploitation.med.2012 <- f(base.model$mcmccalcs$fmed["2012"],2)
 exploitation.med.2011 <- f(base.model$mcmccalcs$fmed["2011"],2)
 exploitation.med.2015 <- f(base.model$mcmccalcs$fmed["2015"],2)
 exploitation.med.2017 <- f(base.model$mcmccalcs$fmed["2017"],2)
+exploitation.med.2018 <- f(base.model$mcmccalcs$fmed["2018"],2)
 exploitation.med.penult.yr <- f(base.model$mcmccalcs$fmed[as.character(end.yr-1)],2)
 
 ################################################################################
