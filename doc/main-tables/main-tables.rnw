@@ -262,20 +262,20 @@ make.survey.summary.table(survey.summary,
                           space.size = 12)
 @
 
-<<main.ovaries.table, results='asis', echo=FALSE>>=
-make.maturity.samples.table(ovary.samples,
-                            xcaption = "Number of \\fishname\\ ovaries collected for histological analysis with maturity determined from different years and different sources. **No need to add 2018 since not updating maturity?",
-                            xlabel = "tab:main-ovaries",
-                            font.size = 10,
-                            space.size = 10)
-@
-
 <<main.maturity.ogives.table, results='asis', echo=FALSE>>=
 make.maturity.ogives.table(maturity.ogives,
                            xcaption = "Information on maturity and fecundity used in this assessment as shown in Figure~\\ref{fig:main-maturity}. The sample sizes refer to the subset of samples in Table~\\ref{tab:main-ovaries} for which age readings and histological estimates of maturity have been completed. The mean weight (kg) is based on a much larger set of samples. **[clarify now that time-varying] The new fecundity estimate is the product of the maturity and mean weight values while the old fecundity was the result of an older length-based maturity estimate converted to ages. The values reported for ages 15 and above (with the exception of the old fecundity) represent the average across all samples in this range.",
                            xlabel = "tab:main-ogives",
                            font.size = 10,
                            space.size = 10)
+@
+
+<<main.ovaries.table, results='asis', echo=FALSE>>=
+make.maturity.samples.table(ovary.samples,
+                            xcaption = "Number of \\fishname\\ ovaries collected for histological analysis with maturity determined from different years and different sources. **No need to add 2018 since not updating maturity?",
+                            xlabel = "tab:main-ovaries",
+                            font.size = 10,
+                            space.size = 10)
 @
 
 <<main.parameters.estimated.summary.table, results='asis', echo=FALSE>>=
@@ -612,10 +612,21 @@ make.short.parameter.estimates.sens.table(retro.list,
                                           space.size = 12)
 @
 
+<<main.assessment.changes.table, results='asis', echo=FALSE>>=
+make.assessment.changes.table(assessment.changes, 
+  xcaption = paste0("Annual changes in the modeling framework used to assess ",
+  "\\fishname\\ since 2011. ",
+  "The bias adjustment is reported as the maximum used for each assessment. ",
+  "Methods used to weight the age-composition data (Comp Method), i.e., ", 
+  "McAllister-Ianelli (MI) and Dirichlet-Multinomial (DM) approaches, are explained in ",
+  "the main text."),
+  xlabel = "tab:main-assessment-changes")
+@
+
 % Ugly, but wanted to get it in quickly.
 % Don't think we need to specify 'fecundity when varying' in only one column -
 % not sure why we do in Google one. Andy will check with Chris in the morning.
-\begin{table}
+\begin{table}[H]
 \caption{Summary of models runs that consider alternative assumptions concerning
   weight-at-age and time-vary fecundity, plus the two related runs from 2018.
   Results from the MCMC runs **32, 36 and 38

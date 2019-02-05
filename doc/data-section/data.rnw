@@ -11,7 +11,7 @@ Fishery-dependent and fishery-independent data sources used in this \Sexpr{asses
   (\Sexpr{start.yr}--\Sexpr{last.data.yr}; Tables
   \ref{tab:intro-catches-US}--\ref{tab:intro-catches-total}).
 
-\item **Age compositions composed of data from the U.S. fishery
+\item Age compositions composed of data from the U.S. fishery
   (\Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}) and the
   Canadian fishery (1990--\Sexpr{max.fishery.age.prop[2]}). The last 10 years of
   these data are shown in Tables
@@ -44,7 +44,7 @@ histological analyses of ovary samples collected in recent years
 \end{itemize}
 
 Some data sources were not included in the base model, but have been explored or used for
-sensitivity analyses, or were included in previous stock assessments but not in
+sensitivity analyses or were included in previous stock assessments but not in
 this one.
 Data sources not discussed here have either been
 discussed at past \fishname\ assessment review meetings or are discussed in more
@@ -81,7 +81,7 @@ additional data sources are:
   previously explored and rejected as a potential index of hake spawning stock 
   biomass, and has not been revisited since the 2008 stock assessment.
 
-\item Joint-U.S. and Canada acoustic survey index of age-1 \fishname.
+\item Joint U.S. and Canada acoustic survey index of age-1 \fishname.
 
 \item NWFSC winter 2016 and 2017 acoustic research surveys of spawning \fishname.
 
@@ -105,8 +105,8 @@ timing (see Figure~5 in \citealt{JTC2014}). The U.S. shore-based landings are
 from the Pacific Fishery Information Network (PacFIN). Foreign and joint-venture
 catches for 1981--1990 and domestic at-sea catches for
 1991--\Sexpr{last.data.yr} are estimated from the AFSC and, subsequently, the
-NWFSC at-sea hake observer programs stored in the NORPAC (North Pacific Groundfish
-and Halibut Observer) database. Canadian
+NWFSC at-sea hake observer programs stored in the 
+North Pacific Groundfish and Halibut Observer (NORPAC) database. Canadian
 Joint-Venture catches from 1989 are from the Groundfish Biological (GFBio)
 database, the shore-based landings from 1989 to 1995 are from the Groundfish
 Catch (GFCatch) database, from 1996 to March 31, 2007 from the Pacific Harvest
@@ -494,7 +494,8 @@ of functional maturity from 1,947 ovaries that were associated with age estimate
 These samples were collected from the acoustic survey, 
 winter and summer acoustic research trips, from
 the U.S.~At-Sea Hake Observer Program (A-SHOP) observers aboard commercial
-Catcher-Processor vessels, and from the U.S. West Coast bottom trawl survey. 
+Catcher-Processor vessels, and from the U.S. West Coast bottom trawl survey
+(Table~\ref{tab:main-ovaries}). 
 
 An additional 87 samples with age and maturity estimates from south of 
 Point Conception, California (34.44$^\circ$N) were examined and found to exhibit
@@ -512,6 +513,9 @@ Samples from ages 15 and above were pooled for both the maturity and weight-at-a
 estimation due to limited sample sizes, and the age 15+ estimates were 
 applied to ages 15-20 for purposes of modeling 
 the population dynamics (Figure~\ref{fig:main-maturity}).
+**The maturity ogive was the same as that used in \citet{JTC2018} 
+because the U.S. government shutdown delayed delivery of the 
+2018 histological samples.
 
 Some fish at almost every age were found to be functionally immature based
 on the histological criteria, which is a combination of ``skip spawners'' 
@@ -556,14 +560,12 @@ since 2011, with the ageing-error standard deviation reduced by a factor of 0.55
 for the largest cohorts: 1980, 1984, 1999, 2010, and 2014. In the 2014 base
 model \citep{JTC2014}, the 2008 cohort was also included in this set, but
 current estimates show this year-class to be enough less than the four largest
-that a reduction in ageing was not included for the 2008 year class in the 
-**[presumably include JTC2018, and verify same holds for 2019 assessment]
-2015-2017 assessments \citep{JTC2015, JTC2016, JTC2017} or this 2018
+that a reduction in ageing was not included for the 2008 year class in the
+2015-\Sexpr{assess.yr - 1} assessments or this \Sexpr{assess.yr}
 assessment. Also, the model presented
 here does not include the reduction in ageing error for age-1 fish under the
 assumption that they never represent a large enough proportion of the samples to
-cause the cohort-effect. A sensitivity analysis without any cohort ageing error
-is provided in Section~\ref{sec:assessment-sensitivity-analyses}.
+cause the cohort-effect.
 
 \subsubsection{Weight-at-age}\label{sec:data-weight-at-age}
 
@@ -632,7 +634,6 @@ important distributions are discussed in detail below.
 
 \subsubsection{Natural Mortality}\label{sec:data-natural-mortality}
 
-[**just confirm we do this sensitivity]
 Since the 2011 assessment, and again this year, a combination of the informative
 prior for natural mortality 
 used in previous Canadian assessments and results from analyses using
@@ -648,7 +649,6 @@ of new information on $M$, there has been little option to update the prior.
 
 \subsubsection{Steepness}\label{sec:data-steepness}
 
-[**just confirm we do this sensitivity]
 The prior for the steepness parameter of the stock-recruitment function
 is based on the median (0.79) and the 20th (0.67) and 80th
 (0.87) percentiles from \citeauthor{MyersBowenEtAl1999}'s
@@ -680,27 +680,24 @@ the model with less flexible selectivity ($\phi=0.03$) to produce implausible
 estimates of 
 2014 recruitment, values about three times larger than the very large 1999 and 2010 cohorts.
 This was inconsistent with the qualitative comparison to the age-1 index,
-and the fishery age-composition was not believed to be sufficiently reliable to 
+and the fishery age-composition data were not believed to be sufficiently reliable to 
 support such a large estimate. The original basis for the $\phi=0.03$ value
 was a method of treating the deviations as random effects and
 integrating over them using the Laplace method, as described by
 \citet{ThorsonHicksEtAl2014}. Repeating that approach has continued to produce
 similarly low values for $\phi$.
 
-**[Check Xu ref comes out okay in bib (I can't knit right now)]. **Check
-sensitivity was done.
 A new parameterization for the selectivity deviations was explored 
 in 2018, based on the work of \citet{Xu2019}, 
 in an effort to produce a more objective way to determine the degree of 
 flexibility. However, further testing of this approach was believed
-necessary before making the change and so it 
-was only used for a sensitivity analysis 
+necessary before making the change so it 
+is only used for a sensitivity analysis 
 (see Section~\ref{sec:assessment-sensitivity-analyses}).
 
 
-Further details on the time-varying selectivity function are provided,
-as described by \citet{JTC2018}.**Could delete these details, but maybe best to
-keep in as expect $\Phi$ will still get discussed.
+Further details on the time-varying selectivity function are provided below,
+as described by \citet{JTC2018}.
 
 For each age $a \geq A_{\text{min}}$, where $A_{\text{min}}$ is the minimum age
 for which selectivity is allowed to be non-zero, 
@@ -733,9 +730,10 @@ $p_a = 0$ gives constant selectivity beyond the last estimated
 value. The condition that maximum selectivity equals 1 results in one fewer
 degree of freedom than the number of estimated $p_a$. Therefore,
 $p_{A_{\text{min}}}=0$ can be set for the fishery and for the survey.  
-%% Manual 2017 - age 6 in the base model. Presumably unchanged in 2018.
+%% Manual 2019 done- age 6 in the base model.
 
 % new text added January 2018
+** Delete the following paragraphs.
 The implementation of time-varying selectivity in the assessments from 2014 to 
 2017 used an option available in Stock Synthesis 3.24 whereby 
 annual deviations to the selectivity parameters were applied after the following 
@@ -808,32 +806,24 @@ in the transformed parameter space in the 2017 assessment.
 \subsubsection{Age composition likelihood}\label{sec:data-age-comp-likelihood}
 **Not changed from 2018, but may be best to keep in or shorten, asin for reference.
 
-**The base model includes a change in the likelihood and data-weighting method 
-applied to the age composition data. The 2017 assessment \citep{JTC2017},
-like those before it,
-used a multinomial likelihood and the tuning method of \citet{McAllisterIanelli1997}
-for weighting the age compositions. This tuning method involves
-iteratively adjusting a multiplier of the input sample sizes until they are
-roughly equal to the harmonic mean of the effective sample sizes, where the
-effective sample size is dependent on how well the model expectation matches
-the observed values. For this assessment, a new Dirichlet-Multinomial (D-M) likelihood
-was adopted, as proposed by \citet{ThorsonEtAl2017Dirichlet}
-and tested by them on a simplified version of the 2015 \fishname\
-model \citep{JTC2015}.
+Like the 2018 assessment, this assessment used a Dirichlet-Multinomial (D-M)
+likelihood \citep{ThorsonEtAl2017Dirichlet} to fit the age-composition data. 
 The primary benefit
-of the D-M approach is that instead of manually iterating the sample size multiplier,
+of the D-M approach over the historically used 
+McAllister-Ianelli approach \citep{McAllisterIanelli1997}
+is that instead of manually iterating the sample size multiplier,
 an estimated parameter, $\theta$, serves to automatically adjust the weight given to
-the composition data. This increases efficiency of the assessment process, removes the
-subjective choice of how many iterations are required in the previous approach,
+the fishery-composition data (using $\theta_{\text{fish}}$) and the 
+survey-compostion data (using $\theta_{\text{surv}}$). 
+Integration of the data weighting increases the efficiency of the assessment process, removes the
+subjective choice of how many iterations are required,
 and also ensures that the results of model sensitivities, retrospective analyses, 
 and likelihood profiles will all be automatically tuned, rather than having the
 age compositions given the same weight as the base model.
 Note that the following description holds for both the survey data and the
-fishery data, but, again, for simplicity we do not make the distinction here
-(other than to note that we consequently estimate $\theta_{\text{surv}}$ for the 
-survey data and $\theta_{\text{fish}}$ for the fishery data).
+fishery data, with $\theta$ equal to $\theta_{\text{surv}}$ or $\theta_{\text{fish}}$, respectively.
 
-**The likelihood function is given by equation (10) of 
+The likelihood function is given by Equation (10) of 
 \citet{ThorsonEtAl2017Dirichlet}, and is
 \eb
 \text{L}(\bm{\pi},\theta|\bm{\tilde{\pi}},n) = 
@@ -850,21 +840,38 @@ $\bm{\tilde{\pi}}$ and $\bm{\pi}$ designate the vectors of these proportions,
 $A_{\text{max}}$ is the maximum age in the model,
 and $n$ is the input sample size. The parameter $\theta$ is defined as a
 linear scaling parameter such that $\theta n$ is the variance-inflation parameter 
-of the Dirichlet-Multinomial distribution (see \citealt{ThorsonEtAl2017Dirichlet}).
+of the D-M distribution.
 
 **The effective sample size associated with this likelihood is given by
 \eb
 n_{\text{eff}} = \frac{1}{1 + \theta} + \frac{n \theta}{1 + \theta}
 \ee
 The input samples sizes used in this assessment, which are based on the 
-number of trips or hauls, are large enough that the $1/(1 + \theta)$ term
-is insignificant compared to the $n \theta / (1 + \theta)$ term, which means
-that $\theta / (1 + \theta)$ can be compared to the sample size 
-multipliers used in the McAllister-Ianelli data weighting method. 
+number of trips or hauls, are large enough that the first term
+is insignificant compared to the second term. Consequently, 
+$\theta / (1 + \theta)$ can be compared to the sample size 
+multipliers used in the McAllister-Ianelli data-weighting method
+\citep{McAllisterIanelli1997} that was used for assessments prior to 2018
+(Table~\ref{tab:main-assessment-changes}). 
+In short, the McAllister-Ianelli method involves
+iteratively adjusting multipliers of the input sample sizes 
+passed to the multinomial likelihoods until they are
+roughly equal to the harmonic mean of the effective sample sizes. The
+effective sample size is dependent on how well the model expectation matches
+the observed values. Typically, this process involves no more
+than four to five iterations.
 
-**See \citet{ThorsonEtAl2017Dirichlet} for the derivation of the likelihood and
-more details on the hake-based simulation study used to test it. The
-implementation of the D-M likelihood in Stock Synthesis has $\log \theta$ as the
-estimated parameter in order to ensure that $\theta$ remains positive.
+Composition data can also be weighted using the Francis method \citep{Francis2011},
+which is based on variability in the observed ages by year.
+This method, like the McAllister-Ianelli method, is also iterative,
+where the sample sizes are adjusted such that the fit of the expected
+compositions should fit within the estimated uncertainty at a rate 
+that is consistent with the variability expected given
+the effective sample sizes. This method is known to be sensitive to 
+outliers and prone to convergence issues when selectivity is time-varying.
+
+Sensitivity to the D-M method as compared to the 
+McAllister-Ianelli and the Francis methods are presented 
+in Section~\ref{sec:assessment-sensitivity-analyses}.
 
 \clearpage

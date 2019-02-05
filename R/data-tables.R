@@ -12,6 +12,7 @@ maturity.ogives.file <- "maturity-table.csv"
 maturity.samples.file <- "hake-maturity-data.csv"
 age.1.file <- "age-1.csv"
 assessment.history.file <- "assessment-history.csv"
+assessment.changes.file <- "assessment-changes.csv"
 kriging.parameters.file <- "kriging-parameters.csv"
 
 ## Canada-specific data
@@ -46,6 +47,7 @@ maturity.ogives <- read.csv(file.path(rootd.data, maturity.ogives.file), strings
 maturity.samples <- read.csv(file.path(rootd.data, maturity.samples.file), stringsAsFactors = FALSE)
 age.1.index <- read.csv(file.path(rootd.data, age.1.file), stringsAsFactors = FALSE)
 assessment.history <- read.csv(file.path(rootd.data, assessment.history.file), stringsAsFactors = FALSE)
+assessment.changes <- read.csv(file.path(rootd.data, assessment.changes.file), stringsAsFactors = FALSE)
 kriging.pars <- read.csv(file.path(rootd.data, kriging.parameters.file), comment.char="#", stringsAsFactors = FALSE)
 
 ## For cumulative catch plots in the data presentation

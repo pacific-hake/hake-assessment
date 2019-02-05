@@ -334,6 +334,15 @@ the Francis (2011) method. {\bf The SRG notes that it would be useful for such e
 to be documented in future assessment reports, and requests that JTC perform a
 sensitivity analysis for this method in future assessments.}
 
+\emph{Response -- Sensitivity analyses were included to compare the 
+use of the Dirichlet-Multimonial likelihood to the McAllister-Ianelli and
+Francis weighting methods 
+(see Section~\ref{sec:assessment-sensitivity-analyses}).
+All three methods are described in 
+Section~\ref{sec:data-age-comp-likelihood} and historical weightings used in
+previous assessments can be compared to values estimated in this assessment
+(Table~\ref{tab:main-assessment-changes}).}
+
 A potential issue related to data weighting that should be explored in the next assessment is
 the JTC's approach to deriving the initial set of data weightings associated with the fishery
 and survey age-composition observations. Table 5 in the assessment document shows the
@@ -365,7 +374,9 @@ the assessment report in the future.}
 structure and parameterization that have been implemented since 2011 as a standard
 table to be included in the assessment document.}
 
-\emph{Response -- Due to time constraints the JTC has been unable to do this.}
+\emph{Response -- The 2019 assessment includes Table~\ref{tab:main-assessment-changes} 
+that summarizes major changes to the model structure and parameterization since 2011.
+Future assessments will include an updated version of the table as well.}
 
 Finally, we note that we have complied with the following request from the 2017 SRG
 concerning the sensitivity tests to perform in all future assessments:
@@ -446,7 +457,8 @@ in the selectivity parameters from 2017 to 2018 since there was now fishery
 data in 2018.
 
 The final bridging step involved changing the structural assumptions about fecundity (discussed further
-in Section~\ref{sec:assessment-weights}) and resulted in the 2019 base model.  The switch from time-invariant to time-varying
+in Section~\ref{sec:assessment-weights}) and resulted in the 2019 base model (Table~\ref{tab:main-assessment-changes}).  
+The switch from time-invariant to time-varying
 fecundity resulted in the biggest bridging change to current biomass.  Fecundity
 (calcualted as weight-at-age multiplied by maturity) changed from being defined by a
 single catch-weighted average of weight-at-age applied to all years to being defined
