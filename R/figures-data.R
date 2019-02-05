@@ -1,7 +1,7 @@
 make.data.overview.plot <- function(model,               ## model contains the output of SS_output
                                     show.title = FALSE){ ## Show the title?
   ## Make a plot of the data used in the assessment
-  SSplotData(model) #, both = FALSE#, datasize = TRUE) #TRUE for scaled to sample size bubbles
+  SSplotData(model, subplot = 2) #, both = FALSE#, datasize = TRUE) #TRUE for scaled to sample size bubbles
 }
 
 make.cumulative.catch.plot <- function(d,   ## Data as found in the xxxx.catch.by.month.csv files
