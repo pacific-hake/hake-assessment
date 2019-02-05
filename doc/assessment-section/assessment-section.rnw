@@ -149,12 +149,14 @@ consistency with the observed variability in the time series of recruitment
 deviation estimates, and is the same as assumed in assessments from 2013 to
 \Sexpr{last.assess.yr} (Table~\ref{tab:main-assessment-changes}). Survey
 catchability was set at the median unbiased estimate calculated analytically as
-per \citet{LudwigWalters1981}. Maturity is assumed to be time-invariant and fixed
-values were recently updated using the new maturity ogive discussed earlier.
-Fecundity is time-varying across years with empirical weight-at-age data (1975--
+per \citet{LudwigWalters1981}. Maturity is assumed to be time-invariant.
+Fecundity is defined as weight-at-age multiplied by the new maturity ogive
+(discussed earlier) and is time-varying across years with empirical weight-at-age data (1975--
 \Sexpr{assess.yr}).  For years without data, prior to 1975 and during the forecast
 period, fecundity is calculated using the long-term mean weight-at-age (see 
-Section~\ref{sec:assessment-response-review} for more details).
+Section~\ref{sec:assessment-response-review} for more details). Alternative
+fecundity assumptions are presented through sensitivity analysis
+(Section~\ref{sec:assessment-sensitivity-analyses}). 
 
 Statistical likelihood functions used for data fitting are typical of many stock
 assessments. The acoustic survey index of abundance was fit via a log-normal
@@ -589,12 +591,10 @@ This inconsistency is resolved for all runs in 2019.
 
 For the base model, the MCMC chain length was 24~million as it was in the
 \Sexpr{last.assess.yr} assessment \citep{JTC2018}.
-**CHECK THE NEXT SENTENCE, as 2,000 should be replaced with \Sexpr{num.mcmc.samples} I expect
-and the other numbers are probably wrong.
 The first 4,000,000 values were discarded to eliminate `burn-in' effects and
-each 10,000th value thereafter was retained, resulting in 2,000
+each 10,000th value thereafter was retained, resulting in \Sexpr{num.mcmc.samples}
 samples from the posterior distributions for model parameters and derived
-quantities. **Initial MCMC explorations indicated that $\log
+quantities. Previous MCMC explorations indicated that $\log
 \theta_{\text{surv}}$, the log of the $\theta$ parameter associated with the survey
 data in the
 Dirichlet-Multinomial (D-M) weighting,
@@ -607,13 +607,13 @@ Therefore, to improve MCMC convergence, $\log \theta_{\text{surv}}$
 was fixed at the MLE estimate of \Sexpr{log.theta.survey},
 corresponding to a weight of
 $\theta_{\text{surv}}/(1+\theta_{\text{surv}}) = \Sexpr{DM.weight.survey}$.
-**The D-M parameter for the fishery weights was well sampled by the MCMC,
+The D-M parameter for the fishery weights was well sampled by the MCMC,
 with a median estimate of
 $\log \theta_{\text{fish}} = \Sexpr{log.theta.fishery.median}$ and an associated
 median weight of
 $\theta_{\text{fish}}/(1+\theta_{\text{fish}}) = \Sexpr{DM.weight.fishery.median}$.
 
-**Stationarity of the posterior distribution for model parameters was
+Stationarity of the posterior distribution for model parameters was
 re-assessed via a suite of standard single-chain and multi-chain diagnostic tests.
 The objective function, as
 well as all estimated parameters and derived quantities, showed good mixing
@@ -638,23 +638,25 @@ of the unexploited
 equilibrium recruitment level, $\log R_0$, (Figure~\ref{fig:main-mcmc-pairs}).
 Derived quantities for recruitment in 2008 and
 2010 as well as the relationship between relative spawning biomass in
-\Sexpr{end.yr} with both the catch from default harvest rule in \Sexpr{end.yr}
-and the recruitment in 2014 being highly correlated, as to be expected given the dependencies
+\Sexpr{end.yr} with the catch from default harvest rule in \Sexpr{end.yr}
+were highly correlated, as to be expected given the dependencies
 among these quantities (Figure~\ref{fig:main-mcmc-pairs}). An examination of
 deviations in recruitment (log-scale differences between estimated and expected
 recruitment values) from recent years
 (Figure~\ref{fig:main-mcmc-pairs-recruit-devs}) indicates the highest
 correlation
-(\Sexpr{round(cor(base.model$mcmc$Main_RecrDev_2008,base.model$mcmc$Main_RecrDev_2010),2)})
-between the 2008 and 2010 recruitment deviations. This continues to be likely
+(\Sexpr{round(cor(base.model$mcmc$Main_RecrDev_2010,base.model$mcmc$Main_RecrDev_2012),2)})
+between the 2010 and 2012 recruitment deviations. This continues to be likely
 caused by the relative proportion of these two cohorts being better informed by
 recent age-composition data than the absolute magnitude of these recruitments.
 
-**The base model fit to the acoustic survey biomass index
+The base model fit to the acoustic survey biomass index
 (Figures~\ref{fig:main-survey-extrap-biomass} and~\ref{fig:main-mcmc-survey-fit})
-remains similar to the \Sexpr{last.assess.yr} base model up through 2013. The addition of the 2017
+remains similar to the \Sexpr{last.assess.yr} base model. The 2017
 survey biomass estimate resulted in a downward shift in the fit to the 2015 survey data
-point and a leveling off of the biomass trend over recent years (Figure~\ref{fig:main-bridge-5-panel}).
+point and a leveling off of the biomass trend over recent years
+(Figure~\ref{fig:main-mcmc-survey-fit}). The addition of 2018 fishery data
+had negligible effect on the fit to survey biomass (Figure~\ref{fig:main-bridge-5-panel.2}).
 The 2001 data point continues to be well below any model predictions that were evaluated,
 and no direct cause for this is known.  The survey did begin earlier that year than all other surveys
 between 1995 and 2009 (Table~\ref{tab:main-survey-history}), which may explain
@@ -667,32 +669,37 @@ survey. Humboldt Squid have similar Target Strength to hake
 which could introduce bias in the biomass estimate for that year, and
 which also likely influenced hake population dynamics through predation in that year.
 
-**The MLE and median posterior density estimate underfit the 2015 survey
+The MLE and median posterior density estimate underfit the 2015 survey
 index and overfit the 2017 survey index. This is likely due to fishery data suggesting
 slightly different population dynamics than the survey in recent years.  This phenomenon can arise
 when the fishery gets a prominent signal about age-1 fish, as it did in 2015,
 whereas the survey contains information on age-2 and older fish.
 
 
-**Fits to the age-composition data continue to show close correspondence to the
+Fits to the age-composition data continue to show close correspondence to the
 dominant cohorts observed in the data and also the identification of small
 cohorts, where the data give a consistent signal
 (Figure~\ref{fig:main-age-comp-fits}). Because of the time-varying fishery
 selectivity, the fit to commercial age-composition data is particularly good,
 although models with time-invariant selectivity used in previous years also fit
 the age compositions well. The \Sexpr{last.assess.yr} age composition was
-dominated by age-3 fish from the 2014 year-class (33\% of the catch in the
-fishery) and age-7 fish from the 2010 year-class (40\% of the catch in the
-fishery).  Age composition from the 2015 acoustic survey also indicated that the
-2010 year-class was large (59\% of the catch for that year).  The 2017 acoustic survey
-was the first time the survey was able to sample the 2014 year-class, and it confirmed
-that the 2014 year-class (53\% of the catch for that year) was indicated above average. The
-pattern for the 2010 year-class was expected given the strength of that cohort
+dominated by age-2 fish from the 2016 year-class (23\% of the catch in the
+fishery), age-4 fish from the 2014 year-class (29\% of the catch in the fishery),
+and age-8 fish from the 2010 year-class (24\% of the catch in the
+fishery).  Age composition from the 2017 acoustic survey also indicated that the
+2014 year-class (53\% of that catch that year) and the 2010 year-class (26\% of
+the catch for that year) were large.  
+%%The 2017 acoustic survey was the first time the survey was able to sample the
+%%2014 year-class, and it confirmed that the 2014 year-class (53\% of the
+%%catch for that year) was indicated above average. 
+The pattern for the 2010 year-class was expected given the strength of that cohort
 from the fishery composition data from 2012 onward, and thus are fit well by the
-model. Combined, the 2015, 2016, and 2017 fishery age composition data and the 2017
+model. Combined, the 2015--2018 fishery age composition data and the 2017
 acoustic survey age composition data suggest that 2014 was likely a strong recruitment
 year, and the model was able to adequately
-fit to these observations (Figure~\ref{fig:main-age-comp-fits}).  Residual
+fit to these observations (Figure~\ref{fig:main-age-comp-fits}).  The 2016 year-class
+has yet to be exposed to the acoustic survey, so the strength of this cohort is
+reliant solely on two years of fishery data and thus remains highly uncertain. Residual
 patterns to the fishery and survey age data do not show patterns that would
 indicate systematic bias in model predictions
 (Figure~\ref{fig:main-age-comp-pearson}). The MLEs for numbers, biomass,
@@ -702,7 +709,7 @@ Tables~\ref{tab:main-est-numbers-at-age}-\ref{tab:main-est-catch-at-age-biomass}
 For the major cohorts, the resulting age-specific catch, natural mortality and
 surviving biomasses are given in Table~\ref{tab:main-cohort-effects}.
 
-**Posterior distributions for both steepness and natural mortality are strongly
+Posterior distributions for both steepness and natural mortality are strongly
 influenced by priors (Figure~\ref{fig:main-prior-posterior}). The posterior for
 steepness was not updated much by the data, as expected given the low
 sensitivity to steepness values found in previous hake assessments. The natural
@@ -714,10 +721,9 @@ parameter is examined in sensitivity runs (see Section~\ref{sec:assessment-sensi
 Other parameters showed updating from non-informative priors to stationary posterior
 distributions.
 
-**The \Sexpr{assess.yr} base model specified a similar level of variation (standard
-deviation of $\Phi = 1.4$) associated with time-varying fishery selectivity to that of
-$\phi = 0.20$ in the
-\Sexpr{last.assess.yr} base model, effectively
+The \Sexpr{assess.yr} base model specified the same level of variation (standard
+deviation of $\Phi = 1.4$) associated with time-varying fishery selectivity as
+the \Sexpr{last.assess.yr} base model, effectively
 allowing the model flexibility (i.e., a lower penalty on the overall
 likelihood) to fit to data that suggests high variability among years for each
 age. This level
@@ -734,7 +740,7 @@ in the fishery age compositions initially, but decreasing in prominence
 from 2013 onward (Figures~\ref{fig:main-age-comp-fits} and
 \ref{fig:main-retrospective.recruitment}).
 Fishery selectivity on age-2 fish was at its highest
-in 2016.  The selectivity of age-3 fish by the fishery in 2017 (2014 cohort)
+in 2016, followed by 2018.  The selectivity of age-3 fish by the fishery in 2017 (2014 cohort)
 was similar to that for the 1999 and 2010 large cohorts
 (age-3 in 2002 and 2013, respectively;
 Figure~\ref{fig:main-tv-selex-uncertainty}). Even though the
@@ -754,7 +760,7 @@ reflect time-varying mortality processes.
 
 \subsubsub{Stock biomass}
 
-**The base stock assessment model indicates that since the 1960s, \fishname\
+The base stock assessment model indicates that since the 1960s, \fishname\
 female spawning biomass has ranged from well below to near unfished equilibrium
 (Figures~\ref{fig:main-female-spawning-biomass}
 and~\ref{fig:main-relative-spawning-biomass} and
@@ -764,20 +770,20 @@ model estimates that it was below the unfished equilibrium in the 1960s and
 increased rapidly to near unfished equilibrium after two or more large
 recruitments in the early 1980s, and then declined steadily after a peak in the
 mid- to late-1980s to a low in 2000. This long period of decline was followed by
-a brief increase to a peak in 2003 as the large 1999 year class matured. The
+a brief increase to a peak in 2002 as the large 1999 year class matured. The
 1999 year class largely supported the fishery for several years due to
 relatively small recruitments between 2000 and 2007. With the aging 1999 year
 class, median female spawning biomass declined throughout the late 2000s,
 reaching a time-series low of \Sexpr{median.bio.min}~million~t in
 \Sexpr{median.bio.min.year}. The assessment model estimates that spawning
-biomass declined slightly from 2014 to 2015 after five years of increases from
-2009 to 2014. These estimated increases were the result of a large 2010 cohort
+biomass declined slightly from 2014 to 2015 after four years of increases from
+2010 to 2014. These estimated increases were the result of a large 2010 cohort
 and an above-average 2008 cohort, and the decline in 2015 and 2016 is from the 2010 cohort
 surpassing the age at which gains in weight from growth are greater than the
 loss in weight from natural mortality. The model estimates an increase from 2016
 to 2017 due to the large 2014 year class, which is estimated to be the fifth highest
-recruitment in the time series, and a slight decrease from 2017 to 2018 due, in part, to
-the model fit of the acoustic survey index (Figure~\ref{fig:main-bridge-5-panel}).
+recruitment in the time series, followed by a period of relatively steady biomass
+from 2017 to 2019.
 
 The median estimate of the \Sexpr{end.yr} relative spawning biomass (female spawning
 biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium,
@@ -789,14 +795,16 @@ female spawning biomass at the start of \Sexpr{end.yr} is
 \Sexpr{curr.bio.median}~million~t (with a 95\% posterior credibility interval
 from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper}~million~t).
 
-**The estimated
+The estimated
 \Sexpr{end.yr-1} female spawning biomass is
 \Sexpr{prev.bio.median}~(\Sexpr{prev.bio.lower}-\Sexpr{prev.bio.upper})~million~t.
-**In the 2017 assessment, the equivalent estimate of 2017 female spawning biomass was
-2.129~(0.763-7.445)~million~t. Thus the 2018-estimated median is smaller than the 2017-estimated
-median, while the 2018 credible interval remains within the 2017 interval. The additional
-data in the 2018 assessment has reduced the uncertainty of the 2017 biomass, and
-decreased the median partly due to the impact of the survey biomass estimate.
+In the 2018 assessment, the equivalent estimate of 2018 female spawning biomass was
+1.357~(0.610-3.161)~million~t. The 2019-estimated median is very similar to the 2018-estimated
+median, while the credible interval has decreased with the addition of another year
+of fishery data.
+%%The additional
+%%data in the 2018 assessment has reduced the uncertainty of the 2017 biomass, and
+%%decreased the median partly due to the impact of the survey biomass estimate.
 
 
 
@@ -805,7 +813,7 @@ decreased the median partly due to the impact of the survey biomass estimate.
 
 \subsubsub{Recruitment}
 
-**The new data available for this assessment do not significantly change the
+The new data available for this assessment do not significantly change the
 estimated patterns of recruitment. \fishname\ appear to have low average
 recruitment with occasional large year-classes
 (Figures~\ref{fig:main-recruitment} and \ref{fig:main-recruitment-devs},
@@ -818,28 +826,33 @@ class (Figure~\ref{fig:main-numbers-at-age}) comprising
 \Sexpr{year.class.2010.in.2013}\% of the coast-wide commercial catch in 2013,
 \Sexpr{year.class.2010.in.2014}\% of the 2014 catch,
 \Sexpr{year.class.2010.in.2015}\% of the 2015 catch,
-33\% of the 2016 catch, and
-40\% of the 2017 catch.
+33\% of the 2016 catch,
+37\% of the 2017 catch, and
+24\% of the 2018 catch.
 The current assessment also estimates a strong 2014 year class
-(Figure~\ref{fig:main-numbers-at-age}) comprising 50\% of the 2016 catch and 33\% of the 2017
-catch. Although the absolute size of the 2014 year class remains highly uncertain, at least more so than
-cohorts that have been observed for more years, two years of fishery data and one year of survey data
-suggest that it is one of the higher estimates in the time series.
+(Figure~\ref{fig:main-numbers-at-age}) comprising 50\% of the 2016 catch, 39\% of the 2017
+catch, and 29\% of the 2018 catch. Although the absolute size of the 2014 year
+class remains highly uncertain, at least more so than
+cohorts that have been observed for more years, three years of fishery data and one year of survey data
+suggest that it is one of the higher estimates in the time series.  The 2016 year class is
+estimated to be above average (similar in size to the 2008 year class) from two years
+of fishery data.  The 2016 year class will not be observed in the survey until
+2019 as age-3 fish.
 
-**The extra data in the 2018 assessment has reduced the median estimate of the
+The additional data in the 2019 assessment has reduced the median estimate of the
 2014 year class to
 \Sexpr{recruitment.med.in.2014}~billion fish (Table~\ref{tab:main-median-posterior}),
-from the 12.105~billion estimated in the 2017 assessment (Table~18 of \citealt{JTC2017}).
+from the 8.583~billion estimated in the 2018 assessment (Table~18 of \citealt{JTC2018}).
 Yet the 2014 year class remains the fifth largest estimated recruitment, albeit
 with large uncertainty (Table~\ref{tab:main-ci-posterior} and
-Figure~\ref{fig:main-recruitment}).
+Figure~\ref{fig:main-recruitment}).  The median estimate for the 2016 year class
+is \Sexpr{recruitment.med.in.2016}~billion fish (with a 95\% posterior credibility interval
+from 0.746--26.085 billion fish; Table~\ref{tab:main-median-posterior} and
+Table~\ref{tab:tab:main-ci-posterior}).
 
-**Probably mention 2016 recruitment, as first year we've seen it and it was
-highly uncertain last year (and obvoiusly remained so in our runs without 2018 age data).
-
-**The model currently estimates small 2011, 2013, and 2015 year classes (median
+The model currently estimates small 2011, 2013, and 2015 year classes (median
 recruitment below the mean of all median recruitments) and a slightly above
-average 2012 year class.
+average 2012 and 2017 year class.
 % That's still true for 2016 assessment - see
 %  years.since.2010.recruitment.med.below.mean
 % Though could just say that all three years are smaller than average?
@@ -848,30 +861,30 @@ There is little or no information in the data to estimate the sizes of the
 class strength for young fish have shown the estimates of recent recruitment to
 be unreliable prior to at least age-3 \citep{JTC2013}.
 
-**The estimated recruitments with uncertainty for each predicted point and the
+The estimated recruitments with uncertainty for each predicted point and the
 overall stock recruit relationship are provided in
 Figure~\ref{fig:main-mcmc.sr.variability}. Extremely large variability about the
 expectation and about the joint uncertainty of individual recruitment and
 spawning biomass pairs are evident in this plot. High and low recruitments have
 been produced throughout the range of observed spawning biomass
 (Figure~\ref{fig:main-mcmc.sr.variability}). The standard deviation of the time
-series of median recruitment deviation estimates for the years 1970-2015, which
+series of median recruitment deviation estimates for the years 1970-2017, which
 are informed by the age compositions, is
 \Sexpr{f(sd(base.model$mcmccalcs$devmed[names(base.model$mcmccalcs$devmed) >=
-1970 & names(base.model$mcmccalcs$devmed) <= 2015]), 2)}. This value is consistent
+1970 & names(base.model$mcmccalcs$devmed) <= 2017]), 2)}. This value is consistent
 with the base model value of \Sexpr{base.model$sigma_R_in}.
 
 % \clearpage % To avoid dangling subheading
 
 \subsubsub{Exploitation status}
 
-**Median relative fishing intensity on the stock is estimated to have been below
-the SPR$_{40\%}$ for all years
+Median relative fishing intensity on the stock is estimated to have been below
+the SPR$_{40\%}$ target for all years
 % sort(median.intensity)    % 2017 assessment 1999 was slightly over
 (Figure~\ref{fig:main-fishing-intensity} and
 Tables~\ref{tab:main-median-posterior} and \ref{tab:main-ci-posterior}). It
 should be noted, however, that the median relative fishing intensity was close
-to the target in 2008 and 2010, but harvest in those years did not exceed
+to the target in 2008, 2010 and 2011, but harvest in those years did not exceed
 the catch limits that were specified, based on the best available science and
 harvest control rules in place at the time.
 % Also close in 1999 but no TAC then according to landings.vs.tac[34,], so
@@ -885,16 +898,17 @@ fraction does not necessarily correspond to fishing intensity because fishing
 intensity more directly accounts for the age-structure of both the population and
 the catch. Median relative fishing intensity is estimated to have declined from
 \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.2015}\%
-in 2015, after which it increased to \Sexpr{median.intensity.2017}\% in 2017.
+in 2015, after which it increased to \Sexpr{median.intensity.2018}\% in 2018.
 The exploitation fraction has decreased from
 \Sexpr{exploitation.med.2011} in 2011 to \Sexpr{exploitation.med.2015} in
-2015 and then increased to \Sexpr{exploitation.med.2017} in 2017.
+2015 and then increased to \Sexpr{exploitation.med.2017} in 2017 before ending
+at \Sexpr{exploitation.med.2018} in 2018.
 Although there is a considerable amount of imprecision
 around these recent estimates due to uncertainty in recruitment and spawning
 biomass, the 95\% posterior credibility interval of relative fishing intensity
 was below the SPR management target from 2012 through 2015 (Figure~\ref{fig:main-fishing-intensity}).
 The median estimates
-for 2016 and 2017 are below the management target, however the 95\% posterior
+for 2016, 2017, and 2018 are below the management target, however the 95\% posterior
 credibility intervals do include the target level.
 
 % Note that exploitation.med.penult.yr comes out as 0.06, but in Table d
@@ -905,7 +919,7 @@ credibility intervals do include the target level.
 
 \subsubsub{Management performance}
 
-**Over the last decade (\Sexpr{end.yr-10}--\Sexpr{end.yr-1}), the mean coast-wide
+Over the last decade (\Sexpr{end.yr-10}--\Sexpr{end.yr-1}), the mean coast-wide
 utilization rate (i.e., landings/quota) has been
 \Sexpr{tot.last.10.years.attainment}\% and catches have been below
 coast-wide targets (Table~\ref{tab:main-landings-tac}). From \Sexpr{end.yr-5} to
@@ -924,11 +938,11 @@ suggested that hake were less aggregated in Canada and availability had
 declined. In 2016, the utilization rate increased but remained below pre-2015
 levels, despite the total 2016 catch being one of the highest in recent years.
 This is in large part due to increasing catch targets as biomass continues to
-increase.  The utilization rate in 2017 continued to increase from the 2015 low in
+increase.  The utilization rates in 2017 and 2018 continued to increase from the 2015 low in
 both the United States and Canada. Total landings last exceeded the coast-wide quota
 in 2002 when utilization was 112\%.
 
-**The median relative fishing intensity was below target in all years throughout the time series
+The median relative fishing intensity was below target in all years throughout the time series
 %the 1999 year used to be just above 1 but now estimated to be just below 1
 % \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]} and
 % Manual 2017 done - comment out above line if only one year, include it if
@@ -940,7 +954,7 @@ above target all years except from 1999-2000 and from 2007-2011 (Figure~\ref{fig
 % \Sexpr{names(median.relative.bio.below.target[-length(median.relative.bio.below.target)])} and
 % \Sexpr{names(median.relative.bio.below.target[length(median.relative.bio.below.target)])}.
 
-**The joint history of biomass and $F$-based target reference points shows that
+The joint history of biomass and $F$-based target reference points shows that
 before 2007, median relative fishing intensity was below target and female
 spawning biomass was mostly above $\Bforty$
 (Figure~\ref{fig:main-phase}). Between 2007 and 2011, however, median relative
@@ -952,7 +966,7 @@ the 2008, 2010, and 2014 recruitments and, correspondingly, relative fishing
 intensity fell well below targets. Relative spawning biomass has been
 above the target since \Sexpr{median.relative.bio.above.target.since}. While
 there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative fishing
-intensity and relative spawning biomass, the model predicts a less than 6\%
+intensity and relative spawning biomass, the model predicts a less than 10\%
 joint probability of being both above the target relative fishing intensity in
 \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at the
 start of \Sexpr{end.yr}.
