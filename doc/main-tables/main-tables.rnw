@@ -470,7 +470,7 @@ make.short.parameter.estimates.table(
                      "and reference point estimates for the base model ",
                      "MLE and posterior median (MCMC) estimates with ",
                      "an additional comparison to posterior median ",
-                     "estimates from the previous (",end.yr-1,") base model. **The 2018 column is correctly the same as last year's, except for $q$?!?! 0.940 here, 0.961 last year (but 0.940 for 2017!)."),
+                     "estimates from the previous (",end.yr-1,") base model."),
   xlabel <- "tab:main-parameter-estimates",
   font.size = 9,
   space.size = 10)
@@ -613,11 +613,11 @@ make.short.parameter.estimates.sens.table(retro.list,
 @
 
 <<main.assessment.changes.table, results='asis', echo=FALSE>>=
-make.assessment.changes.table(assessment.changes, 
+make.assessment.changes.table(assessment.changes,
   xcaption = paste0("Annual changes in the modeling framework used to assess ",
   "\\fishname\\ since 2011. ",
   "The bias adjustment is reported as the maximum used for each assessment. ",
-  "Methods used to weight the age-composition data (Comp Method), i.e., ", 
+  "Methods used to weight the age-composition data (Comp Method), i.e., ",
   "McAllister-Ianelli (MI) and Dirichlet-Multinomial (DM) approaches, are explained in ",
   "the main text."),
   xlabel = "tab:main-assessment-changes")
