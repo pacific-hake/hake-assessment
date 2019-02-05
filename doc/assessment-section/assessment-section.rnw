@@ -323,8 +323,13 @@ the need for iterative reweighting. This streamlines the assessment process and 
 considers it to be a sensible and useful improvement. {\bf However, the SRG requests that the
 JTC provide thorough documentation of all changes in methods of data weighting.}
 
-\emph{Response -- Bring up Kelli's new Table: Table~\ref{tab:tab:main-assessment-changes}; and sections in
-the document that discuss data weighting.}
+\emph{Response -- Section~\ref{sec:data-age-comp-likelihood} 
+includes information on all methods,
+current and historical, used to weight composition data. Additionally,
+Table~\ref{tab:main-assessment-changes} includes a time series of 
+weights used for the fishery and survey age compositions as well
+as a comparible value derived from the current model that uses the
+Dirichlet-Multinomial likelihood to estimate weights.}
 
 6. The issue of data weighting remains a significant technical challenge for stock assessments
 (such as the Pacific hake assessment) that integrate information of different forms (e.g.,
@@ -1148,7 +1153,7 @@ with a probability of 96\%.
 
 \subsection{Sensitivity analyses }\label{sec:assessment-sensitivity-analyses}
  % Manual 2016 done
-**UPDATE WHOLE SUBSECTION (much will stay the same)
+**UPDATE SUBSECTION to include fecundity sensitivities
 
 Sensitivity analyses were conducted to investigate influence of data inputs and
 structural uncertainty of the base model by investigating how changes to the
@@ -1217,7 +1222,7 @@ of variation assumed about the stock-recruitment relationship ($\sigma_r$), and
 the resiliency of the stock in terms of recruitment (steepness).
 
 % section below on natural mortality sensitivity
-% Done KFJ 2019
+% Manual 2019 done
 The standard deviation of the prior distribution on natural mortality was
 increased from the base model value of 0.1 to 0.2 and 0.3. Maximum likelihood
 estimates of natural mortality increased from
@@ -1233,7 +1238,7 @@ uncertainty in spawning biomass on both absolute and relative scales
 and~\ref{fig:main-status-base-alternative-1}).
 
 % section below on steepness sensitivity
-% Done KFJ 2019
+% Manual 2019 done
 The mean of the prior distribution on steepness was decreased from 0.777 (base)
 to 0.5 and, separately, steepness was fixed at 1.0. The decrease in the mean of the
 prior resulted in a change in the maximum likelihood estimate of steepness from
@@ -1249,7 +1254,7 @@ the recruitments to deviate far from the underlying stock-recruit relationship
 (Figure~\ref{fig:main-mcmc.sr.variability}).
 
 % section below on sigma_r
-% Done KFJ 2019
+% Manual 2019 done
 The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative
 high (1.8) and low (1.0) states. The low value, $\sigma_r = 1.0$,
 resulted in a model where the standard deviation of the MLE estimates of
@@ -1277,8 +1282,7 @@ produced a suggested
 $\sigma_r$ of \Sexpr{sigma.r.alt.allyr}, which was similar to the
 base-model value of 1.4.
 
-% Manual 2018: updated the "Bratio" years in paragraph below
-% Done KFJ 2019
+% Manual 2019 done
 The sensitivity of the base model to the inclusion of the age-1 survey index
 provides an additional source of information about the recruitment of different
 year classes (see discussion in Section~\ref{sec:data-acoustic-survey}), which
@@ -1293,7 +1297,7 @@ Figures~\ref{fig:main-biomass-base-alternative-2} and
 of unfished biomass for the base model and
 \Sexpr{f(100*sens.models.1.for.table[[8]]$derived_quants["Bratio_2018","Value"],1)}\%
 for the age-1 index model). This change is likely due to the base model
-underfitting the age-1 index estimates of the size of the 2014 and 2016 cohorts
+underfitting the age-1 index estimates of the size of the 2014, 2016 and 2017 cohorts
 (Figure~\ref{fig:main-age-one-index}). These changes are subtle
 because the base model generally tracks the trends in the age-1 index well.
 
@@ -1308,7 +1312,7 @@ because the base model generally tracks the trends in the age-1 index well.
 % with each age.
 
 % section below on composition weighting
-% Done KFJ 2019
+% Manual 2019 done
 The sensitivity of the use of the
 Dirichlet-Multinomial likelihood, implemented in 2018,
 which uses two estimated
@@ -1368,8 +1372,7 @@ slightly reduced in scale.
 % \ref{fig:main-status-base-alternative-2}).
 
 % section below on selectivity
-% Manual 2018
-% Done KFJ 2019
+% Manual 2019
 The following two types of alternative setups for selectivity were explored in sensitivity
 analyses: alternative values of the $\Phi$ parameter
 controlling the degree of flexibility of annual variation in the
