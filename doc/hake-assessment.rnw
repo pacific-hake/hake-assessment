@@ -356,6 +356,55 @@ This DRAFT document is non-citable.
 <<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
 @
 
+<<>>=
+sens.model <- sens.models.5[[1]]
+@
+\rfoot{Appendix~\ref{chap:fecundity-52} -- Fecundity sensitivity 52}
+<<appendices-fecundity, child='appendices-fecundity/appendix-fecundity-52.rnw'>>=
+@
+
+<<>>=
+sens.model <- sens.models.5[[2]]
+@
+\rfoot{Appendix~\ref{chap:fecundity-53} -- Fecundity sensitivity 53}
+<<appendices-fecundity, child='appendices-fecundity/appendix-fecundity-53.rnw'>>=
+@
+
+<<>>=
+sens.model <- sens.models.5[[3]]
+@
+\rfoot{Appendix~\ref{chap:fecundity-54} -- Fecundity sensitivity 54}
+<<appendices-fecundity, child='appendices-fecundity/appendix-fecundity-54.rnw'>>=
+@
+
+<<>>=
+sens.model <- sens.models.6[[1]]
+@
+\rfoot{Appendix~\ref{chap:fecundity-55} -- Fecundity sensitivity 55}
+<<appendices-fecundity, child='appendices-fecundity/appendix-fecundity-55.rnw'>>=
+@
+
+<<>>=
+sens.model <- sens.models.6[[2]]
+@
+\rfoot{Appendix~\ref{chap:fecundity-56} -- Fecundity sensitivity 56}
+<<appendices-fecundity, child='appendices-fecundity/appendix-fecundity-56.rnw'>>=
+@
+
+<<>>=
+sens.model <- sens.models.6[[3]]
+@
+\rfoot{Appendix~\ref{chap:fecundity-57} -- Fecundity sensitivity 57}
+<<appendices-fecundity, child='appendices-fecundity/appendix-fecundity-57.rnw'>>=
+@
+
+<<>>=
+sens.model <- sens.models.6[[4]]
+@
+\rfoot{Appendix~\ref{chap:fecundity-58} -- Fecundity sensitivity 58}
+<<appendices-fecundity, child='appendices-fecundity/appendix-fecundity-58.rnw'>>=
+@
+
 \end{appendices}
 
 \end{document}
