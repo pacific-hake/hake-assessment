@@ -612,10 +612,21 @@ make.short.parameter.estimates.sens.table(retro.list,
                                           space.size = 12)
 @
 
+<<main.assessment.changes.table, results='asis', echo=FALSE>>=
+make.assessment.changes.table(assessment.changes, 
+  xcaption = paste0("Annual changes in the modeling framework used to assess ",
+  "\\fishname\\ since 2011. ",
+  "The bias adjustment is reported as the maximum used for each assessment. ",
+  "Methods used to weight the age-composition data (Comp Method), i.e., ", 
+  "McAllister-Ianelli (MI) and Dirichlet-Multinomial (DM) approaches, are explained in ",
+  "the main text."),
+  xlabel = "tab:main-assessment-changes")
+@
+
 % Ugly, but wanted to get it in quickly.
 % Don't think we need to specify 'fecundity when varying' in only one column -
 % not sure why we do in Google one. Andy will check with Chris in the morning.
-\begin{table}
+\begin{table}[H]
 \caption{Summary of models runs that consider alternative assumptions concerning
   weight-at-age and time-vary fecundity, plus the two related runs from 2018.
   Results from the MCMC runs **32, 36 and 38
