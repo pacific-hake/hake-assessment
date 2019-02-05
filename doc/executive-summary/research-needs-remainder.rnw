@@ -1,31 +1,31 @@
 % research-needs-remainder.rnw - the remaining research needs that won't go into
 %  the Executive Summary but only into research.rnw in the main text.
 
-\item **Think about all the rest of these
-
 \item Continue to explore and develop statistical methods to parameterize 
   time-varying fishery selectivity in the assessment and with regard to 
-  forecasting.
+  forecasting.  This should include the semi-parametric selectivity approach
+  explored in the 2018 assessment but for which was not explored further this
+  year due to time constraints.
 %\enlargethispage{\baselineskip}
 
 \item Continue to investigate fecundity and maturity, including 
   trying to understand links between fecundity and size, age, weight, and batch 
   spawning.
   
-\item Explore the use of genetics and other methods to explore potential
-  stock differences north and south of Point Conception that may be related to
-  the observed differences in maturity.
+\item Continue genetic analyses to explore potential stock differences north and
+  south of Point Conception that may be related to the observed differences in maturity.
   
 \item Continue to explore alternative indices for juvenile or young (0 and/or 
   1 year old) \fishname, including investigations into the winter acoustic 
   surveys.
   
 \item Continue to investigate alternative ways to model and forecast 
-  recruitment, given the uncertainty present.
+  recruitment, given the uncertainty present.  
 
-\item Improve the characterization and accounting of research and tribal catch 
-  that is reported to standard databases to improve data tracking and avoid 
-  double counting.
+%%\item Improve the characterization and accounting of research and tribal catch 
+%%  that is reported to standard databases to improve data tracking and avoid 
+%%  double counting.
+%%I think we can take this one off this year - AMB
   
 \item Update ageing error calculations given new information from recent double 
   reads.  Conduct further exploration of ageing imprecision and the effects of 
@@ -52,10 +52,11 @@
   stock assessment presents a potential risk to or underutilization of the 
   stock.
   
-\item Evaluate the quantity and quality of historical biological data (prior to 
-  1989 from the Canadian fishery, and prior to 1975 from the U.S. fishery) for 
-  use as age-composition and weight-at-age data, and/or any historical 
-  indications of abundance fluctuations.
+%%\item Evaluate the quantity and quality of historical biological data (prior to 
+%%  1989 from the Canadian fishery, and prior to 1975 from the U.S. fishery) for 
+%%  use as age-composition and weight-at-age data, and/or any historical 
+%%  indications of abundance fluctuations.
+%%There is still a bit of work to do, but this has been largely done
 
 \item Consider alternative methods for refining existing prior distributions 
   for natural mortality ($M$), including the use of meta-analytic methods.

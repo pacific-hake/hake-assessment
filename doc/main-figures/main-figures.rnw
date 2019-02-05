@@ -231,14 +231,29 @@ weight.at.age.heatmap(base.model)
   Values based on assumptions for the early and late years are shown
   outside the blue lines (see Table~\ref{tab:main-wtatage-runs});
   alternative assumptions were tested in sensitivity runs.
-  Bold values represent unavailable data -- between the blue lines
-  such weights were interpolated or extrapolated from adjacent ages or years.
+  Bold values between 1975--\Sexpr{max.fishery.age.prop[2]} represent unavailable
+  data such that weights were interpolated or extrapolated from adjacent ages or years.
   The sample-weighted mean weight-at-age is shown at the bottom.}
 \label{fig:main-empirical.weight.at.age}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=6.5in, height=8.5in]{main-figures/EWAforDoc_Numbers}
+\end{center}
+\vspace{0mm}
+\caption{Sample sizes for developing empirical weight-at-age values used in the
+  base model (the values match the colours).
+  Data are available from 1975--\Sexpr{max.fishery.age.prop[2]}.}
+\label{fig:main-empirical.weight.at.age.numbers}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{figure}[H]
 \begin{center}
 <<main.bridge.biomass, fig.height=6, fig.width=8>>=
@@ -385,8 +400,7 @@ make.mcmc.diag.hists.plot(base.model)
 \includegraphics[width=6.5in, height=7.5in]{main-figures/KeyParameterGelman_MultChain}
 \end{center}
 %\vspace{0mm}
-\caption{**This is not automated - be nice to have included automatically. Needs
-  updating for 2019 at least. Gelman-Rubin plot showing the development of the scale-reduction (shrink factor) across the chain length for key posterior parameter distributions. A factor close to 1 indicates that between chain variance and within chain variance are equal. Values much greater than 1.1 indicate a notable difference between chains and the possible lack of achieving a converged stationary posterior distribution.}
+\caption{Gelman-Rubin plot showing the development of the scale-reduction (shrink factor) across the chain length for key posterior parameter distributions. A factor close to 1 indicates that between chain variance and within chain variance are equal. Values much greater than 1.1 indicate a notable difference between chains and the possible lack of achieving a converged stationary posterior distribution.}
 \label{fig:main-mcmc.diag.gelrub}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

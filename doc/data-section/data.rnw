@@ -480,7 +480,7 @@ given in the 2013 stock assessment \citep{JTC2013}.
 
 \subsubsection{Maturity and fecundity}\label{sec:data-maturity}
 
-**The maturity and fecundity relationships were updated for the 2018 assessment
+The maturity and fecundity relationships were updated for the 2018 assessment
 \citep{JTC2018}.
 Previously, fecundity was based on the product of the maturity-at-length reported 
 by \citet{DornSaunders1997} and the weight-at-length estimated in 2011. These
@@ -504,8 +504,11 @@ South of Point Conception maturing at earlier ages and smaller sizes. These
 fish were excluded from the maturity estimates.
 
 The new age-based maturity ogive was multiplied by the mean weight-at-age
-averaged across all years to get a new estimate of fecundity-at-age. Samples
-from ages 15 and above were pooled for both the maturity and weight-at-age 
+averaged across all years in the 2018 assessment to get a new estimate of
+time-invariant fecundity-at-age.  The \Sexpr{assess.yr} assessment extends this approach to
+include time-varying fecundity-at-age by using year-specific weight-at-age
+values (rather than the time-series mean) in the calculation of fecundity.
+Samples from ages 15 and above were pooled for both the maturity and weight-at-age 
 estimation due to limited sample sizes, and the age 15+ estimates were 
 applied to ages 15-20 for purposes of modeling 
 the population dynamics (Figure~\ref{fig:main-maturity}).
@@ -569,17 +572,25 @@ current assessment model to translate numbers-at-age directly to biomass-at-age
 (Figure \ref{fig:main-empirical.weight.at.age}). Mean weight-at-age was
 calculated from samples pooled from all fisheries and the acoustic survey for
 the years 1975 to \Sexpr{max.fishery.age.prop[2]}
-(Figure~\ref{fig:main-empirical.weight.at.age}). Past investigations into
+(Figure~\ref{fig:main-empirical.weight.at.age}). Additonal historic weight-at-age data
+from Canadian fishery and surveys (intermittent years from 1992 onwards) were
+added in the \Sexpr{assess.yr} assessment, resulting in a 3\% increase in total
+samples.  Pre-1975 weight-at-age data available in the PacFIN database was
+confirmed to be samples collected within Puget Sound and were not included in
+this assessment. Past investigations into
 calculating weight-at-age for the fishery and survey independently showed little
 impact on model results. Ages 15 and above for each year were pooled and assumed
 to have the same weight. The combinations of age and year with no
 observations were assumed to change linearly over time between observations at
-any given age. **[think about]Mean weights were assumed to remain constant prior to the first 
+any given age. Mean weights were assumed to remain constant prior to the first 
 observation and after the last observation within the range of years in the 
-matrix. The number of samples is generally proportional
+matrix. The number of samples (Figure \ref{fig:main-empirical.weight.at.age.numbers})
+is generally proportional
 to the amount of catch, so the combinations of year and age with no samples
 should have relatively little importance in the overall estimates of the
-population dynamics. The use of empirical weight-at-age is a convenient method
+population dynamics. 
+
+The use of empirical weight-at-age is a convenient method
 to capture the variability in both the weight-at-length relationship within and
 among years, as well as the variability in length-at-age, without requiring
 parametric models to represent these relationships. However, this method
@@ -590,13 +601,9 @@ population. Simulations performed by \citet{KuriyamaOnoEtAl2015} showed that, in
 general, using empirical weight-at-age when many observations are available
 resulted in more accurate estimates of spawning biomass.
 
-%% Manually update final sentences of this paragraph in future years, 2018 done
-**[maybe defer to later detailed discussion in 3.2.4, or move that discussion here]
-For purposes of forecasting, the mean weights at each age in the forecast were
-set equal to the mean across all years -- they therefore match the equilibrium and
-reference point calculations. **Mean weight has been declining for most ages over
-the past few years, but did increase slightly in 2017 from recent lows in 2016. 
-
+%%**Mean weight has been declining for most ages over
+%%the past few years, but did increase slightly in 2017 from recent lows in 2016.
+%%Increased again in 2018 so not going to keep this in for this year.
 
 \subsubsection{Length-at-age}\label{sec:data-length-at-age}
 

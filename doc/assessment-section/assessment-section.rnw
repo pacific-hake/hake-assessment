@@ -103,29 +103,24 @@ The \Sexpr{assess.yr} base model is predominantly an update of the base model in
 the \Sexpr{last.assess.yr} stock assessment. Stock Synthesis
 \citep{MethotWetzel2013} version \Sexpr{ss.version} is again used,
 having been introduced in the previous assessment \citep{JTC2018}.
-**The largest changes between the
+The largest changes between the
 \Sexpr{last.assess.yr} and \Sexpr{assess.yr} stock assessments are the addition of another
 year of
 % acoustic survey and
-fishery data,** a new maturity ogive, a new approach for weighting composition
-data, and a modification of the parameterization for time-varying selectivity.
+fishery data and the switch from time-invariant to year-specific values for
+fecundity.
 
-**mention time-varying fecundity, basedon the SRG-requested alternative model in
-2018. Refer to later section.
-
-**The \Sexpr{assess.yr} base model includes an acoustic data time series from 1995 to 2017,
-where estimates of abundance from the survey followed the same procedures as in
-2017 \citep{JTC2017}. The updated maturity ogive from 2018 was retained
+The \Sexpr{assess.yr} base model includes an acoustic data time series from 1995
+to 2017. The updated maturity ogive from 2018 was retained
 (see Section~\ref{sec:data-maturity}). The Dirichlet-Multinomial (D-M)
 likelihood approach \citep{ThorsonEtAl2017Dirichlet} was again used to estimate the weights
 associated with age-composition data, rather than iteratively tuning the sample size multiplier
 as in 2017 and earlier assessments (see
-Section~\ref{sec:data-age-comp-likelihood}). **[presumably no need to mention
-$\phi$, just $\Phi$] Time-varying fishery
-selectivity is retained in the \Sexpr{assess.yr} base model with the magnitude of the allowable deviations effectively
-unchanged from the $\phi=0.20$ used in the \Sexpr{last.assess.yr} base model to
-an equivalent value of $\Phi = 1.4$ (see Section~\ref{sec:data-variability-selectivity}).
-Otherwise, the general parameterization of
+Section~\ref{sec:data-age-comp-likelihood}). Time-varying fishery
+selectivity is retained in the \Sexpr{assess.yr} base model with the magnitude
+of the allowable deviations unchanged from the \Sexpr{last.assess.yr} base model
+(see Section~\ref{sec:data-variability-selectivity}).
+The general parameterization of
 selectivity was retained, although additional parameters were required to
 estimate an additional year of deviations. The acoustic survey selectivity is
 assumed to not change over time. Selectivity curves were modeled as
@@ -145,19 +140,21 @@ freely estimated. This assessment uses the same Beta-distributed prior for
 stock-recruit steepness ($h$), based on \citet{MyersBowenEtAl1999}, that has
 been applied since 2011 \citep{StewartForrestEtAl2011, JTC2012, JTC2013,
 JTC2014, JTC2015, JTC2016, JTC2017, JTC2018}. Year-specific recruitment deviations were estimated
-from 1966--**2018 as well as the years \Sexpr{assess.yr}, \Sexpr{assess.yr+1}, and
+from 1966--2018 as well as the years \Sexpr{assess.yr}, \Sexpr{assess.yr+1}, and
 \Sexpr{assess.yr+2} for purposes of forecasting. The standard deviation,
 $\sigma_r$, of recruitment variability, serving as both a recruitment deviation
 constraint and bias-correction term, is fixed at a value of
 \Sexpr{base.model$sigma_R_in} in this assessment. This value is based on
 consistency with the observed variability in the time series of recruitment
 deviation estimates, and is the same as assumed in assessments from 2013 to
-\Sexpr{last.assess.yr}. Survey catchability was set at the median unbiased
-estimate calculated analytically as per \citet{LudwigWalters1981}. Maturity
-and fecundity relationships are assumed to be time-invariant and fixed values
-were updated using the new maturity ogive discussed earlier.
-
-**Add any new differences to the above. Time-varying fecundity if not mentioned earlier
+\Sexpr{last.assess.yr} (Table~\ref{tab:main-assessment-changes}). Survey
+catchability was set at the median unbiased estimate calculated analytically as
+per \citet{LudwigWalters1981}. Maturity is assumed to be time-invariant and fixed
+values were recently updated using the new maturity ogive discussed earlier.
+Fecundity is time-varying across years with empirical weight-at-age data (1975--
+\Sexpr{assess.yr}).  For years without data, prior to 1975 and during the forecast
+period, fecundity is calculated using the long-term mean weight-at-age (see 
+Section~\ref{sec:assessment-response-review} for more details).
 
 Statistical likelihood functions used for data fitting are typical of many stock
 assessments. The acoustic survey index of abundance was fit via a log-normal
@@ -174,8 +171,9 @@ to allow for additional sources of process and observation error. This process r
 automatically tuned input sample sizes.  Tuning quantities did not change in assessments from 2012 to
 2015, however additional tuning was required in 2016 and 2017 given the
 updated acoustic survey index composition data and refinements to fishery
-composition data. Tuning quantities changed again this year with the addition of the
-new D-M data weighting (tuning) approach.
+composition data. Tuning quantities changed again in 2018 with the addition of the
+new D-M data weighting (tuning) approach.  Tuning quantities remained realtively
+consistent from 2018 to \Sexpr{assess.yr}. 
 
 Uncertainty of estimated quantities was calculated via Markov Chain Monte Carlo
 (MCMC) simulations. The bounds of 95\% credibility intervals were calculated as
