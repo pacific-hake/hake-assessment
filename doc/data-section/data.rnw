@@ -11,7 +11,7 @@ Fishery-dependent and fishery-independent data sources used in this \Sexpr{asses
   (\Sexpr{start.yr}--\Sexpr{last.data.yr}; Tables
   \ref{tab:intro-catches-US}--\ref{tab:intro-catches-total}).
 
-\item **Age compositions composed of data from the U.S. fishery
+\item Age compositions composed of data from the U.S. fishery
   (\Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}) and the
   Canadian fishery (1990--\Sexpr{max.fishery.age.prop[2]}). The last 10 years of
   these data are shown in Tables
@@ -513,6 +513,9 @@ Samples from ages 15 and above were pooled for both the maturity and weight-at-a
 estimation due to limited sample sizes, and the age 15+ estimates were 
 applied to ages 15-20 for purposes of modeling 
 the population dynamics (Figure~\ref{fig:main-maturity}).
+**The maturity ogive was the same as that used in \citet{JTC2018} 
+because the U.S. government shutdown delayed delivery of the 
+2018 histological samples.
 
 Some fish at almost every age were found to be functionally immature based
 on the histological criteria, which is a combination of ``skip spawners'' 
@@ -557,14 +560,12 @@ since 2011, with the ageing-error standard deviation reduced by a factor of 0.55
 for the largest cohorts: 1980, 1984, 1999, 2010, and 2014. In the 2014 base
 model \citep{JTC2014}, the 2008 cohort was also included in this set, but
 current estimates show this year-class to be enough less than the four largest
-that a reduction in ageing was not included for the 2008 year class in the 
-**[presumably include JTC2018, and verify same holds for 2019 assessment]
-2015-2017 assessments \citep{JTC2015, JTC2016, JTC2017} or this 2018
+that a reduction in ageing was not included for the 2008 year class in the
+2015-\Sexpr{assess.yr - 1} assessments or this \Sexpr{assess.yr}
 assessment. Also, the model presented
 here does not include the reduction in ageing error for age-1 fish under the
 assumption that they never represent a large enough proportion of the samples to
-cause the cohort-effect. A sensitivity analysis without any cohort ageing error
-is provided in Section~\ref{sec:assessment-sensitivity-analyses}.
+cause the cohort-effect.
 
 \subsubsection{Weight-at-age}\label{sec:data-weight-at-age}
 
@@ -633,7 +634,6 @@ important distributions are discussed in detail below.
 
 \subsubsection{Natural Mortality}\label{sec:data-natural-mortality}
 
-[**just confirm we do this sensitivity]
 Since the 2011 assessment, and again this year, a combination of the informative
 prior for natural mortality 
 used in previous Canadian assessments and results from analyses using
@@ -649,7 +649,6 @@ of new information on $M$, there has been little option to update the prior.
 
 \subsubsection{Steepness}\label{sec:data-steepness}
 
-[**just confirm we do this sensitivity]
 The prior for the steepness parameter of the stock-recruitment function
 is based on the median (0.79) and the 20th (0.67) and 80th
 (0.87) percentiles from \citeauthor{MyersBowenEtAl1999}'s
@@ -688,8 +687,6 @@ integrating over them using the Laplace method, as described by
 \citet{ThorsonHicksEtAl2014}. Repeating that approach has continued to produce
 similarly low values for $\phi$.
 
-**[Check Xu ref comes out okay in bib (I can't knit right now)]. **Check
-sensitivity was done.
 A new parameterization for the selectivity deviations was explored 
 in 2018, based on the work of \citet{Xu2019}, 
 in an effort to produce a more objective way to determine the degree of 
@@ -699,9 +696,8 @@ is only used for a sensitivity analysis
 (see Section~\ref{sec:assessment-sensitivity-analyses}).
 
 
-Further details on the time-varying selectivity function are provided,
-as described by \citet{JTC2018}.**Could delete these details, but maybe best to
-keep in as expect $\Phi$ will still get discussed.
+Further details on the time-varying selectivity function are provided below,
+as described by \citet{JTC2018}.
 
 For each age $a \geq A_{\text{min}}$, where $A_{\text{min}}$ is the minimum age
 for which selectivity is allowed to be non-zero, 
@@ -734,9 +730,10 @@ $p_a = 0$ gives constant selectivity beyond the last estimated
 value. The condition that maximum selectivity equals 1 results in one fewer
 degree of freedom than the number of estimated $p_a$. Therefore,
 $p_{A_{\text{min}}}=0$ can be set for the fishery and for the survey.  
-%% Manual 2017 - age 6 in the base model. Presumably unchanged in 2018.
+%% Manual 2019 done- age 6 in the base model.
 
 % new text added January 2018
+** Delete the following paragraphs.
 The implementation of time-varying selectivity in the assessments from 2014 to 
 2017 used an option available in Stock Synthesis 3.24 whereby 
 annual deviations to the selectivity parameters were applied after the following 
