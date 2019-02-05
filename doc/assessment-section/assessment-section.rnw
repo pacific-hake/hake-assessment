@@ -265,15 +265,18 @@ controlling time-varying fishery selectivity ($\Phi$), with a goal of establishi
 for setting $\Phi$ each year. The SRG recommends that the JTC provide a review of how
 time-varying selectivity is parameterized and estimated in other assessments.
 
-\emph{Response -- **Due to time constraints the JTC has been unable to do this.}
-   % (no need to keep mentioning the Shutdown, just for the first one)
+\emph{Response -- Although some progress has been made identifying other assessments that specify
+the variability associated with time-varying selectivity ($\Phi$), a thorough review and comparison
+of alternative approaches could not be completed in time for the 2019 assessment due to unforeseen
+time constraints this assessment season.}
+
 
 3. After reviewing the sensitivity analysis for minor corrections to the catch series, the SRG
 agrees that the assessment results were not significantly affected. {\bf However, the coding and
 database errors should be rectified as soon as possible.}
 
-\emph{Response -- **(Okay?:) These were rectified during the 2018 meeting (for the alternative catch stream
-sensitivity run), and have been permanently fixed.}
+\emph{Response -- These issues were largely rectified during the 2018 meeting, while
+remaining issues have since been permanently fixed.}
 
 
 4. The new histological analysis of ovaries for maturity, like previous analyses, showed a
@@ -305,8 +308,12 @@ the SRG notes that Canadian samples should be included in the maturity analysis.
   hake migrate seasonally to Baja and California for spawning in the winter. This
   work began in December 2018 and is expected to be completed in 2020.}
 
-\emph{Regarding including the Canadian samples in the maturity analysis
-  **... See Issue \#465}
+\emph{Response -- Regarding including the Canadian samples in the maturity analysis, DFO is
+  continuing to assess workload logistics, including the possibility of getting trained by Melissa
+  Head (NWFSC) on the histological methods she used in the recent maturity analysis or
+  alternatively getting samples sent from Canada to Seattle, if appropriate.
+  Presumably, the 2019 survey or fishery would be the earliest time to get any additional
+  Canadian samples.}
 
 5. The 2018 assessment diverged from past practice in its approach to determining the data
 weights applied to the age-composition data. Past assessments used an iterative approach
@@ -316,7 +323,8 @@ the need for iterative reweighting. This streamlines the assessment process and 
 considers it to be a sensible and useful improvement. {\bf However, the SRG requests that the
 JTC provide thorough documentation of all changes in methods of data weighting.}
 
-\emph{Response -- **Issue \#463}
+\emph{Response -- Bring up Kelli's new Table: Table~\ref{tab:tab:main-assessment-changes}; and sections in
+the document that discuss data weighting.}
 
 6. The issue of data weighting remains a significant technical challenge for stock assessments
 (such as the Pacific hake assessment) that integrate information of different forms (e.g.,
@@ -840,7 +848,9 @@ Table~\ref{tab:tab:main-ci-posterior}).
 
 The model currently estimates small 2011, 2013, and 2015 year classes (median
 recruitment below the mean of all median recruitments) and a slightly above
-average 2012 and 2017 year class.
+average 2012 and 2017 year class.  The proportion of the age-1 catch (in numbers
+and biomass) in 2018 (2017 year class) was slightly larger than the age-1 catch
+in 2017 (2016 year class).
 % That's still true for 2016 assessment - see
 %  years.since.2010.recruitment.med.below.mean
 % Though could just say that all three years are smaller than average?
