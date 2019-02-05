@@ -44,7 +44,7 @@ histological analyses of ovary samples collected in recent years
 \end{itemize}
 
 Some data sources were not included in the base model, but have been explored or used for
-sensitivity analyses, or were included in previous stock assessments but not in
+sensitivity analyses or were included in previous stock assessments but not in
 this one.
 Data sources not discussed here have either been
 discussed at past \fishname\ assessment review meetings or are discussed in more
@@ -81,7 +81,7 @@ additional data sources are:
   previously explored and rejected as a potential index of hake spawning stock 
   biomass, and has not been revisited since the 2008 stock assessment.
 
-\item Joint-U.S. and Canada acoustic survey index of age-1 \fishname.
+\item Joint U.S. and Canada acoustic survey index of age-1 \fishname.
 
 \item NWFSC winter 2016 and 2017 acoustic research surveys of spawning \fishname.
 
@@ -105,8 +105,8 @@ timing (see Figure~5 in \citealt{JTC2014}). The U.S. shore-based landings are
 from the Pacific Fishery Information Network (PacFIN). Foreign and joint-venture
 catches for 1981--1990 and domestic at-sea catches for
 1991--\Sexpr{last.data.yr} are estimated from the AFSC and, subsequently, the
-NWFSC at-sea hake observer programs stored in the NORPAC (North Pacific Groundfish
-and Halibut Observer) database. Canadian
+NWFSC at-sea hake observer programs stored in the 
+North Pacific Groundfish and Halibut Observer (NORPAC) database. Canadian
 Joint-Venture catches from 1989 are from the Groundfish Biological (GFBio)
 database, the shore-based landings from 1989 to 1995 are from the Groundfish
 Catch (GFCatch) database, from 1996 to March 31, 2007 from the Pacific Harvest
@@ -693,8 +693,8 @@ A new parameterization for the selectivity deviations was explored
 in 2018, based on the work of \citet{Xu2019}, 
 in an effort to produce a more objective way to determine the degree of 
 flexibility. However, further testing of this approach was believed
-necessary before making the change and so it 
-was only used for a sensitivity analysis 
+necessary before making the change so it 
+is only used for a sensitivity analysis 
 (see Section~\ref{sec:assessment-sensitivity-analyses}).
 
 
@@ -850,7 +850,7 @@ $\bm{\tilde{\pi}}$ and $\bm{\pi}$ designate the vectors of these proportions,
 $A_{\text{max}}$ is the maximum age in the model,
 and $n$ is the input sample size. The parameter $\theta$ is defined as a
 linear scaling parameter such that $\theta n$ is the variance-inflation parameter 
-of the Dirichlet-Multinomial distribution (see \citealt{ThorsonEtAl2017Dirichlet}).
+of the D-M distribution.
 
 **The effective sample size associated with this likelihood is given by
 \eb
