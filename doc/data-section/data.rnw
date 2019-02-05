@@ -809,32 +809,24 @@ in the transformed parameter space in the 2017 assessment.
 \subsubsection{Age composition likelihood}\label{sec:data-age-comp-likelihood}
 **Not changed from 2018, but may be best to keep in or shorten, asin for reference.
 
-**The base model includes a change in the likelihood and data-weighting method 
-applied to the age composition data. The 2017 assessment \citep{JTC2017},
-like those before it,
-used a multinomial likelihood and the tuning method of \citet{McAllisterIanelli1997}
-for weighting the age compositions. This tuning method involves
-iteratively adjusting a multiplier of the input sample sizes until they are
-roughly equal to the harmonic mean of the effective sample sizes, where the
-effective sample size is dependent on how well the model expectation matches
-the observed values. For this assessment, a new Dirichlet-Multinomial (D-M) likelihood
-was adopted, as proposed by \citet{ThorsonEtAl2017Dirichlet}
-and tested by them on a simplified version of the 2015 \fishname\
-model \citep{JTC2015}.
+Like the 2018 assessment, this assessment used a Dirichlet-Multinomial (D-M)
+likelihood \citep{ThorsonEtAl2017Dirichlet} to fit the age-composition data. 
 The primary benefit
-of the D-M approach is that instead of manually iterating the sample size multiplier,
+of the D-M approach over the historically used 
+McAllister-Ianelli approach \citep{McAllisterIanelli1997}
+is that instead of manually iterating the sample size multiplier,
 an estimated parameter, $\theta$, serves to automatically adjust the weight given to
-the composition data. This increases efficiency of the assessment process, removes the
-subjective choice of how many iterations are required in the previous approach,
+the fishery-composition data (using $\theta_{\text{fish}}$) and the 
+survey-compostion data (using $\theta_{\text{surv}}$). 
+Integration of the data weighting increases the efficiency of the assessment process, removes the
+subjective choice of how many iterations are required,
 and also ensures that the results of model sensitivities, retrospective analyses, 
 and likelihood profiles will all be automatically tuned, rather than having the
 age compositions given the same weight as the base model.
 Note that the following description holds for both the survey data and the
-fishery data, but, again, for simplicity we do not make the distinction here
-(other than to note that we consequently estimate $\theta_{\text{surv}}$ for the 
-survey data and $\theta_{\text{fish}}$ for the fishery data).
+fishery data, with $\theta$ equal to $\theta_{\text{surv}}$ or $\theta_{\text{fish}}$, respectively.
 
-**The likelihood function is given by equation (10) of 
+The likelihood function is given by Equation (10) of 
 \citet{ThorsonEtAl2017Dirichlet}, and is
 \eb
 \text{L}(\bm{\pi},\theta|\bm{\tilde{\pi}},n) = 
@@ -858,14 +850,31 @@ of the D-M distribution.
 n_{\text{eff}} = \frac{1}{1 + \theta} + \frac{n \theta}{1 + \theta}
 \ee
 The input samples sizes used in this assessment, which are based on the 
-number of trips or hauls, are large enough that the $1/(1 + \theta)$ term
-is insignificant compared to the $n \theta / (1 + \theta)$ term, which means
-that $\theta / (1 + \theta)$ can be compared to the sample size 
-multipliers used in the McAllister-Ianelli data weighting method. 
+number of trips or hauls, are large enough that the first term
+is insignificant compared to the second term. Consequently, 
+$\theta / (1 + \theta)$ can be compared to the sample size 
+multipliers used in the McAllister-Ianelli data-weighting method
+\citep{McAllisterIanelli1997} that was used for assessments prior to 2018
+(Table~\ref{tab:main-assessment-changes}). 
+In short, the McAllister-Ianelli method involves
+iteratively adjusting multipliers of the input sample sizes 
+passed to the multinomial likelihoods until they are
+roughly equal to the harmonic mean of the effective sample sizes. The
+effective sample size is dependent on how well the model expectation matches
+the observed values. Typically, this process involves no more
+than four to five iterations.
 
-**See \citet{ThorsonEtAl2017Dirichlet} for the derivation of the likelihood and
-more details on the hake-based simulation study used to test it. The
-implementation of the D-M likelihood in Stock Synthesis has $\log \theta$ as the
-estimated parameter in order to ensure that $\theta$ remains positive.
+Composition data can also be weighted using the Francis method \citep{Francis2011},
+which is based on variability in the observed ages by year.
+This method, like the McAllister-Ianelli method, is also iterative,
+where the sample sizes are adjusted such that the fit of the expected
+compositions should fit within the estimated uncertainty at a rate 
+that is consistent with the variability expected given
+the effective sample sizes. This method is known to be sensitive to 
+outliers and prone to convergence issues when selectivity is time-varying.
+
+Sensitivity to the D-M method as compared to the 
+McAllister-Ianelli and the Francis methods are presented 
+in Section~\ref{sec:assessment-sensitivity-analyses}.
 
 \clearpage

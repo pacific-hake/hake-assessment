@@ -324,6 +324,15 @@ the Francis (2011) method. {\bf The SRG notes that it would be useful for such e
 to be documented in future assessment reports, and requests that JTC perform a
 sensitivity analysis for this method in future assessments.}
 
+\emph{Response -- Sensitivity analyses were included to compare the 
+use of the Dirichlet-Multimonial likelihood to the McAllister-Ianelli and
+Francis weighting methods 
+(see Section~\ref{sec:assessment-sensitivity-analyses}).
+All three methods are described in 
+Section~\ref{sec:data-age-comp-likelihood} and historical weightings used in
+previous assessments can be compared to values estimated in this assessment
+(Table~\ref{tab:main-assessment-changes}).}
+
 A potential issue related to data weighting that should be explored in the next assessment is
 the JTC's approach to deriving the initial set of data weightings associated with the fishery
 and survey age-composition observations. Table 5 in the assessment document shows the
