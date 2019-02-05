@@ -727,8 +727,7 @@ make.short.parameter.estimates.table <- function(model,
     if(q.choice == 1){
       q <- round(median(base.model$extra.mcmc$Q_vector), 3)
     }else{
-      ## q <- round(median(last.yr.base.model$extra.mcmc$Q_vector), 3)
-      q <- 0.94
+      q <- round(median(last.yr.base.model$extra.mcmc$Q_vector), 3)
     }
     mcmc.meds <- c(mcmc.meds, q)
 
@@ -758,12 +757,12 @@ make.short.parameter.estimates.table <- function(model,
     mcmc.meds <- c(mcmc.meds, d)
 
     ## Add depletion for 2015
-    d <- median(x$mcmc$Bratio_2016)
+    d <- median(x$mcmc[,paste0("Bratio_", end.yr)])
     d <- d * 100  ## To make a percentage
     mcmc.meds <- c(mcmc.meds, d)
 
     ## Add fishing intensity for end.yr - 1
-    d <- median(x$mcmc[,paste("SPRratio", end.yr - 1, sep = "_")])
+    d <- median(x$mcmc[,paste0("SPRratio_", end.yr - 1)])
     d <- d * 100  ## To make a percentage
     mcmc.meds <- c(mcmc.meds, d)
 
@@ -961,12 +960,12 @@ make.long.parameter.estimates.table <- function(model,
   }
 
   ## Add Dirichlet-Multinomial parameter
-  ## currently only 1 value so calc.meds doesn't work due to 
+  ## currently only 1 value so calc.meds doesn't work due to
   ## getting a vector instead of a data.frame with names in header
   dm <- data.frame(param = "ln.EffN_mult._1",
                    p.med = median(mc$ln.EffN_mult._1))
   df <- rbind(df, dm)
-  
+
   ## Add all Early_InitAge parameters
   ei <- mc[,grep("Early_InitAge_[0-9]+", mc.names)]
   df <- calc.meds(df, ei)
