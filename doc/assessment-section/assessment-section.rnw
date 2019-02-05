@@ -153,10 +153,10 @@ per \citet{LudwigWalters1981}. Maturity is assumed to be time-invariant.
 Fecundity is defined as weight-at-age multiplied by the new maturity ogive
 (discussed earlier) and is time-varying across years with empirical weight-at-age data (1975--
 \Sexpr{assess.yr}).  For years without data, prior to 1975 and during the forecast
-period, fecundity is calculated using the long-term mean weight-at-age (see 
+period, fecundity is calculated using the long-term mean weight-at-age (see
 Section~\ref{sec:assessment-response-review} for more details). Alternative
 fecundity assumptions are presented through sensitivity analysis
-(Section~\ref{sec:assessment-sensitivity-analyses}). 
+(Section~\ref{sec:assessment-sensitivity-analyses}).
 
 Statistical likelihood functions used for data fitting are typical of many stock
 assessments. The acoustic survey index of abundance was fit via a log-normal
@@ -175,7 +175,7 @@ automatically tuned input sample sizes.  Tuning quantities did not change in ass
 updated acoustic survey index composition data and refinements to fishery
 composition data. Tuning quantities changed again in 2018 with the addition of the
 new D-M data weighting (tuning) approach.  Tuning quantities remained realtively
-consistent from 2018 to \Sexpr{assess.yr}. 
+consistent from 2018 to \Sexpr{assess.yr}.
 
 Uncertainty of estimated quantities was calculated via Markov Chain Monte Carlo
 (MCMC) simulations. The bounds of 95\% credibility intervals were calculated as
@@ -316,10 +316,10 @@ the need for iterative reweighting. This streamlines the assessment process and 
 considers it to be a sensible and useful improvement. {\bf However, the SRG requests that the
 JTC provide thorough documentation of all changes in methods of data weighting.}
 
-\emph{Response -- Section~\ref{sec:data-age-comp-likelihood} 
+\emph{Response -- Section~\ref{sec:data-age-comp-likelihood}
 includes information on all methods,
 current and historical, used to weight composition data. Additionally,
-Table~\ref{tab:main-assessment-changes} includes a time series of 
+Table~\ref{tab:main-assessment-changes} includes a time series of
 weights used for the fishery and survey age compositions as well
 as a comparible value derived from the current model that uses the
 Dirichlet-Multinomial likelihood to estimate weights.}
@@ -332,11 +332,11 @@ the Francis (2011) method. {\bf The SRG notes that it would be useful for such e
 to be documented in future assessment reports, and requests that JTC perform a
 sensitivity analysis for this method in future assessments.}
 
-\emph{Response -- Sensitivity analyses were included to compare the 
+\emph{Response -- Sensitivity analyses were included to compare the
 use of the Dirichlet-Multimonial likelihood to the McAllister-Ianelli and
-Francis weighting methods 
+Francis weighting methods
 (see Section~\ref{sec:assessment-sensitivity-analyses}).
-All three methods are described in 
+All three methods are described in
 Section~\ref{sec:data-age-comp-likelihood} and historical weightings used in
 previous assessments can be compared to values estimated in this assessment
 (Table~\ref{tab:main-assessment-changes}).}
@@ -372,7 +372,7 @@ the assessment report in the future.}
 structure and parameterization that have been implemented since 2011 as a standard
 table to be included in the assessment document.}
 
-\emph{Response -- The 2019 assessment includes Table~\ref{tab:main-assessment-changes} 
+\emph{Response -- The 2019 assessment includes Table~\ref{tab:main-assessment-changes}
 that summarizes major changes to the model structure and parameterization since 2011.
 Future assessments will include an updated version of the table as well.}
 
@@ -455,7 +455,7 @@ in the selectivity parameters from 2017 to 2018 since there was now fishery
 data in 2018.
 
 The final bridging step involved changing the structural assumptions about fecundity (discussed further
-in Section~\ref{sec:assessment-weights}) and resulted in the 2019 base model (Table~\ref{tab:main-assessment-changes}).  
+in Section~\ref{sec:assessment-weights}) and resulted in the 2019 base model (Table~\ref{tab:main-assessment-changes}).
 The switch from time-invariant to time-varying
 fecundity resulted in the biggest bridging change to current biomass.  Fecundity
 (calcualted as weight-at-age multiplied by maturity) changed from being defined by a
@@ -694,10 +694,10 @@ fishery), age-4 fish from the 2014 year-class (29\% of the catch in the fishery)
 and age-8 fish from the 2010 year-class (24\% of the catch in the
 fishery).  Age composition from the 2017 acoustic survey also indicated that the
 2014 year-class (53\% of that catch that year) and the 2010 year-class (26\% of
-the catch for that year) were large.  
+the catch for that year) were large.
 %%The 2017 acoustic survey was the first time the survey was able to sample the
 %%2014 year-class, and it confirmed that the 2014 year-class (53\% of the
-%%catch for that year) was indicated above average. 
+%%catch for that year) was indicated above average.
 The pattern for the 2010 year-class was expected given the strength of that cohort
 from the fishery composition data from 2012 onward, and thus are fit well by the
 model. Combined, the 2015--2018 fishery age composition data and the 2017
@@ -854,7 +854,7 @@ with large uncertainty (Table~\ref{tab:main-ci-posterior} and
 Figure~\ref{fig:main-recruitment}).  The median estimate for the 2016 year class
 is \Sexpr{recruitment.med.in.2016}~billion fish (with a 95\% posterior credibility interval
 from 0.746--26.085 billion fish; Table~\ref{tab:main-median-posterior} and
-Table~\ref{tab:tab:main-ci-posterior}).
+Table~\ref{tab:main-ci-posterior}).
 
 The model currently estimates small 2011, 2013, and 2015 year classes (median
 recruitment below the mean of all median recruitments) and a slightly above
