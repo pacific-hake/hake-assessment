@@ -44,13 +44,19 @@ range of alternate models investigated by the JTC, a subset of sensitivity
 analyses are also reported in order to provide a broad qualitative comparison of
 structural uncertainty with respect to the base case. These sensitivity analyses
 are thoroughly described in this assessment document. 
-**[now based somewhat on alternative model from last year] The structural assumptions
+The structural assumptions
 of this \Sexpr{assess.yr} base model,
 implemented using version \Sexpr{ss.version} of the Stock Synthesis software
 \citep{MethotWetzel2013}, are effectively the same as the
 \Sexpr{last.assess.yr} base model \citep{JTC2017}, though we incorporate
-new approaches for weighting composition data and for parameterizing
-time-varying selectivity.
+time-varying fecundity.
+
+The 35 day 2018/2019 U.S. government shutdown considerably delayed delivery of U.S.
+age data and reduced the JTC's collective capacity to complete the
+\Sexpr{assess.yr} assessment following status-quo procedures.  As a result,
+many planned supplementary and exploratory analyses could not be completed, including
+some developed for response to \Sexpr{last.assess.yr} SRG requests
+(see Section~\ref{sec:assessment-response-review}).
 
 \subsection{Stock structure and life history}\label{sec:intro-stock-structure}
 
@@ -119,9 +125,9 @@ stock assessment document presented a sensitivity analysis where hake mortality
 was linked to the Humboldt Squid index \citep{JTC2015}. This sensitivity was not
 repeated in this assessment, although further research on this topic is needed.
 Ongoing research investigating abiotic (environmental conditions) and biotic 
-(e.g., euphausid distribution and abundance) drivers of hake distribution could
-provide insight into how the hake population is linked with broader ecosystem
-considerations.
+(e.g., euphausid distribution and abundance) drivers of hake distribution and
+recruitment could provide insight into how the hake population is linked with
+broader ecosystem considerations.
  
 
 \subsection{Management of \fishname\ }\label{sec:intro-management}
@@ -152,7 +158,7 @@ targets have been determined using an $\Fforty$ default harvest rate with a
 relative spawning biomass of 40\% and above, to zero catch at relative spawning
 biomass values of 10\% or less (called the default harvest policy in the
 Agreement). Further considerations have often resulted in catch targets to be
-set lower than the recommended catch limit. **In the last decade, total catch has
+set lower than the recommended catch limit. In the last decade, total catch has
 never exceeded the quota, although retrospectively, as estimated in this
 assessment, harvest rates in some of those years approached the $\Fforty$
 target.
@@ -161,7 +167,8 @@ target.
 Overall, management appears to be effective at maintaining a sustainable stock
 size, in spite of uncertain stock assessments and a highly dynamic
 population. However, management has been precautionary in years when very large
-quotas were determined from the stock assessment.
+quotas were determined using the aforementioned harvest control rule and
+stock assessment outputs.
 
 \subsubsection{**Management of \fishname\ in the United States}
 \label{sec:intro-management-us}
