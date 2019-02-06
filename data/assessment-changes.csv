@@ -2,7 +2,7 @@ Year,Framework,Survey,Bias_Adjust,Comp_Method,Comp_Fishery,Comp_Survey,MCMC,Chan
 2008,"SS 2.00n, TINSS, VPA",yes,,NA,1,1,1000,Compared SS to TINSS and VPA; Estimated q;  Additional uncertainty in acoustic-survey selectivity; Additional uncertainty in M of older-fish
 2009,"SS 3.02b, TINSS",no,1,McAllister-Ianelli,1.7,3.27,1000,Included uncertainty in $\\sigma_R$; Increased allowable flexibility in time-varying fishery selectivity; Cohort-specific ageing error; California 1960s length-frequency distributions
 2010,"SS 3.10, TINSS",yes,1,McAllister-Ianelli,1.7,3.27,1000,Removed California 1960s length-frequency distributions
-2011,"SS 3.20, TINSS",yes,0.85,McAllister-Ianelli,0.1,0.89,999,"Increased compatability of SS and TINSS,, except for age-composition likelihood"
+2011,"SS 3.20, TINSS",yes,0.85,McAllister-Ianelli,0.1,0.89,999,"Increased compatability of SS and TINSS, except for age-composition likelihood"
 2012,SS 3.23b,yes,0.86,McAllister-Ianelli,0.12,0.94,999,One framework for base model; TINSS changed to CCAM
 2013,SS 3.24j,no,0.86,McAllister-Ianelli,0.12,0.94,999,Developed MSE
 2014,SS 3.24s,yes,0.86,McAllister-Ianelli,0.12,0.94,999,Time-varying fishery selectivity
