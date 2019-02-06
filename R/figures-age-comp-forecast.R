@@ -79,17 +79,19 @@ if(FALSE){
   # calculating fractions (in numbers or biomass) associated with
   # big cohorts expected for 2017 fishery
   # these could be made dynamic if these values are needed anywhere
+  # 2019 - forecast.age.info$natsel.prop not defined anywhere - leaving
+  #  here for now but now have fore.catch.prop etc. in custom-knitr-variables.R
   round(100*quantile(forecast.age.info$natsel.prop$X3, c(0.025, 0.5, 0.975)))
   round(100*quantile(forecast.age.info$natsel.prop$X7, c(0.025, 0.5, 0.975)))
   round(100*quantile(forecast.age.info$natselwt.prop$X3, c(0.025, 0.5, 0.975)))
   round(100*quantile(forecast.age.info$natselwt.prop$X7, c(0.025, 0.5, 0.975)))
-  ##  2.5%   50% 97.5% 
-  ##    14    52    87 
-  ##  2.5%   50% 97.5% 
-  ##     7    27    52 
-  ##  2.5%   50% 97.5% 
-  ##    10    39    79 
-  ##  2.5%   50% 97.5% 
-  ##    12    36    59 
+  ##  2.5%   50% 97.5%
+  ##    14    52    87
+  ##  2.5%   50% 97.5%
+  ##     7    27    52
+  ##  2.5%   50% 97.5%
+  ##    10    39    79
+  ##  2.5%   50% 97.5%
+  ##    12    36    59
 
 }

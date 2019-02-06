@@ -157,6 +157,10 @@ zero.catch.prob.bio.down.1 <- f(base.model$risks[[1]][1,2])
 ## Prob biomass declines year after next to year after that with zero catch:
 zero.catch.prob.bio.down.2 <- f(base.model$risks[[2]][1,2])
 
+## Canadian provisional reference points
+dfo.probs.curr <- base.model$risks[[1]][,(ncol(base.model$risks[[1]])-2):ncol(base.model$risks[[1]])]
+dfo.probs.fore <- base.model$risks[[2]][,(ncol(base.model$risks[[2]])-2):ncol(base.model$risks[[2]])]
+
 ################################################################################
 ## Second forecast year depletion and spawning biomass estimates
 next2.depl.lower.tac.based <- f(fore.tac.mcmc$dlower[names(fore.tac.mcmc$dlower) %in% (end.yr + 2)] * 100, 1)
@@ -296,6 +300,16 @@ ages1999 <- as.numeric(names(cohortCumSum1999)) - 1999
 ages2010 <- as.numeric(names(cohortCumSum2010)) - 2010
 ages2014 <- as.numeric(names(cohortCumSum2014)) - 2014
 
+## Estimated (median MCMC) proportions by age (using numbers) of the catch in first forecast year
+fore.catch.prop <- as.data.frame( t(as.numeric(f(apply(base.model$extra.mcmc$natsel.prop, 2, median)* 100))))
+names(fore.catch.prop) <- paste0("Age", 0:20)
+# Confidence intervals for age5 (pick the biggest cohort; note natsel.prop columns start with age-0).
+fore.catch.prop.age5.lower <- quantile(base.model$extra.mcmc$natsel.prop[,6], 0.025) * 100
+fore.catch.prop.age5.upper <- quantile(base.model$extra.mcmc$natsel.prop[,6], 0.975) * 100
+# Estimated proportion by age (using catch) of catch in first forecast year
+fore.catch.prop.wt.age5.median <- median(base.model$extra.mcmc$natselwt.prop[,6]) * 100
+fore.catch.prop.wt.age9.median <- median(base.model$extra.mcmc$natselwt.prop[,10]) * 100
+
 ################################################################################
 ## Sigma_r, standard deviation of recruitment variability.
 sigma.r <- f(base.model$sigma_R_in, 2)
@@ -332,10 +346,6 @@ for(i in plot.retro.yrs){
 ## Define number of 'recent' years for several tables at the start of
 ##  main-tables.rnw.
 num.recent.yrs <- 10
-
-## Canadian provisional reference points
-dfo2018 <- base.model$risks[[1]][,(ncol(base.model$risks[[1]])-2):ncol(base.model$risks[[1]])]
-dfo2019 <- base.model$risks[[2]][,(ncol(base.model$risks[[2]])-2):ncol(base.model$risks[[2]])]
 
 ################################################################################
 ## values of Dirichlet-Multinomial data weighting parameters
