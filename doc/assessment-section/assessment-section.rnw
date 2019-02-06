@@ -1050,13 +1050,16 @@ estimates are slightly different than the estimates in the
 \Sexpr{last.assess.yr} assessment with smaller equilibrium yields, spawning biomass, and
 recruitments (particularly for the 2014 year class) estimated in this assessment.
 
-**As part of the DFO Sustainable Fisheries Framework, \citet{DFO2009} suggested
+% Manual 2019 done.
+% Look at dfo.probs.curr and decide what to write. Check that
+%   ncol(base.model$risks[[1]]) == 10   (i.e. no new columns added)
+As part of the DFO Sustainable Fisheries Framework, \citet{DFO2009} suggested
 a provisional limit reference point of $0.4\Bmsy$ and an upper stock reference
-point of $0.8\Bmsy$. We note that the probabilities of the female spawning biomass
-at the start of \Sexpr{assess.yr} being above these points are both 100\% --
-i.e.~the stock is estimated to be in the provisional `healthy zone'.
-% Manual 2018 done. See dfo2018 and dfo2019 data.frames (change names next
-%  year to be more generic).
+point of $0.8\Bmsy$. The probabilities of the female spawning biomass
+at the start of \Sexpr{assess.yr} being above each of these points
+are P$(B_{\Sexpr{assess.yr}} > 0.4\Bmsy) = \Sexpr{f(dfo.probs.curr[1,2])}$\% and
+P$(B_{\Sexpr{assess.yr}} > 0.8\Bmsy) = \Sexpr{f(dfo.probs.curr[1,3])}$\%
+such that the stock is estimated to be in the provisional `healthy zone'.
 
 \subsection{Model projections}\label{sec:assessment-model-projections}
 The median catch limit for \Sexpr{min(forecast.yrs)} based on the default
@@ -1139,11 +1142,17 @@ these two cohorts, at
 \Sexpr{f(fore.catch.prop.wt.age9.median)}\%,
 respectively.
 
-% Manual done 2018. See dfo2019 variable for numbers.
+% Manual done 2019.
+% Look at dfo.probs.fore and decide what to write. Check which row has the
+%  largest catch level (it should be the min prob - look at a decision
+%  table to check the catch and then look at dfo.probs.fore). Need to change
+%  column heading calls here because years will change.
 With respect to the DFO provisional reference points, even with the largest
 \Sexpr{assess.yr} catch of 725,593~t given in Table~\ref{tab:main-risk-year-1},
-the stock is expected to be in the healthy zone at the start of \Sexpr{assess.yr+1}
-with a probability of **96\%.
+at the start of \Sexpr{assess.yr+1} the stock is expected to be above the cautious zone with a probability of
+P$(B_{\Sexpr{assess.yr+1}} > 0.4\Bmsy) = \Sexpr{f(min(dfo.probs.fore[,"SSB_2020>0.4SSB_MSY"]))}$\%,
+and in the healthy zone with a probability of
+P$(B_{\Sexpr{assess.yr+1}} > 0.8\Bmsy) = \Sexpr{f(min(dfo.probs.fore[,"SSB_2020>0.8SSB_MSY"]))}$\%.
 
 % \enlargethispage{\baselineskip}
 
