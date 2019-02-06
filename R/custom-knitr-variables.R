@@ -296,6 +296,16 @@ ages1999 <- as.numeric(names(cohortCumSum1999)) - 1999
 ages2010 <- as.numeric(names(cohortCumSum2010)) - 2010
 ages2014 <- as.numeric(names(cohortCumSum2014)) - 2014
 
+## Estimated (median MCMC) proportions by age (using numbers) of the catch in first forecast year
+fore.catch.prop <- as.data.frame( t(as.numeric(f(apply(base.model$extra.mcmc$natsel.prop, 2, median)* 100))))
+names(fore.catch.prop) <- paste0("Age", 0:20)
+# Confidence intervals for age5 (pick the biggest cohort; natsel.prop columns start with age-0.
+fore.catch.prop.age5.lower <- quantile(base.model$extra.mcmc$natsel.prop[,6], 0.025) * 100
+fore.catch.prop.age5.upper <- quantile(base.model$extra.mcmc$natsel.prop[,6], 0.975) * 100
+# Estimated proportion by age (using catch) of catch in first forecast year
+fore.catch.prop.wt.age5.median <- median(base.model$extra.mcmc$natselwt.prop[,6]) * 100
+fore.catch.prop.wt.age9.median <- median(base.model$extra.mcmc$natselwt.prop[,10]) * 100
+
 ################################################################################
 ## Sigma_r, standard deviation of recruitment variability.
 sigma.r <- f(base.model$sigma_R_in, 2)
