@@ -300,7 +300,7 @@ catch levels (Figure~\ref{fig:main-us-catch-rates}). Through discussions with th
 Washington Department of Fish and Wildlife and a U.S. advisory panel member,
 tribal landings were confirmed to be 5,706 t.  Landed catch is brought to
 shore-based processing facilities and through fish tickets is coded in PacFIN using
-the attribute PARTICIPANT_CODE and/or FLEET_CODE. As in recent years, careful
+the attribute PARTICIPANT_CODE or FLEET_CODE. As in recent years, careful
 consideration was needed to accurately account for tribal landings.
 The catcher-processor, mothership, and
 shore-based fleets caught \Sexpr{catcher.processor.catch}\%,
