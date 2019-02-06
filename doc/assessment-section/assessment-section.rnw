@@ -1,4 +1,4 @@
-﻿% assessment-section.rnw
+% assessment-section.rnw
 
 % \clearpage
 
@@ -187,7 +187,15 @@ Appendices~\ref{chap:data-file}-\ref{chap:weight-at-age-file}.
 Calculations and figures from Stock Synthesis output were performed using
 \Sexpr{R.Version()$version.string} \citep{R2018} and many R packages (in
 particular r4ss and xtable). The use of R, knitr, \LaTeX~and GitHub immensely
-facilitated the collaborative writing of this document. **Andy to add ref to our TTT document.
+facilitated the collaborative writing of this document.
+In particular, having most of the code automatically shared since the 2016
+assessment \citep{JTC2016} allowed the Canadian JTC members to conduct
+a preliminary assessment (without
+the 2018 age data) during the U.S. government shutdown, and ensured the
+JTC could complete a full assessment in the limited time available.
+A recent DFO workshop \citep{EdwardsDupliseaEtAl2018} shared such a
+`transparent, traceable and transferable' workflow with a wider audience,
+partly motivated by our ongoing \fishname\ assessments.
 
 A Glossary of terms appears in Appendix~\ref{chap:glossary}.
 
