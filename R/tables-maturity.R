@@ -72,20 +72,20 @@ make.maturity.ogives.table <- function(maturity.ogives,
   ## space.size - size of the vertical spaces for the table
 
   tab <- maturity.ogives
-
+  corder <- sapply(c("age", "n.ovaries", "maturity", "avg.wt",
+    "new.fecundity"), grep, x = colnames(tab), ignore.case = TRUE)
+  tab <- tab[, corder]
   ## format all non-year-column values with a thousands seperator
   colnames(tab) <-
     c(latex.bold("Age"),
       latex.mlc(c("Number of",
                   "samples")),
-      latex.mlc(c("Old",
-                  "fecundity")),
-      latex.mlc(c("New",
-                  "fecundity")),
       latex.mlc(c("Maturity",
                   "ogive")),
       latex.mlc(c("Mean",
-                  "weight")))
+                  "weight")),
+      latex.mlc(c("Mean",
+                  "fecundity")))
   ## Make the size string for font and space size
   size.string <- latex.size.str(font.size, space.size)
 
@@ -95,7 +95,7 @@ make.maturity.ogives.table <- function(maturity.ogives,
                align = get.align(ncol(tab),
                                  first.left = FALSE,
                                  just = "c"),
-               digits = c(0, 0, 0, 3, 3, 3, 3)),
+               digits = c(0, 0, 0, 3, 3, 3)),
         caption.placement = "top",
         include.rownames = FALSE,
         table.placement = "H",
