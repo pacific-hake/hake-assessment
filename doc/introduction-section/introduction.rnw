@@ -170,7 +170,7 @@ population. However, management has been precautionary in years when very large
 quotas were determined using the aforementioned harvest control rule and
 stock assessment outputs.
 
-\subsubsection{**Management of \fishname\ in the United States}
+\subsubsection{Management of \fishname\ in the United States}
 \label{sec:intro-management-us}
 
 In the U.S. zone, participants in the directed fishery are required to use
@@ -255,14 +255,13 @@ and~\ref{tab:intro-catches-total}.
 Table~\ref{tab:main-landings-tac} shows recent catches in relation to targets
 (see Section~\ref{sec:assessment-model-results}).
 A review of the \Sexpr{last.data.yr} fishery now
-follows.
+follows by nation.
 
 % \newpage % kludge to avoid dangling heading:
 
 \subsubsub{United States}
 
 % Is okay for 2018 if %ages haven't changed
-**[Note missing numbers]
 The U.S. adjusted allocation (i.e.~adjusted for carryovers) of
 \Sexpr{last.year.us.tac}~t was further divided among the research, tribal,
 catcher-processor, mothership, and shore-based sectors. After the tribal
@@ -282,9 +281,9 @@ September 15 resulted in final quotas for the catcher-processor (CP), mothership
 and
 \Sexpr{f(last.year.us.shore.quota.reallocated)}~t,
 respectively.
-% Manual done 2018. Is all good for 2017 providing the %ages have not changed.
+% Manual done 2019. Is all good for 2017 providing the %ages have not changed.
 
-**The midwater fishery for \fishname\ began on May 15 for the shorebased and
+The midwater fishery for \fishname\ began on May 15 for the shorebased and
 at-sea fisheries.  In earlier years, the shore-based midwater fishery began on
 June 15 north of 42$^\circ$N latitude, but could fish for hake between
 40$^\circ$30'N and 42$^\circ$N latitudes starting on April 1.  Beginning in
@@ -292,24 +291,18 @@ June 15 north of 42$^\circ$N latitude, but could fish for hake between
 latitude starting May 15, and could fish south of 40$^\circ$30'N latitude
 starting on April 15.  Regulations do not allow at-sea processing south of
 42$^\circ$N latitude at any time during the year.
-% Manual done 2017.
+% Manual done 2019.
 
-**The overall catch of \fishname\ in U.S. waters was substantially greater than in
-2016, reaching the highest values ever recorded (Table~\ref{tab:intro-catches-US}).
-Throughout 2017, catches were considerably higher than in 2016
-(Figure~\ref{fig:main-us-catch-rates}). Initial database extractions
-reported small amounts of hake catch by tribal fisheries in 2017.
-However, the U.S. advisory panel report on the \Sexpr{last.data.yr} fishery
-(Appendix~\ref{chap:us-fishery-report}) indicated a tribal catch of 6,012 t.
-Through discussions with the Washington Department of Fish and Wildlife and a U.S.
-advisory panel member, the Joint Technical Committee was made aware of missing fish tickets
-in the regional (PacFIN) database. These discrepancies were not resolved until late in the
-assessment preparation process, thereby precluding an update to the overall
-catch this year (see Section~\ref{sec:data-total-catch}).
-However, this amount of catch is small relative to the total catch,
-and a sensitivity to the inclusion of this
-catch in the 2017 base model resulted in negligible influence on model
-results. The catcher-processor, mothership, and
+The overall catch of \fishname\ in U.S. waters was slighly less than in 2017,
+but was the second highest value ever recorded (Table~\ref{tab:intro-catches-US}).
+Catch rates were considerably lower in 2018 compared to 2017, despite similar overall
+catch levels (Figure~\ref{fig:main-us-catch-rates}). Through discussions with the
+Washington Department of Fish and Wildlife and a U.S. advisory panel member,
+tribal landings were confirmed to be 5,706 t.  Landed catch is brought to
+shore-based processing facilities and through fish tickets is coded in PacFIN using
+the attribute PARTICIPANT_CODE and/or FLEET_CODE. As in recent years, careful
+consideration was needed to accurately account for tribal landings.
+The catcher-processor, mothership, and
 shore-based fleets caught \Sexpr{catcher.processor.catch}\%,
 \Sexpr{mothership.catch}\%, and \Sexpr{shore.based.catch}\% of their final
 reallocated quotas, respectively. Overall,
@@ -319,21 +312,19 @@ caught.  For further details see the report from the U.S. Advisory Panel
 (Appendix~\ref{chap:us-fishery-report}).
 % Manual done 2018, best I can tell the below is still correct.
 
-**In both U.S. at-sea sectors (CP and MS) the most common cohorts in the spring
-fishery were age-7 and age-3 fish associated with the 2010 and 2014 year-classes,
-but by the fall, both sectors were catching a majority of age-3 fish. In
-total, 44\% of the CP catch was age-3 and 33\% was age-7
+In both U.S. at-sea sectors (CP and MS) the most common cohorts in the spring
+fishery were age-8 and age-4 fish associated with the 2010 and 2014 year-classes,
+but by the fall, both sectors were catching a majority of age-2 and 4 fish. In
+total, 33\% of the CP catch was age-2, 27\% was age-4, and 20\% was age-8
 (proportions by numbers here and below; Table~\ref{tab:main-us-cp-age-data}).
 For the MS sector, the total for the year
-was 47\% age-3 and 33\% age-7 (Table~\ref{tab:main-us-ms-age-data}). These
-totals were based on samples from 273 and 536 hauls, respectively, in each sector
-(Table~\ref{tab:main-sampling-history}).  Age-samples from 110 shoreside trips
-showed an even higher proportion of age-7 fish than the at-sea sectors, at 44\%,
-with 35\% of the shoreside samples coming from the 2014 year class
-(Table~\ref{tab:main-us-shore-age-data}). Age-5 fish from the 2012 year-class
-were the third largest proportion in the shoreside and CP sectors (4--5\%), and
-age-1 was the third largest (6\%) in the MS sector.
-% Above paragraph manually done in 2018 but in the future could have values
+was 25\% age-2, 28\% age-4 and 18\% age-8 (Table~\ref{tab:main-us-ms-age-data}). These
+totals were based on samples from 492 and 357 hauls, respectively, in each sector
+(Table~\ref{tab:main-sampling-history}).  Age-samples from 80 shoreside trips
+showed a similar proportion of age-8 fish as the at-sea sectors, at 22\%,
+with 35\% of the shoreside samples coming from the 2014 year class and 25\% coming from
+the 2016 year class (Table~\ref{tab:main-us-shore-age-data}). 
+% Above paragraph manually done in 2019 but in the future could have values
 %  supplied manually as suggested below
 % That paragraph needs updating, but can maybe automate based on Canadian paragraph
 %  (see next comment), but I can't see that the US values appear in
@@ -341,19 +332,19 @@ age-1 was the third largest (6\%) in the MS sector.
 % The most abundant year classes in the Canadian Freezer trawler catch were age \Sexpr{max.freezer.trawler.age.prop.age} at \Sexpr{max.freezer.trawler.age.prop}\%, age \Sexpr{second.freezer.trawler.age.prop.age} at \Sexpr{second.freezer.trawler.age.prop}\%, age \Sexpr{third.freezer.trawler.age.prop.age} at \Sexpr{third.freezer.trawler.age.prop}\%, and age \Sexpr{fourth.freezer.trawler.age.prop.age} at \Sexpr{fourth.freezer.trawler.age.prop}\%. The most abundant year classes in the Canadian Shoreside catch were age \Sexpr{max.shoreside.age.prop.age} at \Sexpr{max.shoreside.age.prop}\%, age \Sexpr{second.shoreside.age.prop.age} at \Sexpr{second.shoreside.age.prop}\%, age \Sexpr{third.shoreside.age.prop.age} at \Sexpr{third.shoreside.age.prop}\%, and age \Sexpr{fourth.shoreside.age.prop.age} at \Sexpr{fourth.shoreside.age.prop}\%.
 % Manual done 2018.
 
-**The at-sea fishery maintained relatively high catch rates throughout the
-year (Figure~\ref{fig:main-us-catch-rates}), averaging around 30 t/hr in the spring
-(May--June) and 20 t/hr in the fall (September--November). Relative
-to last year, both the spring and fall fisheries saw a considerable increase in catch
-rates.  The median fishing depth for the at-sea fleets was shallower than in the past
-10 years (Figure~\ref{fig:main-us-at-sea-depths}). During July and August, some operators
-in the at-sea fishery continued to fish hake, forgoing the usual summer
+The at-sea fishery maintained moderately high catch rates throughout the
+year (Figure~\ref{fig:main-us-catch-rates}), averaging around 20 t/hr in the spring
+(May--June) and 15 t/hr in the fall (September--November). Relative
+to last year, both the spring and fall fisheries saw a decline in catch
+rates.  The median fishing depth for the at-sea fleets was shallower again this year than
+in previous years (Figure~\ref{fig:main-us-at-sea-depths}). During July and August, operators
+in the at-sea fishery moved to the usual summer fishing grounds in search of
 opportunities in Alaskan waters.  The shorebased fishery had the largest monthly
-catches during June, July, and August.  Due to high catch-rates throughout the year
+catches during June, July, and August.  Due to moderatley high catch-rates throughout the year
 for all U.S. fleets, as compared to recent years, the U.S. utilization rate continued to
-increase from recent years from 47\% in 2015 to 71\% in 2016 to 79\% in 2017,
-even with the increases in TAC over that period.
-% Manual done 2018.
+increase from recent years from 47\% in 2015 to 71\% in 2016 to 80\% in 2017, before dropping
+back to 71\% in 2018.
+% Manual done 2019.
 
 % \newpage % kludge to avoid dangling heading:
 

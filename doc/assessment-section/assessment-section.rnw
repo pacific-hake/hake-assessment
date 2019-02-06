@@ -1,6 +1,6 @@
-% assessment-section.rnw
+﻿% assessment-section.rnw
 
-%  \clearpage
+% \clearpage
 
 \section{ASSESSMENT}\label{sec:assessment}
 % Manual 2018 done
@@ -187,15 +187,7 @@ Appendices~\ref{chap:data-file}-\ref{chap:weight-at-age-file}.
 Calculations and figures from Stock Synthesis output were performed using
 \Sexpr{R.Version()$version.string} \citep{R2018} and many R packages (in
 particular r4ss and xtable). The use of R, knitr, \LaTeX~and GitHub immensely
-facilitated the collaborative writing of this document.
-In particular, having most of the code automatically shared since the 2016
-assessment \citep{JTC2016} allowed the Canadian JTC members to conduct
-a preliminary assessment (without
-the 2018 age data) during the U.S. government shutdown, and ensured the
-JTC could complete a full assessment in the limited time available.
-A recent DFO workshop \citep{EdwardsDupliseaEtAl2018} shared such a
-`transparent, traceable and transferable' workflow with a wider audience,
-partly motivated by our ongoing \fishname\ assessments.
+facilitated the collaborative writing of this document. **Andy to add ref to our TTT document.
 
 A Glossary of terms appears in Appendix~\ref{chap:glossary}.
 
@@ -241,94 +233,95 @@ parameterizing fecundity-at-age for years without data (pre-1975), and evaluate
 other methods of deriving biological reference points such as $B_0$}.
 
 \emph{Response -- The JTC agreed with the SRG recommendation to calculate spawning
-  biomass using annual weight-at-age for years with data, and accordingly included
-  time-varying fecundity in the 2019 stock assessment. Thus, fecundity
-  (calcualted as weight-at-age multiplied by maturity) changed from being defined by a
-  single catch-weighted average of weight-at-age applied to all years to being defined
-  by year-specific weight-at-ages covering the time period with data (1975-2018).
-  For periods without data (pre-1975 and post-2018), catch-weighted average weight-at-age was used 
-  in the base model. This configuration was based on results from several investigations
-  outlined in the following paragraphs. Alternative fecundity configurations (and thus weight-at-age)
-  for the pre-1975 and forecast period were also used in sensitivity evaluations
-  (see Section~\ref{sec:assessment-sensitivity-analyses}). 
-  
-  Historical weight-at-age data was re-examined to ensure that all relevant data,
-  quality and quantity, were available to the assesment. Samples from the 1960s in PacFIN
-  that were used in analyses by Christine Stawitz were found to be from Puget Sound, and
-  were therefore correctly excluded from previous (and the current) hake assessments. Weight data
-  from early years was identified as possibly suspect due to inaccurate scales used at that time,
-  especially on foreign vessels.  However, a comparison of mean weight-at-age with mean length-at-age
-  showed that those age/year bins with high mean weight also had high mean length, and the method of
-  length measurement likely hasn't changed considerably over time. Ages from the earlier years were likely
-  solely based on surface reads, whereas protocol since the early 2000s has been to use the break and burn
-  method on fish older than about age-2.  A comparison between ageing methods were done recently for Petrale, indicating
-  increased bias as fish age when using surface reads, although no such analysis that
-  we are aware of has been done for \fishname\. If otoliths from the early years were properly preserved
-  and stored, there may be a chance to conduct research to enumerate any potential biases.
-  Other than standard data updates and the addition of historic weight-at-age data from Canadian
-  fishery and surveys (see Section~\ref{sec:data-weight-at-age}), no changes were made to
-  weight-at-age data based on these considerations.
-    
-  Regarding the assumption of pre-1975 weight-at-ages, the JTC conducted an analysis
-  to see whether there was any indication that weights-at-age values were trending through
-  time. A weighted least squares approach was used to fit log weight (kg) data across years 1975-2018,
-  where a seperate analysis was done for each age group (age-2 through age-15) and
-  statistical weights were defined by the inverse of the annual sample variance). The resulting
-  slope parameter was used to better understand age-specific long-term trends in
-  weight-at-age. The results of this analysis showed a near zero slope for all ages,
-  with age-4, 13, and 14 being slightly positive and all others being slighty negative
-  (Figure Here?), which wasn't unexpected given the large amount of inter-annual variability
-  in the data.  Estimated slope parameters were sensitive to excluding data from
-  1975--1980. Nonetheless, there was not a clear trending relationship for weight-at-age
-  data through time that would otherwise suggest increasing or decreasing pre-1975 weights
-  from the long-term mean.  Overall inferences were similar when using length instead of weight.
-  
-  Regarding forecast year weight-at-ages, the JTC used the weighted
-  least squares analysis to also suggest that the assumption of using the long-term
-  mean for weight-at-age in 2019--2021 was reasonable. During evaluations of alternative
-  forecast year weight-at-age (and thus also fecundity-at-age) settings, we noted
-  forecast year configuration issues with Stock Synthesis (version 3.30.10 as
-  used for this assessment).  The software required forecast year weights-at-age values
-  to be either (i)~set to the same as that for equilibirum conditions, or (ii)~set
-  equivalent to the final year of data (2018).  For example, we were unable to set
-  future weight-at-age values to be the mean of 2016-2018 without also setting
-  the 2018 weights-at-age to that mean (thereby averaging out the 2018 data).
-  Therefore, we retained the 2018 base model assumption of using the overall
-  1975-2018 mean for the forecast period.  On 4 February 2019, the JTC learned that
-  the newest version of Stock Synthesis (version 3.30.12) now allows independent
-  forecast period settings for time-varying parameters or inputs.  Alternative
-  forecast settings can be explored in future assessments.  In response to this finding,
-  the JTC verified that using either a recent 3-year (2016--2018) or a 5-year (2014--2018)
-  average weight-at-age vector in the forecast period made little difference in
-  2019--2021 stock status. This was expected because weight-at-age values in recent
-  years have been similar to the long-term average.
-  
-  During the 2018 SRG meeting it was further realised that: ``An inconsistency
-  in this alternative run is that the the mean weight-at-age
-  across all years is still used for the calculation of
-  \emph{stock biomass} in the years outside the range with empirical data (1975-2017),
-  rather than the short-term averages (1975-1979 or 2015-2017). A brief examination of
-  the sensitivity of the alternative run to removing this inconsistency showed
-  relatively little change in results.''  This inconsistency has been resolved
-  and does not affect the 2019 base model or sensitivity runs.
-  
-  Several alternative weight-at-age (and time-varying fecundity) data configurations
-  were examined through sensitivity analyses.  These include (i)~time invariant
-  fecundity, (ii)~alternative pre-1975 settings, and (iii)~ alternative forecast period
-  settings.  See Section~\ref{sec:assessment-sensitivity-analyses} for further
-  description and results from sensitivity runs.
-  
-  Regarding evaluating other methods of deriving biological reference points
-  such as $B_0$, the JTC expresses interest in using the developing Management
-  Strategy Evaluation to test the impact of making different assumptions about
-  calculating $B_0$, and other reference points, in the presence of variability
-  in weight-at-age. For example, what if there has been a long-term decline in
-  weight-at-age but it is ignored when setting reference points, or what if
-  weight-at-age varies randomly through tiem but reference points are set using
-  a non-representative subset of the long-term trend?  Recent simulation work by \citep{Berger2018},
-  using \fishname\ as one example, provided evidence that static reference points, such
-  as those based on unfished equilibrium conditions ($B_0$), can be misleading when there is
-  directional trends or regime shift changes in the underlying stock productivity.}
+biomass using annual weight-at-age for years with data, and accordingly included
+time-varying fecundity in the 2019 stock assessment. Thus, fecundity
+(calcualted as weight-at-age multiplied by maturity) changed from being defined by a
+single catch-weighted average of weight-at-age applied to all years to being defined
+by year-specific weight-at-ages covering the time period with data (1975-2018).
+For periods without data (pre-1975 and post-2018), catch-weighted average weight-at-age was used 
+in the base model. This configuration was based on results from several investigations
+outlined in the following paragraphs. Alternative fecundity configurations (and thus weight-at-age)
+for the pre-1975 and forecast period were also used in sensitivity evaluations
+(see Section~\ref{sec:assessment-sensitivity-analyses}).}
+
+\emph{Historical weight-at-age data was re-examined to ensure that all relevant data,
+quality and quantity, were available to the assesment. Samples from the 1960s in PacFIN
+that were used in analyses by Christine Stawitz were found to be from Puget Sound, and
+were therefore correctly excluded from previous (and the current) hake assessments. Weight data
+from early years was identified as possibly suspect due to inaccurate scales used at that time,
+especially on foreign vessels.  However, a comparison of mean weight-at-age with mean length-at-age
+showed that those age/year bins with high mean weight also had high mean length, and the method of
+length measurement likely hasn't changed considerably over time. Ages from the earlier years were likely
+solely based on surface reads, whereas protocol since the early 2000s has been to use the break and burn
+method on fish older than about age-2.  A comparison between ageing methods were done recently for Petrale, indicating
+increased bias as fish age when using surface reads, although no such analysis that
+we are aware of has been done for \fishname\. If otoliths from the early years were properly preserved
+and stored, there may be a chance to conduct research to enumerate any potential biases.
+Other than standard data updates and the addition of historic weight-at-age data from Canadian
+fishery and surveys (see Section~\ref{sec:data-weight-at-age}), no changes were made to
+weight-at-age data based on these considerations.}
+
+\emph{Regarding the assumption of pre-1975 weight-at-ages, the JTC conducted an analysis
+to see whether there was any indication that weights-at-age values were trending through
+time. A weighted least squares approach was used to fit log weight (kg) data across years 1975-2018,
+where a seperate analysis was done for each age group (age-2 through age-15) and
+statistical weights were defined by the inverse of the annual sample variance). The resulting
+slope parameter was used to better understand age-specific long-term trends in
+weight-at-age. The results of this analysis showed a near zero slope for all ages,
+with age-13, 14, and 15 being slightly positive and all others being slighty negative
+(Figure~\ref{fig:main-empirical.weight.at.age.years}), which wasn't unexpected
+given the large amount of inter-annual variability
+in the data.  Estimated slope parameters were sensitive to excluding data from
+1975--1980. Nonetheless, there was not a clear trending relationship for weight-at-age
+data through time that would otherwise suggest increasing or decreasing pre-1975 weights
+from the long-term mean.  Overall inferences were similar when using length instead of weight.}
+
+\emph{Regarding forecast year weight-at-ages, the JTC used the weighted
+least squares analysis to also suggest that the assumption of using the long-term
+mean for weight-at-age in 2019--2021 was reasonable. During evaluations of alternative
+forecast year weight-at-age (and thus also fecundity-at-age) settings, we noted
+forecast year configuration issues with Stock Synthesis (version 3.30.10 as
+used for this assessment).  The software required forecast year weights-at-age values
+to be either (i)~set to the same as that for equilibirum conditions, or (ii)~set
+equivalent to the final year of data (2018).  For example, we were unable to set
+future weight-at-age values to be the mean of 2016-2018 without also setting
+the 2018 weights-at-age to that mean (thereby averaging out the 2018 data).
+Therefore, we retained the 2018 base model assumption of using the overall
+1975-2018 mean for the forecast period.  On 4 February 2019, the JTC learned that
+the newest version of Stock Synthesis (version 3.30.12) now allows independent
+forecast period settings for time-varying parameters or inputs.  Alternative
+forecast settings can be explored in future assessments.  In response to this finding,
+the JTC verified that using either a recent 3-year (2016--2018) or a 5-year (2014--2018)
+average weight-at-age vector in the forecast period made little difference in
+2019--2021 stock status. This was expected because weight-at-age values in recent
+years have been similar to the long-term average.}
+
+\emph{During the 2018 SRG meeting it was further realised that: ``An inconsistency
+in this alternative run is that the the mean weight-at-age
+across all years is still used for the calculation of
+\emph{stock biomass} in the years outside the range with empirical data (1975-2017),
+rather than the short-term averages (1975-1979 or 2015-2017). A brief examination of
+the sensitivity of the alternative run to removing this inconsistency showed
+relatively little change in results.''  This inconsistency has been resolved
+and does not affect the 2019 base model or sensitivity runs.}
+
+\emph{Several alternative weight-at-age (and time-varying fecundity) data configurations
+were examined through sensitivity analyses.  These include (i)~time invariant
+fecundity, (ii)~alternative pre-1975 settings, and (iii)~ alternative forecast period
+settings.  See Section~\ref{sec:assessment-sensitivity-analyses} for further
+description and results from sensitivity runs.}
+
+\emph{Regarding evaluating other methods of deriving biological reference points
+such as $B_0$, the JTC expresses interest in using the developing Management
+Strategy Evaluation to test the impact of making different assumptions about
+calculating $B_0$, and other reference points, in the presence of variability
+in weight-at-age. For example, what if there has been a long-term decline in
+weight-at-age but it is ignored when setting reference points, or what if
+weight-at-age varies randomly through tiem but reference points are set using
+a non-representative subset of the long-term trend?  Recent simulation work by \citep{Berger2018},
+using \fishname\ as one example, provided evidence that static reference points, such
+as those based on unfished equilibrium conditions ($B_0$), can be misleading when there is
+directional trends or regime shift changes in the underlying stock productivity.}
 
 
 (ii) \underline{Variance in recruitment deviations ($\sigma_R$)}:
