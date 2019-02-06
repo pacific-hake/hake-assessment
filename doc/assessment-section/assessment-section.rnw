@@ -1132,8 +1132,6 @@ with a probability of **96\%.
 % \enlargethispage{\baselineskip}
 
 \subsection{Sensitivity analyses }\label{sec:assessment-sensitivity-analyses}
- % Manual 2016 done
-**UPDATE SUBSECTION to include fecundity sensitivities
 
 Sensitivity analyses were conducted to investigate influence of data inputs and
 structural uncertainty of the base model by investigating how changes to the
@@ -1488,6 +1486,101 @@ in Appendix~\ref{chap:srg-requests} and briefly summarized here.
 %%chain.
 
 %%Several key underlying structural model assumptions were identified that have persisted across many previous hake assessments, and thus warrant revisiting periodically as a set of reference sensitivity examinations to new base models.  Those identified here include the specification of natural mortality, the level of variation assumed about the stock-recruitment relationship ($\sigma_r$), and the resiliency of the stock in terms of recruitment (steepness).  The sensitivity of the base model to changes in the input $\sigma_r$ and to the prior distributions for natural mortality and steepness were explored.  The standard deviation of the prior distribution on natural mortality was increased from 0.1 (as in the base model) to 0.2 and 0.3.  The mean of the prior distribution on steepness was decreased from 0.777 (base) to 0.500, and steepness was also fixed at 1.0.  The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative high (2.0) and low (1.0) states.  These key sensitivities had little effect on the overall estimated population trend throughout the time series (Figure~\ref{fig:main-biomass-base-alternative-1}), but they do have a significant impact on the estimated scale of the population (quite different estimates of $B_0$ and $R_0$ parameters; Table~\ref{tab:main-parameter-estimates-sens-1}).  The least influential in terms of relative spawning biomass (Figure~\ref{fig:main-status-base-alternative-1}) as compared to the base model is fixing steepness to 1.0, changing the prior mean on steepness, and moderately changing the prior standard deviation on natural mortality (0.2).  The greatest difference in stock status compared to the base model results from changing the input for $\sigma_r$.  Estimates of natural mortality increased from 0.215 for the base model (prior standard deviation of 0.1) to 0.250 for the sensitivity run with the prior standard deviation set to 0.3.  When the mean of the prior distribution for steepness was changed from 0.777 (base model) to 0.5, the estimate for steepness decreased from 0.861 to 0.602.
+
+\subsubsection{Fecundity and Weight-at-age Sensitivities}\label{sec:assessment-sensitivity-fecundity}
+
+Several sensitivities to time-varying fecundity and weight-at-age extrapolation
+schemes were investigated. During the SRG meeting in 2018, the JTC was asked to
+include time-varying fecundity and a short-term 1975--1979 mean weights-at-age
+for the period before 1975. These were presented as an alternate base model and
+a full MCMC was done to allow for the presentation of decision tables and
+projections.
+
+This year the JTC decided to proactively run a set of models addressing fecundity with
+pre-1975 and post-2018 weights-at-age. Table~\ref{tab:main-wtatage-runs} outlines these
+in detail. They are labelled with run numbers which were used internally by the JTC
+and are not relevant other than to refer to each run uniquely. The extrapolation of pre-1975
+weights-at-age is required because there is catch in the model from 1966 onward but age
+and weight data were not collected until 1975.
+
+The 2018 base model was the same as run 53, which had non-time-varying fecundity,
+long term (1975--2018) mean weights-at-age applied for the years 1966--1974, and
+long term (1975--2018) mean weights-at-age applied for the years 2019--2021
+(Figure~\ref{fig:main-empirical.weight.at.age.sens.a}).
+
+The 2018 alternate model was the equivalent of run 58, which had time-varying
+fecundity, short-term (1975--2018) mean weights-at-age applied for the years 1966--1974, and
+short term (2016--2018) mean weights-at-age applied for the years 2017--2021.
+Note that when models use a different set of weights-at-age for the forecast years
+than for the 1966--1974 period, the last year of data (2018) cannot be included. Instead,
+SS3 requires 2018 to be used as a placeholder for the forecasting weights-at-age vector.
+This is a limitation of Stock Synthesis and could not be avoided.
+
+This year's base model is a hybrid of the 2018 models, based on the 2018 base model
+but with the inclusion of time-varying fecundity.
+
+There were 5 further runs done, with all possible combinations of long or short-term mean
+pre-1975 weights-at-age, long or short-term mean post-2017 weights-at-age, and time-varying
+fecundity being included or not.
+
+Weights-at-age for runs which use the long-term (1975--2018) mean for both the pre-1975
+and post-2018 periods can be seen in
+Figure~\ref{fig:main-empirical.weight.at.age.sens.a}. This figure includes run 53
+and the base model.
+
+Weights-at-age for runs which use the short-term (1975--1979) mean for the pre-1975
+period and the long-term (1975--2018) mean for the post-2017 period can be seen in
+Figure~\ref{fig:main-empirical.weight.at.age.sens.b}. This figure includes runs 55
+and 57.
+
+Weights-at-age for runs which use the long-term (1975--2018) mean for the pre-1975
+period and the short-term (2016--2018) mean for the post-2017 period can be seen in
+Figure~\ref{fig:main-empirical.weight.at.age.sens.c}. This figure includes runs 52
+and 57.
+
+Weights-at-age for runs which use the short-term (1975--1979) mean for the pre-1975
+period and the short-term (2016--2018) mean for the post-2017 period can be seen in
+Figure~\ref{fig:main-empirical.weight.at.age.sens.c}. This figure includes runs 56
+and 58.
+
+MCMC runs with a chain length of 12,000,000 were done for these sensitivities.
+Comparisons of both the MLE and posterior biomass and relative biomass trajectories
+follow.
+
+The base model and runs 52, 53, and 54 are compared in
+Figures~\ref{fig:main-biomass-base-alternative-5}--\ref{fig:main-status-base-alternative-5-mcmc}.
+These are the runs which have the pre-1975 weights-at-age being set to the
+long-term mean from 1975--2018. Runs 52 and 53 show little difference
+from one another, implying that changing the post-2017 weights-at-age does not have much effect
+on model outcome. The base model, and run 54, which both include time-varying fecundity shows a
+departure from the others, with an obvious large increase in and around the 1975 time period
+(Figures~\ref{fig:main-biomass-base-alternative-5}, \ref{fig:main-biomass-base-alternative-5-mcmc}).
+This is caused by the weights-at-age in the early part of the time series being signifcantly
+higher for older fish and having the fecundity in that time period changed accordingly. Note that
+it is difficult to see the difference between the base model and run 54 using the MLE plots.
+The MCMC plots allow us to see that the blue and red lines (base model and run 54) follow similar trajectories
+(Figures~\ref{fig:main-biomass-base-alternative-5-mcmc}, \ref{fig:main-status-base-alternative-5-mcmc}).
+
+The base model, and runs 55, 56, 57, and 58 are compared in
+Figures~\ref{fig:main-biomass-base-alternative-6}--\ref{fig:main-status-base-alternative-6-mcmc}.
+These are the runs which have the pre-1975 weights-at-age being set to the
+short term mean (1975--2018). Runs 55 and 58 appear to have similar trajectories to one another,
+as do runs 56 and 57. The difference between these two groups is the inclusion of time-varying fecundity.
+
+Having non-time-varying fecundity in addition to using short-term
+pre-1975 mean weights-at-age (runs 56 and 57) give an inflated 2019 stock size
+(Figures~\ref{fig:main-biomass-base-alternative-6}--\ref{fig:main-biomass-base-alternative-6-mcmc})
+but due to the inflation of the initial biomass give a similar stock status to the base model
+(Figures~\ref{fig:main-status-base-alternative-6}--\ref{fig:main-status-base-alternative-6-mcmc}).
+
+Runs 55-58 produce an inflated initial biomass, due to the use of a short-term (1975--1979) mean
+weight-at-age being used for the pre-1975 time period. The weights-at-age for older fish in
+those early years is significantly higher than the long term mean as can be seen in
+Figures~\ref{fig:main-empirical.weight.at.age.sens.b} and
+\ref{fig:main-empirical.weight.at.age.sens.d}.
+
+MCMC results for each of these runs including decision tables can be found in
+Appendices~\ref{chap:fecundity-52}--\ref{chap:fecundity-58}.
 
 \subsection{Retrospective analyses}\label{sec:assessment-retrospective-analyses}
 
