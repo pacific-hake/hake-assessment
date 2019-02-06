@@ -1378,16 +1378,36 @@ make.comparison.plot(c(list(base.model), sens.models.5),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{**Maximum likelihood estimates **Can do MCMC plots** of spawning biomass for the base
-  model and alternative sensitivity run that sets ....(use run numbers and refer
-  to table) the unfished and
-  pre-1975 weights-at-age (and therefore fecundity) to the mean from 1975-1979.}
+\caption{Maximum likelihood estimates of spawning biomass for the base
+  model and alternative sensitivity models 52, 53 (base 2018), and 54 that all set
+  the pre-1975 (1966-1974) weights-at-age to the long term mean (1975--2018).
+  Model 52 has non-time-varying fecundity and the short term mean (2016--2018)
+  as the post-2017 weights-at-age. Model 53 is the base model from 2018 without
+  time-varying fecundity and with long term (1975--2018) mean as the post-2018
+  weights-at-age. Model 54 has time-varying fecundity and the short term mean
+  (2016--2018) as the post-2017 weights-at-age.
+  See Table~\ref{tab:main-wtatage-runs}.}
 \label{fig:main-biomass-base-alternative-5}
 %% \end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%
-%% JOINED ON PAGE
-%%%%%%%%%%%%%%%%%%%%%%%
-%% \begin{figure}[H]
+%\begin{figure}[H]
+\begin{center}
+<<main.biomass.base.alternative.5.mcmc, fig.height=4.5, fig.width=8>>=
+make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
+                     subplots = 2,
+                     model.names = c(base.model.name, sens.model.names.5),
+                     end.yr = end.yr)
+@
+\end{center}
+\caption{MCMC median posterior estimates with 95\% credible interval of spawning
+  biomass for the base model and alternative sensitivity models 52, 53 (base 2018),
+  and 54. See Figure~\ref{fig:main-biomass-base-alternative-5} and
+  Table~\ref{tab:main-wtatage-runs} for descriptions of models.}
+\label{fig:main-biomass-base-alternative-5-mcmc}
+\end{figure}
+
+\begin{figure}[H]
 \begin{center}
 <<main.status.base.alternative.5, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(c(list(base.model), sens.models.5),
@@ -1398,15 +1418,28 @@ make.comparison.plot(c(list(base.model), sens.models.5),
 @
 \end{center}
 %\vspace{0mm}
-\caption{**Maximum likelihood estimates **Can do MCMC of stock status (relative
-  spawning biomass) for the base model
-  and alternative sensitivity run that sets the unfished and
-  pre-1975 weights-at-age (and therefore fecundity) to the mean from 1975-1979.
-  Figure~\ref{fig:main-biomass-base-alternative-5} for legend.}
+\caption{Maximum likelihood estimates of stock status for the base
+  model and alternative sensitivity models 52, 53 (base 2018), and 54.
+  See Figure~\ref{fig:main-biomass-base-alternative-5} and
+  Table~\ref{tab:main-wtatage-runs} for descriptions of models.}
 \label{fig:main-status-base-alternative-5}
+
+\begin{center}
+<<main.status.base.alternative.5.mcmc, fig.height=4.5, fig.width=8>>=
+make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
+                     subplots = 4,
+                     model.names = c(base.model.name, sens.model.names.5),
+                     legend = FALSE,
+                     end.yr = end.yr)
+@
+\end{center}
+%\vspace{0mm}
+\caption{MCMC median posterior estimates with 95\% credible interval of spawning
+  biomass for the base model and alternative sensitivity models 52, 53 (base 2018),
+  and 54. See Figure~\ref{fig:main-biomass-base-alternative-5} and
+  Table~\ref{tab:main-wtatage-runs} for descriptions of models.}
+\label{fig:main-status-base-alternative-5-mcmc}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-% \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
@@ -1418,34 +1451,64 @@ make.comparison.plot(c(list(base.model), sens.models.6),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{**Maximum likelihood estimates of spawning biomass for the base
-  model and alternative sensitivity runs that set the **TO UPDATEunfished and
-  pre-1975 weights-at-age (and therefore fecundity) to the mean from 1975-1979.}
+\caption{Maximum likelihood estimates of spawning biomass for the base
+  model and alternative sensitivity models 55, 56, 57, and 58 that all set
+  the pre-1975 (1966-1974) weights-at-age to the short term mean (1975--1979).
+  Model 55 has time-varying fecundity and the long term mean (1975--2018)
+  as the post-2017 weights-at-age. Model 56 has non-time-varying fecundity
+  and with short term (2016--2018) mean as the post-2017 weights-at-age.
+  Model 57 has non-time-varying fecundity and the long term mean
+  (1975--2018) as the post-2018 weights-at-age. Model 58 has time-varying
+  fecundity and the short term (2016--2018) mean as the post-2017 weights-at-age.
+  See Table~\ref{tab:main-wtatage-runs}.}
 \label{fig:main-biomass-base-alternative-6}
-%% \end{figure}
+
+\begin{center}
+<<main.biomass.base.alternative.6.mcmc, fig.height=4.5, fig.width=8>>=
+make.comparison.plot.mcmc(c(list(base.model), sens.models.6),
+                     subplots = 2,
+                     model.names = c(base.model.name, sens.model.names.6),
+                     end.yr = end.yr)
+@
+\end{center}
+\caption{MCMC median posterior estimates with 95\% credible interval of spawning
+  biomass for the base model and alternative sensitivity models 55, 56, 57, and 58.
+  See Figure~\ref{fig:main-biomass-base-alternative-6} and
+  Table~\ref{tab:main-wtatage-runs} for descriptions of models.}
+\label{fig:main-biomass-base-alternative-6-mcmc}
+\end{figure}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%
-%% JOINED ON PAGE
-%%%%%%%%%%%%%%%%%%%%%%%
-%% \begin{figure}[H]
+\begin{figure}[H]
 \begin{center}
 <<main.status.base.alternative.6, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(c(list(base.model), sens.models.6),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.6),
-                     legend = FALSE,
                      end.yr = end.yr)
 @
 \end{center}
-
-\caption{**Maximum likelihood estimates of stock status (relative
-  spawning biomass) for the base model
-  and alternative sensitivity runs that set **TO UPDATE the unfished and
-  pre-1975 weights-at-age (and therefore fecundity) to the mean from 1975-1979.
-  Figure~\ref{fig:main-biomass-base-alternative-6} for legend.}
+\caption{Maximum likelihood estimates of stock status for the base
+  model and alternative sensitivity models 55, 56, 57, and 58.
+  See Figure~\ref{fig:main-biomass-base-alternative-6} and
+  Table~\ref{tab:main-wtatage-runs} for descriptions of models.}
 \label{fig:main-status-base-alternative-6}
+
+\begin{center}
+<<main.status.base.alternative.6.mcmc, fig.height=4.5, fig.width=8>>=
+make.comparison.plot.mcmc(c(list(base.model), sens.models.6),
+                     subplots = 4,
+                     model.names = c(base.model.name, sens.model.names.6),
+                     end.yr = end.yr)
+@
+\end{center}
+\caption{MCMC median posterior estimates with 95\% credible interval of spawning
+  biomass for the base model and alternative sensitivity models 55, 56, 57, and 58.
+  See Figure~\ref{fig:main-biomass-base-alternative-6} and
+  Table~\ref{tab:main-wtatage-runs} for descriptions of models.}
+\label{fig:main-status-base-alternative-6-mcmc}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-% \clearpage
 
 
 
