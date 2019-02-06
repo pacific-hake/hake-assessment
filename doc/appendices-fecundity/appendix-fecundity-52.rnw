@@ -233,7 +233,7 @@ make.forecast.depletion.comparison.plot(sens.model,
 \caption{Time series of estimated relative spawning biomass to \Sexpr{end.yr}
          from the base model, and forecast trajectories to
          \Sexpr{forecast.yrs[length(forecast.yrs)]} (grey region) for several management actions
-         defined in Table~\ref{tab:es-decisions-biomass}, with 95\%
+         defined in Table~\ref{tab:decisions-biomass-52}, with 95\%
          posterior credibility intervals.}
 % The \Sexpr{end.yr} catch of \Sexpr{f(base.model$catch.default.policy[1])}~t was calculated
 %  using the default harvest policy, as defined in the Agreement.}
@@ -261,8 +261,8 @@ make.forecast.risk.comparison.plot(sens.model,
 \caption{Graphical representation of the probabilities related to spawning
          biomass, relative fishing intensity, and the \Sexpr{end.yr+1} default
          harvest policy catch for alternative \Sexpr{end.yr} catch options (catch
-         options explained in Table~\ref{tab:es-decisions-biomass}) as listed in
-         Table~\ref{tab:es-risk-year-1}. The symbols indicate points that were
+         options explained in Table~\ref{tab:decisions-biomass-52}) as listed in
+         Table~\ref{tab:risk-year-1-52}. The symbols indicate points that were
          computed directly from model output and lines interpolate between the
          points.}
 \label{fig:forecast-risk-comparison-year-1-52}
@@ -279,7 +279,7 @@ make.risk.table(sens.model,
                              " default harvest policy catch for alternative ",
                              end.yr," catch options (catch options explained in
                              Table~\\ref{tab:decisions-biomass-52})."),
-                xlabel <- "tab:es-risk-year-1",
+                xlabel <- "tab:risk-year-1-52",
                 font.size = 12,
                 space.size = 14,
                 placement = "H")
@@ -303,8 +303,8 @@ make.forecast.risk.comparison.plot(sens.model,
 biomass, relative fishing intensity, and the \Sexpr{end.yr+2} default harvest
 policy catch for alternative \Sexpr{end.yr+1} catch options (including
 associated \Sexpr{end.yr} catch; catch options explained in
-Table~\ref{tab:es-decisions-biomass}) as listed in
-Table~\ref{tab:es-risk-year-2}. The symbols indicate points that were computed
+Table~\ref{tab:decisions-biomass-52}) as listed in
+Table~\ref{tab:risk-year-2-52}. The symbols indicate points that were computed
 directly from model output and lines interpolate between the points.}
 \label{fig:forecast-risk-comparison-year-2-52}
 \end{figure}
@@ -319,8 +319,8 @@ make.risk.table(sens.model,
                  relative fishing intensity, and the ",end.yr+2," default harvest
                  policy catch for alternative ",end.yr+1," catch options, given
                  the ",end.yr," catch level shown in
-                 Table~\\ref{tab:es-risk-year-1} (catch options explained in
-                 Table~\\ref{tab:es-decisions-biomass})."),
+                 Table~\\ref{tab:risk-year-1-52} (catch options explained in
+                 Table~\\ref{tab:decisions-biomass-52})."),
                 xlabel <- "tab:risk-year-2-52",
                 font.size = 12,
                 space.size = 14,
