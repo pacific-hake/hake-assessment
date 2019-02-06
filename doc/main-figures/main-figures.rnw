@@ -1379,14 +1379,14 @@ make.comparison.plot(c(list(base.model), sens.models.5),
 @
 \end{center}
 \caption{Maximum likelihood estimates of spawning biomass for the base
-  model and alternative sensitivity models 52, 53 (base 2018), and 54 that all set
+  model and alternative sensitivity runs 52, 53 (base 2018), and 54 that all set
   the pre-1975 (1966-1974) weights-at-age to the long term mean (1975--2018).
-  Model 52 has non-time-varying fecundity and the short term mean (2016--2018)
-  as the post-2017 weights-at-age. Model 53 is the base model from 2018 without
+  Run 52 has non-time-varying fecundity and the short term mean (2016--2018)
+  as the post-2017 weights-at-age. Run 53 is the base model from 2018 without
   time-varying fecundity and with long term (1975--2018) mean as the post-2018
-  weights-at-age. Model 54 has time-varying fecundity and the short term mean
+  weights-at-age. Run 54 has time-varying fecundity and the short term mean
   (2016--2018) as the post-2017 weights-at-age.
-  See Table~\ref{tab:main-wtatage-runs}.}
+  See Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
 \label{fig:main-biomass-base-alternative-5}
 %% \end{figure}
 
@@ -1401,9 +1401,9 @@ make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
 @
 \end{center}
 \caption{MCMC median posterior estimates with 95\% credible interval of spawning
-  biomass for the base model and alternative sensitivity models 52, 53 (base 2018),
+  biomass for the base model and alternative sensitivity runs 52, 53 (base 2018),
   and 54. See Figure~\ref{fig:main-biomass-base-alternative-5} and
-  Table~\ref{tab:main-wtatage-runs} for descriptions of models.}
+  Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
 \label{fig:main-biomass-base-alternative-5-mcmc}
 \end{figure}
 
@@ -1419,9 +1419,9 @@ make.comparison.plot(c(list(base.model), sens.models.5),
 \end{center}
 %\vspace{0mm}
 \caption{Maximum likelihood estimates of stock status for the base
-  model and alternative sensitivity models 52, 53 (base 2018), and 54.
+  model and alternative sensitivity runs 52, 53 (base 2018), and 54.
   See Figure~\ref{fig:main-biomass-base-alternative-5} and
-  Table~\ref{tab:main-wtatage-runs} for descriptions of models.}
+  Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
 \label{fig:main-status-base-alternative-5}
 
 \begin{center}
@@ -1437,11 +1437,12 @@ make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
 \caption{MCMC median posterior estimates with 95\% credible interval of spawning
   biomass for the base model and alternative sensitivity models 52, 53 (base 2018),
   and 54. See Figure~\ref{fig:main-biomass-base-alternative-5} and
-  Table~\ref{tab:main-wtatage-runs} for descriptions of models.}
+  Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
 \label{fig:main-status-base-alternative-5-mcmc}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-3mm}
 \begin{figure}[H]
 \begin{center}
 <<main.biomass.base.alternative.6, fig.height=4.5, fig.width=8>>=
@@ -1452,15 +1453,15 @@ make.comparison.plot(c(list(base.model), sens.models.6),
 @
 \end{center}
 \caption{Maximum likelihood estimates of spawning biomass for the base
-  model and alternative sensitivity models 55, 56, 57, and 58 that all set
+  model and alternative sensitivity runs 55, 56, 57, and 58 that all set
   the pre-1975 (1966-1974) weights-at-age to the short term mean (1975--1979).
-  Model 55 has time-varying fecundity and the long term mean (1975--2018)
-  as the post-2017 weights-at-age. Model 56 has non-time-varying fecundity
+  Run 55 has time-varying fecundity and the long term mean (1975--2018)
+  as the post-2017 weights-at-age. Run 56 has non-time-varying fecundity
   and with short term (2016--2018) mean as the post-2017 weights-at-age.
-  Model 57 has non-time-varying fecundity and the long term mean
-  (1975--2018) as the post-2018 weights-at-age. Model 58 has time-varying
+  Run 57 has non-time-varying fecundity and the long term mean
+  (1975--2018) as the post-2018 weights-at-age. Run 58 has time-varying
   fecundity and the short term (2016--2018) mean as the post-2017 weights-at-age.
-  See Table~\ref{tab:main-wtatage-runs}.}
+  See Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
 \label{fig:main-biomass-base-alternative-6}
 
 \begin{center}
@@ -1472,7 +1473,7 @@ make.comparison.plot.mcmc(c(list(base.model), sens.models.6),
 @
 \end{center}
 \caption{MCMC median posterior estimates with 95\% credible interval of spawning
-  biomass for the base model and alternative sensitivity models 55, 56, 57, and 58.
+  biomass for the base model and alternative sensitivity runs 55, 56, 57, and 58.
   See Figure~\ref{fig:main-biomass-base-alternative-6} and
   Table~\ref{tab:main-wtatage-runs} for descriptions of models.}
 \label{fig:main-biomass-base-alternative-6-mcmc}
@@ -1490,7 +1491,7 @@ make.comparison.plot(c(list(base.model), sens.models.6),
 @
 \end{center}
 \caption{Maximum likelihood estimates of stock status for the base
-  model and alternative sensitivity models 55, 56, 57, and 58.
+  model and alternative sensitivity runs 55, 56, 57, and 58.
   See Figure~\ref{fig:main-biomass-base-alternative-6} and
   Table~\ref{tab:main-wtatage-runs} for descriptions of models.}
 \label{fig:main-status-base-alternative-6}
@@ -1504,9 +1505,9 @@ make.comparison.plot.mcmc(c(list(base.model), sens.models.6),
 @
 \end{center}
 \caption{MCMC median posterior estimates with 95\% credible interval of spawning
-  biomass for the base model and alternative sensitivity models 55, 56, 57, and 58.
+  biomass for the base model and alternative sensitivity runs 55, 56, 57, and 58.
   See Figure~\ref{fig:main-biomass-base-alternative-6} and
-  Table~\ref{tab:main-wtatage-runs} for descriptions of models.}
+  Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
 \label{fig:main-status-base-alternative-6-mcmc}
 \end{figure}
 
