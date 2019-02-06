@@ -26,7 +26,8 @@ Fishery-dependent and fishery-independent data sources used in this \Sexpr{asses
   Tables~\ref{tab:main-all-age-data-survey} and~\ref{tab:main-survey-history}).
 
 \item Mean observed weight-at-age from fishery and survey catches
-  (1975-\Sexpr{max.fishery.age.prop[2]}; Figure~\ref{fig:main-empirical.weight.at.age}).
+  (1975-\Sexpr{max.fishery.age.prop[2]}; Figure~\ref{fig:main-empirical.weight.at.age})
+  and thus derived fecundity-at-age as well.
 
 \end{itemize}
 
@@ -120,39 +121,11 @@ are monitored by at-sea observers. Observers use volume/density
 methods to estimate total catch. Canadian shoreside landings are recorded by
 dockside monitors using total catch weights provided by processing plants.
 
-**The three independent issues in the calculation of total catch that were identified
+The three independent issues in the calculation of total catch that were identified
 late in the 2018 assessment process \citep{JTC2018} have been rectified here. Minor
-updates to catches from 2013, 2015, 2016 and 2017 have ben made (totalling $<300$~t).
-
-**[Added above paragraph, presumably can just delete this one]:
-Three independent issues in the calculation of total 
-catch were identified late in the assessment process and could not be
-included in the base model. These were explored in a sensitivity analysis 
-described in Section~\ref{sec:assessment-sensitivity-analyses}.
-The impact of these changes was very small. The first issue was an error 
-in the code that extracts and calculates the catch 
-for Canadian fisheries. The Joint Venture catch was erroneously 
-being added to the Shoreside catch, resulting in the values being 
-added to the total catch twice. This error was for each of the five 
-years within the past decade when the JV fishery took place: 
-2007, 2008, 2010, 2011, and 2017.
-Second, several fish-ticket discrepancies were
-identified related to total tribal catch levels.  
-Fish tickets recorded by the Makah Indian Tribe,
-the Washington Department of Fish and Wildlife, and as archived 
-in the PacFIN database did not match, 
-resulting in an underestimate of total catch in 2016 (1,677~t, 
-change of 0.5\%) and 2017 (6,172~t, change of 1.4\%). 
-Improving the tracking and archival of tribal fish tickets has been 
-identified as a future data need (Section~\ref{sec:research}) to ensure 
-consistent and accurate accounting of total removals.        
-Third, small changes to the pre-2017 catch in the U.S. fisheries
-were inadvertently left out of the ``Update data from years prior to 2017''
-bridging step described in Section~\ref{sec:assessment-changes}.
-%Taken together, the net effect of these changes was an average change of 
-%0.5\% in total catch over the years 2007 to 2017. 
-The total net effect of these changes from 2007 to 2017
-was 15,798~t, which is around 0.5\% of the total catch of over 3,000,000~t.
+updates to catches for years pre-\Sexpr{last.data.yr} have been made
+%% lots more years changed this year so list to long to be specific
+%% 2013, 2015, 2016 and 2017 have ben made (totalling $<300$~t).
 
 \subsubsection{Fishery biological data}\label{sec:data-fishery-biological-data}
 
