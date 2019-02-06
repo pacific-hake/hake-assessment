@@ -352,7 +352,6 @@ This DRAFT document is non-citable.
 <<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
 @
 
-\rfoot{Appendix~\ref{chap:parameters} -- Model code}
 <<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
 @
 
