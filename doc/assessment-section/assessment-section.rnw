@@ -1040,15 +1040,18 @@ assumptions about the underlying recruitment process is central to the adequate
 characterization of uncertainty when applied to proposed management procedures.
 
 \subsection{Reference points}\label{sec:assessment-reference-points}
- % Manual 2017 done
-**We report estimates of the base reference points (e.g., relative to $\Fforty$,
+ % Manual 2019 done.
+We report estimates of the base reference points (e.g., relative to $\Fforty$,
 $\Bforty$, $\Bmsy$, and MSY) with posterior credibility intervals in
 Table~\ref{tab:main-reference-points}. Only those based on $\Fforty$ explicitly
 relate to target reference points per the treaty Agreement (see
-Section~\ref{sec:intro-management} and Appendix~\ref{chap:glossary}).  The
-estimates are slightly different than the estimates in the
-\Sexpr{last.assess.yr} assessment with smaller equilibrium yields, spawning biomass, and
-recruitments (particularly for the 2014 year class) estimated in this assessment.
+Section~\ref{sec:intro-management} and Appendix~\ref{chap:glossary}). The
+estimates are only very slightly different than the estimates in the
+\Sexpr{last.assess.yr} assessment (see also Table~\ref{tab:main-parameter-estimates}).
+
+% 2018:
+% with smaller equilibrium yields, spawning biomass, and
+% recruitments (particularly for the 2014 year class) estimated in this assessment.
 
 % Manual 2019 done.
 % Look at dfo.probs.curr and decide what to write. Check that
