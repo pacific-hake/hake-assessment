@@ -12,7 +12,7 @@ make.catches.table.US(catches,
                         "-",
                         last.data.yr,
                         ". Tribal catches are included in the sector totals.
-                        Research Catch includes landed catch associated with
+                        Research catch includes landed catch associated with
                         research-related activities. Catch associated with
                         surveys and discarded bycatch in fisheries not targeting
                         hake is not currently included in the model.",
@@ -171,7 +171,7 @@ make.can.age.data.table(can.ages,
                         start.yr = end.yr - num.recent.yrs,
                         end.yr = last.data.yr,
                        xcaption = paste0("Recent age proportion data used in the assessment for ",
-                                         "the Canadian Freezer Trawler fleet. Proportions are ",
+                                         "the Canadian Freezer-Trawler fleet. Proportions are ",
                                          "calculated from numbers of individuals in each age group. ",
                                          "Age 15 is an accumulator group."),
                         xlabel = "tab:main-can-ft-age-data",
@@ -272,7 +272,7 @@ make.maturity.ogives.table(maturity.ogives,
 
 <<main.ovaries.table, results='asis', echo=FALSE>>=
 make.maturity.samples.table(ovary.samples,
-                            xcaption = "Number of \\fishname\\ ovaries collected for histological analysis with maturity determined from different years and different sources. **No need to add 2018 since not updating maturity?",
+                            xcaption = "Number of \\fishname\\ ovaries collected for histological analysis with maturity determined from different years and different sources.",
                             xlabel = "tab:main-ovaries",
                             font.size = 10,
                             space.size = 10)
@@ -284,7 +284,7 @@ make.parameters.estimated.summary.table(
   start.rec.dev.yr = recruit.dev.start.yr,
   end.rec.dev.yr = end.yr - 1,
   digits = 2,
-  xcaption = paste0("Summary of estimated model parameters and priors in the base model. The Beta prior is parameterized with a mean and standard deviation. The Lognormal distribution is parameterized with the median and standard deviation in log space."),
+  xcaption = paste0("Summary of estimated model parameters and priors in the base model. The Beta prior is parameterized with a mean and standard deviation. The Lognormal prior is parameterized with the median and standard deviation in log space."),
   xlabel = "tab:main-params-est-summary",
   font.size = 10,
   space.size = 12)
