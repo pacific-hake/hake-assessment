@@ -352,9 +352,6 @@ This DRAFT document is non-citable.
 <<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
 @
 
-<<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
-@
-
 %% <<>>=
 %% sens.model <- sens.models.5[[1]]
 %% @
@@ -403,6 +400,9 @@ sens.model <- sens.models.5[[3]]
 %% \rfoot{Appendix~\ref{chap:fecundity-58} -- Fecundity sensitivity 58}
 %% <<appendices-fecundity, child='appendices-fecundity/appendix-fecundity-58.rnw'>>=
 %% @
+
+<<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
+@
 
 \end{appendices}
 
