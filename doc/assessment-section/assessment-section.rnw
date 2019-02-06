@@ -1,6 +1,6 @@
-﻿% assessment-section.rnw
+% assessment-section.rnw
 
-% \clearpage
+%  \clearpage
 
 \section{ASSESSMENT}\label{sec:assessment}
 % Manual 2018 done
@@ -153,10 +153,10 @@ per \citet{LudwigWalters1981}. Maturity is assumed to be time-invariant.
 Fecundity is defined as weight-at-age multiplied by the new maturity ogive
 (discussed earlier) and is time-varying across years with empirical weight-at-age data (1975--
 \Sexpr{assess.yr}).  For years without data, prior to 1975 and during the forecast
-period, fecundity is calculated using the long-term mean weight-at-age (see 
+period, fecundity is calculated using the long-term mean weight-at-age (see
 Section~\ref{sec:assessment-response-review} for more details). Alternative
 fecundity assumptions are presented through sensitivity analysis
-(Section~\ref{sec:assessment-sensitivity-analyses}). 
+(Section~\ref{sec:assessment-sensitivity-analyses}).
 
 Statistical likelihood functions used for data fitting are typical of many stock
 assessments. The acoustic survey index of abundance was fit via a log-normal
@@ -175,7 +175,7 @@ automatically tuned input sample sizes.  Tuning quantities did not change in ass
 updated acoustic survey index composition data and refinements to fishery
 composition data. Tuning quantities changed again in 2018 with the addition of the
 new D-M data weighting (tuning) approach.  Tuning quantities remained realtively
-consistent from 2018 to \Sexpr{assess.yr}. 
+consistent from 2018 to \Sexpr{assess.yr}.
 
 Uncertainty of estimated quantities was calculated via Markov Chain Monte Carlo
 (MCMC) simulations. The bounds of 95\% credibility intervals were calculated as
@@ -187,7 +187,15 @@ Appendices~\ref{chap:data-file}-\ref{chap:weight-at-age-file}.
 Calculations and figures from Stock Synthesis output were performed using
 \Sexpr{R.Version()$version.string} \citep{R2018} and many R packages (in
 particular r4ss and xtable). The use of R, knitr, \LaTeX~and GitHub immensely
-facilitated the collaborative writing of this document. **Andy to add ref to our TTT document.
+facilitated the collaborative writing of this document.
+In particular, having most of the code automatically shared since the 2016
+assessment \citep{JTC2016} allowed the Canadian JTC members to conduct
+a preliminary assessment (without
+the 2018 age data) during the U.S. government shutdown, and ensured the
+JTC could complete a full assessment in the limited time available.
+A recent DFO workshop \citep{EdwardsDupliseaEtAl2018} shared such a
+`transparent, traceable and transferable' workflow with a wider audience,
+partly motivated by our ongoing \fishname\ assessments.
 
 A Glossary of terms appears in Appendix~\ref{chap:glossary}.
 
@@ -265,15 +273,18 @@ controlling time-varying fishery selectivity ($\Phi$), with a goal of establishi
 for setting $\Phi$ each year. The SRG recommends that the JTC provide a review of how
 time-varying selectivity is parameterized and estimated in other assessments.
 
-\emph{Response -- **Due to time constraints the JTC has been unable to do this.}
-   % (no need to keep mentioning the Shutdown, just for the first one)
+\emph{Response -- Although some progress has been made identifying other assessments that specify
+the variability associated with time-varying selectivity ($\Phi$), a thorough review and comparison
+of alternative approaches could not be completed in time for the 2019 assessment due to unforeseen
+time constraints this assessment season.}
+
 
 3. After reviewing the sensitivity analysis for minor corrections to the catch series, the SRG
 agrees that the assessment results were not significantly affected. {\bf However, the coding and
 database errors should be rectified as soon as possible.}
 
-\emph{Response -- **(Okay?:) These were rectified during the 2018 meeting (for the alternative catch stream
-sensitivity run), and have been permanently fixed.}
+\emph{Response -- These issues were largely rectified during the 2018 meeting, while
+remaining issues have since been permanently fixed.}
 
 
 4. The new histological analysis of ovaries for maturity, like previous analyses, showed a
@@ -305,8 +316,12 @@ the SRG notes that Canadian samples should be included in the maturity analysis.
   hake migrate seasonally to Baja and California for spawning in the winter. This
   work began in December 2018 and is expected to be completed in 2020.}
 
-\emph{Regarding including the Canadian samples in the maturity analysis
-  **... See Issue \#465}
+\emph{Response -- Regarding including the Canadian samples in the maturity analysis, DFO is
+  continuing to assess workload logistics, including the possibility of getting trained by Melissa
+  Head (NWFSC) on the histological methods she used in the recent maturity analysis or
+  alternatively getting samples sent from Canada to Seattle, if appropriate.
+  Presumably, the 2019 survey or fishery would be the earliest time to get any additional
+  Canadian samples.}
 
 5. The 2018 assessment diverged from past practice in its approach to determining the data
 weights applied to the age-composition data. Past assessments used an iterative approach
@@ -316,7 +331,13 @@ the need for iterative reweighting. This streamlines the assessment process and 
 considers it to be a sensible and useful improvement. {\bf However, the SRG requests that the
 JTC provide thorough documentation of all changes in methods of data weighting.}
 
-\emph{Response -- **Issue \#463}
+\emph{Response -- Section~\ref{sec:data-age-comp-likelihood}
+includes information on all methods,
+current and historical, used to weight composition data. Additionally,
+Table~\ref{tab:main-assessment-changes} includes a time series of
+weights used for the fishery and survey age compositions as well
+as a comparible value derived from the current model that uses the
+Dirichlet-Multinomial likelihood to estimate weights.}
 
 6. The issue of data weighting remains a significant technical challenge for stock assessments
 (such as the Pacific hake assessment) that integrate information of different forms (e.g.,
@@ -326,11 +347,11 @@ the Francis (2011) method. {\bf The SRG notes that it would be useful for such e
 to be documented in future assessment reports, and requests that JTC perform a
 sensitivity analysis for this method in future assessments.}
 
-\emph{Response -- Sensitivity analyses were included to compare the 
+\emph{Response -- Sensitivity analyses were included to compare the
 use of the Dirichlet-Multimonial likelihood to the McAllister-Ianelli and
-Francis weighting methods 
+Francis weighting methods
 (see Section~\ref{sec:assessment-sensitivity-analyses}).
-All three methods are described in 
+All three methods are described in
 Section~\ref{sec:data-age-comp-likelihood} and historical weightings used in
 previous assessments can be compared to values estimated in this assessment
 (Table~\ref{tab:main-assessment-changes}).}
@@ -353,20 +374,24 @@ information in the next assessment on the annual numbers of fish underlying each
 annual age-composition observation and present an analysis of the potential influence
 of changes in sampling.}
 
-\emph{Response -- **Refer to Aaron's new sampling heatmap figure. Due to time constraints,
-  the JTC was unable to analyse the potential influence of changes in sampling.}
+\emph{Response -- The number of age (and weight) samples used to develop age
+compostions over time (1975--2018) are shown in Figure~\ref{fig:main-empirical.weight.at.age.numbers}.
+A formal evaluation of the influence temporal fluctuations in the number of fish
+sampled and aged has on model performance could not be completed in time for the 2019 assessment
+due to unforeseen time constraints during the assessment season.  The JTC plans to complete
+such an evaluation in preperation for the 2020 stock assessment.}
 
 7. {\bf The SRG requests that the estimates of total age-2$+$ biomass be included in Table 18 of
 the assessment report in the future.}
 
 \emph{Response -- This was done for the published version of the 2018
-  assessment, and for the 2019 (and future) assessments.}
+  assessment, and will be the standard for the 2019 assessment and beyond.}
 
 8. {\bf The SRG recommends that the JTC produce a table showing changes in model
 structure and parameterization that have been implemented since 2011 as a standard
 table to be included in the assessment document.}
 
-\emph{Response -- The 2019 assessment includes Table~\ref{tab:main-assessment-changes} 
+\emph{Response -- The 2019 assessment includes Table~\ref{tab:main-assessment-changes}
 that summarizes major changes to the model structure and parameterization since 2011.
 Future assessments will include an updated version of the table as well.}
 
@@ -449,7 +474,7 @@ in the selectivity parameters from 2017 to 2018 since there was now fishery
 data in 2018.
 
 The final bridging step involved changing the structural assumptions about fecundity (discussed further
-in Section~\ref{sec:assessment-weights}) and resulted in the 2019 base model (Table~\ref{tab:main-assessment-changes}).  
+in Section~\ref{sec:assessment-weights}) and resulted in the 2019 base model (Table~\ref{tab:main-assessment-changes}).
 The switch from time-invariant to time-varying
 fecundity resulted in the biggest bridging change to current biomass.  Fecundity
 (calcualted as weight-at-age multiplied by maturity) changed from being defined by a
@@ -688,10 +713,10 @@ fishery), age-4 fish from the 2014 year-class (29\% of the catch in the fishery)
 and age-8 fish from the 2010 year-class (24\% of the catch in the
 fishery).  Age composition from the 2017 acoustic survey also indicated that the
 2014 year-class (53\% of that catch that year) and the 2010 year-class (26\% of
-the catch for that year) were large.  
+the catch for that year) were large.
 %%The 2017 acoustic survey was the first time the survey was able to sample the
 %%2014 year-class, and it confirmed that the 2014 year-class (53\% of the
-%%catch for that year) was indicated above average. 
+%%catch for that year) was indicated above average.
 The pattern for the 2010 year-class was expected given the strength of that cohort
 from the fishery composition data from 2012 onward, and thus are fit well by the
 model. Combined, the 2015--2018 fishery age composition data and the 2017
@@ -848,11 +873,13 @@ with large uncertainty (Table~\ref{tab:main-ci-posterior} and
 Figure~\ref{fig:main-recruitment}).  The median estimate for the 2016 year class
 is \Sexpr{recruitment.med.in.2016}~billion fish (with a 95\% posterior credibility interval
 from 0.746--26.085 billion fish; Table~\ref{tab:main-median-posterior} and
-Table~\ref{tab:tab:main-ci-posterior}).
+Table~\ref{tab:main-ci-posterior}).
 
 The model currently estimates small 2011, 2013, and 2015 year classes (median
 recruitment below the mean of all median recruitments) and a slightly above
-average 2012 and 2017 year class.
+average 2012 and 2017 year class.  The proportion of the age-1 catch (in numbers
+and biomass) in 2018 (2017 year class) was slightly larger than the age-1 catch
+in 2017 (2016 year class).
 % That's still true for 2016 assessment - see
 %  years.since.2010.recruitment.med.below.mean
 % Though could just say that all three years are smaller than average?
@@ -1138,7 +1165,7 @@ with a probability of 96\%.
 
 \subsection{Sensitivity analyses }\label{sec:assessment-sensitivity-analyses}
  % Manual 2016 done
-**UPDATE WHOLE SUBSECTION (much will stay the same)
+**UPDATE SUBSECTION to include fecundity sensitivities
 
 Sensitivity analyses were conducted to investigate influence of data inputs and
 structural uncertainty of the base model by investigating how changes to the
@@ -1207,7 +1234,7 @@ of variation assumed about the stock-recruitment relationship ($\sigma_r$), and
 the resiliency of the stock in terms of recruitment (steepness).
 
 % section below on natural mortality sensitivity
-% Done KFJ 2019
+% Manual 2019 done
 The standard deviation of the prior distribution on natural mortality was
 increased from the base model value of 0.1 to 0.2 and 0.3. Maximum likelihood
 estimates of natural mortality increased from
@@ -1223,7 +1250,7 @@ uncertainty in spawning biomass on both absolute and relative scales
 and~\ref{fig:main-status-base-alternative-1}).
 
 % section below on steepness sensitivity
-% Done KFJ 2019
+% Manual 2019 done
 The mean of the prior distribution on steepness was decreased from 0.777 (base)
 to 0.5 and, separately, steepness was fixed at 1.0. The decrease in the mean of the
 prior resulted in a change in the maximum likelihood estimate of steepness from
@@ -1239,7 +1266,7 @@ the recruitments to deviate far from the underlying stock-recruit relationship
 (Figure~\ref{fig:main-mcmc.sr.variability}).
 
 % section below on sigma_r
-% Done KFJ 2019
+% Manual 2019 done
 The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative
 high (1.8) and low (1.0) states. The low value, $\sigma_r = 1.0$,
 resulted in a model where the standard deviation of the MLE estimates of
@@ -1267,8 +1294,7 @@ produced a suggested
 $\sigma_r$ of \Sexpr{sigma.r.alt.allyr}, which was similar to the
 base-model value of 1.4.
 
-% Manual 2018: updated the "Bratio" years in paragraph below
-% Done KFJ 2019
+% Manual 2019 done
 The sensitivity of the base model to the inclusion of the age-1 survey index
 provides an additional source of information about the recruitment of different
 year classes (see discussion in Section~\ref{sec:data-acoustic-survey}), which
@@ -1283,7 +1309,7 @@ Figures~\ref{fig:main-biomass-base-alternative-2} and
 of unfished biomass for the base model and
 \Sexpr{f(100*sens.models.1.for.table[[8]]$derived_quants["Bratio_2018","Value"],1)}\%
 for the age-1 index model). This change is likely due to the base model
-underfitting the age-1 index estimates of the size of the 2014 and 2016 cohorts
+underfitting the age-1 index estimates of the size of the 2014, 2016 and 2017 cohorts
 (Figure~\ref{fig:main-age-one-index}). These changes are subtle
 because the base model generally tracks the trends in the age-1 index well.
 
@@ -1298,7 +1324,7 @@ because the base model generally tracks the trends in the age-1 index well.
 % with each age.
 
 % section below on composition weighting
-% Done KFJ 2019
+% Manual 2019 done
 The sensitivity of the use of the
 Dirichlet-Multinomial likelihood, implemented in 2018,
 which uses two estimated
@@ -1358,8 +1384,7 @@ slightly reduced in scale.
 % \ref{fig:main-status-base-alternative-2}).
 
 % section below on selectivity
-% Manual 2018
-% Done KFJ 2019
+% Manual 2019
 The following two types of alternative setups for selectivity were explored in sensitivity
 analyses: alternative values of the $\Phi$ parameter
 controlling the degree of flexibility of annual variation in the
