@@ -40,10 +40,10 @@ StewartHamel2010}. Even where data have been consistently used, the weighting of
 in the statistical likelihood has changed through the use of various emphasis factors
 (e.g., \citealt{Dorn1994, DornSaundersEtAl1999}), a multinomial sample
 size on age compositions (e.g., \citealt{DornSaundersEtAl1999, HelserDornEtAl2002,
-HelserFleischerEtAl2005, StewartForrestEtAl2011}), 
-internal estimations of effective sample size using the 
+HelserFleischerEtAl2005, StewartForrestEtAl2011}),
+internal estimations of effective sample size using the
 Dirichlet-Multinomial distribution \citep{JTC2018},
-and assumptions regarding year-specific 
+and assumptions regarding year-specific
 survey variance. The list of changes discussed above is for illustrative
 purposes only; it is only a small fraction of the different data choices
 analysts have made and that reviewers have required.
@@ -564,8 +564,9 @@ Finally, this bridging step also shifted the ending year of the deviations
 in the selectivity parameters from 2017 to 2018 since there was now fishery
 data in 2018.
 
-The final bridging step involved changing the structural assumptions about fecundity (discussed further
-in Section~\ref{sec:assessment-weights}) and resulted in the 2019 base model (Table~\ref{tab:main-assessment-changes}).
+The final bridging step involved changing the structural assumptions about
+fecundity (discussed further in Sections~\ref{sec:data-weights} and
+\ref{sec:data-maturity}) and resulted in the 2019 base model (Table~\ref{tab:main-assessment-changes}).
 The switch from time-invariant to time-varying
 fecundity resulted in the biggest bridging change to current biomass.  Fecundity
 (calcualted as weight-at-age multiplied by maturity) changed from being defined by a
@@ -1604,8 +1605,8 @@ those early years is significantly higher than the long term mean as can be seen
 Figures~\ref{fig:main-empirical.weight.at.age.sens.b} and
 \ref{fig:main-empirical.weight.at.age.sens.d}.
 
-MCMC results for each of these runs including decision tables can be found in
-Appendices~\ref{chap:fecundity-52}--\ref{chap:fecundity-58}.
+MCMC results for two of these runs (53 and 54) including decision tables can be found in
+Appendices~\ref{chap:fecundity-53} and \ref{chap:fecundity-54}.
 
 \subsection{Retrospective analyses}\label{sec:assessment-retrospective-analyses}
 
