@@ -1517,7 +1517,7 @@ long term (1975--2018) mean weights-at-age applied for the years 2019--2021
 (Figure~\ref{fig:main-empirical.weight.at.age.sens.a}).
 
 The 2018 alternate model was the equivalent of run 58, which had time-varying
-fecundity, short-term (1975--2018) mean weights-at-age applied for the years 1966--1974, and
+fecundity, short-term (1975--1979) mean weights-at-age applied for the years 1966--1974, and
 short term (2016--2018) mean weights-at-age applied for the years 2017--2021.
 Note that when models use a different set of weights-at-age for the forecast years
 than for the 1966--1974 period, the last year of data (2018) cannot be included. Instead,
