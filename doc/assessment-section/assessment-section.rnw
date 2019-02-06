@@ -1059,7 +1059,6 @@ i.e.~the stock is estimated to be in the provisional `healthy zone'.
 %  year to be more generic).
 
 \subsection{Model projections}\label{sec:assessment-model-projections}
- % Manual 2018 done
 The median catch limit for \Sexpr{min(forecast.yrs)} based on the default
 \Ffortyten{} harvest policy is \Sexpr{catch.limit.quantiles["median"]}~t, but
 has a wide range of uncertainty (Figure~\ref{fig:main-projected-catch-density}),
@@ -1076,7 +1075,7 @@ relative spawning biomass outcomes, and Table~\ref{tab:main-decisions-spr} shows
 projected fishing intensity outcomes relative to the 100\% target (based on SPR;
 see table legend).
 
-**Relative fishing intensity exceeding 100\% indicates fishing in excess of the
+Relative fishing intensity exceeding 100\% indicates fishing in excess of the
 $\Fforty$ default harvest rate catch limit. This can happen for the median
 relative fishing intensity in \Sexpr{forecast.yrs[1:(length(forecast.yrs)-1)]}
 and \Sexpr{forecast.yrs[length(forecast.yrs)]} because the $\Fforty$ default
@@ -1087,7 +1086,7 @@ in the determination of overfishing. An alternative catch level where median
 relative fishing intensity is 100\% is provided for comparison (catch
 alternative e: FI=100\%).
 
-**Management metrics that were first identified as important to the Joint Management
+Management metrics that were first identified as important to the Joint Management
 Committee (JMC) and the Advisory Panel (AP) in 2012 are presented for
 projections to \Sexpr{forecast.yrs[2:(length(forecast.yrs)-1)]} and
 \Sexpr{forecast.yrs[length(forecast.yrs)]} (Tables~\ref{tab:main-risk-year-1}
@@ -1107,42 +1106,37 @@ Figure~\ref{fig:main-forecast-risk-comparison-year-1}), and a probability of
 to \Sexpr{forecast.yrs[3]} (Table~\ref{tab:main-risk-year-2} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-2}).
 
-**The spawning biomass is predicted to decrease from 2018 to 2019 with a greater
-than 50\% probability for catch levels investigated above
-0~t (Table~\ref{tab:main-risk-year-1} and
+The spawning biomass is predicted to decrease from \Sexpr{forecast.yrs[1]}
+to \Sexpr{forecast.yrs[2]} with a greater than 50\% probability for catch
+levels investigated above 180,000~t (Table~\ref{tab:main-risk-year-1} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-1}). The model predicts high
 biomass levels and the predicted probability of the spawning biomass dropping below
 $\Bten$ ($0.1B_0$) in 2019 is
-less than 1\% and the probability of dropping below $\Bforty$ is less than 24\%
+2\% or less and the probability of dropping below $\Bforty$ is 29\% or less
 for all catches explored (Table~\ref{tab:main-risk-year-1}). It should be noted
 that the natural mortality rate has overtaken the growth rate for the 2010 year
 class and the model estimated below average recruitment for the 2011 and 2013
-cohorts, but the above average predicted 2014 year class will result in an increase to the
-spawning biomass as it enters maturity. The probability that the 2019 spawning
-biomass will be less than the 2018 spawning biomass ranges from 37\% to 74\%
+cohorts, but the above average predicted 2014 and 2016 year classes will result
+in an increase to the spawning biomass as they enter maturity. The probability
+that the \Sexpr{forecast.yrs[2]} spawning biomass will be less than the
+\Sexpr{forecast.yrs[1]} spawning biomass ranges from 17\% to 75\%
 depending on the catch level (Table~\ref{tab:main-risk-year-1} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-1}).
 
-% this paragraph can be made a bit more dynamics in the future
-% (though it would be hard to completely automate)
-% values are from code in /r/r-functions/figures-age-comp-forecast.r
-**The age composition (in numbers) of the catch in 2018 is projected to be 42\% age-4 fish from
-the 2014 year-class and 23\% age-8 fish from the 2010 year-class
+**The age composition (in numbers) of the catch in \Sexpr{forecast.yrs[1]} is
+projected to be **where are these numbers from??**
+**22\% age-3 fish from the 2016 year-class, **34\% age-5 fish from
+the 2014 year-class and **14\% age-8 fish from the 2010 year-class
 (Figure~\ref{fig:main-age-comp-forecast}). However, those estimates are highly
 uncertain with the 95\% credibility interval for the age-4 fraction spanning
 19\%--62\%. Due to the lower average weight at age 4 vs.~8, the expected
 proportion of the 2018 catch by weight is expected to be more similar between
-these two cohorts, at 38\% and 31\%, respectively.
+these two cohorts, at 38\% and 31\%, respectively.**
 
-**With respect to the DFO provisional reference points, even with the largest
-\Sexpr{assess.yr} catch of 725,984~t given in Table~\ref{tab:main-risk-year-1},
+With respect to the DFO provisional reference points, even with the largest
+\Sexpr{assess.yr} catch of 725,593~t given in Table~\ref{tab:main-risk-year-1},
 the stock is expected to be in the healthy zone at the start of \Sexpr{assess.yr+1}
-with a probability of 96\%.
-% Manual done 2018. See dfo2019
-
-
-
-
+with a probability of **96\%.
 % \enlargethispage{\baselineskip}
 
 \subsection{Sensitivity analyses }\label{sec:assessment-sensitivity-analyses}
