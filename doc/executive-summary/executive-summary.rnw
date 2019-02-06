@@ -185,8 +185,8 @@ selectivity in this assessment, continuing with the new parameterization introdu
 in the \Sexpr{last.assess.yr} assessment and retaining the equivalent level of
 assumed variability. We apply the Dirichlet Multinomial approach to weighting
 composition data again this year and provide sensitivies to alterantive data weighting
-approaches.  In addition, we incorporate time-varying fecundity into the Sexpr{assess.yr}
-assessment model, where previously it was time-invariant. 
+approaches.  In addition, we incorporate time-varying fecundity into the \Sexpr{assess.yr}
+assessment model, where previously it was time-invariant.
 
 The 35 day 2018/2019 U.S. government shutdown considerably delayed delivery of U.S.
 age data and reduced the JTC's collective capacity to complete the
@@ -517,7 +517,7 @@ Over the last decade (\Sexpr{end.yr-10}--\Sexpr{end.yr-1}), the mean coast-wide
 utilization rate (proportion of catch target removed) has been
 \Sexpr{tot.last.10.years.attainment}\% (Table~\ref{tab:es-landings-tac}). Over
 the last five years (\Sexpr{end.yr-5} to \Sexpr{end.yr-1}), the mean utilization
-rates were \Sexpr{usa.last.5.years.attainment}\% for the United States 
+rates were \Sexpr{usa.last.5.years.attainment}\% for the United States
 and \Sexpr{can.last.5.years.attainment}\% for Canada. Total landings last exceeded
 the coast-wide quota in 2002 when utilization was 112\%.
 % Manual 2019 done. For last sentence just check
@@ -755,7 +755,7 @@ average (e.g., a five year period similar to selectivity).
 However, Stock Synthesis does not currently have the desired settings to do this
 appropriately; therefore, the long-term average fecundity-at-age was used
 (see Section~\ref{sec:assessment-response-review} and
-Section~\ref{sec:assessment-weights} for further details.)   
+Section~\ref{sec:assessment-weights} for further details.)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
