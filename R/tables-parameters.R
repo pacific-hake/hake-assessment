@@ -328,7 +328,8 @@ make.short.parameter.estimates.sens.table <- function(models,
                                                       xcaption = "default",
                                                       xlabel   = "default",
                                                       font.size = 9,
-                                                      space.size = 10){
+                                                      space.size = 10,
+                                                      getrecs = c(2008, 2010, 2014)){
   ## Returns an xtable in the proper format for the MLE parameter estimates for
   ##  all the models, one for each column
   ##
@@ -344,6 +345,10 @@ make.short.parameter.estimates.sens.table <- function(models,
   ## xlabel - the label used to reference the table in latex
   ## font.size - size of the font for the table
   ## space.size - size of the vertical spaces for the table
+  ## getrecs - a vector of integers supplying the years for which you want
+  ##   estimates of recruitment. Must be of length three.
+  if (length(getrecs) != 3) stop("The make short function only works",
+    "with three years of recruitments I think.")
 
   tab <- NULL
   for(model in models){
@@ -355,20 +360,11 @@ make.short.parameter.estimates.sens.table <- function(models,
     mle.par <- parms[mle.grep,]$Value
     mle.par[2] <- exp(mle.par[2]) / 1000 ## To make R millions
 
-    ## Add 2008 recruitment
-    rec <- model$recruit[model$recruit$Yr == 2008,]$pred_recr
-    rec <- rec / 1000
-    mle.par <- c(mle.par, rec)
-
-    ## Add 2010 recruitment
-    rec <- model$recruit[model$recruit$Yr == 2010,]$pred_recr
-    rec <- rec / 1000
-    mle.par <- c(mle.par, rec)
-
-    ## Add 2014 recruitment
-    rec <- model$recruit[model$recruit$Yr == 2014,]$pred_recr
-    rec <- rec / 1000
-    mle.par <- c(mle.par, rec)
+    ## Add 
+    for (reci in getrecs) {
+      mle.par <- c(mle.par,
+        model$recruit[model$recruit$Yr == reci,]$pred_recr / 1000)
+    }
 
     ## Add B0
     b0 <- model$SBzero
@@ -514,9 +510,7 @@ make.short.parameter.estimates.sens.table <- function(models,
                           ")"),
                    "Additional acoustic survey SD",
                    "Additional age-1 index SD",
-                   "2008 recruitment (millions)",
-                   "2010 recruitment (millions)",
-                   "2014 recruitment (millions)",
+                   paste(getrecs, "recruitment (millions)"),
                    paste0(latex.subscr(latex.italics("B"), "0"),
                           " (thousand t)"),
                    "2009 relative spawning biomass",
@@ -553,9 +547,7 @@ make.short.parameter.estimates.sens.table <- function(models,
                           latex.italics("h"),
                           ")"),
                    "Additional acoustic survey SD",
-                   "2008 recruitment (millions)",
-                   "2010 recruitment (millions)",
-                   "2014 recruitment (millions)",
+                   paste(getrecs, "recruitment (millions)"),
                    paste0(latex.subscr(latex.italics("B"), "0"),
                           " (thousand t)"),
                    "2009 relative spawning biomass",
