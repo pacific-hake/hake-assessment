@@ -356,7 +356,7 @@ constraint}.
   and whether it reduces sensitivity to the choice of $\sigma_R$.
   (c) Use the Template Model Builder (TMB)
   code developed by Nis Jacobsen for the Management Strategy Evaluation to explore
-  random effects treatment of recruitment variability (\citep{Thorson2018}).
+  random effects treatment of recruitment variability \citep{Thorson2018}.
   The JTC plans to continue to work towards evaluating and testing best practices
   for modeling recruitment variability.  Progression on these research topics was
   halted during the 2019 assessment season due to unforeseen time constraints imposed
