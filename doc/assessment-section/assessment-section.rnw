@@ -245,8 +245,8 @@ by year-specific weight-at-ages covering the time period with data (1975-2018).
 For periods without data (pre-1975 and post-2018), catch-weighted average weight-at-age was used
 in the base model. This configuration was based on results from several investigations
 outlined in the following paragraphs. Alternative fecundity configurations (and thus weight-at-age)
-for the pre-1975 and forecast period were also used in sensitivity evaluations
-(see Section~\ref{sec:assessment-sensitivity-analyses}).}
+for the pre-1975 and forecast period were also used in sensitivity runs
+(see Sections~\ref{sec:assessment-fecundity-recap} and~\ref{sec:assessment-sensitivity-fecundity}).}
 
 \emph{Historical weight-at-age data was re-examined to ensure that all relevant data,
 quality and quantity, were available to the assessment. Samples from the 1960s in PacFIN
@@ -266,12 +266,6 @@ Other than standard data updates and the addition of historic weight-at-age data
 fishery and surveys (see Section~\ref{sec:data-weight-at-age}), no changes were made to
 weight-at-age data based on these considerations.}
 
-**Andy: I thought the actual low sample sizes were also a reason, especially for 1975
-in Figure~\ref{fig:main-empirical.weight.at.age.numbers}, with the few heavy 15-year-olds
-1976-1979 influencing the average for 1975-1979 (or maybe they're not that
-influential?). Could mention this in Section~\ref{sec:assessment-fecundity-recap} if it
-fits better there.
-
 \emph{Regarding the assumption of pre-1975 weight-at-ages, the JTC conducted an analysis
 to see whether there was any indication that weights-at-age values were trending through
 time. A weighted least squares approach was used to fit log weight (kg) data across years 1975-2018,
@@ -280,12 +274,19 @@ statistical weights were defined by the inverse of the annual sample variance). 
 slope parameter was used to better understand age-specific long-term trends in
 weight-at-age. The results of this analysis showed a near zero slope for all ages,
 with age-13, 14, and 15 being slightly positive and all others being slightly negative
-(Figure~\ref{fig:main-empirical.weight.at.age.years}), which wasn't unexpected
+(Figure~\ref{fig:main-empirical.weight.at.age.years}), which was not unexpected
 given the large amount of inter-annual variability
 in the data.  Estimated slope parameters were sensitive to excluding data from
 1975--1980. Nonetheless, there was not a clear trending relationship for weight-at-age
 data through time that would otherwise suggest increasing or decreasing pre-1975 weights
 from the long-term mean.  Overall inferences were similar when using length instead of weight.}
+
+\emph{**Furthermore, there were small numbers of age samples for the early years (especially 1975)
+as shown in Figure~\ref{fig:main-empirical.weight.at.age.numbers}. with the few heavy 15-year-olds
+1976-1979 influencing the average for 1975-1979 (or maybe they're not that
+influential?).} %Could mention this in Section~\ref{sec:assessment-fecundity-recap} if it
+% fits better there.
+
 
 \emph{Regarding forecast year weight-at-ages, the JTC used the weighted
 least squares analysis to also suggest that the assumption of using the long-term
@@ -298,14 +299,15 @@ equivalent to the final year of data (2018).  For example, we were unable to set
 future weight-at-age values to be the mean of 2016-2018 without also setting
 the 2018 weights-at-age to that mean (thereby averaging out the 2018 data).
 Therefore, we retained the 2018 base model assumption of using the overall
-1975-2018 mean for the forecast period.  On 4 February 2019, the JTC learned that
-the newest version of Stock Synthesis (version 3.30.12) now allows independent
-forecast period settings for time-varying parameters or inputs.  Alternative
-forecast settings can be explored in future assessments.  In response to this finding,
-the JTC verified that using either a recent 3-year (2016--2018) or a 5-year (2014--2018)
-average weight-at-age vector in the forecast period made little difference in
-2019--2021 stock status. This was expected because weight-at-age values in recent
-years have been similar to the long-term average.}
+1975-2018 mean for the forecast period.}
+% On 4 February 2019, the JTC learned that
+% the newest version of Stock Synthesis (version 3.30.12) now allows independent
+% forecast period settings for time-varying parameters or inputs.  Alternative
+% forecast settings can be explored in future assessments.  In response to this finding,
+% the JTC verified that using either a recent 3-year (2016--2018) or a 5-year (2014--2018)
+% average weight-at-age vector in the forecast period made little difference in
+% 2019--2021 stock status. This was expected because weight-at-age values in recent
+% years have been similar to the long-term average.}
 
 \emph{During the 2018 SRG meeting it was further realised that (p23 of \citealt{JTC2018})
 ``An inconsistency
@@ -1510,7 +1512,7 @@ hopes that the semi-parametric setup could be further explored in the year
 ahead for potential inclusion in a future assessments.
 
 Sensitivity runs concerning weight-at-age and fecundity are discussed in
-Section~\ref{sec:assessment-fecundity-recap} and~\ref{sec:assessment-sensitivity-fecundity}.
+Sections~\ref{sec:assessment-fecundity-recap} and~\ref{sec:assessment-sensitivity-fecundity}.
 Any additional sensitivity runs arising from the Scientific Review Group
 meeting to be held from 19th February to 22nd February 2019 will be documented
 in Appendix~\ref{chap:srg-requests} and briefly summarized here.
