@@ -1670,8 +1670,8 @@ MCMC runs with a chain length of 12,000,000 were done for these sensitivities. T
 first 2,000,000 values were discarded to eliminate ‘burn-in’ effects and each
 5,000th value thereafter was retained, resulting in 2000 samples from the posterior
 distributions for model parameters and derived quantities. Comparisons of both the
-MLE and posterior biomass and relative biomass trajectories
-follow.
+MLE and median posterior biomass and relative biomass trajectories with 95\% credible
+intervals follow.
 
 The base model and runs 52, 53, and 54 are compared in
 Figures~\ref{fig:main-biomass-base-alternative-5}--\ref{fig:main-status-base-alternative-5-mcmc}.
