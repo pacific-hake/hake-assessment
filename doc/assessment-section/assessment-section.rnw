@@ -237,11 +237,11 @@ parameterizing fecundity-at-age for years without data (pre-1975), and evaluate
 other methods of deriving biological reference points such as $B_0$}.
 
 \emph{Response -- The JTC agreed with the SRG recommendation to calculate spawning
-biomass using annual weight-at-age for years with data, and accordingly included
-time-varying fecundity in the 2019 stock assessment. Thus, fecundity
+biomass and fecundity using annual weight-at-age for years with data, and accordingly included
+time-varying fecundity in the 2019 base model. Thus, fecundity
 (calculated as weight-at-age multiplied by maturity) changed from being defined by a
 single catch-weighted average of weight-at-age applied to all years to being defined
-by year-specific weight-at-ages covering the time period with data (1975-2018).
+by year-specific weight-at-ages covering the time period with data (1975--2018).
 For periods without data (pre-1975 and post-2018), catch-weighted average weight-at-age was used
 in the base model. This configuration was based on results from several investigations
 outlined in the following paragraphs. Alternative fecundity configurations (and thus weight-at-age)
