@@ -30,10 +30,12 @@ considerably delaying delivery of U.S. age data and reducing JTC preparatory tim
   \item Coastwide catch in \Sexpr{end.yr-1} was the second largest on record at
     \Sexpr{last.year.landings}~t [t represents metric tons],
 out of a Total Allowable Catch (adjusted for carryovers) of \Sexpr{last.year.tac}~t. Attainment in
-the U.S. was \Sexpr{last.year.us.attained}\% of its quota (\Sexpr{last.2year.us.attained.diff}
-point change from last year); in Canada it was
-\Sexpr{last.year.can.attained}\% (\Sexpr{last.2year.can.attained.diff}
-point change from last year).
+the U.S. was \Sexpr{last.year.us.attained}\% of its quota
+(\Sexpr{paste0(ifelse(last.2year.us.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.us.attained.diff))}\%
+from last year); in Canada it was
+\Sexpr{last.year.can.attained}\%
+(\Sexpr{paste0(ifelse(last.2year.can.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.can.attained.diff))}\%
+from last year).
 
   \item The stock is estimated to have been at relatively high levels since
     2013 due to large estimated 2010 and 2014 cohorts.
