@@ -1531,8 +1531,6 @@ in Appendix~\ref{chap:srg-requests} and briefly summarized here.
 
 \subsubsection{Recap of alternative 2018 model  run with time-varying fecundity}\label{sec:assessment-fecundity-recap}
 
-**Read over again to remove any repetition.
-
 In 2018 the SRG requested an alternative model run that used time-varying
 fecundity \citep{JTC2018}. We have used time-varying fecundity in the 2019 base model,
 and in three sensitivity runs with alternative assumptions about the weights-at-age
@@ -1614,16 +1612,11 @@ in 2019.
 
 \subsubsection{Fecundity and weight-at-age sensitivities}\label{sec:assessment-sensitivity-fecundity}
 
-Several sensitivities to time-varying fecundity and weight-at-age extrapolation
-schemes were investigated. During the SRG meeting in 2018, the JTC was asked to
-include time-varying fecundity and a short-term 1975--1979 mean weights-at-age
-for the period before 1975. These were presented as an alternate base model and
-a full MCMC was done to allow for the presentation of decision tables and
-projections.
-
-This year the JTC decided to proactively run a set of models addressing fecundity with
-pre-1975 and post-2018 weights-at-age. Table~\ref{tab:main-wtatage-runs} outlines these
-in detail. They are labeled with run numbers which were used internally by the JTC
+In 2018, the aforementioned alternative model run was investigated using
+a full MCMC computation to allow for the presentation of decision tables and
+projections. For 2019, all eight combinations in Table~\ref{tab:main-wtatage-runs}
+underwent full MCMC computations.
+The runs are labeled with run numbers which were used internally by the JTC
 and are not relevant other than to refer to each run uniquely. The extrapolation of pre-1975
 weights-at-age is required because there is catch in the model from 1966 onward but age
 and weight data were not collected until 1975.
@@ -1638,13 +1631,13 @@ fecundity, short-term (1975--1979) mean weights-at-age applied for the years 196
 short term (2016--2018) mean weights-at-age applied for the years 2017--2021.
 Note that when models use a different set of weights-at-age for the forecast years
 than for the 1966--1974 period, the last year of data (2018) cannot be included. Instead,
-SS3 requires 2018 to be used as a placeholder for the forecasting weights-at-age vector.
-This is a limitation of Stock Synthesis and could not be avoided.
+the current configuration of Stock Synthesis requires 2018 to be used as a placeholder for
+the forecasting weights-at-age vector.
 
 This year's base model is a hybrid of the 2018 models, based on the 2018 base model
 but with the inclusion of time-varying fecundity.
 
-There were 5 further runs done, with all possible combinations of long or short-term mean
+There were five further runs done, overall covering all possible combinations of long or short-term mean
 pre-1975 weights-at-age, long or short-term mean post-2017 weights-at-age, and time-varying
 fecundity being included or not.
 
@@ -1669,8 +1662,8 @@ Figure~\ref{fig:main-empirical.weight.at.age.sens.c}. This figure includes runs 
 and 58.
 
 MCMC runs with a chain length of 12,000,000 were done for these sensitivities. The
-first 2,000,000 values were discarded to eliminate ‘burn-in’ effects and each
-5,000th value thereafter was retained, resulting in 2000 samples from the posterior
+first 2,000,000 values were discarded to eliminate `burn-in' effects and each
+5,000th value thereafter was retained, resulting in 2,000 samples from the posterior
 distributions for model parameters and derived quantities. Comparisons of both the
 MLE and median posterior biomass and relative biomass trajectories with 95\% credible
 intervals follow.
@@ -1680,14 +1673,14 @@ Figures~\ref{fig:main-biomass-base-alternative-5}--\ref{fig:main-status-base-alt
 These are the runs which have the pre-1975 weights-at-age being set to the
 long-term mean from 1975--2018. Runs 52 and 53 show little difference
 from one another, implying that changing the post-2017 weights-at-age does not have much effect
-on model outcome. The base model, and run 54, which both include time-varying fecundity shows a
+on model outcome. **The base model and run 54, which both include time-varying fecundity, show a
 departure from the others, with an obvious large increase in and around the 1975 time period
 (Figures~\ref{fig:main-biomass-base-alternative-5}, \ref{fig:main-biomass-base-alternative-5-mcmc}).
 This is caused by the weights-at-age in the early part of the time series being significantly
 higher for older fish and having the fecundity in that time period changed accordingly. Note that
 it is difficult to see the difference between the base model and run 54 using the MLE plots.
 The MCMC plots allow us to see that the blue and red lines (base model and run 54) follow similar trajectories
-(Figures~\ref{fig:main-biomass-base-alternative-5-mcmc}, \ref{fig:main-status-base-alternative-5-mcmc}).
+(Figures~\ref{fig:main-biomass-base-alternative-5-mcmc} and~\ref{fig:main-status-base-alternative-5-mcmc}).
 
 The base model, and runs 55, 56, 57, and 58 are compared in
 Figures~\ref{fig:main-biomass-base-alternative-6}--\ref{fig:main-status-base-alternative-6-mcmc}.
@@ -1695,9 +1688,9 @@ These are the runs which have the pre-1975 weights-at-age being set to the
 short term mean (1975--2018). Runs 55 and 58 appear to have similar trajectories to one another,
 as do runs 56 and 57. The difference between these two groups is the inclusion of time-varying fecundity.
 
-Having non-time-varying fecundity in addition to using short-term
+Having non-time-varying fecundity and using short-term
 pre-1975 mean weights-at-age (runs 56 and 57) give an inflated 2019 stock size
-(Figures~\ref{fig:main-biomass-base-alternative-6}--\ref{fig:main-biomass-base-alternative-6-mcmc})
+(Figures~\ref{fig:main-biomass-base-alternative-6}--\ref{fig:main-biomass-base-alternative-6-mcmc}),
 but due to the inflation of the initial biomass give a similar stock status to the base model
 (Figures~\ref{fig:main-status-base-alternative-6}--\ref{fig:main-status-base-alternative-6-mcmc}).
 
@@ -1707,8 +1700,9 @@ those early years is significantly higher than the long term mean as can be seen
 Figures~\ref{fig:main-empirical.weight.at.age.sens.b} and
 \ref{fig:main-empirical.weight.at.age.sens.d}.
 
-MCMC results for two of these runs (53 and 54) including decision tables can be found in
-Appendices~\ref{chap:fecundity-53} and \ref{chap:fecundity-54}.
+MCMC results for runs 53 and 54 including decision tables can be found in
+Appendices~\ref{chap:fecundity-53} and \ref{chap:fecundity-54}, because these
+are the closest runs to the 2019 base model.
 
 \subsection{Retrospective analyses}\label{sec:assessment-retrospective-analyses}
 
