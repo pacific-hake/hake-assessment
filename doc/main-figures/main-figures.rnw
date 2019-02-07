@@ -343,7 +343,7 @@ par <- oldpar
   Figure~\ref{fig:main-bridge-biomass} by adding the 2018 catch data, adding
   the 2018 age composition and weight-at-age data, and then finally changing to
   time-varying fecundity which became the base model. See
-  Section~\ref{sec:assessment-weights} for further details about modeling
+  Section~\ref{sec:assessment-sensitivity-analyses} for further details about modeling
   time-varying fecundity.  Panels are spawning biomass
   (upper panel), relative spawning biomass (spawning biomass in each year
   relative to the unfished equilibrium spawning biomass, middle left),

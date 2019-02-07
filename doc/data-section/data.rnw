@@ -565,7 +565,7 @@ to have the same weight. The combinations of age and year with no
 observations were assumed to change linearly over time between observations at
 any given age. Mean weights were assumed to remain constant prior to the first
 observation and after the last observation within the range of years in the
-matrix (see section \ref{sec:sec:assessment-response-review} for further details on these
+matrix (see section \ref{sec:assessment-response-review} for further details on these
 assumptions). The number of samples (Figure \ref{fig:main-empirical.weight.at.age.numbers})
 is generally proportional
 to the amount of catch, so the combinations of year and age with no samples

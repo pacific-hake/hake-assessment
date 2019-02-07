@@ -640,7 +640,8 @@ make.assessment.changes.table(assessment.changes,
   onwards to be the mean from 1975-2018. $^b$Similarly,
   for the 2018 alternative run, the 2017 weight-at-age onwards was
   the mean from 2015-2017. $^c$The 2018 onwards weight-at-age was the mean from 1975-2017.
-  See Section~\ref{sec:data-weights} for more details and
+  See Sections~\ref{sec:assessment-fecundity-recap} and \ref{sec:assessment-sensitivity-fecundity}
+  for more details and
   Figures~\ref{fig:main-empirical.weight.at.age.sens.a}-\ref{fig:main-empirical.weight.at.age.sens.d}
   for the various weight-at-age assumptions.}
  \label{tab:main-wtatage-runs}

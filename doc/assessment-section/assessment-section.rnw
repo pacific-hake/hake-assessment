@@ -572,8 +572,8 @@ in the selectivity parameters from 2017 to 2018 since there was now fishery
 data in 2018.
 
 The final bridging step involved changing the structural assumptions about
-fecundity (discussed further in Sections~\ref{sec:data-weights} and
-\ref{sec:data-maturity}) and resulted in the 2019 base model (Table~\ref{tab:main-assessment-changes}).
+fecundity (discussed further in Sections~\ref{sec:data-maturity} and
+\ref{sec:assessment-sensitivity-analyses}) and resulted in the 2019 base model (Table~\ref{tab:main-assessment-changes}).
 The switch from time-invariant to time-varying
 fecundity resulted in the biggest bridging change to current biomass.  Fecundity
 (calculated as weight-at-age multiplied by maturity) changed from being defined by a
