@@ -19,7 +19,10 @@ weight-at-age data, addition of \Sexpr{end.yr-1} fishery catch and age-compositi
 data, and addition of \Sexpr{last.data.yr} weight-at-age data.
 
   \item The model was updated to include year-specific fecundity from 1975-\Sexpr{last.data.yr}.
-  However, limited exploratory and supplementary analyses could be completed for 
+  This was achieved by using a single functional-maturity-at-age curve multiplied by
+  yearly weight-at-age data to produce the fecundity-at-age for each year.
+  
+  \item Limited exploratory and supplementary analyses could be completed for 
 the \Sexpr{assess.yr} assessment as a result of the U.S. government shutdown
 considerably delaying delivery of U.S. age data and reducing JTC preparatory time.
 
@@ -38,9 +41,7 @@ point change from last year).
 (female spawning biomass at the start of \Sexpr{end.yr} divided by that at unfished
 equilibrium, $B_0$) is \Sexpr{curr.depl.median}\% but is highly uncertain (with
 95\% credible interval from \Sexpr{curr.depl.lower}\% to
-\Sexpr{curr.depl.upper}\%).
-
-  \item The median estimate of female spawning biomass at the start
+\Sexpr{curr.depl.upper}\%). The median estimate of female spawning biomass at the start
     of \Sexpr{end.yr} is
 \Sexpr{curr.bio.median} million~t (with 95\% credible interval from
 \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper} million~t). This is
@@ -48,7 +49,7 @@ a decrease from the \Sexpr{end.yr-1} median of \Sexpr{prev.bio.median}~million~t
 (though its 95\% credible interval is
 \Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper}~million~t).
 
-  \item The model estimates that the joint probability of being both
+  \item The estimated joint probability of being both
     above the target relative fishing intensity in \Sexpr{end.yr-1}
     and below the $\Bforty$ (40\% of $B_0$) reference point
     % relative spawning biomass level
