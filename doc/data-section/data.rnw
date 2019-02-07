@@ -553,7 +553,7 @@ current assessment model to translate numbers-at-age directly to biomass-at-age
 (Figure \ref{fig:main-empirical.weight.at.age}). Mean weight-at-age was
 calculated from samples pooled from all fisheries and the acoustic survey for
 the years 1975 to \Sexpr{max.fishery.age.prop[2]}
-(Figure~\ref{fig:main-empirical.weight.at.age}). Additonal historic weight-at-age data
+(Figure~\ref{fig:main-empirical.weight.at.age}). Additional historic weight-at-age data
 from Canadian fishery and surveys (intermittent years from 1992 onwards) were
 added in the \Sexpr{assess.yr} assessment, resulting in a 3\% increase in total
 samples.  Pre-1975 weight-at-age data available in the PacFIN database was
@@ -565,8 +565,8 @@ to have the same weight. The combinations of age and year with no
 observations were assumed to change linearly over time between observations at
 any given age. Mean weights were assumed to remain constant prior to the first
 observation and after the last observation within the range of years in the
-matrix (see section \ref{sec:sec:assessment-response-review} for futher details on these
-assumptions) . The number of samples (Figure \ref{fig:main-empirical.weight.at.age.numbers})
+matrix (see section \ref{sec:sec:assessment-response-review} for further details on these
+assumptions). The number of samples (Figure \ref{fig:main-empirical.weight.at.age.numbers})
 is generally proportional
 to the amount of catch, so the combinations of year and age with no samples
 should have relatively little importance in the overall estimates of the
@@ -794,7 +794,7 @@ McAllister-Ianelli approach \citep{McAllisterIanelli1997}
 is that instead of manually iterating the sample size multiplier,
 an estimated parameter, $\theta$, serves to automatically adjust the weight given to
 the fishery-composition data (using $\theta_{\text{fish}}$) and the
-survey-compostion data (using $\theta_{\text{surv}}$).
+survey-composition data (using $\theta_{\text{surv}}$).
 Integration of the data weighting increases the efficiency of the assessment process, removes the
 subjective choice of how many iterations are required,
 and also ensures that the results of model sensitivities, retrospective analyses,

@@ -226,7 +226,7 @@ weight.at.age.heatmap(base.model)
 \end{center}
 %\vspace{0mm}
 \caption{Empirical weight-at-age (kg) values used for the base model
-  (the values match the colours).
+  (the values match the colors).
   Data are only available from 1975--\Sexpr{max.fishery.age.prop[2]}.
   Values based on assumptions for the early and late years are shown
   outside the blue lines (see Table~\ref{tab:main-wtatage-runs});
@@ -246,7 +246,7 @@ weight.at.age.heatmap(base.model)
 \end{center}
 \vspace{0mm}
 \caption{Sample sizes for developing empirical weight-at-age values used in the
-  base model (the values match the colours).
+  base model (the values match the colors).
   Data are available from 1975--\Sexpr{max.fishery.age.prop[2]}.}
 \label{fig:main-empirical.weight.at.age.numbers}
 \end{figure}
