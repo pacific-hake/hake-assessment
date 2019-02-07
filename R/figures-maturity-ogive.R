@@ -1,10 +1,9 @@
-maturity.ogive.figure <- function(){
+maturity.ogive.figure <- function(model, useyears = 1975:2018){
 
   # maturity.samples is created by data-tables.r
   # which reads
   # maturity.samples.file <- "hake-maturity-data.csv"
   mat1 <- maturity.samples
-  
   Amax <- 15 # plus group used in calculations below
 
 
@@ -62,13 +61,13 @@ maturity.ogive.figure <- function(){
 
   # values from wtatage.ss file for fleet = -1 for year = 1966
   if(FALSE){
-    avg.wt <- as.numeric(base.model$wtatage[base.model$wtatage$Yr==1966 &
-                                              base.model$wtatage$Fleet==-1,
+    avg.wt <- as.numeric(model$wtatage[model$wtatage$Yr==1966 &
+                                              model$wtatage$Fleet==-1,
                                             paste(0:20)])
     # compute matrix of fecundity based on table of weights
     # start in 1974 as that is the last year of the average weight at age
-    wtatage.lines <- base.model$wtatage[base.model$wtatage$Fleet==-1 &
-                                          base.model$wtatage$Yr >= 1974, ]
+    wtatage.lines <- model$wtatage[model$wtatage$Fleet==-1 &
+                                          model$wtatage$Yr >= 1974, ]
     wtatage.lines.new <- wtatage.lines
     for(irow in 1:nrow(wtatage.lines.new)){
       wtatage.lines.new[irow, paste(0:20)] <-
@@ -94,11 +93,20 @@ maturity.ogive.figure <- function(){
   # wtatage averaged across years
   
   # values from 2018 model that aren't dependent on having model loaded
-  avg.wt <- c(0.0169,0.0916,0.2489,0.3790,0.4841,0.5329,
-              0.5813,0.6471,0.7184,0.7875,0.8594,0.9307,
-              0.9695,1.0658,1.0091,1.0336,1.0336,1.0336,
-              1.0336,1.0336,1.0336)
-  fec.vec.new <- avg.wt * mat.N.vec
+  # avg.wt <- c(0.0169,0.0916,0.2489,0.3790,0.4841,0.5329,
+  #             0.5813,0.6471,0.7184,0.7875,0.8594,0.9307,
+  #             0.9695,1.0658,1.0091,1.0336,1.0336,1.0336,
+  #             1.0336,1.0336,1.0336)
+  # fec.vec.new <- avg.wt * mat.N.vec
+
+  avg.wt <- apply(model$wtatage[
+    grepl("#wt_flt_1", model$wtatage$comment) &
+    model$wtatage$Yr %in% useyears, 
+    grep("^\\d", colnames(model$wtatage))], 2, mean)
+  fec.vec.new <- apply(model$wtatage[
+    grepl("fecun", model$wtatage$comment) &
+    model$wtatage$Yr %in% useyears, 
+    grep("^\\d", colnames(model$wtatage))], 2, mean)
 
   ### write stuff to CSV file if needed
   csv <- FALSE
@@ -151,19 +159,18 @@ maturity.ogive.figure <- function(){
   box()
 
   # second plot
-  plot(0, type='l', lwd=3, xlim=c(1, 20), ylim=c(0,1.1), #yaxs='i',
+  plot(0, type='l', lwd=3, xlim=c(1, 20), 
+       ylim=c(0,max(c(avg.wt, fec.vec.new)) * 1.05), #yaxs='i',
        xlab="", ylab="Weight (kg) or fecundity", axes=FALSE)
   axis(1, at=1:20)
   axis(2, las=1)
   abline(h=seq(0,1,.2), col='grey')
   lines(1:20, avg.wt[-1], lwd=2, col=3)
-  lines(1:20, fec.vec.old[-1], lwd=4, col=1)
   lines(1:20, fec.vec.new[-1], lwd=4, col=rgb(.8,0,0.8,.8))
   legend('bottomright', col=c(3,rgb(.8,0,0.8),1), lwd=c(2,4,4),
          bg='white', box.col='grey',
          legend=c("Mean weight at age",
-             "New fecundity (maturity at age x mean weight at age)",
-             "Old fecundity (converted from length-based estimates)"))
+                  paste0("Mean fecundity (maturity at age x weight at age)")))
   box()
   mtext(side=1, line=0, outer=TRUE, "Age")
 }
