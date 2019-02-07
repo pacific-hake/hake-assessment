@@ -135,6 +135,7 @@
 %% Harvest control rule, \Ffortyten{} to have a space after
 \newcommand{\Ffortyten}{$\Fforty$--40:10}
 \newcommand{\Bforty}{B_{40\%}}
+\newcommand{\Btwentyfive}{B_{25\%}}
 \newcommand{\Bten}{B_{10\%}}
 \newcommand{\Bzero}{B_{0}}
 \newcommand{\Bmsy}{B_{\text{MSY}}}
