@@ -465,13 +465,13 @@ make.fishing.intensity.plot(base.model,
 %
 Median exploitation fraction (catch divided by biomass of fish of age-2 and
 above) peaked in 1999, and then reached even higher values in 2006 and 2008
-(Table~\ref{tab:es-fishing-intensity} and
-Figure~\ref{fig:es-exploitation-fraction}). Note that in earlier assessments the
+(Figure~\ref{fig:es-exploitation-fraction}). Over the last 5 years, the exploitation
+fraction was the highest in 2017 (Table~\ref{tab:es-fishing-intensity}). Note that in earlier assessments the
 exploitation fraction was often defined in terms of fish age-3 and above, but
-beginning in 2018 the definition age was lowered to age-2 because these
+with the 2018 assessment the definition age was lowered to age-2 because these
 fish are often caught by the fishery.
 % Manual 2019 done.
-%
+% 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
@@ -491,13 +491,13 @@ make.exploitation.fraction.plot(base.model,
 %
 Median relative fishing intensity is estimated to have declined from
 \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.2015}\%
-in 2015 before increasing again to \Sexpr{median.intensity.penult.yr}\%
-in \Sexpr{end.yr-1}. The exploitation fraction has increased from a recent low of
-\Sexpr{exploitation.med.2012} in 2012 to \Sexpr{exploitation.med.penult.yr} in
-\Sexpr{end.yr-1}. There is a considerable amount of uncertainty around
-estimates of relative fishing intensity, with the 95\% posterior credibility
-interval reaching above the SPR management target for \Sexpr{end.yr-1}
-(Figure~\ref{fig:es-fishing-intensity}).
+in 2015 before leveling off near 80\% the past few years (2016--2018). 
+The exploitation fraction has increased from a recent low of
+\Sexpr{exploitation.med.2012} in 2012 to \Sexpr{exploitation.med.2017} in 2017 before
+decreasing to \Sexpr{exploitation.med.2018} in \Sexpr{end.yr-1}. There is a
+considerable amount of uncertainty around estimates of relative fishing intensity,
+with the 95\% posterior credibility interval reaching above the SPR management
+target for 2016--\Sexpr{end.yr-1} (Figure~\ref{fig:es-fishing-intensity}).
 % 2016 assessment we had: '... is below the SPR management target for the
 %  last three years (Figure~\ref{fig:es-fishing-intensity})'.
 %  Interestingly, for 2017 the 2016 intensity interval reaches above 1.
@@ -519,7 +519,8 @@ utilization rate (proportion of catch target removed) has been
 the last five years (\Sexpr{end.yr-5} to \Sexpr{end.yr-1}), the mean utilization
 rates were \Sexpr{usa.last.5.years.attainment}\% for the United States
 and \Sexpr{can.last.5.years.attainment}\% for Canada. Total landings last exceeded
-the coast-wide quota in 2002 when utilization was 112\%.
+the coast-wide quota in 2002 when utilization was 112\%, though in retrospect,
+the fishing intensity was relatively low in that year.
 % Manual 2019 done. For last sentence just check
 %  landings.vs.tac[landings.vs.tac$Year > 2000, c("Year", "ATTAIN")]
 
@@ -554,9 +555,12 @@ The joint history of the medians for relative spawning biomass and relative
 fishing intensity shows that the median relative fishing
 intensity has never been above the target of 1.0 when the female spawning biomass
 is below the
-reference point of $\Bforty$ (Figure~\ref{fig:es-phase})  This highlights that
-the target fishing mortality ($\Fforty$) and the target spawning biomass  ($\Bforty$)
-result in different population sizes (see Table~\ref{tab:es-reference.points} ).
+reference point of $\Bforty$ (Figure~\ref{fig:es-phase}).  This highlights the
+highly dynamic nature of the stock due to high variation in recruitment strength, such
+that spawning biomass could fall below ($\Bforty$) even in the absence of fishing.
+While the target fishing mortality ($\Fforty$) and the target spawning biomass
+($\Bforty$) result in different population sizes (see Table~\ref{tab:es-reference.points}),
+this difference is not, by far, the major driver of the observed dynamics.
 % 2017 - only in 1999 was it both (just)
 % Manual done 2019.
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -573,10 +577,12 @@ make.phase.plot(base.model,
          intensity and relative spawning biomass for \fishname\ with labels on the
          start and end years (and 1999). Gray bars span the 95\% credibility
          intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical) and
-         relative spawning biomass (horizontal).}
+         relative spawning biomass (horizontal). The points for 2017 and 2018 are
+         nearly on top of one another.}
 \label{fig:es-phase}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+%%Manual 2019: Last sentence in figure caption above needs changing or omitting every year
 %
 Between 2007 and 2011, median relative fishing intensity ranged from
 \Sexpr{median.intensity.2007.to.2011.min}\% to
@@ -648,8 +654,8 @@ cohorts resulting in time-varying fishery selectivity. This volatility results
 in a high level of uncertainty in estimates of current stock status and stock
 projections because, with limited data to estimate incoming recruitment, the
 cohorts are fished before the assessment can accurately determine how big the
-cohort is (i.e., cohort strength is not well known until it is at least
-age-3).
+cohort is (i.e., cohort strength is not well known until it is has been observed
+by the fishery and survey, typically at minimum age-3).
 
 %%**Maybe something like: This is particularly apparent for this assessment, because the **2014
 %% cohort is potentially very large but is still highly uncertain
