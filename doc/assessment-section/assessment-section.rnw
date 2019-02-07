@@ -986,7 +986,7 @@ start of \Sexpr{end.yr}.
 
 \subsection{Model uncertainty}\label{sec:assessment-model-uncertainty}
  % Manual 2018 done
-**The base assessment model integrates over the substantial uncertainty associated
+The base assessment model integrates over the substantial uncertainty associated
 with several important model parameters including: acoustic survey catchability
 ($q$), the magnitude of the stock (via the $R_0$ parameter for equilibrium
 recruitment), productivity of the stock (via the steepness parameter, $h$, of
@@ -1003,8 +1003,9 @@ parameter estimates (e.g., steepness and catchability) are
 smaller. Figure~\ref{fig:main-mle.vs.mcmc} shows the MLE and Bayesian (from
 MCMC) estimates as well as the skewed uncertainty in the posterior distributions
 for spawning biomass and recruitment for each year.  Median estimates of spawning
-biomass and recruitment from the posterior distribution are slightly larger than their respective
-MLEs, but the 95\% credibility (posterior median) and confidence (MLE) intervals considerably overlap.
+biomass and recruitment from the posterior distribution are slightly larger than
+their respective MLEs, but the 95\% credibility (posterior median) and confidence
+(MLE) intervals overlap considerably.
 
 Uncertainty measures in the base model underestimate the total uncertainty in
 the current stock status and projections because they do not account for
@@ -1013,7 +1014,7 @@ alternative structural models for hake population dynamics and fishery processes
 effects of alternative data-weighting choices, and the scientific basis for prior
 probability distributions. To address structural uncertainties, the JTC investigated
 a range of alternative models, and we present the key sensitivity analyses along with
-a suite of other informative sensitivity analyses in the main document.
+a suite of other informative sensitivity analyses.
 
 The \fishname\ stock displays a very high degree of recruitment variability,
 perhaps the largest of any west coast groundfish stock, resulting in large and
@@ -1024,22 +1025,20 @@ will in most circumstances continue to result in highly uncertain
 estimates of current stock status and even less-certain projections of the stock
 trajectory.
 
-**The JTC continues to be committed to advancing MSE analyses, through further
-internal technical developments and by coordinating research with other
-scientists in the region engaging in similar research.  In particular, the JTC
-aspires to advance MSE research in 2018 by collaborating with the Treaty MSE Working
-Group and a post-doctoral scientist dedicated to developing MSE models.
+**
+The JTC continues to be committed to advancing MSE analyses, by coordinating
+research with other scientists in the region engaging in similar research.
+In particular, the JTC aspires to continue advancement in MSE research in 2019
+by collaborating with the Treaty MSE Working Group and the post-doctoral
+scientists dedicated to developing MSE models.
+
 Incorporating feedback from JMC/AP/SRG/MSE Working Group will ensure
 that the operating model is able to provide insight into the important questions
-defined by these groups.  Specifically, the development of MSE tools to evaluate
+defined by these groups. Specifically, the development of MSE tools to evaluate
 major sources of uncertainty relating to data, model structure and the harvest
 policy for this fishery and compare potential methods to address them remains an
-important goal. If a spatially, seasonally explicit operating model is needed,
-then research should focus on how best to model these dynamics in order to
-capture seasonal effects and potential climate forcing influences in the
-simulations. Further, investigations into the impact of making incorrect
-assumptions about the underlying recruitment process is central to the adequate
-characterization of uncertainty when applied to proposed management procedures.
+important goal.
+**
 
 \subsection{Reference points}\label{sec:assessment-reference-points}
  % Manual 2019 done.
@@ -1666,9 +1665,12 @@ period and the short-term (2016--2018) mean for the post-2017 period can be seen
 Figure~\ref{fig:main-empirical.weight.at.age.sens.c}. This figure includes runs 56
 and 58.
 
-MCMC runs with a chain length of 12,000,000 were done for these sensitivities.
-Comparisons of both the MLE and posterior biomass and relative biomass trajectories
-follow.
+MCMC runs with a chain length of 12,000,000 were done for these sensitivities. The
+first 2,000,000 values were discarded to eliminate ‘burn-in’ effects and each
+5,000th value thereafter was retained, resulting in 2000 samples from the posterior
+distributions for model parameters and derived quantities. Comparisons of both the
+MLE and median posterior biomass and relative biomass trajectories with 95\% credible
+intervals follow.
 
 The base model and runs 52, 53, and 54 are compared in
 Figures~\ref{fig:main-biomass-base-alternative-5}--\ref{fig:main-status-base-alternative-5-mcmc}.

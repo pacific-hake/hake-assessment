@@ -16,7 +16,7 @@ build.doc <- function(knit.only = FALSE,
 
   knit(paste0(doc.name,".rnw"))
   if(!knit.only){
-    system(paste0("latex -synctex=1 ", doc.name, ".tex"),
+    system(paste0("latex ", doc.name, ".tex"),
            invisible = FALSE,
            show.output.on.console = FALSE)
     if(make.bib){
@@ -24,6 +24,9 @@ build.doc <- function(knit.only = FALSE,
              invisible = FALSE,
              show.output.on.console = TRUE)
     }
+    system(paste0("latex ", doc.name, ".tex"),
+           invisible = FALSE,
+           show.output.on.console = FALSE)
     system(paste0("latex ", doc.name, ".tex"),
            invisible = FALSE,
            show.output.on.console = FALSE)
