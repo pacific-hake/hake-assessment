@@ -343,7 +343,7 @@ make.est.numbers.at.age.table(
   table.type = 5,
   csv.dir = output.csv.dir,
   xcaption = paste0("Estimated biomass-at-age at the beginning ",
-                    "of the year from the base model (MLE; thousand metric tons)."),
+                    "of the year from the base model (MLE; thousand t)."),
   xlabel = "tab:main-est-biomass-at-age",
   font.size = 7,
   space.size = 8)
@@ -479,7 +479,7 @@ make.short.parameter.estimates.table(
 
 <<main.reference.points.table, results='asis', echo=FALSE>>=
 make.reference.points.table(base.model,
-                            xcaption = paste0("Summary of median and 95\\% credibility intervals of equilibrium reference points for the \\fishname\\ base assessment model. ** [surely not 1966, and check what we end up using]Equilibrium reference points were computed using ", start.yr, "--", end.yr-1, " averages for mean weight-at-age and baseline selectivity."),
+                            xcaption = paste0("Summary of median and 95\\% credibility intervals of equilibrium reference points for the \\fishname\\ base assessment model. Equilibrium reference points were computed using 1975--", end.yr-1, " averages for mean weight-at-age and baseline selectivity."),
                             xlabel = "tab:main-reference-points",
                             font.size = 10,
                             space.size = 12)
@@ -610,7 +610,7 @@ make.short.parameter.estimates.sens.table(retro.list,
                                           end.yr = end.yr,
                                           age.1 = FALSE,
                                           digits = 3,
-                                          xcaption = paste0("Select parameters, derived quantities, reference point estimates, and negative log likelihoods for retrospective analyses using the base model. Some values are implied since they occur after the ending year of the respective retrospective analysis."),
+                                          xcaption = paste0("Select parameters, derived quantities, reference point estimates, and negative log likelihoods for retrospective analyses using the MLE estimates from the base model. Some values are implied since they occur after the ending year of the respective retrospective analysis."),
                                           xlabel = "tab:main-parameter-estimates-retro",
                                           font.size = 10,
                                           space.size = 12)
