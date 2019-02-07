@@ -1165,7 +1165,8 @@ P$(B_{\Sexpr{assess.yr+1}} > 0.8\Bmsy) = \Sexpr{f(min(dfo.probs.fore[,"SSB_2020>
 
 Sensitivity analyses were conducted to investigate influence of data inputs and
 structural uncertainty of the base model by investigating how changes to the
-model affected the estimated values and derived quantities. For expediency, all
+model affected the estimated values and derived quantities. For expediency,
+almost all
 sensitivity analyses compared MLE estimates rather than MCMC
 posteriors. Therefore, the values reported below are not directly comparable to
 the base model MCMC values reported elsewhere. For a comparison of the base model
@@ -1190,12 +1191,17 @@ include the following:
 \item Use of the Francis method for data-weighting;
 
 \item Consideration of alternative standard deviations for time-varying
-  selectivity; and
+  selectivity;
 
 \item Consideration of an alternative parameterization for time-varying
-  selectivity.
+  selectivity; and
+
+\item Consideration of alternative assumptions concerning weight-at-age and
+  fecundity.
 
 \end{enumerate}
+
+**[second part of first sentence no longer true]
 
 In general, none of the sensitivities resulted in any significant departure from
 the main population dynamics of the base model; all models showed large
@@ -1503,6 +1509,8 @@ the parameter selectivity was kept as before for this assessment, with the
 hopes that the semi-parametric setup could be further explored in the year
 ahead for potential inclusion in a future assessments.
 
+Sensitivity runs concerning weight-at-age and fecundity are discussed in
+Section~\ref{sec:assessment-fecundity-recap} and~\ref{sec:assessment-sensitivity-fecundity}.
 Any additional sensitivity runs arising from the Scientific Review Group
 meeting to be held from 19th February to 22nd February 2019 will be documented
 in Appendix~\ref{chap:srg-requests} and briefly summarized here.
@@ -1602,7 +1610,7 @@ in 2019.
 % [Hence wtatage.ss has -2018 rows for fecundity
 %  and for the weight-at-age matrices].
 
-\subsubsection{Fecundity and Weight-at-age Sensitivities}\label{sec:assessment-sensitivity-fecundity}
+\subsubsection{Fecundity and weight-at-age sensitivities}\label{sec:assessment-sensitivity-fecundity}
 
 Several sensitivities to time-varying fecundity and weight-at-age extrapolation
 schemes were investigated. During the SRG meeting in 2018, the JTC was asked to
