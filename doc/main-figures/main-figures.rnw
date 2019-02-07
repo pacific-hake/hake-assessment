@@ -26,7 +26,7 @@ make.overview.map.plot(path = rootd.map.data)
 \end{center}
 \vspace{-3mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-2 and older \fishname\
-  from joint US-Canada acoustic surveys
+  from the Joint U.S.~and Canada acoustic surveys
   \Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}. Area of the circle is roughly
   proportional to observed backscatter.
   Histograms show survey-estimated biomass for ages 2 to 20, with major cohorts
@@ -53,9 +53,9 @@ make.overview.map.plot(path = rootd.map.data)
 \end{center}
 \vspace{-5mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-1 \fishname\
-  from joint US-Canada acoustic surveys 2003 --\Sexpr{survey.end.yr}. Age-1 \fishname\ are not fully sampled
+  from the Joint U.S.~and Canada acoustic surveys 2003 --\Sexpr{survey.end.yr}. Age-1 \fishname\ are not fully sampled
   during the acoustic survey and were not explicitly considered during establishment of the
-  survey sampling design. The area of the circle is roughly
+  survey sampling design. Area of the circle is roughly
   proportional to observed backscatter. Figure produced by Julia Clemons (NOAA).}
 \label{fig:main-backscatter-map-age1}
 \end{figure}
@@ -137,7 +137,7 @@ make.age.comp.bubble.plot(base.model, subplot = 1,
                           end.yr = max(base.model$dat$agecomp$"Yr"))
 @
 \end{center}
-\caption{**[check numbers make sense]Age compositions for the acoustic survey (top) and the aggregate fishery (bottom, all sectors combined)
+\caption{Age compositions for the acoustic survey (top) and the aggregate fishery (bottom, all sectors combined)
   for the years \Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}.
   Proportions in each year sum to 1.0 and area of the bubbles are
   proportional to the proportion and consistent in both panels (see key at top).
@@ -156,7 +156,7 @@ make.age.comp.bubble.plot(base.model, subplot = 1,
 make.survey.biomass.plot(base.model)
 @
 \end{center}
-\caption{Acoustic survey biomass index (millions of metric tons).
+\caption{Acoustic survey biomass index (millions of tons).
   Approximate 95\% confidence intervals (black bars) are based on sampling
   variability; blue bars for 2009 include additional uncertainty due to
   squid/hake apportionment.}
@@ -172,10 +172,10 @@ make.survey.biomass.extrap.plot(survey.comparison, show = 2:3)
 @
 \end{center}
 \caption{Acoustic survey biomass indices with and without extrapolation
-  (millions of metric tons).
-  Approximate 95\% confidence intervals are based on only sampling variability
+  (millions of tons).
+  Approximate 95\% confidence intervals are based on sampling variability
   (and squid/hake apportionment uncertainty in 2009). See
-  Table~\ref{tab:main-survey-comparison} for values used in the base model}
+  Table~\ref{tab:main-survey-comparison} for values used in the base model.}
 \label{fig:main-survey-extrap-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -196,21 +196,17 @@ make.survey.age1.plot(age.1.index,
 \begin{figure}[H]
 \begin{center}
 <<maturity.ogive.figure, fig.height=7.5, fig.width=7.5>>=
-maturity.ogive.figure()
+maturity.ogive.figure(model = base.model, useyears = 1975:last.data.yr)
 @
 \end{center}
-\caption{**Fraction of fish that are mature at each age north and south of
+\caption{Fraction of fish that are mature at each age north and south of
   34.44$^\circ$N
-  (upper panel) and comparison of old and new fecundity relationships
-  (lower panel). The old fecundity relationship (black line in lower plot)
-  was a product of the
-  maturity-at-length reported by \citet{DornSaunders1997} and the
-  weight-at-length estimated in 2011, converted to age using a parametric
-  growth curve estimated in 2011.
-  The new fecundity relationship (purple line) is the product
-  of the mean weight-at-age
-  averaged across all years (green line) and the maturity-at-age for the samples
-  collected from North of 34.44$^\circ$N (blue line in upper plot).}
+  (upper panel) and the fecundity relationship (lower panel). 
+  The fecundity relationship (purple line) is the product
+  of the weight-at-age
+  and the maturity-at-age for the samples
+  collected from North of 34.44$^\circ$N (blue line in upper plot)
+  averaged across 1975 to \Sexpr{last.data.yr}.}
 \label{fig:main-maturity}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -247,7 +243,8 @@ weight.at.age.heatmap(base.model)
 \vspace{0mm}
 \caption{Sample sizes for developing empirical weight-at-age values used in the
   base model (the values match the colors).
-  Data are available from 1975--\Sexpr{max.fishery.age.prop[2]}.}
+  Data are available from 1975--\Sexpr{max.fishery.age.prop[2]}.
+  The total sample size for each age is shown at the bottom.}
 \label{fig:main-empirical.weight.at.age.numbers}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -260,7 +257,7 @@ weight.at.age.heatmap(base.model)
 \end{center}
 \vspace{0mm}
 \caption{Fit (red lines) to yearly weight-at-age data (standard box plots) by
-   age group (age-2 to 15; where age-15 is an accumulator group) using weighted
+   age group (age-2 to age-15; where age-15 is an accumulator group) using weighted
    least squares.  Statistical weights in the regression were based on the
    inverse of the annual sample variance.}
 \label{fig:main-empirical.weight.at.age.years}
@@ -287,7 +284,7 @@ make.comparison.plot(bridge.models.1,
 @
 \end{center}
 \caption{Bridging models showing the \Sexpr{last.assess.yr} base model
-  and the results of sequentially updating historic catch data, historic age composition data,
+  and the results of sequentially updating historic catch data, historic age-composition data,
   and then historic weight-at-age data.  The points disconnected from the time-series on the
   left side show the unfished equilibrium spawning biomass estimates.}
 \label{fig:main-bridge-biomass}
@@ -339,9 +336,9 @@ par <- oldpar
 @
 \end{center}
 \caption{Bridging models showing the \Sexpr{last.assess.yr} base model
-  and the results of sequentially building upon updates shown in
-  Figure~\ref{fig:main-bridge-biomass} by adding the 2018 catch data, adding
-  the 2018 age composition and weight-at-age data, and then finally changing to
+  and the results of sequentially building upon the base model with updates shown in
+  Figure~\ref{fig:main-bridge-biomass} (i.e., adding the 2018 catch data and 
+  2018 age-composition and weight-at-age data) and then finally changing to
   time-varying fecundity which became the base model. See
   Section~\ref{sec:assessment-sensitivity-analyses} for further details about modeling
   time-varying fecundity.  Panels are spawning biomass
@@ -403,7 +400,7 @@ make.mcmc.diag.hists.plot(base.model)
   %quantities for the time-series of spawning biomass, and relative spawning biomass.
   together with the derived time series of
   spawning biomass and relative spawning biomass.
-  The level of autocorrelation in the chain (distribution across lag times, i.e. distance between samples in the chain, shown in the top left panel) influences the effective sample size (top right panel) used to estimate posterior distributions. The Geweke statistic (lower left panel) tests for equality between means located in the first part of the chain against means in the last part of the chain. The Heidelberger and Welch statistic (lower right panel) tests if the sampled values come from a stationary distribution by comparing different sections of the chain.}
+  The level of autocorrelation in the chain (distribution across lag times, i.e., distance between samples in the chain, shown in the top left panel) influences the effective sample size (top right panel) used to estimate posterior distributions. The Geweke statistic (lower left panel) tests for equality between means located in the first part of the chain against means in the last part of the chain. The Heidelberger and Welch statistic (lower right panel) tests if the sampled values come from a stationary distribution by comparing different sections of the chain.}
 \label{fig:main-mcmc.diag.hists}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -445,7 +442,7 @@ make.mcmc.diag.pairs.plot(base.model,
                           recr = (end.yr-10):(end.yr-1))
 @
 \end{center}
-\caption{Posterior correlations among recruitment deviations from recent years. Numbers refer to the absolute correlation coefficients, with font size proportional to the square root of the coefficient.}
+\caption{Posterior correlations among recruitment deviations from recent years and equilibrium recruitment. Numbers refer to the absolute correlation coefficients, with font size proportional to the square root of the coefficient.}
 \label{fig:main-mcmc-pairs-recruit-devs}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -486,7 +483,7 @@ make.age.comp.fit.plot(base.model,
 par <- oldpar
 @
 \end{center}
-\caption{Base model fit to the observed fishery (top) and acoustic survey (bottom) age composition data.
+\caption{Base model fits to the observed fishery (top) and acoustic survey (bottom) age-composition data.
   Colored bars show observed proportions with colors following each cohort across years.
   Points with intervals indicate median expected proportions and 95\% credibility
   intervals from the MCMC calculations.}
@@ -501,8 +498,7 @@ par <- oldpar
 make.age.comp.pearson.plot(base.model)
 @
 \end{center}
-\caption{Pearson residuals for base model MLE fits to the age
-  composition data. Closed bubbles are positive residuals (observed > expected)
+\caption{Pearson residuals for base model MLE fits to the age-composition data. Closed bubbles are positive residuals (observed > expected)
   and open bubbles are
   negative residuals (observed < expected).}
 \label{fig:main-age-comp-pearson}
@@ -645,7 +641,7 @@ make.recruitment.plot(base.model,
                       add.r0 = TRUE)
 @
 \end{center}
-\caption{Medians (solid circles) and means ($\times$) of the posterior distribution for recruitment (billions of age-0) with
+\caption{Medians (solid circles) and means ($\times$) of the posterior distribution for recruitment (billions of age-0 fish) with
   95\% posterior credibility intervals (blue lines). The median of the posterior distribution for mean unfished
   equilibrium recruitment ($R_0$) is shown as the horizontal dashed line with a 95\% posterior credibility
   interval shaded between the dotted lines.}
@@ -684,7 +680,7 @@ make.mcmc.sr.variability.plot(base.model,
 \caption{Estimated stock-recruit relationship for the base model with median predicted recruitments
   and 95\% posterior credibility intervals. Colors indicate time-period, with yellow colors in the
   early years and blue colors in the recent years. The thick solid black line indicates the central
-  tendency (mean) and the red line the central tendency after bias correcting for the log-normal
+  tendency (mean) and the red line indicates the central tendency after bias correcting for the log-normal
   distribution (median). Shading around stock-recruit curves indicates uncertainty in shape associated
   with distribution of the steepness parameter ($h$). The gray polygon on the right indicates the
   expected distribution of recruitments relative to the unfished equilibrium.}
@@ -699,7 +695,7 @@ make.mcmc.sr.variability.plot(base.model,
 make.numbers.at.age.plot(base.model)
 @
 \end{center}
-\caption{Bubble plot of maximum likelihood (MLE) estimates of population numbers at age at the beginning of each year, where diagonals follow each year-class through time.
+\caption{Bubble plot of MLE estimates of population numbers at age at the beginning of each year, where diagonals follow each year-class through time.
   The red line represents the mean age. The scale of the bubbles is represented in the key where the units are
   billions of fish (with the largest bubble representing
   \Sexpr{round(max(base.model$natage[base.model$natage$"Beg/Mid"=="B",paste(0:20)])/1e6,1)}~billion
@@ -879,7 +875,7 @@ make.age.comp.forecast.plot(base.model)
   selectivity averaged across the most recent five years and the distribution for expected
   numbers at age at the start of \Sexpr{end.yr} (see Table~\ref{tab:main-est-numbers-at-age} for
   the MLEs for numbers-at-age for all years). The panel on the right is scaled based on
-  the weight at each age averaged across all years.}
+  the weight at each age averaged across 1975 to \Sexpr{last.data.yr}.}
 \label{fig:main-age-comp-forecast}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1193,7 +1189,7 @@ rm(temp)
   used in sensitivity analyses (right). Panels show transformation from
   estimated parameters (a) to cumulative sum up to each age (b) and the resulting
   selectivity after exponential transformation and rescaling to have maximum 1.0 (c),
-  as described by equations (1) through (3).
+  as described by equations (1-3).
   In the base model, the deviations (red lines) are applied to the
   baseline parameters, resulting
   in a new set of parameters which are transformed in the same way, as shown in the
@@ -1307,7 +1303,7 @@ weight.at.age.heatmap(sens.models.5[[2]])
   Data are only available from 1975--\Sexpr{max.fishery.age.prop[2]}.
   Values based on assumptions for the early and late years are shown
   outside the blue lines (see Table~\ref{tab:main-wtatage-runs}).
-  Bold values represent unavailable data -- between the blue lines
+  Bold values between the blue lines represent unavailable data and 
   such weights were interpolated or extrapolated from adjacent ages or years.
   The sample-weighted mean weight-at-age is shown at the bottom.}
 \label{fig:main-empirical.weight.at.age.sens.a}
@@ -1325,7 +1321,7 @@ weight.at.age.heatmap(sens.models.6[[1]], proj.line.yr=2017)
 \caption{Empirical weight-at-age (kg) values used for sensitivity
   runs~55 and~57. Details are as in
   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}. Note
-  the 2018 values have to be assumed (the top blue line is different to
+  the 2018 values have to be assumed (the location of the top blue line is different to
   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}), as described
   in Table~\ref{tab:main-wtatage-runs}.}
 \label{fig:main-empirical.weight.at.age.sens.b}
@@ -1343,7 +1339,7 @@ weight.at.age.heatmap(sens.models.5[[3]], proj.line.yr=2017)
 \caption{Empirical weight-at-age (kg) values used for sensitivity
   runs~52 and~54. Details are as in
   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}. Note
-  the 2018 values have to be assumed (the top blue line is different to
+  the 2018 values have to be assumed (the location of the top blue line is different to
   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}), as described
   in Table~\ref{tab:main-wtatage-runs}.}
 \label{fig:main-empirical.weight.at.age.sens.c}
@@ -1361,7 +1357,7 @@ weight.at.age.heatmap(sens.models.6[[2]], proj.line.yr=2017)
 \caption{Empirical weight-at-age (kg) used for sensitivity
   runs~56 and~58. Details are as in
   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}. Note
-  the 2018 values have to be assumed (the top blue line is different to
+  the 2018 values have to be assumed (the location of the top blue line is different to
   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}), as described
   in Table~\ref{tab:main-wtatage-runs}.}
 \label{fig:main-empirical.weight.at.age.sens.d}
@@ -1504,8 +1500,8 @@ make.comparison.plot.mcmc(c(list(base.model), sens.models.6),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{MCMC median posterior estimates with 95\% credible interval of spawning
-  biomass for the base model and alternative sensitivity runs 55, 56, 57, and 58.
+\caption{MCMC median posterior estimates with 95\% credible interval of stock
+  status for the base model and alternative sensitivity runs 55, 56, 57, and 58.
   See Figure~\ref{fig:main-biomass-base-alternative-6} and
   Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
 \label{fig:main-status-base-alternative-6-mcmc}
@@ -1561,8 +1557,7 @@ make.squid.plot(retro.list,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Retrospective analysis of recruitment deviations from maximum
-  likelihood estimate (MLE) models over the last
+\caption{Retrospective analysis of recruitment deviations from MLE models over the last
   \Sexpr{length(plot.retro.yrs)+1} years. Recruitment deviations are
   the log-scale differences between recruitment estimated by the model
   and expected recruitment from the spawner-recruit relationship.
