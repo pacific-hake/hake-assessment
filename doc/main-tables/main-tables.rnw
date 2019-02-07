@@ -369,8 +369,8 @@ make.est.numbers.at.age.table(
       "(catch-at-age divided by biomass-at-age at the beginning of the year) ",
       "for each year from the base model (MLE; percentage of age class removed by fishing)."),
   xlabel = "tab:main-est-exp-rate-at-age",
-  font.size = 7,
-  space.size = 8)
+  font.size = 6,
+  space.size = 7)
 @
 
 \end{landscape}
