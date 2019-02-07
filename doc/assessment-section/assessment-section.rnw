@@ -1673,12 +1673,18 @@ Figures~\ref{fig:main-biomass-base-alternative-5}--\ref{fig:main-status-base-alt
 These are the runs which have the pre-1975 weights-at-age being set to the
 long-term mean from 1975--2018. Runs 52 and 53 show little difference
 from one another, implying that changing the post-2017 weights-at-age does not have much effect
-on model outcome. **The base model and run 54, which both include time-varying fecundity, show a
-departure from the others, with an obvious large increase in and around the 1975 time period
-(Figures~\ref{fig:main-biomass-base-alternative-5}, \ref{fig:main-biomass-base-alternative-5-mcmc}).
-This is caused by the weights-at-age in the early part of the time series being significantly
-higher for older fish and having the fecundity in that time period changed accordingly. Note that
-it is difficult to see the difference between the base model and run 54 using the MLE plots.
+on model outcome. However, they show a noticeable decrease in the estimated
+spawning biomass (compared to the base model) in and around the 1975 time period
+(Figures~\ref{fig:main-biomass-base-alternative-5} and~\ref{fig:main-biomass-base-alternative-5-mcmc}).
+The peak in biomass for the base model is caused by the weights-at-age in
+the early part of the time series being significantly
+higher for older fish and having the fecundity in that time period change
+accordingly when using time-varying fecundity.
+
+Run~54 also includes time-varying fecundity and exhibits the biomass peak around
+1975. Note that
+it is difficult to see the difference between the base model and run 54 using the MLE plots
+(because their only difference is in the weight-at-age for 2018 onwards).
 The MCMC plots allow us to see that the blue and red lines (base model and run 54) follow similar trajectories
 (Figures~\ref{fig:main-biomass-base-alternative-5-mcmc} and~\ref{fig:main-status-base-alternative-5-mcmc}).
 
@@ -1690,15 +1696,14 @@ as do runs 56 and 57. The difference between these two groups is the inclusion o
 
 Having non-time-varying fecundity and using short-term
 pre-1975 mean weights-at-age (runs 56 and 57) give an inflated 2019 stock size
-(Figures~\ref{fig:main-biomass-base-alternative-6}--\ref{fig:main-biomass-base-alternative-6-mcmc}),
+(Figures~\ref{fig:main-biomass-base-alternative-6} and~\ref{fig:main-biomass-base-alternative-6-mcmc}),
 but due to the inflation of the initial biomass give a similar stock status to the base model
-(Figures~\ref{fig:main-status-base-alternative-6}--\ref{fig:main-status-base-alternative-6-mcmc}).
+(Figures~\ref{fig:main-status-base-alternative-6} and~\ref{fig:main-status-base-alternative-6-mcmc}).
 
 Runs 55-58 produce an inflated initial biomass, due to the use of a short-term (1975--1979) mean
 weight-at-age being used for the pre-1975 time period. The weights-at-age for older fish in
 those early years is significantly higher than the long term mean as can be seen in
-Figures~\ref{fig:main-empirical.weight.at.age.sens.b} and
-\ref{fig:main-empirical.weight.at.age.sens.d}.
+Figures~\ref{fig:main-empirical.weight.at.age.sens.b}--\ref{fig:main-empirical.weight.at.age.sens.d}.
 
 MCMC results for runs 53 and 54 including decision tables can be found in
 Appendices~\ref{chap:fecundity-53} and \ref{chap:fecundity-54}, because these
