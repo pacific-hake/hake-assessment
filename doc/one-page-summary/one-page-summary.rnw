@@ -71,7 +71,7 @@ Allowable Catch of
 \Sexpr{last.year.tac}~t show the estimated median relative spawning biomass
 decreasing from 64\% in \Sexpr{end.yr} to 59\% in \Sexpr{end.yr+1} and 49\% in
 \Sexpr{end.yr+2}. However, due to uncertainty there is an estimated 40\% chance
-of the spawning biomass falling below 40\% of $B_0$ in \Sexpr{end.yr+2}. There is an
+of the spawning biomass falling below $\Bforty$ in \Sexpr{end.yr+2}. There is an
 estimated 72\% chance of the spawning biomass declining from \Sexpr{end.yr} to
 \Sexpr{end.yr+1}, and a
 86\% chance of it declining from \Sexpr{end.yr+1} to
