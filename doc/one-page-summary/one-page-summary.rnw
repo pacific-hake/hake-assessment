@@ -23,9 +23,9 @@ minor changes to historical (pre-\Sexpr{end.yr-1}) catch, age composition and
 weight-at-age data, addition of \Sexpr{end.yr-1} fishery catch and age-composition
 data, and addition of \Sexpr{last.data.yr} weight-at-age data.
 
-  \item Limited exploratory and supplementary analyses could be completed for
-the \Sexpr{assess.yr} assessment as a result of the U.S. government shutdown
-considerably delaying delivery of U.S. age data and reducing JTC preparatory time.
+%  \item Limited exploratory and supplementary analyses could be completed for
+%the \Sexpr{assess.yr} assessment as a result of the U.S. government shutdown
+%considerably delaying delivery of U.S. age data and reducing JTC preparatory time.
 
   \item Coastwide catch in \Sexpr{end.yr-1} was the second largest on record at
     \Sexpr{last.year.landings}~t [t represents metric tons],
