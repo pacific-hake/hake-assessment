@@ -1666,8 +1666,11 @@ period and the short-term (2016--2018) mean for the post-2017 period can be seen
 Figure~\ref{fig:main-empirical.weight.at.age.sens.c}. This figure includes runs 56
 and 58.
 
-MCMC runs with a chain length of 12,000,000 were done for these sensitivities.
-Comparisons of both the MLE and posterior biomass and relative biomass trajectories
+MCMC runs with a chain length of 12,000,000 were done for these sensitivities. The
+first 2,000,000 values were discarded to eliminate ‘burn-in’ effects and each
+5,000th value thereafter was retained, resulting in 2000 samples from the posterior
+distributions for model parameters and derived quantities. Comparisons of both the
+MLE and posterior biomass and relative biomass trajectories
 follow.
 
 The base model and runs 52, 53, and 54 are compared in
