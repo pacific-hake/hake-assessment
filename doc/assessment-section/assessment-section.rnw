@@ -276,17 +276,18 @@ weight-at-age. The results of this analysis showed a near zero slope for all age
 with age-13, 14, and 15 being slightly positive and all others being slightly negative
 (Figure~\ref{fig:main-empirical.weight.at.age.years}), which was not unexpected
 given the large amount of inter-annual variability
-in the data.  Estimated slope parameters were sensitive to excluding data from
-1975--1980. Nonetheless, there was not a clear trending relationship for weight-at-age
-data through time that would otherwise suggest increasing or decreasing pre-1975 weights
-from the long-term mean.  Overall inferences were similar when using length instead of weight.}
+in the data. However, estimated slope parameters were sensitive to excluding data from
+1975--1980. This, together with the lack of a clear trend of weights-at-age
+through time, led us to use the long-term mean (1975--2018) weights-at-age
+(rather than the short term from 1975--1979) for
+the pre-1975 time period.
+Overall inferences were similar when using length instead of weight.}
 
-\emph{**Furthermore, there were small numbers of age samples for the early years (especially 1975)
-as shown in Figure~\ref{fig:main-empirical.weight.at.age.numbers}. with the few heavy 15-year-olds
-1976-1979 influencing the average for 1975-1979 (or maybe they're not that
-influential?).} %Could mention this in Section~\ref{sec:assessment-fecundity-recap} if it
-% fits better there.
-
+\emph{Furthermore, there were small numbers of age samples for the early years (especially 1975)
+as shown in Figure~\ref{fig:main-empirical.weight.at.age.numbers}. The few heavy 15-year-olds
+1976--1979 influence the average for 1975--1979, further justifying use of the long-term mean
+(1975--2018) for the pre-1975 time period. See Sections~\ref{sec:assessment-fecundity-recap}
+and~\ref{sec:assessment-sensitivity-fecundity} for further details.}
 
 \emph{Regarding forecast year weight-at-ages, the JTC used the weighted
 least squares analysis to also suggest that the assumption of using the long-term
