@@ -1513,6 +1513,124 @@ in Appendix~\ref{chap:srg-requests} and briefly summarized here.
 
 %%Several key underlying structural model assumptions were identified that have persisted across many previous hake assessments, and thus warrant revisiting periodically as a set of reference sensitivity examinations to new base models.  Those identified here include the specification of natural mortality, the level of variation assumed about the stock-recruitment relationship ($\sigma_r$), and the resiliency of the stock in terms of recruitment (steepness).  The sensitivity of the base model to changes in the input $\sigma_r$ and to the prior distributions for natural mortality and steepness were explored.  The standard deviation of the prior distribution on natural mortality was increased from 0.1 (as in the base model) to 0.2 and 0.3.  The mean of the prior distribution on steepness was decreased from 0.777 (base) to 0.500, and steepness was also fixed at 1.0.  The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative high (2.0) and low (1.0) states.  These key sensitivities had little effect on the overall estimated population trend throughout the time series (Figure~\ref{fig:main-biomass-base-alternative-1}), but they do have a significant impact on the estimated scale of the population (quite different estimates of $B_0$ and $R_0$ parameters; Table~\ref{tab:main-parameter-estimates-sens-1}).  The least influential in terms of relative spawning biomass (Figure~\ref{fig:main-status-base-alternative-1}) as compared to the base model is fixing steepness to 1.0, changing the prior mean on steepness, and moderately changing the prior standard deviation on natural mortality (0.2).  The greatest difference in stock status compared to the base model results from changing the input for $\sigma_r$.  Estimates of natural mortality increased from 0.215 for the base model (prior standard deviation of 0.1) to 0.250 for the sensitivity run with the prior standard deviation set to 0.3.  When the mean of the prior distribution for steepness was changed from 0.777 (base model) to 0.5, the estimate for steepness decreased from 0.861 to 0.602.
 
+% $ [makes emacs pretty again]
+
+\subsubsection{Recap of 2018 time-varying alternative model run}\label{sec:assessment-fecundity-recap}
+
+**Read over again to remove any repitition.
+
+In 2018 the SRG requested an alternative model run that used time-varying
+fecundity \citep{JTC2018}. We have used time-varying fecundity in the 2019 base model,
+and in three model runs with alternative assumptions about the weights-at-age
+for the years without data. For a given year, fecundity is the
+(element-wise) product of the maturity ogive and the weight-at-age
+vector for that year. Thus, the alternative weight-at-age assumptions
+affect the fecundity. We also tested these four alternative assumptions
+when using non-time-varying fecundity. The eight combinations are summarised
+in Table~\ref{tab:main-wtatage-runs}, and the four weight-at-age assumptions
+are shown in the heatmaps in
+Figures~\ref{fig:main-empirical.weight.at.age.sens.a}-\ref{fig:main-empirical.weight.at.age.sens.d}.
+The eight runs are now explained in the context of the 2018 assessment, with results
+given in \ref{sec:assessment-sensitivity-fecundity}.
+
+There were four components to the SRG-requested alternative model run that
+used time-varying fecundity (see p23 of \citealt{JTC2018}):
+
+a) ``Add time-varying fecundity by multiplying the weight-at-age matrix (rather than
+   an overall mean weight-at-age vector as in the base model) and the new maturity ogive
+   to get annual estimates of fecundity from 1975-2017.''
+
+We have done this in the 2019 base model (for the updated time period
+1975-2018) because it is more consistent with time-varying weight-at-age
+than the non-time varying fecundity used in the 2018 base model. The
+fecundity for the 2018 base model came from multiplying the maturity ogive by
+an average weight-at-age vector
+to give age-dependent fecundity that was constant in time. Sensitivity
+runs 54, 55 and~58 retain the time-varying fecundity of the base model.
+Sensitivity runs 52, 53, 56 and~57 use non-time-varying fecundity, as per the
+2018 base model (Table~\ref{tab:main-wtatage-runs}).
+
+b) ``Set equilibrium and 1966-1974 fecundity (where empirical data are not
+available) to the product of maturity and the mean weight-at-age averaged
+over 1975-1979.''
+
+We have not done this in the 2019 base model, but are using the long-term average
+(1975-2018) for the equilibrium and
+1966-1974 fecundity, as for the 2018 base model. Using instead the fecundity based on
+1975-1979 is examined in sensitivity runs 55, 56, 57 and~58.
+
+We did not use the 1975-1979 fecundity because
+
+**Aaron to write something here. Here are the rough notes that Andy wrote based on our JTC notes and memory, when
+we had to assume that we couldn't get your input:
+
+**At our JTC planning meeting, Aaron Berger showed plots of sample sizes
+(unavailable for this document). For instance, there was only one (if we
+remember correctly) age-15 fish in 1976, which then gets used as the 1975 value
+(see the bold value for 1975 in Figure~\ref{fig:main-empirical.weight.at.age}).
+The same holds for age-14. If we
+(CG and AE) remember correctly, the sample sizes were generally low for the
+early years. thus, using the average of the first five years of data for all of
+the early years does not seem justified. In particular, the single age-15 fish
+in 1976 is the heaviest fish on record (by 360~g). Our JTC notes say that:
+``Aaron's analysis suggests that there's not compelling evidence that we should
+use those short-term averages for the pre-data years or the forecast as opposed
+to the status-quo of the long-term average across all years.'' Thus, although we
+are not able to present these analyses, we are using the long-term average
+(across all years) for the equilibrium and 1966-1974 fecundity, as for the 2018
+base model.
+
+For reference, our JTC notes say: ``For 2019 allowing fecundity-at-age for the
+years with data seems reasonable, but Aaron's analysis suggests that there's not
+compelling evidence that we should use those short-term averages for the
+pre-data years or the forecast as opposed to the status-quo of the long-term
+average across all years.''
+
+c) ``Set forecast-year fecundity (including 2017 due to current configurations in
+Stock Synthesis) weight-at-age to the product of maturity and mean weight-at-age
+over 2015-2017.''
+
+We found no compelling evidence to use the short-term mean
+(2016-2018) for the forecasts [**Aaron to maybe expand why].
+
+Also, the `current configuration of Stock Synthesis' issue is the
+requirement that the forecast years' weights-at-age be either (i)~the same as the
+pre-data (pre-1975) years, or (ii)~the same as the final year of data (2018).
+Thus, we cannot set the forecast years' weights-at-age to be the mean of
+2016-2018 without setting the 2018 weights-at-age to be this, which seems
+inappropriate for the base model (but is tested in runs~52, 54, 56 and~58).
+So, for the 2019 base model
+we retained the 2018 base model's assumption of using the mean from 1975-2018 for
+projections (which satisfies the requirement (i) of Stock Synthesis just described).
+
+Similarly, we cannot set the forecast year's weights-at-age to be the mean of
+1975-2018 when the pre-1975 weight-at-age is 1975-1979, without setting the 2018 weights-at-age
+to also be the mean from 2016-2018. This setting is done for model runs 55 and~57, but precludes
+run~55 from being a sensible base model because the 2018 weights-at-age are not
+the true 2018 data (and run~57 does not use time-varying fecundity). Run~53 uses
+the same weight-at-assumptions as the base model but does not use time-varying fecundity.
+
+% Aside for 2019. When we didn't have the 2018 age data we set it to be the mean
+% from 2016-2018, which serendipitously avoided the configuration issue, and so
+% we had the equivalent to run 54 as the base case.
+
+d) During the 2018 SRG meeting it was further realised that: ``An inconsistency
+in this alternative run is that the the mean weight-at-age
+across all years is still used for the calculation of
+\emph{stock biomass} in the years outside the range with empirical data (1975-2017),
+rather than the short-term averages (1975-1979 or 2015-2017). A brief examination of
+the sensitivity of the alternative run to removing this inconsistency showed
+relatively little change in results.''
+
+This inconsistency is resolved for all runs in 2019.
+% [Hence wtatage.ss has -2018 rows for fecundity
+%  and for the weight-at-age matrices].
+
+These changes meant that Stock Synthesis did not converge, but this was overcome
+by changing the initial value for the numerical algorithms (not the prior) of
+the steepness of paramater $h$ from 0.88 to 0.95. This was done for the new base
+case (bridging **run~43 shows no effect, **see section **).
+
 \subsubsection{Fecundity and Weight-at-age Sensitivities}\label{sec:assessment-sensitivity-fecundity}
 
 Several sensitivities to time-varying fecundity and weight-at-age extrapolation
