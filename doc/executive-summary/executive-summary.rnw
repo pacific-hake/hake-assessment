@@ -55,9 +55,9 @@ make.catches.plot(catches,
 Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to
 the modern fishery. Over the early period, \Sexpr{min(catches$Year)}--1990, most
 removals were from foreign or joint-venture fisheries. Over all years, the
-fishery in U.S. waters averaged \Sexpr{f(mean(catches$Ustotal))}~t, or
+catch in U.S. waters averaged \Sexpr{f(mean(catches$Ustotal))}~t, or
 \Sexpr{round(100*mean(catches$Ustotal)/mean(catches$TOTAL),1)}\% of the average
-total landings, while catch from Canadian waters averaged
+total catch, while catch from Canadian waters averaged
 \Sexpr{f(mean(catches$CANtotal))}~t.  Over the last 10 years,
 \Sexpr{max(catches$Year)-9}--\Sexpr{max(catches$Year)}
 (Table~\ref{tab:es-catches}), the average coastwide catch was
@@ -83,7 +83,7 @@ make.catches.table(catches,
                     catch associated with certain research-related activities.
                     Catch associated with surveys and discarded bycatch in
                     fisheries not targeting hake are not currently included in
-                    the model.",
+                    the model. CP is catcher-processor and MS is mothership.",
                    xlabel = "tab:es-catches",
                    font.size = 9,
                    space.size = 10,
@@ -131,10 +131,10 @@ make.survey.biomass.plot(base.model)
 @
 \end{center}
 %\vspace{0mm}
-\caption{Acoustic survey biomass index (millions of metric tons). Approximate
-         95\% confidence intervals are based on only sampling variability
-         (\Sexpr{survey.start.yr}--2007, 2011--\Sexpr{survey.end.yr}) in addition
-         to squid/hake apportionment uncertainty (2009, in blue).}
+\caption{Acoustic survey biomass index (millions of tons).
+  Approximate 95\% confidence intervals (black bars) are based on sampling
+  variability; blue bars for 2009 include additional uncertainty due to
+  squid/hake apportionment.}
 \label{fig:es-survey-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
