@@ -1117,8 +1117,8 @@ to \Sexpr{forecast.yrs[3]} (Table~\ref{tab:main-risk-year-2} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-2}).
 
 The spawning biomass is predicted to decrease from \Sexpr{forecast.yrs[1]}
-to \Sexpr{forecast.yrs[2]} with a greater than 50\% probability for catch
-levels investigated above 180,000~t (Table~\ref{tab:main-risk-year-1} and
+to \Sexpr{forecast.yrs[2]} with a greater than 50\% probability for a catch
+level inbetween 180,000~t and 350,000~t (Table~\ref{tab:main-risk-year-1} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-1}). The model predicts high
 biomass levels and the predicted probability of the spawning biomass dropping below
 $\Bten$ ($0.1B_0$) in 2019 is
@@ -1129,7 +1129,7 @@ class and the model estimated below average recruitment for the 2011 and 2013
 cohorts, but the above average predicted 2014 and 2016 year classes will result
 in an increase to the spawning biomass as they enter maturity. The probability
 that the \Sexpr{forecast.yrs[2]} spawning biomass will be less than the
-\Sexpr{forecast.yrs[1]} spawning biomass ranges from 17\% to 75\%
+\Sexpr{forecast.yrs[1]} spawning biomass ranges from 17\% to 77\%
 depending on the catch level (Table~\ref{tab:main-risk-year-1} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-1}).
 
@@ -1142,10 +1142,10 @@ projected to be (using MCMC medians)
 (Figure~\ref{fig:main-age-comp-forecast}). However, those estimates are highly
 uncertain with the 95\% credibility interval for the age-5 fraction spanning
 \Sexpr{f(fore.catch.prop.age5.lower)}\%--\Sexpr{f(fore.catch.prop.age5.upper)}\%.
-Due to the lower average weight at age 5 vs.~9, the expected
-proportion of the \Sexpr{forecast.yrs[1]} catch by weight is expected to be more similar between
-these two cohorts, at
-\Sexpr{f(fore.catch.prop.wt.age5.median)}\% and
+Due to the lower average weight at age 3 vs.~9, the expected
+proportion of the \Sexpr{forecast.yrs[1]} catch by weight is expected to be reversed between
+the 2016 and 2010 cohorts, at
+\Sexpr{f(fore.catch.prop.wt.age3.median)}\% and
 \Sexpr{f(fore.catch.prop.wt.age9.median)}\%,
 respectively.
 
