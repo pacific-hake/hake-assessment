@@ -447,7 +447,8 @@ make.cohort.table(base.model,
                                     because the empirical weights-at-age
                                     change between years (for ",
                                     assess.yr,
-                                    " **the mean weights-at-age are used).
+                                    " the mean weights-at-age are used as
+                                    per Figure~\\ref{fig:main-empirical.weight.at.age}).
                                     Estimated quantities are
                                     MLEs."),
                   xlabel = "tab:main-cohort-effects",
