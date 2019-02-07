@@ -516,7 +516,7 @@ In short, these included the following
   \item Update age composition data from years prior to 2018.
   \item Update weight-at-age data from years prior to 2018
   \item Add 2018 total catch.
-  \item Add 2018 survey age composition and weight-at-age data.
+  \item Add 2018 fishery age composition and weight-at-age data.
   \item Change fecundity (calculated as weight-at-age multiplied by maturity)
   from being time-invariant (using a single catch-weighted average of weight-at-age
   over all years) to time-varying (using year-specific weight-at-age).
