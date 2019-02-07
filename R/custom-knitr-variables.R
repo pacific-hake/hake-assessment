@@ -189,21 +189,52 @@ names(catch.limit.quantiles) <- c("lower", "median", "upper")
                 # 2.5%, median and 97.5% quantiles of catch limit for assess.yr
                 #  using the default harvest policy; tonnes
 
-################################################################################
-## Estimated numbers at age for fishery for Recruitment section in Exec Summary and main text
-##  From make.age.comp.fit.plot() which in turn calls age.fits()
-fishery.estimated.age.comp <- base.model$agedbase[base.model$agedbase$Fleet==1,]  #I think that this has ageing error incorporated
-year.class.2010.in.2013 <- f(filter(fishery.estimated.age.comp, Yr==2013, Bin==3)$Exp * 100)
-year.class.2010.in.2014 <- f(filter(fishery.estimated.age.comp, Yr==2014, Bin==4)$Exp * 100)
-year.class.2010.in.2015 <- f(filter(fishery.estimated.age.comp, Yr==2015, Bin==5)$Exp * 100)
-
-tmp <- base.model$catage[base.model$catage$Fleet==1,-(1:10)]  #This does not have ageing error
-fishery.estimated.age.comp <- cbind(base.model$catage[base.model$catage$Fleet==1,(1:10)],t(apply(tmp,1,function(x){x/sum(x)})))
-year.class.2010.in.2013 <- f(filter(fishery.estimated.age.comp, Yr==2013)$"3" * 100)
-year.class.2010.in.2014 <- f(filter(fishery.estimated.age.comp, Yr==2014)$"4" * 100)
-year.class.2010.in.2015 <- f(filter(fishery.estimated.age.comp, Yr==2015)$"5" * 100)
-year.class.2010.in.2016 <- f(filter(fishery.estimated.age.comp, Yr==2016)$"6" * 100)
-year.class.2010.in.2018 <- f(filter(fishery.estimated.age.comp, Yr==2018)$"8" * 100)
+top.coh <- function(yr = last.data.yr,
+                    num.cohorts = 3,
+                    decimals = 0,
+                    cap = TRUE,
+                    spec.yr = NA){
+  ## Returns text describing the top N cohorts by year and percentage as a sentence.
+  ## e.g. top.cohorts.text(2018, 2) produces:
+  ##  "The 2014 cohort was the largest (29\\%), followed by the 2010 cohort (27\\%)."
+  ## If spec.yr is a year, then the value only will be returned
+  ##  as a percentage of that cohort caught in yr
+  if(num.cohorts < 1){
+    num.cohorts = 1
+  }
+  tmp <- base.model$catage[, -c(1, 3, 4, 5, 6)] %>%
+    dplyr::filter(Fleet == 1) %>%
+    select(-c(Fleet, Seas, XX, Era, 0))
+  tmp <- tmp[-1,]
+  row.sums <- rowSums(select(tmp, -Yr))
+  x <- tmp %>%
+    select(-Yr) %>%
+    mutate_all(~ ./row.sums)
+  x <- cbind(Yr = tmp$Yr, x) %>%
+    dplyr::filter(Yr == yr) %>%
+    select(-Yr) %>%
+    sort() %>%
+    rev()
+  txt <- paste0(ifelse(cap, "The ", "the "),
+                yr - as.numeric(names(x)[1]),
+                " cohort was the largest (",
+                f(x[1] * 100, decimals),
+                "\\%)")
+  if(num.cohorts > 1){
+    for(i in 2:num.cohorts){
+      txt <- paste0(txt,
+                    ", followed by the ",
+                    yr - as.numeric(names(x)[i]),
+                    " cohort (",
+                    f(x[i] * 100, decimals),
+                    "\\%)")
+    }
+  }
+  if(!is.na(spec.yr)){
+    return(f(as.numeric(x[names(x) == yr - spec.yr]) * 100, decimals))
+  }
+  txt
+}
 
 catcher.processor.catch <- f(100 * filter(catches, Year == last.data.yr)$atSea_US_CP / (last.year.us.cp.quota.reallocated), 1)
 mothership.catch <- f(100 * filter(catches, Year == last.data.yr)$atSea_US_MS / (last.year.us.ms.quota.reallocated), 1)

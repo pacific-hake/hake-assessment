@@ -832,20 +832,25 @@ catch from the 1980s to the mid-2000s. From 2000 to 2007, estimated recruitment
 was at some of the lowest values in the time-series followed by a moderately
 large 2008 year class. The current assessment continues to estimate a very strong 2010 year
 class (Figure~\ref{fig:main-numbers-at-age}) comprising
-\Sexpr{year.class.2010.in.2013}\% of the coast-wide commercial catch in 2013,
-\Sexpr{year.class.2010.in.2014}\% of the 2014 catch,
-\Sexpr{year.class.2010.in.2015}\% of the 2015 catch,
-33\% of the 2016 catch,
-37\% of the 2017 catch, and
-24\% of the 2018 catch.
+\Sexpr{top.coh(2013, spec.yr=2010)}\% of the coast-wide commercial catch in 2013,
+\Sexpr{top.coh(2014, spec.yr=2010)}\% of the 2014 catch,
+\Sexpr{top.coh(2015, spec.yr=2010)}\% of the 2015 catch,
+\Sexpr{top.coh(2016, spec.yr=2010)}\% of the 2016 catch,
+\Sexpr{top.coh(2017, spec.yr=2010)}\% of the 2017 catch, and
+\Sexpr{top.coh(2018, spec.yr=2010)}\% of the 2018 catch.
 The current assessment also estimates a strong 2014 year class
-(Figure~\ref{fig:main-numbers-at-age}) comprising 50\% of the 2016 catch, 39\% of the 2017
-catch, and 29\% of the 2018 catch. Although the absolute size of the 2014 year
+(Figure~\ref{fig:main-numbers-at-age}) comprising
+\Sexpr{top.coh(2016, spec.yr=2014)}\% of the 2016 catch,
+\Sexpr{top.coh(2017, spec.yr=2014)}\% of the 2017 catch,
+and \Sexpr{top.coh(2018, spec.yr=2014)}\% of the 2018 catch.
+The 2016 cohort also appears to be strong at
+\Sexpr{top.coh(2018, spec.yr=2016)}\% of the 2018 catch.
+Although the absolute size of the 2014 year
 class remains highly uncertain, at least more so than
 cohorts that have been observed for more years, three years of fishery data and one year of survey data
 suggest that it is one of the higher estimates in the time series.  The 2016 year class is
 estimated to be above average (similar in size to the 2008 year class) from two years
-of fishery data.  The 2016 year class will not be observed in the survey until
+of fishery data. The 2016 year class will not be observed in the survey until
 2019 as age-3 fish.
 
 The additional data in the 2019 assessment has reduced the median estimate of the
