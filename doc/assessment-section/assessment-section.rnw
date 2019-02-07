@@ -284,10 +284,10 @@ the pre-1975 time period.
 Overall inferences were similar when using length instead of weight.}
 
 \emph{Furthermore, there were small numbers of age samples for the early years (especially 1975)
-as shown in Figure~\ref{fig:main-empirical.weight.at.age.numbers}. The few heavy fish in the 15-year-old and older 
+as shown in Figure~\ref{fig:main-empirical.weight.at.age.numbers}. The few heavy fish in the 15-year-old and older
 accumulator group from 1976--1979 influence the short-term average for 1975--1979 time period,
 further justifying use of the long-term mean (1975--2018) for the pre-1975 time period.
-See Sections~\ref{sec:assessment-fecundity-recap} 
+See Sections~\ref{sec:assessment-fecundity-recap}
 and~\ref{sec:assessment-sensitivity-fecundity} for further details.}
 
 \emph{Regarding forecast year weight-at-ages, the JTC used the weighted
@@ -1076,9 +1076,10 @@ such that the stock is estimated to be in the provisional `healthy zone'.
 
 %PFMC refrence points for hake/whiting are: Bmsy = 0.4B0; MSST = 0.25B0.  Will report these as well.
 Reference levels of stock status that are used by the U.S. Pacific Fisheries Management
-Council (PFMC) include $\Bmsy$ = $\Bforty$ and a Minimum Stock Size Threshold (MSST) = $\Btwentyfive$. For
-\Sexpr{min(forecast.yrs)}, the estimated posterior median stock size for \fishname\ is
-above $\Bforty$ and well above $\Btwentyfive$ at \Sexpr{curr.depl.median}\%.     
+Council (PFMC) include $\Bforty$ and Minimum Stock Size
+Threshold (MSST) = $\Btwentyfive$. For \Sexpr{min(forecast.yrs)}, the estimated
+posterior median stock size for \fishname\ is above $\Bforty$ and well
+above $\Btwentyfive$ at \Sexpr{curr.depl.median}\%.
 
 \subsection{Model projections}\label{sec:assessment-model-projections}
 The median catch limit for \Sexpr{min(forecast.yrs)} based on the default
@@ -1174,11 +1175,11 @@ and in the healthy zone with a probability of
 P$(B_{\Sexpr{assess.yr+1}} > 0.8\Bmsy) = \Sexpr{f(min(dfo.probs.fore[,"SSB_2020>0.8SSB_MSY"]))}$\%.
 
 %PFMC refrence points for hake/whiting are: Bmsy = 0.4B0; MSST = 0.25B0.  Will report these as well.
-With respect to PFMC stock size reference points, a level of 2019 catch consistent with the Treaty 
+With respect to PFMC stock size reference points, a level of 2019 catch consistent with the Treaty
 default harvest control rule (725,593~t) has a 29\% estimated (median) probability of the biomass going below
 $\Bforty$ in 2020 (12\% probability of going below $\Btwentyfive$; Table~\ref{tab:main-risk-year-1}).
 That probabality decreases to 19\% and 5\%, respectively, if the catch level stays
-the same in 2019 as in 2018.   
+the same in 2019 as in 2018.
 %Updated 2019
 % \enlargethispage{\baselineskip}
 
