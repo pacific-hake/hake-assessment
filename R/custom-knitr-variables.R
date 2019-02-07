@@ -344,6 +344,7 @@ fore.catch.prop.age5.upper <- quantile(base.model$extra.mcmc$natsel.prop[,6], 0.
 # Estimated proportion by age (using catch) of catch in first forecast year
 fore.catch.prop.wt.age5.median <- median(base.model$extra.mcmc$natselwt.prop[,6]) * 100
 fore.catch.prop.wt.age9.median <- median(base.model$extra.mcmc$natselwt.prop[,10]) * 100
+fore.catch.prop.wt.age3.median <- median(base.model$extra.mcmc$natselwt.prop[,3]) * 100
 
 ################################################################################
 ## Sigma_r, standard deviation of recruitment variability.
