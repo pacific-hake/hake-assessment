@@ -257,7 +257,7 @@ especially on foreign vessels.  However, a comparison of mean weight-at-age with
 showed that those age/year bins with high mean weight also had high mean length, and the method of
 length measurement likely hasn't changed considerably over time. Ages from the earlier years were likely
 solely based on surface reads, whereas protocol since the early 2000s has been to use the break and burn
-method on fish older than about age-2.  A comparison between ageing methods were
+method on fish older than about age-2.  A comparison between ageing methods was
 done recently for Petrale Sole, indicating
 increased bias as fish age when using surface reads, although no such analysis that
 we are aware of has been done for \fishname. If otoliths from the early years were properly preserved
@@ -270,7 +270,7 @@ weight-at-age data based on these considerations.}
 to see whether there was any indication that weights-at-age values were trending through
 time. A weighted least squares approach was used to fit log weight (kg) data across years 1975-2018,
 where a separate analysis was done for each age group (age-2 through age-15) and
-statistical weights were defined by the inverse of the annual sample variance). The resulting
+statistical weights were defined by the inverse of the annual sample variance. The resulting
 slope parameter was used to better understand age-specific long-term trends in
 weight-at-age. The results of this analysis showed a near zero slope for all ages,
 with age-13, 14, and 15 being slightly positive and all others being slightly negative
@@ -284,9 +284,10 @@ the pre-1975 time period.
 Overall inferences were similar when using length instead of weight.}
 
 \emph{Furthermore, there were small numbers of age samples for the early years (especially 1975)
-as shown in Figure~\ref{fig:main-empirical.weight.at.age.numbers}. The few heavy 15-year-olds
-1976--1979 influence the average for 1975--1979, further justifying use of the long-term mean
-(1975--2018) for the pre-1975 time period. See Sections~\ref{sec:assessment-fecundity-recap}
+as shown in Figure~\ref{fig:main-empirical.weight.at.age.numbers}. The few heavy fish in the 15-year-old and older 
+accumulator group from 1976--1979 influence the short-term average for 1975--1979 time period,
+further justifying use of the long-term mean (1975--2018) for the pre-1975 time period.
+See Sections~\ref{sec:assessment-fecundity-recap} 
 and~\ref{sec:assessment-sensitivity-fecundity} for further details.}
 
 \emph{Regarding forecast year weight-at-ages, the JTC used the weighted
@@ -1203,11 +1204,10 @@ include the following:
 
 \end{enumerate}
 
-**[second part of first sentence no longer true]
 
 In general, none of the sensitivities resulted in any significant departure from
 the main population dynamics of the base model; all models showed large
-estimated increases in spawning biomass in recent years that continues to be
+estimated increases in spawning biomass in the early- to mid-2010s that continues to be
 driven by the large 2010 cohort and the 2014 cohort. The overall scale of the
 population was impacted by various alternative assumptions, and the highly
 uncertain size of the recent large cohorts were more variable across sensitivity analyses
