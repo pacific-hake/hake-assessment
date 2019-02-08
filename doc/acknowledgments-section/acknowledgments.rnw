@@ -8,7 +8,7 @@
 We thank the authors of previous assessments whose work remains an
 influential part of this assessment. In particular, we thank Ian Taylor for
 his insightful comments and continued assistance with questions relating to
-Stock Synthesis, the r4ss package, and hake population dynamics in general. 
+Stock Synthesis, the r4ss package, and hake population dynamics in general.
 We are grateful for the hard work of the
 U.S. and Canadian acoustics teams, including (in alphabetical order) Alicia
 Billings, Dezhang Chu, Julia Clemons, Steve Deblois, Stephane Gauthier, Larry
@@ -17,24 +17,26 @@ Rebecca Thomas, as well as the crews of the NOAA ship \emph{Bell Shimada} and th
 fishing vessel \emph{Nordic Pearl}.
 We thank the following individuals who contributed technical
 assistance, analysis tools, data, or comments to this assessment
-(or previous ones): Chelsea Cooke, Sean Cox,
+(or previous ones): Trevor Branch, Jaclyn Cleary, Chelsea Cooke, Sean Cox,
 Cassandra Donavan, Joanne Groot, Rowan Haigh, Kendra Holt,
 Owen Hamel (who gave insightful
 comments on a draft version), Jim Hastie, Melissa
-Head, Allan Hicks, Patrick McDonald, Brad Stenberg, Nathan Taylor, 
+Head, Allan Hicks, Michelle McClure, Patrick McDonald, Michael Prager, David Sampson,
+Lori Steele, Brad Stenberg, Nathan Taylor,
 Vanessa Tuttle, and Steve
 Wischniowski. Rick Methot was very helpful with insight into Stock Synthesis as
 well as the assessment. We also thank the attendees at the official JTC meeting
 who provided valuable insight into the \Sexpr{end.yr-1} commercial fisheries in
 Canada and the U.S., as well as additional perspective on the acoustic
-survey. We appreciate the input from the AP (particularly for providing 
-Appendices~\ref{chap:us-fishery-report} and~\ref{chap:canada-fishery-report})
+survey. We appreciate the input from the AP (particularly for providing
+Appendices~\ref{chap:canada-fishery-report} and~\ref{chap:us-fishery-report})
 and other industry members including
 Shannon Mann, Mike Okoniewski, Brent Paine, Dave Smith, Dan
 Waldeck, and Teresa Williams.
-We thank all the members of the
-Scientific Review Group for their thoughtful review and smoothly run SRG
-meeting, including co-chairs Jim Hastie and John Holmes, panel members
-Trevor Branch, Jaclyn Cleary, Michael Prager, and David Sampson, and AP advisors
-Shannon Mann and Lori Steele. Finally, we are very thankful to Miako Ushio for
-co-ordinating the SRG meeting.
+% We thank all the members of the
+% Scientific Review Group for their thoughtful review and smoothly run SRG
+% meeting, including co-chairs Jim Hastie and John Holmes, panel members
+% Trevor Branch, Jaclyn Cleary, Michael Prager, and David Sampson, and AP advisors
+% Shannon Mann and Lori Steele.
+Finally, we are very thankful to Miako Ushio for
+co-ordinating the \fishname\ meetings.
