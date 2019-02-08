@@ -223,7 +223,7 @@ make.biomass.plot(base.model,
 \end{center}
 %\vspace{0mm}
 \caption{Median of the posterior distribution for beginning of the year female
-         spawning biomass through \Sexpr{end.yr} (solid line) with 95\% posterior
+         spawning biomass ($B_t in year $t$) through \Sexpr{end.yr} (solid line) with 95\% posterior
          credibility intervals (shaded area). The solid circle with a 95\%
          posterior credibility interval is the estimated unfished equilibrium
          biomass.}
@@ -381,7 +381,7 @@ and 2015 year classes (median recruitment below the mean of all median recruitme
 The 2014 year class is likely larger than average yet has only a
 \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of being larger than
 the 2010 year class.  The 2016 year class is estimated to be above
-but remains highly uncertain.
+average but remains highly uncertain, and 2017 is highly uncertain.
 There is no information in the data to estimate the sizes of the
 \Sexpr{end.yr-1} and \Sexpr{end.yr} year classes. Retrospective analyses of year
 class strength for young fish have shown the estimates of recent recruitment to
@@ -466,7 +466,7 @@ make.fishing.intensity.plot(base.model,
 %
 Median exploitation fraction (catch divided by biomass of fish of age-2 and
 above) peaked in 1999, and then reached even higher values in 2006 and 2008
-(Figure~\ref{fig:es-exploitation-fraction}). Over the last 5 years, the exploitation
+(Figure~\ref{fig:es-exploitation-fraction}). Over the last five years, the exploitation
 fraction was the highest in 2017 (Table~\ref{tab:es-fishing-intensity}). Note that in earlier assessments the
 exploitation fraction was often defined in terms of fish age-3 and above, but
 with the 2018 assessment the definition age was lowered to age-2 because these
@@ -498,7 +498,7 @@ The exploitation fraction has increased from a recent low of
 decreasing to \Sexpr{exploitation.med.2018} in \Sexpr{end.yr-1}. There is a
 considerable amount of uncertainty around estimates of relative fishing intensity,
 with the 95\% posterior credibility interval reaching above the SPR management
-target for 2016--\Sexpr{end.yr-1} (Figure~\ref{fig:es-fishing-intensity}).
+target (of 1.0) for 2016--\Sexpr{end.yr-1} (Figure~\ref{fig:es-fishing-intensity}).
 % 2016 assessment we had: '... is below the SPR management target for the
 %  last three years (Figure~\ref{fig:es-fishing-intensity})'.
 %  Interestingly, for 2017 the 2016 intensity interval reaches above 1.
@@ -596,7 +596,7 @@ median relative spawning biomass has been above the reference point of 40\%
 since \Sexpr{median.relative.bio.above.target.since}.
 % Manual done 2019. Based on median.relative.bio.below.target.
 
-While there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative
+While there is large uncertainty in the estimates of relative
 fishing intensity and relative spawning biomass, the model estimates a
 10.3\% joint probability of being both above the target relative fishing intensity
 in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at
@@ -620,11 +620,11 @@ assessment.
 
 <<reference.points.table, results='asis', echo=FALSE>>=
 make.reference.points.table(base.model,
-                            xcaption <- paste0("**Summary of median and 95\\%
+                            xcaption <- paste0("Summary of median and 95\\%
                              credibility intervals of equilibrium reference points
                              for the \\fishname\\ base assessment model.
-                             **Equilibrium reference points were computed using ",
-                             start.yr,"--",end.yr-1," averages for mean
+                             Equilibrium reference points were computed using 1975--",
+                             end.yr-1," averages for mean
                              weight-at-age and selectivity-at-age."),
                             xlabel <- "tab:es-reference.points",
                             font.size = 12,
@@ -639,9 +639,10 @@ the current stock status and projections because they do not account for
 possible alternative structural models for \simplename\ population dynamics and
 fishery processes (e.g., selectivity), the effects of data-weighting schemes,
 and the scientific basis for prior probability distributions. To address such
-structural uncertainties, we performed sensitivity analyses to investigate a
-range of alternative models,
-and present the key sensitivity analyses in the main document.
+structural uncertainties, including those related to the new time-varying fecundity,
+we performed sensitivity analyses to investigate a
+range of alternative assumptions,
+and present the key ones in the main document.
 
 %**Update from main text**Uncertainty in the best method for calculating acoustic
 % survey biomass is a particular focus and
@@ -758,7 +759,7 @@ The addition of time-varying fecundity into the \Sexpr{end.yr} assessment result
 in the need to clarify which set of fecundity values (defined as weight-at-age
 multiplied by maturity) would be
 applied to the forecast period. Ideally, these would be based on a recent
-average (e.g., a five year period similar to selectivity).
+average (e.g., a five-year period similar to selectivity).
 However, Stock Synthesis does not currently have the desired settings to do this
 appropriately; therefore, the long-term average fecundity-at-age was used.
 % (see Sections~\ref{sec:assessment-response-review}, \ref{sec:data-weight-at-age}, and
@@ -900,9 +901,9 @@ relative spawning biomass trajectory through
 \Sexpr{forecast.yrs[length(forecast.yrs)]} for several of these management
 actions. With zero catch for the next two years, the biomass has a
 \Sexpr{zero.catch.prob.bio.down.1}\% probability of decreasing from
-\Sexpr{forecast.yrs[1]} to \Sexpr{forecast.yrs[2]}, and a
+\Sexpr{forecast.yrs[1]} to \Sexpr{forecast.yrs[2]} (Table~\ref{tab:es-risk-year-1}), and a
 \Sexpr{zero.catch.prob.bio.down.2}\% probability of decreasing from
-\Sexpr{forecast.yrs[2]} to \Sexpr{forecast.yrs[3]}.
+\Sexpr{forecast.yrs[2]} to \Sexpr{forecast.yrs[3]} (Table~\ref{tab:es-risk-year-2}).
 %Manual 2019 done, though all automated.
 
 % The spawning biomass is predicted to decrease from \Sexpr{end.yr} to
@@ -910,14 +911,15 @@ actions. With zero catch for the next two years, the biomass has a
 %  180,000~t catch levels (Table~\ref{tab:es-risk-year-1} and
 %  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
-\Sexpr{end.yr+1} is less than 50\% for a catch level inbetween 180,000 t and
-350,000 t (Table~\ref{tab:es-risk-year-1} and
+\Sexpr{end.yr+1} is 50\% for some catch level between 180,000~t and
+350,000~t (Table~\ref{tab:es-risk-year-1} and
 Figure~\ref{fig:es-forecast-risk-comparison-year-1}). The highest probability of
 decrease is 77\%, which is for the default harvest policy
 (row~g in Table~\ref{tab:es-risk-year-1}).
-The predicted probability of the spawning biomass dropping below $B_{10\%}$ at
+For all explored catches,
+the predicted probability of the spawning biomass dropping below $B_{10\%}$ at
 the start of \Sexpr{end.yr+1} is 2\% or less and the maximum probability of
-dropping below $B_{40\%}$ is 29\% for all catches explored
+dropping below $B_{40\%}$ is 29\%
 (Table~\ref{tab:es-risk-year-1} and
 Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % It should be noted that
