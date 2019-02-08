@@ -125,6 +125,18 @@ next.bio.median.tac.based <- f(fore.tac.mcmc$smed[names(fore.tac.mcmc$smed) %in%
 next.bio.upper.tac.based <- f(fore.tac.mcmc$supper[names(fore.tac.mcmc$supper) %in% (end.yr + 1)] * 100, 1)
 
 ################################################################################
+## Biomass medians for last year's TAC catch level
+.fore.last.yr.tac <- base.model$forecasts[[length(base.model$forecasts)]][5][[1]]
+last.yr.tac.fore.1.biomass <- f(.fore.last.yr.tac$biomass[1,3] * 100)
+last.yr.tac.fore.2.biomass <- f(.fore.last.yr.tac$biomass[2,3] * 100)
+last.yr.tac.fore.3.biomass <- f(.fore.last.yr.tac$biomass[3,3] * 100)
+.risk.last.yr.tac.1 <- base.model$risks[[1]]
+.risk.last.yr.tac.2 <- base.model$risks[[2]]
+last.yr.tac.risk.1.biomass.decline <- f(as.numeric(.risk.last.yr.tac.1[5, 2]))
+last.yr.tac.risk.2.biomass.decline <- f(as.numeric(.risk.last.yr.tac.2[5, 2]))
+last.yr.tac.risk.2.bforty <- f(as.numeric(.risk.last.yr.tac.2[5, 3]))
+
+################################################################################
 ## Calculations for executive-summary.rnw and assessment-section.rnw:
 ##  number of mcmc samples, minimum median biomass,
 ##  years when fishing intensity > 1
