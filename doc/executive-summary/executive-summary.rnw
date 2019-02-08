@@ -111,7 +111,7 @@ that cohort estimated at approximately
 \Sexpr{f(cohort.catch.1999/1e6,2)}~million~t.  Through \Sexpr{last.data.yr}, the
 total catch of the 2010 and 2014 year classes is estimated to be about
 \Sexpr{f(cohort.catch.2010/1e6,2)}~million~t and
-\Sexpr{f(cohort.catch.2010/1e6,2)}~million~t, respectively.
+\Sexpr{f(cohort.catch.2014/1e6,2)}~million~t, respectively.
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
