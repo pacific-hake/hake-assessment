@@ -160,8 +160,8 @@ biomass indices, acoustic survey age-composition data, and fishery
 age-composition data. Integrating the joint posterior distribution over model
 parameters (via the Markov Chain Monte Carlo algorithm) provides probabilistic
 inferences about uncertain model parameters and forecasts derived from those
-parameters. Sensitivity analyses are used to identify alternative structural
-models that may also be consistent with the data. Retrospective analyses
+parameters. Sensitivity analyses are used to identify alternative model
+assumptions that may also be consistent with the data. Retrospective analyses
 identify possible poor performance of the assessment model with respect to
 future predictions. Past assessments have conducted closed-loop simulations
 which provide insights into how alternative combinations of survey frequency,
@@ -170,7 +170,7 @@ expected management outcomes given repeated application of these procedures over
 the long-term. The results of past (and ongoing) closed-loop simulations influence
 the decisions made for this assessment.
 
-The \Sexpr{assess.yr} assessment retains the structural form of the base
+The \Sexpr{assess.yr} assessment retains most of the structural form of the base
 assessment model from \Sexpr{last.assess.yr} as well as many of the previous
 elements as configured in Stock Synthesis. Analyses conducted in 2014
 showed that allowing for time-varying (rather than fixed) selectivity reduced
@@ -184,10 +184,10 @@ assessment model fishery selectivity could reduce the effects of errors caused
 by assuming selectivity is constant over time. Therefore, we retain time-varying
 selectivity in this assessment, continuing with the new parameterization introduced
 in the \Sexpr{last.assess.yr} assessment and retaining the equivalent level of
-assumed variability. We apply the Dirichlet Multinomial approach to weighting
+assumed variability. We apply the Dirichlet-Multinomial approach to weighting
 composition data again this year and provide sensitivities to alternative data weighting
-approaches.  In addition, we incorporate time-varying fecundity into the \Sexpr{assess.yr}
-assessment model, where previously it was time-invariant.
+approaches. For 2019, we incorporate time-varying fecundity into the
+assessment model, whereas previously it was time-invariant.
 
 The 35 day 2018/2019 U.S. government shutdown considerably delayed delivery of U.S.
 age data and reduced the JTC's collective capacity to complete the
