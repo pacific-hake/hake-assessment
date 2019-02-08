@@ -326,6 +326,7 @@ m.prior <- split.prior.info(param.details[rownames(param.details) == "m.vals",][
 ################################################################################
 cohort.catch.1999 <- sum(cohortCatch(1999, base.model$catage))
 cohort.catch.2010 <- sum(cohortCatch(2010, base.model$catage))
+cohort.catch.2014 <- sum(cohortCatch(2014, base.model$catage))
 
 ## cumulative sums for use in JMC presentation
 cohortCumSum1999 <- cumsum(cohortCatch(1999,base.model$catage))
