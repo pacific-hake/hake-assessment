@@ -631,7 +631,7 @@ make.assessment.changes.table(assessment.changes,
 % Don't think we need to specify 'fecundity when varying' in only one column -
 % not sure why we do in Google one. Andy will check with Chris in the morning.
 \begin{table}[H]
-\caption{Summary of models runs that consider alternative assumptions concerning
+\caption{Summary of model runs that consider alternative assumptions concerning
   weight-at-age and time-vary fecundity, plus the two related runs from 2018.
   Results from the MCMC runs 53 and 54
   are given in Appendices~\ref{chap:fecundity-53} and \ref{chap:fecundity-54}.
