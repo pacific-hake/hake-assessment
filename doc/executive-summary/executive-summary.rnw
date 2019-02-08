@@ -223,7 +223,7 @@ make.biomass.plot(base.model,
 \end{center}
 %\vspace{0mm}
 \caption{Median of the posterior distribution for beginning of the year female
-         spawning biomass ($B_t in year $t$) through \Sexpr{end.yr} (solid line) with 95\% posterior
+         spawning biomass ($B_t$ in year $t$) through \Sexpr{end.yr} (solid line) with 95\% posterior
          credibility intervals (shaded area). The solid circle with a 95\%
          posterior credibility interval is the estimated unfished equilibrium
          biomass.}
