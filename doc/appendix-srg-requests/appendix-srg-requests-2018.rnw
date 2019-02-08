@@ -149,12 +149,12 @@ make.ci.posterior.table(
 
 <<app.reference.points.table.alt, results='asis', echo=FALSE>>=
 make.reference.points.table(alt.base.model,
-                            xcaption <- paste0("For the \\altshort, summary of median and 95\\%
+                            xcaption = paste0("For the \\altshort, summary of median and 95\\%
                              credibility intervals of equilibrium reference points.
                              Equilibrium reference points were computed using ",
                              start.yr,"--",end.yr-1," averages for mean
                              size-at-age and selectivity-at-age."),
-                            xlabel <- "tab:reference-points-alt",
+                            xlabel = "tab:reference-points-alt",
                             font.size = 12,
                             space.size = 14,
                             placement = "tbp")
@@ -163,7 +163,7 @@ make.reference.points.table(alt.base.model,
 
 <<app.decisions.biomass.table.alt, results='asis', echo=FALSE>>=
 make.decision.table(alt.base.model,
-                    xcaption <- paste0("For the \\altshort, forecast quantiles of \\fishname\\
+                    xcaption = paste0("For the \\altshort, forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
                      catch levels (rows a, b, c, d, e), including
@@ -179,7 +179,7 @@ make.decision.table(alt.base.model,
                      Catch in ",
                      max(forecast.yrs)," does not impact the beginning of the
                      year biomass in ",max(forecast.yrs),"."),
-                    xlabel <- "tab:decisions-biomass-alt",
+                    xlabel = "tab:decisions-biomass-alt",
                     font.size = 12,
                     space.size = 14,
                     type = "biomass",
@@ -189,7 +189,7 @@ make.decision.table(alt.base.model,
 
 <<app.decisions.spr.table.alt, results='asis', echo=FALSE>>=
 make.decision.table(alt.base.model,
-                    xcaption <- paste0("For the \\altshort, forecast quantiles of \\fishname\\
+                    xcaption = paste0("For the \\altshort, forecast quantiles of \\fishname\\
                      relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%})
                      for the ",min(forecast.yrs),"--",max(forecast.yrs)," catch
                      alternatives presented in
@@ -197,7 +197,7 @@ make.decision.table(alt.base.model,
                      100\\% indicate relative fishing intensities greater than
                      the $\\Fforty$ harvest policy calculated using baseline
                      selectivity."),
-                    xlabel <- "tab:decisions-spr-alt",
+                    xlabel = "tab:decisions-spr-alt",
                     font.size = 12,
                     space.size = 14,
                     type = "spr",
@@ -267,12 +267,12 @@ make.risk.table(alt.base.model,
                 forecast.yrs,
                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
                            ##  forecast year 2 compared to forecast year 1
-                xcaption <- paste0("For the \\altshort, probabilities related to spawning biomass,
+                xcaption = paste0("For the \\altshort, probabilities related to spawning biomass,
                              relative fishing intensity, and the ",end.yr+1,
                              " default harvest policy catch for alternative ",
                              end.yr," catch options (catch options explained in
                              Table~\\ref{tab:decisions-biomass-alt})."),
-                xlabel <- "tab:risk-year-1-alt",
+                xlabel = "tab:risk-year-1-alt",
                 font.size = 12,
                 space.size = 14,
                 placement = "tbp")
@@ -308,13 +308,13 @@ make.risk.table(alt.base.model,
                 forecast.yrs,
                 index = 2, ## Index in models[[]]$risks to use, e.g.
                            ##  1 means forecast year 2 compared to forecast year 1
-                xcaption <- paste0("For the \\altshort, probabilities related to spawning biomass,
+                xcaption = paste0("For the \\altshort, probabilities related to spawning biomass,
                  relative fishing intensity, and the ",end.yr+2," default harvest
                  policy catch for alternative ",end.yr+1," catch options, given
                  the ",end.yr," catch level shown in
                  Table~\\ref{tab:risk-year-1-alt} (catch options explained in
                  Table~\\ref{tab:decisions-biomass-alt})."),
-                xlabel <- "tab:risk-year-2-alt",
+                xlabel = "tab:risk-year-2-alt",
                 font.size = 12,
                 space.size = 14,
                 placement = "tbp")

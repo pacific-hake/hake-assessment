@@ -51,11 +51,11 @@ make.biomass.table(sens.model,
                    start.yr = end.yr-9,
                    end.yr = end.yr,
                    weight.factor = 1000,
-                   xcaption <- "Recent trends in estimated beginning of the year
+                   xcaption = "Recent trends in estimated beginning of the year
                                 female spawning biomass (thousand~t) and spawning
                                 biomass level relative to estimated unfished
                                 equilibrium.",
-                   xlabel <- "tab:biomass-54",
+                   xlabel = "tab:biomass-54",
                    font.size = 12,
                    space.size = 14,
                    placement = "H")
@@ -67,12 +67,12 @@ make.recruitment.table(sens.model,
                        start.yr = end.yr-10,
                        end.yr = end.yr-1,
                        weight.factor = 1000,
-                       xcaption <- "Estimates of recent recruitment (millions of
+                       xcaption = "Estimates of recent recruitment (millions of
                                     age-0) and recruitment deviations, where
                                     deviations below (above) zero indicate
                                     recruitment below (above) that estimated from
                                     the stock-recruit relationship.",
-                       xlabel <- "tab:recruitment-54",
+                       xlabel = "tab:recruitment-54",
                        font.size = 12,
                        space.size = 14,,
                        placement = "H")
@@ -106,12 +106,12 @@ make.fishing.intensity.table(sens.model,
                              start.yr = end.yr-10,
                              end.yr = end.yr-1,
                              digits = 3,
-                             xcaption <- "Recent estimates of relative fishing
+                             xcaption = "Recent estimates of relative fishing
                                           intensity,
                                           (1-SPR)/(1-SPR\\subscr{40\\%}),
                                           and exploitation fraction (catch
                                           divided by age-2+ biomass).",
-                             xlabel <- "tab:fishing-intensity-54",
+                             xlabel = "tab:fishing-intensity-54",
                              font.size = 12,
                              space.size = 14,
                              placement = "H")
@@ -176,12 +176,12 @@ make.phase.plot(sens.model,
 <<reference.points.table.54, results='asis', echo=FALSE>>=
 make.reference.points.table(
   sens.model,
-  xcaption <- paste0("For the \\altshort, summary of median and 95\\%",
+  xcaption = paste0("For the \\altshort, summary of median and 95\\%",
                      " credibility intervals of equilibrium reference points.",
                      " Equilibrium reference points were computed using ",
                      start.yr, "--", end.yr-1, " averages for mean",
                      " size-at-age and selectivity-at-age."),
-                            xlabel <- "tab:reference-points-54",
+                            xlabel = "tab:reference-points-54",
                             font.size = 12,
                             space.size = 14,
                             placement = "H")
@@ -190,7 +190,7 @@ make.reference.points.table(
 <<decisions.biomass.table.54, results='asis', echo=FALSE>>=
 make.decision.table(
   sens.model,
-  xcaption <-
+  xcaption =
     paste0("For the \\altshort, forecast quantiles of \\fishname\\ ",
            " relative spawning biomass at the beginning of the year ",
            " before fishing. Catch alternatives are based on: constant",
@@ -205,7 +205,7 @@ make.decision.table(
            " and ", min(forecast.yrs) + 1, " (row h). Catch in ",
            max(forecast.yrs)," does not impact the beginning of the",
            " year biomass in ", max(forecast.yrs), "."),
-                    xlabel <- "tab:decisions-biomass-54",
+                    xlabel = "tab:decisions-biomass-54",
                     font.size = 12,
                     space.size = 14,
                     type = "biomass",
@@ -274,12 +274,12 @@ make.risk.table(sens.model,
                 forecast.yrs,
                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
                            ##  forecast year 2 compared to forecast year 1
-                xcaption <- paste0("Probabilities related to spawning biomass,
+                xcaption = paste0("Probabilities related to spawning biomass,
                              relative fishing intensity, and the ",end.yr+1,
                              " default harvest policy catch for alternative ",
                              end.yr," catch options (catch options explained in
                              Table~\\ref{tab:decisions-biomass-54})."),
-                xlabel <- "tab:risk-year-1-54",
+                xlabel = "tab:risk-year-1-54",
                 font.size = 12,
                 space.size = 14,
                 placement = "H")
@@ -315,13 +315,13 @@ make.risk.table(sens.model,
                 forecast.yrs,
                 index = 2, ## Index in models[[]]$risks to use, e.g.
                            ##  1 means forecast year 2 compared to forecast year 1
-                xcaption <- paste0("Probabilities related to spawning biomass,
+                xcaption = paste0("Probabilities related to spawning biomass,
                  relative fishing intensity, and the ",end.yr+2," default harvest
                  policy catch for alternative ",end.yr+1," catch options, given
                  the ",end.yr," catch level shown in
                  Table~\\ref{tab:risk-year-1-54} (catch options explained in
                  Table~\\ref{tab:decisions-biomass-54})."),
-                xlabel <- "tab:risk-year-2-54",
+                xlabel = "tab:risk-year-2-54",
                 font.size = 12,
                 space.size = 14,
                 placement = "H")

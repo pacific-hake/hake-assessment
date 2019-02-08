@@ -77,7 +77,7 @@ total allowable catch (TAC, adjusted for carryovers) of
 make.catches.table(catches,
                    start.yr = 2006,
                    end.yr = assess.yr - 1,
-                   xcaption <-
+                   xcaption =
                    "Recent commercial fishery catch (t). Tribal catches are
                     included in the sector totals. Research catch includes landed
                     catch associated with certain research-related activities.
@@ -293,11 +293,11 @@ make.biomass.table(base.model,
                    start.yr = end.yr-9,
                    end.yr = end.yr,
                    weight.factor = 1000,
-                   xcaption <- "Recent trends in estimated beginning of the year
+                   xcaption = "Recent trends in estimated beginning of the year
                                 female spawning biomass (thousand~t) and spawning
                                 biomass level relative to estimated unfished
                                 equilibrium.",
-                   xlabel <- "tab:es-biomass",
+                   xlabel = "tab:es-biomass",
                    font.size = 12,
                    space.size = 14,
                    placement = "tbp")
@@ -315,12 +315,12 @@ make.recruitment.table(base.model,
                        start.yr = end.yr-10,
                        end.yr = end.yr-1,
                        weight.factor = 1000,
-                       xcaption <- "Estimates of recent recruitment (millions of
+                       xcaption = "Estimates of recent recruitment (millions of
                                     age-0) and recruitment deviations, where
                                     deviations below (above) zero indicate
                                     recruitment below (above) that estimated from
                                     the stock-recruit relationship.",
-                       xlabel <- "tab:es-recruitment",
+                       xlabel = "tab:es-recruitment",
                        font.size = 12,
                        space.size = 14,,
                        placement = "tbp")
@@ -408,12 +408,12 @@ make.fishing.intensity.table(base.model,
                              start.yr = end.yr-10,
                              end.yr = end.yr-1,
                              digits = 3,
-                             xcaption <- "Recent estimates of relative fishing
+                             xcaption = "Recent estimates of relative fishing
                                           intensity,
                                           (1-SPR)/(1-SPR\\subscr{40\\%}),
                                           and exploitation fraction (catch
                                           divided by age-2+ biomass).",
-                             xlabel <- "tab:es-fishing-intensity",
+                             xlabel = "tab:es-fishing-intensity",
                              font.size = 12,
                              space.size = 14,
                              placement = "tbp")
@@ -528,9 +528,9 @@ the fishing intensity was relatively low in that year.
 make.landings.tac.table(landings.vs.tac,
                         start.yr = end.yr-10,
                         end.yr = end.yr-1,
-                        xcaption <- "Recent trends in \\fishname\\ landings and
+                        xcaption = "Recent trends in \\fishname\\ landings and
                                      management decisions.",
-                        xlabel <- "tab:es-landings-tac",
+                        xlabel = "tab:es-landings-tac",
                         font.size = 8,
                         space.size = 8,
                         placement = "tbp")
@@ -619,13 +619,13 @@ assessment.
 
 <<reference.points.table, results='asis', echo=FALSE>>=
 make.reference.points.table(base.model,
-                            xcaption <- paste0("**Summary of median and 95\\%
+                            xcaption = paste0("**Summary of median and 95\\%
                              credibility intervals of equilibrium reference points
                              for the \\fishname\\ base assessment model.
                              **Equilibrium reference points were computed using ",
                              start.yr,"--",end.yr-1," averages for mean
                              weight-at-age and selectivity-at-age."),
-                            xlabel <- "tab:es-reference.points",
+                            xlabel = "tab:es-reference.points",
                             font.size = 12,
                             space.size = 14,
                             placement = "tbp")
@@ -687,7 +687,7 @@ wide range of uncertainty, the 95\% credibility interval being
 % May need to move after the next paragraph
 <<decisions.biomass.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption <- paste0("Forecast quantiles of \\fishname\\
+                    xcaption = paste0("Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
                      catch levels (rows a, b, c, d, e), including
@@ -703,7 +703,7 @@ make.decision.table(base.model,
                      Catch in ",
                      max(forecast.yrs)," does not impact the beginning of the
                      year biomass in ",max(forecast.yrs),"."),
-                    xlabel <- "tab:es-decisions-biomass",
+                    xlabel = "tab:es-decisions-biomass",
                     font.size = 12,
                     space.size = 14,
                     type = "biomass",
@@ -724,7 +724,7 @@ the projected biomass for several catch alternatives.
 %
 <<decisions.spr.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption <- paste0("Forecast quantiles of \\fishname\\
+                    xcaption = paste0("Forecast quantiles of \\fishname\\
                      relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%})
                      for the ",min(forecast.yrs),"--",max(forecast.yrs)," catch
                      alternatives presented in
@@ -732,7 +732,7 @@ make.decision.table(base.model,
                      100\\% indicate relative fishing intensities greater than
                      the $\\Fforty$ harvest policy calculated using baseline
                      selectivity."),
-                    xlabel <- "tab:es-decisions-spr",
+                    xlabel = "tab:es-decisions-spr",
                     font.size = 12,
                     space.size = 14,
                     type = "spr",
@@ -830,12 +830,12 @@ make.risk.table(base.model,
                 forecast.yrs,
                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
                            ##  forecast year 2 compared to forecast year 1
-                xcaption <- paste0("Probabilities related to spawning biomass,
+                xcaption = paste0("Probabilities related to spawning biomass,
                              relative fishing intensity, and the ",end.yr+1,
                              " default harvest policy catch for alternative ",
                              end.yr," catch options (catch options explained in
                              Table~\\ref{tab:es-decisions-biomass})."),
-                xlabel <- "tab:es-risk-year-1",
+                xlabel = "tab:es-risk-year-1",
                 font.size = 12,
                 space.size = 14,
                 placement = "tbp")
@@ -879,13 +879,13 @@ make.risk.table(base.model,
                 forecast.yrs,
                 index = 2, ## Index in models[[]]$risks to use, e.g.
                            ##  1 means forecast year 2 compared to forecast year 1
-                xcaption <- paste0("Probabilities related to spawning biomass,
+                xcaption = paste0("Probabilities related to spawning biomass,
                  relative fishing intensity, and the ",end.yr+2," default harvest
                  policy catch for alternative ",end.yr+1," catch options, given
                  the ",end.yr," catch level shown in
                  Table~\\ref{tab:es-risk-year-1} (catch options explained in
                  Table~\\ref{tab:es-decisions-biomass})."),
-                xlabel <- "tab:es-risk-year-2",
+                xlabel = "tab:es-risk-year-2",
                 font.size = 12,
                 space.size = 14,
                 placement = "tbp")

@@ -279,7 +279,7 @@ SSplotComparisons(SSsummarize(c(list(base.model),
 \frame{\frametitle{Decision table for relative spawning biomass}
   <<main.decisions.biomass.table, results='asis', echo=FALSE>>=
   make.decision.table(base.model,
-                      xcaption <- NULL,
+                      xcaption = NULL,
                       font.size = 4,
                       space.size = 6,
                       type = "biomass")
@@ -291,7 +291,7 @@ SSplotComparisons(SSsummarize(c(list(base.model),
 \frame{\frametitle{Decision table for relative fishing intensity}
   <<main.decisions.spr.table, results='asis', echo=FALSE>>=
     make.decision.table(base.model,
-                        xcaption <- NULL,
+                        xcaption = NULL,
                         font.size = 4,
                         space.size = 6,
                         type = "spr")
