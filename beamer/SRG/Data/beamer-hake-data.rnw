@@ -78,13 +78,10 @@ opts_chunk$set(dev = 'cairo_ps',
                results = 'hide',
                cache = TRUE,
                cache.path = 'knitr-cache/')
-setwd("../../../doc/r")
-## Load all R code and the package libraries.
-source("all.r")
+
+source(file.path(here::here(), "R", "all.R"))
 load.models.into.parent.env()
-## This has to be sourced after loading the models in because it depends
-##  on the model output.
-source("custom-knitr-variables.r")
+source(file.path(rootd.R, "custom-knitr-variables.R"))
 @
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -162,7 +159,7 @@ source("custom-knitr-variables.r")
 \frame{\frametitle{Catches}
  \begin{figure}
  \centering
-  <<catches, fig.height=4.8, fig.width=8, out.width='0.8\\columnwidth'>>=  
+  <<catches, fig.height=4.8, fig.width=8, out.width='0.8\\columnwidth'>>=
     make.catches.plot(catches, leg.y.loc = 550, leg.cex = 0.7)
   @
 \end{figure}
@@ -242,7 +239,7 @@ source("custom-knitr-variables.r")
         \item  Minor updates to pre-2017 catch in U.S. fisheries (2007-2017).
       \ei
     %% \item Return of at-sea fleet in the U.S. saw low catch-rates.
-    \item In combination, these resulted in minor changes to total catch (-3\% to +2\%)  
+    \item In combination, these resulted in minor changes to total catch (-3\% to +2\%)
     \item JTC evaluated model sensitivity to updated catch stream.
     \item Identified need to improve tracking and archiving of tribal U.S. catch in regional database (PacFIN).
   \ei
@@ -357,7 +354,7 @@ source("custom-knitr-variables.r")
   @
 \end{figure}
 }
- 
+
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% \subsection{Acoustic survey age compositions}

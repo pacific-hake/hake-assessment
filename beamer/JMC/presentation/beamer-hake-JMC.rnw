@@ -94,13 +94,9 @@ opts_chunk$set(dev = 'cairo_ps',
                cache = TRUE,
                cache.path = 'knitr-cache/')
 
-setwd("../../../doc/r")
-## Load all R code and the package libraries.
-source("all.r")
+source(file.path(here::here(), "R", "all.R"))
 load.models.into.parent.env()
-## This has to be sourced after loading the models in because it depends
-##  on the model output.
-source("custom-knitr-variables.r")
+source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 metric <- NULL
 forecasts <- base.model$forecasts[[1]]

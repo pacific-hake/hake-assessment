@@ -90,14 +90,10 @@ opts_chunk$set(dev = 'cairo_ps',
                results = 'hide',
                cache = TRUE,
                cache.path = 'knitr-cache/')
-setwd("../../../doc/r")
-## Load all R code and the package libraries.
-source("all.r")
+
+source(file.path(here::here(), "R", "all.R"))
 load.models.into.parent.env()
-## This has to be sourced after loading the models in because it depends
-##  on the model output.
-source("custom-knitr-variables.r")
-## source("functionsAssessment.R")
+source(file.path(rootd.R, "custom-knitr-variables.R"))
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -126,7 +122,7 @@ source("custom-knitr-variables.r")
   \item Show some MCMC diagnostics
   \item Fits to data
   \item Estimates of key quantities
-  \item Response to \Sexpr{last.assess.yr} SRG assessment recommendations    
+  \item Response to \Sexpr{last.assess.yr} SRG assessment recommendations
   \item Summary
 \ei
 }
@@ -148,10 +144,10 @@ source("custom-knitr-variables.r")
     \item Updated maturity ogive
     \item Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U)
       and compiled with ADMB \Sexpr{admb.version}
-    \bi 
+    \bi
       \item Necessitates modified parameterisation for time-varying selectivity
     \ei
-    \item New approach to weighting age-composition data      
+    \item New approach to weighting age-composition data
     % \item Usual update of bias adjustment ramps for recruitment deviations
     % \item Usual update of main recruitment deviate estimation period
   \ei
@@ -167,11 +163,11 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
   \item Behind-the-scenes changes and new features.
   \item Extensively tested prior to release.
   \item Used in at least six assessments in 2017.
-  \item However, time-varying parameters can no longer have a logistic 
+  \item However, time-varying parameters can no longer have a logistic
     transformation -- changed because interpretation of the parameter values was
     previously difficult and appropriate parameter bounds make the
     transformation unnecessary.
-  \item Therefore requires a {\em modified} parameterisation for time-varying 
+  \item Therefore requires a {\em modified} parameterisation for time-varying
       selectivity.
 \ei
 \end{frame}
@@ -188,13 +184,13 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
     straying too far from zero.
   \item Deviation is controlled by fixed standard deviation parameter $\phi$.
   ~\\
-  \item In 2017 we used $\phi=0.20$, an increase from previous $\phi=0.03$.  
+  \item In 2017 we used $\phi=0.20$, an increase from previous $\phi=0.03$.
     In 2017 this greater deviation (more flexibility) was used because:
     \bi
       \item The large proportion of 2014 cohort in 2016 age data (age-2 fish)
         meant that $\phi=0.03$ produced implausible estimates of 2014 recruitment
         (about three times larger than 1999 and 2010 recruitments).
-      \item $\phi=0.03$ estimates of 2014 recruitment were inconsistent 
+      \item $\phi=0.03$ estimates of 2014 recruitment were inconsistent
         with the qualitative comparison to the age-1 index.
       \item Good performance of higher $\phi$ in past MSE work.
     \ei
@@ -210,12 +206,12 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
 \bi
   \item Previously-used logistic transformation not available in Stock Synthesis
     3.30 (and proved unnecessary as bounds were not approached).
-  \item Deviations now applied directly to the un-transformed incremental 
+  \item Deviations now applied directly to the un-transformed incremental
     selectivity parameters $p_a$ (page~41).
   \item We define $\Phi$ to be the standard deviation of the normally-distributed
     penalty distribution of the deviations.
   \item Based on the previous bounds, equivalent flexibility was found
-    to occur with 
+    to occur with
     \begin{equation}
     \nonumber \Phi = 7 \phi
     \end{equation}
@@ -262,19 +258,19 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
   \bi
     \item multinomial likelihood function;
     \item tuning method for weighting age composition data, by manually iteratively
-      adjusting a multiplier of the input sample sizes until they 
+      adjusting a multiplier of the input sample sizes until they
       roughly equal the harmonic mean of the effective sample sizes
       (McAllister \& Ianelli, 1997).
   \ei
   ~\\
-  \item Here use a new Dirichlet-Multinomial likelihood (Thorson et al., 
+  \item Here use a new Dirichlet-Multinomial likelihood (Thorson et al.,
     {\em Fisheries Research}, 2017):
   \bi
     \item Estimated parameter, $\theta$, automatically adjusts the weight given to
-       the composition data. 
+       the composition data.
     \item Removes need for manual iterative reweighting (and the subjective
       choice of how many iterations to do).
-    \item Ensures results of model sensitivities, retrospective analyses, 
+    \item Ensures results of model sensitivities, retrospective analyses,
        and likelihood profiles are all automatically tuned, rather than having
        same weights as the base model.
     \item Increases efficiency of the assessment process.
@@ -422,11 +418,11 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
 }
 %----------------------------------------------------------
 
-% This didn't work either (25/2/18) even though code is same as in 
+% This didn't work either (25/2/18) even though code is same as in
 %  main-figures.rnw - an extra \ appears in a path name.
 % \frame{\frametitle{MCMC diagnostics for all parameters and spawning biomass}
 %   \bc
-%   <<main.mcmc.diag.hists, fig.height=4, fig.width=8, 
+%   <<main.mcmc.diag.hists, fig.height=4, fig.width=8,
 %      out.width='0.95\\columnwidth'>>=
 %   make.mcmc.diag.hists.plot(base.model)
 %   @
@@ -654,18 +650,18 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
       not being sampled efficiently.
     \bi
       \item Was due to many samples occurring in a part of parameter space
-        where the effective sample size multiplier, 
+        where the effective sample size multiplier,
         $\theta_{\text{surv}}/(1+\theta_{\text{surv}})$, is between 0.99 and 1.0.
       \item Likelihood surface (w.r.t. $\theta_{\text{surv}}$) is almost completely
         flat in this area, and input sample sizes given full weight.
-      \item To improve MCMC convergence, $\log \theta_{\text{surv}}$ 
-        was fixed at the MLE estimate of \Sexpr{log.theta.survey}, 
-        corresponding to a weight of 
-        $\theta_{\text{surv}}/(1+\theta_{\text{surv}}) = \Sexpr{DM.weight.survey}$. 
+      \item To improve MCMC convergence, $\log \theta_{\text{surv}}$
+        was fixed at the MLE estimate of \Sexpr{log.theta.survey},
+        corresponding to a weight of
+        $\theta_{\text{surv}}/(1+\theta_{\text{surv}}) = \Sexpr{DM.weight.survey}$.
     \ei
-    \item $\log \theta_{\text{fish}}$ well sampled with median estimate of 
-        \Sexpr{log.theta.fishery.median} and associated weight of 
-        $\theta_{\text{fish}}/(1+\theta_{\text{fish}}) = 
+    \item $\log \theta_{\text{fish}}$ well sampled with median estimate of
+        \Sexpr{log.theta.fishery.median} and associated weight of
+        $\theta_{\text{fish}}/(1+\theta_{\text{fish}}) =
         \Sexpr{DM.weight.fishery.median}$.
   \ei
 }
@@ -745,7 +741,7 @@ The 2014 cohort is estimated to be large -- only 5\% chance of being larger than
 
 Extra data reduces its uncertainty from that in the 2017 assessment:
 
-% Adding this manual table for 2018 to compare 2014 recruitment estimates 
+% Adding this manual table for 2018 to compare 2014 recruitment estimates
 %  (Tables 18 and 19 each year)
   \begin{table}
     \begin{tabular}{ccrc} \hline
@@ -753,8 +749,8 @@ Extra data reduces its uncertainty from that in the 2017 assessment:
       \hline
       \Sexpr{assess.yr-1} assessment recruitment in 2014 &
          2,184 & 12,105 & 90,735 \\
-      \Sexpr{assess.yr} assessment recruitment in 2014 &      
-         4,137 & 8,583 & 20,562 \\      
+      \Sexpr{assess.yr} assessment recruitment in 2014 &
+         4,137 & 8,583 & 20,562 \\
       \hline
     \end{tabular}
   \end{table}
@@ -762,7 +758,7 @@ Extra data reduces its uncertainty from that in the 2017 assessment:
 
 At the start of 2018 (from Table 21, page 89):\\
 \bi
-\item 2010 cohort is estimated to make up \Sexpr{f(biomass.2018.prop.age8*100)}\% 
+\item 2010 cohort is estimated to make up \Sexpr{f(biomass.2018.prop.age8*100)}\%
   of the biomass\\
 \item 2014 cohort is estimated to make up \Sexpr{f(biomass.2018.prop.age4*100)}\%
   of the biomass
@@ -785,7 +781,7 @@ At the start of 2018 (from Table 21, page 89):\\
 }
 
 %----------------------------------------------------------
-    
+
 \frame{\frametitle{Spawning Biomass}
   \vspace{-5pt}
   \bc
@@ -885,12 +881,12 @@ year's assessment,\\
     \ei
     {\bf Response:} {\em $\phi=0.20$ is $\Phi=1.40$ -- we retained this for
         base model.}\\
-    \bi  
+    \bi
        \item {\em 2018 assessment suggests 2014 recruitment is more in line
         with 2017 assessment's estimate that used $\phi=0.20$
         rather than estimates that used a lower $\phi$. This is regardless of the
         value of $\Phi$ used in 2018 assessment (Sensitivities talk).}
-       \item {\em The estimate of 2016 recruitment with $\Phi=0.21$ ($\phi=0.03$) 
+       \item {\em The estimate of 2016 recruitment with $\Phi=0.21$ ($\phi=0.03$)
         is highest ever and provides worse fit to survey biomass index than higher
         values of $\Phi$ (Sensitivities talk).}
       \ei
@@ -915,11 +911,11 @@ year's assessment,\\
         ~\\
       \item Use up-to-date data to replace 20-year-old information.\\
         {\bf Response:} {\em Analysed 1,947 ovary samples to estimate a new
-          maturity ogive (as shown in Data talk). Now used in base model and 
+          maturity ogive (as shown in Data talk). Now used in base model and
           previous ogive used in a sensitivity test.}\\
-        ~\\        
+        ~\\
       \item Assess whether maturity is more dependent upon age or upon weight.\\
-        {\bf Response:} {\em Not completed, though greatest variability in 
+        {\bf Response:} {\em Not completed, though greatest variability in
           weight occurs for older fish that are mostly mature.}
       \en
 \ei
@@ -931,17 +927,17 @@ year's assessment,\\
     (continued)}
 % \setbeamercovered{dynamic}
 \bi
-  \item 2017 MCMC diagnostics point towards need for longer MCMC chain 
+  \item 2017 MCMC diagnostics point towards need for longer MCMC chain
     (24~million rather than 12~million). Recommend:
     \bn
       \item Longer chains.\\
-      {\bf Response:} {\em Done. Ran MCMC to a length of 24~million, with first 
+      {\bf Response:} {\em Done. Ran MCMC to a length of 24~million, with first
           4~million discarded. Also looked into multi-chain diagnostics to
           further diagnose convergence.}\\
       ~\\
       \item Retaining more samples than the usual 999.\\
       {\bf Response:} {\em Done. Retained 2,000 samples to characterise posterior
-          distributions.}\\        
+          distributions.}\\
       ~\\
       \item Look into more efficient methods of obtaining posteriors,
         if available.\\
@@ -960,8 +956,8 @@ year's assessment,\\
 \bi
   \item Continue including sensitivity tests from 2017 assessment.\\
   {\bf Response:} {\em Done. All included in assessment (and more) --
-      further sensitivities were performed during the work process}\\   
-  ~\\    
+      further sensitivities were performed during the work process}\\
+  ~\\
   \item Continue to run sensitivity tests fitted to the provisional age-1 index.\\
   {\bf Response:} {\em Done (Figures 3, 47 and 48). Recall that the survey is
       not specifically designed to survey age-1 hake, and resulting uncertainty is
@@ -977,9 +973,9 @@ year's assessment,\\
 % \setbeamercovered{dynamic}
 \bi
   \item Current evidence does not support including hake south of Point Conception.
-     Encourage ongoing collection and analysis of genetic material to resolve 
+     Encourage ongoing collection and analysis of genetic material to resolve
      stock structure.\\
-  {\bf Response:} {\em JTC continues to support this and collections have 
+  {\bf Response:} {\em JTC continues to support this and collections have
     continued in the 2017 survey.}\\
   ~\\
   \item AP requests:
@@ -989,8 +985,8 @@ year's assessment,\\
       ~\\
       \item Table estimating the annual weight of each cohort that is caught,
          dies from natural mortality, and lives, by year.\\
-      {\bf Response:} {\em Done (for strongest cohorts only) as Table~25 
-          (and in 2017 document). Also annual biomass-at-age and catch-at-age 
+      {\bf Response:} {\em Done (for strongest cohorts only) as Table~25
+          (and in 2017 document). Also annual biomass-at-age and catch-at-age
           (numbers and biomass) as Tables~21, 23~and~24 (and in 2017 document).}
     \ei
 \ei
@@ -1004,19 +1000,18 @@ year's assessment,\\
   \bi
   \item Model continues to fit the age data particularly well.
   \item The spawning stock is estimated to have remained relatively constant
-    since 2013. 
+    since 2013.
   \item The 2014 recruitment has only 5\% chance of being as large as the 2010 recruitment.
   \item The 2014 cohort now comprises about twice the biomass of the 2010 cohort
     (based on MLEs).
   \item The median estimate of \Sexpr{end.yr} relative spawning biomass is
     \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
     \Sexpr{curr.depl.upper}\%).
-  \item The median estimate of \Sexpr{end.yr} female spawning biomass is 
-    \Sexpr{curr.bio.median}~million~t 
+  \item The median estimate of \Sexpr{end.yr} female spawning biomass is
+    \Sexpr{curr.bio.median}~million~t
     (\Sexpr{curr.bio.lower}-\Sexpr{curr.bio.upper}~million~t).
   \ei
 }
 
 
 \end{document}
-
