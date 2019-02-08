@@ -912,7 +912,7 @@ actions. With zero catch for the next two years, the biomass has a
 %  180,000~t catch levels (Table~\ref{tab:es-risk-year-1} and
 %  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
-\Sexpr{end.yr+1} is 50\% for some catch levels between 180,000~t and
+\Sexpr{end.yr+1} is 50\% for some catch level between 180,000~t and
 350,000~t (Table~\ref{tab:es-risk-year-1} and
 Figure~\ref{fig:es-forecast-risk-comparison-year-1}). The highest probability of
 decrease is 77\%, which is for the default harvest policy
