@@ -94,8 +94,8 @@ make.catches.table(catches,
 In this stock assessment, the terms catch and landings are used
 interchangeably. Estimates of discard within the target fishery are included,
 but discarding of \fishname\ in non-target fisheries is not. Discard from all
-fisheries is estimated to be less than 1\% of landings in recent years.
-During
+fisheries, including those that don't target hake, is estimated to be less
+than 1\% of landings in recent years. During
 the last five years, catches have been above the long-term average catch
 (\Sexpr{f(long.term.avge.catch)}~t) in
 \Sexpr{last.5.years.above.avge[1:(length(last.5.years.above.avge)-1)]} and
@@ -266,9 +266,9 @@ throughout the late 2000s, reaching a time-series low of
 \Sexpr{median.bio.min}~million~t in \Sexpr{median.bio.min.year}.  The assessment
 model estimates that median spawning biomass then peaked again in 2013 and 2014 due
 to a very large 2010 year class and an
-above-average 2008 year class. The subsequent decline is from the 2010 year class
-surpassing the age at which gains in weight from growth are greater than the
-loss in weight from natural mortality.
+above-average 2008 year class. The subsequent decline from 2014 to 2016 is primarily
+from the 2010 year class surpassing the age at which gains in weight from growth
+are greater than the loss in weight from mortality.
 The 2014 year class is estimated to be large, though not as large as the 1999
 and 2010 year classes, which, combined with the fishing mortality on these
 cohorts and an above-average estimate of the 2016 year class, has resulted in a
