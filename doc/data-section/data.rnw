@@ -201,9 +201,10 @@ cohort was the largest in all three U.S. fleets (Tables
 \ref{tab:main-us-cp-age-data}--\ref{tab:main-us-shore-age-data}) while the 2010
 cohort was largest in both Canadian fleets (Tables
 \ref{tab:main-can-shore-age-data} and \ref{tab:main-can-ft-age-data}).
-In \Sexpr{last.data.yr - 1}, \Sexpr{top.coh(last.data.yr - 1, 3, cap = FALSE)}.
+Table~\ref{tab:main-all-age-data-fishery} shows the combined age proportions of all
+fleets, U.S. and Canadian. For the combined data in \Sexpr{last.data.yr - 1},
+\Sexpr{top.coh(last.data.yr - 1, 3, cap = FALSE)}.
 In \Sexpr{last.data.yr}, \Sexpr{top.coh(last.data.yr, 3, cap = FALSE)}.
-See Table~\ref{tab:main-all-age-data-fishery}.
 
 We caution that proportion-at-age data contains information about the relative
 numbers-at-age, and these can be affected by changing recruitment, selectivity
