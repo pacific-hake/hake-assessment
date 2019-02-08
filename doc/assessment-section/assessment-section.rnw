@@ -98,7 +98,11 @@ quantitatively compared with performance measures.
 \subsection{Description of base model}\label{sec:assessment-base-model}
 
 The \Sexpr{assess.yr} base model is predominantly an update of the base model in
-the \Sexpr{last.assess.yr} stock assessment. Stock Synthesis
+the \Sexpr{last.assess.yr} stock assessment. 
+The statistical-catch-at-age model assumes that the 
+\fishname\ population is a single coast-wide stock subject to 
+one aggregated fleet with combined male and female population dynamics. 
+Stock Synthesis
 \citep{MethotWetzel2013} version \Sexpr{ss.version} is again used,
 having been introduced in the previous assessment \citep{JTC2018}.
 The largest changes between the
@@ -292,16 +296,18 @@ and sensitivity runs that explore these assumptions.}
 
 \emph{Regarding forecast year weight-at-ages, the JTC used the weighted
 least squares analysis to also suggest that the assumption of using the long-term
-mean for weight-at-age in 2019--2021 was reasonable. During evaluations of alternative
-forecast year weight-at-age (and thus also fecundity-at-age) settings, we noted
-forecast year configuration issues with Stock Synthesis (version 3.30.10 as
-used for this assessment).  The software required forecast year weights-at-age values
+mean for weight-at-age in 2019--2021 was reasonable. As documented last year
+(page~23 of \citealt{JTC2018}), the current configuration of Stock Synthesis
+(version 3.30.10 as used for this assessment) precludes properly testing other
+assumptions while using the final year of empirical weight-at-age data.
+The software required forecast year weights-at-age values
 to be either (i)~set to the same as that for equilibrium conditions, or (ii)~set
 equivalent to the final year of data (2018).  For example, we were unable to set
 future weight-at-age values to be the mean of 2016-2018 without also setting
 the 2018 weights-at-age to that mean (thereby averaging out the 2018 data).
 Therefore, we retained the 2018 base model assumption of using the overall
-1975-2018 mean for the forecast period.}
+1975-2018 mean for the forecast period. See Section~\ref{sec:assessment-fecundity-recap}
+for further details.}
 % On 4 February 2019, the JTC learned that
 % the newest version of Stock Synthesis (version 3.30.12) now allows independent
 % forecast period settings for time-varying parameters or inputs.  Alternative
@@ -1035,17 +1041,13 @@ estimates of current stock status and even less-certain projections of the stock
 trajectory.
 
 The JTC continues to be committed to advancing MSE analyses, by coordinating
-research with other scientists in the region engaging in similar research.
-In particular, the JTC aspires to continue advancement in MSE research in 2019
-by collaborating with the Treaty MSE Working Group and the post-doctoral
-scientists dedicated to developing MSE models.
-
-Incorporating feedback from JMC/AP/SRG/MSE Working Group will ensure
-that the operating model is able to provide insight into the important questions
-defined by these groups. Specifically, the development of MSE tools to evaluate
-major sources of uncertainty relating to data, model structure and the harvest
-policy for this fishery and compare potential methods to address them remains an
-important goal.
+research with the \fishname\ MSE Working Group and other scientists in the region
+engaging in similar research. Incorporating feedback from JTC/JMC/AP/SRG/MSE
+Working Group will ensure that constructed operating models will be able to
+provide insight into the important questions defined by these groups.
+Specifically, the development of MSE tools to evaluate major sources of
+uncertainty relating to data, model structure and the harvest policy for this
+fishery and compare potential methods to address them remains an important goal.
 
 \subsection{Reference points}\label{sec:assessment-reference-points}
  % Manual 2019 done.
@@ -1640,15 +1642,17 @@ and are not relevant other than to refer to each run uniquely. The extrapolation
 weights-at-age is required because there is catch in the model from 1966 onward but age
 and weight data were not collected until 1975.
 
-The 2018 base model was the same as run 53, which did had non-time-varying fecundity,
-long term (1975--2018) mean weights-at-age applied for the years 1966--1974, and
-long term (1975--2018) mean weights-at-age applied for the years 2019--2021
+The 2018 base model had the same assumptions as run 53, with one less year of
+data (Table~\ref{tab:main-wtatage-runs}). These assumptions are
+non-time-varying fecundity,
+long-term (1975--2018) mean weights-at-age applied for the years 1966--1974, and
+long-term (1975--2018) mean weights-at-age applied for the years 2019--2021
 (Figure~\ref{fig:main-empirical.weight.at.age.sens.a}).
 
-The 2018 alternate model was the equivalent of run 58, which had time-varying
+The 2018 alternate model was similarly analogous to run 58 (Table~\ref{tab:main-wtatage-runs}), which had time-varying
 fecundity, short-term (1975--1979) mean weights-at-age applied for the years 1966--1974, and
 short term (2016--2018) mean weights-at-age applied for the years 2017--2021.
-Note that when models use a different set of weights-at-age for the forecast years
+Recall the aforementioned configuration issue, that when models use a different set of weights-at-age for the forecast years
 than for the 1966--1974 period, the last year of data (2018) cannot be included. Instead,
 the current configuration of Stock Synthesis requires 2018 to be used as a placeholder for
 the forecasting weights-at-age vector.
@@ -1656,8 +1660,8 @@ the forecasting weights-at-age vector.
 This year's base model is a hybrid of the 2018 models, based on the 2018 base model
 but with the inclusion of time-varying fecundity.
 
-There were five further runs done, overall covering all possible combinations of long or short-term mean
-pre-1975 weights-at-age, long or short-term mean post-2017 weights-at-age, and time-varying
+There were five further runs done, overall covering all possible combinations of long- or short-term mean
+pre-1975 weights-at-age, long- or short-term mean post-2017 weights-at-age, and time-varying
 fecundity being included or not.
 
 Weights-at-age for runs which use the long-term (1975--2018) mean for both the pre-1975
@@ -1721,7 +1725,7 @@ but due to the inflation of the initial biomass give a similar stock status to t
 
 Runs 55-58 produce an inflated initial biomass, due to the use of a short-term (1975--1979) mean
 weight-at-age being used for the pre-1975 time period. The weights-at-age for older fish in
-those early years is significantly higher than the long term mean as can be seen in
+those early years is significantly higher than the long-term mean as can be seen in
 Figures~\ref{fig:main-empirical.weight.at.age.sens.b}--\ref{fig:main-empirical.weight.at.age.sens.d}.
 
 MCMC results for runs 53 and 54 including decision tables can be found in
@@ -1735,7 +1739,7 @@ years' data and estimating the parameters under the assumptions of the base
 model. Models with 3, 4, or 5 years of data removed had information
 available regarding the high 2010 year class, but did not yet have information on the
 2014 year class (Figure~\ref{fig:main-biomass-recruitment-retrospective}). Models
-with 1 and 2 years of data removed were just beginning to receive data on age-2 and age-1, respectively,
+with 1 and 2 years of data removed were just beginning to receive data on age-3 and age-2, respectively,
 individuals to to predict the size of the 2014 year class.  The base model now has
 \Sexpr{number.to.word(assess.yr - 2014 - 1)} years of data to estimate the size of
 the 2014 cohort, and the uncertainty around this
@@ -1744,8 +1748,8 @@ estimate has been considerably reduced compared to one year ago
 
 Overall, there is little retrospective change to the relative spawning biomass
 trajectory up to the mid-2010s, and most retrospective change occurs in the
-final years of the retrospective model. Retrospective estimates over the last 5
-years have been predominantly positively biased. In the last 4 years, the
+final years of the retrospective model. Retrospective estimates over the last five
+years have been predominantly positively biased. In the last four years, the
 stock assessment has retrospectively overestimated the status in the terminal year,
 which is likely related to the dynamics introduced by the large 2010 and 2014 cohorts
 and the high observed survey biomass index in 2009.
@@ -1757,9 +1761,9 @@ catch-at-age data and survey age-composition data have been collected on the
 cohort. Very strong and weak cohorts tend to be identified in the model at a
 younger age than intermediate cohorts. For example, the strong 2010 cohort has
 been fairly well determined in the model by age-4 and the weak 2007 cohort by
-age 6.  Estimated recruitment deviations for the 2014 cohort appear to be
-similar to other large cohorts (1999, 2008, and 2010), though with the extra year
-of data in this year's assessment the 2014 cohort appears to maybe be more similar
+age-6.  Estimated recruitment deviations for the 2014 cohort appear to be
+similar to other large cohorts (1999, 2008, and 2010), though with the extra years
+of data in this and last year's assessment the 2014 cohort appears to maybe be more similar
 to the 2008 cohort rather than the 1999 and 2010 cohorts (which are the largest).
 % One major difference between the 2010 and 2014
 % cohorts is that by age-3 the 2010 cohort had been fully sampled by the acoustic
