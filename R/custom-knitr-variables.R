@@ -201,6 +201,7 @@ top.coh <- function(yr = last.data.yr,
   ##  "the 2014 cohort was the largest (29\\%), followed by the 2010 cohort (27\\%)"
   ## top.coh(2018, spec.yr = 2010) produces:
   ##  "27"
+  ##  because 27% of the catch in 2018 were of the 2010 cohort
   ## If spec.yr is a year, then the value only will be returned
   ##  as a percentage of that cohort caught in yr
   if(num.cohorts < 1){
