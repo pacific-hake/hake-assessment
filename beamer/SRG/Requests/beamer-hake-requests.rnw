@@ -92,15 +92,9 @@ opts_chunk$set(dev = 'cairo_ps',
                cache = TRUE,
                cache.path = 'knitr-cache/')
 
-setwd("../../../doc/r")
-## Load all R code and the package libraries.
-source("all.r")
+source(file.path(here::here(), "R", "all.R"))
 load.models.into.parent.env()
-## This has to be sourced after loading the models in because it depends
-##  on the model output.
-source("custom-knitr-variables.r")
-## source("../../beamer/SRG/Requests/Requests.R")
-
+source(file.path(rootd.R, "custom-knitr-variables.R"))
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -205,7 +199,7 @@ SSplotComparisons(SSsummarize(c(list(base.model),
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{$\sigma_r$ -- mean recruitment (1966--2017) vs. $R_0$ }
   \begin{columns}
@@ -214,7 +208,7 @@ SSplotComparisons(SSsummarize(c(list(base.model),
     \item Theory behind tuning of $\sigma_r$ is based on getting consistency
       between equilibrium value and time series
     \item Base model has equilibrium recruitment ($R_0$) which is
-      relatively consistent with the estimated mean recruitment 
+      relatively consistent with the estimated mean recruitment
       over the timeseries (1966--2017)
       \ei
     \end{column}
@@ -297,7 +291,7 @@ SSplotComparisons(SSsummarize(c(list(base.model),
                         type = "spr")
   @
 }
-  
+
 %--------------------------------------------------------------
 \frame{\frametitle{Risk based on fixed \Sexpr{end.yr} catch}
     <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
@@ -363,10 +357,10 @@ SSplotComparisons(SSsummarize(c(list(base.model),
  \subsection{}
 \frame{\frametitle{Request 4 -- extra MCMC run. A reminder...}
   \bi
-    \item Conduct short and long MCMC runs using sensitivity model  
+    \item Conduct short and long MCMC runs using sensitivity model
     \item Today: short run = 12 million chain with 1,000 samples after burn-in period
     \item Model specification as different from base model:
-          \bi 
+          \bi
               \item use wt-at-age matrix (rather than vector of overall mean) along with new maturity ogive to calculate fecundity
               \item this results in fecundity being time-varying from 1975-2017
               \item use the mean wt-at-age from 1975-1979 to calculate fecundity for pre-1975 period (including equilibirum assumption)
@@ -374,10 +368,10 @@ SSplotComparisons(SSsummarize(c(list(base.model),
           \ei
      \item Compare alternative fecundity sensitivity model with base model:
           \bi
-             \item Relative spawning biomass 2018  
-             \item Forecast catch from HCR 2018 
-             \item Probability of stock status (Depletion) less than 40\% and 10\% 
-          \ei         
+             \item Relative spawning biomass 2018
+             \item Forecast catch from HCR 2018
+             \item Probability of stock status (Depletion) less than 40\% and 10\%
+          \ei
   \ei
 }
 
@@ -456,7 +450,7 @@ SSplotComparisons(SSsummarize(c(list(base.model),
     \item Missing minus sign inserted into (4) on page 41.
     \item Most of Trevor's typos.
     \item Further comments from Jaclyn.
-  \end{itemize}      
+  \end{itemize}
 }
 
 
