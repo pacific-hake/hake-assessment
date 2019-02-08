@@ -1466,7 +1466,7 @@ make.comparison.plot.mcmc(c(list(base.model), sens.models.6),
 @
 \end{center}
 \caption{MCMC median posterior estimates with 95\% credible interval of spawning
-  biomass for the base model and alternative sensitivity runs 55, 56, 57, and 58.
+  biomass for the base model and sensitivity runs 55, 56, 57, and 58.
   See Figure~\ref{fig:main-biomass-base-alternative-6} and
   Table~\ref{tab:main-wtatage-runs} for descriptions of models.}
 \label{fig:main-biomass-base-alternative-6-mcmc}
