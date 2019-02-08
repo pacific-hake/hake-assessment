@@ -48,15 +48,18 @@ The structural assumptions
 of this \Sexpr{assess.yr} base model,
 implemented using version \Sexpr{ss.version} of the Stock Synthesis software
 \citep{MethotWetzel2013}, are effectively the same as the
-\Sexpr{last.assess.yr} base model \citep{JTC2017}, though we incorporate
+\Sexpr{last.assess.yr} base model \citep{JTC2018}, though we incorporate
 time-varying fecundity.
 
-The 35 day 2018/2019 U.S. government shutdown considerably delayed delivery of U.S.
-age data and reduced the JTC's collective capacity to complete the
-\Sexpr{assess.yr} assessment following status-quo procedures.  As a result,
+The 35-day 2018/2019 U.S. government shutdown considerably delayed delivery of U.S.
+age data and reduced the JTC's time available to collectively complete the
+\Sexpr{assess.yr} assessment. As a result,
 many planned supplementary and exploratory analyses could not be completed, including
 some developed for response to \Sexpr{last.assess.yr} SRG requests
-(see Section~\ref{sec:assessment-response-review}).
+(see Section~\ref{sec:assessment-response-review}), although most sensitivity
+runs (including new ones related to time-varying fecundity) were completed.
+
+A Glossary of terms appears in Appendix~\ref{chap:glossary}.
 
 \subsection{Stock structure and life history}\label{sec:intro-stock-structure}
 
@@ -364,9 +367,9 @@ The \Sexpr{last.data.yr} Canadian \fishname\ domestic fishery removed
 The shoreside component, made up of vessels landing fresh round product onshore,
 landed \Sexpr{last.year.can.shore}~t. The freezer trawler component,
 which freezes headed and gutted product while at sea, landed
-\Sexpr{last.year.can.freezer}~t. For the first time since 2011
+\Sexpr{last.year.can.freezer}~t. As for 2017 (which was the first time since 2011),
 there was a Joint Venture fishery (running from August 21 to September 15),
-delivering 2,439.63~t to the Dutch vessel \emph{Margiris}.
+delivering 2,440~t to the Dutch vessel \emph{Margiris}.
 
 % Paraphrased from Appendix B, no point in repeating lots of it:
 Fishing started in April and ended in late November.
