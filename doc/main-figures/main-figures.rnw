@@ -1372,10 +1372,10 @@ make.comparison.plot(c(list(base.model), sens.models.5),
 @
 \end{center}
 \caption{Maximum likelihood estimates of spawning biomass for the base
-  model and alternative sensitivity runs 52, 53 (base 2018), and 54 that all set
+  model and alternative sensitivity runs 52, 53, and 54 that all set
   the pre-1975 (1966-1974) weights-at-age to the long term mean (1975--2018).
   Run 52 has non-time-varying fecundity and the short term mean (2016--2018)
-  as the post-2017 weights-at-age. Run 53 is the base model from 2018 without
+  as the post-2017 weights-at-age. Run 53 is without
   time-varying fecundity and with long term (1975--2018) mean as the post-2018
   weights-at-age. Run 54 has time-varying fecundity and the short term mean
   (2016--2018) as the post-2017 weights-at-age.
@@ -1394,7 +1394,7 @@ make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
 @
 \end{center}
 \caption{MCMC median posterior estimates with 95\% credible interval of spawning
-  biomass for the base model and alternative sensitivity runs 52, 53 (base 2018),
+  biomass for the base model and alternative sensitivity runs 52, 53,
   and 54. See Figure~\ref{fig:main-biomass-base-alternative-5} and
   Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
 \label{fig:main-biomass-base-alternative-5-mcmc}
@@ -1412,7 +1412,7 @@ make.comparison.plot(c(list(base.model), sens.models.5),
 \end{center}
 %\vspace{0mm}
 \caption{Maximum likelihood estimates of stock status for the base
-  model and alternative sensitivity runs 52, 53 (base 2018), and 54.
+  model and alternative sensitivity runs 52, 53, and 54.
   See Figure~\ref{fig:main-biomass-base-alternative-5} and
   Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
 \label{fig:main-status-base-alternative-5}
@@ -1428,7 +1428,7 @@ make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
 \end{center}
 %\vspace{0mm}
 \caption{MCMC median posterior estimates with 95\% credible interval of spawning
-  biomass for the base model and alternative sensitivity models 52, 53 (base 2018),
+  biomass for the base model and alternative sensitivity models 52, 53,
   and 54. See Figure~\ref{fig:main-biomass-base-alternative-5} and
   Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
 \label{fig:main-status-base-alternative-5-mcmc}
