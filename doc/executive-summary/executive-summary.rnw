@@ -47,7 +47,8 @@ make.catches.plot(catches,
 %\vspace{0mm}
 \caption{Total \fishname\ catch used in the assessment by sector,
   \Sexpr{start.yr}--\Sexpr{last.data.yr}.
-  U.S. tribal catches are included in the sectors where they are represented.}
+  U.S. tribal catches are included in the sectors where they are represented.
+  CP is catcher-processor and MS is mothership.}
 \label{fig:es-catches}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -83,7 +84,7 @@ make.catches.table(catches,
                     catch associated with certain research-related activities.
                     Catch associated with surveys and discarded bycatch in
                     fisheries not targeting hake are not currently included in
-                    the model. CP is catcher-processor and MS is mothership.",
+                    the model.",
                    xlabel = "tab:es-catches",
                    font.size = 9,
                    space.size = 10,
