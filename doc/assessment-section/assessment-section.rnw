@@ -1354,7 +1354,7 @@ which uses two estimated
 parameters to automatically weight each of the fishery and survey age
 compositions, was assessed by comparing the weightings to the
 McAllister-Ianelli and Francis methods.
-Both alternative methods iteratively adjust the input sample sizes
+Both alternative methods require manual iterative adjustments to the input sample sizes
 using a derived multiplier.
 The McAllister-Ianelli method, which was used in assessments prior to 2018,
 attempts to make the arithmetic mean of the input
