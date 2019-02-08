@@ -185,7 +185,7 @@ by assuming selectivity is constant over time. Therefore, we retain time-varying
 selectivity in this assessment, continuing with the new parameterization introduced
 in the \Sexpr{last.assess.yr} assessment and retaining the equivalent level of
 assumed variability. We apply the Dirichlet-Multinomial approach to weighting
-composition data again this year and provide sensitivities to alternative data weighting
+composition data again this year and provide sensitivities to alternative data-weighting
 approaches. For 2019, we incorporate time-varying fecundity into the
 assessment model, whereas previously it was time-invariant.
 
@@ -558,7 +558,7 @@ intensity has never been above the target of 1.0 when the female spawning biomas
 is below the
 reference point of $\Bforty$ (Figure~\ref{fig:es-phase}).  This highlights the
 highly dynamic nature of the stock due to high variation in recruitment strength, such
-that spawning biomass could fall below ($\Bforty$) even in the absence of fishing.
+that spawning biomass could fall below $\Bforty$ even in the absence of fishing.
 While the target fishing mortality ($\Fforty$) and the target spawning biomass
 ($\Bforty$) result in different population sizes (see Table~\ref{tab:es-reference.points}),
 this difference is not, by far, the major driver of the observed dynamics.
@@ -911,7 +911,7 @@ actions. With zero catch for the next two years, the biomass has a
 %  180,000~t catch levels (Table~\ref{tab:es-risk-year-1} and
 %  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
-\Sexpr{end.yr+1} is 50\% for some catch level between 180,000~t and
+\Sexpr{end.yr+1} is 50\% for some catch levels between 180,000~t and
 350,000~t (Table~\ref{tab:es-risk-year-1} and
 Figure~\ref{fig:es-forecast-risk-comparison-year-1}). The highest probability of
 decrease is 77\%, which is for the default harvest policy
