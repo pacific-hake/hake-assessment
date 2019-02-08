@@ -5,7 +5,7 @@
 \documentclass[aspectratio=169]{beamer}   % then set out.width = '4in'
 %   (probably) in opts_chunk. May still have to manually tweak some
 %\documentclass{beamer}                     % then set out.width = '4.5in'
-%   in opts_chunk. 
+%   in opts_chunk.
 \mode<presentation>
 \usetheme[compress]{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
 %\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
@@ -97,14 +97,9 @@ opts_chunk$set(dev = 'cairo_ps',
                cache = TRUE,
                cache.path = 'knitr-cache/')
 
-setwd("../../../doc/r")
-## Load all R code and the package libraries.
-source("all.r")
+source(file.path(here::here(), "R", "all.R"))
 load.models.into.parent.env()
-## This has to be sourced after loading the models in because it depends
-##  on the model output.
-source("custom-knitr-variables.r")
-
+source(file.path(rootd.R, "custom-knitr-variables.R"))
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -180,7 +175,7 @@ make.mcmc.vs.mle.plot(base.model,
 \frametitle{MLE vs MCMC -- Recruitment}
 \begin{center}
 %, out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
-<<mle.mcmc.2, fig.height=3.5>>= 
+<<mle.mcmc.2, fig.height=3.5>>=
 make.mcmc.vs.mle.plot(base.model,
                       end.yr = end.yr,
                       type = "o",
@@ -218,7 +213,7 @@ make.short.parameter.estimates.table(base.model,
 \begin{center}
 \vspace{5pt}
 %, fig.width=8>>=
-<<hm.biomass.fig>>= 
+<<hm.biomass.fig>>=
 #oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 oldpar <- par()
@@ -278,7 +273,7 @@ make.short.parameter.estimates.sens.table(
 \begin{center}
 \vspace{5pt}
 %, fig.width=8>>=
-<<sigmar.biomass.fig>>= 
+<<sigmar.biomass.fig>>=
 #oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 oldpar <- par()
@@ -350,7 +345,7 @@ make.short.parameter.estimates.sens.table(
 \begin{center}
 \vspace{5pt}
 % <<age.error.sensitivity.biomass, fig.height=4.5, fig.width=8>>=
-% , out.width='4.5in'>>= 
+% , out.width='4.5in'>>=
 <<sens.2.sens.biomass.fig>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
@@ -432,7 +427,7 @@ make.short.parameter.estimates.sens.table(
 \begin{frame}
 \frametitle{McAllister-Ianelli method for data-weighting - Biomass}
 \begin{center}
-<<harmonicmean.sensitivity.biomass>>=  
+<<harmonicmean.sensitivity.biomass>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(
@@ -452,7 +447,7 @@ par <- oldpar
 \begin{frame}
 \frametitle{U.S. age comps weighted by month - Biomass}
 \begin{center}
-<<usagecompsweight.sensitivity.biomass>>=  
+<<usagecompsweight.sensitivity.biomass>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(
@@ -472,7 +467,7 @@ par <- oldpar
 \begin{frame}
 \frametitle{Alternative catch stream - Biomass}
 \begin{center}
-<<altcatchstream.sensitivity.biomass>>=  
+<<altcatchstream.sensitivity.biomass>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(
@@ -551,7 +546,7 @@ make.short.parameter.estimates.sens.table(
 \begin{center}
 \vspace{5pt}
 % fig.width=8>>=
-<<max.age.sensitivity.biomass>>=  
+<<max.age.sensitivity.biomass>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(c(list(base.model),
@@ -578,7 +573,7 @@ par <- oldpar
 \begin{center}
 \vspace{5pt}
 % , fig.width=8>>=
-<<phi.sensitivity.biomass>>=  
+<<phi.sensitivity.biomass>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(
@@ -604,7 +599,7 @@ par <- oldpar
 \begin{center}
 \vspace{5pt}
 % fig.width=8>>=
-<<phi.sensitivity.density.2014>>=  
+<<phi.sensitivity.density.2014>>=
 oldpar <- par()
 par(mar = c(7.1, 3.1, 0, 0))
 make.comparison.plot(
@@ -634,7 +629,7 @@ par <- oldpar
 \begin{center}
 \vspace{5pt}
 % fig.width=8>>=
-<<phi.sensitivity.density.2016>>=  
+<<phi.sensitivity.density.2016>>=
 oldpar <- par()
 par(mar = c(7.1, 3.1, 0, 0))
 make.comparison.plot(
@@ -692,7 +687,7 @@ make.short.parameter.estimates.sens.table(
 \begin{center}
 \vspace{5pt}
 % , fig.width=8>>=
-<<semi.sensitivity.biomass>>=  
+<<semi.sensitivity.biomass>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(
@@ -714,7 +709,7 @@ par <- oldpar
 \begin{center}
 \vspace{5pt}
 % fig.width=8>>=
-<<semi.sensitivity.density.2014>>=  
+<<semi.sensitivity.density.2014>>=
 oldpar <- par()
 par(mar = c(7.1, 3.1, 0, 0))
 make.comparison.plot(
@@ -740,7 +735,7 @@ par <- oldpar
 \begin{center}
 \vspace{5pt}
 % fig.width=8>>=
-<<semi.sensitivity.density.2016>>=  
+<<semi.sensitivity.density.2016>>=
 oldpar <- par()
 par(mar = c(7.1, 3.1, 0, 0))
 make.comparison.plot(
@@ -790,7 +785,7 @@ make.short.parameter.estimates.sens.table(
 \begin{center}
 \vspace{5pt}
 % , fig.width=8>>=
-<<wtatage.sensitivity.biomass>>=  
+<<wtatage.sensitivity.biomass>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(
@@ -858,7 +853,7 @@ make.comparison.plot(retro.list,
                      legend = TRUE,
                      legendloc = "topleft",
                      is.retro = TRUE)
-par <- oldpar 
+par <- oldpar
 @
 \end{center}
 \end{frame}
@@ -893,9 +888,9 @@ par <- oldpar
 \frametitle{Retrospective -- Squid}
 \begin{center}
 \vspace{-5pt}
-%, out.width='0.9\\columnwidth'>>=   Keep following values else 
-%   years get too close to the tendrils 
-<<retro.3, fig.height=3.5>>= 
+%, out.width='0.9\\columnwidth'>>=   Keep following values else
+%   years get too close to the tendrils
+<<retro.3, fig.height=3.5>>=
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 plot.retro.yrs <- retro.yrs
@@ -955,6 +950,3 @@ make.assessment.history.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
-
-
-
