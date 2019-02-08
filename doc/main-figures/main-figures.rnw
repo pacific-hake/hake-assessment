@@ -1406,7 +1406,7 @@ make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
 make.comparison.plot(c(list(base.model), sens.models.5),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.5),
-                     legend = FALSE,
+                     legend = TRUE,
                      end.yr = end.yr)
 @
 \end{center}
@@ -1422,7 +1422,7 @@ make.comparison.plot(c(list(base.model), sens.models.5),
 make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.5),
-                     legend = FALSE,
+                     legend = TRUE,
                      end.yr = end.yr)
 @
 \end{center}
