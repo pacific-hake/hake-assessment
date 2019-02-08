@@ -9,7 +9,12 @@
   \item The stock assessment model for \Sexpr{assess.yr} is similar in structure
 to the \Sexpr{last.assess.yr} model. It is fit to an acoustic survey index of
 abundance, annual commercial catch data, and age-composition data from the
-survey and commercial fisheries.  
+survey and commercial fisheries.
+
+  \item The only structural change from \Sexpr{last.assess.yr} is the inclusion
+  of time-varying (rather than constant) fecundity.
+  This is achieved by using a single maturity-at-age curve multiplied by
+  yearly weight-at-age data to produce the fecundity-at-age for each year.
 
   \item Updates to the data include:
 %%the biomass estimate and age-composition data from the acoustic survey conducted
@@ -18,21 +23,19 @@ minor changes to historical (pre-\Sexpr{end.yr-1}) catch, age composition and
 weight-at-age data, addition of \Sexpr{end.yr-1} fishery catch and age-composition
 data, and addition of \Sexpr{last.data.yr} weight-at-age data.
 
-  \item The model was updated to include year-specific fecundity from 1975-\Sexpr{last.data.yr}.
-  This was achieved by using a single functional-maturity-at-age curve multiplied by
-  yearly weight-at-age data to produce the fecundity-at-age for each year.
-  
-  \item Limited exploratory and supplementary analyses could be completed for 
-the \Sexpr{assess.yr} assessment as a result of the U.S. government shutdown
-considerably delaying delivery of U.S. age data and reducing JTC preparatory time.
+%  \item Limited exploratory and supplementary analyses could be completed for
+%the \Sexpr{assess.yr} assessment as a result of the U.S. government shutdown
+%considerably delaying delivery of U.S. age data and reducing JTC preparatory time.
 
   \item Coastwide catch in \Sexpr{end.yr-1} was the second largest on record at
     \Sexpr{last.year.landings}~t [t represents metric tons],
 out of a Total Allowable Catch (adjusted for carryovers) of \Sexpr{last.year.tac}~t. Attainment in
-the U.S. was \Sexpr{last.year.us.attained}\% of its quota (\Sexpr{last.2year.us.attained.diff}
-point change from last year); in Canada it was
-\Sexpr{last.year.can.attained}\% (\Sexpr{last.2year.can.attained.diff}
-point change from last year).
+the U.S. was \Sexpr{last.year.us.attained}\% of its quota
+(\Sexpr{paste0(ifelse(last.2year.us.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.us.attained.diff))}\%
+from last year); in Canada it was
+\Sexpr{last.year.can.attained}\%
+(\Sexpr{paste0(ifelse(last.2year.can.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.can.attained.diff))}\%
+from last year).
 
   \item The stock is estimated to have been at relatively high levels since
     2013 due to large estimated 2010 and 2014 cohorts.
@@ -68,12 +71,12 @@ Allowable Catch of
 \Sexpr{last.year.tac}~t show the estimated median relative spawning biomass
 decreasing from 64\% in \Sexpr{end.yr} to 59\% in \Sexpr{end.yr+1} and 49\% in
 \Sexpr{end.yr+2}. However, due to uncertainty there is an estimated 40\% chance
-of the spawning biomass falling below 40\% of $B_0$ in \Sexpr{end.yr+2}. There is an
+of the spawning biomass falling below $\Bforty$ in \Sexpr{end.yr+2}. There is an
 estimated 72\% chance of the spawning biomass declining from \Sexpr{end.yr} to
 \Sexpr{end.yr+1}, and a
 86\% chance of it declining from \Sexpr{end.yr+1} to
 \Sexpr{end.yr+2} under this constant level of catch.
-    % Manual to do (check this enitre bullet point)  
+    % Manual to do (check this enitre bullet point)
     % 3% from Table j, 38% from Table i, 50% from Table j
     % 2018, have automated the years. 2/11/18 AME.
     % 64%, 59%, 49% from Table g, row e

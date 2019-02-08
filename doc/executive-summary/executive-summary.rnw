@@ -47,7 +47,8 @@ make.catches.plot(catches,
 %\vspace{0mm}
 \caption{Total \fishname\ catch used in the assessment by sector,
   \Sexpr{start.yr}--\Sexpr{last.data.yr}.
-  U.S. tribal catches are included in the sectors where they are represented.}
+  U.S. tribal catches are included in the sectors where they are represented.
+  CP is catcher-processor and MS is mothership.}
 \label{fig:es-catches}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -55,9 +56,9 @@ make.catches.plot(catches,
 Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to
 the modern fishery. Over the early period, \Sexpr{min(catches$Year)}--1990, most
 removals were from foreign or joint-venture fisheries. Over all years, the
-fishery in U.S. waters averaged \Sexpr{f(mean(catches$Ustotal))}~t, or
+catch in U.S. waters averaged \Sexpr{f(mean(catches$Ustotal))}~t, or
 \Sexpr{round(100*mean(catches$Ustotal)/mean(catches$TOTAL),1)}\% of the average
-total landings, while catch from Canadian waters averaged
+total catch, while catch from Canadian waters averaged
 \Sexpr{f(mean(catches$CANtotal))}~t.  Over the last 10 years,
 \Sexpr{max(catches$Year)-9}--\Sexpr{max(catches$Year)}
 (Table~\ref{tab:es-catches}), the average coastwide catch was
@@ -131,10 +132,10 @@ make.survey.biomass.plot(base.model)
 @
 \end{center}
 %\vspace{0mm}
-\caption{Acoustic survey biomass index (millions of metric tons). Approximate
-         95\% confidence intervals are based on only sampling variability
-         (\Sexpr{survey.start.yr}--2007, 2011--\Sexpr{survey.end.yr}) in addition
-         to squid/hake apportionment uncertainty (2009, in blue).}
+\caption{Acoustic survey biomass index (millions of tons).
+  Approximate 95\% confidence intervals (black bars) are based on sampling
+  variability; blue bars for 2009 include additional uncertainty due to
+  squid/hake apportionment.}
 \label{fig:es-survey-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -159,8 +160,8 @@ biomass indices, acoustic survey age-composition data, and fishery
 age-composition data. Integrating the joint posterior distribution over model
 parameters (via the Markov Chain Monte Carlo algorithm) provides probabilistic
 inferences about uncertain model parameters and forecasts derived from those
-parameters. Sensitivity analyses are used to identify alternative structural
-models that may also be consistent with the data. Retrospective analyses
+parameters. Sensitivity analyses are used to identify alternative model
+assumptions that may also be consistent with the data. Retrospective analyses
 identify possible poor performance of the assessment model with respect to
 future predictions. Past assessments have conducted closed-loop simulations
 which provide insights into how alternative combinations of survey frequency,
@@ -169,7 +170,7 @@ expected management outcomes given repeated application of these procedures over
 the long-term. The results of past (and ongoing) closed-loop simulations influence
 the decisions made for this assessment.
 
-The \Sexpr{assess.yr} assessment retains the structural form of the base
+The \Sexpr{assess.yr} assessment retains most of the structural form of the base
 assessment model from \Sexpr{last.assess.yr} as well as many of the previous
 elements as configured in Stock Synthesis. Analyses conducted in 2014
 showed that allowing for time-varying (rather than fixed) selectivity reduced
@@ -183,17 +184,17 @@ assessment model fishery selectivity could reduce the effects of errors caused
 by assuming selectivity is constant over time. Therefore, we retain time-varying
 selectivity in this assessment, continuing with the new parameterization introduced
 in the \Sexpr{last.assess.yr} assessment and retaining the equivalent level of
-assumed variability. We apply the Dirichlet Multinomial approach to weighting
+assumed variability. We apply the Dirichlet-Multinomial approach to weighting
 composition data again this year and provide sensitivities to alternative data weighting
-approaches.  In addition, we incorporate time-varying fecundity into the \Sexpr{assess.yr}
-assessment model, where previously it was time-invariant.
+approaches. For 2019, we incorporate time-varying fecundity into the
+assessment model, whereas previously it was time-invariant.
 
-The 35 day 2018/2019 U.S. government shutdown considerably delayed delivery of U.S.
-age data and reduced the JTC's collective capacity to complete the
-\Sexpr{assess.yr} assessment following status-quo procedures.  As a result,
+The 35-day 2018/2019 U.S. government shutdown considerably delayed delivery of U.S.
+age data and reduced the JTC's time available to collectively complete the
+\Sexpr{assess.yr} assessment. As a result,
 many planned supplementary and exploratory analyses could not be completed, including
-some developed for response to \Sexpr{last.assess.yr} SRG requests
-(see Section~\ref{sec:assessment-response-review}).
+some developed for response to \Sexpr{last.assess.yr} SRG requests, although most sensitivity
+runs (including new ones related to time-varying fecundity) were completed.
 
 
 \subsection*{Stock biomass} \label{sec:es-stock-biomass} \phantomsection
@@ -222,7 +223,7 @@ make.biomass.plot(base.model,
 \end{center}
 %\vspace{0mm}
 \caption{Median of the posterior distribution for beginning of the year female
-         spawning biomass through \Sexpr{end.yr} (solid line) with 95\% posterior
+         spawning biomass ($B_t$ in year $t$) through \Sexpr{end.yr} (solid line) with 95\% posterior
          credibility intervals (shaded area). The solid circle with a 95\%
          posterior credibility interval is the estimated unfished equilibrium
          biomass.}
@@ -359,12 +360,13 @@ Very large year classes in 1980, 1984, and 1999 supported much of the commercial
 catch from the 1980s to the mid-2000s. From 2000 to 2007 estimated recruitment
 was at some of the lowest values in the time series, but this was followed by a
 relatively large 2008 year class. The current assessment continues to estimate a very strong
-2010 year class comprising \Sexpr{year.class.2010.in.2014}\% of the coast-wide
-commercial catch in 2014, \Sexpr{year.class.2010.in.2016}\% of the 2016 catch, and
-\Sexpr{year.class.2010.in.2018}\% of the catch in 2018. The smaller proportion of
+2010 year class comprising \Sexpr{top.coh(2014, spec.yr=2010)}\% of the coast-wide
+commercial catch in 2014, \Sexpr{top.coh(2016, spec.yr=2010)}\% of the 2016 catch, and
+\Sexpr{top.coh(2018, spec.yr=2010)}\% of the catch in 2018. The smaller proportion of
 the 2010 year class in the 2016 catch is due to the large influx of the 2014
-year class (50\% of the 2016 catch was age-2 fish from the 2014 year class,
-which was similar to the proportion of age-2 fish, 41\%, from the 2010 year
+year class (\Sexpr{top.coh(2016, spec.yr=2014)}\% of the 2016 catch was age-2 fish from the
+2014 year class, which was similar to the proportion of age-2 fish,
+\Sexpr{top.coh(2012, spec.yr=2010)}\%, from the 2010 year
 class in 2012).  The median of the estimated size of the 2010 year class is
 the second highest in the time series (after that for
 1980). The model currently estimates smaller-than-average 2011, 2012, 2013,
@@ -378,9 +380,8 @@ and 2015 year classes (median recruitment below the mean of all median recruitme
 %  [keep this helpful explanation]
 The 2014 year class is likely larger than average yet has only a
 \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of being larger than
-the 2010 year class.  The 2016 and 2017 year classes are estimated to be above
-average (similar to the 2008 year class) and about average, respectively, although
-estimates remain highly uncertain.
+the 2010 year class.  The 2016 year class is estimated to be above
+average but remains highly uncertain, and 2017 is highly uncertain.
 There is no information in the data to estimate the sizes of the
 \Sexpr{end.yr-1} and \Sexpr{end.yr} year classes. Retrospective analyses of year
 class strength for young fish have shown the estimates of recent recruitment to
@@ -465,13 +466,13 @@ make.fishing.intensity.plot(base.model,
 %
 Median exploitation fraction (catch divided by biomass of fish of age-2 and
 above) peaked in 1999, and then reached even higher values in 2006 and 2008
-(Figure~\ref{fig:es-exploitation-fraction}). Over the last 5 years, the exploitation
+(Figure~\ref{fig:es-exploitation-fraction}). Over the last five years, the exploitation
 fraction was the highest in 2017 (Table~\ref{tab:es-fishing-intensity}). Note that in earlier assessments the
 exploitation fraction was often defined in terms of fish age-3 and above, but
 with the 2018 assessment the definition age was lowered to age-2 because these
 fish are often caught by the fishery.
 % Manual 2019 done.
-% 
+%
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
@@ -491,13 +492,13 @@ make.exploitation.fraction.plot(base.model,
 %
 Median relative fishing intensity is estimated to have declined from
 \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.2015}\%
-in 2015 before leveling off near 80\% the past few years (2016--2018). 
+in 2015 before leveling off near 80\% the past few years (2016--2018).
 The exploitation fraction has increased from a recent low of
 \Sexpr{exploitation.med.2012} in 2012 to \Sexpr{exploitation.med.2017} in 2017 before
 decreasing to \Sexpr{exploitation.med.2018} in \Sexpr{end.yr-1}. There is a
 considerable amount of uncertainty around estimates of relative fishing intensity,
 with the 95\% posterior credibility interval reaching above the SPR management
-target for 2016--\Sexpr{end.yr-1} (Figure~\ref{fig:es-fishing-intensity}).
+target (of 1.0) for 2016--\Sexpr{end.yr-1} (Figure~\ref{fig:es-fishing-intensity}).
 % 2016 assessment we had: '... is below the SPR management target for the
 %  last three years (Figure~\ref{fig:es-fishing-intensity})'.
 %  Interestingly, for 2017 the 2016 intensity interval reaches above 1.
@@ -595,7 +596,7 @@ median relative spawning biomass has been above the reference point of 40\%
 since \Sexpr{median.relative.bio.above.target.since}.
 % Manual done 2019. Based on median.relative.bio.below.target.
 
-While there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative
+While there is large uncertainty in the estimates of relative
 fishing intensity and relative spawning biomass, the model estimates a
 10.3\% joint probability of being both above the target relative fishing intensity
 in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at
@@ -619,11 +620,11 @@ assessment.
 
 <<reference.points.table, results='asis', echo=FALSE>>=
 make.reference.points.table(base.model,
-                            xcaption = paste0("**Summary of median and 95\\%
+                            xcaption = paste0("Summary of median and 95\\%
                              credibility intervals of equilibrium reference points
                              for the \\fishname\\ base assessment model.
-                             **Equilibrium reference points were computed using ",
-                             start.yr,"--",end.yr-1," averages for mean
+                             Equilibrium reference points were computed using 1975--",
+                             end.yr-1," averages for mean
                              weight-at-age and selectivity-at-age."),
                             xlabel = "tab:es-reference.points",
                             font.size = 12,
@@ -638,9 +639,10 @@ the current stock status and projections because they do not account for
 possible alternative structural models for \simplename\ population dynamics and
 fishery processes (e.g., selectivity), the effects of data-weighting schemes,
 and the scientific basis for prior probability distributions. To address such
-structural uncertainties, we performed sensitivity analyses to investigate a
-range of alternative models,
-and present the key sensitivity analyses in the main document.
+structural uncertainties, including those related to the new time-varying fecundity,
+we performed sensitivity analyses to investigate a
+range of alternative assumptions,
+and present the key ones in the main document.
 
 %**Update from main text**Uncertainty in the best method for calculating acoustic
 % survey biomass is a particular focus and
@@ -757,11 +759,11 @@ The addition of time-varying fecundity into the \Sexpr{end.yr} assessment result
 in the need to clarify which set of fecundity values (defined as weight-at-age
 multiplied by maturity) would be
 applied to the forecast period. Ideally, these would be based on a recent
-average (e.g., a five year period similar to selectivity).
+average (e.g., a five-year period similar to selectivity).
 However, Stock Synthesis does not currently have the desired settings to do this
-appropriately; therefore, the long-term average fecundity-at-age was used
-(see Sections~\ref{sec:assessment-response-review}, \ref{sec:data-weight-at-age}, and
-\ref{sec:assessment-sensitivity-fecundity} for further details.)
+appropriately; therefore, the long-term average fecundity-at-age was used.
+% (see Sections~\ref{sec:assessment-response-review}, \ref{sec:data-weight-at-age}, and
+% \ref{sec:assessment-sensitivity-fecundity} for further details.)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -899,9 +901,9 @@ relative spawning biomass trajectory through
 \Sexpr{forecast.yrs[length(forecast.yrs)]} for several of these management
 actions. With zero catch for the next two years, the biomass has a
 \Sexpr{zero.catch.prob.bio.down.1}\% probability of decreasing from
-\Sexpr{forecast.yrs[1]} to \Sexpr{forecast.yrs[2]}, and a
+\Sexpr{forecast.yrs[1]} to \Sexpr{forecast.yrs[2]} (Table~\ref{tab:es-risk-year-1}), and a
 \Sexpr{zero.catch.prob.bio.down.2}\% probability of decreasing from
-\Sexpr{forecast.yrs[2]} to \Sexpr{forecast.yrs[3]}.
+\Sexpr{forecast.yrs[2]} to \Sexpr{forecast.yrs[3]} (Table~\ref{tab:es-risk-year-2}).
 %Manual 2019 done, though all automated.
 
 % The spawning biomass is predicted to decrease from \Sexpr{end.yr} to
@@ -909,14 +911,15 @@ actions. With zero catch for the next two years, the biomass has a
 %  180,000~t catch levels (Table~\ref{tab:es-risk-year-1} and
 %  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
-\Sexpr{end.yr+1} is less than 50\% for a catch level inbetween 180,000 t and
-350,000 t (Table~\ref{tab:es-risk-year-1} and
+\Sexpr{end.yr+1} is 50\% for some catch level between 180,000~t and
+350,000~t (Table~\ref{tab:es-risk-year-1} and
 Figure~\ref{fig:es-forecast-risk-comparison-year-1}). The highest probability of
 decrease is 77\%, which is for the default harvest policy
 (row~g in Table~\ref{tab:es-risk-year-1}).
-The predicted probability of the spawning biomass dropping below $B_{10\%}$ at
+For all explored catches,
+the predicted probability of the spawning biomass dropping below $B_{10\%}$ at
 the start of \Sexpr{end.yr+1} is 2\% or less and the maximum probability of
-dropping below $B_{40\%}$ is 29\% for all catches explored
+dropping below $B_{40\%}$ is 29\%
 (Table~\ref{tab:es-risk-year-1} and
 Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % It should be noted that

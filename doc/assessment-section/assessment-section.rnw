@@ -257,7 +257,7 @@ especially on foreign vessels.  However, a comparison of mean weight-at-age with
 showed that those age/year bins with high mean weight also had high mean length, and the method of
 length measurement likely hasn't changed considerably over time. Ages from the earlier years were likely
 solely based on surface reads, whereas protocol since the early 2000s has been to use the break and burn
-method on fish older than about age-2.  A comparison between ageing methods were
+method on fish older than about age-2.  A comparison between ageing methods was
 done recently for Petrale Sole, indicating
 increased bias as fish age when using surface reads, although no such analysis that
 we are aware of has been done for \fishname. If otoliths from the early years were properly preserved
@@ -270,7 +270,7 @@ weight-at-age data based on these considerations.}
 to see whether there was any indication that weights-at-age values were trending through
 time. A weighted least squares approach was used to fit log weight (kg) data across years 1975-2018,
 where a separate analysis was done for each age group (age-2 through age-15) and
-statistical weights were defined by the inverse of the annual sample variance). The resulting
+statistical weights were defined by the inverse of the annual sample variance. The resulting
 slope parameter was used to better understand age-specific long-term trends in
 weight-at-age. The results of this analysis showed a near zero slope for all ages,
 with age-13, 14, and 15 being slightly positive and all others being slightly negative
@@ -284,9 +284,10 @@ the pre-1975 time period.
 Overall inferences were similar when using length instead of weight.}
 
 \emph{Furthermore, there were small numbers of age samples for the early years (especially 1975)
-as shown in Figure~\ref{fig:main-empirical.weight.at.age.numbers}. The few heavy 15-year-olds
-1976--1979 influence the average for 1975--1979, further justifying use of the long-term mean
-(1975--2018) for the pre-1975 time period. See Sections~\ref{sec:assessment-fecundity-recap}
+as shown in Figure~\ref{fig:main-empirical.weight.at.age.numbers}. The few heavy fish in the 15-year-old and older
+accumulator group from 1976--1979 influence the short-term average for 1975--1979 time period,
+further justifying use of the long-term mean (1975--2018) for the pre-1975 time period.
+See Sections~\ref{sec:assessment-fecundity-recap}
 and~\ref{sec:assessment-sensitivity-fecundity} for further details.}
 
 \emph{Regarding forecast year weight-at-ages, the JTC used the weighted
@@ -310,7 +311,7 @@ Therefore, we retained the 2018 base model assumption of using the overall
 % 2019--2021 stock status. This was expected because weight-at-age values in recent
 % years have been similar to the long-term average.}
 
-\emph{During the 2018 SRG meeting it was further realised that (p23 of \citealt{JTC2018})
+\emph{During the 2018 SRG meeting it was further realized that (p23 of \citealt{JTC2018})
 ``An inconsistency
 in this alternative run is that the the mean weight-at-age
 across all years is still used for the calculation of
@@ -476,7 +477,7 @@ annual age-composition observation and present an analysis of the potential infl
 of changes in sampling.}
 
 \emph{Response -- The number of age (and weight) samples used to develop age
-composotions over time (1975--2018) are shown in Figure~\ref{fig:main-empirical.weight.at.age.numbers}.
+compositions over time (1975--2018) are shown in Figure~\ref{fig:main-empirical.weight.at.age.numbers}.
 A formal evaluation of the influence temporal fluctuations in the number of fish
 sampled and aged has on model performance could not be completed in time for the 2019 assessment
 due to unforeseen time constraints during the assessment season.  The JTC plans to complete
@@ -835,20 +836,25 @@ catch from the 1980s to the mid-2000s. From 2000 to 2007, estimated recruitment
 was at some of the lowest values in the time-series followed by a moderately
 large 2008 year class. The current assessment continues to estimate a very strong 2010 year
 class (Figure~\ref{fig:main-numbers-at-age}) comprising
-\Sexpr{year.class.2010.in.2013}\% of the coast-wide commercial catch in 2013,
-\Sexpr{year.class.2010.in.2014}\% of the 2014 catch,
-\Sexpr{year.class.2010.in.2015}\% of the 2015 catch,
-33\% of the 2016 catch,
-37\% of the 2017 catch, and
-24\% of the 2018 catch.
+\Sexpr{top.coh(2013, spec.yr=2010)}\% of the coast-wide commercial catch in 2013,
+\Sexpr{top.coh(2014, spec.yr=2010)}\% of the 2014 catch,
+\Sexpr{top.coh(2015, spec.yr=2010)}\% of the 2015 catch,
+\Sexpr{top.coh(2016, spec.yr=2010)}\% of the 2016 catch,
+\Sexpr{top.coh(2017, spec.yr=2010)}\% of the 2017 catch, and
+\Sexpr{top.coh(2018, spec.yr=2010)}\% of the 2018 catch.
 The current assessment also estimates a strong 2014 year class
-(Figure~\ref{fig:main-numbers-at-age}) comprising 50\% of the 2016 catch, 39\% of the 2017
-catch, and 29\% of the 2018 catch. Although the absolute size of the 2014 year
+(Figure~\ref{fig:main-numbers-at-age}) comprising
+\Sexpr{top.coh(2016, spec.yr=2014)}\% of the 2016 catch,
+\Sexpr{top.coh(2017, spec.yr=2014)}\% of the 2017 catch,
+and \Sexpr{top.coh(2018, spec.yr=2014)}\% of the 2018 catch.
+The 2016 cohort also appears to be strong at
+\Sexpr{top.coh(2018, spec.yr=2016)}\% of the 2018 catch.
+Although the absolute size of the 2014 year
 class remains highly uncertain, at least more so than
 cohorts that have been observed for more years, three years of fishery data and one year of survey data
 suggest that it is one of the higher estimates in the time series.  The 2016 year class is
 estimated to be above average (similar in size to the 2008 year class) from two years
-of fishery data.  The 2016 year class will not be observed in the survey until
+of fishery data. The 2016 year class will not be observed in the survey until
 2019 as age-3 fish.
 
 The additional data in the 2019 assessment has reduced the median estimate of the
@@ -1068,6 +1074,13 @@ are P$(B_{\Sexpr{assess.yr}} > 0.4\Bmsy) = \Sexpr{f(dfo.probs.curr[1,2])}$\% and
 P$(B_{\Sexpr{assess.yr}} > 0.8\Bmsy) = \Sexpr{f(dfo.probs.curr[1,3])}$\%
 such that the stock is estimated to be in the provisional `healthy zone'.
 
+%PFMC refrence points for hake/whiting are: Bmsy = 0.4B0; MSST = 0.25B0.  Will report these as well.
+Reference levels of stock status that are used by the U.S. Pacific Fisheries Management
+Council (PFMC) include $\Bforty$ and Minimum Stock Size
+Threshold (MSST) = $\Btwentyfive$. For \Sexpr{min(forecast.yrs)}, the estimated
+posterior median stock size for \fishname\ is above $\Bforty$ and well
+above $\Btwentyfive$ at \Sexpr{curr.depl.median}\%.
+
 \subsection{Model projections}\label{sec:assessment-model-projections}
 The median catch limit for \Sexpr{min(forecast.yrs)} based on the default
 \Ffortyten{} harvest policy is \Sexpr{catch.limit.quantiles["median"]}~t, but
@@ -1117,8 +1130,8 @@ to \Sexpr{forecast.yrs[3]} (Table~\ref{tab:main-risk-year-2} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-2}).
 
 The spawning biomass is predicted to decrease from \Sexpr{forecast.yrs[1]}
-to \Sexpr{forecast.yrs[2]} with a greater than 50\% probability for catch
-levels investigated above 180,000~t (Table~\ref{tab:main-risk-year-1} and
+to \Sexpr{forecast.yrs[2]} with a greater than 50\% probability for a catch
+level inbetween 180,000~t and 350,000~t (Table~\ref{tab:main-risk-year-1} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-1}). The model predicts high
 biomass levels and the predicted probability of the spawning biomass dropping below
 $\Bten$ ($0.1B_0$) in 2019 is
@@ -1129,7 +1142,7 @@ class and the model estimated below average recruitment for the 2011 and 2013
 cohorts, but the above average predicted 2014 and 2016 year classes will result
 in an increase to the spawning biomass as they enter maturity. The probability
 that the \Sexpr{forecast.yrs[2]} spawning biomass will be less than the
-\Sexpr{forecast.yrs[1]} spawning biomass ranges from 17\% to 75\%
+\Sexpr{forecast.yrs[1]} spawning biomass ranges from 17\% to 77\%
 depending on the catch level (Table~\ref{tab:main-risk-year-1} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-1}).
 
@@ -1142,10 +1155,10 @@ projected to be (using MCMC medians)
 (Figure~\ref{fig:main-age-comp-forecast}). However, those estimates are highly
 uncertain with the 95\% credibility interval for the age-5 fraction spanning
 \Sexpr{f(fore.catch.prop.age5.lower)}\%--\Sexpr{f(fore.catch.prop.age5.upper)}\%.
-Due to the lower average weight at age 5 vs.~9, the expected
-proportion of the \Sexpr{forecast.yrs[1]} catch by weight is expected to be more similar between
-these two cohorts, at
-\Sexpr{f(fore.catch.prop.wt.age5.median)}\% and
+Due to the lower average weight at age 3 vs.~9, the expected
+proportion of the \Sexpr{forecast.yrs[1]} catch by weight is expected to be reversed between
+the 2016 and 2010 cohorts, at
+\Sexpr{f(fore.catch.prop.wt.age3.median)}\% and
 \Sexpr{f(fore.catch.prop.wt.age9.median)}\%,
 respectively.
 
@@ -1161,6 +1174,13 @@ P$(B_{\Sexpr{assess.yr+1}} > 0.4\Bmsy) = \Sexpr{f(min(dfo.probs.fore[,"SSB_2020>
 and in the healthy zone with a probability of
 P$(B_{\Sexpr{assess.yr+1}} > 0.8\Bmsy) = \Sexpr{f(min(dfo.probs.fore[,"SSB_2020>0.8SSB_MSY"]))}$\%.
 
+%PFMC refrence points for hake/whiting are: Bmsy = 0.4B0; MSST = 0.25B0.  Will report these as well.
+With respect to PFMC stock size reference points, a level of 2019 catch consistent with the Treaty
+default harvest control rule (725,593~t) has a 29\% estimated (median) probability of the biomass going below
+$\Bforty$ in 2020 (12\% probability of going below $\Btwentyfive$; Table~\ref{tab:main-risk-year-1}).
+That probabality decreases to 19\% and 5\%, respectively, if the catch level stays
+the same in 2019 as in 2018.
+%Updated 2019
 % \enlargethispage{\baselineskip}
 
 \subsection{Sensitivity analyses }\label{sec:assessment-sensitivity-analyses}
@@ -1203,11 +1223,10 @@ include the following:
 
 \end{enumerate}
 
-**[second part of first sentence no longer true]
 
 In general, none of the sensitivities resulted in any significant departure from
 the main population dynamics of the base model; all models showed large
-estimated increases in spawning biomass in recent years that continues to be
+estimated increases in spawning biomass in the early- to mid-2010s that continues to be
 driven by the large 2010 cohort and the 2014 cohort. The overall scale of the
 population was impacted by various alternative assumptions, and the highly
 uncertain size of the recent large cohorts were more variable across sensitivity analyses
@@ -1621,7 +1640,7 @@ and are not relevant other than to refer to each run uniquely. The extrapolation
 weights-at-age is required because there is catch in the model from 1966 onward but age
 and weight data were not collected until 1975.
 
-The 2018 base model was the same as run 53, which had non-time-varying fecundity,
+The 2018 base model was the same as run 53, which did had non-time-varying fecundity,
 long term (1975--2018) mean weights-at-age applied for the years 1966--1974, and
 long term (1975--2018) mean weights-at-age applied for the years 2019--2021
 (Figure~\ref{fig:main-empirical.weight.at.age.sens.a}).
