@@ -326,7 +326,8 @@ make.risk.table <- function(model,
                             xlabel     = "default",
                             font.size  = 9,
                             space.size = 10,
-                            placement = "H"){
+                            placement = "H",
+                            type = 1){
   ## Returns an xtable in the proper format for the executive summary risk
   ##  tables
   ##
@@ -340,6 +341,8 @@ make.risk.table <- function(model,
   ## font.size - size of the font for the table
   ## space.size - size of the vertical spaces for the table
   ## placement - latex code for placement of table
+  ## type - if you want both columns of catch (i.e., type = 2),
+  ## where the original doesn't and uses type = 1
 
   risk <- model$risks[[index]]
   ## Remove last 3 columns which are DFO values
@@ -361,6 +364,30 @@ make.risk.table <- function(model,
   risk[,1] <- paste0(letters[1:nrow(risk)],
                      ": ",
                      risk[,1])
+  if (type == 2 && length(model$risks) > 2) stop("This function was",
+    "not written to work with more than two projections when you want",
+    "to display multiple years of catch in a single table.")
+  risk2 <- cbind(
+    f(sapply(model$risks, "[", 1:nrow(model$risks[[1]]))),
+    apply(model$risks[[index]][, 2:(ncol(model$risks[[index]])-3)], 
+      1:2, function(x) paste0(f(x), "\\%")))
+  colnames(risk2) <- gsub("^(\\d{4}$)$", "Catch in \\1", colnames(risk2))
+  risk2[, 1] <- paste0(letters[1:nrow(risk2)], ": ", risk2[, 1])
+  addtorow2 <- list("pos" = list(-1, nrow(risk2)),
+    "command" = c(paste0("\\toprule \n", 
+    paste(sapply(
+        gsub("1\\.00", "100\\\\%",
+        gsub("_(\\d{4})", "\\\\subscr{\\1}",
+        gsub("0\\.(\\d{2})", "B\\\\subscr{\\1\\\\%}",
+        gsub("ForeCatch_(\\d{4})", "\\1 catch",
+        gsub("SSB|Bratio", "B",
+        gsub("^Bratio(.+)<", "Prob. B\\1 <",
+        gsub("^SSB(.+)<", "Prob. B\\1 <",
+        gsub("^ForeCatch_(\\d{4})", "Prob. \\1 default harvest policy catch ",
+        gsub("SPRratio_(\\d{4})", "Prob. \\1 relative fishing intensity ",
+        colnames(risk2)))))))))), latex.bold),
+    collapse = latex.amp()), latex.nline,
+    "\\midrule \n"), "\\bottomrule \n"))
 
   addtorow <- list()
   addtorow$pos <- list()
@@ -408,12 +435,18 @@ make.risk.table <- function(model,
 
   ## Make the size string for font and space size
   size.string <- latex.size.str(font.size, space.size)
+  align <- get.align(ncol(risk), first.left = TRUE, just = "Y")
+  if (type == 2) {
+    risk <- risk2
+    addtorow <- addtorow2
+    align <- c("l", "p{2cm}", 
+      rep("p{1.4cm}", ncol(risk) - 3), rep("p{2.2cm}", 2))
+  }
+
   print(xtable(risk,
                caption = xcaption,
                label = xlabel,
-               align = get.align(ncol(risk),
-                                 first.left = TRUE,
-                                 just = "Y")),
+               align = align),
         caption.placement = "top",
         include.rownames = FALSE,
         include.colnames = FALSE,
