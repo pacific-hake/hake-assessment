@@ -467,12 +467,12 @@ make.short.parameter.estimates.table(
   posterior.regex = key.posteriors,
   end.yr = end.yr,
   digits = 3,
-  xcaption <- paste0("Select parameters, derived quantities, ",
+  xcaption = paste0("Select parameters, derived quantities, ",
                      "and reference point estimates for the base model ",
                      "MLE and posterior median (MCMC) estimates with ",
                      "an additional comparison to posterior median ",
                      "estimates from the previous (",end.yr-1,") base model."),
-  xlabel <- "tab:main-parameter-estimates",
+  xlabel = "tab:main-parameter-estimates",
   font.size = 9,
   space.size = 10)
 @
@@ -487,7 +487,7 @@ make.reference.points.table(base.model,
 
 <<main.decisions.biomass.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption <- paste0("Decision table of forecast quantiles of
+                    xcaption = paste0("Decision table of forecast quantiles of
                      \\fishname\\ relative spawning biomass at the beginning of
                      the year before fishing. Quantiles from the base model are
                      shown for various harvest alternatives (rows) based on:
@@ -503,7 +503,7 @@ make.decision.table(base.model,
                      " and ",min(forecast.yrs)+1," (row h).
                      Catch in ",max(forecast.yrs)," does not impact the
                      beginning of the year biomass in ",max(forecast.yrs),"."),
-                    xlabel <- "tab:main-decisions-biomass",
+                    xlabel = "tab:main-decisions-biomass",
                     font.size = 12,
                     space.size = 14,
                     type = "biomass")
@@ -511,8 +511,8 @@ make.decision.table(base.model,
 
 <<main.decisions.spr.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption <- paste0("Decision table of forecast quantiles of \\fishname\\ relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}) for the ",min(forecast.yrs),"--",max(forecast.yrs)," catch alternatives presented in Table \\ref{tab:main-decisions-biomass}. Values greater than 100\\% indicate fishing intensities greater than the F\\subscr{40\\%} harvest policy calculated using baseline selectivity."),
-                    xlabel <- "tab:main-decisions-spr",
+                    xcaption = paste0("Decision table of forecast quantiles of \\fishname\\ relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}) for the ",min(forecast.yrs),"--",max(forecast.yrs)," catch alternatives presented in Table \\ref{tab:main-decisions-biomass}. Values greater than 100\\% indicate fishing intensities greater than the F\\subscr{40\\%} harvest policy calculated using baseline selectivity."),
+                    xlabel = "tab:main-decisions-spr",
                     font.size = 12,
                     space.size = 14,
                     type = "spr")
@@ -522,8 +522,8 @@ make.decision.table(base.model,
 make.risk.table(base.model,
                 forecast.yrs,
                 index = 1, ## Index in model$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                xcaption <- paste0("Probabilities related to spawning biomass, relative fishing intensity, and the ",end.yr+1," default harvest policy catch for alternative ",end.yr," catch options (catch options explained in Table \\ref{tab:main-decisions-biomass})."),
-                xlabel <- "tab:main-risk-year-1",
+                xcaption = paste0("Probabilities related to spawning biomass, relative fishing intensity, and the ",end.yr+1," default harvest policy catch for alternative ",end.yr," catch options (catch options explained in Table \\ref{tab:main-decisions-biomass})."),
+                xlabel = "tab:main-risk-year-1",
                 font.size = 12,
                 space.size = 14)
 @
@@ -532,8 +532,8 @@ make.risk.table(base.model,
 make.risk.table(base.model,
                 forecast.yrs,
                 index = 2, ## Index in model$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                xcaption <- paste0("Probabilities related to spawning biomass, relative fishing intensity, and the ",end.yr+2," default harvest policy catch for alternative ",end.yr+1," catch options, given the ",end.yr," catch level shown in Table~\\ref{tab:main-risk-year-1} (catch options explained in Table \\ref{tab:main-decisions-biomass})."),
-                xlabel <- "tab:main-risk-year-2",
+                xcaption = paste0("Probabilities related to spawning biomass, relative fishing intensity, and the ",end.yr+2," default harvest policy catch for alternative ",end.yr+1," catch options, given the ",end.yr," catch level shown in Table~\\ref{tab:main-risk-year-1} (catch options explained in Table \\ref{tab:main-decisions-biomass})."),
+                xlabel = "tab:main-risk-year-2",
                 font.size = 12,
                 space.size = 14)
 @
@@ -570,8 +570,8 @@ make.short.parameter.estimates.sens.table(sens.models.2.for.table,
                                           end.yr = end.yr,
                                           age.1 = FALSE,
                                           digits = 3,
-                                          xcaption <- paste0("Maximum likelihood estimates (MLE) of select parameters, derived quantities, reference points, and negative log likelihoods for the base model and further sensitivity runs (described in Section~\\ref{sec:assessment-sensitivity-analyses})."),
-                                          xlabel <- "tab:main-parameter-estimates-sens-2",
+                                          xcaption = paste0("Maximum likelihood estimates (MLE) of select parameters, derived quantities, reference points, and negative log likelihoods for the base model and further sensitivity runs (described in Section~\\ref{sec:assessment-sensitivity-analyses})."),
+                                          xlabel = "tab:main-parameter-estimates-sens-2",
                                           font.size = 9,
                                           space.size = 11,
                                           getrecs = c(2010, 2014, 2016))
@@ -591,8 +591,8 @@ make.short.parameter.estimates.sens.table(sens.models.3.for.table,
                                           end.yr = end.yr,
                                           age.1 = FALSE,
                                           digits = 3,
-                                          xcaption <- paste0("Maximum likelihood estimates (MLE) of select parameters, derived quantities, reference points, and negative log likelihoods for the base model and further sensitivity runs (described in Section~\\ref{sec:assessment-sensitivity-analyses})."),
-                                          xlabel <- "tab:main-parameter-estimates-sens-3",
+                                          xcaption = paste0("Maximum likelihood estimates (MLE) of select parameters, derived quantities, reference points, and negative log likelihoods for the base model and further sensitivity runs (described in Section~\\ref{sec:assessment-sensitivity-analyses})."),
+                                          xlabel = "tab:main-parameter-estimates-sens-3",
                                           font.size = 9,
                                           space.size = 11,
                                           getrecs = c(2010, 2014, 2016))

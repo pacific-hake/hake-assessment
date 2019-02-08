@@ -262,7 +262,7 @@ make.short.parameter.estimates.sens.table(
     end.yr = end.yr,
     age.1 = TRUE,
     digits = 3,
-    xcaption <- NULL,
+    xcaption = NULL,
     font.size = 6.5,
     space.size = 7)
 @
@@ -334,7 +334,7 @@ make.short.parameter.estimates.sens.table(
     end.yr = end.yr,
     age.1 = TRUE,
     digits = 3,
-    xcaption <- NULL,
+    xcaption = NULL,
     font.size = 6.5,
     space.size = 7)
 @

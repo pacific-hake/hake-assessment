@@ -10,8 +10,8 @@
 make.long.parameter.estimates.table(base.model,
                                     key.posteriors,
                                     digits = 4,
-                                    xcaption <- "Medians of estimated parameters for the base model.",
-                                    xlabel <- "tab:app-parameter-estimates",
+                                    xcaption = "Medians of estimated parameters for the base model.",
+                                    xlabel = "tab:app-parameter-estimates",
                                     font.size = 9,
                                     space.size = 10)
 @
