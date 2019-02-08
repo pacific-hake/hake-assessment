@@ -1486,7 +1486,7 @@ The alternative ``semi-parametric'' setup for selectivity based on the work of
 are applied to the resulting selectivity estimates, not to the original
 parameters, and the resulting selectivity ogive is no longer constrained
 between 0 and 1 (Figure~\ref{fig:main-selectivity-illustration}). That is,
-the deviations are no longer applied as shown in equation (7), but as
+the deviations are no longer applied as shown in equation (4), but as
 exponential multipliers on the baseline selectivity
 \eb
 S_{ay} = S_a \cdot \exp(\epsilon_{ay})
