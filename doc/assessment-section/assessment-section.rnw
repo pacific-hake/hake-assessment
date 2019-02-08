@@ -1368,7 +1368,9 @@ estimated higher weights on the age compositions but
 generally very similar results to the McAllister-Ianelli method.
 Whereas, the Francis method increased the weighting of the fishery
 composition data resulting in a similar time series of biomass, though
-slightly reduced in scale.
+slightly reduced in scale. As noted in Section ~\ref{sec:data-age-comp-likelihood},
+the Francis method is known to be sensitive to outliers and prone to convergence
+issues when selectivity is time-varying, as it is in this assessment.
 
 % Removed in 2019 by KFJ
 % The influence of an alternative approach for calculating the 2017 fishery age
