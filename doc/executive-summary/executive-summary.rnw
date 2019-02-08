@@ -189,12 +189,12 @@ composition data again this year and provide sensitivities to alternative data w
 approaches. For 2019, we incorporate time-varying fecundity into the
 assessment model, whereas previously it was time-invariant.
 
-The 35 day 2018/2019 U.S. government shutdown considerably delayed delivery of U.S.
-age data and reduced the JTC's collective capacity to complete the
-\Sexpr{assess.yr} assessment following status-quo procedures.  As a result,
+The 35-day 2018/2019 U.S. government shutdown considerably delayed delivery of U.S.
+age data and reduced the JTC's time available to collectively complete the
+\Sexpr{assess.yr} assessment. As a result,
 many planned supplementary and exploratory analyses could not be completed, including
-some developed for response to \Sexpr{last.assess.yr} SRG requests
-(see Section~\ref{sec:assessment-response-review}).
+some developed for response to \Sexpr{last.assess.yr} SRG requests, although most sensitivity
+runs (including new ones related to time-varying fecundity) were completed.
 
 
 \subsection*{Stock biomass} \label{sec:es-stock-biomass} \phantomsection
@@ -761,9 +761,9 @@ multiplied by maturity) would be
 applied to the forecast period. Ideally, these would be based on a recent
 average (e.g., a five year period similar to selectivity).
 However, Stock Synthesis does not currently have the desired settings to do this
-appropriately; therefore, the long-term average fecundity-at-age was used
-(see Sections~\ref{sec:assessment-response-review}, \ref{sec:data-weight-at-age}, and
-\ref{sec:assessment-sensitivity-fecundity} for further details.)
+appropriately; therefore, the long-term average fecundity-at-age was used.
+% (see Sections~\ref{sec:assessment-response-review}, \ref{sec:data-weight-at-age}, and
+% \ref{sec:assessment-sensitivity-fecundity} for further details.)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
