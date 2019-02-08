@@ -51,7 +51,6 @@ implemented using version \Sexpr{ss.version} of the Stock Synthesis software
 \Sexpr{last.assess.yr} base model \citep{JTC2018}, though we incorporate
 time-varying fecundity.
 
-
 The 35-day 2018/2019 U.S. government shutdown considerably delayed delivery of U.S.
 age data and reduced the JTC's time available to collectively complete the
 \Sexpr{assess.yr} assessment. As a result,
@@ -59,6 +58,8 @@ many planned supplementary and exploratory analyses could not be completed, incl
 some developed for response to \Sexpr{last.assess.yr} SRG requests
 (see Section~\ref{sec:assessment-response-review}), although most sensitivity
 runs (including new ones related to time-varying fecundity) were completed.
+
+A Glossary of terms appears in Appendix~\ref{chap:glossary}.
 
 \subsection{Stock structure and life history}\label{sec:intro-stock-structure}
 
