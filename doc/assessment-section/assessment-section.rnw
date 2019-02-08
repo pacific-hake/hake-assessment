@@ -21,7 +21,8 @@ While the general form of the age-structured assessment has remained similar sin
 management procedures have been modified in a variety of ways. There have been
 alternative data choices, post-data collection processing routines, different
 data-weighting schemes, many structural assumptions for the stock
-assessment model, and alternative control rules.
+assessment model, and alternative control rules. Table~\ref{tab:main-assessment-changes}
+summarises the major changes to the model structure in assessments since 2011.
 
 Data processing, choices, and weighting have been modified several times in
 historical hake assessments. For example, acoustic data processing has been
@@ -126,7 +127,7 @@ selectivity was retained, although additional parameters were required to
 estimate an additional year of deviations. The acoustic survey selectivity is
 assumed to not change over time. Selectivity curves were modeled as
 non-parametric functions estimating age-specific values for each age beginning
-at age 2 for the acoustic survey (because age-1 fish are mainly excluded from
+at age-2 for the acoustic survey (because age-1 fish are mainly excluded from
 the sampling design) and age-1 for the fishery until a maximum age of 6 (all
 fish 6 and older have the same selectivity).
 
@@ -151,12 +152,12 @@ deviation estimates, and is the same as assumed in assessments from 2013 to
 \Sexpr{last.assess.yr} (Table~\ref{tab:main-assessment-changes}). Survey
 catchability was set at the median unbiased estimate calculated analytically as
 per \citet{LudwigWalters1981}. Maturity is assumed to be time-invariant.
-Fecundity is defined as weight-at-age multiplied by the new maturity ogive
-(discussed earlier) and is time-varying across years with empirical weight-at-age data (1975--
-\Sexpr{assess.yr}).  For years without data, prior to 1975 and during the forecast
+Fecundity is defined as weight-at-age multiplied by the maturity ogive
+and is time-varying across years with empirical weight-at-age data (1975--
+\Sexpr{last.data.yr}).  For years without data, prior to 1975 and during the forecast
 period, fecundity is calculated using the long-term mean weight-at-age (see
 Section~\ref{sec:assessment-response-review} for more details). Alternative
-fecundity assumptions are presented through sensitivity analysis
+fecundity assumptions are presented through sensitivity analyses
 (Section~\ref{sec:assessment-sensitivity-analyses}).
 
 Statistical likelihood functions used for data fitting are typical of many stock
@@ -197,8 +198,6 @@ JTC could complete a full assessment in the limited time available.
 A recent DFO workshop \citep{EdwardsDupliseaEtAl2018} shared such a
 `transparent, traceable and transferable' workflow with a wider audience,
 partly motivated by our ongoing \fishname\ assessments.
-
-A Glossary of terms appears in Appendix~\ref{chap:glossary}.
 
 \subsection{Response to 2018 Scientific Review Group (SRG) review}\label{sec:assessment-response-review}
 
@@ -252,8 +251,8 @@ outlined in the following paragraphs. Alternative fecundity configurations (and 
 for the pre-1975 and forecast period were also used in sensitivity runs
 (see Sections~\ref{sec:assessment-fecundity-recap} and~\ref{sec:assessment-sensitivity-fecundity}).}
 
-\emph{Historical weight-at-age data was re-examined to ensure that all relevant data,
-quality and quantity, were available to the assessment. Samples from the 1960s in PacFIN
+\emph{Historical weight-at-age data was re-examined to ensure that all relevant data
+were available to the assessment. Samples from the 1960s in PacFIN
 that were used in analyses by Christine Stawitz were found to be from Puget Sound, and
 were therefore correctly excluded from previous (and the current) hake assessments. Weight data
 from early years was identified as possibly suspect due to inaccurate scales used at that time,
@@ -274,7 +273,7 @@ weight-at-age data based on these considerations.}
 to see whether there was any indication that weights-at-age values were trending through
 time. A weighted least squares approach was used to fit log weight (kg) data across years 1975-2018,
 where a separate analysis was done for each age group (age-2 through age-15) and
-statistical weights were defined by the inverse of the annual sample variance. The resulting
+weights were defined as the inverse of the annual sample variance. The resulting
 slope parameter was used to better understand age-specific long-term trends in
 weight-at-age. The results of this analysis showed a near zero slope for all ages,
 with age-13, 14, and 15 being slightly positive and all others being slightly negative
@@ -282,7 +281,7 @@ with age-13, 14, and 15 being slightly positive and all others being slightly ne
 given the large amount of inter-annual variability
 in the data. However, estimated slope parameters were sensitive to excluding data from
 1975--1980. This, together with the lack of a clear trend of weights-at-age
-through time, led us to use the long-term mean (1975--2018) weights-at-age
+through time, led us to use in the base model the long-term mean (1975--2018) weights-at-age
 (rather than the short term from 1975--1979) for
 the pre-1975 time period.
 Overall inferences were similar when using length instead of weight.}
@@ -292,7 +291,8 @@ as shown in Figure~\ref{fig:main-empirical.weight.at.age.numbers}. The few heavy
 accumulator group from 1976--1979 influence the short-term average for 1975--1979 time period,
 further justifying use of the long-term mean (1975--2018) for the pre-1975 time period.
 See Sections~\ref{sec:assessment-fecundity-recap}
-and~\ref{sec:assessment-sensitivity-fecundity} for further details.}
+and~\ref{sec:assessment-sensitivity-fecundity} for further details.
+and sensitivity runs that explore these assumptions.}
 
 \emph{Regarding forecast year weight-at-ages, the JTC used the weighted
 least squares analysis to also suggest that the assumption of using the long-term
@@ -338,7 +338,7 @@ calculating $B_0$, and other reference points, in the presence of variability
 in weight-at-age. For example, what if there has been a long-term decline in
 weight-at-age but it is ignored when setting reference points, or what if
 weight-at-age varies randomly through time but reference points are set using
-a non-representative subset of the long-term trend?  Recent simulation work by \citep{Berger2018},
+a non-representative subset of the long-term trend?  Recent simulation work by \citet{Berger2018},
 using \fishname\ as one example, provided evidence that static reference points, such
 as those based on unfished equilibrium conditions ($B_0$), can be misleading when there is
 directional trends or regime shift changes in the underlying stock productivity.}
@@ -356,14 +356,14 @@ estimating $\sigma_R$ that would reduce model sensitivity to the value of this
 constraint}.
 
 % From Issue \#468:
-\emph{Response -- Best practices for modeling recruitment variability ($\sigma_R$)
+\emph{Response -- Developing best practices for modeling recruitment variability ($\sigma_R$)
   remains a broad topic of contemporary research.  The JTC has outlined several
-  alternative approaches for advancing this research as it applies to \fishname\.
+  alternative approaches for advancing this research as it applies to \fishname.
   These are:
-  (a) Estimating $\sigma_R$ in MCMC runs while testing semi-parametric selectivity.
-  (b) Estimating recruitment autocorrelation to examine the impact it has on the model
-  and whether it reduces sensitivity to the choice of $\sigma_R$.
-  (c) Use the Template Model Builder (TMB)
+  (a) estimating $\sigma_R$ in MCMC runs while testing semi-parametric selectivity;
+  (b) estimating recruitment autocorrelation to examine the impact it has on the model
+  and whether it reduces sensitivity to the choice of $\sigma_R$;
+  (c) use the Template Model Builder (TMB)
   code developed by Nis Jacobsen for the Management Strategy Evaluation to explore
   random effects treatment of recruitment variability \citep{Thorson2018}.
   The JTC plans to continue to work towards evaluating and testing best practices
@@ -417,7 +417,7 @@ the SRG notes that Canadian samples should be included in the maturity analysis.
   assessment, thousands of genetic markers in hake are being surveyed using
   genomic technologies \citep{ali2016rad, baird2008rapid}. Initial genetics data
   have been generated for 400 individuals, with planned genetic analysis of close
-  to 2000 individuals total. This study will examine genetic connectivity between
+  to 2,000 individuals total. This study will examine genetic connectivity between
   geographic and temporal collections, and evaluate the hypothesis that offshore
   hake migrate seasonally to Baja and California for spawning in the winter. This
   work began in December 2018 and is expected to be completed in 2020.}
@@ -588,8 +588,8 @@ fecundity resulted in the biggest bridging change to current biomass.  Fecundity
 single catch-weighted average of weight-at-age applied to all years to being defined
 by year-specific weight-at-ages covering the time period with data (1975-2018).
 For periods without data (pre-1975 and post-2018),
-catch-weighted average weight-at-age was used (however see Section~\ref{sec:assessment-sensitivity-analyses}
-for discussion on alternatives).  The results of this bridging
+catch-weighted average weight-at-age was used (however see Section~\ref{sec:assessment-fecundity-recap}
+for discussion on alternatives). The results of this bridging
 step caused a visible change in the time series
 of spawning biomass (Figure~\ref{fig:main-bridge-5-panel.2})
 as the fecundity of all cohorts were different leading to variability in the
@@ -1038,7 +1038,6 @@ will in most circumstances continue to result in highly uncertain
 estimates of current stock status and even less-certain projections of the stock
 trajectory.
 
-**
 The JTC continues to be committed to advancing MSE analyses, by coordinating
 research with other scientists in the region engaging in similar research.
 In particular, the JTC aspires to continue advancement in MSE research in 2019
@@ -1051,7 +1050,6 @@ defined by these groups. Specifically, the development of MSE tools to evaluate
 major sources of uncertainty relating to data, model structure and the harvest
 policy for this fishery and compare potential methods to address them remains an
 important goal.
-**
 
 \subsection{Reference points}\label{sec:assessment-reference-points}
  % Manual 2019 done.
@@ -1133,9 +1131,9 @@ Figure~\ref{fig:main-forecast-risk-comparison-year-1}), and a probability of
 to \Sexpr{forecast.yrs[3]} (Table~\ref{tab:main-risk-year-2} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-2}).
 
-The spawning biomass is predicted to decrease from \Sexpr{forecast.yrs[1]}
-to \Sexpr{forecast.yrs[2]} with a greater than 50\% probability for a catch
-level inbetween 180,000~t and 350,000~t (Table~\ref{tab:main-risk-year-1} and
+The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
+\Sexpr{end.yr+1} is 50\% for some catch level between 180,000~t and
+350,000~t (Table~\ref{tab:main-risk-year-1} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-1}). The model predicts high
 biomass levels and the predicted probability of the spawning biomass dropping below
 $\Bten$ ($0.1B_0$) in 2019 is
@@ -1180,7 +1178,7 @@ P$(B_{\Sexpr{assess.yr+1}} > 0.8\Bmsy) = \Sexpr{f(min(dfo.probs.fore[,"SSB_2020>
 
 %PFMC refrence points for hake/whiting are: Bmsy = 0.4B0; MSST = 0.25B0.  Will report these as well.
 With respect to PFMC stock size reference points, a level of 2019 catch consistent with the Treaty
-default harvest control rule (725,593~t) has a 29\% estimated (median) probability of the biomass going below
+default harvest control rule (725,593~t) has a 29\% estimated probability of the biomass going below
 $\Bforty$ in 2020 (12\% probability of going below $\Btwentyfive$; Table~\ref{tab:main-risk-year-1}).
 That probabality decreases to 19\% and 5\%, respectively, if the catch level stays
 the same in 2019 as in 2018.
@@ -1358,7 +1356,7 @@ which uses two estimated
 parameters to automatically weight each of the fishery and survey age
 compositions, was assessed by comparing the weightings to the
 McAllister-Ianelli and Francis methods.
-Both alternative methods iteratively adjust the input sample sizes
+Both alternative methods require manual iterative adjustments to the input sample sizes
 using a derived multiplier.
 The McAllister-Ianelli method, which was used in assessments prior to 2018,
 attempts to make the arithmetic mean of the input
@@ -1372,7 +1370,9 @@ estimated higher weights on the age compositions but
 generally very similar results to the McAllister-Ianelli method.
 Whereas, the Francis method increased the weighting of the fishery
 composition data resulting in a similar time series of biomass, though
-slightly reduced in scale.
+slightly reduced in scale. As noted in Section ~\ref{sec:data-age-comp-likelihood},
+the Francis method is known to be sensitive to outliers and prone to convergence
+issues when selectivity is time-varying, as it is in this assessment.
 
 % Removed in 2019 by KFJ
 % The influence of an alternative approach for calculating the 2017 fishery age
@@ -1488,7 +1488,7 @@ The alternative ``semi-parametric'' setup for selectivity based on the work of
 are applied to the resulting selectivity estimates, not to the original
 parameters, and the resulting selectivity ogive is no longer constrained
 between 0 and 1 (Figure~\ref{fig:main-selectivity-illustration}). That is,
-the deviations are no longer applied as shown in equation (7), but as
+the deviations are no longer applied as shown in equation (4), but as
 exponential multipliers on the baseline selectivity
 \eb
 S_{ay} = S_a \cdot \exp(\epsilon_{ay})
@@ -1644,15 +1644,17 @@ and are not relevant other than to refer to each run uniquely. The extrapolation
 weights-at-age is required because there is catch in the model from 1966 onward but age
 and weight data were not collected until 1975.
 
-The 2018 base model was the same as run 53, which did had non-time-varying fecundity,
-long term (1975--2018) mean weights-at-age applied for the years 1966--1974, and
-long term (1975--2018) mean weights-at-age applied for the years 2019--2021
+The 2018 base model had the same assumptions as run 53, with one less year of
+data (Table~\ref{tab:main-wtatage-runs}). These assumptions are
+non-time-varying fecundity,
+long-term (1975--2018) mean weights-at-age applied for the years 1966--1974, and
+long-term (1975--2018) mean weights-at-age applied for the years 2019--2021
 (Figure~\ref{fig:main-empirical.weight.at.age.sens.a}).
 
-The 2018 alternate model was the equivalent of run 58, which had time-varying
+The 2018 alternate model was similarly analogous to run 58 (Table~\ref{tab:main-wtatage-runs}), which had time-varying
 fecundity, short-term (1975--1979) mean weights-at-age applied for the years 1966--1974, and
 short term (2016--2018) mean weights-at-age applied for the years 2017--2021.
-Note that when models use a different set of weights-at-age for the forecast years
+Recall the aforementioned configuration issue, that when models use a different set of weights-at-age for the forecast years
 than for the 1966--1974 period, the last year of data (2018) cannot be included. Instead,
 the current configuration of Stock Synthesis requires 2018 to be used as a placeholder for
 the forecasting weights-at-age vector.
@@ -1660,8 +1662,8 @@ the forecasting weights-at-age vector.
 This year's base model is a hybrid of the 2018 models, based on the 2018 base model
 but with the inclusion of time-varying fecundity.
 
-There were five further runs done, overall covering all possible combinations of long or short-term mean
-pre-1975 weights-at-age, long or short-term mean post-2017 weights-at-age, and time-varying
+There were five further runs done, overall covering all possible combinations of long- or short-term mean
+pre-1975 weights-at-age, long- or short-term mean post-2017 weights-at-age, and time-varying
 fecundity being included or not.
 
 Weights-at-age for runs which use the long-term (1975--2018) mean for both the pre-1975
@@ -1725,7 +1727,7 @@ but due to the inflation of the initial biomass give a similar stock status to t
 
 Runs 55-58 produce an inflated initial biomass, due to the use of a short-term (1975--1979) mean
 weight-at-age being used for the pre-1975 time period. The weights-at-age for older fish in
-those early years is significantly higher than the long term mean as can be seen in
+those early years is significantly higher than the long-term mean as can be seen in
 Figures~\ref{fig:main-empirical.weight.at.age.sens.b}--\ref{fig:main-empirical.weight.at.age.sens.d}.
 
 MCMC results for runs 53 and 54 including decision tables can be found in
@@ -1739,7 +1741,7 @@ years' data and estimating the parameters under the assumptions of the base
 model. Models with 3, 4, or 5 years of data removed had information
 available regarding the high 2010 year class, but did not yet have information on the
 2014 year class (Figure~\ref{fig:main-biomass-recruitment-retrospective}). Models
-with 1 and 2 years of data removed were just beginning to receive data on age-2 and age-1, respectively,
+with 1 and 2 years of data removed were just beginning to receive data on age-3 and age-2, respectively,
 individuals to to predict the size of the 2014 year class.  The base model now has
 \Sexpr{number.to.word(assess.yr - 2014 - 1)} years of data to estimate the size of
 the 2014 cohort, and the uncertainty around this
@@ -1748,8 +1750,8 @@ estimate has been considerably reduced compared to one year ago
 
 Overall, there is little retrospective change to the relative spawning biomass
 trajectory up to the mid-2010s, and most retrospective change occurs in the
-final years of the retrospective model. Retrospective estimates over the last 5
-years have been predominantly positively biased. In the last 4 years, the
+final years of the retrospective model. Retrospective estimates over the last five
+years have been predominantly positively biased. In the last four years, the
 stock assessment has retrospectively overestimated the status in the terminal year,
 which is likely related to the dynamics introduced by the large 2010 and 2014 cohorts
 and the high observed survey biomass index in 2009.
@@ -1761,9 +1763,9 @@ catch-at-age data and survey age-composition data have been collected on the
 cohort. Very strong and weak cohorts tend to be identified in the model at a
 younger age than intermediate cohorts. For example, the strong 2010 cohort has
 been fairly well determined in the model by age-4 and the weak 2007 cohort by
-age 6.  Estimated recruitment deviations for the 2014 cohort appear to be
-similar to other large cohorts (1999, 2008, and 2010), though with the extra year
-of data in this year's assessment the 2014 cohort appears to maybe be more similar
+age-6.  Estimated recruitment deviations for the 2014 cohort appear to be
+similar to other large cohorts (1999, 2008, and 2010), though with the extra years
+of data in this and last year's assessment the 2014 cohort appears to maybe be more similar
 to the 2008 cohort rather than the 1999 and 2010 cohorts (which are the largest).
 % One major difference between the 2010 and 2014
 % cohorts is that by age-3 the 2010 cohort had been fully sampled by the acoustic

@@ -123,7 +123,7 @@ dockside monitors using total catch weights provided by processing plants.
 
 The three independent issues in the calculation of total catch that were identified
 late in the 2018 assessment process \citep{JTC2018} have been rectified here. Minor
-updates to catches for years pre-\Sexpr{last.data.yr} have been made
+updates to catches for years pre-\Sexpr{last.data.yr} have also been made.
 %% lots more years changed this year so list to long to be specific
 %% 2013, 2015, 2016 and 2017 have ben made (totalling $<300$~t).
 
@@ -144,14 +144,14 @@ from these 20 are randomly subsampled for otolith extraction.
 
 The Canadian domestic fishery is subject to 100\% observer coverage on the five
 freezer trawler vessels \emph{Viking Enterprise}, \emph{Osprey \#1},
-\emph{Northern Alliance}, \emph{Raw Spirit}, and \emph{Viking Alliance} which
+\emph{Northern Alliance}, \emph{Raw Spirit}, and \emph{Viking Alliance}, which
 together make up a large portion of the Canadian catch
 (\Sexpr{last.year.can.freezer.percent}\% in \Sexpr{last.data.yr}).
 The Joint-Venture fishery has 100\% observer coverage on
 their processing vessels, which in \Sexpr{last.data.yr} made up
 \Sexpr{last.year.can.jv.percent}\% of the Canadian catch.
 On observed freezer trawler trips, otoliths (for ageing) and lengths are sampled
-from \fishname\ caught for each haul of the trip. The sampled weight from which
+from each haul of the trip. The sampled weight from which
 biological information is collected must be inferred from length-weight
 relationships. For electronically observed shoreside trips, port samplers obtain
 biological data from the landed catch. Observed domestic haul-level information
@@ -200,8 +200,8 @@ cohort was the largest in all three U.S. fleets (Tables
 \ref{tab:main-us-cp-age-data}--\ref{tab:main-us-shore-age-data}) while the 2010
 cohort was largest in both Canadian fleets (Tables
 \ref{tab:main-can-shore-age-data} and \ref{tab:main-can-ft-age-data}).
-In \Sexpr{last.data.yr - 1}, \Sexpr{top.coh(last.data.yr - 1, 3)}.
-In \Sexpr{last.data.yr}, \Sexpr{top.coh(last.data.yr, 3)}.
+In \Sexpr{last.data.yr - 1}, \Sexpr{top.coh(last.data.yr - 1, 3, cap = FALSE)}.
+In \Sexpr{last.data.yr}, \Sexpr{top.coh(last.data.yr, 3, cap = FALSE)}.
 See Table~\ref{tab:main-all-age-data-fishery}.
 
 We caution that proportion-at-age data contains information about the relative
@@ -221,7 +221,7 @@ fluctuated markedly over time (see Figure~7 in
 of larger fish ($>55$~cm) before 1990 and a shift to much more average-sized fish in more
 recent years. The treatment of weight- and length-at-age are described in more
 detail in sections \ref{sec:data-weight-at-age} and \ref{sec:data-length-at-age}
-below. Although length composition data are not fit explicitly in the base
+below. Although length-composition data are not fit explicitly in the base
 assessment models presented here, the presence of the 2008 and 2010 year classes
 have been clearly observed in length data from both of the U.S. fishery sectors,
 and the 2014 year class was apparent in 2017 and \Sexpr{last.assess.yr}.
@@ -334,7 +334,7 @@ SimmondsMacLennan2006}. Advantages to the kriging approach are discussed in the
 For the 2016 assessment \citep{JTC2016}, the data from all surveys since 1998
 were scrutinized and reanalyzed using consistent assumptions.  The same analytical
 procedure was carried out during the reanalysis of 1995 survey data \citep{JTC2017} and
-during the preparation of 2017 survey data. These include:
+during the preparation of 2017 survey data \citep{JTC2018}. These include:
 
 \begin{itemize}
 
@@ -492,7 +492,9 @@ applied to ages 15-20 for purposes of modeling
 the population dynamics (Figure~\ref{fig:main-maturity}).
 The maturity ogive was the same as that used in \citet{JTC2018}
 because the U.S. government shutdown delayed delivery of the
-2018 histological samples.
+2018 histological samples, though note that the ogive used for previous
+assessments was not updated annually and was that developed by
+\citet{DornSaunders1997}.
 
 Some fish at almost every age were found to be functionally immature based
 on the histological criteria, which is a combination of ``skip spawners''
@@ -546,15 +548,16 @@ cause the cohort-effect.
 
 \subsubsection{Weight-at-age}\label{sec:data-weight-at-age}
 
-A matrix of empirically derived population weight-at-age by year is used in the
-current assessment model to translate numbers-at-age directly to biomass-at-age
-(Figure \ref{fig:main-empirical.weight.at.age}). Mean weight-at-age was
+A matrix of empirically derived population weight-at-age by year
+(Figure \ref{fig:main-empirical.weight.at.age}) is used in the
+current assessment model to translate numbers-at-age directly to biomass-at-age.
+Mean weight-at-age was
 calculated from samples pooled from all fisheries and the acoustic survey for
 the years 1975 to \Sexpr{max.fishery.age.prop[2]}
 (Figure~\ref{fig:main-empirical.weight.at.age}). Additional historic weight-at-age data
 from Canadian fishery and surveys (intermittent years from 1992 onwards) were
 added in the \Sexpr{assess.yr} assessment, resulting in a 3\% increase in total
-samples.  Pre-1975 weight-at-age data available in the PacFIN database was
+samples from the \Sexpr{assess.yr-1} assessment. Pre-1975 weight-at-age data available in the PacFIN database was
 confirmed to be samples collected within Puget Sound and were not included in
 this assessment. Past investigations into
 calculating weight-at-age for the fishery and survey independently showed little
@@ -563,7 +566,8 @@ to have the same weight. The combinations of age and year with no
 observations were assumed to change linearly over time between observations at
 any given age. Mean weights were assumed to remain constant prior to the first
 observation and after the last observation within the range of years in the
-matrix (see section \ref{sec:assessment-response-review} for further details on these
+matrix (see Sections~\ref{sec:assessment-response-review}
+and~\ref{sec:assessment-fecundity-recap} for further details on these
 assumptions). The number of samples (Figure \ref{fig:main-empirical.weight.at.age.numbers})
 is generally proportional
 to the amount of catch, so the combinations of year and age with no samples
@@ -746,7 +750,7 @@ these deviations is called $\Phi$.
 The value for parameter $\Phi$ (in standard parameter space) was selected to correspond
 with the level of variability (in logistic transformed parameter space) used in the
 2017 assessment (previously referred to as parameter $\phi$ under the logistic
-configuration; see \citep{JTC2017} for further details). In Stock Synthesis 3.30, the logistic
+configuration; see \citealt{JTC2017} for further details). In Stock Synthesis 3.30, the logistic
 transformation was no longer available, so $\Phi$ was applied
 directly to the base parameter. The resulting
 value of $\Phi = 1.40$ used in 2018 and \Sexpr{assess.yr} assessment approximates the
