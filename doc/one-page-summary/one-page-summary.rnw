@@ -69,12 +69,12 @@ range of catch levels. Projections setting the \Sexpr{forecast.yrs[1]} and
 \Sexpr{forecast.yrs[2]} catch equal to the \Sexpr{forecast.yrs[1]-1} Total
 Allowable Catch of
 \Sexpr{last.year.tac}~t show the estimated median relative spawning biomass
-decreasing from 64\% in \Sexpr{end.yr} to 59\% in \Sexpr{end.yr+1} and 49\% in
-\Sexpr{end.yr+2}. However, due to uncertainty there is an estimated 40\% chance
+decreasing from \Sexpr{last.yr.tac.fore.1.biomass}\% in \Sexpr{end.yr} to \Sexpr{last.yr.tac.fore.2.biomass}\% in \Sexpr{end.yr+1} and \Sexpr{last.yr.tac.fore.3.biomass}\% in
+\Sexpr{end.yr+2}. However, due to uncertainty there is an estimated \Sexpr{last.yr.tac.risk.2.bforty}\% chance
 of the spawning biomass falling below $\Bforty$ in \Sexpr{end.yr+2}. There is an
-estimated 72\% chance of the spawning biomass declining from \Sexpr{end.yr} to
+estimated \Sexpr{last.yr.tac.risk.1.biomass.decline}\% chance of the spawning biomass declining from \Sexpr{end.yr} to
 \Sexpr{end.yr+1}, and a
-86\% chance of it declining from \Sexpr{end.yr+1} to
+\Sexpr{last.yr.tac.risk.2.biomass.decline}\% chance of it declining from \Sexpr{end.yr+1} to
 \Sexpr{end.yr+2} under this constant level of catch.
     % Manual to do (check this enitre bullet point)
     % 3% from Table j, 38% from Table i, 50% from Table j
