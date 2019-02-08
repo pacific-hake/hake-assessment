@@ -414,13 +414,13 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Mean weight-at-age by year}
-\frame{\frametitle{Mean weight-at-age by year}
-\begin{figure}
-  \centering
-  \includegraphics[width=4in, height=3in]{../../../doc/main-figures/EWAforDoc.eps}
-\end{figure}
-}
+%% \subsection{Mean weight-at-age by year}
+%% \frame{\frametitle{Mean weight-at-age by year}
+%% \begin{figure}
+%%   \centering
+%%   \includegraphics[width=4in, height=3in]{../../../doc/main-figures/EWAforDoc.eps}
+%% \end{figure}
+%% }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -476,7 +476,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \begin{figure}
 \centering
  <<maturity.ogive.figure, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-    maturity.ogive.figure()
+    maturity.ogive.figure(base.model)
   @
 \end{figure}
 }

@@ -98,7 +98,11 @@ quantitatively compared with performance measures.
 \subsection{Description of base model}\label{sec:assessment-base-model}
 
 The \Sexpr{assess.yr} base model is predominantly an update of the base model in
-the \Sexpr{last.assess.yr} stock assessment. Stock Synthesis
+the \Sexpr{last.assess.yr} stock assessment. 
+The statistical-catch-at-age model assumes that the 
+\fishname\ population is a single coast-wide stock subject to 
+one aggregated fleet with combined male and female population dynamics. 
+Stock Synthesis
 \citep{MethotWetzel2013} version \Sexpr{ss.version} is again used,
 having been introduced in the previous assessment \citep{JTC2018}.
 The largest changes between the
