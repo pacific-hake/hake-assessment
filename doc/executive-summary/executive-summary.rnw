@@ -380,9 +380,8 @@ and 2015 year classes (median recruitment below the mean of all median recruitme
 %  [keep this helpful explanation]
 The 2014 year class is likely larger than average yet has only a
 \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of being larger than
-the 2010 year class.  The 2016 and 2017 year classes are estimated to be above
-average (similar to the 2008 year class) and about average, respectively, although
-estimates remain highly uncertain.
+the 2010 year class.  The 2016 year class is estimated to be above
+but remains highly uncertain.
 There is no information in the data to estimate the sizes of the
 \Sexpr{end.yr-1} and \Sexpr{end.yr} year classes. Retrospective analyses of year
 class strength for young fish have shown the estimates of recent recruitment to
