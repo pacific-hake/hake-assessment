@@ -349,32 +349,6 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Bridging to the base model: alternative data weightings and
-    new maturity ogive}
-  \bc
-  \vspace{-5pt}
-  <<bridge.tune, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
-    oldpar <- par(mfrow=c(1,2), mar=c(5,4,1,1),no.readonly = TRUE)
-    make.comparison.plot(bridge.models.3,
-                     subplots = 2,
-                     model.names = bridge.model.names.3,
-                     densitynames = NULL,
-                     legendloc = "topleft",
-                     end.yr = bridge.model.end.yr.3)
-    make.comparison.plot(bridge.models.3,
-                     subplots = 9,
-                     model.names = bridge.model.names.3,
-                     densitynames = NULL,
-                     legend = FALSE,
-                     end.yr = bridge.model.end.yr.3)
-    box()
-   par(oldpar)
-  @
-  \ec
-}
-
-%----------------------------------------------------------
-
 \frame{\frametitle{Bridging to the base model: Summary}
   \bi
     \item Including the \Sexpr{last.survey.year} index appears to make the
@@ -384,9 +358,6 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
       2017.
     \item The alternative Dirichlet-multinomial data weighting gives slight
       changes, in particular pulling down early biomass (and $B_0$).
-    \item New maturity ogive adds variability to spawning biomass
-      when large cohorts reach ages 3 and
-      higher, though little impact on recruitment.
     \item Other bridging steps have minimal impact.
    \ei
   % Last year: ``Fishery data sole information on the size of the 2014 year-class''
@@ -397,13 +368,7 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
 \frame{\frametitle{MCMC trace plots (more in Figures 17 and 18)}
    \bc
    <<main.mcmc.diag.m, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-       oldpar <- par(no.readonly=TRUE)
-       par(mar=c(4.1, 4.1, 3.1, 0.1))
-       origPath <- base.model$mcmcpath
-       base.model$mcmcpath <- file.path("..",origPath)
        make.mcmc.diag.plot(base.model, subplot = 1)
-       base.model$mcmcpath <- origPath
-       par <- oldpar
      @
    \ec
 }
@@ -411,11 +376,11 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
 %----------------------------------------------------------
 
 % Hardwiring this since two attempts aren't working.
-\frame{\frametitle{MCMC diagnostics for all parameters and spawning biomass}
-  \bc
-  \includegraphics[height=2.8in]{../../../doc/knitr-cache/main_mcmc_diag_hists-1.eps}
-  \ec
-}
+%% \frame{\frametitle{MCMC diagnostics for all parameters and spawning biomass}
+%%   \bc
+%%   \includegraphics[height=2.8in]{../../../doc/knitr-cache/main_mcmc_diag_hists-1.eps}
+%%   \ec
+%% }
 %----------------------------------------------------------
 
 % This didn't work either (25/2/18) even though code is same as in
@@ -562,14 +527,8 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
     \vspace{-15pt}
     \bc
     <<main.prior.posterior, fig.height=6, fig.width=8,out.width='0.95\\columnwidth'>>=
-      origPath <- base.model$path
-      base.model$path <- file.path("..",origPath)
-      origMcmcPath <- base.model$mcmcpath
-      base.model$mcmcpath <- file.path("..",origMcmcPath)
       make.mcmc.priors.vs.posts.plot(base.model,
                                      key.posteriors)
-      base.model$path <- origPath
-      base.model$mcmcpath <- origMcmcPath
     @
     \ec
   \end{column}
