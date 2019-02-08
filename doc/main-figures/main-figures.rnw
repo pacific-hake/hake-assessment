@@ -94,19 +94,8 @@ make.catches.plot(catches, leg.y.loc = 550)
 % \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
-%% Call the figure directly instead of create it because the data are confidential
 \begin{figure}[H]
-\begin{center}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishDepthsUS}
-\end{center}
-\caption{Distribution of fishing depths (left) and bottom depths (right), in fathoms, of \fishname\ catches in the U.S. at-sea fleet from 2014--\Sexpr{last.data.yr}.}
-\label{fig:main-us-at-sea-depths}
-%% \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-%% JOINED ON PAGE
-%%%%%%%%%%%%%%%%%%%%%%%
-%% \begin{figure}[H]
+%% Call the figures directly instead of creating them because the data are confidential
 \begin{center}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishCatchRatesUS}
@@ -114,9 +103,17 @@ make.catches.plot(catches, leg.y.loc = 550)
 \caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in
   the U.S. at-sea fleet from 2014--\Sexpr{last.data.yr}.}
 \label{fig:main-us-catch-rates}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishDepthsUS}
+\end{center}
+\caption{Distribution of fishing depths (left) and bottom depths (right), in fathoms, of \fishname\ catches in the U.S. at-sea fleet from 2014--\Sexpr{last.data.yr}.}
+\label{fig:main-us-at-sea-depths}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-% \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
@@ -201,7 +198,7 @@ maturity.ogive.figure(model = base.model, useyears = 1975:last.data.yr)
 \end{center}
 \caption{Fraction of fish that are mature at each age north and south of
   34.44$^\circ$N
-  (upper panel) and the fecundity relationship (lower panel). 
+  (upper panel) and the fecundity relationship (lower panel).
   The fecundity relationship (purple line) is the product
   of the weight-at-age
   and the maturity-at-age for the samples
@@ -337,7 +334,7 @@ par <- oldpar
 \end{center}
 \caption{Bridging models showing the \Sexpr{last.assess.yr} base model
   and the results of sequentially building upon the base model with updates shown in
-  Figure~\ref{fig:main-bridge-biomass} (i.e., adding the 2018 catch data and 
+  Figure~\ref{fig:main-bridge-biomass} (i.e., adding the 2018 catch data and
   2018 age-composition and weight-at-age data) and then finally changing to
   time-varying fecundity which became the base model. See
   Section~\ref{sec:assessment-sensitivity-analyses} for further details about modeling
@@ -1303,7 +1300,7 @@ weight.at.age.heatmap(sens.models.5[[2]])
   Data are only available from 1975--\Sexpr{max.fishery.age.prop[2]}.
   Values based on assumptions for the early and late years are shown
   outside the blue lines (see Table~\ref{tab:main-wtatage-runs}).
-  Bold values between the blue lines represent unavailable data and 
+  Bold values between the blue lines represent unavailable data and
   such weights were interpolated or extrapolated from adjacent ages or years.
   The sample-weighted mean weight-at-age is shown at the bottom.}
 \label{fig:main-empirical.weight.at.age.sens.a}
