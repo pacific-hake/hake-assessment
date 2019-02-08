@@ -193,7 +193,8 @@ top.coh <- function(yr = last.data.yr,
                     num.cohorts = 3,
                     decimals = 0,
                     cap = TRUE,
-                    spec.yr = NA){
+                    spec.yr = NA,
+                    use.catage = FALSE){
   ## Returns text describing the top N cohorts by year and percentage as a sentence.
   ## egs. top.coh(2018, 2) produces:
   ##  "The 2014 cohort was the largest (29\\%), followed by the 2010 cohort (27\\%)"
@@ -204,13 +205,23 @@ top.coh <- function(yr = last.data.yr,
   ##  because 27% of the catch in 2018 were of the 2010 cohort
   ## If spec.yr is a year, then the value only will be returned
   ##  as a percentage of that cohort caught in yr
+  ## If use.catage is TRUE, use the base.model$catage object which are the estimates
+  ## If use.catage is FALSE, use the base.model$dat$agecomp object which are the data
   if(num.cohorts < 1){
     num.cohorts = 1
   }
-  tmp <- base.model$catage[, -c(1, 3, 4, 5, 6)] %>%
-    dplyr::filter(Fleet == 1) %>%
-    select(-c(Fleet, Seas, XX, Era, 0))
-  tmp <- tmp[-1,]
+  if(use.catage){
+    tmp <- base.model$catage[, -c(1, 3, 4, 5, 6)] %>%
+      dplyr::filter(Fleet == 1) %>%
+      select(-c(Fleet, Seas, XX, Era, 0))
+    tmp <- tmp[-1,]
+  }else{
+    tmp <- base.model$dat$agecomp[, -c(2, 4, 5, 6, 7, 8, 9)] %>%
+      dplyr::filter(FltSvy == 1) %>%
+      select(-FltSvy) %>%
+      mutate_all(funs(as.numeric))
+    names(tmp) <- gsub("^a", "", names(tmp))
+  }
   row.sums <- rowSums(select(tmp, -Yr))
   x <- tmp %>%
     select(-Yr) %>%
