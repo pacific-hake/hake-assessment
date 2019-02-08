@@ -292,16 +292,18 @@ and sensitivity runs that explore these assumptions.}
 
 \emph{Regarding forecast year weight-at-ages, the JTC used the weighted
 least squares analysis to also suggest that the assumption of using the long-term
-mean for weight-at-age in 2019--2021 was reasonable. During evaluations of alternative
-forecast year weight-at-age (and thus also fecundity-at-age) settings, we noted
-forecast year configuration issues with Stock Synthesis (version 3.30.10 as
-used for this assessment).  The software required forecast year weights-at-age values
+mean for weight-at-age in 2019--2021 was reasonable. As documented last year
+(page~23 of \citealt{JTC2018}), the current configuration of Stock Synthesis
+(version 3.30.10 as used for this assessment) precludes properly testing other
+assumptions while using the final year of empirical weight-at-age data.
+The software required forecast year weights-at-age values
 to be either (i)~set to the same as that for equilibrium conditions, or (ii)~set
 equivalent to the final year of data (2018).  For example, we were unable to set
 future weight-at-age values to be the mean of 2016-2018 without also setting
 the 2018 weights-at-age to that mean (thereby averaging out the 2018 data).
 Therefore, we retained the 2018 base model assumption of using the overall
-1975-2018 mean for the forecast period.}
+1975-2018 mean for the forecast period. See Section~\ref{sec:assessment-fecundity-recap}
+for further details.}
 % On 4 February 2019, the JTC learned that
 % the newest version of Stock Synthesis (version 3.30.12) now allows independent
 % forecast period settings for time-varying parameters or inputs.  Alternative
