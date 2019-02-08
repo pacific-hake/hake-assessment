@@ -1737,7 +1737,7 @@ years' data and estimating the parameters under the assumptions of the base
 model. Models with 3, 4, or 5 years of data removed had information
 available regarding the high 2010 year class, but did not yet have information on the
 2014 year class (Figure~\ref{fig:main-biomass-recruitment-retrospective}). Models
-with 1 and 2 years of data removed were just beginning to receive data on age-2 and age-1, respectively,
+with 1 and 2 years of data removed were just beginning to receive data on age-3 and age-2, respectively,
 individuals to to predict the size of the 2014 year class.  The base model now has
 \Sexpr{number.to.word(assess.yr - 2014 - 1)} years of data to estimate the size of
 the 2014 cohort, and the uncertainty around this
