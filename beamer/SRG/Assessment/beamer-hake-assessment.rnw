@@ -135,25 +135,15 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \begin{frame}
 \frametitle{Changes from \Sexpr{last.assess.yr} assessment}
   \bi
+    \item Stock Synthesis version \Sexpr{ss.version}
+      and compiled with ADMB \Sexpr{admb.version} (both same as \Sexpr{last.assess.yr})
     \item Added new data from \Sexpr{last.assess.yr}:
     \bi
       \item Fishery catch and age data for \Sexpr{last.assess.yr}
       \item Weight-at-age values for \Sexpr{last.assess.yr}
     \ei
-    \item Stock Synthesis version \Sexpr{ss.version}
-      and compiled with ADMB \Sexpr{admb.version} (both same as \Sexpr{last.assess.yr})
-    \bi
-      \item Necessitates modified parameterisation for time-varying selectivity
-        (same as  \Sexpr{last.assess.yr})
-      \item Time-varying parameters cannot have a logistic
-        transformation -- changed because interpretation of the parameter values was
-        previously difficult and appropriate parameter bounds make the
-        transformation unnecessary.
-  \item Requires a {\em modified} parameterisation for time-varying
-      selectivity.
-    \ei
-    % \item Usual update of bias adjustment ramps for recruitment deviations
-    % \item Usual update of main recruitment deviate estimation period
+    \item Incorporates time-varying fecundity, similar to alternative base case from
+      \Sexpr{last.assess.yr}. Weight-at-age matrix * Maturiy vector.
   \ei
 \end{frame}
 
@@ -167,11 +157,10 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \item Deviations are applied to selectivity-at-age parameters.
   \item Normally-distributed penalty function applied to keep deviations
     straying too far from zero.
-  \item Deviation is controlled by fixed standard deviation parameter $\Phi = 1.40$.
-  \item $\Phi = 1.40$ is the same value as in the 2018 assessment.
+  \item Deviation is controlled by fixed standard deviation parameter $\Phi = 1.40$,
+    (same value as in the 2018 assessment).
   \item Maximum age for which selectivity is estimated is 6. Greater than this,
-    selectivity is constant.
-  \item Maximum selectivity is 1.
+    selectivity is constant. Maximum selectivity is 1.
   \item See pages 39-40 for equations and details.
 \ei
 \end{frame}
@@ -179,26 +168,55 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Bridging to the base model: update SS and
+\frame{\frametitle{Bridging to the base model: update
     pre-\Sexpr{assess.yr-1} data}
   \bc
   \vspace{-5pt}
-  <<bridge.biomasss, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
-    oldpar <- par(mfrow=c(1,2), mar=c(5,4,1,1),no.readonly = TRUE)
-    make.comparison.plot(bridge.models.1,
-                     subplots = 2,
-                     model.names = bridge.model.names.1,
-                     densitynames = NULL,
-                     legendloc = "topleft",
-                     end.yr = bridge.model.end.yr.1)
-    make.comparison.plot(bridge.models.1,
-                     subplots = 9,
-                     model.names = bridge.model.names.1,
-                     densitynames = NULL,
-                     legend = FALSE,
-                     end.yr = bridge.model.end.yr.1)
-    box()
-   par(oldpar)
+  <<bridge.biomasss.1, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+  oldpar <- par(mfrow = c(1, 2),
+                mar =c(5, 4, 1, 1),
+                no.readonly = TRUE)
+  make.comparison.plot(bridge.models.1,
+                       subplots = 2,
+                       model.names = bridge.model.names.1,
+                       densitynames = NULL,
+                       legendloc = "topleft",
+                       end.yr = bridge.model.end.yr.1)
+  make.comparison.plot(bridge.models.1,
+                       subplots = 9,
+                       model.names = bridge.model.names.1,
+                       densitynames = NULL,
+                       legend = FALSE,
+                       end.yr = bridge.model.end.yr.1)
+  box()
+  par(oldpar)
+  @
+  \ec
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Bridging to the base model:
+    add \Sexpr{assess.yr} data} (MLE)
+  \bc
+  \vspace{-5pt}
+  <<bridge.biomasss.2, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+  oldpar <- par(mfrow = c(1, 2),
+                mar =c(5, 4, 1, 1),
+                no.readonly = TRUE)
+  make.comparison.plot(bridge.models.2,
+                       subplots = 2,
+                       model.names = bridge.model.names.2,
+                       densitynames = NULL,
+                       legendloc = "topleft",
+                       end.yr = bridge.model.end.yr.1)
+  make.comparison.plot(bridge.models.2,
+                       subplots = 9,
+                       model.names = bridge.model.names.2,
+                       densitynames = NULL,
+                       legend = FALSE,
+                       end.yr = bridge.model.end.yr.1)
+  box()
+  par(oldpar)
   @
   \ec
 }
