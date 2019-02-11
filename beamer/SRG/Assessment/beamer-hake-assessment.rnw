@@ -137,39 +137,24 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \bi
     \item Added new data from \Sexpr{last.assess.yr}:
     \bi
-      \item Survey age data and biomass index for \Sexpr{survey.end.yr}
       \item Fishery catch and age data for \Sexpr{last.assess.yr}
       \item Weight-at-age values for \Sexpr{last.assess.yr}
     \ei
-    \item Updated maturity ogive
-    \item Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U)
-      and compiled with ADMB \Sexpr{admb.version}
+    \item Stock Synthesis version \Sexpr{ss.version}
+      and compiled with ADMB \Sexpr{admb.version} (both same as \Sexpr{last.assess.yr})
     \bi
       \item Necessitates modified parameterisation for time-varying selectivity
+        (same as  \Sexpr{last.assess.yr})
+      \item Time-varying parameters cannot have a logistic
+        transformation -- changed because interpretation of the parameter values was
+        previously difficult and appropriate parameter bounds make the
+        transformation unnecessary.
+  \item Requires a {\em modified} parameterisation for time-varying
+      selectivity.
     \ei
-    \item New approach to weighting age-composition data
     % \item Usual update of bias adjustment ramps for recruitment deviations
     % \item Usual update of main recruitment deviate estimation period
   \ei
-\end{frame}
-
-%----------------------------------------------------------
-
-\begin{frame}
-\frametitle{Changes from \Sexpr{last.assess.yr} assessment}
-
-Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
-\bi
-  \item Behind-the-scenes changes and new features.
-  \item Extensively tested prior to release.
-  \item Used in at least six assessments in 2017.
-  \item However, time-varying parameters can no longer have a logistic
-    transformation -- changed because interpretation of the parameter values was
-    previously difficult and appropriate parameter bounds make the
-    transformation unnecessary.
-  \item Therefore requires a {\em modified} parameterisation for time-varying
-      selectivity.
-\ei
 \end{frame}
 
 %----------------------------------------------------------
@@ -182,45 +167,15 @@ Stock Synthesis version \Sexpr{ss.version} (updated from 3.24U):
   \item Deviations are applied to selectivity-at-age parameters.
   \item Normally-distributed penalty function applied to keep deviations
     straying too far from zero.
-  \item Deviation is controlled by fixed standard deviation parameter $\phi$.
-  ~\\
-  \item In 2017 we used $\phi=0.20$, an increase from previous $\phi=0.03$.
-    In 2017 this greater deviation (more flexibility) was used because:
-    \bi
-      \item The large proportion of 2014 cohort in 2016 age data (age-2 fish)
-        meant that $\phi=0.03$ produced implausible estimates of 2014 recruitment
-        (about three times larger than 1999 and 2010 recruitments).
-      \item $\phi=0.03$ estimates of 2014 recruitment were inconsistent
-        with the qualitative comparison to the age-1 index.
-      \item Good performance of higher $\phi$ in past MSE work.
-    \ei
+  \item Deviation is controlled by fixed standard deviation parameter $\Phi = 1.40$.
+  \item $\Phi = 1.40$ is the same value as in the 2018 assessment.
+  \item Maximum age for which selectivity is estimated is 6. Greater than this,
+    selectivity is constant.
+  \item Maximum selectivity is 1.
+  \item See pages 39-40 for equations and details.
 \ei
 \end{frame}
 
-
-%----------------------------------------------------------
-
-\begin{frame}
-\frametitle{Time-varying fishery selectivity ($\phi$ becomes $\Phi$)}
-
-\bi
-  \item Previously-used logistic transformation not available in Stock Synthesis
-    3.30 (and proved unnecessary as bounds were not approached).
-  \item Deviations now applied directly to the un-transformed incremental
-    selectivity parameters $p_a$ (page~41).
-  \item We define $\Phi$ to be the standard deviation of the normally-distributed
-    penalty distribution of the deviations.
-  \item Based on the previous bounds, equivalent flexibility was found
-    to occur with
-    \begin{equation}
-    \nonumber \Phi = 7 \phi
-    \end{equation}
-  \item So $\Phi = 1.40$ has equivalent flexibility to $\phi=0.20$.
-  \item This is a technical update, not really a structural change (is included
-    in first bridging step).
-  \item Different values of $\Phi$ will be explored.
-\ei
-\end{frame}
 
 %----------------------------------------------------------
 
