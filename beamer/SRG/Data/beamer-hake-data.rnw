@@ -85,7 +85,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 @
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[Hake Data]{Fisheries, data, and inputs used in the \Sexpr{assess.yr} Pacific Hake/Whiting stock assessment}
+\title[Hake Data]{Fisheries, data, and inputs used in the \Sexpr{assess.yr} Pacific Hake stock assessment}
 \author[JTC]{\includegraphics[height=1in, width=4in]{../../images/hake-on-board.eps}\\Pacific Hake Joint Technical Committee}
 %\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
