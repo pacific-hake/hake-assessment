@@ -2,15 +2,15 @@
 ## setwd("D:/Documents/GitHub/hake-assessment/beamer/SRG/Management")
 
 ## assuming working directory is "/hake-assessment/doc/r"
-x <- read.csv("../../data/catch-targets-biomass.csv") # manual update to file in 2017
-dir.SRG.management <- "../../beamer/SRG/Management/"
+x <- read.csv("../data/catch-targets-biomass.csv") # manual update to file in 2017
+dir.SRG.management <- "../beamer/SRG/Management/"
 
 # location is bottom unless points overlap too much
 x$loc <- "bottom"
-x$loc[x$Year %in% c(2004, 2006, 2012, 2016)] <- "top"
+x$loc[x$Year %in% c(2004, 2006, 2012, 2016, 2018)] <- "top"
 
 # vector of colors
-colvec <- rev(rich.colors.short(n = nrow(x)))
+colvec <- rev(rich.colors.short(n = nrow(x),alpha=1))
 # make text darker
 scale <- .9
 for(i in 1:length(colvec)){

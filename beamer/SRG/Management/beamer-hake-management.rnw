@@ -100,7 +100,7 @@ metric$mcmc <- forecasts[[7]]$outputs
 ## next 2 lines copied from executive-summary.rnw  (manual 2017)
 models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
 models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty catch level name
-history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update to file in 2017
+history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual update to file in 2017
 
 @
 
@@ -168,7 +168,7 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
 \subsection{Methods}
 \frame{\frametitle{Forecast methods}
   \bi
-    \item Forecasts are for \Sexpr{end.yr}, \Sexpr{end.yr+1}, and \Sexpr{end.yr+2}
+    \item Forecasts are for \Sexpr{end.yr}, \Sexpr{end.yr+1}, and \Sexpr{end.yr+2} (explore \Sexpr{end.yr+3}) 
     \bi
       \item Average fishery selectivity from \Sexpr{end.yr-5}--\Sexpr{end.yr-1}
         used in forecasts
@@ -212,9 +212,9 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Catch stream 180,000~t results in stable spawning biomass relative to 2018
-      \item Catch streams 350,000~t and above result in decreases in spawning biomass relative to 2018
-      \item Uncertainty is large and increases the farther it is forecasted
+      \item Catch stream inbetween 180,000~t and 350,000~t results in stable spawning biomass relative to 2019
+      \item Catch streams 350,000~t and above result in decreases in spawning biomass relative to 2019
+      \item Uncertainty is large and increases the farther out the forecast goes
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -237,24 +237,24 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
 \subsection{Intro}
 \frame{\frametitle{Decision Tables}
   \bi
-    \item Two decision table formats
+    \item Decision table format
     \bi
       \item Quantiles from the posterior distribution for spawning biomass and fishing intensity
-      \item Median values when using lower, middle, and upper values of 2014 recruitment estimates
+      %\item Median values when using lower, middle, and upper values of 2014 recruitment estimates
     \ei
     \item Catch streams % text and which are gray is all manual 2017
     \bi
       \item a. No fishing (zero catch)
       \item b. Constant catch of 180,000 t
       \item c. Constant catch of 350,000 t
-      \item \textcolor{gray}{d. Constant catch of 500,000 t}
-      \item e. Constant catch of 597,500 t (2017 TAC)
+      \item \textcolor{gray}{d. Constant catch of 410,000 t}
+      \item e. Constant catch of 597,500 t (2018 TAC)
       \item \textcolor{gray}{f. Fishing Intensity = 100\% in each year
         conditioned on fixed catch in previous year}
       \item g. Median default Harvest Rule in each year conditioned on
         fixed catch in previous year
-      \item \textcolor{gray}{h. Median catch in 2018 is the same as
-        fixed catch in 2017}
+      \item \textcolor{gray}{h. Median catch in 2019 is the same as
+        fixed catch in 2018}
     \ei
     \item More catch streams can be added as determined by SRG/AP/JMC
   \ei
@@ -268,9 +268,12 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
     \bi
       \item Relative spawning biomass is increasing in the absence of fishing
         due to large 2010 and 2014 cohorts.
-      \item Lower 5\% quantile near $B_{40\%}$ in \Sexpr{end.yr}
+      \item Lower 5\% quantile below $B_{40\%}$ in \Sexpr{end.yr} (31\%)
       \item Median (50\%) decreases in \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
-        for catches of 350,000~t and above
+        for catches above 350,000~t
+        \bi
+        \item Median is above $B_{40\%}$ for all examined catch levels
+        \ei
     \ei
   \end{column}
   \begin{column}{0.65\textwidth}
@@ -371,17 +374,21 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
   \begin{column}{0.35\textwidth}
     \bi
   \item Dependent on assumptions about selectivity
-  \item Age-8 fish from 2010 cohort expected to remain significant
+  \item Age-9 fish from 2010 cohort expected to remain significant
     \bi
-    \item \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$X8),0)}\% by numbers
-    \item \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$X8),0)}\% by weight
+    \item \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$X9),0)}\% by numbers
+    \item \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$X9),0)}\% by weight
     \ei
-  \item Age-4 fish from 2014 cohort expected be largest proportion
+  \item Age-5 fish from 2014 cohort expected to be largest proportion
     \bi
-    \item \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$X4),0)}\% by numbers
-    \item \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$X4),0)}\% by weight
+    \item \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$X5),0)}\% by numbers
+    \item \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$X5),0)}\% by weight
     \ei
-  \item Age-2 fish from 2016 cohort expected above average as well (still highly uncertain)
+  \item Age-3 fish from 2016 cohort
+    \bi
+    \item \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$X3),0)}\% by numbers
+    \item \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$X3),0)}\% by weight
+    \ei
     \ei
   \end{column}
   \begin{column}{0.65\textwidth}
@@ -410,6 +417,9 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
             \Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr)],
                 base.model$mcmc$Recr_2014),2)},
             respectively)
+          \item increasing correlation with 2016 recruitment
+            (\Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr)],
+              base.model$mcmc$Recr_2016),2)}, not shown)
         \ei
         \item \Sexpr{end.yr+1} default catch limit (not shown) is more dependent on
           the highly uncertainty recruitment in 2016
@@ -509,7 +519,7 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
   \begin{column}{0.38\textwidth}
     \bi
       \item Age-1 index appears to follow estimates of recruitment
-      \item Age-1 hake in 2016 is above average
+      \item Age-1 hake in 2017 is above average
       \bi \item As seen in the fishery as well \ei
     \ei
   \end{column}
@@ -530,7 +540,7 @@ history.info <- read.csv("../../data/catch-targets-biomass.csv") # manual update
     \item Uncertainty is large, but stock is likely above $B_{40\%}$ and fishing intensity likely to have been below 100\%.
     \item Forecasts strongly influenced by size of large but uncertain 2014 cohort
       and very uncertain 2016 cohort
-    \item Aging 2010 cohort declining due to fishing and natural mortality contributes to median spawning biomass declining with catch at 350,000~t and above
+    \item Aging 2010 cohort declining due to fishing and natural mortality contributes to median spawning biomass declining with catch between 350,000~t and 410,000~t and above
     \item Higher risk of falling below $B_{40\%}$ in 2 years than in last year's assessment
   \ei
 }
