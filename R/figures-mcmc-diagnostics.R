@@ -212,7 +212,12 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
                  rgb(0, 0, 1, 0.4)),
          cex = leg.cex,
          bty = 'n')
-  SSplotIndices(model, subplot = 2, add = TRUE, col3 = rgb(1, 0, 0, 0.7))
+  SSplotIndices(model,
+                subplot = 2,
+                add = TRUE,
+                minyr = start.yr,
+                maxyr = end.yr,
+                col3 = rgb(1, 0, 0, 0.7))
   axis(1, at = model$cpue$Yr[model$cpue$Use==1], cex.axis = 0.8, tcl = -0.6)
   axis(1,
        at = (start.yr-4):(end.yr+7),

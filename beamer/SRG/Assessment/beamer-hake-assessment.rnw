@@ -283,7 +283,6 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       \item 1999 cohort often over-predicted
       \item Young cohorts in 2003-2011 underfit
       \item Recent years (2012-2017) show good fits, including 2010 cohort
-      \item Survey has now `seen' 2014 cohort
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -304,9 +303,10 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Big 1999 and 2010 cohorts seem to fit particularly well
+      \item Big 1999, 2010, and 2014 cohorts seem to fit particularly well
       \item Some over- and under-fitting in 1980 and 1984 cohorts
       \item Other recent above-average sized cohorts (2005, 2006, 2008) are often underfit when young
+      \item 2016 cohort fit well
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -342,13 +342,13 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       Fishery
       <<fishery.age.comp.pearson, fig.height=8, fig.width=8, out.width='0.85\\columnwidth'>>=
         oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-        make.fleet.age.comp.pearson.plot(base.model,fleet=1,fleetName="")
+        make.fleet.age.comp.pearson.plot(base.model, fleet = 1, fleetName = "")
         par(oldpar)
       @
     \ec
   \end{column}
 \end{columns}
-\bc {\scriptsize Closed bubbles are positive residuals (observed > expected) and open bubbles are negative residuals (observed < expected)} \ec
+\bc {\scriptsize Dark bubbles are positive residuals (observed > expected) and white bubbles are negative residuals (observed < expected)} \ec
 }
 
 %----------------------------------------------------------
@@ -387,11 +387,12 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \begin{table}
     \begin{tabular}{cccc} \hline
       MLE (\Sexpr{assess.yr}) & Median (\Sexpr{assess.yr}) &
-        Median (2017) & Median (2016) \\
+        Median (\Sexpr{assess.yr}) & Median (\Sexpr{assess.yr - 1}) \\
       \hline
       \Sexpr{round(base.model$cpue$Calc_Q[1],2)}  &
           \Sexpr{round(median(base.model$extra.mcmc$Q_vector), 2)} &
-              0.94 & 1.03         \\
+          \Sexpr{round(median(last.yr.base.model$extra.mcmc$Q_vector), 2)} &
+            0.94 \\
       \hline
     \end{tabular}
   \end{table}

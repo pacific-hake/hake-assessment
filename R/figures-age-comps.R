@@ -27,20 +27,27 @@ make.age.comp.pearson.plot <- function(model,                  ## model is an mc
   par <- oldpar
 }
 
-make.fleet.age.comp.pearson.plot <- function(model,                  ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
+make.fleet.age.comp.pearson.plot <- function(model,                ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
                                              fleet = 1,            ## 1) fishery or 2) survey
                                              fleetName = "Fishery",
                                              start.yr = min(dat$Yr), ## First year for age comps - default from the data frame
                                              end.yr = max(dat$Yr),   ## Last year for age comps - default from the data frame
                                              show.key = FALSE,       ## Show some sample bubbles at the top with sizes
                                              key.yrs = NULL,         ## Vector of 4 years for locations to put the key if show.key == TRUE
-                                             fg = gray(level=0.1, alpha=0.5),
-                                             bg = gray(level=0.5, alpha=0.5),
+                                             fg = gray(level = 0.1, alpha = 0.5),
+                                             bg = gray(level = 0.5, alpha = 0.5),
                                              inches = 0.12,
-                                             cohortLines=c(1980,1984,1999,2008,2010),
-                                             cohortCol=rgb(c(0.5,0,1,0,0),c(0,0.2,0,0.8,1),c(1,0.8,0.2,0.1,0),alpha=0.6),
-                                             cohortAdj=0.5
-                                             ){
+                                             cohortLines = c(1980,
+                                                             1984,
+                                                             1999,
+                                                             2008,
+                                                             2010,
+                                                             2014),
+                                             cohortCol = rgb(c(0.5, 0, 1, 0, 0),
+                                                             c(0, 0.2, 0, 0.8, 1),
+                                                             c(1, 0.8, 0.2, 0.1, 0),
+                                                             alpha = 0.6),
+                                             cohortAdj = 0.5){
   ## Plot the Pearson residuals for age composition fits for whatever fleet is set to
 
   oldpar <- par()
