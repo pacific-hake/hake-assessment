@@ -444,28 +444,28 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Weighting of age data: $\theta_{\text{surv}}$ and
-    $\theta_{\text{fish}}$}
-  \bi
-    \item Initial MCMC explorations indicated $\log \theta_{\text{surv}}$
-      not being sampled efficiently.
-    \bi
-      \item Was due to many samples occurring in a part of parameter space
-        where the effective sample size multiplier,
-        $\theta_{\text{surv}}/(1+\theta_{\text{surv}})$, is between 0.99 and 1.0.
-      \item Likelihood surface (w.r.t. $\theta_{\text{surv}}$) is almost completely
-        flat in this area, and input sample sizes given full weight.
-      \item To improve MCMC convergence, $\log \theta_{\text{surv}}$
-        was fixed at the MLE estimate of \Sexpr{log.theta.survey},
-        corresponding to a weight of
-        $\theta_{\text{surv}}/(1+\theta_{\text{surv}}) = \Sexpr{DM.weight.survey}$.
-    \ei
-    \item $\log \theta_{\text{fish}}$ well sampled with median estimate of
-        \Sexpr{log.theta.fishery.median} and associated weight of
-        $\theta_{\text{fish}}/(1+\theta_{\text{fish}}) =
-        \Sexpr{DM.weight.fishery.median}$.
-  \ei
-}
+%% \frame{\frametitle{Weighting of age data: $\theta_{\text{surv}}$ and
+%%     $\theta_{\text{fish}}$}
+%%   \bi
+%%     \item Initial MCMC explorations indicated $\log \theta_{\text{surv}}$
+%%       not being sampled efficiently.
+%%     \bi
+%%       \item Was due to many samples occurring in a part of parameter space
+%%         where the effective sample size multiplier,
+%%         $\theta_{\text{surv}}/(1+\theta_{\text{surv}})$, is between 0.99 and 1.0.
+%%       \item Likelihood surface (w.r.t. $\theta_{\text{surv}}$) is almost completely
+%%         flat in this area, and input sample sizes given full weight.
+%%       \item To improve MCMC convergence, $\log \theta_{\text{surv}}$
+%%         was fixed at the MLE estimate of \Sexpr{log.theta.survey},
+%%         corresponding to a weight of
+%%         $\theta_{\text{surv}}/(1+\theta_{\text{surv}}) = \Sexpr{DM.weight.survey}$.
+%%     \ei
+%%     \item $\log \theta_{\text{fish}}$ well sampled with median estimate of
+%%         \Sexpr{log.theta.fishery.median} and associated weight of
+%%         $\theta_{\text{fish}}/(1+\theta_{\text{fish}}) =
+%%         \Sexpr{DM.weight.fishery.median}$.
+%%   \ei
+%% }
 
 %----------------------------------------------------------
 
@@ -519,49 +519,50 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Estimate of 2014 cohort}
+\frame{\frametitle{Estimate of 2014 and 2016 cohort}
 
-% Adding this manual table for 2018 and doing calculations here for speed,
-%  I don't think the calculations are done elsewhere
 <<prop.biomass.large.cohorts>>=
 # From Table 21 for 2018 row, saved in estimated-biomass-at-age.csv
-biomass.at.age.2018 = c(34.557289, 152.714604, 359.43649, 28.0393296,
-                        1061.277907, 58.9803062, 116.9505844, 25.32548799,
-                        514.6287136, 41.35217625, 77.17102616, 0.3495839498,
-                        14.4567962, 15.86944226, 0.3951070504, 4.249532704,
-                        0.05743363776, 1.089124992, 0.1856510976, 5.949318912,
-                        1.349550848)
-biomass.2018.total = sum(biomass.at.age.2018)
-biomass.2018.prop.age4 = biomass.at.age.2018[5]/biomass.2018.total
-biomass.2018.prop.age8 = biomass.at.age.2018[9]/biomass.2018.total
+baa <- read.csv(file.path(output.csv.dir, out.est.baa.file))
+baa.curr <- baa %>%
+  dplyr::filter(Year == assess.yr) %>%
+  select(-Year)
+baa.curr.tot <- sum(baa.curr)
+b.curr.prop.age3 = baa.curr[4]/baa.curr.tot
+b.curr.prop.age5 = baa.curr[6]/baa.curr.tot
+b.curr.prop.age9 = baa.curr[10]/baa.curr.tot
+
+last.yr.recr.2014 <- f(quantile(last.yr.base.model$mcmc$Recr_2014, probs=c(0.025, 0.5, 0.975) / 1000))
+recr.2014 <- f(quantile(base.model$mcmc$Recr_2014, probs=c(0.025, 0.5, 0.975) / 1000))
 @
-The 2014 cohort is estimated to be large -- only 5\% chance of being larger than
-  2010.\\
+The 2014 and 2016 cohorts are estimated to be large: \\
+\Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of the 2014 cohort being larger than 2010.\\
+\Sexpr{prob.percent.2016.rec.gt.2010.rec}\% chance of the 2016 cohort being larger than 2010.\\
 
 ~\\
 
-Extra data reduces its uncertainty from that in the 2017 assessment:
+Extra data halves 2014 cohort uncertainty from that in the \Sexpr{assess.yr - 1} assessment:
 
-% Adding this manual table for 2018 to compare 2014 recruitment estimates
-%  (Tables 18 and 19 each year)
   \begin{table}
     \begin{tabular}{ccrc} \hline
-      Calculation (millions) & Low & Median & High \\
+      Calculation (millions) & Low (2.5\%) & Median & High (97.5\%) \\
       \hline
       \Sexpr{assess.yr-1} assessment recruitment in 2014 &
-         2,184 & 12,105 & 90,735 \\
+         \Sexpr{last.yr.recr.2014[1]} & \Sexpr{last.yr.recr.2014[2]} & \Sexpr{last.yr.recr.2014[3]} \\
       \Sexpr{assess.yr} assessment recruitment in 2014 &
-         4,137 & 8,583 & 20,562 \\
+         \Sexpr{recr.2014[1]} & \Sexpr{recr.2014[2]} & \Sexpr{recr.2014[3]} \\
       \hline
     \end{tabular}
   \end{table}
   ~\\
 
-At the start of 2018 (from Table 21, page 89):\\
+At the start of \Sexpr{assess.yr} (from Table 21, page 91):\\
 \bi
-\item 2010 cohort is estimated to make up \Sexpr{f(biomass.2018.prop.age8*100)}\%
+\item 2010 cohort is estimated to make up \Sexpr{f(b.curr.prop.age9 * 100)}\%
   of the biomass\\
-\item 2014 cohort is estimated to make up \Sexpr{f(biomass.2018.prop.age4*100)}\%
+\item 2014 cohort is estimated to make up \Sexpr{f(b.curr.prop.age5 * 100)}\%
+  of the biomass
+\item 2016 cohort is estimated to make up \Sexpr{f(b.curr.prop.age3 * 100)}\%
   of the biomass
 \ei
 }
