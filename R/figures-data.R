@@ -69,7 +69,7 @@ make.cumulative.catch.plot <- function(d,   ## Data as found in the xxxx.catch.b
        ylim = ylim,
        type = "n",
        axes = FALSE)
-  cols <- length(d):1
+  cols <- plotcolour(4)
   lwd <- 3
   lty <- 1
   for(i in 1:length(d)){
