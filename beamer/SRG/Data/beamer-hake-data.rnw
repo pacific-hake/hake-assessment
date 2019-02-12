@@ -289,6 +289,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \frame{\frametitle{Canada bottom depth distribution}
 \begin{figure}
  \centering
+ ** More years than the U.S. Figure and not in colour 
   \includegraphics[width=6in, height=3in]{../../../doc/main-figures/can-bottom-depths}
 \end{figure}
 }
@@ -392,6 +393,15 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section[Weight-at-age]{Weight-at-age}
+\subsection{Mean weight-at-age by year}
+\frame{\frametitle{Weight-at-age data}
+\bi
+  \item ** Information about Canadian weight-at-age data that were added.
+\ei
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Mean weight-at-age by year}
 \frame{\frametitle{Mean weight-at-age by year}
   <<wt.at.age>>=
