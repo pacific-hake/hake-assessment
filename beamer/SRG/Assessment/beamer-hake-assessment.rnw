@@ -143,14 +143,15 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       \item Weight-at-age values for \Sexpr{last.assess.yr}
     \ei
     \item Incorporates time-varying fecundity, similar to alternative base case from
-      \Sexpr{last.assess.yr}. Weight-at-age matrix * Maturiy vector.
+      \Sexpr{last.assess.yr}. \\
+      Fecundity\subscr{year} = Weight-at-age\subscr{year} * Maturity vector
   \ei
 \end{frame}
 
 %----------------------------------------------------------
 
 \begin{frame}
-\frametitle{Time-varying fishery selectivity ($\phi$)}
+\frametitle{Time-varying fishery selectivity ($\Phi$)}
 
 \bi
   \item Used since 2014 assessment.
@@ -195,8 +196,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Bridging to the base model:
-    add \Sexpr{assess.yr} data} (MLE)
+\frame{\frametitle{Bridging to the base model: add \Sexpr{assess.yr} data}
   \bc
   \vspace{-5pt}
   <<bridge.biomasss.2, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
@@ -223,166 +223,34 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 %----------------------------------------------------------
 
-\begin{frame}
-\frametitle{New approach to weighting age-composition data}
-
-\bi
-  \item 2017 (and earlier) assessments used:
-  \bi
-    \item multinomial likelihood function;
-    \item tuning method for weighting age composition data, by manually iteratively
-      adjusting a multiplier of the input sample sizes until they
-      roughly equal the harmonic mean of the effective sample sizes
-      (McAllister \& Ianelli, 1997).
-  \ei
-  ~\\
-  \item Here use a new Dirichlet-Multinomial likelihood (Thorson et al.,
-    {\em Fisheries Research}, 2017):
-  \bi
-    \item Estimated parameter, $\theta$, automatically adjusts the weight given to
-       the composition data.
-    \item Removes need for manual iterative reweighting (and the subjective
-      choice of how many iterations to do).
-    \item Ensures results of model sensitivities, retrospective analyses,
-       and likelihood profiles are all automatically tuned, rather than having
-       same weights as the base model.
-    \item Increases efficiency of the assessment process.
-    \item Was tested on a simplified version of the 2015 hake assessment model.
-    \item We estimate $\theta_{\text{surv}}$ and $\theta_{\text{fish}}$.
-  \ei
-\ei
-\end{frame}
-
-%----------------------------------------------------------
-
-\frame{\frametitle{Bridging to the base model: fishery and survey data}
-  \bc
-  \vspace{-5pt}
-  <<bridge.biomass2, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-    oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-    make.comparison.plot(bridge.models.2,
-                         subplots = 2,
-                         model.names = bridge.model.names.2,
-                         densitynames = NULL,
-                         end.yr = bridge.model.end.yr.2)
-   par(oldpar)
-  @
-  \ec
-}
-
-%----------------------------------------------------------
-
-\frame{\frametitle{Bridging to the base model: fishery and survey data}
-  \bc
-  \vspace{-5pt}
-  <<bridge.other, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
-    oldpar <- par(mfrow=c(1,2), mar=c(5,4,1,1),no.readonly = TRUE)
-    ## make.comparison.plot(bridge.models.2,
-    ##                      subplots = 4,
-    ##                      model.names = bridge.model.names.2,
-    ##                      densitynames = NULL,
-    ##                      legend = FALSE,
-    ##                      end.yr = end.yr)
-    make.comparison.plot(bridge.models.2,
-                         subplots = 9,
-                         model.names = bridge.model.names.2,
-                         densitynames = NULL,
-                         legend = FALSE,
-                         end.yr = bridge.model.end.yr.2)
-    box()
-    make.comparison.plot(bridge.models.2,
-                         subplots = 11,
-                         model.names = bridge.model.names.2,
-                         densitynames = NULL,
-                         legendloc = "topleft",
-                         indexPlotEach = TRUE,
-                         indexUncertainty = TRUE,
-                         end.yr = bridge.model.end.yr.2)
-    ## make.comparison.plot(bridge.models.2,
-    ##                      subplots = 11,
-    ##                      model.names = bridge.model.names.2,
-    ##                      densitynames = NULL,
-    ##                      indexPlotEach = TRUE,
-    ##                      indexUncertainty = TRUE,
-    ##                      legend = FALSE,
-    ##                      end.yr = end.yr)
-   par(oldpar)
-  @
-  \ec
-}
-
-%----------------------------------------------------------
-
-\frame{\frametitle{Bridging to the base model: fishery and survey data in
-    different order}
-  \bc
-  \includegraphics[height=3in]{Figures/compare2_spawnbio_uncertainty_landscape.eps}
-  \ec
-}
-
-%----------------------------------------------------------
-
 \frame{\frametitle{Bridging to the base model: Summary}
   \bi
-    \item Including the \Sexpr{last.survey.year} index appears to make the
-      biggest difference, pulling down the recent estimates of biomass.
-    \item Age data make little further difference, although adding the fishery
-      age data before adding the survey index does partly pull down biomass in 2016 and
-      2017.
-    \item The alternative Dirichlet-multinomial data weighting gives slight
-      changes, in particular pulling down early biomass (and $B_0$).
-    \item Other bridging steps have minimal impact.
+    \item Updating pre-\Sexpr{last.assess.yr} has almost no effect on model outcome.
+    \item Adding \Sexpr{assess.yr} catch and age composition data has little effect on
+      biomiass trajectories.
+    \item Adding age compositions has an effect on the recruitment deviations.
+    \item Adding time-varying fecundity has the most effect, with a large increase in ~1975
+      biomass due to the inflated weight-at-age of older fish in that time period.
    \ei
-  % Last year: ``Fishery data sole information on the size of the 2014 year-class''
 }
 
 %----------------------------------------------------------
 \section{MCMC diagnostics}
-\frame{\frametitle{MCMC trace plots (more in Figures 17 and 18)}
+\frame{\frametitle{MCMC trace plots (more in Figures 18 and 19)}
    \bc
    <<main.mcmc.diag.m, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-       make.mcmc.diag.plot(base.model, subplot = 1)
-     @
+   make.mcmc.diag.plot(base.model, subplot = 1)
+   @
    \ec
 }
 
-%----------------------------------------------------------
-
-% Hardwiring this since two attempts aren't working.
-%% \frame{\frametitle{MCMC diagnostics for all parameters and spawning biomass}
-%%   \bc
-%%   \includegraphics[height=2.8in]{../../../doc/knitr-cache/main_mcmc_diag_hists-1.eps}
-%%   \ec
-%% }
-%----------------------------------------------------------
-
-% This didn't work either (25/2/18) even though code is same as in
-%  main-figures.rnw - an extra \ appears in a path name.
-% \frame{\frametitle{MCMC diagnostics for all parameters and spawning biomass}
-%   \bc
-%   <<main.mcmc.diag.hists, fig.height=4, fig.width=8,
-%      out.width='0.95\\columnwidth'>>=
-%   make.mcmc.diag.hists.plot(base.model)
-%   @
-%   \ec
-%}
-
-%----------------------------------------------------------
-
-% This doesn't work (23/2/18), Allan had commented out in 2016.
-% \frame{\frametitle{MCMC tests}
-%   \bc
-%     <<main.mcmc.diag.hists, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%       origPath <- base.model$mcmcpath
-%       base.model$mcmcpath <- file.path("..",origPath)
-%       make.mcmc.diag.hists.plot(base.model)
-%       base.model$mcmcpath <- origPath
-%       # oldpar <- par(no.readonly=TRUE)
-%       # par(mar=c(4.1, 4.1, 3.1, 0.1))
-%       # par <- oldpar
-%     @
-%   \ec
-% }
+\frame{\frametitle{MCMC diagnostics for all parameters and spawning biomass}
+  \bc
+  <<main.mcmc.diag.hists, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+  make.mcmc.diag.hists.plot(base.model)
+  @
+  \ec
+}
 
 \frame{\frametitle{MCMC diagnostics -- Gelman-Rubin plot for key parameters}
  \bc
