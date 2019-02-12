@@ -102,14 +102,18 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \bi
     \item March \Sexpr{last.assess.yr} the JMC set an adjusted TAC = \Sexpr{last.year.tac} t.
     %% \item May \Sexpr{last.assess.yr}: JMC meeting: JTC presented MSE simulation results looking at age-1 index and age 2+ survey precision.
-    \item U.S. and Canadian fisheries predominantly started in May (Canadian Shoreside catch in April).
-    \item Highest proportion of fish caught in U.S. At-Sea fisheries were age-3 and age-7 for U.S. Shoreside.
-    \item Highest proportion of fish caught in Canadian fisheries were age-7.
-    \item In the U.S., seasonal patterns in catch-at-age were again observed (higher proportion age-3 in fall).
-    \item Highest coastwide catch ever, 33\% increase from last year.
-    \item One JTC public meeting in December - in general, all stakeholders report good fishing conditions in 2017.
-    \item Summer 2017 acoustic survey biomass estimate was 1.418 million tons (decline of 34\% from 2015 survey).
-    \item Second winter survey from Jan-Feb 2017 aboard the Shimada.
+    \item U.S. and Canadian fisheries predominantly started in May and April, respectively.
+    \item Second-highest coastwide catch ever, 11\% decrease from last year.
+    \item A Canadian Joint-Venture fishery operated from August 21 to September 15.
+    \item Highest proportion-at-age by sector 
+      \bi
+        \item Age-2 fish in U.S. Catcher-Processor and U.S. Shoreside sectors;
+        \item Age-4 fish in U.S. Mothership sectors; and 
+        \item Age-8 fish in Canadian sectors.
+      \ei
+    \item Bycatch avoidance was problematic for all sectors. 
+    \item At the JTC public meeting in Dec. - in general, all stakeholders reported good fishing conditions in \Sexpr{last.assess.yr}.
+    %% \item Summer 2017 acoustic survey biomass estimate was 1.418 million tons (decline of 34\% from 2015 survey).
   \ei
 }
 
@@ -166,81 +170,68 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Fleets and allocations}
-\frame{\frametitle{Fleets and allocations}
-  The \Sexpr{end.yr-1} TAC of \Sexpr{last.year.tac} was split between the U.S. and Canada fleets as follows:
-  \bi
-    \item Canada -- \Sexpr{last.year.can.tac} (\Sexpr{paste0(can.allotment.percent, "\\%")}) (includes \Sexpr{last.year.can.carryover} t of carryover)
-      \bi
-        \item Freezer trawlers and Shoreside vessels -- \Sexpr{last.year.can.shoreside.tac} t
-        \item Joint venture                          -- \Sexpr{last.year.can.tac.jv} t
-      \ei
-    \item United States -- \Sexpr{last.year.us.tac} (\Sexpr{paste0(us.allotment.percent, "\\%")})
-      \bi
-        \item Research and bycatch -- \Sexpr{f(last.year.us.research)} t
-        \item Tribal               -- \Sexpr{f(last.year.us.tribal.quota.reallocated)} t (Reallocated from original allocation of \Sexpr{f(last.year.us.tribal)} t on \Sexpr{last.year.us.tribal.reallocate.dates})
-        \item Shore--based         -- \Sexpr{f(last.year.us.shore.quota.reallocated)} t
-        \item Catcher--processor   -- \Sexpr{f(last.year.us.cp.quota.reallocated)} t
-        \item Mothership           -- \Sexpr{f(last.year.us.ms.quota.reallocated)} t
-      \ei
-  \ei
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Catch by country}
-\frame{\frametitle{Catch by country}
+\frame{\frametitle{Allocations of \Sexpr{end.yr-1} TAC of \Sexpr{last.year.tac} t}
   \begin{columns}
     \begin{column}[t]{0.5\linewidth}
-      \center{\textbf{\textcolor{blue}{Canada}}} \\
-      \bi
-        \item The \Sexpr{end.yr-1} Canadian TAC was \Sexpr{last.year.can.tac} t
-        \bi
-          \item Freezer trawlers -- \Sexpr{last.year.can.freezer} t (\Sexpr{paste0(last.year.can.freezer.percent, "\\%")})
-          \item Shoreside        -- \Sexpr{last.year.can.shore} t   (\Sexpr{paste0(last.year.can.shore.percent, "\\%")})
-          \item Joint venture    -- \Sexpr{last.year.can.jv} t   (\Sexpr{paste0(last.year.can.jv.percent, "\\%")})
-        \ei
-        \item Total Canadian catch -- \Sexpr{last.year.can.landings} t
-        \item \Sexpr{paste0(last.year.can.attained, "\\%")} of the Canadian quota was caught.
-      \ei
-    \end{column}
+    \center{\textbf{\textcolor{blue}{Canada}}} \\
+    \center{\textbf{TAC was \Sexpr{last.year.can.tac} t (\Sexpr{paste0(can.allotment.percent, "\\%")})}} \\
+    \bi
+      \item TAC includes \Sexpr{last.year.can.carryover} t of carryover
+      \item Freezer-Trawlers and Shoreside -- \Sexpr{last.year.can.shoreside.tac} t
+      \item Joint Venture                  -- \Sexpr{last.year.can.tac.jv} t
+    \ei
+  \end{column}
     \begin{column}[t]{0.5\linewidth}
-      \center{\textbf{\textcolor{blue}{United States}}} \\
-      \bi
-        \item The \Sexpr{end.yr-1} U.S. TAC was \Sexpr{last.year.us.tac} t
-          \bi
-            %\item Research            -- \Sexpr{f(last.year.us.research.catch)} t    (\Sexpr{paste0(last.year.us.research.catch.percent, "\\%")})
-            \item Catcher--processor  -- \Sexpr{f(last.year.us.cp.catch)} t          (\Sexpr{paste0(last.year.us.cp.catch.percent, "\\%")})
-            \item Mothership          -- \Sexpr{f(last.year.us.ms.catch)} t          (\Sexpr{paste0(last.year.us.ms.catch.percent, "\\%")})
-            \item Shore-based         -- \Sexpr{f(last.year.us.shore.catch)} t       (\Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")})
-            \bi
-                \item Tribal              -- 6,172 t%\Sexpr{f(last.year.us.tribal.max.landed)} t % (\Sexpr{paste0(last.year.us.tribal.catch.percent, "\\%")})
-            \ei
-          \ei
-        \item Total U.S. catch -- \Sexpr{last.year.us.landings} t
-        \item \Sexpr{paste0(last.year.us.attained, "\\%")} of the U.S. quota was caught.
-      \ei
+    \center{\textbf{\textcolor{blue}{United States}}} \\
+    \center{\textbf{TAC was \Sexpr{last.year.us.tac} t (\Sexpr{paste0(us.allotment.percent, "\\%")})}} \\
+    \bi
+      \item Research and bycatch -- \Sexpr{f(last.year.us.research)} t
+      \item Tribal               -- Reallocated to \Sexpr{f(last.year.us.tribal.quota.reallocated)} t on \Sexpr{last.year.us.tribal.reallocate.dates} (Originally \Sexpr{f(last.year.us.tribal)} t)
+      \item Shorebased           -- \Sexpr{f(last.year.us.shore.quota.reallocated)} t
+      \item Catcher-Processor    -- \Sexpr{f(last.year.us.cp.quota.reallocated)} t
+      \item Mothership           -- \Sexpr{f(last.year.us.ms.quota.reallocated)} t
+  \ei
     \end{column}
   \end{columns}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Base model catch}
-\frame{\frametitle{Base model catch}
-  \bi
-    \item Errors in the calcualtion of total catch were identified very late in the 2018 assessment cycle.
-    %% \item May \Sexpr{last.assess.yr}: JMC meeting: JTC presented MSE simulation results looking at age-1 index and age 2+ survey precision.
-    \item Minor differences in total catch used in base model resulting from:
+\subsection{Catch by country}
+\frame{\frametitle{Catches of \Sexpr{end.yr-1} TAC of \Sexpr{last.year.tac} t}
+  \begin{columns}
+    \begin{column}[t]{0.5\linewidth}
+      \center{\textbf{\textcolor{blue}{Canada}}} \\
+    \center{\textbf{TAC was \Sexpr{last.year.can.tac} t (\Sexpr{paste0(can.allotment.percent, "\\%")})}} \\
       \bi
-        \item  Double counting of Canadian JV catch (2007, 2008, 2010, 2011, and 2017).
-        \item  Fish ticket discrepancies related to total tribal catch (2016 and 2017).
-        \item  Minor updates to pre-2017 catch in U.S. fisheries (2007-2017).
+        \item Total Canadian catch -- \Sexpr{last.year.can.landings} t
+        \bi
+          \item Freezer Trawlers -- \Sexpr{last.year.can.freezer} t (\Sexpr{paste0(last.year.can.freezer.percent, "\\%")})
+          \item Shoreside        -- \Sexpr{last.year.can.shore} t   (\Sexpr{paste0(last.year.can.shore.percent, "\\%")})
+          \item Joint Venture    -- \Sexpr{last.year.can.jv} t   (\Sexpr{paste0(last.year.can.jv.percent, "\\%")})
+        \ei
+        \bigskip
+        \item \Sexpr{paste0(last.year.can.attained, "\\%")} of the Canadian TAC was caught.
       \ei
-    %% \item Return of at-sea fleet in the U.S. saw low catch-rates.
-    \item In combination, these resulted in minor changes to total catch (-3\% to +2\%)
-    \item JTC evaluated model sensitivity to updated catch stream.
-    \item Identified need to improve tracking and archiving of tribal U.S. catch in regional database (PacFIN).
-  \ei
+    \end{column}
+    \begin{column}[t]{0.5\linewidth}
+      \center{\textbf{\textcolor{blue}{United States}}} \\
+    \center{\textbf{TAC was \Sexpr{last.year.us.tac} t (\Sexpr{paste0(us.allotment.percent, "\\%")})}} \\
+      \bi
+        \item Total U.S. catch -- \Sexpr{last.year.us.landings} t
+          \bi
+            %\item Research            -- \Sexpr{f(last.year.us.research.catch)} t    (\Sexpr{paste0(last.year.us.research.catch.percent, "\\%")})
+            \item Catcher-Processor  -- \Sexpr{f(last.year.us.cp.catch)} t          (\Sexpr{paste0(last.year.us.cp.catch.percent, "\\%")})
+            \item Mothership          -- \Sexpr{f(last.year.us.ms.catch)} t          (\Sexpr{paste0(last.year.us.ms.catch.percent, "\\%")})
+            \item Shorebased         -- \Sexpr{f(last.year.us.shore.catch)} t       (\Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")})
+            \bi
+                \item Tribal              -- 6,172 t%\Sexpr{f(last.year.us.tribal.max.landed)} t % (\Sexpr{paste0(last.year.us.tribal.catch.percent, "\\%")})
+            \ei
+          \ei
+        \item \Sexpr{paste0(last.year.us.attained, "\\%")} of the U.S. TAC was caught.
+      \ei
+    \end{column}
+  \end{columns}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -413,13 +404,13 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%% \subsection{Mean weight-at-age by year}
-%% \frame{\frametitle{Mean weight-at-age by year}
-%% \begin{figure}
-%%   \centering
-%%   \includegraphics[width=4in, height=3in]{../../../doc/main-figures/EWAforDoc.eps}
-%% \end{figure}
-%% }
+\subsection{Mean weight-at-age by year}
+\frame{\frametitle{Mean weight-at-age by year}
+\begin{figure}
+  \centering
+  \includegraphics[width=4in, height=3in]{../../../doc/main-figures/EWAforDoc_Numbers.eps}
+\end{figure}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -448,6 +439,8 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
             \item At-sea fishery vessels (2013 -- 2017)
           \ei
         \item Length stratified sampling from surveys with target numbers for 2 cm length bins
+        \item Collected 90 testes from bottom trawl and acoustic surveys
+        \item Most recent data have yet to be analyzed
       \ei
       \vspace{-3mm}
 %    \end{column}
@@ -482,7 +475,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \subsection{Fecundity}
 \frame{\frametitle{Fecundity}
   \bi
-    \item Fecundity-at-age is set to maturity-at-age $*$ mean weight-at-age in Stock Synthesis.
+    \item Fecundity-at-age is set to maturity-at-age $*$ weight-at-age in Stock Synthesis.
     \item We need a better understanding of:
       \bi
         \item Batch spawning.
