@@ -115,6 +115,7 @@ make.wt.at.age.plot <- function(d,
                                 lty = 1,
                                 xlab = "Year",
                                 ylab = "Mean weight-at-age (kg)"){
+  if (any(is.na(d$year))) d <- d[!is.na(d$year), ]
   year <- d$year
   df <- d[, names(d) %in% ages]
   col.fn <- colorRampPalette(c("darkblue", "blue", "green", "darkgreen"))
