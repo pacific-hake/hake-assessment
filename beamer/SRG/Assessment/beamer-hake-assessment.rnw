@@ -684,7 +684,7 @@ year's assessment,\\
     \bi
     \item Base model accounts for this by using annual weights-at-age for calculation
       of total biomass and catches, but not fecundity and spawning biomass.
-    \item SRG requested a sensitivity model to explore this incoporating:
+    \item 2018 SRG requested a sensitivity model to explore this incoporating:
       \bi
       \item Time-varying fecundity
       \item Pre-1975 weights-at-age equal to mean of 1975--1979 weights-at-age
@@ -695,9 +695,9 @@ year's assessment,\\
 }
 
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response to Weights-at-age and fecundity issue}}
+    {\bf Response:} \emph{TV fecundity and pre-1975 weights-at-age}}
   \bi
-  \item Included time-varying fecundity
+  \item 2019 base model includes time-varying fecundity
   \item Pre-1975 weights-at-age were chosen to be the mean of the 1975--2018 weights-at-age
     \bi
     \item Weight data from early years was identified as possibly suspect due to
@@ -719,7 +719,7 @@ year's assessment,\\
 }
 
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response to Weights-at-age and fecundity issue}}
+    {\bf Response:} \emph{Pre-1975 weights-at-age}}
   \begin{figure}[H]
     \begin{center}
       \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
@@ -729,7 +729,7 @@ year's assessment,\\
 }
 
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response to Weights-at-age and fecundity issue}}
+    {\bf Response:} \emph{Pre-1975 weights-at-age}}
   \begin{figure}[H]
     \begin{center}
       \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
@@ -739,7 +739,7 @@ year's assessment,\\
 }
 
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response to Weights-at-age and fecundity issue}}
+    {\bf Response:} \emph{Forecast weights-at-age}}
   \bi
   \item Forecast weights-at-age were chosen to be the mean of the 2016--2018 weights-at-age
     \bi
