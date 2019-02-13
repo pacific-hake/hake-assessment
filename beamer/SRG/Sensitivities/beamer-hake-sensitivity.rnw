@@ -699,10 +699,10 @@ oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(
   c(list(base.model),
-    sens.models.4),
+    sens.models.4[4:5]),
   subplots = 2,
   model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.4),
+                  sens.model.names.4[4:5]),
   end.yr = end.yr)
 par <- oldpar
 @
@@ -721,10 +721,10 @@ oldpar <- par()
 par(mar = c(7.1, 3.1, 0, 0))
 make.comparison.plot(
   c(list(base.model),
-    sens.models.4),
+    sens.models.4[4:5]),
   subplots = 14,
   model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.4),
+                  sens.model.names.4[4:5]),
   legendloc = "topright",
   densitynames = c("Recr_2014"),
   densityxlab  = "Recruitment in 2014 (billions)",
@@ -747,10 +747,10 @@ oldpar <- par()
 par(mar = c(7.1, 3.1, 0, 0))
 make.comparison.plot(
   c(list(base.model),
-    sens.models.4),
+    sens.models.4[4:5]),
   subplots = 14,
   model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.4),
+                  sens.model.names.4[4:5]),
   legendloc = "topright",
   densitynames = c("Recr_2016"),
   densityxlab  = "Recruitment in 2016 (billions)",
@@ -770,15 +770,16 @@ par <- oldpar
 <<semi.sensitivity.table, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(
   c(list(base.model),
-    sens.models.4),
+    sens.models.4[4:5]),
   model.names = c("Base model",
-                  sens.model.names.4),
+                  sens.model.names.4[4:5]),
   posterior.regex = key.posteriors,
   end.yr = end.yr,
   digits = 3,
   xcaption = NULL,
   font.size = 7,
-  space.size = 7)
+  space.size = 7,
+  show.likelihoods = FALSE)
 @
 \end{center}
 \end{frame}
