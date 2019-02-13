@@ -168,7 +168,7 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
 \subsection{Methods}
 \frame{\frametitle{Forecast methods}
   \bi
-    \item Forecasts are for \Sexpr{end.yr}, \Sexpr{end.yr+1}, and \Sexpr{end.yr+2} (explore \Sexpr{end.yr+3}) 
+    \item Forecasts are for \Sexpr{end.yr}, \Sexpr{end.yr+1}, and \Sexpr{end.yr+2} (explore \Sexpr{end.yr+3})
     \bi
       \item Average fishery selectivity from \Sexpr{end.yr-5}--\Sexpr{end.yr-1}
         used in forecasts
@@ -212,7 +212,7 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Catch stream inbetween 180,000~t and 350,000~t results in stable spawning biomass relative to 2019
+      \item Catch stream in between 180,000~t and 350,000~t results in stable spawning biomass relative to 2019
       \item Catch streams 350,000~t and above result in decreases in spawning biomass relative to 2019
       \item Uncertainty is large and increases the farther out the forecast goes
     \ei
@@ -244,11 +244,11 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
     \ei
     \item Catch streams % text and which are gray is all manual 2017
     \bi
-      \item a. No fishing (zero catch)
-      \item b. Constant catch of 180,000 t
-      \item c. Constant catch of 350,000 t
-      \item \textcolor{gray}{d. Constant catch of 410,000 t}
-      \item e. Constant catch of 597,500 t (2018 TAC)
+      \item a. \Sexpr{catch.levels[[1]][[2]]} (zero catch)
+      \item b. Constant catch of \Sexpr{catch.levels[[2]][[2]]}
+      \item c. Constant catch of \Sexpr{catch.levels[[3]][[2]]}
+      \item \textcolor{gray}{d. Constant catch (\Sexpr{catch.levels[[4]][[2]]})}
+      \item e. Constant catch (\Sexpr{catch.levels[[5]][[2]]})
       \item \textcolor{gray}{f. Fishing Intensity = 100\% in each year
         conditioned on fixed catch in previous year}
       \item g. Median default Harvest Rule in each year conditioned on
@@ -545,6 +545,17 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
   \ei
 }
 
-
+\frame{\frametitle{Trevor's request - 4 years forecast decision table}
+<<decisions.biomass.base.model.with.4.yrs.forecasts, results = 'asis', echo = FALSE>>=
+  base.model.4 <-  load.models(model.dir, "2019.03.00_base_forecast4")
+  make.decision.table.pres(base.model.4,
+                           model.inds = 1:8,
+                           xcaption = NULL,
+                           font.size = 4,
+                           space.size = 5,
+                           type = "biomass",
+                           placement = "h")
+@
+}
 
 \end{document}
