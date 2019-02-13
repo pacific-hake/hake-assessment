@@ -333,7 +333,8 @@ make.short.parameter.estimates.sens.table(
     digits = 3,
     xcaption = NULL,
     font.size = 6.5,
-    space.size = 7)
+    space.size = 7,
+    show.likelihoods = FALSE)
 @
 \end{center}
 \end{frame}
@@ -417,7 +418,8 @@ make.short.parameter.estimates.sens.table(
   age.1 = TRUE,
   xcaption = NULL,
   font.size = 7,
-  space.size = 7)
+  space.size = 7,
+  show.likelihoods = FALSE)
 @
 \end{center}
 \end{frame}
@@ -427,7 +429,7 @@ make.short.parameter.estimates.sens.table(
 \section{Data}
 \subsection{}
 \begin{frame}
-\frametitle{McAllister-Ianelli method for data-weighting - Biomass}
+\frametitle{**McAllister-Ianelli method for data-weighting - Biomass}
 \begin{center}
 <<harmonicmean.sensitivity.biomass>>=
 oldpar <- par()
@@ -571,6 +573,8 @@ par <- oldpar
 % \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+
+% Maybe take some of what's deleted in f61f7488b1  for context
 %%%%%%%%%%%%%%%%%%%%%%%
 %\section{$\phi$}
 %\subsection{}
