@@ -329,7 +329,8 @@ make.short.parameter.estimates.sens.table <- function(models,
                                                       xlabel   = "default",
                                                       font.size = 9,
                                                       space.size = 10,
-                                                      getrecs = c(2008, 2010, 2014)){
+                                                      getrecs = c(2008, 2010, 2014),
+                                                      show.likelihoods = TRUE){
   ## Returns an xtable in the proper format for the MLE parameter estimates for
   ##  all the models, one for each column
   ##
@@ -347,6 +348,7 @@ make.short.parameter.estimates.sens.table <- function(models,
   ## space.size - size of the vertical spaces for the table
   ## getrecs - a vector of integers supplying the years for which you want
   ##   estimates of recruitment. Must be of length three.
+  ## show.likelihoods - if TRUE, return the negative log-likelihoods (FALSE for presentations)
   if (length(getrecs) != 3) stop("The make short function only works",
     "with three years of recruitments I think.")
 
@@ -360,7 +362,7 @@ make.short.parameter.estimates.sens.table <- function(models,
     mle.par <- parms[mle.grep,]$Value
     mle.par[2] <- exp(mle.par[2]) / 1000 ## To make R millions
 
-    ## Add 
+    ## Add
     for (reci in getrecs) {
       mle.par <- c(mle.par,
         model$recruit[model$recruit$Yr == reci,]$pred_recr / 1000)
@@ -601,6 +603,12 @@ make.short.parameter.estimates.sens.table <- function(models,
       paste0(latex.nline,
              latex.bold(latex.under("Negative log likelihoods")),
              latex.nline))
+  ## Remove likelihood rows (use for beamer to fit on slides)
+  if(!show.likelihoods){
+    tab <- tab[1:(grep("Total", tab[,1])-1),]
+    addtorow$pos[[4]] <- NULL
+    addtorow$command <- addtorow$command[-4]
+  }
 
   ## Make the size string for font and space size
   size.string <- latex.size.str(font.size, space.size)

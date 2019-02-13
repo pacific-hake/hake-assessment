@@ -83,6 +83,7 @@
 %%                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
 %%                results='show', cache=TRUE, cache.path='knitr-cache/')
 <<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
+rm(list=ls())
 opts_chunk$set(dev = 'cairo_ps',
                fig.path = 'knitr-cache/',
                fig.dpi = 300,
@@ -125,14 +126,14 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \subsection{}
 \begin{frame}
 %\titlepage
-\frametitle{Overview}
+\frametitle{**Overview}
 \fontsize{11pt}{2}\selectfont
 \begin{enumerate}
   \item MLE vs MCMC for the base model
   \item Sensitivities
         \begin{itemize}
-        \item Higher SD on prior for Natural mortality
-        \item Alternative values for Steepness
+        \item Higher SD on prior for natural mortality
+        \item Alternative values for steepness
         \item Variation of recruitment ($\sigma_r$)
         \item Include age-1 index
         \item Time-invariant ageing error (not cohort-based)
@@ -155,7 +156,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{MLE vs MCMC}
+\section{**MLE vs MCMC}
 \subsection{}
 \begin{frame}
 \frametitle{MLE vs MCMC -- Biomass}
@@ -259,7 +260,8 @@ make.short.parameter.estimates.sens.table(
     digits = 3,
     xcaption = NULL,
     font.size = 6.5,
-    space.size = 7)
+    space.size = 7,
+    show.likelihoods = FALSE)
 @
 \end{center}
 \end{frame}
@@ -506,7 +508,9 @@ make.short.parameter.estimates.sens.table(
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Selectivity}
 \subsection{}
 \begin{frame}
