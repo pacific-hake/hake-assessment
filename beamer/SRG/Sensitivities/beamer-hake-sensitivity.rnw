@@ -240,7 +240,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Sensitivities to Steepness and $M$}
+\frametitle{Sensitivities to steepness, $h$, and natural mortality, $M$}
 \begin{center}
 <<hm.par.table, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(
@@ -445,128 +445,130 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{U.S. age comps weighted by month - Biomass}
-\begin{center}
-<<usagecompsweight.sensitivity.biomass>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 0))
-make.comparison.plot(
-  c(list(base.model),
-    sens.models.2[4]),
-  subplots = 2,
-  model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.2[4]),
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
 
+% 2019 - commenting out next three since not done
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Alternative catch stream - Biomass}
-\begin{center}
-<<altcatchstream.sensitivity.biomass>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 0))
-make.comparison.plot(
-  c(list(base.model),
-    sens.models.2[5]),
-  subplots = 2,
-  model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.2[5]),
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
+% \begin{frame}
+% \frametitle{U.S. age comps weighted by month - Biomass}
+% \begin{center}
+% <<usagecompsweight.sensitivity.biomass>>=
+% oldpar <- par()
+% par(mar = c(7.1, 4.1, 0, 0))
+% make.comparison.plot(
+%   c(list(base.model),
+%     sens.models.2[4]),
+%   subplots = 2,
+%   model.names = c(paste0("Base model ", end.yr),
+%                   sens.model.names.2[4]),
+%   end.yr = end.yr)
+% ar <- oldpar
+% @
+% \end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
-
+%
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Alternative catch stream}
-\begin{center}
-\vspace{-5pt}
-<<altcatchstream.table, results='asis', echo=FALSE>>=
-make.short.parameter.estimates.sens.table(
-  c(list(base.model),
-    sens.models.2[5]),
-  model.names = c("Base model",
-                  sens.model.names.2[5]),
-  posterior.regex = key.posteriors,
-  end.yr = end.yr,
-  digits = 3,
-  age.1 = TRUE,
-  xcaption = NULL,
-  font.size = 7,
-  space.size = 7)
-@
-\end{center}
-\end{frame}
+% \begin{frame}
+% \frametitle{Alternative catch stream - Biomass}
+% \begin{center}
+% <<altcatchstream.sensitivity.biomass>>=
+% oldpar <- par()
+% par(mar = c(7.1, 4.1, 0, 0))
+% make.comparison.plot(
+%   c(list(base.model),
+%     sens.models.2[5]),
+%   subplots = 2,
+%   model.names = c(paste0("Base model ", end.yr),
+%                   sens.model.names.2[5]),
+%   end.yr = end.yr)
+% par <- oldpar
+% @
+% \end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
-
-
-
+%
+%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}
+% \frametitle{Alternative catch stream}
+% \begin{center}
+% \vspace{-5pt}
+% <<altcatchstream.table, results='asis', echo=FALSE>>=
+% make.short.parameter.estimates.sens.table(
+%   c(list(base.model),
+%     sens.models.2[5]),
+%   model.names = c("Base model",
+%                   sens.model.names.2[5]),
+%   posterior.regex = key.posteriors,
+%   end.yr = end.yr,
+%   digits = 3,
+%   age.1 = TRUE,
+%   xcaption = NULL,
+%   font.size = 7,
+%   space.size = 7)
+% @
+% \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
 %%%%%%%%%%%%%%%%%%%%%%%%
-\section{Selectivity}
-\subsection{}
-\begin{frame}
-\frametitle{Maximum Age of Estimated Selectivity -- Estimates}
-%\begin{columns}
-%\begin{column}{0.3\textwidth}
-%\bi
-%      \item Max age: 6(base), 5, 7, 10
-%      % \item Incremental increase (age-6 only)
-%      \item No striking evidence for dome-shaped selectivity
-%      \item Model convergence suspect at high max age
-%    \ei
-%  \end{column}
-%  \begin{column}{0.69\textwidth}
-  \vspace{-5pt}
-    \begin{center}
-     % , out.width='0.9\\columnwidth'>>=
-     <<max.age.sensitivity.b.selectivities>>=
-     oldpar <- par(mfrow=c(2,2), mar=c(5,4,1,1),no.readonly = TRUE)
-     layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
-     make.selex.plot(base.model, pan.letter = "base")
-     make.selex.plot(sens.models.3[[1]], pan.letter = "5")
-     make.selex.plot(sens.models.3[[2]], pan.letter = "7")
-     make.selex.plot(sens.models.3[[3]], pan.letter = "10")
-     par <- oldpar
-     mtext("Age", side = 1, line = 0.5, outer = TRUE)
-     @
-     \end{center}
-%  \end{column}
-%\end{columns}
-\end{frame}
+% \section{Selectivity}
+% \subsection{}
+% \begin{frame}
+% \frametitle{Maximum Age of Estimated Selectivity -- Estimates}
+% %\begin{columns}
+% %\begin{column}{0.3\textwidth}
+% %\bi
+% %      \item Max age: 6(base), 5, 7, 10
+% %      % \item Incremental increase (age-6 only)
+% %      \item No striking evidence for dome-shaped selectivity
+% %      \item Model convergence suspect at high max age
+% %    \ei
+% %  \end{column}
+% %  \begin{column}{0.69\textwidth}
+%   \vspace{-5pt}
+%     \begin{center}
+%      % , out.width='0.9\\columnwidth'>>=
+%      <<max.age.sensitivity.b.selectivities>>=
+%      oldpar <- par(mfrow=c(2,2), mar=c(5,4,1,1),no.readonly = TRUE)
+%      layout(matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow=TRUE))
+%      make.selex.plot(base.model, pan.letter = "base")
+%      make.selex.plot(sens.models.3[[1]], pan.letter = "5")
+%      make.selex.plot(sens.models.3[[2]], pan.letter = "7")
+%      make.selex.plot(sens.models.3[[3]], pan.letter = "10")
+%      par <- oldpar
+%      mtext("Age", side = 1, line = 0.5, outer = TRUE)
+%      @
+%      \end{center}
+% %  \end{column}
+% %\end{columns}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
-
+%
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Maximum Age of Estimated Selectivity -- Biomass}
-\begin{center}
-\vspace{5pt}
-% fig.width=8>>=
-<<max.age.sensitivity.biomass>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 0))
-make.comparison.plot(c(list(base.model),
-                       sens.models.3[1],
-                       sens.models.3[2],
-                       sens.models.3[3]),
-                     subplots = 2,
-                     model.names = c("Base model",
-                                     sens.model.names.3[1],
-                                     sens.model.names.3[2],
-                                     sens.model.names.3[3]),
-                     end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
+% \begin{frame}
+% \frametitle{Maximum Age of Estimated Selectivity -- Biomass}
+% \begin{center}
+% \vspace{5pt}
+% % fig.width=8>>=
+% <<max.age.sensitivity.biomass>>=
+% oldpar <- par()
+% par(mar = c(7.1, 4.1, 0, 0))
+% make.comparison.plot(c(list(base.model),
+%                        sens.models.3[1],
+%                        sens.models.3[2],
+%                        sens.models.3[3]),
+%                      subplots = 2,
+%                      model.names = c("Base model",
+%                                      sens.model.names.3[1],
+%                                      sens.model.names.3[2],
+%                                      sens.model.names.3[3]),
+%                      end.yr = end.yr)
+% par <- oldpar
+% @
+% \end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -582,14 +584,14 @@ oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(
   c(list(base.model),
-    sens.models.3[4],
-    sens.models.3[5],
-    sens.models.3[6]),
+    sens.models.4[1],
+    sens.models.4[2],
+    sens.models.4[3]),
   subplots = 2,
   model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.3[4],
-                  sens.model.names.3[5],
-                  sens.model.names.3[6]),
+                  sens.model.names.4[1],
+                  sens.model.names.4[2],
+                  sens.model.names.4[3]),
   end.yr = end.yr)
 par <- oldpar
 @
@@ -608,14 +610,14 @@ oldpar <- par()
 par(mar = c(7.1, 3.1, 0, 0))
 make.comparison.plot(
   c(list(base.model),
-    sens.models.3[4],
-    sens.models.3[5],
-    sens.models.3[6]),
+    sens.models.4[1],
+    sens.models.4[2],
+    sens.models.4[3]),
   subplots = 14,
   model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.3[4],
-                  sens.model.names.3[5],
-                  sens.model.names.3[6]),
+                  sens.model.names.4[1],
+                  sens.model.names.4[2],
+                  sens.model.names.4[3]),
   legendloc = "topright",
   densitynames = c("Recr_2014"),
   densityxlab  = "Recruitment in 2014 (billions)",
@@ -638,14 +640,14 @@ oldpar <- par()
 par(mar = c(7.1, 3.1, 0, 0))
 make.comparison.plot(
   c(list(base.model),
-    sens.models.3[4],
-    sens.models.3[5],
-    sens.models.3[6]),
+    sens.models.4[1],
+    sens.models.4[2],
+    sens.models.4[3]),
   subplots = 14,
   model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.3[4],
-                  sens.model.names.3[5],
-                  sens.model.names.3[6]),
+                  sens.model.names.4[1],
+                  sens.model.names.4[2],
+                  sens.model.names.4[3]),
   legendloc = "topright",
   densitynames = c("Recr_2016"),
   densityxlab  = "Recruitment in 2016 (billions)",
@@ -665,19 +667,20 @@ par <- oldpar
 <<phi.sensitivity.table, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(
   c(list(base.model),
-    sens.models.3[4],
-    sens.models.3[5],
-    sens.models.3[6]),
+    sens.models.4[1],
+    sens.models.4[2],
+    sens.models.4[3]),
   model.names = c("Base model",
-                  sens.model.names.3[4],
-                  sens.model.names.3[5],
-                  sens.model.names.3[6]),
+                  sens.model.names.4[1],
+                  sens.model.names.4[2],
+                  sens.model.names.4[3]),
   posterior.regex = key.posteriors,
   end.yr = end.yr,
   digits = 3,
   xcaption = NULL,
   font.size = 7,
-  space.size = 7)
+  space.size = 7,
+  show.likelihoods = FALSE)
 @
 \end{center}
 \end{frame}
