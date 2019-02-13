@@ -261,6 +261,7 @@ make.short.parameter.estimates.sens.table(
     xcaption = NULL,
     font.size = 6.5,
     space.size = 7,
+    getrecs = c(2010, 2014, 2016),
     show.likelihoods = FALSE)
 @
 \end{center}
@@ -334,6 +335,7 @@ make.short.parameter.estimates.sens.table(
     xcaption = NULL,
     font.size = 6.5,
     space.size = 7,
+    getrecs = c(2010, 2014, 2016),
     show.likelihoods = FALSE)
 @
 \end{center}
@@ -419,6 +421,7 @@ make.short.parameter.estimates.sens.table(
   xcaption = NULL,
   font.size = 7,
   space.size = 7,
+  getrecs = c(2010, 2014, 2016),
   show.likelihoods = FALSE)
 @
 \end{center}
@@ -506,6 +509,7 @@ par <- oldpar
 %   age.1 = TRUE,
 %   xcaption = NULL,
 %   font.size = 7,
+%   getrecs = c(2010, 2014, 2016),
 %   space.size = 7)
 % @
 % \end{center}
@@ -684,6 +688,7 @@ make.short.parameter.estimates.sens.table(
   xcaption = NULL,
   font.size = 7,
   space.size = 7,
+  getrecs = c(2010, 2014, 2016),
   show.likelihoods = FALSE)
 @
 \end{center}
@@ -783,6 +788,7 @@ make.short.parameter.estimates.sens.table(
   xcaption = NULL,
   font.size = 7,
   space.size = 7,
+  getrecs = c(2010, 2014, 2016),
   show.likelihoods = FALSE)
 @
 \end{center}
@@ -793,7 +799,7 @@ make.short.parameter.estimates.sens.table(
 \section{Weight-at-age}
 \subsection{}
 \begin{frame}
-\frametitle{Weight-at-age schemes to calculate fecundity -- Biomass}
+\frametitle{**Weight-at-age schemes to calculate fecundity -- Biomass}
 \begin{center}
 \vspace{5pt}
 % , fig.width=8>>=
