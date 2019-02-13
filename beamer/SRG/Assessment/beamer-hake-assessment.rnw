@@ -532,8 +532,8 @@ b.curr.prop.age3 = baa.curr[4]/baa.curr.tot
 b.curr.prop.age5 = baa.curr[6]/baa.curr.tot
 b.curr.prop.age9 = baa.curr[10]/baa.curr.tot
 
-last.yr.recr.2014 <- f(quantile(last.yr.base.model$mcmc$Recr_2014, probs=c(0.025, 0.5, 0.975) / 1000))
-recr.2014 <- f(quantile(base.model$mcmc$Recr_2014, probs=c(0.025, 0.5, 0.975) / 1000))
+last.yr.recr.2014 <- f(quantile(last.yr.base.model$mcmc$Recr_2014, probs = c(0.025, 0.5, 0.975) / 1000))
+recr.2014 <- f(quantile(base.model$mcmc$Recr_2014, probs = c(0.025, 0.5, 0.975) / 1000))
 @
 The 2014 and 2016 cohorts are estimated to be large: \\
 \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of the 2014 cohort being larger than 2010.\\
@@ -559,7 +559,7 @@ Extra data halves 2014 cohort uncertainty from that in the \Sexpr{assess.yr - 1}
 At the start of \Sexpr{assess.yr} (from Table 21, page 91):\\
 \bi
 \item 2010 cohort is estimated to make up \Sexpr{f(b.curr.prop.age9 * 100)}\%
-  of the biomass\\
+  of the biomass
 \item 2014 cohort is estimated to make up \Sexpr{f(b.curr.prop.age5 * 100)}\%
   of the biomass
 \item 2016 cohort is estimated to make up \Sexpr{f(b.curr.prop.age3 * 100)}\%
@@ -600,14 +600,21 @@ At the start of \Sexpr{assess.yr} (from Table 21, page 91):\\
 %----------------------------------------------------------
 
 \frame{\frametitle{Spawning Biomass (million~t)}
-
-% Adding this manual table for 2018 to compare biomass estimates
+<<biomass.calcs>>=
+lb <- last.yr.base.model
+lb.smed <- lb$mcmccalcs$smed
+lb.slower <- lb$mcmccalcs$slower
+lb.supper <- lb$mcmccalcs$supper
+last.slower <- f(lb.slower[names(lb.slower) == assess.yr - 1], 3)
+last.supper <- f(lb.supper[names(lb.supper) == assess.yr - 1], 3)
+last.smed <- f(lb.smed[names(lb.smed) == assess.yr - 1], 3)
+@
   \begin{table}
     \begin{tabular}{cccc} \hline
       Calculation & Low & Median & High \\
       \hline
       \Sexpr{assess.yr-1} assessment $B_{\Sexpr{end.yr-1}}$ &
-         0.763 & 2.129 & 7.445 \\
+         \Sexpr{last.slower} & \Sexpr{last.smed} & \Sexpr{last.supper} \\
       \Sexpr{assess.yr} assessment $B_{\Sexpr{end.yr-1}}$ &
          \Sexpr{prev.bio.lower} & \Sexpr{prev.bio.median} &
          \Sexpr{prev.bio.upper} \\
@@ -652,8 +659,7 @@ year's assessment,\\
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Exploitation Fraction (ages $2+$, previous
-    assessments used $3+$)}
+\frame{\frametitle{Exploitation Fraction (ages $2+$)}
   \vspace{-5pt}
   \bc
   <<exploitation, fig.height=4, fig.width=8, out.width='0.8\\columnwidth'>>=
@@ -667,35 +673,96 @@ year's assessment,\\
 
 %----------------------------------------------------------
 \section{\Sexpr{last.assess.yr} SRG recommendations}
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
-    (highest to lowest priority)}
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+  {\bf Weights-at-age and fecundity}}
 % \setbeamercovered{dynamic}   % need for \pause
-\bi
-  \item Concern about broad-reaching impact of increasing the flexibility of
-    time-varying selectivity, parameterised by $\phi$:
+  \bi
+  \item Spawning biomass is calculated as the product of
+    numbers-at-age, maturity-at-age, and mean weight-at-age (1975--2018).
+    This ignores the conspicuous pattern of weights-at-age being much higher
+    in the early 1970's than in recent years.
     \bi
-      \item In 2017 it was changed from $\phi=0.03$ to $\phi=0.20$ to reduce an
-        anomalously high estimate of 2014 recruitment driven solely by fishery
-        catch-at-age data.
-      \item Recommend continued work on evaluating impact of this, and more
-        objective way of determining appropriate value of $\phi$ for future
-        assessments.
-    \ei
-    {\bf Response:} {\em $\phi=0.20$ is $\Phi=1.40$ -- we retained this for
-        base model.}\\
-    \bi
-       \item {\em 2018 assessment suggests 2014 recruitment is more in line
-        with 2017 assessment's estimate that used $\phi=0.20$
-        rather than estimates that used a lower $\phi$. This is regardless of the
-        value of $\Phi$ used in 2018 assessment (Sensitivities talk).}
-       \item {\em The estimate of 2016 recruitment with $\Phi=0.21$ ($\phi=0.03$)
-        is highest ever and provides worse fit to survey biomass index than higher
-        values of $\Phi$ (Sensitivities talk).}
+    \item Base model accounts for this by using annual weights-at-age for calculation
+      of total biomass and catches, but not fecundity and spawning biomass.
+    \item SRG requested a sensitivity model to explore this incoporating:
+      \bi
+      \item Time-varying fecundity
+      \item Pre-1975 weights-at-age equal to mean of 1975--1979 weights-at-age
+      \item Post-2017 weights-at-age equal to mean of 2015--2017 weights-at-age
       \ei
-      {\em Also investigated the `semi-parametric' approach of Xu
-          et~al. (under review).}
-\ei
+    \ei
+  \ei
 }
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+    {\bf Response to Weights-at-age and fecundity issue}}
+  \bi
+  \item Included time-varying fecundity
+  \item Pre-1975 weights-at-age were chosen to be the mean of the 1975--2018 weights-at-age
+    \bi
+    \item Weight data from early years was identified as possibly suspect due to
+      inaccurate scales used at that time, especially on foreign vessels.
+    \item Ages from the earlier years were likely solely based on surface reads, whereas protocol
+      since the early 2000s has been to use the break and burn method.
+    \item The JTC conducted an analysis to see
+      whether there was any indication that weights-at-age values were trending
+      through time. A weighted least squares approach was used to fit log weight (kg) data
+      across years 1975-2018, where a separate analysis was done for each age group 2--15.
+      \bi
+      \item Near zero slope for all ages with ages 13--15 being slightly positive and all
+        others slightly negative (Figure 15).
+      \item Estimated slope parameters were sensitive to excluding data from 1975--1980.
+      \ei
+    \item Small number of age samples for early years (Figure 14).
+    \ei
+  \ei
+}
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+    {\bf Response to Weights-at-age and fecundity issue}}
+  \begin{figure}[H]
+    \begin{center}
+      \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+      \includegraphics[width=4.0in, height=2.75in]{../../../doc/main-figures/Weight_ls}
+    \end{center}
+  \end{figure}
+}
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+    {\bf Response to Weights-at-age and fecundity issue}}
+  \begin{figure}[H]
+    \begin{center}
+      \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+      \includegraphics[width=4.5in, height=2.75in]{../../../doc/main-figures/EWAforDoc_Numbers}
+    \end{center}
+  \end{figure}
+}
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+    {\bf Response to Weights-at-age and fecundity issue}}
+  \bi
+  \item Forecast weights-at-age were chosen to be the mean of the 2016--2018 weights-at-age
+    \bi
+    \item The weighted least squares analysis also suggests that the assumption of using the
+      long-term mean for weight-at-age in 2019--2021 is reasonable.
+    \item The current configuration of Stock Synthesis precludes properly testing other
+      assumptions while using the final year of empirical weight-at-age data. The software
+      requires forecast year weights-at-age values to be either
+      \bi
+      \item set to the same as that for equilibrium conditions, or
+      \item set equivalent to the final year of data (2018)
+      \ei
+      \item The JTC were unable to set future weight-at-age values to be the mean of
+        2016--2018 without also setting the 2018 weights-at-age to that mean (thereby
+        averaging out the 2018 data).
+    \ei
+    \item We retained the 2018 base model assumption of using the overall
+      1975--2018 mean for the forecast period.
+  \ei
+}
+
+
+
 
 %----------------------------------------------------------
 
