@@ -796,7 +796,31 @@ make.short.parameter.estimates.sens.table(
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{Weight-at-age}
+\section{Fecundity}
+\subsection{}
+\begin{frame}
+%\titlepage
+\frametitle{Time-varying fecundity}
+\fontsize{11pt}{2}\selectfont
+\begin{itemize}
+  \item Fecundity used to be from 1997 maturity-at-length data and 2011 calculations
+  \item In 2018 assessment we updated maturity ogive
+\end{itemize}
+\begin{equation}
+  \nonumber \mbox{fecundity-at-age} = \mbox{maturity ogive} \times \mbox{weight-at-age}
+\end{equation}
+\begin{itemize}
+  \item We used \red{mean weight-at-age}, giving {time-invariant fecundity}
+  \item 2018 SRG meeting: more consistent to use \red{each year's} weight-at-age
+  \item This gives \red{time-varying fecundity}
+  \item Was done in 2018 alternative model run (during the SRG meeting)
+  \item Involved some assumptions that we explore more fully here
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
 \frametitle{**Weight-at-age schemes to calculate fecundity -- Biomass}
