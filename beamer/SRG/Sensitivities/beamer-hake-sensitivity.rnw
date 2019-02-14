@@ -854,12 +854,14 @@ c) For forecast years (including 2017 due to configuration of SS3) use mean
 weight-at-age from 2015-2017.
 
 \bi
-\item Not done (using equivalent 2016-2018). Used mean 1975-2018 , as for 2018 base model.
+\item Not done (using equivalent 2016-2018). Used mean 1975-2018, as for 2018 base model.
 \ei
 
 \pause
 
-This is because the configuration of SS3 requires forecast years' weight-at-age to be either:
+Based on aforementioned least-squares analysis of the data.
+
+Also because the configuration of SS3 requires forecast years' weight-at-age to be either:
 
 \vspace{5pt}
 
@@ -887,6 +889,38 @@ calculating \emph{stock biomass}.
 \item Fully resolved for all runs in 2019.
 \ei
 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Assumptions and runs regarding weight-at-age and fecundity}
+\begin{table}[H]
+\centering
+\begin{tabular}{ccccc}
+\hline
+Model run when  & Model run when & Time-varying & Pre-1975 & Pre-1975 \\
+2019$+$ weight-at-age & 2018$+$ weight-at-age &  fecundity? & weight-at-age & weight-at-age\\
+is mean 1975-2018 & is mean 2016-2018 & & is 1975-1979? & is 1975-2018?\\
+  \hline
+Base model & 54	& Y &   & Y\\
+55$^a$     & 58 & Y & Y &  \\
+53         & 52 &   &   & Y\\
+57$^a$     & 56 &   & Y &  \\
+\hline
+2018 base$^c$ &    &    &   & Y\\
+          & 2018 alternative$^b$ & Y & Y & \\
+\hline
+\end{tabular}
+\end{table}
+$^a$Configuration of SS3 meant setting
+  2018$+$ (not 2019$+$) weight-at-age to mean 1975-2018.
+
+$^b$Similarly, 2017$+$ weight-at-age was mean 2015-2017.
+
+$^c$2018$+$ weight-at-age was mean 1975-2017.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
