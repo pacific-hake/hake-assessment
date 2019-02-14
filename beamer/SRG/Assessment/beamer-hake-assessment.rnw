@@ -137,14 +137,14 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \bi
     \item Stock Synthesis version \Sexpr{ss.version}
       and compiled with ADMB \Sexpr{admb.version} (both same as \Sexpr{last.assess.yr})
-    \item Added new data from \Sexpr{last.assess.yr}:
+    \item Added new data for \Sexpr{last.assess.yr}:
     \bi
       \item Fishery catch and age data for \Sexpr{last.assess.yr}
       \item Weight-at-age values for \Sexpr{last.assess.yr}
     \ei
     \item Incorporates time-varying fecundity, similar to alternative base case from
       \Sexpr{last.assess.yr}. \\
-      Fecundity\subscr{year} = Weight-at-age\subscr{year} * Maturity vector
+      Fecundity\subscr{year} = Weight-at-age\subscr{year} * Maturity
   \ei
 \end{frame}
 
@@ -225,7 +225,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 \frame{\frametitle{Bridging to the base model: Summary}
   \bi
-    \item Updating pre-\Sexpr{last.assess.yr} has almost no effect on model outcome.
+    \item Updating pre-\Sexpr{last.assess.yr} data has almost no effect on model outcome.
     \item Adding \Sexpr{assess.yr} catch and age composition data has little effect on
       biomiass trajectories.
     \item Adding age compositions has an effect on the recruitment deviations.
@@ -761,104 +761,263 @@ year's assessment,\\
   \ei
 }
 
-
-
-
 %----------------------------------------------------------
-
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
-    (continued)}
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+  {\bf Variance in recruitment deviations ($\sigma_R$)}}
 % \setbeamercovered{dynamic}
-\bi
-  \item Re-estimate maturity ogive based on histological techniques to:
-    \bn
-      \item Address question of different maturity schedules north and south of
-        Point Conception.\\
-        {\bf Response:} {\em There is strong evidence for a difference and NWFSC
-          is seeking to conduct genetic analyses to see if north and south stocks
-          are distinct.}\\
-        ~\\
-      \item Use up-to-date data to replace 20-year-old information.\\
-        {\bf Response:} {\em Analysed 1,947 ovary samples to estimate a new
-          maturity ogive (as shown in Data talk). Now used in base model and
-          previous ogive used in a sensitivity test.}\\
-        ~\\
-      \item Assess whether maturity is more dependent upon age or upon weight.\\
-        {\bf Response:} {\em Not completed, though greatest variability in
-          weight occurs for older fish that are mostly mature.}
-      \en
-\ei
+  \bi
+  \item 2018 SRG notes a high sensitivity of the model to the recruitment deviations
+    variance parameter, $\sigma_R$.
+  \item Biomass trajectories were close over varying values of $\sigma_R$, but $R_0$
+    estimates caused a large difference in the relative spawning biomass.
+  \item The SRG encourages the JTC to explore methods for parameterizing recruitment and/or
+    estimating $\sigma_R$ that would reduce model sensitivity to the value of this constraint.
+  \ei
 }
 
-%----------------------------------------------------------
-
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
-    (continued)}
-% \setbeamercovered{dynamic}
-\bi
-  \item 2017 MCMC diagnostics point towards need for longer MCMC chain
-    (24~million rather than 12~million). Recommend:
-    \bn
-      \item Longer chains.\\
-      {\bf Response:} {\em Done. Ran MCMC to a length of 24~million, with first
-          4~million discarded. Also looked into multi-chain diagnostics to
-          further diagnose convergence.}\\
-      ~\\
-      \item Retaining more samples than the usual 999.\\
-      {\bf Response:} {\em Done. Retained 2,000 samples to characterise posterior
-          distributions.}\\
-      ~\\
-      \item Look into more efficient methods of obtaining posteriors,
-        if available.\\
-      {\bf Response:} {\em The R package} `adnuts' {\em has more efficient methods
-        for obtaining posteriors. It has recently been included in ADMB but not
-        yet fully tested in Stock Synthesis.}
-    \en
-\ei
-}
-
-%----------------------------------------------------------
-
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
-    (continued)}
-% \setbeamercovered{dynamic}
-\bi
-  \item Continue including sensitivity tests from 2017 assessment.\\
-  {\bf Response:} {\em Done. All included in assessment (and more) --
-      further sensitivities were performed during the work process}\\
-  ~\\
-  \item Continue to run sensitivity tests fitted to the provisional age-1 index.\\
-  {\bf Response:} {\em Done (Figures 3, 47 and 48). Recall that the survey is
-      not specifically designed to survey age-1 hake, and resulting uncertainty is
-      not quantified.}\\
-\ei
-}
-
-
-%----------------------------------------------------------
-
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations
-    (continued)}
-% \setbeamercovered{dynamic}
-\bi
-  \item Current evidence does not support including hake south of Point Conception.
-     Encourage ongoing collection and analysis of genetic material to resolve
-     stock structure.\\
-  {\bf Response:} {\em JTC continues to support this and collections have
-    continued in the 2017 survey.}\\
-  ~\\
-  \item AP requests:
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+    {\bf Response:} \emph{Variance in recruitment deviations ($\sigma_R$)}}
+  \bi
+  \item The JTC has outlined several alternative approaches for advancing
+    this research as it applies to Pacific Hake:
     \bi
-      \item Include table providing exploitation rates by age and year\\
-      {\bf Response:} {\em Done. Table~22 (and in 2017 document).}\\
-      ~\\
-      \item Table estimating the annual weight of each cohort that is caught,
-         dies from natural mortality, and lives, by year.\\
-      {\bf Response:} {\em Done (for strongest cohorts only) as Table~25
-          (and in 2017 document). Also annual biomass-at-age and catch-at-age
-          (numbers and biomass) as Tables~21, 23~and~24 (and in 2017 document).}
+    \item Estimating $\sigma_R$ in MCMC runs while testing semi-parametric selectivity.
+    \item Estimating recruitment autocorrelation to examine the impact
+      it has on the model and whether it reduces sensitivity to the choice of $\sigma_R$.
+    \item Use the Template Model Builder (TMB) code developed by Nis Jacobsen for the
+      Management Strategy Evaluation to explore random effects treatment of recruitment
+      variability (Thorson, in press).
     \ei
+    \item The JTC plans to continue to work towards evaluating and testing best practices
+      for modeling recruitment variability.
+    \item Progression on these research topics was halted during the 2019 assessment season
+      due to unforeseen time constraints imposed on the JTC.
+  \ei
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+  {\bf Use objective methods for selecting un-estimable paramater values}}
+  \bi
+  \item The SRG notes that when setting values for other parameters that cannot
+    be estimated directly with confidence, the choice of values should be made
+    using methods that are objective, repeatable, and depend on fits to the observed
+    data rather than on the model’s subsequent estimates of biomass or recruitment.
+  \item One example is setting the parameter controlling time-varying fishery
+    selectivity ($\Phi$), with a goal of establishing repeatable steps for setting
+    $\Phi$ each year.
+  \item The SRG recommends that the JTC provide a review of how time-varying selectivity
+    is parameterized and estimated in other assessments.
+  \ei
+}
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+    {\bf Response:} \emph{Use objective methods for selecting un-estimable paramater values}}
+  \bi
+  \item Although some progress has been made identifying other assessments that specify
+    the variability associated with time-varying selectivity ($\Phi$), a thorough review and
+    comparison of alternative approaches could not be completed in time for the 2019
+    assessment due to unforeseen time constraints this assessment season.
+  \ei
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+  {\bf Coding and database errors in catch should be rectified as soon as possible}}
+  \bi
+  \item In the 2018 assessment there were several errors in catch including a double-count of
+    Canadian Joint Venture catch.
+  \ei
+}
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+    {\bf Response:} \emph{Coding and database errors in catch should be rectified as soon as possible}}
+  \bi
+  \item These issues were largely rectified during the 2018 meeting, while remaining issues
+    have since been permanently fixed.
+  \item There remain issues with the U.S. tribal catch reporting, database entry,  and quality control
+    which need to be rectified.
+  \ei
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+  {\bf Do genetic analyses on otoliths and include Canadian histology}}
+  \bi
+  \item The new histological analysis of ovaries for maturity, like previous analyses,
+    showed a distinct difference in the percent of hake that are mature at age 2 and
+    age 3 between areas, with a greater proportion mature south of Point Conception.
+  \item The SRG strongly supports the planned genetic analyses to determine whether there are
+    also genetic differences between the two southern regions and other regions as well.
+  \item The SRG also notes that ovaries collected in Canada were not used to update the
+    maturity ogive. They should be included to improve the robustness of the maturity ogive.
+  \ei
+}
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+    {\bf Response:} \emph{Do genetic analyses on otoliths and include Canadian histology}}
+  \bi
+  \item Regarding genetic difference between regions, Krista Nichols (NWFSC, NOAA) and
+    her staff have started working on this. She says “NWFSC staff have begun a genetic analysis using
+    hake samples collected along the Pacific coast during summer, fall (British Columbia to California)
+    and winter (Oregon and California) and within the Strait of Georgia (British Columbia) during the
+    spring.
+    \bi
+    \item Thousands of genetic markers in hake are being surveyed using genomic technologies
+    (Ali et al., 2016; Baird et al., 2008).
+    \item Initial genetics data have been generated for 400 individuals, with planned genetic analysis
+      of close to 2,000 individuals total.
+    \item This study will examine genetic connectivity between geographic and temporal
+      collections, and evaluate the hypothesis that offshore hake migrate seasonally to Baja and
+      California for spawning in the winter. This work began in December 2018 and is expected to be
+      completed in 2020.
+    \ei
+  \ei
+}
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+    {\bf Response:} \emph{Do genetic analyses on otoliths and include Canadian histology} (continued)}
+  \bi
+  \item Regarding including the Canadian samples in the maturity analysis, DFO is continuing to assess
+    workload logistics, including the possibility of getting trained by Melissa Head (NWFSC) on the
+    histological methods she used in the recent maturity analysis or alternatively getting samples sent
+    from Canada to Seattle, if appropriate.
+  \item Presumably, the 2019 survey or fishery would be the earliest time to get any additional Canadian samples.
+  \ei
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+  {\bf Provide thorough documentation of all changes in methods of data weighting}}
+  \bi
+  \item The 2018 assessment diverged from past practice in its approach to determining the data weights
+    applied to the age-composition data. Past assessments used an iterative approach (sometimes referred
+    to as the McAllister-Ianelli approach) to arrive at these weightings.
+  \item The 2018 assessment incorporates the weightings as estimable parameters, thereby eliminating the
+    need for iterative reweighting.
+  \item The SRG requests that the JTC provide thorough documentation of all changes in methods of
+    data weighting.
+  \ei
+}
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+    {\bf Response:} \emph{Provide thorough documentation of all changes in methods of data weighting}}
+  \bi
+  \item Section 2.4.4 includes information on all methods, current and historical, used to
+    weight composition data.
+  \item Table 36 includes a time series of weights used for the fishery and survey age compositions
+    as well as a comparable value derived from the current model that uses the Dirichlet-Multinomial
+    likelihood to estimate weights.
+  \ei
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+  {\bf Perform a sensitivity analysis for the Francis (2011) data weighting method in future assessments}}
+  \bi
+  \item The issue of data weighting remains a significant technical challenge for stock assessments (such
+    as the Pacific hake assessment) that integrate information of different forms (e.g., biomass indices
+    and age compositions) from different sources (e.g., different fishing sectors).
+  \item The SRG notes that the JTC has considered alternative schemes for data weighting such as the
+    Francis (2011) method.
+  \item The SRG requests that JTC perform a sensitivity analysis for this method in future assessments.
+  \ei
+}
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+    {\bf Response:} \emph{Perform a sensitivity analysis for the Francis (2011) data weighting method in future assessments}}
+  \bi
+  \item Sensitivity analyses were included to compare the use of the Dirichlet-Multinomial
+    likelihood to the McAllister-Ianelli and Francis weighting methods (see Section 3.8).
+  \item All three methods are described in Section 2.4.4 and historical weightings used in previous
+    assessments can be compared to values estimated in this assessment (Table 36).
+  \ei
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+  {\bf Include information on the annual numbers of fish underlying each annual age-composition observation}}
+  \bi
+  \item A potential issue related to data weighting that should be explored in the next assessment is the
+    JTC’s approach to deriving the initial set of data weightings associated with the fishery and survey
+    age-composition observations.
+  \item Table 5 in the assessment document shows the annual number of
+    at-sea hauls and shore-based trips from which fish ages were incorporated into the age-composition
+    series and the document states that “initial sample sizes are simply the summed hauls and trips”
+  \item If there are changes in the number of fish associated with each sample unit (haul or trip) over
+    time, one would expect a corresponding change in the information content of an age-composition
+    sample.
+  \item For example, there may have been more fish per sample in early years than later years,
+    implying that the assessment model should provide a better fit to early samples than to later samples.
+  \item The SRG recommends that the JTC include information in the next assessment on the annual numbers
+    of fish underlying each annual age-composition observation and present an analysis of the potential
+    influence of changes in sampling.
 \ei
+}
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+    {\bf Response:} \emph{Include information on the annual numbers of fish underlying each annual age-composition observation}}
+  \bi
+  \item The number of age (and weight) samples used to develop age compositions over time
+    (1975--2018) are shown in Figure 14.
+  \item A formal evaluation of the influence temporal fluctuations in
+    the number of fish sampled and aged has on model performance could not be completed in time for
+    the 2019 assessment due to unforeseen time constraints during the assessment season.
+  \item The JTC plans to complete such an evaluation in preparation for the 2020 stock assessment.
+  \ei
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+  {\bf Estimates of total age-2+ biomass should be included in Table 18 of the assessment report in the future}}
+}
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+    {\bf Response:} \emph{Estimates of total age-2+ biomass should be included in Table 18 of the assessment report in the future}}
+  \bi
+  \item This was done for the published version of the 2018 assessment, and will be the standard
+    for the 2019 assessment and beyond.
+  \ei
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+  {\bf Produce a table showing changes in model structure and parameterization that have been implemented since 2011}}
+  \bi
+  \item This should be included as a standard table in all future assessments.
+  \ei
+}
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+    {\bf Response:} \emph{Produce a table showing changes in model structure and parameterization that have been implemented since 2011}}
+  \bi
+  \item The 2019 assessment includes Table 36 that summarizes major changes to the model
+    structure and parameterization since 2011.
+  \item Future assessments will include an updated version of the table as well.
+  \ei
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+  {\bf Key sensitivities for future assessments}}
+  \bi
+  \item The SRG requests that future assessments, beginning with 2018, include the following key
+    sensitivity tests:
+    \bi
+    \item Natural mortality
+    \item Stock-recruit steepness ($h$)
+    \item $\sigma_R$
+    \item Inclusion of the age-1 index
+    \item Exploring the degree of flexibility in time-varying selectivity or the $\Phi$ parameter
+    \ei
+  \ei
+}
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+    {\bf Response:} \emph{Key sensitivities for future assessments}}
+  \bi
+  \item The JTC will include all key sensitivities, as well as others that the JTC deems appropriate.
+  \ei
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -870,9 +1029,8 @@ year's assessment,\\
   \item Model continues to fit the age data particularly well.
   \item The spawning stock is estimated to have remained relatively constant
     since 2013.
-  \item The 2014 recruitment has only 5\% chance of being as large as the 2010 recruitment.
-  \item The 2014 cohort now comprises about twice the biomass of the 2010 cohort
-    (based on MLEs).
+  \item The 2014 recruitment has \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of being as large as the 2010 recruitment.
+  \item The 2016 recruitment has \Sexpr{prob.percent.2016.rec.gt.2010.rec}\% chance of being as large as the 2010 recruitment.
   \item The median estimate of \Sexpr{end.yr} relative spawning biomass is
     \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
     \Sexpr{curr.depl.upper}\%).
