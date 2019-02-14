@@ -223,10 +223,11 @@ make.decision.table.pres <- function(model,
   c.levels <- unlist(lapply(model$catch.levels[model.inds], "[[", 1))
   c.levels[c.levels < 1] <- 0
   ## Bind the catch levels and years to the correct rows
-  row.labs <- rep("", length(model.inds) * 3)
-  row.labs[seq(1, length(model.inds) * 3, 3)] <-
+  row.labs <- rep("", length(model.inds) * length(model$forecasts))
+  row.labs[seq(1,
+               length(model.inds) * length(model$forecasts),
+               length(model$forecasts))] <-
     paste0(letters[model.inds], ":")
-  ## row.labs[c(5, 6, 8, 9, 11, 12)] <- c(assess.yr - 1, "TAC", "FI=", "100\\%", "default", "HR")
 
   forecast.tab <- cbind(row.labs,
                         yrs,
@@ -369,12 +370,12 @@ make.risk.table <- function(model,
     "to display multiple years of catch in a single table.")
   risk2 <- cbind(
     f(sapply(model$risks, "[", 1:nrow(model$risks[[1]]))),
-    apply(model$risks[[index]][, 2:(ncol(model$risks[[index]])-3)], 
+    apply(model$risks[[index]][, 2:(ncol(model$risks[[index]])-3)],
       1:2, function(x) paste0(f(x), "\\%")))
   colnames(risk2) <- gsub("^(\\d{4}$)$", "Catch in \\1", colnames(risk2))
   risk2[, 1] <- paste0(letters[1:nrow(risk2)], ": ", risk2[, 1])
   addtorow2 <- list("pos" = list(-1, nrow(risk2)),
-    "command" = c(paste0("\\toprule \n", 
+    "command" = c(paste0("\\toprule \n",
     paste(sapply(
         gsub("1\\.00", "100\\\\%",
         gsub("_(\\d{4})", "\\\\subscr{\\1}",
@@ -439,7 +440,7 @@ make.risk.table <- function(model,
   if (type == 2) {
     risk <- risk2
     addtorow <- addtorow2
-    align <- c("l", "p{2cm}", 
+    align <- c("l", "p{2cm}",
       rep("p{1.4cm}", ncol(risk) - 3), rep("p{2.2cm}", 2))
   }
 
