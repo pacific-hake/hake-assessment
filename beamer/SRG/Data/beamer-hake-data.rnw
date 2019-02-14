@@ -105,13 +105,13 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     \item U.S. and Canadian fisheries predominantly started in May and April, respectively.
     \item Second-highest coastwide catch ever, 11\% decrease from last year.
     \item A Canadian Joint-Venture fishery operated from August 21 to September 15.
-    \item Highest proportion-at-age by sector 
+    \item Highest proportion-at-age by sector
       \bi
         \item Age-2 fish in U.S. Catcher-Processor and U.S. Shoreside sectors;
-        \item Age-4 fish in U.S. Mothership sectors; and 
+        \item Age-4 fish in U.S. Mothership sectors; and
         \item Age-8 fish in Canadian sectors.
       \ei
-    \item Bycatch avoidance was problematic for all sectors. 
+    \item Bycatch avoidance was problematic for all sectors.
     \item At the JTC public meeting in Dec. - in general, all stakeholders reported good fishing conditions in \Sexpr{last.assess.yr}.
     %% \item Summer 2017 acoustic survey biomass estimate was 1.418 million tons (decline of 34\% from 2015 survey).
   \ei
@@ -289,7 +289,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \frame{\frametitle{Canada bottom depth distribution}
 \begin{figure}
  \centering
- ** More years than the U.S. Figure and not in colour 
+ ** More years than the U.S. Figure and not in colour
   \includegraphics[width=6in, height=3in]{../../../doc/main-figures/can-bottom-depths}
 \end{figure}
 }
@@ -396,7 +396,15 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \subsection{Mean weight-at-age by year}
 \frame{\frametitle{Weight-at-age data}
 \bi
-  \item ** Information about Canadian weight-at-age data that were added.
+  \item All Canadian weight-at-age data were re-extracted using the R package \emph{GFPlot}
+    developed by Sean Anderson (DFO). This package allows for reproducible, seamless data extraction
+    and integration across several groundfish databases which contain Canadian data.
+  \item Missing Canadian hake acoustic survey data were added. The following years were added:
+    1992, 2005, 2007, 2014, and 2018. This resulted in 5,239 new weights-at-age added.
+  \item Previously, there were no Canadian Joint-venture (JV) data included. The new routines
+    added 136 weights-at-age for 1990.
+  \item There are no weight-at-age data for the Freezer Trawlers in Canada due to lack of
+    scales on board the vessels.
 \ei
 }
 
