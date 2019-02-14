@@ -261,6 +261,7 @@ make.short.parameter.estimates.sens.table(
     xcaption = NULL,
     font.size = 6.5,
     space.size = 7,
+    getrecs = c(2010, 2014, 2016),
     show.likelihoods = FALSE)
 @
 \end{center}
@@ -333,7 +334,9 @@ make.short.parameter.estimates.sens.table(
     digits = 3,
     xcaption = NULL,
     font.size = 6.5,
-    space.size = 7)
+    space.size = 7,
+    getrecs = c(2010, 2014, 2016),
+    show.likelihoods = FALSE)
 @
 \end{center}
 \end{frame}
@@ -417,7 +420,9 @@ make.short.parameter.estimates.sens.table(
   age.1 = TRUE,
   xcaption = NULL,
   font.size = 7,
-  space.size = 7)
+  space.size = 7,
+  getrecs = c(2010, 2014, 2016),
+  show.likelihoods = FALSE)
 @
 \end{center}
 \end{frame}
@@ -427,7 +432,7 @@ make.short.parameter.estimates.sens.table(
 \section{Data}
 \subsection{}
 \begin{frame}
-\frametitle{McAllister-Ianelli method for data-weighting - Biomass}
+\frametitle{**McAllister-Ianelli method for data-weighting - Biomass}
 \begin{center}
 <<harmonicmean.sensitivity.biomass>>=
 oldpar <- par()
@@ -504,6 +509,7 @@ par <- oldpar
 %   age.1 = TRUE,
 %   xcaption = NULL,
 %   font.size = 7,
+%   getrecs = c(2010, 2014, 2016),
 %   space.size = 7)
 % @
 % \end{center}
@@ -571,6 +577,8 @@ par <- oldpar
 % \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+
+% Maybe take some of what's deleted in f61f7488b1  for context
 %%%%%%%%%%%%%%%%%%%%%%%
 %\section{$\phi$}
 %\subsection{}
@@ -680,6 +688,7 @@ make.short.parameter.estimates.sens.table(
   xcaption = NULL,
   font.size = 7,
   space.size = 7,
+  getrecs = c(2010, 2014, 2016),
   show.likelihoods = FALSE)
 @
 \end{center}
@@ -699,10 +708,10 @@ oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(
   c(list(base.model),
-    sens.models.4),
+    sens.models.4[4:5]),
   subplots = 2,
   model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.4),
+                  sens.model.names.4[4:5]),
   end.yr = end.yr)
 par <- oldpar
 @
@@ -721,10 +730,10 @@ oldpar <- par()
 par(mar = c(7.1, 3.1, 0, 0))
 make.comparison.plot(
   c(list(base.model),
-    sens.models.4),
+    sens.models.4[4:5]),
   subplots = 14,
   model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.4),
+                  sens.model.names.4[4:5]),
   legendloc = "topright",
   densitynames = c("Recr_2014"),
   densityxlab  = "Recruitment in 2014 (billions)",
@@ -747,10 +756,10 @@ oldpar <- par()
 par(mar = c(7.1, 3.1, 0, 0))
 make.comparison.plot(
   c(list(base.model),
-    sens.models.4),
+    sens.models.4[4:5]),
   subplots = 14,
   model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.4),
+                  sens.model.names.4[4:5]),
   legendloc = "topright",
   densitynames = c("Recr_2016"),
   densityxlab  = "Recruitment in 2016 (billions)",
@@ -770,15 +779,17 @@ par <- oldpar
 <<semi.sensitivity.table, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(
   c(list(base.model),
-    sens.models.4),
+    sens.models.4[4:5]),
   model.names = c("Base model",
-                  sens.model.names.4),
+                  sens.model.names.4[4:5]),
   posterior.regex = key.posteriors,
   end.yr = end.yr,
   digits = 3,
   xcaption = NULL,
   font.size = 7,
-  space.size = 7)
+  space.size = 7,
+  getrecs = c(2010, 2014, 2016),
+  show.likelihoods = FALSE)
 @
 \end{center}
 \end{frame}
@@ -788,7 +799,7 @@ make.short.parameter.estimates.sens.table(
 \section{Weight-at-age}
 \subsection{}
 \begin{frame}
-\frametitle{Weight-at-age schemes to calculate fecundity -- Biomass}
+\frametitle{**Weight-at-age schemes to calculate fecundity -- Biomass}
 \begin{center}
 \vspace{5pt}
 % , fig.width=8>>=
