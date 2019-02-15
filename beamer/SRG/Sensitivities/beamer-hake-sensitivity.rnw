@@ -377,10 +377,10 @@ make.short.parameter.estimates.sens.table(
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{Age error, age-1 index}
+\section{**Age error, age-1 index}
 \subsection{}
 \begin{frame}
-\frametitle{Age error and inclusion of age-1 index -- Biomass}
+\frametitle{**Age error and inclusion of age-1 index -- Biomass}
 \begin{center}
 \vspace{5pt}
 % <<age.error.sensitivity.biomass, fig.height=4.5, fig.width=8>>=
@@ -405,7 +405,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Estimated age-1 fish -- Base model}
+\frametitle{**Estimated age-1 fish -- Base model}
 \begin{center}
 \vspace{-5pt}
 <<age.1.estimated.base.fig>>=
@@ -437,7 +437,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Sensitivities to age error and inclusion of age-1 index}
+\frametitle{**Sensitivities to age error and inclusion of age-1 index}
 \begin{center}
 \vspace{-5pt}
 <<sens.2.par.table, results='asis', echo=FALSE>>=
@@ -466,16 +466,18 @@ make.short.parameter.estimates.sens.table(
 \section{Data}
 \subsection{}
 \begin{frame}
-\frametitle{**McAllister-Ianelli method for data-weighting - Biomass}
+\frametitle{Alternative methods for data weighting}
 \begin{center}
 <<harmonicmean.sensitivity.biomass>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(
   c(list(base.model),
+    sens.models.2[2],
     sens.models.2[3]),
   subplots = 2,
   model.names = c(paste0("Base model ", end.yr),
+                  sens.model.names.2[2],
                   sens.model.names.2[3]),
   end.yr = end.yr)
 par <- oldpar
