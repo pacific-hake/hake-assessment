@@ -532,8 +532,11 @@ b.curr.prop.age3 = baa.curr[4]/baa.curr.tot
 b.curr.prop.age5 = baa.curr[6]/baa.curr.tot
 b.curr.prop.age9 = baa.curr[10]/baa.curr.tot
 
-last.yr.recr.2014 <- f(quantile(last.yr.base.model$mcmc$Recr_2014, probs = c(0.025, 0.5, 0.975) / 1000))
-recr.2014 <- f(quantile(base.model$mcmc$Recr_2014, probs = c(0.025, 0.5, 0.975) / 1000))
+tmp.last <- quantile(last.yr.base.model$mcmc$Recr_2014, probs = c(0.025, 0.5, 0.975) / 1000)
+tmp.curr <- quantile(base.model$mcmc$Recr_2014, probs = c(0.025, 0.5, 0.975) / 1000)
+last.yr.recr.2014 <- f(c(tmp.last, tmp.last[3] - tmp.last[1]), 0)
+recr.2014 <- f(c(tmp.curr, tmp.curr[3] - tmp.curr[1]), 0)
+recr.2014.ci.diff.prop <- f((tmp.curr[3] - tmp.curr[1]) / (tmp.last[3] - tmp.last[1]) * 100, 1)
 @
 The 2014 and 2016 cohorts are estimated to be large: \\
 \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of the 2014 cohort being larger than 2010.\\
@@ -541,16 +544,16 @@ The 2014 and 2016 cohorts are estimated to be large: \\
 
 ~\\
 
-Extra data halves 2014 cohort uncertainty from that in the \Sexpr{assess.yr - 1} assessment:
+Addition of new data for this year's model reduces 2014 cohort uncertainty from that in the \Sexpr{assess.yr - 1} assessment:
 
   \begin{table}
-    \begin{tabular}{ccrc} \hline
-      Calculation (millions) & Low (2.5\%) & Median & High (97.5\%) \\
+    \begin{tabular}{ccrcc} \hline
+      Calculation (millions) & Low (2.5\%) & Median & High (97.5\%) & Interval size\\
       \hline
       \Sexpr{assess.yr-1} assessment recruitment in 2014 &
-         \Sexpr{last.yr.recr.2014[1]} & \Sexpr{last.yr.recr.2014[2]} & \Sexpr{last.yr.recr.2014[3]} \\
+         \Sexpr{last.yr.recr.2014[1]} & \Sexpr{last.yr.recr.2014[2]} & \Sexpr{last.yr.recr.2014[3]} & \Sexpr{last.yr.recr.2014[4]}\\
       \Sexpr{assess.yr} assessment recruitment in 2014 &
-         \Sexpr{recr.2014[1]} & \Sexpr{recr.2014[2]} & \Sexpr{recr.2014[3]} \\
+         \Sexpr{recr.2014[1]} & \Sexpr{recr.2014[2]} & \Sexpr{recr.2014[3]} & \Sexpr{recr.2014[4]} \\
       \hline
     \end{tabular}
   \end{table}
@@ -570,6 +573,7 @@ At the start of \Sexpr{assess.yr} (from Table 21, page 91):\\
 %----------------------------------------------------------
 
 \frame{\frametitle{Numbers-at-age (billions)}
+  Red line is mean age for the year
 \begin{columns}
   \begin{column}{0.5\textwidth}
   \vspace{-10pt}
@@ -949,10 +953,16 @@ year's assessment,\\
     sample.
   \item For example, there may have been more fish per sample in early years than later years,
     implying that the assessment model should provide a better fit to early samples than to later samples.
+  \ei
+}
+
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+  {\bf Include information on the annual numbers of fish underlying each annual age-composition observation}}
+  \bi
   \item The SRG recommends that the JTC include information in the next assessment on the annual numbers
     of fish underlying each annual age-composition observation and present an analysis of the potential
     influence of changes in sampling.
-\ei
+  \ei
 }
 
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
@@ -1029,8 +1039,12 @@ year's assessment,\\
   \item Model continues to fit the age data particularly well.
   \item The spawning stock is estimated to have remained relatively constant
     since 2013.
-  \item The 2014 recruitment has \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of being as large as the 2010 recruitment.
-  \item The 2016 recruitment has \Sexpr{prob.percent.2016.rec.gt.2010.rec}\% chance of being as large as the 2010 recruitment.
+  \item The 2014 recruitment has \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of being as
+    large as the 2010 recruitment.
+    The credible interval on the 2014 cohort has been reduced to
+    \Sexpr{recr.2014.ci.diff.prop}\% of what it was in the \Sexpr{last.assess.yr} assessment.
+  \item The 2016 recruitment has \Sexpr{prob.percent.2016.rec.gt.2010.rec}\% chance of being as
+    large as the 2010 recruitment.
   \item The median estimate of \Sexpr{end.yr} relative spawning biomass is
     \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
     \Sexpr{curr.depl.upper}\%).
