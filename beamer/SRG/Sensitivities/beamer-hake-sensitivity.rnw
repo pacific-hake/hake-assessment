@@ -1130,7 +1130,7 @@ par <- oldpar
 \hline
 \end{tabular}
 \end{table}
-Run 53 is analogous to 2018 base model
+Run 53 is analogous to 2018 base model.
 
 Runs 53 and 54 are closest to 2019 base model while retaining pre-1975
 weight-at-age as mean 1975-2018.
@@ -1177,7 +1177,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Retrospective -- Recruitment}
+\frametitle{Retrospectives -- Recruitment}
 \begin{center}
 \vspace{-5pt}
 %, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
@@ -1198,7 +1198,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Retrospective -- Squid}
+\frametitle{Retrospectives -- baby squid}
 \begin{center}
 \vspace{-5pt}
 % , fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
@@ -1222,7 +1222,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Retrospective -- Squid}
+\frametitle{Retrospectives -- squid}
 \begin{center}
 \vspace{-5pt}
 %, out.width='0.9\\columnwidth'>>=   Keep following values else
@@ -1231,7 +1231,7 @@ par <- oldpar
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 plot.retro.yrs <- retro.yrs
-retro.cohorts <- 1999:2014
+retro.cohorts <- 1999:(end.yr-2)
 retro.list <- list(base.model)
 for(i in plot.retro.yrs){
   retro.list[[i + 1]] <- base.model$retros[[i]]
