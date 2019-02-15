@@ -801,9 +801,8 @@ make.short.parameter.estimates.table <- function(model,
 
   ## Last year's model MCMC
   last.yr.mcmc.meds <- calc.mcmc(last.yr.model, q = 2)
-  ## *Warning* THIS IS A HACK TO NOT REPORT THE SPR FOR 2015 FROM LAST
-  ##   ASSESSMENT SINCE ACTUAL CATCH WAS NOT KNOWN
-  last.yr.mcmc.meds[11] <- NA
+
+  last.yr.mcmc.meds[11] <- last.yr.mcmc.meds[12] <- NA
   tab <- as.data.frame(cbind(mle.par, mcmc.meds, last.yr.mcmc.meds))
   colnames(tab) <- NULL
 

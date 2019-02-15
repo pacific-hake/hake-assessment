@@ -41,7 +41,7 @@ if(verbose) cat0("SS weight-at-age file: \n  ", weight.at.age.file.name)
 ## -----------------------------------------------------------------------------
 ## The version of SS and ADMB used in this assessment
 ## -----------------------------------------------------------------------------
-ss.version <- "3.30"
+ss.version <- "3.30.10"
 if(verbose) cat0("SS version: \n  ", ss.version)
 admb.version <- "11.6"
 if(verbose) cat0("ADMB version: \n  ", admb.version)
