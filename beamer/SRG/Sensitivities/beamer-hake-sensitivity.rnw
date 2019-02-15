@@ -78,6 +78,15 @@
 \newcommand{\Bforty}{B_{\text{SPR}=40\%}}
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 
+% From https://tex.stackexchange.com/questions/44983/beamer-removing-headline-and-its-space-on-a-single-frame-for-plan-but-keepin
+% to remove header from a slide (to get more space)
+\makeatletter
+\newenvironment{noheadline}{
+    \setbeamertemplate{headline}{}
+    \addtobeamertemplate{frametitle}{\vspace*{-0.9\baselineskip}}{}
+}{}
+\makeatother
+
 %% <<echo=TRUE,  message=TRUE, results='show', warning=TRUE>>=
 %% opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
 %%                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
@@ -926,6 +935,7 @@ $^c$2018$+$ weight-at-age was mean 1975-2017.
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
+\begin{noheadline}
 \begin{frame}
 \frametitle{Weight-at-age (kg): base model and run 53}
 \begin{figure}[H]
@@ -938,6 +948,7 @@ weight.at.age.heatmap(sens.models.5[[2]], font.size=2)
 \end{center}
 \end{figure}
 \end{frame}
+\end{noheadline}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 
