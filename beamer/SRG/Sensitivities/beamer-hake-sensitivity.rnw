@@ -164,7 +164,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{**MLE vs MCMC}
+\section{MLE vs MCMC}
 \subsection{}
 \begin{frame}
 \frametitle{MLE vs MCMC -- Biomass}
@@ -209,6 +209,7 @@ make.short.parameter.estimates.table(base.model,
                                      xcaption = NULL,
                                      font.size = 7,
                                      space.size = 7)
+
 @
 \end{center}
 \end{frame}
@@ -218,7 +219,7 @@ make.short.parameter.estimates.table(base.model,
 \section{$h$ and $M$}
 \subsection{}
 \begin{frame}
-\frametitle{Steepness and $M$ -- Biomass}
+\frametitle{Sensitivities to steepness, $h$, and natural mortality, $M$}
 \begin{center}
 \vspace{5pt}
 %, fig.width=8>>=
@@ -1266,7 +1267,7 @@ make.assessment.history.plot(base.model,
 \section{Summary}
 \subsection{}
 \begin{frame}
-\frametitle{Summary}
+\frametitle{**Summary}
 \vspace{-2cm}
 \begin{itemize}
 \item In general, sensitivities show no significant departure from base model
