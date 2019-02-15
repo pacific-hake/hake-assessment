@@ -78,12 +78,20 @@
 \newcommand{\Bforty}{B_{\text{SPR}=40\%}}
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 
+% From https://tex.stackexchange.com/questions/44983/beamer-removing-headline-and-its-space-on-a-single-frame-for-plan-but-keepin
+% to remove header from a slide (to get more space)
+\makeatletter
+\newenvironment{noheadline}{
+    \setbeamertemplate{headline}{}
+    \addtobeamertemplate{frametitle}{\vspace*{-0.9\baselineskip}}{}
+}{}
+\makeatother
+
 %% <<echo=TRUE,  message=TRUE, results='show', warning=TRUE>>=
 %% opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
 %%                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
 %%                results='show', cache=TRUE, cache.path='knitr-cache/')
 <<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
-rm(list=ls())
 opts_chunk$set(dev = 'cairo_ps',
                fig.path = 'knitr-cache/',
                fig.dpi = 300,
@@ -796,7 +804,184 @@ make.short.parameter.estimates.sens.table(
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{Weight-at-age}
+\section{Fecundity}
+\subsection{}
+\begin{frame}
+%\titlepage
+\frametitle{Time-varying fecundity}
+\fontsize{11pt}{2}\selectfont
+\begin{itemize}
+  \item Fecundity used to be from 1997 maturity-at-length data and 2011 calculations
+  \item In 2018 assessment we updated maturity ogive
+\end{itemize}
+\begin{equation}
+  \nonumber \mbox{fecundity-at-age} = \mbox{maturity ogive} \times \mbox{weight-at-age}
+\end{equation}
+\begin{itemize}
+  \item We used \red{mean weight-at-age}, giving {time-invariant fecundity}
+  \item 2018 SRG meeting: more consistent to use \red{each year's} weight-at-age
+  \item This gives \red{time-varying fecundity}
+  \item Was done in 2018 alternative model run (during the SRG meeting)
+  \item Involved some assumptions that we explore more fully here
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%\titlepage
+\frametitle{Four components to 2018 alternative model run (p64)}
+\fontsize{11pt}{2}\selectfont
+a) Add time-varying fecundity by using time-varying weight-at-age.
+
+\bi
+\item Included in 2019 base model
+\item Excluded in sensitivity runs 52, 53, 56 and 57
+\ei
+
+\pause
+\vspace{20pt}
+
+b) For equilibrium and 1966-1974  there is no empirical weight-at-age data;
+calculate fecundity using mean weight-at-age from 1975-1979.
+
+\bi
+\item Excluded in 2019 base model -- using 1974-2018 average (analogous to 2018 base model)
+\item Included  in sensitivity runs 55, 56, 57 and 58
+\ei
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%\titlepage
+\frametitle{Four components to 2018 alternative model run (p64)}
+\fontsize{11pt}{2}\selectfont
+
+c) For forecast years (including 2017 due to configuration of SS3) use mean
+weight-at-age from 2015-2017.
+
+\bi
+\item Not done (using equivalent 2016-2018). Used mean 1975-2018, as for 2018 base model.
+\ei
+
+\pause
+
+Based on aforementioned least-squares analysis of the data.
+
+Also because the configuration of SS3 requires forecast years' weight-at-age to be either:
+
+\vspace{5pt}
+
+~~~~~~(i) same as pre-data (pre-1975) years, or
+
+~~~~~~(ii) same as final year of data (2018).
+
+\vspace{5pt}
+
+So using mean from 2016-2018 for projections requires setting 2018 to this mean;
+seems inappropriate for base model.
+
+\pause
+
+\bi
+\item Mean from 2016-2018 for projections is done in sensitivity runs 52, 54, 56 and 58.
+\ei
+
+\pause
+
+d) There was an inconsistency regarding using mean weight-at-age for
+calculating \emph{stock biomass}.
+
+\bi
+\item Fully resolved for all runs in 2019.
+\ei
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Assumptions and runs regarding weight-at-age and fecundity}
+\begin{table}[H]
+\centering
+\begin{tabular}{ccccc}
+\hline
+\alert<6>{Model run when}  & Model run when & \alert<5>{Time-varying} & \alert<8>{Pre-1975} & \alert<7>{Pre-1975} \\
+\alert<6>{2019$+$ weight-at-age} & 2018$+$ weight-at-age &  \alert<5>{fecundity?} & \alert<8>{weight-at-age} & \alert<7>{weight-at-age}\\
+\alert<6>{is mean 1975-2018} & is mean 2016-2018 & & \alert<8>{is 1975-1979?} & \alert<7>{is 1975-2018?}\\
+  \hline
+\alert<2-3,5-7>{Base model} & \alert<5,7>{54}	& \alert<2-3,5>{Y} &   &
+                                                                         \alert<2-3,7>{Y}\\
+\alert<5-6,8>{55$^a$}     & \alert<4-5,8>{58} & \alert<4-5>{Y} & \alert<4,8>{Y} &  \\
+\alert<6-7>{53}         & \alert<7>{52} &   &   & \alert<7>{Y}\\
+\alert<6,8>{57$^a$}     & \alert<8>{56} &   & \alert<8>{Y} &  \\
+\hline
+\alert<2>{2018 base$^c$} &    &    &   & \alert<2>{Y}\\
+          & \alert<3-4>{2018 alternative$^b$} & \alert<3-4>{Y} & \alert<3-4>{Y} & \\
+\hline
+\end{tabular}
+\end{table}
+$^a$Configuration of SS3 meant setting
+  2018$+$ (not 2019$+$) weight-at-age to mean 1975-2018.
+
+$^b$Similarly, 2017$+$ weight-at-age was mean 2015-2017.
+
+$^c$2018$+$ weight-at-age was mean 1975-2017.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{noheadline}
+\begin{frame}
+\frametitle{Weight-at-age (kg): base model and run 53}
+\begin{figure}[H]
+<<main.weight.at.age.sens.a, fig.height=4>>=
+weight.at.age.heatmap(sens.models.5[[2]], font.size=1.6)
+@
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Weight-at-age (kg): runs 55 and 57}
+\begin{figure}[H]
+<<main.weight.at.age.sens.b, fig.height=4>>=
+weight.at.age.heatmap(sens.models.6[[1]], proj.line.yr=2017, font.size=1.6)
+@
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Weight-at-age (kg): runs 52 and 54}
+\begin{figure}[H]
+<<main.weight.at.age.sens.c, fig.height=4>>=
+weight.at.age.heatmap(sens.models.5[[3]], proj.line.yr=2017, font.size=1.6)
+@
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Weight-at-age (kg): runs 56 and 58}
+\begin{figure}[H]
+<<main.weight.at.age.sens.d, fig.height=4>>=
+weight.at.age.heatmap(sens.models.6[[2]], proj.line.yr=2017, font.size=1.6)
+@
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+\end{noheadline}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
 \frametitle{**Weight-at-age schemes to calculate fecundity -- Biomass}

@@ -393,24 +393,26 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 \section[Weight-at-age]{Weight-at-age}
 \subsection{Mean weight-at-age by year}
-\frame{\frametitle{Weight-at-age data}
+\frame{\frametitle{New weight-at-age data}
 \bi
-  \item All Canadian weight-at-age data were re-extracted using the R package \emph{GFPlot}
-    developed by Sean Anderson (DFO). This package allows for reproducible, seamless data extraction
-    and integration across several groundfish databases which contain Canadian data.
-  \item Missing Canadian hake acoustic survey data were added. The following years were added:
-    1992, 2005, 2007, 2014, and 2018. This resulted in 5,239 new weights-at-age added.
-  \item Previously, there were no Canadian Joint-venture (JV) data included. The new routines
-    added 136 weights-at-age for 1990.
+  \item All Canadian weight-at-age data were re-extracted using the R package 
+  \emph{[GFPlot](https://github.com/pbs-assess/gfplot)}
+  developed by Sean Anderson (DFO). 
+  This package allows for reproducible, seamless data extraction
+  and integration across several groundfish databases containing Canadian data.
+  \item 5,239 missing weights-at-age from the Canadian hake acoustic survey were added. The data were collected during the following years:
+    1992, 2005, 2007, 2014, and 2018. 
+  \item 136 missing weights-at-age from the Canadian Joint-Venture fishery in 1990 were added, where previously no data were included from the Joint-Venture fishery.
   \item There are no weight-at-age data for the Freezer Trawlers in Canada due to lack of
     scales on board the vessels.
+  \item U.S.~data collected prior to 1975 was found to be irrelevant because they were collected from the Puget Sound.
 \ei
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Mean weight-at-age by year}
-\frame{\frametitle{Mean weight-at-age by year}
+\frame{\frametitle{Weight-at-age by year}
   <<wt.at.age>>=
     oldpar <- par()
     par(mar=c(4.1, 4.1, 1.1, 1.1), oma=c(0, 0, 0, 0))
@@ -422,7 +424,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Mean weight-at-age by year}
-\frame{\frametitle{Mean weight-at-age by year}
+\frame{\frametitle{Sample sizes of weight-at-age by year}
 \begin{figure}
   \centering
   \includegraphics[width=4in, height=3in]{../../../doc/main-figures/EWAforDoc_Numbers.eps}
