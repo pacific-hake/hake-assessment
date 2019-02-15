@@ -137,12 +137,18 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \bi
     \item Stock Synthesis version \Sexpr{ss.version}
       and compiled with ADMB \Sexpr{admb.version} (both same as \Sexpr{last.assess.yr})
+    \item Updated pre-\Sexpr{last.assess.yr} data:
+      \bi
+      \item Fishery catch
+      \item Fishery age compositions
+      \item Weights-at-age
+      \ei
     \item Added new data for \Sexpr{last.assess.yr}:
     \bi
       \item Fishery catch and age data for \Sexpr{last.assess.yr}
       \item Weight-at-age values for \Sexpr{last.assess.yr}
     \ei
-    \item Incorporates time-varying fecundity, similar to alternative base case from
+    \item Incorporates time-varying fecundity
       \Sexpr{last.assess.yr}. \\
       Fecundity\subscr{year} = Weight-at-age\subscr{year} * Maturity
   \ei
@@ -228,9 +234,9 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     \item Updating pre-\Sexpr{last.assess.yr} data has almost no effect on model outcome.
     \item Adding \Sexpr{assess.yr} catch and age composition data has little effect on
       biomiass trajectories.
-    \item Adding age compositions has an effect on the recruitment deviations.
-    \item Adding time-varying fecundity has the most effect, with a large increase in ~1975
-      biomass due to the inflated weight-at-age of older fish in that time period.
+    \item Adding age compositions has an effect on the recent recruitment deviations.
+    \item Adding time-varying fecundity has the most effect, with a large increase
+      in late 1970s biomass due to the inflated weight-at-age of older fish in that time period.
    \ei
 }
 
@@ -387,7 +393,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \begin{table}
     \begin{tabular}{cccc} \hline
       MLE (\Sexpr{assess.yr}) & Median (\Sexpr{assess.yr}) &
-        Median (\Sexpr{assess.yr}) & Median (\Sexpr{assess.yr - 1}) \\
+        Median (\Sexpr{assess.yr - 1}) & Median (\Sexpr{assess.yr - 2}) \\
       \hline
       \Sexpr{round(base.model$cpue$Calc_Q[1],2)}  &
           \Sexpr{round(median(base.model$extra.mcmc$Q_vector), 2)} &
@@ -561,7 +567,7 @@ recr.2014.ci.diff.prop <- f((tmp.curr[3] - tmp.curr[1]) / (tmp.last[3] - tmp.las
 @
 The 2014 and 2016 cohorts are estimated to be large: \\
 \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of the 2014 cohort being larger than 2010.\\
-\Sexpr{prob.percent.2016.rec.gt.2010.rec}\% chance of the 2016 cohort being larger than 2010.\\
+The 2016 cohort is estimated to be large, but is highly uncertain.\\
 
 ~\\
 
@@ -581,7 +587,7 @@ of what it was in the \Sexpr{assess.yr - 1} assessment:
   \end{table}
   ~\\
 
-At the start of \Sexpr{assess.yr} (from Table 21, page 91):\\
+At the start of \Sexpr{assess.yr} (from Table 21, page 93):\\
 \bi
 \item 2010 cohort is estimated to make up \Sexpr{f(b.curr.prop.age9 * 100)}\%
   of the biomass
@@ -737,7 +743,7 @@ year's assessment,\\
       \bi
       \item Near zero slope for all ages with ages 13--15 being slightly positive and all
         others slightly negative (Figure 15).
-      \item Estimated slope parameters were sensitive to excluding data from 1975--1980.
+      \item Estimated slope parameters were slightly sensitive to excluding data from 1975--1980.
       \ei
     \item Small number of age samples for early years (Figure 14).
     \ei
@@ -767,23 +773,22 @@ year's assessment,\\
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
     {\bf Response:} \emph{Forecast weights-at-age}}
   \bi
-  \item Forecast weights-at-age were chosen to be the mean of the 2016--2018 weights-at-age
+  \item Forecast weights-at-age were chosen to be the mean of the 1975--2018 weights-at-age, as in
+    the \Sexpr{last.assess.yr} base model.
     \bi
     \item The weighted least squares analysis also suggests that the assumption of using the
       long-term mean for weight-at-age in 2019--2021 is reasonable.
-    \item The current configuration of Stock Synthesis precludes properly testing other
+    \item The configuration of Stock Synthesis version \Sexpr{ss.version} precludes properly testing other
       assumptions while using the final year of empirical weight-at-age data. The software
       requires forecast year weights-at-age values to be either
       \bi
       \item set to the same as that for equilibrium conditions, or
       \item set equivalent to the final year of data (2018)
       \ei
-      \item The JTC were unable to set future weight-at-age values to be the mean of
+      \item In sensitivity models, the JTC were unable to set future weight-at-age values to be the mean of
         2016--2018 without also setting the 2018 weights-at-age to that mean (thereby
         averaging out the 2018 data).
     \ei
-    \item We retained the 2018 base model assumption of using the overall
-      1975--2018 mean for the forecast period.
   \ei
 }
 
@@ -861,8 +866,9 @@ year's assessment,\\
   \bi
   \item These issues were largely rectified during the 2018 meeting, while remaining issues
     have since been permanently fixed.
-  \item There remain issues with the U.S. tribal catch reporting, database entry,  and quality control
-    which need to be rectified.
+  \item Issues remain regarding the availability of U.S. tribal catch by JTC data deadlines,
+    including the tracking of best available estimates and the incorporation of those estimates into
+    standard databases (PacFIN).
   \ei
 }
 
@@ -1060,13 +1066,12 @@ year's assessment,\\
   \bi
   \item Model continues to fit the age data particularly well.
   \item The spawning stock is estimated to have remained relatively constant
-    since 2013.
+    since 2017.
   \item The 2014 recruitment has \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of being as
     large as the 2010 recruitment.
     The credible interval on the 2014 cohort has been reduced to
     \Sexpr{recr.2014.ci.diff.prop}\% of what it was in the \Sexpr{last.assess.yr} assessment.
-  \item The 2016 recruitment has \Sexpr{prob.percent.2016.rec.gt.2010.rec}\% chance of being as
-    large as the 2010 recruitment.
+  \item The 2016 recruitment is estimated to be large, but is highly uncertain.
   \item The median estimate of \Sexpr{end.yr} relative spawning biomass is
     \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
     \Sexpr{curr.depl.upper}\%).
