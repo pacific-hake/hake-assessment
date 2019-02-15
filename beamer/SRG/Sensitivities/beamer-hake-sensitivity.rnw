@@ -924,6 +924,22 @@ $^c$2018$+$ weight-at-age was mean 1975-2017.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Weight-at-age (kg): base model and run 53}
+\begin{figure}[H]
+\begin{center}
+% Using .a since doesn't correspond to a sens group
+<<main.weight.at.age.sens.a, fig.height=3.8>>=
+# Run 53 (same as base). Not worth automating caption.
+weight.at.age.heatmap(sens.models.5[[2]], font.size=2)
+@
+\end{center}
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}

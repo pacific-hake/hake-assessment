@@ -19,13 +19,15 @@ weight.at.age.heatmap <- function(model,
                                                          0.96,
                                                          1.06,
                                                          1.00,
-                                                         1.03)){
+                                                         1.03),
+                                  font.size = 4){
   ## Weight-at-age heatmap plot including extrapolated years using ggplot.
   ## Original code not available during shutdown.
   ## Max age is set to 15 as we don't know what was extrapolated above that
   ##  and the figure in the assessment doc is only to 15
   ## fleet is number as seen in SS wtatage.ss file for fleet column
   ## Years after end of data up to last.yr will be projection years,
+  ## font.size is size of font
 
   ## Toggle data frame for which values are extrapolated values
   last.data.yr <- 2018
@@ -147,13 +149,15 @@ weight.at.age.heatmap <- function(model,
                   y = w2$Yr,
                   label = ifelse(is.na(w2$value),
                                  "",
-                                 f(w2$value, 2)))) +
+                                 f(w2$value, 2))),
+              size = font.size) +
     geom_text(aes(x = w1$variable,
                   y = w1$Yr,
                   label = ifelse(is.na(w1$value),
                                  "",
                                  f(w1$value, 2))),
-              fontface = "bold") +
+              fontface = "bold",
+              size = font.size) +
     theme(legend.title = element_blank()) +
     scale_y_continuous(breaks = seq(min(w$Yr), max(w$Yr), 1),
                        labels = c("mean",
