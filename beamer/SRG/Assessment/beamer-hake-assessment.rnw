@@ -488,6 +488,27 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 %----------------------------------------------------------
 
+\frame{\frametitle{MCMC -- MLE Biomass trajectory comparison}
+<<biomass.mcmc.mle, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+make.mcmc.vs.mle.plot(base.model,
+                      end.yr = end.yr,
+                      subplot = 2)
+@
+}
+
+%----------------------------------------------------------
+
+\frame{\frametitle{MCMC -- MLE recruitment comparison}
+<<recr.mcmc.mle, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+make.mcmc.vs.mle.plot(base.model,
+                      end.yr = end.yr,
+                      type = "o",
+                      subplot = 8)
+@
+}
+
+%----------------------------------------------------------
+
 \frame{\frametitle{Recruitment Deviations}
   \vspace{-5pt}
   \bc
