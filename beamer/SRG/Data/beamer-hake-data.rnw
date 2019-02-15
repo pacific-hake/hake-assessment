@@ -289,7 +289,6 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \frame{\frametitle{Canada bottom depth distribution}
 \begin{figure}
  \centering
- ** More years than the U.S. Figure and not in colour
   \includegraphics[width=6in, height=3in]{../../../doc/main-figures/can-bottom-depths}
 \end{figure}
 }
