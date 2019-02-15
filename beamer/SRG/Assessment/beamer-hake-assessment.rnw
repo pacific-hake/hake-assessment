@@ -802,7 +802,7 @@ year's assessment,\\
   \item The SRG notes that when setting values for other parameters that cannot
     be estimated directly with confidence, the choice of values should be made
     using methods that are objective, repeatable, and depend on fits to the observed
-    data rather than on the model’s subsequent estimates of biomass or recruitment.
+    data rather than on the model's subsequent estimates of biomass or recruitment.
   \item One example is setting the parameter controlling time-varying fishery
     selectivity ($\Phi$), with a goal of establishing repeatable steps for setting
     $\Phi$ each year.
