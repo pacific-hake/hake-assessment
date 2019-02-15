@@ -1252,12 +1252,8 @@ par <- oldpar
 \frametitle{Historical Assessments}
 \begin{center}
 <<retro.4, out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
-#oldpar <- par()
-#par(mar = c(4.5, 4.1, 1.5, 1.1))
 make.assessment.history.plot(base.model,
-                             assessment.history,
-                             end.yr + 2)
-#par <- oldpar
+                             assessment.history)
 @
 \end{center}
 \end{frame}
