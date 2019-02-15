@@ -281,7 +281,7 @@ make.short.parameter.estimates.sens.table(
 \section{Sigma r}
 \subsection{}
 \begin{frame}
-\frametitle{$\sigma_r$ -- Biomass}
+\frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
 \begin{center}
 \vspace{5pt}
 %, fig.width=8>>=
@@ -307,10 +307,34 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{$\sigma_r$ -- Recruitment deviations}
+\frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
 \begin{center}
-\vspace{-8pt}
+\vspace{5pt}
+<<sigmar.biomass.fig.rel>>=
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 0))
+make.comparison.plot(
+  c(list(base.model),
+    sens.models.1[3],
+    sens.models.1[4]),
+  subplots = 4,
+  model.names = c("Base model ",
+                  sens.model.names.1[3],
+                  sens.model.names.1[4]),
+  end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
+\begin{center}
+\vspace{5pt}
 <<sigmar.recdevs.figure>>=
+par(mar = c(7.1, 4.1, 0, 0))
 make.comparison.plot(
   c(list(base.model),
     sens.models.1[3],
@@ -320,6 +344,7 @@ make.comparison.plot(
                   sens.model.names.1[4]),
   subplots = 10,
   end.yr = end.yr)
+par <- oldpar
 @
 \end{center}
 \end{frame}
@@ -327,7 +352,7 @@ make.comparison.plot(
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Sensitivities to $\sigma_r$}
+\frametitle{Sensitivity to s.d. of recruitment variability, $\sigma_r$}
 \begin{center}
 <<sigmar.par.table, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(
