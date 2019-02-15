@@ -1,6 +1,5 @@
 make.assessment.history.plot <- function(base,
-                                         assessment.history, ## data as read in from the csv file
-                                         end.yr){
+                                         assessment.history){
   ## History of assessments plot
 
   ## The csv file should be set up with blanks for SSB in the most recent year
@@ -18,16 +17,18 @@ make.assessment.history.plot <- function(base,
   latestAssess <- base$mcmc[,grep("SSB_[0-9]", names(base$mcmc))]
   latestYrs <- as.numeric(substring(names(latestAssess), 5))
 
-  xx[nrow(xx), paste0("X", years[years %in% latestYrs])] <-
-    apply(latestAssess, 2, median)[paste0("SSB_", years[years %in% latestYrs])] / 2e6
+  ## Change last row only. New model year's median
+  yr.colnames <- paste0("X", years[years %in% latestYrs])
+  yr.ssb.colnames <- paste0("SSB_", years[years %in% latestYrs])
+  xx[nrow(xx), yr.colnames] <- apply(latestAssess, 2, median)[yr.ssb.colnames] / 2e6
+  end.yr <- xx[nrow(xx),]$Year
 
   slower <- base$mcmccalcs$slower
   supper <- base$mcmccalcs$supper
 
   yrs <- sort(unique(xx$Year))
   ## The colors for the assessment years.
-  ## Need to add a new one at the beginning
-  ##  every year
+  ## Need to add a new one every year
   cols = c(rgb(0.44, 0.1,  0.1),       # 1991
            rgb(0.1,  0.1,  0.44),      # 1992
            rgb(1,    0.1,  0.6),       # 1993
@@ -115,12 +116,13 @@ make.assessment.history.plot <- function(base,
   yrs <- years[years %in% latestYrs]
   # make polygon showing uncertainty around base model
   # addpoly function is defined in utilities.r
+
   addpoly(yrs,
           slower[names(slower) %in% yrs],
           supper[names(supper) %in% yrs],
           "black")
   # add legend
-  legend(end.yr + 0.5,
+  legend(end.yr + 2.5,
          7.15,
          paste(xx$Year, xx$Model),
          col = legCol,
