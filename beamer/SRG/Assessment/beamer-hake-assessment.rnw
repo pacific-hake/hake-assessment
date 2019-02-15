@@ -544,7 +544,8 @@ The 2014 and 2016 cohorts are estimated to be large: \\
 
 ~\\
 
-Addition of new data for this year's model reduces 2014 cohort uncertainty from that in the \Sexpr{assess.yr - 1} assessment:
+Addition of new data for this year's model reduces 2014 cohort uncertainty to \Sexpr{recr.2014.ci.diff.prop}\%
+of what it was in the \Sexpr{assess.yr - 1} assessment:
 
   \begin{table}
     \begin{tabular}{ccrcc} \hline
