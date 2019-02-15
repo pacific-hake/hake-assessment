@@ -939,17 +939,46 @@ $^c$2018$+$ weight-at-age was mean 1975-2017.
 \begin{frame}
 \frametitle{Weight-at-age (kg): base model and run 53}
 \begin{figure}[H]
-\begin{center}
-% Using .a since doesn't correspond to a sens group
-<<main.weight.at.age.sens.a, fig.height=3.8>>=
-# Run 53 (same as base). Not worth automating caption.
-weight.at.age.heatmap(sens.models.5[[2]], font.size=2)
+<<main.weight.at.age.sens.a, fig.height=4>>=
+weight.at.age.heatmap(sens.models.5[[2]], font.size=1.6)
 @
-\end{center}
 \end{figure}
 \end{frame}
-\end{noheadline}
 %%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Weight-at-age (kg): runs 55 and 57}
+\begin{figure}[H]
+<<main.weight.at.age.sens.b, fig.height=4>>=
+weight.at.age.heatmap(sens.models.6[[1]], proj.line.yr=2017, font.size=1.6)
+@
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Weight-at-age (kg): runs 52 and 54}
+\begin{figure}[H]
+<<main.weight.at.age.sens.c, fig.height=4>>=
+weight.at.age.heatmap(sens.models.5[[3]], proj.line.yr=2017, font.size=1.6)
+@
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Weight-at-age (kg): runs 56 and 58}
+\begin{figure}[H]
+<<main.weight.at.age.sens.d, fig.height=4>>=
+weight.at.age.heatmap(sens.models.6[[2]], proj.line.yr=2017, font.size=1.6)
+@
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+\end{noheadline}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
