@@ -83,7 +83,6 @@
 %%                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
 %%                results='show', cache=TRUE, cache.path='knitr-cache/')
 <<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
-rm(list=ls())
 opts_chunk$set(dev = 'cairo_ps',
                fig.path = 'knitr-cache/',
                fig.dpi = 300,
@@ -901,17 +900,18 @@ calculating \emph{stock biomass}.
 \centering
 \begin{tabular}{ccccc}
 \hline
-Model run when  & Model run when & Time-varying & Pre-1975 & Pre-1975 \\
-2019$+$ weight-at-age & 2018$+$ weight-at-age &  fecundity? & weight-at-age & weight-at-age\\
-is mean 1975-2018 & is mean 2016-2018 & & is 1975-1979? & is 1975-2018?\\
+\alert<6>{Model run when}  & Model run when & \alert<5>{Time-varying} & \alert<8>{Pre-1975} & \alert<7>{Pre-1975} \\
+\alert<6>{2019$+$ weight-at-age} & 2018$+$ weight-at-age &  \alert<5>{fecundity?} & \alert<8>{weight-at-age} & \alert<7>{weight-at-age}\\
+\alert<6>{is mean 1975-2018} & is mean 2016-2018 & & \alert<8>{is 1975-1979?} & \alert<7>{is 1975-2018?}\\
   \hline
-Base model & 54	& Y &   & Y\\
-55$^a$     & 58 & Y & Y &  \\
-53         & 52 &   &   & Y\\
-57$^a$     & 56 &   & Y &  \\
+\alert<2-3,5-7>{Base model} & \alert<5,7>{54}	& \alert<2-3,5>{Y} &   &
+                                                                         \alert<2-3,7>{Y}\\
+\alert<5-6,8>{55$^a$}     & \alert<4-5,8>{58} & \alert<4-5>{Y} & \alert<4,8>{Y} &  \\
+\alert<6-7>{53}         & \alert<7>{52} &   &   & \alert<7>{Y}\\
+\alert<6,8>{57$^a$}     & \alert<8>{56} &   & \alert<8>{Y} &  \\
 \hline
-2018 base$^c$ &    &    &   & Y\\
-          & 2018 alternative$^b$ & Y & Y & \\
+\alert<2>{2018 base$^c$} &    &    &   & \alert<2>{Y}\\
+          & \alert<3-4>{2018 alternative$^b$} & \alert<3-4>{Y} & \alert<3-4>{Y} & \\
 \hline
 \end{tabular}
 \end{table}
