@@ -197,8 +197,8 @@ sens.model.dir.names.2 <- c("2019.03.07_age1Survey",
                             "2019.03.08_compWeight_HarmonicMean",
                             "2019.03.09_compWeight_Francis")
 sens.model.names.2 <- c("Add Age 1 Index",
-                        "Harmonic Mean Data Weighting",
-                        "Francis Data Weighting")
+                        "McAllister Ianelli Weighting",
+                        "Francis Weighting")
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 3
