@@ -1002,6 +1002,33 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
+\frametitle{Assumptions and runs regarding weight-at-age and fecundity}
+\begin{table}[H]
+\centering
+\begin{tabular}{ccccc}
+\hline
+{Model run when}  & Model run when & {Time-varying} & {Pre-1975} & \alert{Pre-1975} \\
+{2019$+$ weight-at-age} & 2018$+$ weight-at-age &  {fecundity?} & {weight-at-age} & \alert{weight-at-age}\\
+{is mean 1975-2018} & is mean 2016-2018 & & {is 1975-1979?} & \alert{is 1975-2018?}\\
+  \hline
+\alert{Base model} & \alert{54}	& {Y} &   &      \alert{Y}\\
+{55$^a$}     & {58} & {Y} & {Y} &  \\
+\alert{53}         & \alert{52} &   &   & \alert{Y}\\
+{57$^a$}     & {56} &   & {Y} &  \\
+\hline
+\alert{2018 base$^c$} &    &    &   & \alert{Y}\\
+          & {2018 alternative$^b$} & {Y} & {Y} & \\
+\hline
+\end{tabular}
+\end{table}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
 \frametitle{Sensitivities regarding weight-at-age assumptions (MCMC)}
 \begin{center}
 \vspace{5pt}
@@ -1035,6 +1062,31 @@ make.comparison.plot.mcmc(c(list(base.model), sens.models.6),
 par <- oldpar
 @
 \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Assumptions and runs regarding weight-at-age and fecundity}
+\begin{table}[H]
+\centering
+\begin{tabular}{ccccc}
+\hline
+{Model run when}  & Model run when & {Time-varying} & \alert{Pre-1975} & {Pre-1975} \\
+{2019$+$ weight-at-age} & 2018$+$ weight-at-age &  {fecundity?} & \alert{weight-at-age} & {weight-at-age}\\
+{is mean 1975-2018} & is mean 2016-2018 & & \alert{is 1975-1979?} & {is 1975-2018?}\\
+  \hline
+\alert{Base model} & {54}	& {Y} &   &      {Y}\\
+\alert{55$^a$}     & \alert{58} & {Y} & \alert{Y} &  \\
+{53}         & {52} &   &   & {Y}\\
+\alert{57$^a$}     & \alert{56} &   & \alert{Y} &  \\
+\hline
+{2018 base$^c$} &    &    &   & {Y}\\
+          & \alert{2018 alternative$^b$} & {Y} & \alert{Y} & \\
+\hline
+\end{tabular}
+\end{table}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
