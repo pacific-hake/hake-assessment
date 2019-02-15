@@ -161,7 +161,7 @@
 \counterwithin{table}{section}
 
 <<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
-rm(list=ls())
+#rm(list=ls())
 opts_chunk$set(dev = 'cairo_ps',
                fig.path = 'knitr-cache/',
                fig.dpi = 96,
