@@ -980,28 +980,162 @@ weight.at.age.heatmap(sens.models.6[[2]], proj.line.yr=2017, font.size=1.6)
 %%%%%%%%%%%%%%%%%%%%%%%
 \end{noheadline}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
-\frametitle{**Weight-at-age schemes to calculate fecundity -- Biomass}
+\frametitle{Sensitivities regarding weight-at-age assumptions (MCMC)}
 \begin{center}
 \vspace{5pt}
-% , fig.width=8>>=
-<<wtatage.sensitivity.biomass>>=
+<<wtatage.sensitivity.biomass.a>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
-make.comparison.plot(
-  c(list(base.model),
-    sens.models.5),
-  subplots = 2,
-  model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.5),
-  end.yr = end.yr + 2)
+make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
+                     subplots = 2,
+                     model.names = c(base.model.name, sens.model.names.5),
+                     end.yr = end.yr)
 par <- oldpar
 @
 \end{center}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Assumptions and runs regarding weight-at-age and fecundity}
+\begin{table}[H]
+\centering
+\begin{tabular}{ccccc}
+\hline
+{Model run when}  & Model run when & {Time-varying} & {Pre-1975} & \alert{Pre-1975} \\
+{2019$+$ weight-at-age} & 2018$+$ weight-at-age &  {fecundity?} & {weight-at-age} & \alert{weight-at-age}\\
+{is mean 1975-2018} & is mean 2016-2018 & & {is 1975-1979?} & \alert{is 1975-2018?}\\
+  \hline
+\alert{Base model} & \alert{54}	& {Y} &   &      \alert{Y}\\
+{55$^a$}     & {58} & {Y} & {Y} &  \\
+\alert{53}         & \alert{52} &   &   & \alert{Y}\\
+{57$^a$}     & {56} &   & {Y} &  \\
+\hline
+\alert{2018 base$^c$} &    &    &   & \alert{Y}\\
+          & {2018 alternative$^b$} & {Y} & {Y} & \\
+\hline
+\end{tabular}
+\end{table}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Sensitivities regarding weight-at-age assumptions (MCMC)}
+\begin{center}
+\vspace{5pt}
+<<wtatage.sensitivity.biomass.b>>=
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 0))
+make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
+                     subplots = 4,
+                     model.names = c(base.model.name, sens.model.names.5),
+                     legend = TRUE,
+                     end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Sensitivities regarding weight-at-age assumptions (MCMC)}
+\begin{center}
+\vspace{5pt}
+<<wtatage.sensitivity.biomass.c>>=
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 0))
+make.comparison.plot.mcmc(c(list(base.model), sens.models.6),
+                     subplots = 2,
+                     model.names = c(base.model.name, sens.model.names.6),
+                     end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Assumptions and runs regarding weight-at-age and fecundity}
+\begin{table}[H]
+\centering
+\begin{tabular}{ccccc}
+\hline
+{Model run when}  & Model run when & {Time-varying} & \alert{Pre-1975} & {Pre-1975} \\
+{2019$+$ weight-at-age} & 2018$+$ weight-at-age &  {fecundity?} & \alert{weight-at-age} & {weight-at-age}\\
+{is mean 1975-2018} & is mean 2016-2018 & & \alert{is 1975-1979?} & {is 1975-2018?}\\
+  \hline
+\alert{Base model} & {54}	& {Y} &   &      {Y}\\
+\alert{55$^a$}     & \alert{58} & {Y} & \alert{Y} &  \\
+{53}         & {52} &   &   & {Y}\\
+\alert{57$^a$}     & \alert{56} &   & \alert{Y} &  \\
+\hline
+{2018 base$^c$} &    &    &   & {Y}\\
+          & \alert{2018 alternative$^b$} & {Y} & \alert{Y} & \\
+\hline
+\end{tabular}
+\end{table}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Sensitivities regarding weight-at-age assumptions (MCMC)}
+\begin{center}
+\vspace{5pt}
+<<wtatage.sensitivity.biomass.d>>=
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 0))
+make.comparison.plot.mcmc(c(list(base.model), sens.models.6),
+                     subplots = 4,
+                     model.names = c(base.model.name, sens.model.names.6),
+                     legend = TRUE,
+                     end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Further results for runs 53 and 54 given in Appendices F and G}
+\begin{table}[H]
+\centering
+\begin{tabular}{ccccc}
+\hline
+{Model run when}  & Model run when & {Time-varying} & {Pre-1975} & \alert{Pre-1975} \\
+{2019$+$ weight-at-age} & 2018$+$ weight-at-age &  {fecundity?} & {weight-at-age} & \alert{weight-at-age}\\
+{is mean 1975-2018} & is mean 2016-2018 & & {is 1975-1979?} & \alert{is 1975-2018?}\\
+  \hline
+\alert{Base model} & \alert{54}	& {Y} &   &      \alert{Y}\\
+{55$^a$}     & {58} & {Y} & {Y} &  \\
+\alert{53}         & {52} &   &   & \alert{Y}\\
+{57$^a$}     & {56} &   & {Y} &  \\
+\hline
+\alert{2018 base$^c$} &    &    &   & \alert{Y}\\
+          & {2018 alternative$^b$} & {Y} & {Y} & \\
+\hline
+\end{tabular}
+\end{table}
+Run 53 is analogous to 2018 base model.
+
+Runs 53 and 54 are closest to 2019 base model while retaining pre-1975
+weight-at-age as mean 1975-2018.
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1043,7 +1177,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Retrospective -- Recruitment}
+\frametitle{Retrospectives -- Recruitment}
 \begin{center}
 \vspace{-5pt}
 %, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
@@ -1064,7 +1198,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Retrospective -- Squid}
+\frametitle{Retrospectives -- baby squid}
 \begin{center}
 \vspace{-5pt}
 % , fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
@@ -1088,7 +1222,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Retrospective -- Squid}
+\frametitle{Retrospectives -- squid}
 \begin{center}
 \vspace{-5pt}
 %, out.width='0.9\\columnwidth'>>=   Keep following values else
@@ -1097,7 +1231,7 @@ par <- oldpar
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 plot.retro.yrs <- retro.yrs
-retro.cohorts <- 1999:2014
+retro.cohorts <- 1999:(end.yr-2)
 retro.list <- list(base.model)
 for(i in plot.retro.yrs){
   retro.list[[i + 1]] <- base.model$retros[[i]]
