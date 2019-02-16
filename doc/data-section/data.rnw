@@ -284,7 +284,7 @@ sensitivity analysis.
 Distributions of hake backscatter plotted for each acoustic survey since 1995
 illustrate the variable spatial patterns of age-2+ hake across years
 (Figure~\ref{fig:main-backscatter-map}). This variability is
-due in part to changes in the composition of the the (age-2+) population
+due in part to changes in the composition of the (age-2+) population
 (older \fishname\ tend to migrate farther north), and partly due to
 environmental and/or climatic factors.
 The 1998 acoustic survey is notable because it shows an
@@ -452,7 +452,7 @@ estimated recruitment reasonably well (Figure~\ref{fig:main-age-one-index}). The
 Fishery-independent data from the Alaska Fisheries Science Center (AFSC) bottom
 trawl survey, the Northwest Fishery Science Center (NWFSC) bottom trawl survey,
 the NWFSC and Pacific Whiting Conservation Cooperative (PWCC) pre-recruit survey,
-or any other DFO surveys were not used in this assessment. More information on these data sources is
+and DFO surveys not already mentioned were not used in this assessment. More information on these data sources is
 given in the 2013 stock assessment \citep{JTC2013}.
 
 \subsection{Externally analyzed data}\label{sec:data-externally-analyzed-data}
@@ -483,8 +483,8 @@ length-based relationships (Figure~11 in \citealt{JTC2017}), with the fish from
 South of Point Conception maturing at earlier ages and smaller sizes. These
 fish were excluded from the maturity estimates.
 
-The new age-based maturity ogive was multiplied by the mean weight-at-age
-averaged across all years in the 2018 assessment to get a new estimate of
+In the 2018 assessment, the age-based maturity ogive was multiplied by the mean weight-at-age
+averaged across all years to get a new estimate of
 time-invariant fecundity-at-age.  The \Sexpr{assess.yr} assessment extends this approach to
 include time-varying fecundity-at-age by using year-specific weight-at-age
 values (rather than the time-series mean) in the calculation of fecundity.
@@ -747,7 +747,7 @@ $p_{A_{\text{min}}}=0$ can be set for the fishery and for the survey.
 %temp1=MGparm_1(j,1)+(MGparm_1(j,2)-MGparm_1(j,1))/(1.+mfexp(-2.*temp));   // backtransform
 
 The implementation of time-varying selectivity uses a set of deviations
-to control annual changes to the selectivity parameters. The variance associated with
+to control annual changes to the selectivity parameters. The standard deviation associated with
 these deviations is called $\Phi$.
 The value for parameter $\Phi$ (in standard parameter space) was selected to correspond
 with the level of variability (in logistic transformed parameter space) used in the
@@ -830,7 +830,7 @@ The effective sample size associated with this likelihood is given by
 \eb
 n_{\text{eff}} = \frac{1}{1 + \theta} + \frac{n \theta}{1 + \theta}
 \ee
-The input samples sizes used in this assessment, which are based on the
+The input sample sizes used in this assessment, which are based on the
 number of trips or hauls, are large enough that the first term
 is insignificant compared to the second term. Consequently,
 $\theta / (1 + \theta)$ can be compared to the sample size
@@ -857,5 +857,3 @@ outliers and prone to convergence issues when selectivity is time-varying.
 Sensitivity to the D-M method as compared to the
 McAllister-Ianelli and the Francis methods are presented
 in Section~\ref{sec:assessment-sensitivity-analyses}.
-
-\clearpage
