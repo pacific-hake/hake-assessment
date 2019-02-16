@@ -94,7 +94,7 @@ make.catches.table(catches,
 In this stock assessment, the terms catch and landings are used
 interchangeably. Estimates of discard within the target fishery are included,
 but discarding of \fishname\ in non-target fisheries is not. Discard from all
-fisheries, including those that don't target hake, is estimated to be less
+fisheries, including those that do not target hake, is estimated to be less
 than 1\% of landings in recent years. During
 the last five years, catches have been above the long-term average catch
 (\Sexpr{f(long.term.avge.catch)}~t) in

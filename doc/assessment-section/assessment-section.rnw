@@ -319,7 +319,7 @@ for further details.}
 
 \emph{During the 2018 SRG meeting it was further realized that (p23 of \citealt{JTC2018})
 ``An inconsistency
-in this alternative run is that the the mean weight-at-age
+in this alternative run is that the mean weight-at-age
 across all years is still used for the calculation of
 \emph{stock biomass} in the years outside the range with empirical data (1975-2017),
 rather than the short-term averages (1975-1979 or 2015-2017). A brief examination of
@@ -342,7 +342,7 @@ weight-at-age but it is ignored when setting reference points, or what if
 weight-at-age varies randomly through time but reference points are set using
 a non-representative subset of the long-term trend?  Recent simulation work by \citet{Berger2018},
 using \fishname\ as one example, provided evidence that static reference points, such
-as those based on unfished equilibrium conditions ($B_0$), can be misleading when there is
+as those based on unfished equilibrium conditions ($B_0$), can be misleading when there are
 directional trends or regime shift changes in the underlying stock productivity.}
 
 
@@ -919,7 +919,7 @@ Exploitation fraction (catch divided
 by biomass of fish of age-2 and above) has shown relatively similar patterns
 (Figure~\ref{fig:main-exploitation-fraction} and and
 Tables~\ref{tab:main-median-posterior} and
-\ref{tab:main-ci-posterior}). Although similar patterns, the exploitation
+\ref{tab:main-ci-posterior}). Although displaying similar patterns, the exploitation
 fraction does not necessarily correspond to fishing intensity because fishing
 intensity more directly accounts for the age-structure of both the population and
 the catch. Median relative fishing intensity is estimated to have declined from

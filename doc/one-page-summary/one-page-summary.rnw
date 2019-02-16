@@ -73,7 +73,7 @@ decreasing from \Sexpr{last.yr.tac.fore.1.biomass}\% in \Sexpr{end.yr} to \Sexpr
 \Sexpr{end.yr+2}. However, due to uncertainty there is an estimated \Sexpr{last.yr.tac.risk.2.bforty}\% chance
 of the spawning biomass falling below $\Bforty$ in \Sexpr{end.yr+2}. There is an
 estimated \Sexpr{last.yr.tac.risk.1.biomass.decline}\% chance of the spawning biomass declining from \Sexpr{end.yr} to
-\Sexpr{end.yr+1}, and a
+\Sexpr{end.yr+1}, and an
 \Sexpr{last.yr.tac.risk.2.biomass.decline}\% chance of it declining from \Sexpr{end.yr+1} to
 \Sexpr{end.yr+2} under this constant level of catch.
     % Manual to do (check this enitre bullet point)
