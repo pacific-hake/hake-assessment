@@ -167,7 +167,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \section{MLE vs MCMC}
 \subsection{}
 \begin{frame}
-\frametitle{MLE vs MCMC -- Biomass}
+\frametitle{MLE vs MCMC}
 \begin{center}
 % , out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
 <<mle.mcmc.1, fig.height=3.5>>=
@@ -181,7 +181,7 @@ make.mcmc.vs.mle.plot(base.model,
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{MLE vs MCMC -- Recruitment}
+\frametitle{MLE vs MCMC}
 \begin{center}
 %, out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
 <<mle.mcmc.2, fig.height=3.5>>=
@@ -1224,7 +1224,7 @@ weight-at-age as mean 1975-2018.
 \section{Retros}
 \subsection{}
 \begin{frame}
-\frametitle{Retrospectives -- Biomass}
+\frametitle{Retrospectives}
 \begin{center}
 \vspace{-5pt}
 % , fig.height=5, fig.width=10>>=
@@ -1259,7 +1259,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Retrospectives -- Recruitment}
+\frametitle{Retrospectives}
 \begin{center}
 \vspace{-5pt}
 %, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
@@ -1280,7 +1280,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Retrospectives -- baby squid}
+\frametitle{Retrospective -- baby squid plot}
 \begin{center}
 \vspace{-5pt}
 % , fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
@@ -1304,7 +1304,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Retrospectives -- squid}
+\frametitle{Retrospective -- squid plot}
 \begin{center}
 \vspace{-5pt}
 %, out.width='0.9\\columnwidth'>>=   Keep following values else
@@ -1330,7 +1330,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Historical Assessments}
+\frametitle{Historical assessments}
 \begin{center}
 <<retro.4, out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
 make.assessment.history.plot(base.model,
