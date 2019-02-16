@@ -134,24 +134,20 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \subsection{}
 \begin{frame}
 %\titlepage
-\frametitle{**Overview}
+\frametitle{Overview}
 \fontsize{11pt}{2}\selectfont
 \begin{enumerate}
   \item MLE vs MCMC for the base model
   \item Sensitivities
         \begin{itemize}
-        \item Higher SD on prior for natural mortality
-        \item Alternative values for steepness
+        \item Higher standard deviation on prior for natural mortality
+        \item Alternative values for steepness ($h$)
         \item Variation of recruitment ($\sigma_r$)
         \item Include age-1 index
-        \item Time-invariant ageing error (not cohort-based)
-        \item Use McAllister-Ianelli method for data-weighting
-        \item Alternative method for aggregating age comps from U.S. fishery
-        \item Alternative catch stream addressing issues related to recent annual catches
-        \item Alternative maximum age assumptions for estimating selectivity
-        \item Alternative SD for time-varying selectivity
-        \item Alternative parameterization for time-varying selectivity
-        \item Weight-at-age schemes to calculate Fecundity (2018 SRG request)
+        \item Alternative data-weighting methods
+        \item Flexibility of time-varying selectivity ($\Phi$)
+        \item Alternative parameterization of time-varying selectivity
+        \item Alternative weight-at-age and fecundity assumptions (2018 SRG request)
         \end{itemize}
   \item Retrospectives
         \begin{itemize}
