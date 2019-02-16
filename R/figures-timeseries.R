@@ -345,7 +345,7 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
   # label first and final years
   text(sb[1], spr[1] - 0.01, start.yr, cex = 0.6, pos = 1,
        col=colvec[1])
-  text(sb[length(sb)], spr[length(spr)] + 0.01, end.yr-1, pos = 4, cex = 0.6,
+  text(sb[length(sb)], spr[length(spr)] - 0.015, end.yr-1, pos = 4, cex = 0.6,
        col=colvec[length(spr)-1])
   # add label to year in upper-left quadrant if there's only one
   # this facilitates labeling 1999 in the 2017 assessment, but may work for future years
