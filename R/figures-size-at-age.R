@@ -20,7 +20,8 @@ weight.at.age.heatmap <- function(model,
                                                          1.06,
                                                          1.00,
                                                          1.03),
-                                  font.size = 4){
+                                  font.size = 4,
+                                  axis.font.size = 10){
   ## Weight-at-age heatmap plot including extrapolated years using ggplot.
   ## Original code not available during shutdown.
   ## Max age is set to 15 as we don't know what was extrapolated above that
@@ -158,7 +159,9 @@ weight.at.age.heatmap <- function(model,
                                  f(w1$value, 2))),
               fontface = "bold",
               size = font.size) +
-    theme(legend.title = element_blank()) +
+    theme(legend.title = element_blank(),
+          axis.text.x = element_text(size = axis.font.size),
+          axis.text.y = element_text(size = axis.font.size)) +
     scale_y_continuous(breaks = seq(min(w$Yr), max(w$Yr), 1),
                        labels = c("mean",
                                   "",
