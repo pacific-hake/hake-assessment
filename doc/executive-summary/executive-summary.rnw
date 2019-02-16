@@ -129,13 +129,14 @@ total catch of the 2010 and 2014 year classes is estimated to be about
 \begin{figure}[tbp]
 \begin{center}
 <<survey.biomass, fig.height=5, fig.width=8>>=
-make.survey.biomass.plot(base.model)
+#make.survey.biomass.plot(base.model)
+make.survey.biomass.extrap.plot(survey.comparison, show = c(2,4))
 @
 \end{center}
 %\vspace{0mm}
 \caption{Acoustic survey biomass index (millions of tons).
-  Approximate 95\% confidence intervals (black bars) are based on sampling
-  variability; blue bars for 2009 include additional uncertainty due to
+  Approximate 95\% confidence intervals (gray bars) are based on sampling
+  variability; black bars for 2009 does not include additional uncertainty due to
   squid/hake apportionment.}
 \label{fig:es-survey-biomass}
 \end{figure}

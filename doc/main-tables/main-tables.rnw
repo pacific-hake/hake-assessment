@@ -253,15 +253,6 @@ make.survey.history.table(survey.history,
                           space.size = 12)
 @
 
-<<main.survey.summary.table, results='asis', echo=FALSE>>=
-make.survey.summary.table(survey.summary,
-                          digits = 3,
-                          xcaption = paste0("Biomass indices from the acoustic survey (million~t) used in this assessment."),
-                          xlabel = "tab:main-survey-comparison",
-                          font.size = 10,
-                          space.size = 12)
-@
-
 <<main.maturity.ogives.table, results='asis', echo=FALSE>>=
 make.maturity.ogives.table(maturity.ogives,
                            xcaption = "Information on maturity and fecundity used in this assessment as shown in Figure~\\ref{fig:main-maturity}. The sample sizes refer to the subset of samples in Table~\\ref{tab:main-ovaries} for which age readings and histological estimates of maturity have been completed. The mean weight (kg) is based on a much larger set of samples. Mean fecundity is the product of maturity and mean weight, but note that year-specific fecundities from 1975-2018 were used in the stock assessment. The values reported for ages 15 and above represent the average across all samples in this range.",

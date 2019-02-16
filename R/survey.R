@@ -328,6 +328,12 @@ make.survey.biomass.extrap.plot <- function(dat,
   ests3$lo <- exp(log(ests3$obs) - 1.96 * ests3$se_log)
   ests3$hi <- exp(log(ests3$obs) + 1.96 * ests3$se_log)
   ests3$value <- ests3$obs
+
+  # 2009 w/o squid inflation
+  ests4 <- ests[ests$year == 2009, ]
+  ests4[, "se_log"] <- 0.0682 ## se without squid inflation
+  ests4[, c("lo", "hi")] <- exp(
+    log(ests4$obs) + c(-1.96, 1.96) * ests4$se_log)
   par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
 
   if(2 %in% show){
@@ -371,6 +377,18 @@ make.survey.biomass.extrap.plot <- function(dat,
                 ciLwd = 3,
                 ciCol = rgb(0, 0, 1, 0.5),
                 col = "blue")
+  }
+  if(4 %in% show){
+    plotBars.fn(ests4$year,
+            ests4,
+            scalar = 1e3,
+            pch = 20,
+            add = TRUE,
+            cex = 1.5,
+            las = 1,
+            gap = 0.05,
+            ciLwd = 3.25,
+            ciCol = rgb(0, 0, 0, 1))
   }
   axis(1, at = ests$year, cex.axis = 0.8)
   legend("topleft",

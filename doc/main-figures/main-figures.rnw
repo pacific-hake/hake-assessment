@@ -148,31 +148,15 @@ make.age.comp.bubble.plot(base.model, subplot = 1,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.survey.biomass, fig.height=4.5, fig.width=8>>=
-## modelnum is the model index in models list from which the survey input data are used.
-make.survey.biomass.plot(base.model)
-@
-\end{center}
-\caption{Acoustic survey biomass index (millions of tons).
-  Approximate 95\% confidence intervals (black bars) are based on sampling
-  variability; blue bars for 2009 include additional uncertainty due to
-  squid/hake apportionment.}
-\label{fig:main-survey-biomass}
-%% \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-%% JOINED ON PAGE
-%%%%%%%%%%%%%%%%%%%%%%%
-%% \begin{figure}[H]
-\begin{center}
 <<main.survey.extrap.biomass, fig.height=4.5, fig.width=8>>=
-make.survey.biomass.extrap.plot(survey.comparison, show = 2:3)
+make.survey.biomass.extrap.plot(survey.comparison, show = 2:4)
 @
 \end{center}
 \caption{Acoustic survey biomass indices with and without extrapolation
   (millions of tons).
   Approximate 95\% confidence intervals are based on sampling variability
-  (and squid/hake apportionment uncertainty in 2009). See
-  Table~\ref{tab:main-survey-comparison} for values used in the base model.}
+  (intervals without squid/hake apportionment uncertainty in 2009 are displayed in black). See
+  Table~\ref{tab:main-survey-history} for values used in the base model.}
 \label{fig:main-survey-extrap-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

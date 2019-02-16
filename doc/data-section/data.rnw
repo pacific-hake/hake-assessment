@@ -357,13 +357,6 @@ during the preparation of 2017 survey data \citep{JTC2018}. These include:
 
 \end{itemize}
 
-%However, the data from the 1995 survey was not in a format that could be
-%processed, so the biomass estimate and associated age composition for that year
-%were excluded from the model in 2016. For the 2017 assessment \citep{JTC2017},
-%the 1995 data were processed in the
-%same manner as the subsequent years and included in that
-%assessment and this one (Table~\ref{tab:main-survey-comparison}).
-
 %% **[can prob delete this paragraph as was reported last year and accepted]
 %% As part of that data-processing step, it was discovered that the variogram used
 %% in the kriging for the 1998 data required a revision, which resulted in a
@@ -375,7 +368,7 @@ during the preparation of 2017 survey data \citep{JTC2018}. These include:
 
 Thus, a full time-series of consistently analyzed survey
 biomass (Table~\ref{tab:main-survey-history} and
-Figures~\ref{fig:main-survey-biomass} and \ref{fig:main-survey-extrap-biomass})
+Figure~\ref{fig:main-survey-extrap-biomass})
 and age compositions (Figure~\ref{fig:main-age-comp-bubbles} and
 Table~\ref{tab:main-all-age-data-survey}) are being input into the assessment
 model.
@@ -392,7 +385,7 @@ surveys conducted in 2011-2013 and 2015. The 2017 survey biomass index declined
 from the 2015 index to \Sexpr{f(survey.biomass["2017"], 2)} million metric tons,
 which is \Sexpr{f(survey.biomass["2017"]/survey.biomass["2015"],2)} times the 2015
 index (Table~\ref{tab:main-survey-history} and
-Figure~\ref{fig:main-survey-biomass}). The 2017 survey age composition was made
+Figure~\ref{fig:main-survey-extrap-biomass}). The 2017 survey age composition was made
 up of \Sexpr{f(as.numeric(survey.comps["2017","a7"]),1)}\% age-7 fish from the
 2010 year-class
 and \Sexpr{f(as.numeric(survey.comps["2017","a3"]),1)}\% age-3 fish from the

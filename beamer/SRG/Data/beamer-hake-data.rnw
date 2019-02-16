@@ -361,9 +361,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
    \begin{figure}
 \centering
   <<survey.compare.extrap.noextrap, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-    make.survey.biomass.plot(base.model,
-                              xlab = "Year",
-                              ylab = "Biomass (million t)")
+    make.survey.biomass.extrap.plot(survey.comparison, show = c(2, 4))
   @
 \end{figure}
 }
