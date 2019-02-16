@@ -789,7 +789,7 @@ make.short.parameter.estimates.sens.table(
 %\section{$\phi$}
 %\subsection{}
 \begin{frame}
-\frametitle{Addition of semi-parametric selectivity -- Biomass}
+\frametitle{Semi-parametric selectivity approach of Xu et al. (2019)}
 \begin{center}
 \vspace{5pt}
 % , fig.width=8>>=
@@ -811,7 +811,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Addition of semi-parametric selectivity -- Density}
+\frametitle{Semi-parametric selectivity approach of Xu et al. (2019)}
 \begin{center}
 \vspace{5pt}
 % fig.width=8>>=
@@ -837,7 +837,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Addition of semi-parametric selectivity -- Density}
+\frametitle{Semi-parametric selectivity approach of Xu et al. (2019)}
 \begin{center}
 \vspace{5pt}
 % fig.width=8>>=
@@ -863,7 +863,7 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Addition of semi-parametric selectivity}
+\frametitle{Semi-parametric selectivity approach of Xu et al. (2019)}
 \begin{center}
 \vspace{-5pt}
 <<semi.sensitivity.table, results='asis', echo=FALSE>>=
