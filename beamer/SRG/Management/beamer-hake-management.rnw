@@ -172,14 +172,14 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
     \bi
       \item Average fishery selectivity from \Sexpr{end.yr-5}--\Sexpr{end.yr-1}
         used in forecasts
-      \item Mean of weight-at-age across years
+      \item Mean of weight-at-age across 1975-2018
       \item Used for default catch limit calculations
       \item Recruitment from stock-recruit relationship (with uncertain deviations)
     \ei
     \item Equilibrium calculations
     \bi
       \item Base selectivity (used for years before 1991 as well)
-      \item Mean of weight-at-age across years
+      \item Mean of weight-at-age across 1975-2018
       \item Used for \emph{B}\subscr{0}, \emph{F}\subscr{SPR}, MSY, etc.
       \item Recruitment at estimated \emph{R}\subscr{0} or from stock-recruit relationship
     \ei
@@ -296,7 +296,8 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
 \section{Risk Tables}
 \subsection{Risk}
 \frame{\frametitle{Risk table definitions}
-  Probabilities of ``bad'' things happening at different fixed catch levels
+  Probabilities associated with biomass and fishing based metrics for different fixed catch levels
+  (executive summary: tables i and j; figures j and k) 
   \bi
     \item Fix catch in all years previous, and calculate default catch in
       forecast year
@@ -519,8 +520,11 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
   \begin{column}{0.38\textwidth}
     \bi
       \item Age-1 index appears to follow estimates of recruitment
-      \item Age-1 hake in 2017 is above average
-      \bi \item As seen in the fishery as well \ei
+      \item Estimated numbers of age-1 hake in 2017 (2016 year class) lower than 2014
+      and 2010 year classes
+      \bi \item Numbers of age-1 hake caught in the fishery higher in 2017 than
+      in 2014 and 2010
+      \ei
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -541,7 +545,9 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
     \item Forecasts strongly influenced by size of large but uncertain 2014 cohort
       and very uncertain 2016 cohort
     \item Aging 2010 cohort declining due to fishing and natural mortality contributes to median spawning biomass declining with catch between 350,000~t and 410,000~t and above
-    \item Higher risk of falling below $B_{40\%}$ in 2 years than in last year's assessment
+    \item Maintaining a constant catch of 597,500~t (i.e., 2017 and 2018 TAC) results
+    in a higher risk of falling below $B_{40\%}$ in 2 years time than predicted in last year's assessment (40\% compared
+    to 36\%)
   \ei
 }
 
