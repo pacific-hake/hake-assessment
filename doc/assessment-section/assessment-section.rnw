@@ -98,10 +98,10 @@ quantitatively compared with performance measures.
 \subsection{Description of base model}\label{sec:assessment-base-model}
 
 The \Sexpr{assess.yr} base model is predominantly an update of the base model in
-the \Sexpr{last.assess.yr} stock assessment. 
-The statistical-catch-at-age model assumes that the 
-\fishname\ population is a single coast-wide stock subject to 
-one aggregated fleet with combined male and female population dynamics. 
+the \Sexpr{last.assess.yr} stock assessment.
+The statistical-catch-at-age model assumes that the
+\fishname\ population is a single coast-wide stock subject to
+one aggregated fleet with combined male and female population dynamics.
 Stock Synthesis
 \citep{MethotWetzel2013} version \Sexpr{ss.version} is again used,
 having been introduced in the previous assessment \citep{JTC2018}.
@@ -417,7 +417,7 @@ the SRG notes that Canadian samples should be included in the maturity analysis.
   iwamoto2015microsatellite}. To improve the power to evaluate genetic stock
   structure and associations with life history characters important for
   assessment, thousands of genetic markers in hake are being surveyed using
-  genomic technologies \citep{ali2016rad, baird2008rapid}. Initial genetics data
+  genomic technologies \citep{baird2008rapid, ali2016rad}. Initial genetics data
   have been generated for 400 individuals, with planned genetic analysis of close
   to 2,000 individuals total. This study will examine genetic connectivity between
   geographic and temporal collections, and evaluate the hypothesis that offshore
