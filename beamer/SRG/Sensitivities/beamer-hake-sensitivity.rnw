@@ -1351,14 +1351,16 @@ make.assessment.history.plot(base.model,
 \section{Summary}
 \subsection{}
 \begin{frame}
-\frametitle{**Summary}
+\frametitle{Summary}
 \vspace{-2cm}
 \begin{itemize}
 \item In general, sensitivities show no significant departure from base model
-\item All except $\Phi$ = 0.21 show a decrease in spawning biomass from 2017
-\item The new data weighting scheme does not significantly affect the 2018 biomass estimate
-\item Small changes in catch do not significantly affect the biomass estimate time series
-\item Retrospectives re-iterate that 2014 cohort is still uncertain
+\item Overall relative pattern consistent -- large increases in biomass in early 2010s
+\item Absolute scale can change for some sensitivities
+\item Addition of time-varying fecundity mainly increases biomass in late 1970s
+\item Retrospectives -- 2014 cohort looking to be between sizes of 2008 and 2010
+\item Retrospectives -- 2016 cohort looking to be large, though cannot be
+  certain yet
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
