@@ -282,38 +282,47 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section[Depths]{Depths}
 \subsection{U.S.}
 \frame{\frametitle{U.S. at-sea catch depth distribution}
-  \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/fishDepthsUS}
+  <<depthus>>=
+  par(mfrow = c(1, 2), mar=c(2.2, 3.2, 1.2, 0.2), oma = c(2, 1, 0, 0))
+  usemeherea <- read.csv("../../../data/depth-us-atsea-fishing.csv")
+  usemehereb <- read.csv("../../../data/depth-us-atsea-bottom.csv")
+  makebox(
+    usemeherea[usemeherea$year >= max(usemeherea$year) - 4, ], 
+    main = "Fishing depth", col = "colour",
+    labels = c("", ""))
+  makebox(
+    usemehereb[usemehereb$year >= max(usemehereb$year) - 4, ], 
+    main = "Bottom depth", col = "colour",
+    labels = c("", ""))
+  mtext("Year", side = 1, outer = TRUE, line = -0.6, col = "black")
+  mtext("Depth (m)", side = 2, outer = TRUE, line = -0.5, col = "black")
+  @
 }
-%\subsection{U.S.}
-%\frame{\frametitle{U.S. at-sea catch depth distribution}
-%  <<test>>=
-%  par(mfrow = c(1, 2), mar=c(2.2, 3.2, 1.2, 0.2), oma = c(2, 1, 0, 0))
-%  usemeherea <- read.csv("../../../data/depth_USfishing_atsea.csv")
-%  usemehereb <- read.csv("../../../data/depth_USbottom_atsea.csv")
-%  makebox(
-%    usemeherea[usemeherea$year >= max(usemeherea$year) - 4, ], 
-%    main = "Fishing depth", col = "colour",
-%    labels = c("", ""))
-%  makebox(
-%    usemehereb[usemehereb$year >= max(usemehereb$year) - 4, ], 
-%    main = "Bottom depth", col = "colour",
-%    labels = c("", ""))
-%  mtext("Year", side = 1, outer = TRUE, line = -0.6, col = "black")
-%  mtext("Depth (m)", side = 2, outer = TRUE, line = -0.5, col = "black")
-%  @
-%}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Canada}
 \frame{\frametitle{Canada bottom depth distribution}
-\begin{figure}
- \centering
-  \includegraphics[width=6in, height=3in]{../../../doc/main-figures/can-bottom-depths}
-\end{figure}
+  <<depthca>>=
+  par(mfrow = c(1, 2), mar=c(2.2, 3.2, 1.2, 0.2), oma = c(2, 1, 0, 0))
+  usemeherea <- read.csv("../../../data/depth-can-freezer-trawlers.csv")
+  usemehereb <- read.csv("../../../data/depth-can-shoreside.csv")
+  localim <- c(0, max(c(usemeherea$upper95, usemehereb$upper95)) * 1.05)
+  makebox(
+    usemeherea[usemeherea$year >= max(usemeherea$year) - 4, ], 
+    main = "Freezer trawlers", col = "colour",
+    labels = c("", ""),
+    ylim = localim)
+  makebox(
+    usemehereb[usemehereb$year >= max(usemehereb$year) - 4, ], 
+    main = "Shoreside", col = "colour",
+    labels = c("", ""),
+    ylim = localim)
+  mtext("Year", side = 1, outer = TRUE, line = -0.6, col = "black")
+  mtext("Depth (m)", side = 2, outer = TRUE, line = -0.5, col = "black")
+  @
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
