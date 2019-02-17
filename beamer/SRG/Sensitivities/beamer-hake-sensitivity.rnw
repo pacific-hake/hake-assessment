@@ -920,7 +920,7 @@ a) Add time-varying fecundity by using time-varying weight-at-age.
 \pause
 \vspace{20pt}
 
-b) For equilibrium and 1966-1974  there is no empirical weight-at-age data;
+b) For equilibrium and 1966-1974  there are no empirical weight-at-age data;
 calculate fecundity using mean weight-at-age from 1975-1979.
 
 \bi
@@ -940,7 +940,7 @@ c) For forecast years (including 2017 due to configuration of SS3) use mean
 weight-at-age from 2015-2017.
 
 \bi
-\item Not done (using equivalent 2016-2018). Used mean 1975-2018, as for 2018 base model.
+\item Not done (using equivalent 2016-2018). Used mean 1975-2018 (analogous to 2018 base model).
 \ei
 
 \pause
@@ -957,7 +957,7 @@ Also because the configuration of SS3 requires forecast years' weight-at-age to 
 
 \vspace{5pt}
 
-So using mean from 2016-2018 for projections requires setting 2018 to this mean;
+So, using mean from 2016-2018 for projections requires setting 2018 to this mean;
 seems inappropriate for base model.
 
 \pause
