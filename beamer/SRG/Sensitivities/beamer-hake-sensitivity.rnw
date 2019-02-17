@@ -139,7 +139,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \begin{enumerate}
   \item MLE vs MCMC for the base model
   \item Sensitivities
-        \begin{itemize}
+        \bi
         \item Higher standard deviation on prior for natural mortality
         \item Alternative values for steepness ($h$)
         \item Variation of recruitment ($\sigma_r$)
@@ -148,13 +148,13 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
         \item Flexibility of time-varying selectivity ($\Phi$)
         \item Alternative parameterization of time-varying selectivity
         \item Alternative weight-at-age and fecundity assumptions (2018 SRG request)
-        \end{itemize}
+        \ei
   \item Retrospectives
-        \begin{itemize}
+        \bi
         \item Standard %: -\Sexpr{max(plot.retro.yrs)} years
         \item Cohort determination (`squid plot') %: -\Sexpr{max(retro.yrs)} years
         \item Historical assessments %: - \Sexpr{assess.yr - 1991 + 1} years
-        \end{itemize}
+        \ei
 \end{enumerate}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -888,20 +888,22 @@ make.short.parameter.estimates.sens.table(
 %\titlepage
 \frametitle{Time-varying fecundity}
 \fontsize{11pt}{2}\selectfont
-\begin{itemize}
+\bi
   \item Fecundity used to be from 1997 maturity-at-length data and 2011 calculations
-  \item In 2018 assessment we updated maturity ogive
-  \begin{itemize}
-    \item $\mbox{fecundity-at-age} = \mbox{maturity ogive} \times \mbox{weight-at-age}$
-    \item We used \red{mean weight-at-age}, giving {time-invariant fecundity}
-  \end{itemize}
+  \item In 2018 assessment we updated maturity ogive, and calculated
+\ei
+\begin{equation}
+  \nonumber \mbox{fecundity-at-age} = \mbox{maturity ogive} \times \mbox{weight-at-age}
+\end{equation}
+\bi
+  \item We used \red{mean weight-at-age}, giving {time-invariant fecundity}
   \item 2018 SRG meeting: more consistent to use \red{each year's} weight-at-age
-  \begin{itemize}
-  \item This gives \red{time-varying fecundity}
-  \item Was done in 2018 alternative model run (during the SRG meeting)
-  \item Involved some assumptions that we explore more fully here
-\end{itemize}
-\end{itemize}
+  \bi
+    \item This gives \red{time-varying fecundity}
+    \item Was done in 2018 alternative model run (during the SRG meeting)
+    \item Involved some assumptions that we explore more fully here
+  \ei
+\ei
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1351,15 +1353,17 @@ make.assessment.history.plot(base.model,
 \section{Summary}
 \subsection{}
 \begin{frame}
-\frametitle{**Summary}
+\frametitle{Summary}
 \vspace{-2cm}
-\begin{itemize}
+\bi
 \item In general, sensitivities show no significant departure from base model
-\item All except $\Phi$ = 0.21 show a decrease in spawning biomass from 2017
-\item The new data weighting scheme does not significantly affect the 2018 biomass estimate
-\item Small changes in catch do not significantly affect the biomass estimate time series
-\item Retrospectives re-iterate that 2014 cohort is still uncertain
-\end{itemize}
+\item Overall relative pattern consistent -- large increases in biomass in early 2010s
+\item Absolute scale can change for some sensitivities
+\item Addition of time-varying fecundity mainly increases biomass in late 1970s
+\item Retrospectives -- 2014 cohort looking to be between sizes of 2008 and 2010
+\item Retrospectives -- 2016 cohort looking to be large, though cannot be
+  certain yet
+\ei
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
