@@ -101,7 +101,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \frame{\frametitle{Year in review}
   <<pchangecatch>>=
     pchangecatch <- f(abs(diff(
-      tail(last.5.years.total.catch,2)) / 
+      tail(last.5.years.total.catch,2)) /
       tail(last.5.years.total.catch,2)[1] * 100))
   @
   \bi
@@ -288,16 +288,14 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \frame{\frametitle{Canada bottom depth distribution}
   <<depthca>>=
   par(mfrow = c(1, 2), mar=c(2.2, 3.2, 1.2, 0.2), oma = c(2, 1, 0, 0))
-  usemeherea <- read.csv("../../../data/depth-can-freezer-trawlers.csv")
-  usemehereb <- read.csv("../../../data/depth-can-shoreside.csv")
-  localim <- c(0, max(c(usemeherea$upper95, usemehereb$upper95)) * 1.05)
+  localim <- c(0, max(c(can.ft.bottom.depth$upper95, can.ss.bottom.depth$upper95)) * 1.05)
   makebox(
-    usemeherea[usemeherea$year >= max(usemeherea$year) - 4, ], 
+    can.ft.bottom.depth[can.ft.bottom.depth$year >= max(can.ft.bottom.depth$year) - 4, ],
     main = "Freezer trawlers", col = "colour",
     labels = c("", ""),
     ylim = localim)
   makebox(
-    usemehereb[usemehereb$year >= max(usemehereb$year) - 4, ], 
+    can.ss.bottom.depth[can.ss.bottom.depth$year >= max(can.ss.bottom.depth$year) - 4, ],
     main = "Shoreside", col = "colour",
     labels = c("", ""),
     ylim = localim)
@@ -311,14 +309,12 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \frame{\frametitle{U.S. at-sea catch depth distribution}
   <<depthus>>=
   par(mfrow = c(1, 2), mar=c(2.2, 3.2, 1.2, 0.2), oma = c(2, 1, 0, 0))
-  usemeherea <- read.csv("../../../data/depth-us-atsea-fishing.csv")
-  usemehereb <- read.csv("../../../data/depth-us-atsea-bottom.csv")
   makebox(
-    usemeherea[usemeherea$year >= max(usemeherea$year) - 4, ], 
+    us.atsea.fishing.depth[us.atsea.fishing.depth$year >= max(us.atsea.fishing.depth$year) - 4, ],
     main = "Fishing depth", col = "colour",
     labels = c("", ""))
   makebox(
-    usemehereb[usemehereb$year >= max(usemehereb$year) - 4, ], 
+    us.atsea.bottom.depth[us.atsea.bottom.depth$year >= max(us.atsea.bottom.depth$year) - 4, ],
     main = "Bottom depth", col = "colour",
     labels = c("", ""))
   mtext("Year", side = 1, outer = TRUE, line = -0.6, col = "black")
@@ -427,13 +423,13 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \subsection{Mean weight-at-age by year}
 \frame{\frametitle{New weight-at-age data}
 \bi
-  \item All Canadian weight-at-age data were re-extracted using the R package 
+  \item All Canadian weight-at-age data were re-extracted using the R package
   \emph{\href{https://github.com/pbs-assess/gfplot}{GFPlot}}
-  developed by DFO. 
+  developed by DFO.
   This package allows for reproducible, seamless data extraction
   and integration across several groundfish databases containing Canadian data.
   \item 5,239 missing weights-at-age from the Canadian hake acoustic survey were added. The data were collected during the following years:
-    1992, 2005, 2007, 2014, and 2018. 
+    1992, 2005, 2007, 2014, and 2018.
   \item 136 missing weights-at-age from the Canadian Joint-Venture fishery in 1990 were added, where previously no data were included from the Joint-Venture fishery.
   \item There are no weight-at-age data for the Freezer Trawlers in Canada due to lack of
     scales on board the vessels.

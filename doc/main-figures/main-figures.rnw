@@ -107,8 +107,21 @@ make.catches.plot(catches, leg.y.loc = 550)
 %% JOINED ON PAGE
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{center}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishDepthsUS}
+%\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+%\includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishDepthsUS}
+<<main.us.fishery.depths>>=
+  par(mfrow = c(1, 2), mar=c(2.2, 3.2, 1.2, 0.2), oma = c(2, 1, 0, 0))
+  makebox(
+    us.atsea.fishing.depth[us.atsea.fishing.depth$year >= max(us.atsea.fishing.depth$year) - 4, ],
+    main = "Fishing depth", col = "colour",
+    labels = c("", ""))
+  makebox(
+    us.atsea.bottom.depth[us.atsea.bottom.depth$year >= max(us.atsea.bottom.depth$year) - 4, ],
+    main = "Bottom depth", col = "colour",
+    labels = c("", ""))
+  mtext("Year", side = 1, outer = TRUE, line = -0.6, col = "black")
+  mtext("Depth (m)", side = 2, outer = TRUE, line = -0.5, col = "black")
+@
 \end{center}
 \caption{Distribution of fishing depths (left) and bottom depths (right), in fathoms, of \fishname\ catches in the U.S. at-sea fleet from 2014--\Sexpr{last.data.yr}.}
 \label{fig:main-us-at-sea-depths}

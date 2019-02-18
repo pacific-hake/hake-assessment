@@ -19,6 +19,8 @@ kriging.parameters.file <- "kriging-parameters.csv"
 can.age.file <- "can-age-data.csv"
 can.ft.catch.by.month.file <- "can-ft-catch-by-month.csv"
 can.ss.catch.by.month.file <- "can-ss-catch-by-month.csv"
+can.ft.bottom.depth.file <- "depth-can-freezer-trawlers.csv"
+can.ss.bottom.depth.file <- "depth-can-shoreside.csv"
 
 ## US-specific data
 ## The following are used for cumulative catch plot in the data/fisheries presentation, not the assessment document
@@ -31,6 +33,8 @@ us.ap.catch.file <- "us-ap-catch.csv"
 us.shore.age.data.file <- "us-shore-age-data.csv"
 us.cp.age.data.file <- "us-cp-age-data.csv"
 us.ms.age.data.file <- "us-ms-age-data.csv"
+us.atsea.bottom.depth.file <- "depth-us-atsea-bottom.csv"
+us.atsea.fishing.depth.file <- "depth-us-atsea-fishing.csv"
 
 cat("Loading all data tables (csv files) from ", rootd.data, "\n")
 catches <- load.catches(file.path(rootd.data, catch.data.file))
@@ -65,6 +69,12 @@ us.shore.age <- load.us.age.data(file.path(rootd.data, us.shore.age.data.file))
 us.cp.age <- load.us.age.data(file.path(rootd.data, us.cp.age.data.file))
 us.ms.age <- load.us.age.data(file.path(rootd.data, us.ms.age.data.file))
 cat("All data tables have been loaded ", rootd.data, "\n")
+
+## For depth plots
+can.ft.bottom.depth <- read.csv(file.path(rootd.data, can.ft.bottom.depth.file), stringsAsFactors = FALSE)
+can.ss.bottom.depth <- read.csv(file.path(rootd.data, can.ss.bottom.depth.file), stringsAsFactors = FALSE)
+us.atsea.fishing.depth <- read.csv(file.path(rootd.data, us.atsea.fishing.depth.file), stringsAsFactors = FALSE)
+us.atsea.bottom.depth <- read.csv(file.path(rootd.data, us.atsea.bottom.depth.file), stringsAsFactors = FALSE)
 
 ##------------------------------------------------------------------------------
 ## Output data tables
