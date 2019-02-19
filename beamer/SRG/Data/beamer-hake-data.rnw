@@ -151,10 +151,10 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     \ei
   \end{column}
   \begin{column}{0.6\linewidth}
-    \includegraphics[width=\maxwidth, height=3in]{../../../beamer/SRG/Data/data_overview_map-1_backup}
-%%    <<data.overview.map, out.width='3.5in', out.width='0.9\\columnwidth'>>=
-%%      make.data.overview.plot(base.model)
-%%    @
+%%    \includegraphics[width=\maxwidth, height=3in]{../../../beamer/SRG/Data/data_overview_map-1_backup}
+    <<data.overview.map, out.width='2.9in', out.height = '3.3in',out.width='1.0\\columnwidth'>>=
+      make.data.overview.plot(base.model)
+    @
   \end{column}
 \end{columns}
 }
