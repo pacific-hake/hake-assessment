@@ -580,15 +580,19 @@ At the start of \Sexpr{assess.yr} (from Table 21, page 93):\\
 %----------------------------------------------------------
 
 \frame{\frametitle{Numbers-at-age (billions)}
-  Red line is mean age for the year
 \begin{columns}
   \begin{column}{0.5\textwidth}
-  \vspace{-10pt}
-  \bc
-  <<main.numbers.at.age, fig.height=12, fig.width=10,out.width='0.8\\columnwidth'>>=
-    make.numbers.at.age.plot(base.model)
-  @
-  \ec
+    \bi
+      \item Red line is mean age for the year
+    \ei
+  \end{column}
+  \begin{column}{0.5\textwidth}
+    \vspace{-10pt}
+    \bc
+      <<main.numbers.at.age, fig.height=12, fig.width=10,out.width='0.8\\columnwidth'>>=
+      make.numbers.at.age.plot(base.model)
+      @
+    \ec
   \end{column}
 \end{columns}
 }
@@ -729,8 +733,7 @@ year's assessment,\\
   \ei
 }
 
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response:} \emph{Pre-1975 weights-at-age}}
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations}
   \begin{figure}[H]
     \begin{center}
       \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
@@ -739,8 +742,7 @@ year's assessment,\\
   \end{figure}
 }
 
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response:} \emph{Pre-1975 weights-at-age}}
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations}
   \begin{figure}[H]
     \begin{center}
       \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
