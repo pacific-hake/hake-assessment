@@ -106,8 +106,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   @
   \bi
     \item March \Sexpr{last.assess.yr} the JMC set an adjusted TAC = \Sexpr{last.year.tac} t.
-    %% \item May \Sexpr{last.assess.yr}: JMC meeting: JTC presented MSE simulation results looking at age-1 index and age 2+ survey precision.
-    \item U.S. and Canadian fisheries predominantly started in May and April, respectively.
+    \item Canadian and U.S. fisheries predominantly started in April and May, respectively.
     \item Second-highest coastwide catch ever, \Sexpr{pchangecatch}\% decrease from last year.
     \item A Canadian Joint-Venture fishery operated from August 21 to September 15.
     \item Highest proportion-at-age by sector
@@ -118,7 +117,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       \ei
     \item Bycatch avoidance was problematic for all sectors.
     \item At the Dec. JTC meeting - in general, all stakeholders reported good fishing conditions in \Sexpr{last.assess.yr}.
-    %% \item Summer 2017 acoustic survey biomass estimate was 1.418 million tons (decline of 34\% from 2015 survey).
+    %% \item Summer 2017 acoustic survey biomass estimate was 1.418 million tons (decline of 34\% from 2015 survey). **todo2020: automate these numbers
   \ei
 }
 
@@ -126,34 +125,34 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 \subsection{Summary of data sources used}
 \frame{\frametitle{Summary of data sources used}
-\begin{columns}
+\begin{columns}[t]
   \begin{column}{0.4\linewidth}
-    \bi
-      \item Fishery-independent data
-      \bi
-        \item Acoustic survey (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr})
-        \bi
-          \item Biomass index
-          \item Age compositions
-        \ei
-      \ei
-      \item Fishery-dependent data
+      Fishery-dependent data
       \bi
         \item Annual catch (\Sexpr{start.yr}--\Sexpr{end.yr - 1})
         \item Age compositions (1975--\Sexpr{end.yr - 1})
       \ei
-      \item Externally derived inputs
+      Acoustic survey (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr})
+      \bi
+        \item Biomass index
+        \item Age compositions
+      \ei
+      Externally derived inputs
       \bi
         \item Weight-at-age (1975--\Sexpr{end.yr - 1}, survey \& fishery combined)
-        \item Ageing imprecision (from double \& blind reads)
-        \item Maturity schedule (NWFSC, 2017)
+        \item Ageing imprecision (double \& blind reads)
+        \item Maturity ogive (NWFSC, 2017)
       \ei
-    \ei
   \end{column}
   \begin{column}{0.6\linewidth}
 %%    \includegraphics[width=\maxwidth, height=3in]{../../../beamer/SRG/Data/data_overview_map-1_backup}
-    <<data.overview.map, out.width='2.9in', out.height = '3.3in',out.width='1.0\\columnwidth'>>=
-      make.data.overview.plot(base.model)
+    <<data.overview.map, out.width='2.9in', out.height = '3.4in',out.width='1.0\\columnwidth'>>=
+      oldpar <- par()
+      par(mgp = c(2, 0.5, 0))
+      make.data.overview.plot(base.model, 
+        fleetname = c("Fishery", "Acoustic\nSurvey"),
+        margins = c(5.1, 3, 0, 4))
+      par(mgp = oldpar$mgp)
     @
   \end{column}
 \end{columns}
@@ -163,11 +162,13 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 \section[Catches]{Catches}
 \subsection{Catch history}
-\frame{\frametitle{Catches}
+\frame[t]{\frametitle{Catches}
+ \vspace{-4mm}
  \begin{figure}
  \centering
-  <<catches, fig.height=4.8, fig.width=8, out.width='0.82\\columnwidth'>>=
-    make.catches.plot(catches, leg.y.loc = 550, leg.cex = 0.7)
+  <<catches, fig.height=4.8, fig.width=8, out.width='0.9\\columnwidth'>>=
+    make.catches.plot(catches, leg.y.loc = 550, leg.cex = 0.7,
+      mar = c(4, 4, 3.25, 0.5))
   @
 \end{figure}
 }
@@ -193,7 +194,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       \item Research and bycatch -- \Sexpr{f(last.year.us.research)} t
       \item Tribal               -- Reallocated to \Sexpr{f(last.year.us.tribal.quota.reallocated)} t on \Sexpr{last.year.us.tribal.reallocate.dates} (Originally \Sexpr{f(last.year.us.tribal)} t)
       \item Shorebased           -- \Sexpr{f(last.year.us.shore.quota.reallocated)} t
-      \item Catcher-Processor    -- \Sexpr{f(last.year.us.cp.quota.reallocated)} t
+      \item Catcher Processor    -- \Sexpr{f(last.year.us.cp.quota.reallocated)} t
       \item Mothership           -- \Sexpr{f(last.year.us.ms.quota.reallocated)} t
   \ei
     \end{column}
@@ -226,7 +227,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
         \item Total U.S. catch -- \Sexpr{last.year.us.landings} t
           \bi
             %\item Research            -- \Sexpr{f(last.year.us.research.catch)} t    (\Sexpr{paste0(last.year.us.research.catch.percent, "\\%")})
-            \item Catcher-Processor  -- \Sexpr{f(last.year.us.cp.catch)} t          (\Sexpr{paste0(last.year.us.cp.catch.percent, "\\%")})
+            \item Catcher Processor  -- \Sexpr{f(last.year.us.cp.catch)} t          (\Sexpr{paste0(last.year.us.cp.catch.percent, "\\%")})
             \item Mothership          -- \Sexpr{f(last.year.us.ms.catch)} t          (\Sexpr{paste0(last.year.us.ms.catch.percent, "\\%")})
             \item Shorebased         -- \Sexpr{f(last.year.us.shore.catch)} t       (\Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")})
             \bi
@@ -343,7 +344,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       mgp = c(1, 0.6, 0))
     layout(matrix(c(1,2,3,4,5), nrow = 1, ncol = 5, byrow=TRUE))
     make.age.comp.plot(can.shore.age, bg.col = "brown", title = "CAN\nShoreside")
-    make.age.comp.plot(can.ft.age, bg.col = "salmon", title = "CAN\nFreezer-Trawler")
+    make.age.comp.plot(can.ft.age, bg.col = "salmon", title = "CAN\nFreezer Trawler")
     make.age.comp.plot(us.shore.age.tmp, bg.col = "blue", title = "U.S.\nShorebased")
     make.age.comp.plot(us.cp.age.tmp, bg.col = "royalblue", title = "U.S.\nCP")
     make.age.comp.plot(us.ms.age.tmp, bg.col = "darkblue", title = "U.S.\nMS")
@@ -546,7 +547,9 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
               which includes this).
         \item Length / sex frequencies from the acoustic survey.
         \item Bottom trawl survey data.
-        \item Juvenile and pre-recruit surveys from SWFSC and PWCC.
+        \item Juvenile and pre-recruit surveys from the 
+              Southwest Fisheries Science Center and 
+              Pacific Whiting Conservation Cooperative.
       \ei
     \item Fishery dependent
       \bi
