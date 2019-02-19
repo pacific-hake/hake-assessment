@@ -113,7 +113,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     \item Highest proportion-at-age by sector
       \bi
         \item Age-2 fish in U.S. Catcher-Processor sector;
-        \item Age-4 fish in U.S. Mothership and U.S. Shoreside sectors; and
+        \item Age-4 fish in U.S. Mothership and U.S. Shorebased sectors; and
         \item Age-8 fish in Canadian sectors.
       \ei
     \item Bycatch avoidance was problematic for all sectors.
@@ -483,7 +483,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
           \bi
             \item Bottom trawl survey (2009, 2012 -- 2017)
             \item Acoustic survey (2012 -- 2013, 2015 -- 2017)
-            \item At-sea fishery vessels (2013 -- 2017)
+            \item At-sea fishery (2013 -- 2017)
           \ei
         \item Length stratified sampling from surveys with target numbers for 2 cm length bins
         \item Collected 90 testes from bottom trawl and acoustic surveys in 2018
@@ -527,7 +527,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       \bi
         \item Batch spawning.
         \item Links between fecundity and size, age, and weight.
-        \item How these provide further information about factors that influence time-varying reproductive output.
+        \item How the above topics provide further information about factors that influence time-varying reproductive output.
       \ei
     \item More winter acoustic surveys may provide further information about these questions.
   \ei
