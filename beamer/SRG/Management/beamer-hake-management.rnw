@@ -253,8 +253,8 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
         conditioned on fixed catch in previous year}
       \item g. Median default Harvest Rule in each year conditioned on
         fixed catch in previous year
-      \item \textcolor{gray}{h. Median catch in 2019 is the same as
-        fixed catch in 2018}
+      \item \textcolor{gray}{h. Median catch in 2020 is the same as
+        fixed catch in 2019}
     \ei
     \item More catch streams can be added as determined by SRG/AP/JMC
   \ei
