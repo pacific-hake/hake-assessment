@@ -838,7 +838,8 @@ effective sample size is dependent on how well the model expectation matches
 the observed values. Typically, this process involves no more
 than four to five iterations.
 
-Composition data can also be weighted using the Francis method \citep{Francis2011},
+Composition data can also be weighted using the Francis method 
+(T2.6 in Table 2 of \citealp{Francis2011}),
 which is based on variability in the observed ages by year.
 This method, like the McAllister-Ianelli method, is also iterative,
 where the sample sizes are adjusted such that the fit of the expected
