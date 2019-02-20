@@ -43,4 +43,5 @@ catch.tac.ind <- 6
 catch.spr100.ind <- 7
 catch.default.policy.ind <- 8
 catch.stable.ind <- 9
-catch.constant.str <- "a, b, c, d, e, f"
+catch.constant.rows <- 1:6
+catch.constant.str <- paste(letters[catch.constant.rows], collapse = ", ")
