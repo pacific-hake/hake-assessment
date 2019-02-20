@@ -552,7 +552,6 @@ run.forecasts <- function(model,
   mcmc.path <- model$mcmcpath
 
   ## Calculate and add on model-custom catch levels
-  mcmc.path <- model$mcmcpath
   catch.levels.path <- file.path(mcmc.path, "catch-levels")
   if(!dir.exists(catch.levels.path)){
     calc.catch.levels(model,
