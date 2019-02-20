@@ -190,7 +190,7 @@ make.survey.age1.plot(age.1.index,
 \begin{figure}[H]
 \begin{center}
 <<maturity.ogive.figure, fig.height=7.5, fig.width=7.5>>=
-maturity.ogive.figure(model = base.model, useyears = 1975:last.data.yr)
+maturity.ogive.figure(model = base.model, useyears = 1966)
 @
 \end{center}
 \caption{Fraction of fish that are mature at each age north and south of
