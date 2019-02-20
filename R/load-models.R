@@ -1338,6 +1338,15 @@ create.rdata.file <- function(
   model <- load.ss.files(model.dir,
                          ss.version = ss.version)
 
+  model$retropath <- file.path(model$path, "retrospectives")
+  if(run.retros){
+    run.retrospectives(model,
+                       yrs = my.retro.yrs,
+                       exe.file.name = exe.file.name,
+                       starter.file.name = starter.file.name,
+                       forecast.file.name = forecast.file.name,
+                       weight.at.age.file.name = weight.at.age.file.name,
+                       verbose = verbose)
   if(dir.exists(model$mcmcpath)){
     if(run.fore){
       run.forecasts(model,
@@ -1349,16 +1358,7 @@ create.rdata.file <- function(
       model$extra.mcmc.path = file.path(model$path, "extra-mcmc")
       run.extra.mcmc.models(model, verbose = verbose)
     }
-    model$retropath <- file.path(model$path, "retrospectives")
-    if(run.retros){
-      run.retrospectives(model,
-                         yrs = my.retro.yrs,
-                         exe.file.name = exe.file.name,
-                         starter.file.name = starter.file.name,
-                         forecast.file.name = forecast.file.name,
-                         weight.at.age.file.name = weight.at.age.file.name,
-                         verbose = verbose)
-    }
+  }
 
     ##----------------------------------------------------------------------------
     ## Load forecasts.  If none are found or there is a problem, model$forecasts
