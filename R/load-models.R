@@ -1337,7 +1337,6 @@ create.rdata.file <- function(
   ##  has to be built from scratch
   model <- load.ss.files(model.dir,
                          ss.version = ss.version)
-  browser()
 
   model$retropath <- file.path(model$path, "retrospectives")
   if(run.retros){
