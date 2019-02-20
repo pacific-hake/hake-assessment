@@ -169,7 +169,9 @@ make.forecast.risk.comparison.plot <- function(model,        ## model is the mod
   # add x-axis
   axis(1, at=catches, cex.axis=0.9, las=2)
   # add plot with points (now on top of axes)
-  matplot(catches, prob.dat,
+
+  matplot(catches,
+          prob.dat,
           add=TRUE,
           type="b",
           lty=2,

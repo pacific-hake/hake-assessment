@@ -316,6 +316,7 @@ fetch.catch.levels <- function(model,
                                stable.catch.path = "stable-catch"){
   ## Assumes calc.catch.levels() has been run and the forecast files
   ##  are populated with 3 forecast years.
+  ## Assumes the catch.levels list has as its last three elements the 3 in order listed below.
   ## Return a list of 3-element lists of vectors of 3 catch levels corresponding to:
   ## a) SPR-100%
   ## b) Default harvest policy
@@ -335,7 +336,8 @@ fetch.catch.levels <- function(model,
                           nseas = 1,
                           verbose = FALSE)
 
-  catch.levels[[6]][[1]] <- fore$ForeCatch$Catch_or_F
+  ind <- length(catch.levels) - 2
+  catch.levels[[ind]][[1]] <- fore$ForeCatch$Catch_or_F
 
   forecast.file <- file.path(default.hr.path, "forecast.ss")
   fore <- SS_readforecast(forecast.file,
@@ -343,7 +345,8 @@ fetch.catch.levels <- function(model,
                           Nareas = 1,
                           nseas = 1,
                           verbose = FALSE)
-  catch.levels[[7]][[1]] <- fore$ForeCatch$Catch_or_F
+  ind <- ind + 1
+  catch.levels[[ind]][[1]] <- fore$ForeCatch$Catch_or_F
 
   forecast.file <- file.path(stable.catch.path, "forecast.ss")
   fore <- SS_readforecast(forecast.file,
@@ -351,7 +354,8 @@ fetch.catch.levels <- function(model,
                           Nareas = 1,
                           nseas = 1,
                           verbose = FALSE)
-  catch.levels[[8]][[1]] <- fore$ForeCatch$Catch_or_F
+  ind <- ind + 1
+  catch.levels[[ind]][[1]] <- fore$ForeCatch$Catch_or_F
 
   catch.levels
 }
@@ -431,7 +435,6 @@ calc.catch.levels <- function(model,
   }
 
   ## SPR 100
-  tol <- 0.00005
   forecast.file <- file.path(spr.100.path, "forecast.ss")
   spr.100.catch <- vector(length = length(forecast.yrs), mode = "numeric")
   for(i in 1:length(forecast.yrs)){
@@ -516,6 +519,7 @@ calc.catch.levels <- function(model,
     shell.command <- paste0("cd ", stable.catch.path, " & ss3 -mceval")
     shell(shell.command)
   }
+
   fore <- SS_readforecast(forecast.file,
                           Nfleets = 1,
                           Nareas = 1,
@@ -587,6 +591,7 @@ run.forecasts <- function(model,
                                    Seas = 1,
                                    Fleet = 1,
                                    Catch_or_F = catch.levels[,level.ind][1:i])
+
       SS_writeforecast(fore, dir = new.forecast.dir, overwrite = TRUE, verbose = FALSE)
 
       ## Evaluate the model using mceval option of ADMB, and retrieve the output
@@ -689,7 +694,6 @@ calc.risk <- function(forecast.outputs, ## A list of length = number of forecast
       return(NA)
     }
   }
-  curr.func.name <- get.curr.func.name()
 
   metric <- function(case.ind, x, yr, yr.ind){
     out <- NULL
@@ -715,6 +719,7 @@ calc.risk <- function(forecast.outputs, ## A list of length = number of forecast
                     paste0("SSB_", yr, ">SSB_MSY"),
                     paste0("SSB_", yr, ">0.4SSB_MSY"),
                     paste0("SSB_", yr, ">0.8SSB_MSY"))
+
     out
   }
   risk.list <- vector(mode = "list", length = length(forecast.yrs) - 1)
@@ -737,6 +742,7 @@ calc.risk <- function(forecast.outputs, ## A list of length = number of forecast
     })
   }
   names(risk.list) <- names(forecast.outputs[1:(length(forecast.outputs)-1)])
+
   return(risk.list)
 }
 
