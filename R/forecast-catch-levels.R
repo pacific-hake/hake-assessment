@@ -2,7 +2,7 @@
 ## The forecasting yrs and probs can be set to whatever is required, the
 ##  code is set up to automatically accomodate changes
 ## -----------------------------------------------------------------------------
-forecast.yrs <- end.yr:(end.yr + 3)
+forecast.yrs <- end.yr:(end.yr + 2)
 forecast.probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 
 ## -----------------------------------------------------------------------------
@@ -27,15 +27,16 @@ catch.levels <-
        list(rep(180000, length(forecast.yrs)), "180,000 t", "02-180000"),
        list(rep(350000, length(forecast.yrs)), "350,000 t", "03-350000"),
        list(rep(410000, length(forecast.yrs)), "2018 catch: 410,000 t", "04-410000"),
-       list(rep(597500, length(forecast.yrs)), "2018 TAC: 597,500 t", "05-597500"),
-       list(rep(NA, length(forecast.yrs)), "FI=100%", "06-spr-100"),
-       list(rep(NA, length(forecast.yrs)), "Default Harvest Policy", "07-default-hr"),
-       list(rep(NA, length(forecast.yrs)), "Stable Catch", "08-stable-catch"))
+       list(rep(500000, length(forecast.yrs)), "500,000 t", "05-500000"),
+       list(rep(597500, length(forecast.yrs)), "2018 TAC: 597,500 t", "06-597500"),
+       list(rep(NA, length(forecast.yrs)), "FI=100%", "07-spr-100"),
+       list(rep(NA, length(forecast.yrs)), "Default Harvest Policy", "08-default-hr"),
+       list(rep(NA, length(forecast.yrs)), "Stable Catch", "09-stable-catch"))
 
 ## -----------------------------------------------------------------------------
 ## Indices for the forecasts list, which list items above are the TAC case and
 ##  default policy case
 ## This is used in the one-page summary and a plot comparing several catch cases
 ## -----------------------------------------------------------------------------
-catch.tac.ind <- 5
-catch.default.policy.ind <- 7
+catch.tac.ind <- 6
+catch.default.policy.ind <- 8
