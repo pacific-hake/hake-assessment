@@ -1337,6 +1337,7 @@ create.rdata.file <- function(
   ##  has to be built from scratch
   model <- load.ss.files(model.dir,
                          ss.version = ss.version)
+  browser()
 
   model$retropath <- file.path(model$path, "retrospectives")
   if(run.retros){
@@ -1347,6 +1348,7 @@ create.rdata.file <- function(
                        forecast.file.name = forecast.file.name,
                        weight.at.age.file.name = weight.at.age.file.name,
                        verbose = verbose)
+  }
   if(dir.exists(model$mcmcpath)){
     if(run.fore){
       run.forecasts(model,
@@ -1406,7 +1408,6 @@ create.rdata.file <- function(
       model$extra.mcmc <- NA
     }
     ##----------------------------------------------------------------------------
-  }
 
   ## Save the model as an RData file
   save(model, file = rdata.file)
