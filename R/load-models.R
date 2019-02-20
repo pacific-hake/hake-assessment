@@ -552,9 +552,14 @@ run.forecasts <- function(model,
   mcmc.path <- model$mcmcpath
 
   ## Calculate and add on model-custom catch levels
-  calc.catch.levels(model,
-                    forecast.yrs,
-                    catch.levels)
+  mcmc.path <- model$mcmcpath
+  catch.levels.path <- file.path(mcmc.path, "catch-levels")
+  if(!dir.exists(catch.levels.path)){
+    calc.catch.levels(model,
+                      forecast.yrs,
+                      catch.levels,
+                      catch.levels.path = "catch-levels")
+  }
   catch.levels <- fetch.catch.levels(model, catch.levels)
 
   ## Extract the catch level names from the list into a vector

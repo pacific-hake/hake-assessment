@@ -40,6 +40,3 @@ catch.levels <-
 ## -----------------------------------------------------------------------------
 catch.tac.ind <- 6
 catch.default.policy.ind <- 8
-catch.custom.levels.inds <- c(catch.tac.ind + 1,
-                              catch.tac.ind + 2,
-                              catch.tac.ind + 3)
