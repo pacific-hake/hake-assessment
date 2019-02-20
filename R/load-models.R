@@ -1347,6 +1347,7 @@ create.rdata.file <- function(
                        forecast.file.name = forecast.file.name,
                        weight.at.age.file.name = weight.at.age.file.name,
                        verbose = verbose)
+  }
   if(dir.exists(model$mcmcpath)){
     if(run.fore){
       run.forecasts(model,
@@ -1406,7 +1407,6 @@ create.rdata.file <- function(
       model$extra.mcmc <- NA
     }
     ##----------------------------------------------------------------------------
-  }
 
   ## Save the model as an RData file
   save(model, file = rdata.file)
