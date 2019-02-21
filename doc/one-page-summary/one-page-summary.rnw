@@ -37,7 +37,8 @@ from last year); in Canada it was
 (\Sexpr{paste0(ifelse(last.2year.can.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.can.attained.diff))}\%
 from last year).
 
-  \item The stock is estimated to have been at relatively high levels since
+  \item The stock is estimated to have been at a minimum of 
+  \Sexpr{f(min(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% 2013:end.yr]) * 100)}\% of $B_0$ since
     2013 due to large estimated 2010 and 2014 cohorts.
 
   \item The median estimate of the \Sexpr{end.yr} relative spawning biomass
