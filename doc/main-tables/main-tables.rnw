@@ -281,6 +281,31 @@ make.parameters.estimated.summary.table(
   space.size = 12)
 @
 
+
+<<main.parameter.estimates.retro, results='asis', echo=FALSE>>=
+make.short.parameter.estimates.sens.table(retro.list,
+                                          model.names = retro.model.names,
+                                          posterior.regex = key.posteriors,
+                                          end.yr = end.yr,
+                                          age.1 = FALSE,
+                                          digits = 3,
+                                          xcaption = paste0("Select parameters, derived quantities, reference point estimates, and negative log likelihoods for retrospective analyses using the MLE estimates from the base model. Some values are implied since they occur after the ending year of the respective retrospective analysis."),
+                                          xlabel = "tab:main-parameter-estimates-retro",
+                                          font.size = 10,
+                                          space.size = 12)
+@
+
+<<main.assessment.changes.table, results='asis', echo=FALSE>>=
+make.assessment.changes.table(assessment.changes,
+  xcaption = paste0("Annual changes in the modeling framework used to assess ",
+  "\\fishname\\ since 2011. ",
+  "The bias adjustment is reported as the maximum used for each assessment. ",
+  "Methods used to weight the age-composition data (Comp Method), i.e., ",
+  "McAllister-Ianelli (MI) and Dirichlet-Multinomial (DM) approaches, are explained in ",
+  "the main text."),
+  xlabel = "tab:main-assessment-changes")
+@
+
 <<main.median.posterior.table, results='asis', echo=FALSE>>=
 make.median.posterior.table(
   base.model,
@@ -607,31 +632,6 @@ make.short.parameter.estimates.sens.table(sens.models.3.for.table,
 \restoregeometry
 \pagestyle{fancy}
 
-
-
-<<main.parameter.estimates.retro, results='asis', echo=FALSE>>=
-make.short.parameter.estimates.sens.table(retro.list,
-                                          model.names = retro.model.names,
-                                          posterior.regex = key.posteriors,
-                                          end.yr = end.yr,
-                                          age.1 = FALSE,
-                                          digits = 3,
-                                          xcaption = paste0("Select parameters, derived quantities, reference point estimates, and negative log likelihoods for retrospective analyses using the MLE estimates from the base model. Some values are implied since they occur after the ending year of the respective retrospective analysis."),
-                                          xlabel = "tab:main-parameter-estimates-retro",
-                                          font.size = 10,
-                                          space.size = 12)
-@
-
-<<main.assessment.changes.table, results='asis', echo=FALSE>>=
-make.assessment.changes.table(assessment.changes,
-  xcaption = paste0("Annual changes in the modeling framework used to assess ",
-  "\\fishname\\ since 2011. ",
-  "The bias adjustment is reported as the maximum used for each assessment. ",
-  "Methods used to weight the age-composition data (Comp Method), i.e., ",
-  "McAllister-Ianelli (MI) and Dirichlet-Multinomial (DM) approaches, are explained in ",
-  "the main text."),
-  xlabel = "tab:main-assessment-changes")
-@
 
 % Ugly, but wanted to get it in quickly.
 % Don't think we need to specify 'fecundity when varying' in only one column -
