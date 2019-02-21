@@ -871,8 +871,8 @@ Yet the 2014 year class remains the fifth largest estimated recruitment, albeit
 with large uncertainty (Table~\ref{tab:main-ci-posterior} and
 Figure~\ref{fig:main-recruitment}).  The median estimate for the 2016 year class
 is \Sexpr{recruitment.med.in.2016}~billion fish (with a 95\% posterior credibility interval
-from 0.746--26.085 billion fish; Table~\ref{tab:main-median-posterior} and
-Table~\ref{tab:main-ci-posterior}).
+from 0.746--26.085 billion fish; Tables~\ref{tab:main-median-posterior} and
+\ref{tab:main-ci-posterior}).
 
 The model currently estimates small 2011, 2013, and 2015 year classes (median
 recruitment below the mean of all median recruitments) and a slightly above
@@ -992,12 +992,10 @@ the 2008, 2010, and 2014 recruitments and, correspondingly, relative fishing
 intensity fell well below targets. Relative spawning biomass has been
 above the target since \Sexpr{median.relative.bio.above.target.since}. While
 there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative fishing
-intensity and relative spawning biomass, the model predicts a less than 10\%
+intensity and relative spawning biomass, the model estimates a \Sexpr{joint.percent.prob.above.below}\%
 joint probability of being both above the target relative fishing intensity in
 \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at the
 start of \Sexpr{end.yr}.
-% This is the joint probability:
-%sum(base.model$mcmc[paste0("Bratio_", assess.yr)] <0.4 & base.model$mcmc[paste0("SPRratio_",assess.yr - 1)] > 1) /nrow(base.model$mcmc)
 
 \subsection{Model uncertainty}\label{sec:assessment-model-uncertainty}
  % Manual 2018 done
@@ -1376,7 +1374,7 @@ The Dirichlet-Multinomial method
 estimated higher weights on the age compositions but
 generally very similar results to the McAllister-Ianelli method.
 The McAllister-Ianelli method led to increased uncertainty in estimates of
-early recruitments compared to other weighting methods 
+early recruitments compared to other weighting methods
 (Figure~\ref{fig:main-recruit-base-alternative-2}).
 The Francis method increased the weighting of the fishery
 composition data resulting in a similar time series of biomass, though
@@ -1426,8 +1424,8 @@ The following two types of alternative setups for selectivity were explored in s
 analyses: alternative values of the $\Phi$ parameter
 controlling the degree of flexibility of annual variation in the
 fishery selectivity and an alternative ``semi-parametric''
-parameterization of the time-varying selectivity 
-(Figures~\ref{fig:main-biomass-base-alternative-4}-\ref{fig:main-index-base-alternative-4}). 
+parameterization of the time-varying selectivity
+(Figures~\ref{fig:main-biomass-base-alternative-4}-\ref{fig:main-index-base-alternative-4}).
 The methods and results of each will be described in turn.
 
 % Removed by KFJ in 2019
@@ -1545,7 +1543,7 @@ hopes that the semi-parametric setup could be further explored in the year
 ahead for potential inclusion in a future assessments.
 
 Sensitivity runs concerning weight-at-age and fecundity are discussed in
-Sections~\ref{sec:assessment-fecundity-recap} and~\ref{sec:assessment-sensitivity-fecundity}.
+Sections~\ref{sec:assessment-fecundity-recap} and~\ref{sec:assessment-sensitivity-fecundity} (Table~\ref{tab:main-parameter-estimates-sens-3}).
 Any additional sensitivity runs arising from the Scientific Review Group
 meeting to be held from 19th February to 22nd February 2019 will be documented
 in Appendix~\ref{chap:srg-requests} and briefly summarized here.

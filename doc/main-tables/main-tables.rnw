@@ -281,29 +281,29 @@ make.parameters.estimated.summary.table(
   space.size = 12)
 @
 
-<<main.median.posterior.table, results='asis', echo=FALSE>>=
-make.median.posterior.table(
-  base.model,
-  start.yr = start.yr,
-  end.yr = end.yr,
-  digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
-  csv.dir = output.csv.dir,
-  xcaption = paste0("Time-series of median posterior population estimates from the base model. Relative spawning biomass is spawning biomass relative to the unfished equilibrium ($\\Bzero$). Total biomass includes females and males of all ages ages 0 and above. Age-2+ biomass includes females and males ages 2 and above. Exploitation fraction is total catch divided by total age-2+ biomass. Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%})."),
-  xlabel = "tab:main-median-posterior",
-  font.size = 8,
-  space.size = 10)
+
+<<main.parameter.estimates.retro, results='asis', echo=FALSE>>=
+make.short.parameter.estimates.sens.table(retro.list,
+                                          model.names = retro.model.names,
+                                          posterior.regex = key.posteriors,
+                                          end.yr = end.yr,
+                                          age.1 = FALSE,
+                                          digits = 3,
+                                          xcaption = paste0("Select parameters, derived quantities, reference point estimates, and negative log likelihoods for retrospective analyses using the MLE estimates from the base model. Some values are implied since they occur after the ending year of the respective retrospective analysis."),
+                                          xlabel = "tab:main-parameter-estimates-retro",
+                                          font.size = 10,
+                                          space.size = 12)
 @
 
-<<main.ci.posterior.table, results='asis', echo=FALSE>>=
-make.ci.posterior.table(
-  base.model,
-  start.yr = start.yr,
-  end.yr = end.yr,
-  digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
-  xcaption = paste0("Time-series of 95\\% posterior credibility intervals for the quantities shown in Table \\ref{tab:main-median-posterior}."),
-  xlabel = "tab:main-ci-posterior",
-  font.size = 8,
-  space.size = 10)
+<<main.assessment.changes.table, results='asis', echo=FALSE>>=
+make.assessment.changes.table(assessment.changes,
+  xcaption = paste0("Annual changes in the modeling framework used to assess ",
+  "\\fishname\\ since 2011. ",
+  "The bias adjustment is reported as the maximum used for each assessment. ",
+  "Methods used to weight the age-composition data (Comp Method), i.e., ",
+  "McAllister-Ianelli (MI) and Dirichlet-Multinomial (DM) approaches, are explained in ",
+  "the main text."),
+  xlabel = "tab:main-assessment-changes")
 @
 
 <<main.est.numbers.at.age.table, results='asis', echo=FALSE>>=
@@ -451,6 +451,31 @@ make.cohort.table(base.model,
 \restoregeometry
 \pagestyle{fancy}
 \clearpage
+
+<<main.median.posterior.table, results='asis', echo=FALSE>>=
+make.median.posterior.table(
+  base.model,
+  start.yr = start.yr,
+  end.yr = end.yr,
+  digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
+  csv.dir = output.csv.dir,
+  xcaption = paste0("Time-series of median posterior population estimates from the base model. Relative spawning biomass is spawning biomass relative to the unfished equilibrium ($\\Bzero$). Total biomass includes females and males of all ages ages 0 and above. Age-2+ biomass includes females and males ages 2 and above. Exploitation fraction is total catch divided by total age-2+ biomass. Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%})."),
+  xlabel = "tab:main-median-posterior",
+  font.size = 8,
+  space.size = 10)
+@
+
+<<main.ci.posterior.table, results='asis', echo=FALSE>>=
+make.ci.posterior.table(
+  base.model,
+  start.yr = start.yr,
+  end.yr = end.yr,
+  digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
+  xcaption = paste0("Time-series of 95\\% posterior credibility intervals for the quantities shown in Table \\ref{tab:main-median-posterior}."),
+  xlabel = "tab:main-ci-posterior",
+  font.size = 8,
+  space.size = 10)
+@
 
 <<main.parameter.estimates, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.table(
@@ -607,31 +632,6 @@ make.short.parameter.estimates.sens.table(sens.models.3.for.table,
 \restoregeometry
 \pagestyle{fancy}
 
-
-
-<<main.parameter.estimates.retro, results='asis', echo=FALSE>>=
-make.short.parameter.estimates.sens.table(retro.list,
-                                          model.names = retro.model.names,
-                                          posterior.regex = key.posteriors,
-                                          end.yr = end.yr,
-                                          age.1 = FALSE,
-                                          digits = 3,
-                                          xcaption = paste0("Select parameters, derived quantities, reference point estimates, and negative log likelihoods for retrospective analyses using the MLE estimates from the base model. Some values are implied since they occur after the ending year of the respective retrospective analysis."),
-                                          xlabel = "tab:main-parameter-estimates-retro",
-                                          font.size = 10,
-                                          space.size = 12)
-@
-
-<<main.assessment.changes.table, results='asis', echo=FALSE>>=
-make.assessment.changes.table(assessment.changes,
-  xcaption = paste0("Annual changes in the modeling framework used to assess ",
-  "\\fishname\\ since 2011. ",
-  "The bias adjustment is reported as the maximum used for each assessment. ",
-  "Methods used to weight the age-composition data (Comp Method), i.e., ",
-  "McAllister-Ianelli (MI) and Dirichlet-Multinomial (DM) approaches, are explained in ",
-  "the main text."),
-  xlabel = "tab:main-assessment-changes")
-@
 
 % Ugly, but wanted to get it in quickly.
 % Don't think we need to specify 'fecundity when varying' in only one column -

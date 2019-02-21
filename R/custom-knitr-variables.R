@@ -361,3 +361,10 @@ DM.weight.survey <- round(theta.survey/(1+theta.survey),3)
 # MCMC medians for the fishery (survey value fixed at MLE)
 log.theta.fishery.median <- round(median(base.model$mcmc$ln.EffN_mult._1),3)
 DM.weight.fishery.median <- round(median(exp(base.model$mcmc$ln.EffN_mult._1)/(1+exp(base.model$mcmc$ln.EffN_mult._1))),3)
+
+################################################################################
+## joint probability (%age) of being being both above the target relative fishing intensity in \Sexpr{end.yr-1}
+##   and below the $\Bforty$ (40\% of $B_0$) reference point at the start of \Sexpr{end.yr}
+joint.percent.prob.above.below <- f(sum(base.model$mcmc[[paste0("Bratio_", end.yr)]] < 0.4 &
+                                        base.model$mcmc[[paste0("SPRratio_", end.yr-1)]] > 1) / nrow(base.model$mcmc) * 100,
+                                    1)

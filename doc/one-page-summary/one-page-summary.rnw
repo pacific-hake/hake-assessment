@@ -37,7 +37,7 @@ from last year); in Canada it was
 (\Sexpr{paste0(ifelse(last.2year.can.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.can.attained.diff))}\%
 from last year).
 
-  \item The stock is estimated to have been at a minimum of 
+  \item The stock is estimated to have been at a minimum of
   \Sexpr{f(min(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% 2013:end.yr]) * 100)}\% of $B_0$ since
     2013 due to large estimated 2010 and 2014 cohorts.
 
@@ -56,8 +56,7 @@ a decrease from the \Sexpr{end.yr-1} median of \Sexpr{prev.bio.median}~million~t
   \item The estimated joint probability of being both
     above the target relative fishing intensity in \Sexpr{end.yr-1}
     and below the $\Bforty$ (40\% of $B_0$) reference point
-    % relative spawning biomass level
-    at the start of \Sexpr{end.yr} is less than 10\%.
+    at the start of \Sexpr{end.yr} is \Sexpr{joint.percent.prob.above.below}\%.
 
   \item Based on the default harvest rule, the estimated median catch limit for
 \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with
