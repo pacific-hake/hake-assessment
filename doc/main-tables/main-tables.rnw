@@ -359,7 +359,7 @@ make.est.numbers.at.age.table(
   xcaption = paste0("Estimated exploitation-rate-at-age ",
       "(catch-at-age divided by biomass-at-age at the beginning of the year) ",
       "for each year from the base model (MLE; percentage of age class removed by fishing). ",
-      "Annual exploitation rates for ages 6 and older are equivalent because those fish are fully selected."),
+      "Annual exploitation rates for ages 6$+$ are equivalent because those fish are fully selected."),
   xlabel = "tab:main-est-exp-rate-at-age",
   font.size = 6,
   space.size = 7)
