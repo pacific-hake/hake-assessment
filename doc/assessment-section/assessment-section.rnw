@@ -992,12 +992,10 @@ the 2008, 2010, and 2014 recruitments and, correspondingly, relative fishing
 intensity fell well below targets. Relative spawning biomass has been
 above the target since \Sexpr{median.relative.bio.above.target.since}. While
 there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative fishing
-intensity and relative spawning biomass, the model predicts a less than 10\%
+intensity and relative spawning biomass, the model estimates a \Sexpr{joint.percent.prob.above.below}\%
 joint probability of being both above the target relative fishing intensity in
 \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at the
 start of \Sexpr{end.yr}.
-% This is the joint probability:
-%sum(base.model$mcmc[paste0("Bratio_", assess.yr)] <0.4 & base.model$mcmc[paste0("SPRratio_",assess.yr - 1)] > 1) /nrow(base.model$mcmc)
 
 \subsection{Model uncertainty}\label{sec:assessment-model-uncertainty}
  % Manual 2018 done
@@ -1376,7 +1374,7 @@ The Dirichlet-Multinomial method
 estimated higher weights on the age compositions but
 generally very similar results to the McAllister-Ianelli method.
 The McAllister-Ianelli method led to increased uncertainty in estimates of
-early recruitments compared to other weighting methods 
+early recruitments compared to other weighting methods
 (Figure~\ref{fig:main-recruit-base-alternative-2}).
 The Francis method increased the weighting of the fishery
 composition data resulting in a similar time series of biomass, though
@@ -1426,8 +1424,8 @@ The following two types of alternative setups for selectivity were explored in s
 analyses: alternative values of the $\Phi$ parameter
 controlling the degree of flexibility of annual variation in the
 fishery selectivity and an alternative ``semi-parametric''
-parameterization of the time-varying selectivity 
-(Figures~\ref{fig:main-biomass-base-alternative-4}-\ref{fig:main-index-base-alternative-4}). 
+parameterization of the time-varying selectivity
+(Figures~\ref{fig:main-biomass-base-alternative-4}-\ref{fig:main-index-base-alternative-4}).
 The methods and results of each will be described in turn.
 
 % Removed by KFJ in 2019

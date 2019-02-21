@@ -600,13 +600,11 @@ since \Sexpr{median.relative.bio.above.target.since}.
 
 While there is large uncertainty in the estimates of relative
 fishing intensity and relative spawning biomass, the model estimates a
-10.3\% joint probability of being both above the target relative fishing intensity
+\Sexpr{joint.percent.prob.above.below}\%
+joint probability of being both above the target relative fishing intensity
 in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at
 the start of \Sexpr{end.yr}.
-% sum(base.model$mcmc$Bratio_2019<0.4 & base.model$mcmc$SPRratio_2018>1) /nrow(base.model$mcmc)
-% That is the joint probability, make sure to change dates each year and
-% update % in text.
-% Manual done 2019.
+% Manual done 2019. Just check the sentence reads okay (a/an).
 
 \subsection*{Reference points} \label{sec:es-reference-points}
 \phantomsection \addcontentsline{toc}{subsection}{Reference points}
