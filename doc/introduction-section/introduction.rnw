@@ -304,11 +304,11 @@ starting on April 15.  Regulations do not allow at-sea processing south of
 The overall catch of \fishname\ in U.S. waters was slightly less than in 2017,
 but was the second highest value ever recorded (Table~\ref{tab:intro-catches-US}).
 Catch rates were considerably lower in 2018 compared to 2017, despite similar overall
-catch levels (Figure~\ref{fig:main-us-catch-rates}). Through discussions with the
-Washington Department of Fish and Wildlife and a U.S. advisory panel member,
-tribal landings were confirmed to be 5,706 t.  Landed catch is brought to
-shore-based processing facilities and through fish tickets is coded in PacFIN using
-the attribute PARTICIPANT CODE or FLEET CODE. As in recent years, careful
+catch levels (Figure~\ref{fig:main-us-catch-rates}). Tribal landings available
+at the time of the assessment were 
+%** todo: make sure that this number comes from the data in 2020
+2,423 t. 
+As in recent years, careful
 consideration was needed to accurately account for tribal landings.
 The catcher-processor, mothership, and
 shore-based fleets caught \Sexpr{catcher.processor.catch}\%,
