@@ -306,31 +306,6 @@ make.assessment.changes.table(assessment.changes,
   xlabel = "tab:main-assessment-changes")
 @
 
-<<main.median.posterior.table, results='asis', echo=FALSE>>=
-make.median.posterior.table(
-  base.model,
-  start.yr = start.yr,
-  end.yr = end.yr,
-  digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
-  csv.dir = output.csv.dir,
-  xcaption = paste0("Time-series of median posterior population estimates from the base model. Relative spawning biomass is spawning biomass relative to the unfished equilibrium ($\\Bzero$). Total biomass includes females and males of all ages ages 0 and above. Age-2+ biomass includes females and males ages 2 and above. Exploitation fraction is total catch divided by total age-2+ biomass. Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%})."),
-  xlabel = "tab:main-median-posterior",
-  font.size = 8,
-  space.size = 10)
-@
-
-<<main.ci.posterior.table, results='asis', echo=FALSE>>=
-make.ci.posterior.table(
-  base.model,
-  start.yr = start.yr,
-  end.yr = end.yr,
-  digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
-  xcaption = paste0("Time-series of 95\\% posterior credibility intervals for the quantities shown in Table \\ref{tab:main-median-posterior}."),
-  xlabel = "tab:main-ci-posterior",
-  font.size = 8,
-  space.size = 10)
-@
-
 <<main.est.numbers.at.age.table, results='asis', echo=FALSE>>=
 make.est.numbers.at.age.table(
   base.model,
@@ -476,6 +451,31 @@ make.cohort.table(base.model,
 \restoregeometry
 \pagestyle{fancy}
 \clearpage
+
+<<main.median.posterior.table, results='asis', echo=FALSE>>=
+make.median.posterior.table(
+  base.model,
+  start.yr = start.yr,
+  end.yr = end.yr,
+  digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
+  csv.dir = output.csv.dir,
+  xcaption = paste0("Time-series of median posterior population estimates from the base model. Relative spawning biomass is spawning biomass relative to the unfished equilibrium ($\\Bzero$). Total biomass includes females and males of all ages ages 0 and above. Age-2+ biomass includes females and males ages 2 and above. Exploitation fraction is total catch divided by total age-2+ biomass. Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%})."),
+  xlabel = "tab:main-median-posterior",
+  font.size = 8,
+  space.size = 10)
+@
+
+<<main.ci.posterior.table, results='asis', echo=FALSE>>=
+make.ci.posterior.table(
+  base.model,
+  start.yr = start.yr,
+  end.yr = end.yr,
+  digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
+  xcaption = paste0("Time-series of 95\\% posterior credibility intervals for the quantities shown in Table \\ref{tab:main-median-posterior}."),
+  xlabel = "tab:main-ci-posterior",
+  font.size = 8,
+  space.size = 10)
+@
 
 <<main.parameter.estimates, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.table(

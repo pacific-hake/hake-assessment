@@ -871,8 +871,8 @@ Yet the 2014 year class remains the fifth largest estimated recruitment, albeit
 with large uncertainty (Table~\ref{tab:main-ci-posterior} and
 Figure~\ref{fig:main-recruitment}).  The median estimate for the 2016 year class
 is \Sexpr{recruitment.med.in.2016}~billion fish (with a 95\% posterior credibility interval
-from 0.746--26.085 billion fish; Table~\ref{tab:main-median-posterior} and
-Table~\ref{tab:main-ci-posterior}).
+from 0.746--26.085 billion fish; Tables~\ref{tab:main-median-posterior} and
+\ref{tab:main-ci-posterior}).
 
 The model currently estimates small 2011, 2013, and 2015 year classes (median
 recruitment below the mean of all median recruitments) and a slightly above
@@ -1545,7 +1545,7 @@ hopes that the semi-parametric setup could be further explored in the year
 ahead for potential inclusion in a future assessments.
 
 Sensitivity runs concerning weight-at-age and fecundity are discussed in
-Sections~\ref{sec:assessment-fecundity-recap} and~\ref{sec:assessment-sensitivity-fecundity}.
+Sections~\ref{sec:assessment-fecundity-recap} and~\ref{sec:assessment-sensitivity-fecundity} (Table~\ref{tab:main-parameter-estimates-sens-3}).
 Any additional sensitivity runs arising from the Scientific Review Group
 meeting to be held from 19th February to 22nd February 2019 will be documented
 in Appendix~\ref{chap:srg-requests} and briefly summarized here.
