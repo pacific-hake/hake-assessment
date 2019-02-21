@@ -1067,8 +1067,11 @@ estimates are only very slightly different than the estimates in the
 % Look at dfo.probs.curr and decide what to write. Check that
 %   ncol(base.model$risks[[1]]) == 10   (i.e. no new columns added)
 As part of the DFO Sustainable Fisheries Framework, \citet{DFO2009} suggested
-a provisional limit reference point of $0.4\Bmsy$ and an upper stock reference
-point of $0.8\Bmsy$. The probabilities of the female spawning biomass
+a provisional limit reference point
+(below which serious harm is believed to be occurring to the stock)
+of $0.4\Bmsy$ and an upper stock reference point
+(above which the stock is considered to be healthy)
+of $0.8\Bmsy$. The probabilities of the female spawning biomass
 at the start of \Sexpr{assess.yr} being above each of these points
 are P$(B_{\Sexpr{assess.yr}} > 0.4\Bmsy) = \Sexpr{f(dfo.probs.curr[1,2])}$\% and
 P$(B_{\Sexpr{assess.yr}} > 0.8\Bmsy) = \Sexpr{f(dfo.probs.curr[1,3])}$\%
