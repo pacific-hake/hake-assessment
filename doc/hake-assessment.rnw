@@ -186,12 +186,12 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \title{\TitleFont Status of the \fishname\ (whiting) stock in U.S. and Canadian
   waters in \Sexpr{assess.yr}
 %% Uncomment for DRAFT:
-  \\ ~\\ DRAFT for submission to Scientific Review Group
-  \thanks{\noindent Disclaimer: This
- information is distributed solely for the purpose of pre-dissemination
- peer review under applicable information quality guidelines. It does not
- represent and should not be construed to represent any agency determination
- or policy.}
+%%  \\ ~\\ DRAFT for submission to Scientific Review Group
+%%  \thanks{\noindent Disclaimer: This
+%% information is distributed solely for the purpose of pre-dissemination
+%% peer review under applicable information quality guidelines. It does not
+%% represent and should not be construed to represent any agency determination
+%% or policy.}
 \\ ~\\ ~\\ \includegraphics[width=4in]{hake-picture}}
 
 \author{Joint Technical Committee of the \fishname/Whiting Agreement \\ Between
