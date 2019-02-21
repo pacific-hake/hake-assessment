@@ -1010,8 +1010,11 @@ selectivity for key ages, and recruitment deviations. The uncertainty portrayed
 by the posterior distribution is a better representation of the uncertainty when
 compared to asymptotic approximations about the maximum likelihood estimates
 (MLE) because it allows for asymmetry (Figure~\ref{fig:main-prior-posterior};
-also see \citet{JTC2012} for further discussion and
-examples). Table~\ref{tab:main-parameter-estimates} shows that most key derived
+also see \citealt{JTC2012} for further discussion and
+examples).
+Note that we use the term MLE even though the priors are involved in the likelihood
+calculation and so the more accurate term would be the mode of the posterior density.
+Table~\ref{tab:main-parameter-estimates} shows that most key derived
 quantities from the posterior distribution are larger than their respective MLEs
 (e.g., median biomass, recruitment, and relative spawning biomass), however some
 parameter estimates (e.g., steepness and catchability) are
@@ -1067,8 +1070,11 @@ estimates are only very slightly different than the estimates in the
 % Look at dfo.probs.curr and decide what to write. Check that
 %   ncol(base.model$risks[[1]]) == 10   (i.e. no new columns added)
 As part of the DFO Sustainable Fisheries Framework, \citet{DFO2009} suggested
-a provisional limit reference point of $0.4\Bmsy$ and an upper stock reference
-point of $0.8\Bmsy$. The probabilities of the female spawning biomass
+a provisional limit reference point
+(below which serious harm is believed to be occurring to the stock)
+of $0.4\Bmsy$ and an upper stock reference point
+(above which the stock is considered to be healthy)
+of $0.8\Bmsy$. The probabilities of the female spawning biomass
 at the start of \Sexpr{assess.yr} being above each of these points
 are P$(B_{\Sexpr{assess.yr}} > 0.4\Bmsy) = \Sexpr{f(dfo.probs.curr[1,2])}$\% and
 P$(B_{\Sexpr{assess.yr}} > 0.8\Bmsy) = \Sexpr{f(dfo.probs.curr[1,3])}$\%
@@ -1137,8 +1143,9 @@ biomass levels and the predicted probability of the spawning biomass dropping be
 $\Bten$ ($0.1B_0$) in 2019 is
 2\% or less and the probability of dropping below $\Bforty$ is 29\% or less
 for all catches explored (Table~\ref{tab:main-risk-year-1}). It should be noted
-that the natural mortality rate has overtaken the growth rate for the 2010 year
-class and the model estimated below average recruitment for the 2011 and 2013
+that the change in abundance of the 2010 year class is affected more by
+decreases due to natural mortality than increases from somatic growth
+and the model estimated below average recruitment for the 2011 and 2013
 cohorts, but the above average predicted 2014 and 2016 year classes will result
 in an increase to the spawning biomass as they enter maturity. The probability
 that the \Sexpr{forecast.yrs[2]} spawning biomass will be less than the
@@ -1335,6 +1342,8 @@ for the age-1 index model). This change is likely due to the base model
 underfitting the age-1 index estimates of the size of the 2014, 2016 and 2017 cohorts
 (Figure~\ref{fig:main-age-one-index}). These changes are subtle
 because the base model generally tracks the trends in the age-1 index well.
+Including the age-1 index led to worse fits to the last year of the acoustic
+survey compared to the base model (Figure~\ref{fig:main-index-base-alternative-2}).
 
 % Manual 2018: removed in 2019
 % The impact of assuming a time-invariant ageing error vector instead of a
@@ -1366,7 +1375,10 @@ with variability expected based on the adjusted sample sizes.
 The Dirichlet-Multinomial method
 estimated higher weights on the age compositions but
 generally very similar results to the McAllister-Ianelli method.
-Whereas, the Francis method increased the weighting of the fishery
+The McAllister-Ianelli method led to increased uncertainty in estimates of
+early recruitments compared to other weighting methods 
+(Figure~\ref{fig:main-recruit-base-alternative-2}).
+The Francis method increased the weighting of the fishery
 composition data resulting in a similar time series of biomass, though
 slightly reduced in scale. As noted in Section ~\ref{sec:data-age-comp-likelihood},
 the Francis method is known to be sensitive to outliers and prone to convergence
@@ -1414,9 +1426,9 @@ The following two types of alternative setups for selectivity were explored in s
 analyses: alternative values of the $\Phi$ parameter
 controlling the degree of flexibility of annual variation in the
 fishery selectivity and an alternative ``semi-parametric''
-parameterization of the
-time-varying selectivity. The methods and results of each will be
-described in turn.
+parameterization of the time-varying selectivity 
+(Figures~\ref{fig:main-biomass-base-alternative-4}-\ref{fig:main-index-base-alternative-4}). 
+The methods and results of each will be described in turn.
 
 % Removed by KFJ in 2019
 % Fishery and survey selectivity in the base model is modeled as changing

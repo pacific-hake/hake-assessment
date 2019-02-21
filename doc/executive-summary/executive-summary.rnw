@@ -400,7 +400,7 @@ that without fishing. If spawning biomass is below $\Bforty$ (40\% of $B_0$),
 the policy reduces the TAC linearly until it equals zero at $\Bten$ (10\% of
 $B_0$). Relative fishing intensity for fishing rate $F$ is
 $(1-\mbox{SPR}(F))/(1-\mbox{SPR}_{40\%})$, where $\mbox{SPR}_{40\%}$ is the
-target SPR of 40\%.
+target SPR of 40\%; it is reported here interchangeably as a decimal proportion or a percentage.
 
 \subsection*{Exploitation status} \label{sec:es-exploitation-status}
 \phantomsection  \addcontentsline{toc}{subsection}{Exploitation status}
@@ -523,7 +523,7 @@ the last five years (\Sexpr{end.yr-5} to \Sexpr{end.yr-1}), the mean utilization
 rates were \Sexpr{usa.last.5.years.attainment}\% for the United States
 and \Sexpr{can.last.5.years.attainment}\% for Canada. Total landings last exceeded
 the coast-wide quota in 2002 when utilization was 112\%, though
-the fishing intensity was relatively low that year 
+the fishing intensity was relatively low that year
 due to the appearance of the 1999 year class.
 % Manual 2019 done. For last sentence just check
 %  landings.vs.tac[landings.vs.tac$Year > 2000, c("Year", "ATTAIN")]
