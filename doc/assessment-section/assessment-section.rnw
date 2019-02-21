@@ -1137,8 +1137,9 @@ biomass levels and the predicted probability of the spawning biomass dropping be
 $\Bten$ ($0.1B_0$) in 2019 is
 2\% or less and the probability of dropping below $\Bforty$ is 29\% or less
 for all catches explored (Table~\ref{tab:main-risk-year-1}). It should be noted
-that the natural mortality rate has overtaken the growth rate for the 2010 year
-class and the model estimated below average recruitment for the 2011 and 2013
+that the change in abundance of the 2010 year class is affected more by 
+decreases due to natural mortality than increases from somatic growth
+and the model estimated below average recruitment for the 2011 and 2013
 cohorts, but the above average predicted 2014 and 2016 year classes will result
 in an increase to the spawning biomass as they enter maturity. The probability
 that the \Sexpr{forecast.yrs[2]} spawning biomass will be less than the
