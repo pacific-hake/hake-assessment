@@ -114,12 +114,9 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Request 1]{Request 1}
-\subsection{}
-
+\section[Request 1 - baby squid base]{Baby squid plot for base model}
 \begin{frame}
-\frametitle{Request 1}
- Retrospective squid plots for the base model
+\frametitle{Baby squid plot for base model}
 \begin{center}
 \vspace{-5pt}
 <<baby.squid.base, fig.height=3.5>>=
@@ -140,12 +137,9 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Request 1]{Request 1}
-\subsection{}
-
+\section[Request 1 - baby squid age1]{Baby squid plot for age-1 index sensitivity}
 \begin{frame}
-\frametitle{Request 1}
- Retrospective squid plots for the sensitivity to inclusion of the age-1 index
+\frametitle{Baby squid plot for age-1 index sensitivity}
 \begin{center}
 \vspace{-5pt}
 <<baby.squid.age1, fig.height=3.5>>=
@@ -166,12 +160,9 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Request 1]{Request 1}
-\subsection{}
-
+\section[Request 1 - squid base]{Squid plot for base model}
 \begin{frame}
-\frametitle{Request 1}
- Retrospective squid plots for the base model
+\frametitle{Squid plot for base model}
 \begin{center}
 \vspace{-5pt}
 <<squid.age1, fig.height=3.5>>=
@@ -192,12 +183,9 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Request 1]{Request 1}
-\subsection{}
-
+\section[Request 1 - squid age1]{Squid plot for age-1 index sensitivity}
 \begin{frame}
-\frametitle{Request 1}
- Retrospective squid plots for the sensitivity to inclusion of the age-1 index
+\frametitle{Squid plot for age-1 index sensitivity}
 \begin{center}
 \vspace{-5pt}
 <<squid.base, fig.height=3.5>>=
@@ -217,8 +205,9 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section[Request 1 - recdev uncertainty]{Recruitment deviation uncertainty for cohorts}
 \begin{frame}
-\frametitle{Recruitment deviation uncertainty for cohorts}
+\frametitle{Recruitment deviation uncertainty for cohorts at age-2}
 <<cohort.uncertainty>>=
 b.devs.2018 <- base.model$retros[[1]]$recruitpars
 b.devs.2016 <- base.model$retros[[3]]$recruitpars
