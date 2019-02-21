@@ -1342,6 +1342,8 @@ for the age-1 index model). This change is likely due to the base model
 underfitting the age-1 index estimates of the size of the 2014, 2016 and 2017 cohorts
 (Figure~\ref{fig:main-age-one-index}). These changes are subtle
 because the base model generally tracks the trends in the age-1 index well.
+Including the age-1 index led to worse fits to the last year of the acoustic
+survey compared to the base model (Figure~\ref{fig:main-index-base-alternative-2}).
 
 % Manual 2018: removed in 2019
 % The impact of assuming a time-invariant ageing error vector instead of a
@@ -1373,7 +1375,10 @@ with variability expected based on the adjusted sample sizes.
 The Dirichlet-Multinomial method
 estimated higher weights on the age compositions but
 generally very similar results to the McAllister-Ianelli method.
-Whereas, the Francis method increased the weighting of the fishery
+The McAllister-Ianelli method led to increased uncertainty in estimates of
+early recruitments compared to other weighting methods 
+(Figure~\ref{fig:main-recruit-base-alternative-2}).
+The Francis method increased the weighting of the fishery
 composition data resulting in a similar time series of biomass, though
 slightly reduced in scale. As noted in Section ~\ref{sec:data-age-comp-likelihood},
 the Francis method is known to be sensitive to outliers and prone to convergence
@@ -1421,9 +1426,9 @@ The following two types of alternative setups for selectivity were explored in s
 analyses: alternative values of the $\Phi$ parameter
 controlling the degree of flexibility of annual variation in the
 fishery selectivity and an alternative ``semi-parametric''
-parameterization of the
-time-varying selectivity. The methods and results of each will be
-described in turn.
+parameterization of the time-varying selectivity 
+(Figures~\ref{fig:main-biomass-base-alternative-4}-\ref{fig:main-index-base-alternative-4}). 
+The methods and results of each will be described in turn.
 
 % Removed by KFJ in 2019
 % Fishery and survey selectivity in the base model is modeled as changing
