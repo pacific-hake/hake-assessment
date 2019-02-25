@@ -2,7 +2,7 @@
 %% Note some variables are global from the calling file (hake-assessent.Rnw)
 
 \clearpage
-\section*{ONE-PAGE SUMMARY}
+\section*{One-page summary}
 \phantomsection \addcontentsline{toc}{section}{ONE-PAGE SUMMARY}
 
 \begin{itemize}
