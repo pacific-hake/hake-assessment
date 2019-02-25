@@ -43,7 +43,7 @@ make.squid.plot(retro.list,
 @
 \end{center}
 \caption{Retrospective analysis of recruitment deviations for selected cohorts
-  from MLE models over the last
+  from MLE models associated with the age-1 index sensitivity evaluation over the last
   \Sexpr{length(plot.retro.yrs) + 1} years. Recruitment deviations are
   the log-scale differences between recruitment estimated by the model
   and expected recruitment from the spawner-recruit relationship.
@@ -70,7 +70,7 @@ make.squid.plot(retro.list,
 @
 \end{center}
 \caption{Retrospective analysis of recruitment deviations for all cohorts
-  from MLE models over the last
+  from MLE models associated with the age-1 index sensitivity evaluation over the last
   \Sexpr{length(plot.retro.yrs) + 1} years. Recruitment deviations are
   the log-scale differences between recruitment estimated by the model
   and expected recruitment from the spawner-recruit relationship.
@@ -92,7 +92,7 @@ make.recr.dev.uncertainty.table(list(base.model,
                                 cohorts = 1999:2016,
                                 digits = 3,
                                 xcaption = paste0("Estimated recruitment deviations ",
-                                                  "and log standard deviations for age-2 cohorts for the ",
+                                                  "and log standard deviations (approximiate CVs) for age-2 cohorts for the ",
                                                   "base model and the model which tests the sensitivity to adding ",
                                                   " the age-1 index. All values are from MLE runs."),
                                 xlabel = "tab:srg-requests-cohorts",
