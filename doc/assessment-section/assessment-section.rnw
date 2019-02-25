@@ -1337,7 +1337,7 @@ Figures~\ref{fig:main-biomass-base-alternative-2} and
 of unfished biomass for the base model and
 \Sexpr{f(100*sens.models.1.for.table[[8]]$derived_quants["Bratio_2018","Value"],1)}\%
 for the age-1 index model). This change is likely due to the base model
-underfitting the age-1 index estimates of the size of the 2014, 2016 and 2017 cohorts
+underfitting the age-1 index estimates of the size of the 2012, 2014, and 2016 cohorts
 (Figure~\ref{fig:main-age-one-index}). These changes are subtle
 because the base model generally tracks the trends in the age-1 index well.
 Including the age-1 index led to worse fits to the last year of the acoustic
