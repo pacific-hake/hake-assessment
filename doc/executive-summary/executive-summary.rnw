@@ -169,7 +169,7 @@ future predictions. Past assessments have conducted closed-loop simulations
 which provide insights into how alternative combinations of survey frequency,
 assessment model selectivity assumptions, and harvest control rules affect
 expected management outcomes given repeated application of these procedures over
-the long-term. The results of past (and ongoing) closed-loop simulations influence
+the long-term. The results of past (and ongoing) closed-loop simulations influenced
 the decisions made for this assessment.
 
 The \Sexpr{assess.yr} assessment retains most of the structural form of the base
@@ -195,7 +195,7 @@ The 35-day 2018/2019 U.S. government shutdown considerably delayed delivery of U
 age data and reduced the JTC's time available to collectively complete the
 \Sexpr{assess.yr} assessment. As a result,
 many planned supplementary and exploratory analyses could not be completed, including
-some developed for response to \Sexpr{last.assess.yr} SRG requests, although most sensitivity
+some developed for response to \Sexpr{last.assess.yr} SRG requests, although many sensitivity
 runs (including new ones related to time-varying fecundity) were completed.
 
 
