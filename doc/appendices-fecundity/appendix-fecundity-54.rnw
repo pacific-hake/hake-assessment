@@ -4,7 +4,9 @@
 \label{chap:fecundity-54}
 
 This appendix contains MCMC model results for the fecundity sensitivity, run 54
-as described in the main text and Table~\ref{tab:main-wtatage-runs}.
+as described in
+Sections~\ref{sec:assessment-fecundity-recap}--\ref{sec:assessment-sensitivity-fecundity}
+and Table~\ref{tab:main-wtatage-runs}.
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
@@ -220,7 +222,7 @@ make.decision.table(sens.model,
                      year biomass in ",
                      max(forecast.yrs),
                      "."),
-                    xlabel = "tab:decisions-biomass-53",
+                    xlabel = "tab:decisions-biomass-54",
                     font.size = 12,
                     space.size = 14,
                     type = "biomass",
