@@ -1,70 +1,70 @@
 % research-needs-remainder.rnw - the remaining research needs that won't go into
 %  the Executive Summary but only into research.rnw in the main text.
 
-\item Continue to explore and develop statistical methods to parameterize 
-  time-varying fishery selectivity in the assessment and with regard to 
+\item Continue to explore and develop statistical methods to parameterize
+  time-varying fishery selectivity in the assessment and with regard to
   forecasting.  This should include the semi-parametric selectivity approach
   explored in the 2018 assessment but for which was not explored further this
   year due to time constraints.
 %\enlargethispage{\baselineskip}
 
-\item Continue to investigate fecundity and maturity, including 
-  trying to understand links between fecundity and size, age, weight, and batch 
+\item Continue to investigate fecundity and maturity, including
+  trying to understand links between fecundity and size, age, weight, and batch
   spawning.
-  
+
 \item Continue genetic analyses to explore potential stock differences north and
   south of Point Conception that may be related to the observed differences in maturity.
-  
-\item Continue to explore alternative indices for juvenile or young (0 and/or 
-  1 year old) \fishname, including investigations into the winter acoustic 
-  surveys.
-  
-\item Continue to investigate alternative ways to model and forecast 
-  recruitment, given the uncertainty present.  
 
-%%\item Improve the characterization and accounting of research and tribal catch 
-%%  that is reported to standard databases to improve data tracking and avoid 
+\item Continue to explore alternative indices for juvenile or young (0 and/or
+  1 year old) \fishname, including investigations into the winter acoustic
+  surveys.
+
+\item Continue to investigate alternative ways to model and forecast
+  recruitment, given the uncertainty present.
+
+%%\item Improve the characterization and accounting of research and tribal catch
+%%  that is reported to standard databases to improve data tracking and avoid
 %%  double counting.
 %%I think we can take this one off this year - AMB
-  
-\item Update ageing error calculations given new information from recent double 
-  reads.  Conduct further exploration of ageing imprecision and the effects of 
-  large cohorts via simulation and blind source age-reading of samples with 
-  differing underlying age distributions -- with and without dominant year 
+
+\item Update ageing error calculations given new information from recent double
+  reads.  Conduct further exploration of ageing imprecision and the effects of
+  large cohorts via simulation and blind source age-reading of samples with
+  differing underlying age distributions -- with and without dominant year
   classes.
-  
-\item Conduct further exploration into potential biases that could arise by 
-  aggregating age composition information across fishing sectors using an annual 
-  time step when less than 100\% of sampled otoliths are aged. As needed, develop 
-  protocols for ageing laboratories to subsample the otoliths available for a given 
-  year to ensure the resulting age composition accounts for seasonal differences 
-  in catch-at-age and is representative of the annual catch.    
-   
-\item Continue to collect and analyze life-history data, including weight, 
-  maturity and fecundity for \fishname. Explore possible relationships among 
-  these life history traits including time-varying changes as well as with body 
-  growth and population density. Currently available information is limited and 
-  outdated. Continue to explore the possibility of using additional data types 
+
+\item Conduct further exploration into potential biases that could arise by
+  aggregating age composition information across fishing sectors using an annual
+  time step when less than 100\% of sampled otoliths are aged. As needed, develop
+  protocols for ageing laboratories to subsample the otoliths available for a given
+  year to ensure the resulting age composition accounts for seasonal differences
+  in catch-at-age and is representative of the annual catch.
+
+\item Continue to collect and analyze life-history data, including weight,
+  maturity and fecundity for \fishname. Explore possible relationships among
+  these life history traits including time-varying changes as well as with body
+  growth and population density. Currently available information is limited and
+  outdated. Continue to explore the possibility of using additional data types
   (such as length data) within the stock assessment.
-  
-\item Maintain the flexibility to undertake annual acoustic surveys for 
-  \fishname\ under pressing circumstances in which uncertainty in the hake 
-  stock assessment presents a potential risk to or underutilization of the 
+
+\item Maintain the flexibility to undertake additional acoustic surveys for
+  \fishname\ in non-survey years when uncertainty in the hake
+  stock assessment presents a potential risk to or underutilization of the
   stock.
-  
-%%\item Evaluate the quantity and quality of historical biological data (prior to 
-%%  1989 from the Canadian fishery, and prior to 1975 from the U.S. fishery) for 
-%%  use as age-composition and weight-at-age data, and/or any historical 
+
+%%\item Evaluate the quantity and quality of historical biological data (prior to
+%%  1989 from the Canadian fishery, and prior to 1975 from the U.S. fishery) for
+%%  use as age-composition and weight-at-age data, and/or any historical
 %%  indications of abundance fluctuations.
 %%There is still a bit of work to do, but this has been largely done
 
-\item Consider alternative methods for refining existing prior distributions 
+\item Consider alternative methods for refining existing prior distributions
   for natural mortality ($M$), including the use of meta-analytic methods.
-  
-\item Explore the potential to use acoustic data collected from commercial 
-  fishing vessels to study hake distributions, schooling patterns, and other 
-  questions of interest. This could be similar to the 
-  ``acoustic vessels of opportunity'' program on fishing vessels 
+
+\item Explore the potential to use acoustic data collected from commercial
+  fishing vessels to study hake distributions, schooling patterns, and other
+  questions of interest. This could be similar to the
+  ``acoustic vessels of opportunity'' program on fishing vessels
   targeting Pollock in Alaska.
 
 \end{enumerate}
