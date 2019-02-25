@@ -169,7 +169,7 @@ future predictions. Past assessments have conducted closed-loop simulations
 which provide insights into how alternative combinations of survey frequency,
 assessment model selectivity assumptions, and harvest control rules affect
 expected management outcomes given repeated application of these procedures over
-the long-term. The results of past (and ongoing) closed-loop simulations influence
+the long-term. The results of past (and ongoing) closed-loop simulations influenced
 the decisions made for this assessment.
 
 The \Sexpr{assess.yr} assessment retains most of the structural form of the base
