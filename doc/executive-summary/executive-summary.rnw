@@ -757,7 +757,7 @@ make.decision.table(base.model,
 
 \clearpage  % 2018: Then forces Table i and Fig j to be on same page, and j/k.
 
-A relative fishing intensity above 100\% indicates fishing greater than the
+A relative fishing intensity above 1 (or 100\% when shown as a percentage) indicates fishing greater than the
 $\Fforty$ default harvest rate catch target. This can happen for the median
 relative fishing intensity in projected years because the $\Fforty$ default
 harvest-rate catch limit is calculated using baseline selectivity from all
