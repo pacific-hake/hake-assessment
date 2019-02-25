@@ -136,7 +136,7 @@ make.survey.biomass.extrap.plot(survey.comparison, show = c(2,4))
 %\vspace{0mm}
 \caption{Acoustic survey biomass index (millions of tons).
   Approximate 95\% confidence intervals (gray bars) are based on sampling
-  variability; black bars for 2009 does not include additional uncertainty due to
+  variability; black bar for 2009 does not include additional uncertainty due to
   squid/hake apportionment.}
 \label{fig:es-survey-biomass}
 \end{figure}
