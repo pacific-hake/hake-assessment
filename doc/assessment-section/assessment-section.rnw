@@ -1102,7 +1102,7 @@ relative spawning biomass outcomes, and Table~\ref{tab:main-decisions-spr} shows
 projected fishing intensity outcomes relative to the 100\% target (based on SPR;
 see table legend).
 
-Relative fishing intensity exceeding 100\% indicates fishing in excess of the
+Relative fishing intensity exceeding 1 (or 100\% when shown as a percentage) indicates fishing in excess of the
 $\Fforty$ default harvest rate catch limit. This can happen for the median
 relative fishing intensity in \Sexpr{forecast.yrs[1:(length(forecast.yrs)-1)]}
 and \Sexpr{forecast.yrs[length(forecast.yrs)]} because the $\Fforty$ default
