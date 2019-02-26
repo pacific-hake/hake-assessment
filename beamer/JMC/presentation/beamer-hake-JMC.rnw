@@ -275,7 +275,7 @@ MSE is a good tool to explore this issue.
   \begin{column}{0.53\textwidth}
     \bc
     \vspace{-10pt}
-    <<maturity.ogive.figure, fig.height=4.5, fig.width=8, out.width='0.85\\columnwidth'>>=
+    <<maturity.ogive.figure, fig.height=7, fig.width=8>>=
     maturity.ogive.figure(base.model)
   @
     \ec
