@@ -202,14 +202,16 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\frame{\frametitle{Weight-at-age}
+\frame{\frametitle{Time varying weight-at-age}
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \bi
-  \vspace{-15pt}
-    \item Matrix of weight-at-age is based on 214,224 samples.
-    \item Samples are from 1975 to \Sexpr{end.yr-1}.
-    \item Pre-1975 and forecast years are set to the mean across samples for each age.
+        \item Matrix of weight-at-age is based on 214,224 samples.
+        \item Samples are from \Sexpr{start.yr.age.comps} to \Sexpr{assess.yr - 1}.
+        \item Includes an average of
+          \Sexpr{start.yr.age.comps}--\Sexpr{assess.yr - 1} for years
+          \Sexpr{start.yr}--\Sexpr{start.yr.age.comps - 1} and forecast years
+          \Sexpr{forecast.yrs[1]}--\Sexpr{forecast.yrs[length(forecast.yrs)]}.
       \ei
   \vspace{5pt}
     \end{column}
@@ -217,7 +219,7 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
       \vspace{-10pt}
       \begin{figure}
         \centering
-        <<main.weight.at.age, fig.height=9, fig.width=8>>=
+        <<main.weight.at.age, fig.height=7>>=
           weight.at.age.heatmap(base.model)
           @
       \end{figure}
@@ -267,8 +269,7 @@ MSE is a good tool to explore this issue.
     \bi
       \item Evidence of skip-spawning and senescence included in estimates.
       \item Fecundity used for calculation of spawning biomass is based
-        on maturity-at-age $\times$ weight-at-age averaged across all years.
-      \item Updated analysis with 2018 data unavailable at time of assessment.
+        on maturity-at-age $\times$ time-varying weight-at-age.
     \ei
   \end{column}
   \begin{column}{0.53\textwidth}
@@ -930,7 +931,7 @@ make.cohort.table(base.model,
       is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
     \item Forecasts strongly influenced by size of large but uncertain 2014 cohort \\
       and very uncertain 2016 cohort.
-    \item There is a 50\% chance that spawning biomass will decline from 2019 to 2020 at a catch level between 180,000~t and 350,000~t (around 280,000~t), partly due to mortality on ageing 2010 cohort 
+    \item There is a 50\% chance that spawning biomass will decline from 2019 to 2020 at a catch level between 180,000~t and 350,000~t (around 280,000~t), partly due to mortality on ageing 2010 cohort
     \item Maintaining a constant catch of 597,500~t (i.e., 2017 and 2018 TAC) results
     in a higher risk of falling below $B_{40\%}$ in 2 years time than predicted in last year's assessment (40\% compared
     to 36\%)
