@@ -293,7 +293,7 @@ MSE is a good tool to explore this issue.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Survey index
-\frame{\frametitle{Acousitc survey biomass}
+\frame{\frametitle{Acoustic survey biomass}
   \bc
   <<survey.index, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
   make.survey.biomass.plot(base.model, xlab = "Year", ylab = "Biomass (million t)")
