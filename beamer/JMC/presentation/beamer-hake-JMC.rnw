@@ -584,7 +584,7 @@ MSE is a good tool to explore this issue.
 
 \frame{\frametitle{Forecast methods}
   \bi
-    \item Forecasts are for \Sexpr{end.yr}, \Sexpr{end.yr+1}, and \Sexpr{end.yr+2}.
+    \item Forecasts are for \Sexpr{min(forecast.yrs)}--\Sexpr{max(forecast.yrs)}.
     \bi
       \item Average fishery selectivity from \Sexpr{end.yr-5}--\Sexpr{end.yr-1}
         used in forecasts.
@@ -595,7 +595,7 @@ MSE is a good tool to explore this issue.
     \item Equilibrium calculations
     \bi
       \item Base selectivity (used for years before 1991 as well).
-      \item Mean of weight-at-age across 1975-2018.
+      \item Mean of weight-at-age across \Sexpr{start.yr.age.comps}--\Sexpr{assess.yr - 1}.
       \item Used for \emph{B}\subscr{0}, \emph{F}\subscr{SPR}, MSY, etc.
       \item Recruitment at estimated \emph{R}\subscr{0} or from stock-recruit relationship.
     \ei
@@ -610,8 +610,8 @@ MSE is a good tool to explore this issue.
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Catch stream in between 180,000~t and 350,000~t results in stable spawning biomass relative to 2019.
-      \item Catch streams 350,000~t and above result in decreases in spawning biomass relative to 2019.
+      \item Catch streams less than 350,000~t results in increasing spawning biomass relative to 2019.
+      \item Catch streams 350,000~t and above result in decreasing spawning biomass relative to 2019.
       \item Uncertainty is large and increases the farther out the forecast goes.
     \ei
   \end{column}
@@ -731,11 +731,8 @@ MSE is a good tool to explore this issue.
     \bi
       \item Relative spawning biomass is high in \Sexpr{end.yr} due to large 2010 and 2014 cohorts.
       \item Lower 5\% quantile below $B_{40\%}$ in \Sexpr{end.yr}
-      \item Median (50\%) decreases in \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
-        for catches above 350,000~t
-        \bi
-        \item Median is above $B_{40\%}$ for all examined catch levels
-        \ei
+      \item Median decreases in \Sexpr{end.yr+1} and \Sexpr{end.yr+2} for catches above 350,000~t
+      \item Median is above $B_{40\%}$ for all examined catch levels
     \ei
   \end{column}
   \begin{column}{0.65\textwidth}
