@@ -446,6 +446,19 @@ MSE is a good tool to explore this issue.
   \end{columns}
 }
 
+\frame{\frametitle{Joint History of Rel. Fishing Intensity and Rel. Biomass}
+\begin{figure}[tbp]
+\begin{center}
+<<phase.plot, fig.height=3, fig.width=6>>=
+make.phase.plot(base.model,
+                start.yr = start.yr,
+                end.yr = end.yr,
+                color = "blue",
+                cex.lab = 0.65)
+@
+\end{center}
+\end{figure}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -922,16 +935,20 @@ make.cohort.table(base.model,
 \subsection{}
 \frame{\frametitle{Summary}
   \bi
-    \item Uncertainty is large, but stock is likely above $B_{40\%}$, \\
+    \item Uncertainty is large, but stock is likely above $B_{40\%}$,
       and fishing intensity is likely to have been below 100\% in either model.
-    \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast.yrs)} \\
-      is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
-    \item Forecasts strongly influenced by size of large but uncertain 2014 cohort \\
+    \item Based on the default harvest rule, the estimated median catch limit
+      for \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t
+      (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to
+      \Sexpr{catch.limit.quantiles["upper"]}~t).
+    \item Forecasts strongly influenced by size of large but uncertain 2014 cohort
       and very uncertain 2016 cohort.
-    \item There is a 50\% chance that spawning biomass will decline from 2019 to 2020 at a catch level between 180,000~t and 350,000~t (around 280,000~t), partly due to mortality on ageing 2010 cohort
+    \item There is a 50\% chance that spawning biomass will decline from 2019 to
+      2020 at a catch level between 180,000~t and 350,000~t (around 280,000~t),
+      partly due to mortality on ageing 2010 cohort (Figure j)
     \item Maintaining a constant catch of 597,500~t (i.e., 2017 and 2018 TAC) results
-    in a higher risk of falling below $B_{40\%}$ in 2 years time than predicted in last year's assessment (40\% compared
-    to 36\%)
+    in a higher risk of falling below $B_{40\%}$ in 2 years time than predicted in
+    last year's assessment (40\% compared to 36\%) (Table j)
   \ei
 }
 
