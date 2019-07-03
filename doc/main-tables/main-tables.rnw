@@ -75,7 +75,7 @@ make.sampling.history.table(sampling.history,
                               at-sea sectors are in number of hauls sampled for
                               age-composition, the shore-based sector is in
                               number of trips. A dash (--) indicates there was
-                              no catch to sample. A number indicates how many
+                              no sampled catch. A number indicates how many
                               samples from the catch were taken. The number of
                               fish with otoliths sampled per haul has varied
                               over time but is typically small (current
@@ -540,7 +540,7 @@ make.decision.table(base.model,
 
 <<main.decisions.spr.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption = paste0("Decision table of forecast quantiles of \\fishname\\ relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}) for the ",min(forecast.yrs),"--",max(forecast.yrs)," catch alternatives presented in Table \\ref{tab:main-decisions-biomass}. Values greater than 100\\% indicate fishing intensities greater than the F\\subscr{40\\%} harvest policy calculated using baseline selectivity."),
+                    xcaption = paste0("Decision table of forecast quantiles of \\fishname\\ relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}), expressed as a percentage, for the ",min(forecast.yrs),"--",max(forecast.yrs)," catch alternatives presented in Table \\ref{tab:main-decisions-biomass}. Values greater than 100\\% indicate fishing intensities greater than the F\\subscr{40\\%} harvest policy calculated using baseline selectivity."),
                     xlabel = "tab:main-decisions-spr",
                     font.size = 12,
                     space.size = 14,

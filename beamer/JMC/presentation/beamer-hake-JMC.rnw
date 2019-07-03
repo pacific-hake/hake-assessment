@@ -202,14 +202,16 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\frame{\frametitle{Weight-at-age}
+\frame{\frametitle{Time varying weight-at-age}
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \bi
-  \vspace{-15pt}
-    \item Matrix of weight-at-age is based on 214,224 samples.
-    \item Samples are from 1975 to \Sexpr{end.yr-1}.
-    \item Pre-1975 and forecast years are set to the mean across samples for each age.
+        \item Matrix of weight-at-age is based on 214,224 samples.
+        \item Samples are from \Sexpr{start.yr.age.comps} to \Sexpr{assess.yr - 1}.
+        \item Includes an average of
+          \Sexpr{start.yr.age.comps}--\Sexpr{assess.yr - 1} for years
+          \Sexpr{start.yr}--\Sexpr{start.yr.age.comps - 1} and forecast years
+          \Sexpr{forecast.yrs[1]}--\Sexpr{forecast.yrs[length(forecast.yrs)]}.
       \ei
   \vspace{5pt}
     \end{column}
@@ -217,7 +219,7 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
       \vspace{-10pt}
       \begin{figure}
         \centering
-        <<main.weight.at.age, fig.height=9, fig.width=8>>=
+        <<main.weight.at.age, fig.height=7>>=
           weight.at.age.heatmap(base.model)
           @
       \end{figure}
@@ -267,14 +269,13 @@ MSE is a good tool to explore this issue.
     \bi
       \item Evidence of skip-spawning and senescence included in estimates.
       \item Fecundity used for calculation of spawning biomass is based
-        on maturity-at-age $\times$ weight-at-age averaged across all years.
-      \item Updated analysis with 2018 data unavailable at time of assessment.
+        on maturity-at-age $\times$ time-varying weight-at-age.
     \ei
   \end{column}
   \begin{column}{0.53\textwidth}
     \bc
     \vspace{-10pt}
-    <<maturity.ogive.figure, fig.height=4.5, fig.width=8, out.width='0.85\\columnwidth'>>=
+    <<maturity.ogive.figure, fig.height=7, fig.width=8>>=
     maturity.ogive.figure(base.model)
   @
     \ec
@@ -292,7 +293,7 @@ MSE is a good tool to explore this issue.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Survey index
-\frame{\frametitle{Acousitc survey biomass}
+\frame{\frametitle{Acoustic survey biomass}
   \bc
   <<survey.index, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
   make.survey.biomass.plot(base.model, xlab = "Year", ylab = "Biomass (million t)")
@@ -445,6 +446,19 @@ MSE is a good tool to explore this issue.
   \end{columns}
 }
 
+\frame{\frametitle{Joint History of Rel. Fishing Intensity and Rel. Biomass}
+\begin{figure}[tbp]
+\begin{center}
+<<phase.plot, fig.height=3, fig.width=6>>=
+make.phase.plot(base.model,
+                start.yr = start.yr,
+                end.yr = end.yr,
+                color = "blue",
+                cex.lab = 0.65)
+@
+\end{center}
+\end{figure}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -583,7 +597,7 @@ MSE is a good tool to explore this issue.
 
 \frame{\frametitle{Forecast methods}
   \bi
-    \item Forecasts are for \Sexpr{end.yr}, \Sexpr{end.yr+1}, and \Sexpr{end.yr+2}.
+    \item Forecasts are for \Sexpr{min(forecast.yrs)}--\Sexpr{max(forecast.yrs)}.
     \bi
       \item Average fishery selectivity from \Sexpr{end.yr-5}--\Sexpr{end.yr-1}
         used in forecasts.
@@ -594,7 +608,7 @@ MSE is a good tool to explore this issue.
     \item Equilibrium calculations
     \bi
       \item Base selectivity (used for years before 1991 as well).
-      \item Mean of weight-at-age across 1975-2018.
+      \item Mean of weight-at-age across \Sexpr{start.yr.age.comps}--\Sexpr{assess.yr - 1}.
       \item Used for \emph{B}\subscr{0}, \emph{F}\subscr{SPR}, MSY, etc.
       \item Recruitment at estimated \emph{R}\subscr{0} or from stock-recruit relationship.
     \ei
@@ -609,8 +623,8 @@ MSE is a good tool to explore this issue.
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Catch stream in between 180,000~t and 350,000~t results in stable spawning biomass relative to 2019.
-      \item Catch streams 350,000~t and above result in decreases in spawning biomass relative to 2019.
+      \item Catch streams less than 350,000~t results in increasing spawning biomass relative to 2019.
+      \item Catch streams 350,000~t and above result in decreasing spawning biomass relative to 2019.
       \item Uncertainty is large and increases the farther out the forecast goes.
     \ei
   \end{column}
@@ -730,11 +744,8 @@ MSE is a good tool to explore this issue.
     \bi
       \item Relative spawning biomass is high in \Sexpr{end.yr} due to large 2010 and 2014 cohorts.
       \item Lower 5\% quantile below $B_{40\%}$ in \Sexpr{end.yr}
-      \item Median (50\%) decreases in \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
-        for catches above 350,000~t
-        \bi
-        \item Median is above $B_{40\%}$ for all examined catch levels
-        \ei
+      \item Median decreases in \Sexpr{end.yr+1} and \Sexpr{end.yr+2} for catches above 350,000~t
+      \item Median is above $B_{40\%}$ for all examined catch levels
     \ei
   \end{column}
   \begin{column}{0.65\textwidth}
@@ -924,16 +935,20 @@ make.cohort.table(base.model,
 \subsection{}
 \frame{\frametitle{Summary}
   \bi
-    \item Uncertainty is large, but stock is likely above $B_{40\%}$, \\
+    \item Uncertainty is large, but stock is likely above $B_{40\%}$,
       and fishing intensity is likely to have been below 100\% in either model.
-    \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast.yrs)} \\
-      is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
-    \item Forecasts strongly influenced by size of large but uncertain 2014 cohort \\
+    \item Based on the default harvest rule, the estimated median catch limit
+      for \Sexpr{min(forecast.yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t
+      (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to
+      \Sexpr{catch.limit.quantiles["upper"]}~t).
+    \item Forecasts strongly influenced by size of large but uncertain 2014 cohort
       and very uncertain 2016 cohort.
-    \item There is a 50\% chance that spawning biomass will decline from 2019 to 2020 at a catch level between 180,000~t and 350,000~t (around 280,000~t), partly due to mortality on ageing 2010 cohort 
+    \item There is a 50\% chance that spawning biomass will decline from 2019 to
+      2020 at a catch level between 180,000~t and 350,000~t (around 280,000~t),
+      partly due to mortality on ageing 2010 cohort (Figure j)
     \item Maintaining a constant catch of 597,500~t (i.e., 2017 and 2018 TAC) results
-    in a higher risk of falling below $B_{40\%}$ in 2 years time than predicted in last year's assessment (40\% compared
-    to 36\%)
+    in a higher risk of falling below $B_{40\%}$ in 2 years time than predicted in
+    last year's assessment (40\% compared to 36\%) (Table j)
   \ei
 }
 

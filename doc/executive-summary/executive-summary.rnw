@@ -136,7 +136,7 @@ make.survey.biomass.extrap.plot(survey.comparison, show = c(2,4))
 %\vspace{0mm}
 \caption{Acoustic survey biomass index (millions of tons).
   Approximate 95\% confidence intervals (gray bars) are based on sampling
-  variability; black bars for 2009 does not include additional uncertainty due to
+  variability; black bar for 2009 does not include additional uncertainty due to
   squid/hake apportionment.}
 \label{fig:es-survey-biomass}
 \end{figure}
@@ -169,7 +169,7 @@ future predictions. Past assessments have conducted closed-loop simulations
 which provide insights into how alternative combinations of survey frequency,
 assessment model selectivity assumptions, and harvest control rules affect
 expected management outcomes given repeated application of these procedures over
-the long-term. The results of past (and ongoing) closed-loop simulations influence
+the long-term. The results of past (and ongoing) closed-loop simulations influenced
 the decisions made for this assessment.
 
 The \Sexpr{assess.yr} assessment retains most of the structural form of the base
@@ -195,7 +195,7 @@ The 35-day 2018/2019 U.S. government shutdown considerably delayed delivery of U
 age data and reduced the JTC's time available to collectively complete the
 \Sexpr{assess.yr} assessment. As a result,
 many planned supplementary and exploratory analyses could not be completed, including
-some developed for response to \Sexpr{last.assess.yr} SRG requests, although most sensitivity
+some developed for response to \Sexpr{last.assess.yr} SRG requests, although many sensitivity
 runs (including new ones related to time-varying fecundity) were completed.
 
 
@@ -273,7 +273,7 @@ are greater than the loss in weight from mortality.
 The 2014 year class is estimated to be large, though not as large as the 1999
 and 2010 year classes, which, combined with the fishing mortality on these
 cohorts and an above-average estimate of the 2016 year class, has resulted in a
-relatively constant biomass since 2013.
+relatively constant biomass since 2017.
 % Manual 2019 done.
 
 The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning
@@ -736,13 +736,19 @@ distribution. Table~\ref{tab:es-decisions-biomass} shows projected relative
 spawning biomass outcomes and Table~\ref{tab:es-decisions-spr} shows projected
 fishing intensity outcomes relative to the target fishing intensity (based on
 SPR -- see table legend). Figure~\ref{fig:es-forecast-depletion-comparison} shows
-the projected biomass for several catch alternatives.
+the projected biomass for several catch alternatives. 
+
+A relative fishing intensity above 1 (or 100\% when shown as a percentage) indicates fishing greater than the
+$\Fforty$ default harvest rate catch target. This can happen for the median
+relative fishing intensity in projected years because the $\Fforty$ default
+harvest-rate catch limit is calculated using baseline selectivity from all
+years, whereas the forecasted catches are removed using selectivity
 %
 <<decisions.spr.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
                     xcaption = paste0("Forecast quantiles of \\fishname\\
-                     relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%})
-                     for the ",min(forecast.yrs),"--",max(forecast.yrs)," catch
+                     relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}),
+                     expressed as a percentage, for the ",min(forecast.yrs),"--",max(forecast.yrs)," catch
                      alternatives presented in
                      Table~\\ref{tab:es-decisions-biomass}. Values greater than
                      100\\% indicate relative fishing intensities greater than
@@ -757,12 +763,7 @@ make.decision.table(base.model,
 
 \clearpage  % 2018: Then forces Table i and Fig j to be on same page, and j/k.
 
-A relative fishing intensity above 100\% indicates fishing greater than the
-$\Fforty$ default harvest rate catch target. This can happen for the median
-relative fishing intensity in projected years because the $\Fforty$ default
-harvest-rate catch limit is calculated using baseline selectivity from all
-years, whereas the forecasted catches are removed using selectivity averaged
-over the last five years. Recent changes in selectivity will thus be reflected
+ averaged over the last five years. Recent changes in selectivity will thus be reflected
 in the determination of fishing in excess of the default harvest
 policy. Alternative catch levels where median relative fishing intensity is
 100\% for three years of projections are provided for comparison (scenario f:

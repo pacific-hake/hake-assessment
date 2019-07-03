@@ -292,7 +292,8 @@ make.exploitation.fraction.plot <- function(model,            ## model is an mcm
 make.phase.plot <- function(model,            ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
                             start.yr,         ## Year the timeseries starts (i.e. first year in model)
                             end.yr,           ## Year the timeseries ends (i.e. last year in model)
-                            color = "blue"
+                            color = "blue",
+                            cex.lab = 1
                             ){
   ## Plots the relative fishing intensity and relative spawning biomass as a historical
   ## look at the fishery for the mcmc given by model
@@ -329,10 +330,18 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
 
   ## par(mfrow=c(1,1), las = 1, mar = c(3.6,3.6,1,1), oma = c(0,0,0,0))
   par(las = 1, mar = c(3.6, 3.6, 1, 1), oma = c(0, 0, 0, 0))
-  plot(sb, spr, type = "n", pch = 20, xlim = c(0,1.3), ylim = c(0,1.3),
+  plot(sb,
+       spr,
+       type = "n",
+       pch = 20,
+       xlim = c(0,1.3),
+       ylim = c(0,1.3),
        xlab = expression(paste("Relative spawning biomass", ~~~(italic(B[t])/italic(B)[0]))),
        ylab = expression(paste("Relative fishing intensity", ~~(1-italic(SPR))/(1-italic(SPR)['40%']))),
-       xaxs = "i", yaxs = "i", mgp = c(2.4,1,0))
+       xaxs = "i",
+       yaxs = "i",
+       mgp = c(2.4,1,0),
+       cex.lab = cex.lab)
   colvec <- rev(rich.colors.short(n = length(sb))[-1])
   arrows(sb[-length(sb)], spr[-length(spr)], sb[-1], spr[-1], length=0.09,
          ## col = rgb(0,0,0,0.4))
