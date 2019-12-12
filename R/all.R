@@ -5,10 +5,10 @@
 # To debug in an R session, run these 3 commands first:
 # source(file.path(here::here(), "R/all.r"));load.models.into.parent.env();source(file.path(here::here(), "R/custom-knitr-variables.r"))
 
+library(coda)
 library(cowplot)
 library(date)
 library(dplyr)
-library(coda)
 library(ggplot2)
 library(grid)
 library(gridExtra)
