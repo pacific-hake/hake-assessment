@@ -9,36 +9,8 @@ _____________________________________________________________
 
 
 ## Prerequisites
-* MikTex 2.9 for Windows - the first time you try to run, many packages will be installed automatically.
-  This takes some time so make sure you have a fast connection.
-* R (version 3.5.1 "Feather Spray")
-* R Packages (will be installed automatically if they are not present):
-    * caTools
-    * coda
-    * cowplot
-    * date
-    * devtools
-    * dplyr
-    * ggplot2
-    * grid
-    * gridExtra
-    * gtools
-    * kableExtra
-    * knitr
-    * lubridate
-    * maps
-    * maptools
-    * nwfscSurvey
-    * nwfscMapping
-    * PBSmapping
-    * purrr
-    * PBSmodelling
-    * RColorBrewer
-    * r4ss
-    * scales
-    * stringi
-    * xtable
 
+* R (version 3.6.0 "Planting of a Tree")
 * Rscript.exe must be on your PATH if you want to use
   **Method 1 for building the document** (explained below).
 
