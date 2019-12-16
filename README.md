@@ -1,16 +1,12 @@
 ____
 # hake-assessment
 
-**Updated January 17, 2018**
-
 A framework which uses latex and knitr code to build the US/Canadian Pacific hake assessment.
-
 _____________________________________________________________
-
 
 ## Prerequisites
 
-* R (version 3.6.0 "Planting of a Tree")
+* R version 3.6.2 "Dark and Stormy Night", released Dec 12, 2019
 * Rscript.exe must be on your PATH if you want to use
   **Method 1 for building the document** (explained below).
 
