@@ -56,7 +56,7 @@ _____________________________________________________________
 * ***To build the RData files for the the base model and all other models with mcmc folders,
   run the batch file `build-rdata-files.bat`. This will take a long time as it is running forecasting,
   retrospectives, and extra-mcmc routines. Note that this file needs to be custom-made each year as it
-  calls the build() function for individual models.*** If the script does not work then make sure the directory that Rscript resides in is in your PATH (e.g. C:\Pfiles\R\R-3.5.1\bin\).
+  calls the build() function for individual models.*** If the script does not work then make sure the directory that Rscript resides in is in your PATH.
 
 * Once the batch file above has been run and finished, you need to build the RData files for the the
   models with only MLE runs (they don't have an mcmc folder in them). Run the following:
