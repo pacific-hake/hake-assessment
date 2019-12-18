@@ -322,8 +322,8 @@ main.recdev.start <- min(base.model$recruit$Yr[base.model$recruit$era=="Main"])
 main.recdev.end <- max(base.model$recruit$Yr[base.model$recruit$era=="Main"])
 
 # range of "main" bias adjustement period for recdevs
-main.recdevbias.start <- min(base.model$recruit$Yr[base.model$recruit$biasadj==max(base.model$recruit$biasadj)])
-main.recdevbias.end <- max(base.model$recruit$Yr[base.model$recruit$biasadj==max(base.model$recruit$biasadj)])
+main.recdevbias.start <- min(base.model$recruit$Yr[base.model$recruit$biasadjuster==max(base.model$recruit$biasadjuster)])
+main.recdevbias.end <- max(base.model$recruit$Yr[base.model$recruit$biasadjuster==max(base.model$recruit$biasadjuster)])
 
 ################################################################################
 ## weight-at-age for the base model
