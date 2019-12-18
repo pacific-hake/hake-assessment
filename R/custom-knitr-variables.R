@@ -326,8 +326,12 @@ main.recdevbias.start <- min(base.model$recruit$Yr[base.model$recruit$biasadj==m
 main.recdevbias.end <- max(base.model$recruit$Yr[base.model$recruit$biasadj==max(base.model$recruit$biasadj)])
 
 ################################################################################
-## Load weight-at-age file now that models are loaded
-wt.at.age <- load.wt.at.age(base.model, weight.at.age.file.name)
+## weight-at-age for the base model
+wt.at.age <- base.model$wtatage %>% 
+  filter(Yr %in% start.yr.age.comps:(end.yr - 1),
+         Fleet == 2) %>% 
+  select(-c(Seas, Sex, Bio_Pattern, BirthSeas, Fleet, comment)) %>% 
+  rename(year = Yr)
 
 ################################################################################
 ## Retrospective setup for the document. This must be done after the base.model
