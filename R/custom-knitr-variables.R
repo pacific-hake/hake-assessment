@@ -359,8 +359,8 @@ theta.survey <- exp(base.model$parameters["ln(EffN_mult)_2","Value"])
 DM.weight.fishery <- round(theta.fishery/(1+theta.fishery),3)
 DM.weight.survey <- round(theta.survey/(1+theta.survey),3)
 # MCMC medians for the fishery (survey value fixed at MLE)
-log.theta.fishery.median <- round(median(base.model$mcmc$ln.EffN_mult._1),3)
-DM.weight.fishery.median <- round(median(exp(base.model$mcmc$ln.EffN_mult._1)/(1+exp(base.model$mcmc$ln.EffN_mult._1))),3)
+log.theta.fishery.median <- round(median(base.model$mcmc$`ln(EffN_mult)_1`),3)
+DM.weight.fishery.median <- round(median(exp(base.model$mcmc$`ln(EffN_mult)_1`)/(1+exp(base.model$mcmc$`ln(EffN_mult)_1`))),3)
 
 ################################################################################
 ## joint probability (%age) of being being both above the target relative fishing intensity in \Sexpr{end.yr-1}
