@@ -9,6 +9,15 @@ _____________________________________________________________
 * R version 3.6.2 "Dark and Stormy Night", released Dec 12, 2019
 * Rscript.exe must be on your PATH if you want to use
   **Method 1 for building the document** (explained below).
+* Install the following packages at the given commits. Unfortunately the PBSmapping package is not
+  set up correctly on GitHub so to get up to date you need to clone it (https://github.com/pbs-software/pbs-mapping), make sure you are on commit 6e124da8fd239ad943a6088cebd331eb322fffe8, and build and install locally using `devtools::install()`.
+
+```
+devtools::install_github("r4ss/r4ss", ref = "b90113ad2819bb5d183b0caf7b238f667863c87f")
+devtools::install_github("nwfsc-assess/nwfscMapping, ref = "661ed194bcf360e999104fa74c2da0a68968da2f")
+devtools::install_github("nwfsc-assess/nwfscSurvey, ref = "43c7a1fa373268d256b571c560590649c10ece72")
+```
+
 
 ---
 ## How to create the RData files required for the document to build
