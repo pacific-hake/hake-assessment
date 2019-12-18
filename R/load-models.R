@@ -74,9 +74,9 @@ load.ss.files <- function(model.dir,
   ## If it has an 'mcmc' sub-directory, load that as well
   if(dir.exists(mcmc.dir)){
     fix.posteriors(mcmc.dir)
-    model$mcmc <- data.frame(SSgetMCMC(dir = mcmc.dir,
-                                       writecsv = FALSE,
-                                       verbose = ss.verbose)$model1)
+    model$mcmc <- SSgetMCMC(dir = mcmc.dir,
+                            writecsv = FALSE,
+                            verbose = ss.verbose)
     # replace any SPB with SSB
     names(model$mcmc) <- gsub(pattern="SPB", replacement="SSB", names(model$mcmc))
     create.key.nuisance.posteriors.files(model,
@@ -652,7 +652,7 @@ fetch.forecasts <- function(mcmc.path,
     }
     for(level.ind in 1:length(catch.levels.names)){
       fore.level.path <- file.path(fore.path, catch.levels.names[level.ind])
-      mcmc.out <- SSgetMCMC(dir = fore.level.path, writecsv = FALSE)$model1
+      mcmc.out <- SSgetMCMC(dir = fore.level.path, writecsv = FALSE)
       ## Get the values of interest, namely Spawning biomass and SPR for the two
       ## decision tables in the executive summary
       sb <- mcmc.out[,grep("Bratio_",names(mcmc.out))]
