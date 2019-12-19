@@ -10,19 +10,21 @@ _____________________________________________________________
 
 * One-step document building by pressing the *Compile PDF* button in RStudio
 
+* Replaced Figure 1, the overview map. This was built using a lot of code from the three packages *nwfscSurvey*,
+  *nwfscMapping*, and *PBSmapping* which were all eliminated from the project. A bunch of shapefiles were no longer
+  necessary as the *rnaturalearth* package holds coastline data. The *sf* package was used to plot the map and
+  port, province, and state locations. It is a modernized spatial object system in R which incorporated
+  feature mapping.
+
 ## Prerequisites
 
 * R version 3.6.2 "Dark and Stormy Night", released Dec 12, 2019
 * Rscript.exe must be on your PATH if you want to use
   **Method 1 for building the document** (explained below).
-* Install the following packages at the given commits. Unfortunately the PBSmapping package is not
-  set up correctly on GitHub so to get up to date you need to clone it (https://github.com/pbs-software/pbs-mapping), make sure you are on commit 6e124da8fd239ad943a6088cebd331eb322fffe8, and build and install locally using `devtools::install()`. It is also on CRAN so you can just try `install.packages("PBSmapping")` but the author doesn't
-  update CRAN very often so in future this may not work. The PBSmapping, nwfscMapping, and nwfscSurvey packages are only needed for Figure 1, the coastline map. If I have time I'll get rid of all those libraries and remake it using the sf package.
+* Install the r4ss package at the given commit.
 
 ```
 devtools::install_github("r4ss/r4ss", ref = "b90113ad2819bb5d183b0caf7b238f667863c87f")
-devtools::install_github("nwfsc-assess/nwfscMapping, ref = "661ed194bcf360e999104fa74c2da0a68968da2f")
-devtools::install_github("nwfsc-assess/nwfscSurvey, ref = "43c7a1fa373268d256b571c560590649c10ece72")
 ```
 
 To get the TeX part working, you can either use MikTex, which I have moved away from in favour of the tinytex
