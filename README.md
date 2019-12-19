@@ -12,7 +12,7 @@ _____________________________________________________________
 
 * Replaced Figure 1, the overview map. This was built using a lot of code from the three packages *nwfscSurvey*,
   *nwfscMapping*, and *PBSmapping* which were all eliminated from the project. A bunch of shapefiles were no longer
-  necessary as the *rnaturalearth* pakage holds coasline data. The *sf* package was used to plot the map and
+  necessary as the *rnaturalearth* package holds coastline data. The *sf* package was used to plot the map and
   port, province, and state locations. It is a modernized spatial object system in R which incorporated
   feature mapping.
 
