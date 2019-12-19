@@ -66,6 +66,6 @@ make.overview.map.plot <- function(path,
     coord_sf(xlim = extents[[1]],
              ylim = extents[[2]]) +
     ylab(paste0("Latitude (", intToUtf8(176), ")")) +
-    ylab(paste0("Longitude (", intToUtf8(176), ")"))
+    xlab(paste0("Longitude (", intToUtf8(176), ")"))
     g
 }
