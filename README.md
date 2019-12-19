@@ -17,7 +17,7 @@ _____________________________________________________________
   **Method 1 for building the document** (explained below).
 * Install the following packages at the given commits. Unfortunately the PBSmapping package is not
   set up correctly on GitHub so to get up to date you need to clone it (https://github.com/pbs-software/pbs-mapping), make sure you are on commit 6e124da8fd239ad943a6088cebd331eb322fffe8, and build and install locally using `devtools::install()`. It is also on CRAN so you can just try `install.packages("PBSmapping")` but the author doesn't
-  update CRAN very often so in future this may not work.
+  update CRAN very often so in future this may not work. The PBSmapping, nwfscMapping, and nwfscSurvey packages are only needed for Figure 1, the coastline map. If I have time I'll get rid of all those libraries and remake it using the sf package.
 
 ```
 devtools::install_github("r4ss/r4ss", ref = "b90113ad2819bb5d183b0caf7b238f667863c87f")
