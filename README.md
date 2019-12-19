@@ -4,13 +4,20 @@ ____
 A framework which uses latex and knitr code to build the US/Canadian Pacific hake assessment.
 _____________________________________________________________
 
+## What's new
+
+* Use the tinytex R package for a better integration of latex with R
+
+* One-step document building by pressing the *Compile PDF* button in RStudio
+
 ## Prerequisites
 
 * R version 3.6.2 "Dark and Stormy Night", released Dec 12, 2019
 * Rscript.exe must be on your PATH if you want to use
   **Method 1 for building the document** (explained below).
 * Install the following packages at the given commits. Unfortunately the PBSmapping package is not
-  set up correctly on GitHub so to get up to date you need to clone it (https://github.com/pbs-software/pbs-mapping), make sure you are on commit 6e124da8fd239ad943a6088cebd331eb322fffe8, and build and install locally using `devtools::install()`.
+  set up correctly on GitHub so to get up to date you need to clone it (https://github.com/pbs-software/pbs-mapping), make sure you are on commit 6e124da8fd239ad943a6088cebd331eb322fffe8, and build and install locally using `devtools::install()`. It is also on CRAN so you can just try `install.packages("PBSmapping")` but the author doesn't
+  update CRAN very often so in future this may not work.
 
 ```
 devtools::install_github("r4ss/r4ss", ref = "b90113ad2819bb5d183b0caf7b238f667863c87f")
@@ -18,6 +25,14 @@ devtools::install_github("nwfsc-assess/nwfscMapping, ref = "661ed194bcf360e99910
 devtools::install_github("nwfsc-assess/nwfscSurvey, ref = "43c7a1fa373268d256b571c560590649c10ece72")
 ```
 
+To get the TeX part working, you can either use MikTex, which I have moved away from in favour of the tinytex
+R package which controls installation of TeXLive (https://yihui.org/tinytex/). To get this document to build I had
+to run the following commands in a DOS shell after installing tinytex in order to install the required fonts. This only has to be done once.
+
+```
+tlmgr install courier
+tlmgr install lxfonts
+```
 
 ---
 ## How to create the RData files required for the document to build
@@ -96,6 +111,18 @@ devtools::install_github("nwfsc-assess/nwfscSurvey, ref = "43c7a1fa373268d256b57
         load.models.into.parent.env()
       }
     ```
+* **Method 3 for building the document** (With an R interpreter using tinytex):
+```
+setwd(here::here("doc"))
+library(knitr)
+knit("hake-assessment.rnw"")
+options(tinytex.verbose = TRUE)
+tinytex::latexmk("hake-assessment.tex")
+```
+
+* **Method 4 for building the document** (With RStudio):
+  Press the *Compile PDF* button when the hake-assessment.rnw file is showing.
+
 * To clean up the build, including removal of the cached figures and tables, run the **freshtex.bat** batch file,
   or manually delete the **knitr-cache** directory. If you don't do this, figures and tables built previously
   will be used. To keep the cached figures and tables, but remove all other traces of the build including the PDF,
@@ -104,8 +131,6 @@ devtools::install_github("nwfsc-assess/nwfscSurvey, ref = "43c7a1fa373268d256b57
 ## If you get unobvious errors that prevent it building
 
 * Try deleting .RData file for the base case. Could be to do with the forecasts.
-
-* The error during **one-page-summary.rnw** that says **object 'catch.limit.quantiles' not found** is because projections haven't built properly. Chris/Ian fixed this on 23-01-2018 (it was building fine on morning of 19-01-2018 before a new **models/2018.18\_temporary\_base/** was uploaded).
 
 
 ## How to delete all model RData files
@@ -128,16 +153,6 @@ devtools::install_github("nwfsc-assess/nwfscSurvey, ref = "43c7a1fa373268d256b57
   ```
 * Cut-and-paste the figure/table code from the knitr chunk you want to debug into R and the output will be exactly
   what will appear in the document.
-
-## Installation of R packages
-
-* The code will automatically install packages from CRAN or GitHub - see the **install.packages.if.needed()** function
-  in **doc/r/r-functions/utilities.r** and the calls to it in **all.r**. Packages won't be updated though. If
-  something doesn't work, try to update the **r4ss** package manually as it changes frequently:
-  ```R
-    devtools::install_github("r4ss/r4ss")
-  ```
-  Other packages may have issues like this, but we have not come across that situation so far.
 
 ---
 
@@ -240,8 +255,10 @@ __Quick look at model output__
 
 Open R within the model's folder and use the R commands:
 
-	require(r4ss)
-	SS_plots(SS_output("./"))
+```
+library(r4ss)
+SS_plots(SS_output("./"))
+```
 
 This creates figures and an HTML page with tabs for sets of figures. This is useful for quickly
 looking at results, especially when MCMCs have not yet been run and so the assessment document
