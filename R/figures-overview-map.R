@@ -29,9 +29,10 @@ make.overview.map.plot <- function(path,
   
   states <- read_csv(states_file) %>% 
     mutate(lon = -abs(lon))
-  states_sf <- states %>% 
-    st_as_sf(coords = c("lon", "lat"), crs = crs) %>% 
-    `st_crs<-`(crs)
+  se_alaska <- states %>% 
+    filter(name == "Southeast Alaska")
+  states <- states %>% 
+    filter(name != "Southeast Alaska")
   
   extents <- st_as_sf(extents, coords = c("lon", "lat")) %>%
     `st_crs<-`(crs) %>%
@@ -47,22 +48,30 @@ make.overview.map.plot <- function(path,
                          y = lat,
                          label = name),
                      size = 5,
-                     color = "black",
-                     fill = "lightblue") +
+                     color = "black") +
+    geom_text_repel(data = se_alaska,
+                    aes(x = lon,
+                        y = lat,
+                        label = name),
+                    xlim = c(-131, NA),
+                    size = 5,
+                    color = "black",
+                    segment.size = 1,
+                    arrow = arrow(length = unit(0.02, "npc"))) +
     geom_text_repel(data = ports_left,
                      aes(x = lon,
                          y = lat,
                          label = name),
-                     xlim = c(NA, -125),
-                     fill = "white",
-                     alpha = 0.6) +
+                    xlim = c(NA, -125),
+                    segment.size = 0.8,
+                    arrow = arrow(length = unit(0.01, "npc"))) +
     geom_text_repel(data = ports_right,
                      aes(x = lon,
                          y = lat,
                          label = name),
                      xlim = c(-122, NA),
-                     fill = "white",
-                     alpha = 0.6) +
+                    segment.size = 0.8,
+                    arrow = arrow(length = unit(0.01, "npc"))) +
     coord_sf(xlim = extents[[1]],
              ylim = extents[[2]]) +
     ylab(paste0("Latitude (", intToUtf8(176), ")")) +
