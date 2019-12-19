@@ -39,24 +39,24 @@ make.overview.map.plot <- function(path,
     as_tibble()
   
   g <- ggplot(data = coast) +
-    geom_sf(color = "black", fill = "antiquewhite") +
+    geom_sf(color = "black", fill = "grey") +
     geom_sf(data = ports_left_sf, color = "red", size = 2,  show.legend = FALSE) +
     geom_sf(data = ports_right_sf, color = "red", size = 2,  show.legend = FALSE) +
-    geom_label_repel(data = states,
+    geom_text_repel(data = states,
                      aes(x = lon,
                          y = lat,
                          label = name),
-                     size = 4,
-                     color = "royalblue",
+                     size = 5,
+                     color = "black",
                      fill = "lightblue") +
-    geom_label_repel(data = ports_left,
+    geom_text_repel(data = ports_left,
                      aes(x = lon,
                          y = lat,
                          label = name),
                      xlim = c(NA, -125),
                      fill = "white",
                      alpha = 0.6) +
-    geom_label_repel(data = ports_right,
+    geom_text_repel(data = ports_right,
                      aes(x = lon,
                          y = lat,
                          label = name),
