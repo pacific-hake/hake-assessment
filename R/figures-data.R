@@ -13,24 +13,15 @@ make.cumulative.catch.plot <- function(d,   ## Data as found in the xxxx.catch.b
                                        leg.cex = 1){  ## Legend text size
   ## Cumulative catch plot for years given
   ## Remove any data with years not within limits
-  d <- d[d$year %in% yrs,]
-  ## Order by year and month
-  d <- d[with(d, order(year, month)),]
-
-  d.yr <- split(d, d$year)
-
-  ## Fill in missing months with NA's
-  d.list <- lapply(d.yr, function(x) merge(data.frame(list(month = 1:12)), x, all = TRUE))
-  ## Replace those NA's with zeroes
-  d <- list()
-  for(i in 1:length(d.list)){
-    tmp.df <- d.list[[i]]
-    tmp.df[is.na(tmp.df)] <- 0
-    d[[i]] <- tmp.df
-  }
-
-  ylim <- c(0, max(apply(sapply(d, "[[", "catch"), 2, sum)) / scale)
-
+  d <- d %>% 
+    filter(year %in% yrs) %>% 
+    mutate_at(vars(-year), function(x){x / scale})
+  dsum <- d %>% 
+    transmute(totcatch = rowSums(.[,-1]))
+  ylim <- max(dsum)
+## TODO: Fix this to work on new file structure of can-ft-catch-by-month.csv.
+## See hakedata package (canada) as it has this function already built in.
+  browser()
   catch.plot <- function(x, y, plot.type = c("default", "proportion", "cumulative"), ...){
     ## x is period
     ## y is catch

@@ -19,6 +19,7 @@ kriging.parameters.file <- "kriging-parameters.csv"
 can.age.file <- "can-age-data.csv"
 can.ft.catch.by.month.file <- "can-ft-catch-by-month.csv"
 can.ss.catch.by.month.file <- "can-ss-catch-by-month.csv"
+can.jv.catch.by.month.file <- "can-jv-catch-by-month.csv"
 can.ft.bottom.depth.file <- "depth-can-freezer-trawlers.csv"
 can.ss.bottom.depth.file <- "depth-can-shoreside.csv"
 
@@ -57,6 +58,7 @@ kriging.pars <- read.csv(file.path(rootd.data, kriging.parameters.file), comment
 ## For cumulative catch plots in the data presentation
 can.ft.catch.by.month <- read.csv(file.path(rootd.data, can.ft.catch.by.month.file), stringsAsFactors = FALSE)
 can.shore.catch.by.month <- read.csv(file.path(rootd.data, can.ss.catch.by.month.file), stringsAsFactors = FALSE)
+can.jv.catch.by.month <- read.csv(file.path(rootd.data, can.jv.catch.by.month.file), stringsAsFactors = FALSE)
 us.shore.catch.by.month <- read.csv(file.path(rootd.data, us.shore.catch.by.month.file), stringsAsFactors = FALSE)
 us.cp.catch.by.month <- read.csv(file.path(rootd.data, us.cp.catch.by.month.file), stringsAsFactors = FALSE)
 us.ms.catch.by.month <- read.csv(file.path(rootd.data, us.ms.catch.by.month.file), stringsAsFactors = FALSE)
