@@ -7,7 +7,7 @@ ss.verbose <- FALSE
 ## -----------------------------------------------------------------------------
 ## Year for this assessment - default is current year
 ## -----------------------------------------------------------------------------
-assess.yr <- 2019
+assess.yr <- 2020
 if(verbose) cat0("Assessment year: \n  ", assess.yr)
 
 ## -----------------------------------------------------------------------------
@@ -41,7 +41,7 @@ if(verbose) cat0("SS weight-at-age file: \n  ", weight.at.age.file.name)
 ## -----------------------------------------------------------------------------
 ## The version of SS and ADMB used in this assessment
 ## -----------------------------------------------------------------------------
-ss.version <- "3.30.10"
+ss.version <- "3.30.14.08"
 if(verbose) cat0("SS version: \n  ", ss.version)
 admb.version <- "11.6"
 if(verbose) cat0("ADMB version: \n  ", admb.version)
@@ -69,7 +69,7 @@ if(verbose) cat0("End year for model: \n  ", end.yr)
 survey.start.yr <- 1995
 if(verbose) cat0("First survey year: \n  ", survey.start.yr)
 ## Last year in the survey timeseries
-survey.end.yr <- 2017
+survey.end.yr <- 2019
 ## Years in which the survey took place
 surv.yrs <- c(1995,
               1998,
@@ -82,7 +82,8 @@ surv.yrs <- c(1995,
               2012,
               2013,
               2015,
-              2017)
+              2017,
+              2019)
 
 # tick marks for time series plot
 big.ticks <- seq(1970, end.yr + 4, 5)
@@ -116,7 +117,7 @@ if(verbose) cat0("Key posteriors file: \n  ", nuisance.posteriors.file)
 ## -----------------------------------------------------------------------------
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
-base.model.dir.name <- "2019.03.00_base"
+base.model.dir.name <- "2020.00.08_tune_base_v1"
 base.model.name <- paste0(assess.yr, " Base model")
 if(verbose){
   cat0("Base model directory name: \n  ", base.model.dir.name)
@@ -138,7 +139,7 @@ if(verbose){
 ## Last assessment year's base model name and directory
 ## -----------------------------------------------------------------------------
 ##last.yr.base.model.dir.name <- "00_45_2017base"
-last.yr.base.model.dir.name <- "2018.40_base_model"
+last.yr.base.model.dir.name <- "2019.03.00_base"
 last.yr.base.model.name <- paste(last.assess.yr, "Base model")
 if(verbose){
   cat0("Last assessment year's base model directory name: \n  ",
@@ -151,9 +152,9 @@ if(verbose){
 ## Bridge models group 1
 ## -----------------------------------------------------------------------------
 bridge.model.dir.names.1 <- c(last.yr.base.model.dir.name,
-                              "2019.03.40_update_historic_catch",
-                              "2019.03.46_update_historic_comp",
-                              "2019.03.47_update_historic_wtage")
+                              "2020.00.01_update_pre2019_data",
+                              "2020.00.01_update_pre2019_data",
+                              "2020.00.01_update_pre2019_data")
 bridge.model.names.1 <- c(last.yr.base.model.name,
                           "Update historic catch",
                           "Update historic comps",
@@ -165,24 +166,24 @@ bridge.model.end.yr.1 <- end.yr - c(1, 1, 1, 1) # subtract 1 year from all 4 mod
 ## Bridge models group 2
 ## -----------------------------------------------------------------------------
 bridge.model.dir.names.2 <- c(last.yr.base.model.dir.name,
-                              "2019.03.41_add_2018_catch",
-                              "2019.03.42_add_2018_comp_wtatage",
-                              "2019.03.45_fecundity_time_varying")
+                              "2020.00.02_add_2019_catch",
+                              "2020.00.02_add_2019_catch",
+                              "2020.00.02_add_2019_catch")
 bridge.model.names.2 <- c(last.yr.base.model.name,
-                          "Add 2018 catch",
-                          "Add 2018 comps and weights",
+                          "Add 2019 catch",
+                          "Add 2019 comps and weights",
                           "Time-varying fecundity (= base model)")
 bridge.model.end.yr.2 <- end.yr - c(1, 0, 0, 0) # subtract 1 year from first 1 models
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 1
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.1 <- c("2019.03.01_h_prior_mean_low",
-                            "2019.03.02_h_fix_high",
-                            "2019.03.03_sigmaR_fix_low",
-                            "2019.03.04_sigmaR_fix_high",
-                            "2019.03.05_M_0.2SD",
-                            "2019.03.06_M_0.3SD")
+sens.model.dir.names.1 <- c("2020.00.15_h_prior_mean_low",
+                            "2020.00.16_h_fix_high",
+                            "2020.00.17_sigmaR_fix_low",
+                            "2020.00.18_sigmaR_fix_high",
+                            "2020.00.20_M_0.2SD",
+                            "2020.00.21_M_0.3SD")
 sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
                         "Steepness Fix 1.0",
                         "Sigma R 1.0",
@@ -193,9 +194,9 @@ sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 2
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.2 <- c("2019.03.07_age1Survey",
-                            "2019.03.08_compWeight_HarmonicMean",
-                            "2019.03.09_compWeight_Francis")
+sens.model.dir.names.2 <- c("2020.00.23_age1Survey",
+                            "2020.00.24_compWeight_HarmonicMean",
+                            "2020.00.25_compWeight_Francis")
 sens.model.names.2 <- c("Add Age 1 Index",
                         "McAllister Ianelli Weighting",
                         "Francis Weighting")
@@ -220,11 +221,11 @@ sens.model.names.2 <- c("Add Age 1 Index",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 4
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.4 <- c("2019.03.11_tvSelect_phi_xtralow",
-                            "2019.03.12_tvSelect_phi_low",
-                            "2019.03.13_tvSelect_phi_high",
-                            "2019.03.10_semiPara_tvSelect_sig0.695",
-                            "2019.03.14_semiPara_tvSelect_sig1.0")
+sens.model.dir.names.4 <- c("2020.00.27_tvSelect_phi_extralow",
+                            "2020.00.28_tvSelect_phi_low",
+                            "2020.00.29_tvSelect_phi_high",
+                            "2020.00.26_semiPara_tvSelect_sig0.695",
+                            "2020.00.26_semiPara_tvSelect_sig0.695")
 sens.model.names.4 <- c("Phi t.v. selectivity (0.21)",
                         "Phi t.v. selectivity (0.70)",
                         "Phi t.v. selectivity (2.10)",
@@ -234,24 +235,24 @@ sens.model.names.4 <- c("Phi t.v. selectivity (0.21)",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 5  - Different weight-at-age schemes (first group)
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.5 <- c("2019.03.52_fecundity",
-                            "2019.03.53_fecundity",
-                            "2019.03.54_fecundity")
-sens.model.names.5 <- c("Run 52",
-                        "Run 53",
-                        "Run 54")
+sens.model.dir.names.5 <- c("2020.00.30_noCohort_ageError",
+                            "2020.00.32_eqFecund_early5",
+                            "2020.00.33_eqFecund_early10")
+sens.model.names.5 <- c("No ageing error",
+                        "Fecundity early 5 yrs",
+                        "Fecundity early 10 yrs")
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 6  - Different weight-at-age schemes (second group)
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.6 <- c("2019.03.55_fecundity",
-                            "2019.03.56_fecundity",
-                            "2019.03.57_fecundity",
-                            "2019.03.58_fecundity")
-sens.model.names.6 <- c("Run 55",
-                        "Run 56",
-                        "Run 57",
-                        "Run 58")
+sens.model.dir.names.6 <- c("2020.00.32_eqFecund_early5",
+                            "2020.00.32_eqFecund_early5",
+                            "2020.00.32_eqFecund_early5",
+                            "2020.00.32_eqFecund_early5")
+sens.model.names.6 <- c("TODO: remove this",
+                        "TODO: remove this",
+                        "TODO: remove this",
+                        "TODO: remove this")
 
 
 ## sens.model.names.5 <- c("Early weight-age 1975-2018 mean, late is 2016-2018 mean",             #52
