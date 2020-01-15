@@ -362,13 +362,13 @@ Very large year classes in 1980, 1984, and 1999 supported much of the commercial
 catch from the 1980s to the mid-2000s. From 2000 to 2007, estimated recruitment
 was at some of the lowest values in the time series, but this was followed by an above average
 2008 year class. The current assessment continues to estimate a very strong
-2010 year class comprising \Sexpr{top.coh(2014, spec.yr=2010)}\% of the coast-wide
-commercial catch in 2014, \Sexpr{top.coh(2016, spec.yr=2010)}\% of the 2016 catch, and
-\Sexpr{top.coh(2018, spec.yr=2010)}\% of the catch in 2018. The smaller proportion of
+2010 year class comprising \Sexpr{top.coh(base.model, 2014, spec.yr=2010)}\% of the coast-wide
+commercial catch in 2014, \Sexpr{top.coh(base.model, 2016, spec.yr=2010)}\% of the 2016 catch, and
+\Sexpr{top.coh(base.model, 2018, spec.yr=2010)}\% of the catch in 2018. The smaller proportion of
 the 2010 year class in the 2016 catch is due to the large influx of the 2014
-year class (\Sexpr{top.coh(2016, spec.yr=2014)}\% of the 2016 catch was age-2 fish from the
+year class (\Sexpr{top.coh(base.model, 2016, spec.yr=2014)}\% of the 2016 catch was age-2 fish from the
 2014 year class, which was similar to the proportion of age-2 fish,
-\Sexpr{top.coh(2012, spec.yr=2010)}\%, from the 2010 year
+\Sexpr{top.coh(base.model, 2012, spec.yr=2010)}\%, from the 2010 year
 class in 2012).  The median of the estimated size of the 2010 year class is
 the second highest in the time series (after that for
 1980). The model currently estimates smaller-than-average 2011, 2012, 2013,

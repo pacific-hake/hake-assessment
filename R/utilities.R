@@ -1,18 +1,20 @@
+#' Build the doc entirely from within R
+#'
+#' @details Make sure you have created the .RData files by sourcing *all.r* with the [create.rdata.file()] variables set to TRUE.
+#' Once you have done that and run this function once within an R session, you can go into the first knitr code chunk in
+#' hake-assessment.rnw and set the call to [load.models.into.parent.env()] to FALSE, which will save time for doing the build.
+#' 
+#' @param knit.only Only knit the code, do not run latex
+#' @param make.pdf Logical. TRUE to make the pdf, if FALSE it will only go as far as postscript 
+#' @param make.bib Logical. Run bibtex
+#' @param doc.name What to name the dcument (no extension needed)
+#'
+#' @return [base::invisible()]
+#' @export
 build.doc <- function(knit.only = FALSE,
                       make.pdf  = TRUE,
                       make.bib  = TRUE,
                       doc.name  = "hake-assessment"){
-  ## Use this function to build to doc entirely from within R
-  ## Make sure you have created the .RData files by sourcing all.r
-  ##  with the create.rdata.file variables set to TRUE.
-  ## Once you have done that and run this function once within an R session,
-  ##  you can go into the first knitr code chunk in hake-assessment.rnw and
-  ##  set the call to load.models.into.parent.env() to FALSE,
-  ##  which will save time for doing the build.
-  ##
-  ## knit.only - Only run knitr, not latex
-  ## make.pdf - TRUE to make the pdf, if FALSE it will only go as far as
-  ##  postscript.
 
   knit(paste0(doc.name,".rnw"))
   if(!knit.only){
@@ -40,24 +42,37 @@ build.doc <- function(knit.only = FALSE,
       shell(paste0("ps2pdf ", doc.name, ".ps"))
     }
   }
+  invisible()
 }
 
+#' Format x to have supplied number of decimal points
+#'
+#' @details Make thousands seperated by commas and the number of decimal points given by `dec.points``
+#' 
+#' @param x The number
+#' @param dec.points The number of decimal points to use
+#'
+#' @return A formatted string representing the number
+#' @export
 f <- function(x, dec.points = 0){
-  ## Format x to have supplied number of decimal points
-  ## Make thousands seperated by commas and the number of decimal points given by
-  ##  dec.points
-  return(format(round(x,dec.points), big.mark = ",", nsmall = dec.points))
+  format(round(x,dec.points), big.mark = ",", nsmall = dec.points)
 }
 
+#' Take a data frame that has at least two columns called year and fdep, convert to meters and
+#' calculate boxplot stats on each year write a csv file to current directory
+#'
+#' @details Uuse spatial data frame (Canada) output to this function
+#' 
+#' @param x The data frame
+#' @param fleet 
+#'
+#' @return [base::invis]
+#' @export
+#'
+#' @examples
+#' export.depth(d.ft, "freezer-trawlers")
+#' export.depth(d.ss, "shoreside")
 export.depth <- function(x, fleet = ""){
-  ## Take a data frame that has at least two columns called year and fdep
-  ##  convert to meters and calculate boxplot stats on each year
-  ##  write a csv file to current directory.
-  ## Canada note 2019: Use the files CatchLocationsFT.dat and CatchLocationsSS.dat
-  ##  in CumulativeCatch directory as data frames for input to this as x
-  ## examples:
-  ## export.depth(d.ft, "freezer-trawlers")
-  ## export.depth(d.ss, "shoreside")
 
   x %>%
     transmute(year = as.factor(year), depth = fdep * 1.8288) %>%
@@ -84,38 +99,69 @@ export.depth <- function(x, fleet = ""){
 latex.nline <- " \\\\ "
 ## Horizontal line
 latex.hline <- " \\hline "
+
+#' Create a string with `n` ampersands seperated by spaces
+#'
+#' @details The string will have one leading and one trailing space
+#' 
+#' @param n 
+#'
+#' @return A string with `n` ampersands seperated by spaces
+#' @export
 latex.amp <- function(n = 1){
-  ## Returns a string with n ampersands seperated by spaces. The string will
-  ##  have one leading and one trailing space.
   paste0(rep(" &", n), " ", collapse = "")
 }
 
+#' Create a string comprised of each element in the vector `vec` with an ampersand in between
+#'
+#' @details The string will have one leading and one trailing space
+#' 
+#' @param vec A vector of characters
+#'
+#' @return A string comprised of each element in the vector `vec` with an ampersand in between
+#' @export
 latex.paste <- function(vec){
-  ## Returns a string comprised of each element in the vector vec with an
-  ##  ampersand in between. The string will have one leading and one
-  ##  trailing space.
   paste(" ", vec, " ", collapse = " & ")
 }
 
+#' Wrap the given text with the latex \\textbf{} macro around it
+#'
+#' @param txt The text
+#'
+#' @return The given text with the latex \\textbf{} macro around it
+#' @export
 latex.bold <- function(txt){
-  ## Returns the given text with the latex \\textbf{} macro around it
   paste0("\\textbf{", txt, "}")
 }
 
+#' Wrap the given text with the latex \\emph{} macro around it
+#'
+#' @param txt The text
+#'
+#' @return The given text with the latex \\emph{} macro around it
+#' @export
 latex.italics <- function(txt){
-  ## Returns the given text with the latex \\emph{} macro around it
   paste0("\\emph{", txt, "}")
 }
 
+#' Wrap the given text with the latex \\underline{} macro around it
+#'
+#' @param txt The text
+#'
+#' @return The given text with the latex \\underline{} macro around it
+#' @export
 latex.under <- function(txt){
-  ## Returns the given text with the latex \\underline{} macro around it
   paste0("\\underline{", txt, "}")
 }
 
+#' Returns a string which has been glued together using multi-line-cell macro for latex
+#'
+#' @param latex.vec A vector of the strings to glue together
+#' @param make.bold Logical. If TRUE, make the text bold by inserting a \textbf{} macro
+#'
+#' @return
+#' @export
 latex.mlc <- function(latex.vec, make.bold = TRUE){
-  ## Returns a string which has been glued together using multi-line-cell
-  ##  macro for latex. If make.bold is TRUE, the \textbf macro will be
-  ##  inserted.
   if(make.bold){
     latex.vec <- sapply(latex.vec, latex.bold)
   }
@@ -123,77 +169,98 @@ latex.mlc <- function(latex.vec, make.bold = TRUE){
   paste0("\\mlc{", latex.str, "}")
 }
 
+#' Wrap the given text with the latex \\multicolumnn{} macro around it
+#'
+#' @param ncol The number of columns
+#' @param just Justification, e.g. "l", "c", or "r" for left, center, right
+#' @param txt The text
+#'
+#' @return The given text with the latex \\multicolumn{} macro around it
+#' @export
 latex.mcol <- function(ncol, just, txt){
-  ## Returns the given text with the latex \\multicolumn{} macro around it
-  ## ncol - the number of columns
-  ## just - justification, e.g. "l", "c", or "r" for left, center, right
   paste0("\\multicolumn{", ncol, "}{", just, "}{", txt, "}")
 }
 
+#' Wrap the given text with the latex \\multirow{} macro around it
+#'
+#' @param ncol The number of columns
+#' @param just Justification, e.g. "l", "c", or "r" for left, center, right
+#' @param txt The text
+#'
+#' @return The given text with the latex \\multirow{} macro around it
+#' @export
 latex.mrow <- function(nrow, just, txt){
-  ## Returns the given text with the latex \\multicolumn{} macro around it
-  ## nrow - the number of rows
-  ## just - justification, e.g. "l", "c", or "r" for left, center, right
   paste0("\\multirow{", nrow, "}{", just, "}{", txt, "}")
 }
 
+#' Creates a string which has the given font size and space size applied
+#'
+#' @param fnt.size The font size
+#' @param spc.size The space size (between text size)
+#'
+#' @return A string which has the given font size and space size applied
+#' @export
 latex.size.str <- function(fnt.size, spc.size){
-  ## Returns a string which has the given font size and space size applied
   paste0("\\fontsize{", fnt.size, "}{", spc.size, "}\\selectfont")
 }
 
+#' Provide latex code to draw a horizontal line across the columns specified
+#'
+#' @param cols A string in this format: "1-3" which means the line should go across columns 1 to 3
+#'
+#' @return A string of latex code to draw a horizontal line across the columns specified
+#' @export
+#'
+#' @examples
 latex.cline <- function(cols){
-  ## Draw a horizontal line across the columns specified
-  ## cols - a string in this format: "1-3" which means
-  ##  the line should go across columns 1 to 3.
   paste0("\\cline{", cols, "}")
 }
 
+#' Provide latex code to draw a horizontal line across the columns specified
+#'
+#' @param cols A string in this format: "1-3" which means the line should go across columns 1 to 3
+#' @param trim Can be l, r, or lr and tells it to trim the line a bit so that if there are two lines they don't
+#' touch in the middle. See [booktabs] 
+#'
+#' @return As string of latex code to draw a horizontal line across the columns specified
+#' @export
 latex.cmidr <- function(cols, trim = "r"){
-  ## Draw a horizontal line across the columns specified
-  ## cols - a string in this format: "1-3" which means
-  ##  the line should go across columns 1 to 3.
-  ## trim - can be l, r, or lr and tells it to trim the
-  ##  line a bit so that if there are two lines they don't
-  ##  touch in the middle. (See booktabs package)
   paste0("\\cmidrule(", trim, "){", cols, "}")
 }
 
+#' Creates a latex string with `main.txt` subscripted by `subscr.txt`
+#'
+#' @param main.txt The main text to subscript
+#' @param subscr.txt The subscript text
+#'
+#' @return A latex string with `main.txt` subscripted by `subscr.txt`
+#' @export
 latex.subscr <- function(main.txt, subscr.txt){
-  ## Returns a latex string with main.txt subscripted by subscr.txt
   paste0(main.txt, "\\subscr{", subscr.txt, "}")
 }
 
+#' Creates a latex string with `main.txt` superscripted by `supscr.txt`
+#'
+#' @param main.txt The main text to superscript
+#' @param supscr.txt The superscript text
+#'
+#' @return A latex string with `main.txt` superscripted by `supscr.txt`
+#' @export
 latex.supscr <- function(main.txt, supscr.txt){
-  ## Returns a latex string with main.txt superscripted by supscr.txt
   paste0(main.txt, "\\supscr{", supscr.txt, "}")
 }
 
-## -----------------------------------------------------------------------------
-
-install.packages.if.needed <- function(package.name,
-                                       package.install.name,
-                                       github = FALSE){
-  if(github){
-    if(!(package.name %in% rownames(installed.packages()))){
-      devtools::install_github(package.install.name)
-    }
-  }else{
-    if(!(package.name %in% rownames(installed.packages()))){
-      install.packages(package.install.name)
-    }
-  }
-}
-
+#' Extract priors information from `prior.str``
+#'
+#' @param prior.str A string with the format *Lognormal(2.0,1.01)*
+#' @param dec.points The number of decimal points to use
+#' @param first.to.lower Make the first letter of the prior name lower case
+#'
+#' @return A vector of length 3 with the following format: *c("Lognormal", 2.0, 1.01)*
+#' @export
 split.prior.info <- function(prior.str,
                              dec.points = 1,
                              first.to.lower = FALSE){
-  ## Get priors information from prior.str which is a string like
-  ## Lognormal(2.0,1.01)
-  ## Returns a vector of length 3:
-  ## "Lognormal", 2.0, 1.01
-  ## If first.to.lower = TRUE, makes the first letter of the name of the prior
-  ##  lower case.
   p <- strsplit(prior.str, "\\(")[[1]]
   if(first.to.lower){
     ## Make the name of the prior lower case
@@ -206,10 +273,22 @@ split.prior.info <- function(prior.str,
   p <- strsplit(p[2], ",")[[1]]
   p.mean <- f(as.numeric(p[1]), dec.points)
   p.sd <- f(as.numeric(gsub(")", "", p[2])), dec.points)
-  return(c(p.type, p.mean, p.sd))
+  c(p.type, p.mean, p.sd)
 }
 
-cohortCatch <- function(cohort, catage, ages = 0:20, trim.forecast=TRUE) {
+#' Calculate the total catch taken for a given cohort
+#'
+#' @param cohort The year the cohort was born
+#' @param catage The catch-at-age matrix from the model output
+#' @param ages The ages to include in the summation calculation
+#' @param trim.end.year Remove all years after this includinng this year
+#'
+#' @return The total catch for a given cohort
+#' @export
+#'
+#' @examples
+cohort.catch <- function(cohort, catage, ages = 0:20, trim.end.year = NA) {
+
   cohort.yrs <- cohort + ages
   caa <- as.matrix(catage[catage$Yr %in% cohort.yrs, as.character(ages)])
   w <- base.model$wtatage
@@ -223,40 +302,50 @@ cohortCatch <- function(cohort, catage, ages = 0:20, trim.forecast=TRUE) {
   }
   cohort.catch <- diag(catch.waa[,ind])
   names(cohort.catch) <- cohort.yrs[1:(nrow(caa))]
-  if(trim.forecast){
-    cohort.catch <- cohort.catch[names(cohort.catch) < end.yr]
+  if(!is.na(trim.end.year)){
+    cohort.catch <- cohort.catch[names(cohort.catch) < trim.end.year]
   }
-  return(cohort.catch)
+  cohort.catch
 }
 
-top.coh <- function(yr = last.data.yr,
+#' Create text describing the top `num.cohorts` cohorts by year and percentage as a sentence
+#'
+#' @details top.coh(2018, 2) produces:
+##  "The 2018 cohort was the largest (29\\%), followed by the 2010 cohort (27\\%)"
+#' 
+#' @param model The model as returned from [load.ss.files()]
+#' @param yr The year the cohort was born
+#' @param num.cohorts The number of cohorts to include in the sentence
+#' @param decimals The number of decimal points to use
+#' @param cap Logical. Capitalize the first word in the sentence?
+#' @param spec.yr If supplied, the percentage of catch that this cohort made to the 
+#' `yr` catch will be returned
+#' @param use.catage If TRUE, use the *model$catage* object which are the estimates \. If FALSE,
+#' use the *model$dat$agecomp* object which are the input data
+#'
+#' @return Text describing the top `num.cohorts` cohorts by year and percentage as a sentence
+#' @export
+top.coh <- function(model = NA,
+                    yr = NA,
                     num.cohorts = 3,
                     decimals = 0,
                     cap = TRUE,
                     spec.yr = NA,
                     use.catage = FALSE){
-  ## Returns text describing the top N cohorts by year and percentage as a sentence.
-  ## egs. top.coh(2018, 2) produces:
-  ##  "The 2014 cohort was the largest (29\\%), followed by the 2010 cohort (27\\%)"
-  ## top.coh(2018, 2, cap = FALSE) produces:
-  ##  "the 2014 cohort was the largest (29\\%), followed by the 2010 cohort (27\\%)"
-  ## top.coh(2018, spec.yr = 2010) produces:
-  ##  "27"
-  ##  because 27% of the catch in 2018 were of the 2010 cohort
-  ## If spec.yr is a year, then the value only will be returned
-  ##  as a percentage of that cohort caught in yr
-  ## If use.catage is TRUE, use the base.model$catage object which are the estimates
-  ## If use.catage is FALSE, use the base.model$dat$agecomp object which are the data
+  
+  stopifnot(!is.na(model),
+            !is.na(yr))
+  
   if(num.cohorts < 1){
     num.cohorts = 1
   }
   if(use.catage){
-    tmp <- base.model$catage[, -c(1, 3, 4, 5, 6)] %>%
+    tmp <- model$catage[, -c(1, 3, 4, 5, 6)] %>%
       dplyr::filter(Fleet == 1) %>%
       select(-c(Fleet, Seas, XX, Era, 0))
     tmp <- tmp[-1,]
   }else{
-    tmp <- base.model$dat$agecomp[, -c(2, 4, 5, 6, 7, 8, 9)] %>%
+    tmp <- model$dat$agecomp[, -c(2, 4, 5, 6, 7, 8, 9)] %>%
       dplyr::filter(FltSvy == 1) %>%
       select(-FltSvy) %>%
       mutate_all(funs(as.numeric))
@@ -292,76 +381,75 @@ top.coh <- function(yr = last.data.yr,
   txt
 }
 
-get.age.prop <- function(vec, place = 1){
-  ## returns the age prop and the age itself for the place,
-  ## where place is 1=max, 2-second highest, etc.
+#' Create the age prop and the age itself for the ranking of age proportions
+#'
+#' @details Think of the question "Which is the second-highest number in this vector and what is
+#' its index in the vector?" This function returns a vector of those two numbers.
+#' 
+#' @param vec A vector of age proportions
+#' @param ranking 1 = max, 2 = second highest, etc.
+#'
+#' @return The age proportion and the age itself for the ranking of age proportion
+#' @export
+get.age.prop <- function(vec, ranking = 1){
   prop <- rev(sort(vec))
-  prop <- prop[place]
+  prop <- prop[ranking]
   age <- as.numeric(names(vec[vec == prop]))
-  return(c(age, prop))
+  c(age, prop)
 }
 
+#' Create an RGB string of the specified color and opacity
+#'
+#' @details Format of returned string is #RRGGBBAA where
+#' RR = red, a 2-hexadecimal-digit string
+#' GG = green, a 2-hexadecimal-digit string
+#' BB = blue, a 2-hexadecimal-digit string
+#' AA = opacity, 2-digit string
+#' 
+#' @param color A vector of R color strings or numbers
+#' @param opacity A number between 0 and 99
+#'
+#' @returnn An RGB string of the specified color and opacity
+#' @export
 get.shade <- function(color, opacity){
-  # If color is a single R color string or single number,
-  #  returns an rgb string of the specified color and opacity
-  # If color is a vector of cR color strings or numbers,
-  #  returns a vector of rgb strings of the specified color and opacity.
-  # If the opacity argument is non-integer or not between 0 and 99, NULL will be returned.
-  # - opacity - 2-decimal-digit string (00-99), i.e. "20" means 20%
-  # Notes: format of returned string is #RRGGBBAA
-  #        where RR=red, a 2-hexadecimal-digit string
-  #        GG=green, a 2-hexadecimal-digit string
-  #        BB=blue, a 2-hexadecimal-digit string
-  #        AA=alpha or opacity
-  #
-  # The opacity agrument is scalar and will be applied to all colors.
-  if(!(opacity %% 1 == 0) || opacity<0 || opacity>99){
-    cat0(.PROJECT_NAME,"->",currFuncName,"opacity argument must be an integer between 0 and 99.")
-    return(NULL)
-  }
+
+  stopifnot(opacity > 0 & opacity < 100)
+  
   colorDEC <- col2rgb(color)
   if(is.matrix(colorDEC)){
-    colorHEX <- matrix(nrow=3,ncol=ncol(colorDEC))
+    colorHEX <- matrix(nrow = 3, ncol = ncol(colorDEC))
     shade <- NULL
     for(col in 1:ncol(colorDEC)){
       for(row in 1:nrow(colorDEC)){
-        colorHEX[row,col] <- sprintf("%X", colorDEC[row,col])
-        if(nchar(colorHEX[row,col])==1){
-          colorHEX[row,col] <- paste0("0",colorHEX[row,col])
+        colorHEX[row, col] <- sprintf("%X", colorDEC[row,col])
+        if(nchar(colorHEX[row,col]) == 1){
+          colorHEX[row, col] <- paste0("0", colorHEX[row,col])
         }
       }
-      shade[col] <- paste0("#",colorHEX[1,col],colorHEX[2,col],colorHEX[3,col],opacity)
+      shade[col] <- paste0("#", colorHEX[1, col], colorHEX[2, col], colorHEX[3, col], opacity)
     }
   }else{
     colorHEX <- sprintf("%X", colorDEC)
     for(i in 1:length(colorHEX)){
-      if(nchar(colorHEX[i])==1){
-        colorHEX[i] <- paste0("0",colorHEX[i])
+      if(nchar(colorHEX[i]) == 1){
+        colorHEX[i] <- paste0("0", colorHEX[i])
       }
     }
-    shade <- paste0("#",colorHEX[1],colorHEX[2],colorHEX[3],opacity)
+    shade <- paste0("#", colorHEX[1], colorHEX[2], colorHEX[3], opacity)
   }
-  return(shade)
+  shade
 }
 
-remove.all.objects.except <- function(vars){
-  # Removes every object in the workspace except for what is in the vars list.
-  # Upon finishing, the workspace will contain whatever is in the vars list,
-  #  plus the object 'remove.all.objects.except' (this function)
-
-  vars <- c(vars, "remove.all.objects.except")
-  keep <- match(x = vars, table = ls(all = TRUE, envir = .GlobalEnv))
-  if(!any(is.na(keep))){
-    rm(list=ls(all = TRUE, envir = .GlobalEnv)[-keep], envir = .GlobalEnv)
-  }
-}
-
-pad.num <- function(num, digits = 0){
-  ## Takes an integer, num and turns it into a string
-  ## If the string is less than digits long, it will
-  ## be prepended with zeroes
-  if(digits < 1) stop("Error in pad.num - digits must be positive\n")
-  sapply(num, function(x){ paste0(rep("0", digits - nchar(as.character(x))), as.character(x))})
+#' Pad the beginning of a number with zeroes
+#'
+#' @param num A vector of the numbers to pad
+#' @param digits The number of characters that the resulting strings should have
+#'
+#' @return A vector of strings of the padded numbers
+#' @export
+pad.num <- function(num, digits = 1){
+  stopifnot(digits >= 1, !any(nchar(num) > digits))
+  sapply(num, function(x){paste0(paste0(rep("0", digits - nchar(as.character(x))), collapse = ""), as.character(x))})
 }
 
 t.pn <- function(){
@@ -373,70 +461,24 @@ t.pn <- function(){
   cat("pad.num(10, 0) = ", pad.num(10, 0), "\n")
 }
 
-print.model.message <- function(model.dir.names, model.names, group, model.type){
-  ## Print out a message stating the model directory names and pretty names,
-  ##  for the group number given. If bridge is TRUE, it is a bridge model group,
-  ##  if bridge is FALSE, it is a sensitivity model group.
+#' Change a number into an English word
+#'
+#' @details See https://github.com/ateucher/useful_code/blob/master/R/numbers2words.r
+#' See Function by John Fox found here: http://tolstoy.newcastle.edu.au/R/help/05/04/2715.html
+#' @param x The nunmber to convert
+#' @param th Logical. If TRUE the *th* versions will be returned, e.g. 4 = fourth
+#' @param cap.first Logical. Capitalize the first letter of the returne string?
+#'
+#' @return The English word representing the number
+#' @export
+#'
+#' @examples
+#' number.to.word(c(1000,2,3,10000001), th = TRUE, cap.first = TRUE)
+number.to.word <- function(x = NA, th = FALSE, cap.first = FALSE){
 
-  cat0("***")
-  cat0(model.type, " model group ", group, " directories: ")
-  cat(paste0("  ", model.dir.names), sep = "\n")
-  cat0(model.type, " model group ", group, " pretty names: ")
-  cat(paste0("  ", model.names), sep = "\n")
-  cat0("***")
-}
-
-curr.fn.finder <- function(skipframes = 0,
-                           skipnames = "(FUN)|(.+apply)|(replicate)",
-                           ret.if.none = "Not in function",
-                           ret.stack = FALSE,
-                           extra.perf.per.level = "\t"){
-  ## Get the current function name from within the function itself.
-  ## Used to prepend the function name to all messages so that the
-  ## user knows where the message came from.
-  prefix <- sapply(3 + skipframes + 1:sys.nframe(), function(i){
-    currv <- sys.call(sys.parent(n = i))[[1]]
-    return(currv)
-  })
-  prefix[grep(skipnames, prefix)] <- NULL
-  prefix <- gsub("function \\(.*", "do.call", prefix)
-  if(length(prefix)==0){
-    return(ret.if.none)
-  }else if(ret.stack){
-    return(paste(rev(prefix), collapse = "|"))
-  }else{
-    retval <- as.character(unlist(prefix[1]))
-    if(length(prefix) > 1){
-      retval <- paste0(paste(rep(extra.perf.per.level, length(prefix) - 1), collapse = ""), retval)
-    }
-    return(retval)
-  }
-}
-
-get.curr.func.name <- function(){
-  ## Returns the calling function's name followed by ": "
-  func.name <- curr.fn.finder(skipframes = 1) # skipframes=1 is there to avoid returning getCurrFunc itself
-  ## Strip extraneous whitespace
-  func.name <- gsub("\t+", "", func.name)
-  func.name <- gsub("\ +", "", func.name)
-  func.name <- paste0(func.name,": ")
-  return(func.name)
-}
-
-cat0 <- function(...){
-  ## Wrapper function to make cat have no space and insert a newline at the end.
-  ## Inspired by the paste0 function.
-  cat(..., "\n", sep = "")
-}
-
-number.to.word <- function(x, th = FALSE, cap.first = FALSE){
-  ## https://github.com/ateucher/useful_code/blob/master/R/numbers2words.r
-  ## Function by John Fox found here:
-  ## http://tolstoy.newcastle.edu.au/R/help/05/04/2715.html
-  ## Tweaks by AJH to add commas and "and"
-  ## if th is TRUE, the th version will be returned, e.g. 4 = fourth
-  ## if cap.first is TRUE, the first letter will be capitalized
-  helper <- function(x){
+    stopifnot(!is.na(x))
+  
+    helper <- function(x){
     digits <- rev(strsplit(as.character(x), "")[[1]])
     nDigits <- length(digits)
     if(nDigits == 1) as.vector(ones[digits])
@@ -448,11 +490,11 @@ number.to.word <- function(x, th = FALSE, cap.first = FALSE){
                                       Recall(makeNumber(digits[2:1]))))
     else {
       nSuffix <- ((nDigits + 2) %/% 3) - 1
-      if (nSuffix > length(suffixes)) stop(paste(x, "is too large!"))
+      if (nSuffix > length(suffixes)) stop(paste(x, "is too large!"), call. = FALSE)
       trim(paste(Recall(makeNumber(digits[
-        nDigits:(3*nSuffix + 1)])),
+        nDigits:(3 * nSuffix + 1)])),
         suffixes[nSuffix],"," ,
-        Recall(makeNumber(digits[(3*nSuffix):1]))))
+        Recall(makeNumber(digits[(3 * nSuffix):1]))))
     }
   }
   trim <- function(text){
@@ -478,136 +520,82 @@ number.to.word <- function(x, th = FALSE, cap.first = FALSE){
   names(tens) <- 2:9
   x <- round(x)
   suffixes <- c("thousand", "million", "billion", "trillion")
-  if (length(x) > 1) return(trim(sapply(x, helper)))
-  j <- helper(x)
-  ## Cgrandin added the 'th' bit
+  if (!th & length(x) > 1) return(trim(sapply(x, helper)))
+  j <- sapply(x, helper)
   if(th){
-    j <- strsplit(j, " ")[[1]]
-    first <- j[-length(j)]
-    last <- j[length(j)]
-    if(last == "one"){
-      last <- "first"
-    }else if(last == "two"){
-      last <- "second"
-    }else if(last == "three"){
-      last <- "third"
-    }else if(last == "five"){
-      last <- "fifth"
-    }else if(last == "eight"){
-      last <- "eighth"
-    }else if(last == "nine"){
-      last <- "ninth"
-    }else if(last == "twelve"){
-      last <- "twelfth"
-    }else if(last == "twenty"){
-      last <- "twentieth"
-    }else if(last == "thirty"){
-      last <- "thirtieth"
-    }else if(last == "forty"){
-      last <- "fortieth"
-    }else if(last == "fifty"){
-      last <- "fiftieth"
-    }else if(last == "sixty"){
-      last <- "sixtieth"
-    }else if(last == "seventy"){
-      last <- "seventieth"
-    }else if(last == "eighty"){
-      last <- "eightieth"
-    }else if(last == "ninety"){
-      last <- "ninetieth"
-    }else{
-      last <- paste0(last, "th")
-    }
-    j <- paste(c(first, last), collapse = " ")
+    j <- sapply(j, function(x){
+      tmp <- strsplit(x, " ")[[1]]
+      first <- tmp[-length(tmp)]
+      last <- tmp[length(tmp)]
+      if(last == "one"){
+        last <- "first"
+      }else if(last == "two"){
+        last <- "second"
+      }else if(last == "three"){
+        last <- "third"
+      }else if(last == "five"){
+        last <- "fifth"
+      }else if(last == "eight"){
+        last <- "eighth"
+      }else if(last == "nine"){
+        last <- "ninth"
+      }else if(last == "twelve"){
+        last <- "twelfth"
+      }else if(last == "twenty"){
+        last <- "twentieth"
+      }else if(last == "thirty"){
+        last <- "thirtieth"
+      }else if(last == "forty"){
+        last <- "fortieth"
+      }else if(last == "fifty"){
+        last <- "fiftieth"
+      }else if(last == "sixty"){
+        last <- "sixtieth"
+      }else if(last == "seventy"){
+        last <- "seventieth"
+      }else if(last == "eighty"){
+        last <- "eightieth"
+      }else if(last == "ninety"){
+        last <- "ninetieth"
+      }else{
+        last <- paste0(last, "th")
+      }
+      tmp <- paste(c(first, last), collapse = " ")
+      if(cap.first){
+        tmp <- paste0(toupper(substr(tmp, 1, 1)), substr(tmp, 2, nchar(tmp)))
+      }
+      tmp
+    })
   }
-  if(cap.first){
-    j <- paste0(toupper(substr(j, 1, 1)), substr(j, 2, nchar(j)))
-  }
-  return(j)
+  j
 }
 
-## *****************************************************************************
-## The following three functions give the ability to assign more than one variable at once.
-## Example Call;  Note the use of set.elems()  AND  `%=%`
-## Right-hand side can be a list or vector
-## set.elems(a, b, c)  %=%  list("hello", 123, list("apples, oranges"))
-## set.elems(d, e, f) %=%  101:103
-## # Results:
-## > a
-## [1] "hello"
-## > b
-## [1] 123
-## > c
-## [[1]]
-## [1] "apples, oranges"
-## > d
-## [1] 101
-## > e
-## [1] 102
-## > f
-## [1] 103
-
-## Generic form
-"%=%" <- function(l, r, ...) UseMethod("%=%")
-
-## Binary Operator
-"%=%.lhs" <- function(l, r, ...) {
-  env <- as.environment(-1)
-  if (length(r) > length(l))
-    warning("RHS has more args than LHS. Only first", length(l), "used.")
-  if (length(l) > length(r))  {
-    warning("LHS has more args than RHS. RHS will be repeated.")
-    r <- extend.to.match(r, l)
-  }
-  for(II in 1:length(l)) {
-    do.call('<-', list(l[[II]], r[[II]]), envir = env)
-  }
-}
-
-## Used if LHS is larger than RHS
-extend.to.match <- function(src, destin) {
-  s <- length(src)
-  d <- length(destin)
-  # Assume that destin is a length when it is a single number and src is not
-  if(d==1 && s>1 && !is.null(as.numeric(destin)))
-    d <- destin
-  dif <- d - s
-  if (dif > 0) {
-    src <- rep(src, ceiling(d/s))[1:d]
-  }
-  return (src)
-}
-
-set.elems <- function(...) {
-  list.tmp <-  as.list(substitute(list(...)))[-1L]
-  class(list.tmp) <-  "lhs"
-  return(list.tmp)
-}
-## *****************************************************************************
-
-cbind.fill <- function(...){
-  ## equivalent of cbind(df, xx) where df is an empty data frame.
-  nm <- list(...)
-  nm <- lapply(nm, as.matrix)
-  n <- max(sapply(nm, nrow))
-  do.call(cbind, lapply(nm, function (x)
-    rbind(x, matrix(, n-nrow(x), ncol(x)))))
-}
-
+#' Remove values from a named vector based on names
+#'
+#' @param vec A named vector
+#' @param names A vector of names to remove from the vector `vec`
+#'
+#' @return The vector `vec` with items removed
+#' @export
 strip.columns <- function(vec, names){
-  ## Return a vector which is the same as the vector 'vec'
-  ## but with the matching col.names removed
   return(vec[!names(vec) %in% names])
 }
 
+#' Create a character vector used in the align argument of the [xtable::xtable()] command
+#'
+#' @details e.g. posterior output tables, reference point tables. Most tables really
+#' 
+#' @param num The number of columns in the table
+#' @param first.left Logical. Keep the first column left-justified. If FALSE, it will be justified
+#' according to the `just` argument
+#' @param just The justification to use for the columns, i.e. "r", "l", or "c"
+#'
+#' @return A character vector used in the align argument of the [xtable::xtable()] command
+#' @export
 get.align <- function(num,
-                      first.left = TRUE, ## Keep the first column left-justified
-                                         ## If FALSE, it will be justified according to the 'just' argument
-                      just = "r"         ## just is the justification to use for the columns, "r", "l", or "c"
-                      ){
-  ## Returns a character vector used in the align argument of the xtable command.
-  ## e.g. posterior output tables, reference point tables. Most tables really.
-  ## num is the number of columns in the table
+                      first.left = TRUE,
+                      just = "r"){
+
   if(first.left){
     align <- c("l", "l")
   }else{
@@ -619,53 +607,93 @@ get.align <- function(num,
   return(align)
 }
 
-rc <- rich.colors.short <- function(n, alpha = 1){
+#' Create rich colors as RGB strings
+#'
+#' @param n The number of colors
+#' @param alpha The transparency for all colors
+#'
+#' @return A vector of RGB strings representing rich colors
+#' @export
+#'
+#' @examples
+#' rich.colors.short(10)
+rich.colors.short <- function(n, alpha = 1){
+
   x <- seq(0, 1, length = n)
   r <- 1/(1 + exp(20 - 35 * x))
-  g <- pmin(pmax(0, -0.8 + 6 * x - 5 * x^2), 1)
+  g <- pmin(pmax(0, -0.8 + 6 * x - 5 * x ^ 2), 1)
   b <- dnorm(x, 0.25, 0.15)/max(dnorm(x, 0.25, 0.15))
   rgb.m <- matrix(c(r, g, b), ncol = 3)
-  rich.vector <- apply(rgb.m, 1, function(v) rgb(v[1],v[2],v[3],alpha = alpha))
+  apply(rgb.m, 1, function(v) rgb(v[1], v[2], v[3], alpha = alpha))
 }
 
-plotBars.fn <- function(x,y,gap=0,add=F,ciCol="black",ciLty=1,ciLwd=1,...) {
-  ## x is the x axis values (i.e., years)
-  ## y is a data frame with:
-  ## value: estimate (point) to plot
-  ## lo: lower CI
-  ## hi: higher CI
+#' Plot bars
+#'
+#' @param x The x axis values (i.e., years)
+#' @param y A data frame with columns:
+#' value: estimate (point) to plot
+#' lo: lower CI
+#' hi: higher CI 
+#' @param gap 
+#' @param add 
+#' @param ciCol 
+#' @param ciLty 
+#' @param ciLwd 
+#' @param ... 
+#'
+#' @return [base::invisible()]
+#' @export
+plotBars.fn <- function(x,
+                        y,
+                        gap = 0,
+                        add = FALSE,
+                        ciCol = "black",
+                        ciLty = 1,
+                        ciLwd = 1,
+                        ...) {
 
-  if(!add) plot(x,y$value,...)
-  if(add) points(x,y$value,...)
-  segments(x,y$lo,x,y$value-gap,col=ciCol,lty=ciLty,lwd=ciLwd)
-  segments(x,y$hi,x,y$value+gap,col=ciCol,lty=ciLty,lwd=ciLwd)
+  if(!add) plot(x, y$value, ...)
+  if(add) points(x, y$value, ...)
+  segments(x, y$lo, x, y$value - gap, col = ciCol, lty = ciLty, lwd = ciLwd)
+  segments(x, y$hi, x, y$value + gap, col = ciCol, lty = ciLty, lwd = ciLwd)
+  invisible()
 }
 
-plotBars.fn <- function(x,y,gap=0,scalar=1e6,add=F,ciCol="black",ciLty=1,ciLwd=1,...) {
-  ## x is the x axis values (i.e., years)
-  ## y is a data frame with:
-  ## value: estimate (point) to plot
-  ## lo: lower CI
-  ## hi: higher CI
-
-  if(!add) plot(x,y$value/scalar,...)
-  if(add) points(x,y$value/scalar,...)
-  segments(x,y$lo/scalar,x,y$value/scalar-gap,col=ciCol,lty=ciLty,lwd=ciLwd)
-  segments(x,y$hi/scalar,x,y$value/scalar+gap,col=ciCol,lty=ciLty,lwd=ciLwd)
-}
-
+#' Add a letter to the plot
+#'
+#' @param letter The letter to add
+#'
+#' @return [base::invisible()]
+#' @export
 panel.letter <- function(letter){
-  # adds letters to plot panels
-  # letter is the letter to place on the panel
+
   usr <- par("usr")
-  inset.x <- 0.05*(usr[2]-usr[1])
-  inset.y <- 0.05*(usr[4]-usr[3])
-  text(usr[1]+inset.x,usr[4]-inset.y,paste("(",letter,")",sep=""),cex=1.,font=1)
+  inset.x <- 0.05 * (usr[2] - usr[1])
+  inset.y <- 0.05 * (usr[4] - usr[3])
+  text(usr[1] + inset.x, 
+       usr[4] - inset.y,
+       paste0("(", letter, ")"), cex = 1.0, font = 1)
 }
 
-addpoly <- function(yrvec, lower, upper, color = 1, shade.col = NULL){
-  lower[lower<0] <- 0 ## max of value or 0
-  if(is.null(shade.col)){
+#' Add a polygon to a plot
+#'
+#' @param yrvec A vector of years
+#' @param lower A vector of lower CI values
+#' @param upper A vector of upper CI values
+#' @param color The color to make the polygon lines
+#' @param shade.col The shade color to fill in the polygon with
+#'
+#' @return [base::invisible()]
+#' @export
+addpoly <- function(yrvec,
+                    lower,
+                    upper,
+                    color = 1,
+                    shade.col = NA){
+
+  # max of value or 0
+  lower[lower < 0] <- 0
+  if(is.na(shade.col)){
     shade.col <- rgb(t(col2rgb(color)), alpha = 0.2 * 255, maxColorValue = 255)
   }
   polygon(x = c(yrvec, rev(yrvec)),
@@ -674,45 +702,64 @@ addpoly <- function(yrvec, lower, upper, color = 1, shade.col = NULL){
           col = shade.col)
   lines(yrvec, lower, lty = 3, col = color)
   lines(yrvec, upper, lty = 3, col = color)
+  invisible()
 }
 
-randWalkSelex.fn <- function(pars,devs=NULL,Phi=1.4,transform=FALSE,bounds=NULL) {
-  ## calculates the selectivity from the random walk parameters in SS (option 17)
-  ## -1000 means to set equal to 0
-  ## assumes that this is all pars from age 0 to max age
+#' Calculates the selectivity from the random walk parameters in SS (option 17)
+#'
+#' @details -1000 means to set equal to 0. Assumes that this is all pars from age 0 to max age
+#' 
+#' @param pars 
+#' @param devs 
+#' @param Phi 
+#' @param transform 
+#' @param bounds 
+#'
+#' @return The selectivity
+#' @export
+randWalkSelex.fn <- function(pars,
+                             devs = NULL,
+                             Phi = 1.4,
+                             transform = FALSE,
+                             bounds = NULL) {
 
-  logS <- rep(NA,length(pars))
-  logS[1] <- 0 #first value is never estimated (age 0)
+  logS <- rep(NA, length(pars))
+  # first value is never estimated (age 0)
+  logS[1] <- 0
   if(!is.null(devs)) {
-    ## transform parameters based on bounds
+    # transform parameters based on bounds
     for(a in 2:length(pars)) {
       if(!is.na(devs[a])) {
-        ## transformation was present in 2014-2017 models but no longer used in 2018
+        # transformation was present in 2014-2017 models but no longer used in 2018
         if(transform){
-          tmp <- log((bounds[2]-bounds[1]+0.0000002)/(pars[a]-bounds[1]+0.0000001)-1)/(-2)
+          tmp <- log((bounds[2] - bounds[1] + 0.0000002) / (pars[a] - bounds[1] + 0.0000001) - 1) / (-2)
           tmp <- tmp + devs[a]
-          pars[a] <- bounds[1]+(bounds[2]-bounds[1])/(1+exp(-2*tmp))
+          pars[a] <- bounds[1] + (bounds[2] - bounds[1]) / (1 + exp(-2 * tmp))
         }else{
           ## in 3.30, there's no transformation, but the devs are scaled by the SE (Phi)
-          pars[a] <- pars[a] + Phi*devs[a]
+          pars[a] <- pars[a] + Phi * devs[a]
         }
       }
     }
   }
   for(a in 2:length(pars)) {
-    ifelse(pars[a] == -1000, logS[a] <- 0, logS[a] <- logS[a-1]+pars[a])
+    ifelse(pars[a] == -1000, logS[a] <- 0, logS[a] <- logS[a - 1] + pars[a])
   }
 
-  selex <- exp(logS-max(logS))
-  selex[pars== -1000] <- 0
-  return(selex)
+  selex <- exp(logS - max(logS))
+  selex[pars == -1000] <- 0
+  selex
 }
 
-selexYear.fn <- function(x, yr, bnds=c(-5,9)) {
-  ## get selectivity for a given year from all MCMC samples
-
-  ## specific for hake 2013 and 2014
-  ## updated 2017/01/25 to not give error when year value is outside range available
+#' Get selectivity for a given year from all MCMC samples
+#'
+#' @param x 
+#' @param yr 
+#' @param bnds 
+#'
+#' @return The selectivity
+#' @export
+selexYear.fn <- function(x, yr, bnds = c(-5, 9)) {
 
   # define mostly-empty matrix to store selectivity parameters for each mcmc sample
   selexPars <- matrix(c(-1000, 0, NA, NA, NA, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -730,39 +777,19 @@ selexYear.fn <- function(x, yr, bnds=c(-5,9)) {
   selexPars[,3:7] <- as.matrix(x[,tmp[!(tmp %in% devsInd)]])
   ## get column indices associated with deviation parameters
   devsInd <- grep(as.character(yr), names(x)[devsInd])
-  if(length(devsInd)==0){
+  if(length(devsInd) == 0){
     ## if year not found in names of deviation parameters, return NULL
     return(NULL)
   }
   devsPars[,3:7] <- as.matrix(allDevsPars[,devsInd])
 
   ## define empty matrix to store resulting selectivity
-  selex <- matrix(NA,ncol=ncol(selexPars),nrow=nrow(x))
+  selex <- matrix(NA, ncol = ncol(selexPars), nrow = nrow(x))
   ## for each year, combine base selectivity parameters and deviations to get selex
   for(i in 1:nrow(selexPars)) {
-    selex[i,] <- randWalkSelex.fn(selexPars[i,],devsPars[i,],bounds=bnds)
+    selex[i,] <- randWalkSelex.fn(selexPars[i,], devsPars[i,], bounds = bnds)
   }
-  return(selex)
-}
-
-selexYear10.fn <- function(x,yr,bnds=c(-5,9)) {
-  ## specific for hake 2013 and 2014
-  selexPars <- matrix(c(-1000,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,0),nrow=nrow(x),ncol=16,byrow=T)
-  devsPars  <- matrix(NA,ncol=ncol(selexPars),nrow=nrow(x))
-
-  tmp <- grep("AgeSel_1P_[0-9]+_Fishery",names(x))
-  devsInd <- grep("AgeSel_1P_[0-9]+_Fishery_DEVadd",names(x))
-  allDevsPars <- x[,devsInd]
-  selexPars[,3:11] <- as.matrix(x[,tmp[!(tmp %in% devsInd)]])
-  devsInd <- grep(as.character(yr),names(x)[devsInd])
-  devsPars[,3:11] <- as.matrix(allDevsPars[,devsInd])
-
-  selex <- matrix(NA,ncol=ncol(selexPars),nrow=nrow(x))
-  for(i in 1:nrow(selexPars)) {
-    selex[i,] <- randWalkSelex.fn(selexPars[i,],devsPars[i,],bounds=bnds)
-  }
-
-  return(selex)
+  selex
 }
 
 biomass_fraction_plots <- function(replist, selected=FALSE){
@@ -868,6 +895,34 @@ biomass_fraction_plots <- function(replist, selected=FALSE){
   title(main=ifelse(selected, "Estimated fractions of selected biomass", "Estimated fractions of total biomass"))
 }
 
+#' Plot MCMC diagnostics TODO: Complete documentation
+#'
+#' @param directory The directory in which the MCMC model output resides 
+#' @param run The run to plot. If "", use `directory`
+#' @param file The key posteriors file name
+#' @param namefile 
+#' @param names 
+#' @param headernames 
+#' @param numparams 
+#' @param closeall 
+#' @param burn 
+#' @param thin 
+#' @param scatter 
+#' @param surface 
+#' @param surf1 
+#' @param surf2 
+#' @param stats 
+#' @param plots 
+#' @param header 
+#' @param sep 
+#' @param print 
+#' @param new 
+#' @param colNames 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 mcmc.out <- function (directory = "c:/mydirectory/", run = "mymodel/", file = "keyposteriors.csv",
     namefile = "postplotnames.sso", names = FALSE, headernames = TRUE,
     numparams = 1, closeall = TRUE, burn = 0, thin = 1, scatter = FALSE,
@@ -1087,50 +1142,6 @@ avg.wtatage <- function(d = tibble::as.tibble(readClipboard()),
   y <- t(x)
   z <- t((c(pre, f(apply(y, 2, mean), 4))))
   write.table(z, "avg-wtatage.txt", quote = FALSE, row.names = FALSE, col.names = FALSE)
-}
-
-curfnfinder <- function(skipframes=0, skipnames="(FUN)|(.+apply)|(replicate)",
-    retIfNone="Not in function", retStack=FALSE, extraPrefPerLevel="\t")
-{
-  # Get the current function name from within the function itself.
-  # Used to prepend the function name to all messages so that the
-  # user knows where the message came from.
-    prefix<-sapply(3 + skipframes+1:sys.nframe(), function(i){
-            currv<-sys.call(sys.parent(n=i))[[1]]
-            return(currv)
-        })
-    prefix[grep(skipnames, prefix)] <- NULL
-    prefix<-gsub("function \\(.*", "do.call", prefix)
-    if(length(prefix)==0)
-    {
-        return(retIfNone)
-    }
-    else if(retStack)
-    {
-        return(paste(rev(prefix), collapse = "|"))
-    }
-    else
-    {
-        retval<-as.character(unlist(prefix[1]))
-        if(length(prefix) > 1)
-        {
-            retval<-paste(paste(rep(extraPrefPerLevel, length(prefix) - 1), collapse=""), retval, sep="")
-        }
-        return(retval)
-    }
-}
-
-catw <- function(..., file = "", sep = " ", fill = FALSE, labels = NULL,
-    append = FALSE, prefix=0)
-{
-  # writes out some innformation on the calling function to screen
-    if(is.numeric(prefix))
-    {
-        prefix<-curfnfinder(skipframes=prefix+1) #note: the +1 is there to avoid returning catw itself
-        prefix<-paste(prefix, ": ", sep="")
-    }
-    cat(prefix, ..., format(Sys.time(), "(%Y-%m-%d %H:%M:%S)"), "\n",
-        file = file, sep = sep, fill = fill, labels = labels, append = append)
 }
 
 #' get.args

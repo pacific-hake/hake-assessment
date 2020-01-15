@@ -10,12 +10,6 @@ if(verbose) cat0("Assessment year: \n  ", assess.yr)
 last.assess.yr <- assess.yr - 1
 if(verbose) cat0("Last assessment year: \n  ", last.assess.yr)
 
-## -----------------------------------------------------------------------------
-## Directory in which the model directories reside
-## -----------------------------------------------------------------------------
-model.dir <- rootd.models
-if(verbose) cat0("Models directory: \n  ", model.dir)
-
 ## Output CSV directory for outputs of at-age which are calculated by the
 ## make.est.numbers.at.age.table function (in r-functions/tables-age.r)
 output.csv.dir <- file.path(rootd, "out-csv")
