@@ -1,10 +1,4 @@
 ## -----------------------------------------------------------------------------
-## Set verbosity for this project (R code) and SS shell calls
-## -----------------------------------------------------------------------------
-verbose <- TRUE
-ss.verbose <- FALSE
-
-## -----------------------------------------------------------------------------
 ## Year for this assessment - default is current year
 ## -----------------------------------------------------------------------------
 assess.yr <- 2020
@@ -29,7 +23,7 @@ output.csv.dir <- file.path(rootd, "out-csv")
 ## -----------------------------------------------------------------------------
 ## File names which must exists in each model directory
 ## -----------------------------------------------------------------------------
-exe.file.name <- "ss3.exe"
+exe.file.name <- "ss.exe"
 if(verbose) cat0("SS executable file: \n  ", exe.file.name)
 starter.file.name <- "starter.ss"
 if(verbose) cat0("SS starter file: \n  ", starter.file.name)
