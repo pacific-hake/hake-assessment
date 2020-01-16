@@ -2,13 +2,13 @@
 ## Year for this assessment - default is current year
 ## -----------------------------------------------------------------------------
 assess.yr <- 2020
-if(verbose) cat0("Assessment year: \n  ", assess.yr)
+message("Assessment year: ", assess.yr)
 
 ## -----------------------------------------------------------------------------
 ## Year for last assessment - default is current year - 1
 ## -----------------------------------------------------------------------------
 last.assess.yr <- assess.yr - 1
-if(verbose) cat0("Last assessment year: \n  ", last.assess.yr)
+message("Last assessment year: ", last.assess.yr)
 
 ## Output CSV directory for outputs of at-age which are calculated by the
 ## make.est.numbers.at.age.table function (in r-functions/tables-age.r)
@@ -17,45 +17,45 @@ output.csv.dir <- file.path(rootd, "out-csv")
 ## -----------------------------------------------------------------------------
 ## File names which must exists in each model directory
 ## -----------------------------------------------------------------------------
-exe.file.name <- "ss.exe"
-if(verbose) cat0("SS executable file: \n  ", exe.file.name)
+ss_executable <- "ss.exe"
+message("SS executable file: ", ss_executable)
 starter.file.name <- "starter.ss"
-if(verbose) cat0("SS starter file: \n  ", starter.file.name)
+message("SS starter file: ", starter.file.name)
 forecast.file.name <- "forecast.ss"
-if(verbose) cat0("SS forecast file: \n  ", forecast.file.name)
+message("SS forecast file: ", forecast.file.name)
 weight.at.age.file.name <- "wtatage.ss"
-if(verbose) cat0("SS weight-at-age file: \n  ", weight.at.age.file.name)
+message("SS weight-at-age file: ", weight.at.age.file.name)
 
 ## -----------------------------------------------------------------------------
 ## The version of SS and ADMB used in this assessment
 ## -----------------------------------------------------------------------------
 ss.version <- "3.30.14.08"
-if(verbose) cat0("SS version: \n  ", ss.version)
+message("SS version: ", ss.version)
 admb.version <- "11.6"
-if(verbose) cat0("ADMB version: \n  ", admb.version)
+message("ADMB version: ", admb.version)
 
 ## -----------------------------------------------------------------------------
 ## Data start and endpoint variables
 ## -----------------------------------------------------------------------------
 ## Recruitment deviations start year
 recruit.dev.start.yr <- 1946
-if(verbose) cat0("Recruitment deviations start year: \n  ", recruit.dev.start.yr)
+message("Recruitment deviations start year: ", recruit.dev.start.yr)
 ## Unfished equilibrium year.
 unfished.eq.yr <- 1964
-if(verbose) cat0("Unfished equilibrium year: \n  ", unfished.eq.yr)
+message("Unfished equilibrium year: ", unfished.eq.yr)
 ## Start year for the models
 start.yr <- 1966
-if(verbose) cat0("Start year for catch data: \n  ", start.yr)
+message("Start year for catch data: ", start.yr)
 ## Start year for the fishery age comps
 start.yr.age.comps <- 1975
-if(verbose) cat0("Start year for fishery age comps data: \n  ", start.yr.age.comps)
+message("Start year for fishery age comps data: ", start.yr.age.comps)
 ## The last non-forecast year in the model. This is the year for which the
 ## mcmc outputs will be used in reference point calculations.
 end.yr <- assess.yr
-if(verbose) cat0("End year for model: \n  ", end.yr)
+message("End year for model: ", end.yr)
 ## First year in the survey timeseries
 survey.start.yr <- 1995
-if(verbose) cat0("First survey year: \n  ", survey.start.yr)
+message("First survey year: ", survey.start.yr)
 ## Last year in the survey timeseries
 survey.end.yr <- 2019
 ## Years in which the survey took place
@@ -77,12 +77,12 @@ surv.yrs <- c(1995,
 big.ticks <- seq(1970, end.yr + 4, 5)
 little.ticks <- start.yr:max(big.ticks)
 
-if(verbose) cat0("Last survey year: \n  ", survey.end.yr)
+message("Last survey year: ", survey.end.yr)
 ## Final year of data (This is what is the end year is in the model data files)
 last.data.yr <- end.yr - 1
 last.age.yr <- end.yr - 2
-if(verbose) cat0("Last year of model data: \n  ", last.data.yr)
-if(verbose) cat0("Last year of age data: \n  ", last.age.yr)
+message("Last year of model data: ", last.data.yr)
+message("Last year of age data: ", last.age.yr)
 
 ## -----------------------------------------------------------------------------
 ## Key posteriors used in the assessment
@@ -91,26 +91,22 @@ key.posteriors <- c("NatM",
                     "SR_LN",
                     "SR_BH_steep",
                     "Q_extraSD")
-if(verbose){
-  cat0("***")
-  cat0("Key posteriors in this assessment:")
-  cat(paste0("  ", key.posteriors), sep = "\n")
-  cat0("***")
-}
+message("Key posteriors in this assessment: ", key.posteriors)
+
 key.posteriors.file <- "keyposteriors.csv"
-if(verbose) cat0("Key posteriors file: \n  ", key.posteriors.file)
+message("Key posteriors file: ", key.posteriors.file)
 nuisance.posteriors.file <- "nuisanceposteriors.csv"
-if(verbose) cat0("Key posteriors file: \n  ", nuisance.posteriors.file)
+message("Key posteriors file: ", nuisance.posteriors.file)
 
 ## -----------------------------------------------------------------------------
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
 base.model.dir.name <- "2020.00.08_tune_base_v1"
 base.model.name <- paste0(assess.yr, " Base model")
-if(verbose){
-  cat0("Base model directory name: \n  ", base.model.dir.name)
-  cat0("Base model pretty name: \n  ", base.model.name)
-}
+
+message("Base model directory name: ", base.model.dir.name)
+message("Base model pretty name: ", base.model.name)
+
 
 ## -----------------------------------------------------------------------------
 ## Alternative base model names and directories (runs we want MCMC results for,
@@ -129,12 +125,8 @@ if(verbose){
 ##last.yr.base.model.dir.name <- "00_45_2017base"
 last.yr.base.model.dir.name <- "2019.03.00_base"
 last.yr.base.model.name <- paste(last.assess.yr, "Base model")
-if(verbose){
-  cat0("Last assessment year's base model directory name: \n  ",
-       last.yr.base.model.dir.name)
-  cat0("Last assessment year's base model pretty name: \n  ",
-       last.yr.base.model.name)
-}
+message("Last assessment year's base model directory name: ", last.yr.base.model.dir.name)
+message("Last assessment year's base model pretty name: ", last.yr.base.model.name)
 
 ## -----------------------------------------------------------------------------
 ## Bridge models group 1
@@ -260,7 +252,6 @@ sens.model.names.6 <- c("TODO: remove this",
 ## and sensitivity models change in the model.dir.names above..
 load.models.into.parent.env <- function(){
   base.model         <<- load.models(model.dir, base.model.dir.name)
-  ## Error checks:
   if(is.null(base.model$mcmccalcs)){
     stop("Error - base.model$mcmccalcs is NULL. Make sure the directory\n",
             file.path(base.model$path, "mcmc"), " exists and contains valid\n",
@@ -306,116 +297,50 @@ load.models.into.parent.env <- function(){
   sens.model.names.3.for.table <<- c("Base model", sens.model.names.5, sens.model.names.6)
 }
 
-build <- function(run.fore = FALSE,
-                  run.retro = FALSE,
-                  run.extra.mcmc = FALSE,
-                  model.name = NA){
-  ## Once the model setup has been verified, this function will create the
-  ##  corresponding RData files. Each model defined in the models-setup.r
-  ##  file will have its own RData file holding the model object as defined
-  ##  in the Readme.md file.
+#' Create Rdata files for models
+#'
+#' @details This will create an RData file in each model directory defined.
+#' 
+#' @param models_path The path where the models reside
+#' @param model_name The name of the model directory within `models_path`
+#' @param run_catch_levels Logical. Run the cacht levels determination for Stable catch,
+#' SPR 100, and Default HR cases. These are required for the forecasting step
+#' @param run_fore Logical. Run forecasting
+#' @param run_retros Logical. Run retrospectives
+#' @param run_extra_mcmc Logical. Run the extra MCMC step which generates a report file for every
+#' posterior
+#'
+#' @return [base::invisible()]
+#' @export
+build_ <- function(models_path,
+                   model_name,
+                   ...){
 
-  ## if model name (directory name) is included, only that one will be built
-  ## otherwise, all will be.
-
-  if(!is.na(model.name)){
-    if(run.extra.mcmc){
-      delete.dirs(sub.dir = file.path(model.name, "extra-mcmc"))
-    }
-    if(run.fore){
-      delete.dirs(sub.dir = file.path(model.name, "mcmc", "forecasts"))
-    }
-    if(run.retro){
-      delete.dirs(sub.dir = file.path(model.name, "retrospectives"))
-    }
-    create.rdata.file(model.name = model.name,
-                      ovwrt.rdata = TRUE,
-                      run.fore = run.fore,
-                      fore.yrs = forecast.yrs,
-                      forecast.probs = forecast.probs,
-                      forecast.catch.levels = catch.levels,
-                      run.retros = run.retro,
-                      my.retro.yrs = retro.yrs,
-                      run.extra.mcmc = run.extra.mcmc,
-                      key.posteriors = key.posteriors,
-                      ss.version = ss.version,
-                      exe.file.name = exe.file.name,
-                      starter.file.name = starter.file.name,
-                      forecast.file.name = forecast.file.name,
-                      weight.at.age.file.name = weight.at.age.file.name,
-                      verbose = ss.verbose)
+  if(!is.na(model_name)){
+    model_path <- file.path(models_path, model_name)
+    run(model_path, ...)
     return(invisible())
   }
-  ## Delete old directories for all models
-  if(run.extra.mcmc){
-    delete.dirs(sub.dir = file.path("extra-mcmc"))
-  }
-  if(run.fore){
-    delete.dirs(sub.dir = file.path("mcmc", "forecasts"))
-  }
-  if(run.retro){
-    delete.dirs(sub.dir = file.path("retrospectives"))
-  }
+}
 
-  ## Base model
-  create.rdata.file(model.name = base.model.dir.name,
-                    ovwrt.rdata = ifelse(any(run.fore, run.retro, run.extra.mcmc),
-                                         TRUE,
-                                         FALSE),
-                    run.fore = run.fore,
-                    fore.yrs = forecast.yrs,
-                    forecast.probs = forecast.probs,
-                    forecast.catch.levels = catch.levels,
-                    run.retros = run.retro,
-                    my.retro.yrs = retro.yrs,
-                    run.extra.mcmc = run.extra.mcmc,
-                    key.posteriors = key.posteriors,
-                    ss.version = ss.version,
-                    exe.file.name = exe.file.name,
-                    starter.file.name = starter.file.name,
-                    forecast.file.name = forecast.file.name,
-                    weight.at.age.file.name = weight.at.age.file.name,
-                    verbose = ss.verbose)
-
-  ## Bridge and sensitivity models need to be unlisted from their groups
-  ##  and placed into a single list for the FOR loop to work right
-  mnv <- c(#alt.base.model.1.dir.name,
-           #alt.base.model.2.dir.name,
-           #alt.base.model.3.dir.name,
-           unlist(bridge.model.dir.names.1),
-           unlist(bridge.model.dir.names.2),
-           unlist(sens.model.dir.names.1),
-           unlist(sens.model.dir.names.2),
-           #unlist(sens.model.dir.names.3),
-           unlist(sens.model.dir.names.4),
-           unlist(sens.model.dir.names.5),
-           unlist(sens.model.dir.names.6))
-
-  ## Subtract out the last year base model from mnv
-  mnv <- mnv[! mnv %in% last.yr.base.model.dir.name]
-
-  model.names.list <- as.list(unique(mnv))
-
-  ## Bridge/sensitivity models
-  for(model.nm in model.names.list){
-    create.rdata.file(
-      model.name = model.nm,
-      ovwrt.rdata = ifelse(any(run.fore, run.retro, run.extra.mcmc),
-                           TRUE,
-                           FALSE),
-      run.fore = run.fore,
-      fore.yrs = forecast.yrs,
-      forecast.probs = forecast.probs,
-      forecast.catch.levels = catch.levels,
-      run.retros = run.retro,
-      my.retro.yrs = retro.yrs,
-      run.extra.mcmc = run.extra.mcmc,
-      key.posteriors = key.posteriors,
-      ss.version = ss.version,
-      exe.file.name = exe.file.name,
-      starter.file.name = starter.file.name,
-      forecast.file.name = forecast.file.name,
-      weight.at.age.file.name = weight.at.age.file.name,
-      verbose = ss.verbose)
-  }
+build <- function(){
+  build_(models_path = here::here("models"),
+         model_name = base.model.dir.name,
+         run_catch_levels = TRUE,
+         catch_levels_ovr_hr = TRUE,
+         catch_levels_ovr_spr = FALSE,
+         catch_levels_ovr_stable = FALSE,
+         run_fore = FALSE,
+         run_retros = FALSE,
+         run_extra_mcmc = FALSE,
+         forecast_yrs = forecast_yrs,
+         catch_levels = catch_levels,
+         catch_levels_spr_tol = 0.0001,
+         catch_levels_catch_tol = 10,
+         catch_levels_max_iter = 20,
+         catch_levels_path = "catch-levels",
+         default_hr_path = "default-hr",
+         stable_catch_path = "stable-catch",
+         spr_100_path = "spr-100",
+         ss_executable = ss_executable)
 }

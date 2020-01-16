@@ -42,8 +42,8 @@ load.ss.files <- function(model.dir = NA,
                           key.posts.fn = "keyposteriors.csv",
                           nuisance.posts.fn = "nuisanceposteriors.csv",
                           printstats = FALSE,
-                          ss.version = "3.30.14.08"){
-  
+                          ...){
+
   stopifnot(!is.na(model.dir))
   
   # Load MPD results
@@ -83,7 +83,8 @@ load.ss.files <- function(model.dir = NA,
   par.fn <- file.path(model.dir, model.dir.listing[par.fn.ind])
   model$path <- model.dir
   model$dat.file <- dat.fn
-  model$dat <- SS_readdat(dat.fn, version = ss.version, verbose = FALSE)
+  #model$dat <- SS_readdat(dat.fn, version = ss.version, verbose = FALSE)
+  model$dat <- SS_readdat(dat.fn, verbose = FALSE)
   model$ctl.file <- ctl.fn
   model$ctl <- readLines(ctl.fn)
   model$par.file <- par.fn

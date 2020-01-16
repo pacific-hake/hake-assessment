@@ -18,59 +18,59 @@
 #' @export
 #'
 #' @examples
-run.retrospectives <- function(model = NA,
-                               yrs = 1:15,
-                               remove.blocks = FALSE,
+run.retrospectives <- function(model_path = NULL,
+                               yrs = NULL,
+                               remove_blocks = FALSE,
                                extras = "-nox",
-                               exe.file.name = "ss.exe",
-                               starter.file.name = "starter.ss",
-                               forecast.file.name = "forecast.ss",
-                               weight.at.age.file.name = "wtatage.ss"){
+                               exe_file_name = "ss.exe",
+                               starter_file_name = "starter.ss",
+                               forecast_file_name = "forecast.ss",
+                               weight_at_age_file_name = "wtatage.ss",
+                               ...){
 
-  stopifnot(!is.na(model))
+  stopifnot(!is.null(model_path),
+            !is.null(yrs))
   
-  if(is.na(model$retropath)){
-    return(invisible())
-  }
+  retro_path <- file.path(model_path, "retrospectives")
+  delete.dirs(sub.dir = retro_path)
+  dir.create(retro_path, showWarnings = FALSE)
   
-  retros.dir <- model$retropath
-  dir.create(retros.dir, showWarnings = FALSE)
+  # Create a list for the retrospective output to be saved to
+  retros_list <- list()
   
-  # Create a list for the retros' output to be saved to
-  retros.list <- list()
-  
+  # Copy all required model files into the retrospective directory
+  model <- load.ss.files(model_path, ...)
+  files_to_copy <- c(file.path(model_path, c(exe.file.name,
+                                             starter.file.name,
+                                             forecast.file.name,
+                                             weight.at.age.file.name)),
+                     model$ctl.file,
+                     model$dat.file)
+                     
   # Create a directory for each retrospective, copy files, and run retro
   for(retro in 1:length(yrs)){
-    retro.dir <- file.path(retros.dir, paste0("retro-", pad.num(yrs[retro], 2)))
-    dir.create(retro.dir, showWarnings = FALSE)
+    retro_subdir <- file.path(retro_path, paste0("retro-", pad.num(yrs[retro], 2)))
+    dir.create(retro_subdir, showWarnings = FALSE)
+    file.copy(files_to_copy, retro_subdir)
     
-    # Copy all required model files into the retrospective directory
-    files.to.copy <- c(file.path(model$path, c(exe.file.name,
-                                               starter.file.name,
-                                               forecast.file.name,
-                                               weight.at.age.file.name)),
-                       model$ctl.file,
-                       model$dat.file)
-    file.copy(files.to.copy, retro.dir)
-    
-    starter.file <- file.path(retro.dir, starter.file.name)
-    starter <- SS_readstarter(starter.file, verbose = verbose)
+    starter_file <- file.path(retro_subdir, starter_file_name)
+    starter <- SS_readstarter(starter_file, verbose = FALSE)
     starter$retro_yr <- -yrs[retro]
     starter$init_values_src <- 0
-    SS_writestarter(starter, dir = retro.dir, verbose = verbose, overwrite = TRUE)
+    SS_writestarter(starter, dir = retro_subdir, verbose = FALSE, overwrite = TRUE)
     if(remove.blocks){
-      ctl.file <- file.path(retro.dir, model$ctl.file)
+      ctl_file <- file.path(retro_subdir, model$ctl.file)
       ctl <- readLines(ctl.file)
       ctl[grep("block designs", ctl)] <- "0 # Number of block designs for time varying parameters"
       ctl[grep("blocks per design", ctl) + 0:2] <- "# blocks deleted"
-      unlink(ctl.file)
-      writeLines(ctl, ctl.file)
+      unlink(ctl_file)
+      writeLines(ctl, ctl_file)
     }
-    covar.file <- file.path(retro.dir, "covar.sso")
-    if(file.exists(covar.file)){
-      unlink(covar.file)
+    covar.file <- file.path(retro_subdir, "covar.sso")
+    if(file.exists(covar_file)){
+      unlink(covar_file)
     }
-    shell.command <- paste0("cd ", retro.dir, " & ", exe.file.name, " extras")
+    shell.command <- paste0("cd ", retro_subdir, " & ", exe.file.name, " extras")
     shell(shell.command)
   }
   invisible()
