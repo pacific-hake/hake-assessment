@@ -4,7 +4,6 @@
 #' @param model The SS model output as loaded by [load.ss.files()]
 #' @param forecast_yrs A vector of forecast years
 #' @param catch_levels The catch levels list as defined in forecast-catch-levels.R
-#' @param catch_levels_path The path for the catch-levels output
 #' @param default_hr_path The path for the default hr output
 #' @param ss_executable The name of the SS executable
 #'
@@ -12,7 +11,6 @@
 run_catch_levels_default_hr <- function(model,
                                         forecast_yrs,
                                         catch_levels,
-                                        catch_levels_path = "catch-levels",
                                         default_hr_path = "default-hr",
                                         ss_executable = NULL,
                                         ...){
@@ -20,12 +18,9 @@ run_catch_levels_default_hr <- function(model,
   stopifnot(!is.null(ss_executable))
   
   mcmc_path <- model$mcmcpath
-  catch_levels_path <- file.path(mcmc_path, catch_levels_path)
-  default_hr_path <- file.path(catch_levels_path, default_hr_path)
-  dir.create(catch_levels_path, showWarnings = FALSE)
-  unlink(default_hr_path, recursive = TRUE)
+  unlink(file.path(default_hr_path, "*"), recursive = TRUE)
   dir.create(default_hr_path, showWarnings = FALSE)
-  
+
   file.copy(file.path(mcmc_path,
                       list.files(mcmc_path)),
             file.path(default_hr_path,
@@ -91,10 +86,7 @@ run_catch_levels_spr_100 <- function(model,
   stopifnot(!is.null(ss_executable))
   
   mcmc_path <- model$mcmcpath
-  catch_levels_path <- file.path(mcmc_path, catch_levels_path)
-  spr_100_path <- file.path(catch_levels_path, spr_100_path)
-  dir.create(catch_levels_path, showWarnings = FALSE)
-  unlink(spr_100_path, recursive = TRUE)
+  unlink(file.path(spr_100_path, "*"), recursive = TRUE)
   dir.create(spr_100_path, showWarnings = FALSE)
   
   file.copy(file.path(mcmc_path,
@@ -186,12 +178,9 @@ run_catch_levels_stable_catch <- function(model,
   stopifnot(!is.null(ss_executable))
   
   mcmc_path <- model$mcmcpath
-  catch_levels_path <- file.path(mcmc_path, catch_levels_path)
-  stable_catch_path <- file.path(catch_levels_path, stable_catch_path)
-  dir.create(catch_levels_path, showWarnings = FALSE)
-  unlink(stable_catch_path, recursive = TRUE)
+  unlink(file.path(stable_catch_path, "*"), recursive = TRUE)
   dir.create(stable_catch_path, showWarnings = FALSE)
-
+  
   file.copy(file.path(mcmc_path,
                       list.files(mcmc_path)),
             file.path(stable_catch_path,
@@ -274,16 +263,39 @@ run_catch_levels_stable_catch <- function(model,
 #' @export
 #'
 #' @examples
-run_catch_levels <- function(model, 
+run_catch_levels <- function(model,
+                             catch_levels_path,
                              catch_levels_ovr_hr = FALSE,
                              catch_levels_ovr_spr = FALSE,
                              catch_levels_ovr_stable = FALSE,
+                             default_hr_path,
+                             spr_100_path,
+                             stable_catch_path,
                              ...){
 
-  if(catch_levels_ovr_hr)
-    run_catch_levels_default_hr(model, ...)
-  if(catch_levels_ovr_spr)
-    run_catch_levels_spr_100(model, ...)
-  if(catch_levels_ovr_stable)
-    run_catch_levels_stable_catch(model, ...)
+  model_path <- model$path
+  catch_levels_path <- file.path(model_path, catch_levels_path)
+  if(catch_levels_ovr_hr & catch_levels_ovr_spr & catch_levels_ovr_stable){
+     unlink(file.path(catch_levels_path, "*"), recursive = TRUE) 
+  }
+  dir.create(catch_levels_path, showWarnings = FALSE)
+  default_hr_path <- file.path(catch_levels_path, default_hr_path)
+  spr_100_path <- file.path(catch_levels_path, spr_100_path)
+  stable_catch_path <- file.path(catch_levels_path, stable_catch_path)
+  
+  if(catch_levels_ovr_hr | !dir.exists(default_hr_path)){
+    run_catch_levels_default_hr(model,
+                                default_hr_path = default_hr_path,
+                                ...)
+  }
+  if(catch_levels_ovr_spr | !dir.exists(spr_100_path)){
+    run_catch_levels_spr_100(model,
+                             spr_100_path = spr_100_path,
+                             ...)
+  }
+  if(catch_levels_ovr_stable | !dir.exists(stable_catch_path)){
+    run_catch_levels_stable_catch(model,
+                                  stable_catch_path = stable_catch_path,
+                                  ...)
+  }
 }
