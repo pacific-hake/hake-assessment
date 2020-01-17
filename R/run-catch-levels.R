@@ -17,7 +17,7 @@
 #' c) Stable catch
 #' Return object looks the same as the `catch_levels`` object but with three more elements
 #' @export
-fetch_catch_levels <- function(model,
+fetch_catch_levels <- function(model_path,
                                catch_levels_path,
                                spr_100_path,
                                default_hr_path,
@@ -25,7 +25,7 @@ fetch_catch_levels <- function(model,
                                catch_levels,
                                ...){
   
-  model_path <- model$path
+  catch_levels_path <- file.path(model_path, catch_levels_path)
   default_hr_path <- file.path(catch_levels_path, default_hr_path)
   spr_100_path <- file.path(catch_levels_path, spr_100_path)
   stable_catch_path <- file.path(catch_levels_path, stable_catch_path)

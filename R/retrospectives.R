@@ -82,7 +82,7 @@ run_retrospectives <- function(model,
 #'
 #' @return
 #' @export
-fetch.retros <- function(retro.path = NA,
+fetch_retros <- function(retro_path = NA,
                          retro.yrs = NA,
                          verbose = FALSE,
                          printstats = FALSE){

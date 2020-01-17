@@ -76,77 +76,73 @@ run_forecasts <- function(model,
 #'
 #' @details If the forecasts directory does not exist or there is a problem loading the forecasts, return NA
 #' 
-#' @param mcmc.path Path of the MCMC output
-#' @param forecast.yrs A vector of years to forecast
-#' @param forecast.probs A vector of quantiles
-#' @param catch.levels The catch levels list as defined in forecast-catch-levels.R
+#' @param model_path Path of the model
 #'
 #' @return A list of forecast outputs as read in by [r4ss::SSgetMCMC()]
 #' @export
-fetch.forecasts <- function(mcmc.path = NA,
-                            forecast.yrs = NA,
-                            catch.levels = NA,
-                            forecast.probs = c(0.05, 0.25, 0.5, 0.75, 0.95)){
-
+fetch_forecasts <- function(model_path,
+                            forecasts_path,
+                            catch_levels,
+                            forecast_yrs,
+                            ...){
+  
   # Extract the catch level names from the list into a vector
-  catch.levels.names <- sapply(catch.levels, "[[", 3)
+  catch_levels_names <- sapply(catch_levels, "[[", 3)
   
   # outputs.list <- vector(mode = "list", length = length(catch.levels))
-  outputs.list <- vector(mode = "list", length = length(forecast.yrs))
-  for(i in 1:length(forecast.yrs)){
-    outputs.list[[i]] <- vector(mode = "list", length = length(catch.levels))
+  outputs_list <- vector(mode = "list", length = length(forecast_yrs))
+  for(i in 1:length(forecast_yrs)){
+    outputs_list[[i]] <- vector(mode = "list", length = length(catch_levels))
   }
-  forecasts.path <- file.path(mcmc.path, "forecasts")
-  if(is.na(mcmc.path) | !dir.exists(forecasts.path)){
+  forecasts_path <- file.path(model_path, forecasts_path)
+  if(!dir.exists(forecasts_path)){
     return(NA)
   }
 
   # Get the directory listing and choose the last one for loading
-  dir.listing <- dir(forecasts.path)
+  dir_listing <- dir(forecasts_path)
   
-  for(i in 1:length(forecast.yrs)){
-    fore.path <- file.path(forecasts.path, paste0("forecast-year-", forecast.yrs[i]))
+  for(i in 1:length(forecast_yrs)){
+    fore_path <- file.path(forecasts_path, paste0("forecast-year-", forecast_yrs[i]))
     # fore.path <- file.path(forecasts.path, dir.listing[length(dir.listing)])
     # Get the directory listing of the last year's forecasts directory and make sure
     #  it matches what the catch levels are.
-    dir.listing <- dir(fore.path)
-    if(!identical(catch.levels.names, dir.listing)){
+    dir_listing <- dir(fore_path)
+    if(!identical(catch_levels_names, dir_listing)){
       stop("There is a discrepancy between what you have set ",
            "for the catch.levels names \n and what appears in the forecasts directory '",
-           fore.path,"'. \n Check the names in both and try again.\n\n", call. = FALSE)
+           fore_path,"'. \n Check the names in both and try again.\n\n", call. = FALSE)
     }
-    for(level.ind in 1:length(catch.levels.names)){
-      fore.level.path <- file.path(fore.path, catch.levels.names[level.ind])
-      mcmc.out <- SSgetMCMC(dir = fore.level.path, writecsv = FALSE)
+    for(level_ind in 1:length(catch_levels_names)){
+      fore_level_path <- file.path(fore_path, catch_levels_names[level_ind])
+      mcmc_out <- SSgetMCMC(dir = fore_level_path, writecsv = FALSE)
       # Get the values of interest, namely Spawning biomass and SPR for the two
       # decision tables in the executive summary
-      sb <- mcmc.out[,grep("Bratio_",names(mcmc.out))]
-      spr <- mcmc.out[,grep("SPRratio_",names(mcmc.out))]
+      sb <- mcmc_out[,grep("Bratio_",names(mcmc_out))]
+      spr <- mcmc_out[,grep("SPRratio_",names(mcmc_out))]
       
       # Strip out the Bratio_ and SPRratio_ headers so columns are years only
       names(sb) <- gsub("Bratio_", "",names(sb))
       names(spr) <- gsub("SPRratio_", "",names(spr))
       
       # Now, filter out the projected years only
-      sb.proj.cols <- sb[,names(sb) %in% forecast.yrs]
-      spr.proj.cols <- spr[,names(spr) %in% forecast.yrs]
+      sb_proj_cols <- sb[,names(sb) %in% forecast_yrs]
+      spr_proj_cols <- spr[,names(spr) %in% forecast_yrs]
       
-      outputs.list[[i]][[level.ind]]$biomass <- t(apply(sb.proj.cols, 2, quantile, probs = forecast.probs))
-      outputs.list[[i]][[level.ind]]$spr <- t(apply(spr.proj.cols, 2, quantile, probs = forecast.probs))
-      outputs.list[[i]][[level.ind]]$mcmccalcs <- calc.mcmc(mcmc.out)
-      outputs.list[[i]][[level.ind]]$outputs <- mcmc.out
-      names(outputs.list[[i]]) <- catch.levels.names
+      outputs_list[[i]][[level_ind]]$biomass <- t(apply(sb_proj_cols, 2, quantile, probs = forecast_probs))
+      outputs_list[[i]][[level_ind]]$spr <- t(apply(spr_proj_cols, 2, quantile, probs = forecast_probs))
+      outputs_list[[i]][[level_ind]]$mcmccalcs <- calc.mcmc(mcmc_out)
+      outputs_list[[i]][[level_ind]]$outputs <- mcmc_out
+      names(outputs_list[[i]]) <- catch_levels_names
     }
   }
-  names(outputs.list) <- forecast.yrs
-  outputs.list
+  names(outputs_list) <- forecast_yrs
+  outputs_list
 }
 
 #' Calculate the probablities of being under several reference points from one forecast year to the next
 #'
-#' @param forecast.outputs A list as output by [fetch_forecasts()]
-#' @param catch.levels The catch levels list as defined in forecast-catch-levels.R
-#' @param forecast.yrs A vector of years to forecast
+#' @param forecast_outputs A list as output by [fetch_forecasts()]
 
 #' @return A list of length 1 less than the number of forecast years. Each element
 #' is a data.frame of catch levels holding the probabilities. For example, list element 1 will hold the
@@ -154,23 +150,21 @@ fetch.forecasts <- function(mcmc.path = NA,
 #'  in the forecast.yrs vector. If forecast.outputs is NA, NA will be returned, otherwise the risk.list
 #'  will be returned
 #' @export
-calc.risk <- function(forecast.outputs = NA,
-                      catch.levels = NA,
-                      forecast.yrs = NA){
+calc_risk <- function(forecast_outputs = NA,
+                      ...){
 
-  stopifnot(!is.na(catch.levels),
-            !is.na(forecast.yrs))
+  stopifnot(!is.na(forecast_outputs))
   
-  # Make the catch level values a matrix where the columns represent the cases in catch.names
-  catch.levels <- sapply(catch.levels, "[[", 1)
+  # Make the catch level values a matrix where the columns represent the cases in catch_names
+  catch_levels <- sapply(catch_levels, "[[", 1)
   
-  if(is.na(forecast.outputs)[1]){
+  if(is.na(forecast_outputs)[1]){
     return(NA)
   }
 
-  metric <- function(case.ind, x, yr, yr.ind){
+  metric <- function(case_ind, x, yr, yr_ind){
     out <- NULL
-    out[1] <- catch.levels[yr.ind, case.ind]
+    out[1] <- catch_levels[yr_ind, case_ind]
     out[2] <- sum(x[, paste0("SSB_", yr + 1)] < x[, paste0("SSB_", yr)]) / nrow(x) * 100.0
     out[3] <- sum(x[, paste0("Bratio_", yr + 1)] < 0.40) / nrow(x) * 100.0
     out[4] <- sum(x[, paste0("Bratio_", yr + 1)] < 0.25) / nrow(x) * 100.0
@@ -195,27 +189,27 @@ calc.risk <- function(forecast.outputs = NA,
     
     out
   }
-  risk.list <- vector(mode = "list", length = length(forecast.yrs) - 1)
-  for(yr in 1:(length(forecast.yrs) - 1)){
+  risk_list <- vector(mode = "list", length = length(forecast_yrs) - 1)
+  for(yr in 1:(length(forecast_yrs) - 1)){
     # outputs is a list of one data frame per case, for the current year yr
-    outputs <- lapply(forecast.outputs[[yr]], "[[", "outputs")
+    outputs <- lapply(forecast_outputs[[yr]], "[[", "outputs")
     # This call calculates the metrics for each element in the list (each catch case)
     #  and binds them together into a data frame. If there was a problem,
     #  (e.g. a bridge model is set up for forecasting) it will be set to NA.
-    risk.list[[yr]] <- tryCatch({
+    risk_list[[yr]] <- tryCatch({
       do.call("rbind",
               lapply(1:length(outputs),
-                     function(ind, yr, yr.ind){
-                       metric(ind, outputs[[ind]], yr, yr.ind)
+                     function(ind, yr, yr_ind){
+                       metric(ind, outputs[[ind]], yr, yr_ind)
                      },
-                     yr = forecast.yrs[yr],
-                     yr.ind = yr))
+                     yr = forecast_yrs[yr],
+                     yr_ind = yr))
     }, error = function(e){
       NA
     })
   }
-  names(risk.list) <- names(forecast.outputs[1:(length(forecast.outputs)-1)])
+  names(risk_list) <- names(forecast_outputs[1:(length(forecast_outputs) - 1)])
   
-  risk.list
+  risk_list
 }
 
