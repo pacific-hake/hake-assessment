@@ -4,7 +4,7 @@
 #' @details Assumes [run_catch_levels()] function has been run and the forecast files
 #' are populated with 3 forecast years 
 #'
-#' @param model The SS model output as loaded by [load.ss.files()]
+#' @param model The SS model output as loaded by [load_ss_files()]
 #' @param catch_levels The catch levels list as defined in forecast-catch-levels.R
 #' @param catch_levels_path The path for the catch-levels output
 #' @param spr_100_path The path for the spr-100 output
@@ -17,15 +17,13 @@
 #' c) Stable catch
 #' Return object looks the same as the `catch_levels`` object but with three more elements
 #' @export
-fetch_catch_levels <- function(model_path,
-                               catch_levels_path,
+fetch_catch_levels <- function(catch_levels_path,
                                spr_100_path,
                                default_hr_path,
                                stable_catch_path,
                                catch_levels,
                                ...){
   
-  catch_levels_path <- file.path(model_path, catch_levels_path)
   default_hr_path <- file.path(catch_levels_path, default_hr_path)
   spr_100_path <- file.path(catch_levels_path, spr_100_path)
   stable_catch_path <- file.path(catch_levels_path, stable_catch_path)
@@ -64,7 +62,7 @@ fetch_catch_levels <- function(model_path,
 #' Run the model iteratively reducing the difference between the first and second year projections to
 #' find a stable catch within the the given tolerance
 #'
-#' @param model The SS model output as loaded by [load.ss.files()]
+#' @param model The SS model output as loaded by [load_ss_files()]
 #' @param forecast_yrs A vector of forecast years
 #' @param catch_levels The catch levels list as defined in forecast-catch-levels.R
 #' @param default_hr_path The path for the default hr output
@@ -74,16 +72,16 @@ fetch_catch_levels <- function(model_path,
 run_catch_levels_default_hr <- function(model,
                                         forecast_yrs,
                                         catch_levels,
-                                        default_hr_path = "default-hr",
+                                        default_hr_path,
                                         ss_executable = NULL,
                                         ...){
   
   stopifnot(!is.null(ss_executable))
   
   mcmc_path <- model$mcmcpath
-  unlink(file.path(default_hr_path, "*"), recursive = TRUE)
   dir.create(default_hr_path, showWarnings = FALSE)
-
+  unlink(file.path(default_hr_path, "*"), recursive = TRUE)
+  
   file.copy(file.path(mcmc_path,
                       list.files(mcmc_path)),
             file.path(default_hr_path,
@@ -122,7 +120,7 @@ run_catch_levels_default_hr <- function(model,
 #' Run the model iteratively reducing the difference between the first and second year projections to
 #' find a stable catch within the the given tolerance
 #'
-#' @param model The SS model output as loaded by [load.ss.files()]
+#' @param model The SS model output as loaded by [load_ss_files()]
 #' @param forecast_yrs A vector of forecast years
 #' @param catch_levels The catch levels list as defined in forecast-catch-levels.R
 #' @param catch_levels_spr_tol The tolerance in the spr away from 1.
@@ -149,8 +147,8 @@ run_catch_levels_spr_100 <- function(model,
   stopifnot(!is.null(ss_executable))
   
   mcmc_path <- model$mcmcpath
-  unlink(file.path(spr_100_path, "*"), recursive = TRUE)
   dir.create(spr_100_path, showWarnings = FALSE)
+  unlink(file.path(spr_100_path, "*"), recursive = TRUE)
   
   file.copy(file.path(mcmc_path,
                       list.files(mcmc_path)),
@@ -216,7 +214,7 @@ run_catch_levels_spr_100 <- function(model,
 #' Run the model iteratively reducing the difference between the first and second year projections to
 #' find a stable catch within the the given tolerance
 #'
-#' @param model The SS model output as loaded by [load.ss.files()]
+#' @param model The SS model output as loaded by [load_ss_files()]
 #' @param forecast_yrs A vector of forecast years
 #' @param catch_levels The catch levels list as defined in forecast-catch-levels.R
 #' @param catch_levels_catch_tol The tolerance in tonnes. The iterations will stop if the difference between the
@@ -241,8 +239,8 @@ run_catch_levels_stable_catch <- function(model,
   stopifnot(!is.null(ss_executable))
   
   mcmc_path <- model$mcmcpath
-  unlink(file.path(stable_catch_path, "*"), recursive = TRUE)
   dir.create(stable_catch_path, showWarnings = FALSE)
+  unlink(file.path(stable_catch_path, "*"), recursive = TRUE)
   
   file.copy(file.path(mcmc_path,
                       list.files(mcmc_path)),
@@ -316,21 +314,24 @@ run_catch_levels_stable_catch <- function(model,
 
 #' A wrapper to run the catch levels determination routines
 #'
-#' @param model The SS model output as loaded by [load.ss.files()]
-#' @param ovr_hr Logical. Overwrite the default_hr case
-#' @param ovr_spr Logical. Overwrite the spr_100 case 
-#' @param ovr_stable Logical. Overwrite the stable_catch case
-#' @param ... Passed to the run.*() functions for each case
+#' @param model The SS model output as loaded by [load_ss_files()]
+#' @param catch_levels_path Path for the catch-levels directory
+#' @param run_catch_levels_default_hr Logical. Run the default_hr catch levels case (overwrites if exists)
+#' @param run_catch_levels_spr_100  Logical. Run the spr_100 catch levels case (overwrites if exists)
+#' @param run_catch_levels_stable_catch  Logical. Run the stable_catch catch levels case (overwrites if exists)
+#' @param default_hr_path Path for the default_hr catch level case
+#' @param spr_100_path Path for the spr_100 catch level case
+#' @param stable_catch_path Path for the stable_catch catch level case
+#' @param ... Passed to [run_catch_levels_default_hr()], [run_catch_levels_spr_100()],
+#' and [run_catch_levels_stable_catch()]
 #'
-#' @return
+#' @return [base::invisible()]
 #' @export
-#'
-#' @examples
 run_catch_levels <- function(model,
                              catch_levels_path,
-                             catch_levels_ovr_hr = FALSE,
-                             catch_levels_ovr_spr = FALSE,
-                             catch_levels_ovr_stable = FALSE,
+                             run_catch_levels_default_hr = FALSE,
+                             run_catch_levels_spr_100 = FALSE,
+                             run_catch_levels_stable_catch = FALSE,
                              default_hr_path,
                              spr_100_path,
                              stable_catch_path,
@@ -338,27 +339,25 @@ run_catch_levels <- function(model,
 
   model_path <- model$path
   catch_levels_path <- file.path(model_path, catch_levels_path)
-  if(catch_levels_ovr_hr & catch_levels_ovr_spr & catch_levels_ovr_stable){
-     unlink(file.path(catch_levels_path, "*"), recursive = TRUE) 
-  }
   dir.create(catch_levels_path, showWarnings = FALSE)
   default_hr_path <- file.path(catch_levels_path, default_hr_path)
   spr_100_path <- file.path(catch_levels_path, spr_100_path)
   stable_catch_path <- file.path(catch_levels_path, stable_catch_path)
   
-  if(catch_levels_ovr_hr | !dir.exists(default_hr_path)){
+  if(run_catch_levels_default_hr | !dir.exists(default_hr_path)){
     run_catch_levels_default_hr(model,
                                 default_hr_path = default_hr_path,
                                 ...)
   }
-  if(catch_levels_ovr_spr | !dir.exists(spr_100_path)){
+  if(run_catch_levels_spr_100 | !dir.exists(spr_100_path)){
     run_catch_levels_spr_100(model,
                              spr_100_path = spr_100_path,
                              ...)
   }
-  if(catch_levels_ovr_stable | !dir.exists(stable_catch_path)){
+  if(run_catch_levels_stable_catch | !dir.exists(stable_catch_path)){
     run_catch_levels_stable_catch(model,
                                   stable_catch_path = stable_catch_path,
                                   ...)
   }
+  invisible()
 }

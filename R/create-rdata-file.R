@@ -39,9 +39,7 @@ create_rdata_file <- function(models_path = "models",
   }
 
   # If this point is reached, no RData file exists so it has to be built from scratch
-  model <- load.ss.files(model_path, ...)
-
-  model$retropath <- file.path(model$path, retrospectives_path)
+  model <- load_ss_files(model_path, ...)
 
   # Load forecasts.  If none are found or there is a problem, model$forecasts will be NA
   if(dir.exists(file.path(model_path, forecasts_path))){
@@ -58,22 +56,22 @@ create_rdata_file <- function(models_path = "models",
     model$risks <- NA
   }
 
-  # # Load retrospectives. If none are found or there is a problem, model$retros will be NA
-  # model$retropath <- file.path(model$path, "retrospectives")
-  # if(dir.exists(model$retropath)){
-  #   model$retros <- fetch.retros(model$retropath,
-  #                                my.retro.yrs)
-  # }else{
-  #   model$retros <- NA
-  # }
-  # 
+  # Load retrospectives. If none are found or there is a problem, model$retros will be NA
+  model$retropath <- file.path(model$path, retrospectives_path)
+  if(dir.exists(model$retropath)){
+    model$retros <- fetch_retrospectives(model$retropath,
+                                         retrospective_years)
+  }else{
+    model$retros <- NA
+  }
+
   # # Try loading extra mcmc output. If none are found or there is a problem, model$extra.mcmc will be NA
-  # model$extra.mcmc.path <- file.path(model$path, "extra-mcmc")
-  # if(dir.exists(model$extra.mcmc.path)){
-  #   model$extra.mcmc <- fetch.extra.mcmc(model)
-  # }else{
-  #   model$extra.mcmc <- NA
-  # }
+  model$extra.mcmc.path <- file.path(model_path, extra_mcmc_path)
+  if(dir.exists(model$extra.mcmc.path)){
+    model$extra.mcmc <- fetch_extra_mcmc(model)
+  }else{
+    model$extra.mcmc <- NA
+  }
 
   save(model, file = rdata_file)
   invisible()
@@ -81,42 +79,30 @@ create_rdata_file <- function(models_path = "models",
 
 #' Run extra models for forecasting, retrospectives, and extra MCMC (one report file per posterior)
 #'
-#' @details This is a wrapper function for calling other run_*() functions. The catch-levels part must
-#' have been successfully run before the forecasting can commence.
+#' @details This is a wrapper function for calling [run_catch_levels()], [run_forecasts()],
+#' [run_retrospectives()], and [run_extra_mcmc()] functions.
 #' 
-#' @param model_path The directory the model resides in
-#' @param run_catch_levels Logical. Run the catch levels determination
-#' @param run_forecasts Logical. Run the forercasts
-#' @param run_retrospectives Logical. Run the retrospectives
-#' @param run_extra_mcmc Logical. Run the extra MCMC routines
+#' @param models_path The path where the models directories reside
+#' @param model_name The name of the directory the model resides in
 #' @param ... Passed to the subroutines
 #'
 #' @return [base::invisible()]
 #' @export
-run <- function(model_path = NULL,
-                run_catch_levels = FALSE,
-                run_forecasts = FALSE,
-                run_retrospectives = FALSE,
-                run_extra_mcmc = FALSE,
+run <- function(models_path = NULL,
+                model_name = NULL,
                 ...){
+ 
+  stopifnot(!is.null(models_path),
+            !is.null(model_name))
+  model_path <- file.path(models_path, model_name)
   
   if(!dir.exists(model_path)){
     stop("Error - the directory ", model_path, " does not exist.\n",
          "Fix the problem and try again.", call. = FALSE)
   }
-  model <- load.ss.files(model_path, ...)
-
-  if(run_catch_levels & !run_forecasts){
-    run_catch_levels(model, ...)
-  }
-  if(run_forecasts){
-    run_catch_levels(model, ...)
-    run_forecasts(model, ...)
-  }
-  if(run_retrospectives){
-    run_retrospectives(model, ...)
-  }
-  if(run_extra_mcmc){
-    run_extra_mcmc(model, ...)
-  }
+  model <- load_ss_files(model_path, ...)
+  run_catch_levels(model, ...)
+  run_forecasts(model, ...)
+  run_retrospectives(model, ...)
+  run_extra_mcmc(model, ...)
 }

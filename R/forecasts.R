@@ -2,7 +2,7 @@
 #'
 #' @details If there is no mcmc component to the model, an error will be given and the program will be stopped
 #' 
-#' @param model The SS model output as loaded by [load.ss.files()]
+#' @param model The SS model output as loaded by [load_ss_files()]
 #' @param forecast_yrs A vector of years to forecast
 #' @param forecast_probs A vector of quantiles
 #' @param catch_levels The catch levels list as defined in forecast-catch-levels.R
@@ -12,23 +12,32 @@
 #' @export
 run_forecasts <- function(model,
                           catch_levels_path,
+                          run_forecasts,
                           forecast_yrs,
                           forecast_probs,
                           ss_executable,
+                          forecasts_path,
                           ...){
 
   model_path <- model$path
   mcmc_path <- model$mcmcpath
+  forecasts_path <- file.path(model_path, "forecasts")
+  if(!run_forecasts & dir.exists(forecasts_path)){
+    return(invisible())
+  }
+  dir.create(forecasts_path, showWarnings = FALSE)
+  unlink(file.path(forecasts_path, "*"), recursive = TRUE)
+  
   catch_levels_path <- file.path(model_path, catch_levels_path)
 
   # Calculate and add on model-custom catch levels
-  catch_levels <- fetch_catch_levels(model, catch_levels_path, ...)
+
+  catch_levels <- fetch_catch_levels(catch_levels_path, ...)
   
   # Extract the catch level names from the list into a vector
   catch_levels_names <- sapply(catch_levels, "[[", 3)
   # Make the catch level values a matrix where the columns represent the cases in catch.names
   catch_levels <- sapply(catch_levels, "[[", 1)
-  forecasts_path <- file.path(model_path, "forecasts")
   
   message("Running forecasts for model located in ", model_path, "...\n")
   dir.create(forecasts_path, showWarnings = FALSE)
@@ -77,6 +86,10 @@ run_forecasts <- function(model,
 #' @details If the forecasts directory does not exist or there is a problem loading the forecasts, return NA
 #' 
 #' @param model_path Path of the model
+#' @param forecasts_path Path of the forecasts
+#' @param catch_levels The table of catch levels with same structure as found in forecast-catch-levels.R
+#' @param forecast_yrs The forecast years
+#' @param ... 
 #'
 #' @return A list of forecast outputs as read in by [r4ss::SSgetMCMC()]
 #' @export
@@ -143,15 +156,14 @@ fetch_forecasts <- function(model_path,
 #' Calculate the probablities of being under several reference points from one forecast year to the next
 #'
 #' @param forecast_outputs A list as output by [fetch_forecasts()]
-
+#' 
 #' @return A list of length 1 less than the number of forecast years. Each element
 #' is a data.frame of catch levels holding the probabilities. For example, list element 1 will hold the
 #'  probabilities for each catch.level of being under several reference points for the first two years
 #'  in the forecast.yrs vector. If forecast.outputs is NA, NA will be returned, otherwise the risk.list
 #'  will be returned
 #' @export
-calc_risk <- function(forecast_outputs = NA,
-                      ...){
+calc_risk <- function(forecast_outputs = NA, ...){
 
   stopifnot(!is.na(forecast_outputs))
   

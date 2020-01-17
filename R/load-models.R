@@ -37,51 +37,51 @@ fix.posteriors <- function(dir){
 #'
 #' @return A model object representing the output from the SS model
 #' @export
-load.ss.files <- function(model.dir = NA,
+load_ss_files <- function(model_path = NA,
                           key.posts = c("NatM", "SR_LN", "SR_BH_steep", "Q_extraSD"),
                           key.posts.fn = "keyposteriors.csv",
                           nuisance.posts.fn = "nuisanceposteriors.csv",
                           printstats = FALSE,
                           ...){
 
-  stopifnot(!is.na(model.dir))
+  stopifnot(!is.na(model_path))
   
   # Load MPD results
-  model <- SS_output(dir = model.dir, verbose = FALSE, printstats = printstats)
+  model <- SS_output(dir = model_path, verbose = FALSE, printstats = printstats)
 
   ## Load the data file and control file for the model
   ## Get the file whose name contains "_data.ss" and "_control.ss"
   ## If there is not exactly one of each, stop with error.
-  model.dir.listing <- dir(model.dir)
-  dat.fn.ind <- grep("_data.ss", model.dir.listing)
-  ctl.fn.ind <- grep("_control.ss", model.dir.listing)
-  par.fn.ind <- grep("ss.par", model.dir.listing)
+  model_path.listing <- dir(model_path)
+  dat.fn.ind <- grep("_data.ss", model_path.listing)
+  ctl.fn.ind <- grep("_control.ss", model_path.listing)
+  par.fn.ind <- grep("ss.par", model_path.listing)
   if(!length(dat.fn.ind)){
-    stop("Error in model ", model.dir,
+    stop("Error in model ", model_path,
          ", there is no data file. A data file is any file whose name contains the text _data.ss.\n\n",
          call. = FALSE)
   }
   if(length(dat.fn.ind) > 1){
-    stop("Error in model ", model.dir,
+    stop("Error in model ", model_path,
          ", there is more than one data file. A data file is any file whose name contains the text _data.ss.\n\n",
          call. = FALSE)
     
   }
   if(!length(ctl.fn.ind)){
-    stop("Error in model ", model.dir,
+    stop("Error in model ", model_path,
          ", there is no control file. A control file is any file whose name contains the text _control.ss.\n\n",
          call. = FALSE)
     
   }
   if(length(ctl.fn.ind) > 1){
-    stop("Error in model ", model.dir,
+    stop("Error in model ", model_path,
          ", there is more than one control file. A control file is any file whose name contains the text _control.ss.\n\n",
          call. = FALSE)
   }
-  dat.fn <- file.path(model.dir, model.dir.listing[dat.fn.ind])
-  ctl.fn <- file.path(model.dir, model.dir.listing[ctl.fn.ind])
-  par.fn <- file.path(model.dir, model.dir.listing[par.fn.ind])
-  model$path <- model.dir
+  dat.fn <- file.path(model_path, model_path.listing[dat.fn.ind])
+  ctl.fn <- file.path(model_path, model_path.listing[ctl.fn.ind])
+  par.fn <- file.path(model_path, model_path.listing[par.fn.ind])
+  model$path <- model_path
   model$dat.file <- dat.fn
   #model$dat <- SS_readdat(dat.fn, version = ss.version, verbose = FALSE)
   model$dat <- SS_readdat(dat.fn, verbose = FALSE)
@@ -92,7 +92,7 @@ load.ss.files <- function(model.dir = NA,
   # Set default mcmc members to NA. Later code depends on this.
   model$mcmc <- NA
   # Set the mcmc path. This doesn't mean it exists.
-  mcmc.dir <- file.path(model.dir, "mcmc")
+  mcmc.dir <- file.path(model_path, "mcmc")
   model$mcmcpath <- mcmc.dir
 
   # If it has an 'mcmc' sub-directory, load that as well

@@ -313,7 +313,7 @@ cohort.catch <- function(cohort, catage, ages = 0:20, trim.end.year = NA) {
 #' @details top.coh(2018, 2) produces:
 ##  "The 2018 cohort was the largest (29\\%), followed by the 2010 cohort (27\\%)"
 #' 
-#' @param model The model as returned from [load.ss.files()]
+#' @param model The model as returned from [load_ss_files()]
 #' @param yr The year the cohort was born
 #' @param num.cohorts The number of cohorts to include in the sentence
 #' @param decimals The number of decimal points to use

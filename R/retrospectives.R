@@ -24,19 +24,23 @@ run_retrospectives <- function(model,
                                forecast_file_name,
                                weight_at_age_file_name,
                                ss_executable,
+                               run_retrospectives,
                                retrospective_yrs,
                                ...){
 
   model_path <- model$path
   retro_path <- file.path(model_path, "retrospectives")
-  unlink(file.path(retro_path, "*"), recursive = TRUE)
+  if(!run_retrospectives & dir.exists(retro_path)){
+    return(invisible())
+  }
   dir.create(retro_path, showWarnings = FALSE)
+  unlink(file.path(retro_path, "*"), recursive = TRUE)
   
   # Create a list for the retrospective output to be saved to
   retros_list <- list()
   
   # Copy all required model files into the retrospective directory
-  model <- load.ss.files(model_path, ...)
+  model <- load_ss_files(model_path, ...)
   files_to_copy <- c(file.path(model_path, c(ss_executable,
                                              starter_file_name,
                                              forecast_file_name,
@@ -55,6 +59,7 @@ run_retrospectives <- function(model,
     starter$retro_yr <- -retrospective_yrs[retro]
     starter$init_values_src <- 0
     SS_writestarter(starter, dir = retro_subdir, verbose = FALSE, overwrite = TRUE)
+
     if(remove_blocks){
       ctl_file <- file.path(retro_subdir, model$ctl.file)
       ctl <- readLines(ctl.file)
@@ -88,29 +93,29 @@ run_retrospectives <- function(model,
 #'
 #' @return
 #' @export
-fetch_retros <- function(retro_path = NA,
-                         retro.yrs = NA,
-                         verbose = FALSE,
-                         printstats = FALSE){
+fetch_retrospectives <- function(retro_path,
+                                 retrospective_yrs,
+                                 ...){
 
-  retros.paths <- file.path(retro.path, paste0("retro-", pad.num(retro.yrs, 2)))
-  if(is.na(retro.path) | !all(dir.exists(retros.paths))){
+  retros_paths <- file.path(retro_path, paste0("retro-", pad.num(retrospective_yrs, 2)))
+  
+  if(is.na(retro_path)){
     return(NA)
   }
-  if(all(dir.exists(retros.paths))){
+  if(all(dir.exists(retros_paths))){
     message("Loading retrospectives...\n")
-    retros.list <- list()
-    for(retro in 1:length(retro.yrs)){
-      retro.dir <- file.path(retro.path, paste0("retro-", pad.num(retro.yrs[retro], 2)))
-      retros.list[[retro]] <- SS_output(dir = retro.dir,
-                                        verbose = verbose,
-                                        printstats = printstats,
+    retros_list <- list()
+    for(retro in 1:length(retrospective_yrs)){
+      retro_dir <- file.path(retro_path, paste0("retro-", pad.num(retrospective_yrs[retro], 2)))
+      retros_list[[retro]] <- SS_output(dir = retro_dir,
+                                        verbose = FALSE,
+                                        printstats = FALSE,
                                         covar = FALSE)
     }
-    message("Retrospectives loaded for ", retro.path, ".")
+    message("Retrospectives loaded for ", retro_path, ".")
   }else{
-    message("Not all retrospective directories exist in ", retro.path , "Look at retrospective-setup.r and your directories ",
+    message("Not all retrospective directories exist in ", retro_path , "Look at retrospective-setup.r and your directories ",
             "to make sure they are both the same or set run.retros = TRUE.")
   }
-  retros.list
+  retros_list
 }

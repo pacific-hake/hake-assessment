@@ -31,7 +31,7 @@ message("SS weight-at-age file: ", weight.at.age.file.name)
 ## -----------------------------------------------------------------------------
 ss.version <- "3.30.14.08"
 message("SS version: ", ss.version)
-admb.version <- "11.6"
+admb.version <- "12.0"
 message("ADMB version: ", admb.version)
 
 ## -----------------------------------------------------------------------------
@@ -243,15 +243,24 @@ sens.model.names.6 <- c("TODO: remove this",
 ##                         "Early weight-age 1975-1979 mean, late is 1975-2018 mean*",            #57
 ##                         "TV Fecund, early weight-age 1975-1979 mean, late is 2016-2018 mean")  #58
 
-
-
+model_list <- c(base.model.dir.name,
+                unlist(bridge.model.dir.names.1),
+                unlist(bridge.model.dir.names.2),
+                unlist(sens.model.dir.names.1),
+                unlist(sens.model.dir.names.2),
+                #unlist(sens.model.dir.names.3),
+                unlist(sens.model.dir.names.4),
+                unlist(sens.model.dir.names.5),
+                unlist(sens.model.dir.names.6))
+model_list <- model_list[! model_list %in% last.yr.base.model.dir.name]
+model_list <- as.list(unique(model_list))
 
 ## This function must be called from within the first knitr code chunk
 ## in the document. It is defined here so that it is in the same place
 ## as the other model setup and should be changed if bridge models
 ## and sensitivity models change in the model.dir.names above..
 load.models.into.parent.env <- function(){
-  base.model         <<- load.models(model.dir, base.model.dir.name)
+  base.model <<- load.models(model.dir, base.model.dir.name)
   if(is.null(base.model$mcmccalcs)){
     stop("Error - base.model$mcmccalcs is NULL. Make sure the directory\n",
             file.path(base.model$path, "mcmc"), " exists and contains valid\n",
@@ -266,9 +275,6 @@ load.models.into.parent.env <- function(){
   }
 
   last.yr.base.model <<- load.models(model.dir, last.yr.base.model.dir.name)
-  ## alt.base.model.1   <<- load.models(model.dir, alt.base.model.1.dir.name)
-  ## alt.base.model.2   <<- load.models(model.dir, alt.base.model.2.dir.name)
-  ## alt.base.model.3   <<- load.models(model.dir, alt.base.model.3.dir.name)
   bridge.models.1    <<- load.models(model.dir, bridge.model.dir.names.1)
   bridge.models.2    <<- load.models(model.dir, bridge.model.dir.names.2)
   sens.models.1      <<- load.models(model.dir, sens.model.dir.names.1)
@@ -297,71 +303,55 @@ load.models.into.parent.env <- function(){
   sens.model.names.3.for.table <<- c("Base model", sens.model.names.5, sens.model.names.6)
 }
 
-#' Create Rdata files for models
-#'
-#' @details This will create an RData file in each model directory defined.
-#' 
-#' @param models_path The path where the models reside
-#' @param model_name The name of the model directory within `models_path`
-#' @param run_catch_levels Logical. Run the cacht levels determination for Stable catch,
-#' SPR 100, and Default HR cases. These are required for the forecasting step
-#' @param run_fore Logical. Run forecasting
-#' @param run_retros Logical. Run retrospectives
-#' @param run_extra_mcmc Logical. Run the extra MCMC step which generates a report file for every
-#' posterior
-#'
-#' @return [base::invisible()]
-#' @export
-build_ <- function(models_path,
-                   model_name,
-                   ...){
-
-  if(!is.na(model_name)){
-    model_path <- file.path(models_path, model_name)
-    run(model_path, ...)
-    return(invisible())
+build <- function(run_forecasts = FALSE,
+                  run_retrospectives = FALSE,
+                  run_extra_mcmc = FALSE,
+                  run_catch_levels_default_hr = FALSE,
+                  run_catch_levels_spr_100 = FALSE,
+                  run_catch_levels_stable_catch = FALSE,
+                  create_rdata = TRUE,
+                  model_list = model_list){
+  run(models_path = here::here("models"),
+      model_name = base.model.dir.name,
+      run_catch_levels_default_hr = run_catch_levels_default_hr,
+      run_catch_levels_spr_100 = run_catch_levels_spr_100,
+      run_catch_levels_stable_catch = run_catch_levels_stable_catch,
+      run_forecasts = run_forecasts,
+      run_retrospectives = run_retrospectives,
+      retrospective_yrs = retrospective_years,
+      run_extra_mcmc = run_extra_mcmc,
+      forecast_yrs = forecast_yrs,
+      catch_levels = catch_levels,
+      catch_levels_spr_tol = 0.0001,
+      catch_levels_catch_tol = 10,
+      catch_levels_max_iter = 20,
+      catch_levels_path = "catch-levels",
+      default_hr_path = "default-hr",
+      stable_catch_path = "stable-catch",
+      spr_100_path = "spr-100",
+      forecasts_path = "forecasts",
+      retrospectives_path = "retrospectives",
+      extra_mcmc_path = "extra-mcmc",
+      ss_executable = ss_executable,
+      starter_file_name = "starter.ss",
+      forecast_file_name = "forecast.ss",
+      weight_at_age_file_name = "wtatage.ss")
+  if(create_rdata){
+    lapply(model_list, function(model_name){
+      create_rdata_file(models_path = file.path(here::here("models")),
+                        model_name = base.model.dir.name,
+                        ovwrt_rdata = TRUE,
+                        forecast_yrs = forecast_yrs,
+                        retrospective_years = retrospective_years,
+                        catch_levels = catch_levels,
+                        catch_levels_path = "catch-levels",
+                        default_hr_path = "default-hr",
+                        stable_catch_path = "stable-catch",
+                        spr_100_path = "spr-100",
+                        forecasts_path = "forecasts",
+                        retrospectives_path = "retrospectives",
+                        extra_mcmc_path = "extra-mcmc")
+    })
   }
 }
-
-build <- function(){
-  build_(models_path = here::here("models"),
-         model_name = base.model.dir.name,
-         run_catch_levels = FALSE,
-         catch_levels_ovr_hr = FALSE,
-         catch_levels_ovr_spr = FALSE,
-         catch_levels_ovr_stable = FALSE,
-         run_forecasts = FALSE,
-         run_retrospectives = FALSE,
-         retrospective_years = retrospective_years,
-         run_extra_mcmc = FALSE,
-         forecast_yrs = forecast_yrs,
-         catch_levels = catch_levels,
-         catch_levels_spr_tol = 0.0001,
-         catch_levels_catch_tol = 10,
-         catch_levels_max_iter = 20,
-         catch_levels_path = "catch-levels",
-         default_hr_path = "default-hr",
-         stable_catch_path = "stable-catch",
-         spr_100_path = "spr-100",
-         forecasts_path = "forecasts",
-         retrospectives_path = "retrospectives",
-         extra_mcmc_path = "extra-mcmc",
-         ss_executable = ss_executable,
-         starter_file_name = "starter.ss",
-         forecast_file_name = "forecast.ss",
-         weight_at_age_file_name = "wtatage.ss")
-    create_rdata_file(models_path = "models",
-                      model_name = base.model.dir.name,
-                      ovwrt_rdata = TRUE,
-                      forecast_yrs = forecast_yrs,
-                      catch_levels = catch_levels,
-                      catch_levels_path = "catch-levels",
-                      default_hr_path = "default-hr",
-                      stable_catch_path = "stable-catch",
-                      spr_100_path = "spr-100",
-                      forecasts_path = "forecasts",
-                      retrospectives_path = "retrospectives",
-                      extra_mcmc_path = "extra-mcmc")
-}
-
 
