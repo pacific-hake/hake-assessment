@@ -20,11 +20,11 @@
 #' @examples
 run_retrospectives <- function(model,
                                remove_blocks = FALSE,
-                               extras = "-nox",
                                starter_file_name,
                                forecast_file_name,
                                weight_at_age_file_name,
                                ss_executable,
+                               retrospective_yrs,
                                ...){
 
   model_path <- model$path
@@ -67,8 +67,14 @@ run_retrospectives <- function(model,
     if(file.exists(covar_file)){
       unlink(covar_file)
     }
-    shell_command <- paste0("cd ", retro_subdir, " & ", ss_executable, " extras")
+    shell_command <- paste0("cd ", retro_subdir, " & ", ss_executable, " -nox")
     shell(shell_command)
+    data_new <- readLines(file.path(retro_subdir, "data.ss_new"))
+    df_for_meanbody <- grep("DF_for_meanbodysize", data_new)
+    if(length(df_for_meanbody)){
+      data_new[df_for_meanbody] <- paste0("#_COND_", data_new[df_for_meanbody])
+      writeLines(data_new, con = file.path(retro_subdir, "data.ss_new"))
+    }
   }
   invisible()
 }
