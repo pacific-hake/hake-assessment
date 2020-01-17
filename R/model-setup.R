@@ -330,9 +330,10 @@ build <- function(){
          catch_levels_ovr_hr = FALSE,
          catch_levels_ovr_spr = FALSE,
          catch_levels_ovr_stable = FALSE,
-         run_forecasts = TRUE,
+         run_forecasts = FALSE,
          run_retrospectives = FALSE,
-         run_extra_mcmc = FALSE,
+         retrospective_years = retrospective_years,
+         run_extra_mcmc = TRUE,
          forecast_yrs = forecast_yrs,
          catch_levels = catch_levels,
          catch_levels_spr_tol = 0.0001,
@@ -342,5 +343,9 @@ build <- function(){
          default_hr_path = "default-hr",
          stable_catch_path = "stable-catch",
          spr_100_path = "spr-100",
-         ss_executable = ss_executable)
+         extra_mcmc_path = "extra-mcmc",
+         ss_executable = ss_executable,
+         starter_file_name = "starter.ss",
+         forecast_file_name = "forecast.ss",
+         weight_at_age_file_name = "wtatage.ss")
 }

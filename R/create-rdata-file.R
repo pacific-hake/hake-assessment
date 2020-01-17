@@ -220,6 +220,12 @@ run <- function(model_path = NULL,
     run_catch_levels(model, ...)
     run_forecasts(model, ...)
   }
+  if(run_retrospectives){
+    run_retrospectives(model, ...)
+  }
+  if(run_extra_mcmc){
+    run_extra_mcmc(model, ...)
+  }
   # 
   # if(run_retros){
   #   run.retrospectives(path = model.dir, yrs = 1:2, ...)

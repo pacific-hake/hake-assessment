@@ -1,30 +1,23 @@
-run.extra.mcmc.models <- function(model, verbose = TRUE){
+run_extra_mcmc <- function(model, extra_mcmc_path, ...){
   ## This Re-runs the model (MLE) once for each posterior
   ## and saves the Report.sso files in model$extra.mcmc.path/report
-  curr.func.name <- get.curr.func.name()
-  
-  mcmc.dir <- model$mcmcpath
-  if(!dir.exists(mcmc.dir)){
-    return(invisible())
-  }
-  
-  if(!verbose){
-    flush.console
-    cat0(curr.func.name, "Running model for each mcmc sample to get additional mcmc outputs...\n\n")
-  }
+
+  model_path <- model$path
+  mcmc_path <- model$mcmcpath
   
   ## Create the directories extra-mcmc and extra-mcmc/reports
   ##  which will hold the runs
-  extra.mcmc.dir <- model$extra.mcmc.path
-  dir.create(extra.mcmc.dir, showWarnings = FALSE)
-  reports.dir <- file.path(extra.mcmc.dir, "reports")
-  dir.create(reports.dir, showWarnings = FALSE)
+  browser()
+  extra_mcmc_path <- file.path(model_path, extra_mcmc_path)
+  dir.create(extra_mcmc_path, showWarnings = FALSE)
+  reports_path <- file.path(extra_mcmc_path, "reports")
+  dir.create(reports_path, showWarnings = FALSE)
   
   ## Copy all mcmc model files into the extra-mcmc directory
-  file.copy(file.path(mcmc.dir, list.files(mcmc.dir)), extra.mcmc.dir)
-  posts <- read.table(file.path(extra.mcmc.dir, "posteriors.sso"), header = TRUE)
+  file.copy(file.path(mcmc_path, list.files(mcmc_path)), extra_mcmc_path)
+  posts <- read.table(file.path(extra_mcmc_path, "posteriors.sso"), header = TRUE)
   ## Change this for testing on smaller subset of posteriors
-  num.posts <- nrow(posts)
+  num_posts <- nrow(posts)
   checksum <- 999 # just a code, unrelated to num.posts
   ## create a table of parameter values based on labels in parameters section of Report.sso
   newpar <- data.frame(value = c(1, model$parameters$Value, checksum),
@@ -42,73 +35,63 @@ run.extra.mcmc.models <- function(model, verbose = TRUE){
   
   ## write table of new files
   write.table(x = newpar,
-              file = file.path(extra.mcmc.dir, "ss.par"),
-              quote = FALSE, row.names=FALSE)
+              file = file.path(extra_mcmc_path, "ss.par"),
+              quote = FALSE, row.names = FALSE)
   
-  start <- SS_readstarter(file.path(extra.mcmc.dir, "starter.ss"), verbose = verbose)
+  start <- SS_readstarter(file.path(extra_mcmc_path, "starter.ss"), verbose = FALSE)
   ## Change starter file to read from par file
   start$init_values_src <- 1
-  SS_writestarter(start, dir = extra.mcmc.dir, file = "starter.ss", overwrite = TRUE, verbose=F)
+  SS_writestarter(start, dir = extra_mcmc_path, file = "starter.ss", overwrite = TRUE, verbose = FALSE)
   
   ## modify control file to make bias adjustment of recruit devs = 1.0 for all years
   ## this is required to match specification used by MCMC as noted in
   ## "Spawner-Recruitment" section of SS User Manual and described in
   ## Methot & Taylor (2011)
-  ctl.lines <- readLines(file.path(extra.mcmc.dir, start$ctlfile))
-  bias.adjust.line.num <- grep("Maximum bias adjustment in MPD", ctl.lines)
-  if(length(bias.adjust.line.num)==0){
+  ctl_lines <- readLines(file.path(extra_mcmc_path, start$ctlfile))
+  bias_adjust_line_num <- grep("Maximum bias adjustment in MPD", ctl_lines)
+  if(length(bias_adjust_line_num) == 0){
     # alternative label used in control.ss_new file
-    bias.adjust.line.num <- grep("max_bias_adj_in_MPD", ctl.lines)
+    bias_adjust_line_num <- grep("max_bias_adj_in_MPD", ctl_lines)
   }
-  ctl.lines[bias.adjust.line.num] <-
+  ctl_lines[bias_adjust_line_num] <-
     "-1      # Maximum bias adjustment in MPD (set to -1 for extra.mcmc only)"
-  writeLines(ctl.lines, file.path(extra.mcmc.dir, start$ctlfile))
+  writeLines(ctl_lines, file.path(extra_mcmc_path, start$ctlfile))
   
   ## Remove brackets in newpar labels so that the names match column names in posts
   ## this line may be redundant with the gsub commands above
   newpar$label <- gsub("\\(([0-9])\\)", ".\\1.", newpar$label)
   
   ## loop over rows of posteriors file
-  for(irow in 1:num.posts){
-    if(verbose){
-      cat("irow:", irow, "natM:", newpar[2], "\n")
-    }
+  for(irow in 1:num_posts){
+    message("irow:", irow, "natM:", newpar[2], "\n")
     ## replace values in newpar table with posteriors values
     ## (excluding 1 and 2 for "Iter" and "Objective_function")
     newpar[newpar$label %in% names(posts), 1] <- as.numeric(posts[irow, -(1:2)])
     write.table(x = newpar,
-                file = file.path(extra.mcmc.dir, "ss.par"),
+                file = file.path(extra_mcmc_path, "ss.par"),
                 quote = FALSE,
                 row.names = FALSE)
-    file.copy(file.path(extra.mcmc.dir, "ss.par"),
-              file.path(reports.dir, paste0("ss_input", irow, ".par")),
+    file.copy(file.path(extra_mcmc_path, "ss.par"),
+              file.path(reports_path, paste0("ss_input", irow, ".par")),
               overwrite = TRUE)
     ## delete existing output files to make sure that if model fails to run,
     ## it won't just copy the same files again and again
-    file.remove(file.path(extra.mcmc.dir, "Report.sso"))
-    file.remove(file.path(extra.mcmc.dir, "CompReport.sso"))
+    file.remove(file.path(extra_mcmc_path, "Report.sso"))
+    file.remove(file.path(extra_mcmc_path, "CompReport.sso"))
     
-    shell.command <- paste0("cd ", extra.mcmc.dir, " & ss3 -maxfn 0 -phase 10 -nohess")
-    if(verbose){
-      ## shell doesn't accept the argument show.output.on.console for some reason
-      shell(shell.command)
-    }else{
-      ## This doesn't work!!
-      shell(shell.command)
-      ## system(shell.command, show.output.on.console = FALSE)
-    }
-    file.copy(file.path(extra.mcmc.dir, "ss.par"),
-              file.path(reports.dir, paste0("ss_output", irow, ".par")),
+    shell_command <- paste0("cd ", extra_mcmc_path, " & ", ss_executable, " -maxfn 0 -phase 10 -nohess")
+    shell(shell_command)
+    
+    file.copy(file.path(extra_mcmc_path, "ss.par"),
+              file.path(reports_path, paste0("ss_output", irow, ".par")),
               overwrite = TRUE)
-    file.copy(file.path(extra.mcmc.dir, "Report.sso"),
-              file.path(reports.dir, paste0("Report_", irow, ".sso")),
+    file.copy(file.path(extra_mcmc_path, "Report.sso"),
+              file.path(reports_path, paste0("Report_", irow, ".sso")),
               overwrite = TRUE)
-    file.copy(file.path(extra.mcmc.dir, "CompReport.sso"),
-              file.path(reports.dir, paste0("CompReport_", irow, ".sso")),
+    file.copy(file.path(extra_mcmc_path, "CompReport.sso"),
+              file.path(reports_path, paste0("CompReport_", irow, ".sso")),
               overwrite = TRUE)
   }
-  
-  cat0(curr.func.name, "Extra mcmc output model runs completed.\n\n")
 }
 
 fetch.extra.mcmc <- function(model,

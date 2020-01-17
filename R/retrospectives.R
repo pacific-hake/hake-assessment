@@ -18,21 +18,18 @@
 #' @export
 #'
 #' @examples
-run.retrospectives <- function(model_path = NULL,
-                               yrs = NULL,
+run_retrospectives <- function(model,
                                remove_blocks = FALSE,
                                extras = "-nox",
-                               exe_file_name = "ss.exe",
-                               starter_file_name = "starter.ss",
-                               forecast_file_name = "forecast.ss",
-                               weight_at_age_file_name = "wtatage.ss",
+                               starter_file_name,
+                               forecast_file_name,
+                               weight_at_age_file_name,
+                               ss_executable,
                                ...){
 
-  stopifnot(!is.null(model_path),
-            !is.null(yrs))
-  
+  model_path <- model$path
   retro_path <- file.path(model_path, "retrospectives")
-  delete.dirs(sub.dir = retro_path)
+  unlink(file.path(retro_path, "*"), recursive = TRUE)
   dir.create(retro_path, showWarnings = FALSE)
   
   # Create a list for the retrospective output to be saved to
@@ -40,25 +37,25 @@ run.retrospectives <- function(model_path = NULL,
   
   # Copy all required model files into the retrospective directory
   model <- load.ss.files(model_path, ...)
-  files_to_copy <- c(file.path(model_path, c(exe.file.name,
-                                             starter.file.name,
-                                             forecast.file.name,
-                                             weight.at.age.file.name)),
+  files_to_copy <- c(file.path(model_path, c(ss_executable,
+                                             starter_file_name,
+                                             forecast_file_name,
+                                             weight_at_age_file_name)),
                      model$ctl.file,
                      model$dat.file)
                      
   # Create a directory for each retrospective, copy files, and run retro
-  for(retro in 1:length(yrs)){
-    retro_subdir <- file.path(retro_path, paste0("retro-", pad.num(yrs[retro], 2)))
+  for(retro in 1:length(retrospective_yrs)){
+    retro_subdir <- file.path(retro_path, paste0("retro-", pad.num(retrospective_yrs[retro], 2)))
     dir.create(retro_subdir, showWarnings = FALSE)
     file.copy(files_to_copy, retro_subdir)
     
     starter_file <- file.path(retro_subdir, starter_file_name)
     starter <- SS_readstarter(starter_file, verbose = FALSE)
-    starter$retro_yr <- -yrs[retro]
+    starter$retro_yr <- -retrospective_yrs[retro]
     starter$init_values_src <- 0
     SS_writestarter(starter, dir = retro_subdir, verbose = FALSE, overwrite = TRUE)
-    if(remove.blocks){
+    if(remove_blocks){
       ctl_file <- file.path(retro_subdir, model$ctl.file)
       ctl <- readLines(ctl.file)
       ctl[grep("block designs", ctl)] <- "0 # Number of block designs for time varying parameters"
@@ -66,12 +63,12 @@ run.retrospectives <- function(model_path = NULL,
       unlink(ctl_file)
       writeLines(ctl, ctl_file)
     }
-    covar.file <- file.path(retro_subdir, "covar.sso")
+    covar_file <- file.path(retro_subdir, "covar.sso")
     if(file.exists(covar_file)){
       unlink(covar_file)
     }
-    shell.command <- paste0("cd ", retro_subdir, " & ", exe.file.name, " extras")
-    shell(shell.command)
+    shell_command <- paste0("cd ", retro_subdir, " & ", ss_executable, " extras")
+    shell(shell_command)
   }
   invisible()
 }
