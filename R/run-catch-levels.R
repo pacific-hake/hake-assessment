@@ -1,3 +1,66 @@
+#' Fetch catch levels from SS forecast files. This is used to retrieve ending values
+#' after running the [run_catch_levels()] function for default HR, SPR 100, and stable catch
+#' 
+#' @details Assumes [run_catch_levels()] function has been run and the forecast files
+#' are populated with 3 forecast years 
+#'
+#' @param model The SS model output as loaded by [load.ss.files()]
+#' @param catch_levels The catch levels list as defined in forecast-catch-levels.R
+#' @param catch_levels_path The path for the catch-levels output
+#' @param spr_100_path The path for the spr-100 output
+#' @param default_hr_path The path for the default hr output
+#' @param stable_catch_path The path for the stable-catch output
+#'
+#' @return A list of 3-element lists of vectors of 3 catch levels corresponding to:
+#' a) SPR-100%
+#' b) Default harvest policy
+#' c) Stable catch
+#' Return object looks the same as the `catch_levels`` object but with three more elements
+#' @export
+fetch_catch_levels <- function(model,
+                               catch_levels_path,
+                               spr_100_path,
+                               default_hr_path,
+                               stable_catch_path,
+                               catch_levels,
+                               ...){
+  
+  model_path <- model$path
+  default_hr_path <- file.path(catch_levels_path, default_hr_path)
+  spr_100_path <- file.path(catch_levels_path, spr_100_path)
+  stable_catch_path <- file.path(catch_levels_path, stable_catch_path)
+
+  forecast_file <- file.path(spr_100_path, "forecast.ss")
+  fore <- SS_readforecast(forecast_file,
+                          Nfleets = 1,
+                          Nareas = 1,
+                          nseas = 1,
+                          verbose = FALSE)
+  
+  ind <- length(catch_levels) - 2
+  catch_levels[[ind]][[1]] <- fore$ForeCatch$Catch_or_F
+  
+  forecast_file <- file.path(default_hr_path, "forecast.ss")
+  fore <- SS_readforecast(forecast_file,
+                          Nfleets = 1,
+                          Nareas = 1,
+                          nseas = 1,
+                          verbose = FALSE)
+  ind <- ind + 1
+  catch_levels[[ind]][[1]] <- fore$ForeCatch$Catch_or_F
+  
+  forecast_file <- file.path(stable_catch_path, "forecast.ss")
+  fore <- SS_readforecast(forecast_file,
+                          Nfleets = 1,
+                          Nareas = 1,
+                          nseas = 1,
+                          verbose = FALSE)
+  ind <- ind + 1
+  catch_levels[[ind]][[1]] <- fore$ForeCatch$Catch_or_F
+  
+  catch_levels
+}
+
 #' Run the model iteratively reducing the difference between the first and second year projections to
 #' find a stable catch within the the given tolerance
 #'

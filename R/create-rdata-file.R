@@ -193,8 +193,8 @@ create.rdata.file <- function(models.dir = "models",
 #' 
 #' @param model_path The directory the model resides in
 #' @param run_catch_levels Logical. Run the catch levels determination
-#' @param run_fore Logical. Run the forercasting
-#' @param run_retros Logical. Run the retrospectives
+#' @param run_forecasts Logical. Run the forercasts
+#' @param run_retrospectives Logical. Run the retrospectives
 #' @param run_extra_mcmc Logical. Run the extra MCMC routines
 #' @param ... Passed to the subroutines
 #'
@@ -202,8 +202,8 @@ create.rdata.file <- function(models.dir = "models",
 #' @export
 run <- function(model_path = NULL,
                 run_catch_levels = FALSE,
-                run_fore = FALSE,
-                run_retros = FALSE,
+                run_forecasts = FALSE,
+                run_retrospectives = FALSE,
                 run_extra_mcmc = FALSE,
                 ...){
   
@@ -215,7 +215,10 @@ run <- function(model_path = NULL,
 
   if(run_catch_levels){
     run_catch_levels(model, ...)
-    
+  }
+  if(run_forecasts){
+    run_catch_levels(model, ...)
+    run_forecasts(model, ...)
   }
   # 
   # if(run_retros){

@@ -314,72 +314,6 @@ calc.mcmc <- function(mcmc,
          function(x){get(x)})
 }
 
-#' Fetch catch levels from SS forecast files. This is used to retreiev ending values
-#' after running the *calc.catch.levels* functions for default HR, SPR 100, and stable catch
-#' 
-#' @details Assumes *calc.catch.levels* functions have been run and the forecast files
-#' are populated with 3 forecast years 
-#'
-#' @param model The SS model output as loaded by [load.ss.files()]
-#' @param catch.levels The catch levels list as defined in forecast-catch-levels.R
-#' @param catch.levels.path The path for the catch-levels output
-#' @param spr.100.path The path for the spr-100 output
-#' @param default.hr.path The path for the default hr output
-#' @param stable.catch.path The path for the stable-catch output
-#'
-#' @return A list of 3-element lists of vectors of 3 catch levels corresponding to:
-#' a) SPR-100%
-#' b) Default harvest policy
-#' c) Stable catch
-#' Return object looks the same as the `catch.levels`` object but with three more elements
-#' @export
-fetch.catch.levels <- function(model = NA,
-                               catch.levels = NA,
-                               catch.levels.path = "catch-levels",
-                               spr.100.path = "spr-100",
-                               default.hr.path = "default-hr",
-                               stable.catch.path = "stable-catch"){
-
-  stopifnot(!is.na(model),
-            !is.na(catch.levels))
-  
-  mcmc.path <- model$mcmcpath
-  catch.levels.path <- file.path(mcmc.path, catch.levels.path)
-  spr.100.path <- file.path(catch.levels.path, spr.100.path)
-  default.hr.path <- file.path(catch.levels.path, default.hr.path)
-  stable.catch.path <- file.path(catch.levels.path, stable.catch.path)
-
-  forecast.file <- file.path(spr.100.path, "forecast.ss")
-  fore <- SS_readforecast(forecast.file,
-                          Nfleets = 1,
-                          Nareas = 1,
-                          nseas = 1,
-                          verbose = FALSE)
-
-  ind <- length(catch.levels) - 2
-  catch.levels[[ind]][[1]] <- fore$ForeCatch$Catch_or_F
-
-  forecast.file <- file.path(default.hr.path, "forecast.ss")
-  fore <- SS_readforecast(forecast.file,
-                          Nfleets = 1,
-                          Nareas = 1,
-                          nseas = 1,
-                          verbose = FALSE)
-  ind <- ind + 1
-  catch.levels[[ind]][[1]] <- fore$ForeCatch$Catch_or_F
-
-  forecast.file <- file.path(stable.catch.path, "forecast.ss")
-  fore <- SS_readforecast(forecast.file,
-                          Nfleets = 1,
-                          Nareas = 1,
-                          nseas = 1,
-                          verbose = FALSE)
-  ind <- ind + 1
-  catch.levels[[ind]][[1]] <- fore$ForeCatch$Catch_or_F
-
-  catch.levels
-}
-
 create.key.nuisance.posteriors.files <- function(model,
                                                  posterior.regex,
                                                  key.post.file,
@@ -387,7 +321,7 @@ create.key.nuisance.posteriors.files <- function(model,
   ## Creates the two files for key and nuisance posteriors
   key.file <- file.path(model$mcmcpath, key.post.file)
   nuisance.file <- file.path(model$mcmcpath, nuisance.post.file)
-
+  
   mc <- model$mcmc
   mc.names <- names(mc)
   mcmc.grep <- unique(grep(paste(posterior.regex, collapse="|"), mc.names))

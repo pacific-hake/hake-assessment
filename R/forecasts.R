@@ -3,89 +3,76 @@
 #' @details If there is no mcmc component to the model, an error will be given and the program will be stopped
 #' 
 #' @param model The SS model output as loaded by [load.ss.files()]
-#' @param forecast.yrs A vector of years to forecast
-#' @param forecast.probs A vector of quantiles
-#' @param catch.levels The catch levels list as defined in forecast-catch-levels.R
-#' @param exe.file.name SS executable file name
+#' @param forecast_yrs A vector of years to forecast
+#' @param forecast_probs A vector of quantiles
+#' @param catch_levels The catch levels list as defined in forecast-catch-levels.R
+#' @param ss_executable SS executable file name
 #'
 #' @return [base::invisible()]
 #' @export
-run.forecasts <- function(model = NA,
-                          forecast.yrs = NA,
-                          forecast.probs = c(0.05, 0.25, 0.5, 0.75, 0.95),
-                          catch.levels = NA,
-                          exe.file.name = "ss",
+run_forecasts <- function(model,
+                          catch_levels_path,
+                          forecast_yrs,
+                          forecast_probs,
+                          ss_executable,
                           ...){
 
-  stopifnot(!is.na(model),
-            !is.na(forecast.yrs),
-            !is.na(forecast.probs))
-  
-  mcmc.path <- model$mcmcpath
-  
+  model_path <- model$path
+  mcmc_path <- model$mcmcpath
+  catch_levels_path <- file.path(model_path, catch_levels_path)
+
   # Calculate and add on model-custom catch levels
-  catch.levels.path <- file.path(mcmc.path, "catch-levels")
-  if(!dir.exists(catch.levels.path)){
-    # TODO
-    calc.catch.levels(model,
-                      forecast.yrs,
-                      catch.levels,
-                      catch.levels.path = "catch-levels",
-                      default.hr.path = "default-hr",
-                      stable.catch.path = "stable-catch",
-                      spr.100.path = "spr-100")
-  }
-  catch.levels <- fetch.catch.levels(model, catch.levels)
+  catch_levels <- fetch_catch_levels(model, catch_levels_path, ...)
   
   # Extract the catch level names from the list into a vector
-  catch.levels.names <- sapply(catch.levels, "[[", 3)
+  catch_levels_names <- sapply(catch_levels, "[[", 3)
   # Make the catch level values a matrix where the columns represent the cases in catch.names
-  catch.levels <- sapply(catch.levels, "[[", 1)
-  forecasts.path <- file.path(mcmc.path, "forecasts")
+  catch_levels <- sapply(catch_levels, "[[", 1)
+  forecasts_path <- file.path(model_path, "forecasts")
   
-  message("Running forecasts for model located in ", mcmc.path, "...\n")
-  dir.create(forecasts.path, showWarnings = FALSE)
+  message("Running forecasts for model located in ", model_path, "...\n")
+  dir.create(forecasts_path, showWarnings = FALSE)
   
-  for(i in 1:length(forecast.yrs)){
-    fore.path <- file.path(forecasts.path, paste0("forecast-year-", forecast.yrs[i]))
-    dir.create(fore.path, showWarnings = FALSE)
-    for(level.ind in 1:ncol(catch.levels)){
+  for(i in 1:length(forecast_yrs)){
+    fore_path <- file.path(forecasts_path, paste0("forecast-year-", forecast_yrs[i]))
+    dir.create(fore_path, showWarnings = FALSE)
+    for(level_ind in 1:ncol(catch_levels)){
       # Create a new sub-directory for each catch projection
-      name <- catch.levels.names[level.ind]
-      new.forecast.dir <- file.path(fore.path, name)
-      dir.create(new.forecast.dir, showWarnings = FALSE)
+      name <- catch_levels_names[level_ind]
+      new_forecast_dir <- file.path(fore_path, name)
+      dir.create(new_forecast_dir, showWarnings = FALSE)
       
       # Copy all model files into this new forecast directory
-      file.copy(file.path(mcmc.path, list.files(mcmc.path)),
-                file.path(new.forecast.dir, list.files(mcmc.path)), copy.mode = TRUE)
+      file.copy(file.path(mcmc_path, list.files(mcmc_path)),
+                file.path(new_forecast_dir, list.files(mcmc_path)), copy.mode = TRUE)
       
       # Insert fixed catches into forecast file (depending on i)
-      forecast.file <- file.path(new.forecast.dir, "forecast.ss")
-      fore <- SS_readforecast(forecast.file,
+      forecast_file <- file.path(new_forecast_dir, "forecast.ss")
+      fore <- SS_readforecast(forecast_file,
                               Nfleets = 1,
                               Nareas = 1,
                               nseas = 1,
                               verbose = FALSE)
-      fore$Ncatch <- length(forecast.yrs[1:i])
-      fore$ForeCatch <- data.frame(Year = forecast.yrs[1:i],
+      fore$Ncatch <- length(forecast_yrs[1:i])
+      fore$ForeCatch <- data.frame(Year = forecast_yrs[1:i],
                                    Seas = 1,
                                    Fleet = 1,
-                                   Catch_or_F = catch.levels[,level.ind][1:i])
+                                   Catch_or_F = catch_levels[,level_ind][1:i])
       
-      SS_writeforecast(fore, dir = new.forecast.dir, overwrite = TRUE, verbose = FALSE)
+      SS_writeforecast(fore, dir = new_forecast_dir, overwrite = TRUE, verbose = FALSE)
       
       # Evaluate the model using mceval option of ADMB, and retrieve the output
-      unlink(file.path(new.forecast.dir, "derived_posteriors.sso"), force = TRUE)
-      unlink(file.path(new.forecast.dir, "posteriors.sso"), force = TRUE)
-      shell.command <- paste0("cd ", new.forecast.dir, " & ", exe.file.name, " -mceval")
-      shell(shell.command)
+      unlink(file.path(new_forecast_dir, "derived_posteriors.sso"), force = TRUE)
+      unlink(file.path(new_forecast_dir, "posteriors.sso"), force = TRUE)
+      shell_command <- paste0("cd ", new_forecast_dir, " & ", ss_executable, " -mceval")
+      shell(shell_command)
     }
   }
   message("Finished running forecasts for model located in ", model$path, "...\n")
   invisible()
 }
 
-#' Fetch the output from previously-run forecasting using [run.forecasts()]
+#' Fetch the output from previously-run forecasting using [run_forecasts()]
 #'
 #' @details If the forecasts directory does not exist or there is a problem loading the forecasts, return NA
 #' 
