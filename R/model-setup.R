@@ -260,7 +260,7 @@ model_list <- as.list(unique(model_list))
 ## as the other model setup and should be changed if bridge models
 ## and sensitivity models change in the model.dir.names above..
 load.models.into.parent.env <- function(){
-  base.model <<- load.models(model.dir, base.model.dir.name)
+  base.model <<- load.models(rootd.models, base.model.dir.name)
   if(is.null(base.model$mcmccalcs)){
     stop("Error - base.model$mcmccalcs is NULL. Make sure the directory\n",
             file.path(base.model$path, "mcmc"), " exists and contains valid\n",
@@ -274,15 +274,15 @@ load.models.into.parent.env <- function(){
            "   within build() in model-setup.r and try again.\n")
   }
 
-  last.yr.base.model <<- load.models(model.dir, last.yr.base.model.dir.name)
-  bridge.models.1    <<- load.models(model.dir, bridge.model.dir.names.1)
-  bridge.models.2    <<- load.models(model.dir, bridge.model.dir.names.2)
-  sens.models.1      <<- load.models(model.dir, sens.model.dir.names.1)
-  sens.models.2      <<- load.models(model.dir, sens.model.dir.names.2, TRUE)
-  ## sens.models.3      <<- load.models(model.dir, sens.model.dir.names.3)
-  sens.models.4      <<- load.models(model.dir, sens.model.dir.names.4)
-  sens.models.5      <<- load.models(model.dir, sens.model.dir.names.5)
-  sens.models.6      <<- load.models(model.dir, sens.model.dir.names.6)
+  last.yr.base.model <<- load.models(rootd.models, last.yr.base.model.dir.name)
+  bridge.models.1    <<- load.models(rootd.models, bridge.model.dir.names.1)
+  bridge.models.2    <<- load.models(rootd.models, bridge.model.dir.names.2)
+  sens.models.1      <<- load.models(rootd.models, sens.model.dir.names.1)
+  sens.models.2      <<- load.models(rootd.models, sens.model.dir.names.2, TRUE)
+  ## sens.models.3      <<- load.models(rootd.models, sens.model.dir.names.3)
+  sens.models.4      <<- load.models(rootd.models, sens.model.dir.names.4)
+  sens.models.5      <<- load.models(rootd.models, sens.model.dir.names.5)
+  sens.models.6      <<- load.models(rootd.models, sens.model.dir.names.6)
 
   ## Lists of sensitivities for the MLE parameters, derived quantiles,
   ##  and reference points table
@@ -361,7 +361,7 @@ build <- function(.run_forecasts = FALSE,
         starter_file_name = .starter_file_name,
         forecast_file_name = .forecast_file_name,
         weight_at_age_file_name = .weight_at_age_file_name)
-  }  
+  }
   lapply(.model_list, function(.model_name){
     create_rdata_file(models_path = .models_path,
                       model_name = .model_name,
@@ -379,5 +379,4 @@ build <- function(.run_forecasts = FALSE,
   })
   invisible()
   message("\nCompleted build.")
-}  
-
+}
