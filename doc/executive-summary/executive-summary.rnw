@@ -681,7 +681,7 @@ age-1 index is not included in the base model but is included in a sensitivity r
 \subsection*{Forecast decision tables} \label{sec:es-forecast-decision-table}
 \phantomsection \addcontentsline{toc}{subsection}{Forecast decision tables}
 
-The catch limit for \Sexpr{min(forecast.yrs)} based on the default \Ffortyten{}
+The catch limit for \Sexpr{min(forecast_yrs)} based on the default \Ffortyten{}
 harvest policy has a median of \Sexpr{catch.limit.quantiles["median"]}~t with a
 wide range of uncertainty, the 95\% credibility interval being
 \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
@@ -695,10 +695,10 @@ make.decision.table(base.model,
                      catch levels (rows ",
                      catch.constant.str,
                      "), including catch similar to ",
-                     min(forecast.yrs)-1," (row ",
+                     min(forecast_yrs)-1," (row ",
                      letters[catch.actual.ind],
                      ") and the TAC from ",
-                     min(forecast.yrs)-1," (row ",
+                     min(forecast_yrs)-1," (row ",
                      letters[catch.tac.ind],
                      "), the catch values that result
                      in a median relative fishing intensity of 100\\% (row ",
@@ -709,15 +709,15 @@ make.decision.table(base.model,
                      letters[catch.default.policy.ind],
                      "), and the fishing intensity that results in a 50\\% probability that the median
                      projected catch will remain the same in ",
-                     min(forecast.yrs),
+                     min(forecast_yrs),
                      " and ",
-                     min(forecast.yrs)+1,
+                     min(forecast_yrs)+1,
                      " (row ",
                      letters[catch.stable.ind],
                      "). Catch in ",
-                     max(forecast.yrs),
+                     max(forecast_yrs),
                      " does not impact the beginning of the year biomass in ",
-                     max(forecast.yrs),
+                     max(forecast_yrs),
                      "."),
                     xlabel = "tab:es-decisions-biomass",
                     font.size = 12,
@@ -736,7 +736,7 @@ distribution. Table~\ref{tab:es-decisions-biomass} shows projected relative
 spawning biomass outcomes and Table~\ref{tab:es-decisions-spr} shows projected
 fishing intensity outcomes relative to the target fishing intensity (based on
 SPR -- see table legend). Figure~\ref{fig:es-forecast-depletion-comparison} shows
-the projected biomass for several catch alternatives. 
+the projected biomass for several catch alternatives.
 
 A relative fishing intensity above 1 (or 100\% when shown as a percentage) indicates fishing greater than the
 $\Fforty$ default harvest rate catch target. This can happen for the median
@@ -748,7 +748,7 @@ years, whereas the forecasted catches are removed using selectivity
 make.decision.table(base.model,
                     xcaption = paste0("Forecast quantiles of \\fishname\\
                      relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}),
-                     expressed as a percentage, for the ",min(forecast.yrs),"--",max(forecast.yrs)," catch
+                     expressed as a percentage, for the ",min(forecast_yrs),"--",max(forecast_yrs)," catch
                      alternatives presented in
                      Table~\\ref{tab:es-decisions-biomass}. Values greater than
                      100\\% indicate relative fishing intensities greater than
@@ -795,13 +795,13 @@ make.forecast.depletion.comparison.plot(base.model,
                                         models.names,
                                         start.yr = 2009,
                                         model.end.yr = end.yr,
-                                        end.yr =forecast.yrs[length(forecast.yrs)],
+                                        end.yr =forecast_yrs[length(forecast_yrs)],
                                         legend.loc = "topleft")
 @
 \end{center}
 \caption{Time series of estimated relative spawning biomass to \Sexpr{end.yr}
          from the base model, and forecast trajectories to
-         \Sexpr{forecast.yrs[length(forecast.yrs)]} (grey region) for several management actions
+         \Sexpr{forecast_yrs[length(forecast_yrs)]} (grey region) for several management actions
          defined in Table~\ref{tab:es-decisions-biomass}, with 95\%
          posterior credibility intervals.}
 % The \Sexpr{end.yr} catch of \Sexpr{f(base.model$catch.default.policy[1])}~t was calculated
@@ -820,8 +820,8 @@ make.forecast.depletion.comparison.plot(base.model,
 \begin{center}
 <<forecast.risk.comparison.plot.year.1, fig.height=5, fig.width=8>>=
 make.forecast.risk.comparison.plot(base.model,
-                                   forecast.yrs = forecast.yrs,
-                                   fore.yr = forecast.yrs[1],
+                                   forecast_yrs = forecast_yrs,
+                                   fore.yr = forecast_yrs[1],
                                    colors = c("black","blue","green","orange",
                                               "red","tan"),
                                    pch = c(16,17,17,17,15,18),
@@ -844,7 +844,7 @@ make.forecast.risk.comparison.plot(base.model,
 %  so many tables around.
 <<risk.forecast.year.1.table, results='asis', echo=FALSE>>=
 make.risk.table(base.model,
-                forecast.yrs,
+                forecast_yrs,
                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
                            ##  forecast year 2 compared to forecast year 1
                 xcaption = paste0("Probabilities related to spawning biomass,
@@ -860,8 +860,8 @@ make.risk.table(base.model,
 
 Management metrics that were identified as important to the JMC and the Advisory
 Panel (AP) in 2012 are presented for projections to
-\Sexpr{forecast.yrs[2:(length(forecast.yrs)-1)]} and
-\Sexpr{forecast.yrs[length(forecast.yrs)]} (Tables~\ref{tab:es-risk-year-1}
+\Sexpr{forecast_yrs[2:(length(forecast_yrs)-1)]} and
+\Sexpr{forecast_yrs[length(forecast_yrs)]} (Tables~\ref{tab:es-risk-year-1}
 and~\ref{tab:es-risk-year-2} and
 Figures~\ref{fig:es-forecast-risk-comparison-year-1}
 and~\ref{fig:es-forecast-risk-comparison-year-2}).
@@ -872,8 +872,8 @@ and~\ref{fig:es-forecast-risk-comparison-year-2}).
 \begin{center}
 <<forecast.risk.comparison.plot.year.2, fig.height=5, fig.width=8>>=
 make.forecast.risk.comparison.plot(base.model,
-                                   forecast.yrs = forecast.yrs,
-                                   fore.yr = forecast.yrs[2],
+                                   forecast_yrs = forecast_yrs,
+                                   fore.yr = forecast_yrs[2],
                                    colors = c("black","blue","green","orange",
                                               "red","tan"),
                                    pch = c(16,17,17,17,15,18),
@@ -893,7 +893,7 @@ directly from model output and lines interpolate between the points.}
 %%%%%%%%%%%%%%%%%%%%%%%
 <<risk.forecast.year.2.table, results='asis', echo=FALSE>>=
 make.risk.table(base.model,
-                forecast.yrs,
+                forecast_yrs,
                 index = 2, ## Index in models[[]]$risks to use, e.g.
                            ##  1 means forecast year 2 compared to forecast year 1
                 xcaption = paste0("Probabilities related to spawning biomass,
@@ -913,12 +913,12 @@ given each potential management action. Although not linear, probabilities can
 be interpolated from these results for intermediate catch
 values. Figure~\ref{fig:es-forecast-depletion-comparison} shows the predicted
 relative spawning biomass trajectory through
-\Sexpr{forecast.yrs[length(forecast.yrs)]} for several of these management
+\Sexpr{forecast_yrs[length(forecast_yrs)]} for several of these management
 actions. With zero catch for the next two years, the biomass has a
 \Sexpr{zero.catch.prob.bio.down.1}\% probability of decreasing from
-\Sexpr{forecast.yrs[1]} to \Sexpr{forecast.yrs[2]} (Table~\ref{tab:es-risk-year-1}), and a
+\Sexpr{forecast_yrs[1]} to \Sexpr{forecast_yrs[2]} (Table~\ref{tab:es-risk-year-1}), and a
 \Sexpr{zero.catch.prob.bio.down.2}\% probability of decreasing from
-\Sexpr{forecast.yrs[2]} to \Sexpr{forecast.yrs[3]} (Table~\ref{tab:es-risk-year-2}).
+\Sexpr{forecast_yrs[2]} to \Sexpr{forecast_yrs[3]} (Table~\ref{tab:es-risk-year-2}).
 %Manual 2019 done, though all automated.
 
 % The spawning biomass is predicted to decrease from \Sexpr{end.yr} to
