@@ -123,7 +123,7 @@ make.forecast.depletion.comparison.plot <- function(model,        ## model is th
 
 make.forecast.risk.comparison.plot <- function(model,        ## model is the model for which mcmc runs with different forecasts
                                                              ## has been made
-                                               forecast.yrs, ## a vector of the years which were forecast,
+                                               forecast_yrs, ## a vector of the years which were forecast,
                                                              ## used in conjunction with fore.yr to determine which
                                                              ##  forecast list element is used
                                                fore.yr,      ## Forecast year for probabilities
@@ -137,7 +137,7 @@ make.forecast.risk.comparison.plot <- function(model,        ## model is the mod
                                                legend.loc = "topleft"){
   oldpar <- par()
   par(mar=c(4.5,4.5,1,1), xpd=TRUE) # xpd=TRUE allows points to overlap box around plot
-  prob.dat <- model$risks[fore.yr == forecast.yrs][[1]]
+  prob.dat <- model$risks[fore.yr == forecast_yrs][[1]]
   ## Sort the table by catches
   prob.dat <- prob.dat[order(prob.dat[,1]),]
   ## Divide all the percentages by 100 to get probabilities
