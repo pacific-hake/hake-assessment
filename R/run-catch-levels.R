@@ -24,10 +24,10 @@ fetch_catch_levels <- function(catch_levels_path,
                                catch_levels,
                                ...){
   
-  default_hr_path <- file.path(catch_levels_path, default_hr_path)
-  spr_100_path <- file.path(catch_levels_path, spr_100_path)
-  stable_catch_path <- file.path(catch_levels_path, stable_catch_path)
+  message("\nLoading catch level data from ", catch_levels_path)
 
+  spr_100_path <- file.path(catch_levels_path, spr_100_path)
+  message("Loading 'SPR 100' catch level data from ", spr_100_path)
   forecast_file <- file.path(spr_100_path, "forecast.ss")
   fore <- SS_readforecast(forecast_file,
                           Nfleets = 1,
@@ -38,6 +38,8 @@ fetch_catch_levels <- function(catch_levels_path,
   ind <- length(catch_levels) - 2
   catch_levels[[ind]][[1]] <- fore$ForeCatch$Catch_or_F
   
+  default_hr_path <- file.path(catch_levels_path, default_hr_path)
+  message("Loading 'Default HR' catch level data from ", default_hr_path)
   forecast_file <- file.path(default_hr_path, "forecast.ss")
   fore <- SS_readforecast(forecast_file,
                           Nfleets = 1,
@@ -47,6 +49,8 @@ fetch_catch_levels <- function(catch_levels_path,
   ind <- ind + 1
   catch_levels[[ind]][[1]] <- fore$ForeCatch$Catch_or_F
   
+  stable_catch_path <- file.path(catch_levels_path, stable_catch_path)
+  message("Loading 'Stable Catch' catch level data from ", stable_catch_path)
   forecast_file <- file.path(stable_catch_path, "forecast.ss")
   fore <- SS_readforecast(forecast_file,
                           Nfleets = 1,
@@ -55,6 +59,7 @@ fetch_catch_levels <- function(catch_levels_path,
                           verbose = FALSE)
   ind <- ind + 1
   catch_levels[[ind]][[1]] <- fore$ForeCatch$Catch_or_F
+  message("Successfully loaded catch level data.")
   
   catch_levels
 }

@@ -111,7 +111,8 @@ fetch_forecasts <- function(model_path,
   if(!dir.exists(forecasts_path)){
     return(NA)
   }
-
+  message("\nLoading forecast data from ", forecasts_path)
+  
   # Get the directory listing and choose the last one for loading
   dir_listing <- dir(forecasts_path)
   
@@ -128,7 +129,9 @@ fetch_forecasts <- function(model_path,
     }
     for(level_ind in 1:length(catch_levels_names)){
       fore_level_path <- file.path(fore_path, catch_levels_names[level_ind])
-      mcmc_out <- SSgetMCMC(dir = fore_level_path, writecsv = FALSE)
+      message("Loading forecast data from ", fore_level_path)
+      
+      mcmc_out <- SSgetMCMC(dir = fore_level_path, writecsv = FALSE, verbose = FALSE)
       # Get the values of interest, namely Spawning biomass and SPR for the two
       # decision tables in the executive summary
       sb <- mcmc_out[,grep("Bratio_",names(mcmc_out))]
@@ -150,6 +153,7 @@ fetch_forecasts <- function(model_path,
     }
   }
   names(outputs_list) <- forecast_yrs
+  message("Finished loading forecast data")
   outputs_list
 }
 

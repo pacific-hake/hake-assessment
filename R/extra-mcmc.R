@@ -47,7 +47,7 @@ run_extra_mcmc <- function(model,
   write.table(x = newpar,
               file = file.path(extra_mcmc_path, "ss.par"),
               quote = FALSE, row.names = FALSE)
-  
+
   start <- SS_readstarter(file.path(extra_mcmc_path, "starter.ss"), verbose = FALSE)
   ## Change starter file to read from par file
   start$init_values_src <- 1
@@ -73,7 +73,6 @@ run_extra_mcmc <- function(model,
   
   ## loop over rows of posteriors file
   for(irow in 1:num_posts){
-    message("irow:", irow, "natM:", newpar[2], "\n")
     ## replace values in newpar table with posteriors values
     ## (excluding 1 and 2 for "Iter" and "Objective_function")
     newpar[newpar$label %in% names(posts), 1] <- as.numeric(posts[irow, -(1:2)])
@@ -137,7 +136,7 @@ fetch_extra_mcmc <- function(model){
                       header = TRUE,
                       fill = TRUE,
                       stringsAsFactors = FALSE)
-  message("Reading extra MCMC output from", extra_mcmc_path)
+  message("\nLoading Extra MCMC data from ", extra_mcmc_path)
   
   ## Data frame to store likelihood components
   like_info <- data.frame(Iter = posts$Iter, stringsAsFactors = FALSE)
@@ -250,8 +249,6 @@ fetch_extra_mcmc <- function(model){
     natselwt_prop[irow,] <- natselwt[irow,]/sum(natselwt[irow,])
   }
   
-  message("Reading comp table...")
-  
   ## read expected proportions and Pearson values for each age comp observations
   tmp <- readLines(file.path(reports_dir, paste0("CompReport_", irow,".sso")))
   skip_row <- grep("Composition_Database", tmp)
@@ -292,7 +289,6 @@ fetch_extra_mcmc <- function(model){
   Pearson_high <- apply(Pearson_table, MARGIN = 1, FUN = quantile, probs = 0.975)
   
   # get index fits from CPUE table
-  message("Reading cpue table...")
   cpue_table <- NULL
   Q_vector <- NULL
   for(irow in 1:num_reports){
@@ -352,7 +348,7 @@ fetch_extra_mcmc <- function(model){
   extra_mcmc$timeseries$Bio_smry.0.975 <- apply(Bio_smry, MARGIN = 1,
                                                 FUN = quantile, probs = 0.975)
   
-  message("Completed read of extra MCMC output.")
+  message("Finished loading Extra MCMC data\n")
   
   extra_mcmc
 }

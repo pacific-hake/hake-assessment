@@ -99,7 +99,8 @@ load_ss_files <- function(model_path = NA,
   if(dir.exists(mcmc.dir)){
     fix.posteriors(mcmc.dir)
     model$mcmc <- SSgetMCMC(dir = mcmc.dir,
-                            writecsv = FALSE)
+                            writecsv = FALSE,
+                            verbose = FALSE)
     # replace any SPB with SSB
     names(model$mcmc) <- gsub(pattern="SPB", replacement="SSB", names(model$mcmc))
     create.key.nuisance.posteriors.files(model,

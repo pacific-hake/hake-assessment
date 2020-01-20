@@ -41,6 +41,7 @@ run_retrospectives <- function(model,
   
   # Copy all required model files into the retrospective directory
   model <- load_ss_files(model_path, ...)
+
   files_to_copy <- c(file.path(model_path, c(ss_executable,
                                              starter_file_name,
                                              forecast_file_name,
@@ -97,25 +98,27 @@ fetch_retrospectives <- function(retro_path,
                                  retrospective_yrs,
                                  ...){
 
-  retros_paths <- file.path(retro_path, paste0("retro-", pad.num(retrospective_yrs, 2)))
-  
   if(is.na(retro_path)){
     return(NA)
   }
+  
+  retros_paths <- file.path(retro_path, paste0("retro-", pad.num(retrospective_yrs, 2)))
+
   if(all(dir.exists(retros_paths))){
-    message("Loading retrospectives...\n")
+    message("\nLoading retrospectives from ", retro_path)
     retros_list <- list()
     for(retro in 1:length(retrospective_yrs)){
       retro_dir <- file.path(retro_path, paste0("retro-", pad.num(retrospective_yrs[retro], 2)))
+      message("Loading retrospectives from ", retro_dir)
       retros_list[[retro]] <- SS_output(dir = retro_dir,
                                         verbose = FALSE,
                                         printstats = FALSE,
                                         covar = FALSE)
     }
-    message("Retrospectives loaded for ", retro_path, ".")
   }else{
     message("Not all retrospective directories exist in ", retro_path , "Look at retrospective-setup.r and your directories ",
             "to make sure they are both the same or set run.retros = TRUE.")
   }
+  message("Finished loading retrospectives")
   retros_list
 }
