@@ -5,4 +5,4 @@
 ##  squid plots which will use retro.yrs to plot.
 ## -----------------------------------------------------------------------------
 retrospective_yrs <- 1:2
-plot.retro.yrs <- 1:5
+plot.retro.yrs <- 1:2
