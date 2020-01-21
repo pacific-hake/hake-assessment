@@ -79,6 +79,7 @@ tlmgr install lxfonts
     source(file.path(here::here(), "R/all.r"))
     build(.run_forecasts = TRUE,
           .run_retrospectives = TRUE,
+          .run_extra_mcmc = TRUE,
           .run_catch_levels_default_hr = TRUE,
           .run_catch_levels_spr_100 = TRUE,
           .run_catch_levels_stable_catch = TRUE,
