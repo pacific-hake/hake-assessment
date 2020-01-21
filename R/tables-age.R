@@ -333,9 +333,9 @@ browser()
   caa <- model$catage
   waa <- model$wtatage
 
-  n.age.b <- naa[naa$"Beg/Mid" == "B", -c(1:7, 9:12)]
+  n.age.b <- naa[naa$"Beg/Mid" == "B", names(naa) %in% c("Yr", as.character(0:20))]
   n.age.b <- n.age.b[n.age.b$Yr %in% yrs,]
-  n.age.m <- naa[naa$"Beg/Mid" == "M", -c(1:7, 9:12)]
+  n.age.m <- naa[naa$"Beg/Mid" == "M", names(naa) %in% c("Yr", as.character(0:20))]
   n.age.m <- n.age.m[n.age.m$Yr %in% yrs,]
 
   ## caa <- caa[caa$Era != "INIT",]
