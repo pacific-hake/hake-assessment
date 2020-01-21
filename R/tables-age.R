@@ -326,7 +326,7 @@ make.est.numbers.at.age.table <- function(model,
   if(!dir.exists(csv.dir)){
     dir.create(csv.dir)
   }
-
+browser()
   yrs <- start.yr:end.yr
 
   naa <- model$natage
@@ -546,7 +546,7 @@ make.cohort.table <- function(model,
   naa <- naa[naa$Yr %in% yrs,]
   naa.next <- naa.next[naa.next$Yr %in% yrs,]
 
-  ## Cohort numbers at age 
+  ## Cohort numbers at age
   coh.naa <- get.cohorts(naa, cohorts)
   coh.naa.next <- get.cohorts(naa.next, cohorts - 1)
   ## Throw away the first one so that this represents shifted by 1 year values
