@@ -286,14 +286,14 @@ m.prior <- split.prior.info(param.details[rownames(param.details) == "m.vals",][
 ## Now, in document, use m.prior[1] for name of prior, m.prior[1] for mean, and m.prior[3] for SD.
 
 ################################################################################
-cohort.catch.1999 <- sum(cohort.catch(1999, base.model$catage), trim.end.year = end.yr)
-cohort.catch.2010 <- sum(cohort.catch(2010, base.model$catage), trim.end.year = end.yr)
-cohort.catch.2014 <- sum(cohort.catch(2014, base.model$catage), trim.end.year = end.yr)
+cohort.catch.1999 <- sum(cohort.catch(1999, base.model$catage, trim.end.year = end.yr))
+cohort.catch.2010 <- sum(cohort.catch(2010, base.model$catage, trim.end.year = end.yr))
+cohort.catch.2014 <- sum(cohort.catch(2014, base.model$catage, trim.end.year = end.yr))
 
 ## cumulative sums for use in JMC presentation
-cohortCumSum1999 <- cumsum(cohort.catch(1999,base.model$catage), trim.end.year = end.yr)
-cohortCumSum2010 <- cumsum(cohort.catch(2010,base.model$catage), trim.end.year = end.yr)
-cohortCumSum2014 <- cumsum(cohort.catch(2014,base.model$catage), trim.end.year = end.yr)
+cohortCumSum1999 <- cumsum(cohort.catch(1999,base.model$catage, trim.end.year = end.yr))
+cohortCumSum2010 <- cumsum(cohort.catch(2010,base.model$catage, trim.end.year = end.yr))
+cohortCumSum2014 <- cumsum(cohort.catch(2014,base.model$catage, trim.end.year = end.yr))
 ages1999 <- as.numeric(names(cohortCumSum1999)) - 1999
 ages2010 <- as.numeric(names(cohortCumSum2010)) - 2010
 ages2014 <- as.numeric(names(cohortCumSum2014)) - 2014
@@ -327,10 +327,10 @@ main.recdevbias.end <- max(base.model$recruit$Yr[base.model$recruit$biasadjuster
 
 ################################################################################
 ## weight-at-age for the base model
-wt.at.age <- base.model$wtatage %>% 
+wt.at.age <- base.model$wtatage %>%
   filter(Yr %in% start.yr.age.comps:(end.yr - 1),
-         Fleet == 2) %>% 
-  select(-c(Seas, Sex, Bio_Pattern, BirthSeas, Fleet, comment)) %>% 
+         Fleet == 2) %>%
+  select(-c(Seas, Sex, Bio_Pattern, BirthSeas, Fleet, comment)) %>%
   rename(year = Yr)
 
 ################################################################################

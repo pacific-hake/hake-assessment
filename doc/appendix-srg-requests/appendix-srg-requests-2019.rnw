@@ -31,7 +31,7 @@ decision tables, and other relevant MCMC outputs.
 \begin{figure}[H]
 \begin{center}
 <<srg.requests.baby.squid.base, fig.height=6, fig.width=8>>=
-plot.retro.yrs <- retro.yrs
+plot.retro.yrs <- retrospective_yrs
 retro.cohorts <- c(2014, 2010, 2007, 2009)     # Selecting three years as examples
 retro.list <- list(base.model)
 for(i in plot.retro.yrs){
@@ -58,7 +58,7 @@ make.squid.plot(retro.list,
 \begin{figure}[H]
 \begin{center}
 <<srg.requests.squid.age1, fig.height=6, fig.width=8>>=
-plot.retro.yrs <- retro.yrs
+plot.retro.yrs <- retrospective_yrs
 retro.cohorts <- 1999:(end.yr-2)
 retro.list <- list(base.model)
 for(i in plot.retro.yrs){

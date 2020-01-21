@@ -3,9 +3,9 @@
 #' @details Make sure you have created the .RData files by sourcing *all.r* with the [create.rdata.file()] variables set to TRUE.
 #' Once you have done that and run this function once within an R session, you can go into the first knitr code chunk in
 #' hake-assessment.rnw and set the call to [load.models.into.parent.env()] to FALSE, which will save time for doing the build.
-#' 
+#'
 #' @param knit.only Only knit the code, do not run latex
-#' @param make.pdf Logical. TRUE to make the pdf, if FALSE it will only go as far as postscript 
+#' @param make.pdf Logical. TRUE to make the pdf, if FALSE it will only go as far as postscript
 #' @param make.bib Logical. Run bibtex
 #' @param doc.name What to name the dcument (no extension needed)
 #'
@@ -48,7 +48,7 @@ build.doc <- function(knit.only = FALSE,
 #' Format x to have supplied number of decimal points
 #'
 #' @details Make thousands seperated by commas and the number of decimal points given by `dec.points``
-#' 
+#'
 #' @param x The number
 #' @param dec.points The number of decimal points to use
 #'
@@ -62,9 +62,9 @@ f <- function(x, dec.points = 0){
 #' calculate boxplot stats on each year write a csv file to current directory
 #'
 #' @details Uuse spatial data frame (Canada) output to this function
-#' 
+#'
 #' @param x The data frame
-#' @param fleet 
+#' @param fleet
 #'
 #' @return [base::invis]
 #' @export
@@ -103,8 +103,8 @@ latex.hline <- " \\hline "
 #' Create a string with `n` ampersands seperated by spaces
 #'
 #' @details The string will have one leading and one trailing space
-#' 
-#' @param n 
+#'
+#' @param n
 #'
 #' @return A string with `n` ampersands seperated by spaces
 #' @export
@@ -115,7 +115,7 @@ latex.amp <- function(n = 1){
 #' Create a string comprised of each element in the vector `vec` with an ampersand in between
 #'
 #' @details The string will have one leading and one trailing space
-#' 
+#'
 #' @param vec A vector of characters
 #'
 #' @return A string comprised of each element in the vector `vec` with an ampersand in between
@@ -220,7 +220,7 @@ latex.cline <- function(cols){
 #'
 #' @param cols A string in this format: "1-3" which means the line should go across columns 1 to 3
 #' @param trim Can be l, r, or lr and tells it to trim the line a bit so that if there are two lines they don't
-#' touch in the middle. See [booktabs] 
+#' touch in the middle. See [booktabs]
 #'
 #' @return As string of latex code to draw a horizontal line across the columns specified
 #' @export
@@ -310,32 +310,32 @@ cohort.catch <- function(cohort, catage, ages = 0:20, trim.end.year = NA) {
 
 #' Create text describing the top `num.cohorts` cohorts by year and percentage as a sentence
 #'
-#' @details top.coh(2018, 2) produces:
+#' @details top.coh(base.model, 2018, 2) produces:
 ##  "The 2018 cohort was the largest (29\\%), followed by the 2010 cohort (27\\%)"
-#' 
+#'
 #' @param model The model as returned from [load_ss_files()]
 #' @param yr The year the cohort was born
 #' @param num.cohorts The number of cohorts to include in the sentence
 #' @param decimals The number of decimal points to use
 #' @param cap Logical. Capitalize the first word in the sentence?
-#' @param spec.yr If supplied, the percentage of catch that this cohort made to the 
+#' @param spec.yr If supplied, the percentage of catch that this cohort made to the
 #' `yr` catch will be returned
 #' @param use.catage If TRUE, use the *model$catage* object which are the estimates \. If FALSE,
 #' use the *model$dat$agecomp* object which are the input data
 #'
 #' @return Text describing the top `num.cohorts` cohorts by year and percentage as a sentence
 #' @export
-top.coh <- function(model = NA,
+top.coh <- function(model = NULL,
                     yr = NA,
                     num.cohorts = 3,
                     decimals = 0,
                     cap = TRUE,
                     spec.yr = NA,
                     use.catage = FALSE){
-  
-  stopifnot(!is.na(model),
+
+  stopifnot(!is.null(model),
             !is.na(yr))
-  
+
   if(num.cohorts < 1){
     num.cohorts = 1
   }
@@ -385,7 +385,7 @@ top.coh <- function(model = NA,
 #'
 #' @details Think of the question "Which is the second-highest number in this vector and what is
 #' its index in the vector?" This function returns a vector of those two numbers.
-#' 
+#'
 #' @param vec A vector of age proportions
 #' @param ranking 1 = max, 2 = second highest, etc.
 #'
@@ -405,7 +405,7 @@ get.age.prop <- function(vec, ranking = 1){
 #' GG = green, a 2-hexadecimal-digit string
 #' BB = blue, a 2-hexadecimal-digit string
 #' AA = opacity, 2-digit string
-#' 
+#'
 #' @param color A vector of R color strings or numbers
 #' @param opacity A number between 0 and 99
 #'
@@ -414,7 +414,7 @@ get.age.prop <- function(vec, ranking = 1){
 get.shade <- function(color, opacity){
 
   stopifnot(opacity > 0 & opacity < 100)
-  
+
   colorDEC <- col2rgb(color)
   if(is.matrix(colorDEC)){
     colorHEX <- matrix(nrow = 3, ncol = ncol(colorDEC))
@@ -477,7 +477,7 @@ t.pn <- function(){
 number.to.word <- function(x = NA, th = FALSE, cap.first = FALSE){
 
     stopifnot(!is.na(x))
-  
+
     helper <- function(x){
     digits <- rev(strsplit(as.character(x), "")[[1]])
     nDigits <- length(digits)
@@ -584,7 +584,7 @@ strip.columns <- function(vec, names){
 #' Create a character vector used in the align argument of the [xtable::xtable()] command
 #'
 #' @details e.g. posterior output tables, reference point tables. Most tables really
-#' 
+#'
 #' @param num The number of columns in the table
 #' @param first.left Logical. Keep the first column left-justified. If FALSE, it will be justified
 #' according to the `just` argument
@@ -633,13 +633,13 @@ rich.colors.short <- function(n, alpha = 1){
 #' @param y A data frame with columns:
 #' value: estimate (point) to plot
 #' lo: lower CI
-#' hi: higher CI 
-#' @param gap 
-#' @param add 
-#' @param ciCol 
-#' @param ciLty 
-#' @param ciLwd 
-#' @param ... 
+#' hi: higher CI
+#' @param gap
+#' @param add
+#' @param ciCol
+#' @param ciLty
+#' @param ciLwd
+#' @param ...
 #'
 #' @return [base::invisible()]
 #' @export
@@ -670,7 +670,7 @@ panel.letter <- function(letter){
   usr <- par("usr")
   inset.x <- 0.05 * (usr[2] - usr[1])
   inset.y <- 0.05 * (usr[4] - usr[3])
-  text(usr[1] + inset.x, 
+  text(usr[1] + inset.x,
        usr[4] - inset.y,
        paste0("(", letter, ")"), cex = 1.0, font = 1)
 }
@@ -708,12 +708,12 @@ addpoly <- function(yrvec,
 #' Calculates the selectivity from the random walk parameters in SS (option 17)
 #'
 #' @details -1000 means to set equal to 0. Assumes that this is all pars from age 0 to max age
-#' 
-#' @param pars 
-#' @param devs 
-#' @param Phi 
-#' @param transform 
-#' @param bounds 
+#'
+#' @param pars
+#' @param devs
+#' @param Phi
+#' @param transform
+#' @param bounds
 #'
 #' @return The selectivity
 #' @export
@@ -753,9 +753,9 @@ randWalkSelex.fn <- function(pars,
 
 #' Get selectivity for a given year from all MCMC samples
 #'
-#' @param x 
-#' @param yr 
-#' @param bnds 
+#' @param x
+#' @param yr
+#' @param bnds
 #'
 #' @return The selectivity
 #' @export
@@ -897,27 +897,27 @@ biomass_fraction_plots <- function(replist, selected=FALSE){
 
 #' Plot MCMC diagnostics TODO: Complete documentation
 #'
-#' @param directory The directory in which the MCMC model output resides 
+#' @param directory The directory in which the MCMC model output resides
 #' @param run The run to plot. If "", use `directory`
 #' @param file The key posteriors file name
-#' @param namefile 
-#' @param names 
-#' @param headernames 
-#' @param numparams 
-#' @param closeall 
-#' @param burn 
-#' @param thin 
-#' @param scatter 
-#' @param surface 
-#' @param surf1 
-#' @param surf2 
-#' @param stats 
-#' @param plots 
-#' @param header 
-#' @param sep 
-#' @param print 
-#' @param new 
-#' @param colNames 
+#' @param namefile
+#' @param names
+#' @param headernames
+#' @param numparams
+#' @param closeall
+#' @param burn
+#' @param thin
+#' @param scatter
+#' @param surface
+#' @param surf1
+#' @param surf2
+#' @param stats
+#' @param plots
+#' @param header
+#' @param sep
+#' @param print
+#' @param new
+#' @param colNames
 #'
 #' @return
 #' @export
