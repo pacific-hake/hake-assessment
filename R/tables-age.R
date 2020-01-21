@@ -339,8 +339,12 @@ browser()
   n.age.m <- n.age.m[n.age.m$Yr %in% yrs,]
 
   ## caa <- caa[caa$Era != "INIT",]
-  c.age <- caa[caa$Yr %in% yrs,]
+  c.age.new <- caa[, -(1:10)]
+  c.age.new <- c.age.new[c.age.new$Era %in% yrs, ]
+# instead of:
+  c.age <- caa[caa$Era %in% yrs,]
   c.age <- c.age[, -(1:10)]
+  # expect_equal(c.age, c.age.new)   gives TRUE
 
   ## Get weight-at-age matrix (currently the same matrix for fleet = -1,
   ##  0, 1, and 2)
