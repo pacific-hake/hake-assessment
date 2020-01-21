@@ -74,7 +74,7 @@ tlmgr install lxfonts
     ```
 
   * To re-run items for a given model (deleting previous ones), do the following. Note that
-    .mode_name can be a list of model directory names.
+    .model_name can be a list of model directory names.
   ```R
     source(file.path(here::here(), "R/all.r"))
     build(.run_forecasts = TRUE,
