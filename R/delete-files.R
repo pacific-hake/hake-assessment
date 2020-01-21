@@ -5,14 +5,14 @@
 #'
 #' @return [base::invisible()]
 #' @export
-delete.rdata.files <- function(models.dir = model.dir,
+delete.rdata.files <- function(models.dir = rootd.models,
                                dont.del = last.yr.base.model.dir.name){
   
   dirs <- dir(models.dir)
   dirs <- dirs[! dirs %in% dont.del]
   rdata.files <- file.path(models.dir, dirs, paste0(dirs, ".rdata"))
   unlink(rdata.files, force = TRUE)
-  message("Deleted ", rdata.files, "\n",
+  message("Deleted ", paste0(rdata.files, collapse = "\n"),,
           "All rdata files deleted except for ", dont.del, "\n")
   invisible()
 }

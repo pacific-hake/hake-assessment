@@ -330,38 +330,40 @@ build <- function(.run_forecasts = FALSE,
                   .weight_at_age_file_name = weight_at_age_file_name,
                   .ovwrt_rdata = TRUE){
 
-  if(.run_forecasts |
-     .run_retrospectives |
-     .run_extra_mcmc |
-     .run_catch_levels_default_hr |
-     .run_catch_levels_spr_100 |
-     .run_catch_levels_stable_catch){
-    run(models_path = .models_path,
-        model_name = base.model.dir.name,
-        run_catch_levels_default_hr = .run_catch_levels_default_hr,
-        run_catch_levels_spr_100 = .run_catch_levels_spr_100,
-        run_catch_levels_stable_catch = .run_catch_levels_stable_catch,
-        run_forecasts = .run_forecasts,
-        run_retrospectives = .run_retrospectives,
-        retrospective_yrs = .retrospective_yrs,
-        run_extra_mcmc = .run_extra_mcmc,
-        forecast_yrs = .forecast_yrs,
-        catch_levels = .catch_levels,
-        catch_levels_spr_tol = 0.0001,
-        catch_levels_catch_tol = 10,
-        catch_levels_max_iter = 20,
-        catch_levels_path = .catch_levels_path,
-        default_hr_path = .default_hr_path,
-        stable_catch_path = .stable_catch_path,
-        spr_100_path = .spr_100_path,
-        forecasts_path = .forecasts_path,
-        retrospectives_path = .retrospectives_path,
-        extra_mcmc_path = .extra_mcmc_path,
-        ss_executable = .ss_executable,
-        starter_file_name = .starter_file_name,
-        forecast_file_name = .forecast_file_name,
-        weight_at_age_file_name = .weight_at_age_file_name)
-  }  
+  lapply(.model_list, function(.model_name){
+    if(.run_forecasts |
+       .run_retrospectives |
+       .run_extra_mcmc |
+       .run_catch_levels_default_hr |
+       .run_catch_levels_spr_100 |
+       .run_catch_levels_stable_catch){
+      run(models_path = .models_path,
+          model_name = .model_name,
+          run_catch_levels_default_hr = .run_catch_levels_default_hr,
+          run_catch_levels_spr_100 = .run_catch_levels_spr_100,
+          run_catch_levels_stable_catch = .run_catch_levels_stable_catch,
+          run_forecasts = .run_forecasts,
+          run_retrospectives = .run_retrospectives,
+          retrospective_yrs = .retrospective_yrs,
+          run_extra_mcmc = .run_extra_mcmc,
+          forecast_yrs = .forecast_yrs,
+          catch_levels = .catch_levels,
+          catch_levels_spr_tol = .catch_levels_spr_tol,
+          catch_levels_catch_tol = .catch_levels_catch_tol,
+          catch_levels_max_iter = .catch_levels_max_iter,
+          catch_levels_path = .catch_levels_path,
+          default_hr_path = .default_hr_path,
+          stable_catch_path = .stable_catch_path,
+          spr_100_path = .spr_100_path,
+          forecasts_path = .forecasts_path,
+          retrospectives_path = .retrospectives_path,
+          extra_mcmc_path = .extra_mcmc_path,
+          ss_executable = .ss_executable,
+          starter_file_name = .starter_file_name,
+          forecast_file_name = .forecast_file_name,
+          weight_at_age_file_name = .weight_at_age_file_name)
+    }
+  })
   lapply(.model_list, function(.model_name){
     create_rdata_file(models_path = .models_path,
                       model_name = .model_name,
@@ -377,7 +379,7 @@ build <- function(.run_forecasts = FALSE,
                       retrospectives_path = .retrospectives_path,
                       extra_mcmc_path = .extra_mcmc_path)
   })
-  invisible()
   message("\nCompleted build.")
+  invisible()
 }  
 

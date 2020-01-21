@@ -104,6 +104,9 @@ run <- function(models_path = NULL,
     stop("Error - the directory ", model_path, " does not exist.\n",
          "Fix the problem and try again.", call. = FALSE)
   }
+  if(!dir.exists(file.path(model_path, "mcmc"))){
+    return(NULL)
+  }
   model <- load_ss_files(model_path, ...)
   run_catch_levels(model, ...)
   run_forecasts(model, ...)

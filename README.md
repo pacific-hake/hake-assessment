@@ -47,16 +47,16 @@ tlmgr install lxfonts
 * Navigate to the doc/r directory and setup the model by editing the three files **model-setup.r**,
   **forecast-catch-levels.r**, and **retrospective-setup.r**:
 
-* ***To build the RData files for the the base model and all other models with mcmc folders,
-  run the batch file `build-rdata-files.bat`. This will take a long time as it is running forecasting,
-  retrospectives, and extra-mcmc routines. Note that this file needs to be custom-made each year as it
-  calls the build() function for individual models.*** If the script does not work then make sure the directory that Rscript resides in is in your PATH.
-
-* Once the batch file above has been run and finished, you need to build the RData files for the the
-  models with only MLE runs (they don't have an mcmc folder in them). Run the following:
+* To run all forecasts, retrospectives, and extra-mcmc calculations (required to get posterior survey index
+  trajectories) for the base model, and then build the RData files for the base model, bridge models, and
+  sensitivitiy models included in the assessment, do the following:
   ```R
     source(file.path(here::here(), "R/all.r"))
-    build()
+    build(.run_forecasts = TRUE,
+          .run_retrospectives = TRUE,
+          .run_catch_levels_default_hr = TRUE,
+          .run_catch_levels_spr_100 = TRUE,
+          .run_catch_levels_stable_catch = TRUE)
   ```
 
   * Once finished, you can see that each model defined in **model-setup.r**
@@ -74,9 +74,16 @@ tlmgr install lxfonts
       build()
     ```
 
-  * To re-run items for a given model (deleting previous ones), do the following:
+  * To re-run items for a given model (deleting previous ones), do the following. Note that
+    .mode_name can be a list of model directory names.
   ```R
-    build(run.fore = TRUE, run.retro = TRUE, run.extra.mcmc = TRUE, model.name = "model-directory-name")
+    source(file.path(here::here(), "R/all.r"))
+    build(.run_forecasts = TRUE,
+          .run_retrospectives = TRUE,
+          .run_catch_levels_default_hr = TRUE,
+          .run_catch_levels_spr_100 = TRUE,
+          .run_catch_levels_stable_catch = TRUE,
+          .model_name = "model-directory-name")
   ```
 
 ## How to create hake-assessment.pdf
