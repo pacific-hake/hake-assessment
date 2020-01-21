@@ -285,6 +285,28 @@ pdf2ps <filename>.pdf <filename>.eps
 
 which is a ghostscript command. Seems to be fine in document (may not be a properly encapsulated .eps, but we resize it anyway and it looks good and is zoomable).
 
+## GitHub workflow
+
+In 2020 we moved this repo to be under the *pacific-hake* GitHub organization. And we changed the workflow to now all push to a single master branch (to avoid merging each other's branches). We now 
+```
+git fetch
+git rebase
+```
+If we get a conflict when rebasing we think it's now best to (**maybe update this after doing it once**) 
+```
+git rebase --abort
+git merge origin/master
+```
+and then fix the conflict manually (as usual). Remember to then
+```
+git add <filename>
+git commit ... [as usual]
+git merge origin/master
+git push
+```
+We think that should avoid confusion since rebasing is not intuitive when you get conflicts, so we'll try merging again. Think it keeps the history more clear.
+
+
 ## **Everything from here on is from the 2016 assessment period (Nov 2015 - Mar 2016)**
 
 ## How Andy is running it (and see Chris's notes above)
