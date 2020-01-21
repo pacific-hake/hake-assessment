@@ -38,7 +38,7 @@
 
 \begin{codefont}
 
-\lstinputlisting{\Sexpr{gsub("^.*?hake-assessment/","../",file.path(base.model$path, starter.file.name))}}
+\lstinputlisting{\Sexpr{gsub("^.*?hake-assessment/","../",file.path(base.model$path, starter_file_name))}}
                 % $ [so emacs renders properly]
 
 \end{codefont}
@@ -53,7 +53,7 @@
 \begin{codefont}
 
 % \lstinputlisting{\Sexpr{gsub("^.*?hake-assessment/","hake-assessment/",file.path(base.model$path, forecast.file.name))}}
-\lstinputlisting{\Sexpr{gsub("^.*?hake-assessment/","../",file.path(base.model$path, forecast.file.name))}}
+\lstinputlisting{\Sexpr{gsub("^.*?hake-assessment/","../",file.path(base.model$path, forecast_file_name))}}
 
 \end{codefont}
 
@@ -66,6 +66,6 @@
 
 \begin{codefont}
 
-\lstinputlisting{\Sexpr{gsub("^.*?hake-assessment/","../",file.path(base.model$path, weight.at.age.file.name))}}
+\lstinputlisting{\Sexpr{gsub("^.*?hake-assessment/","../",file.path(base.model$path, weight_at_age_file_name))}}
 
 \end{codefont}
