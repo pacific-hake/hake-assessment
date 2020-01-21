@@ -132,6 +132,18 @@ tinytex::latexmk("hake-assessment.tex")
 * **Method 4 for building the document** (With RStudio):
   Press the *Compile PDF* button when the hake-assessment.rnw file is showing.
 
+* **Method 5 for building the document** (old school, how Andy does it):
+   - **library(knitr)**
+  - **knit("hake-assessment.rnw")** [I tried just **knitr::knit("hake-assessment.rnw")** but didn't work as expected)
+  - In a shell:
+  - **latex hake-assessment**
+  - **bibtex hake-assessment** if necessary (and **latex** again).
+  - **dvips hake-assessment**
+  - **ps2pdf hake-assessment.ps**
+  - **ispell hake-assessment.tex** periodically
+  - I tried **pdflatex hake-assessment.tex** but it takes a long time as it makes pdf's of all the .eps files, so stick with the usual way. 
+
+
 * To clean up the build, including removal of the cached figures and tables, run the **freshtex.bat** batch file,
   or manually delete the **knitr-cache** directory. If you don't do this, figures and tables built previously
   will be used. To keep the cached figures and tables, but remove all other traces of the build including the PDF,
