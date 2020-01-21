@@ -354,7 +354,8 @@ make.est.numbers.at.age.table <- function(model,
 
   ## Get weight-at-age matrix (currently the same matrix for fleet = -1,
   ##  0, 1, and 2)
-  wt.at.age <- waa[waa$Fleet == 1,]
+  wt.at.age <- waa[waa$Fleet == 1,]    # adjustments are done below (think
+                                       # because can choose years)
 
   if(table.type == 1){
     ## Numbers-at-age
@@ -402,7 +403,7 @@ make.est.numbers.at.age.table <- function(model,
   }else if(table.type == 4){
     ## Catch-at-age in biomass
     wt.at.age <- wt.at.age[wt.at.age$Yr %in% yrs,]
-    wt.at.age <- wt.at.age[,-c(1:6, 28)]
+    wt.at.age <- wt.at.age[, names(wt.at.age) %in% as.character(0:max.age)]
     dat <- c.age * wt.at.age
     csv.dat <- cbind(yrs, dat)
     colnames(csv.dat)[1] <- "Year"
@@ -431,7 +432,7 @@ make.est.numbers.at.age.table <- function(model,
       wt.at.age <- wt.at.age[order(abs(wt.at.age$Yr)),]
     }
     wt.at.age <- wt.at.age[wt.at.age$Yr %in% yrs,]
-    wt.at.age <- wt.at.age[,-c(1:6, 28)]
+    wt.at.age <- wt.at.age[, names(wt.at.age) %in% as.character(0:max.age)]
     dat <- dat * wt.at.age
     dat <- cbind(yrs, dat)
     names(dat)[1] <- "Year"
