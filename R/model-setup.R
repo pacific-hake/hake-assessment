@@ -101,7 +101,7 @@ message("Key posteriors file: ", nuisance.posteriors.file)
 ## -----------------------------------------------------------------------------
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
-base.model.dir.name <- "2020.00.08_tune_base_v1"
+base.model.dir.name <- "2020.01.09_DMprior_base"
 base.model.name <- paste0(assess.yr, " Base model")
 
 message("Base model directory name: ", base.model.dir.name)
@@ -158,12 +158,12 @@ bridge.model.end.yr.2 <- end.yr - c(1, 0, 0, 0) # subtract 1 year from first 1 m
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 1
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.1 <- c("2020.00.15_h_prior_mean_low",
-                            "2020.00.16_h_fix_high",
-                            "2020.00.17_sigmaR_fix_low",
-                            "2020.00.18_sigmaR_fix_high",
-                            "2020.00.20_M_0.2SD",
-                            "2020.00.21_M_0.3SD")
+sens.model.dir.names.1 <- c("2020.01.15_h_prior_mean_low",
+                            "2020.01.16_h_fix_high",
+                            "2020.01.17_sigmaR_fix_low",
+                            "2020.01.18_sigmaR_fix_high",
+                            "2020.01.20_M_0.2SD",
+                            "2020.01.21_M_0.3SD")
 sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
                         "Steepness Fix 1.0",
                         "Sigma R 1.0",
@@ -174,9 +174,9 @@ sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 2
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.2 <- c("2020.00.23_age1Survey",
-                            "2020.00.24_compWeight_HarmonicMean",
-                            "2020.00.25_compWeight_Francis")
+sens.model.dir.names.2 <- c("2020.01.23_age1Survey",
+                            "2020.01.24_compWeight_HarmonicMean",
+                            "2020.01.25_compWeight_Francis")
 sens.model.names.2 <- c("Add Age 1 Index",
                         "McAllister Ianelli Weighting",
                         "Francis Weighting")
@@ -201,11 +201,11 @@ sens.model.names.2 <- c("Add Age 1 Index",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 4
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.4 <- c("2020.00.27_tvSelect_phi_extralow",
-                            "2020.00.28_tvSelect_phi_low",
-                            "2020.00.29_tvSelect_phi_high",
-                            "2020.00.26_semiPara_tvSelect_sig0.695",
-                            "2020.00.26_semiPara_tvSelect_sig0.695")
+sens.model.dir.names.4 <- c("2020.01.27_tvSelect_phi_extralow",
+                            "2020.01.28_tvSelect_phi_low",
+                            "2020.01.29_tvSelect_phi_high",
+                            "2020.01.26_semiPara_tvSelect_sig0.695",
+                            "2020.01.26_semiPara_tvSelect_sig0.695")
 sens.model.names.4 <- c("Phi t.v. selectivity (0.21)",
                         "Phi t.v. selectivity (0.70)",
                         "Phi t.v. selectivity (2.10)",
@@ -215,9 +215,9 @@ sens.model.names.4 <- c("Phi t.v. selectivity (0.21)",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 5  - Different weight-at-age schemes (first group)
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.5 <- c("2020.00.30_noCohort_ageError",
-                            "2020.00.32_eqFecund_early5",
-                            "2020.00.33_eqFecund_early10")
+sens.model.dir.names.5 <- c("2020.01.30_noCohort_ageError",
+                            "2020.01.32_eqFecund_early5",
+                            "2020.01.33_eqFecund_early10")
 sens.model.names.5 <- c("No ageing error",
                         "Fecundity early 5 yrs",
                         "Fecundity early 10 yrs")
@@ -225,10 +225,10 @@ sens.model.names.5 <- c("No ageing error",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 6  - Different weight-at-age schemes (second group)
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.6 <- c("2020.00.32_eqFecund_early5",
-                            "2020.00.32_eqFecund_early5",
-                            "2020.00.32_eqFecund_early5",
-                            "2020.00.32_eqFecund_early5")
+sens.model.dir.names.6 <- c("2020.01.32_eqFecund_early5",
+                            "2020.01.32_eqFecund_early5",
+                            "2020.01.32_eqFecund_early5",
+                            "2020.01.32_eqFecund_early5")
 sens.model.names.6 <- c("TODO: remove this",
                         "TODO: remove this",
                         "TODO: remove this",
