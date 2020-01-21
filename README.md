@@ -40,11 +40,9 @@ tlmgr install lxfonts
 ## How to create the RData files required for the document to build
 
 * Place all model directories in the **models** directory. The base model must have an **mcmc** subdirectory;
-  its main directory holds the MPD run and the mcmc subdirectory holds the mcmc run for the same model. The
-  model directory can contain models which aren't used in the assessment, as the ones used are set in the
-  **model-setup.r** file.
+  its main directory holds the MPD run and the mcmc subdirectory holds the mcmc run for the same model.
 
-* Navigate to the doc/r directory and setup the model by editing the three files **model-setup.r**,
+* Navigate to the **R** directory and setup the model by editing the three files **model-setup.r**,
   **forecast-catch-levels.r**, and **retrospective-setup.r**:
 
 * To run all forecasts, retrospectives, and extra-mcmc calculations (required to get posterior survey index
@@ -54,6 +52,7 @@ tlmgr install lxfonts
     source(file.path(here::here(), "R/all.r"))
     build(.run_forecasts = TRUE,
           .run_retrospectives = TRUE,
+          .run_extra_mcmc = TRUE,
           .run_catch_levels_default_hr = TRUE,
           .run_catch_levels_spr_100 = TRUE,
           .run_catch_levels_stable_catch = TRUE)
