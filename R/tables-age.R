@@ -333,18 +333,23 @@ browser()
   caa <- model$catage
   waa <- model$wtatage
 
-  n.age.b <- naa[naa$"Beg/Mid" == "B", names(naa) %in% c("Yr", as.character(0:20))]
+  max.age <- max(suppressWarnings(as.numeric(names(naa))),
+                 na.rm=TRUE)
+  testthat::expect_equal(max.age,
+                         max(suppressWarnings(as.numeric(names(caa))),
+                                              na.rm=TRUE))
+  testthat::expect_equal(max.age,
+                         max(suppressWarnings(as.numeric(names(waa))),
+                                              na.rm=TRUE))
+
+  n.age.b <- naa[naa$"Beg/Mid" == "B", names(naa) %in% c("Yr", as.character(0:max.age))]
   n.age.b <- n.age.b[n.age.b$Yr %in% yrs,]
-  n.age.m <- naa[naa$"Beg/Mid" == "M", names(naa) %in% c("Yr", as.character(0:20))]
+  n.age.m <- naa[naa$"Beg/Mid" == "M", names(naa) %in% c("Yr", as.character(0:max.age))]
   n.age.m <- n.age.m[n.age.m$Yr %in% yrs,]
 
   ## caa <- caa[caa$Era != "INIT",]
-  c.age.new <- caa[, -(1:10)]
-  c.age.new <- c.age.new[c.age.new$Era %in% yrs, ]
-# instead of:
-  c.age <- caa[caa$Era %in% yrs,]
-  c.age <- c.age[, -(1:10)]
-  # expect_equal(c.age, c.age.new)   gives TRUE
+  c.age <- caa[, names(caa) %in% c("Yr", as.character(0:max.age))]
+  c.age <- c.age[c.age$Yr %in% yrs, ]
 
   ## Get weight-at-age matrix (currently the same matrix for fleet = -1,
   ##  0, 1, and 2)
