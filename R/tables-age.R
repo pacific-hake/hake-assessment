@@ -326,7 +326,7 @@ make.est.numbers.at.age.table <- function(model,
   if(!dir.exists(csv.dir)){
     dir.create(csv.dir)
   }
-browser()
+
   yrs <- start.yr:end.yr
 
   naa <- model$natage
@@ -350,6 +350,7 @@ browser()
   ## caa <- caa[caa$Era != "INIT",]
   c.age <- caa[, names(caa) %in% c("Yr", as.character(0:max.age))]
   c.age <- c.age[c.age$Yr %in% yrs, ]
+  c.age <- c.age[, -(names(c.age) == "Yr")]  # c.age below does not have Yr
 
   ## Get weight-at-age matrix (currently the same matrix for fleet = -1,
   ##  0, 1, and 2)
@@ -378,7 +379,8 @@ browser()
   }else if(table.type == 2){
     ## Exploitation rate at age
     ## Remove year column, do calculation and add year column back
-    n.age.b <- n.age.b[,-1]
+    n.age.b <- n.age.b[, -(names(n.age.b) == "Yr")]
+
     dat <- f((c.age / n.age.b) * 100, 2)
     dat <- cbind(as.character(yrs), dat)
     colnames(dat)[1] <- "Year"
