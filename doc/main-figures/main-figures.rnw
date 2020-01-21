@@ -567,7 +567,7 @@ make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
 \begin{center}
 <<main.retrospective.recruitment, fig.height=6, fig.width=8>>=
 ## Number of retro years for the plot. Assumes you've run them.
-plot.retro.yrs <- retro.yrs
+plot.retro.yrs <- retrospective_yrs
 retro.cohorts <- 1999:(end.yr-2)
 ##retro.model.names <- c("Base model", sapply(plot.retro.yrs, function(x) paste0("-", x, if(x == 1) " year" else " years")))
 ## Need to re-assemble the list with the base as the first element
