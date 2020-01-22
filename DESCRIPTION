@@ -20,14 +20,20 @@ VignetteBuilder: knitr
 Depends:
     R (>= 3.3)
 Imports:
+    cowplot,
     ggplot2,
+    ggrepel,
     grDevices,
     graphics,
     gtools,
+    here,
     knitr,
+    lubridate,
     rnaturalearthhires
     r4ss (>= 1.35.3),
+    rgeos,
     stats,
+    tidyverse,
     utils
 Remotes: 
     github::r4ss/r4ss@development,
