@@ -191,14 +191,6 @@ composition data again this year and provide sensitivities to alternative data-w
 approaches. For 2019, we incorporate time-varying fecundity into the
 assessment model, whereas previously it was time-invariant.
 
-The 35-day 2018/2019 U.S. government shutdown considerably delayed delivery of U.S.
-age data and reduced the JTC's time available to collectively complete the
-\Sexpr{assess.yr} assessment. As a result,
-many planned supplementary and exploratory analyses could not be completed, including
-some developed for response to \Sexpr{last.assess.yr} SRG requests, although many sensitivity
-runs (including new ones related to time-varying fecundity) were completed.
-
-
 \subsection*{Stock biomass} \label{sec:es-stock-biomass} \phantomsection
 \addcontentsline{toc}{subsection}{Stock biomass}
 The base stock assessment model
