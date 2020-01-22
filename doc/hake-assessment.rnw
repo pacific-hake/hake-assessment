@@ -235,6 +235,12 @@ Authors of this document are (all authors contribute extensively so the order ro
 %% Draft version
 This DRAFT document is non-citable.
 
+** - THIS INDCIATES a paragraph, or sentence that needs to be thought about this year
+and double checked (i.e. isn't fully automated, may just need someone to have a
+quick think). Should end up with no ** by the
+end (including here!). We'll still read through everything, but the ** indicates
+what definitely needs some thinking.
+
 %% Final version (with standard author rotation)
 %% This document should be cited as follows:\\
 %% Berger, A.M., A.M. Edwards, C.J. Grandin, and K.F. Johnson.
@@ -267,8 +273,8 @@ This DRAFT document is non-citable.
 %% \modulolinenumbers[5]
 
 \lfoot{
-       %% DRAFT -- \fishname\ assessment \Sexpr{assess.yr}
-       \fishname\ assessment \Sexpr{assess.yr}
+       DRAFT -- \fishname\ assessment \Sexpr{assess.yr}
+       %% \fishname\ assessment \Sexpr{assess.yr}
        }
 \rfoot{One-page summary}
 <<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=

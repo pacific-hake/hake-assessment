@@ -6,28 +6,24 @@
 \phantomsection \addcontentsline{toc}{section}{ONE-PAGE SUMMARY}
 
 \begin{itemize}
-  \item The stock assessment model for \Sexpr{assess.yr} is similar in structure
+  \item **The stock assessment model for \Sexpr{assess.yr} is similar in structure
 to the \Sexpr{last.assess.yr} model. It is fit to an acoustic survey index of
 abundance, annual commercial catch data, and age-composition data from the
 survey and commercial fisheries.
 
-  \item The only structural change from \Sexpr{last.assess.yr} is the inclusion
+  \item **The only structural change from \Sexpr{last.assess.yr} is the inclusion
   of time-varying (rather than constant) fecundity.
   This is achieved by using a single maturity-at-age curve multiplied by
   yearly weight-at-age data to produce the fecundity-at-age for each year.
 
-  \item Updates to the data include:
+  \item **Updates to the data include:
 %%the biomass estimate and age-composition data from the acoustic survey conducted
 %%in \Sexpr{survey.end.yr},
 minor changes to historical (pre-\Sexpr{end.yr-1}) catch, age composition, and
 weight-at-age data; addition of \Sexpr{end.yr-1} fishery catch and age-composition
 data; and addition of \Sexpr{last.data.yr} weight-at-age data.
 
-%  \item Limited exploratory and supplementary analyses could be completed for
-%the \Sexpr{assess.yr} assessment as a result of the U.S. government shutdown
-%considerably delaying delivery of U.S. age data and reducing JTC preparatory time.
-
-  \item Coastwide catch in \Sexpr{end.yr-1} was the second largest on record at
+  \item **Coastwide catch in \Sexpr{end.yr-1} was the second largest on record at
     \Sexpr{last.year.landings}~t [t represents metric tons],
 out of a Total Allowable Catch (adjusted for carryovers) of \Sexpr{last.year.tac}~t. Attainment in
 the U.S. was \Sexpr{last.year.us.attained}\% of its quota
@@ -37,11 +33,11 @@ from last year); in Canada it was
 (\Sexpr{paste0(ifelse(last.2year.can.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.can.attained.diff))}\%
 from last year).
 
-  \item The stock is estimated to have been at a minimum of
+  \item **The stock is estimated to have been at a minimum of
   \Sexpr{f(min(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% 2013:end.yr]) * 100)}\% of $B_0$ since
     2013 due to large estimated 2010 and 2014 cohorts.
 
-  \item The median estimate of the \Sexpr{end.yr} relative spawning biomass
+  \item **The median estimate of the \Sexpr{end.yr} relative spawning biomass
 (female spawning biomass at the start of \Sexpr{end.yr} divided by that at unfished
 equilibrium, $B_0$) is \Sexpr{curr.depl.median}\% but is highly uncertain (with
 95\% credible interval from \Sexpr{curr.depl.lower}\% to
@@ -53,17 +49,17 @@ a decrease from the \Sexpr{end.yr-1} median of \Sexpr{prev.bio.median}~million~t
 (though its 95\% credible interval is
 \Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper}~million~t).
 
-  \item The estimated joint probability of being both
+  \item **The estimated joint probability of being both
     above the target relative fishing intensity in \Sexpr{end.yr-1}
     and below the $\Bforty$ (40\% of $B_0$) reference point
     at the start of \Sexpr{end.yr} is \Sexpr{joint.percent.prob.above.below}\%.
 
-  \item Based on the default harvest rule, the estimated median catch limit for
+  \item **Based on the default harvest rule, the estimated median catch limit for
 \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with
 95\% credible interval from \Sexpr{catch.limit.quantiles["lower"]} to
 \Sexpr{catch.limit.quantiles["upper"]}~t).
 
-  \item As in the past, projections are highly uncertain due to uncertainty in
+  \item **As in the past, projections are highly uncertain due to uncertainty in
 estimates of recruitment for recent years. Projections were conducted across a
 range of catch levels. Projections setting the \Sexpr{forecast_yrs[1]} and
 \Sexpr{forecast_yrs[2]} catch equal to the \Sexpr{forecast_yrs[1]-1} Total
