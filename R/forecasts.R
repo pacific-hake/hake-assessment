@@ -167,7 +167,9 @@ fetch_forecasts <- function(model_path,
 #'  in the forecast_yrs vector. If forecast.outputs is NA, NA will be returned, otherwise the risk.list
 #'  will be returned
 #' @export
-calc_risk <- function(forecast_outputs = NA, ...){
+calc_risk <- function(forecast_outputs = NA, 
+                      catch_levels,
+                      ...){
 
   stopifnot(!is.na(forecast_outputs))
 
