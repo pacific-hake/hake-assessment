@@ -158,8 +158,7 @@ make.forecast.risk.comparison.plot <- function(model,        ## model is the mod
 
   # make empty plot
   matplot(catches, prob.dat,
-          xlim=c(0,max(catches,
-                       na.rm = TRUE)),
+          xlim=c(0,max(catches)),
           ylim=c(0,1),
           las=1,
           yaxs="i",
