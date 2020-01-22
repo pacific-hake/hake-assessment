@@ -645,6 +645,7 @@ rich.colors.short <- function(n, alpha = 1){
 #' @export
 plotBars.fn <- function(x,
                         y,
+                        scale = 1,
                         gap = 0,
                         add = FALSE,
                         ciCol = "black",
@@ -652,6 +653,10 @@ plotBars.fn <- function(x,
                         ciLwd = 1,
                         ...) {
 
+  y$value <- y$value / scale
+  y$lo <- y$lo / scale
+  y$hi <- y$hi / scale
+  
   if(!add) plot(x, y$value, ...)
   if(add) points(x, y$value, ...)
   segments(x, y$lo, x, y$value - gap, col = ciCol, lty = ciLty, lwd = ciLwd)
