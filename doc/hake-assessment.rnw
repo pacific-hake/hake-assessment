@@ -152,7 +152,7 @@
 \lhead{}
 \rhead{}
 
-%% To not have indent on disclaimer.
+%% Tried to not have indent on disclaimer (but doesn't work):
 %% \def\thanks#1{{\let\thefootnote\relax\footnote{#1.}\setcounter{footnote}{0}}}
 
 \begin{document}
@@ -185,12 +185,12 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \title{\TitleFont Status of the \fishname\ (whiting) stock in U.S. and Canadian
   waters in \Sexpr{assess.yr}
 %% Uncomment for DRAFT:
-%%  \\ ~\\ DRAFT for submission to Scientific Review Group
-%%  \thanks{\noindent Disclaimer: This
-%% information is distributed solely for the purpose of pre-dissemination
-%% peer review under applicable information quality guidelines. It does not
-%% represent and should not be construed to represent any agency determination
-%% or policy.}
+  \\ ~\\ DRAFT for submission to Scientific Review Group
+  \thanks{\noindent Disclaimer: This
+ information is distributed solely for the purpose of pre-dissemination
+ peer review under applicable information quality guidelines. It does not
+ represent and should not be construed to represent any agency determination
+ or policy.}
 \\ ~\\ ~\\ \includegraphics[width=4in]{hake-picture}}
 
 \author{Joint Technical Committee of the \fishname/Whiting Agreement \\ Between
@@ -206,7 +206,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \setcounter{page}{2}
 
 %% Draft version.
-%% \rfoot{DRAFT - DO NOT CITE}
+\rfoot{DRAFT - DO NOT CITE}
 
 %% Authors page
 This document reports the collaborative efforts of the official U.S. and
@@ -214,34 +214,34 @@ Canadian members of the Joint Technical Committee, and others that
 contributed significantly.
 
 Authors of this document are (all authors contribute extensively so the order rotates annually):\\
-\hspace{4ex}Aaron M. Berger\supscr{1} \\
-\hspace{4ex}Andrew M. Edwards\supscr{2} \\
-\hspace{4ex}Chris J. Grandin\supscr{2} \\
-\hspace{4ex}Kelli F. Johnson\supscr{3} \\
+\hspace{4ex}Chris J. Grandin\supscr{1} \\
+\hspace{4ex}Kelli F. Johnson\supscr{2} \\
+\hspace{4ex}Andrew M. Edwards\supscr{1} \\
+\hspace{4ex}Aaron M. Berger\supscr{3} \\
 \bigskip
 
-\emph{\supscr{1}Northwest Fisheries Science Center, National Marine
+\emph{\supscr{1}Pacific Biological Station, Fisheries and Oceans Canada,
+  3190 Hammond Bay Road, Nanaimo, B.C. V9T 6N7, Canada}
+
+\emph{\supscr{2}Northwest Fisheries Science Center, National Marine Fisheries
+  Service, National Oceanic and Atmospheric Administration, U.S. Department of
+  Commerce, 2725 Montlake Blvd. East, Seattle, WA 98112-2097, USA}
+
+\emph{\supscr{3}Northwest Fisheries Science Center, National Marine
   Fisheries Service, National Oceanic and Atmospheric Administration,
   U.S. Department of Commerce, 2032 SE OSU Dr. Bldg. 955, Newport, OR
   97365-5275, USA}
 
-\emph{\supscr{2}Pacific Biological Station, Fisheries and Oceans Canada,
-  3190 Hammond Bay Road, Nanaimo, B.C. V9T 6N7, Canada}
-
-\emph{\supscr{3}Northwest Fisheries Science Center, National Marine Fisheries
-  Service, National Oceanic and Atmospheric Administration, U.S. Department of
-  Commerce, 2725 Montlake Blvd. East, Seattle, WA 98112-2097, USA}
-
 %% Draft version
-%% This DRAFT document is non-citable.
+This DRAFT document is non-citable.
 
 %% Final version (with standard author rotation)
-This document should be cited as follows:\\
-Berger, A.M., A.M. Edwards, C.J. Grandin, and K.F. Johnson.
-\Sexpr{assess.yr}. Status of the \fishname\ (whiting) stock in
-U.S. and Canadian waters in \Sexpr{assess.yr}. Prepared by the Joint Technical
-Committee of the U.S. and Canada \fishname/Whiting Agreement, National Marine
-Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
+%% This document should be cited as follows:\\
+%% Berger, A.M., A.M. Edwards, C.J. Grandin, and K.F. Johnson.
+%% \Sexpr{assess.yr}. Status of the \fishname\ (whiting) stock in
+%% U.S. and Canadian waters in \Sexpr{assess.yr}. Prepared by the Joint Technical
+%% Committee of the U.S. and Canada \fishname/Whiting Agreement, National Marine
+%% Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 
 \newpage
 
