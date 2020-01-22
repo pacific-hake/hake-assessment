@@ -1,0 +1,36 @@
+Package: hake-assessment
+Type: Package
+Title: Stock Assessment for Pacific Hake
+Version: 1.0.4
+Authors@R: c(
+    person(c("Aaron", "M."), "Berger", role = "aut", email = "aaron.berger@noaa.gov"),
+    person(c("Andrew"), "Edwards", role = "aut", email = "Andrew.Edwards@dfo-mpo.gc.ca"),
+    person(c("Chris"), "Grandin", role = c("aut", "cre"), email = "Chris.Grandin@dfo-mpo.gc.ca"),
+    person(c("Kelli", "F."), "Johnson", role = "aut", email = "kelli.johnson@noaa.gov")
+    )
+Description: Code to compile the stock assessment for Pacific Hake.
+License: 
+URL: https://github.com/pacific-hake/hake-assessment
+BugReports: https://github.com/pacific-hake/hake-assessment/issues
+LazyData: true
+Suggests:
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
+Depends:
+    R (>= 3.3)
+Imports:
+    ggplot2,
+    grDevices,
+    graphics,
+    gtools,
+    knitr,
+    rnaturalearthhires
+    r4ss (>= 1.35.3),
+    stats,
+    utils
+Remotes: 
+    github::r4ss/r4ss@development,
+    github::ropensci/rnaturalearthhires
+RoxygenNote: 7.0.2.9000
+Encoding: UTF-8
