@@ -9,7 +9,9 @@
 make.overview.map.plot(path = rootd.map.data)
 @
 \end{center}
-\caption{Overview map of the area in the Northeast Pacific Ocean occupied by \fishname. Common areas referred to in this document are shown.}
+\caption{Overview map of the area in the Northeast Pacific Ocean occupied by \fishname.
+  Common areas referred to in this document are shown.**Some names hard to see --
+  may be worth fiddling with if time.}
 \label{fig:main-overview-map}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -31,7 +33,7 @@ make.overview.map.plot(path = rootd.map.data)
   proportional to observed backscatter.
   Histograms show survey-estimated biomass for ages 2 to 20, with major cohorts
   highlighted in color.
-  Figure produced by Julia Clemons (NOAA).}
+  Figure produced by Julia Clemons (NOAA).**NEED NEW FIGURE.}
 \label{fig:main-backscatter-map}
 \end{figure}
 \end{landscape}
@@ -56,7 +58,8 @@ make.overview.map.plot(path = rootd.map.data)
   from the Joint U.S.~and Canada acoustic surveys 2003 --\Sexpr{survey.end.yr}. Age-1 \fishname\ are not fully sampled
   during the acoustic survey and were not explicitly considered during establishment of the
   survey sampling design. Area of the circle is roughly
-  proportional to observed backscatter. Figure produced by Julia Clemons (NOAA).}
+  proportional to observed backscatter. Figure produced by Julia Clemons
+  (NOAA).**NEED NEW FIGURE}
 \label{fig:main-backscatter-map-age1}
 \end{figure}
 \end{landscape}
@@ -87,7 +90,7 @@ make.catches.plot(catches, leg.y.loc = 550)
 \includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishCatchRatesUS}
 \end{center}
 \caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in
-  the U.S. at-sea fleet from 2014--\Sexpr{last.data.yr}.}
+  the U.S. at-sea fleet from 2014--\Sexpr{last.data.yr}.**NEED NEW FIGURE}
 \label{fig:main-us-catch-rates}
 %%%%%%%%%%%%%%%%%%%%%%%
 %% JOINED ON PAGE
@@ -109,7 +112,7 @@ make.catches.plot(catches, leg.y.loc = 550)
   mtext("Depth (m)", side = 2, outer = TRUE, line = -0.5, col = "black")
 @
 \end{center}
-\caption{Distribution of fishing depths (left) and bottom depths (right), in meters, of \fishname\ catches in the U.S. at-sea fleet from 2014--\Sexpr{last.data.yr}.}
+\caption{Distribution of fishing depths (left) and bottom depths (right), in meters, of \fishname\ catches in the U.S. at-sea fleet from 2014--\Sexpr{last.data.yr}.**NEED NEW FIGURE}
 \label{fig:main-us-at-sea-depths}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -183,7 +186,8 @@ make.survey.age1.plot(age.1.index,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Preliminary acoustic survey age-1 index overlaid on estimated numbers of age-1 fish (MLE from the base model).}
+\caption{Preliminary acoustic survey age-1 index overlaid on estimated numbers of age-1 fish (MLE from the base model).
+  **NEED 2019 data, Issue \#615.}
 \label{fig:main-age-one-index}
 \end{figure}
 
@@ -200,7 +204,8 @@ maturity.ogive.figure(model = base.model, useyears = 1966)
   of the weight-at-age
   and the maturity-at-age for the samples
   collected from North of 34.44$^\circ$N (blue line in upper plot)
-  averaged across 1975 to \Sexpr{last.data.yr}.}
+  averaged across 1975 to \Sexpr{last.data.yr}.**Caption automatically says last
+year, but figure not updated, so maybe hardwire it to say 2018.}
 \label{fig:main-maturity}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -215,7 +220,7 @@ weight.at.age.heatmap(base.model)
 @
 \end{center}
 %\vspace{0mm}
-\caption{Empirical weight-at-age (kg) values used for the base model
+\caption{**Empirical weight-at-age (kg) values used for the base model
   (the values match the colors).
   Data are only available from 1975--\Sexpr{max.fishery.age.prop[2]}.
   Values based on assumptions for the early and late years are shown
@@ -235,7 +240,7 @@ weight.at.age.heatmap(base.model)
 \includegraphics[width=6.5in, height=8.5in]{main-figures/EWAforDoc_Numbers}
 \end{center}
 \vspace{0mm}
-\caption{Sample sizes for developing empirical weight-at-age values used in the
+\caption{**Sample sizes for developing empirical weight-at-age values used in the
   base model (colors represent empirical weight-at-age data, as shown in
   Figure ~\ref{fig:main-empirical.weight.at.age}).
   Data are available from 1975--\Sexpr{max.fishery.age.prop[2]}.
@@ -251,10 +256,10 @@ weight.at.age.heatmap(base.model)
 \includegraphics[width=\maxwidth, height=6.5in]{main-figures/Weight_ls}
 \end{center}
 \vspace{0mm}
-\caption{Fit (red lines) to yearly weight-at-age data (standard box plots) by
+\caption{**Fit (red lines) to yearly weight-at-age data (standard box plots) by
    age group (age-2 to age-15; where age-15 is an accumulator group) using weighted
    least squares.  Statistical weights in the regression were based on the
-   inverse of the annual sample variance.}
+   inverse of the annual sample variance.**UPDATE FIGURE AS MANUAL}
 \label{fig:main-empirical.weight.at.age.years}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -278,7 +283,7 @@ make.comparison.plot(bridge.models.1,
                      end.yr = bridge.model.end.yr.1)
 @
 \end{center}
-\caption{Bridging models showing the \Sexpr{last.assess.yr} base model
+\caption{**Bridging models showing the \Sexpr{last.assess.yr} base model
   and the results of sequentially updating historic catch data, historic age-composition data,
   and then historic weight-at-age data.  The points disconnected from the time-series on the
   left side show the unfished equilibrium spawning biomass estimates.}
@@ -330,7 +335,7 @@ mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
 \end{center}
-\caption{Bridging models showing the \Sexpr{last.assess.yr} base model
+\caption{**Bridging models showing the \Sexpr{last.assess.yr} base model
   and the results of sequentially building upon the base model with updates shown in
   Figure~\ref{fig:main-bridge-biomass} (i.e., adding the 2018 catch data and
   2018 age-composition and weight-at-age data) and then finally changing to
@@ -360,7 +365,7 @@ make.mcmc.diag.plot(base.model, subplot = 2)
 par <- oldpar
 @
 \end{center}
-\caption{Summary of MCMC diagnostics for natural mortality (upper panels) and log(\emph{R\subscr{0}}) (lower panels) in the base model. Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; cumulative running mean with 5th and 95th percentiles, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
+\caption{**Summary of MCMC diagnostics for natural mortality (upper panels) and log(\emph{R\subscr{0}}) (lower panels) in the base model. Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; cumulative running mean with 5th and 95th percentiles, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
 \label{fig:main-mcmc.diag.m.r0}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -377,7 +382,7 @@ make.mcmc.diag.plot(base.model, subplot = 4)
 par <- oldpar
 @
 \end{center}
-\caption{Summary of MCMC diagnostics for steepness (upper panels) and the additional standard deviation (SD)
+\caption{**Summary of MCMC diagnostics for steepness (upper panels) and the additional standard deviation (SD)
   in the survey index (lower panels) in the base model. Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; cumulative running mean with 5th and 95th percentiles, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
 \label{fig:main-mcmc.diag.h.extra.sd}
 \end{figure}
@@ -390,7 +395,7 @@ par <- oldpar
 make.mcmc.diag.hists.plot(base.model)
 @
 \end{center}
-\caption{Summary histograms of MCMC diagnostics for all base model parameters
+\caption{**Summary histograms of MCMC diagnostics for all base model parameters
   %along with derived
   %quantities for the time-series of spawning biomass, and relative spawning biomass.
   together with the derived time series of
@@ -407,7 +412,7 @@ make.mcmc.diag.hists.plot(base.model)
 \includegraphics[width=6.5in, height=7.5in]{main-figures/KeyParameterGelman_MultChain}
 \end{center}
 %\vspace{0mm}
-\caption{Gelman-Rubin plot showing the development of the scale-reduction (shrink factor) across the chain length for key posterior parameter distributions. A factor close to 1 indicates that between chain variance and within chain variance are equal. Values much greater than 1.1 indicate a notable difference between chains and the possible lack of achieving a converged stationary posterior distribution.}
+\caption{**Gelman-Rubin plot showing the development of the scale-reduction (shrink factor) across the chain length for key posterior parameter distributions. A factor close to 1 indicates that between chain variance and within chain variance are equal. Values much greater than 1.1 indicate a notable difference between chains and the possible lack of achieving a converged stationary posterior distribution.}
 \label{fig:main-mcmc.diag.gelrub}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -423,7 +428,10 @@ make.mcmc.diag.pairs.plot(base.model,
                           forecatch = end.yr)
 @
 \end{center}
-\caption{Posterior correlations among key base-model parameters and derived quantities. Numbers refer to the absolute correlation coefficients, with font size proportional to the square root of the coefficient.}
+\caption{Posterior correlations among key base-model parameters and derived
+  quantities. Numbers refer to the absolute correlation coefficients, with font
+  size proportional to the square root of the coefficient.**2014 probably still
+  best as the latest cohort to highlight, just think about it.}
 \label{fig:main-mcmc-pairs}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -495,7 +503,8 @@ make.age.comp.pearson.plot(base.model)
 \end{center}
 \caption{Pearson residuals for base model MLE fits to the age-composition data. Closed bubbles are positive residuals (observed > expected)
   and open bubbles are
-  negative residuals (observed < expected).}
+  negative residuals (observed < expected).**Year labels look offset, should make
+  neater.}
 \label{fig:main-age-comp-pearson}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -557,7 +566,9 @@ make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
 \caption{Fishery selectivity sampled from posterior probability distribution by year for the base model.
   Black dots and bars indicate the median and 95\% credibility interval, respectively. The shaded polygon
   also shows the 95\% credibility interval. Range is from 0 to 1 within each year. Selectivity
-  for \Sexpr{tv.selex.start.yr} is shared for all years from \Sexpr{start.yr} to \Sexpr{tv.selex.start.yr}.}
+  for \Sexpr{tv.selex.start.yr} is shared for all years from \Sexpr{start.yr} to
+  \Sexpr{tv.selex.start.yr}.**Balance out the numbers of years in each column
+  (just tweak the options).}
 \label{fig:main-tv-selex-uncertainty}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -589,7 +600,7 @@ make.squid.plot(retro.list,
   \Sexpr{min(retro.cohorts)} to \Sexpr{max(retro.cohorts)}, with cohort
   birth year marked at the right of each color-coded line. Values are
   estimated by models using data available only up to the year in which
-  each cohort was a given age.}
+  each cohort was a given age.**See Issue \#616.}
 \label{fig:main-retrospective.recruitment}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
