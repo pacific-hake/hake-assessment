@@ -351,11 +351,11 @@ thinking. *******COMMENT ME OUT WHEN DONE*******
 @
 
 \rfoot{Appendix~\ref{chap:canada-fishery-report} -- Canada fishery report}
-<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-Canada-2018.rnw'>>=
+<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-Canada-2019.rnw'>>=
 @
 
 \rfoot{Appendix~\ref{chap:us-fishery-report} -- United States fishery report}
-<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-US-2018.rnw'>>=
+<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-US-2019.rnw'>>=
 @
 
 \rfoot{Appendix~\ref{chap:parameters} -- Estimated parameters}
