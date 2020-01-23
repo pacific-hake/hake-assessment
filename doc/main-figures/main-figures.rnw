@@ -717,7 +717,8 @@ make.numbers.at.age.plot(base.model)
   billions of fish (with the largest bubble representing
   \Sexpr{round(max(base.model$natage[base.model$natage$"Beg/Mid"=="B",paste(0:20)])/1e6,1)}~billion
   age-0 recruits in \Sexpr{base.model$recruit$Yr[which(base.model$recruit$pred_recr==max(base.model$recruit$pred_recr))]}).
-  See Table~\ref{tab:main-est-numbers-at-age} for values.}
+  See Table~\ref{tab:main-est-numbers-at-age} for values.**Double check number
+  with table, especially due to changes in SS output. Expect okay.}
 \label{fig:main-numbers-at-age}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -792,7 +793,7 @@ make.phase.plot(base.model,
   labeled, as is the year with the highest relative fishing intensity.
   Gray bars span the 95\% credibility
   intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical)
-  and relative spawning biomass (horizontal).}
+  and relative spawning biomass (horizontal).**Update to match Figure h caption.}
 \label{fig:main-phase}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -813,7 +814,9 @@ make.mcmc.vs.mle.plot(base.model,
 \end{center}
 \caption{A comparison of maximum likelihood estimates with 95\% confidence intervals determined from asymptotic variance estimates (red)
   to the posterior distribution with 95\% credibility intervals (black). The posterior median is shown for spawning biomass
-  while the posterior mean recruitment is displayed in the lower panel to be more comparable to the MLE value.}
+  while the posterior mean recruitment is displayed in the lower panel to be
+  more comparable to the MLE value. **BOTTOM panel is different (worse) style to
+last year, need to fix x-axis in both panels.}
 \label{fig:main-mle.vs.mcmc}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -913,7 +916,8 @@ make.age.comp.forecast.plot(base.model)
   selectivity averaged across the most recent five years and the distribution for expected
   numbers at age at the start of \Sexpr{end.yr} (see Table~\ref{tab:main-est-numbers-at-age} for
   the MLEs for numbers-at-age for all years). The panel on the right is scaled based on
-  the weight at each age averaged across 1975 to \Sexpr{last.data.yr}.}
+  the weight at each age averaged across 1975 to \Sexpr{last.data.yr}.**check
+  last sentence.}
 \label{fig:main-age-comp-forecast}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -934,7 +938,7 @@ make.comparison.plot(c(list(base.model), sens.models.1),
   the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, lower (1.0) and higher
   (1.8) levels of variation assumed about the stock-recruitment relationship
   ($\sigma_r$), and changing the standard deviation of the prior for natural mortality from
-  0.1 to 0.2 or 0.3.}
+  0.1 to 0.2 or 0.3.**check these are all correct.}
 \label{fig:main-biomass-base-alternative-1}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -973,7 +977,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 \caption{Maximum likelihood estimates of spawning biomass for the base model and alternative
   sensitivity runs that represent the following changes in data: adding an age-1 index of abundance,
   using the McAllister-Ianelli approach to weight composition data, and using the
-  Francis approach to weight composition data.}
+  Francis approach to weight composition data.**check these are all correct.}
 \label{fig:main-biomass-base-alternative-2}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1004,7 +1008,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base
+\caption{**Maximum likelihood estimates of stock status (relative spawning biomass) for the base
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-status-base-alternative-2}
@@ -1024,7 +1028,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of the fit to the survey index of abundance for the base
+\caption{**Maximum likelihood estimates of the fit to the survey index of abundance for the base
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-index-base-alternative-2}
@@ -1042,7 +1046,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of recruitment deviations for the base
+\caption{**Maximum likelihood estimates of recruitment deviations for the base
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-recruit-base-alternative-2}
@@ -1221,7 +1225,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model
+\caption{**Maximum likelihood estimates of spawning biomass for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
   semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).}
@@ -1241,7 +1245,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model
+\caption{**Maximum likelihood estimates of stock status (relative spawning biomass) for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
   semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).
@@ -1263,7 +1267,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 box()
 @
 \end{center}
-\caption{Maximum likelihood estimates of recruitment deviations for the base model
+\caption{**Maximum likelihood estimates of recruitment deviations for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
   semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).
@@ -1284,7 +1288,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of the fit to the survey index of abundance
+\caption{**Maximum likelihood estimates of the fit to the survey index of abundance
   for the base model and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
   semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).
@@ -1306,7 +1310,7 @@ make.selectivity.illustration(mod.old = base.model,
 rm(temp)
 @
 \end{center}
-\caption{Illustration of parameterization of time-varying selectivity as
+\caption{**Illustration of parameterization of time-varying selectivity as
   represented in the base model (left) and the semi-parametric approach
   used in sensitivity analyses (right). Panels show transformation from
   estimated parameters (a) to cumulative sum up to each age (b) and the resulting
@@ -1337,7 +1341,7 @@ rm(temp)
 weight.at.age.heatmap(sens.models.5[[2]])
 @
 \end{center}
-\caption{Empirical weight-at-age (kg) values used for sensitivity
+\caption{**Not sure yet if we're doing any of these. Empirical weight-at-age (kg) values used for sensitivity
   run~53 and the base
   model (Figure~\ref{fig:main-empirical.weight.at.age}).
   Data are only available from 1975--\Sexpr{max.fishery.age.prop[2]}.
@@ -1358,7 +1362,7 @@ weight.at.age.heatmap(sens.models.5[[2]])
 weight.at.age.heatmap(sens.models.6[[1]], proj.line.yr=2017)
 @
 \end{center}
-\caption{Empirical weight-at-age (kg) values used for sensitivity
+\caption{**Empirical weight-at-age (kg) values used for sensitivity
   runs~55 and~57. Details are as in
   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}. Note
   the 2018 values have to be assumed (the location of the top blue line is different to
@@ -1376,7 +1380,7 @@ weight.at.age.heatmap(sens.models.6[[1]], proj.line.yr=2017)
 weight.at.age.heatmap(sens.models.5[[3]], proj.line.yr=2017)
 @
 \end{center}
-\caption{Empirical weight-at-age (kg) values used for sensitivity
+\caption{**Empirical weight-at-age (kg) values used for sensitivity
   runs~52 and~54. Details are as in
   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}. Note
   the 2018 values have to be assumed (the location of the top blue line is different to
@@ -1394,7 +1398,7 @@ weight.at.age.heatmap(sens.models.5[[3]], proj.line.yr=2017)
 weight.at.age.heatmap(sens.models.6[[2]], proj.line.yr=2017)
 @
 \end{center}
-\caption{Empirical weight-at-age (kg) used for sensitivity
+\caption{**Empirical weight-at-age (kg) used for sensitivity
   runs~56 and~58. Details are as in
   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}. Note
   the 2018 values have to be assumed (the location of the top blue line is different to
@@ -1414,7 +1418,7 @@ make.comparison.plot(c(list(base.model), sens.models.5),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base
+\caption{**Maximum likelihood estimates of spawning biomass for the base
   model and alternative sensitivity runs 52, 53, and 54 that all set
   the pre-1975 (1966-1974) weights-at-age to the long term mean (1975--2018).
   Run 52 has non-time-varying fecundity and the short term mean (2016--2018)
@@ -1436,7 +1440,7 @@ make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{MCMC median posterior estimates with 95\% credible interval of spawning
+\caption{**MCMC median posterior estimates with 95\% credible interval of spawning
   biomass for the base model and alternative sensitivity runs 52, 53,
   and 54. See Figure~\ref{fig:main-biomass-base-alternative-5} and
   Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
@@ -1454,7 +1458,7 @@ make.comparison.plot(c(list(base.model), sens.models.5),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status for the base
+\caption{**Maximum likelihood estimates of stock status for the base
   model and alternative sensitivity runs 52, 53, and 54.
   See Figure~\ref{fig:main-biomass-base-alternative-5} and
   Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
@@ -1470,7 +1474,7 @@ make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
 @
 \end{center}
 %\vspace{0mm}
-\caption{MCMC median posterior estimates with 95\% credible interval of stock
+\caption{**MCMC median posterior estimates with 95\% credible interval of stock
   status for the base model and alternative sensitivity models 52, 53,
   and 54. See Figure~\ref{fig:main-biomass-base-alternative-5} and
   Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
@@ -1488,7 +1492,8 @@ make.comparison.plot(c(list(base.model), sens.models.6),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base
+\caption{**Keep as template for now, in case needed.
+  Maximum likelihood estimates of spawning biomass for the base
   model and alternative sensitivity runs 55, 56, 57, and 58 that all set
   the pre-1975 (1966-1974) weights-at-age to the short term mean (1975--1979).
   Run 55 has time-varying fecundity and the long term mean (1975--2018)
@@ -1508,7 +1513,7 @@ make.comparison.plot.mcmc(c(list(base.model), sens.models.6),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{MCMC median posterior estimates with 95\% credible interval of spawning
+\caption{**MCMC median posterior estimates with 95\% credible interval of spawning
   biomass for the base model and sensitivity runs 55, 56, 57, and 58.
   See Figure~\ref{fig:main-biomass-base-alternative-6} and
   Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
@@ -1526,7 +1531,7 @@ make.comparison.plot(c(list(base.model), sens.models.6),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of stock status for the base
+\caption{**Maximum likelihood estimates of stock status for the base
   model and alternative sensitivity runs 55, 56, 57, and 58.
   See Figure~\ref{fig:main-biomass-base-alternative-6} and
   Table~\ref{tab:main-wtatage-runs} for descriptions of runs}
@@ -1540,7 +1545,7 @@ make.comparison.plot.mcmc(c(list(base.model), sens.models.6),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{MCMC median posterior estimates with 95\% credible interval of stock
+\caption{**MCMC median posterior estimates with 95\% credible interval of stock
   status for the base model and alternative sensitivity runs 55, 56, 57, and 58.
   See Figure~\ref{fig:main-biomass-base-alternative-6} and
   Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
@@ -1607,7 +1612,7 @@ make.assessment.history.plot(base.model,
 \caption{Summary of historical \fishname\ assessment estimates of spawning
   biomass. Estimates are MLEs or MCMC medians depending on the model structure.
   Shading represents the approximate 95\% confidence range from the
-  \Sexpr{end.yr} base model.}
+  \Sexpr{end.yr} base model. **Needs updating -- see Issue \#617.}
 \label{fig:main-historical-assessments}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
