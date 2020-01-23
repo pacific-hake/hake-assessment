@@ -80,7 +80,7 @@ make.sampling.history.table(sampling.history,
                               fish with otoliths sampled per haul has varied
                               over time but is typically small (current
                               protocols for the U.S. At-Sea sectors is 2~fish
-                              per haul).",
+                              per haul). **CHECK 2019 gets included.",
                             xlabel = "tab:main-sampling-history",
                             font.size = 8,
                             space.size = 10)
@@ -247,7 +247,7 @@ make.input.age.data.table(base.model,
 <<main.survey.history.table, results='asis', echo=FALSE>>=
 make.survey.history.table(survey.history,
                           digits = 3,
-                          xcaption = paste0("Summary of the acoustic surveys from 1995 to ", survey.end.yr, "."),
+                          xcaption = paste0("**ADD row for 2019. Summary of the acoustic surveys from 1995 to ", survey.end.yr, "."),
                           xlabel = "tab:main-survey-history",
                           font.size = 10,
                           space.size = 12)
@@ -255,7 +255,7 @@ make.survey.history.table(survey.history,
 
 <<main.maturity.ogives.table, results='asis', echo=FALSE>>=
 make.maturity.ogives.table(maturity.ogives,
-                           xcaption = "Information on maturity and fecundity used in this assessment as shown in Figure~\\ref{fig:main-maturity}. The sample sizes refer to the subset of samples in Table~\\ref{tab:main-ovaries} for which age readings and histological estimates of maturity have been completed. The mean weight (kg) is based on a much larger set of samples. Mean fecundity is the product of maturity and mean weight, but note that year-specific fecundities from 1975-2018 were used in the stock assessment. The values reported for ages 15 and above represent the average across all samples in this range.",
+                           xcaption = "Information on maturity and fecundity used in this assessment as shown in Figure~\\ref{fig:main-maturity}. The sample sizes refer to the subset of samples in Table~\\ref{tab:main-ovaries} for which age readings and histological estimates of maturity have been completed. The mean weight (kg) is based on a much larger set of samples. Mean fecundity is the product of maturity and mean weight, but note that year-specific fecundities from **1975-2018 were used in the stock assessment. The values reported for ages 15 and above represent the average across all samples in this range.",
                            xlabel = "tab:main-ogives",
                            font.size = 10,
                            space.size = 10)
@@ -263,7 +263,8 @@ make.maturity.ogives.table(maturity.ogives,
 
 <<main.ovaries.table, results='asis', echo=FALSE>>=
 make.maturity.samples.table(ovary.samples,
-                            xcaption = "Number of \\fishname\\ ovaries collected for histological analysis. The maturity ogive was determined from a subset of these samples (up to and including 2017) -- see \\citet{JTC2018}.",
+                            xcaption =
+                              "Number of \\fishname\\ ovaries collected for histological analysis. The maturity ogive was determined from a subset of these samples (up to and including 2017) -- see \\citet{JTC2018}. **unchanged I think",
                             xlabel = "tab:main-ovaries",
                             font.size = 10,
                             space.size = 10)
@@ -275,7 +276,8 @@ make.parameters.estimated.summary.table(
   start.rec.dev.yr = recruit.dev.start.yr,
   end.rec.dev.yr = end.yr - 1,
   digits = 2,
-  xcaption = paste0("Summary of estimated model parameters and priors in the base model. The Beta prior is parameterized with a mean and standard deviation. The Lognormal prior is parameterized with the median and standard deviation in log space."),
+  xcaption =
+    paste0("Summary of estimated model parameters and priors in the base model. The Beta prior is parameterized with a mean and standard deviation. The Lognormal prior is parameterized with the median and standard deviation in log space.**ADD DM prior"),
   xlabel = "tab:main-params-est-summary",
   font.size = 10,
   space.size = 12)
@@ -289,7 +291,8 @@ make.short.parameter.estimates.sens.table(retro.list,
                                           end.yr = end.yr,
                                           age.1 = FALSE,
                                           digits = 3,
-                                          xcaption = paste0("Select parameters, derived quantities, reference point estimates, and negative log likelihoods for retrospective analyses using the MLE estimates from the base model. Some values are implied since they occur after the ending year of the respective retrospective analysis."),
+                                          xcaption =
+                                            paste0("Select parameters, derived quantities, reference point estimates, and negative log likelihoods for retrospective analyses using the MLE estimates from the base model. Some values are implied since they occur after the ending year of the respective retrospective analysis. **ANY TO ADD/REMOVE"),
                                           xlabel = "tab:main-parameter-estimates-retro",
                                           font.size = 10,
                                           space.size = 12)
@@ -302,7 +305,7 @@ make.assessment.changes.table(assessment.changes,
   "The bias adjustment is reported as the maximum used for each assessment. ",
   "Methods used to weight the age-composition data (Comp Method), i.e., ",
   "McAllister-Ianelli (MI) and Dirichlet-Multinomial (DM) approaches, are explained in ",
-  "the main text."),
+  "the main text.**Need 2020."),
   xlabel = "tab:main-assessment-changes")
 @
 
@@ -435,7 +438,7 @@ make.cohort.table(base.model,
                                     Biomass does not
                                     equal the Start Biomass in the following year
                                     because the empirical weights-at-age
-                                    change between years (for ",
+                                    change between years (**for [since 2019??]",
                                     assess.yr,
                                     " the mean weights-at-age are used as
                                     per Figure~\\ref{fig:main-empirical.weight.at.age}).
@@ -482,7 +485,7 @@ make.short.parameter.estimates.table(
   posterior.regex = key.posteriors,
   end.yr = end.yr,
   digits = 3,
-  xcaption = paste0("Select parameters, derived quantities, ",
+  xcaption = paste0("**Need DM stuff? Select parameters, derived quantities, ",
                      "and reference point estimates for the base model ",
                      "MLE and posterior median (MCMC) estimates with ",
                      "an additional comparison to posterior median ",
@@ -494,7 +497,7 @@ make.short.parameter.estimates.table(
 
 <<main.reference.points.table, results='asis', echo=FALSE>>=
 make.reference.points.table(base.model,
-                            xcaption = paste0("Summary of median and 95\\% credibility intervals of equilibrium reference points for the \\fishname\\ base assessment model. Equilibrium reference points were computed using 1975--", end.yr-1, " averages for mean weight-at-age and baseline selectivity."),
+                            xcaption = paste0("Summary of median and 95\\% credibility intervals of equilibrium reference points for the \\fishname\\ base assessment model. **Equilibrium reference points were computed using 1975--", end.yr-1, " averages for mean weight-at-age and baseline selectivity."),
                             xlabel = "tab:main-reference-points",
                             font.size = 10,
                             space.size = 12)
@@ -578,7 +581,8 @@ make.short.parameter.estimates.sens.table(sens.models.1.for.table,
                                           end.yr = end.yr,
                                           age.1 = TRUE,
                                           digits = 3,
-                                          xcaption = paste0("Maximum likelihood estimates (MLE) of select parameters, derived quantities, reference points, and negative log likelihoods for the base model and some sensitivity runs (described in Section~\\ref{sec:assessment-sensitivity-analyses})."),
+                                          xcaption =
+                                            paste0("**NEED more [and next two tables]?? Maximum likelihood estimates (MLE) of select parameters, derived quantities, reference points, and negative log likelihoods for the base model and some sensitivity runs (described in Section~\\ref{sec:assessment-sensitivity-analyses})."),
                                           xlabel = "tab:main-parameter-estimates-sens-1",
                                           font.size = 9,
                                           space.size = 11,
@@ -599,7 +603,7 @@ make.short.parameter.estimates.sens.table(sens.models.2.for.table,
                                           end.yr = end.yr,
                                           age.1 = FALSE,
                                           digits = 3,
-                                          xcaption = paste0("Maximum likelihood estimates (MLE) of select parameters, derived quantities, reference points, and negative log likelihoods for the base model and further sensitivity runs (described in Section~\\ref{sec:assessment-sensitivity-analyses})."),
+                                          xcaption = paste0("**Maximum likelihood estimates (MLE) of select parameters, derived quantities, reference points, and negative log likelihoods for the base model and further sensitivity runs (described in Section~\\ref{sec:assessment-sensitivity-analyses})."),
                                           xlabel = "tab:main-parameter-estimates-sens-2",
                                           font.size = 9,
                                           space.size = 11,
@@ -635,7 +639,8 @@ make.short.parameter.estimates.sens.table(sens.models.3.for.table,
 % Don't think we need to specify 'fecundity when varying' in only one column -
 % not sure why we do in Google one. Andy will check with Chris in the morning.
 \begin{table}[H]
-\caption{Summary of model runs that consider alternative assumptions concerning
+\caption{**[Presumably not needed. Keep until summarise what we do now somewhere
+  in the text.] Summary of model runs that consider alternative assumptions concerning
   weight-at-age and time-vary fecundity, plus the two related runs from 2018.
   Results from the MCMC runs 53 and 54
   are given in Appendices~\ref{chap:fecundity-53} and \ref{chap:fecundity-54}.
