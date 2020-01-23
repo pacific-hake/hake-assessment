@@ -255,7 +255,15 @@ make.survey.history.table(survey.history,
 
 <<main.maturity.ogives.table, results='asis', echo=FALSE>>=
 make.maturity.ogives.table(maturity.ogives,
-                           xcaption = "Information on maturity and fecundity used in this assessment as shown in Figure~\\ref{fig:main-maturity}. The sample sizes refer to the subset of samples in Table~\\ref{tab:main-ovaries} for which age readings and histological estimates of maturity have been completed. The mean weight (kg) is based on a much larger set of samples. Mean fecundity is the product of maturity and mean weight, but note that year-specific fecundities from **1975-2018 were used in the stock assessment. The values reported for ages 15 and above represent the average across all samples in this range.",
+                           xcaption = "Information on maturity and fecundity used in this assessment as
+                                       shown in Figure~\\ref{fig:main-maturity}. The sample sizes refer
+                                       to the subset of samples in Table~\\ref{tab:main-ovaries} for which
+                                       age readings and histological estimates of maturity have been completed.
+                                       The mean weight (kg) is based on a much larger set of samples. Mean
+                                       fecundity is the product of maturity and mean weight, but note that
+                                       year-specific fecundities from **1975-2018 were used in the stock
+                                       assessment. The values reported for ages 15 and above represent the
+                                       average across all samples in this range.",
                            xlabel = "tab:main-ogives",
                            font.size = 10,
                            space.size = 10)
@@ -263,7 +271,10 @@ make.maturity.ogives.table(maturity.ogives,
 
 <<main.ovaries.table, results='asis', echo=FALSE>>=
 make.maturity.samples.table(ovary.samples,
-                            xcaption = "Number of \\fishname\\ ovaries collected for histological analysis. The maturity ogive was determined from a subset of these samples (up to and including 2017) -- see \\citet{JTC2018}. **unchanged I think",
+                            xcaption = "Number of \\fishname\\ ovaries collected for histological analysis.
+                                        The maturity ogive was determined from a subset of these samples
+                                        (up to and including 2017) -- see \\citet{JTC2018}.
+                                        **unchanged I think",
                             xlabel = "tab:main-ovaries",
                             font.size = 10,
                             space.size = 10)
@@ -275,7 +286,10 @@ make.parameters.estimated.summary.table(
   start.rec.dev.yr = recruit.dev.start.yr,
   end.rec.dev.yr = end.yr - 1,
   digits = 2,
-  xcaption = paste0("Summary of estimated model parameters and priors in the base model. The Beta prior is parameterized with a mean and standard deviation. The Lognormal prior is parameterized with the median and standard deviation in log space.**ADD DM prior"),
+  xcaption = paste0("Summary of estimated model parameters and priors in the base model.
+                     The Beta prior is parameterized with a mean and standard deviation.
+                     The Lognormal prior is parameterized with the median and standard
+                     deviation in log space.**ADD DM prior"),
   xlabel = "tab:main-params-est-summary",
   font.size = 10,
   space.size = 12)
@@ -289,7 +303,13 @@ make.short.parameter.estimates.sens.table(retro.list,
                                           end.yr = end.yr,
                                           age.1 = FALSE,
                                           digits = 3,
-                                          xcaption = paste0("Select parameters, derived quantities, reference point estimates, and negative log likelihoods for retrospective analyses using the MLE estimates from the base model. Some values are implied since they occur after the ending year of the respective retrospective analysis. **ANY TO ADD/REMOVE"),
+                                          xcaption = paste0("Select parameters, derived quantities,
+                                                             reference point estimates, and negative
+                                                             log likelihoods for retrospective analyses
+                                                             using the MLE estimates from the base model.
+                                                             Some values are implied since they occur after
+                                                             the ending year of the respective retrospective
+                                                             analysis. **ANY TO ADD/REMOVE"),
                                           xlabel = "tab:main-parameter-estimates-retro",
                                           font.size = 10,
                                           space.size = 12)
@@ -457,7 +477,12 @@ make.median.posterior.table(
   end.yr = end.yr,
   digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
   csv.dir = output.csv.dir,
-  xcaption = paste0("Time-series of median posterior population estimates from the base model. Relative spawning biomass is spawning biomass relative to the unfished equilibrium ($\\Bzero$). Total biomass includes females and males of ages 0 and above. Age-2+ biomass includes females and males ages 2 and above. Exploitation fraction is total catch divided by total age-2+ biomass. Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%})."),
+  xcaption = paste0("Time-series of median posterior population estimates from the base
+                     model. Relative spawning biomass is spawning biomass relative to the
+                     unfished equilibrium ($\\Bzero$). Total biomass includes females and males
+                     of ages 0 and above. Age-2+ biomass includes females and males ages 2 and
+                     above. Exploitation fraction is total catch divided by total age-2+ biomass.
+                     Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%})."),
   xlabel = "tab:main-median-posterior",
   font.size = 8,
   space.size = 10)
@@ -469,7 +494,8 @@ make.ci.posterior.table(
   start.yr = start.yr,
   end.yr = end.yr,
   digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
-  xcaption = paste0("Time-series of 95\\% posterior credibility intervals for the quantities shown in Table \\ref{tab:main-median-posterior}."),
+  xcaption = paste0("Time-series of 95\\% posterior credibility intervals for the quantities
+                     shown in Table \\ref{tab:main-median-posterior}."),
   xlabel = "tab:main-ci-posterior",
   font.size = 8,
   space.size = 10)
@@ -494,7 +520,12 @@ make.short.parameter.estimates.table(
 
 <<main.reference.points.table, results='asis', echo=FALSE>>=
 make.reference.points.table(base.model,
-                            xcaption = paste0("Summary of median and 95\\% credibility intervals of equilibrium reference points for the \\fishname\\ base assessment model. **Equilibrium reference points were computed using 1975--", end.yr-1, " averages for mean weight-at-age and baseline selectivity."),
+                            xcaption = paste0("Summary of median and 95\\% credibility
+                                               intervals of equilibrium reference points for
+                                               the \\fishname\\ base assessment model. **Equilibrium
+                                               reference points were computed using 1975--",
+                                              end.yr-1,
+                                              " averages for mean weight-at-age and baseline selectivity."),
                             xlabel = "tab:main-reference-points",
                             font.size = 10,
                             space.size = 12)
@@ -540,7 +571,16 @@ make.decision.table(base.model,
 
 <<main.decisions.spr.table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption = paste0("Decision table of forecast quantiles of \\fishname\\ relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}), expressed as a percentage, for the ",min(forecast_yrs),"--",max(forecast_yrs)," catch alternatives presented in Table \\ref{tab:main-decisions-biomass}. Values greater than 100\\% indicate fishing intensities greater than the F\\subscr{40\\%} harvest policy calculated using baseline selectivity."),
+                    xcaption = paste0("Decision table of forecast quantiles ",
+                                      "of \\fishname\\ relative fishing intensity ",
+                                      "(1-SPR)/(1-SPR\\subscr{40\\%}), expressed as ",
+                                      "a percentage, for the ",
+                                      min(forecast_yrs),
+                                      "--",
+                                      max(forecast_yrs),
+                                      " catch alternatives presented in Table \\ref{tab:main-decisions-biomass}.",
+                                      "Values greater than 100\\% indicate fishing intensities greater than the",
+                                      "F\\subscr{40\\%} harvest policy calculated using baseline selectivity."),
                     xlabel = "tab:main-decisions-spr",
                     font.size = 12,
                     space.size = 14,
@@ -551,7 +591,10 @@ make.decision.table(base.model,
 make.risk.table(base.model,
                 forecast_yrs,
                 index = 1, ## Index in model$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                xcaption = paste0("Probabilities related to spawning biomass, relative fishing intensity, and the ",end.yr+1," default harvest policy catch for alternative ",end.yr," catch options (catch options explained in Table \\ref{tab:main-decisions-biomass})."),
+                xcaption = paste0("Probabilities related to spawning biomass, relative fishing intensity,
+                                   and the ",end.yr+1," default harvest policy catch for alternative ",
+                                  end.yr,
+                                  " catch options (catch options explained in Table \\ref{tab:main-decisions-biomass})."),
                 xlabel = "tab:main-risk-year-1",
                 font.size = 12,
                 space.size = 14)
@@ -561,7 +604,15 @@ make.risk.table(base.model,
 make.risk.table(base.model,
                 forecast_yrs,
                 index = 2, ## Index in model$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                xcaption = paste0("Probabilities related to spawning biomass, relative fishing intensity, and the ",end.yr+2," default harvest policy catch for alternative ",end.yr+1," catch options, given the ",end.yr," catch level shown in Table~\\ref{tab:main-risk-year-1} (catch options explained in Table \\ref{tab:main-decisions-biomass})."),
+                xcaption = paste0("Probabilities related to spawning biomass, relative fishing intensity,
+                                   and the ",
+                                  end.yr+2,
+                                  " default harvest policy catch for alternative ",
+                                  end.yr+1,
+                                  " catch options, given the ",
+                                  end.yr,
+                                  " catch level shown in Table~\\ref{tab:main-risk-year-1} (catch options
+                                  explained in Table \\ref{tab:main-decisions-biomass})."),
                 xlabel = "tab:main-risk-year-2",
                 font.size = 12,
                 space.size = 14)
@@ -578,8 +629,11 @@ make.short.parameter.estimates.sens.table(sens.models.1.for.table,
                                           end.yr = end.yr,
                                           age.1 = TRUE,
                                           digits = 3,
-                                          xcaption =
-                                            paste0("**NEED more [and next two tables]?? Maximum likelihood estimates (MLE) of select parameters, derived quantities, reference points, and negative log likelihoods for the base model and some sensitivity runs (described in Section~\\ref{sec:assessment-sensitivity-analyses})."),
+                                          xcaption = paste0("**NEED more [and next two tables]?? Maximum likelihood
+                                                            estimates (MLE) of select parameters, derived quantities,
+                                                            reference points, and negative log likelihoods for the base
+                                                            model and some sensitivity runs (described in
+                                                            Section~\\ref{sec:assessment-sensitivity-analyses})."),
                                           xlabel = "tab:main-parameter-estimates-sens-1",
                                           font.size = 9,
                                           space.size = 11,
@@ -600,7 +654,10 @@ make.short.parameter.estimates.sens.table(sens.models.2.for.table,
                                           end.yr = end.yr,
                                           age.1 = FALSE,
                                           digits = 3,
-                                          xcaption = paste0("**Maximum likelihood estimates (MLE) of select parameters, derived quantities, reference points, and negative log likelihoods for the base model and further sensitivity runs (described in Section~\\ref{sec:assessment-sensitivity-analyses})."),
+                                          xcaption = paste0("**Maximum likelihood estimates (MLE) of select parameters,
+                                                            derived quantities, reference points, and negative log likelihoods
+                                                            for the base model and further sensitivity runs (described in
+                                                            Section~\\ref{sec:assessment-sensitivity-analyses})."),
                                           xlabel = "tab:main-parameter-estimates-sens-2",
                                           font.size = 9,
                                           space.size = 11,
@@ -621,7 +678,10 @@ make.short.parameter.estimates.sens.table(sens.models.3.for.table,
                                           end.yr = end.yr,
                                           age.1 = FALSE,
                                           digits = 3,
-                                          xcaption = paste0("Maximum likelihood estimates (MLE) of select parameters, derived quantities, reference points, and negative log likelihoods for the base model and further sensitivity runs (described in Section~\\ref{sec:assessment-sensitivity-analyses})."),
+                                          xcaption = paste0("Maximum likelihood estimates (MLE) of select parameters,
+                                                             derived quantities, reference points, and negative log likelihoods
+                                                             for the base model and further sensitivity runs (described in
+                                                             Section~\\ref{sec:assessment-sensitivity-analyses})."),
                                           xlabel = "tab:main-parameter-estimates-sens-3",
                                           font.size = 9,
                                           space.size = 11,
