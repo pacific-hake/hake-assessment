@@ -343,7 +343,7 @@ thinking. *******COMMENT ME OUT WHEN DONE*******
 %% @
 
 \rfoot{Appendix~\ref{chap:srg-requests} -- SRG requests}
-<<appendix-srg-requests, child='appendix-srg-requests/appendix-srg-requests-2019.rnw'>>=
+<<appendix-srg-requests, child='appendix-srg-requests/appendix-srg-requests-2020.rnw'>>=
 @
 
 \rfoot{Appendix~\ref{chap:glossary} -- Glossary}
