@@ -174,7 +174,7 @@ sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 2
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.2 <- c("2020.01.23_age1Survey",
+sens.model.dir.names.2 <- c("2020.01.23_age1Survey-old",
                             "2020.01.24_compWeight_HarmonicMean",
                             "2020.01.25_compWeight_Francis")
 sens.model.names.2 <- c("Add Age 1 Index",
@@ -217,7 +217,7 @@ sens.model.names.4 <- c("Phi t.v. selectivity (0.21)",
 ## -----------------------------------------------------------------------------
 sens.model.dir.names.5 <- c("2020.01.30_noCohort_ageError",
                             "2020.01.32_eqFecund_early5",
-                            "2020.01.33_eqFecund_early10")
+                            "2020.01.33_eqFecund_early10-old")
 sens.model.names.5 <- c("No ageing error",
                         "Fecundity early 5 yrs",
                         "Fecundity early 10 yrs")
@@ -381,4 +381,4 @@ build <- function(.run_forecasts = FALSE,
   })
   message("\nCompleted build.")
   invisible()
-}  
+}
