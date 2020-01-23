@@ -247,7 +247,7 @@ make.input.age.data.table(base.model,
 <<main.survey.history.table, results='asis', echo=FALSE>>=
 make.survey.history.table(survey.history,
                           digits = 3,
-                          xcaption = paste0("**ADD row for 2019. Summary of the acoustic surveys from 1995 to ", survey.end.yr, "."),
+                          xcaption = paste0("Summary of the acoustic surveys from 1995 to ", survey.end.yr, "."),
                           xlabel = "tab:main-survey-history",
                           font.size = 10,
                           space.size = 12)
@@ -289,7 +289,7 @@ make.parameters.estimated.summary.table(
   xcaption = paste0("Summary of estimated model parameters and priors in the base model.
                      The Beta prior is parameterized with a mean and standard deviation.
                      The Lognormal prior is parameterized with the median and standard
-                     deviation in log space.**ADD DM prior"),
+                     deviation in log space."),
   xlabel = "tab:main-params-est-summary",
   font.size = 10,
   space.size = 12)
@@ -322,7 +322,7 @@ make.assessment.changes.table(assessment.changes,
   "The bias adjustment is reported as the maximum used for each assessment. ",
   "Methods used to weight the age-composition data (Comp Method), i.e., ",
   "McAllister-Ianelli (MI) and Dirichlet-Multinomial (DM) approaches, are explained in ",
-  "the main text.**Need 2020."),
+  "the main text."),
   xlabel = "tab:main-assessment-changes")
 @
 

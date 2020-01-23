@@ -74,7 +74,7 @@ tlmgr install lxfonts
     ```
 
   * To re-run items for a given model (deleting previous ones), do the following. Note that
-    .model_name can be a list of model directory names.
+    .model_list can be a vector of model directory names.
   ```R
     source(file.path(here::here(), "R/all.r"))
     build(.run_forecasts = TRUE,
@@ -83,7 +83,7 @@ tlmgr install lxfonts
           .run_catch_levels_default_hr = TRUE,
           .run_catch_levels_spr_100 = TRUE,
           .run_catch_levels_stable_catch = TRUE,
-          .model_name = "model-directory-name")
+          .model_list = "model-directory-name")
   ```
 
 ## How to create hake-assessment.pdf
