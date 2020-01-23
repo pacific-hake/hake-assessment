@@ -252,7 +252,10 @@ make.parameters.estimated.summary.table <- function(model,
                       ")"),
                2,
                paste0("(", dm[lo], ",", dm[hi], ")"),
-               "Uniform")
+               paste0("Normal(",
+                      dm[4], ",",
+                      dm[5],
+                      ")"))
                ##fetch.prior.info(dm, digits))
 
   tab <- rbind(r0.vals,
