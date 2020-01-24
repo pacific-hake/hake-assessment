@@ -9,6 +9,7 @@
 model-partest.RData
 .RHistory
 *.7z
+*.zip
 *.toc
 *.out
 doc/cache/*
@@ -33,6 +34,7 @@ beamer/SRG/Assessment/knitr-cache*
 beamer/SRG/Data/knitr-cache*
 beamer/SRG/Management/knitr-cache*
 beamer/SRG/Requests/knitr-cache*
+beamer/SRG/Requests/Figures-2018/*
 beamer/SRG/Sensitivities/knitr-cache*
 *.tex
 beamer/SRG/Management/beamer-hake-management.tex
