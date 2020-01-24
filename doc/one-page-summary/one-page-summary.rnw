@@ -6,29 +6,25 @@
 \phantomsection \addcontentsline{toc}{section}{ONE-PAGE SUMMARY}
 
 \begin{itemize}
-  \item **The stock assessment model for \Sexpr{assess.yr} is similar in structure
+  \item The stock assessment model for \Sexpr{assess.yr} is similar in structure
 to the \Sexpr{last.assess.yr} model. It is fit to an acoustic survey index of
 abundance, annual commercial catch data, and age-composition data from the
 survey and commercial fisheries.
 
-  \item **The only structural change from \Sexpr{last.assess.yr} is the inclusion
-  of time-varying (rather than constant) fecundity.
-  This is achieved by using a single maturity-at-age curve multiplied by
-  yearly weight-at-age data to produce the fecundity-at-age for each year.
+  \item Structurally, the assessment was changed from \Sexpr{last.assess.yr} in three ways. First, a nearly uniform prior (in transformed space) was applied to the Dirichlet-Multinomial parameters used to weight the age-compostion data. Second, the constraint that estimated recruitment deviations sum to zero was removed. Lastly, weight-at-age data for the forecast period was calculated using the average of the five most recent years rather than all years.
 
-  \item **Updates to the data include:
-%%the biomass estimate and age-composition data from the acoustic survey conducted
-%%in \Sexpr{survey.end.yr},
+  \item Updates to the data include:
+the biomass estimate and age-composition data from the acoustic survey conducted in \Sexpr{survey.end.yr},
 minor changes to historical (pre-\Sexpr{end.yr-1}) catch, age composition, and
 weight-at-age data; addition of \Sexpr{end.yr-1} fishery catch and age-composition
 data; and addition of \Sexpr{last.data.yr} weight-at-age data.
 
-  \item **Coastwide catch in \Sexpr{end.yr-1} was the second largest on record at
+  \item Coastwide catch in \Sexpr{end.yr-1} was the third largest on record at
     \Sexpr{last.year.landings}~t [t represents metric tons],
 out of a Total Allowable Catch (adjusted for carryovers) of \Sexpr{last.year.tac}~t. Attainment in
 the U.S. was \Sexpr{last.year.us.attained}\% of its quota
 (\Sexpr{paste0(ifelse(last.2year.us.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.us.attained.diff))}\%
-from last year); in Canada it was
+from last year); attainment in Canada was
 \Sexpr{last.year.can.attained}\%
 (\Sexpr{paste0(ifelse(last.2year.can.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.can.attained.diff))}\%
 from last year).
