@@ -365,8 +365,8 @@ thinking. *******COMMENT ME OUT WHEN DONE*******
 <<>>=
 sens.model <- sens.models.5[[3]]
 @
-\rfoot{Appendix~\ref{chap:fecundity-53} -- Fecundity sensitivity 53}
-<<appendices-fecundity, child='appendices-fecundity/appendix-fecundity-53.rnw'>>=
+\rfoot{Appendix~\ref{chap:eq-fecundity-early-10} -- Fecundity sensitivity}
+<<appendices-fecundity, child='appendices-fecundity/appendix-eq-fecundity-early-10.rnw'>>=
  @
 
 <<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
