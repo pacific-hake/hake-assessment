@@ -250,18 +250,20 @@ weight.at.age.heatmap(base.model)
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth, height=6.5in]{main-figures/Weight_ls}
-\end{center}
-\vspace{0mm}
-\caption{**Fit (red lines) to yearly weight-at-age data (standard box plots) by
-   age group (age-2 to age-15; where age-15 is an accumulator group) using weighted
-   least squares.  Statistical weights in the regression were based on the
-   inverse of the annual sample variance.**UPDATE FIGURE AS MANUAL}
-\label{fig:main-empirical.weight.at.age.years}
-\end{figure}
+%Aaron commenting out for this year as this analysis was somewhat of a one off and actually
+%with new weight data isn't up to date anyway
+%\begin{figure}[H]
+%\begin{center}
+%\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+%\includegraphics[width=\maxwidth, height=6.5in]{main-figures/Weight_ls}
+%\end{center}
+%\vspace{0mm}
+%\caption{**Fit (red lines) to yearly weight-at-age data (standard box plots) by
+%   age group (age-2 to age-15; where age-15 is an accumulator group) using weighted
+%   least squares.  Statistical weights in the regression were based on the
+%   inverse of the annual sample variance.**UPDATE FIGURE AS MANUAL}
+%\label{fig:main-empirical.weight.at.age.years}
+%\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
