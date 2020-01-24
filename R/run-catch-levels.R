@@ -36,7 +36,11 @@ fetch_catch_levels <- function(catch_levels_path,
                           verbose = FALSE)
   
   ind <- length(catch_levels) - 2
-  catch_levels[[ind]][[1]] <- fore$ForeCatch$Catch_or_F
+  colCatch <- grep("Catch.or.F", colnames(fore$ForeCatch))
+  if (length(colCatch) != 1) {
+    stop("The column 'Catch or F' was not found in the forecast file Catch matrix.")
+  }
+  catch_levels[[ind]][[1]] <- fore$ForeCatch[, colCatch]
   
   default_hr_path <- file.path(catch_levels_path, default_hr_path)
   message("Loading 'Default HR' catch level data from ", default_hr_path)
@@ -47,7 +51,7 @@ fetch_catch_levels <- function(catch_levels_path,
                           nseas = 1,
                           verbose = FALSE)
   ind <- ind + 1
-  catch_levels[[ind]][[1]] <- fore$ForeCatch$Catch_or_F
+  catch_levels[[ind]][[1]] <- fore$ForeCatch[, colCatch]
   
   stable_catch_path <- file.path(catch_levels_path, stable_catch_path)
   message("Loading 'Stable Catch' catch level data from ", stable_catch_path)
@@ -58,7 +62,7 @@ fetch_catch_levels <- function(catch_levels_path,
                           nseas = 1,
                           verbose = FALSE)
   ind <- ind + 1
-  catch_levels[[ind]][[1]] <- fore$ForeCatch$Catch_or_F
+  catch_levels[[ind]][[1]] <- fore$ForeCatch[, colCatch]
   message("Successfully loaded catch level data.")
   
   catch_levels
