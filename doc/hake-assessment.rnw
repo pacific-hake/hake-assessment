@@ -362,12 +362,12 @@ thinking. *******COMMENT ME OUT WHEN DONE*******
 <<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
 @
 
-%% <<>>=
-%% sens.model <- sens.models.5[[2]]
-%% @
-%% \rfoot{Appendix~\ref{chap:fecundity-53} -- Fecundity sensitivity 53}
-%% <<appendices-fecundity, child='appendices-fecundity/appendix-fecundity-53.rnw'>>=
-%% @
+<<>>=
+sens.model <- sens.models.5[[3]]
+@
+\rfoot{Appendix~\ref{chap:fecundity-53} -- Fecundity sensitivity 53}
+<<appendices-fecundity, child='appendices-fecundity/appendix-fecundity-53.rnw'>>=
+ @
 
 <<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
 @
