@@ -257,6 +257,7 @@ sens.model.names.6 <- c("TODO: remove this",
 model_list <- c(base.model.dir.name,
                 unlist(bridge.model.dir.names.1),
                 unlist(bridge.model.dir.names.2),
+                unlist(bridge.model.dir.names.3),
                 unlist(sens.model.dir.names.1),
                 unlist(sens.model.dir.names.2),
                 #unlist(sens.model.dir.names.3),
@@ -288,6 +289,7 @@ load.models.into.parent.env <- function(){
   last.yr.base.model <<- load.models(rootd.models, last.yr.base.model.dir.name)
   bridge.models.1    <<- load.models(rootd.models, bridge.model.dir.names.1)
   bridge.models.2    <<- load.models(rootd.models, bridge.model.dir.names.2)
+  bridge.models.3    <<- load.models(rootd.models, bridge.model.dir.names.3)
   sens.models.1      <<- load.models(rootd.models, sens.model.dir.names.1)
   sens.models.2      <<- load.models(rootd.models, sens.model.dir.names.2, TRUE)
   ## sens.models.3      <<- load.models(rootd.models, sens.model.dir.names.3)
