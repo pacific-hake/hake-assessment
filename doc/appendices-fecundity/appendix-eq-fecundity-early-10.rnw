@@ -1,13 +1,19 @@
 \newpage
 
-\chapter{Fecundity sensitivity Run 53}
+\chapter{Fecundity sensitivity run}
 \label{chap:fecundity-53}
 
-This appendix contains MCMC model results for the fecundity sensitivity, run 53
+**Please check, winging this off the top of my head to get it working:
+**This appendix contains MCMC model results for the run in which the equilibrium
+fecundity as assumed to be the average of the first ten years of data,
 as described in
-Sections~\ref{sec:assessment-fecundity-recap}--\ref{sec:assessment-sensitivity-fecundity}
-and Table~\ref{tab:main-wtatage-runs}.
+**Sections~\ref{sec:assessment-fecundity-recap}--\ref{sec:assessment-sensitivity-fecundity}
+**and Table~\ref{tab:main-wtatage-runs}.
 
+**Check text and figures - all works, haven't checked if correct or make sense.
+
+% Keeping chunk names as ...53, which is from 2019 assessment (where we had four
+% similar appendices), but not worth changing as it's just the labels).
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
