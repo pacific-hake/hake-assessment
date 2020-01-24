@@ -132,28 +132,39 @@ message("Last assessment year's base model pretty name: ", last.yr.base.model.na
 ## Bridge models group 1
 ## -----------------------------------------------------------------------------
 bridge.model.dir.names.1 <- c(last.yr.base.model.dir.name,
-                              "2020.00.01_update_pre2019_data",
-                              "2020.00.01_update_pre2019_data",
-                              "2020.00.01_update_pre2019_data")
+                              "2019.03.91_3.30.14.08",
+                              "2019.03.92_simpledevs")
 bridge.model.names.1 <- c(last.yr.base.model.name,
-                          "Update historic catch",
-                          "Update historic comps",
-                          "Update historic weights")
-bridge.model.end.yr.1 <- end.yr - c(1, 1, 1, 1) # subtract 1 year from all 4 models
+                          "Update stock synthesis",
+                          "Use simple rec devs")
+bridge.model.end.yr.1 <- end.yr - c(1, 1, 1) # subtract 1 year from all 4 models
 
 
 ## -----------------------------------------------------------------------------
 ## Bridge models group 2
 ## -----------------------------------------------------------------------------
-bridge.model.dir.names.2 <- c(last.yr.base.model.dir.name,
+bridge.model.dir.names.2 <- c("2019.03.92_simpledevs",
+                              "2020.00.01_update_pre2019_data",
                               "2020.00.02_add_2019_catch",
-                              "2020.00.02_add_2019_catch",
-                              "2020.00.02_add_2019_catch")
-bridge.model.names.2 <- c(last.yr.base.model.name,
+                              "2020.00.04_add_fishery_comps")
+bridge.model.names.2 <- c("Use simple rec devs",
+                          "Update pre-2019 data",
                           "Add 2019 catch",
-                          "Add 2019 comps and weights",
-                          "Time-varying fecundity (= base model)")
+                          "Add 2019 fishery comps and weights")
 bridge.model.end.yr.2 <- end.yr - c(1, 0, 0, 0) # subtract 1 year from first 1 models
+
+## -----------------------------------------------------------------------------
+## Bridge models group 3
+## -----------------------------------------------------------------------------
+bridge.model.dir.names.3 <- c("2020.00.04_add_fishery_comps",
+                              "2020.00.06_add_2019_survey_bio",
+                              "2020.00.07_add_2019_survey_ages",
+                              "2020.01.09_DMprior_base")
+bridge.model.names.3 <- c("Add 2019 comps and weights",
+                          "Update and add 2019 survey biomass",
+                          "Add 2019 survey comps",
+                          "Add Dirichlet prior and tune (=base model)")
+bridge.model.end.yr.3 <- end.yr - c(0, 0, 0, 0) # subtract 1 year from first 1 models
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 1
