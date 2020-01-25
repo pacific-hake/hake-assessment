@@ -349,11 +349,11 @@ make.short.parameter.estimates.sens.table <- function(models,
   ## xlabel - the label used to reference the table in latex
   ## font.size - size of the font for the table
   ## space.size - size of the vertical spaces for the table
-  ## getrecs - a vector of integers supplying the years for which you want
+  ## getrecs - a vector of integers of length 3 supplying the years for which you want
   ##   estimates of recruitment. Must be of length three.
   ## show.likelihoods - if TRUE, return the negative log-likelihoods (FALSE for presentations)
   if (length(getrecs) != 3) stop("The make short function only works",
-    "with three years of recruitments I think.")
+    "with three years of recruitments", call. = FALSE)
 
   tab <- NULL
   for(model in models){
@@ -632,6 +632,7 @@ make.short.parameter.estimates.table <- function(model,
                                                  last.yr.model,
                                                  posterior.regex,
                                                  end.yr,
+                                                 getrecs = c(2010, 2014, 2016),
                                                  digits = 3,
                                                  xcaption = "default",
                                                  xlabel   = "default",
@@ -650,7 +651,11 @@ make.short.parameter.estimates.table <- function(model,
   ## xlabel - the label used to reference the table in latex
   ## font.size - size of the font for the table
   ## space.size - size of the vertical spaces for the table
-
+  ## getrecs - a vector of integers of length 3 supplying the years for which you want
+  ##   estimates of recruitment. Must be of length three.
+  if (length(getrecs) != 3) stop("The make short function only works",
+                                 "with three years of recruitments", call. = FALSE)
+  
   ## This year's model MLE
   parms <- model$estimated_non_dev_parameters
   p.names <- rownames(parms)
@@ -664,21 +669,11 @@ make.short.parameter.estimates.table <- function(model,
   mle.q <- round(model$cpue$Calc_Q[1],3)
   mle.par <- c(mle.par, mle.q)
 
-  ## Add 2008 recruitment
-  rec <- model$recruit[model$recruit$Yr == 2008,]$pred_recr
-  rec <- rec / 1000
-  mle.par <- c(mle.par, rec)
-
-  ## Add 2010 recruitment
-  rec <- model$recruit[model$recruit$Yr == 2010,]$pred_recr
-  rec <- rec / 1000
-  mle.par <- c(mle.par, rec)
-
-  ## Add 2014 recruitment
-  rec <- model$recruit[model$recruit$Yr == 2014,]$pred_recr
-  rec <- rec / 1000
-  mle.par <- c(mle.par, rec)
-
+  for (reci in getrecs) {
+    mle.par <- c(mle.par,
+                 rec <- model$recruit[model$recruit$Yr == reci,]$pred_recr / 1000)
+  }
+  
   ## Add B0
   b0 <- model$SBzero ## Note that this is divided by 2 in a single sex model
   b0 <- b0 / 1000    ## To make B0 in the thousands
@@ -734,21 +729,11 @@ make.short.parameter.estimates.table <- function(model,
     }
     mcmc.meds <- c(mcmc.meds, q)
 
-    ## Add 2008 recruitment
-    rec <- median(x$mcmc$Recr_2008)
-    rec <- rec / 1000
-    mcmc.meds <- c(mcmc.meds, rec)
-
-    ## Add 2010 recruitment
-    rec <- median(x$mcmc$Recr_2010)
-    rec <- rec / 1000
-    mcmc.meds <- c(mcmc.meds, rec)
-
-    ## Add 2014 recruitment
-    rec <- median(x$mcmc$Recr_2014)
-    rec <- rec / 1000
-    mcmc.meds <- c(mcmc.meds, rec)
-
+    for (reci in getrecs) {
+      mcmc.meds <- c(mcmc.meds,
+                     median(x$mcmc[[paste0("Recr_", reci)]]) / 1000)
+    }
+    
     ## Add B0
     b0 <- median(x$mcmc$SSB_Initial / 2) ## divide by 2 for females
     b0 <- b0 / 1000 ## To make B0 in the thousands
@@ -853,9 +838,7 @@ make.short.parameter.estimates.table <- function(model,
                  paste0("Catchability (",
                         latex.italics("q"),
                         ")"),
-                 "2008 recruitment (millions)",
-                 "2010 recruitment (millions)",
-                 "2014 recruitment (millions)",
+                 paste(getrecs, "recruitment (millions)"),
                  paste0("Unfished female spawning biomass (",
                         latex.subscr(latex.italics("B"), "0"),
                         ", thousand~t)"),
