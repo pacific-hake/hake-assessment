@@ -29,6 +29,8 @@ Imports:
     here,
     knitr,
     lubridate,
+    nwfscMapping,
+    PBSmapping,
     rnaturalearthhires
     r4ss (>= 1.35.3),
     rgeos,
@@ -36,6 +38,7 @@ Imports:
     tidyverse,
     utils
 Remotes: 
+    github::nwfsc-assess/nwfscMapping@development,
     github::r4ss/r4ss@development,
     github::ropensci/rnaturalearthhires
 RoxygenNote: 7.0.2.9000

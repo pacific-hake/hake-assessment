@@ -79,12 +79,12 @@ maturity.ogive.figure <- function(model, useyears = 1975:2018){
     wtatage.lines.new$comment[wtatage.lines.new$Yr>=1975] <- "#maturity * annual wt."
   }
 
-  avg.wt <- apply(model$wtatage[grepl("#wt_flt_1", model$wtatage$comment) &
+  avg.wt <- apply(model$wtatage[model$wtatage$Fleet == 1 &
                                 model$wtatage$Yr %in% useyears,
                                 grep("^\\d", colnames(model$wtatage))],
                   2,
                   mean)
-  fec.vec.new <- apply(model$wtatage[grepl("fecun", model$wtatage$comment) &
+  fec.vec.new <- apply(model$wtatage[model$wtatage$Fleet == -2 &
                                      model$wtatage$Yr %in% useyears,
                                      grep("^\\d", colnames(model$wtatage))],
                        2,

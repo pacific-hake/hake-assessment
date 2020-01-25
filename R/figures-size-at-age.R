@@ -91,9 +91,9 @@ weight.at.age.heatmap <- function(model,
   }
 
 
-  wa <- as_tibble(model$wtatage) %>%
+  wa <- as_tibble(model$wtatage[, !grepl("comment", colnames(model$wtatage))]) %>%
     dplyr::filter(Fleet == fleet) %>%
-    select(-c(Seas, Sex, Bio_Pattern, BirthSeas, Fleet, comment)) %>%
+    select(-c(Seas, Sex, Bio_Pattern, BirthSeas, Fleet)) %>%
      dplyr::filter(Yr > 0)
 
   wa <- wa[,1:17]
