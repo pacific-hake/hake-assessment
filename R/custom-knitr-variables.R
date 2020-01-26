@@ -189,12 +189,9 @@ catches.below.200000.since.1986 <- number.to.word(length(filter(catches, TOTAL <
 ################################################################################
 ## Age composition data for data section
 survey.age.years <- base.model$dat$agecomp[base.model$dat$agecomp$FltSvy == 2,]$Yr
-max.survey.age.prop <- make.age.comp.bubble.plot(base.model,
-                                                 subplot = 2,
-                                                 do.plot = FALSE)
-max.fishery.age.prop <- make.age.comp.bubble.plot(base.model,
-                                                  subplot = 1,
-                                                  do.plot = FALSE)
+max.fishery.age.prop <- get_age_comp_limits(base.model, type = 1)
+max.survey.age.prop <- get_age_comp_limits(base.model, type = 2)
+
 catch.limit.quantiles <- f(as.numeric(quantile(base.model$mcmc[[paste0("ForeCatch_", end.yr)]],
                                                probs=c(0.025, 0.5, 0.975))))
 names(catch.limit.quantiles) <- c("lower", "median", "upper")

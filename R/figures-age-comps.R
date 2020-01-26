@@ -62,103 +62,111 @@ make.fleet.age.comp.pearson.plot <- function(model,                ## model is a
   par <- oldpar
 }
 
-make.age.comp.bubble.plot <- function(model,                  ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
-                                      subplot = 1,            ## 1) fishery or 2) survey
-                                      start.yr = min(dat$Yr), ## First year for age comps - default from the data frame
-                                      end.yr = max(dat$Yr),   ## Last year for age comps - default from the data frame
-                                      show.key = FALSE,       ## Show some sample bubbles at the top with sizes
-                                      key.yrs = NULL,         ## Vector of 4 years for locations to put the key if show.key == TRUE
-                                      fg = gray(level=0.1, alpha=0.5),
-                                      bg = gray(level=0.5, alpha=0.5),
-                                      cohortlines = c(),      ## Vector of cohorts for which diagonal lines would be drawn
-                                      inches = 0.12,
-                                      do.plot = TRUE          ## If FALSE, no plot will be drawn, but the return values will be returned
-                                      ){
-  ## Plot the age compositions for whatever subplot is set to
-  ## Returns a vector of the start.yr, end.yr, max. proportion,
-  ##  year of max. proportion, age of max. proportion.
-  if(do.plot){
-    oldpar <- par()
-  }
-  if(show.key){
-    if(is.null(key.yrs)){
-      stop("make.age.comp.bubble.plot: Error - you must supply a key.yrs vector of 4 years when specifying show.key = TRUE.\n")
-    }else{
-      if(length(key.yrs) != 4){
-        stop("make.age.comp.bubble.plot: Error - key.yrs must be a vector of exactly 4 years when specifying show.key = TRUE.\n")
-      }
-    }
-    if(do.plot){
-      par(mar = c(2.1, 4.1, 3.1, 4.1), cex.axis = 0.9)
-    }
-  }else{
-    if(do.plot){
-      par(mar = c(2.1, 4.1, 1.1, 4.1), cex.axis = 0.9)
-    }
-  }
-  dat <- model$dat$agecomp[model$dat$agecomp$FltSvy == subplot,]
-  if(end.yr < start.yr){
-    stop("make.age.comp.bubble.plot: Error - end.yr cannot be less than start.yr\n")
-  }
-  ages.str <- names(dat)[grep("^a[0-9]+$", names(dat))]
-  ages <- as.numeric(gsub("a", "", ages.str))
-  min.age <- min(ages)
-  max.age <- max(ages)
-  ## Get the maximum proportion and its location within the data
-  age.df <- dat[,names(dat) %in% ages.str]
-  age.df <- as.matrix(age.df)
-  age.vec <- as.numeric(age.df)
-  max.prop <- max(age.vec)
-  which.max.prop <- which(age.df == max(age.vec), arr.ind = TRUE)
-  ## Convert the locations to year and age for return statement
-  which.max.prop <- c(dat$Yr[which.max.prop[1]], ages[which.max.prop[2]])
+#' Make a bubble plot from the given data
+#'
+#' @param d a [tibble::tibble()] of the data in long format with column names `Year`, `Age`, and `Proportion`
+#' @param clines An optional vector of years to draw cohort lines through
+#' @param yrs A vector of 2, for the years to show on the plot
+#' @param by How many years between year labels on the x-axis
+#' @param legend_pos See [ggplot2::theme(legend.position)]
+#'
+#' @return A [ggplot2::ggplot()] object
+#' @export
+plot_bubbles <- function(d,
+                         clines = c(1980, 1999, 2010, 2014, 2016),
+                         yrs = NULL,
+                         by = 5,
+                         ...){
 
-  if(subplot == 1){
-    label <- "Fishery ages"
-  }else if(subplot == 2){
-    label <- "Survey ages"
+  if(is.null(yrs)){
+    xlim <- c(min(d$Year), max(d$Year))
   }else{
-    cat("make.age.comp.fit.plot: Error - subplot must be either 1 or 2.\n\n")
+    xlim <- c(yrs[1], yrs[2])
   }
-  x <- data.frame(expand.grid(dat$Yr, min.age:max.age),
-                  prop = unlist(dat[,ages.str]))
-  names(x) <- c("Yr", "Age", "prop")
-  if(do.plot){
-    symbols(c(as.numeric(as.character(x[,1])), -1),
-            c(as.numeric(as.character(x[,2])), -1),
-            circles = sqrt(c(as.numeric(as.character(x[,3])), max.prop)),
-            inches = inches,
-            ylim = c(min.age, max.age),
-            xlim = c(as.numeric(start.yr), as.numeric(end.yr)),
-            xlab = "",
-            ylab = label,
-            xaxt = "n",
-            fg = fg,
-            bg = bg)
-    if(show.key){
-      symbols(0.2 + c(key.yrs, -1),
-              c(16.2, 16.2, 16.2, 16.2, -1),
-              circles = sqrt(c(1, 10, 25, 50, max.prop)),
-              inches = inches,
-              add = TRUE,
-              xpd = NA,
-              fg = fg,
-              bg = bg)
-      text(key.yrs + 2.2, c(16.2,16.2,16.2,16.2), c("0.01", "0.1", "0.25", "0.5"), xpd = NA, cex = 0.8)
-    }
-    if(length(cohortlines > 0)){
-      for(icohort in 1:length(cohortlines)){
-        lines(c(cohortlines[icohort],cohortlines[icohort]+model$accuage),
-              c(0,model$accuage),col="red")
-      }
-    }
-    axis(1, seq(as.numeric(start.yr), as.numeric(end.yr) + 5, 5))
-    axis(4)
-    par <- oldpar
+  g <- ggplot(d, aes(x = Year, y = Age, size = sqrt(Proportion))) +
+    geom_point(alpha = 0.3) +
+    scale_x_continuous(breaks = seq(from = 1900, to = 2100, by = by)) +
+    coord_cartesian(xlim) +
+    expand_limits(x = xlim[1]:xlim[2])
+  if(!is.null(clines)){
+    clines <- tibble(year = clines,
+                     y = 0,
+                     xend = clines + max(as.numeric(d$Age)),
+                     yend = max(as.numeric(d$Age)))
+    g <- g +
+      geom_segment(data = clines,
+                   x = clines$year,
+                   y = clines$y,
+                   aes(xend = clines$xend,
+                       yend = clines$yend),
+                   size = 1,
+                   color = "red",
+                   ...)
   }
-  ret.vec <- c(as.numeric(start.yr), as.numeric(end.yr), max.prop, which.max.prop)
-  names(ret.vec) <- c("start.yr", "end.yr", "max.prop", "max.prop.yr", "max.prop.age")
-  return(ret.vec)
+  
+  g <- g + 
+    theme(...) +
+    guides(size = guide_legend(title = "Proportion"))
+  
+  g
+}
+
+#' Get the start and end year of the age comp data, and maximum proportion overall with its year and age
+#'
+#' @param model A model as returnded by [load.ss.files()]
+#' @param type 1 for Fishery and 2 for Survey
+#'
+#' @return A vector of 5 elements as described above
+#' @export
+get_age_comp_limits <- function(model, type = 1){
+
+  dat <- model$dat$agecomp %>% 
+    filter(FltSvy == type) %>% 
+    select(Yr, starts_with("a", ignore.case = FALSE)) %>% 
+    setNames(gsub("a", "", names(.))) %>% 
+    rename(Year = Yr)
+  
+  subdat <- dat %>% select(-Year)
+  max_row_col <- which(subdat == max(subdat), arr.ind = TRUE)
+  max_prop_yr <- dat[max_row_col[1],]$Year
+  max_prop_age <- names(subdat)[max_row_col[2]]
+  ret_vec <- c(as.integer(min(dat$Year)),
+               as.integer(max(dat$Year)),
+               max(subdat),
+               max_prop_yr,
+               max_prop_age)
+
+  names(ret_vec) <- c("start.yr", "end.yr", "max.prop", "max.prop.yr", "max.prop.age")
+
+  ret_vec
+}
+
+#' Make an age composition bubble plot
+#'
+#' @param model A model object as returned from [load.ss.files()]
+#' @param subplot 1 for fishery, 2 for survey
+#'
+#' @return A [ggplot2::ggplot()] object
+#' @export
+make_age_comp_bubble_plot <- function(model,
+                                      subplot = 1,
+                                      ...){
+                                        
+  dat <- model$dat$agecomp %>% 
+    filter(FltSvy == subplot) %>% 
+    select(Yr, starts_with("a", ignore.case = FALSE)) %>% 
+    setNames(gsub("a", "", names(.))) %>% 
+    rename(Year = Yr) %>% 
+    mutate(n = rowSums(.[-1])) %>% 
+    mutate_at(vars(-Year), ~(./n)) %>% 
+    select(-n) %>% 
+    melt(id.var = "Year") %>% 
+    as_tibble() %>% 
+    rename(Age = variable, Proportion = value)
+
+  g <- plot_bubbles(dat, ...)
+  
+  g  
 }
 
 make.age.comp.compare.bubble.plot <- function(model,                  ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
