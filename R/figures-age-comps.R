@@ -7,6 +7,20 @@ make.numbers.at.age.plot <- function(model){ ## model is an mle run and is the o
                 pheight = 6)
 }
 
+make_age_comp_pearson_plot <- function(model,
+                                       subplot = 1,
+                                       ...){
+
+  dat <- model$agedbase %>% 
+    filter(Fleet == subplot) %>% 
+    transmute(Year = Yr, Age = Bin,  Pearson) %>% 
+    as_tibble()
+
+  g <- plot_pearson_bubbles(dat, ...)
+  
+  g
+}
+
 make.age.comp.pearson.plot <- function(model,                  ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
                                        subplot = 1,            ## 1) fishery or 2) survey
                                        start.yr = min(dat$Yr), ## First year for age comps - default from the data frame
@@ -83,6 +97,7 @@ plot_bubbles <- function(d,
   }else{
     xlim <- c(yrs[1], yrs[2])
   }
+  browser()
   g <- ggplot(d, aes(x = Year, y = Age, size = sqrt(Proportion))) +
     geom_point(alpha = 0.3) +
     scale_x_continuous(breaks = seq(from = 1900, to = 2100, by = by)) +
@@ -107,6 +122,67 @@ plot_bubbles <- function(d,
   g <- g + 
     theme(...) +
     guides(size = guide_legend(title = "Proportion"))
+  
+  g
+}
+
+#' Make a bubble plot from the given data
+#'
+#' @param d a [tibble::tibble()] of the data in long format with column names `Year`, `Age`, and `Proportion`
+#' @param clines An optional vector of years to draw cohort lines through
+#' @param yrs A vector of 2, for the years to show on the plot
+#' @param by How many years between year labels on the x-axis
+#' @param legend_pos See [ggplot2::theme(legend.position)]
+#'
+#' @return A [ggplot2::ggplot()] object
+#' @export
+plot_pearson_bubbles <- function(d,
+                                 clines = c(1980, 1999, 2010, 2014, 2016),
+                                 yrs = NULL,
+                                 by = 5,
+                                 ...){
+  
+  if(is.null(yrs)){
+    xlim <- c(min(d$Year), max(d$Year))
+  }else{
+    xlim <- c(yrs[1], yrs[2])
+  }
+
+  g <- ggplot(d, aes(x = Year,
+                     y = Age, 
+                     size = abs(Pearson),
+                     fill = factor(sign(as.numeric(Pearson))))) +
+    geom_point(pch = 21, ...) +
+    scale_x_continuous(breaks = seq(from = 1900, to = 2100, by = by)) +
+    scale_fill_manual(values = c("black", "white"), guide = FALSE) +
+    scale_size_area(breaks = c(4, 2, 1, 1, 2, 4),
+                    labels = c(-4, -2, -1, 1, 2, 4)) +
+    guides(area = guide_legend(override.aes =
+                                 list(size = c(4.44, 2.56, 1.78, 1.78, 2.56, 4.44),
+                                      fill = c("white", "black")))) +
+  coord_cartesian(xlim) +
+    expand_limits(x = xlim[1]:xlim[2])
+
+  if(!is.null(clines)){
+    clines <- tibble(year = clines,
+                     y = 0,
+                     xend = clines + max(as.numeric(d$Age)),
+                     yend = max(as.numeric(d$Age)))
+    g <- g +
+      geom_segment(data = clines,
+                   x = clines$year,
+                   y = clines$y,
+                   aes(xend = clines$xend,
+                       yend = clines$yend),
+                   size = 1,
+                   color = "red",
+                   inherit.aes = FALSE,
+                   ...)
+  }
+  
+  g <- g + 
+    theme(...) +
+    guides(size = guide_legend(title = "Residual"))
   
   g
 }
