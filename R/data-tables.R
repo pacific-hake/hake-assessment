@@ -28,6 +28,7 @@ can.ss.bottom.depth.file <- "depth-can-shoreside.csv"
 us.shore.catch.by.month.file <- "us-shore-catch-by-month.csv"
 us.cp.catch.by.month.file <- "us-cp-catch-by-month.csv"
 us.ms.catch.by.month.file <- "us-ms-catch-by-month.csv"
+us.ti.catch.by.month.file <- "us-ti-catch-by-month.csv"
 us.research.catch.by.month.file <- "us-research-catch-by-month.csv"
 us.ap.catch.file <- "us-ap-catch.csv"
 ## The following are used for the age comp-by fleet plot in the data/fisheries presentation, not the assessment document
@@ -62,6 +63,7 @@ can.jv.catch.by.month <- read.csv(file.path(rootd.data, can.jv.catch.by.month.fi
 us.shore.catch.by.month <- read.csv(file.path(rootd.data, us.shore.catch.by.month.file), stringsAsFactors = FALSE)
 us.cp.catch.by.month <- read.csv(file.path(rootd.data, us.cp.catch.by.month.file), stringsAsFactors = FALSE)
 us.ms.catch.by.month <- read.csv(file.path(rootd.data, us.ms.catch.by.month.file), stringsAsFactors = FALSE)
+us.ti.catch.by.month <- read.csv(file.path(rootd.data, us.ti.catch.by.month.file), stringsAsFactors = FALSE)
 us.research.catch.by.month <- read.csv(file.path(rootd.data, us.research.catch.by.month.file), stringsAsFactors = FALSE)
 us.ap.catch <- read.csv(file.path(rootd.data, us.ap.catch.file), stringsAsFactors = FALSE) ##, row.names = 1)
 ## For age comps-by fleet plots in the data presentation

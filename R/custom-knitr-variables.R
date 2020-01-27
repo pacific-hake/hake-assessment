@@ -14,6 +14,10 @@ tot.last.5.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% 
 tot.last.10.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-10):(end.yr-1),10]), 1)
 tot.last.year.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year == (end.yr-1),"ATTAIN"]), 1)
 tot.2015.attainment <- f(landings.vs.tac[landings.vs.tac$Year == 2015, "ATTAIN"], 1)
+tot.9192.attainment <- f(
+  sum(landings.vs.tac[landings.vs.tac$Year %in% 1991:1992, "TOTAL"])/
+  sum(landings.vs.tac[landings.vs.tac$Year %in% 1991:1992, "TAC"]) * 100, 0)
+tot.9399.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% 1993:1999, "ATTAIN"]), 0)
 
 ################################################################################
 ## Recent catches
@@ -43,6 +47,7 @@ last.year.us.research <- filter(further.tac, Year == last.data.yr)$us.research.q
 last.year.us.non.tribal <- filter(further.tac, Year == last.data.yr)$us.nontribal.quota
 last.year.us.tribal.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.tribal.quota.reallocated
 last.year.us.tribal.reallocate.dates <- filter(further.tac, Year == last.data.yr)$us.tribal.reallocate.dates
+last.year.us.tribal.reallocate.dates.f <- format(as.Date(as.character(last.year.us.tribal.reallocate.dates),"%d-%b"),"%B %d")
 last.year.us.tribal.max.landed <- filter(further.tac, Year == last.data.yr)$us.tribal.max.landed
 last.year.us.shore.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.shore.reallocated
 last.year.us.cp.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.cp.reallocated
@@ -54,6 +59,7 @@ last.year.us.research.catch <- filter(catches, Year == last.data.yr)$USresearch
 last.year.us.cp.catch <- filter(catches, Year == last.data.yr)$atSea_US_CP
 last.year.us.ms.catch <- filter(catches, Year == last.data.yr)$atSea_US_MS
 last.year.us.shore.catch <- filter(catches, Year == last.data.yr)$US_shore
+last.year.us.ti.catch <- sum(filter(us.ti.catch.by.month, year == last.data.yr)$catch)
 ## Last year US percent of TAC caught by fleet
 last.year.us.research.catch.percent <- f(last.year.us.research.catch / last.year.us.research * 100, 1)
 last.year.us.cp.catch.percent <- f(last.year.us.cp.catch / last.year.us.cp.quota.reallocated * 100, 1)
@@ -233,6 +239,41 @@ third.shoreside.age.prop <- f(ss.age.prop.holder[2] * 100, 1)
 ss.age.prop.holder <- get.age.prop(last.year.can.ages.ss, 4)
 fourth.shoreside.age.prop.age <- ss.age.prop.holder[1]
 fourth.shoreside.age.prop <- f(ss.age.prop.holder[2] * 100, 1)
+
+################################################################################
+## US age data variables
+us.age.n.cp <- us.cp.age[us.cp.age$year == last.data.yr, "n.hauls"]
+us.age.n.ms <- us.ms.age[us.ms.age$year == last.data.yr, "n.hauls"]
+us.last.year.age.cp <- us.cp.age[us.cp.age$year == last.data.yr, grep("^a", colnames(us.cp.age))]
+us.last.year.age.cp <- us.last.year.age.cp[order(us.last.year.age.cp, decreasing = TRUE)]
+us.age.1.prop.age.cp <- as.numeric(gsub("^a", "", names(us.last.year.age.cp)[1]))
+us.age.1.prop.cp <- f(us.last.year.age.cp[1]*100,1)
+us.age.2.prop.age.cp <- as.numeric(gsub("^a", "", names(us.last.year.age.cp)[2]))
+us.age.2.prop.cp <- f(us.last.year.age.cp[2]*100,1)
+us.age.3.prop.age.cp <- as.numeric(gsub("^a", "", names(us.last.year.age.cp)[3]))
+us.age.3.prop.cp <- f(us.last.year.age.cp[3]*100,1)
+us.age.4.prop.age.cp <- as.numeric(gsub("^a", "", names(us.last.year.age.cp)[4]))
+us.age.4.prop.cp <- f(us.last.year.age.cp[4]*100,1)
+us.last.year.age.ms <- us.ms.age[us.ms.age$year == last.data.yr, grep("^a", colnames(us.ms.age))]
+us.last.year.age.ms <- us.last.year.age.ms[order(us.last.year.age.ms, decreasing = TRUE)]
+us.age.1.prop.age.ms <- as.numeric(gsub("^a", "", names(us.last.year.age.ms)[1]))
+us.age.1.prop.ms <- f(us.last.year.age.ms[1]*100,1)
+us.age.2.prop.age.ms <- as.numeric(gsub("^a", "", names(us.last.year.age.ms)[2]))
+us.age.2.prop.ms <- f(us.last.year.age.ms[2]*100,1)
+us.age.3.prop.age.ms <- as.numeric(gsub("^a", "", names(us.last.year.age.ms)[3]))
+us.age.3.prop.ms <- f(us.last.year.age.ms[3]*100,1)
+us.age.4.prop.age.ms <- as.numeric(gsub("^a", "", names(us.last.year.age.ms)[4]))
+us.age.4.prop.ms <- f(us.last.year.age.ms[4]*100,1)
+us.last.year.age.shore <- us.shore.age[us.shore.age$year == last.data.yr, grep("^a", colnames(us.shore.age))]
+us.last.year.age.shore <- us.last.year.age.shore[order(us.last.year.age.shore, decreasing = TRUE)]
+us.age.1.prop.age.shore <- as.numeric(gsub("^a", "", names(us.last.year.age.shore)[1]))
+us.age.1.prop.shore <- f(us.last.year.age.shore[1]*100,1)
+us.age.2.prop.age.shore <- as.numeric(gsub("^a", "", names(us.last.year.age.shore)[2]))
+us.age.2.prop.shore <- f(us.last.year.age.shore[2]*100,1)
+us.age.3.prop.age.shore <- as.numeric(gsub("^a", "", names(us.last.year.age.shore)[3]))
+us.age.3.prop.shore <- f(us.last.year.age.shore[3]*100,1)
+us.age.4.prop.age.shore <- as.numeric(gsub("^a", "", names(us.last.year.age.shore)[4]))
+us.age.4.prop.shore <- f(us.last.year.age.shore[4]*100,1)
 
 ################################################################################
 ## Years for which median recruitment is below the mean of the median
