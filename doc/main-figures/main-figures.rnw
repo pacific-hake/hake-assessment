@@ -90,7 +90,7 @@ make.catches.plot(catches, leg.y.loc = 550)
 \includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishCatchRatesUS}
 \end{center}
 \caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in
-  the U.S. at-sea fleet from 2014--\Sexpr{last.data.yr}.**NEED NEW FIGURE}
+  the U.S. at-sea fleet from 2014--\Sexpr{last.data.yr}.}
 \label{fig:main-us-catch-rates}
 %%%%%%%%%%%%%%%%%%%%%%%
 %% JOINED ON PAGE
@@ -112,7 +112,7 @@ make.catches.plot(catches, leg.y.loc = 550)
   mtext("Depth (m)", side = 2, outer = TRUE, line = -0.5, col = "black")
 @
 \end{center}
-\caption{Distribution of fishing depths (left) and bottom depths (right), in meters, of \fishname\ catches in the U.S. at-sea fleet from 2014--\Sexpr{last.data.yr}.**NEED NEW FIGURE}
+\caption{Distribution of fishing depths (left) and bottom depths (right), in meters, of \fishname\ catches in the U.S. at-sea fleet from \Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}.}
 \label{fig:main-us-at-sea-depths}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
