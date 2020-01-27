@@ -136,14 +136,11 @@ make.data.overview.plot(base.model)
 \begin{center}
 <<main.age.comp.bubbles, fig.height=5, fig.width=8>>=
 layout(matrix(c(1, 1), nrow = 2, ncol = 1, byrow = TRUE))
-## The return values from the plot function contain
-## start year, end year, max. proportion,
-##  year of max. proportion, age of max. proportion.
-make_age_comp_bubble_plot(base.model, subplot = 2, legend.position = "top")
-make_age_comp_bubble_plot(base.model, subplot = 1, legend.position = "none")
+make_age_comp_bubble_plot(base.model, subplot = 1, legend.position = "top", alpha = 0.4)
+make_age_comp_bubble_plot(base.model, subplot = 2, alpha = 0.4)
 @
 \end{center}
-\caption{Age compositions for the acoustic survey (top) and the aggregate fishery (bottom, all sectors combined)
+\caption{Age compositions for the aggregate fishery (top, all sectors combined) and acoustic survey (bottom)
   for the years \Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}.
   Proportions in each year sum to 1.0 and area of the bubbles are
   proportional to the proportion and consistent in both panels (see key at top).
@@ -597,14 +594,15 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main.age.comp.pearson, fig.height=8, fig.width=8>>=
-make.age.comp.pearson.plot(base.model)
+<<main.age.comp.pearson, fig.height=5, fig.width=8>>=
+layout(matrix(c(1, 2), nrow = 2, ncol = 1, byrow = TRUE))
+make_age_comp_pearson_plot(base.model, subplot = 1, legend.position = "top", alpha = 0.7)
+make_age_comp_pearson_plot(base.model, subplot = 2, alpha = 0.7)
 @
 \end{center}
 \caption{Pearson residuals for base model MLE fits to the age-composition data. Closed bubbles are positive residuals (observed > expected)
   and open bubbles are
-  negative residuals (observed < expected).**Year labels look offset, should make
-  neater.}
+  negative residuals (observed < expected).}
 \label{fig:main-age-comp-pearson}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

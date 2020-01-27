@@ -1,95 +1,52 @@
-make.numbers.at.age.plot <- function(model){ ## model is an mle run and is the output of the r4ss package's function SS_output
-  ## Number-at-age from the MLE run for the model
-  SSplotNumbers(model,
-                subplot = 1,
-                period = "B",
-                pwidth = 6.5,
-                pheight = 6)
-}
-
-make_age_comp_pearson_plot <- function(model,
-                                       subplot = 1,
-                                       ...){
-
-  dat <- model$agedbase %>% 
-    filter(Fleet == subplot) %>% 
-    transmute(Year = Yr, Age = Bin,  Pearson) %>% 
-    as_tibble()
-
-  g <- plot_pearson_bubbles(dat, ...)
+#' Make an age composition bubble plot
+#'
+#' @param model A model object as returned from [load.ss.files()]
+#' @param subplot 1 for fishery, 2 for survey
+#' @param ... Additional parameters passed to [plot_bubbles()]
+#'
+#' @return A [ggplot2::ggplot()] object
+#' @export
+make_age_comp_bubble_plot <- function(model,
+                                      subplot = 1,
+                                      ...){
   
-  g
-}
-
-make.age.comp.pearson.plot <- function(model,                  ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
-                                       subplot = 1,            ## 1) fishery or 2) survey
-                                       start.yr = min(dat$Yr), ## First year for age comps - default from the data frame
-                                       end.yr = max(dat$Yr),   ## Last year for age comps - default from the data frame
-                                       show.key = FALSE,       ## Show some sample bubbles at the top with sizes
-                                       key.yrs = NULL,         ## Vector of 4 years for locations to put the key if show.key == TRUE
-                                       fg = gray(level=0.1, alpha=0.5),
-                                       bg = gray(level=0.5, alpha=0.5),
-                                       inches = 0.12
-                                       ){
-  ## Plot the Pearson residuals for age composition fits for whatever subplot is set to
-
-  oldpar <- par()
-  SSplotComps(model,
-              kind = "AGE",
-              subplot = 24,
-              fleetnames = c("Fishery","Survey"))
-  par <- oldpar
-}
-
-make.fleet.age.comp.pearson.plot <- function(model,                ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
-                                             fleet = 1,            ## 1) fishery or 2) survey
-                                             fleetName = "Fishery",
-                                             start.yr = min(dat$Yr), ## First year for age comps - default from the data frame
-                                             end.yr = max(dat$Yr),   ## Last year for age comps - default from the data frame
-                                             show.key = FALSE,       ## Show some sample bubbles at the top with sizes
-                                             key.yrs = NULL,         ## Vector of 4 years for locations to put the key if show.key == TRUE
-                                             fg = gray(level = 0.1, alpha = 0.5),
-                                             bg = gray(level = 0.5, alpha = 0.5),
-                                             inches = 0.12,
-                                             cohortLines = c(1980,
-                                                             1984,
-                                                             1999,
-                                                             2008,
-                                                             2010,
-                                                             2014),
-                                             cohortCol = rgb(c(0.5, 0, 1, 0, 0),
-                                                             c(0, 0.2, 0, 0.8, 1),
-                                                             c(1, 0.8, 0.2, 0.1, 0),
-                                                             alpha = 0.6),
-                                             cohortAdj = 0.5){
-  ## Plot the Pearson residuals for age composition fits for whatever fleet is set to
-
-  oldpar <- par()
-  SSplotComps(model,
-              kind = "AGE",
-              subplot = 24,
-              fleets=fleet,
-              fleetnames = fleetName,
-              cohortlines = cohortLines,
-              cohortCol=cohortCol,
-              cohAdj=cohortAdj)
-  par <- oldpar
+  dat <- model$dat$agecomp %>% 
+    filter(FltSvy == subplot) %>% 
+    select(Yr, starts_with("a", ignore.case = FALSE)) %>% 
+    setNames(gsub("a", "", names(.))) %>% 
+    rename(Year = Yr) %>% 
+    mutate(n = rowSums(.[-1])) %>% 
+    mutate_at(vars(-Year), ~(./n)) %>% 
+    select(-n) %>% 
+    melt(id.var = "Year") %>% 
+    as_tibble() %>% 
+    rename(Age = variable, Proportion = value)
+  
+  g <- plot_bubbles(dat, ...)
+  
+  g  
 }
 
 #' Make a bubble plot from the given data
 #'
-#' @param d a [tibble::tibble()] of the data in long format with column names `Year`, `Age`, and `Proportion`
+#' @param d a [tibble::tibble()] of the data in long format with column
+#' names `Year`, `Age`, and `Proportion`
 #' @param clines An optional vector of years to draw cohort lines through
 #' @param yrs A vector of 2, for the years to show on the plot
 #' @param by How many years between year labels on the x-axis
-#' @param legend_pos See [ggplot2::theme(legend.position)]
+#' @param legend.position See [ggplot2::theme(legend.position)]
+#' @param alpha See [ggplot2::geom_point()]
+#' @param ... Additional parameters passed to [ggplot2::geom_point()], 
+#' [ggplot2::geom_segment()] and [ggplot2::theme()]
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_bubbles <- function(d,
-                         clines = c(1980, 1999, 2010, 2014, 2016),
+                         clines = c(1980, 1984, 1999, 2010, 2014, 2016),
                          yrs = NULL,
                          by = 5,
+                         legend.position = "none",
+                         alpha = 0.3,
                          ...){
 
   if(is.null(yrs)){
@@ -97,9 +54,9 @@ plot_bubbles <- function(d,
   }else{
     xlim <- c(yrs[1], yrs[2])
   }
-  browser()
+
   g <- ggplot(d, aes(x = Year, y = Age, size = sqrt(Proportion))) +
-    geom_point(alpha = 0.3) +
+    geom_point(alpha = alpha, ...) +
     scale_x_continuous(breaks = seq(from = 1900, to = 2100, by = by)) +
     coord_cartesian(xlim) +
     expand_limits(x = xlim[1]:xlim[2])
@@ -120,8 +77,34 @@ plot_bubbles <- function(d,
   }
   
   g <- g + 
-    theme(...) +
+    theme(legend.position = legend.position, ...) +
     guides(size = guide_legend(title = "Proportion"))
+  
+  g
+}
+
+#' Make the age composition Pearson residuals plot for the fleet type given
+#'
+#' @param model A model object as returned from [load.ss.files()]
+#' @param subplot 1 for fishery, 2 for survey
+#' @param ... Additional parameters passed to [plot_pearson_bubbles()]
+#'
+#' @return
+#' @export
+#'
+#' @examples
+make_age_comp_pearson_plot <- function(model,
+                                       subplot = 1,
+                                       ...){
+  
+  dat <- model$agedbase %>% 
+    filter(Fleet == subplot) %>% 
+    transmute(Year = Yr, Age = Bin,  Pearson) %>% 
+    as_tibble() %>% 
+    mutate(Year = as.integer(Year),
+           Age = as.integer(Age))
+  
+  g <- plot_pearson_bubbles(dat, ...)
   
   g
 }
@@ -132,14 +115,19 @@ plot_bubbles <- function(d,
 #' @param clines An optional vector of years to draw cohort lines through
 #' @param yrs A vector of 2, for the years to show on the plot
 #' @param by How many years between year labels on the x-axis
-#' @param legend_pos See [ggplot2::theme(legend.position)]
+#' @param legend.position See [ggplot2::theme(legend.position)]
+#' @param alpha See [ggplot2::geom_point()]
+#' @param ... Additional parameters passed to [ggplot2::geom_point()], 
+#' [ggplot2::geom_segment()] and [ggplot2::theme()]
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_pearson_bubbles <- function(d,
-                                 clines = c(1980, 1999, 2010, 2014, 2016),
+                                 clines = c(1980, 1984, 1999, 2010, 2014, 2016),
                                  yrs = NULL,
                                  by = 5,
+                                 legend.position = "none",
+                                 alpha = 0.3,
                                  ...){
   
   if(is.null(yrs)){
@@ -152,15 +140,13 @@ plot_pearson_bubbles <- function(d,
                      y = Age, 
                      size = abs(Pearson),
                      fill = factor(sign(as.numeric(Pearson))))) +
-    geom_point(pch = 21, ...) +
+    geom_point(pch = 21, alpha = alpha, ...) +
     scale_x_continuous(breaks = seq(from = 1900, to = 2100, by = by)) +
-    scale_fill_manual(values = c("black", "white"), guide = FALSE) +
-    scale_size_area(breaks = c(4, 2, 1, 1, 2, 4),
-                    labels = c(-4, -2, -1, 1, 2, 4)) +
-    guides(area = guide_legend(override.aes =
-                                 list(size = c(4.44, 2.56, 1.78, 1.78, 2.56, 4.44),
-                                      fill = c("white", "black")))) +
-  coord_cartesian(xlim) +
+    scale_fill_manual(values = c("white", "black"), guide = FALSE) +
+    scale_size_continuous(breaks = c(1, 1, 2, 2, 3, 3, 4, 4, 5, 5),
+                          labels = c(-5, -4, -3, -2, -1, 1, 2, 3, 4, 5),
+                          range = c(1, 5)) +
+    coord_cartesian(xlim) +
     expand_limits(x = xlim[1]:xlim[2])
 
   if(!is.null(clines)){
@@ -179,10 +165,16 @@ plot_pearson_bubbles <- function(d,
                    inherit.aes = FALSE,
                    ...)
   }
-  
   g <- g + 
-    theme(...) +
-    guides(size = guide_legend(title = "Residual"))
+    theme(legend.position = legend.position, ...) +
+    guides(size = guide_legend(title = "Residuals",
+                               nrow = ifelse(legend.position == "right" |
+                                               legend.position == "left", 10, 1),
+                               override.aes =
+                                 list(fill = c("white", "white", "white", "white", "white",
+                                               "black", "black", "black", "black", "black"),
+                                      size = c(5, 4, 3, 2, 1,
+                                               1, 2, 3, 4, 5))))
   
   g
 }
@@ -217,32 +209,13 @@ get_age_comp_limits <- function(model, type = 1){
   ret_vec
 }
 
-#' Make an age composition bubble plot
-#'
-#' @param model A model object as returned from [load.ss.files()]
-#' @param subplot 1 for fishery, 2 for survey
-#'
-#' @return A [ggplot2::ggplot()] object
-#' @export
-make_age_comp_bubble_plot <- function(model,
-                                      subplot = 1,
-                                      ...){
-                                        
-  dat <- model$dat$agecomp %>% 
-    filter(FltSvy == subplot) %>% 
-    select(Yr, starts_with("a", ignore.case = FALSE)) %>% 
-    setNames(gsub("a", "", names(.))) %>% 
-    rename(Year = Yr) %>% 
-    mutate(n = rowSums(.[-1])) %>% 
-    mutate_at(vars(-Year), ~(./n)) %>% 
-    select(-n) %>% 
-    melt(id.var = "Year") %>% 
-    as_tibble() %>% 
-    rename(Age = variable, Proportion = value)
-
-  g <- plot_bubbles(dat, ...)
-  
-  g  
+make.numbers.at.age.plot <- function(model){ ## model is an mle run and is the output of the r4ss package's function SS_output
+  ## Number-at-age from the MLE run for the model
+  SSplotNumbers(model,
+                subplot = 1,
+                period = "B",
+                pwidth = 6.5,
+                pheight = 6)
 }
 
 make.age.comp.compare.bubble.plot <- function(model,                  ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC

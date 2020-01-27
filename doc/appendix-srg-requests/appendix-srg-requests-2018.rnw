@@ -18,7 +18,7 @@ of maximum age of selectivity, as per the sensitivity analyses in the main text.
 \begin{figure}[tbp]
 \begin{center}
 <<app.srg.age.comp.pearson.sens.1, fig.height=8, fig.width=8>>=
-make.age.comp.pearson.plot(sens.models.3[[1]])
+make_age_comp_pearson_plot(sens.models.3[[1]], legend.position = "top")
 @
 \end{center}
 \caption{Pearson residuals for model with maximum age of selectivity set
@@ -53,7 +53,7 @@ make.age.comp.pearson.plot(sens.models.3[[1]])
 \begin{figure}[H]
 \begin{center}
 <<app.srg.age.comp.pearson.sens.2, fig.height=8, fig.width=8>>=
-make.age.comp.pearson.plot(sens.models.3[[2]])
+make_age_comp_pearson_plot(sens.models.3[[2]], legend.position = "top")
 @
 \end{center}
 \caption{Pearson residuals for model with maximum age of selectivity set
@@ -70,7 +70,7 @@ make.age.comp.pearson.plot(sens.models.3[[2]])
 \begin{figure}[H]
 \begin{center}
 <<app.srg.age.comp.pearson.sens.3, fig.height=8, fig.width=8>>=
-make.age.comp.pearson.plot(sens.models.3[[3]])
+make_age_comp_pearson_plot(sens.models.3[[3]], legend.position = "top")
 @
 \end{center}
 \caption{Pearson residuals for model with maximum age of selectivity set
