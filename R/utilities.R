@@ -1174,3 +1174,161 @@ get.args <- function(){
     out[inds] <- act
     out
 }
+
+#' Get a vector of the active parameter names for a model
+#'
+#' @param model A model object as returned from [load.ss.files()]
+#'
+#' @return A vector of the active parameter names for a model
+#' @export
+#'
+#' @examples
+#' get_active_parameter_names(base.model)
+get_active_parameter_names <- function(model){
+  params <- model$parameters
+  params$Label[!is.na(params$Active_Cnt)]
+}
+
+#' Get the posterior values for the given regular expressions of parameter names
+#'
+#' @param model The SS model output as loaded by [load_ss_files()]
+#' @param param_regex A vector of regular expressions used to extract data for parameter names.
+#' If there are no matches, or more than one for any regular expression, the program will stop
+#'
+#' @return A list of posterior vectors, one for each of the regular expressions in `param_regex`
+#' @export
+#' @examples
+#' get_posterior_data(base.model, "BH_steep")
+#' get_posterior_data(base.model, "e")
+#' get_posterior_data(base.model, "asdfg")
+#' get_posterior_data(base.model, c("NatM", "SR_LN", "SR_BH_steep", "Q_extraSD"))
+get_posterior_data <- function(model, param_regex){
+  
+  mcmc <- model$mcmc
+  if(length(mcmc) == 1 && is.na(mcmc)){
+    return(NA)
+  }
+  
+  params <- model$parameters
+  posts_list <- list()
+  
+  for(i in seq_along(param_regex)){
+    parind <- grep(param_regex[i], params$Label)
+    if(length(parind) < 1){
+      stop("The regular expression ", param_regex[i], " matched no parameter names", call. = FALSE)
+    }
+    if(length(parind) > 1){
+      stop("The regular expression ", param_regex[i], " matched more than one (", length(parind), 
+           ") parameter names", call. = FALSE)
+    }
+    postparname <- params[parind, ]$Label
+    message("The regular expression matched ", postparname)
+    
+    # Figure out which column of the mcmc output contains the parameter
+    jpar <- (1:ncol(mcmc))[names(mcmc) == postparname]
+    if(length(jpar) == 1){
+      posts_list[[i]] <- mcmc[ ,jpar]
+    }else{
+      warning("Parameter ", postparname, " not found in posteriors")
+      posts_list[[i]] <- NA
+    }
+  }
+  
+  if(length(posts_list) == 1){
+    posts_list <- posts_list[[1]]
+  }
+  posts_list
+}
+
+#' Get the prior and MLE values for the given regular expressions of parameter names
+#'
+#' @param model The SS model output as loaded by [load_ss_files()]
+#' @param param_regex A vector of regular expressions used to extract data for parameter names.
+#' If there are no matches, or more than one for any regular expression, the program will stop
+#'
+#' @return A list of prior and MLE data, one for each of the regular expressions in `param_regex`
+#' @export
+#' @examples
+#' get_prior_data(base.model, "BH_steep")
+#' get_prior_data(base.model, "e")
+#' get_prior_data(base.model, "asdfg")
+#' get_prior_data(base.model, c("NatM", "SR_LN", "SR_BH_steep", "Q_extraSD"))
+get_prior_data <- function(model, param_regex){
+  
+  stopifnot(class(param_regex) == "character")
+  
+  params <- model$parameters
+  priors_list <- list()
+  Pconst <- 0.0001
+  
+  for(i in seq_along(param_regex)){
+    parind <- grep(param_regex[i], params$Label)
+    if(length(parind) < 1){
+      stop("The regular expression ", param_regex[i], " matched no parameter names", call. = FALSE)
+    }
+    if(length(parind) > 1){
+      stop("The regular expression ", param_regex[i], " matched more than one (", length(parind), 
+           ") parameter names", call. = FALSE)
+    }
+    parline <- params[parind, ]
+    message("The regular expression matched ", parline$Label)
+    initval <- parline$Init
+    finalval <- parline$Value
+    parsd <- parline$Parm_StDev
+
+    Pmin <- parline$Min
+    Pmax <- parline$Max
+    Ptype <- ifelse(is.na(parline$Pr_type), "Normal", parline$Pr_type)
+    Psd <- parline$Pr_SD
+    Pr <- parline$Prior
+    Pval <- seq(Pmin, Pmax, length = nrow(model$mcmc))
+    
+    if(Ptype == "Log_Norm"){
+      Prior_Like <- 0.5 * ((log(Pval) - Pr) / Psd) ^ 2
+    }else if(Ptype == "Full_Beta"){
+      mu <- (Pr - Pmin) / (Pmax - Pmin);  # CASAL's v
+      tau <- (Pr - Pmin) * (Pmax - Pr) / (Psd ^ 2) - 1.0
+      Aprior <- tau * (1 - mu)  # CASAL's m and n
+      Bprior <- tau * mu
+      if(Aprior <= 1.0 | Bprior <= 1.0) {
+        warning("Bad Beta prior for parameter ", parline$Label)
+      }
+      Prior_Like <- (1.0 - Bprior) * log(Pconst + Pval - Pmin) +
+        (1.0 - Aprior) * log(Pconst + Pmax - Pval) -
+        (1.0 - Bprior) * log(Pconst + Pr - Pmin) -
+        (1.0 - Aprior) * log(Pconst + Pmax - Pr)
+    }else if(Ptype == "No_prior"){
+      Prior_Like <- rep(0.0, length(Pval));
+    }else{
+      warning("No prior found for parameter ", parline$Label)
+      Prior_Like <- NA
+    }
+    prior <- NA
+    if(!is.na(Prior_Like[1])){
+      prior <- exp(-1 * Prior_Like)
+    }
+    
+    if(!is.na(parsd) && parsd > 0){
+      mle <- dnorm(Pval, finalval, parsd)
+      mlescale <- 1 / (sum(mle) * mean(diff(Pval)))
+      mle <- mle * mlescale
+    }
+    
+    priors_list[[i]] <- list(initval = initval,
+                             finalval = finalval,
+                             parsd = parsd,
+                             Pmin = Pmin,
+                             Pmax = Pmax,
+                             Ptype = Ptype,
+                             Psd = Psd,
+                             Pr = Pr,
+                             Pval = Pval,
+                             prior = prior,
+                             mle = mle)
+    
+  }
+  if(length(priors_list) == 1){
+    priors_list <- priors_list[[1]]
+  }
+  priors_list
+}
