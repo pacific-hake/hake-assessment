@@ -9,6 +9,7 @@ make.mcmc.priors.vs.posts.plot <- function(model, ## model is an mcmc run and is
     nrows = 2, ncols = 2)
   if ("new" %in% names(formals(SSplotPars))) {
     arglist <- c(arglist, "new" = FALSE)
+    names(arglist$replist$mcmc) <- gsub("\\(2\\)$", "\\.2\\.", names(arglist$replist$mcmc))
   }
   do.call(SSplotPars, args = arglist)
   par <- oldpar
