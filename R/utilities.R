@@ -348,7 +348,7 @@ top.coh <- function(model = NULL,
     tmp <- model$dat$agecomp[, -c(2, 4, 5, 6, 7, 8, 9)] %>%
       dplyr::filter(FltSvy == 1) %>%
       select(-FltSvy) %>%
-      mutate_all(funs(as.numeric))
+      mutate_all(list(as.numeric))
     names(tmp) <- gsub("^a", "", names(tmp))
   }
   row.sums <- rowSums(select(tmp, -Yr))
