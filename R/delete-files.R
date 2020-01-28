@@ -12,7 +12,7 @@ delete.rdata.files <- function(models.dir = rootd.models,
   dirs <- dirs[! dirs %in% dont.del]
   rdata.files <- file.path(models.dir, dirs, paste0(dirs, ".rdata"))
   unlink(rdata.files, force = TRUE)
-  message("Deleted ", paste0(rdata.files, collapse = "\n"),,
+  message("Deleted ", paste0(rdata.files, collapse = "\n"),
           "All rdata files deleted except for ", dont.del, "\n")
   invisible()
 }
