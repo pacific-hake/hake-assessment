@@ -20,8 +20,10 @@ can.age.file <- "can-age-data.csv"
 can.ft.catch.by.month.file <- "can-ft-catch-by-month.csv"
 can.ss.catch.by.month.file <- "can-ss-catch-by-month.csv"
 can.jv.catch.by.month.file <- "can-jv-catch-by-month.csv"
-can.ft.bottom.depth.file <- "depth-can-freezer-trawlers.csv"
-can.ss.bottom.depth.file <- "depth-can-shoreside.csv"
+can.ft.bottom.depth.file <- "depth-can-ft-bottom.csv"
+can.ss.bottom.depth.file <- "depth-can-ss-bottom.csv"
+can.ft.gear.depth.file <- "depth-can-ft-gear.csv"
+can.ss.gear.depth.file <- "depth-can-ss-gear.csv"
 
 ## US-specific data
 ## The following are used for cumulative catch plot in the data/fisheries presentation, not the assessment document
@@ -77,6 +79,8 @@ cat("All data tables have been loaded ", rootd.data, "\n")
 ## For depth plots
 can.ft.bottom.depth <- read.csv(file.path(rootd.data, can.ft.bottom.depth.file), stringsAsFactors = FALSE)
 can.ss.bottom.depth <- read.csv(file.path(rootd.data, can.ss.bottom.depth.file), stringsAsFactors = FALSE)
+can.ft.gear.depth <- read.csv(file.path(rootd.data, can.ft.gear.depth.file), stringsAsFactors = FALSE)
+can.ss.gear.depth <- read.csv(file.path(rootd.data, can.ss.gear.depth.file), stringsAsFactors = FALSE)
 us.atsea.fishing.depth <- read.csv(file.path(rootd.data, us.atsea.fishing.depth.file), stringsAsFactors = FALSE)
 us.atsea.bottom.depth <- read.csv(file.path(rootd.data, us.atsea.bottom.depth.file), stringsAsFactors = FALSE)
 
