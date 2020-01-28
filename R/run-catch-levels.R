@@ -36,7 +36,7 @@ fetch_catch_levels <- function(catch_levels_path,
                           verbose = FALSE)
   
   ind <- length(catch_levels) - 2
-  colCatch <- grep("Catch.or.F", colnames(fore$ForeCatch))
+  colCatch <- grep("Catch.or.F", colnames(fore$ForeCatch), perl = TRUE)
   if (length(colCatch) != 1) {
     stop("The column 'Catch or F' was not found in the forecast file Catch matrix.")
   }
