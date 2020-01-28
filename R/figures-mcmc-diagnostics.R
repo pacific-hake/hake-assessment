@@ -1,18 +1,196 @@
-make.mcmc.priors.vs.posts.plot <- function(model, ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
-                                           posterior.regex  ## Vector of regular expression strings to use for the parameter search
-                                           ){
-  ## Plot the priors vs. posterior density for a particular parameter for the model.
-  oldpar <- par()
-  par(mfrow=c(2,2),mar=c(3,3,1,1))
-  arglist <- list(replist = model, strings = posterior.regex,
-    newheaders = c("Natural mortality", "LN(R0)", "Steepness", "Survey extra SD"),
-    nrows = 2, ncols = 2)
-  if ("new" %in% names(formals(SSplotPars))) {
-    arglist <- c(arglist, "new" = FALSE)
-    names(arglist$replist$mcmc) <- gsub("\\(2\\)$", "\\.2\\.", names(arglist$replist$mcmc))
+#' Make a Posterior plot with optional prior, MLE, and initial value
+#'
+#' @param prior_mle Output from [get_prior_data()]
+#' @param posterior Output from [get_posterior_data()]
+#' @param show_prior Logical. Show the prior on the plot
+#' @param show_init Logical. Show the initial value on the plot
+#' @param show_mle Logical. Show the MLE on the plot
+#' @param show_legend Logical. Show the legend on the plot
+#' @param title_text Title over the plot
+#'
+#' @return Nothing
+#' @export
+#'
+#' @examples
+#' prior_mle <- get_prior_data(model, "BH_steep")
+#' post <- get_posterior_data(model, "BH_steep")
+#' make_mcmc_priors_vs_posts_plot(prior_mle, post)
+make_mcmc_priors_vs_posts_plot <- function(prior_mle,
+                                           posterior,
+                                           show_prior = TRUE,
+                                           show_init = TRUE,
+                                           show_mle = TRUE,
+                                           show_legend = FALSE,
+                                           title_text = ""){
+  
+  dat <- posterior %>%
+    enframe() %>%
+    mutate(prior = prior_mle$prior) %>%
+    rename(post = value)
+  
+  
+  breakvec <- seq(prior_mle$Pmin, prior_mle$Pmax, length = 50)
+  if(min(breakvec) > min(dat$post)) breakvec <- c(min(dat$post), breakvec)
+  if(max(breakvec) < max(dat$post)) breakvec <- c(breakvec, max(dat$post))
+  posthist <- hist(dat$post, plot = FALSE, breaks = breakvec)
+  postmedian <- median(dat$post)
+
+  ymax <- max(posthist$density)
+  xmin <- min(posthist$mids)
+  xmax <- max(posthist$mids)
+
+  prior <- prior_mle$prior / (sum(prior_mle$prior) * mean(diff(prior_mle$Pval)))
+  ymax <- ifelse(show_prior, max(prior, ymax), ymax)
+  xmin <- ifelse(show_prior, min(prior_mle$Pval, xmin), xmin)
+  xmax <- ifelse(show_prior, max(prior_mle$Pval, xmin), xmax)
+  
+  xmin <- ifelse(show_mle, min(qnorm(0.001, prior_mle$finalval, prior_mle$parsd), xmin), min(prior_mle$finalval, xmin))
+  xmax <- ifelse(show_mle, max(qnorm(0.999, prior_mle$finalval, prior_mle$parsd), xmax), max(prior_mle$finalval, xmax))
+  
+  xmin <- ifelse(show_init, min(prior_mle$initval, xmin), xmin)
+  xmax <- ifelse(show_init, max(prior_mle$initval, xmax), xmax)
+
+  plot(0,
+       type = "n",
+       xlim = c(xmin, xmax),
+       ylim = c(0, 1.1 * ymax),
+       xaxs = "i",
+       yaxs = "i",
+       xlab = "",
+       ylab = "",
+       main = title_text,
+       cex.main = 1,
+       axes = FALSE)
+  axis(1)
+  
+  colvec <- c("blue", "red", "black", "gray60", rgb(0, 0, 0, 0.5))
+  ltyvec <- c(1, 1, 3, 4)
+  
+  plot(posthist,
+       add = TRUE,
+       freq = FALSE,
+       col = colvec[4],
+       border = colvec[4])
+  abline(v = postmedian,
+         col = colvec[5],
+         lwd = 2,
+         lty = ltyvec[3])
+  
+  if(show_prior){
+    lines(prior_mle$Pval,
+          prior,
+          lwd = 2,
+          lty = ltyvec[2])
   }
-  do.call(SSplotPars, args = arglist)
-  par <- oldpar
+  
+  if(show_mle){
+    if(!is.na(prior_mle$parsd) && prior_mle$parsd > 0){
+      mle <- dnorm(prior_mle$Pval,
+                   prior_mle$finalval,
+                   prior_mle$parsd)
+      mlescale <- 1 / (sum(mle) * mean(diff(prior_mle$Pval)))
+      mle <- mle * mlescale
+      ymax <- max(ymax, max(mle))
+      lines(prior_mle$Pval,
+            mle,
+            col = colvec[1],
+            lwd = 1,
+            lty = ltyvec[1])
+      lines(rep(prior_mle$finalval, 2),
+            c(0,
+              dnorm(prior_mle$finalval,
+                    prior_mle$finalval,
+                    prior_mle$parsd) * mlescale),
+            col = colvec[1], 
+            lty = ltyvec[1])
+    }
+  }
+  
+  if(show_init){
+    par(xpd = NA) # stop clipping
+    points(prior_mle$initval, -0.02 * ymax, col = colvec[2], pch = 17, cex = 1.2)
+    par(xpd = FALSE)
+  }
+  
+  box()
+  
+  if(show_legend){
+    showvec <- c(show_prior, show_mle, show_init)
+    legend("topleft",
+           cex = 1.2,
+           bty = "n",
+           pch = c(NA, NA, 15, NA, 17)[showvec],
+           lty = c(ltyvec[2],
+                   ltyvec[1],
+                   NA,
+                   ltyvec[3],
+                   NA)[showvec],
+           lwd = c(2, 1, NA, 2, NA)[showvec],
+           col = c(colvec[3],
+                   colvec[1],
+                   colvec[4],
+                   colvec[5],
+                   colvec[2])[showvec],
+           pt.cex = c(1, 1, 2, 1, 1)[showvec],
+           legend = c("prior",
+                      "max. likelihood",
+                      "posterior",
+                      "posterior median",
+                      "initial value")[showvec])
+  }
+}
+
+#' Make a grid of key posterior plots
+#'
+#' @param model The SS model output as loaded by [load_ss_files()]
+#' @param posterior_regex A vector of regular expressions which can be matched to parameter names. Use
+#' [get_active_parameter_names()] to see all active parameter names
+#' @param ncol Number of columns for the grid of plots
+#' @param nrow Number of rows for the grid of plots
+#' @param byrow Logical. If TRUE, order the plots by row, then column
+#' @param show_legend Logical. Show the legend on the plot
+#' @param legend_panel Which panel to show the legend on if `show_legend` is TRUE
+#' @param titles A vector of titles for the plots
+#' @param ... Parameters to be passed to [make_mcmc_priors_vs_posts_plot()]
+#'
+#' @return Nothing
+#' @export
+#'
+#' @examples
+#' make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
+#'                                               key.posteriors, 
+#'                                               ncol = 2,
+#'                                               nrow = 2,
+#'                                               show_legend = TRUE,
+#'                                               legend_panel = 3,
+#'                                               titles = key.posteriors.titles)
+make_key_posteriors_mcmc_priors_vs_posts_plot <- function(model,
+                                                          posterior_regex,
+                                                          ncol = 1,
+                                                          nrow = 1,
+                                                          byrow = TRUE,
+                                                          show_legend = FALSE,
+                                                          legend_panel = 1,
+                                                          titles = NULL,
+                                                          ...){
+  if(ncol * nrow != length(posterior_regex)){
+    stop("The length of the posterior_regex vector (", length(posterior_regex),
+         ") is not equal to nrow (", nrow, ") * ncol (", ncol, ")", call. = FALSE)
+  }
+  oldpar <- par("mar", "mfrow")
+  on.exit(par(oldpar))
+  
+  priors_mle <- get_prior_data(model, posterior_regex)
+  posts <- get_posterior_data(model, posterior_regex)
+
+  par(mfrow = c(nrow, ncol), mar = c(3, 3, 1, 1))
+  for(i in seq_along(posterior_regex)){
+    make_mcmc_priors_vs_posts_plot(priors_mle[[i]],
+                                   posts[[i]],
+                                   show_legend = ifelse(i == legend_panel, TRUE, FALSE),
+                                   title_text = ifelse(is.null(titles), "", titles[i]),
+                                   ...)
+  }
 }
 
 make.mcmc.diag.plot <- function(model,      ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC

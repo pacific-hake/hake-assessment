@@ -611,8 +611,13 @@ make_age_comp_pearson_plot(base.model, subplot = 2, alpha = 0.7)
 \begin{figure}[H]
 \begin{center}
 <<main.prior.posterior, fig.height=6, fig.width=8>>=
-make.mcmc.priors.vs.posts.plot(base.model,
-                               key.posteriors)
+make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
+                                              key.posteriors, 
+                                              ncol = 2,
+                                              nrow = 2,
+                                              show_legend = TRUE,
+                                              legend_panel = 3,
+                                              titles = key.posteriors.titles)
 @
 \end{center}
 %\vspace{0mm}

@@ -91,6 +91,10 @@ key.posteriors <- c("NatM",
                     "SR_LN",
                     "SR_BH_steep",
                     "Q_extraSD")
+key.posteriors.titles <- c("Natural mortality",
+                           "LN(R0)",
+                           "Steepness",
+                           "Survey extra SD")
 message("Key posteriors in this assessment: ", key.posteriors)
 
 key.posteriors.file <- "keyposteriors.csv"
