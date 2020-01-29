@@ -27,7 +27,7 @@ Georgia, Puget Sound, and the Gulf of California, are not included in this
 analysis.
 
 \subsection*{Catches} \label{sec:es-catches} \phantomsection
-\addcontentsline{toc}{subsection}{Catches} **Coast-wide fishery \fishname\
+\addcontentsline{toc}{subsection}{Catches} Coast-wide fishery \fishname\
 landings averaged \Sexpr{f(mean(catches$TOTAL))}~t from
 \Sexpr{min(catches$Year)} to \Sexpr{max(catches$Year)}, with a low of
 \Sexpr{f(min(catches$TOTAL))}~t in
@@ -53,13 +53,13 @@ make.catches.plot(catches,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-**Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to
+Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to
 the modern fishery. Over the early period, \Sexpr{min(catches$Year)}--1990, most
 removals were from foreign or joint-venture fisheries. Over all years, the
 catch in U.S. waters averaged \Sexpr{f(mean(catches$Ustotal))}~t, or
 \Sexpr{round(100*mean(catches$Ustotal)/mean(catches$TOTAL),1)}\% of the average
 total catch, while catch from Canadian waters averaged
-\Sexpr{f(mean(catches$CANtotal))}~t.  Over the last 10 years,
+\Sexpr{f(mean(catches$CANtotal))}~t. Over the last 10 years,
 \Sexpr{max(catches$Year)-9}--\Sexpr{max(catches$Year)}
 (Table~\ref{tab:es-catches}), the average coastwide catch was
 \Sexpr{f(mean(catches[catches$Year %in%
@@ -76,7 +76,7 @@ total allowable catch (TAC, adjusted for carryovers) of
 %
 <<total.catches.table, results='asis', echo=FALSE>>=
 make.catches.table(catches,
-                   start.yr = 2006,
+                   start.yr = assess.yr - 10,
                    end.yr = assess.yr - 1,
                    xcaption =
                    "Recent commercial fishery catch (t). Tribal catches are
