@@ -24,7 +24,8 @@ make.overview.map.plot(path = rootd.map.data)
 \begin{figure}[p]
 \begin{center}
 \includegraphics[max size={1.08\paperwidth}{1.08\paperheight}]
-  {main-figures/age2plushake_03-17_NASC_BiomassAtAge_color.eps}
+  {main-figures/hake_survey_1995-19_NASCTimeSeries_BiomassAtLengthHistograms_v2.eps}
+  % Download from Google Drive
 \end{center}
 \vspace{-3mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-2 and older \fishname\
@@ -33,7 +34,7 @@ make.overview.map.plot(path = rootd.map.data)
   proportional to observed backscatter.
   Histograms show survey-estimated biomass for ages 2 to 20, with major cohorts
   highlighted in color.
-  Figure produced by Julia Clemons (NOAA).**NEED NEW FIGURE.}
+  Figure produced by Julia Clemons (NOAA).}
 \label{fig:main-backscatter-map}
 \end{figure}
 \end{landscape}
@@ -50,16 +51,15 @@ make.overview.map.plot(path = rootd.map.data)
 \vspace{-5mm}
 \begin{center}
 \includegraphics[max size={\paperwidth}{\paperheight}]
-%  {main-figures/age1hake_03-17_NASC_narrow-panel.eps}
-   {main-figures/age1-use-me.eps}     % Download from Google Drive
+   {main-figures/age1hake_03-19_sA_squareroot_bin_narrow-panel_bw.eps}     % Download from Google Drive
 \end{center}
 \vspace{-5mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-1 \fishname\
-  from the Joint U.S.~and Canada acoustic surveys 2003 --\Sexpr{survey.end.yr}. Age-1 \fishname\ are not fully sampled
+  from the Joint U.S.~and Canada acoustic surveys 2003--\Sexpr{survey.end.yr}. Age-1 \fishname\ are not fully sampled
   during the acoustic survey and were not explicitly considered during establishment of the
   survey sampling design. Area of the circle is roughly
   proportional to observed backscatter. Figure produced by Julia Clemons
-  (NOAA).**NEED NEW FIGURE}
+  (NOAA).}
 \label{fig:main-backscatter-map-age1}
 \end{figure}
 \end{landscape}
@@ -466,7 +466,7 @@ par <- oldpar
 \caption{Bridging models starting with the addition of simple recruitment deviations (shown
   in Figure~\ref{fig:main-bridge-5-panel.2}) and then with sequential changes including
   updating and adding 2019 survey biomass data, adding 2019 survey composition data, and then
-  adding a prior on the survey Dirichlet Multinomial parameter (see 
+  adding a prior on the survey Dirichlet Multinomial parameter (see
   Section~\ref{sec:assessment-base-model} for further details about model priors)
   and model tuning (= 2020 base model). Panels are spawning biomass
   (upper panel), relative spawning biomass (spawning biomass in each year
@@ -642,7 +642,7 @@ make_age_comp_pearson_plot(base.model, subplot = 2, alpha = 0.7)
 \begin{center}
 <<main.prior.posterior, fig.height=6, fig.width=8>>=
 make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
-                                              key.posteriors, 
+                                              key.posteriors,
                                               ncol = 2,
                                               nrow = 2,
                                               show_legend = TRUE,
