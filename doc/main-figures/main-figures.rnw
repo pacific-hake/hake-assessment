@@ -22,12 +22,15 @@ make.overview.map.plot(path = rootd.map.data)
 \begin{landscape}
   \centering
 \begin{figure}[p]
-\begin{center}
-\includegraphics[max size={1.10\paperwidth}{1.10\paperheight}]
+% \begin{center}
+\hspace{-10mm}  % Each mm change shifts it by more than 1mm, changing
+                %  from -20 to -21 jumps it to the left when using center.
+                %  Commenting out {center} works better.
+\includegraphics[max size={1.15\paperwidth}{1.15\paperheight}]
   {main-figures/hake_survey_1995-19_NASCTimeSeries_BiomassAtLengthHistograms_v2.eps}
   % Download from Google Drive
-\end{center}
-\vspace{-3mm}
+% \end{center}
+% \vspace{-3mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-2 and older \fishname\
   from the Joint U.S.~and Canada acoustic surveys
   \Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}. Area of the circle is roughly
@@ -48,12 +51,13 @@ make.overview.map.plot(path = rootd.map.data)
 \begin{landscape}
   \centering
 \begin{figure}[p]
-\vspace{-5mm}
+% \vspace{-5mm}
 \begin{center}
+\hspace{-10mm}
 \includegraphics[max size={1.10\paperwidth}{1.10\paperheight}]
    {main-figures/age1hake_03-19_sA_squareroot_bin_narrow-panel_bw.eps}     % Download from Google Drive
 \end{center}
-\vspace{-5mm}
+%\vspace{-5mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-1 \fishname\
   from the Joint U.S.~and Canada acoustic surveys 2003--\Sexpr{survey.end.yr}. Age-1 \fishname\ are not fully sampled
   during the acoustic survey and were not explicitly considered during establishment of the
