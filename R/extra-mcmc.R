@@ -1,6 +1,7 @@
 run_extra_mcmc <- function(model, 
                            extra_mcmc_path,
                            run_extra_mcmc,
+                           show_ss_output = TRUE,
                            ...){
   ## This Re-runs the model (MLE) once for each posterior
   ## and saves the Report.sso files in model$extra.mcmc.path/report
@@ -89,7 +90,7 @@ run_extra_mcmc <- function(model,
     file.remove(file.path(extra_mcmc_path, "CompReport.sso"))
     
     shell_command <- paste0("cd ", extra_mcmc_path, " & ", ss_executable, " -maxfn 0 -phase 10 -nohess")
-    shell(shell_command)
+    shell(shell_command, wait = FALSE, intern = !show_ss_output)
     
     file.copy(file.path(extra_mcmc_path, "ss.par"),
               file.path(reports_path, paste0("ss_output", irow, ".par")),

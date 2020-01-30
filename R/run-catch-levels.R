@@ -83,6 +83,7 @@ run_catch_levels_default_hr <- function(model,
                                         catch_levels,
                                         default_hr_path,
                                         ss_executable = NULL,
+                                        show_ss_output = TRUE,
                                         ...){
   
   stopifnot(!is.null(ss_executable))
@@ -122,7 +123,7 @@ run_catch_levels_default_hr <- function(model,
     unlink(file.path(default_hr_path, "derived_posteriors.sso"),
            force = TRUE)
     shell_command <- paste0("cd ", default_hr_path, " & ", ss_executable, " -mceval")
-    shell(shell_command)
+    shell(shell_command, wait = FALSE, intern = !show_ss_output)
   }
 }
 
@@ -151,6 +152,7 @@ run_catch_levels_spr_100 <- function(model,
                                      catch_levels_path = "catch-levels",
                                      spr_100_path = "spr-100",
                                      ss_executable = NULL,
+                                     show_ss_output = TRUE,
                                      ...){
   
   stopifnot(!is.null(ss_executable))
@@ -190,7 +192,7 @@ run_catch_levels_spr_100 <- function(model,
       unlink(file.path(spr_100_path, "derived_posteriors.sso"),
              force = TRUE)
       shell_command <- paste0("cd ", spr_100_path, " & ", ss_executable, " -mceval")
-      shell(shell_command)
+      shell(shell_command, wait = FALSE, intern = !show_ss_output)
       out <- read.table(file.path(spr_100_path,
                                   "derived_posteriors.sso"),
                         header = TRUE)
@@ -243,6 +245,7 @@ run_catch_levels_stable_catch <- function(model,
                                           catch_levels_path = "catch-levels",
                                           stable_catch_path = "stable-catch",
                                           ss_executable = NULL,
+                                          show_ss_output = TRUE,
                                           ...){
 
   stopifnot(!is.null(ss_executable))
@@ -298,7 +301,7 @@ run_catch_levels_stable_catch <- function(model,
     unlink(file.path(stable_catch_path, "derived_posteriors.sso"),
            force = TRUE)
     shell_command <- paste0("cd ", stable_catch_path, " & ", ss_executable, " -mceval")
-    shell(shell_command)
+    shell(shell_command, wait = FALSE, intern = !show_ss_output)
     iter <- iter + 1
   }
   fore <- SS_readforecast(forecast_file,
@@ -318,7 +321,7 @@ run_catch_levels_stable_catch <- function(model,
   unlink(file.path(stable_catch_path, "derived_posteriors.sso"),
          force = TRUE)
   shell_command <- paste0("cd ", stable_catch_path, " & ", ss_executable, " -mceval")
-  shell(shell_command)
+  shell(shell_command, wait = FALSE, intern = !show_ss_output)
 }
 
 #' A wrapper to run the catch levels determination routines

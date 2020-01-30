@@ -26,6 +26,7 @@ run_retrospectives <- function(model,
                                ss_executable,
                                run_retrospectives,
                                retrospective_yrs,
+                               show_ss_output = TRUE,
                                ...){
 
   model_path <- model$path
@@ -74,7 +75,7 @@ run_retrospectives <- function(model,
       unlink(covar_file)
     }
     shell_command <- paste0("cd ", retro_subdir, " & ", ss_executable, " -nox")
-    shell(shell_command)
+    shell(shell_command, wait = FALSE, intern = !show_ss_output)
     data_new <- readLines(file.path(retro_subdir, "data.ss_new"))
     df_for_meanbody <- grep("DF_for_meanbodysize", data_new)
     if(length(df_for_meanbody)){

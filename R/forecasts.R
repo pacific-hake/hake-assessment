@@ -17,6 +17,7 @@ run_forecasts <- function(model,
                           forecast_probs,
                           ss_executable,
                           forecasts_path,
+                          show_ss_output = TRUE,
                           ...){
 
   model_path <- model$path
@@ -74,7 +75,7 @@ run_forecasts <- function(model,
       unlink(file.path(new_forecast_dir, "derived_posteriors.sso"), force = TRUE)
       unlink(file.path(new_forecast_dir, "posteriors.sso"), force = TRUE)
       shell_command <- paste0("cd ", new_forecast_dir, " & ", ss_executable, " -mceval")
-      shell(shell_command)
+      shell(shell_command, wait = FALSE, intern = !show_ss_output)
     }
   }
   message("Finished running forecasts for model located in ", model$path, "...\n")

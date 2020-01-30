@@ -345,7 +345,8 @@ build <- function(.run_forecasts = FALSE,
                   .starter_file_name = starter_file_name,
                   .forecast_file_name = forecast_file_name,
                   .weight_at_age_file_name = weight_at_age_file_name,
-                  .ovwrt_rdata = TRUE){
+                  .ovwrt_rdata = TRUE,
+                  .show_ss_output = FALSE){
 
   lapply(.model_list, function(.model_name){
     if(.run_forecasts |
@@ -378,7 +379,8 @@ build <- function(.run_forecasts = FALSE,
           ss_executable = .ss_executable,
           starter_file_name = .starter_file_name,
           forecast_file_name = .forecast_file_name,
-          weight_at_age_file_name = .weight_at_age_file_name)
+          weight_at_age_file_name = .weight_at_age_file_name,
+          show_ss_output = .show_ss_output)
     }
   })
   lapply(.model_list, function(.model_name){
