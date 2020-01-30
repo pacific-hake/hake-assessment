@@ -122,6 +122,7 @@ run_catch_levels_default_hr <- function(model,
                      verbose = FALSE)
     unlink(file.path(default_hr_path, "derived_posteriors.sso"),
            force = TRUE)
+    message("Default HR - for forecast year: ", forecast_yrs[i], " of ", tail(forecast_yrs, 1))
     shell_command <- paste0("cd ", default_hr_path, " & ", ss_executable, " -mceval")
     shell(shell_command, wait = FALSE, intern = !show_ss_output)
   }
@@ -197,6 +198,12 @@ run_catch_levels_spr_100 <- function(model,
                                   "derived_posteriors.sso"),
                         header = TRUE)
       spr <- median(as.numeric(out[paste0("SPRratio_", forecast_yrs[i])][[1]]))
+      message("SPR 100, for forecast year: ", forecast_yrs[i], " of ", tail(forecast_yrs, 1))
+      message("SPR difference from 1: ", abs(spr - 1), " < ", catch_levels_spr_tol, " ? ",
+              ifelse(abs(spr - 1) < catch_levels_spr_tol, "Yes", "No"))
+      message("Upper catch: ", upper, " - Lower catch: ", lower,
+              ". Difference: ", abs(upper - lower), " < ", catch_levels_catch_tol, " ? ",
+              ifelse(abs(upper - lower) < catch_levels_catch_tol, "Yes", "No"))
       if(abs(spr - 1) < catch_levels_spr_tol |
          abs(upper - lower) < catch_levels_catch_tol){
         ## Sometimes, upper and lower can end up close to equal,
@@ -276,6 +283,10 @@ run_catch_levels_stable_catch <- function(model,
                                                     forecast_yrs[2])][[1]]))
     stable_catch[3] <- median(as.numeric(out[paste0("ForeCatch_",
                                                     forecast_yrs[3])][[1]]))
+    message("Stable Catch: ")
+    message("Catch difference from forecast year 1 to 2: ", abs(stable_catch[1] - stable_catch[2]),
+            " < ", catch_levels_catch_tol, " ? ",
+            ifelse(abs(stable_catch[1] - stable_catch[2]) < catch_levels_spr_tol, "Yes", "No"))
     if(abs(stable_catch[1] - stable_catch[2]) < catch_levels_catch_tol){
       break
     }
