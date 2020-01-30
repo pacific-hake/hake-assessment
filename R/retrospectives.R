@@ -62,6 +62,26 @@ run_retrospectives <- function(model,
     starter$init_values_src <- 0
     SS_writestarter(starter, dir = retro_subdir, verbose = FALSE, overwrite = TRUE)
 
+    dat <- SS_readdat(file.path(retro_subdir, starter$datfile),
+      verbose = FALSE, version = model$SS_versionshort)
+    ctl <- SS_readctl(file.path(retro_subdir, starter$ctlfile), 
+      verbose = FALSE, use_datlist = TRUE, datlist = dat, 
+      version = model$SS_versionshort)
+    ctl$MainRdevYrLast <- ctl$MainRdevYrLast - retrospective_yrs[retro]
+    ctl$age_selex_parms[ctl$age_selex_parms[,"dev_maxyr"] > dat$endyr - retro,
+       "dev_maxyr"] <- dat$endyr - retrospective_yrs[retro]
+    checkvals <- ctl$age_selex_parms[
+      ctl$age_selex_parms[, "dev_minyr"] != 0,
+      c("dev_minyr", "dev_maxyr")]
+    if (NROW(checkvals) > 0) {
+      if (any(checkvals[, "dev_maxyr"] - checkvals[, "dev_minyr"] < 1)) {
+        stop("The retrospective, ", basename(retro_subdir),
+          ", has time-varying selectivity outside the data years.")
+      }
+    }
+    rm(checkvals)
+    SS_writectl(ctl, outfile = file.path(retro_subdir, starter$ctlfile),
+      version = model$SS_versionshort, overwrite = TRUE, verbose = FALSE)
     if(remove_blocks){
       ctl_file <- file.path(retro_subdir, model$ctl.file)
       ctl <- readLines(ctl.file)
