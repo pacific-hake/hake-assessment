@@ -296,12 +296,12 @@ two cohorts (2010 and 2014 year-classes) in 2017 as opposed to many other years 
 a single cohort is dominant in the observed samples
 (Figure~\ref{fig:main-backscatter-map}), in addition to prevailing environmental
 conditions. 
-**El Ni\~no conditions decreased in their prevalence starting in March of \Sexpr{last.data.yr}, leading to neutral conditions by July.
+El Ni\~no conditions decreased in their prevalence starting in March of \Sexpr{last.data.yr}, leading to neutral conditions by July.
 The \Sexpr{last.data.yr} survey saw \fishname\ on all survey transects from just north of Morro Bay, California to the northern end of Vancouver Island, with the greatest offshore extent of hake found off of Cape Mendocino.
 Ongoing research is looking into relationships between environmental
 conditions and \fishname\ distribution, which will help to inform the mechanisms
 behind observations.
-% Manual 2019
+% Manual 2020
 
 During the acoustic surveys, mid-water trawls are made opportunistically to
 determine the species composition of observed acoustic sign and to obtain the
@@ -344,9 +344,6 @@ during the preparation of survey data collected since 2017. The assumptions are 
   when extrapolating biomass beyond the end of a transect.
 
 \end{itemize}
-
-**Further text to explain new changes in old survey values.
-% Delete above line in 2021
 
 Thus, a full time-series of consistently analyzed survey
 biomass (Table~\ref{tab:main-survey-history} and
@@ -422,7 +419,7 @@ Catcher-Processor vessels, and from the U.S. West Coast bottom trawl survey
 (Table~\ref{tab:main-ovaries}). Samples from south of Point Conception,
 California (34.44$^\circ$N) were excluded from this analysis because they were thought
 to mature at earlier ages and smaller sizes (see \citealt{JTC2019} for more information).
-**The maturity ogive was the same as that used in \citet{JTC2018}
+The maturity ogive was the same as that used in \citet{JTC2018}
 because the U.S. government shutdown delayed delivery of the
 histological samples, though note that the ogive used for previous
 assessments was not updated annually and was that developed by
@@ -522,9 +519,10 @@ population. Simulations performed by \citet{KuriyamaOnoEtAl2015} showed that, in
 general, using empirical weight-at-age when many observations are available
 resulted in more accurate estimates of spawning biomass.
 
-%%**Mean weight has been declining for most ages over
+%%Mean weight has been declining for most ages over
 %%the past few years, but did increase slightly in 2017 from recent lows in 2016.
 %%Increased again in 2018 so not going to keep this in for this year.
+%%Manual 2019
 
 \subsubsection{Length-at-age}\label{sec:data-length-at-age}
 
@@ -608,7 +606,7 @@ time-varying selectivity function are provided below, as described by
 %%\citet{ThorsonHicksEtAl2014}. Repeating that approach has continued to produce
 %%similarly low values for $\phi$.
 
-**For each age $a \geq A_{\text{min}}$, where $A_{\text{min}}$ is the minimum age
+For each age $a \geq A_{\text{min}}$, where $A_{\text{min}}$ is the minimum age
 for which selectivity is allowed to be non-zero,
 there is an incremental selectivity parameter, $p_a$,
 for the fishery (for which $A_{\text{min}}=1$). There is also an equivalent
@@ -639,44 +637,6 @@ $p_a = 0$ gives constant selectivity beyond the last estimated
 value. The condition that maximum selectivity equals 1 results in one fewer
 degree of freedom than the number of estimated $p_a$. Therefore,
 $p_{A_{\text{min}}}=0$ can be set for the fishery and for the survey.
-
-% new text added January 2018
-%%** Delete the following paragraphs.
-%%The implementation of time-varying selectivity in the assessments from 2014 to
-%%2017 used an option available in Stock Synthesis 3.24 whereby
-%%annual deviations to the selectivity parameters were applied after the following
-%%logistic transformation (which is not available in Stock Synthesis 3.30)
-%%to keep the time-varying parameters within a set of bounds.
-
-%%Given bounds $p_{\text{low}}$ and $p_{\text{high}}$ such that
-%%$p_{\text{low}} \leq p_a \leq p_{\text{high}}$,
-%%the base parameters $p_a$
-%%are transformed into $\tilde{p_a}$ via the equation
-%%\eb
-%%\tilde{p}_a = - \frac{1}{2}\log\left(\frac{p_{\text{high}} - p_{\text{low}} +
-%%    2 \times 10^{-7}}{p_a - p_{\text{low}} + 10^{-7}} - 1\right)
-%%\ee
-%%where the small constants in the numerator and denominator are included to
-%%ensure that $\tilde{p_a}$ is finite even when $p_a$ is on a bound.
-%%
-%%The deviations are applied in this transformed space as
-%%\eb
-%%\tilde{p}_{ay} = \tilde{p}_a + \epsilon'_{ay}
-%%\ee
-%%where the $\epsilon'_{ay}$ are additional parameters estimated in the model.
-
-%%The resulting value is then back-transformed into the standard parameter space
-%%via
-%%\eb
-%%p_{ay} = p_{\text{low}} + \frac{ p_{\text{high}} - p_{\text{low}} }
-%%                               { 1 + \exp{\left( -2 \tilde{p}_{ay} \right) } }
-%%\label{data-selectivity-transformation}
-%%\ee
-
-%%%logistic transformation and back transformation as written in TPL file for SS:
-%temp=log((MGparm_1(j,2)-MGparm_1(j,1)+0.0000002)/(MGparm(j)-MGparm_1(j,1)+0.0000001)-1.)/(-2.);   // transform the base parameter
-%temp+=MGparm(k+1);     //  add the offset  Note that offset value is in the transform space
-%temp1=MGparm_1(j,1)+(MGparm_1(j,2)-MGparm_1(j,1))/(1.+mfexp(-2.*temp));   // backtransform
 
 The implementation of time-varying selectivity uses a set of deviations
 to control annual changes to the selectivity parameters. The standard deviation associated with
