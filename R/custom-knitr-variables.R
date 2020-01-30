@@ -95,6 +95,19 @@ survey.biomass <- survey.history$biomass
 names(survey.biomass) <- as.character(survey.history$year)
 survey.comps <- base.model$dat$agecomp[base.model$dat$agecomp$FltSvy==2,]
 rownames(survey.comps) <- survey.comps$Yr
+survey.last.year.age <- survey.comps[survey.comps$Yr == last.data.yr, grep("^a", colnames(survey.comps))]
+survey.last.year.age <- survey.last.year.age[order(survey.last.year.age, decreasing = TRUE)]
+survey.last.year.age <- survey.last.year.age / ifelse(round(sum(survey.last.year.age), 0) == 100,
+  100, 1)
+survey.1.prop.age <- as.numeric(gsub("^a", "", names(survey.last.year.age)[1]))
+survey.1.prop <- f(survey.last.year.age[1]*100,1)
+survey.2.prop.age <- as.numeric(gsub("^a", "", names(survey.last.year.age)[2]))
+survey.2.prop <- f(survey.last.year.age[2]*100,1)
+survey.3.prop.age <- as.numeric(gsub("^a", "", names(survey.last.year.age)[3]))
+survey.3.prop <- f(survey.last.year.age[3]*100,1)
+survey.4.prop.age <- as.numeric(gsub("^a", "", names(survey.last.year.age)[4]))
+survey.4.prop <- f(survey.last.year.age[4]*100,1)
+
 ## Survey extrapolation percentages and years
 survey.extrap.percent <- 100 * (survey.comparison$with.extrap - survey.comparison$no.extrap) / survey.comparison$with.extrap
 names(survey.extrap.percent) <- as.character(survey.comparison$year)
@@ -322,6 +335,7 @@ m.prior <- split.prior.info(param.details[rownames(param.details) == "m.vals",][
                             dec.points = 2,
                             first.to.lower = TRUE)
 ## Now, in document, use m.prior[1] for name of prior, m.prior[1] for mean, and m.prior[3] for SD.
+sel.Phi.val <- base.model$parameters[base.model$parameters$Label=="AgeSel_P3_Fishery(1)_dev_se", "Value"]
 
 ################################################################################
 cohort.catch.1999 <- sum(cohort.catch(1999, base.model$catage, trim.end.year = end.yr))
