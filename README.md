@@ -21,10 +21,10 @@ _____________________________________________________________
 * R version 3.6.2 "Dark and Stormy Night", released Dec 12, 2019
 * Rscript.exe must be on your PATH if you want to use
   **Method 1 for building the document** (explained below).
-* Install the r4ss package at the given commit.
+* Install the r4ss package development branch.
 
 ```
-devtools::install_github("r4ss/r4ss", ref = "b90113ad2819bb5d183b0caf7b238f667863c87f")
+devtools::install_github("r4ss/r4ss", ref = "development")
 ```
 
 To get the TeX part working, you can either use MikTex, which I have moved away from in favour of the tinytex
