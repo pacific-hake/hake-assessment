@@ -169,6 +169,27 @@ median.relative.bio.2007.to.2011.max <- f(max(median.relative.bio.2007.to.2011),
 median.relative.bio.below.target <- median.relative.bio[names(median.relative.bio) %in% start.yr:end.yr & median.relative.bio < 0.4]     # when below target
 median.relative.bio.above.target.since <- max(as.numeric(names(median.relative.bio.below.target)),na.rm=T)+1   # has been above target since
 
+# Compare recruitments calculated in current assessment to those in previous assessment:
+prev.assess.recruitment.lower  <- bridge.models.1[[1]]$mcmccalcs$rlower
+prev.assess.recruitment.med  <- bridge.models.1[[1]]$mcmccalcs$rmed
+prev.assess.recruitment.upper <- bridge.models.1[[1]]$mcmccalcs$rupper
+# This year's assessment but without the final projection year (since not in
+#  previous assessment):
+recruitment.lower.to.compare <-
+  base.model$mcmccalcs$rlower[!(names(base.model$mcmccalcs$rlower) ==
+                                forecast_yrs[length(forecast_yrs)])]
+recruitment.med.to.compare <-
+  base.model$mcmccalcs$rmed[!(names(base.model$mcmccalcs$rmed) ==
+                                forecast_yrs[length(forecast_yrs)])]
+recruitment.upper.to.compare <-
+  base.model$mcmccalcs$rhigh[!(names(base.model$mcmccalcs$rupper) ==
+                               forecast_yrs[length(forecast_yrs)])]
+# 2020 assessment, trying to understand difference, shows big increase in our
+# estimate of 2010 recruitment. See Issue #629. Here are some quick plots:
+# plot(prev.assess.recruitment.med)
+# points(recruitment.med.to.compare, col="red", pch = 16)
+# plot(recruitment.med.to.compare - prev.assess.recruitment.med)
+
 ################################################################################
 ## Prob biomass declines next year to year after with zero catch:
 zero.catch.prob.bio.down.1 <- f(base.model$risks[[1]][1,2])

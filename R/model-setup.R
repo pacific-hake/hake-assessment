@@ -135,6 +135,7 @@ message("Last assessment year's base model pretty name: ", last.yr.base.model.na
 ## -----------------------------------------------------------------------------
 ## Bridge models group 1
 ## -----------------------------------------------------------------------------
+## First one must be last.yr.base.model.dir.name:
 bridge.model.dir.names.1 <- c(last.yr.base.model.dir.name,
                               "2019.03.91_3.30.14.08",
                               "2019.03.92_simpledevs")
@@ -398,4 +399,4 @@ build <- function(.run_forecasts = FALSE,
   })
   message("\nCompleted build.")
   invisible()
-}  
+}
