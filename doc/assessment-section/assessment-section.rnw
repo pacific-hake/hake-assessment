@@ -735,6 +735,8 @@ each year are given in
 Tables~\ref{tab:main-est-numbers-at-age}-\ref{tab:main-est-catch-at-age-biomass}.
 For the major cohorts, the resulting age-specific catch, natural mortality and
 surviving biomasses are given in Table~\ref{tab:main-cohort-effects}.
+** Actually interpet the table, something like: 2014 catch at age-5 is higher than 2010 cohort
+age-5 catch was, but the remaining biomass is lower for 2014 cohort than 2010 though.
 
 **Posterior distributions for both steepness and natural mortality are strongly
 influenced by priors (Figure~\ref{fig:main-prior-posterior}). The posterior for
