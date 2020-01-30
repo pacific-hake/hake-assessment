@@ -99,7 +99,9 @@ than 1\% of landings in recent years. During
 the last five years, catches have been above the long-term average catch
 (\Sexpr{f(long.term.avge.catch)}~t) in
 \Sexpr{last.5.years.above.avge[1:(length(last.5.years.above.avge)-1)]} and
-\Sexpr{last.5.years.above.avge[length(last.5.years.above.avge)]}, and below it
+\Sexpr{last.5.years.above.avge[length(last.5.years.above.avge)]}
+(these last three years being the highest catches on record),
+and below it
 in \Sexpr{last.5.years.below.avge}.
 % in \Sexpr{last.5.years.below.avge[1:(length(last.5.years.below.avge)-1)]}.
 % and \Sexpr{last.5.years.below.avge[length(last.5.years.below.avge)]}.
@@ -204,9 +206,9 @@ assumptions (once they are summarised in main text).
 
 \subsection*{Stock biomass} \label{sec:es-stock-biomass} \phantomsection
 \addcontentsline{toc}{subsection}{Stock biomass}
-**The base stock assessment model
+The base stock assessment model
 indicates that since the 1960s, \fishname\ female spawning biomass has ranged
-from well below to near (and above) unfished equilibrium
+from well below to above unfished equilibrium
 (Figures~\ref{fig:es-female-spawning-biomass}
 and~\ref{fig:es-relative-spawning-biomass}). The model estimates
 % Have to split the sentence like that to avoid text ending here at the
@@ -237,7 +239,7 @@ make.biomass.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 %
 that it was below the unfished equilibrium in the 1960s, at the start of the
-assessment model, due to lower than average recruitment.
+assessment period, due to lower than average recruitment.
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
@@ -258,11 +260,10 @@ make.depletion.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %-------------------------------------------------------------------------------
-The stock is estimated to have increased rapidly to near unfished equilibrium
-in the mid-1970s and then again after two large recruitments in the early 1980s,
-and then declined
-steadily after a peak in the mid- to late-1980s to a low in 1999. This long
-period of decline was followed by a brief increase to a peak in 2002 as the
+The stock is estimated to have increased rapidly and was above unfished equilibrium
+in the mid-1970s and mid-1980s (after two large recruitments in the early 1980s).
+It then declined steadily to a low in 1999. This
+was followed by a brief increase to a peak in 2002 as the
 very large 1999 year class matured. The 1999 year class largely supported the fishery
 for several years due to relatively small recruitments between 2000 and
 2007. With the aging 1999 year class, median female spawning biomass declined
@@ -274,12 +275,11 @@ above-average 2008 year class. The subsequent decline from 2014 to 2016 is prima
 from the 2010 year class surpassing the age at which gains in weight from growth
 are greater than the loss in weight from mortality.
 The 2014 year class is estimated to be large, though not as large as the 1999
-and 2010 year classes, which, combined with the fishing mortality on these
-cohorts and an above-average estimate of the 2016 year class, has resulted in a
-relatively constant biomass since 2017.
-% Manual 2019 done.
+and 2010 year classes, increasing the biomass in 2017. The estimated biomass has
+declined in each of 2018, 2019 and 2020, during a time of record catches.
+% Manual 2020 done.
 
-**The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning
+The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning
 biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium,
 $B_0$) is \Sexpr{curr.depl.median}\%. However, the uncertainty
 is large, with a 95\%
@@ -289,11 +289,11 @@ the \Sexpr{end.yr} spawning biomass is \Sexpr{curr.bio.median}~million~t (with a
 95\% posterior credibility interval from \Sexpr{curr.bio.lower} to
 \Sexpr{curr.bio.upper}~million~t). The estimate of the \Sexpr{end.yr-1} female
 spawning biomass is \Sexpr{prev.bio.median}
-(\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. This is a slightly lower
-median than the **1.357~(0.610-3.161)~million~t estimated in the \Sexpr{end.yr-1}
-assessment, though the credibility interval lies within that from the \Sexpr{end.yr-1}
+(\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. This is a slightly higher
+median than the 1.312~(0.471-3.601)~million~t estimated in the \Sexpr{end.yr-1}
+assessment, and the credibility interval lies well within that from the \Sexpr{end.yr-1}
 assessment.
-% Manual 2019: updated numbers in final sentence and revised text.
+% Manual 2020 done (updated numbers in final sentence and revised text).
 <<biomass.table, results='asis', echo=FALSE>>=
 make.biomass.table(base.model,
                    start.yr = end.yr-9,
