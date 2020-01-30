@@ -369,9 +369,6 @@ sens.model <- sens.models.2[[1]]
 <<appendices-fecundity, child='appendices-fecundity/appendix-age1-survey.rnw'>>=
 @
 
-<<sens.fecundity>>=
-sens.model <- sens.models.5[[3]]
-@
 \rfoot{Appendix~\ref{chap:eq-fecundity-early-10} -- Fecundity sensitivity}
 <<appendices-fecundity, child='appendices-fecundity/appendix-eq-fecundity-early-10.rnw'>>=
 @
