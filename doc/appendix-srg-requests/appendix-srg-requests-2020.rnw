@@ -34,7 +34,7 @@ decision tables, and other relevant MCMC outputs.
 
 \begin{figure}[H]
 \begin{center}
-<<srg.requests.baby.squid.base, fig.height=6, fig.width=8>>=
+<<srg-requests-baby-squid-base, fig.height=6, fig.width=8>>=
 plot.retro.yrs <- retrospective_yrs
 retro.cohorts <- c(2014, 2010, 2007, 2009)     # Selecting three years as examples
 retro.list <- list(base.model)
@@ -61,7 +61,7 @@ make.squid.plot(retro.list,
 
 \begin{figure}[H]
 \begin{center}
-<<srg.requests.squid.age1, fig.height=6, fig.width=8>>=
+<<srg-requests-squid-age1, fig.height=6, fig.width=8>>=
 plot.retro.yrs <- retrospective_yrs
 retro.cohorts <- 1999:(end.yr-2)
 retro.list <- list(base.model)
@@ -86,7 +86,7 @@ make.squid.plot(retro.list,
 \label{fig:srg-requests-retrospective-recruitment}
 \end{figure}
 
-% <<srg.requests.cohort.table, results='asis', echo=FALSE>>=
+% <<srg-requests-cohort-table, results='asis', echo=FALSE>>=
 % make.recr.dev.uncertainty.table(list(base.model,
 %                                      sens.models.2[[1]]),
 %                                 c("Base model", "Age-1 Index"),
