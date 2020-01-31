@@ -338,10 +338,6 @@ thinking. *******COMMENT ME OUT WHEN DONE*******
 \renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 \renewcommand{\theequation}{\thechapter.\arabic{equation}}
 
-%% \rfoot{Appendix~\ref{chap:test-ss-3.30} -- Bridge from SS v3.24 to v3.30}
-%% <<appendix-test-ss-3.30, child='appendix-test-ss-3.30/appendix-test-ss-3.30.rnw'>>=
-%% @
-
 \rfoot{Appendix~\ref{chap:srg-requests} -- SRG requests}
 <<appendix-srg-requests, child='appendix-srg-requests/appendix-srg-requests-2020.rnw'>>=
 @
