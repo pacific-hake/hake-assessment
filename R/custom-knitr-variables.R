@@ -163,6 +163,10 @@ num.mcmc.samples <- dim(base.model$mcmc)[1]
 median.bio.min  <- f(min(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% start.yr:end.yr]), 3)  # min median biomass
 median.bio.min.year <- names(which.min(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% start.yr:end.yr])) # year of min
 median.intensity <- base.model$mcmccalcs$pmed
+median.intensity.2007.to.2010 <- median.intensity[c("2007", "2008", "2009", "2010")]
+median.intensity.2007.to.2010.min <- f(min(median.intensity.2007.to.2010)*100, 0)
+median.intensity.2007.to.2010.max <- f(max(median.intensity.2007.to.2010)*100, 0)
+# Used prior to 2020 assessment:
 median.intensity.2007.to.2011 <- median.intensity[c("2007", "2008", "2009", "2010", "2011")]
 median.intensity.2007.to.2011.min <- f(min(median.intensity.2007.to.2011)*100, 0)
 median.intensity.2007.to.2011.max <- f(max(median.intensity.2007.to.2011)*100, 0)
@@ -176,11 +180,36 @@ median.intensity.2017 <- f(base.model$mcmccalcs$pmed["2017"] * 100, 1)
 median.intensity.2018 <- f(base.model$mcmccalcs$pmed["2018"] * 100, 1)
 median.intensity.penult.yr <- f(base.model$mcmccalcs$pmed[as.character(end.yr-1)] * 100, 1)
 median.relative.bio <- base.model$mcmccalcs$dmed
+median.relative.bio.2007.to.2010 <- median.relative.bio[c("2007", "2008", "2009", "2010")]
+median.relative.bio.2007.to.2010.min <- f(min(median.relative.bio.2007.to.2010), 2)
+median.relative.bio.2007.to.2010.max <- f(max(median.relative.bio.2007.to.2010), 2)
+# Used prior to 2020 assessment:
 median.relative.bio.2007.to.2011 <- median.relative.bio[c("2007", "2008", "2009", "2010", "2011")]
 median.relative.bio.2007.to.2011.min <- f(min(median.relative.bio.2007.to.2011), 2)
 median.relative.bio.2007.to.2011.max <- f(max(median.relative.bio.2007.to.2011), 2)
 median.relative.bio.below.target <- median.relative.bio[names(median.relative.bio) %in% start.yr:end.yr & median.relative.bio < 0.4]     # when below target
 median.relative.bio.above.target.since <- max(as.numeric(names(median.relative.bio.below.target)),na.rm=T)+1   # has been above target since
+
+# Compare recruitments calculated in current assessment to those in previous assessment:
+prev.assess.recruitment.lower  <- bridge.models.1[[1]]$mcmccalcs$rlower
+prev.assess.recruitment.med  <- bridge.models.1[[1]]$mcmccalcs$rmed
+prev.assess.recruitment.upper <- bridge.models.1[[1]]$mcmccalcs$rupper
+# This year's assessment but without the final projection year (since not in
+#  previous assessment):
+recruitment.lower.to.compare <-
+  base.model$mcmccalcs$rlower[!(names(base.model$mcmccalcs$rlower) ==
+                                forecast_yrs[length(forecast_yrs)])]
+recruitment.med.to.compare <-
+  base.model$mcmccalcs$rmed[!(names(base.model$mcmccalcs$rmed) ==
+                                forecast_yrs[length(forecast_yrs)])]
+recruitment.upper.to.compare <-
+  base.model$mcmccalcs$rhigh[!(names(base.model$mcmccalcs$rupper) ==
+                               forecast_yrs[length(forecast_yrs)])]
+# 2020 assessment, trying to understand difference, shows big increase in our
+# estimate of 2010 recruitment. See Issue #629. Here are some quick plots:
+# plot(prev.assess.recruitment.med)
+# points(recruitment.med.to.compare, col="red", pch = 16)
+# plot(recruitment.med.to.compare - prev.assess.recruitment.med)
 
 ################################################################################
 ## Prob biomass declines next year to year after with zero catch:
@@ -302,6 +331,10 @@ recruitment.med.in.2014 <- f(base.model$mcmccalcs$rmed["2014"], 3)
 prob.percent.2014.rec.gt.2010.rec <- f(mean(base.model$mcmc$Recr_2014 > base.model$mcmc$Recr_2010) * 100, 1)
 recruitment.med.in.2016 <- f(base.model$mcmccalcs$rmed["2016"], 3)
 prob.percent.2016.rec.gt.2010.rec <- f(mean(base.model$mcmc$Recr_2016 > base.model$mcmc$Recr_2010) * 100, 1)
+
+prob.percent.2010.rec.gt.1980.rec <- f(mean(base.model$mcmc$Recr_2010 > base.model$mcmc$Recr_1980) * 100, 0)
+prob.percent.2010.rec.gt.1980.rec.last.year.assess <-
+  f(mean(bridge.models.1[[1]]$mcmc$Recr_2010 > bridge.models.1[[1]]$mcmc$Recr_1980) * 100, 0)
 
 ################################################################################
 ## Exploitation values
