@@ -60,6 +60,12 @@ doc/main-figures/age1hake_03-17_NASC_BiomassAtAge_color.eps
 doc/main-figures/hake_survey_1995-19_NASCTimeSeries_BiomassAtLengthHistograms_v2.eps
 doc/main-figures/age1hake_03-19_sA_squareroot_bin_narrow-panel_bw.eps
 
+doc/appendix-srg-requests/appendix-srg-requests-2017.rnw
+doc/appendix-srg-requests/appendix-srg-requests-2018.rnw
+doc/appendix-srg-requests/appendix-srg-requests-2019.rnw
+
+temp-keep/
+
 .Rproj.user
 
 *synctex*
