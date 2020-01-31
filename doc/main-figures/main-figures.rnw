@@ -253,7 +253,7 @@ weight.at.age.heatmap(base.model)
   Bold values between 1975--\Sexpr{max.fishery.age.prop[2]} represent unavailable
   data such that weights were interpolated or extrapolated from adjacent ages or years.
   The sample-weighted mean weight-at-age is shown at the bottom.}
-\label{fig:main-empirical.weight.at.age}
+\label{fig:main-empirical-weight-at-age}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -269,7 +269,7 @@ weight.at.age.heatmap(base.model)
   Figure ~\ref{fig:main-empirical.weight.at.age}).
   Data are available from 1975--\Sexpr{max.fishery.age.prop[2]}.
   The total sample size for each age is shown at the bottom.}
-\label{fig:main-empirical.weight.at.age.numbers}
+\label{fig:main-empirical-weight-at-age-numbers}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -286,7 +286,7 @@ weight.at.age.heatmap(base.model)
 %   age group (age-2 to age-15; where age-15 is an accumulator group) using weighted
 %   least squares.  Statistical weights in the regression were based on the
 %   inverse of the annual sample variance.**UPDATE FIGURE AS MANUAL}
-%\label{fig:main-empirical.weight.at.age.years}
+%\label{fig:main-empirical-weight-at-age-years}
 %\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -350,7 +350,7 @@ par <- oldpar
   relative to the unfished equilibrium spawning biomass, middle left),
   absolute recruitment (middle right), recruitment deviations (lower left),
   and survey index (lower right).}
-\label{fig:main-bridge-5-panel.1}
+\label{fig:main-bridge-5-panel-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -406,14 +406,14 @@ par <- oldpar
 @
 \end{center}
 \caption{Bridging models starting with the addition of simple recruitment deviations (shown
-  in Figure~\ref{fig:main-bridge-5-panel.1}) and then with sequential changes including
+  in Figure~\ref{fig:main-bridge-5-panel-1}) and then with sequential changes including
   updating pre-2019 fishery data, adding 2019 catch data, and adding 2019 weight-at-age and
   fishery composition data. Panels are spawning biomass
   (upper panel), relative spawning biomass (spawning biomass in each year
   relative to the unfished equilibrium spawning biomass, middle left),
   absolute recruitment (middle right), recruitment deviations (lower left),
   and survey index (lower right).}
-\label{fig:main-bridge-5-panel.2}
+\label{fig:main-bridge-5-panel-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -468,7 +468,7 @@ par <- oldpar
 @
 \end{center}
 \caption{Bridging models starting with the addition of simple recruitment deviations (shown
-  in Figure~\ref{fig:main-bridge-5-panel.2}) and then with sequential changes including
+  in Figure~\ref{fig:main-bridge-5-panel-2}) and then with sequential changes including
   updating and adding 2019 survey biomass data, adding 2019 survey composition data, and then
   adding a prior on the survey Dirichlet Multinomial parameter (see
   Section~\ref{sec:assessment-base-model} for further details about model priors)
@@ -477,7 +477,7 @@ par <- oldpar
   relative to the unfished equilibrium spawning biomass, middle left),
   absolute recruitment (middle right), recruitment deviations (lower left),
   and survey index (lower right).}
-\label{fig:main-bridge-5-panel.3}
+\label{fig:main-bridge-5-panel-3}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 % \clearpage
@@ -497,7 +497,7 @@ par <- oldpar
 @
 \end{center}
 \caption{**Summary of MCMC diagnostics for natural mortality (upper panels) and log(\emph{R\subscr{0}}) (lower panels) in the base model. Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; cumulative running mean with 5th and 95th percentiles, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
-\label{fig:main-mcmc.diag.m.r0}
+\label{fig:main-mcmc-diag-m-r0}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -515,7 +515,7 @@ par <- oldpar
 \end{center}
 \caption{**Summary of MCMC diagnostics for steepness (upper panels) and the additional standard deviation (SD)
   in the survey index (lower panels) in the base model. Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; cumulative running mean with 5th and 95th percentiles, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
-\label{fig:main-mcmc.diag.h.extra.sd}
+\label{fig:main-mcmc-diag-h-extra-sd}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -532,7 +532,7 @@ make.mcmc.diag.hists.plot(base.model)
   together with the derived time series of
   spawning biomass and relative spawning biomass.
   The level of autocorrelation in the chain (distribution across lag times, i.e., distance between samples in the chain, shown in the top left panel) influences the effective sample size (top right panel) used to estimate posterior distributions. The Geweke statistic (lower left panel) tests for equality between means located in the first part of the chain against means in the last part of the chain. The Heidelberger and Welch statistic (lower right panel) tests if the sampled values come from a stationary distribution by comparing different sections of the chain.}
-\label{fig:main-mcmc.diag.hists}
+\label{fig:main-mcmc-diag-hists}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -544,7 +544,7 @@ make.mcmc.diag.hists.plot(base.model)
 \end{center}
 %\vspace{0mm}
 \caption{**Gelman-Rubin plot showing the development of the scale-reduction (shrink factor) across the chain length for key posterior parameter distributions. A factor close to 1 indicates that between chain variance and within chain variance are equal. Values much greater than 1.1 indicate a notable difference between chains and the possible lack of achieving a converged stationary posterior distribution.}
-\label{fig:main-mcmc.diag.gelrub}
+\label{fig:main-mcmc-diag-gelrub}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -738,7 +738,7 @@ make.squid.plot(retro.list,
   birth year marked at the right of each color-coded line. Values are
   estimated by models using data available only up to the year in which
   each cohort was a given age.**See Issue \#616.}
-\label{fig:main-retrospective.recruitment}
+\label{fig:main-retrospective-recruitment}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -877,7 +877,7 @@ make.mcmc.sr.variability.plot(base.model,
   distribution (median). Shading around stock-recruit curves indicates uncertainty in shape associated
   with distribution of the steepness parameter ($h$). The gray polygon on the right indicates the
   expected distribution of recruitments relative to the unfished equilibrium.}
-\label{fig:main-mcmc.sr.variability}
+\label{fig:main-mcmc-sr-variability}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -954,7 +954,7 @@ make.mcmc.vs.mle.plot(base.model,
   while the posterior mean recruitment is displayed in the lower panel to be
   more comparable to the MLE value. **BOTTOM panel is different (worse) style to
 last year, need to fix x-axis in both panels.}
-\label{fig:main-mle.vs.mcmc}
+\label{fig:main-mle-vs-mcmc}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1480,14 +1480,14 @@ weight.at.age.heatmap(sens.models.5[[2]])
 \end{center}
 \caption{**Not sure yet if we're doing any of these. Empirical weight-at-age (kg) values used for sensitivity
   run~53 and the base
-  model (Figure~\ref{fig:main-empirical.weight.at.age}).
+  model (Figure~\ref{fig:main-empirical-weight-at-age}).
   Data are only available from 1975--\Sexpr{max.fishery.age.prop[2]}.
   Values based on assumptions for the early and late years are shown
   outside the blue lines (see Table~\ref{tab:main-wtatage-runs}).
   Bold values between the blue lines represent unavailable data and
   such weights were interpolated or extrapolated from adjacent ages or years.
   The sample-weighted mean weight-at-age is shown at the bottom.}
-\label{fig:main-empirical.weight.at.age.sens.a}
+\label{fig:main-empirical-weight-at-age-sens-a}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1501,11 +1501,11 @@ weight.at.age.heatmap(sens.models.5[[2]])
 % \end{center}
 % \caption{**Empirical weight-at-age (kg) values used for sensitivity
 %   runs~55 and~57. Details are as in
-%   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}. Note
+%   Figure~\ref{fig:main-empirical-weight-at-age-sens-a}. Note
 %   the 2018 values have to be assumed (the location of the top blue line is different to
-%   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}), as described
+%   Figure~\ref{fig:main-empirical-weight-at-age-sens-a}), as described
 %   in Table~\ref{tab:main-wtatage-runs}.}
-% \label{fig:main-empirical.weight.at.age.sens.b}
+% \label{fig:main-empirical-weight-at-age-sens-b}
 % \end{figure}
 % %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1523,7 +1523,7 @@ weight.at.age.heatmap(sens.models.5[[3]], proj.line.yr=2017)
   the 2018 values have to be assumed (the location of the top blue line is different to
   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}), as described
   in Table~\ref{tab:main-wtatage-runs}.}
-\label{fig:main-empirical.weight.at.age.sens.c}
+\label{fig:main-empirical-weight-at-age-sens-c}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1541,7 +1541,7 @@ weight.at.age.heatmap(sens.models.5[[3]], proj.line.yr=2017)
 %   the 2018 values have to be assumed (the location of the top blue line is different to
 %   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}), as described
 %   in Table~\ref{tab:main-wtatage-runs}.}
-% \label{fig:main-empirical.weight.at.age.sens.d}
+% \label{fig:main-empirical-weight-at-age-sens-d}
 % \end{figure}
 % %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1733,7 +1733,7 @@ make.squid.plot(retro.list,
 \caption{Retrospective recruitment estimates shown in
   Figure \ref{fig:main-retrospective.recruitment} scaled
   relative to the most recent estimate of the strength of each cohort.}
-\label{fig:main-relative-retrospective.recruitment}
+\label{fig:main-relative-retrospective-recruitment}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 

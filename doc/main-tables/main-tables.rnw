@@ -458,7 +458,7 @@ make.cohort.table(base.model,
                                     change between years (**for [since 2019??]",
                                     assess.yr,
                                     " the mean weights-at-age are used as
-                                    per Figure~\\ref{fig:main-empirical.weight.at.age}).
+                                    per Figure~\\ref{fig:main-empirical-weight-at-age}).
                                     Estimated quantities are
                                     MLEs."),
                   xlabel = "tab:main-cohort-effects",
@@ -709,7 +709,7 @@ make.short.parameter.estimates.sens.table(sens.models.3.for.table,
   the mean from 2015-2017. $^c$The 2018 onwards weight-at-age was the mean from 1975-2017.
   See Sections~\ref{sec:assessment-fecundity-recap} and \ref{sec:assessment-sensitivity-fecundity}
   for more details and
-  Figures~\ref{fig:main-empirical.weight.at.age.sens.a}-\ref{fig:main-empirical.weight.at.age.sens.d}
+  Figures~\ref{fig:main-empirical-weight-at-age-sens-a}-\ref{fig:main-empirical-weight-at-age-sens-d}
   for the various weight-at-age assumptions.}
  \label{tab:main-wtatage-runs}
 \centering
