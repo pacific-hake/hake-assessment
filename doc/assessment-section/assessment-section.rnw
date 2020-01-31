@@ -1338,8 +1338,8 @@ produced a suggested
 $\sigma_r$ of \Sexpr{sigma.r.alt.allyr}, which was similar to the
 base-model value of 1.4.
 
-% Manual 2019 done
-**The sensitivity of the base model to the inclusion of the age-1 survey index
+% Manual 2020 done
+The sensitivity of the base model to the inclusion of the age-1 survey index
 provides an additional source of information about the recruitment of different
 year classes (see discussion in Section~\ref{sec:data-acoustic-survey}), which
 can be particularly useful for the most recent years when little information on
@@ -1349,11 +1349,11 @@ diverge near the end of the time series
 (Table~\ref{tab:main-parameter-estimates-sens-2};
 Figures~\ref{fig:main-biomass-base-alternative-2} and
 \ref{fig:main-status-base-alternative-2}; \Sexpr{end.yr} estimates are
-\Sexpr{f(100*sens.models.1.for.table[[1]]$derived_quants["Bratio_2018","Value"],1)}\%
+\Sexpr{f(100*sens.models.1.for.table[[1]]$derived_quants[paste0("Bratio_", assess.yr),"Value"],1)}\%
 of unfished biomass for the base model and
-\Sexpr{f(100*sens.models.1.for.table[[8]]$derived_quants["Bratio_2018","Value"],1)}\%
+\Sexpr{f(100*sens.models.1.for.table[[8]]$derived_quants[paste0("Bratio_", assess.yr),"Value"],1)}\%
 for the age-1 index model). This change is likely due to the base model
-underfitting the age-1 index estimates of the size of the 2012, 2014, and 2016 cohorts
+underfitting the age-1 index estimates of the size of the 2014 and 2016 cohorts
 (Figure~\ref{fig:main-age-one-index}). These changes are subtle
 because the base model generally tracks the trends in the age-1 index well.
 Including the age-1 index led to worse fits to the last year of the acoustic

@@ -210,8 +210,7 @@ make.survey.age1.plot(age.1.index,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Preliminary acoustic survey age-1 index overlaid on estimated numbers of age-1 fish (MLE from the base model).
-  **NEED 2019 data, Issue \#615.}
+\caption{Preliminary acoustic survey age-1 index overlaid on estimated numbers of age-1 fish (MLE from the base model).}
 \label{fig:main-age-one-index}
 \end{figure}
 
@@ -1114,7 +1113,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 \caption{Maximum likelihood estimates of spawning biomass for the base model and alternative
   sensitivity runs that represent the following changes in data: adding an age-1 index of abundance,
   using the McAllister-Ianelli approach to weight composition data, and using the
-  Francis approach to weight composition data.**check these are all correct.}
+  Francis approach to weight composition data.}
 \label{fig:main-biomass-base-alternative-2}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1158,14 +1157,14 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 \begin{center}
 <<main-index-base-alternative-2, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(c(list(base.model), sens.models.2),
-                     subplots = 12,
+                     subplots = 14,
                      model.names = c(base.model.name, sens.model.names.2),
                      legend = FALSE,
                      indexfleets= c(2),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{**Maximum likelihood estimates of the fit to the survey index of abundance for the base
+\caption{Maximum likelihood estimates of the fit to the survey index of abundance for the base
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-index-base-alternative-2}
@@ -1418,14 +1417,14 @@ box()
 \begin{center}
 <<main-index-base-alternative-4, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(c(list(base.model), sens.models.4),
-                     subplots = 12,
+                     subplots = 14,
                      model.names = c(base.model.name, sens.model.names.4),
                      legend = FALSE,
                      end.yr = end.yr)
 @
 \end{center}
 %\vspace{0mm}
-\caption{**Maximum likelihood estimates of the fit to the survey index of abundance
+\caption{Maximum likelihood estimates of the fit to the survey index of abundance
   for the base model and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
   semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).
