@@ -21,8 +21,6 @@ make.decision.table <- function(model,
          "' is not implemented. Stopping...\n\n")
   }
   forecast <- model$forecasts[[length(model$forecasts)]]
-  forecast.yrs <- as.numeric(names(forecast))
-
   if(type == "biomass"){
     num.rows <- nrow(forecast[[1]]$biomass)
     table.header <- latex.bold("Beginning of year relative spawning biomass")
