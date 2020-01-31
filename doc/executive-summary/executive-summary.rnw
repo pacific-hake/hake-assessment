@@ -39,7 +39,7 @@ landings averaged \Sexpr{f(mean(catches$TOTAL))}~t from
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[!b]
 \begin{center}
-<<total.catches, fig.height=4, fig.width=8>>=
+<<total-catches, fig.height=4, fig.width=8>>=
 make.catches.plot(catches,
                   leg.y.loc = 650) ## leg.y.loc is y-coord to place legend at
 @
@@ -74,7 +74,7 @@ total allowable catch (TAC, adjusted for carryovers) of
 \Sexpr{last.year.us.attained}\% of its quota; in Canada it was
 \Sexpr{last.year.can.attained}\%.
 %
-<<total.catches.table, results='asis', echo=FALSE>>=
+<<total-catches-table, results='asis', echo=FALSE>>=
 make.catches.table(catches,
                    start.yr = assess.yr - 10,
                    end.yr = assess.yr - 1,
@@ -130,7 +130,7 @@ respectively.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<survey.biomass, fig.height=5, fig.width=8>>=
+<<survey-biomass, fig.height=5, fig.width=8>>=
 #make.survey.biomass.plot(base.model)
 make.survey.biomass.extrap.plot(survey.comparison, show = c(2,4))
 @
@@ -218,7 +218,7 @@ and~\ref{fig:es-relative-spawning-biomass}). The model estimates
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<spawning.biomass, fig.height=5, fig.width=8>>=
+<<spawning-biomass, fig.height=5, fig.width=8>>=
 make.biomass.plot(base.model,
                   equil.yr = unfished.eq.yr,
                   start.yr = start.yr,
@@ -242,7 +242,7 @@ assessment model, due to lower than average recruitment.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<relative.spawning.biomass, fig.height=5, fig.width=8>>=
+<<relative-spawning-biomass, fig.height=5, fig.width=8>>=
 make.depletion.plot(base.model,
                     start.yr = start.yr,
                     end.yr = end.yr,
@@ -294,7 +294,7 @@ median than the **1.357~(0.610-3.161)~million~t estimated in the \Sexpr{end.yr-1
 assessment, though the credibility interval lies within that from the \Sexpr{end.yr-1}
 assessment.
 % Manual 2019: updated numbers in final sentence and revised text.
-<<biomass.table, results='asis', echo=FALSE>>=
+<<biomass-table, results='asis', echo=FALSE>>=
 make.biomass.table(base.model,
                    start.yr = end.yr-9,
                    end.yr = end.yr,
@@ -316,7 +316,7 @@ make.biomass.table(base.model,
 % Tables create extra whitespace in text if in the middle of a paragraph, so
 %  put this here, which currently places table after its first referred.
 %  If that stops happening then move to after paragraph.
-<<recruitment.table, results='asis', echo=FALSE>>=
+<<recruitment-table, results='asis', echo=FALSE>>=
 make.recruitment.table(base.model,
                        start.yr = end.yr-10,
                        end.yr = end.yr-1,
@@ -409,7 +409,7 @@ target SPR of 40\%; it is reported here interchangeably as a decimal proportion 
 \phantomsection  \addcontentsline{toc}{subsection}{Exploitation status}
 
 % Table may end up too early, if so move to end of this section.
-<<fishing.intensity.table, results='asis', echo=FALSE>>=
+<<fishing-intensity-table, results='asis', echo=FALSE>>=
 make.fishing.intensity.table(base.model,
                              start.yr = end.yr-10,
                              end.yr = end.yr-1,
@@ -453,7 +453,7 @@ years, and Figure~\ref{fig:es-fishing-intensity}).
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<fishing.intensity, fig.height=5, fig.width=8>>=
+<<fishing-intensity, fig.height=5, fig.width=8>>=
 make.fishing.intensity.plot(base.model,
                             start.yr = start.yr,
                             end.yr = end.yr-1,
@@ -481,7 +481,7 @@ fish are often caught by the fishery.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<exploitation.fraction, fig.height=5, fig.width=8>>=
+<<exploitation-fraction, fig.height=5, fig.width=8>>=
 make.exploitation.fraction.plot(base.model,
                                 start.yr = start.yr,
                                 end.yr = end.yr-1,
@@ -531,7 +531,7 @@ due to the appearance of the 1999 year class.
 % Manual 2020 done. For last sentence just check
 %  landings.vs.tac[landings.vs.tac$Year > 2000, c("Year", "ATTAIN")]
 
-<<landings.tac.table, results='asis', echo=FALSE>>=
+<<landings-tac-table, results='asis', echo=FALSE>>=
 make.landings.tac.table(landings.vs.tac,
                         start.yr = end.yr-10,
                         end.yr = end.yr-1,
@@ -572,7 +572,7 @@ this difference is not, by far, the major driver of the observed dynamics.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<phase.plot, fig.height=5, fig.width=8>>=
+<<phase-plot, fig.height=5, fig.width=8>>=
 make.phase.plot(base.model,
                 start.yr = start.yr,
                 end.yr = end.yr,
@@ -621,7 +621,7 @@ assessment.
 % Manual done 2018.
 \enlargethispage{\baselineskip}
 
-<<reference.points.table, results='asis', echo=FALSE>>=
+<<reference-points-table, results='asis', echo=FALSE>>=
 make.reference.points.table(base.model,
                             xcaption = paste0("Summary of median and 95\\%
                              credibility intervals of equilibrium reference points
@@ -690,7 +690,7 @@ wide range of uncertainty, the 95\% credibility interval being
 \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
 
 % May need to move after the next paragraph
-<<decisions.biomass.table, results='asis', echo=FALSE>>=
+<<decisions-biomass-table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
                     xcaption = paste0("Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
@@ -747,7 +747,7 @@ relative fishing intensity in projected years because the $\Fforty$ default
 harvest-rate catch limit is calculated using baseline selectivity from all
 years, whereas the forecasted catches are removed using selectivity
 %
-<<decisions.spr.table, results='asis', echo=FALSE>>=
+<<decisions-spr-table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
                     xcaption = paste0("Forecast quantiles of \\fishname\\
                      relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}),
@@ -787,7 +787,7 @@ appropriately; therefore, the long-term average fecundity-at-age was used.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<forecast.depletion.comparison.plot, fig.height=5, fig.width=8>>=
+<<forecast-depletion-comparison-plot, fig.height=5, fig.width=8>>=
 ## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those which will be plotted against each other
 models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
@@ -820,7 +820,7 @@ make.forecast.depletion.comparison.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<forecast.risk.comparison.plot.year.1, fig.height=5, fig.width=8>>=
+<<forecast-risk-comparison-plot-year-1, fig.height=5, fig.width=8>>=
 make.forecast.risk.comparison.plot(base.model,
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[1],
@@ -844,7 +844,7 @@ make.forecast.risk.comparison.plot(base.model,
 %
 % Move to after next paragraph if it appears too early. It shouldn't since
 %  so many tables around.
-<<risk.forecast.year.1.table, results='asis', echo=FALSE>>=
+<<risk-forecast-year-1-table, results='asis', echo=FALSE>>=
 make.risk.table(base.model,
                 forecast_yrs,
                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
@@ -872,7 +872,7 @@ and~\ref{fig:es-forecast-risk-comparison-year-2}).
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<forecast.risk.comparison.plot.year.2, fig.height=5, fig.width=8>>=
+<<forecast-risk-comparison-plot-year-2, fig.height=5, fig.width=8>>=
 make.forecast.risk.comparison.plot(base.model,
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[2],
@@ -893,7 +893,7 @@ directly from model output and lines interpolate between the points.}
 \label{fig:es-forecast-risk-comparison-year-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-<<risk.forecast.year.2.table, results='asis', echo=FALSE>>=
+<<risk-forecast-year-2-table, results='asis', echo=FALSE>>=
 make.risk.table(base.model,
                 forecast_yrs,
                 index = 2, ## Index in models[[]]$risks to use, e.g.
