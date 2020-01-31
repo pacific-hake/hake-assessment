@@ -2,7 +2,7 @@
 
 \section{TABLES} \label{sec:tables}
 \vspace{10mm}
-<<catches.US, results='asis', echo=FALSE>>=
+<<catches-us, results='asis', echo=FALSE>>=
 make.catches.table.US(catches,
                       start.yr=start.yr,
                       end.yr=end.yr,
@@ -22,7 +22,7 @@ make.catches.table.US(catches,
                       space.size = 11)
 @
 
-<<catches.Can, results='asis', echo=FALSE>>=
+<<catches-can, results='asis', echo=FALSE>>=
 make.catches.table.Can(catches,
                        start.yr=start.yr,
                        end.yr=end.yr,
@@ -38,7 +38,7 @@ make.catches.table.Can(catches,
                        space.size = 12)
 @
 
-<<catches.total, results='asis', echo=FALSE>>=
+<<catches-total, results='asis', echo=FALSE>>=
 make.catches.table.total(catches,
                          start.yr=start.yr,
                          end.yr=end.yr,
@@ -55,7 +55,7 @@ make.catches.table.total(catches,
                          space.size = 12)
 @
 
-<<main.landings.tac.table, results='asis', echo=FALSE>>=
+<<main-landings-tac-table, results='asis', echo=FALSE>>=
 make.landings.tac.table(landings.vs.tac,
                         start.yr = end.yr - num.recent.yrs,
                         end.yr = end.yr-1,
@@ -67,7 +67,7 @@ make.landings.tac.table(landings.vs.tac,
                         tabular.env = "longtable")
 @
 
-<<main.sampling.history.table, results='asis', echo=FALSE>>=
+<<main-sampling-history-table, results='asis', echo=FALSE>>=
 make.sampling.history.table(sampling.history,
                             xcaption = "Annual summary of U.S. and Canadian
                               fishery sampling included in this stock
@@ -90,7 +90,7 @@ make.sampling.history.table(sampling.history,
 \thispagestyle{lscape}
 \begin{landscape}
   \centering
-<<main.us.cp.age.data.table, results='asis', echo=FALSE>>=
+<<main-us-cp-age-data-table, results='asis', echo=FALSE>>=
 make.us.age.data.table(us.cp.age,
                        fleet = 1,
                        start.yr = end.yr - num.recent.yrs,
@@ -105,7 +105,7 @@ make.us.age.data.table(us.cp.age,
                        decimals = 2)
 @
 
-<<main.us.ms.age.data.table, results='asis', echo=FALSE>>=
+<<main-us-ms-data-table, results='asis', echo=FALSE>>=
 make.us.age.data.table(us.ms.age,
                        fleet = 2,
                        start.yr = end.yr - num.recent.yrs,
@@ -128,7 +128,7 @@ make.us.age.data.table(us.ms.age,
 \thispagestyle{lscape}
 \begin{landscape}
   \centering
-<<main.us.shore.age.data.table, results='asis', echo=FALSE>>=
+<<main-us-shore-age-data-table, results='asis', echo=FALSE>>=
 make.us.age.data.table(us.shore.age,
                        fleet = 3,
                        start.yr = end.yr - num.recent.yrs,
@@ -150,7 +150,7 @@ make.us.age.data.table(us.shore.age,
 \thispagestyle{lscape}
 \begin{landscape}
   \centering
-<<main.can.shore.age.data.table, results='asis', echo=FALSE>>=
+<<main-can-shore-age-data-table, results='asis', echo=FALSE>>=
 make.can.age.data.table(can.ages,
                         fleet = 1,
                         start.yr = end.yr - num.recent.yrs,
@@ -165,7 +165,7 @@ make.can.age.data.table(can.ages,
                        decimals = 2)
 @
 
-<<main.can.ft.age.data.table, results='asis', echo=FALSE>>=
+<<main-can-ft-age-data-table, results='asis', echo=FALSE>>=
 make.can.age.data.table(can.ages,
                         fleet = 2,
                         start.yr = end.yr - num.recent.yrs,
@@ -180,7 +180,7 @@ make.can.age.data.table(can.ages,
                         decimals = 2)
 @
 
-%%<<main.can.jv.age.data.table, results='asis', echo=FALSE>>=
+%%<<main-can-jv-age-data-table, results='asis', echo=FALSE>>=
 %%make.can.age.data.table(can.ages,
 %%                        fleet = 3,
 %%                        start.yr = end.yr - num.recent.yrs, # NEED end.yr
@@ -198,7 +198,7 @@ make.can.age.data.table(can.ages,
 \thispagestyle{lscape}
 \begin{landscape}
   \centering
-<<main.all.age.data.fishery.table, results='asis', echo=FALSE>>=
+<<main-all-age-data-fishery-table, results='asis', echo=FALSE>>=
 make.input.age.data.table(base.model,
                           fleet = 1,
                           start.yr = start.yr.age.comps,
@@ -224,7 +224,7 @@ make.input.age.data.table(base.model,
 \thispagestyle{lscape}
 \begin{landscape}
   \centering
-<<main.all.age.data.survey.table, results='asis', echo=FALSE>>=
+<<main-all-age-survey-table, results='asis', echo=FALSE>>=
 make.input.age.data.table(base.model,
                           fleet = 2,
                           start.yr = survey.start.yr,
@@ -244,7 +244,7 @@ make.input.age.data.table(base.model,
 \pagestyle{fancy}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-<<main.survey.history.table, results='asis', echo=FALSE>>=
+<<main-survey-history-table, results='asis', echo=FALSE>>=
 make.survey.history.table(survey.history,
                           digits = 3,
                           xcaption = paste0("Summary of the acoustic surveys from 1995 to ", survey.end.yr, "."),
@@ -253,7 +253,7 @@ make.survey.history.table(survey.history,
                           space.size = 12)
 @
 
-<<main.maturity.ogives.table, results='asis', echo=FALSE>>=
+<<main-maturity-ogives-table, results='asis', echo=FALSE>>=
 make.maturity.ogives.table(maturity.ogives,
                            xcaption = "Information on maturity and fecundity used in this assessment as
                                        shown in Figure~\\ref{fig:main-maturity}. The sample sizes refer
@@ -269,7 +269,7 @@ make.maturity.ogives.table(maturity.ogives,
                            space.size = 10)
 @
 
-<<main.ovaries.table, results='asis', echo=FALSE>>=
+<<main-ovaries-table, results='asis', echo=FALSE>>=
 make.maturity.samples.table(ovary.samples,
                             xcaption = "Number of \\fishname\\ ovaries collected for histological analysis.
                                         The maturity ogive was determined from a subset of these samples
@@ -280,7 +280,7 @@ make.maturity.samples.table(ovary.samples,
                             space.size = 10)
 @
 
-<<main.parameters.estimated.summary.table, results='asis', echo=FALSE>>=
+<<main-parameters-estimated-summary-table, results='asis', echo=FALSE>>=
 make.parameters.estimated.summary.table(
   base.model,
   start.rec.dev.yr = recruit.dev.start.yr,
@@ -296,7 +296,7 @@ make.parameters.estimated.summary.table(
 @
 
 
-<<main.parameter.estimates.retro, results='asis', echo=FALSE>>=
+<<main-parameter-estimates-retro, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(retro.list,
                                           model.names = retro.model.names,
                                           posterior.regex = key.posteriors,
@@ -315,7 +315,7 @@ make.short.parameter.estimates.sens.table(retro.list,
                                           space.size = 12)
 @
 
-<<main.assessment.changes.table, results='asis', echo=FALSE>>=
+<<main-assessment-changes-table, results='asis', echo=FALSE>>=
 make.assessment.changes.table(assessment.changes,
   xcaption = paste0("Annual changes in the modeling framework used to assess ",
   "\\fishname\\ since 2011. ",
@@ -326,7 +326,7 @@ make.assessment.changes.table(assessment.changes,
   xlabel = "tab:main-assessment-changes")
 @
 
-<<main.est.numbers.at.age.table, results='asis', echo=FALSE>>=
+<<main-est-numbers-at-age-table, results='asis', echo=FALSE>>=
 make.est.numbers.at.age.table(
   base.model,
   start.yr = start.yr,
@@ -346,7 +346,7 @@ make.est.numbers.at.age.table(
 \thispagestyle{lscape}
 \begin{landscape}
   \centering
-<<main.est.biomass.at.age.table, results='asis', echo=FALSE>>=
+<<main-est-biomass-at-age-table, results='asis', echo=FALSE>>=
 make.est.numbers.at.age.table(
   base.model,
   start.yr = start.yr,
@@ -369,7 +369,7 @@ make.est.numbers.at.age.table(
 \thispagestyle{lscape}
 \begin{landscape}
   \centering
-<<main.est.exp.rate.at.age.table, results='asis', echo=FALSE>>=
+<<main-est-exp-rate-at-age-table, results='asis', echo=FALSE>>=
 make.est.numbers.at.age.table(
   base.model,
   start.yr = start.yr,
@@ -394,7 +394,7 @@ make.est.numbers.at.age.table(
 \thispagestyle{lscape}
 \begin{landscape}
   \centering
-<<main.est.catch.at.age.table, results='asis', echo=FALSE>>=
+<<main-est-catch-at-age-table, results='asis', echo=FALSE>>=
 make.est.numbers.at.age.table(
   base.model,
   start.yr = start.yr,
@@ -417,7 +417,7 @@ make.est.numbers.at.age.table(
 \thispagestyle{lscape}
 \begin{landscape}
   \centering
-<<main.est.catch.at.age.biomass.table, results='asis', echo=FALSE>>=
+<<main-est-catch-at-age-biomass-table, results='asis', echo=FALSE>>=
 make.est.numbers.at.age.table(
   base.model,
   start.yr = start.yr,
@@ -438,7 +438,7 @@ make.est.numbers.at.age.table(
 \thispagestyle{lscape}
 \begin{landscape}
   \centering
-<<main.cohort.effects.table, results='asis', echo=FALSE>>=
+<<main-cohort-effects-table, results='asis', echo=FALSE>>=
 make.cohort.table(base.model,
                   c(1999, 2010, 2014),
                   start.yr,
@@ -470,7 +470,7 @@ make.cohort.table(base.model,
 \pagestyle{fancy}
 \clearpage
 
-<<main.median.posterior.table, results='asis', echo=FALSE>>=
+<<main-median-posterior-table, results='asis', echo=FALSE>>=
 make.median.posterior.table(
   base.model,
   start.yr = start.yr,
@@ -488,7 +488,7 @@ make.median.posterior.table(
   space.size = 10)
 @
 
-<<main.ci.posterior.table, results='asis', echo=FALSE>>=
+<<main-ci-posterior-table, results='asis', echo=FALSE>>=
 make.ci.posterior.table(
   base.model,
   start.yr = start.yr,
@@ -501,7 +501,7 @@ make.ci.posterior.table(
   space.size = 10)
 @
 
-<<main.parameter.estimates, results='asis', echo=FALSE>>=
+<<main-parameter-estimates, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.table(
   base.model,
   last.yr.base.model,
@@ -518,7 +518,7 @@ make.short.parameter.estimates.table(
   space.size = 10)
 @
 
-<<main.reference.points.table, results='asis', echo=FALSE>>=
+<<main-reference-points-table, results='asis', echo=FALSE>>=
 make.reference.points.table(base.model,
                             xcaption = paste0("Summary of median and 95\\% credibility
                                                intervals of equilibrium reference points for
@@ -531,7 +531,7 @@ make.reference.points.table(base.model,
                             space.size = 12)
 @
 
-<<main.decisions.biomass.table, results='asis', echo=FALSE>>=
+<<main-decisions-biomass-table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
                     xcaption = paste0("Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
@@ -569,7 +569,7 @@ make.decision.table(base.model,
                     type = "biomass")
 @
 
-<<main.decisions.spr.table, results='asis', echo=FALSE>>=
+<<main-decisions-spr-table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
                     xcaption = paste0("Decision table of forecast quantiles ",
                                       "of \\fishname\\ relative fishing intensity ",
@@ -587,7 +587,7 @@ make.decision.table(base.model,
                     type = "spr")
 @
 
-<<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
+<<main-risk-forecast-year-1-table, results='asis', echo=FALSE>>=
 make.risk.table(base.model,
                 forecast_yrs,
                 index = 1, ## Index in model$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
@@ -600,7 +600,7 @@ make.risk.table(base.model,
                 space.size = 14)
 @
 
-<<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
+<<main-risk-forecast-year-2-table, results='asis', echo=FALSE>>=
 make.risk.table(base.model,
                 forecast_yrs,
                 index = 2, ## Index in model$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
@@ -622,7 +622,7 @@ make.risk.table(base.model,
 \thispagestyle{lscape}
 \begin{landscape}
   \centering
-<<main.parameter.estimates.sens.1, results='asis', echo=FALSE>>=
+<<main-parameter-estimates-sens-1, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(sens.models.1.for.table,
                                           model.names = sens.model.names.1.for.table,
                                           posterior.regex = key.posteriors,
@@ -647,7 +647,7 @@ make.short.parameter.estimates.sens.table(sens.models.1.for.table,
 \thispagestyle{lscape}
 \begin{landscape}
   \centering
-<<main.parameter.estimates.sens.2, results='asis', echo=FALSE>>=
+<<main-parameter-estimates-sens-2, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(sens.models.2.for.table,
                                           model.names = sens.model.names.2.for.table,
                                           posterior.regex = key.posteriors,
@@ -671,7 +671,7 @@ make.short.parameter.estimates.sens.table(sens.models.2.for.table,
 \thispagestyle{lscape}
 \begin{landscape}
   \centering
-<<main.parameter.estimates.sens.3, results='asis', echo=FALSE>>=
+<<main-parameter-estimates-sens-3, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(sens.models.3.for.table,
                                           model.names = sens.model.names.3.for.table,
                                           posterior.regex = key.posteriors,
