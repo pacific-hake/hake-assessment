@@ -110,7 +110,7 @@ year of
 acoustic survey and
 fishery data, the use of just five recent years, rather than all years, of weight-at-age
 data to calculate fecundity-at-age in the forecast period, and the two structural changes.
-A nearly uniform prior (in transformed space) was placed on the 
+A nearly uniform prior (in transformed space) was placed on the
 Dirichlet-Multinomial parameters used to weight the age-compostion data.
 Estimated recruitment deviations were no longer constrained to sum to zero.
 % Manual 2020 KFJ
@@ -147,7 +147,7 @@ freely estimated. This assessment uses the same Beta-distributed prior for
 stock-recruit steepness ($h$), based on \citet{MyersBowenEtAl1999}, that has
 been applied since 2011 \citep{StewartForrestEtAl2011, JTC2012, JTC2013,
 JTC2014, JTC2015, JTC2016, JTC2017, JTC2018}. Year-specific recruitment deviations were estimated
-from \Sexpr{main.recdev.early}--\Sexpr{main.recdev.end} 
+from \Sexpr{main.recdev.early}--\Sexpr{main.recdev.end}
 as well as the years \Sexpr{assess.yr}, \Sexpr{assess.yr+1}, and
 \Sexpr{assess.yr+2} for purposes of forecasting. The standard deviation,
 $\sigma_r$, of recruitment variability, serving as both a recruitment deviation
@@ -160,7 +160,7 @@ catchability was set at the median unbiased estimate calculated analytically as
 per \citet{LudwigWalters1981}. Maturity is assumed to be time-invariant.
 Fecundity is defined as weight-at-age multiplied by the maturity ogive
 and is time-varying across years with empirical weight-at-age data (1975--
-\Sexpr{last.data.yr}).  
+\Sexpr{last.data.yr}).
 Prior to 1975 fecundity is calculated using the long-term mean weight-at-age,
 and fecundity during the forecast period is calculated using the five most recent years of data.
 Alternative fecundity assumptions are presented through sensitivity analyses
@@ -206,15 +206,102 @@ A recent DFO workshop \citep{EdwardsDupliseaEtAl2018} shared such a
 `transparent, traceable, and transferable' workflow with a wider audience,
 partly motivated by our ongoing \fishname\ assessments.
 
-\subsection{**Response to 2018 Scientific Review Group (SRG) review}\label{sec:assessment-response-review}
+\subsection{Response to 2019 Scientific Review Group (SRG) review}\label{sec:assessment-response-review}
 
-**Update whole section using usual formatting.
+The Scientific Review Group (SRG) meeting was held from February 19-22, 2019
+at the SFU Harbour Centre, Vancouver, BC, USA.
 
-The Scientific Review Group (SRG) meeting was held from February 26 to March 2, 2018
-at the Lynnwood Convention Center, Lynnwood, WA, USA.
+The following are the `SRG Recommendations and Conclusions for the Hake Stock Assessment'
+from the 2019 SRG report, and associated responses from the JTC:
 
-The following are the `Assessment Recommendations and Conclusions' from the 2018
-SRG report, and associated responses from the JTC:
+1. The SRG notes the high sensitivity of the model to the variance parameter assumed for
+recruitment deviations ($\sigma_R$, a parameter that is not directly observable). While the spawning
+biomass trajectories across values of $\sigma_R$ were very close to one another, the corresponding
+estimates of $R_0$ led to widely different estimates of stock status (relative spawning biomass).
+The JTC presented evidence that supported the value used in the assessment.
+{\bf The SRG encourages the JTC to explore methods for parameterizing recruitment and/or
+estimating $\sigma_R$ that would reduce model sensitivity to the value of this constraint.}
+
+\emph{Response -- **}
+
+2. The SRG notes that when setting values for other parameters that cannot be estimated
+directly with confidence, the choice of values should be made using methods that are
+objective, repeatable, and depend on fits to the observed data rather than on the model's
+subsequent estimates of biomass or recruitment. One clear example is setting the parameter
+controlling time-varying fishery selectivity ($\Phi$), with a goal of establishing repeatable steps
+for setting $\Phi$ each year. This year the JTC presented a semi-parametric method of
+characterizing the flexibility in selectivity, but this method did not resolve the sensitivity of
+results to the choice of $\Phi$. {\bf The SRG recommends that the JTC provide a review of how
+time-varying selectivity is parameterized and estimated in other assessments.}
+
+\emph{Response -- **}
+
+3. The histological analysis of ovaries for maturity presented in 2018 showed a distinct
+difference in the percent of Hake that are mature at age 2 and age 3 between areas, with a
+greater proportion mature south of Point Conception (34.5$^\circ$N). These data show that there
+may be two populations of hake, north and south of this boundary. The SRG also notes that
+ovaries collected in Canada were not used to update the maturity ogive. Hake found in
+Canada are generally older, and including samples of these fish in the maturity analysis
+should improve the accuracy of the maturity ogive. The JTC noted that work began late in
+2018 to address this recommendation. {\bf The SRG strongly supports the ongoing genetic
+analyses to determine whether there are genetic differences among the two southern
+regions and other regions. In addition, the SRG notes that Canadian samples should be
+included in the maturity analysis.}
+
+\emph{Response -- **}
+
+4. The issue of data weighting remains a significant technical challenge for stock assessments
+that integrate information of different forms (e.g., biomass indices and age compositions)
+from different sources (e.g., different fishing sectors). A potential issue related to data
+weighting that should be explored in the next assessment is the JTC's approach to deriving
+the initial set of data weightings associated with the fishery and survey age-composition
+observations. The annual number of at-sea hauls and shore-based trips from which fish ages
+were incorporated into the age-composition series are summed to provide initial sample
+sizes. If there are changes in the number of fish associated with each sample unit (haul or
+trip) over time, then a corresponding change in the information content of an age-
+composition sample would be expected. The approach taken to deriving the initial data
+weights could account for changes in the number of fish per sampling unit. Alternatively, the
+Dirichlet multinomial parameter that accounts for variability in the age-composition
+observations could include a time-varying component to account for changes in the number
+of fish per sampling unit. {\bf The SRG notes that the JTC included information in the 2019
+assessment on the annual numbers of fish underlying each annual age-composition
+observation, but were unable to complete an analysis, as requested in the 2018 SRG
+report, on the effect of potential changes in sampling protocols that could influence the
+input sample sizes. The SRG reiterates its request for this analysis.}
+
+\emph{Response -- **}
+
+5. A recent advance in Bayesian analysis (the no U-turn sampler, NUTS) raises the possibility
+that the assessment model could reach convergence much more quickly than is now possible.
+Many 2019 sensitivity runs were limited to maximum likelihood estimates (MLE) values,
+rather than Markov Chain Monte Carlo (MCMC) values, to save computing time, minutes
+versus 2.5 days per run, respectively. {\bf The SRG recommends that the JTC continue to
+explore NUTS and similar options, as using MCMC for all runs would provide better
+comparability between the base assessment model and sensitivity runs.}
+
+\emph{Response -- **}
+
+6. Delays in entry and validation of catches reported on paper tickets in Washington and entry
+into the PACFIN database was identified as a potential issue. This concern has most often
+applied to tribal catches. The preferred process is that all data are available from managed
+regional databases in time for JTC data extraction, which usually occurs early in January.
+{\bf The SRG recommends that the JTC continue to set a deadline for the extraction of
+catch data and be transparent about the sources of data used in the assessment in the
+event that data have to be obtained directly from the sources.}
+
+\emph{Response -- **}
+
+Finally, we note that we have complied with the following request from the 2017 SRG
+concerning the sensitivity tests to perform in all future assessments:
+
+{\bf The SRG requests that future assessments, beginning with 2018, include the following key
+  sensitivity tests: natural mortality, stock-recruit steepness ($h$), $\sigma_r$,
+  inclusion of the age-1 index, and exploring the degree of flexibility in time-varying
+  selectivity or the $\phi$ parameter, as well as any others the JTC deems appropriate.}
+
+\subsection{**2019 SRG replies -- keeping for now in case we need any text elsewhere}
+
+**Keeping these from 2019 for now in case we need the text elsewhere**
 
 1. The stock assessment results and stock status are highly sensitive to two aspects of the
 model:
@@ -512,13 +599,6 @@ table to be included in the assessment document.}
 that summarizes major changes to the model structure and parameterization since 2011.
 Future assessments will include an updated version of the table as well.}
 
-Finally, we note that we have complied with the following request from the 2017 SRG
-concerning the sensitivity tests to perform in all future assessments:
-
-{\bf The SRG requests that future assessments, beginning with 2018, include the following key
-  sensitivity tests: natural mortality, stock-recruit steepness ($h$), $\sigma_r$,
-  inclusion of the age-1 index, and exploring the degree of flexibility in time-varying
-  selectivity or the $\phi$ parameter, as well as any others the JTC deems appropriate.}
 
 
 \subsection{Modeling results}\label{sec:assessment-modeling-results}
@@ -1247,7 +1327,7 @@ include the following:
 
 \item Consideration of alternative assumptions concerning weight-at-age and
   fecundity.
-  
+
 \item Running the base model using the Auto-Differentiation No-U-Turn-Sampling algorithm (AD-NUTS, \citet{Monnahan2018}, \citet{Monnahan2019}).
 
 \end{enumerate}
