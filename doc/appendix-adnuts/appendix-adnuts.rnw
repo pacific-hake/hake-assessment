@@ -1,0 +1,351 @@
+\newpage
+
+\chapter{Sensitivity run with alternative fecundity -- MCMC results}
+\label{chap:eq-fecundity-early-10}
+
+**Please check, winging this off the top of my head to get it working:
+**This appendix contains MCMC model results for the run in which the equilibrium
+fecundity as assumed to be the average of the first ten years of data,
+as described in
+**Sections~\ref{sec:assessment-fecundity-recap}--\ref{sec:assessment-sensitivity-fecundity}
+**and Table~\ref{tab:main-wtatage-runs}.
+
+**Check text and figures - all works, haven't checked if correct or make sense.
+
+% Keeping chunk names as ...53, which is from 2019 assessment (where we had four
+% similar appendices), but not worth changing as it's just the labels).
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<spawning.biomass.53, fig.height=5, fig.width=8>>=
+make.biomass.plot(sens.models.6,
+                  equil.yr = unfished.eq.yr,
+                  start.yr = start.yr,
+                  end.yr = end.yr,
+                  color = "blue")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Median of the posterior distribution for beginning of the year female
+         spawning biomass through \Sexpr{end.yr} (solid line) with 95\% posterior
+         credibility intervals (shaded area). The solid circle with a 95\%
+         posterior credibility interval is the estimated unfished equilibrium
+         biomass.}
+\label{fig:female-spawning-biomass-53}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<relative.spawning.biomass.53, fig.height=5, fig.width=8>>=
+make.depletion.plot(sens.models.6,
+                    start.yr = start.yr,
+                    end.yr = end.yr,
+                    color = "blue")
+@
+\end{center}
+%\vspace{0mm}
+\caption{Median (solid line) of the posterior distribution for relative spawning
+         biomass ($B_t / B_0$) through \Sexpr{end.yr} with 95\% posterior
+         credibility intervals (shaded area). Dashed horizontal lines show
+         10\%, 40\% and 100\% levels.}
+\label{fig:relative-spawning-biomass-53}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+<<biomass.table.53, results='asis', echo=FALSE>>=
+make.biomass.table(sens.models.6,
+                   start.yr = end.yr-9,
+                   end.yr = end.yr,
+                   weight.factor = 1000,
+                   xcaption = "Recent trends in estimated beginning of the year
+                                female spawning biomass (thousand~t) and spawning
+                                biomass level relative to estimated unfished
+                                equilibrium.",
+                   xlabel = "tab:biomass-53",
+                   font.size = 12,
+                   space.size = 14,
+                   placement = "H")
+@
+\clearpage
+
+<<recruitment.table.53, results='asis', echo=FALSE>>=
+make.recruitment.table(sens.models.6,
+                       start.yr = end.yr-10,
+                       end.yr = end.yr-1,
+                       weight.factor = 1000,
+                       xcaption = "Estimates of recent recruitment (millions of
+                                    age-0) and recruitment deviations, where
+                                    deviations below (above) zero indicate
+                                    recruitment below (above) that estimated from
+                                    the stock-recruit relationship.",
+                       xlabel = "tab:recruitment-53",
+                       font.size = 12,
+                       space.size = 14,,
+                       placement = "H")
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<recruitment.53, fig.height=5, fig.width=8>>=
+make.recruitment.plot(sens.models.6,
+                      equil.yr = unfished.eq.yr,
+                      start.yr = start.yr,
+                      end.yr = end.yr,
+                      color = "blue",
+                      add.mean = TRUE,
+                      add.r0 = TRUE)
+@
+\end{center}
+\caption{Medians (solid circles) and means ($\times$) of the posterior
+         distribution for recruitment (billions of age-0) with 95\% posterior
+         credibility intervals (blue lines). The median of the posterior
+         distribution for mean unfished equilibrium recruitment ($R_0$) is shown
+         as the horizontal dashed line with a 95\% posterior credibility interval
+         shaded between the dotted lines.}
+\label{fig:recruitment-53}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+<<fishing.intensity.table.53, results='asis', echo=FALSE>>=
+make.fishing.intensity.table(sens.models.6,
+                             start.yr = end.yr-10,
+                             end.yr = end.yr-1,
+                             digits = 3,
+                             xcaption = "Recent estimates of relative fishing
+                                          intensity,
+                                          (1-SPR)/(1-SPR\\subscr{40\\%}),
+                                          and exploitation fraction (catch
+                                          divided by age-2+ biomass).",
+                             xlabel = "tab:fishing-intensity-53",
+                             font.size = 12,
+                             space.size = 14,
+                             placement = "H")
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<fishing.intensity.53, fig.height=5, fig.width=8>>=
+make.fishing.intensity.plot(sens.models.6,
+                            start.yr = start.yr,
+                            end.yr = end.yr-1,
+                            color = "blue",
+                            upper.lim = 1.5)
+@
+\end{center}
+\caption{Trend in median relative fishing intensity (relative to the SPR
+         management target) through \Sexpr{end.yr-1} with 95\% posterior
+         credibility intervals. The management target defined in the Agreement is
+         shown as a horizontal line at 1.0.}
+\label{fig:fishing-intensity-53}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<exploitation.fraction.53, fig.height=5, fig.width=8>>=
+make.exploitation.fraction.plot(sens.models.6,
+                                start.yr = start.yr,
+                                end.yr = end.yr-1,
+                                color = "blue",
+                                upper.lim = 0.35)
+@
+\end{center}
+\caption{Trend in median exploitation fraction (catch divided by age-2+ biomass)
+         through \Sexpr{end.yr-1} with 95\% posterior credibility intervals.}
+\label{fig:exploitation-fraction-53}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<phase.plot.53, fig.height=5, fig.width=8>>=
+make.phase.plot(sens.models.6,
+                start.yr = start.yr,
+                end.yr = end.yr,
+                color = "blue")
+@
+\end{center}
+\caption{Estimated historical path followed by medians of relative fishing
+         intensity and relative spawning biomass for \fishname\ with labels on the
+         start and end years (and 1999). Gray bars span the 95\% credibility
+         intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical) and
+         relative spawning biomass (horizontal).}
+\label{fig:phase-53}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+<<reference.points.table.53, results='asis', echo=FALSE>>=
+make.reference.points.table(
+  sens.models.6,
+  xcaption = paste0("For the \\altshort, summary of median and 95\\%",
+                     " credibility intervals of equilibrium reference points.",
+                     " Equilibrium reference points were computed using ",
+                     start.yr, "--", end.yr-1, " averages for mean",
+                     " size-at-age and selectivity-at-age."),
+                            xlabel = "tab:reference-points-53",
+                            font.size = 12,
+                            space.size = 14,
+                            placement = "H")
+@
+
+<<decisions.biomass.table.53, results='asis', echo=FALSE>>=
+make.decision.table(sens.models.6,
+                    xcaption = paste0("Forecast quantiles of \\fishname\\
+                     relative spawning biomass at the beginning of the year
+                     before fishing.  Catch alternatives are based on: constant
+                     catch levels (rows ",
+                     catch.constant.str,
+                     "), including catch similar to ",
+                     min(forecast_yrs)-1," (row ",
+                     letters[catch.actual.ind],
+                     ") and the TAC from ",
+                     min(forecast_yrs)-1," (row ",
+                     letters[catch.tac.ind],
+                     "), the catch values that result
+                     in a median relative fishing intensity of 100\\% (row ",
+                     letters[catch.spr100.ind],
+                     "), the median values estimated ",
+                     "via the default harvest policy
+                     (\\Ffortyten) for the base model (row ",
+                     letters[catch.default.policy.ind],
+                     "), and the fishing intensity that results in a 50\\% probability that the median
+                     projected catch will remain the same in ",
+                     min(forecast_yrs),
+                     " and ",
+                     min(forecast_yrs)+1,
+                     " (row ",
+                     letters[catch.stable.ind],
+                     "). Catch in ",
+                     max(forecast_yrs),
+                     " does not impact the beginning of the
+                     year biomass in ",
+                     max(forecast_yrs),
+                     "."),
+                    xlabel = "tab:decisions-biomass-53",
+                    font.size = 12,
+                    space.size = 14,
+                    type = "biomass",
+                    placement = "H")
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<forecast.depletion.comparison.plot.53, fig.height=5, fig.width=8>>=
+## Look at catch.levels and catch.levels to decide which to include here
+## models.inds are the indices of those which will be plotted against each other
+models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
+models.names <- sapply(sens.models.6$catch.levels, "[[", 2)[models.inds]
+                       ## pretty catch level name
+make.forecast.depletion.comparison.plot(sens.models.6,
+                                        models.inds,
+                                        models.names,
+                                        start.yr = 2009,
+                                        model.end.yr = end.yr,
+                                        end.yr =forecast_yrs[length(forecast_yrs)],
+                                        legend.loc = "topleft")
+@
+\end{center}
+\caption{Time series of estimated relative spawning biomass to \Sexpr{end.yr}
+         from the base model, and forecast trajectories to
+         \Sexpr{forecast_yrs[length(forecast_yrs)]} (grey region) for several management actions
+         defined in Table~\ref{tab:decisions-biomass-53}, with 95\%
+         posterior credibility intervals.}
+% The \Sexpr{end.yr} catch of \Sexpr{f(base.model$catch.default.policy[1])}~t was calculated
+%  using the default harvest policy, as defined in the Agreement.}
+% Above commented sentence Was in 2016 but I think is wrong - plot shows the
+%  FI=100% action, so not sure why this talks about default HR (action g).
+%  And no need to define anything here again anyway; now just refer to table.
+\label{fig:forecast-depletion-comparison-53}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<forecast.risk.comparison.plot.year.1.53, fig.height=5, fig.width=8>>=
+make.forecast.risk.comparison.plot(sens.models.6,
+                                   forecast_yrs = forecast_yrs,
+                                   fore.yr = forecast_yrs[1],
+                                   colors = c("black","blue","green","orange",
+                                              "red","tan"),
+                                   pch = c(16,17,17,17,15,18),
+                                   legend.loc = "topleft",
+                                   legend.cex = 0.7)
+@
+\end{center}
+\caption{Graphical representation of the probabilities related to spawning
+         biomass, relative fishing intensity, and the \Sexpr{end.yr+1} default
+         harvest policy catch for alternative \Sexpr{end.yr} catch options (catch
+         options explained in Table~\ref{tab:decisions-biomass-53}) as listed in
+         Table~\ref{tab:risk-year-1-53}. The symbols indicate points that were
+         computed directly from model output and lines interpolate between the
+         points.}
+\label{fig:forecast-risk-comparison-year-1-53}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+<<risk.forecast.year.1.table.53, results='asis', echo=FALSE>>=
+make.risk.table(sens.models.6,
+                forecast_yrs,
+                index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
+                           ##  forecast year 2 compared to forecast year 1
+                xcaption = paste0("Probabilities related to spawning biomass,
+                             relative fishing intensity, and the ",end.yr+1,
+                             " default harvest policy catch for alternative ",
+                             end.yr," catch options (catch options explained in
+                             Table~\\ref{tab:decisions-biomass-53})."),
+                xlabel = "tab:risk-year-1-53",
+                font.size = 12,
+                space.size = 14,
+                placement = "H")
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<forecast.risk.comparison.plot.year.2.53, fig.height=5, fig.width=8>>=
+make.forecast.risk.comparison.plot(sens.models.6,
+                                   forecast_yrs = forecast_yrs,
+                                   fore.yr = forecast_yrs[2],
+                                   colors = c("black","blue","green","orange",
+                                              "red","tan"),
+                                   pch = c(16,17,17,17,15,18),
+                                   legend.loc = "topleft",
+                                   legend.cex = 0.7)
+@
+\end{center}
+\caption{Graphical representation of the probabilities related to spawning
+biomass, relative fishing intensity, and the \Sexpr{end.yr+2} default harvest
+policy catch for alternative \Sexpr{end.yr+1} catch options (including
+associated \Sexpr{end.yr} catch; catch options explained in
+Table~\ref{tab:decisions-biomass-53}) as listed in
+Table~\ref{tab:risk-year-2-53}. The symbols indicate points that were computed
+directly from model output and lines interpolate between the points.}
+\label{fig:forecast-risk-comparison-year-2-53}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+<<risk.forecast.year.2.table.53, results='asis', echo=FALSE>>=
+make.risk.table(sens.models.6,
+                forecast_yrs,
+                index = 2, ## Index in models[[]]$risks to use, e.g.
+                           ##  1 means forecast year 2 compared to forecast year 1
+                xcaption = paste0("Probabilities related to spawning biomass,
+                 relative fishing intensity, and the ",end.yr+2," default harvest
+                 policy catch for alternative ",end.yr+1," catch options, given
+                 the ",end.yr," catch level shown in
+                 Table~\\ref{tab:risk-year-1-53} (catch options explained in
+                 Table~\\ref{tab:decisions-biomass-53})."),
+                xlabel = "tab:risk-year-2-53",
+                font.size = 12,
+                space.size = 14,
+                placement = "H")
+@
