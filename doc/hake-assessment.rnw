@@ -339,7 +339,7 @@ thinking. *******COMMENT ME OUT WHEN DONE*******
 \renewcommand{\theequation}{\thechapter.\arabic{equation}}
 
 \rfoot{Appendix~\ref{chap:srg-requests} -- SRG requests}
-<<appendix-srg-requests, child='appendix-srg-requests/appendix-srg-requests-2020.rnw'>>=
+<<appendix-srg-requests, child='appendix-srg-requests/appendix-srg-requests.rnw'>>=
 @
 
 \rfoot{Appendix~\ref{chap:glossary} -- Glossary}
