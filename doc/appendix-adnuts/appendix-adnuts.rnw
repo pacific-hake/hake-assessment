@@ -17,7 +17,7 @@ as described in
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<spawning.biomass.53, fig.height=5, fig.width=8>>=
+<<spawning-biomass-adnuts, fig.height=5, fig.width=8>>=
 make.biomass.plot(sens.models.6,
                   equil.yr = unfished.eq.yr,
                   start.yr = start.yr,
@@ -31,14 +31,14 @@ make.biomass.plot(sens.models.6,
          credibility intervals (shaded area). The solid circle with a 95\%
          posterior credibility interval is the estimated unfished equilibrium
          biomass.}
-\label{fig:female-spawning-biomass-53}
+\label{fig:spawning-biomass-adnuts}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<relative.spawning.biomass.53, fig.height=5, fig.width=8>>=
+<<relative-spawning-biomass-adnuts, fig.height=5, fig.width=8>>=
 make.depletion.plot(sens.models.6,
                     start.yr = start.yr,
                     end.yr = end.yr,
@@ -50,11 +50,11 @@ make.depletion.plot(sens.models.6,
          biomass ($B_t / B_0$) through \Sexpr{end.yr} with 95\% posterior
          credibility intervals (shaded area). Dashed horizontal lines show
          10\%, 40\% and 100\% levels.}
-\label{fig:relative-spawning-biomass-53}
+\label{fig:relative-spawning-biomass-adnuts}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-<<biomass.table.53, results='asis', echo=FALSE>>=
+<<biomass-table-adnuts, results='asis', echo=FALSE>>=
 make.biomass.table(sens.models.6,
                    start.yr = end.yr-9,
                    end.yr = end.yr,
@@ -63,14 +63,14 @@ make.biomass.table(sens.models.6,
                                 female spawning biomass (thousand~t) and spawning
                                 biomass level relative to estimated unfished
                                 equilibrium.",
-                   xlabel = "tab:biomass-53",
+                   xlabel = "tab:biomass-adnuts",
                    font.size = 12,
                    space.size = 14,
                    placement = "H")
 @
 \clearpage
 
-<<recruitment.table.53, results='asis', echo=FALSE>>=
+<<recruitment-table-adnuts, results='asis', echo=FALSE>>=
 make.recruitment.table(sens.models.6,
                        start.yr = end.yr-10,
                        end.yr = end.yr-1,
@@ -80,7 +80,7 @@ make.recruitment.table(sens.models.6,
                                     deviations below (above) zero indicate
                                     recruitment below (above) that estimated from
                                     the stock-recruit relationship.",
-                       xlabel = "tab:recruitment-53",
+                       xlabel = "tab:recruitment-adnuts",
                        font.size = 12,
                        space.size = 14,,
                        placement = "H")
@@ -89,7 +89,7 @@ make.recruitment.table(sens.models.6,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<recruitment.53, fig.height=5, fig.width=8>>=
+<<recruitment-adnuts, fig.height=5, fig.width=8>>=
 make.recruitment.plot(sens.models.6,
                       equil.yr = unfished.eq.yr,
                       start.yr = start.yr,
@@ -105,11 +105,11 @@ make.recruitment.plot(sens.models.6,
          distribution for mean unfished equilibrium recruitment ($R_0$) is shown
          as the horizontal dashed line with a 95\% posterior credibility interval
          shaded between the dotted lines.}
-\label{fig:recruitment-53}
+\label{fig:recruitment-adnuts}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-<<fishing.intensity.table.53, results='asis', echo=FALSE>>=
+<<fishing-intensity-table-adnuts, results='asis', echo=FALSE>>=
 make.fishing.intensity.table(sens.models.6,
                              start.yr = end.yr-10,
                              end.yr = end.yr-1,
@@ -119,7 +119,7 @@ make.fishing.intensity.table(sens.models.6,
                                           (1-SPR)/(1-SPR\\subscr{40\\%}),
                                           and exploitation fraction (catch
                                           divided by age-2+ biomass).",
-                             xlabel = "tab:fishing-intensity-53",
+                             xlabel = "tab:fishing-intensity-adnuts",
                              font.size = 12,
                              space.size = 14,
                              placement = "H")
@@ -128,7 +128,7 @@ make.fishing.intensity.table(sens.models.6,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<fishing.intensity.53, fig.height=5, fig.width=8>>=
+<<fishing-intensity-adnuts, fig.height=5, fig.width=8>>=
 make.fishing.intensity.plot(sens.models.6,
                             start.yr = start.yr,
                             end.yr = end.yr-1,
@@ -140,7 +140,7 @@ make.fishing.intensity.plot(sens.models.6,
          management target) through \Sexpr{end.yr-1} with 95\% posterior
          credibility intervals. The management target defined in the Agreement is
          shown as a horizontal line at 1.0.}
-\label{fig:fishing-intensity-53}
+\label{fig:fishing-intensity-adnuts}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -148,7 +148,7 @@ make.fishing.intensity.plot(sens.models.6,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<exploitation.fraction.53, fig.height=5, fig.width=8>>=
+<<exploitation-fraction-adnuts, fig.height=5, fig.width=8>>=
 make.exploitation.fraction.plot(sens.models.6,
                                 start.yr = start.yr,
                                 end.yr = end.yr-1,
@@ -158,14 +158,14 @@ make.exploitation.fraction.plot(sens.models.6,
 \end{center}
 \caption{Trend in median exploitation fraction (catch divided by age-2+ biomass)
          through \Sexpr{end.yr-1} with 95\% posterior credibility intervals.}
-\label{fig:exploitation-fraction-53}
+\label{fig:exploitation-fraction-adnuts}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<phase.plot.53, fig.height=5, fig.width=8>>=
+<<phase-plot-adnuts, fig.height=5, fig.width=8>>=
 make.phase.plot(sens.models.6,
                 start.yr = start.yr,
                 end.yr = end.yr,
@@ -177,11 +177,11 @@ make.phase.plot(sens.models.6,
          start and end years (and 1999). Gray bars span the 95\% credibility
          intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical) and
          relative spawning biomass (horizontal).}
-\label{fig:phase-53}
+\label{fig:phase-adnuts}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-<<reference.points.table.53, results='asis', echo=FALSE>>=
+<<reference-points-table-adnuts, results='asis', echo=FALSE>>=
 make.reference.points.table(
   sens.models.6,
   xcaption = paste0("For the \\altshort, summary of median and 95\\%",
@@ -189,13 +189,13 @@ make.reference.points.table(
                      " Equilibrium reference points were computed using ",
                      start.yr, "--", end.yr-1, " averages for mean",
                      " size-at-age and selectivity-at-age."),
-                            xlabel = "tab:reference-points-53",
+                            xlabel = "tab:reference-points-adnuts",
                             font.size = 12,
                             space.size = 14,
                             placement = "H")
 @
 
-<<decisions.biomass.table.53, results='asis', echo=FALSE>>=
+<<decisions-biomass-table-adnuts, results='asis', echo=FALSE>>=
 make.decision.table(sens.models.6,
                     xcaption = paste0("Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
@@ -228,7 +228,7 @@ make.decision.table(sens.models.6,
                      year biomass in ",
                      max(forecast_yrs),
                      "."),
-                    xlabel = "tab:decisions-biomass-53",
+                    xlabel = "tab:decisions-biomass-adnuts",
                     font.size = 12,
                     space.size = 14,
                     type = "biomass",
@@ -238,7 +238,7 @@ make.decision.table(sens.models.6,
 % %%%%%%%%%%%%%%%%%%%%%%%
 % \begin{figure}[H]
 % \begin{center}
-% <<forecast.depletion.comparison.plot.53, fig.height=5, fig.width=8>>=
+% <<forecast-depletion-comparison-plot-adnuts, fig.height=5, fig.width=8>>=
 % ## Look at catch.levels and catch.levels to decide which to include here
 % ## models.inds are the indices of those which will be plotted against each other
 % models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
@@ -263,14 +263,14 @@ make.decision.table(sens.models.6,
 % % Above commented sentence Was in 2016 but I think is wrong - plot shows the
 % %  FI=100% action, so not sure why this talks about default HR (action g).
 % %  And no need to define anything here again anyway; now just refer to table.
-% \label{fig:forecast-depletion-comparison-53}
+% \label{fig:forecast-depletion-comparison-adnuts}
 % \end{figure}
 % %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<forecast.risk.comparison.plot.year.1.53, fig.height=5, fig.width=8>>=
+<<forecast-risk-comparison-plot-year-1-adnuts, fig.height=5, fig.width=8>>=
 make.forecast.risk.comparison.plot(sens.models.6,
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[1],
@@ -284,15 +284,15 @@ make.forecast.risk.comparison.plot(sens.models.6,
 \caption{Graphical representation of the probabilities related to spawning
          biomass, relative fishing intensity, and the \Sexpr{end.yr+1} default
          harvest policy catch for alternative \Sexpr{end.yr} catch options (catch
-         options explained in Table~\ref{tab:decisions-biomass-53}) as listed in
-         Table~\ref{tab:risk-year-1-53}. The symbols indicate points that were
+         options explained in Table~\ref{tab:decisions-biomass-adnuts}) as listed in
+         Table~\ref{tab:risk-year-1-adnuts}. The symbols indicate points that were
          computed directly from model output and lines interpolate between the
          points.}
-\label{fig:forecast-risk-comparison-year-1-53}
+\label{fig:forecast-risk-comparison-year-1-adnuts}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-<<risk.forecast.year.1.table.53, results='asis', echo=FALSE>>=
+<<risk-forecast-year-1-table-adnuts, results='asis', echo=FALSE>>=
 make.risk.table(sens.models.6,
                 forecast_yrs,
                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
@@ -301,8 +301,8 @@ make.risk.table(sens.models.6,
                              relative fishing intensity, and the ",end.yr+1,
                              " default harvest policy catch for alternative ",
                              end.yr," catch options (catch options explained in
-                             Table~\\ref{tab:decisions-biomass-53})."),
-                xlabel = "tab:risk-year-1-53",
+                             Table~\\ref{tab:decisions-biomass-adnuts})."),
+                xlabel = "tab:risk-year-1-adnuts",
                 font.size = 12,
                 space.size = 14,
                 placement = "H")
@@ -311,7 +311,7 @@ make.risk.table(sens.models.6,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<forecast.risk.comparison.plot.year.2.53, fig.height=5, fig.width=8>>=
+<<forecast-risk-comparison-plot-year-2-adnuts, fig.height=5, fig.width=8>>=
 make.forecast.risk.comparison.plot(sens.models.6,
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[2],
@@ -326,14 +326,14 @@ make.forecast.risk.comparison.plot(sens.models.6,
 biomass, relative fishing intensity, and the \Sexpr{end.yr+2} default harvest
 policy catch for alternative \Sexpr{end.yr+1} catch options (including
 associated \Sexpr{end.yr} catch; catch options explained in
-Table~\ref{tab:decisions-biomass-53}) as listed in
-Table~\ref{tab:risk-year-2-53}. The symbols indicate points that were computed
+Table~\ref{tab:decisions-biomass-adnuts}) as listed in
+Table~\ref{tab:risk-year-2-adnuts}. The symbols indicate points that were computed
 directly from model output and lines interpolate between the points.}
-\label{fig:forecast-risk-comparison-year-2-53}
+\label{fig:forecast-risk-comparison-year-2-adnuts}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-<<risk.forecast.year.2.table.53, results='asis', echo=FALSE>>=
+<<risk-forecast-year-2-table-adnuts, results='asis', echo=FALSE>>=
 make.risk.table(sens.models.6,
                 forecast_yrs,
                 index = 2, ## Index in models[[]]$risks to use, e.g.
@@ -342,9 +342,9 @@ make.risk.table(sens.models.6,
                  relative fishing intensity, and the ",end.yr+2," default harvest
                  policy catch for alternative ",end.yr+1," catch options, given
                  the ",end.yr," catch level shown in
-                 Table~\\ref{tab:risk-year-1-53} (catch options explained in
-                 Table~\\ref{tab:decisions-biomass-53})."),
-                xlabel = "tab:risk-year-2-53",
+                 Table~\\ref{tab:risk-year-1-adnuts} (catch options explained in
+                 Table~\\ref{tab:decisions-biomass-adnuts})."),
+                xlabel = "tab:risk-year-2-adnuts",
                 font.size = 12,
                 space.size = 14,
                 placement = "H")
@@ -353,7 +353,7 @@ make.risk.table(sens.models.6,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<adnuts.mcmc.survey.fit, fig.height=6, fig.width=8>>=
+<<mcmc-survey-fit-adnuts, fig.height=6, fig.width=8>>=
 make.mcmc.survey.fit.plot(sens.models.6,
                           start.yr = survey.start.yr,
                           end.yr = survey.end.yr,
@@ -368,7 +368,7 @@ make.mcmc.survey.fit.plot(sens.models.6,
   expected survey biomass. Thicker bars on uncertainty intervals around observed survey points
   indicate 95\% log-normal uncertainty intervals estimated by the kriging method. Longer bars
   indicate 95\% uncertainty intervals with the MLE estimate of additional uncertainty.}
-\label{fig:main-mcmc-survey-fit}
+\label{fig:mcmc-survey-fit-adnuts}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
