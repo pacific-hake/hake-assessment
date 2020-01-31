@@ -78,7 +78,7 @@ additional data sources are:
   currently not available in electronic form or too incomplete to allow analysis
   with methods consistent with more current sampling programs.
 
-\item California Cooperative Oceanic Fisheries Investigations (CalCOFI) 
+\item California Cooperative Oceanic Fisheries Investigations (CalCOFI)
   larval hake production index, 1951-2006. The data source was
   previously explored and rejected as a potential index of hake spawning stock
   biomass, and this index has not been revisited since the 2008 stock assessment.
@@ -124,7 +124,7 @@ methods to estimate total catch. Canadian shoreside landings are recorded by
 dockside monitors using total catch weights provided by processing plants.
 
 Minor updates to catches for years pre-\Sexpr{last.data.yr} were made based on the best available information extracted from the aforementioned databases.
-Catches not yet entered in PacFIN for the U.S. tribal fishery were added to the extracted number based on information provided by the Makah tribe. With the movement towards digital fish tickets for reporting tribal catches, this should be the last year that catches used in the assessment do not match those extracted from PacFIN. 
+Catches not yet entered in PacFIN for the U.S. tribal fishery were added to the extracted number based on information provided by the Makah tribe. With the movement towards digital fish tickets for reporting tribal catches, this should be the last year that catches used in the assessment do not match those extracted from PacFIN.
 Additional, historical Canadian Joint-Venture catches, which were inadvertently removed from the data used to fit the model in the 2019 assessment, were replaced to match what was used previously.
 % Manual 2020 KFJ
 
@@ -197,12 +197,12 @@ Figure~\ref{fig:main-age-comp-bubbles}). The more recent age-composition data
 consisted of high proportions of 2008 and 2010 year classes in the 2012 fishery,
 and since then, the proportional representation of the 2010 year class has continued to be high in the fishery
 (Table~\ref{tab:main-all-age-data-fishery} and
-Figure~\ref{fig:main-age-comp-bubbles}). 
+Figure~\ref{fig:main-age-comp-bubbles}).
 Since 2016, the 2010 and 2014 cohorts have showed up as significant proportions
 (Tables \ref{tab:main-us-cp-age-data}--\ref{tab:main-all-age-data-fishery} and
 Figure \ref{fig:main-age-comp-bubbles}). Currently, the 2014
 cohort was the largest cohort in all three U.S. fleets (Tables
-\ref{tab:main-us-cp-age-data}--\ref{tab:main-us-shore-age-data}) 
+\ref{tab:main-us-cp-age-data}--\ref{tab:main-us-shore-age-data})
 and the Canadian shoreside fleet (Table \ref{tab:main-can-shore-age-data}), while the 2010
 cohort was largest in Canadian freezer-trawler fleet (Table \ref{tab:main-can-ft-age-data}). The Candian fleets also landed a higher than normal proportion of age-2 fish this year.
 Table~\ref{tab:main-all-age-data-fishery} shows the combined age proportions of all
@@ -295,7 +295,7 @@ than observed in years just prior.  This is likely a result of having large prop
 two cohorts (2010 and 2014 year-classes) in 2017 as opposed to many other years when
 a single cohort is dominant in the observed samples
 (Figure~\ref{fig:main-backscatter-map}), in addition to prevailing environmental
-conditions. 
+conditions.
 El Ni\~no conditions decreased in their prevalence starting in March of \Sexpr{last.data.yr}, leading to neutral conditions by July.
 The \Sexpr{last.data.yr} survey saw \fishname\ on all survey transects from just north of Morro Bay, California to the northern end of Vancouver Island, with the greatest offshore extent of hake found off of Cape Mendocino.
 Ongoing research is looking into relationships between environmental
@@ -326,7 +326,7 @@ SimmondsMacLennan2006}. Advantages to the kriging approach are discussed in the
 2013 stock assessment \citep{JTC2013}.
 
 For the 2016 assessment \citep{JTC2016}, the data from all surveys since 1998
-were scrutinized and reanalyzed using consistent assumptions, an updated 
+were scrutinized and reanalyzed using consistent assumptions, an updated
 version of the EchoPro software, and a common input-file structure because some previously
 generated files had spurious off-transect zeros because of how the data were exported.  The same analytical
 procedure was carried out during the reanalysis of 1995 survey data \citep{JTC2017} and
@@ -340,7 +340,7 @@ during the preparation of survey data collected since 2017. The assumptions are 
 \item standardizing the search radius to be three times the length scale that is
   estimated from the variogram; and
 
-\item biomass decays with distance from the end of the transect 
+\item biomass decays with distance from the end of the transect
   when extrapolating biomass beyond the end of a transect.
 
 \end{itemize}
@@ -365,7 +365,7 @@ Estimated age-2+ biomass in the survey increased steadily over the four
 surveys conducted in 2011-2013 and 2015 and decreased in 2017
 to \Sexpr{f(survey.biomass["2017"], 2)} million metric tons
 (Table~\ref{tab:main-survey-history} and Figure~\ref{fig:main-survey-extrap-biomass}).
-The most recent estimate from \Sexpr{last.survey.year} of \Sexpr{last.survey.year.biomass} 
+The most recent estimate from \Sexpr{last.survey.year} of \Sexpr{last.survey.year.biomass}
 is \Sexpr{last.factor.penult} the previous estimate.
 The \Sexpr{last.survey.year} survey age composition was made
 up of \Sexpr{survey.1.prop}\% age-\Sexpr{survey.1.prop.age} fish from the
@@ -385,7 +385,7 @@ a sensitivity (see Appendix~\ref{chap:age1-survey}). It is currently not include
 base model because more investigations are needed regarding how to best model the data,
 the implications of its inclusion are not fully understood,
 the uncertainty of each estimate is unknown, and
-the survey is not specifically designed to representatively survey age-1 hake. 
+the survey is not specifically designed to representatively survey age-1 hake.
 However, the estimates seem to track the
 estimated recruitment reasonably well (Figure~\ref{fig:main-age-one-index}).
 
@@ -427,7 +427,7 @@ assessments was not updated annually and was that developed by
 % Manual 2020 KFJ
 
 Time-varying fecundity-at-age was modeled using year-specific weight-at-age
-values in the calculation of fecundity \citet{JTC2019}.
+values in the calculation of fecundity \citep{JTC2019}.
 Samples from ages 15 and above were pooled for both the maturity and weight-at-age
 estimation due to limited sample sizes. Consequently, the age 15+ estimates were
 applied to ages 15-20 for purposes of modeling
@@ -505,7 +505,7 @@ to the amount of catch, so the combinations of year and age with no samples
 should have relatively little importance in the overall estimates of the
 population dynamics.
 Prior to 1975, weight-at-age is assumed to be equal to the mean across all years with data.
-Weight-at-age for the forecast years is assumed to be equal to the 
+Weight-at-age for the forecast years is assumed to be equal to the
 \Sexpr{last.data.yr-5}--\Sexpr{last.data.yr} mean.
 
 **[Andy to mention this somewhat accounts for ecosystem effects] The use of empirical weight-at-age is a convenient method
@@ -676,7 +676,7 @@ survey-composition data (using $\theta_{\text{surv}}$).
 % Prior information
 The prior for the $\theta$ parameters, implemented in this assessment, is nearly uniform
 (in transformed space) and was implemented using a normal distribution with a mean of
-zero and a standard deviation of 1.813. 
+zero and a standard deviation of 1.813.
 
 Integration of the data weighting increases the efficiency of the assessment process, removes the
 subjective choice of how many iterations are required,
