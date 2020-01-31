@@ -1310,8 +1310,8 @@ the recruitments to deviate far from the underlying stock-recruit relationship
 (Figure~\ref{fig:main-mcmc-sr-variability}).
 
 % section below on sigma_r
-% Manual 2019 done
-**The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative
+% Manual 2020 done
+The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative
 high (1.8) and low (1.0) states. The low value, $\sigma_r = 1.0$,
 resulted in a model where the standard deviation of the MLE estimates of
 recruitment deviations in the period with the most informative data was
