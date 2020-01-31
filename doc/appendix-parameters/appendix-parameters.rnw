@@ -6,7 +6,7 @@
 \label{chap:parameters}
 
 
-<<appendix.parameter.estimates, results='asis', echo=FALSE>>=
+<<appendix-parameter-estimates, results='asis', echo=FALSE>>=
 make.long.parameter.estimates.table(base.model,
                                     key.posteriors,
                                     digits = 4,
