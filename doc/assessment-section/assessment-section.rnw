@@ -1212,7 +1212,7 @@ the same in 2019 as in 2018.
 
 \subsection{Sensitivity analyses }\label{sec:assessment-sensitivity-analyses}
 
-**Sensitivity analyses were conducted to investigate influence of data inputs and
+Sensitivity analyses were conducted to investigate influence of data inputs and
 structural uncertainty of the base model by investigating how changes to the
 model affected the estimated values and derived quantities. For expediency,
 almost all
@@ -1247,25 +1247,19 @@ include the following:
 
 \item Consideration of alternative assumptions concerning weight-at-age and
   fecundity.
+  
+\item Running the base model using the Auto-Differentiation No-U-Turn-Sampling algorithm (AD-NUTS, \citet{Monnahan2018}, \citet{Monnahan2019}).
 
 \end{enumerate}
 
 
-**In general, none of the sensitivities resulted in any significant departure from
+In general, none of the sensitivities resulted in any significant departure from
 the main population dynamics of the base model; all models showed large
 estimated increases in spawning biomass in the early- to mid-2010s that continues to be
-driven by the large 2010 cohort and the 2014 cohort. The overall scale of the
+driven by the 2010 and the 2014 cohorts. The overall scale of the
 population was impacted by various alternative assumptions, and the highly
 uncertain size of the recent large cohorts were more variable across sensitivity analyses
-than earlier cohorts which have been observed in more years.
-
-%%% 2018: commented text below leftover from 2017 document
-%%The sensitivity of the base model to changes in the survey biomass estimates
-%%as a result of not using the new extrapolation algorithm was conducted to
-%%evaluate the impact of assuming negligible biomass outside the surveyed area,
-%%or equally, that the population dynamics in the survey area are representative
-%%of the stock as a whole (see discussion in
-%%Section~\ref{sec:data-acoustic-survey} above).
+than earlier cohorts which have been observed for more years.
 
 % Leaving as one long line as easier to comment back in if needed (lots of calcs
 % in here). May not be needed anyway.
@@ -1276,7 +1270,7 @@ than earlier cohorts which have been observed in more years.
 % even though this is generlaized, it is not very general since the index
 % number of the list is used
 
-**Several key underlying structural model assumptions were identified that have
+Several key underlying structural model assumptions were identified that have
 persisted across many previous hake assessments, and thus warrant revisiting
 periodically as a set of reference sensitivity examinations to new base models.
 Those identified here (as noted above) include the specification of natural mortality, the level
@@ -1284,13 +1278,13 @@ of variation assumed about the stock-recruitment relationship ($\sigma_r$), and
 the resiliency of the stock in terms of recruitment (steepness).
 
 % section below on natural mortality sensitivity
-% Manual 2019 done
-**The standard deviation of the prior distribution on natural mortality was
+% Manual 2020 done
+The standard deviation of the prior distribution on natural mortality was
 increased from the base model value of 0.1 to 0.2 and 0.3. Maximum likelihood
 estimates of natural mortality increased from
 \Sexpr{round(base.model$parameters$Value[1],3)} for the base model (prior
 standard deviation of 0.1) to
-\Sexpr{round(sens.models.1[[which(sens.model.names.1=="Natural Mortality (SD=0.3)")]]$parameters$Value[1],3)}
+\Sexpr{round(sens.models.1[[which(sens.model.names.1=="Natural Mortality (SD=0.3)")]]$parameters["NatM_p_1_Fem_GP_1", "Value"],3)}
 for the sensitivity run with the prior standard
 deviation set to 0.3 (Table~\ref{tab:main-parameter-estimates-sens-1}). In addition to allowing a higher estimated value for
 natural mortality, the broader prior on M also increased the overall scale of
@@ -1300,8 +1294,8 @@ uncertainty in spawning biomass on both absolute and relative scales
 and~\ref{fig:main-status-base-alternative-1}).
 
 % section below on steepness sensitivity
-% Manual 2019 done
-**The mean of the prior distribution on steepness was decreased from 0.777 (base)
+% Manual 2020 done
+The mean of the prior distribution on steepness was decreased from 0.777 (base)
 to 0.5 and, separately, steepness was fixed at 1.0. The decrease in the mean of the
 prior resulted in a change in the maximum likelihood estimate of steepness from
 \Sexpr{f(base.model$parameters["SR_BH_steep","Value"],3)} to
@@ -1313,7 +1307,7 @@ sensitivity analysis had a strong impact on the overall model results
 \ref{fig:main-status-base-alternative-1}). The small influence of steepness on
 model results is related to the relatively large $\sigma_r$ value which allows
 the recruitments to deviate far from the underlying stock-recruit relationship
-(Figure~\ref{fig:main-mcmc.sr.variability}).
+(Figure~\ref{fig:main-mcmc-sr-variability}).
 
 % section below on sigma_r
 % Manual 2019 done
