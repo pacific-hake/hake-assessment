@@ -286,7 +286,7 @@ run_catch_levels_stable_catch <- function(model,
     message("Stable Catch: ")
     message("Catch difference from forecast year 1 to 2: ", abs(stable_catch[1] - stable_catch[2]),
             " < ", catch_levels_catch_tol, " ? ",
-            ifelse(abs(stable_catch[1] - stable_catch[2]) < catch_levels_spr_tol, "Yes", "No"))
+            ifelse(abs(stable_catch[1] - stable_catch[2]) < catch_levels_catch_tol, "Yes", "No"))
     if(abs(stable_catch[1] - stable_catch[2]) < catch_levels_catch_tol){
       break
     }
