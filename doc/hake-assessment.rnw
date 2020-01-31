@@ -362,15 +362,12 @@ thinking. *******COMMENT ME OUT WHEN DONE*******
 <<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
 @
 
-<<sens.age1>>=
-sens.model <- sens.models.2[[1]]
-@
 \rfoot{Appendix~\ref{chap:age1-survey} -- Age-1 survey sensitivity}
-<<appendices-fecundity, child='appendices-fecundity/appendix-age1-survey.rnw'>>=
+<<appendices-fecundity, child='appendix-age1-survey/appendix-age1-survey.rnw'>>=
 @
 
-\rfoot{Appendix~\ref{chap:eq-fecundity-early-10} -- Fecundity sensitivity}
-<<appendices-fecundity, child='appendices-fecundity/appendix-eq-fecundity-early-10.rnw'>>=
+\rfoot{Appendix~\ref{chap:adnuts} -- ADNUTS MCMC run}
+<<appendices-fecundity, child='appendix-adnuts/appendix-adnuts.rnw'>>=
 @
 
 <<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=

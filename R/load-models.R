@@ -47,7 +47,11 @@ load_ss_files <- function(model_path = NA,
   stopifnot(!is.na(model_path))
   
   # Load MPD results
-  model <- SS_output(dir = model_path, verbose = FALSE, printstats = printstats, covar = FALSE)
+  model <- tryCatch({
+    SS_output(dir = model_path, verbose = FALSE, printstats = printstats, covar = FALSE)
+  }, error = function(e){
+    SS_output(dir = model_path, verbose = FALSE, printstats = printstats, covar = FALSE, forecast = FALSE)
+  })
 
   ## Load the data file and control file for the model
   ## Get the file whose name contains "_data.ss" and "_control.ss"

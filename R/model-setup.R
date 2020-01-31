@@ -238,16 +238,10 @@ sens.model.names.5 <- c("No ageing error",
                         "Fecundity early 10 yrs")
 
 ## -----------------------------------------------------------------------------
-## Sensitivity models group 6  - Different weight-at-age schemes (second group)
+## Sensitivity models group 6  - ADNUTS snesitivity
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.6 <- c("2020.01.32_eqFecund_early5",
-                            "2020.01.32_eqFecund_early5",
-                            "2020.01.32_eqFecund_early5",
-                            "2020.01.32_eqFecund_early5")
-sens.model.names.6 <- c("TODO: remove this",
-                        "TODO: remove this",
-                        "TODO: remove this",
-                        "TODO: remove this")
+sens.model.dir.names.6 <- c("2020.01.31_nutsMCMC")
+sens.model.names.6 <- c("AD No-U-Turn-Sampling (NUTS)")
 
 
 ## sens.model.names.5 <- c("Early weight-age 1975-2018 mean, late is 2016-2018 mean",             #52
