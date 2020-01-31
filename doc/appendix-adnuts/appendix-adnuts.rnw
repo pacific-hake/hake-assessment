@@ -1,7 +1,7 @@
 \newpage
 
-\chapter{Sensitivity run with alternative fecundity -- MCMC results}
-\label{chap:eq-fecundity-early-10}
+\chapter{Sensitivity run using AD NUTS algorithm -- MCMC results}
+\label{chap:adnuts}
 
 **Please check, winging this off the top of my head to get it working:
 **This appendix contains MCMC model results for the run in which the equilibrium
@@ -235,37 +235,37 @@ make.decision.table(sens.models.6,
                     placement = "H")
 @
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
-<<forecast.depletion.comparison.plot.53, fig.height=5, fig.width=8>>=
-## Look at catch.levels and catch.levels to decide which to include here
-## models.inds are the indices of those which will be plotted against each other
-models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
-models.names <- sapply(sens.models.6$catch.levels, "[[", 2)[models.inds]
-                       ## pretty catch level name
-make.forecast.depletion.comparison.plot(sens.models.6,
-                                        models.inds,
-                                        models.names,
-                                        start.yr = 2009,
-                                        model.end.yr = end.yr,
-                                        end.yr =forecast_yrs[length(forecast_yrs)],
-                                        legend.loc = "topleft")
-@
-\end{center}
-\caption{Time series of estimated relative spawning biomass to \Sexpr{end.yr}
-         from the base model, and forecast trajectories to
-         \Sexpr{forecast_yrs[length(forecast_yrs)]} (grey region) for several management actions
-         defined in Table~\ref{tab:decisions-biomass-53}, with 95\%
-         posterior credibility intervals.}
-% The \Sexpr{end.yr} catch of \Sexpr{f(base.model$catch.default.policy[1])}~t was calculated
-%  using the default harvest policy, as defined in the Agreement.}
-% Above commented sentence Was in 2016 but I think is wrong - plot shows the
-%  FI=100% action, so not sure why this talks about default HR (action g).
-%  And no need to define anything here again anyway; now just refer to table.
-\label{fig:forecast-depletion-comparison-53}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%
+% \begin{figure}[H]
+% \begin{center}
+% <<forecast.depletion.comparison.plot.53, fig.height=5, fig.width=8>>=
+% ## Look at catch.levels and catch.levels to decide which to include here
+% ## models.inds are the indices of those which will be plotted against each other
+% models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
+% models.names <- sapply(sens.models.6$catch.levels, "[[", 2)[models.inds]
+%                        ## pretty catch level name
+% make.forecast.depletion.comparison.plot(sens.models.6,
+%                                         models.inds,
+%                                         models.names,
+%                                         start.yr = 2009,
+%                                         model.end.yr = end.yr,
+%                                         end.yr =forecast_yrs[length(forecast_yrs)],
+%                                         legend.loc = "topleft")
+% @
+% \end{center}
+% \caption{Time series of estimated relative spawning biomass to \Sexpr{end.yr}
+%          from the base model, and forecast trajectories to
+%          \Sexpr{forecast_yrs[length(forecast_yrs)]} (grey region) for several management actions
+%          defined in Table~\ref{tab:decisions-biomass-53}, with 95\%
+%          posterior credibility intervals.}
+% % The \Sexpr{end.yr} catch of \Sexpr{f(base.model$catch.default.policy[1])}~t was calculated
+% %  using the default harvest policy, as defined in the Agreement.}
+% % Above commented sentence Was in 2016 but I think is wrong - plot shows the
+% %  FI=100% action, so not sure why this talks about default HR (action g).
+% %  And no need to define anything here again anyway; now just refer to table.
+% \label{fig:forecast-depletion-comparison-53}
+% \end{figure}
+% %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
@@ -349,3 +349,26 @@ make.risk.table(sens.models.6,
                 space.size = 14,
                 placement = "H")
 @
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<adnuts.mcmc.survey.fit, fig.height=6, fig.width=8>>=
+make.mcmc.survey.fit.plot(sens.models.6,
+                          start.yr = survey.start.yr,
+                          end.yr = survey.end.yr,
+                          surv.yrs = surv.yrs,
+                          probs = c(0.025, 0.975),
+                          y.max = 5.5e6)
+@
+\end{center}
+\caption{Fits to the acoustic survey with 95\% confidence intervals around the index points.
+  Red and blue thick lines are MLE and median MCMC expected survey estimates in every year,
+  including years without a survey. Thin blue lines show individual MCMC samples of the
+  expected survey biomass. Thicker bars on uncertainty intervals around observed survey points
+  indicate 95\% log-normal uncertainty intervals estimated by the kriging method. Longer bars
+  indicate 95\% uncertainty intervals with the MLE estimate of additional uncertainty.}
+\label{fig:main-mcmc-survey-fit}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+

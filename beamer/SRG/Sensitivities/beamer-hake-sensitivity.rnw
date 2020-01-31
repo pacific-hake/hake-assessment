@@ -1028,19 +1028,19 @@ weight.at.age.heatmap(sens.models.5[[2]],
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Weight-at-age (kg): runs 55 and 57}
-\begin{figure}[H]
-<<main.weight.at.age.sens.b, fig.height=4>>=
-weight.at.age.heatmap(sens.models.6[[1]],
-                      proj.line.yr=2017,
-                      font.size=1.6,
-                      axis.font.size = 4)
-@
-\end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}
+% \frametitle{Weight-at-age (kg): runs 55 and 57}
+% \begin{figure}[H]
+% <<main.weight.at.age.sens.b, fig.height=4>>=
+% weight.at.age.heatmap(sens.models.6[[1]],
+%                       proj.line.yr=2017,
+%                       font.size=1.6,
+%                       axis.font.size = 4)
+% @
+% \end{figure}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -1056,19 +1056,19 @@ weight.at.age.heatmap(sens.models.5[[3]],
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Weight-at-age (kg): runs 56 and 58}
-\begin{figure}[H]
-<<main.weight.at.age.sens.d, fig.height=4>>=
-weight.at.age.heatmap(sens.models.6[[2]],
-                      proj.line.yr=2017,
-                      font.size=1.6,
-                      axis.font.size = 4)
-@
-\end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}
+% \frametitle{Weight-at-age (kg): runs 56 and 58}
+% \begin{figure}[H]
+% <<main.weight.at.age.sens.d, fig.height=4>>=
+% weight.at.age.heatmap(sens.models.6[[2]],
+%                       proj.line.yr=2017,
+%                       font.size=1.6,
+%                       axis.font.size = 4)
+% @
+% \end{figure}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%
 \end{noheadline}
 
 %%%%%%%%%%%%%%%%%%%%%%%

@@ -82,21 +82,21 @@ make.squid.plot(retro.list,
 \label{fig:srg-requests-retrospective-recruitment}
 \end{figure}
 
-<<srg.requests.cohort.table, results='asis', echo=FALSE>>=
-make.recr.dev.uncertainty.table(list(base.model,
-                                     sens.models.2[[1]]),
-                                c("Base model", "Age-1 Index"),
-                                assess.yr = assess.yr,
-                                age = 2,
-                                #cohorts = c(2010, 2014, 2016),
-                                cohorts = 1999:2016,
-                                digits = 3,
-                                xcaption = paste0("Estimated recruitment deviations ",
-                                                  "and log standard deviations (approximiate CVs) for age-2 cohorts for the ",
-                                                  "base model and the model which tests the sensitivity to adding ",
-                                                  " the age-1 index. All values are from MLE runs."),
-                                xlabel = "tab:srg-requests-cohorts",
-                                font.size = 14,
-                                space.size = 14,
-                                placement = "H")
-@
+% <<srg.requests.cohort.table, results='asis', echo=FALSE>>=
+% make.recr.dev.uncertainty.table(list(base.model,
+%                                      sens.models.2[[1]]),
+%                                 c("Base model", "Age-1 Index"),
+%                                 assess.yr = assess.yr,
+%                                 age = 2,
+%                                 #cohorts = c(2010, 2014, 2016),
+%                                 cohorts = 1999:2016,
+%                                 digits = 3,
+%                                 xcaption = paste0("Estimated recruitment deviations ",
+%                                                   "and log standard deviations (approximiate CVs) for age-2 cohorts for the ",
+%                                                   "base model and the model which tests the sensitivity to adding ",
+%                                                   " the age-1 index. All values are from MLE runs."),
+%                                 xlabel = "tab:srg-requests-cohorts",
+%                                 font.size = 14,
+%                                 space.size = 14,
+%                                 placement = "H")
+% @
