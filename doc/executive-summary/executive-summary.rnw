@@ -600,7 +600,8 @@ make.phase.plot(base.model,
          intensity and relative spawning biomass for \fishname\ with labels on the
          start and end years (and 1999). Gray bars span the 95\% credibility
          intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical) and
-         relative spawning biomass (horizontal).}
+         relative spawning biomass (horizontal). **Andy to check figure, see
+         Issue 443.}
 \label{fig:es-phase}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -619,24 +620,22 @@ since \Sexpr{median.relative.bio.above.target.since}.
 % Manual done 2019. Years chosen are based on median.relative.bio.below.target,
 %  2011 no longer below ref point in 2020 assessment.
 
-**While there is large uncertainty in the estimates of relative
+While there is large uncertainty in the estimates of relative
 fishing intensity and relative spawning biomass, the model estimates a
 \Sexpr{joint.percent.prob.above.below}\%
 joint probability of being both above the target relative fishing intensity
 in \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at
 the start of \Sexpr{end.yr}.
-% Manual done 2019. Just check the sentence reads okay (a/an).
+% Manual done 2020. Just check the sentence reads okay (a/an).
 
 \subsection*{Reference points} \label{sec:es-reference-points}
 \phantomsection \addcontentsline{toc}{subsection}{Reference points}
 
 Estimates of the \Sexpr{assess.yr} base model reference points with posterior
 credibility intervals are in Table~\ref{tab:es-reference.points}.
-**The estimates
-are slightly different than those in the \Sexpr{last.assess.yr} assessment, with
-lower sustainable yields and reference points estimated in this
-assessment.
-% Manual done 2018.
+The medians of sustainable yields and biomass reference points are
+almost 10\% lower than in the \Sexpr{last.assess.yr-1} assessment.
+% Manual done 2020.
 \enlargethispage{\baselineskip}
 
 <<reference.points.table, results='asis', echo=FALSE>>=
