@@ -311,6 +311,10 @@ prob.percent.2014.rec.gt.2010.rec <- f(mean(base.model$mcmc$Recr_2014 > base.mod
 recruitment.med.in.2016 <- f(base.model$mcmccalcs$rmed["2016"], 3)
 prob.percent.2016.rec.gt.2010.rec <- f(mean(base.model$mcmc$Recr_2016 > base.model$mcmc$Recr_2010) * 100, 1)
 
+prob.percent.2010.rec.gt.1980.rec <- f(mean(base.model$mcmc$Recr_2010 > base.model$mcmc$Recr_1980) * 100, 0)
+prob.percent.2010.rec.gt.1980.rec.last.year.assess <-
+  f(mean(bridge.models.1[[1]]$mcmc$Recr_2010 > bridge.models.1[[1]]$mcmc$Recr_1980) * 100, 0)
+
 ################################################################################
 ## Exploitation values
 exploitation.med.2010 <- f(base.model$mcmccalcs$fmed["2010"],2)

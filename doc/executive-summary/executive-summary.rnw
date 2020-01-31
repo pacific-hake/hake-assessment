@@ -342,7 +342,7 @@ of the 2010 recruitment is
 \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"], 1)}~billion
 more fish than last year's assessment.
 
-** \fishname\ appear to
+\fishname\ appear to
 have low recruitment with occasional large year-classes
 (Table~\ref{tab:es-recruitment} and Figure~\ref{fig:es-recruitment}).
 %
@@ -374,32 +374,38 @@ catch from the 1980s to the mid-2000s. From 2000 to 2007, estimated recruitment
 was at some of the lowest values in the time series, but this was followed by an above average
 2008 year class. The current assessment continues to estimate a very strong
 2010 year class comprising \Sexpr{top.coh(base.model, 2014, spec.yr=2010)}\% of the coast-wide
-commercial catch in 2014, \Sexpr{top.coh(base.model, 2016, spec.yr=2010)}\% of the 2016 catch, and
-\Sexpr{top.coh(base.model, 2018, spec.yr=2010)}\% of the catch in 2018. The smaller proportion of
-the 2010 year class in the 2016 catch is due to the large influx of the 2014
+commercial catch in 2014,
+\Sexpr{top.coh(base.model, 2016, spec.yr=2010)}\% of the 2016 catch,
+\Sexpr{top.coh(base.model, 2018, spec.yr=2010)}\% of the 2018 catch, and
+\Sexpr{top.coh(base.model, 2019, spec.yr=2010)}\% of the 2019 catch.
+The decline from 2014 to 2016
+was due to the large influx of the 2014
 year class (\Sexpr{top.coh(base.model, 2016, spec.yr=2014)}\% of the 2016 catch was age-2 fish from the
-2014 year class, which was similar to the proportion of age-2 fish,
+2014 year class; this was larger than the proportion of age-2 fish,
 \Sexpr{top.coh(base.model, 2012, spec.yr=2010)}\%, from the 2010 year
-class in 2012).  The median of the estimated size of the 2010 year class is
-the second highest in the time series (after that for
-1980). The model currently estimates smaller-than-average 2011, 2012, 2013,
-and 2015 year classes (median recruitment below the mean of all median recruitments).
-% Done for for 2019 assessment - see
-%  years.since.2010.recruitment.med.below.mean
+class in 2012). The median estimate of the 2010 year class is
+just below the highest ever (for 1980), with a \Sexpr{prob.percent.2010.rec.gt.1980.rec}\%
+probability that the 2010 year class is larger than the 1980 year class (this
+probability was \Sexpr{prob.percent.2010.rec.gt.1980.rec.last.year.assess}\% for
+last year's assessment).
+The model currently estimates smaller-than-average 2011, 2012, 2013,
+2015, 2017 and 2018 year classes (median recruitment below the mean of all median recruitments).
+% Done for for 2020 assessment
+%  years.since.2010.recruitment.med.below.mean  # ignore assess.yr-1
 % AME put in definition of below-average, else it looks like it contradicts the
 %  median deviations in the table.
 % Allan agrees. Even though the deviation is slightly above average, the 2011
 %  spawning biomass was small enough that the S-R curve had an effect
 %  [keep this helpful explanation]
+
 The 2014 year class is likely larger than average yet has only a
 \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of being larger than
-the 2010 year class.  The 2016 year class is estimated to be above
-average but remains highly uncertain, and 2017 is highly uncertain.
+the 2010 year class.
 There is no information in the data to estimate the sizes of the
 \Sexpr{end.yr-1} and \Sexpr{end.yr} year classes. Retrospective analyses of year
 class strength for young fish have shown the estimates of recent recruitment to
 be unreliable prior to model age-3 (observed at age-2).
-% Manual 2019 done.
+% Manual 2020 done.
 
 \subsection*{Default harvest policy} \label{sec:es-harvest-policy}
 \phantomsection  \addcontentsline{toc}{subsection}{Default harvest policy}
