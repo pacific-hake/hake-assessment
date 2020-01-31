@@ -354,9 +354,9 @@ thinking. *******COMMENT ME OUT WHEN DONE*******
 <<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-US-2019.rnw'>>=
 @
 
-% \rfoot{Appendix~\ref{chap:parameters} -- Estimated parameters}
-% <<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
-% @
+\rfoot{Appendix~\ref{chap:parameters} -- Estimated parameters}
+<<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
+@
 
 \rfoot{Appendix~\ref{chap:age1-survey} -- Age-1 survey sensitivity}
 <<appendices-fecundity, child='appendix-age1-survey/appendix-age1-survey.rnw'>>=
