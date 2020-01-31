@@ -1225,7 +1225,7 @@ get_posterior_data <- function(model, param_regex){
     message("The regular expression matched ", postparname)
     
     # Figure out which column of the mcmc output contains the parameter
-    jpar <- (1:ncol(mcmc))[names(mcmc) == postparname]
+    jpar <- grep(param_regex[i], names(mcmc))
     if(length(jpar) == 1){
       posts_list[[i]] <- mcmc[ ,jpar]
     }else{
