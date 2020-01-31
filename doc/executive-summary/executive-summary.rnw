@@ -783,7 +783,7 @@ make.decision.table(base.model,
 
 \clearpage  % 2018: Then forces Table i and Fig j to be on same page, and j/k.
 
- averaged over the last five years. Recent changes in selectivity will thus be reflected
+averaged over the last five years. Recent changes in selectivity will thus be reflected
 in the determination of fishing in excess of the default harvest
 policy. Alternative catch levels where median relative fishing intensity is
 100\% for three years of projections are provided for comparison (scenario f:
@@ -958,16 +958,18 @@ actions. With zero catch for the next two years, the biomass has a
 %  \Sexpr{end.yr+1} with a less than 50\% probability only for the 0~t and
 %  180,000~t catch levels (Table~\ref{tab:es-risk-year-1} and
 %  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
-**The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
-\Sexpr{end.yr+1} is 50\% for some catch level between 180,000~t and
-350,000~t (Table~\ref{tab:es-risk-year-1} and
-Figure~\ref{fig:es-forecast-risk-comparison-year-1}). The highest probability of
-decrease is 77\%, which is for the default harvest policy
-(row~g in Table~\ref{tab:es-risk-year-1}).
+The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
+\Sexpr{end.yr+1} is over 80\% for all catch levels, including zero
+(Table~\ref{tab:es-risk-year-1} and
+Figure~\ref{fig:es-forecast-risk-comparison-year-1}). It is 95\% for the
+\Sexpr{end.yr} catch equaling that for \Sexpr{end.yr-1} (catch alternative~d).
+%The highest probability of
+%decrease is 97\%, which is for the default harvest policy
+%(row~g in Table~\ref{tab:es-risk-year-1}).
 For all explored catches,
-the predicted probability of the spawning biomass dropping below $B_{10\%}$ at
-the start of \Sexpr{end.yr+1} is 2\% or less and the maximum probability of
-dropping below $B_{40\%}$ is 29\%
+the maximum probability of the spawning biomass dropping below $B_{10\%}$ at
+the start of \Sexpr{end.yr+1} is 1\%, and of
+dropping below $B_{40\%}$ is 40\%
 (Table~\ref{tab:es-risk-year-1} and
 Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % It should be noted that
@@ -975,9 +977,10 @@ Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % the large 2010 year class.
 % Andy presumese that last phrase is still true - not sure where/how to check
 % 2018 - probably not worth saying that any more.
-The model estimated below-average recruitment for the 2011, 2012, 2013, and 2015
-cohorts, but above-average 2014 and 2016 cohorts that may result in increases to
-the spawning biomass as they mature and increase in weight.
+The only years since 2010 with estimated above-average recruitment are 2014 and
+2016, which may result in increases to
+the spawning biomass as these cohorts increase in weight. **Last sentence okay? Could
+just omit (we had something last year).
 % Still true for 2017 assessment - see
 %  years.since.2010.recruitment.med.below.mean
 %   2018 assessment.
