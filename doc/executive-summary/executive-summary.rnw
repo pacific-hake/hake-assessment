@@ -617,7 +617,7 @@ the 2008, 2010 and 2014 recruitments, and
 % and, correspondingly, fishing intensity has fallen below targets.
 median relative spawning biomass has been above the reference point of 40\%
 since \Sexpr{median.relative.bio.above.target.since}.
-% Manual done 2019. Years chosen are based on median.relative.bio.below.target,
+% Manual done 2020. Years chosen are based on median.relative.bio.below.target,
 %  2011 no longer below ref point in 2020 assessment.
 
 While there is large uncertainty in the estimates of relative
@@ -788,9 +788,9 @@ in the determination of fishing in excess of the default harvest
 policy. Alternative catch levels where median relative fishing intensity is
 100\% for three years of projections are provided for comparison (scenario f:
 FI=100\%).
-% Manual 2019 done.
+% Manual 2020 done.
 
-**The addition of time-varying fecundity into the 2019 assessment resulted
+**TO UPDATE based on main text. The addition of time-varying fecundity into the 2019 assessment resulted
 in the need to clarify which set of fecundity values (defined as weight-at-age
 multiplied by maturity) would be
 applied to the forecast period. Ideally, these would be based on a recent
@@ -930,9 +930,23 @@ make.risk.table(base.model,
 These metrics summarize the probability of various outcomes from the base model
 given each potential management action. Although not linear, probabilities can
 be interpolated from these results for intermediate catch
-values. Figure~\ref{fig:es-forecast-depletion-comparison} shows the predicted
+values
+in \Sexpr{assess.yr} (Table~\ref{tab:es-risk-year-1} and
+Figure~\ref{fig:es-forecast-risk-comparison-year-1}). However, interpolation is
+not appropriate for all catches in
+\Sexpr{assess.yr+1} because catch alternatives~g and~h have catches
+that are larger than 500,000~t
+% \Sexpr{catch_levels[[5]][[1]][1]}~t
+(the constant catch for alternative~e) in \Sexpr{assess.yr}, but smaller than 500,000~t
+% \Sexpr{catch_levels[[5]][[1]][1]}~t
+in \Sexpr{assess.yr+1} (Table~\ref{tab:es-decisions-spr});
+this explains why a few probabilities decline
+(rather than rise) with increased \Sexpr{assess.yr+1} catch levels in Table~\ref{tab:es-risk-year-2} and
+and Figure~\ref{fig:es-forecast-risk-comparison-year-2}).
+
+Figure~\ref{fig:es-forecast-depletion-comparison} shows the predicted
 relative spawning biomass trajectory through
-\Sexpr{forecast_yrs[length(forecast_yrs)]} for several of these management
+\Sexpr{forecast_yrs[length(forecast_yrs)]} for several of the management
 actions. With zero catch for the next two years, the biomass has a
 \Sexpr{zero.catch.prob.bio.down.1}\% probability of decreasing from
 \Sexpr{forecast_yrs[1]} to \Sexpr{forecast_yrs[2]} (Table~\ref{tab:es-risk-year-1}), and a
