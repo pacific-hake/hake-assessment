@@ -150,6 +150,10 @@ num.mcmc.samples <- dim(base.model$mcmc)[1]
 median.bio.min  <- f(min(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% start.yr:end.yr]), 3)  # min median biomass
 median.bio.min.year <- names(which.min(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% start.yr:end.yr])) # year of min
 median.intensity <- base.model$mcmccalcs$pmed
+median.intensity.2007.to.2010 <- median.intensity[c("2007", "2008", "2009", "2010")]
+median.intensity.2007.to.2010.min <- f(min(median.intensity.2007.to.2010)*100, 0)
+median.intensity.2007.to.2010.max <- f(max(median.intensity.2007.to.2010)*100, 0)
+# Used prior to 2020 assessment:
 median.intensity.2007.to.2011 <- median.intensity[c("2007", "2008", "2009", "2010", "2011")]
 median.intensity.2007.to.2011.min <- f(min(median.intensity.2007.to.2011)*100, 0)
 median.intensity.2007.to.2011.max <- f(max(median.intensity.2007.to.2011)*100, 0)
@@ -163,6 +167,10 @@ median.intensity.2017 <- f(base.model$mcmccalcs$pmed["2017"] * 100, 1)
 median.intensity.2018 <- f(base.model$mcmccalcs$pmed["2018"] * 100, 1)
 median.intensity.penult.yr <- f(base.model$mcmccalcs$pmed[as.character(end.yr-1)] * 100, 1)
 median.relative.bio <- base.model$mcmccalcs$dmed
+median.relative.bio.2007.to.2010 <- median.relative.bio[c("2007", "2008", "2009", "2010")]
+median.relative.bio.2007.to.2010.min <- f(min(median.relative.bio.2007.to.2010), 2)
+median.relative.bio.2007.to.2010.max <- f(max(median.relative.bio.2007.to.2010), 2)
+# Used prior to 2020 assessment:
 median.relative.bio.2007.to.2011 <- median.relative.bio[c("2007", "2008", "2009", "2010", "2011")]
 median.relative.bio.2007.to.2011.min <- f(min(median.relative.bio.2007.to.2011), 2)
 median.relative.bio.2007.to.2011.max <- f(max(median.relative.bio.2007.to.2011), 2)
