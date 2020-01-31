@@ -335,6 +335,8 @@ m.prior <- split.prior.info(param.details[rownames(param.details) == "m.vals",][
                             dec.points = 2,
                             first.to.lower = TRUE)
 ## Now, in document, use m.prior[1] for name of prior, m.prior[1] for mean, and m.prior[3] for SD.
+effn.prior <- c(NA, unlist(
+  base.model$parameters[grep("EffN", base.model$parameters$Label), c("Prior", "Pr_SD")][1, ]))
 sel.Phi.val <- base.model$parameters[base.model$parameters$Label=="AgeSel_P3_Fishery(1)_dev_se", "Value"]
 
 ################################################################################
@@ -373,6 +375,7 @@ sigma.r.alt.main <- f(base.model$sigma_R_info$alternative_sigma_R[1],2)
 # range of "main" recdevs
 main.recdev.start <- min(base.model$recruit$Yr[base.model$recruit$era=="Main"])
 main.recdev.end <- max(base.model$recruit$Yr[base.model$recruit$era=="Main"])
+main.recdev.early <- min(base.model$recruit$Yr[base.model$recruit$era=="Early"])
 
 # range of "main" bias adjustement period for recdevs
 main.recdevbias.start <- min(base.model$recruit$Yr[base.model$recruit$biasadjuster==max(base.model$recruit$biasadjuster)])

@@ -11,8 +11,8 @@ subject to a larger number of stock assessments than any marine species off the
 west coast of the U.S.~and Canada. These assessments have included a large
 variety of age-structured models. Initially, a cohort analysis tuned to fishery
 CPUE was used \citep{FrancisSwartzmanEtAl1982}. Later, the cohort analysis was
-tuned to NMFS triennial acoustic survey estimates of absolute abundance at age
-\citep{HollowedAdlersteinEtAl1988}. Since 1989, stock-synthesis models using
+tuned to National Marine Fisheries Service (NMFS) triennial acoustic survey estimates of absolute abundance at age
+\citep{HollowedAdlersteinEtAl1988}. Since 1989, Stock Synthesis models using
 fishery catch-at-age data and acoustic survey estimates of population biomass
 and age composition have been the primary assessment method
 \citep{JTC2019}.
@@ -21,11 +21,10 @@ While the general form of the age-structured assessment has remained similar sin
 management procedures have been modified in a variety of ways. There have been
 alternative data choices, post-data collection processing routines, different
 data-weighting schemes, many structural assumptions for the stock
-assessment model, and alternative control rules. Table~\ref{tab:main-assessment-changes}
-summarises the major changes to the model structure in assessments since 2011.
+assessment model, and alternative control rules (Table~\ref{tab:main-assessment-changes}).
 
 Data processing, choices, and weighting have been modified several times in
-historical hake assessments. For example, acoustic data processing has been
+historical hake assessments. For example, the processing of acoustic data has been
 modified over the years through modifications to target strength calculations
 \citep{DornSaunders1997} or the introduction of kriging
 \citep{StewartHamel2010}. While survey data have been the key index for
@@ -37,7 +36,9 @@ surveys from the years prior to 1995 were used for assessments in the early
 deemed that sampling had been insufficient to be comparable with more
 recent data. Various recruitment indices have also been considered, but subsequently
 rejected \citep{HelserDornEtAl2002, HelserFleischerEtAl2005,
-StewartHamel2010}. Even where data have been consistently used, the weighting of these data
+StewartHamel2010}. The process for generating fecundity-at-age from weight-at-age data
+changed in 2019 from using time-invariant to year-specific values.
+Even where data have been consistently used, the weighting of these data
 in the statistical likelihood has changed through the use of various emphasis factors
 (e.g., \citealt{Dorn1994, DornSaundersEtAl1999}), a multinomial sample
 size on age compositions (e.g., \citealt{DornSaundersEtAl1999, HelserDornEtAl2002,
@@ -49,12 +50,10 @@ survey variance. The list of changes discussed above is for illustrative
 purposes only; it is only a small fraction of the different data choices
 analysts have made and that reviewers have required.
 
-**mention 2019 changes somewhere.
-
-The structure of assessment models has perhaps had the largest number of
+The structure of the assessment models has perhaps had the largest number of
 changes. In terms of spatial models, analysts have considered
 spatially explicit forms \citep{Dorn1994, Dorn1997}, spatially implicit forms
-\citep{HelserStewartEtAl2006} and single-area models \citep{JTC2012}. Predicted
+\citep{HelserStewartEtAl2006}, and single-area models \citep{JTC2012}. Predicted
 recruitment has been modeled by sampling historical recruitment (e.g.,
 \citealt{Dorn1994, HelserFleischerEtAl2005}), using a stock-recruitment
 relationship parameterized using maximum sustainable yield ($\text{MSY}$) and
@@ -62,7 +61,7 @@ the fishing mortality rate estimated to produce the MSY ($\Fmsy$; \citealt{Marte
 and using several alternative steepness priors \citep{JTC2012,
 JTC2013}. Selectivity has also been modeled in several ways,
 invariant \citep{JTC2012, JTC2013}, time-varying with \citep{HelserDornEtAl2002}
-and without \citep{Dorn1994, DornSaunders1997, JTC2012, JTC2013} a random walk and
+and without \citep{Dorn1994, DornSaunders1997, JTC2012, JTC2013} a random walk, and
 alternative levels of allowable deviation through time \citep{JTC2013, JTC2017},
 age-based \citep{Dorn1994, DornSaunders1997, JTC2012, JTC2013}, and length-based
 \citep{HelserMartell2007}.
@@ -82,8 +81,8 @@ While there have been many changes to \fishname\ management procedures, each one
 has been considered carefully. Available data have changed over the years, and there
 have been many advances in the discipline of fisheries science. In some ways,
 the latter has evolved considerably over the course of the historical hake
-fishery: new statistical techniques and software have evolved (e.g., Bayesian
-vs.~maximum likelihood methods), and the scientific literature has
+fishery, new statistical techniques and software have evolved (e.g., Bayesian
+vs.~maximum likelihood methods) and the scientific literature has
 suggested potentially important biological dynamics to consider (e.g., explicit
 modeling of length-at-age). Policies requiring the application of
 specific control rules have also changed such as the United States' National
@@ -99,22 +98,24 @@ quantitatively compared with performance measures.
 
 \subsection{Description of base model}\label{sec:assessment-base-model}
 
-**The \Sexpr{assess.yr} base model is predominantly an update of the base model in
+The \Sexpr{assess.yr} base model is predominantly an update of the base model in
 the \Sexpr{last.assess.yr} stock assessment.
 The statistical-catch-at-age model assumes that the
 \fishname\ population is a single coast-wide stock subject to
 one aggregated fleet with combined male and female population dynamics.
-**[mention what was used in 2018] Stock Synthesis
-\citep{MethotWetzel2013} version \Sexpr{ss.version} is again used,
-having been introduced in the previous assessment \citep{JTC2018}.
+Stock Synthesis \citep{MethotWetzel2013} version \Sexpr{ss.version} was used.
 The largest changes between the
-\Sexpr{last.assess.yr} and \Sexpr{assess.yr} stock assessments are **the addition of another
+\Sexpr{last.assess.yr} and \Sexpr{assess.yr} stock assessments are the addition of another
 year of
 acoustic survey and
-fishery data and the **switch from time-invariant to year-specific values for
-fecundity.**other changes.
+fishery data, the use of just five recent years, rather than all years, of weight-at-age
+data to calculate fecundity-at-age in the forecast period, and the two structural changes.
+A nearly uniform prior (in transformed space) was placed on the 
+Dirichlet-Multinomial parameters used to weight the age-compostion data.
+Estimated recruitment deviations were no longer constrained to sum to zero.
+% Manual 2020 KFJ
 
-**The \Sexpr{assess.yr} base model includes an acoustic data time series from 1995
+The \Sexpr{assess.yr} base model includes an acoustic data time series from 1995
 to \Sexpr{last.survey.year}. The updated maturity ogive from 2018 was retained
 (see Section~\ref{sec:data-maturity}). The Dirichlet-Multinomial (D-M)
 likelihood approach \citep{ThorsonEtAl2017Dirichlet} was again used to estimate the weights
@@ -126,14 +127,16 @@ of the allowable deviations unchanged from the \Sexpr{last.assess.yr} base model
 (see Section~\ref{sec:data-variability-selectivity}).
 The general parameterization of
 selectivity was retained, although additional parameters were required to
-estimate an additional year of deviations. The acoustic survey selectivity is
+estimate an additional year of deviations. The selectivity of the acoustic survey is
 assumed to not change over time. Selectivity curves were modeled as
 non-parametric functions estimating age-specific values for each age beginning
 at age-2 for the acoustic survey (because age-1 fish are mainly excluded from
 the sampling design) and age-1 for the fishery until a maximum age of 6 (all
 fish 6 and older have the same selectivity).
+% Manual 2020 KFJ
 
-**Prior probability distributions remained unchanged from \Sexpr{last.assess.yr}
+** Why do we list the priors here when they are in the data section.
+Prior probability distributions are used for a select few parameters
 and fixed values are used for several parameters. For the base model, the
 instantaneous rate of natural mortality ($M$) is estimated with a
 \Sexpr{m.prior[1]} prior having a median of \Sexpr{m.prior[2]} and a standard
@@ -144,7 +147,8 @@ freely estimated. This assessment uses the same Beta-distributed prior for
 stock-recruit steepness ($h$), based on \citet{MyersBowenEtAl1999}, that has
 been applied since 2011 \citep{StewartForrestEtAl2011, JTC2012, JTC2013,
 JTC2014, JTC2015, JTC2016, JTC2017, JTC2018}. Year-specific recruitment deviations were estimated
-from 1966--2018 as well as the years \Sexpr{assess.yr}, \Sexpr{assess.yr+1}, and
+from \Sexpr{main.recdev.early}--\Sexpr{main.recdev.end} 
+as well as the years \Sexpr{assess.yr}, \Sexpr{assess.yr+1}, and
 \Sexpr{assess.yr+2} for purposes of forecasting. The standard deviation,
 $\sigma_r$, of recruitment variability, serving as both a recruitment deviation
 constraint and bias-correction term, is fixed at a value of
@@ -156,13 +160,14 @@ catchability was set at the median unbiased estimate calculated analytically as
 per \citet{LudwigWalters1981}. Maturity is assumed to be time-invariant.
 Fecundity is defined as weight-at-age multiplied by the maturity ogive
 and is time-varying across years with empirical weight-at-age data (1975--
-\Sexpr{last.data.yr}).  For years without data, prior to 1975 and during the forecast
-period, fecundity is calculated using the long-term mean weight-at-age (see
-Section~\ref{sec:assessment-response-review} for more details). Alternative
-fecundity assumptions are presented through sensitivity analyses
+\Sexpr{last.data.yr}).  
+Prior to 1975 fecundity is calculated using the long-term mean weight-at-age,
+and fecundity during the forecast period is calculated using the five most recent years of data.
+Alternative fecundity assumptions are presented through sensitivity analyses
 (Section~\ref{sec:assessment-sensitivity-analyses}).
+% Manual 2020 KFJ
 
-**Statistical likelihood functions used for data fitting are typical of many stock
+Statistical likelihood functions used for data fitting are typical of many stock
 assessments. The acoustic survey index of abundance was fit via a log-normal
 likelihood function, using the observed (and extra 2009) sampling variability,
 estimated via kriging, as year-specific weighting. An additional constant and
@@ -172,14 +177,16 @@ observation error. A Dirichlet-Multinomial (D-M) likelihood was applied to age-c
 with input sample sizes equal to the sum of the number of trips or hauls actually sampled across all
 fishing fleets or the number of trawl sets in the research surveys (see Section~\ref{sec:data-age-comp-likelihood}).
 A weighting parameter for the fishery
-and the survey age compositions was specified and then estimated in the model fitting procedure
-to allow for additional sources of process and observation error. This process resulted in
-automatically tuned input sample sizes.  Tuning quantities did not change in assessments from 2012 to
+and the survey age compositions was estimated using nearly uniform priors
+with a mean of \Sexpr{effn.prior[2]} and standard deviation of \Sexpr{effn.prior[3]} (in Normal space).
+% todo: can we remove the following two sentences?
+Tuning quantities did not change in assessments from 2012 to
 2015, however additional tuning was required in 2016 and 2017 given the
 updated acoustic survey index composition data and refinements to fishery
 composition data. Tuning quantities changed again in 2018 with the addition of the
 new D-M data weighting (tuning) approach.  Tuning quantities remained relatively
 consistent from 2018 to \Sexpr{assess.yr}.
+% Manual 2020 KFJ
 
 Uncertainty of estimated quantities was calculated via Markov Chain Monte Carlo
 (MCMC) simulations. The bounds of 95\% credibility intervals were calculated as
@@ -188,17 +195,15 @@ MCMC simulations, to give equal-tailed intervals. The Stock Synthesis input
 files for the base model are given in
 Appendices~\ref{chap:data-file}-\ref{chap:weight-at-age-file}.
 
-**Calculations and figures from Stock Synthesis output were performed using
+Calculations and figures from Stock Synthesis output were performed using
 \Sexpr{R.Version()$version.string} \citep{R2019} and many R packages (in
 particular r4ss and xtable). The use of R, knitr, \LaTeX~and GitHub immensely
 facilitated the collaborative writing of this document.
 In particular, having most of the code automatically shared since the 2016
-assessment \citep{JTC2016} allowed the Canadian JTC members to conduct
-a preliminary assessment (without
-the 2018 age data) during the U.S. government shutdown, and ensured the
-JTC could complete a full assessment in the limited time available.
+assessment \citep{JTC2016} allows for the completion of a full assessment
+in the limited time available.
 A recent DFO workshop \citep{EdwardsDupliseaEtAl2018} shared such a
-`transparent, traceable and transferable' workflow with a wider audience,
+`transparent, traceable, and transferable' workflow with a wider audience,
 partly motivated by our ongoing \fishname\ assessments.
 
 \subsection{**Response to 2018 Scientific Review Group (SRG) review}\label{sec:assessment-response-review}
