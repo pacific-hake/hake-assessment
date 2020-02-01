@@ -218,7 +218,7 @@ make.mcmc.diag.plot <- function(model,      ## model is an mcmc run and is the o
     label <- "Extra SD in survey"
   }
   oldpar <- par()
-  par(mar=c(5,3.5,0,0.5),oma=c(0,2.5,0.2,0))
+  par(mar=c(5,3.5,0,0.5),oma=c(0,3.0,0.2,0))
   mcmc.out(model$mcmcpath,
            run = "",
            numparams = 1,
