@@ -47,7 +47,7 @@ are thoroughly described in this assessment document.
 The structural assumptions
 of this \Sexpr{assess.yr} base model,
 implemented using version \Sexpr{ss.version} of the Stock Synthesis software
-\citep{MethotWetzel2013}, 
+\citep{MethotWetzel2013},
 % Manual done 2020 KFJ
 are largely the same as the
 \Sexpr{last.assess.yr} base model \citep{JTC2019}, though we incorporate
@@ -133,7 +133,10 @@ repeated in this assessment, although further research on this topic is needed.
 Ongoing research investigating abiotic (environmental conditions) and biotic
 (e.g., euphausiid distribution and abundance) drivers of hake distribution and
 recruitment could provide insight into how the hake population is linked with
-broader ecosystem considerations.
+broader ecosystem considerations. In terms of an `Ecosystem Approach to
+Fisheries Management' (a new priority for DFO), the use of empirical
+weight-at-age somewhat accounts for ecosystem effects (see
+Section~\ref{sec:data-weight-at-age}).
 
 **Any recent papers to add?
 
@@ -228,7 +231,7 @@ were allocated a TAC of \Sexpr{last.year.can.tac}~t, including
 when there is determined to be an excess of fish for which there is not enough
 domestic processing capacity, fisheries managers give consideration to a
 Joint-Venture fishery in which foreign processor vessels are allowed to accept
-codends from Canadian catcher vessels while at sea. 
+codends from Canadian catcher vessels while at sea.
 % Manual done 2020 KFJ
 The last year a Joint-Venture fishery was conducted was in \Sexpr{latest.year.can.jv}.
 % There was a Joint-Venture fishery conducted in \Sexpr{latest.year.can.jv}.
@@ -336,7 +339,7 @@ age-\Sexpr{us.age.3.prop.age.ms} (\Sexpr{us.age.3.prop.ms}\%), and
 age-\Sexpr{us.age.4.prop.age.ms} (\Sexpr{us.age.4.prop.ms}\%;
 Table~\ref{tab:main-us-ms-age-data}).
 Age-samples from \Sexpr{us.shore.age[us.shore.age$year == last.data.yr, "n.trips"]} shoreside trips
-showed a similar proportional abundances for 
+showed a similar proportional abundances for
 age-\Sexpr{us.age.1.prop.age.shore} (\Sexpr{us.age.1.prop.shore}\%),
 age-\Sexpr{us.age.2.prop.age.shore} (\Sexpr{us.age.2.prop.shore}\%),
 age-\Sexpr{us.age.3.prop.age.shore} (\Sexpr{us.age.3.prop.shore}\%), and
@@ -353,7 +356,7 @@ in previous years (Figure~\ref{fig:main-us-at-sea-depths}). During July and Augu
 in the at-sea fishery moved to the usual summer fishing grounds in search of
 opportunities in Alaskan waters.  The shore-based fishery had the largest monthly
 catches during July, August, and September.  Due to the continuation of moderately high catch-rates for all U.S. fleets, the U.S. utilization rate continued to
-maintain close to what it has been in recent years at 
+maintain close to what it has been in recent years at
 \Sexpr{last.year.us.attained}\% in \Sexpr{last.data.yr}).
 % Manual done 2020 KFJ.
 

@@ -508,7 +508,7 @@ Prior to 1975, weight-at-age is assumed to be equal to the mean across all years
 Weight-at-age for the forecast years is assumed to be equal to the
 \Sexpr{last.data.yr-5}--\Sexpr{last.data.yr} mean.
 
-**[Andy to mention this somewhat accounts for ecosystem effects] The use of empirical weight-at-age is a convenient method
+The use of empirical weight-at-age is a convenient method
 to capture the variability in both the weight-at-length relationship within and
 among years, as well as the variability in length-at-age, without requiring
 parametric models to represent these relationships. However, this method
@@ -518,6 +518,12 @@ the data sources provide a representative view of the underlying
 population. Simulations performed by \citet{KuriyamaOnoEtAl2015} showed that, in
 general, using empirical weight-at-age when many observations are available
 resulted in more accurate estimates of spawning biomass.
+
+The temporal changes in weight-at-age may be due to ecosystem
+effects such as prey availability, predator abundance and ocean
+temperature. Thus, while not explicitly parameterised in the assessment,
+such ecosystem effects are somewhat implicitly accounted for, especially compared to
+assuming time-invariant weight-at-age.
 
 %%Mean weight has been declining for most ages over
 %%the past few years, but did increase slightly in 2017 from recent lows in 2016.
