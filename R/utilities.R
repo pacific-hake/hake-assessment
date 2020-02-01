@@ -322,6 +322,8 @@ cohort.catch <- function(cohort, catage, ages = 0:20, trim.end.year = NA) {
 #' `yr` catch will be returned
 #' @param use.catage If TRUE, use the *model$catage* object which are the estimates \. If FALSE,
 #' use the *model$dat$agecomp* object which are the input data
+#' @param fleet A integer value allowing the selection of a given fleet, where
+#' for Pacific hake, \code{fleet = 1}, the default, selects the fishery data.
 #'
 #' @return Text describing the top `num.cohorts` cohorts by year and percentage as a sentence
 #' @export
@@ -331,22 +333,24 @@ top.coh <- function(model = NULL,
                     decimals = 0,
                     cap = TRUE,
                     spec.yr = NA,
-                    use.catage = FALSE){
+                    use.catage = FALSE,
+                    fleet = 1){
 
   stopifnot(!is.null(model),
             !is.na(yr))
+  stopifnot(length(fleet) == 1)
 
   if(num.cohorts < 1){
     num.cohorts = 1
   }
   if(use.catage){
     tmp <- model$catage[, -c(1, 3, 4, 5, 6)] %>%
-      dplyr::filter(Fleet == 1) %>%
+      dplyr::filter(Fleet %in% fleet) %>%
       select(-c(Fleet, Seas, XX, Era, 0))
     tmp <- tmp[-1,]
   }else{
     tmp <- model$dat$agecomp[, -c(2, 4, 5, 6, 7, 8, 9)] %>%
-      dplyr::filter(FltSvy == 1) %>%
+      dplyr::filter(FltSvy %in% fleet) %>%
       select(-FltSvy) %>%
       mutate_all(list(as.numeric))
     names(tmp) <- gsub("^a", "", names(tmp))
