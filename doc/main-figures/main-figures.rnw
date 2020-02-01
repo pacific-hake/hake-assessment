@@ -1362,7 +1362,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{**Maximum likelihood estimates of spawning biomass for the base model
+\caption{Maximum likelihood estimates of spawning biomass for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
   semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).}
@@ -1382,7 +1382,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 @
 \end{center}
 %\vspace{0mm}
-\caption{**Maximum likelihood estimates of stock status (relative spawning biomass) for the base model
+\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
   semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).
@@ -1397,14 +1397,14 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 \begin{center}
 <<main-recruit-base-alternative-4, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(c(list(base.model), sens.models.4),
-                     legend = FALSE,,
-                     subplots = 10,
+                     legend = FALSE,
+                     subplots = 12,
                      model.names = c(base.model.name, sens.model.names.4),
                      end.yr = end.yr)
 box()
 @
 \end{center}
-\caption{**Maximum likelihood estimates of recruitment deviations for the base model
+\caption{Maximum likelihood estimates of recruitment deviations for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
   semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).
@@ -1447,7 +1447,7 @@ make.selectivity.illustration(mod.old = base.model,
 rm(temp)
 @
 \end{center}
-\caption{**Illustration of parameterization of time-varying selectivity as
+\caption{Illustration of parameterization of time-varying selectivity as
   represented in the base model (left) and the semi-parametric approach
   used in sensitivity analyses (right). Panels show transformation from
   estimated parameters (a) to cumulative sum up to each age (b) and the resulting

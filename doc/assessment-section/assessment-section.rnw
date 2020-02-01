@@ -1523,13 +1523,12 @@ issues when selectivity is time-varying, as it is in this assessment.
 
 % section below on selectivity
 % Manual 2019
-**The following two types of alternative setups for selectivity were explored in sensitivity
+Two types of alternative setups for selectivity were explored in sensitivity
 analyses: alternative values of the $\Phi$ parameter
 controlling the degree of flexibility of annual variation in the
 fishery selectivity and an alternative ``semi-parametric''
 parameterization of the time-varying selectivity
 (Figures~\ref{fig:main-biomass-base-alternative-4}-\ref{fig:main-index-base-alternative-4}).
-The methods and results of each will be described in turn.
 
 % Removed by KFJ in 2019
 % Fishery and survey selectivity in the base model is modeled as changing
@@ -1567,7 +1566,7 @@ The methods and results of each will be described in turn.
 % was more flexible than the choice of age 5 while those with higher ages
 % produces less plausible patterns of selectivity.
 
-**The consideration of alternative standard deviations ($\Phi$) for time-varying
+The consideration of alternative standard deviations ($\Phi$) for time-varying
 selectivity is discussed earlier in
 Section~\ref{sec:data-variability-selectivity}. In short, low values of the
 parameter $\Phi$ controlling the flexibility in time-varying selectivity
@@ -1589,12 +1588,12 @@ recruitment, regardless of the value of $\Phi$. However, the 2016 recruitment,
 which is only informed by the 2017 and 2018 fishery age compositions, is strongly
 linked to the choice of $\Phi$, where the model with the smallest $\Phi$
 at 0.21 estimates
-the 2016 and 2017 recruitment deviations as the highest in the time series
+the 2017 recruitment deviation as the highest in the time series
 (Figure~\ref{fig:main-recruit-base-alternative-4}) and provides the worst
 fit to the recent survey biomass estimates
 (Figure~\ref{fig:main-index-base-alternative-4}).
 
-**The alternative ``semi-parametric'' setup for selectivity based on the work of
+The alternative ``semi-parametric'' setup for selectivity based on the work of
 \citet{Xu2019} differs from the status-quo approach in that the deviations
 are applied to the resulting selectivity estimates, not to the original
 parameters, and the resulting selectivity ogive is no longer constrained
@@ -1612,10 +1611,11 @@ likelihood contribution for the $\epsilon_{ay}$ parameters is
 from treating the deviations as normal random variables with
 standard deviation $\sigma_s$, $N(0, \sigma_s)$.
 
-**This alternative parameterization was expected
+This alternative parameterization was expected
 to reduce correlation among the deviation
 parameters, because a positive deviation at a younger age no longer leads to
-a rescaling of the selectivity pattern at all ages. Indeed, there are only
+a rescaling of the selectivity pattern at all ages. **<Where do we find the following info? should reference a table>
+Indeed, there are only
 7 pairs of parameters with correlations above 0.7 or below -0.7 in the
 semi-parametric model that most closely matched the base model
 ($M$ and $\log R_0$ were positively correlated and the deviations for
@@ -1630,9 +1630,7 @@ between two of the selectivity deviations.
 % at $\sigma_s = 0.695$, which provided more plausible results than when this
 % method was applied to the status-quo selectivity setup.
 
-**However, the model with $\sigma_s = 0.695$ had higher estimates of 2016
-and 2017 recruits
-and worse fits to the recent survey biomass estimates
+However, the model with $\sigma_s = 0.695$ worse fits to the recent survey biomass estimates
 (Figures~\ref{fig:main-biomass-base-alternative-4}-\ref{fig:main-index-base-alternative-4}).
 Increasing $\sigma_s$ to 1.0
 provided the additional flexibility required to give more plausible estimates
@@ -1641,9 +1639,7 @@ However, relying on the subjective choice of $\sigma_s = 1.0$ removed one of
 the potential benefits of the semi-parametric approach. Given that an MCMC
 chain of 24-million samples has been adequate to overcome the inefficient
 sampling caused by high parameter correlations in the status-quo approach,
-the parameter selectivity was kept as before for this assessment, with the
-hopes that the semi-parametric setup could be further explored in the year
-ahead for potential inclusion in a future assessments.
+the parameter selectivity was kept as before for this assessment.
 
 **Sensitivity runs concerning weight-at-age and fecundity are discussed in
 Sections~\ref{sec:assessment-fecundity-recap} and~\ref{sec:assessment-sensitivity-fecundity} (Table~\ref{tab:main-parameter-estimates-sens-3}).
