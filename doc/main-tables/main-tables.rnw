@@ -485,7 +485,7 @@ make.median.posterior.table(
                      Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%})."),
   xlabel = "tab:main-median-posterior",
   font.size = 8,
-  space.size = 10)
+  space.size = 9)
 @
 
 <<main-ci-posterior-table, results='asis', echo=FALSE>>=
