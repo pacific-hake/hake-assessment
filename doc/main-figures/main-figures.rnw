@@ -27,7 +27,7 @@ make.overview.map.plot(path = rootd.map.data)
                 %  from -20 to -21 jumps it to the left when using center.
                 %  Commenting out {center} works better.
 \includegraphics[max size={1.15\paperwidth}{1.15\paperheight}]
-  {main-figures/hake_survey_1995-19_NASCTimeSeries_BiomassAtLengthHistograms_v2.eps}
+  {main-figures/hake_survey_1995-19_NASCTimeSeries_BiomassAtAgeHistograms_grayblue.eps}
   % Download from Google Drive
 % \end{center}
 % \vspace{-3mm}
@@ -55,7 +55,8 @@ make.overview.map.plot(path = rootd.map.data)
 \begin{center}
 \hspace{-10mm}
 \includegraphics[max size={1.10\paperwidth}{1.10\paperheight}]
-   {main-figures/age1hake_03-19_sA_squareroot_bin_narrow-panel_bw.eps}     % Download from Google Drive
+   {main-figures/age1hake_03-19_sA_squareroot_bin_narrow-panel_bluergray.eps}
+   % Download from Google Drive
 \end{center}
 %\vspace{-5mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-1 \fishname\
