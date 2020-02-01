@@ -342,7 +342,7 @@ make.est.numbers.at.age.table(
   space.size = 10)
 @
 
-\newgeometry{hmargin=1in,vmargin=1in}
+\newgeometry{hmargin=0.95in,vmargin=1in}
 \thispagestyle{lscape}
 \begin{landscape}
   \centering
