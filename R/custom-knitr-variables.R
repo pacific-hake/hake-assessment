@@ -455,7 +455,9 @@ DM.weight.survey <- round(theta.survey/(1+theta.survey),3)
 col.effn <- grep("EffN_mult._1", colnames(base.model$mcmc), perl = TRUE)
 log.theta.fishery.median <- round(median(base.model$mcmc[, col.effn]),3)
 DM.weight.fishery.median <- round(median(exp(base.model$mcmc[, col.effn])/(1+exp(base.model$mcmc[, col.effn]))),3)
-
+DM.weight.survey.median <- round(median(exp(base.model$mcmc[, col.effn+1])/(1+exp(base.model$mcmc[, col.effn+1]))),3)
+DM.weight.survey.low <- f(min(exp(base.model$mcmc[, col.effn+1])/(1+exp(base.model$mcmc[, col.effn+1]))),2)
+DM.weight.survey.high <- f(max(exp(base.model$mcmc[, col.effn+1])/(1+exp(base.model$mcmc[, col.effn+1]))),2)
 ################################################################################
 ## joint probability (%age) of being being both above the target relative fishing intensity in \Sexpr{end.yr-1}
 ##   and below the $\Bforty$ (40\% of $B_0$) reference point at the start of \Sexpr{end.yr}
