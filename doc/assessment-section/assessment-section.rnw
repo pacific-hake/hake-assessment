@@ -1455,14 +1455,14 @@ survey compared to the base model (Figure~\ref{fig:main-index-base-alternative-2
 % with each age.
 
 % section below on composition weighting
-% Manual 2019 done
-**The sensitivity of the use of the
+% Manual 2020 done
+The sensitivity of the use of the
 Dirichlet-Multinomial likelihood, implemented in 2018,
 which uses two estimated
 parameters to automatically weight each of the fishery and survey age
-compositions, was assessed by comparing the weightings to the
-McAllister-Ianelli and Francis methods.
-Both alternative methods require manual iterative adjustments to the input sample sizes
+compositions, has now been implemented in the base model. The base model was compared to the 
+models that used the McAllister-Ianelli and Francis methods.
+Both sensitivity methods require manual iterative adjustments to the input sample sizes
 using a derived multiplier.
 The McAllister-Ianelli method, which was used in assessments prior to 2018,
 attempts to make the arithmetic mean of the input
