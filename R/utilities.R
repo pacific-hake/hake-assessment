@@ -980,7 +980,7 @@ mcmc.out <- function (directory = "c:/mydirectory/", run = "mymodel/", file = "k
         }
         for (i in 1:numparams) {
             par(new = FALSE, mfrow = c(2, 2), ann = TRUE)
-            traceplot(mcmcobject[, i], smooth = TRUE)
+            coda::traceplot(mcmcobject[, i], smooth = TRUE)
             mtext("Value", side = 2, line = 3, font = 1, cex = 0.8)
             if (names | headernames) {
                 mtext(names(mcmcdata)[i], side = 3, adj = 0,
