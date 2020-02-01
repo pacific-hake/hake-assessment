@@ -107,6 +107,7 @@ survey.3.prop.age <- as.numeric(gsub("^a", "", names(survey.last.year.age)[3]))
 survey.3.prop <- f(survey.last.year.age[3]*100,1)
 survey.4.prop.age <- as.numeric(gsub("^a", "", names(survey.last.year.age)[4]))
 survey.4.prop <- f(survey.last.year.age[4]*100,1)
+survey.a2.prop <- f(survey.last.year.age["a2"]*100,1)
 
 ## Survey extrapolation percentages and years
 survey.extrap.percent <- 100 * (survey.comparison$with.extrap - survey.comparison$no.extrap) / survey.comparison$with.extrap

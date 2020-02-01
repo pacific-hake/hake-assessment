@@ -802,37 +802,38 @@ selectivity, the fit to commercial age-composition data is particularly good,
 although models with time-invariant selectivity used in previous years also fit
 the age compositions well.
 In \Sexpr{last.data.yr}, \Sexpr{top.coh(base.model, last.data.yr, 3, cap = FALSE)}.
-Age compositions from the \Sexpr{survey.end.yr} acoustic survey also indicated that the
-2014 year-class (53\% of that catch that year) and the 2010 year-class (26\% of
-the catch for that year) were large.
-For the combined data in \Sexpr{last.data.yr - 1},
-\Sexpr{top.coh(base.model, last.data.yr - 1, 3, cap = FALSE)}.
-In \Sexpr{last.data.yr}, \Sexpr{top.coh(base.model, last.data.yr, 3, cap = FALSE)}
-%%The 2017 acoustic survey was the first time the survey was able to sample the
-%%2014 year-class, and it confirmed that the 2014 year-class (53\% of the
-%%catch for that year) was indicated above average.
-The pattern for the 2010 year-class was expected given the strength of that cohort
-from the fishery composition data from 2012 onward, and thus are fit well by the
-model. Combined, the 2015--2018 fishery age composition data and the 2017
-acoustic survey age composition data suggest that 2014 was likely a strong recruitment
+Age compositions from the \Sexpr{survey.end.yr} acoustic survey suggest a similar age
+structure, i.e., \Sexpr{top.coh(base.model, survey.end.yr, 3, cap = FALSE, fleet = 2)}.
+The pattern for the 2010 year class was expected given the strength of that cohort
+from the fishery composition data from 2012 onward, and thus, are fit well by the model.
+Combined, the 2015--\Sexpr{last.data.yr} fishery age-composition data and the 
+2017--\Sexpr{survey.end.yr} acoustic survey age-composition data 
+suggest that 2014 was a strong recruitment
 year, and the model was able to adequately
-fit to these observations (Figure~\ref{fig:main-age-comp-fits}).  The 2016 year-class
-has yet to be exposed to the acoustic survey, so the strength of this cohort is
-reliant solely on two years of fishery data and thus remains highly uncertain. Residual
+fit to these observations (Figure~\ref{fig:main-age-comp-fits}).
+The strength of the 2016 year-class, which has now been observed by the survey 
+\Sexpr{ceiling((survey.end.yr-2016)/2)} times appears to be less strong than
+the 2014 year class.
+The \Sexpr{survey.end.yr} survey was the first time the survey was able to sample the
+\Sexpr{survey.end.yr-2} year class, and it confirmed that
+this year class (\Sexpr{survey.a2.prop}\% of the catch for that year)
+was not extremely large. Residual
 patterns to the fishery and survey age data do not show patterns that would
 indicate systematic bias in model predictions
-(Figure~\ref{fig:main-age-comp-pearson}). The MLEs for numbers, biomass,
-exploitation rate and catch (in numbers and in biomass) for each age class in
+(Figure~\ref{fig:main-age-comp-pearson}).
+
+The MLEs for numbers, biomass,
+exploitation rate, and catch (in numbers and in biomass) for each age class in
 each year are given in
 Tables~\ref{tab:main-est-numbers-at-age}-\ref{tab:main-est-catch-at-age-biomass}.
-For the major cohorts, the resulting age-specific catch, natural mortality and
+For the major cohorts, the resulting age-specific catch, natural mortality, and
 surviving biomasses are given in Table~\ref{tab:main-cohort-effects}.
 ** Actually interpet the table, something like: 2014 catch at age-5 is higher than 2010 cohort
 age-5 catch was, but the remaining biomass is lower for 2014 cohort than 2010 though.
 
-**Posterior distributions for both steepness and natural mortality are strongly
+Posterior distributions for both steepness and natural mortality are strongly
 influenced by priors (Figure~\ref{fig:main-prior-posterior}). The posterior for
-steepness was not updated much by the data, as expected given the low
+steepness is only slightly updated by the data, as expected given the low
 sensitivity to steepness values found in previous hake assessments. The natural
 mortality parameter, on the other hand, is shifted to the right of the prior
 distribution and the prior may be constraining the posterior distribution from shifting
@@ -842,13 +843,13 @@ parameter is examined in sensitivity runs (see Section~\ref{sec:assessment-sensi
 Other parameters showed updating from non-informative priors to stationary posterior
 distributions.
 
-**The \Sexpr{assess.yr} base model specified the same level of variation (standard
+The \Sexpr{assess.yr} base model specified the same level of variation (standard
 deviation of $\Phi = 1.4$) associated with time-varying fishery selectivity as
 the \Sexpr{last.assess.yr} base model, effectively
 allowing the model flexibility (i.e., a lower penalty on the overall
 likelihood) to fit to data that suggests high variability among years for each
 age. This level
-of variation led to results that were consistent with the 2017 acoustic survey
+of variation led to results that were consistent with the \Sexpr{survey.end.yr} acoustic survey
 biomass estimate and gave reasonable fits to the fishery age composition data,
 while maintaining that there is considerable uncertainty associated with
 spatial changes in fish availability (due to movement) and recent
@@ -861,17 +862,17 @@ in the fishery age compositions initially, but decreasing in prominence
 from 2013 onward (Figures~\ref{fig:main-age-comp-fits} and
 \ref{fig:main-retrospective.recruitment}).
 Fishery selectivity on age-2 fish was at its highest
-in 2016, followed by 2018.  The selectivity of age-3 fish by the fishery in 2017 (2014 cohort)
-was similar to that for the 1999 and 2010 large cohorts
-(age-3 in 2002 and 2013, respectively;
+in 2016, followed by 2018.
+Fishery selectivity for the most recent year leveled off between ages less
+than six even more so than it did for the previous year, suggesting
+equal selectivity-at-age for younger ages
 Figure~\ref{fig:main-tv-selex-uncertainty}). Even though the
 survey selectivity is time invariant, the
 posterior shows a broad band of uncertainty between ages 2 and 5
 (Figure~\ref{fig:main-tv-selex-uncertainty-lines}). The decline in
 survey selectivity between ages 3 and 4 may be an artifact of the interaction
 between large cohorts and the biennial timing of recent surveys, with the
-1999 cohort occurring in the survey at ages 2 and 4 but not 3
-while the 2010 and 2014 cohorts occurred at ages 3 and 5 but not age 4.
+2010 and 2014 cohorts occurring at ages 3 and 5 but not age 4.
 Fishery selectivity is
 likewise very uncertain (Figures~\ref{fig:main-tv-selex-uncertainty}
 and~\ref{fig:main-tv-selex-uncertainty-lines}), but in spite of this
