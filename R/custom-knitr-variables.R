@@ -9,7 +9,9 @@ us.allotment.percent <- 73.88
 ################################################################################
 ## Attainment, used in the management performance section
 usa.last.5.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),8]), 1)
+usa.last.2.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-2):(end.yr-1),8]), 1)
 can.last.5.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),9]), 1)
+can.last.2.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-2):(end.yr-1),9]), 1)
 tot.last.5.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),10]), 1)
 tot.last.10.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-10):(end.yr-1),10]), 1)
 tot.last.year.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year == (end.yr-1),"ATTAIN"]), 1)
@@ -179,6 +181,7 @@ median.intensity.2010 <- f(base.model$mcmccalcs$pmed["2010"] * 100, 1)
 median.intensity.2015 <- f(base.model$mcmccalcs$pmed["2015"] * 100, 1)
 median.intensity.2017 <- f(base.model$mcmccalcs$pmed["2017"] * 100, 1)
 median.intensity.2018 <- f(base.model$mcmccalcs$pmed["2018"] * 100, 1)
+median.intensity.2019 <- f(base.model$mcmccalcs$pmed["2019"] * 100, 1)
 median.intensity.penult.yr <- f(base.model$mcmccalcs$pmed[as.character(end.yr-1)] * 100, 1)
 median.relative.bio <- base.model$mcmccalcs$dmed
 median.relative.bio.2007.to.2010 <- median.relative.bio[c("2007", "2008", "2009", "2010")]
@@ -345,6 +348,7 @@ exploitation.med.2011 <- f(base.model$mcmccalcs$fmed["2011"],2)
 exploitation.med.2015 <- f(base.model$mcmccalcs$fmed["2015"],2)
 exploitation.med.2017 <- f(base.model$mcmccalcs$fmed["2017"],2)
 exploitation.med.2018 <- f(base.model$mcmccalcs$fmed["2018"],2)
+exploitation.med.2019 <- f(base.model$mcmccalcs$fmed["2019"],2)
 exploitation.med.penult.yr <- f(base.model$mcmccalcs$fmed[as.character(end.yr-1)],2)
 
 ################################################################################
