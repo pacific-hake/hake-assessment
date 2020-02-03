@@ -267,9 +267,9 @@ weight.at.age.heatmap(base.model,
 \includegraphics[width=6.5in, height=8.5in]{main-figures/EWAforDoc_Numbers}
 \end{center}
 \vspace{0mm}
-\caption{**Sample sizes for developing empirical weight-at-age values used in the
+\caption{Sample sizes for developing empirical weight-at-age values used in the
   base model (colors represent empirical weight-at-age data, as shown in
-  Figure ~\ref{fig:main-empirical.weight.at.age}).
+  Figure ~\ref{fig:main-empirical-weight-at-age}).
   Data are available from 1975--\Sexpr{max.fishery.age.prop[2]}.
   The total sample size for each age is shown at the bottom.}
 \label{fig:main-empirical-weight-at-age-numbers}
