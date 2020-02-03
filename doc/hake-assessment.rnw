@@ -338,6 +338,10 @@ thinking. *******COMMENT ME OUT WHEN DONE*******
 \renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 \renewcommand{\theequation}{\thechapter.\arabic{equation}}
 
+\rfoot{Appendix~\ref{chap:mcmc-diagnostics} -- Base Model MCMC Diagnostics}
+<<appendix-mcmc-diagnostics, child='appendix-mcmc-diagnostics/appendix-mcmc-diagnostics.rnw'>>=
+@
+
 \rfoot{Appendix~\ref{chap:srg-requests} -- SRG requests}
 <<appendix-srg-requests, child='appendix-srg-requests/appendix-srg-requests.rnw'>>=
 @
