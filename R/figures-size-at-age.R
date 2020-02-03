@@ -1,13 +1,35 @@
+#' Weight-at-age heatmap plot including extrapolated years using ggplot.
+#'
+#' @details Max age is set to 15 as we don't know what was extrapolated above that
+#' and the figure in the assessment doc is only to 15
+#' fleet is number as seen in SS wtatage.ss file for fleet column
+#' Years after end of data up to last.yr will be projection years,
+
+#' @param model An SS model as output by [load_ss_files()]
+#' @param fleet Fleet number. 1 = Fishery, 2 = survey
+#' @param proj.line.color Line color to separate projection years
+#' @param proj.line.width Line width to separate projection years
+#' @param proj.line.yr Year to separate projection years (where to place the projection line)
+#' @param first.year The first year to plot
 #' @param longterm.mean.ages A vector of mean weight-at-age values
 #' per ages zero to fifteen. If \code{NULL} then the first year of
 #' data will be assumed to be the mean because this year is typically
 #' filled in any way.
-#'
+#' @param font.size Font size
+#' @param axis.font.size Font size for axis labels
+#' @export
+#' @importfrom dplyr filter select bind_rows
+#' @importFrom tibble as_tibble
+#' @importFrom reshape2 melt
+#' @importFrom grDevices colorRampPalette
+#' @importFrom ggplot2 ggplot geom_tile scale_fill_gradientn geom_text aes theme 
+#' element_blank element_text scale_y_continuous ylab xlab geom_hline coord_cartesian
 weight.at.age.heatmap <- function(model,
                                   fleet = 1,
                                   proj.line.color = "royalblue",
                                   proj.line.width = 1,
                                   proj.line.yr = 2018,
+                                  first.year = 1975,
                                   # mean ages need to be updated every year
                                   longterm.mean.ages = c(0.02,
                                                          0.09,
@@ -27,18 +49,11 @@ weight.at.age.heatmap <- function(model,
                                                          1.03),
                                   font.size = 4,
                                   axis.font.size = 10){
-  ## Weight-at-age heatmap plot including extrapolated years using ggplot.
-  ## Original code not available during shutdown.
-  ## Max age is set to 15 as we don't know what was extrapolated above that
-  ##  and the figure in the assessment doc is only to 15
-  ## fleet is number as seen in SS wtatage.ss file for fleet column
-  ## Years after end of data up to last.yr will be projection years,
-  ## font.size is size of font
 
   ## Toggle data frame for which values are extrapolated values
   last.data.yr <- model$endyr
+  input.yrs <-  first.year:last.data.yr
 
-  input.yrs <- 1975:last.data.yr
   extrap = list(
     c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1), #1975
     c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1976
@@ -96,11 +111,10 @@ weight.at.age.heatmap <- function(model,
       #         "Check weight.at.age.heatmap() and make sure values are correct.")
   }
 
-
   wa <- as_tibble(model$wtatage[, !grepl("comment", colnames(model$wtatage))]) %>%
-    dplyr::filter(Fleet == fleet) %>%
+    filter(Fleet == fleet) %>%
     select(-c(Seas, Sex, Bio_Pattern, BirthSeas, Fleet)) %>%
-     dplyr::filter(Yr > 0)
+    filter(Yr > 0)
 
   wa <- wa[,1:17]
   names(extrap) <- names(wa)
@@ -123,9 +137,9 @@ weight.at.age.heatmap <- function(model,
   wa1 <- cbind(Yr = wa$Yr, wa1)
   wa2 <- cbind(Yr = wa$Yr, wa2)
 
-  w <- reshape2::melt(wa, id.vars = "Yr")
-  w1 <- reshape2::melt(wa1, id.vars = "Yr")
-  w2 <- reshape2::melt(wa2, id.vars = "Yr")
+  w <- melt(wa, id.vars = "Yr")
+  w1 <- melt(wa1, id.vars = "Yr")
+  w2 <- melt(wa2, id.vars = "Yr")
 
   ages <- as.numeric(levels(unique(w$variable)))
   nage <- length(ages)
@@ -228,8 +242,6 @@ barfun <- function(x, y, x.pos="left", plot=1, ...){
   return(data.frame(x=x.double, y=y.double))
 }
 
-
-
 # source atsea.ages as noted in /hake-data/Rcode/AtSeaComps.R
 make.size.at.age.plot <- function(df, type='len'){
   # df is a data.frame with columns for month, length, and weight.
@@ -308,7 +320,6 @@ make.size.at.age.plot <- function(df, type='len'){
          bg='white',
          legend=c("May-November", "May-July", "August-November")[periods])
 }
-
 
 if(FALSE){
   # load atsea.ages containing fish sample information from U.S. at-sea fishery
