@@ -980,7 +980,7 @@ below average size of the 2018 year class.
 The additional data in the 2019 assessment has increased the median estimate of the
 2014 year class to
 \Sexpr{recruitment.med.in.2014}~billion fish (Table~\ref{tab:main-median-posterior}),
-from the 8.467~billion estimated in the 2019 assessment (Table~25 of \citealt{JTC2019}).
+from the \Sexpr{last.assess.recruitment.med.in.2014}~billion estimated in the 2019 assessment (Table~25 of \citealt{JTC2019}).
 Yet the 2014 year class remains the fifth largest estimated recruitment, albeit
 with large uncertainty (Table~\ref{tab:main-ci-posterior} and
 Figure~\ref{fig:main-recruitment}).  The median estimate for the 2016 year class
