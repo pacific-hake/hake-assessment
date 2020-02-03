@@ -334,14 +334,14 @@ make.recruitment.table(base.model,
 %
 
 The new data available for this assessment do not significantly change the
-pattern of recruitment estimated in recent assessments. 
-However, estimated recruitments for some years have changed. For example, 
+pattern of recruitment estimated in recent assessments.
+However, estimated recruitments for some years have changed. For example,
 this year's median assessment of the 2010 recruitment is
 \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"], 1)}~billion
-more fish (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"]) / 
+more fish (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"]) /
 (prev.assess.recruitment.med)["2010"]) * 100), 1)} \% increase) than last
 year's assessment. This difference is largely driven by the addition
-of the 2019 acoustic survey age compositions (Figure~\ref{fig:fig:main-bridge-5-panel-3}) 
+of the 2019 acoustic survey age compositions (Figure~\ref{fig:fig:main-bridge-5-panel-3})
 where the proportion of age-9 fish was higher than what the \Sexpr{end.yr-1}
 assessment model would have otherwise predicted given mortality.
 
@@ -599,12 +599,15 @@ make.phase.plot(base.model,
                 color = "blue")
 @
 \end{center}
-\caption{Estimated historical path followed by medians of relative fishing
-         intensity and relative spawning biomass for \fishname\ with labels on the
-         start and end years (and 1999). Gray bars span the 95\% credibility
-         intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical) and
-         relative spawning biomass (horizontal). **Andy to check figure, see
-         Issue 443.}
+\caption{Estimated historical path of median relative spawning biomass in
+         year $t$ and corresponding median relative fishing
+         intensity in year $t-1$. Labels show the
+         start year, end year and year of highest relative fishing
+         intensity; labels correspond to year $t$ (i.e., year of the relative
+         spawning biomass). Gray bars span the 95\% credibility
+         intervals for \Sexpr{end.yr} relative spawning biomass (horizontal) and
+         \Sexpr{end.yr-1} relative fishing intensity (vertical).
+         }
 \label{fig:es-phase}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

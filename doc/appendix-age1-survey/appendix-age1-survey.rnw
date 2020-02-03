@@ -172,11 +172,15 @@ make.phase.plot(sens.models.2[[1]],
                 color = "blue")
 @
 \end{center}
-\caption{Estimated historical path followed by medians of relative fishing
-         intensity and relative spawning biomass for \fishname\ with labels on the
-         start and end years (and 1999). Gray bars span the 95\% credibility
-         intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical) and
-         relative spawning biomass (horizontal).}
+\caption{Estimated historical path of median relative spawning biomass in
+         year $t$ and corresponding median relative fishing
+         intensity in year $t-1$, as for Figure~\ref{fig:main-phase}. Labels show the
+         start year, end year and year of highest relative fishing
+         intensity; labels correspond to year $t$ (i.e., year of the relative
+         spawning biomass). Gray bars span the 95\% credibility
+         intervals for \Sexpr{end.yr} relative spawning biomass (horizontal) and
+         \Sexpr{end.yr-1} relative fishing intensity (vertical).
+         }
 \label{fig:phase-age1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

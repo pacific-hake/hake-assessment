@@ -290,9 +290,12 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
                             start.yr,         ## Year the timeseries starts (i.e. first year in model)
                             end.yr,           ## Year the timeseries ends (i.e. last year in model)
                             color = "blue",
-                            cex.lab = 1
+                            cex.lab = 1,
+                            x.max = 1.3,
+                            y.max = 1.3
                             ){
-  ## Plots the relative fishing intensity and relative spawning biomass as a historical
+  ## Plots the relative fishing intensity in year t-1 against relative spawning
+  ## biomass in year t, as a historical
   ## look at the fishery for the mcmc given by model
   oldpar <- par()
 
@@ -302,57 +305,61 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
   dmed <- model$mcmccalcs$dmed
   dupper <- model$mcmccalcs$dupper
 
-  sb40 <- model$mcmccalcs$sinit[2] * 0.4
-  sb0 <- model$mcmccalcs$sinit[2]
+  # sb40 <- model$mcmccalcs$sinit[2] * 0.4
+  # sb0 <- model$mcmccalcs$sinit[2]
 
   plower <- model$mcmccalcs$plower
   pmed <- model$mcmccalcs$pmed
   pupper <- model$mcmccalcs$pupper
 
-  ## Only include start year to end year
-  dlower <- dlower[(names(dlower) %in% yrs)]
-  dmed <- dmed[(names(dmed) %in% yrs)]
-  dupper <- dupper[(names(dupper) %in% yrs)]
-  plower <- plower[(names(plower) %in% yrs)]
-  pmed <- pmed[(names(pmed) %in% yrs)]
-  pupper <- pupper[(names(pupper) %in% yrs)]
+  ## Only include start year to end year, but don't need dmed[start.yr], since
+  ## no pmed[start.yr-1] to plot it with, or pmed[end.yr] since that's
+  ## meaningless here (yet SS calculates it) as we don't know catch in end.yr.
+  dlower <- dlower[(names(dlower) %in% yrs[-1])]
+  dmed <- dmed[(names(dmed) %in% yrs[-1])]
+  dupper <- dupper[(names(dupper) %in% yrs[-1])]
 
-  sb <- dmed[yrs %in% c(start.yr:(end.yr-1))]
-  sb.hi <- dupper[yrs %in% (end.yr-1)]
-  sb.lo <- dlower[yrs %in% (end.yr-1)]
+  plower <- plower[(names(plower) %in% yrs[-length(yrs)])]
+  pmed <- pmed[(names(pmed) %in% yrs[-length(yrs)])]
+  pupper <- pupper[(names(pupper) %in% yrs[-length(yrs)])]
 
-  spr <- pmed[yrs %in% c(start.yr:(end.yr-1))]
-  spr.hi <- pupper[yrs %in% (end.yr-1)]
-  spr.lo <- plower[yrs %in% (end.yr-1)]
+  # Not sure why we have these extra (and incorrect) names, probably legacy
+#  sb <- dmed[yrs %in% c(start.yr:(end.yr-1))]
+#  sb.hi <- dupper[yrs %in% (end.yr-1)]
+#  sb.lo <- dlower[yrs %in% (end.yr-1)]
+
+#  spr <- pmed[yrs %in% c(start.yr:(end.yr-1))]
+#  spr.hi <- pupper[yrs %in% (end.yr-1)]
+#  spr.lo <- plower[yrs %in% (end.yr-1)]
 
   ## par(mfrow=c(1,1), las = 1, mar = c(3.6,3.6,1,1), oma = c(0,0,0,0))
   par(las = 1, mar = c(3.6, 3.6, 1, 1), oma = c(0, 0, 0, 0))
-  plot(sb,
-       spr,
+  plot(dmed,
+       pmed,
        type = "n",
        pch = 20,
-       xlim = c(0,1.3),
-       ylim = c(0,1.3),
+       xlim = c(0, x.max),
+       ylim = c(0, y.max),
        xlab = expression(paste("Relative spawning biomass", ~~~(italic(B[t])/italic(B)[0]))),
-       ylab = expression(paste("Relative fishing intensity", ~~(1-italic(SPR))/(1-italic(SPR)['40%']))),
+       ylab = expression(paste("Relative fishing intensity", ~~(1-SPR[t-1])/(1-SPR['40%']))),
        xaxs = "i",
        yaxs = "i",
        mgp = c(2.4,1,0),
        cex.lab = cex.lab)
-  colvec <- rev(rich.colors.short(n = length(sb))[-1])
-  arrows(sb[-length(sb)], spr[-length(spr)], sb[-1], spr[-1], length=0.09,
+  colvec <- rev(rich.colors.short(n = length(dmed))[-1])
+  arrows(dmed[-length(dmed)], pmed[-length(pmed)], dmed[-1], pmed[-1], length=0.09,
          ## col = rgb(0,0,0,0.4))
          col = colvec)
   # add points for each year
-  points(sb, spr, pch = 21, col=1, bg=colvec)
+  points(dmed, pmed, pch = 21, col=1, bg=colvec)
   # add uncertainty intervals for final year
-  segments(sb[length(sb)], spr.lo, sb[length(sb)], spr.hi, col = rgb(0,0,0,0.5))
-  segments(sb.lo, spr[length(spr)], sb.hi, spr[length(spr)], col = rgb(0,0,0,0.5))
+  segments(dmed[length(dmed)], plower, dmed[length(dmed)], pupper, col = rgb(0,0,0,0.5))
+  segments(dlower, pmed[length(pmed)], dupper, pmed[length(pmed)], col = rgb(0,0,0,0.5))
   # label first and final years
-  text(sb[1], spr[1] - 0.01, start.yr, cex = 0.6, pos = 1,
+  text(dmed[1], pmed[1] - 0.01, names(dmed[1]), cex = 0.6, pos = 1,
        col=colvec[1])
-  text(sb[length(sb)], spr[length(spr)] - 0.015, end.yr-1, pos = 4, cex = 0.6,
-       col=colvec[length(spr)-1])
+  text(dmed[length(dmed)], pmed[length(pmed)] + 0.015, names(dmed[length(dmed)]), pos = 2, cex = 0.6,
+       col=colvec[length(colvec)])
   # add label to year in upper-left quadrant if there's only one
   # this facilitates labeling 1999 in the 2017 assessment, but may work for future years
   # For 2018 (early base run) there are three, showing all looks confusing (but having none
@@ -363,8 +370,8 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
   #     labels=upper.left.yrs, pos = 4, cex = 0.6,
   #     col=colvec[yrs %in% upper.left.yrs])
   #   }
-  highest.fish.int.yr <- yrs[which.max(spr)]
-  text(x=sb[yrs %in% highest.fish.int.yr], y=spr[yrs %in% highest.fish.int.yr] + 0.015,
+  highest.fish.int.yr <- yrs[which.max(pmed)]
+  text(x=dmed[yrs %in% highest.fish.int.yr], y=pmed[yrs %in% highest.fish.int.yr],
        labels=highest.fish.int.yr, pos = 4, cex = 0.6,
        col=colvec[yrs %in% highest.fish.int.yr])
 
@@ -372,9 +379,10 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
   abline(h = 1, v = 1, lty = 2, col = rgb(0,0,0,0.4))
   abline(h = 1, v = c(0.1,0.4), lty = 2, col = rgb(0,0,0,0.4))
   # add bigger points for first and final years
-  points(sb[length(sb)], spr[length(spr)], pch = 21, col = 1,
-         bg=colvec[length(spr)-1], cex = 1.2)
-  points(sb[1],spr[1], pch = 21, col = 1, bg=colvec[1], cex = 1.2)
+  points(dmed[1],pmed[1], pch = 21, col = 1, bg=colvec[1], cex = 1.2)
+  points(dmed[length(dmed)], pmed[length(pmed)], pch = 21, col = 1,
+         bg=colvec[length(pmed)-1], cex = 1.2)
+
 
   par <- oldpar
 }

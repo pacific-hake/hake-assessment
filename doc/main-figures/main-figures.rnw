@@ -240,7 +240,7 @@ year, but figure not updated, so maybe hardwire it to say 2018.}
 %\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 %\includegraphics[width=6.5in, height=8.5in]{main-figures/EWAforDoc}
 <<main-weight-at-age, fig.height=9, fig.width=8>>=
-weight.at.age.heatmap(base.model, 
+weight.at.age.heatmap(base.model,
                       proj.line.yr = base.model$endyr,
                       extrap.mask = weight_age_extrapolation_mask,
                       longterm.mean.ages = NULL)
@@ -828,12 +828,15 @@ make.phase.plot(base.model,
                 color = "blue")
 @
 \end{center}
-\caption{Estimated historical path followed by medians of relative fishing
-  intensity and relative spawning biomass for \fishname. Start and end years are
-  labeled, as is the year with the highest relative fishing intensity.
-  Gray bars span the 95\% credibility
-  intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical)
-  and relative spawning biomass (horizontal).**Update to match Figure h caption.}
+\caption{Estimated historical path of median relative spawning biomass in
+         year $t$ and corresponding median relative fishing
+         intensity in year $t-1$. Labels show the
+         start year, end year and year of highest relative fishing
+         intensity; labels correspond to year $t$ (i.e., year of the relative
+         spawning biomass). Gray bars span the 95\% credibility
+         intervals for \Sexpr{end.yr} relative spawning biomass (horizontal) and
+         \Sexpr{end.yr-1} relative fishing intensity (vertical).
+         }
 \label{fig:main-phase}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1440,7 +1443,7 @@ weight.at.age.heatmap(sens.models.5[[2]],
 \begin{center}
 <<main-weight-at-age-sens-c, fig.height=9, fig.width=8>>=
 # Run 54 (verified same heatmap as 52)
-weight.at.age.heatmap(sens.models.5[[3]], 
+weight.at.age.heatmap(sens.models.5[[3]],
                       proj.line.yr = base.model$endyr,
                       extrap.mask = weight_age_extrapolation_mask,
                       longterm.mean.ages = NULL)
