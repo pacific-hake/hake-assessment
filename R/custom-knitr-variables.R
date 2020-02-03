@@ -354,8 +354,7 @@ exploitation.med.2011 <- f(base.model$mcmccalcs$fmed["2011"],2)
 exploitation.med.2015 <- f(base.model$mcmccalcs$fmed["2015"],2)
 exploitation.med.2017 <- f(base.model$mcmccalcs$fmed["2017"],2)
 exploitation.med.2018 <- f(base.model$mcmccalcs$fmed["2018"],2)
-exploitation.med.2019 <- f(base.model$mcmccalcs$fmed["2019"],2)
-exploitation.med.penult.yr <- f(base.model$mcmccalcs$fmed[as.character(end.yr-1)],2)
+exploitation.med.penult.yr <- f(base.model$mcmccalcs$fmed[as.character(last.data.yr)], 2)
 
 ################################################################################
 last.survey.year <- survey.history[nrow(survey.history),]$year
