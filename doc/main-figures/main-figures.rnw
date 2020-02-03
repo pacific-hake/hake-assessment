@@ -249,7 +249,7 @@ weight.at.age.heatmap(base.model, proj.line.yr = base.model$endyr,
   (the values match the colors).
   Data are only available from 1975--\Sexpr{max.fishery.age.prop[2]}.
   Values based on assumptions for the early and late years are shown
-  outside the blue lines (see Table~\ref{tab:main-wtatage-runs});
+  outside the blue lines;
   alternative assumptions were tested in sensitivity runs.
   Bold values between 1975--\Sexpr{max.fishery.age.prop[2]} represent unavailable
   data such that weights were interpolated or extrapolated from adjacent ages or years.
@@ -1146,7 +1146,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 @
 \end{center}
 %\vspace{0mm}
-\caption{**Maximum likelihood estimates of stock status (relative spawning biomass) for the base
+\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-status-base-alternative-2}
@@ -1396,7 +1396,28 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-recruit-base-alternative-4, fig.height=4.5, fig.width=8>>=
+<<main-recruitment-base-alternative-4, fig.height=4.5, fig.width=8>>=
+make.comparison.plot(c(list(base.model), sens.models.4),
+                     legend = FALSE,
+                     subplots = 10,
+                     model.names = c(base.model.name, sens.model.names.4),
+                     end.yr = end.yr)
+box()
+@
+\end{center}
+\caption{Maximum likelihood estimates of recruitment for the base model
+  and alternative sensitivity runs representing different standard
+  deviations ($\Phi$) associated with time-varying selectivity and the use of a
+  semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).
+  See Figure~\ref{fig:main-biomass-base-alternative-4} for legend.}
+\label{fig:main-recruit-base-alternative-4}
+%% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{figure}[H]
+\begin{center}
+<<main-recruitment-devs-base-alternative-4, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(c(list(base.model), sens.models.4),
                      legend = FALSE,
                      subplots = 12,
@@ -1411,11 +1432,10 @@ box()
   semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).
   See Figure~\ref{fig:main-biomass-base-alternative-4} for legend.}
 \label{fig:main-recruit-base-alternative-4}
-%% \end{figure}
+\end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%
-%% JOINED ON PAGE
-%%%%%%%%%%%%%%%%%%%%%%%
-%% \begin{figure}[H]
+\begin{figure}[H]
 \begin{center}
 <<main-index-base-alternative-4, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(c(list(base.model), sens.models.4),

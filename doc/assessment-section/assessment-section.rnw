@@ -1539,7 +1539,7 @@ issues when selectivity is time-varying, as it is in this assessment.
 % \ref{fig:main-status-base-alternative-2}).
 
 % section below on selectivity
-% Manual 2019
+% Manual 2020
 Two types of alternative setups for selectivity were explored in sensitivity
 analyses: alternative values of the $\Phi$ parameter
 controlling the degree of flexibility of annual variation in the
@@ -1585,30 +1585,16 @@ parameterization of the time-varying selectivity
 
 The consideration of alternative standard deviations ($\Phi$) for time-varying
 selectivity is discussed earlier in
-Section~\ref{sec:data-variability-selectivity}. In short, low values of the
-parameter $\Phi$ controlling the flexibility in time-varying selectivity
-resulted in potentially implausibly high estimates for recent recruitments. The
-% values of the related $\phi$ explored in the 2017 assessment \citep{JTC2017}
-% were 0.03, 0.10,
-% and 0.30, as alternatives to the 0.20 used in the base model.
-% As discussed in Section~\ref{sec:data-variability-selectivity}, the change
-% to the new version of Stock Synthesis required
-% appropriate values of $\Phi$, with
-% $\Phi = 7 \phi$
-% resulting in
-% approximately equivalent dynamics. Thus, the
-base model value is $\Phi = 1.40$, and
-alternatives explored as sensitivity analyses were 0.21, 0.70, and 2.10.
-The addition of the 2017 fishery age compositions and the 2017 survey biomass
-estimate and age compositions led to more precise estimates of the 2014
-recruitment, regardless of the value of $\Phi$. However, the 2016 recruitment,
-which is only informed by the 2017 and 2018 fishery age compositions, is strongly
-linked to the choice of $\Phi$, where the model with the smallest $\Phi$
-at 0.21 estimates
-the 2017 recruitment deviation as the highest in the time series
-(Figure~\ref{fig:main-recruit-base-alternative-4}) and provides the worst
-fit to the recent survey biomass estimates
-(Figure~\ref{fig:main-index-base-alternative-4}).
+Section~\ref{sec:data-variability-selectivity}. Varying the values of the
+parameter $\Phi$ controlling the flexibility in time-varying selectivity from 
+the base model value of $\Phi = 1.40$ to alternative values of 0.21, 0.70, and 2.10,
+resulted in more precise estimates of the 2014 recruitment, regardless of the value
+of $\Phi$ (Figure~\ref{fig:main-recruit-base-alternative-4}).
+However, the 2017 recruitment, is linked to the choice of $\Phi$, where the
+model with the smallest $\Phi$ at 0.21 estimates the 2017 recruitment deviation as
+the highest of the sensitivity models (Figure~\ref{fig:main-recruit-devs-base-alternative-4})
+and provides the worst fits of the most recent two survey biomass estimates, 
+2017 and 2019 (Figure~\ref{fig:main-index-base-alternative-4}).
 
 The alternative ``semi-parametric'' setup for selectivity based on the work of
 \citet{Xu2019} differs from the status-quo approach in that the deviations
@@ -1631,7 +1617,9 @@ standard deviation $\sigma_s$, $N(0, \sigma_s)$.
 This alternative parameterization was expected
 to reduce correlation among the deviation
 parameters, because a positive deviation at a younger age no longer leads to
-a rescaling of the selectivity pattern at all ages. **<Where do we find the following info? should reference a table>
+a rescaling of the selectivity pattern at all ages.
+
+**<Where do we find the following info? should reference a table showing correlations of these parameters>
 Indeed, there are only
 7 pairs of parameters with correlations above 0.7 or below -0.7 in the
 semi-parametric model that most closely matched the base model
@@ -1647,15 +1635,13 @@ between two of the selectivity deviations.
 % at $\sigma_s = 0.695$, which provided more plausible results than when this
 % method was applied to the status-quo selectivity setup.
 
-However, the model with $\sigma_s = 0.695$ worse fits to the recent survey biomass estimates
+Both models with alternative $\sigma_s$ parameters ($\sigma_s = 0.695$ and $\sigma_s = 1.0$)
+had higher estimates of 2016 and 2017 recruitment and worse fits to the recent survey biomass estimates than the base model
 (Figures~\ref{fig:main-biomass-base-alternative-4}-\ref{fig:main-index-base-alternative-4}).
-Increasing $\sigma_s$ to 1.0
-provided the additional flexibility required to give more plausible estimates
-of this cohort that has only been observed as age-1 and age-2 fish in the fishery.
-However, relying on the subjective choice of $\sigma_s = 1.0$ removed one of
+Relying on the subjective choice of $\sigma_s = 1.0$ removed one of
 the potential benefits of the semi-parametric approach. Given that an MCMC
 chain of 24-million samples has been adequate to overcome the inefficient
-sampling caused by high parameter correlations in the status-quo approach,
+sampling caused by high parameter correlations in past assessments,
 the parameter selectivity was kept as before for this assessment.
 
 **Sensitivity runs concerning weight-at-age and fecundity are discussed in
