@@ -1,3 +1,8 @@
+#' @param longterm.mean.ages A vector of mean weight-at-age values
+#' per ages zero to fifteen. If \code{NULL} then the first year of
+#' data will be assumed to be the mean because this year is typically
+#' filled in any way.
+#'
 weight.at.age.heatmap <- function(model,
                                   fleet = 1,
                                   proj.line.color = "royalblue",
@@ -31,7 +36,7 @@ weight.at.age.heatmap <- function(model,
   ## font.size is size of font
 
   ## Toggle data frame for which values are extrapolated values
-  last.data.yr <- 2018
+  last.data.yr <- model$endyr
 
   input.yrs <- 1975:last.data.yr
   extrap = list(
@@ -78,7 +83,8 @@ weight.at.age.heatmap <- function(model,
     c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2015
     c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2016
     c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2017
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)) #2018
+    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2018
+    c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)) #2019
   names(extrap) <- input.yrs
 
   extrap <- as_tibble(cbind(input.yrs, t(bind_rows(extrap))))
@@ -128,6 +134,9 @@ weight.at.age.heatmap <- function(model,
                                "yellow",
                                "green",
                                "dodgerblue"))(nage - 1)
+  if (is.null(longterm.mean.ages)) {
+    longterm.mean.ages <- unlist(wa[wa$Yr == min(wa$Yr), -1])
+  }
   avg <- data.frame(Yr = min(w$Yr) - 2,
                     variable = ages,
                     value = longterm.mean.ages)
