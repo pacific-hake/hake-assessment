@@ -593,11 +593,11 @@ make.tv.selex.plot(tv.selex)
 ##  then call the plotting function with them as a list to make a multipanel plot.
 tv.selex.left <- calc.tv.selex(base.model,
                                start.yr = tv.selex.start.yr,
-                               end.yr = 2001,
+                               end.yr = 2004,
                                ages = tv.selex.ages,
                                probs = c(0.025, 0.975))
 tv.selex.right <- calc.tv.selex(base.model,
-                                start.yr = 2002,
+                                start.yr = 2005,
                                 end.yr = last.data.yr,
                                 ages = tv.selex.ages,
                                 probs = c(0.025, 0.975))
@@ -608,8 +608,7 @@ make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
   Black dots and bars indicate the median and 95\% credibility interval, respectively. The shaded polygon
   also shows the 95\% credibility interval. Range is from 0 to 1 within each year. Selectivity
   for \Sexpr{tv.selex.start.yr} is shared for all years from \Sexpr{start.yr} to
-  \Sexpr{tv.selex.start.yr}.**Balance out the numbers of years in each column
-  (just tweak the options).}
+  \Sexpr{tv.selex.start.yr}.}
 \label{fig:main-tv-selex-uncertainty}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
