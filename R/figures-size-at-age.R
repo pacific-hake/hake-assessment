@@ -9,8 +9,12 @@
 #' @param fleet Fleet number. 1 = Fishery, 2 = survey
 #' @param proj.line.color Line color to separate projection years
 #' @param proj.line.width Line width to separate projection years
-#' @param proj.line.yr Year to separate projection years (where to place the projection line)
+#' @param proj.line.yr Year to separate projection years. Projection line will be placed
+#' between this year and the next year
 #' @param first.year The first year to plot
+#' @param extrap.mask A list of vectors of which years are extrapolations so
+#' that they can be colored accordingly. 1's means they are extrapolations
+#' and 0's means they are not.
 #' @param longterm.mean.ages A vector of mean weight-at-age values
 #' per ages zero to fifteen. If \code{NULL} then the first year of
 #' data will be assumed to be the mean because this year is typically
@@ -28,8 +32,9 @@ weight.at.age.heatmap <- function(model,
                                   fleet = 1,
                                   proj.line.color = "royalblue",
                                   proj.line.width = 1,
-                                  proj.line.yr = 2018,
+                                  proj.line.yr = NULL,
                                   first.year = 1975,
+                                  extrap.mask = NULL,
                                   # mean ages need to be updated every year
                                   longterm.mean.ages = c(0.02,
                                                          0.09,
@@ -50,59 +55,16 @@ weight.at.age.heatmap <- function(model,
                                   font.size = 4,
                                   axis.font.size = 10){
 
+  stopifnot(!is.null(proj.line.yr),
+            !is.null(extrap.mask))
+
   ## Toggle data frame for which values are extrapolated values
   last.data.yr <- model$endyr
   input.yrs <-  first.year:last.data.yr
 
-  extrap = list(
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1), #1975
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1976
-    c(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1977
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1978
-    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1979
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1980
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1981
-    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1982
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1983
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1984
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1985
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1986
-    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1987
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0), #1988
-    c(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1989
-    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0), #1990
-    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0), #1991
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1992
-    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1993
-    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1994
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1995
-    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0), #1996
-    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1997
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1998
-    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #1999
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2000
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2001
-    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2002
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2003
-    c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2004
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2005
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2006
-    c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2007
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2008
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2009
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2010
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2011
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2012
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2013
-    c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2014
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2015
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2016
-    c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2017
-    c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), #2018
-    c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)) #2019
-  names(extrap) <- input.yrs
+  names(extrap.mask) <- input.yrs
 
-  extrap <- as_tibble(cbind(input.yrs, t(bind_rows(extrap))))
+  extrap <- as_tibble(cbind(input.yrs, t(bind_rows(extrap.mask))))
 
   if(proj.line.yr != last.data.yr){    # assume only different by one due to SS configuration
       # want years above the blue line to bold:
