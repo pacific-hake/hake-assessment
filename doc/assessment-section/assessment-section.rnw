@@ -1008,10 +1008,9 @@ expectation and about the joint uncertainty of individual recruitment and
 spawning biomass pairs are evident in this plot. High and low recruitments have
 been produced throughout the range of observed spawning biomass
 (Figure~\ref{fig:main-mcmc-sr-variability}). The standard deviation of the time
-series of median recruitment deviation estimates for the years 1970-2018, which
+series of median recruitment deviation estimates for the years 1970-\Sexpr{last.data.yr - 1}, which
 are informed by the age compositions, is
-\Sexpr{f(sd(base.model$mcmccalcs$devmed[names(base.model$mcmccalcs$devmed) >=
-1970 & names(base.model$mcmccalcs$devmed) <= 2017]), 2)}. This value is higher than,
+\Sexpr{sd.med.recr.dev.estimates}. This value is higher than,
 but consistent with, the base model value of \Sexpr{base.model$sigma_R_in}.
 
 % \clearpage % To avoid dangling subheading

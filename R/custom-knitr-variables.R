@@ -339,6 +339,9 @@ recruitment.med.in.2016 <- f(base.model$mcmccalcs$rmed["2016"], 3)
 recruitment.upper.in.2016 <- f(base.model$mcmccalcs$rupper["2016"], 3)
 prob.percent.2016.rec.gt.2010.rec <- f(mean(base.model$mcmc$Recr_2016 > base.model$mcmc$Recr_2010) * 100, 1)
 
+sd.med.recr.dev.estimates <- f(sd(base.model$mcmccalcs$devmed[names(base.model$mcmccalcs$devmed) >=
+                                                                1970 & names(base.model$mcmccalcs$devmed) <= (last.data.yr - 2)]), 2)
+
 prob.percent.2010.rec.gt.1980.rec <- f(mean(base.model$mcmc$Recr_2010 > base.model$mcmc$Recr_1980) * 100, 0)
 prob.percent.2010.rec.gt.1980.rec.last.year.assess <-
   f(mean(bridge.models.1[[1]]$mcmc$Recr_2010 > bridge.models.1[[1]]$mcmc$Recr_1980) * 100, 0)
