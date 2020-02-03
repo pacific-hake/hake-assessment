@@ -641,7 +641,7 @@ make.squid.plot(retro.list,
   \Sexpr{min(retro.cohorts)} to \Sexpr{max(retro.cohorts)}, with cohort
   birth year marked at the right of each color-coded line. Values are
   estimated by models using data available only up to the year in which
-  each cohort was a given age.**See Issue \#616.}
+  each cohort was a given age.}
 \label{fig:main-retrospective-recruitment}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
