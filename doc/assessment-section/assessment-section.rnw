@@ -985,7 +985,7 @@ Yet the 2014 year class remains the fifth largest estimated recruitment, albeit
 with large uncertainty (Table~\ref{tab:main-ci-posterior} and
 Figure~\ref{fig:main-recruitment}).  The median estimate for the 2016 year class
 is \Sexpr{recruitment.med.in.2016}~billion fish (with a 95\% posterior credibility interval
-from 2.178--10.016 billion fish; Tables~\ref{tab:main-median-posterior} and
+from \Sexpr{recruitment.lower.in.2016}--\Sexpr{recruitment.upper.in.2016}~billion fish; Tables~\ref{tab:main-median-posterior} and
 \ref{tab:main-ci-posterior}).
 
 The model currently estimates small 2011, 2013, 2015, and 2018 year classes (median
