@@ -276,9 +276,9 @@ move towards random sampling of fish for ages rather than random-stratified samp
 which attempts to collect ages in each 1 cm length bin. Additionally, in 2009
 at-sea observers started collecting three instead of five sets of otoliths from a haul.
 A more complete summary of the changes in the sampling protocol over time will be
-completed in the upcoming months and included in the 2021 assessment as an appendix.
+completed in the upcoming months and included in the 2021 assessment as an appendix.}
 
-Currently, this information has been used to inform a simulation study that investigated
+\emph{Currently, this information has been used to inform a simulation study that investigated
 repercussions of biased input sample sizes. Preliminary results suggest
 that the D-M parameters combined with time-varying selectivity can estimate the time
 series of spawning stock biomass with little bias when there is no temporal trend in
@@ -1173,20 +1173,20 @@ alternative structural models for hake population dynamics and fishery processes
 effects of alternative data-weighting choices, and the scientific basis for prior
 probability distributions. To address structural uncertainties, the JTC investigated
 a range of alternative models, and we present the key sensitivity analyses along with
-a suite of other informative sensitivity analyses using maximum likelihood estimation. 
+a suite of other informative sensitivity analyses using maximum likelihood estimation.
 
 The JTC also produced two appendices, each highlighting Bayesian MCMC results from models with
 different structural assumptions or analytical choices compared to the base model.
 These include the incorporation
 of the age-1 survey index (Appendix~\ref{chap:age1-survey}), and the use of a new analytical tool
-for conducting efficient Bayesian MCMC algorithms (adNuts software; 
+for conducting efficient Bayesian MCMC algorithms (adNuts software;
 Appendix~\ref{chap:adnuts}). The inclusion of the age-1
-survey model was chosen because it may improve estimates of recruitment near the end 
-of the time series and age composition during the forecast period, even though the acoustic 
+survey model was chosen because it may improve estimates of recruitment near the end
+of the time series and age composition during the forecast period, even though the acoustic
 survey design is not structured specifically for indexing age-1 fish. The model that uses the more efficient
 adNuts software for conducting MCMC may improve the applicability of Bayesian methods in
 stock assessment, suggesting that comparisons to existing MCMC methods used for \fishname\ should
-be documented.   
+be documented.
 
 The JTC continues to be committed to advancing MSE analyses, by coordinating
 research with the \fishname\ MSE Working Group and other scientists in the region
@@ -1296,7 +1296,7 @@ for all catch levels explored (Table~\ref{tab:main-risk-year-1}). It should be n
 that forecasted abundance is not only influenced by catch levels.  The 2014 year class
 biomass is now being more affected by decreases due to natural mortality than
 increases from somatic growth.  At the same time, the average to above average 2016
-and 2017 year classes are increasing spawning abundance as they mature, while the 
+and 2017 year classes are increasing spawning abundance as they mature, while the
 below average 2015 and 2018 year classes contribute much less to forecasted spawning
 biomass. The probability
 that the \Sexpr{forecast_yrs[2]} spawning biomass will be less than the
@@ -1904,7 +1904,7 @@ more correctly specified than one that shows a pattern.
 Cohort strength is not well estimated until several ($\sim$4-9) years of fishery
 catch-at-age data and survey age-composition data have been collected
 (Figure~\ref{fig:main-retrospective-recruitment}).
-Deviations for the 1999 and 2010 cohorts, which are the largest cohorts, 
+Deviations for the 1999 and 2010 cohorts, which are the largest cohorts,
 exhibit the largest positive biases.
 Estimated recruitment deviations for the 2014 cohort appear to be
 similar to other large cohorts (1999, 2008, and 2010); although, as more
@@ -1923,7 +1923,7 @@ order to more accurately determine their recruitment strength.
 A comparison of the actual assessment models used in each year since
 \Sexpr{min(assessment.history$Year)} is shown in
 Figure~\ref{fig:main-historical-assessments}. There have been substantial
-differences in the structural assumptions of the models and, 
+differences in the structural assumptions of the models and,
 thus, results submitted each year.
 The variability between model results, especially early on in the time
 series, is larger than the uncertainty (95\% credibility interval) reported from
@@ -1939,7 +1939,7 @@ biomass than in more recent assessments. The median estimates of
 spawning biomass for recent years have remained similar to the previous
 assessment but declined relative to the 2015-2017 assessments.
 The difference is most likely related to the recent under-fitting of the 2017 survey estimate
-of biomass despite the consistency in the structure of the assessment model in 
+of biomass despite the consistency in the structure of the assessment model in
 recent years.
 The uncertainty interval associated with the \Sexpr{end.yr} assessment brackets the majority of the
 historical estimates.
