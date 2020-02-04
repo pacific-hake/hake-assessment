@@ -1117,12 +1117,13 @@ start of \Sexpr{end.yr}. **last sentence still may need adjusting, pending issue
 
 \subsection{Model uncertainty}\label{sec:assessment-model-uncertainty}
  % Manual 2018 done
-**The base assessment model integrates over the substantial uncertainty associated
+The base assessment model integrates over the substantial uncertainty associated
 with several important model parameters including: acoustic survey catchability
 ($q$), the magnitude of the stock (via the $\log R_0$ parameter for equilibrium
 recruitment), productivity of the stock (via the steepness parameter, $h$, of
 the stock-recruitment relationship), the rate of natural mortality ($M$), annual
-selectivity for key ages, and recruitment deviations. The uncertainty portrayed
+selectivity for key ages, recruitment deviations, and survey and fishery data
+weights (via the dirichlet multinomial, $\theta$, parameters). The uncertainty portrayed
 by the posterior distribution is a better representation of the uncertainty when
 compared to asymptotic approximations about the maximum likelihood estimates
 (MLE) because it allows for asymmetry (Figure~\ref{fig:main-prior-posterior};
@@ -1134,23 +1135,12 @@ Table~\ref{tab:main-parameter-estimates} shows that most key derived
 quantities from the posterior distribution are larger than their respective MLEs
 (e.g., median biomass, recruitment, and relative spawning biomass), however some
 parameter estimates (e.g., steepness and catchability) are
-smaller. Figure~\ref{fig:main-mle.vs.mcmc} shows the MLE and Bayesian (from
+smaller. Figure~\ref{fig:main-mle-vs-mcmc} shows the MLE and Bayesian (from
 MCMC) estimates as well as the skewed uncertainty in the posterior distributions
 for spawning biomass and recruitment for each year.  Median estimates of spawning
 biomass and recruitment from the posterior distribution are slightly larger than
 their respective MLEs, but the 95\% credibility (posterior median) and confidence
 (MLE) intervals overlap considerably.
-
-**Next three paragraphs look good, maybe worth mentioning adnuts figure here somewhere?
-
-Uncertainty measures in the base model underestimate the total uncertainty in
-the current stock status and projections because they do not account for
-alternative structural models for hake population dynamics and fishery processes
-(e.g., recruitment, selectivity, or spatial fleet or population structure), the
-effects of alternative data-weighting choices, and the scientific basis for prior
-probability distributions. To address structural uncertainties, the JTC investigated
-a range of alternative models, and we present the key sensitivity analyses along with
-a suite of other informative sensitivity analyses.
 
 The \fishname\ stock displays a very high degree of recruitment variability,
 perhaps the largest of any west coast groundfish stock, resulting in large and
@@ -1160,6 +1150,31 @@ little data to inform incoming recruitment until the cohort is at least age-2,
 will in most circumstances continue to result in highly uncertain
 estimates of current stock status and even less-certain projections of the stock
 trajectory.
+
+Uncertainty measures in the base model underestimate the total uncertainty in
+the current stock status and projections because they do not account for
+alternative structural models for hake population dynamics and fishery processes
+(e.g., recruitment, selectivity, or spatial fleet or population structure), the
+effects of alternative data-weighting choices, and the scientific basis for prior
+probability distributions. To address structural uncertainties, the JTC investigated
+a range of alternative models, and we present the key sensitivity analyses along with
+a suite of other informative sensitivity analyses. 
+
+The JTC also produced three appendices, each highlighting results from models with
+different structural assumptions or analytical choices compared to the base model.
+These include the choice of weight-at-age values used pre-1975 (and for equilibrium
+calculations) for specifying fecundity (Appendix~\ref{chap:fecundity-10}), the incorporation
+of the age-1 survey (Appendix~\ref{chap:age1-survey}), and the use of a new analytical tool
+for conducting efficient Bayesian MCMC algorithms (adNuts software; 
+Appendix~\ref{chap:adnuts}). The alternative early-year fecundity model was chosen because
+it represents model uncertainty for an analytical decision that had to be made despite 
+little data to inform that decision. The inclusion of the age-1
+survey model was chosen because it may improve estimates of recruitment near the end 
+of the time series and age compostion during the forecast period, even though the acoustic 
+survey design is not sturctured for indexing age-1 fish. The model that uses the more efficient
+adNuts software for conducting MCMC may improve the applicability of Bayesian methods in
+stock assessment, suggesting that comparisons to existing methods for \fishname\ should
+be documented.
 
 The JTC continues to be committed to advancing MSE analyses, by coordinating
 research with the \fishname\ MSE Working Group and other scientists in the region
