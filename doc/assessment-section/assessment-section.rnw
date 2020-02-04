@@ -1867,7 +1867,7 @@ are the closest runs to the 2019 base model.
 
 \subsection{Retrospective analyses}\label{sec:assessment-retrospective-analyses}
 
-**Retrospective analyses were performed by iteratively removing the terminal
+Retrospective analyses were performed by iteratively removing the terminal
 years' data and estimating the parameters under the assumptions of the base
 model. Models with 4, 5, or 6 years of data removed had information
 available regarding the large 2010 year class, but did not yet have information on the
@@ -1876,58 +1876,57 @@ with 1 and 2 years of data removed were just beginning to receive data on age-3 
 individuals to to predict the size of the 2014 year class.  The base model now has
 \Sexpr{number.to.word(assess.yr - 2014 - 1)} years of data to estimate the size of
 the 2014 cohort, and the uncertainty around this
-estimate has been considerably reduced compared to one year ago
+estimate has been considerably reduced compared to three years ago
 (Figure~\ref{fig:main-biomass-recruitment-retrospective}).
 
-**Overall, there is little retrospective change to the relative spawning biomass
+Overall, there is little retrospective change to the relative spawning biomass
 trajectory up to the mid-2010s, and most retrospective change occurs in the
-final years of the retrospective model. Retrospective estimates over the last five
-years have been predominantly positively biased. In the last four years, the
-stock assessment has retrospectively overestimated the status in the terminal year,
-which is likely related to the dynamics introduced by the large 2010 and 2014 cohorts
-and the high observed survey biomass index in 2009.
+final years of the retrospective model
+(Figure~\ref{fig:main-biomass-recruitment-retrospective}).
+In the previous assessment, the retrospective bias is was predominately positive
+in these terminal years. In this assessment the bias is a mix of both positive
+and negative biases with no systematic pattern indicating that the model is
+more correctly specified than one that shows a pattern.
 
-**Figure~\ref{fig:main-retrospective.recruitment} shows the retrospective patterns
-of estimated recruitment deviations for various cohorts. The magnitude of the
-deviation is not well estimated until several ($\sim$4-9) years of fishery
-catch-at-age data and survey age-composition data have been collected on the
-cohort. Very strong and weak cohorts tend to be identified in the model at a
-younger age than intermediate cohorts. For example, the strong 2010 cohort has
-been fairly well determined in the model by age-4 and the weak 2007 cohort by
-age-6.  Estimated recruitment deviations for the 2014 cohort appear to be
-similar to other large cohorts (1999, 2008, and 2010), though with the extra years
-of data in this and last year's assessment the 2014 cohort appears to maybe be more similar
-to the 2008 cohort rather than the 1999 and 2010 cohorts (which are the largest).
-% One major difference between the 2010 and 2014
-% cohorts is that by age-3 the 2010 cohort had been fully sampled by the acoustic
-% survey (when they were age-3 in the assessment model), whereas the 2014 cohort
-% was not sampled by the survey until they were age-4 in the assessment
-% model.
+Cohort strength is not well estimated until several ($\sim$4-9) years of fishery
+catch-at-age data and survey age-composition data have been collected
+(Figure~\ref{fig:main-retrospective-recruitment}).
+Deviations for the 1999 and 2010 cohorts, which are the largest cohorts, 
+exhibit the largest positive biases.
+Estimated recruitment deviations for the 2014 cohort appear to be
+similar to other large cohorts (1999, 2008, and 2010); although, as more
+data becomes available to inform the strength of this cohort,
+it appears to maybe be more similar to the 2008 cohort rather than the 1999 cohort.
 The variability among cohort estimates relative to their estimated size
-in the base model (Figure~\ref{fig:main-relative-retrospective.recruitment})
+in the base model (Figure~\ref{fig:main-relative-retrospective-recruitment})
 further indicates that the estimates can start to improve as early as age-3, but
-some may not stabilize until the cohort approaches an age upward of 7 years
-old. This illustrates that multiple observations of each cohort are needed in
+some estimates of cohort strength may not stabilize until
+the cohort approaches an age upward of 7 years old.
+The lack of systematic bias in the assessment results could be because
+both of the largest cohorts are now older than 7 years old.
+This illustrates that multiple observations of each cohort are needed in
 order to more accurately determine their recruitment strength.
 
-**A comparison of the actual assessment models used in each year since
+A comparison of the actual assessment models used in each year since
 \Sexpr{min(assessment.history$Year)} is shown in
 Figure~\ref{fig:main-historical-assessments}. There have been substantial
-differences in model structural assumptions and thus results submitted each
-year, which can clearly be seen by looking at the spawning biomass
-trajectories. The variability between models, especially early on in the time
-series, is larger than the uncertainty (95\% credibility interval) reported in
-any single model in recent years. One important avenue that was investigated
-between 2004 and 2007 was the inclusion of several different, but fixed, survey
-catchability ($q$) values followed by a span of years (2008 to present) where it
-was freely estimated by the model. In all years prior to 2004, survey
-catchability was fixed at 1.0. The fixing of survey catchability had the effect
+differences in the structural assumptions of the models and, 
+thus, results submitted each year.
+The variability between model results, especially early on in the time
+series, is larger than the uncertainty (95\% credibility interval) reported from
+any single model in recent years.
+Prior to 2004, survey catchability was fixed at 1.0 and this assumption was
+heavily investigated between 2004 and 2007, leading to variability in model results
+because of the use of several different, but fixed, survey
+catchability. Since 2008, catchability has been freely estimated by the model.
+The fixing of survey catchability had the effect
 of driving the estimate of initial biomass upward, which in turn scaled the
 entire biomass trajectory up, leading to higher estimates of relative spawning
 biomass than in more recent assessments. The median estimates of
-spawning biomass for recent years have declined in the \Sexpr{end.yr} assessment relative
-to recent assessments.  Although
-the model structure has remained relatively consistent in recent years, the 2017 acoustic
-survey biomass estimate was lower than what previous models would have predicted.
+spawning biomass for recent years have remained similar to the previous
+assessment but declined relative to the 2015-2017 assessments.
+The difference is most likely related to the recent under-fitting of the 2017 survey estimate
+of biomass despite the consistency in the structure of the assessment model in 
+recent years.
 The uncertainty interval associated with the \Sexpr{end.yr} assessment brackets the majority of the
 historical estimates.

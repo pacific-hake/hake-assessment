@@ -1637,7 +1637,7 @@ make.comparison.plot(retro.list,
                      legend = FALSE,
                      is.retro = TRUE)
 make.comparison.plot(retro.list,
-                     subplots = 8,
+                     subplots = 10,
                      model.names = retro.model.names,
                      legend = TRUE,
                      legendloc = "topleft",
@@ -1664,7 +1664,7 @@ make.squid.plot(retro.list,
 \end{center}
 %\vspace{0mm}
 \caption{Retrospective recruitment estimates shown in
-  Figure \ref{fig:main-retrospective.recruitment} scaled
+  Figure \ref{fig:main-retrospective-recruitment} scaled
   relative to the most recent estimate of the strength of each cohort.}
 \label{fig:main-relative-retrospective-recruitment}
 \end{figure}
