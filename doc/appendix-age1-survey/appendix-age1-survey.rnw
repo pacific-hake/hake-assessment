@@ -3,14 +3,19 @@
 \chapter{Sensitivity run that includes the age-1 survey -- MCMC results}
 \label{chap:age1-survey}
 
-**Please check, winging this off the top of my head to get it working:
-**This appendix contains MCMC model results for the run in which the age-1
-survey index is included,
-as described in
-**Sections~\ref{sec:assessment-fecundity-recap}--\ref{sec:assessment-sensitivity-fecundity}
-**and Table~\ref{tab:main-wtatage-runs}.
+This appendix contains Bayesian MCMC results for the model run in which the age-1
+survey index is included as an index of recruitment as described in
+Sections~\ref{sec:sec:data-acoustic-survey} and \ref{sec:assessment-sensitivity-analyses}
+and Table~\ref{tab:main-parameter-estimates-sens-1}. The inclusion of the age-1
+survey index may improve estimates of recruitment near the end 
+of the time series and age composition during the forecast period, even though the acoustic 
+survey design is not structured specifically for indexing age-1 fish. This appendix highlights
+model uncertainty arising from a different structural assumption or analytical choice
+compared to the base model, and the inclusion of the age-1 index was deemed
+important enough to warrent further consideration, especially in the context of characterizing
+uncertainty.    
 
-**Check text and figures - all works, haven't checked if correct or make sense.
+The following figures and tables follow an executive summary format.
 
 % Keeping chunk names as ...54, which is from 2019 assessment (where we had four
 % similar appendices), but not worth changing as it's just the labels).
