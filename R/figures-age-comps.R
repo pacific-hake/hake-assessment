@@ -21,7 +21,7 @@ make_age_comp_bubble_plot <- function(model,
     melt(id.var = "Year") %>% 
     as_tibble() %>% 
     rename(Age = variable, Proportion = value)
-  
+
   g <- plot_bubbles(dat, ...)
   
   g  
@@ -64,11 +64,12 @@ plot_bubbles <- function(d,
     xlim <- c(yrs[1], yrs[2])
   }
 
-  g <- ggplot(d, aes(x = Year, y = Age, size = sqrt(Proportion))) +
+  g <- ggplot(d, aes(x = Year, y = Age, size = Proportion)) +
     geom_point(alpha = alpha, ...) +
     scale_x_continuous(breaks = seq(from = 1900, to = 2100, by = by)) +
     coord_cartesian(xlim) +
-    expand_limits(x = xlim[1]:xlim[2])
+    expand_limits(x = xlim[1]:xlim[2]) +
+    scale_size_continuous(range = c(0.5, 10))
   if(!is.null(clines)){
     clines <- tibble(year = clines,
                      y = 0,
@@ -252,9 +253,9 @@ make_numbers_at_age_plot <- function(model,
     rename(Year = Yr)
     
   dat <- natage %>%  
-    mutate(n = rowSums(.[-1])) %>% 
-    mutate_at(vars(-Year), ~(./n)) %>% 
-    select(-n) %>% 
+    #mutate(n = rowSums(.[-1])) %>% 
+    #mutate_at(vars(-Year), ~(./n)) %>% 
+    #select(-n) %>% 
     melt(id.var = "Year") %>% 
     as_tibble() %>% 
     rename(Age = variable, Proportion = value)
