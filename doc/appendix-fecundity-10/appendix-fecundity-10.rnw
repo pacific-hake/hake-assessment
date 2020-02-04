@@ -166,8 +166,7 @@ make.exploitation.fraction.plot(sens.models.5[[3]],
 <<phase-plot-fecundity, fig.height=5, fig.width=8>>=
 make.phase.plot(sens.models.5[[3]],
                 start.yr = start.yr,
-                end.yr = end.yr,
-                color = "blue")
+                end.yr = end.yr)
 @
 \end{center}
 \caption{Estimated historical path followed by medians of relative fishing
