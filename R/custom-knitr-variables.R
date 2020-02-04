@@ -474,3 +474,6 @@ DM.weight.survey.high <- f(max(exp(base.model$mcmc[, col.effn+1])/(1+exp(base.mo
 joint.percent.prob.above.below <- f(sum(base.model$mcmc[[paste0("Bratio_", end.yr)]] < 0.4 &
                                         base.model$mcmc[[paste0("SPRratio_", end.yr-1)]] > 1) / nrow(base.model$mcmc) * 100,
                                     1)
+joint.percent.prob.above.below.adnuts <- f(sum(sens.models.6$mcmc[[paste0("Bratio_", end.yr)]] < 0.4 &
+                                           sens.models.6$mcmc[[paste0("SPRratio_", end.yr-1)]] > 1) / nrow(sens.models.6$mcmc) * 100,
+                                    1)
