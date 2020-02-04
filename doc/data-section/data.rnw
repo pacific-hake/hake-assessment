@@ -485,12 +485,12 @@ cause the cohort-effect.
 \subsubsection{Weight-at-age}\label{sec:data-weight-at-age}
 
 A matrix of empirically derived population weight-at-age by year
-(Figure \ref{fig:main-empirical.weight.at.age}) is used in the
+(Figure \ref{fig:main-empirical-weight-at-age}) is used in the
 current assessment model to translate numbers-at-age directly to biomass-at-age.
 Mean weight-at-age was
 calculated from samples pooled from all fisheries and the acoustic survey for
 the years 1975 to \Sexpr{max.fishery.age.prop[2]}
-(Figure~\ref{fig:main-empirical.weight.at.age}).
+(Figure~\ref{fig:main-empirical-weight-at-age}).
 Past investigations into
 calculating weight-at-age for the fishery and survey independently showed little
 impact on model results.
@@ -499,7 +499,7 @@ assessment-review process were quickly
 confirmed to be samples collected within Puget Sound and have not been included in any assessment.Ages 15 and above for each year were pooled and assumed
 to have the same weight. The combinations of age and year with no
 observations were assumed to change linearly over time between observations at
-any given age. The number of samples (Figure \ref{fig:main-empirical.weight.at.age.numbers})
+any given age. The number of samples (Figure \ref{fig:main-empirical-weight-at-age-numbers})
 is generally proportional
 to the amount of catch, so the combinations of year and age with no samples
 should have relatively little importance in the overall estimates of the
