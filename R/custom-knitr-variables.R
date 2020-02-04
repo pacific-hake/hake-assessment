@@ -358,11 +358,11 @@ exploitation.med.penult.yr <- f(base.model$mcmccalcs$fmed[as.character(last.data
 
 ################################################################################
 last.survey.year <- survey.history[nrow(survey.history),]$year
-last.survey.year.biomass <- f(survey.history[nrow(survey.history),]$biomass * 10, 2) ## millions of tonnes
+last.survey.year.biomass <- f(survey.history[nrow(survey.history),]$biomass, 2) ## millions of tonnes
 penult.survey.year <- survey.history[nrow(survey.history) - 1,]$year
-penult.survey.year.biomass <- f(survey.history[nrow(survey.history) - 1,]$biomass * 10, 2)
+penult.survey.year.biomass <- f(survey.history[nrow(survey.history) - 1,]$biomass, 2)
 antepenult.survey.year <- survey.history[nrow(survey.history) - 2,]$year
-antepenult.survey.year.biomass <- f(survey.history[nrow(survey.history) - 2,]$biomass * 10, 2)
+antepenult.survey.year.biomass <- f(survey.history[nrow(survey.history) - 2,]$biomass, 2)
 ## How many times higher is the last survey than the one before it?
 last.factor.penult <- f(survey.history[nrow(survey.history),]$biomass / survey.history[nrow(survey.history) - 1,]$biomass, 1)
 ## How many times higher is the last survey than the one that was two before it?

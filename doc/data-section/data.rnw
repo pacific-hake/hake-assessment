@@ -362,11 +362,12 @@ variability among all of the sources of variability inherent to the acoustic
 analysis (see \citealt{StewartForrestEtAl2011}).
 
 Estimated age-2+ biomass in the survey increased steadily over the four
-surveys conducted in 2011-2013 and 2015 and decreased in 2017
-to \Sexpr{f(survey.biomass["2017"], 2)} million metric tons
-(Table~\ref{tab:main-survey-history} and Figure~\ref{fig:main-survey-extrap-biomass}).
-The most recent estimate from \Sexpr{last.survey.year} of \Sexpr{last.survey.year.biomass}
-is \Sexpr{last.factor.penult} the previous estimate.
+surveys conducted in 2011-2013 and 2015 (Table~\ref{tab:main-survey-history} and
+Figure~\ref{fig:main-survey-extrap-biomass}). It decreased in 2017
+to \Sexpr{f(survey.biomass["2017"], 2)}~million~t, and increased to
+\Sexpr{last.survey.year.biomass}~million~t in \Sexpr{last.survey.year}.
+%The most recent estimate from \Sexpr{last.survey.year} of
+%is \Sexpr{last.factor.penult} the previous estimate.
 The \Sexpr{last.survey.year} survey age composition was made
 up of \Sexpr{survey.1.prop}\% age-\Sexpr{survey.1.prop.age} fish from the
 \Sexpr{last.data.yr-survey.1.prop.age} year-class
