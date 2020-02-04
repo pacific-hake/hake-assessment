@@ -532,6 +532,7 @@ make.cohort.table <- function(model,
     ## cohorts is a vector of the years you want the cohort
     ## info for. Diagonals of the data frame d make up these cohorts.
     ## Assumes the year is in column 1.
+    
     coh.inds <- as.character(which(d[,1] %in% cohorts) - 1)
     delta <- row(d[-1]) - col(d[-1])
     coh.list <- split(as.matrix(d[,-1]), delta)
@@ -561,6 +562,7 @@ make.cohort.table <- function(model,
   ## Cohort numbers at age
   coh.naa <- get.cohorts(naa, cohorts)
   coh.naa.next <- get.cohorts(naa.next, cohorts - 1)
+
   ## Throw away the first one so that this represents shifted by 1 year values
   coh.naa.next <- lapply(coh.naa.next, function(x){x[-1]})
 
@@ -585,7 +587,7 @@ make.cohort.table <- function(model,
   # subset years and columns
   waa <- waa[waa$Yr %in% yrs, names(waa) %in% c("Yr", ages)]
   coh.waa <- get.cohorts(waa, cohorts)
-
+  
   ## Catch-at-age
   caa <- model$catage
   # subset years and columns
@@ -602,16 +604,22 @@ make.cohort.table <- function(model,
                         waa[[i]] * caa[[i]] / weight.factor},
                       waa = coh.waa,
                       caa = coh.caa)
-
   coh.surv <- lapply(1:length(coh.naa),
                      function(i, waa, naa){
+                       ## Throw away the last one so that a warning is not generated
+                       if(i == 1)
+                         waa[[i]] <- waa[[i]][-length(waa[[i]])]
                        waa[[i]] * naa[[i]] / weight.factor},
                      waa = coh.waa,
                      naa = coh.naa.next)
-
   ## Natural mortality weight
   coh.m <- lapply(1:length(coh.surv),
                   function(i, baa, catch, surv){
+                    ## Throw away the last one so that a warning is not generated
+                    if(i == 1){
+                      baa[[i]] <- baa[[i]][-length(baa[[i]])]
+                      catch[[i]] <- catch[[i]][-length(catch[[i]])]
+                    }
                     baa[[i]] - surv[[i]] - catch[[i]]},
                   baa = coh.baa,
                   catch = coh.catch,
@@ -620,29 +628,36 @@ make.cohort.table <- function(model,
   ##----------------------------------------------------------------------------
   ## write the CSV
   ## Bind the individual cohort value vectors into matrices
-  csv.coh.sum <-
-    lapply(1:length(coh.naa),
-           function(i, baa, catch, m, surv){
-             do.call(cbind, list(baa[[i]],
-                                 catch[[i]],
-                                 m[[i]],
-                                 surv[[i]]))},
-           baa = coh.baa,
-           catch = coh.catch,
-           m = coh.m,
-           surv = coh.surv)
+
+  suppressWarnings(
+    csv.coh.sum <-
+      lapply(1:length(coh.naa),
+             function(i, baa, catch, m, surv){
+               do.call(cbind, list(baa[[i]],
+                                   catch[[i]],
+                                   m[[i]],
+                                   surv[[i]]))},
+             baa = coh.baa,
+             catch = coh.catch,
+             m = coh.m,
+             surv = coh.surv)
+  )
+
   ## Remove entries in all but the first column (baa is only known value)
   ## Not bothering to figure out how to do this with lapply
   for(i in 1:length(csv.coh.sum)){
     csv.coh.sum[[i]][nrow(csv.coh.sum[[i]]), -1] <- NA
   }
+
   ## Add a column in the first column for the ages
   csv.coh.sum <- append(csv.coh.sum, list(as.data.frame(ages)), after = 0)
   ## Bind the list of cohort value matrices into a single ragged matrix
   n <- max(sapply(csv.coh.sum, nrow))
-  csv.coh.sum.mat <- do.call(cbind,
-                             lapply(csv.coh.sum, function(x){
-                               rbind(x, matrix(, n - nrow(x), ncol(x)))}))
+  suppressWarnings(
+    csv.coh.sum.mat <- do.call(cbind,
+                               lapply(csv.coh.sum, function(x){
+                                 rbind(x, matrix(, n - nrow(x), ncol(x)))}))
+  )
   csv.coh.sum.mat <- as.data.frame(csv.coh.sum.mat)
   csv.headers <- lapply(1:length(cohorts),
                         function(i, cohort){
@@ -662,16 +677,18 @@ make.cohort.table <- function(model,
   ##----------------------------------------------------------------------------
   ## Create the latex table (same steps as above but with nice formatting
   ## Bind the individual cohort value vectors into matrices
-  coh.sum <- lapply(1:length(coh.naa),
-                    function(i, baa, catch, m, surv){
-                      do.call(cbind, list(f(baa[[i]], 1),
-                                          f(catch[[i]], 1),
-                                          f(m[[i]], 1),
-                                          f(surv[[i]], 1)))},
-                    baa = coh.baa,
-                    catch = coh.catch,
-                    m = coh.m,
-                    surv = coh.surv)
+  suppressWarnings(
+    coh.sum <- lapply(1:length(coh.naa),
+                      function(i, baa, catch, m, surv){
+                        do.call(cbind, list(f(baa[[i]], 1),
+                                            f(catch[[i]], 1),
+                                            f(m[[i]], 1),
+                                            f(surv[[i]], 1)))},
+                      baa = coh.baa,
+                      catch = coh.catch,
+                      m = coh.m,
+                      surv = coh.surv)
+  )
   ## Remove entries in all but the first column (baa is only known value)
   ## Not bothering to figure out how to do this with lapply
   for(i in 1:length(coh.sum)){
