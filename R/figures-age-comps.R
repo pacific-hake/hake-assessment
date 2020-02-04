@@ -56,17 +56,13 @@ plot_bubbles <- function(d,
                          by = 5,
                          legend.position = "none",
                          alpha = 0.3,
+                         xlim = c(1975, year(Sys.Date())),
                          ...){
-
-  if(is.null(yrs)){
-    xlim <- c(min(d$Year), max(d$Year))
-  }else{
-    xlim <- c(yrs[1], yrs[2])
-  }
 
   g <- ggplot(d, aes(x = Year, y = Age, size = Proportion)) +
     geom_point(alpha = alpha, ...) +
-    scale_x_continuous(breaks = seq(from = 1900, to = 2100, by = by)) +
+    scale_x_continuous(breaks = seq(from = xlim[1], to = xlim[2], by = by),
+                       expand = c(0.025, 0)) +
     coord_cartesian(xlim) +
     expand_limits(x = xlim[1]:xlim[2]) +
     scale_size_continuous(range = c(0.5, 10))
