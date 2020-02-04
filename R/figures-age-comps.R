@@ -32,6 +32,11 @@ make_age_comp_bubble_plot <- function(model,
 #' @param d a [tibble::tibble()] of the data in long format with column
 #' names `Year`, `Age`, and `Proportion`
 #' @param clines An optional vector of years to draw cohort lines through
+#' @param mean_age A two-column tibble with columnn names `Year` and `Age` where
+#' each row containns a year and `Age` represents the mean age for each year
+#' @param mean_age_line_color The line color for the mean age line
+#' @param mean_age_line_size The line thickness for the mean age line
+#' @param mean_age_line_type The line type for the mean age line
 #' @param yrs A vector of 2, for the years to show on the plot
 #' @param by How many years between year labels on the x-axis
 #' @param legend.position See [ggplot2::theme(legend.position)]
@@ -43,6 +48,10 @@ make_age_comp_bubble_plot <- function(model,
 #' @export
 plot_bubbles <- function(d,
                          clines = c(1980, 1984, 1999, 2010, 2014, 2016),
+                         mean_age = NULL,
+                         mean_age_line_color = "red",
+                         mean_age_line_size = 1.5,
+                         mean_age_line_type = "solid",
                          yrs = NULL,
                          by = 5,
                          legend.position = "none",
@@ -74,6 +83,16 @@ plot_bubbles <- function(d,
                    size = 1,
                    color = "red",
                    ...)
+  }
+  
+  if(!is.null(mean_age)){
+    g <- g + 
+      geom_line(data = mean_age,
+                aes(x = Year, y = Age),
+                inherit.aes = FALSE,
+                color = mean_age_line_color,
+                size = mean_age_line_size,
+                linetype = mean_age_line_type)
   }
   
   g <- g + 
@@ -209,13 +228,63 @@ get_age_comp_limits <- function(model, type = 1){
   ret_vec
 }
 
-make.numbers.at.age.plot <- function(model){ ## model is an mle run and is the output of the r4ss package's function SS_output
-  ## Number-at-age from the MLE run for the model
-  SSplotNumbers(model,
-                subplot = 1,
-                period = "B",
-                pwidth = 6.5,
-                pheight = 6)
+#' Plot the numbers-at-age bubble plot with mean age line
+#'
+#' @param model A model object as output from [load_ss_files()]
+#' @param ... Additional parameters passed to [plot_bubbles()]
+#'
+#' @return A [ggplot2::ggplot()] object
+#' @export
+#' @importFrom tibble as_tibble
+#' @importFrom dplyr select rename filter mutate mutate_at pull do rowwise rowSums vars
+#' @importFrom reshape2 melt
+#' @importFrom purrr map2_dfc
+#' @importFrom
+make_numbers_at_age_plot <- function(model,
+                                     ...){
+  natage <- model$natage %>% 
+    as_tibble() %>% 
+    select(-c(Area, Time, Bio_Pattern, Sex, BirthSeas, Settlement, Platoon, Morph, Seas)) %>% 
+    filter(`Beg/Mid` == "B",
+           Era != "VIRG",
+           (Era != "FORE" | Yr == model$endyr + 1)) %>% 
+    select(-c(`Beg/Mid`, Era)) %>% 
+    rename(Year = Yr)
+    
+  dat <- natage %>%  
+    mutate(n = rowSums(.[-1])) %>% 
+    mutate_at(vars(-Year), ~(./n)) %>% 
+    select(-n) %>% 
+    melt(id.var = "Year") %>% 
+    as_tibble() %>% 
+    rename(Age = variable, Proportion = value)
+  
+  # Mean age algorithm (from [r4ss::SSplotNumbers()])
+  # For each year, multiply the numbers-at-age by the age then
+  # Add them, so that there is a total sum for each year then
+  # divide that by the sum of the numbers-at-age for the year
+  ages <- as.numeric(names(natage)[-1])
+  years <- natage$Year
+  natage <- natage %>% select(-Year)
+  sums <- natage %>% 
+    rowwise() %>% 
+    do( (.) %>% as.data.frame %>% mutate(sum = sum(.))) %>% 
+    pull(sum)
+  natage <- map2_dfc(natage, ages, `*`)
+  natage <- natage %>%
+    mutate(sumprod = rowSums(.))
+  natage <- cbind(years, natage, sums) %>% 
+    as_tibble() %>% 
+    mutate(Age = sumprod / sums) %>% 
+    rename(Year = years)
+
+  mean_age <- natage %>% 
+    select(Year, Age) %>% 
+    mutate(Age = Age + 1) # To offset the 0 in the plot
+  
+  g <- plot_bubbles(dat, mean_age = mean_age, clines = NULL, ...)
+
+  g  
 }
 
 make.age.comp.compare.bubble.plot <- function(model,                  ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
