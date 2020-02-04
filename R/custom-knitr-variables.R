@@ -225,6 +225,10 @@ zero.catch.prob.bio.down.2 <- f(base.model$risks[[2]][1,2])
 dfo.probs.curr <- base.model$risks[[1]][,(ncol(base.model$risks[[1]])-2):ncol(base.model$risks[[1]])]
 dfo.probs.fore <- base.model$risks[[2]][,(ncol(base.model$risks[[2]])-2):ncol(base.model$risks[[2]])]
 
+##probability of current spawning biomass being above B40% and B25%
+probs.curr.bforty <- f(mean(base.model$mcmc$Bratio_2020 > 0.40) * 100, 1)
+probs.curr.btwentyfive <- f(mean(base.model$mcmc$Bratio_2020 > 0.25) * 100, 1)
+
 ################################################################################
 ## Second forecast year depletion and spawning biomass estimates
 next2.depl.lower.tac.based <- f(fore.tac.mcmc$dlower[names(fore.tac.mcmc$dlower) %in% (end.yr + 2)] * 100, 1)
@@ -400,12 +404,12 @@ ages2014 <- as.numeric(names(cohortCumSum2014)) - 2014
 fore.catch.prop <- as.data.frame( t(as.numeric(f(apply(base.model$extra.mcmc$natsel.prop, 2, median)* 100))))
 names(fore.catch.prop) <- paste0("Age", 0:20)
 # Confidence intervals for age5 (pick the biggest cohort; note natsel.prop columns start with age-0).
-fore.catch.prop.age5.lower <- quantile(base.model$extra.mcmc$natsel.prop[,6], 0.025) * 100
-fore.catch.prop.age5.upper <- quantile(base.model$extra.mcmc$natsel.prop[,6], 0.975) * 100
+fore.catch.prop.age6.lower <- quantile(base.model$extra.mcmc$natsel.prop[,7], 0.025) * 100
+fore.catch.prop.age6.upper <- quantile(base.model$extra.mcmc$natsel.prop[,7], 0.975) * 100
 # Estimated proportion by age (using catch) of catch in first forecast year
 fore.catch.prop.wt.age5.median <- median(base.model$extra.mcmc$natselwt.prop[,6]) * 100
-fore.catch.prop.wt.age9.median <- median(base.model$extra.mcmc$natselwt.prop[,10]) * 100
-fore.catch.prop.wt.age3.median <- median(base.model$extra.mcmc$natselwt.prop[,3]) * 100
+fore.catch.prop.wt.age10.median <- median(base.model$extra.mcmc$natselwt.prop[,11]) * 100
+fore.catch.prop.wt.age3.median <- median(base.model$extra.mcmc$natselwt.prop[,4]) * 100
 
 ################################################################################
 ## Sigma_r, standard deviation of recruitment variability.

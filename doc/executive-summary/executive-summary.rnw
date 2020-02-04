@@ -640,6 +640,9 @@ Estimates of the \Sexpr{assess.yr} base model reference points with posterior
 credibility intervals are in Table~\ref{tab:es-reference.points}.
 The medians of sustainable yields and biomass reference points are
 almost 10\% lower than in the \Sexpr{last.assess.yr-1} assessment.
+The probability that spawning biomass at the beginning of \Sexpr{assess.yr}
+is $>\Bforty$ = \Sexpr{probs.curr.bforty}\%.  The probability that it is
+$>\Btwentyfive$ = \Sexpr{probs.curr.btwentyfive}\%.
 % Manual done 2020.
 \enlargethispage{\baselineskip}
 
@@ -664,10 +667,14 @@ the current stock status and projections because they do not account for
 possible alternative structural models for \simplename\ population dynamics and
 fishery processes (e.g., selectivity), the effects of data-weighting schemes,
 and the scientific basis for prior probability distributions. To address such
-structural uncertainties, **including those related to the new time-varying fecundity,
-we performed sensitivity analyses to investigate a
-range of alternative assumptions,
-and present the key ones in the main document.
+structural uncertainties, we performed sensitivity analyses to investigate a
+range of alternative assumptions using maximum likelihood estimation, 
+and present the key ones in the main document. We also conducted full Bayesian MCMC
+analyses for the model that included the age-1 survey index 
+(see Appendix~\ref{chap:age1-survey}), and the model that used the 
+Auto-Differentiation No-U-Turn-Sampling algorithm (AD-NUTS, 
+\citet{Monnahan2018}, \citet{Monnahan2019}) for efficient MCMC sampling 
+(see Appendix~\ref{chap:adnuts}).
 
 %**Update from main text**Uncertainty in the best method for calculating acoustic
 % survey biomass is a particular focus and
@@ -794,17 +801,6 @@ policy. Alternative catch levels where median relative fishing intensity is
 100\% for three years of projections are provided for comparison (scenario f:
 FI=100\%).
 % Manual 2020 done.
-
-**TO UPDATE based on main text. The addition of time-varying fecundity into the 2019 assessment resulted
-in the need to clarify which set of fecundity values (defined as weight-at-age
-multiplied by maturity) would be
-applied to the forecast period. Ideally, these would be based on a recent
-average (e.g., a five-year period similar to selectivity).
-However, Stock Synthesis does not currently have the desired settings to do this
-appropriately; therefore, the long-term average fecundity-at-age was used.
-% (see Sections~\ref{sec:assessment-response-review}, \ref{sec:data-weight-at-age}, and
-% \ref{sec:assessment-sensitivity-fecundity} for further details.)
-
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
