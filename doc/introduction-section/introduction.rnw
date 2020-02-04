@@ -52,16 +52,17 @@ implemented using version \Sexpr{ss.version} of the Stock Synthesis software
 are largely the same as the
 \Sexpr{last.assess.yr} base model \citep{JTC2019}, though we incorporate
 the following three changes.
-First, a nearly uniform prior (in transformed space) was applied to the Dirichlet-Multinomial parameters used to weight the age-composition data.
-Second, the constraint that estimated recruitment deviations sum to zero was removed.
+First, instead of using prescribed constant values,
+a nearly uniform prior (in transformed space) was applied to the Dirichlet-Multinomial parameters used to weight the age-composition data.
+Second, we removed the constraint that estimated recruitment deviations should sum to zero.
 Lastly, weight-at-age data for the forecast period was calculated using the average of the five most recent years rather than all years.
 %The 35-day 2018/2019 U.S. government shutdown considerably delayed delivery of U.S.
 %age data and reduced the JTC's time available to collectively complete the
 %\Sexpr{assess.yr} assessment. As a result,
 %many planned supplementary and exploratory analyses could not be completed, including
 %some developed for
-Responses to \Sexpr{last.assess.yr} SRG requests appear in
-(see Section~\ref{sec:assessment-response-review}) and a
+Responses to \Sexpr{last.assess.yr} SRG requests are in
+Section~\ref{sec:assessment-response-review} and a
 Glossary of terms appears in Appendix~\ref{chap:glossary}.
 
 \subsection{Stock structure and life history}\label{sec:intro-stock-structure}
@@ -167,7 +168,9 @@ targets have been determined using an $\Fforty$ default harvest rate with a
 40:10 adjustment. This decreases the catch linearly from the catch target at a
 relative spawning biomass of 40\% and above, to zero catch at relative spawning
 biomass values of 10\% or less (called the default harvest policy in the
-Agreement). Further considerations have often resulted in catch targets being
+Agreement); relative spawning biomass is the female spawning biomass divided by
+that at unfished
+equilibrium. Further considerations have often resulted in catch targets being
 set lower than the recommended catch limit.
 % Manual done 2020 KFJ
 In the last decade, total catch has
