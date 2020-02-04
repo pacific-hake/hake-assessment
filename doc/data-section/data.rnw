@@ -364,7 +364,7 @@ analysis (see \citealt{StewartForrestEtAl2011}).
 Estimated age-2+ biomass in the survey increased steadily over the four
 surveys conducted in 2011-2013 and 2015 (Table~\ref{tab:main-survey-history} and
 Figure~\ref{fig:main-survey-extrap-biomass}). It decreased in 2017
-to \Sexpr{f(survey.biomass["2017"], 2)}~million~t, and increased to
+to \Sexpr{f(survey.biomass["2017"], 2)}~million~t and then increased to
 \Sexpr{last.survey.year.biomass}~million~t in \Sexpr{last.survey.year}.
 %The most recent estimate from \Sexpr{last.survey.year} of
 %is \Sexpr{last.factor.penult} the previous estimate.
