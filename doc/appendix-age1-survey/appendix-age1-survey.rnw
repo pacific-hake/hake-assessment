@@ -168,8 +168,7 @@ make.exploitation.fraction.plot(sens.models.2[[1]],
 <<phase-plot-age1, fig.height=5, fig.width=8>>=
 make.phase.plot(sens.models.2[[1]],
                 start.yr = start.yr,
-                end.yr = end.yr,
-                color = "blue")
+                end.yr = end.yr)
 @
 \end{center}
 \caption{Estimated historical path of median relative spawning biomass in

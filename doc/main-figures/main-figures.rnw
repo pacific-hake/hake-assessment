@@ -824,8 +824,7 @@ make.exploitation.fraction.plot(base.model,
 <<main-phase, fig.height=6, fig.width=8>>=
 make.phase.plot(base.model,
                 start.yr = start.yr,
-                end.yr = end.yr,
-                color = "blue")
+                end.yr = end.yr)
 @
 \end{center}
 \caption{Estimated historical path of median relative spawning biomass in

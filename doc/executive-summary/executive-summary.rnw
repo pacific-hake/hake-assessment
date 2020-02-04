@@ -595,8 +595,7 @@ this difference is not, by far, the major driver of the observed dynamics.
 <<phase-plot, fig.height=5, fig.width=8>>=
 make.phase.plot(base.model,
                 start.yr = start.yr,
-                end.yr = end.yr,
-                color = "blue")
+                end.yr = end.yr)
 @
 \end{center}
 \caption{Estimated historical path of median relative spawning biomass in

@@ -169,7 +169,6 @@ make.exploitation.fraction.plot(sens.models.6,
 make.phase.plot(sens.models.6,
                 start.yr = start.yr,
                 end.yr = end.yr,
-                color = "blue",
                 x.max = 1.5)
 @
 \end{center}
