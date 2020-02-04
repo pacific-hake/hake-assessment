@@ -388,7 +388,7 @@ the pre-1975 time period.
 Overall inferences were similar when using length instead of weight.}
 
 \emph{Furthermore, there were small numbers of age samples for the early years (especially 1975)
-as shown in Figure~\ref{fig:main-empirical.weight.at.age.numbers}. The few heavy fish in the 15-year-old and older
+as shown in Figure~\ref{fig:main-empirical-weight-at-age-numbers}. The few heavy fish in the 15-year-old and older
 accumulator group from 1976--1979 influence the short-term average for 1975--1979 time period,
 further justifying use of the long-term mean (1975--2018) for the pre-1975 time period.
 See Sections~\ref{sec:assessment-fecundity-recap}
@@ -584,7 +584,7 @@ annual age-composition observation and present an analysis of the potential infl
 of changes in sampling.}
 
 \emph{Response -- The number of age (and weight) samples used to develop age
-compositions over time (1975--2018) are shown in Figure~\ref{fig:main-empirical.weight.at.age.numbers}.
+compositions over time (1975--2018) are shown in Figure~\ref{fig:main-empirical-weight-at-age-numbers}.
 A formal evaluation of the influence temporal fluctuations in the number of fish
 sampled and aged has on model performance could not be completed in time for the 2019 assessment
 due to unforeseen time constraints during the assessment season.  The JTC plans to complete
@@ -673,7 +673,7 @@ in the absence of additional information about recent recruitment.
 Adding \Sexpr{last.data.yr} fishery age-composition and weight-at-age data
 had relatively little impact on the historical biomass estimates,
 indicating that the observed \Sexpr{last.data.yr} ages were consistent with the model
-estimates without those data (Figure~\ref{fig:main-bridge-5-panel.2}).  However,
+estimates without those data (Figure~\ref{fig:main-bridge-5-panel-2}).  However,
 the addition of these data did alter recent recruitment
 estimates, including an increase in the estimated size of the 2016 and 2017 year classes and
 a decrease in the 2018 year class.
@@ -682,7 +682,7 @@ in the selectivity parameters from \Sexpr{last.data.yr-1} to
 \Sexpr{last.data.yr} since there was now fishery data in \Sexpr{last.data.yr}.
 
 Including the fishery-independent data led to a slightly more optomistic
-trajectory of the stock (Figure~\ref{fig:main-bridge-5-panel.3}),
+trajectory of the stock (Figure~\ref{fig:main-bridge-5-panel-3}),
 which was to be expected given the increase in the
 index relative to \Sexpr{penult.survey.year}.
 The addition of age-composition data from the survey led to decreased
@@ -698,7 +698,7 @@ and resulted in the \Sexpr{assess.yr} base model (Table~\ref{tab:main-assessment
 The addition of the prior led to increased correlation between
 estimates of $M$ and $\log R_0$, but very little differences in the
 trajectory of the stock or estimates of its status
-(Figure~\ref{fig:main-bridge-5-panel.3}).
+(Figure~\ref{fig:main-bridge-5-panel-3}).
 The settings related to avoiding bias in recruitment estimation,
 based on the method proposed by \citet{MethotTaylor2011}, were
 also shifted by 1 year to account for the addition of information
@@ -740,15 +740,15 @@ re-assessed via a suite of standard single-chain and multi-chain diagnostic test
 The objective function, as
 well as all estimated parameters and derived quantities, showed good mixing
 during sampling, no evidence for lack of convergence, and low autocorrelation
-(results for some key parameters are shown in Figures~\ref{fig:main-mcmc.diag.m.r0}
-and~\ref{fig:main-mcmc.diag.h.extra.sd}). Correlation-corrected effective sample
+(results for some key parameters are shown in Figures~\ref{fig:main-mcmc-diag-m-r0}
+and~\ref{fig:main-mcmc-diag-h-extra-sd}). Correlation-corrected effective sample
 sizes were sufficient to summarize the posterior distributions and neither the
 Geweke nor the Heidelberger and Welch statistics for these parameters exceeded
 critical values more frequently than expected via random chance
-(Figure~\ref{fig:main-mcmc.diag.hists}).
+(Figure~\ref{fig:main-mcmc-diag-hists}).
 The Gelman-Rubin multi-chain diagnostic test,
 which compares within-chain variance to among-chain variance, further indicated that
-convergence was adequately achieved (Figure~\ref{fig:main-mcmc.diag.gelrub}).
+convergence was adequately achieved (Figure~\ref{fig:main-mcmc-diag-gelrub}).
 Correlations among key parameters were
 generally low, with the exception of $M$ and $\log R_0$, (Figure~\ref{fig:main-mcmc-pairs}).
 Derived quantities for recruitment in 2008 and 2010,
@@ -774,7 +774,7 @@ and a lengthening of the stable biomass trend over recent years
 (Figure~\ref{fig:main-mcmc-survey-fit}).
 ** The following sentence is incorrect and needs to be changed or removed. The figure doesn't show survey fits, but rather assessment model results.
 The addition of \Sexpr{survey.end.yr} fishery data
-had negligible effect on the fit to survey biomass (Figure~\ref{fig:main-bridge-5-panel.2}).
+had negligible effect on the fit to survey biomass (Figure~\ref{fig:main-bridge-5-panel-2}).
 The 2001 data point continues to be well below any model predictions that were evaluated,
 and no direct cause for this is known.  The survey did begin earlier that year than all other surveys
 between 1995 and 2009 (Table~\ref{tab:main-survey-history}), which may explain
@@ -860,7 +860,7 @@ in 2010 and 2012 and at age 3 in 2011 suggesting targeting of the younger cohort
 in those years. This pattern is consistent with the 2008 cohort appearing strong
 in the fishery age compositions initially, but decreasing in prominence
 from 2013 onward (Figures~\ref{fig:main-age-comp-fits} and
-\ref{fig:main-retrospective.recruitment}).
+\ref{fig:main-retrospective-recruitment}).
 Fishery selectivity on age-2 fish was at its highest
 in 2016, followed by 2018.
 Fishery selectivity for the most recent year leveled off between ages less
@@ -943,7 +943,7 @@ this year's median assessment of the 2010 recruitment is
 more fish (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"]) /
 (prev.assess.recruitment.med)["2010"]) * 100), 1)} \% increase) than last
 year's assessment. This difference is largely driven by the addition
-of the 2019 acoustic survey age compositions (Figure~\ref{fig:fig:main-bridge-5-panel-3})
+of the 2019 acoustic survey age compositions (Figure~\ref{fig:main-bridge-5-panel-3})
 where the proportion of age-9 fish was higher than what the \Sexpr{end.yr-1}
 assessment model would have otherwise predicted given mortality.
 
@@ -1692,7 +1692,7 @@ affect the fecundity. We also tested these four alternative assumptions
 when using non-time-varying fecundity. The eight combinations are summarised
 in Table~\ref{tab:main-wtatage-runs}, and the four weight-at-age assumptions
 are shown in the heatmaps in
-Figures~\ref{fig:main-empirical.weight.at.age.sens.a}--\ref{fig:main-empirical.weight.at.age.sens.d}.
+Figures~\ref{fig:main-empirical-weight-at-age-sens-a}--\ref{fig:main-empirical-weight-at-age-sens-d}.
 The eight runs are first explained in the context of the 2018 assessment, with justification
 of our base model; results are
 then given in \ref{sec:assessment-sensitivity-fecundity}.
@@ -1780,7 +1780,7 @@ data (Table~\ref{tab:main-wtatage-runs}). These assumptions are
 non-time-varying fecundity,
 long-term (1975--2018) mean weights-at-age applied for the years 1966--1974, and
 long-term (1975--2018) mean weights-at-age applied for the years 2019--2021
-(Figure~\ref{fig:main-empirical.weight.at.age.sens.a}).
+(Figure~\ref{fig:main-empirical-weight-at-age-sens-a}).
 
 The 2018 alternate model was similarly analogous to run 58 (Table~\ref{tab:main-wtatage-runs}), which had time-varying
 fecundity, short-term (1975--1979) mean weights-at-age applied for the years 1966--1974, and
@@ -1799,22 +1799,22 @@ fecundity being included or not.
 
 Weights-at-age for runs which use the long-term (1975--2018) mean for both the pre-1975
 and post-2018 periods can be seen in
-Figure~\ref{fig:main-empirical.weight.at.age.sens.a}. This figure includes run 53
+Figure~\ref{fig:main-empirical-weight-at-age-sens-a}. This figure includes run 53
 and the base model.
 
 Weights-at-age for runs which use the short-term (1975--1979) mean for the pre-1975
 period and the long-term (1975--2018) mean for the post-2017 period can be seen in
-Figure~\ref{fig:main-empirical.weight.at.age.sens.b}. This figure includes runs 55
+Figure~\ref{fig:main-empirical-weight-at-age-sens-b}. This figure includes runs 55
 and 57.
 
 Weights-at-age for runs which use the long-term (1975--2018) mean for the pre-1975
 period and the short-term (2016--2018) mean for the post-2017 period can be seen in
-Figure~\ref{fig:main-empirical.weight.at.age.sens.c}. This figure includes runs 52
+Figure~\ref{fig:main-empirical-weight-at-age-sens-c}. This figure includes runs 52
 and 57.
 
 Weights-at-age for runs which use the short-term (1975--1979) mean for the pre-1975
 period and the short-term (2016--2018) mean for the post-2017 period can be seen in
-Figure~\ref{fig:main-empirical.weight.at.age.sens.c}. This figure includes runs 56
+Figure~\ref{fig:main-empirical-weight-at-age-sens-c}. This figure includes runs 56
 and 58.
 
 MCMC runs with a chain length of 12,000,000 were done for these sensitivities. The
@@ -1859,7 +1859,7 @@ but due to the inflation of the initial biomass give a similar stock status to t
 Runs 55-58 produce an inflated initial biomass, due to the use of a short-term (1975--1979) mean
 weight-at-age being used for the pre-1975 time period. The weights-at-age for older fish in
 those early years is significantly higher than the long-term mean as can be seen in
-Figures~\ref{fig:main-empirical.weight.at.age.sens.b}--\ref{fig:main-empirical.weight.at.age.sens.d}.
+Figures~\ref{fig:main-empirical-weight-at-age-sens-b}--\ref{fig:main-empirical-weight-at-age-sens-d}.
 
 MCMC results for runs 53 and 54 including decision tables can be found in
 Appendices~\ref{chap:fecundity-53} and \ref{chap:fecundity-54}, because these
@@ -1869,8 +1869,8 @@ are the closest runs to the 2019 base model.
 
 **Retrospective analyses were performed by iteratively removing the terminal
 years' data and estimating the parameters under the assumptions of the base
-model. Models with 3, 4, or 5 years of data removed had information
-available regarding the high 2010 year class, but did not yet have information on the
+model. Models with 4, 5, or 6 years of data removed had information
+available regarding the large 2010 year class, but did not yet have information on the
 2014 year class (Figure~\ref{fig:main-biomass-recruitment-retrospective}). Models
 with 1 and 2 years of data removed were just beginning to receive data on age-3 and age-2, respectively,
 individuals to to predict the size of the 2014 year class.  The base model now has
