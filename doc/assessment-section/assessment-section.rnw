@@ -441,7 +441,7 @@ calculating $B_0$, and other reference points, in the presence of variability
 in weight-at-age. For example, what if there has been a long-term decline in
 weight-at-age but it is ignored when setting reference points, or what if
 weight-at-age varies randomly through time but reference points are set using
-a non-representative subset of the long-term trend?  Recent simulation work by \citet{Berger2018},
+a non-representative subset of the long-term trend?  Recent simulation work by \citet{Berger2019},
 using \fishname\ as one example, provided evidence that static reference points, such
 as those based on unfished equilibrium conditions ($B_0$), can be misleading when there are
 directional trends or regime shift changes in the underlying stock productivity.}
@@ -468,7 +468,7 @@ constraint}.
   and whether it reduces sensitivity to the choice of $\sigma_R$;
   (c) use the Template Model Builder (TMB)
   code developed by Nis Jacobsen for the Management Strategy Evaluation to explore
-  random effects treatment of recruitment variability \citep{Thorson2018}.
+  random effects treatment of recruitment variability \citep{Thorson2019}.
   The JTC plans to continue to work towards evaluating and testing best practices
   for modeling recruitment variability.  Progression on these research topics was
   halted during the 2019 assessment season due to unforeseen time constraints imposed
@@ -661,7 +661,7 @@ filtered from the analysis because of a lack of delineation regarding
 the method used to age the samples were included.
 Weight-at-age data that lack information about the month in which
 they were collected are now included.
-Samples that were recently aged but not available for the \Sexpr{last.assess.yr} were included. 
+Samples that were recently aged but not available for the \Sexpr{last.assess.yr} were included.
 These changes were small enough that they had
 little impact on the model results (Figure~\ref{fig:main-bridge-5-panel-2}).
 
@@ -678,7 +678,7 @@ the addition of these data did alter recent recruitment
 estimates, including an increase in the estimated size of the 2016 and 2017 year classes and
 a decrease in the 2018 year class.
 This bridging step also shifted the ending year of the deviations
-in the selectivity parameters from \Sexpr{last.data.yr-1} to 
+in the selectivity parameters from \Sexpr{last.data.yr-1} to
 \Sexpr{last.data.yr} since there was now fishery data in \Sexpr{last.data.yr}.
 
 Including the fishery-independent data led to a slightly more optomistic
@@ -701,7 +701,7 @@ trajectory of the stock or estimates of its status
 (Figure~\ref{fig:main-bridge-5-panel.3}).
 The settings related to avoiding bias in recruitment estimation,
 based on the method proposed by \citet{MethotTaylor2011}, were
-also shifted by 1 year to account for the addition of information 
+also shifted by 1 year to account for the addition of information
 about recruitment for the \Sexpr{last.data.yr - 1} cohort.
 Finally, the model was tuned according to standard practices for \fishname\
 to ensure that the data were consistent with the results.
@@ -727,7 +727,7 @@ Therefore, the prior on the D-M parameters was added to improve MCMC convergence
 ** Include a plot like what Ian showed in \#595
 With the prior, the resulting multiplier applied to the survey
 age-composition data ranged between
-\Sexpr{DM.weight.survey.low} and \Sexpr{DM.weight.survey.high} with a 
+\Sexpr{DM.weight.survey.low} and \Sexpr{DM.weight.survey.high} with a
 median of \Sexpr{DM.weight.survey.median}.
 The D-M parameter for the fishery weights was well sampled by the MCMC algorithm,
 with a median estimate of
@@ -768,7 +768,7 @@ recent age-composition data than the absolute magnitude of these recruitments.
 The base model fit (Figure~\ref{fig:main-mcmc-survey-fit}) to the
 acoustic survey biomass index (Figure~\ref{fig:main-survey-extrap-biomass})
 remains similar to the \Sexpr{last.assess.yr} base model. The \Sexpr{survey.end.yr}
-survey biomass estimate resulted in a downward shift in the fit to the 
+survey biomass estimate resulted in a downward shift in the fit to the
 \Sexpr{antepenult.survey.year} and \Sexpr{penult.survey.year} survey data points
 and a lengthening of the stable biomass trend over recent years
 (Figure~\ref{fig:main-mcmc-survey-fit}).
@@ -806,12 +806,12 @@ Age compositions from the \Sexpr{survey.end.yr} acoustic survey suggest a simila
 structure, i.e., \Sexpr{top.coh(base.model, survey.end.yr, 3, cap = FALSE, fleet = 2)}.
 The pattern for the 2010 year class was expected given the strength of that cohort
 from the fishery composition data from 2012 onward, and thus, are fit well by the model.
-Combined, the 2015--\Sexpr{last.data.yr} fishery age-composition data and the 
-2017--\Sexpr{survey.end.yr} acoustic survey age-composition data 
+Combined, the 2015--\Sexpr{last.data.yr} fishery age-composition data and the
+2017--\Sexpr{survey.end.yr} acoustic survey age-composition data
 suggest that 2014 was a strong recruitment
 year, and the model was able to adequately
 fit to these observations (Figure~\ref{fig:main-age-comp-fits}).
-The strength of the 2016 year-class, which has now been observed by the survey 
+The strength of the 2016 year-class, which has now been observed by the survey
 \Sexpr{ceiling((survey.end.yr-2016)/2)} times appears to be less strong than
 the 2014 year class.
 The \Sexpr{survey.end.yr} survey was the first time the survey was able to sample the
@@ -882,12 +882,12 @@ reflect time-varying mortality processes.
 
 \subsubsub{Stock biomass}
 
-The base stock assessment model indicates that since the 1960s, \fishname\ 
+The base stock assessment model indicates that since the 1960s, \fishname\
 female spawning biomass has ranged from well below to above unfished
 equilibrium (Figures~\ref{fig:main-female-spawning-biomass}
 and~\ref{fig:main-relative-spawning-biomass} and
 Tables~\ref{tab:main-median-posterior} and \ref{tab:main-ci-posterior}). The
-model estimates that it was below the unfished equilibrium in the 1960s, 
+model estimates that it was below the unfished equilibrium in the 1960s,
 at the start of the assessment period, due to lower than average recruitment.
 The stock is estimated to have increased rapidly and was above unfished equilibrium
 in the mid-1970s and mid-1980s (after two large recruitments in the early 1980s).
@@ -913,7 +913,7 @@ $B_0$) is \Sexpr{curr.depl.median}\%. However, the uncertainty
 is large, with a 95\%
 posterior credibility interval from \Sexpr{curr.depl.lower}\% to
 \Sexpr{curr.depl.upper}\% (Tables~\ref{tab:main-median-posterior} and
-\ref{tab:main-ci-posterior}). 
+\ref{tab:main-ci-posterior}).
 
 The median estimate of
 the \Sexpr{end.yr} spawning biomass is \Sexpr{curr.bio.median}~million~t (with a
@@ -937,13 +937,13 @@ assessment.
 
 The new data available for this assessment do not significantly change the
 estimated patterns of recruitment estimated in recent assessments.
-However, estimated recruitments for some years have changed. For example, 
+However, estimated recruitments for some years have changed. For example,
 this year's median assessment of the 2010 recruitment is
 \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"], 1)}~billion
-more fish (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"]) / 
+more fish (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"]) /
 (prev.assess.recruitment.med)["2010"]) * 100), 1)} \% increase) than last
 year's assessment. This difference is largely driven by the addition
-of the 2019 acoustic survey age compositions (Figure~\ref{fig:fig:main-bridge-5-panel-3}) 
+of the 2019 acoustic survey age compositions (Figure~\ref{fig:fig:main-bridge-5-panel-3})
 where the proportion of age-9 fish was higher than what the \Sexpr{end.yr-1}
 assessment model would have otherwise predicted given mortality.
 
@@ -989,7 +989,7 @@ from \Sexpr{recruitment.lower.in.2016}--\Sexpr{recruitment.upper.in.2016}~billio
 \ref{tab:main-ci-posterior}).
 
 The model currently estimates small 2011, 2013, 2015, and 2018 year classes (median
-recruitment well below the mean of all median recruitments) and near 
+recruitment well below the mean of all median recruitments) and near
 average 2012 and 2017 year class.  The proportion of the catch that was age-1 fish (in numbers
 and biomass) in 2019 (2018 year class) was well below that observed in 2018
 (2017 year class) and 2017 (2016 year class; Table~\ref{tab:main-all-age-data-fishery}).
@@ -1078,9 +1078,9 @@ suggested that hake were less aggregated in Canada and availability had
 declined. In 2016, the utilization rate increased but remained below pre-2015
 levels, despite the total 2016 catch being one of the highest in recent years.
 This is in large part due to increasing catch targets as biomass continues to
-increase.  The total utilization rate in recent years (2017--2019) has been close to the 
+increase.  The total utilization rate in recent years (2017--2019) has been close to the
 average over the last decade.  During the last two years, utilization rates have been stable
-in both the United States (\Sexpr{usa.last.2.years.attainment}\%) and Canada 
+in both the United States (\Sexpr{usa.last.2.years.attainment}\%) and Canada
 (\Sexpr{can.last.5.years.attainment}\%). Total landings last exceeded the coast-wide quota
 in 2002 when utilization was 112\%.
 
@@ -1478,7 +1478,7 @@ The sensitivity of the use of the
 Dirichlet-Multinomial likelihood, implemented in 2018,
 which uses two estimated
 parameters to automatically weight each of the fishery and survey age
-compositions, has now been implemented in the base model. The base model was compared to the 
+compositions, has now been implemented in the base model. The base model was compared to the
 models that used the McAllister-Ianelli and Francis methods.
 Both sensitivity methods require manual iterative adjustments to the input sample sizes
 using a derived multiplier.
@@ -1585,14 +1585,14 @@ parameterization of the time-varying selectivity
 The consideration of alternative standard deviations ($\Phi$) for time-varying
 selectivity is discussed earlier in
 Section~\ref{sec:data-variability-selectivity}. Varying the values of the
-parameter $\Phi$ controlling the flexibility in time-varying selectivity from 
+parameter $\Phi$ controlling the flexibility in time-varying selectivity from
 the base model value of $\Phi = 1.40$ to alternative values of 0.21, 0.70, and 2.10,
 resulted in more precise estimates of the 2014 recruitment, regardless of the value
 of $\Phi$ (Figure~\ref{fig:main-recruit-base-alternative-4}).
 However, the 2017 recruitment, is linked to the choice of $\Phi$, where the
 model with the smallest $\Phi$ at 0.21 estimates the 2017 recruitment deviation as
 the highest of the sensitivity models (Figure~\ref{fig:main-recruit-devs-base-alternative-4})
-and provides the worst fits of the most recent two survey biomass estimates, 
+and provides the worst fits of the most recent two survey biomass estimates,
 2017 and 2019 (Figure~\ref{fig:main-index-base-alternative-4}).
 
 The alternative ``semi-parametric'' setup for selectivity based on the work of
