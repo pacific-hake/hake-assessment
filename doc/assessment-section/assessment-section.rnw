@@ -269,7 +269,22 @@ observation, but were unable to complete an analysis, as requested in the 2018 S
 report, on the effect of potential changes in sampling protocols that could influence the
 input sample sizes. The SRG reiterates its request for this analysis.}
 
-\emph{Response -- **}
+\emph{Response -- Progress was made on documenting the historical methods utilized
+to sample \fishname\ for otoliths, which began in the 1970s with observers on foreign vessels.
+A clear change in protocol was initiated in 1999 for the U.S. at-sea fishery with the
+move towards random sampling of fish for ages rather than random-stratified sampling,
+which attempts to collect ages in each 1 cm length bin. Additionally, in 2009
+at-sea observers started collecting three instead of five sets of otoliths from a haul.
+A more complete summary of the changes in the sampling protocol over time will be
+completed in the upcoming months and included in the 2021 assessment as an appendix.
+
+Currently, this information has been used to inform a simulation study that investigated
+repercussions of biased input sample sizes. Preliminary results suggest
+that the D-M parameters combined with time-varying selectivity can estimate the time
+series of spawning stock biomass with little bias when there is no temporal trend in
+the bias applied to the input sample size. Future investigations will look into temporal
+trends in this bias, where the trend will be informed by changes in the protocols used
+to specify the collection of otoliths in the \fishname\ fishery.}
 
 5. A recent advance in Bayesian analysis (the no U-turn sampler, NUTS) raises the possibility
 that the assessment model could reach convergence much more quickly than is now possible.
