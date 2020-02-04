@@ -754,7 +754,8 @@ make_numbers_at_age_plot(base.model,
                          mean_age_line_size = 1.5,
                          mean_age_line_type = "solid",
                          legend.position = "top",
-                         legend.title = "Numbers (billions)")
+                         legend.title = "Numbers (billions)",
+                         xlim = c(1965, assess.yr))
 @
 \end{center}
 \caption{Bubble plot of MLE estimates of population numbers at age at the beginning of each year, where diagonals follow each year-class through time.
