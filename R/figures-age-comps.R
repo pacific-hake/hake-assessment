@@ -58,6 +58,7 @@ plot_bubbles <- function(d,
                          legend.position = "none",
                          alpha = 0.3,
                          xlim = c(1975, year(Sys.Date())),
+                         legend.title = "Proportion",
                          ...){
 
   g <- ggplot(d, aes(x = Year, y = Age, size = Proportion)) +
@@ -92,10 +93,10 @@ plot_bubbles <- function(d,
                 size = mean_age_line_size,
                 linetype = mean_age_line_type)
   }
-  
+
   g <- g + 
     theme(legend.position = legend.position, ...) +
-    guides(size = guide_legend(title = "Proportion"))
+    guides(size = guide_legend(title = legend.title))
   
   g
 }
@@ -225,6 +226,7 @@ get_age_comp_limits <- function(model, type = 1){
 #' Plot the numbers-at-age bubble plot with mean age line
 #'
 #' @param model A model object as output from [load_ss_files()]
+#' @param scale Number to scale the numbers-at-age by so the legend values are nicer
 #' @param ... Additional parameters passed to [plot_bubbles()]
 #'
 #' @return A [ggplot2::ggplot()] object
@@ -233,8 +235,8 @@ get_age_comp_limits <- function(model, type = 1){
 #' @importFrom dplyr select rename filter mutate mutate_at pull do rowwise rowSums vars
 #' @importFrom reshape2 melt
 #' @importFrom purrr map2_dfc
-#' @importFrom
 make_numbers_at_age_plot <- function(model,
+                                     scale = 1e6,
                                      ...){
   natage <- model$natage %>% 
     as_tibble() %>% 
@@ -246,13 +248,11 @@ make_numbers_at_age_plot <- function(model,
     rename(Year = Yr)
     
   dat <- natage %>%  
-    #mutate(n = rowSums(.[-1])) %>% 
-    #mutate_at(vars(-Year), ~(./n)) %>% 
-    #select(-n) %>% 
     melt(id.var = "Year") %>% 
     as_tibble() %>% 
-    rename(Age = variable, Proportion = value)
-  
+    rename(Age = variable, Proportion = value) %>% 
+    mutate(Proportion = Proportion / scale)
+
   # Mean age algorithm (from [r4ss::SSplotNumbers()])
   # For each year, multiply the numbers-at-age by the age then
   # Add them, so that there is a total sum for each year then
