@@ -41,6 +41,7 @@ make_age_comp_bubble_plot <- function(model,
 #' @param by How many years between year labels on the x-axis
 #' @param legend.position See [ggplot2::theme(legend.position)]
 #' @param alpha See [ggplot2::geom_point()]
+#' @param xlim Limits for the x-axis
 #' @param ... Additional parameters passed to [ggplot2::geom_point()], 
 #' [ggplot2::geom_segment()] and [ggplot2::theme()]
 #'
@@ -133,6 +134,7 @@ make_age_comp_pearson_plot <- function(model,
 #' @param by How many years between year labels on the x-axis
 #' @param legend.position See [ggplot2::theme(legend.position)]
 #' @param alpha See [ggplot2::geom_point()]
+#' @param xlim Limits for the x-axis
 #' @param ... Additional parameters passed to [ggplot2::geom_point()], 
 #' [ggplot2::geom_segment()] and [ggplot2::theme()]
 #'
@@ -140,30 +142,25 @@ make_age_comp_pearson_plot <- function(model,
 #' @export
 plot_pearson_bubbles <- function(d,
                                  clines = c(1980, 1984, 1999, 2010, 2014, 2016),
-                                 yrs = NULL,
                                  by = 5,
                                  legend.position = "none",
                                  alpha = 0.3,
+                                 xlim = c(1975, year(Sys.Date())),
                                  ...){
   
-  if(is.null(yrs)){
-    xlim <- c(min(d$Year), max(d$Year))
-  }else{
-    xlim <- c(yrs[1], yrs[2])
-  }
-
   g <- ggplot(d, aes(x = Year,
                      y = Age, 
                      size = abs(Pearson),
                      fill = factor(sign(as.numeric(Pearson))))) +
     geom_point(pch = 21, alpha = alpha, ...) +
-    scale_x_continuous(breaks = seq(from = 1900, to = 2100, by = by)) +
-    scale_fill_manual(values = c("white", "black"), guide = FALSE) +
-    scale_size_continuous(breaks = c(1, 1, 2, 2, 3, 3, 4, 4, 5, 5),
-                          labels = c(-5, -4, -3, -2, -1, 1, 2, 3, 4, 5),
-                          range = c(1, 5)) +
+    scale_x_continuous(breaks = seq(from = xlim[1], to = xlim[2], by = by),
+                       expand = c(0.025, 0)) +
     coord_cartesian(xlim) +
-    expand_limits(x = xlim[1]:xlim[2])
+    expand_limits(x = xlim[1]:xlim[2]) +
+    scale_fill_manual(values = c("white", "black"), guide = FALSE) +
+    scale_size_continuous(breaks = c(1, 1, 2, 2, 3, 3),
+                          labels = c(-8, -4, -0.1, 0.1, 4, 8),
+                          range = c(0.1, 8))
 
   if(!is.null(clines)){
     clines <- tibble(year = clines,
@@ -187,10 +184,10 @@ plot_pearson_bubbles <- function(d,
                                nrow = ifelse(legend.position == "right" |
                                                legend.position == "left", 10, 1),
                                override.aes =
-                                 list(fill = c("white", "white", "white", "white", "white",
-                                               "black", "black", "black", "black", "black"),
-                                      size = c(5, 4, 3, 2, 1,
-                                               1, 2, 3, 4, 5))))
+                                 list(fill = c("white", "white", "white",
+                                               "black", "black", "black"),
+                                      size = c(8, 4, 0.1,
+                                               0.1, 4, 8))))
   
   g
 }
