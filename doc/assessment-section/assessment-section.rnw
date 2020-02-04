@@ -1158,9 +1158,9 @@ alternative structural models for hake population dynamics and fishery processes
 effects of alternative data-weighting choices, and the scientific basis for prior
 probability distributions. To address structural uncertainties, the JTC investigated
 a range of alternative models, and we present the key sensitivity analyses along with
-a suite of other informative sensitivity analyses. 
+a suite of other informative sensitivity analyses using maximum likelihood estimation. 
 
-The JTC also produced three appendices, each highlighting results from models with
+The JTC also produced three appendices, each highlighting Bayesian MCMC results from models with
 different structural assumptions or analytical choices compared to the base model.
 These include the choice of weight-at-age values used pre-1975 (and for equilibrium
 calculations) for specifying fecundity (Appendix~\ref{chap:fecundity-10}), the incorporation
@@ -1170,11 +1170,13 @@ Appendix~\ref{chap:adnuts}). The alternative early-year fecundity model was chos
 it represents model uncertainty for an analytical decision that had to be made despite 
 little data to inform that decision. The inclusion of the age-1
 survey model was chosen because it may improve estimates of recruitment near the end 
-of the time series and age compostion during the forecast period, even though the acoustic 
-survey design is not sturctured for indexing age-1 fish. The model that uses the more efficient
+of the time series and age composition during the forecast period, even though the acoustic 
+survey design is not structured specifically for indexing age-1 fish. The model that uses the more efficient
 adNuts software for conducting MCMC may improve the applicability of Bayesian methods in
-stock assessment, suggesting that comparisons to existing methods for \fishname\ should
-be documented.
+stock assessment, suggesting that comparisons to existing MCMC methods used for \fishname\ should
+be documented.  These three appendices provide additional information about model uncertainty and
+should be consulted to supplementary materials for considering additional
+uncertainty attributed to unknowns aassociated with 
 
 The JTC continues to be committed to advancing MSE analyses, by coordinating
 research with the \fishname\ MSE Working Group and other scientists in the region
