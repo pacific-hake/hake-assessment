@@ -4,11 +4,12 @@
 \label{chap:adnuts}
 
 This appendix contains base model Bayesian MCMC results using a new analytical tool
-for conducting efficient Bayesian MCMC algorithms (AD No-U-Turn Sampler, or
-adnuts, software; \citet{Monnahan2018}, \citet{Monnahan2019}). 
-This version of the base model uses the more efficient
-adNuts software for conducting MCMC which has the potential to improve the
-applicability of Bayesian methods in stock assessment.  
+for conducting efficient Bayesian MCMC algorithms, the Automatic Differentiation
+No-U-Turn Sampler, implemented using the {\tt adnuts} R package
+\citep{Monnahan2018, Monnahan2019}.
+This tool
+has the potential to improve the
+applicability of Bayesian methods in stock assessment.
 
 This appendix highlights
 model uncertainty arising from a different structural assumption or analytical choice
