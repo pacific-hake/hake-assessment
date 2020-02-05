@@ -351,7 +351,7 @@ Figure~\ref{fig:main-survey-extrap-biomass})
 and age compositions (Figure~\ref{fig:main-age-comp-bubbles} and
 Table~\ref{tab:main-all-age-data-survey}) are being input into the assessment
 model.
-Current and historical values were verified with the survey analysts in 2019 to ensure that the final results from the re-analyses matched input values, which led to a few changes in historical values.
+Current and historical values were verified with the survey analysts in 2019 to ensure that the final results from the re-analyses matched input values, which led to a few minor changes in historical values.
 % Delete above in 2021
 
 Results from research done in 2010 and 2014 on the representativeness of the
@@ -421,7 +421,7 @@ Catcher-Processor vessels, and from the U.S. West Coast bottom trawl survey
 California (34.44$^\circ$N) were excluded from this analysis because they were thought
 to mature at earlier ages and smaller sizes (see \citealt{JTC2019} for more information).
 The maturity ogive was the same as that used in \citet{JTC2018}
-because the U.S. government shutdown delayed delivery of the
+because the 2018-2019 U.S. government shutdown delayed delivery of the
 histological samples, though note that the ogive used for previous
 assessments was not updated annually and was that developed by
 \citet{DornSaunders1997}.
@@ -497,7 +497,8 @@ calculating weight-at-age for the fishery and survey independently showed little
 impact on model results.
 Pre-1975 weight-at-age data available in the PacFIN database that were discovered during the 2018
 assessment-review process were quickly
-confirmed to be samples collected within Puget Sound and have not been included in any assessment.Ages 15 and above for each year were pooled and assumed
+confirmed to be samples collected within Puget Sound and have not been included
+in any assessment. Ages 15 and above for each year were pooled and assumed
 to have the same weight. The combinations of age and year with no
 observations were assumed to change linearly over time between observations at
 any given age. The number of samples (Figure \ref{fig:main-empirical-weight-at-age-numbers})
@@ -505,9 +506,25 @@ is generally proportional
 to the amount of catch, so the combinations of year and age with no samples
 should have relatively little importance in the overall estimates of the
 population dynamics.
-Prior to 1975, weight-at-age is assumed to be equal to the mean across all years with data.
-Weight-at-age for the forecast years is assumed to be equal to the
-\Sexpr{last.data.yr-5}--\Sexpr{last.data.yr} mean.
+
+Prior to 1975, weight-at-age is assumed to be equal to the mean across all years with data
+(1975-2019), consistent with the 2019 base model.
+For the forecast years, in 2019 we noted that Stock Synthesis did
+not have the desired settings to properly use the mean across recent years \citep{JTC2019}.
+For the 2019 base model we therefore used the long-term mean
+weight-at-age (the mean from 1975--2018). In the 2019
+sensitivity run~54 we used the mean across the most recent three years (2016--2018), but
+Stock Synthesis required also setting the 2018 weight-at-age to be the mean
+of 2016--2018; this run~54 yielded similar results to the base model.
+Stock Synthesis no longer has this anomalous requirement, and so for the current assessment we
+use the recent mean for the forecasts and the correct data for the most
+recent year (2019). For the current assessment we use the mean of the most recent five years
+(\Sexpr{last.data.yr-5}--\Sexpr{last.data.yr}), rather than three years as in the
+previous assessment, to be consistent with selectivity, for which the forecasts also
+use the mean over the recent five years.
+% Above can be simplified in 2021, to hopefully just say we do the same as
+% 2020. Hence, lots of years are hardwired.
+
 
 The use of empirical weight-at-age is a convenient method
 to capture the variability in both the weight-at-length relationship within and
@@ -646,9 +663,10 @@ degree of freedom than the number of estimated $p_a$. Therefore,
 $p_{A_{\text{min}}}=0$ can be set for the fishery and for the survey.
 
 The implementation of time-varying selectivity uses a set of deviations
-to control annual changes to the selectivity parameters. The standard deviation associated with
-these deviations is called $\Phi$, which is fixed at \Sexpr{sel.Phi.val}.
-$\Phi$ is calculated using
+to control annual changes to the selectivity parameters. The standard deviation,
+$\Phi$, associated with these deviations has been fixed at \Sexpr{sel.Phi.val}
+since the 2018 assessment (see \citealt{JTC2018} for justification).
+It is calculated using
 \eb
 p_{ay} = p_a + \epsilon_{ay},
 \ee
@@ -665,7 +683,7 @@ Note that there is such a log-likelihood component for both the fishery and the
 survey selectivities.
 
 A new parameterization for the selectivity deviations was explored
-starting in 2018, based on the work of \citet{Xu2019},
+in 2018 and 2019, based on the work of \citet{Xu2019},
 in an effort to produce a more objective way to determine the degree of
 flexibility. However, further testing of this approach was believed
 necessary before making the change so it
@@ -677,13 +695,15 @@ is only used for a sensitivity analysis
 
 Since 2018 the assessment has used a Dirichlet-Multinomial (D-M)
 likelihood \citep{ThorsonEtAl2017Dirichlet} to fit the age-composition data.
-The estimated parameter, $\theta$, serves to automatically adjust the weight given to
+Estimated parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$ serve to
+automatically adjust the weight given to
 the fishery-composition data (using $\theta_{\text{fish}}$) and the
 survey-composition data (using $\theta_{\text{surv}}$).
 % Prior information
-The prior for the $\theta$ parameters, implemented in this assessment, is nearly uniform
-(in transformed space) and was implemented using a normal distribution with a mean of
-zero and a standard deviation of 1.813.
+Both priors for $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$
+are a normal distribution with a mean of zero and a standard deviation of 1.813
+In the 2019 assessment, uniform priors were used, but $\log
+\theta_{\text{surv}}$ had to be set to its MLE value (see below).
 
 Integration of the data weighting increases the efficiency of the assessment process, removes the
 subjective choice of how many iterations are required,
@@ -715,6 +735,7 @@ of the D-M distribution.
 The effective sample size associated with this likelihood is given by
 \eb
 n_{\text{eff}} = \frac{1}{1 + \theta} + \frac{n \theta}{1 + \theta}
+\label{DMeff}
 \ee
 The input sample sizes used in this assessment, which are based on the
 number of trips or hauls, are large enough that the first term
@@ -730,6 +751,28 @@ roughly equal to the harmonic mean of the effective sample sizes. The
 effective sample size is dependent on how well the model expectation matches
 the observed values. Typically, this process involves no more
 than four to five iterations.
+
+In the 2019 assessment we used a uniform prior between $-5$ and $20$ for
+$\theta_{\text{fish}}$ and $\theta_{\text{surv}}$. The
+parameter $\theta_{\text{fish}}$ was well sampled by the MCMC algorithm. However,
+$\log \theta_{\text{surv}}$ was not being sampled efficiently due to many
+samples occurring in a part of the parameter space where the effective sample
+size multiplier, $\theta_{\text{surv}} / (1 + \theta_{\text{surv}})$, was between
+0.99 and 1.0 \citep{JTC2019}. In that area, the input sample sizes were given
+full weight and the likelihood surface was almost completely flat with respect to
+$\log \theta_{\text{surv}}$ [**2019 said `this parameter', but this is what was
+meant, yes?], and so to improve MCMC
+convergence $\log \theta_{\text{surv}}$
+was fixed at the MLE estimate of 2.44, corresponding to a weight of
+$\theta_{\text{surv}} / (1 + \theta_{\text{surv}}) = 0.92$.
+
+To enable estimation of $\theta_{\text{surv}}$, James Thorson (NOAA, pers.~comm.)
+suggested that a prior on $\log \theta_{\text{surv}}$ could be associated with
+an approximately uniform prior of the weight $\theta_{\text{surv}} / (1 +
+\theta_{\text{surv}})$. Ian Taylor (NOAA, pers.~comm.) determined that a normal
+prior on $\log \theta_{\text{surv}}$, with mean 0 and standard deviation 1.813,
+results in such a prior. Thus we use this prior for both $\log \theta_{\text{fish}}$
+and $\log \theta_{\text{surv}}$.
 
 Composition data can also be weighted using the Francis method
 (T2.6 in Table 2 of \citealp{Francis2011}),
