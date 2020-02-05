@@ -173,12 +173,7 @@ freely estimated to accommodate unaccounted-for sources of process and
 observation error. A Dirichlet-Multinomial (D-M) likelihood was applied to age-composition data,
 with input sample sizes equal to the sum of the number of trips or hauls actually sampled across all
 fishing fleets or the number of trawl sets in the research surveys (see Section~\ref{sec:data-age-comp-likelihood}).
-% todo: can we remove the following two sentences?
-Tuning quantities did not change in assessments from 2012 to
-2015, however additional tuning was required in 2016 and 2017 given the
-updated acoustic survey index composition data and refinements to fishery
-composition data. Tuning quantities changed again in 2018 with the addition of the
-new D-M data weighting (tuning) approach.  Tuning quantities remained relatively
+Tuning quantities remained relatively
 consistent from 2018 to \Sexpr{assess.yr}.
 % Manual 2020 KFJ
 
