@@ -27,8 +27,7 @@ make_mcmc_priors_vs_posts_plot <- function(prior_mle,
     enframe() %>%
     mutate(prior = prior_mle$prior) %>%
     rename(post = value)
-  
-  
+
   breakvec <- seq(prior_mle$Pmin, prior_mle$Pmax, length = 50)
   if(min(breakvec) > min(dat$post)) breakvec <- c(min(dat$post), breakvec)
   if(max(breakvec) < max(dat$post)) breakvec <- c(breakvec, max(dat$post))
@@ -41,9 +40,17 @@ make_mcmc_priors_vs_posts_plot <- function(prior_mle,
 
   prior <- prior_mle$prior / (sum(prior_mle$prior) * mean(diff(prior_mle$Pval)))
   ymax <- ifelse(show_prior, max(prior, ymax), ymax)
-  xmin <- ifelse(show_prior, min(prior_mle$Pval, xmin), xmin)
-  xmax <- ifelse(show_prior, max(prior_mle$Pval, xmin), xmax)
-  
+  if(show_prior){
+    if(prior_mle$Ptype == "Normal"){
+      # This is a hack. The DM prior was set from -5 to 20 but are centered around 0
+      xmin <- prior_mle$Pmin
+      xmax <- abs(prior_mle$Pmin)
+    }else{
+      xmin <- min(prior_mle$Pval, xmin)
+      xmax <- max(prior_mle$Pval, xmin)
+    }
+  }
+
   ymax <- ifelse(show_mle, max(prior_mle$mle, ymax), ymax)
   xmin <- ifelse(show_mle, min(qnorm(0.001, prior_mle$finalval, prior_mle$parsd), xmin), min(prior_mle$finalval, xmin))
   xmax <- ifelse(show_mle, max(qnorm(0.999, prior_mle$finalval, prior_mle$parsd), xmax), max(prior_mle$finalval, xmax))
