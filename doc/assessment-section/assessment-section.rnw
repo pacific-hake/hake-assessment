@@ -385,7 +385,7 @@ In short, these included the following:
   \item Add \Sexpr{last.data.yr} fishery age-composition and weight-at-age data.
   \item Add \Sexpr{last.data.yr} survey biomass estimate.
   \item Add \Sexpr{last.data.yr} survey age-composition data.
-  \item Implement prior distributions on the D-M parameters.
+  \item Implement new prior distributions on the D-M parameters.
 \end{itemize}
 
 The bridging steps can be grouped into three main sets of changes,
@@ -396,7 +396,7 @@ The third step updated the information available from the survey and implemented
 changes to the model structure.
 
 Stock Synthesis version \Sexpr{ss.version} includes
-a number of changes since the version used in \citep{JTC2019},
+a number of changes since the version used by \citet{JTC2019},
 mostly related to forecasting options.
 Changes relevant to the assessment of \fishname\ include changes to
 increase the convergence of estimates of catchability and parameter deviations,
@@ -474,17 +474,8 @@ For the base model, the MCMC chain length was 24~million as it was in the
 The first 4,000,000 values were discarded to eliminate `burn-in' effects and
 each 10,000th value thereafter was retained, resulting in \Sexpr{num.mcmc.samples}
 samples from the posterior distributions for model parameters and derived
-quantities. Previous MCMC explorations indicated that $\log
-\theta_{\text{surv}}$, the log of the $\theta$ parameter associated with the survey
-data in the D-M weighting,
-was not being sampled efficiently due to many samples occurring in a part of the
-parameter space where the effective sample size multiplier, $\theta_{\text{surv}}/(1+\theta_{\text{surv}})$,
-was between 0.99 and 1.0. In this area, the input sample sizes are
-given full weight and the likelihood surface was almost completely flat
-with respect to this parameter.
-Therefore, the prior on the D-M parameters was added to improve MCMC convergence.
-** Include a plot like what Ian showed in \#595
-With the prior, the resulting multiplier applied to the survey
+quantities.
+The new priors for $\theta_{\text{fish}}$ and $\theta_{\text{fish}}$ resulted ..... the resulting multiplier applied to the survey
 age-composition data ranged between
 \Sexpr{DM.weight.survey.low} and \Sexpr{DM.weight.survey.high} with a
 median of \Sexpr{DM.weight.survey.median}.
