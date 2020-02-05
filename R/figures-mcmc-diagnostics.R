@@ -44,6 +44,7 @@ make_mcmc_priors_vs_posts_plot <- function(prior_mle,
   xmin <- ifelse(show_prior, min(prior_mle$Pval, xmin), xmin)
   xmax <- ifelse(show_prior, max(prior_mle$Pval, xmin), xmax)
   
+  ymax <- ifelse(show_mle, max(prior_mle$mle, ymax), ymax)
   xmin <- ifelse(show_mle, min(qnorm(0.001, prior_mle$finalval, prior_mle$parsd), xmin), min(prior_mle$finalval, xmin))
   xmax <- ifelse(show_mle, max(qnorm(0.999, prior_mle$finalval, prior_mle$parsd), xmax), max(prior_mle$finalval, xmax))
   
