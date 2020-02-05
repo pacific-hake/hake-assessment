@@ -618,38 +618,6 @@ make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-retrospective-recruitment, fig.height=6, fig.width=8>>=
-## Number of retro years for the plot. Assumes you've run them.
-plot.retro.yrs <- retrospective_yrs
-retro.cohorts <- 1999:(end.yr-2)
-##retro.model.names <- c("Base model", sapply(plot.retro.yrs, function(x) paste0("-", x, if(x == 1) " year" else " years")))
-## Need to re-assemble the list with the base as the first element
-retro.list <- list(base.model)
-for(i in plot.retro.yrs){
-  retro.list[[i + 1]] <- base.model$retros[[i]]
-}
-make.squid.plot(retro.list,
-                subplot = 1,
-                cohorts = retro.cohorts)
-@
-\end{center}
-%\vspace{0mm}
-\caption{Retrospective analysis of recruitment deviations from MLE models over the last
-  \Sexpr{length(plot.retro.yrs)+1} years. Recruitment deviations are
-  the log-scale differences between recruitment estimated by the model
-  and expected recruitment from the spawner-recruit relationship.
-  Lines represent estimated recruitment deviations for cohorts from
-  \Sexpr{min(retro.cohorts)} to \Sexpr{max(retro.cohorts)}, with cohort
-  birth year marked at the right of each color-coded line. Values are
-  estimated by models using data available only up to the year in which
-  each cohort was a given age.}
-\label{fig:main-retrospective-recruitment}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
 <<main-tv-selex-uncertainty-lines, fig.height=8, fig.width=8>>=
 oldpar <- par(no.readonly = TRUE)
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
@@ -1655,6 +1623,38 @@ par <- oldpar
   and recruitment (bottom) for the base model and retrospective runs
   (based on MLE model runs).}
 \label{fig:main-biomass-recruitment-retrospective}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main-retrospective-recruitment, fig.height=6, fig.width=8>>=
+## Number of retro years for the plot. Assumes you've run them.
+plot.retro.yrs <- retrospective_yrs
+retro.cohorts <- 1999:(end.yr-2)
+##retro.model.names <- c("Base model", sapply(plot.retro.yrs, function(x) paste0("-", x, if(x == 1) " year" else " years")))
+## Need to re-assemble the list with the base as the first element
+retro.list <- list(base.model)
+for(i in plot.retro.yrs){
+  retro.list[[i + 1]] <- base.model$retros[[i]]
+}
+make.squid.plot(retro.list,
+                subplot = 1,
+                cohorts = retro.cohorts)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Retrospective analysis of recruitment deviations from MLE models over the last
+  \Sexpr{length(plot.retro.yrs)+1} years. Recruitment deviations are
+  the log-scale differences between recruitment estimated by the model
+  and expected recruitment from the spawner-recruit relationship.
+  Lines represent estimated recruitment deviations for cohorts from
+  \Sexpr{min(retro.cohorts)} to \Sexpr{max(retro.cohorts)}, with cohort
+  birth year marked at the right of each color-coded line. Values are
+  estimated by models using data available only up to the year in which
+  each cohort was a given age.}
+\label{fig:main-retrospective-recruitment}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
