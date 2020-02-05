@@ -549,17 +549,19 @@ make_age_comp_pearson_plot(base.model, subplot = 2, alpha = 0.7)
 \begin{figure}[H]
 \begin{center}
 <<main-prior-posterior, fig.height=6, fig.width=8>>=
+k <- c(key.posteriors, "ln\\(EffN_mult\\)_1", "ln\\(EffN_mult\\)_2")
+k.titles <- c(key.posteriors.titles, "DM Fishery", "DM Survey")
 make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
-                                              key.posteriors,
+                                              k,
                                               ncol = 2,
-                                              nrow = 2,
+                                              nrow = 3,
                                               show_legend = TRUE,
                                               legend_panel = 3,
-                                              titles = key.posteriors.titles)
+                                              titles = k.titles)
 @
 \end{center}
 %\vspace{0mm}
-\caption{Prior (black lines) and posterior (gray histograms) distributions for key parameters in the base model. The parameters are: natural mortality ($M$), equilibrium log recruitment $\log(R_0)$, steepness ($h$), and the additional process-error standard deviation for the acoustic survey. The maximum likelihood estimates and associated symmetric uncertainty intervals are also shown (blue lines).}
+\caption{Prior (black lines) and posterior (gray histograms) distributions for key parameters in the base model. The parameters are: natural mortality ($M$), equilibrium log recruitment $\log(R_0)$, steepness ($h$), the additional process-error standard deviation for the acoustic survey, and the Dirichlet-Multinomial parameters for the fishery and the survey. The maximum likelihood estimates and associated symmetric uncertainty intervals are also shown (blue lines).}
 \label{fig:main-prior-posterior}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

@@ -1238,9 +1238,9 @@ get_posterior_data <- function(model, param_regex){
     }
   }
   
-  if(length(posts_list) == 1){
-    posts_list <- posts_list[[1]]
-  }
+  #if(length(posts_list) == 1){
+  #  posts_list <- posts_list[[1]]
+  #}
   posts_list
 }
 
@@ -1302,11 +1302,14 @@ get_prior_data <- function(model, param_regex){
         (1.0 - Bprior) * log(Pconst + Pr - Pmin) -
         (1.0 - Aprior) * log(Pconst + Pmax - Pr)
     }else if(Ptype == "No_prior"){
-      Prior_Like <- rep(0.0, length(Pval));
+      Prior_Like <- rep(0.0, length(Pval))
+    }else if(Ptype == "Normal"){
+      Prior_Like <- rep(parline$Pr_Like, length(Pval))
     }else{
       warning("No prior found for parameter ", parline$Label)
       Prior_Like <- NA
     }
+
     prior <- NA
     if(!is.na(Prior_Like[1])){
       prior <- exp(-1 * Prior_Like)
@@ -1331,8 +1334,8 @@ get_prior_data <- function(model, param_regex){
                              mle = mle)
     
   }
-  if(length(priors_list) == 1){
-    priors_list <- priors_list[[1]]
-  }
+  # if(length(priors_list) == 1){
+  #   priors_list <- priors_list[[1]]
+  # }
   priors_list
 }
