@@ -168,7 +168,7 @@ bridge.model.dir.names.3 <- c("2020.00.04_add_fishery_comps",
 bridge.model.names.3 <- c("Add 2019 comps and weights",
                           "Update and add 2019 survey biomass",
                           "Add 2019 survey comps",
-                          "Add Dirichlet prior and tune (=base model)")
+                          "Add Dirichlet prior (=base model)")
 bridge.model.end.yr.3 <- end.yr - c(0, 0, 0, 0) # subtract 1 year from first 1 models
 
 ## -----------------------------------------------------------------------------

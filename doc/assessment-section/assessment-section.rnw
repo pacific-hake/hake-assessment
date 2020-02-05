@@ -173,8 +173,6 @@ freely estimated to accommodate unaccounted-for sources of process and
 observation error. A Dirichlet-Multinomial (D-M) likelihood was applied to age-composition data,
 with input sample sizes equal to the sum of the number of trips or hauls actually sampled across all
 fishing fleets or the number of trawl sets in the research surveys (see Section~\ref{sec:data-age-comp-likelihood}).
-Tuning quantities remained relatively
-consistent from 2018 to \Sexpr{assess.yr}.
 % Manual 2020 KFJ
 
 Uncertainty of estimated quantities was calculated via Markov Chain Monte Carlo

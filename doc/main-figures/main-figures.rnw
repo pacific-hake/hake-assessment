@@ -472,9 +472,8 @@ par <- oldpar
 \caption{Bridging models starting with the addition of simple recruitment deviations (shown
   in Figure~\ref{fig:main-bridge-5-panel-2}) and then with sequential changes including
   updating and adding 2019 survey biomass data, adding 2019 survey composition data, and then
-  adding a prior on the survey Dirichlet Multinomial parameter (see
-  Section~\ref{sec:assessment-base-model} for further details about model priors)
-  and model tuning (= 2020 base model). Panels are spawning biomass
+  adding a prior on the survey Dirichlet-Multinomial parameter, giving the
+  2020 base model. Panels are spawning biomass
   (upper panel), relative spawning biomass (spawning biomass in each year
   relative to the unfished equilibrium spawning biomass, middle left),
   absolute recruitment (middle right), recruitment deviations (lower left),
