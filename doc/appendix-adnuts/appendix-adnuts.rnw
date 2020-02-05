@@ -13,7 +13,7 @@ applicability of Bayesian methods in stock assessment.
 This appendix highlights
 model uncertainty arising from a different structural assumption or analytical choice
 compared to the base model.  The inclusion of the adnuts software was deemed
-prudent in order to compare this new approach with existing MCMC methods used for \fishname\.    
+prudent in order to compare this new approach with existing MCMC methods used for \fishname.
 
 The following figures and tables follow an executive summary format, with the addition
 of a diagnostics figure and an MCMC method comparison figure.
