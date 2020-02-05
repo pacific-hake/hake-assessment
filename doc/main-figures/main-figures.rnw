@@ -228,8 +228,7 @@ maturity.ogive.figure(model = base.model, useyears = 1966)
   of the weight-at-age
   and the maturity-at-age for the samples
   collected from North of 34.44$^\circ$N (blue line in upper plot)
-  averaged across 1975 to \Sexpr{last.data.yr}.**Caption automatically says last
-year, but figure not updated, so maybe hardwire it to say 2018.}
+  averaged across \Sexpr{start.yr.age.comps} to \Sexpr{last.data.yr}.}
 \label{fig:main-maturity}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -249,12 +248,12 @@ weight.at.age.heatmap(base.model,
 %\vspace{0mm}
 \caption{Empirical weight-at-age (kg) values used for the base model
   (the values match the colors).
-  Data are only available from 1975--\Sexpr{max.fishery.age.prop[2]}.
-  Values based on assumptions for the pre-1975 and forecast years are shown
+  Data are only available from \Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}.
+  Values based on assumptions for the pre-\Sexpr{start.yr.age.comps} and forecast years are shown
   outside the blue lines;
   alternative assumptions were tested in sensitivity runs.
-  Bold values between 1975--\Sexpr{max.fishery.age.prop[2]} represent unavailable
-  data such that weights were interpolated or extrapolated from adjacent ages or years.
+  Bold values between \Sexpr{start.yr.age.comps}--\Sexpr{max.fishery.age.prop[2]} represent
+  unavailable data such that weights were interpolated or extrapolated from adjacent ages or years.
   The sample-weighted mean weight-at-age is shown at the bottom.}
 \label{fig:main-empirical-weight-at-age}
 \end{figure}
@@ -270,7 +269,7 @@ weight.at.age.heatmap(base.model,
 \caption{Sample sizes for developing empirical weight-at-age values used in the
   base model (colors represent empirical weight-at-age data, as shown in
   Figure ~\ref{fig:main-empirical-weight-at-age}).
-  Data are available from 1975--\Sexpr{max.fishery.age.prop[2]}.
+  Data are available from \Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}.
   The total sample size for each age is shown at the bottom.}
 \label{fig:main-empirical-weight-at-age-numbers}
 \end{figure}
@@ -933,7 +932,7 @@ make.age.comp.forecast.plot(base.model)
   selectivity averaged across the most recent five years and the distribution for expected
   numbers at age at the start of \Sexpr{end.yr} (see Table~\ref{tab:main-est-numbers-at-age} for
   the MLEs for numbers-at-age for all years). The panel on the right is scaled based on
-  the weight at each age averaged across 1975 to \Sexpr{last.data.yr}.**check
+  the weight at each age averaged across \Sexpr{start.yr.age.comps} to \Sexpr{last.data.yr}.**check
   last sentence.}
 \label{fig:main-age-comp-forecast}
 \end{figure}
@@ -1362,138 +1361,11 @@ rm(temp)
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-%% heatmaps for sensitivity runs - need to re-order once decided on an order
-%% (see GitHub Issue).
-%% 53 = base, 55 = 57, 54 = 52, 58 = 56
-%% Do 32 first to verify that it's same as base - be handy to have here to
-%% compare to the next ones. Need the MCMC ones also. And do short names to
-%% read okay in captions.
-
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
-% Using .a since doesn't correspond to a sens group
-<<main-weight-at-age-sens-a, fig.height=9, fig.width=8>>=
-# Run 53 (same as base). Not worth automating caption.
-weight.at.age.heatmap(sens.models.5[[2]],
-                      proj.line.yr = base.model$endyr,
-                      extrap.mask = weight_age_extrapolation_mask,
-                      longterm.mean.ages = NULL)
-@
-\end{center}
-\caption{**Not sure yet if we're doing any of these. Empirical weight-at-age (kg) values used for sensitivity
-  run~53 and the base
-  model (Figure~\ref{fig:main-empirical-weight-at-age}).
-  Data are only available from 1975--\Sexpr{max.fishery.age.prop[2]}.
-  Values based on assumptions for the early and late years are shown
-  outside the blue lines (see Table~\ref{tab:main-wtatage-runs}).
-  Bold values between the blue lines represent unavailable data and
-  such weights were interpolated or extrapolated from adjacent ages or years.
-  The sample-weighted mean weight-at-age is shown at the bottom.}
-\label{fig:main-empirical-weight-at-age-sens-a}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-% %%%%%%%%%%%%%%%%%%%%%%%
-% \begin{figure}[H]
-% \begin{center}
-% <<main-weight-at-age-sens-b, fig.height=9, fig.width=8>>=
-% # Run 55 (verified same heatmap as 57)
-% weight.at.age.heatmap(sens.models.6, proj.line.yr = 2017)
-% @
-% \end{center}
-% \caption{**Empirical weight-at-age (kg) values used for sensitivity
-%   runs~55 and~57. Details are as in
-%   Figure~\ref{fig:main-empirical-weight-at-age-sens-a}. Note
-%   the 2018 values have to be assumed (the location of the top blue line is different to
-%   Figure~\ref{fig:main-empirical-weight-at-age-sens-a}), as described
-%   in Table~\ref{tab:main-wtatage-runs}.}
-% \label{fig:main-empirical-weight-at-age-sens-b}
-% \end{figure}
-% %%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
-<<main-weight-at-age-sens-c, fig.height=9, fig.width=8>>=
-# Run 54 (verified same heatmap as 52)
-weight.at.age.heatmap(sens.models.5[[3]],
-                      proj.line.yr = base.model$endyr,
-                      extrap.mask = weight_age_extrapolation_mask,
-                      longterm.mean.ages = NULL)
-@
-\end{center}
-\caption{**Empirical weight-at-age (kg) values used for sensitivity
-  runs~52 and~54. Details are as in
-  Figure~\ref{fig:main-empirical-weight-at-age-sens-a}. Note
-  the 2018 values have to be assumed (the location of the top blue line is different to
-  Figure~\ref{fig:main-empirical-weight-at-age-sens-a}), as described
-  in Table~\ref{tab:main-wtatage-runs}.}
-\label{fig:main-empirical-weight-at-age-sens-c}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-% %%%%%%%%%%%%%%%%%%%%%%%
-% \begin{figure}[H]
-% \begin{center}
-% <<main-weight-at-age-sens-d, fig.height=9, fig.width=8>>=
-% # Run 56 (verified same heatmap as 58)
-% weight.at.age.heatmap(sens.models.6[[2]], proj.line.yr=2017)
-% @
-% \end{center}
-% \caption{**Empirical weight-at-age (kg) used for sensitivity
-%   runs~56 and~58. Details are as in
-%   Figure~\ref{fig:main-empirical-weight-at-age-sens-a}. Note
-%   the 2018 values have to be assumed (the location of the top blue line is different to
-%   Figure~\ref{fig:main-empirical-weight-at-age-sens-a}), as described
-%   in Table~\ref{tab:main-wtatage-runs}.}
-% \label{fig:main-empirical-weight-at-age-sens-d}
-% \end{figure}
-% %%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
-<<main-biomass-base-alternative-5, fig.height=4.5, fig.width=8>>=
-make.comparison.plot(c(list(base.model), sens.models.5),
-                     subplots = 2,
-                     model.names = c(base.model.name, sens.model.names.5),
-                     end.yr = end.yr)
-@
-\end{center}
-\caption{**Maximum likelihood estimates of spawning biomass for the base
-  model and alternative sensitivity runs 52, 53, and 54 that all set
-  the pre-1975 (1966-1974) weights-at-age to the long term mean (1975--2018).
-  Run 52 has non-time-varying fecundity and the short term mean (2016--2018)
-  as the post-2017 weights-at-age. Run 53 is without
-  time-varying fecundity and with long term (1975--2018) mean as the post-2018
-  weights-at-age. Run 54 has time-varying fecundity and the short term mean
-  (2016--2018) as the post-2017 weights-at-age.
-  See Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
-\label{fig:main-biomass-base-alternative-5}
-%% \end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{figure}[H]
-\begin{center}
-<<main-biomass-base-alternative-5-mcmc, fig.height=4.5, fig.width=8>>=
-make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
-                     subplots = 2,
-                     model.names = c(base.model.name, sens.model.names.5),
-                     end.yr = end.yr)
-@
-\end{center}
-\caption{**MCMC median posterior estimates with 95\% credible interval of spawning
-  biomass for the base model and alternative sensitivity runs 52, 53,
-  and 54. See Figure~\ref{fig:main-biomass-base-alternative-5} and
-  Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
-\label{fig:main-biomass-base-alternative-5-mcmc}
-\end{figure}
-
 \begin{figure}[H]
 \begin{center}
 <<main-status-base-alternative-5, fig.height=4.5, fig.width=8>>=
-make.comparison.plot(c(list(base.model), sens.models.5),
+make.comparison.plot(c(list(base.model), list(sens.models.5)),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.5),
                      legend = TRUE,
@@ -1501,68 +1373,11 @@ make.comparison.plot(c(list(base.model), sens.models.5),
 @
 \end{center}
 %\vspace{0mm}
-\caption{**Maximum likelihood estimates of stock status for the base
-  model and alternative sensitivity runs 52, 53, and 54.
-  See Figure~\ref{fig:main-biomass-base-alternative-5} and
-  Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
+\caption{Maximum likelihood estimates of stock status for the base
+  model and alternative sensitivity run with ageing error removed.}
 \label{fig:main-status-base-alternative-5}
-
-\begin{center}
-<<main-status-base-alternative-5-mcmc, fig.height=4.5, fig.width=8>>=
-make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
-                     subplots = 4,
-                     model.names = c(base.model.name, sens.model.names.5),
-                     legend = TRUE,
-                     end.yr = end.yr)
-@
-\end{center}
-%\vspace{0mm}
-\caption{**MCMC median posterior estimates with 95\% credible interval of stock
-  status for the base model and alternative sensitivity models 52, 53,
-  and 54. See Figure~\ref{fig:main-biomass-base-alternative-5} and
-  Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
-\label{fig:main-status-base-alternative-5-mcmc}
 \end{figure}
-
-% %%%%%%%%%%%%%%%%%%%%%%%
-% \vspace{-3mm}
-% \begin{figure}[H]
-% \begin{center}
-% <<main-biomass-base-alternative-6, fig.height=4.5, fig.width=8>>=
-% make.comparison.plot(c(list(base.model, sens.models.6)),
-%                      subplots = 2,
-%                      model.names = c(base.model.name, sens.model.names.6),
-%                      end.yr = end.yr)
-% @
-% \end{center}
-% \caption{**Keep as template for now, in case needed.
-%   Maximum likelihood estimates of spawning biomass for the base
-%   model and alternative sensitivity runs 55, 56, 57, and 58 that all set
-%   the pre-1975 (1966-1974) weights-at-age to the short term mean (1975--1979).
-%   Run 55 has time-varying fecundity and the long term mean (1975--2018)
-%   as the post-2017 weights-at-age. Run 56 has non-time-varying fecundity
-%   and with short term (2016--2018) mean as the post-2017 weights-at-age.
-%   Run 57 has non-time-varying fecundity and the long term mean
-%   (1975--2018) as the post-2018 weights-at-age. Run 58 has time-varying
-%   fecundity and the short term (2016--2018) mean as the post-2017 weights-at-age.
-%   See Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
-% \label{fig:main-biomass-base-alternative-6}
-
-% \begin{center}
-% <<main-biomass-base-alternative-6-mcmc, fig.height=4.5, fig.width=8>>=
-% make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
-%                      subplots = 2,
-%                      model.names = c(base.model.name, sens.model.names.6),
-%                      end.yr = end.yr)
-% @
-% \end{center}
-% \caption{**MCMC median posterior estimates with 95\% credible interval of spawning
-%   biomass for the base model and sensitivity runs 55, 56, 57, and 58.
-%   See Figure~\ref{fig:main-biomass-base-alternative-6} and
-%   Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
-% \label{fig:main-biomass-base-alternative-6-mcmc}
-% \end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]

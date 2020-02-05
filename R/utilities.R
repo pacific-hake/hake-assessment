@@ -1282,6 +1282,7 @@ get_prior_data <- function(model, param_regex){
 
     Pmin <- parline$Min
     Pmax <- parline$Max
+
     Ptype <- ifelse(is.na(parline$Pr_type), "Normal", parline$Pr_type)
     Psd <- parline$Pr_SD
     Pr <- parline$Prior
@@ -1304,7 +1305,7 @@ get_prior_data <- function(model, param_regex){
     }else if(Ptype == "No_prior"){
       Prior_Like <- rep(0.0, length(Pval))
     }else if(Ptype == "Normal"){
-      Prior_Like <- rep(parline$Pr_Like, length(Pval))
+      Prior_Like <- 0.5*((Pval - Pr) / Psd) ^ 2
     }else{
       warning("No prior found for parameter ", parline$Label)
       Prior_Like <- NA

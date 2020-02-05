@@ -150,7 +150,7 @@ This Joint Technical Committee (JTC) assessment depends primarily on the fishery
 landings (\Sexpr{start.yr}--\Sexpr{last.data.yr}), acoustic survey biomass
 indices (Figure~\ref{fig:es-survey-biomass}) and age-compositions
 (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}), as well as fishery
-age-compositions (1975--\Sexpr{last.data.yr}). The 2011 survey index value
+age-compositions (\Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}). The 2011 survey index value
 was the lowest in the time series, and was followed by the index increasing
 in 2012, 2013, and 2015; the 2019 survey is the fourth highest of the series.
 % rank(-survey.comparison$with.extrap)

@@ -159,12 +159,10 @@ deviation estimates, and is the same as assumed in assessments from 2013 to
 catchability was set at the median unbiased estimate calculated analytically as
 per \citet{LudwigWalters1981}. Maturity is assumed to be time-invariant.
 Fecundity is defined as weight-at-age multiplied by the maturity ogive
-and is time-varying across years with empirical weight-at-age data (1975--
+and is time-varying across years with empirical weight-at-age data (\Sexpr{start.yr.age.comps}--
 \Sexpr{last.data.yr}).
-Prior to 1975 fecundity is calculated using the long-term mean weight-at-age,
+Prior to \Sexpr{start.yr.age.comps} fecundity is calculated using the long-term mean weight-at-age,
 and fecundity during the forecast period is calculated using the five most recent years of data.
-Alternative fecundity assumptions are presented through sensitivity analyses
-(Section~\ref{sec:assessment-sensitivity-analyses}).
 % Manual 2020 KFJ
 
 Statistical likelihood functions used for data fitting are typical of many stock
@@ -328,8 +326,10 @@ event that data have to be obtained directly from the sources.}
 
 The JTC also notes that the SRG concurred with our approach in 2019 of using the
 long-term averages of time-varying fecundity for years without weight-at-age
-data (i.e. before 1975 and for forecasts). For this assessment we ****** clarify
-from discussions at end of Issue \#496).
+data (i.e. before \Sexpr{start.yr.age.comps} and for forecasts). For this assessment
+we used the long-term (all data \Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}) average
+for the years prior to \Sexpr{start.yr.age.comps} and the average of the last five years
+for the forecast period (\Sexpr{forecast_yrs[1]}--\Sexpr{tail(forecast_yrs, 1)}).
 
 Finally, we note that we have complied with the following request from the 2017 SRG
 concerning the sensitivity tests to perform in all future assessments:
@@ -351,7 +351,7 @@ based on an analysis of ovaries collected during the fishery and survey in
 recent years to produce an empirical vector of the proportion mature (i.e., that
 will likely spawn) at each age.  Spawning biomass in the base-case model is
 calculated as the product of numbers-at-age, maturity-at-age, and mean
-weight-at-age (averaged over all years 1975-2017). The SRG noted that this
+weight-at-age (averaged over all years \Sexpr{start.yr.age.comps}--2017). The SRG noted that this
 approach ignores the conspicuous pattern of weights-at-age being much higher in
 the late 1970s than in recent years. Although the base-case model accounts for
 this pattern by using annual weights-at-age when calculating total biomass and
@@ -363,16 +363,16 @@ requested a sensitivity to explore the influence of this decision. To conduct
 this sensitivity an assumption was made that for calculating spawning biomass in
 2018 and future projections, average weight-at-age in the most recent 3 years of
 data be used; and for calculating spawning biomass in the unfished state and
-years before 1975, the average weight-at-age in the first 5 years of data
-(1975-1979) be used. [The alternative model maintained the base model's approach
-for estimating total biomass prior to 1975 and also in projections (using the
-weights-at-age averaged over 1975 to 2017). The SRG has requested that the JTC
+years before \Sexpr{start.yr.age.comps}, the average weight-at-age in the first 5 years of data
+(\Sexpr{start.yr.age.comps}--\Sexpr{start.yr.age.comps + 4}) be used. [The alternative model maintained the base model's approach
+for estimating total biomass prior to \Sexpr{start.yr.age.comps} and also in projections (using the
+weights-at-age averaged over \Sexpr{start.yr.age.comps} to 2017). The SRG has requested that the JTC
 apply calculations for these periods consistent with decisions taken at this
 meeting when it reports back at the 2019 SRG meeting.] Three hypotheses that
 might explain the observed changes in weights-at-age: density-dependent growth,
 environmental drivers, and fishing-induced evolution. {\bf The SRG requests that the
 JTC examine the historical weights-at-age data, evaluate approaches for
-parameterizing fecundity-at-age for years without data (pre-1975), and evaluate
+parameterizing fecundity-at-age for years without data (pre-\Sexpr{start.yr.age.comps}), and evaluate
 other methods of deriving biological reference points such as $B_0$}.
 
 \emph{Response -- The JTC agreed with the SRG recommendation to calculate spawning
@@ -380,12 +380,10 @@ biomass and fecundity using annual weight-at-age for years with data, and accord
 time-varying fecundity in the 2019 base model. Thus, fecundity
 (calculated as weight-at-age multiplied by maturity) changed from being defined by a
 single catch-weighted average of weight-at-age applied to all years to being defined
-by year-specific weight-at-ages covering the time period with data (1975--2018).
-For periods without data (pre-1975 and post-2018), catch-weighted average weight-at-age was used
+by year-specific weight-at-ages covering the time period with data (\Sexpr{start.yr.age.comps}--2018).
+For periods without data (pre-\Sexpr{start.yr.age.comps} and post-2018), catch-weighted average weight-at-age was used
 in the base model. This configuration was based on results from several investigations
-outlined in the following paragraphs. Alternative fecundity configurations (and thus weight-at-age)
-for the pre-1975 and forecast period were also used in sensitivity runs
-(see Sections~\ref{sec:assessment-fecundity-recap} and~\ref{sec:assessment-sensitivity-fecundity}).}
+outlined in the following paragraphs.}
 
 \emph{Historical weight-at-age data was re-examined to ensure that all relevant data
 were available to the assessment. Samples from the 1960s in PacFIN
@@ -405,9 +403,9 @@ Other than standard data updates and the addition of historic weight-at-age data
 fishery and surveys (see Section~\ref{sec:data-weight-at-age}), no changes were made to
 weight-at-age data based on these considerations.}
 
-\emph{Regarding the assumption of pre-1975 weight-at-ages, the JTC conducted an analysis
+\emph{Regarding the assumption of pre-\Sexpr{start.yr.age.comps} weight-at-ages, the JTC conducted an analysis
 to see whether there was any indication that weights-at-age values were trending through
-time. A weighted least squares approach was used to fit log weight (kg) data across years 1975-2018,
+time. A weighted least squares approach was used to fit log weight (kg) data across years \Sexpr{start.yr.age.comps}-2018,
 where a separate analysis was done for each age group (age-2 through age-15) and
 weights were defined as the inverse of the annual sample variance. The resulting
 slope parameter was used to better understand age-specific long-term trends in
@@ -416,16 +414,16 @@ with age-13, 14, and 15 being slightly positive and all others being slightly ne
 (Figure~\ref{fig:main-empirical.weight.at.age.years}), which was not unexpected
 given the large amount of inter-annual variability
 in the data. However, estimated slope parameters were sensitive to excluding data from
-1975--1980. This, together with the lack of a clear trend of weights-at-age
-through time, led us to use in the base model the long-term mean (1975--2018) weights-at-age
-(rather than the short term from 1975--1979) for
-the pre-1975 time period.
+\Sexpr{start.yr.age.comps}--1980. This, together with the lack of a clear trend of weights-at-age
+through time, led us to use in the base model the long-term mean (\Sexpr{start.yr.age.comps}--2018) weights-at-age
+(rather than the short term from \Sexpr{start.yr.age.comps}--\Sexpr{start.yr.age.comps + 4}) for
+the pre-\Sexpr{start.yr.age.comps} time period.
 Overall inferences were similar when using length instead of weight.}
 
-\emph{Furthermore, there were small numbers of age samples for the early years (especially 1975)
+\emph{Furthermore, there were small numbers of age samples for the early years (especially \Sexpr{start.yr.age.comps})
 as shown in Figure~\ref{fig:main-empirical-weight-at-age-numbers}. The few heavy fish in the 15-year-old and older
-accumulator group from 1976--1979 influence the short-term average for 1975--1979 time period,
-further justifying use of the long-term mean (1975--2018) for the pre-1975 time period.
+accumulator group from \Sexpr{start.yr.age.comps + 1}--\Sexpr{start.yr.age.comps + 4} influence the short-term average for \Sexpr{start.yr.age.comps}--\Sexpr{start.yr.age.comps + 4} time period,
+further justifying use of the long-term mean (\Sexpr{start.yr.age.comps}--2018) for the pre-\Sexpr{start.yr.age.comps} time period.
 See Sections~\ref{sec:assessment-fecundity-recap}
 and~\ref{sec:assessment-sensitivity-fecundity} for further details.
 and sensitivity runs that explore these assumptions.}
@@ -442,7 +440,7 @@ equivalent to the final year of data (2018).  For example, we were unable to set
 future weight-at-age values to be the mean of 2016-2018 without also setting
 the 2018 weights-at-age to that mean (thereby averaging out the 2018 data).
 Therefore, we retained the 2018 base model assumption of using the overall
-1975-2018 mean for the forecast period. See Section~\ref{sec:assessment-fecundity-recap}
+\Sexpr{start.yr.age.comps}-2018 mean for the forecast period. See Section~\ref{sec:assessment-fecundity-recap}
 for further details.}
 % On 4 February 2019, the JTC learned that
 % the newest version of Stock Synthesis (version 3.30.12) now allows independent
@@ -457,17 +455,11 @@ for further details.}
 ``An inconsistency
 in this alternative run is that the mean weight-at-age
 across all years is still used for the calculation of
-\emph{stock biomass} in the years outside the range with empirical data (1975-2017),
-rather than the short-term averages (1975-1979 or 2015-2017). A brief examination of
+\emph{stock biomass} in the years outside the range with empirical data (\Sexpr{start.yr.age.comps}-2017),
+rather than the short-term averages (\Sexpr{start.yr.age.comps}-\Sexpr{start.yr.age.comps + 4} or 2015-2017). A brief examination of
 the sensitivity of the alternative run to removing this inconsistency showed
 relatively little change in results.''  This inconsistency has been resolved
 and does not affect the 2019 base model or sensitivity runs.}
-
-\emph{Several alternative weight-at-age (and time-varying fecundity) data configurations
-were examined through sensitivity analyses.  These include (i)~time invariant
-fecundity, (ii)~alternative pre-1975 settings, and (iii)~ alternative forecast period
-settings.  See Section~\ref{sec:assessment-sensitivity-analyses} for further
-description and results from sensitivity runs.}
 
 \emph{Regarding evaluating other methods of deriving biological reference points
 such as $B_0$, the JTC expresses interest in using the developing Management
@@ -619,7 +611,7 @@ annual age-composition observation and present an analysis of the potential infl
 of changes in sampling.}
 
 \emph{Response -- The number of age (and weight) samples used to develop age
-compositions over time (1975--2018) are shown in Figure~\ref{fig:main-empirical-weight-at-age-numbers}.
+compositions over time (\Sexpr{start.yr.age.comps}--2018) are shown in Figure~\ref{fig:main-empirical-weight-at-age-numbers}.
 A formal evaluation of the influence temporal fluctuations in the number of fish
 sampled and aged has on model performance could not be completed in time for the 2019 assessment
 due to unforeseen time constraints during the assessment season.  The JTC plans to complete
@@ -1396,9 +1388,6 @@ include the following:
 \item Consideration of an alternative parameterization for time-varying
   selectivity; and
 
-\item Consideration of alternative assumptions concerning weight-at-age and
-  fecundity.
-
 \item Running the base model using the Auto-Differentiation No-U-Turn-Sampling algorithm (AD-NUTS, \citet{Monnahan2018}, \citet{Monnahan2019}).
 
 \end{enumerate}
@@ -1691,10 +1680,11 @@ chain of 24-million samples has been adequate to overcome the inefficient
 sampling caused by high parameter correlations in past assessments,
 the parameter selectivity was kept as before for this assessment.
 
-**Sensitivity runs concerning weight-at-age and fecundity are discussed in
-Sections~\ref{sec:assessment-fecundity-recap} and~\ref{sec:assessment-sensitivity-fecundity} (Table~\ref{tab:main-parameter-estimates-sens-3}).
+% **Sensitivity runs concerning weight-at-age and fecundity are discussed in
+% Sections~\ref{sec:assessment-fecundity-recap} and~\ref{sec:assessment-sensitivity-fecundity} (Table~\ref{tab:main-parameter-estimates-sens-3}).
+
 Any additional sensitivity runs arising from the Scientific Review Group
-meeting to be held from 19th February to 22nd February 2019 will be documented
+meeting to be held from 24th February to 28nd February 2020 will be documented
 in Appendix~\ref{chap:srg-requests} and briefly summarized here.
 
 % 2019 SRG -
@@ -1710,193 +1700,6 @@ in Appendix~\ref{chap:srg-requests} and briefly summarized here.
 % $ [makes emacs pretty again]
 
 **Any other sensitivities.
-
-\subsubsection{Recap of alternative 2018 model  run with time-varying fecundity}\label{sec:assessment-fecundity-recap}
-
-**Prob not needed again, or just a reduced version.
-
-In 2018 the SRG requested an alternative model run that used time-varying
-fecundity \citep{JTC2018}. We have used time-varying fecundity in the 2019 base model,
-and in three sensitivity runs with alternative assumptions about the weights-at-age
-for the years without data. For a given year, fecundity is the
-(element-wise) product of the maturity ogive and the weight-at-age
-vector for that year. Thus, the alternative weight-at-age assumptions
-affect the fecundity. We also tested these four alternative assumptions
-when using non-time-varying fecundity. The eight combinations are summarised
-in Table~\ref{tab:main-wtatage-runs}, and the four weight-at-age assumptions
-are shown in the heatmaps in
-Figures~\ref{fig:main-empirical-weight-at-age-sens-a}--\ref{fig:main-empirical-weight-at-age-sens-d}.
-The eight runs are first explained in the context of the 2018 assessment, with justification
-of our base model; results are
-then given in \ref{sec:assessment-sensitivity-fecundity}.
-
-There were four components to the SRG-requested alternative model run that
-used time-varying fecundity (see p23 of \citealt{JTC2018}):
-
-a) ``Add time-varying fecundity by multiplying the weight-at-age matrix (rather than
-   an overall mean weight-at-age vector as in the base model) and the new maturity ogive
-   to get annual estimates of fecundity from 1975--2017.''
-
-We have done this in the 2019 base model (for the updated time period
-1975--2018) because it is more consistent with time-varying weight-at-age
-than the non-time varying fecundity used in the 2018 base model. The
-fecundity for the 2018 base model came from multiplying the maturity ogive by
-an average weight-at-age vector
-to give age-dependent fecundity that was constant in time. Sensitivity
-runs 54, 55 and~58 retain the time-varying fecundity of the base model.
-Sensitivity runs 52, 53, 56 and~57 use non-time-varying fecundity, as per the
-2018 base model (Table~\ref{tab:main-wtatage-runs}).
-
-b) ``Set equilibrium and 1966-1974 fecundity (where empirical data are not
-available) to the product of maturity and the mean weight-at-age averaged
-over 1975-1979.''
-
-We have not done this in the 2019 base model, as described in
-Section~\ref{sec:assessment-response-review}, but are using the long-term average
-(1975-2018) for the equilibrium and
-1966-1974 fecundity, as for the 2018 base model. Using the fecundity based on
-1975-1979 is examined in sensitivity runs 55, 56, 57 and~58.
-
-c) ``Set forecast-year fecundity (including 2017 due to current configurations in
-Stock Synthesis) weight-at-age to the product of maturity and mean weight-at-age
-over 2015-2017.''
-
-We found no compelling evidence to use the short-term mean
-(2016-2018) for the forecasts, as described in Section~\ref{sec:assessment-response-review}.
-
-Also, the `current configuration of Stock Synthesis' issue is the
-requirement that the forecast years' weights-at-age be either (i)~the same as the
-pre-data (pre-1975) years, or (ii)~the same as the final year of data (2018).
-Thus, we cannot set the forecast years' weights-at-age to be the mean of
-2016-2018 without setting the 2018 weights-at-age to be this, which seems
-inappropriate for the base model (but is tested in runs~52, 54, 56 and~58).
-So, for the 2019 base model
-we retained the 2018 base model's assumption of using the mean from 1975-2018 for
-projections (which satisfies the requirement (i) of Stock Synthesis just described).
-
-Similarly, we cannot set the forecast year's weights-at-age to be the mean of
-1975-2018 when the pre-1975 weight-at-age is 1975-1979, without setting the 2018 weights-at-age
-to also be the mean from 2016-2018 (as noted in Section~\ref{sec:assessment-response-review}).
-This setting is done for model runs 55 and~57, but precludes
-run~55 from being a sensible base model because the 2018 weights-at-age are not
-the true 2018 data (and run~57 does not use time-varying fecundity). Run~53 uses
-the same weight-at-assumptions as the base model but does not use time-varying fecundity.
-
-% Aside for 2019. When we didn't have the 2018 age data we set it to be the mean
-% from 2016-2018, which serendipitously avoided the configuration issue, and so
-% we had the equivalent to run 54 as the base case.
-
-d) The inconsistency regarding still using the mean weight-at-age for calculating
-\emph{stock biomass} is discussed in
-Section~\ref{sec:assessment-response-review}, and is fully resolved for all runs
-in 2019.
-
-% [Hence wtatage.ss has -2018 rows for fecundity
-%  and for the weight-at-age matrices].
-
-\subsubsection{Fecundity and weight-at-age sensitivities}\label{sec:assessment-sensitivity-fecundity}
-
-**Whole section needs a look at, with major culling as we're not repeating all
-these in 2020.
-
-In 2018, the aforementioned alternative model run was investigated using
-a full MCMC computation to allow for the presentation of decision tables and
-projections. For 2019, all eight combinations in Table~\ref{tab:main-wtatage-runs}
-underwent full MCMC computations.
-The runs are labeled with run numbers which were used internally by the JTC
-and are not relevant other than to refer to each run uniquely. The extrapolation of pre-1975
-weights-at-age is required because there is catch in the model from 1966 onward but age
-and weight data were not collected until 1975.
-
-The 2018 base model had the same assumptions as run 53, with one less year of
-data (Table~\ref{tab:main-wtatage-runs}). These assumptions are
-non-time-varying fecundity,
-long-term (1975--2018) mean weights-at-age applied for the years 1966--1974, and
-long-term (1975--2018) mean weights-at-age applied for the years 2019--2021
-(Figure~\ref{fig:main-empirical-weight-at-age-sens-a}).
-
-The 2018 alternate model was similarly analogous to run 58 (Table~\ref{tab:main-wtatage-runs}), which had time-varying
-fecundity, short-term (1975--1979) mean weights-at-age applied for the years 1966--1974, and
-short term (2016--2018) mean weights-at-age applied for the years 2017--2021.
-Recall the aforementioned configuration issue, that when models use a different set of weights-at-age for the forecast years
-than for the 1966--1974 period, the last year of data (2018) cannot be included. Instead,
-the current configuration of Stock Synthesis requires 2018 to be used as a placeholder for
-the forecasting weights-at-age vector.
-
-This year's base model is a hybrid of the 2018 models, based on the 2018 base model
-but with the inclusion of time-varying fecundity.
-
-There were five further runs done, overall covering all possible combinations of long- or short-term mean
-pre-1975 weights-at-age, long- or short-term mean post-2017 weights-at-age, and time-varying
-fecundity being included or not.
-
-Weights-at-age for runs which use the long-term (1975--2018) mean for both the pre-1975
-and post-2018 periods can be seen in
-Figure~\ref{fig:main-empirical-weight-at-age-sens-a}. This figure includes run 53
-and the base model.
-
-Weights-at-age for runs which use the short-term (1975--1979) mean for the pre-1975
-period and the long-term (1975--2018) mean for the post-2017 period can be seen in
-Figure~\ref{fig:main-empirical-weight-at-age-sens-b}. This figure includes runs 55
-and 57.
-
-Weights-at-age for runs which use the long-term (1975--2018) mean for the pre-1975
-period and the short-term (2016--2018) mean for the post-2017 period can be seen in
-Figure~\ref{fig:main-empirical-weight-at-age-sens-c}. This figure includes runs 52
-and 57.
-
-Weights-at-age for runs which use the short-term (1975--1979) mean for the pre-1975
-period and the short-term (2016--2018) mean for the post-2017 period can be seen in
-Figure~\ref{fig:main-empirical-weight-at-age-sens-c}. This figure includes runs 56
-and 58.
-
-MCMC runs with a chain length of 12,000,000 were done for these sensitivities. The
-first 2,000,000 values were discarded to eliminate `burn-in' effects and each
-5,000th value thereafter was retained, resulting in 2,000 samples from the posterior
-distributions for model parameters and derived quantities. Comparisons of both the
-MLE and median posterior biomass and relative biomass trajectories with 95\% credible
-intervals follow.
-
-The base model and runs 52, 53, and 54 are compared in
-Figures~\ref{fig:main-biomass-base-alternative-5}--\ref{fig:main-status-base-alternative-5-mcmc}.
-These are the runs which have the pre-1975 weights-at-age being set to the
-long-term mean from 1975--2018. Runs 52 and 53 show little difference
-from one another, implying that changing the post-2017 weights-at-age does not have much effect
-on model outcome. However, they show a noticeable decrease in the estimated
-spawning biomass (compared to the base model) in and around the 1975 time period
-(Figures~\ref{fig:main-biomass-base-alternative-5} and~\ref{fig:main-biomass-base-alternative-5-mcmc}).
-The peak in biomass for the base model is caused by the weights-at-age in
-the early part of the time series being significantly
-higher for older fish and having the fecundity in that time period change
-accordingly when using time-varying fecundity.
-
-Run~54 also includes time-varying fecundity and exhibits the biomass peak around
-1975. Note that
-it is difficult to see the difference between the base model and run 54 using the MLE plots
-(because their only difference is in the weight-at-age for 2018 onwards).
-The MCMC plots allow us to see that the blue and red lines (base model and run 54) follow similar trajectories
-(Figures~\ref{fig:main-biomass-base-alternative-5-mcmc} and~\ref{fig:main-status-base-alternative-5-mcmc}).
-
-The base model, and runs 55, 56, 57, and 58 are compared in
-Figures~\ref{fig:main-biomass-base-alternative-6}--\ref{fig:main-status-base-alternative-6-mcmc}.
-These are the runs which have the pre-1975 weights-at-age being set to the
-short term mean (1975--2018). Runs 55 and 58 appear to have similar trajectories to one another,
-as do runs 56 and 57. The difference between these two groups is the inclusion of time-varying fecundity.
-
-Having non-time-varying fecundity and using short-term
-pre-1975 mean weights-at-age (runs 56 and 57) give an inflated 2019 stock size
-(Figures~\ref{fig:main-biomass-base-alternative-6} and~\ref{fig:main-biomass-base-alternative-6-mcmc}),
-but due to the inflation of the initial biomass give a similar stock status to the base model
-(Figures~\ref{fig:main-status-base-alternative-6} and~\ref{fig:main-status-base-alternative-6-mcmc}).
-
-Runs 55-58 produce an inflated initial biomass, due to the use of a short-term (1975--1979) mean
-weight-at-age being used for the pre-1975 time period. The weights-at-age for older fish in
-those early years is significantly higher than the long-term mean as can be seen in
-Figures~\ref{fig:main-empirical-weight-at-age-sens-b}--\ref{fig:main-empirical-weight-at-age-sens-d}.
-
-MCMC results for runs 53 and 54 including decision tables can be found in
-Appendices~\ref{chap:fecundity-53} and \ref{chap:fecundity-54}, because these
-are the closest runs to the 2019 base model.
 
 \subsection{Retrospective analyses}\label{sec:assessment-retrospective-analyses}
 

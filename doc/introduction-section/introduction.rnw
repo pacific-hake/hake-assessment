@@ -378,9 +378,13 @@ which freezes headed and gutted product while at sea, landed
 \Sexpr{last.year.can.freezer}~t. There was no Joint-Venture fishery this year.
 % Manual done 2020 KFJ
 
-**Usually paraphrase from Appendix from Canadian AP, so wait for that.
 % Paraphrased from Appendix B, no point in repeating lots of it:
-Fishing started in April and ended in late November.
+Fishing started in February and ended in early December. This year most of the 
+fish were caught in the deep water `scuzz' layer as opposed to the usual large aggregations.
+Fish migration appeared normal with early fishing in the South and moving northward throughout the season. The deeper `scuzz' fishing resulted in higher than normal bycatch of Rougheye
+and Bocaccio rockfish. Small fish (aged 2-3 years) wwere found over the whole fishing season in
+the North, around Queen Charlotte Sounds and Milbank Sound.
+
 A majority of the Canadian
 production was HGT (headed, gutted and tail off), by both shoreside and freezer vessels,
 with a very small
@@ -388,12 +392,7 @@ amount of mince and whole round produced shoreside. The Canadian hake shoreside
 TAC was harvested by freezer vessels and vessels that delivered fresh fish to shoreside
 plants.
 
-**Aggregations of hake appeared smaller this year than last, with none found in Queen Charlotte Sound. Avoidance of juvenile Sablefish was an ongoing issue with the fishery this year.
-For further details see
-the report from the Canadian Advisory Panel
-(Appendix~\ref{chap:canada-fishery-report}).
-
-**[currently all come out as NA] The most abundant year classes (by numbers) in the Canadian Freezer trawler
+The most abundant year classes (by numbers) in the Canadian Freezer trawler
 catch were age
 \Sexpr{max.freezer.trawler.age.prop.age} at
 \Sexpr{max.freezer.trawler.age.prop}\%, age
@@ -402,7 +401,9 @@ catch were age
 \Sexpr{third.freezer.trawler.age.prop.age} at
 \Sexpr{third.freezer.trawler.age.prop}\%, and age
 \Sexpr{fourth.freezer.trawler.age.prop.age} at
-\Sexpr{fourth.freezer.trawler.age.prop}\%. The most abundant year classes in the
+\Sexpr{fourth.freezer.trawler.age.prop}\%.
+
+The most abundant year classes in the
 Canadian Shoreside catch were age \Sexpr{max.shoreside.age.prop.age} at
 \Sexpr{max.shoreside.age.prop}\%, age \Sexpr{second.shoreside.age.prop.age} at
 \Sexpr{second.shoreside.age.prop}\%, age \Sexpr{third.shoreside.age.prop.age} at
@@ -417,3 +418,6 @@ some years
 % \Sexpr{years.Can.JV.catch.eq.0.recent[length(years.Can.JV.catch.eq.0.recent)]}
 there was no Joint-Venture fishery operating in Canada, as reflected
 by the relevant zeros in Table~\ref{tab:intro-catches-Can}.
+
+For further details see the report from the Canadian Advisory Panel
+(Appendix~\ref{chap:canada-fishery-report}).

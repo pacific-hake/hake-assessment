@@ -231,27 +231,14 @@ sens.model.names.4 <- c("Phi t.v. selectivity (0.21)",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 5  - Different weight-at-age schemes (first group)
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.5 <- c("2020.01.30_noCohort_ageError",
-                            "2020.01.32_eqFecund_early5",
-                            "2020.01.33_eqFecund_early10")
-sens.model.names.5 <- c("No ageing error",
-                        "Fecundity early 5 yrs",
-                        "Fecundity early 10 yrs")
+sens.model.dir.names.5 <- c("2020.01.30_noCohort_ageError")
+sens.model.names.5 <- c("No ageing error")
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 6  - ADNUTS snesitivity
 ## -----------------------------------------------------------------------------
 sens.model.dir.names.6 <- c("2020.01.31_nutsMCMC")
 sens.model.names.6 <- c("AD No-U-Turn-Sampling (NUTS)")
-
-
-## sens.model.names.5 <- c("Early weight-age 1975-2018 mean, late is 2016-2018 mean",             #52
-##                         "Early weight-age 1975-2018 mean, late is 1975-2018 mean",             #53
-##                         "TV Fecund, early weight-age 1975-2018 mean, late is 2016-2018 mean",  #54
-##                         "TV Fecund, early weight-age 1975-1979 mean, late is 1975-2018 mean*", #55
-##                         "Early weight-age 1975-1979 mean, late is 2016-2018 mean",             #56
-##                         "Early weight-age 1975-1979 mean, late is 1975-2018 mean*",            #57
-##                         "TV Fecund, early weight-age 1975-1979 mean, late is 2016-2018 mean")  #58
 
 model_list <- c(base.model.dir.name,
                 unlist(bridge.model.dir.names.1),
@@ -311,7 +298,7 @@ load.models.into.parent.env <- function(){
   ## sens.model.names.2.for.table <<- c("Base model", sens.model.names.3, sens.model.names.4)
 
   ## Third set
-  sens.models.3.for.table <<- c(list(base.model), sens.models.5, list(sens.models.6))
+  sens.models.3.for.table <<- c(list(base.model), list(sens.models.5), list(sens.models.6))
   sens.model.names.3.for.table <<- c("Base model", sens.model.names.5, sens.model.names.6)
 }
 
