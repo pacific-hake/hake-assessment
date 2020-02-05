@@ -209,7 +209,23 @@ The JTC presented evidence that supported the value used in the assessment.
 {\bf The SRG encourages the JTC to explore methods for parameterizing recruitment and/or
 estimating $\sigma_R$ that would reduce model sensitivity to the value of this constraint.}
 
-\emph{Response -- **}
+\emph{**THIS IS FROM 2019 ASSESSMENT, copying for now**}
+% From Issue \#468:
+\emph{Response -- Developing best practices for modeling recruitment variability ($\sigma_R$)
+  remains a broad topic of contemporary research.  The JTC has outlined several
+  alternative approaches for advancing this research as it applies to \fishname.
+  These are:
+  (a) estimating $\sigma_R$ in MCMC runs while testing semi-parametric selectivity;
+  (b) estimating recruitment autocorrelation to examine the impact it has on the model
+  and whether it reduces sensitivity to the choice of $\sigma_R$;
+  (c) use the Template Model Builder (TMB)
+  code developed by Nis Jacobsen for the Management Strategy Evaluation to explore
+  random effects treatment of recruitment variability \citep{Thorson2019}.
+  The JTC plans to continue to work towards evaluating and testing best practices
+  for modeling recruitment variability.  Progression on these research topics was
+  halted during the 2019 assessment season due to unforeseen time constraints imposed
+  on the JTC.
+}
 
 2. The SRG notes that when setting values for other parameters that cannot be estimated
 directly with confidence, the choice of values should be made using methods that are
