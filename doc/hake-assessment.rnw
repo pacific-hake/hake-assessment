@@ -362,9 +362,9 @@ thinking. *******COMMENT ME OUT WHEN DONE*******
 <<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
 @
 
-\rfoot{Appendix~\ref{chap:fecundity-10} -- Fecundity Early 10 sensitivity}
-<<appendices-fecundity, child='appendix-fecundity-10/appendix-fecundity-10.rnw'>>=
-@
+% \rfoot{Appendix~\ref{chap:fecundity-10} -- Fecundity Early 10 sensitivity}
+% <<appendices-fecundity, child='appendix-fecundity-10/appendix-fecundity-10.rnw'>>=
+% @
 
 \rfoot{Appendix~\ref{chap:age1-survey} -- Age-1 survey sensitivity}
 <<appendices-fecundity, child='appendix-age1-survey/appendix-age1-survey.rnw'>>=
