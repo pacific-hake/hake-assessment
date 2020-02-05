@@ -17,7 +17,7 @@ resource off the west coast of the United States and Canada at the start of
 \Sexpr{assess.yr}. This stock exhibits seasonal migratory behavior, ranging from
 offshore and generally southern waters during the winter spawning season to
 coastal areas between northern California and northern British Columbia during
-the spring, summer and fall when the fishery is conducted. In years with warmer
+the spring, summer, and fall when the fishery is conducted. In years with warmer
 water the stock tends to move farther to the north during the summer. Older
 \simplename\ tend to migrate farther north than younger fish in all years, with
 catches in the Canadian zone typically consisting of fish greater than four
@@ -55,9 +55,9 @@ make.catches.plot(catches,
 %
 Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to
 the modern fishery. Over the early period, \Sexpr{min(catches$Year)}--1990, most
-removals were from foreign or joint-venture fisheries. Over all years, the
-catch in U.S. waters averaged \Sexpr{f(mean(catches$Ustotal))}~t, or
-\Sexpr{round(100*mean(catches$Ustotal)/mean(catches$TOTAL),1)}\% of the average
+removals were from foreign or joint-venture fisheries.
+Catch in U.S. waters averaged \Sexpr{f(mean(catches$Ustotal))}~t, or
+\Sexpr{round(100*mean(catches$Ustotal/catches$TOTAL),1)}\% of the
 total catch, while catch from Canadian waters averaged
 \Sexpr{f(mean(catches$CANtotal))}~t. Over the last 10 years,
 \Sexpr{max(catches$Year)-9}--\Sexpr{max(catches$Year)}
@@ -71,7 +71,7 @@ catches averaging \Sexpr{f(mean(catches[catches$Year %in%
 coastwide catch in \Sexpr{end.yr-1} was \Sexpr{last.year.landings}~t, out of a
 total allowable catch (TAC, adjusted for carryovers) of
 \Sexpr{last.year.tac}~t. Attainment in the U.S.~was
-\Sexpr{last.year.us.attained}\% of its quota; in Canada it was
+\Sexpr{last.year.us.attained}\% of its quota and in Canada it was
 \Sexpr{last.year.can.attained}\%.
 %
 <<total-catches-table, results='asis', echo=FALSE>>=
@@ -96,11 +96,11 @@ interchangeably. Estimates of discard within the target fishery are included,
 but discarding of \fishname\ in non-target fisheries is not. Discard from all
 fisheries, including those that do not target hake, is estimated to be less
 than 1\% of landings in recent years. During
-the last five years, catches have been above the long-term average catch
+the last five years, catches were above the long-term average catch
 (\Sexpr{f(long.term.avge.catch)}~t) in
-\Sexpr{last.5.years.above.avge[1:(length(last.5.years.above.avge)-1)]} and
+\Sexpr{last.5.years.above.avge[1:(length(last.5.years.above.avge)-1)]}, and
 \Sexpr{last.5.years.above.avge[length(last.5.years.above.avge)]}
-(these last three years being the highest catches on record),
+(these last three years being the highest catches on record)
 and below it
 in \Sexpr{last.5.years.below.avge}.
 % in \Sexpr{last.5.years.below.avge[1:(length(last.5.years.below.avge)-1)]}.
@@ -111,9 +111,9 @@ between 2001 and 2008 were predominantly comprised of fish from the very large
 1999 year class, with the cumulative removal (through \Sexpr{end.yr-1}) from
 that cohort estimated at approximately
 \Sexpr{f(cohort.catch.1999/1e6,2)}~million~t. Through \Sexpr{last.data.yr}, the
-total catch of the 2010, 2014 and 2016 year classes is estimated to be about
+total catch of the 2010, 2014, and 2016 year classes is estimated to be about
 \Sexpr{f(cohort.catch.2010/1e6,2)}~million~t,
-\Sexpr{f(cohort.catch.2014/1e6,2)}~million~t and
+\Sexpr{f(cohort.catch.2014/1e6,2)}~million~t, and
 \Sexpr{f(cohort.catch.2016/1e6,2)}~million~t,
 respectively.
 
@@ -151,8 +151,8 @@ landings (\Sexpr{start.yr}--\Sexpr{last.data.yr}), acoustic survey biomass
 indices (Figure~\ref{fig:es-survey-biomass}) and age-compositions
 (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}), as well as fishery
 age-compositions (\Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}). The 2011 survey index value
-was the lowest in the time series, and was followed by the index increasing
-in 2012, 2013, and 2015; the 2019 survey is the fourth highest of the series.
+was the lowest in the time series and was followed by the index increasing
+in 2012, 2013, and 2015; the 2019 estimate is the fourth highest of the series.
 % rank(-survey.comparison$with.extrap)
 % Not worth automating as have to think
 %  about what is worth saying each time anyway.
@@ -165,7 +165,7 @@ retrospective investigations to evaluate the potential consequences of parameter
 uncertainty, alternative structural models, and historical performance of the
 assessment model, respectively. The Bayesian approach combines prior knowledge
 about natural mortality, stock-recruitment steepness (a parameter for stock
-productivity) and several other parameters, with likelihoods for acoustic survey
+productivity), and several other parameters, with likelihoods for acoustic survey
 biomass indices, acoustic survey age-composition data, and fishery
 age-composition data. Integrating the joint posterior distribution over model
 parameters (via the Markov Chain Monte Carlo algorithm) provides probabilistic
@@ -188,19 +188,20 @@ the magnitude of extreme cohort strength estimates. In closed-loop simulations,
 management based upon assessment models allowing for time-varying fishery
 selectivity led to higher median average catch, lower risk of falling below 10\%
 of unfished biomass ($B_0$), smaller probability of fishery closures, and lower
-inter-annual variability in catch compared to assessment models which force
+inter-annual variability in catch compared to assessment models that force
 time-invariant fishery selectivity. Even a small degree of flexibility in the
-assessment model fishery selectivity could reduce the effects of errors caused
+fishery selectivity could reduce the effects of errors caused
 by assuming selectivity is constant over time. Therefore, we retain time-varying
-selectivity in this assessment, continuing with the new parameterization and
-increase variability introduced
-in the 2017 assessment.
-We apply the Dirichlet-Multinomial approach to weighting
-composition data again this year, though introduce a normal prior for the
-parameters [**maybe say more here once main text is written].
+selectivity in this assessment.
+We retain the Dirichlet-Multinomial approach to weighting
+composition data with the addition of an almost uniform prior placed on
+the Dirichlet-Multinomial parameters.
 We again provide sensitivities to alternative data-weighting
-approaches. We retain the time-varying fecundity introduced in 2019 **mention
-assumptions (once they are summarised in main text).
+approaches. Time-varying fecundity, which was introduced in 2019, was retained.
+Although, the weight-at-age information for the forecast period
+was changed to be a representation of the last five years rather than
+all years such that the year range matched that used for selectivity and
+other processes.
 % Hardwire (rather than use assess.yr) years in these final sentences, else they
 %  become incorrect the following year.
 
@@ -276,7 +277,7 @@ from the 2010 year class surpassing the age at which gains in weight from growth
 are greater than the loss in weight from mortality.
 The 2014 year class is estimated to be large, though not as large as the 1999
 and 2010 year classes, increasing the biomass in 2017. The estimated biomass has
-declined in each of 2018, 2019 and 2020, during a time of record catches.
+declined since 2017, during a time of record catches.
 % Manual 2020 done.
 
 The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning
@@ -285,7 +286,7 @@ $B_0$) is \Sexpr{curr.depl.median}\%. However, the uncertainty
 is large, with a 95\%
 posterior credibility interval from \Sexpr{curr.depl.lower}\% to
 \Sexpr{curr.depl.upper}\% (Table~\ref{tab:es-biomass}). The median estimate of
-the \Sexpr{end.yr} spawning biomass is \Sexpr{curr.bio.median}~million~t (with a
+the \Sexpr{end.yr} female spawning biomass is \Sexpr{curr.bio.median}~million~t (with a
 95\% posterior credibility interval from \Sexpr{curr.bio.lower} to
 \Sexpr{curr.bio.upper}~million~t). The estimate of the \Sexpr{end.yr-1} female
 spawning biomass is \Sexpr{prev.bio.median}
@@ -301,7 +302,7 @@ make.biomass.table(base.model,
                    weight.factor = 1000,
                    xcaption = "Recent trends in estimated beginning of the year
                                 female spawning biomass (thousand~t) and spawning
-                                biomass level relative to estimated unfished
+                                biomass relative to estimated unfished
                                 equilibrium.",
                    xlabel = "tab:es-biomass",
                    font.size = 12,
@@ -392,7 +393,7 @@ probability that the 2010 year class is larger than the 1980 year class (this
 probability was \Sexpr{prob.percent.2010.rec.gt.1980.rec.last.year.assess}\% for
 last year's assessment).
 The model currently estimates smaller-than-average 2011, 2012, 2013,
-2015, 2017 and 2018 year classes (median recruitment below the mean of all median recruitments).
+2015, 2017, and 2018 year classes (median recruitment below the mean of all median recruitments).
 % Done for for 2020 assessment
 %  years.since.2010.recruitment.med.below.mean  # ignore assess.yr-1
 % AME put in definition of below-average, else it looks like it contradicts the
@@ -462,7 +463,7 @@ the target of 1.0
 %% when spawning biomass was low
 for all years
 (see Table~\ref{tab:es-fishing-intensity} for recent
-years, and Figure~\ref{fig:es-fishing-intensity}).
+years and Figure~\ref{fig:es-fishing-intensity}).
 % for 2017 assessment, consider revising definition of Fishing Intensity as
 % discussed
 % in issue #158: https://github.com/cgrandin/hake-assessment/issues/158
