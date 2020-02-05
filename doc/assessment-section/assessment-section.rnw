@@ -234,7 +234,27 @@ characterizing the flexibility in selectivity, but this method did not resolve t
 results to the choice of $\Phi$. {\bf The SRG recommends that the JTC provide a review of how
 time-varying selectivity is parameterized and estimated in other assessments.}
 
-\emph{Response -- **}
+\emph{Response -- Most methods that are available to estimate time-varying selectivity require
+subjective choices. Common choices include
+which years to model using a time block,
+level of variability for a penalized vector, or
+degree of smoothing for a spline.
+Alternatively, state-space models can be used estimate time-varying selectivity in two
+dimensions, age and time, where the degree of smoothing is estimated \citep{NielsenBerg2014}.}
+
+\emph{A comparison project was recently launched by the 
+International Council for the Exploration of the Sea (ICES) Methods Working Group
+to compare the results of four stock assessment frameworks,
+State-Space Assessment Model (SAM),
+Woods Hole Assessment Method (WHAM),
+Stock Synthesis, and
+Age Structured Assessment Program (ASAP), that estimate time-varying selectivity
+using different assumptions. Each framework will be fit to data from 10 stocks
+using multiple configurations. This study will allow for the comparison of
+estimated trajectories between two state-space frameworks and two well-used
+statistical catch-at-age models when time-varying selectivity is ignored or
+estimated using the current best practices for each framework. Results will
+inform best practices for this assessment in 2021.}
 
 3. The histological analysis of ovaries for maturity presented in 2018 showed a distinct
 difference in the percent of Hake that are mature at age 2 and age 3 between areas, with a
