@@ -475,15 +475,6 @@ The first 4,000,000 values were discarded to eliminate `burn-in' effects and
 each 10,000th value thereafter was retained, resulting in \Sexpr{num.mcmc.samples}
 samples from the posterior distributions for model parameters and derived
 quantities.
-The new priors for $\theta_{\text{fish}}$ and $\theta_{\text{fish}}$ resulted ..... the resulting multiplier applied to the survey
-age-composition data ranged between
-\Sexpr{DM.weight.survey.low} and \Sexpr{DM.weight.survey.high} with a
-median of \Sexpr{DM.weight.survey.median}.
-The D-M parameter for the fishery weights was well sampled by the MCMC algorithm,
-with a median estimate of
-$\log \theta_{\text{fish}} = \Sexpr{log.theta.fishery.median}$ and an associated
-median weight of
-$\theta_{\text{fish}}/(1+\theta_{\text{fish}}) = \Sexpr{DM.weight.fishery.median}$.
 
 Stationarity of the posterior distribution for model parameters was
 re-assessed via a suite of standard single-chain and multi-chain diagnostic tests.
@@ -514,6 +505,16 @@ correlation
 between the 2010 and 2012 recruitment deviations. This continues to be likely
 caused by the relative proportion of these two cohorts being better informed by
 recent age-composition data than the absolute magnitude of these recruitments.
+
+The new priors for $\theta_{\text{fish}}$ and $\theta_{\text{fish}}$ resulted ..... the resulting multiplier applied to the survey
+age-composition data ranged between
+\Sexpr{DM.weight.survey.low} and \Sexpr{DM.weight.survey.high} with a
+median of \Sexpr{DM.weight.survey.median}.
+The D-M parameter for the fishery weights was well sampled by the MCMC algorithm,
+with a median estimate of
+$\log \theta_{\text{fish}} = \Sexpr{log.theta.fishery.median}$ and an associated
+median weight of
+$\theta_{\text{fish}}/(1+\theta_{\text{fish}}) = \Sexpr{DM.weight.fishery.median}$.
 
 The base model fit (Figure~\ref{fig:main-mcmc-survey-fit}) to the
 acoustic survey biomass index (Figure~\ref{fig:main-survey-extrap-biomass})
