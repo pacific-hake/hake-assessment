@@ -108,16 +108,21 @@ The largest changes between the
 \Sexpr{last.assess.yr} and \Sexpr{assess.yr} stock assessments are the addition of another
 year of
 acoustic survey and
-fishery data, the use of just five recent years, rather than all years, of weight-at-age
-data to calculate fecundity-at-age in the forecast period, and the two structural changes.
+fishery data, the use of just five recent years (rather than all years) of weight-at-age
+data to calculate fecundity-at-age in the forecast period, and the following two structural changes.
 A nearly uniform prior (in transformed space) was placed on the
 Dirichlet-Multinomial parameters used to weight the age-compostion data.
 Estimated recruitment deviations were no longer constrained to sum to zero.
 % Manual 2020 KFJ
 
 The \Sexpr{assess.yr} base model includes an acoustic data time series from 1995
-to \Sexpr{last.survey.year}. The updated maturity ogive from 2018 was retained
-(see Section~\ref{sec:data-maturity}). The Dirichlet-Multinomial (D-M)
+to \Sexpr{last.survey.year}. Maturity is assumed to be time-invariant and the
+maturity ogive updated in 2018 was retained
+(see Section~\ref{sec:data-maturity}).
+Fecundity is defined as weight-at-age multiplied by the maturity ogive
+and is time-varying across years with empirical weight-at-age data (\Sexpr{start.yr.age.comps}--
+\Sexpr{last.data.yr}; see Section~\ref{sec:data-weight-at-age}).
+The Dirichlet-Multinomial (D-M)
 likelihood approach \citep{ThorsonEtAl2017Dirichlet} was again used to estimate the weights
 associated with age-composition data, rather than iteratively tuning the sample size multiplier
 as in 2017 and earlier assessments (see
@@ -135,7 +140,6 @@ the sampling design) and age-1 for the fishery until a maximum age of 6 (all
 fish 6 and older have the same selectivity).
 % Manual 2020 KFJ
 
-** Why do we list the priors here when they are in the data section.
 Prior probability distributions are used for a select few parameters
 and fixed values are used for several parameters. For the base model, the
 instantaneous rate of natural mortality ($M$) is estimated with a
@@ -157,12 +161,7 @@ consistency with the observed variability in the time series of recruitment
 deviation estimates, and is the same as assumed in assessments from 2013 to
 \Sexpr{last.assess.yr} (Table~\ref{tab:main-assessment-changes}). Survey
 catchability was set at the median unbiased estimate calculated analytically as
-per \citet{LudwigWalters1981}. Maturity is assumed to be time-invariant.
-Fecundity is defined as weight-at-age multiplied by the maturity ogive
-and is time-varying across years with empirical weight-at-age data (\Sexpr{start.yr.age.comps}--
-\Sexpr{last.data.yr}).
-Prior to \Sexpr{start.yr.age.comps} fecundity is calculated using the long-term mean weight-at-age,
-and fecundity during the forecast period is calculated using the five most recent years of data.
+per \citet{LudwigWalters1981}.
 % Manual 2020 KFJ
 
 Statistical likelihood functions used for data fitting are typical of many stock
@@ -174,9 +173,6 @@ freely estimated to accommodate unaccounted-for sources of process and
 observation error. A Dirichlet-Multinomial (D-M) likelihood was applied to age-composition data,
 with input sample sizes equal to the sum of the number of trips or hauls actually sampled across all
 fishing fleets or the number of trawl sets in the research surveys (see Section~\ref{sec:data-age-comp-likelihood}).
-A weighting parameter for the fishery
-and the survey age compositions was estimated using nearly uniform priors
-with a mean of \Sexpr{effn.prior[2]} and standard deviation of \Sexpr{effn.prior[3]} (in Normal space).
 % todo: can we remove the following two sentences?
 Tuning quantities did not change in assessments from 2012 to
 2015, however additional tuning was required in 2016 and 2017 given the
