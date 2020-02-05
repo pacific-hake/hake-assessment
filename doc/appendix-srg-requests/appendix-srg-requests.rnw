@@ -5,86 +5,81 @@
 \label{chap:srg-requests}
 
 
-This appendix contains will contain any results requested at the
-Scientific Review Group meeting held from 25th February to 28th
-February, 2020 in Seattle, WA, USA.
+This appendix summarizes results produced in response to 
+Scientific Review Group requests made during the meeting held
+from 25th February to 28th February, 2020 in Seattle, WA, USA.
 
-**KEEP the following for now since may want some of it in a new sensitivy
-appendix for age-1 index, as we promised below.
+\section{Request 1}
 
-\section{Addition of 500,000 t catch level to forecasting}
+Response here.
 
-To bridge a large gap in catch levels in the decision tables, the SRG requested
-the addition of a 500,000 t catch level to the forecasting. This new level was
-added by the JTC during the meeting, and is included in all relevant tables and figures in this
-final assessment document.
+\section{Request 2}
 
-\section{Calculate retrospectives for the sensitivity run that includes the age-1 index}
+Response here.
 
-The SRG requested the retrospectives be calculated for the sensitivity run that includes the age-1 index
-in the model. The resulting retrospective cohort plots and associated uncertainty in the
-recruitment deviations were viewed and discussed, and are shown in
-Figures~\ref{fig:srg-requests-baby-retrospective-recruitment}
-and~\ref{fig:srg-requests-retrospective-recruitment} and
-Table~\ref{tab:srg-requests-cohorts}.
+%The SRG requested the retrospectives be calculated for the sensitivity run that includes the age-1 index
+%in the model. The resulting retrospective cohort plots and associated uncertainty in the
+%recruitment deviations were viewed and discussed, and are shown in
+%Figures~\ref{fig:srg-requests-baby-retrospective-recruitment}
+%and~\ref{fig:srg-requests-retrospective-recruitment} and
+%Table~\ref{tab:srg-requests-cohorts}.
+%Investigations into inclusion of the age-1 index will continue in the \Sexpr{assess.yr + 1}
+%assessment, which will include a full MCMC run with an appendix containing forecast
+%decision tables, and other relevant MCMC outputs.
 
-Investigations into inclusion of the age-1 index will continue in the \Sexpr{assess.yr + 1}
-assessment, which will include a full MCMC run with an appendix containing forecast
-decision tables, and other relevant MCMC outputs.
+%\begin{figure}[H]
+%\begin{center}
+%<<srg-requests-baby-squid-base, fig.height=6, fig.width=8>>=
+%plot.retro.yrs <- retrospective_yrs
+%retro.cohorts <- c(2014, 2010, 2007, 2009)     # Selecting three years as examples
+%retro.list <- list(base.model)
+%for(i in plot.retro.yrs){
+%  retro.list[[i + 1]] <- base.model$retros[[i]]
+%}
+%make.squid.plot(retro.list,
+%                subplot = 1,
+%                cohorts = retro.cohorts)
+%@
+%\end{center}
+%\caption{Retrospective analysis of recruitment deviations for selected cohorts
+%from MLE models associated with the age-1 index sensitivity evaluation over the last
+%  \Sexpr{length(plot.retro.yrs) + 1} years. Recruitment deviations are
+%  the log-scale differences between recruitment estimated by the model
+%  and expected recruitment from the spawner-recruit relationship.
+%  Lines represent estimated recruitment deviations for example cohorts from
+%  \Sexpr{min(retro.cohorts)} to \Sexpr{max(retro.cohorts)}, with cohort
+%  birth year marked at the right of each color-coded line. Values are
+%  estimated by models using data available only up to the year in which
+%  each cohort was a given age.}
+%\label{fig:srg-requests-baby-retrospective-recruitment}
+%\end{figure}
 
-\begin{figure}[H]
-\begin{center}
-<<srg-requests-baby-squid-base, fig.height=6, fig.width=8>>=
-plot.retro.yrs <- retrospective_yrs
-retro.cohorts <- c(2014, 2010, 2007, 2009)     # Selecting three years as examples
-retro.list <- list(base.model)
-for(i in plot.retro.yrs){
-  retro.list[[i + 1]] <- base.model$retros[[i]]
-}
-make.squid.plot(retro.list,
-                subplot = 1,
-                cohorts = retro.cohorts)
-@
-\end{center}
-\caption{Retrospective analysis of recruitment deviations for selected cohorts
-  from MLE models associated with the age-1 index sensitivity evaluation over the last
-  \Sexpr{length(plot.retro.yrs) + 1} years. Recruitment deviations are
-  the log-scale differences between recruitment estimated by the model
-  and expected recruitment from the spawner-recruit relationship.
-  Lines represent estimated recruitment deviations for example cohorts from
-  \Sexpr{min(retro.cohorts)} to \Sexpr{max(retro.cohorts)}, with cohort
-  birth year marked at the right of each color-coded line. Values are
-  estimated by models using data available only up to the year in which
-  each cohort was a given age.}
-\label{fig:srg-requests-baby-retrospective-recruitment}
-\end{figure}
-
-\begin{figure}[H]
-\begin{center}
-<<srg-requests-squid-age1, fig.height=6, fig.width=8>>=
-plot.retro.yrs <- retrospective_yrs
-retro.cohorts <- 1999:(end.yr-2)
-retro.list <- list(base.model)
-for(i in plot.retro.yrs){
-  retro.list[[i + 1]] <- base.model$retros[[i]]
-}
-make.squid.plot(retro.list,
-                subplot = 1,
-                cohorts = retro.cohorts)
-@
-\end{center}
-\caption{Retrospective analysis of recruitment deviations for all cohorts
-  from MLE models associated with the age-1 index sensitivity evaluation over the last
-  \Sexpr{length(plot.retro.yrs) + 1} years. Recruitment deviations are
-  the log-scale differences between recruitment estimated by the model
-  and expected recruitment from the spawner-recruit relationship.
-  Lines represent estimated recruitment deviations for all cohorts from
-  \Sexpr{min(retro.cohorts)} to \Sexpr{max(retro.cohorts)}, with cohort
-  birth year marked at the right of each color-coded line. Values are
-  estimated by models using data available only up to the year in which
-  each cohort was a given age.}
-\label{fig:srg-requests-retrospective-recruitment}
-\end{figure}
+%\begin{figure}[H]
+%\begin{center}
+%<<srg-requests-squid-age1, fig.height=6, fig.width=8>>=
+%plot.retro.yrs <- retrospective_yrs
+%retro.cohorts <- 1999:(end.yr-2)
+%retro.list <- list(base.model)
+%for(i in plot.retro.yrs){
+%  retro.list[[i + 1]] <- base.model$retros[[i]]
+%}
+%make.squid.plot(retro.list,
+%                subplot = 1,
+%                cohorts = retro.cohorts)
+%@
+%\end{center}
+%\caption{Retrospective analysis of recruitment deviations for all cohorts
+%  from MLE models associated with the age-1 index sensitivity evaluation over the last
+%  \Sexpr{length(plot.retro.yrs) + 1} years. Recruitment deviations are
+%  the log-scale differences between recruitment estimated by the model
+%  and expected recruitment from the spawner-recruit relationship.
+%  Lines represent estimated recruitment deviations for all cohorts from
+%  \Sexpr{min(retro.cohorts)} to \Sexpr{max(retro.cohorts)}, with cohort
+%  birth year marked at the right of each color-coded line. Values are
+%  estimated by models using data available only up to the year in which
+%  each cohort was a given age.}
+%\label{fig:srg-requests-retrospective-recruitment}
+%\end{figure}
 
 % <<srg-requests-cohort-table, results='asis', echo=FALSE>>=
 % make.recr.dev.uncertainty.table(list(base.model,

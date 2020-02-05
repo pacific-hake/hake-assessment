@@ -3,17 +3,51 @@
 \chapter{Sensitivity run using AD NUTS algorithm -- MCMC results}
 \label{chap:adnuts}
 
-**Please check, winging this off the top of my head to get it working:
-**This appendix contains MCMC model results for the run in which the equilibrium
-fecundity as assumed to be the average of the first ten years of data,
-as described in
-**Sections~\ref{sec:assessment-fecundity-recap}--\ref{sec:assessment-sensitivity-fecundity}
-**and Table~\ref{tab:main-wtatage-runs}.
+This appendix contains base model Bayesian MCMC results using a new analytical tool
+for conducting efficient Bayesian MCMC algorithms (AD No-U-Turn Sampler, or
+adnuts, software; \citet{Monnahan2018}, \citet{Monnahan2019}). 
+This version of the base model uses the more efficient
+adNuts software for conducting MCMC which has the potential to improve the
+applicability of Bayesian methods in stock assessment.  
 
-**Check text and figures - all works, haven't checked if correct or make sense.
+This appendix highlights
+model uncertainty arising from a different structural assumption or analytical choice
+compared to the base model.  The inclusion of the adnuts software was deemed
+prudent in order to compare this new approach with existing MCMC methods used for \fishname\.    
+
+The following figures and tables follow an executive summary format, with the addition
+of a diagnostics figure and an MCMC method comparison figure.
 
 % Keeping chunk names as ...53, which is from 2019 assessment (where we had four
 % similar appendices), but not worth changing as it's just the labels).
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=6.0in, height=6.0in]{main-figures/SummaryDiagnostics_nuts.eps}
+   % Download from Google Drive
+\end{center}
+\caption{Summary histograms of MCMC diagnostics for all base model parameters
+together with the derived time series of spawning biomass and relative spawning biomass.
+The level of autocorrelation in the chain (distribution across lag times, i.e., distance between samples in the chain, shown in the top left panel) influences the effective sample size (top right panel) used to estimate posterior distributions. The Geweke statistic (lower left panel) tests for equality between means located in the first part of the chain against means in the last part of the chain. The Heidelberger and Welch statistic (lower right panel) tests if the sampled values come from a stationary distribution by comparing different sections of the chain.}
+\label{fig:nuts-diagnostic}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=7.0in, height=7.0in]{main-figures/MCMC_compares_StockStatus.eps}
+   % Download from Google Drive
+\end{center}
+\caption{Comparison of model results between the existing MCMC algorithm used in the \fishname\ assessment (admb MCMC)
+and the more efficient adnuts algorithm (nuts MCMC). Results showing spawning biomass (top left), relative stock size
+(top right), recruitment deviations (bottom left), and individual parameter estimates (median; bottom right) are shown.}
+\label{fig:nuts-compareMCMC}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
