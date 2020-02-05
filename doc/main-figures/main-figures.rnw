@@ -1457,9 +1457,9 @@ weight.at.age.heatmap(sens.models.5[[3]],
 \end{center}
 \caption{**Empirical weight-at-age (kg) values used for sensitivity
   runs~52 and~54. Details are as in
-  Figure~\ref{fig:main-empirical.weight.at.age.sens.a}. Note
+  Figure~\ref{fig:main-empirical-weight-at-age-sens-a}. Note
   the 2018 values have to be assumed (the location of the top blue line is different to
-  Figure~\ref{fig:main-empirical.weight.at.age.sens.a}), as described
+  Figure~\ref{fig:main-empirical-weight-at-age-sens-a}), as described
   in Table~\ref{tab:main-wtatage-runs}.}
 \label{fig:main-empirical-weight-at-age-sens-c}
 \end{figure}
@@ -1475,9 +1475,9 @@ weight.at.age.heatmap(sens.models.5[[3]],
 % \end{center}
 % \caption{**Empirical weight-at-age (kg) used for sensitivity
 %   runs~56 and~58. Details are as in
-%   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}. Note
+%   Figure~\ref{fig:main-empirical-weight-at-age-sens-a}. Note
 %   the 2018 values have to be assumed (the location of the top blue line is different to
-%   Figure~\ref{fig:main-empirical.weight.at.age.sens.a}), as described
+%   Figure~\ref{fig:main-empirical-weight-at-age-sens-a}), as described
 %   in Table~\ref{tab:main-wtatage-runs}.}
 % \label{fig:main-empirical-weight-at-age-sens-d}
 % \end{figure}
