@@ -255,15 +255,17 @@ make.survey.history.table(survey.history,
 
 <<main-maturity-ogives-table, results='asis', echo=FALSE>>=
 make.maturity.ogives.table(maturity.ogives,
-                           xcaption = "Information on maturity and fecundity used in this assessment as
+                           xcaption = paste0("Information on maturity and fecundity used in this assessment as
                                        shown in Figure~\\ref{fig:main-maturity}. The sample sizes refer
                                        to the subset of samples in Table~\\ref{tab:main-ovaries} for which
                                        age readings and histological estimates of maturity have been completed.
                                        The mean weight (kg) is based on a much larger set of samples. Mean
                                        fecundity is the product of maturity and mean weight, but note that
-                                       year-specific fecundities from **1975-2018 were used in the stock
-                                       assessment. The values reported for ages 15 and above represent the
-                                       average across all samples in this range.",
+                                       year-specific fecundities from ",
+                                       start.yr.age.comps,
+                                       "--",
+                                       last.data.yr,
+                                       " were used in the stock assessment. The values reported for ages 15 and above                                                represent the average across all samples in this range."),
                            xlabel = "tab:main-ogives",
                            font.size = 10,
                            space.size = 10)
