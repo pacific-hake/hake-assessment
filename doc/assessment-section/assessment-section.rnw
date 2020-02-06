@@ -548,11 +548,13 @@ survey. Humboldt Squid have similar TS to hake
 which could introduce bias in the biomass estimate for that year, and
 which also likely influenced hake population dynamics through predation in that year.
 
-The MLE and median posterior density estimate underfit the 2015 survey
-index and overfit the 2017 survey index. This is likely due to fishery data suggesting
-slightly different population dynamics than the survey in recent years.  This phenomenon can arise
-when the fishery gets a prominent signal about age-1 fish, as it did in 2015,
-whereas the survey contains information on age-2 and older fish.
+The MLE and median posterior density estimates underfit the 2015 survey
+index, overfit the 2017 index, and closely fit the 2019 index (Figure~\ref{fig:main-mcmc-survey-fit}).
+This is likely due to slight differences in what the fishery composition data
+and survey composition data, when considered independently, would otherwise
+suggest as population trends.
+Additionally, the population has undergone recent high catch levels and produced
+a couple of above-average cohorts that are now mature.
 
 Fits to the age-composition data continue to show close correspondence to the
 dominant and small cohorts observed in the data
@@ -606,8 +608,9 @@ distribution and the prior may be constraining the posterior distribution from s
 further. Broadening
 the prior distribution by increasing the prior standard deviation for the natural mortality
 parameter is examined in sensitivity runs (see Section~\ref{sec:assessment-sensitivity-analyses}).
-Other parameters showed updating from non-informative priors to stationary posterior
-distributions.
+Other parameters showed updating from diffuse priors to stationary posterior
+distributions, including $\theta_{\text{surv}}$ (unlike in the 2019 assessment,
+as outlined in Section~\ref{sec:data-age-comp-likelihood}).
 
 The \Sexpr{assess.yr} base model specified the same level of variation (standard
 deviation of $\Phi = 1.4$) associated with time-varying fishery selectivity as
