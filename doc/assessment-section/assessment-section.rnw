@@ -533,7 +533,6 @@ survey biomass estimate resulted in an upward shift in the fit to the
 \Sexpr{antepenult.survey.year} and \Sexpr{penult.survey.year} survey data points
 and a lengthening of the stable biomass trend over recent years
 (Figure~\ref{fig:main-mcmc-survey-fit}).
-** The following sentence is incorrect and needs to be changed or removed. The figure doesn't show survey fits, but rather assessment model results.
 The addition of \Sexpr{survey.end.yr} fishery data
 had negligible effect on the fit to survey biomass (Figure~\ref{fig:main-bridge-5-panel-2}).
 The 2001 data point continues to be well below any model predictions that were evaluated,
