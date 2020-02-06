@@ -393,7 +393,7 @@ probability that the 2010 year class is larger than the 1980 year class (this
 probability was \Sexpr{prob.percent.2010.rec.gt.1980.rec.last.year.assess}\% for
 last year's assessment).
 The model currently estimates smaller-than-average 2011, 2012, 2013,
-2015, 2017, and 2018 year classes (median recruitment below the mean of all median recruitments).
+2015, and 2018 year classes (median recruitment below the mean of all median recruitments).
 % Done for for 2020 assessment
 %  years.since.2010.recruitment.med.below.mean  # ignore assess.yr-1
 % AME put in definition of below-average, else it looks like it contradicts the
@@ -408,7 +408,7 @@ the 2010 year class.
 There is no information in the data to estimate the sizes of the
 \Sexpr{end.yr-1} and \Sexpr{end.yr} year classes. Retrospective analyses of year
 class strength for young fish have shown the estimates of recent recruitment to
-be unreliable prior to model age-3 (observed at age-2).
+be unreliable prior to at least model age-3 (observed at age-2).
 % Manual 2020 done.
 
 \subsection*{Default harvest policy} \label{sec:es-harvest-policy}
@@ -492,7 +492,7 @@ above) peaked in 1999 and then reached slightly higher values in 2006 and 2008
 (Figure~\ref{fig:es-exploitation-fraction}). Over the last five years, the exploitation
 fraction was the highest in 2017 (Table~\ref{tab:es-fishing-intensity}). Note that in earlier assessments the
 exploitation fraction was often defined in terms of fish age-3 and above, but
-with the 2018 assessment the definition age was lowered to age-2 because these
+since the 2018 assessment the definition age was lowered to age-2 because these
 fish are often caught by the fishery.
 % Manual 2020 done.
 %
@@ -640,7 +640,7 @@ the start of \Sexpr{end.yr}.
 Estimates of the \Sexpr{assess.yr} base model reference points with posterior
 credibility intervals are in Table~\ref{tab:es-reference.points}.
 The medians of sustainable yields and biomass reference points are
-almost 10\% lower than in the \Sexpr{last.assess.yr-1} assessment.
+almost 10\% lower than in the \Sexpr{last.assess.yr} assessment.
 The probability that spawning biomass at the beginning of \Sexpr{assess.yr}
 is $>\Bforty$ = \Sexpr{probs.curr.bforty}\%.  The probability that it is
 $>\Btwentyfive$ = \Sexpr{probs.curr.btwentyfive}\%.
@@ -962,7 +962,7 @@ The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
 \Sexpr{end.yr+1} is over 80\% for all catch levels, including zero
 (Table~\ref{tab:es-risk-year-1} and
 Figure~\ref{fig:es-forecast-risk-comparison-year-1}). It is 95\% for the
-\Sexpr{end.yr} catch equaling that for \Sexpr{end.yr-1} (catch alternative~d).
+\Sexpr{end.yr} catch level similar to that for \Sexpr{end.yr-1} (catch alternative~d).
 %The highest probability of
 %decrease is 97\%, which is for the default harvest policy
 %(row~g in Table~\ref{tab:es-risk-year-1}).
@@ -977,10 +977,9 @@ Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % the large 2010 year class.
 % Andy presumese that last phrase is still true - not sure where/how to check
 % 2018 - probably not worth saying that any more.
-The only years since 2010 with estimated above-average recruitment are 2014 and
-2016, which may result in increases to
-the spawning biomass as these cohorts increase in weight. **Last sentence okay? Could
-just omit (we had something last year).
+As the large 2010 and 2014 cohorts continue to age, biomass is expected to decrease
+as losses from mortlity outweight increases from growth, while the smaller but 
+above average 2016 cohort will add to overall spawning biomass as it matures. 
 % Still true for 2017 assessment - see
 %  years.since.2010.recruitment.med.below.mean
 %   2018 assessment.
