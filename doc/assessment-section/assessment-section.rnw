@@ -374,7 +374,14 @@ versus 2.5 days per run, respectively. {\bf The SRG recommends that the JTC cont
 explore NUTS and similar options, as using MCMC for all runs would provide better
 comparability between the base assessment model and sensitivity runs.}
 
-\emph{Response -- **}
+\emph{Response -- The JTC evaluated the No U-turn sampler (NUTS) method for conducting efficient
+Bayesian MCMC sampling using the {\tt adnuts} R package \citep{Monnahan2018, Monnahan2019}.
+Results from this evaluation, including comparisons to the current approach for Bayesian
+MCMC sampling, are shown in Appendix~\ref{chap:chap:adnuts}. In addition, the JTC explored
+the added utility of using the ShinyStan application {\tt shinystan} features in {\tt adnuts}
+to better visualize MCMC diagnostics, including mixing, sampling and divergence metrics, among
+other things. A demonstration of this application will be shown at the 2020 SRG meeting. The code
+used for running NUTS is displayed at the end of Appendix~\ref{chap:chap:adnuts}.} 
 
 6. Delays in entry and validation of catches reported on paper tickets in Washington and entry
 into the PACFIN database was identified as a potential issue. This concern has most often
