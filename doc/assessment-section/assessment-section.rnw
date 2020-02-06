@@ -1130,9 +1130,9 @@ The sensitivities include the following:
   selectivity;
 
 \item Consideration of an alternative parameterization for time-varying
-  selectivity; and
+  selectivity;
   
-\item Removal of ageing error from the model;
+\item Removal of ageing error from the model; and
 
 \item Running the base model using the Auto-Differentiation No-U-Turn-Sampling algorithm (AD-NUTS, \citet{Monnahan2018}, \citet{Monnahan2019}).
 
