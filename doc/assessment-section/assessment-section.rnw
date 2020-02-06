@@ -907,7 +907,7 @@ The median relative fishing intensity was below target in all years throughout t
 %\Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
 (Table~\ref{tab:main-median-posterior} and
 Figures~\ref{fig:main-fishing-intensity} and~\ref{fig:main-phase}).
-The median female spawning biomass was
+The median relative spawning biomass was
 above the $\Bforty$ reference point in all years except 1999 and 2007-2010
 (Table~\ref{tab:main-median-posterior} and Figures~\ref{fig:main-relative-spawning-biomass} and~\ref{fig:main-phase}).
 % 2017 assessment: all years except 1968, 1998-2000 and 2007-2011
@@ -924,9 +924,9 @@ and relative fishing intensity
 %median relative spawning biomass
 %between \Sexpr{median.relative.bio.2007.to.2011.min} and
 %\Sexpr{median.relative.bio.2007.to.2011.max}.
-Biomass increased from the lows in 2007--2010 with
+Relative spawning biomass increased from the lows in 2007--2010 with
 the 2008, 2010, 2014, and 2016 recruitments and, correspondingly, relative fishing
-intensity has remained well below targets despite recent increases in total catch.
+intensity has remained well below target despite recent increases in total catch.
 % Relative spawning biomass has been
 % above the target since \Sexpr{median.relative.bio.above.target.since}.
 While
@@ -934,7 +934,7 @@ there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative fishing
 intensity and relative spawning biomass, the model estimates a \Sexpr{joint.percent.prob.above.below}\%
 joint probability of being both above the target relative fishing intensity in
 \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at the
-start of \Sexpr{end.yr}. **last sentence still may need adjusting, pending issue 443 resolution.
+start of \Sexpr{end.yr}.
 
 \subsection{Model uncertainty}\label{sec:assessment-model-uncertainty}
  % Manual 2020 done
