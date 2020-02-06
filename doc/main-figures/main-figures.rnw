@@ -479,7 +479,7 @@ par <- oldpar
   relative to the unfished equilibrium spawning biomass, middle left),
   absolute recruitment (middle right), recruitment deviations (lower left),
   and survey index (lower right). For models without \Sexpr{assess.yr -1} data,
-  estimates shown for \Sexpr{assess.yr1} are forecasts.}
+  estimates shown for \Sexpr{assess.yr} are forecasts.}
 \label{fig:main-bridge-5-panel-3}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

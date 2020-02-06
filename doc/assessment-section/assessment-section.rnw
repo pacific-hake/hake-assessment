@@ -452,27 +452,26 @@ Including the fishery-independent data led to a slightly more optimistic
 trajectory of the stock (Figure~\ref{fig:main-bridge-5-panel-3}),
 which was to be expected given the increase in the
 index relative to \Sexpr{penult.survey.year}.
-The addition of age-composition data from the survey led to decreased
-estimates of the uncertainty surrounding the 2010 and 2014 year classes,
+The addition of age-composition data from the survey led to reduced
+uncertainty of the 2010 and 2014 year classes,
 which were estimated to be higher in this assessment than they were
 in the \Sexpr{last.assess.yr} assessment.
 ** AMB can you add more interpretation here?
 
-The final bridging step involved adding a prior on the D-M parameters
-**Refine where D-M prior is (discussed further in Sections~\ref{sec:data-age-comp-likelihood} and
-\ref{sec:assessment-sensitivity-analyses})
-and resulted in the \Sexpr{assess.yr} base model (Table~\ref{tab:main-assessment-changes}).
-The addition of the prior led to increased correlation between
-estimates of $M$ and $\log R_0$, but very little differences in the
+The final bridging step involved using the new priors on the D-M parameters
+$\theta_{\text{fish}}$ and $\theta_{\text{surv}}$, and explicitly estimating $\theta_{\text{surv}}$
+(see Section~\ref{sec:data-age-comp-likelihood}). This resulted
+in the \Sexpr{assess.yr} base model (Table~\ref{tab:main-assessment-changes}).
+The new priors led to increased correlation between
+estimates of $M$ and $\log R_0$ (Appendix~\ref{chap:mcmc-diagnostics}), but very little differences in the
 trajectory of the stock or estimates of its status
 (Figure~\ref{fig:main-bridge-5-panel-3}).
 The settings related to avoiding bias in recruitment estimation,
 based on the method proposed by \citet{MethotTaylor2011}, were
 also shifted by 1 year to account for the addition of information
 about recruitment for the \Sexpr{last.data.yr - 1} cohort.
-Finally, the model was tuned according to standard practices for \fishname\
-to ensure that the data were consistent with the results.
-** AMB can you add more interpretation here?
+** AMB can you add more interpretation here? [Andy removed the tuning sentence,
+maybe we're good?].
 
 \subsubsection{Assessment model results}\label{sec:assessment-model-results}
 \subsubsub{Model Fit}
