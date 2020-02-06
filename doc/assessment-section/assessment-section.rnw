@@ -407,14 +407,13 @@ Collectively, these changes led to small, insignificant differences
 in the estimates of fishing mortality compared to the \Sexpr{last.assess.yr}
 base model (Figure~\ref{fig:main-bridge-5-panel-1}).
 
-** Not sure how to make it apparent that this is not a forced change due to
-changing to the latest version of SS, but a choice we made.
-The choice to constrain recruitment deviations during the main period to sum to
-zero was removed in this assessment. This change should increase the
-compatibility between MCMC and MLE results and the stability of model results
+We relaxed the constraint that recruitment deviations during the main period sum to
+zero. This should increase the
+compatibility between MCMC and MLE results, and also increase the stability of model results,
 because penalties have implications for calculating derivatives. Relative
-spawning biomass increased for the entire time series because the estimate of
-$\log R_0$ increased relative to the \Sexpr{last.assess.yr} assessment and
+to the \Sexpr{last.assess.yr} assessment,
+relative spawning biomass increased for all years because the estimate of
+$\log R_0$ increased and
 estimates of recruitment deviations were slightly more positive
 (Figure~\ref{fig:main-bridge-5-panel-1}).
 
