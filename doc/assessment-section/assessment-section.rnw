@@ -725,15 +725,24 @@ class (Figure~\ref{fig:main-numbers-at-age}) comprising
 \Sexpr{top.coh(base.model, 2014, spec.yr=2010)}\% of the 2014 catch,
 \Sexpr{top.coh(base.model, 2015, spec.yr=2010)}\% of the 2015 catch,
 \Sexpr{top.coh(base.model, 2016, spec.yr=2010)}\% of the 2016 catch,
-\Sexpr{top.coh(base.model, 2017, spec.yr=2010)}\% of the 2017 catch, and
-\Sexpr{top.coh(base.model, 2018, spec.yr=2010)}\% of the 2018 catch.
+\Sexpr{top.coh(base.model, 2017, spec.yr=2010)}\% of the 2017 catch,
+\Sexpr{top.coh(base.model, 2018, spec.yr=2010)}\% of the 2018 catch, and
+\Sexpr{top.coh(base.model, 2019, spec.yr=2010)}\% of the 2019 catch.
+The median estimate of the 2010 year class is
+just below the highest ever (for 1980), with a \Sexpr{prob.percent.2010.rec.gt.1980.rec}\%
+probability that the 2010 year class is larger than the 1980 year class (this
+probability was \Sexpr{prob.percent.2010.rec.gt.1980.rec.last.year.assess}\% for
+last year's assessment).
+
 The current assessment also estimates a strong 2014 year class
 (Figure~\ref{fig:main-numbers-at-age}) comprising
 \Sexpr{top.coh(base.model, 2016, spec.yr=2014)}\% of the 2016 catch,
 \Sexpr{top.coh(base.model, 2017, spec.yr=2014)}\% of the 2017 catch,
-and \Sexpr{top.coh(base.model, 2018, spec.yr=2014)}\% of the 2018 catch.
+\Sexpr{top.coh(base.model, 2018, spec.yr=2014)}\% of the 2018 catch, and
+\Sexpr{top.coh(base.model, 2019, spec.yr=2014)}\% of the 2019 catch.
 The 2016 cohort also appears to be above average at
-\Sexpr{top.coh(base.model, 2018, spec.yr=2016)}\% of the 2018 catch.
+\Sexpr{top.coh(base.model, 2018, spec.yr=2016)}\% of the 2018 catch, and
+\Sexpr{top.coh(base.model, 2019, spec.yr=2016)}\% of the 2019 catch.
 Although the absolute size of the 2014 year
 class remains uncertain, at least more so than
 cohorts that have been observed for more years, five years of fishery data and two years of survey data
@@ -741,7 +750,7 @@ suggest that it is a strong year class.  The 2016 year class is
 estimated to be above average (similar in size to the 2008 year class) from three years
 of fishery data and one year of survey data. The 2017 year class was first observed by the survey in 2019 and
 is estimated to be about average in size. Currently, only one year of fishery data are used to estimate the
-below average size of the 2018 year class.
+below-average size of the 2018 year class.
 
 The additional data in the 2019 assessment has increased the median estimate of the
 2014 year class to
