@@ -479,7 +479,7 @@ maybe we're good?].
 For the base model, the MCMC chain length was 24~million as it was in the
 \Sexpr{last.assess.yr} assessment \citep{JTC2019}.
 The first 4,000,000 values were discarded to eliminate `burn-in' effects and
-each 10,000th value thereafter was retained, resulting in \Sexpr{num.mcmc.samples}
+each 10,000th value thereafter was retained, resulting in \Sexpr{f(num.mcmc.samples)}
 samples from the posterior distributions for model parameters and derived
 quantities.
 
@@ -707,7 +707,7 @@ However, estimated recruitments for some years have changed. For example,
 this year's median assessment of the 2010 recruitment is
 \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"], 1)}~billion
 more fish (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"]) /
-(prev.assess.recruitment.med)["2010"]) * 100), 1)} \% increase) than last
+(prev.assess.recruitment.med)["2010"]) * 100), 1)}\% increase) than last
 year's assessment. This difference is largely driven by the addition
 of the 2019 acoustic survey age compositions (Figure~\ref{fig:main-bridge-5-panel-3})
 where the proportion of age-9 fish was higher than what the \Sexpr{end.yr-1}
