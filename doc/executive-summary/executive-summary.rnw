@@ -392,9 +392,10 @@ just below the highest ever (for 1980), with a \Sexpr{prob.percent.2010.rec.gt.1
 probability that the 2010 year class is larger than the 1980 year class (this
 probability was \Sexpr{prob.percent.2010.rec.gt.1980.rec.last.year.assess}\% for
 last year's assessment).
-The model currently estimates smaller-than-average 2011, 2012, 2013,
-2015, and 2018 year classes (median recruitment below the mean of all median recruitments).
+The model currently estimates small 2011, 2013, 2015,
+and 2018 year classes (median recruitment well below the mean of all median recruitments).
 % Done for for 2020 assessment
+% This gives all years, but some are close to average so do manually:
 %  years.since.2010.recruitment.med.below.mean  # ignore assess.yr-1
 % AME put in definition of below-average, else it looks like it contradicts the
 %  median deviations in the table.
