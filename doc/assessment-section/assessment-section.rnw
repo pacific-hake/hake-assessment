@@ -1107,9 +1107,8 @@ almost all
 sensitivity analyses compared MLE estimates rather than MCMC
 posteriors. Therefore, the values reported below are not directly comparable to
 the base model MCMC values reported elsewhere. For a comparison of the base model
-MLE estimates, see Tables~\ref{tab:main-parameter-estimates-sens-1} and
-\ref{tab:main-parameter-estimates-sens-2}. The sensitivities
-include the following:
+MLE estimates, see Tables~\ref{tab:main-parameter-estimates-sens-1}--\ref{tab:main-parameter-estimates-sens-3}.
+The sensitivities include the following:
 
 \begin{enumerate}
 
