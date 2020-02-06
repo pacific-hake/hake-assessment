@@ -843,23 +843,24 @@ coast-wide targets (Table~\ref{tab:main-landings-tac}). From \Sexpr{end.yr-5} to
 \Sexpr{end.yr-1}, the mean utilization rates differed between the United States
 (\Sexpr{usa.last.5.years.attainment}\%) and Canada
 (\Sexpr{can.last.5.years.attainment}\%). In 2015, the utilization rate for the
-fishery was the lowest in the previous decade
+fishery was the lowest of the previous decade
 (\Sexpr{tot.2015.attainment}\%) due, in part, to difficulties locating
 aggregations of fish and possibly economic reasons.
 % Manual done 2020 - check above sentence with
 %  landings.vs.tac[landings.vs.tac$Year %in% (end.yr-10):(end.yr-1),10].
-In years previous to 2015,
+Before 2015,
 the underutilization in the United States was mostly a result of unrealized
 catch in the tribal apportionment, while reports from stakeholders in Canada
 suggested that hake were less aggregated in Canada and availability had
 declined. In 2016, the utilization rate increased but remained below pre-2015
-levels, despite the total 2016 catch being one of the highest in recent years.
+levels, despite the total 2016 catch being one of the highest of the precedeing years.
 This is in large part due to increasing catch targets as biomass continues to
-increase.  The total utilization rate in recent years (2017--2019) has been close to the
-average over the last decade.  During the last two years, utilization rates have been stable
+increase. The total utilization rate in recent years (2017--2019) has been close to the
+average over the last decade. During the last two years, utilization rates have been stable
 in both the United States (\Sexpr{usa.last.2.years.attainment}\%) and Canada
-(\Sexpr{can.last.5.years.attainment}\%). Total landings last exceeded the coast-wide quota
+(about \Sexpr{can.last.2.years.attainment}\%). Total landings last exceeded the coast-wide quota
 in 2002 when utilization was 112\%.
+% Manual done 2020, including checking penultimate sentence numbers with table.
 
 The median relative fishing intensity was below target in all years throughout the time series
 %the 1999 year used to be just above 1 but now estimated to be just below 1
@@ -867,12 +868,15 @@ The median relative fishing intensity was below target in all years throughout t
 % Manual 2017 done - comment out above line if only one year, include it if
 %  length(median.intensity.above.one.years) > 1
 %\Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
-(Figure~\ref{fig:main-fishing-intensity}).  The female spawning biomass was
-above target all years except 1999 and from 2007-2010 (Figure~\ref{fig:main-relative-spawning-biomass}
-and Figure~\ref{fig:main-phase}).
-% Andy summarising (done 2018) those years manually, based on the values:
-% \Sexpr{names(median.relative.bio.below.target[-length(median.relative.bio.below.target)])} and
-% \Sexpr{names(median.relative.bio.below.target[length(median.relative.bio.below.target)])}.
+(Figure~\ref{fig:main-fishing-intensity}).
+The median female spawning biomass was
+above the $\Bforty$ reference point in all years except 1999 and 2007-2010
+(Figure~\ref{fig:main-relative-spawning-biomass} and Figure~\ref{fig:main-phase}).
+% 2017 assessment: all years except 1968, 1998-2000 and 2007-2011
+% 2019 assessment: all years except 1999-2000 and 2007-2011
+% Andy summarising those years manually, based on:
+% median.relative.bio.below.target
+% Manual done 2020. Interesting that years are becoming fewer.
 
 The joint history of biomass and $F$-based target reference points shows that
 before 2007, median relative fishing intensity was below target and female
@@ -1134,7 +1138,7 @@ The sensitivities include the following:
 
 \item Consideration of an alternative parameterization for time-varying
   selectivity;
-  
+
 \item Removal of ageing error from the model; and
 
 \item Running the base model using the Auto-Differentiation No-U-Turn-Sampling algorithm (AD-NUTS, \citet{Monnahan2018}, \citet{Monnahan2019}).
