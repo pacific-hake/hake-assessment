@@ -1002,16 +1002,17 @@ alternative structural models for hake population dynamics and fishery processes
 effects of alternative data-weighting choices, and the scientific basis for prior
 probability distributions. To address structural uncertainties, the JTC investigated
 a range of alternative models, and we present the key sensitivity analyses along with
-a suite of other informative sensitivity analyses using maximum likelihood estimation.
+a suite of other informative sensitivity analyses using maximum likelihood estimation
+(Section~\ref{sec:assessment-sensitivity-analyses}).
 
-The JTC also produced two appendices, each highlighting Bayesian MCMC results from models with
+We also present two appendices, each highlighting Bayesian MCMC results from models with
 different structural assumptions or analytical choices compared to the base model.
 These include the incorporation
 of the age-1 survey index (Appendix~\ref{chap:age1-survey}), and the use of a new analytical tool
 for conducting efficient Bayesian MCMC algorithms, the Automatic Differentiation
 No-U-Turn Sampler, implemented using the
-{\tt adnuts} R package \citep{Monnahan2018, Monnahan2019};
-Appendix~\ref{chap:adnuts}). The inclusion of the age-1
+{\tt adnuts} R package \citep{Monnahan2018, Monnahan2019;
+Appendix~\ref{chap:adnuts}}. The inclusion of the age-1
 survey model was chosen because it may improve estimates of recruitment near the end
 of the time series and age composition during the forecast period, even though the acoustic
 survey design is not structured specifically for indexing age-1 fish. The model that uses the more efficient
