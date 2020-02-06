@@ -506,7 +506,10 @@ between the 2010 and 2012 recruitment deviations. This continues to be likely
 caused by the relative proportion of these two cohorts being better informed by
 recent age-composition data than the absolute magnitude of these recruitments.
 
-The new priors for $\theta_{\text{fish}}$ and $\theta_{\text{fish}}$ resulted ..... the resulting multiplier applied to the survey
+The new priors for $\theta_{\text{fish}}$ and $\theta_{\text{fish}}$ resulted ....
+**Andy to come back to this when Chris finishes the posterior tables (as he'll have some values to
+use). Should change the following ranges to the usual credible intervals.**
+the resulting multiplier applied to the survey
 age-composition data ranged between
 \Sexpr{DM.weight.survey.low} and \Sexpr{DM.weight.survey.high} with a
 median of \Sexpr{DM.weight.survey.median}.
