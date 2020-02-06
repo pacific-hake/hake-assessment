@@ -791,12 +791,12 @@ but consistent with, the base model value of \Sexpr{base.model$sigma_R_in}.
 
 \subsubsub{Exploitation status}
 
-Median relative fishing intensity on the stock is estimated to have been below
+Median relative fishing intensity is estimated to have been below
 the SPR$_{40\%}$ target for all years
 % sort(median.intensity)    % 2017 assessment 1999 was slightly over
 (Figure~\ref{fig:main-fishing-intensity} and
-Tables~\ref{tab:main-median-posterior} and \ref{tab:main-ci-posterior}). It
-should be noted, however, that the median relative fishing intensity was close
+Tables~\ref{tab:main-median-posterior} and \ref{tab:main-ci-posterior}).
+It was close
 to the target in 2008, 2010 and 2011, but harvest in those years did not exceed
 the catch limits that were specified, based on the best available science and
 harvest control rules in place at the time.
@@ -812,10 +812,13 @@ intensity more directly accounts for the age-structure of both the population an
 the catch. Median relative fishing intensity is estimated to have declined from
 \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.2015}\%
 in 2015, after which it increased to \Sexpr{median.intensity.2017}\% in 2017 and
-has stayed about the same since that time.
-The exploitation fraction has decreased from
-\Sexpr{exploitation.med.2011} in 2011 to \Sexpr{exploitation.med.2015} in
-2015 and then increased to \Sexpr{exploitation.med.2017} in 2017 before ending
+has since stayed relatively constant.
+The median exploitation fraction decreased from
+\Sexpr{exploitation.med.2011} in 2011 to recent lows of
+\Sexpr{exploitation.med.2012} in 2012 and
+% \Sexpr{exploitation.med.2015} in   % 2012 and 2015 are the same in 2020 assessment
+2015,
+and then increased to \Sexpr{exploitation.med.2017} in 2017 before ending
 at \Sexpr{exploitation.med.penult.yr} in \Sexpr{last.data.yr}.
 Although there is a considerable amount of imprecision
 around these recent estimates due to uncertainty in recruitment and spawning
