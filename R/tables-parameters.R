@@ -413,7 +413,7 @@ make.short.parameter.estimates.sens.table <- function(models,
     ## Add Total and Survey likelihoods
     mle.par <- c(mle.par, like[c(1, 4)])
     mle.par <- c(mle.par, as.numeric(like.flt[nrow(like.flt), c(4, 3)]))
-    mle.par <- c(mle.par, like[c(6, 8, 9)])
+    mle.par <- c(mle.par, like[c(6, 9, 10)])
     ## If the sensitivity does not include the two DM parameters nor the age-1 index SD parameter
     ##  as an estimated parameter, insert two NAs.
     if(length(mle.par) == 22){
