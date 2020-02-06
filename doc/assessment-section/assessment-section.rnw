@@ -432,7 +432,7 @@ assessment were included.
 These changes to pre-\Sexpr{last.assess.yr} data were small enough that they had
 little impact on the model results (Figure~\ref{fig:main-bridge-5-panel-2}).
 
-**See Slack for first sentence; rest is fine. The addition of \Sexpr{last.data.yr} catch allowed the model to be
+The addition of \Sexpr{last.data.yr} catch allowed the model to be
 extended to the start of \Sexpr{assess.yr}, but the estimates for
 \Sexpr{assess.yr} remained highly uncertain
 (Figure~\ref{fig:main-bridge-5-panel-2})
