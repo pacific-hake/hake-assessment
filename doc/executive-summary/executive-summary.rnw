@@ -339,10 +339,10 @@ pattern of recruitment estimated in recent assessments.
 However, estimated recruitments for some years have changed. For example,
 this year's median assessment of the 2010 recruitment is
 \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"], 1)}~billion
-more fish (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"]) /
-(prev.assess.recruitment.med)["2010"]) * 100), 1)}\% increase) than last
+more fish (a \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"]) /
+(prev.assess.recruitment.med)["2010"]) * 100), 0)}\% increase) than last
 year's assessment. This difference is largely driven by the addition
-of the 2019 acoustic survey age compositions (Figure~\ref{fig:main-bridge-5-panel-3})
+of the 2019 acoustic survey age compositions
 where the proportion of age-9 fish was higher than what the \Sexpr{end.yr-1}
 assessment model would have otherwise predicted given mortality.
 
@@ -670,10 +670,10 @@ possible alternative structural models for \simplename\ population dynamics and
 fishery processes (e.g., selectivity)
 and the scientific basis for prior probability distributions. To address such
 structural uncertainties, we performed sensitivity analyses to investigate a
-range of alternative assumptions using maximum likelihood estimation, 
+range of alternative assumptions using maximum likelihood estimation,
 and present the key ones in the main document. We also conducted full Bayesian MCMC
-analyses for the model that included the age-1 survey index 
-(see Appendix~\ref{chap:age1-survey}) and the model that used the 
+analyses for the model that included the age-1 survey index
+(see Appendix~\ref{chap:age1-survey}) and the model that used the
 Auto-Differentiation No-U-Turn-Sampling (AD-NUTS) algorithm \citep{Monnahan2018, Monnahan2019} for efficient MCMC sampling
 (see Appendix~\ref{chap:adnuts}).
 
@@ -978,8 +978,8 @@ Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % Andy presumese that last phrase is still true - not sure where/how to check
 % 2018 - probably not worth saying that any more.
 As the large 2010 and 2014 cohorts continue to age, biomass is expected to decrease
-as losses from mortality outweigh increases from growth, while the smaller but 
-above average 2016 cohort will add to overall spawning biomass as it matures. 
+as losses from mortality outweigh increases from growth, while the smaller but
+above average 2016 cohort will add to overall spawning biomass as it matures.
 % Still true for 2017 assessment - see
 %  years.since.2010.recruitment.med.below.mean
 %   2018 assessment.
