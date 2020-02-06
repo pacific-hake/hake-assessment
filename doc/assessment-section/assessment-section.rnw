@@ -526,10 +526,10 @@ $\log \theta_{\text{fish}} = \Sexpr{log.theta.fishery.median}$ and an associated
 median weight of
 $\theta_{\text{fish}}/(1+\theta_{\text{fish}}) = \Sexpr{DM.weight.fishery.median}$.
 
-The base model fit (Figure~\ref{fig:main-mcmc-survey-fit}) to the
-acoustic survey biomass index (Figure~\ref{fig:main-survey-extrap-biomass})
+The base model fit to the
+acoustic survey biomass index (Figure~\ref{fig:main-mcmc-survey-fit})
 remains similar to the \Sexpr{last.assess.yr} base model. The \Sexpr{survey.end.yr}
-survey biomass estimate resulted in a downward shift in the fit to the
+survey biomass estimate resulted in an upward shift in the fit to the
 \Sexpr{antepenult.survey.year} and \Sexpr{penult.survey.year} survey data points
 and a lengthening of the stable biomass trend over recent years
 (Figure~\ref{fig:main-mcmc-survey-fit}).
