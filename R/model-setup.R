@@ -90,11 +90,15 @@ message("Last year of age data: ", last.age.yr)
 key.posteriors <- c("NatM",
                     "SR_LN",
                     "SR_BH_steep",
-                    "Q_extraSD")
+                    "Q_extraSD",
+                    "ln\\(EffN_mult\\)_1",
+                    "ln\\(EffN_mult\\)_2")
 key.posteriors.titles <- c("Natural mortality",
                            "LN(R0)",
                            "Steepness",
-                           "Survey extra SD")
+                           "Survey extra SD",
+                           "Dirichlet-Multinomial fishery",
+                           "Dirichlet-Multinomial survey")
 message("Key posteriors in this assessment: ", key.posteriors)
 
 key.posteriors.file <- "keyposteriors.csv"

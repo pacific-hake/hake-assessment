@@ -358,7 +358,6 @@ make.short.parameter.estimates.sens.table <- function(models,
   tab <- NULL
   for(model in models){
     parms <- model$estimated_non_dev_parameters
-
     p.names <- rownames(parms)
     mle.grep <- unique(grep(paste(posterior.regex, collapse="|"), p.names))
 
@@ -440,51 +439,51 @@ make.short.parameter.estimates.sens.table <- function(models,
   ## Format the tables rows depending on what they are
   ## Decimal values
   if(age.1){
-    tab[c(1, 3, 4, 5),] <- f(tab[c(1, 3, 4, 5),], 3)
+    tab[c(1, 3, 4, 5, 6, 7),] <- f(tab[c(1, 3, 4, 5, 6, 7),], 3)
   }else{
-    tab[c(1, 3, 4),] <- f(tab[c(1, 3, 4),], 3)
+    tab[c(1, 3, 4, 5, 6),] <- f(tab[c(1, 3, 4, 5, 6),], 3)
   }
 
   ## Large numbers with no decimal points but probably commas
   tab[c(2,
-        ifelse(age.1, 6, 5),
-        ifelse(age.1, 7, 6),
         ifelse(age.1, 8, 7),
         ifelse(age.1, 9, 8),
-        ifelse(age.1, 13, 12),
-        ifelse(age.1, 16, 15)),] <-
+        ifelse(age.1, 10, 9),
+        ifelse(age.1, 11, 10),
+        ifelse(age.1, 15, 14),
+        ifelse(age.1, 18, 17)),] <-
     f(apply(tab[c(2,
-                  ifelse(age.1, 6, 5),
-                  ifelse(age.1, 7, 6),
                   ifelse(age.1, 8, 7),
                   ifelse(age.1, 9, 8),
-                  ifelse(age.1, 13, 12),
-                  ifelse(age.1, 16, 15)),],
+                  ifelse(age.1, 10, 9),
+                  ifelse(age.1, 11, 10),
+                  ifelse(age.1, 15, 14),
+                  ifelse(age.1, 18, 17)),],
                 c(1, 2), as.numeric))
   ## Percentages
-  tab[c(ifelse(age.1, 10, 9),
-        ifelse(age.1, 11, 10),
-        ifelse(age.1, 12, 11),
-        ifelse(age.1, 15, 14)),] <-
-    paste0(f(apply(tab[c(ifelse(age.1, 10, 9),
-                         ifelse(age.1, 11, 10),
-                         ifelse(age.1, 12, 11),
-                         ifelse(age.1, 15, 14)),],
+  tab[c(ifelse(age.1, 12, 11),
+        ifelse(age.1, 13, 12),
+        ifelse(age.1, 14, 13),
+        ifelse(age.1, 17, 16)),] <-
+    paste0(f(apply(tab[c(ifelse(age.1, 12, 11),
+                         ifelse(age.1, 13, 12),
+                         ifelse(age.1, 14, 13),
+                         ifelse(age.1, 17, 16)),],
                    c(1, 2), as.numeric), 1), "\\%")
   ## SPR Percentages row (some may be NA). This is really ugly but works
-  tab[ifelse(age.1, 14, 13),
-      !is.na(tab[ifelse(age.1, 14, 13),])] <-
-    paste0(f(as.numeric(tab[ifelse(age.1, 14, 13),
-                            !is.na(tab[ifelse(age.1, 14, 13),])]), 1), "\\%")
+  tab[ifelse(age.1, 16, 15),
+      !is.na(tab[ifelse(age.1, 16, 15),])] <-
+    paste0(f(as.numeric(tab[ifelse(age.1, 16, 15),
+                            !is.na(tab[ifelse(age.1, 16, 15),])]), 1), "\\%")
 
   ## Likelihoods - Possibly commas and 2 decimal points
   if(age.1){
-    tab[17:23,] <-
-      f(apply(tab[17:23,],
+    tab[19:25,] <-
+      f(apply(tab[19:25,],
               c(1, 2), as.numeric), 2)
   }else{
-    tab[16:22,] <-
-      f(apply(tab[16:22,],
+    tab[18:24,] <-
+      f(apply(tab[18:24,],
               c(1, 2), as.numeric), 2)
   }
 
@@ -514,6 +513,8 @@ make.short.parameter.estimates.sens.table <- function(models,
                           latex.italics("h"),
                           ")"),
                    "Additional acoustic survey SD",
+                   "Dirichlet-Multinomial fishery ($\\theta_{fish}$)",
+                   "Dirichlet-Multinomial survey ($\\theta_{survey}$)",
                    "Additional age-1 index SD",
                    paste(getrecs, "recruitment (millions)"),
                    paste0(latex.subscr(latex.italics("B"), "0"),
@@ -552,6 +553,8 @@ make.short.parameter.estimates.sens.table <- function(models,
                           latex.italics("h"),
                           ")"),
                    "Additional acoustic survey SD",
+                   "Dirichlet-Multinomial fishery ($\\theta_{fish}$)",
+                   "Dirichlet-Multinomial survey ($\\theta_{survey}$)",
                    paste(getrecs, "recruitment (millions)"),
                    paste0(latex.subscr(latex.italics("B"), "0"),
                           " (thousand t)"),
@@ -591,9 +594,9 @@ make.short.parameter.estimates.sens.table <- function(models,
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- 1
-  addtorow$pos[[2]] <- ifelse(age.1, 6, 5)
-  addtorow$pos[[3]] <- ifelse(age.1, 12, 11)
-  addtorow$pos[[4]] <- ifelse(age.1, 17, 16)
+  addtorow$pos[[2]] <- ifelse(age.1, 8, 7)
+  addtorow$pos[[3]] <- ifelse(age.1, 14, 13)
+  addtorow$pos[[4]] <- ifelse(age.1, 19, 18)
   addtorow$command <-
     c(paste0(latex.bold(latex.under("Parameters")),
              latex.nline),
@@ -755,31 +758,19 @@ make.short.parameter.estimates.table <- function(model,
     mcmc.meds <- c(mcmc.meds, d)
 
     ## Add Female spawning biomass B_f40%
-    if(ss.version == 3.3){
-      b <- median(x$mcmc[,"SSB_SPR"]) / 2 /1000
-    }else{
-      b <- median(x$mcmc[,"SSB_SPRtgt"]) / 2 /1000
-    }
+    b <- median(x$mcmc[,"SSB_SPR"]) / 2 /1000
     mcmc.meds <- c(mcmc.meds, b)
 
     ## Add SPR MSY-proxy
     mcmc.meds <- c(mcmc.meds, 40)
 
     ## Add Exploitation fraction corresponding to SPR
-    if(ss.version == 3.3){
-      f <- median(x$mcmc[,"Fstd_SPR"])
-    }else{
-      f <- median(x$mcmc[,"Fstd_SPRtgt"])
-    }
+    f <- median(x$mcmc[,"Fstd_SPR"])
     f <- 100 * f
     mcmc.meds <- c(mcmc.meds, f)
 
     ## Add Yield at Bf_40%
-    if(ss.version == 3.3){
-      y <- median(x$mcmc[,"Dead_Catch_SPR"]) / 1000
-    }else{
-      y <- median(x$mcmc[,"TotYield_SPRtgt"]) / 1000
-    }
+    y <- median(x$mcmc[,"Dead_Catch_SPR"]) / 1000
     mcmc.meds <- c(mcmc.meds, y)
     return(mcmc.meds)
   }
@@ -789,30 +780,37 @@ make.short.parameter.estimates.table <- function(model,
 
   ## Last year's model MCMC
   last.yr.mcmc.meds <- calc.mcmc(last.yr.model, q = 2)
-
-  last.yr.mcmc.meds[11] <- last.yr.mcmc.meds[12] <- NA
+  # Hack for 2020
+  warning("Hack for 2020 in make.short.parameter.estimates.table(). ",
+          "Remove this for 2021. It was needed because 2019 estimated one DM parameter ",
+          "instead of two.")
+  last.yr.mcmc.meds <- append(last.yr.mcmc.meds, 999, after = 5)
+  last.yr.mcmc.meds[13] <- last.yr.mcmc.meds[14] <- NA
   tab <- as.data.frame(cbind(mle.par, mcmc.meds, last.yr.mcmc.meds))
   colnames(tab) <- NULL
 
   ## Format the tables rows depending on what they are.
-  ## Decimal values
-  tab[c(1, 3, 4, 5),] <- f(tab[c(1, 3, 4, 5),], 3)
+  ## Decimal valuesn
+  tab[c(1, 3, 4, 5, 6, 7),] <- f(tab[c(1, 3, 4, 5, 6, 7),], 3)
+  ## Following added as part of the 2019 hack above but shouldn't cause any issues if left in
+  tab[[3]][tab[,3] == "999.000"] = "--"
+
   ## Large numbers with no decimal points but probably commas
-  tab[c(2, 6, 7, 8, 9, 13, 16),] <-
-    f(apply(tab[c(2, 6, 7, 8, 9, 13, 16),], c(1,2), as.numeric))
+  tab[c(2, 8, 9, 10, 11, 15, 18),] <-
+    f(apply(tab[c(2, 8, 9, 10, 11, 15, 18),], c(1, 2), as.numeric))
   ## Percentages on non-NA elements
   paste.perc <- function(vec){
     ## Paste percentages on to all elements of vec that are not NA
     vec[!is.na(vec)] <- paste0(f(as.numeric(vec[!is.na(vec)]), 1), "\\%")
     return(vec)
   }
-  tab[10,] <- paste.perc(tab[10,])
-  tab[11,] <- paste.perc(tab[11,])
   tab[12,] <- paste.perc(tab[12,])
-  tab[15,] <- paste.perc(tab[15,])
+  tab[13,] <- paste.perc(tab[13,])
+  tab[14,] <- paste.perc(tab[14,])
+  tab[17,] <- paste.perc(tab[17,])
   ## SPR Percentages row (some may be NA). This is really ugly but works
-  tab[14, !is.na(tab[14,])] <-
-    paste0(f(apply(tab[14, !is.na(tab[14,])], 1, as.numeric), 1), "\\%")
+  tab[16, !is.na(tab[16,])] <-
+    paste0(f(apply(tab[16, !is.na(tab[16,])], 1, as.numeric), 1), "\\%")
 
   ## Make first row empty to make the Parameter header appear below the
   ##  horizontal line
@@ -835,6 +833,8 @@ make.short.parameter.estimates.table <- function(model,
                         latex.italics("h"),
                         ")"),
                  "Additional acoustic survey SD",
+                 "Dirichlet-Multinomial fishery ($\\theta_{fish}$)",
+                 "Dirichlet-Multinomial survey ($\\theta_{survey}$)",
                  paste0("Catchability (",
                         latex.italics("q"),
                         ")"),
@@ -873,8 +873,8 @@ make.short.parameter.estimates.table <- function(model,
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- 1
-  addtorow$pos[[2]] <- 6
-  addtorow$pos[[3]] <- 14
+  addtorow$pos[[2]] <- 8
+  addtorow$pos[[3]] <- 16
   addtorow$command <-
     c(paste0(latex.bold(latex.under("Parameters")),
              latex.nline),
