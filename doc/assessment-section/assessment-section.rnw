@@ -566,10 +566,6 @@ the age compositions well.
 In the \Sexpr{last.data.yr} fishery, \Sexpr{top.coh(base.model, last.data.yr, 3, cap = FALSE)}.
 Age compositions from the \Sexpr{survey.end.yr} acoustic survey suggest a similar age
 structure, i.e., \Sexpr{top.coh(base.model, survey.end.yr, 3, cap = FALSE, fleet = 2)}.
-**THIS next sentence doesn't make sense, especially given have just been talking about data;
-suggest deleting (AME).
-The pattern for the 2010 year class was expected given the strength of that cohort
-from the fishery composition data from 2012 onward, and thus, are fit well by the model.
 Combined, the 2015--\Sexpr{last.data.yr} fishery age-composition data and the
 2017--\Sexpr{survey.end.yr} acoustic survey age-composition data
 suggest that 2014 was a strong recruitment
