@@ -422,16 +422,17 @@ This primarily included minor adjustments in catch, fishery age-composition, and
 weight-at-age values.
 Historical catches from the Canadian Joint-Venture fishery
 that were inadvertently left out of last year's assessment were included.
-Additional age data from the U.S. shoreside fleet that were previously
+Also included were additional age data from the U.S. shoreside fleet that were previously
 filtered from the analysis because of a lack of delineation regarding
-the method used to age the samples were included.
+the method used to age the samples.
 Weight-at-age data that lack information about the month in which
 they were collected are now included.
-Samples that were recently aged but not available for the \Sexpr{last.assess.yr} were included.
-These changes were small enough that they had
+Samples that were recently aged but not available for the \Sexpr{last.assess.yr}
+assessment were included.
+These changes to pre-\Sexpr{last.assess.yr} data were small enough that they had
 little impact on the model results (Figure~\ref{fig:main-bridge-5-panel-2}).
 
-The addition of \Sexpr{last.data.yr} catch allowed the model to be
+**See Slack for first sentence; rest is fine. The addition of \Sexpr{last.data.yr} catch allowed the model to be
 extended to the start of \Sexpr{assess.yr}, but the estimates for
 \Sexpr{assess.yr} remained highly uncertain
 (Figure~\ref{fig:main-bridge-5-panel-2})
@@ -447,7 +448,7 @@ This bridging step also shifted the ending year of the deviations
 in the selectivity parameters from \Sexpr{last.data.yr-1} to
 \Sexpr{last.data.yr} since there was now fishery data in \Sexpr{last.data.yr}.
 
-Including the fishery-independent data led to a slightly more optomistic
+Including the fishery-independent data led to a slightly more optimistic
 trajectory of the stock (Figure~\ref{fig:main-bridge-5-panel-3}),
 which was to be expected given the increase in the
 index relative to \Sexpr{penult.survey.year}.

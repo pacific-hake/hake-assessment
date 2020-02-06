@@ -165,7 +165,7 @@ bridge.model.dir.names.3 <- c("2020.00.04_add_fishery_comps",
                               "2020.00.06_add_2019_survey_bio",
                               "2020.00.07_add_2019_survey_ages",
                               "2020.01.09_DMprior_base")
-bridge.model.names.3 <- c("Add 2019 comps and weights",
+bridge.model.names.3 <- c("Add 2019 fishery comps and weights",
                           "Update and add 2019 survey biomass",
                           "Add 2019 survey comps",
                           "Add Dirichlet prior (=base model)")

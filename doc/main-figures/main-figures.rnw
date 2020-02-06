@@ -469,7 +469,8 @@ mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
 \end{center}
-\caption{Bridging models starting with the addition of simple recruitment deviations (shown
+\caption{Bridging models starting with the addition of 2019 fishery compositions
+  and weights (shown
   in Figure~\ref{fig:main-bridge-5-panel-2}) and then with sequential changes including
   updating and adding 2019 survey biomass data, adding 2019 survey composition data, and then
   adding a prior on the survey Dirichlet-Multinomial parameter, giving the
