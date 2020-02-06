@@ -209,22 +209,60 @@ The JTC presented evidence that supported the value used in the assessment.
 {\bf The SRG encourages the JTC to explore methods for parameterizing recruitment and/or
 estimating $\sigma_R$ that would reduce model sensitivity to the value of this constraint.}
 
-\emph{**THIS IS FROM 2019 ASSESSMENT, copying for now**}
 % From Issue \#468:
-\emph{Response -- Developing best practices for modeling recruitment variability ($\sigma_R$)
-  remains a broad topic of contemporary research.  The JTC has outlined several
-  alternative approaches for advancing this research as it applies to \fishname.
-  These are:
-  (a) estimating $\sigma_R$ in MCMC runs while testing semi-parametric selectivity;
-  (b) estimating recruitment autocorrelation to examine the impact it has on the model
-  and whether it reduces sensitivity to the choice of $\sigma_R$;
-  (c) use the Template Model Builder (TMB)
-  code developed by Nis Jacobsen for the Management Strategy Evaluation to explore
-  random effects treatment of recruitment variability \citep{Thorson2019}.
+\emph{Response -- Developing best practices for modeling equilibrium recruitment ($R_0$)
+  and recruitment variability ($\sigma_R$)
+  remain broad topics of contemporary research. The JTC continues to conduct, 
+  collaborate on and monitor ongoing research projects into
+  approaches for advancing recruitment estimation,
+  as it applies to \fishname and in general. We briefly discuss several of these research
+  endeavors next.
+  
+  The JTC is conducting and collaborating on simulation projects looking into the concurrent
+  estimation of multiple variance parameters. This includes the estimation of variability
+  associated with time-varying selectivity, $\sigma_R$, extra standard deviation parameters
+  on survey index data, and dirichlet multinomial($\theta$) parameters. This is particularly
+  important for $\sigma_R$ because without an index of recruitment to directly inform the
+  estimation of $\sigma_R$, variance parameters in stock assessment models can be interrelated
+  when attempting to capture other sources of variance attributed to model misspecification.
+  This work is related with other time-varying selelctivity research, as discussed in response 2
+  below.
+  
+  The near completion of the Management Strategy Evaluation framework for \fishname creates
+  considerable advantages for examining recruitment. For example, using the Template Model
+  Builder (TMB) estimation code developed by Dr. Nis Jacobsen for the MSE, there is opportunity
+  to explore random effects treatment of recruitment variability \citep{Thorson2019}.  The MSE
+  framework can also be used to evaluted the robustness of recruitment modeling assumptions on 
+  management performance and uncertainty.  Further, the MSE could be an additional option for 
+  estimating $\sigma_R$ in MCMC runs while further testing semi-parametric selectivity.
+  
+  The JTC conducted an analysis looking into autocorrelation of recruitment deviations over
+  time. Results showed no indication of autocorrelation, suggesting there is no need to
+  add additional variance terms to account for temporally-related recruitment deviations.
+  The assessment model is adequately accounting for general life-history traits and includes
+  an adequate representation of ageing error. Along with no apparent retrospective pattern
+  (see Section~\ref{sec:assessment-retrospective-analyses}), this result suggest that the
+  assessment model is not overly misspecified. Given the lack of autocorrelation, the 
+  assessmnet model was not sensitive to the addition of an autocorrelation parameter.
+  
+  The JTC is following work being conducted by Dr. Cathleen Vestfals and colleagues at
+  the Northwest Fisheries Science Center looking at identifying climate drivers of
+  \fishname early life history stages and recruitment. Possible outcomes from this work
+  of direct use to the assessment include the development of an explicit recruitment index,
+  an environmental index linked to recruitment, indicators of recruitment variation
+  ($\sigma_R$), and indicators of current or forecasted levels of recruitment.
+  
+  The JTC is also following work being conducted by the International Council for
+  the Exploration of the Sea (ICES) Methods Working Group which, among other things,
+  is looking at meta-analytical approaches for estimating recruitment parameters.  Results
+  from this work could be used to develop informative prior distributions on key
+  recruitment parameters.
+  
   The JTC plans to continue to work towards evaluating and testing best practices
-  for modeling recruitment variability.  Progression on these research topics was
-  halted during the 2019 assessment season due to unforeseen time constraints imposed
-  on the JTC.
+  for modeling recruitment variability, including the use of multi-stage recruitment
+  functions. In general, many of these issues are widespread
+  in stock assessment, and scientific-based solutions are likely to be the result of medium
+  to long-term research projects.
 }
 
 2. The SRG notes that when setting values for other parameters that cannot be estimated
