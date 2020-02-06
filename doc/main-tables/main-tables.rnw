@@ -519,9 +519,11 @@ make.short.parameter.estimates.table(
 make.reference.points.table(base.model,
                             xcaption = paste0("Summary of median and 95\\% credibility
                                                intervals of equilibrium reference points for
-                                               the \\fishname\\ base assessment model. **Equilibrium
-                                               reference points were computed using 1975--",
-                                              end.yr-1,
+                                               the \\fishname\\ base assessment model. Equilibrium
+                                               reference points were computed using ",
+                                              end.yr - 5,
+                                               "--",
+                                              end.yr - 1,
                                               " averages for mean weight-at-age and baseline selectivity."),
                             xlabel = "tab:main-reference-points",
                             font.size = 10,
