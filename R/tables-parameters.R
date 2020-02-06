@@ -411,22 +411,23 @@ make.short.parameter.estimates.sens.table <- function(models,
     like <- model$likelihoods_used$value
     like.flt <- model$likelihoods_by_fleet
     ## Add Total and Survey likelihoods
-    mle.par <- c(mle.par, like[c(1,4)])
-    mle.par <- c(mle.par, as.numeric(like.flt[nrow(like.flt), c(4,3)]))
-    mle.par <- c(mle.par, like[c(6,8,9)])
-    ## Special case - if the sensitivity does not include steepness as
+    mle.par <- c(mle.par, like[c(1, 4)])
+    mle.par <- c(mle.par, as.numeric(like.flt[nrow(like.flt), c(4, 3)]))
+    mle.par <- c(mle.par, like[c(6, 8, 9)])
+    ## If the sensitivity does not include the two DM parameters nor the age-1 index SD parameter
+    ##  as an estimated parameter, insert two NAs.
+    if(length(mle.par) == 22){
+      mle.par <- append(mle.par, c(NA, NA), after = 4)
+    }
+    ## If the sensitivity does not include the steepness as
     ##  an estimated parameter, insert an NA.
-    if(length(mle.par) == 21){
-      mle.par <- c(mle.par[1:2],
-                   NA,
-                   mle.par[-(1:2)])
+    if(length(mle.par) == 23){
+      mle.par <- append(mle.par, NA, after = 2)
     }
     ## If the sensitivity does not include the age 1 index as
     ##  an estimated parameter, insert an NA.
-    if(age.1 & length(mle.par) == 22){
-      mle.par <- c(mle.par[1:4],
-                   NA,
-                   mle.par[-(1:4)])
+    if(age.1 & length(mle.par) == 24){
+      mle.par <- append(mle.par, NA, after = 6)
     }
 
     if(is.null(tab)){
