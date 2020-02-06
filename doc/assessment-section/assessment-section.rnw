@@ -561,9 +561,11 @@ when the data give a consistent signal
 selectivity, the fit to commercial age-composition data is particularly good,
 although models with time-invariant selectivity used in previous years also fit
 the age compositions well.
-In \Sexpr{last.data.yr}, \Sexpr{top.coh(base.model, last.data.yr, 3, cap = FALSE)}.
+In the \Sexpr{last.data.yr} fishery, \Sexpr{top.coh(base.model, last.data.yr, 3, cap = FALSE)}.
 Age compositions from the \Sexpr{survey.end.yr} acoustic survey suggest a similar age
 structure, i.e., \Sexpr{top.coh(base.model, survey.end.yr, 3, cap = FALSE, fleet = 2)}.
+**THIS next sentence doesn't make sense, especially given have just been talking about data;
+suggest deleting (AME).
 The pattern for the 2010 year class was expected given the strength of that cohort
 from the fishery composition data from 2012 onward, and thus, are fit well by the model.
 Combined, the 2015--\Sexpr{last.data.yr} fishery age-composition data and the
@@ -571,13 +573,15 @@ Combined, the 2015--\Sexpr{last.data.yr} fishery age-composition data and the
 suggest that 2014 was a strong recruitment
 year, and the model was able to adequately
 fit to these observations (Figure~\ref{fig:main-age-comp-fits}).
-The strength of the 2016 year-class, which has now been observed by the survey
-\Sexpr{ceiling((survey.end.yr-2016)/2)} times appears to be less strong than
-the 2014 year class.
+The 2016 cohort, which has now been observed twice by the survey,
+%\Sexpr{ceiling((survey.end.yr-2016)/2)} times
+appears to be smaller than
+the 2014 cohort.
 The \Sexpr{survey.end.yr} survey was the first time the survey was able to sample the
-\Sexpr{survey.end.yr-2} year class, and it confirmed that
-this year class (\Sexpr{survey.a2.prop}\% of the catch for that year)
-was not extremely large. Residual
+\Sexpr{survey.end.yr-2} cohort, confirming that
+it
+was not extremely large (\Sexpr{survey.a2.prop}\% of the \Sexpr{survey.end.yr} survey catch).
+Residual
 patterns to the fishery and survey age data do not show patterns that would
 indicate systematic bias in model predictions
 (Figure~\ref{fig:main-age-comp-pearson}).
