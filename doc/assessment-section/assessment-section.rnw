@@ -212,13 +212,13 @@ estimating $\sigma_R$ that would reduce model sensitivity to the value of this c
 % From Issue \#468:
 \emph{Response -- Developing best practices for modeling equilibrium recruitment ($R_0$)
   and recruitment variability ($\sigma_R$)
-  remain broad topics of contemporary research. The JTC continues to conduct, 
+  remain broad topics of contemporary research. The JTC continues to conduct,
   collaborate on and monitor ongoing research projects into
   approaches for advancing recruitment estimation,
   as it applies to \fishname and in general. We briefly discuss several of these research
-  endeavors next.
-  
-  The JTC is conducting and collaborating on simulation projects looking into the concurrent
+  endeavors next.}
+
+\emph{The JTC is conducting and collaborating on simulation projects looking into the concurrent
   estimation of multiple variance parameters. This includes the estimation of variability
   associated with time-varying selectivity, $\sigma_R$, extra standard deviation parameters
   on survey index data, and dirichlet multinomial($\theta$) parameters. This is particularly
@@ -226,44 +226,43 @@ estimating $\sigma_R$ that would reduce model sensitivity to the value of this c
   estimation of $\sigma_R$, variance parameters in stock assessment models can be interrelated
   when attempting to capture other sources of variance attributed to model misspecification.
   This work is related with other time-varying selelctivity research, as discussed in response 2
-  below.
-  
-  The near completion of the Management Strategy Evaluation framework for \fishname creates
+  below.}
+
+\emph{The near completion of the Management Strategy Evaluation framework for \fishname creates
   considerable advantages for examining recruitment. For example, using the Template Model
   Builder (TMB) estimation code developed by Dr. Nis Jacobsen for the MSE, there is opportunity
   to explore random effects treatment of recruitment variability \citep{Thorson2019}.  The MSE
-  framework can also be used to evaluted the robustness of recruitment modeling assumptions on 
-  management performance and uncertainty.  Further, the MSE could be an additional option for 
-  estimating $\sigma_R$ in MCMC runs while further testing semi-parametric selectivity.
-  
-  The JTC conducted an analysis looking into autocorrelation of recruitment deviations over
+  framework can also be used to evaluted the robustness of recruitment modeling assumptions on
+  management performance and uncertainty.  Further, the MSE could be an additional option for
+  estimating $\sigma_R$ in MCMC runs while further testing semi-parametric selectivity.}
+
+\emph{The JTC conducted an analysis looking into autocorrelation of recruitment deviations over
   time. Results showed no indication of autocorrelation, suggesting there is no need to
   add additional variance terms to account for temporally-related recruitment deviations.
   The assessment model is adequately accounting for general life-history traits and includes
   an adequate representation of ageing error. Along with no apparent retrospective pattern
   (see Section~\ref{sec:assessment-retrospective-analyses}), this result suggest that the
-  assessment model is not overly misspecified. Given the lack of autocorrelation, the 
-  assessmnet model was not sensitive to the addition of an autocorrelation parameter.
-  
-  The JTC is following work being conducted by Dr. Cathleen Vestfals and colleagues at
+  assessment model is not overly misspecified. Given the lack of autocorrelation, the
+  assessmnet model was not sensitive to the addition of an autocorrelation parameter.}
+
+\emph{The JTC is following work being conducted by Dr. Cathleen Vestfals and colleagues at
   the Northwest Fisheries Science Center looking at identifying climate drivers of
   \fishname early life history stages and recruitment. Possible outcomes from this work
   of direct use to the assessment include the development of an explicit recruitment index,
   an environmental index linked to recruitment, indicators of recruitment variation
-  ($\sigma_R$), and indicators of current or forecasted levels of recruitment.
-  
-  The JTC is also following work being conducted by the International Council for
+  ($\sigma_R$), and indicators of current or forecasted levels of recruitment.}
+
+\emph{The JTC is also following work being conducted by the International Council for
   the Exploration of the Sea (ICES) Methods Working Group which, among other things,
   is looking at meta-analytical approaches for estimating recruitment parameters.  Results
   from this work could be used to develop informative prior distributions on key
-  recruitment parameters.
-  
-  The JTC plans to continue to work towards evaluating and testing best practices
+  recruitment parameters.}
+
+\emph{The JTC plans to continue to work towards evaluating and testing best practices
   for modeling recruitment variability, including the use of multi-stage recruitment
   functions. In general, many of these issues are widespread
   in stock assessment, and scientific-based solutions are likely to be the result of medium
-  to long-term research projects.
-}
+  to long-term research projects.}
 
 2. The SRG notes that when setting values for other parameters that cannot be estimated
 directly with confidence, the choice of values should be made using methods that are
@@ -906,28 +905,31 @@ The median relative fishing intensity was below target in all years throughout t
 % Manual 2017 done - comment out above line if only one year, include it if
 %  length(median.intensity.above.one.years) > 1
 %\Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
-(Figure~\ref{fig:main-fishing-intensity}).
+(Table~\ref{tab:main-median-posterior-table} and
+Figures~\ref{fig:main-fishing-intensity} and~\ref{fig:main-phase}).
 The median female spawning biomass was
 above the $\Bforty$ reference point in all years except 1999 and 2007-2010
-(Figure~\ref{fig:main-relative-spawning-biomass} and Figure~\ref{fig:main-phase}).
+(Table~\ref{tab:main-median-posterior-table} and Figures~\ref{fig:main-relative-spawning-biomass} and~\ref{fig:main-phase}).
 % 2017 assessment: all years except 1968, 1998-2000 and 2007-2011
 % 2019 assessment: all years except 1999-2000 and 2007-2011
 % Andy summarising those years manually, based on:
 % median.relative.bio.below.target
 % Manual done 2020. Interesting that years are becoming fewer.
-
-The joint history of biomass and $F$-based target reference points shows that
-before 2007, median relative fishing intensity was below target and female
-spawning biomass was mostly above $\Bforty$
-(Figure~\ref{fig:main-phase}). Between 2007 and 2011, however, median relative
-fishing intensity ranged from \Sexpr{median.intensity.2007.to.2011.min}\% to
-\Sexpr{median.intensity.2007.to.2011.max}\% and median relative spawning biomass
-between \Sexpr{median.relative.bio.2007.to.2011.min} and
-\Sexpr{median.relative.bio.2007.to.2011.max}. Biomass has risen recently with
+These are also shown by phase plot of the joint history of relative spawning biomass
+and relative fishing intensity
+(Figure~\ref{fig:main-phase}).
+%Between 2007 and 2011, however, median relative
+%fishing intensity ranged from \Sexpr{median.intensity.2007.to.2011.min}\% to
+%\Sexpr{median.intensity.2007.to.2011.max}\% and
+%median relative spawning biomass
+%between \Sexpr{median.relative.bio.2007.to.2011.min} and
+%\Sexpr{median.relative.bio.2007.to.2011.max}.
+Biomass increased from the lows in 2007--2010 with
 the 2008, 2010, 2014, and 2016 recruitments and, correspondingly, relative fishing
 intensity has remained well below targets despite recent increases in total catch.
-Relative spawning biomass has been
-above the target since \Sexpr{median.relative.bio.above.target.since}. While
+% Relative spawning biomass has been
+% above the target since \Sexpr{median.relative.bio.above.target.since}.
+While
 there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative fishing
 intensity and relative spawning biomass, the model estimates a \Sexpr{joint.percent.prob.above.below}\%
 joint probability of being both above the target relative fishing intensity in
