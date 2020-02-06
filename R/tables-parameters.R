@@ -513,8 +513,8 @@ make.short.parameter.estimates.sens.table <- function(models,
                           latex.italics("h"),
                           ")"),
                    "Additional acoustic survey SD",
-                   "Dirichlet-Multinomial fishery ($\\theta_{fish}$)",
-                   "Dirichlet-Multinomial survey ($\\theta_{survey}$)",
+                   "Dirichlet-Multinomial fishery ($\\theta_{\\text{fish}}$)",
+                   "Dirichlet-Multinomial survey ($\\theta_{\\text{surv}}$)",
                    "Additional age-1 index SD",
                    paste(getrecs, "recruitment (millions)"),
                    paste0(latex.subscr(latex.italics("B"), "0"),
@@ -553,8 +553,8 @@ make.short.parameter.estimates.sens.table <- function(models,
                           latex.italics("h"),
                           ")"),
                    "Additional acoustic survey SD",
-                   "Dirichlet-Multinomial fishery ($\\theta_{fish}$)",
-                   "Dirichlet-Multinomial survey ($\\theta_{survey}$)",
+                   "Dirichlet-Multinomial fishery ($\\theta_{\\text{fish}}$)",
+                   "Dirichlet-Multinomial survey ($\\theta_{\\text{surv}}$)",
                    paste(getrecs, "recruitment (millions)"),
                    paste0(latex.subscr(latex.italics("B"), "0"),
                           " (thousand t)"),
@@ -658,7 +658,7 @@ make.short.parameter.estimates.table <- function(model,
   ##   estimates of recruitment. Must be of length three.
   if (length(getrecs) != 3) stop("The make short function only works",
                                  "with three years of recruitments", call. = FALSE)
-  
+
   ## This year's model MLE
   parms <- model$estimated_non_dev_parameters
   p.names <- rownames(parms)
@@ -676,7 +676,7 @@ make.short.parameter.estimates.table <- function(model,
     mle.par <- c(mle.par,
                  rec <- model$recruit[model$recruit$Yr == reci,]$pred_recr / 1000)
   }
-  
+
   ## Add B0
   b0 <- model$SBzero ## Note that this is divided by 2 in a single sex model
   b0 <- b0 / 1000    ## To make B0 in the thousands
@@ -736,7 +736,7 @@ make.short.parameter.estimates.table <- function(model,
       mcmc.meds <- c(mcmc.meds,
                      median(x$mcmc[[paste0("Recr_", reci)]]) / 1000)
     }
-    
+
     ## Add B0
     b0 <- median(x$mcmc$SSB_Initial / 2) ## divide by 2 for females
     b0 <- b0 / 1000 ## To make B0 in the thousands
@@ -833,8 +833,8 @@ make.short.parameter.estimates.table <- function(model,
                         latex.italics("h"),
                         ")"),
                  "Additional acoustic survey SD",
-                 "Dirichlet-Multinomial fishery ($\\theta_{fish}$)",
-                 "Dirichlet-Multinomial survey ($\\theta_{survey}$)",
+                 "Dirichlet-Multinomial fishery ($\\theta_{\\text{fish}}$)",
+                 "Dirichlet-Multinomial survey ($\\theta_{\\text{surv}}$)",
                  paste0("Catchability (",
                         latex.italics("q"),
                         ")"),
