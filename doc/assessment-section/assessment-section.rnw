@@ -381,7 +381,7 @@ MCMC sampling, are shown in Appendix~\ref{chap:chap:adnuts}. In addition, the JT
 the added utility of using the ShinyStan application {\tt shinystan} features in {\tt adnuts}
 to better visualize MCMC diagnostics, including mixing, sampling and divergence metrics, among
 other things. A demonstration of this application will be shown at the 2020 SRG meeting. The code
-used for running NUTS is displayed at the end of Appendix~\ref{chap:chap:adnuts}.} 
+used for running NUTS is displayed at the end of Appendix~\ref{chap:chap:adnuts}.}
 
 6. Delays in entry and validation of catches reported on paper tickets in Washington and entry
 into the PACFIN database was identified as a potential issue. This concern has most often
@@ -392,11 +392,11 @@ catch data and be transparent about the sources of data used in the assessment i
 event that data have to be obtained directly from the sources.}
 
 \emph{Response -- The JTC set the deadline 3 January 2020 for the extraction of data.
-In addition, the JTC communicated with State and Provincial partners to ensure the 
+In addition, the JTC communicated with State and Provincial partners to ensure the
 most up to date data would be available. The streamlining of getting tribal fish
 tickets into regional databases is advancing with the recent electronic ticket pilot
 study jointly conducted by the Makah Tribe in Washington State and the Pacific States
-Marine Fisheries Commission (see the tribal fishery report in 
+Marine Fisheries Commission (see the tribal fishery report in
 Appendix~\ref{chap:us-fishery-report}). However, nearly
 50\% of the tribal catch had yet to be incorporated into the PacFIN regional
 database by the data deadline. Nonetheless, the JTC worked with the Makah Tribe and
@@ -1031,14 +1031,14 @@ fishery, and will compare potential methods to address them.
 
 \subsection{Reference points}\label{sec:assessment-reference-points}
  % Manual 2020 done.
-We report estimates of the base reference points (e.g., relative to $\Fforty$,
+We report estimates of the base reference points (e.g., $\Fforty$,
 $\Bforty$, $\Bmsy$, and MSY) with posterior credibility intervals in
 Table~\ref{tab:main-reference-points}. Only those based on $\Fforty$ explicitly
 relate to target reference points per the treaty Agreement (see
 Section~\ref{sec:intro-management} and Appendix~\ref{chap:glossary}). The
 estimates are only slightly different than the estimates in the
 \Sexpr{last.assess.yr} assessment (see also Table~\ref{tab:main-parameter-estimates}).
-
+**ANDY: that doesn't look very true to me, but wait until table is fixed.
 % Manual 2020 done.
 % Look at dfo.probs.curr and decide what to write. Check that
 %   ncol(base.model$risks[[1]]) == 10   (i.e. no new columns added)
