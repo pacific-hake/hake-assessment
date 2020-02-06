@@ -350,17 +350,19 @@ age-\Sexpr{us.age.4.prop.age.shore} (\Sexpr{us.age.4.prop.shore}\%)
 in \Sexpr{last.data.yr} (Table~\ref{tab:main-us-shore-age-data}).
 % Manual done 2020 KFJ
 
-**[Need fishery reports to finalize text]The at-sea fishery maintained moderately high catch rates throughout the
+The at-sea fishery maintained moderately high catch rates throughout the
 year (Figure~\ref{fig:main-us-catch-rates}), averaging around 20 t/hr in the spring
 (May--June) and 15 t/hr in the fall (September--November). Relative
 to last year, the spring fisheries saw a decline in catch
-rates, whereas catch rates were higher in September and October this year relative to last year.  The median fishing depth for the at-sea fleets was slightly shallower than last year, which was shallower than
-in previous years (Figure~\ref{fig:main-us-at-sea-depths}). During July and August, operators
-in the at-sea fishery moved to the usual summer fishing grounds in search of
-opportunities in Alaskan waters.  The shore-based fishery had the largest monthly
-catches during July, August, and September.  Due to the continuation of moderately high catch-rates for all U.S. fleets, the U.S. utilization rate continued to
-maintain close to what it has been in recent years at
-\Sexpr{last.year.us.attained}\% in \Sexpr{last.data.yr}).
+rates, whereas catch rates were higher in September and October.  The median fishing depth for the at-sea fleets was slightly shallower than last year, which was shallower than
+previous years (Figure~\ref{fig:main-us-at-sea-depths}). From mid-June to September/October, operators
+in the at-sea fishery moved to their usual summer fishing grounds where they experienced slower than normal fishing of Bering Sea Walleye Pollock.  The shore-based fishery had the largest monthly
+catches during July, August, and September.
+The U.S. utilization rate
+(\Sexpr{last.year.us.attained}\%) continued to be maintained close to what
+it has been in recent years because of high catch rates,
+despite vessels needing to implement bycatch-avoidance measures
+(see Appendix~\ref{chap:us-fishery-report} for more details).
 % Manual done 2020 KFJ.
 
 % \newpage % kludge to avoid dangling heading:
