@@ -1014,11 +1014,11 @@ No-U-Turn Sampler, implemented using the
 {\tt adnuts} R package \citep{Monnahan2018, Monnahan2019} in
 Appendix~\ref{chap:adnuts}. The inclusion of the age-1
 survey model was chosen because it may improve estimates of recruitment near the end
-of the time series and age composition during the forecast period, even though the acoustic
+of the time series and of age compositions during the forecast period, even though the acoustic
 survey design is not structured specifically for indexing age-1 fish. The model that uses the more efficient
-{\tt adnuts} package for conducting MCMC may improve the applicability of Bayesian methods in
-stock assessment, suggesting that comparisons to existing MCMC methods used for \fishname\ should
-be documented.
+{\tt adnuts} package for conducting MCMC
+allows comparison with our existing methods, a necessary documented first step
+should {\tt adnuts} be used in future \fishname\ assessments.
 
 The JTC continues to be committed to advancing MSE analyses, by coordinating
 research with the \fishname\ MSE Working Group and other scientists in the region
