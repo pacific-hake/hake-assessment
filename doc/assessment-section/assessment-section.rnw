@@ -964,21 +964,24 @@ with several important model parameters including: acoustic survey catchability
 recruitment), productivity of the stock (via the steepness parameter, $h$, of
 the stock-recruitment relationship), the rate of natural mortality ($M$), annual
 selectivity for key ages, recruitment deviations, and survey and fishery data
-weights (via the dirichlet multinomial, $\theta$, parameters). The uncertainty portrayed
-by the posterior distribution is a better representation of the uncertainty when
-compared to asymptotic approximations about the maximum likelihood estimates
-(MLE) because it allows for asymmetry (Figure~\ref{fig:main-prior-posterior};
+weights (via the Dirichlet-Multinomial parameters
+$\theta_{\text{fish}}$ and $\theta_{\text{surv}}$).
+The uncertainty portrayed
+by the posterior distribution is a better representation of uncertainty than
+the asymptotic approximations about the maximum likelihood estimates
+(MLEs) because it allows for asymmetry (Figure~\ref{fig:main-prior-posterior};
 also see \citealt{JTC2012} for further discussion and
 examples).
 Note that we use the term MLE even though the priors are involved in the likelihood
 calculation and so the more accurate term would be the mode of the posterior density.
+[**ANDY table 27 isn't right but I think Kelli fixed it; check when can rebuild]
 Table~\ref{tab:main-parameter-estimates} shows that most key derived
 quantities from the posterior distribution are larger than their respective MLEs
 (e.g., median biomass, recruitment, and relative spawning biomass), however some
 parameter estimates (e.g., steepness and catchability) are
-smaller. Figure~\ref{fig:main-mle-vs-mcmc} shows the MLE and Bayesian (from
+smaller. [**ANDY Fig needs fixing first] Figure~\ref{fig:main-mle-vs-mcmc} shows the MLE and Bayesian (from
 MCMC) estimates as well as the skewed uncertainty in the posterior distributions
-for spawning biomass and recruitment for each year.  Median estimates of spawning
+for spawning biomass and recruitment for each year. Median estimates of spawning
 biomass and recruitment from the posterior distribution are slightly larger than
 their respective MLEs, but the 95\% credibility (posterior median) and confidence
 (MLE) intervals overlap considerably.
