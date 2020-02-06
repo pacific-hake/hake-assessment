@@ -9,9 +9,9 @@ us.allotment.percent <- 73.88
 ################################################################################
 ## Attainment, used in the management performance section
 usa.last.5.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),8]), 1)
-usa.last.2.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-2):(end.yr-1),8]), 1)
+usa.last.2.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-2):(end.yr-1),8]), 0)
 can.last.5.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),9]), 1)
-can.last.2.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-2):(end.yr-1),9]), 1)
+can.last.2.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-2):(end.yr-1),9]), 0)
 tot.last.5.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),10]), 1)
 tot.last.10.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-10):(end.yr-1),10]), 1)
 tot.last.year.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year == (end.yr-1),"ATTAIN"]), 1)

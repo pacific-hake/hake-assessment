@@ -379,7 +379,7 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
   highest.fish.int.yr <- yrs[which.max(pmed)]
   text(x = dmed[yrs %in% highest.fish.int.yr],
        y = pmed[yrs %in% highest.fish.int.yr],
-       labels = highest.fish.int.yr,
+       labels = highest.fish.int.yr + 1,
        pos = 4,
        cex = 0.6,
        col=colvec[yrs %in% highest.fish.int.yr])
