@@ -355,86 +355,32 @@ make.short.parameter.estimates.sens.table <- function(models,
   if (length(getrecs) != 3) stop("The make short function only works",
     "with three years of recruitments", call. = FALSE)
 
-  tab <- NULL
-  for(model in models){
-    parms <- model$estimated_non_dev_parameters
-    p.names <- rownames(parms)
-    mle.grep <- unique(grep(paste(posterior.regex, collapse="|"), p.names))
-
-    mle.par <- parms[mle.grep,]$Value
-    mle.par[2] <- exp(mle.par[2]) / 1000 ## To make R millions
-
-    ## Add
-    for (reci in getrecs) {
-      mle.par <- c(mle.par,
-        model$recruit[model$recruit$Yr == reci,]$pred_recr / 1000)
-    }
-
-    ## Add B0
-    b0 <- model$SBzero
-    b0 <- b0 / 1000 ## To make B0 in the thousands
-    mle.par <- c(mle.par, b0)
-
-    ## Add depletion for 2009
-    d <- 100 * model$derived_quants[paste("Bratio", 2009, sep = "_"), "Value"]
-    mle.par <- c(mle.par, d)
-
-    ## Add depletion for end.yr
-    d <- 100 * model$derived_quants[paste("Bratio", end.yr, sep = "_"), "Value"]
-    mle.par <- c(mle.par, d)
-
-    ## Add fishing intensity for last year
-    fi <- model$derived_quants[paste("SPRratio", end.yr-1, sep = "_"), "Value"]
-    fi <- fi * 100
-    mle.par <- c(mle.par, fi)
-
-    ## Add Female spawning biomass B_f40%
-    ## Always divide SSB by 2 in single sex model, unless you grab model$SBzero
-    ##  divide by 1000 to be consistent with showing biomass in thousands of tons
-    b <-  model$derived_quants["SSB_SPR", "Value"] / 2 / 1000
-    mle.par <- c(mle.par, b)
-
-    ## Add SPR MSY-proxy
-    mle.par <- c(mle.par, 40)
-
-    ## Add Exploitation fraction corresponding to SPR
-    f1 <- model$derived_quants["Fstd_SPR", "Value"]
-    f1 <- f1 * 100
-    mle.par <- c(mle.par, f1)
-
-    ## Add Yield at Bf_40%
-    y <- model$derived_quants["Dead_Catch_SPR", "Value"] / 1000
-    mle.par <- c(mle.par, y)
-
-    ## Add Likelihoods - there are 8 to 10 of them
-    j <- model$likelihoods_used
-    like <- model$likelihoods_used$value
-    like.flt <- model$likelihoods_by_fleet
-    ## Add Total and Survey likelihoods
-    mle.par <- c(mle.par, like[c(1, 4)])
-    mle.par <- c(mle.par, as.numeric(like.flt[nrow(like.flt), c(4, 3)]))
-    mle.par <- c(mle.par, like[c(6, 9, 10)])
-    ## If the sensitivity does not include the two DM parameters nor the age-1 index SD parameter
-    ##  as an estimated parameter, insert two NAs.
-    if(length(mle.par) == 22){
-      mle.par <- append(mle.par, c(NA, NA), after = 4)
-    }
-    ## If the sensitivity does not include the steepness as
-    ##  an estimated parameter, insert an NA.
-    if(length(mle.par) == 23){
-      mle.par <- append(mle.par, NA, after = 2)
-    }
-    ## If the sensitivity does not include the age 1 index as
-    ##  an estimated parameter, insert an NA.
-    if(age.1 & length(mle.par) == 24){
-      mle.par <- append(mle.par, NA, after = 6)
-    }
-
-    if(is.null(tab)){
-      tab <- as.data.frame(mle.par)
-    }else{
-      tab <- cbind(tab, mle.par)
-    }
+  getvals <- function(x) {
+    out <- x[x$Label %in% c("SPRratio", "SSB_SPR", "Fstd_SPR", "Dead_Catch_SPR"), "Value"]
+    out <- c(out[1]/2/1000, 40, out[-1])
+    out[3] <- out[3]*100
+    out[4] <- out[4]/1000
+    return(out)
+  }
+  modelssum <- r4ss::SSsummarize(models)
+  all <- rbind(
+    modelssum$pars[c(
+      grep("NatM|SR_LN|steep|SD", modelssum$pars$Label),
+      grep("EffN", modelssum$pars$Label)
+      ), 1:modelssum$n],
+    modelssum$recruits[grep(paste(paste0("Recr_", getrecs), collapse = "|"), modelssum$recruits$Label), 1:modelssum$n]/1000,
+    modelssum$SpawnBio[modelssum$SpawnBio$Label == "SSB_Virgin", 1:modelssum$n]/2/1000,
+    modelssum$Bratio[modelssum$Bratio$Label %in% c("Bratio_2009", paste0("Bratio_", end.yr)), 1:modelssum$n]*100,
+    modelssum$SPRratio[modelssum$SPRratio$Yr == end.yr - 1, 1:modelssum$n]*100,
+    structure(sapply(lapply(models, "[[", "derived_quants"), getvals), dimnames = list(NULL, paste0("model", 1:modelssum$n))),
+    modelssum$likelihoods[modelssum$likelihoods$Label %in% c("TOTAL", "Survey"), 1:modelssum$n],
+    structure(t(modelssum$likelihoods_by_fleet[modelssum$likelihoods_by_fleet$Label == "Age_like", c("Acoustic_Survey", "Fishery")]),dimnames=list(NULL,paste0("model", 1:modelssum$n))),
+    modelssum$likelihoods[modelssum$likelihoods$Label %in% c("Recruitment", "Parm_priors", "Parm_devs"), 1:modelssum$n])
+  all[2, ] <- exp(all[2, ]) / 1000
+  tab <- all
+  if (length(grep("SD", modelssum$pars$Label)) == 2) {
+    tab[5:6, ] <- all[6:7, ]
+    tab[7, ] <- all[5, ]
   }
 
   ## Format the tables rows depending on what they are
