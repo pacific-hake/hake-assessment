@@ -16,8 +16,11 @@ model uncertainty arising from a different structural assumption or analytical c
 compared to the base model.  The inclusion of the adnuts software was deemed
 prudent in order to compare this new approach with existing MCMC methods used for \fishname.
 
-The following figures and tables follow an executive summary format, with the addition
+The R code that was used to run {\tt adnuts} following general guidelines
+provided by C. Monnahan are provided at the end of this appendix.
+Fgures and tables follow an executive summary format, with the addition
 of a diagnostics figure and an MCMC method comparison figure.
+
 
 % Keeping chunk names as ...53, which is from 2019 assessment (where we had four
 % similar appendices), but not worth changing as it's just the labels).
@@ -410,3 +413,73 @@ make.mcmc.survey.fit.plot(sens.models.6,
 \label{fig:mcmc-survey-fit-adnuts}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+
+The R code that was used to run {\tt adnuts}: 
+
+<<a, eval=FALSE, echo=TRUE>>= 
+setwd()
+library(adnuts)
+library(snowfall)
+library(rstan)
+library(shinystan)
+reps <- parallel::detectCores()-1 # chains to run in parallel
+set.seed(352)
+seeds <- sample(1:1e4, size=reps)
+m <- 'ss' ## folder with executable in wdir
+setwd(m)
+system('ss -nox -iprint 200 -mcmc 15')
+setwd('..')
+
+## Then run parallel RWM chains as a first test to ensure
+##mcmc itself is working properly, or that model is converging in mcmc space
+thin <- 10
+iter <- 100*thin ##iter is per core
+warmup <- iter/4
+inits <- NULL ## start chains from MLE
+pilot <- sample_admb(m, iter=iter, thin=thin, seeds=seeds, init=inits,
+parallel=TRUE, chains=reps, warmup=warmup,
+path=m, cores=reps, algorithm='RWM')
+save.image(file = "hake.RData")
+
+##next check convergence and slow mixing parameters
+mon <- monitor(pilot$samples, warmup=pilot$warmup, print=FALSE)
+max(mon[,'Rhat'])
+min(mon[,'n_eff'])
+slow <- names(sort(mon[,'n_eff']))[1:8] ## Examine the slowest mixing parameters
+pairs_admb(fit=pilot, pars=slow)
+pairs_admb(fit=pilot, pars=c('MGparm[1]', 'SR_parm[1]', 'SR_parm[2]'))
+
+## After regularizing run NUTS chains. First reoptimize to get the
+## correct mass matrix for NUTS. Note the -hbf 1 argument. This is a
+## technical requirement b/c NUTS uses a different set of bounding
+## functions and thus the mass matrix will be different.
+setwd(m); system(paste(m, '-hbf 1 -nox -iprint 200 -mcmc 15')); setwd('..')
+save.image(file = "hake.RData")
+
+## Use default MLE covariance (mass matrix) and short parallel NUTS chains
+## started from the MLE.
+nuts.mle <-
+sample_admb(model=m, iter=500, init=NULL, algorithm='NUTS', seeds=seeds,
+parallel=TRUE, chains=reps, warmup=100, path=m, cores=reps,
+control=list(metric="mle", adapt_delta=0.8))
+save.image(file = "hake.RData")
+
+## Check for issues like slow mixing, divergences, max treedepths with
+## ShinyStan and pairs_admb as above. Fix and rerun this part as needed.
+launch_shinyadmb(nuts.mle)
+
+## Once acceptable, run again for inference using updated mass matrix. Increase
+## adapt_delta toward 1 if you have divergences (runs will take longer).
+mass <- nuts.mle$covar.est # note this is in unbounded parameter space
+inits <- sample_inits(nuts.mle, reps) ## use inits from pilot run
+## The following, nuts.updated, was used for inferences in this appendix
+nuts.updated <-
+sample_admb(model=m, iter=1000, init=inits, algorithm='NUTS', seeds=seeds,
+parallel=TRUE, chains=reps, warmup=250, path=m, cores=reps,
+mceval=TRUE, control=list(metric=mass, adapt_delta=0.9))
+save.image(file = "hake.RData")
+launch_shinyadmb(nuts.updated) #evalute performance
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
