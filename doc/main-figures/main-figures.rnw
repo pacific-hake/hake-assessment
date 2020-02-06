@@ -262,8 +262,13 @@ weight.at.age.heatmap(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=6.5in, height=8.5in]{main-figures/EWAforDoc_Numbers}
+<<main-weight-at-age-numbers, fig.height=9, fig.width=8>>=
+weight.at.age.heatmap(base.model,
+                      proj.line.yr = base.model$endyr,
+                      extrap.mask = weight_age_extrapolation_mask,
+                      longterm.mean.ages = NULL,
+                      samplesize = TRUE)
+@
 \end{center}
 \vspace{0mm}
 \caption{Sample sizes for developing empirical weight-at-age values used in the

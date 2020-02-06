@@ -21,6 +21,8 @@
 #' filled in any way.
 #' @param font.size Font size
 #' @param axis.font.size Font size for axis labels
+#' @param samplesize A logical value specifying if the heat map should be of
+#' input sample size used to generate the data rather than the actual weights-at-age.
 #' @export
 #' @importfrom dplyr filter select bind_rows
 #' @importFrom tibble as_tibble
@@ -53,7 +55,8 @@ weight.at.age.heatmap <- function(model,
                                                          1.00,
                                                          1.03),
                                   font.size = 4,
-                                  axis.font.size = 10){
+                                  axis.font.size = 10,
+                                  samplesize = FALSE){
 
   stopifnot(!is.null(proj.line.yr),
             !is.null(extrap.mask))
@@ -62,46 +65,18 @@ weight.at.age.heatmap <- function(model,
   last.data.yr <- model$endyr
   input.yrs <-  first.year:last.data.yr
 
-  names(extrap.mask) <- input.yrs
-
-  extrap <- as_tibble(cbind(input.yrs, t(bind_rows(extrap.mask))))
-
-  if(proj.line.yr != last.data.yr){    # assume only different by one due to SS configuration
-      # want years above the blue line to bold:
-      extrap[nrow(extrap), 2:ncol(extrap)] <- rep(1, ncol(extrap)-1)
-      # warning("Projection line year does not equal the last data year. ",
-      #         "Check weight.at.age.heatmap() and make sure values are correct.")
-  }
-
   wa <- as_tibble(model$wtatage[, !grepl("comment", colnames(model$wtatage))]) %>%
     filter(Fleet == fleet) %>%
     select(-c(Seas, Sex, Bio_Pattern, BirthSeas, Fleet)) %>%
     filter(Yr > 0)
+  wa <- wa[,1:which(apply(wa, 1, duplicated)[, 1])[1]-1]
 
-  wa <- wa[,1:17]
-  names(extrap) <- names(wa)
-
-  ## wa and extrap are in the same format but extrap needs more rows for fully extrapolated years
-  ##  before and after
-
-  j <- subset(wa, !(wa$Yr %in% extrap$Yr))
-  j[,2:17] <- c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
-
-  extrap <- bind_rows(extrap, j) %>%
-    arrange(Yr)
+#  n.mast <- read.csv("c:/stockAssessment/hake-data/LengthWeightAge/wtatage_all_samplesize.csv",
+#    header = TRUE,stringsAsFactors=F)
 
   last.yr <- max(wa$Yr)
 
-  wa1 <- wa2 <- wa[,-1]
-  extrap1 <- extrap[,-1]
-  wa1[!extrap1] <- NA
-  wa2[extrap1 == 1] <- NA
-  wa1 <- cbind(Yr = wa$Yr, wa1)
-  wa2 <- cbind(Yr = wa$Yr, wa2)
-
   w <- melt(wa, id.vars = "Yr")
-  w1 <- melt(wa1, id.vars = "Yr")
-  w2 <- melt(wa2, id.vars = "Yr")
 
   ages <- as.numeric(levels(unique(w$variable)))
   nage <- length(ages)
@@ -119,31 +94,21 @@ weight.at.age.heatmap <- function(model,
   w <- as.data.frame(rbind(w, avg))
   w$Yr <- as.integer(w$Yr)
   w$value <- as.numeric(w$value)
+  w$age <- type.convert(w$variable)
 
-  w1 <- as.data.frame(rbind(w1, avg))
-  w1$Yr <- as.integer(w1$Yr)
-  w1$value <- as.numeric(w1$value)
+  nn <- reshape(extrap.mask, direction = "long",
+    idvar = c("Yr"), varying = grep("^a", colnames(extrap.mask), value = TRUE),
+    sep = "", timevar = "age")
+  nn[nn$Yr < 0, "Yr"] <- min(w$Yr)
+  nn$Yr <- as.integer(nn$Yr)
 
-  w2 <- as.data.frame(rbind(w2, avg))
-  w2$Yr <- as.integer(w2$Yr)
-  w2$value <- as.numeric(w2$value)
+  valswithmask <- merge(w, nn, by = c("Yr", "age"), all = TRUE)
+  valswithmask[is.na(valswithmask$a), "a"] <- 0
 
-  g <- ggplot(w)+
-    geom_tile(aes(x = variable, y = Yr, fill = value)) +
+  g <- ggplot(valswithmask,
+    aes(y = Yr, fontface = ifelse(a > 0, "plain", "bold")))+
+    geom_tile(aes(x = variable, fill = value)) +
     scale_fill_gradientn(colors = colors, guide = FALSE) +
-    geom_text(aes(x = w2$variable,
-                  y = w2$Yr,
-                  label = ifelse(is.na(w2$value),
-                                 "",
-                                 f(w2$value, 2))),
-              size = font.size) +
-    geom_text(aes(x = w1$variable,
-                  y = w1$Yr,
-                  label = ifelse(is.na(w1$value),
-                                 "",
-                                 f(w1$value, 2))),
-              fontface = "bold",
-              size = font.size) +
     theme(legend.title = element_blank(),
           axis.text.x = element_text(size = axis.font.size),
           axis.text.y = element_text(size = axis.font.size)) +
@@ -160,6 +125,13 @@ weight.at.age.heatmap <- function(model,
                color = proj.line.color,
                size = proj.line.width) +
     coord_cartesian(expand = FALSE)
+  if(samplesize) {
+    g <- g +
+      geom_text(aes(x = factor(age), label = a), size = font.size)
+  } else {
+    g <- g +
+      geom_text(aes(x = variable, label = sprintf('%0.2f', value)), size = font.size)
+  }
 
   if(last.yr > last.data.yr){
     ## Add line separating projections
