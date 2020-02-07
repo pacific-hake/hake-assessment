@@ -21,7 +21,7 @@ make.cumulative.catch.plot <- function(d,   ## Data as found in the xxxx.catch.b
   ylim <- max(dsum)
 ## TODO: Fix this to work on new file structure of can-ft-catch-by-month.csv.
 ## See hakedata package (canada) as it has this function already built in.
-  browser()
+
   catch.plot <- function(x, y, plot.type = c("default", "proportion", "cumulative"), ...){
     ## x is period
     ## y is catch

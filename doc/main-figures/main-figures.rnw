@@ -10,8 +10,7 @@ make.overview.map.plot(path = rootd.map.data)
 @
 \end{center}
 \caption{Overview map of the area in the Northeast Pacific Ocean occupied by \fishname.
-  Common areas referred to in this document are shown.**Some names hard to see --
-  may be worth fiddling with if time.}
+  Common areas referred to in this document are shown.}
 \label{fig:main-overview-map}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1391,10 +1390,9 @@ make.comparison.plot(c(list(base.model), list(sens.models.6)),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{**Maximum likelihood estimates of stock status for the base
-  model and alternative sensitivity runs 55, 56, 57, and 58.
-  See Figure~\ref{fig:main-biomass-base-alternative-6} and
-  Table~\ref{tab:main-wtatage-runs} for descriptions of runs}
+\caption{Maximum likelihood estimates of stock status for the base
+  model and alternative sensitivity run using the adnuts MCMC algorithm.
+  See Appendix~\ref{chap:adnuts} for a full description.}
 \label{fig:main-status-base-alternative-6}
 
 \begin{center}
@@ -1405,14 +1403,11 @@ make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{**MCMC median posterior estimates with 95\% credible interval of stock
-  status for the base model and alternative sensitivity runs 55, 56, 57, and 58.
-  See Figure~\ref{fig:main-biomass-base-alternative-6} and
-  Table~\ref{tab:main-wtatage-runs} for descriptions of runs.}
+\caption{MCMC median posterior estimates with 95\% credible interval of stock
+  status for the base model and alternative sensitivity run using the adnuts MCMC algorithm.
+  See Appendix~\ref{chap:adnuts} for a full description.}
 \label{fig:main-status-base-alternative-6-mcmc}
 \end{figure}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
