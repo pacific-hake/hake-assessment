@@ -221,7 +221,8 @@ estimating $\sigma_R$ that would reduce model sensitivity to the value of this c
 \emph{The JTC is conducting and collaborating on simulation projects looking into the concurrent
   estimation of multiple variance parameters. This includes the estimation of variability
   associated with time-varying selectivity, $\sigma_R$, extra standard deviation parameters
-  on survey index data, and dirichlet multinomial($\theta$) parameters. This is particularly
+  on survey index data, and Dirichlet-Multinomial parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$.
+  This is particularly
   important for $\sigma_R$ because without an index of recruitment to directly inform the
   estimation of $\sigma_R$, variance parameters in stock assessment models can be interrelated
   when attempting to capture other sources of variance attributed to model misspecification.

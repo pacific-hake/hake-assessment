@@ -760,8 +760,7 @@ samples occurring in a part of the parameter space where the effective sample
 size multiplier, $\theta_{\text{surv}} / (1 + \theta_{\text{surv}})$, was between
 0.99 and 1.0 \citep{JTC2019}. In that area, the input sample sizes were given
 full weight and the likelihood surface was almost completely flat with respect to
-$\log \theta_{\text{surv}}$ [**2019 said `this parameter', but this is what was
-meant, yes?], and so to improve MCMC
+$\log \theta_{\text{surv}}$, and so to improve MCMC
 convergence $\log \theta_{\text{surv}}$
 was fixed at the MLE estimate of 2.44, corresponding to a weight of
 $\theta_{\text{surv}} / (1 + \theta_{\text{surv}}) = 0.92$.
@@ -769,10 +768,13 @@ $\theta_{\text{surv}} / (1 + \theta_{\text{surv}}) = 0.92$.
 To enable estimation of $\theta_{\text{surv}}$, James Thorson (NOAA, pers.~comm.)
 suggested that a prior on $\log \theta_{\text{surv}}$ could be associated with
 an approximately uniform prior of the weight $\theta_{\text{surv}} / (1 +
-\theta_{\text{surv}})$. Ian Taylor (NOAA, pers.~comm.) determined that a normal
-prior on $\log \theta_{\text{surv}}$, with mean \Sexpr{effn.prior[2]}
+\theta_{\text{surv}})$. Ian Taylor (NOAA, pers.~comm.)
+used a uniform prior between 0 and 1 to
+determine that a normal
+prior on $\log \theta_{\text{surv}}$ with mean \Sexpr{effn.prior[2]}
 and standard deviation \Sexpr{effn.prior[3]}
-results in such a prior. Thus we use this prior for both $\log \theta_{\text{fish}}$
+is suitable.
+We use this prior for both $\log \theta_{\text{fish}}$
 and $\log \theta_{\text{surv}}$.
 
 Composition data can also be weighted using the Francis method
