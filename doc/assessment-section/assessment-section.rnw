@@ -534,7 +534,7 @@ some other data source which wouldn't otherwise be expected to be informative ab
 However, for \fishname\ the stock assessment is relatively data-rich and the index is pretty
 consistent with the recruitments so such tension doesn't seem to be present. 
 
-Thus, using non-zero centered constrained recruitment deviations will increase the
+Using non-zero centered constrained recruitment deviations will increase the
 compatibility between MCMC and MLE results, and also increase the stability of model results,
 because penalties have implications for calculating derivatives. The non-zero centered approach
 resulted in a median recruitment deviation distribtuion of 0.086 in the \Sexpr{assess.yr}
