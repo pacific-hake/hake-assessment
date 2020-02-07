@@ -291,8 +291,7 @@ the \Sexpr{end.yr} female spawning biomass is \Sexpr{curr.bio.median}~million~t 
 \Sexpr{curr.bio.upper}~million~t). The estimate of the \Sexpr{end.yr-1} female
 spawning biomass is \Sexpr{prev.bio.median}
 (\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. This is a slightly higher
-median than the 1.312~(0.471-3.601)~million~t estimated in the \Sexpr{end.yr-1}
-assessment, and the credibility interval lies well within that from the \Sexpr{end.yr-1}
+median and narrower credibility interval than the 1.312~(0.471-3.601)~million~t estimated in the \Sexpr{end.yr-1}
 assessment.
 % Manual 2020 done (updated numbers in final sentence and revised text).
 <<biomass-table, results='asis', echo=FALSE>>=
