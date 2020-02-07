@@ -140,7 +140,8 @@ make.survey.biomass.extrap.plot(survey.comparison, show = c(2,4))
 %\vspace{0mm}
 \caption{Acoustic survey biomass index (millions of tons).
   Approximate 95\% confidence intervals (gray bars) are based on sampling
-  variability; black bar for 2009 does not include additional uncertainty due to
+  variability; black bar represents uncertainty of index prior to applying
+  additional uncertainty due to
   squid/hake apportionment.}
 \label{fig:es-survey-biomass}
 \end{figure}
@@ -198,9 +199,9 @@ composition data with the addition of an almost uniform prior placed on
 the Dirichlet-Multinomial parameters.
 We again provide sensitivities to alternative data-weighting
 approaches. Time-varying fecundity, which was introduced in 2019, was retained.
-Although, the weight-at-age information for the forecast period
+The weight-at-age information for the forecast period
 was changed to be a representation of the last five years rather than
-all years such that the year range matched that used for selectivity and
+all years such that the year range matches that used for selectivity and
 other processes.
 % Hardwire (rather than use assess.yr) years in these final sentences, else they
 %  become incorrect the following year.
