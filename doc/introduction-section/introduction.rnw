@@ -261,6 +261,14 @@ and since then they have been greater than 200,000~t for all except
 \Sexpr{catches.below.200000.since.1986} years. A more detailed description of
 the history of the fishery is provided by \citet{JTC2013}.
 
+The \fishname\ stock is of huge commercial value. For example, in Canada alone
+over CA\$26~million in wages was estimated to have been paid to employees of the
+processing industry in 2018, with an exported value of CA\$100~million mainly
+to Ukraine, China, South Africa and Lithuania
+(DFO Groundfish Pacific Region 2020 Integrated Fisheries Management Plan summary, in prep., to be available at
+\href{http://www.pac.dfo-mpo.gc.ca/fm-gp/ifmp-eng.html}{http://www.pac.dfo-mpo.gc.ca/fm-gp/ifmp-eng.html}).
+
+
 \subsubsection{Overview of the fisheries in \Sexpr{last.data.yr}}\label{sec:intro-fisheries-overview}
 
 The Joint Management Committee (JMC) determined an adjusted (for carryovers)
@@ -381,7 +389,7 @@ which freezes headed and gutted product while at sea, landed
 % Manual done 2020 KFJ
 
 % Paraphrased from Appendix B, no point in repeating lots of it:
-Fishing started in February and ended in early December. This year most of the 
+Fishing started in February and ended in early December. This year most of the
 fish were caught in the deep water `scuzz' layer as opposed to the usual large aggregations.
 Fish migration appeared normal with early fishing in the South and moving northward throughout the season. The deeper `scuzz' fishing resulted in higher than normal bycatch of Rougheye
 and Bocaccio rockfish. Small fish (aged 2-3 years) wwere found over the whole fishing season in
