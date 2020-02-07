@@ -1086,7 +1086,7 @@ P$(B_{\Sexpr{assess.yr}} > \Btwentyfive) = \Sexpr{probs.curr.btwentyfive}$\%.
 The median catch limit for \Sexpr{min(forecast_yrs)} based on the default
 \Ffortyten{} harvest policy is \Sexpr{catch.limit.quantiles["median"]}~t, but
 has a wide range of uncertainty (Figure~\ref{fig:main-projected-catch-density}),
-with the 2.5\% to 97.5\% range being
+with the 95\% credibility interval being
 \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
 
 Decision tables give projected population status (relative spawning biomass) and
@@ -1100,11 +1100,11 @@ projected fishing intensity outcomes relative to the 100\% target (based on SPR;
 see table legend). Population dynamics and governing
 parameters assumed during the forecast period include average recruitment
 (no recruitment deviation); selectivity, weight-at-age and fecundity averaged over
-the five most recent years (\Sexpr{assess.yr-5}--\Sexpr{assess.yr-1}); and all other
-parameters as constant.
+the five most recent years (\Sexpr{assess.yr-5}--\Sexpr{assess.yr-1}); and all estimated
+parameters constant (at their estimates for each particular MCMC sample).
 
 Relative fishing intensity exceeding 1 (or 100\% when shown as a percentage) indicates fishing in excess of the
-$\Fforty$ default harvest rate catch limit. This can happen for the median
+$\Fforty$ default harvest rate limit. This can happen for the median
 relative fishing intensity in \Sexpr{forecast_yrs[1:(length(forecast_yrs)-1)]}
 and \Sexpr{forecast_yrs[length(forecast_yrs)]} because the $\Fforty$ default
 harvest-rate catch limit is calculated using baseline selectivity from all
@@ -1112,17 +1112,34 @@ years, whereas the forecasted catches are removed using selectivity averaged
 over the last five years. Recent changes in selectivity will thus be reflected
 in the determination of overfishing. An alternative catch level where median
 relative fishing intensity is 100\% is provided for comparison (catch
-alternative e: FI=100\%).
+alternative g: FI=100\%).
 
 Management metrics that were first identified as important to the Joint Management
 Committee (JMC) and the Advisory Panel (AP) in 2012 are presented for
-projections to \Sexpr{forecast_yrs[2:(length(forecast_yrs)-1)]} and
+projections to
+\Sexpr{forecast_yrs[2:(length(forecast_yrs)-1)]} and
 \Sexpr{forecast_yrs[length(forecast_yrs)]} (Tables~\ref{tab:main-risk-year-1}
-and~\ref{tab:main-risk-year-2}). These metrics summarize the probability of
+and~\ref{tab:main-risk-year-2} and
+Figures~\ref{fig:main-forecast-depletion-comparison}, \ref{fig:main-forecast-risk-comparison-year-1},
+and~\ref{fig:main-forecast-risk-comparison-year-2}).
+These metrics summarize the probability of
 various outcomes from the base model given each potential management
 action. Although not linear, probabilities can be interpolated from this table
 for intermediate catch
-values. Figure~\ref{fig:main-forecast-depletion-comparison} shows the predicted
+values in \Sexpr{assess.yr} (Table~\ref{tab:main-risk-year-1} and
+Figure~\ref{fig:main-forecast-risk-comparison-year-1}). However, interpolation is
+not appropriate for all catches in
+\Sexpr{assess.yr+1} because catch alternatives~g and~h have catches
+that are larger than 500,000~t
+% \Sexpr{catch_levels[[5]][[1]][1]}~t
+(the constant catch for alternative~e) in \Sexpr{assess.yr} but smaller than 500,000~t
+% \Sexpr{catch_levels[[5]][[1]][1]}~t
+in \Sexpr{assess.yr+1} (Table~\ref{tab:main-decisions-spr});
+this explains why a few probabilities decline
+(rather than rise) with increased \Sexpr{assess.yr+1} catch levels in Table~\ref{tab:main-risk-year-2}
+and Figure~\ref{fig:main-forecast-risk-comparison-year-2}.
+
+Figure~\ref{fig:main-forecast-depletion-comparison} shows the predicted
 relative spawning biomass trajectory through
 \Sexpr{forecast_yrs[length(forecast_yrs)]} for several of these management
 actions. With zero catch for the next two years, the biomass has a probability
