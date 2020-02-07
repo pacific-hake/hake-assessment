@@ -369,10 +369,15 @@ to \Sexpr{f(survey.biomass["2017"], 2)}~million~t and then increased to
 %The most recent estimate from \Sexpr{last.survey.year} of
 %is \Sexpr{last.factor.penult} the previous estimate.
 The \Sexpr{last.survey.year} survey age composition was made
-up of \Sexpr{survey.1.prop}\% age-\Sexpr{survey.1.prop.age} fish from the
-\Sexpr{last.data.yr-survey.1.prop.age} year-class
-and \Sexpr{survey.2.prop}\% age-\Sexpr{survey.2.prop.age} fish from the
-\Sexpr{last.data.yr-survey.2.prop.age} year class.
+up of
+\Sexpr{survey.3.prop}\% age-\Sexpr{survey.3.prop.age} fish from the
+\Sexpr{last.data.yr-survey.3.prop.age} year-class,
+\Sexpr{survey.1.prop}\% age-\Sexpr{survey.1.prop.age} fish from the
+\Sexpr{last.data.yr-survey.1.prop.age} year-class,
+\Sexpr{survey.2.prop}\% age-\Sexpr{survey.2.prop.age} fish from the
+\Sexpr{last.data.yr-survey.2.prop.age} year class,
+and \Sexpr{survey.4.prop}\% age-\Sexpr{survey.4.prop.age} fish from the
+\Sexpr{last.data.yr-survey.4.prop.age} year class.
 
 The acoustic survey biomass index included in the base model
 (Table~\ref{tab:main-survey-history}) includes an estimate of biomass outside
@@ -387,7 +392,7 @@ base model because more investigations are needed regarding how to best model th
 the implications of its inclusion are not fully understood,
 the uncertainty of each estimate is unknown, and
 the survey is not specifically designed to representatively survey age-1 hake.
-However, the estimates seem to track the
+However, the estimates track the
 estimated recruitment reasonably well (Figure~\ref{fig:main-age-one-index}).
 
 \subsubsection{Other fishery-independent data}\label{sec:data-other-fishery-independent}
@@ -440,7 +445,7 @@ that appear to no longer have viable ovaries.
 
 Tissue samples for genetic analyses have been collected from many of the same
 fish from which ovaries were sampled -- this may help determine whether the fish
-south of 34.44$^\circ$N are from the same stock as the rest of the population.
+south of 34.44$^\circ$N are from the same stock as the rest of the coastal population.
 
 \subsubsection{Ageing error}\label{sec:data-ageing-error}
 
@@ -518,7 +523,7 @@ of 2016--2018; this run~54 yielded similar results to the base model.
 Stock Synthesis no longer has this anomalous requirement, and so for the current assessment we
 use the recent mean for the forecasts and the correct data for the most
 recent year (2019). For the current assessment we use the mean of the most recent five years
-(\Sexpr{last.data.yr-5}--\Sexpr{last.data.yr}), rather than three years as in the
+(\Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}), rather than three years as in the
 previous assessment, to be consistent with selectivity, for which the forecasts also
 use the mean over the recent five years.
 % Above can be simplified in 2021, to hopefully just say we do the same as
