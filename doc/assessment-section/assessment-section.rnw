@@ -980,12 +980,12 @@ Table~\ref{tab:main-parameter-estimates} shows that most key derived
 quantities from the posterior distribution are larger than their respective MLEs
 (e.g., median biomass, recruitment, and relative spawning biomass), however some
 parameter estimates (e.g., steepness and catchability) are
-smaller. [**ANDY Fig needs fixing first] Figure~\ref{fig:main-mle-vs-mcmc} shows the MLE and Bayesian (from
+smaller. Figure~\ref{fig:main-mle-vs-mcmc} shows the MLE and Bayesian (from
 MCMC) estimates as well as the skewed uncertainty in the posterior distributions
 for spawning biomass and recruitment for each year. Median estimates of spawning
 biomass and recruitment from the posterior distribution are slightly larger than
-their respective MLEs, but the 95\% credibility (posterior median) and confidence
-(MLE) intervals overlap considerably.
+their respective MLEs. The 95\% credibility (from MCMC) and confidence
+(from MLE) intervals overlap considerably, but are by no means identical.
 
 The \fishname\ stock displays a very high degree of recruitment variability,
 perhaps the largest of any west coast groundfish stock, resulting in large and
