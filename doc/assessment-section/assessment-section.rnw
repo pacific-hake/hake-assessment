@@ -1025,7 +1025,7 @@ also see \citealt{JTC2012} for further discussion and
 examples).
 Note that we use the term MLE even though the priors are involved in the likelihood
 calculation and so the more accurate term would be the mode of the posterior density.
-[**ANDY table 27 isn't right but I think Kelli fixed it; check when can rebuild]
+
 Table~\ref{tab:main-parameter-estimates} shows that most key derived
 quantities from the posterior distribution are larger than their respective MLEs
 (e.g., median biomass, recruitment, and relative spawning biomass), however some
