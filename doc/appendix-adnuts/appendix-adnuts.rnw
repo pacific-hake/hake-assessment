@@ -414,9 +414,9 @@ make.mcmc.survey.fit.plot(sens.models.6,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-The R code that was used to run {\tt adnuts}: 
+The R code that was used to manually run {\tt adnuts} is:
 
-<<a, eval=FALSE, echo=TRUE>>= 
+<<a, eval=FALSE, echo=TRUE>>=
 setwd()
 library(adnuts)
 library(snowfall)
@@ -424,7 +424,8 @@ library(rstan)
 library(shinystan)
 reps <- parallel::detectCores()-1 # chains to run in parallel
 set.seed(352)
-seeds <- sample(1:1e4, size=reps)
+seeds <- sample(1:1e4,
+                size=reps)
 m <- 'ss' ## folder with executable in wdir
 setwd(m)
 system('ss -nox -iprint 200 -mcmc 15')
@@ -436,32 +437,55 @@ thin <- 10
 iter <- 100*thin ##iter is per core
 warmup <- iter/4
 inits <- NULL ## start chains from MLE
-pilot <- sample_admb(m, iter=iter, thin=thin, seeds=seeds, init=inits,
-parallel=TRUE, chains=reps, warmup=warmup,
-path=m, cores=reps, algorithm='RWM')
+pilot <- sample_admb(m,
+                     iter=iter,
+                     thin=thin,
+                     seeds=seeds,
+                     init=inits,
+                     parallel=TRUE,
+                     chains=reps,
+                     warmup=warmup,
+                     path=m,
+                     cores=reps,
+                     algorithm='RWM')
 save.image(file = "hake.RData")
 
 ##next check convergence and slow mixing parameters
-mon <- monitor(pilot$samples, warmup=pilot$warmup, print=FALSE)
+mon <- monitor(pilot$samples,
+               warmup=pilot$warmup,
+               print=FALSE)
 max(mon[,'Rhat'])
 min(mon[,'n_eff'])
 slow <- names(sort(mon[,'n_eff']))[1:8] ## Examine the slowest mixing parameters
-pairs_admb(fit=pilot, pars=slow)
-pairs_admb(fit=pilot, pars=c('MGparm[1]', 'SR_parm[1]', 'SR_parm[2]'))
+pairs_admb(fit=pilot,
+           pars=slow)
+pairs_admb(fit=pilot,
+           pars=c('MGparm[1]',
+                  'SR_parm[1]',
+                  'SR_parm[2]'))
 
 ## After regularizing run NUTS chains. First reoptimize to get the
 ## correct mass matrix for NUTS. Note the -hbf 1 argument. This is a
 ## technical requirement b/c NUTS uses a different set of bounding
 ## functions and thus the mass matrix will be different.
-setwd(m); system(paste(m, '-hbf 1 -nox -iprint 200 -mcmc 15')); setwd('..')
+setwd(m)
+system(paste(m, '-hbf 1 -nox -iprint 200 -mcmc 15'))
+setwd('..')
 save.image(file = "hake.RData")
 
 ## Use default MLE covariance (mass matrix) and short parallel NUTS chains
 ## started from the MLE.
-nuts.mle <-
-sample_admb(model=m, iter=500, init=NULL, algorithm='NUTS', seeds=seeds,
-parallel=TRUE, chains=reps, warmup=100, path=m, cores=reps,
-control=list(metric="mle", adapt_delta=0.8))
+nuts.mle <- sample_admb(model=m,
+                        iter=500,
+                        init=NULL,
+                        algorithm='NUTS',
+                        seeds=seeds,
+                        parallel=TRUE,
+                        chains=reps,
+                        warmup=100,
+                        path=m,
+                        cores=reps,
+                        control=list(metric="mle", adapt_delta=0.8))
 save.image(file = "hake.RData")
 
 ## Check for issues like slow mixing, divergences, max treedepths with
@@ -471,15 +495,23 @@ launch_shinyadmb(nuts.mle)
 ## Once acceptable, run again for inference using updated mass matrix. Increase
 ## adapt_delta toward 1 if you have divergences (runs will take longer).
 mass <- nuts.mle$covar.est # note this is in unbounded parameter space
-inits <- sample_inits(nuts.mle, reps) ## use inits from pilot run
+inits <- sample_inits(nuts.mle,
+                      reps) ## use inits from pilot run
 ## The following, nuts.updated, was used for inferences in this appendix
-nuts.updated <-
-sample_admb(model=m, iter=1000, init=inits, algorithm='NUTS', seeds=seeds,
-parallel=TRUE, chains=reps, warmup=250, path=m, cores=reps,
-mceval=TRUE, control=list(metric=mass, adapt_delta=0.9))
+nuts.updated <- sample_admb(model=m,
+                            iter=1000,
+                            init=inits,
+                            algorithm='NUTS',
+                            seeds=seeds,
+                            parallel=TRUE,
+                            chains=reps,
+                            warmup=250,
+                            path=m,
+                            cores=reps,
+                            mceval=TRUE,
+                            control=list(metric=mass, adapt_delta=0.9))
 save.image(file = "hake.RData")
 launch_shinyadmb(nuts.updated) #evalute performance
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%
-
