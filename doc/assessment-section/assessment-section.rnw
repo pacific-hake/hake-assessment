@@ -1276,7 +1276,7 @@ With respect to the DFO reference points, even with the largest
 \Sexpr{assess.yr} catch of \Sexpr{f(base.model$catch.levels[[8]][[1]][1])}~t given in Table~\ref{tab:main-risk-year-1},
 at the start of \Sexpr{assess.yr+1} the stock is expected to be above the critical zone with a probability of
 P$(B_{\Sexpr{assess.yr+1}} > \Bten)=
-\Sexpr{f( 100 - base.model$risks[[1]][8,"Bratio_2021<0.10"], 0)}$\%,
+\Sexpr{f( 100 - base.model$risks[[1]][8,"Bratio_2021<0.10"], 0)}$\%
 and in the healthy zone with a probability of
 P$(B_{\Sexpr{assess.yr+1}} > \Bforty)=
 \Sexpr{f( 100 - base.model$risks[[1]][8,"Bratio_2021<0.40"], 0)}$\%.
