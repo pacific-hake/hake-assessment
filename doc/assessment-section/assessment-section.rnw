@@ -1331,7 +1331,7 @@ The sensitivities include the following:
 \item Consideration of an alternative parameterization for time-varying
   selectivity;
 
-\item Removal of ageing error from the model; and
+\item Removal of cohort-based ageing error from the model; and
 
 \item Running the base model using the Auto-Differentiation No-U-Turn-Sampling algorithm (AD-NUTS, \citet{Monnahan2018}, \citet{Monnahan2019}).
 
@@ -1428,32 +1428,22 @@ The sensitivity of the base model to the inclusion of the age-1 survey index
 provides an additional source of information about the recruitment of different
 year classes (see discussion in Section~\ref{sec:data-acoustic-survey}), which
 can be particularly useful for the most recent years when little information on
-cohort strength is otherwise available.  Compared to the base model, estimates
+cohort strength is otherwise available. Compared to the base model, estimates
 of spawning biomass throughout most of the time series are similar, but do
 diverge near the end of the time series
-(Table~\ref{tab:main-parameter-estimates-sens-2};
+(Table~\ref{tab:main-parameter-estimates-sens-1};
 Figures~\ref{fig:main-biomass-base-alternative-2} and
 \ref{fig:main-status-base-alternative-2}; \Sexpr{end.yr} estimates are
 \Sexpr{f(100*sens.models.1.for.table[[1]]$derived_quants[paste0("Bratio_", assess.yr),"Value"],1)}\%
 of unfished biomass for the base model and
 \Sexpr{f(100*sens.models.1.for.table[[8]]$derived_quants[paste0("Bratio_", assess.yr),"Value"],1)}\%
 for the age-1 index model). This change is likely due to the base model
-underfitting the age-1 index estimates of the size of the 2014 cohort
+overfitting the age-1 index estimates of the size of the 2005 and 2012 cohorts
 (Figure~\ref{fig:main-age-one-index}). These changes are subtle
 because the base model generally tracks the trends in the age-1 index well.
 Including the age-1 index led to a worse fit to the 2017 acoustic
 survey estimate and a better fit to the 2019 estimate compared to the
 base model (Figure~\ref{fig:main-index-base-alternative-2}).
-
-% Manual 2018: removed in 2019
-% The impact of assuming a time-invariant ageing error vector instead of a
-% cohort-based ageing error matrix (as in the base model) was evaluated.  The
-% largest changes to model results are associated with estimates of equilibrium
-% unfished biomass and thus relative spawning biomass
-% (Table~\ref{tab:main-parameter-estimates-sens-1}).  These differences stem from
-% the population model being restricted in the time-invariant case to fitting
-% age-composition data with a stationary level of measurement error associated
-% with each age.
 
 % section below on composition weighting
 % Manual 2020 done
@@ -1480,7 +1470,7 @@ early recruitments compared to other weighting methods
 (Figure~\ref{fig:main-recruit-base-alternative-2}).
 The Francis method increased the weighting of the fishery
 composition data resulting in a similar time series of biomass, though
-slightly reduced in scale. As noted in Section ~\ref{sec:data-age-comp-likelihood},
+slightly reduced in scale. As noted in Section~\ref{sec:data-age-comp-likelihood},
 the Francis method is known to be sensitive to outliers and prone to convergence
 issues when selectivity is time-varying, as it is in this assessment.
 
@@ -1626,11 +1616,22 @@ chain of 24-million samples has been adequate to overcome the inefficient
 sampling caused by high parameter correlations in past assessments,
 the parameter selectivity was kept as before for this assessment.
 
-% **Sensitivity runs concerning weight-at-age and fecundity are discussed in
-% Sections~\ref{sec:assessment-fecundity-recap} and~\ref{sec:assessment-sensitivity-fecundity} (Table~\ref{tab:main-parameter-estimates-sens-3}).
+% Manual 2020 done
+The impact of assuming a time-invariant ageing error vector instead of a
+cohort-based ageing error matrix (as in the base model) was evaluated.  The
+largest changes to model results are associated with estimates of equilibrium
+unfished biomass (Table~\ref{tab:main-parameter-estimates-sens-3} and
+Figure~\ref{fig:main-biomass-base-alternative-5}) and thus relative spawning biomass
+(Figure~\ref{fig:main-status-base-alternative-5}). These differences stem from
+the population model being restricted in the time-invariant case to fitting
+age-composition data with a stationary level of measurement error associated
+with each age.
+
+The impact of using the adnuts MCMC algorithm is discussed in detail in
+Appendix~\ref{chap:adnuts}.
 
 Any additional sensitivity runs arising from the Scientific Review Group
-meeting to be held from 24th February to 28nd February 2020 will be documented
+meeting to be held from 25th February to 28nd February 2020 will be documented
 in Appendix~\ref{chap:srg-requests} and briefly summarized here.
 
 % 2019 SRG -
@@ -1644,8 +1645,6 @@ in Appendix~\ref{chap:srg-requests} and briefly summarized here.
 %%Several key underlying structural model assumptions were identified that have persisted across many previous hake assessments, and thus warrant revisiting periodically as a set of reference sensitivity examinations to new base models.  Those identified here include the specification of natural mortality, the level of variation assumed about the stock-recruitment relationship ($\sigma_r$), and the resiliency of the stock in terms of recruitment (steepness).  The sensitivity of the base model to changes in the input $\sigma_r$ and to the prior distributions for natural mortality and steepness were explored.  The standard deviation of the prior distribution on natural mortality was increased from 0.1 (as in the base model) to 0.2 and 0.3.  The mean of the prior distribution on steepness was decreased from 0.777 (base) to 0.500, and steepness was also fixed at 1.0.  The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative high (2.0) and low (1.0) states.  These key sensitivities had little effect on the overall estimated population trend throughout the time series (Figure~\ref{fig:main-biomass-base-alternative-1}), but they do have a significant impact on the estimated scale of the population (quite different estimates of $B_0$ and $R_0$ parameters; Table~\ref{tab:main-parameter-estimates-sens-1}).  The least influential in terms of relative spawning biomass (Figure~\ref{fig:main-status-base-alternative-1}) as compared to the base model is fixing steepness to 1.0, changing the prior mean on steepness, and moderately changing the prior standard deviation on natural mortality (0.2).  The greatest difference in stock status compared to the base model results from changing the input for $\sigma_r$.  Estimates of natural mortality increased from 0.215 for the base model (prior standard deviation of 0.1) to 0.250 for the sensitivity run with the prior standard deviation set to 0.3.  When the mean of the prior distribution for steepness was changed from 0.777 (base model) to 0.5, the estimate for steepness decreased from 0.861 to 0.602.
 
 % $ [makes emacs pretty again]
-
-**Any other sensitivities.
 
 \subsection{Retrospective analyses}\label{sec:assessment-retrospective-analyses}
 

@@ -1365,6 +1365,23 @@ rm(temp)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
+<<main-biomass-base-alternative-5, fig.height=4.5, fig.width=8>>=
+make.comparison.plot(c(list(base.model), list(sens.models.5)),
+                     subplots = 2,
+                     model.names = c(base.model.name, sens.model.names.5),
+                     legend = TRUE,
+                     end.yr = end.yr)
+@
+\end{center}
+\caption{Maximum likelihood estimates of spawning biomass for the base
+  model and alternative sensitivity run with cohort-based ageing error removed.}
+\label{fig:main-biomass-base-alternative-5}
+%% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{figure}[H]%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
 <<main-status-base-alternative-5, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(c(list(base.model), list(sens.models.5)),
                      subplots = 4,
@@ -1375,7 +1392,7 @@ make.comparison.plot(c(list(base.model), list(sens.models.5)),
 \end{center}
 %\vspace{0mm}
 \caption{Maximum likelihood estimates of stock status for the base
-  model and alternative sensitivity run with ageing error removed.}
+  model and alternative sensitivity run with cohort-based ageing error removed.}
 \label{fig:main-status-base-alternative-5}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
