@@ -309,7 +309,57 @@ analyses to determine whether there are genetic differences among the two southe
 regions and other regions. In addition, the SRG notes that Canadian samples should be
 included in the maturity analysis.}
 
-\emph{Response -- **}
+\emph{Response -- The JTC is in communication with the research team conducting \fishname
+genetic analyses. That team provided the follwoing update.}
+
+\emph{Genetic samples have been collected from along the Pacific coast during summer,
+fall (BC to CA) and winter (OR and CA) and within the Strait of Georgia (BC) during the spring.
+We have begun a genetics study to characterize the spatial-temporal population structure
+of \fishname coast wide. Prior genetic analyses in hake have focused on a smaller geographic
+range, over a limited seasonal time scale, and used a limited set of genetic markers
+(\citep{Iwamoto2004, Iwamoto2015}).}
+
+\emph{For this study, samples were grouped in boxes based on spatial-temporal collection
+information (i.e., year, season, and location) and selected samples distributed across
+these boxes. RADseq (\citep{Baird2008, Ali2016}) has been utilized to generate 8,763 genome
+wide polymorphic markers, which will allow for powerful population genomic analyses
+as well as association tests of genetic variability with life history characteristics
+such as growth rates and age at maturation.}
+
+\emph{In the initial round of sequencing, DNA were extracted from 1,092 individuals from
+across spatial-temporal boxes from 2015--2017. Of these, 876 samples were sequenced based
+on sufficient DNA concentrations, 667 of which passed quality filters. Preliminary findings
+generally corroborate the single stock hypothesis with low differentiation amongst locations.
+A Principal Component Analysis (PCA) groups all coastal individuals across space and time together
+with Salish Sea individuals clearly distinct. However, using a Bayesian clustering analysis there was
+evidence for seasonal migration across several winter boxes (across years and location) showing signs
+of differentiation from the same location in different season and years. This was corroborated
+with weak but significant pairwise FST comparisons.}
+
+\emph{For the next round of sequencing, and to finalize data collection for the project, the team will
+sequence approximately another 1,000 individuals.  These include recently acquired samples, with the goal
+of filling in gaps in spatial-temporal boxes (especially from Canada) and to add additional samples to
+existing boxes to boost sample size. This approach will provide the best picture to date of \fishname
+genetic population structure. The team expects to complete the sequencing and analyses for these samples
+in 2020, culminating in the submission of a peer-reviewed publication.}
+
+\emph{Canadian ovaries from surveys have been collected since 2018 and could be included in
+updated maturity analysies planned for the upcoming year. However, logistical considerations
+will need to be worked out regarding sample exchange and histological analysis workload
+between DFO and NWFSC.}
+
+\emph{A new project has been initiated looking at improved methods to differentiate which females
+will likely spawn from those that will not, and thus should or should not be included as
+spawning biomass. The study is using liver and ovary samples collected during NWFSC acoustic surveys
+(2017--2019) to develop metabolic markers linked to key female reproductive stages. Liver physiology
+and levels of certain lipid classes may reveal overall metabolic and reproductive status.
+Results from initial liver lipid analyses indicate that levels of important structural (phospholipids)
+and storage lipids (triglycerides) are indicative of female maturation status (immature vs. mature)
+and may be predictive of reproductive failure (atresia) and/or skipped spawning in \fishname. Work is
+currently underway to expand the liver lipid analyses and develop molecular markers for lipid synthesis
+(liver RNA), and ovarian growth and atresia (ovarian RNA). Molecular information from liver and ovary
+samples together with liver lipid analyses and gonadal histology should provide a broader picture of
+reproductive status of female \fishname and better inform stock assessments.}
 
 4. The issue of data weighting remains a significant technical challenge for stock assessments
 that integrate information of different forms (e.g., biomass indices and age compositions)
