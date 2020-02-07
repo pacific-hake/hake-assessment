@@ -13,7 +13,7 @@ make.mcmc.vs.mle.plot <- function(model,        ## model is an mcmc run and is t
   mod.summ$mcmc <- list(model$mcmc, model$mcmc)
   model.names <- c("MLE","MCMC")
 
-  if(subplot == 8){
+  if(subplot == 10){
     type <- "p"
     spacepoints <- 1
   }
@@ -31,7 +31,8 @@ make.mcmc.vs.mle.plot <- function(model,        ## model is an mcmc run and is t
                     shadealpha = 0.1,
                     btarg = -0.4,
                     type = type,
-                    mcmc = c(FALSE, TRUE),
+                    xlim = c(model$startyr - 3, end.yr + 3),
+                    mcmcVec = c(FALSE, TRUE),
                     legendloc = "topleft")
   if(subplot %in% c(3,4)) {axis(2, at = c(0.1, 0.4), cex.axis = 0.8)}
   par <- oldpar
