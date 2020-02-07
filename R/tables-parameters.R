@@ -322,6 +322,93 @@ make.parameters.estimated.summary.table <- function(model,
         table.placement = "H")
 }
 
+
+#' @param modellist A list summarized by \code{\link[r4ss]{SSsummarize}}.
+#' @param catchability Should catchability for the acoustic survey be
+#' included in the parameter table? Default is to not include it, i.e.,
+#' \code{catchability = FALSE}.
+get_keypars <- function(modellist, catchability = FALSE) {
+  out <- modellist$pars[c(
+      grep("NatM|SR_LN|steep|SD.+2", modellist$pars$Label),
+      grep("EffN", modellist$pars$Label)
+      ), 1:modellist$n]
+  SD3 <- grep("SD.+3", modellist$pars$Label)
+  if (length(SD3) > 0) {
+    out <- rbind(out, modellist$pars[SD3, 1:modellist$n])
+  }
+  if (catchability) {
+    out <- rbind(out, exp(
+      modellist$pars[grep("LnQ.+2", modellist$pars$Label), 1:modellist$n]))
+  }
+  out[2, ] <- exp(out[2, ]) / 1000
+  return(out)
+}
+
+#' @param modellist A list summarized by \code{\link[r4ss]{SSsummarize}}.
+#' @param years.recs A vector of length three specifying the recruitment
+#' years of interest.
+#' @param years.b0 A vector of length two specifying the depletion years
+#' of interest.
+get_keydqs <- function(modellist, years.recs, years.b0) {
+  recnames <- paste(paste0("Recr_", years.recs), collapse = "|")
+  b0names <- paste(paste0("Bratio_", years.b0), collapse = "|")
+  out <- rbind(
+    modellist$recruits[grep(recnames, modellist$recruits$Label), 1:modellist$n]/1000,
+    modellist$SpawnBio[modellist$SpawnBio$Label == "SSB_Virgin", 1:modellist$n]/2/1000,
+    modellist$Bratio[grep(b0names, modellist$Bratio$Label), 1:modellist$n]*100
+    )
+  return(out)
+}
+
+#' @param modellist A list summarized by \code{\link[r4ss]{SSsummarize}}.
+#' @param years.spr A vector of length one specifying the SPR year
+#' of interest.
+get_keyrps <- function(modellist, years.spr, target = 40) {
+  sprnames <- paste(paste0("SPRratio_", years.spr), collapse = "|")
+  out <- rbind(
+    modellist$quants[grep(sprnames, modellist$quants$Label), 1:modellist$n]*100,
+    modellist$quants[modellist$quants$Label == "SSB_SPR", 1:modellist$n]/2/1000,
+    modellist$quants[modellist$quants$Label == "SPR_MSY", 1:modellist$n]*0+target,
+    modellist$quants[modellist$quants$Label == "Fstd_SPR", 1:modellist$n]*100,
+    modellist$quants[modellist$quants$Label == "Dead_Catch_SPR", 1:modellist$n]/1000
+    )
+  return(out)
+}
+
+#' @param modellist A list summarized by \code{\link[r4ss]{SSsummarize}}.
+get_keylhs <- function(modellist) {
+  out <- rbind(
+    modellist$likelihoods[
+      modellist$likelihoods$Label %in% c("TOTAL", "Survey"), 1:modellist$n],
+    structure(t(
+    modellist$likelihoods_by_fleet[
+      modellist$likelihoods_by_fleet$Label == "Age_like",
+      c("Acoustic_Survey", "Fishery")]),
+    dimnames = list(NULL, paste0("model", 1:modellist$n))),
+    modellist$likelihoods[
+      modellist$likelihoods$Label %in% c("Recruitment", "Parm_priors", "Parm_devs"),
+      1:modellist$n]
+    )
+  return(out)
+}
+
+#' @param getpar A vector of character strings that you desire parameters for.
+#' Regex will be used to get full names, but each entry should map to a single
+#' parameter. The function is not yet parameterized to work with multiple
+#' matches for single entry.
+#' @param mcmc The mcmc list from a list summarized by \code{\link[r4ss]{SSsummarize}}.
+#' @param .fun A function, e.g., median or mean, to summarize the posterior.
+  get_keymcmc <- function(getpar, mcmc, .fun) {
+    out <- lapply(mcmc, function(x, y = .fun) {
+      aa <- x[, grep(getpar, colnames(x)), drop = FALSE]
+      if (NCOL(aa) == 0) {
+        aa[, 1] <- as.numeric(NA)
+      }
+      return(apply(aa, 2, FUN = y))
+    })
+    return(setNames(unlist(out), NULL))
+  }
+
 make.short.parameter.estimates.sens.table <- function(models,
                                                       model.names,
                                                       end.yr,
@@ -352,33 +439,12 @@ make.short.parameter.estimates.sens.table <- function(models,
   if (length(getrecs) != 3) stop("The make short function only works",
     "with three years of recruitments", call. = FALSE)
 
-  getvals <- function(x) {
-    out <- x[x$Label %in% c("SPRratio", "SSB_SPR", "Fstd_SPR", "Dead_Catch_SPR"), "Value"]
-    out <- c(out[1]/2/1000, 40, out[-1])
-    out[3] <- out[3]*100
-    out[4] <- out[4]/1000
-    return(out)
-  }
   modelssum <- r4ss::SSsummarize(models)
-  all <- rbind(
-    modelssum$pars[c(
-      grep("NatM|SR_LN|steep|SD", modelssum$pars$Label),
-      grep("EffN", modelssum$pars$Label)
-      ), 1:modelssum$n],
-    modelssum$recruits[grep(paste(paste0("Recr_", getrecs), collapse = "|"), modelssum$recruits$Label), 1:modelssum$n]/1000,
-    modelssum$SpawnBio[modelssum$SpawnBio$Label == "SSB_Virgin", 1:modelssum$n]/2/1000,
-    modelssum$Bratio[modelssum$Bratio$Label %in% c("Bratio_2009", paste0("Bratio_", end.yr)), 1:modelssum$n]*100,
-    modelssum$SPRratio[modelssum$SPRratio$Yr == end.yr - 1, 1:modelssum$n]*100,
-    structure(sapply(lapply(models, "[[", "derived_quants"), getvals), dimnames = list(NULL, paste0("model", 1:modelssum$n))),
-    modelssum$likelihoods[modelssum$likelihoods$Label %in% c("TOTAL", "Survey"), 1:modelssum$n],
-    structure(t(modelssum$likelihoods_by_fleet[modelssum$likelihoods_by_fleet$Label == "Age_like", c("Acoustic_Survey", "Fishery")]),dimnames=list(NULL,paste0("model", 1:modelssum$n))),
-    modelssum$likelihoods[modelssum$likelihoods$Label %in% c("Recruitment", "Parm_priors", "Parm_devs"), 1:modelssum$n])
-  all[2, ] <- exp(all[2, ]) / 1000
-  tab <- all
-  if (length(grep("SD", modelssum$pars$Label)) == 2) {
-    tab[5:6, ] <- all[6:7, ]
-    tab[7, ] <- all[5, ]
-  }
+  tab <- rbind(
+    get_keypars(modelssum),
+    get_keydqs(modelssum, years.recs = getrecs, years.b0 = c(2009, end.yr)),
+    get_keyrps(modelssum, years.spr = end.yr - 1, target = 40),
+    get_keylhs(modelssum))
 
   ## Format the tables rows depending on what they are
   ## Decimal values
@@ -538,9 +604,9 @@ make.short.parameter.estimates.sens.table <- function(models,
         table.placement = "H")
 }
 
+
 make.short.parameter.estimates.table <- function(model,
                                                  last.yr.model,
-                                                 posterior.regex,
                                                  end.yr,
                                                  getrecs = c(2010, 2014, 2016),
                                                  digits = 3,
@@ -553,8 +619,6 @@ make.short.parameter.estimates.table <- function(model,
   ##
   ## model - an mcmc run, output of the r4ss package's function SSgetMCMC()
   ## last.yr.model - last year's base model for comparison
-  ## posterior.regex - a vector of the posterior names to search for
-  ##  (partial names will be matched)
   ## end.yr - the last year to include (req'd for spawning biomass)
   ## digits - number of decimal points for the estimates
   ## xcaption - caption to appear in the calling document
@@ -567,140 +631,35 @@ make.short.parameter.estimates.table <- function(model,
                                  "with three years of recruitments", call. = FALSE)
 
   ## This year's model MLE
-  parms <- model$estimated_non_dev_parameters
-  p.names <- rownames(parms)
-  mle.grep <- unique(grep(paste(posterior.regex, collapse="|"), p.names))
-  mle.names <- p.names[mle.grep]
+  modelssum <- r4ss::SSsummarize(list(model, last.yr.model))
+  mle.par <- rbind(
+    get_keypars(modelssum, catchability = TRUE),
+    get_keydqs(modelssum, years.recs = getrecs, years.b0 = c(2009, end.yr)),
+    get_keyrps(modelssum, years.spr = end.yr - 1, target = 40))[, 1]
 
-  mle.par <- parms[mle.grep,]$Value
-  mle.par[2] <- exp(mle.par[2]) / 1000 ### To make R millions
-
-  ## Add Q for MLE
-  mle.q <- round(model$cpue$Calc_Q[1],3)
-  mle.par <- c(mle.par, mle.q)
-
-  for (reci in getrecs) {
-    mle.par <- c(mle.par,
-                 rec <- model$recruit[model$recruit$Yr == reci,]$pred_recr / 1000)
-  }
-
-  ## Add B0
-  b0 <- model$SBzero ## Note that this is divided by 2 in a single sex model
-  b0 <- b0 / 1000    ## To make B0 in the thousands
-  mle.par <- c(mle.par, b0)
-
-  ## Add depletion for 2009
-  d <- 100 * model$derived_quants[paste("Bratio", 2009, sep = "_"), "Value"]
-  mle.par <- c(mle.par, d)
-
-  ## Add depletion for end.yr
-  d <- 100 * model$derived_quants[paste("Bratio", end.yr, sep = "_"), "Value"]
-  mle.par <- c(mle.par, d)
-
-  ## Add fishing intensity for last year
-  fi <- model$derived_quants[paste("SPRratio", end.yr - 1, sep = "_"), "Value"]
-  fi <- fi * 100.0
-  mle.par <- c(mle.par, fi)
-
-  ## Add Female spawning biomass B_f40%
-  ## Always divide SSB by 2 in single sex model, unless you grab model$SBzero
-  ##  divide by 1000 to be consistent with showing biomass in thousands of tons
-  b <- model$derived_quants["SSB_SPR", "Value"] / 2 / 1000
-  mle.par <- c(mle.par, b)
-
-  ## Add SPR MSY-proxy
-  mle.par <- c(mle.par, 40)
-
-  ## Add Exploitation fraction corresponding to SPR
-  f1 <- model$derived_quants["Fstd_SPR", "Value"]
-  f1 <- 100 * f1 ## make a percentage
-  mle.par <- c(mle.par, f1)
-
-  ## Add Yield at Bf_40%
-  y <- model$derived_quants["Dead_Catch_SPR", "Value"] / 1000
-  mle.par <- c(mle.par, y)
-
-  calc.mcmc <- function(x,
-                        q.choice = 1 ## q == 1 is this year, q == 2 is last year
-                        ){
-    ss.version <- x$SS_versionNumeric
-    mcmc.grep <-
-      unique(grep(paste(posterior.regex, collapse="|"), names(x$mcmc)))
-    mcmc.names <- names(x$mcmc)[mcmc.grep]
-    mcmc.par <- x$mcmc[,mcmc.grep]
-    mcmc.meds <- apply(mcmc.par, 2, median)
-    mcmc.meds[2] <- exp(mcmc.meds[2]) / 1000 # To make R0 in the millions
-    names(mcmc.meds) <- NULL
-
-    if(q.choice == 1){
-      q <- round(median(base.model$extra.mcmc$Q_vector), 3)
-    }else{
-      q <- round(median(last.yr.base.model$extra.mcmc$Q_vector), 3)
-    }
-    mcmc.meds <- c(mcmc.meds, q)
-
-    for (reci in getrecs) {
-      mcmc.meds <- c(mcmc.meds,
-                     median(x$mcmc[[paste0("Recr_", reci)]]) / 1000)
-    }
-
-    ## Add B0
-    b0 <- median(x$mcmc$SSB_Initial / 2) ## divide by 2 for females
-    b0 <- b0 / 1000 ## To make B0 in the thousands
-    mcmc.meds <- c(mcmc.meds, b0)
-
-    ## Add depletion for 2009
-    d <- median(x$mcmc$Bratio_2009)
-    d <- d * 100  ## To make a percentage
-    mcmc.meds <- c(mcmc.meds, d)
-
-    ## Add depletion for 2015
-    d <- median(x$mcmc[,paste0("Bratio_", end.yr)])
-    d <- d * 100  ## To make a percentage
-    mcmc.meds <- c(mcmc.meds, d)
-
-    ## Add fishing intensity for end.yr - 1
-    d <- median(x$mcmc[,paste0("SPRratio_", end.yr - 1)])
-    d <- d * 100  ## To make a percentage
-    mcmc.meds <- c(mcmc.meds, d)
-
-    ## Add Female spawning biomass B_f40%
-    b <- median(x$mcmc[,"SSB_SPR"]) / 2 /1000
-    mcmc.meds <- c(mcmc.meds, b)
-
-    ## Add SPR MSY-proxy
-    mcmc.meds <- c(mcmc.meds, 40)
-
-    ## Add Exploitation fraction corresponding to SPR
-    f <- median(x$mcmc[,"Fstd_SPR"])
-    f <- 100 * f
-    mcmc.meds <- c(mcmc.meds, f)
-
-    ## Add Yield at Bf_40%
-    y <- median(x$mcmc[,"Dead_Catch_SPR"]) / 1000
-    mcmc.meds <- c(mcmc.meds, y)
-    return(mcmc.meds)
-  }
-
-  ## This year's model MCMC
-  mcmc.meds <- calc.mcmc(model, q = 1)
-
-  ## Last year's model MCMC
-  last.yr.mcmc.meds <- calc.mcmc(last.yr.model, q = 2)
-  # Hack for 2020
-  warning("Hack for 2020 in make.short.parameter.estimates.table(). ",
-          "Remove this for 2021. It was needed because 2019 estimated one DM parameter ",
-          "instead of two.")
-  last.yr.mcmc.meds <- append(last.yr.mcmc.meds, 999, after = 5)
-  last.yr.mcmc.meds[13] <- last.yr.mcmc.meds[14] <- NA
-  tab <- as.data.frame(cbind(mle.par, mcmc.meds, last.yr.mcmc.meds))
+  mcmc.par <- t(sapply(c(
+    "NatM", "SR_LN", "SR_BH_steep", "Q_extraSD", "EffN.+\\)_1", "EffN.+2", "Catchability",
+    paste0("Recr_", getrecs), "SSB_Initial", paste0("Bratio_", c(2009, end.yr)),
+    paste(paste0("SPRratio_", end.yr-1), collapse = "|"),
+    "SSB_SPR", "SPR_MSY", "Fstd_SPR", "Dead_Catch_SPR"),
+    get_keymcmc, mcmc = modelssum$mcmc, .fun = median))
+  mcmc.par["SR_LN", ] <- exp(mcmc.par["SR_LN", ]) / 1000
+  mcmc.par["Catchability", 1] <- round(median(model$extra.mcmc$Q_vector), 3)
+  mcmc.par["Catchability", 2] <- round(median(last.yr.model$extra.mcmc$Q_vector), 3)
+  mcmc.par[grep("Recr_|Dead_", rownames(mcmc.par)), ] <- (
+    mcmc.par[grep("Recr_|Dead_", rownames(mcmc.par)), ]) / 1000
+  mcmc.par[grep("ratio_|Fstd_SPR", rownames(mcmc.par)), ] <- (
+    mcmc.par[grep("ratio_|Fstd_SPR", rownames(mcmc.par)), ]) * 100
+  mcmc.par[grep("SSB_[IS]", rownames(mcmc.par)), ] <- (
+    mcmc.par[grep("SSB_[IS]", rownames(mcmc.par)), ]) / 1000 / 2
+  mcmc.par["SPR_MSY", ] <- 40
+  cbind(mle.par, mcmc.par)
+  tab <- as.data.frame(cbind(mle.par, mcmc.par))
   colnames(tab) <- NULL
 
   ## Format the tables rows depending on what they are.
   ## Decimal valuesn
   tab[c(1, 3, 4, 5, 6, 7),] <- f(tab[c(1, 3, 4, 5, 6, 7),], 3)
-  ## Following added as part of the 2019 hack above but shouldn't cause any issues if left in
-  tab[[3]][tab[,3] == "999.000"] = "--"
 
   ## Large numbers with no decimal points but probably commas
   tab[c(2, 8, 9, 10, 11, 15, 18),] <-
@@ -724,7 +683,7 @@ make.short.parameter.estimates.table <- function(model,
   tab <- rbind(c("", "", ""), tab)
 
   ## Replace NAs with dashes
-  tab[is.na(tab)] <- latex.bold("--")
+  tab <- apply(tab, 2, function(x) gsub("\\s*NA\\s*", "\\\\textbf{--}", x))
 
   ## Set the first column to be the names
   ## Empty string below is necessary because of the rbind(c("","",""), tab)

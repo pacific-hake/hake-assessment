@@ -503,7 +503,6 @@ make.ci.posterior.table(
 make.short.parameter.estimates.table(
   base.model,
   last.yr.base.model,
-  posterior.regex = key.posteriors,
   end.yr = end.yr,
   digits = 3,
   xcaption = paste0("Select parameters, derived quantities, ",
