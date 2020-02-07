@@ -324,7 +324,6 @@ make.parameters.estimated.summary.table <- function(model,
 
 make.short.parameter.estimates.sens.table <- function(models,
                                                       model.names,
-                                                      posterior.regex,
                                                       end.yr,
                                                       age.1 = FALSE,
                                                       digits = 3,
@@ -340,8 +339,6 @@ make.short.parameter.estimates.sens.table <- function(models,
   ## models - a list of models which contain the MLE output from SS_output()
   ## model.names - a vector of names of the same length as the number of
   ##  models in the models list
-  ## posterior.regex - a vector of the posterior names to search for
-  ##  (partial names will be matched)
   ## end.yr - the last year to include
   ## age.1 - if TRUE, add the age-1 index parameter to the table
   ## digits - number of decimal points for the estimates
