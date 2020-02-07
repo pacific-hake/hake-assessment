@@ -727,7 +727,7 @@ make.short.parameter.estimates.table <- function(model,
                         latex.subscr(latex.italics("B"), "SPR=40\\%"),
                         " (thousand~t)")),
                tab)
-  colnames(tab) <- c("",
+  colnames(tab) <- c(" ",
                      latex.bold("MLE"),
                      latex.mlc(c("Posterior",
                                  "median")),
