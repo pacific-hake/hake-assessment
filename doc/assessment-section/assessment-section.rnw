@@ -1177,7 +1177,8 @@ depending on the catch level (Table~\ref{tab:main-risk-year-1} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-1}).
 
 
-% This needs to be somewhat manual so you can pick the cohorts to specify.
+% This needs to be somewhat manual so you can pick the cohorts to
+% specify. Increment the years each assessment.
 The age composition (in numbers) of the catch in \Sexpr{forecast_yrs[1]} is
 projected to be (using MCMC medians)
 \Sexpr{fore.catch.prop$Age3}\% age-3 fish from the 2017 year-class,
@@ -1187,11 +1188,13 @@ projected to be (using MCMC medians)
 (Figure~\ref{fig:main-age-comp-forecast}). However, those estimates are highly
 uncertain with the 95\% credibility interval for the age-6 fraction spanning
 \Sexpr{f(fore.catch.prop.age6.lower)}\%--\Sexpr{f(fore.catch.prop.age6.upper)}\%.
-Due to the lower average weight at age-3 versus age-10, the expected
-proportion of the \Sexpr{forecast_yrs[1]} catch by weight increases
-for the 2010 cohort relative to the 2017 cohort to
-\Sexpr{f(fore.catch.prop.wt.age10.median)}\% and
-\Sexpr{f(fore.catch.prop.wt.age3.median)}\%, respectively.
+Due to the lower average weight at age-3 versus age-10, the median expected
+proportion of the \Sexpr{forecast_yrs[1]} catch by weight
+is \Sexpr{f(fore.catch.prop.wt.age3.median)}\% for the 2017 cohort
+(compared to \Sexpr{fore.catch.prop$Age3}\% by numbers)
+and \Sexpr{f(fore.catch.prop.wt.age10.median)}\%
+for the 2010 cohort
+(compared to \Sexpr{fore.catch.prop$Age10}\% by numbers).
 
 % Manual done 2020.
 % Look at dfo.probs.fore and decide what to write. Check which row has the

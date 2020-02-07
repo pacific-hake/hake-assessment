@@ -935,8 +935,7 @@ make.age.comp.forecast.plot(base.model)
   selectivity averaged across the most recent five years and the distribution for expected
   numbers at age at the start of \Sexpr{end.yr} (see Table~\ref{tab:main-est-numbers-at-age} for
   the MLEs for numbers-at-age for all years). The panel on the right is scaled based on
-  the weight at each age averaged across \Sexpr{start.yr.age.comps} to \Sexpr{last.data.yr}.**check
-  last sentence.}
+  the weight at each age averaged across the last five years.}
 \label{fig:main-age-comp-forecast}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
