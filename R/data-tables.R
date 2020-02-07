@@ -14,6 +14,7 @@ age.1.file <- "age-1.csv"
 assessment.history.file <- "assessment-history.csv"
 assessment.changes.file <- "assessment-changes.csv"
 kriging.parameters.file <- "kriging-parameters.csv"
+weight_age_extrapolation_mask.file <- "wtatage_all_samplesize.csv"
 
 ## Canada-specific data
 can.age.file <- "can-age-data.csv"
@@ -57,6 +58,7 @@ age.1.index <- read.csv(file.path(rootd.data, age.1.file), stringsAsFactors = FA
 assessment.history <- read.csv(file.path(rootd.data, assessment.history.file), stringsAsFactors = FALSE)
 assessment.changes <- read.csv(file.path(rootd.data, assessment.changes.file), stringsAsFactors = FALSE)
 kriging.pars <- read.csv(file.path(rootd.data, kriging.parameters.file), comment.char="#", stringsAsFactors = FALSE)
+weight_age_extrapolation_mask <- read.csv(file.path(rootd.data, weight_age_extrapolation_mask.file))
 
 ## For cumulative catch plots in the data presentation
 can.ft.catch.by.month <- read.csv(file.path(rootd.data, can.ft.catch.by.month.file), stringsAsFactors = FALSE)
