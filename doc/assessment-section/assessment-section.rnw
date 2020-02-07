@@ -1591,16 +1591,14 @@ to reduce correlation among the deviation
 parameters, because a positive deviation at a younger age no longer leads to
 a rescaling of the selectivity pattern at all ages.
 
-**<Where do we find the following info? should reference a table showing correlations of these parameters>
-Indeed, there are only
-7 pairs of parameters with correlations above 0.7 or below -0.7 in the
-semi-parametric model that most closely matched the base model
-($M$ and $\log R_0$ were positively correlated and the deviations for
-selectivity at ages 1 and 3 in 2017 and 1, 2, and 4 in 2018 were
-correlated with each other or 2016 or 2017 recruitment).
-This is in contrast to the base model, which had 38 parameter pairs with
-correlations above 0.7 or below -0.7, of which 35 of the pairs were
-between two of the selectivity deviations.
+%Where do we find the following info? For 2020, I just manually looked in model folder, file covar.sso
+% or ss.cor
+%should reference a table showing correlations of these parameters - corr table is HUGE!
+Indeed, there are no
+pairs of time-varying selectivity deviation parameters with correlations
+above 0.7 or below -0.7 in the semi-parametric model that most closely
+matched the base model. This is in contrast to the base model, which had
+38 pairs with correlations above 0.7 or below -0.7.
 % The Laplace method of
 % \citet{ThorsonHicksEtAl2014} also provided an estimate of the
 % variance parameter for the semi-parametric selectivity,
