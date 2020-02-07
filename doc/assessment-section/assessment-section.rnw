@@ -516,14 +516,36 @@ in the estimates of fishing mortality compared to the \Sexpr{last.assess.yr}
 base model (Figure~\ref{fig:main-bridge-5-panel-1}).
 
 We relaxed the constraint that recruitment deviations during the main period sum to
-zero. This should increase the
+zero. Doing so removes a known coding error that has implications when 
+using zero-sum constrained vectors in MCMC algorithms run through AD Model Builder
+software. The issue with the AD Model Builder sampling procedure is that the zero-sum
+constraint isn't actually being applied in the mcmc phase where the samples are being
+drawn, just the mceval phase where the results get calculated. So there's a mismatch
+between the samples that get reported and the sampling process that draws them. This is
+a known error and AD Model Builder developers are working on ways to fix this problem.
+
+One advantage of using a zero-centered recruitment deviation vector is to
+maintain tractability when estimating recruitments, especially for assessments that have
+less information about recruitment (little data). The theory behind the use of a zero-centered
+recruitment deviation vector is that the $R_0$ and $B_0$ reference points should be reflective of the
+central tendency for the time period with the best information about recruitment. A mismatch between
+$R_0$ and the main recdev period could, in theory, lead to a better fit to the indices of abundance or
+some other data source which wouldn't otherwise be expected to be informative about recruitment. 
+However, for \fishname\ the stock assessment is relatively data-rich and the index is pretty
+consistent with the recruitments so such tension doesn't seem to be present. 
+
+Thus, using non-zero centered constrained recruitment deviations will increase the
 compatibility between MCMC and MLE results, and also increase the stability of model results,
-because penalties have implications for calculating derivatives. Relative
-to the \Sexpr{last.assess.yr} assessment,
-relative spawning biomass increased for all years because the estimate of
+because penalties have implications for calculating derivatives. The non-zero centered approach
+resulted in a median recruitment deviation distribtuion of 0.086 in the \Sexpr{assess.yr}
+base model. Compared to the \Sexpr{last.assess.yr} assessment, the time series of spawning
+biomass and fishing mortality, as well as the fit to the survey index were largely
+unchanged. However, relative spawning biomass increased for all years because the estimate of
 $\log R_0$ increased and
 estimates of recruitment deviations were slightly more positive
-(Figure~\ref{fig:main-bridge-5-panel-1}).
+(Figure~\ref{fig:main-bridge-5-panel-1}). Nonetheless, the moderate increase
+in relative spawning biomass is well within the uncertainty bounds of models
+that apply and do not apply this relaxed constraint.
 
 The second set of bridging steps were conducted to update the fishery-dependent data.
 This primarily included minor adjustments in catch, fishery age-composition, and
@@ -570,16 +592,15 @@ The final bridging step involved using the new priors on the D-M parameters
 $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$, and explicitly estimating $\theta_{\text{surv}}$
 (see Section~\ref{sec:data-age-comp-likelihood}). This resulted
 in the \Sexpr{assess.yr} base model (Table~\ref{tab:main-assessment-changes}).
-The new priors led to increased correlation between
-estimates of $M$ and $\log R_0$ (Appendix~\ref{chap:mcmc-diagnostics}), but very little differences in the
+The new priors led to a slight increase in correlation between
+estimates of $M$ and $\log R_0$ (Appendix~\ref{chap:mcmc-diagnostics}), 
+though a decrease compared to the \Sexpr{last.assess.yr} assessment, and effectively no difference in the
 trajectory of the stock or estimates of its status
 (Figure~\ref{fig:main-bridge-5-panel-3}).
 The settings related to avoiding bias in recruitment estimation,
 based on the method proposed by \citet{MethotTaylor2011}, were
 also shifted by 1 year to account for the addition of information
 about recruitment for the \Sexpr{last.data.yr - 1} cohort.
-** AMB can you add more interpretation here? [Andy removed the tuning sentence,
-maybe we're good?].
 
 \subsubsection{Assessment model results}\label{sec:assessment-model-results}
 \subsubsub{Model Fit}
