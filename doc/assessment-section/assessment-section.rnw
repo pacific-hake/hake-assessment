@@ -1407,17 +1407,17 @@ The sensitivity of the base model to the inclusion of the age-1 survey index
 provides an additional source of information about the recruitment of different
 year classes (see discussion in Section~\ref{sec:data-acoustic-survey}), which
 can be particularly useful for the most recent years when little information on
-cohort strength is otherwise available.  Compared to the base model, estimates
+cohort strength is otherwise available. Compared to the base model, estimates
 of spawning biomass throughout most of the time series are similar, but do
 diverge near the end of the time series
-(Table~\ref{tab:main-parameter-estimates-sens-2};
+(Table~\ref{tab:main-parameter-estimates-sens-1};
 Figures~\ref{fig:main-biomass-base-alternative-2} and
 \ref{fig:main-status-base-alternative-2}; \Sexpr{end.yr} estimates are
 \Sexpr{f(100*sens.models.1.for.table[[1]]$derived_quants[paste0("Bratio_", assess.yr),"Value"],1)}\%
 of unfished biomass for the base model and
 \Sexpr{f(100*sens.models.1.for.table[[8]]$derived_quants[paste0("Bratio_", assess.yr),"Value"],1)}\%
 for the age-1 index model). This change is likely due to the base model
-underfitting the age-1 index estimates of the size of the 2014 cohort
+overfitting the age-1 index estimates of the size of the 2005 and 2012 cohorts
 (Figure~\ref{fig:main-age-one-index}). These changes are subtle
 because the base model generally tracks the trends in the age-1 index well.
 Including the age-1 index led to a worse fit to the 2017 acoustic
@@ -1449,7 +1449,7 @@ early recruitments compared to other weighting methods
 (Figure~\ref{fig:main-recruit-base-alternative-2}).
 The Francis method increased the weighting of the fishery
 composition data resulting in a similar time series of biomass, though
-slightly reduced in scale. As noted in Section ~\ref{sec:data-age-comp-likelihood},
+slightly reduced in scale. As noted in Section~\ref{sec:data-age-comp-likelihood},
 the Francis method is known to be sensitive to outliers and prone to convergence
 issues when selectivity is time-varying, as it is in this assessment.
 
@@ -1610,7 +1610,7 @@ The impact of using the adnuts MCMC algorithm is discussed in detail in
 Appendix~\ref{chap:adnuts}.
 
 Any additional sensitivity runs arising from the Scientific Review Group
-meeting to be held from 24th February to 28nd February 2020 will be documented
+meeting to be held from 25th February to 28nd February 2020 will be documented
 in Appendix~\ref{chap:srg-requests} and briefly summarized here.
 
 % 2019 SRG -
