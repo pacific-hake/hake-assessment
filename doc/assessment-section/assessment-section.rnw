@@ -1043,6 +1043,7 @@ estimates are only slightly different than the estimates in the
 
 % Look at dfo.probs.curr and decide what to write. Check that
 %   ncol(base.model$risks[[1]]) == 10   (i.e. no new columns added)
+% ***Have to update custom-knitr-variables (see UNHARDWIRE in that, when have time).
 As part of the DFO Sustainable Fisheries Framework, \citet{DFO2009} defined
 a limit reference point as being a biomass
 below which serious harm is believed to be occurring to the stock,
@@ -1068,12 +1069,15 @@ For completeness, we note that P$(B_{\Sexpr{assess.yr}} > \Bmsy) = \Sexpr{f(dfo.
 Reference levels of stock status that are used by the U.S. Pacific Fisheries Management
 Council (PFMC) include $\Bforty$ and Minimum Stock Size
 Threshold (MSST) = $\Btwentyfive$. For \Sexpr{min(forecast_yrs)}, the estimated
-posterior median relative stock size for \fishname\ is above $\Bforty$ and well
-above $\Btwentyfive$ at \Sexpr{curr.depl.median}\%.
-
+posterior median relative spawning biomass is \Sexpr{curr.depl.median}\%, such
+that the spawning biomass is above $\Bforty$ and well
+above $\Btwentyfive$.
 The probability that spawning biomass at the beginning of \Sexpr{assess.yr}
-is $>\Bforty$ = \Sexpr{probs.curr.bforty}\%.  The probability that it is
-$>\Btwentyfive$ = \Sexpr{probs.curr.btwentyfive}\%.
+is above $\Bforty$ is
+P$(B_{\Sexpr{assess.yr}} > \Bforty) = \Sexpr{probs.curr.bforty}$\% (as noted above), and of being above $\Btwentyfive$
+is
+P$(B_{\Sexpr{assess.yr}} > \Btwentyfive) = \Sexpr{probs.curr.btwentyfive}$\%.
+% $>\Btwentyfive$ = \Sexpr{probs.curr.btwentyfive}\%.
 
 
 \subsection{Model projections}\label{sec:assessment-model-projections}
