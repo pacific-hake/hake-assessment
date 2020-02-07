@@ -54,11 +54,11 @@ make.catches.plot(catches,
 %%%%%%%%%%%%%%%%%%%%%%%
 %
 Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to
-the modern fishery. Over the early period, \Sexpr{min(catches$Year)}--1990, most
-removals were from foreign or joint-venture fisheries.
-Catch in U.S. waters averaged \Sexpr{f(mean(catches$Ustotal))}~t, or
-\Sexpr{round(100*mean(catches$Ustotal/catches$TOTAL),1)}\% of the
-total catch, while catch from Canadian waters averaged
+the modern fishery. Over the early period (\Sexpr{min(catches$Year)}--1990) most
+removals were from foreign or joint-venture fisheries,
+and catch in U.S. waters averaged \Sexpr{f(mean(catches$Ustotal))}~t,
+(\Sexpr{round(100*mean(catches$Ustotal/catches$TOTAL),1)}\% of the
+total catch) while catch from Canadian waters averaged
 \Sexpr{f(mean(catches$CANtotal))}~t. Over the last 10 years,
 \Sexpr{max(catches$Year)-9}--\Sexpr{max(catches$Year)}
 (Table~\ref{tab:es-catches}), the average coastwide catch was
