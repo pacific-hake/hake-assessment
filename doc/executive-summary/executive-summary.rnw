@@ -195,13 +195,12 @@ fishery selectivity could reduce the effects of errors caused
 by assuming selectivity is constant over time. Therefore, we retain time-varying
 selectivity in this assessment.
 We retain the Dirichlet-Multinomial approach to weighting
-composition data with the addition of an almost uniform prior placed on
-the Dirichlet-Multinomial parameters.
+composition data and use a new prior for the corresponding parameters.
 We again provide sensitivities to alternative data-weighting
 approaches. Time-varying fecundity, which was introduced in 2019, was retained.
 The weight-at-age information for the forecast period
 was changed to be a representation of the last five years rather than
-all years such that the year range matches that used for selectivity and
+all years to match the years used for selectivity and
 other processes.
 % Hardwire (rather than use assess.yr) years in these final sentences, else they
 %  become incorrect the following year.
