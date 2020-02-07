@@ -402,7 +402,7 @@ and 2018 year classes (median recruitment well below the mean of all median recr
 %  spawning biomass was small enough that the S-R curve had an effect
 %  [keep this helpful explanation]
 
-The 2014 year class is likely larger than average yet has only a
+The 2014 year class is likely larger than average but has only a
 \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of being larger than
 the 2010 year class.
 There is no information in the data to estimate the sizes of the
@@ -579,14 +579,13 @@ all years except 1999 and 2007-2010
 % median.relative.bio.below.target
 % Manual done 2020. Interesting that years are becoming fewer.
 
-The joint history of the medians for relative spawning biomass and relative
-fishing intensity shows that the median relative fishing
+The median relative fishing
 intensity has never been above the target of 1.0 when the female spawning biomass
 is below the
 reference point of $\Bforty$ (Figure~\ref{fig:es-phase}). This highlights the
 highly dynamic nature of the stock due to high variation in recruitment strength.
-While the target fishing mortality ($\Fforty$) and the target spawning biomass
-($\Bforty$) result in different population sizes (see Table~\ref{tab:es-reference.points}),
+While the target fishing mortality ($\Fforty$) and
+$\Bforty$ result in different population sizes (see Table~\ref{tab:es-reference.points}),
 this difference is not, by far, the major driver of the observed dynamics.
 % 2017 - only in 1999 was it both (just)
 % Manual done 2020.
