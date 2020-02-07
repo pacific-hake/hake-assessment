@@ -235,13 +235,13 @@ Authors of this document are (all authors contribute extensively so the order ro
 %% Draft version
 This DRAFT document is non-citable.
 
-** - The double asterisks indicate a paragraph, or sentence that needs to be thought about this year
-and double checked (i.e. isn't fully automated, may just need someone to have a
-quick think). If at the start of a paragraph then need to look at the full
-paragraph. Then update any `\% Manual done 2019` text after the paragraph so we
-definitely know it has been verified. Should end up with no ** by the end (including here!). We'll still
-read through everything, but the ** indicates what definitely needs some
-thinking. *******COMMENT ME OUT WHEN DONE*******
+%% ** - The double asterisks indicate a paragraph, or sentence that needs to be thought about this year
+%% and double checked (i.e. isn't fully automated, may just need someone to have a
+%% quick think). If at the start of a paragraph then need to look at the full
+%% paragraph. Then update any `\% Manual done 2019` text after the paragraph so we
+%% definitely know it has been verified. Should end up with no ** by the end (including here!). We'll still
+%% read through everything, but the ** indicates what definitely needs some
+%% thinking. *******COMMENT ME OUT WHEN DONE*******
 
 %% Final version (with standard author rotation)
 %% This document should be cited as follows:\\
