@@ -387,10 +387,3 @@ build <- function(.run_forecasts = FALSE,
   message("\nCompleted build.")
   invisible()
 }
-
-# This is used to tell the weight.at.age.heatmap() function which
-#  years are extrapolations so that it can color them accordingly.
-#  1's means they are extrapolations and 0's means they are not.
-weight_age_extrapolation_mask <- read.csv(
-  file.path(rootd.data, "wtatage_all_samplesize.csv"),
-  header = TRUE)
