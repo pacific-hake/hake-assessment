@@ -656,7 +656,7 @@ make.short.parameter.estimates.table <- function(model,
   cbind(mle.par, mcmc.par)
   tab <- as.data.frame(cbind(mle.par, mcmc.par))
   colnames(tab) <- NULL
-
+  
   ## Format the tables rows depending on what they are.
   ## Decimal valuesn
   tab[c(1, 3, 4, 5, 6, 7),] <- f(tab[c(1, 3, 4, 5, 6, 7),], 3)
@@ -685,6 +685,10 @@ make.short.parameter.estimates.table <- function(model,
   ## Replace NAs with dashes
   tab <- apply(tab, 2, function(x) gsub("\\s*NA\\s*", "\\\\textbf{--}", x))
 
+  ## These values are not correct and need to be removed from the table
+  tab[paste0("Bratio_", end.yr), 3] <- latex.bold("--")
+  tab[paste0("SPRratio_", end.yr - 1), 3] <- latex.bold("--")
+  
   ## Set the first column to be the names
   ## Empty string below is necessary because of the rbind(c("","",""), tab)
   ##  call above
