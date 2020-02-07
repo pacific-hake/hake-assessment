@@ -1269,14 +1269,14 @@ the recruitments to deviate far from the underlying stock-recruit relationship
 % section below on sigma_r
 % Manual 2020 done
 The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative
-high (1.8) and low (1.0) states. The low value, $\sigma_r = 1.0$,
+high (1.6) and low (1.0) states. The low value, $\sigma_r = 1.0$,
 resulted in a model where the standard deviation of the MLE estimates of
 recruitment deviations in the period with the most informative data was
 \Sexpr{f(sens.models.1[[which(sens.model.names.1=="Sigma R 1.0")]]$sigma_R_info$SD_of_devs[1], 2)},
 suggesting that the data were inconsistent with the lower value of $\sigma_r$.
-The high value, $\sigma_r = 1.8$, resulted in a model with a more
+The high value, $\sigma_r = 1.6$, resulted in a model with a more
 consistent standard deviation for the estimated recruitment deviations, at
-\Sexpr{f(sens.models.1[[which(sens.model.names.1=="Sigma R 1.8")]]$sigma_R_info$SD_of_devs[1], 2)}.
+\Sexpr{f(sens.models.1[[which(sens.model.names.1=="Sigma R 1.6")]]$sigma_R_info$SD_of_devs[1], 2)}.
 However, the high $\sigma_r$ model had a larger difference between the
 spawning biomass at unfished
 equilibrium and the spawning biomass at the initial year of the model
@@ -1310,11 +1310,12 @@ Figures~\ref{fig:main-biomass-base-alternative-2} and
 of unfished biomass for the base model and
 \Sexpr{f(100*sens.models.1.for.table[[8]]$derived_quants[paste0("Bratio_", assess.yr),"Value"],1)}\%
 for the age-1 index model). This change is likely due to the base model
-underfitting the age-1 index estimates of the size of the 2014 and 2016 cohorts
+underfitting the age-1 index estimates of the size of the 2014 cohort
 (Figure~\ref{fig:main-age-one-index}). These changes are subtle
 because the base model generally tracks the trends in the age-1 index well.
-Including the age-1 index led to worse fits to the last year of the acoustic
-survey compared to the base model (Figure~\ref{fig:main-index-base-alternative-2}).
+Including the age-1 index led to a worse fit to the 2017 acoustic
+survey estimate and a better fit to the 2019 estimate compared to the
+base model (Figure~\ref{fig:main-index-base-alternative-2}).
 
 % Manual 2018: removed in 2019
 % The impact of assuming a time-invariant ageing error vector instead of a

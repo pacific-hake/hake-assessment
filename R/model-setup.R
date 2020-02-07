@@ -187,7 +187,7 @@ sens.model.dir.names.1 <- c("2020.01.15_h_prior_mean_low",
 sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
                         "Steepness Fix 1.0",
                         "Sigma R 1.0",
-                        "Sigma R 1.8",
+                        "Sigma R 1.6",
                         "Natural Mortality (SD=0.2)",
                         "Natural Mortality (SD=0.3)")
 
