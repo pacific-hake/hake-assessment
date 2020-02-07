@@ -1557,16 +1557,16 @@ parameterization of the time-varying selectivity
 
 The consideration of alternative standard deviations ($\Phi$) for time-varying
 selectivity is discussed earlier in
-Section~\ref{sec:data-variability-selectivity}. Varying the values of the
+Section~\ref{sec:data-variability-selectivity}. Changing the values of the
 parameter $\Phi$ controlling the flexibility in time-varying selectivity from
 the base model value of $\Phi = 1.40$ to alternative values of 0.21, 0.70, and 2.10,
-resulted in more precise estimates of the 2014 recruitment, regardless of the value
-of $\Phi$ (Figure~\ref{fig:main-recruit-base-alternative-4}).
-However, the 2017 recruitment, is linked to the choice of $\Phi$, where the
+did not appreciably influence the estimates, or precision, associated with recruitment
+in 2014 (Figure~\ref{fig:main-recruit-base-alternative-4}).
+However, recruitment estimates for 2017 are linked to the choice of $\Phi$, where the
 model with the smallest $\Phi$ at 0.21 estimates the 2017 recruitment deviation as
-the highest of the sensitivity models (Figure~\ref{fig:main-recruit-devs-base-alternative-4})
-and provides the worst fits of the most recent two survey biomass estimates,
-2017 and 2019 (Figure~\ref{fig:main-index-base-alternative-4}).
+the highest of the $\Phi$ sensitivity models (Figure~\ref{fig:main-recruit-devs-base-alternative-4})
+and provides the worst fit of the most recent survey biomass estimate
+(Figure~\ref{fig:main-index-base-alternative-4}).
 
 The alternative ``semi-parametric'' setup for selectivity based on the work of
 \citet{Xu2019} differs from the status-quo approach in that the deviations
@@ -1608,8 +1608,9 @@ between two of the selectivity deviations.
 % method was applied to the status-quo selectivity setup.
 
 Both models with alternative $\sigma_s$ parameters ($\sigma_s = 0.695$ and $\sigma_s = 1.0$)
-had higher estimates of 2016 and 2017 recruitment and worse fits to the recent survey biomass estimates than the base model
-(Figures~\ref{fig:main-biomass-base-alternative-4}-\ref{fig:main-index-base-alternative-4}).
+had higher estimates of 2016 and 2017 recruitment compared to the base model,
+and the $\sigma_s = 0.695$ model had a visibly worse fit to the recent survey biomass
+estimates (Figures~\ref{fig:main-biomass-base-alternative-4}-\ref{fig:main-index-base-alternative-4}).
 Relying on the subjective choice of $\sigma_s = 1.0$ removed one of
 the potential benefits of the semi-parametric approach. Given that an MCMC
 chain of 24-million samples has been adequate to overcome the inefficient

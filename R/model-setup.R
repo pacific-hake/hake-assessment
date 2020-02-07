@@ -225,7 +225,7 @@ sens.model.dir.names.4 <- c("2020.01.27_tvSelect_phi_extralow",
                             "2020.01.28_tvSelect_phi_low",
                             "2020.01.29_tvSelect_phi_high",
                             "2020.01.26_semiPara_tvSelect_sig0.695",
-                            "2020.01.26_semiPara_tvSelect_sig0.695")
+                            "2020.01.37_semiPara_tvSelect_sig1.0")
 sens.model.names.4 <- c("Phi t.v. selectivity (0.21)",
                         "Phi t.v. selectivity (0.70)",
                         "Phi t.v. selectivity (2.10)",
