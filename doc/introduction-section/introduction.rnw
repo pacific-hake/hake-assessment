@@ -166,7 +166,7 @@ targets reasonably well.
 Since 1999, catch
 targets have been determined using an $\Fforty$ default harvest rate with a
 40:10 adjustment. This decreases the catch linearly from the catch target at a
-relative spawning biomass of 40\% and above, to zero catch at relative spawning
+relative spawning biomass of 40\%, to zero catch at relative spawning
 biomass values of 10\% or less (called the default harvest policy in the
 Agreement); relative spawning biomass is the female spawning biomass divided by
 that at unfished
@@ -189,7 +189,8 @@ stock assessment outputs.
 In the U.S. zone, participants in the directed fishery are required to use
 pelagic trawls with a codend mesh of at least 7.5~cm (3~inches). Regulations
 also restrict the area and season of fishing to reduce the bycatch of Chinook
-salmon (\emph{Oncorhynchus tshawytscha}) and several depleted rockfish stocks (though the majority of the rockfish stocks have
+salmon (\emph{Oncorhynchus tshawytscha}) and several depleted rockfish stocks
+(though all but one of the rockfish stocks have
 rebuilt in recent years). The at-sea fisheries begin on May 15, but processing
 and night fishing (midnight to one hour after official sunrise) are prohibited
 south of 42$^\circ$N~latitude (the Oregon-California border). Shore-based
@@ -334,7 +335,7 @@ caught.  For further details see the report from the U.S. Advisory Panel
 % Manual done 2020 KFJ
 
 In both U.S. at-sea sectors (CP and MS) the most common cohorts in the fishery were age-9, age-5, and age-3 fish associated with the 2010, 2014, and 2016 year-classes.
-Age-2 fish were more present in the data this year than in 2018.
+Age-2 fish were more present in the catch this year than in 2018.
 Sampling by sector varied with \Sexpr{us.age.n.cp} and \Sexpr{us.age.n.ms}
 sampled hauls from each sector, respectively (Table~\ref{tab:main-sampling-history}).
 For the CP sector, the four most abundant age classes (by numbers) seen in \Sexpr{last.data.yr} were
