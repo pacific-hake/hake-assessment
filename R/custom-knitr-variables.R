@@ -225,9 +225,15 @@ zero.catch.prob.bio.down.2 <- f(base.model$risks[[2]][1,2])
 dfo.probs.curr <- base.model$risks[[1]][,(ncol(base.model$risks[[1]])-2):ncol(base.model$risks[[1]])]
 dfo.probs.fore <- base.model$risks[[2]][,(ncol(base.model$risks[[2]])-2):ncol(base.model$risks[[2]])]
 
-##probability of current spawning biomass being above B40% and B25%
-probs.curr.bforty <- f(mean(base.model$mcmc$Bratio_2020 > 0.40) * 100, 1)
+##probability of current spawning biomass being above B40%, B25%, and B10%
+##**NEED TO UNHARDWIRE the 2020**, but these don't quite work; think numbers are
+## maybe saved another way:
+# probs.curr.bforty      <- f(mean(paste0("base.model$mcmc$Bratio_", assess.yr) > 0.40) * 100, 1)
+# probs.curr.btwentyfive <- f(mean(paste0("base.model$mcmc$Bratio_", assess.yr) > 0.25) * 100, 1)
+# probs.curr.bten        <- f(mean(paste0("base.model$mcmc$Bratio_", assess.yr) > 0.10) * 100, 0)
+probs.curr.bforty      <- f(mean(base.model$mcmc$Bratio_2020 > 0.40) * 100, 1)
 probs.curr.btwentyfive <- f(mean(base.model$mcmc$Bratio_2020 > 0.25) * 100, 1)
+probs.curr.bten        <- f(mean(base.model$mcmc$Bratio_2020 > 0.10) * 100, 0)
 
 ################################################################################
 ## Second forecast year depletion and spawning biomass estimates
