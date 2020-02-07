@@ -643,8 +643,10 @@ credibility intervals are in Table~\ref{tab:es-reference.points}.
 The medians of sustainable yields and biomass reference points are
 almost 10\% lower than in the \Sexpr{last.assess.yr} assessment.
 The probability that spawning biomass at the beginning of \Sexpr{assess.yr}
-is $>\Bforty$ = \Sexpr{probs.curr.bforty}\%.  The probability that it is
-$>\Btwentyfive$ = \Sexpr{probs.curr.btwentyfive}\%.
+is above $\Bforty$ is
+P$(B_{\Sexpr{assess.yr}} > \Bforty) = \Sexpr{probs.curr.bforty}$\%,
+and of being above $\Btwentyfive$ is
+P$(B_{\Sexpr{assess.yr}} > \Btwentyfive) = \Sexpr{probs.curr.btwentyfive}$\%.
 % Manual done 2020.
 \enlargethispage{\baselineskip}
 
