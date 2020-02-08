@@ -1400,20 +1400,20 @@ make.comparison.plot(c(list(base.model), list(sens.models.5)),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-status-base-alternative-6, fig.height=4.5, fig.width=8>>=
+<<main-biomass-base-alternative-6, fig.height=4.5, fig.width=8>>=
 make.comparison.plot(c(list(base.model), list(sens.models.6)),
-                     subplots = 4,
+                     subplots = 2,
                      model.names = c(base.model.name, sens.model.names.6),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of stock status for the base
+\caption{MCMC median posterior estimates with 95\% credible interval of stock biomass for the base
   model and alternative sensitivity run using the adnuts MCMC algorithm.
   See Appendix~\ref{chap:adnuts} for a full description.}
-\label{fig:main-status-base-alternative-6}
+\label{fig:main-biomass-base-alternative-6}
 
 \begin{center}
-<<main-status-base-alternative-6-mcmc, fig.height=4.5, fig.width=8>>=
+<<main-status-base-alternative-6, fig.height=4.5, fig.width=8>>=
 make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.6),
@@ -1423,7 +1423,7 @@ make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
 \caption{MCMC median posterior estimates with 95\% credible interval of stock
   status for the base model and alternative sensitivity run using the adnuts MCMC algorithm.
   See Appendix~\ref{chap:adnuts} for a full description.}
-\label{fig:main-status-base-alternative-6-mcmc}
+\label{fig:main-status-base-alternative-6}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%
