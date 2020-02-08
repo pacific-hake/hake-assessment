@@ -1400,35 +1400,6 @@ make.comparison.plot(c(list(base.model), list(sens.models.5)),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-biomass-base-alternative-6, fig.height=4.5, fig.width=8>>=
-make.comparison.plot(c(list(base.model), list(sens.models.6)),
-                     subplots = 2,
-                     model.names = c(base.model.name, sens.model.names.6),
-                     end.yr = end.yr)
-@
-\end{center}
-\caption{MCMC median posterior estimates with 95\% credible interval of stock biomass for the base
-  model and alternative sensitivity run using the adnuts MCMC algorithm.
-  See Appendix~\ref{chap:adnuts} for a full description.}
-\label{fig:main-biomass-base-alternative-6}
-
-\begin{center}
-<<main-status-base-alternative-6, fig.height=4.5, fig.width=8>>=
-make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
-                     subplots = 4,
-                     model.names = c(base.model.name, sens.model.names.6),
-                     end.yr = end.yr)
-@
-\end{center}
-\caption{MCMC median posterior estimates with 95\% credible interval of stock
-  status for the base model and alternative sensitivity run using the adnuts MCMC algorithm.
-  See Appendix~\ref{chap:adnuts} for a full description.}
-\label{fig:main-status-base-alternative-6}
-\end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
 <<main-biomass-recruitment-retrospective, fig.height=8, fig.width=8>>=
 oldpar <- par()
 par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))

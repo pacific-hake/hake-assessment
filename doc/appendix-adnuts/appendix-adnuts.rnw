@@ -7,23 +7,98 @@ This appendix contains base model Bayesian MCMC results using a new analytical t
 for conducting efficient Bayesian MCMC algorithms, the Automatic Differentiation
 No-U-Turn Sampler, implemented using the {\tt adnuts} R package
 \citep{Monnahan2018, Monnahan2019}.
-This tool
-has the potential to improve the
-applicability of Bayesian methods in stock assessment.
+This tool has the potential to improve the applicability of Bayesian methods in stock assessment.
 
 This appendix highlights
 model uncertainty arising from a different structural assumption or analytical choice
-compared to the base model.  The inclusion of the adnuts software was deemed
-prudent in order to compare this new approach with existing MCMC methods used for \fishname.
+compared to the base model.
 
 The R code that was used to run {\tt adnuts} following general guidelines
-provided by C. Monnahan are provided at the end of this appendix.
-Fgures and tables follow an executive summary format, with the addition
-of a diagnostics figure and an MCMC method comparison figure.
+provided by C. Monnahan (pers. comm.) are provided at the end of this appendix.
+Figures and tables follow the executive summary format, with the addition
+of figures showing sensitivity with base model, MCMC diagnostic figures,
+and an MCMC method comparison figure.
+
+A comparison between the base model and the adnuts model shows little
+difference in the median posteriors (Figure~\ref{fig:biomass-base-alternative-6-adnuts-sens}),
+although the adnuts model has an increased overall uncertainty. The estimate of initial recruitment, $R_0$
+differs slightly between the two, with the base model estimate being 2,505 million and the adnuts
+estimate, 2,314 million. This small difference causes an upward scaling effect to the
+relative biomass (Figure~\ref{fig:status-base-alternative-6-adnuts-sens}) for the adnuts model.
+Recruitment estimates for the terminal year are slightly increased when using the adnuts method
+(Figures~\ref{fig:recruit-base-alternative-6-adnuts-sens}--\ref{fig:recruit-devs-base-alternative-6-adnuts-sens}).
 
 
-% Keeping chunk names as ...53, which is from 2019 assessment (where we had four
-% similar appendices), but not worth changing as it's just the labels).
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<biomass-base-alternative-6-adnuts-sens, fig.height=4.5, fig.width=8>>=
+make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
+                     subplots = 2,
+                     model.names = c(base.model.name, sens.model.names.6),
+                     end.yr = end.yr)
+@
+\end{center}
+\caption{MCMC median posterior estimates with 95\% credible interval of stock biomass for the base
+  model and alternative sensitivity run using the adnuts MCMC algorithm.
+  See Appendix~\ref{chap:adnuts} for a full description.}
+\label{fig:biomass-base-alternative-6-adnuts-sens}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+<<status-base-alternative-6-adnuts-sens, fig.height=4.5, fig.width=8>>=
+make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
+                     subplots = 4,
+                     model.names = c(base.model.name, sens.model.names.6),
+                     end.yr = end.yr)
+@
+\end{center}
+\caption{MCMC median posterior estimates with 95\% credible interval of stock
+  status for the base model and alternative sensitivity run using the adnuts MCMC algorithm.
+  See Appendix~\ref{chap:adnuts} for a full description.}
+\label{fig:status-base-alternative-6-adnuts-sens}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<recruitment-base-alternative-6-adnuts-sens, fig.height=4.5, fig.width=8>>=
+make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
+                     legend = FALSE,
+                     subplots = 10,
+                     model.names = c(base.model.name, sens.model.names.6),
+                     end.yr = end.yr)
+box()
+@
+\end{center}
+\caption{Maximum likelihood estimates of recruitment for the base model
+  and the alternative sensitivity run using the adnuts algorithm.
+  See Figure~\ref{fig:biomass-base-alternative-6-adnuts-sens} for legend.}
+\label{fig:recruit-base-alternative-6-adnuts-sens}
+%% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{figure}[H]
+\begin{center}
+<<recruitment-devs-base-alternative-6-adnuts-sens, fig.height=4.5, fig.width=8>>=
+make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
+                     legend = FALSE,
+                     subplots = 12,
+                     model.names = c(base.model.name, sens.model.names.6),
+                     end.yr = end.yr)
+box()
+@
+\end{center}
+\caption{Maximum likelihood estimates of recruitment deviations for the base model
+  and alternative sensitivity run using the adnuts algorithm.
+  See Figure~\ref{fig:biomass-base-alternative-6-adnuts-sens} for legend.}
+\label{fig:recruit-devs-base-alternative-6-adnuts-sens}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
