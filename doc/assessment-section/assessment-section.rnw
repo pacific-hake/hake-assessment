@@ -583,15 +583,23 @@ This bridging step also shifted the ending year of the deviations
 in the selectivity parameters from \Sexpr{last.data.yr-1} to
 \Sexpr{last.data.yr} since there was now fishery data in \Sexpr{last.data.yr}.
 
-Including the fishery-independent data led to a slightly more optimistic
-trajectory of the stock (Figure~\ref{fig:main-bridge-5-panel-3}),
+Including the fishery-independent biomass estimate led to a slightly more optimistic
+trajectory of the stock over the last couple of years
+(Figure~\ref{fig:main-bridge-5-panel-3}),
 which was to be expected given the increase in the
 index relative to \Sexpr{penult.survey.year}.
-The addition of age-composition data from the survey led to reduced
-uncertainty of the 2010 and 2014 year classes,
-which were estimated to be higher in this assessment than they were
-in the \Sexpr{last.assess.yr} assessment.
-** AMB can you add more interpretation here?
+The addition of survey age-composition data led to reduced
+uncertainty, particularly for the 2010, 2014, 2016, and 2017 year classes.
+The 2010 and 2014 year classes are estimated to be slightly higher in this
+assessment than they were in the \Sexpr{last.assess.yr} assessment.
+This increase is largely driven by the addition
+of the 2019 acoustic survey age compositions
+where the proportion of age-9 fish and age-5 fish were higher than what
+the \Sexpr{end.yr-1} assessment model would have otherwise predicted
+given mortality. The \Sexpr{last.assess.yr} acoustic survey was the first time 
+the 2016 and 2017 cohorts were adequately sampled (age-2 or older) by the survey,
+which is why the uncertaintly associated with these cohorts was reduced (though
+still quite uncertain; Figure~\ref{fig:main-bridge-5-panel-3}). 
 
 The final bridging step involved using the new priors on the D-M parameters
 $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$, and explicitly estimating $\theta_{\text{surv}}$
