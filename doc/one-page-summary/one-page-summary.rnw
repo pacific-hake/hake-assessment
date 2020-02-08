@@ -11,7 +11,11 @@ to the \Sexpr{last.assess.yr} model. It is fit to an acoustic survey index of
 abundance, annual commercial catch data, and age-composition data from the
 survey and commercial fisheries.
 
-  \item Structurally, the assessment was changed from \Sexpr{last.assess.yr} in three ways. First, a nearly uniform prior (in transformed space) was applied to the Dirichlet-Multinomial parameters used to weight the age-composition data. Second, the constraint that estimated recruitment deviations sum to zero was removed. Lastly, weight-at-age data for the forecast period was calculated using the average of the five most recent years rather than all years.
+  \item Structural changes from \Sexpr{last.assess.yr} involve a new prior
+    distribution for the parameters that weight the age-composition data, removal of
+    the constraint that estimated recruitment deviations must sum to zero, and
+    using the average of the most recent five years (rather than three years) of
+    weight-at-age data for calculating forecasts.
 
   \item Updates to the data include:
 recent catches, biomass estimate and age-composition data from the acoustic survey conducted in \Sexpr{survey.end.yr},
