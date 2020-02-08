@@ -32,21 +32,22 @@ from last year); attainment in Canada was
 (\Sexpr{paste0(ifelse(last.2year.can.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.can.attained.diff))}\%
 from last year).
 
-  \item The stock is estimated to have been at a minimum of
-  \Sexpr{f(min(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% 2013:end.yr]) * 100)}\% of $B_0$ since
-    2013 due to large estimated 2010 and 2014 cohorts.
-
   \item The median estimate of the \Sexpr{end.yr} relative spawning biomass
-(female spawning biomass at the start of \Sexpr{end.yr} divided by that at unfished
-equilibrium, $B_0$) is \Sexpr{curr.depl.median}\% but is highly uncertain (with
-95\% credible interval from \Sexpr{curr.depl.lower}\% to
-\Sexpr{curr.depl.upper}\%). The median estimate of female spawning biomass at the start
-    of \Sexpr{end.yr} is
-\Sexpr{curr.bio.median} million~t (with 95\% credible interval from
-\Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper} million~t). This is
-a decrease from the \Sexpr{end.yr-1} median of \Sexpr{prev.bio.median}~million~t
-(though its 95\% credible interval is
-\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper}~million~t).
+    (female spawning biomass at the start of \Sexpr{end.yr} divided by that at
+    unfished equilibrium, $B_0$) is \Sexpr{curr.depl.median}\% but is highly
+    uncertain (with 95\% credible interval from \Sexpr{curr.depl.lower}\% to
+    \Sexpr{curr.depl.upper}\%). The median relative spawning biomass reached a historical low of
+\Sexpr{f(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) == "2010"] * 100, 1)}\%
+    in 2010,
+    increased due to large estimated 2010 and 2014 cohorts, and has
+    gradually declined since 2017 during a period of record catches.
+
+  \item The median estimate of female spawning biomass at the start
+    of \Sexpr{end.yr} is \Sexpr{curr.bio.median} million~t (with 95\% credible
+    interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper}
+    million~t). This is a decrease from the \Sexpr{end.yr-1} median of \Sexpr{prev.bio.median}~million~t
+    (though its 95\% credible interval is
+    \Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper}~million~t).
 
   \item The estimated joint probability of being both
     above the target relative fishing intensity in \Sexpr{end.yr-1}
