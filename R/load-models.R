@@ -319,14 +319,14 @@ calc.mcmc <- function(mcmc,
          function(x){get(x)})
 }
 
-create.key.nuisance.posteriors.files <- function(model,
+  create.key.nuisance.posteriors.files <- function(model,
                                                  posterior.regex,
                                                  key.post.file,
                                                  nuisance.post.file){
   ## Creates the two files for key and nuisance posteriors
   key.file <- file.path(model$mcmcpath, key.post.file)
   nuisance.file <- file.path(model$mcmcpath, nuisance.post.file)
-  
+
   mc <- model$mcmc
   mc.names <- names(mc)
   mcmc.grep <- unique(grep(paste(posterior.regex, collapse="|"), mc.names))

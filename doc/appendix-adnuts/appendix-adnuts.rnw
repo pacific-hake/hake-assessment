@@ -28,6 +28,9 @@ relative biomass (Figure~\ref{fig:status-base-alternative-6-adnuts-sens}) for th
 Recruitment estimates for the terminal year are slightly increased when using the adnuts method
 (Figures~\ref{fig:recruit-base-alternative-6-adnuts-sens}--\ref{fig:recruit-devs-base-alternative-6-adnuts-sens}).
 
+Diagnostics for the adnuts model are comparable to the base model with all key posteriors
+(Natural mortality, Initial recruitment, Steepness, and Extra SD in the survey) showing similar
+distributions in both models.
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
@@ -526,7 +529,31 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
+<<mcmc-diag-dm-adnuts, fig.height=4.8, fig.width=8>>=
+oldpar <- par(no.readonly=TRUE)
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.mcmc.diag.plot(sens.models.6, subplot = 5)
+make.mcmc.diag.plot(sens.models.6, subplot = 6)
+par <- oldpar
+@
+\end{center}
+\caption{Summary of MCMC diagnostics for the Dirichlet-Multinomial age-composition parameters for the fishery (upper panels) and the survey (lower panels). Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; cumulative running mean with 5th and 95th percentiles, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
+\label{fig:mcmc-diag-dm-adnuts}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
 <<mcmc-diag-hists-adnuts, fig.height=6, fig.width=8>>=
+  mc <- sens.models.6$mcmc
+  mc.names <- names(mc)
+  mcmc.grep <- unique(grep(paste(key.posteriors, collapse="|"), mc.names))
+  mcmc.names <- mc.names[mcmc.grep]
+  keys <- mc[,mcmc.grep]
+  nuisances <- mc[,-mcmc.grep]
+
 make.mcmc.diag.hists.plot(sens.models.6)
 @
 \end{center}

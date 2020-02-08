@@ -224,6 +224,12 @@ make.mcmc.diag.plot <- function(model,      ## model is an mcmc run and is the o
   }else if(subplot == 4){
     colnames <- c("Q_extraSD_Acoustic_Survey.2.")
     label <- "Extra SD in survey"
+  }else if(subplot == 5){
+    colnames <- c("ln.EffN_mult._1")
+    label <- "DM Fishery"
+  }else if(subplot == 6){
+    colnames <- c("ln.EffN_mult._2")
+    label <- "DM Survey"
   }
   oldpar <- par()
   par(mar=c(5,3.5,0,0.5),oma=c(0,3.0,0.2,0))
