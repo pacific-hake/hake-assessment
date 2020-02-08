@@ -17,11 +17,10 @@ survey and commercial fisheries.
     using the average of the most recent five years (rather than three years) of
     weight-at-age data for calculating forecasts.
 
-  \item Updates to the data include:
-recent catches, biomass estimate and age-composition data from the acoustic survey conducted in \Sexpr{survey.end.yr},
-minor changes to historical (pre-\Sexpr{end.yr-1}) catch, biomass estimates, age-composition data, and
-weight-at-age data; addition of \Sexpr{end.yr-1} fishery catch and age-composition
-data; and addition of \Sexpr{last.data.yr} weight-at-age data.
+  \item Updates to the data include: the biomass estimate and age-composition
+    data from the acoustic survey conducted in \Sexpr{survey.end.yr}, fishery
+    catch and age-composition data from \Sexpr{end.yr-1}, weight-at-age data for
+    \Sexpr{end.yr-1}, and minor changes to pre-\Sexpr{end.yr-1} data.
 
   \item Coastwide catch in \Sexpr{end.yr-1} was the third largest on record at
     \Sexpr{last.year.landings}~t [t represents metric tons],
