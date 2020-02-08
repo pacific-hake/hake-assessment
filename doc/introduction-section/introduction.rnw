@@ -248,7 +248,7 @@ codends from Canadian catcher vessels while at sea.
 The last year a Joint-Venture fishery was conducted was in \Sexpr{latest.year.can.jv}.
 % There was a Joint-Venture fishery conducted in \Sexpr{latest.year.can.jv}.
 
-**[presumably not changed] In \Sexpr{last.data.yr}, all Canadian \fishname\ trips remained subject to 100\%
+In \Sexpr{last.data.yr}, all Canadian \fishname\ trips remained subject to 100\%
 observer coverage, by either electronic monitoring for the shoreside component
 of the domestic fishery or on-board observer for the freezer-trawler
 component. All shoreside hake landings were also subject to 100\% verification
