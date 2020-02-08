@@ -489,6 +489,110 @@ make.mcmc.survey.fit.plot(sens.models.6,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<mcmc-diag-m-r0-adnuts, fig.height=4, fig.width=8>>=
+oldpar <- par(no.readonly=TRUE)
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.mcmc.diag.plot(sens.models.6, subplot = 1)
+make.mcmc.diag.plot(sens.models.6, subplot = 2)
+par <- oldpar
+@
+\end{center}
+\caption{Summary of MCMC diagnostics for natural mortality (upper panels) and log(\emph{R\subscr{0}}) (lower panels). Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; cumulative running mean with 5th and 95th percentiles, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
+\label{fig:mcmc-diag-m-r0-adnuts}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<mcmc-diag-h-extra-sd-adnuts, fig.height=4.8, fig.width=8>>=
+oldpar <- par(no.readonly=TRUE)
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.mcmc.diag.plot(sens.models.6, subplot = 3)
+make.mcmc.diag.plot(sens.models.6, subplot = 4)
+par <- oldpar
+@
+\end{center}
+\caption{Summary of MCMC diagnostics for steepness (upper panels) and the additional standard deviation (SD) in the survey index (lower panels). Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; cumulative running mean with 5th and 95th percentiles, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
+\label{fig:mcmc-diag-h-extra-sd-adnuts}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<mcmc-diag-hists-adnuts, fig.height=6, fig.width=8>>=
+make.mcmc.diag.hists.plot(sens.models.6)
+@
+\end{center}
+\caption{Summary histograms of MCMC diagnostics for all parameters
+together with the derived time series of spawning biomass and relative spawning biomass.
+The level of autocorrelation in the chain (distribution across lag times, i.e., distance between samples in the chain, shown in the top left panel) influences the effective sample size (top right panel) used to estimate posterior distributions. The Geweke statistic (lower left panel) tests for equality between means located in the first part of the chain against means in the last part of the chain. The Heidelberger and Welch statistic (lower right panel) tests if the sampled values come from a stationary distribution by comparing different sections of the chain.}
+\label{fig:mcmc-diag-hists-adnuts}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%
+% \begin{figure}[H]
+% \begin{center}
+% \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+% \includegraphics[width=6.5in, height=7.5in]{main-figures/KeyParameterGelman_MultChain}
+% \end{center}
+% %\vspace{0mm}
+% \caption{Gelman-Rubin plot showing the development of the scale-reduction (shrink factor) across the chain length for key posterior parameter distributions. A factor close to 1 indicates that between chain variance and within chain variance are equal. Values much greater than 1.1 indicate a notable difference between chains and the possible lack of achieving a converged stationary posterior distribution.}
+% \label{fig:mcmc-diag-gelrub-adnuts}
+% \end{figure}
+% %%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<mcmc-pairs-adnuts, fig.height=8, fig.width=8>>=
+make.mcmc.diag.pairs.plot(sens.models.6,
+                          inc.key.params = TRUE,
+                          recr = c(2008, 2010, 2014),
+                          bratio = end.yr,
+                          forecatch = end.yr)
+@
+\end{center}
+\caption{Posterior correlations among key parameters and derived
+  quantities. Numbers refer to the absolute correlation coefficients, with font
+  size proportional to the square root of the coefficient.}
+\label{fig:main-mcmc-pairs-adnuts}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<mcmc-pairs-recruit-devs, fig.height=8, fig.width=8>>=
+make.mcmc.diag.pairs.plot(sens.models.6,
+                          inc.key.params = FALSE,
+                          recr = (end.yr-10):(end.yr-1))
+@
+\end{center}
+\caption{Posterior correlations among recruitment deviations from recent years and equilibrium recruitment. Numbers refer to the absolute correlation coefficients, with font size proportional to the square root of the coefficient.}
+\label{fig:mcmc-pairs-recruit-devs-adnuts}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
 The R code that was used to manually run {\tt adnuts} is:
 
 <<a, eval=FALSE, echo=TRUE>>=
@@ -596,3 +700,4 @@ launch_shinyadmb(nuts.updated)
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%
+
