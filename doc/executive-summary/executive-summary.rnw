@@ -672,18 +672,17 @@ fishery processes (e.g., selectivity)
 and the scientific basis for prior probability distributions. To address such
 structural uncertainties, we performed sensitivity analyses to investigate a
 range of alternative assumptions using maximum likelihood estimation,
-and present the key ones in the main document. We also conducted full Bayesian MCMC
-analyses for the model that included the age-1 survey index
-(see Appendix~\ref{chap:age1-survey}) and the model that used the
-Auto-Differentiation No-U-Turn-Sampling (AD-NUTS) algorithm \citep{Monnahan2018, Monnahan2019} for efficient MCMC sampling
-(see Appendix~\ref{chap:adnuts}).
+and present the key ones in the main document. We also present full Bayesian
+analyses for a model that includes the age-1 survey index
+and a model that uses the new efficient
+Auto-Differentiation No-U-Turn-Sampling (AD-NUTS) algorithm.
 
 In a 2015 Joint Management Committee (JMC) meeting, the JTC presented results
 from closed-loop simulations to evaluate the effect of
 including potential age-1 indices on management outcomes.
 It was found that fitting to an
 unbiased age-1 survey results in lower catch, lower probability that spawning
-biomass falls below 10\% of $B_0$, and a lower average annual variability in
+biomass falls below $\Bten$, and a lower average annual variability in
 catch.  However, comparable results in terms of catch may be achieved with a
 more precise age-2+ survey or alternative harvest control rules.  The
 simulations assumed an age-1 survey design with consistent, effective, and
@@ -699,7 +698,7 @@ why the estimates are included in a sensitivity run rather than the base model.
 The \fishname\ stock displays high recruitment variability relative to
 other west coast groundfish stocks, resulting in large and rapid biomass
 changes.  This leads to a dynamic fishery that potentially targets strong
-cohorts resulting in time-varying fishery selectivity. This volatility results
+cohorts and results in time-varying fishery selectivity. This volatility results
 in a high level of uncertainty in estimates of current stock status and stock
 projections because, with limited data to estimate incoming recruitment, the
 cohorts are fished before the assessment can accurately determine how big
