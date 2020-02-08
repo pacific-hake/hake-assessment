@@ -54,11 +54,11 @@ make.catches.plot(catches,
 %%%%%%%%%%%%%%%%%%%%%%%
 %
 Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to
-the modern fishery. Over the early period, \Sexpr{min(catches$Year)}--1990, most
-removals were from foreign or joint-venture fisheries.
-Catch in U.S. waters averaged \Sexpr{f(mean(catches$Ustotal))}~t, or
-\Sexpr{round(100*mean(catches$Ustotal/catches$TOTAL),1)}\% of the
-total catch, while catch from Canadian waters averaged
+the modern fishery. Over the early period (\Sexpr{min(catches$Year)}--1990) most
+removals were from foreign or joint-venture fisheries,
+and catch in U.S. waters averaged \Sexpr{f(mean(catches$Ustotal))}~t,
+(\Sexpr{round(100*mean(catches$Ustotal/catches$TOTAL),1)}\% of the
+total catch) while catch from Canadian waters averaged
 \Sexpr{f(mean(catches$CANtotal))}~t. Over the last 10 years,
 \Sexpr{max(catches$Year)-9}--\Sexpr{max(catches$Year)}
 (Table~\ref{tab:es-catches}), the average coastwide catch was
@@ -188,20 +188,19 @@ showed that allowing for time-varying (rather than fixed) selectivity reduced
 the magnitude of extreme cohort strength estimates. In closed-loop simulations,
 management based upon assessment models allowing for time-varying fishery
 selectivity led to higher median average catch, lower risk of falling below 10\%
-of unfished biomass ($B_0$), smaller probability of fishery closures, and lower
+of unfished biomass, smaller probability of fishery closures, and lower
 inter-annual variability in catch compared to assessment models that force
 time-invariant fishery selectivity. Even a small degree of flexibility in the
 fishery selectivity could reduce the effects of errors caused
 by assuming selectivity is constant over time. Therefore, we retain time-varying
 selectivity in this assessment.
 We retain the Dirichlet-Multinomial approach to weighting
-composition data with the addition of an almost uniform prior placed on
-the Dirichlet-Multinomial parameters.
+composition data and use a new prior for the corresponding parameters.
 We again provide sensitivities to alternative data-weighting
 approaches. Time-varying fecundity, which was introduced in 2019, was retained.
 The weight-at-age information for the forecast period
 was changed to be a representation of the last five years rather than
-all years such that the year range matches that used for selectivity and
+all years to match the years used for selectivity and
 other processes.
 % Hardwire (rather than use assess.yr) years in these final sentences, else they
 %  become incorrect the following year.
@@ -292,8 +291,7 @@ the \Sexpr{end.yr} female spawning biomass is \Sexpr{curr.bio.median}~million~t 
 \Sexpr{curr.bio.upper}~million~t). The estimate of the \Sexpr{end.yr-1} female
 spawning biomass is \Sexpr{prev.bio.median}
 (\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. This is a slightly higher
-median than the 1.312~(0.471-3.601)~million~t estimated in the \Sexpr{end.yr-1}
-assessment, and the credibility interval lies well within that from the \Sexpr{end.yr-1}
+median and narrower credibility interval than the 1.312~(0.471-3.601)~million~t estimated in the \Sexpr{end.yr-1}
 assessment.
 % Manual 2020 done (updated numbers in final sentence and revised text).
 <<biomass-table, results='asis', echo=FALSE>>=
@@ -404,7 +402,7 @@ and 2018 year classes (median recruitment well below the mean of all median recr
 %  spawning biomass was small enough that the S-R curve had an effect
 %  [keep this helpful explanation]
 
-The 2014 year class is likely larger than average yet has only a
+The 2014 year class is likely larger than average but has only a
 \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of being larger than
 the 2010 year class.
 There is no information in the data to estimate the sizes of the
@@ -581,14 +579,13 @@ all years except 1999 and 2007-2010
 % median.relative.bio.below.target
 % Manual done 2020. Interesting that years are becoming fewer.
 
-The joint history of the medians for relative spawning biomass and relative
-fishing intensity shows that the median relative fishing
+The median relative fishing
 intensity has never been above the target of 1.0 when the female spawning biomass
 is below the
 reference point of $\Bforty$ (Figure~\ref{fig:es-phase}). This highlights the
 highly dynamic nature of the stock due to high variation in recruitment strength.
-While the target fishing mortality ($\Fforty$) and the target spawning biomass
-($\Bforty$) result in different population sizes (see Table~\ref{tab:es-reference.points}),
+While the target fishing mortality ($\Fforty$) and
+$\Bforty$ result in different population sizes (see Table~\ref{tab:es-reference.points}),
 this difference is not, by far, the major driver of the observed dynamics.
 % 2017 - only in 1999 was it both (just)
 % Manual done 2020.
@@ -675,18 +672,17 @@ fishery processes (e.g., selectivity)
 and the scientific basis for prior probability distributions. To address such
 structural uncertainties, we performed sensitivity analyses to investigate a
 range of alternative assumptions using maximum likelihood estimation,
-and present the key ones in the main document. We also conducted full Bayesian MCMC
-analyses for the model that included the age-1 survey index
-(see Appendix~\ref{chap:age1-survey}) and the model that used the
-Auto-Differentiation No-U-Turn-Sampling (AD-NUTS) algorithm \citep{Monnahan2018, Monnahan2019} for efficient MCMC sampling
-(see Appendix~\ref{chap:adnuts}).
+and present the key ones in the main document. We also present full Bayesian
+analyses for a model that includes the age-1 survey index
+and a model that uses the new efficient
+Auto-Differentiation No-U-Turn-Sampling (AD-NUTS) algorithm.
 
 In a 2015 Joint Management Committee (JMC) meeting, the JTC presented results
 from closed-loop simulations to evaluate the effect of
 including potential age-1 indices on management outcomes.
 It was found that fitting to an
 unbiased age-1 survey results in lower catch, lower probability that spawning
-biomass falls below 10\% of $B_0$, and a lower average annual variability in
+biomass falls below $\Bten$, and a lower average annual variability in
 catch.  However, comparable results in terms of catch may be achieved with a
 more precise age-2+ survey or alternative harvest control rules.  The
 simulations assumed an age-1 survey design with consistent, effective, and
@@ -702,7 +698,7 @@ why the estimates are included in a sensitivity run rather than the base model.
 The \fishname\ stock displays high recruitment variability relative to
 other west coast groundfish stocks, resulting in large and rapid biomass
 changes.  This leads to a dynamic fishery that potentially targets strong
-cohorts resulting in time-varying fishery selectivity. This volatility results
+cohorts and results in time-varying fishery selectivity. This volatility results
 in a high level of uncertainty in estimates of current stock status and stock
 projections because, with limited data to estimate incoming recruitment, the
 cohorts are fished before the assessment can accurately determine how big
