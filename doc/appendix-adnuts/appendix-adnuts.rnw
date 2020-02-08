@@ -29,8 +29,10 @@ Recruitment estimates for the terminal year are slightly increased when using th
 (Figures~\ref{fig:recruit-base-alternative-6-adnuts-sens}--\ref{fig:recruit-devs-base-alternative-6-adnuts-sens}).
 
 Diagnostics for the adnuts model are comparable to the base model with all key posteriors
-(Natural mortality, Initial recruitment, Steepness, and Extra SD in the survey) showing similar
-distributions in both models.
+(Figures~\ref{fig:main-mcmc-diag-m-r0}--\ref{fig:main-mcmc-diag-dm} and 
+Figures~\ref{fig:mcmc-diag-m-r0-adnuts}--\ref{fig:mcmc-diag-dm-adnuts}).
+
+**Need to decide on Issues #662 and #663 before adding anything else here.
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
