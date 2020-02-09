@@ -37,7 +37,7 @@ from last year).
     unfished equilibrium, $B_0$) is \Sexpr{curr.depl.median}\% but is highly
     uncertain (with 95\% credible interval from \Sexpr{curr.depl.lower}\% to
     \Sexpr{curr.depl.upper}\%). The median relative spawning biomass reached a historical low of
-\Sexpr{f(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) == "2010"] * 100, 1)}\%
+\Sexpr{f(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) == "2010"] * 100, 0)}\%
     in 2010,
     increased due to large estimated 2010 and 2014 cohorts, and has
     gradually declined since 2017 during a period of record catches.
