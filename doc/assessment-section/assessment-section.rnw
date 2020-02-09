@@ -641,11 +641,10 @@ The Gelman-Rubin multi-chain diagnostic test,
 which compares within-chain variance to among-chain variance, further indicated that
 convergence was adequately achieved (Figure~\ref{fig:main-mcmc-diag-gelrub}).
 Correlations among key parameters were
-generally low, with the exception of $M$ and $\log R_0$, (Figure~\ref{fig:main-mcmc-pairs}).
-Derived quantities for recruitment in 2008 and 2010,
-recruitment in 2014 and catch from the default harvest rule in \Sexpr{end.yr}, and
-recruitment in 2010 and catch from the default harvest rule in \Sexpr{end.yr}
-were highly correlated, as to be expected given the dependencies
+generally low, with the exception of $M$ and $\log R_0$ (Figure~\ref{fig:main-mcmc-pairs}).
+Estimates of recruitment in 2010 and 2014 were correlated with
+the derived quantity of catch from the default harvest rule in \Sexpr{end.yr},
+as to be expected given the dependencies
 among these quantities (Figure~\ref{fig:main-mcmc-pairs}). An examination of
 deviations in recruitment (log-scale differences between estimated and expected
 recruitment values) from recent years
