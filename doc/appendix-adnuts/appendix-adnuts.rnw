@@ -9,15 +9,10 @@ No-U-Turn Sampler, implemented using the {\tt adnuts} R package
 \citep{Monnahan2018, Monnahan2019}.
 This tool has the potential to improve the applicability of Bayesian methods in stock assessment.
 
-This appendix highlights
-model uncertainty arising from a different structural assumption or analytical choice
-compared to the base model.
-
 The R code that was used to run {\tt adnuts} following general guidelines
 provided by C. Monnahan (pers. comm.) are provided at the end of this appendix.
 Figures and tables follow the executive summary format, with the addition
-of figures showing sensitivity with base model, MCMC diagnostic figures,
-and an MCMC method comparison figure.
+of figures showing sensitivity with base model, and MCMC diagnostic figures.
 
 A comparison between the base model and the adnuts model shows little
 difference in the median posteriors (Figure~\ref{fig:biomass-base-alternative-6-adnuts-sens}),
@@ -28,11 +23,32 @@ relative biomass (Figure~\ref{fig:status-base-alternative-6-adnuts-sens}) for th
 Recruitment estimates for the terminal year are slightly increased when using the adnuts method
 (Figures~\ref{fig:recruit-base-alternative-6-adnuts-sens}--\ref{fig:recruit-devs-base-alternative-6-adnuts-sens}).
 
-Diagnostics for the adnuts model are comparable to the base model with all key posteriors
+Diagnostics for the adnuts model are comparable to the base model for all key posteriors
 (Figures~\ref{fig:main-mcmc-diag-m-r0}--\ref{fig:main-mcmc-diag-dm} and 
-Figures~\ref{fig:mcmc-diag-m-r0-adnuts}--\ref{fig:mcmc-diag-dm-adnuts}).
+Figures~\ref{fig:mcmc-diag-m-r0-adnuts}--\ref{fig:mcmc-diag-dm-adnuts}). There are only slight differences
+in the densities of the posteriors (bottom-right panels). Parameter autocorrelation remains low
+for the adnuts model (bottom-left panels). The traceplots (top-left panels) appear denser for the
+adnuts model because the number of samples from the posterior is 7,850 compared to 
+2,000 for the base model.
 
-**Need to decide on Issues \#662 and \#663 before adding anything else here.
+The summary histograms showing autocorrelation, effective sample size, Geweke statistic, and
+Heidelberger and Walsh statistic are shown in Figure~\ref{fig:main-mcmc-diag-hists} for the
+base model and Figure~\ref{fig:mcmc-diag-hists-adnuts} for the adnuts model. These diagnostics
+are comparable between the two models, with only small differences a number
+of parameters with a lower effective sample size in the adnuts model. Bearing in mind that there are almost 4 times
+the number of posterior samples for the adnuts model when compared to the base model, some of these
+effects may be minimized with further thinning of the posterior samples.
+
+Correlations among parameters (Figures~\ref{fig:main-mcmc-pairs}--\ref{fig:main-mcmc-pairs-recruit-devs}
+and \ref{fig:mcmc-pairs-adnuts}--\ref{fig:mcmc-pairs-recruit-devs-adnuts}) is very similar, with most
+of the difference being the density of the scatterplots which is attributed to the number of posterior
+samples.
+
+Considering these diagnostics, the similarity in estimated values in the posteriors for key parameters,
+and the increased effficiency of the algorithm, the JTC recommends that the adnuts approach be
+adopted for next year's base model and sensitivities. The increased efficiency would allow
+the sensitivities to be run in an MCMC context as opposed to MLE, and all results would be more comparable.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
@@ -574,7 +590,7 @@ make.mcmc.diag.pairs.plot(sens.models.6,
 \caption{Posterior correlations among key parameters and derived
   quantities. Numbers refer to the absolute correlation coefficients, with font
   size proportional to the square root of the coefficient.}
-\label{fig:main-mcmc-pairs-adnuts}
+\label{fig:mcmc-pairs-adnuts}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
