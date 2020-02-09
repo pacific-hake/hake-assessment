@@ -38,7 +38,7 @@ fix.posteriors <- function(dir){
 #' @return A model object representing the output from the SS model
 #' @export
 load_ss_files <- function(model_path = NA,
-                          key.posts = c("NatM", "SR_LN", "SR_BH_steep", "Q_extraSD"),
+                          key.posts = c("NatM", "SR_LN", "SR_BH_steep", "Q_extraSD","ln.EffN_mult._1","ln.EffN_mult._2"),
                           key.posts.fn = "keyposteriors.csv",
                           nuisance.posts.fn = "nuisanceposteriors.csv",
                           printstats = FALSE,
