@@ -111,7 +111,7 @@ acoustic survey and
 fishery data, the use of just five recent years (rather than all years) of weight-at-age
 data to calculate fecundity-at-age in the forecast period, and the following two structural changes.
 A nearly uniform prior (in transformed space) was placed on the
-Dirichlet-Multinomial parameters used to weight the age-compostion data.
+Dirichlet-Multinomial parameters used to weight the age-composition data.
 Estimated recruitment deviations were no longer constrained to sum to zero.
 % Manual 2020 KFJ
 
@@ -226,14 +226,14 @@ estimating $\sigma_R$ that would reduce model sensitivity to the value of this c
   important for $\sigma_R$ because without an index of recruitment to directly inform the
   estimation of $\sigma_R$, variance parameters in stock assessment models can be interrelated
   when attempting to capture other sources of variance attributed to model misspecification.
-  This work is related with other time-varying selelctivity research, as discussed in response 2
+  This work is related with other time-varying selectivity research, as discussed in response 2
   below.}
 
 \emph{The near completion of the Management Strategy Evaluation framework for \fishname\ creates
   considerable advantages for examining recruitment. For example, using the Template Model
   Builder (TMB) estimation code developed by Dr. Nis Jacobsen for the MSE, there is opportunity
   to explore random effects treatment of recruitment variability \citep{Thorson2019}.  The MSE
-  framework can also be used to evaluted the robustness of recruitment modeling assumptions on
+  framework can also be used to evaluated the robustness of recruitment modeling assumptions on
   management performance and uncertainty.  Further, the MSE could be an additional option for
   estimating $\sigma_R$ in MCMC runs while further testing semi-parametric selectivity.}
 
@@ -244,7 +244,7 @@ estimating $\sigma_R$ that would reduce model sensitivity to the value of this c
   an adequate representation of ageing error. Along with no apparent retrospective pattern
   (see Section~\ref{sec:assessment-retrospective-analyses}), this result suggest that the
   assessment model is not overly misspecified. Given the lack of autocorrelation, the
-  assessmnet model was not sensitive to the addition of an autocorrelation parameter.}
+  assessment model was not sensitive to the addition of an autocorrelation parameter.}
 
 \emph{The JTC is following work being conducted by Dr. Cathleen Vestfals and colleagues at
   the Northwest Fisheries Science Center looking at identifying climate drivers of
@@ -310,7 +310,7 @@ regions and other regions. In addition, the SRG notes that Canadian samples shou
 included in the maturity analysis.}
 
 \emph{Response -- The JTC is in communication with the research team conducting \fishname\
-genetic analyses. That team provided the follwoing update.}
+genetic analyses. That team provided the following update.}
 
 \emph{Genetic samples have been collected from along the Pacific coast during summer,
 fall (BC to CA) and winter (OR and CA) and within the Strait of Georgia (BC) during the spring.
@@ -344,7 +344,7 @@ existing boxes to boost sample size. This approach will provide the best picture
 in 2020, culminating in the submission of a peer-reviewed publication.}
 
 \emph{Canadian ovaries from surveys have been collected since 2018 and could be included in
-updated maturity analysies planned for the upcoming year. However, logistical considerations
+updated maturity analyses planned for the upcoming year. However, logistical considerations
 will need to be worked out regarding sample exchange and histological analysis workload
 between DFO and NWFSC.}
 
@@ -407,7 +407,7 @@ that had dedicated otolith collection weeks.}
 \emph{At sea observers are requested to collect age samples from approximately 60 fish in the domestic fishery. This may have been a target of 50 fish prior to 2001 and may also have been a target of 50
 fish specifically for the at sea observer coverage on shoreside hake trips.}
 
-\emph{Otolith samples of approximately 50 fish are requested of at sea observers working on foreign joint venture hake vessels. This target sample size has not changed over time. Dockside observers are asked to collect approximately 50 fish for their LSMAW samples. This target sample size has not changed over time.}
+\emph{Otolith samples of approximately 50 fish are requested of at sea observers working on foreign joint venture hake vessels. This target sample size has not changed over time. Dockside observers are asked to collect approximately 50 fish for their length-sex-maturity-age-weight samples. This target sample size has not changed over time.}
 
 \emph{Currently, this information has been used to inform a simulation study that investigated
 repercussions of biased input sample sizes. Preliminary results suggest
@@ -452,7 +452,7 @@ Appendix~\ref{chap:us-fishery-report}). However, nearly
 50\% of the tribal catch had yet to be incorporated into the PacFIN regional
 database by the data deadline. Nonetheless, the JTC worked with the Makah Tribe and
 Washington Department of Fish and Wildlife to ensure the best estimates of
-tribal catch were included in the stock assessment, depsite not yet appearing in
+tribal catch were included in the stock assessment, despite not yet appearing in
 PacFIN. The JTC anticipates that data will consistently be available in PacFIN
 in timely manner moving forward with continued use of electronic ticket reporting
 tribal.}
@@ -599,7 +599,7 @@ where the proportion of age-9 fish and age-5 fish were higher than what
 the \Sexpr{end.yr-1} assessment model would have otherwise predicted
 given mortality. The \Sexpr{last.assess.yr} acoustic survey was the first time
 the 2016 and 2017 cohorts were adequately sampled (age-2 or older) by the survey,
-which is why the uncertaintly associated with these cohorts was reduced (though
+which is why the uncertainty associated with these cohorts was reduced (though
 still quite uncertain; Figure~\ref{fig:main-bridge-5-panel-3}).
 
 The final bridging step involved using the new priors on the D-M parameters
@@ -995,7 +995,7 @@ the underutilization in the United States was mostly a result of unrealized
 catch in the tribal apportionment, while reports from stakeholders in Canada
 suggested that hake were less aggregated in Canada and availability had
 declined. In 2016, the utilization rate increased but remained below pre-2015
-levels, despite the total 2016 catch being one of the highest of the precedeing years.
+levels, despite the total 2016 catch being one of the highest of the preceding years.
 This is in large part due to increasing catch targets as biomass continues to
 increase. The total utilization rate in recent years (2017--2019) has been close to the
 average over the last decade. During the last two years, utilization rates have been stable
@@ -1037,7 +1037,7 @@ intensity has remained well below target despite recent increases in total catch
 While
 there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative fishing
 intensity and relative spawning biomass, the model estimates a \Sexpr{joint.percent.prob.above.below}\%
-joint probability of being both above the target relative fishing intensity in
+joint probility of being both above the target relative fishing intensity in
 \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at the
 start of \Sexpr{end.yr}.
 

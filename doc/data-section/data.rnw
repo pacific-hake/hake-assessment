@@ -204,7 +204,7 @@ Figure \ref{fig:main-age-comp-bubbles}). Currently, the 2014
 cohort was the largest cohort in all three U.S. fleets (Tables
 \ref{tab:main-us-cp-age-data}--\ref{tab:main-us-shore-age-data})
 and the Canadian shoreside fleet (Table \ref{tab:main-can-shore-age-data}), while the 2010
-cohort was largest in Canadian freezer-trawler fleet (Table \ref{tab:main-can-ft-age-data}). The Candian fleets also landed a higher than normal proportion of age-2 fish this year.
+cohort was largest in Canadian freezer-trawler fleet (Table \ref{tab:main-can-ft-age-data}). The Canadian fleets also landed a higher than normal proportion of age-2 fish this year.
 Table~\ref{tab:main-all-age-data-fishery} shows the combined age proportions of all
 fleets, U.S. and Canadian. For the combined data in \Sexpr{last.data.yr - 1},
 \Sexpr{top.coh(base.model, last.data.yr - 1, 3, cap = FALSE)}.
@@ -543,7 +543,7 @@ resulted in more accurate estimates of spawning biomass.
 
 The temporal changes in weight-at-age may be due to ecosystem
 effects such as prey availability, predator abundance and ocean
-temperature. Thus, while not explicitly parameterised in the assessment,
+temperature. Thus, while not explicitly parameterized in the assessment,
 such ecosystem effects are somewhat implicitly accounted for, especially compared to
 assuming time-invariant weight-at-age.
 

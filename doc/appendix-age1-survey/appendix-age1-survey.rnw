@@ -7,15 +7,15 @@ This appendix contains Bayesian MCMC results for the model run in which the age-
 survey index is included as an index of recruitment as described in
 Sections~\ref{sec:data-acoustic-survey} and \ref{sec:assessment-sensitivity-analyses}
 and Table~\ref{tab:main-parameter-estimates-sens-1}. The inclusion of the age-1
-survey index may improve estimates of recruitment near the end 
-of the time series and age composition during the forecast period, even though the acoustic 
-survey design is not structured specifically for indexing age-1 fish. 
+survey index may improve estimates of recruitment near the end
+of the time series and age composition during the forecast period, even though the acoustic
+survey design is not structured specifically for indexing age-1 fish.
 
 This appendix highlights
 model uncertainty arising from a different structural assumption or analytical choice
 compared to the base model, and the inclusion of the age-1 index was deemed
-important enough to warrent further consideration, especially in the context of characterizing
-uncertainty.    
+important enough to warrant further consideration, especially in the context of characterizing
+uncertainty.
 
 The following figures and tables follow an executive summary format.
 
