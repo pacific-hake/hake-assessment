@@ -46,7 +46,7 @@ from last year).
     of \Sexpr{end.yr} is \Sexpr{curr.bio.median} million~t (with 95\% credible
     interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper}
     million~t). This is a decrease from the \Sexpr{end.yr-1} median of \Sexpr{prev.bio.median}~million~t
-    (though its 95\% credible interval is
+    (with 95\% credible interval
     \Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper}~million~t).
 
   \item The estimated joint probability of being both
@@ -64,8 +64,11 @@ estimates of recruitment for recent years and, thus, were conducted across a
 range of catch levels. Projections setting the \Sexpr{forecast_yrs[1]} and
 \Sexpr{forecast_yrs[2]} catch equal to the \Sexpr{forecast_yrs[1]-1} Total
 Allowable Catch of
-\Sexpr{last.year.tac}~t show the estimated median relative spawning biomass
-decreasing from \Sexpr{last.yr.tac.fore.1.biomass}\% in \Sexpr{end.yr} to \Sexpr{last.yr.tac.fore.2.biomass}\% in \Sexpr{end.yr+1} and \Sexpr{last.yr.tac.fore.3.biomass}\% in
+\Sexpr{last.year.tac}~t show the estimated median spawning biomass
+decreasing from
+\Sexpr{last.yr.tac.fore.1.biomass}\% in \Sexpr{end.yr} to
+\Sexpr{last.yr.tac.fore.2.biomass}\% in \Sexpr{end.yr+1} and
+\Sexpr{last.yr.tac.fore.3.biomass}\% in
 \Sexpr{end.yr+2}. However, due to uncertainty there is an estimated \Sexpr{last.yr.tac.risk.2.bforty}\% chance
 of the spawning biomass falling below $\Bforty$ in \Sexpr{end.yr+2}. There is an
 estimated \Sexpr{last.yr.tac.risk.1.biomass.decline}\% chance of the spawning biomass declining from \Sexpr{end.yr} to
