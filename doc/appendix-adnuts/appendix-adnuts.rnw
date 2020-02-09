@@ -107,20 +107,6 @@ box()
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=6.0in, height=6.0in]{main-figures/SummaryDiagnostics_nuts.eps}
-   % Download from Google Drive
-\end{center}
-\caption{Summary histograms of MCMC diagnostics for all base model parameters
-together with the derived time series of spawning biomass and relative spawning biomass.
-The level of autocorrelation in the chain (distribution across lag times, i.e., distance between samples in the chain, shown in the top left panel) influences the effective sample size (top right panel) used to estimate posterior distributions. The Geweke statistic (lower left panel) tests for equality between means located in the first part of the chain against means in the last part of the chain. The Heidelberger and Welch statistic (lower right panel) tests if the sampled values come from a stationary distribution by comparing different sections of the chain.}
-\label{fig:nuts-diagnostic}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
 \includegraphics[width=7.0in, height=7.0in]{main-figures/MCMC_compares_StockStatus.eps}
    % Download from Google Drive
 \end{center}
@@ -549,14 +535,8 @@ par <- oldpar
 \begin{figure}[H]
 \begin{center}
 <<mcmc-diag-hists-adnuts, fig.height=6, fig.width=8>>=
-  mc <- sens.models.6$mcmc
-  mc.names <- names(mc)
-  mcmc.grep <- unique(grep(paste(key.posteriors, collapse="|"), mc.names))
-  mcmc.names <- mc.names[mcmc.grep]
-  keys <- mc[,mcmc.grep]
-  nuisances <- mc[,-mcmc.grep]
-
-make.mcmc.diag.hists.plot(sens.models.6)
+make.mcmc.diag.hists.plot(sens.models.6,
+                          labelstrings = "all")
 @
 \end{center}
 \caption{Summary histograms of MCMC diagnostics for all parameters

@@ -243,22 +243,28 @@ make.mcmc.diag.plot <- function(model,      ## model is an mcmc run and is the o
   par <- oldpar
 }
 
-make.mcmc.diag.hists.plot <- function(model ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
-                                      ){
-  ## Plot the diagnostic test histograms for the model.
-  ## Autocorrelation, Effective sample size, Geweke statistic, and
-  ## Heidelberger and Walsh statistic
-  ## Assumes the model has an mcmc
+#' Plot the diagnostic test histograms for the model
+#'
+#' @details Autocorrelation, Effective sample size, Geweke statistic, and
+#' Heidelberger and Walsh statistic
+#' @param model A model as output by [load_ss_models()]
+#' @param labelstrings See [r4ss::mcmc.nuisance()]
+#'
+#' @return A plot of the histograms
+#' @export
+make.mcmc.diag.hists.plot <- function(model,
+                                      labelstrings = c(model$parameters$Label,
+                                                       "SSB_",
+                                                       "Bratio_")){
 
-  oldpar <- par()
-  par(mar=c(5,4,0,0.5),oma=c(0,0,0.5,0.5))
+  oldpar <- par("mar", "oma")
+  on.exit(par(oldpar))
+  par(mar = c(5, 4, 0, 0.5),
+      oma = c(0, 0, 0.5, 0.5))
   mcmc.stats <- mcmc.nuisance(model$mcmcpath,
                               run = "",
-                              labelstrings = c(model$parameters$Label,
-                                               "SSB_",
-                                               "Bratio_"),
-                              bothfiles = TRUE)
-  par <- oldpar
+                              labelstrings = labelstrings,
+                              bothfiles = ifelse(labelstrings[1] == "all", FALSE, TRUE))
 }
 
 panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...){
