@@ -317,11 +317,11 @@ fall (BC to CA) and winter (OR and CA) and within the Strait of Georgia (BC) dur
 We have begun a genetics study to characterize the spatial-temporal population structure
 of \fishname\ coast wide. Prior genetic analyses in hake have focused on a smaller geographic
 range, over a limited seasonal time scale, and used a limited set of genetic markers
-(\citep{Iwamoto2004, Iwamoto2015}).}
+\citep{IwamotoFordEtAl2004, IwamotoElzEtAl2015}.}
 
 \emph{For this study, samples were grouped in boxes based on spatial-temporal collection
 information (i.e., year, season, and location) and selected samples distributed across
-these boxes. RADseq (\citep{Baird2008, Ali2016}) has been utilized to generate 8,763 genome
+these boxes. RADseq \citep{BairdEtterEtAl2008, AliORoukeEtAl2016} has been utilized to generate 8,763 genome
 wide polymorphic markers, which will allow for powerful population genomic analyses
 as well as association tests of genetic variability with life history characteristics
 such as growth rates and age at maturation.}
@@ -597,10 +597,10 @@ This increase is largely driven by the addition
 of the 2019 acoustic survey age compositions
 where the proportion of age-9 fish and age-5 fish were higher than what
 the \Sexpr{end.yr-1} assessment model would have otherwise predicted
-given mortality. The \Sexpr{last.assess.yr} acoustic survey was the first time 
+given mortality. The \Sexpr{last.assess.yr} acoustic survey was the first time
 the 2016 and 2017 cohorts were adequately sampled (age-2 or older) by the survey,
 which is why the uncertaintly associated with these cohorts was reduced (though
-still quite uncertain; Figure~\ref{fig:main-bridge-5-panel-3}). 
+still quite uncertain; Figure~\ref{fig:main-bridge-5-panel-3}).
 
 The final bridging step involved using the new priors on the D-M parameters
 $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$, and explicitly estimating $\theta_{\text{surv}}$
