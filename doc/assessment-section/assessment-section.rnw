@@ -521,25 +521,26 @@ in estimates of parameter deviations compared to the \Sexpr{last.assess.yr}
 base model but essentially no change in the time series (Figure~\ref{fig:main-bridge-5-panel-1}).
 
 We relaxed the constraint that recruitment deviations during the main period sum to
-zero. Doing so removes a known coding error that has implications when
-using zero-sum constrained vectors in MCMC algorithms run through AD Model Builder
-software. The issue with the AD Model Builder sampling procedure is that the zero-sum
-constraint isn't actually being applied in the mcmc phase where the samples are being
-drawn, just the mceval phase where the results get calculated. So there's a mismatch
-between the samples that get reported and the sampling process that draws them. This is
+zero. The constraint leads to a mismatch between the MCMC samples that are drawn versus
+those that are reported by the MCMC algorithms run through the AD Model Builder software
+because AD Model Builder applies the constraint during its
+evaluation phase where results are calculated rather than during sampling. This is
 a known error and AD Model Builder developers are working on ways to fix this problem.
+Until then, best practices suggest removing the constraint such that the sampling and
+evaluation algorithms match.
 
 One advantage of using a zero-centered recruitment deviation vector is to
 maintain tractability when estimating recruitments, especially for assessments that have
 less information about recruitment (little data). The theory behind the use of a zero-centered
 recruitment deviation vector is that the $R_0$ and $B_0$ reference points should be reflective of the
 central tendency for the time period with the best information about recruitment. A mismatch between
-$R_0$ and the main recdev period could, in theory, lead to a better fit to the indices of abundance or
+$R_0$ and estimates of recruitment during the data-rich period could,
+in theory, lead to a better fit to the indices of abundance or
 some other data source which wouldn't otherwise be expected to be informative about recruitment.
 However, for \fishname\ the stock assessment is relatively data-rich and the index is pretty
 consistent with the recruitments, so such tension doesn't seem to be present.
 
-Using non-zero centered constrained recruitment deviations will increase the
+Estimating recruitment deviations that are not constrained to sum to zero will increase the
 compatibility between MCMC and MLE results, and also increase the stability of model results,
 because penalties have implications for calculating derivatives. The non-zero centered approach
 resulted in a median recruitment deviation distribution of 0.086 in the \Sexpr{assess.yr}
