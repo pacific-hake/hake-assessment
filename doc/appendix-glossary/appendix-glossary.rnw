@@ -27,13 +27,13 @@
 
 ABC: Acceptable biological catch. See below.
 
-Acceptable biological catch (ABC): The acceptable biological catch is a scientific calculation of the sustainable harvest level of a fishery used historically to set the upper limit for fishery removals by the Pacific Fishery Management Council. It is calculated by applying the estimated (or proxy) harvest rate that produces maximum sustainable yield (MSY, see below) to the estimated exploitable stock biomass (the portion of the fish population that can be harvested). For \fishname/whiting, the calculation of the acceptable biological catch and application of the 40:10 adjustment is now replaced with the default harvest rate and the Total Allowable Catch.
+Acceptable biological catch (ABC): The acceptable biological catch is a scientific calculation of the sustainable harvest level of a fishery used historically to set the upper limit for fishery removals by the Pacific Fishery Management Council. It is calculated by applying the estimated (or proxy) harvest rate that produces maximum sustainable yield (MSY, see below) to the estimated exploitable stock biomass (the portion of the fish population that can be harvested). For \fishname, the calculation of the acceptable biological catch and application of the 40:10 adjustment is now replaced with the default harvest rate and the Total Allowable Catch.
 
 Adjusted: A term used to describe Total Allowable Catch or allocations that account for carryovers of uncaught catch from previous years (see Carryover below).
 
-Advisory Panel (AP): The advisory panel on \fishname/whiting established by the Agreement.
+Advisory Panel (AP): The advisory panel on \fishname\ established by the Agreement.
 
-Agreement (``Treaty''): The Agreement between the government of the United States and the government of Canada on \fishname/whiting, signed at Seattle, Washington, on November 21, 2003, and entered into force June 25, 2008.
+Agreement (``Treaty''): The Agreement between the government of the United States and the government of Canada on \fishname\, signed at Seattle, Washington, on November 21, 2003, and entered into force June 25, 2008.
 
 AFSC: Alaska Fisheries Science Center (National Marine Fisheries Service).
 
@@ -73,7 +73,7 @@ CPUE: Catch-per-unit-effort (see above).
 
 CV: Coefficient of variation. A measure of uncertainty defined as the standard deviation (SD, see below) divided by the mean.
 
-Default harvest policy (rate): The application of $\Fforty$ (see below) with the 40:10 adjustment (see above). Having considered any advice provided by the JTC, SRG or AP, the JMC may recommend a different harvest rate if the scientific evidence demonstrates that a different rate is necessary to sustain the offshore \fishname/whiting resource.
+Default harvest policy (rate): The application of $\Fforty$ (see below) with the 40:10 adjustment (see above). Having considered any advice provided by the JTC, SRG or AP, the JMC may recommend a different harvest rate if the scientific evidence demonstrates that a different rate is necessary to sustain the offshore \fishname\ resource.
 
 Depletion: Term used for relative spawning biomass (see below) prior to the 2015 stock assessment. ``Relative depletion'' was also used.
 
@@ -135,7 +135,7 @@ Harvest control rule: A process for determining an ABC from a stock assessment. 
 
 Joint Management Committee (JMC): The joint management committee established by the Agreement.
 
-Joint Technical Committee (JTC): The joint technical committee established by the Agreement. The full formal name is ``Joint Technical Committee of the \fishname/whiting Agreement Between the Governments of the United States and Canada''.
+Joint Technical Committee (JTC): The joint technical committee established by the Agreement. The full formal name is ``Joint Technical Committee of the \fishname/Whiting Agreement Between the Governments of the United States and Canada''.
 
 %Not found in text in 2017:
 %kt: Knots (nautical miles per hour).
@@ -202,7 +202,7 @@ PacFIN: Pacific Coast Fisheries Information Network. A database that provides a 
 
 PBS: Pacific Biological Station of Fisheries and Oceans Canada (DFO, see above), located in Nanaimo, British Columbia.
 
-Pacific Fishery Management Council (PFMC): The U.S. organization under which historical stock assessments for \fishname/whiting were conducted.
+Pacific Fishery Management Council (PFMC): The U.S. organization under which historical stock assessments for \fishname\ were conducted.
 
 \fishname: Common name for \emph{\sciencename}, the species whose offshore stock in the waters of the United States and Canada is subject of this assessment. % **AME -- it's not really the `stock', it's the species. **IGT -- corrected 2017/01/27
 
