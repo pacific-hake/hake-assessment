@@ -86,7 +86,9 @@ The level of autocorrelation in the chain (distribution across lag times, i.e., 
 <<main-mcmc-pairs, fig.height=8, fig.width=8>>=
 make.mcmc.diag.pairs.plot(base.model,
                           inc.key.params = TRUE,
-                          recr = c(2008, 2010, 2014),
+                          key.posteriors.regex = key.posteriors,
+                          key.posteriors.names = key.posteriors.titles,
+                          recr = c(2010, 2014),
                           bratio = end.yr,
                           forecatch = end.yr)
 @

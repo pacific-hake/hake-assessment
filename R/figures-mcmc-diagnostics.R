@@ -275,59 +275,78 @@ panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...){
   text(0.5, 0.5, txt, cex = cex.cor * sqrt(r))
 }
 
-make.mcmc.diag.pairs.plot <- function(model,                 ## model is model with an mcmc run which has the output of the
-                                                             ##  r4ss package's function SSgetMCMC
-                                      inc.key.params = TRUE, ## If true, include the key parameters in the plot
-                                      recr = NULL,           ## vector of recruitment years to plot params for
-                                                             ##  (or rec. devs. if inc.key.params is FALSE)
-                                      bratio = NULL,         ## vector of Bratio years to plot params for
-                                      forecatch = NULL       ## vector of forecatch years to plot params for
-                                      ){
-  ## Plot the correlation between parameters via the pairs plot for the mcmc model.
-  ## Assumes the model has an mcmc
-  ## If inc.key.params is FALSE, only recr. devs will be added (and recr must not be NULL)
-  ## If recr is NULL, no recruitment parameters will be included
-  ## If forecatch is NULL, no ForeCatch parameters will be included
+#' Plot pairs for MCMC posteriors
+#'
+#' @param model A model object as output by [load_ss_models()]
+#' @param inc.key.params If TRUE, use the arguments `key.posteriors.regex` and `key.posteriors.names`
+#' @param key.posteriors.regex  A vector of regular experessions represting key posteriors
+#' @param key.posteriors.names  A vector of names to show for the key posteriors
+#' @param recr A vector of recruitment deviation years to include if `inc.key.params` is FALSE
+#' @param bratio A vector of Bratio years to include if `inc.key.params` is FALSE
+#' @param forecatch A vector of forecast catch years to include if `inc.key.params` is FALSE
+#'
+#' @return A pairs plot
+#' @export
+make.mcmc.diag.pairs.plot <- function(model,
+                                      inc.key.params = TRUE,
+                                      key.posteriors.regex = NULL,
+                                      key.posteriors.names = NULL,
+                                      recr = NULL,
+                                      bratio = NULL,
+                                      forecatch = NULL){
 
-  oldpar <- par()
   m <- model$mcmc
+
   if(inc.key.params){
-    df <- data.frame(m$Object,
-                     m$NatM,
-                     m$SR_LN,
-                     m$SR_BH_steep,
-                     m$Q)
-    labels <- c("Objective\nfunction",
-                "Natural\nmortality\n(M)",
-                "Equilibrium\nrecruitment\nlog(R0)",
-                "Steepness\n(h)",
-                "Extra SD\nin survey")
+    lst <- lapply(seq_along(key.posteriors.regex), function(x){
+      select(m, matches(key.posteriors.regex[x]))
+    })
+    obj_func_col <- select(m, contains("Objective_function"))
+    df <- bind_cols(obj_func_col, lst)
+    labels <- c("Objective\nFunction", key.posteriors.names)
   }else{
     if(is.null(recr)){
-      stop("make.mcmc.diag.pairs.plot: Error - if inc.key.params is FALSE, recr must not be null.\n\n")
+      stop("If inc.key.params is FALSE, recr must not be null.",
+           call. = FALSE)
     }
-    labs <- rownames(model$recruitpars)[model$recruitpars$Yr %in% recr]
-    df <- m[c(grep("R0",names(m)),
-              which(names(m) %in% labs))]
+    rnames <- rownames(model$recruitpars) %>% 
+      enframe(name = NULL)
+    recs <- bind_cols(rnames, as_tibble(model$recruitpars)) %>% 
+      filter(Yr %in% recr) %>% 
+      rename(Name = value)
+    lst <- lapply(seq_along(recs$Name), function(x){
+      select(m, contains(recs$Name[x]))
+    })
+    df <- bind_cols(select(m, contains("R0")), lst)
     labels <- c("Equilibrium\nrecruitment\nlog(R0)",
-                paste("Recruit\ndev.",recr))
+                paste("Recruit\ndev.", recr))
   }
   if(!is.null(recr) & inc.key.params){
     str <- paste0("Recr_", recr)
-    df <- cbind(df, m[str])
-    labels <- c(labels, paste0("Recruitment\n",recr))
+    lst <- lapply(seq_along(str), function(x){
+      select(m, contains(str[x]))
+    })
+    df <- bind_cols(df, lst)
+    labels <- c(labels, paste0("Recruitment\n", recr))
   }
   if(!is.null(bratio) & inc.key.params){
     str <- paste0("Bratio_", bratio)
-    df <- cbind(df, m[str])
-    labels <- c(labels, paste0("Relative\nspawning\nbiomass\n",bratio))
+    lst <- lapply(seq_along(str), function(x){
+      select(m, contains(str[x]))
+    })
+    df <- bind_cols(df, lst)
+    labels <- c(labels, paste0("Relative\nspawning\nbiomass\n", bratio))
   }
   if(!is.null(forecatch) & inc.key.params){
     str <- paste0("ForeCatch_", forecatch)
-    df <- cbind(df, m[str])
+    lst <- lapply(seq_along(str), function(x){
+      select(m, contains(str[x]))
+    })
+    df <- bind_cols(df, lst)
     labels <- c(labels, paste0("Default\nharvest\nin ", forecatch))
   }
-  print(str(df))
+  labels <- gsub(" +", "\n", labels)
+  labels <- gsub("-", "-\n", labels)
   pairs(df,
         labels = labels,
         pch = ".",
@@ -338,7 +357,6 @@ make.mcmc.diag.pairs.plot <- function(model,                 ## model is model w
         gap = 0.5,
         oma = c(0,0,0,0),
         lower.panel = panel.cor)
-  par <- oldpar
 }
 
 make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an mcmc run which has the output of the
