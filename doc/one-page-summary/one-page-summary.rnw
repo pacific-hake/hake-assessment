@@ -64,7 +64,7 @@ estimates of recruitment for recent years and, thus, were conducted across a
 range of catch levels. Projections setting the \Sexpr{forecast_yrs[1]} and
 \Sexpr{forecast_yrs[2]} catch equal to the \Sexpr{forecast_yrs[1]-1} Total
 Allowable Catch of
-\Sexpr{last.year.tac}~t show the estimated median spawning biomass
+\Sexpr{last.year.tac}~t show the estimated relative median spawning biomass
 decreasing from
 \Sexpr{last.yr.tac.fore.1.biomass}\% in \Sexpr{end.yr} to
 \Sexpr{last.yr.tac.fore.2.biomass}\% in \Sexpr{end.yr+1} and
