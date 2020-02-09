@@ -578,11 +578,11 @@ had relatively little impact on the historical biomass estimates,
 indicating that the observed \Sexpr{last.data.yr} ages were consistent with the model
 estimates without those data (Figure~\ref{fig:main-bridge-5-panel-2}).  However,
 the addition of these data did alter recent recruitment
-estimates, including an increase in the estimated size of the 2016 and 2017 year classes and
-a decrease in the 2018 year class.
+estimates, increasing the estimated size of the 2016 and 2017 year classes and
+a decreasing the 2018 year class.
 This bridging step also shifted the ending year of the deviations
 in the selectivity parameters from \Sexpr{last.data.yr-1} to
-\Sexpr{last.data.yr} since there was now fishery data in \Sexpr{last.data.yr}.
+\Sexpr{last.data.yr} because there was now fishery data in \Sexpr{last.data.yr}.
 
 Including the fishery-independent biomass estimate led to a slightly more optimistic
 trajectory of the stock over the last couple of years
