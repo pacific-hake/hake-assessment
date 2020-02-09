@@ -201,46 +201,92 @@ make_key_posteriors_mcmc_priors_vs_posts_plot <- function(model,
   }
 }
 
-make.mcmc.diag.plot <- function(model,      ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
-                                subplot = 1 ## which parameter to plot. See below for info
-                                ){
-  ## Plot the diagnostics for the model.
-  ## Assumes the model has an mcmc
-  ## subplot values:
-  ## 1 = natural mortality
-  ## 2 = initial recruitment (log(R0))
-  ## 3 = steepness
-  ## 4 = extra SD in survey
+#' Plot MCMC diagnostics
+#' 
+#' @details Top left panel is traces of posteriors across iterations, top right is 
+#' cumulative running mean with 5th and 95th percentiles, bottom left is
+#' autocorrelation present in the chain at different lag times (i.e., distance between samples in
+#' the chain), and bottom right is distribution of the values in the chain (i.e., the marginal
+#' density from a smoothed histogram of values in the trace plot).
+#'
+#' @param model A model object as output by [load_ss_models()]
+#' @param subplot Which of the supplied `key.posteriors.regex` to plot
+#' @param key.posteriors.regex  A vector of regular experessions represting key posteriors
+#' @param key.posteriors.names  A vector of names to show for the key posteriors
+#'
+#' @return A 4-panel plot of MCMC diagnostics
+#' @export
+#' @importFrom coda traceplot
+#' @importFrom gtools running
+make.mcmc.diag.plot <- function(model,
+                                posterior.regex = NULL,
+                                posterior.name = NULL){
+  stopifnot(!is.null(posterior.regex),
+            !is.null(posterior.name),
+            length(posterior.regex) == length(posterior.name == 1))
+  oldpar <- par("ann", "mar", "oma", "mfrow")
+  on.exit(par(oldpar))
+  
+  m <- model$mcmc
+  
+  mc_obj <- mcmc(select(m, matches(posterior.regex)) %>% as_tibble())
+  label <- posterior.name
+  par(mar = c(5, 3.5, 0, 0.5),
+      oma = c(0, 3.0, 0.2, 0),
+      mfrow = c(2, 2),
+      ann = TRUE)
 
-  if(subplot == 1){
-    colnames <- c("NatM_p_1_Fem_GP_1")
-    label <- "M (natural mortality)"
-  }else if(subplot == 2){
-    colnames <- c("SR_LN.R0.")
-    label <- expression(paste(log(R[0])~"(initial recruitment)"))
-  }else if(subplot == 3){
-   colnames <- c("SR_BH_steep")
-   label <- "h (steepness)"
-  }else if(subplot == 4){
-    colnames <- c("Q_extraSD_Acoustic_Survey.2.")
-    label <- "Extra SD in survey"
-  }else if(subplot == 5){
-    colnames <- c("ln.EffN_mult._1")
-    label <- "DM Fishery"
-  }else if(subplot == 6){
-    colnames <- c("ln.EffN_mult._2")
-    label <- "DM Survey"
+  ## Top left
+  traceplot(mc_obj, smooth = TRUE, main = "")
+  mtext("Value", side = 2, line = 3, font = 1, cex = 0.8)
+  ## Top right
+  lowest <- min(mc_obj)
+  highest <- max(mc_obj)
+  draws <- length(mc_obj)
+  plot(c(seq(1, draws, by = 1)),
+       c(lowest, rep(c(highest),
+                     (draws - 1))),
+       xlab = "Iterations",
+       ylab = "",
+       yaxt = "n",
+       type = "n")
+  lines(running(mc_obj,
+                fun = median,
+                allow.fewer = TRUE,
+                width = draws))
+  fun <- function(x, prob){
+    quantile(x, probs = prob, names = FALSE)
   }
-  oldpar <- par()
-  par(mar=c(5,3.5,0,0.5),oma=c(0,3.0,0.2,0))
-  mcmc.out(model$mcmcpath,
-           run = "",
-           numparams = 1,
-           closeall = FALSE,
-           new = FALSE,
-           colNames = colnames)
+  lines(running(mc_obj,
+                fun = fun,
+                prob = 0.05,
+                allow.fewer = TRUE,
+                width = draws),
+        col = "GREY")
+  lines(running(mc_obj,
+                fun = fun,
+                prob = 0.95,
+                allow.fewer = TRUE,
+                width = draws),
+        col = "GREY")
+  ## Bottom left
+  par(ann = FALSE)
+  attr(mc_obj, "dimnames")[[2]] <- ""
+  autocorr.plot(mc_obj,
+                auto.layout = FALSE,
+                lag.max = 20,
+                ask = FALSE)
+  mtext("Autocorrelation", side = 2, line = 3, font = 1, cex = 0.8)
+  mtext("Lag", side = 1, line = 3, font = 1, cex = 0.8)
+  lines(seq(1, 20, by = 1), rep(0.1, 20), col = "GREY")
+  lines(seq(1, 20, by = 1), rep(-0.1, 20), col = "GREY")
+  ## Bottom right
+  densplot(mc_obj, show.obs = TRUE)
+  mtext("Density", side = 2, line = 2, font = 1, cex = 0.8)
+  mtext("Value", side = 1, line = 3, font = 1, cex = 0.8)
+  
+  
   mtext(label, side = 2, outer = TRUE, line = 1.3, cex = 1.1)
-  par <- oldpar
 }
 
 #' Plot the diagnostic test histograms for the model

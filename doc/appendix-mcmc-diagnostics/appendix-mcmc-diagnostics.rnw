@@ -10,8 +10,8 @@ This appendix contains the MCMC diagnostics for the base model.
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot(base.model, subplot = 1)
-make.mcmc.diag.plot(base.model, subplot = 2)
+make.mcmc.diag.plot(base.model, key.posteriors[1], key.posteriors.titles[1])
+make.mcmc.diag.plot(base.model, key.posteriors[2], key.posteriors.titles[2])
 par <- oldpar
 @
 \end{center}
@@ -27,8 +27,8 @@ par <- oldpar
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot(base.model, subplot = 3)
-make.mcmc.diag.plot(base.model, subplot = 4)
+make.mcmc.diag.plot(base.model, key.posteriors[3], key.posteriors.titles[3])
+make.mcmc.diag.plot(base.model, key.posteriors[4], key.posteriors.titles[4])
 par <- oldpar
 @
 \end{center}
@@ -44,8 +44,8 @@ par <- oldpar
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot(base.model, subplot = 5)
-make.mcmc.diag.plot(base.model, subplot = 6)
+make.mcmc.diag.plot(base.model, key.posteriors[5], key.posteriors.titles[5])
+make.mcmc.diag.plot(base.model, key.posteriors[6], key.posteriors.titles[6])
 par <- oldpar
 @
 \end{center}

@@ -487,8 +487,8 @@ make.mcmc.survey.fit.plot(sens.models.6,
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot(sens.models.6, subplot = 1)
-make.mcmc.diag.plot(sens.models.6, subplot = 2)
+make.mcmc.diag.plot(sens.models.6, key.posteriors[1], key.posteriors.titles[1])
+make.mcmc.diag.plot(sens.models.6, key.posteriors[2], key.posteriors.titles[2])
 par <- oldpar
 @
 \end{center}
@@ -504,8 +504,8 @@ par <- oldpar
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot(sens.models.6, subplot = 3)
-make.mcmc.diag.plot(sens.models.6, subplot = 4)
+make.mcmc.diag.plot(sens.models.6, key.posteriors[3], key.posteriors.titles[3])
+make.mcmc.diag.plot(sens.models.6, key.posteriors[4], key.posteriors.titles[4])
 par <- oldpar
 @
 \end{center}
@@ -521,8 +521,8 @@ par <- oldpar
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot(sens.models.6, subplot = 5)
-make.mcmc.diag.plot(sens.models.6, subplot = 6)
+make.mcmc.diag.plot(sens.models.6, key.posteriors[5], key.posteriors.titles[5])
+make.mcmc.diag.plot(sens.models.6, key.posteriors[6], key.posteriors.titles[6])
 par <- oldpar
 @
 \end{center}
