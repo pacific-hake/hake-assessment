@@ -488,7 +488,7 @@ the \Sexpr{assess.yr} base model.
 
 In short, these included the following:
 \begin{itemize}
-  \item Update to the latest version of Stock Synthesis version \Sexpr{ss.version};
+  \item Update to the latest version of Stock Synthesis, version \Sexpr{ss.version};
   \item Change to estimating a simple vector of recruitment deviations rather
   than a vector of deviations that are constrained to sum to zero;
   \item Update catch data from years prior to \Sexpr{last.data.yr};
@@ -516,9 +516,9 @@ increase the convergence of estimates of catchability and parameter deviations,
 performance of jitter runs when parameters are near boundary conditions, and
 stability of the transition to MCMC when the parameters specifying
 bias adjustment of the recruitment deviations are turned off.
-Collectively, these changes led to small, insignificant differences
-in the estimates of fishing mortality compared to the \Sexpr{last.assess.yr}
-base model (Figure~\ref{fig:main-bridge-5-panel-1}).
+Collectively, these changes led to small differences
+in estimates of parameter deviations compared to the \Sexpr{last.assess.yr}
+base model but essentially no change in the time series (Figure~\ref{fig:main-bridge-5-panel-1}).
 
 We relaxed the constraint that recruitment deviations during the main period sum to
 zero. Doing so removes a known coding error that has implications when
@@ -537,12 +537,12 @@ central tendency for the time period with the best information about recruitment
 $R_0$ and the main recdev period could, in theory, lead to a better fit to the indices of abundance or
 some other data source which wouldn't otherwise be expected to be informative about recruitment.
 However, for \fishname\ the stock assessment is relatively data-rich and the index is pretty
-consistent with the recruitments so such tension doesn't seem to be present.
+consistent with the recruitments, so such tension doesn't seem to be present.
 
 Using non-zero centered constrained recruitment deviations will increase the
 compatibility between MCMC and MLE results, and also increase the stability of model results,
 because penalties have implications for calculating derivatives. The non-zero centered approach
-resulted in a median recruitment deviation distribtuion of 0.086 in the \Sexpr{assess.yr}
+resulted in a median recruitment deviation distribution of 0.086 in the \Sexpr{assess.yr}
 base model. Compared to the \Sexpr{last.assess.yr} assessment, the time series of spawning
 biomass and fishing mortality, as well as the fit to the survey index were largely
 unchanged. However, relative spawning biomass increased for all years because the estimate of
