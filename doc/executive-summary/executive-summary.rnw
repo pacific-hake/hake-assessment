@@ -638,10 +638,10 @@ credibility intervals are in Table~\ref{tab:es-reference.points}.
 The medians of sustainable yields and biomass reference points are
 almost 10\% lower than in the \Sexpr{last.assess.yr} assessment.
 The probability that spawning biomass at the beginning of \Sexpr{assess.yr}
-is above $\Bforty$ is
-P$(B_{\Sexpr{assess.yr}} > \Bforty) = \Sexpr{probs.curr.bforty}$\%,
-and of being above $\Btwentyfive$ is
-P$(B_{\Sexpr{assess.yr}} > \Btwentyfive) = \Sexpr{probs.curr.btwentyfive}$\%.
+is below $\Bforty$ is
+P$(B_{\Sexpr{assess.yr}} < \Bforty) = \Sexpr{probs.curr.below.bforty}$\%,
+and of being below $\Btwentyfive$ is
+P$(B_{\Sexpr{assess.yr}} < \Btwentyfive) = \Sexpr{probs.curr.below.btwentyfive}$\%.
 The probability that the relative fishing intensity is above its target of 1.0
 at the end of \Sexpr{end.yr-1} is \Sexpr{probs.curr.rel.fish.intens.above.one}\%.
 

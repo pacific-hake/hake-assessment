@@ -236,6 +236,8 @@ probs.curr.btwentyfive <- f(mean(base.model$mcmc$Bratio_2020 > 0.25) * 100, 1)
 probs.curr.bten        <- f(mean(base.model$mcmc$Bratio_2020 > 0.10) * 100, 0)
 
 probs.curr.below.bforty      <- f(mean(base.model$mcmc$Bratio_2020 < 0.40) * 100, 1)
+probs.curr.below.btwentyfive <- f(mean(base.model$mcmc$Bratio_2020 < 0.25) * 100, 1)
+probs.curr.below.bten        <- f(mean(base.model$mcmc$Bratio_2020 < 0.10) * 100, 1)
 
 ## prob of most recent relative fishing intensity being above target of 1
 probs.curr.rel.fish.intens.above.one <-
