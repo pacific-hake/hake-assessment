@@ -586,7 +586,7 @@ which was to be expected given the increase in the
 index relative to \Sexpr{penult.survey.year}.
 The addition of survey age-composition data led to reduced
 uncertainty, particularly for the 2010, 2014, 2016, and 2017 year classes.
-The 2010 and 2014 year classes are estimated to be slightly higher in this
+The 2010 and 2014 year classes are estimated to be higher in this
 assessment than they were in the \Sexpr{last.assess.yr} assessment.
 This increase is largely driven by the addition
 of the 2019 acoustic survey age compositions
@@ -1680,7 +1680,9 @@ Cohort strength is not well estimated until several ($\sim$4-9) years of fishery
 catch-at-age data and survey age-composition data have been collected
 (Figure~\ref{fig:main-retrospective-recruitment}).
 Deviations for the 1999 and 2010 cohorts, which are the largest cohorts,
-exhibit the largest positive biases.
+exhibit the largest positive biases, and the sizes of several cohorts
+(particularly the large 2010 and 2014 cohorts) increase
+with the final year of data.
 Estimated recruitment deviations for the 2014 cohort appear to be
 similar to other large cohorts (1999, 2008, and 2010); although, as more
 data becomes available to inform the strength of this cohort,
