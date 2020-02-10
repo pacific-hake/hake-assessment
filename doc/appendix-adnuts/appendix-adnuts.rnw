@@ -4,17 +4,18 @@
 \label{chap:adnuts}
 
 This appendix contains base model Bayesian MCMC results using a new analytical tool
-for conducting efficient Bayesian MCMC algorithms, the Automatic Differentiation
+for conducting efficient Bayesian MCMC sampling, the Automatic Differentiation
 No-U-Turn Sampler (adnuts), implemented using the {\tt adnuts} R package
 \citep{Monnahan2018, Monnahan2019}.
-This tool has the potential to improve the applicability of Bayesian methods in stock assessment.
+This tool has the potential to improve the applicability of Bayesian methods in stock assessment
+due to, among other things, decreased model run times.
 
-The R code that was used to run {\tt adnuts} following general guidelines
-provided by C. Monnahan (pers. comm.) is provided at the end of this appendix.
+The R code that was used to run {\tt adnuts}, following general guidelines
+provided by C. Monnahan (pers. comm.), is provided at the end of this appendix.
 It took approximately 4.5~hours to run (including a 2.5-hour step that would
 likely not be required for sensitivity runs), compared to 40~hours for the usual
 MCMC algorithm. The adnuts run resulted in 7,850 samples -- reducing this would
-improve run times.
+improve run times further.
 %
 % Aaron - I'm guessing that we would probably shoot for 3-5K total iterations
 % and a warmup period of closer to 100 (not 250).  Just some caveats to
@@ -24,41 +25,39 @@ Figures and tables follow the format of the Executive Summary, with additional
 figures showing MCMC diagnostics and comparing results with those of the base model.
 
 A comparison between the base model and the adnuts model shows little
-difference in the median posteriors (Figure~\ref{fig:biomass-base-alternative-6-adnuts-sens}),
-although the adnuts model has an increased overall uncertainty. The estimate of initial recruitment, $R_0$
-differs slightly between the two, with the base model median being 2.505~billion and the adnuts
+difference in median spawning biomass (Figure~\ref{fig:biomass-base-alternative-6-adnuts-sens}),
+although the adnuts model suggests slightly higher uncertainty. The main difference is with the estimate
+of initial recruitment, $R_0$, with the base model median being 2.505~billion and the adnuts
 being 2.314~billion. This small difference causes an upward scaling effect to the
 relative biomass (Figure~\ref{fig:status-base-alternative-6-adnuts-sens}) for the adnuts model.
-Recruitment estimates for the terminal year are slightly increased when using the adnuts method
-(Figures~\ref{fig:recruit-base-alternative-6-adnuts-sens}--\ref{fig:recruit-devs-base-alternative-6-adnuts-sens}).
+%Recruitment estimates for the terminal year are slightly increased when using the adnuts method
+%(Figures~\ref{fig:recruit-base-alternative-6-adnuts-sens}--\ref{fig:recruit-devs-base-alternative-6-adnuts-sens}).
 Figures~\ref{fig:spawning-biomass-adnuts}--\ref{fig:mcmc-survey-fit-adnuts} and Tables \ref{tab:biomass-adnuts}--
 \ref{tab:risk-year-2-adnuts} show the Executive-Summary style results.
 
 Diagnostics for the adnuts model are comparable to the base model for all key posteriors
 (Figures~\ref{fig:main-mcmc-diag-m-r0}--\ref{fig:main-mcmc-diag-dm} and
-Figures~\ref{fig:mcmc-diag-m-r0-adnuts}--\ref{fig:mcmc-diag-dm-adnuts}). There are only slight differences
-in the densities of the posteriors (bottom-right panels). Parameter autocorrelation remains low
+Figures~\ref{fig:mcmc-diag-m-r0-adnuts}--\ref{fig:mcmc-diag-dm-adnuts}). There is only a slight difference
+in the posterior density plots (bottom-right panels) for $\log R_0$. Parameter autocorrelation remains low
 for the adnuts model (bottom-left panels). The traceplots (top-left panels) appear denser for the
 adnuts model because the number of samples from the posterior is 7,850 compared to
 2,000 for the base model.
 
 The summary histograms showing autocorrelation, effective sample size, Geweke statistic, and
 Heidelberger and Walsh statistic are shown in Figure~\ref{fig:main-mcmc-diag-hists} for the
-base model and Figure~\ref{fig:mcmc-diag-hists-adnuts} for the adnuts model. These diagnostics
-are comparable between the two models, with the adnuts having more
-parameters that have a low effective sample size. Bearing in mind that there are almost four times
-the number of posterior samples for the adnuts model when compared to the base model, some of these
-effects may be minimized with further thinning of the posterior samples.
+base model and Figure~\ref{fig:mcmc-diag-hists-adnuts} for the adnuts model. The adnuts model
+has higher effective sample sizes, due to the near 4-fold increase in posterior samples, which will
+improve posterior density estimates. Other diagnostics are comparable between the two models.  
 
 Correlations among parameters (Figures~\ref{fig:main-mcmc-pairs}--\ref{fig:main-mcmc-pairs-recruit-devs}
 and \ref{fig:mcmc-pairs-adnuts}--\ref{fig:mcmc-pairs-recruit-devs-adnuts}) are very similar, with the
-main difference being the density of the scatterplots due to differing number of posterior
+main difference being the density of the scatterplots due to the number of posterior
 samples.
 
-Considering these diagnostics, the similarity in estimated posteriors for key parameters,
-and the increased efficiency of the algorithm, the JTC recommends that the adnuts approach be
-adopted for next year's base model and sensitivities. The increased efficiency would allow
-the sensitivities to be run in an MCMC context as opposed to MLE, making all results more comparable.
+Considering sampling and convergence diagnostics, the similarity in estimated posteriors for key parameters,
+and the considerable increase in efficiency of the algorithm, the JTC recommends that the adnuts approach be
+further considered for use in next year's base model. The increased efficiency may allow all, or a portion of,
+sensitivity runs to be in an MCMC context as opposed to MLE.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
