@@ -158,8 +158,9 @@ in 2012, 2013, and 2015; the 2019 estimate is the fourth highest of the series.
 % Not worth automating as have to think
 %  about what is worth saying each time anyway.
 Age-composition data from the
-aggregated fisheries and the acoustic survey contribute to the assessment
-model's ability to resolve strong and weak cohorts.
+aggregated fisheries and the acoustic survey provide data that
+facilitates estimating relative cohort strength, i.e., strong and weak
+cohorts.
 
 The assessment uses a Bayesian estimation approach, sensitivity analyses, and
 retrospective investigations to evaluate the potential consequences of parameter
@@ -186,10 +187,10 @@ assessment model from \Sexpr{last.assess.yr} as well as many of the previous
 elements as configured in Stock Synthesis. Analyses conducted in 2014
 showed that allowing for time-varying (rather than fixed) selectivity reduced
 the magnitude of extreme cohort strength estimates. In closed-loop simulations,
-management based upon assessment models allowing for time-varying fishery
+management based upon assessment models parameterized with time-varying fishery
 selectivity led to higher median average catch, lower risk of falling below 10\%
 of unfished biomass, smaller probability of fishery closures, and lower
-inter-annual variability in catch compared to assessment models that force
+inter-annual variability in catch compared to assessment models parameterized with
 time-invariant fishery selectivity. Even a small degree of flexibility in the
 fishery selectivity could reduce the effects of errors caused
 by assuming selectivity is constant over time. Therefore, we retain time-varying
@@ -207,11 +208,11 @@ other processes.
 
 \subsection*{Stock biomass} \label{sec:es-stock-biomass} \phantomsection
 \addcontentsline{toc}{subsection}{Stock biomass}
-The base stock assessment model
-indicates that since the 1960s, \fishname\ female spawning biomass has ranged
+Results from the base model
+indicate that since the 1960s, \fishname\ female spawning biomass has ranged
 from well below to above unfished equilibrium
 (Figures~\ref{fig:es-female-spawning-biomass}
-and~\ref{fig:es-relative-spawning-biomass}). The model estimates
+and~\ref{fig:es-relative-spawning-biomass}). Model estimates suggest
 % Have to split the sentence like that to avoid text ending here at the
 %  end of a line, and dodgy extra whitespace then gets added to start of
 %  next line, presumably because of the knitr stuff (extra blank lines get
@@ -343,7 +344,7 @@ more fish (a \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.m
 year's assessment. This difference is largely driven by the addition
 of the 2019 acoustic survey age compositions
 where the proportion of age-9 fish was higher than what the \Sexpr{end.yr-1}
-assessment model would have otherwise predicted given mortality.
+assessment model results would have otherwise suggested given mortality.
 
 \fishname\ appear to
 have low recruitment with occasional large year-classes
