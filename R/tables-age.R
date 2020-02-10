@@ -223,20 +223,9 @@ make.us.age.data.table <- function(dat,
   ## space.size - size of the vertical spaces for the table
   ## placement - latex code for placement of table
   ## decimals - number of decimals in the numbers in the table
-
-  if(fleet == 1 | fleet == 2){
-    dat[,c(2,3)] <- f(dat[,c(2,3)])
-    ## Make percentages
-    dat[,-c(1,2,3)] <- dat[,-c(1,2,3)] * 100
-    ## Make pretty
-    dat[,-c(1,2,3)] <- f(dat[,-c(1,2,3)], decimals)
-  }else{
-    dat[,2] <- f(dat[,2])
-    ## Make percentages
-    dat[,-c(1,2)] <- dat[,-c(1,2)] * 100
-    ## Make pretty
-    dat[,-c(1,2)] <- f(dat[,-c(1,2)], decimals)
-  }
+  ncolumns <- grep("n\\.", colnames(dat))
+  dat[, ncolumns] <- f(dat[, ncolumns])
+  dat[, -c(1, ncolumns)] <- f(dat[, -c(1, ncolumns)]* 100, decimals)
   dat <- dat[dat[,1] >= start.yr & dat[,1] <= end.yr,]
 
   ## Add the extra header spanning multiple columns
@@ -258,10 +247,8 @@ make.us.age.data.table <- function(dat,
     c(paste0(latex.hline,
              latex.bold("Year"),
              latex.amp(),
-             ifelse(fleet == 1 | fleet == 2,
-                    paste0(latex.mlc(c("Number",
-                                       "of fish")), latex.amp()),
-                    ""),
+             latex.mlc(c("Number", "of fish")),
+             latex.amp(),
              mlc,
              latex.amp(),
              latex.mcol(length(age.headers),
@@ -269,9 +256,7 @@ make.us.age.data.table <- function(dat,
                         latex.bold("Age (\\% of total for each year)")),
              latex.nline,
              latex.hline,
-             ifelse(fleet == 1 | fleet == 2,
-                    latex.amp(3),
-                    latex.amp(2)),
+             latex.amp(3),
              ages.tex,
              latex.nline),
       latex.hline)
