@@ -22,6 +22,8 @@ being 2.314~billion. This small difference causes an upward scaling effect to th
 relative biomass (Figure~\ref{fig:status-base-alternative-6-adnuts-sens}) for the adnuts model.
 Recruitment estimates for the terminal year are slightly increased when using the adnuts method
 (Figures~\ref{fig:recruit-base-alternative-6-adnuts-sens}--\ref{fig:recruit-devs-base-alternative-6-adnuts-sens}).
+Figures~\ref{fig:spawning-biomass-adnuts}--\ref{fig:mcmc-survey-fit-adnuts} and Tables \ref{tab:biomass-adnuts}--
+\ref{tab:risk-year-2-adnuts} show the Executive-Summary style results.
 
 Diagnostics for the adnuts model are comparable to the base model for all key posteriors
 (Figures~\ref{fig:main-mcmc-diag-m-r0}--\ref{fig:main-mcmc-diag-dm} and
