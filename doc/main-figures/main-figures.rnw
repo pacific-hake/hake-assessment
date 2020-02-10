@@ -189,11 +189,10 @@ make_age_comp_bubble_plot(base.model, subplot = 2, alpha = 0.4)
 \begin{figure}[H]
 \begin{center}
 <<main-survey-extrap-biomass, fig.height=4.5, fig.width=8>>=
-make.survey.biomass.extrap.plot(survey.comparison, show = 2:4)
+make.survey.biomass.extrap.plot(survey.comparison)
 @
 \end{center}
-\caption{Acoustic survey biomass indices with and without extrapolation
-  (millions of tons).
+\caption{Acoustic survey biomass indices (millions of tons).
   Approximate 95\% confidence intervals are based on sampling variability
   (intervals without squid/hake apportionment uncertainty in 2009 are displayed in black). See
   Table~\ref{tab:main-survey-history} for values used in the base model.}

@@ -134,15 +134,14 @@ respectively.
 \begin{center}
 <<survey-biomass, fig.height=5, fig.width=8>>=
 #make.survey.biomass.plot(base.model)
-make.survey.biomass.extrap.plot(survey.comparison, show = c(2,4))
+make.survey.biomass.extrap.plot(survey.comparison)
 @
 \end{center}
 %\vspace{0mm}
-\caption{Acoustic survey biomass index (millions of tons).
-  Approximate 95\% confidence intervals (gray bars) are based on sampling
-  variability; black bar represents uncertainty of index prior to applying
-  additional uncertainty due to
-  squid/hake apportionment.}
+\caption{Acoustic survey biomass indices (millions of tons).
+  Approximate 95\% confidence intervals are based on sampling variability
+  (intervals without squid/hake apportionment uncertainty in 2009 are displayed in black). See
+  Table~\ref{tab:main-survey-history} for values used in the base model.}
 \label{fig:es-survey-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

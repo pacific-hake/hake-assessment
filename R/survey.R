@@ -295,11 +295,11 @@ make.survey.age1.plot <- function(age1index,
   par <- oldpar
 }
 
-make.survey.biomass.extrap.plot <- function(dat,
-                                            show = 1:3){
+make.survey.biomass.extrap.plot <- function(dat){
   ## dat - data.frame of different indices
   ## show - vector of which values to show
-  oldpar <- par()
+  oldpar <- par("mar", "las", "cex.axis")
+  on.exit(par(oldpar))
 
   ## Remove non-data years from the data frame no longer needed because we're
   ##  comparing cases with different range of years
@@ -313,92 +313,37 @@ make.survey.biomass.extrap.plot <- function(dat,
   ests$hi <- exp(log(ests$obs) + 1.96 * ests$se_log)
   ests$value <- ests$obs
 
-  # without extrapolation
-  ests2 <- data.frame(year = dat$year,
-                      obs = dat$no.extrap,
-                      se_log = dat$cv.no.extrap)
-  ests2$lo <- exp(log(ests2$obs) - 1.96 * ests2$se_log)
-  ests2$hi <- exp(log(ests2$obs) + 1.96 * ests2$se_log)
-  ests2$value <- ests2$obs
-
-  # values used in 2016 assessment
-  ests3 <- data.frame(year = dat$year,
-                      obs = dat$with.extrap.2016,
-                      se_log = dat$cv.2016)
-  ests3$lo <- exp(log(ests3$obs) - 1.96 * ests3$se_log)
-  ests3$hi <- exp(log(ests3$obs) + 1.96 * ests3$se_log)
-  ests3$value <- ests3$obs
-
   # 2009 w/o squid inflation
-  ests4 <- ests[ests$year == 2009, ]
-  ests4[, "se_log"] <- 0.0682 ## se without squid inflation
-  ests4[, c("lo", "hi")] <- exp(
-    log(ests4$obs) + c(-1.96, 1.96) * ests4$se_log)
+  ests_squid <- ests[ests$year == 2009, ]
+  ests_squid[, "se_log"] <- 0.0682 ## se without squid inflation
+  ests_squid[, c("lo", "hi")] <- exp(log(ests_squid$obs) + c(-1.96, 1.96) * ests_squid$se_log)
   par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
 
-  if(2 %in% show){
-    plotBars.fn(ests$year,
-                ests,
-                scale = 1e3,
-                ylim = c(0, 3),
-                yaxs = 'i',
-                pch = 20,
-                xlab="Year",
-                ylab = "Biomass index estimate (million t)",
-                cex = 1.5,
-                las = 1,
-                gap = 0.05,
-                xaxt = "n",
-                ciLwd = 3,
-                ciCol = rgb(0, 0, 0, 0.5))
-  }
-  if(1 %in% show){
-    plotBars.fn(ests3$year - 0.3,
-                ests3,
-                scale = 1e3,
-                pch = 18,
-                add = TRUE,
-                cex = 1.0,
-                las = 1,
-                gap = 0.05,
-                ciLwd = 3,
-                ciCol = rgb(1, 0, 0, 0.5),
-                col = "red")
-  }
-  if(3 %in% show){
-    plotBars.fn(ests2$year + 0.3,
-                ests2,
-                scale = 1e3,
-                pch = 17,
-                add = TRUE,
-                cex = 1.0,
-                las = 1,
-                gap = 0.05,
-                ciLwd = 3,
-                ciCol = rgb(0, 0, 1, 0.5),
-                col = "blue")
-  }
-  if(4 %in% show){
-    plotBars.fn(ests4$year,
-            ests4,
-            scale = 1e3,
-            pch = 20,
-            add = TRUE,
-            cex = 1.5,
-            las = 1,
-            gap = 0.05,
-            ciLwd = 3.25,
-            ciCol = rgb(0, 0, 0, 1))
-  }
+  plotBars.fn(ests$year,
+              ests,
+              scale = 1e3,
+              ylim = c(0, 3),
+              yaxs = 'i',
+              pch = 20,
+              xlab="Year",
+              ylab = "Biomass index estimate (million t)",
+              cex = 1.5,
+              las = 1,
+              gap = 0.05,
+              xaxt = "n",
+              ciLwd = 3,
+              ciCol = rgb(0, 0, 0, 0.5))
+  plotBars.fn(ests_squid$year,
+              ests_squid,
+              scale = 1e3,
+              pch = 20,
+              add = TRUE,
+              cex = 1.5,
+              las = 1,
+              gap = 0.05,
+              ciLwd = 3.25,
+              ciCol = rgb(0, 0, 0, 1))
   axis(1, at = ests$year, cex.axis = 0.8)
-  legend("topleft",
-         c("Values used in 2016 assessment",
-           "Acoustic survey time series (with extrapolation, used in base model)",
-           "Acoustic survey time series (no extrapolation)")[show],
-         col = c("red", "black", "blue")[show],
-         pch = c(18, 16, 17)[show],
-         bty = 'n')
-  par <- oldpar
 }
 
 make.kriging.parameters.table <- function(krig.pars = kriging.pars,
