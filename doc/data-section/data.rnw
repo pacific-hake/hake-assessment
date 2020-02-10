@@ -573,9 +573,9 @@ in this model, but retain the empirical approach to modeling weight-at-age used 
 
 \subsection{Estimated parameters and prior probability distributions}\label{sec:data-estimated-parameters}
 
-The estimated parameters and prior probability distributions used in this stock
+The prior probability distributions and estimated parameters used in this stock
 assessment are reported in
-Tables~\ref{tab:main-params-est-summary}-\ref{tab:main-parameter-estimates-retro}. Several
+Tables~\ref{tab:main-params-est-summary} and \ref{tab:main-parameter-estimates}. Several
 important distributions are discussed in detail below.
 
 \subsubsection{Natural Mortality}\label{sec:data-natural-mortality}
