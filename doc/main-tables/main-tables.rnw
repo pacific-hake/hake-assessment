@@ -78,8 +78,8 @@ make.sampling.history.table(sampling.history,
                               samples from the catch were taken. The number of
                               fish with otoliths sampled per haul has varied
                               over time but is typically small (current
-                              protocols for the U.S. At-Sea sectors is 2~fish
-                              per haul).",
+                              protocols for the U.S. At-Sea sectors is three fish
+                              every third haul).",
                             xlabel = "tab:main-sampling-history",
                             font.size = 8,
                             space.size = 10)
