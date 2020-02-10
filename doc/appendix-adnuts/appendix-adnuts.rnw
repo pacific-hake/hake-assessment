@@ -123,20 +123,6 @@ box()
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=7.0in, height=7.0in]{main-figures/MCMC_compares_StockStatus.eps}
-   % Download from Google Drive
-\end{center}
-\caption{Comparison of model results between the existing MCMC algorithm used in the \fishname\ assessment (admb MCMC)
-and the more efficient adnuts algorithm (nuts MCMC). Results showing spawning biomass (top left), relative stock size
-(top right), recruitment deviations (bottom left), and individual parameter estimates (median; bottom right) are shown.}
-\label{fig:nuts-compareMCMC}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
 <<spawning-biomass-adnuts, fig.height=5, fig.width=8>>=
 make.biomass.plot(sens.models.6,
                   equil.yr = unfished.eq.yr,
