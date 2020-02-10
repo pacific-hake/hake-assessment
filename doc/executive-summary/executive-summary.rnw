@@ -333,7 +333,7 @@ make.recruitment.table(base.model,
 The new data available for this assessment do not significantly change the
 pattern of recruitment estimated in recent assessments.
 However, estimated recruitments for some years have changed. For example,
-this year's median assessment of the 2010 recruitment is
+this assessment's median estimate of the 2010 recruitment is
 \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"], 1)}~billion
 more fish (a \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"]) /
 (prev.assess.recruitment.med)["2010"]) * 100), 0)}\% increase) than last
