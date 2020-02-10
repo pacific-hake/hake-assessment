@@ -235,6 +235,15 @@ probs.curr.bforty      <- f(mean(base.model$mcmc$Bratio_2020 > 0.40) * 100, 1)
 probs.curr.btwentyfive <- f(mean(base.model$mcmc$Bratio_2020 > 0.25) * 100, 1)
 probs.curr.bten        <- f(mean(base.model$mcmc$Bratio_2020 > 0.10) * 100, 0)
 
+probs.curr.below.bforty      <- f(mean(base.model$mcmc$Bratio_2020 < 0.40) * 100, 1)
+
+## prob of most recent relative fishing intensity being above target of 1
+probs.curr.rel.fish.intens.above.one <-
+  f(sum(base.model$mcmc[[paste0("SPRratio_", end.yr-1)]] > 1) /
+    nrow(base.model$mcmc) * 100,
+    1)
+
+
 ################################################################################
 ## Second forecast year depletion and spawning biomass estimates
 next2.depl.lower.tac.based <- f(fore.tac.mcmc$dlower[names(fore.tac.mcmc$dlower) %in% (end.yr + 2)] * 100, 1)

@@ -49,10 +49,17 @@ from last year).
     (with 95\% credible interval
     \Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper}~million~t).
 
-  \item The estimated joint probability of being both
-    above the target relative fishing intensity in \Sexpr{end.yr-1}
-    and below the $\Bforty$ (40\% of $B_0$) reference point
-    at the start of \Sexpr{end.yr} is \Sexpr{joint.percent.prob.above.below}\%.
+%  \item The estimated joint probability of being both
+%    above the target relative fishing intensity in \Sexpr{end.yr-1}
+%    and below the $\Bforty$ (40\% of $B_0$) reference point
+%    at the start of \Sexpr{end.yr} is \Sexpr{joint.percent.prob.above.below}\%.
+
+  \item The estimated probability that spawning biomass at the start of
+    \Sexpr{assess.yr} is below the $\Bforty$ (40\% of $B_0$) reference point is
+    \Sexpr{probs.curr.below.bforty}\%, and the probability that the relative fishing
+    intensity is above its target at the end of \Sexpr{end.yr-1} is
+    \Sexpr{probs.curr.rel.fish.intens.above.one}\%. The joint
+    probability of these is \Sexpr{joint.percent.prob.above.below}\%.
 
   \item Based on the default harvest rule, the estimated median catch limit for
 \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with
