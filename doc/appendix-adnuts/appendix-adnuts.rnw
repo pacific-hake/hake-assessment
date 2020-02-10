@@ -62,9 +62,8 @@ make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{MCMC median posterior estimates with 95\% credible interval of stock biomass for the base
-  model and alternative sensitivity run using the adnuts MCMC algorithm.
-  See Appendix~\ref{chap:adnuts} for a full description.}
+\caption{MCMC median posterior estimates with 95\% credible intervals of spawning biomass for the base
+  model and alternative sensitivity run using the adnuts MCMC algorithm.}
 \label{fig:biomass-base-alternative-6-adnuts-sens}
 %%%%%%%%%%%%%%%%%%%%%%%
 %% JOINED ON PAGE
@@ -77,9 +76,8 @@ make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{MCMC median posterior estimates with 95\% credible interval of stock
-  status for the base model and alternative sensitivity run using the adnuts MCMC algorithm.
-  See Appendix~\ref{chap:adnuts} for a full description.}
+\caption{MCMC median posterior estimates with 95\% credible intervals of relative
+  spawning biomass for the base model and alternative sensitivity run using the adnuts MCMC algorithm.}
 \label{fig:status-base-alternative-6-adnuts-sens}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -96,7 +94,8 @@ make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
 box()
 @
 \end{center}
-\caption{Maximum likelihood estimates of recruitment for the base model
+\caption{MCMC median posterior estimates with 95\% credible intervals of recruitment
+  for the base model
   and the alternative sensitivity run using the adnuts algorithm.
   See Figure~\ref{fig:biomass-base-alternative-6-adnuts-sens} for legend.}
 \label{fig:recruit-base-alternative-6-adnuts-sens}
@@ -115,7 +114,7 @@ make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
 box()
 @
 \end{center}
-\caption{Maximum likelihood estimates of recruitment deviations for the base model
+\caption{MCMC median posterior estimates with 95\% credible intervals for recruitment deviations for the base model
   and alternative sensitivity run using the adnuts algorithm.
   See Figure~\ref{fig:biomass-base-alternative-6-adnuts-sens} for legend.}
 \label{fig:recruit-devs-base-alternative-6-adnuts-sens}
