@@ -36,18 +36,18 @@ adnuts model because the number of samples from the posterior is 7,850 compared 
 The summary histograms showing autocorrelation, effective sample size, Geweke statistic, and
 Heidelberger and Walsh statistic are shown in Figure~\ref{fig:main-mcmc-diag-hists} for the
 base model and Figure~\ref{fig:mcmc-diag-hists-adnuts} for the adnuts model. These diagnostics
-are comparable between the two models, with only small differences a number
-of parameters with a lower effective sample size in the adnuts model. Bearing in mind that there are almost 4 times
+are comparable between the two models, with the adnuts having more
+parameters that have a low effective sample size. Bearing in mind that there are almost four times
 the number of posterior samples for the adnuts model when compared to the base model, some of these
 effects may be minimized with further thinning of the posterior samples.
 
 Correlations among parameters (Figures~\ref{fig:main-mcmc-pairs}--\ref{fig:main-mcmc-pairs-recruit-devs}
-and \ref{fig:mcmc-pairs-adnuts}--\ref{fig:mcmc-pairs-recruit-devs-adnuts}) is very similar, with most
+and \ref{fig:mcmc-pairs-adnuts}--\ref{fig:mcmc-pairs-recruit-devs-adnuts}) are very similar, with most
 of the difference being the density of the scatterplots which is attributed to the number of posterior
 samples.
 
 Considering these diagnostics, the similarity in estimated values in the posteriors for key parameters,
-and the increased effficiency of the algorithm, the JTC recommends that the adnuts approach be
+and the increased efficiency of the algorithm, the JTC recommends that the adnuts approach be
 adopted for next year's base model and sensitivities. The increased efficiency would allow
 the sensitivities to be run in an MCMC context as opposed to MLE, and all results would be more comparable.
 
