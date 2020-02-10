@@ -1,4 +1,4 @@
-\chapter{Base Model MCMC Diagnostics}
+\chapter{Base model MCMC diagnostics}
 \label{chap:mcmc-diagnostics}
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -112,4 +112,3 @@ make.mcmc.diag.pairs.plot(base.model,
 \label{fig:main-mcmc-pairs-recruit-devs}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-

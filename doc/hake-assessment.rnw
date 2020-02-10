@@ -338,7 +338,7 @@ This DRAFT document is non-citable.
 \renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 \renewcommand{\theequation}{\thechapter.\arabic{equation}}
 
-\rfoot{Appendix~\ref{chap:mcmc-diagnostics} -- Base Model MCMC Diagnostics}
+\rfoot{Appendix~\ref{chap:mcmc-diagnostics} -- Base model diagnostics}
 <<appendix-mcmc-diagnostics, child='appendix-mcmc-diagnostics/appendix-mcmc-diagnostics.rnw'>>=
 @
 
