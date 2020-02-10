@@ -213,17 +213,17 @@ estimating $\sigma_R$ that would reduce model sensitivity to the value of this c
 \emph{Response -- Developing best practices for modeling equilibrium recruitment ($R_0$)
   and recruitment variability ($\sigma_R$)
   remain broad topics of contemporary research. The JTC continues to conduct,
-  collaborate on and monitor ongoing research projects into
+  collaborate on, and monitor ongoing research projects concerning
   approaches for advancing recruitment estimation,
-  as it applies to \fishname\ and in general. We briefly discuss several of these research
-  endeavors next.}
+  as applied to \fishname\ and in general. We now briefly discuss several of these research
+  endeavors.}
 
 \emph{The JTC is conducting and collaborating on simulation projects looking into the concurrent
   estimation of multiple variance parameters. This includes the estimation of variability
-  associated with time-varying selectivity, $\sigma_R$, extra standard deviation parameters
-  on survey index data, and Dirichlet-Multinomial parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$.
+  associated with time-varying selectivity, $\sigma_R$, of the extra standard deviation parameters
+  on survey index data, and of the Dirichlet-Multinomial parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$.
   Variance parameters in stock assessment models have a tendency to be interrelated
-  when they capture other sources of variance attributed to model misspecification rather
+  when they capture other sources of variance attributed to model mis-specification rather
   than variability directly related to the given process.
   This is particularly
   important for $\sigma_R$ because without an index of recruitment to directly inform the
@@ -234,7 +234,7 @@ estimating $\sigma_R$ that would reduce model sensitivity to the value of this c
 \emph{The near completion of the Management Strategy Evaluation framework for \fishname\ creates
   considerable advantages for examining recruitment. For example, using the Template Model
   Builder (TMB) estimation code developed by Dr. Nis Jacobsen for the MSE, there is opportunity
-  to explore random effects treatment of recruitment variability \citep{Thorson2019}.  The MSE
+  to explore random-effects treatment of recruitment variability \citep{Thorson2019}.  The MSE
   framework can also be used to evaluated the robustness of recruitment modeling assumptions on
   management performance and uncertainty.  Further, the MSE could be an additional option for
   estimating $\sigma_R$ in MCMC runs while further testing semi-parametric selectivity.}
@@ -245,7 +245,7 @@ estimating $\sigma_R$ that would reduce model sensitivity to the value of this c
   The assessment model is adequately accounting for general life-history traits and includes
   an adequate representation of ageing error. Along with no apparent retrospective pattern
   (see Section~\ref{sec:assessment-retrospective-analyses}), this result suggests that the
-  assessment model is not overly misspecified. Given the lack of autocorrelation, the
+  assessment model is not overly mis-specified. Given the lack of autocorrelation, the
   assessment model was not sensitive to the addition of an autocorrelation parameter.}
 
 \emph{The JTC is following work being conducted by Dr. Cathleen Vestfals and colleagues at
@@ -280,19 +280,19 @@ time-varying selectivity is parameterized and estimated in other assessments.}
 \emph{Response -- Most methods that are available to estimate time-varying selectivity require
 subjective choices. Common choices include
 which years to model using a time block,
-level of variability for a penalized vector, or
-degree of smoothing for a spline.
+the level of variability to use for a penalized vector, or
+the degree of smoothing for a spline.
 Alternatively, state-space models can be used estimate time-varying selectivity in two
 dimensions, age and time, where the degree of smoothing is estimated \citep{NielsenBerg2014}.}
 
 \emph{A comparison project was recently launched by the
-International Council for the Exploration of the Sea (ICES) Methods Working Group
-to compare the results of four stock assessment frameworks,
+ICES Methods Working Group
+to compare the results of four stock assessment frameworks that estimate
+time-varying selectivity using different assumptions:
 State-Space Assessment Model (SAM),
 Woods Hole Assessment Method (WHAM),
 Stock Synthesis, and
-Age Structured Assessment Program (ASAP), that estimate time-varying selectivity
-using different assumptions. Each framework will be fit to data from 10 stocks
+Age Structured Assessment Program (ASAP). Each framework will be fit to data from 10 stocks
 using multiple configurations. This study will allow for the comparison of
 estimated trajectories between two state-space frameworks and two well-used
 statistical catch-at-age models when time-varying selectivity is ignored or
@@ -386,7 +386,7 @@ input sample sizes. The SRG reiterates its request for this analysis.}
 to sample \fishname\ for otoliths, which began in the 1970s with observers on foreign vessels.
 Many protocols have remain unchanged over time, but some methods of collecting fish for
 ageing and the numbers of fish aged per tow or trip have changed. Below, we summarize
-known major changes. }
+known major changes.}
 
 \emph{A clear change in protocol was initiated in 1999 for the U.S. at-sea fishery with the
 move towards random sampling of fish for ages rather than random-stratified sampling,
@@ -427,7 +427,7 @@ MCMC sampling, are shown in Appendix~\ref{chap:adnuts}. In addition, the JTC exp
 the added utility of using the ShinyStan application {\tt shinystan} features in {\tt adnuts}
 to better visualize MCMC diagnostics, including mixing, sampling and divergence metrics, among
 other things. A demonstration of this application will be shown at the 2020 SRG meeting. The code
-used for running NUTS is displayed at the end of Appendix~\ref{chap:adnuts}.}
+used for running NUTS is given at the end of Appendix~\ref{chap:adnuts}.}
 
 6. Delays in entry and validation of catches reported on paper tickets in Washington and entry
 into the PACFIN database was identified as a potential issue. This concern has most often
@@ -439,7 +439,7 @@ event that data have to be obtained directly from the sources.}
 
 \emph{Response -- The JTC set the deadline 3 January 2020 for the extraction of data.
 In addition, the JTC communicated with State and Provincial partners to ensure the
-most up to date data would be available. The streamlining of getting tribal fish
+most up-to-date data would be available. The streamlining of getting tribal fish
 tickets into regional databases is advancing with the recent electronic ticket pilot
 study jointly conducted by the Makah Tribe in Washington State and the Pacific States
 Marine Fisheries Commission (see the tribal fishery report in
