@@ -222,10 +222,12 @@ estimating $\sigma_R$ that would reduce model sensitivity to the value of this c
   estimation of multiple variance parameters. This includes the estimation of variability
   associated with time-varying selectivity, $\sigma_R$, extra standard deviation parameters
   on survey index data, and Dirichlet-Multinomial parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$.
+  Variance parameters in stock assessment models have a tendency to be interrelated
+  when they capture other sources of variance attributed to model misspecification rather
+  than variability directly related to the given process.
   This is particularly
   important for $\sigma_R$ because without an index of recruitment to directly inform the
-  estimation of $\sigma_R$, variance parameters in stock assessment models can be interrelated
-  when attempting to capture other sources of variance attributed to model misspecification.
+  estimation of $\sigma_R$ it tends to soak up unspecified variability.
   This work is related with other time-varying selectivity research, as discussed in response 2
   below.}
 
@@ -242,13 +244,13 @@ estimating $\sigma_R$ that would reduce model sensitivity to the value of this c
   add additional variance terms to account for temporally-related recruitment deviations.
   The assessment model is adequately accounting for general life-history traits and includes
   an adequate representation of ageing error. Along with no apparent retrospective pattern
-  (see Section~\ref{sec:assessment-retrospective-analyses}), this result suggest that the
+  (see Section~\ref{sec:assessment-retrospective-analyses}), this result suggests that the
   assessment model is not overly misspecified. Given the lack of autocorrelation, the
   assessment model was not sensitive to the addition of an autocorrelation parameter.}
 
 \emph{The JTC is following work being conducted by Dr. Cathleen Vestfals and colleagues at
   the Northwest Fisheries Science Center looking at identifying climate drivers of
-  \fishname\ early life history stages and recruitment. Possible outcomes from this work
+  \fishname\ early life-history stages and recruitment. Possible outcomes from this work
   of direct use to the assessment include the development of an explicit recruitment index,
   an environmental index linked to recruitment, indicators of recruitment variation
   ($\sigma_R$), and indicators of current or forecasted levels of recruitment.}
@@ -310,7 +312,7 @@ regions and other regions. In addition, the SRG notes that Canadian samples shou
 included in the maturity analysis.}
 
 \emph{Response -- The JTC is in communication with the research team conducting \fishname\
-genetic analyses. That team provided the following update.}
+genetic analyses. They provided the following update.}
 
 \emph{Genetic samples have been collected from along the Pacific coast during summer,
 fall (BC to CA) and winter (OR and CA) and within the Strait of Georgia (BC) during the spring.
@@ -323,7 +325,7 @@ range, over a limited seasonal time scale, and used a limited set of genetic mar
 information (i.e., year, season, and location) and selected samples distributed across
 these boxes. RADseq \citep{BairdEtterEtAl2008, AliORoukeEtAl2016} has been utilized to generate 8,763 genome
 wide polymorphic markers, which will allow for powerful population genomic analyses
-as well as association tests of genetic variability with life history characteristics
+as well as association tests of genetic variability with life-history characteristics
 such as growth rates and age at maturation.}
 
 \emph{In the initial round of sequencing, DNA were extracted from 1,092 individuals from
@@ -339,7 +341,7 @@ with weak but significant pairwise FST comparisons.}
 \emph{For the next round of sequencing, and to finalize data collection for the project, the team will
 sequence approximately another 1,000 individuals.  These include recently acquired samples, with the goal
 of filling in gaps in spatial-temporal boxes (especially from Canada) and to add additional samples to
-existing boxes to boost sample size. This approach will provide the best picture to date of
+existing boxes to boost sample sizes. This approach will provide the best picture to date of
 \fishname\ genetic population structure. The team expects to complete the sequencing and analyses for these samples
 in 2020, culminating in the submission of a peer-reviewed publication.}
 
@@ -349,15 +351,15 @@ will need to be worked out regarding sample exchange and histological analysis w
 between DFO and NWFSC.}
 
 \emph{A new project has been initiated looking at improved methods to differentiate which females
-will likely spawn from those that will not, and thus should or should not be included as
+will likely spawn from those that will not and, thus, should or should not be included as
 spawning biomass. The study is using liver and ovary samples collected during NWFSC acoustic surveys
 (2017--2019) to develop metabolic markers linked to key female reproductive stages. Liver physiology
 and levels of certain lipid classes may reveal overall metabolic and reproductive status.
 Preliminary results from initial liver lipid analyses indicate that levels of important structural (phospholipids)
-and storage lipids (triglycerides) are indicative of female maturation status (immature vs. mature)
-and may be predictive of reproductive failure (atresia) and/or skipped spawning in \fishname\. Work is
+and storage (triglycerides) lipids are indicative of female maturation status (immature vs. mature)
+and may be predictive of reproductive failure (atresia) and/or skipped spawning in \fishname. Work is
 currently underway to expand the liver lipid analyses and develop molecular markers for lipid synthesis
-(liver RNA), and ovarian growth and atresia (ovarian RNA). Molecular information from liver and ovary
+(liver RNA) and ovarian growth and atresia (ovarian RNA). Molecular information from liver and ovary
 samples together with liver lipid analyses and gonadal histology should provide a broader picture of
 reproductive status of female \fishname\ and better inform stock assessments.}
 
@@ -382,34 +384,27 @@ input sample sizes. The SRG reiterates its request for this analysis.}
 
 \emph{Response -- Progress was made on documenting the historical methods utilized
 to sample \fishname\ for otoliths, which began in the 1970s with observers on foreign vessels.
-A clear change in protocol was initiated in 1999 for the U.S. at-sea fishery with the
+Many protocols have remain unchanged over time, but some methods of collecting fish for
+ageing and the numbers of fish aged per tow or trip have changed. Below, we summarize
+known major changes. }
+
+\emph{A clear change in protocol was initiated in 1999 for the U.S. at-sea fishery with the
 move towards random sampling of fish for ages rather than random-stratified sampling,
 which attempts to collect ages in each 1 cm length bin. Additionally, in 2009
-at-sea observers started collecting three instead of five sets of otoliths from a haul.
-A more complete summary of the changes in the sampling protocol over time will be
-completed in the upcoming months and included in the 2021 assessment as an appendix.}
+at-sea observers started collecting three instead of five sets of otoliths from a haul.}
 
-\emph{In Canada, At sea observer samples at the tow level were collected on shoreside hake trips
-between 2002 and 2010 when there was partial observer coverage for the shoreside hake fleet.
-This coverage was discontinued when coastwide electronic monitoring was implement for shoreside
-hake trips in 2010.}
+\emph{In Canada, target sample size (n=50) has not changed over time for at-sea observers aboard
+foreign joint-venture vessels. On domestic vessels observers are currently instructed to
+collect age samples from 60 fish, whereas prior to 2001 the target may have only been 50.
+This lower target potentially only pertained to shoreside hake vessels before at-sea
+observer coverage was discontinued with the installment of electronic monitoring.}
 
-\emph{The sample collection guidelines for at sea observers on freezer trawler vessels has not changed
-since they became an active component of the fishery in 2005. At sea observers are randomly assigned tows (1 in every 8 tows; no sample requested for first tow and samples not mandatory for hauls between
-midnight and 6am) for sample collection with the species determined using a DFO sample priority
-list. Samples may also be collected at the observer’s discretion from time to time (the collection
-method is coded differently in this case).}
+\emph{In 2016, dockside observers were asked to change their protocols based on JTC input.
+Samples changed from being collected during dedicated weeks to the landing level.}
 
-\emph{The sample request for the collection of otoliths at the landing level by dockside observers was
-revised based on JTC input in 2016 targeting increased sample collection from the previous guidelines
-that had dedicated otolith collection weeks.}
-
-\emph{At sea observers are requested to collect age samples from approximately 60 fish in the domestic fishery. This may have been a target of 50 fish prior to 2001 and may also have been a target of 50
-fish specifically for the at sea observer coverage on shoreside hake trips.}
-
-\emph{Otolith samples of approximately 50 fish are requested of at sea observers working on foreign joint venture hake vessels. This target sample size has not changed over time. Dockside observers are asked to collect approximately 50 fish for their length-sex-maturity-age-weight samples. This target sample size has not changed over time.}
-
-\emph{Currently, this information has been used to inform a simulation study that investigated
+\emph{A more complete summary of the changes in the sampling protocol over time will be
+completed in the upcoming months and included in the 2021 assessment as an appendix.
+Currently, this information has been used to inform a simulation study that investigated
 repercussions of biased input sample sizes. Preliminary results suggest
 that the D-M parameters combined with time-varying selectivity can estimate the time
 series of spawning stock biomass with little bias when there is no temporal trend in
@@ -455,7 +450,7 @@ Washington Department of Fish and Wildlife to ensure the best estimates of
 tribal catch were included in the stock assessment, despite not yet appearing in
 PacFIN. The JTC anticipates that data will consistently be available in PacFIN
 in timely manner moving forward with continued use of electronic ticket reporting
-tribal.}
+for all tribal catch.}
 
 The JTC also notes that the SRG concurred with our approach in 2019 of using the
 long-term averages of time-varying fecundity for years without weight-at-age
