@@ -11,6 +11,8 @@ This tool has the potential to improve the applicability of Bayesian methods in 
 
 The R code that was used to run {\tt adnuts} following general guidelines
 provided by C. Monnahan (pers. comm.) is provided at the end of this appendix.
+It took approximately 1.5~hours to run, compared to over 40~hours for the usual
+MCMC algorithm.
 Figures and tables follow the format of the Executive Summary, with additional
 figures showing MCMC diagnostics and comparing results with those of the base model.
 
