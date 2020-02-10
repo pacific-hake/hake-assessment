@@ -63,8 +63,7 @@ make.landings.tac.table(landings.vs.tac,
                            management decisions.",
                         xlabel = "tab:main-landings-tac",
                         font.size = 8,
-                        space.size = 10,
-                        tabular.env = "longtable")
+                        space.size = 10)
 @
 
 <<main-sampling-history-table, results='asis', echo=FALSE>>=
