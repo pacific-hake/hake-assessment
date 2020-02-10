@@ -46,8 +46,8 @@ adnuts model because the number of samples from the posterior is 7,850 compared 
 The summary histograms showing autocorrelation, effective sample size, Geweke statistic, and
 Heidelberger and Walsh statistic are shown in Figure~\ref{fig:main-mcmc-diag-hists} for the
 base model and Figure~\ref{fig:mcmc-diag-hists-adnuts} for the adnuts model. The adnuts model
-has higher effective sample sizes, due to the near 4-fold increase in posterior samples, which will
-improve posterior density estimates. Other diagnostics are comparable between the two models.  
+has higher effective sample sizes, due to the near four-fold increase in posterior samples, which will
+improve posterior density estimates. Other diagnostics are comparable between the two models.
 
 Correlations among parameters (Figures~\ref{fig:main-mcmc-pairs}--\ref{fig:main-mcmc-pairs-recruit-devs}
 and \ref{fig:mcmc-pairs-adnuts}--\ref{fig:mcmc-pairs-recruit-devs-adnuts}) are very similar, with the
