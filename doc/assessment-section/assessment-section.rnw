@@ -665,7 +665,8 @@ of
 (\Sexpr{DM.weight.fishery.025},
 \Sexpr{DM.weight.fishery.975}).
 The new prior results in the survey age-composition parameter being well-sampled
-(unlike in the 2019 assessment where it hit bounds and needed to be fixed), with
+(unlike in the 2019 assessment where it encountered bounds and so was fixed)
+with
 \protect{$\log \theta_{\text{surv}}$} estimated as
 \Sexpr{log.theta.survey.median}
 (\Sexpr{log.theta.survey.025},
