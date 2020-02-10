@@ -15,7 +15,7 @@ make.catches.table.US(catches,
                         Research catch includes landed catch associated with
                         research-related activities. Catch associated with
                         surveys and discarded bycatch in fisheries not targeting
-                        hake is not currently included in the model.",
+                        hake is not currently included in the table or model.",
                         sep=""),
                       xlabel = "tab:intro-catches-US",
                       font.size = 10,
