@@ -774,6 +774,12 @@ $\Fforty$ default harvest rate catch target. This can happen for the median
 relative fishing intensity in projected years because the $\Fforty$ default
 harvest-rate catch limit is calculated using baseline selectivity from all
 years, whereas the forecasted catches are removed using selectivity
+averaged over the last five years. Recent changes in selectivity will thus be reflected
+in the determination of fishing in excess of the default harvest
+policy. Alternative catch levels where median relative fishing intensity is
+100\% for three years of projections are provided for comparison (scenario g:
+FI=100\%).
+% Manual 2020 done.
 %
 <<decisions-spr-table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
@@ -792,14 +798,10 @@ make.decision.table(base.model,
                     placement = "tbp")
 @
 
+
+
 \clearpage  % 2018: Then forces Table i and Fig j to be on same page, and j/k.
 
-averaged over the last five years. Recent changes in selectivity will thus be reflected
-in the determination of fishing in excess of the default harvest
-policy. Alternative catch levels where median relative fishing intensity is
-100\% for three years of projections are provided for comparison (scenario g:
-FI=100\%).
-% Manual 2020 done.
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
