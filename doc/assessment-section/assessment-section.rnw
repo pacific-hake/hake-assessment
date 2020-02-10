@@ -653,18 +653,29 @@ between the 2010 and 2012 recruitment deviations. This continues to be likely
 caused by the relative proportion of these two cohorts being better informed by
 recent age-composition data than the absolute magnitude of these recruitments.
 
-The new priors for $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$ resulted ....
-**Andy to come back to this when Chris finishes the posterior tables (as he'll have some values to
-use). Should change the following ranges to the usual credible intervals.**
-the resulting multiplier applied to the survey
-age-composition data ranged between
-\Sexpr{DM.weight.survey.low} and \Sexpr{DM.weight.survey.high} with a
-median of \Sexpr{DM.weight.survey.median}.
-The D-M parameter for the fishery weights was well sampled by the MCMC algorithm,
-with a median estimate of
-$\log \theta_{\text{fish}} = \Sexpr{log.theta.fishery.median}$ and an associated
-median weight of
-$\theta_{\text{fish}}/(1+\theta_{\text{fish}}) = \Sexpr{DM.weight.fishery.median}$.
+The new prior for $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$ results
+in the estimate (median and 95\% credible interval) for $\log \theta_{\text{fish}}$ of
+\Sexpr{log.theta.fishery.median}
+(\Sexpr{log.theta.fishery.025},
+\Sexpr{log.theta.fishery.975}),
+giving an effective sample
+size multiplier $\theta_{\text{fish}} / (1 + \theta_{\text{fish}})$
+of
+\Sexpr{DM.weight.fishery.median}
+(\Sexpr{DM.weight.fishery.025},
+\Sexpr{DM.weight.fishery.975}).
+The new prior results in the age-composition parameter being well-sampled
+(unlike in the 2019 assessment), with
+\protect{$\log \theta_{\text{surv}}$} estimated as
+\Sexpr{log.theta.survey.median}
+(\Sexpr{log.theta.survey.025},
+\Sexpr{log.theta.survey.975}),
+and the resulting effective sample
+size multiplier $\theta_{\text{surv}} / (1 + \theta_{\text{surv}})$
+of
+\Sexpr{DM.weight.survey.median}
+(\Sexpr{DM.weight.survey.025},
+\Sexpr{DM.weight.survey.975}).
 
 The base model fit to the
 acoustic survey biomass index (Figure~\ref{fig:main-mcmc-survey-fit})

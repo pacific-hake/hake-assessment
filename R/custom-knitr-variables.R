@@ -482,13 +482,46 @@ theta.survey <- exp(base.model$parameters["ln(EffN_mult)_2","Value"])
 # approximate MLE weights
 DM.weight.fishery <- round(theta.fishery/(1+theta.fishery),3)
 DM.weight.survey <- round(theta.survey/(1+theta.survey),3)
-# MCMC medians for the fishery (survey value fixed at MLE)
+# MCMC medians for the fishery and survey, and quantiles (and low and high)
 col.effn <- grep("EffN_mult._1", colnames(base.model$mcmc), perl = TRUE)
 log.theta.fishery.median <- round(median(base.model$mcmc[, col.effn]),3)
+log.theta.fishery.025    <- round(quantile(base.model$mcmc[, col.effn],
+                                           probs = 0.025),
+                                  3)
+log.theta.fishery.975    <- round(quantile(base.model$mcmc[, col.effn],
+                                           probs = 0.975),
+                                  3)
 DM.weight.fishery.median <- round(median(exp(base.model$mcmc[, col.effn])/(1+exp(base.model$mcmc[, col.effn]))),3)
+DM.weight.fishery.025    <- round(exp(log.theta.fishery.025) /
+                                  ( 1 + exp(log.theta.fishery.025)),
+                                  3)     # Works since function is monotonic,
+                                        # maybe minor rounding error
+DM.weight.fishery.975    <- round(exp(log.theta.fishery.975) /
+                                  ( 1 + exp(log.theta.fishery.975)),
+                                  3)
+
+log.theta.survey.median <- round(median(base.model$mcmc[, col.effn + 1]),3)
+log.theta.survey.025    <- round(quantile(base.model$mcmc[, col.effn + 1],
+                                           probs = 0.025),
+                                  3)
+log.theta.survey.975    <- round(quantile(base.model$mcmc[, col.effn + 1],
+                                           probs = 0.975),
+                                  3)
+DM.weight.survey.median <- round(median(exp(base.model$mcmc[, col.effn +
+                                                              1])/(1+exp(base.model$mcmc[, col.effn + 1]))),3)
+DM.weight.survey.025    <- round(exp(log.theta.survey.025) /
+                                  ( 1 + exp(log.theta.survey.025)),
+                                  3)     # Works since function is monotonic
+DM.weight.survey.975    <- round(exp(log.theta.survey.975) /
+                                  ( 1 + exp(log.theta.survey.975)),
+                                  3)
+
+
 DM.weight.survey.median <- round(median(exp(base.model$mcmc[, col.effn+1])/(1+exp(base.model$mcmc[, col.effn+1]))),3)
 DM.weight.survey.low <- f(min(exp(base.model$mcmc[, col.effn+1])/(1+exp(base.model$mcmc[, col.effn+1]))),2)
 DM.weight.survey.high <- f(max(exp(base.model$mcmc[, col.effn+1])/(1+exp(base.model$mcmc[, col.effn+1]))),2)
+
+
 ################################################################################
 ## joint probability (%age) of being being both above the target relative fishing intensity in \Sexpr{end.yr-1}
 ##   and below the $\Bforty$ (40\% of $B_0$) reference point at the start of \Sexpr{end.yr}
