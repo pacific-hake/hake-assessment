@@ -210,9 +210,8 @@ make_key_posteriors_mcmc_priors_vs_posts_plot <- function(model,
 #' density from a smoothed histogram of values in the trace plot).
 #'
 #' @param model A model object as output by [load_ss_models()]
-#' @param subplot Which of the supplied `key.posteriors.regex` to plot
-#' @param key.posteriors.regex  A vector of regular experessions represting key posteriors
-#' @param key.posteriors.names  A vector of names to show for the key posteriors
+#' @param posterior.regex  A regular experession represting a parameter as it appears in the SS output column
+#' @param posterior.name  A name to show for the poosterior on the plot
 #'
 #' @return A 4-panel plot of MCMC diagnostics
 #' @export
