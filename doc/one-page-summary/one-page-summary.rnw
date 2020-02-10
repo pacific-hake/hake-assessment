@@ -14,7 +14,7 @@ survey and commercial fisheries.
   \item Structural changes from \Sexpr{last.assess.yr} involve a new prior
     distribution for the parameters that weight the age-composition data, removal of
     the constraint that estimated recruitment deviations must sum to zero, and
-    using the average of the most recent five years (rather than three years) of
+    using the average of the most recent five years (rather than all years) of
     weight-at-age data for calculating forecasts.
 
   \item Updates to the data include: the biomass estimate and age-composition

@@ -523,7 +523,7 @@ of 2016--2018; this run~54 yielded similar results to the base model.
 Stock Synthesis no longer has this anomalous requirement, and so for the current assessment we
 use the recent mean for the forecasts and the correct data for the most
 recent year (2019). For the current assessment we use the mean of the most recent five years
-(\Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}), rather than three years as in the
+(\Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}), rather than all years as in the
 previous assessment, to be consistent with selectivity, for which the forecasts also
 use the mean over the recent five years.
 % Above can be simplified in 2021, to hopefully just say we do the same as
