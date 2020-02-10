@@ -931,7 +931,8 @@ make.age.comp.forecast.plot(base.model)
   (combined across all sectors in both countries). Gray bars show median estimates.
   Thick black lines show 50\% credibility intervals and thin black lines show 95\%
   credibility intervals. These estimates are based on the posterior distribution for
-  selectivity averaged across the most recent five years and the distribution for expected
+  selectivity averaged across the most recent five years, weight-at-age data averaged across the
+  most recent five years, and the distribution for expected
   numbers at age at the start of \Sexpr{end.yr} (see Table~\ref{tab:main-est-numbers-at-age} for
   the MLEs for numbers-at-age for all years). The panel on the right is scaled based on
   the weight at each age averaged across the last five years.}
