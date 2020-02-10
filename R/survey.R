@@ -39,8 +39,8 @@ make.survey.history.table <- function(dat,
                      latex.mlc(c("Sampling",
                                  "CV")),
                      latex.mlc(c("Number of",
-                                 "hauls with bio.",
-                                 "samples")))
+                                 "hauls with",
+                                 "age samples")))
 
   size.string <- latex.size.str(font.size, space.size)
   print(xtable(dat,
