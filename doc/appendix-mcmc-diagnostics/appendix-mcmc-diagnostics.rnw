@@ -1,8 +1,6 @@
 \chapter{Base Model MCMC Diagnostics}
 \label{chap:mcmc-diagnostics}
 
-This appendix contains the MCMC diagnostics for the base model.
-
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
