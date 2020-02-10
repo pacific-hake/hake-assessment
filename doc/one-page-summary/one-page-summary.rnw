@@ -59,7 +59,7 @@ from last year).
     \Sexpr{probs.curr.below.bforty}\%, and the probability that the relative fishing
     intensity is above its target at the end of \Sexpr{end.yr-1} is
     \Sexpr{probs.curr.rel.fish.intens.above.one}\%. The joint
-    probability of these is \Sexpr{joint.percent.prob.above.below}\%.
+    probability of both these occurring is \Sexpr{joint.percent.prob.above.below}\%.
 
   \item Based on the default harvest rule, the estimated median catch limit for
 \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with
