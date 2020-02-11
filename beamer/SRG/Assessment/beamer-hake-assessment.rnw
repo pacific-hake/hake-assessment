@@ -319,69 +319,66 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
  \ec
 }
 
-% 
-% %----------------------------------------------------------
-% \section{Fits to data}
-% \subsection{}
-% \frame{\frametitle{Fit to the acoustic survey index of abundance (MCMC)}
-%   \bc
-%   <<mcmc.survey.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%     make.mcmc.survey.fit.plot(base.model,
-%                           start.yr = survey.start.yr,
-%                           end.yr = survey.end.yr,
-%                           probs = c(0.025, 0.975),
-%                           y.max = 5.5e6)
-%   @
-%   \ec
-% }
-% 
-% %----------------------------------------------------------
-% 
-% \frame{\frametitle{Fit to acoustic survey age comps (MCMC)}
-% \begin{columns}
-%   \begin{column}{0.38\textwidth}
-%     \bi
-%       \item 1999 cohort often over-predicted
-%       \item Young cohorts in 2003-2011 underfit
-%       \item Recent years (2012-2017) show good fits, including 2010 cohort
-%     \ei
-%   \end{column}
-%   \begin{column}{0.59\textwidth}
-%     \vspace{-15pt}
-%     \bc
-%       <<mcmc.survey.age.comp.fits, fig.height=4.4, fig.width=5.5,out.width='1.0\\columnwidth'>>=
-%       make.age.comp.fit.plot(base.model,
-%                              subplot = 2)
-%      @
-%     \ec
-%   \end{column}
-% \end{columns}
-% }
-% 
-% %----------------------------------------------------------
-% 
-% \frame{\frametitle{Fit to fishery age comps (MCMC)}
-% \begin{columns}
-%   \begin{column}{0.38\textwidth}
-%     \bi
-%       \item Big 1999, 2010, and 2014 cohorts seem to fit particularly well
-%       \item Some over- and under-fitting in 1980 and 1984 cohorts
-%       \item Other recent above-average sized cohorts (2005, 2006, 2008) are often underfit when young
-%       \item 2016 cohort fit well
-%     \ei
-%   \end{column}
-%   \begin{column}{0.59\textwidth}
-%     \vspace{-15pt}
-%     \bc
-%       <<mcmc.fishery.age.comp.fits, fig.height=5.2, fig.width=6.5,out.width='1.0\\columnwidth'>>=
-%       make.age.comp.fit.plot(base.model,
-%                              subplot = 1)
-%      @
-%     \ec
-%   \end{column}
-% \end{columns}
-% }
-% 
+%----------------------------------------------------------
+\section{Fits to data}
+\subsection{}
+\frame{\frametitle{Fit to the acoustic survey index of abundance (MCMC)}
+  \bc
+  <<mcmc.survey.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+    make.mcmc.survey.fit.plot(base.model,
+                              start.yr = survey.start.yr,
+                              end.yr = survey.end.yr,
+                              probs = c(0.025, 0.975),
+                              y.max = 5.5e6)
+  @
+  \ec
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Fit to acoustic survey age comps (MCMC)}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item 1999 cohort often over--predicted
+      \item Young cohorts in 2003--2011 underfit
+      \item Recent years (2012--\Sexpr{last.survey.year}) show good fits, including 2010 cohort
+    \ei
+  \end{column}
+  \begin{column}{0.59\textwidth}
+    \vspace{-15pt}
+    \bc
+      <<mcmc.survey.age.comp.fits, fig.height=4.4, fig.width=5.5,out.width='1.0\\columnwidth'>>=
+      make.age.comp.fit.plot(base.model,
+                             subplot = 2)
+     @
+    \ec
+  \end{column}
+\end{columns}
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Fit to fishery age comps (MCMC)}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item Large 1999, 2010, and 2014 cohorts fit particularly well.
+      \item Some over- and under-fitting in 1980 and 1984 cohorts.
+      \item Other recent above-average sized cohorts (2005, 2006, 2008) are often underfit when young.
+      \item The 2016 cohort fits well.
+    \ei
+  \end{column}
+  \begin{column}{0.59\textwidth}
+    \vspace{-15pt}
+    \bc
+      <<mcmc.fishery.age.comp.fits, fig.height=5.2, fig.width=6.5,out.width='1.0\\columnwidth'>>=
+      make.age.comp.fit.plot(base.model,
+                             subplot = 1)
+     @
+    \ec
+  \end{column}
+\end{columns}
+}
+
 % %----------------------------------------------------------
 % 
 % \frame{\frametitle{Pearson residual for fit to the age data (MLE)}
