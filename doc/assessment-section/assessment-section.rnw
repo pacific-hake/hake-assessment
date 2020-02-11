@@ -490,8 +490,8 @@ In short, these included the following:
   \item Change to estimating a simple vector of recruitment deviations rather
   than a vector of deviations that are constrained to sum to zero;
   \item Update catch data from years prior to \Sexpr{last.data.yr};
-  \item Update age-composition data from years prior to 2018;
-  \item Update weight-at-age data from years prior to 2018;
+  \item Update age-composition data from years prior to \Sexpr{last.data.yr};
+  \item Update weight-at-age data from years prior to \Sexpr{last.data.yr};
   \item Add \Sexpr{last.data.yr} total catch;
   \item Add \Sexpr{last.data.yr} fishery age-composition and weight-at-age data;
   \item Add \Sexpr{last.data.yr} survey biomass estimate;
