@@ -294,30 +294,31 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \ei
 \end{frame}
 
-%----------------------------------------------------------
-% \section{MCMC diagnostics}
-% \frame{\frametitle{MCMC trace plots (more in Figures 18 and 19)}
-%    \bc
-%    <<main.mcmc.diag.m, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%    make.mcmc.diag.plot(base.model, subplot = 1)
-%    @
-%    \ec
-% }
-% 
-% \frame{\frametitle{MCMC diagnostics for all parameters and spawning biomass}
-%   \bc
-%   <<main.mcmc.diag.hists, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%   make.mcmc.diag.hists.plot(base.model)
-%   @
-%   \ec
-% }
-% 
-% \frame{\frametitle{MCMC diagnostics -- Gelman-Rubin plot for key parameters}
-%  \bc
-%   \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-%   \includegraphics[height=2.9in]{../../../doc/main-figures/KeyParameterGelman_MultChain}
-%  \ec
-% }
+----------------------------------------------------------
+\section{MCMC diagnostics}
+\frame{\frametitle{MCMC trace plots (more in Appendix A, Figures A.1--A.3)}
+   \bc
+   <<main.mcmc.diag.m, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+   make.mcmc.diag.plot(base.model, key.posteriors[5], key.posteriors.titles[5])
+   @
+   \ec
+}
+ 
+\frame{\frametitle{MCMC diagnostics for all parameters and spawning biomass}
+  \bc
+  <<main.mcmc.diag.hists, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+  make.mcmc.diag.hists.plot(base.model)
+  @
+  \ec
+}
+
+\frame{\frametitle{MCMC diagnostics -- Gelman-Rubin plot for key parameters}
+ \bc
+  \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+  \includegraphics[height=2.9in]{../../../doc/main-figures/KeyParameterGelman_MultChain}
+ \ec
+}
+
 % 
 % %----------------------------------------------------------
 % \section{Fits to data}
