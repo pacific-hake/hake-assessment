@@ -404,31 +404,36 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \bc {\scriptsize Dark bubbles are positive residuals (observed > expected) and white bubbles are negative residuals (observed < expected)} \ec
 }
 
-% %----------------------------------------------------------
-% 
-% \section{Estimated quantities}
-% \subsection{}
-% 
-% \frame{\frametitle{Key parameters}
-% \begin{columns}
-%   \begin{column}{0.38\textwidth}
-%     \bi
-%       \item Prior for natural mortality looks to be constraining posterior
-%       \item Posterior for steepness does not shift much from prior
-%     \ei
-%   \end{column}
-%   \begin{column}{0.59\textwidth}
-%     \vspace{-15pt}
-%     \bc
-%     <<main.prior.posterior, fig.height=6, fig.width=8,out.width='0.95\\columnwidth'>>=
-%       make.mcmc.priors.vs.posts.plot(base.model,
-%                                      key.posteriors)
-%     @
-%     \ec
-%   \end{column}
-% \end{columns}
-% }
-% 
+%----------------------------------------------------------
+\section{Estimated quantities}
+\subsection{}
+
+\frame{\frametitle{Key parameters}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item Prior for natural mortality looks to be constraining posterior
+      \item Posterior for steepness does not shift much from prior
+      \item DM for fishery is estimated quite certainly for both MLE and MCMC
+    \ei
+  \end{column}
+  \begin{column}{0.59\textwidth}
+    \vspace{-15pt}
+    \bc
+    <<main.prior.posterior, fig.height=6, fig.width=8,out.width='0.95\\columnwidth'>>=
+make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
+                                              key.posteriors,
+                                              ncol = 2,
+                                              nrow = 3,
+                                              show_legend = TRUE,
+                                              legend_panel = 3,
+                                              titles = key.posteriors.titles)
+    @
+    \ec
+  \end{column}
+\end{columns}
+}
+
 % %----------------------------------------------------------
 % 
 % \frame{\frametitle{Catchability (\emph{q}) posterior and values for recent assessments}
