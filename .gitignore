@@ -1,3 +1,4 @@
+hake-assessment.Rproj
 *.log
 *.aux
 *.bbl
@@ -74,4 +75,3 @@ temp-keep/
 
 *synctex*
 references
-hake-assessment.Rproj
