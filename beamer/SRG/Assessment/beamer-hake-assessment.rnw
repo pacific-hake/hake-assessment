@@ -379,36 +379,31 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \end{columns}
 }
 
-% %----------------------------------------------------------
-% 
-% \frame{\frametitle{Pearson residual for fit to the age data (MLE)}
-% \begin{columns}
-%   \begin{column}{0.48\textwidth}
-%     \vspace{-16pt}
-%     \bc
-%       Survey
-%       <<survey.age.comp.pearson, fig.height=8, fig.width=8, out.width='0.85\\columnwidth'>>=
-%         oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-%         make.fleet.age.comp.pearson.plot(base.model,fleet=2,fleetName="")
-%         par(oldpar)
-%       @
-%     \ec
-%   \end{column}
-%   \begin{column}{0.48\textwidth}
-%     \vspace{-16pt}
-%     \bc
-%       Fishery
-%       <<fishery.age.comp.pearson, fig.height=8, fig.width=8, out.width='0.85\\columnwidth'>>=
-%         oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-%         make.fleet.age.comp.pearson.plot(base.model, fleet = 1, fleetName = "")
-%         par(oldpar)
-%       @
-%     \ec
-%   \end{column}
-% \end{columns}
-% \bc {\scriptsize Dark bubbles are positive residuals (observed > expected) and white bubbles are negative residuals (observed < expected)} \ec
-% }
-% 
+%----------------------------------------------------------
+\frame{\frametitle{Pearson residual for fit to the age data (MLE)}
+\begin{columns}
+  \begin{column}{0.48\textwidth}
+    \vspace{-16pt}
+    \bc
+      Fishery
+      <<survey.age.comp.pearson, fig.height=8, fig.width=8, out.width='0.85\\columnwidth'>>=
+        make_age_comp_pearson_plot(base.model, subplot = 1, legend.position = "top", alpha = 0.7)
+      @
+    \ec
+  \end{column}
+  \begin{column}{0.48\textwidth}
+    \vspace{-16pt}
+    \bc
+      Survey
+      <<fishery.age.comp.pearson, fig.height=8, fig.width=8, out.width='0.85\\columnwidth'>>=
+        make_age_comp_pearson_plot(base.model, subplot = 2, alpha = 0.7)
+      @
+    \ec
+  \end{column}
+\end{columns}
+\bc {\scriptsize Dark bubbles are positive residuals (observed > expected) and white bubbles are negative residuals (observed < expected)} \ec
+}
+
 % %----------------------------------------------------------
 % 
 % \section{Estimated quantities}
