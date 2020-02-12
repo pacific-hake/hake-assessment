@@ -294,7 +294,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \ei
 \end{frame}
 
-----------------------------------------------------------
+% ----------------------------------------------------------
 \section{MCMC diagnostics}
 \frame{\frametitle{MCMC trace plots (more in Appendix A, Figures A.1--A.3)}
    \bc
@@ -434,201 +434,201 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
 \end{columns}
 }
 
-% %----------------------------------------------------------
-% 
-% \frame{\frametitle{Catchability (\emph{q}) posterior and values for recent assessments}
-%  \bc
-%   <<histQ, fig.height=2.25, fig.width=5.5>>=
-%      make.mcmc.catchability.plot(base.model)
-%   @
-%   % Manually update the q values and years in this table (done 2018)
-%   \begin{table}
-%     \begin{tabular}{cccc} \hline
-%       MLE (\Sexpr{assess.yr}) & Median (\Sexpr{assess.yr}) &
-%         Median (\Sexpr{assess.yr - 1}) & Median (\Sexpr{assess.yr - 2}) \\
-%       \hline
-%       \Sexpr{round(base.model$cpue$Calc_Q[1],2)}  &
-%           \Sexpr{round(median(base.model$extra.mcmc$Q_vector), 2)} &
-%           \Sexpr{round(median(last.yr.base.model$extra.mcmc$Q_vector), 2)} &
-%             0.94 \\
-%       \hline
-%     \end{tabular}
-%   \end{table}
-%  \ec
+%----------------------------------------------------------
+
+\frame{\frametitle{Catchability (\emph{q}) posterior and values for recent assessments}
+ \bc
+  <<histQ, fig.height=2.25, fig.width=5.5>>=
+     make.mcmc.catchability.plot(base.model)
+  @
+  \begin{table}
+    \begin{tabular}{cccc} \hline
+      MLE (\Sexpr{assess.yr}) & Median (\Sexpr{assess.yr}) &
+        Median (\Sexpr{assess.yr - 1}) & Median (\Sexpr{assess.yr - 2}) \\
+      \hline
+      \Sexpr{round(base.model$cpue$Calc_Q[1],2)}  &
+      \Sexpr{round(median(base.model$extra.mcmc$Q_vector), 2)} &
+      \Sexpr{round(median(last.yr.base.model$extra.mcmc$Q_vector), 2)} &
+            0.96 \\
+      \hline
+    \end{tabular}
+  \end{table}
+ \ec
+}
+
+%----------------------------------------------------------
+ \frame{\frametitle{Time-varying selectivity}
+ \begin{columns}
+  \begin{column}{0.48\textwidth}
+    \vspace{-10pt}
+    \bc
+    <<main.tv.selex, fig.height=12, fig.width=10,out.width='0.8\\columnwidth'>>=
+    ## Extract TV selectivity fits by running the calculation function.
+    tv.selex.start.yr <- 1990
+    tv.selex.ages <- 1:8
+    tv.selex <- calc.tv.selex(base.model,
+                              start.yr = tv.selex.start.yr,
+                              end.yr = last.data.yr,
+                              ages = tv.selex.ages,
+                              probs = c(0.025, 0.975))
+    make.tv.selex.plot(tv.selex)
+    @
+    \ec
+  \end{column}
+  \begin{column}{0.48\textwidth}
+    \vspace{-10pt}
+    \bc
+    <<main.tv.selex.uncertainty, fig.height=12, fig.width=10, out.width='0.8\\columnwidth'>>=
+    ## Extract TV selectivity fits by running the calculation function, once for each year span,
+    ##  then call the plotting function with them as a list to make a multipanel plot.
+    tv.selex.left <- calc.tv.selex(base.model,
+                                   start.yr = tv.selex.start.yr,
+                                   end.yr = 2001,
+                                   ages = tv.selex.ages,
+                                   probs = c(0.025, 0.975))
+    tv.selex.right <- calc.tv.selex(base.model,
+                                    start.yr = 2002,
+                                    end.yr = last.data.yr,
+                                    ages = tv.selex.ages,
+                                    probs = c(0.025, 0.975))
+    make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
+    @
+    \ec
+  \end{column}
+\end{columns}
+}
+
+%----------------------------------------------------------
+% \frame{\frametitle{DM Weighting of age data: $\theta_{\text{surv}}$ and
+%     $\theta_{\text{fish}}$}
+%     
+%   \bi
+%     \item MCMC explorations in 2019 indicated $\log \theta_{\text{surv}}$
+%       not being sampled efficiently.
+%     \bi
+%       \item Was due to many samples occurring in a part of parameter space
+%         where the effective sample size multiplier,
+%         $\theta_{\text{surv}}/(1+\theta_{\text{surv}})$, is between 0.99 and 1.0.
+%       \item Likelihood surface (w.r.t. $\theta_{\text{surv}}$) is almost completely
+%         flat in this area, and input sample sizes given full weight.
+%       \item To improve MCMC convergence, $\log \theta_{\text{surv}}$
+%         was fixed at the MLE estimate of \Sexpr{log.theta.survey},
+%         corresponding to a weight of
+%         $\theta_{\text{surv}}/(1+\theta_{\text{surv}}) = \Sexpr{DM.weight.survey}$.
+%     \ei
+%     \item $\log \theta_{\text{fish}}$ well sampled with median estimate of
+%         \Sexpr{log.theta.fishery.median} and associated weight of
+%         $\theta_{\text{fish}}/(1+\theta_{\text{fish}}) =
+%         \Sexpr{DM.weight.fishery.median}$.
+%   \ei
 % }
-% 
-% %----------------------------------------------------------
-% 
-%  \frame{\frametitle{Time-varying selectivity}
-%  \begin{columns}
-%   \begin{column}{0.48\textwidth}
-%     \vspace{-10pt}
-%     \bc
-%     <<main.tv.selex, fig.height=12, fig.width=10,out.width='0.8\\columnwidth'>>=
-%     ## Extract TV selectivity fits by running the calculation function.
-%     tv.selex.start.yr <- 1990
-%     tv.selex.ages <- 1:8
-%     tv.selex <- calc.tv.selex(base.model,
-%                               start.yr = tv.selex.start.yr,
-%                               end.yr = last.data.yr,
-%                               ages = tv.selex.ages,
-%                               probs = c(0.025, 0.975))
-%     make.tv.selex.plot(tv.selex)
-%     @
-%     \ec
-%   \end{column}
-%   \begin{column}{0.48\textwidth}
-%     \vspace{-10pt}
-%     \bc
-%     <<main.tv.selex.uncertainty, fig.height=12, fig.width=10, out.width='0.8\\columnwidth'>>=
-%     ## Extract TV selectivity fits by running the calculation function, once for each year span,
-%     ##  then call the plotting function with them as a list to make a multipanel plot.
-%     tv.selex.left <- calc.tv.selex(base.model,
-%                                    start.yr = tv.selex.start.yr,
-%                                    end.yr = 2001,
-%                                    ages = tv.selex.ages,
-%                                    probs = c(0.025, 0.975))
-%     tv.selex.right <- calc.tv.selex(base.model,
-%                                     start.yr = 2002,
-%                                     end.yr = last.data.yr,
-%                                     ages = tv.selex.ages,
-%                                     probs = c(0.025, 0.975))
-%     make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
-%     @
-%     \ec
-%   \end{column}
-% \end{columns}
-% }
-% 
-% %----------------------------------------------------------
-% 
-% %% \frame{\frametitle{Weighting of age data: $\theta_{\text{surv}}$ and
-% %%     $\theta_{\text{fish}}$}
-% %%   \bi
-% %%     \item Initial MCMC explorations indicated $\log \theta_{\text{surv}}$
-% %%       not being sampled efficiently.
-% %%     \bi
-% %%       \item Was due to many samples occurring in a part of parameter space
-% %%         where the effective sample size multiplier,
-% %%         $\theta_{\text{surv}}/(1+\theta_{\text{surv}})$, is between 0.99 and 1.0.
-% %%       \item Likelihood surface (w.r.t. $\theta_{\text{surv}}$) is almost completely
-% %%         flat in this area, and input sample sizes given full weight.
-% %%       \item To improve MCMC convergence, $\log \theta_{\text{surv}}$
-% %%         was fixed at the MLE estimate of \Sexpr{log.theta.survey},
-% %%         corresponding to a weight of
-% %%         $\theta_{\text{surv}}/(1+\theta_{\text{surv}}) = \Sexpr{DM.weight.survey}$.
-% %%     \ei
-% %%     \item $\log \theta_{\text{fish}}$ well sampled with median estimate of
-% %%         \Sexpr{log.theta.fishery.median} and associated weight of
-% %%         $\theta_{\text{fish}}/(1+\theta_{\text{fish}}) =
-% %%         \Sexpr{DM.weight.fishery.median}$.
-% %%   \ei
-% %% }
-% 
-% %----------------------------------------------------------
-% 
-% \frame{\frametitle{Key quantities}
-%   \vspace{-5pt}
-%   \bc
-%   <<main.parameter.estimates, results='asis', echo=FALSE>>=
-%     make.short.parameter.estimates.table(base.model,
-%                                          last.yr.base.model,
-%                                          posterior.regex = key.posteriors,
-%                                          end.yr = end.yr,
-%                                          digits = 3,
-%                                          xcaption = NULL,
-%                                          xlabel = "tab:main-parameter-estimates",
-%                                          font.size = 7,
-%                                          space.size = 8)
-%     @
-%   \ec
-% }
-% 
-% %----------------------------------------------------------
-% 
-% \frame{\frametitle{Recruitment Deviations}
-%   \vspace{-5pt}
-%   \bc
-%   <<main.recruitment.devs, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%     oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-%     make.recruitment.dev.plot(base.model,
-%                               end.yr = end.yr)
-%     par(oldpar)
-%   @
-%   \ec
-% }
-% 
-% %----------------------------------------------------------
-% 
-% \frame{\frametitle{Absolute Recruitment}
-%   \vspace{-5pt}
-%   \bc
-%   <<recruitment, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%     make.recruitment.plot(base.model,
-%                           equil.yr = unfished.eq.yr,
-%                           start.yr = start.yr,
-%                           end.yr = end.yr,
-%                           color = "blue",
-%                           add.mean = TRUE,
-%                           add.r0 = TRUE)
-%   @
-%   \ec
-% }
-% 
-% %----------------------------------------------------------
-% 
-% \frame{\frametitle{Estimate of 2014 and 2016 cohort}
-% 
-% <<prop.biomass.large.cohorts>>=
-% # From Table 21 for 2018 row, saved in estimated-biomass-at-age.csv
-% baa <- read.csv(file.path(output.csv.dir, out.est.baa.file))
-% baa.curr <- baa %>%
-%   dplyr::filter(Year == assess.yr) %>%
-%   select(-Year)
-% baa.curr.tot <- sum(baa.curr)
-% b.curr.prop.age3 = baa.curr[4]/baa.curr.tot
-% b.curr.prop.age5 = baa.curr[6]/baa.curr.tot
-% b.curr.prop.age9 = baa.curr[10]/baa.curr.tot
-% 
-% tmp.last <- quantile(last.yr.base.model$mcmc$Recr_2014, probs = c(0.025, 0.5, 0.975) / 1000)
-% tmp.curr <- quantile(base.model$mcmc$Recr_2014, probs = c(0.025, 0.5, 0.975) / 1000)
-% last.yr.recr.2014 <- f(c(tmp.last, tmp.last[3] - tmp.last[1]), 0)
-% recr.2014 <- f(c(tmp.curr, tmp.curr[3] - tmp.curr[1]), 0)
-% recr.2014.ci.diff.prop <- f((tmp.curr[3] - tmp.curr[1]) / (tmp.last[3] - tmp.last[1]) * 100, 1)
-% @
-% The 2014 and 2016 cohorts are estimated to be large: \\
-% \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of the 2014 cohort being larger than 2010.\\
-% The 2016 cohort is estimated to be large, but is highly uncertain.\\
-% 
-% ~\\
-% 
-% Addition of new data for this year's model reduces 2014 cohort uncertainty to \Sexpr{recr.2014.ci.diff.prop}\%
-% of what it was in the \Sexpr{assess.yr - 1} assessment:
-% 
-%   \begin{table}
-%     \begin{tabular}{ccrcc} \hline
-%       Calculation (millions) & Low (2.5\%) & Median & High (97.5\%) & Interval size\\
-%       \hline
-%       \Sexpr{assess.yr-1} assessment recruitment in 2014 &
-%          \Sexpr{last.yr.recr.2014[1]} & \Sexpr{last.yr.recr.2014[2]} & \Sexpr{last.yr.recr.2014[3]} & \Sexpr{last.yr.recr.2014[4]}\\
-%       \Sexpr{assess.yr} assessment recruitment in 2014 &
-%          \Sexpr{recr.2014[1]} & \Sexpr{recr.2014[2]} & \Sexpr{recr.2014[3]} & \Sexpr{recr.2014[4]} \\
-%       \hline
-%     \end{tabular}
-%   \end{table}
-%   ~\\
-% 
-% At the start of \Sexpr{assess.yr} (from Table 21, page 93):\\
-% \bi
-% \item 2010 cohort is estimated to make up \Sexpr{f(b.curr.prop.age9 * 100)}\%
-%   of the biomass
-% \item 2014 cohort is estimated to make up \Sexpr{f(b.curr.prop.age5 * 100)}\%
-%   of the biomass
-% \item 2016 cohort is estimated to make up \Sexpr{f(b.curr.prop.age3 * 100)}\%
-%   of the biomass
-% \ei
-% }
-% 
+
+%----------------------------------------------------------
+
+\frame{\frametitle{Key quantities}
+  \vspace{-5pt}
+  \bc
+  <<main.parameter.estimates, results='asis', echo=FALSE>>=
+    make.short.parameter.estimates.table(base.model,
+                                         last.yr.base.model,
+                                         end.yr = end.yr,
+                                         digits = 3,
+                                         xcaption = NULL,
+                                         xlabel = "tab:main-parameter-estimates",
+                                         font.size = 7,
+                                         space.size = 8)
+    @
+  \ec
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Recruitment Deviations}
+  \vspace{-5pt}
+  \bc
+  <<main.recruitment.devs, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+    #oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+    make.recruitment.dev.plot(base.model,
+                              end.yr = end.yr)
+    #par(oldpar)
+  @
+  \ec
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Absolute Recruitment}
+  \vspace{-5pt}
+  \bc
+  <<recruitment, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+    make.recruitment.plot(base.model,
+                          equil.yr = unfished.eq.yr,
+                          start.yr = start.yr,
+                          end.yr = end.yr,
+                          color = "blue",
+                          add.mean = TRUE,
+                          add.r0 = TRUE)
+  @
+  \ec
+}
+
+%----------------------------------------------------------
+
+\frame{\frametitle{Estimates of 2014 and 2016 cohorts}
+
+<<prop.biomass.large.cohorts>>=
+# From Table 21 for 2018 row, saved in estimated-biomass-at-age.csv
+baa <- read.csv(file.path(output.csv.dir, out.est.baa.file))
+baa.curr <- baa %>%
+  dplyr::filter(Year == assess.yr) %>%
+  select(-Year)
+baa.curr.tot <- sum(baa.curr)
+b.curr.prop.2016 = baa.curr[assess.yr - 2016 + 1]/baa.curr.tot
+b.curr.prop.2014 = baa.curr[assess.yr - 2014 + 1]/baa.curr.tot
+b.curr.prop.2010 = baa.curr[assess.yr - 2010 + 1]/baa.curr.tot
+
+tmp.last.2014 <- quantile(last.yr.base.model$mcmc$Recr_2014, probs = c(0.025, 0.5, 0.975) / 1000)
+tmp.curr.2014 <- quantile(base.model$mcmc$Recr_2014, probs = c(0.025, 0.5, 0.975) / 1000)
+last.yr.recr.2014 <- f(c(tmp.last.2014, tmp.last.2014[3] - tmp.last.2014[1]), 0)
+recr.2014 <- f(c(tmp.curr.2014, tmp.curr.2014[3] - tmp.curr.2014[1]), 0)
+recr.ci.diff.prop.2014 <- f((tmp.curr.2014[3] - tmp.curr.2014[1]) / (tmp.last.2014[3] - tmp.last.2014[1]) * 100, 1)
+tmp.last.2016 <- quantile(last.yr.base.model$mcmc$Recr_2016, probs = c(0.025, 0.5, 0.975) / 1000)
+tmp.curr.2016 <- quantile(base.model$mcmc$Recr_2016, probs = c(0.025, 0.5, 0.975) / 1000)
+last.yr.recr.2016 <- f(c(tmp.last.2016, tmp.last.2016[3] - tmp.last.2016[1]), 0)
+recr.2016 <- f(c(tmp.curr.2016, tmp.curr.2016[3] - tmp.curr.2016[1]), 0)
+recr.ci.diff.prop.2016 <- f((tmp.curr.2016[3] - tmp.curr.2016[1]) / (tmp.last.2016[3] - tmp.last.2016[1]) * 100, 1)
+@
+\bi
+  \item The probability of the 2014 cohort being larger than the 2010 cohort is \Sexpr{prob.percent.2014.rec.gt.2010.rec}\%
+  \item The probability of the 2016 cohort being larger than the 2010 cohort is \Sexpr{prob.percent.2016.rec.gt.2010.rec}\%
+\ei
+~\\
+
+Addition of new data for this year's model increases 2014 cohort uncertainty to \Sexpr{recr.ci.diff.prop.2014}\%
+and 2016 cohort uncertainty to \Sexpr{recr.ci.diff.prop.2016}\% of what it was in the \Sexpr{assess.yr - 1} assessment:
+
+  \begin{table}
+    \begin{tabular}{ccrcc} \hline
+      Calculation (millions) & Low (2.5\%) & Median & High (97.5\%) & Interval size\\
+      \hline
+      \Sexpr{assess.yr-1} assessment recruitment in 2014 & \Sexpr{last.yr.recr.2014[1]} & \Sexpr{last.yr.recr.2014[2]} & \Sexpr{last.yr.recr.2014[3]} & \Sexpr{last.yr.recr.2014[4]}\\
+      \Sexpr{assess.yr} assessment recruitment in 2014 & \Sexpr{recr.2014[1]} & \Sexpr{recr.2014[2]} & \Sexpr{recr.2014[3]} & \Sexpr{recr.2014[4]}\\
+      \hline
+      \Sexpr{assess.yr-1} assessment recruitment in 2016 & \Sexpr{last.yr.recr.2016[1]} & \Sexpr{last.yr.recr.2016[2]} & \Sexpr{last.yr.recr.2016[3]} & \Sexpr{last.yr.recr.2016[4]}\\
+      \Sexpr{assess.yr} assessment recruitment in 2016 & \Sexpr{recr.2016[1]} & \Sexpr{recr.2016[2]} & \Sexpr{recr.2016[3]} & \Sexpr{recr.2016[4]}\\
+      \hline
+    \end{tabular}
+  \end{table}
+  ~\\
+
+\bi
+\item 2010 cohort is estimated to make up \Sexpr{f(b.curr.prop.2010 * 100)}\%
+  of the biomass
+\item 2014 cohort is estimated to make up \Sexpr{f(b.curr.prop.2014 * 100)}\%
+  of the biomass
+\item 2016 cohort is estimated to make up \Sexpr{f(b.curr.prop.2016 * 100)}\%
+  of the biomass
+\ei
+}
+
 % %----------------------------------------------------------
 % 
 % \frame{\frametitle{Numbers-at-age (billions)}
