@@ -439,7 +439,7 @@ make.est.numbers.at.age.table(
   \centering
 <<main-cohort-effects-table, results='asis', echo=FALSE>>=
 make.cohort.table(base.model,
-                  c(1999, 2010, 2014),
+                  c(1999, 2010, 2014, 2016),
                   start.yr,
                   last.data.yr+1,
                   csv.dir = output.csv.dir,
@@ -458,8 +458,8 @@ make.cohort.table(base.model,
                                     Estimated quantities are
                                     MLEs."),
                   xlabel = "tab:main-cohort-effects",
-                  font.size = 10,
-                  space.size = 11)
+                  font.size = 9,
+                  space.size = 10)
 @
 \end{landscape}
 \restoregeometry
