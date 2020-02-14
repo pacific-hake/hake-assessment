@@ -532,3 +532,18 @@ joint.percent.prob.above.below <- f(sum(base.model$mcmc[[paste0("Bratio_", end.y
 joint.percent.prob.above.below.adnuts <- f(sum(sens.models.6$mcmc[[paste0("Bratio_", end.yr)]] < 0.4 &
                                            sens.models.6$mcmc[[paste0("SPRratio_", end.yr-1)]] > 1) / nrow(sens.models.6$mcmc) * 100,
                                     1)
+
+
+## Cohort medians, credible intervals, and 
+rec_2010 <- get_rec_ci(last.yr.base.model, base.model, 2010)
+rec_2014 <- get_rec_ci(last.yr.base.model, base.model, 2014)
+rec_2016 <- get_rec_ci(last.yr.base.model, base.model, 2016)
+## Cohort biomass-at-age
+baa_curr <- get_baa(base.model) %>% 
+  filter(Year == assess.yr) %>%
+  select(-Year)
+## proportions that cohorts contirbute to biomass in assessment year
+baa_curr_tot <- sum(baa_curr)
+b_curr_prop_2010 <- baa_curr[assess.yr - 2010 + 1] / baa_curr_tot
+b_curr_prop_2014 <- baa_curr[assess.yr - 2014 + 1] / baa_curr_tot
+b_curr_prop_2016 <- baa_curr[assess.yr - 2016 + 1] / baa_curr_tot
