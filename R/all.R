@@ -85,5 +85,6 @@ source(file.path(rootd.R, "model-setup.R"))
 source(file.path(rootd.R, "forecast-catch-levels.R"))
 source(file.path(rootd.R, "retrospective-setup.R"))
 source(file.path(rootd.R, "data-tables.R"))
+source(file.path(rootd.R, "useful-quantities.R"))
 
 theme_set(hake_theme())
