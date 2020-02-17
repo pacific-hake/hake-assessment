@@ -152,7 +152,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \item Retrospectives
         \bi
         \item Standard %: -\Sexpr{max(plot.retro.yrs)} years
-        \item Cohort determination (`squid plot') %: -\Sexpr{max(retro.yrs)} years
+        \item Cohort determination (`squid plot') %: -\Sexpr{max(retrospective_yrs)} years
         \item Historical assessments %: - \Sexpr{assess.yr - 1991 + 1} years
         \ei
 \end{enumerate}
@@ -1243,7 +1243,7 @@ weight-at-age as mean 1975-2018.
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 0))
-plot.retro.yrs <- 1:5
+# plot.retro.yrs <- 1:5
 retro.list <- list(base.model)
 for(i in plot.retro.yrs){
   retro.list[[i + 1]] <- base.model$retros[[i]]
@@ -1296,10 +1296,10 @@ par <- oldpar
 <<baby.squid, fig.height=3.5>>=
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
-plot.retro.yrs <- retro.yrs
+# plot.retro.yrs <- retrospective_yrs
 retro.cohorts <- c(2014, 2010, 2007, 2009)     # Selecting three years as examples
 retro.list <- list(base.model)
-for(i in plot.retro.yrs){
+for(i in retrospective_yrs){
   retro.list[[i + 1]] <- base.model$retros[[i]]
 }
 make.squid.plot(retro.list,
@@ -1321,10 +1321,10 @@ par <- oldpar
 <<retro.3, fig.height=3.5>>=
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
-plot.retro.yrs <- retro.yrs
+# plot.retro.yrs <- retro.yrs
 retro.cohorts <- 1999:(end.yr-2)
 retro.list <- list(base.model)
-for(i in plot.retro.yrs){
+for(i in retrospective_yrs){
   retro.list[[i + 1]] <- base.model$retros[[i]]
 }
 make.squid.plot(retro.list,
