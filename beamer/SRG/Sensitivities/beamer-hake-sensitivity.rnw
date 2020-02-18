@@ -140,14 +140,14 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \item MLE vs MCMC for the base model
   \item Sensitivities
         \bi
-        \item Higher standard deviation on prior for natural mortality
         \item Alternative values for steepness ($h$)
         \item Variation of recruitment ($\sigma_r$)
-        \item Include age-1 index
+        \item Higher standard deviation on prior for natural mortality
         \item Alternative data-weighting methods
         \item Flexibility of time-varying selectivity ($\Phi$)
         \item Alternative parameterization of time-varying selectivity
-        \item Alternative weight-at-age and fecundity assumptions (2018 SRG request)
+        \item Include age-1 index (full MCMC results)
+        \item Use ADNUTS (full MCMC results)
         \ei
   \item Retrospectives
         \bi
