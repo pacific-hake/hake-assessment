@@ -1,49 +1,44 @@
+#' Make the ovary collection table
+#'
+#' @details The header in the file is used as the header in the table. If you wish to place a newline
+#' in any header label, insert a '\n' in the label
+#' @param ovary.samples The values as read in from the ovary samples CSV file ("ovary-samples.csv")
+#'  using [readr::read_csv()]
+#' @param xcaption The caption
+#' @param xlabel The latex label to use
+#' @param font.size Size of the font for the table
+#' @param space.size Size of the vertical spaces for the table
+#'
+#' @return An [xtable] object
+#' @export
 make.maturity.samples.table <- function(ovary.samples,
-                                        start.yr,
-                                        end.yr,
                                         xcaption = "default",
                                         xlabel   = "default",
                                         font.size = 10,
                                         space.size = 10){
-  ## Returns an xtable in the proper format for the fishery sample sizes
-  ##
-  ## ovary.samples - the data as read in from the csv file
-  ## xcaption - caption to appear in the calling document
-  ## xlabel - the label used to reference the table in latex
-  ## font.size - size of the font for the table
-  ## space.size - size of the vertical spaces for the table
 
-  tab <- ovary.samples
+  tab <- ovary.samples %>% as.data.frame
 
-  tab[,-1] <- f(tab[,-1])
-  tab[is.na(tab)] <- "--"
-  colnames(tab) <-
-    c(latex.bold("Year"),
-      latex.mlc(c("NWFSC",
-                  "Trawl",
-                  "Survey")),
-      latex.mlc(c("Acoustic",
-                  "survey/Research",
-                  "(Summer)")),
-      latex.mlc(c("Acoustic",
-                  "survey/Research",
-                  "(Winter)")),
-      latex.mlc(c("U.S. At-Sea Hake",
-                  "Observer",
-                  "Program (Spring)")),
-      latex.mlc(c("U.S. At-Sea Hake",
-                  "Observer",
-                  "Program (Fall)")),
-      latex.bold("Total"))
+  tabnew <- tab %>%
+    select(-Year) %>% 
+    mutate(Total = rowSums(.))
+  
+  tabsums <- tabnew %>% 
+    summarize_all(.funs = ~{if(is.numeric(.)) sum(.) else "Total"})
+  
+  yr_col <- c(tab$Year, "Total") %>%
+    enframe %>%
+    select(-name) %>% 
+    rename(Year = value)
+  names(yr_col) <- latex.bold(names(yr_col))
+  tab <- bind_rows(tabnew, tabsums)
+  names(tab) <- map_chr(names(tab), ~{latex.mlc(str_split(.x, "\\\\n")[[1]])})
+  tab <- bind_cols(yr_col, map_dfr(tab[,-1], function(x) f(x)))
+  tab[nrow(tab),] <- latex.bold(tab[nrow(tab),])
+  tab[-nrow(tab), ncol(tab)] <- latex.bold(tab[-nrow(tab), ncol(tab)] %>%
+                                             pull())
 
   size.string <- latex.size.str(font.size, space.size)
-  ## Make the totals row all bold
-  tab[nrow(tab),] <- latex.bold(tab[nrow(tab),])
-  ## Make the totals column all bold (except for the last one which was
-  ##  made bold on previous call)
-  tab[1:(nrow(tab) - 1), ncol(tab)] <-
-    latex.bold(tab[1:(nrow(tab) - 1), ncol(tab)])
-
   print(xtable(tab, caption = xcaption,
                label = xlabel,
                align = get.align(ncol(tab),

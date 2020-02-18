@@ -1,11 +1,10 @@
-Year,Bottom trawl survey,Acoustic Survey/Research,Winter Acoustic Research,U.S. At-sea fishery - Spring,U.S. At-sea fishery - Fall,Total
-2009,263,0,0,0,0,263
-2012,71,199,0,0,0,270
-2013,70,254,0,104,103,531
-2014,276,0,0,105,142,523
-2015,293,193,0,98,112,696
-2016,277,26,309,100,162,874
-2017,109,65,134,93,113,514
-2018,149,64,0,0,0,213
-2019,60,106,0,0,0,166
-Total,1568,907,443,500,632,4050
+Year,NWFSC\nTrawl\nSurvey,Canada Acoustic\nsurvey/Research\n(Summer),U.S. Acoustic\nsurvey/Research\n(Summer),U.S. Acoustic\nsurvey/Research\n(Winter),U.S. At-sea Hake\nObserver\nProgram (Spring),U.S. At-sea Hake\nObserver\nProgram (Fall)
+2009,263,0,0,0,0,0
+2012,71,0,199,0,0,0
+2013,70,0,254,0,104,103
+2014,276,0,0,0,105,142
+2015,293,0,193,0,98,112
+2016,277,0,26,309,100,162
+2017,109,0,65,134,93,113
+2018,149,0,64,0,0,0
+2019,60,15,106,0,0,0

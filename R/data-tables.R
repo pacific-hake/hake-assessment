@@ -51,7 +51,7 @@ survey.summary <- read.csv(file.path(rootd.data, survey.summary.file), stringsAs
 sampling.history <- load.sampling.history(file.path(rootd.data, sampling.history.file))
 further.tac <- further.tac.details(file.path(rootd.data, further.tac.file))
 can.ages <- load.can.age.data(file.path(rootd.data, can.age.file))
-ovary.samples <- read.csv(file.path(rootd.data, ovary.samples.file), stringsAsFactors = FALSE)
+ovary.samples <- read_csv(file.path(rootd.data, ovary.samples.file))
 maturity.ogives <- read.csv(file.path(rootd.data, maturity.ogives.file), stringsAsFactors = FALSE)
 maturity.samples <- read.csv(file.path(rootd.data, maturity.samples.file), stringsAsFactors = FALSE)
 age.1.index <- read.csv(file.path(rootd.data, age.1.file), stringsAsFactors = FALSE)
