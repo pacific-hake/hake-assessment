@@ -1,6 +1,7 @@
 ################################################################################
 ## Data tables (input and output)
 ################################################################################
+catch.targets.file <- "catch-targets-biomass.csv"
 catch.data.file <- "landings-tac-history.csv"
 further.tac.file <- "further-tac-details.csv"
 survey.history.file <- "survey-history.csv"
@@ -45,6 +46,7 @@ cat("Loading all data tables (csv files) from ", rootd.data, "\n")
 catches <- load.catches(file.path(rootd.data, catch.data.file))
 landings.vs.tac <- catches[[2]]
 catches <- catches[[1]]
+catch.targets <- read_csv(file.path(rootd.data, catch.targets.file))
 survey.history <- load.survey.history(file.path(rootd.data, survey.history.file))
 survey.comparison <- read.csv(file.path(rootd.data, survey.comparison.file), stringsAsFactors = FALSE)
 survey.summary <- read.csv(file.path(rootd.data, survey.summary.file), stringsAsFactors = FALSE)

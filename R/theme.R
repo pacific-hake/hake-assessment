@@ -9,8 +9,10 @@ hake_theme <- function(){
           legend.key = element_blank(),
           legend.margin = margin(),
           legend.text.align = 1,
-          panel.grid.major = element_line(colour = "darkgrey", size = 0.2),
-          panel.grid.minor = element_line(colour = "darkgrey", size = 0.1),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          #panel.grid.major = element_line(colour = "darkgrey", size = 0.2),
+          #panel.grid.minor = element_line(colour = "darkgrey", size = 0.1),
           legend.background = element_rect(fill = "transparent"),
           #panel.spacing.x=unit(3, "lines"),
           plot.margin = unit(c(0.1, 0.6, 0.1, 0.1), "lines"))
