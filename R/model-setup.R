@@ -80,9 +80,7 @@ little.ticks <- start.yr:max(big.ticks)
 message("Last survey year: ", survey.end.yr)
 ## Final year of data (This is what is the end year is in the model data files)
 last.data.yr <- end.yr - 1
-last.age.yr <- end.yr - 2
 message("Last year of model data: ", last.data.yr)
-message("Last year of age data: ", last.age.yr)
 
 ## -----------------------------------------------------------------------------
 ## Key posteriors used in the assessment
