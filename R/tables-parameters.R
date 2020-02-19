@@ -427,7 +427,10 @@ make.short.parameter.estimates.sens.table <- function(models,
   ## model.names - a vector of names of the same length as the number of
   ##  models in the models list
   ## end.yr - the last year to include
-  ## age.1 - if TRUE, add the age-1 index parameter to the table
+  ## age.1 - if TRUE, add the age-1 index parameter to the table. Set to FALSE
+  ##  if age.1 index not in any of the models being shown else the
+  ##  'Additional age-1 index SD' row gets populated with recruitment estimates
+  ##  (since there are no NA's to get replaced by dashes)
   ## digits - number of decimal points for the estimates
   ## xcaption - caption to appear in the calling document
   ## xlabel - the label used to reference the table in latex
@@ -656,7 +659,7 @@ make.short.parameter.estimates.table <- function(model,
   cbind(mle.par, mcmc.par)
   tab <- as.data.frame(cbind(mle.par, mcmc.par))
   colnames(tab) <- NULL
-  
+
   ## Format the tables rows depending on what they are.
   ## Decimal valuesn
   tab[c(1, 3, 4, 5, 6, 7),] <- f(tab[c(1, 3, 4, 5, 6, 7),], 3)
@@ -688,7 +691,7 @@ make.short.parameter.estimates.table <- function(model,
   ## These values are not correct and need to be removed from the table
   tab[paste0("Bratio_", end.yr), 3] <- latex.bold("--")
   tab[paste0("SPRratio_", end.yr - 1), 3] <- latex.bold("--")
-  
+
   ## Set the first column to be the names
   ## Empty string below is necessary because of the rbind(c("","",""), tab)
   ##  call above
