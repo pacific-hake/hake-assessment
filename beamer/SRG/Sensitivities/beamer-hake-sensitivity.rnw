@@ -222,7 +222,7 @@ make.short.parameter.estimates.table(base.model,
 #oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 0))
+par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot(
   c(list(base.model),
     sens.models.1[1],
@@ -283,7 +283,7 @@ make.short.parameter.estimates.sens.table(
 #oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 0))
+par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot(
   c(list(base.model),
     sens.models.1[3],
@@ -306,7 +306,7 @@ par <- oldpar
 \vspace{5pt}
 <<sigmar.biomass.fig.rel>>=
 oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 0))
+par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot(
   c(list(base.model),
     sens.models.1[3],
@@ -328,7 +328,7 @@ par <- oldpar
 \begin{center}
 \vspace{5pt}
 <<sigmar.recdevs.figure>>=
-par(mar = c(7.1, 4.1, 0, 0))
+par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot(
   c(list(base.model),
     sens.models.1[3],
@@ -380,7 +380,7 @@ make.short.parameter.estimates.sens.table(
 % , out.width='4.5in'>>=
 <<sens.2.sens.biomass.fig>>=
 oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 0))
+par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot(
   c(list(base.model),
          sens.models.2[1]),
@@ -459,7 +459,7 @@ make.short.parameter.estimates.sens.table(
 \begin{center}
 <<harmonicmean.sensitivity.biomass>>=
 oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 0))
+par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot(
   c(list(base.model),
     sens.models.2[2],
@@ -482,7 +482,7 @@ par <- oldpar
 \begin{center}
 <<harmonicmean.sensitivity.biomass.rel>>=
 oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 0))
+par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot(
   c(list(base.model),
     sens.models.2[2],
@@ -658,7 +658,7 @@ Here we test:
 % , fig.width=8>>=
 <<phi.sensitivity.biomass>>=
 oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 0))
+par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot(
   c(list(base.model),
     sens.models.4[1],
@@ -684,7 +684,7 @@ par <- oldpar
 % fig.width=8>>=
 <<phi.sensitivity.density.2014>>=
 oldpar <- par()
-par(mar = c(7.1, 3.1, 0, 0))
+par(mar = c(7.1, 3.1, 0, 1))
 make.comparison.plot(
   c(list(base.model),
     sens.models.4[1],
@@ -727,7 +727,7 @@ par <- oldpar
 % fig.width=8>>=
 <<phi.sensitivity.density.2016>>=
 oldpar <- par()
-par(mar = c(7.1, 3.1, 0, 0))
+par(mar = c(7.1, 3.1, 0, 1))
 make.comparison.plot(
   c(list(base.model),
     sens.models.4[1],
@@ -786,7 +786,7 @@ make.short.parameter.estimates.sens.table(
 % , fig.width=8>>=
 <<semi.sensitivity.biomass>>=
 oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 0))
+par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot(
   c(list(base.model),
     sens.models.4[4:5]),
@@ -808,7 +808,7 @@ par <- oldpar
 % fig.width=8>>=
 <<semi.sensitivity.density.2014>>=
 oldpar <- par()
-par(mar = c(7.1, 3.1, 0, 0))
+par(mar = c(7.1, 3.1, 0, 1))
 make.comparison.plot(
   c(list(base.model),
     sens.models.4[4:5]),
@@ -834,7 +834,7 @@ par <- oldpar
 % fig.width=8>>=
 <<semi.sensitivity.density.2016>>=
 oldpar <- par()
-par(mar = c(7.1, 3.1, 0, 0))
+par(mar = c(7.1, 3.1, 0, 1))
 make.comparison.plot(
   c(list(base.model),
     sens.models.4[4:5]),
@@ -1073,7 +1073,7 @@ weight.at.age.heatmap(sens.models.5[[3]],
 \vspace{5pt}
 <<wtatage.sensitivity.biomass.a>>=
 oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 0))
+par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.5),
@@ -1117,7 +1117,7 @@ par <- oldpar
 \vspace{5pt}
 <<wtatage.sensitivity.biomass.b>>=
 oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 0))
+par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.5),
@@ -1137,7 +1137,7 @@ par <- oldpar
 \vspace{5pt}
 <<wtatage.sensitivity.biomass.c>>=
 oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 0))
+par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot.mcmc(c(list(base.model), sens.models.6),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.6),
@@ -1181,7 +1181,7 @@ par <- oldpar
 \vspace{5pt}
 <<wtatage.sensitivity.biomass.d>>=
 oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 0))
+par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot.mcmc(c(list(base.model), sens.models.6),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.6),
@@ -1236,7 +1236,7 @@ weight-at-age as mean 1975-2018.
 #oldpar <- par(mfrow=c(1,2), mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 0))
+par(mar = c(7.1, 4.1, 0, 1))
 # plot.retro.yrs <- 1:5
 retro.list <- list(base.model)
 for(i in plot.retro.yrs){
