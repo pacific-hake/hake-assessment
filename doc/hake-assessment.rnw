@@ -374,6 +374,12 @@ This DRAFT document is non-citable.
 <<appendices-fecundity, child='appendix-adnuts/appendix-adnuts.rnw'>>=
 @
 
+% Putting the base model results into a temporary appendix to easily compare
+%  the figures and tables to previous two appendices
+\rfoot{Appendix~\ref{chap:base} -- BASE MODEL RESULTS **TEMPORARY}
+<<appendix-base, child='appendix-base/appendix-base.rnw'>>=
+@
+
 <<appendices-SS-code, child='appendices-SS-code/appendices-SS-code.rnw'>>=
 @
 
