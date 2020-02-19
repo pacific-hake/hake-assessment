@@ -26,11 +26,25 @@ get_rec_ci <- function(model1,
   rec.diff.perc <- rec2.env / rec1.env * 100
   rec1 <- c(rec1, rec1.env)
   names(rec1)[4] <- "env_diff"
-  rec2 <- c(rec2, rec1.env)
+  rec2 <- c(rec2, rec2.env)
   names(rec2)[4] <- "env_diff"
   list(f(rec1, decimals), f(rec2, decimals), f(rec.diff.perc, perc.decimals))
 }
 
+#' Calculate Biomass-at-age for the years given for the given model
+#'
+#' @details Uses numbers-at-age multiplied by weight-at-age. If any years are missing
+#' the weight-at-age, the average will be used (Assumed to be in the 1966 year slot for SS input)
+#' 
+#' @param model A model as loaded by [load_ss_files()]
+#' @param yrs The years to return the values for
+#' @param scale Scaling factor for the output values
+#'
+#' @return A data frame of the biomass-at-ages
+#' @export
+#'
+#' @examples
+#' baa <- get_baa(base.model)
 get_baa <- function(model, yrs = NULL, scale = 1e3){
 
   naa <- model$natage
