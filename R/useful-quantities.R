@@ -1,4 +1,5 @@
-#' Get recruitment information for a cohort
+#' Get recruitment information for a cohort from two models with
+#' an CI envelope % difference calculation
 #'
 #' @param model1 A model, typically last year's model
 #' @param model2 A model, typically this year's model
