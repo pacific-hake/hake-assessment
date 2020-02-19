@@ -840,7 +840,7 @@ par(mar = c(7.1, 3.1, 0, 1))
 make.comparison.plot(
   c(list(base.model),
     sens.models.4[4:5]),
-  subplots = 14,
+  subplots = 16,
   model.names = c(paste0("Base model ", end.yr),
                   sens.model.names.4[4:5]),
   legendloc = "topright",
@@ -866,7 +866,7 @@ par(mar = c(7.1, 3.1, 0, 1))
 make.comparison.plot(
   c(list(base.model),
     sens.models.4[4:5]),
-  subplots = 14,
+  subplots = 16,
   model.names = c(paste0("Base model ", end.yr),
                   sens.model.names.4[4:5]),
   legendloc = "topright",
