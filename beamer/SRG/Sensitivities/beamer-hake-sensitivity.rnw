@@ -927,7 +927,7 @@ make.short.parameter.estimates.sens.table(
 \frametitle{Including age-1 index (MCMC)}
 \begin{center}
 \vspace{5pt}
-<<wtatage.sensitivity.biomass.a>>=
+<<age1.sensitivity.biomass.a>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot.mcmc(c(list(base.model), list(sens.models.2[[1]])),
@@ -947,7 +947,7 @@ par <- oldpar
 \frametitle{Including age-1 index (MCMC)}
 \begin{center}
 \vspace{5pt}
-<<wtatage.sensitivity.biomass.b>>=
+<<age1.sensitivity.biomass.b>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot.mcmc(c(list(base.model), list(sens.models.2[[1]])),
@@ -965,6 +965,77 @@ par <- oldpar
 \subsection{}
 \begin{frame}
 \frametitle{Including age-1 index (MCMC)}
+
+**Compare full Appendix results with base model, summarise and plot any more
+figures as required.
+
+Keeping as a template for now:
+\begin{table}[H]
+\centering
+\begin{tabular}{ccccc}
+\hline
+{Model run when}  & Model run when & {Time-varying} & \alert{Pre-1975} & {Pre-1975} \\
+{2019$+$ weight-at-age} & 2018$+$ weight-at-age &  {fecundity?} & \alert{weight-at-age} & {weight-at-age}\\
+{is mean 1975-2018} & is mean 2016-2018 & & \alert{is 1975-1979?} & {is 1975-2018?}\\
+  \hline
+\alert{Base model} & {54}	& {Y} &   &      {Y}\\
+\alert{55$^a$}     & \alert{58} & {Y} & \alert{Y} &  \\
+{53}         & {52} &   &   & {Y}\\
+\alert{57$^a$}     & \alert{56} &   & \alert{Y} &  \\
+\hline
+{2018 base$^c$} &    &    &   & {Y}\\
+          & \alert{2018 alternative$^b$} & {Y} & \alert{Y} & \\
+\hline
+\end{tabular}
+\end{table}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{ADNUTS}
+\subsection{}
+\begin{frame}
+\frametitle{Run base model using NUTS algorithm in \tt{adnuts} **need
+  description slides}
+\begin{center}
+\vspace{5pt}
+<<nuts.sensitivity.biomass.a>>=
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 1))
+make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
+                     subplots = 2,
+                     model.names = c(base.model.name, sens.model.names.6),
+                     end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Run base model using NUTS algorithm in \tt{adnuts}}
+\begin{center}
+\vspace{5pt}
+<<nuts.sensitivity.biomass.b>>=
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 1))
+make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
+                     subplots = 4,
+                     model.names = c(base.model.name, sens.model.names.6),
+                     end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Run base model using NUTS algorithm in \tt{adnuts}}
 
 **Compare full Appendix results with base model, summarise and plot any more
 figures as required.
