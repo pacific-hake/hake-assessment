@@ -951,7 +951,7 @@ make.comparison.plot(c(list(base.model), sens.models.1),
 \caption{Maximum likelihood estimates of spawning biomass for the base
   model and alternative sensitivity runs representing changing the mean of
   the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, lower (1.0) and higher
-  (1.8) levels of variation assumed about the stock-recruitment relationship
+  (1.6) levels of variation assumed about the stock-recruitment relationship
   ($\sigma_r$), and changing the standard deviation of the prior for natural mortality from
   0.1 to 0.2 or 0.3.}
 \label{fig:main-biomass-base-alternative-1}
