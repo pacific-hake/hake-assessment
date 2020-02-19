@@ -373,7 +373,7 @@ make.short.parameter.estimates.sens.table(
 \section{Age-1 index}
 \subsection{}
 \begin{frame}
-\frametitle{Inclusion of age-1 index}
+\frametitle{Inclusion of age-1 index **CHANGE TO MCMC}
 \begin{center}
 \vspace{5pt}
 % <<age.error.sensitivity.biomass, fig.height=4.5, fig.width=8>>=
@@ -637,7 +637,7 @@ par <- oldpar
 to reduce an anomalously high estimate of 2014 recruitment driven solely by fishery
 catch-at-age data
 
-\item \red{2018 and 2019 assessments} -- retained the (equivalent) 2017 value of $\Phi=1.40$
+\item \red{2018-2020 assessments} -- retained the (equivalent) 2017 value of $\Phi=1.40$
 \ei
 \vspace{20pt}
 Here we test:
@@ -681,21 +681,48 @@ par <- oldpar
 \frametitle{Alternative deviations for selectivity, $\Phi$}
 \begin{center}
 \vspace{5pt}
-% fig.width=8>>=
-<<phi.sensitivity.density.2014>>=
+% , fig.width=8>>=
+<<phi.sensitivity.survey>>=
 oldpar <- par()
-par(mar = c(7.1, 3.1, 0, 1))
+par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot(
   c(list(base.model),
     sens.models.4[1],
     sens.models.4[2],
     sens.models.4[3]),
-  subplots = 14,
+  subplots = 13,
   model.names = c(paste0("Base model ", end.yr),
                   sens.model.names.4[1],
                   sens.model.names.4[2],
                   sens.model.names.4[3]),
-  legendloc = "topright",
+  end.yr = end.yr,
+  legendloc = "bottomright")
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Alternative deviations for selectivity, $\Phi$}
+\begin{center}
+\vspace{5pt}
+% fig.width=8>>=
+<<phi.sensitivity.density.2014>>=
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 1))
+make.comparison.plot(
+  c(list(base.model),
+    sens.models.4[1],
+    sens.models.4[2],
+    sens.models.4[3]),
+  subplots = 16,
+  model.names = c(paste0("Base model ", end.yr),
+                  sens.model.names.4[1],
+                  sens.model.names.4[2],
+                  sens.model.names.4[3]),
+  legendloc = "topleft",
   densitynames = c("Recr_2014"),
   densityxlab  = "Recruitment in 2014 (billions)",
   indexPlotEach = TRUE,
@@ -707,16 +734,17 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Similar figures from 2017 assessment (Figure A.3); green is $\Phi=0.21$}
-\begin{center}
-\vspace{5pt}
-% fig.width=8>>=
-% Figure from 2017 assessment knitr-cache; really only want to see bottom one
-%  but this will do for now; tried (in vain) changing bounding box to crop
-\includegraphics[height=2.6in]{figures/phi_req2_3_sensitivity-1-2017.eps}
-\end{center}
-\end{frame}
+% Taking out for 2020:
+% \begin{frame}
+% \frametitle{Similar figures from 2017 assessment (Figure A.3); green is $\Phi=0.21$}
+% \begin{center}
+% \vspace{5pt}
+%% fig.width=8>>=
+%% Figure from 2017 assessment knitr-cache; really only want to see bottom one
+%%  but this will do for now; tried (in vain) changing bounding box to crop
+%\includegraphics[height=2.6in]{figures/phi_req2_3_sensitivity-1-2017.eps}
+%end{center}
+%end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -733,7 +761,7 @@ make.comparison.plot(
     sens.models.4[1],
     sens.models.4[2],
     sens.models.4[3]),
-  subplots = 14,
+  subplots = 16,
   model.names = c(paste0("Base model ", end.yr),
                   sens.model.names.4[1],
                   sens.model.names.4[2],
