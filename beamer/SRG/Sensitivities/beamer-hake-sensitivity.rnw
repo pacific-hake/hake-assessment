@@ -911,200 +911,28 @@ make.short.parameter.estimates.sens.table(
 \frametitle{Time-varying fecundity}
 \fontsize{11pt}{2}\selectfont
 \bi
-  \item Fecundity used to be from 1997 maturity-at-length data and 2011 calculations
-  \item In 2018 assessment we updated maturity ogive, and calculated
-\ei
-\begin{equation}
-  \nonumber \mbox{fecundity-at-age} = \mbox{maturity ogive} \times \mbox{weight-at-age}
-\end{equation}
-\bi
-  \item We used \red{mean weight-at-age}, giving {time-invariant fecundity}
-  \item 2018 SRG meeting: more consistent to use \red{each year's} weight-at-age
-  \bi
-    \item This gives \red{time-varying fecundity}
-    \item Was done in 2018 alternative model run (during the SRG meeting)
-    \item Involved some assumptions that we explore more fully here
-  \ei
+  \item In 2019 assessment we ran seven model configurations with alternative assumptions
+    regarding weight-at-age and fecundity
+  \item Newer version of Stock Synthesis fixes one of the minor idiosyncrasies
+  \item Not repeating sensitivities this year
 \ei
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-%\titlepage
-\frametitle{Four components to 2018 alternative model run (p64)}
-\fontsize{11pt}{2}\selectfont
-a) Add time-varying fecundity by using time-varying weight-at-age.
-
-\bi
-\item Included in 2019 base model
-\item Excluded in sensitivity runs 52, 53, 56 and 57
-\ei
-
-\pause
-\vspace{20pt}
-
-b) For equilibrium and 1966-1974  there are no empirical weight-at-age data;
-calculate fecundity using mean weight-at-age from 1975-1979.
-
-\bi
-\item Excluded in 2019 base model -- using 1974-2018 average (analogous to 2018 base model)
-\item Included  in sensitivity runs 55, 56, 57 and 58
-\ei
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-%\titlepage
-\frametitle{Four components to 2018 alternative model run (p64)}
-\fontsize{11pt}{2}\selectfont
-
-c) For forecast years (including 2017 due to configuration of SS3) use mean
-weight-at-age from 2015-2017.
-
-\bi
-\item Not done (using equivalent 2016-2018). Used mean 1975-2018 (analogous to 2018 base model).
-\ei
-
-\pause
-
-Based on aforementioned least-squares analysis of the data.
-
-Also because the configuration of SS3 requires forecast years' weight-at-age to be either:
-
-\vspace{5pt}
-
-~~~~~~(i) same as pre-data (pre-1975) years, or
-
-~~~~~~(ii) same as final year of data (2018).
-
-\vspace{5pt}
-
-So, using mean from 2016-2018 for projections requires setting 2018 to this mean;
-seems inappropriate for base model.
-
-\pause
-
-\bi
-\item Mean from 2016-2018 for projections is done in sensitivity runs 52, 54, 56 and 58.
-\ei
-
-\pause
-
-d) There was an inconsistency regarding using mean weight-at-age for
-calculating \emph{stock biomass}.
-
-\bi
-\item Fully resolved for all runs in 2019.
-\ei
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
+\section{Age-1 index}
 \subsection{}
 \begin{frame}
-\frametitle{Assumptions and runs regarding weight-at-age and fecundity}
-\begin{table}[H]
-\centering
-\begin{tabular}{ccccc}
-\hline
-\alert<6>{Model run when}  & Model run when & \alert<5>{Time-varying} & \alert<8>{Pre-1975} & \alert<7>{Pre-1975} \\
-\alert<6>{2019$+$ weight-at-age} & 2018$+$ weight-at-age &  \alert<5>{fecundity?} & \alert<8>{weight-at-age} & \alert<7>{weight-at-age}\\
-\alert<6>{is mean 1975-2018} & is mean 2016-2018 & & \alert<8>{is 1975-1979?} & \alert<7>{is 1975-2018?}\\
-  \hline
-\alert<2-3,5-7>{Base model} & \alert<5,7>{54}	& \alert<2-3,5>{Y} &   &
-                                                                         \alert<2-3,7>{Y}\\
-\alert<5-6,8>{55$^a$}     & \alert<4-5,8>{58} & \alert<4-5>{Y} & \alert<4,8>{Y} &  \\
-\alert<6-7>{53}         & \alert<7>{52} &   &   & \alert<7>{Y}\\
-\alert<6,8>{57$^a$}     & \alert<8>{56} &   & \alert<8>{Y} &  \\
-\hline
-\alert<2>{2018 base$^c$} &    &    &   & \alert<2>{Y}\\
-          & \alert<3-4>{2018 alternative$^b$} & \alert<3-4>{Y} & \alert<3-4>{Y} & \\
-\hline
-\end{tabular}
-\end{table}
-$^a$Configuration of SS3 meant setting
-  2018$+$ (not 2019$+$) weight-at-age to mean 1975-2018.
-
-$^b$Similarly, 2017$+$ weight-at-age was mean 2015-2017.
-
-$^c$2018$+$ weight-at-age was mean 1975-2017.
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{noheadline}
-\begin{frame}
-\frametitle{Weight-at-age (kg): base model and run 53}
-\begin{figure}[H]
-<<main.weight.at.age.sens.a, fig.height=4>>=
-weight.at.age.heatmap(sens.models.5[[2]],
-                      font.size = 1.6,
-                      axis.font.size = 4)
-@
-\end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-% %%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{Weight-at-age (kg): runs 55 and 57}
-% \begin{figure}[H]
-% <<main.weight.at.age.sens.b, fig.height=4>>=
-% weight.at.age.heatmap(sens.models.6[[1]],
-%                       proj.line.yr=2017,
-%                       font.size=1.6,
-%                       axis.font.size = 4)
-% @
-% \end{figure}
-% \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Weight-at-age (kg): runs 52 and 54}
-\begin{figure}[H]
-<<main.weight.at.age.sens.c, fig.height=4>>=
-weight.at.age.heatmap(sens.models.5[[3]],
-                      proj.line.yr=2017,
-                      font.size=1.6,
-                      axis.font.size = 4)
-@
-\end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-% %%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{Weight-at-age (kg): runs 56 and 58}
-% \begin{figure}[H]
-% <<main.weight.at.age.sens.d, fig.height=4>>=
-% weight.at.age.heatmap(sens.models.6[[2]],
-%                       proj.line.yr=2017,
-%                       font.size=1.6,
-%                       axis.font.size = 4)
-% @
-% \end{figure}
-% \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%
-\end{noheadline}
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{Sensitivities regarding weight-at-age assumptions (MCMC)}
+\frametitle{Including age-1 index (MCMC)}
 \begin{center}
 \vspace{5pt}
 <<wtatage.sensitivity.biomass.a>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
+make.comparison.plot.mcmc(c(list(base.model), list(sens.models.2[[1]])),
                      subplots = 2,
-                     model.names = c(base.model.name, sens.model.names.5),
+                     model.names = c(base.model.name, sens.model.names.2[1]),
                      end.yr = end.yr)
 par <- oldpar
 @
@@ -1112,43 +940,19 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{Assumptions and runs regarding weight-at-age and fecundity}
-\begin{table}[H]
-\centering
-\begin{tabular}{ccccc}
-\hline
-{Model run when}  & Model run when & {Time-varying} & {Pre-1975} & \alert{Pre-1975} \\
-{2019$+$ weight-at-age} & 2018$+$ weight-at-age &  {fecundity?} & {weight-at-age} & \alert{weight-at-age}\\
-{is mean 1975-2018} & is mean 2016-2018 & & {is 1975-1979?} & \alert{is 1975-2018?}\\
-  \hline
-\alert{Base model} & \alert{54}	& {Y} &   &      \alert{Y}\\
-{55$^a$}     & {58} & {Y} & {Y} &  \\
-\alert{53}         & \alert{52} &   &   & \alert{Y}\\
-{57$^a$}     & {56} &   & {Y} &  \\
-\hline
-\alert{2018 base$^c$} &    &    &   & \alert{Y}\\
-          & {2018 alternative$^b$} & {Y} & {Y} & \\
-\hline
-\end{tabular}
-\end{table}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
-\frametitle{Sensitivities regarding weight-at-age assumptions (MCMC)}
+\frametitle{Including age-1 index (MCMC)}
 \begin{center}
 \vspace{5pt}
 <<wtatage.sensitivity.biomass.b>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
+make.comparison.plot.mcmc(c(list(base.model), list(sens.models.2[[1]])),
                      subplots = 4,
-                     model.names = c(base.model.name, sens.model.names.5),
+                     model.names = c(base.model.name, sens.model.names.2[1]),
                      legend = TRUE,
                      end.yr = end.yr)
 par <- oldpar
@@ -1160,26 +964,12 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
-\frametitle{Sensitivities regarding weight-at-age assumptions (MCMC)}
-\begin{center}
-\vspace{5pt}
-<<wtatage.sensitivity.biomass.c>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot.mcmc(c(list(base.model), sens.models.6),
-                     subplots = 2,
-                     model.names = c(base.model.name, sens.model.names.6),
-                     end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Including age-1 index (MCMC)}
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{Assumptions and runs regarding weight-at-age and fecundity}
+**Compare full Appendix results with base model, summarise and plot any more
+figures as required.
+
+Keeping as a template for now:
 \begin{table}[H]
 \centering
 \begin{tabular}{ccccc}
@@ -1199,56 +989,6 @@ par <- oldpar
 \end{tabular}
 \end{table}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{Sensitivities regarding weight-at-age assumptions (MCMC)}
-\begin{center}
-\vspace{5pt}
-<<wtatage.sensitivity.biomass.d>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot.mcmc(c(list(base.model), sens.models.6),
-                     subplots = 4,
-                     model.names = c(base.model.name, sens.model.names.6),
-                     legend = TRUE,
-                     end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{Further results for runs 53 and 54 given in Appendices F and G}
-\begin{table}[H]
-\centering
-\begin{tabular}{ccccc}
-\hline
-{Model run when}  & Model run when & {Time-varying} & {Pre-1975} & \alert{Pre-1975} \\
-{2019$+$ weight-at-age} & 2018$+$ weight-at-age &  {fecundity?} & {weight-at-age} & \alert{weight-at-age}\\
-{is mean 1975-2018} & is mean 2016-2018 & & {is 1975-1979?} & \alert{is 1975-2018?}\\
-  \hline
-\alert{Base model} & \alert{54}	& {Y} &   &      \alert{Y}\\
-{55$^a$}     & {58} & {Y} & {Y} &  \\
-\alert{53}         & {52} &   &   & \alert{Y}\\
-{57$^a$}     & {56} &   & {Y} &  \\
-\hline
-\alert{2018 base$^c$} &    &    &   & \alert{Y}\\
-          & {2018 alternative$^b$} & {Y} & {Y} & \\
-\hline
-\end{tabular}
-\end{table}
-Run 53 is analogous to 2018 base model.
-
-Runs 53 and 54 are closest to 2019 base model while retaining pre-1975
-weight-at-age as mean 1975-2018.
-\end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
