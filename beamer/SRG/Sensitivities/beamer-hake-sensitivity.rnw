@@ -991,12 +991,37 @@ Keeping as a template for now:
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{ADNUTS}
 \subsection{}
 \begin{frame}
-\frametitle{Run base model using NUTS algorithm in \tt{adnuts} **need
-  description slides}
+%\titlepage
+\frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
+\fontsize{11pt}{2}\selectfont
+\bi
+  \item Base model uses a modified random-walk Metropoplis MCMC algorithm
+    (in SS using ADMB)
+  \item Newer MCMC algorithm: no-U-turn-sampler (NUTS) -- several desirable
+    technical features, including faster run times
+  \item NUTS is implemented here using R package {\tt adnuts}
+  \item So same base model, just different numerical algorithm
+\ei
+~\\
+\bi
+  \item Took $\sim$4.5~h to run, compared to 40~h for usual algorithm
+  \item That included 2.5 h step that likely not needed for sensitivity runs
+  \item Resulted in 7,850 samples, more than the usual 2,000
+\ei
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{}
+\begin{frame}
+\frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
 \begin{center}
 \vspace{5pt}
 <<nuts.sensitivity.biomass.a>>=
