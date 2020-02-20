@@ -83,7 +83,7 @@ make.age.comp.plot <- function(d,
                                bg.col = "blue"){ ## Fill color for the bubble
   ## This will make a plot of the ages comps found in the data a for the years given by yrs
   d <- d[rownames(d) %in% yrs,]
-  plotBubbles(t(d),
+  PBSmodelling::plotBubbles(t(d),
               dnam = TRUE,
               ##xval = rownames(d),
               bg = bg.col,

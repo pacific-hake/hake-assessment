@@ -31,6 +31,7 @@ Imports:
     lubridate,
     nwfscMapping,
     PBSmapping,
+    PBSmodelling,
     reshape2,
     rnaturalearthhires
     r4ss (>= 1.35.3),
