@@ -297,6 +297,30 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 }
 
 %----------------------------------------------------------
+\frame{\frametitle{Bridging: \Sexpr{assess.yr} Base model correlations (Fig. A.6)}
+  \bc
+  <<bridge.pairs.3, fig.height=3.5>>=
+  make.mcmc.diag.pairs.plot(base.model,
+                            inc.key.params = TRUE,
+                            key.posteriors.regex = key.posteriors,
+                            key.posteriors.names = key.posteriors.titles)
+  @
+  \ec
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Bridging: \Sexpr{last.assess.yr} Base model correlations (Fig. 21 in 2019 doc)}
+  \bc
+  <<last.yr.key.pairs, fig.height=3.5>>=
+  make.mcmc.diag.pairs.plot(last.yr.base.model,
+                            inc.key.params = TRUE,
+                            key.posteriors.regex = key.posteriors,
+                            key.posteriors.names = key.posteriors.titles)
+  @
+  \ec
+}
+
+%----------------------------------------------------------
 \frame{\frametitle{Bridging: Summary}
   \bi
     \item Updating Stock Synthesis has no effect; switching to simple recruitment deviations produces
@@ -310,12 +334,11 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       estimate of biomass for the last few years and reduces uncertainty.
     \item Adding the \Sexpr{last.data.yr} survey age compositions further reduced uncertainty,
       but provided a worse fit to the 2017 and \Sexpr{last.data.yr} survey indices.
-    \item The 2010 and 2014 cohorts were estimated higher than in the 2019 assessment. 
+    \item Adding priors to the Dirichlet-Multinomial parameters reduced correlation between $M$ and $log(R_0)$.
    \ei
 }
 
 %----------------------------------------------------------
-
 \begin{frame}
 \frametitle{Time-varying fishery selectivity ($\Phi$)}
 
@@ -358,7 +381,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
    @
    \ec
 }
- 
+
 \frame{\frametitle{MCMC diagnostics for all parameters and spawning biomass}
   \bc
   <<main.mcmc.diag.hists, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
@@ -556,7 +579,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
 %----------------------------------------------------------
 % \frame{\frametitle{DM Weighting of age data: $\theta_{\text{surv}}$ and
 %     $\theta_{\text{fish}}$}
-%     
+%
 %   \bi
 %     \item MCMC explorations in 2019 indicated $\log \theta_{\text{surv}}$
 %       not being sampled efficiently.
@@ -791,7 +814,7 @@ year's assessment,\\
   biomass trajectories across values of $\sigma_R$ were very close to one another, the corresponding
   estimates of $R_0$ led to different estimates of stock status (relative spawning biomass).
   \ei
-  
+
   \pause
   {\bf The SRG encourages the JTC to explore methods for parameterizing recruitment and/or
   estimating $\sigma_R$ that would reduce model sensitivity to the value of this constraint.}
@@ -837,7 +860,7 @@ year's assessment,\\
     time. Results showed no indication of autocorrelation, suggesting there is no need to
     add additional variance terms to account for temporally-related recruitment deviations. Along with
     no apparent retrospective pattern, this result suggests that the assessment model is not
-    overly mis-specified. Given the lack of autocorrelation, the assessment model was not 
+    overly mis-specified. Given the lack of autocorrelation, the assessment model was not
     sensitive to the addition of an autocorrelation parameter.
   \ei
 }
@@ -890,7 +913,7 @@ year's assessment,\\
   characterizing the flexibility in selectivity, but this method did not resolve the sensitivity of
   results to the choice of $\Phi$.
   \ei
-  
+
   \pause
   {\bf The SRG recommends that the JTC provide a review of how
   time-varying selectivity is parameterized and estimated in other assessments.}
@@ -933,7 +956,7 @@ year's assessment,\\
   should improve the accuracy of the maturity ogive. The JTC noted that work began late in
   2018 to address this recommendation.
   \ei
-  
+
   \pause
   {\bf The SRG strongly supports the ongoing genetic
   analyses to determine whether there are genetic differences among the two southern
@@ -1034,9 +1057,9 @@ year's assessment,\\
   weights could account for changes in the number of fish per sampling unit. Alternatively, the
   DM parameter that accounts for variability in the age-composition
   observations could include a time-varying component to account for changes in the number
-  of fish per sampling unit. 
+  of fish per sampling unit.
   \ei
-  
+
   \pause
   {\bf The SRG notes that the JTC included information in the 2019
   assessment on the annual numbers of fish underlying each annual age-composition
@@ -1095,7 +1118,7 @@ year's assessment,\\
   rather than Markov chain Monte Carlo (MCMC) values, to save computing time, minutes
   versus 2.5 days per run, respectively.
   \ei
-  
+
   \pause
   {\bf The SRG recommends that the JTC continue to
   explore NUTS and similar options, as using MCMC for all runs would provide better
@@ -1127,7 +1150,7 @@ year's assessment,\\
   applied to tribal catches. The preferred process is that all data are available from managed
   regional databases in time for JTC data extraction, which usually occurs early in January.
   \ei
-  
+
   \pause
   {\bf The SRG recommends that the JTC continue to set a deadline for the extraction of
   catch data and be transparent about the sources of data used in the assessment in the
@@ -1161,15 +1184,15 @@ year's assessment,\\
 %   {\bf }}
 % % \setbeamercovered{dynamic}   % need for \pause
 %   \bi
-%   \item 
+%   \item
 %   \ei
 % }
-% 
+%
 % %----------------------------------------------------------
 % \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
 %     {\bf Response:} \emph{}}
 %   \bi
-%     \item 
+%     \item
 %   \ei
 % }
 
