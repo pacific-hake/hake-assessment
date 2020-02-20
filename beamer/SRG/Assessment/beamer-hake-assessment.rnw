@@ -1039,7 +1039,7 @@ year's assessment,\\
   \item A recent advance in Bayesian analysis (the no U-turn sampler, NUTS) raises the possibility
   that the assessment model could reach convergence much more quickly than is now possible.
   Many 2019 sensitivity runs were limited to maximum likelihood estimates (MLE) values,
-  rather than Markov Chain Monte Carlo (MCMC) values, to save computing time, minutes
+  rather than Markov chain Monte Carlo (MCMC) values, to save computing time, minutes
   versus 2.5 days per run, respectively.
   \ei
   

@@ -169,7 +169,7 @@ about natural mortality, stock-recruitment steepness (a parameter for stock
 productivity), and several other parameters, with likelihoods for acoustic survey
 biomass indices, acoustic survey age-composition data, and fishery
 age-composition data. Integrating the joint posterior distribution over model
-parameters (via the Markov Chain Monte Carlo algorithm) provides probabilistic
+parameters (via the Markov chain Monte Carlo algorithm) provides probabilistic
 inferences about uncertain model parameters and forecasts derived from those
 parameters. Sensitivity analyses are used to identify alternative model
 assumptions that may also be consistent with the data. Retrospective analyses
