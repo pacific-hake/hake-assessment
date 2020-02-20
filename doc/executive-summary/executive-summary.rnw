@@ -642,8 +642,8 @@ is below $\Bforty$ is
 P$(B_{\Sexpr{assess.yr}} < \Bforty) = \Sexpr{probs.curr.below.bforty}$\%,
 and of being below $\Btwentyfive$ is
 P$(B_{\Sexpr{assess.yr}} < \Btwentyfive) = \Sexpr{probs.curr.below.btwentyfive}$\%.
-The probability that the relative fishing intensity is above its target of 1.0
-at the end of \Sexpr{end.yr-1} is \Sexpr{probs.curr.rel.fish.intens.above.one}\%.
+The probability that the relative fishing intensity was above its target of 1.0
+at the end of \Sexpr{end.yr-1} was \Sexpr{probs.curr.rel.fish.intens.above.one}\%.
 
 % Manual done 2020.
 \enlargethispage{\baselineskip}
