@@ -13,16 +13,17 @@ make.cumulative.catch.plot <- function(d,   ## Data as found in the xxxx.catch.b
                                        leg.cex = 1){  ## Legend text size
   ## Cumulative catch plot for years given
   ## Remove any data with years not within limits
+  if (!"month" %in% colnames(d)) {
+    d <- reshape(d, direction = "long",
+      idvar = "year", varying = 2:NCOL(d), sep = "",
+      timevar = "month", v.names = "catch")
+  }
   d <- d %>% 
-    filter(year %in% yrs) %>% 
-    mutate_at(vars(-year), function(x){x / scale})
-  dsum <- d %>% 
-    transmute(totcatch = rowSums(.[,-1]))
-  ylim <- max(dsum)
+    filter(year %in% yrs)
 ## TODO: Fix this to work on new file structure of can-ft-catch-by-month.csv.
 ## See hakedata package (canada) as it has this function already built in.
 
-  catch.plot <- function(x, y, plot.type = c("default", "proportion", "cumulative"), ...){
+  catch.plot <- function(x, y, plot.type = c("default", "proportion", "cumulative")){
     ## x is period
     ## y is catch
     if(plot.type[1] == "proportion"){
@@ -48,8 +49,11 @@ make.cumulative.catch.plot <- function(d,   ## Data as found in the xxxx.catch.b
         }
       }
     }
-    lines(xx, yy, ...)
+    return(cbind(xx,yy))
   }
+  d <- split(d, d$year)
+  cols <- plotcolour(4)
+  xx <- lapply(d, function(x) catch.plot(x$month, x$catch/scale, plot.type = "cumulative"))
   plot(1,
        1,
        xlab = "",
@@ -57,23 +61,12 @@ make.cumulative.catch.plot <- function(d,   ## Data as found in the xxxx.catch.b
        ##xlab = "Month",
        ##ylab = paste0("Cumulative Catch\n(", scale," t)"),
        xlim = c(1, 12),
-       ylim = ylim,
+       ylim = c(0, max(do.call("rbind", xx)[,"yy"])),
        type = "n",
        axes = FALSE)
-  cols <- plotcolour(4)
-  lwd <- 3
   lty <- 1
-  for(i in 1:length(d)){
-    catch.plot(d[[i]]$month,
-               d[[i]]$catch / scale,
-               plot.type = "cumulative",
-               lty = lty,
-               lwd = lwd,
-               col = cols[i],
-               type = "b",
-               pch = 20,
-               cex.axis = cex.axis)
-  }
+  lwd <- 3
+  lapply(xx, function(x) lines(x[, "xx"], y = x[, "yy"], type = "b", pch = 20, cex.axis = cex.axis, lwd = lwd, lty = lty, col = cols[parent.frame()$i[]]))
   axis(1)
   axis(2, las=1)
   box()
