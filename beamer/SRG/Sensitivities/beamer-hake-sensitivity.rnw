@@ -1200,6 +1200,66 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+%\titlepage
+\frametitle{NUTS conclusions}
+\fontsize{11pt}{2}\selectfont
+\bi
+  \item Worked well, but we need to optimise all settings, such as:
+    \bi
+      \item no Stock Synthesis burn-in needed
+      \item want to end up with same number of samples on different machines
+        (depends on cores)
+      \item fix the random number seed
+      \item other algorithm settings
+    \ei
+\ei
+~\\
+\bi
+  \item Suggest we use {\tt adnuts} for 2021 assessment
+  \item Would allow MCMC results for all sensitivities
+  \item However, would be desirable to reduce the number of sensitivity analyses
+    (to reduce build time for the assessment document)
+\ei
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+%\titlepage
+\frametitle{Suggested sensitivity runs}
+\fontsize{11pt}{2}\selectfont
+Current sensitivity runs, with ones to retain in \alert{red}:
+\begin{enumerate}
+  \item \alert{Higher standard deviation on prior for natural mortality}
+
+  \item Alternative values for steepness
+
+  \item \alert{Higher/lower ($\sigma_r$)}
+
+  \item \alert{Include age-1 survey index}
+
+  \item McAllister-Ianelli method for data-weighting
+
+  \item Francis method for data-weighting
+
+  \item \alert{Alternative standard deviations for time-varying
+      selectivity, just $\Phi = 0.21$}
+
+  \item \alert{Alternative parameterization for time-varying selectivity}
+
+  \item Removal of cohort-based ageing error
+
+  \item \alert{Base model using {\tt adnuts} -- need a Metropolis algorithm sensitivity
+    next year?}
+
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Retros}
