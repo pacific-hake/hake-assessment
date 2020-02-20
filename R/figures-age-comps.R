@@ -299,7 +299,7 @@ make.age.comp.compare.bubble.plot <- function(model,                  ## model i
         stop("make.age.comp.bubble.plot: Error - key.yrs must be a vector of exactly 4 years when specifying show.key = TRUE.\n")
       }
     }
-    par(mar = c(2.1, 4.1, 3.1, 4.1), oma = c(1.1, 1.1, 0, 0), cex.axis = 0.9)
+    par(mar = c(2.1, 4.1, 2.1, 4.1), oma = c(1.1, 1.1, 0, 0), cex.axis = 0.9)
   }else{
     par(mar = c(2.1, 4.1, 1.1, 4.1), oma = c(1.1, 1.1, 0, 0), cex.axis = 0.9)
   }
@@ -372,10 +372,10 @@ make.age.comp.compare.bubble.plot <- function(model,                  ## model i
       text(2013.6 + 1.2, 16.2, "Survey", xpd = NA, cex = 0.8)
     }
   }
-  axis(1, at = survey.yrs, labels = survey.yrs)
+  axis(1, at = survey.yrs, labels = survey.yrs, mgp = c(1, 0.5, 0))
   axis(4)
   mtext("Year", side = 1, outer = TRUE)
-  mtext("Age", side = 2, line = -1, outer = TRUE)
+  mtext("Age", side = 2, line = -1, outer = TRUE, las = 0)
   par <- oldpar
 }
 
