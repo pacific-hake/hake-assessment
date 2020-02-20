@@ -1062,30 +1062,25 @@ par <- oldpar
 \begin{frame}
 \frametitle{Run base model using NUTS algorithm in \tt{adnuts}}
 
-**Compare full Appendix results with base model, summarise and plot any more
-figures as required.
-
-Keeping as a template for now:
+Comparing medians:
 \begin{table}[H]
 \centering
-\begin{tabular}{ccccc}
+\begin{tabular}{ccc}
 \hline
-{Model run when}  & Model run when & {Time-varying} & \alert{Pre-1975} & {Pre-1975} \\
-{2019$+$ weight-at-age} & 2018$+$ weight-at-age &  {fecundity?} & \alert{weight-at-age} & {weight-at-age}\\
-{is mean 1975-2018} & is mean 2016-2018 & & \alert{is 1975-1979?} & {is 1975-2018?}\\
-  \hline
-\alert{Base model} & {54}	& {Y} &   &      {Y}\\
-\alert{55$^a$}     & \alert{58} & {Y} & \alert{Y} &  \\
-{53}         & {52} &   &   & {Y}\\
-\alert{57$^a$}     & \alert{56} &   & \alert{Y} &  \\
+Quantity & Base model & ADNUTS run \\
 \hline
-{2018 base$^c$} &    &    &   & {Y}\\
-          & \alert{2018 alternative$^b$} & {Y} & \alert{Y} & \\
+$B_0$ (1,000~t)  & \Sexpr{f(base.model$mcmccalcs$svirg['50%'] * 1000)} &
+                   \Sexpr{f(sens.models.6$mcmccalcs$svirg['50%'] * 1000)} \\
+$R_0$ (millions) & \Sexpr{f(base.model$mcmccalcs$rmed["unfished"] * 1000)} &
+                   \Sexpr{f(sens.models.6$mcmccalcs$rmed["unfished"] * 1000)}
 \hline
 \end{tabular}
 \end{table}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Retros}
