@@ -73,7 +73,7 @@ make.cumulative.catch.plot <- function(d,   ## Data as found in the xxxx.catch.b
   if(!is.null(title)){
     mtext(title, line = 0, cex = title.cex)
   }
-  legend("topleft", legend = yrs, col = cols, lty = lty, lwd = lwd, cex = leg.cex)
+  legend("topleft", legend = yrs, col = cols, lty = lty, lwd = lwd, cex = leg.cex, bty = "n")
 }
 
 make.age.comp.plot <- function(d,
