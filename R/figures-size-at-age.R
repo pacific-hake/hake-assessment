@@ -56,7 +56,8 @@ weight.at.age.heatmap <- function(model,
                                                          1.03),
                                   font.size = 4,
                                   axis.font.size = 10,
-                                  samplesize = FALSE){
+                                  samplesize = FALSE,
+                                  print.years = NULL){
 
   stopifnot(!is.null(proj.line.yr),
             !is.null(extrap.mask))
@@ -124,7 +125,7 @@ weight.at.age.heatmap <- function(model,
     geom_hline(yintercept = input.yrs[1] - 0.5,
                color = proj.line.color,
                size = proj.line.width) +
-    coord_cartesian(expand = FALSE)
+    coord_cartesian(expand = FALSE, ylim = print.years)
   if(samplesize) {
     g <- g +
       geom_text(aes(x = factor(age), label = a), size = font.size)
