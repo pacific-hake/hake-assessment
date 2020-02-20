@@ -349,7 +349,7 @@ make.age.comp.compare.bubble.plot <- function(model,                  ## model i
               xpd = NA,
               fg = get.shade("darkblue", opacity + 10),
               bg = get.shade("darkred", opacity))
-      text(key.yrs + 1.1, c(16.2,16.2,16.2,16.2), c("0.01", "0.1", "0.25", "0.5"), xpd = NA, cex = 0.8)
+      text(key.yrs + 1.18, c(16.2,16.2,16.2,16.2), c("0.01", "0.1", "0.25", "0.5"), xpd = NA, cex = 0.8)
       ## Fishery dot
       symbols(2009.2,
               16.2,
@@ -359,7 +359,7 @@ make.age.comp.compare.bubble.plot <- function(model,                  ## model i
               xpd = NA,
               fg = "darkred",
               bg = "red")
-      text(2009.6 + 1.1, 16.2, "Fishery", xpd = NA, cex = 0.8)
+      text(2009.6 + 1.2, 16.2, "Fishery", xpd = NA, cex = 0.8)
       ## Survey dot
       symbols(2013.2,
               16.2,
@@ -369,7 +369,7 @@ make.age.comp.compare.bubble.plot <- function(model,                  ## model i
               xpd = NA,
               fg = "darkblue",
               bg = "blue")
-      text(2013.6 + 1.1, 16.2, "Survey", xpd = NA, cex = 0.8)
+      text(2013.6 + 1.2, 16.2, "Survey", xpd = NA, cex = 0.8)
     }
   }
   axis(1, at = survey.yrs, labels = survey.yrs)
