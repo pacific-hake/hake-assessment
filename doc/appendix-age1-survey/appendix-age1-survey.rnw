@@ -359,3 +359,5 @@ make.risk.table(sens.models.2[[1]],
                 space.size = 14,
                 placement = "H")
 @
+
+\clearpage        % needed for footer to be correct

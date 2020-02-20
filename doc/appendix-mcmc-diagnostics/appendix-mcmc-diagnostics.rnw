@@ -112,3 +112,5 @@ make.mcmc.diag.pairs.plot(base.model,
 \label{fig:main-mcmc-pairs-recruit-devs}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage        % needed for footer to be correct

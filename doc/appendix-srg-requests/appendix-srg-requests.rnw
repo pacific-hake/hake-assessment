@@ -5,7 +5,7 @@
 \label{chap:srg-requests}
 
 
-This appendix summarizes results produced in response to 
+This appendix summarizes results produced in response to
 Scientific Review Group requests made during the meeting held
 from 25th February to 28th February, 2020 in Seattle, WA, USA.
 
@@ -99,3 +99,5 @@ Response here.
 %                                 space.size = 14,
 %                                 placement = "H")
 % @
+
+\clearpage        % needed for footer to be correct

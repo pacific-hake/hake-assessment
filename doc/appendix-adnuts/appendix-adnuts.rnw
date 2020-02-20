@@ -722,3 +722,5 @@ launch_shinyadmb(nuts.updated)
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage        % needed for footer to be correct
