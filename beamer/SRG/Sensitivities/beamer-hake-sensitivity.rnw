@@ -1082,7 +1082,7 @@ $R_0$ (millions) & \Sexpr{f(base.model$mcmccalcs$rmed["unfished"] * 1000)} &
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
-\frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
+\frametitle{NUTS~~~~~~~~~~}
 \begin{center}
 \vspace{5pt}
 <<nuts.sensitivity.probs, fig.height=3.5>>=
@@ -1105,7 +1105,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
-\frametitle{Base model}
+\frametitle{~~~~~~~~~~Base model}
 \begin{center}
 \vspace{5pt}
 <<base.sensitivity.probs, fig.height=3.5>>=
@@ -1160,6 +1160,40 @@ par(mar=c(7.1, 4.1, 3.1, 0.1),
 acf(h_base, lag.max=20, ylab = "Autocorrelation")
 acf(h_nuts, lag.max = 20, ylab = "")
 acf(h_nuts_thin, lag.max = 20, ylab = "")
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{NUTS~~~~~~~~~~}
+\begin{center}
+\vspace{5pt}
+<<adnuts.hists, fig.height=3.5>>=
+oldpar <- par()
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+make.mcmc.diag.hists.plot(sens.models.6,
+                          labelstrings = "all")
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{~~~~~~~~~~Base model}
+\begin{center}
+\vspace{5pt}
+<<base.hists, fig.height=3.5>>=
+oldpar <- par()
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+make.mcmc.diag.hists.plot(base.model,
+                          labelstrings = "all")
 par <- oldpar
 @
 \end{center}
