@@ -161,7 +161,6 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %----------------------------------------------------------
 \frame{\frametitle{Bridging: Update SS / simple Rec. Devs. (Fig. 15)}
   \bc
-  \vspace{-5pt}
   <<bridge.biomass.1, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
   oldpar <- par(mfrow = c(1, 2),
                 mar =c(5, 4, 1, 1),
@@ -187,7 +186,6 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %----------------------------------------------------------
 \frame{\frametitle{Bridging: Update SS / simple Rec. Devs. (Fig. 15)}
   \bc
-  \vspace{-5pt}
   <<bridge.rel.biomass.1, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
   oldpar <- par(mfrow = c(1, 2),
                 mar =c(5, 4, 1, 1),
@@ -215,7 +213,6 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \frame{\frametitle{Bridging: Update Pre-\Sexpr{last.data.yr}
   data / add \Sexpr{assess.yr - 1} fishery data (Fig. 16)}
   \bc
-  \vspace{-5pt}
   <<bridge.biomass.3, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
   oldpar <- par(mfrow = c(1, 2),
                 mar =c(5, 4, 1, 1),
@@ -247,7 +244,6 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \frame{\frametitle{Bridging: Update Pre-\Sexpr{last.data.yr}
   data / add \Sexpr{assess.yr - 1} fishery data (Fig. 16)}
   \bc
-  \vspace{-5pt}
   <<bridge.recdev.biomass.3, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
   make.comparison.plot(bridge.models.2,
                        subplots = 12,
@@ -261,8 +257,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Bridging: Update Pre-\Sexpr{last.data.yr}
-  data / add \Sexpr{assess.yr - 1} fishery data (Fig. 16)}
+\frame{\frametitle{Bridging: Fishery empirical weight-at-age (Fig. 13)}
   \bc
   <<bridge.wtage.3, fig.height=3.5>>=
   weight.at.age.heatmap(base.model,
@@ -278,7 +273,6 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %----------------------------------------------------------
 \frame{\frametitle{Bridging: Add \Sexpr{last.data.yr} survey data / DM Priors (Fig. 17)}
   \bc
-  \vspace{-5pt}
   <<bridge.biomass.2, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
   oldpar <- par(mfrow = c(1, 2),
                 mar =c(5, 4, 1, 1),
