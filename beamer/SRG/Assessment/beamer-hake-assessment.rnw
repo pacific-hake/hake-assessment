@@ -213,7 +213,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \frame{\frametitle{Bridging: Update Pre-\Sexpr{last.data.yr}
   data / add \Sexpr{assess.yr - 1} fishery data (Fig. 16)}
   \bc
-  <<bridge.biomass.3, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+  <<bridge.biomass.2, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
   oldpar <- par(mfrow = c(1, 2),
                 mar =c(5, 4, 1, 1),
                 no.readonly = TRUE)
@@ -269,11 +269,11 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   @
   \ec
 }
-  
+
 %----------------------------------------------------------
 \frame{\frametitle{Bridging: Add \Sexpr{last.data.yr} survey data / DM Priors (Fig. 17)}
   \bc
-  <<bridge.biomass.2, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+  <<bridge.biomass.3, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
   oldpar <- par(mfrow = c(1, 2),
                 mar =c(5, 4, 1, 1),
                 no.readonly = TRUE)
