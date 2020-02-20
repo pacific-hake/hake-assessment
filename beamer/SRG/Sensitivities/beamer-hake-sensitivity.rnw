@@ -1127,6 +1127,45 @@ par <- oldpar
 % P(B_2021 < B_40%) = 21% with catch of 410,000 (like this years) for ADNUTS run
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
+\begin{center}
+\vspace{5pt}
+<<adnuts.trace, fig.height=3.5>>=
+oldpar <- par()
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+make.mcmc.diag.plot(sens.models.6, key.posteriors[3], key.posteriors.titles[3])
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Thin NUTS results to 2,000 samples for steepness}
+\begin{center}
+\vspace{5pt}
+Panel 3: took every 3rd NUTS sample to get 2,000
+<<adnuts.thin.trace, fig.height=3.5>>=
+h_nuts <- sens.models.6$extra.mcmc$mcmc$SR_BH_steep
+h_base <- base.model$extra.mcmc$mcmc$SR_BH_steep
+h_nuts_thin <- h_nuts[(1:2000)*3]
+oldpar <- par()
+par(mar=c(7.1, 4.1, 3.1, 0.1),
+    mfrow=c(1,3))
+acf(h_base, lag.max=20, ylab = "Autocorrelation")
+acf(h_nuts, lag.max = 20, ylab = "")
+acf(h_nuts_thin, lag.max = 20, ylab = "")
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Retros}
