@@ -159,8 +159,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \end{frame}
 
 %----------------------------------------------------------
-
-\frame{\frametitle{Bridging to the base model: update SS / simple Rec. Devs.}
+\frame{\frametitle{Bridging: Update SS / simple Rec. Devs. (Fig. 15)}
   \bc
   \vspace{-5pt}
   <<bridge.biomass.1, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
@@ -186,8 +185,35 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Bridging to the base model: update Pre-\Sexpr{last.data.yr}
-  data / add \Sexpr{assess.yr - 1} fishery data}
+\frame{\frametitle{Bridging: Update SS / simple Rec. Devs. (Fig. 15)}
+  \bc
+  \vspace{-5pt}
+  <<bridge.rel.biomass.1, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+  oldpar <- par(mfrow = c(1, 2),
+                mar =c(5, 4, 1, 1),
+                no.readonly = TRUE)
+  make.comparison.plot(bridge.models.1,
+                       subplots = 3,
+                       model.names = bridge.model.names.1,
+                       densitynames = NULL,
+                       legendloc = "topleft",
+                       end.yr = bridge.model.end.yr.1)
+  make.comparison.plot(bridge.models.1,
+                       subplots = 12,
+                       model.names = bridge.model.names.1,
+                       densitynames = NULL,
+                       legend = FALSE,
+                       end.yr = bridge.model.end.yr.1)
+  box()
+  par(oldpar)
+  @
+  \ec
+}
+
+
+%----------------------------------------------------------
+\frame{\frametitle{Bridging: Update Pre-\Sexpr{last.data.yr}
+  data / add \Sexpr{assess.yr - 1} fishery data (Fig. 16)}
   \bc
   \vspace{-5pt}
   <<bridge.biomass.3, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
@@ -218,7 +244,39 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Bridging to the base model: add \Sexpr{last.data.yr} data / DM Priors}
+\frame{\frametitle{Bridging: Update Pre-\Sexpr{last.data.yr}
+  data / add \Sexpr{assess.yr - 1} fishery data (Fig. 16)}
+  \bc
+  \vspace{-5pt}
+  <<bridge.recdev.biomass.3, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+  make.comparison.plot(bridge.models.2,
+                       subplots = 12,
+                       legendloc = "topleft",
+                       model.names = bridge.model.names.2,
+                       densitynames = bridge.density.names,
+                       end.yr = bridge.model.end.yr.2)
+  box()
+  @
+  \ec
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Bridging: Update Pre-\Sexpr{last.data.yr}
+  data / add \Sexpr{assess.yr - 1} fishery data (Fig. 16)}
+  \bc
+  <<bridge.wtage.3, fig.height=3.5>>=
+  weight.at.age.heatmap(base.model,
+                        proj.line.yr = base.model$endyr,
+                        extrap.mask = weight_age_extrapolation_mask,
+                        longterm.mean.ages = NULL,
+                        font.size = 1.6,
+                        axis.font.size = 4)
+  @
+  \ec
+}
+  
+%----------------------------------------------------------
+\frame{\frametitle{Bridging: Add \Sexpr{last.data.yr} survey data / DM Priors (Fig. 17)}
   \bc
   \vspace{-5pt}
   <<bridge.biomass.2, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
@@ -231,9 +289,12 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
                        densitynames = bridge.density.names,
                        end.yr = bridge.model.end.yr.3)
   make.comparison.plot(bridge.models.3,
-                       subplots = 9,
+                       subplots = 13,
+                       legend = FALSE,
                        model.names = bridge.model.names.3,
-                       densitynames = bridge.density.names,
+                       #densitynames = bridge.density.names,
+                       indexPlotEach = TRUE,
+                       indexUncertainty = TRUE,
                        end.yr = bridge.model.end.yr.3)
   box()
   par(oldpar)
@@ -242,8 +303,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 }
 
 %----------------------------------------------------------
-
-\frame{\frametitle{Bridging to the base model: Summary}
+\frame{\frametitle{Bridging: Summary}
   \bi
     \item Updating Stock Synthesis has no effect; switching to simple recruitment deviations produces
       a smaller $R_0$ estimate, which scales the relative biomass up a little.
@@ -251,8 +311,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     \item Adding \Sexpr{last.assess.yr} catch has little effect on
       biomass trajectories.
     \item Adding fishery age compositions and weight-at-age data increases recruitment
-      estimates of the 2016 and 2017 cohorts and decreases the 2018 cohort estimate.
-    \item Adding age compositions has an effect on the recent recruitment deviations.
+      estimates of the 2016 and 2017 cohorts and decreases the 2013, 2015, and 2018 cohort estimates.
     \item Adding the \Sexpr{last.data.yr} survey biomass estimate leads to slightly more optimistic
       estimate of biomass for the last few years and reduces uncertainty.
     \item Adding the \Sexpr{last.data.yr} survey age compositions further reduced uncertainty,
