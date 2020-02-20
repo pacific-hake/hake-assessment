@@ -862,8 +862,8 @@ more fish (a \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.m
 (prev.assess.recruitment.med)["2010"]) * 100), 0)}\% increase) than last
 year's assessment. This difference is largely driven by the addition
 of the 2019 acoustic survey age compositions (Figure~\ref{fig:main-bridge-5-panel-3})
-where the proportion of age-9 fish was higher than what the \Sexpr{end.yr-1}
-assessment model would have otherwise predicted given mortality.
+in which the proportion of age-9 fish in \Sexpr{end.yr} was higher than predicted by the \Sexpr{end.yr-1}
+assessment model given mortality.
 
 \fishname\ appear to have low average recruitment with occasional large year-classes
 (Figures~\ref{fig:main-recruitment} and \ref{fig:main-recruitment-devs},
