@@ -174,6 +174,7 @@ make.catches.plot <- function(catches,
                  ylab = "",
                  cex.lab = 1,
                  xaxt = "n",
+                 xaxs = "i",
                  mgp = c(2.2, 1, 0),
                  ylim = c(0, 475))
   axis(1, at = tmp, labels = years, line = -0.12)
@@ -191,6 +192,7 @@ make.catches.plot <- function(catches,
           ylab = "",
           cex.lab = 1,
           xaxt = "n",
+          xaxs = "i",
           add = TRUE,
           mgp = c(2.2, 1, 0))
 
