@@ -511,8 +511,6 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     %\begin{column}[t]{0.5\linewidth}
       <<ovary.table, results='asis', echo=FALSE, out.width='0.9\\columnwidth'>>=
         make.maturity.samples.table(ovary.samples,
-                                    start.yr = start.yr,
-                                    end.yr = last.data.yr,
                                     xcaption = "Number of \\fishname\\ ovaries collected for histological analysis.",
                                     xlabel = "tab:beamer-ovaries",
                                     font.size = 6,
