@@ -924,6 +924,27 @@ make.short.parameter.estimates.sens.table(
 \section{Age-1 index}
 \subsection{}
 \begin{frame}
+\frametitle{Including age-1 index (MCMC [this plot is MLE])}
+\begin{center}
+\vspace{5pt}
+<<age1.sensitivity.index>>=
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 1))
+make.comparison.plot(c(list(base.model), list(sens.models.2[[1]])),
+                     subplots = 13,
+                     model.names = c(base.model.name, sens.model.names.2[1]),
+                     end.yr = end.yr,
+                     indexfleets = c(2),
+                     legendloc = "bottomright")
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
 \frametitle{Including age-1 index (MCMC)}
 \begin{center}
 \vspace{5pt}
@@ -939,7 +960,6 @@ par <- oldpar
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
-
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
