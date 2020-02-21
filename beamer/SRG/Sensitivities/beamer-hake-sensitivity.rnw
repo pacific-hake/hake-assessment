@@ -1014,7 +1014,13 @@ par <- oldpar
 \centering
 % \begingroup\fontsize{12}{14}\selectfont
 \begin{tabular}{lrrrrrr}
-  \toprule \multirow{3}{*}{\textbf{Year}} & \multicolumn{3}{c}{\mlc{\textbf{Absolute recruitment} \\ \textbf{(millions)}}} & \multicolumn{3}{c}{\textbf{Recruitment deviations}} \\ \cmidrule(r){2-4}\cmidrule(l){5-7} & \mlc{\textbf{2.5} \\ \textbf{percentile}} & \textbf{Median} & \mlc{\textbf{97.5} \\ \textbf{percentile}} & \mlc{\textbf{2.5} \\ \textbf{percentile}} & \textbf{Median} & \mlc{\textbf{97.5} \\ \textbf{percentile}} \\
+%  \toprule \multirow{3}{*}{\textbf{Year}} & \multicolumn{3}{c}{\mlc{\textbf{Absolute recruitment} \\ \textbf{(millions)}}} & \multicolumn{3}{c}{\textbf{Recruitment deviations}} \\ \cmidrule(r){2-4}\cmidrule(l){5-7} & \mlc{\textbf{2.5} \\ \textbf{percentile}} & \textbf{Median} & \mlc{\textbf{97.5} \\ \textbf{percentile}} & \mlc{\textbf{2.5} \\ \textbf{percentile}} & \textbf{Median} & \mlc{\textbf{97.5} \\ \textbf{percentile}} \\
+\toprule
+% \multirow{3}{*}
+Year & \multicolumn{3}{c}{Absolute recruitment (millions)} & \multicolumn{3}{c}{Recruitment deviations} \\
+\cmidrule(r){2-4}\cmidrule(l){5-7}
+       & 2.5\%    & Median   & 97.5\%   & 2.5\%  & Median & 97.5\% \\
+\midrule
   2010 & 10,259.4 & 16,364.4 & 32,074.9 &  2.496 &  2.922 &  3.370 \\
   2011 &    165.9 &    410.4 &    948.8 & -1.700 & -0.793 & -0.087 \\
   2012 &    884.8 &  1,541.6 &  3,322.7 & -0.063 &  0.481 &  1.077 \\
@@ -1025,7 +1031,7 @@ par <- oldpar
   2017 &    952.4 &  2,603.8 &  7,705.3 & -0.065 &  0.951 &  1.860 \\
   2018 &    278.5 &  1,493.5 &  5,692.2 & -1.152 &  0.375 &  1.754 \\
   2019 &     56.7 &  1,011.9 & 13,737.5 & -2.805 &  0.024 &  2.482 \\
-  \midrule
+\midrule
   2010 & 9,997.5 & 15,344.3 & 27,750.0 &  2.511 &  2.921 &  3.349 \\
   2011 &   162.5 &    432.2 &    955.0 & -1.652 & -0.687 &  0.049 \\
   2012 &   835.7 &  1,424.8 &  2,751.5 & -0.057 &  0.485 &  1.002 \\
