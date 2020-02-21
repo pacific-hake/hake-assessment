@@ -961,6 +961,52 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Including age-1 index (MCMC)}
+\begin{center}
+<<age1.sensitivity.recr, fig.height=3.5>>=
+oldpar <- par()
+par(mar = c(20, 4.1, 0, 1))
+make.recruitment.plot(sens.models.2[[1]],
+                      equil.yr = unfished.eq.yr,
+                      start.yr = start.yr,
+                      end.yr = end.yr,
+                      color = "blue",
+                      add.mean = TRUE,
+                      add.r0 = TRUE,
+                      upper.lim = 35)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Base model}
+\begin{center}
+<<age1.sensitivity.recr.base, fig.height=3.5>>=
+oldpar <- par()
+par(mar = c(20, 4.1, 0, 1))
+make.recruitment.plot(base.model,
+                      equil.yr = unfished.eq.yr,
+                      start.yr = start.yr,
+                      end.yr = end.yr,
+                      color = "blue",
+                      add.mean = TRUE,
+                      add.r0 = TRUE,
+                      upper.lim = 35)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
@@ -1219,8 +1265,8 @@ par <- oldpar
 ~\\
 \bi
   \item Suggest we use {\tt adnuts} for 2021 assessment
-  \item Would allow MCMC results for all sensitivities
-  \item However, would be desirable to reduce the number of sensitivity analyses
+  \item Would increase the use of MCMC results for sensitivities
+  \item However, would be desirable to reduce the number of sensitivities
     (to reduce build time for the assessment document)
 \ei
 \end{frame}
