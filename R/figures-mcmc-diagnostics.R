@@ -22,7 +22,7 @@ make_mcmc_priors_vs_posts_plot <- function(prior_mle,
                                            show_mle = TRUE,
                                            show_legend = FALSE,
                                            title_text = ""){
-  
+
   dat <- posterior %>%
     enframe() %>%
     mutate(prior = prior_mle$prior) %>%
@@ -54,7 +54,7 @@ make_mcmc_priors_vs_posts_plot <- function(prior_mle,
   ymax <- ifelse(show_mle, max(prior_mle$mle, ymax), ymax)
   xmin <- ifelse(show_mle, min(qnorm(0.001, prior_mle$finalval, prior_mle$parsd), xmin), min(prior_mle$finalval, xmin))
   xmax <- ifelse(show_mle, max(qnorm(0.999, prior_mle$finalval, prior_mle$parsd), xmax), max(prior_mle$finalval, xmax))
-  
+
   xmin <- ifelse(show_init, min(prior_mle$initval, xmin), xmin)
   xmax <- ifelse(show_init, max(prior_mle$initval, xmax), xmax)
 
@@ -70,10 +70,10 @@ make_mcmc_priors_vs_posts_plot <- function(prior_mle,
        cex.main = 1,
        axes = FALSE)
   axis(1)
-  
+
   colvec <- c("blue", "red", "black", "gray60", rgb(0, 0, 0, 0.5))
   ltyvec <- c(1, 1, 3, 4)
-  
+
   plot(posthist,
        add = TRUE,
        freq = FALSE,
@@ -83,14 +83,14 @@ make_mcmc_priors_vs_posts_plot <- function(prior_mle,
          col = colvec[5],
          lwd = 2,
          lty = ltyvec[3])
-  
+
   if(show_prior){
     lines(prior_mle$Pval,
           prior,
           lwd = 2,
           lty = ltyvec[2])
   }
-  
+
   if(show_mle){
     if(!is.na(prior_mle$parsd) && prior_mle$parsd > 0){
       mle <- dnorm(prior_mle$Pval,
@@ -109,19 +109,19 @@ make_mcmc_priors_vs_posts_plot <- function(prior_mle,
               dnorm(prior_mle$finalval,
                     prior_mle$finalval,
                     prior_mle$parsd) * mlescale),
-            col = colvec[1], 
+            col = colvec[1],
             lty = ltyvec[1])
     }
   }
-  
+
   if(show_init){
     par(xpd = NA) # stop clipping
     points(prior_mle$initval, -0.02 * ymax, col = colvec[2], pch = 17, cex = 1.2)
     par(xpd = FALSE)
   }
-  
+
   box()
-  
+
   if(show_legend){
     showvec <- c(show_prior, show_mle, show_init)
     legend("topleft",
@@ -166,7 +166,7 @@ make_mcmc_priors_vs_posts_plot <- function(prior_mle,
 #'
 #' @examples
 #' make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
-#'                                               key.posteriors, 
+#'                                               key.posteriors,
 #'                                               ncol = 2,
 #'                                               nrow = 2,
 #'                                               show_legend = TRUE,
@@ -187,7 +187,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot <- function(model,
   }
   oldpar <- par("mar", "mfrow")
   on.exit(par(oldpar))
-  
+
   priors_mle <- get_prior_data(model, posterior_regex)
   posts <- get_posterior_data(model, posterior_regex)
 
@@ -202,8 +202,8 @@ make_key_posteriors_mcmc_priors_vs_posts_plot <- function(model,
 }
 
 #' Plot MCMC diagnostics
-#' 
-#' @details Top left panel is traces of posteriors across iterations, top right is 
+#'
+#' @details Top left panel is traces of posteriors across iterations, top right is
 #' cumulative running mean with 5th and 95th percentiles, bottom left is
 #' autocorrelation present in the chain at different lag times (i.e., distance between samples in
 #' the chain), and bottom right is distribution of the values in the chain (i.e., the marginal
@@ -225,9 +225,9 @@ make.mcmc.diag.plot <- function(model,
             length(posterior.regex) == length(posterior.name == 1))
   oldpar <- par("ann", "mar", "oma", "mfrow")
   on.exit(par(oldpar))
-  
+
   m <- model$mcmc
-  
+
   mc_obj <- mcmc(select(m, matches(posterior.regex)) %>% as_tibble())
   label <- posterior.name
   par(mar = c(5, 3.5, 0, 0.5),
@@ -283,8 +283,8 @@ make.mcmc.diag.plot <- function(model,
   densplot(mc_obj, show.obs = TRUE)
   mtext("Density", side = 2, line = 2, font = 1, cex = 0.8)
   mtext("Value", side = 1, line = 3, font = 1, cex = 0.8)
-  
-  
+
+
   mtext(label, side = 2, outer = TRUE, line = 1.3, cex = 1.1)
 }
 
@@ -360,10 +360,10 @@ make.mcmc.diag.pairs.plot <- function(model,
       stop("If inc.key.params is FALSE, recr must not be null.",
            call. = FALSE)
     }
-    rnames <- rownames(model$recruitpars) %>% 
+    rnames <- rownames(model$recruitpars) %>%
       enframe(name = NULL)
-    recs <- bind_cols(rnames, as_tibble(model$recruitpars)) %>% 
-      filter(Yr %in% recr) %>% 
+    recs <- bind_cols(rnames, as_tibble(model$recruitpars)) %>%
+      filter(Yr %in% recr) %>%
       rename(Name = value)
     lst <- lapply(seq_along(recs$Name), function(x){
       select(m, contains(recs$Name[x]))
@@ -491,14 +491,38 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
   par <- oldpar
 }
 
-make.mcmc.catchability.plot <- function(model){
-  # histogram of catchability
-  # settings are similar to those used by SSplotPars
-  par(mar=c(3,3,1,1))
+make.mcmc.catchability.plot <- function(model,
+                                        model2 = NULL,
+                                        med_color = "royalblue",
+                                        mle_color = "royalblue",
+                                        model2_med_color = "green",
+                                        model2_mle_color = "green"){
+  par(mar = c(3, 3, 1, 1))
   hist(model$extra.mcmc$Q_vector,
-       breaks = seq(0,1.1*max(model$extra.mcmc$Q_vector),.05),
+       breaks = seq(0, 1.1 * max(model$extra.mcmc$Q_vector), 0.05),
        xlab = "Acoustic survey catchability (Q)",
-       col = "gray60", border = "gray60", xaxs='i', yaxs='i', main="")
-  abline(v = median(model$extra.mcmc$Q_vector), col = rgb(0,0,0,.5), lwd = 2, lty = 3)
+       col = "gray60",
+       border = "gray60",
+       xaxs = 'i',
+       yaxs = 'i',
+       main = "")
+  abline(v = median(model$extra.mcmc$Q_vector),
+         col = med_color,
+         lwd = 2,
+         lty = 1)
+  abline(v = model$cpue$Calc_Q[1],
+         col = mle_color,
+         lwd = 2,
+         lty = 2)
+  if(!is.null(model2)){
+    abline(v = median(model2$extra.mcmc$Q_vector),
+           col = model2_med_color,
+           lwd = 2,
+           lty = 1)
+    abline(v = model2$cpue$Calc_Q[1],
+           col = model2_mle_color,
+           lwd = 2,
+           lty = 2)
+  }
   abline(h = 0)
 }
