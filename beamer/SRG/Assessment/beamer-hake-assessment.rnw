@@ -560,14 +560,14 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
   \begin{table}
     \begin{tabular}{cccc} \hline
       \textcolor{blue}{Median (\Sexpr{assess.yr})} &
-      \textcolor{green}{Median (\Sexpr{assess.yr - 1})} &
+      \textcolor{red}{Median (\Sexpr{assess.yr - 1})} &
       \textcolor{blue}{MLE (\Sexpr{assess.yr})} &
-      \textcolor{green}{MLE (\Sexpr{assess.yr - 1})} \\
+      \textcolor{red}{MLE (\Sexpr{assess.yr - 1})} \\
       \hline
       \textcolor{blue}{\Sexpr{f(median(base.model$extra.mcmc$Q_vector), 2)}} &
-      \textcolor{green}{\Sexpr{f(median(last.yr.base.model$extra.mcmc$Q_vector), 2)}} &
+      \textcolor{red}{\Sexpr{f(median(last.yr.base.model$extra.mcmc$Q_vector), 2)}} &
       \textcolor{blue}{\Sexpr{f(base.model$cpue$Calc_Q[1],2)}}  &
-      \textcolor{green}{\Sexpr{f(last.yr.base.model$cpue$Calc_Q[1],2)}} \\
+      \textcolor{red}{\Sexpr{f(last.yr.base.model$cpue$Calc_Q[1],2)}} \\
       \hline
     \end{tabular}
   \end{table}
@@ -644,7 +644,6 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
 %----------------------------------------------------------
 
 \frame{\frametitle{Key quantities}
-  \vspace{-5pt}
   \bc
   <<main.parameter.estimates, results='asis', echo=FALSE>>=
     make.short.parameter.estimates.table(base.model,
@@ -674,7 +673,6 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
 
 %----------------------------------------------------------
 \frame{\frametitle{Absolute Recruitment}
-  \vspace{-5pt}
   \bc
   <<recruitment, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.recruitment.plot(base.model,
@@ -689,13 +687,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
 }
 
 %----------------------------------------------------------
-
 \frame{\frametitle{Estimates of 2014 and 2016 cohorts}
-
-<<prop.biomass.large.cohorts>>=
-# From Table 21 for 2018 row, saved in estimated-biomass-at-age.csv
-
-@
 \bi
   \item The probability of the 2014 cohort being larger than the 2010 cohort is \Sexpr{prob.percent.2014.rec.gt.2010.rec}\%
   \item The probability of the 2016 cohort being larger than the 2010 cohort is \Sexpr{prob.percent.2016.rec.gt.2010.rec}\%
@@ -734,20 +726,22 @@ and 2016 cohort uncertainty to \Sexpr{rec_2016[[3]]}\% of what it was in the \Se
 \begin{columns}
   \begin{column}{0.5\textwidth}
     \bi
+      \item Estimated values
       \item Red line is mean age for the year
+      \item Mean age drops significantly in years with large age-0 cohorts
     \ei
   \end{column}
   \begin{column}{0.5\textwidth}
     \vspace{-10pt}
     \bc
       <<main.numbers.at.age, fig.height=12, fig.width=10,out.width='0.8\\columnwidth'>>=
-make_numbers_at_age_plot(base.model,
-                         mean_age_line_color = "red",
-                         mean_age_line_size = 1.5,
-                         mean_age_line_type = "solid",
-                         legend.position = "top",
-                         legend.title = "Numbers (billions)",
-                         xlim = c(1965, assess.yr))
+    make_numbers_at_age_plot(base.model,
+                             mean_age_line_color = "red",
+                             mean_age_line_size = 1.5,
+                             mean_age_line_type = "solid",
+                             legend.position = "top",
+                             legend.title = "Numbers (billions)",
+                             xlim = c(1965, assess.yr))
       @
     \ec
   \end{column}
@@ -755,10 +749,8 @@ make_numbers_at_age_plot(base.model,
 }
 
 %----------------------------------------------------------
-
 \frame{\frametitle{Spawning Biomass}
-  \vspace{-5pt}
- % \bc
+  \bc
   <<female.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.biomass.plot(base.model,
                       equil.yr = unfished.eq.yr,
@@ -766,21 +758,21 @@ make_numbers_at_age_plot(base.model,
                       end.yr = end.yr,
                       color = "blue")
   @
-%  \ec
+  \ec
 }
 
 %----------------------------------------------------------
 
 \frame{\frametitle{Spawning Biomass (million~t)}
-<<biomass.calcs>>=
-lb <- last.yr.base.model
-lb.smed <- lb$mcmccalcs$smed
-lb.slower <- lb$mcmccalcs$slower
-lb.supper <- lb$mcmccalcs$supper
-last.slower <- f(lb.slower[names(lb.slower) == assess.yr - 1], 3)
-last.supper <- f(lb.supper[names(lb.supper) == assess.yr - 1], 3)
-last.smed <- f(lb.smed[names(lb.smed) == assess.yr - 1], 3)
-@
+  <<biomass.calcs>>=
+    lb <- last.yr.base.model
+    lb.smed <- lb$mcmccalcs$smed
+    lb.slower <- lb$mcmccalcs$slower
+    lb.supper <- lb$mcmccalcs$supper
+    last.slower <- f(lb.slower[names(lb.slower) == assess.yr - 1], 3)
+    last.supper <- f(lb.supper[names(lb.supper) == assess.yr - 1], 3)
+    last.smed <- f(lb.smed[names(lb.smed) == assess.yr - 1], 3)
+    @
   \begin{table}
     \begin{tabular}{cccc} \hline
       Calculation & Low & Median & High \\
@@ -796,15 +788,12 @@ last.smed <- f(lb.smed[names(lb.smed) == assess.yr - 1], 3)
     \end{tabular}
   \end{table}
   ~\\
-So while the median estimate of $B_{\Sexpr{end.yr-1}}$ has declined from last
-year's assessment,\\
-~~the credible interval remains within that from last year's assessment.
+So while the median estimate of $B_{\Sexpr{end.yr-1}}$ has increased from last
+year's assessment, the credible interval remains within that from last year's assessment.
 }
 
 %----------------------------------------------------------
-
 \frame{\frametitle{Relative Spawning Biomass}
-  \vspace{-5pt}
   \bc
   <<relative.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.depletion.plot(base.model,
@@ -816,11 +805,9 @@ year's assessment,\\
 }
 
 %----------------------------------------------------------
-
 \frame{\frametitle{Fishing Intensity}
-  \vspace{-5pt}
   \bc
-  <<fishing.intensity, fig.height=4, fig.width=8, out.width='0.8\\columnwidth'>>=
+  <<fishing.intensity, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.fishing.intensity.plot(base.model,
                                 start.yr = start.yr,
                                 end.yr = end.yr-1,
@@ -832,9 +819,8 @@ year's assessment,\\
 %----------------------------------------------------------
 
 \frame{\frametitle{Exploitation Fraction (ages $2+$)}
-  \vspace{-5pt}
   \bc
-  <<exploitation, fig.height=4, fig.width=8, out.width='0.8\\columnwidth'>>=
+  <<exploitation, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.exploitation.fraction.plot(base.model,
                                     start.yr = start.yr,
                                     end.yr = end.yr-1,

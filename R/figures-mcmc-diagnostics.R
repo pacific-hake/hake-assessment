@@ -493,16 +493,19 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
 
 make.mcmc.catchability.plot <- function(model,
                                         model2 = NULL,
+                                        hist_color = "grey60",
+                                        hist_alpha = 0.5,
                                         med_color = "royalblue",
                                         mle_color = "royalblue",
-                                        model2_med_color = "green",
-                                        model2_mle_color = "green"){
+                                        model2_med_color = "red",
+                                        model2_mle_color = "red"){
+  hist_color <- get.shade(hist_color, (1 - hist_alpha) * 100)
   par(mar = c(3, 3, 1, 1))
   hist(model$extra.mcmc$Q_vector,
        breaks = seq(0, 1.1 * max(model$extra.mcmc$Q_vector), 0.05),
        xlab = "Acoustic survey catchability (Q)",
-       col = "gray60",
-       border = "gray60",
+       col = hist_color,
+       border = hist_color,
        xaxs = 'i',
        yaxs = 'i',
        main = "")
