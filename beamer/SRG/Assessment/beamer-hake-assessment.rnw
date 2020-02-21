@@ -340,27 +340,29 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 }
 
 %----------------------------------------------------------
-\begin{frame}
-\frametitle{Time-varying fishery selectivity ($\Phi$)}
-
-\bi
-  \item Used since 2014 assessment.
-  \item Deviations are applied to selectivity-at-age parameters.
-  \item Normally-distributed penalty function applied to keep deviations
-    straying too far from zero.
-  \item Deviation is controlled by fixed standard deviation parameter $\Phi = 1.40$,
-    (same value as in the \Sexpr{last.assess.yr} assessment).
-  \item Maximum age for which selectivity is estimated is 6. Greater than this,
-    selectivity is constant. Maximum selectivity is 1.
-  \item See page 40-41 for equations and details.
-\ei
-\end{frame}
+% \begin{frame}
+% \frametitle{Time-varying fishery selectivity ($\Phi$)}
+%
+% \bi
+%   \item Used since 2014 assessment.
+%   \item Deviations are applied to selectivity-at-age parameters.
+%   \item Normally-distributed penalty function applied to keep deviations
+%     straying too far from zero.
+%   \item Deviation is controlled by fixed standard deviation parameter $\Phi = 1.40$,
+%     (same value as in the \Sexpr{last.assess.yr} assessment).
+%   \item Maximum age for which selectivity is estimated is 6. Greater than this,
+%     selectivity is constant. Maximum selectivity is 1.
+%   \item See page 40-41 for equations and details.
+% \ei
+% \end{frame}
 
 %----------------------------------------------------------
 
 \begin{frame}
 \frametitle{Dirichlet-Multinomial parameters ($\theta_{fish}$ and $\theta_{surv}$)}
-
+<<get.prior.values>>=
+  priors_mle <- get_prior_data(base.model, tail(key.posteriors, 2))
+@
 \bi
   \item Used in the assessment since 2018. Prior to this, an iteritave weighting scheme was used
     (McAllister-Ianelli).
@@ -424,7 +426,13 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
 
 %----------------------------------------------------------
 \section{Fits to data}
-\subsection{}
+\begin{frame}[c]
+  \begin{center}
+  \Huge Model fits to data
+  \end{center}
+\end{frame}
+
+%----------------------------------------------------------
 \frame{\frametitle{Fit to the acoustic survey index of abundance (MCMC)}
   \bc
   <<mcmc.survey.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
@@ -509,8 +517,13 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
 
 %----------------------------------------------------------
 \section{Estimated quantities}
-\subsection{}
+\begin{frame}[c]
+  \begin{center}
+  \Huge Estimated quantities
+  \end{center}
+\end{frame}
 
+%----------------------------------------------------------
 \frame{\frametitle{Key parameters}
 \begin{columns}
   \begin{column}{0.38\textwidth}
@@ -1229,8 +1242,13 @@ year's assessment,\\
 
 %----------------------------------------------------------
 \section{Summary}
-\subsection{Biomass}
+\begin{frame}[c]
+  \begin{center}
+  \Huge Summary
+  \end{center}
+\end{frame}
 
+%----------------------------------------------------------
 \frame{\frametitle{Summary -- Biomass}
   \bi
   \item Model continues to fit the age data particularly well.
@@ -1244,7 +1262,6 @@ year's assessment,\\
   \ei
 }
 
-\subsection{Key Cohorts}
 \frame{\frametitle{Summary -- Key Cohorts}
   \bi
   \item The 2010 cohort is estimated to be \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"], 1)}~billion fish,
