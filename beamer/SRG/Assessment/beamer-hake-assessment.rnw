@@ -368,13 +368,37 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     choice of how many iterations to do, and automatically tunes each model as opposed to all having the
     same tuning.
   \item Uniform prior [-5, 20] was used in 2019 assessment.
-  \item A Normal (almost Uniform) prior is used in  \Sexpr{assess.yr} to improve MCMC convergence of these parameters.
-    In the \Sexpr{last.assess.yr} assessment, they were stuck between 0.99--1.00 (at the upper bound).
+  \item In the \Sexpr{last.assess.yr} assessment, these parameters were stuck between 0.99--1.00 (at the upper bound).
+  \item A Normal (almost Uniform) prior with a mean of 0 and a standard deviation of \Sexpr{priors_mle[[1]]$Psd}
+    is used in \Sexpr{assess.yr} to improve MCMC convergence of these parameters.
 \ei
 \end{frame}
 
+
+\begin{frame}
+\frametitle{Priors on Dirichlet-Multinomial parameters ($\theta_{fish}$ and $\theta_{surv}$)}
+    \bc
+    <<dm.prior.posterior, fig.height=3.5, fig.width=8,out.width='0.95\\columnwidth'>>=
+make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
+                                              tail(key.posteriors, 2),
+                                              ncol = 2,
+                                              nrow = 1,
+                                              show_legend = TRUE,
+                                              legend_panel = 2,
+                                              titles = tail(key.posteriors.titles, 2))
+    @
+    \ec
+\end{frame}
+
+%----------------------------------------------------------
+\section{MCMC Diagnostics}
+\begin{frame}[c]
+  \begin{center}
+  \Huge MCMC Diagnostics
+  \end{center}
+\end{frame}
+
 % ----------------------------------------------------------
-\section{MCMC diagnostics}
 \frame{\frametitle{MCMC trace plots (more in Appendix A, Figures A.1--A.3)}
    \bc
    <<main.mcmc.diag.m, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
