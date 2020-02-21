@@ -1006,6 +1006,37 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Table taken directly from hake-assessment.tex and then edited down
+\subsection{}
+\begin{frame}
+\frametitle{$R_0$ and $B_0$ for age-1 index}
+\begin{table}[tbp]
+\centering
+% \begingroup\fontsize{12}{14}\selectfont
+\begin{tabular}{lrrr}
+Quantity & 2.5\% & Median & 97.5\% \\
+\hline
+\color{blue}{With age-1 index} & & & \\
+\alert<1>{$B_0$, thousand t} & \alert<1>{1,255} & \alert<1>{1,941} & \alert<1>{3,168} \\
+ & & & \\
+\alert<2>{$R_0$, millions} & \alert<2>{1,449} & \alert<2>{2,687} & \alert<2>{5,644} \\
+%  & & & \\
+\hline
+\color{blue}{Base model} & & & \\
+\alert<1>{$B_0$, thousand t} & \alert<1>{1,231} & \alert<1>{1,832} & \alert<1>{2,853} \\
+ & & & \\
+\alert<2>{$R_0$, millions} & \alert<2>{1,403} & \alert<2>{2,505} & \alert<2>{4,961} \\
+% & & & \\
+\bottomrule
+\end{tabular}
+% \endgroup
+\end{table}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
