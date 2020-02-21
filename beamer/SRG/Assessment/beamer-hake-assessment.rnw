@@ -263,6 +263,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   weight.at.age.heatmap(base.model,
                         proj.line.yr = base.model$endyr,
                         extrap.mask = weight_age_extrapolation_mask,
+                        proj.line.width = 0.4,
                         longterm.mean.ages = NULL,
                         font.size = 1.6,
                         axis.font.size = 4)
