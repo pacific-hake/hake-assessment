@@ -456,7 +456,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
-    \vspace{-15pt}
+    %\vspace{-15pt}
     \bc
       <<mcmc.survey.age.comp.fits, fig.height=4.4, fig.width=5.5,out.width='1.0\\columnwidth'>>=
       make.age.comp.fit.plot(base.model,
@@ -479,7 +479,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
-    \vspace{-15pt}
+    \vspace{-5pt}
     \bc
       <<mcmc.fishery.age.comp.fits, fig.height=5.2, fig.width=6.5,out.width='1.0\\columnwidth'>>=
       make.age.comp.fit.plot(base.model,
