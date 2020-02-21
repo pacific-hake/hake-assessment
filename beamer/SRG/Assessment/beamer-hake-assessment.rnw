@@ -805,9 +805,15 @@ year's assessment,\\
 
 %----------------------------------------------------------
 \section{\Sexpr{last.assess.yr} SRG recommendations}
+\begin{frame}[c]
+  \begin{center}
+  \Huge \Sexpr{last.assess.yr} SRG recommendations
+  \end{center}
+\end{frame}
+
+%----------------------------------------------------------
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
   {\bf Explore recruitment parameterizations}}
-% \setbeamercovered{dynamic}   % need for \pause
   \bi
   \item The SRG notes the high sensitivity of the model to the variance parameter assumed for
   recruitment deviations ($\sigma_R$). While the spawning
