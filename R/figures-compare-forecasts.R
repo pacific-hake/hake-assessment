@@ -134,56 +134,71 @@ make.forecast.risk.comparison.plot <- function(model,        ## model is the mod
                                                              ## pch is a vector of symbols. This must be the same length
                                                              ## as the number of rows model$risks data frames has
                                                legend.cex = 0.7,   ## Text size for the legend
-                                               legend.loc = "topleft"){
-  oldpar <- par()
-  par(mar=c(4.5,4.5,1,1), xpd=TRUE) # xpd=TRUE allows points to overlap box around plot
+                                               legend.loc = "topleft",
+                                               xlim = NULL){
+  oldpar <- par("mar", "xpd")
+  on.exit(par(oldpar))
+  par(mar = c(4.5, 4.5, 1, 1), xpd = TRUE) # xpd=TRUE allows points to overlap box around plot
   prob.dat <- model$risks[fore.yr == forecast_yrs][[1]]
   ## Sort the table by catches
-  prob.dat <- prob.dat[order(prob.dat[,1]),]
+  prob.dat <- prob.dat[order(prob.dat[, 1]),]
   ## Divide all the percentages by 100 to get probabilities
-  prob.dat[,-1] <- prob.dat[,-1] / 100.0
+  prob.dat[,-1] <- prob.dat[, -1] / 100.0
   ## Divide all catches by 1000 to get megatonnes
-  catches <- round(prob.dat[,1] / 1000.0, 0)
+  catches <- round(prob.dat[, 1] / 1000.0, 0)
   ## Remove catches from the table
-  prob.dat <- prob.dat[,-1]
+  prob.dat <- prob.dat[, -1]
   ## Remove last three columns, which are DFO reference points
   prob.dat <- prob.dat[,-((ncol(prob.dat) - 2):ncol(prob.dat))]
 
-  legend.text <- c(paste0("P(B",fore.yr+1,"<B",fore.yr,"): Stock declines in ",fore.yr+1),
-                   paste0("P(B",fore.yr+1,"<B40%)"),
-                   paste0("P(B",fore.yr+1,"<B25%)"),
-                   paste0("P(B",fore.yr+1,"<B10%)"),
-                   paste0("P(",fore.yr," relative fishing intensity > 100%)"),
-                   paste0("P(",fore.yr+1," default harvest policy catch < ",fore.yr," catch)"))
-
+  legend.text <- c(paste0("P(B", fore.yr + 1, "<B", fore.yr, "): Stock declines in ", fore.yr + 1),
+                   paste0("P(B", fore.yr + 1, "<B40%)"),
+                   paste0("P(B", fore.yr + 1, "<B25%)"),
+                   paste0("P(B", fore.yr + 1, "<B10%)"),
+                   paste0("P(", fore.yr, " relative fishing intensity > 100%)"),
+                   paste0("P(", fore.yr + 1, " default harvest policy catch < ", fore.yr, " catch)"))
+  if(is.null(xlim)){
+    xlim <- c(0, max(catches, na.rm = TRUE))
+  }
   # make empty plot
-  matplot(catches, prob.dat,
-          xlim=c(0,max(catches,
-                       na.rm = TRUE)),
-          ylim=c(0,1),
-          las=1,
-          yaxs="i",
-          xaxt="n",
-          ylab="Probability",
-          xlab=paste0("Catch in ",fore.yr," ('000 t)"),
-          type="n")
-  # add x-axis
-  axis(1, at=catches, cex.axis=0.9, las=2)
-  # add plot with points (now on top of axes)
-
   matplot(catches,
           prob.dat,
-          add=TRUE,
-          type="b",
-          lty=2,
-          pch=pch,
-          col=colors)
+          xlim = xlim,
+          ylim = c(0, 1),
+          las = 1,
+          yaxs = "i",
+          xaxt = "n",
+          ylab = "Probability",
+          xlab = paste0("Catch in ", fore.yr, " ('000 t)"),
+          type = "n")
+  # add x-axis
+  axis(1,
+       at = catches,
+       cex.axis = 0.9,
+       las = 2)
+  # add plot with points (now on top of axes)
+  matplot(catches,
+          prob.dat,
+          add = TRUE,
+          type = "b",
+          lty = 2,
+          pch = pch,
+          col = colors)
   # restore clipping to plot region
-  par(xpd=FALSE)
+  par(xpd = FALSE)
   # add line at 50% and horizontal axis
-  abline(h=0.5, lty=2, lwd=1, col="grey")
+  abline(h = 0.5,
+         lty = 2,
+         lwd = 1,
+         col = "grey")
 
   # add legend
-  legend(legend.loc, legend.text, col=colors, lty=1, lwd=2, pch=pch, cex=legend.cex, bty="n")
-  par <- oldpar
+  legend(legend.loc,
+         legend.text,
+         col = colors,
+         lty = 1,
+         lwd = 2,
+         pch = pch,
+         cex = legend.cex,
+         bty = "n")
 }
