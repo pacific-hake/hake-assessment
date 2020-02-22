@@ -7,7 +7,7 @@ dir.SRG.management <- "../beamer/SRG/Management/"
 
 # location is bottom unless points overlap too much
 x$loc <- "bottom"
-x$loc[x$Year %in% c(2005, 2006, 2008,2012, 2013, 2016)] <- "top"
+x$loc[x$Year %in% c(2004, 2006,2012, 2016, 2018)] <- "top"
 
 # vector of colors
 colvec <- rev(rich.colors.short(n = nrow(x),alpha=1))
@@ -18,7 +18,6 @@ for(i in 1:length(colvec)){
   colvec[i] <- rgb(tmp[1]*scale,tmp[2]*scale,tmp[3]*scale)
 }
 
-x$Assessment.TAC.yr <- as.numeric(c(NA,x$Assessment.TAC[1:(length(x$Assessment.TAC)-1)]))
 doPNG <- FALSE
 doEPS <- TRUE
 wd=5; ht=4
@@ -32,23 +31,23 @@ par(mfrow=c(1,1),mar=c(3.5,4.6,1,1))
 # empty plot
 plot(0, type='n', las=1, ylab="", xlab="", xlim=c(0,1000), ylim=c(0,800))
 # add points for realized catch
-points(x$Assessment.TAC.yr/1000, x$Realized.catch/1000, pch=22, bg=colvec, col="black", cex=1.1)
+points(x$Assessment.TAC/1000, x$Realized.catch/1000, pch=22, bg=colvec, col="black", cex=1.1)
 # add points for TAC
-points(x$Assessment.TAC.yr/1000, x$TAC/1000, pch=16, col="black", cex=1.1)
+points(x$Assessment.TAC/1000, x$TAC/1000, pch=16, col="black", cex=1.1)
 
 
 sub1 <- which(x$loc=="bottom")
 sub2 <- which(x$loc=="top")
 # add text below most of the points
-text(x=x$Assessment.TAC.yr[sub1]/1000, y=x$Realized.catch[sub1]/1000,
+text(x=x$Assessment.TAC[sub1]/1000, y=x$Realized.catch[sub1]/1000,
      label=substring(x$Year,3)[sub1], pch=0, col=colvec[sub1], 
      cex=0.7, srt=0, adj=c(0.5, 2.0))
 # add text above points for the subset that overlaps too much
-text(x=x$Assessment.TAC.yr[sub2]/1000, y=x$Realized.catch[sub2]/1000, 
+text(x=x$Assessment.TAC[sub2]/1000, y=x$Realized.catch[sub2]/1000, 
      label=substring(x$Year,3)[sub2], pch=0, col=colvec[sub2], 
      cex=0.7, srt=0, adj=c(1.5, 0.5))
 
-segments(x$Assessment.TAC.yr/1000,x$TAC/1000,x$Assessment.TAC.yr/1000,x$Realized.catch/1000+10)
+segments(x$Assessment.TAC/1000,x$TAC/1000,x$Assessment.TAC/1000,x$Realized.catch/1000+10)
 abline(a=0,b=1,col=gray(0.5))
 title(xlab="TAC predicted from the assessment (thousand t)",mgp=c(2.1,1,0),cex.lab=1.1)
 title(ylab="Thousand t",mgp=c(3.1,1,0),cex.lab=1.1)
