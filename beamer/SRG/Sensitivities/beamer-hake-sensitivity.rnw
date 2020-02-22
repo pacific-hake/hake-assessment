@@ -1092,6 +1092,56 @@ Year & \multicolumn{3}{c}{Absolute recruitment} & \multicolumn{3}{c}{Recruitment
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Age-1 index projections}
+\begin{center}
+<<age1.sensitivity.proj, fig.height=3.5>>=
+oldpar <- par()
+par(mar = c(20, 4.1, 0, 1))
+models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
+models.names <- sapply(sens.models.2[[1]]$catch.levels, "[[", 2)[models.inds]
+make.forecast.depletion.comparison.plot(sens.models.2[[1]],
+                                        models.inds,
+                                        models.names,
+                                        start.yr = 2009,
+                                        model.end.yr = end.yr,
+                                        end.yr =forecast_yrs[length(forecast_yrs)],
+                                        legend.loc = "topleft",
+                                        ylim = c(0,1.035))   # getting this to
+                                          # be same y-scale as other fig
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Base model projections}
+\begin{center}
+<<age1.sensitivity.base.proj, fig.height=3.5>>=
+oldpar <- par()
+par(mar = c(20, 4.1, 0, 1))
+models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
+models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds]
+make.forecast.depletion.comparison.plot(base.model,
+                                        models.inds,
+                                        models.names,
+                                        start.yr = 2009,
+                                        model.end.yr = end.yr,
+                                        end.yr =forecast_yrs[length(forecast_yrs)],
+                                        legend.loc = "topleft",
+                                        ylim = c(0,1))     # not sure what units
+                                          # are, but this works
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
