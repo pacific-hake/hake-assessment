@@ -357,7 +357,6 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 % \end{frame}
 
 %----------------------------------------------------------
-
 \begin{frame}
 \frametitle{Dirichlet-Multinomial parameters ($\theta_{fish}$ and $\theta_{surv}$)}
 <<get.prior.values>>=
@@ -376,7 +375,57 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \ei
 \end{frame}
 
+%----------------------------------------------------------
+\begin{frame}
+\frametitle{Weighting of priors on Dirichlet-Multinomial parameters ($\theta_{fish}$ and $\theta_{surv}$)}
+\begin{columns}
+  \begin{column}{0.5\textwidth}
+    \bc
+      <<weight.assoc.uniform.dm, fig.height = 6>>=
+          # generating uniform values in the log(Theta) space (bounded -5 to 5)
+          dist_size <- 100 #1e8
+          log_theta <- runif(n = dist_size,
+                             min = -5,
+                             max = 5)
+          # transformating into weights
+          theta <- exp(log_theta)
+          weight <- theta / (1 + theta)
+          hist(weight,
+               breaks = 50,
+               col = 'grey',
+               main = "Weights associated with uniform prior: U(-5,5)",
+               xlab = "Uniform prior weight")
+      @
+    \ec
+    \end{column}
+  \begin{column}{0.5\textwidth}
+    \bc
+      <<weight.assoc.normal.dm, fig.height = 6>>=
+          # generating uniform values in the weight space (bounded 0 to 1)
+          weight <- runif(n = dist_size,
+                          min = 0,
+                          max = 1)
+          # transforming back into log(Theta)
+          theta <- weight / (1 - weight)
+          log_theta <- log(theta)
+          # approximating result with normal N(0, 1.813) prior
+          norm_prior <- rnorm(n = dist_size,
+                              mean = 0,
+                              sd = 1.813)
+          norm_prior_weight <- exp(norm_prior) / (1 + exp(norm_prior))
+          hist(norm_prior_weight,
+               breaks = 50,
+               col='grey',
+               main = "Weights associated with normal prior: N(0, 1.813)",
+               xlab = "Normal prior weight")
 
+      @
+    \ec
+    \end{column}
+  \end{columns}
+\end{frame}
+
+%----------------------------------------------------------
 \begin{frame}
 \frametitle{Priors on Dirichlet-Multinomial parameters ($\theta_{fish}$ and $\theta_{surv}$)}
     \bc
