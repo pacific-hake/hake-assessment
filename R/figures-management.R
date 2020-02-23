@@ -39,7 +39,8 @@ management_catch_vs_tac_plot <- function(d,
               color = connect_vals_color,
               alpha = connect_vals_alpha) +
     labs(y = "Catch or TAC (1,000 t)") +
-    theme(legend.title = element_blank()) +
+    theme(legend.title = element_blank(),
+          axis.text.x = element_text(angle=45, hjust=1)) +
     scale_y_continuous(labels = comma,
                        limits = c(0, NA)) +
     scale_x_continuous(breaks = seq(0, 3000, 1)) +

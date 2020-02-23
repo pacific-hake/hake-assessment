@@ -144,6 +144,15 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 \end{columns}
 }
 
+%--------------------------------------------------------------
+\frame{\frametitle{Past management: Total Allowable Catch}
+    <<tac.vs.realized.catch.ts, fig.height=3.5>>==
+      management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE, connect_vars_linetype = "solid",
+      connect_vars_alpha = 0.2, curr_assess_biomass = base.model$catch.default.policy[1])
+    @
+}
+
+
 %---------------------------------------------------------------
 
 \frame{\frametitle{Past management: Performance}
@@ -639,6 +648,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
   \begin{column}{0.25\textwidth}
     \bi
       \item median $\log(R_0)$ = \Sexpr{round(median(base.model$mcmc$SR_LN),2)}
+      \item equilibrium recruitment is 2,496 millions of fish
     \ei
   \end{column}
   \begin{column}{0.75\textwidth}
@@ -650,11 +660,13 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 }
 
 %-------------------------------------------------------------------
-\frame{\frametitle{Base model equilibrium recruitment}
+\frame{\frametitle{adnuts model equilibrium recruitment}
 \begin{columns}
   \begin{column}{0.25\textwidth}
     \bi
       \item median $\log(R_0)$ = \Sexpr{round(median(sens.models.6$mcmc$SR_LN),2)}
+      \item equilibrium recruitment is 2,304 millions of fish
+      \item adnuts 92\% of base model
     \ei
   \end{column}
   \begin{column}{0.75\textwidth}
