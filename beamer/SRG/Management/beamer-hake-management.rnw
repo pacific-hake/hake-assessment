@@ -100,7 +100,6 @@ metric$mcmc <- forecasts[[7]]$outputs
 ## next 2 lines copied from executive-summary.rnw  (manual 2017)
 models.inds <- c(1, 2, 3, 5, catch.default.policy.ind)
 models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty catch level name
-history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual update to file in 2017
 
 @
 
@@ -130,14 +129,17 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
 	    \item March \Sexpr{last.assess.yr}
       \bi
         \item JMC set adjusted TAC = \Sexpr{last.year.tac} t
-        \item Default harvest TAC = \Sexpr{f(history.info$Assessment.TAC[history.info$Year==last.assess.yr])} t
+        \item Default harvest TAC = \Sexpr{f((catch.targets %>% filter(Year == last.assess.yr))$`Assessment TAC`)} t
       \ei
       \item When default HR suggests a large catch, TAC is often set less
       \item Catches are often less than the TAC
 	  \ei
   \end{column}
   \begin{column}{0.6\textwidth}
-    \bc \includegraphics[width=.9\columnwidth]{Figures/ManagementResponse.eps} \ec
+    <<tac.vs.realized.catch, fig.height = 6, out.width = '0.95\\columnwidth'>>=
+      management_catch_vs_tac_1_to_1(catch.targets, top_yrs = c(2004, 2006,2012, 2016, 2018), color_darken = 0.9)
+    @
+    %\bc \includegraphics[width=.9\columnwidth]{Figures/ManagementResponse.eps} \ec
   \end{column}
 \end{columns}
 }
@@ -273,7 +275,7 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
       \item Median (50\%) decreases in \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
         for all catch levels
         \bi
-        \item Median is above $B_{40\%}$ for all examined 2021 catch levels, but goes below 
+        \item Median is above $B_{40\%}$ for all examined 2021 catch levels, but goes below
           $B_{40\%}$ in 2022 in between 410,000~t and 500,000~t
         \ei
     \ei
@@ -299,7 +301,7 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
 \subsection{Risk}
 \frame{\frametitle{Risk table definitions}
   Probabilities associated with biomass and fishing based metrics for different fixed catch levels
-  (executive summary: tables i and j; figures j and k) 
+  (executive summary: tables i and j; figures j and k)
   \bi
     \item Fix catch in all years previous, and calculate default catch in
       forecast year
@@ -410,7 +412,7 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
             (\Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr)],
                 base.model$mcmc$Recr_2010),2)},
             (\Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr)],
-                base.model$mcmc$Recr_2014),2)}    
+                base.model$mcmc$Recr_2014),2)}
             and
             \Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr)],
                 base.model$mcmc$Recr_2016),2)},
@@ -519,7 +521,7 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
       \item Age-1 index appears to moderately follow estimates of recruitment
       \item Estimated numbers of age-1 hake in 2019 (2018 year class) lower than 2016
       and 2014 year classes
-      \bi 
+      \bi
         \item Survey and model estimates suggest decline in numbers of age-1 hake in 2019
           relative to 2017
         \item Numbers of age-1 hake caught in the 2019 fishery much lower (1--2\%)
@@ -545,7 +547,7 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
     \item Forecasts strongly influenced by size of above average, but uncertain, 2014 and 2016 cohorts and
       very uncertain 2017 cohort
     \item There is a high (more than 80\%) chance that spawning biomass will decline from 2020 to 2021 at any catch level,
-      partly due to mortality on ageing 2010 and 2014 cohorts 
+      partly due to mortality on ageing 2010 and 2014 cohorts
     \item Maintaining a constant catch of 597,500~t (i.e., 2017 through 2019 TACs) results in a 37\%
       chance of falling below $B_{40\%}$ in 1 year (60\% in 2 years time), which is a considerable increase
       compared to last year's assessment (26\% and 40\%, respectively)
@@ -562,7 +564,7 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
       \item Age-1 survey model estimates slightly higher median spawning biomass relative
         to the base model in recent years
       \item Recent recruitment estimates are higher using age-1 survey
-      \bi 
+      \bi
         \item slightly higher for 2016 ($\approx$10\%) and 2017 ($\approx$20\%)
         \item considerably higher for 2018 ($\approx$400\%)
       \ei
@@ -595,7 +597,7 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
        2022: \textcolor{red}{44} to \textbf{34})
     \item Both models estimate a high probability of stock decline from 2020 to 2021
     \item If 2020 catch is the same as 2019 (410,000~t) then:
-      \bi 
+      \bi
         \item there is a \textbf{28\%} chance SSB is less than $B_{40\%}$ \textbf{(base model)}
         \item there is a \textcolor{red}{14\%} chance SSB is less than $B_{40\%}$ \textcolor{red}{(age-1 survey model)}
       \ei
@@ -623,7 +625,7 @@ history.info <- read.csv("../../../data/catch-targets-biomass.csv") # manual upd
        2022: \textcolor{blue}{39} to \textbf{34})
     \item Both models estimate a high probability of stock decline from 2020 to 2021
     \item If 2020 catch is the same as 2019 (410,000~t) then:
-      \bi 
+      \bi
         \item there is a \textbf{28\%} chance SSB is less than $B_{40\%}$ \textbf{(base model)}
         \item there is a \textcolor{blue}{21\%} chance SSB is less than $B_{40\%}$ \textcolor{blue}{(adnuts model)}
       \ei
