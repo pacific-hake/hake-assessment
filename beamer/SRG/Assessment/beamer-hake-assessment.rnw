@@ -139,8 +139,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     \item Update Stock Synthesis to version \Sexpr{ss.version}
       compiled with ADMB \Sexpr{admb.version}. SS now able to use independent
       values for weight-at-age in the forecasting period
-    \item Change from zero-sum recruitment deviations to
-      simple recruitment deviations
+    \item Change to simple recruitment deviations
     \item Update pre-\Sexpr{last.assess.yr} data:
       \bi
       \item Fishery catch
