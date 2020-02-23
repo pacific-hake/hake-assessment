@@ -145,6 +145,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       \item Fishery catch
       \item Fishery age compositions
       \item Weights-at-age
+      \item Survey data (small changes to some CVs)
       \ei
     \item Add new data for \Sexpr{last.assess.yr}:
     \bi
