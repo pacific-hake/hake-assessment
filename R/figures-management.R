@@ -146,7 +146,7 @@ management_catch_vs_tac_1_to_1 <- function(d,
   title(xlab = "TAC predicted from the assessment (thousand t)",
         mgp = c(2.1, 1, 0),
         cex.lab = 1.1)
-  title(ylab = "Thousand t",
+  title(ylab = "Catch or TAC (1,000 t)",
         mgp = c(3.1, 1, 0),
         cex.lab = 1.1)
   legend("topleft",

@@ -98,7 +98,7 @@ forecasts <- base.model$forecasts[[1]]
 metric$mcmc <- forecasts[[7]]$outputs
 ## models.inds are the indices of those which will be plotted against each other
 ## next 2 lines copied from executive-summary.rnw  (manual 2017)
-models.inds <- c(1, 2, 3, 5, catch.default.policy.ind)
+models.inds <- c(1, 2, 4, 5, catch.default.policy.ind)
 models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty catch level name
 
 @
@@ -128,11 +128,12 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 	  \bi
 	    \item March \Sexpr{last.assess.yr}
       \bi
-        \item JMC set adjusted TAC = \Sexpr{last.year.tac} t
         \item Default harvest TAC = \Sexpr{f((catch.targets %>% filter(Year == last.assess.yr))$`Assessment TAC`)} t
+        \item JMC set adjusted TAC = \Sexpr{last.year.tac} t
       \ei
       \item When default HR suggests a large catch, TAC is often set less
       \item Catches are often less than the TAC
+      \item Box colors correspond to year in the time series (darker are more recent)
 	  \ei
   \end{column}
   \begin{column}{0.6\textwidth}
@@ -257,8 +258,8 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
     \bi
       \item a. \Sexpr{catch_levels[[1]][[2]]} (zero catch)
       \item b. Constant catch of \Sexpr{catch_levels[[2]][[2]]}
-      \item c. Constant catch of \Sexpr{catch_levels[[3]][[2]]}
-      \item \textcolor{gray}{d. Constant catch (\Sexpr{catch_levels[[4]][[2]]})}
+      \item \textcolor{gray}{c. Constant catch of \Sexpr{catch_levels[[3]][[2]]}}
+      \item d. Constant catch (\Sexpr{catch_levels[[4]][[2]]})
       \item e. Constant catch (\Sexpr{catch_levels[[5]][[2]]})
       \item \textcolor{gray}{f. Constant catch (\Sexpr{catch_levels[[6]][[2]]})}
       \item \textcolor{gray}{g. Fishing Intensity = 100\% in each year
@@ -281,7 +282,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
       \item Relative spawning biomass is decreasing in the absence of fishing
         due to continued decline of large 2010 and 2014 cohorts
       \item Lower 5\% quantile below $B_{40\%}$ in \Sexpr{end.yr} (35\%)
-      \item Median (50\%) decreases in \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
+      \item Median (50\%) decreases from \Sexpr{end.yr} to \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
         for all catch levels
         \bi
         \item Median is above $B_{40\%}$ for all examined 2021 catch levels, but goes below
@@ -676,6 +677,50 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
   \end{column}
 \end{columns}
 }
+
+%-----------------------------------------------------------------
+\frame{\frametitle{Decison Table - base model}
+<<decisions.biomass.table_base, results='asis', echo=FALSE>>=
+    make.decision.table.pres(base.model,
+                             models.inds,
+                             xcaption = NULL,
+                             xlabel = "tab:es-decisions-spr",
+                             font.size = 8,
+                             space.size = 10,
+                             type = "biomass",
+                             placement = "h")
+@
+}
+
+%-----------------------------------------------------------------
+\frame{\frametitle{Decison Table - age-1 survey model}
+<<decisions.biomass.table_age1, results='asis', echo=FALSE>>=
+    make.decision.table.pres(sens.models.2[[1]],
+                             models.inds,
+                             xcaption = NULL,
+                             xlabel = "tab:es-decisions-spr",
+                             font.size = 8,
+                             space.size = 10,
+                             type = "biomass",
+                             placement = "h")
+@
+}
+
+%-----------------------------------------------------------------
+\frame{\frametitle{Decison Table - adnuts model}
+<<decisions.biomass.table_adnuts, results='asis', echo=FALSE>>=
+    make.decision.table.pres(sens.models.6,
+                             models.inds,
+                             xcaption = NULL,
+                             xlabel = "tab:es-decisions-spr",
+                             font.size = 8,
+                             space.size = 10,
+                             type = "biomass",
+                             placement = "h")
+@
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
