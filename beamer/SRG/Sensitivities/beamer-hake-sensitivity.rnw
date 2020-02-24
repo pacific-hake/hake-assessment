@@ -75,7 +75,7 @@
 \newcommand{\bi}{\begin{itemize}}
 \newcommand{\ei}{\end{itemize}}
 \newcommand{\Fforty}{F_{\text{SPR}=40\%}}       % Needs to be done as $\Fforty$
-\newcommand{\Bforty}{B_{\text{SPR}=40\%}}
+\newcommand{\Bforty}{B_{40\%}}
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 
 % From https://tex.stackexchange.com/questions/44983/beamer-removing-headline-and-its-space-on-a-single-frame-for-plan-but-keepin
