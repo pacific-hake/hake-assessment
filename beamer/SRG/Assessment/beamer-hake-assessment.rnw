@@ -772,7 +772,7 @@ and 2016 cohort uncertainty to \Sexpr{rec_2016[[3]]}\% of what it was in the \Se
 \begin{columns}
   \begin{column}{0.5\textwidth}
     <<baa.table, results='asis', echo=FALSE>>=
-      baa_table(baa, font.size = 9, space.size = 9)
+      baa_table(baa_large, font.size = 9, space.size = 9)
     @
   \end{column}
   \begin{column}{0.5\textwidth}

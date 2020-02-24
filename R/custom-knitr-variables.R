@@ -549,7 +549,6 @@ rec_2016 <- get_rec_ci(last.yr.base.model, base.model, 2016)
 # b_curr_prop_mle_2016 <- baa_curr_mle[assess.yr - 2016 + 1] / baa_curr_tot_mle
 baa <- get_baa(base.model, assess.yr)
 baa_large <- baa %>%
-  filter(Median > 0.005) %>%
   arrange(desc(Median))
 baa_2010 <- baa %>% filter(Cohort == 2010) %>% pull(Median) * 100
 baa_2014 <- baa %>% filter(Cohort == 2014) %>% pull(Median) * 100
