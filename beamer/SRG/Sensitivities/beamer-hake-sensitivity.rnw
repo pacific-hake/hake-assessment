@@ -1146,7 +1146,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
-\frametitle{Probabilities change with inclusion age-1 index **check all with tables}
+\frametitle{Probabilities change with inclusion age-1 index}
 \begin{table}[tbp]
 \centering
 \begin{tabular}{lrr}
@@ -1276,7 +1276,8 @@ make.forecast.risk.comparison.plot(sens.models.6,
                                               "red","tan"),
                                    pch = c(16,17,17,17,15,18),
                                    legend.loc = "topleft",
-                                   legend.cex = 0.7)
+                                   legend.cex = 0.7,
+                                   xlim = c(0, 690))
 par <- oldpar
 @
 \end{center}
@@ -1299,7 +1300,8 @@ make.forecast.risk.comparison.plot(base.model,
                                               "red","tan"),
                                    pch = c(16,17,17,17,15,18),
                                    legend.loc = "topleft",
-                                   legend.cex = 0.7)
+                                   legend.cex = 0.7,
+                                   xlim = c(0, 690))
 par <- oldpar
 @
 \end{center}
