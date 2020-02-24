@@ -873,7 +873,7 @@ and 2016 cohort uncertainty to \Sexpr{rec_2016[[3]]}\% of what it was in the \Se
     \end{tabular}
   \end{table}
   ~\\
-So while the median estimate of $B_{\Sexpr{end.yr-1}}$ has increased from last
+While the median estimate of $B_{\Sexpr{end.yr-1}}$ has increased from last
 year's assessment, the credible interval remains within that from last year's assessment.
 }
 
