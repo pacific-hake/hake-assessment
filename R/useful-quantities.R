@@ -12,9 +12,9 @@
 #' for `model2`, and item 3 is the ratio of the `model2` `env_diff` divided by that of `model1`
 #' as a percentage.
 #' @export
-get_rec_ci <- function(model1, 
-                       model2, 
-                       year, 
+get_rec_ci <- function(model1,
+                       model2,
+                       year,
                        probs = c(0.025, 0.5, 0.975),
                        scale = 1e6,
                        decimals = 3,
@@ -32,11 +32,59 @@ get_rec_ci <- function(model1,
   list(f(rec1, decimals), f(rec2, decimals), f(rec.diff.perc, perc.decimals))
 }
 
+#' Get the median proportions of biomass-at-ages for the final year (MCMC) for all cohorts
+#'
+#' @param model A model as loaded by [load_ss_files()]
+#' @param curr_yr is the current year. The years will decrease from this to give the cohorts year values
+#'
+#' @return A single-column tibble representing the proportion of biomass-at-ages for the terminal year
+#' @export
+get_baa <- function(model, curr_yr, probs = c(0.025, 0.5, 0.975)){
+  model$extra.mcmc$natselwt.prop %>%
+    map_df(function(x){
+      quantile(x, probs = c(0.025, 0.5, 0.975))
+    }) %>%
+    t() %>%
+    as.data.frame() %>%
+    as_tibble() %>%
+    mutate(Cohort = curr_yr - row_number() + 1) %>%
+    rename(`Lower CI` = V1,
+           Median = V2,
+           `Upper CI` = V3) %>%
+    select(Cohort,
+           `Lower CI`,
+           Median,
+           `Upper CI`)
+}
+
+baa_table <- function(d,
+                      xcaption = NULL,
+                      xlabel   = NULL,
+                      font.size = 13,
+                      space.size = 14,
+                      decimals = 3){
+  tab <- d %>%
+    mutate_at(vars(-Cohort), ~{f(.x, decimals)})
+
+  size.string <- latex.size.str(font.size, space.size)
+  print(xtable(tab, caption = xcaption,
+               label = xlabel,
+               align = get.align(ncol(tab),
+                                 first.left = FALSE,
+                                 just = "r"),
+               digits = rep(0, ncol(tab) + 1)),
+        caption.placement = "top",
+        include.rownames = FALSE,
+        table.placement = "H",
+        sanitize.text.function = function(x){x},
+        size = size.string)
+}
+
 #' Calculate Biomass-at-age for the years given for the given model
 #'
 #' @details Uses numbers-at-age multiplied by weight-at-age. If any years are missing
 #' the weight-at-age, the average will be used (Assumed to be in the 1966 year slot for SS input)
-#' 
+#'
 #' @param model A model as loaded by [load_ss_files()]
 #' @param yrs The years to return the values for
 #' @param scale Scaling factor for the output values
@@ -46,7 +94,7 @@ get_rec_ci <- function(model1,
 #'
 #' @examples
 #' baa <- get_baa(base.model)
-get_baa <- function(model, yrs = NULL, scale = 1e3){
+get_baa_mle <- function(model, yrs = NULL, scale = 1e3){
 
   naa <- model$natage
   waa <- model$wtatage
@@ -61,7 +109,7 @@ get_baa <- function(model, yrs = NULL, scale = 1e3){
   n.age.b <- n.age.b[n.age.b$Yr %in% yrs,]
   n.age.m <- naa[naa$"Beg/Mid" == "M", names(naa) %in% c("Yr", as.character(0:max.age))]
   n.age.m <- n.age.m[n.age.m$Yr %in% yrs,]
-  
+
   dat <- n.age.b
   dat <- dat[,-1]
   ## If needed, add years using mean across years
@@ -85,7 +133,7 @@ get_baa <- function(model, yrs = NULL, scale = 1e3){
   names(dat)[1] <- "Year"
   ## Apply division by weight factor and formatting
   dat[, -1] <- apply(dat[, -1], c(1, 2), function(x) {x / scale})
-  dat  
+  dat
 }
 
 #' Plot cohort recruitment MLE estimates with retrospectives
@@ -111,16 +159,16 @@ get_rec_ci_mle <- function(model,
 
   recr <- lapply(m_lst, function(x){
     mle_parms <- x$derived_quants
-    rec <- mle_parms %>% 
-      #filter(Label %in% paste0("Recr_", yrs)) %>% 
-      filter(grepl("^Recr_[0-9]+", Label)) %>% 
+    rec <- mle_parms %>%
+      #filter(Label %in% paste0("Recr_", yrs)) %>%
+      filter(grepl("^Recr_[0-9]+", Label)) %>%
       rename(Year = Label)
     rec$Year <- gsub("Recr_", "", rec$Year)
-    rec <- rec %>% 
-      select(Year, Value, StdDev) %>% 
-      as_tibble() %>% 
+    rec <- rec %>%
+      select(Year, Value, StdDev) %>%
+      as_tibble() %>%
       mutate(ci = 2 * StdDev)
-  }) %>% 
+  }) %>%
     bind_cols()
 
   if(is.null(end_yr)){
@@ -129,16 +177,16 @@ get_rec_ci_mle <- function(model,
   start_yr <- end_yr - length(m_lst) + 1
   yrs <- start_yr:end_yr
 
-  recr_vals <- recr %>% 
-    select(matches("^Year$|^Value")) %>% 
-    filter(Year %in% yrs) %>% 
-    select(-Year) %>% 
+  recr_vals <- recr %>%
+    select(matches("^Year$|^Value")) %>%
+    filter(Year %in% yrs) %>%
+    select(-Year) %>%
     as.matrix()
 
-  recr_ci <- recr %>% 
-    select(matches("^Year$|^ci")) %>% 
-    filter(Year %in% yrs) %>% 
-    select(-Year) %>% 
+  recr_ci <- recr %>%
+    select(matches("^Year$|^ci")) %>%
+    filter(Year %in% yrs) %>%
+    select(-Year) %>%
     as.matrix()
 
   ## Get all diagonals of the CI matrix (cohorts)
@@ -147,8 +195,8 @@ get_rec_ci_mle <- function(model,
   # rci_ind <- row(recr_vals) - col(recr_vals)
   # rci <- split(recr_vals, rci_ind)
   rci_positive <- as.numeric(names(rci)) >= 0
-  rci <- rci[rci_positive]  
-  
+  rci <- rci[rci_positive]
+
   ## Make ragged vectors all the same length, with NA's filling in the two ends
   yr_r <- as.numeric(names(rci))
   rci <- map(seq_along(rci), function(x){
@@ -158,19 +206,19 @@ get_rec_ci_mle <- function(model,
   })
 
   names(rci) <- yr_r
-  rci <- bind_cols(enframe(yrs), rci) %>% 
-    select(-name) %>% 
-    rename(Year = value) %>% 
-    melt(id.var = "Year") %>% 
-    as_tibble() %>% 
-    filter(Year %in% yrs) %>% 
+  rci <- bind_cols(enframe(yrs), rci) %>%
+    select(-name) %>%
+    rename(Year = value) %>%
+    melt(id.var = "Year") %>%
+    as_tibble() %>%
+    filter(Year %in% yrs) %>%
     mutate(variable = as.numeric(variable) + start_yr - 1)
 
   color_count <-  length(yr_r)
   get_palette <- colorRampPalette(RColorBrewer::brewer.pal(9, "Set1"))
 
   if(!is.null(cohorts[1])){
-    rci <- rci %>% 
+    rci <- rci %>%
       filter(variable %in% cohorts)
   }
   g <- ggplot(rci, aes(x = Year, y = value, color = factor(variable))) +

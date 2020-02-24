@@ -159,7 +159,7 @@ make.parameters.estimated.summary.table <- function(model,
 
   ## Survey additional value for SE is at line 77 of comment-stripped dataframe
   se <- fetch.and.split(ctl, 77)
-  se.vals <- c("Additional value for survey log(SE)",
+  se.vals <- c("Additional variance for survey log(SE)",
                if(prior.type[se[p.type]] == "Fixed")
                  1
                else
@@ -279,8 +279,8 @@ make.parameters.estimated.summary.table <- function(model,
   tab <- rbind(c("", "", "", ""), tab)
 
   colnames(tab) <- c(latex.bold("Parameter"),
-                     latex.mlc(c("Number",
-                                 "estimated")),
+                     latex.mlc(c("Number of",
+                                 "parameters")),
                      latex.mlc(c("Bounds",
                                  "(low, high)")),
                      latex.mlc(c("Prior (Mean, SD)",

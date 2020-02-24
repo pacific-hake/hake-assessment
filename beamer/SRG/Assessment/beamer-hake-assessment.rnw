@@ -106,7 +106,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \author[JTC]{Pacific Hake Joint Technical Committee}
 %\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
-\subtitle{\tiny Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy}
+\subtitle{\tiny Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy.}
 
 
 \begin{document}
@@ -139,13 +139,13 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     \item Update Stock Synthesis to version \Sexpr{ss.version}
       compiled with ADMB \Sexpr{admb.version}. SS now able to use independent
       values for weight-at-age in the forecasting period
-    \item Change from zero-sum recruitment deviations to
-      simple recruitment deviations
+    \item Change to simple recruitment deviations
     \item Update pre-\Sexpr{last.assess.yr} data:
       \bi
       \item Fishery catch
       \item Fishery age compositions
       \item Weights-at-age
+      \item Survey data (small changes to some CVs)
       \ei
     \item Add new data for \Sexpr{last.assess.yr}:
     \bi
@@ -357,7 +357,6 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 % \end{frame}
 
 %----------------------------------------------------------
-
 \begin{frame}
 \frametitle{Dirichlet-Multinomial parameters ($\theta_{fish}$ and $\theta_{surv}$)}
 <<get.prior.values>>=
@@ -376,7 +375,56 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \ei
 \end{frame}
 
+%----------------------------------------------------------
+\begin{frame}
+\frametitle{Weighting of priors on Dirichlet-Multinomial parameters ($\theta_{fish}$ and $\theta_{surv}$)}
+\begin{columns}
+  \begin{column}{0.5\textwidth}
+    \bc
+      <<weight.assoc.uniform.dm, fig.height = 6>>=
+          # generating uniform values in the log(Theta) space (bounded -5 to 5)
+          dist_size <- 100 #1e8
+          log_theta <- runif(n = dist_size,
+                             min = -5,
+                             max = 5)
+          # transforming into weights
+          theta <- exp(log_theta)
+          weight <- theta / (1 + theta)
+          hist(weight,
+               breaks = 50,
+               col = 'grey',
+               main = "Weights associated with uniform prior: U(-5,5)",
+               xlab = "Uniform prior weight")
+      @
+    \ec
+    \end{column}
+  \begin{column}{0.5\textwidth}
+    \bc
+      <<weight.assoc.normal.dm, fig.height = 6>>=
+          # generating uniform values in the weight space (bounded 0 to 1)
+          weight <- runif(n = dist_size,
+                          min = 0,
+                          max = 1)
+          # transforming back into log(Theta)
+          theta <- weight / (1 - weight)
+          log_theta <- log(theta)
+          # approximating result with normal N(0, 1.813) prior
+          norm_prior <- rnorm(n = dist_size,
+                              mean = 0,
+                              sd = 1.813)
+          norm_prior_weight <- exp(norm_prior) / (1 + exp(norm_prior))
+          hist(norm_prior_weight,
+               breaks = 50,
+               col='grey',
+               main = "Weights associated with normal prior: N(0, 1.813)",
+               xlab = "Normal prior weight")
+      @
+    \ec
+    \end{column}
+  \end{columns}
+\end{frame}
 
+%----------------------------------------------------------
 \begin{frame}
 \frametitle{Priors on Dirichlet-Multinomial parameters ($\theta_{fish}$ and $\theta_{surv}$)}
     \bc
@@ -712,13 +760,35 @@ and 2016 cohort uncertainty to \Sexpr{rec_2016[[3]]}\% of what it was in the \Se
   ~\\
 
 \bi
-\item 2010 cohort is estimated to make up \Sexpr{f(b_curr_prop_2010 * 100)}\%
-  of the biomass
-\item 2014 cohort is estimated to make up \Sexpr{f(b_curr_prop_2014 * 100)}\%
-  of the biomass
-\item 2016 cohort is estimated to make up \Sexpr{f(b_curr_prop_2016 * 100)}\%
-  of the biomass
+  \item 2010 cohort is estimated to make up \Sexpr{f(baa_2010, 1)}\% of the biomass
+  \item 2014 cohort is estimated to make up \Sexpr{f(baa_2014, 1)}\% of the biomass
+  \item 2016 cohort is estimated to make up \Sexpr{f(baa_2016, 1)}\% of the biomass
 \ei
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Proportions of biomass for cohorts in \Sexpr{assess.yr}}
+
+\begin{columns}
+  \begin{column}{0.5\textwidth}
+    <<baa.table, results='asis', echo=FALSE>>=
+      baa_table(baa_large, font.size = 9, space.size = 9)
+    @
+  \end{column}
+  \begin{column}{0.5\textwidth}
+  \bc
+    <<baa.plot, figure.width = 5, figure.height = 10>>=
+    g <- ggplot(baa %>% arrange(Cohort), aes(x = Cohort, y = Median)) +
+      geom_point(color = "black", shape = "o", size = 6) +
+      geom_errorbar(aes(ymin = `Lower CI`, ymax = `Upper CI`), color = "royalblue", size = 1, width = 0.2) +
+      labs(y = paste0("Proportion of Biomass beginning of ", assess.yr)) +
+      scale_x_continuous(breaks = seq(from = 1900, to = 2100, by = 1))
+    g
+    @
+  \ec
+  \end{column}
+\end{columns}
+
 }
 
 %----------------------------------------------------------
@@ -1264,9 +1334,9 @@ year's assessment, the credible interval remains within that from last year's as
   \item The 2010 cohort uncertainty is \Sexpr{rec_2010[[3]]}\% of what it was in the \Sexpr{last.assess.yr} assessment.
   \item The 2014 cohort uncertainty is \Sexpr{rec_2014[[3]]}\% of what it was in the \Sexpr{last.assess.yr} assessment.
   \item The 2016 cohort uncertainty is \Sexpr{rec_2016[[3]]}\% of what it was in the \Sexpr{last.assess.yr} assessment.
-  \item 2010 cohort is estimated to make up \Sexpr{f(b_curr_prop_2010 * 100)}\% of the biomass
-  \item 2014 cohort is estimated to make up \Sexpr{f(b_curr_prop_2014 * 100)}\% of the biomass
-  \item 2016 cohort is estimated to make up \Sexpr{f(b_curr_prop_2016 * 100)}\% of the biomass
+  \item 2010 cohort is estimated to make up \Sexpr{f(baa_2010, 1)}\% of the biomass
+  \item 2014 cohort is estimated to make up \Sexpr{f(baa_2014, 1)}\% of the biomass
+  \item 2016 cohort is estimated to make up \Sexpr{f(baa_2016, 1)}\% of the biomass
 
   % \item The 2014 recruitment has \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of being as
   %   large as the 2010 recruitment.

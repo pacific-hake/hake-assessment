@@ -534,16 +534,22 @@ joint.percent.prob.above.below.adnuts <- f(sum(sens.models.6$mcmc[[paste0("Brati
                                     1)
 
 
-## Cohort medians, credible intervals, and 
+## Cohort medians, credible intervals, and
 rec_2010 <- get_rec_ci(last.yr.base.model, base.model, 2010)
 rec_2014 <- get_rec_ci(last.yr.base.model, base.model, 2014)
 rec_2016 <- get_rec_ci(last.yr.base.model, base.model, 2016)
 ## Cohort biomass-at-age
-baa_curr <- get_baa(base.model) %>% 
-  filter(Year == assess.yr) %>%
-  select(-Year)
+# baa_curr_mle <- get_baa_mle(base.model) %>%
+#   filter(Year == assess.yr) %>%
+#   select(-Year)
 ## proportions that cohorts contirbute to biomass in assessment year
-baa_curr_tot <- sum(baa_curr)
-b_curr_prop_2010 <- baa_curr[assess.yr - 2010 + 1] / baa_curr_tot
-b_curr_prop_2014 <- baa_curr[assess.yr - 2014 + 1] / baa_curr_tot
-b_curr_prop_2016 <- baa_curr[assess.yr - 2016 + 1] / baa_curr_tot
+# baa_curr_tot_mle <- sum(baa_curr_mle)
+# b_curr_prop_mle_2010 <- baa_curr_mle[assess.yr - 2010 + 1] / baa_curr_tot_mle
+# b_curr_prop_mle_2014 <- baa_curr_mle[assess.yr - 2014 + 1] / baa_curr_tot_mle
+# b_curr_prop_mle_2016 <- baa_curr_mle[assess.yr - 2016 + 1] / baa_curr_tot_mle
+baa <- get_baa(base.model, assess.yr)
+baa_large <- baa %>%
+  arrange(desc(Median))
+baa_2010 <- baa %>% filter(Cohort == 2010) %>% pull(Median) * 100
+baa_2014 <- baa %>% filter(Cohort == 2014) %>% pull(Median) * 100
+baa_2016 <- baa %>% filter(Cohort == 2016) %>% pull(Median) * 100

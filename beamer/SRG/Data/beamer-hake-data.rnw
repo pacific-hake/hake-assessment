@@ -42,12 +42,12 @@
 \vskip0pt plus 1filll
 }
 
-%\setbeamertemplate{footline}
-%{
-%\begin{beamercolorbox}[wd=.05\paperwidth,ht=0ex,dp=0ex,left]{framenumber in head/foot}%
-%\insertframenumber/\inserttotalframenumber
-%\end{beamercolorbox}%
-%}
+\setbeamertemplate{footline}
+{
+\begin{beamercolorbox}[wd=.05\paperwidth,ht=0ex,dp=0ex,left]{framenumber in head/foot}%
+\insertframenumber/\inserttotalframenumber
+\end{beamercolorbox}%
+}
 
 \newcounter{saveenumi}
 %% syntax is \mlc{first line\\secondline}
@@ -421,6 +421,13 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/hake_survey_1995-19_NASCTimeSeries_BiomassAtAgeHistograms_grayblue}
 }
 
+\subsubsection{Age-1 acoustic backscatter}
+\frame{\frametitle{Acoustic survey backscatter of age-1 fish}
+\begin{center}
+  \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+  \includegraphics[height=2.9in]{../../../doc/main-figures/age1hake_03-19_sA_squareroot_bin_narrow-panel_bluergray}
+\end{center}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  \subsection{Acoustic survey biomass estimates}
@@ -441,7 +448,13 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \bi
   \item No weight-at-age data for the Freezer Trawlers in Canada due to lack of
     scales.
-  \item U.S.~data collected prior to 1975 are irrelevant because they were collected from the Puget Sound.
+  \item U.S.~data collected prior to 1975 are irrelevant because they were collected from the Puget Sound stock.
+  \item Newly included data
+    \begin{itemize}
+      \item 1977 -- 2092 samples from Poland Acoustic Survey.
+      \item 2017 --  300 samples from Canadian Acoustic Survey.
+      \item Recently aged fish from historical years.
+    \end{itemize}
   \item Historical fecundity uses mean weight-at-age data from all years.
   \item Future fecundity uses mean weight-at-age data from most recent five years.
 \ei
@@ -504,7 +517,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
             \item At-sea fishery (2013 -- 2017)
           \ei
         \item Length stratified sampling from surveys with target numbers for 2 cm length bins.
-        \item Data from 2018 and 2019 have yet to be analyzed.
+        \item Data from 2018 and 2019 are expected to be analyzed in 2020.
       \ei
       \vspace{-3mm}
 %    \end{column}
@@ -545,7 +558,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
         \item How the above topics provide further information about factors that influence time-varying reproductive output.
       \ei
     \item More winter acoustic surveys may provide further information about these questions.
-  \ei
+g  \ei
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
