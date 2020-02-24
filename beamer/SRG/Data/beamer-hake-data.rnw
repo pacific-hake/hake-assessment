@@ -449,6 +449,12 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \item No weight-at-age data for the Freezer Trawlers in Canada due to lack of
     scales.
   \item U.S.~data collected prior to 1975 are irrelevant because they were collected from the Puget Sound stock.
+  \item Newly included data
+    \begin{itemize}
+      \item 1977 -- 2092 samples from Poland Acoustic Survey.
+      \item 2017 --  300 samples from Canadian Acoustic Survey.
+      \item Recently aged fish from historical years.
+    \end{itemize}
   \item Historical fecundity uses mean weight-at-age data from all years.
   \item Future fecundity uses mean weight-at-age data from most recent five years.
 \ei
