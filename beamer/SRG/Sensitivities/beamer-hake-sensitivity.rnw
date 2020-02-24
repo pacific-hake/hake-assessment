@@ -1153,17 +1153,17 @@ par <- oldpar
 \hline
 Probability & Base model & Age-1 index \\ % \Sexpr{probs.curr.bforty}\% &  % not using since 1 dp
 \hline
-P$(B_{\Sexpr{assess.yr}} > \Bforty)$ &
-  \Sexpr{f(mean(base.model$mcmc$Bratio_2020 > 0.40) * 100)}\% &
-  \Sexpr{f(mean(sens.models.2[[1]]$mcmc$Bratio_2020 > 0.40) * 100)}\%\\
+P$(B_{\Sexpr{assess.yr}} < \Bforty)$ &
+  \Sexpr{f(mean(base.model$mcmc$Bratio_2020 < 0.40) * 100)}\% &
+  \Sexpr{f(mean(sens.models.2[[1]]$mcmc$Bratio_2020 < 0.40) * 100)}\%\\
 With $410,000$~t catch scenario: & & \\
-  & & \\
-P$(B_{\Sexpr{assess.yr+1}} > \Bforty)$ &
-  \Sexpr{f( 100 - base.model$risks[[1]][4,"Bratio_2021<0.40"])}\% &
-  \Sexpr{f( 100 - sens.models.2[[1]]$risks[[1]][4,"Bratio_2021<0.40"])}\% \\
-P$(B_{\Sexpr{assess.yr+2}} > \Bforty)$ &
-  \Sexpr{f( 100 - base.model$risks[[2]][4,"Bratio_2022<0.40"])}\% &
-  \Sexpr{f( 100 - sens.models.2[[1]]$risks[[2]][4,"Bratio_2022<0.40"])}\% \\
+%   & & \\
+P$(B_{\Sexpr{assess.yr+1}} < \Bforty)$ &
+  \Sexpr{f( base.model$risks[[1]][4,"Bratio_2021<0.40"])}\% &
+  \Sexpr{f( sens.models.2[[1]]$risks[[1]][4,"Bratio_2021<0.40"])}\% \\
+P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
+  \Sexpr{f( base.model$risks[[2]][4,"Bratio_2022<0.40"])}\% &
+  \Sexpr{f( sens.models.2[[1]]$risks[[2]][4,"Bratio_2022<0.40"])}\% \\
 \hline
 \end{tabular}
 \end{table}
