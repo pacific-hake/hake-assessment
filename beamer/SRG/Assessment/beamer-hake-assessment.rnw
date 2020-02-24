@@ -384,7 +384,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     choice of how many iterations to do, and automatically tunes each model as opposed to all having the
     same tuning.
   \item Uniform prior [-5, 20] was used in 2019 assessment.
-  \item In the \Sexpr{last.assess.yr} assessment, these parameters were stuck between 0.99--1.00 (at the upper bound).
+  \item In the \Sexpr{last.assess.yr} assessment, the DM survey parameter was stuck between 0.99--1.00 (at the upper bound).
   \item A Normal (almost Uniform) prior with a mean of 0 and a standard deviation of \Sexpr{priors_mle[[1]]$Psd}
     is used in \Sexpr{assess.yr} to improve MCMC convergence of these parameters.
 \ei
