@@ -155,7 +155,7 @@ from \Sexpr{main.recdev.early}--\Sexpr{main.recdev.end}
 as well as the years \Sexpr{assess.yr}, \Sexpr{assess.yr+1}, and
 \Sexpr{assess.yr+2} for purposes of forecasting. The standard deviation,
 $\sigma_r$, of recruitment variability, serving as both a recruitment deviation
-constraint and bias-correction term, is fixed at a value of
+constraint and bias-correction term, is fixed at
 \Sexpr{base.model$sigma_R_in} in this assessment. This value is based on
 consistency with the observed variability in the time series of recruitment
 deviation estimates, and is the same as assumed in assessments from 2013 to
@@ -551,7 +551,7 @@ estimates of recruitment deviations were slightly more positive
 in relative spawning biomass is well within the uncertainty bounds of models
 that apply and do not apply this relaxed constraint.
 
-The second set of bridging steps were conducted to update the fishery-dependent data.
+The second set of bridging steps was conducted to update the fishery-dependent data.
 This primarily included minor adjustments in catch, fishery age-composition, and
 weight-at-age values.
 Historical catches from the Canadian Joint-Venture fishery
@@ -577,10 +577,10 @@ indicating that the observed \Sexpr{last.data.yr} ages were consistent with the 
 estimates without those data (Figure~\ref{fig:main-bridge-5-panel-2}).  However,
 the addition of these data did alter recent recruitment
 estimates, increasing the estimated size of the 2016 and 2017 year classes and
-a decreasing the 2018 year class.
+decreasing the 2018 year class.
 This bridging step also shifted the ending year of the deviations
 in the selectivity parameters from \Sexpr{last.data.yr-1} to
-\Sexpr{last.data.yr} because there was now fishery data in \Sexpr{last.data.yr}.
+\Sexpr{last.data.yr} because of the additiona of fishery data in \Sexpr{last.data.yr}.
 
 Including the fishery-independent biomass estimate led to a slightly more optimistic
 trajectory of the stock over the last couple of years
@@ -727,7 +727,7 @@ The 2016 cohort, which has now been observed twice by the survey,
 %\Sexpr{ceiling((survey.end.yr-2016)/2)} times
 appears to be smaller than
 the 2014 cohort.
-The \Sexpr{survey.end.yr} survey was the first time the survey was able to sample the
+The \Sexpr{survey.end.yr} survey was the first to sample the
 \Sexpr{survey.end.yr-2} cohort, confirming that
 it
 was not extremely large (\Sexpr{survey.a2.prop}\% of the \Sexpr{survey.end.yr} survey catch).
@@ -901,7 +901,7 @@ cohorts that have been observed for more years, five years of fishery data and t
 suggest that it is a strong year class.  The 2016 year class is
 estimated to be above average (similar in size to the 2008 year class) from three years
 of fishery data and one year of survey data. The 2017 year class was first observed by the survey in 2019 and
-is estimated to be about average in size. Currently, only one year of fishery data are used to estimate the
+is estimated to be about average in size. Currently, only one year of fishery data is used to estimate the
 below-average size of the 2018 year class.
 
 The additional data in the 2019 assessment has increased the median estimate of the
@@ -956,7 +956,7 @@ harvest control rules in place at the time.
 %  don't mention 1999.
 Exploitation fraction (catch divided
 by biomass of fish of age-2 and above) has shown relatively similar patterns
-(Figure~\ref{fig:main-exploitation-fraction} and and
+(Figure~\ref{fig:main-exploitation-fraction} and
 Tables~\ref{tab:main-median-posterior} and
 \ref{tab:main-ci-posterior}). Although displaying similar patterns, the exploitation
 fraction does not necessarily correspond to fishing intensity because fishing
@@ -1316,7 +1316,7 @@ P$(B_{\Sexpr{assess.yr+1}} > \Bmsy) = \Sexpr{f(min(dfo.probs.fore[,"SSB_2021>SSB
 With respect to PFMC stock size reference points, a level of \Sexpr{assess.yr} catch consistent with the Treaty
 default harvest control rule (\Sexpr{f(base.model$catch.levels[[8]][[1]][1])}~t) has a \Sexpr{f(base.model$risks[[1]][,3][8])}\% estimated probability of the biomass going below
 $\Bforty$ in \Sexpr{assess.yr + 1} (\Sexpr{f(base.model$risks[[1]][,4][8])}\% probability of going below $\Btwentyfive$; Table~\ref{tab:main-risk-year-1}).
-That probabality decreases to \Sexpr{f(base.model$risks[[1]][,3][4])}\% and \Sexpr{f(base.model$risks[[1]][,4][4])}\%, respectively, if the catch level stays about the same in \Sexpr{assess.yr + 1} as in \Sexpr{assess.yr}.
+That probability decreases to \Sexpr{f(base.model$risks[[1]][,3][4])}\% and \Sexpr{f(base.model$risks[[1]][,4][4])}\%, respectively, if the catch level stays about the same in \Sexpr{assess.yr + 1} as in \Sexpr{assess.yr}.
 %Manual done 2020
 % \enlargethispage{\baselineskip}
 
@@ -1676,7 +1676,7 @@ model. Models with 4, 5, or 6 years of data removed had information
 available regarding the large 2010 year class, but did not yet have information on the
 2014 year class (Figure~\ref{fig:main-biomass-recruitment-retrospective}). Models
 with 1 and 2 years of data removed were just beginning to receive data on age-3 and age-2, respectively,
-individuals to to predict the size of the 2014 year class.  The base model now has
+individuals to predict the size of the 2014 year class.  The base model now has
 \Sexpr{number.to.word(assess.yr - 2014 - 1)} years of data to estimate the size of
 the 2014 cohort, and the uncertainty around this
 estimate has been considerably reduced compared to three years ago
@@ -1686,7 +1686,7 @@ Overall, there is little retrospective change to the relative spawning biomass
 trajectory up to the mid-2010s, and most retrospective change occurs in the
 final years of the retrospective model
 (Figure~\ref{fig:main-biomass-recruitment-retrospective}).
-In the previous assessment, the retrospective bias is was predominately positive
+In the previous assessment, the retrospective bias was predominately positive
 in these terminal years. In this assessment the bias is a mix of both positive
 and negative biases with no systematic pattern indicating that the model is
 more correctly specified than one that shows a pattern.
