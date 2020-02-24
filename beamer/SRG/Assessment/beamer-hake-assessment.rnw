@@ -1353,6 +1353,7 @@ year's assessment, the credible interval remains within that from last year's as
   \item 2014 cohort is estimated to make up \Sexpr{f(baa_2014, 1)}\% of the biomass
   \item 2016 cohort is estimated to make up \Sexpr{f(baa_2016, 1)}\% of the biomass
 
+  \item The three highest catches have occured in the last three years and we have ageing 2010 and 2014 cohorts such that biomass is trendinng downwards. Without either reduction in catch or a new large cohort, this trend will continue
   % \item The 2014 recruitment has \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of being as
   %   large as the 2010 recruitment.
   \ei
