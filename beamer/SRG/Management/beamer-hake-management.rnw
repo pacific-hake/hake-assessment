@@ -226,7 +226,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
     \bi
       \item No fishing results in a slight decline in spawning biomass from 2020 to 2021 before leveling off
       \item All other catch streams result in decreases in spawning biomass relative to 2020
-      \item Uncertainty is large and increases from \Sexpr{end.yr} to \Sexpr{end.yr+2} 
+      \item Uncertainty is large and increases from \Sexpr{end.yr} to \Sexpr{end.yr+2}
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -407,6 +407,31 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
     @
   \end{column}
 \end{columns}
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Proportions of biomass for cohorts in \Sexpr{assess.yr} for default harvest rule catch}
+
+\begin{columns}
+  \begin{column}{0.5\textwidth}
+    <<baa.table, results='asis', echo=FALSE>>=
+      baa_table(baa_large, font.size = 9, space.size = 9)
+    @
+  \end{column}
+  \begin{column}{0.5\textwidth}
+  \bc
+    <<baa.plot, figure.width = 5, figure.height = 10>>=
+    g <- ggplot(baa %>% arrange(Cohort), aes(x = Cohort, y = Median)) +
+      geom_point(color = "black", shape = "o", size = 6) +
+      geom_errorbar(aes(ymin = `Lower CI`, ymax = `Upper CI`), color = "royalblue", size = 1, width = 0.2) +
+      labs(y = paste0("Proportion of Biomass in ", assess.yr,  " catch")) +
+      scale_x_continuous(breaks = seq(from = 1900, to = 2100, by = 1))
+    g
+    @
+  \ec
+  \end{column}
+\end{columns}
+
 }
 
 
