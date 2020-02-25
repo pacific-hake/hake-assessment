@@ -259,9 +259,24 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %----------------------------------------------------------
 \frame{\frametitle{Bridging: Fishery empirical weight-at-age (Fig. 13)}
   \bc
-  <<bridge.wtage.3, fig.height=3.5>>=
+  <<wtage.heatmap, fig.height=3.5>>=
   weight.at.age.heatmap(base.model,
                         proj.line.yr = base.model$endyr,
+                        extrap.mask = weight_age_extrapolation_mask,
+                        proj.line.width = 0.4,
+                        longterm.mean.ages = NULL,
+                        font.size = 1.6,
+                        axis.font.size = 4)
+  @
+  \ec
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Last assessment: Fishery empirical weight-at-age (Fig. 12 in 2019 doc)}
+  \bc
+  <<last.yr.wtage.heatmap, fig.height=3.5>>=
+  weight.at.age.heatmap(last.yr.base.model,
+                        proj.line.yr = last.yr.base.model$endyr,
                         extrap.mask = weight_age_extrapolation_mask,
                         proj.line.width = 0.4,
                         longterm.mean.ages = NULL,
@@ -369,7 +384,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     choice of how many iterations to do, and automatically tunes each model as opposed to all having the
     same tuning.
   \item Uniform prior [-5, 20] was used in 2019 assessment.
-  \item In the \Sexpr{last.assess.yr} assessment, these parameters were stuck between 0.99--1.00 (at the upper bound).
+  \item In the \Sexpr{last.assess.yr} assessment, the DM survey parameter was stuck between 0.99--1.00 (at the upper bound).
   \item A Normal (almost Uniform) prior with a mean of 0 and a standard deviation of \Sexpr{priors_mle[[1]]$Psd}
     is used in \Sexpr{assess.yr} to improve MCMC convergence of these parameters.
 \ei
@@ -858,7 +873,7 @@ and 2016 cohort uncertainty to \Sexpr{rec_2016[[3]]}\% of what it was in the \Se
     \end{tabular}
   \end{table}
   ~\\
-So while the median estimate of $B_{\Sexpr{end.yr-1}}$ has increased from last
+While the median estimate of $B_{\Sexpr{end.yr-1}}$ has increased from last
 year's assessment, the credible interval remains within that from last year's assessment.
 }
 
@@ -1338,6 +1353,7 @@ year's assessment, the credible interval remains within that from last year's as
   \item 2014 cohort is estimated to make up \Sexpr{f(baa_2014, 1)}\% of the biomass
   \item 2016 cohort is estimated to make up \Sexpr{f(baa_2016, 1)}\% of the biomass
 
+  \item The three highest catches have occured in the last three years and we have ageing 2010 and 2014 cohorts such that biomass is trendinng downwards. Without either reduction in catch or a new large cohort, this trend will continue
   % \item The 2014 recruitment has \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of being as
   %   large as the 2010 recruitment.
   \ei
