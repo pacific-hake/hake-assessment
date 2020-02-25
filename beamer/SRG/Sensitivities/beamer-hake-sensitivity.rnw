@@ -1135,7 +1135,7 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
 \frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
 \fontsize{11pt}{2}\selectfont
 \bi
-  \item Base model uses a modified random-walk Metropoplis MCMC algorithm
+  \item Base model uses a modified random-walk Metropolis MCMC algorithm
     (in SS using ADMB)
   \item Newer MCMC algorithm: no-U-turn-sampler (NUTS) -- several desirable
     technical features, including faster run times
@@ -1356,7 +1356,7 @@ par <- oldpar
 ~\\
 \bi
   \item Suggest {\tt adnuts} be considered for 2021 assessment
-  \item Would increase the use of MCMC results for sensitivities
+  \item Would enable MCMC results for sensitivities
   \item However, would need to reduce the number of sensitivities
     (to reduce build time for the assessment document)
 \ei
@@ -1510,7 +1510,7 @@ par <- oldpar
 \begin{frame}
 \frametitle{Historical assessments}
 \begin{center}
-<<retro.4, out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
+<<retro.4, out.width='.88\\columnwidth', out.height='.8\\textheight'>>=
 make.assessment.history.plot(base.model,
                              assessment.history)
 @
