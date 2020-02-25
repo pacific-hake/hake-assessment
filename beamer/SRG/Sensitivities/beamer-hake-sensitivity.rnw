@@ -937,29 +937,6 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{Including age-1 index (MCMC)}
-\begin{center}
-<<age1.sensitivity.recr, fig.height=3.5>>=
-oldpar <- par()
-par(mar = c(20, 4.1, 0, 1))
-make.recruitment.plot(sens.models.2[[1]],
-                      equil.yr = unfished.eq.yr,
-                      start.yr = start.yr,
-                      end.yr = end.yr,
-                      color = "blue",
-                      add.mean = TRUE,
-                      add.r0 = TRUE,
-                      upper.lim = 35)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
@@ -982,6 +959,28 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Including age-1 index (MCMC)}
+\begin{center}
+<<age1.sensitivity.recr, fig.height=3.5>>=
+oldpar <- par()
+par(mar = c(20, 4.1, 0, 1))
+make.recruitment.plot(sens.models.2[[1]],
+                      equil.yr = unfished.eq.yr,
+                      start.yr = start.yr,
+                      end.yr = end.yr,
+                      color = "blue",
+                      add.mean = TRUE,
+                      add.r0 = TRUE,
+                      upper.lim = 35)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
 % Table taken directly from hake-assessment.tex and then edited down
