@@ -16,7 +16,7 @@ make.forecast.catch.posterior.plot <- function(model,         ## model is the mo
     plot(dens,
        yaxt = "n",
        ylab = "",
-       xlab = paste0("Projected ",fore.yr," catch based on the default harvest policy ('000 t)"),
+       xlab = paste0("Projected ",fore.yr," catch based on the default harvest policy (1,000 t)"),
        type = "l",
        lty = 1,
        pch = 16,
@@ -169,7 +169,7 @@ make.forecast.risk.comparison.plot <- function(model,        ## model is the mod
           yaxs = "i",
           xaxt = "n",
           ylab = "Probability",
-          xlab = paste0("Catch in ", fore.yr, " ('000 t)"),
+          xlab = paste0("Catch in ", fore.yr, " (1,000 t)"),
           type = "n")
   # add x-axis
   axis(1,

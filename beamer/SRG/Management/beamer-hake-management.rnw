@@ -158,16 +158,16 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 
 \frame{\frametitle{Past management: Performance}
   \begin{columns}
-    \begin{column}{0.28\textwidth}
+    \begin{column}{0.25\textwidth}
       \bi
         \item Fishing intensity has remained below target
         \item Biomass has mostly remained above target
         \item When biomass goes below target, the fishing intensity typically decreases
       \ei
     \end{column}
-    \begin{column}{0.68\textwidth}
+    \begin{column}{0.75\textwidth}
     \bc
-    <<main.phase, out.width='0.9\\columnwidth'>>=
+    <<main.phase, fig.height=5, fig.width=8,out.width='1.0\\columnwidth'>>=
       make.phase.plot(base.model, start.yr = start.yr, end.yr = end.yr)
     @
     \ec
@@ -182,8 +182,8 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
   \bi
     \item Forecasts are for \Sexpr{end.yr}, \Sexpr{end.yr+1}, and \Sexpr{end.yr+2}
     \bi
-      \item Average fishery selectivity from \Sexpr{end.yr-5}--\Sexpr{end.yr-1} used in forecasts
-      \item Average weight-at-age from \Sexpr{end.yr-5}--\Sexpr{end.yr-1} used in forecasts
+      \item Mean of fishery selectivity from \Sexpr{end.yr-5}--\Sexpr{end.yr-1} used in forecasts
+      \item Mean of weight-at-age from \Sexpr{end.yr-5}--\Sexpr{end.yr-1} used in forecasts
       \item Recruitment from stock-recruit relationship (with uncertain deviations)
       \item Used for default catch limit calculations
       \item Alternative future catch levels explored
@@ -201,7 +201,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 }
 
 \subsection{Two year forecasts}
-\frame{\frametitle{Harvest rule predicted catch for \Sexpr{assess.yr}}
+\frame{\frametitle{Harvest-rule predicted catch for \Sexpr{assess.yr}}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
@@ -226,7 +226,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
     \bi
       \item No fishing results in a slight decline in spawning biomass from 2020 to 2021 before leveling off
       \item All other catch streams result in decreases in spawning biomass relative to 2020
-      \item Uncertainty is large and increases the farther out the forecast goes
+      \item Uncertainty is large and increases from \Sexpr{end.yr} to \Sexpr{end.yr+2} 
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -285,8 +285,8 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
       \item Median (50\%) decreases from \Sexpr{end.yr} to \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
         for all catch levels
         \bi
-        \item Median is above $B_{40\%}$ for all examined 2021 catch levels, but goes below
-          $B_{40\%}$ in 2022 in between 410,000~t and 500,000~t
+        \item Median is > $B_{40\%}$ for all 2021 catch
+        \item Median goes below $B_{40\%}$ in 2022 between d and e
         \ei
     \ei
   \end{column}
@@ -310,8 +310,8 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 \section{Risk Tables}
 \subsection{Risk}
 \frame{\frametitle{Risk table definitions}
-  Probabilities associated with biomass and fishing based metrics for different fixed catch levels
-  (executive summary: tables i and j; figures j and k)
+  Probabilities associated with biomass and fishing-based metrics for different fixed catch levels
+  (executive summary: Tables i and j; Figures j and k)
   \bi
     \item Fix catch in all years previous, and calculate default catch in
       forecast year
@@ -388,6 +388,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 \begin{columns}
   \begin{column}{0.35\textwidth}
     \bi
+  \item Default Harvest Rule catch
   \item Dependent on selectivity assumption
   \item Age-6 (2014 cohort): \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$X6),0)}\% by numbers,
     \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$X6),0)}\% by weight
@@ -421,8 +422,8 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
           \item similarly high correlation for 2010, 2014, and 2016 recruitment
             (\Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr)],
                 base.model$mcmc$Recr_2010),2)},
-            (\Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr)],
-                base.model$mcmc$Recr_2014),2)}
+            \Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr)],
+                base.model$mcmc$Recr_2014),2)},
             and
             \Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr)],
                 base.model$mcmc$Recr_2016),2)},
@@ -534,8 +535,8 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
       \bi
         \item Survey and model estimates suggest decline in numbers of age-1 hake in 2019
           relative to 2017
-        \item Numbers of age-1 hake caught in the 2019 fishery much lower (1--2\%)
-          than what was caught in 2017 and 2018
+        \item Numbers of age-1 hake caught in the 2019 fishery 1--2\% of
+          what was caught in 2017 and 2018
       \ei
     \ei
   \end{column}
@@ -556,7 +557,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
     \item Uncertainty is large, but stock is likely above $B_{40\%}$ and relative fishing intensity likely to have been below 100\%
     \item Forecasts strongly influenced by size of above average, but uncertain, 2014 and 2016 cohorts and
       very uncertain 2017 cohort
-    \item There is a high (more than 80\%) chance that spawning biomass will decline from 2020 to 2021 at any catch level,
+    \item There is more than a 80\% chance that spawning biomass will decline from 2020 to 2021 at any catch level,
       partly due to mortality on ageing 2010 and 2014 cohorts
     \item Maintaining a constant catch of 597,500~t (i.e., 2017 through 2019 TACs) results in a 37\%
       chance of falling below $B_{40\%}$ in 1 year (60\% in 2 years time), which is a considerable increase
@@ -597,8 +598,8 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 %-------------------------------------------------------------------
 \frame{\frametitle{Consideration of age-1 survey}
   \bi
-    \item Default harvest rule median catch limit for 2020 is \textbf{666,458~t (base model)} compared to
-      \textcolor{red}{797,158~t (age-1 survey model)}
+    \item Default harvest rule median catch limit for 2020 is \textcolor{red}{797,158~t (age-1 survey model)} compared to
+      \textbf{666,458~t (base model)}
     \item Forecasts of spawning biomass using 2019 catch levels (410,000~t) result in higher stock levels
       for \textcolor{red}{age-1 survey} relative to the \textbf{base} (2020: \textcolor{red}{72}
        to \textbf{65}; 2021: \textcolor{red}{61} to \textbf{52}; 2022: \textcolor{red}{52} to \textbf{42})
@@ -608,14 +609,14 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
     \item Both models estimate a high probability of stock decline from 2020 to 2021
     \item If 2020 catch is the same as 2019 (410,000~t) then:
       \bi
-        \item there is a \textbf{28\%} chance SSB is less than $B_{40\%}$ \textbf{(base model)}
         \item there is a \textcolor{red}{14\%} chance SSB is less than $B_{40\%}$ \textcolor{red}{(age-1 survey model)}
+        \item there is a \textbf{28\%} chance SSB is less than $B_{40\%}$ \textbf{(base model)}
       \ei
   \ei
 }
 
 %-------------------------------------------------------------------
-\frame{\frametitle{}
+\frame{\frametitle{Acoustic backscatter (red) attributed to age-1 Pacific Hake}
 \bc
   \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
   \includegraphics[height=2.9in]{../../../doc/main-figures/age1hake_03-19_sA_squareroot_bin_narrow-panel_bluergray}
@@ -625,8 +626,8 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 %-------------------------------------------------------------------
 \frame{\frametitle{Consideration of adnuts package}
   \bi
-    \item Default harvest rule median catch limit for 2020 is \textbf{666,458~t (base model)} compared to
-      \textcolor{blue}{682,111~t (adnuts model)}
+    \item Default harvest rule median catch limit for 2020 is \textcolor{blue}{682,111~t (adnuts model)} compared to
+      \textbf{666,458~t (base model)}
     \item Forecasts of spawning biomass using 2019 catch levels (410,000~t) result in higher stock levels
       for \textcolor{blue}{adnuts} relative to \textbf{base} (2020: \textcolor{blue}{73}
        to \textbf{65}; 2021: \textcolor{blue}{57} to \textbf{52}; 2022: \textcolor{blue}{48} to \textbf{42})
@@ -636,8 +637,8 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
     \item Both models estimate a high probability of stock decline from 2020 to 2021
     \item If 2020 catch is the same as 2019 (410,000~t) then:
       \bi
-        \item there is a \textbf{28\%} chance SSB is less than $B_{40\%}$ \textbf{(base model)}
         \item there is a \textcolor{blue}{21\%} chance SSB is less than $B_{40\%}$ \textcolor{blue}{(adnuts model)}
+        \item there is a \textbf{28\%} chance SSB is less than $B_{40\%}$ \textbf{(base model)}
       \ei
     \item Main difference is a slight change in estimate of $\log(R_0)$
   \ei
