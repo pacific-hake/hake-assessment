@@ -558,7 +558,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
         \item How the above topics provide further information about factors that influence time-varying reproductive output.
       \ei
     \item More winter acoustic surveys may provide further information about these questions.
-g  \ei
+  \ei
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
