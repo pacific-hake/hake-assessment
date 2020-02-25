@@ -675,7 +675,8 @@ range of alternative assumptions using maximum likelihood estimation,
 and present the key ones in the main document. We also present full Bayesian
 analyses for a model that includes the age-1 survey index
 and a model that uses the new efficient
-Auto-Differentiation No-U-Turn-Sampling (AD-NUTS) algorithm.
+Auto-Differentiation No-U-Turn-Sampling (NUTS) algorithm within the R package
+{\tt adnuts}.
 
 In a 2015 Joint Management Committee (JMC) meeting, the JTC presented results
 from closed-loop simulations to evaluate the effect of

@@ -1,11 +1,11 @@
 \newpage
 
-\chapter{Sensitivity run using ADNUTS algorithm -- MCMC results}
+\chapter{Sensitivity run using NUTS algorithm -- MCMC results}
 \label{chap:adnuts}
 
 This appendix contains base model Bayesian MCMC results using a new analytical tool
 for conducting efficient Bayesian MCMC sampling, the Automatic Differentiation
-No-U-Turn Sampler (adnuts), implemented using the {\tt adnuts} R package
+No-U-Turn Sampler (NUTS; \citep{Hoffman2014}), implemented using the {\tt adnuts} R package
 \citep{Monnahan2018, Monnahan2019}.
 This tool has the potential to improve the applicability of Bayesian methods in stock assessment
 due to, among other things, decreased model run times.
