@@ -163,7 +163,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \section{MLE vs MCMC}
 \subsection{}
 \begin{frame}
-\frametitle{**MLE vs MCMC}
+\frametitle{MLE vs MCMC}
 \begin{center}
 % , out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
 <<mle.mcmc.1, fig.height=3.5>>=
@@ -177,7 +177,7 @@ make.mcmc.vs.mle.plot(base.model,
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{**MLE vs MCMC}
+\frametitle{MLE vs MCMC}
 \begin{center}
 %, out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
 <<mle.mcmc.2, fig.height=3.5>>=
@@ -849,7 +849,7 @@ make.short.parameter.estimates.sens.table(
 \vspace{5pt}
 <<age1.sensitivity.index>>=
 oldpar <- par()
-par(mar = c(7.1, 6, 0, 1))
+par(mar = c(7.1, 5, 3, 1))
 make.comparison.plot(c(list(base.model), list(sens.models.2[[1]])),
                      subplots = 13,
                      model.names = c(base.model.name, sens.model.names.2[1]),
@@ -1176,7 +1176,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
-\frametitle{Run base model using NUTS algorithm in \tt{adnuts}}
+\frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
 \begin{center}
 \vspace{5pt}
 <<nuts.sensitivity.biomass.b>>=
@@ -1195,7 +1195,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
-\frametitle{Run base model using NUTS algorithm in \tt{adnuts}}
+\frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
 Comparing medians:
 \begin{table}[H]
 \centering
@@ -1528,7 +1528,7 @@ make.assessment.history.plot(base.model,
 \item In general, sensitivities show no significant departure from base model
 \item Overall relative pattern consistent -- large increases in biomass in early 2010s
 \item Absolute scale can change for some sensitivities
-\item NUTS looks worth using next year
+\item NUTS looks worth considering next year
 \item Retrospectives -- 2014 cohort looking to be between sizes of 2008 and 2010
 \item Retrospectives -- 2016 cohort looking to be large, though cannot be
   certain yet
