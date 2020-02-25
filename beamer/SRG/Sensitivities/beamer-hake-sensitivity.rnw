@@ -1105,12 +1105,12 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
   \item Newer MCMC algorithm: no-U-turn-sampler (NUTS) -- several desirable
     technical features, including faster run times
   \item NUTS is implemented here using R package {\tt adnuts}
-  \item So same base model, just different numerical algorithm
+  \item So same base model structure, just different numerical algorithm
 \ei
 ~\\
 \bi
   \item Took $\sim$4.5~h to run, compared to 40~h for usual algorithm
-  \item That included 2.5 h step that likely not needed for sensitivity runs
+  \item That included 2.5 h diagnostic step that likely not needed for sensitivity runs
   \item Resulted in 7,850 samples, more than the usual 2,000
 \ei
 \end{frame}
@@ -1309,7 +1309,7 @@ par <- oldpar
 \frametitle{NUTS conclusions}
 \fontsize{11pt}{2}\selectfont
 \bi
-  \item Worked well, but we need to optimise all settings, such as:
+  \item Worked well, but further considerations will be needed, such as:
     \bi
       \item no Stock Synthesis burn-in needed
       \item want to end up with same number of samples on different machines
@@ -1320,9 +1320,9 @@ par <- oldpar
 \ei
 ~\\
 \bi
-  \item Suggest we use {\tt adnuts} for 2021 assessment
+  \item Suggest {\tt adnuts} be considered for 2021 assessment
   \item Would increase the use of MCMC results for sensitivities
-  \item However, would be desirable to reduce the number of sensitivities
+  \item However, would need to reduce the number of sensitivities
     (to reduce build time for the assessment document)
 \ei
 \end{frame}
