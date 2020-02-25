@@ -1158,9 +1158,9 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
 \frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
 \begin{center}
 \vspace{5pt}
-<<adnuts.trace, fig.height=3.5>>=
+<<adnuts.trace, fig.height=3.2>>=
 oldpar <- par()
-par(mar=c(4.1, 4.1, 3.1, 0.1))
+par(mar=c(4.1, 4.1, 12, 0.1))
 make.mcmc.diag.plot(sens.models.6, key.posteriors[3], key.posteriors.titles[3])
 par <- oldpar
 @
@@ -1255,7 +1255,7 @@ par <- oldpar
 \vspace{5pt}
 <<nuts.sensitivity.biomass.b>>=
 oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
+par(mar = c(7.1, 4.1, 2, 1))
 make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.6),
