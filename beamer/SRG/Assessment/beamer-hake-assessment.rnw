@@ -399,7 +399,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     \bc
       <<weight.assoc.uniform.dm, fig.height = 6>>=
           # generating uniform values in the log(Theta) space (bounded -5 to 5)
-          dist_size <- 100 #1e8
+          dist_size <- 1000000
           log_theta <- runif(n = dist_size,
                              min = -5,
                              max = 5)
