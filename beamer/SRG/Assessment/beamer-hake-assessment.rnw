@@ -350,7 +350,8 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       estimate of biomass for the last few years and reduces uncertainty.
     \item Adding the \Sexpr{last.data.yr} survey age compositions further reduced uncertainty,
       but provided a worse fit to the 2017 and \Sexpr{last.data.yr} survey indices.
-    \item Adding priors to the Dirichlet-Multinomial parameters reduced correlation between $M$ and $log(R_0)$.
+    \item The base model for \Sexpr{assess.yr} has reduced correlation between the $M$ and $log(R_0)$
+      parameters when compared to the \Sexpr{last.assess.yr} base model.
    \ei
 }
 
