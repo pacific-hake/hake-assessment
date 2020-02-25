@@ -775,36 +775,36 @@ and 2016 cohort uncertainty to \Sexpr{rec_2016[[3]]}\% of what it was in the \Se
   ~\\
 
 \bi
-  \item 2010 cohort is estimated to make up \Sexpr{f(baa_2010, 1)}\% of the biomass
-  \item 2014 cohort is estimated to make up \Sexpr{f(baa_2014, 1)}\% of the biomass
-  \item 2016 cohort is estimated to make up \Sexpr{f(baa_2016, 1)}\% of the biomass
+  \item 2010 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2010 * 100, 1)}\% of the biomass
+  \item 2014 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2014 * 100, 1)}\% of the biomass
+  \item 2016 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2016 * 100, 1)}\% of the biomass
 \ei
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Proportions of biomass for cohorts in \Sexpr{assess.yr}}
-
-\begin{columns}
-  \begin{column}{0.5\textwidth}
-    <<baa.table, results='asis', echo=FALSE>>=
-      baa_table(baa_large, font.size = 9, space.size = 9)
-    @
-  \end{column}
-  \begin{column}{0.5\textwidth}
-  \bc
-    <<baa.plot, figure.width = 5, figure.height = 10>>=
-    g <- ggplot(baa %>% arrange(Cohort), aes(x = Cohort, y = Median)) +
-      geom_point(color = "black", shape = "o", size = 6) +
-      geom_errorbar(aes(ymin = `Lower CI`, ymax = `Upper CI`), color = "royalblue", size = 1, width = 0.2) +
-      labs(y = paste0("Proportion of Biomass beginning of ", assess.yr)) +
-      scale_x_continuous(breaks = seq(from = 1900, to = 2100, by = 1))
-    g
-    @
-  \ec
-  \end{column}
-\end{columns}
-
-}
+% \frame{\frametitle{Proportions of biomass for cohorts in \Sexpr{assess.yr}}
+%
+% \begin{columns}
+%   \begin{column}{0.5\textwidth}
+%     <<baa.table, results='asis', echo=FALSE>>=
+%       baa_table(baa_large, font.size = 9, space.size = 9)
+%     @
+%   \end{column}
+%   \begin{column}{0.5\textwidth}
+%   \bc
+%     <<baa.plot, figure.width = 5, figure.height = 10>>=
+%     g <- ggplot(baa %>% arrange(Cohort), aes(x = Cohort, y = Median)) +
+%       geom_point(color = "black", shape = "o", size = 6) +
+%       geom_errorbar(aes(ymin = `Lower CI`, ymax = `Upper CI`), color = "royalblue", size = 1, width = 0.2) +
+%       labs(y = paste0("Proportion of Biomass beginning of ", assess.yr)) +
+%       scale_x_continuous(breaks = seq(from = 1900, to = 2100, by = 1))
+%     g
+%     @
+%   \ec
+%   \end{column}
+% \end{columns}
+%
+% }
 
 %----------------------------------------------------------
 \frame{\frametitle{Numbers-at-age (billions)}
@@ -1349,9 +1349,9 @@ year's assessment, the credible interval remains within that from last year's as
   \item The 2010 cohort uncertainty is \Sexpr{rec_2010[[3]]}\% of what it was in the \Sexpr{last.assess.yr} assessment.
   \item The 2014 cohort uncertainty is \Sexpr{rec_2014[[3]]}\% of what it was in the \Sexpr{last.assess.yr} assessment.
   \item The 2016 cohort uncertainty is \Sexpr{rec_2016[[3]]}\% of what it was in the \Sexpr{last.assess.yr} assessment.
-  \item 2010 cohort is estimated to make up \Sexpr{f(baa_2010, 1)}\% of the biomass
-  \item 2014 cohort is estimated to make up \Sexpr{f(baa_2014, 1)}\% of the biomass
-  \item 2016 cohort is estimated to make up \Sexpr{f(baa_2016, 1)}\% of the biomass
+  \item 2010 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2010 * 100, 1)}\% of the biomass
+  \item 2014 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2014 * 100, 1)}\% of the biomass
+  \item 2016 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2016 * 100, 1)}\% of the biomass
 
   \item The three highest catches have occured in the last three years and we have ageing 2010 and 2014 cohorts such that biomass is trendinng downwards. Without either reduction in catch or a new large cohort, this trend will continue
   % \item The 2014 recruitment has \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of being as
