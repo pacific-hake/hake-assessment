@@ -849,18 +849,54 @@ make.short.parameter.estimates.sens.table(
 \vspace{5pt}
 <<age1.sensitivity.index>>=
 oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
+par(mar = c(7.1, 6, 0, 1))
 make.comparison.plot(c(list(base.model), list(sens.models.2[[1]])),
                      subplots = 13,
                      model.names = c(base.model.name, sens.model.names.2[1]),
                      end.yr = end.yr,
                      indexfleets = c(2),
+                     indexUncertainty = TRUE,
                      legendloc = "bottomright")
 par <- oldpar
 @
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Base model fit to age-1 index [MLE]}
+\begin{center}
+\vspace{5pt}
+<<age1.sensitivity.age1.fit.base, fig.height=3.5>>=
+oldpar <- par()
+par(mar = c(4, 5, 0, 1))
+make.survey.age1.plot(age.1.index,
+                      base.model)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Include age-1 index -- fit to age-1 index [MLE]}
+\begin{center}
+\vspace{5pt}
+<<age1.sensitivity.age1.fit, fig.height=3.5>>=
+oldpar <- par()
+par(mar = c(4, 5, 0, 1))
+make.survey.age1.plot(age.1.index,
+                      sens.models.2[[1]])
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
