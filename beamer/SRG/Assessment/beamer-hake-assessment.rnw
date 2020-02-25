@@ -379,7 +379,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   priors_mle <- get_prior_data(base.model, tail(key.posteriors, 2))
 @
 \bi
-  \item Used in the assessment since 2018. Prior to this, an iteritave weighting scheme was used
+  \item Used in the assessment since 2018. Prior to this, an iterative weighting scheme was used
     (McAllister-Ianelli).
   \item These parameters increase efficiency of assessment process (no manual work), removes subjective
     choice of how many iterations to do, and automatically tunes each model as opposed to all having the
