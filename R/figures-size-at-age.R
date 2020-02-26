@@ -1,35 +1,77 @@
-#' Weight-at-age heatmap plot including extrapolated years using ggplot.
+#' Weight-At-Age Heatmap Including Extrapolated Years
 #'
-#' @details Max age is set to 15 as we don't know what was extrapolated above that
-#' and the figure in the assessment doc is only to 15
-#' fleet is number as seen in SS wtatage.ss file for fleet column
-#' Years after end of data up to last.yr will be projection years,
-
-#' @param model An SS model as output by [load_ss_files()]
-#' @param fleet Fleet number. 1 = Fishery, 2 = survey
-#' @param proj.line.color Line color to separate projection years
-#' @param proj.line.width Line width to separate projection years
-#' @param proj.line.yr Year to separate projection years. Projection line will be placed
-#' between this year and the next year
-#' @param first.year The first year to plot
+#' Produce a matrix of colors and values of weight-at-age information
+#' by year (y-axis) and age (x-axis). The plot uses output from a
+#' Stock Synthesis model.
+#'
+#' @details 
+#' Ages zero through the maximum age modeled in the data are shown
+#' for each year plotted. This maximum-age shown is found by removing ages
+#' that are the duplicate of the previous age, no user input is needed.
+#'
+#' Users have many options to control what years are included in the plot.
+#' The beginning years of data can be removed using \code{first.year}.
+#' Users do not have control over what are noted as projection years, which
+#' are all years after the end of the data included in the assessment model
+#' up to last year included in the weight-at-age matrix.
+#' These projection years are noted using a horizontal line but if the
+#' demarcation is not wanted, then they can change the line width to zero.
+#' Finally, users can calculate the colors using a range of data specified
+#' with \code{first.year} and the last year of the data in the model. Then,
+#' the resulting plot can be truncated to a specified year range using
+#' \code{print.years}. The truncation is helpful to facilitate plots that fit
+#' on a single page or on a slide with readable values. Using this truncation,
+#' the colours would show trends across all plots made rather than just the
+#' truncated data.
+#' 
+#' @param model An list of results read in from an SS model using
+#' \code{\link{load_ss_files}}.
+#' @param fleet An integer value specifying which fleet you want plotted.
+#' Fleet -2 will plot fecundity information. 
+#' Fleet -1 will plot population weight-at-age for the middle of the year.
+#' Fleet 0 will plot population weight-at-age for the beginning of the year.
+#' Positive values for fleet will link to a modeled fleet.
+#' @param proj.line.color Line color to separate projection years.
+#' @param proj.line.width Line width to separate projection years.
+#' @param proj.line.yr Year to separate projection years from the data period,
+#' where if \code{NULL}, then the last year of the data in the assessment will
+#' be used to specify when the data end and projections begin.
+#' @param first.year The first year to plot because users may want to truncate
+#' the data to only years for which were informed by data and not all years
+#' in the weight-at-age file.
 #' @param extrap.mask A list of vectors of which years are extrapolations so
 #' that they can be colored accordingly. 1's means they are extrapolations
 #' and 0's means they are not.
 #' @param longterm.mean.ages A vector of mean weight-at-age values
-#' per ages zero to fifteen. If \code{NULL} then the first year of
-#' data will be assumed to be the mean because this year is typically
-#' filled in any way.
-#' @param font.size Font size
-#' @param axis.font.size Font size for axis labels
+#' per ages zero to the maximum age of fish in the data.
+#' If \code{NULL}, the first year will be assumed to be the mean  of all years.
+#' @param font.size Font size of the values printed in each box.
+#' @param axis.font.size Font size for axis labels.
 #' @param samplesize A logical value specifying if the heat map should be of
-#' input sample size used to generate the data rather than the actual weights-at-age.
+#' input sample size used to generate the data rather than the weights-at-age.
+#' @param print.years A vector of years that will be included in the output,
+#' but users should note that all data from \code{first.year} to the terminal
+#' year of the data in the model will be used to calculate means and colors.
+#' This parameter facilitates splitting the plot into two separate plots when
+#' there are a number of years.
+#' @param colour A character string of \code{"both"}, \code{"all"}, 
+#' or \code{"age"}. If the default of \code{"both"}, then the colors of the
+#' boxes will be based on all of the data and the transparency of the colors
+#' will strictly be a function of each individual age in turn. That is, the
+#' darkness of the colors used across years for age zero specifies which years
+#' have the largest age-0 fish. \code{"all"} specifies colors based on the min
+#' and max values of all ages without transparency. \code{"age"} colors the min
+#' and max color specific for each age without transparency.
+#'
 #' @export
 #' @importfrom dplyr filter select bind_rows
 #' @importFrom tibble as_tibble
 #' @importFrom reshape2 melt
 #' @importFrom grDevices colorRampPalette
-#' @importFrom ggplot2 ggplot geom_tile scale_fill_gradientn geom_text aes theme 
-#' element_blank element_text scale_y_continuous ylab xlab geom_hline coord_cartesian
+#' @importFrom stats reshape
+#' @importFrom utils type.convert
+#' @import ggplot2 
+#'
 weight.at.age.heatmap <- function(model,
                                   fleet = 1,
                                   proj.line.color = "royalblue",
@@ -37,37 +79,21 @@ weight.at.age.heatmap <- function(model,
                                   proj.line.yr = NULL,
                                   first.year = 1975,
                                   extrap.mask = NULL,
-                                  # mean ages need to be updated every year
-                                  longterm.mean.ages = c(0.02,
-                                                         0.09,
-                                                         0.25,
-                                                         0.38,
-                                                         0.49,
-                                                         0.53,
-                                                         0.58,
-                                                         0.65,
-                                                         0.71,
-                                                         0.78,
-                                                         0.86,
-                                                         0.92,
-                                                         0.96,
-                                                         1.06,
-                                                         1.00,
-                                                         1.03),
+                                  longterm.mean.ages = NULL,
                                   font.size = 4,
                                   axis.font.size = 10,
                                   samplesize = FALSE,
                                   print.years = NULL,
-                                  colour = c("all", "age", "both")){
+                                  colour = c("both", "all", "age")){
 
   colour <- match.arg(colour)
 
-  stopifnot(!is.null(proj.line.yr),
-            !is.null(extrap.mask))
+  stopifnot(!is.null(extrap.mask))
 
   ## Toggle data frame for which values are extrapolated values
   last.data.yr <- model$endyr
   input.yrs <-  first.year:last.data.yr
+  if (is.null(proj.line.yr)) proj.line.yr <- last.data.yr
 
   wa <- as_tibble(model$wtatage[, !grepl("comment", colnames(model$wtatage))]) %>%
     filter(Fleet == fleet) %>%
@@ -75,15 +101,15 @@ weight.at.age.heatmap <- function(model,
     filter(Yr > 0)
   wa <- wa[,1:which(apply(wa, 1, duplicated)[, 1])[1]-1]
 
-#  n.mast <- read.csv("c:/stockAssessment/hake-data/LengthWeightAge/wtatage_all_samplesize.csv",
-#    header = TRUE,stringsAsFactors=F)
-
   last.yr <- max(wa$Yr)
 
   w <- melt(wa, id.vars = "Yr")
 
   ages <- as.numeric(levels(unique(w$variable)))
   nage <- length(ages)
+  if (!is.null(longterm.mean.ages)) {
+  	stopifnot(length(longterm.mean.ages) == nage)
+  }
 
   colors <- colorRampPalette(c("red",
                                "yellow",
@@ -98,9 +124,9 @@ weight.at.age.heatmap <- function(model,
   w <- as.data.frame(rbind(w, avg))
   w$Yr <- as.integer(w$Yr)
   w$value <- as.numeric(w$value)
-  w$age <- type.convert(w$variable)
+  w$age <- utils::type.convert(w$variable)
 
-  nn <- reshape(extrap.mask, direction = "long",
+  nn <- stats::reshape(extrap.mask, direction = "long",
     idvar = c("Yr"), varying = grep("^a", colnames(extrap.mask), value = TRUE),
     sep = "", timevar = "age")
   nn[nn$Yr < 0, "Yr"] <- min(w$Yr)
@@ -146,7 +172,6 @@ weight.at.age.heatmap <- function(model,
                                       1)[-c(1,2)])) +
     ylab("Year") +
     xlab("Age") +
-    ## Add line separating pre-1975 and data:
     geom_hline(yintercept = input.yrs[1] - 0.5,
                color = proj.line.color,
                size = proj.line.width) +
