@@ -240,10 +240,10 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
-\frametitle{NUTS thinned to 2,000 **REPLACE MODEL NAME, PLACEHOLDER}
+\frametitle{NUTS thinned to 2,000}
 \begin{center}
 \vspace{5pt}
-<<adnuts.hists.thin, fig.height=3.5>>=
+<<adnuts.hists.thin.2000, fig.height=3.5>>=
 oldpar <- par()
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 make.mcmc.diag.hists.plot(adnuts.model.2000,
@@ -253,6 +253,27 @@ par <- oldpar
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{NUTS thinned to 1,000}
+\begin{center}
+\vspace{5pt}
+<<adnuts.hists.thin.1000, fig.height=3.5>>=
+oldpar <- par()
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+make.mcmc.diag.hists.plot(adnuts.model.1000,
+                          labelstrings = "all")
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Retros}
