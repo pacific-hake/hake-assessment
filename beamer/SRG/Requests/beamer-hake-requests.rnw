@@ -485,12 +485,14 @@ par <- oldpar
 \begin{frame}
 \frametitle{Recruitment deviations over the main period (1970-2018) -- MLE vs MCMCs}
 \bi
-    \item Median recruitment deviation MLE model: 0.209
-    \item Median recruitment deviation for MCMC models:
+    \item Median recruitment deviation 2020 base model MLE: 0.209
+    \item Median recruitment deviation 2020 MCMC models:
     \bi
       \item for base model 0.087
       \item for adnuts model 0.131
     \ei
+    \item Median recruitment deviation 2019 base model MLE: 4e-07
+    \item Median recruitment deviation 2019 base model MCMC: 0.214
   \ei
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
