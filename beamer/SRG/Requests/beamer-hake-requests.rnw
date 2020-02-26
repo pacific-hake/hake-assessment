@@ -202,22 +202,6 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section[Request 4 - rec devs]{Median recruitment deviations}
-\subsection{}
-\begin{frame}
-\frametitle{MLE vs MCMCs}
-\bi
-    \item Median recruitment deviation MLE model: 0.209
-    \item Median recruitment deviation for MCMC models:
-    \bi
-      \item 0.21 for base model 0.087
-      \item 0.21 for adnuts model 0.131
-    \ei
-  \ei
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
 \section[Request 6 - retros age-1]{Retrospectives using age-1 index}
 \subsection{}
 \begin{frame}
@@ -494,7 +478,24 @@ par <- oldpar
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
-%-------------------------------------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\section[Request 4 - rec devs]{Median recruitment deviations}
+\subsection{}
+\begin{frame}
+\frametitle{MLE vs MCMCs}
+\bi
+    \item Median recruitment deviation MLE model: 0.209
+    \item Median recruitment deviation for MCMC models:
+    \bi
+      \item 0.21 for base model 0.087
+      \item 0.21 for adnuts model 0.131
+    \ei
+  \ei
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
 \section[Request 7 - effN]{Temporal sampling changes}
 \frame{\frametitle{Request 7 - temporal patterns input N and effective N}
 \bc
@@ -502,7 +503,7 @@ par <- oldpar
   \includegraphics[height=2.9in]{Figures/samplesizes.eps}
  \ec
 }
-
+%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
