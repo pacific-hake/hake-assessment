@@ -201,6 +201,20 @@ par <- oldpar
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
+\section[Request 4 - rec devs]{Median recruitment deviations}
+\subsection{}
+\begin{frame}
+\frametitle{MLE vs MCMCs}
+\bi
+    \item Median recruitment deviation MLE model: 0.209
+    \item Median recruitment deviation for MCMC models:
+    \bi
+      \item 0.21 for base model 0.087
+      \item 0.21 for adnuts model 0.131
+    \ei
+  \ei
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section[Request 5 - thin ADNUTS]{Convergence diagnostics for thinned ADNUTS run}
@@ -531,6 +545,7 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 %-------------------------------------------------------------------
+\section[Request 7 - effN]{Temporal sampling changes}
 \frame{\frametitle{Request 7 - temporal patterns input N and effective N}
 \bc
   \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
