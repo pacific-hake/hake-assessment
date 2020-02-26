@@ -2,7 +2,7 @@
 # 2. rename the copy 2020.01.50_nutsMCMC_thin_2000
 # 3. delete the catch-levels, extra-mcmc, forecasts, and retrospectives directories so that
 #    making the Rdata file doesn't take forever
-# 4. thin_posts()
+# 4. source this file
 
 thin_posts <- function(model_dir = here::here("models", "2020.01.50_nutsMCMC_thin_2000", "mcmc"),
                        num_samples = 2000,
