@@ -211,7 +211,7 @@ par <- oldpar
 \section[Request 6 - retros age-1]{Retrospectives using age-1 index}
 \begin{frame}
 \frametitle{Request 6}
-Request 1 -- Redo recruitment retrospective analysis including Age-1 index, focusing on the 2014 and other strong year-classes.
+Request 6 -- Redo recruitment retrospective analysis including Age-1 index, focusing on the 2014 and other strong year-classes.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -493,21 +493,14 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Request 4 - rec devs]{Mean recruitment deviations}
-\begin{frame}
-\frametitle{Request 4}
-Request 4 -- Calculate average of recruitment deviations over the main period
-(1970-2018); include both MLE and MCMC (current algorithm and NUTS). Attempting
-to understand equilibrium recruitment assumption relative $R_0$.
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 %%%%%%%%%%%%%%%%%%%%%%%
+\section[Request 4 - rec devs]{Mean recruitment deviations}
 \subsection{}
 \begin{frame}
 \frametitle{Recruitment deviations over the main period (1970-2018) -- MLE vs MCMCs}
+Request 4 -- Calculate average of recruitment deviations over the main period
+(1970-2018); include both MLE and MCMC (current algorithm and NUTS). Attempting
+to understand equilibrium recruitment assumption relative $R_0$.
 \bi
     \item Mean recruitment deviation 2020 base model MLE: 0.209
     \item Mean recruitment deviation 2020 MCMC models:
@@ -735,7 +728,8 @@ weight.at.age.heatmap(base.model,
 \subsection{}
 \begin{frame}
 Request 3 -- Investigate changes in weights-at-age for 1987, when 1977 was expected to change but did not occur (compare 2019 to 2020).
-
+~\\
+~\\
 Canadian Joint-Venture information for that year was removed. Running the 2020 base model with the 2019 vs. 2020 weight-at-age makes almost no difference.
 \end{frame}
 
