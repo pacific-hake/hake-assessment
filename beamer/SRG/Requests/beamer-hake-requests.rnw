@@ -13,7 +13,7 @@
 \usepackage{graphicx}
 \usepackage{pgf}
 \usepackage{array}
-\usepackag  e{tabularx}
+\usepackage{tabularx}
 \usepackage{booktabs}          %% Used in risk tables
 \usepackage{multirow}          %% Used in decision tables
 %\usepackage{beamerarticle}
@@ -205,55 +205,55 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section[Request 1 - recdev uncertainty]{Recruitment deviation uncertainty for cohorts}
-\begin{frame}
-\frametitle{Recruitment deviation uncertainty for cohorts at age-2}
-<<cohort.uncertainty>>=
-b.devs.2018 <- base.model$retros[[1]]$recruitpars
-b.devs.2016 <- base.model$retros[[3]]$recruitpars
-b.devs.2012 <- base.model$retros[[7]]$recruitpars
-
-age1.devs.2018 <- sens.models.2[[1]]$retros[[1]]$recruitpars
-age1.devs.2016 <- sens.models.2[[1]]$retros[[3]]$recruitpars
-age1.devs.2012 <- sens.models.2[[1]]$retros[[7]]$recruitpars
-
-j <- b.devs.2012 %>%
-  filter(grepl("^.*RecrDev_2010$", rownames(.)))
-
-j1 <- age1.devs.2012 %>%
-  filter(grepl("^.*RecrDev_2010$", rownames(.)))
-
-k <- b.devs.2016 %>%
-  filter(grepl("^.*RecrDev_2014$", rownames(.)))
-
-k1 <- age1.devs.2016 %>%
-  filter(grepl("^.*RecrDev_2014$", rownames(.)))
-
-h <- b.devs.2018 %>%
-  filter(grepl("^.*RecrDev_2016$", rownames(.)))
-
-h1 <- age1.devs.2018 %>%
-  filter(grepl("^.*RecrDev_2016$", rownames(.)))
-
-@
-\bi
-\item 2010 cohorts in 2012
-  \bi
-    \item Base model - \Sexpr{f(j[1],  3)}, SD = \Sexpr{f(j[2],  3)}
-    \item Age1 index - \Sexpr{f(j1[1],  3)}, SD = \Sexpr{f(j1[2],  3)}
-  \ei
-\item 2014 cohorts in 2016
-  \bi
-    \item Base model - \Sexpr{f(k[1],  3)}, SD = \Sexpr{f(k[2],  3)}
-    \item Age1 index - \Sexpr{f(k1[1],  3)}, SD = \Sexpr{f(k1[2],  3)}
-  \ei
-\item 2016 cohorts in 2018
-  \bi
-    \item Base model - \Sexpr{f(h[1],  3)}, SD = \Sexpr{f(h[2],  3)}
-    \item Age1 index - \Sexpr{f(h1[1],  3)}, SD = \Sexpr{f(h1[2],  3)}
-  \ei
-\ei
-
-\end{frame}
+% \section[Request 1 - recdev uncertainty]{Recruitment deviation uncertainty for cohorts}
+% \begin{frame}
+% \frametitle{Recruitment deviation uncertainty for cohorts at age-2}
+% <<cohort.uncertainty>>=
+% b.devs.2018 <- base.model$retros[[1]]$recruitpars
+% b.devs.2016 <- base.model$retros[[3]]$recruitpars
+% b.devs.2012 <- base.model$retros[[7]]$recruitpars
+%
+% age1.devs.2018 <- sens.models.2[[1]]$retros[[1]]$recruitpars
+% age1.devs.2016 <- sens.models.2[[1]]$retros[[3]]$recruitpars
+% age1.devs.2012 <- sens.models.2[[1]]$retros[[7]]$recruitpars
+%
+% j <- b.devs.2012 %>%
+%   filter(grepl("^.*RecrDev_2010$", rownames(.)))
+%
+% j1 <- age1.devs.2012 %>%
+%   filter(grepl("^.*RecrDev_2010$", rownames(.)))
+%
+% k <- b.devs.2016 %>%
+%   filter(grepl("^.*RecrDev_2014$", rownames(.)))
+%
+% k1 <- age1.devs.2016 %>%
+%   filter(grepl("^.*RecrDev_2014$", rownames(.)))
+%
+% h <- b.devs.2018 %>%
+%   filter(grepl("^.*RecrDev_2016$", rownames(.)))
+%
+% h1 <- age1.devs.2018 %>%
+%   filter(grepl("^.*RecrDev_2016$", rownames(.)))
+%
+% @
+% \bi
+% \item 2010 cohorts in 2012
+%   \bi
+%     \item Base model - \Sexpr{f(j[1],  3)}, SD = \Sexpr{f(j[2],  3)}
+%     \item Age1 index - \Sexpr{f(j1[1],  3)}, SD = \Sexpr{f(j1[2],  3)}
+%   \ei
+% \item 2014 cohorts in 2016
+%   \bi
+%     \item Base model - \Sexpr{f(k[1],  3)}, SD = \Sexpr{f(k[2],  3)}
+%     \item Age1 index - \Sexpr{f(k1[1],  3)}, SD = \Sexpr{f(k1[2],  3)}
+%   \ei
+% \item 2016 cohorts in 2018
+%   \bi
+%     \item Base model - \Sexpr{f(h[1],  3)}, SD = \Sexpr{f(h[2],  3)}
+%     \item Age1 index - \Sexpr{f(h1[1],  3)}, SD = \Sexpr{f(h1[2],  3)}
+%   \ei
+% \ei
+%
+% \end{frame}
 
 \end{document}
