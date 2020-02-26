@@ -284,9 +284,14 @@ load.models.into.parent.env <- function(){
   sens.models.4      <<- load.models(rootd.models, sens.model.dir.names.4)
   sens.models.5      <<- load.models(rootd.models, sens.model.dir.names.5)
   sens.models.6      <<- load.models(rootd.models, sens.model.dir.names.6)
-  adnuts.model.2000  <<- load.models(rootd.models, "2020.01.50_nutsMCMC_thin_2000")
-  adnuts.model.1000  <<- load.models(rootd.models, "2020.01.51_nutsMCMC_thin_1000")
-
+  tryCatch({
+    adnuts.model.2000  <<- load.models(rootd.models, "2020.01.50_nutsMCMC_thin_2000")
+    adnuts.model.1000  <<- load.models(rootd.models, "2020.01.51_nutsMCMC_thin_1000")
+  }, error = function(e){
+    NULL
+  }, warning = function(w){
+    NULL
+  })
   ## Lists of sensitivities for the MLE parameters, derived quantiles,
   ##  and reference points table
   ## First set includes base and sensitivity group 1 and 2
