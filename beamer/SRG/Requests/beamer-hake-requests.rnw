@@ -151,7 +151,7 @@ oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #plot.retro.yrs <- retro.yrs
 retro.cohorts <- c(2014, 2010, 2007, 2009)     # Selecting three years as examples
 retro.list <- list(sens.models.2[[1]])
-for(i in retrospective_yrs){
+for(i in seq_along(sens.models.2[[1]]$retros)){
   retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
 }
 make.squid.plot(retro.list,
@@ -195,7 +195,7 @@ oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #plot.retro.yrs <- retro.yrs
 retro.cohorts <- 1999:(end.yr-2)
 retro.list <- list(sens.models.2[[1]])
-for(i in retrospective_yrs){
+for(i in seq_along(sens.models.2[[1]]$retros)){
   retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
 }
 make.squid.plot(retro.list,
