@@ -137,7 +137,6 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Request 1 - baby squid age1]{Baby squid plot for age-1 index sensitivity}
 \begin{frame}
 \frametitle{Baby squid plot for age-1 index sensitivity}
 \begin{center}
@@ -160,7 +159,6 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Request 1 - squid base]{Squid plot for base model}
 \begin{frame}
 \frametitle{Squid plot for base model}
 \begin{center}
@@ -183,7 +181,6 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Request 1 - squid age1]{Squid plot for age-1 index sensitivity}
 \begin{frame}
 \frametitle{Squid plot for age-1 index sensitivity}
 \begin{center}
@@ -207,7 +204,6 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section[Request 5 - thin ADNUTS]{Convergence diagnostics for thinned ADNUTS run}
-
 \subsection{}
 \begin{frame}
 \frametitle{Base model~~~~~~~}
