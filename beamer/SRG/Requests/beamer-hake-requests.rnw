@@ -112,14 +112,6 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \frame[plain]{
 \titlepage
 }
-
-2.	Colour code weight at age matrix by column rather than global colouring
-3.	Investigate changes in weights-at-age for 1987, when 1977 was expected to change but did not occur (compare 2019 to 2020).
-4.	Calculate average of recruitment deviations over the main period (1970-2018); include both MLE and MCMC (current algorithm and NUTS). Attempting understand equilibrium recruitment assumption relative R0
-5.	Redo ADNUTs plots thinning down to about 2,000 samples from samples available, and redo convergence diagnostic plots. Chris do function, Andy do figure.
-6.
-7.	Produce a time plot of effective N and input N to look for temporal patterns; Are recent samples upweighted relative to historical samples?  Aaron.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section[Request 1 - squid age-1]{Squid plots for age-1 index}
 \begin{frame}
@@ -501,8 +493,18 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section[Request 4 - rec devs]{Mean recruitment deviations}
+\begin{frame}
+\frametitle{Request 4}
+Request 4 -- Calculate average of recruitment deviations over the main period
+(1970-2018); include both MLE and MCMC (current algorithm and NUTS). Attempting
+to understand equilibrium recruitment assumption relative $R_0$.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
 \frametitle{Recruitment deviations over the main period (1970-2018) -- MLE vs MCMCs}
@@ -517,8 +519,16 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section[Request 7 - effN]{Temporal sampling changes}
+\begin{frame}
+\frametitle{Request 7}
+Request 7 -- Produce a time plot of effective $N$ and input $N$ to look for temporal patterns. Are recent samples upweighted relative to historical samples?
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
 \frame{\frametitle{Request 7 - temporal patterns input N and effective N}
 \bc
   \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
@@ -527,9 +537,16 @@ par <- oldpar
 }
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[Request 5 - thin ADNUTS]{Convergence diagnostics for thinned ADNUTS run}
+\begin{frame}
+\frametitle{Request 5}
+Request 5 -- Redo ADNUTs plots thinning down to about 2,000 samples from samples available, and redo convergence diagnostic plots.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section[Request 5 - thin ADNUTS]{Convergence diagnostics for thinned ADNUTS run}
 \subsection{}
 \begin{frame}
 \frametitle{Base model~~~~~~~}
@@ -661,7 +678,15 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section[Request 2]{Request 2 - change coloration in weight-at-age heatmap}
+\begin{frame}
+\frametitle{Request 2}
+Request 2 -- Colour code weight at age matrix by column rather than global colouring.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
 \frametitle{Color code weight-at-age matrix by weight}
@@ -703,11 +728,13 @@ weight.at.age.heatmap(base.model,
                       axis.font.size = 4)
 @
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section[Request 3]{1998 Weight-at-age data}
 \subsection{}
 \begin{frame}
-Investigate changes in weights-at-age for 1987, when 1977 was expected to change but did not occur (compare 2019 to 2020).
+Request 3 -- Investigate changes in weights-at-age for 1987, when 1977 was expected to change but did not occur (compare 2019 to 2020).
 
 Canadian Joint-Venture information for that year was removed. Running the 2020 base model with the 2019 vs. 2020 weight-at-age makes almost no difference.
 \end{frame}
