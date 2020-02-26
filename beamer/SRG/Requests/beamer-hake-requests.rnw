@@ -217,140 +217,6 @@ par <- oldpar
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section[Request 5 - thin ADNUTS]{Convergence diagnostics for thinned ADNUTS run}
-\subsection{}
-\begin{frame}
-\frametitle{Base model~~~~~~~}
-\begin{center}
-\vspace{5pt}
-<<base.hists, fig.height=3.5>>=
-oldpar <- par()
-par(mar=c(4.1, 4.1, 3.1, 0.1))
-make.mcmc.diag.hists.plot(base.model,
-                          labelstrings = "all")
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{NUTS all 7,850 samples}
-\begin{center}
-\vspace{5pt}
-<<adnuts.hists, fig.height=3.5>>=
-oldpar <- par()
-par(mar=c(4.1, 4.1, 3.1, 0.1))
-make.mcmc.diag.hists.plot(sens.models.6,
-                          labelstrings = "all")
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{NUTS thinned to 2,000 samples - every 3rd and then the first 2,000}
-\begin{center}
-\vspace{5pt}
-<<adnuts.hists.thin.2000, fig.height=3.5>>=
-oldpar <- par()
-par(mar=c(4.1, 4.1, 3.1, 0.1))
-make.mcmc.diag.hists.plot(adnuts.model.2000,
-                          labelstrings = "all")
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{NUTS thinned to 1,000 samples - every 7th and then the first 1,000}
-\begin{center}
-\vspace{5pt}
-<<adnuts.hists.thin.1000, fig.height=3.5>>=
-oldpar <- par()
-par(mar=c(4.1, 4.1, 3.1, 0.1))
-make.mcmc.diag.hists.plot(adnuts.model.1000,
-                          labelstrings = "all")
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{Base model~~~~~~~}
-\begin{center}
-\vspace{5pt}
-<<base.traces, fig.height=3.5>>=
-oldpar <- par()
-par(mar=c(4.1, 4.1, 12, 0.1))
-make.mcmc.diag.plot(base.model, key.posteriors[1], key.posteriors.titles[1])
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{NUTS all 7,850 samples}
-\begin{center}
-\vspace{5pt}
-<<adnuts.traces, fig.height=3.5>>=
-oldpar <- par()
-par(mar=c(4.1, 4.1, 12, 0.1))
-make.mcmc.diag.plot(sens.models.6, key.posteriors[1], key.posteriors.titles[1])
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{NUTS thinned to 2,000 samples - every 3rd and then the first 2,000}
-\begin{center}
-\vspace{5pt}
-<<adnuts.traces.2000, fig.height=3.5>>=
-oldpar <- par()
-par(mar=c(4.1, 4.1, 12, 0.1))
-make.mcmc.diag.plot(adnuts.model.2000, key.posteriors[1], key.posteriors.titles[1])
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{NUTS thinned to 1,000 samples - every 7th and then the first 1,000}
-\begin{center}
-\vspace{5pt}
-<<adnuts.traces.1000, fig.height=3.5>>=
-oldpar <- par()
-par(mar=c(4.1, 4.1, 12, 0.1))
-make.mcmc.diag.plot(adnuts.model.1000, key.posteriors[1], key.posteriors.titles[1])
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\section{Retros}
 \section[Request 6 - retros age-1]{Retrospectives using age-1 index}
 \subsection{}
 \begin{frame}
@@ -636,6 +502,140 @@ par <- oldpar
  \ec
 }
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\section[Request 5 - thin ADNUTS]{Convergence diagnostics for thinned ADNUTS run}
+\subsection{}
+\begin{frame}
+\frametitle{Base model~~~~~~~}
+\begin{center}
+\vspace{5pt}
+<<base.hists, fig.height=3.5>>=
+oldpar <- par()
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+make.mcmc.diag.hists.plot(base.model,
+                          labelstrings = "all")
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{NUTS all 7,850 samples}
+\begin{center}
+\vspace{5pt}
+<<adnuts.hists, fig.height=3.5>>=
+oldpar <- par()
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+make.mcmc.diag.hists.plot(sens.models.6,
+                          labelstrings = "all")
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{NUTS thinned to 2,000 samples - every 3rd and then the first 2,000}
+\begin{center}
+\vspace{5pt}
+<<adnuts.hists.thin.2000, fig.height=3.5>>=
+oldpar <- par()
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+make.mcmc.diag.hists.plot(adnuts.model.2000,
+                          labelstrings = "all")
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{NUTS thinned to 1,000 samples - every 7th and then the first 1,000}
+\begin{center}
+\vspace{5pt}
+<<adnuts.hists.thin.1000, fig.height=3.5>>=
+oldpar <- par()
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+make.mcmc.diag.hists.plot(adnuts.model.1000,
+                          labelstrings = "all")
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{Base model~~~~~~~}
+\begin{center}
+\vspace{5pt}
+<<base.traces, fig.height=3.5>>=
+oldpar <- par()
+par(mar=c(4.1, 4.1, 12, 0.1))
+make.mcmc.diag.plot(base.model, key.posteriors[1], key.posteriors.titles[1])
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{NUTS all 7,850 samples}
+\begin{center}
+\vspace{5pt}
+<<adnuts.traces, fig.height=3.5>>=
+oldpar <- par()
+par(mar=c(4.1, 4.1, 12, 0.1))
+make.mcmc.diag.plot(sens.models.6, key.posteriors[1], key.posteriors.titles[1])
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{NUTS thinned to 2,000 samples - every 3rd and then the first 2,000}
+\begin{center}
+\vspace{5pt}
+<<adnuts.traces.2000, fig.height=3.5>>=
+oldpar <- par()
+par(mar=c(4.1, 4.1, 12, 0.1))
+make.mcmc.diag.plot(adnuts.model.2000, key.posteriors[1], key.posteriors.titles[1])
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{NUTS thinned to 1,000 samples - every 7th and then the first 1,000}
+\begin{center}
+\vspace{5pt}
+<<adnuts.traces.1000, fig.height=3.5>>=
+oldpar <- par()
+par(mar=c(4.1, 4.1, 12, 0.1))
+make.mcmc.diag.plot(adnuts.model.1000, key.posteriors[1], key.posteriors.titles[1])
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
