@@ -130,7 +130,6 @@ for(i in retrospective_yrs){
 make.squid.plot(retro.list,
                 subplot = 1,
                 cohorts = retro.cohorts)
-par <- oldpar
 @
 \end{center}
 \end{frame}
