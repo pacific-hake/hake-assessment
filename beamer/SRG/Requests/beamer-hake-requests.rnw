@@ -681,6 +681,15 @@ weight.at.age.heatmap(base.model,
                       axis.font.size = 4)
 @
 \end{frame}
+
+\section[Request 3]{1998 Weight-at-age data}
+\subsection{}
+\begin{frame}
+Investigate changes in weights-at-age for 1987, when 1977 was expected to change but did not occur (compare 2019 to 2020).
+
+Canadian Joint-Venture information for that year was removed. Running the 2020 base model with the 2019 vs. 2020 weight-at-age makes almost no difference.
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % \section[Request 1 - recdev uncertainty]{Recruitment deviation uncertainty for cohorts}
