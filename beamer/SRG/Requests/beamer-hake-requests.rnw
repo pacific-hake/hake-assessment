@@ -530,6 +530,13 @@ par <- oldpar
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------
+\frame{\frametitle{Request 7 - temporal patterns input N and effective N}
+\bc
+  \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+  \includegraphics[height=2.9in]{Figures/samplesizes.eps}
+ \ec
+}
 
 
 
