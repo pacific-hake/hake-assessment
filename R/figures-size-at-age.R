@@ -57,7 +57,10 @@ weight.at.age.heatmap <- function(model,
                                   font.size = 4,
                                   axis.font.size = 10,
                                   samplesize = FALSE,
-                                  print.years = NULL){
+                                  print.years = NULL,
+                                  colour = c("all", "age", "both")){
+
+  colour <- match.arg(colour)
 
   stopifnot(!is.null(proj.line.yr),
             !is.null(extrap.mask))
@@ -106,10 +109,32 @@ weight.at.age.heatmap <- function(model,
   valswithmask <- merge(w, nn, by = c("Yr", "age"), all = TRUE)
   valswithmask[is.na(valswithmask$a), "a"] <- 0
 
+  bycolumn <- valswithmask %>%
+    group_by(age) %>%
+    mutate(rescale = scales::rescale(value)) %>%
+    ggplot(., aes(x = factor(age), y = Yr,
+      fontface = ifelse(a > 0, "plain", "bold"))) +
+    scale_fill_gradientn(colors = colors, guide = FALSE) +
+    scale_alpha(range = c(0.1, 1)) +
+    theme(legend.position = "none")
+    if (colour == "age") {
+      g <- bycolumn + geom_tile(aes(fill = rescale))
+    }
+    if (colour == "both") {
+      g <- bycolumn + 
+        geom_tile(aes(alpha = rescale, fill = value))
+    }
+
+  # theme(
+    # axis.text.x = element_text(
+    # color = scales::hue_pal()(length(levels(valswithmask$variable)))))
+  if (colour == "all") {
   g <- ggplot(valswithmask,
     aes(y = Yr, fontface = ifelse(a > 0, "plain", "bold")))+
     geom_tile(aes(x = variable, fill = value)) +
-    scale_fill_gradientn(colors = colors, guide = FALSE) +
+    scale_fill_gradientn(colors = colors, guide = FALSE)
+  }
+  g <- g +
     theme(legend.title = element_blank(),
           axis.text.x = element_text(size = axis.font.size),
           axis.text.y = element_text(size = axis.font.size)) +
