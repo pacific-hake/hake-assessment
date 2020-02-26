@@ -641,7 +641,7 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-\section[Request 2 - change coloration in weight-at-age heatmap}
+\section[Request 2]{Request 2 - change coloration in weight-at-age heatmap}
 \subsection{}
 \begin{frame}
 \frametitle{Color code weight-at-age matrix by weight}
