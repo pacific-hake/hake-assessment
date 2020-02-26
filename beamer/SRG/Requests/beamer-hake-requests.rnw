@@ -649,9 +649,13 @@ par <- oldpar
 weight.at.age.heatmap(base.model,
                       proj.line.yr = base.model$endyr,
                       extrap.mask = weight_age_extrapolation_mask,
-                      longterm.mean.ages = NULL)
+                      longterm.mean.ages = NULL,
+                      proj.line.width = 0.4,
+                      font.size = 1.6,
+                      axis.font.size = 4)
 @
 \end{frame}
+
 \begin{frame}
 \frametitle{Color code weight-at-age matrix by age}
 <<day1-2b>>=
@@ -659,9 +663,13 @@ weight.at.age.heatmap(base.model,
                       proj.line.yr = base.model$endyr,
                       extrap.mask = weight_age_extrapolation_mask,
                       longterm.mean.ages = NULL,
-                      colour = "age")
+                      colour = "age",
+                      proj.line.width = 0.4,
+                      font.size = 1.6,
+                      axis.font.size = 4)
 @
 \end{frame}
+
 \begin{frame}
 \frametitle{Color code weight-at-age matrix by weight and age}
 <<day1-2c>>=
@@ -669,7 +677,10 @@ weight.at.age.heatmap(base.model,
                       proj.line.yr = base.model$endyr,
                       extrap.mask = weight_age_extrapolation_mask,
                       longterm.mean.ages = NULL,
-                      colour = "both")
+                      colour = "both",
+                      proj.line.width = 0.4,
+                      font.size = 1.6,
+                      axis.font.size = 4)
 @
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
