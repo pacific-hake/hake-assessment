@@ -13,7 +13,7 @@
 \usepackage{graphicx}
 \usepackage{pgf}
 \usepackage{array}
-\usepackage{tabularx}
+\usepackag  e{tabularx}
 \usepackage{booktabs}          %% Used in risk tables
 \usepackage{multirow}          %% Used in decision tables
 %\usepackage{beamerarticle}
@@ -92,7 +92,7 @@ opts_chunk$set(dev = 'cairo_ps',
                cache = TRUE,
                cache.path = 'knitr-cache/')
 
-source(file.path(here::here(), "R", "all.R"))
+source(here::here("R", "all.R"))
 load.models.into.parent.env()
 source(file.path(rootd.R, "custom-knitr-variables.R"))
 @
@@ -120,11 +120,11 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \begin{center}
 \vspace{-5pt}
 <<baby.squid.base, fig.height=3.5>>=
-oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-plot.retro.yrs <- retro.yrs
+#par(mar = c(4.5, 4.1, 1.5, 1.1))
+# plot.retro.yrs <- retrospective_yrs
 retro.cohorts <- c(2014, 2010, 2007, 2009)     # Selecting three years as examples
 retro.list <- list(base.model)
-for(i in plot.retro.yrs){
+for(i in retrospective_yrs){
   retro.list[[i + 1]] <- base.model$retros[[i]]
 }
 make.squid.plot(retro.list,
@@ -144,10 +144,10 @@ par <- oldpar
 \vspace{-5pt}
 <<baby.squid.age1, fig.height=3.5>>=
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-plot.retro.yrs <- retro.yrs
+#plot.retro.yrs <- retro.yrs
 retro.cohorts <- c(2014, 2010, 2007, 2009)     # Selecting three years as examples
 retro.list <- list(sens.models.2[[1]])
-for(i in plot.retro.yrs){
+for(i in retrospective_yrs){
   retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
 }
 make.squid.plot(retro.list,
@@ -165,12 +165,12 @@ par <- oldpar
 \frametitle{Squid plot for base model}
 \begin{center}
 \vspace{-5pt}
-<<squid.age1, fig.height=3.5>>=
+<<squid.base, fig.height=3.5>>=
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-plot.retro.yrs <- retro.yrs
+#plot.retro.yrs <- retro.yrs
 retro.cohorts <- 1999:(end.yr-2)
 retro.list <- list(base.model)
-for(i in plot.retro.yrs){
+for(i in retrospective_yrs){
   retro.list[[i + 1]] <- base.model$retros[[i]]
 }
 make.squid.plot(retro.list,
@@ -188,12 +188,12 @@ par <- oldpar
 \frametitle{Squid plot for age-1 index sensitivity}
 \begin{center}
 \vspace{-5pt}
-<<squid.base, fig.height=3.5>>=
+<<squid.age1, fig.height=3.5>>=
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-plot.retro.yrs <- retro.yrs
+#plot.retro.yrs <- retro.yrs
 retro.cohorts <- 1999:(end.yr-2)
 retro.list <- list(sens.models.2[[1]])
-for(i in plot.retro.yrs){
+for(i in retrospective_yrs){
   retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
 }
 make.squid.plot(retro.list,
