@@ -639,7 +639,37 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-
+\section[Request 2 - change coloration in weight-at-age heatmap}
+\subsection{}
+\begin{frame}
+\frametitle{Color code weight-at-age matrix by weight}
+<<day1-2a>>=
+weight.at.age.heatmap(base.model,
+                      proj.line.yr = base.model$endyr,
+                      extrap.mask = weight_age_extrapolation_mask,
+                      longterm.mean.ages = NULL)
+@
+\end{frame}
+\begin{frame}
+\frametitle{Color code weight-at-age matrix by age}
+<<day1-2b>>=
+weight.at.age.heatmap(base.model,
+                      proj.line.yr = base.model$endyr,
+                      extrap.mask = weight_age_extrapolation_mask,
+                      longterm.mean.ages = NULL,
+                      colour = "age")
+@
+\end{frame}
+\begin{frame}
+\frametitle{Color code weight-at-age matrix by weight and age}
+<<day1-2c>>=
+weight.at.age.heatmap(base.model,
+                      proj.line.yr = base.model$endyr,
+                      extrap.mask = weight_age_extrapolation_mask,
+                      longterm.mean.ages = NULL,
+                      colour = "both")
+@
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % \section[Request 1 - recdev uncertainty]{Recruitment deviation uncertainty for cohorts}
