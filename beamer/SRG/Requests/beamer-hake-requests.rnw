@@ -488,8 +488,8 @@ par <- oldpar
     \item Median recruitment deviation MLE model: 0.209
     \item Median recruitment deviation for MCMC models:
     \bi
-      \item 0.21 for base model 0.087
-      \item 0.21 for adnuts model 0.131
+      \item for base model 0.087
+      \item for adnuts model 0.131
     \ei
   \ei
 \end{frame}
