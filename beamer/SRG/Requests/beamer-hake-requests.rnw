@@ -200,6 +200,8 @@ par <- oldpar
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
 \section[Request 4 - rec devs]{Median recruitment deviations}
 \subsection{}
 \begin{frame}
@@ -212,8 +214,8 @@ par <- oldpar
       \item 0.21 for adnuts model 0.131
     \ei
   \ei
-}
-
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section[Request 6 - retros age-1]{Retrospectives using age-1 index}
