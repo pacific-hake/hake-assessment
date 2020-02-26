@@ -465,6 +465,12 @@ retro.list <- list(base.model)
 for(i in plot.retro.yrs){
   retro.list[[i + 1]] <- base.model$retros[[i]]
 }
+## For 2020 SRG request, adding the age-1 index:
+retro.model.names.age1 <- c(sens.model.names.2[1] ,
+                            sapply(plot.retro.yrs,
+                                   function(x) paste0("-", x, if(x == 1) " year" else " years")))
+
+
 
 ################################################################################
 ## Define number of 'recent' years for several tables at the start of

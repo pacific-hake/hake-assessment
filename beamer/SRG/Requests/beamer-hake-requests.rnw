@@ -386,6 +386,90 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Retrospectives -- age-1 index}
+\begin{center}
+\vspace{-5pt}
+<<retro.age1.density.2010>>=
+oldpar <- par()
+par(mar = c(7.1, 3.1, 0, 1))
+retro.list <- list(sens.models.2[[1]])
+for(i in plot.retro.yrs){
+  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
+}
+make.comparison.plot(
+  retro.list,
+  subplots = 16,
+  model.names = retro.model.names.age1,
+  legendloc = "topright",
+  densitynames = c("Recr_2010"),
+  densityxlab  = "Recruitment in 2010 (billions)",
+  indexPlotEach = TRUE,
+  end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Retrospectives -- age-1 index}
+\begin{center}
+\vspace{-5pt}
+<<retro.age1.density.2014>>=
+oldpar <- par()
+par(mar = c(7.1, 3.1, 0, 1))
+retro.list <- list(sens.models.2[[1]])
+for(i in plot.retro.yrs){
+  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
+}
+make.comparison.plot(
+  retro.list,
+  subplots = 16,
+  model.names = retro.model.names.age1,
+  legendloc = "topright",
+  densitynames = c("Recr_2014"),
+  densityxlab  = "Recruitment in 2014 (billions)",
+  indexPlotEach = TRUE,
+  end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Retrospectives -- age-1 index}
+\begin{center}
+\vspace{-5pt}
+<<retro.age1.density.2016>>=
+oldpar <- par()
+par(mar = c(7.1, 3.1, 0, 1))
+retro.list <- list(sens.models.2[[1]])
+for(i in plot.retro.yrs){
+  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
+}
+make.comparison.plot(
+  retro.list,
+  subplots = 16,
+  model.names = retro.model.names.age1,
+  legendloc = "topright",
+  densitynames = c("Recr_2016"),
+  densityxlab  = "Recruitment in 2016 (billions)",
+  indexPlotEach = TRUE,
+  end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % \section[Request 1 - recdev uncertainty]{Recruitment deviation uncertainty for cohorts}
