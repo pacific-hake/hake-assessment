@@ -480,20 +480,18 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section[Request 4 - rec devs]{Median recruitment deviations}
+\section[Request 4 - rec devs]{Mean recruitment deviations}
 \subsection{}
 \begin{frame}
 \frametitle{Recruitment deviations over the main period (1970-2018) -- MLE vs MCMCs}
 \bi
-    \item Median recruitment deviation 2020 base model MLE: 0.209
-    \item Median recruitment deviation 2020 MCMC models:
+    \item Mean recruitment deviation 2020 base model MLE: 0.209
+    \item Mean recruitment deviation 2020 MCMC models:
     \bi
-      \item for base model 0.087
-      \item for adnuts model 0.131
+      \item for base model 0.088
+      \item for adnuts model 0.129
     \ei
-    \item Median recruitment deviation 2019 base model MLE: 4e-07
-    \item Median recruitment deviation 2019 base model MCMC: 0.214
-  \ei
+   \ei
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
