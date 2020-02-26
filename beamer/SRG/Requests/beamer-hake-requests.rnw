@@ -203,6 +203,63 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\section[Request 5 - thin ADNUTS]{Convergence diagnostics for thinned ADNUTS run}
+
+\subsection{}
+\begin{frame}
+\frametitle{Base model~~~~~~~}
+\begin{center}
+\vspace{5pt}
+<<base.hists, fig.height=3.5>>=
+oldpar <- par()
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+make.mcmc.diag.hists.plot(base.model,
+                          labelstrings = "all")
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{NUTS all 7,850 samples}
+\begin{center}
+\vspace{5pt}
+<<adnuts.hists, fig.height=3.5>>=
+oldpar <- par()
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+make.mcmc.diag.hists.plot(sens.models.6,
+                          labelstrings = "all")
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\begin{frame}
+\frametitle{NUTS thinned to 2,000 **REPLACE MODEL NAME, PLACEHOLDER}
+\begin{center}
+\vspace{5pt}
+<<adnuts.hists.thin, fig.height=3.5>>=
+oldpar <- par()
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+make.mcmc.diag.hists.plot(sens.models.6,
+                          labelstrings = "all")
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % \section[Request 1 - recdev uncertainty]{Recruitment deviation uncertainty for cohorts}
