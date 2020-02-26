@@ -114,7 +114,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Request 1 - baby squid base]{Baby squid plot for base model}
+\section[Request 1 - squid age-1]{Squid plots for age-1 index}
 \begin{frame}
 \frametitle{Baby squid plot for base model}
 \begin{center}
@@ -272,11 +272,9 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Retros}
+\section[Request 6 - retros age-1]{Retrospectives using age-1 index}
 \subsection{}
 \begin{frame}
 \frametitle{Retrospectives -- base model}
@@ -307,43 +305,18 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Retrospectives -- base model}
-\begin{center}
-\vspace{-5pt}
-%, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-<<retro.2, fig.height=3.5>>=
-oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-#par(mar = c(4.5, 4.1, 1.5, 1.1))
-make.comparison.plot(retro.list,
-                     subplots = 10,
-                     model.names = retro.model.names,
-                     legend = TRUE,
-                     legendloc = "topleft",
-                     is.retro = TRUE)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
-\frametitle{Retrospectives -- age-1 index**}
+\frametitle{Retrospectives -- age-1 index}
 \begin{center}
 \vspace{-5pt}
-% , fig.height=5, fig.width=10>>=
 <<retro.1.age1>>=
-##oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-#oldpar <- par(mfrow=c(1,2), mar=c(5,4,1,1),no.readonly = TRUE)
-#par(mar = c(4.5, 4.1, 1.5, 1.1))
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
 # plot.retro.yrs <- 1:5
-retro.list <- list(base.model)
+retro.list <- list(sens.models.2[[1]])
 for(i in plot.retro.yrs){
-  retro.list[[i + 1]] <- base.model$retros[[i]]
+  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
 }
 make.comparison.plot(retro.list,
                      subplots = 2,
@@ -365,13 +338,42 @@ par <- oldpar
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Retrospectives -- age-1 index**}
+\frametitle{Retrospectives -- base model}
+\begin{center}
+\vspace{-5pt}
+%, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+<<retro.2, fig.height=3.5>>=
+oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+retro.list <- list(base.model)
+for(i in plot.retro.yrs){
+  retro.list[[i + 1]] <- base.model$retros[[i]]
+}
+make.comparison.plot(retro.list,
+                     subplots = 10,
+                     model.names = retro.model.names,
+                     legend = TRUE,
+                     legendloc = "topleft",
+                     is.retro = TRUE)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Retrospectives -- age-1 index}
 \begin{center}
 \vspace{-5pt}
 %, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
 <<retro.2.age1, fig.height=3.5>>=
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
+retro.list <- list(sens.models.2[[1]])
+for(i in plot.retro.yrs){
+  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
+}
 make.comparison.plot(retro.list,
                      subplots = 10,
                      model.names = retro.model.names,
