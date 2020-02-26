@@ -113,8 +113,22 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \titlepage
 }
 
+2.	Colour code weight at age matrix by column rather than global colouring
+3.	Investigate changes in weights-at-age for 1987, when 1977 was expected to change but did not occur (compare 2019 to 2020).
+4.	Calculate average of recruitment deviations over the main period (1970-2018); include both MLE and MCMC (current algorithm and NUTS). Attempting understand equilibrium recruitment assumption relative R0
+5.	Redo ADNUTs plots thinning down to about 2,000 samples from samples available, and redo convergence diagnostic plots. Chris do function, Andy do figure.
+6.
+7.	Produce a time plot of effective N and input N to look for temporal patterns; Are recent samples upweighted relative to historical samples?  Aaron.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section[Request 1 - squid age-1]{Squid plots for age-1 index}
+\begin{frame}
+\frametitle{Request 1}
+Request 1 -- squid plot for base-case model with and without Age-1 index.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Baby squid plot for base model}
 \begin{center}
@@ -201,8 +215,16 @@ par <- oldpar
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section[Request 6 - retros age-1]{Retrospectives using age-1 index}
+\begin{frame}
+\frametitle{Request 6}
+Request 1 -- Redo recruitment retrospective analysis including Age-1 index, focusing on the 2014 and other strong year-classes.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
 \frametitle{Retrospectives -- base model}
@@ -643,7 +665,7 @@ par <- oldpar
 \subsection{}
 \begin{frame}
 \frametitle{Color code weight-at-age matrix by weight}
-<<day1-2a>>=
+<<day1-2a, fig.height=3.5>>=
 weight.at.age.heatmap(base.model,
                       proj.line.yr = base.model$endyr,
                       extrap.mask = weight_age_extrapolation_mask,
@@ -656,7 +678,7 @@ weight.at.age.heatmap(base.model,
 
 \begin{frame}
 \frametitle{Color code weight-at-age matrix by age}
-<<day1-2b>>=
+<<day1-2b, fig.height=3.5>>=
 weight.at.age.heatmap(base.model,
                       proj.line.yr = base.model$endyr,
                       extrap.mask = weight_age_extrapolation_mask,
@@ -670,7 +692,7 @@ weight.at.age.heatmap(base.model,
 
 \begin{frame}
 \frametitle{Color code weight-at-age matrix by weight and age}
-<<day1-2c>>=
+<<day1-2c, fig.height=3.5>>=
 weight.at.age.heatmap(base.model,
                       proj.line.yr = base.model$endyr,
                       extrap.mask = weight_age_extrapolation_mask,
