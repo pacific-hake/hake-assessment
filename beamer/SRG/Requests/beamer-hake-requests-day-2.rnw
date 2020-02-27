@@ -172,6 +172,12 @@ Request 3 -- Run the MLE model with the log(input sample size of fishery data) t
 \begin{frame}
 \frametitle{Request 4}
 Request 4 -- Calculate mean recruitment deviations over the entire period from the MLE model run.
+
+\bi
+  \item 0.209 -- main period
+  \item 0.013 -- entire period
+\ei
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
