@@ -411,9 +411,14 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
   par <- oldpar
 }
 
+#' @param getdevs A logical value specifying if the plot should be of
+#' recruitment deviations, which is the default. If \code{FALSE}, then
+#' the squid plot will be made using absolute recruitment instead of
+#' deviations.
 make.squid.plot <- function(models,      ## A list of models to compare (typically base and its retrospectives)
                             subplot = 1, ## 1 = Recruitment devs, 2 = Rec dev strength relative to most recent estimate
-                            cohorts){    ## Vector of years to plot the cohorts for
+                            cohorts,
+                            getdevs = TRUE){    ## Vector of years to plot the cohorts for
   ## Plot the retrospective recruitment deviations AKA "squid" plot to outline
   ##  deviation estimates changing for cohorts between assessment years
 
@@ -426,19 +431,20 @@ make.squid.plot <- function(models,      ## A list of models to compare (typical
   }else{
     relative = TRUE
   }
-  SSplotRetroRecruits(compare.summary,
+  plot <- SSplotRetroRecruits(compare.summary,
                       endyrvec = endyrvec,
                       cohorts = cohorts,
                       ylim = NULL,
                       uncertainty = FALSE,
                       main="",
                       mcmcVec = FALSE,
-                      devs = TRUE,
+                      devs = getdevs,
                       relative = relative,
                       labelyears = TRUE,
                       legend = FALSE,
                       leg.ncols = 4)
   par <- oldpar
+  return(plot)
 }
 
 make.comparison.plot <- function(models,                   ## models is a list of model runs to be plotted against of which
