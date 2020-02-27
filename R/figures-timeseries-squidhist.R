@@ -1,23 +1,31 @@
+#' Histogram of the Ratio of Squid-Plot Estimates Across Cohorts
+#' 
+#' Histogram of the ratio of the recruitment estimate at a specific age
+#' relative to the current estimate of that cohort across all cohorts.
+#' Output from \code{\link{make.squid.plot}}, a data frame, is manipulated
+#' to compute the ratios and plotted in the histogram.
+#' 
+#' @details
+#' Histograms are reported using a log-scaled x axis because ratios are not
+#' symmetric about zero. Results should be centered around one.
+#' 
 #' @param squidoutput A data frame returned from \code{\link{make.squid.plot}}.
-#' @param smooth An integer value passed to \code{\link[ggplot2]{geom_density}}
-#' that specifies the amount of binning in the histogram.
 #' @param minage The minimum age to appear in the histogram.
+#' @param maxage The maximum age to appear in the histogram.
 #' @param plot A logical value specifying if a figure should be generated.
-#' @param xlim The x-axis limits if \code{plot = TRUE}. The default,
-#' \code{NULL}, allows \code{\link[ggplot2]{ggplot}} to pick the limits.
 #' @param ylim The y-axis limits if \code{plot = TRUE}. The default,
 #' \code{NULL}, allows \code{\link[ggplot2]{ggplot}} to pick the limits.
 #' @param file A path to save the plot to.
 #' @import ggplot2
+#' @import importFrom stats reshape
 #' @export
 #' @author Kelli Faye Johnson
+#'
 make.squid.hist <- function(
   squidoutput,
-  smooth = 4,
   minage = 2,
   maxage = 3,
   plot = TRUE,
-  xlim = NULL,
   ylim = NULL,
   file = NULL) {
   n <- max(unique(squidoutput$age))
@@ -39,17 +47,18 @@ make.squid.hist <- function(
   longd <- longd[!is.na(longd$variable), ]
   rownames(longd) <- NULL
   g <- ggplot(longd[longd$age >= minage & longd$age <= maxage, ],
-    aes(x = variable, color = age, group = factor(age))) +
-    geom_density(adjust = smooth) +
-    xlab("Ratio to most recent estimate") +
+    aes(x = variable, color = age, fill = age, group = factor(age))) +
+    geom_histogram() +
+    scale_x_log10() +
+    xlab("Ratio to most recent estimate across cohorts") +
     theme(legend.background = element_rect(color = NA),
-      legend.position = c(0.9, 0.85)) +
-    coord_cartesian(xlim = xlim, ylim = ylim)
+      legend.position = c(0.9,0.9)) +
+    coord_cartesian(xlim = NULL, ylim = ylim)
   if (plot) {
     print(g)
   }
   if (!is.null(file)) {
     ggsave(g, file = file)
   }
-  return(out)
+  return(g)
 }
