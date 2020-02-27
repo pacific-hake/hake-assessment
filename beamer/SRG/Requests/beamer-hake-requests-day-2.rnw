@@ -137,6 +137,25 @@ Repeat for adnuts.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame{\frametitle{Correlations for main period}
+\bc
+  \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+  \includegraphics[height=2.9in]{Figures/MCMCcorrR0devs_mainseries.eps}
+ \ec
+}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame{\frametitle{Correlations for entire period}
+\bc
+  \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+  \includegraphics[height=2.9in]{Figures/MCMCcorrR0devs_fullseries.eps}
+ \ec
+}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section[Request 3 - sample size]{Sample size of fishery data}
@@ -621,14 +640,6 @@ Request 7 -- Produce a time plot of effective $N$ and input $N$ to look for temp
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\frame{\frametitle{Request 7 - temporal patterns input N and effective N}
-\bc
-  \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-  \includegraphics[height=2.9in]{Figures/samplesizes.eps}
- \ec
-}
-%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section[Request 5 - thin ADNUTS]{Convergence diagnostics for thinned ADNUTS run}
