@@ -91,7 +91,13 @@ opts_chunk$set(dev = 'cairo_ps',
                results = 'hide',
                cache = TRUE,
                cache.path = 'knitr-cache/')
+library(r4ss)
 assess.yr <- 2020
+source(here::here("R/load-models.R"))
+source(here::here("R/figures-timeseries.R"))
+base.model <<- load.models(here::here("models"), "2020.01.09_DMprior_base")
+base.model.neff <<- load.models(here::here("models"), "2020.01.60_base_model_with_downweighted_neff_ages")
+
 # source(here::here("R", "all.R"))
 # load.models.into.parent.env()
 # source(file.path(rootd.R, "custom-knitr-variables.R"))
@@ -190,6 +196,62 @@ Request 3 -- Run the MLE model with the log(input sample size of fishery data) t
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[Request 3 - sample size]{Sample size of fishery data}
+\begin{frame}
+\frametitle{Request 3}
+ <<logged.fishery.weights, fig.height=4>>=
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 1))
+make.comparison.plot(
+  c(list(base.model),
+    list(base.model.neff)),
+  subplots = 2,
+  model.names = c("Base model ",
+                  "Base model with fishery downweighted age comps"),
+  end.yr = assess.yr)
+par <- oldpar
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[Request 3 - sample size]{Sample size of fishery data}
+\begin{frame}
+\frametitle{Request 3}
+ <<logged.fishery.weights.relative, fig.height=4>>=
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 1))
+make.comparison.plot(
+  c(list(base.model),
+    list(base.model.neff)),
+  subplots = 4,
+  model.names = c("Base model ",
+                  "Base model with fishery downweighted age comps"),
+  end.yr = assess.yr)
+par <- oldpar
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[Request 3 - sample size]{Sample size of fishery data}
+\begin{frame}
+\frametitle{Request 3}
+ <<logged.fishery.weights.recdevs, fig.height=4>>=
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 1))
+make.comparison.plot(
+  c(list(base.model),
+    list(base.model.neff)),
+  subplots = 12,
+  model.names = c("Base model ",
+                  "Base model with fishery downweighted age comps"),
+  end.yr = assess.yr)
+par <- oldpar
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section[Request 4 - recruitment deviations]{Mean recruitment deviations over
@@ -205,727 +267,5 @@ Request 4 -- Calculate mean recruitment deviations over the entire period from t
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\end{document}
-<<temp>>=
-stop("just stopping here")
-@
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Baby squid plot for base model}
-\begin{center}
-\vspace{-5pt}
-<<baby.squid.base, fig.height=3.5>>=
-#par(mar = c(4.5, 4.1, 1.5, 1.1))
-# plot.retro.yrs <- retrospective_yrs
-retro.cohorts <- c(2014, 2010, 2007, 2009)     # Selecting three years as examples
-retro.list <- list(base.model)
-for(i in retrospective_yrs){
-  retro.list[[i + 1]] <- base.model$retros[[i]]
-}
-make.squid.plot(retro.list,
-                subplot = 1,
-                cohorts = retro.cohorts)
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Baby squid plot for age-1 index sensitivity}
-\begin{center}
-\vspace{-5pt}
-<<baby.squid.age1, fig.height=3.5>>=
-oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-#plot.retro.yrs <- retro.yrs
-retro.cohorts <- c(2014, 2010, 2007, 2009)     # Selecting three years as examples
-retro.list <- list(sens.models.2[[1]])
-for(i in seq_along(sens.models.2[[1]]$retros)){
-  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
-}
-make.squid.plot(retro.list,
-                subplot = 1,
-                cohorts = retro.cohorts)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Squid plot for base model}
-\begin{center}
-\vspace{-5pt}
-<<squid.base, fig.height=3.5>>=
-oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-#plot.retro.yrs <- retro.yrs
-retro.cohorts <- 1999:(end.yr-2)
-retro.list <- list(base.model)
-for(i in retrospective_yrs){
-  retro.list[[i + 1]] <- base.model$retros[[i]]
-}
-make.squid.plot(retro.list,
-                subplot = 1,
-                cohorts = retro.cohorts)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Squid plot for age-1 index sensitivity}
-\begin{center}
-\vspace{-5pt}
-<<squid.age1, fig.height=3.5>>=
-oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-#plot.retro.yrs <- retro.yrs
-retro.cohorts <- 1999:(end.yr-2)
-retro.list <- list(sens.models.2[[1]])
-for(i in seq_along(sens.models.2[[1]]$retros)){
-  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
-}
-make.squid.plot(retro.list,
-                subplot = 1,
-                cohorts = retro.cohorts)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Request 6 - retros age-1]{Retrospectives using age-1 index}
-\begin{frame}
-\frametitle{Request 6}
-Request 6 -- Redo recruitment retrospective analysis including Age-1 index, focusing on the 2014 and other strong year-classes.
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{Retrospectives -- base model}
-\begin{center}
-\vspace{-5pt}
-% , fig.height=5, fig.width=10>>=
-<<retro.1>>=
-##oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-#oldpar <- par(mfrow=c(1,2), mar=c(5,4,1,1),no.readonly = TRUE)
-#par(mar = c(4.5, 4.1, 1.5, 1.1))
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
-# plot.retro.yrs <- 1:5
-retro.list <- list(base.model)
-for(i in plot.retro.yrs){
-  retro.list[[i + 1]] <- base.model$retros[[i]]
-}
-make.comparison.plot(retro.list,
-                     subplots = 2,
-                     model.names = retro.model.names,
-                     legend = TRUE,
-                     legendloc = "topright",
-                     is.retro = TRUE)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{Retrospectives -- age-1 index}
-\begin{center}
-\vspace{-5pt}
-<<retro.1.age1>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
-# plot.retro.yrs <- 1:5
-retro.list <- list(sens.models.2[[1]])
-for(i in plot.retro.yrs){
-  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
-}
-make.comparison.plot(retro.list,
-                     subplots = 2,
-                     model.names = retro.model.names.age1,
-                     legend = TRUE,
-                     legendloc = "topright",
-                     is.retro = TRUE)
-#make.comparison.plot(retro.list,
-#                     subplots = 8,
-#                     model.names = retro.model.names,
-#                     legend = TRUE,
-#                     legendloc = "topleft",
-#                     is.retro = TRUE)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Retrospectives -- base model}
-\begin{center}
-\vspace{-5pt}
-%, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-<<retro.2, fig.height=3.5>>=
-oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-retro.list <- list(base.model)
-for(i in plot.retro.yrs){
-  retro.list[[i + 1]] <- base.model$retros[[i]]
-}
-make.comparison.plot(retro.list,
-                     subplots = 10,
-                     model.names = retro.model.names,
-                     legend = TRUE,
-                     legendloc = "topleft",
-                     is.retro = TRUE)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Retrospectives -- age-1 index}
-\begin{center}
-\vspace{-5pt}
-%, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-<<retro.2.age1, fig.height=3.5>>=
-oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-#par(mar = c(4.5, 4.1, 1.5, 1.1))
-retro.list <- list(sens.models.2[[1]])
-for(i in plot.retro.yrs){
-  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
-}
-make.comparison.plot(retro.list,
-                     subplots = 10,
-                     model.names = retro.model.names.age1,
-                     legend = TRUE,
-                     legendloc = "topleft",
-                     is.retro = TRUE)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Retrospectives -- base model}
-\begin{center}
-\vspace{-5pt}
-<<retro.base.density.2008>>=
-oldpar <- par()
-par(mar = c(7.1, 3.1, 0, 1))
-retro.list <- list(base.model)
-for(i in 1:10){
-  retro.list[[i + 1]] <- base.model$retros[[i]]
-}
-make.comparison.plot(
-  retro.list,
-  subplots = 16,
-  model.names = c(retro.model.names, "-6 years", "-7 years", "-8 years",
-                  "-9 years", "-10 years"),
-  legendloc = "topright",
-  densitynames = c("Recr_2008"),
-  densityxlab  = "Recruitment in 2008 (billions)",
-  indexPlotEach = TRUE,
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Retrospectives -- age-1 index}
-\begin{center}
-\vspace{-5pt}
-<<retro.age1.density.2008>>=
-oldpar <- par()
-par(mar = c(7.1, 3.1, 0, 1))
-retro.list <- list(sens.models.2[[1]])
-for(i in 1:10){
-  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
-}
-make.comparison.plot(
-  retro.list,
-  subplots = 16,
-  model.names = c(retro.model.names, "-6 years", "-7 years", "-8 years",
-                  "-9 years", "-10 years"),
-  legendloc = "topright",
-  densitynames = c("Recr_2008"),
-  densityxlab  = "Recruitment in 2008 (billions)",
-  indexPlotEach = TRUE,
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Retrospectives -- base model}
-\begin{center}
-\vspace{-5pt}
-<<retro.base.density.2010>>=
-oldpar <- par()
-par(mar = c(7.1, 3.1, 0, 1))
-retro.list <- list(base.model)
-for(i in 1:8){
-  retro.list[[i + 1]] <- base.model$retros[[i]]
-}
-make.comparison.plot(
-  retro.list,
-  subplots = 16,
-  model.names = c(retro.model.names, "-6 years", "-7 years", "-8 years"),
-  legendloc = "topright",
-  densitynames = c("Recr_2010"),
-  densityxlab  = "Recruitment in 2010 (billions)",
-  indexPlotEach = TRUE,
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Retrospectives -- age-1 index}
-\begin{center}
-\vspace{-5pt}
-<<retro.age1.density.2010>>=
-oldpar <- par()
-par(mar = c(7.1, 3.1, 0, 1))
-retro.list <- list(sens.models.2[[1]])
-for(i in 1:8){
-  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
-}
-make.comparison.plot(
-  retro.list,
-  subplots = 16,
-  model.names = c(retro.model.names.age1, "-6 years", "-7 years", "-8 years"),
-  legendloc = "topright",
-  densitynames = c("Recr_2010"),
-  densityxlab  = "Recruitment in 2010 (billions)",
-  indexPlotEach = TRUE,
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Retrospectives -- base model}
-\begin{center}
-\vspace{-5pt}
-<<retro.base.density.2014>>=
-oldpar <- par()
-par(mar = c(7.1, 3.1, 0, 1))
-retro.list <- list(base.model)
-for(i in plot.retro.yrs){
-  retro.list[[i + 1]] <- base.model$retros[[i]]
-}
-make.comparison.plot(
-  retro.list,
-  subplots = 16,
-  model.names = retro.model.names,
-  legendloc = "topright",
-  densitynames = c("Recr_2014"),
-  densityxlab  = "Recruitment in 2014 (billions)",
-  indexPlotEach = TRUE,
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Retrospectives -- age-1 index}
-\begin{center}
-\vspace{-5pt}
-<<retro.age1.density.2014>>=
-oldpar <- par()
-par(mar = c(7.1, 3.1, 0, 1))
-retro.list <- list(sens.models.2[[1]])
-for(i in plot.retro.yrs){
-  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
-}
-make.comparison.plot(
-  retro.list,
-  subplots = 16,
-  model.names = retro.model.names.age1,
-  legendloc = "topright",
-  densitynames = c("Recr_2014"),
-  densityxlab  = "Recruitment in 2014 (billions)",
-  indexPlotEach = TRUE,
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Retrospectives -- base model}
-\begin{center}
-\vspace{-5pt}
-<<retro.base.density.2016>>=
-oldpar <- par()
-par(mar = c(7.1, 3.1, 0, 1))
-retro.list <- list(base.model)
-for(i in plot.retro.yrs){
-  retro.list[[i + 1]] <- base.model$retros[[i]]
-}
-make.comparison.plot(
-  retro.list,
-  subplots = 16,
-  model.names = retro.model.names,
-  legendloc = "topright",
-  densitynames = c("Recr_2016"),
-  densityxlab  = "Recruitment in 2016 (billions)",
-  indexPlotEach = TRUE,
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Retrospectives -- age-1 index}
-\begin{center}
-\vspace{-5pt}
-<<retro.age1.density.2016>>=
-oldpar <- par()
-par(mar = c(7.1, 3.1, 0, 1))
-retro.list <- list(sens.models.2[[1]])
-for(i in plot.retro.yrs){
-  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
-}
-make.comparison.plot(
-  retro.list,
-  subplots = 16,
-  model.names = retro.model.names.age1,
-  legendloc = "topright",
-  densitynames = c("Recr_2016"),
-  densityxlab  = "Recruitment in 2016 (billions)",
-  indexPlotEach = TRUE,
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\section[Request 4 - rec devs]{Mean recruitment deviations}
-\subsection{}
-\begin{frame}
-\frametitle{Recruitment deviations over the main period (1970-2018) -- MLE vs MCMCs}
-Request 4 -- Calculate average of recruitment deviations over the main period
-(1970-2018); include both MLE and MCMC (current algorithm and NUTS). Attempting
-to understand equilibrium recruitment assumption relative $R_0$.
-\bi
-    \item Mean recruitment deviation 2020 base model MLE: 0.209
-    \item Mean recruitment deviation 2020 MCMC models:
-    \bi
-      \item for base model 0.088
-      \item for adnuts model 0.129
-    \ei
-   \ei
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Request 7 - effN]{Temporal sampling changes}
-\begin{frame}
-\frametitle{Request 7}
-Request 7 -- Produce a time plot of effective $N$ and input $N$ to look for temporal patterns. Are recent samples upweighted relative to historical samples?
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Request 5 - thin ADNUTS]{Convergence diagnostics for thinned ADNUTS run}
-\begin{frame}
-\frametitle{Request 5}
-Request 5 -- Redo ADNUTs plots thinning down to about 2,000 samples from samples available, and redo convergence diagnostic plots.
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{Base model~~~~~~~}
-\begin{center}
-\vspace{5pt}
-<<base.hists, fig.height=3.5>>=
-oldpar <- par()
-par(mar=c(4.1, 4.1, 3.1, 0.1))
-make.mcmc.diag.hists.plot(base.model,
-                          labelstrings = "all")
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{NUTS all 7,850 samples}
-\begin{center}
-\vspace{5pt}
-<<adnuts.hists, fig.height=3.5>>=
-oldpar <- par()
-par(mar=c(4.1, 4.1, 3.1, 0.1))
-make.mcmc.diag.hists.plot(sens.models.6,
-                          labelstrings = "all")
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{NUTS thinned to 2,000 samples - every 3rd and then the first 2,000}
-\begin{center}
-\vspace{5pt}
-<<adnuts.hists.thin.2000, fig.height=3.5>>=
-oldpar <- par()
-par(mar=c(4.1, 4.1, 3.1, 0.1))
-make.mcmc.diag.hists.plot(adnuts.model.2000,
-                          labelstrings = "all")
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{NUTS thinned to 1,000 samples - every 7th and then the first 1,000}
-\begin{center}
-\vspace{5pt}
-<<adnuts.hists.thin.1000, fig.height=3.5>>=
-oldpar <- par()
-par(mar=c(4.1, 4.1, 3.1, 0.1))
-make.mcmc.diag.hists.plot(adnuts.model.1000,
-                          labelstrings = "all")
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{Base model~~~~~~~}
-\begin{center}
-\vspace{5pt}
-<<base.traces, fig.height=3.5>>=
-oldpar <- par()
-par(mar=c(4.1, 4.1, 12, 0.1))
-make.mcmc.diag.plot(base.model, key.posteriors[1], key.posteriors.titles[1])
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{NUTS all 7,850 samples}
-\begin{center}
-\vspace{5pt}
-<<adnuts.traces, fig.height=3.5>>=
-oldpar <- par()
-par(mar=c(4.1, 4.1, 12, 0.1))
-make.mcmc.diag.plot(sens.models.6, key.posteriors[1], key.posteriors.titles[1])
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{NUTS thinned to 2,000 samples - every 3rd and then the first 2,000}
-\begin{center}
-\vspace{5pt}
-<<adnuts.traces.2000, fig.height=3.5>>=
-oldpar <- par()
-par(mar=c(4.1, 4.1, 12, 0.1))
-make.mcmc.diag.plot(adnuts.model.2000, key.posteriors[1], key.posteriors.titles[1])
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{NUTS thinned to 1,000 samples - every 7th and then the first 1,000}
-\begin{center}
-\vspace{5pt}
-<<adnuts.traces.1000, fig.height=3.5>>=
-oldpar <- par()
-par(mar=c(4.1, 4.1, 12, 0.1))
-make.mcmc.diag.plot(adnuts.model.1000, key.posteriors[1], key.posteriors.titles[1])
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Request 2]{Request 2 - change coloration in weight-at-age heatmap}
-\begin{frame}
-\frametitle{Request 2}
-Request 2 -- Colour code weight at age matrix by column rather than global colouring.
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{Color code weight-at-age matrix by weight}
-<<day1-2a, fig.height=3.5>>=
-weight.at.age.heatmap(base.model,
-                      proj.line.yr = base.model$endyr,
-                      extrap.mask = weight_age_extrapolation_mask,
-                      longterm.mean.ages = NULL,
-                      proj.line.width = 0.4,
-                      font.size = 1.6,
-                      axis.font.size = 4)
-@
-\end{frame}
-
-\begin{frame}
-\frametitle{Color code weight-at-age matrix by age}
-<<day1-2b, fig.height=3.5>>=
-weight.at.age.heatmap(base.model,
-                      proj.line.yr = base.model$endyr,
-                      extrap.mask = weight_age_extrapolation_mask,
-                      longterm.mean.ages = NULL,
-                      colour = "age",
-                      proj.line.width = 0.4,
-                      font.size = 1.6,
-                      axis.font.size = 4)
-@
-\end{frame}
-
-\begin{frame}
-\frametitle{Color code weight-at-age matrix by weight and age}
-<<day1-2c, fig.height=3.5>>=
-weight.at.age.heatmap(base.model,
-                      proj.line.yr = base.model$endyr,
-                      extrap.mask = weight_age_extrapolation_mask,
-                      longterm.mean.ages = NULL,
-                      colour = "both",
-                      proj.line.width = 0.4,
-                      font.size = 1.6,
-                      axis.font.size = 4)
-@
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Request 3]{1998 Weight-at-age data}
-\subsection{}
-\begin{frame}
-Request 3 -- Investigate changes in weights-at-age for 1987, when 1977 was expected to change but did not occur (compare 2019 to 2020).
-~\\
-~\\
-Canadian Joint-Venture information for that year was removed. Running the 2020 base model with the 2019 vs. 2020 weight-at-age makes almost no difference.
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \section[Request 1 - recdev uncertainty]{Recruitment deviation uncertainty for cohorts}
-% \begin{frame}
-% \frametitle{Recruitment deviation uncertainty for cohorts at age-2}
-% <<cohort.uncertainty>>=
-% b.devs.2018 <- base.model$retros[[1]]$recruitpars
-% b.devs.2016 <- base.model$retros[[3]]$recruitpars
-% b.devs.2012 <- base.model$retros[[7]]$recruitpars
-%
-% age1.devs.2018 <- sens.models.2[[1]]$retros[[1]]$recruitpars
-% age1.devs.2016 <- sens.models.2[[1]]$retros[[3]]$recruitpars
-% age1.devs.2012 <- sens.models.2[[1]]$retros[[7]]$recruitpars
-%
-% j <- b.devs.2012 %>%
-%   filter(grepl("^.*RecrDev_2010$", rownames(.)))
-%
-% j1 <- age1.devs.2012 %>%
-%   filter(grepl("^.*RecrDev_2010$", rownames(.)))
-%
-% k <- b.devs.2016 %>%
-%   filter(grepl("^.*RecrDev_2014$", rownames(.)))
-%
-% k1 <- age1.devs.2016 %>%
-%   filter(grepl("^.*RecrDev_2014$", rownames(.)))
-%
-% h <- b.devs.2018 %>%
-%   filter(grepl("^.*RecrDev_2016$", rownames(.)))
-%
-% h1 <- age1.devs.2018 %>%
-%   filter(grepl("^.*RecrDev_2016$", rownames(.)))
-%
-% @
-% \bi
-% \item 2010 cohorts in 2012
-%   \bi
-%     \item Base model - \Sexpr{f(j[1],  3)}, SD = \Sexpr{f(j[2],  3)}
-%     \item Age1 index - \Sexpr{f(j1[1],  3)}, SD = \Sexpr{f(j1[2],  3)}
-%   \ei
-% \item 2014 cohorts in 2016
-%   \bi
-%     \item Base model - \Sexpr{f(k[1],  3)}, SD = \Sexpr{f(k[2],  3)}
-%     \item Age1 index - \Sexpr{f(k1[1],  3)}, SD = \Sexpr{f(k1[2],  3)}
-%   \ei
-% \item 2016 cohorts in 2018
-%   \bi
-%     \item Base model - \Sexpr{f(h[1],  3)}, SD = \Sexpr{f(h[2],  3)}
-%     \item Age1 index - \Sexpr{f(h1[1],  3)}, SD = \Sexpr{f(h1[2],  3)}
-%   \ei
-% \ei
-%
-% \end{frame}
 
 \end{document}
