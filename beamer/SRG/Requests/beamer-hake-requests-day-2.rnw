@@ -91,7 +91,7 @@ opts_chunk$set(dev = 'cairo_ps',
                results = 'hide',
                cache = TRUE,
                cache.path = 'knitr-cache/')
-
+assess.yr <- 2020
 # source(here::here("R", "all.R"))
 # load.models.into.parent.env()
 # source(file.path(rootd.R, "custom-knitr-variables.R"))

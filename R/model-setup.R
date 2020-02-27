@@ -287,7 +287,6 @@ load.models.into.parent.env <- function(){
   tryCatch({
     #adnuts.model.2000  <<- load.models(rootd.models, "2020.01.50_nutsMCMC_thin_2000")
     #adnuts.model.1000  <<- load.models(rootd.models, "2020.01.51_nutsMCMC_thin_1000")
-    base.model.neff <<- load.models(rootd.models, "2020.01.60_base_model_with_downweighted_neff_ages")
   }, error = function(e){
     NULL
   }, warning = function(w){
