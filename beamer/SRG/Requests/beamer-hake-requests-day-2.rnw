@@ -200,6 +200,29 @@ Request 3 -- Run the MLE model with the log(input sample size of fishery data) t
 \section[Request 3 - sample size]{Sample size of fishery data}
 \begin{frame}
 \frametitle{Request 3}
+\bc
+$\theta_{fish}$ = 165.67
+
+$\theta_{surv}$ = 32.79
+
+\bigskip
+
+$n_{eff} = \frac{\theta}{(1 + \theta)}$
+
+\bigskip
+
+$n_{eff(fish)}$ = 0.99
+
+$n_{eff(surv)}$ = 0.97
+
+\ec
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[Request 3 - sample size]{Sample size of fishery data}
+\begin{frame}
+\frametitle{Request 3}
  <<logged.fishery.weights, fig.height=4>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
