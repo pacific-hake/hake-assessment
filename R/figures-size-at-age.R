@@ -84,7 +84,7 @@ weight.at.age.heatmap <- function(model,
                                   axis.font.size = 10,
                                   samplesize = FALSE,
                                   print.years = NULL,
-                                  colour = c("both", "all", "age")){
+                                  colour = c("all", "age", "both")){
 
   colour <- match.arg(colour)
 

@@ -414,9 +414,11 @@ cohort.catch.2016 <- sum(cohort.catch(2016, base.model$catage, trim.end.year = e
 cohortCumSum1999 <- cumsum(cohort.catch(1999,base.model$catage, trim.end.year = end.yr))
 cohortCumSum2010 <- cumsum(cohort.catch(2010,base.model$catage, trim.end.year = end.yr))
 cohortCumSum2014 <- cumsum(cohort.catch(2014,base.model$catage, trim.end.year = end.yr))
+cohortCumSum2016 <- cumsum(cohort.catch(2016,base.model$catage, trim.end.year = end.yr))
 ages1999 <- as.numeric(names(cohortCumSum1999)) - 1999
 ages2010 <- as.numeric(names(cohortCumSum2010)) - 2010
 ages2014 <- as.numeric(names(cohortCumSum2014)) - 2014
+ages2016 <- as.numeric(names(cohortCumSum2016)) - 2016
 
 ## Estimated (median MCMC) proportions by age (using numbers) of the catch in first forecast year
 fore.catch.prop <- as.data.frame( t(as.numeric(f(apply(base.model$extra.mcmc$natsel.prop, 2, median)* 100))))
