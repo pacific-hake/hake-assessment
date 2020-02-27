@@ -109,10 +109,10 @@ The largest changes between the
 year of
 acoustic survey and
 fishery data, the use of just five recent years (rather than all years) of weight-at-age
-data to calculate fecundity-at-age in the forecast period, and the following two structural changes.
-A nearly uniform prior (in transformed space) was placed on the
-Dirichlet-Multinomial parameters used to weight the age-composition data.
-Estimated recruitment deviations were no longer constrained to sum to zero.
+data to calculate fecundity-at-age in the forecast period, and the following two structural changes:
+(1) a nearly uniform prior (in transformed space) was placed on the
+Dirichlet-Multinomial parameters used to weight the age-composition data; and (2)
+estimated recruitment deviations were no longer constrained to sum to zero.
 % Manual 2020 KFJ
 
 The \Sexpr{assess.yr} base model includes an acoustic data time series from 1995
@@ -175,7 +175,8 @@ with input sample sizes equal to the sum of the number of trips or hauls actuall
 fishing fleets or the number of trawl sets in the research surveys (see Section~\ref{sec:data-age-comp-likelihood}).
 % Manual 2020 KFJ
 
-Uncertainty of estimated quantities was calculated via Markov chain Monte Carlo
+Uncertainty of estimated quantities was calculated around the median results
+(50\% quantile) via Markov chain Monte Carlo
 (MCMC) simulations. The bounds of 95\% credibility intervals were calculated as
 the 2.5\% quantile and the 97.5\% quantile of posterior distributions from the
 MCMC simulations, to give equal-tailed intervals. The Stock Synthesis input
