@@ -1071,11 +1071,12 @@ examples).
 Note that we use the term MLE even though the priors are involved in the likelihood
 calculation and so the more accurate term would be the mode of the posterior density.
 
-Table~\ref{tab:main-parameter-estimates} shows that most key derived
+Most key derived
 quantities from the posterior distribution are larger than their respective MLEs
 (e.g., median biomass, recruitment, and relative spawning biomass), however some
 parameter estimates (e.g., steepness and catchability) are
-smaller. Figure~\ref{fig:main-mle-vs-mcmc} shows the MLE and Bayesian (from
+smaller (Table~\ref{tab:main-parameter-estimates}). Figure~\ref{fig:main-mle-vs-mcmc}
+shows the MLE and Bayesian (from
 MCMC) estimates as well as the skewed uncertainty in the posterior distributions
 for spawning biomass and recruitment for each year. Median estimates of spawning
 biomass and recruitment from the posterior distribution are slightly larger than
@@ -1700,10 +1701,8 @@ Deviations for the 1999 and 2010 cohorts, which are the largest cohorts,
 exhibit the largest positive biases, and the sizes of several cohorts
 (particularly the large 2010 and 2014 cohorts) increase
 with the final year of data.
-Estimated recruitment deviations for the 2014 cohort appear to be
-similar to other large cohorts (1999, 2008, and 2010); although, as more
-data becomes available to inform the strength of this cohort,
-it appears to maybe be more similar to the 2008 cohort rather than the 1999 cohort.
+Estimated recruitment deviations for the 2014 cohort
+are above the 2008 and 1999 cohorts at a similar point in time.
 The variability among cohort estimates relative to their estimated size
 in the base model (Figure~\ref{fig:main-relative-retrospective-recruitment})
 further indicates that the estimates can start to improve as early as age-3, but
