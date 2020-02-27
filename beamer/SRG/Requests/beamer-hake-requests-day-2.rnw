@@ -125,7 +125,32 @@ model.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% dfbase <- make.squid.plot(c(list(base.model),base.model[["retros"]]),
+%   subplot = 1, cohorts = retro.cohorts, getdevs = FALSE)
+% dfage1 <- make.squid.plot(c(list(sens.models.2[[1]]),sens.models.2[[1]][["retros"]]),
+%   subplot = 1, cohorts = retro.cohorts, getdevs = FALSE)
+% exportme <- merge(dfbase, dfage1, by = c("cohort", "age"), all = TRUE)
+% colnames(exportme) <- gsub("\\.x", "_base", colnames(exportme))
+% colnames(exportme) <- gsub("\\.y", "_age1", colnames(exportme))
+% write.csv(exportme, file.path("Figures", "absrecratios.csv"),
+%   row.names = FALSE)
+% aa <- make.squid.hist(dfbase, xlim = c(0, 50), ylim = c(0, 0.20),
+%   file = file.path("Figures", "absrecratios_base.eps"))
+% bb <- make.squid.hist(dfage1, xlim = c(0, 50), ylim = c(0, 0.20),
+%   file = file.path("Figures", "absrecratios_age1.eps"))
+\frame{\frametitle{Recruitment ratio base model}
+\bc
+  \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+  \includegraphics[height=2.9in]{Figures/absrecratios_base.eps}
+ \ec
+}
+\frame{\frametitle{Recruitment ratio age-1 index included}
+\bc
+  \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+  \includegraphics[height=2.9in]{Figures/absrecratios_age1.eps}
+ \ec
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section[Request 2 - correlations]{Correlations between $R_0$ and recruitment deviations}
