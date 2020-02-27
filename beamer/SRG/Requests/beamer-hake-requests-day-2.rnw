@@ -200,6 +200,14 @@ Request 3 -- Run the MLE model with the log(input sample size of fishery data) t
 \section[Request 3 - sample size]{Sample size of fishery data}
 \begin{frame}
 \frametitle{Request 3}
+\includegraphics[height=2.9in]{Figures/samplesize_reduced_compare.eps}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[Request 3 - sample size]{Sample size of fishery data}
+\begin{frame}
+\frametitle{Request 3}
 \bc
 $\theta_{fish}$ = 165.67
 
