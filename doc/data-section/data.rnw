@@ -782,7 +782,8 @@ and $\log \theta_{\text{surv}}$.
 Composition data can also be weighted using the Francis method
 (T2.6 in Table 2 of \citealp{Francis2011}),
 which is based on variability in the observed ages by year.
-This method, like the McAllister-Ianelli method, is also iterative,
+This method, like the McAllister-Ianelli method, is iterative (unlike the D-M
+method which estimates the weights),
 where the sample sizes are adjusted such that the fit of the expected
 compositions should fit within the estimated uncertainty at a rate
 that is consistent with the variability expected given
