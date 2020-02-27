@@ -215,6 +215,12 @@ $n_{eff(fish)}$ = 0.99
 
 $n_{eff(surv)}$ = 0.97
 
+\bigskip
+
+Base $R_0$ = 1.6 billion
+
+Downweighted $R_0$ = 2.19 billion
+
 \ec
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
