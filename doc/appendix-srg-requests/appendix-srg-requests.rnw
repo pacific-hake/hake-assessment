@@ -4,100 +4,68 @@
   \Sexpr{assess.yr} meeting}
 \label{chap:srg-requests}
 
-
 This appendix summarizes results produced in response to
 Scientific Review Group requests made during the meeting held
 from 25th February to 28th February, 2020 in Seattle, WA, USA.
 
 \section{Request 1}
 
-Response here.
+{\bf Show the `squid plot' for the base-case model with and without Age-1
+  index.}
+
+These are Figures~
+\ref{fig:main-retrospective-recruitment} and
+\ref{fig:retrospective-recruitment-age1}.
 
 \section{Request 2}
 
-Response here.
+**
 
-%The SRG requested the retrospectives be calculated for the sensitivity run that includes the age-1 index
-%in the model. The resulting retrospective cohort plots and associated uncertainty in the
-%recruitment deviations were viewed and discussed, and are shown in
-%Figures~\ref{fig:srg-requests-baby-retrospective-recruitment}
-%and~\ref{fig:srg-requests-retrospective-recruitment} and
-%Table~\ref{tab:srg-requests-cohorts}.
-%Investigations into inclusion of the age-1 index will continue in the \Sexpr{assess.yr + 1}
-%assessment, which will include a full MCMC run with an appendix containing forecast
-%decision tables, and other relevant MCMC outputs.
+\section{Request 3}
 
-%\begin{figure}[H]
-%\begin{center}
-%<<srg-requests-baby-squid-base, fig.height=6, fig.width=8>>=
-%plot.retro.yrs <- retrospective_yrs
-%retro.cohorts <- c(2014, 2010, 2007, 2009)     # Selecting three years as examples
-%retro.list <- list(base.model)
-%for(i in plot.retro.yrs){
-%  retro.list[[i + 1]] <- base.model$retros[[i]]
-%}
-%make.squid.plot(retro.list,
-%                subplot = 1,
-%                cohorts = retro.cohorts)
-%@
-%\end{center}
-%\caption{Retrospective analysis of recruitment deviations for selected cohorts
-%from MLE models associated with the age-1 index sensitivity evaluation over the last
-%  \Sexpr{length(plot.retro.yrs) + 1} years. Recruitment deviations are
-%  the log-scale differences between recruitment estimated by the model
-%  and expected recruitment from the spawner-recruit relationship.
-%  Lines represent estimated recruitment deviations for example cohorts from
-%  \Sexpr{min(retro.cohorts)} to \Sexpr{max(retro.cohorts)}, with cohort
-%  birth year marked at the right of each color-coded line. Values are
-%  estimated by models using data available only up to the year in which
-%  each cohort was a given age.}
-%\label{fig:srg-requests-baby-retrospective-recruitment}
-%\end{figure}
+**
 
-%\begin{figure}[H]
-%\begin{center}
-%<<srg-requests-squid-age1, fig.height=6, fig.width=8>>=
-%plot.retro.yrs <- retrospective_yrs
-%retro.cohorts <- 1999:(end.yr-2)
-%retro.list <- list(base.model)
-%for(i in plot.retro.yrs){
-%  retro.list[[i + 1]] <- base.model$retros[[i]]
-%}
-%make.squid.plot(retro.list,
-%                subplot = 1,
-%                cohorts = retro.cohorts)
-%@
-%\end{center}
-%\caption{Retrospective analysis of recruitment deviations for all cohorts
-%  from MLE models associated with the age-1 index sensitivity evaluation over the last
-%  \Sexpr{length(plot.retro.yrs) + 1} years. Recruitment deviations are
-%  the log-scale differences between recruitment estimated by the model
-%  and expected recruitment from the spawner-recruit relationship.
-%  Lines represent estimated recruitment deviations for all cohorts from
-%  \Sexpr{min(retro.cohorts)} to \Sexpr{max(retro.cohorts)}, with cohort
-%  birth year marked at the right of each color-coded line. Values are
-%  estimated by models using data available only up to the year in which
-%  each cohort was a given age.}
-%\label{fig:srg-requests-retrospective-recruitment}
-%\end{figure}
+\section{Request 4}
 
-% <<srg-requests-cohort-table, results='asis', echo=FALSE>>=
-% make.recr.dev.uncertainty.table(list(base.model,
-%                                      sens.models.2[[1]]),
-%                                 c("Base model", "Age-1 Index"),
-%                                 assess.yr = assess.yr,
-%                                 age = 2,
-%                                 #cohorts = c(2010, 2014, 2016),
-%                                 cohorts = 1999:2016,
-%                                 digits = 3,
-%                                 xcaption = paste0("Estimated recruitment deviations ",
-%                                                   "and log standard deviations (approximiate CVs) for age-2 cohorts for the ",
-%                                                   "base model and the model which tests the sensitivity to adding ",
-%                                                   " the age-1 index. All values are from MLE runs."),
-%                                 xlabel = "tab:srg-requests-cohorts",
-%                                 font.size = 14,
-%                                 space.size = 14,
-%                                 placement = "H")
-% @
+{\bf Calculate average of recruitment deviations over the main period
+(1970--2018); include both MLE and MCMC (current algorithm and NUTS). Attempting
+to understand equilibrium recruitment assumption relative $R_0$.}
+\begin{itemize}
+    \item Mean recruitment deviation 2020 base model MLE: 0.209
+    \item Mean recruitment deviation 2020 MCMC models:
+    \begin{itemize}
+      \item for base model 0.088
+      \item for adnuts model 0.129
+    \end{itemize}
+\end{itemize}
 
+\section{Request 5}
+
+**
+
+\section{Request 6}
+
+{\bf Redo recruitment retrospective analysis including Age-1 index, focusing on
+  the 2014 and other strong year-classes.}
+
+Several figures were presented during
+the meeting, and two informative ones are shown in
+Figures~\ref{fig:retrospective-2008-base-age1}
+and~\ref{fig:retrospective-biomass-base-age1}, comparing the base model with
+inclusion of the age-1 index.
+
+
+\section{Request 7}
+
+{\bf Request 7 -- Produce a time plot of effective $N$ and input $N$ to look for temporal patterns. Are recent samples upweighted relative to historical samples?}
+
+**Figure code copied in from beamer (and commented), needs building properly.
+%\bc
+%  \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+%  \includegraphics[height=2.9in]{Figures/samplesizes.eps}
+%\ec
+
+\section{Day 2 -- Request 1}
+
+**
 \clearpage        % needed for footer to be correct
