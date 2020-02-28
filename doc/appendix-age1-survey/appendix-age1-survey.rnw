@@ -6,18 +6,174 @@
 This appendix contains Bayesian MCMC results for the model run in which the age-1
 survey index is included as an index of recruitment as described in
 Sections~\ref{sec:data-acoustic-survey} and \ref{sec:assessment-sensitivity-analyses}
-and Table~\ref{tab:main-parameter-estimates-sens-1}. The inclusion of the age-1
-survey index may improve estimates of recruitment near the end
-of the time series and age composition during the forecast period, even though the acoustic
-survey design is not structured specifically for indexing age-1 fish.
-
-This appendix highlights
+and Table~\ref{tab:main-parameter-estimates-sens-1}.
+It highlights
 model uncertainty arising from a different structural assumption or analytical choice
 compared to the base model, and the inclusion of the age-1 index was deemed
 important enough to warrant further consideration, especially in the context of characterizing
-uncertainty.
+uncertainty. The figures and tables show results from this sensitivity run (though
+note that some plots necessarily show MLE results).
 
-The following figures and tables show results from this sensitivity run.
+The estimated size of the 2010 recruitment using only data when that
+cohort is age-2 is closer to the final estimated size when using the age-1 index
+(Figure~\ref{fig:retrospective-recruitment-age1}) than it is for the base model
+(Figure~\ref{fig:main-retrospective-recruitment}). However, the 2008 and 2014
+recruitments get considerably overestimated at age-2 when using the age-1 index
+(Figure~\ref{fig:retrospective-recruitment-age1}). For the 2008 recruitment
+(Figure~\ref{fig:retrospective-2008-base-age1}), in the base model the estimated
+recruitment when taking off nine years of data (as though assessing the stock in
+2011) is just under 10~billion fish, reducing to about 6~billion when taking off
+eight years. However, when using the age-1 index the 2008 recruitment is
+estimated at over 12~billion fish when taking off nine and eight years of data
+(as though assessing the stock in 2011 and 2012), which is about 8~billion more
+fish than the current estimate of the 2008 recruitment. Given that the stock was
+in a low biomass state
+in 2011 and 2012, including the age-1 index at that time would have given
+misleadingly optimistic forecasts.
+% To get exact numbers could run Kelli's code for each model, but I just
+%  eyeballed the numbers which I think is fine:
+% retro.list <- list(base.model)
+% for(i in 1:5){     # was plot.retro.yrs but that's got changed somewhere
+%  retro.list[[i + 1]] <- base.model$retros[[i]]
+% }
+% xx <- r4ss::SSsummarize(retro.list)
+% xx$recruits[xx$recruits$Yr %in% 2008, ]
+
+The inclusion of the age-1 index does not greatly change the uncertainty of
+historical or forecast spawning biomass
+(Figure~\ref{fig:retrospective-biomass-base-age1}); this is also true for the
+retrospective runs. Overall, it
+appears that the inclusion of the age-1 index does not improve estimates of
+recruitments, and in fact can be overly optimistic (Figure~\ref{fig:retrospective-2008-base-age1}).
+Recall that the survey design is not structured specifically for indexing age-1
+fish.
+
+Figures \ref{fig:spawning-biomass-age1}--\ref{fig:forecast-risk-comparison-year-2-age1}
+and
+Tables~\ref{tab:biomass-age1}--\ref{tab:risk-year-2-age1}
+show further quantities of interest and decision tables from the MCMC results
+when including the age-1 index.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<retrospective-recruitment-age1, fig.height=6, fig.width=8>>=
+## Number of retro years for the plot. Assumes you've run them.
+retro.cohorts <- 1999:(end.yr-2)
+retro.list <- list(sens.models.2[[1]])
+for(i in seq_along(sens.models.2[[1]]$retros)){
+  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
+}
+make.squid.plot(retro.list,
+                subplot = 1,
+                cohorts = retro.cohorts)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Retrospective analysis of recruitment deviations from MLE models over the last
+  \Sexpr{length(plot.retro.yrs)+1} years. Recruitment deviations are
+  the log-scale differences between recruitment estimated by the model
+  and expected recruitment from the spawner-recruit relationship.
+  Lines represent estimated recruitment deviations for cohorts from
+  \Sexpr{min(retro.cohorts)} to \Sexpr{max(retro.cohorts)}, with cohort
+  birth year marked at the right of each color-coded line. Values are
+  estimated by models using data available only up to the year in which
+  each cohort was a given age.}
+\label{fig:retrospective-recruitment-age1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-70mm}
+\begin{figure}[H]
+\begin{center}
+<<retro.density.2008, fig.height=4, fig.width=7>>=
+oldpar <- par(no.readonly=TRUE)
+par(mar = c(4.1, 4.1, 1.1, 1.1), oma = c(0, 0, 0, 0))
+layout(matrix(c(1, 1), nrow = 2, ncol = 1, byrow = TRUE))
+retro.list <- list(base.model)
+for(i in 1:10){
+  retro.list[[i + 1]] <- base.model$retros[[i]]
+}
+make.comparison.plot(
+  retro.list,
+  subplots = 16,
+  model.names = c(retro.model.names, "-6 years", "-7 years", "-8 years",
+                  "-9 years", "-10 years"),
+  legendloc = "topright",
+  densitynames = c("Recr_2008"),
+  densityxlab  = "Recruitment in 2008 (billions)",
+  indexPlotEach = TRUE,
+  end.yr = end.yr)
+## Now for age-1 index sensitivity
+retro.list <- list(sens.models.2[[1]])
+for(i in 1:10){
+  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
+}
+make.comparison.plot(
+  retro.list,
+  subplots = 16,
+  model.names = c(retro.model.names.age1, "-6 years", "-7 years", "-8 years",
+                  "-9 years", "-10 years"),
+  legendloc = "topright",
+  densitynames = c("Recr_2008"),
+  densityxlab  = "Recruitment in 2008 (billions)",
+  indexPlotEach = TRUE,
+  end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\caption{The retrospective MLEs and associated uncertainties of the
+  recruitment in 2008 for the base model (top) and age-1 index sensitivity run (bottom).
+  When running the model with all data (the top run in each key) this cohort is observed in 2019 at
+  age-11; so taking off 9 years of data, for example, means that cohort is only
+  observed up to age-2.}
+\label{fig:retrospective-2008-base-age1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-70mm}
+\begin{figure}[H]
+\begin{center}
+<<retro.1.biomass>>=
+oldpar <- par()
+par(mar = c(4.1, 4.1, 1.1, 1.1), oma = c(0, 0, 0, 0))
+layout(matrix(c(1, 1), nrow = 2, ncol = 1, byrow = TRUE))
+retro.list <- list(base.model)
+for(i in 1:5){     # was plot.retro.yrs but that's got changed somewhere
+  retro.list[[i + 1]] <- base.model$retros[[i]]
+}
+make.comparison.plot(retro.list,
+                     subplots = 2,
+                     model.names = retro.model.names,
+                     legend = TRUE,
+                     legendloc = "topright",
+                     is.retro = TRUE)
+## Now for age-1 index sensitivity
+retro.list <- list(sens.models.2[[1]])
+for(i in 1:5){     # was plot.retro.yrs but that's got changed somewhere
+  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
+}
+make.comparison.plot(retro.list,
+                     subplots = 2,
+                     model.names = retro.model.names.age1,
+                     legend = TRUE,
+                     legendloc = "topright",
+                     is.retro = TRUE)
+par <- oldpar
+@
+\end{center}
+\caption{The retrospective MLEs and associated uncertainties of the
+  spawning biomass for the base model (top) and age-1 index sensitivity run (bottom).}
+\label{fig:retrospective-biomass-base-age1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
