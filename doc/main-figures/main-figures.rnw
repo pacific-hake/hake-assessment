@@ -240,19 +240,18 @@ maturity.ogive.figure(model = base.model, useyears = 1966)
 weight.at.age.heatmap(base.model,
                       proj.line.yr = base.model$endyr,
                       extrap.mask = weight_age_extrapolation_mask,
-                      longterm.mean.ages = NULL)
+                      longterm.mean.ages = NULL, colour = "both")
 @
 \end{center}
 %\vspace{0mm}
-\caption{Empirical weight-at-age (kg) values used for the base model
-  (the values match the colors).
+\caption{Empirical weight-at-age (kg) values (colors) used for the base model.
+  Transparency, which is age-specific, highlights years with the heaviest fish for a given age.
   Data are only available from \Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}.
   Values based on assumptions for the pre-\Sexpr{start.yr.age.comps} and forecast years are shown
-  outside the blue lines;
-  alternative assumptions were tested in sensitivity runs.
+  outside the blue lines.
   Bold values between \Sexpr{start.yr.age.comps}--\Sexpr{max.fishery.age.prop[2]} represent
   unavailable data such that weights were interpolated or extrapolated from adjacent ages or years.
-  The sample-weighted mean weight-at-age is shown at the bottom.}
+  The bottom row (mean) is the sample-weighted mean weight-at-age.}
 \label{fig:main-empirical-weight-at-age}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -265,13 +264,13 @@ weight.at.age.heatmap(base.model,
                       proj.line.yr = base.model$endyr,
                       extrap.mask = weight_age_extrapolation_mask,
                       longterm.mean.ages = NULL,
-                      samplesize = TRUE)
+                      samplesize = TRUE, colour = "both")
 @
 \end{center}
 \vspace{0mm}
-\caption{Sample sizes for developing empirical weight-at-age values used in the
-  base model (colors represent empirical weight-at-age data, as shown in
-  Figure ~\ref{fig:main-empirical-weight-at-age}).
+\caption{Sample sizes for developing empirical weight-at-age values
+  (colors, as shown in Figure ~\ref{fig:main-empirical-weight-at-age})
+  used in the base model.
   Data are available from \Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}.
   The total sample size for each age is shown at the bottom.}
 \label{fig:main-empirical-weight-at-age-numbers}
