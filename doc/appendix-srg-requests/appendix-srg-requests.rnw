@@ -19,11 +19,15 @@ These are Figures~
 
 \section{Request 2}
 
-**
+{\bf Colour code weight-at-age matrix by column rather than global colouring.}
+
+Weight-at-age matrices were produced with global colouring (previous default), age-specific colouring (as requested), and age-specific transparency of global colouring. The option with transparency was chosen to use going forward and is provided in this document (Figures~\ref{fig:main-empirical-weight-at-age} and \ref{fig:main-empirical-weight-at-age-numbers}).
 
 \section{Request 3}
 
-**
+{\bf Investigate changes in weight-at-age for 1987, when 1977 was expected to change but did not occur (compare 2019 to 2020).}
+
+The changes that were noted by the SRG occurred in 1988, not 1987. These changes occurred because some Canadian Joint-Venture samples were extracted from an archived file rather than data provided in 2017. The older file included information for an age-14 fish, as well as other fish, that were not included in the more recent file. This led to minor differences in weight-at-age as well as age 14 in 1988 not being extrapolated, i.e., wrongly marked with bold text for this data set. The differences in weight-at-age as compared to what was included in 2019 led to essentially no differences in estimated spawning biomass. Work will be completed prior to the 2021 assessment to ensure all appropriate Canadian samples are included as well as samples from the 1977 Poland Acoustic Survey that were talked about during the SRG Meeting.
 
 \section{Request 4}
 
