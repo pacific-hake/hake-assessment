@@ -22,7 +22,7 @@ survey and commercial fisheries.
     catch and age-composition data from \Sexpr{end.yr-1}, weight-at-age data for
     \Sexpr{end.yr-1}, and minor changes to pre-\Sexpr{end.yr-1} data.
 
-  \item Coastwide catch in \Sexpr{end.yr-1} was the third largest on record at
+  \item Coast-wide catch in \Sexpr{end.yr-1} was the third largest on record at
     \Sexpr{last.year.landings}~t [t represents metric tons],
 out of a Total Allowable Catch (adjusted for carryovers) of \Sexpr{last.year.tac}~t. Attainment in
 the U.S. was \Sexpr{last.year.us.attained}\% of its quota
