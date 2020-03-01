@@ -616,7 +616,8 @@ make.short.parameter.estimates.table <- function(model,
                                                  xcaption = "default",
                                                  xlabel   = "default",
                                                  font.size = 9,
-                                                 space.size = 10){
+                                                 space.size = 10,
+                                                 last.yr.model.name = NULL){
   ## Returns an xtable in the proper format for the parameter estimates
   ##  for MLE vs median vs median of the last year
   ##
@@ -632,6 +633,9 @@ make.short.parameter.estimates.table <- function(model,
   ##   estimates of recruitment. Must be of length three.
   if (length(getrecs) != 3) stop("The make short function only works",
                                  "with three years of recruitments", call. = FALSE)
+  if (is.null(last.yr.model.name)) {
+    last.yr.model.name <- c("Posterior", "median from", paste(end.yr - 1, " base"), "model")
+  }
 
   ## This year's model MLE
   modelssum <- r4ss::SSsummarize(list(model, last.yr.model))
@@ -738,10 +742,7 @@ make.short.parameter.estimates.table <- function(model,
                      latex.bold("MLE"),
                      latex.mlc(c("Posterior",
                                  "median")),
-                     latex.mlc(c("Posterior",
-                                 "median from",
-                                 paste(end.yr - 1, " base"),
-                                 "model")))
+                     latex.mlc(last.yr.model.name))
 
   addtorow <- list()
   addtorow$pos <- list()
