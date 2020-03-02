@@ -1338,15 +1338,9 @@ year's assessment, the credible interval remains within that from last year's as
 
 \frame{\frametitle{Summary -- Key Cohorts}
   \bi
-  \item The 2010 cohort is estimated to be \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"], 1)}~billion fish,
-    a \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"]) / (prev.assess.recruitment.med)["2010"]) * 100), 0)}\% increase
-    over last year's estimate.
-  \item The 2014 cohort is estimated to be \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"], 1)}~billion fish,
-    a \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"]) / (prev.assess.recruitment.med)["2014"]) * 100), 0)}\% increase
-    over last year's estimate.
-  \item The 2016 cohort is estimated to be \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"], 1)}~billion fish,
-    a \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"]) / (prev.assess.recruitment.med)["2016"]) * 100), 0)}\% increase
-    over last year's estimate.
+  \item The 2010 cohort is estimated to have increased by \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"], 1)}~billion fish over last year's estimate (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"]) / (prev.assess.recruitment.med)["2010"]) * 100), 0)}\%)
+  \item The 2014 cohort is estimated to have increased by \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"], 1)}~billion fish over last year's estimate (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"]) / (prev.assess.recruitment.med)["2014"]) * 100), 0)}\%)
+  \item The 2016 cohort is estimated to have increased by \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"], 1)}~billion fish over last year's estimate (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"]) / (prev.assess.recruitment.med)["2016"]) * 100), 0)}\%)
   \item The 2010 cohort uncertainty is \Sexpr{rec_2010[[3]]}\% of what it was in the \Sexpr{last.assess.yr} assessment.
   \item The 2014 cohort uncertainty is \Sexpr{rec_2014[[3]]}\% of what it was in the \Sexpr{last.assess.yr} assessment.
   \item The 2016 cohort uncertainty is \Sexpr{rec_2016[[3]]}\% of what it was in the \Sexpr{last.assess.yr} assessment.
