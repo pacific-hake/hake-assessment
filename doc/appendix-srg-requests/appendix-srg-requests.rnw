@@ -158,6 +158,8 @@ legend("topleft", legend = c("Input sample size", "M-I effective sample size"),
 \end{center}
 \end{figure}
 
+\clearpage
+
 \section{Day 2}
 
 {\bf Request 1 -- Find the estimated absolute recruitment when the MLE mode was done for age 2 ($X_i$) of each cohort and the estimated recruitment of that same cohort in the most recent assessment ($Y_i$). Then create a histogram of $X_i/Y_i$ for the base model and $X_i/Y_i$ for the model including the age-1 index. If the age-1 index helps, the ratios should be closer to one than for the base model.}
@@ -191,6 +193,8 @@ print(bb)
 \label{fig:srg-squidhist}
 \end{center}
 \end{figure}
+
+\clearpage
 
 {\bf Request 2 -- For each MCMC draw, get the $R_0$ estimate and the mean of the recruitment deviates for the main period and for all years, and plot one against the other to look for correlations. Repeat for adnuts.}
 
