@@ -1655,10 +1655,11 @@ with each age.
 The impact of using the adnuts MCMC algorithm (Table~\ref{tab:main-parameter-estimates-sens-4}) is discussed in detail in
 Appendix~\ref{chap:adnuts}.
 
-Any additional sensitivity runs arising from the Scientific Review Group
-meeting to be held from 25th February to 28nd February 2020 will be documented
+An additional sensitivity run arising from the Scientific Review Group
+meeting held from 25th February to 28nd February 2020 related to input sample size is documented
 in Appendix~\ref{chap:srg-requests} and briefly summarized here.
-
+Arbitrarily decreasing the weight of recent fishery age-composition data by taking the square root of the input sample size led to
+similar estimates of the recent trend in spawning biomass but differences in stock status because of more optimistic estimates of the stock at unfished equilibrium.
 % 2019 SRG -
 %%**Several additional sensitivity runs were completed in response to SRG requests
 %%during the Feb 13-16, 2017 meeting in Vancouver, B.C., Canada (see
