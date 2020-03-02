@@ -17,7 +17,7 @@ This appendix summarizes results produced in response to
 Scientific Review Group requests made during the meeting held
 from 25th February to 28th February, 2020 in Seattle, WA, USA.
 
-\section{Day 1}
+\section*{Day 1}
 
 {\bf Request 1 -- Show the `squid plot' for the base-case model with and without Age-1
   index.}
@@ -163,7 +163,7 @@ legend("topleft", legend = c("Input sample size", "M-I effective sample size"),
 \end{center}
 \end{figure}
 
-\section{Day 2}
+\section*{Day 2}
 
 {\bf Request 1 -- Find the estimated absolute recruitment when the MLE mode was done for age 2 ($Xi$) of each cohort and the estimated recruitment of that same cohort in the most recent assessment ($Yi$). Then create a histogram of $Xi/Yi$ for the base model and $Xi/Yi$ for the model including the age-1 index. If the age-1 index helps, the ratios should be closer to one than for the base model.}
 
@@ -307,6 +307,6 @@ for the main period and
 \Sexpr{round(mean(base.model$parameters[grep("_RecrD|InitAge", base.model$parameters$Label), "Value"]), 3)}
 for the entire period.
 
-\section{Summary}
+\section*{Other Explorations}
 
 Several other data and model explorations were conducted during the review panel week. In particular, the JTC responded to an ‘informal’ SRG request to compile and compare likelihood profiles (MLE context) over the parameter $R_0$ for the base model and a model similar to the base model but with inclusion of the zero-sum constraint on recruitment deviations.  Individual likelihood components contributing to the overall likelihood were generally similar between the two MLE models. The fishery and survey Dirichlet Multinomial parameters as well as the survey extra SD parameter were not sensitive to alternative values of $R_0$ used in likelihood profiles.
