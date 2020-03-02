@@ -346,9 +346,13 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 <<appendix-mcmc-diagnostics, child='appendix-mcmc-diagnostics/appendix-mcmc-diagnostics.rnw'>>=
 @
 
+% Make figures appear numbered correctly in sections
+\renewcommand{\thefigure}{\thechapter.\arabic{section}.\arabic{figure}}
 \rfoot{Appendix~\ref{chap:srg-requests} -- SRG requests}
 <<appendix-srg-requests, child='appendix-srg-requests/appendix-srg-requests.rnw'>>=
 @
+% Set figure numbering back to what it was
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 
 \rfoot{Appendix~\ref{chap:glossary} -- Glossary}
 <<appendix-glossary, child='appendix-glossary/appendix-glossary.rnw'>>=
