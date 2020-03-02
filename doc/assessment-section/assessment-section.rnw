@@ -581,7 +581,7 @@ estimates, increasing the estimated size of the 2016 and 2017 year classes and
 decreasing the 2018 year class.
 This bridging step also shifted the ending year of the deviations
 in the selectivity parameters from \Sexpr{last.data.yr-1} to
-\Sexpr{last.data.yr} because of the additiona of fishery data in \Sexpr{last.data.yr}.
+\Sexpr{last.data.yr} because of the addition of fishery data in \Sexpr{last.data.yr}.
 
 Including the fishery-independent biomass estimate led to a slightly more optimistic
 trajectory of the stock over the last couple of years
@@ -1048,7 +1048,7 @@ intensity has remained well below target despite recent increases in total catch
 While
 there is large uncertainty in the \Sexpr{end.yr-1} estimates of relative fishing
 intensity and relative spawning biomass, the model estimates a \Sexpr{joint.percent.prob.above.below}\%
-joint probility of being both above the target relative fishing intensity in
+joint probability of being both above the target relative fishing intensity in
 \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at the
 start of \Sexpr{end.yr}.
 

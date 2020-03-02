@@ -50,7 +50,7 @@ to understand equilibrium recruitment assumption relative $R_0$.}
 
 MCMC diagnostics are shown as plots below. Figure~\ref{fig:srg-adnuts-hists-2000} shows the adnuts model with extra thinning applied resulting in 2,000 samples and Figure~\ref{fig:srg-adnuts-hists-1000} shows the adnuts model with extra thinning applied resulting in 1,000 samples.
 
-The plots should be compared with Figures~\ref{fig:main-mcmc-diag-hists} and \ref{fig:mcmc-diag-hists-adnuts}. Comparing these with the base model diganostics,
+The plots should be compared with Figures~\ref{fig:main-mcmc-diag-hists} and \ref{fig:mcmc-diag-hists-adnuts}. Comparing these with the base model diagnostics,
 the effective sample size appears to be equivalent, with large effective sample size and little autocorrelation. The Geweke statistic shows a Normal distribution
 in all instances. It is notable that the diagnostics improve with fewer samples, which can be attributed to more space between samples giving a reduced chance of
 having poor samples included.
