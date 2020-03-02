@@ -307,6 +307,6 @@ for the main period and
 \Sexpr{round(mean(base.model$parameters[grep("_RecrD|InitAge", base.model$parameters$Label), "Value"]), 3)}
 for the entire period.
 
-\section{Day 3}
+\section{Summary}
 
-** Do we include the informal request?
+Several other data and model explorations were conducted during the review panel week. In particular, the JTC responded to an ‘informal’ SRG request to compile and compare likelihood profiles (MLE context) over the parameter $R_0$ for the base model and a model similar to the base model but with inclusion of the zero-sum constraint on recruitment deviations.  Individual likelihood components contributing to the overall likelihood were generally similar between the two MLE models. The fishery and survey Dirichlet Multinomial parameters as well as the survey extra SD parameter were not sensitive to alternative values of $R_0$ used in likelihood profiles.
