@@ -244,8 +244,10 @@ weight.at.age.heatmap(base.model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Empirical weight-at-age (kg) values (colors) used for the base model.
-  Transparency, which is age-specific, highlights years with the heaviest fish for a given age.
+\caption{Empirical weight-at-age (kg) values used for the base model. Colors
+  correspond to the values, with red being the lightest fish (across all years
+  and ages) and blue being the heaviest fish. For each age, the most transparent cells indicate
+  the lightest fish of that age.
   Data are only available from \Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}.
   Values based on assumptions for the pre-\Sexpr{start.yr.age.comps} and forecast years are shown
   outside the blue lines.
