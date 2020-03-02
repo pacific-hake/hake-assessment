@@ -1106,8 +1106,8 @@ We also present two appendices, each highlighting Bayesian MCMC results from mod
 different structural assumptions or analytical choices compared to the base model.
 These include the incorporation
 of the age-1 survey index (Appendix~\ref{chap:age1-survey}), and the use of a new analytical tool
-for conducting efficient Bayesian MCMC algorithms, the Automatic Differentiation
-No-U-Turn Sampler (NUTS, \citet{Hoffman2014}), implemented using the
+for conducting efficient Bayesian MCMC algorithms, the
+No-U-Turn Sampler (NUTS; \citealt{HoffmanGelman2014}), implemented using the
 {\tt adnuts} R package \citep{Monnahan2018, Monnahan2019} in
 Appendix~\ref{chap:adnuts}. The inclusion of the age-1
 survey model was chosen because it may improve estimates of recruitment near the end
@@ -1358,7 +1358,7 @@ The sensitivities include the following:
 
 \item Removal of cohort-based ageing error from the model; and
 
-\item Running the base model using the Auto-Differentiation No-U-Turn-Sampling algorithm (NUTS, \citet{Hoffman2014}
+\item Running the base model using the No-U-Turn-Sampler (NUTS; \citet{HoffmanGelman2014}
 within the R package {\tt adnuts} (\citet{Monnahan2018}, \citet{Monnahan2019}).
 
 \end{enumerate}
