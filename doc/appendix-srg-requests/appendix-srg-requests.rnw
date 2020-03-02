@@ -48,7 +48,86 @@ to understand equilibrium recruitment assumption relative $R_0$.}
 
 {\bf Request 5 - Redo ADNUTs plots thinning down to about 2,000 samples from samples available, and redo convergence diagnostic plots.}
 
-**
+MCMC diagnostics are shown as plots below. Figure~\ref{fig:srg-adnuts-hists-2000} shows the adnuts model with extra thinning applied resulting in 2,000 samples and Figure~\ref{fig:srg-adnuts-hists-1000} shows the adnuts model with extra thinning applied resulting in 1,000 samples.
+
+The plots should be compared with Figures~\ref{fig:main-mcmc-diag-hists} and \ref{fig:mcmc-diag-hists-adnuts}. Comparing these with the base model diganostics,
+the effective sample size appears to be equivalent, with large effective sample size and little autocorrelation. The Geweke statistic shows a Normal distribution
+in all instances. It is notable that the diagnostics improve with fewer samples, which can be attributed to more space between samples giving a reduced chance of
+having poor samples included.
+
+Trace plots for the $M$ and $R_0$ parameters are shown in Figures~\ref{fig:adnuts-trace-2000} and \ref{fig:adnuts-trace-1000} for the adnuts model thinned to 2,00 samples and 1,000 sample respectively. Trace plots show good parameter mixing in all cases, and autocorrelation is minimal.
+
+Applying extra thinning has little effect to the adnuts model output. However, the fewer samples that are included, the less precise the resulting estimates will be.
+
+\begin{figure}[H]
+\begin{center}
+<<adnuts.hists.2000, fig.height=3.5>>=
+oldpar <- par()
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+adnuts.model.2000 <- load.models(rootd.models, "2020.01.50_nutsMCMC_thin_2000")
+adnuts.model.1000 <- load.models(rootd.models, "2020.01.51_nutsMCMC_thin_1000")
+make.mcmc.diag.hists.plot(adnuts.model.2000,
+                          labelstrings = "all")
+par <- oldpar
+@
+\caption{The same as Figure~\ref{fig:mcmc-diag-hists-adnuts}, but including extra thinning down to 2,000 samples. The thinning was done by taking every 3rd sample which resulted in 2,616 samples. The last 616 were stripped leaving the first 2,000.}
+\label{fig:srg-adnuts-hists-2000}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+<<adnuts.hists.1000, fig.height=3.5>>=
+oldpar <- par()
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+make.mcmc.diag.hists.plot(adnuts.model.1000,
+                          labelstrings = "all")
+par <- oldpar
+@
+\caption{The same as Figure~\ref{fig:mcmc-diag-hists-adnuts}, but thinned to 1,000 samples. The thinning was
+done by taking every 7th sample which resulted in 1,121 samples. The last 121 were stripped leaving the first 1,000.}
+\label{fig:srg-adnuts-hists-1000}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+<<adnuts-trace-2000, fig.height=4.8, fig.width=8>>=
+oldpar <- par(no.readonly=TRUE)
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.mcmc.diag.plot(adnuts.model.2000, key.posteriors[1], key.posteriors.titles[1])
+make.mcmc.diag.plot(adnuts.model.2000, key.posteriors[2], key.posteriors.titles[2])
+par <- oldpar
+@
+\end{center}
+\caption{The same as Figure~\ref{fig:mcmc-diag-m-r0-adnuts}, but including extra thinning down to 2,000 samples. The thinning was done by taking every 3rd sample which resulted in 2,616 samples. The last 616 were stripped leaving the first 2,000.}
+\label{fig:adnuts-trace-2000}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+<<adnuts-trace-1000, fig.height=4.8, fig.width=8>>=
+oldpar <- par(no.readonly=TRUE)
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.mcmc.diag.plot(adnuts.model.1000, key.posteriors[1], key.posteriors.titles[1])
+make.mcmc.diag.plot(adnuts.model.1000, key.posteriors[2], key.posteriors.titles[2])
+par <- oldpar
+@
+\end{center}
+\caption{The same as Figure~\ref{fig:mcmc-diag-m-r0-adnuts}, but thinned to 1,000 samples. The thinning was
+done by taking every 7th sample which resulted in 1,121 samples. The last 121 were stripped leaving the first 1,000.}
+\label{fig:adnuts-trace-1000}
+\end{figure}
+
+
+
+
+
+
+
+
 
 {\bf Request 6 - Redo recruitment retrospective analysis including Age-1 index, focusing on
   the 2014 and other strong year-classes.}
