@@ -123,14 +123,7 @@ done by taking every 7th sample which resulted in 1,121 samples. The last 121 we
 \label{fig:adnuts-trace-1000}
 \end{figure}
 
-
-
-
-
-
-
-
-
+\clearpage
 {\bf Request 6 - Redo recruitment retrospective analysis including Age-1 index, focusing on
   the 2014 and other strong year-classes.}
 
@@ -142,7 +135,9 @@ inclusion of the age-1 index.
 
 {\bf Request 7 -- Produce a time plot of effective $N$ and input $N$ to look for temporal patterns. Are recent samples upweighted relative to historical samples?}
 
-Input sample sizes and effective sample sizes have increased over time, where the latter increase appears to be positively autocorrelated with periods of highs and lows.
+Input sample sizes and effective sample sizes have increased over time, where
+the latter increase appears to be positively autocorrelated with periods of
+highs and lows (Figure~\ref{fig:srg-inputsamplesize}).
 
 \begin{figure}[H]
 \begin{center}
@@ -167,9 +162,10 @@ legend("topleft", legend = c("Input sample size", "M-I effective sample size"),
 
 \section{Day 2}
 
-{\bf Request 1 -- Find the estimated absolute recruitment when the MLE mode was done for age 2 ($Xi$) of each cohort and the estimated recruitment of that same cohort in the most recent assessment ($Yi$). Then create a histogram of $Xi/Yi$ for the base model and $Xi/Yi$ for the model including the age-1 index. If the age-1 index helps, the ratios should be closer to one than for the base model.}
+{\bf Request 1 -- Find the estimated absolute recruitment when the MLE mode was done for age 2 ($X_i$) of each cohort and the estimated recruitment of that same cohort in the most recent assessment ($Y_i$). Then create a histogram of $X_i/Y_i$ for the base model and $X_i/Y_i$ for the model including the age-1 index. If the age-1 index helps, the ratios should be closer to one than for the base model.}
 
-The number of estimated ratios that were close to one did not drastically improve when the age-1 index was included in the base model.
+The number of estimated ratios that were close to one did not drastically
+improve when the age-1 index was included in the base model (Figure~\ref{fig:srg-squidhist}).
 
 <<srg-squidhist-build, fig.keep = "none">>=
 dfbase <- make.squid.plot(c(list(base.model),base.model[["retros"]]),
@@ -200,7 +196,9 @@ print(bb)
 
 {\bf Request 2 -- For each MCMC draw, get the $R_0$ estimate and the mean of the recruitment deviates for the main period and for all years, and plot one against the other to look for correlations. Repeat for adnuts.}
 
-Correlations were similar between the base model and the adnuts model. Correlations decreased when the full time period was analyzed as compared to just the main recruitment period.
+Correlations were similar between the base model and the adnuts
+model. Correlations decreased when the full time period was analyzed as compared
+to just the main recruitment period (Figure~\ref{fig:srg-reccorr}).
 
 \begin{figure}[H]
 \begin{center}
@@ -247,7 +245,7 @@ legend("topright", bty = "n",
 \end{figure}
 
 
-{\bf Request 3 -- Run the MLE model with the $ln(input~sample~size)$ to down-weight more recent age data compare to older age data.}
+{\bf Request 3 -- Run the MLE model with the ln(input~sample~size) to down-weight more recent age data compare to older age data.}
 
 Arbitrarily down-weighting recent fishery age compositions by fitting to logged input sample sizes led to similar recent trends but dissimilar estimates of equilibrium conditions (Figures~\ref{fig:srg-biomass-base-alternative-1}-\ref{fig:srg-recruitment-base-alternative-1}.
 The estimate of $R_0$ increased from
@@ -311,4 +309,4 @@ for the entire period.
 
 \section{Other explorations}
 
-Several other data and model explorations were conducted during the review panel week. In particular, the JTC responded to an ‘informal’ SRG request to compile and compare likelihood profiles (MLE context) over the parameter $R_0$ for the base model and a model similar to the base model but with inclusion of the zero-sum constraint on recruitment deviations.  Individual likelihood components contributing to the overall likelihood were generally similar between the two MLE models. The fishery and survey Dirichlet Multinomial parameters as well as the survey extra SD parameter were not sensitive to alternative values of $R_0$ used in likelihood profiles.
+Several other data and model explorations were conducted during the review panel week. In particular, the JTC responded to an `informal' SRG request to compile and compare likelihood profiles (MLE context) over the parameter $R_0$ for the base model and a model similar to the base model but with inclusion of the zero-sum constraint on recruitment deviations.  Individual likelihood components contributing to the overall likelihood were generally similar between the two MLE models. The fishery and survey Dirichlet Multinomial parameters as well as the survey extra SD parameter were not sensitive to alternative values of $R_0$ used in likelihood profiles.
