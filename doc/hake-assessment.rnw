@@ -337,6 +337,8 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 
 \renewcommand{\thesection}{\thechapter.\arabic{section}}
 \renewcommand{\thetable}{\thechapter.\arabic{table}}
+% Note this is redefined at the top of appendix-srg-requests to allow for figures to appear numbered
+% correctly in sections.
 \renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 \renewcommand{\theequation}{\thechapter.\arabic{equation}}
 

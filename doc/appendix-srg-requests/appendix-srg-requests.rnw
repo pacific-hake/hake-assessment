@@ -1,4 +1,6 @@
 \clearpage
+% Make figures appear numbered correctly in sections.
+\renewcommand{\thefigure}{\thechapter.\arabic{section}.\arabic{figure}}
 
 <<srg-r0calc>>=
 sens.models.srg.1 <- load.models(here::here("models"),
