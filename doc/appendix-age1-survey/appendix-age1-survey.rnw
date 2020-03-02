@@ -11,7 +11,9 @@ It highlights
 model uncertainty arising from a different structural assumption or analytical choice
 compared to the base model, and the inclusion of the age-1 index was deemed
 important enough to warrant further consideration, especially in the context of characterizing
-uncertainty. The figures and tables show results from this sensitivity run (though
+forecast uncertainty. Nonetheless, this appendix is only meant to provide supplemental information,
+and should not be viewed as a viable alternative to the base model.
+The figures and tables show results from this sensitivity run (though
 note that some plots necessarily show MLE results).
 
 The estimated size of the 2010 recruitment using only data when that
@@ -43,8 +45,8 @@ The inclusion of the age-1 index does not greatly change the uncertainty of
 historical or forecast spawning biomass
 (Figure~\ref{fig:retrospective-biomass-base-age1}); this is also true for the
 retrospective runs. Overall, it
-appears that the inclusion of the age-1 index does not improve estimates of
-recruitments, and in fact can be overly optimistic (Figure~\ref{fig:retrospective-2008-base-age1}).
+appears that the inclusion of the age-1 index does not consistently improve estimates of
+recruitments, and in fact can be overly optimistic in some situations (Figure~\ref{fig:retrospective-2008-base-age1}).
 Recall that the survey design is not structured specifically for indexing age-1
 fish.
 
