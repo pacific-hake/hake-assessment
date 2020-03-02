@@ -7,6 +7,9 @@
 #' @param show_mle Logical. Show the MLE on the plot
 #' @param show_legend Logical. Show the legend on the plot
 #' @param title_text Title over the plot
+#' @param hist_breaks The length of the breaks vector for making the histogram
+#' (Number of bins)
+#'
 #'
 #' @return Nothing
 #' @export
@@ -21,14 +24,15 @@ make_mcmc_priors_vs_posts_plot <- function(prior_mle,
                                            show_init = TRUE,
                                            show_mle = TRUE,
                                            show_legend = FALSE,
-                                           title_text = ""){
+                                           title_text = "",
+                                           hist_breaks = 50){
 
   dat <- posterior %>%
     enframe() %>%
     mutate(prior = prior_mle$prior) %>%
     rename(post = value)
 
-  breakvec <- seq(prior_mle$Pmin, prior_mle$Pmax, length = 50)
+  breakvec <- seq(prior_mle$Pmin, prior_mle$Pmax, length = hist_breaks)
   if(min(breakvec) > min(dat$post)) breakvec <- c(min(dat$post), breakvec)
   if(max(breakvec) < max(dat$post)) breakvec <- c(breakvec, max(dat$post))
   posthist <- hist(dat$post, plot = FALSE, breaks = breakvec)
@@ -174,6 +178,7 @@ make_mcmc_priors_vs_posts_plot <- function(prior_mle,
 #'                                               titles = key.posteriors.titles)
 make_key_posteriors_mcmc_priors_vs_posts_plot <- function(model,
                                                           posterior_regex,
+                                                          hist_breaks = rep(50, length(posterior_regex)),
                                                           ncol = 1,
                                                           nrow = 1,
                                                           byrow = TRUE,
@@ -181,6 +186,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot <- function(model,
                                                           legend_panel = 1,
                                                           titles = NULL,
                                                           ...){
+  stopifnot(length(hist_breaks) == length(posterior_regex))
   if(ncol * nrow != length(posterior_regex)){
     stop("The length of the posterior_regex vector (", length(posterior_regex),
          ") is not equal to nrow (", nrow, ") * ncol (", ncol, ")", call. = FALSE)
@@ -197,6 +203,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot <- function(model,
                                    posts[[i]],
                                    show_legend = ifelse(i == legend_panel, TRUE, FALSE),
                                    title_text = ifelse(is.null(titles), "", titles[i]),
+                                   hist_breaks = hist_breaks[i],
                                    ...)
   }
 }
