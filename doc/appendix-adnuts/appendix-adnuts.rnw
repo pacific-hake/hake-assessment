@@ -8,7 +8,8 @@ for conducting efficient Bayesian MCMC sampling, the Automatic Differentiation
 No-U-Turn Sampler (NUTS; \citep{Hoffman2014}), implemented using the {\tt adnuts} R package
 \citep{Monnahan2018, Monnahan2019}.
 This tool has the potential to improve the applicability of Bayesian methods in stock assessment
-due to, among other things, decreased model run times.
+due to, among other things, decreased model run times. This appendix is provided solely as supplemental information
+to better understand the effect (if any) of potential future changes to a more efficient MCMC sampling algorithm.
 
 The R code that was used to run {\tt adnuts}, following general guidelines
 provided by C. Monnahan (pers. comm.), is provided at the end of this appendix.
