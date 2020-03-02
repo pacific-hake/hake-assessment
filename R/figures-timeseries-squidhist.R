@@ -27,7 +27,8 @@ make.squid.hist <- function(
   maxage = 3,
   plot = TRUE,
   ylim = NULL,
-  file = NULL) {
+  file = NULL,
+  legendplacement = "none") {
   n <- max(unique(squidoutput$age))
   squidoutput <- squidoutput[order(squidoutput$cohort, squidoutput$age), ]
   crap <- tapply(seq(NROW(squidoutput)), squidoutput$cohort,
@@ -47,12 +48,12 @@ make.squid.hist <- function(
   longd <- longd[!is.na(longd$variable), ]
   rownames(longd) <- NULL
   g <- ggplot(longd[longd$age >= minage & longd$age <= maxage, ],
-    aes(x = variable, color = age, fill = age, group = factor(age))) +
-    geom_histogram() +
+    aes(x = variable, fill = factor(age), group = factor(age))) +
+    geom_histogram(colour = "white") +
     scale_x_log10() +
     xlab("Ratio to most recent estimate across cohorts") +
     theme(legend.background = element_rect(color = NA),
-      legend.position = c(0.9,0.9)) +
+      legend.position = legendplacement) +
     coord_cartesian(xlim = NULL, ylim = ylim)
   if (plot) {
     print(g)
