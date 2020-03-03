@@ -821,9 +821,9 @@ make.long.parameter.estimates.table <- function(model,
   ## Add Dirichlet-Multinomial parameter
   ## currently only 1 value so calc.meds doesn't work due to
   ## getting a vector instead of a data.frame with names in header
-  dm <- data.frame(param = "ln(EffN_mult)_1",
-                   p.med = median(mc$`ln(EffN_mult)_1`))
-  df <- rbind(df, dm)
+  # dm <- data.frame(param = "ln(EffN_mult)_1",
+  #                  p.med = median(mc$`ln(EffN_mult)_1`))
+  # df <- rbind(df, dm)
 
   ## Add all Early_InitAge parameters
   ei <- mc[,grep("Early_InitAge_[0-9]+", mc.names)]
