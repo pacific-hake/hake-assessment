@@ -271,7 +271,7 @@ weight.at.age.heatmap(base.model,
 \end{center}
 \vspace{0mm}
 \caption{Sample sizes for developing empirical weight-at-age values
-  (colors, as shown in Figure ~\ref{fig:main-empirical-weight-at-age})
+  (colors and transparency as for Figure~\ref{fig:main-empirical-weight-at-age})
   used in the base model.
   Data are available from \Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}.
   The total sample size for each age is shown at the bottom.}
