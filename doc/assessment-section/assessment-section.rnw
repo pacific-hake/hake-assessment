@@ -1652,7 +1652,7 @@ the population model being restricted in the time-invariant case to fitting
 age-composition data with a stationary level of measurement error associated
 with each age.
 
-The impact of using the adnuts MCMC algorithm (Table~\ref{tab:main-parameter-estimates-sens-4}) is discussed in detail in
+The impact of using the NUTS MCMC algorithm (Table~\ref{tab:main-parameter-estimates-sens-4}) is discussed in detail in
 Appendix~\ref{chap:adnuts}.
 
 An additional sensitivity run arising from the Scientific Review Group
