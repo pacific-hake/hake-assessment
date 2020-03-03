@@ -55,7 +55,7 @@ the effective sample size appears to be equivalent, with large effective sample 
 in all instances. It is notable that the diagnostics improve with fewer samples, which can be attributed to more space between samples giving a reduced chance of
 having poor samples included.
 
-Trace plots for the $M$ and $R_0$ parameters are shown in Figures~\ref{fig:adnuts-trace-2000} and \ref{fig:adnuts-trace-1000} for the adnuts model thinned to 2,00 samples and 1,000 sample respectively. Trace plots show good parameter mixing in all cases, and autocorrelation is minimal.
+Trace plots for the $M$ and $R_0$ parameters are shown in Figures~\ref{fig:adnuts-trace-2000} and \ref{fig:adnuts-trace-1000} for the adnuts model thinned to 2,000 samples and 1,000 sample respectively. Trace plots show good parameter mixing in all cases, and autocorrelation is minimal.
 
 Applying extra thinning has little effect to the adnuts model output. However, the fewer samples that are included, the less precise the resulting estimates will be.
 
