@@ -424,7 +424,7 @@ versus 2.5 days per run, respectively. {\bf The SRG recommends that the JTC cont
 explore NUTS and similar options, as using MCMC for all runs would provide better
 comparability between the base assessment model and sensitivity runs.}
 
-\emph{Response -- The JTC evaluated the No U-turn Sampler (NUTS) method for conducting efficient
+\emph{Response -- The JTC evaluated the No U-turn Sampler (NUTS) for conducting efficient
 Bayesian MCMC sampling using the {\tt adnuts} R package \citep{Monnahan2018, Monnahan2019}.
 Results from this evaluation, including comparisons to the current approach for Bayesian
 MCMC sampling, are shown in Appendix~\ref{chap:adnuts}. In addition, the JTC explored
@@ -1106,7 +1106,7 @@ We also present two appendices, each highlighting Bayesian MCMC results from mod
 different structural assumptions or analytical choices compared to the base model.
 These include the incorporation
 of the age-1 survey index (Appendix~\ref{chap:age1-survey}), and the use of a new analytical tool
-for conducting efficient Bayesian MCMC algorithms, the
+for conducting efficient Bayesian MCMC sampling, the
 No-U-Turn Sampler (NUTS; \citealt{HoffmanGelman2014}), implemented using the
 {\tt adnuts} R package \citep{Monnahan2018, Monnahan2019} in
 Appendix~\ref{chap:adnuts}. The inclusion of the age-1
@@ -1359,7 +1359,7 @@ The sensitivities include the following:
 \item Removal of cohort-based ageing error from the model; and
 
 \item Running the base model using the No-U-Turn-Sampler (NUTS; \citet{HoffmanGelman2014}
-within the R package {\tt adnuts} (\citet{Monnahan2018}, \citet{Monnahan2019}).
+within the R package {\tt adnuts} \citep{Monnahan2018, Monnahan2019}.
 
 \end{enumerate}
 
