@@ -8,8 +8,8 @@
 We thank the authors of previous assessments whose work remains an
 influential part of this assessment. In particular, we thank Ian Taylor for
 his insightful comments and continued assistance with questions relating to
-Stock Synthesis, the r4ss package, and hake population dynamics in general,
-and for developing the new prior for $\theta_{\text{surv}}$.
+Stock Synthesis, the r4ss package, and hake population dynamics in general
+and for developing the new prior for Dirichlet-Multinomial parameters.
 We are grateful for the hard work of the
 U.S. and Canadian acoustics teams, including (in alphabetical order) Alicia
 Billings, Dezhang Chu, Julia Clemons, Steve Deblois, Jackie Detering,
@@ -25,7 +25,7 @@ Owen Hamel (who gave insightful
 comments on a draft version), Jim Hastie, Melissa
 Head, Allan Hicks, Michelle McClure, Patrick McDonald, Michael Prager, David Sampson,
 Lori Steele, Brad Stenberg, Nathan Taylor, Jim Thorson,
-Vanessa Tuttle, Scott Buchanan (for Canadian sample size information) and Steve
+Vanessa Tuttle, Scott Buchanan (for Canadian sample size information), and Steve
 Wischniowski. Rick Methot was very helpful with insight into Stock Synthesis as
 well as the assessment. We also thank the attendees at the official JTC meeting
 who provided valuable insight into the \Sexpr{end.yr-1} commercial fisheries in
