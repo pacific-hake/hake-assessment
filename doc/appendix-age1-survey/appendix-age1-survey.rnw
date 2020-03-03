@@ -6,7 +6,7 @@
 This appendix contains Bayesian MCMC results for the model run in which the age-1
 survey index is included as an index of recruitment as described in
 Sections~\ref{sec:data-acoustic-survey} and \ref{sec:assessment-sensitivity-analyses}
-and Table~\ref{tab:main-parameter-estimates-sens-1}.
+(Table~\ref{tab:main-parameter-estimates-sens-1}).
 It highlights
 model uncertainty arising from a different structural assumption or analytical choice
 compared to the base model, and the inclusion of the age-1 index was deemed
@@ -20,9 +20,9 @@ The estimated size of the 2010 recruitment using only data when that
 cohort is age-2 is closer to the final estimated size when using the age-1 index
 (Figure~\ref{fig:retrospective-recruitment-age1}) than it is for the base model
 (Figure~\ref{fig:main-retrospective-recruitment}). However, the 2008 and 2014
-recruitments get considerably overestimated at age-2 when using the age-1 index
+recruitments are considerably overestimated at age-2 when using the age-1 index
 (Figure~\ref{fig:retrospective-recruitment-age1}). For the 2008 recruitment
-(Figure~\ref{fig:retrospective-2008-base-age1}), in the base model the estimated
+(Figure~\ref{fig:retrospective-2008-base-age1}) in the base model, the estimated
 recruitment when taking off nine years of data (as though assessing the stock in
 2011) is just under 10~billion fish, reducing to about 6~billion when taking off
 eight years. However, when using the age-1 index the 2008 recruitment is
@@ -46,7 +46,7 @@ historical or forecast spawning biomass
 (Figure~\ref{fig:retrospective-biomass-base-age1}); this is also true for the
 retrospective runs. Overall, it
 appears that the inclusion of the age-1 index does not consistently improve estimates of
-recruitments, and in fact can be overly optimistic in some situations (Figure~\ref{fig:retrospective-2008-base-age1}).
+recruitments, and, in fact, can be overly optimistic in some situations (Figure~\ref{fig:retrospective-2008-base-age1}).
 Recall that the survey design is not structured specifically for indexing age-1
 fish.
 
