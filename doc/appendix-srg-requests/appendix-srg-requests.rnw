@@ -264,7 +264,7 @@ make.comparison.plot(c(list(base.model), list(sens.models.srg.1)),
 @
 \end{center}
 \caption{Maximum likelihood estimates of spawning biomass for the base model and a
-  sensitivity run that arbitrarily down-weighted recent fishery age compositions
+  sensitivity run that arbitrarily down-weights recent fishery age compositions
   using log-input sample size.}
 \label{fig:srg-biomass-base-alternative-1}
 \end{figure}
@@ -280,7 +280,7 @@ make.comparison.plot(c(list(base.model), list(sens.models.srg.1)),
 \end{center}
 \caption{Maximum likelihood estimates of stock status (relative spawning biomass)
   for the base model and a
-  sensitivity run that arbitrarily down-weighted recent fishery age compositions
+  sensitivity run that arbitrarily down-weights recent fishery age compositions
   using log-input sample size.}
 \label{fig:srg-depletion-base-alternative-1}
 \end{figure}
@@ -296,7 +296,7 @@ make.comparison.plot(c(list(base.model), list(sens.models.srg.1)),
 \end{center}
 \caption{Maximum likelihood estimates of recruitment deviations
   for the base model and a
-  sensitivity run that arbitrarily down-weighted recent fishery age compositions
+  sensitivity run that arbitrarily down-weights recent fishery age compositions
   using log-input sample size.}
 \label{fig:srg-recruitment-base-alternative-1}
 \end{figure}
