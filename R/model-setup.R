@@ -240,7 +240,7 @@ sens.model.names.5 <- c("No ageing error")
 ## Sensitivity models group 6  - ADNUTS snesitivity
 ## -----------------------------------------------------------------------------
 sens.model.dir.names.6 <- c("2020.01.31_nutsMCMC")
-sens.model.names.6 <- c("AD No-U-Turn-Sampling (NUTS)")
+sens.model.names.6 <- c("NUTS")
 
 model_list <- c(base.model.dir.name,
                 unlist(bridge.model.dir.names.1),

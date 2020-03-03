@@ -238,8 +238,8 @@ legend("topright", bty = "n",
 # par(mfrow = c(2,1), mar=c(5.1,4.1,4.1,2.1))
 @
 \caption{Correlation between recruitment deviations and $R_0$ for the base model
-  (left panels) and the model implemented using  Automatic Differentiation (AD)
-  No-U-Turn Sampler (NUTS) algorithm (right panels) for the main time period
+  (left panels) and the model implemented using the
+  No-U-Turn Sampler (NUTS, right panels) for the main time period
   (top panels) and the entire period (bottom panels).
   Correlations are reported in the upper right corner of each panel.}
 \label{fig:srg-reccorr}

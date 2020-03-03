@@ -378,7 +378,7 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 <<appendices-fecundity, child='appendix-age1-survey/appendix-age1-survey.rnw'>>=
 @
 
-\rfoot{Appendix~\ref{chap:adnuts} -- ADNUTS MCMC run}
+\rfoot{Appendix~\ref{chap:adnuts} -- NUTS MCMC run}
 <<appendices-fecundity, child='appendix-adnuts/appendix-adnuts.rnw'>>=
 @
 
