@@ -1,29 +1,28 @@
-run_extra_mcmc <- function(model, 
+run_extra_mcmc <- function(model,
                            extra_mcmc_path,
                            run_extra_mcmc,
                            show_ss_output = TRUE,
                            ...){
   ## This Re-runs the model (MLE) once for each posterior
   ## and saves the Report.sso files in model$extra.mcmc.path/report
-
   model_path <- model$path
   mcmc_path <- model$mcmcpath
-  
+
   ## Create the directories extra-mcmc and extra-mcmc/reports
   ##  which will hold the runs
 
   extra_mcmc_path <- file.path(model_path, extra_mcmc_path)
-  if(!run_extra_mcmc & dir.exists(extra_mcmc_path)){
+  if(!run_extra_mcmc){
     return(invisible())
   }
-  
+
   dir.create(extra_mcmc_path, showWarnings = FALSE)
   unlink(file.path(extra_mcmc_path, "*"), recursive = TRUE)
-  
+
   reports_path <- file.path(extra_mcmc_path, "reports")
   dir.create(reports_path, showWarnings = FALSE)
   unlink(file.path(reports_path, "*"), recursive = TRUE)
-  
+
   ## Copy all mcmc model files into the extra-mcmc directory
   file.copy(file.path(mcmc_path, list.files(mcmc_path)), extra_mcmc_path)
   posts <- read.table(file.path(extra_mcmc_path, "posteriors.sso"), header = TRUE)

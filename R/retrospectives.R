@@ -31,15 +31,15 @@ run_retrospectives <- function(model,
 
   model_path <- model$path
   retro_path <- file.path(model_path, "retrospectives")
-  if(!run_retrospectives & dir.exists(retro_path)){
+  if(!run_retrospectives){
     return(invisible())
   }
   dir.create(retro_path, showWarnings = FALSE)
   unlink(file.path(retro_path, "*"), recursive = TRUE)
-  
+
   # Create a list for the retrospective output to be saved to
   retros_list <- list()
-  
+
   # Copy all required model files into the retrospective directory
   model <- load_ss_files(model_path, ...)
 

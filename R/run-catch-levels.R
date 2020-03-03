@@ -360,24 +360,29 @@ run_catch_levels <- function(model,
                              stable_catch_path,
                              ...){
 
+  if(!run_catch_levels_default_hr &
+     !run_catch_levels_spr_100 &
+     !run_catch_levels_stable_catch){
+    return(invisible())
+  }
   model_path <- model$path
   catch_levels_path <- file.path(model_path, catch_levels_path)
   dir.create(catch_levels_path, showWarnings = FALSE)
   default_hr_path <- file.path(catch_levels_path, default_hr_path)
   spr_100_path <- file.path(catch_levels_path, spr_100_path)
   stable_catch_path <- file.path(catch_levels_path, stable_catch_path)
-  
-  if(run_catch_levels_default_hr | !dir.exists(default_hr_path)){
+
+  if(run_catch_levels_default_hr){
     run_catch_levels_default_hr(model,
                                 default_hr_path = default_hr_path,
                                 ...)
   }
-  if(run_catch_levels_spr_100 | !dir.exists(spr_100_path)){
+  if(run_catch_levels_spr_100){
     run_catch_levels_spr_100(model,
                              spr_100_path = spr_100_path,
                              ...)
   }
-  if(run_catch_levels_stable_catch | !dir.exists(stable_catch_path)){
+  if(run_catch_levels_stable_catch){
     run_catch_levels_stable_catch(model,
                                   stable_catch_path = stable_catch_path,
                                   ...)

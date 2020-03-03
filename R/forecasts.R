@@ -23,7 +23,7 @@ run_forecasts <- function(model,
   model_path <- model$path
   mcmc_path <- model$mcmcpath
   forecasts_path <- file.path(model_path, "forecasts")
-  if(!run_forecasts & dir.exists(forecasts_path)){
+  if(!run_forecasts){
     return(invisible())
   }
   dir.create(forecasts_path, showWarnings = FALSE)
