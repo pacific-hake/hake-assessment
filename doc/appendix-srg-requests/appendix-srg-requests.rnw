@@ -249,7 +249,7 @@ legend("topright", bty = "n",
 
 {\bf Request 3 -- Run the MLE model with the ln(input~sample~size) to down-weight more recent age data compare to older age data.}
 
-Arbitrarily down-weighting recent fishery age compositions by fitting to logged input sample sizes led to similar recent trends but dissimilar estimates of equilibrium conditions (Figures~\ref{fig:srg-biomass-base-alternative-1}-\ref{fig:srg-recruitment-base-alternative-1}.
+Arbitrarily down-weighting recent fishery age compositions by fitting to logged input sample sizes led to similar recent trends but dissimilar estimates of equilibrium conditions (Figures~\ref{fig:srg-biomass-base-alternative-1}-\ref{fig:srg-recruitment-base-alternative-1}).
 The estimate of $R_0$ increased from
 \Sexpr{mler0[1]} to \Sexpr{mler0[2]} billion fish.
 The calculated effective sample size of the logged input sample size increased at a slower rate than for the base model and did not have such high values in the most recent period (Figure~\ref{fig:srg-inputsamplesize}).
