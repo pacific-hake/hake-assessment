@@ -13,7 +13,7 @@ thin_posts <- function(model_dir = here::here("models", "2020.01.50_nutsMCMC_thi
   thin_file <- function(file){
     posts <- read_table2(file)
     if(nrow(posts) <= num_samples){
-      warning("The file ", file, " has ", nrow(posts),
+      message("The file ", file, " has ", nrow(posts),
               " rows and you asked to thin to ", num_samples, " rows so that file was not changed.")
     }else{
       p <- posts %>%
