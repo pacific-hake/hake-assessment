@@ -17,7 +17,7 @@ run_extra_mcmc <- function(model_path,
                            num_procs = detectCores() - 1,
                            extra_mcmc_path = "extra-mcmc",
                            ...){
-  stopifnot(num_procs < detectCores() - 1)
+  stopifnot(num_procs < detectCores())
   model <- load_ss_files(model_path)
   model_path <- model$path
   mcmc_path <- model$mcmcpath
