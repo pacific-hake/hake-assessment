@@ -1,5 +1,5 @@
 #' Create an rdata file to hold the model's data and outputs.
-#' 
+#'
 #' @param models_path Directory name for all models location
 #' @param model_name Directory name of model to be loaded
 #' @param ovwrt_rdata Logical. Overwrite the RData file if it exists
@@ -14,7 +14,7 @@ create_rdata_file <- function(models_path = "models",
                               retrospectives_path,
                               extra_mcmc_path,
                               ...){
-  
+
   stopifnot(!is.null(models_path),
             !is.null(model_name))
 
@@ -23,7 +23,7 @@ create_rdata_file <- function(models_path = "models",
     stop("Error - the directory ", model_path, " does not exist.\n",
          "Fix the problem and try again.", call. = FALSE)
   }
-  
+
   # The RData file will have the same name as the directory it is in
   rdata_file <- file.path(model_path, paste0(model_name, ".RData"))
   if(file.exists(rdata_file)){
@@ -39,7 +39,7 @@ create_rdata_file <- function(models_path = "models",
   }
 
   message("Creating a new RData file in ", model_path, "\n")
-  
+
   # If this point is reached, no RData file exists so it has to be built from scratch
   model <- load_ss_files(model_path, ...)
 
@@ -69,7 +69,7 @@ create_rdata_file <- function(models_path = "models",
   }
 
   # # Try loading extra mcmc output. If none are found or there is a problem, model$extra.mcmc will be NA
-  
+
   model$extra.mcmc.path <- file.path(model_path, extra_mcmc_path)
   if(dir.exists(model$extra.mcmc.path)){
     model$extra.mcmc <- fetch_extra_mcmc(model)
@@ -85,7 +85,7 @@ create_rdata_file <- function(models_path = "models",
 #'
 #' @details This is a wrapper function for calling [run_catch_levels()], [run_forecasts()],
 #' [run_retrospectives()], and [run_extra_mcmc()] functions.
-#' 
+#'
 #' @param models_path The path where the models directories reside
 #' @param model_name The name of the directory the model resides in
 #' @param ... Passed to the subroutines
@@ -95,11 +95,11 @@ create_rdata_file <- function(models_path = "models",
 run <- function(models_path = NULL,
                 model_name = NULL,
                 ...){
- 
+
   stopifnot(!is.null(models_path),
             !is.null(model_name))
   model_path <- file.path(models_path, model_name)
-  
+
   if(!dir.exists(model_path)){
     stop("Error - the directory ", model_path, " does not exist.\n",
          "Fix the problem and try again.", call. = FALSE)
@@ -108,6 +108,7 @@ run <- function(models_path = NULL,
     return(NULL)
   }
   model <- load_ss_files(model_path, ...)
+
   run_catch_levels(model, ...)
   run_forecasts(model, ...)
   run_retrospectives(model, ...)

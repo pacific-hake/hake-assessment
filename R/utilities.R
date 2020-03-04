@@ -660,7 +660,7 @@ plotBars.fn <- function(x,
   y$value <- y$value / scale
   y$lo <- y$lo / scale
   y$hi <- y$hi / scale
-  
+
   if(!add) plot(x, y$value, ...)
   if(add) points(x, y$value, ...)
   segments(x, y$lo, x, y$value - gap, col = ciCol, lty = ciLty, lwd = ciLwd)
@@ -1018,27 +1018,27 @@ get_active_parameter_names <- function(model){
 #' get_posterior_data(base.model, "asdfg")
 #' get_posterior_data(base.model, c("NatM", "SR_LN", "SR_BH_steep", "Q_extraSD"))
 get_posterior_data <- function(model, param_regex){
-  
+
   mcmc <- model$mcmc
   if(length(mcmc) == 1 && is.na(mcmc)){
     return(NA)
   }
-  
+
   params <- model$parameters
   posts_list <- list()
-  
+
   for(i in seq_along(param_regex)){
     parind <- grep(param_regex[i], params$Label)
     if(length(parind) < 1){
       stop("The regular expression ", param_regex[i], " matched no parameter names", call. = FALSE)
     }
     if(length(parind) > 1){
-      stop("The regular expression ", param_regex[i], " matched more than one (", length(parind), 
+      stop("The regular expression ", param_regex[i], " matched more than one (", length(parind),
            ") parameter names", call. = FALSE)
     }
     postparname <- params[parind, ]$Label
     message("The regular expression matched ", postparname)
-    
+
     # Figure out which column of the mcmc output contains the parameter
     jpar <- grep(param_regex[i], names(mcmc))
     if(length(jpar) == 1){
@@ -1048,7 +1048,7 @@ get_posterior_data <- function(model, param_regex){
       posts_list[[i]] <- NA
     }
   }
-  
+
   #if(length(posts_list) == 1){
   #  posts_list <- posts_list[[1]]
   #}
@@ -1069,20 +1069,20 @@ get_posterior_data <- function(model, param_regex){
 #' get_prior_data(base.model, "asdfg")
 #' get_prior_data(base.model, c("NatM", "SR_LN", "SR_BH_steep", "Q_extraSD"))
 get_prior_data <- function(model, param_regex){
-  
+
   stopifnot(class(param_regex) == "character")
-  
+
   params <- model$parameters
   priors_list <- list()
   Pconst <- 0.0001
-  
+
   for(i in seq_along(param_regex)){
     parind <- grep(param_regex[i], params$Label)
     if(length(parind) < 1){
       stop("The regular expression ", param_regex[i], " matched no parameter names", call. = FALSE)
     }
     if(length(parind) > 1){
-      stop("The regular expression ", param_regex[i], " matched more than one (", length(parind), 
+      stop("The regular expression ", param_regex[i], " matched more than one (", length(parind),
            ") parameter names", call. = FALSE)
     }
     parline <- params[parind, ]
@@ -1098,7 +1098,7 @@ get_prior_data <- function(model, param_regex){
     Psd <- parline$Pr_SD
     Pr <- parline$Prior
     Pval <- seq(Pmin, Pmax, length = nrow(model$mcmc))
-    
+
     if(Ptype == "Log_Norm"){
       Prior_Like <- 0.5 * ((log(Pval) - Pr) / Psd) ^ 2
     }else if(Ptype == "Full_Beta"){
@@ -1126,13 +1126,13 @@ get_prior_data <- function(model, param_regex){
     if(!is.na(Prior_Like[1])){
       prior <- exp(-1 * Prior_Like)
     }
-    
+
     if(!is.na(parsd) && parsd > 0){
       mle <- dnorm(Pval, finalval, parsd)
       mlescale <- 1 / (sum(mle) * mean(diff(Pval)))
       mle <- mle * mlescale
     }
-    
+
     priors_list[[i]] <- list(initval = initval,
                              finalval = finalval,
                              parsd = parsd,
@@ -1144,10 +1144,26 @@ get_prior_data <- function(model, param_regex){
                              Pval = Pval,
                              prior = prior,
                              mle = mle)
-    
+
   }
   # if(length(priors_list) == 1){
   #   priors_list <- priors_list[[1]]
   # }
   priors_list
+}
+
+#' Split the posteriors data frame in a list of N data frames based on `from_to`
+#'
+#' @param df A data frame containing rows to split
+#' @param from_to A data frame with the columns `from` and `to` which indicat the
+#' rows from and to for each data frame
+#'
+#' @return Aa list of data frames of the same length as the number of rows in `from_to`
+#' @export
+#'
+#' @examples
+#' split_posterioes(base.model, tibble(from = c(1, 100), to = c(101, 200)))
+split_df <- function(df, from_to){
+  stopifnot(nrow(df) >= max(from_to))
+  pmap(from_to, ~{df[.x:.y,]})
 }
