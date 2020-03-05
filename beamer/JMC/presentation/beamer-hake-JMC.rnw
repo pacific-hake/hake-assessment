@@ -845,15 +845,27 @@ par <- oldpar
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Estimated changes in biomass at age for recent large cohorts}
-<<main.cohort.effects.table, results='asis', echo=FALSE>>=
+\frame{\frametitle{Estimated changes in biomass at age for recent large cohorts (1)}
+<<main.cohort.effects.table.1, results='asis', echo=FALSE>>=
 make.cohort.table(base.model,
                   c(1999, 2010, 2014),
                   start.yr,
                   last.data.yr+1,
-                  csv.dir = output.csv.dir,
                   xcaption = NULL,
-                  xlabel = "tab:main-cohort-effects",
+                  font.size = 6,
+                  space.size = 7,
+                  scalebox = '0.95')
+@
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Estimated changes in biomass at age for recent large cohorts (2)}
+<<main.cohort.effects.table.2, results='asis', echo=FALSE>>=
+make.cohort.table(base.model,
+                  c(2014, 2016, 2017),
+                  start.yr,
+                  last.data.yr + 1,
+                  xcaption = NULL,
                   font.size = 6,
                   space.size = 7,
                   scalebox = '0.95')
