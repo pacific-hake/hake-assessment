@@ -13,6 +13,6 @@ del *.out
 del *.nav
 del *.snm
 del *.synctex.gz
-del beamer-hake-JMC.tex
-del beamer-hake-JMC.pdf
+del beamer-hake-JMC-Canada.tex
+del beamer-hake-JMC-Canada.pdf
 rmdir /S /Q knitr-cache
