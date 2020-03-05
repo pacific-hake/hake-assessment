@@ -652,7 +652,7 @@ from last year)
                                          fore.yr = forecast_yrs[2],
                                          colors = c("black","blue","green","orange","red","tan"),
                                          pch = c(16,17,17,17,15,18),
-                                         legend.loc = "topleft",
+                                         legend.loc = 0.65,
                                          legend.cex = 0.7)
 
     @
