@@ -419,20 +419,6 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Joint History of Rel. Fishing Intensity and Rel. Biomass}
-\begin{figure}[tbp]
-\begin{center}
-<<phase.plot, fig.height=3, fig.width=6>>=
-      make.phase.plot(base.model,
-                      start.yr = start.yr,
-                      end.yr = end.yr,
-                      cex.lab = 0.5)
-  @
-\end{center}
-\end{figure}
-}
-
-%----------------------------------------------------------
 \frame{\frametitle{Age-1 index: correlation with base recruitment estimates}
 \begin{columns}
   \begin{column}{0.35\textwidth}
@@ -457,8 +443,45 @@ from last year)
 }
 
 %----------------------------------------------------------
+\frame{\frametitle{Joint History of Rel. Fishing Intensity and Rel. Biomass}
+\begin{figure}[tbp]
+\begin{center}
+<<phase.plot, fig.height=3, fig.width=6>>=
+      make.phase.plot(base.model,
+                      start.yr = start.yr,
+                      end.yr = end.yr,
+                      cex.lab = 0.5)
+  @
+\end{center}
+\end{figure}
+}
+
+%----------------------------------------------------------
 \section{Past Management}
 \subsection{}
+\frame{\frametitle{Relative to benchmarks}
+\begin{figure}[tbp]
+\begin{center}
+<<phase.plot.last.yr, fig.height=3, fig.width=6>>=
+      make.phase.plot(last.yr.base.model,
+                      start.yr = start.yr,
+                      end.yr = end.yr - 1,
+                      cex.lab = 0.5)
+  @
+\end{center}
+\end{figure}
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Relative to benchmarks}
+  \bi
+    \item Fishing intensity has remained below target
+    \item Biomass has mostly remained above target
+    \item When biomass goes below target, the fishing intensity typically decreases
+  \ei
+}
+
+%----------------------------------------------------------
 \frame{\frametitle{Total Allowable Catch}
 \begin{columns}
   \begin{column}{0.4\textwidth}
@@ -489,30 +512,6 @@ from last year)
       management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE, connect_vars_linetype = "solid",
       connect_vars_alpha = 0.2, curr_assess_biomass = base.model$catch.default.policy[1])
     @
-}
-
-
-%----------------------------------------------------------
-\frame{\frametitle{Relative to benchmarks}
-  \begin{columns}
-    \begin{column}{0.28\textwidth}
-      \bi
-        \item Fishing intensity has remained below target
-        \item Biomass has mostly remained above target
-        \item When biomass goes below target, the fishing intensity typically decreases
-      \ei
-    \end{column}
-    \begin{column}{0.68\textwidth}
-    \bc
-    <<main.phase, out.width='0.9\\columnwidth'>>=
-      make.phase.plot(last.yr.base.model,
-                      start.yr = start.yr,
-                      end.yr = end.yr - 1,
-                      cex.lab = 0.8)
-    @
-    \ec
-    \end{column}
-  \end{columns}
 }
 
 %----------------------------------------------------------
