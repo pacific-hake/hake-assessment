@@ -277,6 +277,22 @@ from last year).
 \end{figure}
 }
 
+%----------------------------------------------------------
+\section{Past Management}
+\subsection{}
+\frame{\frametitle{Past management: Last year's model}
+\begin{figure}[tbp]
+\begin{center}
+<<phase.plot.last.yr, fig.height=3, fig.width=6>>=
+      make.phase.plot(last.yr.base.model,
+                      start.yr = start.yr,
+                      end.yr = end.yr - 1,
+                      cex.lab = 0.5)
+  @
+\end{center}
+\end{figure}
+}
+
 %--------------------------------------------------------------
 \frame{\frametitle{Past management: Total Allowable Catch}
     <<tac.vs.realized.catch.ts, fig.height=3.5>>==
@@ -421,7 +437,7 @@ from last year).
                                          fore.yr = forecast_yrs[1],
                                          colors = c("black","blue","green","orange","red","tan"),
                                          pch = c(16,17,17,17,15,18),
-                                         legend.loc = "topleft",
+                                         legend.loc = .8,
                                          legend.cex = 0.8)
 
     @
@@ -429,7 +445,7 @@ from last year).
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Risk based on \Sexpr{end.yr+1} catch}
+\frame{\frametitle{Risk based on fixed \Sexpr{end.yr + 1} and \Sexpr{end.yr + 2} catch}
     <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
       make.risk.table(base.model,
                       forecast_yrs,
@@ -441,7 +457,7 @@ from last year).
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Risk based on \Sexpr{end.yr+1} catch}
+\frame{\frametitle{Risk based on fixed \Sexpr{end.yr + 1} and \Sexpr{end.yr + 2} catch}
   \bc
     <<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
       make.forecast.risk.comparison.plot(base.model,
@@ -449,7 +465,7 @@ from last year).
                                          fore.yr = forecast_yrs[2],
                                          colors = c("black","blue","green","orange","red","tan"),
                                          pch = c(16,17,17,17,15,18),
-                                         legend.loc = "topleft",
+                                         legend.loc = 0.65,
                                          legend.cex = 0.7)
 
     @
@@ -479,7 +495,7 @@ from last year).
 
 %----------------------------------------------------------
 \subsection{Spawning Biomass (excerpt)}
-\frame{\frametitle{Relative Spawning Biomass}
+\frame{\frametitle{Relative Spawning Biomass (excerpt)}
 \begin{columns}
   \begin{column}{0.33\textwidth}
     \bi
@@ -514,9 +530,9 @@ from last year).
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Fishing Intensity is different for all years and rows because it accounts for catch that year
-      \item Less than 25\% probability above target with a catch of 440,000 t
-      \item Default harvest rate is slightly above the target fishing intensity
+      %\item Fishing Intensity is different for all years and rows because it accounts for catch that year
+      \item Fishing intensity reaches fishing target with a catch of 410,000 t within three years time
+      \item Using the default harvest rate, fishing intensity is slightly above the target (107--108\%; not shown)
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -642,15 +658,27 @@ par <- oldpar
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Estimated changes in biomass at age for recent large cohorts}
-<<main.cohort.effects.table, results='asis', echo=FALSE>>=
+\frame{\frametitle{Estimated changes in biomass at age for recent large cohorts (1)}
+<<main.cohort.effects.table.1, results='asis', echo=FALSE>>=
 make.cohort.table(base.model,
                   c(1999, 2010, 2014),
                   start.yr,
                   last.data.yr+1,
-                  csv.dir = output.csv.dir,
                   xcaption = NULL,
-                  xlabel = "tab:main-cohort-effects",
+                  font.size = 6,
+                  space.size = 7,
+                  scalebox = '0.95')
+@
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Estimated changes in biomass at age for recent large cohorts (2)}
+<<main.cohort.effects.table.2, results='asis', echo=FALSE>>=
+make.cohort.table(base.model,
+                  c(2014, 2016, 2017),
+                  start.yr,
+                  last.data.yr + 1,
+                  xcaption = NULL,
                   font.size = 6,
                   space.size = 7,
                   scalebox = '0.95')
