@@ -123,8 +123,8 @@ fore.names <- cmodels.names <- sapply(base.model$catch.levels, "[[", 2)[fore.ind
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{Overview}
-\subsection{}
+%\section{Overview}
+%\subsection{}
 
 %% \begin{frame}
 %% \frametitle{Overview of JTC membership}
@@ -169,22 +169,22 @@ fore.names <- cmodels.names <- sapply(base.model$catch.levels, "[[", 2)[fore.ind
   \bi
     \item The median estimate of \Sexpr{end.yr} relative spawning biomass is
       \Sexpr{curr.depl.median}\% \\
-      (with 95\% interval from \Sexpr{curr.depl.lower}\% to \Sexpr{curr.depl.upper}\%).
-    \item Large 2010 and 2014 cohorts continue to make up large fraction of catches.
-    \item 2016 cohort estimated to be large.
-    \item 2017 cohort estimated to be above average.
+      (with 95\% interval from \Sexpr{curr.depl.lower}\% to \Sexpr{curr.depl.upper}\%)
+    \item Large 2010 and 2014 cohorts continue to make up large fraction of catches
+    \item 2016 cohort estimated to be large
+    \item 2017 cohort estimated to be above average
     \item Default harvest rule estimated median catch limit
       for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t \\
       (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]}
-      to \Sexpr{catch.limit.quantiles["upper"]}~t).
-    \item New \Sexpr{last.data.yr} age data from fishery is fit well by the model.
+      to \Sexpr{catch.limit.quantiles["upper"]}~t)
+    \item New \Sexpr{last.data.yr} age data from fishery and survey is fit well by the model
     \item Coastwide catch in \Sexpr{end.yr-1} was \Sexpr{last.year.landings}~t,
-      out of a TAC (adjusted for carryovers) of \Sexpr{last.year.tac}~t.
+      out of a TAC (adjusted for carryovers) of \Sexpr{last.year.tac}~t
     \item Attainment in the U.S. was \Sexpr{last.year.us.attained}\% of its quota
       (\Sexpr{paste0(ifelse(last.2year.us.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.us.attained.diff))}\%
 from last year);
       in Canada it was \Sexpr{last.year.can.attained}\% (\Sexpr{paste0(ifelse(last.2year.can.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.can.attained.diff))}\%
-from last year).
+from last year)
   \ei
 \end{frame}
 
@@ -204,11 +204,11 @@ from last year).
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \bi
-        \item Samples are from \Sexpr{start.yr.age.comps} to \Sexpr{assess.yr - 1}.
-        \item Includes an average of
-          \Sexpr{start.yr.age.comps}--\Sexpr{assess.yr - 1} for years
-          \Sexpr{start.yr}--\Sexpr{start.yr.age.comps - 1} and \Sexpr{assess.yr - 5}--\Sexpr{assess.yr - 1}
-          for the forecast years \Sexpr{forecast_yrs[1]}--\Sexpr{forecast_yrs[length(forecast_yrs)]}.
+        \item Samples are from \Sexpr{start.yr.age.comps} to \Sexpr{assess.yr - 1}
+        \item Pre-1975 period (\Sexpr{start.yr}--\Sexpr{start.yr.age.comps - 1}) defined as average of
+          \Sexpr{start.yr.age.comps}--\Sexpr{assess.yr - 1} 
+        \item Forecast period (\Sexpr{forecast_yrs[1]}--\Sexpr{forecast_yrs[length(forecast_yrs)]})
+          defined as average of \Sexpr{assess.yr - 5}--\Sexpr{assess.yr - 1}
       \ei
   \vspace{5pt}
     \end{column}
@@ -267,9 +267,9 @@ from last year).
 \begin{columns}
   \begin{column}{0.45\textwidth}
     \bi
-      \item Evidence of skip-spawning and senescence included in estimates.
+      \item Evidence of skip-spawning and senescence included in estimates
       \item Fecundity used for calculation of spawning biomass is based
-        on maturity-at-age $\times$ time-varying weight-at-age.
+        on maturity-at-age $\times$ time-varying weight-at-age
     \ei
   \end{column}
   \begin{column}{0.53\textwidth}
@@ -311,7 +311,7 @@ from last year).
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Fit to acoustic survey age comps}
+\frame{\frametitle{Fit to acoustic survey age comps (MCMC)}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
@@ -336,10 +336,10 @@ from last year).
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Large 1999, 2010, and 2014 cohorts fit particularly well.
-      \item Some over- and under-fitting in 1980 and 1984 cohorts.
+      \item Large 1999, 2010, and 2014 cohorts fit particularly well
+      \item Some over- and under-fitting in 1980 and 1984 cohorts
       \item Other recent above-average sized cohorts (2005, 2006, 2008) are often underfit when young.
-      \item The 2016 cohort fits well.
+      \item The 2010, 2014, and 2016 cohorts fit well
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -437,10 +437,15 @@ from last year).
 \begin{columns}
   \begin{column}{0.35\textwidth}
     \bi
-      \item Age-1 index tracks model predictions but is not included in the stock assessment model.
-      \item Estimated numbers of age-1 hake in large cohort years have lower fits than their respective indices.
-      \item Estimated numbers of age-1 hake in small cohort years have higher fits than their respective indices.
-      \item 2019 fit is very poor.
+      \item Age-1 index moderately tracks model predictions but is not included in the stock assessment model
+      \item Estimated numbers of age-1 hake in 2019 (2018 year class) lower than 2016
+      and 2014 year classes
+      \bi
+        \item Survey and model estimates suggest decline in numbers of age-1 hake in 2019
+          relative to 2017
+        \item Numbers of age-1 hake caught in the 2019 fishery 1--2\% of
+          what was caught in 2017 and 2018
+      \ei
     \ei
   \end{column}
   \begin{column}{0.65\textwidth}
@@ -452,17 +457,21 @@ from last year).
 }
 
 %----------------------------------------------------------
-\section{Management and forecasts}
+\section{Past Management}
 \subsection{}
-\frame{\frametitle{Past management: Total Allowable Catch}
+\frame{\frametitle{Total Allowable Catch}
 \begin{columns}
   \begin{column}{0.4\textwidth}
-      In March \Sexpr{last.assess.yr}
       \bi
-        \item Harvest rule TAC was \Sexpr{f(catch.targets %>% filter(Year == last.assess.yr) %>% pull(`Assessment TAC`))}
-        \item JMC set an adjusted TAC at \Sexpr{last.year.tac}~t
-        \item Catch was \Sexpr{last.year.landings}~t
+	    \item March \Sexpr{last.assess.yr}
+      \bi
+        \item Default harvest TAC =      \Sexpr{f((catch.targets %>% filter(Year == last.assess.yr))$`Assessment TAC`)} t
+        \item JMC set adjusted TAC = \Sexpr{last.year.tac} t
       \ei
+      \item When default HR suggests a large catch, TAC is often set less
+      \item Catches are often less than the TAC
+      \item Box colors correspond to year in the time series (darker are more recent)
+	  \ei
   \end{column}
   \begin{column}{0.6\textwidth}
   \bc
@@ -475,22 +484,20 @@ from last year).
 }
 
 %--------------------------------------------------------------
-% \frame{\frametitle{Past management: Total Allowable Catch}
-%     <<tac.vs.realized.catch.ts, fig.height=3.5>>==
-%       management_catch_vs_tac_plot(catch.targets,
-%                                    connect_vars = TRUE,
-%                                    connect_vars_linetype = "solid",
-%                                    connect_vars_alpha = 0.2,
-%                                    curr_assess_biomass = base.model$catch.default.policy[1])
-%     @
-% }
+\frame{\frametitle{Total Allowable Catch (time series)}
+    <<tac.vs.realized.catch.ts, fig.height=3.5>>==
+      management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE, connect_vars_linetype = "solid",
+      connect_vars_alpha = 0.2, curr_assess_biomass = base.model$catch.default.policy[1])
+    @
+}
+
 
 %----------------------------------------------------------
-\frame{\frametitle{Past management: Performance}
+\frame{\frametitle{Relative to benchmarks}
   \begin{columns}
     \begin{column}{0.28\textwidth}
       \bi
-        \item Fishing intensity has mostly remained below target
+        \item Fishing intensity has remained below target
         \item Biomass has mostly remained above target
         \item When biomass goes below target, the fishing intensity typically decreases
       \ei
@@ -577,7 +584,7 @@ from last year).
 }
 
 %----------------------------------------------------------
-\section{Risk Tables and Decision Tables}
+\section{Risk and Decision Tables}
 \subsection{Risk}
 \frame{\frametitle{Risk table definitions}
   Probabilities of ``bad'' things happening at different fixed catch levels
@@ -625,7 +632,7 @@ from last year).
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Risk based on \Sexpr{end.yr+1} catch}
+\frame{\frametitle{Risk based on fixed \Sexpr{end.yr} and \Sexpr{end.yr+1} catch}
     <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
       make.risk.table(base.model,
                       forecast_yrs,
@@ -637,7 +644,7 @@ from last year).
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Risk based on \Sexpr{end.yr+1} catch}
+\frame{\frametitle{Risk based on fixed \Sexpr{end.yr} and \Sexpr{end.yr+1} catch (plot)}
   \bc
     <<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
       make.forecast.risk.comparison.plot(base.model,
@@ -653,8 +660,8 @@ from last year).
 }
 
 %----------------------------------------------------------
-\section{Decision Tables}
-\subsection{Intro}
+%\section{Decision Tables}
+%\subsection{Intro}
 \frame{\frametitle{Decision Tables}
   \bi
     \item Catch streams
@@ -675,7 +682,7 @@ from last year).
 
 %----------------------------------------------------------
 \subsection{Spawning Biomass (excerpt)}
-\frame{\frametitle{Relative Spawning Biomass}
+\frame{\frametitle{Relative Spawning Biomass (excerpt)}
 \begin{columns}
   \begin{column}{0.33\textwidth}
     \bi
@@ -710,9 +717,9 @@ from last year).
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Fishing Intensity is different for all years and rows because it accounts for catch that year
-      \item Less than 25\% probability above target with a catch of 440,000 t
-      \item Default harvest rate is slightly above the target fishing intensity
+      %\item Fishing Intensity is different for all years and rows because it accounts for catch that year
+      \item Fishing intensity reaches fishing target with a catch of 410,000 t within three years time
+      \item Using the default harvest rate, fishing intensity is slightly above the target (107--108\%; not shown)
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -907,15 +914,16 @@ make.cohort.table(base.model,
 \frame{\frametitle{Summary}
   \bi
     \item Uncertainty is large, but stock is likely above $B_{40\%}$,
-      and fishing intensity is likely to have been below 100\% in either model.
+      and fishing intensity is likely to have been below 100\% in either model
     \item Based on the default harvest rule, the estimated median catch limit
       for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t
       (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to
-      \Sexpr{catch.limit.quantiles["upper"]}~t).
-    \item Forecasts strongly influenced by size of large but uncertain 2014 and 2016 cohorts.
+      \Sexpr{catch.limit.quantiles["upper"]}~t)
+    \item Forecasts strongly influenced by size of above average, but uncertain, 2014 and 2016 cohorts and very uncertain 2017 cohort
     \item There is a \Sexpr{f(base.model$risks[[1]][4, 2])}\% chance that spawning biomass will decline from \Sexpr{assess.yr} to \Sexpr{assess.yr + 1} at a catch level of \Sexpr{f(base.model$risks[[1]][4, 1])}~t, partly due to mortality on ageing 2010 cohort (Figure j)
-    \item Maintaining a constant catch of \Sexpr{f(base.model$risks[[1]][6, 1])}~t (i.e., 2017 -- 2019 TAC) results in a higher risk of falling below $B_{40\%}$ in 2 years time than predicted in
-    last year's assessment (\Sexpr{f(base.model$risks[[2]][6, 3], 1)}\% compared to 40\%) (Table j)
+    \item Maintaining a constant catch of 597,500~t (i.e., 2017 through 2019 TACs) results in a 37\%
+      chance of falling below $B_{40\%}$ in 1 year (60\% in 2 years time), which is a considerable increase
+      compared to last year's assessment (26\% and 40\%, respectively) (Table j)
   \ei
 }
 
