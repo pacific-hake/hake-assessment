@@ -443,7 +443,23 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Joint History of Rel. Fishing Intensity and Rel. Biomass}
+\frame{\frametitle{Biomass and relative fishing intentisy}
+  \bi
+    \item Biomass has mostly remained above target ($\frac{B_{\Sexpr{assess.yr}}}{B_0} = \Sexpr{f(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end.yr], 2)}$)
+    \item Fishing intensity has remained below target
+    ($\frac{1-SPR_{\Sexpr{assess.yr - 1}}}{1 - SPR_{40\%}} = \Sexpr{f(base.model$mcmccalcs$pmed[names(base.model$mcmccalcs$pmed) == assess.yr - 1], 2)}$)
+    \item The estimated probability that spawning biomass at the start of
+    \Sexpr{assess.yr} is below the $\Bforty$ (40\% of $B_0$) reference point is
+    \Sexpr{probs.curr.below.bforty}\%
+    \item The probability that the relative fishing
+    intensity is above its target at the end of \Sexpr{end.yr-1} is
+    \Sexpr{probs.curr.rel.fish.intens.above.one}\%
+    \item The joint probability of both of these things occuring is \Sexpr{joint.percent.prob.above.below}\%
+  \ei
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Joint History of Rel. Fishing Intensity and Rel. Biomass (\Sexpr{assess.yr})}
 \begin{figure}[tbp]
 \begin{center}
 <<phase.plot, fig.height=3, fig.width=6>>=
@@ -459,7 +475,7 @@ from last year)
 %----------------------------------------------------------
 \section{Past Management}
 \subsection{}
-\frame{\frametitle{Relative to benchmarks}
+\frame{\frametitle{Joint History of Rel. Fishing Intensity and Rel. Biomass (\Sexpr{assess.yr - 1})}
 \begin{figure}[tbp]
 \begin{center}
 <<phase.plot.last.yr, fig.height=3, fig.width=6>>=
@@ -470,15 +486,6 @@ from last year)
   @
 \end{center}
 \end{figure}
-}
-
-%----------------------------------------------------------
-\frame{\frametitle{Relative to benchmarks}
-  \bi
-    \item Fishing intensity has remained below target
-    \item Biomass has mostly remained above target
-    \item When biomass goes below target, the fishing intensity typically decreases
-  \ei
 }
 
 %----------------------------------------------------------
