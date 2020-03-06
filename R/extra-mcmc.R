@@ -32,9 +32,9 @@ run_extra_mcmc <- function(model_path,
     nxt <- tibble(from = from_to[i - 1,]$to + 1, to = from_to[i - 1,]$to + num_posts_by_proc[i])
     from_to <- bind_rows(from_to, nxt)
   }
-  posts <- read_table(file.path(model$mcmcpath, "posteriors.sso"))
+  posts <- read_table(file.path(model$mcmcpath, posts_file_name))
   post_lst <- split_df(posts, from_to)
-  derposts <- read_table(file.path(model$mcmcpath, "derived_posteriors.sso"))
+  derposts <- read_table(file.path(model$mcmcpath, derposts_file_name))
   derpost_lst <- split_df(derposts, from_to)
 
   extra_mcmc_full_path <- file.path(model_path, extra_mcmc_path)
@@ -105,18 +105,18 @@ run_extra_mcmc_chunk <- function(model,
   ## Copy files into the subdirectory from the model/mcmc directory
 
   file.copy(file.path(mcmc_path, list.files(mcmc_path)), sub_extra_mcmc_path)
-  write_csv(posts, file.path(sub_extra_mcmc_path, "posteriors.sso"))
-  write_csv(derposts, file.path(sub_extra_mcmc_path, "derived_posteriors.sso"))
+  write_csv(posts, file.path(sub_extra_mcmc_path, posts_file_name))
+  write_csv(derposts, file.path(sub_extra_mcmc_path, derposts_file_name))
 
   write.table(x = newpar,
-              file = file.path(sub_extra_mcmc_path, "ss.par"),
+              file = file.path(sub_extra_mcmc_path, par_file_name),
               quote = FALSE,
               row.names = FALSE)
 
-  start <- SS_readstarter(file.path(sub_extra_mcmc_path, "starter.ss"), verbose = FALSE)
+  start <- SS_readstarter(file.path(sub_extra_mcmc_path, starter_file_name), verbose = FALSE)
   ## Change starter file to read from par file
   start$init_values_src <- 1
-  SS_writestarter(start, dir = sub_extra_mcmc_path, file = "starter.ss", overwrite = TRUE, verbose = FALSE)
+  SS_writestarter(start, dir = sub_extra_mcmc_path, file = starter_file_name, overwrite = TRUE, verbose = FALSE)
 
   ## modify control file to make bias adjustment of recruit devs = 1.0 for all years
   ## this is required to match specification used by MCMC as noted in
@@ -136,24 +136,24 @@ run_extra_mcmc_chunk <- function(model,
     ## (excluding 1 and 2 for "Iter" and "Objective_function")
     newpar[newpar$label %in% names(posts), 1] <- as.numeric(posts[irow, -(1:2)])
     write.table(x = newpar,
-                file = file.path(sub_extra_mcmc_path, "ss.par"),
+                file = file.path(sub_extra_mcmc_path, par_file_name),
                 quote = FALSE,
                 row.names = FALSE)
     ## delete existing output files to make sure that if model fails to run,
     ## it won't just copy the same files again and again
-    file.remove(file.path(sub_extra_mcmc_path, "Report.sso"))
-    file.remove(file.path(sub_extra_mcmc_path, "CompReport.sso"))
+    file.remove(file.path(sub_extra_mcmc_path, report_file_name))
+    file.remove(file.path(sub_extra_mcmc_path, compreport_file_name))
 
     shell_command <- paste0("cd ", sub_extra_mcmc_path, " & ", ss_executable, " -maxfn 0 -phase 10 -nohess")
     shell(shell_command, wait = FALSE, intern = TRUE)
 
-    file.copy(file.path(sub_extra_mcmc_path, "ss.par"),
+    file.copy(file.path(sub_extra_mcmc_path, par_file_name),
               file.path(reports_path, paste0("ss_output", from_to[irow], ".par")),
               overwrite = TRUE)
-    file.copy(file.path(sub_extra_mcmc_path, "Report.sso"),
+    file.copy(file.path(sub_extra_mcmc_path, report_file_name),
               file.path(reports_path, paste0("Report_", from_to[irow], ".sso")),
               overwrite = TRUE)
-    file.copy(file.path(sub_extra_mcmc_path, "CompReport.sso"),
+    file.copy(file.path(sub_extra_mcmc_path, compreport_file_name),
               file.path(reports_path, paste0("CompReport_", from_to[irow], ".sso")),
               overwrite = TRUE)
   }
@@ -169,7 +169,7 @@ run_extra_mcmc_chunk <- function(model,
 fetch_extra_mcmc <- function(model){
 
   extra_mcmc_path <- model$extra.mcmc.path
-  reports_dir <- file.path(extra_mcmc_path, "reports")
+  reports_dir <- file.path(extra_mcmc_path, extra_mcmc_reports_path)
   if(is.na(extra_mcmc_path)){
     return(NA)
   }
@@ -188,7 +188,7 @@ fetch_extra_mcmc <- function(model){
   }
   num_reports <- length(grep("^Report_[[:digit:]]+\\.sso$", dir_list))
   num_comp_reports <- length(grep("^CompReport_[[:digit:]]+\\.sso$", dir_list))
-  posts <- read.table(file.path(extra_mcmc_path, "posteriors.sso"),
+  posts <- read.table(file.path(extra_mcmc_path, posts_file_name),
                       header = TRUE,
                       fill = TRUE,
                       stringsAsFactors = FALSE)
@@ -308,7 +308,7 @@ fetch_extra_mcmc <- function(model){
   ## read expected proportions and Pearson values for each age comp observations
   tmp <- readLines(file.path(reports_dir, paste0("CompReport_", irow,".sso")))
   skip_row <- grep("Composition_Database", tmp)
-  comp_table <- read.table(file.path(extra_mcmc_path, "CompReport.sso"),
+  comp_table <- read.table(file.path(extra_mcmc_path, compreport_file_name),
                            skip = skip_row,
                            header = TRUE,
                            fill = TRUE,

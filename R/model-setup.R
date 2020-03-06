@@ -1,7 +1,7 @@
 ## -----------------------------------------------------------------------------
 ## Year for this assessment - default is current year
 ## -----------------------------------------------------------------------------
-assess.yr <- 2020
+assess.yr <- assess_yr
 message("Assessment year: ", assess.yr)
 
 ## -----------------------------------------------------------------------------
@@ -13,18 +13,6 @@ message("Last assessment year: ", last.assess.yr)
 ## Output CSV directory for outputs of at-age which are calculated by the
 ## make.est.numbers.at.age.table function (in r-functions/tables-age.r)
 output.csv.dir <- file.path(rootd, "out-csv")
-
-## -----------------------------------------------------------------------------
-## File names which must exists in each model directory
-## -----------------------------------------------------------------------------
-ss_executable <- "ss.exe"
-message("SS executable file: ", ss_executable)
-starter_file_name <- "starter.ss"
-message("SS starter file: ", starter_file_name)
-forecast_file_name <- "forecast.ss"
-message("SS forecast file: ", forecast_file_name)
-weight_at_age_file_name <- "wtatage.ss"
-message("SS weight-at-age file: ", weight_at_age_file_name)
 
 ## -----------------------------------------------------------------------------
 ## The version of SS and ADMB used in this assessment
@@ -315,84 +303,3 @@ load.models.into.parent.env <- function(){
   sens.model.names.4.for.table <<- c("Base model", sens.model.names.6)
 }
 
-build <- function(.run_forecasts = FALSE,
-                  .run_retrospectives = FALSE,
-                  .run_extra_mcmc = FALSE,
-                  .run_catch_levels_default_hr = FALSE,
-                  .run_catch_levels_spr_100 = FALSE,
-                  .run_catch_levels_stable_catch = FALSE,
-                  .model_list = model_list,
-                  .models_path = here::here("models"),
-                  .catch_levels_path = "catch-levels",
-                  .default_hr_path = "default-hr",
-                  .stable_catch_path = "stable-catch",
-                  .spr_100_path = "spr-100",
-                  .forecasts_path = "forecasts",
-                  .retrospectives_path = "retrospectives",
-                  .extra_mcmc_path = "extra-mcmc",
-                  .forecast_yrs = forecast_yrs,
-                  .retrospective_yrs = retrospective_yrs,
-                  .catch_levels = catch_levels,
-                  .catch_levels_spr_tol = 0.0001,
-                  .catch_levels_catch_tol = 1,
-                  .catch_levels_max_iter = 20,
-                  .ss_executable = ss_executable,
-                  .starter_file_name = starter_file_name,
-                  .forecast_file_name = forecast_file_name,
-                  .weight_at_age_file_name = weight_at_age_file_name,
-                  .ovwrt_rdata = TRUE,
-                  .show_ss_output = FALSE){
-
-  lapply(.model_list, function(.model_name){
-    if(.run_forecasts |
-       .run_retrospectives |
-       .run_extra_mcmc |
-       .run_catch_levels_default_hr |
-       .run_catch_levels_spr_100 |
-       .run_catch_levels_stable_catch){
-      run(models_path = .models_path,
-          model_name = .model_name,
-          run_catch_levels_default_hr = .run_catch_levels_default_hr,
-          run_catch_levels_spr_100 = .run_catch_levels_spr_100,
-          run_catch_levels_stable_catch = .run_catch_levels_stable_catch,
-          run_forecasts = .run_forecasts,
-          run_retrospectives = .run_retrospectives,
-          retrospective_yrs = .retrospective_yrs,
-          run_extra_mcmc = .run_extra_mcmc,
-          forecast_yrs = .forecast_yrs,
-          catch_levels = .catch_levels,
-          catch_levels_spr_tol = .catch_levels_spr_tol,
-          catch_levels_catch_tol = .catch_levels_catch_tol,
-          catch_levels_max_iter = .catch_levels_max_iter,
-          catch_levels_path = .catch_levels_path,
-          default_hr_path = .default_hr_path,
-          stable_catch_path = .stable_catch_path,
-          spr_100_path = .spr_100_path,
-          forecasts_path = .forecasts_path,
-          retrospectives_path = .retrospectives_path,
-          extra_mcmc_path = .extra_mcmc_path,
-          ss_executable = .ss_executable,
-          starter_file_name = .starter_file_name,
-          forecast_file_name = .forecast_file_name,
-          weight_at_age_file_name = .weight_at_age_file_name,
-          show_ss_output = .show_ss_output)
-    }
-  })
-  lapply(.model_list, function(.model_name){
-    create_rdata_file(models_path = .models_path,
-                      model_name = .model_name,
-                      ovwrt_rdata = .ovwrt_rdata,
-                      forecast_yrs = .forecast_yrs,
-                      retrospective_yrs = .retrospective_yrs,
-                      catch_levels = .catch_levels,
-                      catch_levels_path = .catch_levels_path,
-                      default_hr_path = .default_hr_path,
-                      stable_catch_path = .stable_catch_path,
-                      spr_100_path = .spr_100_path,
-                      forecasts_path = .forecasts_path,
-                      retrospectives_path = .retrospectives_path,
-                      extra_mcmc_path = .extra_mcmc_path)
-  })
-  message("\nCompleted build.")
-  invisible()
-}

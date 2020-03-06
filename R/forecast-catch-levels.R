@@ -1,9 +1,8 @@
 ## -----------------------------------------------------------------------------
 ## The forecasting yrs and probs can be set to whatever is required, the
 ##  code is set up to automatically accomodate changes
+##  Change them in all.R
 ## -----------------------------------------------------------------------------
-forecast_yrs <- end.yr:(end.yr + 2)
-forecast_probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 
 ## -----------------------------------------------------------------------------
 ## catch_levels is a list of N lists of catch levels with 3 items each:

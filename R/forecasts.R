@@ -10,7 +10,7 @@
 #'
 #' @return [base::invisible()]
 #' @export
-run_forecasts <- function(model,
+run_forecasts <- function(model_path,
                           catch_levels_path,
                           run_forecasts,
                           forecast_yrs,
@@ -20,7 +20,7 @@ run_forecasts <- function(model,
                           show_ss_output = TRUE,
                           ...){
 
-  model_path <- model$path
+  model <- load_ss_files(model_path, ...)
   mcmc_path <- model$mcmcpath
   forecasts_path <- file.path(model_path, "forecasts")
   if(!run_forecasts){
@@ -36,6 +36,7 @@ run_forecasts <- function(model,
   catch_levels <- fetch_catch_levels(catch_levels_path, ...)
 
   # Extract the catch level names from the list into a vector
+  browser()
   catch_levels_names <- sapply(catch_levels, "[[", 3)
   # Make the catch level values a matrix where the columns represent the cases in catch.names
   catch_levels <- sapply(catch_levels, "[[", 1)
@@ -72,8 +73,8 @@ run_forecasts <- function(model,
       SS_writeforecast(fore, dir = new_forecast_dir, overwrite = TRUE, verbose = FALSE)
 
       # Evaluate the model using mceval option of ADMB, and retrieve the output
-      unlink(file.path(new_forecast_dir, "derived_posteriors.sso"), force = TRUE)
-      unlink(file.path(new_forecast_dir, "posteriors.sso"), force = TRUE)
+      unlink(file.path(new_forecast_dir, derposts_file_name), force = TRUE)
+      unlink(file.path(new_forecast_dir, posts_file_name), force = TRUE)
       shell_command <- paste0("cd ", new_forecast_dir, " & ", ss_executable, " -mceval")
       shell(shell_command, wait = FALSE, intern = !show_ss_output)
     }
@@ -168,7 +169,7 @@ fetch_forecasts <- function(model_path,
 #'  in the forecast_yrs vector. If forecast.outputs is NA, NA will be returned, otherwise the risk.list
 #'  will be returned
 #' @export
-calc_risk <- function(forecast_outputs = NA, 
+calc_risk <- function(forecast_outputs = NA,
                       catch_levels,
                       ...){
 
