@@ -27,6 +27,7 @@
 \newcommand{\subscr}[1]{$_{\text{#1}}$}
 \newcommand{\Fforty}{F_{\text{SPR}=40\%}}       % Needs to be done as $\Fforty$
 \newcommand{\Bforty}{B_{\text{SPR}=40\%}}
+\newcommand{\BfortyB}{B_{40\%}}
 
 % pdf is displayed in full screen mode automatically
 %\hypersetup{pdfpagemode=FullScreen}
@@ -743,6 +744,7 @@ from last year)
 \end{columns}
 }
 
+
 %----------------------------------------------------------
 % \section{Recruitment}
 % \subsection{}
@@ -823,6 +825,15 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
+
+%----------------------------------------------------------
+
+\frame{\frametitle{Retrospective across assessments -- squid plot}
+\begin{center}
+  \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+  \includegraphics[height=2.9in]{Figures/RetroAssess_squid}
+\end{center}
+}
 
 %----------------------------------------------------------
 \frame{\frametitle{Forecast age compositions for \Sexpr{end.yr} fishery catch}
@@ -942,6 +953,19 @@ make.cohort.table(base.model,
     \item Maintaining a constant catch of 597,500~t (i.e., 2017 through 2019 TACs) results in a 37\%
       chance of falling below $B_{40\%}$ in 1 year (60\% in 2 years time), which is a considerable increase
       compared to last year's assessment (26\% and 40\%, respectively) (Table j)
+  \ei
+}
+
+
+%-------------------------------------------------------
+\frame{\frametitle{Looking Forward}
+  \bi
+    \item Highest catch levels on record over last three years (benefit of 2010 and 2014 year classes)
+    \item Stock forcasted to decline by \Sexpr{assess.yr + 1} and \Sexpr{assess.yr + 2} under all future catch scenarios 
+    \item Continued decline in surviving biomass for the large 2010 and 2014 year classes
+    \item Recent recruitment estimates indicate no new dominant year classes; though estimates are highly uncertain
+    \item Stock moving towards 'target' biomass levels; however too rapid of a decline can result in 'overshooting'
+       $\BfortyB$ and other benchmark reference points
   \ei
 }
 
