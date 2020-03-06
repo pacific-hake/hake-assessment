@@ -124,7 +124,6 @@ fore.names <- cmodels.names <- sapply(base.model$catch.levels, "[[", 2)[fore.ind
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Overview}
-\subsection{}
 
 %----------------------------------------------------------
 \section{Overview}
@@ -264,7 +263,23 @@ from last year).
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Joint History of Rel. Fishing Intensity and Rel. Biomass}
+\frame{\frametitle{Biomass and relative fishing intentisy}
+  \bi
+    \item Biomass has mostly remained above target ($\frac{B_{\Sexpr{assess.yr}}}{B_0} = \Sexpr{f(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end.yr], 2)}$)
+    \item Fishing intensity has remained below target
+    ($\frac{1-SPR_{\Sexpr{assess.yr - 1}}}{1 - SPR_{40\%}} = \Sexpr{f(base.model$mcmccalcs$pmed[names(base.model$mcmccalcs$pmed) == assess.yr - 1], 2)}$)
+    \item The estimated probability that spawning biomass at the start of
+    \Sexpr{assess.yr} is below the $\Bforty$ (40\% of $B_0$) reference point is
+    \Sexpr{probs.curr.below.bforty}\%
+    \item The probability that the relative fishing
+    intensity is above its target at the end of \Sexpr{end.yr-1} is
+    \Sexpr{probs.curr.rel.fish.intens.above.one}\%
+    \item The joint probability of both of these things occuring is \Sexpr{joint.percent.prob.above.below}\%
+  \ei
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Joint History of Rel. Fishing Intensity and Rel. Biomass (\Sexpr{assess.yr})}
 \begin{figure}[tbp]
 \begin{center}
 <<phase.plot, fig.height=3, fig.width=6>>=
@@ -279,8 +294,7 @@ from last year).
 
 %----------------------------------------------------------
 \section{Past Management}
-\subsection{}
-\frame{\frametitle{Past management: Last year's model}
+\frame{\frametitle{Joint History of Rel. Fishing Intensity and Rel. Biomass (\Sexpr{assess.yr - 1})}
 \begin{figure}[tbp]
 \begin{center}
 <<phase.plot.last.yr, fig.height=3, fig.width=6>>=
@@ -305,8 +319,6 @@ from last year).
 }
 
 %----------------------------------------------------------
-\section{Management and forecasts}
-\subsection{}
 \frame{\frametitle{Past management: Total Allowable Catch}
 \begin{columns}
   \begin{column}{0.4\textwidth}
@@ -330,7 +342,6 @@ from last year).
 
 %----------------------------------------------------------
 \section{Forecasts}
-\subsection{Two year forecasts}
 \frame{\frametitle{Harvest rule predicted catch for \Sexpr{assess.yr}}
 \begin{columns}
   \begin{column}{0.38\textwidth}
@@ -397,8 +408,7 @@ from last year).
 }
 
 %----------------------------------------------------------
-\section{Risk Tables and Decision Tables}
-\subsection{Risk}
+\section{Risk and Decision Tables}
 \frame{\frametitle{Risk table definitions}
   Probabilities of ``bad'' things happening at different fixed catch levels
   \bi
@@ -473,8 +483,6 @@ from last year).
 }
 
 %----------------------------------------------------------
-\section{Decision Tables}
-\subsection{Intro}
 \frame{\frametitle{Decision Tables}
   \bi
     \item Catch streams
@@ -494,7 +502,6 @@ from last year).
 }
 
 %----------------------------------------------------------
-\subsection{Spawning Biomass (excerpt)}
 \frame{\frametitle{Relative Spawning Biomass (excerpt)}
 \begin{columns}
   \begin{column}{0.33\textwidth}
@@ -552,7 +559,6 @@ from last year).
 
 %----------------------------------------------------------
 % \section{Recruitment}
-% \subsection{}
 % \frame{\frametitle{Correlation between default catch and recent recruitment}
 %   \begin{columns}
 %     \begin{column}{0.48\textwidth}
@@ -584,7 +590,6 @@ from last year).
 
 %----------------------------------------------------------
 \section{Cohort estimates}
-\subsection{}
 \begin{frame}
 \frametitle{Retrospective -- baby squid plot}
 \begin{center}
@@ -735,19 +740,19 @@ make.cohort.table(base.model,
 
 %----------------------------------------------------------
 \section{Summary}
-\subsection{}
 \frame{\frametitle{Summary}
   \bi
     \item Uncertainty is large, but stock is likely above $B_{40\%}$,
-      and fishing intensity is likely to have been below 100\% in either model.
+      and fishing intensity is likely to have been below 100\% in either model
     \item Based on the default harvest rule, the estimated median catch limit
       for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t
       (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to
-      \Sexpr{catch.limit.quantiles["upper"]}~t).
-    \item Forecasts strongly influenced by size of large but uncertain 2014 and 2016 cohorts.
+      \Sexpr{catch.limit.quantiles["upper"]}~t)
+    \item Forecasts strongly influenced by size of above average, but uncertain, 2014 and 2016 cohorts and very uncertain 2017 cohort
     \item There is a \Sexpr{f(base.model$risks[[1]][4, 2])}\% chance that spawning biomass will decline from \Sexpr{assess.yr} to \Sexpr{assess.yr + 1} at a catch level of \Sexpr{f(base.model$risks[[1]][4, 1])}~t, partly due to mortality on ageing 2010 cohort (Figure j)
-    \item Maintaining a constant catch of \Sexpr{f(base.model$risks[[1]][6, 1])}~t (i.e., 2017 -- 2019 TAC) results in a higher risk of falling below $B_{40\%}$ in 2 years time than predicted in
-    last year's assessment (\Sexpr{f(base.model$risks[[2]][6, 3], 1)}\% compared to 40\%) (Table j)
+    \item Maintaining a constant catch of 597,500~t (i.e., 2017 through 2019 TACs) results in a 37\%
+      chance of falling below $B_{40\%}$ in 1 year (60\% in 2 years time), which is a considerable increase
+      compared to last year's assessment (26\% and 40\%, respectively) (Table j)
   \ei
 }
 
