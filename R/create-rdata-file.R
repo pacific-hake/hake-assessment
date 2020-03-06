@@ -109,9 +109,9 @@ run <- function(models_path = NULL,
   }
   model <- load_ss_files(model_path, ...)
 
-  run_catch_levels(model, ...)
+  run_catch_levels(model$path, ...)
   run_forecasts(model, ...)
   run_retrospectives(model, ...)
-  run_extra_mcmc(model, ...)
+  run_extra_mcmc(model$path, ...)
   invisible()
 }
