@@ -4,15 +4,15 @@
 #' create a directory for each restrospective year, copy all model files into each directory,
 #' run the retrospectives, and make a list of the [r4ss::SS_output()] call to each
 #' Warning - This function will completely delete all previous retrospectives that have been run without notice.
-#' 
-#' @param model 
+#'
+#' @param model
 #' @param yrs A vector of years to subtract from the model's data to run on.
-#' @param remove.blocks 
+#' @param remove.blocks
 #' @param extras Extra switches for the command line.
-#' @param exe.file.name 
-#' @param starter.file.name 
-#' @param forecast.file.name 
-#' @param weight.at.age.file.name 
+#' @param exe.file.name
+#' @param starter.file.name
+#' @param forecast.file.name
+#' @param weight.at.age.file.name
 #'
 #' @return [base::invisible()]
 #' @export
@@ -25,8 +25,6 @@ run_retrospectives <- function(model,
                                weight_at_age_file_name,
                                ss_executable,
                                run_retrospectives,
-                               retrospective_yrs,
-                               show_ss_output = TRUE,
                                ...){
 
   model_path <- model$path
@@ -49,13 +47,13 @@ run_retrospectives <- function(model,
                                              weight_at_age_file_name)),
                      model$ctl.file,
                      model$dat.file)
-                     
+
   # Create a directory for each retrospective, copy files, and run retro
   for(retro in 1:length(retrospective_yrs)){
     retro_subdir <- file.path(retro_path, paste0("retro-", pad.num(retrospective_yrs[retro], 2)))
     dir.create(retro_subdir, showWarnings = FALSE)
     file.copy(files_to_copy, retro_subdir)
-    
+
     starter_file <- file.path(retro_subdir, starter_file_name)
     starter <- SS_readstarter(starter_file, verbose = FALSE)
     starter$retro_yr <- -retrospective_yrs[retro]
@@ -64,8 +62,8 @@ run_retrospectives <- function(model,
 
     dat <- SS_readdat(file.path(retro_subdir, starter$datfile),
       verbose = FALSE, version = model$SS_versionshort)
-    ctl <- SS_readctl(file.path(retro_subdir, starter$ctlfile), 
-      verbose = FALSE, use_datlist = TRUE, datlist = dat, 
+    ctl <- SS_readctl(file.path(retro_subdir, starter$ctlfile),
+      verbose = FALSE, use_datlist = TRUE, datlist = dat,
       version = model$SS_versionshort)
     ctl$MainRdevYrLast <- ctl$MainRdevYrLast - retrospective_yrs[retro]
     ctl$age_selex_parms[ctl$age_selex_parms[,"dev_maxyr"] > dat$endyr - retro,
@@ -108,7 +106,7 @@ run_retrospectives <- function(model,
 
 #' Fetch the retrospectives and return a list of each. If there are no retrospective
 #' directories or there is some other problem, the program will halt
-#' 
+#'
 #' @param retro.path The path in which the retrospective directories reside
 #' @param retro.yrs A vector of years for the retrospectives
 #' @param printstats  Print info on each model loaded via [r4ss::SS_output()]
@@ -122,7 +120,7 @@ fetch_retrospectives <- function(retro_path,
   if(is.na(retro_path)){
     return(NA)
   }
-  
+
   retros_paths <- file.path(retro_path, paste0("retro-", pad.num(retrospective_yrs, 2)))
 
   if(all(dir.exists(retros_paths))){

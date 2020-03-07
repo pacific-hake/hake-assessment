@@ -38,7 +38,7 @@ fetch_catch_levels <- function(catch_levels_path,
   if (length(colCatch) != 1) {
     stop("The column 'Catch or F' was not found in the forecast file Catch matrix.")
   }
-  browser()
+
   catch_levels[[ind]][[1]] <- fore$ForeCatch[, colCatch]
 
   default_hr_path <- file.path(catch_levels_path, default_hr_path)
@@ -72,14 +72,12 @@ fetch_catch_levels <- function(catch_levels_path,
 #'
 #' @param model The SS model output as loaded by [load_ss_files()]
 #' @param catch_levels The catch levels list as defined in forecast-catch-levels.R
-#' @param show_ss_output Logical. True will show all SS output from model runs
 #' @param ...
 #'
 #' @export
 run_catch_levels_default_hr <- function(model,
                                         default_hr_path,
                                         catch_levels,
-                                        show_ss_output = TRUE,
                                         ...){
 
   mcmc_path <- model$mcmcpath
@@ -125,13 +123,11 @@ run_catch_levels_default_hr <- function(model,
 #'
 #' @param model The SS model output as loaded by [load_ss_files()]
 #' @param catch_levels The catch levels list as defined in forecast-catch-levels.R
-#' @param show_ss_output Logical. True will show all SS output from model runs
 #'
 #' @export
 run_catch_levels_spr_100 <- function(model,
                                      spr_100_path,
                                      catch_levels,
-                                     show_ss_output = TRUE,
                                      ...){
 
   mcmc_path <- model$mcmcpath
@@ -207,13 +203,11 @@ run_catch_levels_spr_100 <- function(model,
 #'
 #' @param model The SS model output as loaded by [load_ss_files()]
 #' @param catch_levels The catch levels list as defined in forecast-catch-levels.R
-#' @param show_ss_output Logical. True will show all SS output from model runs
 #'
 #' @export
 run_catch_levels_stable_catch <- function(model,
                                           stable_catch_path,
                                           catch_levels,
-                                          show_ss_output = TRUE,
                                           ...){
 
   mcmc_path <- model$mcmcpath

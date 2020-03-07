@@ -7,7 +7,6 @@
 #' @param run_extra_mcmc Logical. TRUE to run extra-mcmc routine on the models (when an mcmc directory is present)
 #' @param catch_levels A list of lists for the forecast catch levels to run forecasts for. See
 #' forecast-catch-levels.R
-#' @param show_ss_output Logical. TRUE to show the output from SS model runs
 #'
 #' @return Nothing
 #' @export
@@ -20,24 +19,23 @@ build <- function(model_dirs,
                   run_retrospectives = FALSE,
                   run_extra_mcmc = FALSE,
                   catch_levels = NULL,
-                  show_ss_output = TRUE){
+                  ...){
 
   map(model_dirs, ~{
-    if(run_forecasts |
-       run_retrospectives |
-       run_extra_mcmc){
+    if(FALSE){
+    # if(run_forecasts |
+    #    run_retrospectives |
+    #    run_extra_mcmc){
       stopifnot(!is.null(catch_levels))
       run(model_dir = .x,
           run_forecasts = run_forecasts,
           run_retrospectives = run_retrospectives,
-          retrospective_yrs = retrospective_yrs,
           run_extra_mcmc = run_extra_mcmc,
-          catch_levels = catch_levels,
-          show_ss_output = show_ss_output)
+          catch_levels = catch_levels)
 
     }
-    create_rds_file(model_dir = .x, catch_levels)
-  })
+    create_rds_file(model_dir = .x, ...)
+  }, ...)
   message("\nCompleted build.\n")
   invisible()
 }
@@ -72,10 +70,9 @@ create_rds_file <- function(model_dir = NULL, ...){
   # Load forecasts. If none are found or there is a problem, model$forecasts will be NA
   if(dir.exists(file.path(model_fullpath, forecasts_path))){
     catch_levels_fullpath <- file.path(model_fullpath, catch_levels_path)
-
-    model$catch.levels <- fetch_catch_levels(catch_levels_fullpath, catch_levels, ...)
+    model$catch.levels <- fetch_catch_levels(catch_levels_fullpath, catch_levels)
     model$catch.default.policy <- model$catch.levels[[catch.default.policy.ind]][[1]]
-    model$forecasts <- fetch_forecasts(model_fullpath, ...)
+    model$forecasts <- fetch_forecasts(model_fullpath, model$catch.levels, ...)
     model$risks <- calc_risk(forecast_outputs = model$forecasts,
                              catch_levels = model$catch.levels,
                              forecast_yrs)
@@ -117,19 +114,29 @@ create_rds_file <- function(model_dir = NULL, ...){
 #'
 #' @return [base::invisible()]
 #' @export
-run <- function(model_dir = NULL, ...){
+run <- function(model_dir = NULL,
+                run_forecasts = FALSE,
+                run_retrospectives = FALSE,
+                run_extra_mcmc = FALSE,
+                ...){
 
   stopifnot(!is.null(model_dir))
-  model_fullpath <- file.path(models_path, model_dir)
+  model_dir <- file.path(models_path, model_dir)
 
-  if(!dir.exists(model_fullpath)){
-    stop("The ", model_fullpath, " directory does not exist",
+  if(!dir.exists(model_dir)){
+    stop("The ", model_dir, " directory does not exist",
          call. = FALSE)
   }
-  if(dir.exists(file.path(model_fullpath, "mcmc"))){
-    run_catch_levels(model_fullpath, ...)
-    #run_forecasts(model_fullpath, ...)
-    #run_retrospectives(model_dir, ...)
-    #run_extra_mcmc(model_fullpath, ...)
+  if(dir.exists(file.path(model_dir, "mcmc"))){
+    if(run_forecasts){
+      #run_catch_levels(model_dir, ...)
+      run_forecasts(model_dir, ...)
+    }
+    if(run_retrospectives){
+      run_retrospectives(model_dir, ...)
+    }
+    if(run_extra_mcmc){
+      run_extra_mcmc(model_dir, ...)
+    }
   }
 }

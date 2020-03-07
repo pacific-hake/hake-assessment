@@ -67,10 +67,10 @@ compreport_file_name <- "CompReport.sso"
 
 # Custom catch levels calculations
 # The tolerance in the spr away from 1 for the calculation of catch for SPR = 1
-catch_levels_spr_tol <- 0.01
+catch_levels_spr_tol <- 0.3
 # The tolerance in tonnes. The iterations will stop if the difference between the
 #  projected biomass between the first and second years is less than this
-catch_levels_catch_tol <- 10
+catch_levels_catch_tol <- 50
 # The maximum number of iterations to do. If this is reached, then no catch value could
 #  be found within the tolerances above
 catch_levels_max_iter <- 20
@@ -81,6 +81,8 @@ forecast_probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 
 retrospective_yrs <- 1:20
 plot.retro.yrs <- 1:5
+
+show_ss_output <- FALSE
 
 source(file.path(rootd.R, "utilities.R"))
 source(file.path(rootd.R, "catches.R"))
