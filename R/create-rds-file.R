@@ -22,10 +22,9 @@ build <- function(model_dirs,
                   ...){
 
   map(model_dirs, ~{
-    if(FALSE){
-    # if(run_forecasts |
-    #    run_retrospectives |
-    #    run_extra_mcmc){
+    if(run_forecasts |
+       run_retrospectives |
+       run_extra_mcmc){
       stopifnot(!is.null(catch_levels))
       run(model_dir = .x,
           run_forecasts = run_forecasts,

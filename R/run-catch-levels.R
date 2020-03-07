@@ -25,45 +25,63 @@ fetch_catch_levels <- function(catch_levels_path,
   message("\nLoading catch level data from ", catch_levels_path)
 
   spr_100_path <- file.path(catch_levels_path, spr_100_path)
-  message("Loading 'SPR 100' catch level data from ", spr_100_path)
-  forecast_file <- file.path(spr_100_path, forecast_file_name)
-  fore <- SS_readforecast(forecast_file,
-                          Nfleets = 1,
-                          Nareas = 1,
-                          nseas = 1,
-                          verbose = FALSE)
-
-  ind <- length(catch_levels) - 2
-  colCatch <- grep("Catch.or.F", colnames(fore$ForeCatch), perl = TRUE)
-  if (length(colCatch) != 1) {
-    stop("The column 'Catch or F' was not found in the forecast file Catch matrix.")
-  }
-
-  catch_levels[[ind]][[1]] <- fore$ForeCatch[, colCatch]
-
   default_hr_path <- file.path(catch_levels_path, default_hr_path)
-  message("Loading 'Default HR' catch level data from ", default_hr_path)
-  forecast_file <- file.path(default_hr_path, "forecast.ss")
-  fore <- SS_readforecast(forecast_file,
-                          Nfleets = 1,
-                          Nareas = 1,
-                          nseas = 1,
-                          verbose = FALSE)
-  ind <- ind + 1
-  catch_levels[[ind]][[1]] <- fore$ForeCatch[, colCatch]
-
   stable_catch_path <- file.path(catch_levels_path, stable_catch_path)
-  message("Loading 'Stable Catch' catch level data from ", stable_catch_path)
-  forecast_file <- file.path(stable_catch_path, "forecast.ss")
-  fore <- SS_readforecast(forecast_file,
-                          Nfleets = 1,
-                          Nareas = 1,
-                          nseas = 1,
-                          verbose = FALSE)
-  ind <- ind + 1
-  catch_levels[[ind]][[1]] <- fore$ForeCatch[, colCatch]
-  message("Successfully loaded catch level data.")
 
+  plan("multisession")
+  cust_catch_levels <- future_map(1:3, ~{
+    if(.x == 1){
+      message("Loading 'SPR 100' catch level data from ", spr_100_path)
+      forecast_file <- file.path(spr_100_path, forecast_file_name)
+      fore <- SS_readforecast(forecast_file,
+                              Nfleets = 1,
+                              Nareas = 1,
+                              nseas = 1,
+                              verbose = FALSE)
+
+      tryCatch({
+        col_catch <- fore$ForeCatch %>% select(`Catch or F`)
+      }, error = function(e){
+        stop("The column 'Catch or F' was not found in the forecast file Catch matrix.")
+      })
+      col_catch
+    }else if(.x == 2){
+      message("Loading 'Default HR' catch level data from ", default_hr_path)
+      forecast_file <- file.path(default_hr_path, "forecast.ss")
+      fore <- SS_readforecast(forecast_file,
+                              Nfleets = 1,
+                              Nareas = 1,
+                              nseas = 1,
+                              verbose = FALSE)
+      tryCatch({
+        col_catch <- fore$ForeCatch %>% select(`Catch or F`)
+      }, error = function(e){
+        stop("The column 'Catch or F' was not found in the forecast file Catch matrix.")
+      })
+      col_catch
+    }else{
+      message("Loading 'Stable Catch' catch level data from ", stable_catch_path)
+      forecast_file <- file.path(stable_catch_path, "forecast.ss")
+      fore <- SS_readforecast(forecast_file,
+                              Nfleets = 1,
+                              Nareas = 1,
+                              nseas = 1,
+                              verbose = FALSE)
+      tryCatch({
+        col_catch <- fore$ForeCatch %>% select(`Catch or F`)
+      }, error = function(e){
+        stop("The column 'Catch or F' was not found in the forecast file Catch matrix.")
+      })
+      message("Successfully loaded catch level data.")
+      col_catch
+    }
+  })
+  plan()
+  # Replace the NA values for the custom catch levels with the values read in
+  inds <- (length(catch_levels) - length(cust_catch_levels) + 1):length(catch_levels)
+  map2(inds, 1:length(cust_catch_levels), ~{
+    catch_levels[[.x]][[1]] <<- cust_catch_levels[[.y]] %>% pull()
+  }, future_options(globals = c("pull")))
   catch_levels
 }
 
