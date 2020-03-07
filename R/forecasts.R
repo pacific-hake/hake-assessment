@@ -109,27 +109,29 @@ fetch_forecasts <- function(model_path,
       mcmc_out <- SSgetMCMC(dir = fore_level_path, writecsv = FALSE, verbose = FALSE)
       # Get the values of interest, namely Spawning biomass and SPR for the two
       # decision tables in the executive summary
-      sb <- mcmc_out[, grep("Bratio_", names(mcmc_out))]
-      spr <- mcmc_out[, grep("SPRratio_", names(mcmc_out))]
+
+      sb <- mcmc_out %>% select(grep("Bratio_", names(.)))
+      spr <- mcmc_out %>% select(grep("SPRratio_", names(.)))
 
       # Strip out the Bratio_ and SPRratio_ headers so columns are years only
       names(sb) <- gsub("Bratio_", "", names(sb))
       names(spr) <- gsub("SPRratio_", "", names(spr))
 
       # Now, filter out the projected years only
-      sb_proj_cols <- sb[, names(sb) %in% forecast_yrs]
-      spr_proj_cols <- spr[, names(spr) %in% forecast_yrs]
+      sb_proj_cols <- sb %>% select(one_of(as.character(forecast_yrs)))
+      spr_proj_cols <- spr %>% select(one_of(as.character(forecast_yrs)))
       list(biomass = t(apply(sb_proj_cols, 2, quantile, probs = forecast_probs)),
            spr = t(apply(spr_proj_cols, 2, quantile, probs = forecast_probs)),
            mcmccalcs = calc.mcmc(mcmc_out),
            outputs = mcmc_out)
     }, .options = future_options(globals = c("f",
                                              "calc.mcmc",
-                                             "latex.bold",
-                                             "strip.columns",
-                                             "SSgetMCMC",
                                              "forecast_yrs",
-                                             "forecast_probs")))
+                                             "forecast_probs",
+                                             "latex.bold",
+                                             "select",
+                                             "strip.columns",
+                                             "SSgetMCMC")))
     names(lvls_lst) <- catch_levels_names
     lvls_lst
   })
