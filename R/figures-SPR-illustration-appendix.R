@@ -18,13 +18,14 @@ make.SPR.illustration <- function(model,
     yrs <- unique(model$wtatage$Yr)
   }
 
-  # get vector of maturity * fecundity from wtatage matrix
+  # average maturity * fecundity
   matfec.vec <- model$wtatage %>%
     filter(Fleet == -2,
            Yr %in% yrs) %>%
-    head(1) %>%
-    select(cols)  # average weight at age
-  wt.vec.avg <-   matfec.vec <- model$wtatage %>%
+    select(cols) %>%
+    summarize_all(mean)
+  # average weight at age
+  wt.vec.avg <- model$wtatage %>%
     filter(Fleet == -1,
            Yr %in% yrs) %>%
     select(cols) %>%
