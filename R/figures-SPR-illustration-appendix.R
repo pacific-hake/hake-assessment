@@ -24,6 +24,7 @@ make.SPR.illustration <- function(model, show.fished=TRUE, show.legend=TRUE){
   wt.vec.endyr <- as.numeric(head(model$wtatage[model$wtatage$Fleet==-1 &
                                                   abs(model$wtatage$Yr)==model$endyr,
                                                 cols], 1))
+  ## TODO: Make sure this code incorporate recent changes in fecundity average periods
 wt.vec.avg=wt.vec.endyr
   # numbers at age in equilibrium
   N_at_age.equil <- as.numeric(model$natage[model$natage$Era=="VIRG" &
@@ -61,7 +62,7 @@ wt.vec.avg=wt.vec.endyr
     legend(x=x.legend, y=1, fill=c(col2, col1), border=NA,
            legend=c("No fishing","With fishing"), bty='n')
   }
-  
+
   # make plot of biomass per recruit
   plot(0, type='n', xlim=xlim, ylim=c(0, 0.215), xaxs='r', yaxs='i',
        xlab="", ylab="", axes=FALSE)
