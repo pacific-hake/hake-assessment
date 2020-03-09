@@ -98,10 +98,10 @@ and SPR$(\Fforty) = 40\%$. The 40\% value is specified in the Agreement.
 
 \Ffortyten{} harvest policy: The default harvest policy (see above).
 
-Female spawning biomass: The biomass of mature female fish at the beginning of the year. 
-% AME - I can't see how this is consistent with defn of spawning output, so 
+Female spawning biomass: The biomass of mature female fish at the beginning of the year.
+% AME - I can't see how this is consistent with defn of spawning output, so
 %  commenting out.
-% Occasionally, especially in reference points, this term is used to mean spawning output when this is not proportional to spawning biomass. 
+% Occasionally, especially in reference points, this term is used to mean spawning output when this is not proportional to spawning biomass.
 Sometimes abbreviated to spawning biomass.
 
 Fisheries and Oceans Canada: Federal organization which delivers programs and services that support sustainable use and development of Canada's waterways and aquatic resources.
@@ -120,9 +120,9 @@ where SPR$(F)$ is the spawning potential ratio for the value of $F$ accumulated 
 as shown in Figure~\ref{fig:glossary-fishing-intensity-illustration}. For brevity we use $\mbox{SPR}_{40\%} = \mbox{SPR}(\Fforty)$ in the text. Although this simply equals 40\%, it can be helpful to explicitly write:
 \eb
 \mbox{relative fishing intensity for }F & = & \frac{1-\mbox{SPR}(F)}{1-\mbox{SPR}_{40\%}}.
-\ee 
+\ee
 The calculation of relative fishing intensity is shown graphically in Figure~\ref{fig:glossary-SPR-illustration}.
-% for 2017 assessment, consider revising definition of Fishing Intensity as discussed 
+% for 2017 assessment, consider revising definition of Fishing Intensity as discussed
 % in issue #158: https://github.com/cgrandin/hake-assessment/issues/158
 
 Fishing mortality rate, or instantaneous rate of fishing mortality ($F$): A metric of fishing intensity that is usually reported in relation to the most highly selected ages(s) or length(s), or occasionally as an average over an age range that is vulnerable to the fishery. Because it is an instantaneous rate operating simultaneously with natural mortality, it is not equivalent to exploitation fraction (or percent annual removal; see above) or the spawning potential ratio (SPR, see below).
@@ -149,13 +149,13 @@ Management Strategy Evaluation (MSE):  A formal process for evaluating Harvest S
 %Not found in text in 2017:
 %MAP: maximum \emph{a posteriori} probability. See below.
 
-Markov-Chain Monte-Carlo (MCMC): A numerical method used to sample from the posterior distribution (see below) of parameters and derived quantities in a Bayesian analysis. It is more computationally intensive than the maximum likelihood estimate (see below), but provides a more accurate depiction of parameter uncertainty. 
+Markov-Chain Monte-Carlo (MCMC): A numerical method used to sample from the posterior distribution (see below) of parameters and derived quantities in a Bayesian analysis. It is more computationally intensive than the maximum likelihood estimate (see below), but provides a more accurate depiction of parameter uncertainty.
 See \citet{StewartHicksEtAl2013} for a discussion of issues related to differences between MCMC and MLE.
 
 %Not found in text in 2017:
 %Maximum \emph{a posteriori} probability (MAP) estimate: mode of the posterior distribution used as a point estimate which is similar to the penalized MLE. % This is also referred to as the ``maximum posterior density'' (MPD) in this document. **AME -- check if we use the latter, I don't think I've seen it.
 
-Maximum likelihood estimate (MLE): %Sometimes used interchangeably with ``maximum posterior density estimate'' or MPD. 
+Maximum likelihood estimate (MLE): %Sometimes used interchangeably with ``maximum posterior density estimate'' or MPD.
 A method used to estimate a single value for each of the parameters and derived quantities. It is less computationally intensive than MCMC methods (see below), but parameter uncertainty is less well determined.
 
 %Not found in text in 2017:
@@ -311,7 +311,7 @@ Year-class: A group of fish born in the same year. See also `cohort' and `recrui
 %% intensity.plot = function(target = 0.4, intensity=seq(0, 1/(1-target), 0.01))
 %%   {
 %%   achieved = 1 - intensity * (1 - target)
-%%   plot(intensity, achieved, xlab="Fishing intensity", 
+%%   plot(intensity, achieved, xlab="Fishing intensity",
 %%     ylab = "Acheived SPR", type="l", xlim=c(0, max(intensity)+0.1), ylim=c(0,1),
 %%     xaxs="i", yaxs="i")
 %%   lines(c(1,1,0), c(0, 0.4, 0.4), lty=2)
@@ -336,7 +336,7 @@ Year-class: A group of fish born in the same year. See also `cohort' and `recrui
 intensity.plot = function(target = 0.4){
   SPR <- seq(0, 1, length=100)
   intensity = (1 - SPR) / (1 - target)
-  plot(1-SPR, intensity, ylab="Fishing intensity", 
+  plot(1-SPR, intensity, ylab="Fishing intensity",
        xlab = "1 - SPR", type="l", ylim=c(0, max(intensity)+0.1), xlim=c(0,1),
        xaxs="i", yaxs="i", lwd=2)
   x.ticks <- seq(0,1,.2)
@@ -360,7 +360,7 @@ intensity.plot()
 \begin{figure}[t]
 \begin{center}
 <<SPR-illustration, fig.height=7, fig.width=6>>=
-make.SPR.illustration(base.model)
+make.SPR.illustration(base.model, yrs = start.yr.age.comps:last.data.yr)
 @
 \end{center}
 \caption{Illustration of the spawning potential ratio (SPR) calculation based on the combination of maturity and fecundity used in the model, using the maximum likelihood estimates of natural mortality, selectivity, and fishing mortality in the final year of the base model.}

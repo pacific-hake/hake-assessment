@@ -1,4 +1,7 @@
-make.SPR.illustration <- function(model, show.fished=TRUE, show.legend=TRUE){
+make.SPR.illustration <- function(model,
+                                  yrs = NULL,
+                                  show.fished = TRUE,
+                                  show.legend = TRUE){
   # graphic for appendix to illustrate how SPR is calculated
   col1 <- 'grey20'
   col2 <- 'grey70'
@@ -9,23 +12,24 @@ make.SPR.illustration <- function(model, show.fished=TRUE, show.legend=TRUE){
   x.legend <- 6 # x-value associated with left side of legend
   x.legend2 <- 12 # x-value associated with left side of legend
 
-  # column names frequently used
-  cols <- paste(ages)
+  cols <- as.character(ages)
+
+  if(is.null(yrs)){
+    yrs <- unique(model$wtatage$Yr)
+  }
 
   # get vector of maturity * fecundity from wtatage matrix
-  matfec.vec <- as.numeric(head(model$wtatage[model$wtatage$Fleet==-2,
-                                              cols], 1))
-  # average weight at age
-  wt.vec.avg <- as.numeric(head(model$wtatage[model$wtatage$Fleet==-1 &
-                                                model$wtatage$Yr==1966,
-                                              cols], 1))
+  matfec.vec <- model$wtatage %>%
+    filter(Fleet == -2,
+           Yr %in% yrs) %>%
+    head(1) %>%
+    select(cols)  # average weight at age
+  wt.vec.avg <-   matfec.vec <- model$wtatage %>%
+    filter(Fleet == -1,
+           Yr %in% yrs) %>%
+    select(cols) %>%
+    summarize_all(mean)
 
-  # ending year weight at age
-  wt.vec.endyr <- as.numeric(head(model$wtatage[model$wtatage$Fleet==-1 &
-                                                  abs(model$wtatage$Yr)==model$endyr,
-                                                cols], 1))
-  ## TODO: Make sure this code incorporate recent changes in fecundity average periods
-wt.vec.avg=wt.vec.endyr
   # numbers at age in equilibrium
   N_at_age.equil <- as.numeric(model$natage[model$natage$Era=="VIRG" &
                                               model$natage$"Beg/Mid"=="B",
