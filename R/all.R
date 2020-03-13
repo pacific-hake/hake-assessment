@@ -45,7 +45,7 @@ rootd.extra.calcs <- file.path(rootd, "extra-calculations")
 rootd.models <- file.path(rootd, "models")
 rootd.pres <- file.path(rootd, "beamer")
 
-models_path <- "models"
+models_path <- "models-parallel"
 catch_levels_path <- "catch-levels"
 default_hr_path <- "default-hr"
 stable_catch_path <- "stable-catch"
