@@ -18,20 +18,12 @@
 #' @export
 #'
 #' @examples
-run_retrospectives <- function(model,
+run_retrospectives <- function(model_path,
                                remove_blocks = FALSE,
-                               starter_file_name,
-                               forecast_file_name,
-                               weight_at_age_file_name,
-                               ss_executable,
-                               run_retrospectives,
                                ...){
 
-  model_path <- model$path
+  model <- load_ss_files(model_path, ...)
   retro_path <- file.path(model_path, "retrospectives")
-  if(!run_retrospectives){
-    return(invisible())
-  }
   dir.create(retro_path, showWarnings = FALSE)
   unlink(file.path(retro_path, "*"), recursive = TRUE)
 
@@ -39,8 +31,6 @@ run_retrospectives <- function(model,
   retros_list <- list()
 
   # Copy all required model files into the retrospective directory
-  model <- load_ss_files(model_path, ...)
-
   files_to_copy <- c(file.path(model_path, c(ss_executable,
                                              starter_file_name,
                                              forecast_file_name,
@@ -49,37 +39,51 @@ run_retrospectives <- function(model,
                      model$dat.file)
 
   # Create a directory for each retrospective, copy files, and run retro
-  for(retro in 1:length(retrospective_yrs)){
-    retro_subdir <- file.path(retro_path, paste0("retro-", pad.num(retrospective_yrs[retro], 2)))
+  plan("multisession")
+  future_map(retrospective_yrs, ~{
+    retro_subdir <- file.path(retro_path, paste0("retro-", pad.num(.x, 2)))
     dir.create(retro_subdir, showWarnings = FALSE)
     file.copy(files_to_copy, retro_subdir)
 
     starter_file <- file.path(retro_subdir, starter_file_name)
     starter <- SS_readstarter(starter_file, verbose = FALSE)
-    starter$retro_yr <- -retrospective_yrs[retro]
+    starter$retro_yr <- -.x
     starter$init_values_src <- 0
-    SS_writestarter(starter, dir = retro_subdir, verbose = FALSE, overwrite = TRUE)
+    SS_writestarter(starter,
+                    dir = retro_subdir,
+                    verbose = FALSE,
+                    overwrite = TRUE)
 
     dat <- SS_readdat(file.path(retro_subdir, starter$datfile),
-      verbose = FALSE, version = model$SS_versionshort)
+                      verbose = FALSE,
+                      version = model$SS_versionshort)
     ctl <- SS_readctl(file.path(retro_subdir, starter$ctlfile),
-      verbose = FALSE, use_datlist = TRUE, datlist = dat,
-      version = model$SS_versionshort)
-    ctl$MainRdevYrLast <- ctl$MainRdevYrLast - retrospective_yrs[retro]
-    ctl$age_selex_parms[ctl$age_selex_parms[,"dev_maxyr"] > dat$endyr - retro,
-       "dev_maxyr"] <- dat$endyr - retrospective_yrs[retro]
-    checkvals <- ctl$age_selex_parms[
-      ctl$age_selex_parms[, "dev_minyr"] != 0,
-      c("dev_minyr", "dev_maxyr")]
-    if (NROW(checkvals) > 0) {
-      if (any(checkvals[, "dev_maxyr"] - checkvals[, "dev_minyr"] < 1)) {
+                      verbose = FALSE,
+                      use_datlist = TRUE,
+                      datlist = dat,
+                      version = model$SS_versionshort)
+    ctl$MainRdevYrLast <- ctl$MainRdevYrLast - .x
+    asp <- ctl$age_selex_parms$dev_maxyr
+    asp <- ifelse(asp > dat$endyr - .x, dat$endyr - .x, asp)
+    ctl$age_selex_parms$dev_maxyr <- asp
+
+    chk <- ctl$age_selex_parms %>%
+      filter(dev_minyr !=0) %>%
+      select(dev_minyr, dev_maxyr) %>%
+      mutate(diff = dev_maxyr - dev_minyr) %>%
+      pull(diff)
+    if(length(chk) > 0){
+      if(any(chk < 1)){
         stop("The retrospective, ", basename(retro_subdir),
-          ", has time-varying selectivity outside the data years.")
+             ", has time-varying selectivity outside the data years.",
+             call. = FALSE)
       }
     }
-    rm(checkvals)
-    SS_writectl(ctl, outfile = file.path(retro_subdir, starter$ctlfile),
-      version = model$SS_versionshort, overwrite = TRUE, verbose = FALSE)
+    SS_writectl(ctl,
+                outfile = file.path(retro_subdir, starter$ctlfile),
+                version = model$SS_versionshort,
+                overwrite = TRUE,
+                verbose = FALSE)
     if(remove_blocks){
       ctl_file <- file.path(retro_subdir, model$ctl.file)
       ctl <- readLines(ctl.file)
@@ -100,8 +104,8 @@ run_retrospectives <- function(model,
       data_new[df_for_meanbody] <- paste0("#_COND_", data_new[df_for_meanbody])
       writeLines(data_new, con = file.path(retro_subdir, "data.ss_new"))
     }
-  }
-  invisible()
+  })
+  plan()
 }
 
 #' Fetch the retrospectives and return a list of each. If there are no retrospective
