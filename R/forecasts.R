@@ -135,9 +135,9 @@ fetch_forecasts <- function(model_path,
     names(lvls_lst) <- catch_levels_names
     lvls_lst
   })
-  names(lst) <- forecast_yrs
-  message("Finished loading forecast data")
   plan()
+  names(lst) <- forecast_yrs
+  message("Finished loading forecasts")
   lst
 }
 
