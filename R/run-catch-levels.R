@@ -22,7 +22,7 @@ fetch_catch_levels <- function(catch_levels_path,
 
   stopifnot(!is.null(catch_levels))
 
-  message("\nLoading catch level data from ", catch_levels_path)
+  message("\nLoading catch levels from ", catch_levels_path)
 
   spr_100_path <- file.path(catch_levels_path, spr_100_path)
   default_hr_path <- file.path(catch_levels_path, default_hr_path)
@@ -31,7 +31,7 @@ fetch_catch_levels <- function(catch_levels_path,
   plan("multisession")
   cust_catch_levels <- future_map(1:3, ~{
     if(.x == 1){
-      message("Loading 'SPR 100' catch level data from ", spr_100_path)
+      message("Loading 'SPR 100' catch level from ", spr_100_path)
       forecast_file <- file.path(spr_100_path, forecast_file_name)
       fore <- SS_readforecast(forecast_file,
                               Nfleets = 1,
@@ -46,7 +46,7 @@ fetch_catch_levels <- function(catch_levels_path,
       })
       col_catch
     }else if(.x == 2){
-      message("Loading 'Default HR' catch level data from ", default_hr_path)
+      message("Loading 'Default HR' catch level from ", default_hr_path)
       forecast_file <- file.path(default_hr_path, "forecast.ss")
       fore <- SS_readforecast(forecast_file,
                               Nfleets = 1,
@@ -60,7 +60,7 @@ fetch_catch_levels <- function(catch_levels_path,
       })
       col_catch
     }else{
-      message("Loading 'Stable Catch' catch level data from ", stable_catch_path)
+      message("Loading 'Stable Catch' catch level from ", stable_catch_path)
       forecast_file <- file.path(stable_catch_path, "forecast.ss")
       fore <- SS_readforecast(forecast_file,
                               Nfleets = 1,
@@ -72,7 +72,7 @@ fetch_catch_levels <- function(catch_levels_path,
       }, error = function(e){
         stop("The column 'Catch or F' was not found in the forecast file Catch matrix.")
       })
-      message("Successfully loaded catch level data.")
+      message("Finished loading catch levels")
       col_catch
     }
   })
