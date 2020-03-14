@@ -39,7 +39,7 @@ build <- function(model_dirs,
   invisible()
 }
 
-#' Create an rdata file to hold the model's data and outputs.
+#' Create an rds file to hold the model's data and outputs.
 #'
 #' @param model_dir Directory name of model to be loaded
 #'
