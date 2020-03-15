@@ -32,9 +32,21 @@ run_extra_mcmc <- function(model_path,
     nxt <- tibble(from = from_to[i - 1,]$to + 1, to = from_to[i - 1,]$to + num_posts_by_proc[i])
     from_to <- bind_rows(from_to, nxt)
   }
-  posts <- read_table(file.path(model$mcmcpath, posts_file_name))
+  posts <- read_table2(file.path(model$mcmcpath, posts_file_name))
+  # Remove all extra columns that start with X. These represent extra whitespace at end of header row in file
+  postsxgrep <- grep("^X", names(posts))
+  if(length(postsxgrep)){
+    posts <- posts %>%
+      select(-postsxgrep)
+  }
   post_lst <- split_df(posts, from_to)
-  derposts <- read_table(file.path(model$mcmcpath, derposts_file_name))
+  derposts <- read_table2(file.path(model$mcmcpath, derposts_file_name))
+  # Remove all extra columns that start with X. These represent extra whitespace at end of header row in file
+  derxgrep <- grep("^X", names(derposts))
+  if(length(derxgrep)){
+    derposts <- derposts %>%
+      select(-derxgrep)
+  }
   derpost_lst <- split_df(derposts, from_to)
 
   extra_mcmc_full_path <- file.path(model_path, extra_mcmc_path)
@@ -45,8 +57,8 @@ run_extra_mcmc <- function(model_path,
   dir.create(reports_path, showWarnings = FALSE)
   unlink(file.path(reports_path, "*"), recursive = TRUE)
 
-  future::plan("multisession")
-  furrr::future_map(1:nrow(from_to), ~{
+  plan("multisession")
+  future_map(1:nrow(from_to), ~{
     run_extra_mcmc_chunk(model,
                          posts = post_lst[[.x]],
                          derposts = derpost_lst[[.x]],
@@ -54,6 +66,7 @@ run_extra_mcmc <- function(model_path,
                          extra_mcmc_num = .x,
                          from_to = from_to[.x,],
                          ...)})
+  plan()
 }
 
 #' Setup model files and batch files for a single extra-mcmc folder
@@ -88,30 +101,20 @@ run_extra_mcmc_chunk <- function(model,
   ## add hash before first column name
   names(newpar)[1] <- "#value"
 
-  ## change labels parameters like "SR_LN(R0)" to "SR_LN.R0."
-  ## to match what read.table does to posteriors.sso
-  newpar$label <- gsub(pattern = "(", replacement = ".", newpar$label, fixed = TRUE)
-  newpar$label <- gsub(pattern = ")", replacement = ".", newpar$label, fixed = TRUE)
-  ## Remove brackets in newpar labels so that the names match column names in posts
-  ## this line may be redundant with the gsub commands above
-  newpar$label <- gsub("\\(([0-9])\\)", ".\\1.", newpar$label)
-
   extra_mcmc_full_path <- file.path(model_path, extra_mcmc_path)
   reports_path <- file.path(extra_mcmc_full_path, "reports")
 
   sub_extra_mcmc_path <- file.path(extra_mcmc_full_path, paste0(extra_mcmc_path, "-", extra_mcmc_num))
   dir.create(sub_extra_mcmc_path, showWarnings = FALSE)
   unlink(file.path(sub_extra_mcmc_path, "*"), recursive = TRUE)
+  dir.create(reports_path, showWarnings = FALSE)
+  unlink(file.path(reports_path, "*"), recursive = TRUE)
+
   ## Copy files into the subdirectory from the model/mcmc directory
-
   file.copy(file.path(mcmc_path, list.files(mcmc_path)), sub_extra_mcmc_path)
-  write_csv(posts, file.path(sub_extra_mcmc_path, posts_file_name))
-  write_csv(derposts, file.path(sub_extra_mcmc_path, derposts_file_name))
-
-  write.table(x = newpar,
-              file = file.path(sub_extra_mcmc_path, par_file_name),
-              quote = FALSE,
-              row.names = FALSE)
+  write_delim(posts, file.path(sub_extra_mcmc_path, posts_file_name))
+  write_delim(derposts, file.path(sub_extra_mcmc_path, derposts_file_name))
+  write_delim(newpar, file.path(sub_extra_mcmc_path, par_file_name))
 
   start <- SS_readstarter(file.path(sub_extra_mcmc_path, starter_file_name), verbose = FALSE)
   ## Change starter file to read from par file
@@ -134,11 +137,9 @@ run_extra_mcmc_chunk <- function(model,
   for(irow in 1:nrow(posts)){
     ## replace values in newpar table with posteriors values
     ## (excluding 1 and 2 for "Iter" and "Objective_function")
+
     newpar[newpar$label %in% names(posts), 1] <- as.numeric(posts[irow, -(1:2)])
-    write.table(x = newpar,
-                file = file.path(sub_extra_mcmc_path, par_file_name),
-                quote = FALSE,
-                row.names = FALSE)
+    write_delim(newpar, file.path(sub_extra_mcmc_path, par_file_name))
     ## delete existing output files to make sure that if model fails to run,
     ## it won't just copy the same files again and again
     file.remove(file.path(sub_extra_mcmc_path, report_file_name))
@@ -166,49 +167,53 @@ run_extra_mcmc_chunk <- function(model,
 #'
 #' @return
 #' @export
-fetch_extra_mcmc <- function(model){
+fetch_extra_mcmc <- function(model_path,
+                             ...){
 
-  extra_mcmc_path <- model$extra.mcmc.path
-  reports_dir <- file.path(extra_mcmc_path, extra_mcmc_reports_path)
-  if(is.na(extra_mcmc_path)){
-    return(NA)
-  }
+  model <- load_ss_files(model_path, ...)
+  mcmc_path <- model$mcmcpath
+  extra_mcmc_path <- file.path(model_path, extra_mcmc_path)
   if(!dir.exists(extra_mcmc_path)){
+    message("The ", extra_mcmc_path, " directory does not exist, so the extra-mcmc wass not loaded")
     return(NA)
   }
+  reports_dir <- file.path(extra_mcmc_path, extra_mcmc_reports_path)
   if(!dir.exists(reports_dir)){
+    message("The ", reports_dir, " directory does not exist, so the extra-mcmc wass not loaded")
     return(NA)
   }
 
-  extra_mcmc_path <- model$extra.mcmc.path
+  ## Get the extra-mcmc directories done in parallel
+  extra_mcmc_dirs <- dir(extra_mcmc_path)
+  extra_mcmc_dirs <- file.path(extra_mcmc_path, extra_mcmc_dirs[grepl("extra-mcmc", extra_mcmc_dirs)])
+
   ## Get the number of Report.sso files in the directory
   dir_list <- dir(reports_dir)
   if(!length(dir_list)){
+    message("There are no report files in the ", reports_dir, " directory.")
     return(NA)
   }
-  num_reports <- length(grep("^Report_[[:digit:]]+\\.sso$", dir_list))
-  num_comp_reports <- length(grep("^CompReport_[[:digit:]]+\\.sso$", dir_list))
-  posts <- read.table(file.path(extra_mcmc_path, posts_file_name),
-                      header = TRUE,
-                      fill = TRUE,
-                      stringsAsFactors = FALSE)
-  message("\nLoading Extra MCMC data from ", extra_mcmc_path)
-
+  report_files <- grep("^Report_[[:digit:]]+\\.sso$", dir_list)
+  num_reports <- length(report_files)
+  comp_files <- grep("^CompReport_[[:digit:]]+\\.sso$", dir_list)
+  num_comp_reports <- length(comp_files)
+  message("\nLoading Extra MCMCs from ", extra_mcmc_path)
+  posts <- read_table2(file.path(mcmc_path, posts_file_name))
+  posts <- posts %>% filter(Iter != "Iter",
+                            Iter != 0)
   ## Data frame to store likelihood components
-  like_info <- data.frame(Iter = posts$Iter, stringsAsFactors = FALSE)
-  for(lab in c("TOTAL",
-               "Equil_catch",
-               "Survey",
-               "Age_comp",
-               "Recruitment",
-               "Forecast_Recruitment",
-               "Parm_priors",
-               "Parm_devs",
-               "Crash_Pen",
-               "Age_comp_surv",
-               "Age_comp_fishery")){
-    like_info[[lab]] <- 0
-  }
+  like_info <- tibble(Iter = posts$Iter,
+                      TOTAL = 0,
+                      Equil_catch = 0,
+                      Survey = 0,
+                      Age_comp = 0,
+                      Recruitment = 0,
+                      Forecast_Recruitment = 0,
+                      Parm_priors = 0,
+                      Parm_devs = 0,
+                      Crash_Pen = 0,
+                      Age_comp_surv = 0,
+                      Age_comp_fishery = 0)
 
   ## Objects to store selectivity, select*wt, and numbers at age
   sel_table <- NULL
@@ -224,58 +229,91 @@ fetch_extra_mcmc <- function(model){
   Bio_all <- NULL
   Bio_smry <- NULL
 
-  ## loop over all report files to extract quantities
-  for(irow in 1:num_reports){
-    # read full report file as strings
-    rep_file <- file.path(reports_dir, paste0("Report_", irow,".sso"))
-    tmp <- readLines(rep_file)
-    # find section on likelihoods and read as a table
-    skip_row <- grep("LIKELIHOOD", tmp)[2]
-    likes <- read.table(rep_file,
-                        skip = skip_row,
-                        nrows = 17,
-                        fill = TRUE,
-                        row.names = NULL,
-                        col.names = 1:4,
-                        stringsAsFactors = FALSE)
-    # extract likelihoods from table and make numeric
-    like_info[irow, 2:10] <- as.numeric(likes$X2[3:11])  ## fleet-aggregated likelihoods
-    like_info[irow, 11] <- as.numeric(likes[17, 3])      ## fleet-specific age comp likelihoods
-    like_info[irow, 12] <- as.numeric(likes[17, 4])      ## fleet-specific age comp likelihoods
+  ## Break up the loading of report files into the number of posteriors in each extra-mcmc subdir
+  num_reports_each <- map_int(extra_mcmc_dirs, ~{
+    posts <- read_table2(file.path(.x, posts_file_name))
+    posts <- posts %>% filter(Iter != "Iter",
+                              Iter != 0)
+    nrow(posts)
+  })
 
-    # find lines in report file containing unique strings related to selectivity
-    sel_line1 <- grep(sel_text1, tmp)
-    sel_line2 <- grep(sel_text2, tmp, fixed = TRUE)
-    message("Loading report file: ", rep_file)
-    # read individual rows of selectivity info
-    sel_row1 <- read.table(file = rep_file, skip = sel_line1 - 1, nrow = 1)
-    sel_row2 <- read.table(file = rep_file, skip = sel_line2 - 1, nrow = 1)
-
-    # read numbers at age table based on start and end lines and length of table
-    natage_line_start <- grep("NUMBERS_AT_AGE_Annual_2 With_fishery", tmp)
-    natage_line_end <- grep("Z_AT_AGE_Annual_2 With_fishery", tmp)-3
-    natage_N_lines <- natage_line_end - natage_line_start
-    natage_allrows <- read.table(file = rep_file, skip = natage_line_start,
-                                 nrow = natage_N_lines, header = TRUE)
-    ## subset all rows to select first forecast year
-    nms <- colnames(natage_allrows)
-    nms[nms == "Year"] <- "Yr"
-    colnames(natage_allrows) <- nms
-    natage_row <- natage_allrows[natage_allrows$Yr == model$endyr + 1,]
-
-    # add rows to tables of values for each MCMC sample
-    sel_table <- rbind(sel_table, sel_row1)
-    selwt_table <- rbind(selwt_table, sel_row2)
-    natage_table <- rbind(natage_table, natage_row)
-
-    # read time series table to get total biomass
-    # (in the future we could add more things from the timeseries table)
-    ts_start <- grep("^TIME_SERIES", tmp) + 1 # row with header
-    ts_end <- grep("^SPR_series", tmp) - 2 # final row
-    ts <- read.table(rep_file, header = TRUE, skip = ts_start - 1, nrows = ts_end - ts_start)
-    Bio_all <- cbind(Bio_all, ts$Bio_all)
-    Bio_smry <- cbind(Bio_smry, ts$Bio_smry)
+  ## from_to is a two-column dataframe with the indices from and to for each processor to load report files
+  from_to <- tibble(from = 1, to = num_reports_each[1])
+  for(i in 2:length(num_reports_each)){
+    nxt <- tibble(from = from_to[i - 1,]$to + 1, to = from_to[i - 1,]$to + num_reports_each[i])
+    from_to <- bind_rows(from_to, nxt)
   }
+
+  plan("multisession")
+  map(1:nrow(from_to), ~{
+    inds <- as.numeric(from_to[.x, 1]):as.numeric(from_to[.x, 2])
+    map(inds, ~{
+      rep_file <- file.path(reports_dir, paste0("Report_", .x, ".sso"))
+      if(!file.exists(rep_file)){
+        return(NA)
+      }
+      tmp <- readLines(rep_file)
+
+      skip_row <- grep("LIKELIHOOD", tmp)[2]
+      message("Loading report file: ", rep_file)
+      likes <- read.table(rep_file,
+                          skip = skip_row,
+                          nrows = 17,
+                          fill = TRUE,
+                          row.names = NULL,
+                          col.names = 1:4,
+                          stringsAsFactors = FALSE)
+
+      # extract likelihoods from table and make numeric
+      like_info[.x, 2:10] <<- as.numeric(likes$X2[3:11])  ## fleet-aggregated likelihoods
+      like_info[.x, 11] <<- as.numeric(likes[17, 3])      ## fleet-specific age comp likelihoods
+      like_info[.x, 12] <<- as.numeric(likes[17, 4])      ## fleet-specific age comp likelihoods
+
+      # find lines in report file containing unique strings related to selectivity
+      sel_line1 <- grep(sel_text1, tmp)
+      sel_line2 <- grep(sel_text2, tmp, fixed = TRUE)
+
+      # read individual rows of selectivity info
+      sel_row1 <- read.table(file = rep_file, skip = sel_line1 - 1, nrow = 1)
+      sel_row2 <- read.table(file = rep_file, skip = sel_line2 - 1, nrow = 1)
+
+      # read numbers at age table based on start and end lines and length of table
+      natage_line_start <- grep("NUMBERS_AT_AGE_Annual_2 With_fishery", tmp)
+      natage_line_end <- grep("Z_AT_AGE_Annual_2 With_fishery", tmp)-3
+      natage_N_lines <- natage_line_end - natage_line_start
+      natage_allrows <- read.table(file = rep_file,
+                                   skip = natage_line_start,
+                                   nrow = natage_N_lines,
+                                   header = TRUE)
+      ## subset all rows to select first forecast year
+      nms <- colnames(natage_allrows)
+      nms[nms == "Year"] <- "Yr"
+      colnames(natage_allrows) <- nms
+      natage_row <- natage_allrows[natage_allrows$Yr == model$endyr + 1,]
+
+      # add rows to tables of values for each MCMC sample
+      sel_table <- rbind(sel_table, sel_row1)
+      selwt_table <- rbind(selwt_table, sel_row2)
+      natage_table <- rbind(natage_table, natage_row)
+
+      # read time series table to get total biomass
+      # (in the future we could add more things from the timeseries table)
+      ts_start <- grep("^TIME_SERIES", tmp) + 1 # row with header
+      ts_end <- grep("^SPR_series", tmp) - 2 # final row
+      ts <- read.table(rep_file,
+                       header = TRUE,
+                       skip = ts_start - 1,
+                       nrows = ts_end - ts_start)
+      Bio_all <- cbind(Bio_all, ts$Bio_all)
+      Bio_smry <- cbind(Bio_smry, ts$Bio_smry)
+      browser()
+    })
+    like_info <<- like_info
+    invisible()
+  })
+  plan()
+
+  browser()
 
   ## Make sure the number of rows matches the number of posteriors
   like_info <- like_info[like_info$Equil_catch != 0 &
