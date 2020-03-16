@@ -248,198 +248,139 @@ fetch_extra_mcmc <- function(model_path,
     flatten()
   plan()
 
-  ## Make a list of biomass tables, 1 for each posterior
-  ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
-  bio_header_text <- "^TIME_SERIES"
-  bio_end_text <- "^SPR_series"
-  bios <- map2(reps, 1:length(reps), ~{
-    if(is.na(.x[1])){
-      return(NA)
-    }
-    bio_header_ind <- grep(bio_header_text, .x) + 1
-    bio_header_line <- .x[bio_header_ind]
-    bio_header <- str_split(bio_header_line, " +")[[1]]
-    bio_start_ind <- bio_header_ind + 1
-    bio_end_ind <- grep(bio_end_text, .x) - 2
-    bio_lines <- .x[bio_start_ind:bio_end_ind]
-    bio <- str_split(bio_lines, " +")
-    bio <- do.call(rbind, bio) %>%
-      as_tibble()
-    names(bio) <- bio_header
-    bio %>%
-      add_column(Iter = .y, .before = 1) %>%
-      select(Iter, Bio_all, Bio_smry)
-  })
-  bios <- do.call(rbind, bios) %>%
-    as_tibble()
-
-  ## Make a list of likelihood tables, 1 for each posterior
-  ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
-  likes <- map2(reps, 1:length(reps), ~{
-    if(is.na(.x[1])){
-      return(NA)
-    }
-    like_ind <- grep("^LIKELIHOOD", .x) + 1
-    likes <- .x[like_ind:(like_ind + 17)]
-    likes <- map(str_split(likes, " +"), ~{.x[1:4]})
-    likes <- do.call(rbind, likes) %>%
-      as_tibble() %>%
-      filter(!grepl("^#_", V1)) %>%
-      add_column(Iter = .y, .before = 1)
-  })
-  likes <- do.call(rbind, likes) %>%
-    as_tibble()
-
-  ## Make a list of selectivity tables, 1 for each posterior
-  ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
-  sel_text <- paste0(model$endyr + 1, "_1Asel")
-  sels <- map2(reps, 1:length(reps), ~{
-    if(is.na(.x[1])){
-      return(NA)
-    }
-    sel_header_text <- "Factor Fleet Yr Seas"
-    sel_header_ind <- grep(sel_header_text, .x)
-    sel_header_line <- .x[sel_header_ind]
-    sel_header <- str_split(sel_header_line, " +")[[1]]
-    sel_line <- .x[grep(sel_text, .x)]
-    sel <- str_split(sel_line, " +")
-    sel <- do.call(rbind, sel) %>%
-      as_tibble()
-    names(sel) <- sel_header
-    sel %>%
-      add_column(Iter = .y, .before = 1)
-  })
-  sels <- do.call(rbind, sels) %>%
-    as_tibble()
-
-  ## Make a list of selectivity weight tables, 1 for each posterior
-  ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
-  selwt_text <- paste0(model$endyr + 1, "_1_sel\\*wt")
-  selwts <- map2(reps, 1:length(reps), ~{
-    if(is.na(.x[1])){
-      return(NA)
-    }
-    sel_header_text <- "Factor Fleet Yr Seas"
-    sel_header_ind <- grep(sel_header_text, .x)
-    sel_header_line <- .x[sel_header_ind]
-    sel_header <- str_split(sel_header_line, " +")[[1]]
-    selwt_line <- .x[grep(selwt_text, .x)]
-    selwt <- str_split(selwt_line, " +")
-    selwt <- do.call(rbind, selwt) %>%
-      as_tibble()
-    names(selwt) <- sel_header
-    selwt %>%
-      add_column(Iter = .y, .before = 1)
-  })
-  selwts <- do.call(rbind, selwts) %>%
-    as_tibble()
-
-  ## Make a list of numbers-at-age tables, 1 for each posterior
-  ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
-  natage_start_text <- "NUMBERS_AT_AGE_Annual_2 With_fishery"
-  natage_end_text <- "Z_AT_AGE_Annual_2 With_fishery"
-  natages <- map2(reps, 1:length(reps), ~{
-    if(is.na(.x[1])){
-      return(NA)
-    }
-    natage_header_ind <- grep(natage_start_text, .x) + 1
-    natage_header <- str_split(.x[natage_header_ind], " +")[[1]]
-    natage_start_ind <- grep(natage_start_text, .x) + 2
-    natage_end_ind <- grep(natage_end_text, .x) - 2
-    natage_lines <- .x[natage_start_ind:natage_end_ind]
-    natage_lines <- str_split(natage_lines, " +")
-    natage <- do.call(rbind, natage_lines) %>%
-      as_tibble()
-    names(natage) <- natage_header
-    natage %>%
-      add_column(Iter = .y, .before = 1)
-  })
-  natages <- do.call(rbind, natages) %>%
-    as_tibble()
-
-
-
+  options(future.globals.maxSize = 2300 * 1024 ^ 2)
   plan("multisession")
-  like_info <- map(1:nrow(from_to), ~{
-    inds <- as.numeric(from_to[.x, 1]):as.numeric(from_to[.x, 2])
-    ## Data frame to store likelihood components
-    like_info <- tibble(Iter = posts$Iter,
-                        TOTAL = 0,
-                        Equil_catch = 0,
-                        Survey = 0,
-                        Age_comp = 0,
-                        Recruitment = 0,
-                        Forecast_Recruitment = 0,
-                        Parm_priors = 0,
-                        Parm_devs = 0,
-                        Crash_Pen = 0,
-                        Age_comp_surv = 0,
-                        Age_comp_fishery = 0)
-
-    future_map(inds, ~{
-      rep_file <- file.path(reports_dir, paste0("Report_", .x, ".sso"))
-      if(!file.exists(rep_file)){
-        return(NA)
-      }
-      tmp <- readLines(rep_file)
-
-      skip_row <- grep("LIKELIHOOD", tmp)[2]
-      message("Loading report file: ", rep_file)
-      likes <- read.table(rep_file,
-                          skip = skip_row,
-                          nrows = 17,
-                          fill = TRUE,
-                          row.names = NULL,
-                          col.names = 1:4,
-                          stringsAsFactors = FALSE)
-
-      # extract likelihoods from table and make numeric
-      like_info[.x, 2:10] <<- as.numeric(likes$X2[3:11])  ## fleet-aggregated likelihoods
-      like_info[.x, 11] <<- as.numeric(likes[17, 3])      ## fleet-specific age comp likelihoods
-      like_info[.x, 12] <<- as.numeric(likes[17, 4])      ## fleet-specific age comp likelihoods
-
-      # find lines in report file containing unique strings related to selectivity
-      sel_line1 <- grep(sel_text1, tmp)
-      sel_line2 <- grep(sel_text2, tmp, fixed = TRUE)
-
-      # read individual rows of selectivity info
-      sel_row1 <- read.table(file = rep_file, skip = sel_line1 - 1, nrow = 1)
-      sel_row2 <- read.table(file = rep_file, skip = sel_line2 - 1, nrow = 1)
-
-      # read numbers at age table based on start and end lines and length of table
-      natage_line_start <- grep("NUMBERS_AT_AGE_Annual_2 With_fishery", tmp)
-      natage_line_end <- grep("Z_AT_AGE_Annual_2 With_fishery", tmp)-3
-      natage_N_lines <- natage_line_end - natage_line_start
-      natage_allrows <- read.table(file = rep_file,
-                                   skip = natage_line_start,
-                                   nrow = natage_N_lines,
-                                   header = TRUE)
-      ## subset all rows to select first forecast year
-      nms <- colnames(natage_allrows)
-      nms[nms == "Year"] <- "Yr"
-      colnames(natage_allrows) <- nms
-      natage_row <- natage_allrows[natage_allrows$Yr == model$endyr + 1,]
-
-      # add rows to tables of values for each MCMC sample
-      sel_table <- rbind(sel_table, sel_row1)
-      selwt_table <- rbind(selwt_table, sel_row2)
-      natage_table <- rbind(natage_table, natage_row)
-
-      # read time series table to get total biomass
-      # (in the future we could add more things from the timeseries table)
-      ts_start <- grep("^TIME_SERIES", tmp) + 1 # row with header
-      ts_end <- grep("^SPR_series", tmp) - 2 # final row
-      ts <- read.table(rep_file,
-                       header = TRUE,
-                       skip = ts_start - 1,
-                       nrows = ts_end - ts_start)
-      Bio_all <- cbind(Bio_all, ts$Bio_all)
-      Bio_smry <- cbind(Bio_smry, ts$Bio_smry)
-    })
-    browser()
-    like_info
+  out <- future_map(1:5, ~{
+    if(.x == 1){
+      ## Make a list of biomass tables, 1 for each posterior
+      ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
+      bio_header_text <- "^TIME_SERIES"
+      bio_end_text <- "^SPR_series"
+      bios <- map2(reps, 1:length(reps), ~{
+        if(is.na(.x[1])){
+          return(NA)
+        }
+        bio_header_ind <- grep(bio_header_text, .x) + 1
+        bio_header_line <- .x[bio_header_ind]
+        bio_header <- str_split(bio_header_line, " +")[[1]]
+        bio_start_ind <- bio_header_ind + 1
+        bio_end_ind <- grep(bio_end_text, .x) - 2
+        bio_lines <- .x[bio_start_ind:bio_end_ind]
+        bio <- str_split(bio_lines, " +")
+        bio <- do.call(rbind, bio) %>%
+          as_tibble()
+        names(bio) <- bio_header
+        bio %>%
+          add_column(Iter = .y, .before = 1) %>%
+          select(Iter, Bio_all, Bio_smry)
+      })
+      bios <- do.call(rbind, bios) %>%
+        as_tibble()
+    }else if(.x == 2){
+      ## Make a list of likelihood tables, 1 for each posterior
+      ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
+      likes <- map2(reps, 1:length(reps), ~{
+        if(is.na(.x[1])){
+          return(NA)
+        }
+        like_ind <- grep("^LIKELIHOOD", .x) + 1
+        likes <- .x[like_ind:(like_ind + 17)]
+        likes <- map(str_split(likes, " +"), ~{.x[1:4]})
+        likes <- do.call(rbind, likes) %>%
+          as_tibble() %>%
+          filter(!grepl("^#_", V1)) %>%
+          add_column(Iter = .y, .before = 1)
+      })
+      likes <- do.call(rbind, likes) %>%
+        as_tibble()
+    }else if(.x == 3){
+      ## Make a list of selectivity tables, 1 for each posterior
+      ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
+      sel_text <- paste0(model$endyr + 1, "_1Asel")
+      sels <- map2(reps, 1:length(reps), ~{
+        if(is.na(.x[1])){
+          return(NA)
+        }
+        sel_header_text <- "Factor Fleet Yr Seas"
+        sel_header_ind <- grep(sel_header_text, .x)
+        sel_header_line <- .x[sel_header_ind]
+        sel_header <- str_split(sel_header_line, " +")[[1]]
+        sel_line <- .x[grep(sel_text, .x)]
+        sel <- str_split(sel_line, " +")
+        sel <- do.call(rbind, sel) %>%
+          as_tibble()
+        names(sel) <- sel_header
+        sel %>%
+          add_column(Iter = .y, .before = 1)
+      })
+      sels <- do.call(rbind, sels) %>%
+        as_tibble()
+    }else if(.x == 4){
+      ## Make a list of selectivity weight tables, 1 for each posterior
+      ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
+      selwt_text <- paste0(model$endyr + 1, "_1_sel\\*wt")
+      selwts <- map2(reps, 1:length(reps), ~{
+        if(is.na(.x[1])){
+          return(NA)
+        }
+        sel_header_text <- "Factor Fleet Yr Seas"
+        sel_header_ind <- grep(sel_header_text, .x)
+        sel_header_line <- .x[sel_header_ind]
+        sel_header <- str_split(sel_header_line, " +")[[1]]
+        selwt_line <- .x[grep(selwt_text, .x)]
+        selwt <- str_split(selwt_line, " +")
+        selwt <- do.call(rbind, selwt) %>%
+          as_tibble()
+        names(selwt) <- sel_header
+        selwt %>%
+          add_column(Iter = .y, .before = 1)
+      })
+      selwts <- do.call(rbind, selwts) %>%
+        as_tibble()
+    }else if(.x == 5){
+      ## Make a list of numbers-at-age tables, 1 for each posterior
+      ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
+      natage_start_text <- "NUMBERS_AT_AGE_Annual_2 With_fishery"
+      natage_end_text <- "Z_AT_AGE_Annual_2 With_fishery"
+      natages <- map2(reps, 1:length(reps), ~{
+        if(is.na(.x[1])){
+          return(NA)
+        }
+        natage_header_ind <- grep(natage_start_text, .x) + 1
+        natage_header <- str_split(.x[natage_header_ind], " +")[[1]]
+        natage_start_ind <- grep(natage_start_text, .x) + 2
+        natage_end_ind <- grep(natage_end_text, .x) - 2
+        natage_lines <- .x[natage_start_ind:natage_end_ind]
+        natage_lines <- str_split(natage_lines, " +")
+        natage <- do.call(rbind, natage_lines) %>%
+          as_tibble()
+        names(natage) <- natage_header
+        natage %>%
+          add_column(Iter = .y, .before = 1)
+      })
+      natages <- do.call(rbind, natages) %>%
+        as_tibble()
+    }
   })
+
   plan()
+  browser()
+  # plan("multisession")
+  # like_info <- map(1:nrow(from_to), ~{
+  #   inds <- as.numeric(from_to[.x, 1]):as.numeric(from_to[.x, 2])
+  #   ## Data frame to store likelihood components
+  #   like_info <- tibble(Iter = posts$Iter,
+  #                       TOTAL = 0,
+  #                       Equil_catch = 0,
+  #                       Survey = 0,
+  #                       Age_comp = 0,
+  #                       Recruitment = 0,
+  #                       Forecast_Recruitment = 0,
+  #                       Parm_priors = 0,
+  #                       Parm_devs = 0,
+  #                       Crash_Pen = 0,
+  #                       Age_comp_surv = 0,
+  #                       Age_comp_fishery = 0)
 
   browser()
 
