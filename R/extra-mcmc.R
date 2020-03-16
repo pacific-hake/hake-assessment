@@ -201,19 +201,6 @@ fetch_extra_mcmc <- function(model_path,
   posts <- read_table2(file.path(mcmc_path, posts_file_name))
   posts <- posts %>% filter(Iter != "Iter",
                             Iter != 0)
-  ## Data frame to store likelihood components
-  like_info <- tibble(Iter = posts$Iter,
-                      TOTAL = 0,
-                      Equil_catch = 0,
-                      Survey = 0,
-                      Age_comp = 0,
-                      Recruitment = 0,
-                      Forecast_Recruitment = 0,
-                      Parm_priors = 0,
-                      Parm_devs = 0,
-                      Crash_Pen = 0,
-                      Age_comp_surv = 0,
-                      Age_comp_fishery = 0)
 
   ## Objects to store selectivity, select*wt, and numbers at age
   sel_table <- NULL
@@ -230,12 +217,14 @@ fetch_extra_mcmc <- function(model_path,
   Bio_smry <- NULL
 
   ## Break up the loading of report files into the number of posteriors in each extra-mcmc subdir
-  num_reports_each <- map_int(extra_mcmc_dirs, ~{
+  plan("multisession")
+  num_reports_each <- future_map_int(extra_mcmc_dirs, ~{
     posts <- read_table2(file.path(.x, posts_file_name))
     posts <- posts %>% filter(Iter != "Iter",
                               Iter != 0)
     nrow(posts)
   })
+  plan()
 
   ## from_to is a two-column dataframe with the indices from and to for each processor to load report files
   from_to <- tibble(from = 1, to = num_reports_each[1])
@@ -244,10 +233,125 @@ fetch_extra_mcmc <- function(model_path,
     from_to <- bind_rows(from_to, nxt)
   }
 
+  ## Load all report files into a list, 1 element for each report file. Elements that are NA had no file found in the
   plan("multisession")
-  map(1:nrow(from_to), ~{
+  reps <- future_map(1:nrow(from_to), ~{
     inds <- as.numeric(from_to[.x, 1]):as.numeric(from_to[.x, 2])
     map(inds, ~{
+      rep_file <- file.path(reports_dir, paste0("Report_", .x, ".sso"))
+      if(!file.exists(rep_file)){
+        return(NA)
+      }
+      readLines(rep_file)
+    })
+  }) %>%
+    flatten()
+  plan()
+
+  ## Make a list of likelihood tables, 1 for each posterior
+  ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
+  likes <- map2(reps, 1:length(reps), ~{
+    if(is.na(.x[1])){
+      return(NA)
+    }
+    like_ind <- grep("^LIKELIHOOD", .x) + 1
+    likes <- .x[like_ind:(like_ind + 17)]
+    likes <- map(str_split(likes, " +"), ~{.x[1:4]})
+    likes <- do.call(rbind, likes) %>%
+      as_tibble() %>%
+      filter(!grepl("^#_", V1)) %>%
+      add_column(Iter = .y, .before = 1)
+  })
+  likes <- do.call(rbind, likes) %>%
+    as_tibble()
+
+  ## Make a list of selectivity tables, 1 for each posterior
+  ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
+  sel_text <- paste0(model$endyr + 1, "_1Asel")
+  sels <- map2(reps, 1:length(reps), ~{
+    if(is.na(.x[1])){
+      return(NA)
+    }
+    sel_header_text <- "Factor Fleet Yr Seas"
+    sel_header_ind <- grep(sel_header_text, .x)
+    sel_header_line <- .x[sel_header_ind]
+    sel_header <- str_split(sel_header_line, " +")[[1]]
+    sel_line <- .x[grep(sel_text, .x)]
+    sel <- str_split(sel_line, " +")
+    sel <- do.call(rbind, sel) %>%
+      as_tibble()
+    names(sel) <- sel_header
+    sel %>%
+      add_column(Iter = .y, .before = 1)
+  })
+  sels <- do.call(rbind, sels) %>%
+    as_tibble()
+
+  ## Make a list of selectivity weight tables, 1 for each posterior
+  ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
+  selwt_text <- paste0(model$endyr + 1, "_1_sel\\*wt")
+  selwts <- map2(reps, 1:length(reps), ~{
+    if(is.na(.x[1])){
+      return(NA)
+    }
+    sel_header_text <- "Factor Fleet Yr Seas"
+    sel_header_ind <- grep(sel_header_text, .x)
+    sel_header_line <- .x[sel_header_ind]
+    sel_header <- str_split(sel_header_line, " +")[[1]]
+    selwt_line <- .x[grep(selwt_text, .x)]
+    selwt <- str_split(selwt_line, " +")
+    selwt <- do.call(rbind, selwt) %>%
+      as_tibble()
+    names(selwt) <- sel_header
+    selwt %>%
+      add_column(Iter = .y, .before = 1)
+  })
+  selwts <- do.call(rbind, selwts) %>%
+    as_tibble()
+
+  ## Make a list of numbers-at-age tables, 1 for each posterior
+  ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
+  natage_start_text <- "NUMBERS_AT_AGE_Annual_2 With_fishery"
+  natage_end_text <- "Z_AT_AGE_Annual_2 With_fishery"
+  natages <- map2(reps, 1:length(reps), ~{
+    if(is.na(.x[1])){
+      return(NA)
+    }
+    natage_header_ind <- grep(natage_start_text, .x) + 1
+    natage_header <- str_split(.x[natage_header_ind], " +")[[1]]
+    natage_start_ind <- grep(natage_start_text, .x) + 2
+    natage_end_ind <- grep(natage_end_text, .x) - 2
+    natage_lines <- .x[natage_start_ind:natage_end_ind]
+    natage_lines <- str_split(natage_lines, " +")
+    natage <- do.call(rbind, natage_lines) %>%
+      as_tibble()
+    names(natage) <- natage_header
+    natage %>%
+      add_column(Iter = .y, .before = 1)
+  })
+  natages <- do.call(rbind, natages) %>%
+    as_tibble()
+
+
+
+  plan("multisession")
+  like_info <- map(1:nrow(from_to), ~{
+    inds <- as.numeric(from_to[.x, 1]):as.numeric(from_to[.x, 2])
+    ## Data frame to store likelihood components
+    like_info <- tibble(Iter = posts$Iter,
+                        TOTAL = 0,
+                        Equil_catch = 0,
+                        Survey = 0,
+                        Age_comp = 0,
+                        Recruitment = 0,
+                        Forecast_Recruitment = 0,
+                        Parm_priors = 0,
+                        Parm_devs = 0,
+                        Crash_Pen = 0,
+                        Age_comp_surv = 0,
+                        Age_comp_fishery = 0)
+
+    future_map(inds, ~{
       rep_file <- file.path(reports_dir, paste0("Report_", .x, ".sso"))
       if(!file.exists(rep_file)){
         return(NA)
@@ -306,21 +410,20 @@ fetch_extra_mcmc <- function(model_path,
                        nrows = ts_end - ts_start)
       Bio_all <- cbind(Bio_all, ts$Bio_all)
       Bio_smry <- cbind(Bio_smry, ts$Bio_smry)
-      browser()
     })
-    like_info <<- like_info
-    invisible()
+    browser()
+    like_info
   })
   plan()
 
   browser()
 
   ## Make sure the number of rows matches the number of posteriors
-  like_info <- like_info[like_info$Equil_catch != 0 &
-                           like_info$Survey !=0 &
-                           like_info$Age_comp != 0 &
-                           like_info$Recruitment != 0 &
-                           like_info$Parm_priors != 0,]
+  # like_info <- like_info[like_info$Equil_catch != 0 &
+  #                          like_info$Survey !=0 &
+  #                          like_info$Age_comp != 0 &
+  #                          like_info$Recruitment != 0 &
+  #                          like_info$Parm_priors != 0,]
 
   ## Process selectivity values
   ## remove initial columns (containing stuff like Gender and Year)
