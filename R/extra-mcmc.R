@@ -248,6 +248,31 @@ fetch_extra_mcmc <- function(model_path,
     flatten()
   plan()
 
+  ## Make a list of biomass tables, 1 for each posterior
+  ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
+  bio_header_text <- "^TIME_SERIES"
+  bio_end_text <- "^SPR_series"
+  bios <- map2(reps, 1:length(reps), ~{
+    if(is.na(.x[1])){
+      return(NA)
+    }
+    bio_header_ind <- grep(bio_header_text, .x) + 1
+    bio_header_line <- .x[bio_header_ind]
+    bio_header <- str_split(bio_header_line, " +")[[1]]
+    bio_start_ind <- bio_header_ind + 1
+    bio_end_ind <- grep(bio_end_text, .x) - 2
+    bio_lines <- .x[bio_start_ind:bio_end_ind]
+    bio <- str_split(bio_lines, " +")
+    bio <- do.call(rbind, bio) %>%
+      as_tibble()
+    names(bio) <- bio_header
+    bio %>%
+      add_column(Iter = .y, .before = 1) %>%
+      select(Iter, Bio_all, Bio_smry)
+  })
+  bios <- do.call(rbind, bios) %>%
+    as_tibble()
+
   ## Make a list of likelihood tables, 1 for each posterior
   ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
   likes <- map2(reps, 1:length(reps), ~{
