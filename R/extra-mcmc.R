@@ -171,6 +171,7 @@ fetch_extra_mcmc <- function(model_path,
                              ...){
 
   model <- load_ss_files(model_path, ...)
+  next_yr <- model$endyr + 1
   mcmc_path <- model$mcmcpath
   extra_mcmc_path <- file.path(model_path, extra_mcmc_path)
   if(!dir.exists(extra_mcmc_path)){
@@ -201,20 +202,6 @@ fetch_extra_mcmc <- function(model_path,
   posts <- read_table2(file.path(mcmc_path, posts_file_name))
   posts <- posts %>% filter(Iter != "Iter",
                             Iter != 0)
-
-  ## Objects to store selectivity, select*wt, and numbers at age
-  sel_table <- NULL
-  selwt_table <- NULL
-  natage_table <- NULL
-
-  ## unique strings associated with rows reporting selectivity and numbers at age
-  sel_text1 <- paste0(model$endyr + 1, "_1Asel")
-  sel_text2 <- paste0(model$endyr + 1, "_1_sel*wt")
-  natage_text <- "Z_AT_AGE_Annual_2 With_fishery"
-
-  ## Objects to store total biomass and age 2+ biomass (summary biomass)
-  Bio_all <- NULL
-  Bio_smry <- NULL
 
   ## Break up the loading of report files into the number of posteriors in each extra-mcmc subdir
   plan("multisession")
@@ -250,6 +237,7 @@ fetch_extra_mcmc <- function(model_path,
 
   options(future.globals.maxSize = 2300 * 1024 ^ 2)
   plan("multisession")
+
   out <- future_map(1:5, ~{
     if(.x == 1){
       ## Make a list of biomass tables, 1 for each posterior
@@ -296,7 +284,7 @@ fetch_extra_mcmc <- function(model_path,
     }else if(.x == 3){
       ## Make a list of selectivity tables, 1 for each posterior
       ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
-      sel_text <- paste0(model$endyr + 1, "_1Asel")
+      sel_text <- paste0(next_yr, "_1Asel")
       sels <- map2(reps, 1:length(reps), ~{
         if(is.na(.x[1])){
           return(NA)
@@ -318,7 +306,7 @@ fetch_extra_mcmc <- function(model_path,
     }else if(.x == 4){
       ## Make a list of selectivity weight tables, 1 for each posterior
       ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
-      selwt_text <- paste0(model$endyr + 1, "_1_sel\\*wt")
+      selwt_text <- paste0(next_yr, "_1_sel\\*wt")
       selwts <- map2(reps, 1:length(reps), ~{
         if(is.na(.x[1])){
           return(NA)
