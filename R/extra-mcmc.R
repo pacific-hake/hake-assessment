@@ -199,6 +199,8 @@ fetch_extra_mcmc <- function(model_path,
   num_comp_reports <- length(comp_files)
   message("\nLoading Extra MCMCs from ", extra_mcmc_path)
   posts <- read_table2(file.path(mcmc_path, posts_file_name))
+  ## Remove extra MLE run outputs. SS appends a new header followed by a 0-Iter row for an MLE run.
+  ## Sometimes MLEs are run by accident or on purpose at another time and forgotten about.
   posts <- posts %>% filter(Iter != "Iter",
                             Iter != 0)
 
@@ -235,7 +237,7 @@ fetch_extra_mcmc <- function(model_path,
   plan()
 
   ## Make custom reps_ objects for each output. Only relevant portions of the report file will be passed to
-  ## the table-making map2() calls later (reduces memory needed for each session in parallel)
+  ## the table-making map2() calls later (speeds up the map2() calls)
   rep_example <- reps[[which(!is.na(reps))[1]]]
   ## Biomass
   bio_header_text <- "^TIME_SERIES"
@@ -296,8 +298,7 @@ fetch_extra_mcmc <- function(model_path,
       as_tibble()
   }
 
-  ## Don't parallelize the map2() calls inside the following. They spawn thousands of sessions which
-  ## imposes a large loading overhead and makes is much slower than serial.
+  ## Don't parallelize the following at all. It's slower than serial.
   out <- map(1:6, ~{
     if(.x == 1){
       extract_rep_table(reps_bio, bio_header) %>%
@@ -327,8 +328,8 @@ fetch_extra_mcmc <- function(model_path,
   })
   browser()
 
-  biomass <- out[[1]] %>%
-  like <- out[[2]] %>%
+  biomass <- out[[1]]
+  like <- out[[2]]
   sel <- out[[3]] %>%
     select(-(2:8))
   selwt <- out[[4]] %>%
@@ -361,11 +362,6 @@ fetch_extra_mcmc <- function(model_path,
 
   browser()
 
-  ## Process selectivity values
-  ## remove initial columns (containing stuff like Gender and Year)
-  natage_table_slim <- natage_table[,-(1:3)]
-  sel_table_slim <- sel_table[,-(1:7)]
-  selwt_table_slim <- selwt_table[,-(1:7)]
 
   ## selected biomass by age is product of numbers*selectivity*weight at each age
   natselwt <- natage_table_slim * selwt_table_slim
