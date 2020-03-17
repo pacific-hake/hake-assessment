@@ -326,22 +326,43 @@ fetch_extra_mcmc <- function(model_path,
       extract_rep_table(reps_q, q_header)
     }
   })
-  browser()
 
   biomass <- out[[1]]
   like <- out[[2]]
   sel <- out[[3]] %>%
-    select(-(2:8))
+    select(-(2:8)) %>%
+    map_df(as.numeric)
   selwt <- out[[4]] %>%
-    select(-(2:8))
+    select(-(2:8)) %>%
+    map_df(as.numeric)
   natage <- out[[5]] %>%
-    select(-(2:4))
+    select(-(2:4)) %>%
+    map_df(as.numeric)
   q <- out[[6]]
 
   ## Calculate the natage with selectivity applied and proportions
-  #natselwt <- map(unique(natage$Iter), ~{
+  apply_sel <- function(natage, sel){
+    nat <- natage %>%
+      group_by(Iter) %>%
+      group_nest()
+    sw <- sel %>%
+      group_by(Iter) %>%
+      group_nest()
+    natsel <- nat %>%
+      left_join(sw,  by = "Iter")
+    iter <- natsel$Iter
+    map2(natsel$data.x, natsel$data.y, ~{
+      sweep(.x, 2, .y %>% unlist(., use.names = FALSE), FUN = "*") %>%
+        as_tibble()
+    }) %>%
+      map2_df(iter, ~{
+        .x %>% add_column(Iter = .y, .before = 1)
+      })
+  }
 
-  #})
+  natsel <- apply_sel(natage, sel)
+  natselwt <- apply_sel(natage, selwt)
+  browser()
 
   # plan("multisession")
   # like_info <- map(1:nrow(from_to), ~{
