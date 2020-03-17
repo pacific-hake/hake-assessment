@@ -262,7 +262,7 @@ fetch_extra_mcmc <- function(model_path,
   ## Selectivity * Weight
   selwt_text <- paste0(next_yr, "_1_sel\\*wt")
   selwt_ind <- grep(selwt_text, rep_example)
-  reps_selwt <- map(reps, ~{.x[sel_header_ind:selwt_ind]})
+  reps_selwt <- map(reps, ~{.x[selwt_ind]})
   ## Natage
   natage_start_text <- "NUMBERS_AT_AGE_Annual_2 With_fishery"
   natage_end_text <- "Z_AT_AGE_Annual_2 With_fishery"
@@ -280,32 +280,32 @@ fetch_extra_mcmc <- function(model_path,
   q_end_ind <- q_start_ind + ncpue - 1
   reps_q <- map(reps, ~{.x[q_start_ind:q_end_ind]})
 
-  #options(future.globals.maxSize = 2300 * 1024 ^ 2)
-  plan("multisession")
+  extract_rep_table <- function(reps_lst, header){
+    lst <- map2(reps_lst, 1:length(reps_lst), ~{
+      if(is.na(.x[1])){
+        #return(c(.y, rep(NA, 100)))
+        return(NULL)
+      }
+      tab <- do.call(rbind, str_split(.x, " +")) %>%
+        as_tibble()
+      names(tab) <- header
+      tab %>%
+        add_column(Iter = .y, .before = 1)
+    })
+    do.call(rbind, lst) %>%
+      as_tibble()
+  }
+
   ## Don't parallelize the map2() calls inside the following. They spawn thousands of sessions which
   ## imposes a large loading overhead and makes is much slower than serial.
-  out <- map(1, ~{
+  out <- map(1:6, ~{
     if(.x == 1){
-      ## Make a list of biomass tables, 1 for each posterior
-      bios <- map2(reps_bio, 1:length(reps_bio), ~{
-        if(is.na(.x[1])){
-          return(c(.y, rep(NA, 100)))
-        }
-        bio <- do.call(rbind, str_split(.x, " +")) %>%
-          as_tibble()
-        names(bio) <- bio_header
-        bio %>%
-          add_column(Iter = .y, .before = 1) %>%
-          select(Iter, Bio_all, Bio_smry)
-      })
-      bios <- do.call(rbind, bios) %>%
-        as_tibble()
-      browser()
+      extract_rep_table(reps_bio, bio_header) %>%
+        select(Iter, Bio_all, Bio_smry)
     }else if(.x == 2){
-      ## Make a list of likelihood tables, 1 for each posterior
       likes <- map2(reps_like, 1:length(reps_like), ~{
         if(is.na(.x[1])){
-          return(c(.y, rep(NA, 100)))
+          return(NULL)
         }
         likes <- map(str_split(.x, " +"), ~{.x[1:4]})
         do.call(rbind, likes) %>%
@@ -313,89 +313,34 @@ fetch_extra_mcmc <- function(model_path,
           filter(!grepl("^#_", V1)) %>%
           add_column(Iter = .y, .before = 1)
       })
-      likes <- do.call(rbind, likes) %>%
+      do.call(rbind, likes) %>%
         as_tibble()
     }else if(.x == 3){
-      ## Make a list of selectivity tables, 1 for each posterior
-      sels <- map2(reps_sel, 1:length(reps_sel), ~{
-        if(is.na(.x[1])){
-          return(c(.y, rep(NA, 100)))
-        }
-        sel <- do.call(rbind, str_split(.x, " +")) %>%
-          as_tibble()
-        names(sel) <- sel_header
-        sel %>%
-          add_column(Iter = .y, .before = 1)
-      })
-      sels <- do.call(rbind, sels) %>%
-        as_tibble()
+      extract_rep_table(reps_sel, sel_header)
     }else if(.x == 4){
-      ## Make a list of selectivity weight tables, 1 for each posterior
-      selwts <- map2(reps_selwt, 1:length(reps_selwt), ~{
-        if(is.na(.x[1])){
-          return(c(.y, rep(NA, 100)))
-        }
-        selwt <- do.call(rbind, str_split(.x, " +")) %>%
-          as_tibble()
-        names(selwt) <- sel_header
-        selwt %>%
-          add_column(Iter = .y, .before = 1)
-      })
-      selwts <- do.call(rbind, selwts) %>%
-        as_tibble()
+      extract_rep_table(reps_selwt, sel_header)
     }else if(.x == 5){
-      ## Make a list of numbers-at-age tables, 1 for each posterior
-      natages <- map2(reps_natage, 1:length(reps_natage), ~{
-        if(is.na(.x[1])){
-          return(c(.y, rep(NA, 100)))
-        }
-        natage <- do.call(rbind, str_split(.x, " +")) %>%
-          as_tibble()
-        names(natage) <- natage_header
-        natage %>%
-          add_column(Iter = .y, .before = 1)
-      })
-      natages <- do.call(rbind, natages) %>%
-        as_tibble()
+      extract_rep_table(reps_natage, natage_header)
     }else if(.x == 6){
-      ## Make a list of numbers-at-age tables, 1 for each posterior
-      qs <- map2(reps_q, 1:length(reps_q), ~{
-        if(is.na(.x[1])){
-          return(c(.y, rep(NA, 100)))
-        }
-        q <- do.call(rbind, str_split(.x, " +")) %>%
-          as_tibble()
-        names(q) <- q_header
-        q %>%
-          add_column(Iter = .y, .before = 1)
-      })
-      qs <- do.call(rbind, qs) %>%
-        as_tibble()
+      extract_rep_table(reps_q, q_header)
     }
   })
-  plan()
+  browser()
 
   biomass <- out[[1]] %>%
-    filter(!is.na(.[[2]])) # Remove posteriors that had no report file
   like <- out[[2]] %>%
-    filter(!is.na(.[[2]]))
   sel <- out[[3]] %>%
-    filter(!is.na(.[[2]])) %>%
     select(-(2:8))
   selwt <- out[[4]] %>%
-    filter(!is.na(.[[2]])) %>%
     select(-(2:8))
   natage <- out[[5]] %>%
-    filter(!is.na(.[[2]])) %>%
     select(-(2:4))
-  q <- out[[6]] %>%
-    filter(!is.na(.[[2]]))
+  q <- out[[6]]
 
   ## Calculate the natage with selectivity applied and proportions
   #natselwt <- map(unique(natage$Iter), ~{
 
   #})
-browser()
 
   # plan("multisession")
   # like_info <- map(1:nrow(from_to), ~{
