@@ -172,6 +172,7 @@ fetch_extra_mcmc <- function(model_path,
 
   model <- load_ss_files(model_path, ...)
   next_yr <- model$endyr + 1
+  ncpue <- nrow(model$dat$CPUE)
   mcmc_path <- model$mcmcpath
   extra_mcmc_path <- file.path(model_path, extra_mcmc_path)
   if(!dir.exists(extra_mcmc_path)){
@@ -237,16 +238,16 @@ fetch_extra_mcmc <- function(model_path,
 
   options(future.globals.maxSize = 2300 * 1024 ^ 2)
   plan("multisession")
-
-  out <- future_map(1:5, ~{
+  ## Don't parallelize the map2() calls inside the following. They spawn thousands of sessions which
+  ## imposes a large loading overhead and makes is much slower than serial.
+  out <- future_map(1:6, ~{
     if(.x == 1){
       ## Make a list of biomass tables, 1 for each posterior
-      ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
       bio_header_text <- "^TIME_SERIES"
       bio_end_text <- "^SPR_series"
       bios <- map2(reps, 1:length(reps), ~{
         if(is.na(.x[1])){
-          return(NA)
+          return(c(.y, rep(NA, 100)))
         }
         bio_header_ind <- grep(bio_header_text, .x) + 1
         bio_header_line <- .x[bio_header_ind]
@@ -266,10 +267,9 @@ fetch_extra_mcmc <- function(model_path,
         as_tibble()
     }else if(.x == 2){
       ## Make a list of likelihood tables, 1 for each posterior
-      ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
       likes <- map2(reps, 1:length(reps), ~{
         if(is.na(.x[1])){
-          return(NA)
+          return(c(.y, rep(NA, 100)))
         }
         like_ind <- grep("^LIKELIHOOD", .x) + 1
         likes <- .x[like_ind:(like_ind + 17)]
@@ -283,11 +283,10 @@ fetch_extra_mcmc <- function(model_path,
         as_tibble()
     }else if(.x == 3){
       ## Make a list of selectivity tables, 1 for each posterior
-      ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
       sel_text <- paste0(next_yr, "_1Asel")
       sels <- map2(reps, 1:length(reps), ~{
         if(is.na(.x[1])){
-          return(NA)
+          return(c(.y, rep(NA, 100)))
         }
         sel_header_text <- "Factor Fleet Yr Seas"
         sel_header_ind <- grep(sel_header_text, .x)
@@ -305,11 +304,10 @@ fetch_extra_mcmc <- function(model_path,
         as_tibble()
     }else if(.x == 4){
       ## Make a list of selectivity weight tables, 1 for each posterior
-      ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
       selwt_text <- paste0(next_yr, "_1_sel\\*wt")
       selwts <- map2(reps, 1:length(reps), ~{
         if(is.na(.x[1])){
-          return(NA)
+          return(c(.y, rep(NA, 100)))
         }
         sel_header_text <- "Factor Fleet Yr Seas"
         sel_header_ind <- grep(sel_header_text, .x)
@@ -327,12 +325,11 @@ fetch_extra_mcmc <- function(model_path,
         as_tibble()
     }else if(.x == 5){
       ## Make a list of numbers-at-age tables, 1 for each posterior
-      ## Don't make this parallel, the opening/closing of sessions makes it much slower than serial
       natage_start_text <- "NUMBERS_AT_AGE_Annual_2 With_fishery"
       natage_end_text <- "Z_AT_AGE_Annual_2 With_fishery"
       natages <- map2(reps, 1:length(reps), ~{
         if(is.na(.x[1])){
-          return(NA)
+          return(c(.y, rep(NA, 100)))
         }
         natage_header_ind <- grep(natage_start_text, .x) + 1
         natage_header <- str_split(.x[natage_header_ind], " +")[[1]]
@@ -348,11 +345,53 @@ fetch_extra_mcmc <- function(model_path,
       })
       natages <- do.call(rbind, natages) %>%
         as_tibble()
+    }else if(.x == 6){
+      ## Make a list of numbers-at-age tables, 1 for each posterior
+      q_start_text <- "^INDEX_2"
+      qs <- map2(reps, 1:length(reps), ~{
+        if(is.na(.x[1])){
+          return(c(.y, rep(NA, 100)))
+        }
+        q_header_ind <- grep(q_start_text, .x) + 1
+        q_header <- str_split(.x[q_header_ind], " +")[[1]]
+        q_start_ind <- grep(q_start_text, .x) + 2
+        q_end_ind <- q_start_ind + ncpue - 1
+        q_lines <- .x[q_start_ind:q_end_ind]
+        q_lines <- str_split(q_lines, " +")
+        q <- do.call(rbind, q_lines) %>%
+          as_tibble()
+        names(q) <- q_header
+        q %>%
+          add_column(Iter = .y, .before = 1)
+      })
+      qs <- do.call(rbind, qs) %>%
+        as_tibble()
     }
   })
-
   plan()
-  browser()
+
+  biomass <- out[[1]] %>%
+    filter(!is.na(.[[2]])) # Remove posteriors that had no report file
+  like <- out[[2]] %>%
+    filter(!is.na(.[[2]]))
+  sel <- out[[3]] %>%
+    filter(!is.na(.[[2]])) %>%
+    select(-(2:8))
+  selwt <- out[[4]] %>%
+    filter(!is.na(.[[2]])) %>%
+    select(-(2:8))
+  natage <- out[[5]] %>%
+    filter(!is.na(.[[2]])) %>%
+    select(-(2:4))
+  q <- out[[6]] %>%
+    filter(!is.na(.[[2]]))
+
+  ## Calculate the natage with selectivity applied and proportions
+  natselwt <- natage %>%
+    group_by(Iter) %>%
+    as.matrix() *
+browser()
+
   # plan("multisession")
   # like_info <- map(1:nrow(from_to), ~{
   #   inds <- as.numeric(from_to[.x, 1]):as.numeric(from_to[.x, 2])
@@ -371,13 +410,6 @@ fetch_extra_mcmc <- function(model_path,
   #                       Age_comp_fishery = 0)
 
   browser()
-
-  ## Make sure the number of rows matches the number of posteriors
-  # like_info <- like_info[like_info$Equil_catch != 0 &
-  #                          like_info$Survey !=0 &
-  #                          like_info$Age_comp != 0 &
-  #                          like_info$Recruitment != 0 &
-  #                          like_info$Parm_priors != 0,]
 
   ## Process selectivity values
   ## remove initial columns (containing stuff like Gender and Year)
@@ -440,27 +472,27 @@ fetch_extra_mcmc <- function(model_path,
   Pearson_high <- apply(Pearson_table, MARGIN = 1, FUN = quantile, probs = 0.975)
 
   # get index fits from CPUE table
-  cpue_table <- NULL
-  Q_vector <- NULL
-  for(irow in 1:num_reports){
-    if(irow %% 100 == 0){
-      print(irow)
-    }
-    tmp <- readLines(file.path(reports_dir, paste0("Report_", irow,".sso")))
-    skip_row <- grep("INDEX_2", tmp)[2]
-    # number of CPUE values includes dummy values for in-between years
-    # reading these values is needed to get expected survey biomass in those years
-    ncpue <- nrow(model$dat$CPUE)
-    cpue <- read.table(file.path(reports_dir, paste0("Report_", irow,".sso")),
-                       skip = skip_row,
-                       nrows = ncpue, ## number of survey index points
-                       header = TRUE,
-                       fill = TRUE,
-                       stringsAsFactors = FALSE)
-    lab1 <- paste0("Exp", irow)
-    cpue_table <- cbind(cpue_table, cpue$Exp)
-    Q_vector <- c(Q_vector, cpue$Calc_Q[1]) # values are the same for all rows
-  }
+  # cpue_table <- NULL
+  # Q_vector <- NULL
+  # for(irow in 1:num_reports){
+  #   if(irow %% 100 == 0){
+  #     print(irow)
+  #   }
+  #   tmp <- readLines(file.path(reports_dir, paste0("Report_", irow,".sso")))
+  #   skip_row <- grep("INDEX_2", tmp)[2]
+  #   # number of CPUE values includes dummy values for in-between years
+  #   # reading these values is needed to get expected survey biomass in those years
+  #   ncpue <- nrow(model$dat$CPUE)
+  #   cpue <- read.table(file.path(reports_dir, paste0("Report_", irow,".sso")),
+  #                      skip = skip_row,
+  #                      nrows = ncpue, ## number of survey index points
+  #                      header = TRUE,
+  #                      fill = TRUE,
+  #                      stringsAsFactors = FALSE)
+  #   lab1 <- paste0("Exp", irow)
+  #   cpue_table <- cbind(cpue_table, cpue$Exp)
+  #   Q_vector <- c(Q_vector, cpue$Calc_Q[1]) # values are the same for all rows
+  # }
 
   ## Build the list of extra mcmc outputs and return
   extra_mcmc <- model
