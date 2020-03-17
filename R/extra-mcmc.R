@@ -171,8 +171,6 @@ fetch_extra_mcmc <- function(model_path,
                              ...){
 
   model <- load_ss_files(model_path, ...)
-  next_yr <- model$endyr + 1
-  ncpue <- nrow(model$dat$CPUE)
   mcmc_path <- model$mcmcpath
   extra_mcmc_path <- file.path(model_path, extra_mcmc_path)
   if(!dir.exists(extra_mcmc_path)){
@@ -236,27 +234,64 @@ fetch_extra_mcmc <- function(model_path,
     flatten()
   plan()
 
-  options(future.globals.maxSize = 2300 * 1024 ^ 2)
+  ## Make custom reps_ objects for each output. Only relevant portions of the report file will be passed to
+  ## the table-making map2() calls later (reduces memory needed for each session in parallel)
+  rep_example <- reps[[which(!is.na(reps))[1]]]
+  ## Biomass
+  bio_header_text <- "^TIME_SERIES"
+  bio_header_ind <- grep(bio_header_text, rep_example) + 1
+  bio_header_line <- rep_example[bio_header_ind]
+  bio_header <- str_split(bio_header_line, " +")[[1]]
+  bio_end_text <- "^SPR_series"
+  bio_start_ind <- bio_header_ind + 1
+  bio_end_ind <- grep(bio_end_text, rep_example) - 2
+  reps_bio <- map(reps, ~{.x[bio_start_ind:bio_end_ind]})
+  # Likelihood
+  like_start_ind <- grep("^LIKELIHOOD", rep_example) + 1
+  like_end_ind <- like_start_ind + 17
+  reps_like <- map(reps, ~{.x[like_start_ind:like_end_ind]})
+  ## Selectivity
+  next_yr <- model$endyr + 1
+  sel_header_text <- "Factor Fleet Yr Seas"
+  sel_header_ind <- grep(sel_header_text, rep_example)
+  sel_header_line <- rep_example[sel_header_ind]
+  sel_header <- str_split(sel_header_line, " +")[[1]]
+  sel_text <- paste0(next_yr, "_1Asel")
+  sel_ind <- grep(sel_text, rep_example)
+  reps_sel <- map(reps, ~{.x[sel_ind]})
+  ## Selectivity * Weight
+  selwt_text <- paste0(next_yr, "_1_sel\\*wt")
+  selwt_ind <- grep(selwt_text, rep_example)
+  reps_selwt <- map(reps, ~{.x[sel_header_ind:selwt_ind]})
+  ## Natage
+  natage_start_text <- "NUMBERS_AT_AGE_Annual_2 With_fishery"
+  natage_end_text <- "Z_AT_AGE_Annual_2 With_fishery"
+  natage_header_ind <- grep(natage_start_text, rep_example) + 1
+  natage_header <- str_split(rep_example[natage_header_ind], " +")[[1]]
+  natage_start_ind <- grep(natage_start_text, rep_example) + 2
+  natage_end_ind <- grep(natage_end_text, rep_example) - 2
+  reps_natage <- map(reps, ~{.x[natage_start_ind:natage_end_ind]})
+  ## Q
+  q_start_text <- "^INDEX_2"
+  q_header_ind <- grep(q_start_text, rep_example) + 1
+  q_header <- str_split(rep_example[q_header_ind], " +")[[1]]
+  q_start_ind <- grep(q_start_text, rep_example) + 2
+  ncpue <- nrow(model$dat$CPUE)
+  q_end_ind <- q_start_ind + ncpue - 1
+  reps_q <- map(reps, ~{.x[q_start_ind:q_end_ind]})
+
+  #options(future.globals.maxSize = 2300 * 1024 ^ 2)
   plan("multisession")
   ## Don't parallelize the map2() calls inside the following. They spawn thousands of sessions which
   ## imposes a large loading overhead and makes is much slower than serial.
-  out <- future_map(1:6, ~{
+  out <- map(1, ~{
     if(.x == 1){
       ## Make a list of biomass tables, 1 for each posterior
-      bio_header_text <- "^TIME_SERIES"
-      bio_end_text <- "^SPR_series"
-      bios <- map2(reps, 1:length(reps), ~{
+      bios <- map2(reps_bio, 1:length(reps_bio), ~{
         if(is.na(.x[1])){
           return(c(.y, rep(NA, 100)))
         }
-        bio_header_ind <- grep(bio_header_text, .x) + 1
-        bio_header_line <- .x[bio_header_ind]
-        bio_header <- str_split(bio_header_line, " +")[[1]]
-        bio_start_ind <- bio_header_ind + 1
-        bio_end_ind <- grep(bio_end_text, .x) - 2
-        bio_lines <- .x[bio_start_ind:bio_end_ind]
-        bio <- str_split(bio_lines, " +")
-        bio <- do.call(rbind, bio) %>%
+        bio <- do.call(rbind, str_split(.x, " +")) %>%
           as_tibble()
         names(bio) <- bio_header
         bio %>%
@@ -265,16 +300,15 @@ fetch_extra_mcmc <- function(model_path,
       })
       bios <- do.call(rbind, bios) %>%
         as_tibble()
+      browser()
     }else if(.x == 2){
       ## Make a list of likelihood tables, 1 for each posterior
-      likes <- map2(reps, 1:length(reps), ~{
+      likes <- map2(reps_like, 1:length(reps_like), ~{
         if(is.na(.x[1])){
           return(c(.y, rep(NA, 100)))
         }
-        like_ind <- grep("^LIKELIHOOD", .x) + 1
-        likes <- .x[like_ind:(like_ind + 17)]
-        likes <- map(str_split(likes, " +"), ~{.x[1:4]})
-        likes <- do.call(rbind, likes) %>%
+        likes <- map(str_split(.x, " +"), ~{.x[1:4]})
+        do.call(rbind, likes) %>%
           as_tibble() %>%
           filter(!grepl("^#_", V1)) %>%
           add_column(Iter = .y, .before = 1)
@@ -283,18 +317,11 @@ fetch_extra_mcmc <- function(model_path,
         as_tibble()
     }else if(.x == 3){
       ## Make a list of selectivity tables, 1 for each posterior
-      sel_text <- paste0(next_yr, "_1Asel")
-      sels <- map2(reps, 1:length(reps), ~{
+      sels <- map2(reps_sel, 1:length(reps_sel), ~{
         if(is.na(.x[1])){
           return(c(.y, rep(NA, 100)))
         }
-        sel_header_text <- "Factor Fleet Yr Seas"
-        sel_header_ind <- grep(sel_header_text, .x)
-        sel_header_line <- .x[sel_header_ind]
-        sel_header <- str_split(sel_header_line, " +")[[1]]
-        sel_line <- .x[grep(sel_text, .x)]
-        sel <- str_split(sel_line, " +")
-        sel <- do.call(rbind, sel) %>%
+        sel <- do.call(rbind, str_split(.x, " +")) %>%
           as_tibble()
         names(sel) <- sel_header
         sel %>%
@@ -304,18 +331,11 @@ fetch_extra_mcmc <- function(model_path,
         as_tibble()
     }else if(.x == 4){
       ## Make a list of selectivity weight tables, 1 for each posterior
-      selwt_text <- paste0(next_yr, "_1_sel\\*wt")
-      selwts <- map2(reps, 1:length(reps), ~{
+      selwts <- map2(reps_selwt, 1:length(reps_selwt), ~{
         if(is.na(.x[1])){
           return(c(.y, rep(NA, 100)))
         }
-        sel_header_text <- "Factor Fleet Yr Seas"
-        sel_header_ind <- grep(sel_header_text, .x)
-        sel_header_line <- .x[sel_header_ind]
-        sel_header <- str_split(sel_header_line, " +")[[1]]
-        selwt_line <- .x[grep(selwt_text, .x)]
-        selwt <- str_split(selwt_line, " +")
-        selwt <- do.call(rbind, selwt) %>%
+        selwt <- do.call(rbind, str_split(.x, " +")) %>%
           as_tibble()
         names(selwt) <- sel_header
         selwt %>%
@@ -325,19 +345,11 @@ fetch_extra_mcmc <- function(model_path,
         as_tibble()
     }else if(.x == 5){
       ## Make a list of numbers-at-age tables, 1 for each posterior
-      natage_start_text <- "NUMBERS_AT_AGE_Annual_2 With_fishery"
-      natage_end_text <- "Z_AT_AGE_Annual_2 With_fishery"
-      natages <- map2(reps, 1:length(reps), ~{
+      natages <- map2(reps_natage, 1:length(reps_natage), ~{
         if(is.na(.x[1])){
           return(c(.y, rep(NA, 100)))
         }
-        natage_header_ind <- grep(natage_start_text, .x) + 1
-        natage_header <- str_split(.x[natage_header_ind], " +")[[1]]
-        natage_start_ind <- grep(natage_start_text, .x) + 2
-        natage_end_ind <- grep(natage_end_text, .x) - 2
-        natage_lines <- .x[natage_start_ind:natage_end_ind]
-        natage_lines <- str_split(natage_lines, " +")
-        natage <- do.call(rbind, natage_lines) %>%
+        natage <- do.call(rbind, str_split(.x, " +")) %>%
           as_tibble()
         names(natage) <- natage_header
         natage %>%
@@ -347,18 +359,11 @@ fetch_extra_mcmc <- function(model_path,
         as_tibble()
     }else if(.x == 6){
       ## Make a list of numbers-at-age tables, 1 for each posterior
-      q_start_text <- "^INDEX_2"
-      qs <- map2(reps, 1:length(reps), ~{
+      qs <- map2(reps_q, 1:length(reps_q), ~{
         if(is.na(.x[1])){
           return(c(.y, rep(NA, 100)))
         }
-        q_header_ind <- grep(q_start_text, .x) + 1
-        q_header <- str_split(.x[q_header_ind], " +")[[1]]
-        q_start_ind <- grep(q_start_text, .x) + 2
-        q_end_ind <- q_start_ind + ncpue - 1
-        q_lines <- .x[q_start_ind:q_end_ind]
-        q_lines <- str_split(q_lines, " +")
-        q <- do.call(rbind, q_lines) %>%
+        q <- do.call(rbind, str_split(.x, " +")) %>%
           as_tibble()
         names(q) <- q_header
         q %>%
@@ -387,9 +392,9 @@ fetch_extra_mcmc <- function(model_path,
     filter(!is.na(.[[2]]))
 
   ## Calculate the natage with selectivity applied and proportions
-  natselwt <- natage %>%
-    group_by(Iter) %>%
-    as.matrix() *
+  #natselwt <- map(unique(natage$Iter), ~{
+
+  #})
 browser()
 
   # plan("multisession")
