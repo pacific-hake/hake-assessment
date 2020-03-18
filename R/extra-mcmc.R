@@ -359,14 +359,24 @@ fetch_extra_mcmc <- function(model_path,
     filter(Yr == next_yr) %>%
     select(-c(Iter, Yr))
   q <- extract_rep_table(reps_q, q_header) %>%
-    select(Iter, Exp)
+    select(Iter, Exp, Calc_Q)
+  iter <- unique(q$Iter)
   cpue <- q %>%
+    select(-Calc_Q) %>%
     group_by(Iter) %>%
     group_nest()
 
   cpue <- do.call(cbind, cpue$data)
-  names(cpue) <- unique(cpue$Iter)
-  extra.mcmc$cpue.table <- cpue
+  names(cpue) <- iter
+  extra.mcmc$cpue.table <- cpue %>% as_tibble()
+
+  extra.mcmc$Q.vector <- q %>%
+    group_by(Iter) %>%
+    slice(1) %>%
+    pull(Calc_Q) %>%
+    as.numeric()
+
+  browser()
   comp <- extract_rep_table(reps_comp, comp_header)
 
   ## Apply selectivity to numbers-at-age
