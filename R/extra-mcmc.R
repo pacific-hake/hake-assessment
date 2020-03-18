@@ -221,7 +221,7 @@ fetch_extra_mcmc <- function(model_path,
     from_to <- bind_rows(from_to, nxt)
   }
 
-  ## Load all report files into a list, 1 element for each report file. Elements that are NA had no file found in the
+  ## Load all report files into a list, 1 element for each report file. Elements that are NA had no file found
   plan("multisession")
   reps <- future_map(1:nrow(from_to), ~{
     inds <- as.numeric(from_to[.x, 1]):as.numeric(from_to[.x, 2])
@@ -236,9 +236,25 @@ fetch_extra_mcmc <- function(model_path,
     flatten()
   plan()
 
+  ## Load all compreport files into a list, 1 element for each report file. Elements that are NA had no file found
+  plan("multisession")
+  compreps <- future_map(1:nrow(from_to), ~{
+    inds <- as.numeric(from_to[.x, 1]):as.numeric(from_to[.x, 2])
+    map(inds, ~{
+      comprep_file <- file.path(reports_dir, paste0("CompReport_", .x, ".sso"))
+      if(!file.exists(comprep_file)){
+        return(NA)
+      }
+      readLines(comprep_file)
+    })
+  }) %>%
+    flatten()
+  plan()
+
   ## Make custom reps_ objects for each output. Only relevant portions of the report file will be passed to
   ## the table-making map2() calls later (speeds up the map2() calls)
   rep_example <- reps[[which(!is.na(reps))[1]]]
+  comprep_example <- compreps[[which(!is.na(compreps))[1]]]
   ## Biomass
   bio_header_text <- "^TIME_SERIES"
   bio_header_ind <- grep(bio_header_text, rep_example) + 1
@@ -281,6 +297,12 @@ fetch_extra_mcmc <- function(model_path,
   ncpue <- nrow(model$dat$CPUE)
   q_end_ind <- q_start_ind + ncpue - 1
   reps_q <- map(reps, ~{.x[q_start_ind:q_end_ind]})
+  ## Comp tables
+  comp_header_ind <- grep("Composition_Database", comprep_example) + 1
+  comp_header <- comprep_example[comp_header_ind]
+  comp_start_ind <- comp_header_ind + 1
+  comp_end_ind <- grep("End_comp_data", comprep_example) - 1
+  reps_comp <- map(compreps, ~{.x[comp_start_ind:comp_end_ind]})
 
   extract_rep_table <- function(reps_lst, header){
     lst <- map2(reps_lst, 1:length(reps_lst), ~{
@@ -288,7 +310,14 @@ fetch_extra_mcmc <- function(model_path,
         #return(c(.y, rep(NA, 100)))
         return(NULL)
       }
-      tab <- do.call(rbind, str_split(.x, " +")) %>%
+      vecs <- str_split(.x, " +")
+      vec_lengths <- map_int(vecs, ~{length(.x)})
+      vec_maxlength <- max(vec_lengths)
+      vecs <- map(vecs, ~{
+        length(.x) <- vec_maxlength
+        .x
+        })
+      tab <- do.call(rbind, vecs) %>%
         as_tibble()
       names(tab) <- header
       tab %>%
@@ -298,47 +327,32 @@ fetch_extra_mcmc <- function(model_path,
       as_tibble()
   }
 
-  ## Don't parallelize the following at all. It's slower than serial.
-  out <- map(1:6, ~{
-    if(.x == 1){
-      extract_rep_table(reps_bio, bio_header) %>%
+  biomass <- extract_rep_table(reps_bio, bio_header) %>%
         select(Iter, Bio_all, Bio_smry)
-    }else if(.x == 2){
-      likes <- map2(reps_like, 1:length(reps_like), ~{
-        if(is.na(.x[1])){
-          return(NULL)
-        }
-        likes <- map(str_split(.x, " +"), ~{.x[1:4]})
-        do.call(rbind, likes) %>%
-          as_tibble() %>%
-          filter(!grepl("^#_", V1)) %>%
-          add_column(Iter = .y, .before = 1)
-      })
-      do.call(rbind, likes) %>%
-        as_tibble()
-    }else if(.x == 3){
-      extract_rep_table(reps_sel, sel_header)
-    }else if(.x == 4){
-      extract_rep_table(reps_selwt, sel_header)
-    }else if(.x == 5){
-      extract_rep_table(reps_natage, natage_header)
-    }else if(.x == 6){
-      extract_rep_table(reps_q, q_header)
+  like <- map2(reps_like, 1:length(reps_like), ~{
+    if(is.na(.x[1])){
+      return(NULL)
     }
+    likes <- map(str_split(.x, " +"), ~{.x[1:4]})
+    do.call(rbind, likes) %>%
+      as_tibble() %>%
+      filter(!grepl("^#_", V1)) %>%
+      add_column(Iter = .y, .before = 1)
   })
-
-  biomass <- out[[1]]
-  like <- out[[2]]
-  sel <- out[[3]] %>%
+  do.call(rbind, like) %>%
+    as_tibble()
+  sel <- extract_rep_table(reps_sel, sel_header) %>%
     select(-(2:8)) %>%
     map_df(as.numeric)
-  selwt <- out[[4]] %>%
+  selwt <- extract_rep_table(reps_selwt, sel_header) %>%
     select(-(2:8)) %>%
     map_df(as.numeric)
-  natage <- out[[5]] %>%
+  natage <- extract_rep_table(reps_natage, natage_header) %>%
     select(-(2:4)) %>%
     map_df(as.numeric)
-  q <- out[[6]]
+  q <- extract_rep_table(reps_q, q_header)
+  browser()
+  comp <- extract_rep_table(reps_comp, comp_header)
 
   ## Calculate the natage with selectivity applied and proportions
   apply_sel <- function(natage, sel){
@@ -362,42 +376,19 @@ fetch_extra_mcmc <- function(model_path,
 
   natsel <- apply_sel(natage, sel)
   natselwt <- apply_sel(natage, selwt)
-  browser()
+  natsel_prop <- natsel %>%
+    mutate(rsum = rowSums(.)) %>%
+    mutate_at(.vars = vars(-c(Iter, rsum)), .funs = ~{.x / rsum}) %>%
+    select(-rsum)
+  natselwt_prop <- natselwt %>%
+    mutate(rsum = rowSums(.)) %>%
+    mutate_at(.vars = vars(-c(Iter, rsum)), .funs = ~{.x / rsum}) %>%
+    select(-rsum)
 
-  # plan("multisession")
-  # like_info <- map(1:nrow(from_to), ~{
-  #   inds <- as.numeric(from_to[.x, 1]):as.numeric(from_to[.x, 2])
-  #   ## Data frame to store likelihood components
-  #   like_info <- tibble(Iter = posts$Iter,
-  #                       TOTAL = 0,
-  #                       Equil_catch = 0,
-  #                       Survey = 0,
-  #                       Age_comp = 0,
-  #                       Recruitment = 0,
-  #                       Forecast_Recruitment = 0,
-  #                       Parm_priors = 0,
-  #                       Parm_devs = 0,
-  #                       Crash_Pen = 0,
-  #                       Age_comp_surv = 0,
-  #                       Age_comp_fishery = 0)
+    browser()
 
   browser()
 
-
-  ## selected biomass by age is product of numbers*selectivity*weight at each age
-  natselwt <- natage_table_slim * selwt_table_slim
-  ## selected numbers by age is product of numbers*selectivity at each age
-  natsel <- natage_table_slim * sel_table_slim
-
-  ## define new objects to store proportions by age
-  natsel_prop <- natsel
-  natselwt_prop <- natselwt
-
-  ## create tables of proportions by dividing by sum of each row
-  for(irow in 1:num_reports){
-    natsel_prop[irow,] <- natsel[irow,]/sum(natsel[irow,])
-    natselwt_prop[irow,] <- natselwt[irow,]/sum(natselwt[irow,])
-  }
 
   ## read expected proportions and Pearson values for each age comp observations
   tmp <- readLines(file.path(reports_dir, paste0("CompReport_", irow,".sso")))
@@ -480,7 +471,7 @@ fetch_extra_mcmc <- function(model_path,
   extra_mcmc$Q_vector <- Q_vector
 
   ## add new table of info on posterior distributions of likelihoods
-  extra_mcmc$like.info <- like_info
+  #extra_mcmc$like.info <- like_info
 
   ## add new table vectors containing expected proportions in first forecast year
   extra_mcmc$natsel.prop <- natsel_prop
