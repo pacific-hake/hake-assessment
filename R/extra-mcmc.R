@@ -173,6 +173,8 @@ fetch_extra_mcmc <- function(model_path,
   model <- load_ss_files(model_path, ...)
   mcmc_path <- model$mcmcpath
   extra_mcmc_path <- file.path(model_path, extra_mcmc_path)
+  extra.mcmc <- NULL
+
   if(!dir.exists(extra_mcmc_path)){
     message("The ", extra_mcmc_path, " directory does not exist, so the extra-mcmc wass not loaded")
     return(NA)
@@ -327,63 +329,58 @@ fetch_extra_mcmc <- function(model_path,
       as_tibble()
   }
 
-  biomass <- extract_rep_table(reps_bio, bio_header) %>%
+  timeseries <- extract_rep_table(reps_bio, bio_header) %>%
         select(Iter, Bio_all, Bio_smry)
-  like <- map2(reps_like, 1:length(reps_like), ~{
-    if(is.na(.x[1])){
-      return(NULL)
-    }
-    likes <- map(str_split(.x, " +"), ~{.x[1:4]})
-    do.call(rbind, likes) %>%
-      as_tibble() %>%
-      filter(!grepl("^#_", V1)) %>%
-      add_column(Iter = .y, .before = 1)
-  })
-  do.call(rbind, like) %>%
-    as_tibble()
+  # like <- map2(reps_like, 1:length(reps_like), ~{
+  #   if(is.na(.x[1])){
+  #     return(NULL)
+  #   }
+  #   likes <- map(str_split(.x, " +"), ~{.x[1:4]})
+  #   do.call(rbind, likes) %>%
+  #     as_tibble() %>%
+  #     filter(!grepl("^#_", V1)) %>%
+  #     add_column(Iter = .y, .before = 1)
+  # })
+  # do.call(rbind, like) %>%
+  #   as_tibble()
   sel <- extract_rep_table(reps_sel, sel_header) %>%
-    select(-(2:8)) %>%
-    map_df(as.numeric)
+    select(-c(2, 3, 5, 6, 7, 8)) %>%
+    map_df(as.numeric) %>%
+    filter(Yr == next_yr) %>%
+    select(-c(Iter, Yr))
   selwt <- extract_rep_table(reps_selwt, sel_header) %>%
-    select(-(2:8)) %>%
-    map_df(as.numeric)
+    select(-c(2, 3, 5, 6, 7, 8)) %>%
+    map_df(as.numeric) %>%
+    filter(Yr == next_yr) %>%
+    select(-c(Iter, Yr))
   natage <- extract_rep_table(reps_natage, natage_header) %>%
-    select(-(2:4)) %>%
-    map_df(as.numeric)
-  q <- extract_rep_table(reps_q, q_header)
-  browser()
+    select(-c(2, 3)) %>%
+    map_df(as.numeric) %>%
+    filter(Yr == next_yr) %>%
+    select(-c(Iter, Yr))
+  q <- extract_rep_table(reps_q, q_header) %>%
+    select(Iter, Exp)
+  cpue <- q %>%
+    group_by(Iter) %>%
+    group_nest()
+
+  cpue <- do.call(cbind, cpue$data)
+  names(cpue) <- unique(cpue$Iter)
+  extra.mcmc$cpue.table <- cpue
   comp <- extract_rep_table(reps_comp, comp_header)
 
-  ## Calculate the natage with selectivity applied and proportions
-  apply_sel <- function(natage, sel){
-    nat <- natage %>%
-      group_by(Iter) %>%
-      group_nest()
-    sw <- sel %>%
-      group_by(Iter) %>%
-      group_nest()
-    natsel <- nat %>%
-      left_join(sw,  by = "Iter")
-    iter <- natsel$Iter
-    map2(natsel$data.x, natsel$data.y, ~{
-      sweep(.x, 2, .y %>% unlist(., use.names = FALSE), FUN = "*") %>%
-        as_tibble()
-    }) %>%
-      map2_df(iter, ~{
-        .x %>% add_column(Iter = .y, .before = 1)
-      })
-  }
+  ## Apply selectivity to numbers-at-age
+  natsel <- natage * sel
+  natselwt <- natage * selwt
+  extra.mcmc$natsel.prop <- natsel %>%
+    mutate(rsum = rowSums(.)) %>%
+    mutate_at(.vars = vars(-rsum), .funs = ~{.x / rsum}) %>%
+    select(-rsum)
+  extra.mcmc$natselwt.prop <- natselwt %>%
+    mutate(rsum = rowSums(.)) %>%
+    mutate_at(.vars = vars(-rsum), .funs = ~{.x / rsum}) %>%
+    select(-rsum)
 
-  natsel <- apply_sel(natage, sel)
-  natselwt <- apply_sel(natage, selwt)
-  natsel_prop <- natsel %>%
-    mutate(rsum = rowSums(.)) %>%
-    mutate_at(.vars = vars(-c(Iter, rsum)), .funs = ~{.x / rsum}) %>%
-    select(-rsum)
-  natselwt_prop <- natselwt %>%
-    mutate(rsum = rowSums(.)) %>%
-    mutate_at(.vars = vars(-c(Iter, rsum)), .funs = ~{.x / rsum}) %>%
-    select(-rsum)
 
     browser()
 

@@ -643,14 +643,14 @@ par <- oldpar
     \bi
   \item Default Harvest Rule catch
   \item Dependent on selectivity assumption
-  \item Age-6 (2014 cohort): \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$X6),0)}\% by numbers,
-    \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$X6),0)}\% by weight
-  \item Age-4 (2016 cohort): \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$X4),0)}\% by numbers,
-    \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$X4),0)}\% by weight
-  \item Age-10 (2010 cohort): \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$X10),0)}\% by numbers,
-    \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$X10),0)}\% by weight
-  \item Age-3 (2017 cohort): \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$X3),0)}\% by numbers,
-    \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$X3),0)}\% by weight
+  \item Age-6 (2014 cohort): \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$`6`),0)}\% by numbers,
+    \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$`6`),0)}\% by weight
+  \item Age-4 (2016 cohort): \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$`4`),0)}\% by numbers,
+    \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$`4`),0)}\% by weight
+  \item Age-10 (2010 cohort): \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$`10`),0)}\% by numbers,
+    \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$`10`),0)}\% by weight
+  \item Age-3 (2017 cohort): \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$`3`),0)}\% by numbers,
+    \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$`3`),0)}\% by weight
     \ei
   \end{column}
   \begin{column}{0.65\textwidth}
