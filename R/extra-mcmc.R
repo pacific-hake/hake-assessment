@@ -309,10 +309,19 @@ fetch_extra_mcmc <- function(model_path,
   comp_end_ind <- grep("End_comp_data", comprep_example) - 1
   reps_comp <- map(compreps, ~{.x[comp_start_ind:comp_end_ind]})
 
+  #' Extract the vectors from a list into a [tibble::tibble()]
+  #'
+  #' @param reps_lst A list of vectors, all the same length and structure,
+  #' typically extracted as a portion of a Report.sso file
+  #' @param header A vector of column nmaes for the new table
+  #'
+  #' @return A [tibble::tibble()] representing one row for each of the list
+  #'  elements found in `reps_lst`. A new column called `Iter` is prepended and
+  #'  represents the list element number that the data for each row came from.
+  #'  List elements that are NA will not be included in the table.
   extract_rep_table <- function(reps_lst, header){
     lst <- map2(reps_lst, 1:length(reps_lst), ~{
       if(is.na(.x[1])){
-        #return(c(.y, rep(NA, 100)))
         return(NULL)
       }
       vecs <- str_split(.x, " +")
