@@ -201,7 +201,11 @@ fetch_extra_mcmc <- function(model_path,
   comp_files <- grep("^CompReport_[[:digit:]]+\\.sso$", dir_list)
   num_comp_reports <- length(comp_files)
   message("\nLoading Extra MCMCs from ", extra_mcmc_path)
-  posts <- read_table2(file.path(mcmc_path, posts_file_name))
+
+  ## Suppress warnings because there is an extra whitespace at the end of the header line in the file.
+  suppressWarnings(
+    posts <- read_table2(file.path(mcmc_path, posts_file_name))
+  )
   ## Remove extra MLE run outputs. SS appends a new header followed by a 0-Iter row for an MLE run.
   ## Sometimes MLEs are run by accident or on purpose at another time and forgotten about.
   posts <- posts %>% filter(Iter != "Iter",
@@ -209,7 +213,11 @@ fetch_extra_mcmc <- function(model_path,
 
   ## Break up the loading of report files into the number of posteriors in each extra-mcmc subdir
   num_reports_each <- map_int(extra_mcmc_dirs, ~{
-    posts <- read_table2(file.path(.x, posts_file_name))
+    ## Suppress warnings because there may be extra 'Iter' lines followed by '0' lines
+    ## because the SS MLE just appends these to the posteriors.sso file
+    suppressWarnings(
+      posts <- read_table2(file.path(.x, posts_file_name))
+    )
     posts <- posts %>% filter(Iter != "Iter",
                               Iter != 0)
     nrow(posts)
@@ -466,7 +474,7 @@ fetch_extra_mcmc <- function(model_path,
   ## add new table of info on posterior distributions of likelihoods
   ## extra_mcmc$like.info <- like_info
 
-  message("Finished loading Extra MCMC output\n")
+  message("\nFinished loading Extra MCMC output\n")
 
   extra_mcmc
 }
