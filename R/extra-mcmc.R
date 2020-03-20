@@ -208,14 +208,12 @@ fetch_extra_mcmc <- function(model_path,
                             Iter != 0)
 
   ## Break up the loading of report files into the number of posteriors in each extra-mcmc subdir
-  plan("multisession")
-  num_reports_each <- future_map_int(extra_mcmc_dirs, ~{
+  num_reports_each <- map_int(extra_mcmc_dirs, ~{
     posts <- read_table2(file.path(.x, posts_file_name))
     posts <- posts %>% filter(Iter != "Iter",
                               Iter != 0)
     nrow(posts)
   })
-  plan()
 
   ## from_to is a two-column dataframe with the indices from and to for each processor to load report files
   from_to <- tibble(from = 1, to = num_reports_each[1])
