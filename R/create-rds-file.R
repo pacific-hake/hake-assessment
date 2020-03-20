@@ -16,20 +16,20 @@
 #' @importFrom purrr map
 #'
 #' @examples
-#' build(c("base", "nuts"), TRUE, TRUE, TRUE, catch_levels)
-build <- function(model_dirs,
+#' build(c("base", "nuts"), TRUE, TRUE, TRUE)
+build <- function(model_dirs = model_list,
                   run_forecasts = FALSE,
                   run_retrospectives = FALSE,
                   run_extra_mcmc = FALSE,
                   run_catch_levels = FALSE,
-                  catch_levels = NULL,
+                  catch_levels = catch_levels,
                   ...){
 
   map(model_dirs, ~{
     if(run_forecasts |
        run_retrospectives |
-       run_extra_mcmc){
-      stopifnot(!is.null(catch_levels))
+       run_extra_mcmc |
+       run_catch_levels){
       run(model_dir = .x,
           run_forecasts = run_forecasts,
           run_retrospectives = run_retrospectives,

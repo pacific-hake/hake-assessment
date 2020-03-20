@@ -34,6 +34,8 @@ library(sf)
 library(tidyverse)
 library(xtable)
 
+models_path <- "models"
+
 rootd <- here::here()
 rootd.R <- file.path(rootd, "R")
 rootd.admin <- file.path(rootd, "admin")
@@ -42,10 +44,9 @@ rootd.map.data <- file.path(rootd.data, "map-data")
 rootd.data.prep <- file.path(rootd, "data-prep")
 rootd.doc <- file.path(rootd, "doc")
 rootd.extra.calcs <- file.path(rootd, "extra-calculations")
-rootd.models <- file.path(rootd, "models")
+rootd.models <- file.path(rootd, models_path)
 rootd.pres <- file.path(rootd, "beamer")
 
-models_path <- "models-parallel"
 catch_levels_path <- "catch-levels"
 default_hr_path <- "default-hr"
 stable_catch_path <- "stable-catch"
@@ -126,7 +127,7 @@ source(file.path(rootd.R, "tables-sampling.R"))
 source(file.path(rootd.R, "tables-squid.R"))
 source(file.path(rootd.R, "tables-maturity.R"))
 source(file.path(rootd.R, "theme.R"))
-#source(file.path(rootd.R, "model-setup.R"))
+source(file.path(rootd.R, "model-setup.R"))
 source(file.path(rootd.R, "forecast-catch-levels.R"))
 source(file.path(rootd.R, "data-tables.R"))
 source(file.path(rootd.R, "useful-quantities.R"))
