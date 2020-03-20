@@ -9,6 +9,8 @@ library(coda)
 library(cowplot)
 library(date)
 library(dplyr)
+library(future)
+library(furrr)
 library(ggplot2)
 library(ggrepel)
 library(grid)
@@ -20,6 +22,7 @@ library(knitr)
 library(lubridate)
 library(maps)
 library(maptools)
+library(parallel)
 library(purrr)
 library(r4ss)
 library(reshape2)
@@ -42,10 +45,49 @@ rootd.extra.calcs <- file.path(rootd, "extra-calculations")
 rootd.models <- file.path(rootd, "models")
 rootd.pres <- file.path(rootd, "beamer")
 
+models_path <- "models-parallel"
+catch_levels_path <- "catch-levels"
+default_hr_path <- "default-hr"
+stable_catch_path <- "stable-catch"
+spr_100_path <- "spr-100"
+forecasts_path <- "forecasts"
+retrospectives_path <- "retrospectives"
+extra_mcmc_path <- "extra-mcmc"
+extra_mcmc_reports_path <- "reports"
+
+ss_executable <- "ss.exe"
+starter_file_name <- "starter.ss"
+par_file_name <- "ss.par"
+forecast_file_name <- "forecast.ss"
+weight_at_age_file_name <- "wtatage.ss"
+posts_file_name <- "posteriors.sso"
+derposts_file_name <- "derived_posteriors.sso"
+report_file_name <- "Report.sso"
+compreport_file_name <- "CompReport.sso"
+
+# Custom catch levels calculations
+# The tolerance in the spr away from 1 for the calculation of catch for SPR = 1
+catch_levels_spr_tol <- 0.3
+# The tolerance in tonnes. The iterations will stop if the difference between the
+#  projected biomass between the first and second years is less than this
+catch_levels_catch_tol <- 50
+# The maximum number of iterations to do. If this is reached, then no catch value could
+#  be found within the tolerances above
+catch_levels_max_iter <- 20
+
+assess_yr <- 2020
+forecast_yrs <- assess_yr:(assess_yr + 2)
+forecast_probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
+
+retrospective_yrs <- 1:20
+plot.retro.yrs <- 1:5
+
+show_ss_output <- FALSE
+
 source(file.path(rootd.R, "utilities.R"))
 source(file.path(rootd.R, "catches.R"))
 source(file.path(rootd.R, "run-catch-levels.R"))
-source(file.path(rootd.R, "create-rdata-file.R"))
+source(file.path(rootd.R, "create-rds-file.R"))
 source(file.path(rootd.R, "delete-files.R"))
 source(file.path(rootd.R, "extra-mcmc.R"))
 source(file.path(rootd.R, "retrospectives.R"))
@@ -84,9 +126,8 @@ source(file.path(rootd.R, "tables-sampling.R"))
 source(file.path(rootd.R, "tables-squid.R"))
 source(file.path(rootd.R, "tables-maturity.R"))
 source(file.path(rootd.R, "theme.R"))
-source(file.path(rootd.R, "model-setup.R"))
+#source(file.path(rootd.R, "model-setup.R"))
 source(file.path(rootd.R, "forecast-catch-levels.R"))
-source(file.path(rootd.R, "retrospective-setup.R"))
 source(file.path(rootd.R, "data-tables.R"))
 source(file.path(rootd.R, "useful-quantities.R"))
 

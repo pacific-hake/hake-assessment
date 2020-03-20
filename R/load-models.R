@@ -20,12 +20,12 @@ fix.posteriors <- function(dir){
                 quote = FALSE,
                 row.names = FALSE)
   }
-  do.it("posteriors.sso")
-  do.it("derived_posteriors.sso")
+  do.it(posts_file_name)
+  do.it(derposts_file_name)
 }
 
 #' Load all the SS files for output and input, and return the model object
-#' 
+#'
 #' @details If MCMC directory is present, load that and perform calculations for mcmc parameters.
 #'
 #' @param model.dir Directory the model reesides in
@@ -45,7 +45,7 @@ load_ss_files <- function(model_path = NA,
                           ...){
 
   stopifnot(!is.na(model_path))
-  
+
   # Load MPD results
   model <- tryCatch({
     SS_output(dir = model_path, verbose = FALSE, printstats = printstats, covar = FALSE)
@@ -69,13 +69,13 @@ load_ss_files <- function(model_path = NA,
     stop("Error in model ", model_path,
          ", there is more than one data file. A data file is any file whose name contains the text _data.ss.\n\n",
          call. = FALSE)
-    
+
   }
   if(!length(ctl.fn.ind)){
     stop("Error in model ", model_path,
          ", there is no control file. A control file is any file whose name contains the text _control.ss.\n\n",
          call. = FALSE)
-    
+
   }
   if(length(ctl.fn.ind) > 1){
     stop("Error in model ", model_path,
@@ -319,7 +319,7 @@ calc.mcmc <- function(mcmc,
          function(x){get(x)})
 }
 
-  create.key.nuisance.posteriors.files <- function(model,
+create.key.nuisance.posteriors.files <- function(model,
                                                  posterior.regex,
                                                  key.post.file,
                                                  nuisance.post.file){
@@ -337,26 +337,39 @@ calc.mcmc <- function(mcmc,
   write.csv(nuisances, nuisance.file, row.names = FALSE)
 }
 
-load.models <- function(model.dir,
-                        model.dir.names,
-                        ret.single.list = FALSE){
-  ## Load model(s) and return as a list if more than one. If only one,
-  ## return that object or if ret.single.list is TRUE, return a 1-element list.
-  ret.list = NULL
-  model.rdata.files <- file.path(model.dir, model.dir.names, paste0(model.dir.names, ".Rdata"))
-  for(i in 1:length(model.rdata.files)){
-    load(model.rdata.files[i])
-    ret.list[[i]] <- model
-    rm(model)
+#' Load models from files created using [create_rds_file()]
+#'
+#' @details Load model(s) and return as a list if more than one. If only one,
+#'  return that object or if ret.single.list is TRUE, return a 1-element list.
+#'
+#' @param model_dirs A vector of model directory names
+#' @param ret_single_list See details
+#'
+#' @return A list of model objects
+#' @export
+#'
+#' @examples
+#' base <- load_models("base")
+load_models <- function(model_dirs,
+                        ret_single_list = FALSE){
+  ret_list <- NULL
+  model_rds_files <- file.path(models_path, model_dirs, paste0(model_dirs, ".rds"))
+  if(!all(file.exists(model_rds_files))){
+    stop("The following files do not exist, run build() on the associated directories:\n",
+         paste(model_rds_files[!file.exists(model_rds_files)], collapse = "\n"),
+         call. = FALSE)
   }
-  if(length(model.dir.names) == 1){
-    if(ret.single.list){
-      ret.list
+  for(i in 1:length(model_rds_files)){
+    ret_list[[i]] <- readRDS(model_rds_files[i])
+  }
+  if(length(model_dirs) == 1){
+    if(ret_single_list){
+      ret_list
     }else{
-      ret.list[[1]]
+      ret_list[[1]]
     }
   }else{
-    ret.list
+    ret_list
   }
 }
 

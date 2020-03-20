@@ -23,8 +23,8 @@ thin_posts <- function(model_dir = here::here("models", "2020.01.50_nutsMCMC_thi
     }
   }
 
-  posts_file <- file.path(model_dir, "posteriors.sso")
-  derposts_file <- file.path(model_dir, "derived_posteriors.sso")
+  posts_file <- file.path(model_dir, posts_file_name)
+  derposts_file <- file.path(model_dir, derposts_file_name)
   thin_file(posts_file)
   thin_file(derposts_file)
 }
