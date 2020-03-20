@@ -27,11 +27,10 @@ catch_levels <-
        list(rep(350000, length(forecast_yrs)), "350,000 t", "03-350000"),
        list(rep(410000, length(forecast_yrs)), "2019 catch: 410,000 t", "04-410000"),
        list(rep(500000, length(forecast_yrs)), "500,000 t", "05-500000"),
-       list(rep(555000, length(forecast_yrs)), "555,000 t", "06-555000"),
-       list(rep(597500, length(forecast_yrs)), "2019 TAC: 597,500 t", "07-597500"),
-       list(rep(NA, length(forecast_yrs)), "FI=100%", "08-spr-100"),
-       list(rep(NA, length(forecast_yrs)), "Default Harvest Policy", "09-default-hr"),
-       list(rep(NA, length(forecast_yrs)), "Stable Catch", "10-stable-catch"))
+       list(rep(597500, length(forecast_yrs)), "2019 TAC: 597,500 t", "06-597500"),
+       list(rep(NA, length(forecast_yrs)), "FI=100%", "07-spr-100"),
+       list(rep(NA, length(forecast_yrs)), "Default Harvest Policy", "08-default-hr"),
+       list(rep(NA, length(forecast_yrs)), "Stable Catch", "09-stable-catch"))
 
 ## -----------------------------------------------------------------------------
 ## Indices for the forecasts list, which list items above are the TAC case and
@@ -39,9 +38,9 @@ catch_levels <-
 ## This is used in the one-page summary and a plot comparing several catch cases
 ## -----------------------------------------------------------------------------
 catch.actual.ind <- 4
-catch.tac.ind <- 7
-catch.spr100.ind <- 8
-catch.default.policy.ind <- 9
-catch.stable.ind <- 10
-catch.constant.rows <- 1:7
+catch.tac.ind <- 6
+catch.spr100.ind <- 7
+catch.default.policy.ind <- 8
+catch.stable.ind <- 9
+catch.constant.rows <- 1:6
 catch.constant.str <- paste(letters[catch.constant.rows], collapse = ", ")
