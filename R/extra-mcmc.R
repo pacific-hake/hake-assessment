@@ -11,8 +11,6 @@
 #' @importFrom parallel detectCores
 #' @importFrom future plan
 #' @importFrom furrr future_map
-#'
-#' @examples
 run_extra_mcmc <- function(model_path,
                            num_procs = detectCores() - 1,
                            extra_mcmc_path = "extra-mcmc",
