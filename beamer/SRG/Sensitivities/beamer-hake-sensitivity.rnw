@@ -1176,8 +1176,8 @@ par <- oldpar
 \vspace{5pt}
 Panel 3: took every 3rd NUTS sample to get 2,000
 <<adnuts.thin.trace, fig.height=3.5>>=
-h_nuts <- sens.models.6$extra.mcmc$mcmc$SR_BH_steep
-h_base <- base.model$extra.mcmc$mcmc$SR_BH_steep
+h_nuts <- sens.models.6$mcmc$SR_BH_steep
+h_base <- base.model$mcmc$SR_BH_steep
 h_nuts_thin <- h_nuts[(1:2000)*3]
 oldpar <- par()
 par(mar=c(7.1, 4.1, 3.1, 0.1),
