@@ -1,36 +1,36 @@
-#' Delete all rdata files found in the subdirectories of the *models.dir* directory
+#' Delete all model rds files found in the subdirectories of the `models_dir`` directory
 #'
-#' @param models.dir Directory in which the models reside
-#' @param dont.del A vector of directory names to keep
+#' @param models_dir Directory in which the models reside
+#' @param dont_del A vector of directory names to keep
 #'
 #' @return [base::invisible()]
 #' @export
-delete.rdata.files <- function(models.dir = rootd.models,
-                               dont.del = last.yr.base.model.dir.name){
-  
-  dirs <- dir(models.dir)
-  dirs <- dirs[! dirs %in% dont.del]
-  rdata.files <- file.path(models.dir, dirs, paste0(dirs, ".rdata"))
-  unlink(rdata.files, force = TRUE)
-  message("Deleted ", paste0(rdata.files, collapse = "\n"),
-          "All rdata files deleted except for ", dont.del, "\n")
+delete_rds_files <- function(models_dir = rootd.models,
+                             dont_del = last.yr.base.model.dir.name){
+
+  dirs <- dir(models_dir)
+  dirs <- dirs[! dirs %in% dont_del]
+  rds_files <- file.path(models_dir, dirs, paste0(dirs, ".rds"))
+  unlink(rds_files, force = TRUE)
+  message("Deleted ", paste0(rds_files, collapse = "\n"),
+          "\nAll rds files deleted except for ", dont_del, "\n")
   invisible()
 }
 
-#' Delete all directories and files of sub.dir
+#' Delete all directories and files of `sub_dir``
 #'
-#' @param models.dir Directory name for all models location
-#' @param sub.dir The subdirectory to delete recursively
+#' @param models_dir Directory name for all models location
+#' @param sub_dir The subdirectory to delete recursively
 #'
 #' @return [base::invisible()]
 #' @export
-delete.dirs <- function(models.dir = model.dir,
-                        sub.dir = NULL){
-  
-  dirs <- dir(models.dir)
-  files <- file.path(models.dir, dirs, sub.dir)
+delete_dirs <- function(models_dir = rootd.models,
+                        sub_dir = NULL){
+
+  dirs <- dir(models_dir)
+  files <- file.path(models_dir, dirs, sub_dir)
   unlink(files, recursive = TRUE, force = TRUE)
   message("All files and directories were deleted from the",
-          sub.dir, "directory in each model directory.\n")
+          sub_dir, "directory in each model directory.\n")
   invisible()
 }
