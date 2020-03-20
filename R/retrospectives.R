@@ -122,8 +122,7 @@ fetch_retrospectives <- function(retro_path,
                                  ...){
 
   message("\nLoading retrospectives from ", retro_path)
-  plan("multisession")
-  retros_list <- future_map(retrospective_yrs, ~{
+  retros_list <- map(retrospective_yrs, ~{
     message("Loading retrospective run from ", retro_path)
     retro_dir <- file.path(retro_path, paste0("retro-", pad.num(.x, 2)))
     SS_output(dir = retro_dir,
@@ -131,7 +130,6 @@ fetch_retrospectives <- function(retro_path,
               printstats = FALSE,
               covar = FALSE)
   })
-  plan()
   message("Finished loading retrospectives")
   retros_list
 }
