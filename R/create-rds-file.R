@@ -5,7 +5,10 @@
 #' @param run_forecasts Logical. TRUE to run forecasts on the models (when an mcmc directory is present)
 #' @param run_retrospectives Logical. TRUE to run retrospectives on the models (when an mcmc directory is present)
 #' @param run_extra_mcmc Logical. TRUE to run extra-mcmc routine on the models (when an mcmc directory is present)
+#' @param run_catch_levels Logical. If TRUE, the catch levels calculations routine will run, overwriting any previous
 #' @param catch_levels A list of lists for the forecast catch levels to run forecasts for. See
+#' catch levels runs. If FALSE, catch levels will not be run if the catch-levels directory exists, but they will be run
+#' if the directory does not exist and run_forecasts is TRUE because it is required for the forecasting step
 #' forecast-catch-levels.R
 #'
 #' @return Nothing
@@ -18,6 +21,7 @@ build <- function(model_dirs,
                   run_forecasts = FALSE,
                   run_retrospectives = FALSE,
                   run_extra_mcmc = FALSE,
+                  run_catch_levels = FALSE,
                   catch_levels = NULL,
                   ...){
 
@@ -30,6 +34,7 @@ build <- function(model_dirs,
           run_forecasts = run_forecasts,
           run_retrospectives = run_retrospectives,
           run_extra_mcmc = run_extra_mcmc,
+          run_catch_levels = run_catch_levels,
           catch_levels = catch_levels)
 
     }
@@ -94,7 +99,7 @@ create_rds_file <- function(model_dir = NULL, ...){
   # Try loading extra mcmc output. If none are found or there is a problem, model$extra.mcmc will be NA
   model$extra.mcmc.path <- file.path(model_fullpath, extra_mcmc_path)
   if(dir.exists(model$extra.mcmc.path)){
-    model$extra.mcmc <- fetch_extra_mcmc(model)
+    model$extra.mcmc <- fetch_extra_mcmc(model$path)
   }else{
     model$extra.mcmc <- NA
   }
@@ -108,7 +113,11 @@ create_rds_file <- function(model_dir = NULL, ...){
 #' @details This is a wrapper function for calling [run_catch_levels()], [run_forecasts()],
 #' [run_retrospectives()], and [run_extra_mcmc()] functions.
 #'
-#' @param model_dirs The name of the directories the models reside in
+#' @param model_dir The directory the models are located in
+#' @param run_forecasts Logical. Run forecasting?
+#' @param run_retrospectives Logical. Run restrospectives?
+#' @param run_extra_mcmc Logical. Run extra-mcmc calculations?
+#' @param run_catch_levels Logical. Run catch levels estimation routines?
 #' @param ... Passed to the subroutines
 #'
 #' @return [base::invisible()]
@@ -117,6 +126,7 @@ run <- function(model_dir = NULL,
                 run_forecasts = FALSE,
                 run_retrospectives = FALSE,
                 run_extra_mcmc = FALSE,
+                run_catch_levels = FALSE,
                 ...){
 
   stopifnot(!is.null(model_dir))
@@ -128,7 +138,10 @@ run <- function(model_dir = NULL,
   }
   if(dir.exists(file.path(model_dir, "mcmc"))){
     if(run_forecasts){
-      #run_catch_levels(model_dir, ...)
+      catch_levels_fullpath <- file.path(model_dir, catch_levels_path)
+      if(!dir.exists(catch_levels_fullpath) | run_catch_levels){
+        run_catch_levels(model_dir, ...)
+      }
       run_forecasts(model_dir, ...)
     }
     if(run_retrospectives){
