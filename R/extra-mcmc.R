@@ -261,13 +261,11 @@ fetch_extra_mcmc <- function(model_path,
   rep_example <- reps[[which(!is.na(reps))[1]]]
   comprep_example <- compreps[[which(!is.na(compreps))[1]]]
   ## Biomass
-  bio_header_text <- "^TIME_SERIES"
-  bio_header_ind <- grep(bio_header_text, rep_example) + 1
+  bio_header_ind <- grep("^TIME_SERIES", rep_example) + 1
   bio_header_line <- rep_example[bio_header_ind]
   bio_header <- str_split(bio_header_line, " +")[[1]]
-  bio_end_text <- "^SPR_series"
   bio_start_ind <- bio_header_ind + 1
-  bio_end_ind <- grep(bio_end_text, rep_example) - 2
+  bio_end_ind <- grep("^SPR_series", rep_example) - 2
   reps_bio <- map(reps, ~{.x[bio_start_ind:bio_end_ind]})
   # Likelihood
   like_start_ind <- grep("^LIKELIHOOD", rep_example) + 1
@@ -275,30 +273,24 @@ fetch_extra_mcmc <- function(model_path,
   reps_like <- map(reps, ~{.x[like_start_ind:like_end_ind]})
   ## Selectivity
   next_yr <- model$endyr + 1
-  sel_header_text <- "Factor Fleet Yr Seas"
-  sel_header_ind <- grep(sel_header_text, rep_example)
+  sel_header_ind <- grep("Factor Fleet Yr Seas", rep_example)
   sel_header_line <- rep_example[sel_header_ind]
   sel_header <- str_split(sel_header_line, " +")[[1]]
-  sel_text <- paste0(next_yr, "_1Asel")
-  sel_ind <- grep(sel_text, rep_example)
+  sel_ind <- grep(paste0(next_yr, "_1Asel"), rep_example)
   reps_sel <- map(reps, ~{.x[sel_ind]})
   ## Selectivity * Weight
-  selwt_text <- paste0(next_yr, "_1_sel\\*wt")
-  selwt_ind <- grep(selwt_text, rep_example)
+  selwt_ind <- grep(paste0(next_yr, "_1_sel\\*wt"), rep_example)
   reps_selwt <- map(reps, ~{.x[selwt_ind]})
   ## Natage
-  natage_start_text <- "NUMBERS_AT_AGE_Annual_2 With_fishery"
-  natage_end_text <- "Z_AT_AGE_Annual_2 With_fishery"
-  natage_header_ind <- grep(natage_start_text, rep_example) + 1
+  natage_header_ind <- grep("NUMBERS_AT_AGE_Annual_2 With_fishery", rep_example) + 1
   natage_header <- str_split(rep_example[natage_header_ind], " +")[[1]]
-  natage_start_ind <- grep(natage_start_text, rep_example) + 2
-  natage_end_ind <- grep(natage_end_text, rep_example) - 2
+  natage_start_ind <- natage_header_ind + 1
+  natage_end_ind <- grep("Z_AT_AGE_Annual_2 With_fishery", rep_example) - 2
   reps_natage <- map(reps, ~{.x[natage_start_ind:natage_end_ind]})
   ## Q
-  q_start_text <- "^INDEX_2"
-  q_header_ind <- grep(q_start_text, rep_example) + 1
+  q_header_ind <- grep("^INDEX_2", rep_example) + 1
   q_header <- str_split(rep_example[q_header_ind], " +")[[1]]
-  q_start_ind <- grep(q_start_text, rep_example) + 2
+  q_start_ind <- q_header_ind + 1
   ncpue <- nrow(model$dat$CPUE)
   q_end_ind <- q_start_ind + ncpue - 1
   reps_q <- map(reps, ~{.x[q_start_ind:q_end_ind]})
