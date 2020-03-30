@@ -451,6 +451,7 @@ fetch_extra_mcmc <- function(model_path,
                      FUN = function(x){quantile(as.numeric(x),
                                                 probs = probs)
                        })
+  extra_mcmc$agedbase <- model$agedbase
   extra_mcmc$agedbase$Exp.025 <- exp_table[1,]
   extra_mcmc$agedbase$Exp <- exp_table[2,]
   extra_mcmc$agedbase$Exp.975 <- exp_table[3,]

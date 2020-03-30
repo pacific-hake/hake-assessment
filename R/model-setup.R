@@ -247,8 +247,8 @@ model_list <- as.list(unique(model_list))
 ## in the document. It is defined here so that it is in the same place
 ## as the other model setup and should be changed if bridge models
 ## and sensitivity models change in the model.dir.names above..
-load.models.into.parent.env <- function(){
-  base.model <<- load.models(rootd.models, base.model.dir.name)
+load_models_rds <- function(){
+  base.model <<- load_models(base.model.dir.name)
   if(is.null(base.model$mcmccalcs)){
     stop("Error - base.model$mcmccalcs is NULL. Make sure the directory\n",
             file.path(base.model$path, "mcmc"), " exists and contains valid\n",
@@ -262,24 +262,16 @@ load.models.into.parent.env <- function(){
            "   within build() in model-setup.r and try again.\n")
   }
 
-  last.yr.base.model <<- load.models(rootd.models, last.yr.base.model.dir.name)
-  bridge.models.1    <<- load.models(rootd.models, bridge.model.dir.names.1)
-  bridge.models.2    <<- load.models(rootd.models, bridge.model.dir.names.2)
-  bridge.models.3    <<- load.models(rootd.models, bridge.model.dir.names.3)
-  sens.models.1      <<- load.models(rootd.models, sens.model.dir.names.1)
-  sens.models.2      <<- load.models(rootd.models, sens.model.dir.names.2, TRUE)
-  ## sens.models.3      <<- load.models(rootd.models, sens.model.dir.names.3)
-  sens.models.4      <<- load.models(rootd.models, sens.model.dir.names.4)
-  sens.models.5      <<- load.models(rootd.models, sens.model.dir.names.5)
-  sens.models.6      <<- load.models(rootd.models, sens.model.dir.names.6)
-  tryCatch({
-    #adnuts.model.2000  <<- load.models(rootd.models, "2020.01.50_nutsMCMC_thin_2000")
-    #adnuts.model.1000  <<- load.models(rootd.models, "2020.01.51_nutsMCMC_thin_1000")
-  }, error = function(e){
-    NULL
-  }, warning = function(w){
-    NULL
-  })
+  last.yr.base.model <<- load_models(last.yr.base.model.dir.name)
+  bridge.models.1    <<- load_models(bridge.model.dir.names.1)
+  bridge.models.2    <<- load_models(bridge.model.dir.names.2)
+  bridge.models.3    <<- load_models(bridge.model.dir.names.3)
+  sens.models.1      <<- load_models(sens.model.dir.names.1)
+  sens.models.2      <<- load_models(sens.model.dir.names.2, TRUE)
+  ## sens.models.3      <<- load.modes, sens.model.dir.names.3)
+  sens.models.4      <<- load_models(sens.model.dir.names.4)
+  sens.models.5      <<- load_models(sens.model.dir.names.5)
+  sens.models.6      <<- load_models(sens.model.dir.names.6)
   ## Lists of sensitivities for the MLE parameters, derived quantiles,
   ##  and reference points table
   ## First set includes base and sensitivity group 1 and 2

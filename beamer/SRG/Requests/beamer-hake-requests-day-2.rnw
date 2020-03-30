@@ -99,7 +99,7 @@ base.model <<- load.models(here::here("models"), "2020.01.09_DMprior_base")
 base.model.neff <<- load.models(here::here("models"), "2020.01.60_base_model_with_downweighted_neff_ages")
 
 # source(here::here("R", "all.R"))
-# load.models.into.parent.env()
+# load_models_rds()
 # source(file.path(rootd.R, "custom-knitr-variables.R"))
 @
 

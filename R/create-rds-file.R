@@ -54,7 +54,7 @@ create_rds_file <- function(model_dir = NULL, ...){
 
   stopifnot(!is.null(model_dir))
 
-  model_fullpath <- file.path(models_path, model_dir)
+  model_fullpath <- file.path(rootd.models, model_dir)
   if(!dir.exists(model_fullpath)){
     stop("Error - the directory ", model_fullpath, " does not exist.\n",
          "Fix the problem and try again.", call. = FALSE)
@@ -151,4 +151,56 @@ run <- function(model_dir = NULL,
       run_extra_mcmc(model_dir, ...)
     }
   }
+}
+
+#' Build the doc entirely from within R
+#'
+#' @details Make sure you have created the .RData files by sourcing *all.r* with the [create.rdata.file()] variables set to TRUE.
+#' Once you have done that and run this function once within an R session, you can go into the first knitr code chunk in
+#' hake-assessment.rnw and set the call to [load_models_rds()] to FALSE, which will save time for doing the build.
+#'
+#' @param knit.only Only knit the code, do not run latex
+#' @param make.pdf Logical. TRUE to make the pdf, if FALSE it will only go as far as postscript
+#' @param make.bib Logical. Run bibtex
+#' @param doc.name What to name the dcument (no extension needed)
+#'
+#' @return [base::invisible()]
+#' @export
+build.doc <- function(knit.only = FALSE,
+                      make.pdf  = TRUE,
+                      make.bib  = TRUE,
+                      doc.name  = "hake-assessment"){
+  curr_path <- getwd()
+  setwd(here::here("doc"))
+  knit(paste0(doc.name,".rnw"))
+  if(!knit.only){
+    system(paste0("latex ", doc.name, ".tex"),
+           invisible = FALSE,
+           show.output.on.console = FALSE)
+    if(make.bib){
+      system(paste0("bibtex ", doc.name),
+             invisible = FALSE,
+             show.output.on.console = TRUE)
+    }
+    system(paste0("latex ", doc.name, ".tex"),
+           invisible = FALSE,
+           show.output.on.console = FALSE)
+    system(paste0("latex ", doc.name, ".tex"),
+           invisible = FALSE,
+           show.output.on.console = FALSE)
+    system(paste0("latex ", doc.name, ".tex"),
+           invisible = FALSE,
+           show.output.on.console = FALSE)
+    system(paste0("latex ", doc.name, ".tex"),
+           invisible = FALSE,
+           show.output.on.console = FALSE)
+    system(paste0("dvips ", doc.name,".dvi"),
+           invisible = FALSE,
+           show.output.on.console = TRUE)
+    if(make.pdf){
+      shell(paste0("ps2pdf ", doc.name, ".ps"))
+    }
+  }
+  setwd(curr_path)
+  invisible()
 }

@@ -9,22 +9,22 @@
 make_age_comp_bubble_plot <- function(model,
                                       subplot = 1,
                                       ...){
-  
-  dat <- model$dat$agecomp %>% 
-    filter(FltSvy == subplot) %>% 
-    select(Yr, starts_with("a", ignore.case = FALSE)) %>% 
-    setNames(gsub("a", "", names(.))) %>% 
-    rename(Year = Yr) %>% 
-    mutate(n = rowSums(.[-1])) %>% 
-    mutate_at(vars(-Year), ~(./n)) %>% 
-    select(-n) %>% 
-    melt(id.var = "Year") %>% 
-    as_tibble() %>% 
+
+  dat <- model$dat$agecomp %>%
+    filter(FltSvy == subplot) %>%
+    select(Yr, starts_with("a", ignore.case = FALSE)) %>%
+    setNames(gsub("a", "", names(.))) %>%
+    rename(Year = Yr) %>%
+    mutate(n = rowSums(.[-1])) %>%
+    mutate_at(vars(-Year), ~(./n)) %>%
+    select(-n) %>%
+    melt(id.var = "Year") %>%
+    as_tibble() %>%
     rename(Age = variable, Proportion = value)
 
   g <- plot_bubbles(dat, ...)
-  
-  g  
+
+  g
 }
 
 #' Make a bubble plot from the given data
@@ -42,7 +42,7 @@ make_age_comp_bubble_plot <- function(model,
 #' @param legend.position See [ggplot2::theme(legend.position)]
 #' @param alpha See [ggplot2::geom_point()]
 #' @param xlim Limits for the x-axis
-#' @param ... Additional parameters passed to [ggplot2::geom_point()], 
+#' @param ... Additional parameters passed to [ggplot2::geom_point()],
 #' [ggplot2::geom_segment()] and [ggplot2::theme()]
 #'
 #' @return A [ggplot2::ggplot()] object
@@ -83,9 +83,9 @@ plot_bubbles <- function(d,
                    color = "red",
                    ...)
   }
-  
+
   if(!is.null(mean_age)){
-    g <- g + 
+    g <- g +
       geom_line(data = mean_age,
                 aes(x = Year, y = Age),
                 inherit.aes = FALSE,
@@ -94,10 +94,10 @@ plot_bubbles <- function(d,
                 linetype = mean_age_line_type)
   }
 
-  g <- g + 
+  g <- g +
     theme(legend.position = legend.position, ...) +
     guides(size = guide_legend(title = legend.title))
-  
+
   g
 }
 
@@ -114,16 +114,16 @@ plot_bubbles <- function(d,
 make_age_comp_pearson_plot <- function(model,
                                        subplot = 1,
                                        ...){
-  
-  dat <- model$agedbase %>% 
-    filter(Fleet == subplot) %>% 
-    transmute(Year = Yr, Age = Bin,  Pearson) %>% 
-    as_tibble() %>% 
+
+  dat <- model$agedbase %>%
+    filter(Fleet == subplot) %>%
+    transmute(Year = Yr, Age = Bin,  Pearson) %>%
+    as_tibble() %>%
     mutate(Year = as.integer(Year),
            Age = as.integer(Age))
-  
+
   g <- plot_pearson_bubbles(dat, ...)
-  
+
   g
 }
 
@@ -136,7 +136,7 @@ make_age_comp_pearson_plot <- function(model,
 #' @param legend.position See [ggplot2::theme(legend.position)]
 #' @param alpha See [ggplot2::geom_point()]
 #' @param xlim Limits for the x-axis
-#' @param ... Additional parameters passed to [ggplot2::geom_point()], 
+#' @param ... Additional parameters passed to [ggplot2::geom_point()],
 #' [ggplot2::geom_segment()] and [ggplot2::theme()]
 #'
 #' @return A [ggplot2::ggplot()] object
@@ -148,9 +148,9 @@ plot_pearson_bubbles <- function(d,
                                  alpha = 0.3,
                                  xlim = c(1975, year(Sys.Date())),
                                  ...){
-  
+
   g <- ggplot(d, aes(x = Year,
-                     y = Age, 
+                     y = Age,
                      size = abs(Pearson),
                      fill = factor(sign(as.numeric(Pearson))))) +
     geom_point(pch = 21, alpha = alpha, ...) +
@@ -179,7 +179,7 @@ plot_pearson_bubbles <- function(d,
                    inherit.aes = FALSE,
                    ...)
   }
-  g <- g + 
+  g <- g +
     theme(legend.position = legend.position, ...) +
     guides(size = guide_legend(title = "Residuals",
                                nrow = ifelse(legend.position == "right" |
@@ -189,7 +189,7 @@ plot_pearson_bubbles <- function(d,
                                                "black", "black", "black"),
                                       size = c(8, 4, 0.1,
                                                0.1, 4, 8))))
-  
+
   g
 }
 
@@ -202,12 +202,12 @@ plot_pearson_bubbles <- function(d,
 #' @export
 get_age_comp_limits <- function(model, type = 1){
 
-  dat <- model$dat$agecomp %>% 
-    filter(FltSvy == type) %>% 
-    select(Yr, starts_with("a", ignore.case = FALSE)) %>% 
-    setNames(gsub("a", "", names(.))) %>% 
+  dat <- model$dat$agecomp %>%
+    filter(FltSvy == type) %>%
+    select(Yr, starts_with("a", ignore.case = FALSE)) %>%
+    setNames(gsub("a", "", names(.))) %>%
     rename(Year = Yr)
-  
+
   subdat <- dat %>% select(-Year)
   max_row_col <- which(subdat == max(subdat), arr.ind = TRUE)
   max_prop_yr <- dat[max_row_col[1],]$Year
@@ -238,19 +238,19 @@ get_age_comp_limits <- function(model, type = 1){
 make_numbers_at_age_plot <- function(model,
                                      scale = 1e6,
                                      ...){
-  natage <- model$natage %>% 
-    as_tibble() %>% 
-    select(-c(Area, Time, Bio_Pattern, Sex, BirthSeas, Settlement, Platoon, Morph, Seas)) %>% 
+  natage <- model$natage %>%
+    as_tibble() %>%
+    select(-c(Area, Time, Bio_Pattern, Sex, BirthSeas, Settlement, Platoon, Morph, Seas)) %>%
     filter(`Beg/Mid` == "B",
            Era != "VIRG",
-           (Era != "FORE" | Yr == model$endyr + 1)) %>% 
-    select(-c(`Beg/Mid`, Era)) %>% 
+           (Era != "FORE" | Yr == model$endyr + 1)) %>%
+    select(-c(`Beg/Mid`, Era)) %>%
     rename(Year = Yr)
-    
-  dat <- natage %>%  
-    melt(id.var = "Year") %>% 
-    as_tibble() %>% 
-    rename(Age = variable, Proportion = value) %>% 
+
+  dat <- natage %>%
+    melt(id.var = "Year") %>%
+    as_tibble() %>%
+    rename(Age = variable, Proportion = value) %>%
     mutate(Proportion = Proportion / scale)
 
   # Mean age algorithm (from [r4ss::SSplotNumbers()])
@@ -260,25 +260,25 @@ make_numbers_at_age_plot <- function(model,
   ages <- as.numeric(names(natage)[-1])
   years <- natage$Year
   natage <- natage %>% select(-Year)
-  sums <- natage %>% 
-    rowwise() %>% 
-    do( (.) %>% as.data.frame %>% mutate(sum = sum(.))) %>% 
+  sums <- natage %>%
+    rowwise() %>%
+    do( (.) %>% as.data.frame %>% mutate(sum = sum(.))) %>%
     pull(sum)
   natage <- map2_dfc(natage, ages, `*`)
   natage <- natage %>%
     mutate(sumprod = rowSums(.))
-  natage <- cbind(years, natage, sums) %>% 
-    as_tibble() %>% 
-    mutate(Age = sumprod / sums) %>% 
+  natage <- cbind(years, natage, sums) %>%
+    as_tibble() %>%
+    mutate(Age = sumprod / sums) %>%
     rename(Year = years)
 
-  mean_age <- natage %>% 
-    select(Year, Age) %>% 
+  mean_age <- natage %>%
+    select(Year, Age) %>%
     mutate(Age = Age + 1) # To offset the 0 in the plot
-  
+
   g <- plot_bubbles(dat, mean_age = mean_age, clines = NULL, ...)
 
-  g  
+  g
 }
 
 make.age.comp.compare.bubble.plot <- function(model,                  ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC

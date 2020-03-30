@@ -80,7 +80,7 @@ opts_chunk$set(dev = 'cairo_ps',
                cache.path = 'knitr-cache/')
 
 source(file.path(here::here(), "R", "all.R"))
-load.models.into.parent.env()
+load_models_rds()
 source(file.path(rootd.R, "custom-knitr-variables.R"))
 @
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -154,7 +154,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     <<data.overview.map, out.width='2.9in', out.height = '3.4in',out.width='1.0\\columnwidth'>>=
       oldpar <- par()
       par(mgp = c(2, 0.5, 0))
-      make.data.overview.plot(base.model, 
+      make.data.overview.plot(base.model,
         fleetname = c("Fishery", "Acoustic\nSurvey"),
         margins = c(5.1, 3, 0, 4))
       par(mgp = oldpar$mgp)
@@ -199,7 +199,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       \item Research and bycatch -- \Sexpr{f(last.year.us.research)} t
       \item Tribal               --
         \bi
-        \item \Sexpr{f(last.year.us.tribal)} t 
+        \item \Sexpr{f(last.year.us.tribal)} t
         \item \Sexpr{f(last.year.us.tribal.quota.reallocated)} t reallocated on \Sexpr{last.year.us.tribal.reallocate.dates}
         \ei
       \item Catcher Processor    -- \Sexpr{f(last.year.us.cp.quota.reallocated)} t
@@ -574,8 +574,8 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
               which includes this).
         \item Length / sex frequencies from the acoustic survey.
         \item Bottom-trawl survey age-composition data.
-        \item Juvenile and pre-recruit surveys from the 
-              Southwest Fisheries Science Center and 
+        \item Juvenile and pre-recruit surveys from the
+              Southwest Fisheries Science Center and
               Pacific Whiting Conservation Cooperative.
       \ei
     \item Fishery dependent

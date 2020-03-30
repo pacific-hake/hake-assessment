@@ -37,39 +37,36 @@ tlmgr install lxfonts
 ```
 
 ---
-## How to create the RData files required for the document to build
+## How to create the RDS files required for the document to build
 
 * Place all model directories in the **models** directory. The base model must have an **mcmc** subdirectory;
   its main directory holds the MPD run and the mcmc subdirectory holds the mcmc run for the same model.
 
-* Navigate to the **R** directory and setup the model by editing the three files **model-setup.r**,
-  **forecast-catch-levels.r**, and **retrospective-setup.r**:
+* Navigate to the **R** directory and setup the model by editing the files **model-setup.R** and **forecast-catch-levels.R**:
 
 * To run all forecasts, retrospectives, and extra-mcmc calculations (required to get posterior survey index
   trajectories) for the base model, and then build the RData files for the base model, bridge models, and
   sensitivitiy models included in the assessment, do the following:
   ```R
     source(file.path(here::here(), "R/all.r"))
-    build(.run_forecasts = TRUE,
-          .run_retrospectives = TRUE,
-          .run_extra_mcmc = TRUE,
-          .run_catch_levels_default_hr = TRUE,
-          .run_catch_levels_spr_100 = TRUE,
-          .run_catch_levels_stable_catch = TRUE)
+    build(model_list,
+          run_forecasts = TRUE,
+          run_retrospectives = TRUE,
+          run_extra_mcmc = TRUE)
   ```
 
-  * Once finished, you can see that each model defined in **model-setup.r**
-    now has an RData file inside its directory with the same name.
+  * Once finished, you can see that each model defined in **model-setup.R**
+    now has an RDS file inside its directory with the same name.
 
-  * If **build()** is called without arguments, any RData files which do not exist
-    in their model directories will be built from the model outputs, i.e. no
-    forecasting, retrospectives, or extra mcmc output will be run.
+  * If **build()** is called without arguments, all RDS files will be built from
+    existing model outputs. Forecasting, retrospectives, and extra-mcmc models will not
+    be run in this case. You must specify the **run_** arguments as TRUE to run those.
 
-  * To delete all existing Rdata files and rebuild them again from the model outputs,
+  * To delete all existing rds files and rebuild them again from the model outputs,
     run the following:
     ```R
       source(file.path(here::here(), "R/all.r"))
-      delete.rdata.files()
+      delete_rds_files()
       build()
     ```
 
@@ -117,7 +114,7 @@ tlmgr install lxfonts
 
     ```R
       if(TRUE){
-        load.models.into.parent.env()
+        load_models_rds()
       }
     ```
 * **Method 3 for building the document** (With an R interpreter using tinytex):
@@ -170,7 +167,7 @@ tinytex::latexmk("hake-assessment.tex")
   This is important while debugging the R code, because you will need to run this each
   time you make a change in the code and want to test it, or if you insert a **browser()** command somewhere:
   ```R
-	source(file.path(here::here(), "R/all.r"));load.models.into.parent.env();source(file.path(here::here(), "R/custom-knitr-variables.r"))
+	source(file.path(here::here(), "R/all.r"));load_models_rds();source(file.path(here::here(), "R/custom-knitr-variables.r"))
   ```
 * Cut-and-paste the figure/table code from the knitr chunk you want to debug into R and the output will be exactly
   what will appear in the document.

@@ -94,7 +94,7 @@ opts_chunk$set(dev = 'cairo_ps',
                cache.path = 'knitr-cache/')
 
 source(file.path(here::here(), "R", "all.R"))
-load.models.into.parent.env()
+load_models_rds()
 source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 metric <- NULL
@@ -996,7 +996,7 @@ make.cohort.table(base.model,
 \frame{\frametitle{Looking Forward}
   \bi
     \item Highest catch levels on record over last three years (benefit of 2010 and 2014 year classes)
-    \item Stock forcasted to decline by \Sexpr{assess.yr + 1} and \Sexpr{assess.yr + 2} under all future catch scenarios 
+    \item Stock forcasted to decline by \Sexpr{assess.yr + 1} and \Sexpr{assess.yr + 2} under all future catch scenarios
     \item Continued decline in surviving biomass for the large 2010 and 2014 year classes
     \item Recent recruitment estimates indicate no new dominant year classes; though estimates are highly uncertain
     \item Stock moving towards 'target' biomass levels; however too rapid of a decline can result in 'overshooting'

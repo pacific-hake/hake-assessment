@@ -90,7 +90,7 @@ opts_chunk$set(dev = 'cairo_ps',
                cache.path = 'knitr-cache/')
 
 source(file.path(here::here(), "R", "all.R"))
-load.models.into.parent.env()
+load_models_rds()
 source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 metric <- NULL
