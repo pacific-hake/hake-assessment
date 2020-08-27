@@ -11,6 +11,7 @@
 #' @importFrom parallel detectCores
 #' @importFrom future plan
 #' @importFrom furrr future_map
+#' @importFrom readr read_table2 cols
 run_extra_mcmc <- function(model_path,
                            num_procs = detectCores() - 1,
                            extra_mcmc_path = "extra-mcmc",
@@ -30,7 +31,7 @@ run_extra_mcmc <- function(model_path,
     nxt <- tibble(from = from_to[i - 1,]$to + 1, to = from_to[i - 1,]$to + num_posts_by_proc[i])
     from_to <- bind_rows(from_to, nxt)
   }
-  posts <- read_table2(file.path(model$mcmcpath, posts_file_name))
+  posts <- read_table2(file.path(model$mcmcpath, posts_file_name), col_types = cols())
   # Remove all extra columns that start with X. These represent extra whitespace at end of header row in file
   postsxgrep <- grep("^X", names(posts))
   if(length(postsxgrep)){
@@ -38,7 +39,7 @@ run_extra_mcmc <- function(model_path,
       select(-postsxgrep)
   }
   post_lst <- split_df(posts, from_to)
-  derposts <- read_table2(file.path(model$mcmcpath, derposts_file_name))
+  derposts <- read_table2(file.path(model$mcmcpath, derposts_file_name), col_types = cols())
   # Remove all extra columns that start with X. These represent extra whitespace at end of header row in file
   derxgrep <- grep("^X", names(derposts))
   if(length(derxgrep)){
@@ -202,7 +203,7 @@ fetch_extra_mcmc <- function(model_path,
 
   ## Suppress warnings because there is an extra whitespace at the end of the header line in the file.
   suppressWarnings(
-    posts <- read_table2(file.path(mcmc_path, posts_file_name))
+    posts <- read_table2(file.path(mcmc_path, posts_file_name), col_types = cols())
   )
   ## Remove extra MLE run outputs. SS appends a new header followed by a 0-Iter row for an MLE run.
   ## Sometimes MLEs are run by accident or on purpose at another time and forgotten about.
@@ -214,7 +215,7 @@ fetch_extra_mcmc <- function(model_path,
     ## Suppress warnings because there may be extra 'Iter' lines followed by '0' lines
     ## because the SS MLE just appends these to the posteriors.sso file
     suppressWarnings(
-      posts <- read_table2(file.path(.x, posts_file_name))
+      posts <- read_table2(file.path(.x, posts_file_name), col_types = cols())
     )
     posts <- posts %>% filter(Iter != "Iter",
                               Iter != 0)
@@ -321,8 +322,10 @@ fetch_extra_mcmc <- function(model_path,
         length(.x) <- vec_maxlength
         .x
         })
-      tab <- do.call(rbind, vecs) %>%
-        as_tibble()
+      suppressMessages(
+        tab <- do.call(rbind, vecs) %>%
+          as_tibble(.name_repair = "unique")
+      )
       names(tab) <- header
       tab %>%
         add_column(Iter = .y, .before = 1)
