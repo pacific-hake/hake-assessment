@@ -841,8 +841,8 @@ make.long.parameter.estimates.table <- function(model,
   ## Format the values
   df[,2] <- f(df[,2], digits)
 
-  ## Make the underscores in the names have a preceeding \ so latex will like it
-  param.names <- levels(df[,1])[df[,1]]
+  ## Make the underscores in the names have a preceding \ so latex will like it
+  param.names <- df[,1]
   df[,1] <- gsub("\\_", "\\\\_", param.names)
 
   ## Latex column names
