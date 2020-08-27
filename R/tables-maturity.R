@@ -20,21 +20,21 @@ make.maturity.samples.table <- function(ovary.samples,
   tab <- ovary.samples %>% as.data.frame
 
   tabnew <- tab %>%
-    select(-Year) %>% 
+    select(-Year) %>%
     mutate(Total = rowSums(.))
-  
-  tabsums <- tabnew %>% 
+
+  tabsums <- tabnew %>%
     summarize_all(.funs = ~{if(is.numeric(.)) sum(.) else "Total"})
-  
+
   yr_col <- c(tab$Year, "Total") %>%
     enframe %>%
-    select(-name) %>% 
+    select(-name) %>%
     rename(Year = value)
   names(yr_col) <- latex.bold(names(yr_col))
   tab <- bind_rows(tabnew, tabsums)
   names(tab) <- map_chr(names(tab), ~{latex.mlc(str_split(.x, "\\\\n")[[1]])})
   tab <- bind_cols(yr_col, map_dfr(tab[,-1], function(x) f(x)))
-  tab[nrow(tab),] <- latex.bold(tab[nrow(tab),])
+  tab[nrow(tab),] <- as.list(latex.bold(tab[nrow(tab),]))
   tab[-nrow(tab), ncol(tab)] <- latex.bold(tab[-nrow(tab), ncol(tab)] %>%
                                              pull())
 
