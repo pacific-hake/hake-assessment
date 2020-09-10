@@ -253,13 +253,13 @@ load_models_rds <- function(){
     stop("Error - base.model$mcmccalcs is NULL. Make sure the directory\n",
             file.path(base.model$path, "mcmc"), " exists and contains valid\n",
             "   mcmc output, set ovwrt.rdata = TRUE in the create.rdata.file() calls\n",
-            "   within build() in model-setup.r, and try again.\n")
+            "   within build_rds() in model-setup.r, and try again.\n")
   }
   if(is.null(base.model$risks)){
     stop("Error - base.model$risks is NULL. Maybe you forgot to run the forecasting?\n",
            "   Make sure to setup running and/or loading of forecasts, and\n",
            "   set ovwrt.rdata = TRUE in the create.rdata.file() calls\n",
-           "   within build() in model-setup.r and try again.\n")
+           "   within build_rds() in model-setup.r and try again.\n")
   }
 
   last.yr.base.model <<- load_models(last.yr.base.model.dir.name)

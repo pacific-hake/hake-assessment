@@ -4,162 +4,108 @@ ____
 A framework which uses latex and knitr code to build the US/Canadian Pacific hake assessment.
 _____________________________________________________________
 
-## What's new
+## What's new for 2020/2021
 
-* Use the tinytex R package for a better integration of latex with R
+* Model outputs are now stored using RDS files instead of RData files. RDS files are smaller due to serialization, and can be assigned to a variable in code instead of being loaded into the global environment.
 
-* One-step document building by pressing the *Compile PDF* button in RStudio
+## Prerequisites for 2020/2021
 
-* Replaced Figure 1, the overview map. This was built using a lot of code from the three packages *nwfscSurvey*,
-  *nwfscMapping*, and *PBSmapping* which were all eliminated from the project. A bunch of shapefiles were no longer
-  necessary as the *rnaturalearth* package holds coastline data. The *sf* package was used to plot the map and
-  port, province, and state locations. It is a modernized spatial object system in R which incorporated
-  feature mapping.
-
-## Prerequisites
-
-* R version 3.6.2 "Dark and Stormy Night", released Dec 12, 2019
+* R version 4.0.2 "Taking Off Again", released June 22, 2020
+* Re-install the [tinytex](https://yihui.org/tinytex) package - If the directory `C:/Users/username/AppData/Roaming/TinyTex` exists, delete it before re-installing. See https://github.com/pbs-assess/csasdown/wiki/LaTeX-installation-for-csasdown for more information.
 * Rscript.exe must be on your PATH if you want to use
-  **Method 1 for building the document** (explained below).
-* Install the r4ss package development branch.
+  **Method 3 for building the document** (explained below).
+* The R package `r4ss`, on the `hake2020` branch:
 
 ```
-devtools::install_github("r4ss/r4ss", ref = "development")
-```
-
-To get the TeX part working, you can either use MikTex, which I have moved away from in favour of the tinytex
-R package which controls installation of TeXLive (https://yihui.org/tinytex/). To get this document to build I had
-to run the following commands in a DOS shell after installing tinytex in order to install the required fonts. This only has to be done once.
-
-```
-tlmgr install courier
-tlmgr install lxfonts
+devtools::install_github("r4ss/r4ss", ref = "hake2020")
 ```
 
 ---
 ## How to create the RDS files required for the document to build
 
-* Place all model directories in the **models** directory. The base model must have an **mcmc** subdirectory;
-  its main directory holds the MPD run and the mcmc subdirectory holds the mcmc run for the same model.
+* Place all model directories in the **models** directory. The base model must have an **mcmc** subdirectory; its main directory holds the MPD run and the mcmc subdirectory holds the mcmc run for the same model.
 
-* Navigate to the **R** directory and setup the model by editing the files **model-setup.R** and **forecast-catch-levels.R**:
+* Navigate to the **R** directory and setup the model by editing the files **model-setup.R** and **forecast-catch-levels.R**
 
-* To run all forecasts, retrospectives, and extra-mcmc calculations (required to get posterior survey index
-  trajectories) for the base model, and then build the RData files for the base model, bridge models, and
-  sensitivitiy models included in the assessment, do the following:
-  ```R
-    source(file.path(here::here(), "R/all.r"))
-    build(model_list,
+* To run all forecasts, retrospectives, and extra-mcmc calculations (required to get posterior survey index trajectories) for the base model, and then build the RDS files for the base model, bridge models, and sensitivities models included in the assessment, do the following:
+
+```R
+source(file.path(here::here(), "R/all.r"))
+build_rds(model_list,
           run_forecasts = TRUE,
           run_retrospectives = TRUE,
           run_extra_mcmc = TRUE)
-  ```
+```
 
-  * Once finished, you can see that each model defined in **model-setup.R**
-    now has an RDS file inside its directory with the same name.
+* Once finished, you can see that each model defined in **model-setup.R** now has an RDS file inside its directory with the same name.
 
-  * If **build()** is called without arguments, all RDS files will be built from
-    existing model outputs. Forecasting, retrospectives, and extra-mcmc models will not
-    be run in this case. You must specify the **run_** arguments as TRUE to run those.
-
-  * To delete all existing rds files and rebuild them again from the model outputs,
-    run the following:
-    ```R
-      source(file.path(here::here(), "R/all.r"))
-      delete_rds_files()
-      build()
-    ```
-
-  * To re-run items for a given model (deleting previous ones), do the following. Note that
-    .model_list can be a vector of model directory names.
-  ```R
-    source(file.path(here::here(), "R/all.r"))
-    build(.run_forecasts = TRUE,
-          .run_retrospectives = TRUE,
-          .run_extra_mcmc = TRUE,
-          .run_catch_levels_default_hr = TRUE,
-          .run_catch_levels_spr_100 = TRUE,
-          .run_catch_levels_stable_catch = TRUE,
-          .model_list = "model-directory-name")
-  ```
+* To delete all existing RDS files and rebuild them again from the model outputs, run the following. This assumes you have previously done all the forecasting, retrospectives, and extra-mcmc calculations:
+```R
+source(file.path(here::here(), "R/all.r"))
+delete_rds_files()
+build_rds()
+```
 
 ## How to create hake-assessment.pdf
 
-* **The RData files must have been created using the method above before the document can
-  be built.**
+* **The RDS files must have been created using the method above before the document can be built.**
 
-* **Method 1 for building the document** (Without an R interpreter):
-  This method is simpler to run, and all logs are recorded into logfiles which can be
-  viewed and searched when errors occur.
+* **Method 1 for building the document** (With an R interpreter using tinytex):
+```
+setwd(here::here("doc"))
+library(knitr)
+knit("hake-assessment.rnw")
+options(tinytex.verbose = TRUE)
+tinytex::latexmk("hake-assessment.tex")
+```
 
-  * Navigate to the doc subdirectory and run the **buildtex.bat** file.
+* **Method 2 for building the document** (Without an R interpreter):
+  This method uses Windows batch files, and all output messages are piped into log files which can be viewed when errors occur.
+
+  * Navigate to the *doc* subdirectory and run the **buildtex.bat** file.
   * To see the output from the knitr part of the process, look at the file **knitrOutput.log**.
   * To see the output from the Latex part of the process, look at the file **latexOutput.log**.
   * If the compilation seems to hang, check the two log files to see where it stopped.
 
-* **Method 2 for building the document** (With an R interpreter):
-  This method is faster after the first time, because the models will already be loaded into the
-  workspace and won't be reloaded every time you build the document.
+* **Method 3 for building the document** (With an R interpreter):
+  This method is faster after the first time, because the models will already be loaded into the workspace and won't be reloaded every time you build the document.
 
-  * Run the following:
-    ```R
-      source(file.path(here::here(), "R/all.r"))
-      setwd(file.path(here::here(), "doc"))
-      build.doc()
-    ```
-
-  * After the first time you do this, the models will be loaded into the R workspace.
-    You can then edit hake-assessment.rnw and set the first knitr code chunk up so that it doesn't
-    load the models every time you build the document. The value in the if statement should be changed to FALSE (remember to change it back before committing):
-
-    ```R
-      if(TRUE){
-        load_models_rds()
-      }
-    ```
-* **Method 3 for building the document** (With an R interpreter using tinytex):
-```
+* Run the following:
+```R
+source(here::here("R/all.r"))
 setwd(here::here("doc"))
-library(knitr)
-knit("hake-assessment.rnw"")
-options(tinytex.verbose = TRUE)
-tinytex::latexmk("hake-assessment.tex")
+build.doc()
+```
+
+* After the first time you do this, the models will be loaded into the R workspace. You can then edit hake-assessment.rnw and set the first knitr code chunk up so that it doesn't load the models every time you build the document. The value in the if statement should be changed to **FALSE** (don't commit this change to the GitHub repository):
+
+```R
+if(TRUE){
+  load_models_rds()
+}
 ```
 
 * **Method 4 for building the document** (With RStudio):
   Press the *Compile PDF* button when the hake-assessment.rnw file is showing.
 
 * **Method 5 for building the document** (old school, how Andy does it):
-   - **library(knitr)**
-  - **knit("hake-assessment.rnw")** [I tried just **knitr::knit("hake-assessment.rnw")** but didn't work as expected)
-  - In a shell:
-  - **latex hake-assessment**
-  - **bibtex hake-assessment** if necessary (and **latex** again).
-  - **dvips hake-assessment**
-  - **ps2pdf hake-assessment.ps**
-  - **ispell hake-assessment.tex** periodically
-  - I tried **pdflatex hake-assessment.tex** but it takes a long time as it makes pdf's of all the .eps files, so stick with the usual way. 
-
+```R
+library(knitr)
+knit("hake-assessment.rnw")
+```
+Then, in a terminal:
+```
+latex hake-assessment
+bibtex hake-assessment
+dvips hake-assessment
+ps2pdf hake-assessment.ps
+ispell hake-assessment.tex (periodically)
+```
 
 * To clean up the build, including removal of the cached figures and tables, run the **freshtex.bat** batch file,
   or manually delete the **knitr-cache** directory. If you don't do this, figures and tables built previously
   will be used. To keep the cached figures and tables, but remove all other traces of the build including the PDF,
   run **cleantex.bat**.
-
-## If you get unobvious errors that prevent it building
-
-* Try deleting .RData file for the base case. Could be to do with the forecasts.
-
-
-## How to delete all model RData files
-
-* Run the following:
-  ```R
-    source(file.path(here::here(), "R/all.r"))
-    delete.rdata.files()
-  ```
-* Before you try to build the document again, you will need to run the **build()** function again with
-  all options set to **FALSE** or no arguments to re-create the RData files.
 
 ## How to debug functions used in the knitr chunks in the **.rnw** files
 
@@ -167,7 +113,7 @@ tinytex::latexmk("hake-assessment.tex")
   This is important while debugging the R code, because you will need to run this each
   time you make a change in the code and want to test it, or if you insert a **browser()** command somewhere:
   ```R
-	source(file.path(here::here(), "R/all.r"));load_models_rds();source(file.path(here::here(), "R/custom-knitr-variables.r"))
+	source(here::here("R/all.r"));load_models_rds();source(here::here("R/custom-knitr-variables.r"))
   ```
 * Cut-and-paste the figure/table code from the knitr chunk you want to debug into R and the output will be exactly
   what will appear in the document.
@@ -176,11 +122,11 @@ tinytex::latexmk("hake-assessment.tex")
 
 ## How the R environment is set up
 
-* When the document is built, all of the model RData files which were previously built are loaded into the workspace
+* When the document is built, all of the model RDS files which were previously built are loaded into the workspace
   that is seen by **knitr**. All the lengthy R processes are done ahead of time from the **build()** function to make the
-  document building quick, since RData files are loaded instead of raw model output.
+  document building quick, since RDS files are loaded instead of raw model output.
 
-The following depicts the object structure of each model's .RData file:
+The following depicts the object structure of each model's RDS file:
 
 ```R
 model$          - All the objects as read in by the SS_output function in the r4ss package
@@ -278,9 +224,7 @@ library(r4ss)
 SS_plots(SS_output("./"))
 ```
 
-This creates figures and an HTML page with tabs for sets of figures. This is useful for quickly
-looking at results, especially when MCMCs have not yet been run and so the assessment document
-will not build yet.
+This creates figures and an HTML page with tabs for sets of figures. This is useful for quickly looking at results, especially when MCMCs have not yet been run and so the assessment document will not build yet.
 
 ---
 
@@ -296,7 +240,7 @@ which is a ghostscript command. Seems to be fine in document (may not be a prope
 
 ## GitHub workflow
 
-In 2020 we moved this repo to be under the *pacific-hake* GitHub organization. And we changed the workflow to now all push to a single master branch (to avoid merging each other's branches). We now 
+In 2020 we moved this repo to be under the *pacific-hake* GitHub organization. And we changed the workflow to now all push to a single master branch (to avoid merging each others branches). We now 
 ```
 git fetch
 git rebase
@@ -314,7 +258,6 @@ git merge origin/master
 git push
 ```
 We think that should avoid confusion since rebasing is not intuitive when you get conflicts, so we'll try merging again. Think it keeps the history more clear.
-
 
 ## **Everything from here on is from the 2016 assessment period (Nov 2015 - Mar 2016)**
 

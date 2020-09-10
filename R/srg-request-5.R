@@ -31,6 +31,6 @@ thin_posts <- function(model_dir = here::here("models", "2020.01.50_nutsMCMC_thi
 
 thin_posts(here::here("models", "2020.01.50_nutsMCMC_thin_2000", "mcmc"), num_samples = 2000, thin_factor = 3)
 thin_posts(here::here("models", "2020.01.51_nutsMCMC_thin_1000", "mcmc"), num_samples = 1000, thin_factor = 7)
-build(.model_list = "2020.01.50_nutsMCMC_thin_2000", .ovwrt_rdata = TRUE)
-build(.model_list = "2020.01.51_nutsMCMC_thin_1000", .ovwrt_rdata = TRUE)
+build_rds(.model_list = "2020.01.50_nutsMCMC_thin_2000", .ovwrt_rdata = TRUE)
+build_rds(.model_list = "2020.01.51_nutsMCMC_thin_1000", .ovwrt_rdata = TRUE)
 
