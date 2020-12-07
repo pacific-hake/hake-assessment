@@ -27,7 +27,7 @@ devtools::install_github("r4ss/r4ss", ref = "hake2020")
 
 * Navigate to the **R** directory and setup the model by editing the files **model-setup.R** and **forecast-catch-levels.R**
 
-* To run all forecasts, retrospectives, and extra-mcmc calculations (required to get posterior survey index trajectories) for the base model, and then build the RDS files for the base model, bridge models, and sensitivities models included in the assessment, do the following:
+* To run all forecasts, retrospectives, and extra-mcmc calculations (required to get posterior survey index trajectories) for the base model, and then build the RDS files for the base model, bridge models, and sensitivities models included in the assessment, do the following [note that `build_rds()` has to be run from your `hake-assessment/` folder, which is given by `here::here()`]:
 
 ```R
 source(file.path(here::here(), "R/all.r"))
