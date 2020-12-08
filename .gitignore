@@ -21,6 +21,8 @@
 .Rproj.user
 *.Rproj
 *.snm
+*.ss_new
+*.sso
 *.synctex
 *synctex*
 *.tex
