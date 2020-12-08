@@ -166,10 +166,11 @@ calc.mcmc <- function(mcmc,
                     c(lower, 0.5, upper))
   rinit <- quantile(recr[,names(recr) == "Initial"],
                     c(lower, 0.5, upper))
-  runfished <- quantile(recr[,names(recr) == "Unfished"],
+  runfished <- quantile(recr[,grepl("unfished", names(recr), ignore.case = TRUE)],
                         c(lower, 0.5, upper))
 
-  cols.to.strip <- c("Virgin", "Initial", "Unfished")
+  cols.to.strip <- c("Virgin", "Initial",
+    grep("unfished", names(recr), ignore.case = TRUE, value = TRUE))
   recr <- strip.columns(recr, cols.to.strip)
 
   rmed <- apply(recr, 2, quantile, prob = 0.5)
