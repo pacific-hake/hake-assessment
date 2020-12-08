@@ -31,6 +31,7 @@ library(rnaturalearth)
 library(rnaturalearthhires)  # devtools::install_github("ropensci/rnaturalearthhires")
 library(scales)
 library(sf)
+library(tictoc)
 library(tidyverse)
 library(xtable)
 

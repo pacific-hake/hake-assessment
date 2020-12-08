@@ -18,30 +18,15 @@
 #' @examples
 #' build_rds(c("base", "nuts"), TRUE, TRUE, TRUE)
 build_rds <- function(model_dirs = model_list,
-                      run_forecasts = FALSE,
-                      run_retrospectives = FALSE,
-                      run_extra_mcmc = FALSE,
-                      run_catch_levels = FALSE,
-                      catch_levels = catch_levels,
                       ...){
-
-  map(model_dirs, ~{
-    if(run_forecasts |
-       run_retrospectives |
-       run_extra_mcmc |
-       run_catch_levels){
-      run(model_dir = .x,
-          run_forecasts = run_forecasts,
-          run_retrospectives = run_retrospectives,
-          run_extra_mcmc = run_extra_mcmc,
-          run_catch_levels = run_catch_levels,
-          catch_levels = catch_levels)
-
-    }
-    create_rds_file(model_dir = .x, ...)
+  tic()
+  map(model_dirs, function(x = .x, ...){
+    run(model_dir = x, catch_levels_path = catch_levels_path, catch_levels = catch_levels, ...)
+    create_rds_file(model_dir = x, catch_levels = catch_levels, ...)
   }, ...)
   message("\nCompleted build.\n")
   invisible()
+  toc()
 }
 
 #' Create an rds file to hold the model's data and outputs.
@@ -142,7 +127,7 @@ run <- function(model_dir = NULL,
       if(!dir.exists(catch_levels_fullpath) | run_catch_levels){
         run_catch_levels(model_dir, ...)
       }
-      run_forecasts(model_dir, ...)
+      run_forecasts(model_dir, catch_levels_path, ...)
     }
     if(run_retrospectives){
       run_retrospectives(model_dir, ...)

@@ -18,8 +18,8 @@
 #' Return object looks the same as the `catch_levels` object but with three more elements
 #' @export
 fetch_catch_levels <- function(catch_levels_path,
-                               catch_levels = NULL){
-
+                               catch_levels = NULL,
+                               ...){
   stopifnot(!is.null(catch_levels))
 
   message("\nLoading catch levels from ", catch_levels_path)
@@ -81,7 +81,7 @@ fetch_catch_levels <- function(catch_levels_path,
   inds <- (length(catch_levels) - length(cust_catch_levels) + 1):length(catch_levels)
   map2(inds, 1:length(cust_catch_levels), ~{
     catch_levels[[.x]][[1]] <<- cust_catch_levels[[.y]] %>% pull()
-  }, future_options(globals = c("pull")))
+  }, furrr_options(globals = c("pull")))
   catch_levels
 }
 
@@ -89,13 +89,12 @@ fetch_catch_levels <- function(catch_levels_path,
 #' find a stable catch within the the given tolerance
 #'
 #' @param model The SS model output as loaded by [load_ss_files()]
-#' @param catch_levels The catch levels list as defined in forecast-catch-levels.R
 #' @param ...
 #'
 #' @export
 run_catch_levels_default_hr <- function(model,
                                         default_hr_path,
-                                        catch_levels,
+                                        forecast_yrs,
                                         ...){
 
   mcmc_path <- model$mcmcpath
@@ -140,12 +139,14 @@ run_catch_levels_default_hr <- function(model,
 #' find a stable catch within the the given tolerance
 #'
 #' @param model The SS model output as loaded by [load_ss_files()]
-#' @param catch_levels The catch levels list as defined in forecast-catch-levels.R
 #'
 #' @export
 run_catch_levels_spr_100 <- function(model,
                                      spr_100_path,
-                                     catch_levels,
+                                     forecast_yrs,
+                                     catch_levels_spr_tol,
+                                     catch_levels_catch_tol,
+                                     catch_levels_max_iter,
                                      ...){
 
   mcmc_path <- model$mcmcpath
@@ -220,12 +221,13 @@ run_catch_levels_spr_100 <- function(model,
 #' find a stable catch within the the given tolerance
 #'
 #' @param model The SS model output as loaded by [load_ss_files()]
-#' @param catch_levels The catch levels list as defined in forecast-catch-levels.R
 #'
 #' @export
 run_catch_levels_stable_catch <- function(model,
                                           stable_catch_path,
-                                          catch_levels,
+                                          forecast_yrs,
+                                          catch_levels_catch_tol,
+                                          catch_levels_max_iter,
                                           ...){
 
   mcmc_path <- model$mcmcpath
@@ -311,36 +313,77 @@ run_catch_levels_stable_catch <- function(model,
 #'
 #' @return [base::invisible()]
 #' @export
-run_catch_levels <- function(model_path, ...){
+run_catch_levels <- function(model_path,
+                             catch_levels_path = catch_levels_path,
+                             ...){
 
   model <- load_ss_files(model_path)
 
   catch_levels_path <- file.path(model_path, catch_levels_path)
   dir.create(catch_levels_path, showWarnings = FALSE)
   unlink(file.path(catch_levels_path, "*"), recursive = TRUE)
-  default_hr_path <- file.path(catch_levels_path, default_hr_path)
-  dir.create(default_hr_path, showWarnings = FALSE)
-  spr_100_path <- file.path(catch_levels_path, spr_100_path)
-  dir.create(spr_100_path, showWarnings = FALSE)
-  stable_catch_path <- file.path(catch_levels_path, stable_catch_path)
-  dir.create(stable_catch_path, showWarnings = FALSE)
 
   plan("multisession")
-  future_map(1:3, ~{
-    if(.x == 1){
+  future_map(1:3, function(x = .x,
+                           catch_levels_path = catch_levels_path,
+                           default_hr_path = default_hr_path,
+                           spr_100_path = spr_100_path,
+                           stable_catch_path = stable_catch_path,
+                           forecast_yrs = forecast_yrs,
+                           catch_levels_spr_tol = catch_levels_spr_tol,
+                           catch_levels_catch_tol = catch_levels_catch_tol,
+                           catch_levels_max_iter = catch_levels_max_iter){
+    if(x == 1){
+      model <- load_ss_files(model_path)
+      default_hr_path <- file.path(catch_levels_path, default_hr_path)
+      dir.create(default_hr_path, showWarnings = FALSE)
       run_catch_levels_default_hr(model,
                                   default_hr_path,
-                                  ...)
-    }else if(.x == 2){
+                                  forecast_yrs)
+    }else if(x == 2){
+      model <- load_ss_files(model_path)
+      spr_100_path <- file.path(catch_levels_path, spr_100_path)
+      dir.create(spr_100_path, showWarnings = FALSE)
       run_catch_levels_spr_100(model,
                                spr_100_path,
-                               ...)
+                               forecast_yrs,
+                               catch_levels_spr_tol,
+                               catch_levels_catch_tol,
+                               catch_levels_max_iter)
     }else{
+      model <- load_ss_files(model_path)
+      stable_catch_path <- file.path(catch_levels_path, stable_catch_path)
+      dir.create(stable_catch_path, showWarnings = FALSE)
       run_catch_levels_stable_catch(model,
                                     stable_catch_path,
-                                    ...)
+                                    forecast_yrs,
+                                    catch_levels_catch_tol,
+                                    catch_levels_max_iter)
     }
   },
-  ...)
+  catch_levels_path = catch_levels_path,
+  default_hr_path = default_hr_path,
+  spr_100_path = spr_100_path,
+  stable_catch_path = stable_catch_path,
+  forecast_yrs = forecast_yrs,
+  catch_levels_spr_tol = catch_levels_spr_tol,
+  catch_levels_catch_tol = catch_levels_catch_tol,
+  catch_levels_max_iter = catch_levels_max_iter,
+  .options = furrr_options(globals = c(f = f,
+                                       load_ss_files = load_ss_files,
+                                       SS_output = SS_output,
+                                       fix.posteriors = fix.posteriors,
+                                       posts_file_name = posts_file_name,
+                                       derposts_file_name = derposts_file_name,
+                                       create.key.nuisance.posteriors.files = create.key.nuisance.posteriors.files,
+                                       calc.mcmc = calc.mcmc,
+                                       strip.columns = strip.columns,
+                                       run_catch_levels_default_hr = run_catch_levels_default_hr,
+                                       run_catch_levels_spr_100 = run_catch_levels_spr_100,
+                                       run_catch_levels_stable_catch = run_catch_levels_stable_catch,
+                                       latex.bold = latex.bold,
+                                       forecast_file_name = forecast_file_name,
+                                       ss_executable = ss_executable,
+                                       show_ss_output = show_ss_output)))
   plan()
 }

@@ -37,6 +37,7 @@ Imports:
     r4ss (>= 1.35.3),
     rgeos,
     stats,
+    tictoc,
     tidyverse,
     utils
 Remotes: 

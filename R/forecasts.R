@@ -6,7 +6,9 @@
 #'
 #' @return [base::invisible()]
 #' @export
-run_forecasts <- function(model_path, ...){
+run_forecasts <- function(model_path,
+                          catch_levels_path,
+                          ...){
 
   model <- load_ss_files(model_path, ...)
   mcmc_path <- model$mcmcpath
@@ -124,14 +126,14 @@ fetch_forecasts <- function(model_path,
            spr = t(apply(spr_proj_cols, 2, quantile, probs = forecast_probs)),
            mcmccalcs = calc.mcmc(mcmc_out),
            outputs = mcmc_out)
-    }, .options = future_options(globals = c("f",
-                                             "calc.mcmc",
-                                             "forecast_yrs",
-                                             "forecast_probs",
-                                             "latex.bold",
-                                             "select",
-                                             "strip.columns",
-                                             "SSgetMCMC")))
+    }, .options = furrr_options(globals = c("f",
+                                            "calc.mcmc",
+                                            "forecast_yrs",
+                                            "forecast_probs",
+                                            "latex.bold",
+                                            "select",
+                                            "strip.columns",
+                                            "SSgetMCMC")))
     names(lvls_lst) <- catch_levels_names
     lvls_lst
   })
