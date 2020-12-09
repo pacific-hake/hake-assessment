@@ -34,6 +34,7 @@ admin*
 cache*
 extra-models*
 knitr-cache*
+knitr-figs*
 models*
 models-dev*
 out-csv*
