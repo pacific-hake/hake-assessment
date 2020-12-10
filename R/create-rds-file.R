@@ -155,50 +155,46 @@ run <- function(model_dir = NULL,
 
 #' Build the doc entirely from within R
 #'
-#' @details Make sure you have created the .RData files by sourcing *all.r* with the [create.rdata.file()] variables set to TRUE.
-#' Once you have done that and run this function once within an R session, you can go into the first knitr code chunk in
-#' hake-assessment.rnw and set the call to [load_models_rds()] to FALSE, which will save time for doing the build.
+#' @details Make sure you have created the .rds files by running [build_rds()] in the appropriate manner.
+#' Once you have done that and run this function once within an R session, it will be much quicker since the rds
+#' file contents will have already been loaded into the R session.
 #'
-#' @param knit.only Only knit the code, do not run latex
-#' @param make.pdf Logical. TRUE to make the pdf, if FALSE it will only go as far as postscript
-#' @param make.bib Logical. Run bibtex
-#' @param doc.name What to name the dcument (no extension needed)
+#' @param knit_only Only knit the code, do not run latex or pdflatex.
+#' @param make_pdf Logical. TRUE to make the pdf, if FALSE it will only go as far as postscript. If `use_pdflatex`
+#' is set to TRUE, this argument will have no effect, a PDF will be built anyway.
+#' @param make_bib Logical. Run bibtex.
+#' @param use_pdflatex Logical. If TRUE, use the pdflatex command to build (e.g. if pngs are being used for figures).
+#' If FALSE, use latex, dvips, and ps2pdf to build (e.g. if pdf figures are being used)
+#' @param doc_name What to name the document (no extension needed)
 #'
 #' @return [base::invisible()]
 #' @export
-build.doc <- function(knit.only = FALSE,
-                      make.pdf  = TRUE,
-                      make.bib  = TRUE,
-                      doc.name  = "hake-assessment"){
+build_doc <- function(knit_only = FALSE,
+                      make_pdf = TRUE,
+                      make_bib = TRUE,
+                      use_pdflatex = TRUE,
+                      doc_name = "hake-assessment"){
+
+  latex_command <- ifelse(use_pdflatex, "pdflatex", "latex")
+
   curr_path <- getwd()
   setwd(here::here("doc"))
-  knit(paste0(doc.name,".rnw"))
-  if(!knit.only){
-    system(paste0("latex ", doc.name, ".tex"),
-           invisible = FALSE,
-           show.output.on.console = FALSE)
-    if(make.bib){
-      system(paste0("bibtex ", doc.name),
-             invisible = FALSE,
-             show.output.on.console = TRUE)
+  knit(paste0(doc_name, ".rnw"))
+  if(!knit_only){
+    shell(paste0(latex_command, " ", doc_name, ".tex"))
+    if(use_pdflatex){
+      shell(paste0(latex_command, " ", doc_name, ".tex"))
     }
-    system(paste0("latex ", doc.name, ".tex"),
-           invisible = FALSE,
-           show.output.on.console = FALSE)
-    system(paste0("latex ", doc.name, ".tex"),
-           invisible = FALSE,
-           show.output.on.console = FALSE)
-    system(paste0("latex ", doc.name, ".tex"),
-           invisible = FALSE,
-           show.output.on.console = FALSE)
-    system(paste0("latex ", doc.name, ".tex"),
-           invisible = FALSE,
-           show.output.on.console = FALSE)
-    system(paste0("dvips ", doc.name,".dvi"),
-           invisible = FALSE,
-           show.output.on.console = TRUE)
-    if(make.pdf){
-      shell(paste0("ps2pdf ", doc.name, ".ps"))
+    if(make_bib){
+      shell(paste0("bibtex ", doc_name))
+    }
+    shell(paste0(latex_command, " ", doc_name, ".tex"))
+    shell(paste0(latex_command, " ", doc_name, ".tex"))
+    if(!use_pdflatex){
+      shell(paste0(latex_command, " ", doc_name, ".tex"))
+      shell(paste0(latex_command, " ", doc_name, ".tex"))
+      shell(paste0(latex_command, " ", doc_name, ".tex"))
+      shell(paste0("ps2pdf ", doc_name, ".ps"))
     }
   }
   setwd(curr_path)

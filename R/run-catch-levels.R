@@ -81,7 +81,7 @@ fetch_catch_levels <- function(catch_levels_path,
   inds <- (length(catch_levels) - length(cust_catch_levels) + 1):length(catch_levels)
   map2(inds, 1:length(cust_catch_levels), ~{
     catch_levels[[.x]][[1]] <<- cust_catch_levels[[.y]] %>% pull()
-  }, future_options(globals = c("pull")))
+  }, furrr_options(globals = c("pull")))
   catch_levels
 }
 

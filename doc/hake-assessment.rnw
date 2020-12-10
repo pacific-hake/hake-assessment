@@ -306,23 +306,23 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 \renewcommand{\thefigure}{\arabic{figure}}
 \setcounter{figure}{0}
 
-% \rfoot{Section~\ref{sec:introduction} -- Introduction}
-% <<introduction-sec, child='introduction-section/introduction.rnw'>>=
-% @
-%
-% \rfoot{Section~\ref{sec:data} -- Data}
-% <<data-sec, child='data-section/data.rnw'>>=
-% @
-%
-% \rfoot{Section~\ref{sec:assessment} -- Assessment}
-% <<assessment-sec, child='assessment-section/assessment-section.rnw'>>=
-% @
-%
-% \rfoot{Section~\ref{sec:research} -- Research and data needs}
-% <<research-sec, child='research-section/research.rnw'>>=
-% @
+\rfoot{Section~\ref{sec:introduction} -- Introduction}
+<<introduction-sec, child='introduction-section/introduction.rnw'>>=
+@
 
-% \clearpage
+\rfoot{Section~\ref{sec:data} -- Data}
+<<data-sec, child='data-section/data.rnw'>>=
+@
+
+\rfoot{Section~\ref{sec:assessment} -- Assessment}
+<<assessment-sec, child='assessment-section/assessment-section.rnw'>>=
+@
+
+\rfoot{Section~\ref{sec:research} -- Research and data needs}
+<<research-sec, child='research-section/research.rnw'>>=
+@
+
+\clearpage
 <<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
 @
 
@@ -332,15 +332,15 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 \bibliography{all}
 
 \newpage
-% \rfoot{Section~\ref{sec:tables} -- Tables}
-% <<main-tables, child='main-tables/main-tables.rnw'>>=
-% @
-%
-% \clearpage
-% \rfoot{Section~\ref{sec:figures} -- Figures}
-% <<main-figures, child='main-figures/main-figures.rnw'>>=
-% @
-% \clearpage
+\rfoot{Section~\ref{sec:tables} -- Tables}
+<<main-tables, child='main-tables/main-tables.rnw'>>=
+@
+
+\clearpage
+\rfoot{Section~\ref{sec:figures} -- Figures}
+<<main-figures, child='main-figures/main-figures.rnw'>>=
+@
+\clearpage
 
 \addtocontents{toc}{\par {\bf \vspace{10mm} APPENDICES} \par}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
@@ -354,41 +354,41 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 \renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 \renewcommand{\theequation}{\thechapter.\arabic{equation}}
 
-% \rfoot{Appendix~\ref{chap:mcmc-diagnostics} -- Base model diagnostics}
-% <<appendix-mcmc-diagnostics, child='appendix-mcmc-diagnostics/appendix-mcmc-diagnostics.rnw'>>=
-% @
-%
-% % Make figures appear numbered correctly in sections
-% \renewcommand{\thefigure}{\thechapter.\arabic{section}.\arabic{figure}}
-% \rfoot{Appendix~\ref{chap:srg-requests} -- SRG requests}
-% <<appendix-srg-requests, child='appendix-srg-requests/appendix-srg-requests.rnw'>>=
-% @
-% % Set figure numbering back to what it was
-% \renewcommand{\thefigure}{\thechapter.\arabic{figure}}
-%
-% \rfoot{Appendix~\ref{chap:glossary} -- Glossary}
-% <<appendix-glossary, child='appendix-glossary/appendix-glossary.rnw'>>=
-% @
-%
-% \rfoot{Appendix~\ref{chap:canada-fishery-report} -- Canada fishery report}
-% <<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-Canada-2019.rnw'>>=
-% @
-%
-% \rfoot{Appendix~\ref{chap:us-fishery-report} -- United States fishery report}
-% <<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-US-2019.rnw'>>=
-% @
-%
-% \rfoot{Appendix~\ref{chap:parameters} -- Estimated parameters}
-% <<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
-% @
-%
+\rfoot{Appendix~\ref{chap:mcmc-diagnostics} -- Base model diagnostics}
+<<appendix-mcmc-diagnostics, child='appendix-mcmc-diagnostics/appendix-mcmc-diagnostics.rnw'>>=
+@
+
+% Make figures appear numbered correctly in sections
+\renewcommand{\thefigure}{\thechapter.\arabic{section}.\arabic{figure}}
+\rfoot{Appendix~\ref{chap:srg-requests} -- SRG requests}
+<<appendix-srg-requests, child='appendix-srg-requests/appendix-srg-requests.rnw'>>=
+@
+% Set figure numbering back to what it was
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+
+\rfoot{Appendix~\ref{chap:glossary} -- Glossary}
+<<appendix-glossary, child='appendix-glossary/appendix-glossary.rnw'>>=
+@
+
+\rfoot{Appendix~\ref{chap:canada-fishery-report} -- Canada fishery report}
+<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-Canada-2019.rnw'>>=
+@
+
+\rfoot{Appendix~\ref{chap:us-fishery-report} -- United States fishery report}
+<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-US-2019.rnw'>>=
+@
+
+\rfoot{Appendix~\ref{chap:parameters} -- Estimated parameters}
+<<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
+@
+
 % \rfoot{Appendix~\ref{chap:age1-survey} -- Age-1 survey sensitivity}
 % <<appendices-age1-survey, child='appendix-age1-survey/appendix-age1-survey.rnw'>>=
 % @
 
-% \rfoot{Appendix~\ref{chap:adnuts} -- NUTS MCMC run}
-% <<appendices-nuts, child='appendix-adnuts/appendix-adnuts.rnw'>>=
-% @
+\rfoot{Appendix~\ref{chap:adnuts} -- NUTS MCMC run}
+<<appendices-nuts, child='appendix-adnuts/appendix-adnuts.rnw'>>=
+@
 
 % Putting the base model results into a temporary appendix to easily compare
 %  the figures and tables to previous two appendices:

@@ -5,7 +5,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}    % Don't make any bigger as then previous page becomes blank
-<<main-overview-map, fig.height=9>>=
+<<main-overview-map, out.width="6in">>=
 make.overview.map.plot(path = rootd.map.data)
 @
 \end{center}
@@ -1442,7 +1442,7 @@ for(i in plot.retro.yrs){
 make.squid.plot(retro.list,
                 subplot = 1,
                 cohorts = retro.cohorts)
-@
+  @
 \end{center}
 %\vspace{0mm}
 \caption{Retrospective analysis of recruitment deviations from MLE models over the last
