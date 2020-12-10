@@ -128,6 +128,12 @@ pdflatex hake-assessment.tex
 
 ---
 
+## To change between including PDF/EPS and PNG figures for web acessibility
+
+* It is not a single switch, you will have to change code in several places:
+* Here: https://github.com/pacific-hake/hake-assessment/blob/849a9014d2cd628b12dd7d156d35a12eaf564f21/doc/hake.sty#L353 you must change the order of the extensions, placing the ones you want included before the ones you don't. To use PDF/EPS figures, you must place .pdf and .eps lines before the .png line, and vice-versa.
+* Change the **dev** argument to be **cairo_ps** for PDF/EPS figures and **png** for PNG figures here: https://github.com/pacific-hake/hake-assessment/blob/3afb5e5d7cd8ec4144a481337ee25e7c96f15855/doc/hake-assessment.rnw#L170.
+
 ## How the R environment is set up
 
 * When the document is built, all of the model RDS files which were previously built are loaded into the workspace that is seen by **knitr**. All the lengthy R processes are done ahead of time from the **build_rds()** function to make the document building quick, since RDS files are loaded instead of raw model output.
