@@ -128,11 +128,11 @@ pdflatex hake-assessment.tex
 
 ---
 
-## To change between including PDF/EPS and PNG figures for web acessibility
+## How to change between including PDF/EPS and PNG figures for web acessibility
 
 * It is not a single switch, you will have to change code in several places:
-* Here: https://github.com/pacific-hake/hake-assessment/blob/849a9014d2cd628b12dd7d156d35a12eaf564f21/doc/hake.sty#L353 you must change the order of the extensions, placing the ones you want included before the ones you don't. To use PDF/EPS figures, you must place .pdf and .eps lines before the .png line, and vice-versa.
-* Change the **dev** argument to be **cairo_ps** for PDF/EPS figures and **png** for PNG figures here: https://github.com/pacific-hake/hake-assessment/blob/3afb5e5d7cd8ec4144a481337ee25e7c96f15855/doc/hake-assessment.rnw#L170.
+* Change the order of the extensions in the latex extension declarations, by placing the lines containing you want included before the lines you don't. To use PDF/EPS figures, you must place .pdf and .eps lines before the .png line, and vice-versa here: https://github.com/pacific-hake/hake-assessment/blob/fd36ead5377600b68daea7ef986f958ab0e825dd/doc/hake.sty#L353.
+* Change the **dev** argument to be **cairo_ps** for PDF/EPS figures and **png** for PNG figures here: https://github.com/pacific-hake/hake-assessment/blob/fd36ead5377600b68daea7ef986f958ab0e825dd/doc/hake-assessment.rnw#L170.
 
 ## How the R environment is set up
 
