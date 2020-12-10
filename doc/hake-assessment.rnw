@@ -168,6 +168,7 @@ fig_dpi <- 600
 fig_align <- "center"
 fig_pos <- "htb"
 opts_chunk$set(dev = "png",
+               #dev = "cairo_ps",
                dpi = fig_dpi,
                fig.asp = fig_asp,
                fig.width = fig_width,
