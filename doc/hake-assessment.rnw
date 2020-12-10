@@ -205,7 +205,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %% peer review under applicable information quality guidelines. It does not
 %% represent and should not be construed to represent any agency determination
 %% or policy.}
-\\ ~\\ ~\\ \includegraphics[width=4in]{hake-picture}}
+\\ ~\\ ~\\ \includegraphics[width=4in]{hake-picture.png}}
 
 \author{Joint Technical Committee of the \fishname/Whiting Agreement \\ Between
   the Governments of the United States and Canada}
