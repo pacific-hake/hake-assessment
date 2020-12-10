@@ -11,7 +11,7 @@ _____________________________________________________________
 ## Prerequisites for 2020/2021
 
 * R version 4.0.2 "Taking Off Again", released June 22, 2020
-* Re-install the [tinytex](https://yihui.org/tinytex) package - If the directory `C:/Users/username/AppData/Roaming/TinyTex` exists, delete it before re-installing. See https://github.com/pbs-assess/csasdown/wiki/LaTeX-installation-for-csasdown for more information.
+* Install the [tinytex](https://yihui.org/tinytex) package - If the directory `C:/Users/username/AppData/Roaming/TinyTex` exists, delete it before re-installing. See https://github.com/pbs-assess/csasdown/wiki/LaTeX-installation-for-csasdown for more information.
 * Rscript.exe must be on your PATH if you want to use
   **Method 3 for building the document** (explained below).
 * The R package `r4ss`, on the `hake2020` branch:
@@ -30,8 +30,9 @@ devtools::install_github("r4ss/r4ss", ref = "hake2020")
 * To run all forecasts, retrospectives, and extra-mcmc calculations (required to get posterior survey index trajectories) for the base model, and then build the RDS files for the base model, bridge models, and sensitivities models included in the assessment, do the following [note that `build_rds()` has to be run from your `hake-assessment/` folder, which is given by `here::here()`]:
 
 ```R
-source(file.path(here::here(), "R/all.r"))
+source(here::here("R/all.r"))
 build_rds(model_list,
+          run_catch_levels = TRUE,
           run_forecasts = TRUE,
           run_retrospectives = TRUE,
           run_extra_mcmc = TRUE)
@@ -41,7 +42,7 @@ build_rds(model_list,
 
 * To delete all existing RDS files and rebuild them again from the model outputs, run the following. This assumes you have previously done all the forecasting, retrospectives, and extra-mcmc calculations:
 ```R
-source(file.path(here::here(), "R/all.r"))
+source(here::here("R/all.r"))
 delete_rds_files()
 build_rds()
 ```
@@ -70,36 +71,43 @@ tinytex::latexmk("hake-assessment.tex")
 * **Method 3 for building the document** (With an R interpreter):
   This method is faster after the first time, because the models will already be loaded into the workspace and won't be reloaded every time you build the document.
 
-* Run the following:
+* Run the following if you are building with PDF figures:
 ```R
 source(here::here("R/all.r"))
-setwd(here::here("doc"))
-build.doc()
+build_doc(use_pdflatex = FALSE)
 ```
 
-* After the first time you do this, the models will be loaded into the R workspace. You can then edit hake-assessment.rnw and set the first knitr code chunk up so that it doesn't load the models every time you build the document. The value in the if statement should be changed to **FALSE** (don't commit this change to the GitHub repository):
-
+* Run the following if you are building with PNG figures:
 ```R
-if(TRUE){
-  load_models_rds()
-}
+source(here::here("R/all.r"))
+build_doc()
 ```
+
+* After the first time you do this, the models will be loaded into the R workspace and any subsequent builds will be much faster.
 
 * **Method 4 for building the document** (With RStudio):
   Press the *Compile PDF* button when the hake-assessment.rnw file is showing.
 
-* **Method 5 for building the document** (old school, how Andy does it):
+* **Method 5 for building the document**
 ```R
-library(knitr)
-knit("hake-assessment.rnw")
+knitr::knit("hake-assessment.rnw")
 ```
-Then, in a terminal:
+Then, if you are building with PDF figures, in a terminal:
 ```
+ispell hake-assessment.tex (periodically)
 latex hake-assessment
 bibtex hake-assessment
 dvips hake-assessment
 ps2pdf hake-assessment.ps
+```
+Otherwise, if you are building with PNG figures, in a terminal:
+```
 ispell hake-assessment.tex (periodically)
+pdflatex hake-assessment.tex
+pdflatex hake-assessment.tex
+bibtex hake-assessment
+pdflatex hake-assessment.tex
+pdflatex hake-assessment.tex
 ```
 
 * To clean up the build, including removal of the cached figures and tables, run the **freshtex.bat** batch file,
@@ -122,9 +130,7 @@ ispell hake-assessment.tex (periodically)
 
 ## How the R environment is set up
 
-* When the document is built, all of the model RDS files which were previously built are loaded into the workspace
-  that is seen by **knitr**. All the lengthy R processes are done ahead of time from the **build()** function to make the
-  document building quick, since RDS files are loaded instead of raw model output.
+* When the document is built, all of the model RDS files which were previously built are loaded into the workspace that is seen by **knitr**. All the lengthy R processes are done ahead of time from the **build_rds()** function to make the document building quick, since RDS files are loaded instead of raw model output.
 
 The following depicts the object structure of each model's RDS file:
 

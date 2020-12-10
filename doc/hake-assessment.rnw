@@ -306,23 +306,23 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 \renewcommand{\thefigure}{\arabic{figure}}
 \setcounter{figure}{0}
 
-% \rfoot{Section~\ref{sec:introduction} -- Introduction}
-% <<introduction-sec, child='introduction-section/introduction.rnw'>>=
-% @
-%
-% \rfoot{Section~\ref{sec:data} -- Data}
-% <<data-sec, child='data-section/data.rnw'>>=
-% @
-%
-% \rfoot{Section~\ref{sec:assessment} -- Assessment}
-% <<assessment-sec, child='assessment-section/assessment-section.rnw'>>=
-% @
-%
-% \rfoot{Section~\ref{sec:research} -- Research and data needs}
-% <<research-sec, child='research-section/research.rnw'>>=
-% @
+\rfoot{Section~\ref{sec:introduction} -- Introduction}
+<<introduction-sec, child='introduction-section/introduction.rnw'>>=
+@
 
-% \clearpage
+\rfoot{Section~\ref{sec:data} -- Data}
+<<data-sec, child='data-section/data.rnw'>>=
+@
+
+\rfoot{Section~\ref{sec:assessment} -- Assessment}
+<<assessment-sec, child='assessment-section/assessment-section.rnw'>>=
+@
+
+\rfoot{Section~\ref{sec:research} -- Research and data needs}
+<<research-sec, child='research-section/research.rnw'>>=
+@
+
+\clearpage
 <<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
 @
 
@@ -332,15 +332,15 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 \bibliography{all}
 
 \newpage
-% \rfoot{Section~\ref{sec:tables} -- Tables}
-% <<main-tables, child='main-tables/main-tables.rnw'>>=
-% @
-%
-% \clearpage
-% \rfoot{Section~\ref{sec:figures} -- Figures}
-% <<main-figures, child='main-figures/main-figures.rnw'>>=
-% @
-% \clearpage
+\rfoot{Section~\ref{sec:tables} -- Tables}
+<<main-tables, child='main-tables/main-tables.rnw'>>=
+@
+
+\clearpage
+\rfoot{Section~\ref{sec:figures} -- Figures}
+<<main-figures, child='main-figures/main-figures.rnw'>>=
+@
+\clearpage
 
 \addtocontents{toc}{\par {\bf \vspace{10mm} APPENDICES} \par}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
