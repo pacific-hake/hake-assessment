@@ -161,18 +161,14 @@
 
 <<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
 knitr::render_latex()
-fig_asp <- 0.618
 fig_width <- 7.5
-fig_out_width <- "6in"
 fig_dpi <- 600
 fig_align <- "center"
 fig_pos <- "htb"
 opts_chunk$set(dev = "png",
                #dev = "cairo_ps",
                dpi = fig_dpi,
-               fig.asp = fig_asp,
                fig.width = fig_width,
-               out.width = fig_out_width,
                fig.pos = fig_pos,
                collapse = TRUE,
                echo = FALSE,
@@ -182,7 +178,7 @@ opts_chunk$set(dev = "png",
                comment = "#>",
                results = 'hide',
                cache = TRUE,
-               fig.path = "knitr-figs/",
+               fig.path = "knitr-cache/",
                cache.path = "knitr-cache/")
 options(xtable.comment = FALSE)
 

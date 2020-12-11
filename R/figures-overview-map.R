@@ -55,22 +55,22 @@ make.overview.map.plot <- function(path,
 
   g <- ggplot(data = coast) +
     geom_sf(color = "black", fill = "grey") +
-    geom_sf(data = ports_left_north_sf, color = "red", size = 1,  show.legend = FALSE) +
-    geom_sf(data = ports_left_south_sf, color = "red", size = 1,  show.legend = FALSE) +
-    geom_sf(data = ports_right_north_sf, color = "red", size = 1,  show.legend = FALSE) +
-    geom_sf(data = ports_right_south_sf, color = "red", size = 1,  show.legend = FALSE) +
+    geom_sf(data = ports_left_north_sf, color = "red", size = 2,  show.legend = FALSE) +
+    geom_sf(data = ports_left_south_sf, color = "red", size = 2,  show.legend = FALSE) +
+    geom_sf(data = ports_right_north_sf, color = "red", size = 2,  show.legend = FALSE) +
+    geom_sf(data = ports_right_south_sf, color = "red", size = 2,  show.legend = FALSE) +
     geom_text_repel(data = states,
                      aes(x = lon,
                          y = lat,
                          label = name),
-                     size = 3,
+                     size = 5,
                      color = "black") +
     geom_text_repel(data = se_alaska,
                     aes(x = lon,
                         y = lat,
                         label = name),
                     xlim = c(-131, NA),
-                    size = 3,
+                    size = 5,
                     color = "black",
                     segment.size = 1,
                     arrow = arrow(length = unit(0.02, "npc"))) +
@@ -79,32 +79,32 @@ make.overview.map.plot <- function(path,
                         y = lat,
                         label = name),
                     xlim = c(NA, -135),
-                    size = 2.5,
-                    segment.size = 0.4,
+                    size = 4.5,
+                    segment.size = 0.8,
                     arrow = arrow(length = unit(0.01, "npc"))) +
     geom_text_repel(data = ports_left_south,
                     aes(x = lon,
                         y = lat,
                         label = name),
                     xlim = c(NA, -125),
-                    size = 2.5,
-                    segment.size = 0.4,
+                    size = 4.5,
+                    segment.size = 0.8,
                     arrow = arrow(length = unit(0.01, "npc"))) +
     geom_text_repel(data = ports_right_north,
                     aes(x = lon,
                         y = lat,
                         label = name),
                     xlim = c(-129, NA),
-                    size = 2.5,
-                    segment.size = 0.4,
+                    size = 4.5,
+                    segment.size = 0.8,
                     arrow = arrow(length = unit(0.01, "npc"))) +
     geom_text_repel(data = ports_right_south,
                     aes(x = lon,
                         y = lat,
                         label = name),
                     xlim = c(-122, NA),
-                    size = 2.5,
-                    segment.size = 0.4,
+                    size = 4.5,
+                    segment.size = 0.8,
                     arrow = arrow(length = unit(0.01, "npc"))) +
     coord_sf(xlim = extents[[1]],
              ylim = extents[[2]]) +
