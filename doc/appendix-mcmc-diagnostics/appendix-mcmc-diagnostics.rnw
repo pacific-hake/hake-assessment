@@ -71,7 +71,7 @@ The level of autocorrelation in the chain (distribution across lag times, i.e., 
 \begin{figure}[H]
 \begin{center}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=6.5in, height=7.5in]{main-figures/KeyParameterGelman_MultChain.png}
+\includegraphics[width=6.5in, height=7.5in]{main-figures/KeyParameterGelman_MultChain}
 \end{center}
 %\vspace{0mm}
 \caption{Gelman-Rubin plot showing the development of the scale-reduction (shrink factor) across the chain length for key posterior parameter distributions. A factor close to 1 indicates that between chain variance and within chain variance are equal. Values much greater than 1.1 indicate a notable difference between chains and the possible lack of achieving a converged stationary posterior distribution.}
