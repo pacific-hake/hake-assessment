@@ -163,7 +163,7 @@ run <- function(model_dir = NULL,
 #' @param make_pdf Logical. TRUE to make the pdf, if FALSE it will only go as far as postscript. If `use_pdflatex`
 #' is set to TRUE, this argument will have no effect, a PDF will be built anyway.
 #' @param make_bib Logical. Run bibtex.
-#' @param use_pdflatex Logical. If TRUE, use the pdflatex command to build (e.g. if pngs are being used for figures).
+#' @param png_figs Logical. If TRUE, use the pdflatex command to build (e.g. if pngs are being used for figures).
 #' If FALSE, use latex, dvips, and ps2pdf to build (e.g. if pdf figures are being used)
 #' @param doc_name What to name the document (no extension needed)
 #'
@@ -172,17 +172,55 @@ run <- function(model_dir = NULL,
 build_doc <- function(knit_only = FALSE,
                       make_pdf = TRUE,
                       make_bib = TRUE,
-                      use_pdflatex = TRUE,
-                      doc_name = "hake-assessment"){
+                      png_figs = TRUE,
+                      doc_name = "hake-assessment",
+                      sty_name = "hake.sty"){
 
-  latex_command <- ifelse(use_pdflatex, "pdflatex", "latex")
+  latex_command <- ifelse(png_figs, "pdflatex", "latex")
+
+  # Re-write order of figures in hake style file
+  hake_sty <- readLines(sty_name)
+  j <- grep("DeclareGraphicsExtensions", hake_sty)
+  k <- grep(".jpeg,.JPEG\\}", hake_sty)
+  if(j >= k || (k - j != 5)){
+    stop("Could not find the correct entry for DeclareGraphicsExtensions in hake.sty",
+         call. = FALSE)
+  }
+  if(png_figs){
+    hake_sty[j + 1] <- ".png,.PNG,"
+    hake_sty[j + 2] <- ".pdf,.PDF,"
+    hake_sty[j + 3] <- ".eps,.EPS,"
+    hake_sty[j + 4] <- ".jpg,.JPG,"
+    hake_sty[j + 5] <- ".jpeg,.JPEG}"
+  }else{
+    hake_sty[j + 1] <- ".pdf,.PDF,"
+    hake_sty[j + 2] <- ".eps,.EPS,"
+    hake_sty[j + 3] <- ".png,.PNG,"
+    hake_sty[j + 4] <- ".jpg,.JPG,"
+    hake_sty[j + 5] <- ".jpeg,.JPEG}"
+  }
+  writeLines(hake_sty, sty_name)
+
+  # Set dev in knitr options in assessment file for PNG or EPS figures
+  hake_assess <- readLines(paste0(doc_name, ".rnw"))
+  j <- grep("opts_chunk\\$set", hake_assess)
+  if(!length(grep("dev", hake_assess[j + 1]))){
+    stop("The line after opts_chunk$set in ", paste0(doc_name, ".rnw"), " does not contain dev=",
+         call. = FALSE)
+  }
+  if(png_figs){
+    hake_assess[j + 1] <- "dev = 'png',"
+  }else{
+    hake_assess[j + 1] <- "dev = 'cairo_ps',"
+  }
+  writeLines(hake_assess, paste0(doc_name, ".rnw"))
 
   curr_path <- getwd()
   setwd(here::here("doc"))
   knit(paste0(doc_name, ".rnw"))
   if(!knit_only){
     shell(paste0(latex_command, " ", doc_name, ".tex"))
-    if(use_pdflatex){
+    if(png_figs){
       shell(paste0(latex_command, " ", doc_name, ".tex"))
     }
     if(make_bib){
@@ -190,13 +228,31 @@ build_doc <- function(knit_only = FALSE,
     }
     shell(paste0(latex_command, " ", doc_name, ".tex"))
     shell(paste0(latex_command, " ", doc_name, ".tex"))
-    if(!use_pdflatex){
+    if(!png_figs){
       shell(paste0(latex_command, " ", doc_name, ".tex"))
       shell(paste0(latex_command, " ", doc_name, ".tex"))
       shell(paste0(latex_command, " ", doc_name, ".tex"))
+      shell(paste0("dvips ", doc_name, ".dvi"))
       shell(paste0("ps2pdf ", doc_name, ".ps"))
     }
   }
+  setwd(curr_path)
+  invisible()
+}
+
+#' Build a pared-down version of the assessment. Typically used to compile figures section or
+#' tables section only. Citations and other references will not be compiled properly since
+#' pdflatex is only called once
+#'
+#' @param doc_name What to name the document (no extension needed)
+#'
+#' @return [base::invisible()]
+#' @export
+build_test <- function(doc_name = "hake-assessment-test"){
+  curr_path <- getwd()
+  setwd(here::here("doc"))
+  knit(paste0(doc_name, ".rnw"))
+  shell(paste0("pdflatex ", doc_name, ".tex"))
   setwd(curr_path)
   invisible()
 }

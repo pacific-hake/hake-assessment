@@ -165,8 +165,9 @@ fig_width <- 7.5
 fig_dpi <- 600
 fig_align <- "center"
 fig_pos <- "htb"
-opts_chunk$set(dev = "png",
-               #dev = "cairo_ps",
+# The "dev" line below is modified by the build_doc() function
+opts_chunk$set(
+dev = 'cairo_ps',
                dpi = fig_dpi,
                fig.width = fig_width,
                fig.pos = fig_pos,
@@ -202,7 +203,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %% peer review under applicable information quality guidelines. It does not
 %% represent and should not be construed to represent any agency determination
 %% or policy.}
-\\ ~\\ ~\\ \includegraphics[width=4in]{hake-picture.png}}
+\\ ~\\ ~\\ \includegraphics[width=4in]{hake-picture}}
 
 \author{Joint Technical Committee of the \fishname/Whiting Agreement \\ Between
   the Governments of the United States and Canada}

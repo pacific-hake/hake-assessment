@@ -128,11 +128,13 @@ pdflatex hake-assessment.tex
 
 ---
 
-## How to change between including PDF/EPS and PNG figures for web acessibility
+## How to change between including EPS and PNG figures for web acessibility
 
-* It is not a single switch, you will have to change code in several places:
-* Change the order of the extensions in the latex extension declarations, by placing the lines containing you want included before the lines you don't. To use PDF/EPS figures, you must place .pdf and .eps lines before the .png line, and vice-versa here: https://github.com/pacific-hake/hake-assessment/blob/fd36ead5377600b68daea7ef986f958ab0e825dd/doc/hake.sty#L353.
-* Change the **dev** argument to be **cairo_ps** for PDF/EPS figures and **png** for PNG figures here: https://github.com/pacific-hake/hake-assessment/blob/fd36ead5377600b68daea7ef986f958ab0e825dd/doc/hake-assessment.rnw#L170.
+* If you use the `build_doc()` function, there is a single switch to change. Call `build_doc(png_figs = TRUE)` to use PNG figures and `build_doc(png_figs = FALSE)` to use EPS figures. The default is PNG figures. The function makes modifications to code which are outlined below.
+* If you do not use `build_doc()`:
+  * It is not a single switch, you will have to change code in several places:
+  * Change the order of the extensions in the latex extension declarations, by placing the lines containing you want included before the lines you don't. To use PDF/EPS figures, you must place .pdf and .eps lines before the .png line, and vice-versa here: https://github.com/pacific-hake/hake-assessment/blob/fd36ead5377600b68daea7ef986f958ab0e825dd/doc/hake.sty#L353.
+  * Change the **dev** argument to be **cairo_ps** for PDF/EPS figures and **png** for PNG figures here: https://github.com/pacific-hake/hake-assessment/blob/fd36ead5377600b68daea7ef986f958ab0e825dd/doc/hake-assessment.rnw#L170.
 
 ## How the R environment is set up
 
