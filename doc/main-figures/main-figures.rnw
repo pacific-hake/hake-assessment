@@ -5,10 +5,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}    % Don't make any bigger as then previous page becomes blank
-<<main-overview-map, fig.show='hide', fig.height=10>>=
+<<main-overview-map, fig.height=9>>=
 make.overview.map.plot(path = rootd.map.data)
 @
-\hspace*{-8.5cm}\includegraphics[width=2\linewidth]{knitr-figs/main-overview-map-1}
 \end{center}
 \caption{Overview map of the area in the Northeast Pacific Ocean occupied by \fishname.
   Common areas referred to in this document are shown.}
@@ -85,14 +84,13 @@ make.catches.plot(catches, leg.y.loc = 550)
 \label{fig:main-catches}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 %% Call the figures directly instead of creating them because the data are confidential
 \begin{center}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishCatchRatesUS.png}
+\includegraphics[width=0.75\paperwidth]{main-figures/fishCatchRatesUS.png}
 \end{center}
 \caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in
   the U.S. at-sea fleet from 2014--\Sexpr{last.data.yr}.}
@@ -103,7 +101,7 @@ make.catches.plot(catches, leg.y.loc = 550)
 \begin{center}
 %\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 %\includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishDepthsUS}
-<<main-us-fishery-depths>>=
+<<main-us-fishery-depths, fig.height=3.5>>=
   par(mfrow = c(1, 2), mar=c(2.2, 3.2, 1.2, 0.2), oma = c(2, 1, 0, 0))
   makebox(
     us.atsea.fishing.depth[us.atsea.fishing.depth$year >= max(us.atsea.fishing.depth$year) - 4, ],
