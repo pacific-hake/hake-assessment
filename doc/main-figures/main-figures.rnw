@@ -26,7 +26,7 @@ make.overview.map.plot(path = rootd.map.data)
                 %  from -20 to -21 jumps it to the left when using center.
                 %  Commenting out {center} works better.
 \includegraphics[max size={1.15\paperwidth}{1.15\paperheight}]
-  {main-figures/hake_survey_1995-19_NASCTimeSeries_BiomassAtAgeHistograms_grayblue.png}
+  {main-figures/hake_survey_1995-19_NASCTimeSeries_BiomassAtAgeHistograms_grayblue}
   % Download from Google Drive
 % \end{center}
 % \vspace{-3mm}
@@ -54,7 +54,7 @@ make.overview.map.plot(path = rootd.map.data)
 \begin{center}
 \hspace{-10mm}
 \includegraphics[max size={1.10\paperwidth}{1.10\paperheight}]
-   {main-figures/age1hake_03-19_sA_squareroot_bin_narrow-panel_bluergray.png}
+   {main-figures/age1hake_03-19_sA_squareroot_bin_narrow-panel_bluergray}
    % Download from Google Drive
 \end{center}
 %\vspace{-5mm}
@@ -90,7 +90,7 @@ make.catches.plot(catches, leg.y.loc = 550)
 %% Call the figures directly instead of creating them because the data are confidential
 \begin{center}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=0.75\paperwidth]{main-figures/fishCatchRatesUS.png}
+\includegraphics[width=0.75\paperwidth]{main-figures/fishCatchRatesUS}
 \end{center}
 \caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in
   the U.S. at-sea fleet from 2014--\Sexpr{last.data.yr}.}
