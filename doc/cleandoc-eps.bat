@@ -12,5 +12,5 @@ del *.txt
 del *.out
 del *.synctex.gz
 del hake-assessment*.tex
-del hake-assessment.pdf
+del hake-assessment-eps.pdf
 hake-assessment.synctex.gz(busy)
