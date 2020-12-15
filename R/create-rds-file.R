@@ -211,12 +211,16 @@ mod_code_for_build <- function(png_figs = TRUE,
 
   # Set dev in knitr options in assessment file for PNG or EPS figures
   hake_assess <- readLines(rnw_file)
-  j <- grep("opts_chunk\\$set", hake_assess)
-  if(!length(grep("dev *=", hake_assess[j + 1]))){
-    stop("The line after opts_chunk$set (line ", j + 1, ") in ", rnw_file, " does not contain 'dev ='",
+  j <- grep("dev *=", hake_assess)
+  if(!length(j)){
+    stop("The line 'dev = ' was not found in the ", rnw_file, " file",
          call. = FALSE)
   }
-  hake_assess[j + 1] <- ifelse(png_figs, "dev = 'png',", "dev = 'cairo_ps',")
+  if(length(j) > 1){
+    stop("The line 'dev = ' occurs more than once in the ", rnw_file, " file",
+         call. = FALSE)
+  }
+  hake_assess[j] <- ifelse(png_figs, "dev = 'png',", "dev = 'cairo_ps',")
   # Set fig.path and cache.path in assessment file for PNG or EPS figures
   j <- grep("fig.path *=", hake_assess)
   if(!length(j)){
@@ -264,7 +268,7 @@ build_doc <- function(knit_only = FALSE,
                       doc_name = "hake-assessment",
                       ...){
 
-  mod_code_for_build(png_figs, ...)
+  mod_code_for_build(png_figs = png_figs, ...)
 
   latex_command <- ifelse(png_figs, "pdflatex", "latex")
   curr_path <- getwd()
