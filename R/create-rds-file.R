@@ -322,7 +322,6 @@ build_test <- function(doc_name = "hake-assessment-test"){
 
   curr_path <- getwd()
   setwd(here::here("doc"))
-  lck <- filelock::lock("hake-assessment.pdf")
   knit(paste0(doc_name, ".rnw"))
   shell(paste0("pdflatex ", doc_name, ".tex"))
   setwd(curr_path)
