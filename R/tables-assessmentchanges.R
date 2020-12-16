@@ -32,6 +32,9 @@ make.assessment.changes.table <- function(assessment.changes,
   colnames(tab) <- sapply(strsplit(colnames(tab), "_"), latex.mlc)
 
   size.string <- latex.size.str(font.size, space.size)
+  # Cannot have multiple periods in a number (software version must be separated by dashes
+  # instead to satisfy accessibility requirements)
+  tab[,2] <- gsub("\\.", "-", tab[,2])
 
   print(xtable(tab, caption = xcaption,
                label = xlabel,
