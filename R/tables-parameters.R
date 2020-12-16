@@ -306,6 +306,9 @@ make.parameters.estimated.summary.table <- function(model,
       paste0(latex.nline,
              latex.bold(latex.under("Data weighting")),
              latex.nline))
+  # Add spaces after commas and before opening parentheses
+  tab <- map_df(as_tibble(tab), ~{gsub(",", ", ", .x)}) %>% as.data.frame
+  tab <- map_df(as_tibble(tab), ~{gsub("\\(", " \\(", .x)}) %>% as.data.frame
 
   ## Make the size string for font and space size
   size.string <- latex.size.str(font.size, space.size)
