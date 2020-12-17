@@ -86,6 +86,7 @@ plot.retro.yrs <- 1:5
 show_ss_output <- FALSE
 
 source(file.path(rootd.R, "utilities.R"))
+source(file.path(rootd.R, "add-tooltips.R"))
 source(file.path(rootd.R, "catches.R"))
 source(file.path(rootd.R, "run-catch-levels.R"))
 source(file.path(rootd.R, "create-rds-file.R"))
