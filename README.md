@@ -88,7 +88,7 @@ build_rds()
   build_doc(png_figs = TRUE)
   ```
 
-  * After the first time you do this, the models will be loaded into the R workspace and any subsequent builds will be much faster.
+  * After the first time you do this, the models will be loaded into the R workspace and any subsequent builds will be a little faster.
 
 * **Method 3**
 
@@ -109,7 +109,7 @@ build_rds()
   * If you are building with `PNG` figures, run this in an R session:
   ```R
   mod_code_for_build (png_figs = TRUE)
-  knitr::knit("hake-assessment.rnw")
+  knit_alttext()
   ```
   then this in a terminal:
   ```
