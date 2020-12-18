@@ -10,6 +10,8 @@ del *.ps
 del *.toc
 del *.txt
 del *.out
+del *.upa
+del *.upb
 del *.synctex.gz
 del hake-assessment*.tex
 del hake-assessment-eps.pdf
