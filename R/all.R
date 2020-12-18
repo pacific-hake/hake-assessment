@@ -88,9 +88,11 @@ show_ss_output <- FALSE
 
 source(file.path(rootd.R, "utilities.R"))
 source(file.path(rootd.R, "add-alt-text.R"))
+source(file.path(rootd.R, "knit-alt-text.R"))
 source(file.path(rootd.R, "catches.R"))
 source(file.path(rootd.R, "run-catch-levels.R"))
 source(file.path(rootd.R, "create-rds-file.R"))
+source(file.path(rootd.R, "build-doc.R"))
 source(file.path(rootd.R, "delete-files.R"))
 source(file.path(rootd.R, "extra-mcmc.R"))
 source(file.path(rootd.R, "retrospectives.R"))

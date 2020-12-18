@@ -496,7 +496,7 @@ fish are often caught by the fishery.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<exploitation-fraction, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the current exploitation of the stock biomass is 0.1">>=
+<<exploitation-fraction, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the current exploitation fraction of the stock biomass is approximately 0.1">>=
 make.exploitation.fraction.plot(base.model,
                                 start.yr = start.yr,
                                 end.yr = end.yr-1,
