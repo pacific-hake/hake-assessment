@@ -39,7 +39,7 @@ landings averaged \Sexpr{f(mean(catches$TOTAL))}~t from
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[!b]
 \begin{center}
-<<total-catches, fig.height=4, fig.width=8>>=
+<<total-catches, fig.height=4, fig.width=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that catches in the last 5 years have been the largest in the time series">>=
 make.catches.plot(catches,
                   leg.y.loc = 650) ## leg.y.loc is y-coord to place legend at
 @
@@ -132,7 +132,7 @@ respectively.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<survey-biomass, fig.height=5, fig.width=8>>=
+<<survey-biomass, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the survey estimate has increased from 2017 to 2019">>=
 #make.survey.biomass.plot(base.model)
 make.survey.biomass.extrap.plot(survey.comparison)
 @
@@ -218,7 +218,7 @@ and~\ref{fig:es-relative-spawning-biomass}). Model estimates suggest
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<spawning-biomass, fig.height=5, fig.width=8>>=
+<<spawning-biomass, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the stock has been decreasing in size since 2017">>=
 make.biomass.plot(base.model,
                   equil.yr = unfished.eq.yr,
                   start.yr = start.yr,
@@ -242,7 +242,7 @@ assessment period, due to lower than average recruitment.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<relative-spawning-biomass, fig.height=5, fig.width=8>>=
+<<relative-spawning-biomass, fig.height=5, fig.width=8, is.fig = TRUE>>=
 make.depletion.plot(base.model,
                     start.yr = start.yr,
                     end.yr = end.yr,
@@ -349,7 +349,7 @@ have low recruitment with occasional large year-classes
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<recruitment, fig.height=5, fig.width=8>>=
+<<recruitment, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016">>=
 make.recruitment.plot(base.model,
                       equil.yr = unfished.eq.yr,
                       start.yr = start.yr,
@@ -468,7 +468,7 @@ years and Figure~\ref{fig:es-fishing-intensity}).
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<fishing-intensity, fig.height=5, fig.width=8>>=
+<<fishing-intensity, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we have been below the management target of 1 throughout the time series">>=
 make.fishing.intensity.plot(base.model,
                             start.yr = start.yr,
                             end.yr = end.yr-1,
@@ -496,7 +496,7 @@ fish are often caught by the fishery.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<exploitation-fraction, fig.height=5, fig.width=8>>=
+<<exploitation-fraction, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the current exploitation of the stock biomass is 0.1">>=
 make.exploitation.fraction.plot(base.model,
                                 start.yr = start.yr,
                                 end.yr = end.yr-1,
@@ -589,7 +589,7 @@ this difference is not, by far, the major driver of the observed dynamics.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<phase-plot, fig.height=5, fig.width=8>>=
+<<phase-plot, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we are currently not overfishing nor in an overfished state">>=
 make.phase.plot(base.model,
                 start.yr = start.yr,
                 end.yr = end.yr)
@@ -810,7 +810,7 @@ make.decision.table(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<forecast-depletion-comparison-plot, fig.height=5, fig.width=8>>=
+<<forecast-depletion-comparison-plot, fig.height=5, fig.width=8, is.fig = TRUE>>=
 ## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those which will be plotted against each other
 models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
@@ -843,7 +843,7 @@ make.forecast.depletion.comparison.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<forecast-risk-comparison-plot-year-1, fig.height=5, fig.width=8>>=
+<<forecast-risk-comparison-plot-year-1, fig.height=5, fig.width=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline next year regardless of catch level">>=
 make.forecast.risk.comparison.plot(base.model,
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[1],
@@ -912,7 +912,7 @@ and Figure~\ref{fig:es-forecast-risk-comparison-year-2}.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<forecast-risk-comparison-plot-year-2, fig.height=5, fig.width=8>>=
+<<forecast-risk-comparison-plot-year-2, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline next year regardless of catch level">>=
 make.forecast.risk.comparison.plot(base.model,
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[2],

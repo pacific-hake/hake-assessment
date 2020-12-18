@@ -70,7 +70,7 @@ build_rds()
 **The `RDS` files must have been created using the method above before the document can be built.**
 
 * **Method 1**
-
+  
   Run the batch files `builddoc-epsfigs.bat` or `builddoc-pngfigs.bat` for the version with `PDF/EPS` figures or `PNG` figures respectively. Doing it this way will allow you to continue to work in your R session while the document builds.
 
   * To see the output from the knitr part see `knitr_output.log`

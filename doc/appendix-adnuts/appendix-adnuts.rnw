@@ -65,7 +65,7 @@ sensitivity runs to be in an MCMC context as opposed to MLE.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<biomass-base-alternative-6-adnuts-sens, fig.height=4.5, fig.width=8>>=
+<<biomass-base-alternative-6-adnuts-sens, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
 make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.6),
@@ -79,7 +79,7 @@ make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
 %% JOINED ON PAGE
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{center}
-<<status-base-alternative-6-adnuts-sens, fig.height=4.5, fig.width=8>>=
+<<status-base-alternative-6-adnuts-sens, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
 make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.6),
@@ -95,7 +95,7 @@ make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<recruitment-base-alternative-6-adnuts-sens, fig.height=4.5, fig.width=8>>=
+<<recruitment-base-alternative-6-adnuts-sens, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
 make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
                      legend = FALSE,
                      subplots = 10,
@@ -115,7 +115,7 @@ box()
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<recruitment-devs-base-alternative-6-adnuts-sens, fig.height=4.5, fig.width=8>>=
+<<recruitment-devs-base-alternative-6-adnuts-sens, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
 make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
                      legend = FALSE,
                      subplots = 12,
@@ -134,7 +134,7 @@ box()
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<spawning-biomass-adnuts, fig.height=5, fig.width=8>>=
+<<spawning-biomass-adnuts, fig.height=5, fig.width=8, is.fig = TRUE>>=
 make.biomass.plot(sens.models.6,
                   equil.yr = unfished.eq.yr,
                   start.yr = start.yr,
@@ -155,7 +155,7 @@ make.biomass.plot(sens.models.6,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<relative-spawning-biomass-adnuts, fig.height=5, fig.width=8>>=
+<<relative-spawning-biomass-adnuts, fig.height=5, fig.width=8, is.fig = TRUE>>=
 make.depletion.plot(sens.models.6,
                     start.yr = start.yr,
                     end.yr = end.yr,
@@ -206,7 +206,7 @@ make.recruitment.table(sens.models.6,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<recruitment-adnuts, fig.height=5, fig.width=8>>=
+<<recruitment-adnuts, fig.height=5, fig.width=8, is.fig = TRUE>>=
 make.recruitment.plot(sens.models.6,
                       equil.yr = unfished.eq.yr,
                       start.yr = start.yr,
@@ -245,7 +245,7 @@ make.fishing.intensity.table(sens.models.6,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<fishing-intensity-adnuts, fig.height=5, fig.width=8>>=
+<<fishing-intensity-adnuts, fig.height=5, fig.width=8, is.fig = TRUE>>=
 make.fishing.intensity.plot(sens.models.6,
                             start.yr = start.yr,
                             end.yr = end.yr-1,
@@ -265,7 +265,7 @@ make.fishing.intensity.plot(sens.models.6,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<exploitation-fraction-adnuts, fig.height=5, fig.width=8>>=
+<<exploitation-fraction-adnuts, fig.height=5, fig.width=8, is.fig = TRUE>>=
 make.exploitation.fraction.plot(sens.models.6,
                                 start.yr = start.yr,
                                 end.yr = end.yr-1,
@@ -282,7 +282,7 @@ make.exploitation.fraction.plot(sens.models.6,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<phase-plot-adnuts, fig.height=5, fig.width=8>>=
+<<phase-plot-adnuts, fig.height=5, fig.width=8, is.fig = TRUE>>=
 make.phase.plot(sens.models.6,
                 start.yr = start.yr,
                 end.yr = end.yr,
@@ -391,7 +391,7 @@ make.decision.table(sens.models.6,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<forecast-risk-comparison-plot-year-1-adnuts, fig.height=5, fig.width=8>>=
+<<forecast-risk-comparison-plot-year-1-adnuts, fig.height=5, fig.width=8, is.fig = TRUE>>=
 make.forecast.risk.comparison.plot(sens.models.6,
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[1],
@@ -432,7 +432,7 @@ make.risk.table(sens.models.6,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<forecast-risk-comparison-plot-year-2-adnuts, fig.height=5, fig.width=8>>=
+<<forecast-risk-comparison-plot-year-2-adnuts, fig.height=5, fig.width=8, is.fig = TRUE>>=
 make.forecast.risk.comparison.plot(sens.models.6,
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[2],
@@ -474,7 +474,7 @@ make.risk.table(sens.models.6,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<mcmc-survey-fit-adnuts, fig.height=6, fig.width=8>>=
+<<mcmc-survey-fit-adnuts, fig.height=6, fig.width=8, is.fig = TRUE>>=
 make.mcmc.survey.fit.plot(sens.models.6,
                           start.yr = survey.start.yr,
                           end.yr = survey.end.yr,
@@ -496,7 +496,7 @@ make.mcmc.survey.fit.plot(sens.models.6,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<mcmc-diag-m-r0-adnuts, fig.height=4, fig.width=8>>=
+<<mcmc-diag-m-r0-adnuts, fig.height=4, fig.width=8, is.fig = TRUE>>=
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
@@ -513,7 +513,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<mcmc-diag-h-extra-sd-adnuts, fig.height=4.8, fig.width=8>>=
+<<mcmc-diag-h-extra-sd-adnuts, fig.height=4.8, fig.width=8, is.fig = TRUE>>=
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
@@ -530,7 +530,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<mcmc-diag-dm-adnuts, fig.height=4.8, fig.width=8>>=
+<<mcmc-diag-dm-adnuts, fig.height=4.8, fig.width=8, is.fig = TRUE>>=
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
@@ -547,7 +547,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<mcmc-diag-hists-adnuts, fig.height=6, fig.width=8>>=
+<<mcmc-diag-hists-adnuts, fig.height=6, fig.width=8, is.fig = TRUE>>=
 make.mcmc.diag.hists.plot(sens.models.6,
                           labelstrings = "all")
 @
@@ -574,7 +574,7 @@ The level of autocorrelation in the chain (distribution across lag times, i.e., 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<mcmc-pairs-adnuts, fig.height=8, fig.width=8>>=
+<<mcmc-pairs-adnuts, fig.height=8, fig.width=8, is.fig = TRUE>>=
 make.mcmc.diag.pairs.plot(sens.models.6,
                           inc.key.params = TRUE,
                           key.posteriors.regex = key.posteriors,
@@ -594,7 +594,7 @@ make.mcmc.diag.pairs.plot(sens.models.6,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<mcmc-pairs-recruit-devs, fig.height=8, fig.width=8>>=
+<<mcmc-pairs-recruit-devs, fig.height=8, fig.width=8, is.fig = TRUE>>=
 make.mcmc.diag.pairs.plot(sens.models.6,
                           inc.key.params = FALSE,
                           recr = (end.yr-10):(end.yr-1))
