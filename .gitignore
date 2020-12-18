@@ -8,6 +8,7 @@
 *.doc
 *.dvi
 *.eps
+*junk*
 *.log
 *.nav
 *.out
@@ -25,13 +26,12 @@
 *.sso
 *.synctex
 *synctex*
+*test*
 *.tex
 *.toc
 *.upa
 *.upb
 *.zip
-*test*
-*junk*
 
 # Folders
 admin*
