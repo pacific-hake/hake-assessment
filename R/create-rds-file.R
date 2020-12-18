@@ -288,7 +288,10 @@ build_doc <- function(knit_only = FALSE,
   curr_path <- getwd()
   setwd(here::here("doc"))
   knit(paste0(doc_name, ".rnw"))
-  add_tooltips(paste0(doc_name, ".tex"))
+  if(png_figs){
+    # The knitting process creates the global `alt_fig_text`
+    add_alt_text(paste0(doc_name, ".tex"), alt_fig_text = alt_fig_text)
+  }
   if(!knit_only){
     shell(paste0(latex_command, " ", doc_name, ".tex"))
     if(png_figs){
@@ -324,7 +327,7 @@ build_test <- function(doc_name = "hake-assessment-test"){
   curr_path <- getwd()
   setwd(here::here("doc"))
   knit(paste0(doc_name, ".rnw"))
-  add_tooltips(paste0(doc_name, ".tex"))
+  add_alt_text(paste0(doc_name, ".tex"), alt_fig_text = alt_fig_text)
   shell(paste0("pdflatex ", doc_name, ".tex"))
   setwd(curr_path)
   invisible()
