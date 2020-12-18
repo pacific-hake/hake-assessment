@@ -27,7 +27,11 @@
 *synctex*
 *.tex
 *.toc
+*.upa
+*.upb
 *.zip
+*test*
+*junk*
 
 # Folders
 admin*
