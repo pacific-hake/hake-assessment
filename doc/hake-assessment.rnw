@@ -169,31 +169,34 @@ opts_chunk$set(
 # The "dev" line below is modified by the build_doc() function.
 # Do not modify or move it.
 dev = 'png',
-               dpi = fig_dpi,
-               fig.width = fig_width,
-               fig.pos = fig_pos,
-               collapse = TRUE,
-               echo = FALSE,
-               results = FALSE,
-               message = FALSE,
-               warning = FALSE,
-               comment = "#>",
-               results = 'hide',
-               # The fig.path and cache.path lines below are modified by
-               # the build_doc() function. Do not modify or move them.
+dpi = fig_dpi,
+fig.width = fig_width,
+fig.pos = fig_pos,
+collapse = TRUE,
+echo = FALSE,
+results = FALSE,
+message = FALSE,
+warning = FALSE,
+comment = "#>",
+results = 'hide',
+# The fig.path and cache.path lines below are modified by
+# the build_doc() function. Do not modify or move them.
 fig.path = 'knitr-cache-png/',
 cache.path = 'knitr-cache-png/',
-               # Do not move this cache line from the end of the list as
-               # the build_doc() function relies on it being here.
-               cache = TRUE)
+# Do not move this cache line from the end of the list as
+# the build_doc() function relies on it being here to change the
+# other arguments mentioned in comments above
+cache = TRUE)
 
 # Data frame of alternative figure text to be populated by a knitr hook
 alt_fig_text <- tibble()
+# This is called everytime a chunk is evaluated with alt.text in the chunk options
 knit_hooks$set(alt.text = function(before, options, envir) {
   if(before && options$is.fig){
     # Add first line of code and the alt text to a data frame
     alt_fig_text <<- bind_rows(alt_fig_text, c(code = options$code[1], text = options$alt.text))
   }
+  # Return NULL because anything else output here will be written into the TEX output
   NULL
 })
 # Default chunk options
