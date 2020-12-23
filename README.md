@@ -2,15 +2,13 @@ ____
 # hake-assessment
 
 *A framework which uses latex and knitr code to build the US/Canadian Pacific hake assessment.*
-____
+_____________________________________________________________
 
 ## What's new for 2020/2021
 
 * Model outputs are now stored using `RDS` files instead of `RData` files. RDS files are smaller due to serialization, and can be assigned to a variable in code instead of being loaded into the global environment.
 
 * There is a choice between `PDF/EPS` figures or `PNG` figures in the final document. `PNG` figures are necessary to conform to web accessibility rules, in particular for the *Automatic reader* function found in PDF viewers.
-
-* Alternative text for figures (in `PNG` mode only) has been added. To add alternative text to any chunk that makes a figure, and for other web accessibility issues see the Wiki [here](https://github.com/pacific-hake/hake-assessment/wiki/How-to-make-the-document-web-accessible).
 
 * Moved some older content off this README page into Wiki pages:
   * [Old methods (pre-2017)](https://github.com/pacific-hake/hake-assessment/wiki/Older-methods-from-pre-2017)
@@ -44,13 +42,13 @@ build_rds(run_catch_levels = TRUE,
           run_retrospectives = TRUE,
           run_extra_mcmc = TRUE)
 ```
+
 * The `model_list` as defined in the `R/model-setup.R` file is what is used by default for this function. You can alos use any list of model directory names, or a single directory name. If you wanted to run retrospectives only for a model called **test-model** you would call it like this:
 
 ```R
 source(here::here("R/all.r"))
 build_rds("test-model", run_retrospectives = TRUE)
 ```
-
 
 * <span style="color:red">**Careful!**</span> - In this default configuration, **ALL** directories in the `model_list` with an `mcmc` subdirectory will have the full gamut of forecasts, retrospectives, and extra-mcmc runs done. This can take a very long time if you have `mcmc` output you don't need. It is worth checking and renaming any `mcmc` subdirectories (to `mcmc1` or something) which are not going to have mcmc outputs used in the document.
 
@@ -152,7 +150,7 @@ build_rds()
 * If you use the `build_doc()` function from inside R, call `build_doc(png_figs = TRUE)` to use `PNG` figures and `build_doc(png_figs = FALSE)` to use `PDF/EPS` figures. The default is PNG figures. The function makes modifications to code which are outlined below. Using this method will create `hake-assessment.pdf` regardless of which type you choose.
 * If you do not use `build_doc()`, you can run the function `mod_code_for_build()` before your normal build steps.
   This does the following:
-  * In the `hake.sty` file, changes the order of the extensions in the latex extension search order declarations, by placing the lines containing the figure types you want included before the ones you don't. To use `PDF/EPS` figures, it places `.pdf` and `.eps` lines before the `.png` line, and vice-versa for `PNG` figure inclusion.
+  * In the `hake.sty` file, changes the order of the extensions in the latex extension declarations, by placing the lines containing you want included before the lines you don't. To use `PDF/EPS` figures, it places `.pdf` and `.eps` lines before the `.png` line, and vice-versa for `PNG` figure inclusion.
   * In the `hake-assessment.rnw` file, it changes the `dev` argument of the `opts_chunk$set()` function to be `cairo_ps` for `PDF/EPS` figures and `png` for `PNG` figures.
   * In the `hake-assessment.rnw` file, it changes the `fig.path` and `cache.path` arguments of the `opts_chunk$set()` function to be `knitr-cache-eps/` for `PDF/EPS` figures or `knitr-cache-png/` for `PNG` figures.
 * The code file `create-rds-file.R` contains these functions.
@@ -160,7 +158,7 @@ build_rds()
 ---
 ## How the R environment is set up
 
-* When the document is built, all of the model `RDS` files which were previously built are loaded into the workspace that is seen by knitr. All the lengthy R processes are done ahead of time from the `build_rds()` function to make the document building quicker.
+* When the document is built, all of the model RDS files which were previously built are loaded into the workspace that is seen by knitr. All the lengthy R processes are done ahead of time from the `build_rds()` function to make the document building quicker.
 
 The following depicts the object structure of each model's RDS file:
 
