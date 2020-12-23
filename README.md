@@ -10,7 +10,7 @@ ____
 
 * There is a choice between `PDF/EPS` figures or `PNG` figures in the final document. `PNG` figures are necessary to conform to web accessibility rules, in particular for the *Automatic reader* function found in PDF viewers.
 
-* Alternative text for figures (in `PNG` mode only) has been added. To add alternative text to any chunk that makes a figure, and other web accessibility issues see the Wiki [here](https://github.com/pacific-hake/hake-assessment/wiki/How-to-make-the-document-web-accessible).
+* Alternative text for figures (in `PNG` mode only) has been added. To add alternative text to any chunk that makes a figure, and for other web accessibility issues see the Wiki [here](https://github.com/pacific-hake/hake-assessment/wiki/How-to-make-the-document-web-accessible).
 
 * Moved some older content off this README page into Wiki pages:
   * [Old methods (pre-2017)](https://github.com/pacific-hake/hake-assessment/wiki/Older-methods-from-pre-2017)
