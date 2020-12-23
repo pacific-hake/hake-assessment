@@ -2,13 +2,15 @@ ____
 # hake-assessment
 
 *A framework which uses latex and knitr code to build the US/Canadian Pacific hake assessment.*
-_____________________________________________________________
+____
 
 ## What's new for 2020/2021
 
 * Model outputs are now stored using `RDS` files instead of `RData` files. RDS files are smaller due to serialization, and can be assigned to a variable in code instead of being loaded into the global environment.
 
 * There is a choice between `PDF/EPS` figures or `PNG` figures in the final document. `PNG` figures are necessary to conform to web accessibility rules, in particular for the *Automatic reader* function found in PDF viewers.
+
+* Alternative text for figures (in `PNG` mode only) has been added. To add alternative text to any chunk that makes a figure, and other web accessibility issues see the Wiki [here](https://github.com/pacific-hake/hake-assessment/wiki/How-to-make-the-document-web-accessible).
 
 * Moved some older content off this README page into Wiki pages:
   * [Old methods (pre-2017)](https://github.com/pacific-hake/hake-assessment/wiki/Older-methods-from-pre-2017)
@@ -33,11 +35,7 @@ devtools::install_github("r4ss/r4ss", ref = "hake2020")
 
 * Navigate to the `R` directory and setup the model by editing the files `model-setup.R` and `forecast-catch-levels.R`
 
-<<<<<<< HEAD
-* To run all forecasts, retrospectives, and extra-mcmc calculations (required to get posterior survey index trajectories) for the base model, and then build the RDS files for the base model, bridge models, and sensitivities models included in the assessment, do the following [note that `build_rds()` has to be run from your `hake-assessment/` folder, which is given by `here::here()`]:
-=======
-* To run all forecasts, retrospectives, and extra-mcmc calculations (required to get posterior survey index trajectories) for the base model, and then build the `RDS` files for the base model, bridge models, and sensitivity models included in the assessment, do the following:
->>>>>>> Make changeover between EPS/PNG figs easier
+* To run all forecasts, retrospectives, and extra-mcmc calculations (required to get posterior survey index trajectories) for the base model, and then build the `RDS` files for the base model, bridge models, and sensitivity models included in the assessment, do the following [note that `build_rds()` has to be run from your `hake-assessment/` folder, which is given by `here::here()`]:
 
 ```R
 source(here::here("R/all.r"))
@@ -53,12 +51,12 @@ source(here::here("R/all.r"))
 build_rds("test-model", run_retrospectives = TRUE)
 ```
 
-
 * <span style="color:red">**Careful!**</span> - In this default configuration, **ALL** directories in the `model_list` with an `mcmc` subdirectory will have the full gamut of forecasts, retrospectives, and extra-mcmc runs done. This can take a very long time if you have `mcmc` output you don't need. It is worth checking and renaming any `mcmc` subdirectories (to `mcmc1` or something) which are not going to have mcmc outputs used in the document.
 
 * Once finished, you can see that each model defined in `model-setup.R` now has an `RDS` file inside its directory with the same name.
 
 * To delete all existing RDS files and rebuild them again from the model outputs, run the following. This assumes you have previously done all the forecasting, retrospectives, and extra-mcmc calculations:
+
 ```R
 source(here::here("R/all.r"))
 delete_rds_files()
