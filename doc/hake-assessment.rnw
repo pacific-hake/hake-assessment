@@ -160,19 +160,30 @@
 \counterwithin{table}{section}
 
 <<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
-#rm(list=ls())
-opts_chunk$set(dev = 'cairo_ps',
-               fig.path = 'knitr-cache/',
-               fig.dpi = 96,
-               fig.width = 7.5,
-               fig.height = 4,
+knitr::render_latex()
+fig_asp <- 0.618
+fig_width <- 7.5
+fig_out_width <- "6in"
+fig_dpi <- 600
+fig_align <- "center"
+fig_pos <- "htb"
+opts_chunk$set(dev = "png",
+               dpi = fig_dpi,
+               fig.asp = fig_asp,
+               fig.width = fig_width,
+               out.width = fig_out_width,
+               fig.pos = fig_pos,
+               collapse = TRUE,
                echo = FALSE,
                results = FALSE,
                message = FALSE,
                warning = FALSE,
+               comment = "#>",
                results = 'hide',
                cache = TRUE,
-               cache.path = 'knitr-cache/')
+               fig.path = "knitr-figs/",
+               cache.path = "knitr-cache/")
+options(xtable.comment = FALSE)
 
 source(file.path(here::here("R/all.R")))
 if(!(exists("models_loaded") && models_loaded)){
@@ -295,21 +306,21 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 \renewcommand{\thefigure}{\arabic{figure}}
 \setcounter{figure}{0}
 
-\rfoot{Section~\ref{sec:introduction} -- Introduction}
-<<introduction-sec, child='introduction-section/introduction.rnw'>>=
-@
-
-\rfoot{Section~\ref{sec:data} -- Data}
-<<data-sec, child='data-section/data.rnw'>>=
-@
-
-\rfoot{Section~\ref{sec:assessment} -- Assessment}
-<<assessment-sec, child='assessment-section/assessment-section.rnw'>>=
-@
-
-\rfoot{Section~\ref{sec:research} -- Research and data needs}
-<<research-sec, child='research-section/research.rnw'>>=
-@
+% \rfoot{Section~\ref{sec:introduction} -- Introduction}
+% <<introduction-sec, child='introduction-section/introduction.rnw'>>=
+% @
+%
+% \rfoot{Section~\ref{sec:data} -- Data}
+% <<data-sec, child='data-section/data.rnw'>>=
+% @
+%
+% \rfoot{Section~\ref{sec:assessment} -- Assessment}
+% <<assessment-sec, child='assessment-section/assessment-section.rnw'>>=
+% @
+%
+% \rfoot{Section~\ref{sec:research} -- Research and data needs}
+% <<research-sec, child='research-section/research.rnw'>>=
+% @
 
 % \clearpage
 <<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
@@ -321,15 +332,15 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 \bibliography{all}
 
 \newpage
-\rfoot{Section~\ref{sec:tables} -- Tables}
-<<main-tables, child='main-tables/main-tables.rnw'>>=
-@
-
-\clearpage
-\rfoot{Section~\ref{sec:figures} -- Figures}
-<<main-figures, child='main-figures/main-figures.rnw'>>=
-@
-\clearpage
+% \rfoot{Section~\ref{sec:tables} -- Tables}
+% <<main-tables, child='main-tables/main-tables.rnw'>>=
+% @
+%
+% \clearpage
+% \rfoot{Section~\ref{sec:figures} -- Figures}
+% <<main-figures, child='main-figures/main-figures.rnw'>>=
+% @
+% \clearpage
 
 \addtocontents{toc}{\par {\bf \vspace{10mm} APPENDICES} \par}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}

@@ -15,3 +15,4 @@ del hake-assessment*.tex
 del hake-assessment.pdf
 rmdir ..\out-csv /S /Q
 rmdir /S /Q knitr-cache
+rmdir /S /Q knitr-figs
