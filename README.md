@@ -152,7 +152,7 @@ build_rds()
 * If you use the `build_doc()` function from inside R, call `build_doc(png_figs = TRUE)` to use `PNG` figures and `build_doc(png_figs = FALSE)` to use `PDF/EPS` figures. The default is PNG figures. The function makes modifications to code which are outlined below. Using this method will create `hake-assessment.pdf` regardless of which type you choose.
 * If you do not use `build_doc()`, you can run the function `mod_code_for_build()` before your normal build steps.
   This does the following:
-  * In the `hake.sty` file, changes the order of the extensions in the latex extension declarations, by placing the lines containing you want included before the lines you don't. To use `PDF/EPS` figures, it places `.pdf` and `.eps` lines before the `.png` line, and vice-versa for `PNG` figure inclusion.
+  * In the `hake.sty` file, changes the order of the extensions in the latex extension search order declarations, by placing the lines containing the figure types you want included before the ones you don't. To use `PDF/EPS` figures, it places `.pdf` and `.eps` lines before the `.png` line, and vice-versa for `PNG` figure inclusion.
   * In the `hake-assessment.rnw` file, it changes the `dev` argument of the `opts_chunk$set()` function to be `cairo_ps` for `PDF/EPS` figures and `png` for `PNG` figures.
   * In the `hake-assessment.rnw` file, it changes the `fig.path` and `cache.path` arguments of the `opts_chunk$set()` function to be `knitr-cache-eps/` for `PDF/EPS` figures or `knitr-cache-png/` for `PNG` figures.
 * The code file `create-rds-file.R` contains these functions.
@@ -160,7 +160,7 @@ build_rds()
 ---
 ## How the R environment is set up
 
-* When the document is built, all of the model RDS files which were previously built are loaded into the workspace that is seen by knitr. All the lengthy R processes are done ahead of time from the `build_rds()` function to make the document building quicker.
+* When the document is built, all of the model `RDS` files which were previously built are loaded into the workspace that is seen by knitr. All the lengthy R processes are done ahead of time from the `build_rds()` function to make the document building quicker.
 
 The following depicts the object structure of each model's RDS file:
 
