@@ -12,7 +12,6 @@ del *.txt
 del *.out
 del *.synctex.gz*
 del hake-assessment*.tex
-del hake-assessment.pdf
+del hake-assessment-png.pdf
 rmdir ..\out-csv /S /Q
-rmdir /S /Q knitr-cache
-rmdir /S /Q knitr-figs
+rmdir /S /Q knitr-cache-png

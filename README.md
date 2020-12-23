@@ -1,19 +1,25 @@
 ____
 # hake-assessment
 
-A framework which uses latex and knitr code to build the US/Canadian Pacific hake assessment.
+*A framework which uses latex and knitr code to build the US/Canadian Pacific hake assessment.*
 _____________________________________________________________
 
 ## What's new for 2020/2021
 
-* Model outputs are now stored using RDS files instead of RData files. RDS files are smaller due to serialization, and can be assigned to a variable in code instead of being loaded into the global environment.
+* Model outputs are now stored using `RDS` files instead of `RData` files. RDS files are smaller due to serialization, and can be assigned to a variable in code instead of being loaded into the global environment.
+
+* There is a choice between `PDF/EPS` figures or `PNG` figures in the final document. `PNG` figures are necessary to conform to web accessibility rules, in particular for the *Automatic reader* function found in PDF viewers.
+
+* Moved some older content off this README page into Wiki pages:
+  * [Old methods (pre-2017)](https://github.com/pacific-hake/hake-assessment/wiki/Older-methods-from-pre-2017)
+  * [MCMC commands](https://github.com/pacific-hake/hake-assessment/wiki/MCMC-Commands)
 
 ## Prerequisites for 2020/2021
 
 * R version 4.0.2 "Taking Off Again", released June 22, 2020
 * Install the [tinytex](https://yihui.org/tinytex) package - If the directory `C:/Users/username/AppData/Roaming/TinyTex` exists, delete it before re-installing. See https://github.com/pbs-assess/csasdown/wiki/LaTeX-installation-for-csasdown for more information.
 * Rscript.exe must be on your PATH if you want to use
-  **Method 3 for building the document** (explained below).
+  **Method 1** for building the document (explained below).
 * The R package `r4ss`, on the `hake2020` branch:
 
 ```
@@ -23,22 +29,34 @@ devtools::install_github("r4ss/r4ss", ref = "hake2020")
 ---
 ## How to create the RDS files required for the document to build
 
-* Place all model directories in the **models** directory. The base model must have an **mcmc** subdirectory; its main directory holds the MPD run and the mcmc subdirectory holds the mcmc run for the same model.
+* Place all model directories in the `models` directory. The base model must have an `mcmc` subdirectory; its main directory holds the MPD run and the `mcmc` subdirectory holds the mcmc run for the same model.
 
-* Navigate to the **R** directory and setup the model by editing the files **model-setup.R** and **forecast-catch-levels.R**
+* Navigate to the `R` directory and setup the model by editing the files `model-setup.R` and `forecast-catch-levels.R`
 
+<<<<<<< HEAD
 * To run all forecasts, retrospectives, and extra-mcmc calculations (required to get posterior survey index trajectories) for the base model, and then build the RDS files for the base model, bridge models, and sensitivities models included in the assessment, do the following [note that `build_rds()` has to be run from your `hake-assessment/` folder, which is given by `here::here()`]:
+=======
+* To run all forecasts, retrospectives, and extra-mcmc calculations (required to get posterior survey index trajectories) for the base model, and then build the `RDS` files for the base model, bridge models, and sensitivity models included in the assessment, do the following:
+>>>>>>> Make changeover between EPS/PNG figs easier
 
 ```R
 source(here::here("R/all.r"))
-build_rds(model_list,
-          run_catch_levels = TRUE,
+build_rds(run_catch_levels = TRUE,
           run_forecasts = TRUE,
           run_retrospectives = TRUE,
           run_extra_mcmc = TRUE)
 ```
+* The `model_list` as defined in the `R/model-setup.R` file is what is used by default for this function. You can alos use any list of model directory names, or a single directory name. If you wanted to run retrospectives only for a model called **test-model** you would call it like this:
 
-* Once finished, you can see that each model defined in **model-setup.R** now has an RDS file inside its directory with the same name.
+```R
+source(here::here("R/all.r"))
+build_rds("test-model", run_retrospectives = TRUE)
+```
+
+
+* <span style="color:red">**Careful!**</span> - In this default configuration, **ALL** directories in the `model_list` with an `mcmc` subdirectory will have the full gamut of forecasts, retrospectives, and extra-mcmc runs done. This can take a very long time if you have `mcmc` output you don't need. It is worth checking and renaming any `mcmc` subdirectories (to `mcmc1` or something) which are not going to have mcmc outputs used in the document.
+
+* Once finished, you can see that each model defined in `model-setup.R` now has an `RDS` file inside its directory with the same name.
 
 * To delete all existing RDS files and rebuild them again from the model outputs, run the following. This assumes you have previously done all the forecasting, retrospectives, and extra-mcmc calculations:
 ```R
@@ -47,79 +65,83 @@ delete_rds_files()
 build_rds()
 ```
 
+---
 ## How to create hake-assessment.pdf
+**The `RDS` files must have been created using the method above before the document can be built.**
 
-* **The RDS files must have been created using the method above before the document can be built.**
+* **Method 1**
 
-* **Method 1 for building the document** (With an R interpreter using tinytex):
-```
-setwd(here::here("doc"))
-library(knitr)
-knit("hake-assessment.rnw")
-options(tinytex.verbose = TRUE)
-tinytex::latexmk("hake-assessment.tex")
-```
+  Run the batch files `builddoc-epsfigs.bat` or `builddoc-pngfigs.bat` for the version with `PDF/EPS` figures or `PNG` figures respectively. Doing it this way will allow you to continue to work in your R session while the document builds.
 
-* **Method 2 for building the document** (Without an R interpreter):
-  This method uses Windows batch files, and all output messages are piped into log files which can be viewed when errors occur.
+  * To see the output from the knitr part see `knitr_output.log`
+  * To see the output from the Latex part see `latex_output.log`
+  * You can look at the log files while it is building to see where in the build process you are using a non-locking editor such as Emacs
+  * If the compilation seems to hang, check the two log files to see where it stopped
 
-  * Navigate to the *doc* subdirectory and run the **buildtex.bat** file.
-  * To see the output from the knitr part of the process, look at the file **knitrOutput.log**.
-  * To see the output from the Latex part of the process, look at the file **latexOutput.log**.
-  * If the compilation seems to hang, check the two log files to see where it stopped.
+* **Method 2**
 
-* **Method 3 for building the document** (With an R interpreter):
-  This method is faster after the first time, because the models will already be loaded into the workspace and won't be reloaded every time you build the document.
+  * Run this in an R session if you want to build with `PDF/EPS` figures:
+  ```R
+  source(here::here("R/all.r"))
+  build_doc(png_figs = FALSE)
+  ```
+  
+  * Run this in an R session if you want to build with `PNG` figures:
+  ```R
+  source(here::here("R/all.r"))
+  build_doc(png_figs = TRUE)
+  ```
 
-* Run the following if you are building with PDF figures:
-```R
-source(here::here("R/all.r"))
-build_doc(use_pdflatex = FALSE)
-```
+  * After the first time you do this, the models will be loaded into the R workspace and any subsequent builds will be much faster.
 
-* Run the following if you are building with PNG figures:
-```R
-source(here::here("R/all.r"))
-build_doc()
-```
+* **Method 3**
 
-* After the first time you do this, the models will be loaded into the R workspace and any subsequent builds will be much faster.
+  * If you are building with `PDF/EPS` figures, run this in an R session:
+  ```R
+  mod_code_for_build (png_figs = FALSE)
+  knitr::knit("hake-assessment.rnw")
+  ```
+  then this in a terminal:
+  ```
+  ispell hake-assessment.tex (periodically)
+  latex hake-assessment
+  bibtex hake-assessment
+  dvips hake-assessment
+  ps2pdf hake-assessment.ps
+  ```
 
-* **Method 4 for building the document** (With RStudio):
-  Press the *Compile PDF* button when the hake-assessment.rnw file is showing.
+  * If you are building with `PNG` figures, run this in an R session:
+  ```R
+  mod_code_for_build (png_figs = TRUE)
+  knitr::knit("hake-assessment.rnw")
+  ```
+  then this in a terminal:
+  ```
+  ispell hake-assessment.tex (periodically)
+  pdflatex hake-assessment.tex
+  pdflatex hake-assessment.tex
+  bibtex hake-assessment
+  pdflatex hake-assessment.tex
+  pdflatex hake-assessment.tex
+  ```
+  * There is no need to run the last three terminal commands if references haven't changed
 
-* **Method 5 for building the document**
-```R
-knitr::knit("hake-assessment.rnw")
-```
-Then, if you are building with PDF figures, in a terminal:
-```
-ispell hake-assessment.tex (periodically)
-latex hake-assessment
-bibtex hake-assessment
-dvips hake-assessment
-ps2pdf hake-assessment.ps
-```
-Otherwise, if you are building with PNG figures, in a terminal (no need to do the last three if references haven't changed - just check the warnings in the terminal):
-```
-ispell hake-assessment.tex (periodically)
-pdflatex hake-assessment.tex
-pdflatex hake-assessment.tex
-bibtex hake-assessment
-pdflatex hake-assessment.tex
-pdflatex hake-assessment.tex
-```
+## How to clean up the `doc` directory after an erroneous build
+* To remove everything from the build, including cached figures and table data, run one of the batch files
+  * `freshdoc-eps.bat` or
+  * `freshdoc-png.bat`
+  * The difference between the two is which final `PDF` file they remove, and the `knitr-cache-*` directory they remove.
 
-* To clean up the build, including removal of the cached figures and tables, run the **freshtex.bat** batch file,
-  or manually delete the **knitr-cache** directory. If you don't do this, figures and tables built previously
-  will be used. To keep the cached figures and tables, but remove all other traces of the build including the PDF,
-  run **cleantex.bat**.
+* To remove all the Latex files but keep the cached figures and table data, run one of the batch files
+  * `cleandoc-eps.bat` or
+  * `cleandoc-png.bat`
+  * The difference between the two is which final `PDF` file they remove
 
-## How to debug functions used in the knitr chunks in the **.rnw** files
+## How to debug functions used in the knitr chunks in the `.rnw` files
 
 * Open R and use this one-liner so that you can use the R history (up and down-arrows)
   This is important while debugging the R code, because you will need to run this each
-  time you make a change in the code and want to test it, or if you insert a **browser()** command somewhere:
+  time you make a change in the code and want to test it, or if you insert a `browser()` command somewhere:
   ```R
 	source(here::here("R/all.r"));load_models_rds();source(here::here("R/custom-knitr-variables.r"))
   ```
@@ -127,18 +149,20 @@ pdflatex hake-assessment.tex
   what will appear in the document.
 
 ---
+## How to toggle between including `PDF/EPS` and `PNG` figures
+*  <span style="color:green">**Best method**</span> - If you use the batch files `builddoc-epsfigs.bat` or `builddoc-pngfigs.bat` to build, that is all you have to do. They will create `hake-assessment-eps.pdf` and `hake-assessment-png.pdf` respectively.
+* If you use the `build_doc()` function from inside R, call `build_doc(png_figs = TRUE)` to use `PNG` figures and `build_doc(png_figs = FALSE)` to use `PDF/EPS` figures. The default is PNG figures. The function makes modifications to code which are outlined below. Using this method will create `hake-assessment.pdf` regardless of which type you choose.
+* If you do not use `build_doc()`, you can run the function `mod_code_for_build()` before your normal build steps.
+  This does the following:
+  * In the `hake.sty` file, changes the order of the extensions in the latex extension declarations, by placing the lines containing you want included before the lines you don't. To use `PDF/EPS` figures, it places `.pdf` and `.eps` lines before the `.png` line, and vice-versa for `PNG` figure inclusion.
+  * In the `hake-assessment.rnw` file, it changes the `dev` argument of the `opts_chunk$set()` function to be `cairo_ps` for `PDF/EPS` figures and `png` for `PNG` figures.
+  * In the `hake-assessment.rnw` file, it changes the `fig.path` and `cache.path` arguments of the `opts_chunk$set()` function to be `knitr-cache-eps/` for `PDF/EPS` figures or `knitr-cache-png/` for `PNG` figures.
+* The code file `create-rds-file.R` contains these functions.
 
-## How to change between including EPS and PNG figures for web acessibility
-
-* If you use the `build_doc()` function, there is a single switch to change. Call `build_doc(png_figs = TRUE)` to use PNG figures and `build_doc(png_figs = FALSE)` to use EPS figures. The default is PNG figures. The function makes modifications to code which are outlined below.
-* If you do not use `build_doc()`:
-  * It is not a single switch, you will have to change code in several places:
-  * Change the order of the extensions in the latex extension declarations, by placing the lines containing you want included before the lines you don't. To use PDF/EPS figures, you must place .pdf and .eps lines before the .png line, and vice-versa here: https://github.com/pacific-hake/hake-assessment/blob/fd36ead5377600b68daea7ef986f958ab0e825dd/doc/hake.sty#L353.
-  * Change the **dev** argument to be **cairo_ps** for PDF/EPS figures and **png** for PNG figures here: https://github.com/pacific-hake/hake-assessment/blob/fd36ead5377600b68daea7ef986f958ab0e825dd/doc/hake-assessment.rnw#L170.
-
+---
 ## How the R environment is set up
 
-* When the document is built, all of the model RDS files which were previously built are loaded into the workspace that is seen by **knitr**. All the lengthy R processes are done ahead of time from the **build_rds()** function to make the document building quick, since RDS files are loaded instead of raw model output.
+* When the document is built, all of the model RDS files which were previously built are loaded into the workspace that is seen by knitr. All the lengthy R processes are done ahead of time from the `build_rds()` function to make the document building quicker.
 
 The following depicts the object structure of each model's RDS file:
 
@@ -209,27 +233,10 @@ model$mcmccalcs - calculations done on the mcmc outputs for this model
   model$mcmccalcs$fupper    - Fishing mortality upper confidence (97.5%)
 ```
 
-These are the other variables in the global workspace. These can be directly referenced using \Sexpr{} in inline latex code,
-or in a knitr code chunk. Here are a few of the obvious ones, there are many more in the **custom-knitr-variables.r** file,
-which is where any new ones should be placed.
+There are the other variables in the global workspace. These can be directly referenced using \Sexpr{} in inline latex code, or in a knitr code chunk. They are declared in the `custom-knitr-variables.r` file.
 
-```R
-base.model              - The base model object.
-unfished.eq.yr          - Unfished equilibrium year. For hake, this is before the start year.
-start.yr                - Start year for the model.
-end.yr                  - End year for the model.
-survey.start.yr         - First survey year included in the model.
-survey.end.yr           - Last survey year included in the model.
-assess.yr               - The current assessment year.
-last.assess.yr          - The last year in which an assessment was done.
-forecast.yrs            - A vector of years to forecast for decision tables (e.g. 2015:2017).
-catch.levels            - A list of lists of forecast catch levels and their names and directory names..
-catch.default.policy    - A vector of catch limits for the forecast years which corresponds to the default harvest rate.
-data.path               - The absolute path to the data folder, which holds catch and tac tables.
-models.path             - The absolute path to the models folder, which holds sub-directories for the models which have been run.
-```
-
-__Quick look at model output__
+---
+### To take a quick look at model output without making an RDS file
 
 Open R within the model's folder and use the R commands:
 
@@ -241,10 +248,9 @@ SS_plots(SS_output("./"))
 This creates figures and an HTML page with tabs for sets of figures. This is useful for quickly looking at results, especially when MCMCs have not yet been run and so the assessment document will not build yet.
 
 ---
-
 ## Survey map
 
-For 2018, Julia Clemons produced the multi-year panel plots from the surveys. Andy converted to .eps using
+For 2018, Julia Clemons produced the multi-year panel plots from the surveys. Andy converted to `.eps` using
 
 ```
 pdf2ps <filename>.pdf <filename>.eps
@@ -256,211 +262,26 @@ magick <filename>.pdf <filename>.png
 magick <filename>.eps <filename>.png
 
 ```
-So Julia can continue to give us .pdf if she can't make a .png.
+So Julia can continue to give us a `.pdf` if she can't make a `.png`.
 
-
+---
 ## GitHub workflow
 
-In 2020 we moved this repo to be under the *pacific-hake* GitHub organization. And we changed the workflow to now all push to a single master branch (to avoid merging each others branches). We now 
+All authors push to a single master branch and use the `rebase` method to merge in changes.
 ```
 git fetch
 git rebase
 ```
-If we get a conflict when rebasing we think it's now best to (**maybe update this after doing it once**) 
+If we get a conflict when rebasing, abort the rebase and fix the conflict manually:
 ```
 git rebase --abort
 git merge origin/master
 ```
-and then fix the conflict manually (as usual). Remember to then
+Once the conflict is fixed, the modified file must be added again like this:
 ```
 git add <filename>
 git commit ... [as usual]
 git merge origin/master
 git push
 ```
-We think that should avoid confusion since rebasing is not intuitive when you get conflicts, so we'll try merging again. Think it keeps the history more clear.
-
-## **Everything from here on is from the 2016 assessment period (Nov 2015 - Mar 2016)**
-
-## How Andy is running it (and see Chris's notes above)
-
-- download from Hake JTC Google Drive the model runs, and put in **hake-assessment\models\** (then 'unzip to here', then remove the .zip file so that **models\** just has the required subdirectories).
-- **source("all.r")** to reload models and data files and for any changes to R code.
-- delete **knitr-cache** directory if any tables or figures need to be updated
-- **knit("hake-assessment.rnw")** [or use Chris's batch file - at first I just want to see the warnings]
-- **latex hake-assessment.tex** and **dvips** and **bibtex** if necessary
-- **ispell hake-assessment.tex** periodically
-
-
-__GitHub workflow__
-
-- I forked Chris's master repository, and did **git remote add cgrandin https://github.com/cgrandin/hake-assessment** [and he added me to his] so that we can merge each other's commits. **git remote -v** shows that.
-- **Allan/Aaron**: to merge my commits (for when Chris isn't on top of it) do:
--
-       git remote add aedwards https://github.com/andrew-edwards/hake-assessment
-
-  just once (git will remember this for future sessions).
-- Then do **git fetch** and **merge** as described below, but with **aedwards** instead of **cgrandin**. Note that **aedwards** is just what you call my repository on your machine, it doesn't have to match my user name.
-
-
-- **git com** and **git push** often [I'm using Chris's **git-workshop** shortcuts]
-- **git fetch cgrandin** - fetches his latest version
-- **git diff cgrandin/master** shows me the differences between his and mine. :
--- + green is on mine not his, red is his not mine [seems like it can look like I've added something but really Chris has removed it; and when merging it should base it on the most recent commits]
-- **git merge cgrandin/master** merges our versions.
-- remove **knitr-cache** directory, re-run **source("all.r")** and re-run **knitr** to make sure it all still works (I kept forgetting this before pushing).
-- Then **git push**.
-- When you get a conflict, open the file in an editor and it has <<<<<<   for the start of a conflicting part, and ========= at the end, so manually fix it. Then **git add <filename>** to confirm that's the one you want (not completely obvious), then commit. See <https://help.github.com/articles/resolving-a-merge-conflict-from-the-command-line/>
-- We will try and work on different files so that there are no conflicts when we merge.
-
-
-**Undoing a merge**
-
-Just merged Chris's stuff (27/1/16) in but rebuilding the models doesn't work, I think because he mentioned that he had to change some structure (and he's left for the day). I tried fixing, but I don't think it worked (I'll commit this edit to the readme.md file to double check), so easiest just to ask Chris tomorrow as I need to leave soon anyway. I tried:
-
-From http://stackoverflow.com/questions/2389361/undo-a-git-merge  trying the answer:
-
-"Strange that the simplest command was missing. Most answers work, but undoing the merge you just did, this is the easy and safe way:
-
-git reset --merge ORIG_HEAD
-
-The ref ORIG_HEAD will point to the original commit from before the merge."
-
-So I get ORIG_HEAD from doing  git lg
-
-git reset --merge 33489f0
-
-**Running MCMC in SS**
-
-Copy and paste all model output files into new mcmc/ directory. Change starter file to reduce output to screen using:
-
-        0       # DOS display detail: 0,1,2
-
-***Commands used in 2017:***
-
-        ss3 -mcmc 12000000 -mcsave 10000 -mcseed 36519
-        ss3 -mceval
-
-Commands used for "2018.18_temporary_base" and “2018.19_add_2017_tv_select” models just to get some MCMC results:
-
-        ss3 -mcmc 12000 -mcsave 10 -mcseed 36519
-        ss3 -mceval
-
-Where that seed is the ADMB default. Allan used -mcseed 5242 but there's no reason why that seed is better than any other.
-
-The 12 million samples saving 1 in every 10 thousand results in 1200 samples saved.
-
-These values are then been combined with starter.ss values of
-
-        201     # MCMC burn-in
-        1       # MCMC thinning interval
-
-which will remove the first 201 samples of the 1200 saved (which corresponds to the first 2.01 million in the chain of 12 million) and result in 999 samples reported in the posteriors.sso file.
-
-***Commands for 2018:***
-
-        ss3 -mcmc 24000000 -mcsave 10000 -mcseed 36519
-        ss3 -mceval
-
-The 24 million samples saving 1 in every 10 thousand results in 2400 samples saved.
-These values are then been combined with starter.ss values of
-
-        400     # MCMC burn-in
-        1       # MCMC thinning interval
-
-to get 2000 total samples.
-
-Ran a second chain in 2018 with alternative seed to compare multi-chain convergence diagnostics
-
-        ss3 -mcmc 24000000 -mcsave 10000 -mcseed 89041
-        ss3 -mceval
-
-Note: changing value in starter file to "0 # run display detail (0,1,2)" may
-speed up the MCMC a tiny bit.
-
-***Commands for 2019:***
-
-        ss3 -mcmc 24000000 -mcsave 10000 -mcseed 36519
-        ss3 -mceval
-
-The 24 million samples saving 1 in every 10 thousand results in 2400 samples saved.
-These values are then been combined with starter.ss values of
-
-        400     # MCMC burn-in
-        1       # MCMC thinning interval
-
-to get 2000 total samples.
-
-Ran a second chain in 2019 with alternative seed to compare multi-chain convergence diagnostics
-
-        ss3 -mcmc 24000000 -mcsave 10000 -mcseed 91438
-        ss3 -mceval
-
-Once the MCMC has finished, copy all the files into a new **mcmc/** folder, run **clean.bat** and run **ss3.exe** to generate the MPD results.
-
-__Andy's other notes__
-
-- Network graph - I just [25 Jan 2016, commit number 7e25a5c] merged Chris's, but this doesn't show up on his or my Network graphs, I think because he had merged all my commits earlier, and I hadn't committing anything since. So it's not really merging (and there was no possibility for a conflict because I hadn't changed anything since he merged mine), just updating.
-
-- Use text in main document of last year's, and start converting to .tex.
-- Table 1 and 2 of last year's .pdf -- values should be in **catches**, see **make-catches-table.r** in **catches.r** for an earlier table, and modify to make new ones.
-- if just editing the placement (and maybe more) of a table that is in, say, executive-summary.rnw, then no need to delete knitr-cache. Probably.
-
-Helpful git commands I didn't know:
-
-**git lg1**   [or lg2] - shows commit numbers (codes)
-
-**git log .\doc\hake-assessment.rnw**  - show revision history for a file (syntax not quite right there)
-
-**git checkout <enough numbers of the commit reference to make it unique> .\doc\[filename.rnw] **  - revert back to that version of that file, I think...
-
-[I can delete this once I know it all automatically] GitHub Colors are explained under The Prompt in the README shown at https://github.com/dahlbyk/posh-git/ . To summarize:
-
-- Cyan means the branch matches its remote
-- Green means the branch is ahead of its remote (green light to push)
-- Red means the branch is behind its remote
-- Yellow means the branch is both ahead of and behind its remote
-
-The +~-! status represents added/modified/removed/conflicted file count in your index (dark green) and/or working directory (dark red).
-
-
-Steps to create decision and metrics tables for the hake assessment
-===================================================================
-*Copied from an issue comment made by Allan H., February 2016*
-
-Create folders for
-- decision table runs
-- next year metrics
-- second year metrics
-
-*Decision table runs*
----------------------
-
-
-Next year metrics
-------------------
-This is the metrics for a fixed catch in the next year (i.e., for the 2016 assessment, this is the 2016 catch).  In the forecast file, put in the next year's fixed catch. Make sure to enter only next year's catch so that the catch can be determined for the second year and compared to.
-
-Second year metrics
--------------------
-This is the metrics for the two year forecast. Enter catch for the next two years in the forecast file.
-
-*Catch Levels*
---------------
-A fixed catch level is easy because you simply enter that catch level. There are a few catch levels that are determined based on specific states. These are listed below and how to determine them.
-
-- B~curr~ = B~nextYr~ : This is the catch that results in an equal probability that the biomass in the current year is equal to the biomass in the next year.  You must iteratively modify the catch until the metric for P(BnextYr>Pcurr) is 50%.  Don't forget to run mceval after modifying the forecast file.
-- med(B~curr~) = med(B~nextYr~) : This is the catch that results in the median spawning biomass next year to equal the median spawning biomass for this year. Iteratively modify the catch until the median spawning biomasses are approximately equal.  Don't forget to run mceval after modifying the forecast file.
-- Stable Catch (Ccurr=CnextYr): This is the catch that results in teh default harvest rule catch for the next being the same. Iteratively enter the catch for the curent year until the median catch next year is the same.  Don't forget to run mceval after modifying the forecast file.
-- SPR ratio=100%: This is the catch that results in a median SPR ratio (Fishing Intesity) of 100%. The default harvest rate catch may not have an Fishing Intensity of 100% because of time-varying selectivity, growth (i.e., weight-at-age), etc.  This gives an indication of the current pattern of fishing and how it relates to the benchmark population.  Iteratively search for the catch that results in a median SPR ratio of 1.  Don't forget to run mceval after modifying the forecast file.
-- Default harvest rule: The catch determined by the default harvest rule. Simply copy the median ForeCatch caluclated by SS into the forecast file, so that every mceval uses that fixed catch. Don't forget to run mceval after modifying the forecast file.
-
-*NOTE*: for second year metrics, fix the first year to determine the second year (i.e., fix 2015 catch at median default harvest rate catch, to determine the median default harvest catch for 2016).
-
-Decision Tables
----------------
-For decision tables, you will need to enter in catches for every year (different than metrics). The R code that will create the directories and forecast files with the catch levels and then run the mceval for each folder is located in **doc/r/load-models.r**
-
-*NOTE*: you can have a zero catch, except for the final forecast year, so I usually enter 0.01 for zero catch.
-
-With the decision tables displaying Bratio and SPR, the final year of forecasted catch is only pertinent for SPR, since Bratio is beginning of the year.
+This method should avoid confusion since rebasing is not intuitive when you get conflicts.

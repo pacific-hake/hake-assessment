@@ -165,7 +165,8 @@ fig_width <- 7.5
 fig_dpi <- 600
 fig_align <- "center"
 fig_pos <- "htb"
-# The "dev" line below is modified by the build_doc() function
+# The "dev" line below is modified by the build_doc() function. Do not modify or
+# move it. keep it directly under the opts_chunk$set line with nothing in between
 opts_chunk$set(
 dev = 'cairo_ps',
                dpi = fig_dpi,
@@ -178,12 +179,17 @@ dev = 'cairo_ps',
                warning = FALSE,
                comment = "#>",
                results = 'hide',
-               cache = TRUE,
-               fig.path = "knitr-cache/",
-               cache.path = "knitr-cache/")
+               # The fig.path and cache.path lines below are modified by
+               # the build_doc() function. Do not modify or move them.
+fig.path = 'knitr-cache-eps/',
+cache.path = 'knitr-cache-eps/',
+               # Do not move this cache line from the end of the list as
+               # the build_doc() function relies on it being here.
+               cache = TRUE)
+
 options(xtable.comment = FALSE)
 
-source(file.path(here::here("R/all.R")))
+source(here::here("R/all.R"))
 if(!(exists("models_loaded") && models_loaded)){
   load_models_rds()
 }

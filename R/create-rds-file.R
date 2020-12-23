@@ -1,3 +1,4 @@
+
 #' Build RDS file for a list of models by running forecasts, retrospectives, and extra-mcmc
 #' where applicable
 #'
@@ -138,6 +139,108 @@ run <- function(model_dir = NULL,
   }
 }
 
+#' Title
+#'
+#' @param png_figs Logical. If TRUE, write the rnw and sty file settings to reflect PNG figure inclusion in the document,
+#' If FALSE, write the rnw and sty file settings to reflect EPS/PDF figure inclusion in the document.
+#' @param rnw_file File name for the assessment code file
+#' @param sty_file File name for the style code file
+#' @param ... Absorb other arguments not intended for this function
+#'
+#' @return Nothing
+#' @export
+mod_code_for_build <- function(png_figs = TRUE,
+                               rnw_file = "hake-assessment.rnw",
+                               sty_file = "hake.sty",
+                               ...){
+
+  if(!file.exists(rnw_file)){
+    stop("The file ", rnw_file, " does not exist.",
+         call. = FALSE)
+  }
+  if(!file.exists(sty_file)){
+    stop("The file ", sty_file, " does not exist.",
+         call. = FALSE)
+  }
+  # Re-write order of figures in hake style file
+  hake_sty <- readLines(sty_file)
+  j <- grep("DeclareGraphicsExtensions", hake_sty)
+  if(!length(j)){
+    stop("Could not find any entry for 'DeclareGraphicsExtensions' in hake.sty",
+         call. = FALSE)
+  }
+  if(length(j) > 1){
+    stop("There were multiple definitions of 'DeclareGraphicsExtensions' in hake.sty",
+         call. = FALSE)
+  }
+  k <- grep(".jpeg,.JPEG\\}", hake_sty)
+  if(!length(k)){
+    stop("Could not find the ending entry for 'DeclareGraphicsExtensions' in hake.sty. ",
+         "There must be a line after 'DeclareGraphicsExtensions' which contains '.jpeg,.JPEG}'",
+         call. = FALSE)
+  }
+  if(length(j) > 1){
+    stop("There were multiple lines containing '.jpeg,.JPEG}' in hake.sty",
+         call. = FALSE)
+  }
+  if(j >= k){
+    stop("The line containing 'DeclareGraphicsExtensions' in hake.sty occurred after the ",
+         "line containing '.jpeg,.JPEG}'",
+         call. = FALSE)
+  }
+
+  if(k - j != 5){
+    stop("The 'DeclareGraphicsExtensions' declaration must span exactly 6 lines in hake.sty. ",
+         "It currently spans ", k - j + 1, " lines.",
+         call. = FALSE)
+  }
+  if(png_figs){
+    hake_sty[j + 1] <- ".png,.PNG,"
+    hake_sty[j + 2] <- ".pdf,.PDF,"
+    hake_sty[j + 3] <- ".eps,.EPS,"
+    hake_sty[j + 4] <- ".jpg,.JPG,"
+    hake_sty[j + 5] <- ".jpeg,.JPEG}"
+  }else{
+    hake_sty[j + 1] <- ".pdf,.PDF,"
+    hake_sty[j + 2] <- ".eps,.EPS,"
+    hake_sty[j + 3] <- ".png,.PNG,"
+    hake_sty[j + 4] <- ".jpg,.JPG,"
+    hake_sty[j + 5] <- ".jpeg,.JPEG}"
+  }
+  writeLines(hake_sty, sty_file)
+
+  # Set dev in knitr options in assessment file for PNG or EPS figures
+  hake_assess <- readLines(rnw_file)
+  j <- grep("opts_chunk\\$set", hake_assess)
+  if(!length(grep("dev *=", hake_assess[j + 1]))){
+    stop("The line after opts_chunk$set (line ", j + 1, ") in ", rnw_file, " does not contain 'dev ='",
+         call. = FALSE)
+  }
+  hake_assess[j + 1] <- ifelse(png_figs, "dev = 'png',", "dev = 'cairo_ps',")
+  # Set fig.path and cache.path in assessment file for PNG or EPS figures
+  j <- grep("fig.path *=", hake_assess)
+  if(!length(j)){
+    stop("The line 'fig.path = ' was not found in the ", rnw_file, " file",
+         call. = FALSE)
+  }
+  if(length(j) > 1){
+    stop("The line 'fig.path = ' occurs more than once in the ", rnw_file, " file",
+         call. = FALSE)
+  }
+  hake_assess[j] <- paste0("fig.path = 'knitr-cache-", ifelse(png_figs, "png", "eps"), "/',")
+  k <- grep("cache.path *=", hake_assess)
+  if(!length(k)){
+    stop("The line 'cache.path = ' was not found in the ", rnw_file, " file",
+         call. = FALSE)
+  }
+  if(length(k) > 1){
+    stop("The line 'cache.path = ' occurs more than once in the ", rnw_file, " file",
+         call. = FALSE)
+  }
+  hake_assess[k] <- paste0("cache.path = 'knitr-cache-", ifelse(png_figs, "png", "eps"), "/',")
+  writeLines(hake_assess, rnw_file)
+}
+
 #' Build the doc entirely from within R
 #'
 #' @details Make sure you have created the .rds files by running [build_rds()] in the appropriate manner.
@@ -159,47 +262,11 @@ build_doc <- function(knit_only = FALSE,
                       make_bib = TRUE,
                       png_figs = TRUE,
                       doc_name = "hake-assessment",
-                      sty_name = "hake.sty"){
+                      ...){
+
+  mod_code_for_build(png_figs, ...)
 
   latex_command <- ifelse(png_figs, "pdflatex", "latex")
-
-  # Re-write order of figures in hake style file
-  hake_sty <- readLines(sty_name)
-  j <- grep("DeclareGraphicsExtensions", hake_sty)
-  k <- grep(".jpeg,.JPEG\\}", hake_sty)
-  if(j >= k || (k - j != 5)){
-    stop("Could not find the correct entry for DeclareGraphicsExtensions in hake.sty",
-         call. = FALSE)
-  }
-  if(png_figs){
-    hake_sty[j + 1] <- ".png,.PNG,"
-    hake_sty[j + 2] <- ".pdf,.PDF,"
-    hake_sty[j + 3] <- ".eps,.EPS,"
-    hake_sty[j + 4] <- ".jpg,.JPG,"
-    hake_sty[j + 5] <- ".jpeg,.JPEG}"
-  }else{
-    hake_sty[j + 1] <- ".pdf,.PDF,"
-    hake_sty[j + 2] <- ".eps,.EPS,"
-    hake_sty[j + 3] <- ".png,.PNG,"
-    hake_sty[j + 4] <- ".jpg,.JPG,"
-    hake_sty[j + 5] <- ".jpeg,.JPEG}"
-  }
-  writeLines(hake_sty, sty_name)
-
-  # Set dev in knitr options in assessment file for PNG or EPS figures
-  hake_assess <- readLines(paste0(doc_name, ".rnw"))
-  j <- grep("opts_chunk\\$set", hake_assess)
-  if(!length(grep("dev", hake_assess[j + 1]))){
-    stop("The line after opts_chunk$set in ", paste0(doc_name, ".rnw"), " does not contain dev=",
-         call. = FALSE)
-  }
-  if(png_figs){
-    hake_assess[j + 1] <- "dev = 'png',"
-  }else{
-    hake_assess[j + 1] <- "dev = 'cairo_ps',"
-  }
-  writeLines(hake_assess, paste0(doc_name, ".rnw"))
-
   curr_path <- getwd()
   setwd(here::here("doc"))
   knit(paste0(doc_name, ".rnw"))
@@ -234,8 +301,10 @@ build_doc <- function(knit_only = FALSE,
 #' @return [base::invisible()]
 #' @export
 build_test <- function(doc_name = "hake-assessment-test"){
+
   curr_path <- getwd()
   setwd(here::here("doc"))
+  lck <- filelock::lock("hake-assessment.pdf")
   knit(paste0(doc_name, ".rnw"))
   shell(paste0("pdflatex ", doc_name, ".tex"))
   setwd(curr_path)
