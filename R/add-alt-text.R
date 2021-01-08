@@ -35,7 +35,6 @@ add_alt_text <- function(tex_file = "hake-assessment.tex",
     if(length(g) != nrow(alt_fig_text)){
       message("The alt_fig_text data frame does not have the same number of entries as ",
               "the number of knitr figures detected. Did you forget to add is.fig=TRUE to a figure chunk?")
-      browser()
     }
   }else{
     if(length(g) != nrow(alt_fig_text)){
