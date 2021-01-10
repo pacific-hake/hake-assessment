@@ -19,7 +19,6 @@ load.us.age.data <- function(fn ## fn is the filename with relative path
 load.can.age.data <- function(fn ## fn is the filename with relative path
                                 ){
   ## Reads in the canadian age data file and returns it as a list of data frames
-
   dat <- readLines(fn)
   header.line.nums <- grep("^[[:alpha:]].*$", dat)
   headers <- dat[header.line.nums]
@@ -58,7 +57,7 @@ load.can.age.data <- function(fn ## fn is the filename with relative path
     yrs <- d.list[[i]][,1]
     rownames(d.list[[i]]) <- as.character(d.list[[i]][,1])
     d.list[[i]] <- d.list[[i]][,-1]
-    if(class(d.list[[i]]) == "matrix"){
+    if(is.matrix(d.list[[i]])){
       colnames(d.list[[i]]) <- ages
       d.list[[i]] <- apply(d.list[[i]], c(1,2), as.numeric)
     }
