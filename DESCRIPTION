@@ -40,8 +40,14 @@ Imports:
     stats,
     tictoc,
     tidyverse,
-    utils
+    utils,
+    adnuts,
+    matrixcalc,
+    rstan,
+    shinystan,
+    snowfall
 Remotes: 
+    github::Cole-Monnahan-NOAA/adnuts@dev,
     github::nwfsc-assess/nwfscMapping@development,
     github::r4ss/r4ss@development,
     github::ropensci/rnaturalearthhires
