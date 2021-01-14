@@ -18,6 +18,8 @@
 # For Aaron with 11, or 12-1, cores and a warmup of 250 I will use
 #  978 iterations as [11 * (978-250) = 8,008]
 # Let's leave the warmup period, or "burn-in", at 250 per core (i.e., chain).
+# So iterations = 8000/(core-1) + 250
+#  iterations = 1393 for 8 cores, so use 1400.
 
 devtools::install_github('Cole-Monnahan-NOAA/adnuts', ref = 'dev')
 library(adnuts)
