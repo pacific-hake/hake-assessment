@@ -1,9 +1,6 @@
 # Adapted code originally provided by Cole Monnahan to run for Hake 2021 assessment model procedures
 # See https://github.com/pacific-hake/hake-assessment/issues/684#issuecomment-759683974
 # AMB  1/11/2021
-# Two code chunks included:
-#  1) main chunk to run base model (including diagnostic workups)
-#  2) a shorter chunk for running one-off sensitivity evaluations
 #
 # Remember to copy over the model files (data, control, forecast, wt-at-age, starter,
 #  and ss.exe files to new folder)
@@ -33,7 +30,6 @@ n.final <- 8000
 warmup.final <- 250
 
 #####################################################################################
-## 1 main chunk used to fully explore diagnostics and run main model (e.g., base model)
 ##
 start_time <- Sys.time()
 ## Chains to run in parallel
@@ -124,60 +120,3 @@ cat("Elapsed time: ", end_time - start_time, "\n")
 launch_shinyadmb(nuts.updated)
 
 #######################################################################################
-# 2 shortened version for running sensitivity models (if fail, then may need to step through
-# above procedures)
-#
-start_time <- Sys.time()
-# Chains to run in parallel
-reps <- parallel::detectCores() - 1
-set.seed(352)
-seeds <- sample(1:1e4, size = reps)
-pth <- "."
-exe <- "ss"
-rdata_file <- "hake.Rdata"
-# First re-optimize to get the correct mass matrix for NUTS (and without
-# bias adjustment turned on). Note the -hbf 1 argument.
-# This is a technical requirement b/c NUTS uses a different set of bounding
-# functions and thus the mass matrix will be different.
-system(paste0(exe, " -hbf 1 -nox -iprint 200 -mcmc 15"))
-save.image(file = rdata_file)
-# Use default MLE covariance (mass matrix) and short parallel NUTS chains
-# started from the MLE. Recall iter is number per core running in parallel.
-nuts.mle <- sample_nuts(model = exe,
-                        iter = 100,
-                        init = NULL,
-                        seeds = seeds,
-                        chains = reps,
-                        warmup = 50,
-                        path = pth,
-                        cores = reps,
-                        control = list(metric = "mle",
-                                       adapt_delta = 0.8))
-save.image(file = rdata_file)
-## Check for issues like slow mixing, divergences, max treedepths with
-## ShinyStan and pairs_admb as above. Fix using the shiny app and rerun this part as needed.
-## launch_shinyadmb(nuts.mle)
-
-## Once acceptable, run again for inference using updated mass matrix. Increase
-## adapt_delta toward 1 if you have divergences (runs will take longer).
-## Note this is in unbounded parameter space
-mass <- nuts.mle$covar.est
-inits <- sample_inits(nuts.mle, reps)
-iterations <- ceiling(((reps*warmup.final) + n.final) / reps)
-## The following, nuts.updated, is used for inferences
-nuts.updated <- sample_nuts(model = exe,
-                            iter = iterations,
-                            init = inits,
-                            seeds = seeds,
-                            chains = reps,
-                            warmup = warmup.final,
-                            path = pth,
-                            cores = reps,
-                            mceval = TRUE,
-                            control = list(metric = mass,
-                                           adapt_delta = 0.9))
-save.image(file = rdata_file)
-end_time <- Sys.time()
-cat("Elapsed time: ", end_time - start_time, "\n")
-# you can launch the shiny app to investiage diagnostics:
-# launch_shinyadmb(nuts.updated)
