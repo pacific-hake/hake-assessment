@@ -15,11 +15,10 @@
 # which is similar to last year's trial (sensitivity) runs with adnuts.
 # Note that the algebra is [(core-1) * (x-250)] where core is your # of cores, x is your iteration,
 # and 250 is the warmup.
-# For Aaron with 11, or 12-1, cores and a warmup of 250 I will use
-#  978 iterations as [11 * (978-250) = 8,008]
-# Let's leave the warmup period, or "burn-in", at 250 per core (i.e., chain).
-# So iterations = 8000/(core-1) + 250
-#  iterations = 1393 for 8 cores, so use 1400.
+# Let's set the final warmup period, or "burn-in", at 250 per core (i.e., chain).
+# You do not have to figure out your number of iterations given your the number of processors; instead
+# iterations is now a derived quantity based on desired samples (n.final) and cores for the final
+# (nuts.updated) set of evaluations only; others remain static as they are much smaller for testing
 
 devtools::install_github('Cole-Monnahan-NOAA/adnuts', ref = 'dev')
 library(adnuts)
@@ -27,6 +26,11 @@ library(snowfall)
 library(rstan)
 library(shinystan)
 library(matrixcalc)
+
+# Final evaluation settings: desired number of samples for final run (n.final) and warmup 
+# for final run (warmup.final)
+n.final <- 8000
+warmup.final <- 250
 
 #####################################################################################
 ## 1 main chunk used to fully explore diagnostics and run main model (e.g., base model)
@@ -100,13 +104,14 @@ save.image(file = rdata_file)
 ## Note this is in unbounded parameter space
 mass <- nuts.mle$covar.est
 inits <- sample_inits(nuts.mle, reps)
+iterations <- ceiling(((reps*warmup.final) + n.final) / reps)
 ## The following, nuts.updated, is used for inferences
 nuts.updated <- sample_nuts(model = exe,
-                            iter = 1000,
+                            iter = iterations,
                             init = inits,
                             seeds = seeds,
                             chains = reps,
-                            warmup = 250,
+                            warmup = warmup.final,
                             path = pth,
                             cores = reps,
                             mceval = TRUE,
@@ -158,13 +163,14 @@ save.image(file = rdata_file)
 ## Note this is in unbounded parameter space
 mass <- nuts.mle$covar.est
 inits <- sample_inits(nuts.mle, reps)
+iterations <- ceiling(((reps*warmup.final) + n.final) / reps)
 ## The following, nuts.updated, is used for inferences
 nuts.updated <- sample_nuts(model = exe,
-                            iter = 1000,
+                            iter = iterations,
                             init = inits,
                             seeds = seeds,
                             chains = reps,
-                            warmup = 250,
+                            warmup = warmup.final,
                             path = pth,
                             cores = reps,
                             mceval = TRUE,
