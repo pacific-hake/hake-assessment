@@ -84,7 +84,6 @@ run_adnuts <- function(path,
   mass <- nuts_mle$covar.est
   inits <- sample_inits(nuts_mle, reps)
   iterations <- ceiling(((reps * warmup_final) + n_final) / reps)
-  iterations <- 10
   # The following, nuts_updated, is used for inferences
   nuts_updated <- sample_nuts(model = exe,
                               iter = iterations,
