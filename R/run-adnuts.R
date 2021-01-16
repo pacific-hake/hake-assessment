@@ -97,6 +97,7 @@ run_adnuts <- function(path,
                               control = list(metric = mass,
                                              adapt_delta = adapt_delta))
   save.image(file = rdata_file)
+  system(paste0(exe, " -mceval"))
   setwd(curr_path)
   toc()
 }
