@@ -7,17 +7,20 @@ Fishery-dependent and fishery-independent data sources used in this assessment
 
 \begin{itemize}
 
-\item Total catch from all U.S. and Canadian target fisheries
-  (\Sexpr{start.yr}--\Sexpr{last.data.yr}; Tables
+\item Total catch from all U.S. and Canadian fisheries that target hake
+  from \Sexpr{start.yr} to \Sexpr{last.data.yr} (Tables
   \ref{tab:intro-catches-US}--\ref{tab:intro-catches-total}).
 
-\item Age compositions composed of data from the U.S. fishery
+\item Age compositions summarized by year and country for the last ten years
+  are summarized seperately
+  (Tables~\ref{tab:main-us-cp-age-data}--\ref{tab:main-can-ft-age-data})
+  to investigate region-specific trends;
+  age compositions aggregated by year and composed of data from the U.S. fishery
   (\Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}) and the
-  Canadian fishery (1990--\Sexpr{max.fishery.age.prop[2]}). The last 10 years of
-  these data are shown in Tables
-  \ref{tab:main-us-cp-age-data}--\ref{tab:main-can-ft-age-data}, and the
-  aggregated data for all years are shown in
-  Table~\ref{tab:main-all-age-data-fishery}.
+  Canadian fishery
+  (\Sexpr{paste(range(unlist(lapply(can.ages[1:3], row.names))), collapse = "--")})
+  are used to fit the model
+  (Table~\ref{tab:main-all-age-data-fishery}).
 
 \item Biomass indices and age compositions from the Joint U.S.~and Canadian
   integrated acoustic and trawl survey
