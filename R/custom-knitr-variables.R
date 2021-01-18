@@ -224,27 +224,28 @@ zero.catch.prob.bio.down.2 <- f(base.model$risks[[2]][1,2])
 ## Canadian provisional reference points
 dfo.probs.curr <- base.model$risks[[1]][,(ncol(base.model$risks[[1]])-2):ncol(base.model$risks[[1]])]
 dfo.probs.fore <- base.model$risks[[2]][,(ncol(base.model$risks[[2]])-2):ncol(base.model$risks[[2]])]
+dfo.prob.over.40bmsy <- f(min(dfo.probs.fore[, paste0("SSB_", assess.yr + 1, ">0.4SSB_MSY")]))
+dfo.prob.over.80bmsy <- f(min(dfo.probs.fore[, paste0("SSB_", assess.yr + 1, ">0.8SSB_MSY")]))
+dfo.prob.over.bmsy <- f(min(dfo.probs.fore[, paste0("SSB_", assess.yr + 1, ">SSB_MSY")]))
 
-##probability of current spawning biomass being above B40%, B25%, and B10%
-##**NEED TO UNHARDWIRE the 2020**, but these don't quite work; think numbers are
-## maybe saved another way:
-# probs.curr.bforty      <- f(mean(paste0("base.model$mcmc$Bratio_", assess.yr) > 0.40) * 100, 1)
-# probs.curr.btwentyfive <- f(mean(paste0("base.model$mcmc$Bratio_", assess.yr) > 0.25) * 100, 1)
-# probs.curr.bten        <- f(mean(paste0("base.model$mcmc$Bratio_", assess.yr) > 0.10) * 100, 0)
-probs.curr.bforty      <- f(mean(base.model$mcmc$Bratio_2020 > 0.40) * 100, 1)
-probs.curr.btwentyfive <- f(mean(base.model$mcmc$Bratio_2020 > 0.25) * 100, 1)
-probs.curr.bten        <- f(mean(base.model$mcmc$Bratio_2020 > 0.10) * 100, 0)
+# Probability of current spawning biomass being above B40%, B25%, and B10%
+probs.curr.bforty      <- f(mean(base.model$mcmc[[paste0("Bratio_", assess.yr)]] > 0.40) * 100, 1)
+probs.curr.btwentyfive <- f(mean(base.model$mcmc[[paste0("Bratio_", assess.yr)]] > 0.25) * 100, 1)
+probs.curr.bten        <- f(mean(base.model$mcmc[[paste0("Bratio_", assess.yr)]] > 0.10) * 100, 0)
 
-probs.curr.below.bforty      <- f(mean(base.model$mcmc$Bratio_2020 < 0.40) * 100, 1)
-probs.curr.below.btwentyfive <- f(mean(base.model$mcmc$Bratio_2020 < 0.25) * 100, 1)
-probs.curr.below.bten        <- f(mean(base.model$mcmc$Bratio_2020 < 0.10) * 100, 1)
+probs.curr.below.bforty      <- f(mean(base.model$mcmc[[paste0("Bratio_", assess.yr)]] < 0.40) * 100, 1)
+probs.curr.below.btwentyfive <- f(mean(base.model$mcmc[[paste0("Bratio_", assess.yr)]] < 0.25) * 100, 1)
+probs.curr.below.bten        <- f(mean(base.model$mcmc[[paste0("Bratio_", assess.yr)]] < 0.10) * 100, 1)
 
-## prob of most recent relative fishing intensity being above target of 1
+# Probability of Bratio being below a reference point
+prob.curr.under.b10 <- f(100 - base.model$risks[[1]][8, paste0("Bratio_", assess.yr + 1, "<0.10")], 0)
+prob.curr.under.b40 <- f(100 - base.model$risks[[1]][8, paste0("Bratio_", assess.yr + 1, "<0.40")], 0)
+
+# Probability of most recent relative fishing intensity being above target of 1
 probs.curr.rel.fish.intens.above.one <-
   f(sum(base.model$mcmc[[paste0("SPRratio_", end.yr-1)]] > 1) /
     nrow(base.model$mcmc) * 100,
     1)
-
 
 ################################################################################
 ## Second forecast year depletion and spawning biomass estimates

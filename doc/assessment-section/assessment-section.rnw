@@ -1301,18 +1301,18 @@ With respect to the DFO reference points, even with the largest
 \Sexpr{assess.yr} catch of \Sexpr{f(base.model$catch.levels[[8]][[1]][1])}~t given in Table~\ref{tab:main-risk-year-1},
 at the start of \Sexpr{assess.yr+1} the stock is expected to be above the critical zone with a probability of
 P$(B_{\Sexpr{assess.yr+1}} > \Bten)=
-\Sexpr{f( 100 - base.model$risks[[1]][8,"Bratio_2021<0.10"], 0)}$\%
+\Sexpr{prob.curr.under.b10}$\%
 and in the healthy zone with a probability of
 P$(B_{\Sexpr{assess.yr+1}} > \Bforty)=
-\Sexpr{f( 100 - base.model$risks[[1]][8,"Bratio_2021<0.40"], 0)}$\%.
+\Sexpr{prob.curr.under.b40}$\%.
 With respect to the DFO provisional reference points (based on $\Bmsy$), the
 the stock is expected to be above the provisional critical zone with a
 probability of
-P$(B_{\Sexpr{assess.yr+1}} > 0.4\Bmsy) = \Sexpr{f(min(dfo.probs.fore[,"SSB_2021>0.4SSB_MSY"]))}$\%,
+P$(B_{\Sexpr{assess.yr+1}} > 0.4\Bmsy) = \Sexpr{dfo.prob.over.40bmsy}$\%,
 in the healthy zone with a probability of
-P$(B_{\Sexpr{assess.yr+1}} > 0.8\Bmsy) = \Sexpr{f(min(dfo.probs.fore[,"SSB_2021>0.8SSB_MSY"]))}$\%,
+P$(B_{\Sexpr{assess.yr+1}} > 0.8\Bmsy) = \Sexpr{dfo.prob.over.80bmsy}$\%,
 and above $\Bmsy$ with a probability of
-P$(B_{\Sexpr{assess.yr+1}} > \Bmsy) = \Sexpr{f(min(dfo.probs.fore[,"SSB_2021>SSB_MSY"]))}$\%.
+P$(B_{\Sexpr{assess.yr+1}} > \Bmsy) = \Sexpr{dfo.prob.over.bmsy}$\%.
 
 %PFMC refrence points for hake/whiting are: Bmsy = 0.4B0; MSST = 0.25B0.  Will report these as well.
 With respect to PFMC stock size reference points, a level of \Sexpr{assess.yr} catch consistent with the Treaty
