@@ -17,9 +17,9 @@ output.csv.dir <- file.path(rootd, "out-csv")
 ## -----------------------------------------------------------------------------
 ## The version of SS and ADMB used in this assessment
 ## -----------------------------------------------------------------------------
-ss.version <- "3.30.14.08"
+ss.version <- "3.30.16.03"
 message("SS version: ", ss.version)
-admb.version <- "12.0"
+admb.version <- "12.2"
 message("ADMB version: ", admb.version)
 
 ## -----------------------------------------------------------------------------
