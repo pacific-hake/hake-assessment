@@ -458,7 +458,7 @@ fetch_extra_mcmc <- function(model_path,
   ## median and quantiles of expected values and Pearsons
   iter <- unique(comp$Iter)
   comp <- comp %>%
-    filter(!is.na(N), N > 0)
+    filter(!is.na(Nsamp_adj), Nsamp_adj > 0)
   exp_table <- comp %>%
     select(Iter, Exp) %>%
     group_by(Iter) %>%
