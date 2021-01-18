@@ -42,6 +42,7 @@ run_adnuts <- function(path,
 
   exe <- "ss"
   curr_path <- getwd()
+  on.exit(setwd(curr_path), add = TRUE)
 
   if(run_mle){
     setwd(path)
@@ -98,6 +99,5 @@ run_adnuts <- function(path,
                                              adapt_delta = adapt_delta))
   save.image(file = rdata_file)
   system(paste0(exe, " -mceval"))
-  setwd(curr_path)
   toc()
 }
