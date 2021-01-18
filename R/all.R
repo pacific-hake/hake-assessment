@@ -82,7 +82,7 @@ catch_levels_catch_tol <- 50
 #  be found within the tolerances above
 catch_levels_max_iter <- 20
 
-assess_yr <- 2020
+assess_yr <- 2021
 forecast_yrs <- assess_yr:(assess_yr + 2)
 forecast_probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 
