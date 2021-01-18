@@ -123,8 +123,8 @@ fetch_retrospectives <- function(retro_path,
 
   message("\nLoading retrospectives from ", retro_path)
   retros_list <- map(retrospective_yrs, ~{
-    message("Loading retrospective run from ", retro_path)
     retro_dir <- file.path(retro_path, paste0("retro-", pad.num(.x, 2)))
+    message("Loading from ", retro_dir)
     SS_output(dir = retro_dir,
               verbose = FALSE,
               printstats = FALSE,
