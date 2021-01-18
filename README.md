@@ -23,7 +23,7 @@ _____________________________________________________________
 * The R package `r4ss`, on the `bioscale` branch:
 
 ```
-devtools::install_github("r4ss/r4ss", ref = "bioscale")
+remotes::install_github("r4ss/r4ss", ref = "bioscale")
 ```
 
 ---
