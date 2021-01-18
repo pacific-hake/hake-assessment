@@ -247,7 +247,7 @@ load_models_rds <- function(){
   sens.model.names.3.for.table <<- c("Base model", sens.model.names.5)
 
   ## Fourth set
-  sens.models.4.for.table <<- c(list(base.model), list(sens.models.6))
-  sens.model.names.4.for.table <<- c("Base model", sens.model.names.6)
+  # sens.models.4.for.table <<- c(list(base.model), list(sens.models.6))
+  # sens.model.names.4.for.table <<- c("Base model", sens.model.names.6)
 }
 
