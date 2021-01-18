@@ -683,29 +683,29 @@ make.short.parameter.estimates.sens.table(sens.models.3.for.table,
 \restoregeometry
 \pagestyle{fancy}
 
-\newgeometry{hmargin=1in,vmargin=1in}
-\thispagestyle{lscape}
-\begin{landscape}
-  \centering
-<<main-parameter-estimates-sens-4, results='asis', echo=FALSE>>=
-make.short.parameter.estimates.table(base.model,
-  sens.models.4.for.table[[2]],
-  end.yr = end.yr,
-  digits = 3,
-  xcaption = paste0("Select parameters, derived quantities, ",
-                     "and reference point estimates for the base model ",
-                     "MLE and posterior median (MCMC) estimates with ",
-                     "an additional comparison to posterior median ",
-                     "estimates from the No-U-Turn ",
-                     "Sampler (NUTS)."),
-  xlabel = "tab:main-parameter-estimates-sens-4",
-  font.size = 9,
-  space.size = 10,
-  last.yr.model.name = c("AD", "NUTS"))
-@
-\end{landscape}
-\restoregeometry
-\pagestyle{fancy}
+% \newgeometry{hmargin=1in,vmargin=1in}
+% \thispagestyle{lscape}
+% \begin{landscape}
+%   \centering
+% <<main-parameter-estimates-sens-4, results='asis', echo=FALSE>>=
+% make.short.parameter.estimates.table(base.model,
+%   sens.models.4.for.table[[2]],
+%   end.yr = end.yr,
+%   digits = 3,
+%   xcaption = paste0("Select parameters, derived quantities, ",
+%                      "and reference point estimates for the base model ",
+%                      "MLE and posterior median (MCMC) estimates with ",
+%                      "an additional comparison to posterior median ",
+%                      "estimates from the No-U-Turn ",
+%                      "Sampler (NUTS)."),
+%   xlabel = "tab:main-parameter-estimates-sens-4",
+%   font.size = 9,
+%   space.size = 10,
+%   last.yr.model.name = c("AD", "NUTS"))
+% @
+% \end{landscape}
+% \restoregeometry
+% \pagestyle{fancy}
 
 
 \clearpage
