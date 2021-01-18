@@ -52,14 +52,14 @@ build_rds(model_dirs = "2021.00.04_base_v1",
 build_rds()
 ```
 
-* The `model_list` as defined in the `R/model-setup.R` file is what is used by default for this function. You can alos use any list of model directory names, or a single directory name. If you wanted to run retrospectives only for a model called **test-model** you would call it like this:
+* The `model_list` as defined in the `R/model-setup.R` file is what is used by default by `build_rds()`. You can also use any list of model directory names, or a single directory name. If you wanted to run retrospectives only for a model called **test-model** you would call it like this:
 
 ```R
 source(here::here("R/all.r"))
 build_rds("test-model", run_retrospectives = TRUE)
 ```
 
-* <span style="color:red">**Careful!**</span> - In this default configuration, **ALL** directories in the `model_list` with an `mcmc` subdirectory will have the full gamut of forecasts, retrospectives, and extra-mcmc runs done. This can take a very long time if you have `mcmc` output you don't need. It is worth checking and renaming any `mcmc` subdirectories (to `mcmc1` or something) which are not going to have mcmc outputs used in the document.
+<span style="color:red">**Careful!**</span> - In this default configuration, **ALL** directories in the `model_list` with an `mcmc` subdirectory will have the full gamut of forecasts, retrospectives, and extra-mcmc runs done. This can take a very long time if you have `mcmc` output you don't need. It is worth checking and renaming any `mcmc` subdirectories (to `mcmc1` or something) which are not going to have mcmc outputs used in the document.
 
 * Once finished, you can see that each model defined in `model-setup.R` now has an `RDS` file inside its directory with the same name.
 
