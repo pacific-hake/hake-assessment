@@ -162,7 +162,8 @@ run_extra_mcmc_chunk <- function(model,
 #' Create and return a list of stats to attach to the main model by
 #' looking in the model's path for the report files.
 #'
-#' @param model The model object as output by [load_ss_files()]
+#' @param model_path The model directory
+#' @param probs The quantile values to use on the MCMC posterior data
 #'
 #' @return
 #' @export
@@ -260,15 +261,26 @@ fetch_extra_mcmc <- function(model_path,
   rep_example <- reps[[which(!is.na(reps))[1]]]
   comprep_example <- compreps[[which(!is.na(compreps))[1]]]
   ## Biomass
-  bio_header_ind <- grep("^TIME_SERIES", rep_example) + 1
+  bio_header_ind <- grep("TIME_SERIES", rep_example) + 1
   bio_header_line <- rep_example[bio_header_ind]
+  bio_header_line <- bio_header_line[bio_header_line != ""]
   bio_header <- str_split(bio_header_line, " +")[[1]]
   bio_start_ind <- bio_header_ind + 1
-  bio_end_ind <- grep("^SPR_series", rep_example) - 2
+  if(length(bio_start_ind) > 1){
+    bio_start_ind <- bio_start_ind[2]
+  }
+  bio_end_ind <- grep("SPR_SERIES", rep_example) - 2
+  if(length(bio_end_ind) > 1){
+    bio_end_ind <- bio_end_ind[2]
+  }
+  reps <- reps[!is.na(reps)]
   reps_bio <- map(reps, ~{.x[bio_start_ind:bio_end_ind]})
   # Likelihood
-  like_start_ind <- grep("^LIKELIHOOD", rep_example) + 1
-  like_end_ind <- like_start_ind + 17
+  like_start_ind <- grep("LIKELIHOOD", rep_example) + 1
+  if(length(like_start_ind) > 1){
+    like_start_ind <- like_start_ind[2]
+  }
+  like_end_ind <- like_start_ind + 28
   reps_like <- map(reps, ~{.x[like_start_ind:like_end_ind]})
   ## Selectivity
   next_yr <- model$endyr + 1
@@ -287,7 +299,10 @@ fetch_extra_mcmc <- function(model_path,
   natage_end_ind <- grep("Z_AT_AGE_Annual_2 With_fishery", rep_example) - 2
   reps_natage <- map(reps, ~{.x[natage_start_ind:natage_end_ind]})
   ## Q
-  q_header_ind <- grep("^INDEX_2", rep_example) + 1
+  q_header_ind <- grep("INDEX_2", rep_example) + 1
+  if(length(q_header_ind) > 1){
+    q_header_ind <- q_header_ind[2]
+  }
   q_header <- str_split(rep_example[q_header_ind], " +")[[1]]
   q_start_ind <- q_header_ind + 1
   ncpue <- nrow(model$dat$CPUE)
@@ -298,6 +313,7 @@ fetch_extra_mcmc <- function(model_path,
   comp_header <- str_split(comprep_example[comp_header_ind], " +")[[1]]
   comp_start_ind <- comp_header_ind + 1
   comp_end_ind <- grep("End_comp_data", comprep_example) - 1
+  compreps <- compreps[!is.na(compreps)]
   reps_comp <- map(compreps, ~{.x[comp_start_ind:comp_end_ind]})
 
   #' Extract the vectors from a list into a [tibble::tibble()]
