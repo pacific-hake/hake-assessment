@@ -95,7 +95,7 @@ message("Key posteriors file: ", nuisance.posteriors.file)
 ## -----------------------------------------------------------------------------
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
-base.model.dir.name <- "2020.01.09_DMprior_base"
+base.model.dir.name <- "2021.00.04_base_v1"
 base.model.name <- paste0(assess.yr, " Base model")
 
 message("Base model directory name: ", base.model.dir.name)
@@ -117,7 +117,7 @@ message("Base model pretty name: ", base.model.name)
 ## Last assessment year's base model name and directory
 ## -----------------------------------------------------------------------------
 ##last.yr.base.model.dir.name <- "00_45_2017base"
-last.yr.base.model.dir.name <- "2019.03.00_base"
+last.yr.base.model.dir.name <- "2020.01.00_base"
 last.yr.base.model.name <- paste(last.assess.yr, "Base model")
 message("Last assessment year's base model directory name: ", last.yr.base.model.dir.name)
 message("Last assessment year's base model pretty name: ", last.yr.base.model.name)
@@ -127,119 +127,80 @@ message("Last assessment year's base model pretty name: ", last.yr.base.model.na
 ## -----------------------------------------------------------------------------
 ## First one must be last.yr.base.model.dir.name:
 bridge.model.dir.names.1 <- c(last.yr.base.model.dir.name,
-                              "2019.03.91_3.30.14.08",
-                              "2019.03.92_simpledevs")
+                              "2020.01.01_newSSexe",
+                              "2020.01.02_DM_last_extraSD_last")
 bridge.model.names.1 <- c(last.yr.base.model.name,
                           "Update stock synthesis",
-                          "Use simple rec devs")
+                          "DM parameters estimated in last phase")
 bridge.model.end.yr.1 <- end.yr - c(1, 1, 1) # subtract 1 year from all 4 models
 
 
 ## -----------------------------------------------------------------------------
 ## Bridge models group 2
 ## -----------------------------------------------------------------------------
-bridge.model.dir.names.2 <- c("2019.03.92_simpledevs",
-                              "2020.00.01_update_pre2019_data",
-                              "2020.00.02_add_2019_catch",
-                              "2020.00.04_add_fishery_comps")
-bridge.model.names.2 <- c("Use simple rec devs",
-                          "Update pre-2019 data",
-                          "Add 2019 catch",
-                          "Add 2019 fishery comps and weights")
-bridge.model.end.yr.2 <- end.yr - c(1, 0, 0, 0) # subtract 1 year from first 1 models
-
-## -----------------------------------------------------------------------------
-## Bridge models group 3
-## -----------------------------------------------------------------------------
-bridge.model.dir.names.3 <- c("2020.00.04_add_fishery_comps",
-                              "2020.00.06_add_2019_survey_bio",
-                              "2020.00.07_add_2019_survey_ages",
-                              "2020.01.09_DMprior_base")
-bridge.model.names.3 <- c("Add 2019 fishery comps and weights",
-                          "Add 2019 survey biomass",
-                          "Add 2019 survey comps",
-                          "Add Dirichlet prior (=base model)")
-bridge.model.end.yr.3 <- end.yr - c(0, 0, 0, 0) # subtract 1 year from first 1 models
+bridge.model.dir.names.2 <- c("2021.00.00_update_pre2020_data",
+                              "2021.00.01_add_2020_catch",
+                              "2021.00.02_add_wt_at_age",
+                              "2021.00.03_add_fishery_comps")
+bridge.model.names.2 <- c("Update pre-2020 data",
+                          "Add 2020 catch",
+                          "Add 2020 weight-at-age information",
+                          "Add 2020 fishery comps and weights")
+bridge.model.end.yr.2 <- end.yr - c(0, 0, 0, 0)
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 1
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.1 <- c("2020.01.15_h_prior_mean_low",
-                            "2020.01.16_h_fix_high",
-                            "2020.01.17_sigmaR_fix_low",
-                            "2020.01.18_sigmaR_fix_high",
-                            "2020.01.20_M_0.2SD",
-                            "2020.01.21_M_0.3SD")
+sens.model.dir.names.1 <- c("2021.00.15_h_prior_mean_low",
+                            "2021.00.16_h_fix_high",
+                            "2021.00.17_sigmaR_fix_low",
+                            "2021.00.18_sigmaR_fix_high",
+                            "2021.00.20_M_0.2SD",
+                            "2021.00.21_M_0.3SD",
+                            "2021.00.22_M_hamel_prior")
 sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
                         "Steepness Fix 1.0",
                         "Sigma R 1.0",
                         "Sigma R 1.6",
                         "Natural Mortality (SD=0.2)",
-                        "Natural Mortality (SD=0.3)")
+                        "Natural Mortality (SD=0.3)",
+                        "Natural Mortality (Mean=-1.532,SD=0.438)")
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 2
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.2 <- c("2020.01.23_age1Survey",
-                            "2020.01.24_compWeight_HarmonicMean",
-                            "2020.01.25_compWeight_Francis")
+sens.model.dir.names.2 <- c("2021.00.23_age1Survey",
+                            "2021.00.24_compWeight_HarmonicMean",
+                            "2021.00.25_compWeight_Francis")
 sens.model.names.2 <- c("Add Age 1 Index",
                         "McAllister Ianelli Weighting",
                         "Francis Weighting")
 
 ## -----------------------------------------------------------------------------
-## Sensitivity models group 3
-## -----------------------------------------------------------------------------
-##Group 3 not used for 2019 assessment
-##sens.model.dir.names.3 <- c("2019.02.07_maxSel_Age5",
-##                            "2019.02.08_maxSel_Age7",
-##                            "2019.02.09_maxSel_Age10",
-##                            "2019.02.11_tvSelect_phi_xtralow",
-##                            "2019.02.12_tvSelect_phi_low",
-##                            "2019.02.13_tvSelect_phi_high")
-##sens.model.names.3 <- c("Max. age selectivity 5",
-##                        "Max. age selectivity 7",
-##                        "Max. age selectivity 10",
-##                        "Phi t.v. selectivity (0.21)",
-##                        "Phi t.v. selectivity (0.70)",
-##                        "Phi t.v. selectivity (2.10)")
-##
-## -----------------------------------------------------------------------------
 ## Sensitivity models group 4
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.4 <- c("2020.01.27_tvSelect_phi_extralow",
-                            "2020.01.28_tvSelect_phi_low",
-                            "2020.01.29_tvSelect_phi_high",
-                            "2020.01.26_semiPara_tvSelect_sig0.695",
-                            "2020.01.37_semiPara_tvSelect_sig1.0")
+sens.model.dir.names.4 <- c("2021.00.27_tvSelect_phi_extralow",
+                            "2021.00.28_tvSelect_phi_low",
+                            "2021.00.29_tvSelect_phi_high",
+                            "2021.00.26_semiPara_tvSelect_sig0.695")
 sens.model.names.4 <- c("Phi t.v. selectivity (0.21)",
                         "Phi t.v. selectivity (0.70)",
                         "Phi t.v. selectivity (2.10)",
-                        "Semi-Parametric t.v selectivity (0.695)",
-                        "Semi-Parametric t.v. selectivity (1.0)")
+                        "Semi-Parametric t.v selectivity (0.695)")
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 5  - Different weight-at-age schemes (first group)
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.5 <- c("2020.01.30_noCohort_ageError")
+sens.model.dir.names.5 <- c("2021.00.30_noCohort_ageError")
 sens.model.names.5 <- c("No ageing error")
-
-## -----------------------------------------------------------------------------
-## Sensitivity models group 6  - ADNUTS snesitivity
-## -----------------------------------------------------------------------------
-sens.model.dir.names.6 <- c("2020.01.31_nutsMCMC")
-sens.model.names.6 <- c("NUTS")
 
 model_list <- c(base.model.dir.name,
                 unlist(bridge.model.dir.names.1),
                 unlist(bridge.model.dir.names.2),
-                unlist(bridge.model.dir.names.3),
                 unlist(sens.model.dir.names.1),
                 unlist(sens.model.dir.names.2),
-                #unlist(sens.model.dir.names.3),
                 unlist(sens.model.dir.names.4),
-                unlist(sens.model.dir.names.5),
-                unlist(sens.model.dir.names.6))
+                unlist(sens.model.dir.names.5))
 model_list <- model_list[! model_list %in% last.yr.base.model.dir.name]
 model_list <- as.list(unique(model_list))
 
@@ -265,13 +226,10 @@ load_models_rds <- function(){
   last.yr.base.model <<- load_models(last.yr.base.model.dir.name)
   bridge.models.1    <<- load_models(bridge.model.dir.names.1)
   bridge.models.2    <<- load_models(bridge.model.dir.names.2)
-  bridge.models.3    <<- load_models(bridge.model.dir.names.3)
   sens.models.1      <<- load_models(sens.model.dir.names.1)
   sens.models.2      <<- load_models(sens.model.dir.names.2, TRUE)
-  ## sens.models.3      <<- load.modes, sens.model.dir.names.3)
   sens.models.4      <<- load_models(sens.model.dir.names.4)
   sens.models.5      <<- load_models(sens.model.dir.names.5)
-  sens.models.6      <<- load_models(sens.model.dir.names.6)
   ## Lists of sensitivities for the MLE parameters, derived quantiles,
   ##  and reference points table
   ## First set includes base and sensitivity group 1 and 2
@@ -283,8 +241,6 @@ load_models_rds <- function(){
   ## running make.short.parameter.estimates.sens.table()
   sens.models.2.for.table <<- c(list(base.model), sens.models.4)
   sens.model.names.2.for.table <<- c("Base model", sens.model.names.4)
-  ## sens.models.2.for.table <<- c(list(base.model), sens.models.3, sens.models.4)
-  ## sens.model.names.2.for.table <<- c("Base model", sens.model.names.3, sens.model.names.4)
 
   ## Third set
   sens.models.3.for.table <<- c(list(base.model), list(sens.models.5))

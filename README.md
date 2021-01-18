@@ -37,10 +37,19 @@ devtools::install_github("r4ss/r4ss", ref = "hake2020")
 
 ```R
 source(here::here("R/all.r"))
-build_rds(run_catch_levels = TRUE,
+
+# Run forecasts, retrospectives, catch-levels, and extra-mcmc for the base model only
+build_rds(model_dirs = "2021.00.04_base_v1",
+          run_catch_levels = TRUE,
           run_forecasts = TRUE,
           run_retrospectives = TRUE,
           run_extra_mcmc = TRUE)
+
+# Build the RDS files for all folders in model-setup.R, but do not run any of the model extras
+# (forecasts, retrospectives, catch-levels, and extra-mcmc). Presence of mcmc directories in
+# sensitivity model directories will not trigger running of any of the above when called
+# this way.
+build_rds()
 ```
 
 * The `model_list` as defined in the `R/model-setup.R` file is what is used by default for this function. You can alos use any list of model directory names, or a single directory name. If you wanted to run retrospectives only for a model called **test-model** you would call it like this:
