@@ -59,7 +59,7 @@ source(here::here("R/all.r"))
 build_rds("test-model", run_retrospectives = TRUE)
 ```
 
-<span style="color:red">**Careful!**</span> - In this default configuration, **ALL** directories in the `model_list` with an `mcmc` subdirectory will have the full gamut of forecasts, retrospectives, and extra-mcmc runs done. This can take a very long time if you have `mcmc` output you don't need. It is worth checking and renaming any `mcmc` subdirectories (to `mcmc1` or something) which are not going to have mcmc outputs used in the document.
+<span style="color:red">**Careful!**</span> - **ALL** directories in the `model_list` with an `mcmc` subdirectory will have the full gamut of forecasts, retrospectives, and extra-mcmc runs done if you set those arguments to `TRUE`. This can take a very long time if you have `mcmc` output you don't need. It is worth checking and renaming any `mcmc` subdirectories (to `mcmc1` or something) which are not going to have mcmc outputs used in the document, or calling `build_rds()` on a directory-by-directory basis.
 
 * Once finished, you can see that each model defined in `model-setup.R` now has an `RDS` file inside its directory with the same name.
 
