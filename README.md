@@ -20,7 +20,7 @@ _____________________________________________________________
 * Install the [tinytex](https://yihui.org/tinytex) package - If the directory `C:/Users/username/AppData/Roaming/TinyTex` exists, delete it before re-installing. See https://github.com/pbs-assess/csasdown/wiki/LaTeX-installation-for-csasdown for more information.
 * Rscript.exe must be on your PATH if you want to use
   **Method 1** for building the document (explained below).
-* The R package `r4ss`, on the `hake2020` branch:
+* The R package `r4ss`, on the `bioscale` branch:
 
 ```
 devtools::install_github("r4ss/r4ss", ref = "bioscale")
