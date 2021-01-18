@@ -65,14 +65,14 @@ make.parameters.estimated.summary.table <- function(model,
       ## Fixed parameter
       return(vals[init])
     }
-    if(prior.type[vals[p.type]] == "Lognormal"){
-      return(paste0(prior.type[vals[p.type]], "(",
-                    f(exp(as.numeric(vals[p.mean])), digits), ",",
-                    f(exp(as.numeric(vals[p.sd])), digits), ")"))
-    }
-    return(paste0(prior.type[vals[p.type]], "(",
-                  f(as.numeric(vals[p.mean]), digits), ",",
-                  f(as.numeric(vals[p.sd]), digits), ")"))
+    # if(prior.type[vals[p.type]] == "Lognormal"){
+    #   return(paste0(prior.type[vals[p.type]], " (",
+    #                 f(exp(as.numeric(vals[p.mean])), digits), ", ",
+    #                 f(exp(as.numeric(vals[p.sd])), digits), ")"))
+    # }
+    paste0(prior.type[vals[p.type]], " (",
+           f(as.numeric(vals[p.mean]), digits), ", ",
+           f(as.numeric(vals[p.sd]), digits), ")")
   }
 
   ctl <- model$ctl
@@ -86,12 +86,12 @@ make.parameters.estimated.summary.table <- function(model,
   ## R0 is at line 46 of comment-stripped dataframe. Get it's values which can
   ##  be indexed by the variables defined above
   r0 <- fetch.and.split(ctl, 46)
-  r0.vals <- c(paste0("Log(",
+  r0.vals <- c(paste0("Log (",
                       latex.subscr(latex.italics("R"),
                                    "0"),
                       ")"),
                1,
-               paste0("(", r0[lo], ",", r0[hi], ")"),
+               paste0("(", r0[lo], ", ", r0[hi], ")"),
                prior.type[r0[p.type]])
 
   ## Steepness is at line 47 of comment-stripped dataframe
@@ -100,7 +100,7 @@ make.parameters.estimated.summary.table <- function(model,
                      latex.italics("h"),
                      ")"),
               1,
-              paste0("(", h[lo], ",", h[hi], ")"),
+              paste0("(", h[lo], ", ", h[hi], ")"),
               fetch.prior.info(h, digits))
 
   ## Recruitment variability (sigma_r) is at line 48 of comment-stripped dataframe
@@ -113,7 +113,7 @@ make.parameters.estimated.summary.table <- function(model,
                   else
                     "--",
                   if(sig.r[p.type] < 0 & sig.r[phase] > 0)
-                    paste0("(", sig.r[lo], ",", sig.r[hi], ")")
+                    paste0(" (", sig.r[lo], ", ", sig.r[hi], ")")
                   else
                     "--",
                   sig.r[3])
@@ -131,10 +131,10 @@ make.parameters.estimated.summary.table <- function(model,
                     end.rec.dev.yr - start.rec.dev.yr + 1,
                     paste0("(",
                            rec.dev.lb,
-                           ",",
+                           ", ",
                            rec.dev.ub,
                            ")"),
-                    paste0("Lognormal(0,",
+                    paste0("Lognormal (0, ",
                            latex.italics("$\\sigma_r$"),
                            ")"))
 
@@ -147,7 +147,7 @@ make.parameters.estimated.summary.table <- function(model,
                 "--"
               else
                 1,
-              paste0("(", m[lo], ",", m[hi], ")"),
+              paste0("(", m[lo], ", ", m[hi], ")"),
               fetch.prior.info(m, digits))
 
   q.vals <- c(paste0("Catchability (",
@@ -158,13 +158,13 @@ make.parameters.estimated.summary.table <- function(model,
               "Analytic solution")
 
   ## Survey additional value for SE is at line 77 of comment-stripped dataframe
-  se <- fetch.and.split(ctl, 77)
+  se <- fetch.and.split(ctl, 74)
   se.vals <- c("Additional variance for survey log(SE)",
                if(prior.type[se[p.type]] == "Fixed")
                  1
                else
                  "--",
-               paste0("(", se[lo], ",", se[hi], ")"),
+               paste0("(", se[lo], ", ", se[hi], ")"),
                "Uniform")
                ##fetch.prior.info(se, digits))
 
@@ -193,7 +193,7 @@ make.parameters.estimated.summary.table <- function(model,
                            "--",
                            max(ages.estimated)),
                     length(ages.estimated),
-                    paste0("(", est.sel[lo], ",", est.sel[hi], ")"),
+                    paste0(" (", est.sel[lo], ", ", est.sel[hi], ")"),
                     "Uniform")
                     ##fetch.prior.info(est.sel, digits))
 
@@ -222,7 +222,7 @@ make.parameters.estimated.summary.table <- function(model,
                              "--",
                              max(ages.estimated)),
                       length(ages.estimated),
-                      paste0("(", est.sel[lo], ",", est.sel[hi], ")"),
+                      paste0("(", est.sel[lo], ", ", est.sel[hi], ")"),
                       "Uniform")
                       ##fetch.prior.info(est.sel, digits))
 
@@ -240,7 +240,7 @@ make.parameters.estimated.summary.table <- function(model,
              ")"),
       length(ages.estimated) * length(est.sel[start.yr.sel]:est.sel[end.yr.sel]),
       "--",
-      paste0("Normal(0,",
+      paste0("Normal (0, ",
              ##est.sel[sel.dev.sd],
              model$parameters["AgeSel_P3_Fishery(1)_dev_se", "Value"],
              ")"))
@@ -251,9 +251,9 @@ make.parameters.estimated.summary.table <- function(model,
                        latex.italics("$\\log \\theta$"),
                       ")"),
                2,
-               paste0("(", dm[lo], ",", dm[hi], ")"),
-               paste0("Normal(",
-                      dm[4], ",",
+               paste0("(", dm[lo], ", ", dm[hi], ")"),
+               paste0("Normal (",
+                      dm[4], ", ",
                       dm[5],
                       ")"))
                ##fetch.prior.info(dm, digits))
