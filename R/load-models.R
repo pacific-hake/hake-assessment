@@ -56,7 +56,7 @@ load_ss_files <- function(model_path = NA,
   ## Load the data file and control file for the model
   ## Get the file whose name contains "_data.ss" and "_control.ss"
   ## If there is not exactly one of each, stop with error.
-  model_path.listing <- dir(model_path)
+  model_path.listing <- tolower(dir(model_path))
   dat.fn.ind <- grep("_data.ss", model_path.listing)
   ctl.fn.ind <- grep("_control.ss", model_path.listing)
   par.fn.ind <- grep("ss.par", model_path.listing)
