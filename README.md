@@ -23,7 +23,7 @@ _____________________________________________________________
 * The R package `r4ss`, on the `hake2020` branch:
 
 ```
-devtools::install_github("r4ss/r4ss", ref = "hake2020")
+devtools::install_github("r4ss/r4ss", ref = "bioscale")
 ```
 
 ---
