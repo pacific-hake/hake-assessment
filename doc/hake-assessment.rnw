@@ -219,12 +219,12 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \title{\TitleFont Status of the \fishname\ (whiting) stock in U.S. and Canadian
   waters in \Sexpr{assess.yr}
 %% Uncomment for DRAFT:
-%%  \\ ~\\ DRAFT for submission to Scientific Review Group
-%%  \thanks{\noindent Disclaimer: This
-%% information is distributed solely for the purpose of pre-dissemination
-%% peer review under applicable information quality guidelines. It does not
-%% represent and should not be construed to represent any agency determination
-%% or policy.}
+\\ ~\\ DRAFT for submission to Scientific Review Group
+\thanks{\noindent Disclaimer: This
+information is distributed solely for the purpose of pre-dissemination
+peer review under applicable information quality guidelines. It does not
+represent and should not be construed to represent any agency determination
+or policy.}
 \\ ~\\ ~\\ \includegraphics[width=4in]{hake-picture}}
 
 \author{Joint Technical Committee of the \fishname/Whiting Agreement \\ Between
@@ -248,18 +248,18 @@ Canadian members of the Joint Technical Committee, and others that
 contributed significantly.
 
 Authors of this document are (all authors contribute extensively so the order rotates annually):\\
-\hspace{4ex}Kelli F. Johnson\supscr{2} \\
-\hspace{4ex}Andrew M. Edwards\supscr{1} \\
+\hspace{4ex}Kelli F. Johnson\supscr{1} \\
+\hspace{4ex}Andrew M. Edwards\supscr{2} \\
 \hspace{4ex}Aaron M. Berger\supscr{3} \\
-\hspace{4ex}Chris J. Grandin\supscr{1} \\
+\hspace{4ex}Chris J. Grandin\supscr{2} \\
 \bigskip
 
-\emph{\supscr{1}Pacific Biological Station, Fisheries and Oceans Canada,
-  3190 Hammond Bay Road, Nanaimo, B.C. V9T 6N7, Canada}
-
-\emph{\supscr{2}Northwest Fisheries Science Center, National Marine Fisheries
+\emph{\supscr{1}Northwest Fisheries Science Center, National Marine Fisheries
   Service, National Oceanic and Atmospheric Administration, U.S. Department of
   Commerce, 2725 Montlake Blvd. East, Seattle, WA 98112-2097, USA}
+
+\emph{\supscr{2}Pacific Biological Station, Fisheries and Oceans Canada,
+  3190 Hammond Bay Road, Nanaimo, B.C. V9T 6N7, Canada}
 
 \emph{\supscr{3}Northwest Fisheries Science Center, National Marine
   Fisheries Service, National Oceanic and Atmospheric Administration,
@@ -267,23 +267,20 @@ Authors of this document are (all authors contribute extensively so the order ro
   97365-5275, USA}
 
 %% Draft version
-%% This DRAFT document is non-citable.
+This DRAFT document is non-citable.
 
 %% ** - The double asterisks indicate a paragraph, or sentence that needs to be thought about this year
 %% and double checked (i.e. isn't fully automated, may just need someone to have a
 %% quick think). If at the start of a paragraph then need to look at the full
-%% paragraph. Then update any `\% Manual done 2019` text after the paragraph so we
-%% definitely know it has been verified. Should end up with no ** by the end (including here!). We'll still
-%% read through everything, but the ** indicates what definitely needs some
-%% thinking. *******COMMENT ME OUT WHEN DONE*******
+%% paragraph.
 
 %% Final version (with standard author rotation)
-This document should be cited as follows:\\
-Grandin, C.J., K.F. Johnson, A.M. Edwards, and A.M. Berger.
-\Sexpr{assess.yr}. Status of the \fishname\ (whiting) stock in
-U.S. and Canadian waters in \Sexpr{assess.yr}. Prepared by the Joint Technical
-Committee of the U.S. and Canada \fishname/Whiting Agreement, National Marine
-Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
+% This document should be cited as follows:\\
+% Johnson, K.F., A.M. Edwards, A.M. Berger and C.J. Grandin.
+% \Sexpr{assess.yr}. Status of the \fishname\ (whiting) stock in
+% U.S. and Canadian waters in \Sexpr{assess.yr}. Prepared by the Joint Technical
+% Committee of the U.S. and Canada \fishname/Whiting Agreement, National Marine
+% Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 
 \newpage
 
