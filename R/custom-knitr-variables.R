@@ -71,6 +71,8 @@ last.year.us.tribal.catch.percent <- f(last.year.us.tribal.max.landed / last.yea
 
 ################################################################################
 ## Last year Canadian catch and TAC
+can.vessels <- c("Viking Enterprise", "Northern Alliance", "Osprey #1",
+  "Raw Spirit", "Pacific Legacy #1", "Sunderoey", "Viking Alliance")
 last.year.can.carryover <- f(filter(further.tac, Year == last.data.yr)$can.carried.over)
 last.year.can.attained <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANATTAIN), 1)   # the percentage
 last.2year.can.attained.diff <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANATTAIN - landings.vs.tac[landings.vs.tac$Year %in% (end.yr-2),]$CANATTAIN), 1)
