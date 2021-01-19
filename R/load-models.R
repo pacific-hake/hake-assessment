@@ -233,7 +233,7 @@ calc.mcmc <- function(mcmc,
                      "40\\%",
                      latex.bold("--"))
   exp.frac.spr <-
-    paste0(f(100 * quantile(mcmc$Fstd_SPR,
+    paste0(f(100 * quantile(mcmc$annF_SPR,
                             prob = probs),
              1),
            "\\%")
@@ -251,7 +251,7 @@ calc.mcmc <- function(mcmc,
              1),
            "\\%")
   exp.frac.b40 <-
-    paste0(f(100 * quantile(mcmc$Fstd_Btgt,
+    paste0(f(100 * quantile(mcmc$annF_Btgt,
                             prob = probs),
              1),
            "\\%")
@@ -268,7 +268,7 @@ calc.mcmc <- function(mcmc,
                       1),
                     "\\%")
   exp.frac.sprmsy <-
-    paste0(f(100 * quantile(mcmc$Fstd_MSY,
+    paste0(f(100 * quantile(mcmc$annF_MSY,
                             prob = probs),
              1),
            "\\%")
