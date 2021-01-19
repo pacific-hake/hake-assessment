@@ -243,7 +243,7 @@ make.mcmc.diag.plot <- function(model,
       ann = TRUE)
 
   ## Top left
-  traceplot(mc_obj, smooth = TRUE, main = "")
+  coda::traceplot(mc_obj, smooth = TRUE, main = "")
   mtext("Value", side = 2, line = 3, font = 1, cex = 0.8)
   ## Top right
   lowest <- min(mc_obj)
