@@ -132,9 +132,9 @@ curr.bio.upper <- f(base.model$mcmccalcs$supper[names(base.model$mcmccalcs$suppe
 
 ################################################################################
 ## Estimates of spawning biomass for previous year (calculated in this assessment):
-prev.bio.lower <- f(base.model$mcmccalcs$slower[names(base.model$mcmccalcs$slower) %in% last.data.yr], 3)      # last.data.yr = end.yr-1
-prev.bio.median <- f(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% last.data.yr], 3)
-prev.bio.upper <- f(base.model$mcmccalcs$supper[names(base.model$mcmccalcs$supper) %in% last.data.yr], 3)
+prev.bio.lower <- f(last.yr.base.model$mcmccalcs$slower[names(base.model$mcmccalcs$slower) %in% last.data.yr], 3)      # last.data.yr = end.yr-1
+prev.bio.median <- f(last.yr.base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% last.data.yr], 3)
+prev.bio.upper <- f(last.yr.base.model$mcmccalcs$supper[names(base.model$mcmccalcs$supper) %in% last.data.yr], 3)
 
 ################################################################################
 ## First forecast year depletion and spawning biomass estimates
