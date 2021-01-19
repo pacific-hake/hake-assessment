@@ -187,7 +187,7 @@ expected management outcomes given repeated application of these procedures over
 the long-term. The results of past (and ongoing) closed-loop simulations influenced
 the decisions made for this assessment.
 
-This \Sexpr{assess.yr} assessment retains most of the structural form of the base
+This \Sexpr{assess.yr} assessment retains the structural form of the base
 assessment model from \Sexpr{last.assess.yr} as well as many of the previous
 elements as configured in Stock Synthesis. Analyses conducted in 2014
 showed that allowing for time-varying (rather than fixed) selectivity reduced
@@ -201,12 +201,11 @@ fishery selectivity could reduce the effects of errors caused
 by assuming selectivity is constant over time. Therefore, we retain time-varying
 selectivity in this assessment.
 We retain the Dirichlet-Multinomial approach to weighting
-composition data and use a new prior for the corresponding parameters.
+composition data.
 We again provide sensitivities to alternative data-weighting
 approaches. Time-varying fecundity, which was introduced in 2019, was retained.
 The weight-at-age information for the forecast period
-was changed to be a representation of the last five years rather than
-all years to match the years used for other time-varying processes.
+was a representation of the last five years, as for the 2020 assessment.
 
 \subsection*{Stock biomass} \label{sec:es-stock-biomass} \phantomsection
 \addcontentsline{toc}{subsection}{Stock biomass}
