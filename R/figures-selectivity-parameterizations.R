@@ -1,6 +1,6 @@
 
 make.selectivity.illustration <- function(
-    mod.old,     # model with parameterization used in 2018 base model 
+    mod.old,     # model with parameterization used in 2018 base model
     mod.alt,     # model with alternative parameterization
     yr1 = 1990,  # baseline year
     yr2 = 1991){ # year to illustrate with deviations
@@ -71,12 +71,12 @@ make.selectivity.illustration <- function(
                                       mod.alt$ageselex$Yr==yr2, paste(0:20)]
 
   # selectivity deviations for semi-parametric selectivity
-  dev_string <- paste0("Fishery_ARDEV_y", yr2) 
+  dev_string <- paste0("Fishery_ARDEV_y", yr2)
   dev_labels <- grep(dev_string, mod.alt$parameters$Label, value=TRUE)
-  dev_ages <- as.numeric(substring(dev_labels, first=nchar(dev_string)+3)) 
+  dev_ages <- as.numeric(substring(dev_labels, first=nchar(dev_string)+3))
   dev_vals <- mod.alt$parameters$Value[mod.alt$parameters$Label %in% dev_labels]
 
-  sigmasel <- mod.alt$parameters$Value[mod.alt$parameters$Label=="_sigmasel_Fishery(1)_AGE(1)"]
+  sigmasel <- mod.alt$parameters$Value[mod.alt$parameters$Label=="sigmasel_Fishery(1)_AGE(1)"]
 
   # compare baseline selectivity for status-quo model calculated both ways
   rbind(S_base[1:10], S_base_B[1:10])
@@ -99,7 +99,7 @@ make.selectivity.illustration <- function(
   }
 
   # subset of ages to show
-  sub <- ages >= a_min 
+  sub <- ages >= a_min
 
   xlim <- c(0,8)
   # define y-limits that can apply to both columns
@@ -107,7 +107,7 @@ make.selectivity.illustration <- function(
   ylim2 <- c(0,1.1*max(S_prime_base[sub], S_prime_adj[sub],
                        S_prime_base_alt[sub], S_prime_adj[sub]))
   ylim3 <- c(0,1.05*max(1, as.numeric(S_adj_alt_B)))
-  
+
   par(mfcol=c(3,2), mar=c(2,4.5,0,0), oma=c(2,0,3,1), cex=1, las=1)
 
   # first plot showing parameters by age
@@ -131,7 +131,7 @@ make.selectivity.illustration <- function(
         outer=TRUE, adj=.2)
 
   # second plot showing cumulative sum of parameters
-  plot(ages[sub], S_prime_base[sub], type='l', lwd=4, yaxs='i', axes=FALSE, 
+  plot(ages[sub], S_prime_base[sub], type='l', lwd=4, yaxs='i', axes=FALSE,
        xlim=xlim, ylim=ylim2,
        ylab=expression(paste("Cumulative total,   ", italic("S'"[a]))))
   add_label("(b)")
