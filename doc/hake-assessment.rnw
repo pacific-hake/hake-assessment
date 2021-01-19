@@ -306,8 +306,8 @@ This DRAFT document is non-citable.
 %% \modulolinenumbers[5]
 
 \lfoot{
-       %% DRAFT -- \fishname\ assessment \Sexpr{assess.yr}
-       \fishname\ assessment \Sexpr{assess.yr}
+       DRAFT -- \fishname\ assessment \Sexpr{assess.yr}
+       %% \fishname\ assessment \Sexpr{assess.yr}
        }
 \rfoot{One-page summary}
 <<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=
