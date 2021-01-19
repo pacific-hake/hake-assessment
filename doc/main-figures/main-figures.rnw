@@ -423,68 +423,68 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
-<<main-bridge-5-panel-3, fig.height=8, fig.width=8, is.fig = TRUE>>=
-oldpar <- par(no.readonly=TRUE)
-par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
-layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
-bridge.density.names <- c("SSB_Virgin",
-                          "R0",
-                          "Main_RecrDev_2010",
-                          "Late_RecrDev_2012",
-                          "Late_RecrDev_2014",
-                          "SR_BH_steep",
-                          "ForeCatch_2016")
-make.comparison.plot(bridge.models.3,
-                     subplots = 2,
-                     model.names = bridge.model.names.3,
-                     densitynames = bridge.density.names,
-                     end.yr = bridge.model.end.yr.3)
-make.comparison.plot(bridge.models.3,
-                     subplots = 4,
-                     model.names = bridge.model.names.3,
-                     densitynames = bridge.density.names,
-                     legend = FALSE,
-                     end.yr = bridge.model.end.yr.3)
-make.comparison.plot(bridge.models.3,
-                     subplots = 10,
-                     model.names = bridge.model.names.3,
-                     densitynames = bridge.density.names,
-                     legend = FALSE,
-                     end.yr = bridge.model.end.yr.3)
-make.comparison.plot(bridge.models.3,
-                     subplots = 12,
-                     model.names = bridge.model.names.3,
-                     densitynames = bridge.density.names,
-                     legend = FALSE,
-                     end.yr = bridge.model.end.yr.3)
-box()
-make.comparison.plot(bridge.models.3,
-                     subplots = 13,
-                     model.names = bridge.model.names.3,
-                     densitynames = bridge.density.names,
-                     indexPlotEach = TRUE,
-                     indexUncertainty = TRUE,
-                     legend = FALSE,
-                     end.yr = bridge.model.end.yr.3)
-mtext("Year", side = 1, line = 1, outer = TRUE)
-par <- oldpar
-@
-\end{center}
-\caption{Bridging models starting with the addition of 2019 fishery compositions
-  and weights (shown
-  in Figure~\ref{fig:main-bridge-5-panel-2}) and then with sequential changes including
-  updating and adding 2019 survey biomass data, adding 2019 survey composition data, and then
-  adding a prior on the survey Dirichlet-Multinomial parameter, giving the
-  2020 base model. Panels are spawning biomass
-  (upper panel), relative spawning biomass (spawning biomass in each year
-  relative to the unfished equilibrium spawning biomass, middle left),
-  absolute recruitment (middle right), recruitment deviations (lower left),
-  and survey index (lower right). For models without \Sexpr{assess.yr -1} data,
-  estimates shown for \Sexpr{assess.yr} are forecasts.}
-\label{fig:main-bridge-5-panel-3}
-\end{figure}
+% \begin{figure}[H]
+% \begin{center}
+% <<main-bridge-5-panel-3, fig.height=8, fig.width=8, is.fig = TRUE>>=
+% oldpar <- par(no.readonly=TRUE)
+% par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
+% layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
+% bridge.density.names <- c("SSB_Virgin",
+%                           "R0",
+%                           "Main_RecrDev_2010",
+%                           "Late_RecrDev_2012",
+%                           "Late_RecrDev_2014",
+%                           "SR_BH_steep",
+%                           "ForeCatch_2016")
+% make.comparison.plot(bridge.models.3,
+%                      subplots = 2,
+%                      model.names = bridge.model.names.3,
+%                      densitynames = bridge.density.names,
+%                      end.yr = bridge.model.end.yr.3)
+% make.comparison.plot(bridge.models.3,
+%                      subplots = 4,
+%                      model.names = bridge.model.names.3,
+%                      densitynames = bridge.density.names,
+%                      legend = FALSE,
+%                      end.yr = bridge.model.end.yr.3)
+% make.comparison.plot(bridge.models.3,
+%                      subplots = 10,
+%                      model.names = bridge.model.names.3,
+%                      densitynames = bridge.density.names,
+%                      legend = FALSE,
+%                      end.yr = bridge.model.end.yr.3)
+% make.comparison.plot(bridge.models.3,
+%                      subplots = 12,
+%                      model.names = bridge.model.names.3,
+%                      densitynames = bridge.density.names,
+%                      legend = FALSE,
+%                      end.yr = bridge.model.end.yr.3)
+% box()
+% make.comparison.plot(bridge.models.3,
+%                      subplots = 13,
+%                      model.names = bridge.model.names.3,
+%                      densitynames = bridge.density.names,
+%                      indexPlotEach = TRUE,
+%                      indexUncertainty = TRUE,
+%                      legend = FALSE,
+%                      end.yr = bridge.model.end.yr.3)
+% mtext("Year", side = 1, line = 1, outer = TRUE)
+% par <- oldpar
+% @
+% \end{center}
+% \caption{Bridging models starting with the addition of 2019 fishery compositions
+%   and weights (shown
+%   in Figure~\ref{fig:main-bridge-5-panel-2}) and then with sequential changes including
+%   updating and adding 2019 survey biomass data, adding 2019 survey composition data, and then
+%   adding a prior on the survey Dirichlet-Multinomial parameter, giving the
+%   2020 base model. Panels are spawning biomass
+%   (upper panel), relative spawning biomass (spawning biomass in each year
+%   relative to the unfished equilibrium spawning biomass, middle left),
+%   absolute recruitment (middle right), recruitment deviations (lower left),
+%   and survey index (lower right). For models without \Sexpr{assess.yr -1} data,
+%   estimates shown for \Sexpr{assess.yr} are forecasts.}
+% \label{fig:main-bridge-5-panel-3}
+% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 % \clearpage
 
