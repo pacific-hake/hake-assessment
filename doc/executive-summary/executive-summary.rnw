@@ -27,7 +27,8 @@ Georgia, Puget Sound, and the Gulf of California, are not included in this
 analysis.
 
 \subsection*{Catches} \label{sec:es-catches} \phantomsection
-\addcontentsline{toc}{subsection}{Catches} Coast-wide fishery \fishname\
+\addcontentsline{toc}{subsection}{Catches}
+**Coast-wide fishery \fishname\
 landings averaged \Sexpr{f(mean(catches$TOTAL))}~t from
 \Sexpr{min(catches$Year)} to \Sexpr{max(catches$Year)}, with a low of
 \Sexpr{f(min(catches$TOTAL))}~t in
@@ -45,7 +46,7 @@ make.catches.plot(catches,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Total \fishname\ catch used in the assessment by sector,
+\caption{**Total \fishname\ catch used in the assessment by sector,
   \Sexpr{start.yr}--\Sexpr{last.data.yr}.
   U.S. tribal catches are included in the sectors where they are represented.
   CP is catcher-processor and MS is mothership.}
@@ -53,7 +54,7 @@ make.catches.plot(catches,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to
+**Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to
 the modern fishery. Over the early period (\Sexpr{min(catches$Year)}--1990) most
 removals were from foreign or joint-venture fisheries,
 and catch in U.S. waters averaged \Sexpr{f(mean(catches$Ustotal))}~t,
@@ -79,7 +80,7 @@ make.catches.table(catches,
                    start.yr = assess.yr - 10,
                    end.yr = assess.yr - 1,
                    xcaption =
-                   "Recent commercial fishery catch (t). Tribal catches are
+                   "**Recent commercial fishery catch (t). Tribal catches are
                     included in the sector totals. Research catch includes landed
                     catch associated with certain research-related activities.
                     Catch associated with surveys and discarded bycatch in
@@ -91,7 +92,7 @@ make.catches.table(catches,
                    placement = "tbp")
 @
 
-In this stock assessment, the terms catch and landings are used
+**In this stock assessment, the terms catch and landings are used
 interchangeably. Estimates of discard within the target fishery are included,
 but discarding of \fishname\ in non-target fisheries is not. Discard from all
 fisheries, including those that do not target hake, is estimated to be less
@@ -169,12 +170,17 @@ about natural mortality, stock-recruitment steepness (a parameter for stock
 productivity), and several other parameters, with likelihoods for acoustic survey
 biomass indices, acoustic survey age-composition data, and fishery
 age-composition data. Integrating the joint posterior distribution over model
-parameters (via the Markov chain Monte Carlo algorithm) provides probabilistic
+parameters provides probabilistic
 inferences about uncertain model parameters and forecasts derived from those
-parameters. Sensitivity analyses are used to identify alternative model
-assumptions that may also be consistent with the data. Retrospective analyses
+parameters; this is done via Markov chain Monte Carlo sampling using the No-U-Turn
+Sampler (NUTS) that was successfully tested in the \Sexpr{last.assess.yr} assessment.
+Sensitivity analyses are used to identify alternative model
+assumptions that may also be consistent with the data. This is the first
+assessment for which the sensitivity analyses use Bayesian estimation (rather than just maximum
+likelihood estimation).
+Retrospective analyses
 identify possible poor performance of the assessment model with respect to
-future predictions. Past assessments have conducted closed-loop simulations
+future predictions**[mention MCMC if done for retros]. Past assessments have conducted closed-loop simulations
 which provide insights into how alternative combinations of survey frequency,
 assessment model selectivity assumptions, and harvest control rules affect
 expected management outcomes given repeated application of these procedures over
