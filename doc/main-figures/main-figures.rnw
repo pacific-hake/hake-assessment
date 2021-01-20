@@ -313,24 +313,28 @@ make.comparison.plot(bridge.models.1,
                      subplots = 2,
                      model.names = bridge.model.names.1,
                      densitynames = bridge.density.names,
+                     plot_mcmc = FALSE,
                      end.yr = bridge.model.end.yr.1)
 make.comparison.plot(bridge.models.1,
                      subplots = 4,
                      model.names = bridge.model.names.1,
                      densitynames = bridge.density.names,
                      legend = FALSE,
+                     plot_mcmc = FALSE,
                      end.yr = bridge.model.end.yr.1)
 make.comparison.plot(bridge.models.1,
                      subplots = 10,
                      model.names = bridge.model.names.1,
                      densitynames = bridge.density.names,
                      legend = FALSE,
+                     plot_mcmc = FALSE,
                      end.yr = bridge.model.end.yr.1)
 make.comparison.plot(bridge.models.1,
                      subplots = 12,
                      model.names = bridge.model.names.1,
                      densitynames = bridge.density.names,
                      legend = FALSE,
+                     plot_mcmc = FALSE,
                      end.yr = bridge.model.end.yr.1)
 box()
 make.comparison.plot(bridge.models.1,
@@ -340,6 +344,7 @@ make.comparison.plot(bridge.models.1,
                      indexPlotEach = TRUE,
                      indexUncertainty = TRUE,
                      legend = FALSE,
+                     plot_mcmc = FALSE,
                      end.yr = bridge.model.end.yr.1)
 mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
@@ -378,24 +383,28 @@ make.comparison.plot(bridge.models.2,
                      subplots = 2,
                      model.names = bridge.model.names.2,
                      densitynames = bridge.density.names,
+                     plot_mcmc = FALSE,
                      end.yr = bridge.model.end.yr.2)
 make.comparison.plot(bridge.models.2,
                      subplots = 4,
                      model.names = bridge.model.names.2,
                      densitynames = bridge.density.names,
                      legend = FALSE,
+                     plot_mcmc = FALSE,
                      end.yr = bridge.model.end.yr.2)
 make.comparison.plot(bridge.models.2,
                      subplots = 10,
                      model.names = bridge.model.names.2,
                      densitynames = bridge.density.names,
                      legend = FALSE,
+                     plot_mcmc = FALSE,
                      end.yr = bridge.model.end.yr.2)
 make.comparison.plot(bridge.models.2,
                      subplots = 12,
                      model.names = bridge.model.names.2,
                      densitynames = bridge.density.names,
                      legend = FALSE,
+                     plot_mcmc = FALSE,
                      end.yr = bridge.model.end.yr.2)
 box()
 make.comparison.plot(bridge.models.2,
@@ -405,6 +414,7 @@ make.comparison.plot(bridge.models.2,
                      indexPlotEach = TRUE,
                      indexUncertainty = TRUE,
                      legend = FALSE,
+                     plot_mcmc = FALSE,
                      end.yr = bridge.model.end.yr.2)
 mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
@@ -949,7 +959,7 @@ make.comparison.plot(c(list(base.model), sens.models.1),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base
+\caption{MCMC estimates of spawning biomass for the base
   model and alternative sensitivity runs representing changing the mean of
   the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, lower (1.0) and higher
   (1.6) levels of variation assumed about the stock-recruitment relationship
@@ -971,7 +981,7 @@ make.comparison.plot(c(list(base.model), sens.models.1),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative
+\caption{MCMC estimates of stock status (relative
   spawning biomass) for the base model and alternative sensitivity runs
   representing changing key parameters. See
   Figure~\ref{fig:main-biomass-base-alternative-1} for sensitivity descriptions.}
@@ -990,7 +1000,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model and alternative
+\caption{MCMC estimates of spawning biomass for the base model and alternative
   sensitivity runs that represent the following changes in data: adding an age-1 index of abundance,
   using the McAllister-Ianelli approach to weight composition data, and using the
   Francis approach to weight composition data.}
@@ -1024,7 +1034,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base
+\caption{MCMC estimates of stock status (relative spawning biomass) for the base
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-status-base-alternative-2}
