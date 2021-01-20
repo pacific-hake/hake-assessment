@@ -313,9 +313,9 @@ This DRAFT document is non-citable.
 <<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=
 @
 
-\rfoot{Executive summary}
-<<executive-summary, child='executive-summary/executive-summary.rnw'>>=
-@
+% \rfoot{Executive summary}
+% <<executive-summary, child='executive-summary/executive-summary.rnw'>>=
+% @
 
 \renewcommand{\thetable}{\arabic{table}}
 \setcounter{table}{0}
@@ -348,15 +348,15 @@ This DRAFT document is non-citable.
 \bibliographystyle{hake}
 \bibliography{all}
 
-\newpage
-\rfoot{Section~\ref{sec:tables} -- Tables}
-<<main-tables, child='main-tables/main-tables.rnw'>>=
-@
+% \newpage
+% \rfoot{Section~\ref{sec:tables} -- Tables}
+% <<main-tables, child='main-tables/main-tables.rnw'>>=
+% @
 
-\clearpage
-\rfoot{Section~\ref{sec:figures} -- Figures}
-<<main-figures, child='main-figures/main-figures.rnw'>>=
-@
+% \clearpage
+% \rfoot{Section~\ref{sec:figures} -- Figures}
+% <<main-figures, child='main-figures/main-figures.rnw'>>=
+% @
 \clearpage
 
 \addtocontents{toc}{\par {\bf \vspace{10mm} APPENDICES} \par}
