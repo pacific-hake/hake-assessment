@@ -48,14 +48,19 @@ The structural assumptions
 of this \Sexpr{assess.yr} base model,
 implemented using version \Sexpr{ss.version} of the Stock Synthesis software
 \citep{MethotWetzel2013},
-% Manual done 2020 KFJ
-are largely the same as the
-\Sexpr{last.assess.yr} base model \citep{JTC2019}, though we incorporate
-the following three changes.
-First, instead of using prescribed constant values,
-a nearly uniform prior (in transformed space) was applied to the Dirichlet-Multinomial parameters used to weight the age-composition data.
-Second, we removed the constraint that estimated recruitment deviations should sum to zero.
-Lastly, weight-at-age data for the forecast period was calculated using the average of the five most recent years rather than all years.
+% Manual done 2021 AME
+are the same as the
+\Sexpr{last.assess.yr} base model \citep{JTC2020}.
+The Bayesian estimation is computed using a new efficient approach
+that was successfully tested in last year's assessment
+\citep{JTC2020}. Consequently, for the
+first time, all sensitivity analyses are performed in a Bayesian
+context rather than just using maximum likelihood estimation.
+% Use this later:
+%Bayesian Markov chain Monte Carlo (MCMC) sampling, the
+% No-U-Turn Sampler (NUTS; \citealt{HoffmanGelman2014}), implemented using the
+% {\tt adnuts} R package \citep{Monnahan2018, Monnahan2019}, that was successfully
+%tested in last year's assessment \citep{JTC2020}.
 %The 35-day 2018/2019 U.S. government shutdown considerably delayed delivery of U.S.
 %age data and reduced the JTC's time available to collectively complete the
 %\Sexpr{assess.yr} assessment. As a result,
