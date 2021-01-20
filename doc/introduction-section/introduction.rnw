@@ -80,7 +80,7 @@ which are found in both hemispheres of the Atlantic and Pacific Oceans
 \citep{AlheitPitcher1995, LlorisMatallanasEtAl2005}.
 % [Just verify the next sentence]
 The coastal stock of
-\fishname\ is currently the most abundant groundfish population in the
+\fishname\ is currently the [** presumably still true?] most abundant groundfish population in the
 California Current system. Smaller populations of this species occur in the
 major inlets of the Northeast Pacific Ocean, including the Strait of Georgia,
 the Puget Sound, and the Gulf of California. Genetic studies indicate that the
@@ -114,7 +114,7 @@ Canadian waters, as seen in the 2001 survey
 The distribution of age-1 fish also changes between years
 (Figure~\ref{fig:main-backscatter-map-age1}).
 % Presumably next sentence can just stay same for 2018:
-The research on links between migration
+**Mention Malick et al 2020 paper here presumably... The research on links between migration
 of different age classes and environmental variables is anticipated to be
 updated in the years ahead to take advantage of the data that have been
 collected in the years since the previous analyses were conducted.
@@ -136,10 +136,11 @@ management \citep{ResslerHolmesEtAl2007, HamelEtAl2015}.  The 2015 \fishname\
 stock assessment document presented a sensitivity analysis where hake mortality
 was linked to the Humboldt Squid index \citep{JTC2015}. This sensitivity was not
 repeated in this assessment, although further research on this topic is needed.
-Ongoing research investigating abiotic (environmental conditions) and biotic
+**Replace/update with Malick and any other refs?: Ongoing research investigating abiotic (environmental conditions) and biotic
 (e.g., euphausiid distribution and abundance) drivers of hake distribution and
 recruitment could provide insight into how the hake population is linked with
-broader ecosystem considerations. In terms of an `Ecosystem Approach to
+broader ecosystem considerations.
+In terms of an `Ecosystem Approach to
 Fisheries Management' (a new priority for DFO), the use of empirical
 weight-at-age somewhat accounts for ecosystem effects (see
 Section~\ref{sec:data-weight-at-age}).
@@ -169,9 +170,9 @@ quotas were an average of \Sexpr{tot.9399.attainment}\% of the limit. The Agreem
 Canada establishes U.S. and Canadian shares of the coast-wide total allowable
  catch (TAC) at \Sexpr{us.allotment.percent}\% and
 \Sexpr{can.allotment.percent}\%, respectively, and this distribution has been
-adhered to since ratification of the Agreement.
+adhered to since ratification of the Agreement ***until 2020 when ....
 
-Throughout the last decade, the total coast-wide catch has tracked harvest
+**[prob needs a bit of thinking] Throughout the last decade, the total coast-wide catch has tracked harvest
 targets reasonably well.
 %  (Table~\ref{tab:main-landings-tac})    % so Table 4 isn't ref'ed before 1-3
 Since 1999, catch
@@ -197,7 +198,7 @@ stock assessment outputs.
 \subsubsection{Management of \fishname\ in the United States}
 \label{sec:intro-management-us}
 
-In the U.S. zone, participants in the directed fishery are required to use
+**[presume still all fine] In the U.S. zone, participants in the directed fishery are required to use
 pelagic trawls with a codend mesh of at least 7.5~cm (3~inches). Regulations
 also restrict the area and season of fishing to reduce the bycatch of Chinook
 salmon (\emph{Oncorhynchus tshawytscha}) and several depleted rockfish stocks
@@ -237,8 +238,8 @@ managed with IFQs.
 
 \subsubsection{Management of \fishname\ in Canada}\label{sec:intro-management-canada}
 
-Canadian groundfish managers distribute their portion
-(\Sexpr{can.allotment.percent}\%) of the TAC as quota to
+**Canadian groundfish managers distribute their portion
+(**usually \Sexpr{can.allotment.percent}\%) of the TAC as quota to
 individual license holders. In \Sexpr{last.data.yr}, Canadian hake fishermen
 were allocated a TAC of \Sexpr{last.year.can.tac}~t, including
 \Sexpr{last.year.can.carryover}~t of uncaught carryover fish from
@@ -251,7 +252,7 @@ codends from Canadian catcher vessels while at sea.
 The last year a Joint-Venture fishery was conducted was in \Sexpr{latest.year.can.jv}.
 % There was a Joint-Venture fishery conducted in \Sexpr{latest.year.can.jv}.
 
-In \Sexpr{last.data.yr}, all Canadian \fishname\ trips remained subject to 100\%
+**In \Sexpr{last.data.yr}, all Canadian \fishname\ trips remained subject to 100\%
 observer coverage, by either electronic monitoring for the shoreside component
 of the domestic fishery or on-board observer for the freezer-trawler
 component. All shoreside hake landings were also subject to 100\% verification
@@ -273,7 +274,7 @@ and since then they have been greater than 200,000~t for all except
 \Sexpr{catches.below.200000.since.1986} years. A more detailed description of
 the history of the fishery is provided by \citet{JTC2013}.
 
-The \fishname\ stock is of huge commercial value. For example, in Canada alone
+**[update ref since now published] The \fishname\ stock is of huge commercial value. For example, in Canada alone
 over CA\$26~million in wages was estimated to have been paid to employees of the
 processing industry in 2018, with an exported value of CA\$100~million mainly
 to Ukraine, China, South Africa and Lithuania
@@ -283,6 +284,8 @@ to Ukraine, China, South Africa and Lithuania
 
 \subsubsection{Overview of the fisheries in \Sexpr{last.data.yr}}\label{sec:intro-fisheries-overview}
 
+**[need to be comment out allotment percentages this year, and mention that not
+the usual percentages]
 The Joint Management Committee (JMC) determined an adjusted (for carryovers)
 coast-wide TAC of \Sexpr{last.year.tac}~t for \Sexpr{last.data.yr},
 with a U.S. allocation of \Sexpr{last.year.us.tac}~t
@@ -300,6 +303,8 @@ follows by nation.
 % \newpage % kludge to avoid dangling heading:
 
 \subsubsub{United States}
+
+**Whole subsection needs updating (once we get US report?). Also mention COVID impacts.
 
 The U.S. adjusted allocation (i.e., adjusted for carryovers) of
 \Sexpr{last.year.us.tac}~t was further divided among the research, tribal,
@@ -388,6 +393,8 @@ despite vessels needing to implement bycatch-avoidance measures
 % \newpage % kludge to avoid dangling heading:
 
 \subsubsub{Canada}
+
+**Whole subsection needs updating (once we get Canadian report?). Also mention COVID impacts.
 
 The \Sexpr{last.data.yr} Canadian \fishname\ domestic fishery removed
 \Sexpr{last.year.can.landings}~t from Canadian waters, which was
