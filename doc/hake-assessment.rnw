@@ -129,6 +129,7 @@
 \newcommand{\commonname}{Pacific whiting}
 \newcommand{\sciencename}{Merluccius productus}
 \newcommand{\simplename}{hake}
+\newcommand{\surveyname}{Joint U.S. and Canadian Integrated Acoustic and Trawl Survey}
 %% Needs to be done as $\Fforty$
 \newcommand{\Fforty}{F_{\text{SPR}=40\%}}
 %% Harvest control rule, \Ffortyten{} to have a space after
