@@ -497,6 +497,69 @@ make.comparison.plot <- function(models,
       endyrvec <- end.yr
     }
   }
+  if(subplots == 14 & plot_mcmc){
+    for(i in seq_along(models)){
+      if(is.na(models[[i]]$extra.mcmc[1])){
+        stop("All models must have had the extra-mcmc run to make this plot with plot_mcmc == TRUE\n",
+             "Model '", model.names[[i]], "' does not have any extra-mcmc information.\n",
+             call. = FALSE)
+      }
+    }
+    indices <- compare.summary$indices %>%
+      as_tibble() %>%
+      filter(Use == 1, Fleet == 2) %>%
+      select(Yr, name, Obs, Exp) %>%
+      mutate(Obs = log(Obs), Exp = log(Exp)) %>%
+      group_split(name)
+
+    # MCMC fit requires extra-mcmc
+    indices <- map2(models, indices, ~{
+      yrs <- min(.y$Yr):max(.y$Yr)
+      em_lower <- .x$extra.mcmc$cpue.0.025
+      em_med <- .x$extra.mcmc$cpue.median
+      em_upper <- .x$extra.mcmc$cpue.0.975
+      if(length(.x$fleet_ID) == 3){
+        # Scenario where Age-1 index was included
+        em_lower <- em_lower[1:length(yrs)]
+        em_med <- em_med[1:length(yrs)]
+        em_upper <- em_upper[1:length(yrs)]
+      }
+      fits <- as_tibble(list(Yr = yrs,
+                             lower = log(em_lower),
+                             med = log(em_med),
+                             upper = log(em_upper)))
+      left_join(fits, .y, by = "Yr", copy = TRUE)
+    })
+    indices <- map_df(seq_along(indices), ~{
+      indices[[.x]] <- indices[[.x]] %>% mutate(name = model.names[.x])
+    })
+    #indices <- indices %>% mutate(Yr = as.numeric(Yr))
+    cols <- rich.colors.short(length(models))
+    fill_cols <- rich.colors.short(length(models), alpha = 0.1)
+    shapes <- 1:length(models)
+    # indices[26:50,]$lower <- indices[26:50,]$lower * 1.1
+    # indices[26:50,]$med <- indices[26:50,]$med * 1.1
+    # indices[26:50,]$upper <- indices[26:50,]$upper * 1.1
+
+    indices <- indices %>%
+      rename(`Log Index` = Obs) %>%
+      rename(Year = Yr)
+    g <- ggplot(indices) +
+      aes(x = Year, y = `Log Index`, group = name, color = name, fill = name, shape = name) +
+      geom_ribbon(aes(ymin = lower, ymax = upper), color = NA) +
+      geom_line(aes(y = med, color = name), size = 1.5) +
+      geom_point(aes(y = med, color = name), size = 3.5, stroke = 1.5) +
+      scale_fill_manual(values = fill_cols) +
+      scale_color_manual(values = cols) +
+      scale_shape_manual(values = shapes) +
+      geom_point(aes(x = Year, y = `Log Index`), size = 3, inherit.aes = FALSE) +
+      theme(legend.position = "none")
+      # theme(strip.text.x = element_blank(),
+      #       strip.background = element_rect(colour = "white", fill = "white"),
+      #       legend.position=c(.1,.85),
+      #       legend.title = element_blank())
+    return(g)
+  }
   SSplotComparisons(compare.summary,
                     subplots = subplots,
                     legend = legend,
