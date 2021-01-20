@@ -100,9 +100,9 @@ names(survey.biomass) <- as.character(survey.history$year)
 survey.comps <- base.model$dat$agecomp[base.model$dat$agecomp$FltSvy==2,]
 rownames(survey.comps) <- survey.comps$Yr
 survey.last.year <- survey.comps[nrow(survey.comps),]
-survey.last.year.age <- rev(survey.last.year[grep("^a", colnames(survey.last.year))])
-survey.last.year.age <- survey.last.year.age / ifelse(round(sum(survey.last.year.age), 0) == 100,
-                                                      100, 1)
+survey.last.year.age <- sort(decreasing = TRUE, round(unlist(prop.table(
+  survey.last.year[grep("^a", colnames(survey.last.year))])), 4))
+names(survey.last.year.age) <- gsub("^a", "", names(survey.last.year.age))
 survey.1.prop.age <- as.numeric(gsub("^a", "", names(survey.last.year.age)[1]))
 survey.1.prop <- f(survey.last.year.age[1] * 100, 1)
 survey.2.prop.age <- as.numeric(gsub("^a", "", names(survey.last.year.age)[2]))
