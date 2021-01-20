@@ -447,7 +447,7 @@ make.squid.plot <- function(models,      ## A list of models to compare (typical
   return(plot)
 }
 
-#' Plot a comparicon of multiple models
+#' Plot a comparison of multiple models
 #'
 #' @param models A list of model runs to be plotted against of which each
 #' element is the output of [r4ss::SSgetMCMC()]
@@ -482,14 +482,14 @@ make.comparison.plot <- function(models,
                                  verbose = FALSE){
 
   oldpar <- par()
-  on.exit(par <- oldpar)
+  on.exit(par = oldpar)
   if(is.null(model.names)){
     tmp.names <- sapply(models[1:length(models)], "[[", "path")
     model.names <- gsub(".*/", "", tmp.names)
   }
   compare.summary <- SSsummarize(models, SpawnOutputUnits = "biomass")
   endyrvec <- "default"
-  ## If it is a retropective plot, compute the end year vector of years so the lines end on the correct years
+  # If it is a retrospective plot, compute the end year vector of years so the lines end on the correct years
   if(is.retro){
     endyrvec <- compare.summary$endyrs + 1 + (0:-(length(models) - 1))
   }else{
@@ -505,6 +505,7 @@ make.comparison.plot <- function(models,
              call. = FALSE)
       }
     }
+    # Make a list of data frames of the indices, one data frame for each model
     indices <- compare.summary$indices %>%
       as_tibble() %>%
       filter(Use == 1, Fleet == 2) %>%
@@ -533,17 +534,14 @@ make.comparison.plot <- function(models,
     indices <- map_df(seq_along(indices), ~{
       indices[[.x]] <- indices[[.x]] %>% mutate(name = model.names[.x])
     })
-    #indices <- indices %>% mutate(Yr = as.numeric(Yr))
     cols <- rich.colors.short(length(models))
     fill_cols <- rich.colors.short(length(models), alpha = 0.1)
     shapes <- 1:length(models)
-    # indices[26:50,]$lower <- indices[26:50,]$lower * 1.1
-    # indices[26:50,]$med <- indices[26:50,]$med * 1.1
-    # indices[26:50,]$upper <- indices[26:50,]$upper * 1.1
 
     indices <- indices %>%
       rename(`Log Index` = Obs) %>%
       rename(Year = Yr)
+
     g <- ggplot(indices) +
       aes(x = Year, y = `Log Index`, group = name, color = name, fill = name, shape = name) +
       geom_ribbon(aes(ymin = lower, ymax = upper), color = NA) +
@@ -554,10 +552,6 @@ make.comparison.plot <- function(models,
       scale_shape_manual(values = shapes) +
       geom_point(aes(x = Year, y = `Log Index`), size = 3, inherit.aes = FALSE) +
       theme(legend.position = "none")
-      # theme(strip.text.x = element_blank(),
-      #       strip.background = element_rect(colour = "white", fill = "white"),
-      #       legend.position=c(.1,.85),
-      #       legend.title = element_blank())
     return(g)
   }
   SSplotComparisons(compare.summary,
