@@ -279,23 +279,6 @@ weight.at.age.heatmap(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-%Aaron commenting out for this year as this analysis was somewhat of a one off and actually
-%with new weight data isn't up to date anyway
-%\begin{figure}[H]
-%\begin{center}
-%\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-%\includegraphics[width=\maxwidth, height=6.5in]{main-figures/Weight_ls}
-%\end{center}
-%\vspace{0mm}
-%\caption{**Fit (red lines) to yearly weight-at-age data (standard box plots) by
-%   age group (age-2 to age-15; where age-15 is an accumulator group) using weighted
-%   least squares.  Statistical weights in the regression were based on the
-%   inverse of the annual sample variance.**UPDATE FIGURE AS MANUAL}
-%\label{fig:main-empirical-weight-at-age-years}
-%\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
 <<main-bridge-5-panel-1, fig.height=8, fig.width=8, is.fig = TRUE>>=
@@ -430,71 +413,6 @@ par <- oldpar
   and survey index (lower right).}
 \label{fig:main-bridge-5-panel-2}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{figure}[H]
-% \begin{center}
-% <<main-bridge-5-panel-3, fig.height=8, fig.width=8, is.fig = TRUE>>=
-% oldpar <- par(no.readonly=TRUE)
-% par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
-% layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
-% bridge.density.names <- c("SSB_Virgin",
-%                           "R0",
-%                           "Main_RecrDev_2010",
-%                           "Late_RecrDev_2012",
-%                           "Late_RecrDev_2014",
-%                           "SR_BH_steep",
-%                           "ForeCatch_2016")
-% make.comparison.plot(bridge.models.3,
-%                      subplots = 2,
-%                      model.names = bridge.model.names.3,
-%                      densitynames = bridge.density.names,
-%                      end.yr = bridge.model.end.yr.3)
-% make.comparison.plot(bridge.models.3,
-%                      subplots = 4,
-%                      model.names = bridge.model.names.3,
-%                      densitynames = bridge.density.names,
-%                      legend = FALSE,
-%                      end.yr = bridge.model.end.yr.3)
-% make.comparison.plot(bridge.models.3,
-%                      subplots = 10,
-%                      model.names = bridge.model.names.3,
-%                      densitynames = bridge.density.names,
-%                      legend = FALSE,
-%                      end.yr = bridge.model.end.yr.3)
-% make.comparison.plot(bridge.models.3,
-%                      subplots = 12,
-%                      model.names = bridge.model.names.3,
-%                      densitynames = bridge.density.names,
-%                      legend = FALSE,
-%                      end.yr = bridge.model.end.yr.3)
-% box()
-% make.comparison.plot(bridge.models.3,
-%                      subplots = 13,
-%                      model.names = bridge.model.names.3,
-%                      densitynames = bridge.density.names,
-%                      indexPlotEach = TRUE,
-%                      indexUncertainty = TRUE,
-%                      legend = FALSE,
-%                      end.yr = bridge.model.end.yr.3)
-% mtext("Year", side = 1, line = 1, outer = TRUE)
-% par <- oldpar
-% @
-% \end{center}
-% \caption{Bridging models starting with the addition of 2019 fishery compositions
-%   and weights (shown
-%   in Figure~\ref{fig:main-bridge-5-panel-2}) and then with sequential changes including
-%   updating and adding 2019 survey biomass data, adding 2019 survey composition data, and then
-%   adding a prior on the survey Dirichlet-Multinomial parameter, giving the
-%   2020 base model. Panels are spawning biomass
-%   (upper panel), relative spawning biomass (spawning biomass in each year
-%   relative to the unfished equilibrium spawning biomass, middle left),
-%   absolute recruitment (middle right), recruitment deviations (lower left),
-%   and survey index (lower right). For models without \Sexpr{assess.yr -1} data,
-%   estimates shown for \Sexpr{assess.yr} are forecasts.}
-% \label{fig:main-bridge-5-panel-3}
-% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 % \clearpage
 
@@ -1017,20 +935,6 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      model.names = c(base.model.name, sens.model.names.2),
                      legend = FALSE,
                      end.yr = end.yr)
-##sens.density.yr <- last.data.yr - 1
-##sens.density.names <- c(paste0("Late_RecrDev_",sens.density.yr))
-##oldpar <- par()
-##par(mar = c(2.6, 3.1, 1.1, 1.1))
-##make.comparison.plot(c(list(base.model), sens.models.2),
-##                     subplots = 14,
-##                     model.names = c(base.model.name, sens.model.names.2),
-##                     legendloc = "topleft",
-##                     densitynames = sens.density.names,
-##                     ##indexfleets = c(2,2,2,2),
-##                     indexPlotEach = TRUE,
-##                     end.yr = end.yr)
-##mtext("Catch (thousand t)", side = 1, line = 1, outer = TRUE)
-##par <- oldpar
 @
 \end{center}
 %\vspace{0mm}
@@ -1054,7 +958,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of the fit to the survey index of abundance for the base
+\caption{MCMC estimates of the fit to the survey index of abundance for the base
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-index-base-alternative-2}
@@ -1072,174 +976,13 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of recruitment deviations for the base
+\caption{MCMC estimates of recruitment deviations for the base
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-recruit-base-alternative-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 % \clearpage
-
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%note using senstivity group 3 in 2019
-%%\begin{figure}[H]
-%%\begin{center}
-%%<<main-base-alternative-3, fig.height=8, fig.width=8>>=
-%%oldpar <- par(no.readonly=TRUE)
-%%par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
-%%layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
-%%make.comparison.plot(c(list(base.model), sens.models.3),
-%%                     subplots = 2,
-%%                     model.names = c(base.model.name, sens.model.names.3),
-%%                     end.yr = end.yr)
-%%make.selex.plot(base.model, pan.letter = "a")
-%%make.selex.plot(sens.models.3[[1]], pan.letter = "b")
-%%make.selex.plot(sens.models.3[[2]], pan.letter = "c")
-%%make.selex.plot(sens.models.3[[3]], pan.letter = "d")
-%%par <- oldpar
-%%mtext("Age", side = 1, line = 1, outer = TRUE)
-%%@
-%%\end{center}
-%%\caption{**Top panel shows maximum likelihood estimates of spawning biomass
-%%  and selectivity for the base model and alternative sensitivity runs
-%%  representing changes in the age of maximum selectivity from the value
-%%  of 6 in the base model and the standard
-%%  deviation ($\Phi$) associated with time-varying selectivity.
-%%  Lower panels show baseline selectivity for both fleets and
-%%  time-varying fishery selectivity for the two most recent years for
-%%  a) Base model, b) \Sexpr{sens.model.names.3[1]}, c) \Sexpr{sens.model.names.3[2]},
-%%  and d) \Sexpr{sens.model.names.3[3]}.}
-%%\label{fig:main-base-alternative-3}
-%%\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-%%\begin{figure}[H]
-%%\begin{center}
-%%<<main-recruit-base-tv-increase-1, fig.height=4.5, fig.width=8>>=
-%%make.comparison.plot(c(list(base.model), sens.models.3),
-%%                     legend = FALSE,
-%%                     subplots = 10,
-%%                     model.names = c(base.model.name, sens.model.names.3),
-%%                     end.yr = end.yr)
-%%box()
-%%@
-%%\end{center}
-%%\caption{**Maximum likelihood estimates of recruitment deviations
-%%  for the base model and alternative sensitivity runs (refer to the legend below) representing changes
-%%  in the age of maximum selectivity from the value of 6 in the base model and the standard
-%%  deviation ($\Phi$) associated with time-varying selectivity.}
-%%\label{fig:main-recruit-base-tv-increase-1}
-%% \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-%% JOINED ON PAGE
-%%%%%%%%%%%%%%%%%%%%%%%
-%% \begin{figure}[H]
-%%\begin{center}
-%%<<main-index-base-tv-increase-1, fig.height=4.5, fig.width=8>>=
-%%sens.density.names <- c(paste0("Late_RecrDev_", sens.density.yr))
-%%#make.comparison.plot(c(list(base.model), sens.models.3),
-%%#                     subplots = 14,
-%%#                     model.names = c(base.model.name, sens.model.names.3),
-%%#                     legendloc = "topright",
-%%#                     densitynames = c("Recr_2014"),
-%%#                     densityxlab  = "Recruitment in 2014 (billions)",
-%%#                     ##indexfleets = c(2,2,2,2),
-%%#                     indexPlotEach = TRUE,
-%%#                     end.yr = end.yr)
-%%make.comparison.plot(c(list(base.model), sens.models.3),
-%%                     legendloc = "bottomleft",
-%%                     subplots = 12,
-%%                     model.names = c(base.model.name, sens.model.names.3),
-%%                     end.yr = end.yr)
-%%@
-%%\end{center}
-%%\caption{**Maximum likelihood estimates of the fit to the survey biomass index
-%%  for the base model and alternative sensitivity runs representing changes
-%%  in the age of maximum selectivity from the value of 6 in the base model and the standard
-%%  deviation ($\Phi$) associated with time-varying selectivity.}
-%%\label{fig:main-index-base-tv-increase-1}
-%%\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%% These three figures were in 2017 assessment. Commented out for now, may be needed
-%%  in 2018 assessment.
-%%%%%%%%%%%%%%%%%%%%%%%
-%% \begin{figure}[H]
-%% \begin{center}
-%% <<main-tv-selex-sens, fig.height=8, fig.width=8>>=
-%% ## Extract TV selectivity fits by running the calculation function.
-%% tv.selex.start.yr <- 1990
-%% tv.selex.ages <- 1:8
-%% tv.selex <- calc.tv.selex(sens.models.6[1][[1]],
-%%                           start.yr = tv.selex.start.yr,
-%%                           end.yr = last.data.yr,
-%%                           ages = tv.selex.ages,
-%%                           probs = c(0.025, 0.975))
-%% make.tv.selex.plot(tv.selex)
-%% @
-%% \end{center}
-%% \caption{Mountains plot of median fishery selectivity in each year for the $\phi=0.03$ sensitivity
-%%   case. Range of selectivity is 0 to 1 in each year. See Figure \ref{fig:main-tv-selex} for the base model.}
-%% \label{fig:main-tv-selex-sens}
-%% \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-% \clearpage
-
-%%%%%%%%%%%%%%%%%%%%%%%
-%% \begin{figure}[H]
-%% \begin{center}
-%% <<main-tv-selex-uncertainty-sens, fig.height=8, fig.width=8>>=
-%% ## Extract TV selectivity fits by running the calculation function, once for each year span,
-%% ##  then call the plotting function with them as a list to make a multipanel plot.
-%% tv.selex.left <- calc.tv.selex(sens.models.6[1][[1]],
-%%                                start.yr = tv.selex.start.yr,
-%%                                end.yr = 2001,
-%%                                ages = tv.selex.ages,
-%%                                probs = c(0.025, 0.975))
-%% tv.selex.right <- calc.tv.selex(sens.models.6[1][[1]],
-%%                                 start.yr = 2002,
-%%                                 end.yr = last.data.yr,
-%%                                 ages = tv.selex.ages,
-%%                                 probs = c(0.025, 0.975))
-%% make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
-%% @
-%% \end{center}
-%% \caption{Fishery selectivity sampled from posterior probability distribution by year for the $\phi=0.03$ sensitivity case.
-%%   Black dots and bars indicate the median and 95\% credibility interval, respectively. The shaded polygon
-%%   also shows the 95\% credibility interval. Range is from 0 to 1 within each year. Selectivity
-%%   for \Sexpr{tv.selex.start.yr} is shared for all years from \Sexpr{start.yr} to \Sexpr{tv.selex.start.yr}.
-%%   See Figure \ref{fig:main-tv-selex-uncertainty} for the base model.}
-%% \label{fig:main-tv-selex-uncertainty-sens}
-%% \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-%% \begin{figure}[H]
-%% \begin{center}
-%% <<main-tv-selex-uncertainty-lines-sens, fig.height=8, fig.width=8>>=
-%% oldpar <- par(no.readonly = TRUE)
-%% layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-%% make.selex.uncertainty.lines.plot(sens.models.6[1][[1]],
-%%                                   ages = tv.selex.ages,
-%%                                   type = 2,
-%%                                   probs = c(0.025, 0.975))
-%% make.selex.uncertainty.lines.plot(sens.models.6[1][[1]],
-%%                                   ages = tv.selex.ages,
-%%                                   type = 1,
-%%                                   selex.list = tv.selex,
-%%                                   probs = c(0.025, 0.975))
-%% par <- oldpar
-%% @
-%% \end{center}
-%% \caption{Estimated acoustic (top - for all years) and fishery selectivity (bottom - for \Sexpr{end.yr-1} only)
-%%   ogives from the posterior distribution for the $\phi=0.03$ sensitivity case.
-%%   See Figure \ref{fig:main-tv-selex-uncertainty-lines} for the base model.}
-%% \label{fig:main-tv-selex-uncertainty-lines-sens}
-%% \end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
@@ -1251,7 +994,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base model
+\caption{MCMC estimates of spawning biomass for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
   semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).}
@@ -1271,7 +1014,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status (relative spawning biomass) for the base model
+\caption{MCMC estimates of stock status (relative spawning biomass) for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
   semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).
@@ -1293,7 +1036,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 box()
 @
 \end{center}
-\caption{Maximum likelihood estimates of recruitment for the base model
+\caption{MCMC estimates of recruitment for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
   semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).
@@ -1314,7 +1057,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 box()
 @
 \end{center}
-\caption{Maximum likelihood estimates of recruitment deviations for the base model
+\caption{MCMC estimates of recruitment deviations for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
   semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).
@@ -1334,7 +1077,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of the fit to the survey index of abundance
+\caption{MCMC estimates of the fit to the survey index of abundance
   for the base model and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
   semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).
@@ -1382,7 +1125,7 @@ make.comparison.plot(c(list(base.model), list(sens.models.5)),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{Maximum likelihood estimates of spawning biomass for the base
+\caption{MCMC estimates of spawning biomass for the base
   model and alternative sensitivity run with cohort-based ageing error removed.}
 \label{fig:main-biomass-base-alternative-5}
 %% \end{figure}
@@ -1400,7 +1143,7 @@ make.comparison.plot(c(list(base.model), list(sens.models.5)),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Maximum likelihood estimates of stock status for the base
+\caption{MCMC estimates of stock status for the base
   model and alternative sensitivity run with cohort-based ageing error removed.}
 \label{fig:main-status-base-alternative-5}
 \end{figure}
@@ -1417,12 +1160,14 @@ make.comparison.plot(retro.list,
                      subplots = 2,
                      model.names = retro.model.names,
                      legend = FALSE,
+                     plot_mcmc = FALSE,
                      is.retro = TRUE)
 make.comparison.plot(retro.list,
                      subplots = 10,
                      model.names = retro.model.names,
                      legend = TRUE,
                      legendloc = "topleft",
+                     plot_mcmc = FALSE,
                      is.retro = TRUE)
 mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar

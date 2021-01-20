@@ -481,8 +481,6 @@ make.comparison.plot <- function(models,
                                  plot_mcmc = TRUE,
                                  verbose = FALSE){
 
-  oldpar <- par()
-  on.exit(par = oldpar)
   if(is.null(model.names)){
     tmp.names <- sapply(models[1:length(models)], "[[", "path")
     model.names <- gsub(".*/", "", tmp.names)
@@ -545,12 +543,12 @@ make.comparison.plot <- function(models,
     g <- ggplot(indices) +
       aes(x = Year, y = `Log Index`, group = name, color = name, fill = name, shape = name) +
       geom_ribbon(aes(ymin = lower, ymax = upper), color = NA) +
-      geom_line(aes(y = med, color = name), size = 1.5) +
-      geom_point(aes(y = med, color = name), size = 3.5, stroke = 1.5) +
+      geom_line(aes(y = med, color = name), size = 1) +
+      geom_point(aes(y = med, color = name), size = 3, stroke = 1.5) +
       scale_fill_manual(values = fill_cols) +
       scale_color_manual(values = cols) +
       scale_shape_manual(values = shapes) +
-      geom_point(aes(x = Year, y = `Log Index`), size = 3, inherit.aes = FALSE) +
+      geom_point(aes(x = Year, y = `Log Index`), size = 2, inherit.aes = FALSE) +
       theme(legend.position = "none")
     return(g)
   }
