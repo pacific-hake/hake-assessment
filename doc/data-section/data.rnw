@@ -391,7 +391,7 @@ or near the western end of some survey transects. The method of extrapolation
 was refined for the 2016 assessment \citep{JTC2016} and supported by the SRG.
 
 **[Mention that more detailed analysis done in 2020 assessment and refer to 2020
-Appendix~G, and summarise those conclusions] The acoustic survey data in this assessment do not include age-1 fish, although
+Appendix~G, and summarise the conclusions] The acoustic survey data in this assessment do not include age-1 fish, although
 a separate age-1 index has been explored in the past \citep{JTC2013} and was explored as
 a sensitivity. It is currently not included in the
 base model because more investigations are needed regarding how to best model the data,
@@ -420,7 +420,7 @@ by \citet{DornSaunders1997} and the weight-at-length estimated in 2011. These
 values were converted to fecundity-at-age using a parametric growth curve
 estimated in 2011 from a model that included length data.
 
-In 2018, a new age-based maturity ogive
+**[see ** below] In 2018, a new age-based maturity ogive
 (Table~\ref{tab:main-ogives} and Figure~\ref{fig:main-maturity})
 was developed using histological estimates
 of functional maturity from 1,947 ovaries that were associated with age estimates.
@@ -429,8 +429,9 @@ winter and summer acoustic research trips, from
 the U.S.~At-Sea Hake Observer Program observers aboard commercial
 Catcher-Processor vessels, and from the U.S. West Coast bottom trawl survey
 (Table~\ref{tab:main-ovaries}). Samples from south of Point Conception,
-California (34.44$^\circ$N) were excluded from this analysis because they were thought
-to mature at earlier ages and smaller sizes (see \citealt{JTC2019} for more information).
+California (34.44$^\circ$N) were excluded from that analysis because they were thought
+to mature at earlier ages and smaller sizes (see \citealt{JTC2019} for more
+information) **should that reference be to 2018???.
 We retained the maturity ogive calculated by \citet{JTC2018},
 though note that the ogive used for earlier
 assessments was not updated annually from that developed by
@@ -449,7 +450,7 @@ on the histological criteria, which is a combination of ``skip spawners''
 that will not be spawning in the upcoming year and senescent fish
 that appear to no longer have viable ovaries.
 
-Tissue samples for genetic analyses have been collected from many of the same
+**[update?] Tissue samples for genetic analyses have been collected from many of the same
 fish from which ovaries were sampled -- this may help determine whether the fish
 south of 34.44$^\circ$N are from the same stock as the rest of the coastal population.
 
@@ -457,7 +458,7 @@ south of 34.44$^\circ$N are from the same stock as the rest of the coastal popul
 
 The large inventory of \fishname\ age determinations includes many duplicate
 reads of the same otolith, either by more than one laboratory or by more than
-one age-reader within a lab. Recent west coast stock assessments have utilized the cross-
+one age-reader within a laboratory. Recent west coast stock assessments have utilized the cross-
 and double-reads approach to generate an ageing-error matrix describing the
 imprecision and bias in the observation process as a function of fish age. New
 data and analysis were used in the 2009 assessment to address an additional
@@ -468,7 +469,7 @@ result is that the presence of strong year classes is inflated in the age data
 while neighboring year classes are under-represented relative to what would be
 observed if ageing error were consistent at age across cohorts.
 
-To account for these observation errors in the model, year-specific ageing-error
+**[update?] To account for these observation errors in the model, year-specific ageing-error
 matrices (defined via vectors of standard deviations of observed age at true
 age) are applied, where the standard deviations of strong year classes are
 reduced by a constant proportion. For the 2009 and 2010 assessments, this
@@ -517,7 +518,8 @@ to the amount of catch, so the combinations of year and age with no samples
 should have relatively little importance in the overall estimates of the
 population dynamics.
 
-Prior to 1975, weight-at-age is assumed to be equal to the mean across all years with data
+**[can prob cut out the middle of this, since not so relevant now - just explain
+what we now do; and see issue \#734] Prior to 1975, weight-at-age is assumed to be equal to the mean across all years with data
 (1975-2019), consistent with the 2019 base model.
 For the forecast years, in 2019 we noted that Stock Synthesis did
 not have the desired settings to properly use the mean across recent years \citep{JTC2019}.
@@ -695,7 +697,9 @@ in an effort to produce a more objective way to determine the degree of
 flexibility. However, further testing of this approach was believed
 necessary before making the change so it
 is only used for a sensitivity analysis
-(see Section~\ref{sec:assessment-sensitivity-analyses}).
+(see Section~\ref{sec:assessment-sensitivity-analyses}). **check we still
+include that one -- SRG report of 2020 didn't mention to do it, so can maybe
+drop it.
 % Manual 2020 KFJ
 
 \subsubsection{Age composition likelihood}\label{sec:data-age-comp-likelihood}
@@ -760,7 +764,8 @@ effective sample size is dependent on how well the model expectation matches
 the observed values. Typically, this process involves no more
 than four to five iterations.
 
-In the 2019 assessment we used a uniform prior between $-5$ and $20$ for
+**[prob summarise this and combine with next paragraph, since we now stick with
+what we did in 2020] In the 2019 assessment we used a uniform prior between $-5$ and $20$ for
 $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$. The
 parameter $\theta_{\text{fish}}$ was well sampled by the MCMC algorithm. However,
 $\log \theta_{\text{surv}}$ was not being sampled efficiently due to many
@@ -773,7 +778,7 @@ convergence $\log \theta_{\text{surv}}$
 was fixed at the MLE estimate of 2.44, corresponding to a weight of
 $\theta_{\text{surv}} / (1 + \theta_{\text{surv}}) = 0.92$.
 
-To enable estimation of $\theta_{\text{surv}}$, James Thorson (NOAA, pers.~comm.)
+**[see previous paragraph comment] To enable estimation of $\theta_{\text{surv}}$, James Thorson (NOAA, pers.~comm.)
 suggested that a prior on $\log \theta_{\text{surv}}$ could be associated with
 an approximately uniform prior of the weight $\theta_{\text{surv}} / (1 +
 \theta_{\text{surv}})$. Ian Taylor (NOAA, pers.~comm.)
