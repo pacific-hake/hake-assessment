@@ -389,11 +389,11 @@ This DRAFT document is non-citable.
 @
 
 \rfoot{Appendix~\ref{chap:canada-fishery-report} -- Canada fishery report}
-<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-Canada-2019.rnw'>>=
+<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-Canada-2020.rnw'>>=
 @
 
 \rfoot{Appendix~\ref{chap:us-fishery-report} -- United States fishery report}
-<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-US-2019.rnw'>>=
+<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-US-2020.rnw'>>=
 @
 
 \rfoot{Appendix~\ref{chap:parameters} -- Estimated parameters}
