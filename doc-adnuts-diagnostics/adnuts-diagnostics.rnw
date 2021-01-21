@@ -181,7 +181,8 @@ comment = "#>",
 results = 'hide',
 # The fig.path and cache.path lines below are modified by
 # the build_doc() function. Do not modify or move them. That's for
-# hake-assessment.rnw, for adnuts-diagnostics we can just stick with .png files.
+# hake-assessment.rnw, for adnuts-diagnostics we can just stick with .png files
+# (not modifying).
 fig.path = 'knitr-cache-png/',
 cache.path = 'knitr-cache-png/',
 # Do not move this cache line from the end of the list as
@@ -245,11 +246,33 @@ or policy.}
 
 \lfoot{ADNUTS diagnostics -- \fishname\ assessment \Sexpr{assess.yr}}
 
-\rfoot{Section~\ref{chap:mcmc-diagnostics} -- Base model diagnostics}
-<<child=c('appendix-mcmc-diagnostics/setup-diagnostics-models.rnw', 'appendix-mcmc-diagnostics/adnuts-diagnostics-one-model.rnw')>>=
+<<setup>>=
+# this.sens.model.ind = 0       # start with base model
+# this.sens.model = base.model
+
+# diagnostic.model.names <- c("Base model")
+#                            sens.model.names.1)  # then add .2 etc.
+
+diagnostic.model <- c("base.model",
+                      "sens.models.1[[1]]")
 @
 
-<<child=c('appendix-mcmc-diagnostics/setup-diagnostics-models.rnw', 'appendix-mcmc-diagnostics/adnuts-diagnostics-one-model.rnw')>>=
+% \rfoot{Section~\ref{chap:mcmc-diagnostics} -- Base model diagnostics}
+
+<<generate, echo=FALSE, results='asis'>>=
+generated <- lapply(diagnostic.model,
+                    function(this.sens.model){
+  knitr::knit_expand('appendix-mcmc-diagnostics/adnuts-diagnostics-one-model.rnw')
+})
+res = knitr::knit_child(text = unlist(generated), quiet = TRUE)
+cat(res, sep = '\n')
 @
+
+
+% <<child=c('appendix-mcmc-diagnostics/setup-diagnostics-models.rnw', 'appendix-mcmc-diagnostics/adnuts-diagnostics-one-model.rnw')>>=
+% @
+
+% <<child=c('appendix-mcmc-diagnostics/setup-diagnostics-models.rnw', 'appendix-mcmc-diagnostics/adnuts-diagnostics-one-model.rnw')>>=
+% @
 
 \end{document}
