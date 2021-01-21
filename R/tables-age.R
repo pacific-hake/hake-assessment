@@ -113,7 +113,7 @@ make.input.age.data.table <- function(model,
                size = size.string,
                add.to.row = addtorow,
                table.placement = placement,
-               tabular.environment = "tabular",
+               tabular.environment = "longtable",
                hline.after = NULL))
 }
 
@@ -517,7 +517,7 @@ make.cohort.table <- function(model,
     ## cohorts is a vector of the years you want the cohort
     ## info for. Diagonals of the data frame d make up these cohorts.
     ## Assumes the year is in column 1.
-    
+
     coh.inds <- as.character(which(d[,1] %in% cohorts) - 1)
     delta <- row(d[-1]) - col(d[-1])
     coh.list <- split(as.matrix(d[,-1]), delta)
@@ -572,7 +572,7 @@ make.cohort.table <- function(model,
   # subset years and columns
   waa <- waa[waa$Yr %in% yrs, names(waa) %in% c("Yr", ages)]
   coh.waa <- get.cohorts(waa, cohorts)
-  
+
   ## Catch-at-age
   caa <- model$catage
   # subset years and columns

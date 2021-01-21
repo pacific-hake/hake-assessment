@@ -211,8 +211,8 @@ make.input.age.data.table(base.model,
                                             "(shown in preceding tables) as described in Section~\\ref{sec:data-fishery-biological-data}. ",
                                             "Age 15 is an accumulator group for comparing observed and expected proportions."),
                           xlabel = "tab:main-all-age-data-fishery",
-                          font.size = 8,
-                          space.size = 9,
+                          font.size = 9,
+                          space.size = 10,
                           decimals = 2)
 @
 
