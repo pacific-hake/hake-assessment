@@ -243,13 +243,13 @@ or policy.}
 \input{../doc/preamble}
 \setcounter{secnumdepth}{5} %% To number subsubheadings-ish
 
-\lfoot{
-       ADNUTS diagnostics -- \fishname\ assessment \Sexpr{assess.yr}
-       %% \fishname\ assessment \Sexpr{assess.yr}
-       }
+\lfoot{ADNUTS diagnostics -- \fishname\ assessment \Sexpr{assess.yr}}
 
 \rfoot{Section~\ref{chap:mcmc-diagnostics} -- Base model diagnostics}
-<<appendix-mcmc-diagnostics, child='appendix-mcmc-diagnostics/adnuts-diagnostics-one-model.rnw'>>=
+<<child=c('appendix-mcmc-diagnostics/setup-diagnostics-models.rnw', 'appendix-mcmc-diagnostics/adnuts-diagnostics-one-model.rnw')>>=
+@
+
+<<child=c('appendix-mcmc-diagnostics/setup-diagnostics-models.rnw', 'appendix-mcmc-diagnostics/adnuts-diagnostics-one-model.rnw')>>=
 @
 
 \end{document}
