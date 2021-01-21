@@ -29,12 +29,15 @@ make.decision.table <- function(model,
     table.header <- latex.bold("Relative fishing intensity")
   }
 
-  ## tab.letters are the letters in the table, one for each forecast management
-  ##  action and a blank for all but the first year in a management action
-  ## additional labels are given for some rows (below letter)
-  rows2Label <- c("d", "f", "g", "h", "i")
+  # *If you add or remove a row from the table, you only need to change the next two variables*
+  #
+  # tab.letters are the letters in the table, one for each forecast management
+  # action and a blank for all but the first year in a management action
+  # additional labels are given for some rows (below letter)
+  rows2Label <- c("d", "f", "g", "h", "i", "j")
   rowLabels <- list(c(assess.yr - 1, "catch"),
                     c(assess.yr - 1, "TAC"),
+                    c(assess.yr - 2, "TAC"),
                     c("FI=", "100\\%"),
                     c("default", "HR"),
                     c(paste0("C", assess.yr, "="),
