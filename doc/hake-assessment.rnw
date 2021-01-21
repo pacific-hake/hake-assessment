@@ -239,9 +239,6 @@ or policy.}
 \pagenumbering{arabic}
 \setcounter{page}{2}
 
-%% Draft version.
-%% \rfoot{DRAFT - DO NOT CITE}
-
 %% Authors page
 This document reports the collaborative efforts of the official U.S. and
 Canadian members of the Joint Technical Committee, and others that
