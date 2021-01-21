@@ -194,12 +194,137 @@ A DFO workshop \citep{EdwardsDupliseaEtAl2018} shared such a
 `transparent, traceable, and transferable' workflow with a wider audience,
 partly motivated by our ongoing \fishname\ assessments.
 
-\subsection{Response to 2019 Scientific Review Group (SRG) review}\label{sec:assessment-response-review}
+\subsection{Response to 2020 Scientific Review Group (SRG) review}\label{sec:assessment-response-review}
 
-**Andy to update whole section (is an Issue)
+**Have kept our 2020 responses to 2019 requests in
+a separate section afterwards for now just for easy reference. Not writing
+detailed responses yet for 2021, but all requests are copied in and formatted.
 
-The Scientific Review Group (SRG) meeting was held from February 19-22, 2019
-at the Simon Fraser University Harbour Centre, Vancouver, BC, Canada.
+The Scientific Review Group (SRG) meeting was held from February 25-28, 2020
+at the Graduate Seattle Hotel, Seattle, WA, USA.
+
+The following are the `SRG Recommendations and Conclusions for the Pacific Hake
+Stock Assessment' from the 2020 SRG report, and associated responses from the
+JTC:
+
+1. The SRG notes that $\sigma_R$ is an influential parameter and that
+determining the choice of $\sigma_R$ remains a challenge and encourages the JTC
+to continue to work on the issue.
+
+\emph{Response -- **}
+
+
+2. The JTC described efforts and collaborations with the ICES [International
+Council for the Exploration of the Sea] Methods Working Group to address the
+issue of estimating the variance parameter ($\Phi$) for time-varying
+selectivity. Results from this collaboration are expected to inform the 2021
+assessment. The SRG encourages ongoing work to develop approaches to estimating
+variance parameters.
+
+\emph{Response -- **}
+
+3. The SRG notes that the removal of the zero-sum constraint on recruitment
+deviations has implications on the estimate of $R_0$ and the perception of stock
+status based on relative spawning biomass. As the stock is currently well above
+$\Bforty$, management decision-making is not expected to be affected in
+2020. {\bf The SRG recommends that the JTC explore alternative methods of estimating
+reference points, including dynamic reference points or reference points based
+on a defined time period. There is some urgency to this work as biomass is
+declining and the relative spawning biomass may fall below the target level
+${\bf \emph{B}_{40\%}}$ within 2 years.}
+
+\emph{Response -- **}
+
+
+4. The SRG notes that age-composition data sample sizes are high in recent
+years, increasing the weight of fishery age-composition data relative to the
+survey data. Artificially downweighting the sample sizes for recent years had a
+significant impact on assessment results. {\bf The SRG recommends (1) that the JTC
+undertake simulations to investigate the effect of downweighting age-composition
+data on management performance, and (2) that the JTC explore temporal trends in
+sample sizes and appropriate ways of estimating the annual variability in
+age-composition data.}
+
+
+\emph{Response -- **}
+
+5. Two possible approaches to downweighting the fishery age-composition data
+were discussed during the SRG meeting: (1) add time-blocking to allow changes in
+the estimated Dirichlet-multinomial parameter that controls the effective sample
+size for the fishery age-composition data, and (2) investigate annual
+age-composition data among different fleets outside of the model. The first
+approach, although relatively easy to implement, does not resolve the potential
+problem that the input sample size in the current base model is measured using a
+mixture of metrics (the number of sampled tows for at-sea samples versus the
+number of sampled trips for shore-side samples). {\bf The SRG recommends that
+the JTC undertake an analysis of the annual age-composition data in a more
+disaggregated form (e.g., by fleet) outside of the model to evaluate the
+sources of between-sample variability in the fishery age-compositions (month,
+year, fleet, sample size, etc.) and whether the variability relates to simple
+metrics of sample size such as the number of sampled tows, the number of
+sampled trips, and the number of sampled fish.}
+
+
+
+\emph{Response -- **}
+
+6.The SRG encourages work to develop a picture of the Pacific Hake reproductive
+cycle both seasonally and at the life-time scale based on histological and
+physiological measurements. In addition, the SRG notes that Canadian samples and
+those from the winter research cruises should be included in the maturity
+analysis. {\bf The SRG encourages continued sampling to improve understanding of
+the Pacific Hake reproductive cycle.}
+
+\emph{Response -- **}
+
+7. {\bf The SRG strongly supports the ongoing genetic analyses to determine
+  whether there are genetic differences between Pacific Hake from the area south
+  of Point Conception and other regions.}
+
+\emph{Response -- **}
+
+8. The SRG notes that the no-U-turn sampler (NUTS) algorithm is more efficient
+and explores parameter space more fully than the MCMC algorithm used to estimate
+parameter uncertainty in the current and previous base assessment models. {\bf The
+SRG supports the use of NUTS for the base model and sensitivity runs in the 2021 assessment.}
+
+\emph{Response -- **}
+
+9. {\bf The SRG recommends sensitivity analyses structured as follows, if NUTS
+  is used in the 2021 base model: (1) using the random walk Metropolis MCMC
+  algorithm as in the 2020 assessment, and (2) using NUTS when including the
+  age-1 index in the base model.}
+
+\emph{Response -- **}
+
+10. {\bf The SRG also recommends the following additional sensitivities
+  (conducted if possible using NUTS, but otherwise using MLE): steepness,
+  natural mortality, $\sigma_R$, alternative standard deviations for
+  time-varying selectivity, increasing maximum age for constant selectivity and
+  downweighting fishery age-composition data.}
+
+\emph{Response -- **}
+
+11. The SRG notes that there are currently multiple strong cohorts in the stock
+where previously there was only one strong cohort during the period of sample
+collection for the ageing error matrix that supports the assessment model. {\bf
+  Based on this observation, the SRG recommends that an ageing error study using
+  samples collected during the past decade be conducted in conjunction with the
+  Committee of Age Reading Experts (CARE).}
+
+\emph{Response -- **}
+
+12. {\bf The SRG recommends that historical sources of data be investigated to
+determine whether they can be used to supplement the weight-at-age matrix,}
+including unaged otolith samples (and associated data) from the 1970s that may
+be available in the Burke Museum in Seattle.
+
+\emph{Response -- **}
+
+\subsubsection{**Reponse to 2019 SRG review -- keeping for reference for now,
+  delete when not needed}
+
+**ONLY FOR REFERENCE, DELETE WHOLE SECTION AT SOME POINT
 
 The following are the `SRG Recommendations and Conclusions for the Hake Stock Assessment'
 from the 2019 SRG report, and associated responses from the JTC:
