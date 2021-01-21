@@ -209,7 +209,7 @@ make.survey.age1.plot(age.1.index,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Preliminary acoustic survey age-1 index overlaid on estimated numbers of age-1 fish (MLE from the base model).}
+\caption{**[change to MCMC?] Preliminary acoustic survey age-1 index overlaid on estimated numbers of age-1 fish (MLE from the base model).}
 \label{fig:main-age-one-index}
 \end{figure}
 
@@ -219,7 +219,8 @@ make.survey.age1.plot(age.1.index,
 maturity.ogive.figure(model = base.model, useyears = 1966)
 @
 \end{center}
-\caption{Fraction of fish that are mature at each age north and south of
+\caption{**[looks same as last year so end of caption should be 2019 - make a
+  variable] Fraction of fish that are mature at each age north and south of
   34.44$^\circ$N
   (upper panel) and the fecundity relationship (lower panel).
   The fecundity relationship (purple line) is the product
@@ -334,7 +335,7 @@ mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
 \end{center}
-\caption{Bridging models showing the \Sexpr{last.assess.yr} base model
+\caption{**[update] Bridging models showing the \Sexpr{last.assess.yr} base model
   and the sequential influence of updating to the latest version of Stock Synthesis
   and changing the constrain on recruitment deviations.  Simple deviations (i.e., residuals
   from the mean) are applied rather than forcing residuals to sum to zero across the main
@@ -404,7 +405,7 @@ mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
 \end{center}
-\caption{Bridging models starting with the addition of simple recruitment deviations (shown
+\caption{**[update] Bridging models starting with the addition of simple recruitment deviations (shown
   in Figure~\ref{fig:main-bridge-5-panel-1}) and then with sequential changes including
   updating pre-2019 fishery data, adding 2019 catch data, and adding 2019 weight-at-age and
   fishery composition data. Panels are spawning biomass
@@ -429,7 +430,7 @@ make.mcmc.survey.fit.plot(base.model,
                           y.max = 5.5e6)
 @
 \end{center}
-\caption{Fits to the acoustic survey with 95\% confidence intervals around the index points.
+\caption{**[Remove the MLE? Maybe clarfiy final sentence.] Fits to the acoustic survey with 95\% confidence intervals around the index points.
   Red and blue thick lines are MLE and median MCMC expected survey estimates in every year,
   including years without a survey. Thin blue lines show individual MCMC samples of the
   expected survey biomass. Thicker bars on uncertainty intervals around observed survey points
@@ -470,7 +471,7 @@ make_age_comp_pearson_plot(base.model, subplot = 1, legend.position = "top", alp
 make_age_comp_pearson_plot(base.model, subplot = 2, alpha = 0.7)
 @
 \end{center}
-\caption{Pearson residuals for base model MLE fits to the age-composition data. Closed bubbles are positive residuals (observed > expected)
+\caption{**[Make MCMC?] Pearson residuals for base model MLE fits to the age-composition data. Closed bubbles are positive residuals (observed > expected)
   and open bubbles are
   negative residuals (observed < expected).}
 \label{fig:main-age-comp-pearson}
@@ -492,7 +493,9 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Prior (black lines) and posterior (gray histograms) distributions for key parameters in the base model. The parameters are: natural mortality ($M$), equilibrium log recruitment $\log(R_0)$, steepness ($h$), the additional process-error standard deviation for the acoustic survey, and the Dirichlet-Multinomial parameters for the fishery and the survey. The maximum likelihood estimates and associated symmetric uncertainty intervals are also shown (blue lines). There are 50 bins for each posterior except the two Dirichlet-Multinomial parameters which are grouped into 500 bins.}
+\caption{**[add DM notation] Prior (black lines) and posterior (gray histograms) distributions for
+  key parameters in the base model. The parameters are: natural mortality ($M$),
+  equilibrium log recruitment ($\log R_0)$, steepness ($h$), the additional process-error standard deviation for the acoustic survey, and the Dirichlet-Multinomial parameters for the fishery and the survey. The maximum likelihood estimates and associated symmetric uncertainty intervals are also shown (blue lines). There are 50 bins for each posterior except the two Dirichlet-Multinomial parameters which are grouped into 500 bins.}
 \label{fig:main-prior-posterior}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -566,7 +569,7 @@ make.selex.uncertainty.lines.plot(base.model,
 par <- oldpar
 @
 \end{center}
-\caption{Estimated acoustic (top -- for all years) and fishery selectivities (bottom -- for \Sexpr{end.yr-1} only)
+\caption{**[.png is 1.3Mb; worth subsampling for the plot?] Estimated acoustic (top -- for all years) and fishery selectivities (bottom -- for \Sexpr{end.yr-1} only)
   from the posterior distribution for the base model.}
 \label{fig:main-tv-selex-uncertainty-lines}
 \end{figure}
@@ -657,7 +660,7 @@ make_numbers_at_age_plot(base.model,
                          xlim = c(1965, assess.yr))
 @
 \end{center}
-\caption{Bubble plot of MLE estimates of population numbers at age at the beginning of each year, where diagonals follow each year-class through time.
+\caption{**[Maybe MCMC? See Issue 727] Bubble plot of MLE estimates of population numbers at age at the beginning of each year, where diagonals follow each year-class through time.
   The red line represents the mean age. The scale of the bubbles is represented in the key where the units are
   billions of fish (with the largest bubble representing
   \Sexpr{round(max(base.model$natage[base.model$natage$"Beg/Mid"=="B",paste(0:20)])/1e6,1)}~billion
@@ -677,7 +680,7 @@ make.mcmc.sr.variability.plot(base.model,
                               probs = c(0.025, 0.5, 0.975))
 @
 \end{center}
-\caption{Estimated stock-recruit relationship for the base model with median predicted recruitments
+\caption{**[increase x-axis?] Estimated stock-recruit relationship for the base model with median predicted recruitments
   and 95\% posterior credibility intervals. Colors indicate time-period, with yellow colors in the
   early years and blue colors in the recent years. The thick solid black line indicates the central
   tendency (mean) and the red line indicates the central tendency after bias correcting for the log-normal
@@ -731,7 +734,7 @@ make.phase.plot(base.model,
                 end.yr = end.yr)
 @
 \end{center}
-\caption{Estimated historical path of median relative spawning biomass in
+\caption{**[increase x-axis, Issue 721, Fig f also] Estimated historical path of median relative spawning biomass in
          year $t$ and corresponding median relative fishing
          intensity in year $t-1$. Labels show the
          start year, end year and year of highest relative fishing
@@ -854,7 +857,7 @@ make.forecast.risk.comparison.plot(base.model,
 make.age.comp.forecast.plot(base.model)
 @
 \end{center}
-\caption{Forecast age compositions in numbers and in weight for the \Sexpr{end.yr} fishery catch
+\caption{**[update if MLE table changes to MCMC] Forecast age compositions in numbers and in weight for the \Sexpr{end.yr} fishery catch
   (combined across all sectors in both countries). Gray bars show median estimates.
   Thick black lines show 50\% credibility intervals and thin black lines show 95\%
   credibility intervals. These estimates are based on the posterior distribution for
@@ -878,7 +881,7 @@ make.comparison.plot(c(list(base.model), sens.models.1),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{MCMC estimates of spawning biomass for the base
+\caption{**[check] MCMC estimates of spawning biomass for the base
   model and alternative sensitivity runs representing changing the mean of
   the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, lower (1.0) and higher
   (1.6) levels of variation assumed about the stock-recruitment relationship
@@ -900,7 +903,7 @@ make.comparison.plot(c(list(base.model), sens.models.1),
 @
 \end{center}
 %\vspace{0mm}
-\caption{MCMC estimates of stock status (relative
+\caption{**[check] MCMC estimates of stock status (relative
   spawning biomass) for the base model and alternative sensitivity runs
   representing changing key parameters. See
   Figure~\ref{fig:main-biomass-base-alternative-1} for sensitivity descriptions.}
@@ -919,7 +922,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{MCMC estimates of spawning biomass for the base model and alternative
+\caption{**[check] MCMC estimates of spawning biomass for the base model and alternative
   sensitivity runs that represent the following changes in data: adding an age-1 index of abundance,
   using the McAllister-Ianelli approach to weight composition data, and using the
   Francis approach to weight composition data.}
@@ -939,7 +942,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 @
 \end{center}
 %\vspace{0mm}
-\caption{MCMC estimates of stock status (relative spawning biomass) for the base
+\caption{**[check] MCMC estimates of stock status (relative spawning biomass) for the base
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-status-base-alternative-2}
@@ -959,7 +962,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{MCMC estimates of the fit to the survey index of abundance for the base
+\caption{**[check] MCMC estimates of the fit to the survey index of abundance for the base
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-index-base-alternative-2}
@@ -977,7 +980,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{MCMC estimates of recruitment deviations for the base
+\caption{**[check] MCMC estimates of recruitment deviations for the base
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-recruit-base-alternative-2}
@@ -995,7 +998,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{MCMC estimates of spawning biomass for the base model
+\caption{**[check] MCMC estimates of spawning biomass for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
   semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).}
@@ -1015,7 +1018,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 @
 \end{center}
 %\vspace{0mm}
-\caption{MCMC estimates of stock status (relative spawning biomass) for the base model
+\caption{**[check] MCMC estimates of stock status (relative spawning biomass) for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
   semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).
@@ -1037,7 +1040,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 box()
 @
 \end{center}
-\caption{MCMC estimates of recruitment for the base model
+\caption{**[check] MCMC estimates of recruitment for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
   semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).
@@ -1058,7 +1061,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 box()
 @
 \end{center}
-\caption{MCMC estimates of recruitment deviations for the base model
+\caption{**[check] MCMC estimates of recruitment deviations for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
   semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).
@@ -1078,7 +1081,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 @
 \end{center}
 %\vspace{0mm}
-\caption{MCMC estimates of the fit to the survey index of abundance
+\caption{**[check] MCMC estimates of the fit to the survey index of abundance
   for the base model and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity and the use of a
   semi-parametric approach for implementing time-varying selectivity ($\sigma_s$).
@@ -1100,7 +1103,7 @@ make.selectivity.illustration(mod.old = base.model,
 rm(temp)
 @
 \end{center}
-\caption{Illustration of parameterization of time-varying selectivity as
+\caption{**[check - not using?] Illustration of parameterization of time-varying selectivity as
   represented in the base model (left) and the semi-parametric approach
   used in sensitivity analyses (right). Panels show transformation from
   estimated parameters (a) to cumulative sum up to each age (b) and the resulting
@@ -1126,7 +1129,7 @@ make.comparison.plot(c(list(base.model), list(sens.models.5)),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{MCMC estimates of spawning biomass for the base
+\caption{**[check] MCMC estimates of spawning biomass for the base
   model and alternative sensitivity run with cohort-based ageing error removed.}
 \label{fig:main-biomass-base-alternative-5}
 %% \end{figure}
@@ -1144,7 +1147,7 @@ make.comparison.plot(c(list(base.model), list(sens.models.5)),
 @
 \end{center}
 %\vspace{0mm}
-\caption{MCMC estimates of stock status for the base
+\caption{**[check] MCMC estimates of stock status for the base
   model and alternative sensitivity run with cohort-based ageing error removed.}
 \label{fig:main-status-base-alternative-5}
 \end{figure}
