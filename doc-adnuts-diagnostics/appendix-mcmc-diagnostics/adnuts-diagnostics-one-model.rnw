@@ -1,0 +1,104 @@
+\chapter{Base model MCMC diagnostics}
+\label{chap:mcmc-diagnostics}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main-mcmc-diag-m-r0, fig.height=4, fig.width=8, is.fig = TRUE>>=
+oldpar <- par(no.readonly=TRUE)
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.mcmc.diag.plot(base.model, key.posteriors[1], key.posteriors.titles[1])
+make.mcmc.diag.plot(base.model, key.posteriors[2], key.posteriors.titles[2])
+par <- oldpar
+@
+\end{center}
+\caption{Summary of MCMC diagnostics for natural mortality (upper panels) and log(\emph{R\subscr{0}}) (lower panels) in the base model. Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; cumulative running mean with 5th and 95th percentiles, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
+\label{fig:main-mcmc-diag-m-r0}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main-mcmc-diag-h-extra-sd, fig.height=4.8, fig.width=8, is.fig = TRUE>>=
+oldpar <- par(no.readonly=TRUE)
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.mcmc.diag.plot(base.model, key.posteriors[3], key.posteriors.titles[3])
+make.mcmc.diag.plot(base.model, key.posteriors[4], key.posteriors.titles[4])
+par <- oldpar
+@
+\end{center}
+\caption{Summary of MCMC diagnostics for steepness (upper panels) and the additional standard deviation (SD) in the survey index (lower panels) in the base model. Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; cumulative running mean with 5th and 95th percentiles, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
+\label{fig:main-mcmc-diag-h-extra-sd}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main-mcmc-diag-dm, fig.height=4.8, fig.width=8, is.fig = TRUE>>=
+oldpar <- par(no.readonly=TRUE)
+par(mar=c(4.1, 4.1, 3.1, 0.1))
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.mcmc.diag.plot(base.model, key.posteriors[5], key.posteriors.titles[5])
+make.mcmc.diag.plot(base.model, key.posteriors[6], key.posteriors.titles[6])
+par <- oldpar
+@
+\end{center}
+\caption{**[put in notation for DM pars] Summary of MCMC diagnostics for the Dirichlet-Multinomial age-composition parameters for the fishery (upper panels) and the survey (lower panels) in the base model. Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; cumulative running mean with 5th and 95th percentiles, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
+\label{fig:main-mcmc-diag-dm}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main-mcmc-diag-hists, fig.height=6, fig.width=8, is.fig = TRUE>>=
+make.mcmc.diag.hists.plot(base.model,
+                          labelstrings = "all")
+@
+\end{center}
+\caption{Summary histograms of MCMC diagnostics for all base model parameters
+together with the derived time series of spawning biomass and relative spawning biomass.
+The level of autocorrelation in the chain (distribution across lag times, i.e., distance between samples in the chain, shown in the top left panel) influences the effective sample size (top right panel) used to estimate posterior distributions. The Geweke statistic (lower left panel) tests for equality between means located in the first part of the chain against means in the last part of the chain. The Heidelberger and Welch statistic (lower right panel) tests if the sampled values come from a stationary distribution by comparing different sections of the chain.}
+\label{fig:main-mcmc-diag-hists}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main-mcmc-pairs, fig.height=8, fig.width=8, is.fig = TRUE>>=
+make.mcmc.diag.pairs.plot(base.model,
+                          inc.key.params = TRUE,
+                          key.posteriors.regex = key.posteriors,
+                          key.posteriors.names = key.posteriors.titles,
+                          recr = c(2010, 2014),
+                          bratio = end.yr,
+                          forecatch = end.yr)
+@
+\end{center}
+\caption{Posterior correlations among key base-model parameters and derived
+  quantities. Numbers refer to the absolute correlation coefficients, with font
+  size proportional to the square root of the coefficient.}
+\label{fig:main-mcmc-pairs}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main-mcmc-pairs-recruit-devs, fig.height=8, fig.width=8, is.fig = TRUE>>=
+make.mcmc.diag.pairs.plot(base.model,
+                          inc.key.params = FALSE,
+                          recr = (end.yr-10):(end.yr-1))
+@
+\end{center}
+\caption{Posterior correlations among recruitment deviations from recent years and equilibrium recruitment. Numbers refer to the absolute correlation coefficients, with font size proportional to the square root of the coefficient.}
+\label{fig:main-mcmc-pairs-recruit-devs}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage        % needed for footer to be correct

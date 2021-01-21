@@ -249,7 +249,7 @@ or policy.}
        }
 
 \rfoot{Section~\ref{chap:mcmc-diagnostics} -- Base model diagnostics}
-<<appendix-mcmc-diagnostics, child='appendix-mcmc-diagnostics/appendix-mcmc-diagnostics.rnw'>>=
+<<appendix-mcmc-diagnostics, child='appendix-mcmc-diagnostics/adnuts-diagnostics-one-model.rnw'>>=
 @
 
 \end{document}
