@@ -505,7 +505,8 @@ make.short.parameter.estimates.table(
   last.yr.base.model,
   end.yr = end.yr,
   digits = 3,
-  xcaption = paste0("Select parameters, derived quantities, ",
+  xcaption =
+    paste0("**[currently missing first two values in penultimate row; checked that 2020 base model values are correct] Select parameters, derived quantities, ",
                      "and reference point estimates for the base model ",
                      "MLE and posterior median (MCMC) estimates with ",
                      "an additional comparison to posterior median ",
@@ -532,7 +533,7 @@ make.reference.points.table(base.model,
 
 <<main-decisions-biomass-table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption = paste0("Forecast quantiles of \\fishname\\
+                    xcaption = paste0("**[check, though caption is automated] Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
                      catch levels (rows ",
@@ -625,7 +626,7 @@ make.short.parameter.estimates.sens.table(sens.models.1.for.table,
                                           end.yr = end.yr,
                                           age.1 = TRUE,
                                           digits = 3,
-                                          xcaption = paste0("Maximum likelihood
+                                          xcaption = paste0("**Maximum likelihood
                                                             estimates (MLE) of select parameters, derived quantities,
                                                             reference points, and negative log likelihoods for the base
                                                             model and some sensitivity runs (described in
@@ -649,7 +650,7 @@ make.short.parameter.estimates.sens.table(sens.models.2.for.table,
                                           end.yr = end.yr,
                                           age.1 = FALSE,
                                           digits = 3,
-                                          xcaption = paste0("Maximum likelihood estimates (MLE) of select parameters,
+                                          xcaption = paste0("**Maximum likelihood estimates (MLE) of select parameters,
                                                             derived quantities, reference points, and negative log likelihoods
                                                             for the base model and further sensitivity runs (described in
                                                             Section~\\ref{sec:assessment-sensitivity-analyses})."),
@@ -672,7 +673,7 @@ make.short.parameter.estimates.sens.table(sens.models.3.for.table,
                                           end.yr = end.yr,
                                           age.1 = FALSE,
                                           digits = 3,
-                                          xcaption = paste0("Maximum likelihood estimates (MLE) of select parameters,
+                                          xcaption = paste0("**Maximum likelihood estimates (MLE) of select parameters,
                                                              derived quantities, reference points, and negative log likelihoods
                                                              for the base model and further sensitivity runs (described in
                                                              Section~\\ref{sec:assessment-sensitivity-analyses})."),
