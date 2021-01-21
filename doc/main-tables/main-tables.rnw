@@ -342,10 +342,11 @@ make.est.numbers.at.age.table(
   font.size = 8,
   space.size = 10)
 @
+\clearpage
 
-\newgeometry{hmargin=0.95in,vmargin=1in}
-\thispagestyle{lscape}
+\pagestyle{empty}
 \begin{landscape}
+\thispagestyle{mylandscape}
   \centering
 <<main-est-biomass-at-age-table, results='asis', echo=FALSE>>=
 make.est.numbers.at.age.table(
@@ -360,9 +361,7 @@ make.est.numbers.at.age.table(
   font.size = 7,
   space.size = 8)
 @
-
 \end{landscape}
-\restoregeometry
 \pagestyle{fancy}
 \clearpage
 

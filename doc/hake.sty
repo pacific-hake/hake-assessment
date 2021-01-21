@@ -102,53 +102,34 @@
 % \usepackage[format=plain, indention=0cm, labelsep=period, font={small, it}, justification=raggedright, singlelinecheck=false]{caption}
 \usepackage[format=plain, indention=3mm, labelsep=period, font={small}, singlelinecheck=false, labelfont=bf]{caption}  % AME changing for hake
 % To change settings, see http://ctan.mirror.rafal.ca/macros/latex/contrib/caption/caption-eng.pdf
-%% -----------------------------------------------------------------------------
-%% Use for landscape pages
-%% To do it properly, i.e. top and bottom lines and page number also rotated to
-%%  landscape, do this:
-%% \newgeometry{hmargin=1in,vmargin=1in}
-%% \thispagestyle{lscape}
-%% \begin{landscape}
-%%   \centering
-%%
-%% Table code here, or knitr code chunk which prints an xtable.
-%%
-%% \end{landscape}
-%% \restoregeometry
-%% \pagestyle{fancy}
-\usepackage{pdflscape}
-\usepackage[absolute]{textpos}
-\setlength{\TPHorizModule}
-  {8.5in}
-\setlength{\TPVertModule}
-  {11.0in}
-\fancypagestyle{lscape}{
-  %% clear all header and footer fields
-  \fancyhf{}
-  \fancyfoot{}
-  \begin{textblock}
-    {1}(0.1,0.0909)
-    {\rotatebox{90}
-      {\rule{9in}{0.25pt}}
-    }
-  \end{textblock}
-  \begin{textblock}
-    {1}(0.9,0.0909)
-    {\rotatebox{90}
-      {\rule{9in}{0.25pt}}
-    }
-  \end{textblock}
-  \begin{textblock}
-    {0.05}(0.925,0.5)
-    {\rotatebox{90}
-      {\thepage}
-    }
-  \end{textblock}
-  %% Get rid of lines along sides of landscape page
-  \renewcommand{\headrulewidth}
-    {0pt}
-  \renewcommand{\footrulewidth}
-    {0pt}
+
+% -----------------------------------------------------------------------------
+% Use for landscape pages
+% To do it properly, i.e. top and bottom lines and page number also rotated to
+%  landscape, do this:
+% \pagestyle{empty}
+% \begin{landscape}
+% \thispagestyle{mylandscape}
+%   \centering
+%
+% Table code here, or knitr code chunk which prints an xtable.
+%
+% \end{landscape}
+% \pagestyle{fancy}
+% \usepackage{pdflscape}
+
+\fancypagestyle{mylandscape}{
+\fancyhf{} %Clears the header/footer
+\fancyfoot{% Footer
+\makebox[\textwidth][r]{% Right
+  \rlap{\hspace{.75cm}% Push out of margin by \footskip
+    \smash{% Remove vertical height
+      \raisebox{4.87in}{% Raise vertically
+        \rotatebox{90}{
+        \thepage
+        }}}}}}% Rotate counter-clockwise
+\renewcommand{\headrulewidth}{0pt}% No header rule
+\renewcommand{\footrulewidth}{0pt}% No footer rule
 }
 %% -----------------------------------------------------------------------------
 
