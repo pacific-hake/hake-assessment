@@ -246,13 +246,12 @@ or policy.}
 
 \lfoot{ADNUTS diagnostics -- \fishname\ assessment \Sexpr{assess.yr}}
 
-<<setup>>=
+<<setup, echo=FALSE>>=
 # this.sens.model.ind = 0       # start with base model
 # this.sens.model = base.model
 
 # diagnostic.model.names <- c("Base model")
 #                            sens.model.names.1)  # then add .2 etc.
-
 diagnostic.model <- c("base.model",
                       "sens.models.1[[1]]")
 @

@@ -92,7 +92,6 @@ make.mcmc.diag.pairs.plot({{this.sens.model}},
 \begin{center}
 <<fig.height=8, fig.width=8, is.fig = TRUE>>=
 make.mcmc.diag.pairs.plot({{this.sens.model}},
-                          make.mcmc.diag.pairs.plot(base.model,
                           inc.key.params = FALSE,
                           recr = (end.yr-10):(end.yr-1))
 @
