@@ -68,7 +68,8 @@ make.landings.tac.table(landings.vs.tac,
 
 <<main-sampling-history-table, results='asis', echo=FALSE>>=
 make.sampling.history.table(sampling.history,
-                            xcaption = "Annual summary of U.S. and Canadian
+                            xcaption =
+                              "**[2020 row needs updating; disagrees with next table] Annual summary of U.S. and Canadian
                               fishery sampling included in this stock
                               assessment. Canadian, foreign, joint-venture and
                               at-sea sectors are in number of hauls sampled for
@@ -254,7 +255,7 @@ make.survey.history.table(survey.history,
 
 <<main-maturity-ogives-table, results='asis', echo=FALSE>>=
 make.maturity.ogives.table(maturity.ogives,
-                           xcaption = paste0("Information on maturity and fecundity used in this assessment as
+                           xcaption = paste0("**Information on maturity and fecundity used in this assessment as
                                        shown in Figure~\\ref{fig:main-maturity}. The sample sizes refer
                                        to the subset of samples in Table~\\ref{tab:main-ovaries} for which
                                        age readings and histological estimates of maturity have been completed.
@@ -272,7 +273,7 @@ make.maturity.ogives.table(maturity.ogives,
 
 <<main-ovaries-table, results='asis', echo=FALSE>>=
 make.maturity.samples.table(ovary.samples,
-                            xcaption = "Number of \\fishname\\ ovaries collected for histological analysis.
+                            xcaption = "**[final row need updating?] Number of \\fishname\\ ovaries collected for histological analysis.
                                         The maturity ogive was determined from a subset of these samples
                                         (up to and including 2017; see \\citealt{JTC2018}).",
                             xlabel = "tab:main-ovaries",
@@ -286,7 +287,7 @@ make.parameters.estimated.summary.table(
   start.rec.dev.yr = recruit.dev.start.yr,
   end.rec.dev.yr = end.yr - 1,
   digits = 2,
-  xcaption = paste0("Summary of estimated model parameters and priors in the base model.
+  xcaption = paste0("**sigmaR currently rendering wrong Summary of estimated model parameters and priors in the base model.
                      The Beta prior is parameterized with a mean and standard deviation.
                      The Lognormal prior is parameterized with the median and standard
                      deviation in log space."),
@@ -302,7 +303,8 @@ make.short.parameter.estimates.sens.table(retro.list,
                                           end.yr = end.yr,
                                           age.1 = FALSE,
                                           digits = 3,
-                                          xcaption = paste0("Select parameters, derived quantities,
+                                          xcaption =
+                                            paste0("**[fix thetas, still MLE for base?] Select parameters, derived quantities,
                                                              reference point estimates, and negative
                                                              log likelihoods for retrospective analyses
                                                              using the MLE estimates from the base model.
