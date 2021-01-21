@@ -135,11 +135,17 @@ run_catch_levels_default_hr <- function(model,
   }
 }
 
-#' Run the model iteratively reducing the difference between the first and second year projections to
-#' find a stable catch within the the given tolerance
+#' Run the model iteratively zoning in on a catch value that reduces the SPR to 1, withing the tolerance given
+#' (`catch_levels_spr_tol`)
 #'
 #' @param model The SS model output as loaded by [load_ss_files()]
-#'
+#' @param spr_100_path Path where the SPR model files are found
+#' @param forecast_yrs A vector if the years to forecast for
+#' @param catch_levels_spr_tol The tolerance to be within 1 for the SPR
+#' @param catch_levels_catch_tol Catch tolerance. If the upper and lower catch in the algorithm are within this,
+#' it is assumed that the SPR is close enough
+#' @param catch_levels_max_iter The maximum number of iterations to do
+#' @param ... Not used
 #' @export
 run_catch_levels_spr_100 <- function(model,
                                      spr_100_path,
@@ -157,6 +163,7 @@ run_catch_levels_spr_100 <- function(model,
             copy.mode = TRUE)
 
   forecast_file <- file.path(spr_100_path, "forecast.ss")
+
   spr_100_catch <- vector(length = length(forecast_yrs), mode = "numeric")
   for(i in 1:length(forecast_yrs)){
     fore <- SS_readforecast(forecast_file,
@@ -191,7 +198,8 @@ run_catch_levels_spr_100 <- function(model,
               ifelse(abs(spr - 1) < catch_levels_spr_tol, "Yes", "No"))
       message("Upper catch: ", upper, " - Lower catch: ", lower,
               ". Difference: ", abs(upper - lower), " < ", catch_levels_catch_tol, " ? ",
-              ifelse(abs(upper - lower) < catch_levels_catch_tol, "Yes", "No"))
+              ifelse(abs(upper - lower) < catch_levels_catch_tol, "Yes\n", "No\n"))
+
       if(abs(spr - 1) < catch_levels_spr_tol |
          abs(upper - lower) < catch_levels_catch_tol){
         ## Sometimes, upper and lower can end up close to equal,
@@ -201,7 +209,7 @@ run_catch_levels_spr_100 <- function(model,
       }
       if(iter == catch_levels_max_iter){
         warning("The maximum number of iterations (", catch_levels_max_iter,") was reached for forecast year ", forecast_yrs[i],
-                ". The SPR difference in the last iteration was ", spr - 1)
+                ". The SPR difference in the last iteration was ", spr - 1, "\n")
         break
       }
 
