@@ -177,9 +177,10 @@ make_age_comp_bubble_plot(base.model, subplot = 2, alpha = 0.4)
   for the years \Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}.
   Proportions in each year sum to 1.0 and area of the bubbles are
   proportional to the proportion and consistent in both panels (see key at top).
-  The largest bubble in the survey data is \Sexpr{f(as.numeric(max.survey.age.prop[3]) / 100, 2)} for age \Sexpr{as.numeric(max.survey.age.prop[5])}
-  in \Sexpr{as.numeric(max.survey.age.prop[4])} and in the fishery is \Sexpr{f(as.numeric(max.fishery.age.prop[3]) / 100, 2)} for age \Sexpr{as.numeric(max.survey.age.prop[5])}
-  in \Sexpr{as.numeric(max.fishery.age.prop[4])}. Red lines track cohorts from years of large recruitment events.}
+  The largest bubble in the fishery data is \Sexpr{f(as.numeric(max.fishery.age.prop[3]) / 100, 2)} for age \Sexpr{as.numeric(max.survey.age.prop[5])}
+  in \Sexpr{as.numeric(max.fishery.age.prop[4])}
+  and in the survey data is \Sexpr{f(as.numeric(max.survey.age.prop[3]) / 100, 2)} for age \Sexpr{as.numeric(max.survey.age.prop[5])}
+  in \Sexpr{as.numeric(max.survey.age.prop[4])}. Red lines track cohorts from years of large recruitment events.}
 \label{fig:main-age-comp-bubbles}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
