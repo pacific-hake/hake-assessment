@@ -74,7 +74,7 @@ compreport_file_name <- "CompReport.sso"
 
 # Custom catch levels calculations
 # The tolerance in the spr away from 1 for the calculation of catch for SPR = 1
-catch_levels_spr_tol <- 0.3
+catch_levels_spr_tol <- 0.01
 # The tolerance in tonnes. The iterations will stop if the difference between the
 #  projected biomass between the first and second years is less than this
 catch_levels_catch_tol <- 50
