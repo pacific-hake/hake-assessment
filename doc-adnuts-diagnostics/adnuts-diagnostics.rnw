@@ -156,8 +156,8 @@
 %% \def\thanks#1{{\let\thefootnote\relax\footnote{#1.}\setcounter{footnote}{0}}}
 
 \begin{document}
-\counterwithin{figure}{section}
-\counterwithin{table}{section}
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
 
 <<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
 knitr::render_latex()
