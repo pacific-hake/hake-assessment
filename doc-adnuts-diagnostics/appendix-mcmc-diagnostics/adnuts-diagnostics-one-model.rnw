@@ -3,10 +3,6 @@ this.model <- {{this.sens.model}}
 this.model.name <- gsub(".*models/", "", {{this.sens.model}}$path)
 this.model.name <- gsub("_", "-", this.model.name)
 # TODO:
-# maybe switch to .eps since quicker?
-# see make.mcmc.diag.plot:   m <- ....  - put a check in each call here to see if
-#  posterior.regex column exists
-# Do right footers here
 # add in rest of sens analyses
 # Simplify captions
 @
@@ -22,8 +18,8 @@ this.model.name <- gsub("_", "-", this.model.name)
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot(this.model, key.posteriors[1], key.posteriors.titles[1])
-make.mcmc.diag.plot(this.model, key.posteriors[2], key.posteriors.titles[2])
+make.mcmc.diag.plot.if.exists(this.model, key.posteriors[1], key.posteriors.titles[1])
+make.mcmc.diag.plot.if.exists(this.model, key.posteriors[2], key.posteriors.titles[2])
 par <- oldpar
 @
 \end{center}
@@ -39,8 +35,8 @@ par <- oldpar
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot(this.model, key.posteriors[3], key.posteriors.titles[3])
-make.mcmc.diag.plot(this.model, key.posteriors[4], key.posteriors.titles[4])
+make.mcmc.diag.plot.if.exists(this.model, key.posteriors[3], key.posteriors.titles[3])
+make.mcmc.diag.plot.if.exists(this.model, key.posteriors[4], key.posteriors.titles[4])
 par <- oldpar
 @
 \end{center}
@@ -56,8 +52,8 @@ par <- oldpar
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot(this.model, key.posteriors[5], key.posteriors.titles[5])
-make.mcmc.diag.plot(this.model, key.posteriors[6], key.posteriors.titles[6])
+make.mcmc.diag.plot.if.exists(this.model, key.posteriors[5], key.posteriors.titles[5])
+make.mcmc.diag.plot.if.exists(this.model, key.posteriors[6], key.posteriors.titles[6])
 par <- oldpar
 @
 \end{center}
