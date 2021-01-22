@@ -1,4 +1,4 @@
-%% adnuts-diagnostics.Rnw
+%% adnuts-diagnostics.Rnw. Doing .eps files since builds faster
 %% Pacific Hake Joint technical committee.
 
 \documentclass[12pt]{book}
@@ -7,7 +7,7 @@
 %%  to the fourth table in the main-tables section
 \usepackage{chngcntr}
 
-\usepackage{../doc/hake}
+\usepackage{hake-adnuts}
 %% title gives 'Appendix A', not
 %% just 'A', but doesn't seem to work, may need article class,
 %% but need to see appendix manual.
@@ -165,10 +165,10 @@ fig_width <- 7.5
 fig_dpi <- 600
 fig_align <- "center"
 fig_pos <- "htb"
+library(knitr)   # Otherwise next line gives hidden error for the first run
+                 #  using knitr::knit("adnuts-diagnostics.rnw") and pdf's get made
 opts_chunk$set(
-             # The "dev" line below is modified by the build_doc() function.
-             # Do not modify or move it.
-             dev = 'png',
+             dev = 'cairo_ps',
              dpi = fig_dpi,
              fig.width = fig_width,
              fig.pos = fig_pos,
@@ -179,26 +179,9 @@ opts_chunk$set(
              warning = FALSE,
              comment = "#>",
              results = 'hide',
-             fig.path = 'knitr-cache-png/',
-             cache.path = 'knitr-cache-png/',
+             fig.path = 'knitr-cache-eps/',
+             cache.path = 'knitr-cache-eps/',
              cache = TRUE)
-
-# Data frame of alternative figure text to be populated by a knitr hook
-# alt_fig_text <- tibble()
-# This is called everytime a chunk is evaluated with alt.text in the chunk options
-# knit_hooks$set(alt.text = function(before, options, envir) {
-#  if(before && options$is.fig){
-#    # Add first line of code and the alt text to a data frame
-#    alt_fig_text <<- bind_rows(alt_fig_text, c(code = options$code[1], text = options$alt.text))
-#  }
-#  # Return NULL because anything else output here will be written into the TEX output
-#  NULL
-#})
-# Default chunk options
-#opts_chunk$set(is.fig = FALSE)
-#opts_chunk$set(alt.text = "")
-
-#options(xtable.comment = FALSE)
 
 source(here::here("R/all.R"))
 if(!(exists("models_loaded") && models_loaded)){
