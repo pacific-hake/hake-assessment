@@ -1,5 +1,10 @@
-\chapter{Base model MCMC diagnostics}
-\label{chap:mcmc-diagnostics}
+<<>>=
+this.model.name <- gsub(".*models/", "", {{this.sens.model}}$path)
+this.model.name <- gsub("_", "-", this.model.name)
+@
+
+\chapter{MCMC diagnostics: \Sexpr{this.model.name}}
+\label{chap:\Sexpr{this.model.name}}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]

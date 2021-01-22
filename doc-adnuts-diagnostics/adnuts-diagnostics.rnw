@@ -166,29 +166,22 @@ fig_dpi <- 600
 fig_align <- "center"
 fig_pos <- "htb"
 opts_chunk$set(
-# The "dev" line below is modified by the build_doc() function.
-# Do not modify or move it.
-dev = 'png',
-dpi = fig_dpi,
-fig.width = fig_width,
-fig.pos = fig_pos,
-collapse = TRUE,
-echo = FALSE,
-results = FALSE,
-message = FALSE,
-warning = FALSE,
-comment = "#>",
-results = 'hide',
-# The fig.path and cache.path lines below are modified by
-# the build_doc() function. Do not modify or move them. That's for
-# hake-assessment.rnw, for adnuts-diagnostics we can just stick with .png files
-# (not modifying).
-fig.path = 'knitr-cache-png/',
-cache.path = 'knitr-cache-png/',
-# Do not move this cache line from the end of the list as
-# the build_doc() function relies on it being here to change the
-# other arguments mentioned in comments above
-cache = TRUE)
+             # The "dev" line below is modified by the build_doc() function.
+             # Do not modify or move it.
+             dev = 'png',
+             dpi = fig_dpi,
+             fig.width = fig_width,
+             fig.pos = fig_pos,
+             collapse = TRUE,
+             echo = FALSE,
+             # results = FALSE,
+             message = FALSE,
+             warning = FALSE,
+             comment = "#>",
+             results = 'hide',
+             fig.path = 'knitr-cache-png/',
+             cache.path = 'knitr-cache-png/',
+             cache = TRUE)
 
 # Data frame of alternative figure text to be populated by a knitr hook
 # alt_fig_text <- tibble()
@@ -211,6 +204,7 @@ source(here::here("R/all.R"))
 if(!(exists("models_loaded") && models_loaded)){
   load_models_rds()
 }
+
 models_loaded <- TRUE
 source(file.path(rootd.R, "custom-knitr-variables.R"))
 @
