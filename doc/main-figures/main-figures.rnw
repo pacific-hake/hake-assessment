@@ -16,9 +16,9 @@ make.overview.map.plot(path = rootd.map.data)
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\newgeometry{hmargin=1in,vmargin=1in}
-\thispagestyle{lscape}
+\pagestyle{empty}
 \begin{landscape}
+\thispagestyle{mylandscape}
   \centering
 \begin{figure}[p]
 % \begin{center}
@@ -40,14 +40,13 @@ make.overview.map.plot(path = rootd.map.data)
 \label{fig:main-backscatter-map}
 \end{figure}
 \end{landscape}
-\restoregeometry
 \pagestyle{fancy}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\newgeometry{hmargin=1in,vmargin=1in}
-\thispagestyle{lscape}
+\pagestyle{empty}
 \begin{landscape}
+\thispagestyle{mylandscape}
   \centering
 \begin{figure}[p]
 % \vspace{-5mm}
@@ -67,7 +66,6 @@ make.overview.map.plot(path = rootd.map.data)
 \label{fig:main-backscatter-map-age1}
 \end{figure}
 \end{landscape}
-\restoregeometry
 \pagestyle{fancy}
 %%%%%%%%%%%%%%%%%%%%%%%
 

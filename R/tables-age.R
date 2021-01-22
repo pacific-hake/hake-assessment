@@ -80,6 +80,7 @@ make.input.age.data.table <- function(model,
                         latex.bold("Age (\\% of total for each year)")),
              latex.nline,
              latex.hline,
+             latex.rephead(),
              latex.amp(2),
              ages.tex),
       latex.hline)
@@ -176,6 +177,7 @@ make.can.age.data.table <- function(dat,
                         latex.bold("Age (\\% of total for each year)")),
              latex.nline,
              latex.hline,
+             latex.rephead(),
              latex.amp(2),
              ages.tex,
              latex.nline),
@@ -196,7 +198,7 @@ make.can.age.data.table <- function(dat,
                size = size.string,
                add.to.row = addtorow,
                table.placement = placement,
-               tabular.environment = "tabular",
+               tabular.environment = "longtable",
                hline.after = NULL))
 }
 
@@ -256,6 +258,7 @@ make.us.age.data.table <- function(dat,
                         latex.bold("Age (\\% of total for each year)")),
              latex.nline,
              latex.hline,
+             latex.rephead(),
              latex.amp(3),
              ages.tex,
              latex.nline),
@@ -275,7 +278,7 @@ make.us.age.data.table <- function(dat,
                size = size.string,
                add.to.row = addtorow,
                table.placement = placement,
-               tabular.environment = "tabular",
+               tabular.environment = "longtable",
                hline.after = NULL))
 }
 
@@ -457,6 +460,7 @@ make.est.numbers.at.age.table <- function(model,
                         latex.bold("Age")),
              latex.nline,
              latex.hline,
+             latex.rephead(),
              latex.amp(),
              ages.tex),
       latex.hline)
@@ -474,7 +478,7 @@ make.est.numbers.at.age.table <- function(model,
                size = size.string,
                add.to.row = addtorow,
                table.placement = "H",
-               tabular.environment = "tabular",
+               tabular.environment = "longtable",
                hline.after = NULL))
 
 }

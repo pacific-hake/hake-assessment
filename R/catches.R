@@ -257,6 +257,11 @@ make.catches.table.US <- function(catches,
   ## -1 below means leave the years alone and don't comma-seperate them
   catches[,-1] <-f(catches[-1])
 
+  addtorow <- list()
+  addtorow$pos <- list()
+  addtorow$pos[[1]] <- 0
+  addtorow$command <- latex.rephead()
+
   size.string <- latex.size.str(font.size, space.size)
   print(xtable(catches,
                caption = xcaption,
@@ -264,6 +269,7 @@ make.catches.table.US <- function(catches,
                align = get.align(ncol(catches))),
         caption.placement = "top",
         include.rownames = FALSE,
+        add.to.row = addtorow,
         table.placement = "H",
         tabular.environment = "longtable",
         sanitize.text.function = function(x){x},
@@ -306,6 +312,11 @@ make.catches.table.Can <- function(catches,
   ## -1 below means leave the years alone and don't comma-seperate them
   catches[,-1] <-f(catches[-1])
 
+  addtorow <- list()
+  addtorow$pos <- list()
+  addtorow$pos[[1]] <- 0
+  addtorow$command <- latex.rephead()
+
   size.string <- latex.size.str(font.size, space.size)
   print(xtable(catches,
                caption = xcaption,
@@ -313,6 +324,7 @@ make.catches.table.Can <- function(catches,
                align = get.align(ncol(catches))),
         caption.placement = "top",
         include.rownames = FALSE,
+        add.to.row = addtorow,
         table.placement = "H",
         tabular.environment = "longtable",
         sanitize.text.function = function(x){x},
@@ -356,6 +368,11 @@ make.catches.table.total <- function(catches,
 
   catches[,c(5, 6)] <- f(catches[,c(5, 6)], 1)
 
+  addtorow <- list()
+  addtorow$pos <- list()
+  addtorow$pos[[1]] <- 0
+  addtorow$command <- latex.rephead()
+
   size.string <- latex.size.str(font.size, space.size)
   print(xtable(catches,
                caption = xcaption,
@@ -363,6 +380,7 @@ make.catches.table.total <- function(catches,
                align = get.align(ncol(catches))),
         caption.placement = "top",
         include.rownames = FALSE,
+        add.to.row = addtorow,
         table.placement = "H",
         tabular.environment = "longtable",
         sanitize.text.function = function(x){x},
@@ -438,7 +456,6 @@ make.landings.tac.table <- function(landings.vs.tac,
                                  "target",
                                  "removed")))
 
-
   size.string <- latex.size.str(font.size, space.size)
   print(xtable(tab,
                caption = xcaption,
@@ -506,7 +523,7 @@ make.catches.table.us.ap <- function(catches,
   nc <- ncol(catches)
   ## Make value cells be comma-separated
   catches[!grepl("\\%", catches[, 1]), -1] <- apply(
-    catches[!grepl("\\%", catches[, 1]), -1], 1:2, 
+    catches[!grepl("\\%", catches[, 1]), -1], 1:2,
     function(x) format(as.numeric(x), big.mark = ","))
 
   ## Change factorized version <NA> to NA
@@ -519,7 +536,7 @@ make.catches.table.us.ap <- function(catches,
   catches <- apply(catches, 1:2, function(x) gsub("\\%", "\\\\%", x))
   ## Fix Total for Util Init. Alloc cell
   catches[
-    grep("Init", catches[, 1], ignore.case = TRUE), 
+    grep("Init", catches[, 1], ignore.case = TRUE),
     grep("total", colnames(catches), ignore.case = TRUE)] <- ""
 
   ## Make column and row headers bold

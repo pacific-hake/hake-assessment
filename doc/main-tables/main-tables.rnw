@@ -85,10 +85,11 @@ make.sampling.history.table(sampling.history,
                             font.size = 8,
                             space.size = 10)
 @
+\clearpage
 
-\newgeometry{hmargin=1in,vmargin=1in}
-\thispagestyle{lscape}
+\pagestyle{empty}
 \begin{landscape}
+\thispagestyle{mylandscape}
   \centering
 <<main-us-cp-age-data-table, results='asis', echo=FALSE>>=
 make.us.age.data.table(us.cp.age,
@@ -100,8 +101,8 @@ make.us.age.data.table(us.cp.age,
                          Proportions are calculated from numbers of individuals
                          in each age group. Age 15 is an accumulator group."),
                        xlabel = "tab:main-us-cp-age-data",
-                       font.size = 12,
-                       space.size = 13,
+                       font.size = 10,
+                       space.size = 11,
                        decimals = 2)
 @
 
@@ -116,17 +117,16 @@ make.us.age.data.table(us.ms.age,
                          individuals in each age group. Age 15 is an
                          accumulator group."),
                        xlabel = "tab:main-us-ms-age-data",
-                       font.size = 12,
-                       space.size = 13,
+                       font.size = 10,
+                       space.size = 11,
                        decimals = 2)
 @
 \end{landscape}
-\restoregeometry
 \pagestyle{fancy}
 
-\newgeometry{hmargin=1in,vmargin=1in}
-\thispagestyle{lscape}
+\pagestyle{empty}
 \begin{landscape}
+\thispagestyle{mylandscape}
   \centering
 <<main-us-shore-age-data-table, results='asis', echo=FALSE>>=
 make.us.age.data.table(us.shore.age,
@@ -138,18 +138,11 @@ make.us.age.data.table(us.shore.age,
                                          "calculated from numbers of individuals in each age group. ",
                                          "Age 15 is an accumulator group."),
                        xlabel = "tab:main-us-shore-age-data",
-                       font.size = 12,
-                       space.size = 13,
+                       font.size = 10,
+                       space.size = 11,
                        decimals = 2)
 @
-\end{landscape}
-\restoregeometry
-\pagestyle{fancy}
 
-\newgeometry{hmargin=1in,vmargin=1in}
-\thispagestyle{lscape}
-\begin{landscape}
-  \centering
 <<main-can-shore-age-data-table, results='asis', echo=FALSE>>=
 make.can.age.data.table(can.ages,
                         fleet = 1,
@@ -160,11 +153,17 @@ make.can.age.data.table(can.ages,
                                          "calculated from numbers of individuals in each age group. ",
                                          "Age 15 is an accumulator group."),
                        xlabel = "tab:main-can-shore-age-data",
-                       font.size = 12,
-                       space.size = 13,
+                       font.size = 10,
+                       space.size = 11,
                        decimals = 2)
 @
+\end{landscape}
+\pagestyle{fancy}
 
+\pagestyle{empty}
+\begin{landscape}
+\thispagestyle{mylandscape}
+  \centering
 <<main-can-ft-age-data-table, results='asis', echo=FALSE>>=
 make.can.age.data.table(can.ages,
                         fleet = 2,
@@ -175,29 +174,11 @@ make.can.age.data.table(can.ages,
                                          "calculated from numbers of individuals in each age group. ",
                                          "Age 15 is an accumulator group."),
                         xlabel = "tab:main-can-ft-age-data",
-                        font.size = 12,
-                        space.size = 13,
+                        font.size = 10,
+                        space.size = 11,
                         decimals = 2)
 @
 
-%%<<main-can-jv-age-data-table, results='asis', echo=FALSE>>=
-%%make.can.age.data.table(can.ages,
-%%                        fleet = 3,
-%%                        start.yr = end.yr - num.recent.yrs, # NEED end.yr
-%%                        xcaption = "Age proportions used in the assessment for the Canadian Joint Venture fleet.",
-%%                        xlabel = "tab:main-us-cp-age-data",
-%%                        font.size = 8,
-%%                        space.size = 10,
-%%                        decimals = 4)
-%%@
-\end{landscape}
-\restoregeometry
-\pagestyle{fancy}
-
-\newgeometry{hmargin=1in,vmargin=1in}
-\thispagestyle{lscape}
-\begin{landscape}
-  \centering
 <<main-all-age-data-fishery-table, results='asis', echo=FALSE>>=
 make.input.age.data.table(base.model,
                           fleet = 1,
@@ -211,18 +192,17 @@ make.input.age.data.table(base.model,
                                             "(shown in preceding tables) as described in Section~\\ref{sec:data-fishery-biological-data}. ",
                                             "Age 15 is an accumulator group for comparing observed and expected proportions."),
                           xlabel = "tab:main-all-age-data-fishery",
-                          font.size = 9,
-                          space.size = 10,
+                          font.size = 10,
+                          space.size = 11,
                           decimals = 2)
 @
-
 \end{landscape}
-\restoregeometry
 \pagestyle{fancy}
+\clearpage
 
-\newgeometry{hmargin=1in,vmargin=1in}
-\thispagestyle{lscape}
+\pagestyle{empty}
 \begin{landscape}
+\thispagestyle{mylandscape}
   \centering
 <<main-all-age-survey-table, results='asis', echo=FALSE>>=
 make.input.age.data.table(base.model,
@@ -234,13 +214,11 @@ make.input.age.data.table(base.model,
                                             "calculated from numbers of individuals in each age group. ",
                                             "Age 15 is an accumulator group."),
                           xlabel = "tab:main-all-age-data-survey",
-                          font.size = 12,
-                          space.size = 13,
+                          font.size = 10,
+                          space.size = 11,
                           decimals = 2)
 @
-
 \end{landscape}
-\restoregeometry
 \pagestyle{fancy}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -250,7 +228,7 @@ make.survey.history.table(survey.history,
                           xcaption = paste0("Summary of the acoustic surveys from 1995 to ", survey.end.yr, "."),
                           xlabel = "tab:main-survey-history",
                           font.size = 10,
-                          space.size = 12)
+                          space.size = 11)
 @
 
 <<main-maturity-ogives-table, results='asis', echo=FALSE>>=
@@ -265,10 +243,11 @@ make.maturity.ogives.table(maturity.ogives,
                                        start.yr.age.comps,
                                        "--",
                                        last.data.yr,
-                                       " were used in the stock assessment. The values reported for ages 15 and above                                                represent the average across all samples in this range."),
+                                       " were used in the stock assessment. The values reported for ages 15 and ",
+                                       "above represent the average across all samples in this range."),
                            xlabel = "tab:main-ogives",
                            font.size = 10,
-                           space.size = 10)
+                           space.size = 11)
 @
 
 <<main-ovaries-table, results='asis', echo=FALSE>>=
@@ -278,8 +257,9 @@ make.maturity.samples.table(ovary.samples,
                                         (up to and including 2017; see \\citealt{JTC2018}).",
                             xlabel = "tab:main-ovaries",
                             font.size = 10,
-                            space.size = 10)
+                            space.size = 11)
 @
+\clearpage
 
 <<main-parameters-estimated-summary-table, results='asis', echo=FALSE>>=
 make.parameters.estimated.summary.table(
@@ -293,10 +273,13 @@ make.parameters.estimated.summary.table(
                      deviation in log space."),
   xlabel = "tab:main-params-est-summary",
   font.size = 10,
-  space.size = 12)
+  space.size = 11)
 @
 
-
+\pagestyle{empty}
+\begin{landscape}
+\thispagestyle{mylandscape}
+  \centering
 <<main-parameter-estimates-retro, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(retro.list,
                                           model.names = retro.model.names,
@@ -313,20 +296,29 @@ make.short.parameter.estimates.sens.table(retro.list,
                                                              analysis."),
                                           xlabel = "tab:main-parameter-estimates-retro",
                                           font.size = 10,
-                                          space.size = 12)
+                                          space.size = 11)
 @
+\end{landscape}
+\pagestyle{fancy}
 
 <<main-assessment-changes-table, results='asis', echo=FALSE>>=
 make.assessment.changes.table(assessment.changes,
-  xcaption = paste0("Annual changes in the modeling framework used to assess ",
-  "\\fishname\\ since 2011. ",
-  "The bias adjustment is reported as the maximum used for each assessment. ",
-  "Methods used to weight the age-composition data (Comp Method), i.e., ",
-  "McAllister-Ianelli (MI) and Dirichlet-Multinomial (DM) approaches, are explained in ",
-  "the main text."),
-  xlabel = "tab:main-assessment-changes")
+                              xcaption = paste0("Annual changes in the modeling framework used to assess ",
+                                                "\\fishname\\ since 2011. ",
+                                                "The bias adjustment is reported as the maximum used for each assessment. ",
+                                                "Methods used to weight the age-composition data (Comp Method), i.e., ",
+                                                "McAllister-Ianelli (MI) and Dirichlet-Multinomial (DM) approaches, are explained in ",
+                                                "the main text."),
+                              xlabel = "tab:main-assessment-changes",
+                              font.size = 10,
+                              space.size = 11)
 @
+\clearpage
 
+\pagestyle{empty}
+\begin{landscape}
+\thispagestyle{mylandscape}
+  \centering
 <<main-est-numbers-at-age-table, results='asis', echo=FALSE>>=
 make.est.numbers.at.age.table(
   base.model,
@@ -339,10 +331,11 @@ make.est.numbers.at.age.table(
   xcaption = paste0("Estimated numbers-at-age at the beginning ",
                     "of the year from the base model (MLE; million)."),
   xlabel = "tab:main-est-numbers-at-age",
-  font.size = 8,
+  font.size = 9,
   space.size = 10)
 @
-\clearpage
+\end{landscape}
+\pagestyle{fancy}
 
 \pagestyle{empty}
 \begin{landscape}
@@ -358,16 +351,15 @@ make.est.numbers.at.age.table(
   xcaption = paste0("Estimated biomass-at-age at the beginning ",
                     "of the year from the base model (MLE; thousand t)."),
   xlabel = "tab:main-est-biomass-at-age",
-  font.size = 7,
-  space.size = 8)
+  font.size = 9,
+  space.size = 10)
 @
 \end{landscape}
 \pagestyle{fancy}
-\clearpage
 
-\newgeometry{hmargin=1in,vmargin=1in}
-\thispagestyle{lscape}
+\pagestyle{empty}
 \begin{landscape}
+\thispagestyle{mylandscape}
   \centering
 <<main-est-exp-rate-at-age-table, results='asis', echo=FALSE>>=
 make.est.numbers.at.age.table(
@@ -381,18 +373,15 @@ make.est.numbers.at.age.table(
       "for each year from the base model (MLE; percentage of age class removed by fishing). ",
       "Annual exploitation rates for ages 6$+$ are equivalent because those fish are fully selected."),
   xlabel = "tab:main-est-exp-rate-at-age",
-  font.size = 6,
-  space.size = 7)
+  font.size = 8,
+  space.size = 9)
 @
-
 \end{landscape}
-\restoregeometry
 \pagestyle{fancy}
-\clearpage
 
-\newgeometry{hmargin=1in,vmargin=1in}
-\thispagestyle{lscape}
+\pagestyle{empty}
 \begin{landscape}
+\thispagestyle{mylandscape}
   \centering
 <<main-est-catch-at-age-table, results='asis', echo=FALSE>>=
 make.est.numbers.at.age.table(
@@ -404,18 +393,15 @@ make.est.numbers.at.age.table(
   xcaption = paste0("Estimated catch-at-age in numbers ",
                     "for each year from the base model (MLE; thousands)."),
   xlabel = "tab:main-est-catch-at-age",
-  font.size = 7,
-  space.size = 8)
+  font.size = 6,
+  space.size = 7)
 @
-
 \end{landscape}
-\restoregeometry
 \pagestyle{fancy}
-\clearpage
 
-\newgeometry{hmargin=1in,vmargin=1in}
-\thispagestyle{lscape}
+\pagestyle{empty}
 \begin{landscape}
+\thispagestyle{mylandscape}
   \centering
 <<main-est-catch-at-age-biomass-table, results='asis', echo=FALSE>>=
 make.est.numbers.at.age.table(
@@ -427,16 +413,15 @@ make.est.numbers.at.age.table(
   xcaption = paste0("Estimated catch-at-age in biomass ",
                     "for each year from the base model (MLE; metric tons)."),
   xlabel = "tab:main-est-catch-at-age-biomass",
-  font.size = 7,
-  space.size = 8)
+  font.size = 6,
+  space.size = 7)
 @
 \end{landscape}
-\restoregeometry
 \pagestyle{fancy}
 
-\newgeometry{hmargin=1in,vmargin=1in}
-\thispagestyle{lscape}
+\pagestyle{empty}
 \begin{landscape}
+\thispagestyle{mylandscape}
   \centering
 <<main-cohort-effects-table, results='asis', echo=FALSE>>=
 make.cohort.table(base.model,
@@ -463,7 +448,6 @@ make.cohort.table(base.model,
                   space.size = 10)
 @
 \end{landscape}
-\restoregeometry
 \pagestyle{fancy}
 \clearpage
 
@@ -481,8 +465,8 @@ make.median.posterior.table(
                      above. Exploitation fraction is total catch divided by total age-2+ biomass.
                      Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%})."),
   xlabel = "tab:main-median-posterior",
-  font.size = 8,
-  space.size = 9)
+  font.size = 9,
+  space.size = 10)
 @
 
 <<main-ci-posterior-table, results='asis', echo=FALSE>>=
@@ -495,7 +479,7 @@ make.ci.posterior.table(
                      shown in Table \\ref{tab:main-median-posterior}."),
   xlabel = "tab:main-ci-posterior",
   font.size = 8,
-  space.size = 10)
+  space.size = 9)
 @
 
 <<main-parameter-estimates, results='asis', echo=FALSE>>=
@@ -511,8 +495,8 @@ make.short.parameter.estimates.table(
                      "an additional comparison to posterior median ",
                      "estimates from the previous (",end.yr-1,") base model."),
   xlabel = "tab:main-parameter-estimates",
-  font.size = 9,
-  space.size = 10)
+  font.size = 10,
+  space.size = 11)
 @
 
 <<main-reference-points-table, results='asis', echo=FALSE>>=
@@ -527,7 +511,7 @@ make.reference.points.table(base.model,
                                               " averages for mean weight-at-age and baseline selectivity."),
                             xlabel = "tab:main-reference-points",
                             font.size = 10,
-                            space.size = 12)
+                            space.size = 11)
 @
 
 <<main-decisions-biomass-table, results='asis', echo=FALSE>>=
@@ -563,8 +547,8 @@ make.decision.table(base.model,
                      max(forecast_yrs),
                      "."),
                     xlabel = "tab:main-decisions-biomass",
-                    font.size = 12,
-                    space.size = 14,
+                    font.size = 10,
+                    space.size = 11,
                     type = "biomass")
 @
 
@@ -579,8 +563,8 @@ make.decision.table(base.model,
                                       max(forecast_yrs),
                                       " catch alternatives presented in Table \\ref{tab:main-decisions-biomass}. Values greater than 100\\% indicate fishing intensities greater than the $\\Fforty$ harvest policy calculated using baseline selectivity."),
                     xlabel = "tab:main-decisions-spr",
-                    font.size = 12,
-                    space.size = 14,
+                    font.size = 10,
+                    space.size = 11,
                     type = "spr")
 @
 
@@ -593,8 +577,8 @@ make.risk.table(base.model,
                                   end.yr,
                                   " catch options (catch options explained in Table \\ref{tab:main-decisions-biomass})."),
                 xlabel = "tab:main-risk-year-1",
-                font.size = 12,
-                space.size = 14)
+                font.size = 10,
+                space.size = 11)
 @
 
 <<main-risk-forecast-year-2-table, results='asis', echo=FALSE>>=
@@ -611,13 +595,13 @@ make.risk.table(base.model,
                                   " catch level shown in Table~\\ref{tab:main-risk-year-1} (catch options
                                   explained in Table \\ref{tab:main-decisions-biomass})."),
                 xlabel = "tab:main-risk-year-2",
-                font.size = 12,
-                space.size = 14)
+                font.size = 10,
+                space.size = 11)
 @
 
-\newgeometry{hmargin=1in,vmargin=1in}
-\thispagestyle{lscape}
+\pagestyle{empty}
 \begin{landscape}
+\thispagestyle{mylandscape}
   \centering
 <<main-parameter-estimates-sens-1, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(sens.models.1.for.table,
@@ -636,12 +620,11 @@ make.short.parameter.estimates.sens.table(sens.models.1.for.table,
                                           getrecs = c(2010, 2014, 2016))
 @
 \end{landscape}
-\restoregeometry
 \pagestyle{fancy}
 
-\newgeometry{hmargin=1in,vmargin=1in}
-\thispagestyle{lscape}
+\pagestyle{empty}
 \begin{landscape}
+\thispagestyle{mylandscape}
   \centering
 <<main-parameter-estimates-sens-2, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(sens.models.2.for.table,
@@ -659,12 +642,11 @@ make.short.parameter.estimates.sens.table(sens.models.2.for.table,
                                           getrecs = c(2010, 2014, 2016))
 @
 \end{landscape}
-\restoregeometry
 \pagestyle{fancy}
 
-\newgeometry{hmargin=1in,vmargin=1in}
-\thispagestyle{lscape}
+\pagestyle{empty}
 \begin{landscape}
+\thispagestyle{mylandscape}
   \centering
 <<main-parameter-estimates-sens-3, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(sens.models.3.for.table,
@@ -682,32 +664,7 @@ make.short.parameter.estimates.sens.table(sens.models.3.for.table,
                                           getrecs = c(2010, 2014, 2016))
 @
 \end{landscape}
-\restoregeometry
 \pagestyle{fancy}
-
-% \newgeometry{hmargin=1in,vmargin=1in}
-% \thispagestyle{lscape}
-% \begin{landscape}
-%   \centering
-% <<main-parameter-estimates-sens-4, results='asis', echo=FALSE>>=
-% make.short.parameter.estimates.table(base.model,
-%   sens.models.4.for.table[[2]],
-%   end.yr = end.yr,
-%   digits = 3,
-%   xcaption = paste0("Select parameters, derived quantities, ",
-%                      "and reference point estimates for the base model ",
-%                      "MLE and posterior median (MCMC) estimates with ",
-%                      "an additional comparison to posterior median ",
-%                      "estimates from the No-U-Turn ",
-%                      "Sampler (NUTS)."),
-%   xlabel = "tab:main-parameter-estimates-sens-4",
-%   font.size = 9,
-%   space.size = 10,
-%   last.yr.model.name = c("AD", "NUTS"))
-% @
-% \end{landscape}
-% \restoregeometry
-% \pagestyle{fancy}
 
 
 \clearpage

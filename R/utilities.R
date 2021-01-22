@@ -203,6 +203,19 @@ latex.supscr <- function(main.txt, supscr.txt){
   paste0(main.txt, "\\supscr{", supscr.txt, "}")
 }
 
+#' Return the necessary latex to repeat longtable headers
+#'
+#' @return vector of strings needed to repeat the header of a longtable
+#' and a footer which says 'Continued on next page ...'
+#' @export
+latex.rephead <- function(){
+  paste0("\\endhead \n",
+         "\\hline \n",
+         "{\\footnotesize Continued on next page ...} \n",
+         "\\endfoot \n",
+         "\\endlastfoot \n")
+}
+
 #' Extract priors information from `prior.str``
 #'
 #' @param prior.str A string with the format *Lognormal(2.0,1.01)*

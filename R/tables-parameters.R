@@ -322,6 +322,7 @@ make.parameters.estimated.summary.table <- function(model,
         sanitize.text.function = function(x){x},
         size = size.string,
         add.to.row = addtorow,
+        tabular.environment = "longtable",
         table.placement = "H")
 }
 
@@ -607,6 +608,7 @@ make.short.parameter.estimates.sens.table <- function(models,
         sanitize.text.function = function(x){x},
         size = size.string,
         add.to.row = addtorow,
+        tabular.environment = "longtable",
         table.placement = "H")
 }
 
@@ -774,7 +776,8 @@ make.short.parameter.estimates.table <- function(model,
         sanitize.text.function = function(x){x},
         size = size.string,
         add.to.row = addtorow,
-        table.placement = "H")
+        table.placement = "H",
+        tabular.environment = "longtable")
 }
 
 make.long.parameter.estimates.table <- function(model,

@@ -82,6 +82,7 @@ make.reference.points.table <- function(model,
         sanitize.text.function = function(x){x},
         size = size.string,
         add.to.row = addtorow,
-        table.placement = placement)
+        table.placement = placement,
+        tabular.environment = "longtable")
 }
 

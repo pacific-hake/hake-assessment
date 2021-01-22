@@ -1,3 +1,17 @@
+#' Title
+#'
+#' @param model
+#' @param xcaption
+#' @param xlabel
+#' @param font.size
+#' @param space.size
+#' @param type
+#' @param placement
+#'
+#' @return
+#' @export
+#'
+#' @examples
 make.decision.table <- function(model,
                                 xcaption   = "default",
                                 xlabel     = "default",

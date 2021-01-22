@@ -43,6 +43,7 @@ make.assessment.changes.table <- function(assessment.changes,
         caption.placement = "top",
         include.rownames = FALSE,
         table.placement = "H",
+        tabular.environment = "longtable",
         sanitize.text.function = function(x){x},
         size = size.string)
 }

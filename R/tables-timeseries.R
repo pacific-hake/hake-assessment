@@ -98,13 +98,21 @@ make.ci.posterior.table <- function(model,
   tab.filt <- map_df(as_tibble(tab.filt), ~{gsub("-", " - ", .x)}) %>%
     as.data.frame %>%
     bind_rows(last_row)
+
+  addtorow <- list()
+  addtorow$pos <- list()
+  addtorow$pos[[1]] <- 0
+  addtorow$command <- latex.rephead()
+
   print(xtable(tab.filt,
                caption = xcaption,
                label = xlabel,
                align = get.align(ncol(tab.filt)),
                digits = digits),
         caption.placement = "top",
+        add.to.row = addtorow,
         table.placement = "H",
+        tabular.environment = "longtable",
         include.rownames = FALSE,
         sanitize.text.function = function(x){x},
         size = size.string)
@@ -217,13 +225,21 @@ make.median.posterior.table <- function(model,
               row.names = FALSE,
               na = "")
   }
+
+  addtorow <- list()
+  addtorow$pos <- list()
+  addtorow$pos[[1]] <- 0
+  addtorow$command <- latex.rephead()
+
   print(xtable(tab.filt,
                caption = xcaption,
                label = xlabel,
                align = get.align(ncol(tab.filt)),
                digits = digits),
         caption.placement = "top",
+        add.to.row = addtorow,
         table.placement = "H",
+        tabular.environment = "longtable",
         include.rownames = FALSE,
         sanitize.text.function = function(x){x},
         size = size.string)
