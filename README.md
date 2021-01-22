@@ -87,12 +87,14 @@ build_rds()
 
   * Run this in an R session if you want to build with `PDF/EPS` figures:
   ```R
+  setwd(here::here("doc"))
   source(here::here("R/all.r"))
   build_doc(png_figs = FALSE)
   ```
   
   * Run this in an R session if you want to build with `PNG` figures:
   ```R
+  setwd(here::here("doc"))
   source(here::here("R/all.r"))
   build_doc(png_figs = TRUE)
   ```
