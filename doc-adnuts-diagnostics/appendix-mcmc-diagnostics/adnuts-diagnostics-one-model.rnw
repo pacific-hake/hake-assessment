@@ -11,6 +11,7 @@ this.model.name <- gsub("_", "-", this.model.name)
 # Simplify captions
 @
 
+\rfoot{\Sexpr{this.model.name}}
 \chapter{MCMC diagnostics: \Sexpr{this.model.name}}
 \label{chap:\Sexpr{this.model.name}}
 

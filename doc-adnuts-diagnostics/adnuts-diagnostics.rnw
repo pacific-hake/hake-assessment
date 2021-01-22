@@ -221,7 +221,7 @@ or policy.}
 \input{../doc/preamble}
 \setcounter{secnumdepth}{5} %% To number subsubheadings-ish
 
-\lfoot{ADNUTS diagnostics -- \fishname\ assessment \Sexpr{assess.yr}}
+\lfoot{ADNUTS diagnostics -- hake \Sexpr{assess.yr}}
 
 <<setup, echo=FALSE>>=
 # this.sens.model.ind = 0       # start with base model
@@ -233,8 +233,6 @@ diagnostic.model <- c("base.model",
                       "sens.models.1[[1]]",
                       "sens.models.1[[2]]")
 @
-
-% \rfoot{Section~\ref{chap:mcmc-diagnostics} -- Base model diagnostics}
 
 <<generate, echo=FALSE, results='asis'>>=
 # This duplicates the ..one-model.rnw code with {{this.sens.model}} replaced
