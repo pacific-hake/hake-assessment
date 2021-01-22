@@ -397,9 +397,17 @@ make.mcmc.diag.pairs.plot <- function(model,
     lst <- lapply(seq_along(key.posteriors.regex), function(x){
       select(m, matches(key.posteriors.regex[x]))
     })
+    par_estimated <- vector()    # check which key.posteriors are estimated
+    for(i in 1:6){
+      par_estimated[i] <- ncol(lst[[i]]) > 0
+    }
+
     obj_func_col <- select(m, contains("Objective_function"))
     df <- bind_cols(obj_func_col, lst)
-    labels <- c("Objective\nFunction", key.posteriors.names)
+    labels <- c("Objective\nFunction", key.posteriors.names[par_estimated])
+    if(length(names(df)) != length(labels)){
+      stop("Number of parameters estimated from key posteriors is wrong.")
+    }
   }else{
     if(is.null(recr)){
       stop("If inc.key.params is FALSE, recr must not be null.",
