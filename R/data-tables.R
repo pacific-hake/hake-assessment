@@ -48,7 +48,6 @@ catches <- catches[[1]]
 catch.targets <- read_csv(file.path(rootd.data, catch.targets.file))
 survey.history <- load.survey.history(file.path(rootd.data, survey.history.file))
 survey.comparison <- read.csv(file.path(rootd.data, survey.comparison.file), stringsAsFactors = FALSE)
-survey.summary <- read.csv(file.path(rootd.data, survey.summary.file), stringsAsFactors = FALSE)
 sampling.history <- load.sampling.history(file.path(rootd.data, sampling.history.file))
 further.tac <- further.tac.details(file.path(rootd.data, further.tac.file))
 can.ages <- load.can.age.data(file.path(rootd.data, can.age.file))
