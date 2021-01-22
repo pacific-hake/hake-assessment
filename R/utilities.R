@@ -208,10 +208,10 @@ latex.supscr <- function(main.txt, supscr.txt){
 #' @return vector of strings needed to repeat the header of a longtable
 #' and a footer which says 'Continued on next page ...'
 #' @export
-latex.rephead <- function(){
+latex.rephead <- function(n_col = 1){
   paste0("\\endhead \n",
          "\\hline \n",
-         "{\\footnotesize Continued on next page ...} \n",
+         "\\multicolumn{", n_col, "}{l}{\\textit{Continued on next page ...}} \n",
          "\\endfoot \n",
          "\\endlastfoot \n")
 }

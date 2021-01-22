@@ -102,7 +102,7 @@ make.ci.posterior.table <- function(model,
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- 0
-  addtorow$command <- latex.rephead()
+  addtorow$command <- latex.rephead(ncol(tab.filt))
 
   print(xtable(tab.filt,
                caption = xcaption,
@@ -229,7 +229,7 @@ make.median.posterior.table <- function(model,
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- 0
-  addtorow$command <- latex.rephead()
+  addtorow$command <- latex.rephead(ncol(tab.filt))
 
   print(xtable(tab.filt,
                caption = xcaption,

@@ -260,7 +260,7 @@ make.catches.table.US <- function(catches,
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- 0
-  addtorow$command <- latex.rephead()
+  addtorow$command <- latex.rephead(ncol(catches))
 
   size.string <- latex.size.str(font.size, space.size)
   print(xtable(catches,
@@ -315,7 +315,7 @@ make.catches.table.Can <- function(catches,
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- 0
-  addtorow$command <- latex.rephead()
+  addtorow$command <- latex.rephead(ncol(catches))
 
   size.string <- latex.size.str(font.size, space.size)
   print(xtable(catches,
@@ -371,7 +371,7 @@ make.catches.table.total <- function(catches,
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- 0
-  addtorow$command <- latex.rephead()
+  addtorow$command <- latex.rephead(ncol(catches))
 
   size.string <- latex.size.str(font.size, space.size)
   print(xtable(catches,
