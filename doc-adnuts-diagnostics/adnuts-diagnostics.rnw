@@ -224,14 +224,25 @@ or policy.}
 \lfoot{ADNUTS diagnostics -- hake \Sexpr{assess.yr}}
 
 <<setup, echo=FALSE>>=
-# this.sens.model.ind = 0       # start with base model
-# this.sens.model = base.model
-
-# diagnostic.model.names <- c("Base model")
-#                            sens.model.names.1)  # then add .2 etc.
+# All the model results to show diagnostics for:
+# Not automatic, but makes it easy to add/leave any out
 diagnostic.model <- c("base.model",
                       "sens.models.1[[1]]",
-                      "sens.models.1[[2]]")
+                      "sens.models.1[[2]]",
+                      "sens.models.1[[3]]",
+                      "sens.models.1[[4]]",
+                      "sens.models.1[[5]]",
+                      "sens.models.1[[6]]",
+                      "sens.models.1[[7]]",
+                      "sens.models.2[[1]]",
+                      "sens.models.2[[2]]",
+                      "sens.models.2[[3]]",
+                      "sens.models.4[[1]]",
+                      "sens.models.4[[2]]",
+                      "sens.models.4[[3]]",
+                      "sens.models.4[[4]]",
+                      "sens.models.5"     # only one element
+                      )
 @
 
 <<generate, echo=FALSE, results='asis'>>=

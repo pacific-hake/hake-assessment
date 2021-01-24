@@ -204,6 +204,9 @@ model_list <- c(base.model.dir.name,
 model_list <- model_list[! model_list %in% last.yr.base.model.dir.name]
 model_list <- as.list(unique(model_list))
 
+## For ADNUTS diagnostics document, update the list in adnuts-diagnostics.rnw if
+##  sensitivity models get added or removed here.
+
 ## This function must be called from within the first knitr code chunk
 ## in the document. It is defined here so that it is in the same place
 ## as the other model setup and should be changed if bridge models
@@ -250,4 +253,3 @@ load_models_rds <- function(){
   # sens.models.4.for.table <<- c(list(base.model), list(sens.models.6))
   # sens.model.names.4.for.table <<- c("Base model", sens.model.names.6)
 }
-

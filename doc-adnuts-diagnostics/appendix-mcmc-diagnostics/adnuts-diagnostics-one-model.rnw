@@ -5,8 +5,6 @@ this.model.name <- gsub("_", "-", this.model.name)
 # TODO:
 # panel plots are good, check rest - corr plot seems to include h for fixed h run
 # add in rest of sens analyses
-# Simplify captions
-
 @
 
 \rfoot{\Sexpr{this.model.name}}
