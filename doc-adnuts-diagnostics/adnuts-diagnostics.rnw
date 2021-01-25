@@ -234,8 +234,19 @@ or policy.}
 \lfoot{ADNUTS diagnostics -- hake \Sexpr{assess.yr}}
 
 <<setup, echo=FALSE>>=
-# All the model results to show diagnostics for:
-# Not automatic, but makes it easy to add/leave any out
+# All the model results to show diagnostics for. Doing manually as easy to
+# change on the fly and hard to automate, so do a check here:
+if(!(length(sens.models.1) == 7 &
+     length(sens.models.2) == 3 &
+     # length(sens.models.3) == ?? &
+     length(sens.models.4) == 4 &
+     length(sens.models.5) > 100 # it currently just has one model
+     )
+   ){ stop("Need to update diagnostic.model in adnuts-diagnostics.rnw")
+  }
+
+# When adding new models then need to update the if statement above. No need if
+#  just commenting any of these out:
 diagnostic.model <- c("base.model",
                       "sens.models.1[[1]]",
                       "sens.models.1[[2]]",

@@ -329,7 +329,7 @@ make.mcmc.diag.plot.if.exists <- function(.model,
   if(ncol(posterior_check) > 1){
     if("Q_extraSD_Age1_Survey(3)" %in% names(posterior_check)){
       .posterior.regex <- "Q_extraSD_Age1_Survey"
-      .posterior.name <- "Age-1 Survey extra SD"
+      .posterior.name <- "Age-1 survey extra SD"
     } else {
       stop(paste0("Need to decide which posterior to show in
              make.mcmc.diag.plot.if.exists() for model run ",
@@ -426,7 +426,7 @@ make.mcmc.diag.pairs.plot <- function(model,
       if("Q_extraSD_Age1_Survey(3)" %in%
          names(lst[[dupl]])){
         key.posteriors.names <- c(key.posteriors.names[1:dupl],
-                                  "Age-1 Survey extra SD",
+                                  "Age-1 survey extra SD",
                                   key.posteriors.names[(dupl+1):length(key.posteriors.names)])
       } else {
         stop(paste0("Need to decide which variables to show in
