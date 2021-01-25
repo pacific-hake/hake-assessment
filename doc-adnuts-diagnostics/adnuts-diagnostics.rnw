@@ -165,10 +165,10 @@ fig_width <- 7.5
 fig_dpi <- 600
 fig_align <- "center"
 fig_pos <- "htb"
-library(knitr)   # Otherwise next line gives hidden error for the first run
+library(knitr)   # Need here otherwise next line gives hidden error for the first run
                  #  using knitr::knit("adnuts-diagnostics.rnw") and pdf's get made
 opts_chunk$set(
-             dev = 'cairo_ps',
+             dev = 'png',
              dpi = fig_dpi,
              fig.width = fig_width,
              fig.pos = fig_pos,
@@ -179,8 +179,8 @@ opts_chunk$set(
              warning = FALSE,
              comment = "#>",
              results = 'hide',
-             fig.path = 'knitr-cache-eps/',
-             cache.path = 'knitr-cache-eps/',
+             fig.path = 'knitr-cache-png/',
+             cache.path = 'knitr-cache-png/',
              cache = TRUE)
 
 source(here::here("R/all.R"))
