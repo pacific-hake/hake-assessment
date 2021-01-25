@@ -189,6 +189,47 @@ build_rds()
 * The code file `create-rds-file.R` contains these functions.
 
 ---
+## How to create adnuts-diagnostics.pdf
+**The `RDS` files must have been created using the method above before the document can be built.**
+
+This document shows a set of diagnostics figures for the base model and each of the sensitivity models runs defined in the sensitivity model groups in `model-setup.R`. If the assessment document builds then this file should build as the `RDS` files already exist. For 16 sensitivity analyses, using `.eps` files created a 100Mb `.pdf`, but using `.png` only created a 20Mb `.pdf`, so the methods here only use `.png` files. (Revert commit c3dacd09 to make `.eps`). 
+
+Document build took about 20 minutes for the `knitr` component (it looks like it hangs at 86% done, but it isn't!), and a few minutes to build the `.pdf`. The following build methods are adapted from those above. 
+
+* **Method 1**
+  
+  Run the batch files `doc-adnuts-diagnostics/builddoc-adnuts.bat`.
+
+* **Method 2**
+
+  * Run this in an R session:
+  ```R
+  setwd(here::here("doc"))
+  source(here::here("R/all.r"))
+  build_adnuts_doc()
+  ```
+
+  * After the first time you do this, the models will be loaded into the R workspace and any subsequent builds will be a little faster.
+
+* **Method 3**
+  * Run this in an R session in `doc-adnuts-diagnostics/`:
+  knitr::knit("adnuts-diagnostics.rnw")
+  ```
+  then this in a terminal:
+  ```
+  pdflatex hake-assessment.tex
+  pdflatex hake-assessment.tex
+  ```
+  * Two runs should be enough, as the only cross-referencing is the Table of Contents.
+
+## How to clean up the `doc` directory after an erroneous build (Andy not fully tested, but has updated)
+* To remove everything from the build, including cached figures and table data, run the batch file
+  * `doc-adnuts-diagnostics/freshdoc-png.bat`
+
+* To remove all the Latex files but keep the cached figures and table data, run one of the batch files
+  * `doc-adnuts-diagnostics/cleandoc-png.bat`
+
+---
 ## How the R environment is set up
 
 * When the document is built, all of the model RDS files which were previously built are loaded into the workspace that is seen by knitr. All the lengthy R processes are done ahead of time from the `build_rds()` function to make the document building quicker.

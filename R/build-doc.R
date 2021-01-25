@@ -177,3 +177,34 @@ mod_code_for_build <- function(png_figs = TRUE,
   writeLines(hake_assess, rnw_file)
 }
 
+#' Build the ADNUT diagnostics document entirely from within an R session
+#'
+#' @details Make sure you have created the .rds files by running [build_rds()] in the appropriate manner.
+#' Once you have done that and run this function once within an R session, it will be a little quicker since the RDS
+#' file contents will have already been loaded into the R session. Only has the
+#' PNG option since EPS files produce a huge final PDF; no need for bibtex
+#'   since no references. If those are needed then just adapt `build_doc` again.
+#'
+#' @param knit_only Only knit the code, do not run latex or pdflatex
+#' @param doc_name What to name the document (no extension)
+#'
+#' @return [base::invisible()]
+#' @export
+build_adnuts_doc <- function(knit_only = FALSE,
+                             doc_name = "adnuts-diagnostics",
+                             ...){
+
+  latex_command <- "pdflatex"
+  curr_path <- getwd()
+  setwd(here::here("doc-adnuts-diagnostics"))
+
+  knit(paste0(doc_name, ".rnw"))
+
+  if(!knit_only){
+    shell(paste0(latex_command, " ", doc_name, ".tex"))
+    shell(paste0(latex_command, " ", doc_name, ".tex"))
+    # shell(paste0(latex_command, " ", doc_name, ".tex"))  # two should be enough
+  }
+  setwd(curr_path)
+  invisible()
+}
