@@ -213,6 +213,7 @@ Document build took about 20 minutes for the `knitr` component (it looks like it
 
 * **Method 3**
   * Run this in an R session in `doc-adnuts-diagnostics/`:
+  ```
   knitr::knit("adnuts-diagnostics.rnw")
   ```
   then this in a terminal:
