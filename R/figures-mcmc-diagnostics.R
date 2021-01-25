@@ -409,8 +409,30 @@ make.mcmc.diag.pairs.plot <- function(model,
       select(m, matches(key.posteriors.regex[x]))
     })
     par_estimated <- vector()    # check which key.posteriors are estimated
-    for(i in 1:6){
+    par_estimated_number <- vector()    # check which key.posteriors end up with
+                                        # two columns due to regex
+    for(i in 1:length(key.posteriors.regex)){
       par_estimated[i] <- ncol(lst[[i]]) > 0
+      par_estimated_number[i] <- ncol(lst[[i]])
+    }
+
+    # Manually fix the two columns issue when including Age1 Survey
+    if(max(par_estimated_number) > 1){
+      dupl <- which.max(par_estimated_number)   # which list containts duplicates
+      if(sum(par_estimated_number == dupl)){
+        stop("Multiple repeated column names, need to manually decide which to include.")
+      }
+
+      if("Q_extraSD_Age1_Survey(3)" %in%
+         names(lst[[dupl]])){
+        key.posteriors.names <- c(key.posteriors.names[1:dupl],
+                                  "Age-1 Survey extra SD",
+                                  key.posteriors.names[(dupl+1):length(key.posteriors.names)])
+      } else {
+        stop(paste0("Need to decide which variables to show in
+             make.mcmc.diag.pairs.plot() for model run ",
+             model$path))
+      }
     }
 
     obj_func_col <- select(m, contains("Objective_function"))
