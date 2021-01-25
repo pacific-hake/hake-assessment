@@ -404,7 +404,7 @@ m.prior <- split.prior.info(param.details[rownames(param.details) == "m.vals",][
                             first.to.lower = TRUE)
 ## Now, in document, use m.prior[1] for name of prior, m.prior[1] for mean, and m.prior[3] for SD.
 effn.prior <- c(NA, unlist(
-  base.model$parameters[grep("EffN", base.model$parameters$Label), c("Prior", "Pr_SD")][1, ]))
+  base.model$parameters[grep("DM_theta", base.model$parameters$Label), c("Prior", "Pr_SD")][1, ]))
 sel.Phi.val <- base.model$parameters[base.model$parameters$Label=="AgeSel_P3_Fishery(1)_dev_se", "Value"]
 
 ################################################################################
