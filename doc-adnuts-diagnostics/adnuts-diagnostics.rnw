@@ -1,6 +1,16 @@
 %% adnuts-diagnostics.Rnw. Doing .eps files since builds faster
 %% Pacific Hake Joint technical committee.
 
+%% Note that adnuts-diagnostics-one-model.rnw gets repeatedly called from here,
+%%  such that it is not easy to uniquely label the chunks. So chunks get labelled
+%%  sequentially, roughly 7 per model run, yielding unnamed-chunk-2-1.png etc.
+%%  If a figure fails, then check the .tex file to search for any errors and
+%%  match them to correpsonding chunk number. Was hoping to just remove that
+%%  chunk's cached files and re-run (to save remaking all figures), but that
+%%  doesn't seem to work as it messes up knitr rebuilding a cache. The
+%%  knit_expand doesn't create a giant knitr file.
+
+
 \documentclass[12pt]{book}
 %% Allows the numbering of figures/tables to be unique witin a section
 %%  so that clicking table d in the executive summary takes you there, and not

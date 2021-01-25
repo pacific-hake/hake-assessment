@@ -319,11 +319,22 @@ make.mcmc.diag.plot <- function(model,
 make.mcmc.diag.plot.if.exists <- function(.model,
                                           .posterior.regex,
                                           .posterior.name){
-
   posterior_check <- select(.model$mcmc,
                             matches(.posterior.regex))
   if(ncol(posterior_check) == 0){
     return()
+  }
+
+  # Can have two matches, have to manually decide here
+  if(ncol(posterior_check) > 1){
+    if("Q_extraSD_Age1_Survey(3)" %in% names(posterior_check)){
+      .posterior.regex <- "Q_extraSD_Age1_Survey"
+      .posterior.name <- "Age-1 Survey extra SD"
+    } else {
+      stop(paste0("Need to decide which posterior to show in
+             make.mcmc.diag.plot.if.exists() for model run ",
+             .model$path))
+    }
   }
 
   make.mcmc.diag.plot(model = .model,
