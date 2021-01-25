@@ -194,7 +194,7 @@ build_rds()
 
 This document shows a set of diagnostics figures for the base model and each of the sensitivity models runs defined in the sensitivity model groups in `model-setup.R`. If the assessment document builds then this file should build as the `RDS` files already exist. For 16 sensitivity analyses, using `.eps` files created a 100Mb `.pdf`, but using `.png` only created a 20Mb `.pdf`, so the methods here only use `.png` files. (Revert commit c3dacd09 to make `.eps`). 
 
-Document build took about 20 minutes for the `knitr` component (it looks like it hangs at 86% done, but it isn't!), and a few minutes to build the `.pdf`. The following build methods are adapted from those above. 
+Document build took about 20 minutes for the `knitr` component (it looks like it hangs at 86% done, but it isn't!), and a few minutes to build the `.pdf`. The following build methods are adapted from those above. Ignore the latex warnings about having `multiply-defined labels`.
 
 * **Method 1**
   
@@ -219,9 +219,8 @@ Document build took about 20 minutes for the `knitr` component (it looks like it
   then this in a terminal:
   ```
   pdflatex hake-assessment.tex
-  pdflatex hake-assessment.tex
   ```
-  * Two runs should be enough, as the only cross-referencing is the Table of Contents.
+  * And run that again to get Table of Contents correct (the only cross-referencing in the document) if necessary.
 
 ## How to clean up the `doc` directory after an erroneous build (Andy not fully tested, but has updated)
 * To remove everything from the build, including cached figures and table data, run the batch file
