@@ -1,18 +1,15 @@
 #' Runs retrospectives for the given model and for the vector of years given
 #'
+#' @param model_path The path of the model run
+#' @param remove_blocks If `TRUE`, remove block designs from control file prior to running
+#' @param retro_mcmc If `TRUE`, run the ADNUTS MCMC in the *mcmc* subdirectory for each
+#' retrospective in addition to the MLE run
+#' @param ...
+#'
 #' @details This will create a *retrospectives* directory in the same directory as the model resides,
-#' create a directory for each restrospective year, copy all model files into each directory,
+#' create a directory for each retrospective year, copy all model files into each directory,
 #' run the retrospectives, and make a list of the [r4ss::SS_output()] call to each
 #' Warning - This function will completely delete all previous retrospectives that have been run without notice.
-#'
-#' @param model
-#' @param yrs A vector of years to subtract from the model's data to run on.
-#' @param remove.blocks
-#' @param extras Extra switches for the command line.
-#' @param exe.file.name
-#' @param starter.file.name
-#' @param forecast.file.name
-#' @param weight.at.age.file.name
 #'
 #' @return [base::invisible()]
 #' @export
@@ -20,6 +17,9 @@
 #' @examples
 run_retrospectives <- function(model_path,
                                remove_blocks = FALSE,
+                               retro_mcmc = TRUE,
+                               retro_n_final = 8000,
+                               retro_warmup_final = 250,
                                ...){
 
   model <- load_ss_files(model_path, ...)
@@ -39,8 +39,13 @@ run_retrospectives <- function(model_path,
                      model$dat.file)
 
   # Create a directory for each retrospective, copy files, and run retro
-  plan("multisession")
-  future_map(retrospective_yrs, ~{
+  if(retro_mcmc){
+    map_cust <- purrr::map
+  }else{
+    plan("multisession")
+    map_cust <- furrr::future_map
+  }
+  map_cust(retrospective_yrs, ~{
     retro_subdir <- file.path(retro_path, paste0("retro-", pad.num(.x, 2)))
     dir.create(retro_subdir, showWarnings = FALSE)
     file.copy(files_to_copy, retro_subdir)
@@ -62,7 +67,11 @@ run_retrospectives <- function(model_path,
                       use_datlist = TRUE,
                       datlist = dat,
                       version = model$SS_versionshort)
+
     ctl$MainRdevYrLast <- ctl$MainRdevYrLast - .x
+    ctl$last_yr_fullbias_adj <- ctl$MainRdevYrLast - 1
+    ctl$first_recent_yr_nobias_adj <- ctl$MainRdevYrLast
+
     asp <- ctl$age_selex_parms$dev_maxyr
     asp <- ifelse(asp > dat$endyr - .x, dat$endyr - .x, asp)
     ctl$age_selex_parms$dev_maxyr <- asp
@@ -96,8 +105,14 @@ run_retrospectives <- function(model_path,
     if(file.exists(covar_file)){
       unlink(covar_file)
     }
-    shell_command <- paste0("cd ", retro_subdir, " & ", ss_executable, " -nox")
-    shell(shell_command, wait = FALSE, intern = !show_ss_output)
+    if(retro_mcmc){
+      run_adnuts(retro_subdir,
+                 n_final = retro_n_final,
+                 warmup_final = retro_warmup_final)
+    }else{
+      shell_command <- paste0("cd ", retro_subdir, " & ", ss_executable, " -nox")
+      shell(shell_command, wait = FALSE, intern = !show_ss_output)
+    }
     data_new <- readLines(file.path(retro_subdir, "data.ss_new"))
     df_for_meanbody <- grep("DF_for_meanbodysize", data_new)
     if(length(df_for_meanbody)){
@@ -105,31 +120,29 @@ run_retrospectives <- function(model_path,
       writeLines(data_new, con = file.path(retro_subdir, "data.ss_new"))
     }
   })
-  plan()
+  if(!retro_mcmc){
+    plan()
+  }
 }
 
 #' Fetch the retrospectives and return a list of each. If there are no retrospective
 #' directories or there is some other problem, the program will halt
 #'
-#' @param retro.path The path in which the retrospective directories reside
-#' @param retro.yrs A vector of years for the retrospectives
-#' @param printstats  Print info on each model loaded via [r4ss::SS_output()]
-#'
-#' @return
+#' @param retro_path The path in which the retrospective directories reside
+#' @param retrospective_yrs A vector of years for the retrospectives
+#' @return The list of retrospective outputs
 #' @export
 fetch_retrospectives <- function(retro_path,
                                  retrospective_yrs,
                                  ...){
 
   message("\nLoading retrospectives from ", retro_path)
-  retros_list <- map(retrospective_yrs, ~{
-    retro_dir <- file.path(retro_path, paste0("retro-", pad.num(.x, 2)))
+  retros_list <- map(retrospective_yrs, function(x = .x, ...){
+    retro_sub <- paste0("retro-", pad.num(x, 2))
+    retro_dir <- file.path(retro_path, retro_sub)
     message("Loading from ", retro_dir)
-    SS_output(dir = retro_dir,
-              verbose = FALSE,
-              printstats = FALSE,
-              covar = FALSE)
-  })
+    load_ss_files(retro_dir, ...)
+  }, ...)
   message("Finished loading retrospectives")
   retros_list
 }

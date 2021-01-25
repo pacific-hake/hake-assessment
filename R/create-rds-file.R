@@ -22,8 +22,13 @@ build_rds <- function(model_dirs = model_list,
                       ...){
   tic()
   map(model_dirs, function(x = .x, ...){
-    run(model_dir = x, catch_levels_path = catch_levels_path, catch_levels = catch_levels, ...)
-    create_rds_file(model_dir = x, catch_levels = catch_levels, ...)
+    run(model_dir = x,
+        catch_levels_path = catch_levels_path,
+        catch_levels = catch_levels,
+        ...)
+    create_rds_file(model_dir = x,
+                    catch_levels = catch_levels,
+                    ...)
   }, ...)
   message("\nCompleted build.\n")
   invisible()

@@ -6,9 +6,13 @@ _____________________________________________________________
 
 ## What's new for 2020/2021
 
+* All model runs, including sensitivities and retrospectives, were done done using the [ADNUTS](https://github.com/Cole-Monnahan-NOAA/adnuts) MCMC algorithm. MLE runs were done only for the bridging models.
+
 * Model outputs are now stored using `RDS` files instead of `RData` files. RDS files are smaller due to serialization, and can be assigned to a variable in code instead of being loaded into the global environment.
 
 * There is a choice between `PDF/EPS` figures or `PNG` figures in the final document. `PNG` figures are necessary to conform to web accessibility rules, in particular for the *Automatic reader* function found in PDF viewers.
+
+* Alternative text for figures was incorporated in the `PNG` version of the document, to conform to web accessibility standards.
 
 * Moved some older content off this README page into Wiki pages:
   * [Old methods (pre-2017)](https://github.com/pacific-hake/hake-assessment/wiki/Older-methods-from-pre-2017)
@@ -50,6 +54,24 @@ build_rds(model_dirs = "2021.00.04_base_v1",
 # sensitivity model directories will not trigger running of any of the above when called
 # this way.
 build_rds()
+```
+
+* The retrospectives will be run by default using the ADNUTS MCMC routine set to 8000 samples with a warm-up of 250. This takes a very long time. To change the way this is run you would call `build_rds()` like this:
+
+```R
+source(here::here("R/all.r"))
+
+# Run retrospectives with half the default samples and half the default warmup samples
+# for the base model only
+build_rds(model_dirs = "2021.00.04_base_v1",
+          run_retrospectives = TRUE,
+          retro_n_final = 4000,
+          retro_warmup_final = 125)
+
+# Run retrospectives using MLE only (No ADNUTS MCMC) for the base model only
+build_rds(model_dirs = "2021.00.04_base_v1",
+          run_retrospectives = TRUE,
+          retro_mcmc = FALSE)
 ```
 
 * The `model_list` as defined in the `R/model-setup.R` file is what is used by default by `build_rds()`. You can also use any list of model directory names, or a single directory name. If you wanted to run retrospectives only for a model called **test-model** you would call it like this:
