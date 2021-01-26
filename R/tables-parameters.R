@@ -334,7 +334,7 @@ make.parameters.estimated.summary.table <- function(model,
 get_keypars <- function(modellist, catchability = FALSE) {
   out <- modellist$pars[c(
       grep("NatM|SR_LN|steep|SD.+2", modellist$pars$Label),
-      grep("EffN", modellist$pars$Label)
+      grep("DM_theta", modellist$pars$Label)
       ), 1:modellist$n]
   SD3 <- grep("SD.+3", modellist$pars$Label)
   if (length(SD3) > 0) {
@@ -446,7 +446,7 @@ make.short.parameter.estimates.sens.table <- function(models,
   if (length(getrecs) != 3) stop("The make short function only works",
     "with three years of recruitments", call. = FALSE)
 
-  modelssum <- r4ss::SSsummarize(models)
+  modelssum <- r4ss::SSsummarize(models, verbose = FALSE)
   tab <- rbind(
     get_keypars(modelssum),
     get_keydqs(modelssum, years.recs = getrecs, years.b0 = c(2009, end.yr)),
@@ -650,7 +650,9 @@ make.short.parameter.estimates.table <- function(model,
     get_keyrps(modelssum, years.spr = end.yr - 1, target = 40))[, 1]
 
   mcmc.par <- t(sapply(c(
-    "NatM", "SR_LN", "SR_BH_steep", "Q_extraSD", "EffN.+\\)_1", "EffN.+2", "Catchability",
+    "NatM", "SR_LN", "SR_BH_steep", "Q_extraSD",
+    "EffN.+\\)_1|DM_theta.+1$", "EffN.+2|DM_theta.+2$",
+    "Catchability",
     paste0("Recr_", getrecs), "SSB_Initial", paste0("Bratio_", c(2009, end.yr)),
     paste(paste0("SPRratio_", end.yr-1), collapse = "|"),
     "SSB_SPR", "SPR_MSY", "Fstd_SPR", "Dead_Catch_SPR"),

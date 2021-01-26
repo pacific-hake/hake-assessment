@@ -289,7 +289,7 @@ make.short.parameter.estimates.sens.table(retro.list,
                                           age.1 = FALSE,
                                           digits = 3,
                                           xcaption =
-                                            paste0("**[fix thetas, still MLE for base?] Select parameters, derived quantities,
+                                            paste0("**[still MLE for base?] Select parameters, derived quantities,
                                                              reference point estimates, and negative
                                                              log likelihoods for retrospective analyses
                                                              using the MLE estimates from the base model.
