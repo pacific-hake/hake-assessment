@@ -237,7 +237,7 @@ make.biomass.plot(base.model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{**Median of the posterior distribution for beginning of the year female
+\caption{Median of the posterior distribution for beginning of the year female
          spawning biomass ($B_t$ in year $t$) through \Sexpr{end.yr} (solid line) with 95\% posterior
          credibility intervals (shaded area). The solid circle with a 95\%
          posterior credibility interval is the estimated unfished equilibrium
@@ -260,7 +260,7 @@ make.depletion.plot(base.model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{**Median (solid line) of the posterior distribution for relative spawning
+\caption{Median (solid line) of the posterior distribution for relative spawning
          biomass ($B_t / B_0$) through \Sexpr{end.yr} with 95\% posterior
          credibility intervals (shaded area). Dashed horizontal lines show
          10\%, 40\% and 100\% levels.}
@@ -268,7 +268,7 @@ make.depletion.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %-------------------------------------------------------------------------------
-**The stock is estimated to have increased rapidly and was above unfished equilibrium
+The stock is estimated to have increased rapidly and was above unfished equilibrium
 in the mid-1970s and mid-1980s (after two large recruitments in the early 1980s).
 It then declined steadily to a low in 1999. This
 was followed by a brief increase to a peak in 2002 as the
@@ -281,13 +281,14 @@ model estimates that median spawning biomass then peaked again in 2013 and 2014 
 to a very large 2010 year class and an
 above-average 2008 year class. The subsequent decline from 2014 to 2016 is primarily
 from the 2010 year class surpassing the age at which gains in weight from growth
-are greater than the loss in weight from mortality.
+are greater than the loss in weight from mortality (growth-mortality transition).
 The 2014 year class is estimated to be large, though not as large as the 1999
 and 2010 year classes, increasing the biomass in 2017. The estimated biomass has
-declined since 2017, during a time of record catches.
+declined since 2017 as the 2014 year class moves through through the growth-mortality
+transition (and the 2010 year class continues to do so) during a time of record catches.
 % Manual 2020 done.
 
-**The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning
+The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning
 biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium,
 $B_0$) is \Sexpr{curr.depl.median}\%. However, the uncertainty
 is large, with a 95\%
@@ -298,7 +299,8 @@ the \Sexpr{end.yr} female spawning biomass is \Sexpr{curr.bio.median}~million~t 
 \Sexpr{curr.bio.upper}~million~t). The estimate of the \Sexpr{end.yr-1} female
 spawning biomass is \Sexpr{prev.bio.median}
 (\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. This is a slightly higher
-median and narrower credibility interval than the 1.312~(0.471-3.601)~million~t estimated in the \Sexpr{end.yr-1}
+median and narrower credibility interval than the \Sexpr{prev.bio.median.last.assess}
+(\Sexpr{prev.bio.lower.last.assess}--\Sexpr{prev.bio.upper.last.assess})~million~t estimated in the \Sexpr{end.yr-1}
 assessment.
 % Manual 2020 done (updated numbers in final sentence and revised text).
 <<biomass-table, results='asis', echo=FALSE>>=
