@@ -86,7 +86,7 @@ assess_yr <- 2021
 forecast_yrs <- assess_yr:(assess_yr + 2)
 forecast_probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 
-retrospective_yrs <- 1:20
+retrospective_yrs <- 1:10
 plot.retro.yrs <- 1:5
 
 show_ss_output <- FALSE
