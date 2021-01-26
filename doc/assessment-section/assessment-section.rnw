@@ -211,7 +211,71 @@ JTC:
 determining the choice of $\sigma_R$ remains a challenge and encourages the JTC
 to continue to work on the issue.
 
-\emph{Response -- **}
+\emph{Response -- **Here was our 2020 response to the similar point, to use as a
+  starting point and update/edit as appropriate. Aaron/Kelli/Chris???}
+
+  % From Issue \#468:
+\emph{**2020: Response -- Developing best practices for modeling equilibrium recruitment ($R_0$)
+  and recruitment variability ($\sigma_R$)
+  remain broad topics of contemporary research. The JTC continues to conduct,
+  collaborate on, and monitor ongoing research projects concerning
+  approaches for advancing recruitment estimation,
+  as applied to \fishname\ and in general. We now briefly discuss several of these research
+  endeavors.}
+
+\emph{**2020: The JTC is conducting and collaborating on simulation projects looking into the concurrent
+  estimation of multiple variance parameters. This includes the estimation of variability
+  associated with time-varying selectivity, $\sigma_R$, of the extra standard deviation parameters
+  on survey index data, and of the Dirichlet-Multinomial parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$.
+  Variance parameters in stock assessment models have a tendency to be interrelated
+  when they capture other sources of variance attributed to model mis-specification rather
+  than variability directly related to the given process.
+  This is particularly
+  important for $\sigma_R$ because without an index of recruitment to directly inform the
+  estimation of $\sigma_R$ it tends to soak up unspecified variability.
+  This work is related with other time-varying selectivity research, as discussed in response 2
+  below.}
+
+\emph{**2020: The near completion of the Management Strategy Evaluation framework for \fishname\ creates
+  considerable advantages for examining recruitment. For example, using the Template Model
+  Builder (TMB) estimation code developed by Dr. Nis Jacobsen for the MSE, there is opportunity
+  to explore random-effects treatment of recruitment variability \citep{Thorson2019}.  The MSE
+  framework can also be used to evaluated the robustness of recruitment modeling assumptions on
+  management performance and uncertainty.  Further, the MSE could be an additional option for
+  estimating $\sigma_R$ in MCMC runs while further testing semi-parametric selectivity.}
+
+\emph{**2020 [remove for 2021?]: The JTC conducted an analysis looking into autocorrelation of recruitment deviations over
+  time. Results showed no indication of autocorrelation, suggesting there is no need to
+  add additional variance terms to account for temporally-related recruitment deviations.
+  The assessment model is adequately accounting for general life-history traits and includes
+  an adequate representation of ageing error. Along with no apparent retrospective pattern
+  (see Section~\ref{sec:assessment-retrospective-analyses}), this result suggests that the
+  assessment model is not overly mis-specified. Given the lack of autocorrelation, the
+  assessment model was not sensitive to the addition of an autocorrelation parameter.}
+
+\emph{**2020: The JTC is following work being conducted by Dr. Cathleen Vestfals and colleagues at
+  the Northwest Fisheries Science Center looking at identifying climate drivers of
+  \fishname\ early life-history stages and recruitment. Possible outcomes from this work
+  of direct use to the assessment include the development of an explicit recruitment index,
+  an environmental index linked to recruitment, indicators of recruitment variation
+  ($\sigma_R$), and indicators of current or forecasted levels of recruitment.
+  Related work on making fisheries advice robust to time-varying productivity is
+  being conducted at the Pacific Biological Station, as part of a national DFO
+  initiative on an Ecosystem Approach to Fisheries Management.} % That DFO bit
+                                % can stay as it's still ongoing (reporting out
+                                % this year)
+
+\emph{**2020: The JTC is also following work being conducted by the International Council for
+  the Exploration of the Sea (ICES) Methods Working Group which, among other things,
+  is looking at meta-analytical approaches for estimating recruitment parameters.  Results
+  from this work could be used to develop informative prior distributions on key
+  recruitment parameters.}
+
+\emph{**2020: The JTC plans to continue to work towards evaluating and testing best practices
+  for modeling recruitment variability, including the use of multi-stage recruitment
+  functions. In general, many of these issues are widespread
+  in stock assessment, and scientific-based solutions are likely to be the result of medium
+  to long-term research projects.}
 
 
 2. The JTC described efforts and collaborations with the ICES [International
@@ -221,7 +285,27 @@ selectivity. Results from this collaboration are expected to inform the 2021
 assessment. The SRG encourages ongoing work to develop approaches to estimating
 variance parameters.
 
-\emph{Response -- **}
+\emph{Response -- **2020: Most methods that are available to estimate time-varying selectivity require
+subjective choices. Common choices include
+which years to model using a time block,
+the level of variability to use for a penalized vector, or
+the degree of smoothing for a spline.
+Alternatively, state-space models can be used estimate time-varying selectivity in two
+dimensions, age and time, where the degree of smoothing is estimated \citep{NielsenBerg2014}.}
+
+\emph{**2020: A comparison project was recently launched by the
+ICES Methods Working Group
+to compare the results of four stock assessment frameworks that estimate
+time-varying selectivity using different assumptions:
+State-Space Assessment Model (SAM),
+Woods Hole Assessment Method (WHAM),
+Stock Synthesis, and
+Age Structured Assessment Program (ASAP). Each framework will be fit to data from 10 stocks
+using multiple configurations. This study will allow for the comparison of
+estimated trajectories between two state-space frameworks and two well-used
+statistical catch-at-age models when time-varying selectivity is ignored or
+estimated using the current best practices for each framework. Results will
+inform best practices for this assessment in 2021.}
 
 3. The SRG notes that the removal of the zero-sum constraint on recruitment
 deviations has implications on the estimate of $R_0$ and the perception of stock
@@ -233,8 +317,7 @@ on a defined time period. There is some urgency to this work as biomass is
 declining and the relative spawning biomass may fall below the target level
 ${\bf \emph{B}_{40\%}}$ within 2 years.}
 
-\emph{Response -- **}
-
+\emph{Response -- **Aaron's the expert.....}
 
 4. The SRG notes that age-composition data sample sizes are high in recent
 years, increasing the weight of fishery age-composition data relative to the
@@ -244,7 +327,6 @@ undertake simulations to investigate the effect of downweighting age-composition
 data on management performance, and (2) that the JTC explore temporal trends in
 sample sizes and appropriate ways of estimating the annual variability in
 age-composition data.}
-
 
 \emph{Response -- **}
 
@@ -264,9 +346,41 @@ year, fleet, sample size, etc.) and whether the variability relates to simple
 metrics of sample size such as the number of sampled tows, the number of
 sampled trips, and the number of sampled fish.}
 
+\emph{Response -- **NOTE that, in 2020 (copied below for now) we concluded with
+  { \bf \emph{A more complete summary of the changes in the sampling protocol over time will be
+completed in the upcoming months and included in the 2021 assessment as an
+appendix.}} Issue \#}
 
+\emph{**2020: Progress was made on documenting the historical methods utilized
+to sample \fishname\ for otoliths, which began in the 1970s with observers on foreign vessels.
+Many protocols have remain unchanged over time, but some methods of collecting fish for
+ageing and the numbers of fish aged per tow or trip have changed. Below, we summarize
+known major changes.}
 
-\emph{Response -- **}
+\emph{**2020: A clear change in protocol was initiated in 1999 for the U.S. at-sea fishery with the
+move towards random sampling of fish for ages rather than random-stratified sampling,
+which attempts to collect ages in each 1 cm length bin. Additionally, in 2009
+at-sea observers started collecting three instead of five sets of otoliths from a haul.}
+
+\emph{**2020: In Canada, target sample size (n=50) has not changed over time for at-sea observers aboard
+foreign joint-venture vessels. On domestic vessels observers are currently instructed to
+collect age samples from 60 fish, whereas prior to 2001 the target may have only been 50.
+This lower target potentially only pertained to shoreside hake vessels before at-sea
+observer coverage was discontinued with the installment of electronic monitoring.}
+
+\emph{**2020: In 2016, dockside observers were asked to change their protocols based on JTC input.
+Samples changed from being collected during dedicated weeks to the landing level.}
+
+\emph{**2020: A more complete summary of the changes in the sampling protocol over time will be
+completed in the upcoming months and included in the 2021 assessment as an appendix.
+Currently, this information has been used to inform a simulation study that investigated
+repercussions of biased input sample sizes. Preliminary results suggest
+that the D-M parameters combined with time-varying selectivity can estimate the time
+series of spawning stock biomass with little bias when there is no temporal trend in
+the bias applied to the input sample size. Future investigations will look into temporal
+trends in this bias, where the trend will be informed by changes in the protocols used
+to specify the collection of otoliths in the \fishname\ fishery.}
+
 
 6.The SRG encourages work to develop a picture of the Pacific Hake reproductive
 cycle both seasonally and at the life-time scale based on histological and
@@ -281,21 +395,24 @@ the Pacific Hake reproductive cycle.}
   whether there are genetic differences between Pacific Hake from the area south
   of Point Conception and other regions.}
 
-\emph{Response -- **}
+\emph{Response -- **any update? Issue \#741}
 
 8. The SRG notes that the no-U-turn sampler (NUTS) algorithm is more efficient
 and explores parameter space more fully than the MCMC algorithm used to estimate
 parameter uncertainty in the current and previous base assessment models. {\bf The
 SRG supports the use of NUTS for the base model and sensitivity runs in the 2021 assessment.}
 
-\emph{Response -- **}
+\emph{Response -- NUTS has been used for the base model and all sensitivity runs
+in the 2021 assessment.}
 
 9. {\bf The SRG recommends sensitivity analyses structured as follows, if NUTS
   is used in the 2021 base model: (1) using the random walk Metropolis MCMC
   algorithm as in the 2020 assessment, and (2) using NUTS when including the
   age-1 index in the base model.}
 
-\emph{Response -- **}
+\emph{Response -- **[check] Results from using the random walk Metropolis MCMC
+  algorithm are presented in Appendix **, and full results from including the age-1
+  index are presented in Appendix~\ref{chap:age1-survey}.}
 
 10. {\bf The SRG also recommends the following additional sensitivities
   (conducted if possible using NUTS, but otherwise using MLE): steepness,
@@ -303,7 +420,9 @@ SRG supports the use of NUTS for the base model and sensitivity runs in the 2021
   time-varying selectivity, increasing maximum age for constant selectivity and
   downweighting fishery age-composition data.}
 
-\emph{Response -- **}
+\emph{Response -- These sensitivity analyses were all completed using NUTS
+  (typically taking 3-4 hours to run). Results are presented in
+  Section~\ref{sec:assessment-sensitivity-analyses}.}
 
 11. The SRG notes that there are currently multiple strong cohorts in the stock
 where previously there was only one strong cohort during the period of sample
@@ -337,67 +456,6 @@ The JTC presented evidence that supported the value used in the assessment.
 {\bf The SRG encourages the JTC to explore methods for parameterizing recruitment and/or
 estimating $\sigma_R$ that would reduce model sensitivity to the value of this constraint.}
 
-% From Issue \#468:
-\emph{Response -- Developing best practices for modeling equilibrium recruitment ($R_0$)
-  and recruitment variability ($\sigma_R$)
-  remain broad topics of contemporary research. The JTC continues to conduct,
-  collaborate on, and monitor ongoing research projects concerning
-  approaches for advancing recruitment estimation,
-  as applied to \fishname\ and in general. We now briefly discuss several of these research
-  endeavors.}
-
-\emph{The JTC is conducting and collaborating on simulation projects looking into the concurrent
-  estimation of multiple variance parameters. This includes the estimation of variability
-  associated with time-varying selectivity, $\sigma_R$, of the extra standard deviation parameters
-  on survey index data, and of the Dirichlet-Multinomial parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$.
-  Variance parameters in stock assessment models have a tendency to be interrelated
-  when they capture other sources of variance attributed to model mis-specification rather
-  than variability directly related to the given process.
-  This is particularly
-  important for $\sigma_R$ because without an index of recruitment to directly inform the
-  estimation of $\sigma_R$ it tends to soak up unspecified variability.
-  This work is related with other time-varying selectivity research, as discussed in response 2
-  below.}
-
-\emph{The near completion of the Management Strategy Evaluation framework for \fishname\ creates
-  considerable advantages for examining recruitment. For example, using the Template Model
-  Builder (TMB) estimation code developed by Dr. Nis Jacobsen for the MSE, there is opportunity
-  to explore random-effects treatment of recruitment variability \citep{Thorson2019}.  The MSE
-  framework can also be used to evaluated the robustness of recruitment modeling assumptions on
-  management performance and uncertainty.  Further, the MSE could be an additional option for
-  estimating $\sigma_R$ in MCMC runs while further testing semi-parametric selectivity.}
-
-\emph{The JTC conducted an analysis looking into autocorrelation of recruitment deviations over
-  time. Results showed no indication of autocorrelation, suggesting there is no need to
-  add additional variance terms to account for temporally-related recruitment deviations.
-  The assessment model is adequately accounting for general life-history traits and includes
-  an adequate representation of ageing error. Along with no apparent retrospective pattern
-  (see Section~\ref{sec:assessment-retrospective-analyses}), this result suggests that the
-  assessment model is not overly mis-specified. Given the lack of autocorrelation, the
-  assessment model was not sensitive to the addition of an autocorrelation parameter.}
-
-\emph{The JTC is following work being conducted by Dr. Cathleen Vestfals and colleagues at
-  the Northwest Fisheries Science Center looking at identifying climate drivers of
-  \fishname\ early life-history stages and recruitment. Possible outcomes from this work
-  of direct use to the assessment include the development of an explicit recruitment index,
-  an environmental index linked to recruitment, indicators of recruitment variation
-  ($\sigma_R$), and indicators of current or forecasted levels of recruitment.
-  Related work on making fisheries advice robust to time-varying productivity is
-  being conducted at the Pacific Biological Station, as part of a national DFO
-  initiative on an Ecosystem Approach to Fisheries Management.}
-
-\emph{The JTC is also following work being conducted by the International Council for
-  the Exploration of the Sea (ICES) Methods Working Group which, among other things,
-  is looking at meta-analytical approaches for estimating recruitment parameters.  Results
-  from this work could be used to develop informative prior distributions on key
-  recruitment parameters.}
-
-\emph{The JTC plans to continue to work towards evaluating and testing best practices
-  for modeling recruitment variability, including the use of multi-stage recruitment
-  functions. In general, many of these issues are widespread
-  in stock assessment, and scientific-based solutions are likely to be the result of medium
-  to long-term research projects.}
-
 2. The SRG notes that when setting values for other parameters that cannot be estimated
 directly with confidence, the choice of values should be made using methods that are
 objective, repeatable, and depend on fits to the observed data rather than on the model's
@@ -408,27 +466,6 @@ characterizing the flexibility in selectivity, but this method did not resolve t
 results to the choice of $\Phi$. {\bf The SRG recommends that the JTC provide a review of how
 time-varying selectivity is parameterized and estimated in other assessments.}
 
-\emph{Response -- Most methods that are available to estimate time-varying selectivity require
-subjective choices. Common choices include
-which years to model using a time block,
-the level of variability to use for a penalized vector, or
-the degree of smoothing for a spline.
-Alternatively, state-space models can be used estimate time-varying selectivity in two
-dimensions, age and time, where the degree of smoothing is estimated \citep{NielsenBerg2014}.}
-
-\emph{A comparison project was recently launched by the
-ICES Methods Working Group
-to compare the results of four stock assessment frameworks that estimate
-time-varying selectivity using different assumptions:
-State-Space Assessment Model (SAM),
-Woods Hole Assessment Method (WHAM),
-Stock Synthesis, and
-Age Structured Assessment Program (ASAP). Each framework will be fit to data from 10 stocks
-using multiple configurations. This study will allow for the comparison of
-estimated trajectories between two state-space frameworks and two well-used
-statistical catch-at-age models when time-varying selectivity is ignored or
-estimated using the current best practices for each framework. Results will
-inform best practices for this assessment in 2021.}
 
 3. The histological analysis of ovaries for maturity presented in 2018 showed a distinct
 difference in the percent of Hake that are mature at age 2 and age 3 between areas, with a
@@ -513,35 +550,6 @@ observation, but were unable to complete an analysis, as requested in the 2018 S
 report, on the effect of potential changes in sampling protocols that could influence the
 input sample sizes. The SRG reiterates its request for this analysis.}
 
-\emph{Response -- Progress was made on documenting the historical methods utilized
-to sample \fishname\ for otoliths, which began in the 1970s with observers on foreign vessels.
-Many protocols have remain unchanged over time, but some methods of collecting fish for
-ageing and the numbers of fish aged per tow or trip have changed. Below, we summarize
-known major changes.}
-
-\emph{A clear change in protocol was initiated in 1999 for the U.S. at-sea fishery with the
-move towards random sampling of fish for ages rather than random-stratified sampling,
-which attempts to collect ages in each 1 cm length bin. Additionally, in 2009
-at-sea observers started collecting three instead of five sets of otoliths from a haul.}
-
-\emph{In Canada, target sample size (n=50) has not changed over time for at-sea observers aboard
-foreign joint-venture vessels. On domestic vessels observers are currently instructed to
-collect age samples from 60 fish, whereas prior to 2001 the target may have only been 50.
-This lower target potentially only pertained to shoreside hake vessels before at-sea
-observer coverage was discontinued with the installment of electronic monitoring.}
-
-\emph{In 2016, dockside observers were asked to change their protocols based on JTC input.
-Samples changed from being collected during dedicated weeks to the landing level.}
-
-\emph{A more complete summary of the changes in the sampling protocol over time will be
-completed in the upcoming months and included in the 2021 assessment as an appendix.
-Currently, this information has been used to inform a simulation study that investigated
-repercussions of biased input sample sizes. Preliminary results suggest
-that the D-M parameters combined with time-varying selectivity can estimate the time
-series of spawning stock biomass with little bias when there is no temporal trend in
-the bias applied to the input sample size. Future investigations will look into temporal
-trends in this bias, where the trend will be informed by changes in the protocols used
-to specify the collection of otoliths in the \fishname\ fishery.}
 
 5. A recent advance in Bayesian analysis (the No U-Turn Sampler, NUTS) raises the possibility
 that the assessment model could reach convergence much more quickly than is now possible.
