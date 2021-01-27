@@ -42,7 +42,7 @@ make.catches.table.Can(catches,
 make.catches.table.total(catches,
                          start.yr=start.yr,
                          end.yr=end.yr,
-                         xcaption = paste("Total U.S., Canadian and coast-wide
+                         xcaption = paste("Total U.S., Canadian, and coast-wide
                            catches  of \\fishname\\ (t) from ",
                            start.yr,
                            "-",
@@ -71,7 +71,7 @@ make.landings.tac.table(landings.vs.tac,
 <<main-sampling-history-table, results='asis', echo=FALSE>>=
 make.sampling.history.table(sampling.history,
                             xcaption =
-                              "**[2020 row needs updating; disagrees with next table] Annual summary of U.S. and Canadian
+                              "Annual summary of U.S. and Canadian
                               fishery sampling included in this stock
                               assessment. Canadian, foreign, joint-venture and
                               at-sea sectors are in number of hauls sampled for
