@@ -290,9 +290,9 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
                             start.yr,         ## Year the timeseries starts (i.e. first year in model)
                             end.yr,           ## Year the timeseries ends (i.e. last year in model)
                             cex.lab = 1,
-                            x.max = 1.3,      ## maximum of x-axis (default is
-                                              ##  for base model in 2019 and 2020)
-                            y.max = 1.3       ## maximum of y-axis
+                            x.max = 1.5,      ## maximum of x-axis (1.3 for base
+                                              ##  model in 2019 and 2020)
+                            y.max = 1.2       ## maximum of y-axis (1.3 for 2019, 2020)
                             ){
   ## Plots the relative fishing intensity in year t-1 against relative spawning
   ## biomass in year t, as a historical look at the fishery for the mcmc given by model
