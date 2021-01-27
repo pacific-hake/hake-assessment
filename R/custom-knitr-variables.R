@@ -543,6 +543,11 @@ DM.weight.survey.low <- f(min(exp(base.model$mcmc[, col.effn]) /
 DM.weight.survey.high <- f(max(exp(base.model$mcmc[, col.effn]) /
                                  (1 + exp(base.model$mcmc[, col.effn+1]))), 2)
 
+# MCMC parameter extimates
+nat_m <- quantile(base.model$mcmc$NatM_p_1_Fem_GP_1, probs = c(0.025, 0.5, 0.975))
+nat_m_01 <- quantile(sens.models.1[[5]]$mcmc$NatM_p_1_Fem_GP_1, probs = c(0.025, 0.5, 0.975))
+nat_m_03 <- quantile(sens.models.1[[6]]$mcmc$NatM_p_1_Fem_GP_1, probs = c(0.025, 0.5, 0.975))
+
 ################################################################################
 ## joint probability (%age) of being being both above the target relative fishing intensity in \Sexpr{end.yr-1}
 ##   and below the $\Bforty$ (40\% of $B_0$) reference point at the start of \Sexpr{end.yr}

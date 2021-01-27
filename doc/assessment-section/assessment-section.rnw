@@ -1292,17 +1292,15 @@ That probability decreases to \Sexpr{f(base.model$risks[[1]][,3][4])}\% and \Sex
 
 \subsection{Sensitivity analyses }\label{sec:assessment-sensitivity-analyses}
 
-**Sensitivity analyses were conducted to investigate influence of data inputs and
+Sensitivity analyses were conducted to investigate influence of data inputs and
 structural uncertainty of the base model by investigating how changes to the
-model affected the estimated values and derived quantities. For expediency,
-almost all
-sensitivity analyses compared MLE estimates rather than MCMC
-posteriors. Therefore, the values reported below are not directly comparable to
-the base model MCMC values reported elsewhere. For a comparison of the base model
-MLE estimates, see Tables~\ref{tab:main-parameter-estimates-sens-1}--\ref{tab:main-parameter-estimates-sens-3}.
+model affected the estimated values and derived quantities. All sensitivity analyses
+compared MCMC posteriors. All sensitivity analyses were run using the ADNUTS MCMC
+algorithm with the sample sample size as the base model. For a comparison of the
+parameter estimates for the sensitivities with the base model parameter estimates,
+see Tables~\ref{tab:main-parameter-estimates-sens-1}--\ref{tab:main-parameter-estimates-sens-3}.
 The sensitivities include the following:
 
-**Update once finalised:
 \begin{enumerate}
 
 \item Consideration of a higher standard deviation on the prior distribution
@@ -1320,19 +1318,13 @@ The sensitivities include the following:
 \item Use of the Francis method for data-weighting;
 
 \item Consideration of alternative standard deviations for time-varying
-  selectivity;
+  selectivity; and
 
-\item Consideration of an alternative parameterization for time-varying
-  selectivity;
-
-\item Removal of cohort-based ageing error from the model; and
-
-\item Running the base model using the No-U-Turn-Sampler (NUTS; \citet{HoffmanGelman2014}
-within the R package {\tt adnuts} \citep{Monnahan2018, Monnahan2019}.
+\item Removal of cohort-based ageing error from the model
 
 \end{enumerate}
 
-**In general, none of the sensitivities resulted in any substantial departure from
+In general, none of the sensitivities resulted in any substantial departure from
 the main population dynamics of the base model; all models showed large
 estimated increases in spawning biomass in the early- to mid-2010s that continues to be
 driven by the 2010 and the 2014 cohorts. The overall scale of the
@@ -1349,21 +1341,22 @@ than earlier cohorts which have been observed for more years.
 % even though this is generlaized, it is not very general since the index
 % number of the list is used
 
-**Several key underlying structural model assumptions were identified that have
+Several key underlying structural model assumptions were identified that have
 persisted across many previous hake assessments, and thus warrant revisiting
-periodically as a set of reference sensitivity examinations to new base models.
+annually as a set of reference sensitivity examinations to new base models.
 Those identified here (as noted above) include the specification of natural mortality, the level
 of variation assumed about the stock-recruitment relationship ($\sigma_r$), and
 the resiliency of the stock in terms of recruitment (steepness).
 
 % section below on natural mortality sensitivity
 % Manual 2020 done
-**The standard deviation of the prior distribution on natural mortality was
-increased from the base model value of 0.1 to 0.2 and 0.3. Maximum likelihood
-estimates of natural mortality increased from
-\Sexpr{f(base.model$parameters$Value[1], 3)} for the base model (prior
-standard deviation of 0.1) to
-\Sexpr{f(sens.models.1[[which(sens.model.names.1=="Natural Mortality (SD=0.3)")]]$parameters["NatM_p_1_Fem_GP_1", "Value"], 3)}
+The standard deviation of the prior distribution on natural mortality was
+increased from the base model value of 0.1 to 0.2 and 0.3. Medians of MCMC estimates
+of natural mortality increased from
+\Sexpr{f(nat_m[2], 3)} with a 95\% credible interval
+of \Sexpr{f(nat_m[1], 3)}--\Sexpr{f(nat_m[3], 3)} for the base model (prior standard
+deviation of 0.1) to \Sexpr{f(nat_m_03[2], 3)} with a 95\% credible interval
+of \Sexpr{f(nat_m_03[1], 3)}--\Sexpr{f(nat_m_03[3], 3)}
 for the sensitivity run with the prior standard
 deviation set to 0.3 (Table~\ref{tab:main-parameter-estimates-sens-1}). In addition to allowing a higher estimated value for
 natural mortality, the broader prior on $M$ also increased the overall scale of
