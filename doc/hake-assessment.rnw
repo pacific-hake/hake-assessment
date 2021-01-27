@@ -166,6 +166,8 @@ fig_width <- 7.5
 fig_dpi <- 600
 fig_align <- "center"
 fig_pos <- "htb"
+library(knitr)   # Needed else next line gives hidden error for the first run
+                 # using knitr::knit("hake-assessment.rnw")
 opts_chunk$set(
 # The "dev" line below is modified by the build_doc() function.
 # Do not modify or move it.
