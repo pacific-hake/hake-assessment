@@ -188,7 +188,7 @@ sens.model.names.4 <- c("Phi t.v. selectivity (0.21)",
 ## Sensitivity models group 5  - Different weight-at-age schemes (first group)
 ## -----------------------------------------------------------------------------
 sens.model.dir.names.5 <- c("2021.00.30_noCohort_ageError")
-sens.model.names.5 <- c("No ageing error")
+sens.model.names.5 <- c("Time-invariant ageing error vector")
 
 model_list <- c(base.model.dir.name,
                 unlist(bridge.model.dir.names.1),
