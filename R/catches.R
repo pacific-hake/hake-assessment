@@ -357,7 +357,7 @@ make.catches.table.total <- function(catches,
   colnames(catches) <- c(latex.bold("Year"),
                          latex.bold("Total U.S."),
                          latex.bold("Total Canada"),
-                         latex.bold("Total coastwide"),
+                         latex.bold("Total coast-wide"),
                          latex.bold("Percent U.S."),
                          latex.bold("Percent Canada"))
 
