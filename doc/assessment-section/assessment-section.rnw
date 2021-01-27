@@ -1349,10 +1349,10 @@ of variation assumed about the stock-recruitment relationship ($\sigma_r$), and
 the resiliency of the stock in terms of recruitment (steepness).
 
 % section below on natural mortality sensitivity
-% Manual 2020 done
+% Manual 2021 done - CG
 The standard deviation of the prior distribution on natural mortality was
-increased from the base model value of 0.1 to 0.2 and 0.3. Medians of MCMC estimates
-of natural mortality increased from
+increased from the base model value of 0.1 to 0.2 and 0.3. The median of the MCMC posteriors
+for natural mortality increased from
 \Sexpr{f(nat_m[2], 3)} with a 95\% credible interval
 of \Sexpr{f(nat_m[1], 3)}--\Sexpr{f(nat_m[3], 3)} for the base model (prior standard
 deviation of 0.1) to \Sexpr{f(nat_m_03[2], 3)} with a 95\% credible interval
@@ -1366,27 +1366,26 @@ uncertainty in spawning biomass on both absolute and relative scales
 and~\ref{fig:main-status-base-alternative-1}).
 
 % section below on steepness sensitivity
-% Manual 2020 done
-**The mean of the prior distribution on steepness was decreased from 0.777 (base)
+% Manual 2021 done - CG
+The mean of the prior distribution on steepness was decreased from 0.777 (base)
 to 0.5 and, separately, steepness was fixed at 1.0. The decrease in the mean of the
-prior resulted in a change in the maximum likelihood estimate of steepness from
-\Sexpr{f(base.model$parameters["SR_BH_steep","Value"],3)} to
-\Sexpr{f(sens.models.1[[which(sens.model.names.1=="Steepness Mean Prior Low (0.5)")]]$parameters["SR_BH_steep","Value"],3)}
+prior resulted in a decrease in the MCMC estimate of steepness from
+a median of \Sexpr{f(steep[2],3)} with a 95\% credible interval
+of \Sexpr{f(steep[1], 3)}--\Sexpr{f(steep[3], 3)} to
+a median of \Sexpr{f(steep_prior_05[2],3)} with a 95\% credible interval
+of \Sexpr{f(steep_prior_05[1], 3)}--\Sexpr{f(steep_prior_05[3], 3)}
 (Table~\ref{tab:main-parameter-estimates-sens-1}).
 However, neither steepness
-sensitivity analysis had a strong impact on the overall model results
+sensitivity analysis had an impact on the overall model results
 (Figures~\ref{fig:main-biomass-base-alternative-1} and
-\ref{fig:main-status-base-alternative-1}). The small influence of steepness on
-model results is related to the relatively large $\sigma_r$ value which allows
-the recruitments to deviate far from the underlying stock-recruit relationship
-(Figure~\ref{fig:main-mcmc-sr-variability}).
+\ref{fig:main-status-base-alternative-1}).
 
 % section below on sigma_r
 % Manual 2020 done
-**The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative
+The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative
 high (1.6) and low (1.0) states. The low value, $\sigma_r = 1.0$,
 resulted in a model where the standard deviation of the MLE estimates of
-recruitment deviations in the period with the most informative data was
+recruitment deviations in the period with the most informative data was **How to calculate this for MCMC??**
 \Sexpr{f(sens.models.1[[which(sens.model.names.1=="Sigma R 1.0")]]$sigma_R_info$SD_of_devs[1], 2)},
 suggesting that the data were inconsistent with the lower value of $\sigma_r$.
 The high value, $\sigma_r = 1.6$, resulted in a model with a more
@@ -1410,8 +1409,8 @@ produced a suggested
 $\sigma_r$ of \Sexpr{sigma.r.alt.allyr}, which was similar to the
 base-model value of 1.4.
 
-% Manual 2020 done
-**The sensitivity of the base model to the inclusion of the age-1 survey index
+% Manual 2021 done - CG
+The sensitivity of the base model to the inclusion of the age-1 survey index
 provides an additional source of information about the recruitment of different
 year classes (see discussion in Section~\ref{sec:data-acoustic-survey}), which
 can be particularly useful for the most recent years when little information on
@@ -1421,16 +1420,18 @@ diverge near the end of the time series
 (Table~\ref{tab:main-parameter-estimates-sens-1};
 Figures~\ref{fig:main-biomass-base-alternative-2} and
 \ref{fig:main-status-base-alternative-2}; \Sexpr{end.yr} estimates are
-\Sexpr{f(100*sens.models.1.for.table[[1]]$derived_quants[paste0("Bratio_", assess.yr),"Value"],1)}\%
-of unfished biomass for the base model and
-\Sexpr{f(100*sens.models.1.for.table[[8]]$derived_quants[paste0("Bratio_", assess.yr),"Value"],1)}\%
-for the age-1 index model). This change is likely due to the base model
+\Sexpr{f(100*bratio_curr[2], 1)}\%
+of unfished biomass for the base model with a 95\% credible interval
+of \Sexpr{f(100*bratio_curr[1], 1)}--\Sexpr{f(100*bratio_curr[3], 1)}\% and
+\Sexpr{f(100*bratio_age1[2], 1)}\%
+for the age-1 index model) with a 95\% credible interval
+of \Sexpr{f(100*bratio_age1[1], 1)}--\Sexpr{f(100*bratio_age1[3], 1)}\%.
+This change is likely due to the base model
 overfitting the age-1 index estimates of the size of the 2005 and 2012 cohorts
 (Figure~\ref{fig:main-age-one-index}). These changes are subtle
 because the base model generally tracks the trends in the age-1 index well.
-Including the age-1 index led to a worse fit to the 2017 acoustic
-survey estimate and a better fit to the 2019 estimate compared to the
-base model (Figure~\ref{fig:main-index-base-alternative-2}).
+Including the age-1 index led to a worse fit to both the 2017 and 2019 acoustic
+survey estimates compared to the base model (Figure~\ref{fig:main-index-base-alternative-2}).
 
 % section below on composition weighting
 % Manual 2020 done

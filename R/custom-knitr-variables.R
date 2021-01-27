@@ -544,9 +544,16 @@ DM.weight.survey.high <- f(max(exp(base.model$mcmc[, col.effn]) /
                                  (1 + exp(base.model$mcmc[, col.effn+1]))), 2)
 
 # MCMC parameter extimates
+# Natural mortality
 nat_m <- quantile(base.model$mcmc$NatM_p_1_Fem_GP_1, probs = c(0.025, 0.5, 0.975))
 nat_m_01 <- quantile(sens.models.1[[5]]$mcmc$NatM_p_1_Fem_GP_1, probs = c(0.025, 0.5, 0.975))
 nat_m_03 <- quantile(sens.models.1[[6]]$mcmc$NatM_p_1_Fem_GP_1, probs = c(0.025, 0.5, 0.975))
+# Steepness
+steep <- quantile(base.model$mcmc$SR_BH_steep, probs = c(0.025, 0.5, 0.975))
+steep_prior_05 <- quantile(sens.models.1[[1]]$mcmc$SR_BH_steep, probs = c(0.025, 0.5, 0.975))
+# Bratio
+bratio_curr <- quantile(base.model$mcmc[[paste0("Bratio_", assess.yr)]], probs = c(0.025, 0.5, 0.975))
+bratio_age1 <- quantile(sens.models.2[[1]]$mcmc[[paste0("Bratio_", assess.yr)]], probs = c(0.025, 0.5, 0.975))
 
 ################################################################################
 ## joint probability (%age) of being being both above the target relative fishing intensity in \Sexpr{end.yr-1}
