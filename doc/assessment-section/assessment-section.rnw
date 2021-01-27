@@ -1480,8 +1480,8 @@ and provides the worst fit of the most recent survey biomass estimate
 (Figure~\ref{fig:main-index-base-alternative-4}).
 
 % Ageing Error
-% Manual 2020 done
-**The impact of assuming a time-invariant ageing error vector instead of a
+% Manual 2021 done - CG
+The impact of assuming a time-invariant ageing error vector instead of a
 cohort-based ageing error matrix (as in the base model) was evaluated.  The
 largest changes to model results are associated with estimates of equilibrium
 unfished biomass (Table~\ref{tab:main-parameter-estimates-sens-3} and
@@ -1489,7 +1489,11 @@ Figure~\ref{fig:main-biomass-base-alternative-5}) and thus relative spawning bio
 (Figure~\ref{fig:main-status-base-alternative-5}). These differences stem from
 the population model being restricted in the time-invariant case to fitting
 age-composition data with a stationary level of measurement error associated
-with each age.
+with each age. There is very little difference in the current relative biomass between the two,
+with the base model having a median relative biomass of \Sexpr{f(100*depl_curr, 1)}\% and
+the time-invariant ageing error vector model having a median relative biomass of
+\Sexpr{f(100*depl_no_ageerr, 1)}\%. The credible interval is larger for the
+time-invariant ageing error vector model.
 
 **[invert if including a non-NUTS run] The impact of using the NUTS MCMC algorithm (Table~\ref{tab:main-parameter-estimates-sens-4}) is discussed in detail in
 Appendix~\ref{chap:adnuts}.
@@ -1501,17 +1505,6 @@ Briefly, arbitrarily decreasing the weight of recent fishery age-composition dat
 similar estimates of the recent trend in spawning biomass but differences in
 stock status because of more optimistic estimates of the stock at unfished
 equilibrium. Further responses to other SRG requests are also given in Appendix~\ref{chap:srg-requests}.
-% 2019 SRG -
-%%**Several additional sensitivity runs were completed in response to SRG requests
-%%during the Feb 13-16, 2017 meeting in Vancouver, B.C., Canada (see
-%%Appendix~\ref{chap:srg-requests}).  These include model sensitivity to the
-%%standard deviation associated with time-varying selectivity, further inclusion
-%%of the age-1 index, and model convergence diagnostics when using a longer MCMC
-%%chain.
-
-%%Several key underlying structural model assumptions were identified that have persisted across many previous hake assessments, and thus warrant revisiting periodically as a set of reference sensitivity examinations to new base models.  Those identified here include the specification of natural mortality, the level of variation assumed about the stock-recruitment relationship ($\sigma_r$), and the resiliency of the stock in terms of recruitment (steepness).  The sensitivity of the base model to changes in the input $\sigma_r$ and to the prior distributions for natural mortality and steepness were explored.  The standard deviation of the prior distribution on natural mortality was increased from 0.1 (as in the base model) to 0.2 and 0.3.  The mean of the prior distribution on steepness was decreased from 0.777 (base) to 0.500, and steepness was also fixed at 1.0.  The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative high (2.0) and low (1.0) states.  These key sensitivities had little effect on the overall estimated population trend throughout the time series (Figure~\ref{fig:main-biomass-base-alternative-1}), but they do have a significant impact on the estimated scale of the population (quite different estimates of $B_0$ and $R_0$ parameters; Table~\ref{tab:main-parameter-estimates-sens-1}).  The least influential in terms of relative spawning biomass (Figure~\ref{fig:main-status-base-alternative-1}) as compared to the base model is fixing steepness to 1.0, changing the prior mean on steepness, and moderately changing the prior standard deviation on natural mortality (0.2).  The greatest difference in stock status compared to the base model results from changing the input for $\sigma_r$.  Estimates of natural mortality increased from 0.215 for the base model (prior standard deviation of 0.1) to 0.250 for the sensitivity run with the prior standard deviation set to 0.3.  When the mean of the prior distribution for steepness was changed from 0.777 (base model) to 0.5, the estimate for steepness decreased from 0.861 to 0.602.
-
-% $ [makes emacs pretty again]
 
 \subsection{Retrospective analyses}\label{sec:assessment-retrospective-analyses}
 

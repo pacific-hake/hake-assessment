@@ -554,7 +554,9 @@ steep_prior_05 <- quantile(sens.models.1[[1]]$mcmc$SR_BH_steep, probs = c(0.025,
 # Bratio
 bratio_curr <- quantile(base.model$mcmc[[paste0("Bratio_", assess.yr)]], probs = c(0.025, 0.5, 0.975))
 bratio_age1 <- quantile(sens.models.2[[1]]$mcmc[[paste0("Bratio_", assess.yr)]], probs = c(0.025, 0.5, 0.975))
-
+# Depletion
+depl_curr <- base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) == assess.yr]
+depl_no_ageerr <- sens.models.5$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) == assess.yr]
 ################################################################################
 ## joint probability (%age) of being being both above the target relative fishing intensity in \Sexpr{end.yr-1}
 ##   and below the $\Bforty$ (40\% of $B_0$) reference point at the start of \Sexpr{end.yr}
