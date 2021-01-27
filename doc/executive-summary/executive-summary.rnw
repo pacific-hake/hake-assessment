@@ -531,7 +531,7 @@ make.exploitation.fraction.plot(base.model,
 Median relative fishing intensity is estimated to have declined from
 \Sexpr{median.intensity.2010}\% of the target in 2010 to \Sexpr{median.intensity.2015}\%
 in 2015, and then it leveling off around 75\% from 2016 to 2019 before dropping to
-\Sexpr{exploitation.med.2020}\% in \Sexpr{end.yr-1}.
+\Sexpr{exploitation.med.penult.yr}\% in \Sexpr{end.yr-1}.
 The exploitation fraction has increased from a recent low of
 \Sexpr{exploitation.med.2012} in 2012 to \Sexpr{exploitation.med.2017} in 2017 and has
 remained relatively stable since then (dropping no further than
