@@ -532,8 +532,10 @@ make.comparison.plot <- function(models,
     indices <- map_df(seq_along(indices), ~{
       indices[[.x]] <- indices[[.x]] %>% mutate(name = model.names[.x])
     })
-    cols <- rich.colors.short(length(models))
-    fill_cols <- rich.colors.short(length(models), alpha = 0.1)
+    cols <- rich.colors.short(2 * length(models))
+    cols <- cols[seq(2, length(cols), 2)]
+    fill_cols <- rich.colors.short(2 * length(models), alpha = 0.1)
+    fill_cols <- fill_cols[seq(2, length(fill_cols), 2)]
     shapes <- 1:length(models)
 
     indices <- indices %>%
