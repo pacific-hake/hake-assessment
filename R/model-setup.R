@@ -156,15 +156,13 @@ sens.model.dir.names.1 <- c("2021.00.15_h_prior_mean_low",
                             "2021.00.17_sigmaR_fix_low",
                             "2021.00.18_sigmaR_fix_high",
                             "2021.00.20_M_0.2SD",
-                            "2021.00.21_M_0.3SD",
-                            "2021.00.22_M_hamel_prior")
+                            "2021.00.21_M_0.3SD")
 sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
                         "Steepness Fix 1.0",
                         "Sigma R 1.0",
                         "Sigma R 1.6",
                         "Natural Mortality (SD=0.2)",
-                        "Natural Mortality (SD=0.3)",
-                        "Natural Mortality (Mean=-1.532,SD=0.438)")
+                        "Natural Mortality (SD=0.3)")
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 2
@@ -181,12 +179,10 @@ sens.model.names.2 <- c("Add Age 1 Index",
 ## -----------------------------------------------------------------------------
 sens.model.dir.names.4 <- c("2021.00.27_tvSelect_phi_extralow",
                             "2021.00.28_tvSelect_phi_low",
-                            "2021.00.29_tvSelect_phi_high",
-                            "2021.00.26_semiPara_tvSelect_sig0.695")
+                            "2021.00.29_tvSelect_phi_high")
 sens.model.names.4 <- c("Phi t.v. selectivity (0.21)",
                         "Phi t.v. selectivity (0.70)",
-                        "Phi t.v. selectivity (2.10)",
-                        "Semi-Parametric t.v selectivity (0.695)")
+                        "Phi t.v. selectivity (2.10)")
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 5  - Different weight-at-age schemes (first group)
