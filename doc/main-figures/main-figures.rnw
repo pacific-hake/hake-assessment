@@ -419,7 +419,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-mcmc-survey-fit, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows many posterior trajectories and their median compared with the M L E estimate">>=
+<<main-mcmc-survey-fit, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows many posterior trajectories of the expected survey biomass fitting well to the observed biomass.">>=
 make.mcmc.survey.fit.plot(base.model,
                           start.yr = survey.start.yr,
                           end.yr = survey.end.yr,
@@ -428,12 +428,12 @@ make.mcmc.survey.fit.plot(base.model,
                           y.max = 5.5e6)
 @
 \end{center}
-\caption{**[Remove the MLE? Maybe clarfiy final sentence.] Fits to the acoustic survey with 95\% confidence intervals around the index points.
-  Red and blue thick lines are MLE and median MCMC expected survey estimates in every year,
-  including years without a survey. Thin blue lines show individual MCMC samples of the
-  expected survey biomass. Thicker bars on uncertainty intervals around observed survey points
-  indicate 95\% log-normal uncertainty intervals estimated by the kriging method. Longer bars
-  indicate 95\% uncertainty intervals with the MLE estimate of additional uncertainty.}
+\caption{Fits (colored lines) to the acoustic survey (points) with input 95\% intervals around the observations.
+  The thin blue lines are the results of a random subset of individual MCMC samples.
+  Thicker uncertainty intervals around observed survey points indicate 95\%
+  log-normal uncertainty intervals estimated by the kriging method and are used as input to the assessment model.
+  Thinner uncertainty intervals indicate estimated 95\% uncertainty intervals that account for the
+  model estimate of additional uncertainty.}
 \label{fig:main-mcmc-survey-fit}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

@@ -534,38 +534,43 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
   # where no survey took place and therefore are not included in surv.yrs
   matplot(x = start.yr:end.yr,
           y = model$extra.mcmc$cpue.table[1:length(start.yr:end.yr), subsample],
-          ##y = model$extra.mcmc$cpue.table,
           col = rgb(0, 0, 1, 0.03),
           type = 'l',
           add=TRUE,
           lty = 1)
   lines(x = start.yr:end.yr,
         y = model$extra.mcmc$cpue.median[1:length(start.yr:end.yr)],
-        ##y = model$extra.mcmc$cpue.median,
         col = rgb(0, 0, 0.5, 0.7),
         lty = 1,
         lwd = 3)
   legend('topleft',
-         legend = c("Observed survey biomass (with MLE estimates of 95% intervals)",
-                    "MLE estimates of expected survey biomass",
+         legend = c("Observed survey biomass with\ninput (wide) and estimated (narrow) 95% intervals",
                     "Median MCMC estimate of expected survey biomass",
-                    "MCMC samples of estimates of expected survey biomass"),
-         lwd = c(NA,3,3,1),
-         pch = c(21, NA, NA, NA),
+                    paste0("A subset (", samples, ") of the MCMC estimates of expected survey biomass")),
+         lwd = c(NA,3,1),
+         pch = c(21, NA, NA),
          bg = 'white',
          text.col = gray(0.6),
          col = c(1,
-                 rgb(1, 0, 0, 0.7),
                  rgb(0, 0, 0.5, 0.7),
                  rgb(0, 0, 1, 0.4)),
          cex = leg.cex,
          bty = 'n')
-  SSplotIndices(model,
-                subplot = 2,
-                add = TRUE,
-                minyr = start.yr,
-                maxyr = end.yr,
-                col3 = rgb(1, 0, 0, 0.7))
+  # Estimated interval with added uncertainty
+  addedSE <- model$mcmc %>%
+    summarise(across(starts_with("Q_extraSD"), ~median(.x)))
+  arrows(
+    x0 = as.numeric(cpue$year),
+    x1 = as.numeric(cpue$year),
+    y0 = qlnorm(probs[1], meanlog = log(as.numeric(cpue$obs)), sdlog = as.numeric(cpue$se_log) + addedSE[1,1]),
+    y1 = qlnorm(probs[2], meanlog = log(as.numeric(cpue$obs)), sdlog = as.numeric(cpue$se_log) + addedSE[1,1]),
+   length = 0.03, angle = 90, code = 3, col = "black"
+  )
+  # Observed points
+  points(col = "black",
+    x = model$cpue$Yr[model$cpue$Use==1],
+    y = model$cpue$Obs[model$cpue$Use == 1],
+    pch = 1)
   axis(1, at = model$cpue$Yr[model$cpue$Use==1], cex.axis = 0.8, tcl = -0.6)
   axis(1,
        at = (start.yr-4):(end.yr+7),
