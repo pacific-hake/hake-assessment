@@ -56,7 +56,7 @@ make.catches.plot(catches,
 %
 Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to
 the modern fishery. Over the early period (\Sexpr{min(catches$Year)}--1990) most
-removals were from foreign or joint-venture fisheries.  Across the time series, 
+removals were from foreign or joint-venture fisheries.  Across the time series,
 catch in U.S. waters averaged \Sexpr{f(mean(catches$Ustotal))}~t,
 (\Sexpr{round(100*mean(catches$Ustotal/catches$TOTAL),1)}\% of the
 total catch) while catch from Canadian waters averaged
@@ -98,7 +98,7 @@ but discarding of \fishname\ in non-target fisheries is not. Discard from all
 fisheries, including those that do not target hake, is estimated to be less
 than 1\% of landings in recent years. During
 the last five years, catches were considerably above the long-term average catch
-(\Sexpr{f(long.term.avge.catch)}~t) 
+(\Sexpr{f(long.term.avge.catch)}~t)
 %in
 %\Sexpr{last.5.years.above.avge[1:(length(last.5.years.above.avge)-1)]}, and
 %\Sexpr{last.5.years.above.avge[length(last.5.years.above.avge)]}
@@ -119,7 +119,7 @@ total catch of the 2010, 2014, and 2016 year classes is estimated to be about
 \Sexpr{f(cohort.catch.2016/1e6,2)}~million~t,
 respectively. Landings in 2020 were most represented by the 2016 (35.23\%)
 and 2014 (30.90\%) year classes. Due to the Covid-19 pandemic, no biological samples
-were available from the Canadian Freezer Trawler sector in 2020. 
+were available from the Canadian Freezer Trawler sector in 2020.
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
@@ -345,8 +345,8 @@ make.recruitment.table(base.model,
 The new data available for this assessment do not significantly change the
 pattern of recruitment estimated in recent assessments.
 However, estimates of absolute recruitment for some recent years have slightly changed
-with the addition of new data. 
-For example, this assessment's median estimate of the 2014 recruitment changed by 
+with the addition of new data.
+For example, this assessment's median estimate of the 2014 recruitment changed by
 \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"], 1)}~billion
 fish (a \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"]) /
 (prev.assess.recruitment.med)["2014"]) * 100), 0)}\% change) compared to last
@@ -416,7 +416,7 @@ and 2018 year classes (median recruitment well below the mean of all median recr
 %  [keep this helpful explanation]
 
 The 2014 and 2016 year classes are likely both larger than average, however there is a
-very high chance (\Sexpr{prob.percent.2014.rec.gt.2016.rec}\%) that 2014 is larger than 2016. 
+very high chance (\Sexpr{prob.percent.2014.rec.gt.2016.rec}\%) that 2014 is larger than 2016.
 There is very little information in the data to estimate the size of the \Sexpr{end.yr-2} year
 class because the \Sexpr{end.yr-2} acoustic survey does not sample age-0 fish and the \Sexpr{end.yr-1} fishery
 largely did not encounter this year class.
@@ -531,7 +531,7 @@ make.exploitation.fraction.plot(base.model,
 Median relative fishing intensity is estimated to have declined from
 \Sexpr{median.intensity.2010}\% of the target in 2010 to \Sexpr{median.intensity.2015}\%
 in 2015, and then it leveled off around 75\% from 2016 to 2019 before dropping to
-\Sexpr{median.intensity.2020}\% in \Sexpr{end.yr-1}.
+\Sexpr{median.intensity.2020}\% in 2020.
 The exploitation fraction has increased from a recent low of
 \Sexpr{exploitation.med.2012} in 2012 to \Sexpr{exploitation.med.2017} in 2017 and has
 remained relatively stable since then (dropping no further than
@@ -661,7 +661,7 @@ credibility intervals are in Table~\ref{tab:es-reference.points}.
 The medians of sustainable yields and biomass reference points have changed by
 nearly 9\% compared to the \Sexpr{last.assess.yr} assessment. This is a result
 of increasing the effective sample size used to describe the posterior distributions
-of model parameters, leading to more precise point estimates.  
+of model parameters, leading to more precise point estimates.
 The probability that spawning biomass at the beginning of \Sexpr{assess.yr}
 is below $\Bforty$ is
 P$(B_{\Sexpr{assess.yr}} < \Bforty) = \Sexpr{probs.curr.below.bforty}$\%,
@@ -720,7 +720,7 @@ they are (i.e., cohort strength is not well known until it is has been observed
 by the fishery and survey, typically at minimum age-3).  Further, the interaction
 among variance parameters that govern variability in fishery selectivity and recruitment
 parameters through time, as well as those used in relative data weighting, is not well
-understood and could propagate uncertainty beyond what is presented in this assessment.  
+understood and could propagate uncertainty beyond what is presented in this assessment.
 
 %%**Maybe something like: This is particularly apparent for this assessment, because the **2014
 %% cohort is potentially very large but is still highly uncertain
