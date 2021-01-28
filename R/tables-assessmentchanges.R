@@ -25,7 +25,7 @@ make.assessment.changes.table <- function(assessment.changes,
                            function(x) paste0(x[1], " (", x[2], ", ", x[3], ")"))
   tab <- tab[, -grep("Comp_F|Comp_S", colnames(tab))]
   tab <- tab[tab$Year >= start.yr, ]
-  tab$Bias_Adjust <- format(tab$Bias_Adjust, digits = 2)
+  #tab$Bias_Adjust <- format(tab$Bias_Adjust, digits = 2)
   tab$MCMC <- f(tab$MCMC)
   #tab$Change <- sapply(strsplit(tab$Change, "; |, "), latex.mlc, make.bold = FALSE)
 
@@ -36,7 +36,8 @@ make.assessment.changes.table <- function(assessment.changes,
   # instead to satisfy accessibility requirements)
   tab[,2] <- gsub("\\.", "-", tab[,2])
 
-  print(xtable(tab, caption = xcaption,
+  print(xtable(tab,
+               caption = xcaption,
                label = xlabel,
                align = c(rep("r", ncol(tab)-1), "r", "p{5cm}"),
                digits = rep(0, ncol(tab) + 1)),
