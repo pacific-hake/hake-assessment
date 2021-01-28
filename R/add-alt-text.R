@@ -14,7 +14,7 @@ add_alt_text <- function(tex_file = "hake-assessment.tex",
                          debug = TRUE){
 
   # The match for knitr chunk figures looks like \\includegraphics[width=\\maxwidth]{Filename-1}
-  # Some chunkns may have more than one plot in them, in those cases only the first plot will
+  # Some chunks may have more than one plot in them, in those cases only the first plot will
   # have a tooltip added, therefore the -1 at the end of the regular expression
   inc_graphics_pattern <- "(\\\\includegraphics\\[width=\\\\maxwidth\\]\\{(.*?-1)\\})"
   j <- readLines(tex_file)

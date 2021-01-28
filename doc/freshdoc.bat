@@ -12,7 +12,7 @@ del *.txt
 del *.out
 del *.upa
 del *.upb
-del *.synctex.gz
+del *.synctex.gz*
 del hake-assessment*.tex
-del hake-assessment-eps.pdf
-hake-assessment.synctex.gz(busy)
+rmdir ..\out-csv /S /Q
+rmdir /S /Q knitr-cache

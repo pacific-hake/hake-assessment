@@ -98,50 +98,26 @@ build_rds()
 
 * **Method 1**
   
-  Run the batch files `builddoc-epsfigs.bat` or `builddoc-pngfigs.bat` for the version with `PDF/EPS` figures or `PNG` figures respectively. Doing it this way will allow you to continue to work in your R session while the document builds.
+  Run the batch file `builddoc.bat`. Doing it this way will allow you to continue to work in your R session while the document builds.
 
-  * To see the output from the knitr part see `knitr_output.log`
-  * To see the output from the Latex part see `latex_output.log`
-  * You can look at the log files while it is building to see where in the build process you are using a non-locking editor such as Emacs
+  * To see the output from this see `latex_output.log`
+  * You can look at the log file while it is building to see where in the build process you are using a non-locking editor such as Emacs
   * If the compilation seems to hang, check the two log files to see where it stopped
 
 * **Method 2**
 
-  * Run this in an R session if you want to build with `PDF/EPS` figures:
+  * Run this in an R session:
   ```R
-  setwd(here::here("doc"))
   source(here::here("R/all.r"))
-  build_doc(png_figs = FALSE)
+  build_doc()
   ```
   
-  * Run this in an R session if you want to build with `PNG` figures:
-  ```R
-  setwd(here::here("doc"))
-  source(here::here("R/all.r"))
-  build_doc(png_figs = TRUE)
-  ```
-
   * After the first time you do this, the models will be loaded into the R workspace and any subsequent builds will be a little faster.
 
 * **Method 3**
 
-  * If you are building with `PDF/EPS` figures, run this in an R session:
+  * Run this in an R session:
   ```R
-  mod_code_for_build (png_figs = FALSE)
-  knitr::knit("hake-assessment.rnw")
-  ```
-  then this in a terminal:
-  ```
-  ispell hake-assessment.tex (periodically)
-  latex hake-assessment
-  bibtex hake-assessment
-  dvips hake-assessment
-  ps2pdf hake-assessment.ps
-  ```
-
-  * If you are building with `PNG` figures, run this in an R session:
-  ```R
-  mod_code_for_build (png_figs = TRUE)
   knit_alttext()
   ```
   then this in a terminal:
@@ -156,15 +132,8 @@ build_rds()
   * There is no need to run the last three terminal commands if references haven't changed
 
 ## How to clean up the `doc` directory after an erroneous build
-* To remove everything from the build, including cached figures and table data, run one of the batch files
-  * `freshdoc-eps.bat` or
-  * `freshdoc-png.bat`
-  * The difference between the two is which final `PDF` file they remove, and the `knitr-cache-*` directory they remove.
-
-* To remove all the Latex files but keep the cached figures and table data, run one of the batch files
-  * `cleandoc-eps.bat` or
-  * `cleandoc-png.bat`
-  * The difference between the two is which final `PDF` file they remove
+* To remove everything from the build, including cached figures and table data, run the batch file `freshdoc.bat`
+* To remove all the Latex files but keep the cached figures and table data, run the batch file `cleandoc.bat`
 
 ## How to debug functions used in the knitr chunks in the `.rnw` files
 
@@ -176,17 +145,6 @@ build_rds()
   ```
 * Cut-and-paste the figure/table code from the knitr chunk you want to debug into R and the output will be exactly
   what will appear in the document.
-
----
-## How to toggle between including `PDF/EPS` and `PNG` figures
-*  <span style="color:green">**Best method**</span> - If you use the batch files `builddoc-epsfigs.bat` or `builddoc-pngfigs.bat` to build, that is all you have to do. They will create `hake-assessment-eps.pdf` and `hake-assessment-png.pdf` respectively.
-* If you use the `build_doc()` function from inside R, call `build_doc(png_figs = TRUE)` to use `PNG` figures and `build_doc(png_figs = FALSE)` to use `PDF/EPS` figures. The default is PNG figures. The function makes modifications to code which are outlined below. Using this method will create `hake-assessment.pdf` regardless of which type you choose.
-* If you do not use `build_doc()`, you can run the function `mod_code_for_build()` before your normal build steps.
-  This does the following:
-  * In the `hake.sty` file, changes the order of the extensions in the latex extension declarations, by placing the lines containing you want included before the lines you don't. To use `PDF/EPS` figures, it places `.pdf` and `.eps` lines before the `.png` line, and vice-versa for `PNG` figure inclusion.
-  * In the `hake-assessment.rnw` file, it changes the `dev` argument of the `opts_chunk$set()` function to be `cairo_ps` for `PDF/EPS` figures and `png` for `PNG` figures.
-  * In the `hake-assessment.rnw` file, it changes the `fig.path` and `cache.path` arguments of the `opts_chunk$set()` function to be `knitr-cache-eps/` for `PDF/EPS` figures or `knitr-cache-png/` for `PNG` figures.
-* The code file `create-rds-file.R` contains these functions.
 
 ---
 ## How to create adnuts-diagnostics.pdf
