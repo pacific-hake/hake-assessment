@@ -66,10 +66,10 @@ sensitivity runs to be in an MCMC context as opposed to MLE.
 \begin{figure}[H]
 \begin{center}
 <<biomass-base-alternative-6-adnuts-sens, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
-make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
+make.comparison.plot(c(list(base.model), list(sens.models.6)),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.6),
-                     end.yr = end.yr)
+                     end.yr = end.yr, plot_mcmc = TRUE)
 @
 \end{center}
 \caption{MCMC median posterior estimates with 95\% credible intervals of spawning biomass for the base
@@ -80,10 +80,10 @@ make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{center}
 <<status-base-alternative-6-adnuts-sens, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
-make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
+make.comparison.plot(c(list(base.model), list(sens.models.6)),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.6),
-                     end.yr = end.yr)
+                     end.yr = end.yr, plot_mcmc = TRUE)
 @
 \end{center}
 \caption{MCMC median posterior estimates with 95\% credible intervals of relative
@@ -96,11 +96,11 @@ make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
 \begin{figure}[H]
 \begin{center}
 <<recruitment-base-alternative-6-adnuts-sens, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
-make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
+make.comparison.plot(c(list(base.model), list(sens.models.6)),
                      legend = FALSE,
                      subplots = 10,
                      model.names = c(base.model.name, sens.model.names.6),
-                     end.yr = end.yr)
+                     end.yr = end.yr, plot_mcmc = TRUE)
 box()
 @
 \end{center}
@@ -116,11 +116,11 @@ box()
 %% \begin{figure}[H]
 \begin{center}
 <<recruitment-devs-base-alternative-6-adnuts-sens, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
-make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
+make.comparison.plot(c(list(base.model), list(sens.models.6)),
                      legend = FALSE,
                      subplots = 12,
                      model.names = c(base.model.name, sens.model.names.6),
-                     end.yr = end.yr)
+                     end.yr = end.yr, plot_mcmc = TRUE)
 box()
 @
 \end{center}
