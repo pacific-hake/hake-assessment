@@ -53,7 +53,8 @@ make.assessment.history.plot <- function(base,
            rgb(0,    0.8,  0),         # 2016
            rgb(1,    0.2,  0.2),       # 2017
            rgb(1,    0.5,  0),         # 2018
-           rgb(0.7, 0.7, 0.7))         # 2019
+           rgb(0.7, 0.7, 0.7),         # 2019
+           rgb(0.1, 0.1, 1))           # 2020
   # final line for base model is dark gray by default
 
   # set line widths and plot characters
