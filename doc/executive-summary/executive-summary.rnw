@@ -738,6 +738,7 @@ wide range of uncertainty, the 95\% credibility interval being
 \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
 
 % May need to move after the next paragraph
+%%** Remove "(unilaterally summed)" text from this caption (and main-table caption; table 28) after 2021
 <<decisions-biomass-table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
                     xcaption = paste0("Forecast quantiles of \\fishname\\
@@ -748,7 +749,7 @@ make.decision.table(base.model,
                      "), including catch similar to ",
                      min(forecast_yrs)-1," (row ",
                      letters[catch.actual.ind],
-                     ") and the TAC from ",
+                     ") and the (unilaterally summed) TAC from ",
                      min(forecast_yrs)-1," (row ",
                      letters[catch.tac.ind],
                      "), catch values that result

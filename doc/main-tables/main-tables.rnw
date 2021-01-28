@@ -526,7 +526,7 @@ make.decision.table(base.model,
                      "), including catch similar to ",
                      min(forecast_yrs)-1," (row ",
                      letters[catch.actual.ind],
-                     ") and the TAC from ",
+                     ") and the (unilaterally summed) TAC from ",
                      min(forecast_yrs)-1," (row ",
                      letters[catch.tac.ind],
                      "), the catch values that result
