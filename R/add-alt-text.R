@@ -24,6 +24,15 @@ add_alt_text <- function(tex_file = "hake-assessment.tex",
     stop("There were no 'includegraphics' terms found in the TEX file",
          call. = FALSE)
   }
+  num_exec_summary_figs <- length(g[g < 4000])
+  exec_summary_figs <- paste("Figure", letters[seq_len(num_exec_summary_figs)])
+  num_figure_section_figs <- length(g[g >= 4000])
+  figure_section_figs <- paste("Figure", seq_len(num_figure_section_figs))
+  figure_summary <- enframe(c(exec_summary_figs, figure_section_figs), name = NULL) %>%
+    bind_cols(alt_fig_text) %>%
+    select(value, text) %>%
+    rename(`Figure tag` = value, `Alternative text` = text)
+  write_csv(figure_summary, "alternative_text.csv", )
   if(debug){
     message("add_alt_text() matched the following lines in the file ", tex_file)
     print(map2(1:length(g), j[g], ~{
