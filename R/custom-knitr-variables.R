@@ -448,8 +448,10 @@ fore.catch.prop.wt.age3.median <- median(base.model$extra.mcmc$natselwt.prop[,4]
 sigma.r <- f(base.model$sigma_R_in, 2)
 
 # alternative sigma.r based on all years of recdevs
-sigma.r.alt.allyr <- f(base.model$sigma_R_info$alternative_sigma_R[3],2)
-sigma.r.alt.main <- f(base.model$sigma_R_info$alternative_sigma_R[1],2)
+sigma_R_info <- map(setNames(c(list(base.model), sens.models.1), c("base", sens.model.names.1)),
+  ~{r4ss:::extract_sigma_R_info(.x$mcmc, .x$sigma_R_in)}) %>% bind_rows(.id = "model")
+sigma.r.alt.allyr <- f(sigma_R_info %>% filter(model == "base", period == "Early+Main+Late") %>%
+  select(alternative_sigma_R),2)
 
 # range of "main" recdevs
 main.recdev.start <- min(base.model$recruit$Yr[base.model$recruit$era=="Main"])

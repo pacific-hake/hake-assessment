@@ -1385,12 +1385,12 @@ sensitivity analysis had an impact on the overall model results
 The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative
 high (1.6) and low (1.0) states. The low value, $\sigma_r = 1.0$,
 resulted in a model where the standard deviation of the MLE estimates of
-recruitment deviations in the period with the most informative data was **How to calculate this for MCMC??**
-\Sexpr{f(sens.models.1[[which(sens.model.names.1=="Sigma R 1.0")]]$sigma_R_info$SD_of_devs[1], 2)},
+recruitment deviations in the period with the most informative data was
+\Sexpr{f(sigma_R_info %>% filter(model == "Sigma R 1.0", period == "Main") %>% select(SD_of_devs), 2)},
 suggesting that the data were inconsistent with the lower value of $\sigma_r$.
 The high value, $\sigma_r = 1.6$, resulted in a model with a more
 consistent standard deviation for the estimated recruitment deviations, at
-\Sexpr{f(sens.models.1[[which(sens.model.names.1=="Sigma R 1.6")]]$sigma_R_info$SD_of_devs[1], 2)}.
+\Sexpr{f(sigma_R_info %>% filter(model == "Sigma R 1.6", period == "Main") %>% select(SD_of_devs), 2)}.
 However, the high $\sigma_r$ model had a larger difference between the
 spawning biomass at unfished
 equilibrium and the spawning biomass at the initial year of the model
