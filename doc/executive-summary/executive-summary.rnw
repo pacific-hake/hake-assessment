@@ -912,17 +912,19 @@ given each potential management action. Although not linear, probabilities can
 be interpolated from these results for intermediate catch
 values
 in \Sexpr{assess.yr} (Table~\ref{tab:es-risk-year-1} and
-Figure~\ref{fig:es-forecast-risk-comparison-year-1}). **[May not be needed
-depending on results; if not then comment out rather than delete so we have for
-future] However, interpolation is
+Figure~\ref{fig:es-forecast-risk-comparison-year-1}). 
+%**[May not be needed
+%depending on results; if not then comment out rather than delete so we have for
+%future]
+However, interpolation is
 not appropriate for all catches in
-\Sexpr{assess.yr+1} because catch alternatives~g and~h have catches
-that are larger than 500,000~t
+\Sexpr{assess.yr+1} because catch alternatives~h and~i apply a
+\Sexpr{assess.yr+1} catch level that is dependent on the
+\Sexpr{assess.yr} catch (i.e., it is not constant).  Therefore, the probabilities for 
 % \Sexpr{catch_levels[[5]][[1]][1]}~t
-(the constant catch for alternative~e) in \Sexpr{assess.yr} but smaller than 500,000~t
 % \Sexpr{catch_levels[[5]][[1]][1]}~t
-in \Sexpr{assess.yr+1} (Table~\ref{tab:es-decisions-spr});
-this explains why a few probabilities decline
+\Sexpr{assess.yr+1} shown in Figure~\ref{fig:es-forecast-risk-comparison-year-2}
+are conditional and can be non-linear. This explains why a few probabilities decline
 (rather than rise) with increased \Sexpr{assess.yr+1} catch levels in Table~\ref{tab:es-risk-year-2}
 and Figure~\ref{fig:es-forecast-risk-comparison-year-2}.
 %
@@ -969,9 +971,9 @@ make.risk.table(base.model,
 @
 %
 
-**Figure~\ref{fig:es-forecast-depletion-comparison} shows the predicted
-relative spawning biomass trajectory through
-\Sexpr{forecast_yrs[length(forecast_yrs)]} for several of the management
+The predicted relative spawning biomass trajectory through
+\Sexpr{forecast_yrs[length(forecast_yrs)]} is shown in
+Figure~\ref{fig:es-forecast-depletion-comparison} for several of the management
 actions. With zero catch for the next two years, the biomass has a
 \Sexpr{zero.catch.prob.bio.down.1}\% probability of decreasing from
 \Sexpr{forecast_yrs[1]} to \Sexpr{forecast_yrs[2]} (Table~\ref{tab:es-risk-year-1}) and a
@@ -983,10 +985,10 @@ actions. With zero catch for the next two years, the biomass has a
 %  \Sexpr{end.yr+1} with a less than 50\% probability only for the 0~t and
 %  180,000~t catch levels (Table~\ref{tab:es-risk-year-1} and
 %  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
-**The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
-\Sexpr{end.yr+1} is over 80\% for all catch levels, including zero
+The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
+\Sexpr{end.yr+1} is over 65\% for all catch levels
 (Table~\ref{tab:es-risk-year-1} and
-Figure~\ref{fig:es-forecast-risk-comparison-year-1}). It is 95\% for the
+Figure~\ref{fig:es-forecast-risk-comparison-year-1}). It is 86\% for the
 \Sexpr{end.yr} catch level similar to that for \Sexpr{end.yr-1} (catch alternative~d).
 % Can maybe unhardwire some numbers with things like
 % \Sexpr{f(min(base.model$risks[[1]][,2]))}\% (see assesment-section).
@@ -995,8 +997,8 @@ Figure~\ref{fig:es-forecast-risk-comparison-year-1}). It is 95\% for the
 %(row~g in Table~\ref{tab:es-risk-year-1}).
 For all explored catches,
 the maximum probability of the spawning biomass dropping below $B_{10\%}$ at
-the start of \Sexpr{end.yr+1} is 1\%, and of
-dropping below $B_{40\%}$ is 40\%
+the start of \Sexpr{end.yr+1} is 2\%, and of
+dropping below $B_{40\%}$ is 46\%
 (Table~\ref{tab:es-risk-year-1} and
 Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % It should be noted that
@@ -1005,8 +1007,9 @@ Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % Andy presumes that last phrase is still true - not sure where/how to check
 % 2018 - probably not worth saying that any more.
 As the large 2010 and 2014 cohorts continue to age, their biomass is expected to decrease
-as losses from mortality outweigh increases from growth, while the smaller but
-above-average 2016 cohort will add to overall spawning biomass as it matures.
+as losses from mortality outweigh increases from growth.  The smaller but
+above-average 2016 cohort is entering this growth-mortality transition period, suggesting that
+their overall biomass is also expected to decrease as they continue to age.
 % Still true for 2017 assessment - see
 %  years.since.2010.recruitment.med.below.mean
 %   2018 assessment.
@@ -1028,7 +1031,7 @@ above-average 2016 cohort will add to overall spawning biomass as it matures.
 
 There are many research projects that could improve the stock assessment for
 \fishname\ and lead to improved biological understanding and
-decision-making. The top three are:
+decision-making (see Section~\ref{sec:research}). The top three are:
 
 % research-needs.rnw gets loaded in here and also in
 %  research-section/research.rnw in main text, and only contains
