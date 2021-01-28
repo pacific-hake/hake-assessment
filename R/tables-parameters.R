@@ -413,170 +413,131 @@ get_keylhs <- function(modellist) {
     return(setNames(unlist(out), NULL))
   }
 
+#' Returns an [xtable::xtable()] in the proper format for the MCMC posterior parameter estimates for
+#' all the models in the list, one for each column
+#'
+#' @param models A list of models which contain the MCMC output
+#' @param model.names A vector of names of the same length as the number of models in the models list
+#' @param end.yr The last year to include
+#' @param digits Number of decimal points for the estimates
+#' @param xcaption Caption to appear in the calling document
+#' @param xlabel The label used to reference the table in latex
+#' @param font.size Size of the font for the table
+#' @param space.size Size of the vertical spaces for the table
+#' @param getrecs A vector of integers supplying the years for which you want estimates of recruitment
+#' @param show_like If `TRUE`, include the negative log-likelihoods (set to `FALSE` for presentations)
+#'
+#' @return as [xtable::xtable()]
+#' @export
 make.short.parameter.estimates.sens.table <- function(models,
                                                       model.names,
                                                       end.yr,
-                                                      age.1 = FALSE,
                                                       digits = 3,
                                                       xcaption = "default",
                                                       xlabel   = "default",
                                                       font.size = 9,
                                                       space.size = 10,
-                                                      getrecs = c(2010, 2014, 2016),
-                                                      show.likelihoods = TRUE){
-  ## Returns an xtable in the proper format for the MLE parameter estimates for
-  ##  all the models, one for each column
-  ##
-  ## models - a list of models which contain the MLE output from SS_output()
-  ## model.names - a vector of names of the same length as the number of
-  ##  models in the models list
-  ## end.yr - the last year to include
-  ## age.1 - if TRUE, add the age-1 index parameter to the table. Set to FALSE
-  ##  if age.1 index not in any of the models being shown else the
-  ##  'Additional age-1 index SD' row gets populated with recruitment estimates
-  ##  (since there are no NA's to get replaced by dashes)
-  ## digits - number of decimal points for the estimates
-  ## xcaption - caption to appear in the calling document
-  ## xlabel - the label used to reference the table in latex
-  ## font.size - size of the font for the table
-  ## space.size - size of the vertical spaces for the table
-  ## getrecs - a vector of integers of length 3 supplying the years for which you want
-  ##   estimates of recruitment. Must be of length three.
-  ## show.likelihoods - if TRUE, return the negative log-likelihoods (FALSE for presentations)
-  if (length(getrecs) != 3) stop("The make short function only works",
-    "with three years of recruitments", call. = FALSE)
+                                                      getrecs = NA,
+                                                      show_like = TRUE){
 
-  modelssum <- r4ss::SSsummarize(models, verbose = FALSE)
-  tab <- rbind(
-    get_keypars(modelssum),
-    get_keydqs(modelssum, years.recs = getrecs, years.b0 = c(2009, end.yr)),
-    get_keyrps(modelssum, years.spr = end.yr - 1, target = 40),
-    get_keylhs(modelssum))
-
-  ## Format the tables rows depending on what they are
-  ## Decimal values
-  if(age.1){
-    tab[c(1, 3, 4, 5, 6, 7),] <- f(tab[c(1, 3, 4, 5, 6, 7),], 3)
-  }else{
-    tab[c(1, 3, 4, 5, 6),] <- f(tab[c(1, 3, 4, 5, 6),], 3)
+  if(is.na(getrecs[1])){
+    stop("No cohort recruitment years supplied: `getrecs`", call. = FALSE)
   }
+  tab <- map2(models, model.names, ~{
+    recs <- map_dbl(getrecs, ~{median(.y$mcmc[[paste0("Recr_", .x)]]) / 1e3}, .y = .x)
+    names(recs) <- paste0("recr_", getrecs)
+    recs <- f(recs, 0)
+    df <- enframe(
+      c(nat_m = f(median(.x$mcmc$`NatM_p_1_Fem_GP_1`), digits),
+        ro = f(median(.x$mcmc$`SR_LN(R0)`) * 1e3, 0),
+        h = ifelse(is.null(.x$mcmc$`SR_BH_steep`), NA, f(median(.x$mcmc$`SR_BH_steep`), digits)),
+        survey_sd = f(median(.x$mcmc$`Q_extraSD_Acoustic_Survey(2)`), digits),
+        dm_fishery = ifelse(is.null(.x$mcmc$`ln(DM_theta)_1`), NA, f(median(.x$mcmc$`ln(DM_theta)_1`), digits)),
+        dm_survey = ifelse(is.null(.x$mcmc$`ln(DM_theta)_2`), NA, f(median(.x$mcmc$`ln(DM_theta)_2`), digits)),
+        survey_age1_sd = ifelse(is.null(.x$mcmc$`Q_extraSD_Age1_Survey(3)`), NA, f(median(.x$mcmc$`Q_extraSD_Age1_Survey(3)`), digits)),
+        recs,
+        bo = f(median(.x$mcmc$`SSB_Initial`) / 1e3, 0),
+        ssb_2009 = paste0(f(median(.x$mcmc$`SSB_2009` / .x$mcmc$SSB_Initial) * 100, 1), "\\%"),
+        ssb_curr = paste0(f(median(.x$mcmc[[paste0("SSB_", end.yr)]] / .x$mcmc$SSB_Initial) * 100, 1), "\\%"),
+        spr_last = paste0(f(median(.x$mcmc[[paste0("SPRratio_", end.yr - 1)]]) * 100, 1), "\\%"),
+        ssb_curr_fem = f(median(.x$mcmc$`SSB_SPR` / 2) / 1e3, 0),
+        spr_msy = "40.0\\%",
+        exp_frac = paste0(f(.x$mcmccalcs$fmed[names(.x$mcmccalcs$fmed) == end.yr - 1] * 100, 1), "\\%"),
+        yield_f40 = f(median(.x$mcmc$`Dead_Catch_Btgt`) / 1e3, 0),
+        total_like = f(filter(.x$likelihoods_used, rownames(.x$likelihoods_used) == "TOTAL")$values, 2),
+        survey_like = f(filter(.x$likelihoods_used, rownames(.x$likelihoods_used) == "Survey")$values, 2),
+        fishery_age_like = f(filter(.x$likelihoods_by_fleet, Label == "Age_like")$Fishery, 2),
+        survey_age_like = f(filter(.x$likelihoods_by_fleet, Label == "Age_like")$Acoustic_Survey, 2),
+        recr_like = f(filter(.x$likelihoods_used, rownames(.x$likelihoods_used) == "Recruitment")$values, 2),
+        priors_like = f(filter(.x$likelihoods_used, rownames(.x$likelihoods_used) == "Parm_priors")$values, 2),
+        parmdev_like = f(filter(.x$likelihoods_used, rownames(.x$likelihoods_used) == "Parm_devs")$values, 2)),
+      value = .y)
+  })
 
-  ## Large numbers with no decimal points but probably commas
-  tab[c(2,
-        ifelse(age.1, 8, 7),
-        ifelse(age.1, 9, 8),
-        ifelse(age.1, 10, 9),
-        ifelse(age.1, 11, 10),
-        ifelse(age.1, 15, 14),
-        ifelse(age.1, 18, 17)),] <-
-    f(apply(tab[c(2,
-                  ifelse(age.1, 8, 7),
-                  ifelse(age.1, 9, 8),
-                  ifelse(age.1, 10, 9),
-                  ifelse(age.1, 11, 10),
-                  ifelse(age.1, 15, 14),
-                  ifelse(age.1, 18, 17)),],
-                c(1, 2), as.numeric))
-  ## Percentages
-  tab[c(ifelse(age.1, 12, 11),
-        ifelse(age.1, 13, 12),
-        ifelse(age.1, 14, 13),
-        ifelse(age.1, 17, 16)),] <-
-    paste0(f(apply(tab[c(ifelse(age.1, 12, 11),
-                         ifelse(age.1, 13, 12),
-                         ifelse(age.1, 14, 13),
-                         ifelse(age.1, 17, 16)),],
-                   c(1, 2), as.numeric), 1), "\\%")
-  ## SPR Percentages row (some may be NA). This is really ugly but works
-  tab[ifelse(age.1, 16, 15),
-      !is.na(tab[ifelse(age.1, 16, 15),])] <-
-    paste0(f(as.numeric(tab[ifelse(age.1, 16, 15),
-                            !is.na(tab[ifelse(age.1, 16, 15),])]), 1), "\\%")
-
-  ## Likelihoods - Possibly commas and 2 decimal points
-  if(age.1){
-    tab[19:25,] <-
-      f(apply(tab[19:25,],
-              c(1, 2), as.numeric), 2)
-  }else{
-    tab[18:24,] <-
-      f(apply(tab[18:24,],
-              c(1, 2), as.numeric), 2)
-  }
-
-  ## Make first row empty to make the Parameter header appear below the
-  ##  horizontal line
+  # Remove parameter name column from all but first model then bind them all together,
+  # make a variable that records if there are any age-1 index parameter values,
+  # replace NAs with double-dashes, and add a blank row at the top for aesthetic purposes
+  tab[-1] <- map(tab[-1], ~{
+    .x[, 2]
+  })
+  tab <- tab %>%
+    bind_cols
+  age_1 <- !(tab %>% filter(name == "survey_age1_sd") %>% select(-name) %>% is.na %>% all)
+  tab[is.na(tab)] <- "--"
   tab <- rbind(rep("", length(models)), tab)
 
-  ## replace "   NA" with dashes
-  tab <- as.data.frame(lapply(tab,
-                              function(x){
-                                gsub(" +NA",
-                                     paste0("\\", latex.bold("--")),
-                                     x)
-                              }))
-
-  ## Set the first column to be the names
-  ## The first empty string is necessary because of the
-  ##  rbind(rep("", length(models)), tab) call above
-
-  tab_labels <- cbind(c("",
-                 paste0("Natural mortality (",
-                        latex.italics("M"),
-                        ")"),
-                 paste0(latex.subscr(latex.italics("R"), "0"),
-                        " (millions)"),
-                 paste0("Steepness (",
-                        latex.italics("h"),
-                        ")"),
-                 "Additional acoustic survey SD",
-                 "Dirichlet-Multinomial fishery (log~$\\theta_{\\text{fish}}$)",
-                 "Dirichlet-Multinomial survey (log~$\\theta_{\\text{surv}}$)",
-                 paste(getrecs, "recruitment (millions)"),
-                 paste0(latex.subscr(latex.italics("B"), "0"),
-                        " (thousand t)"),
-                 "2009 relative spawning biomass",
-                 paste0(end.yr,
-                        " relative spawning biomass"),
-                 paste0(end.yr - 1,
-                        " rel. fishing intensity: (1-SPR)/(1-",
-                        latex.subscr("SPR", "40\\%"),
-                        ")"),
-                 paste0("Female spawning biomass (",
-                        latex.italics("$B_{F_{40_{\\%}}}$"),
-                        "; thousand t)"),
-                 latex.subscr("SPR", "MSY-proxy"),
-                 "Exploitation fraction corresponding to SPR",
-                 paste0("Yield at ",
-                        latex.italics("$B_{F_{40_{\\%}}}$"),
-                        " (thousand t)"),
-                 "Total",
-                 "Survey",
-                 "Survey age compositions",
-                 "Fishery age compositions",
-                 "Recruitment",
-                 "Parameter priors",
-                 "Parameter deviations"))
-
-  if(age.1){
-    tab_labels <- append(tab_labels, "Additional age-1 index SD", after = 7)
+  tab_labels <- enframe(
+    c("", # For blank line at top
+      paste0("Natural mortality (", latex.italics("M"), ")"),
+      paste0(latex.subscr(latex.italics("R"), "0"), " (millions)"),
+      paste0("Steepness (", latex.italics("h"), ")"),
+      "Additional acoustic survey SD",
+      "Dirichlet-Multinomial fishery (log~$\\theta_{\\text{fish}}$)",
+      "Dirichlet-Multinomial survey (log~$\\theta_{\\text{surv}}$)",
+      "Additional age-1 index SD",
+      paste(getrecs, "recruitment (millions)"),
+      paste0(latex.subscr(latex.italics("B"), "0"), " (thousand t)"),
+      "2009 relative spawning biomass",
+      paste0(end.yr, " relative spawning biomass"),
+      paste0(end.yr - 1, " rel. fishing intensity: (1-SPR)/(1-", latex.subscr("SPR", "40\\%"), ")"),
+      paste0("Female spawning biomass (", latex.italics("$B_{F_{40_{\\%}}}$"), "; thousand t)"),
+      latex.subscr("SPR", "MSY-proxy"), "Exploitation fraction corresponding to SPR",
+      paste0("Yield at ", latex.italics("$B_{F_{40_{\\%}}}$"), " (thousand t)")),
+    name = NULL)
+  if(!age_1){
+    tab_labels <- tab_labels %>% filter(value != "Additional age-1 index SD")
+    tab <- tab %>% filter(name != "survey_age1_sd")
   }
-  tab <- cbind(tab_labels, tab)
-  ## Need to split up the headers (model names) by words and let them stack on
-  ##  top of each other
-  model.names.str <- unlist(lapply(gsub(" ",
-                                        "\\\\\\\\",
-                                        model.names),
-                                   latex.mlc,
-                                   make.bold = FALSE))
+
+  if(show_like){
+    tab_labels <- rbind(tab_labels,
+                        "Total",
+                        "Survey",
+                        "Survey age compositions",
+                        "Fishery age compositions",
+                        "Recruitment",
+                        "Parameter priors",
+                        "Parameter deviations")
+  }else{
+    tab <- head(tab, -7)
+  }
+
+  # Add the labels and remove the 'name' column which is just the short form of the name.
+  # If debugging, leave 'name' in here and compare side-by-side with the labels created
+  tab <- bind_cols(tab_labels, tab) %>%
+    select(-name)
+
+  # Split up the headers (model names) by words and let them stack on
+  # top of each other to reduce width of table
+  model.names.str <- map_chr(model.names, ~{latex.mlc(gsub(" ", "\\\\\\\\", .x), make.bold = FALSE)})
   colnames(tab) <- c("", model.names.str)
 
+  # Add sub-headers for different parameter types
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- 1
-  addtorow$pos[[2]] <- ifelse(age.1, 8, 7)
-  addtorow$pos[[3]] <- ifelse(age.1, 14, 13)
-  addtorow$pos[[4]] <- ifelse(age.1, 19, 18)
+  addtorow$pos[[2]] <- ifelse(age_1, 8, 7)
+  addtorow$pos[[3]] <- ifelse(age_1, 14, 13)
   addtorow$command <-
     c(paste0(latex.bold(latex.under("Parameters")),
              latex.nline),
@@ -585,16 +546,20 @@ make.short.parameter.estimates.sens.table <- function(models,
              latex.nline),
       paste0(latex.nline,
              latex.bold(latex.under("Reference Points based on $\\Fforty$")),
-             latex.nline),
-      paste0(latex.nline,
-             latex.bold(latex.under("Negative log likelihoods")),
              latex.nline))
-  ## Remove likelihood rows (use for beamer to fit on slides)
-  if(!show.likelihoods){
-    tab <- tab[1:(grep("Total", tab[,1])-1),]
-    addtorow$pos[[4]] <- NULL
-    addtorow$command <- addtorow$command[-4]
+  if(show_like){
+    addtorow$pos[[4]] <- ifelse(age_1, 19, 18)
+    addtorow$command <- c(addtorow$command,
+                          paste0(latex.nline,
+                                 latex.bold(latex.under("Negative log likelihoods")),
+                                 latex.nline))
   }
+  # ## Remove likelihood rows (use for beamer to fit on slides)
+  # if(!show_like){
+  #   tab <- tab[1:(grep("Total", tab[,1])-1),]
+  #   addtorow$pos[[4]] <- NULL
+  #   addtorow$command <- addtorow$command[-4]
+  # }
 
   ## Make the size string for font and space size
   size.string <- latex.size.str(font.size, space.size)

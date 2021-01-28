@@ -278,30 +278,30 @@ make.parameters.estimated.summary.table(
   space.size = 11)
 @
 
-\pagestyle{empty}
-\begin{landscape}
-\thispagestyle{mylandscape}
-  \centering
-<<main-parameter-estimates-retro, results='asis', echo=FALSE>>=
-make.short.parameter.estimates.sens.table(retro.list,
-                                          model.names = retro.model.names,
-                                          end.yr = end.yr,
-                                          age.1 = FALSE,
-                                          digits = 3,
-                                          xcaption =
-                                            paste0("**[still MLE for base?] Select parameters, derived quantities,
-                                                             reference point estimates, and negative
-                                                             log likelihoods for retrospective analyses
-                                                             using the MLE estimates from the base model.
-                                                             Some values are implied since they occur after
-                                                             the ending year of the respective retrospective
-                                                             analysis."),
-                                          xlabel = "tab:main-parameter-estimates-retro",
-                                          font.size = 10,
-                                          space.size = 11)
-@
-\end{landscape}
-\pagestyle{fancy}
+% ** UNCOMMENT THIS for the final doc ** CG Jan 27, 2021
+% \pagestyle{empty}
+% \begin{landscape}
+% \thispagestyle{mylandscape}
+%   \centering
+% <<main-parameter-estimates-retro, results='asis', echo=FALSE>>=
+% make.short.parameter.estimates.sens.table(retro.list,
+%                                           model.names = retro.model.names,
+%                                           end.yr = end.yr,
+%                                           digits = 3,
+%                                           xcaption =
+%                                             paste0("Select parameters, derived quantities,
+%                                                              reference point estimates, and negative
+%                                                              log likelihoods for retrospective analyses
+%                                                              using the MLE estimates from the base model.
+%                                                              Some values are implied since they occur after
+%                                                              the ending year of the respective retrospective
+%                                                              analysis."),
+%                                           xlabel = "tab:main-parameter-estimates-retro",
+%                                           font.size = 10,
+%                                           space.size = 11)
+% @
+% \end{landscape}
+% \pagestyle{fancy}
 
 <<main-assessment-changes-table, results='asis', echo=FALSE>>=
 make.assessment.changes.table(assessment.changes,
@@ -609,10 +609,8 @@ make.risk.table(base.model,
 make.short.parameter.estimates.sens.table(sens.models.1.for.table,
                                           model.names = sens.model.names.1.for.table,
                                           end.yr = end.yr,
-                                          age.1 = TRUE,
                                           digits = 3,
-                                          xcaption = paste0("**Maximum likelihood
-                                                            estimates (MLE) of select parameters, derived quantities,
+                                          xcaption = paste0("Medians of MCMC posteriors for select parameters, derived quantities,
                                                             reference points, and negative log likelihoods for the base
                                                             model and some sensitivity runs (described in
                                                             Section~\\ref{sec:assessment-sensitivity-analyses})."),
@@ -632,9 +630,8 @@ make.short.parameter.estimates.sens.table(sens.models.1.for.table,
 make.short.parameter.estimates.sens.table(sens.models.2.for.table,
                                           model.names = sens.model.names.2.for.table,
                                           end.yr = end.yr,
-                                          age.1 = FALSE,
                                           digits = 3,
-                                          xcaption = paste0("**Maximum likelihood estimates (MLE) of select parameters,
+                                          xcaption = paste0("Medians of MCMC posteriors for select parameters,
                                                             derived quantities, reference points, and negative log likelihoods
                                                             for the base model and further sensitivity runs (described in
                                                             Section~\\ref{sec:assessment-sensitivity-analyses})."),
@@ -654,9 +651,8 @@ make.short.parameter.estimates.sens.table(sens.models.2.for.table,
 make.short.parameter.estimates.sens.table(sens.models.3.for.table,
                                           model.names = sens.model.names.3.for.table,
                                           end.yr = end.yr,
-                                          age.1 = FALSE,
                                           digits = 3,
-                                          xcaption = paste0("**Maximum likelihood estimates (MLE) of select parameters,
+                                          xcaption = paste0("Medians of MCMC posteriors for select parameters,
                                                              derived quantities, reference points, and negative log likelihoods
                                                              for the base model and further sensitivity runs (described in
                                                              Section~\\ref{sec:assessment-sensitivity-analyses})."),
