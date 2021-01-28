@@ -119,7 +119,8 @@ total catch of the 2010, 2014, and 2016 year classes is estimated to be about
 \Sexpr{f(cohort.catch.2016/1e6,2)}~million~t,
 respectively. Landings in 2020 were most represented by the 2016 (35.23\%)
 and 2014 (30.90\%) year classes. Due to the Covid-19 pandemic, no biological samples
-were available from the Canadian Freezer Trawler sector in 2020.
+were available from the Canadian Freezer Trawler sector in 2020 because observers
+were not allowed on-board .
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
