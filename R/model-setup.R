@@ -151,6 +151,10 @@ bridge.model.end.yr.2 <- end.yr - c(0, 0, 0, 0)
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 1
 ## -----------------------------------------------------------------------------
+## NOTE: If any sensitivity models change order or definition, then check that
+##  definitions are still correct in custom-knitr-variables.R (seach that for
+##  'sens.model')
+
 sens.model.dir.names.1 <- c("2021.00.15_h_prior_mean_low",
                             "2021.00.16_h_fix_high",
                             "2021.00.17_sigmaR_fix_low",
