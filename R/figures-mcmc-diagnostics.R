@@ -620,3 +620,67 @@ make.mcmc.catchability.plot <- function(model,
   }
   abline(h = 0)
 }
+
+
+## adapting from make.mcmc.survey.fit.plot:
+## Plot of MCMC samples for projection years, to help understand Issue #747,
+## just running as: make.mcmc.depletion.plot(base.model) and manually saving .png.
+make.mcmc.depletion.plot <- function(model,         ## model is a model with an mcmc run which has the output of the
+                                                    ##  r4ss package's function SSgetMCMC and has the extra.mcmc member
+                                     start.yr = 2020,      ## Year to start the plot
+                                                    ##  (currently will only plot 2020 to 2023)
+                                     end.yr = 2023,        ## Year to end the plot
+                                     y.max = 3,   ## maximum value for the y-axis
+                                     samples = 1000,## how many lines to show
+                                     leg.cex = 1    ## Legend tect size
+                                     ){
+
+  oldpar <- par()
+  par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
+
+  dat <- base.model$forecasts$`2021`$`01-0`$outputs[, c("Bratio_2020", "Bratio_2021", "Bratio_2022", "Bratio_2023")]
+
+  if(is.null(y.max)){
+    y.max <- max(max(dat))
+  }
+
+  plot(0,
+       type = 'n',
+       xlim = c(start.yr-0.5, end.yr+0.5),
+       ylim = c(0, y.max),
+       axes = FALSE,
+       xlab = "Year",
+       ylab = "Relative spawning biomass")
+
+  # subsamble to help the lines be more visible
+  nsamp <- nrow(dat)    # total samples
+  subsample <- floor(seq(1, nsamp, length.out=samples)) # subset (floor to get integers)
+
+  dat_sub <- dat[subsample, ]
+  increase <- dat_sub$Bratio_2022 > dat_sub$Bratio_2021
+
+  palepink <- rgb(1, 0, 0, 0.5)
+  paleblue <- rgb(0, 0, 1, 0.2)
+  colour <- rep(paleblue, length(increase))
+  colour[increase] <- palepink      # pink if increasing
+
+  matplot(x = start.yr:end.yr,
+          y = t(dat_sub),
+          col = colour,
+          type = 'l',
+          add=TRUE,
+          lty = 1)
+  box()
+  axis(1, at = start.yr:end.yr) #cex.axis = 0.8, tcl = -0.6)
+  axis(2, at = 0:5, las = 1)
+  legend('topleft',
+         legend = c(paste0(sum(increase),
+                           " MCMC samples that increase from 2021 to 2022"),
+                    paste0(sum(!increase),
+                           " MCMC samples that decrease from 2021 to 2022")),
+         col = c(palepink,
+                 paleblue),
+         lwd = 2,
+         bty = 'n')
+  par <- oldpar
+}
