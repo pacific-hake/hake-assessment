@@ -56,13 +56,13 @@ build_doc <- function(doc_name = "hake-assessment",
 #' @export
 build_test <- function(doc_name = "hake-assessment-test"){
 
-  curr_path <- getwd()
+  curr_dir <- getwd()
+  on.exit(setwd(curr_dir))
   setwd(here::here("doc"))
   knit(paste0(doc_name, ".rnw"))
   # The knitting process creates the global `alt_fig_text`
-  add_alt_text(paste0(doc_name, ".tex"), alt_fig_text)
+  #add_alt_text(paste0(doc_name, ".tex"), alt_fig_text)
   shell(paste0("pdflatex ", doc_name, ".tex"))
-  setwd(curr_path)
   invisible()
 }
 
