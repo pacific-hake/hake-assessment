@@ -459,10 +459,10 @@ make.est.numbers.at.age.table <- function(model,
                         "c",
                         latex.bold("Age")),
              latex.nline,
-             latex.hline,
-             latex.rephead(ncol(dat)),
              latex.amp(),
-             ages.tex),
+             ages.tex,
+             latex.hline,
+             latex.rephead(ncol(dat))),
       latex.hline)
 
   ## Make the size string for font and space size
