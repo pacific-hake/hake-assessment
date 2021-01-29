@@ -445,7 +445,7 @@ sigma.r <- f(base.model$sigma_R_in, 2)
 
 # alternative sigma.r based on all years of recdevs
 sigma_R_info <- map(setNames(c(list(base.model), sens.models.1), c("base", sens.model.names.1)),
-  ~{r4ss:::extract_sigma_R_info(.x$mcmc, .x$sigma_R_in)}) %>% bind_rows(.id = "model")
+  ~{r4ss::extract_sigma_R_info(.x$mcmc, .x$sigma_R_in)}) %>% bind_rows(.id = "model")
 sigma.r.alt.allyr <- f(sigma_R_info %>% filter(model == "base", period == "Early+Main+Late") %>%
   select(alternative_sigma_R),2)
 
