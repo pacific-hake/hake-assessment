@@ -38,7 +38,7 @@ make.input.age.data.table <- function(model,
   ## Make all bold
   ages <- latex.bold(ages.num)
   ## Put ampersands in between each item and add newline to end
-  ages.tex <- paste0(latex.paste(ages), latex.nline)
+  ages.tex <-latex.paste(ages)
 
   ## Construct age data frame
   age.df <- age.df[,ages.ind]
@@ -66,29 +66,25 @@ make.input.age.data.table <- function(model,
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
-  addtorow$pos[[2]] <- nrow(age.df)
 
   addtorow$command <-
-    c(paste0(latex.hline,
-             latex.bold("Year"),
-             latex.amp(),
-             latex.mlc(c("Number",
-                         "of samples")),
-             latex.amp(),
-             latex.mcol(length(ages),
-                        "c",
-                        latex.bold("Age (\\% of total for each year)")),
-             latex.nline,
-             latex.hline,
-             latex.rephead(ncol(age.df)),
-             latex.amp(2),
-             ages.tex),
-      latex.hline)
+    paste0(latex.hline,
+           latex.bold("Year"),
+           latex.amp(),
+           latex.mlc(c("Number",
+                       "of samples")),
+           latex.amp(),
+           latex.mcol(length(ages),
+                      "c",
+                      latex.bold("Age (\\% of total for each year)")),
+           latex.nline,
+           latex.amp(2),
+           ages.tex,
+           latex.nline,
+           latex.hline,
+           latex.rephead(ncol(age.df)))
 
-  ## Make the size string for font and space size
   size.string <- latex.size.str(font.size, space.size)
-
-  ##----------------------------------------------------------------------------
   ## Write the CSV
   cnames <- colnames(age.df)
   cnames[3:length(cnames)] <- ages.num
@@ -102,20 +98,19 @@ make.input.age.data.table <- function(model,
                              "survey-input-age-proportions.csv")),
             na = "")
 
-  ##----------------------------------------------------------------------------
-  return(print(xtable(age.df,
-                      caption = xcaption,
-                      label = xlabel,
-                      align = get.align(ncol(age.df))),
-               caption.placement = "top",
-               include.rownames = FALSE,
-               include.colnames = FALSE,
-               sanitize.text.function = function(x){x},
-               size = size.string,
-               add.to.row = addtorow,
-               table.placement = placement,
-               tabular.environment = "longtable",
-               hline.after = NULL))
+  print(xtable(age.df,
+               caption = xcaption,
+               label = xlabel,
+               align = get.align(ncol(age.df))),
+        caption.placement = "top",
+        include.rownames = FALSE,
+        include.colnames = FALSE,
+        sanitize.text.function = function(x){x},
+        size = size.string,
+        add.to.row = addtorow,
+        table.placement = placement,
+        tabular.environment = "longtable",
+        hline.after = NULL)
 }
 
 make.can.age.data.table <- function(dat,
@@ -155,7 +150,6 @@ make.can.age.data.table <- function(dat,
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
-  addtorow$pos[[2]] <- nrow(dat)
   age.headers <- colnames(dat)[grep("^[[:digit:]].*", colnames(dat))]
   ages.tex <- latex.paste(latex.bold(1:length(age.headers)))
 
@@ -167,39 +161,35 @@ make.can.age.data.table <- function(dat,
                        "of trips"))
   }
   addtorow$command <-
-    c(paste0(latex.hline,
-             latex.bold("Year"),
-             latex.amp(),
-             mlc,
-             latex.amp(),
-             latex.mcol(length(age.headers),
-                        "c",
-                        latex.bold("Age (\\% of total for each year)")),
-             latex.nline,
-             latex.hline,
-             latex.rephead(ncol(dat)),
-             latex.amp(2),
-             ages.tex,
-             latex.nline),
-      latex.hline)
+    paste0(latex.hline,
+           latex.bold("Year"),
+           latex.amp(),
+           mlc,
+           latex.amp(),
+           latex.mcol(length(age.headers),
+                      "c",
+                      latex.bold("Age (\\% of total for each year)")),
+           latex.nline,
+           latex.amp(2),
+           ages.tex,
+           latex.nline,
+           latex.hline,
+           latex.rephead(ncol(dat)))
 
-
-  ## Make the size string for font and space size
   size.string <- latex.size.str(font.size, space.size)
-
-  return(print(xtable(dat,
-                      caption = xcaption,
-                      label = xlabel,
-                      align = get.align(ncol(dat))),
-               caption.placement = "top",
-               include.rownames = FALSE,
-               include.colnames = FALSE,
-               sanitize.text.function = function(x){x},
-               size = size.string,
-               add.to.row = addtorow,
-               table.placement = placement,
-               tabular.environment = "longtable",
-               hline.after = NULL))
+  print(xtable(dat,
+               caption = xcaption,
+               label = xlabel,
+               align = get.align(ncol(dat))),
+        caption.placement = "top",
+        include.rownames = FALSE,
+        include.colnames = FALSE,
+        sanitize.text.function = function(x){x},
+        size = size.string,
+        add.to.row = addtorow,
+        table.placement = placement,
+        tabular.environment = "longtable",
+        hline.after = NULL)
 }
 
 make.us.age.data.table <- function(dat,
@@ -234,7 +224,6 @@ make.us.age.data.table <- function(dat,
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
-  addtorow$pos[[2]] <- nrow(dat)
   age.headers <- colnames(dat)[grep("^a.*", colnames(dat))]
   ages.tex <- latex.paste(latex.bold(1:length(age.headers)))
 
@@ -246,40 +235,37 @@ make.us.age.data.table <- function(dat,
                        "of trips"))
   }
   addtorow$command <-
-    c(paste0(latex.hline,
-             latex.bold("Year"),
-             latex.amp(),
-             latex.mlc(c("Number", "of fish")),
-             latex.amp(),
-             mlc,
-             latex.amp(),
-             latex.mcol(length(age.headers),
-                        "c",
-                        latex.bold("Age (\\% of total for each year)")),
-             latex.nline,
-             latex.hline,
-             latex.rephead(ncol(dat)),
-             latex.amp(3),
-             ages.tex,
-             latex.nline),
-      latex.hline)
+    paste0(latex.hline,
+           latex.bold("Year"),
+           latex.amp(),
+           latex.mlc(c("Number", "of fish")),
+           latex.amp(),
+           mlc,
+           latex.amp(),
+           latex.mcol(length(age.headers),
+                      "c",
+                      latex.bold("Age (\\% of total for each year)")),
+           latex.nline,
+           latex.amp(3),
+           ages.tex,
+           latex.nline,
+           latex.hline,
+           latex.rephead(ncol(dat)))
 
-  ## Make the size string for font and space size
   size.string <- latex.size.str(font.size, space.size)
-
-  return(print(xtable(dat,
-                      caption = xcaption,
-                      label = xlabel,
-                      align = get.align(ncol(dat))),
-               caption.placement = "top",
-               include.rownames = FALSE,
-               include.colnames = FALSE,
-               sanitize.text.function = function(x){x},
-               size = size.string,
-               add.to.row = addtorow,
-               table.placement = placement,
-               tabular.environment = "longtable",
-               hline.after = NULL))
+  print(xtable(dat,
+               caption = xcaption,
+               label = xlabel,
+               align = get.align(ncol(dat))),
+        caption.placement = "top",
+        include.rownames = FALSE,
+        include.colnames = FALSE,
+        sanitize.text.function = function(x){x},
+        size = size.string,
+        add.to.row = addtorow,
+        table.placement = placement,
+        tabular.environment = "longtable",
+        hline.after = NULL)
 }
 
 make.est.numbers.at.age.table <- function(model,
@@ -449,21 +435,19 @@ make.est.numbers.at.age.table <- function(model,
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
-  addtorow$pos[[2]] <- nrow(dat)
 
   addtorow$command <-
-    c(paste0(latex.hline,
-             latex.bold("Year"),
-             latex.amp(),
-             latex.mcol(ncol(dat) - 1,
-                        "c",
-                        latex.bold("Age")),
-             latex.nline,
-             latex.amp(),
-             ages.tex,
-             latex.hline,
-             latex.rephead(ncol(dat))),
-      latex.hline)
+    paste0(latex.hline,
+           latex.bold("Year"),
+           latex.amp(),
+           latex.mcol(ncol(dat) - 1,
+                      "c",
+                      latex.bold("Age")),
+           latex.nline,
+           latex.amp(),
+           ages.tex,
+           latex.hline,
+           latex.rephead(ncol(dat)))
 
   ## Make the size string for font and space size
   size.string <- latex.size.str(font.size, space.size)

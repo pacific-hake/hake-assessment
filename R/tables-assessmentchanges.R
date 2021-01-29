@@ -31,6 +31,17 @@ make.assessment.changes.table <- function(assessment.changes,
 
   colnames(tab) <- sapply(strsplit(colnames(tab), "_"), latex.mlc)
 
+  addtorow <- list()
+  addtorow$pos <- list()
+  addtorow$pos[[1]] <- -1
+
+  addtorow$command <-
+    paste0(latex.hline,
+           paste(colnames(tab), collapse = latex.amp()),
+           latex.nline,
+           latex.hline,
+           latex.rephead(ncol(tab)))
+
   size.string <- latex.size.str(font.size, space.size)
   # Cannot have multiple periods in a number (software version must be separated by dashes
   # instead to satisfy accessibility requirements)
@@ -43,8 +54,11 @@ make.assessment.changes.table <- function(assessment.changes,
                digits = rep(0, ncol(tab) + 1)),
         caption.placement = "top",
         include.rownames = FALSE,
+        include.colnames = FALSE,
+        add.to.row = addtorow,
         table.placement = "H",
         tabular.environment = "longtable",
         sanitize.text.function = function(x){x},
-        size = size.string)
+        size = size.string,
+        hline.after = NULL)
 }

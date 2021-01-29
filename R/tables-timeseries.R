@@ -103,8 +103,13 @@ make.ci.posterior.table <- function(model,
 
   addtorow <- list()
   addtorow$pos <- list()
-  addtorow$pos[[1]] <- 0
-  addtorow$command <- latex.rephead(ncol(tab.filt))
+  addtorow$pos[[1]] <- -1
+  addtorow$command <-   addtorow$command <-
+    paste0(latex.hline,
+           paste(colnames(tab.filt), collapse = latex.amp()),
+           latex.nline,
+           latex.hline,
+           latex.rephead(ncol(tab.filt)))
 
   print(xtable(tab.filt,
                caption = xcaption,
@@ -112,12 +117,14 @@ make.ci.posterior.table <- function(model,
                align = get.align(ncol(tab.filt)),
                digits = digits),
         caption.placement = "top",
+        include.rownames = FALSE,
+        include.colnames = FALSE,
         add.to.row = addtorow,
         table.placement = "H",
         tabular.environment = "longtable",
-        include.rownames = FALSE,
         sanitize.text.function = function(x){x},
-        size = size.string)
+        size = size.string,
+        hline.after = NULL)
 }
 
 make.median.posterior.table <- function(model,
@@ -230,8 +237,13 @@ make.median.posterior.table <- function(model,
 
   addtorow <- list()
   addtorow$pos <- list()
-  addtorow$pos[[1]] <- 0
-  addtorow$command <- latex.rephead(ncol(tab.filt))
+  addtorow$pos[[1]] <- -1
+  addtorow$command <-   addtorow$command <-
+    paste0(latex.hline,
+           paste(colnames(tab.filt), collapse = latex.amp()),
+           latex.nline,
+           latex.hline,
+           latex.rephead(ncol(tab.filt)))
 
   print(xtable(tab.filt,
                caption = xcaption,
@@ -239,12 +251,14 @@ make.median.posterior.table <- function(model,
                align = get.align(ncol(tab.filt)),
                digits = digits),
         caption.placement = "top",
+        include.rownames = FALSE,
+        include.colnames = FALSE,
         add.to.row = addtorow,
         table.placement = "H",
         tabular.environment = "longtable",
-        include.rownames = FALSE,
         sanitize.text.function = function(x){x},
-        size = size.string)
+        size = size.string,
+        hline.after = NULL)
 }
 
 make.biomass.table <- function(model,

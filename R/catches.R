@@ -259,8 +259,14 @@ make.catches.table.US <- function(catches,
 
   addtorow <- list()
   addtorow$pos <- list()
-  addtorow$pos[[1]] <- 0
-  addtorow$command <- latex.rephead(ncol(catches))
+  addtorow$pos[[1]] <- -1
+
+  addtorow$command <-
+    paste0(latex.hline,
+           paste(colnames(catches), collapse = latex.amp()),
+           latex.nline,
+           latex.hline,
+           latex.rephead(ncol(catches)))
 
   size.string <- latex.size.str(font.size, space.size)
   print(xtable(catches,
@@ -269,11 +275,13 @@ make.catches.table.US <- function(catches,
                align = get.align(ncol(catches))),
         caption.placement = "top",
         include.rownames = FALSE,
+        include.colnames = FALSE,
         add.to.row = addtorow,
         table.placement = "H",
         tabular.environment = "longtable",
         sanitize.text.function = function(x){x},
-        size = size.string)
+        size = size.string,
+        hline.after = NULL)
 }
 
 make.catches.table.Can <- function(catches,
@@ -314,8 +322,14 @@ make.catches.table.Can <- function(catches,
 
   addtorow <- list()
   addtorow$pos <- list()
-  addtorow$pos[[1]] <- 0
-  addtorow$command <- latex.rephead(ncol(catches))
+  addtorow$pos[[1]] <- -1
+
+  addtorow$command <-
+    paste0(latex.hline,
+           paste(colnames(catches), collapse = latex.amp()),
+           latex.nline,
+           latex.hline,
+           latex.rephead(ncol(catches)))
 
   size.string <- latex.size.str(font.size, space.size)
   print(xtable(catches,
@@ -324,11 +338,13 @@ make.catches.table.Can <- function(catches,
                align = get.align(ncol(catches))),
         caption.placement = "top",
         include.rownames = FALSE,
+        include.colnames = FALSE,
         add.to.row = addtorow,
         table.placement = "H",
         tabular.environment = "longtable",
         sanitize.text.function = function(x){x},
-        size = size.string)
+        size = size.string,
+        hline.after = NULL)
 }
 
 make.catches.table.total <- function(catches,
@@ -370,8 +386,14 @@ make.catches.table.total <- function(catches,
 
   addtorow <- list()
   addtorow$pos <- list()
-  addtorow$pos[[1]] <- 0
-  addtorow$command <- latex.rephead(ncol(catches))
+  addtorow$pos[[1]] <- -1
+
+  addtorow$command <-
+    paste0(latex.hline,
+           paste(colnames(catches), collapse = latex.amp()),
+           latex.nline,
+           latex.hline,
+           latex.rephead(ncol(catches)))
 
   size.string <- latex.size.str(font.size, space.size)
   print(xtable(catches,
@@ -380,11 +402,13 @@ make.catches.table.total <- function(catches,
                align = get.align(ncol(catches))),
         caption.placement = "top",
         include.rownames = FALSE,
+        include.colnames = FALSE,
         add.to.row = addtorow,
         table.placement = "H",
         tabular.environment = "longtable",
         sanitize.text.function = function(x){x},
-        size = size.string)
+        size = size.string,
+        hline.after = NULL)
 }
 
 make.landings.tac.table <- function(landings.vs.tac,

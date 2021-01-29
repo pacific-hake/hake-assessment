@@ -288,13 +288,19 @@ make.parameters.estimated.summary.table <- function(model,
 
   addtorow <- list()
   addtorow$pos <- list()
-  addtorow$pos[[1]] <- 1
-  addtorow$pos[[2]] <- 6
+  addtorow$pos[[1]] <- -1
+  addtorow$pos[[2]] <- 1
   addtorow$pos[[3]] <- 6
-  addtorow$pos[[4]] <- 9
-  addtorow$pos[[5]] <- 11
+  addtorow$pos[[4]] <- 6
+  addtorow$pos[[5]] <- 9
+  addtorow$pos[[6]] <- 11
   addtorow$command <-
-    c(paste0(latex.bold(latex.under("Stock Dynamics")),
+    c(paste0(latex.hline,
+             paste(colnames(tab), collapse = latex.amp()),
+             latex.nline,
+             latex.hline,
+             latex.rephead(ncol(tab))),
+      paste0(latex.bold(latex.under("Stock Dynamics")),
              latex.nline),
       paste0(latex.nline,
              latex.bold(latex.under("Catchability and selectivity")),
@@ -319,11 +325,13 @@ make.parameters.estimated.summary.table <- function(model,
                                  just = "c")),
         caption.placement = "top",
         include.rownames = FALSE,
+        include.colnames = FALSE,
         sanitize.text.function = function(x){x},
         size = size.string,
         add.to.row = addtorow,
         tabular.environment = "longtable",
-        table.placement = "H")
+        table.placement = "H",
+        hline.after = NULL)
 }
 
 
