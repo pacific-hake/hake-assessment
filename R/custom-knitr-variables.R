@@ -210,15 +210,11 @@ prev.assess.recruitment.med  <- bridge.models.1[[1]]$mcmccalcs$rmed
 prev.assess.recruitment.upper <- bridge.models.1[[1]]$mcmccalcs$rupper
 # This year's assessment but without the final projection year (since not in
 #  previous assessment):
-recruitment.lower.to.compare <-
-  base.model$mcmccalcs$rlower[!(names(base.model$mcmccalcs$rlower) ==
-                                forecast_yrs[length(forecast_yrs)])]
-recruitment.med.to.compare <-
-  base.model$mcmccalcs$rmed[!(names(base.model$mcmccalcs$rmed) ==
-                                forecast_yrs[length(forecast_yrs)])]
-recruitment.upper.to.compare <-
-  base.model$mcmccalcs$rhigh[!(names(base.model$mcmccalcs$rupper) ==
-                               forecast_yrs[length(forecast_yrs)])]
+compareablenames <- names(base.model[["mcmccalcs"]][["rlower"]]) %in%
+  names(prev.assess.recruitment.lower)
+recruitment.lower.to.compare <- base.model[["mcmccalcs"]][["rlower"]][compareablenames]
+recruitment.med.to.compare <- base.model[["mcmccalcs"]][["rmed"]][compareablenames]
+recruitment.upper.to.compare <- base.model[["mcmccalcs"]][["rhigh"]][compareablenames]
 # 2020 assessment, trying to understand difference, shows big increase in our
 # estimate of 2010 recruitment. See Issue #629. Here are some quick plots:
 # plot(prev.assess.recruitment.med)
