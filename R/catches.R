@@ -251,10 +251,10 @@ make.catches.table.US <- function(catches,
                          latex.bold("Research"),
                          latex.bold("Total"))
 
-  ## Filter for correct years to show and make thousand-seperated numbers
+  ## Filter for correct years to show and make thousand-separated numbers
   ##  (year assumed to be column 1)
   catches <- catches[catches[,1] >= start.yr & catches[,1] <= end.yr,]
-  ## -1 below means leave the years alone and don't comma-seperate them
+  ## -1 below means leave the years alone and don't comma-separate them
   catches[,-1] <-f(catches[-1])
 
   addtorow <- list()
