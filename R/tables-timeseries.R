@@ -94,6 +94,8 @@ make.ci.posterior.table <- function(model,
 
   size.string <- latex.size.str(font.size, space.size)
   last_row <- tab.filt[nrow(tab.filt),]
+  last_row <- gsub("-", " - ", last_row)
+  last_row <- gsub(" -  - ", "--", last_row)
   tab.filt <- tab.filt[1:(nrow(tab.filt) - 1),]
   tab.filt <- map_df(as_tibble(tab.filt), ~{gsub("-", " - ", .x)}) %>%
     as.data.frame %>%
