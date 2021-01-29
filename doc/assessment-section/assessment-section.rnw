@@ -395,7 +395,61 @@ the Pacific Hake reproductive cycle.}
   whether there are genetic differences between Pacific Hake from the area south
   of Point Conception and other regions.}
 
-\emph{Response -- **any update? Issue \#741}
+\emph{Response -- The JTC is in communication with the research team conducting \fishname\
+genetic analyses. They provided the following update.}
+
+\emph{Genetic samples have been collected from along the Pacific coast during summer,
+fall (BC to CA) and winter (OR and CA) and within the Strait of Georgia (BC) during the spring.
+We have begun a genetics study to characterize the spatial-temporal population structure
+of \fishname\ coast wide. Prior genetic analyses in hake have focused on a smaller geographic
+range, over a limited seasonal time scale, and used a limited set of genetic markers
+\citep{IwamotoFordEtAl2004, IwamotoElzEtAl2015}.}
+
+\emph{For this study, samples were grouped in boxes based on spatial-temporal collection
+information (i.e., year, season, and location) and selected samples distributed across
+these boxes. RADseq \citep{BairdEtterEtAl2008, AliORoukeEtAl2016} has been utilized to generate 8,763 genome
+wide polymorphic markers, which will allow for powerful population genomic analyses
+as well as association tests of genetic variability with life-history characteristics
+such as growth rates and age at maturation.}
+
+\emph{In the initial round of sequencing, DNA were extracted from 1,092 individuals from
+across spatial-temporal boxes from 2015--2017. Of these, 876 samples were sequenced based
+on sufficient DNA concentrations, 667 of which passed quality filters. Preliminary findings
+generally corroborate the single stock hypothesis with low differentiation amongst locations.
+A Principal Component Analysis (PCA) groups all coastal individuals across space and time together
+with Salish Sea individuals clearly distinct. However, using a Bayesian clustering analysis there was
+evidence for seasonal migration across several winter boxes (across years and location) showing signs
+of differentiation from the same location in different season and years. This was corroborated
+with weak but significant pairwise FST comparisons.}
+
+\emph{The second round of RADseq libraries, which include approximately 1200 individuals,
+have been constructed and are in the queue for sequencing at the University of Oregon.
+Approximately 75\% of these individuals will pass quality filter parameters and
+will finalize data collection for the project.
+These include recently acquired samples that will fill in gaps in spatial-temporal boxes
+(especially from Canada) and add additional samples to existing boxes to boost sample sizes.
+This approach will provide the best picture to date of \fishname\ genetic population structure.
+Research was expected to commence in 2020 but the lack of access to laboratories due to
+Covid-19 restrictions delayed the completion of the sequencing and analyses for these samples.
+Research and the submission of a peer-reviewed publication should be completed in 2021.}
+
+\emph{Canadian ovaries from surveys have been collected since 2018 and could be included in
+updated maturity analyses planned for the upcoming year. However, logistical considerations
+will need to be worked out regarding sample exchange and histological analysis workload
+between DFO and NWFSC.}
+
+\emph{A new project has been initiated looking at improved methods to differentiate which females
+will likely spawn from those that will not and, thus, should or should not be included as
+spawning biomass. The study is using liver and ovary samples collected during NWFSC acoustic surveys
+(2017--2019) to develop metabolic markers linked to key female reproductive stages. Liver physiology
+and levels of certain lipid classes may reveal overall metabolic and reproductive status.
+Preliminary results from initial liver lipid analyses indicate that levels of important structural (phospholipids)
+and storage (triglycerides) lipids are indicative of female maturation status (immature vs. mature)
+and may be predictive of reproductive failure (atresia) and/or skipped spawning in \fishname. Work is
+currently underway to expand the liver lipid analyses and develop molecular markers for lipid synthesis
+(liver RNA) and ovarian growth and atresia (ovarian RNA). Molecular information from liver and ovary
+samples together with liver lipid analyses and gonadal histology should provide a broader picture of
+reproductive status of female \fishname\ and better inform stock assessments.}
 
 8. The SRG notes that the no-U-turn sampler (NUTS) algorithm is more efficient
 and explores parameter space more fully than the MCMC algorithm used to estimate
