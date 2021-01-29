@@ -184,7 +184,7 @@ opts_chunk$set(dev = 'png',
                cache = TRUE)
 
 # Data frame of alternative figure text to be populated by a knitr hook
-alt_fig_text <- dplyr::tibble()
+alt_fig_text <- tibble::tibble()
 # This is called every time a chunk is evaluated with alt.text in the chunk options
 knit_hooks$set(alt.text = function(before, options, envir){
   if(before && options$is.fig){
