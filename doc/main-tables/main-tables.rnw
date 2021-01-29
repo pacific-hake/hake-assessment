@@ -89,10 +89,9 @@ make.sampling.history.table(sampling.history,
 @
 \clearpage
 
-\pagestyle{empty}
 \begin{landscape}
-\thispagestyle{mylandscape}
-  \centering
+\pagestyle{mylandscape}
+\centering
 <<main-us-cp-age-data-table, results='asis', echo=FALSE>>=
 make.us.age.data.table(us.cp.age,
                        fleet = 1,
@@ -126,10 +125,9 @@ make.us.age.data.table(us.ms.age,
 \end{landscape}
 \pagestyle{fancy}
 
-\pagestyle{empty}
 \begin{landscape}
-\thispagestyle{mylandscape}
-  \centering
+\pagestyle{mylandscape}
+\centering
 <<main-us-shore-age-data-table, results='asis', echo=FALSE>>=
 make.us.age.data.table(us.shore.age,
                        fleet = 3,
@@ -162,10 +160,9 @@ make.can.age.data.table(can.ages,
 \end{landscape}
 \pagestyle{fancy}
 
-\pagestyle{empty}
 \begin{landscape}
-\thispagestyle{mylandscape}
-  \centering
+\pagestyle{mylandscape}
+\centering
 <<main-can-ft-age-data-table, results='asis', echo=FALSE>>=
 make.can.age.data.table(can.ages,
                         fleet = 2,
@@ -202,10 +199,9 @@ make.input.age.data.table(base.model,
 \pagestyle{fancy}
 \clearpage
 
-\pagestyle{empty}
 \begin{landscape}
-\thispagestyle{mylandscape}
-  \centering
+\pagestyle{mylandscape}
+\centering
 <<main-all-age-survey-table, results='asis', echo=FALSE>>=
 make.input.age.data.table(base.model,
                           fleet = 2,
@@ -281,7 +277,7 @@ make.parameters.estimated.summary.table(
 % ** UNCOMMENT THIS for the final doc ** CG Jan 27, 2021
 % \pagestyle{empty}
 % \begin{landscape}
-% \thispagestyle{mylandscape}
+% \pagestyle{mylandscape}
 %   \centering
 % <<main-parameter-estimates-retro, results='asis', echo=FALSE>>=
 % make.short.parameter.estimates.sens.table(retro.list,
@@ -317,10 +313,9 @@ make.assessment.changes.table(assessment.changes,
 @
 \clearpage
 
-\pagestyle{empty}
 \begin{landscape}
-\thispagestyle{mylandscape}
-  \centering
+\pagestyle{mylandscape}
+\centering
 <<main-est-numbers-at-age-table, results='asis', echo=FALSE>>=
 make.est.numbers.at.age.table(
   base.model,
@@ -339,10 +334,9 @@ make.est.numbers.at.age.table(
 \end{landscape}
 \pagestyle{fancy}
 
-\pagestyle{empty}
 \begin{landscape}
-\thispagestyle{mylandscape}
-  \centering
+\pagestyle{mylandscape}
+\centering
 <<main-est-biomass-at-age-table, results='asis', echo=FALSE>>=
 make.est.numbers.at.age.table(
   base.model,
@@ -359,10 +353,9 @@ make.est.numbers.at.age.table(
 \end{landscape}
 \pagestyle{fancy}
 
-\pagestyle{empty}
 \begin{landscape}
-\thispagestyle{mylandscape}
-  \centering
+\pagestyle{mylandscape}
+\centering
 <<main-est-exp-rate-at-age-table, results='asis', echo=FALSE>>=
 make.est.numbers.at.age.table(
   base.model,
@@ -381,10 +374,9 @@ make.est.numbers.at.age.table(
 \end{landscape}
 \pagestyle{fancy}
 
-\pagestyle{empty}
 \begin{landscape}
-\thispagestyle{mylandscape}
-  \centering
+\pagestyle{mylandscape}
+\centering
 <<main-est-catch-at-age-table, results='asis', echo=FALSE>>=
 make.est.numbers.at.age.table(
   base.model,
@@ -401,10 +393,9 @@ make.est.numbers.at.age.table(
 \end{landscape}
 \pagestyle{fancy}
 
-\pagestyle{empty}
 \begin{landscape}
-\thispagestyle{mylandscape}
-  \centering
+\pagestyle{mylandscape}
+\centering
 <<main-est-catch-at-age-biomass-table, results='asis', echo=FALSE>>=
 make.est.numbers.at.age.table(
   base.model,
@@ -421,10 +412,9 @@ make.est.numbers.at.age.table(
 \end{landscape}
 \pagestyle{fancy}
 
-\pagestyle{empty}
 \begin{landscape}
-\thispagestyle{mylandscape}
-  \centering
+\pagestyle{mylandscape}
+\centering
 <<main-cohort-effects-table, results='asis', echo=FALSE>>=
 make.cohort.table(base.model,
                   c(1999, 2010, 2014, 2016),
@@ -601,10 +591,9 @@ make.risk.table(base.model,
                 space.size = 11)
 @
 
-\pagestyle{empty}
 \begin{landscape}
-\thispagestyle{mylandscape}
-  \centering
+\pagestyle{mylandscape}
+\centering
 <<main-parameter-estimates-sens-1, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(sens.models.1.for.table,
                                           model.names = sens.model.names.1.for.table,
@@ -622,10 +611,9 @@ make.short.parameter.estimates.sens.table(sens.models.1.for.table,
 \end{landscape}
 \pagestyle{fancy}
 
-\pagestyle{empty}
 \begin{landscape}
-\thispagestyle{mylandscape}
-  \centering
+\pagestyle{mylandscape}
+\centering
 <<main-parameter-estimates-sens-2, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(sens.models.2.for.table,
                                           model.names = sens.model.names.2.for.table,
@@ -643,10 +631,9 @@ make.short.parameter.estimates.sens.table(sens.models.2.for.table,
 \end{landscape}
 \pagestyle{fancy}
 
-\pagestyle{empty}
 \begin{landscape}
-\thispagestyle{mylandscape}
-  \centering
+\pagestyle{mylandscape}
+\centering
 <<main-parameter-estimates-sens-3, results='asis', echo=FALSE>>=
 make.short.parameter.estimates.sens.table(sens.models.3.for.table,
                                           model.names = sens.model.names.3.for.table,
@@ -663,6 +650,4 @@ make.short.parameter.estimates.sens.table(sens.models.3.for.table,
 @
 \end{landscape}
 \pagestyle{fancy}
-
-
 \clearpage

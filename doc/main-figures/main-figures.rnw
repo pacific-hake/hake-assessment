@@ -16,10 +16,9 @@ make.overview.map.plot(path = rootd.map.data)
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\pagestyle{empty}
 \begin{landscape}
-\thispagestyle{mylandscape}
-  \centering
+\pagestyle{mylandscape}
+\centering
 \begin{figure}[p]
 % \begin{center}
 \hspace{-10mm}  % Each mm change shifts it by more than 1mm, changing
@@ -44,10 +43,9 @@ make.overview.map.plot(path = rootd.map.data)
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\pagestyle{empty}
 \begin{landscape}
-\thispagestyle{mylandscape}
-  \centering
+\pagestyle{mylandscape}
+\centering
 \begin{figure}[p]
 % \vspace{-5mm}
 \begin{center}
