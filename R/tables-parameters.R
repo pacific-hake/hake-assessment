@@ -613,15 +613,29 @@ make.short.parameter.estimates.table <- function(model,
     get_keypars(modelssum, catchability = TRUE),
     get_keydqs(modelssum, years.recs = getrecs, years.b0 = c(2009, end.yr)),
     get_keyrps(modelssum, years.spr = end.yr - 1, target = 40))[, 1]
+  if(is.na(mle.par[17])){
+    # MLE exploitation for base model wasn't present
+    mle.par[17] <- model$exploitation$F_std[length(model$startyr:model$endyr)] * 100
+  }
 
   mcmc.par <- t(sapply(c(
-    "NatM", "SR_LN", "SR_BH_steep", "Q_extraSD",
-    "EffN.+\\)_1|DM_theta.+1$", "EffN.+2|DM_theta.+2$",
+    "NatM",
+    "SR_LN",
+    "SR_BH_steep",
+    "Q_extraSD",
+    "EffN.+\\)_1|DM_theta.+1$",
+    "EffN.+2|DM_theta.+2$",
     "Catchability",
-    paste0("Recr_", getrecs), "SSB_Initial", paste0("Bratio_", c(2009, end.yr)),
+    paste0("Recr_", getrecs),
+    "SSB_Initial",
+    paste0("Bratio_", c(2009, end.yr)),
     paste(paste0("SPRratio_", end.yr-1), collapse = "|"),
-    "SSB_SPR", "SPR_MSY", "Fstd_SPR", "Dead_Catch_SPR"),
+    "SSB_SPR",
+    "SPR_MSY",
+    "Fstd_SPR|annF_SPR",
+    "Dead_Catch_SPR"),
     get_keymcmc, mcmc = modelssum$mcmc, .fun = median))
+
   mcmc.par["SR_LN", ] <- exp(mcmc.par["SR_LN", ]) / 1000
   mcmc.par["Catchability", 1] <- round(median(model$extra.mcmc$Q_vector), 3)
   mcmc.par["Catchability", 2] <- round(median(last.yr.model$extra.mcmc$Q_vector), 3)
@@ -637,7 +651,7 @@ make.short.parameter.estimates.table <- function(model,
   colnames(tab) <- NULL
 
   ## Format the tables rows depending on what they are.
-  ## Decimal valuesn
+  ## Decimal values
   tab[c(1, 3, 4, 5, 6, 7),] <- f(tab[c(1, 3, 4, 5, 6, 7),], 3)
 
   ## Large numbers with no decimal points but probably commas

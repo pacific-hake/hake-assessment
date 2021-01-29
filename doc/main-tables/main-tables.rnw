@@ -481,11 +481,11 @@ make.short.parameter.estimates.table(
   end.yr = end.yr,
   digits = 3,
   xcaption =
-    paste0("**[currently missing first two values in penultimate row; checked that 2020 base model values are correct] Select parameters, derived quantities, ",
-                     "and reference point estimates for the base model ",
-                     "MLE and posterior median (MCMC) estimates with ",
-                     "an additional comparison to posterior median ",
-                     "estimates from the previous (",end.yr-1,") base model."),
+    paste0("Select parameters, derived quantities, ",
+           "and reference point estimates for the base model ",
+           "MLE and posterior median (MCMC) estimates with ",
+           "an additional comparison to posterior median ",
+           "estimates from the previous (", end.yr - 1, ") base model."),
   xlabel = "tab:main-parameter-estimates",
   font.size = 10,
   space.size = 11)
