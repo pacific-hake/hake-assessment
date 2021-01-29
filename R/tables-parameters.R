@@ -581,7 +581,7 @@ make.short.parameter.estimates.sens.table <- function(models,
         sanitize.text.function = function(x){x},
         size = size.string,
         add.to.row = addtorow,
-        tabular.environment = "longtable",
+        tabular.environment = "tabular",
         table.placement = "H")
 }
 
