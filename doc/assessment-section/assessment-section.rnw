@@ -196,10 +196,6 @@ partly motivated by our ongoing \fishname\ assessments.
 
 \subsection{Response to 2020 Scientific Review Group (SRG) review}\label{sec:assessment-response-review}
 
-**Have kept our 2020 responses to 2019 requests in
-a separate section afterwards for now just for easy reference. Not writing
-detailed responses yet for 2021, but all requests are copied in and formatted.
-
 The Scientific Review Group (SRG) meeting was held from February 25-28, 2020
 at the Graduate Seattle Hotel, Seattle, WA, USA.
 
@@ -211,72 +207,54 @@ JTC:
 determining the choice of $\sigma_R$ remains a challenge and encourages the JTC
 to continue to work on the issue.
 
-\emph{Response -- **Here was our 2020 response to the similar point, to use as a
-  starting point and update/edit as appropriate. Aaron/Kelli/Chris???}
-
-  % From Issue \#468:
-\emph{**2020: Response -- Developing best practices for modeling equilibrium recruitment ($R_0$)
+% From Issue \#468:
+\emph{Response -- Developing best practices for modeling equilibrium recruitment ($R_0$)
   and recruitment variability ($\sigma_R$)
-  remain broad topics of contemporary research. The JTC continues to conduct,
+  remain broad topics of contemporary research. Recent calls have been that the next
+  generation of stock assessments should concomitantly treat recruitment deviations
+  as a random effect and estimate $\sigma_R$ \citep{Punt2020}.
+  The JTC continues to conduct,
   collaborate on, and monitor ongoing research projects concerning
-  approaches for advancing recruitment estimation,
-  as applied to \fishname\ and in general. We now briefly discuss several of these research
+  approaches for advancing recruitment estimation, as applied to \fishname\ and
+  in general. Many of these issues are widespread
+  in stock assessment, and scientific-based solutions are likely to be the result of medium
+  to long-term research projects. We now briefly discuss several of these research
   endeavors.}
 
-\emph{**2020: The JTC is conducting and collaborating on simulation projects looking into the concurrent
+\emph{The JTC plans to reinvigorate collaborative research plans to investigate the concurrent
   estimation of multiple variance parameters. This includes the estimation of variability
-  associated with time-varying selectivity, $\sigma_R$, of the extra standard deviation parameters
-  on survey index data, and of the Dirichlet-Multinomial parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$.
+  associated with time-varying selectivity, $\sigma_R$, the extra standard deviation parameters
+  on survey index data, and the Dirichlet-Multinomial parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$.
   Variance parameters in stock assessment models have a tendency to be interrelated
   when they capture other sources of variance attributed to model mis-specification rather
   than variability directly related to the given process.
   This is particularly
   important for $\sigma_R$ because without an index of recruitment to directly inform the
   estimation of $\sigma_R$ it tends to soak up unspecified variability.
-  This work is related with other time-varying selectivity research, as discussed in response 2
+  This work is related with time-varying selectivity research, as discussed in response 2
   below.}
 
-\emph{**2020: The near completion of the Management Strategy Evaluation framework for \fishname\ creates
-  considerable advantages for examining recruitment. For example, using the Template Model
-  Builder (TMB) estimation code developed by Dr. Nis Jacobsen for the MSE, there is opportunity
-  to explore random-effects treatment of recruitment variability \citep{Thorson2019}.  The MSE
-  framework can also be used to evaluated the robustness of recruitment modeling assumptions on
-  management performance and uncertainty.  Further, the MSE could be an additional option for
+\emph{The completion of the Management Strategy Evaluation framework for \fishname\ continues to create
+  considerable advantages for examining recruitment. The Template Model
+  Builder (TMB) estimation code developed by Dr. Nis Jacobsen for the MSE mimics the stock assessment
+  model and insights gained through the treatment of recruitment variability as random-effects
+  \citep{Thorson2019} is being explored.  Other state-space stock assessment platforms (such as the
+  Woods Hole Assessment Model, WHAM) may also be useful for investigating alternative approaches to
+  estimate recruitment variability. The MSE framework can also be used to evaluate the robustness
+  of recruitment modeling assumptions and the advantages of including environmentally-driven recruitment indices
+  on management performance and uncertainty.  Research being conducted by Dr. Cathleen Vestfals and
+  colleagues at the Northwest Fisheries Science Center is looking at identifying climate drivers of
+  \fishname\ early life-history stages and recruitment, which could inform an explicit recruitment index,
+  an environmental index linked to recruitment, indicators of recruitment variation
+  ($\sigma_R$), and indicators of current or forecast levels of recruitment.
+  Further, the MSE could be an additional option for
   estimating $\sigma_R$ in MCMC runs while further testing semi-parametric selectivity.}
 
-\emph{**2020 [remove for 2021?]: The JTC conducted an analysis looking into autocorrelation of recruitment deviations over
-  time. Results showed no indication of autocorrelation, suggesting there is no need to
-  add additional variance terms to account for temporally-related recruitment deviations.
-  The assessment model is adequately accounting for general life-history traits and includes
-  an adequate representation of ageing error. Along with no apparent retrospective pattern
-  (see Section~\ref{sec:assessment-retrospective-analyses}), this result suggests that the
-  assessment model is not overly mis-specified. Given the lack of autocorrelation, the
-  assessment model was not sensitive to the addition of an autocorrelation parameter.}
-
-\emph{**2020: The JTC is following work being conducted by Dr. Cathleen Vestfals and colleagues at
-  the Northwest Fisheries Science Center looking at identifying climate drivers of
-  \fishname\ early life-history stages and recruitment. Possible outcomes from this work
-  of direct use to the assessment include the development of an explicit recruitment index,
-  an environmental index linked to recruitment, indicators of recruitment variation
-  ($\sigma_R$), and indicators of current or forecasted levels of recruitment.
-  Related work on making fisheries advice robust to time-varying productivity is
-  being conducted at the Pacific Biological Station, as part of a national DFO
-  initiative on an Ecosystem Approach to Fisheries Management.} % That DFO bit
-                                % can stay as it's still ongoing (reporting out
-                                % this year)
-
-\emph{**2020: The JTC is also following work being conducted by the International Council for
+\emph{The JTC is also following work being conducted by the International Council for
   the Exploration of the Sea (ICES) Methods Working Group which, among other things,
   is looking at meta-analytical approaches for estimating recruitment parameters.  Results
   from this work could be used to develop informative prior distributions on key
-  recruitment parameters.}
-
-\emph{**2020: The JTC plans to continue to work towards evaluating and testing best practices
-  for modeling recruitment variability, including the use of multi-stage recruitment
-  functions. In general, many of these issues are widespread
-  in stock assessment, and scientific-based solutions are likely to be the result of medium
-  to long-term research projects.}
-
+  recruitment parameters. This work is expected to be published in the next year or so.}
 
 2. The JTC described efforts and collaborations with the ICES [International
 Council for the Exploration of the Sea] Methods Working Group to address the
@@ -285,27 +263,29 @@ selectivity. Results from this collaboration are expected to inform the 2021
 assessment. The SRG encourages ongoing work to develop approaches to estimating
 variance parameters.
 
-\emph{Response -- **2020: Most methods that are available to estimate time-varying selectivity require
-subjective choices. Common choices include
-which years to model using a time block,
-the level of variability to use for a penalized vector, or
-the degree of smoothing for a spline.
-Alternatively, state-space models can be used estimate time-varying selectivity in two
-dimensions, age and time, where the degree of smoothing is estimated \citep{NielsenBerg2014}.}
+\emph{Response -- The JTC is involved with collaborative research to investigate the concurrent
+  estimation of multiple variance parameters (for example through the use of the Laplace approximation
+  to implement mixed-effect parameter estimation) and interactions among them. This is consistent
+  with recent recommendations by \citep{Xu2020} that simultaneous treatment of data weighting
+  and time-varying selectivity (as well as other variance terms such as $\sigma_R$) is needed
+  for use in operational stock assessments. Input sample sizes for age composition data can
+  influence data weighting, further suggesting a comprehensive approach is needed.}
+  
+\emph{Most methods that are available to estimate time-varying selectivity specifically require
+  subjective choices (e.g., number of years or time blocks to model, the level of variability
+  to use for a penalized vector, or the degree of smoothing for a spline). State-space models can
+  be used estimate time-varying selectivity in two dimensions, age and time, where the degree
+  of smoothing is estimated \citep{NielsenBerg2014}.}
 
-\emph{**2020: A comparison project was recently launched by the
-ICES Methods Working Group
-to compare the results of four stock assessment frameworks that estimate
-time-varying selectivity using different assumptions:
-State-Space Assessment Model (SAM),
-Woods Hole Assessment Method (WHAM),
-Stock Synthesis, and
-Age Structured Assessment Program (ASAP). Each framework will be fit to data from 10 stocks
-using multiple configurations. This study will allow for the comparison of
-estimated trajectories between two state-space frameworks and two well-used
-statistical catch-at-age models when time-varying selectivity is ignored or
-estimated using the current best practices for each framework. Results will
-inform best practices for this assessment in 2021.}
+\emph{An ICES Methods Working Group project is in the process of comparing four stock assessment
+  frameworks that estimate time-varying selectivity using different assumptions:
+  State-Space Assessment Model (SAM), Woods Hole Assessment Method (WHAM), Stock Synthesis, and
+  Age Structured Assessment Program (ASAP). Each framework is being fit to data from 10 stocks
+  using multiple configurations. Results from this study will be comparisons of
+  estimated trajectories between two state-space frameworks and two well-used
+  statistical catch-at-age models when time-varying selectivity is ignored or
+  estimated using the current best practices for each framework. The JTC expects that the results,
+  once completed, will inform best practices for this assessment.}
 
 3. The SRG notes that the removal of the zero-sum constraint on recruitment
 deviations has implications on the estimate of $R_0$ and the perception of stock
@@ -317,7 +297,38 @@ on a defined time period. There is some urgency to this work as biomass is
 declining and the relative spawning biomass may fall below the target level
 ${\bf \emph{B}_{40\%}}$ within 2 years.}
 
-\emph{Response -- **Aaron's the expert.....}
+\emph{Response -- Members of the JTC are also part of the \fishname MSE technical work group.
+  Considerable developments have been made over the past year refining the MSE simulation code, as
+  well as working with stakeholders through iterative JMC meetings to better define management 
+  objectives and performance metrics. Members of the JTC have attended an ICES reference point
+  workshop dedicated to density
+  dependence and ecosystem change and a Ocean Frontier Institute workshop on management reference
+  points in highly dynamic environments.  In both cases, the benefits and costs of using dynamic
+  reference points were discussed. Guidance stemming from these workshops confirms that careful
+  consideration is warranted when using dynamic reference points and should preferably be
+  examined in an MSE.  The JTC anticipates using the MSE to broadly test alternative
+  management procedures, including those related to alternative harvest rules and related reference
+  points.}
+  
+\emph{Preliminary investigations based on estimated no-fishing ("unfished") time series seems to suggest
+  that the \fishname stock may be more productive than what virgin equilibrium conditions otherwise
+  indicate. If this was the case, estimates of relative fishing intensity would be higher than currently
+  estimated, and estimates of relative stock size would be lower than currently estimated. However, many
+  simplifying assumptions are made when estimating unfished time series, and these need to be thoroughly
+  examined.}
+
+\emph{Related, work on making fisheries advice robust to time-varying productivity is
+  being conducted at the Pacific Biological Station, as part of a national DFO
+  initiative on an Ecosystem Approach to Fisheries Management. The JTC will be monitoring
+  guidance that stems from this initiative.} % That DFO bit can stay as it's still ongoing
+  %(reporting out this year)
+
+\emph{The JTC is collaborating with regional oceanographers and ecosystem scientists
+  to develop a set of ecosystem indicators relative to \fishname ecology and population
+  dynamics for use as an annual reporting tool. These metrics could be evaluated as a set
+  "stoplight" indicators, collectively support ecosystem-based fisheries management, and
+  be presented to Treaty advisory bodies as supplementary information to the stock
+  assessment.}
 
 4. The SRG notes that age-composition data sample sizes are high in recent
 years, increasing the weight of fishery age-composition data relative to the
