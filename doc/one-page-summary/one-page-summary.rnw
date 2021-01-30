@@ -6,26 +6,26 @@
 \phantomsection \addcontentsline{toc}{section}{ONE-PAGE SUMMARY}
 
 \begin{itemize}
-  \item The stock assessment model for \Sexpr{assess.yr} is the same in structure
-to the \Sexpr{last.assess.yr} model. It is fit to an acoustic survey index of
+  \item The stock assessment model for \Sexpr{assess.yr} has the same structure
+as the \Sexpr{last.assess.yr} model. It is fit to an acoustic survey index of
 abundance, annual commercial catch data, and age-composition data from the
 survey and commercial fisheries.
 
-  \item Major technical changes from \Sexpr{last.assess.yr} includes the use of a new,
-    more efficient algorithm (No-U-Turn Sampler) for obtaining posterior samples.  This
-    change has enabled all model results (including sensitivity and retrospective model runs)
-    to be based on posterior distributions. Therefore, previous comparisons between base model
-    MCMC results and sensitivity or retrospective MLE-based results is no longer needed.
+  \item The main technical change from \Sexpr{last.assess.yr} is the use of a new
+    efficient algorithm (the No-U-Turn Sampler) for obtaining posterior samples. Consequently,
+    all model results, including sensitivity and retrospective model runs, are
+    now based on posterior distributions rather than maximum likelihood estimates.
 
   \item Updates to the data include:
     %the biomass estimate and age-composition data from the acoustic survey conducted in \Sexpr{survey.end.yr},
     fishery catch and age-composition data from \Sexpr{end.yr-1}, weight-at-age data for
-    \Sexpr{end.yr-1}, and minor changes to pre-\Sexpr{end.yr-1} data. Due to the Covid-19 pandemic,
-    age data were not available from the Canadian Freezer Trawler fleet in \Sexpr{end.yr-1}.
+    \Sexpr{end.yr-1}, and minor changes to pre-\Sexpr{end.yr-1} data. Due to
+    coronavirus disease 2019 (COVID-19),
+    age data were unavailable from the Canadian freezer trawler fleet in \Sexpr{end.yr-1}.
 
   \item Coast-wide catch in \Sexpr{end.yr-1} was the fourth largest on record at
     \Sexpr{last.year.landings}~t [t represents metric tons],
-out of a Total Allowable Catch (adjusted for carryovers) of \Sexpr{last.year.tac}~t. Attainment in
+out of a total allowable catch (TAC), adjusted for carryovers, of \Sexpr{last.year.tac}~t. Attainment in
 the U.S. was \Sexpr{last.year.us.attained}\% of its quota
 (\Sexpr{paste0(ifelse(last.2year.us.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.us.attained.diff))}\%
 from last year); attainment in Canada was
@@ -39,12 +39,12 @@ from last year). Quotas were specified unilaterally in 2020 due to the lack of a
     uncertain (with 95\% credible interval from \Sexpr{curr.depl.lower}\% to
     \Sexpr{curr.depl.upper}\%). The median relative spawning biomass reached a recent
     high of \Sexpr{median.relative.bio.2017}\% in 2017 but has since gradually declined due to
-    aging above average cohorts (2010, 2014, and 2016) and the recent period of record catches.
+    aging large cohorts (2010, 2014, and 2016) and the recent four years of record catches.
 
   \item The median estimate of female spawning biomass at the start
     of \Sexpr{end.yr} is \Sexpr{curr.bio.median} million~t (with 95\% credible
     interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper}
-    million~t). This is a decrease from the \Sexpr{end.yr-1} median of \Sexpr{prev.bio.median}~million~t
+    million~t). This is a decrease from the current \Sexpr{end.yr-1} estimate of \Sexpr{prev.bio.median}~million~t
     (with 95\% credible interval
     \Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper}~million~t).
 
@@ -69,7 +69,7 @@ from last year). Quotas were specified unilaterally in 2020 due to the lack of a
 estimates of recruitment for recent years and, thus, were conducted across a
 range of catch levels. Projections setting the \Sexpr{forecast_yrs[1]} and
 \Sexpr{forecast_yrs[2]} catch equal to the \Sexpr{forecast_yrs[1]-1}
-coast-wide (unilaterally summed) Total Allowable Catch of
+coast-wide (unilaterally summed) TAC of
 \Sexpr{last.year.tac}~t show the estimated median spawning biomass
 decreasing from
 \Sexpr{last.yr.tac.fore.1.biomass}\% of $B_0$ in \Sexpr{end.yr} to
