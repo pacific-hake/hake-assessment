@@ -21,7 +21,7 @@ survey and commercial fisheries.
     fishery catch and age-composition data from \Sexpr{end.yr-1}, weight-at-age data for
     \Sexpr{end.yr-1}, and minor changes to pre-\Sexpr{end.yr-1} data. Due to
     coronavirus disease 2019 (COVID-19),
-    age data were unavailable from the Canadian freezer trawler fleet in \Sexpr{end.yr-1}.
+    age data were unavailable from the Canadian freezer-trawler fleet in \Sexpr{end.yr-1}.
 
   \item Coast-wide catch in \Sexpr{end.yr-1} was the fourth largest on record at
     \Sexpr{last.year.landings}~t [t represents metric tons],

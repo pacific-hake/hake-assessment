@@ -402,7 +402,7 @@ The \Sexpr{last.data.yr} Canadian \fishname\ domestic fishery removed
 \Sexpr{last.year.can.tac}~t.
 
 The shoreside component, made up of vessels landing fresh round product onshore,
-landed \Sexpr{last.year.can.shore}~t. The freezer trawler component,
+landed \Sexpr{last.year.can.shore}~t. The freezer-trawler component,
 which freezes headed and gutted product while at sea, landed
 \Sexpr{last.year.can.freezer}~t. There was no Joint-Venture fishery this year.
 % Manual done 2020 KFJ
@@ -421,7 +421,7 @@ amount of mince and whole round produced shoreside. The Canadian hake shoreside
 TAC was harvested by freezer vessels and vessels that delivered fresh fish to shoreside
 plants.
 
-The most abundant year classes (by numbers) in the Canadian Freezer trawler
+The most abundant year classes (by numbers) in the Canadian freezer-trawler
 catch were age
 \Sexpr{max.freezer.trawler.age.prop.age} at
 \Sexpr{max.freezer.trawler.age.prop}\%, age

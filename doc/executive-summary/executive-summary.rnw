@@ -118,9 +118,10 @@ total catch of the 2010, 2014, and 2016 year classes is estimated to be about
 \Sexpr{f(cohort.catch.2014/1e6,2)}~million~t, and
 \Sexpr{f(cohort.catch.2016/1e6,2)}~million~t,
 respectively. Landings in 2020 were most represented by the 2016 (35.23\%)
-and 2014 (30.90\%) year classes. Due to the Covid-19 pandemic, no biological samples
-were available from the Canadian Freezer Trawler sector in 2020 because observers
-were not allowed on-board .
+and 2014 (30.90\%) year classes. Due to the coronavirus disease 2019 (COVID-19)
+pandemic, no biological samples
+were available from the Canadian freezer-trawler sector in 2020 because observers
+were not allowed on board.
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
@@ -914,7 +915,7 @@ given each potential management action. Although not linear, probabilities can
 be interpolated from these results for intermediate catch
 values
 in \Sexpr{assess.yr} (Table~\ref{tab:es-risk-year-1} and
-Figure~\ref{fig:es-forecast-risk-comparison-year-1}). 
+Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 %**[May not be needed
 %depending on results; if not then comment out rather than delete so we have for
 %future]
@@ -922,7 +923,7 @@ However, interpolation is
 not appropriate for all catches in
 \Sexpr{assess.yr+1} because catch alternatives~h and~i apply a
 \Sexpr{assess.yr+1} catch level that is dependent on the
-\Sexpr{assess.yr} catch (i.e., it is not constant).  Therefore, the probabilities for 
+\Sexpr{assess.yr} catch (i.e., it is not constant).  Therefore, the probabilities for
 % \Sexpr{catch_levels[[5]][[1]][1]}~t
 % \Sexpr{catch_levels[[5]][[1]][1]}~t
 \Sexpr{assess.yr+1} shown in Figure~\ref{fig:es-forecast-risk-comparison-year-2}
