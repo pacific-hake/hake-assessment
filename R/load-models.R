@@ -356,7 +356,7 @@ load_models <- function(model_dirs,
   ret_list <- NULL
   model_rds_files <- file.path(rootd.models, model_dirs, paste0(model_dirs, ".rds"))
   if(!all(file.exists(model_rds_files))){
-    stop("The following files do not exist, run build() on the associated directories:\n",
+    stop("The following files do not exist, run build_rds() on the associated directories:\n",
          paste(model_rds_files[!file.exists(model_rds_files)], collapse = "\n"),
          call. = FALSE)
   }
