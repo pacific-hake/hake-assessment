@@ -97,11 +97,11 @@ but discarding of \fishname\ in non-target fisheries is not. Discard from all
 fisheries, including those that do not target hake, is estimated to be less
 than 1\% of landings in recent years. During
 the last five years, catches were considerably above the long-term average catch
-(\Sexpr{f(long.term.avge.catch)}~t)
+(\Sexpr{f(long.term.avge.catch)}~t),
 %in
 %\Sexpr{last.5.years.above.avge[1:(length(last.5.years.above.avge)-1)]}, and
 %\Sexpr{last.5.years.above.avge[length(last.5.years.above.avge)]}
-, with the most recent four years being the highest catches on record).
+with the most recent four years being the highest catches on record).
 %and below it
 %in \Sexpr{last.5.years.below.avge}.
 % in \Sexpr{last.5.years.below.avge[1:(length(last.5.years.below.avge)-1)]}.
