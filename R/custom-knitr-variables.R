@@ -8,90 +8,89 @@ us.allotment.percent <- 73.88
 
 ################################################################################
 ## Attainment, used in the management performance section
-usa.last.5.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),8]), 1)
-usa.last.2.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-2):(end.yr-1),8]), 0)
-can.last.5.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),9]), 1)
-can.last.2.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-2):(end.yr-1),9]), 0)
-tot.last.5.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-5):(end.yr-1),10]), 1)
-tot.last.10.years.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-10):(end.yr-1),10]), 1)
-tot.last.year.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year == (end.yr-1),"ATTAIN"]), 1)
-tot.2015.attainment <- f(landings.vs.tac[landings.vs.tac$Year == 2015, "ATTAIN"], 1)
-tot.9192.attainment <- f(
-  sum(landings.vs.tac[landings.vs.tac$Year %in% 1991:1992, "TOTAL"])/
-  sum(landings.vs.tac[landings.vs.tac$Year %in% 1991:1992, "TAC"]) * 100, 0)
-tot.9399.attainment <- f(mean(landings.vs.tac[landings.vs.tac$Year %in% 1993:1999, "ATTAIN"]), 0)
-
+ct_last10 <- ct %>% filter(year %in% (end.yr - 10):(end.yr - 1))
+ct_last5 <- ct %>% filter(year %in% (end.yr - 5):(end.yr - 1))
+ct_last2 <- ct %>% filter(year %in% (end.yr - 2):(end.yr - 1))
+ct_last1 <- ct %>% filter(year == end.yr - 1)
+ct_secondlast <- ct %>% filter(year == end.yr - 2)
+usa.last.5.years.attainment <- ct_last5 %>% select(us_attain) %>% pull %>% mean %>% f(1)
+usa.last.2.years.attainment <- ct_last2 %>% select(us_attain) %>% pull %>% mean %>% f(0)
+can.last.5.years.attainment <- ct_last5 %>% select(can_attain) %>% pull %>% mean %>% f(1)
+can.last.2.years.attainment <- ct_last2 %>% select(can_attain) %>% pull %>% mean %>% f(0)
+tot.last.5.years.attainment <- ct_last5 %>% select(tot_attain) %>% pull %>% mean %>% f(1)
+tot.last.10.years.attainment <- ct_last10 %>% select(tot_attain) %>% pull %>% mean %>% f(1)
+tot.last.year.attainment <- ct_last1 %>% select(tot_attain) %>% pull %>% mean %>% f(1)
+tot.2015.attainment <- ct %>% filter(year == 2015) %>% select(tot_attain) %>% pull %>% mean %>% f(1)
+tot.9192.attainment <- ct %>% filter(year %in% 1991:1992) %>% select(tot_attain) %>% pull %>% mean %>% f(0)
+tot.9399.attainment <- ct %>% filter(year %in% 1993:1999) %>% select(tot_attain) %>% pull %>% mean %>% f(0)
 ################################################################################
 ## Recent catches
-last.5.years.of.catch.data <- (max(catches$Year)-4):max(catches$Year)
-last.5.years.total.catch <- catches[catches$Year %in% last.5.years.of.catch.data, "TOTAL"]
-long.term.avge.catch <- mean(catches$TOTAL)
+last.5.years.of.catch.data <- (max(ct$year) - 4):max(ct$year)
+last.5.years.total.catch <- ct_last5 %>% select(tot_catch) %>% pull
+long.term.avge.catch <- mean(ct$tot_catch)
 last.5.years.above.avge <- last.5.years.of.catch.data[last.5.years.total.catch > long.term.avge.catch]
 last.5.years.below.avge <- last.5.years.of.catch.data[last.5.years.total.catch < long.term.avge.catch]
-
 ################################################################################
 ## last year's values (mostly for the one-page-summary and introduction)
-last.year.landings <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TOTAL), 0)
-last.year.tac <- f(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TAC)
-last.year.attained <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$ATTAIN), 1)
-
+last.year.landings <- ct_last1 %>% select(tot_catch) %>% pull %>% f(0)
+last.year.tac <- ct_last1 %>% select(tot_tac) %>% pull %>% f(0)
+last.year.attained <- ct_last1 %>% select(tot_attain) %>% pull %>% f(1)
 ################################################################################
 ## US landings, TAC, and attainments
-last.year.us.landings <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$Ustotal))
-last.year.us.attained <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
-last.2year.us.attained.diff <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN - landings.vs.tac[landings.vs.tac$Year %in% (end.yr-2),]$USATTAIN), 1)
-last.year.us.not.attained <- f(as.numeric(100 - landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$USATTAIN), 1)
-last.year.us.not.attained.tonnes <- filter(landings.vs.tac, Year == last.data.yr)$TACUSA - filter(landings.vs.tac, Year == last.data.yr)$Ustotal
-last.year.us.tac <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACUSA))
+last.year.us.landings <- ct_last1 %>% select(us_catch) %>% pull %>% f(0)
+last.year.us.attained <- ct_last1 %>% select(us_attain) %>% pull %>% f(1)
+last.2year.us.attained.diff <- (ct_last1 %>% select(us_attain) %>% pull - ct_secondlast %>% select(us_attain) %>% pull) %>% f(1)
+last.year.us.not.attained <- (100 - ct_last1 %>% select(us_attain) %>% pull) %>% f(1)
+last.year.us.not.attained.tonnes <- abs(ct_last1 %>% select(us_attain) %>% pull - ct_last1 %>% select(us_catch) %>% pull)
+last.year.us.tac <- ct_last1 %>% select(us_tac) %>% pull %>% f(0)
 ## Not doing f here since want to do further calculations
-last.year.us.tribal <- filter(further.tac, Year == last.data.yr)$us.tribal.quota
-last.year.us.research <- filter(further.tac, Year == last.data.yr)$us.research.quota
-last.year.us.non.tribal <- filter(further.tac, Year == last.data.yr)$us.nontribal.quota
-last.year.us.tribal.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.tribal.quota.reallocated
-last.year.us.tribal.reallocate.dates <- filter(further.tac, Year == last.data.yr)$us.tribal.reallocate.dates
+ft <- further.tac
+last.year.us.tribal <- ft %>% filter(Year == last.data.yr) %>% select(us.tribal.quota) %>% pull
+last.year.us.research <- ft %>% filter(Year == last.data.yr) %>% select(us.research.quota) %>% pull
+last.year.us.non.tribal <- ft %>% filter(Year == last.data.yr) %>% select(us.nontribal.quota) %>% pull
+last.year.us.tribal.quota.reallocated <- ft %>% filter(Year == last.data.yr) %>% select(us.tribal.quota.reallocated) %>% pull
+last.year.us.tribal.reallocate.dates <- ft %>% filter(Year == last.data.yr) %>% select(us.tribal.reallocate.dates) %>% pull
 last.year.us.tribal.reallocate.dates.f <- format(as.Date(as.character(last.year.us.tribal.reallocate.dates),"%d-%b"),"%B %d")
-last.year.us.tribal.max.landed <- filter(further.tac, Year == last.data.yr)$us.tribal.max.landed
-last.year.us.shore.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.shore.reallocated
-last.year.us.cp.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.cp.reallocated
-last.year.us.ms.quota.reallocated <- filter(further.tac, Year == last.data.yr)$us.ms.reallocated
-
+last.year.us.tribal.max.landed <- ft %>% filter(Year == last.data.yr) %>% select(us.tribal.max.landed) %>% pull
+last.year.us.shore.quota.reallocated <- ft %>% filter(Year == last.data.yr) %>% select(us.shore.reallocated) %>% pull
+last.year.us.cp.quota.reallocated <- ft %>% filter(Year == last.data.yr) %>% select(us.cp.reallocated) %>% pull
+last.year.us.ms.quota.reallocated <- ft %>% filter(Year == last.data.yr) %>% select(us.ms.reallocated) %>% pull
 ################################################################################
 ## Last year US catches by fleet
-last.year.us.research.catch <- filter(catches, Year == last.data.yr)$USresearch
-last.year.us.cp.catch <- filter(catches, Year == last.data.yr)$atSea_US_CP
-last.year.us.ms.catch <- filter(catches, Year == last.data.yr)$atSea_US_MS
-last.year.us.shore.catch <- filter(catches, Year == last.data.yr)$US_shore
-last.year.us.ti.catch <- sum(filter(us.ti.catch.by.month, year == last.data.yr)$catch)
+last.year.us.research.catch <- ct %>% filter(year == last.data.yr) %>% select(us_research_xx)
+last.year.us.cp.catch <- ct %>% filter(year == last.data.yr) %>% select(us_cp_xx) %>% pull
+last.year.us.ms.catch <- ct %>% filter(year == last.data.yr) %>% select(us_ms_xx) %>% pull
+last.year.us.shore.catch <- ct %>% filter(year == last.data.yr) %>% select(us_shore_xx) %>% pull
+last.year.us.ti.catch <- us.ti.catch.by.month %>% filter(year == last.data.yr) %>% select(catch) %>% pull %>% sum
 ## Last year US percent of TAC caught by fleet
 last.year.us.research.catch.percent <- f(last.year.us.research.catch / last.year.us.research * 100, 1)
 last.year.us.cp.catch.percent <- f(last.year.us.cp.catch / last.year.us.cp.quota.reallocated * 100, 1)
 last.year.us.ms.catch.percent <- f(last.year.us.ms.catch / last.year.us.ms.quota.reallocated * 100, 1)
 last.year.us.shore.catch.percent <- f(last.year.us.shore.catch / last.year.us.shore.quota.reallocated * 100, 1)
 last.year.us.tribal.catch.percent <- f(last.year.us.tribal.max.landed / last.year.us.tribal.quota.reallocated * 100, 1)
-
 ################################################################################
 ## Last year Canadian catch and TAC
 can.vessels <- c("Viking Enterprise", "Northern Alliance", "Osprey #1",
   "Raw Spirit", "Pacific Legacy #1", "Sunderoey", "Viking Alliance")
-last.year.can.carryover <- f(filter(further.tac, Year == last.data.yr)$can.carried.over)
-last.year.can.attained <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANATTAIN), 1)   # the percentage
-last.2year.can.attained.diff <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANATTAIN - landings.vs.tac[landings.vs.tac$Year %in% (end.yr-2),]$CANATTAIN), 1)
-last.year.can.landings <- f(as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal))
-last.year.can.tac <- f(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACCAN)
-last.year.can.tac.jv <- f(filter(further.tac, Year == last.data.yr)$can.jv.tac)
-last.year.can.shoreside.tac <- f(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$TACCAN - filter(further.tac, Year == last.data.yr)$can.jv.tac)
-
-latest.year.can.jv <- max(filter(catches, CAN_JV > 0)$Year)  # latest year of JV in Canada
-last.year.can.shore <- f(filter(catches, Year == last.data.yr)$CAN_Shoreside)
-last.year.can.freezer <- f(filter(catches, Year == last.data.yr)$CAN_FreezeTrawl)
-last.year.can.jv <- f(filter(catches, Year == last.data.yr)$CAN_JV)
-last.year.can.shore.percent <- f(filter(catches, Year == last.data.yr)$CAN_Shoreside /
-                                    as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal) * 100.0, 1)
-last.year.can.freezer.percent <- f(filter(catches, Year == last.data.yr)$CAN_FreezeTrawl /
-                                      as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal) * 100.0, 1)
-last.year.can.jv.percent <- f(filter(catches, Year == last.data.yr)$CAN_JV /
-                                    as.numeric(landings.vs.tac[landings.vs.tac$Year %in% (end.yr-1),]$CANtotal) * 100.0, 1)
-years.Can.JV.catch.eq.0.recent <- years.Can.JV.catch.eq.0(catches)
+last.year.can.carryover <- ft %>% filter(Year == last.data.yr) %>% select(can.carried.over) %>% pull %>% f
+last.year.can.attained <- ct_last1 %>% select(can_attain) %>% pull %>% f(1)
+last.2year.can.attained.diff <- ((ct_last1 %>% select(can_attain) %>% pull) - (ct_secondlast %>% select(can_attain) %>% pull)) %>% f(1)
+last.year.can.landings <- ct_last1 %>% select(can_catch) %>% pull %>% f
+last.year.can.tac <- ct_last1 %>% select(can_tac) %>% pull %>% f
+last.year.can.tac.jv <- ft %>% filter(Year == last.data.yr) %>% select(can.jv.tac) %>% pull %>% f
+last.year.can.shoreside.tac <- ((ct_last1 %>% select(can_tac)) - (ft %>% filter(Year == last.data.yr) %>% select(can.jv.tac) %>% pull)) %>% f
+latest.year.can.jv <- ct %>% filter(can_jv_xx > 0) %>% select(year) %>% pull %>% max
+last.year.can.shore <- ct_last1 %>% select(can_shore_xx) %>% pull %>% f
+last.year.can.freezer <- ct_last1 %>% select(can_freeze_xx) %>% pull %>% f
+last.year.can.jv <- ct_last1 %>% select(can_jv_xx) %>% pull %>% f
+last.year.can.shore.percent <- ((ct_last1 %>% select(can_shore_xx) %>% pull) /
+                                  (ct_last1 %>% select(can_catch) %>% pull) * 100) %>% f(1)
+last.year.can.freezer.percent <- ((ct_last1 %>% select(can_freeze_xx) %>% pull) /
+                                    (ct_last1 %>% select(can_catch) %>% pull) * 100) %>% f(1)
+last.year.can.jv.percent <- ((ct_last1 %>% select(can_jv_xx) %>% pull) /
+                                  (ct_last1 %>% select(can_catch) %>% pull) * 100) %>% f(1)
+# Years since 2000 (including 2000) that JV catch has been zero
+ch.eq.0.recent <- ct %>% filter(year > 1999) %>% select(year, can_jv_xx) %>% filter(can_jv_xx == 0) %>% nrow
 
 ################################################################################
 ## Survey values
@@ -264,7 +263,7 @@ next2.bio.upper.tac.based <- f(fore.tac.mcmc$supper[names(fore.tac.mcmc$supper) 
 
 ################################################################################
 ## number.to.word function located in utilities.r
-catches.below.200000.since.1986 <- number.to.word(length(filter(catches, TOTAL <= 200000, Year > 1986)$Year))
+catches.below.200000.since.1986 <- number.to.word(length(filter(ct, tot_catch <= 200000, year > 1986)$year))
 
 ################################################################################
 ## Age composition data for data section
@@ -278,9 +277,9 @@ names(catch.limit.quantiles) <- c("lower", "median", "upper")
                 # 2.5%, median and 97.5% quantiles of catch limit for assess.yr
                 #  using the default harvest policy; tonnes
 
-catcher.processor.catch <- f(100 * filter(catches, Year == last.data.yr)$atSea_US_CP / (last.year.us.cp.quota.reallocated), 1)
-mothership.catch <- f(100 * filter(catches, Year == last.data.yr)$atSea_US_MS / (last.year.us.ms.quota.reallocated), 1)
-shore.based.catch <- f(100 * filter(catches, Year == last.data.yr)$US_shore / (last.year.us.shore.quota.reallocated), 1)
+catcher.processor.catch <- ((ct_last1 %>% select(us_cp_xx) %>% pull) / (last.year.us.cp.quota.reallocated) * 100) %>% f(1)
+mothership.catch <- ((ct_last1 %>% select(us_ms_xx) %>% pull) / (last.year.us.ms.quota.reallocated) * 100) %>% f(1)
+shore.based.catch <- ((ct_last1 %>% select(us_shore_xx) %>% pull) / (last.year.us.shore.quota.reallocated) * 100) %>% f(1)
 
 ################################################################################
 ## Canadian age data variables
@@ -587,3 +586,4 @@ baa_large <- baa %>%
 baa_2010 <- baa %>% filter(Cohort == 2010) %>% pull(Median) * 100
 baa_2014 <- baa %>% filter(Cohort == 2014) %>% pull(Median) * 100
 baa_2016 <- baa %>% filter(Cohort == 2016) %>% pull(Median) * 100
+

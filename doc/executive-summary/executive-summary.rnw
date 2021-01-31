@@ -29,19 +29,19 @@ analysis.
 \subsection*{Catches} \label{sec:es-catches} \phantomsection
 \addcontentsline{toc}{subsection}{Catches}
 Coast-wide fishery \fishname\
-landings averaged \Sexpr{f(mean(catches$TOTAL))}~t from
-\Sexpr{min(catches$Year)} to \Sexpr{max(catches$Year)}, with a low of
-\Sexpr{f(min(catches$TOTAL))}~t in
-\Sexpr{catches$Year[catches$TOTAL==min(catches$TOTAL)]} and a peak of
-\Sexpr{f(max(catches$TOTAL))}~t in
-\Sexpr{catches$Year[catches$TOTAL==max(catches$TOTAL)]}
+landings averaged \Sexpr{f(mean(ct$tot_catch))}~t from
+\Sexpr{min(ct$year)} to \Sexpr{max(ct$year)}, with a low of
+\Sexpr{f(min(ct$tot_catch))}~t in
+\Sexpr{ct$year[ct$tot_catch == min(ct$tot_catch)]} and a peak of
+\Sexpr{f(max(ct$tot_catch))}~t in
+\Sexpr{ct$year[ct$tot_catch == max(ct$tot_catch)]}
 (Figure~\ref{fig:es-catches}).
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[!b]
 \begin{center}
 <<total-catches, fig.height=4, fig.width=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that catches in the last 5 years have been the largest in the time series">>=
-make.catches.plot(catches,
+make.catches.plot(ct,
                   leg.y.loc = 650) ## leg.y.loc is y-coord to place legend at
 @
 \end{center}
@@ -54,21 +54,21 @@ make.catches.plot(catches,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-Prior to \Sexpr{min(catches$Year)}, total removals were negligible compared to
-the modern fishery. Over the early period (\Sexpr{min(catches$Year)}--1990) most
+Prior to \Sexpr{min(ct$year)}, total removals were negligible compared to
+the modern fishery. Over the early period (\Sexpr{min(ct$year)}--1990) most
 removals were from foreign or joint-venture fisheries.  Across the time series,
-catch in U.S. waters averaged \Sexpr{f(mean(catches$Ustotal))}~t,
-(\Sexpr{round(100*mean(catches$Ustotal/catches$TOTAL),1)}\% of the
+catch in U.S. waters averaged \Sexpr{f(mean(ct$us_catch))}~t,
+(\Sexpr{round(100*mean(ct$us_catch / ct$tot_catch),1)}\% of the
 total catch) while catch from Canadian waters averaged
-\Sexpr{f(mean(catches$CANtotal))}~t. Over the last 10 years,
-\Sexpr{max(catches$Year)-9}--\Sexpr{max(catches$Year)}
+\Sexpr{f(mean(ct$can_catch))}~t. Over the last 10 years,
+\Sexpr{max(ct$year)-9}--\Sexpr{max(ct$year)}
 (Table~\ref{tab:es-catches}), the average coast-wide catch was
-\Sexpr{f(mean(catches[catches$Year %in%
-((max(catches$Year)-9):max(catches$Year)),]$TOTAL))}~t with U.S. and Canadian
-catches averaging \Sexpr{f(mean(catches[catches$Year %in%
-((max(catches$Year)-9):max(catches$Year)),]$Ustotal))}~t and
-\Sexpr{f(mean(catches[catches$Year %in%
-((max(catches$Year)-9):max(catches$Year)),]$CANtotal))}~t, respectively. The
+\Sexpr{f(mean(ct[ct$year %in%
+((max(ct$year)-9):max(ct$year)),]$tot_catch))}~t with U.S. and Canadian
+catches averaging \Sexpr{f(mean(ct[ct$year %in%
+((max(ct$year)-9):max(ct$year)),]$us_catch))}~t and
+\Sexpr{f(mean(ct[ct$year %in%
+((max(ct$year)-9):max(ct$year)),]$can_catch))}~t, respectively. The
 coast-wide catch in \Sexpr{end.yr-1} was \Sexpr{last.year.landings}~t, out of a
 total allowable catch (TAC, adjusted for carryovers) of
 \Sexpr{last.year.tac}~t. Attainment in the U.S.~was
@@ -76,20 +76,19 @@ total allowable catch (TAC, adjusted for carryovers) of
 \Sexpr{last.year.can.attained}\%.
 %
 <<total-catches-table, results='asis', echo=FALSE>>=
-make.catches.table(catches,
-                   start.yr = assess.yr - 10,
-                   end.yr = assess.yr - 1,
-                   xcaption =
+make_catch_table(ct,
+                 start_yr = assess.yr - 10,
+                 end_yr = assess.yr - 1,
+                 xcaption =
                    "Recent commercial fishery catch (t). Tribal catches are
                     included in the sector totals. Research catch includes landed
                     catch associated with certain research-related activities.
                     Catch associated with surveys and discarded bycatch in
                     fisheries not targeting hake is relatively small and not included in
                     the table or model.",
-                   xlabel = "tab:es-catches",
-                   font.size = 9,
-                   space.size = 10,
-                   placement = "tbp")
+                 xlabel = "tab:es-catches",
+                 font_size = 9,
+                 space_size = 10)
 @
 
 In this stock assessment, the terms catch and landings are used

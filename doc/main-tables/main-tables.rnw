@@ -3,10 +3,11 @@
 \section{TABLES} \label{sec:tables}
 \vspace{10mm}
 <<catches-us, results='asis', echo=FALSE>>=
-make.catches.table.US(catches,
-                      start.yr=start.yr,
-                      end.yr=end.yr,
-                      xcaption = paste("Annual catches of \\fishname\\ (t) in
+make_catch_table(ct,
+                 start_yr = start.yr,
+                 end_yr = end.yr,
+                 country = 2,
+                 xcaption = paste("Annual catches of \\fishname\\ (t) in
                         U.S. waters by sector, ",
                         start.yr,
                         "-",
@@ -17,56 +18,45 @@ make.catches.table.US(catches,
                         surveys and discarded bycatch in fisheries not targeting
                         hake is not currently included in the table or model.",
                         sep=""),
-                      xlabel = "tab:intro-catches-US",
-                      font.size = 10,
-                      space.size = 11)
+                 xlabel = "tab:intro-catches-US",
+                 font_size = 10,
+                 space_size = 11)
 @
 
 <<catches-can, results='asis', echo=FALSE>>=
-make.catches.table.Can(catches,
-                       start.yr=start.yr,
-                       end.yr=end.yr,
-                       xcaption = paste("Annual catches of \\fishname\\ (t) in
+make_catch_table(ct,
+                 start_yr = start.yr,
+                 end_yr = end.yr,
+                 country = 1,
+                 xcaption = paste("Annual catches of \\fishname\\ (t) in
                          Canadian  waters by sector, ",
                          start.yr,
                          "-",
                          last.data.yr,
                          ".",
                          sep=""),
-                       xlabel = "tab:intro-catches-Can",
-                       font.size = 11,
-                       space.size = 12)
+                 xlabel = "tab:intro-catches-Can",
+                 font_size = 11,
+                 space_size = 12)
 @
 
-<<catches-total, results='asis', echo=FALSE>>=
-make.catches.table.total(catches,
-                         start.yr=start.yr,
-                         end.yr=end.yr,
-                         xcaption = paste("Total U.S., Canadian, and coast-wide
-                           catches  of \\fishname\\ (t) from ",
-                           start.yr,
-                           "-",
-                           last.data.yr,
-                           ". The percentage of the total catch from each
-                           country's waters is also given.",
-                           sep=""),
-                         xlabel = "tab:intro-catches-total",
-                         font.size = 11,
-                         space.size = 12)
-@
-
+\begin{landscape}
+\pagestyle{mylandscape}
+\centering
 <<main-landings-tac-table, results='asis', echo=FALSE>>=
-make.landings.tac.table(landings.vs.tac,
-                        start.yr = end.yr - num.recent.yrs,
-                        end.yr = end.yr-1,
+make_landings_tac_table(ct,
+                        start_yr = start.yr,
+                        end_yr = end.yr-1,
                         xcaption = "Recent trends in \\fishname\\ landings and
                                      management decisions. Catch targets in 2020 were
                                      specified unilaterally, due to the lack of an
                                      agreement on a coast-wide 2020 TAC.",
                         xlabel = "tab:main-landings-tac",
-                        font.size = 8,
-                        space.size = 10)
+                        font_size = 8,
+                        space_size = 10)
 @
+\end{landscape}
+\pagestyle{fancy}
 
 <<main-sampling-history-table, results='asis', echo=FALSE>>=
 make.sampling.history.table(sampling.history,

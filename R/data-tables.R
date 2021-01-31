@@ -42,9 +42,7 @@ us.atsea.bottom.depth.file <- "depth-us-atsea-bottom.csv"
 us.atsea.fishing.depth.file <- "depth-us-atsea-fishing.csv"
 
 cat("Loading all data tables (csv files) from ", rootd.data, "\n")
-catches <- load.catches(file.path(rootd.data, catch.data.file))
-landings.vs.tac <- catches[[2]]
-catches <- catches[[1]]
+ct <- load_catches(file.path(rootd.data, catch.data.file))
 catch.targets <- read_csv(file.path(rootd.data, catch.targets.file))
 survey.history <- load.survey.history(file.path(rootd.data, survey.history.file))
 survey.comparison <- read.csv(file.path(rootd.data, survey.comparison.file), stringsAsFactors = FALSE)

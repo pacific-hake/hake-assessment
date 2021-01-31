@@ -72,7 +72,7 @@ make.overview.map.plot(path = rootd.map.data)
 \begin{center}
 <<main-total-catches, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that catches in the last 5 years have been the largest in the time series">>=
 ## leg.y.loc is y-coord to place legend at
-make.catches.plot(catches, leg.y.loc = 550)
+make.catches.plot(ct, leg.y.loc = 550)
 @
 \end{center}
 \caption{Total \fishname\ catch used in the assessment by sector, \Sexpr{start.yr}--\Sexpr{last.data.yr}.

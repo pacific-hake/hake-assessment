@@ -9,7 +9,7 @@ Fishery-dependent and fishery-independent data used in this assessment
 
 \item Total catch from all U.S. and Canadian fisheries that target hake
   from \Sexpr{start.yr} to \Sexpr{last.data.yr} (Tables
-  \ref{tab:intro-catches-US}--\ref{tab:intro-catches-total}).
+  \ref{tab:intro-catches-US}--\ref{tab:main-landings-tac}).
 
 \item Age compositions aggregated by year and country for the last ten years
   are available
@@ -98,7 +98,7 @@ additional data sources are:
 The catch of \fishname\ for \Sexpr{start.yr}--\Sexpr{last.data.yr} is
 summarized by nation and fishery sector
 (Tables~\ref{tab:intro-catches-US}, \ref{tab:intro-catches-Can},
-and~\ref{tab:intro-catches-total} and Figure~\ref{fig:main-catches}) and
+and~\ref{tab:main-landings-tac} and Figure~\ref{fig:main-catches}) and
 modeled as yearly catches.
 Catches in U.S. waters prior to 1978 are
 available only by year from \citet{BaileyFrancisEtAl1982} and historical
