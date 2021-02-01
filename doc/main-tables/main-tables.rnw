@@ -265,21 +265,21 @@ make.parameters.estimated.summary.table(
 @
 
 <<main-parameter-estimates-retro, results='asis', echo=FALSE>>=
-make.short.parameter.estimates.sens.table(retro.list,
-                                          model.names = retro.model.names,
-                                          end.yr = end.yr,
-                                          digits = 3,
-                                          getrecs = c(2010, 2014, 2016),
-                                          xcaption = "Medians of the MCMC posteriors from the base model for
-                                                      select parameters, derived quantities,
-                                                      reference point estimates, and negative
-                                                      log likelihoods for retrospective analyses.
-                                                      Some values are implied since they occur after
-                                                      the ending year of the respective retrospective
-                                                      analysis.",
-                                          xlabel = "tab:main-parameter-estimates-retro",
-                                          font.size = 10,
-                                          space.size = 11)
+param_est_table(retro.list,
+                model.names = retro.model.names,
+                end.yr = end.yr,
+                digits = 3,
+                getrecs = c(2010, 2014, 2016),
+                xcaption = "Medians of the MCMC posteriors from the base model for
+                            select parameters, derived quantities,
+                            reference point estimates, and negative
+                            log likelihoods for retrospective analyses.
+                            Some values are implied since they occur after
+                            the ending year of the respective retrospective
+                            analysis.",
+                xlabel = "tab:main-parameter-estimates-retro",
+                font.size = 10,
+                space.size = 11)
 @
 
 <<main-assessment-changes-table, results='asis', echo=FALSE>>=
@@ -458,20 +458,22 @@ make.ci.posterior.table(
 @
 
 <<main-parameter-estimates, results='asis', echo=FALSE>>=
-make.short.parameter.estimates.table(
-  base.model,
-  last.yr.base.model,
-  end.yr = end.yr,
-  digits = 3,
-  xcaption =
-    paste0("Select parameters, derived quantities, ",
-           "and reference point estimates for the base model ",
-           "MLE and posterior median (MCMC) estimates with ",
-           "an additional comparison to posterior median ",
-           "estimates from the previous (", end.yr - 1, ") base model."),
-  xlabel = "tab:main-parameter-estimates",
-  font.size = 10,
-  space.size = 11)
+param_est_table(list(base.model, last.yr.base.model),
+                model.names = c(base.model.name, last.yr.base.model.name),
+                end.yr = end.yr,
+                digits = 3,
+                getrecs = c(2010, 2014, 2016),
+                show_like = FALSE,
+                mle_table = TRUE,
+                xcaption =
+                  paste0("Select parameters, derived quantities, ",
+                         "and reference point estimates for the base model ",
+                         "MLE and posterior median (MCMC) estimates with ",
+                         "an additional comparison to posterior median ",
+                         "estimates from the previous (", end.yr - 1, ") base model."),
+                xlabel = "tab:main-parameter-estimates",
+                font.size = 10,
+                space.size = 11)
 @
 
 <<main-reference-points-table, results='asis', echo=FALSE>>=
@@ -578,18 +580,18 @@ make.risk.table(base.model,
 \pagestyle{mylandscape}
 \centering
 <<main-parameter-estimates-sens-1, results='asis', echo=FALSE>>=
-make.short.parameter.estimates.sens.table(sens.models.1.for.table,
-                                          model.names = sens.model.names.1.for.table,
-                                          end.yr = end.yr,
-                                          digits = 3,
-                                          xcaption = paste0("Medians of MCMC posteriors for select parameters, derived quantities,
-                                                            reference points, and negative log likelihoods for the base
-                                                            model and some sensitivity runs (described in
-                                                            Section~\\ref{sec:assessment-sensitivity-analyses})."),
-                                          xlabel = "tab:main-parameter-estimates-sens-1",
-                                          font.size = 9,
-                                          space.size = 11,
-                                          getrecs = c(2010, 2014, 2016))
+param_est_table(sens.models.1.for.table,
+                model.names = sens.model.names.1.for.table,
+                end.yr = end.yr,
+                digits = 3,
+                xcaption = paste0("Medians of MCMC posteriors for select parameters, derived quantities,
+                                   reference points, and negative log likelihoods for the base
+                                   model and some sensitivity runs (described in
+                                   Section~\\ref{sec:assessment-sensitivity-analyses})."),
+                xlabel = "tab:main-parameter-estimates-sens-1",
+                font.size = 9,
+                space.size = 11,
+                getrecs = c(2010, 2014, 2016))
 @
 \end{landscape}
 \pagestyle{fancy}
@@ -598,18 +600,18 @@ make.short.parameter.estimates.sens.table(sens.models.1.for.table,
 \pagestyle{mylandscape}
 \centering
 <<main-parameter-estimates-sens-2, results='asis', echo=FALSE>>=
-make.short.parameter.estimates.sens.table(sens.models.2.for.table,
-                                          model.names = sens.model.names.2.for.table,
-                                          end.yr = end.yr,
-                                          digits = 3,
-                                          xcaption = paste0("Medians of MCMC posteriors for select parameters,
-                                                            derived quantities, reference points, and negative log likelihoods
-                                                            for the base model and further sensitivity runs (described in
-                                                            Section~\\ref{sec:assessment-sensitivity-analyses})."),
-                                          xlabel = "tab:main-parameter-estimates-sens-2",
-                                          font.size = 9,
-                                          space.size = 11,
-                                          getrecs = c(2010, 2014, 2016))
+param_est_table(sens.models.2.for.table,
+                model.names = sens.model.names.2.for.table,
+                end.yr = end.yr,
+                digits = 3,
+                xcaption = paste0("Medians of MCMC posteriors for select parameters,
+                                   derived quantities, reference points, and negative log likelihoods
+                                   for the base model and further sensitivity runs (described in
+                                   Section~\\ref{sec:assessment-sensitivity-analyses})."),
+                xlabel = "tab:main-parameter-estimates-sens-2",
+                font.size = 9,
+                space.size = 11,
+                getrecs = c(2010, 2014, 2016))
 @
 \end{landscape}
 \pagestyle{fancy}
@@ -618,18 +620,18 @@ make.short.parameter.estimates.sens.table(sens.models.2.for.table,
 \pagestyle{mylandscape}
 \centering
 <<main-parameter-estimates-sens-3, results='asis', echo=FALSE>>=
-make.short.parameter.estimates.sens.table(sens.models.3.for.table,
-                                          model.names = sens.model.names.3.for.table,
-                                          end.yr = end.yr,
-                                          digits = 3,
-                                          xcaption = paste0("Medians of MCMC posteriors for select parameters,
-                                                             derived quantities, reference points, and negative log likelihoods
-                                                             for the base model and further sensitivity runs (described in
-                                                             Section~\\ref{sec:assessment-sensitivity-analyses})."),
-                                          xlabel = "tab:main-parameter-estimates-sens-3",
-                                          font.size = 9,
-                                          space.size = 11,
-                                          getrecs = c(2010, 2014, 2016))
+param_est_table(sens.models.3.for.table,
+                model.names = sens.model.names.3.for.table,
+                end.yr = end.yr,
+                digits = 3,
+                xcaption = paste0("Medians of MCMC posteriors for select parameters,
+                                   derived quantities, reference points, and negative log likelihoods
+                                   for the base model and further sensitivity runs (described in
+                                   Section~\\ref{sec:assessment-sensitivity-analyses})."),
+                xlabel = "tab:main-parameter-estimates-sens-3",
+                font.size = 9,
+                space.size = 11,
+                getrecs = c(2010, 2014, 2016))
 @
 \end{landscape}
 \pagestyle{fancy}

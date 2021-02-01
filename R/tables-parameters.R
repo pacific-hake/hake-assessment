@@ -334,93 +334,6 @@ make.parameters.estimated.summary.table <- function(model,
         hline.after = NULL)
 }
 
-
-#' @param modellist A list summarized by \code{\link[r4ss]{SSsummarize}}.
-#' @param catchability Should catchability for the acoustic survey be
-#' included in the parameter table? Default is to not include it, i.e.,
-#' \code{catchability = FALSE}.
-get_keypars <- function(modellist, catchability = FALSE) {
-  out <- modellist$pars[c(
-      grep("NatM|SR_LN|steep|SD.+2", modellist$pars$Label),
-      grep("DM_theta", modellist$pars$Label)
-      ), 1:modellist$n]
-  SD3 <- grep("SD.+3", modellist$pars$Label)
-  if (length(SD3) > 0) {
-    out <- rbind(out, modellist$pars[SD3, 1:modellist$n])
-  }
-  if (catchability) {
-    out <- rbind(out, exp(
-      modellist$pars[grep("LnQ.+2", modellist$pars$Label), 1:modellist$n]))
-  }
-  out[2, ] <- exp(out[2, ]) / 1000
-  return(out)
-}
-
-#' @param modellist A list summarized by \code{\link[r4ss]{SSsummarize}}.
-#' @param years.recs A vector of length three specifying the recruitment
-#' years of interest.
-#' @param years.b0 A vector of length two specifying the depletion years
-#' of interest.
-get_keydqs <- function(modellist, years.recs, years.b0) {
-  recnames <- paste(paste0("Recr_", years.recs), collapse = "|")
-  b0names <- paste(paste0("Bratio_", years.b0), collapse = "|")
-  out <- rbind(
-    modellist$recruits[grep(recnames, modellist$recruits$Label), 1:modellist$n]/1000,
-    modellist$SpawnBio[modellist$SpawnBio$Label == "SSB_Virgin", 1:modellist$n]/2/1000,
-    modellist$Bratio[grep(b0names, modellist$Bratio$Label), 1:modellist$n]*100
-    )
-  return(out)
-}
-
-#' @param modellist A list summarized by \code{\link[r4ss]{SSsummarize}}.
-#' @param years.spr A vector of length one specifying the SPR year
-#' of interest.
-get_keyrps <- function(modellist, years.spr, target = 40) {
-  sprnames <- paste(paste0("SPRratio_", years.spr), collapse = "|")
-  out <- rbind(
-    modellist$quants[grep(sprnames, modellist$quants$Label), 1:modellist$n]*100,
-    modellist$quants[modellist$quants$Label == "SSB_SPR", 1:modellist$n]/2/1000,
-    modellist$quants[modellist$quants$Label == "SPR_MSY", 1:modellist$n]*0+target,
-    modellist$quants[modellist$quants$Label == "Fstd_SPR", 1:modellist$n]*100,
-    modellist$quants[modellist$quants$Label == "Dead_Catch_SPR", 1:modellist$n]/1000
-    )
-  return(out)
-}
-
-#' @param modellist A list summarized by \code{\link[r4ss]{SSsummarize}}.
-get_keylhs <- function(modellist) {
-  out <- rbind(
-    modellist$likelihoods[
-      modellist$likelihoods$Label %in% c("TOTAL", "Survey"), 1:modellist$n],
-    structure(t(
-    modellist$likelihoods_by_fleet[
-      modellist$likelihoods_by_fleet$Label == "Age_like",
-      c("Acoustic_Survey", "Fishery")]),
-    dimnames = list(NULL, paste0("model", 1:modellist$n))),
-    modellist$likelihoods[
-      modellist$likelihoods$Label %in% c("Recruitment", "Parm_priors", "Parm_devs"),
-      1:modellist$n]
-    )
-  return(out)
-}
-
-#' @param getpar A vector of character strings that you desire parameters for.
-#' Regex will be used to get full names, but each entry should map to a single
-#' parameter. The function is not yet parameterized to work with multiple
-#' matches for single entry.
-#' @param mcmc The mcmc list from a list summarized by \code{\link[r4ss]{SSsummarize}}.
-#' @param .fun A function, e.g., median or mean, to summarize the posterior.
-  get_keymcmc <- function(getpar, mcmc, .fun) {
-    out <- lapply(mcmc, function(x, y = .fun) {
-      aa <- x[, grep(getpar, colnames(x)), drop = FALSE]
-      if (NCOL(aa) == 0) {
-        aa[, 1] <- as.numeric(NA)
-      }
-      return(apply(aa, 2, FUN = y))
-    })
-    return(setNames(unlist(out), NULL))
-  }
-
 #' Returns an [xtable::xtable()] in the proper format for the MCMC posterior parameter estimates for
 #' all the models in the list, one for each column
 #'
@@ -433,45 +346,63 @@ get_keylhs <- function(modellist) {
 #' @param font.size Size of the font for the table
 #' @param space.size Size of the vertical spaces for the table
 #' @param getrecs A vector of integers supplying the years for which you want estimates of recruitment
+#' @param mle_table If TRUE, prepend the MLE values from the first model in the list as a column in the table
 #' @param show_like If `TRUE`, include the negative log-likelihoods (set to `FALSE` for presentations)
 #'
 #' @return as [xtable::xtable()]
 #' @export
-make.short.parameter.estimates.sens.table <- function(models,
-                                                      model.names,
-                                                      end.yr,
-                                                      digits = 3,
-                                                      xcaption = "default",
-                                                      xlabel   = "default",
-                                                      font.size = 9,
-                                                      space.size = 10,
-                                                      getrecs = NA,
-                                                      show_like = TRUE){
+#'
+param_est_table <- function(models,
+                            model.names,
+                            end.yr,
+                            digits = 3,
+                            xcaption = "default",
+                            xlabel   = "default",
+                            font.size = 9,
+                            space.size = 10,
+                            getrecs = NA,
+                            mle_table = FALSE,
+                            show_like = TRUE){
 
   if(is.na(getrecs[1])){
     stop("No cohort recruitment years supplied: `getrecs`", call. = FALSE)
   }
+
+  # MCMC parameter estimates
   tab <- map2(models, model.names, ~{
     recs <- map_dbl(getrecs, ~{median(.y$mcmc[[paste0("Recr_", .x)]]) / 1e3}, .y = .x)
     names(recs) <- paste0("recr_", getrecs)
     recs <- f(recs, 0)
     df <- enframe(
       c(nat_m = f(median(.x$mcmc$`NatM_p_1_Fem_GP_1`), digits),
-        ro = f(median(.x$mcmc$`SR_LN(R0)`) * 1e3, 0),
+        ro = f((median(.x$mcmc$`SR_LN(R0)`) %>% log) * 1e3, 0),
         h = ifelse(is.null(.x$mcmc$`SR_BH_steep`), NA, f(median(.x$mcmc$`SR_BH_steep`), digits)),
         survey_sd = f(median(.x$mcmc$`Q_extraSD_Acoustic_Survey(2)`), digits),
-        dm_fishery = ifelse(is.null(.x$mcmc$`ln(DM_theta)_1`), NA, f(median(.x$mcmc$`ln(DM_theta)_1`), digits)),
-        dm_survey = ifelse(is.null(.x$mcmc$`ln(DM_theta)_2`), NA, f(median(.x$mcmc$`ln(DM_theta)_2`), digits)),
+        dm_fishery = ifelse(is.null(.x$mcmc$`ln(DM_theta)_1`),
+                            ifelse(is.null(.x$mcmc$`ln(EffN_mult)_1`),
+                                   NA,
+                                   f(median(.x$mcmc$`ln(EffN_mult)_1`), digits)),
+                            f(median(.x$mcmc$`ln(DM_theta)_1`), digits)),
+        dm_survey = ifelse(is.null(.x$mcmc$`ln(DM_theta)_2`),
+                            ifelse(is.null(.x$mcmc$`ln(EffN_mult)_2`),
+                                   NA,
+                                   f(median(.x$mcmc$`ln(EffN_mult)_2`), digits)),
+                            f(median(.x$mcmc$`ln(DM_theta)_2`), digits)),
         survey_age1_sd = ifelse(is.null(.x$mcmc$`Q_extraSD_Age1_Survey(3)`), NA, f(median(.x$mcmc$`Q_extraSD_Age1_Survey(3)`), digits)),
+        catchability = ifelse(all(is.na(.x$extra.mcmc)), NA, f(median(.x$extra.mcmc$Q_vector), digits)),
         recs,
         bo = f(median(.x$mcmc$`SSB_Initial`) / 1e3, 0),
         ssb_2009 = paste0(f(median(.x$mcmc$`SSB_2009` / .x$mcmc$SSB_Initial) * 100, 1), "\\%"),
-        ssb_curr = paste0(f(median(.x$mcmc[[paste0("SSB_", end.yr)]] / .x$mcmc$SSB_Initial) * 100, 1), "\\%"),
-        spr_last = paste0(f(median(.x$mcmc[[paste0("SPRratio_", end.yr - 1)]]) * 100, 1), "\\%"),
+        ssb_curr = ifelse(.x$endyr <= end.yr - 2,
+                          "--",
+                          paste0(f(median(.x$mcmc[[paste0("SSB_", end.yr)]] / .x$mcmc$SSB_Initial) * 100, 1), "\\%")),
+        spr_last = ifelse(.x$endyr <= end.yr - 2,
+                          "--",
+                          paste0(f(median(.x$mcmc[[paste0("SPRratio_", end.yr - 1)]]) * 100, 1), "\\%")),
         ssb_curr_fem = f(median(.x$mcmc$`SSB_SPR` / 2) / 1e3, 0),
         spr_msy = "40.0\\%",
         exp_frac = paste0(f(.x$mcmccalcs$fmed[names(.x$mcmccalcs$fmed) == end.yr - 1] * 100, 1), "\\%"),
-        yield_f40 = f(median(.x$mcmc$`Dead_Catch_Btgt`) / 1e3, 0),
+        yield_f40 = f(median(.x$mcmc$`Dead_Catch_SPR`) / 1e3, 0),
         total_like = f(filter(.x$likelihoods_used, rownames(.x$likelihoods_used) == "TOTAL")$values, 2),
         survey_like = f(filter(.x$likelihoods_used, rownames(.x$likelihoods_used) == "Survey")$values, 2),
         fishery_age_like = f(filter(.x$likelihoods_by_fleet, Label == "Age_like")$Fishery, 2),
@@ -481,6 +412,52 @@ make.short.parameter.estimates.sens.table <- function(models,
         parmdev_like = f(filter(.x$likelihoods_used, rownames(.x$likelihoods_used) == "Parm_devs")$values, 2)),
       value = .y)
   })
+
+  # MLE parameter estimates
+  if(mle_table){
+    if(show_like){
+      warning("Cannot show the likelihoods when `mle_table = TRUE`")
+      show_like <- FALSE
+    }
+    model.names <- c(paste0(model.names[[1]], " MLE"), map_chr(model.names, ~{paste0(.x, " MCMC")}))
+    md <- models[[1]]
+    mdp <- md$parameters
+    mddq <- md$derived_quants
+    recs <- map_chr(getrecs, ~{(mddq %>% filter(Label == paste0("Recr_", .x)) %>% pull(Value) / 1e3) %>% f(0)})
+    names(recs) <- paste0("recr_", getrecs)
+    mle_tab <- enframe(
+      c(nat_m = mdp %>% filter(Label == "NatM_p_1_Fem_GP_1") %>% pull(Value) %>% f(digits),
+        ro = ((mdp %>% filter(Label == "SR_LN(R0)") %>% pull(Value) %>% log) * 1e3) %>% f(0),
+        h = mdp %>% filter(Label == "SR_BH_steep") %>% pull(Value) %>% f(digits),
+        survey_sd = mdp %>% filter(Label == "Q_extraSD_Acoustic_Survey(2)") %>% pull(Value) %>% f(digits),
+        dm_fishery = ifelse(length(mdp %>% filter(Label == "ln(DM_theta)_1") %>% pull(Value)),
+                            mdp %>% filter(Label == "ln(DM_theta)_1") %>% pull(Value), NA),
+        dm_survey = ifelse(length(mdp %>% filter(Label == "ln(DM_theta)_2") %>% pull(Value)),
+                           mdp %>% filter(Label == "ln(DM_theta)_2") %>% pull(Value)%>% f(digits), NA),
+        survey_age1_sd = ifelse(length(mdp %>% filter(Label == "Q_extraSD_Age1_Survey(3)") %>% pull(Value)),
+                                mdp %>% filter(Label == "Q_extraSD_Age1_Survey(3)") %>% pull(Value) %>% f(digits), NA),
+        catchability = f(md$cpue$Calc_Q[1], digits),
+        recs,
+        bo = (mddq %>% filter(Label == "SSB_Initial") %>% pull(Value) / 2e3) %>% f(digits),
+        ssb_2009 = ((mddq %>% filter(Label == "SSB_2009") %>% pull(Value)) /
+                      (mddq %>% filter(Label == "SSB_Initial") %>% pull(Value)) * 100) %>% f(1) %>% paste0("\\%"),
+        ssb_curr = ((mddq %>% filter(Label == paste0("SSB_", end.yr)) %>% pull(Value)) /
+                      (mddq %>% filter(Label == "SSB_Initial") %>% pull(Value)) * 100) %>% f(1) %>% paste0("\\%"),
+        spr_last = ((mddq %>% filter(Label == paste0("SPRratio_", end.yr - 1)) %>% pull(Value)) * 100) %>% f(1) %>% paste0("\\%"),
+        ssb_curr_fem = (mddq %>% filter(Label == "SSB_SPR") %>% pull(Value) / 2e3) %>% f(0),
+        spr_msy = "40.0\\%",
+        exp_frac = ((mddq %>% filter(Label == "annF_SPR") %>% pull(Value)) * 100) %>% f(1) %>% paste0("\\%"),
+        yield_f40 = ((mddq %>% filter(Label == "Dead_Catch_SPR") %>% pull(Value)) / 1e3) %>% f(0),
+        total_like = f(filter(md$likelihoods_used, rownames(md$likelihoods_used) == "TOTAL")$values, 2),
+        survey_like = f(filter(md$likelihoods_used, rownames(md$likelihoods_used) == "Survey")$values, 2),
+        fishery_age_like = f(filter(md$likelihoods_by_fleet, Label == "Age_like")$Fishery, 2),
+        survey_age_like = f(filter(md$likelihoods_by_fleet, Label == "Age_like")$Acoustic_Survey, 2),
+        recr_like = f(filter(md$likelihoods_used, rownames(md$likelihoods_used) == "Recruitment")$values, 2),
+        priors_like = f(filter(md$likelihoods_used, rownames(md$likelihoods_used) == "Parm_priors")$values, 2),
+        parmdev_like = f(filter(md$likelihoods_used, rownames(md$likelihoods_used) == "Parm_devs")$values, 2)),
+    value = paste0(model.names[[1]]))
+    tab <- c(list(mle_tab), tab)
+  }
 
   # Remove parameter name column from all but first model then bind them all together,
   # make a variable that records if there are any age-1 index parameter values,
@@ -503,6 +480,7 @@ make.short.parameter.estimates.sens.table <- function(models,
       "Dirichlet-Multinomial fishery (log~$\\theta_{\\text{fish}}$)",
       "Dirichlet-Multinomial survey (log~$\\theta_{\\text{surv}}$)",
       "Additional age-1 index SD",
+      paste0("Catchability (", latex.italics("q"), ")"),
       paste(getrecs, "recruitment (millions)"),
       paste0(latex.subscr(latex.italics("B"), "0"), " (thousand t)"),
       "2009 relative spawning biomass",
@@ -544,8 +522,8 @@ make.short.parameter.estimates.sens.table <- function(models,
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- 1
-  addtorow$pos[[2]] <- ifelse(age_1, 8, 7)
-  addtorow$pos[[3]] <- ifelse(age_1, 14, 13)
+  addtorow$pos[[2]] <- ifelse(age_1, 9, 8)
+  addtorow$pos[[3]] <- ifelse(age_1, 15, 14)
   addtorow$command <-
     c(paste0(latex.bold(latex.under("Parameters")),
              latex.nline),
@@ -556,7 +534,7 @@ make.short.parameter.estimates.sens.table <- function(models,
              latex.bold(latex.under("Reference Points based on $\\Fforty$")),
              latex.nline))
   if(show_like){
-    addtorow$pos[[4]] <- ifelse(age_1, 19, 18)
+    addtorow$pos[[4]] <- ifelse(age_1, 20, 19)
     addtorow$command <- c(addtorow$command,
                           paste0(latex.nline,
                                  latex.bold(latex.under("Negative log likelihoods")),
@@ -577,190 +555,6 @@ make.short.parameter.estimates.sens.table <- function(models,
         add.to.row = addtorow,
         tabular.environment = "tabular",
         table.placement = "H")
-}
-
-
-make.short.parameter.estimates.table <- function(model,
-                                                 last.yr.model,
-                                                 end.yr,
-                                                 getrecs = c(2010, 2014, 2016),
-                                                 digits = 3,
-                                                 xcaption = "default",
-                                                 xlabel   = "default",
-                                                 font.size = 9,
-                                                 space.size = 10,
-                                                 last.yr.model.name = NULL){
-  ## Returns an xtable in the proper format for the parameter estimates
-  ##  for MLE vs median vs median of the last year
-  ##
-  ## model - an mcmc run, output of the r4ss package's function SSgetMCMC()
-  ## last.yr.model - last year's base model for comparison
-  ## end.yr - the last year to include (req'd for spawning biomass)
-  ## digits - number of decimal points for the estimates
-  ## xcaption - caption to appear in the calling document
-  ## xlabel - the label used to reference the table in latex
-  ## font.size - size of the font for the table
-  ## space.size - size of the vertical spaces for the table
-  ## getrecs - a vector of integers of length 3 supplying the years for which you want
-  ##   estimates of recruitment. Must be of length three.
-  if (length(getrecs) != 3) stop("The make short function only works",
-                                 "with three years of recruitments", call. = FALSE)
-  if (is.null(last.yr.model.name)) {
-    last.yr.model.name <- c("Posterior", "median from", paste(end.yr - 1, " base"), "model")
-  }
-
-  ## This year's model MLE
-  modelssum <- r4ss::SSsummarize(list(model, last.yr.model))
-  mle.par <- rbind(
-    get_keypars(modelssum, catchability = TRUE),
-    get_keydqs(modelssum, years.recs = getrecs, years.b0 = c(2009, end.yr)),
-    get_keyrps(modelssum, years.spr = end.yr - 1, target = 40))[, 1]
-  if(is.na(mle.par[17])){
-    # MLE exploitation for base model wasn't present
-    mle.par[17] <- model$exploitation$F_std[length(model$startyr:model$endyr)] * 100
-  }
-
-  mcmc.par <- t(sapply(c(
-    "NatM",
-    "SR_LN",
-    "SR_BH_steep",
-    "Q_extraSD",
-    "EffN.+\\)_1|DM_theta.+1$",
-    "EffN.+2|DM_theta.+2$",
-    "Catchability",
-    paste0("Recr_", getrecs),
-    "SSB_Initial",
-    paste0("Bratio_", c(2009, end.yr)),
-    paste(paste0("SPRratio_", end.yr-1), collapse = "|"),
-    "SSB_SPR",
-    "SPR_MSY",
-    "Fstd_SPR|annF_SPR",
-    "Dead_Catch_SPR"),
-    get_keymcmc, mcmc = modelssum$mcmc, .fun = median))
-
-  mcmc.par["SR_LN", ] <- exp(mcmc.par["SR_LN", ]) / 1000
-  mcmc.par["Catchability", 1] <- round(median(model$extra.mcmc$Q_vector), 3)
-  mcmc.par["Catchability", 2] <- round(median(last.yr.model$extra.mcmc$Q_vector), 3)
-  mcmc.par[grep("Recr_|Dead_", rownames(mcmc.par)), ] <- (
-    mcmc.par[grep("Recr_|Dead_", rownames(mcmc.par)), ]) / 1000
-  mcmc.par[grep("ratio_|Fstd_SPR", rownames(mcmc.par)), ] <- (
-    mcmc.par[grep("ratio_|Fstd_SPR", rownames(mcmc.par)), ]) * 100
-  mcmc.par[grep("SSB_[IS]", rownames(mcmc.par)), ] <- (
-    mcmc.par[grep("SSB_[IS]", rownames(mcmc.par)), ]) / 1000 / 2
-  mcmc.par["SPR_MSY", ] <- 40
-  cbind(mle.par, mcmc.par)
-  tab <- as.data.frame(cbind(mle.par, mcmc.par))
-  colnames(tab) <- NULL
-
-  ## Format the tables rows depending on what they are.
-  ## Decimal values
-  tab[c(1, 3, 4, 5, 6, 7),] <- f(tab[c(1, 3, 4, 5, 6, 7),], 3)
-
-  ## Large numbers with no decimal points but probably commas
-  tab[c(2, 8, 9, 10, 11, 15, 18),] <-
-    f(apply(tab[c(2, 8, 9, 10, 11, 15, 18),], c(1, 2), as.numeric))
-  ## Percentages on non-NA elements
-  paste.perc <- function(vec){
-    ## Paste percentages on to all elements of vec that are not NA
-    vec[!is.na(vec)] <- paste0(f(as.numeric(vec[!is.na(vec)]), 1), "\\%")
-    return(vec)
-  }
-  tab[12,] <- paste.perc(tab[12,])
-  tab[13,] <- paste.perc(tab[13,])
-  tab[14,] <- paste.perc(tab[14,])
-  tab[17,] <- paste.perc(tab[17,])
-  ## SPR Percentages row (some may be NA). This is really ugly but works
-  tab[16, !is.na(tab[16,])] <-
-    paste0(f(apply(tab[16, !is.na(tab[16,])], 1, as.numeric), 1), "\\%")
-
-  ## Make first row empty to make the Parameter header appear below the
-  ##  horizontal line
-  tab <- rbind(c("", "", ""), tab)
-
-  ## Replace NAs with dashes
-  tab <- apply(tab, 2, function(x) gsub("\\s*NA\\s*", "\\\\textbf{--}", x))
-
-  ## These values are not correct and need to be removed from the table
-  tab[paste0("Bratio_", end.yr), 3] <- latex.bold("--")
-  tab[paste0("SPRratio_", end.yr - 1), 3] <- latex.bold("--")
-
-  ## Set the first column to be the names
-  ## Empty string below is necessary because of the rbind(c("","",""), tab)
-  ##  call above
-  tab <- cbind(c("",
-                 paste0("Natural mortality (",
-                        latex.italics("M"),
-                        ")"),
-                 paste0("Unfished recruitment (",
-                        latex.subscr(latex.italics("R"), "0"),
-                        ", millions)"),
-                 paste0("Steepness (",
-                        latex.italics("h"),
-                        ")"),
-                 "Additional acoustic survey SD",
-                 "Dirichlet-Multinomial fishery (log~$\\theta_{\\text{fish}}$)",
-                 "Dirichlet-Multinomial survey (log~$\\theta_{\\text{surv}}$)",
-                 paste0("Catchability (",
-                        latex.italics("q"),
-                        ")"),
-                 paste(getrecs, "recruitment (millions)"),
-                 paste0("Unfished female spawning biomass (",
-                        latex.subscr(latex.italics("B"), "0"),
-                        ", thousand~t)"),
-                 "2009 relative spawning biomass",
-                 paste0(end.yr,
-                        " relative spawning biomass"),
-                 paste0(end.yr - 1,
-                        " relative fishing intensity: (1-SPR)/(1-",
-                        latex.subscr("SPR", "40\\%"),
-                        ")"),
-                 paste0("Female spawning biomass at ",
-                        latex.subscr(latex.italics("F"), "SPR=40\\%"),
-                        "(",
-                        latex.subscr(latex.italics("B"), "SPR=40\\%"),
-                        ", thousand t)"),
-                 paste0("SPR at ",
-                        latex.subscr(latex.italics("F"), "SPR=40\\%")),
-                 "Exploitation fraction corresponding to SPR",
-                 paste0("Yield at ",
-                        latex.subscr(latex.italics("B"), "SPR=40\\%"),
-                        " (thousand~t)")),
-               tab)
-  colnames(tab) <- c(" ",
-                     latex.bold("MLE"),
-                     latex.mlc(c("Posterior",
-                                 "median")),
-                     latex.mlc(last.yr.model.name))
-
-  addtorow <- list()
-  addtorow$pos <- list()
-  addtorow$pos[[1]] <- 1
-  addtorow$pos[[2]] <- 8
-  addtorow$pos[[3]] <- 16
-  addtorow$command <-
-    c(paste0(latex.bold(latex.under("Parameters")),
-             latex.nline),
-      paste0(latex.nline,
-             latex.bold(latex.under("Derived Quantities")),
-             latex.nline),
-      paste0(latex.nline,
-             latex.bold(latex.under("Reference Points (equilibrium) based on ")),
-             latex.subscr(latex.italics("F"), "SPR=40\\%"),
-             latex.nline))
-  ## Make the size string for font and space size
-  size.string <- latex.size.str(font.size, space.size)
-  print(xtable(tab,
-               caption = xcaption,
-               label = xlabel,
-               align = get.align(ncol(tab),
-                                 just="c")),
-        caption.placement = "top",
-        include.rownames = FALSE,
-        sanitize.text.function = function(x){x},
-        size = size.string,
-        add.to.row = addtorow,
-        table.placement = "H",
-        tabular.environment = "longtable")
 }
 
 make.long.parameter.estimates.table <- function(model,

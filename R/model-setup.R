@@ -241,7 +241,7 @@ load_models_rds <- function(){
   ## Second set includes base and sensitivity groups 3 and 4
 
   ## Removing the sens group 4 from this because it's causing problems when
-  ## running make.short.parameter.estimates.sens.table()
+  ## running param_est_table()
   sens.models.2.for.table <<- c(list(base.model), sens.models.4)
   sens.model.names.2.for.table <<- c("Base model", sens.model.names.4)
 
