@@ -572,17 +572,16 @@ due to the appearance of the 1999 year class.
 %  landings.vs.tac[landings.vs.tac$Year > 2000, c("Year", "ATTAIN")]
 
 <<landings-tac-table, results='asis', echo=FALSE>>=
-make.landings.tac.table(landings.vs.tac,
-                        start.yr = end.yr-10,
-                        end.yr = end.yr-1,
+make_landings_tac_table(ct,
+                        start_yr = end.yr - 10,
+                        end_yr = end.yr - 1,
                         xcaption = "Recent trends in \\fishname\\ landings and
                                      management decisions. Catch targets in 2020 were
                                      specified unilaterally, due to the lack of an
                                      agreement on a coast-wide 2020 TAC.",
                         xlabel = "tab:es-landings-tac",
-                        font.size = 8,
-                        space.size = 8,
-                        placement = "tbp")
+                        font_size = 6,
+                        space_size = 7)
 @
 
 The median relative fishing intensity was below target in all years
