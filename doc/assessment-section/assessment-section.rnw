@@ -300,8 +300,8 @@ ${\bf \emph{B}_{40\%}}$ within 2 years.}
 \emph{Response -- Members of the JTC are also part of the \fishname MSE technical work group.
   Considerable developments have been made over the past year refining the MSE simulation code, as
   well as working with stakeholders through iterative JMC meetings to better define management 
-  objectives and performance metrics. Members of the JTC have attended an ICES reference point
-  workshop dedicated to density
+  objectives and performance metrics. Members of the JTC have contributed to an ICES reference point
+  report (\citep{ICESwkrpChange2021}) dedicated to density
   dependence and ecosystem change and a Ocean Frontier Institute workshop on management reference
   points in highly dynamic environments.  In both cases, the benefits and costs of using dynamic
   reference points were discussed. Guidance stemming from these workshops confirms that careful
@@ -400,7 +400,36 @@ those from the winter research cruises should be included in the maturity
 analysis. {\bf The SRG encourages continued sampling to improve understanding of
 the Pacific Hake reproductive cycle.}
 
-\emph{Response -- **}
+\emph{Response -- No new ovary samples were collected in 2020 due to the cancellation of
+  summer research cruises as a result of COVID-19. Additionally, no new maturity analyses have been
+  conducted this year because, among other things, access to laboratory equipment was
+  restricted.}
+  
+\emph{Canadian ovaries from surveys have been collected in 2018 and 2019.  These samples
+  could be included in future updated maturity analyses. However, logistical considerations
+  will need to be worked out regarding sample exchange and histological analysis workload
+  between DFO and NWFSC.}
+  
+\emph{A new project was initiated looking at improved methods to differentiate females
+  that will likely spawn from those that will not and, thus, should or should not be included
+  as spawning biomass. The study is using liver and ovary samples collected during NWFSC acoustic
+  surveys (2017-2019) to develop metabolic markers linked to key female reproductive stages.
+  Liver physiology and levels of certain lipid classes may reveal overall metabolic and reproductive
+  status. Preliminary results from liver lipid analyses indicate that levels of important structural
+  (phospholipids) and storage (triglycerides) lipids are indicative of female maturation status
+  (immature vs. mature) and may be predictive of reproductive failure (atresia) and/or skipped spawning
+  in \fishname. Initial molecular analyses of gonad samples indicate differences in ribosomal RNA ratio
+  between sexes and immature and mature fish that are consistent with results for liver lipids.
+  Work is currently underway to expand the liver lipid analyses and develop additional molecular markers
+  for lipid synthesis (liver RNA) and ovarian growth and atresia (ovarian RNA). Molecular information
+  from liver and ovary samples together with liver lipid analyses and gonadal histology should provide
+  a broader picture of reproductive status of female \fishname and better inform stock assessments.
+  This project was significantly impacted by the COVID-19 pandemic, the inability to access labs,
+  and the cancellation of the 2020 Summer Hake research survey, during which biological samples would have been
+  collected. Despite these impacts, progress was made developing liver lipid analyses, developing a number
+  of new molecular (gene expressions) assays for ribosomal RNAs in \fishname, completing histological analyses
+  of ovarian tissue samples, and analyzing histology results in relation to potential physiological
+  indicators of reproductive success.
 
 7. {\bf The SRG strongly supports the ongoing genetic analyses to determine
   whether there are genetic differences between Pacific Hake from the area south
@@ -441,33 +470,15 @@ These include recently acquired samples that will fill in gaps in spatial-tempor
 (especially from Canada) and add additional samples to existing boxes to boost sample sizes.
 This approach will provide the best picture to date of \fishname\ genetic population structure.
 Research was expected to commence in 2020 but the lack of access to laboratories due to
-Covid-19 restrictions delayed the completion of the sequencing and analyses for these samples.
+COVID-19 restrictions delayed the completion of the sequencing and analyses for these samples.
 Research and the submission of a peer-reviewed publication should be completed in 2021.}
-
-\emph{Canadian ovaries from surveys have been collected since 2018 and could be included in
-updated maturity analyses planned for the upcoming year. However, logistical considerations
-will need to be worked out regarding sample exchange and histological analysis workload
-between DFO and NWFSC.}
-
-\emph{A new project has been initiated looking at improved methods to differentiate which females
-will likely spawn from those that will not and, thus, should or should not be included as
-spawning biomass. The study is using liver and ovary samples collected during NWFSC acoustic surveys
-(2017--2019) to develop metabolic markers linked to key female reproductive stages. Liver physiology
-and levels of certain lipid classes may reveal overall metabolic and reproductive status.
-Preliminary results from initial liver lipid analyses indicate that levels of important structural (phospholipids)
-and storage (triglycerides) lipids are indicative of female maturation status (immature vs. mature)
-and may be predictive of reproductive failure (atresia) and/or skipped spawning in \fishname. Work is
-currently underway to expand the liver lipid analyses and develop molecular markers for lipid synthesis
-(liver RNA) and ovarian growth and atresia (ovarian RNA). Molecular information from liver and ovary
-samples together with liver lipid analyses and gonadal histology should provide a broader picture of
-reproductive status of female \fishname\ and better inform stock assessments.}
 
 8. The SRG notes that the no-U-turn sampler (NUTS) algorithm is more efficient
 and explores parameter space more fully than the MCMC algorithm used to estimate
 parameter uncertainty in the current and previous base assessment models. {\bf The
 SRG supports the use of NUTS for the base model and sensitivity runs in the 2021 assessment.}
 
-\emph{Response -- NUTS has been used for the base model and all sensitivity runs
+\emph{Response -- NUTS has been used for the base model and all sensitivity and retrospective runs
 in the 2021 assessment.}
 
 9. {\bf The SRG recommends sensitivity analyses structured as follows, if NUTS
@@ -475,8 +486,8 @@ in the 2021 assessment.}
   algorithm as in the 2020 assessment, and (2) using NUTS when including the
   age-1 index in the base model.}
 
-\emph{Response -- **[check] Results from using the random walk Metropolis MCMC
-  algorithm are presented in Appendix **, and full results from including the age-1
+\emph{Response -- Results from using the random walk Metropolis MCMC
+  algorithm are presented in Appendix~\ref{chap:rwmh}, and full results from including the age-1
   index are presented in Appendix~\ref{chap:age1-survey}.}
 
 10. {\bf The SRG also recommends the following additional sensitivities
@@ -496,14 +507,20 @@ collection for the ageing error matrix that supports the assessment model. {\bf
   samples collected during the past decade be conducted in conjunction with the
   Committee of Age Reading Experts (CARE).}
 
-\emph{Response -- **}
+\emph{Response -- An updated ageing error analysis will be conducted after the an updated
+  CARE exchange is completed among ageing labs. The JTC plans to utilize an updated ageing error
+  software package being conducted jointly by the University of Washington and the
+  Commonwealth Scientific and Industrial Research Organisation (CSIRO) upon completion.}
 
 12. {\bf The SRG recommends that historical sources of data be investigated to
 determine whether they can be used to supplement the weight-at-age matrix,}
 including unaged otolith samples (and associated data) from the 1970s that may
 be available in the Burke Museum in Seattle.
 
-\emph{Response -- **}
+\emph{Response -- Due to impacts and closures related to COVID-19, no progress has been made
+  visiting the Burke Museum to better understand archived samples or available data.
+  First steps will be to investigate whether otoliths at the museum are in usable shape, and to
+  create summaries of what is potentially available.}
 
 \subsection{Modeling results}\label{sec:assessment-modeling-results}
 
