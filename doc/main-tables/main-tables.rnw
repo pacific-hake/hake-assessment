@@ -264,30 +264,23 @@ make.parameters.estimated.summary.table(
   space.size = 11)
 @
 
-% ** UNCOMMENT THIS for the final doc ** CG Jan 27, 2021
-% \pagestyle{empty}
-% \begin{landscape}
-% \pagestyle{mylandscape}
-%   \centering
-% <<main-parameter-estimates-retro, results='asis', echo=FALSE>>=
-% make.short.parameter.estimates.sens.table(retro.list,
-%                                           model.names = retro.model.names,
-%                                           end.yr = end.yr,
-%                                           digits = 3,
-%                                           xcaption =
-%                                             paste0("Select parameters, derived quantities,
-%                                                              reference point estimates, and negative
-%                                                              log likelihoods for retrospective analyses
-%                                                              using the MLE estimates from the base model.
-%                                                              Some values are implied since they occur after
-%                                                              the ending year of the respective retrospective
-%                                                              analysis."),
-%                                           xlabel = "tab:main-parameter-estimates-retro",
-%                                           font.size = 10,
-%                                           space.size = 11)
-% @
-% \end{landscape}
-% \pagestyle{fancy}
+<<main-parameter-estimates-retro, results='asis', echo=FALSE>>=
+make.short.parameter.estimates.sens.table(retro.list,
+                                          model.names = retro.model.names,
+                                          end.yr = end.yr,
+                                          digits = 3,
+                                          getrecs = c(2010, 2014, 2016),
+                                          xcaption = "Medians of the MCMC posteriors from the base model for
+                                                      select parameters, derived quantities,
+                                                      reference point estimates, and negative
+                                                      log likelihoods for retrospective analyses.
+                                                      Some values are implied since they occur after
+                                                      the ending year of the respective retrospective
+                                                      analysis.",
+                                          xlabel = "tab:main-parameter-estimates-retro",
+                                          font.size = 10,
+                                          space.size = 11)
+@
 
 <<main-assessment-changes-table, results='asis', echo=FALSE>>=
 make.assessment.changes.table(assessment.changes,

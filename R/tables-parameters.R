@@ -562,14 +562,8 @@ make.short.parameter.estimates.sens.table <- function(models,
                                  latex.bold(latex.under("Negative log likelihoods")),
                                  latex.nline))
   }
-  # ## Remove likelihood rows (use for beamer to fit on slides)
-  # if(!show_like){
-  #   tab <- tab[1:(grep("Total", tab[,1])-1),]
-  #   addtorow$pos[[4]] <- NULL
-  #   addtorow$command <- addtorow$command[-4]
-  # }
 
-  ## Make the size string for font and space size
+  # Make the size string for font and space size
   size.string <- latex.size.str(font.size, space.size)
   print(xtable(tab,
                caption = xcaption,
