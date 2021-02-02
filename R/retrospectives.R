@@ -23,7 +23,10 @@ run_retrospectives <- function(model_path,
                                retro_n_final = 8000,
                                retro_warmup_final = 250,
                                retro_continue = TRUE,
+                               retrospective_yrs = NA,
                                ...){
+
+  stopifnot(!is.na(retrospective_yrs))
 
   model <- load_ss_files(model_path, ...)
   retro_path <- file.path(model_path, "retrospectives")

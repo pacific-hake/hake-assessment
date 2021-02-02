@@ -19,6 +19,7 @@
 #' @examples
 #' build_rds(c("base", "nuts"), TRUE, TRUE, TRUE)
 build_rds <- function(model_dirs = model_list,
+                      build_file = TRUE,
                       ...){
   tic()
   map(model_dirs, function(x = .x, ...){
@@ -26,9 +27,11 @@ build_rds <- function(model_dirs = model_list,
         catch_levels_path = catch_levels_path,
         catch_levels = catch_levels,
         ...)
-    create_rds_file(model_dir = x,
-                    catch_levels = catch_levels,
-                    ...)
+    if(build_file){
+      create_rds_file(model_dir = x,
+                      catch_levels = catch_levels,
+                      ...)
+    }
   }, ...)
   message("\nCompleted build.\n")
   invisible()
