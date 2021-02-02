@@ -377,16 +377,16 @@ effn.prior <- c(NA, unlist(
 sel.Phi.val <- base.model$parameters[base.model$parameters$Label=="AgeSel_P3_Fishery(1)_dev_se", "Value"]
 
 # Cohort catch ----------------------------------------------------------------
-cohort.catch.1999 <- sum(cohort.catch(1999, base.model$catage, trim.end.year = end.yr))
-cohort.catch.2010 <- sum(cohort.catch(2010, base.model$catage, trim.end.year = end.yr))
-cohort.catch.2014 <- sum(cohort.catch(2014, base.model$catage, trim.end.year = end.yr))
-cohort.catch.2016 <- sum(cohort.catch(2016, base.model$catage, trim.end.year = end.yr))
+cohort.catch.1999 <- sum(cohort.catch(base.model, 1999, trim.end.year = end.yr))
+cohort.catch.2010 <- sum(cohort.catch(base.model, 2010, trim.end.year = end.yr))
+cohort.catch.2014 <- sum(cohort.catch(base.model, 2014, trim.end.year = end.yr))
+cohort.catch.2016 <- sum(cohort.catch(base.model, 2016, trim.end.year = end.yr))
 
 # ... Cumulative sums of Cohorts for use in JMC presentation ------------------
-cohortCumSum1999 <- cumsum(cohort.catch(1999,base.model$catage, trim.end.year = end.yr))
-cohortCumSum2010 <- cumsum(cohort.catch(2010,base.model$catage, trim.end.year = end.yr))
-cohortCumSum2014 <- cumsum(cohort.catch(2014,base.model$catage, trim.end.year = end.yr))
-cohortCumSum2016 <- cumsum(cohort.catch(2016,base.model$catage, trim.end.year = end.yr))
+cohortCumSum1999 <- cumsum(cohort.catch(base.model, 1999, trim.end.year = end.yr))
+cohortCumSum2010 <- cumsum(cohort.catch(base.model, 2010, trim.end.year = end.yr))
+cohortCumSum2014 <- cumsum(cohort.catch(base.model, 2014, trim.end.year = end.yr))
+cohortCumSum2016 <- cumsum(cohort.catch(base.model, 2016, trim.end.year = end.yr))
 ages1999 <- as.numeric(names(cohortCumSum1999)) - 1999
 ages2010 <- as.numeric(names(cohortCumSum2010)) - 2010
 ages2014 <- as.numeric(names(cohortCumSum2014)) - 2014
