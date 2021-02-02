@@ -186,6 +186,8 @@ NOAA Fisheries: The division of the United States National Oceanic and Atmospher
 
 NORPAC: North Pacific Database Program. A database storing U.S. fishery observer data collected at sea.
 
+NUTS: No-U-Turn Sampler is an advanced Hamiltonian Bayesian MCMC sampling algorithm used to efficiently create posterior distributions and used in \fishname Bayesian stock assessments beginning in 2021.
+
 NWFSC : Northwest Fisheries Science Center. A NOAA Fisheries Science Center located primarily in Seattle, Washington, but also in Newport, Oregon and other locations.
 
 Operating Model (OM): A model used to simulate data for use in the MSE (see above). The operating model includes components for the stock and fishery dynamics, as well as the simulation of the data sampling process, potentially including observation error. Cases in the MSE represent alternative configurations of the operating model.
@@ -223,6 +225,8 @@ Recruitment deviation: The offset of the recruitment in a given year relative to
 Relative fishing intensity: See definition of fishing intensity.
 
 Relative spawning biomass: The ratio of the beginning-of-the-year female spawning biomass to the unfished equilibrium female spawning biomass ($B_0$, see above). Thus, lower values are associated with fewer mature female fish. This term was introduced in the 2015 stock assessment as a replacement for ``depletion'' (see above) which was a source of some confusion.
+
+rwMH: Random walk Metropolis Hastings Bayesian MCMC sampling algorithm used to create posterior distributions used in \fishname Bayesian stock assessment models prior to 2021.
 
 % 2017 AME: same definition as fishing intensity, so deleting, along with only
 %  occurrence in text.
