@@ -9,6 +9,7 @@ assessments.  This year the stock assessment applies a new analytical tool
 for conducting efficient Bayesian MCMC sampling, the
 No-U-Turn Sampler (NUTS; \citealt{HoffmanGelman2014}), implemented using the {\tt adnuts} R package
 \citep{Monnahan2018, Monnahan2019}.
+
 This appendix is provided solely as supplemental information, as NUTS is considered by many to be
 a straightforward improvement in efficiency with high dimensional models relative to classic Hamiltonian
 approaches (via adaptive sampling steps), as well as improved parameter space coverage over
@@ -18,37 +19,42 @@ classic random walk approaches.
 % and a warmup period of closer to 100 (not 250).  Just some caveats to
 % times....
 %
-Figures and tables follow the format of the Executive Summary, with additional
-figures showing MCMC diagnostics and comparing results with those of the base model.
+%Figures and tables follow the format of the Executive Summary, with additional
+%figures showing MCMC diagnostics and comparing results with those of the base model.
 
-**A comparison between the base model and the NUTS run shows little
-difference in median spawning biomass (Figure~\ref{fig:biomass-base-alternative-6-adnuts-sens}),
+A comparison between the base model and the rwMH run shows little
+difference in median spawning biomass (Figure~\ref{fig:biomass-base-alternative-7-rwmh-sens}),
 although the NUTS run suggests slightly higher uncertainty. The main difference is with the estimate
-of initial recruitment, $R_0$, with the base model median being 2.505~billion
-and the NUTS run
-being 2.314~billion. This small difference causes an upward scaling effect to the
-relative biomass (Figure~\ref{fig:status-base-alternative-6-adnuts-sens}) for the NUTS run.
+of initial recruitment, $R_0$, with the base model median being 2.264~billion
+and the rwMH run
+being 2.474~billion. This small difference causes the downward scaling effect to the
+relative biomass (Figure~\ref{fig:status-base-alternative-7-rwmh-sens}) for the rwMH run. The base
+model NUTS run had a three-fold increase in the effective sample size used to estimate the $R_0$
+posterior over the rwMH, while reducing computing time by 15-fold. Longer rwMH runs (8 days) resulted
+in more comparable $R_0$ effective sample sizes between algorithms, but only reduced this discrepancy
+between the posterior median $R_0$ estimates slightly. This confirms that recent advances improving
+the parameter space coverage in MCMC sampling algorithms since the use of the rwMH, particularly for
+high dimensional models such as integrated stock assessments, can have highest posterior density
+implications. Despite this minor difference, the uncertainty associated with both the NUTS and
+rwMH approaches largely overlap (Figures~\ref{fig:biomass-base-alternative-7-rwmh-sens}
+and~\ref{fig:status-base-alternative-7-rwmh-sens}).
 %Recruitment estimates for the terminal year are slightly increased when using the adnuts method
 %(Figures~\ref{fig:recruit-base-alternative-6-adnuts-sens}--\ref{fig:recruit-devs-base-alternative-6-adnuts-sens}).
-Figures~\ref{fig:spawning-biomass-adnuts}--\ref{fig:mcmc-survey-fit-adnuts} and Tables \ref{tab:biomass-adnuts}--
-\ref{tab:risk-year-2-adnuts} show the Executive-Summary style results.
+%Figures~\ref{fig:spawning-biomass-adnuts}--\ref{fig:mcmc-survey-fit-adnuts} and Tables \ref{tab:biomass-adnuts}--
+%\ref{tab:risk-year-2-adnuts} show the Executive-Summary style results.
 
-**Diagnostics for the NUTS run are comparable to the base model for all key posteriors
-(Figures~\ref{fig:main-mcmc-diag-m-r0}--\ref{fig:main-mcmc-diag-dm} and
-Figures~\ref{fig:mcmc-diag-m-r0-adnuts}--\ref{fig:mcmc-diag-dm-adnuts}). There is only a slight difference
-in the posterior density plots (bottom-right panels) for $\log R_0$. Parameter autocorrelation remains low
-for the NUTS run (bottom-left panels). The traceplots (top-left panels) appear denser for the
-NUTS run because the number of samples from the posterior is 7,850 compared to
-2,000 for the base model.
-
-**The summary histograms showing autocorrelation, effective sample size, Geweke statistic, and
-Heidelberger and Walsh statistic are shown in Figure~\ref{fig:main-mcmc-diag-hists} for the
-base model and Figure~\ref{fig:mcmc-diag-hists-adnuts} for the NUTS run. The NUTS run
-has higher effective sample sizes, due to the near four-fold increase in posterior samples, which will
-improve posterior density estimates. Other diagnostics are comparable between the two models.
-
-**Correlations among parameters (Figures~\ref{fig:main-mcmc-pairs}--\ref{fig:main-mcmc-pairs-recruit-devs}
-and \ref{fig:mcmc-pairs-adnuts}--\ref{fig:mcmc-pairs-recruit-devs-adnuts}) are very similar, with the
+Diagnostics for the rwMH run are generally adequate for all key posteriors given the effective
+sample sizes produced and run-time constraints
+(Figures~\ref{fig:mcmc-diag-m-r0-rwmh}--\ref{fig:mcmc-diag-hists-rwmh}). Parameter autocorrelation remains low
+for the rwMH run (bottom-left panels). The rwMH run resulted in 2,041 posterior samples, with
+parameter-specific effective sample sizes at or below that maximum. For reference, the base model NUTS
+run resulted in 8,250 posterior samples and, in particular, improved the smoothness of the estimated
+posterior distribution (Figure~\ref{fig:main-mcmc-diag-m-r0}) compared to the rwMH sensitivity
+(Figure~\ref{fig:mcmc-diag-m-r0-rwmh}). The summary histograms showing autocorrelation, effective sample
+size, Geweke statistic, and Heidelberger and Walsh statistic are shown in 
+Figure~\ref{fig:main-mcmc-diag-hists} for the base model and Figure~\ref{fig:mcmc-diag-hists-rwmh}
+for the rwMH run. Correlations among parameters (Figures~\ref{fig:main-mcmc-pairs}--\ref{fig:main-mcmc-pairs-recruit-devs}
+and \ref{fig:mcmc-pairs-rwmh}--\ref{fig:mcmc-pairs-recruit-devs-rwmh}) are very similar, with the
 main difference being the density of the scatterplots due to the number of posterior
 samples.
 

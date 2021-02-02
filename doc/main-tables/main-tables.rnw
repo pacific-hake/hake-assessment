@@ -486,7 +486,7 @@ make.reference.points.table(base.model,
                                                "--",
                                               end.yr - 1,
                                               " averages for mean weight-at-age and baseline selectivity
-                                              (1966--1990; prior to time-varying deviations."),
+                                              (1966--1990; prior to time-varying deviations.)"),
                             xlabel = "tab:main-reference-points",
                             font.size = 10,
                             space.size = 11)
