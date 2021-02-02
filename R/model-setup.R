@@ -189,10 +189,26 @@ sens.model.names.4 <- c("Phi t.v. selectivity (0.21)",
                         "Phi t.v. selectivity (2.10)")
 
 ## -----------------------------------------------------------------------------
-## Sensitivity models group 5  - Different weight-at-age schemes (first group)
+## Sensitivity models group 5  - 
 ## -----------------------------------------------------------------------------
 sens.model.dir.names.5 <- c("2021.00.30_noCohort_ageError")
 sens.model.names.5 <- c("Time-invariant ageing error vector")
+
+## -----------------------------------------------------------------------------
+## Sensitivity models group 6  - 
+## -----------------------------------------------------------------------------
+sens.model.dir.names.6 <- c("2021.00.43_maxSel_Age5",
+                            "2021.00.44_maxSel_Age7",
+                            "2021.00.45_maxSel_Age8")
+sens.model.names.6 <- c("Max. age selectivity 5",
+                        "Max. age selectivity 7",
+                        "Max. age selectivity 8")
+
+## -----------------------------------------------------------------------------
+## Sensitivity models group 7  - MH mcmc 
+## -----------------------------------------------------------------------------
+sens.model.dir.names.7 <- c("2021.00.40_MH_mcmc")
+sens.model.names.7 <- c("RW Metrop. Hast.")
 
 model_list <- c(base.model.dir.name,
                 unlist(bridge.model.dir.names.1),
@@ -200,7 +216,9 @@ model_list <- c(base.model.dir.name,
                 unlist(sens.model.dir.names.1),
                 unlist(sens.model.dir.names.2),
                 unlist(sens.model.dir.names.4),
-                unlist(sens.model.dir.names.5))
+                unlist(sens.model.dir.names.5),
+                unlist(sens.model.dir.names.6),
+                unlist(sens.model.dir.names.7))
 model_list <- model_list[! model_list %in% last.yr.base.model.dir.name]
 model_list <- as.list(unique(model_list))
 
@@ -233,6 +251,8 @@ load_models_rds <- function(){
   sens.models.2      <<- load_models(sens.model.dir.names.2, TRUE)
   sens.models.4      <<- load_models(sens.model.dir.names.4)
   sens.models.5      <<- load_models(sens.model.dir.names.5)
+  sens.models.6      <<- load_models(sens.model.dir.names.6)
+  sens.models.7      <<- load_models(sens.model.dir.names.7)
   ## Lists of sensitivities for the MLE parameters, derived quantiles,
   ##  and reference points table
   ## First set includes base and sensitivity group 1 and 2
@@ -246,8 +266,8 @@ load_models_rds <- function(){
   sens.model.names.2.for.table <<- c("Base model", sens.model.names.4)
 
   ## Third set
-  sens.models.3.for.table <<- c(list(base.model), list(sens.models.5))
-  sens.model.names.3.for.table <<- c("Base model", sens.model.names.5)
+  sens.models.3.for.table <<- c(list(base.model), list(sens.models.5),list(sens.models.6))
+  sens.model.names.3.for.table <<- c("Base model", sens.model.names.5,sens.model.names.6)
 
   ## Fourth set
   # sens.models.4.for.table <<- c(list(base.model), list(sens.models.6))
