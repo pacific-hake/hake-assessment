@@ -683,4 +683,31 @@ make.mcmc.depletion.plot <- function(model,         ## model is a model with an 
          lwd = 2,
          bty = 'n')
   par <- oldpar
+  # To plot histograms shown in #747, put a browser here and these:
+  # breaks_vec <- seq(-1.5, 1.5, by=0.05)
+  # diff <- dat_sub[ , "Bratio_2022"] - dat_sub[ , "Bratio_2021"]
+  #  # Difference in the medians (what you see on Figure i):
+  # diff_med <- median(dat_sub[ , "Bratio_2022"]) - median(dat_sub[ ,
+  #                                                               "Bratio_2021"])
+  # median_change <- median(diff)   # median of the changes
+  # hist(diff[increase],
+  #     col=palepink, freq=TRUE, breaks=breaks_vec, main =
+  #        "Relative spawning biomass in 2022 minus that in 2021",
+  #        xlab="Change", xlim = c(-1.5, 1.5), ylim = c(0, 280))
+  #hist(diff[!increase],
+  #     col=paleblue, freq=TRUE, add=TRUE, breaks=breaks_vec)
+  #abline(v = median_change, col = "magenta")
+  #  # abline(v = diff_med, col = "magenta", lwd = 2) # doesn't really help
+  #text(-1.65, 250, paste0("Median 2022 - median 2021 =", f(diff_med, 3)), pos=4)
+  #text(-1.65, 220, paste0("Median change =", f(median_change, 3)), pos=4, col="magenta")
+  #legend('topleft',
+  #       legend = c(paste0(sum(increase),
+  #                         " MCMC increasing samples"),
+  #                  paste0(sum(!increase),
+  #                         " MCMC decreases samples")),
+  #       col = c(palepink,
+  #               paleblue),
+  #       lwd = 2,
+  #       bty = 'n')
+  # # sum(diff > median_change & diff < 0)  # 13.4% of samples are in here
 }
