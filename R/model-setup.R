@@ -61,7 +61,7 @@ surv.yrs <- c(1995,
               2017,
               2019)
 
-# tick marks for time series plot
+# tick marks for time series plot (not catch time series though)
 big.ticks <- seq(1970, end.yr + 4, 5)
 little.ticks <- start.yr:max(big.ticks)
 

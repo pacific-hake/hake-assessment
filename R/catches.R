@@ -376,6 +376,8 @@ make.catches.plot <- function(ct,
   par(las = 1,
       mar = mar,
       cex.axis = 0.9)
+
+  # Gives x-values for tick marks (since years not in ct)
   tmp <- barplot(t(as.matrix(ct)) / 1000,
                  beside = FALSE,
                  names = ct$year,
@@ -387,7 +389,7 @@ make.catches.plot <- function(ct,
                  xaxs = "i",
                  mgp = c(2.2, 1, 0),
                  ylim = c(0, 475))
-  axis(1, at = tmp, labels = yrs, line = -0.12)
+
   grid(NA, NULL, lty = 1, lwd = 1)
   mtext("Catch (thousand t)",
         side = 2,
@@ -405,6 +407,13 @@ make.catches.plot <- function(ct,
           xaxs = "i",
           add = TRUE,
           mgp = c(2.2, 1, 0))
+  # Big tick every five years:
+  axis(1,
+       at = tmp[(yrs %% 5) == 0],
+       lab = yrs[(yrs %% 5) == 0])
+  axis(1,
+       at = tmp,
+       lab = rep("",length(tmp)), tcl = -0.3)
 
   legend(x = 0, y = leg.y.loc,
          c("Canada Foreign",
