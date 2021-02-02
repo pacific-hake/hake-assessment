@@ -281,7 +281,11 @@ diagnostic.model <- c("base.model",
                       "sens.models.4[[2]]",
                       "sens.models.4[[3]]",
                       "sens.models.4[[4]]",
-                      "sens.models.5"     # only one element
+                      "sens.models.5",     # only one element
+                      "sens.models.6[[1]]",
+                      "sens.models.6[[2]]",
+                      "sens.models.6[[3]]",
+                      "sens.models.7"       # only one element
                       )
 @
 
