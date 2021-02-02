@@ -145,7 +145,7 @@ bridge.model.dir.names.2 <- c("2021.00.00_update_pre2020_data",
 bridge.model.names.2 <- c("Update pre-2020 data",
                           "Add 2020 catch",
                           "Add 2020 weight-at-age information",
-                          "Add 2020 fishery comps and weights")
+                          "Add 2020 fishery comps")
 bridge.model.end.yr.2 <- end.yr - c(0, 0, 0, 0)
 
 ## -----------------------------------------------------------------------------
