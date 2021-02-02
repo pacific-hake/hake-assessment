@@ -1561,6 +1561,16 @@ the highest of the $\Phi$ sensitivity models (Figure~\ref{fig:main-recruit-devs-
 and provides the worst fit of the most recent survey biomass estimate
 (Figure~\ref{fig:main-index-base-alternative-4}).
 
+The estimated population trends throughout the time series are similar, irrespective of maximum
+selectivity age (Figures~\ref{fig:main-biomass-base-alternative-6}-\ref{fig:main-status-base-alternative-6}).
+The largest differences are prior to the mid-1980s when age-composition data was sparse. The
+maximum selectivity at age-5 model resulted in lower estimates of recent stock status compared
+to the other model runs. The choice of age-6 as the maximum was retained in the base model as it
+was more flexible than the choice of age-5. While runs with higher maximum age produced similar
+overall stock dynamics, but at the cost of a considerable increase in the number of total model
+parameters. All three alternative runs had reduced performance in terms of MCMC diagnostics when
+compared with the base model.
+
 % Ageing Error
 % Manual 2021 done - CG
 The impact of assuming a time-invariant ageing error vector instead of a

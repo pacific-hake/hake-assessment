@@ -1112,6 +1112,43 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
+<<main-biomass-base-alternative-6, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+make.comparison.plot(c(list(base.model), sens.models.6),
+                     subplots = 2,
+                     model.names = c(base.model.name, sens.model.names.6),
+                     legend = TRUE,
+                     end.yr = end.yr)
+@
+\end{center}
+\caption{MCMC estimates of spawning biomass for the base
+  model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5)
+  or increased (age-7 and age-8) relative to the base model (age-6).}
+\label{fig:main-biomass-base-alternative-6}
+%% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{figure}[H]%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+<<main-status-base-alternative-6, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+make.comparison.plot(c(list(base.model), sens.models.6),
+                     subplots = 4,
+                     model.names = c(base.model.name, sens.model.names.6),
+                     legend = TRUE,
+                     end.yr = end.yr)
+@
+\end{center}
+%\vspace{0mm}
+\caption{MCMC estimates of stock status for the base
+  model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5)
+  or increased (age-7 and age-8) relative to the base model (age-6).}
+\label{fig:main-status-base-alternative-6}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
 <<main-biomass-base-alternative-5, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
 make.comparison.plot(c(list(base.model), list(sens.models.5)),
                      subplots = 2,
