@@ -411,40 +411,44 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
   par <- oldpar
 }
 
+#' Make the retrospective recruitment deviations plot (AKA 'squid plot')
+#'
+#' @param model Model with retrospectives
+#' @param subplot 1 = Recruitment deviations, 2 = Rec dev strength relative to most recent estimate
+#' @param cohorts Vector of cohort years to plot (for labels)
+#' @param plot_mcmc If `TRUE` plot the MCMC version based on medians. If `FALSE` plot MLE version.
 #' @param getdevs A logical value specifying if the plot should be of
-#' recruitment deviations, which is the default. If \code{FALSE}, then
+#' recruitment deviations, which is the default. If `FALSE`, then
 #' the squid plot will be made using absolute recruitment instead of
 #' deviations.
-make.squid.plot <- function(models,      ## A list of models to compare (typically base and its retrospectives)
-                            subplot = 1, ## 1 = Recruitment devs, 2 = Rec dev strength relative to most recent estimate
+#'
+#' @export
+make_squid_plot <- function(model,
+                            subplot = 1,
                             cohorts,
-                            getdevs = TRUE){    ## Vector of years to plot the cohorts for
-  ## Plot the retrospective recruitment deviations AKA "squid" plot to outline
-  ##  deviation estimates changing for cohorts between assessment years
+                            plot_mcmc = TRUE,
+                            getdevs = TRUE){
 
   oldpar <- par()
-  compare.summary <- SSsummarize(models, SpawnOutputUnits="biomass")
-  neg.yr.vec <- seq(0, -(length(models) - 1), -1)
-  endyrvec <- compare.summary$endyrs + 1 + neg.yr.vec
-  if(subplot == 1){
-    relative = FALSE
-  }else{
-    relative = TRUE
-  }
-  plot <- SSplotRetroRecruits(compare.summary,
+  on.exit(par(oldpar))
+  mdl_list <- list(model)
+  retro_list <- map(model$retros, ~{.x})
+  models <- c(mdl_list, retro_list)
+  compare_summary <- SSsummarize(models, SpawnOutputUnits = "biomass")
+  neg_yr_vec <- seq(0, -(length(models) - 1), -1)
+  endyrvec <- compare_summary$endyrs + 1 + neg_yr_vec
+  SSplotRetroRecruits(compare_summary,
                       endyrvec = endyrvec,
                       cohorts = cohorts,
                       ylim = NULL,
                       uncertainty = FALSE,
-                      main="",
-                      mcmcVec = FALSE,
+                      main = "",
+                      mcmcVec = plot_mcmc,
                       devs = getdevs,
-                      relative = relative,
+                      relative = ifelse(subplot == 1, FALSE, TRUE),
                       labelyears = TRUE,
                       legend = FALSE,
                       leg.ncols = 4)
-  par <- oldpar
-  return(plot)
 }
 
 #' Plot a comparison of multiple models

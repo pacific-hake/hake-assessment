@@ -129,11 +129,7 @@ Request 1 -- squid plot for base-case model with and without Age-1 index.
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 # plot.retro.yrs <- retrospective_yrs
 retro.cohorts <- c(2014, 2010, 2007, 2009)     # Selecting three years as examples
-retro.list <- list(base.model)
-for(i in retrospective_yrs){
-  retro.list[[i + 1]] <- base.model$retros[[i]]
-}
-make.squid.plot(retro.list,
+make_squid_plot(base.model,
                 subplot = 1,
                 cohorts = retro.cohorts)
 @
@@ -150,11 +146,7 @@ make.squid.plot(retro.list,
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #plot.retro.yrs <- retro.yrs
 retro.cohorts <- c(2014, 2010, 2007, 2009)     # Selecting three years as examples
-retro.list <- list(sens.models.2[[1]])
-for(i in seq_along(sens.models.2[[1]]$retros)){
-  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
-}
-make.squid.plot(retro.list,
+make_squid_plot(base.model,
                 subplot = 1,
                 cohorts = retro.cohorts)
 par <- oldpar
@@ -171,12 +163,8 @@ par <- oldpar
 <<squid.base, fig.height=3.5>>=
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #plot.retro.yrs <- retro.yrs
-retro.cohorts <- 1999:(end.yr-2)
-retro.list <- list(base.model)
-for(i in retrospective_yrs){
-  retro.list[[i + 1]] <- base.model$retros[[i]]
-}
-make.squid.plot(retro.list,
+retro.cohorts <- (end.yr - 10):(end.yr - 2)
+make_squid_plot(base.model,
                 subplot = 1,
                 cohorts = retro.cohorts)
 par <- oldpar
@@ -193,12 +181,8 @@ par <- oldpar
 <<squid.age1, fig.height=3.5>>=
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #plot.retro.yrs <- retro.yrs
-retro.cohorts <- 1999:(end.yr-2)
-retro.list <- list(sens.models.2[[1]])
-for(i in seq_along(sens.models.2[[1]]$retros)){
-  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
-}
-make.squid.plot(retro.list,
+retro.cohorts <- (end.yr - 10):(end.yr - 2)
+make_squid_plot(base.model,
                 subplot = 1,
                 cohorts = retro.cohorts)
 par <- oldpar
