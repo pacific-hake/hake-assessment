@@ -1,6 +1,6 @@
 \newpage
 
-\chapter{Sensitivity run that includes the age-1 survey -- MCMC results}
+\chapter{Sensitivity run that includes the age-1 survey}
 \label{chap:age1-survey}
 
 This appendix contains Bayesian MCMC results for the model run in which the age-1
@@ -13,8 +13,7 @@ compared to the base model, and the inclusion of the age-1 index was deemed
 important enough to warrant further consideration, especially in the context of characterizing
 forecast uncertainty. Nonetheless, this appendix is only meant to provide supplemental information,
 and should not be viewed as a viable alternative to the base model.
-The figures and tables show results from this sensitivity run (though
-note that some plots necessarily show MLE results).
+The figures and tables show results from this sensitivity run.
 
 The estimated size of the 2010 recruitment using only data when that
 cohort is age-2 is closer to the final estimated size when using the age-1 index
@@ -59,78 +58,78 @@ when including the age-1 index.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
-<<retrospective-recruitment-age1, fig.height=6, fig.width=8>>=
-## Number of retro years for the plot. Assumes you've run them.
-retro.cohorts <- (end.yr - 10):(end.yr - 2)
-make_squid_plot(sens.models.2[[1]],
-                subplot = 1,
-                cohorts = retro.cohorts)
-@
-\end{center}
-%\vspace{0mm}
-\caption{Retrospective analysis of recruitment deviations from MLE models over the last
-  \Sexpr{length(plot.retro.yrs)+1} years. Recruitment deviations are
-  the log-scale differences between recruitment estimated by the model
-  and expected recruitment from the spawner-recruit relationship.
-  Lines represent estimated recruitment deviations for cohorts from
-  \Sexpr{min(retro.cohorts)} to \Sexpr{max(retro.cohorts)}, with cohort
-  birth year marked at the right of each color-coded line. Values are
-  estimated by models using data available only up to the year in which
-  each cohort was a given age.}
-\label{fig:retrospective-recruitment-age1}
-\end{figure}
+%\begin{figure}[H]
+%\begin{center}
+%<<retrospective-recruitment-age1, fig.height=6, fig.width=8>>=
+%## Number of retro years for the plot. Assumes you've run them.
+%retro.cohorts <- (end.yr - 10):(end.yr - 2)
+%make_squid_plot(sens.models.2[[1]],
+%                subplot = 1,
+%                cohorts = retro.cohorts)
+%@
+%\end{center}
+%%\vspace{0mm}
+%\caption{Retrospective analysis of recruitment deviations from MLE models over the last
+%  \Sexpr{length(plot.retro.yrs)+1} years. Recruitment deviations are
+%  the log-scale differences between recruitment estimated by the model
+%  and expected recruitment from the spawner-recruit relationship.
+%  Lines represent estimated recruitment deviations for cohorts from
+%  \Sexpr{min(retro.cohorts)} to \Sexpr{max(retro.cohorts)}, with cohort
+%  birth year marked at the right of each color-coded line. Values are
+%  estimated by models using data available only up to the year in which
+%  each cohort was a given age.}
+%\label{fig:retrospective-recruitment-age1}
+%\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\vspace{-70mm}
-\begin{figure}[H]
-\begin{center}
-<<retro.density.2008, fig.height=4, fig.width=7>>=
-oldpar <- par(no.readonly=TRUE)
-par(mar = c(4.1, 4.1, 1.1, 1.1), oma = c(0, 0, 0, 0))
-layout(matrix(c(1, 1), nrow = 2, ncol = 1, byrow = TRUE))
-retro.list <- list(base.model)
-for(i in 1:10){
-  retro.list[[i + 1]] <- base.model$retros[[i]]
-}
-make.comparison.plot(
-  retro.list,
-  subplots = 16,
-  model.names = c(retro.model.names, "-6 years", "-7 years", "-8 years",
-                  "-9 years", "-10 years"),
-  legendloc = "topright",
-  densitynames = c("Recr_2008"),
-  densityxlab  = "Recruitment in 2008 (billions)",
-  indexPlotEach = TRUE,
-  end.yr = end.yr)
-## Now for age-1 index sensitivity
-retro.list <- list(sens.models.2[[1]])
-for(i in 1:10){
-  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
-}
-make.comparison.plot(
-  retro.list,
-  subplots = 16,
-  model.names = c(retro.model.names.age1, "-6 years", "-7 years", "-8 years",
-                  "-9 years", "-10 years"),
-  legendloc = "topright",
-  densitynames = c("Recr_2008"),
-  densityxlab  = "Recruitment in 2008 (billions)",
-  indexPlotEach = TRUE,
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\caption{The retrospective MLEs and associated uncertainties of the
-  recruitment in 2008 for the base model (top) and age-1 index sensitivity run (bottom).
-  When running the model with all data (the top run in each key) this cohort is observed in 2019 at
-  age-11; so taking off 9 years of data, for example, means that cohort is only
-  observed up to age-2.}
-\label{fig:retrospective-2008-base-age1}
-\end{figure}
+%\vspace{-70mm}
+%\begin{figure}[H]
+%\begin{center}
+%<<retro.density.2008, fig.height=4, fig.width=7>>=
+%oldpar <- par(no.readonly=TRUE)
+%par(mar = c(4.1, 4.1, 1.1, 1.1), oma = c(0, 0, 0, 0))
+%layout(matrix(c(1, 1), nrow = 2, ncol = 1, byrow = TRUE))
+%retro.list <- list(base.model)
+%for(i in 1:10){
+%  retro.list[[i + 1]] <- base.model$retros[[i]]
+%}
+%make.comparison.plot(
+%  retro.list,
+%  subplots = 16,
+%  model.names = c(retro.model.names, "-6 years", "-7 years", "-8 years",
+%                  "-9 years", "-10 years"),
+%  legendloc = "topright",
+%  densitynames = c("Recr_2008"),
+%  densityxlab  = "Recruitment in 2008 (billions)",
+%  indexPlotEach = TRUE,
+%  end.yr = end.yr)
+%## Now for age-1 index sensitivity
+%retro.list <- list(sens.models.2[[1]])
+%for(i in 1:10){
+%  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
+%}
+%make.comparison.plot(
+%  retro.list,
+%  subplots = 16,
+%  model.names = c(retro.model.names.age1, "-6 years", "-7 years", "-8 years",
+%                  "-9 years", "-10 years"),
+%  legendloc = "topright",
+%  densitynames = c("Recr_2008"),
+%  densityxlab  = "Recruitment in 2008 (billions)",
+%  indexPlotEach = TRUE,
+%  end.yr = end.yr)
+%par <- oldpar
+%@
+%\end{center}
+%\caption{The retrospective MLEs and associated uncertainties of the
+%  recruitment in 2008 for the base model (top) and age-1 index sensitivity run (bottom).
+%  When running the model with all data (the top run in each key) this cohort is observed in 2019 at
+%  age-11; so taking off 9 years of data, for example, means that cohort is only
+%  observed up to age-2.}
+%\label{fig:retrospective-2008-base-age1}
+%\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
