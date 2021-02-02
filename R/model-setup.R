@@ -189,13 +189,13 @@ sens.model.names.4 <- c("Phi t.v. selectivity (0.21)",
                         "Phi t.v. selectivity (2.10)")
 
 ## -----------------------------------------------------------------------------
-## Sensitivity models group 5  - 
+## Sensitivity models group 5  -
 ## -----------------------------------------------------------------------------
 sens.model.dir.names.5 <- c("2021.00.30_noCohort_ageError")
 sens.model.names.5 <- c("Time-invariant ageing error vector")
 
 ## -----------------------------------------------------------------------------
-## Sensitivity models group 6  - 
+## Sensitivity models group 6  -
 ## -----------------------------------------------------------------------------
 sens.model.dir.names.6 <- c("2021.00.43_maxSel_Age5",
                             "2021.00.44_maxSel_Age7",
@@ -205,7 +205,7 @@ sens.model.names.6 <- c("Max. age selectivity 5",
                         "Max. age selectivity 8")
 
 ## -----------------------------------------------------------------------------
-## Sensitivity models group 7  - MH mcmc 
+## Sensitivity models group 7  - MH mcmc
 ## -----------------------------------------------------------------------------
 sens.model.dir.names.7 <- c("2021.00.40_MH_mcmc")
 sens.model.names.7 <- c("RW Metrop. Hast.")
@@ -266,7 +266,7 @@ load_models_rds <- function(){
   sens.model.names.2.for.table <<- c("Base model", sens.model.names.4)
 
   ## Third set
-  sens.models.3.for.table <<- c(list(base.model), sens.models.5, sens.models.6)
+  sens.models.3.for.table <<- c(list(base.model), list(sens.models.5), sens.models.6)
   sens.model.names.3.for.table <<- c("Base model", sens.model.names.5, sens.model.names.6)
 
   ## Fourth set
