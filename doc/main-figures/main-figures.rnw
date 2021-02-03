@@ -211,7 +211,7 @@ make.survey.age1.plot(age.1.index,
 
 \begin{figure}[H]
 \begin{center}
-<<maturity-ogive-figure, fig.height=7.5, fig.width=7.5, is.fig = TRUE>>=
+<<maturity-ogive-figure, fig.height=7.5, fig.width=7.5, is.fig = TRUE, alt.text = "This figure shows ******">>=
 maturity.ogive.figure(model = base.model, useyears = 1966)
 @
 \end{center}
@@ -233,7 +233,7 @@ maturity.ogive.figure(model = base.model, useyears = 1966)
 \begin{center}
 %\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 %\includegraphics[width=6.5in, height=8.5in]{main-figures/EWAforDoc}
-<<main-weight-at-age, fig.height=9, fig.width=8, is.fig = TRUE>>=
+<<main-weight-at-age, fig.height=9, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 weight.at.age.heatmap(base.model,
                       proj.line.yr = base.model$endyr,
                       extrap.mask = weight_age_extrapolation_mask,
@@ -258,7 +258,7 @@ weight.at.age.heatmap(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-weight-at-age-numbers, fig.height=9, fig.width=8, is.fig = TRUE>>=
+<<main-weight-at-age-numbers, fig.height=9, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 weight.at.age.heatmap(base.model,
                       proj.line.yr = base.model$endyr,
                       extrap.mask = weight_age_extrapolation_mask,
@@ -279,7 +279,7 @@ weight.at.age.heatmap(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-bridge-5-panel-1, fig.height=8, fig.width=8, is.fig = TRUE>>=
+<<main-bridge-5-panel-1, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 oldpar <- par(no.readonly=TRUE)
 par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
 layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
@@ -334,7 +334,7 @@ par <- oldpar
 \caption{Bridging models showing the \Sexpr{last.assess.yr} base model
   and the sequential influence of updating to the latest version of Stock Synthesis
   and changing the estimation of the Dirichlet Multinomial parameters to the final
-  estimation phase.  Moving the data weighting parameters to the final phase more 
+  estimation phase.  Moving the data weighting parameters to the final phase more
   accurately reflects the timing of when other methods that manually tune data weights
   occurs. Panels are spawning biomass
   (upper panel), relative spawning biomass (spawning biomass in each year
@@ -349,7 +349,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-bridge-5-panel-2, fig.height=8, fig.width=8, is.fig = TRUE>>=
+<<main-bridge-5-panel-2, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 oldpar <- par(no.readonly=TRUE)
 par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
 layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
@@ -476,7 +476,7 @@ make_age_comp_pearson_plot(base.model, subplot = 2, alpha = 0.7)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-prior-posterior, fig.height=6, fig.width=8, is.fig = TRUE>>=
+<<main-prior-posterior, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
                                               key.posteriors,
                                               hist_breaks = c(50, 50, 50, 50, 500, 500),
@@ -590,7 +590,7 @@ make.biomass.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<main-relative-spawning-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+<<main-relative-spawning-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.depletion.plot(base.model,
                     start.yr = start.yr,
                     end.yr = end.yr,
@@ -629,7 +629,7 @@ make.recruitment.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<main-recruitment-devs, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+<<main-recruitment-devs, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.recruitment.dev.plot(base.model,
                           end.yr = end.yr)
 
@@ -767,7 +767,7 @@ make.mcmc.vs.mle.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-projected-catch-density, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+<<main-projected-catch-density, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.forecast.catch.posterior.plot(base.model,
                                    fore.yr = end.yr)
 @
@@ -781,7 +781,7 @@ make.forecast.catch.posterior.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<main-forecast-depletion-comparison-plot, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+<<main-forecast-depletion-comparison-plot, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 ## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those forecast models which will be plotted against each other
 models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
@@ -848,7 +848,7 @@ make.forecast.risk.comparison.plot(base.model,
 %% new (2017-02-08) commands to run code to build figure dynamically
 \begin{figure}[H]
 \begin{center}
-<<main-age-comp-forecast, fig.height=4.5, fig.width=6.5, is.fig = TRUE>>=
+<<main-age-comp-forecast, fig.height=4.5, fig.width=6.5, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.age.comp.forecast.plot(base.model)
 @
 \end{center}
@@ -869,7 +869,7 @@ make.age.comp.forecast.plot(base.model)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-biomass-base-alternative-1, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+<<main-biomass-base-alternative-1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.comparison.plot(c(list(base.model), sens.models.1),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.1),
@@ -889,7 +889,7 @@ make.comparison.plot(c(list(base.model), sens.models.1),
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<main-status-base-alternative-1, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+<<main-status-base-alternative-1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.comparison.plot(c(list(base.model), sens.models.1),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.1),
@@ -910,7 +910,7 @@ make.comparison.plot(c(list(base.model), sens.models.1),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-biomass-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+<<main-biomass-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.comparison.plot(c(list(base.model), sens.models.2),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.2),
@@ -928,7 +928,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<main-status-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+<<main-status-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.comparison.plot(c(list(base.model), sens.models.2),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.2),
@@ -948,7 +948,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-index-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+<<main-index-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.comparison.plot(c(list(base.model), sens.models.2),
                      subplots = 14,
                      model.names = c(base.model.name, sens.model.names.2),
@@ -967,7 +967,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<main-recruit-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+<<main-recruit-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.comparison.plot(c(list(base.model), sens.models.2),
                      subplots = 12,
                      model.names = c(base.model.name, sens.model.names.2),
@@ -986,7 +986,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-biomass-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+<<main-biomass-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.comparison.plot(c(list(base.model), sens.models.4),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.4),
@@ -1003,7 +1003,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<main-status-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+<<main-status-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.comparison.plot(c(list(base.model), sens.models.4),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.4),
@@ -1024,7 +1024,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-recruitment-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+<<main-recruitment-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.comparison.plot(c(list(base.model), sens.models.4),
                      legend = FALSE,
                      subplots = 10,
@@ -1044,7 +1044,7 @@ box()
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<main-recruitment-devs-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+<<main-recruitment-devs-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.comparison.plot(c(list(base.model), sens.models.4),
                      legend = FALSE,
                      subplots = 12,
@@ -1063,7 +1063,7 @@ box()
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-index-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+<<main-index-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.comparison.plot(c(list(base.model), sens.models.4),
                      subplots = 14,
                      model.names = c(base.model.name, sens.model.names.4),
@@ -1084,7 +1084,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 %%%%%%%%%%%%%%%%%%%%%%%
 % \begin{figure}[H]
 % \begin{center}
-% <<main-selectivity-illustration, fig.height=9, fig.width=8, is.fig = TRUE>>=
+% <<main-selectivity-illustration, fig.height=9, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 % temp <- grep("tvSelect_sig", sapply(sens.models.4, "[[", "path"))[1]
 % make.selectivity.illustration(mod.old = base.model,
 %                               mod.alt = sens.models.4[[temp]],
@@ -1111,7 +1111,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-biomass-base-alternative-6, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+<<main-biomass-base-alternative-6, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.comparison.plot(c(list(base.model), sens.models.6),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.6),
@@ -1129,7 +1129,7 @@ make.comparison.plot(c(list(base.model), sens.models.6),
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]%%%%%%%%%%%%%%%%%%%%%%%
 \begin{center}
-<<main-status-base-alternative-6, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+<<main-status-base-alternative-6, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.comparison.plot(c(list(base.model), sens.models.6),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.6),
@@ -1148,7 +1148,7 @@ make.comparison.plot(c(list(base.model), sens.models.6),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-biomass-base-alternative-5, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+<<main-biomass-base-alternative-5, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.comparison.plot(c(list(base.model), list(sens.models.5)),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.5),
@@ -1166,7 +1166,7 @@ make.comparison.plot(c(list(base.model), list(sens.models.5)),
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]%%%%%%%%%%%%%%%%%%%%%%%
 \begin{center}
-<<main-status-base-alternative-5, fig.height=4.5, fig.width=8, is.fig = TRUE>>=
+<<main-status-base-alternative-5, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.comparison.plot(c(list(base.model), list(sens.models.5)),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.5),
@@ -1185,7 +1185,7 @@ make.comparison.plot(c(list(base.model), list(sens.models.5)),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-biomass-recruitment-retrospective, fig.height=8, fig.width=8, is.fig = TRUE>>=
+<<main-biomass-recruitment-retrospective, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 oldpar <- par()
 par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
 layout(matrix(c(1, 2), nrow = 2, ncol = 1, byrow = TRUE))
@@ -1216,7 +1216,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-retrospective-recruitment, fig.height=6, fig.width=8, is.fig = TRUE>>=
+<<main-retrospective-recruitment, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 retro_cohorts <- (end.yr - 11):(end.yr - 2)
 make_squid_plot(base.model,
                 subplot = 1,
@@ -1241,7 +1241,7 @@ make_squid_plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-relative-retrospective-recruitment, fig.height=6, fig.width=8, is.fig = TRUE>>=
+<<main-relative-retrospective-recruitment, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make_squid_plot(base.model,
                 subplot = 2,
                 cohorts = retro_cohorts,
@@ -1259,7 +1259,7 @@ make_squid_plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<historical-assessments, fig.height=4.5, fig.width=6.5, is.fig = TRUE>>=
+<<historical-assessments, fig.height=4.5, fig.width=6.5, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.assessment.history.plot(base.model,
                              assessment.history)
 @
