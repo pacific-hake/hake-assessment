@@ -434,7 +434,8 @@ make_squid_plot <- function(model,
   mdl_list <- list(model)
   retro_list <- map(model$retros, ~{.x})
   models <- c(mdl_list, retro_list)
-  compare_summary <- SSsummarize(models, SpawnOutputUnits = "biomass")
+  compare_summary <- SSsummarize(models, SpawnOutputUnits = "biomass",
+    verbose = FALSE)
   neg_yr_vec <- seq(0, -(length(models) - 1), -1)
   endyrvec <- compare_summary$endyrs + 1 + neg_yr_vec
   SSplotRetroRecruits(compare_summary,
