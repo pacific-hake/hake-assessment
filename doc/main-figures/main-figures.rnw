@@ -745,28 +745,6 @@ make.phase.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-mle-vs-mcmc, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the MCMC estimate is slightly higher than the MLE across the entire trajectory">>=
-layout(matrix(c(1, 2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.vs.mle.plot(base.model,
-                      end.yr = end.yr,
-                      subplot = 2)
-make.mcmc.vs.mle.plot(base.model,
-                      end.yr = end.yr,
-                      type = "o",
-                      subplot = 10)
-@
-\end{center}
-\caption{A comparison of maximum likelihood estimates with 95\% confidence intervals determined from asymptotic variance estimates (red)
-  to the posterior distribution with 95\% credibility intervals (black). The posterior median is shown for spawning biomass (upper panel),
-  while the posterior mean is shown for recruitment (lower panel) to be
-  more comparable to the MLE value.}
-\label{fig:main-mle-vs-mcmc}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
 <<main-projected-catch-density, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 make.forecast.catch.posterior.plot(base.model,
                                    fore.yr = end.yr)

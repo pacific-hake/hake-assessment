@@ -279,7 +279,7 @@ variance parameters.
   and time-varying selectivity (as well as other variance terms such as $\sigma_R$) is needed
   for use in operational stock assessments. Input sample sizes for age composition data can
   influence data weighting, further suggesting a comprehensive approach is needed.}
-  
+
 \emph{Most methods that are available to estimate time-varying selectivity specifically require
   subjective choices (e.g., number of years or time blocks to model, the level of variability
   to use for a penalized vector, or the degree of smoothing for a spline). State-space models can
@@ -309,7 +309,7 @@ ${\bf \emph{B}_{40\%}}$ within 2 years.}
 
 \emph{Response -- Members of the JTC are also part of the \fishname\ MSE technical work group.
   Considerable developments have been made over the past year refining the MSE simulation code, as
-  well as working with stakeholders through iterative JMC meetings to better define management 
+  well as working with stakeholders through iterative JMC meetings to better define management
   objectives and performance metrics. Members of the JTC have contributed to an ICES reference point
   report \citep{ICESwkrpChange2021} dedicated to density
   dependence and ecosystem change and a Ocean Frontier Institute workshop on management reference
@@ -319,7 +319,7 @@ ${\bf \emph{B}_{40\%}}$ within 2 years.}
   examined in an MSE.  The JTC anticipates using the MSE to broadly test alternative
   management procedures, including those related to alternative harvest rules and related reference
   points.}
-  
+
 \emph{Preliminary investigations based on estimated no-fishing ("unfished") time series seems to suggest
   that the \fishname\ stock may be more productive than what virgin equilibrium conditions otherwise
   indicate. If this was the case, estimates of relative fishing intensity would be higher than currently
@@ -389,7 +389,7 @@ the Pacific Hake reproductive cycle.}
   summer research cruises as a result of COVID-19. Additionally, no new maturity analyses have been
   conducted this year because, among other things, access to laboratory equipment was
   restricted.}
-  
+
 \emph{Canadian ovaries from surveys have been collected in 2018 and 2019.  These samples
   could be included in future updated maturity analyses. However, logistical considerations
   will need to be worked out regarding sample exchange and histological analysis workload
@@ -534,8 +534,8 @@ The bridging steps can be grouped into three main sets of changes,
 with the majority of the steps being those that are performed routinely.
 The first step updated the Stock Synthesis framework to follow current best practices.
 The second step updated the information available from the fishery.
-The third step 
-%updated the information available from the survey and 
+The third step
+%updated the information available from the survey and
 implemented other changes to the model structure or statistical framework.
 
 Stock Synthesis version \Sexpr{ss.version} includes
@@ -611,9 +611,9 @@ Appendix~\ref{chap:rwmh}.
 
 The {\tt adnuts} R package was used to apply the NUTS algorithm to produce \Sexpr{f(num.mcmc.samples)}
 MCMC samples from the posterior distributions for model parameters and derived
-quantities.  This is near a three-fold increase in samples from 
+quantities.  This is near a three-fold increase in samples from
 \Sexpr{last.assess.yr} assessment \citep{JTC2019}.
- 
+
 
 Stationarity of the posterior distribution for model parameters was
 re-assessed via a suite of standard single-chain and multi-chain diagnostic tests
@@ -623,7 +623,7 @@ The objective function, as
 well as all estimated parameters and derived quantities, showed good mixing
 during sampling, no evidence for lack of convergence, and low autocorrelation
 (results for some key parameters are shown in Figures~\ref{fig:main-mcmc-diag-m-r0}
-,~\ref{fig:main-mcmc-diag-h-extra-sd}, and~\ref{fig:main-mcmc-diag-dm}). 
+,~\ref{fig:main-mcmc-diag-h-extra-sd}, and~\ref{fig:main-mcmc-diag-dm}).
 Correlation-corrected effective sample
 sizes were sufficient to summarize the posterior distributions and neither the
 Geweke nor the Heidelberger and Welch statistics for these parameters exceeded
@@ -673,7 +673,7 @@ of
 
 The base model fit to the
 acoustic survey biomass index (Figure~\ref{fig:main-mcmc-survey-fit})
-remains similar to the \Sexpr{last.assess.yr} base model. 
+remains similar to the \Sexpr{last.assess.yr} base model.
 %The \Sexpr{survey.end.yr} survey biomass estimate resulted in an upward shift
 %in the fit to the \Sexpr{antepenult.survey.year} and \Sexpr{penult.survey.year}
 %survey data points and a lengthening of the stable biomass trend over recent years
@@ -1058,7 +1058,7 @@ start of \Sexpr{end.yr}.
 
 \subsection{Model uncertainty}\label{sec:assessment-model-uncertainty}
  % Manual 2020 done
-**The base assessment model integrates over the substantial uncertainty associated
+The base assessment model integrates over the substantial uncertainty associated
 with several important model parameters including: acoustic survey catchability
 ($q$), the magnitude of the stock (via the $\log R_0$ parameter for equilibrium
 recruitment), productivity of the stock (via the steepness parameter, $h$, of
@@ -1075,19 +1075,13 @@ examples).
 Note that we use the term MLE even though the priors are involved in the likelihood
 calculation and so the more accurate term would be the mode of the posterior density.
 
-**Most key derived
-quantities from the posterior distribution are larger than their respective MLEs
-(e.g., median biomass, recruitment, and relative spawning biomass), however some
-parameter estimates (e.g., steepness and catchability) are
-smaller (Table~\ref{tab:main-parameter-estimates}). Figure~\ref{fig:main-mle-vs-mcmc}
-shows the MLE and Bayesian (from
-MCMC) estimates as well as the skewed uncertainty in the posterior distributions
-for spawning biomass and recruitment for each year. Median estimates of spawning
-biomass and recruitment from the posterior distribution are slightly larger than
-their respective MLEs. The 95\% credibility (from MCMC) and confidence
-(from MLE) intervals overlap considerably, but are by no means identical.
+The medians of the key parameters from the posterior distribution are similar to
+those in last year's base model (Table~\ref{tab:main-parameter-estimates}).
+However, medians of some of the derived quantities do change somewhat; in particular,
+the 2010 and 2016 recruitments increase while the 2014 recruitment decreases,
+**think some numbers are wrong ($R_0$, $B_0$ and exploitation fraction); checking with Chris.
 
-**The \fishname\ stock displays a very high degree of recruitment variability,
+The \fishname\ stock displays a very high degree of recruitment variability,
 perhaps the largest of any west coast groundfish stock, resulting in large and
 rapid biomass changes. This volatility, coupled with a dynamic fishery that
 potentially targets strong cohorts (resulting in time-varying selectivity), and
@@ -1096,32 +1090,29 @@ will in most circumstances continue to result in highly uncertain
 estimates of current stock status and even less-certain projections of the stock
 trajectory.
 
-**Uncertainty measures in the base model underestimate the total uncertainty in
+Uncertainty measures in the base model underestimate the total uncertainty in
 the current stock status and projections because they do not account for
 alternative structural models for hake population dynamics and fishery processes
 (e.g., recruitment, selectivity, or spatial fleet or population structure), the
 effects of alternative data-weighting choices, and the scientific basis for prior
 probability distributions. To address structural uncertainties, the JTC investigated
 a range of alternative models, and we present the key sensitivity analyses along with
-a suite of other informative sensitivity analyses using maximum likelihood estimation
+a suite of other informative sensitivity analyses using full MCMC results
 (Section~\ref{sec:assessment-sensitivity-analyses}).
 
-**We also present two appendices, each highlighting Bayesian MCMC results from models with
-different structural assumptions or analytical choices compared to the base model.
-These include the incorporation
-of the age-1 survey index (Appendix~\ref{chap:age1-survey}), and the use of a new analytical tool
-for conducting efficient Bayesian MCMC sampling, the
-No-U-Turn Sampler (NUTS; \citealt{HoffmanGelman2014}), implemented using the
-{\tt adnuts} R package \citep{Monnahan2018, Monnahan2019} in
-Appendix~\ref{chap:adnuts}. The inclusion of the age-1
+We also present appendices of MCMC results for inclusion of
+of the age-1 survey index (****Appendix~\ref{chap:age1-survey}), and the use of
+the Metropolis Hastings MCMC algorithm for the base model as used in past
+assessments (Appendix~\ref{chap:rwmh}). The inclusion of the age-1
 survey model was chosen because it may improve estimates of recruitment near the end
 of the time series and of age compositions during the forecast period, even though the acoustic
-survey design is not structured specifically for indexing age-1 fish. The model that uses the more efficient
-{\tt adnuts} package for conducting MCMC
-allows comparison with our existing methods, a necessary documented first step
-should {\tt adnuts} be used in future \fishname\ assessments.
+survey design is not structured specifically for indexing age-1 fish. The use of
+the Metropolis Hastings algorithm is for comparison with the new NUTS algorithm,
+to complement the similar comparison conducted last year with the introduction
+of NUTS \citep{JTC2020}.
 
-**The JTC continues to be committed to advancing MSE analyses, by coordinating
+
+The JTC continues to be committed to advancing MSE analyses, by coordinating
 research with the \fishname\ MSE Working Group and other scientists in the region
 engaged in similar research. Incorporating feedback from the
 Working Group and stakeholders will ensure that operating models will be able to
