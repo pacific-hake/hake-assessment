@@ -577,8 +577,7 @@ make_landings_tac_table(ct,
                         end_yr = end.yr - 1,
                         xcaption = "Recent trends in \\fishname\\ landings and
                                      management decisions. Catch targets in 2020 were
-                                     specified unilaterally, due to the lack of an
-                                     agreement on a coast-wide 2020 TAC.",
+                                     specified unilaterally.",
                         xlabel = "tab:es-landings-tac",
                         font_size = 6,
                         space_size = 7)
