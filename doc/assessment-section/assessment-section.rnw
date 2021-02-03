@@ -965,7 +965,7 @@ but consistent with, the base model value of \Sexpr{base.model$sigma_R_in}.
 
 \subsubsub{Exploitation status}
 
-**Median relative fishing intensity is estimated to have been below
+Median relative fishing intensity is estimated to have been below
 the SPR$_{40\%}$ target for all years
 % sort(median.intensity)    % 2017 assessment 1999 was slightly over
 (Figure~\ref{fig:main-fishing-intensity} and
@@ -985,8 +985,8 @@ fraction does not necessarily correspond to fishing intensity because fishing
 intensity more directly accounts for the age-structure of both the population and
 the catch. Median relative fishing intensity is estimated to have declined from
 \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.2015}\%
-in 2015, after which it increased to \Sexpr{median.intensity.2017}\% in 2017 and
-has since stayed relatively constant.
+in 2015, and then it leveled off around 75\% from 2016 to 2019 before dropping to
+\Sexpr{median.intensity.2020}\% in 2020.
 The median exploitation fraction decreased from
 \Sexpr{exploitation.med.2011} in 2011 to recent lows of
 \Sexpr{exploitation.med.2012} in 2012 and
@@ -997,8 +997,8 @@ at \Sexpr{exploitation.med.penult.yr} in \Sexpr{last.data.yr}.
 Although there is a considerable amount of imprecision
 around these recent estimates due to uncertainty in recruitment and spawning
 biomass, the 95\% posterior credibility interval of relative fishing intensity
-was below the SPR management target from 2012 through 2015 (Figure~\ref{fig:main-fishing-intensity}).
-The median estimates
+was below the SPR management target from 2012 through 2015 and again in 2020
+(Figure~\ref{fig:main-fishing-intensity}). The median estimates
 for 2016 through 2019 are below the management target, however the 95\% posterior
 credibility intervals do include the target level.
 
@@ -1010,13 +1010,15 @@ credibility intervals do include the target level.
 
 \subsubsub{Management performance}
 
-**Over the last decade (\Sexpr{end.yr-10}--\Sexpr{end.yr-1}), the mean coast-wide
-utilization rate (i.e., landings/quota) has been
+Over the last decade (\Sexpr{end.yr-10}--\Sexpr{end.yr-1}), the mean coast-wide
+utilization rate (i.e., proportion of catch target removed) has been
 \Sexpr{tot.last.10.years.attainment}\% and catches have been below
 coast-wide targets (Table~\ref{tab:main-landings-tac}). From \Sexpr{end.yr-5} to
 \Sexpr{end.yr-1}, the mean utilization rates differed between the United States
 (\Sexpr{usa.last.5.years.attainment}\%) and Canada
-(\Sexpr{can.last.5.years.attainment}\%). In 2015, the utilization rate for the
+(\Sexpr{can.last.5.years.attainment}\%). However, country-specific
+quotas (or catch targets) in 2020 were specified unilaterally, due to the lack of
+an agreement on a coast-wide 2020 TAC.  In 2015, the utilization rate for the
 fishery was the lowest of the previous decade
 (\Sexpr{tot.2015.attainment}\%) due, in part, to difficulties locating
 aggregations of fish and possibly economic reasons.
@@ -1030,13 +1032,15 @@ declined. In 2016, the utilization rate increased but remained below pre-2015
 levels, despite the total 2016 catch being one of the highest of the preceding years.
 This is in large part due to increasing catch targets as biomass continues to
 increase. The total utilization rate in recent years (2017--2019) has been close to the
-average over the last decade. During the last two years, utilization rates have been stable
-in both the United States (\Sexpr{usa.last.2.years.attainment}\%) and Canada
-(about \Sexpr{can.last.2.years.attainment}\%). Total landings last exceeded the coast-wide quota
-in 2002 when utilization was 112\%.
+average over the last decade, but increased slightly in 2020 
+(\Sexpr{tot.last.year.attainment}\%).
+%During the last two years, utilization rates have been stable
+%in both the United States (\Sexpr{usa.last.2.years.attainment}\%) and Canada
+%(about \Sexpr{can.last.2.years.attainment}\%). 
+Total landings last exceeded the coast-wide quota in 2002 when utilization was 112\%.
 % Manual done 2020, including checking penultimate sentence numbers with table.
 
-**The median relative fishing intensity was below target in all years throughout the time series
+The median relative fishing intensity was below target in all years throughout the time series
 %the 1999 year used to be just above 1 but now estimated to be just below 1
 % \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]} and
 % Manual 2017 done - comment out above line if only one year, include it if
@@ -1045,7 +1049,7 @@ in 2002 when utilization was 112\%.
 (Table~\ref{tab:main-median-posterior} and
 Figures~\ref{fig:main-fishing-intensity} and~\ref{fig:main-phase}).
 The median relative spawning biomass was
-above the $\Bforty$ reference point in all years except 1999 and 2007-2010
+above the $\Bforty$ reference point in all years except 2009-2010
 (Table~\ref{tab:main-median-posterior} and Figures~\ref{fig:main-relative-spawning-biomass} and~\ref{fig:main-phase}).
 % 2017 assessment: all years except 1968, 1998-2000 and 2007-2011
 % 2019 assessment: all years except 1999-2000 and 2007-2011
