@@ -227,16 +227,19 @@ to continue to work on the issue.
   to long-term research projects. We now briefly discuss several of these research
   endeavors.}
 
-\emph{The JTC plans to reinvigorate collaborative research plans to investigate the concurrent
-  estimation of multiple variance parameters. This includes the estimation of variability
-  associated with time-varying selectivity, $\sigma_R$, the extra standard deviation parameters
-  on survey index data, and the Dirichlet-Multinomial parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$.
-  Variance parameters in stock assessment models have a tendency to be interrelated
-  when they capture other sources of variance attributed to model mis-specification rather
-  than variability directly related to the given process.
+\emph{The JTC plans to participate in collaborative research to investigate the concurrent
+  estimation of multiple variance parameters within stock assessments.
+  For \fishname, this includes the estimation of the variability associated with 
+  time-varying selectivity,
+  $\sigma_R$,
+  the extra standard deviation parameters on survey-index data, and
+  the Dirichlet-Multinomial parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$.
+  In this assessment, the first two parameters are input as fixed values rather than estimated, though we have explored their estimation within Stock Synthesis in the past and did so again this year.
+  Estimation of these variance parameters using wide, uniform priors given the lack of information available on hyper priors within stock assessments was unsuccessful. Estimates were clearly interrelated with other sources of variance attributed to model mis-specification rather than variability directly related to the given process.
   This is particularly
   important for $\sigma_R$ because without an index of recruitment to directly inform the
   estimation of $\sigma_R$ it tends to soak up unspecified variability.
+  The Laplace approximation \citep{ThorsonHicksEtAl2015} was also investigated this year as an alternative means to estimate these parameters. Estimates from this method were also large and need further investigation with respect to their correlation.
   This work is related with time-varying selectivity research, as discussed in response 2
   below.}
 
@@ -249,7 +252,7 @@ to continue to work on the issue.
   estimate recruitment variability. The MSE framework can also be used to evaluate the robustness
   of recruitment modeling assumptions and the advantages of including environmentally-driven recruitment indices
   on management performance and uncertainty.  Research being conducted by Dr. Cathleen Vestfals and
-  colleagues at the Northwest Fisheries Science Center is looking at identifying climate drivers of
+  colleagues at the Northwest Fisheries Science Center is focused on identifying climate drivers of
   \fishname\ early life-history stages and recruitment, which could inform an explicit recruitment index,
   an environmental index linked to recruitment, indicators of recruitment variation
   ($\sigma_R$), and indicators of current or forecast levels of recruitment.
@@ -291,7 +294,8 @@ variance parameters.
   estimated trajectories between two state-space frameworks and two well-used
   statistical catch-at-age models when time-varying selectivity is ignored or
   estimated using the current best practices for each framework. The JTC expects that the results,
-  once completed, will inform best practices for this assessment.}
+  once completed, will inform best practices for this assessment.
+  Currently, two of the four frameworks have been fit to the data and input files need to be converted to allow for fitting of the remaining frameworks.}
 
 3. The SRG notes that the removal of the zero-sum constraint on recruitment
 deviations has implications on the estimate of $R_0$ and the perception of stock
@@ -307,7 +311,7 @@ ${\bf \emph{B}_{40\%}}$ within 2 years.}
   Considerable developments have been made over the past year refining the MSE simulation code, as
   well as working with stakeholders through iterative JMC meetings to better define management 
   objectives and performance metrics. Members of the JTC have contributed to an ICES reference point
-  report (\citep{ICESwkrpChange2021}) dedicated to density
+  report \citep{ICESwkrpChange2021} dedicated to density
   dependence and ecosystem change and a Ocean Frontier Institute workshop on management reference
   points in highly dynamic environments.  In both cases, the benefits and costs of using dynamic
   reference points were discussed. Guidance stemming from these workshops confirms that careful
@@ -320,7 +324,7 @@ ${\bf \emph{B}_{40\%}}$ within 2 years.}
   that the \fishname\ stock may be more productive than what virgin equilibrium conditions otherwise
   indicate. If this was the case, estimates of relative fishing intensity would be higher than currently
   estimated, and estimates of relative stock size would be lower than currently estimated. However, many
-  simplifying assumptions are made when estimating unfished time series, and these need to be thoroughly
+  simplifying assumptions are made when estimating unfished time series and these need to be thoroughly
   examined.}
 
 \emph{Related, work on making fisheries advice robust to time-varying productivity is
@@ -332,7 +336,7 @@ ${\bf \emph{B}_{40\%}}$ within 2 years.}
 \emph{The JTC is collaborating with regional oceanographers and ecosystem scientists
   to develop a set of ecosystem indicators relative to \fishname\ ecology and population
   dynamics for use as an annual reporting tool. These metrics could be evaluated as a set
-  "stoplight" indicators, collectively support ecosystem-based fisheries management, and
+  "stoplight" indicators as a means to collectively support ecosystem-based fisheries management, and
   be presented to Treaty advisory bodies as supplementary information to the stock
   assessment.}
 
@@ -345,7 +349,10 @@ data on management performance, and (2) that the JTC explore temporal trends in
 sample sizes and appropriate ways of estimating the annual variability in
 age-composition data.}
 
-\emph{Response -- **}
+\emph{Response -- To inform these simulations, the JTC first engaged in an exploration of the data with the goal of determining how many fish and how many tows from each fleet currently inform the aggregated age compositions. This proved to be more difficult than it should have been. Historical age-composition data prior to 2008 are not investigated annually, and thus, there is no way to know if current extractions of historical data from the databases match what was used to generate the historical age-composition data. Though, we do provide the number of fish and the number of trips or tows now for the most recent data (Table~\ref{tab:main-sampling-history}).
+Next steps include computing historical age compositions from recent data extractions to confirm that they match those currently used to fit the assessment and updating Table~\ref{tab:main-sampling-history} to include all years. After which, simulations will be conducted to determine how to best assign sample sizes to disparate sampling methods when the data are combined into a single aggregated fleet for modeling purposes.}
+
+\emph{Additionally, the JTC investigated how many tows are typically included in a trip for the shore-based fleet using records from observer data. Knowing how many tows are completed per trip will help to inform non-independence or the amount of overdispersion present in the data and, thus, the level of overdispersion that should be investigated in the simulation. ** 2020 AMB to finish filling in this paragraph.}
 
 5. Two possible approaches to downweighting the fishery age-composition data
 were discussed during the SRG meeting: (1) add time-blocking to allow changes in
@@ -363,43 +370,15 @@ year, fleet, sample size, etc.) and whether the variability relates to simple
 metrics of sample size such as the number of sampled tows, the number of
 sampled trips, and the number of sampled fish.}
 
-\emph{Response -- **NOTE that, in 2020 (copied below for now) we concluded with
-  { \bf \emph{A more complete summary of the changes in the sampling protocol over time will be
-completed in the upcoming months and included in the 2021 assessment as an
-appendix.}} Issue \#}
+\emph{Response to (1) -- The investigation of how many fish are sampled per trip and tow for each fleet noted in response 4 will help inform whether or not a time block on the fishery-specific Dirichlet-Multinomial parameter is supported by the data. Until that work is complete, there is no information available to inform when the time block should begin or end.}
 
-\emph{**2020: Progress was made on documenting the historical methods utilized
-to sample \fishname\ for otoliths, which began in the 1970s with observers on foreign vessels.
-Many protocols have remain unchanged over time, but some methods of collecting fish for
-ageing and the numbers of fish aged per tow or trip have changed. Below, we summarize
-known major changes.}
+\emph{Response to (2) -- In 2020, the JTC noted that they were working on a document to summarize the changes in the sampling protocol over time. This work is still in progress and is meant to be a living document that will be updated annually. 
+As the JTC works towards documenting which fish are included in historical age-composition samples (response 4), investigating disaggregated forms of the compositional data will become a doable task because currently the data are unavailable. 
+Thus, below we note our progress on investigating historical methods used to collect data beyond those noted before.}
 
-\emph{**2020: A clear change in protocol was initiated in 1999 for the U.S. at-sea fishery with the
-move towards random sampling of fish for ages rather than random-stratified sampling,
-which attempts to collect ages in each 1 cm length bin. Additionally, in 2009
-at-sea observers started collecting three instead of five sets of otoliths from a haul.}
+\emph{**2020 KFJ: Changes in sampling protocol.}
 
-\emph{**2020: In Canada, target sample size (n=50) has not changed over time for at-sea observers aboard
-foreign joint-venture vessels. On domestic vessels observers are currently instructed to
-collect age samples from 60 fish, whereas prior to 2001 the target may have only been 50.
-This lower target potentially only pertained to shoreside hake vessels before at-sea
-observer coverage was discontinued with the installment of electronic monitoring.}
-
-\emph{**2020: In 2016, dockside observers were asked to change their protocols based on JTC input.
-Samples changed from being collected during dedicated weeks to the landing level.}
-
-\emph{**2020: A more complete summary of the changes in the sampling protocol over time will be
-completed in the upcoming months and included in the 2021 assessment as an appendix.
-Currently, this information has been used to inform a simulation study that investigated
-repercussions of biased input sample sizes. Preliminary results suggest
-that the D-M parameters combined with time-varying selectivity can estimate the time
-series of spawning stock biomass with little bias when there is no temporal trend in
-the bias applied to the input sample size. Future investigations will look into temporal
-trends in this bias, where the trend will be informed by changes in the protocols used
-to specify the collection of otoliths in the \fishname\ fishery.}
-
-
-6.The SRG encourages work to develop a picture of the Pacific Hake reproductive
+6.The SRG encourages work to develop a picture of the \fishname\ reproductive
 cycle both seasonally and at the life-time scale based on histological and
 physiological measurements. In addition, the SRG notes that Canadian samples and
 those from the winter research cruises should be included in the maturity
