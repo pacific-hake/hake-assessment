@@ -154,6 +154,9 @@ bridge.model.end.yr.2 <- end.yr - c(0, 0, 0, 0)
 ## NOTE: If any sensitivity models change order or definition, then check that
 ##  definitions are still correct in custom-knitr-variables.R (seach that for
 ##  'sens.model')
+## NOTE: For ADNUTS diagnostics document, update the list in adnuts-diagnostics.rnw if
+##  sensitivity models get added or removed here.
+
 
 sens.model.dir.names.1 <- c("2021.00.15_h_prior_mean_low",
                             "2021.00.16_h_fix_high",
@@ -221,9 +224,6 @@ model_list <- c(base.model.dir.name,
                 unlist(sens.model.dir.names.7))
 model_list <- model_list[! model_list %in% last.yr.base.model.dir.name]
 model_list <- as.list(unique(model_list))
-
-## For ADNUTS diagnostics document, update the list in adnuts-diagnostics.rnw if
-##  sensitivity models get added or removed here.
 
 ## This function must be called from within the first knitr code chunk
 ## in the document. It is defined here so that it is in the same place

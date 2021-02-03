@@ -254,17 +254,20 @@ replaces that for the main acoustic survey, as identified in the figure labels.
 
 <<setup, echo=FALSE>>=
 # All the model results to show diagnostics for. Doing manually as easy to
-# change on the fly and hard to automate, so do a check here:
-if(!(length(sens.models.1) == 7 &
+#  change on the fly and hard to automate, so do a check here:
+if(!(length(sens.models.1) == 6 &
      length(sens.models.2) == 3 &
      # length(sens.models.3) == ?? &
-     length(sens.models.4) == 4 &
-     length(sens.models.5) > 100 # it currently just has one model
+     length(sens.models.4) == 3 &
+     length(sens.models.5) > 100 & # it currently just has one model
+     length(sens.models.6) == 3 &
+     length(sens.models.7) > 100 # it currently just has one model
      )
    ){ stop("Need to update diagnostic.model in adnuts-diagnostics.rnw")
   }
 
-# When adding new models then need to update the if statement above. No need if
+# When changing number of models in each group in model-setup.R then need to
+#  change the vector below, and update the if statement above. No need if
 #  just commenting any of these out:
 diagnostic.model <- c("base.model",
                       "sens.models.1[[1]]",
@@ -273,14 +276,12 @@ diagnostic.model <- c("base.model",
                       "sens.models.1[[4]]",
                       "sens.models.1[[5]]",
                       "sens.models.1[[6]]",
-                      "sens.models.1[[7]]",
                       "sens.models.2[[1]]",
                       "sens.models.2[[2]]",
                       "sens.models.2[[3]]",
                       "sens.models.4[[1]]",
                       "sens.models.4[[2]]",
                       "sens.models.4[[3]]",
-                      "sens.models.4[[4]]",
                       "sens.models.5",     # only one element
                       "sens.models.6[[1]]",
                       "sens.models.6[[2]]",
@@ -290,8 +291,8 @@ diagnostic.model <- c("base.model",
 @
 
 <<generate, echo=FALSE, results='asis'>>=
-# This duplicates the ..one-model.rnw code with {{this.sens.model}} replaced
-#  with each element of diagnostic.model in turn:
+# This duplicates appendix-mcmc-diagnostics/adnuts-diagnostics-one-model.rnw
+#  with {{this.sens.model}} replaced with each element of diagnostic.model in turn.
 generated <- lapply(diagnostic.model,
                     function(this.sens.model){
   knitr::knit_expand('appendix-mcmc-diagnostics/adnuts-diagnostics-one-model.rnw')
@@ -300,12 +301,5 @@ res <- knitr::knit_child(text = unlist(generated),
                          quiet = TRUE)
 cat(res, sep = '\n')
 @
-
-
-% <<child=c('appendix-mcmc-diagnostics/setup-diagnostics-models.rnw', 'appendix-mcmc-diagnostics/adnuts-diagnostics-one-model.rnw')>>=
-% @
-
-% <<child=c('appendix-mcmc-diagnostics/setup-diagnostics-models.rnw', 'appendix-mcmc-diagnostics/adnuts-diagnostics-one-model.rnw')>>=
-% @
 
 \end{document}
