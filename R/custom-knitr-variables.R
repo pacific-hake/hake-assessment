@@ -114,7 +114,7 @@ survey.3.prop.age <- as.numeric(gsub("^a", "", names(survey.last.year.age)[3]))
 survey.3.prop <- f(survey.last.year.age[3] * 100, 1)
 survey.4.prop.age <- as.numeric(gsub("^a", "", names(survey.last.year.age)[4]))
 survey.4.prop <- f(survey.last.year.age[4] * 100, 1)
-survey.a2.prop <- f(survey.last.year.age["a2"] * 100, 1)
+survey.a2.prop <- f(survey.last.year["a2"] * 100, 1)
 last.survey.year <- survey.history[nrow(survey.history),]$year
 last.survey.year.biomass <- f(survey.history[nrow(survey.history),]$biomass, 2) ## millions of tonnes
 penult.survey.year <- survey.history[nrow(survey.history) - 1,]$year

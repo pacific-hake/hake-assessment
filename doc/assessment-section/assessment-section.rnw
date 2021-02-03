@@ -692,21 +692,20 @@ of
 (\Sexpr{DM.weight.survey.025},
 \Sexpr{DM.weight.survey.975}).
 
-**The base model fit to the
+The base model fit to the
 acoustic survey biomass index (Figure~\ref{fig:main-mcmc-survey-fit})
-remains similar to the \Sexpr{last.assess.yr} base model. The \Sexpr{survey.end.yr}
-survey biomass estimate resulted in an upward shift in the fit to the
-\Sexpr{antepenult.survey.year} and \Sexpr{penult.survey.year} survey data points
-and a lengthening of the stable biomass trend over recent years
-(Figure~\ref{fig:main-mcmc-survey-fit}).
-The addition of \Sexpr{survey.end.yr} fishery data
+remains similar to the \Sexpr{last.assess.yr} base model. 
+%The \Sexpr{survey.end.yr} survey biomass estimate resulted in an upward shift
+%in the fit to the \Sexpr{antepenult.survey.year} and \Sexpr{penult.survey.year}
+%survey data points and a lengthening of the stable biomass trend over recent years
+%(Figure~\ref{fig:main-mcmc-survey-fit}).
+The addition of \Sexpr{last.assess.yr} fishery data
 had negligible effect on the fit to survey biomass (Figure~\ref{fig:main-bridge-5-panel-2}).
-The 2001 data point continues to be well below any model predictions that were evaluated,
+Overall, the 2001 data point continues to be well below any model predictions that were evaluated,
 and no direct cause for this is known.  The survey did begin earlier that year than all other surveys
 between 1995 and 2009 (Table~\ref{tab:main-survey-history}), which may explain
-some portion of the anomaly, along with El Ni\~no conditions and age
-structure.
-The underestimation of the 2009 biomass estimate is much larger
+some portion of the anomaly, along with El Ni\~no conditions and age structure.
+The underestimation of the 2009 biomass estimate is much larger than
 the underestimation of any other year.
 The uncertainty of this point (both modeled and actual) is high
 because of the presence of large numbers of Humboldt Squid during the
@@ -714,15 +713,16 @@ survey. Humboldt Squid have similar TS to hake
 which could introduce bias in the biomass estimate for that year, and
 which also likely influenced hake population dynamics through predation in that year.
 
-**The MLE and median posterior density estimates underfit the 2015 survey
+The median posterior density estimates underfit the 2015 survey
 index, overfit the 2017 index, and closely fit the 2019 index (Figure~\ref{fig:main-mcmc-survey-fit}).
 This is likely due to slight differences in what the fishery composition data
 and survey composition data, when considered independently, would otherwise
 suggest as population trends.
 Additionally, the population has undergone recent high catch levels and produced
-a couple of above-average cohorts that are now mature.
+a couple of above-average cohorts that are now mature resulting in a population
+trend that has been relatively stable from 2013 to \Sexpr{survey.end.yr}.
 
-**Fits to the age-composition data continue to show close correspondence to the
+Fits to the age-composition data continue to show close correspondence to the
 dominant and small cohorts observed in the data
 when the data give a consistent signal
 (Figure~\ref{fig:main-age-comp-fits}). Because of the time-varying fishery
@@ -737,7 +737,7 @@ Combined, the 2015--\Sexpr{last.data.yr} fishery age-composition data and the
 suggest that 2014 was a strong recruitment
 year, and the model was able to adequately
 fit to these observations (Figure~\ref{fig:main-age-comp-fits}).
-The 2016 cohort, which has now been observed twice by the survey,
+The 2016 cohort, which has been observed once by the survey,
 %\Sexpr{ceiling((survey.end.yr-2016)/2)} times
 appears to be smaller than
 the 2014 cohort.
@@ -750,7 +750,7 @@ patterns to the fishery and survey age data do not show patterns that would
 indicate systematic bias in model predictions
 (Figure~\ref{fig:main-age-comp-pearson}).
 
-**The MLEs for numbers, biomass,
+The MLEs (**or median posterior density) for numbers, biomass,
 exploitation rate, and catch (in numbers and in biomass) for each age class in
 each year are given in
 Tables~\ref{tab:main-est-numbers-at-age}-\ref{tab:main-est-catch-at-age-biomass}.
@@ -758,10 +758,10 @@ For the major cohorts, the resulting estimated age-specific catch, natural morta
 surviving biomasses are given in Table~\ref{tab:main-cohort-effects}.
 For example, the catch weight of the 2014 cohort at age-5 was slightly larger
 than that of the 2010 cohort at age-5, but the resulting surviving biomass of
-the 2014 cohort was only just over half of the surviving biomass of the 2010
+the 2014 cohort was only just under half of the surviving biomass of the 2010
 cohort.
 
-**Posterior distributions for both steepness and natural mortality are strongly
+Posterior distributions for both steepness and natural mortality are strongly
 influenced by priors (Figure~\ref{fig:main-prior-posterior}). The posterior for
 steepness is only slightly updated by the data, as expected given the low
 sensitivity to steepness values found in previous hake assessments. The natural
@@ -771,10 +771,10 @@ further. Broadening
 the prior distribution by increasing the prior standard deviation for the natural mortality
 parameter is examined in sensitivity runs (see Section~\ref{sec:assessment-sensitivity-analyses}).
 Other parameters showed updating from diffuse priors to stationary posterior
-distributions, including $\theta_{\text{surv}}$ (unlike in the 2019 assessment,
-as outlined in Section~\ref{sec:data-age-comp-likelihood}).
+distributions, including $\theta_{\text{surv}}$ (as outlined in
+Section~\ref{sec:data-age-comp-likelihood}).
 
-**The \Sexpr{assess.yr} base model specified the same level of variation (standard
+The \Sexpr{assess.yr} base model specified the same level of variation (standard
 deviation of $\Phi = 1.4$) associated with time-varying fishery selectivity as
 the \Sexpr{last.assess.yr} base model, effectively
 allowing the model flexibility (i.e., a lower penalty on the overall
@@ -786,25 +786,24 @@ while maintaining that there is considerable uncertainty associated with
 spatial changes in fish availability (due to movement) and recent
 variability in oceanographic conditions. Estimated selectivity deviations for
 age-3 and age-4 fish are larger from
-2010 to 2012 than in more recent years (Figures~\ref{fig:main-tv-selex}
+2010 to 2012 than in recent years until 2020 when age-4 was large again (Figures~\ref{fig:main-tv-selex}
 and~\ref{fig:main-tv-selex-uncertainty}). The median selectivity peaks at age 4
-in 2010 and 2012 and at age 3 in 2011 suggesting targeting of the younger cohorts
+in 2010, 2012 and 2020 and at age 3 in 2011 suggesting targeting (or generally higher
+availability) of the younger cohorts
 in those years. This pattern is consistent with the 2008 cohort appearing strong
 in the fishery age compositions initially, but decreasing in prominence
-from 2013 onward (Figures~\ref{fig:main-age-comp-fits} and
-\ref{fig:main-retrospective-recruitment}).
+from 2013 onward (Figure~\ref{fig:main-age-comp-fits}).
 Fishery selectivity on age-2 fish was at its highest
 in 2016, followed by 2018.
-Fishery selectivity for the most recent year leveled off between ages less
-than six even more so than it did for the previous year, suggesting
-equal selectivity-at-age for younger ages
+Fishery selectivity for the most recent year was the lowest for age-2 since 2013, and
+then quickly peaked at age-4 before leveling off at older ages
 Figure~\ref{fig:main-tv-selex-uncertainty}). Even though the
 survey selectivity is time invariant, the
 posterior shows a broad band of uncertainty between ages 2 and 5
 (Figure~\ref{fig:main-tv-selex-uncertainty-lines}). The decline in
 survey selectivity between ages 3 and 4 may be an artifact of the interaction
 between large cohorts and the biennial timing of recent surveys, with the
-2010 and 2014 cohorts occurring at ages 3 and 5 but not age 4.
+2010, 2014, and 2016 cohorts occurring in the survey at ages 3 and 5 but not age 4.
 Fishery selectivity is
 likewise very uncertain (Figures~\ref{fig:main-tv-selex-uncertainty}
 and~\ref{fig:main-tv-selex-uncertainty-lines}), but in spite of this
