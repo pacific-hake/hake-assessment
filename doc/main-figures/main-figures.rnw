@@ -24,8 +24,9 @@ make.overview.map.plot(path = rootd.map.data)
 \hspace{-10mm}  % Each mm change shifts it by more than 1mm, changing
                 %  from -20 to -21 jumps it to the left when using center.
                 %  Commenting out {center} works better.
-\includegraphics[max size={1.15\paperwidth}{1.15\paperheight}]
-  {main-figures/hake_survey_1995-19_NASCTimeSeries_BiomassAtAgeHistograms_grayblue}
+\pdftooltip{\includegraphics[max size={1.15\paperwidth}{1.15\paperheight}]
+  {main-figures/hake_survey_1995-19_NASCTimeSeries_BiomassAtAgeHistograms_grayblue}}{This
+  figure shows that \fishname\ migrate further north in some years}
   % Download from Google Drive
 % \end{center}
 % \vspace{-3mm}
@@ -50,8 +51,9 @@ make.overview.map.plot(path = rootd.map.data)
 % \vspace{-5mm}
 \begin{center}
 \hspace{-10mm}
-\includegraphics[max size={1.10\paperwidth}{1.10\paperheight}]
-   {main-figures/age1hake_03-19_sA_squareroot_bin_narrow-panel_bluergray}
+\pdftooltip{\includegraphics[max size={1.10\paperwidth}{1.10\paperheight}]
+   {main-figures/age1hake_03-19_sA_squareroot_bin_narrow-panel_bluergray}}{This
+   figure shows the assumed varying locations of age-1 \fishname}
    % Download from Google Drive
 \end{center}
 %\vspace{-5mm}
@@ -86,7 +88,8 @@ make.catches.plot(ct, leg.y.loc = 550)
 %% Call the figures directly instead of creating them because the data are confidential
 \begin{center}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=0.75\paperwidth]{main-figures/fishCatchRatesUS}
+\pdftooltip{\includegraphics[width=0.75\paperwidth]{main-figures/fishCatchRatesUS}}{This
+  figure shows changes in catch rates for the U.S. fleet}
 \end{center}
 \caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in
   the U.S. at-sea fleet from \Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}.}
