@@ -74,7 +74,7 @@ total allowable catch (TAC, adjusted for carryovers) of
 \Sexpr{last.year.tac}~t. Attainment in the U.S.~was
 \Sexpr{last.year.us.attained}\% of its quota and in Canada it was
 \Sexpr{last.year.can.attained}\%.
-%
+
 <<total-catches-table, results='asis', echo=FALSE>>=
 make_catch_table(ct,
                  start_yr = assess.yr - 10,
