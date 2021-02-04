@@ -1328,11 +1328,14 @@ That probability decreases to \Sexpr{f(base.model$risks[[1]][,3][4])}\% and \Sex
 Sensitivity analyses were conducted to investigate influence of data inputs and
 structural uncertainty of the base model by investigating how changes to the
 model affected the estimated values and derived quantities. All sensitivity analyses
-compared MCMC posteriors. All sensitivity analyses were run using the ADNUTS MCMC
-algorithm with the sample sample size as the base model. For a comparison of the
+compared MCMC posteriors that were created using the {\tt adnuts} R package
+\citep{Monnahan2018, Monnahan2019} to implement a NO-U-Turn Sampler (NUTS)
+algorithm with a similar number of posterior samples as the base model. For a comparison of the
 parameter estimates for the sensitivities with the base model parameter estimates,
 see Tables~\ref{tab:main-parameter-estimates-sens-1}--\ref{tab:main-parameter-estimates-sens-3}.
-The sensitivities include the following:
+Many additional sensitivity runs were conducted when developing and testing the
+\Sexpr{assess.yr} base model. Here we focus on the main sensitivities which include
+the following:
 
 \begin{enumerate}
 
@@ -1351,18 +1354,24 @@ The sensitivities include the following:
 \item Use of the Francis method for data-weighting;
 
 \item Consideration of alternative standard deviations for time-varying
-  selectivity; and
+  selectivity;
 
-\item Removal of cohort-based ageing error from the model
+\item Consideration of an alternative maximum age for fishery and survey
+  selectivity;
+
+\item Removal of cohort-based ageing error from the model; and
+
+\item Use of the random walk Metropolis Hastings (rwMH) sampling algorithm for
+  defining posterior distributions.
 
 \end{enumerate}
 
 In general, none of the sensitivities resulted in any substantial departure from
 the main population dynamics of the base model; all models showed large
 estimated increases in spawning biomass in the early- to mid-2010s that continues to be
-driven by the 2010 and the 2014 cohorts. The overall scale of the
+driven by the 2010, 2014, and 2016 cohorts. The overall scale of the
 population was impacted by various alternative assumptions, and the highly
-uncertain size of the recent large cohorts were more variable across sensitivity analyses
+uncertain size of the recent cohorts were more variable across sensitivity analyses
 than earlier cohorts which have been observed for more years.
 
 % Leaving as one long line as easier to comment back in if needed (lots of calcs
@@ -1440,7 +1449,8 @@ where $\mbox{Var}(\hat{r})$ is the variance among deviations and
 $\mbox{SE}(\hat{r}_y)$ is the standard error of each estimate. It
 produced a suggested
 $\sigma_r$ of \Sexpr{sigma.r.alt.allyr}, which was similar to the
-base-model value of 1.4.
+base-model value of 1.4. Future work will assess similar metrics
+strictly in a Bayesian framework.
 
 % Manual 2021 done - CG
 The sensitivity of the base model to the inclusion of the age-1 survey index
@@ -1454,15 +1464,15 @@ diverge near the end of the time series
 Figures~\ref{fig:main-biomass-base-alternative-2} and
 \ref{fig:main-status-base-alternative-2}; \Sexpr{end.yr} estimates are
 \Sexpr{f(100*bratio_curr[2], 1)}\%
-of unfished biomass for the base model with a 95\% credible interval
-of \Sexpr{f(100*bratio_curr[1], 1)}--\Sexpr{f(100*bratio_curr[3], 1)}\% and
+of unfished biomass for the base model (95\% credible interval
+of \Sexpr{f(100*bratio_curr[1], 1)}--\Sexpr{f(100*bratio_curr[3], 1)}\%) and
 \Sexpr{f(100*bratio_age1[2], 1)}\%
-for the age-1 index model) with a 95\% credible interval
-of \Sexpr{f(100*bratio_age1[1], 1)}--\Sexpr{f(100*bratio_age1[3], 1)}\%.
-This change is likely due to the base model
-overfitting the age-1 index estimates of the size of the 2005 and 2012 cohorts
-(Figure~\ref{fig:main-age-one-index}). These changes are subtle
-because the base model generally tracks the trends in the age-1 index well.
+for the age-1 index model (95\% credible interval
+of \Sexpr{f(100*bratio_age1[1], 1)}--\Sexpr{f(100*bratio_age1[3], 1)}\%)).
+This change is likely due to the age-1 index suggesting higher recruitment
+in 2014 (age-1 in 2015) and 2018 (age-1 in 2019) then what the base model
+otherwise estimates (Figures~\ref{fig:main-age-one-index}-\ref{fig:main-index-base-alternative-2}).
+These changes are subtle because the base model generally tracks the trends in the age-1 index well.
 Including the age-1 index led to a worse fit to both the 2017 and 2019 acoustic
 survey estimates compared to the base model (Figure~\ref{fig:main-index-base-alternative-2}).
 
@@ -1498,7 +1508,6 @@ issues when selectivity is time-varying, as it is in this assessment.
 The degree of flexibility of annual variation in the fishery selectivity was tested using
 three sensitivities which set alternative values of the $\Phi$ parameter
 (Figures~\ref{fig:main-biomass-base-alternative-4}-\ref{fig:main-index-base-alternative-4}).
-
 The consideration of alternative standard deviations ($\Phi$) for time-varying
 selectivity is discussed earlier in
 Section~\ref{sec:data-variability-selectivity}. Changing the values of the
@@ -1509,18 +1518,18 @@ in 2014 (Figure~\ref{fig:main-recruit-base-alternative-4}).
 However, recruitment estimates for 2016 and 2017 are linked to the choice of $\Phi$, where the
 model with the smallest $\Phi$ at 0.21 estimates the 2016 and 2017 recruitment deviation as
 the highest of the $\Phi$ sensitivity models (Figure~\ref{fig:main-recruit-devs-base-alternative-4})
-and provides the worst fit of the most recent survey biomass estimate
+and provides the worst fit to the most recent survey biomass estimate
 (Figure~\ref{fig:main-index-base-alternative-4}).
 
 The estimated population trends throughout the time series are similar, irrespective of maximum
 selectivity age (Figures~\ref{fig:main-biomass-base-alternative-6}-\ref{fig:main-status-base-alternative-6}).
 The largest differences are prior to the mid-1980s when age-composition data was sparse. The
 maximum selectivity at age-5 model resulted in lower estimates of recent stock status compared
-to the other model runs. The choice of age-6 as the maximum was retained in the base model as it
-was more flexible than the choice of age-5. While runs with higher maximum age produced similar
-overall stock dynamics, but at the cost of a considerable increase in the number of total model
-parameters. All three alternative runs had reduced performance in terms of MCMC diagnostics when
-compared with the base model.
+to the other model runs, while runs with higher maximum age produced similar
+overall stock dynamics but at the cost of a considerable increase in the number of model
+parameters.  The choice of age-6 as the maximum was retained in the base model as it
+offered more flexibility than the choice of age-5. All three alternative runs had reduced
+performance in terms of MCMC diagnostics when compared with the base model.
 
 % Ageing Error
 % Manual 2021 done - CG
@@ -1538,52 +1547,54 @@ the time-invariant ageing error vector model having a median relative biomass of
 \Sexpr{f(100*depl_no_ageerr, 1)}\%. The credible interval is larger for the
 time-invariant ageing error vector model.
 
-**[invert if including a non-NUTS run] The impact of using the NUTS MCMC algorithm (Table~\ref{tab:main-parameter-estimates-sens-4}) is discussed in detail in
-Appendix~\ref{chap:adnuts}.
+The impact of using the random walk Metropolis Hastings (rwMH) MCMC algorithm with data inputs
+and model structure equivalent to the base model is shown in 
+Table~\ref{tab:main-parameter-estimates-sens-3} and discussed in further details in
+Appendix~\ref{chap:rwmh}.
 
-**An additional sensitivity run arising from the Scientific Review Group
-meeting held from 25th February to 28nd February 2020 related to input sample size is documented
-in Appendix~\ref{chap:srg-requests}.
-Briefly, arbitrarily decreasing the weight of recent fishery age-composition data by taking the square root of the input sample size led to
-similar estimates of the recent trend in spawning biomass but differences in
-stock status because of more optimistic estimates of the stock at unfished
-equilibrium. Further responses to other SRG requests are also given in Appendix~\ref{chap:srg-requests}.
+%An additional sensitivity run arising from the Scientific Review Group
+%meeting held from 25th February to 28nd February 2020 related to input sample size is documented
+%in Appendix~\ref{chap:srg-requests}.
+%Briefly, arbitrarily decreasing the weight of recent fishery age-composition data by taking the square root of the input %sample size led to
+%similar estimates of the recent trend in spawning biomass but differences in
+%stock status because of more optimistic estimates of the stock at unfished
+%equilibrium. Further responses to other SRG requests are also given in Appendix~\ref{chap:srg-requests}.
 
 \subsection{Retrospective analyses}\label{sec:assessment-retrospective-analyses}
 
-**Retrospective analyses were performed by iteratively removing the terminal
-years' data and estimating the parameters under the assumptions of the base
-model. Models with 4, 5, or 6 years of data removed had information
-available regarding the large 2010 year class, but did not yet have information on the
-2014 year class (Figure~\ref{fig:main-biomass-recruitment-retrospective}). Models
-with 1 and 2 years of data removed were just beginning to receive data on age-3 and age-2, respectively,
-individuals to predict the size of the 2014 year class.  The base model now has
-\Sexpr{number.to.word(assess.yr - 2014 - 1)} years of data to estimate the size of
-the 2014 cohort, and the uncertainty around this
+Retrospective analyses were performed by iteratively removing the terminal
+years' data and estimating the posterior distribution of parameters under the assumptions of the base
+model. Models with 5 years of data removed had information
+available regarding the above average 2014 year class, but did not yet have information on the
+2016 year class (Figure~\ref{fig:main-biomass-recruitment-retrospective}). Models
+with 2 and 3 years of data removed were just beginning to receive data on age-3 and age-2, respectively,
+individuals to predict the size of the 2016 year class.  The base model now has
+\Sexpr{number.to.word(assess.yr - 2016 - 1)} years of data to estimate the size of
+the 2016 cohort, and the uncertainty around this
 estimate has been considerably reduced compared to three years ago
 (Figure~\ref{fig:main-biomass-recruitment-retrospective}).
 
-**Overall, there is little retrospective change to the relative spawning biomass
+Overall, there is little retrospective change to the relative spawning biomass
 trajectory up to the mid-2010s, and most retrospective change occurs in the
 final years of the retrospective model
 (Figure~\ref{fig:main-biomass-recruitment-retrospective}).
-In the previous assessment, the retrospective bias was predominately positive
-in these terminal years. In this assessment the bias is a mix of both positive
-and negative biases with no systematic pattern indicating that the model is
-more correctly specified than one that shows a pattern.
+In the previous assessment, the retrospective bias was a mix of both positive and negative
+biases in these terminal years. In this assessment, there is very little retrospective bias
+other than a positive bias in spawning stock biomass four years previously when the 2014
+year class was initially estimated too high. There is no indication from retrospective
+evaluations that the base model is displaying a systematic bias.
 
-**Cohort strength is not well estimated until several ($\sim$4-9) years of fishery
+Cohort strength is not well estimated until several (usually 3 or more) years of fishery
 catch-at-age data and survey age-composition data have been collected
 (Figure~\ref{fig:main-retrospective-recruitment}).
-Deviations for the 1999 and 2010 cohorts, which are the largest cohorts,
-exhibit the largest positive biases, and the sizes of several cohorts
-(particularly the large 2010 and 2014 cohorts) increase
-with the final year of data.
+Deviations for the 2010 and 2014 cohorts, which are the largest cohorts since 2010,
+exhibit the largest positive deviations.
 Estimated recruitment deviations for the 2014 cohort
-are above the 2008 and 1999 cohorts at a similar point in time.
+are above the 2016 and 2017 cohorts, but the estimated size of the 2014 cohort didn't
+fully stabilize until Age-4.
 The variability among cohort estimates relative to their estimated size
 in the base model (Figure~\ref{fig:main-relative-retrospective-recruitment})
-further indicates that the estimates can start to improve as early as age-3, but
+further indicates that the estimates can start to improve as early as age-2, but
 some estimates of cohort strength may not stabilize until
 the cohort approaches an age upward of 7 years old.
 The lack of systematic bias in the assessment results could be because
@@ -1591,7 +1602,7 @@ both of the largest cohorts are now older than 7 years old.
 This illustrates that multiple observations of each cohort are needed in
 order to more accurately determine their recruitment strength.
 
-**A comparison of the actual assessment models used in each year since
+A comparison of the actual assessment models used in each year since
 \Sexpr{min(assessment.history$Year)} is shown in
 Figure~\ref{fig:main-historical-assessments}. There have been substantial
 differences in the structural assumptions of the models and,
