@@ -1197,7 +1197,7 @@ parameters assumed during the forecast period include average recruitment
 the five most recent years (\Sexpr{assess.yr-5}--\Sexpr{assess.yr-1}); and all estimated
 parameters constant (at their estimates for each particular MCMC sample).
 
-**Relative fishing intensity exceeding 1 (or 100\% when shown as a percentage) indicates fishing in excess of the
+Relative fishing intensity exceeding 1 (or 100\% when shown as a percentage) indicates fishing in excess of the
 $\Fforty$ default harvest rate limit. This can happen for the median
 relative fishing intensity in \Sexpr{forecast_yrs[1:(length(forecast_yrs)-1)]}
 and \Sexpr{forecast_yrs[length(forecast_yrs)]} because the $\Fforty$ default
@@ -1206,9 +1206,9 @@ years, whereas the forecasted catches are removed using selectivity averaged
 over the last five years. Recent changes in selectivity will thus be reflected
 in the determination of overfishing. An alternative catch level where median
 relative fishing intensity is 100\% is provided for comparison (catch
-alternative g: FI=100\%).
+alternative~\Sexpr{letters[catch.spr100.ind]}: FI=100\%).
 
-**Management metrics that were first identified as important to the Joint Management
+Management metrics that were first identified as important to the Joint Management
 Committee (JMC) and the Advisory Panel (AP) in 2012 are presented for
 projections to
 \Sexpr{forecast_yrs[2:(length(forecast_yrs)-1)]} and
@@ -1221,20 +1221,20 @@ various outcomes from the base model given each potential management
 action. Although not linear, probabilities can be interpolated from this table
 for intermediate catch
 values in \Sexpr{assess.yr} (Table~\ref{tab:main-risk-year-1} and
-Figure~\ref{fig:main-forecast-risk-comparison-year-1}). **[may or may not happen
-this year, comment out if not: ]However, interpolation is
+Figure~\ref{fig:main-forecast-risk-comparison-year-1}). However, interpolation is
 not appropriate for all catches in
-\Sexpr{assess.yr+1} because catch alternatives~g and~h have catches
-that are larger than 500,000~t
-% \Sexpr{catch_levels[[5]][[1]][1]}~t
-(the constant catch for alternative~e) in \Sexpr{assess.yr} but smaller than 500,000~t
-% \Sexpr{catch_levels[[5]][[1]][1]}~t
+\Sexpr{assess.yr+1} because catch alternatives~h and~i have catches
+that are larger than 430,000~t
+% \Sexpr{catch_levels[[5]][[1]][1]}
+(the constant catch for alternative~\Sexpr{letters[5]}) in \Sexpr{assess.yr} but smaller than
+430,000~t
+% \Sexpr{catch_levels[[5]][[1]][1]}
 in \Sexpr{assess.yr+1} (Table~\ref{tab:main-decisions-spr});
 this explains why a few probabilities decline
 (rather than rise) with increased \Sexpr{assess.yr+1} catch levels in Table~\ref{tab:main-risk-year-2}
 and Figure~\ref{fig:main-forecast-risk-comparison-year-2}.
 
-**[check, but should be fine] Figure~\ref{fig:main-forecast-depletion-comparison} shows the predicted
+Figure~\ref{fig:main-forecast-depletion-comparison} shows the predicted
 relative spawning biomass trajectory through
 \Sexpr{forecast_yrs[length(forecast_yrs)]} for several of these management
 actions. With zero catch for the next two years, the biomass has a probability
@@ -1244,7 +1244,16 @@ of \Sexpr{zero.catch.prob.bio.down.1}\% of decreasing from
 Figure~\ref{fig:main-forecast-risk-comparison-year-1}), and a probability of
 \Sexpr{zero.catch.prob.bio.down.2}\% of decreasing from \Sexpr{forecast_yrs[2]}
 to \Sexpr{forecast_yrs[3]} (Table~\ref{tab:main-risk-year-2} and
-Figure~\ref{fig:main-forecast-risk-comparison-year-2}).
+Figure~\ref{fig:main-forecast-risk-comparison-year-2}). Note that for zero
+catch in Figure~\ref{fig:main-forecast-depletion-comparison}, the median in 2021
+essentially equals the median in 2022 (i.e., zero difference in the medians),
+which might be expected to imply a 50\% probability of a decline (not the 65\%
+just mentioned). However, the median change between 2021 and 2022
+is a decline of 0.028 (from calculating the difference for each MCMC sample and
+then taking the median, namely the median of the differences). About 15\% of the
+MCMC samples have a decline in the range -0.028 to 0 (a decline greater than the
+median difference but less than the difference in the medians). This accounts for the
+apparent discrepancy in the 50\% and 65\% probabilities.
 
 % Make consistent with Exec Summary (that has older text commented out for
 % possible future use)
