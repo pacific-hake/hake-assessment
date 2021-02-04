@@ -675,10 +675,12 @@ make_numbers_at_age_plot(base.model,
 make.mcmc.sr.variability.plot(base.model,
                               start.yr = start.yr,
                               end.yr = end.yr - 1,
+                              xlim = c(0, 1.5),
+                              ylim = c(0, 7),
                               probs = c(0.025, 0.5, 0.975))
 @
 \end{center}
-\caption{**[increase x-axis?] Estimated stock-recruit relationship for the base model with median predicted recruitments
+\caption{Estimated stock-recruit relationship for the base model with median predicted recruitments
   and 95\% posterior credibility intervals. Colors indicate time-period, with yellow colors in the
   early years and blue colors in the recent years. The thick solid black line indicates the central
   tendency (mean) and the red line indicates the central tendency after bias correcting for the log-normal
