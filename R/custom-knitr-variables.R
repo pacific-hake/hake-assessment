@@ -38,6 +38,12 @@ last.year.landings <- ct_last1 %>% pull(tot_catch) %>% f(0)
 last.year.tac <- ct_last1 %>% pull(tot_tac) %>% f(0)
 last.year.attained <- ct_last1 %>% pull(tot_attain) %>% f(1)
 
+# Catch over the last 10 years ------------------------------------------------
+catch_last_10yrs <- ct %>% slice_tail(n = 10)
+catch_mean_10yrs <- f(mean(catch_last_10yrs$tot_catch))
+catch_us_mean_10yrs <- f(mean(catch_last_10yrs$us_catch))
+catch_can_mean_10yrs <- f(mean(catch_last_10yrs$can_catch))
+
 # US Attainment, catch, and TAC -----------------------------------------------
 last.year.us.landings <- ct_last1 %>% pull(us_catch) %>% f(0)
 last.year.us.attained <- ct_last1 %>% pull(us_attain) %>% f(1)
