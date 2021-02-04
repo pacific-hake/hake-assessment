@@ -114,22 +114,26 @@ build_rds()
   
   * After the first time you do this, the models will be loaded into the R workspace and any subsequent builds will be a little faster.
 
-* **Method 3**
+* **Method 3 (Andy)**
 
   * Run this in an R session:
   ```R
-  knit_alttext()
+  knitr::knit("hake-assessment.rnw")
   ```
-  then this in a terminal:
+  To add alternative text (after running the above without a cache):
+  ```R
+  add_alt_text(alt_fig_text = alt_fig_text)
   ```
-  ispell hake-assessment.tex (periodically)
-  pdflatex hake-assessment.tex
-  pdflatex hake-assessment.tex
+
+  Then in a terminal:
+  ```
+  pdflatex hake-assessment
+  ```
+  repeating it if needed (if labels have changed). As necessary do:
+  ```R
+  ispell hake-assessment.tex
   bibtex hake-assessment
-  pdflatex hake-assessment.tex
-  pdflatex hake-assessment.tex
   ```
-  * There is no need to run the last three terminal commands if references haven't changed
 
 ## How to clean up the `doc` directory after an erroneous build
 * To remove everything from the build, including cached figures and table data, run the batch file `freshdoc.bat`
