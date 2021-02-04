@@ -11,7 +11,7 @@ last.assess.yr <- assess.yr - 1
 message("Last assessment year: ", last.assess.yr)
 
 ## Output CSV directory for outputs of at-age which are calculated by the
-## make.est.numbers.at.age.table function (in r-functions/tables-age.r)
+## atage_table() function (in r-functions/tables-age.r)
 output.csv.dir <- file.path(rootd, "out-csv")
 
 ## -----------------------------------------------------------------------------

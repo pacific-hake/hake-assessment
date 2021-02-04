@@ -186,11 +186,11 @@ fetch_extra_mcmc <- function(model_path,
     return(NA)
   }
 
-  ## Get the extra-mcmc directories done in parallel
+  # Get the extra-mcmc directories done in parallel
   extra_mcmc_dirs <- dir(extra_mcmc_path)
   extra_mcmc_dirs <- file.path(extra_mcmc_path, extra_mcmc_dirs[grepl("extra-mcmc", extra_mcmc_dirs)])
 
-  ## Get the number of Report.sso files in the directory
+  # Get the number of Report.sso files in the directory
   dir_list <- dir(reports_dir)
   if(!length(dir_list)){
     message("There are no report files in the ", reports_dir, " directory.")
@@ -202,19 +202,19 @@ fetch_extra_mcmc <- function(model_path,
   num_comp_reports <- length(comp_files)
   message("\nLoading Extra MCMCs from ", extra_mcmc_path)
 
-  ## Suppress warnings because there is an extra whitespace at the end of the header line in the file.
+  # Suppress warnings because there is an extra whitespace at the end of the header line in the file.
   suppressWarnings(
     posts <- read_table2(file.path(mcmc_path, posts_file_name), col_types = cols())
   )
-  ## Remove extra MLE run outputs. SS appends a new header followed by a 0-Iter row for an MLE run.
-  ## Sometimes MLEs are run by accident or on purpose at another time and forgotten about.
+  # Remove extra MLE run outputs. SS appends a new header followed by a 0-Iter row for an MLE run.
+  # Sometimes MLEs are run by accident or on purpose at another time and forgotten about.
   posts <- posts %>% filter(Iter != "Iter",
                             Iter != 0)
 
-  ## Break up the loading of report files into the number of posteriors in each extra-mcmc subdir
+  # Break up the loading of report files into the number of posteriors in each extra-mcmc subdir
   num_reports_each <- map_int(extra_mcmc_dirs, ~{
-    ## Suppress warnings because there may be extra 'Iter' lines followed by '0' lines
-    ## because the SS MLE just appends these to the posteriors.sso file
+    # Suppress warnings because there may be extra 'Iter' lines followed by '0' lines
+    # because the SS MLE just appends these to the posteriors.sso file
     suppressWarnings(
       posts <- read_table2(file.path(.x, posts_file_name), col_types = cols())
     )
@@ -223,14 +223,14 @@ fetch_extra_mcmc <- function(model_path,
     nrow(posts)
   })
 
-  ## from_to is a two-column dataframe with the indices from and to for each processor to load report files
+  # from_to is a two-column data.frame with the indices from and to for each processor to load report files
   from_to <- tibble(from = 1, to = num_reports_each[1])
   for(i in 2:length(num_reports_each)){
     nxt <- tibble(from = from_to[i - 1,]$to + 1, to = from_to[i - 1,]$to + num_reports_each[i])
     from_to <- bind_rows(from_to, nxt)
   }
 
-  ## Load all report files into a list, 1 element for each report file. Elements that are NA had no file found
+  # Load all report files into a list, 1 element for each report file. Elements that are NA had no file found
   reps <- map(1:nrow(from_to), ~{
     inds <- as.numeric(from_to[.x, 1]):as.numeric(from_to[.x, 2])
     map(inds, ~{
@@ -243,7 +243,7 @@ fetch_extra_mcmc <- function(model_path,
   }) %>%
     flatten()
 
-  ## Load all compreport files into a list, 1 element for each report file. Elements that are NA had no file found
+  # Load all compreport files into a list, 1 element for each report file. Elements that are NA had no file found
   compreps <- map(1:nrow(from_to), ~{
     inds <- as.numeric(from_to[.x, 1]):as.numeric(from_to[.x, 2])
     map(inds, ~{
@@ -255,66 +255,6 @@ fetch_extra_mcmc <- function(model_path,
     })
   }) %>%
     flatten()
-
-  ## Make custom reps_ objects for each output. Only relevant portions of the report file will be passed to
-  ## the table-making map2() calls later (speeds up the map2() calls)
-  rep_example <- reps[[which(!is.na(reps))[1]]]
-  comprep_example <- compreps[[which(!is.na(compreps))[1]]]
-  ## Biomass
-  bio_header_ind <- grep("TIME_SERIES", rep_example) + 1
-  bio_header_line <- rep_example[bio_header_ind]
-  bio_header_line <- bio_header_line[bio_header_line != ""]
-  bio_header <- str_split(bio_header_line, " +")[[1]]
-  bio_start_ind <- bio_header_ind + 1
-  if(length(bio_start_ind) > 1){
-    bio_start_ind <- bio_start_ind[2]
-  }
-  bio_end_ind <- grep("SPR_SERIES", rep_example) - 2
-  if(length(bio_end_ind) > 1){
-    bio_end_ind <- bio_end_ind[2]
-  }
-  reps <- reps[!is.na(reps)]
-  reps_bio <- map(reps, ~{.x[bio_start_ind:bio_end_ind]})
-  # Likelihood
-  like_start_ind <- grep("LIKELIHOOD", rep_example) + 1
-  if(length(like_start_ind) > 1){
-    like_start_ind <- like_start_ind[2]
-  }
-  like_end_ind <- like_start_ind + 28
-  reps_like <- map(reps, ~{.x[like_start_ind:like_end_ind]})
-  ## Selectivity
-  next_yr <- model$endyr + 1
-  sel_header_ind <- grep("Factor Fleet Yr Seas", rep_example)
-  sel_header_line <- rep_example[sel_header_ind]
-  sel_header <- str_split(sel_header_line, " +")[[1]]
-  sel_ind <- grep(paste0(next_yr, "_1Asel"), rep_example)
-  reps_sel <- map(reps, ~{.x[sel_ind]})
-  ## Selectivity * Weight
-  selwt_ind <- grep(paste0(next_yr, "_1_sel\\*wt"), rep_example)
-  reps_selwt <- map(reps, ~{.x[selwt_ind]})
-  ## Natage
-  natage_header_ind <- grep("NUMBERS_AT_AGE_Annual_2 With_fishery", rep_example) + 1
-  natage_header <- str_split(rep_example[natage_header_ind], " +")[[1]]
-  natage_start_ind <- natage_header_ind + 1
-  natage_end_ind <- grep("Z_AT_AGE_Annual_2 With_fishery", rep_example) - 2
-  reps_natage <- map(reps, ~{.x[natage_start_ind:natage_end_ind]})
-  ## Q
-  q_header_ind <- grep("INDEX_2", rep_example) + 1
-  if(length(q_header_ind) > 1){
-    q_header_ind <- q_header_ind[2]
-  }
-  q_header <- str_split(rep_example[q_header_ind], " +")[[1]]
-  q_start_ind <- q_header_ind + 1
-  ncpue <- nrow(model$dat$CPUE)
-  q_end_ind <- q_start_ind + ncpue - 1
-  reps_q <- map(reps, ~{.x[q_start_ind:q_end_ind]})
-  ## Comp tables
-  comp_header_ind <- grep("Composition_Database", comprep_example) + 1
-  comp_header <- str_split(comprep_example[comp_header_ind], " +")[[1]]
-  comp_start_ind <- comp_header_ind + 1
-  comp_end_ind <- grep("End_comp_data", comprep_example) - 1
-  compreps <- compreps[!is.na(compreps)]
-  reps_comp <- map(compreps, ~{.x[comp_start_ind:comp_end_ind]})
 
   #' Extract the vectors from a list into a [tibble::tibble()]
   #'
@@ -337,7 +277,7 @@ fetch_extra_mcmc <- function(model_path,
       vecs <- map(vecs, ~{
         length(.x) <- vec_maxlength
         .x
-        })
+      })
       suppressMessages(
         tab <- do.call(rbind, vecs) %>%
           as_tibble(.name_repair = "unique")
@@ -349,6 +289,201 @@ fetch_extra_mcmc <- function(model_path,
     do.call(rbind, lst) %>%
       as_tibble()
   }
+
+  # Make custom reps_ objects for each output. Only relevant portions of the report file will be passed to
+  # the table-making map2() calls later (speeds up the map2() calls)
+  rep_example <- reps[[which(!is.na(reps))[1]]]
+  comprep_example <- compreps[[which(!is.na(compreps))[1]]]
+
+  # Biomass -------------------------------------------------------------------
+  bio_header_ind <- grep("TIME_SERIES", rep_example) + 1
+  bio_header_line <- rep_example[bio_header_ind]
+  bio_header_line <- bio_header_line[bio_header_line != ""]
+  bio_header <- str_split(bio_header_line, " +")[[1]]
+  bio_start_ind <- bio_header_ind + 1
+  if(length(bio_start_ind) > 1){
+    bio_start_ind <- bio_start_ind[2]
+  }
+  bio_end_ind <- grep("SPR_SERIES", rep_example) - 2
+  if(length(bio_end_ind) > 1){
+    bio_end_ind <- bio_end_ind[2]
+  }
+  reps <- reps[!is.na(reps)]
+  reps_bio <- map(reps, ~{.x[bio_start_ind:bio_end_ind]})
+
+  # Likelihood ----------------------------------------------------------------
+  like_start_ind <- grep("LIKELIHOOD", rep_example) + 1
+  if(length(like_start_ind) > 1){
+    like_start_ind <- like_start_ind[2]
+  }
+  like_end_ind <- like_start_ind + 28
+  reps_like <- map(reps, ~{.x[like_start_ind:like_end_ind]})
+
+  # Selectivity ---------------------------------------------------------------
+  next_yr <- model$endyr + 1
+  sel_header_ind <- grep("Factor Fleet Yr Seas", rep_example)
+  sel_header_line <- rep_example[sel_header_ind]
+  sel_header <- str_split(sel_header_line, " +")[[1]]
+  sel_ind <- grep(paste0(next_yr, "_1Asel"), rep_example)
+  reps_sel <- map(reps, ~{.x[sel_ind]})
+  sel <- extract_rep_table(reps_sel, sel_header) %>%
+    select(-c(2:3, 5:8)) %>%
+    map_df(as.numeric) %>%
+    filter(Yr == next_yr) %>%
+    select(-c(Iter, Yr))
+
+  # Selectivity * Weight ------------------------------------------------------
+  selwt_ind <- grep(paste0(next_yr, "_1_sel\\*wt"), rep_example)
+  reps_selwt <- map(reps, ~{.x[selwt_ind]})
+  selwt <- extract_rep_table(reps_selwt, sel_header) %>%
+    select(-c(2:3, 5:8)) %>%
+    map_df(as.numeric) %>%
+    filter(Yr == next_yr) %>%
+    select(-c(Iter, Yr))
+
+  # Dynamic B0 ----------------------------------------------------------------
+  dynb_header_ind <- grep("Dynamic_Bzero", rep_example) + 1
+  if(length(dynb_header_ind) > 1){
+    if(length(dynb_header_ind) != 3){
+      stop("There are not 3 Dynamic_Bzero entries in the Report.sso file",
+           call. = FALSE)
+    }
+    dynb_fish_header_ind <- dynb_header_ind[2]
+    dynb_nofish_header_ind <- dynb_header_ind[3]
+  }
+  dynb_header <- c("Yr", "Area", "Value")
+  dynb_fish_start_ind <- dynb_fish_header_ind + 4
+  dynb_nofish_start_ind <- dynb_nofish_header_ind + 4
+  dynb_fish_end_ind <- grep("NUMBERS_AT_AGE_Annual_2", rep_example) - 2
+  dynb_nofish_end_ind <- grep("NUMBERS_AT_AGE_Annual_1", rep_example) - 2
+  reps_dynb_fish <- map(reps, ~{.x[dynb_fish_start_ind:dynb_fish_end_ind]})
+  reps_dynb_nofish <- map(reps, ~{.x[dynb_nofish_start_ind:dynb_nofish_end_ind]})
+  extra_mcmc$dynb_fish <- extract_rep_table(reps_dynb_fish, dynb_header) %>%
+    select(-c(1, 3)) %>%
+    map_df(as.numeric) %>%
+    filter(Yr %in% start.yr:end.yr)
+  extra_mcmc$dynb_fish_median <- extra_mcmc$dynb_fish %>%
+    group_by(Yr) %>%
+    summarize(median_bo = median(Value))
+  extra_mcmc$dynb_nofish <- extract_rep_table(reps_dynb_nofish, dynb_header) %>%
+    select(-c(1, 3)) %>%
+    map_df(as.numeric) %>%
+    filter(Yr %in% start.yr:end.yr)
+  extra_mcmc$dynb_nofish_median <- extra_mcmc$dynb_nofish %>%
+    group_by(Yr) %>%
+    summarize(median_bo = median(Value))
+
+  # Numbers-at-age ------------------------------------------------------------
+  natage_header_ind <- grep("NUMBERS_AT_AGE_Annual_2 With_fishery", rep_example) + 1
+  natage_header <- str_split(rep_example[natage_header_ind], " +")[[1]]
+  natage_start_ind <- natage_header_ind + 1
+  natage_end_ind <- grep("Z_AT_AGE_Annual_2 With_fishery", rep_example) - 2
+  reps_natage <- map(reps, ~{.x[natage_start_ind:natage_end_ind]})
+  extra_mcmc$natage <- extract_rep_table(reps_natage, natage_header) %>%
+    select(-(1:3)) %>%
+    map_df(as.numeric) %>%
+    filter(Yr %in% start.yr:end.yr) %>%
+    mutate_at(.vars = vars(-Yr), ~{.x / 1e3})
+  extra_mcmc$natage_median <- extra_mcmc$natage %>%
+    group_by(Yr) %>%
+    summarize_all(median)
+  natage_for_exp_calc <- extra_mcmc$natage %>%
+    filter(Yr %in% start.yr:(end.yr - 1))
+
+  # Biomass-at-age ------------------------------------------------------------
+  batage_header_ind <- grep("BIOMASS_AT_AGE", rep_example) + 1
+  if(length(batage_header_ind) > 1){
+    batage_header_ind <- batage_header_ind[2]
+  }
+  batage_header <- str_split(rep_example[batage_header_ind], " +")[[1]]
+  batage_start_ind <- batage_header_ind + 1
+  batage_end_ind <- grep("NUMBERS_AT_LENGTH", rep_example) - 2
+  if(length(batage_end_ind) > 1){
+    batage_end_ind <- batage_end_ind[2]
+  }
+  reps_batage <- map(reps, ~{.x[batage_start_ind:batage_end_ind]})
+  extra_mcmc$batage <- extract_rep_table(reps_batage, batage_header) %>%
+    filter(`Beg/Mid` == "B") %>%
+    select(-c(1:8, 10:13)) %>%
+    map_df(as.numeric) %>%
+    filter(Yr %in% start.yr:end.yr) %>%
+    mutate_at(.vars = vars(-Yr), ~{.x / 1e3})
+  extra_mcmc$batage_median <- extra_mcmc$batage %>%
+    group_by(Yr) %>%
+    summarize_all(median)
+  batage_for_exp_calc <- extra_mcmc$batage %>%
+    filter(Yr %in% start.yr:(end.yr - 1))
+
+  # Catch-at-age in numbers ---------------------------------------------------
+  catage_header_ind <- grep("CATCH_AT_AGE", rep_example) + 1
+  if(length(catage_header_ind) > 1){
+    catage_header_ind <- catage_header_ind[2]
+  }
+  catage_header <- gsub("XX", "", str_split(rep_example[catage_header_ind], " +")[[1]])
+  catage_header <- catage_header[catage_header != ""]
+  catage_start_ind <- catage_header_ind + 1
+  catage_end_ind <- grep("DISCARD_AT_AGE", rep_example) - 2
+  if(length(catage_end_ind) > 1){
+    catage_end_ind <- catage_end_ind[2]
+  }
+  reps_catage <- map(reps, ~{gsub("XX", "", .x[catage_start_ind:catage_end_ind])})
+  extra_mcmc$catage <- extract_rep_table(reps_catage, catage_header) %>%
+    select(-c(1:6, 8:9)) %>%
+    map_df(as.numeric) %>%
+    filter(Yr %in% start.yr:(end.yr - 1))
+  extra_mcmc$catage_median <- extra_mcmc$catage %>%
+    group_by(Yr) %>%
+    summarize_all(median)
+
+  # Catch-at-age in biomass ---------------------------------------------------
+  iter <- extract_rep_table(reps_catage, catage_header) %>%
+    pull(Iter) %>%
+    unique
+  wtatage <- model$wtatage %>%
+    as_tibble() %>%
+    filter(Fleet == 1) %>%
+    filter(Yr %in% start.yr:(end.yr - 1)) %>%
+    select(-(2:6))
+  wtatage <- map_df(iter, ~{wtatage})
+  yrs <- extra_mcmc$catage$Yr
+  extra_mcmc$catage_biomass <- map2(extra_mcmc$catage, wtatage, ~{.x * .y}) %>% map_df(~{.x}) %>%
+    mutate(Yr = yrs)
+  extra_mcmc$catage_biomass_median <- extra_mcmc$catage_biomass %>%
+    group_by(Yr) %>%
+    summarize_all(median)
+
+  # Exploitation-rate-at-age --------------------------------------------------
+  yrs <- extra_mcmc$catage_biomass$Yr
+  extra_mcmc$expatage <- map2(extra_mcmc$catage_biomass, batage_for_exp_calc, ~{.x / .y}) %>% map_df(~{.x}) %>%
+    mutate(Yr = yrs)
+  extra_mcmc$expatage_median <- extra_mcmc$expatage %>%
+    group_by(Yr) %>%
+    summarize_all(median)
+  # As a check, the following returns the exact same values as the above (extra_mcmc$expatage_biomass)
+  # yrs <- extra_mcmc$catage$Yr
+  # extra_mcmc$expatage_numbers <- map2(extra_mcmc$catage, natage_for_exp_calc, ~{.x / .y}) %>% map_df(~{.x}) %>%
+  #   mutate(Yr = yrs) %>%
+  #   group_by(Yr) %>%
+  #   summarize_all(median)
+
+  # Catchability --------------------------------------------------------------
+  q_header_ind <- grep("INDEX_2", rep_example) + 1
+  if(length(q_header_ind) > 1){
+    q_header_ind <- q_header_ind[2]
+  }
+  q_header <- str_split(rep_example[q_header_ind], " +")[[1]]
+  q_start_ind <- q_header_ind + 1
+  ncpue <- nrow(model$dat$CPUE)
+  q_end_ind <- q_start_ind + ncpue - 1
+  reps_q <- map(reps, ~{.x[q_start_ind:q_end_ind]})
+  ## Comp tables
+  comp_header_ind <- grep("Composition_Database", comprep_example) + 1
+  comp_header <- str_split(comprep_example[comp_header_ind], " +")[[1]]
+  comp_start_ind <- comp_header_ind + 1
+  comp_end_ind <- grep("End_comp_data", comprep_example) - 1
+  compreps <- compreps[!is.na(compreps)]
+  reps_comp <- map(compreps, ~{.x[comp_start_ind:comp_end_ind]})
+
 
   # like <- map2(reps_like, 1:length(reps_like), ~{
   #   if(is.na(.x[1])){
@@ -362,23 +497,12 @@ fetch_extra_mcmc <- function(model_path,
   # })
   # do.call(rbind, like) %>%
   #   as_tibble()
-  sel <- extract_rep_table(reps_sel, sel_header) %>%
-    select(-c(2, 3, 5, 6, 7, 8)) %>%
-    map_df(as.numeric) %>%
-    filter(Yr == next_yr) %>%
-    select(-c(Iter, Yr))
-  selwt <- extract_rep_table(reps_selwt, sel_header) %>%
-    select(-c(2, 3, 5, 6, 7, 8)) %>%
-    map_df(as.numeric) %>%
-    filter(Yr == next_yr) %>%
-    select(-c(Iter, Yr))
-  natage <- extract_rep_table(reps_natage, natage_header) %>%
-    select(-c(2, 3)) %>%
-    map_df(as.numeric) %>%
-    filter(Yr == next_yr) %>%
-    select(-c(Iter, Yr))
 
-  ## Apply selectivity to numbers-at-age
+  # Apply selectivity to numbers-at-age ---------------------------------------
+  natage <- extra_mcmc$natage %>%
+    filter(Yr == next_yr) %>%
+    select(-Yr)
+
   natsel <- natage * sel
   natselwt <- natage * selwt
   extra_mcmc$natsel.prop <- natsel %>%
@@ -390,7 +514,7 @@ fetch_extra_mcmc <- function(model_path,
     mutate_at(.vars = vars(-rsum), .funs = ~{.x / rsum}) %>%
     select(-rsum)
 
-  # CPUE table and values (Q)
+  # CPUE table and values (Q) -------------------------------------------------
   q <- extract_rep_table(reps_q, q_header) %>%
     select(Iter, Exp, Calc_Q)
   iter <- unique(q$Iter)
@@ -419,7 +543,7 @@ fetch_extra_mcmc <- function(model_path,
   extra_mcmc$cpue.median <- as.numeric(cpue[2,])
   extra_mcmc$cpue.0.975 <- as.numeric(cpue[3,])
 
-  ## Add info on distribution of total biomass to existing time series data frame
+  # Add total biomass to existing time series data frame ----------------------
   timeseries <- extract_rep_table(reps_bio, bio_header) %>%
     select(Iter, Bio_all, Bio_smry)
   iter <- unique(timeseries$Iter)

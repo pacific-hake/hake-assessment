@@ -299,38 +299,33 @@ make.assessment.changes.table(assessment.changes,
 \pagestyle{mylandscape}
 \centering
 <<main-est-numbers-at-age-table, results='asis', echo=FALSE>>=
-make.est.numbers.at.age.table(
+atage_table(
   base.model,
-  start.yr = start.yr,
-  end.yr = end.yr,
-  weight.factor = 1000,
-  plus.group = 15,
-  table.type = 1,
-  csv.dir = output.csv.dir,
+  table_type = 1,
+  csv_dir = output.csv.dir,
   xcaption = paste0("Estimated numbers-at-age at the beginning ",
-                    "of the year from the base model (MLE; million)."),
+                    "of the year from the base model (MCMC medians; million)."),
   xlabel = "tab:main-est-numbers-at-age",
-  font.size = 9,
-  space.size = 10)
+  font_size = 9,
+  space_size = 10)
 @
 \end{landscape}
 \pagestyle{fancy}
+\clearpage
 
 \begin{landscape}
 \pagestyle{mylandscape}
 \centering
 <<main-est-biomass-at-age-table, results='asis', echo=FALSE>>=
-make.est.numbers.at.age.table(
+atage_table(
   base.model,
-  start.yr = start.yr,
-  end.yr = last.data.yr + 1,
-  table.type = 5,
-  csv.dir = output.csv.dir,
+  table_type = 5,
+  csv_dir = output.csv.dir,
   xcaption = paste0("Estimated biomass-at-age at the beginning ",
-                    "of the year from the base model (MLE; thousand t)."),
+                    "of the year from the base model (MCMC medians; thousand t)."),
   xlabel = "tab:main-est-biomass-at-age",
-  font.size = 9,
-  space.size = 10)
+  font_size = 9,
+  space_size = 10)
 @
 \end{landscape}
 \pagestyle{fancy}
@@ -339,19 +334,17 @@ make.est.numbers.at.age.table(
 \pagestyle{mylandscape}
 \centering
 <<main-est-exp-rate-at-age-table, results='asis', echo=FALSE>>=
-make.est.numbers.at.age.table(
+atage_table(
   base.model,
-  start.yr = start.yr,
-  end.yr = last.data.yr,
-  table.type = 2,
-  csv.dir = output.csv.dir,
+  table_type = 2,
+  csv_dir = output.csv.dir,
   xcaption = paste0("Estimated exploitation-rate-at-age ",
-      "(catch-at-age divided by biomass-at-age at the beginning of the year) ",
-      "for each year from the base model (MLE; percentage of age class removed by fishing). ",
-      "Annual exploitation rates for ages 6$+$ are equivalent because those fish are fully selected."),
+                    "(catch-at-age divided by biomass-at-age at the beginning of the year) ",
+                    "for each year from the base model (MCMC medians; percentage of age class removed by fishing). ",
+                    "Annual exploitation rates for ages 6$+$ are equivalent because those fish are fully selected."),
   xlabel = "tab:main-est-exp-rate-at-age",
-  font.size = 8,
-  space.size = 9)
+  font_size = 9,
+  space_size = 10)
 @
 \end{landscape}
 \pagestyle{fancy}
@@ -360,17 +353,15 @@ make.est.numbers.at.age.table(
 \pagestyle{mylandscape}
 \centering
 <<main-est-catch-at-age-table, results='asis', echo=FALSE>>=
-make.est.numbers.at.age.table(
+atage_table(
   base.model,
-  start.yr = start.yr,
-  end.yr = last.data.yr,
-  table.type = 3,
-  csv.dir = output.csv.dir,
+  table_type = 3,
+  csv_dir = output.csv.dir,
   xcaption = paste0("Estimated catch-at-age in numbers ",
-                    "for each year from the base model (MLE; thousands)."),
+                    "for each year from the base model (MCMC medians; thousands)."),
   xlabel = "tab:main-est-catch-at-age",
-  font.size = 6,
-  space.size = 7)
+  font_size = 6,
+  space_size = 7)
 @
 \end{landscape}
 \pagestyle{fancy}
@@ -379,17 +370,15 @@ make.est.numbers.at.age.table(
 \pagestyle{mylandscape}
 \centering
 <<main-est-catch-at-age-biomass-table, results='asis', echo=FALSE>>=
-make.est.numbers.at.age.table(
+atage_table(
   base.model,
-  start.yr = start.yr,
-  end.yr = last.data.yr,
-  table.type = 4,
-  csv.dir = output.csv.dir,
+  table_type = 4,
+  csv_dir = output.csv.dir,
   xcaption = paste0("Estimated catch-at-age in biomass ",
-                    "for each year from the base model (MLE; metric tons)."),
+                    "for each year from the base model (MCMC medians; metric tons)."),
   xlabel = "tab:main-est-catch-at-age-biomass",
-  font.size = 6,
-  space.size = 7)
+  font_size = 6,
+  space_size = 7)
 @
 \end{landscape}
 \pagestyle{fancy}
@@ -463,7 +452,7 @@ param_est_table(list(base.model, last.yr.base.model),
                 digits = 3,
                 getrecs = c(2010, 2014, 2016),
                 show_like = FALSE,
-                mle_table = TRUE,
+                mle_table = FALSE,
                 xcaption =
                   paste0("Select parameters, derived quantities, ",
                          "and reference point estimates for the base model ",
