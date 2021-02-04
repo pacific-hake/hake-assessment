@@ -493,7 +493,7 @@ make.reference.points.table(base.model,
 
 <<main-decisions-biomass-table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption = paste0("**[check, though caption is automated] Forecast quantiles of \\fishname\\
+                    xcaption = paste0("Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
                      catch levels (rows ",
@@ -501,9 +501,12 @@ make.decision.table(base.model,
                      "), including catch similar to ",
                      min(forecast_yrs)-1," (row ",
                      letters[catch.actual.ind],
-                     ") and the (unilaterally summed) TAC from ",
+                     "), to the (unilaterally summed) TAC from ",
                      min(forecast_yrs)-1," (row ",
                      letters[catch.tac.ind],
+                     "), and to the TAC from ",
+                     min(forecast_yrs)-2," (row ",
+                     letters[catch.prev.tac.ind],
                      "), the catch values that result
                      in a median relative fishing intensity of 100\\% (row ",
                      letters[catch.spr100.ind],
