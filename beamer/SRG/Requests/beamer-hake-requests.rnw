@@ -589,8 +589,7 @@ Request 5 -- Redo ADNUTs plots thinning down to about 2,000 samples from samples
 <<base.hists, fig.height=3.5>>=
 oldpar <- par()
 par(mar=c(4.1, 4.1, 3.1, 0.1))
-make.mcmc.diag.hists.plot(base.model,
-                          labelstrings = "all")
+plot_mcmc_param_stats(base.model)
 par <- oldpar
 @
 \end{center}
@@ -606,8 +605,7 @@ par <- oldpar
 <<adnuts.hists, fig.height=3.5>>=
 oldpar <- par()
 par(mar=c(4.1, 4.1, 3.1, 0.1))
-make.mcmc.diag.hists.plot(sens.models.6,
-                          labelstrings = "all")
+plot_mcmc_param_stats(sens.models.6)
 par <- oldpar
 @
 \end{center}
@@ -623,8 +621,7 @@ par <- oldpar
 <<adnuts.hists.thin.2000, fig.height=3.5>>=
 oldpar <- par()
 par(mar=c(4.1, 4.1, 3.1, 0.1))
-make.mcmc.diag.hists.plot(adnuts.model.2000,
-                          labelstrings = "all")
+plot_mcmc_param_stats(adnuts.model.2000)
 par <- oldpar
 @
 \end{center}
@@ -640,8 +637,7 @@ par <- oldpar
 <<adnuts.hists.thin.1000, fig.height=3.5>>=
 oldpar <- par()
 par(mar=c(4.1, 4.1, 3.1, 0.1))
-make.mcmc.diag.hists.plot(adnuts.model.1000,
-                          labelstrings = "all")
+plot_mcmc_param_stats(adnuts.model.1000)
 par <- oldpar
 @
 \end{center}

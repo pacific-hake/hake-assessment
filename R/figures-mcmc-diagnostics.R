@@ -342,32 +342,6 @@ make.mcmc.diag.plot.if.exists <- function(.model,
                       posterior.name = .posterior.name)
 }
 
-
-
-#' Plot the diagnostic test histograms for the model
-#'
-#' @details Autocorrelation, Effective sample size, Geweke statistic, and
-#' Heidelberger and Walsh statistic
-#' @param model A model as output by [load_ss_models()]
-#' @param labelstrings See [r4ss::mcmc.nuisance()]
-#'
-#' @return A plot of the histograms
-#' @export
-make.mcmc.diag.hists.plot <- function(model,
-                                      labelstrings = c(model$parameters$Label,
-                                                       "SSB_",
-                                                       "Bratio_")){
-
-  oldpar <- par("mar", "oma")
-  on.exit(par(oldpar))
-  par(mar = c(5, 4, 0, 0.5),
-      oma = c(0, 0, 0.5, 0.5))
-  mcmc.stats <- mcmc.nuisance(model$mcmcpath,
-                              run = "",
-                              labelstrings = labelstrings,
-                              bothfiles = ifelse(labelstrings[1] == "all", FALSE, TRUE))
-}
-
 panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...){
   ## From ?pairs, to add correlation values to pairs plot, AME changing final
   ##  term from r to sqrt(r):

@@ -98,6 +98,9 @@ load_ss_files <- function(model_path = NA,
   # Set the mcmc path. This doesn't mean it exists.
   mcmc.dir <- file.path(model_path, "mcmc")
   model$mcmcpath <- mcmc.dir
+  # Save the posterior names from the mcmc output. This is necessary for the function `mcmc_nuisance()`
+  tmp <- readLines(file.path(mcmc.dir, "posteriors.sso"), n = 1)
+  model$post_names <- str_split(tmp, " +")[[1]]
 
   # If it has an 'mcmc' sub-directory, load that as well
   if(dir.exists(mcmc.dir)){

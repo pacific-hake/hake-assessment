@@ -425,8 +425,7 @@ par <- oldpar
 \begin{figure}[H]
 \begin{center}
 <<mcmc-diag-hists-base-temp, fig.height=6, fig.width=8>>=
-make.mcmc.diag.hists.plot(base.model,
-                          labelstrings = "all")
+plot_mcmc_param_stats(base.model)
 @
 \end{center}
 \caption{Summary histograms of MCMC diagnostics for all parameters

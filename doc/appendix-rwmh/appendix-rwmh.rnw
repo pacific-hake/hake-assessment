@@ -544,8 +544,7 @@ par <- oldpar
 \begin{figure}[H]
 \begin{center}
 <<mcmc-diag-hists-rwmh, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
-make.mcmc.diag.hists.plot(sens.models.7,
-                          labelstrings = "all")
+plot_mcmc_param_stats(sens.models.7)
 @
 \end{center}
 \caption{Summary histograms of rwMH MCMC diagnostics for all parameters
