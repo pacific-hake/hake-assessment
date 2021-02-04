@@ -486,9 +486,12 @@ param_est_table <- function(models,
       "2009 relative spawning biomass",
       paste0(end.yr, " relative spawning biomass"),
       paste0(end.yr - 1, " rel. fishing intensity: (1-SPR)/(1-", latex.subscr("SPR", "40\\%"), ")"),
-      paste0("Female spawning biomass (", latex.italics("$B_{F_{40_{\\%}}}$"), "; thousand t)"),
+      paste0("Female spawning biomass at ",
+             latex.subscr(latex.italics("F"), "SPR=40\\%"),
+             " (",
+             latex.subscr(latex.italics("B"), "SPR=40\\%"), ", thousand t)"),
       latex.subscr("SPR", "MSY-proxy"), "Exploitation fraction corresponding to SPR",
-      paste0("Yield at ", latex.italics("$B_{F_{40_{\\%}}}$"), " (thousand t)")),
+      paste0("Yield at ", latex.subscr(latex.italics("B"), "SPR=40\\%"), " (thousand t)")),
     name = NULL)
   if(!age_1){
     tab_labels <- tab_labels %>% filter(value != "Additional age-1 index SD")
