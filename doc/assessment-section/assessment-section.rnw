@@ -1250,34 +1250,36 @@ Figure~\ref{fig:main-forecast-risk-comparison-year-2}). Note that for zero
 catch in Figure~\ref{fig:main-forecast-depletion-comparison}, the median in 2021
 essentially equals the median in 2022 (i.e., zero difference in the medians),
 which might be expected to imply a 50\% probability of a decline (not the 65\%
-just mentioned). However, the median change between 2021 and 2022
+just mentioned). However, this does not occur because the difference between the
+2021 and 2021 medians is not the same as the median of the 2021 and 2022 differences.
+The median difference between 2021 and 2022
 is a decline of 0.028 (from calculating the difference for each MCMC sample and
-then taking the median, namely the median of the differences). About 15\% of the
+then taking the median). About 15\% of the
 MCMC samples have a decline in the range -0.028 to 0 (a decline greater than the
 median difference but less than the difference in the medians). This accounts for the
 apparent discrepancy in the 50\% and 65\% probabilities.
 
 % Make consistent with Exec Summary (that has older text commented out for
 % possible future use)
-**The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
-\Sexpr{end.yr+1} is over 80\% for all catch levels, including zero
+The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
+\Sexpr{end.yr+1} is over 65\% for all catch levels, including zero
 (Table~\ref{tab:main-risk-year-1} and
-Figure~\ref{fig:main-forecast-risk-comparison-year-1}). It is 95\% for the
-\Sexpr{end.yr} catch level similar to that for \Sexpr{end.yr-1} (catch **[may
-change:] alternative~d).
+Figure~\ref{fig:main-forecast-risk-comparison-year-1}). It is 86\% for the
+\Sexpr{end.yr} catch level similar to that for \Sexpr{end.yr-1} (catch alternative~d).
 For all explored catches,
 the maximum probability of the spawning biomass dropping below $B_{10\%}$ at
-the start of \Sexpr{end.yr+1} is 1\%, and of
-dropping below $B_{40\%}$ is 40\%
+the start of \Sexpr{end.yr+1} is 2\%, and of
+dropping below $B_{40\%}$ is 46\%
 (Table~\ref{tab:main-risk-year-1} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-1}).
 It should be noted
-that forecasted abundance is not only influenced by catch levels.
+that forecasted biomass is not only influenced by catch levels.
 As the large 2010 and 2014 cohorts continue to age, their biomass is expected to decrease
-as losses from mortality outweigh increases from growth, while the smaller but
-above-average and average 2016 and 2017 cohorts will add to overall spawning biomass as they mature.
+as losses from mortality outweigh increases from growth. The smaller
+above-average 2016 cohort is entering this growth-mortality transition period,
+and the average 2017 cohort will do so soon.
 The below-average 2015 and 2018 cohorts will contribute much less to forecasted spawning
-biomass. The probability
+biomass than the larger cohorts. The probability
 that the \Sexpr{forecast_yrs[2]} spawning biomass will be less than the
 \Sexpr{forecast_yrs[1]} spawning biomass ranges from \Sexpr{f(min(base.model$risks[[1]][,2]))}\% to \Sexpr{f(max(base.model$risks[[1]][,2]))}\%
 depending on the catch level (Table~\ref{tab:main-risk-year-1} and
@@ -1285,30 +1287,31 @@ Figure~\ref{fig:main-forecast-risk-comparison-year-1}).
 
 
 % This needs to be somewhat manual so you can pick the cohorts to
-% specify. Increment the years each assessment.
-**The age composition (in numbers) of the catch in \Sexpr{forecast_yrs[1]} is
+% specify - look at fore.catch.prop.  Increment the years each assessment.
+The age composition (in numbers) of the catch in \Sexpr{forecast_yrs[1]} is
 projected to be (using MCMC medians)
-\Sexpr{fore.catch.prop$Age3}\% age-3 fish from the 2017 year-class,
-\Sexpr{fore.catch.prop$Age4}\% age-4 fish from the 2016 year-class,
-\Sexpr{fore.catch.prop$Age6}\% age-6 fish from the 2014 year-class and
-\Sexpr{fore.catch.prop$Age10}\% age-10 fish from the 2010 year-class
+\Sexpr{fore.catch.prop$Age4}\% age-4 fish from the 2017 year-class,
+\Sexpr{fore.catch.prop$Age5}\% age-5 fish from the 2016 year-class,
+\Sexpr{fore.catch.prop$Age7}\% age-7 fish from the 2014 year-class and
+\Sexpr{fore.catch.prop$Age11}\% age-11 fish from the 2010 year-class
 (Figure~\ref{fig:main-age-comp-forecast}). However, those estimates are highly
-uncertain with the 95\% credibility interval for the age-6 fraction spanning
-\Sexpr{f(fore.catch.prop.age6.lower)}\%--\Sexpr{f(fore.catch.prop.age6.upper)}\%.
-Due to the lower average weight at age-3 versus age-10, the median expected
+uncertain with the 95\% credibility interval for the age-7 fraction spanning
+\Sexpr{f(fore.catch.prop.age7.lower)}\%--\Sexpr{f(fore.catch.prop.age7.upper)}\%.
+Due to the lower average weight at age-4 versus age-11, the median expected
 proportion of the \Sexpr{forecast_yrs[1]} catch by weight
-is \Sexpr{f(fore.catch.prop.wt.age3.median)}\% for the 2017 cohort
-(compared to \Sexpr{fore.catch.prop$Age3}\% by numbers)
-and \Sexpr{f(fore.catch.prop.wt.age10.median)}\%
+is \Sexpr{f(fore.catch.prop.wt.age4.median)}\% for the 2017 cohort
+(compared to \Sexpr{fore.catch.prop$Age4}\% by numbers)
+and \Sexpr{f(fore.catch.prop.wt.age11.median)}\%
 for the 2010 cohort
-(compared to \Sexpr{fore.catch.prop$Age10}\% by numbers).
+(compared to \Sexpr{fore.catch.prop$Age11}\% by numbers; Figure~\ref{fig:main-age-comp-forecast}).
 
 % Manual done 2020.
 % Look at dfo.probs.fore and decide what to write. Check which row has the
 %  largest catch level (it should be the min prob - look at a decision
 %  table to check the catch and then look at dfo.probs.fore). Need to change
 %  column heading calls here because years will change.
-% Calculations could do with standardising maybe.
+% Calculations could do with standardising maybe, though can be helpful to be
+%  forced to think about them.
 **With respect to the DFO reference points, even with the largest
 \Sexpr{assess.yr} catch of \Sexpr{f(base.model$catch.levels[[8]][[1]][1])}~t given in Table~\ref{tab:main-risk-year-1},
 at the start of \Sexpr{assess.yr+1} the stock is expected to be above the critical zone with a probability of
@@ -1559,7 +1562,7 @@ the time-invariant ageing error vector model having a median relative biomass of
 time-invariant ageing error vector model.
 
 The impact of using the random walk Metropolis Hastings (rwMH) MCMC algorithm with data inputs
-and model structure equivalent to the base model is shown in 
+and model structure equivalent to the base model is shown in
 Table~\ref{tab:main-parameter-estimates-sens-3} and discussed in further details in
 Appendix~\ref{chap:rwmh}.
 
