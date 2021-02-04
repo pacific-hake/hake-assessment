@@ -633,7 +633,7 @@ degree of freedom than the number of estimated $p_a$. Therefore,
 $p_{A_{\text{min}}}=0$ can be set for the fishery and for the survey.
 
 The implementation of time-varying selectivity uses a set of deviations
-to control annual changes to the selectivity parameters. The standard deviation,
+to control annual changes to the fishery selectivity parameters. The standard deviation,
 $\Phi$, associated with these deviations has been fixed at \Sexpr{sel.Phi.val}
 since the 2018 assessment (see \citealt{JTC2018} for justification).
 It is calculated using
@@ -649,8 +649,6 @@ with negative log-likelihood proportional to
 % -\log(\text{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6} ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \left. \dfrac{\epsilon_{ay}^2}{\phi^2}{\vrule height 24pt width 0pt} \right. ,     % to try and make summations larger; can live with as is.
 \ee
 where $\Phi$ is the standard deviation of the normal penalty function.
-Note that there is such a log-likelihood component for both the fishery and the
-survey selectivities.
 
 A parameterization for selectivity deviations is being explored
 \citep{JTC2018, JTC2019} based on \citet{Xu2019}
