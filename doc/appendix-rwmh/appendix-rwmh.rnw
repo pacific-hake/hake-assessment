@@ -61,7 +61,7 @@ samples.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<biomass-base-alternative-7-rwmh-sens, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
+<<biomass-base-alternative-7-rwmh-sens, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows similar values of spawning biomass between the base model and rwMH sensitivity run">>=
 make.comparison.plot(c(list(base.model), list(sens.models.7)),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.7),
@@ -75,7 +75,7 @@ make.comparison.plot(c(list(base.model), list(sens.models.7)),
 %% JOINED ON PAGE
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{center}
-<<status-base-alternative-7-rwmh-sens, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
+<<status-base-alternative-7-rwmh-sens, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows similar patterns of relative spawning biomass between the base model and rwMH sensitivity run">>=
 make.comparison.plot(c(list(base.model), list(sens.models.7)),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.7),
@@ -91,7 +91,7 @@ make.comparison.plot(c(list(base.model), list(sens.models.7)),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<recruitment-base-alternative-7-rwmh-sens, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
+<<recruitment-base-alternative-7-rwmh-sens, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows similar patterns of recruitment between the base model and rwMH sensitivity run">>=
 make.comparison.plot(c(list(base.model), list(sens.models.7)),
                      legend = FALSE,
                      subplots = 10,
@@ -111,7 +111,7 @@ box()
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<recruitment-devs-base-alternative-7-rwmh-sens, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
+<<recruitment-devs-base-alternative-7-rwmh-sens, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows similar patterns of recruitment deviations between the base model and rwMH sensitivity run">>=
 make.comparison.plot(c(list(base.model), list(sens.models.7)),
                      legend = FALSE,
                      subplots = 12,
@@ -470,7 +470,7 @@ box()
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<mcmc-survey-fit-rwmh, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
+<<mcmc-survey-fit-rwmh, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows fits to the acoustic survey for some rwMH samples">>=
 make.mcmc.survey.fit.plot(sens.models.7,
                           start.yr = survey.start.yr,
                           end.yr = survey.end.yr,
@@ -492,7 +492,7 @@ make.mcmc.survey.fit.plot(sens.models.7,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<mcmc-diag-m-r0-rwmh, fig.height=4, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
+<<mcmc-diag-m-r0-rwmh, fig.height=4, fig.width=8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the rwMH run for two key parameters">>=
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
@@ -509,7 +509,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<mcmc-diag-h-extra-sd-rwmh, fig.height=4.8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
+<<mcmc-diag-h-extra-sd-rwmh, fig.height=4.8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the rwMH run for two more key parameters">>=
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
@@ -526,7 +526,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<mcmc-diag-dm-rwmh, fig.height=4.8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
+<<mcmc-diag-dm-rwmh, fig.height=4.8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the rwMH run for two more key parameters">>=
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
@@ -543,7 +543,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<mcmc-diag-hists-rwmh, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
+<<mcmc-diag-hists-rwmh, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure summarises good MCMC diagnostics for all parameters">>=
 plot_mcmc_param_stats(sens.models.7)
 @
 \end{center}
@@ -569,7 +569,7 @@ The level of autocorrelation in the chain (distribution across lag times, i.e., 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<mcmc-pairs-rwmh, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
+<<mcmc-pairs-rwmh, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows pairs plots for many parameters and derived quantities">>=
 make.mcmc.diag.pairs.plot(sens.models.7,
                           inc.key.params = TRUE,
                           key.posteriors.regex = key.posteriors,
@@ -589,7 +589,7 @@ make.mcmc.diag.pairs.plot(sens.models.7,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<mcmc-pairs-recruit-devs-rwmh, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
+<<mcmc-pairs-recruit-devs-rwmh, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows pairs plots for many derived quantities">>=
 make.mcmc.diag.pairs.plot(sens.models.7,
                           inc.key.params = FALSE,
                           recr = (end.yr-10):(end.yr-1))

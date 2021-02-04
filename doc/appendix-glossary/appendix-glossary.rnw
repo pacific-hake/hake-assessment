@@ -335,7 +335,7 @@ Year-class: A group of fish born in the same year. See also `cohort' and `recrui
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \begin{center}
-<<fishing-intensity-illustration, fig.height=5, fig.width=5, is.fig = TRUE, alt.text = "This figure shows ******">>=
+<<fishing-intensity-illustration, fig.height=5, fig.width=5, is.fig = TRUE, alt.text = "This figure shows how fishing intensity linearly increases with SPR">>=
 # Do as a function so that variables remain local
 intensity.plot = function(target = 0.4){
   SPR <- seq(0, 1, length=100)
@@ -363,7 +363,7 @@ intensity.plot()
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \begin{center}
-<<SPR-illustration, fig.height=7, fig.width=6, is.fig = TRUE, alt.text = "This figure shows ******">>=
+<<SPR-illustration, fig.height=7, fig.width=6, is.fig = TRUE, alt.text = "This figure shows how SPR is calculated">>=
 make.SPR.illustration(base.model, yrs = start.yr.age.comps:last.data.yr)
 @
 \end{center}
