@@ -129,8 +129,10 @@ make_catch_table <- function(ct,
     paste0(latex.hline,
            paste(ct_names, collapse = latex.amp()),
            latex.nline,
-           latex.hline,
-           latex.rephead(ncol(ct)))
+           latex.hline)
+
+  addtorow$command <- paste0(addtorow$command,
+                             latex_continue(ncol(ct), addtorow$command))
 
   size_string <- latex.size.str(font_size, space_size)
   print(xtable(ct,
@@ -239,8 +241,10 @@ make_landings_tac_table <- function(d,
     paste0(latex.hline,
            paste(names(tab), collapse = latex.amp()),
            latex.nline,
-           latex.hline,
-           latex.rephead(ncol(tab)))
+           latex.hline)
+
+  addtorow$command <- paste0(addtorow$command,
+                             latex_continue(ncol(tab), addtorow$command))
 
   size_string <- latex.size.str(font_size, space_size)
   print(xtable(tab,

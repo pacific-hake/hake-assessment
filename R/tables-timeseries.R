@@ -104,12 +104,14 @@ make.ci.posterior.table <- function(model,
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
-  addtorow$command <-   addtorow$command <-
+  addtorow$command <-
     paste0(latex.hline,
            paste(colnames(tab.filt), collapse = latex.amp()),
            latex.nline,
-           latex.hline,
-           latex.rephead(ncol(tab.filt)))
+           latex.hline)
+
+  addtorow$command <- paste0(addtorow$command,
+                             latex_continue(ncol(tab.filt), addtorow$command))
 
   print(xtable(tab.filt,
                caption = xcaption,
@@ -238,12 +240,14 @@ make.median.posterior.table <- function(model,
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
-  addtorow$command <-   addtorow$command <-
+  addtorow$command <-
     paste0(latex.hline,
            paste(colnames(tab.filt), collapse = latex.amp()),
            latex.nline,
-           latex.hline,
-           latex.rephead(ncol(tab.filt)))
+           latex.hline)
+
+  addtorow$command <- paste0(addtorow$command,
+                             latex_continue(ncol(tab.filt), addtorow$command))
 
   print(xtable(tab.filt,
                caption = xcaption,

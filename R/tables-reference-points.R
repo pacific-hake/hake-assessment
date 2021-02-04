@@ -2,8 +2,7 @@ make.reference.points.table <- function(model,
                                         xcaption = "default",
                                         xlabel   = "default",
                                         font.size = 9,
-                                        space.size = 10,
-                                        placement = "H"){
+                                        space.size = 10){
   ## Returns an xtable in the proper format for the executive summary
   ##  reference points. The values are calculated previously in the calc.mcmc
   ##  function in load-models.r.
@@ -53,23 +52,33 @@ make.reference.points.table <- function(model,
                                  "percentile")))
   addtorow <- list()
   addtorow$pos <- list()
-  addtorow$pos[[1]] <- 2
-  addtorow$pos[[2]] <- 6
-  addtorow$pos[[3]] <- 10
+  addtorow$pos[[1]] <- -1
+  addtorow$pos[[2]] <- 2
+  addtorow$pos[[3]] <- 6
+  addtorow$pos[[4]] <- 10
+
+  header_code <- paste0(latex.hline,
+                        paste(colnames(tab), collapse = latex.amp()),
+                        latex.nline,
+                        latex.hline)
+
+  header_code <- paste0(header_code,
+                        latex_continue(ncol(tab), header_code))
   addtorow$command <-
-    c(paste0(latex.nline,
+    c(header_code,
+      paste0(latex.nline,
              latex.bold(latex.under(paste0("Reference points (equilibrium) ",
                                            "based on $\\Fforty$"))),
-      latex.nline),
+             latex.nline),
       paste0(latex.nline,
              latex.bold(latex.under(paste0("Reference points (equilibrium) ",
                                            "based on $B_{40\\%}$ (40\\% of ",
                                            "$B_0$)"))),
-      latex.nline),
+             latex.nline),
       paste0(latex.nline,
              latex.bold(latex.under(paste0("Reference points (equilibrium) ",
                                            "based on estimated MSY"))),
-      latex.nline))
+             latex.nline))
 
   size.string <- latex.size.str(font.size, space.size)
   print(xtable(tab,
@@ -79,10 +88,12 @@ make.reference.points.table <- function(model,
                                  just="c")),
         caption.placement = "top",
         include.rownames = FALSE,
+        include.colnames = FALSE,
         sanitize.text.function = function(x){x},
         size = size.string,
         add.to.row = addtorow,
-        table.placement = placement,
-        tabular.environment = "longtable")
+        tabular.environment = "longtable",
+        table.placement = "H",
+        hline.after = NULL)
 }
 

@@ -81,8 +81,10 @@ make.input.age.data.table <- function(model,
            latex.amp(2),
            ages.tex,
            latex.nline,
-           latex.hline,
-           latex.rephead(ncol(age.df)))
+           latex.hline)
+
+  addtorow$command <- paste0(addtorow$command,
+                             latex_continue(ncol(age.df), addtorow$command))
 
   size.string <- latex.size.str(font.size, space.size)
   ## Write the CSV
@@ -173,8 +175,10 @@ make.can.age.data.table <- function(dat,
            latex.amp(2),
            ages.tex,
            latex.nline,
-           latex.hline,
-           latex.rephead(ncol(dat)))
+           latex.hline)
+
+  addtorow$command <- paste0(addtorow$command,
+                             latex_continue(ncol(dat), addtorow$command))
 
   size.string <- latex.size.str(font.size, space.size)
   print(xtable(dat,
@@ -249,8 +253,10 @@ make.us.age.data.table <- function(dat,
            latex.amp(3),
            ages.tex,
            latex.nline,
-           latex.hline,
-           latex.rephead(ncol(dat)))
+           latex.hline)
+
+  addtorow$command <- paste0(addtorow$command,
+                             latex_continue(ncol(dat), addtorow$command))
 
   size.string <- latex.size.str(font.size, space.size)
   print(xtable(dat,
@@ -354,8 +360,10 @@ atage_table <- function(model,
            latex.nline,
            latex.amp(),
            ages_tex,
-           latex.hline,
-           latex.rephead(ncol(dat)))
+           latex.hline)
+
+  addtorow$command <- paste0(addtorow$command,
+                             latex_continue(ncol(dat), addtorow$command))
 
   # Make the size string for font and space size
   size_string <- latex.size.str(font_size, space_size)

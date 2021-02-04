@@ -202,14 +202,19 @@ latex.supscr <- function(main.txt, supscr.txt){
   paste0(main.txt, "\\supscr{", supscr.txt, "}")
 }
 
-#' Return the necessary latex to repeat longtable headers
+#' Return the necessary latex to repeat longtable headers for continuing pages
 #'
 #' @return vector of strings needed to repeat the header of a longtable
 #' and a footer which says 'Continued on next page ...'
 #' @export
-latex.rephead <- function(n_col = 1){
-  paste0("\\endhead \n",
-         "\\hline \n",
+latex_continue <- function(n_col = 1, header = "Default"){
+  paste0("\\endfirsthead \n",
+         "\\multicolumn{", n_col, "}{l}{\\textit{... Continued from previous page}} \n",
+         latex.nline,
+         header,
+         "\\endhead \n",
+         latex.nline,
+         latex.hline,
          "\\multicolumn{", n_col, "}{l}{\\textit{Continued on next page ...}} \n",
          "\\endfoot \n",
          "\\endlastfoot \n")

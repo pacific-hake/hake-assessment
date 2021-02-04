@@ -39,8 +39,10 @@ make.assessment.changes.table <- function(assessment.changes,
     paste0(latex.hline,
            paste(colnames(tab), collapse = latex.amp()),
            latex.nline,
-           latex.hline,
-           latex.rephead(ncol(tab)))
+           latex.hline)
+
+  addtorow$command <- paste0(addtorow$command,
+                             latex_continue(ncol(tab), addtorow$command))
 
   size.string <- latex.size.str(font.size, space.size)
   # Cannot have multiple periods in a number (software version must be separated by dashes

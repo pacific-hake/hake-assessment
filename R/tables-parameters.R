@@ -294,12 +294,15 @@ make.parameters.estimated.summary.table <- function(model,
   addtorow$pos[[4]] <- 6
   addtorow$pos[[5]] <- 9
   addtorow$pos[[6]] <- 11
+  header_code <- paste0(latex.hline,
+                        paste(colnames(tab), collapse = latex.amp()),
+                        latex.nline,
+                        latex.hline)
+
+  header_code <- paste0(header_code,
+                        latex_continue(ncol(tab), header_code))
   addtorow$command <-
-    c(paste0(latex.hline,
-             paste(colnames(tab), collapse = latex.amp()),
-             latex.nline,
-             latex.hline,
-             latex.rephead(ncol(tab))),
+    c(header_code,
       paste0(latex.bold(latex.under("Stock Dynamics")),
              latex.nline),
       paste0(latex.nline,
