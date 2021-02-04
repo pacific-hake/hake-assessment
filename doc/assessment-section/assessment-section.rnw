@@ -376,7 +376,9 @@ sampled trips, and the number of sampled fish.}
 As the JTC works towards documenting which fish are included in historical age-composition samples (response 4), investigating disaggregated forms of the compositional data will become a doable task because currently the data are unavailable.
 Thus, below we note our progress on investigating historical methods used to collect data beyond those noted before.}
 
-\emph{**2020 KFJ: Changes in sampling protocol.}
+\emph{For the U.S. sectors, the average number of fish sampled per haul in the at-sea sector in recent years is three fish, whereas the average number of fish sampled per trip in the shore-based sector is twenty. We assign the input sample size of an at-sea haul or a shore-based trip equally but account for differences in sample weights in by weighting composition by landings.
+The JTC explored reducing the input sample size of the U.S. (or U.S. and Canadian) at-sea sectors without changing the method of weighting by landings and found that it led to a similar estimate of equilibrium and current spawning stock biomasses compared to what was estimated for this assessment (results not shown).
+Additionally, removing all age-composition data through 1990 led to similar stock trajectories from 1990 forward (results not shown). Therefore, the JTC believes it is most important to investigate input sample sizes for years that include fish still in the population rather than focusing on historical samples that can be removed from the model without affecting current estimated biomasses.}
 
 6.The SRG encourages work to develop a picture of the \fishname\ reproductive
 cycle both seasonally and at the life-time scale based on histological and
