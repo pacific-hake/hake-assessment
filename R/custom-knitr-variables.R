@@ -249,7 +249,7 @@ dfo.prob.over.40bmsy <- f(min(dfo.probs.fore[, paste0("SSB_", assess.yr + 1, ">0
 dfo.prob.over.80bmsy <- f(min(dfo.probs.fore[, paste0("SSB_", assess.yr + 1, ">0.8SSB_MSY")]))
 dfo.prob.over.bmsy <- f(min(dfo.probs.fore[, paste0("SSB_", assess.yr + 1, ">SSB_MSY")]))
 
-# Prob current biomass being above B40%, B25%, and B10% -----------------------
+# Prob current biomass being above/below B40%, B25%, and B10% -----------------------
 probs.curr.bforty <- f(mean(base.model$mcmc[[paste0("Bratio_", assess.yr)]] > 0.40) * 100, 1)
 probs.curr.btwentyfive <- f(mean(base.model$mcmc[[paste0("Bratio_", assess.yr)]] > 0.25) * 100, 1)
 probs.curr.bten <- f(mean(base.model$mcmc[[paste0("Bratio_", assess.yr)]] > 0.10) * 100, 0)
@@ -257,9 +257,10 @@ probs.curr.below.bforty <- f(mean(base.model$mcmc[[paste0("Bratio_", assess.yr)]
 probs.curr.below.btwentyfive <- f(mean(base.model$mcmc[[paste0("Bratio_", assess.yr)]] < 0.25) * 100, 1)
 probs.curr.below.bten <- f(mean(base.model$mcmc[[paste0("Bratio_", assess.yr)]] < 0.10) * 100, 1)
 
-# Prob Bratio being below a reference point -----------------------------------
-prob.curr.under.b10 <- f(100 - base.model$risks[[1]][8, paste0("Bratio_", assess.yr + 1, "<0.10")], 0)
-prob.curr.under.b40 <- f(100 - base.model$risks[[1]][8, paste0("Bratio_", assess.yr + 1, "<0.40")], 0)
+# For reference points next year given largest catch this year
+largest.next.catch.index <- which.max(base.model$risks[[1]][, paste0("ForeCatch_", assess.yr)])
+prob.next.over.b10 <- f(100 - as.numeric(base.model$risks[[1]][largest.next.catch.index, paste0("Bratio_", assess.yr + 1, "<0.10")]), 0)
+prob.next.over.b40 <- f(100 - as.numeric(base.model$risks[[1]][largest.next.catch.index, paste0("Bratio_", assess.yr + 1, "<0.40")]), 0)
 
 # Prob most recent relative fishing intensity is above target of 1 ------------
 probs.curr.rel.fish.intens.above.one <-
