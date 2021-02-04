@@ -456,9 +456,10 @@ param_est_table(list(base.model, last.yr.base.model),
                 xcaption =
                   paste0("Select parameters, derived quantities, ",
                          "and reference point estimates for the base model ",
-                         "MLE and posterior median (MCMC) estimates with ",
-                         "an additional comparison to posterior median ",
-                         "estimates from the previous (", end.yr - 1, ") base model."),
+                         "posterior median (MCMC) estimates with ",
+                         "compared to posterior median ",
+                         "estimates from the previous assessment's (",
+                         end.yr - 1, ") base model."),
                 xlabel = "tab:main-parameter-estimates",
                 font.size = 10,
                 space.size = 11)
