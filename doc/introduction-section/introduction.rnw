@@ -54,8 +54,8 @@ are the same as the
 The Bayesian estimation is computed using a new efficient approach
 that was successfully tested in last year's assessment
 \citep{JTC2020}. Consequently, for the
-first time, all sensitivity analyses are performed in a Bayesian
-context rather than just using maximum likelihood estimation.
+first time, all sensitivity analyses and retrospective runs are performed in
+a Bayesian context rather than just using maximum likelihood estimation.
 % Use this later:
 %Bayesian Markov chain Monte Carlo (MCMC) sampling, the
 % No-U-Turn Sampler (NUTS; \citealt{HoffmanGelman2014}), implemented using the
@@ -80,7 +80,7 @@ which are found in both hemispheres of the Atlantic and Pacific Oceans
 \citep{AlheitPitcher1995, LlorisMatallanasEtAl2005}.
 % [Just verify the next sentence]
 The coastal stock of
-\fishname\ is currently the [** presumably still true?] most abundant groundfish population in the
+\fishname\ is currently the most abundant groundfish population in the
 California Current system. Smaller populations of this species occur in the
 major inlets of the Northeast Pacific Ocean, including the Strait of Georgia,
 the Puget Sound, and the Gulf of California. Genetic studies indicate that the
@@ -105,19 +105,19 @@ and three-year old fish rarely observed in Canadian waters north of southern
 Vancouver Island. During El Ni\~no events (warm ocean conditions, such as 1998
 and to some extent 2015), a larger proportion of the stock migrates into Canadian waters
 (Figure~\ref{fig:main-backscatter-map}),
-apparently due to intensified northward transport during the period of active
+due to temperature effects \citep{MalickHunsickerEtAl2020} and possibly intensified
+northward transport during the period of active
 migration \citep{Dorn1995b, AgostiniFrancisEtAl2006}. In contrast, La Ni\~na
 conditions (colder water, such as in 2001) result in a southward shift in the
 stock's distribution, with a much smaller proportion of the population found in
 Canadian waters, as seen in the 2001 survey
-(Figure~\ref{fig:main-backscatter-map}).
-The distribution of age-1 fish also changes between years
-(Figure~\ref{fig:main-backscatter-map-age1}).
+(Figure~\ref{fig:main-backscatter-map}). In general, warmer than average thermal
+habitat conditions for mature \fishname\ has been related to higher biomass further
+north and lower biomass around the U.S-Canadian border, while cooler than average
+conditions were related to higher biomass of immature \fishname\ coast-wide
+\citep{MalickHunsickerEtAl2020}. The distribution of age-1 fish also changes
+between years (Figure~\ref{fig:main-backscatter-map-age1}).
 % Presumably next sentence can just stay same for 2018:
-**Mention Malick et al 2020 paper here presumably... The research on links between migration
-of different age classes and environmental variables is anticipated to be
-updated in the years ahead to take advantage of the data that have been
-collected in the years since the previous analyses were conducted.
 
 Additional information on the stock structure for \fishname\ is available in the
 2013 \fishname\ stock assessment document \citep{JTC2013}.
@@ -132,26 +132,22 @@ considerations is given in the 2013 \fishname\ stock assessment
 Humboldt Squid and suggested hake abundance decreased with increasing squid abundance
 \citep{StewartHazenEtAl2014} and has evaluated hake distribution, recruitment,
 and growth patterns in relation to oceanographic conditions for assessment and
-management \citep{ResslerHolmesEtAl2007, HamelEtAl2015}.  The 2015 \fishname\
+management \citep{ResslerHolmesEtAl2007, HamelEtAl2015, MalickHunsickerEtAl2020,
+MalickSiedleckiEtAl2020}.  The 2015 \fishname\
 stock assessment document presented a sensitivity analysis where hake mortality
 was linked to the Humboldt Squid index \citep{JTC2015}. This sensitivity was not
 repeated in this assessment, although further research on this topic is needed.
-**Replace/update with Malick and any other refs?: Ongoing research investigating abiotic (environmental conditions) and biotic
-(e.g., euphausiid distribution and abundance) drivers of hake distribution and
-recruitment could provide insight into how the hake population is linked with
-broader ecosystem considerations.
-In terms of an `Ecosystem Approach to
+Ongoing research investigating abiotic (environmental conditions) and biotic
+(e.g., euphausiid distribution and abundance) drivers of hake distribution,
+recruitment, and survival could provide insight into how the hake population
+is linked with broader ecosystem considerations. For example, 
+\citep{TurleyRykaczewski2019} found decreased survival of larval \fishname\
+as storm events increased, contrary to many other species in the southern
+California Current Ecosystem. In terms of an `Ecosystem Approach to
 Fisheries Management' (a new priority for DFO), the use of empirical
 weight-at-age somewhat accounts for ecosystem effects (see
 Section~\ref{sec:data-weight-at-age}).
 
-%consider adding Malick et al (in press as of 2/2020) next year once published,
-%this will be related to hake distribution and temperature work.
-%Similiarly add Turley and Rykaczewski CJFAS 2019 because it discusses mortality of larval \fishname\
-%signficantly decreased as storm events increased in southern CA current Ecosystem,
-%which was opposite all other species (from icthyoplankton surveys). This suggests
-%that storms that effect otherwise calm periods may be beneficial for the survival
-%of \fishname\ and somewhat goes against the stable ocean hypothesis.
 
 \subsection{Management of \fishname\ }\label{sec:intro-management}
 
@@ -170,9 +166,11 @@ quotas were an average of \Sexpr{tot.9399.attainment}\% of the limit. The Agreem
 Canada establishes U.S. and Canadian shares of the coast-wide total allowable
  catch (TAC) at \Sexpr{us.allotment.percent}\% and
 \Sexpr{can.allotment.percent}\%, respectively, and this distribution has been
-adhered to since ratification of the Agreement ***until 2020 when ....
+adhered to since ratification of the Agreement.  However, a bilateral
+agreement on the coast-wide TAC could not be reached in 2020, and thus catch targets were set unilaterally
+for the first time since the inception of the Agreement.
 
-**[prob needs a bit of thinking] Throughout the last decade, the total coast-wide catch has tracked harvest
+Throughout the last decade, the total coast-wide catch has tracked harvest
 targets reasonably well.
 %  (Table~\ref{tab:main-landings-tac})    % so Table 4 isn't ref'ed before 1-3
 Since 1999, catch
@@ -186,13 +184,12 @@ equilibrium. Further considerations have often resulted in catch targets being
 set lower than the recommended catch limit.
 % Manual done 2020 KFJ
 In the last decade, total catch has
-never exceeded the quota, although retrospectively, as estimated in this
-assessment, harvest rates in some of those years approached the $\Fforty$
-target.
+never exceeded the coast-wide quota, and harvest rates have not exceeded
+the $\Fforty$ target.
 Overall, management appears to be effective at maintaining a sustainable stock
 size, in spite of uncertain stock assessments and a highly dynamic
 population. However, management has been risk averse in years when very large
-quotas were determined using the default harvest control rule and
+quotas were otherwise suggested using the default harvest control rule and
 stock assessment outputs.
 
 \subsubsection{Management of \fishname\ in the United States}
