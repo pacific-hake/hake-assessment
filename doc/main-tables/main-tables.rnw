@@ -47,7 +47,7 @@ make_catch_table(ct,
 make_landings_tac_table(ct,
                         start_yr = start.yr,
                         end_yr = end.yr-1,
-                        xcaption = "Recent trends in \\fishname\\ landings and
+                        xcaption = "\\fishname\\ landings and
                                      management decisions. Catch targets in 2020 were
                                      specified unilaterally.",
                         xlabel = "tab:main-landings-tac",
