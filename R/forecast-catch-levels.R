@@ -33,7 +33,8 @@ catch_levels <-
 # -----------------------------------------------------------------------------
 # Indices for the forecasts list, which list items above are the TAC case and
 #  default policy case
-# This is used in the one-page summary and a plot comparing several catch cases
+# This is used in the one-page summary and a plot comparing several catch cases,
+#  and elsewhere
 # -----------------------------------------------------------------------------
 catch.actual.ind <- 4
 catch.tac.ind <- 6
