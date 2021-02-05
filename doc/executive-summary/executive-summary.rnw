@@ -670,7 +670,7 @@ at the end of \Sexpr{end.yr-1} was \Sexpr{probs.curr.rel.fish.intens.above.one}\
 \enlargethispage{\baselineskip}
 
 <<reference-points-table, results='asis', echo=FALSE>>=
-make.reference.points.table(base.model,
+make.reference.points.table.old(base.model,
                             xcaption = paste0("Summary of median and 95\\%
                              credibility intervals of equilibrium reference points
                              for the \\fishname\\ base assessment model.
@@ -681,8 +681,7 @@ make.reference.points.table(base.model,
                             xlabel = "tab:es-reference-points",
                             font.size = 12,
                             space.size = 14,
-                            placement = "tbp",
-                            tabular.envt = "tabular")
+                            placement = "tbp")
 @
 
 \subsection*{Unresolved problems and major uncertainties}\label{sec:es-unresolved-problems}
