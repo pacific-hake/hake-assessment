@@ -23,6 +23,8 @@ make_catch_table(ct,
                  space_size = 11)
 @
 
+\clearpage
+
 <<catches-can, results='asis', echo=FALSE>>=
 make_catch_table(ct,
                  start_yr = start.yr,
@@ -167,6 +169,8 @@ make.can.age.data.table(can.ages,
                         decimals = 2)
 @
 
+\clearpage
+
 <<main-all-age-data-fishery-table, results='asis', echo=FALSE>>=
 make.input.age.data.table(base.model,
                           fleet = 1,
@@ -281,6 +285,8 @@ param_est_table(retro.list,
                 space.size = 11)
 @
 
+\clearpage
+
 <<main-assessment-changes-table, results='asis', echo=FALSE>>=
 make.assessment.changes.table(assessment.changes,
                               xcaption = paste0("Annual changes in the modeling framework used to assess ",
@@ -375,7 +381,7 @@ atage_table(
   table_type = 4,
   csv_dir = output.csv.dir,
   xcaption = paste0("Estimated catch-at-age in biomass ",
-                    "for each year from the base model (MCMC medians; metric tons)."),
+                    "for each year from the base model (MCMC medians; t)."),
   xlabel = "tab:main-est-catch-at-age-biomass",
   font_size = 6,
   space_size = 7)
@@ -432,6 +438,8 @@ make.median.posterior.table(
   space.size = 10)
 @
 
+\clearpage
+
 <<main-ci-posterior-table, results='asis', echo=FALSE>>=
 make.ci.posterior.table(
   base.model,
@@ -481,6 +489,8 @@ make.reference.points.table.old(base.model,
                             space.size = 11,
                             placement = "h")
 @
+
+\clearpage
 
 <<main-decisions-biomass-table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
