@@ -5,8 +5,6 @@
 \section{ACKNOWLEDGMENTS} \label{sec:acknowledgments}
 \rfoot{Section~\ref{sec:acknowledgments} -- Acknowledgments}
 
-**Update
-
 We thank the authors of previous assessments whose work remains an
 influential part of this assessment.
 We are grateful for the hard work of the
@@ -35,10 +33,10 @@ and other industry members including
 Shannon Mann, Mike Okoniewski, Brent Paine, Dave Smith, Dan
 Waldeck, and Teresa Williams.
 % Add the following back in after SRG
-We thank all the members of the
-Scientific Review Group for their thoughtful review and smoothly run SRG
-meeting, including co-chairs John Holmes and Jim Hastie, panel members
-Trevor Branch, Jaclyn Cleary, Allan Hicks, and David Sampson, and AP advisors
-Shannon Mann and Lori Steele.
+% We thank all the members of the
+% Scientific Review Group for their thoughtful review and smoothly run SRG
+% meeting, including co-chairs John Holmes and Jim Hastie, panel members
+% Trevor Branch, Jaclyn Cleary, Allan Hicks, and David Sampson, and AP advisors
+% Shannon Mann and Lori Steele.
 Finally, we are very thankful to Stacey Miller for
 coordinating the \fishname\ meetings.
