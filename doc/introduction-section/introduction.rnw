@@ -278,10 +278,28 @@ and since then they have been greater than 200,000~t for all except
 \Sexpr{catches.below.200000.since.1986} years. A more detailed description of
 the history of the fishery is provided by \citet{JTC2013}.
 
-The \fishname\ stock is of huge commercial value. For example, in Canada alone
+The \fishname\ stock is of huge commercial value. In Canada,
 over CA\$26~million in wages was estimated to have been paid to employees of the
 processing industry in 2018, with an exported value of CA\$100~million mainly
 to Ukraine, China, South Africa and Lithuania \citep{DFO2020}.
+
+In the US, over US\$72~million in wages is estimated to have been paid to employees in 2018
+(\href{https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/}
+{https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/}).
+This includes wages paid to crew and captains fishing on catcher vessels that deliver shoreside
+and at-sea to motherships, workers in shore-based processing facilities, crew, captains, and workers
+on catcher-processor vessels, and workers on mothership vessels. The exported value was US\$129.5~million.
+The largest export volumes are to Ukraine, South Africa, and Nigeria which make up about 46\% of the total
+(\href{https://foss.nmfs.noaa.gov/apexfoss/f?p=215:200:2797069701321:::::}
+{https://foss.nmfs.noaa.gov/apexfoss/f?p=215:200:2797069701321:::::}).
+The economic impact in terms of income resulting from whiting production on the U.S. West Coast economy is greater
+than the direct payments to captain, crew, and vessel owners \citep{LeonardWatson2011}. Likewise, the economic
+impact in terms of the number of jobs created is also greater than the direct number of vessel employees.
+The direct effects of whiting production have ripple effects through the economy that stimulate additional income
+and employment among businesses that are indirectly related to the fishing industry itself. These effects
+include the impact on marinas, shipyards, refineries, grocery stores, etc. Including these multiplier
+effects, the total economic impacts of the whiting fishery on the U.S. West Coast in 2018 was estimated
+at US\$279~million in income and 3,600 jobs.
 
 \subsubsection{Overview of the fisheries in \Sexpr{last.data.yr}}\label{sec:intro-fisheries-overview}
 %**ADJUST AGAIN AS NEEDED in 2022
