@@ -31,7 +31,7 @@ make.reference.points.table <- function(model,
                m$msy)
   descr <- c("Unfished female spawning biomass ($B_0$, thousand t)",
              "Unfished recruitment ($R_0$, millions)",
-             "Female spawning biomass at $\\Fforty$ (thousand t)",
+             "Female spawning biomass at $\\Fforty$ ($B_{\\text{SPR}=40\\%}$, thousand t)",
              "SPR at $\\Fforty$",
              "Exploitation fraction corresponding to $\\Fforty$",
              "Yield associated with $\\Fforty$ (thousand t)",
@@ -96,4 +96,3 @@ make.reference.points.table <- function(model,
         table.placement = "H",
         hline.after = NULL)
 }
-

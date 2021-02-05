@@ -493,7 +493,7 @@ param_est_table <- function(models,
              latex.subscr(latex.italics("F"), "SPR=40\\%"),
              " (",
              latex.subscr(latex.italics("B"), "SPR=40\\%"), ", thousand t)"),
-      latex.subscr("SPR", "MSY-proxy"), "Exploitation fraction corresponding to SPR",
+      paste0("SPR at ", latex.subscr(latex.italics("F"), "SPR=40\\%")), "Exploitation fraction corresponding to SPR",
       paste0("Yield at ", latex.subscr(latex.italics("B"), "SPR=40\\%"), " (thousand t)")),
     name = NULL)
   if(!age_1){
