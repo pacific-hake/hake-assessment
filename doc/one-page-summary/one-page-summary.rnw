@@ -44,9 +44,10 @@ from last year). Quotas were specified unilaterally in 2020 due to the lack of a
   \item The median estimate of female spawning biomass at the start
     of \Sexpr{end.yr} is \Sexpr{curr.bio.median} million~t (with 95\% credible
     interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper}
-    million~t). This is less than the median estimate of \Sexpr{end.yr-1} female spawning biomass\Sexpr{prev.bio.median}~million~t
+    million~t). This is less than the current assessment's median estimate
+    for the \Sexpr{end.yr-1} female spawning biomass of \Sexpr{prev.bio.median}~million~t
     (with 95\% credible interval
-    \Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper}~million~t) from the current assessment.
+    \Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper}~million~t).
 
 %  \item The estimated joint probability of being both
 %    above the target relative fishing intensity in \Sexpr{end.yr-1}
