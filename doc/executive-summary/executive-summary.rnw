@@ -601,7 +601,7 @@ is also below the
 reference point of $\Bforty$ (Figure~\ref{fig:es-phase}). This highlights the
 highly dynamic nature of the stock due to high variation in recruitment strength.
 While the target fishing mortality ($\Fforty$) and
-$\Bforty$ result in different population sizes (see Table~\ref{tab:es-reference.points}),
+$\Bforty$ result in different population sizes (see Table~\ref{tab:es-reference-points}),
 this difference is not, by far, the major driver of the observed dynamics.
 % 2017 - only in 1999 was it both (just)
 % Manual done 2020.
@@ -653,7 +653,7 @@ the start of \Sexpr{end.yr}.
 \phantomsection \addcontentsline{toc}{subsection}{Reference points}
 
 Estimates of the \Sexpr{assess.yr} base model reference points with posterior
-credibility intervals are in Table~\ref{tab:es-reference.points}.
+credibility intervals are in Table~\ref{tab:es-reference-points}.
 The medians of sustainable yields and biomass reference points have changed by
 nearly 9\% compared to the \Sexpr{last.assess.yr} assessment. This is a result
 of increasing the effective sample size used to describe the posterior distributions
@@ -678,10 +678,11 @@ make.reference.points.table(base.model,
                              end.yr-1," averages for mean
                              weight-at-age and baseline selectivity-at-age (1966--1990;
                              prior to time-varying deviations)."),
-                            xlabel = "tab:es-reference.points",
+                            xlabel = "tab:es-reference-points",
                             font.size = 12,
                             space.size = 14,
-                            placement = "tbp")
+                            placement = "tbp",
+                            tabular.envt = "tabular")
 @
 
 \subsection*{Unresolved problems and major uncertainties}\label{sec:es-unresolved-problems}

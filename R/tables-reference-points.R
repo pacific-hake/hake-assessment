@@ -2,7 +2,9 @@ make.reference.points.table <- function(model,
                                         xcaption = "default",
                                         xlabel   = "default",
                                         font.size = 9,
-                                        space.size = 10){
+                                        space.size = 10,
+                                        placement = "tbp",
+                                        tabular.envt = "longtable"){
   ## Returns an xtable in the proper format for the executive summary
   ##  reference points. The values are calculated previously in the calc.mcmc
   ##  function in load-models.r.
@@ -13,6 +15,8 @@ make.reference.points.table <- function(model,
   ## xlabel - the label used to reference the table in latex
   ## font.size - size of the font for the table
   ## space.size - size of the vertical spaces for the table
+  ## placement - where to put table
+  ## tabular.envt - "longtable" or "table"
 
   m <- model$mcmccalcs
   tab <- rbind(m$unfish.fem.bio,
@@ -92,7 +96,7 @@ make.reference.points.table <- function(model,
         sanitize.text.function = function(x){x},
         size = size.string,
         add.to.row = addtorow,
-        tabular.environment = "longtable",
-        table.placement = "H",
+        tabular.environment = tabular.envt,
+        table.placement = placement,
         hline.after = NULL)
 }
