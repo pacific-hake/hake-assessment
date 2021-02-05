@@ -374,9 +374,17 @@ make.age.comp.compare.bubble.plot <- function(model,                  ## model i
   par <- oldpar
 }
 
-make.age.comp.fit.plot <- function(model,       ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
-                                   subplot = 1  ## 1) fishery or 2) survey
-                                   ){
+#' @param model A model list with MCMC output included. This is typically
+#' `base.model` for the hake assessment. Information included in the list
+#' will be typical information and output from [r4ss::SSgetMCMC].
+#' @param subplot An integer specifying which fishery include in the figure.
+#' @param fill A logical specifying if missing years should be
+#' included in the figure such that the time series is a complete one.
+#' The new default as of 2021 is `TRUE`, which was suggested by Trevor
+#' Branch during the 2020 SRG Review.
+make.age.comp.fit.plot <- function(model,
+                                   subplot = 1,
+                                   fill = TRUE){
   ## Plot the age compositions for whatever subplot is set to
   oldpar <- par()
   if(subplot == 1){
@@ -384,7 +392,7 @@ make.age.comp.fit.plot <- function(model,       ## model is an mcmc run and is t
     f <- 1
     label <- "Fishery age composition"
   }else if(subplot == 2){
-    ncol <- 1
+    ncol <- ifelse(fill, 4, 1)
     f <- 2
     label <- "Survey age composition"
   }else{
@@ -411,6 +419,11 @@ age.fits <- function(dat,
                      verbose = FALSE) {
   ## makes a nice colored bar plot of the age comps for all years.
   agedbase <- dat$agedbase[dat$agedbase$Fleet==f,]
+  if (ncol != 1) {
+    agedbase <- complete(dat$agedbase,
+      Yr, Bin, Fleet, fill = list(Obs = 0)) %>%
+      filter(Fleet == f) %>% arrange(Yr) %>% data.frame()
+  }
   if(verbose){
     print(names(agedbase))
   }
@@ -420,7 +433,7 @@ age.fits <- function(dat,
     uncertainty <- FALSE
   }
 
-  first.year <- 1974
+  first.year <- min(dat$agedbase$Yr)
   subtle.color <- "gray40"
   ages <- c(1,15) #age range
   ages.list <- ages[1]:ages[2]
@@ -470,14 +483,14 @@ age.fits <- function(dat,
     cohort.colors[,i] <- cohort.color
   }
 
-  ylim <- c(0,1.05*max(obs.data,pred.data))
+  ylim <- c(0,1.05*max(obs.data,pred.data, na.rm = TRUE))
   if(uncertainty){
-    ylim <- c(0,1.05*max(obs.data,pred.data.975))
+    ylim <- c(0,1.05*max(obs.data,pred.data.975, na.rm = TRUE))
   }
   for (yr in 1:nyears) {
     year1<-years[yr]
     names.arg <- rep("",nages)
-    x <- barplot(obs.data[yr,],space=0.2,ylim=ylim,las=1,names.arg=names.arg, cex.names=0.5, xaxs="i",yaxs="i",border=subtle.color,
+    x <- barplot(unlist(obs.data[yr,]),space=0.2,ylim=ylim,las=1,names.arg=names.arg, cex.names=0.5, xaxs="i",yaxs="i",border=subtle.color,
                  col=cohort.colors[1:nages,year1-first.year],axes=F,ylab="",xlab="")
     if (yr %% mfcol[1] == 0) {
       ## axis(side=1,at=x,lab=ages.list, line=-0.1,col.axis=subtle.color,
