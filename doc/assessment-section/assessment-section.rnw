@@ -1082,7 +1082,7 @@ The medians of the key parameters from the posterior distribution are similar to
 those in last year's base model (Table~\ref{tab:main-parameter-estimates}).
 However, medians of some of the derived quantities do change somewhat; in particular,
 the 2010 and 2016 recruitments increase while the 2014 recruitment decreases,
-**think some numbers are wrong ($R_0$, $B_0$ and exploitation fraction); checking with Chris.
+and $B_0$ has declined from that estimated in the \Sexpr{assess.yr - 1} assessment.
 
 The \fishname\ stock displays a very high degree of recruitment variability,
 perhaps the largest of any west coast groundfish stock, resulting in large and
@@ -1104,7 +1104,7 @@ a suite of other informative sensitivity analyses using full MCMC results
 (Section~\ref{sec:assessment-sensitivity-analyses}).
 
 We also present appendices of MCMC results for inclusion of
-of the age-1 survey index (****Appendix~\ref{chap:age1-survey}), and the use of
+of the age-1 survey index (Appendix~\ref{chap:age1-survey}), and the use of
 the Metropolis Hastings MCMC algorithm for the base model as used in past
 assessments (Appendix~\ref{chap:rwmh}). The inclusion of the age-1
 survey model was chosen because it may improve estimates of recruitment near the end
@@ -1134,8 +1134,7 @@ Section~\ref{sec:intro-management} and Appendix~\ref{chap:glossary}). The
 median of the female spawning biomass at $\Fforty$ (namely $\BSPRforty$) and
 the median yield at $\Fforty$ are slightly lower than the estimates in the
 \Sexpr{last.assess.yr} assessment (see also Table~\ref{tab:main-parameter-estimates}).
-**mention exploitation fraction also once fixed?
-% Manual 2021 done, except exploitation fraction.
+% Manual 2021 done
 
 % Look at dfo.probs.curr and decide what to write. Check that
 %   ncol(base.model$risks[[1]]) == 10   (i.e. no new columns added)

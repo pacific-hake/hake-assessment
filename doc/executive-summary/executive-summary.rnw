@@ -179,7 +179,7 @@ efficient No-U-Turn
 Sampler (NUTS) that was successfully tested in the \Sexpr{last.assess.yr} assessment.
 Sensitivity analyses are used to identify alternative model
 assumptions that may also be consistent with the data. This is the first
-assessment for which the sensitivity and [**TRUE?] retrospective analyses also use Bayesian
+assessment for which the sensitivity and retrospective analyses also use Bayesian
 estimation (rather than maximum likelihood estimation).
 Retrospective analyses
 identify possible poor performance of the assessment model with respect to
