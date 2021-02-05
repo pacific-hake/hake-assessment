@@ -211,7 +211,7 @@ sens.model.names.6 <- c("Max. age selectivity 5",
 ## Sensitivity models group 7  - MH mcmc
 ## -----------------------------------------------------------------------------
 sens.model.dir.names.7 <- c("2021.00.40_MH_mcmc")
-sens.model.names.7 <- c("RW Metrop. Hast.")
+sens.model.names.7 <- c("RW Metrop. Hast. (rwMH)")
 
 model_list <- c(base.model.dir.name,
                 unlist(bridge.model.dir.names.1),
@@ -266,8 +266,8 @@ load_models_rds <- function(){
   sens.model.names.2.for.table <<- c("Base model", sens.model.names.4)
 
   ## Third set
-  sens.models.3.for.table <<- c(list(base.model), list(sens.models.5), sens.models.6)
-  sens.model.names.3.for.table <<- c("Base model", sens.model.names.5, sens.model.names.6)
+  sens.models.3.for.table <<- c(list(base.model), list(sens.models.5), sens.models.6, list(sens.models.7))
+  sens.model.names.3.for.table <<- c("Base model", sens.model.names.5, sens.model.names.6, sens.model.names.7)
 
   ## Fourth set
   # sens.models.4.for.table <<- c(list(base.model), list(sens.models.6))

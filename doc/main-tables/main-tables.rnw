@@ -220,7 +220,7 @@ make.survey.history.table(survey.history,
 
 <<main-maturity-ogives-table, results='asis', echo=FALSE>>=
 make.maturity.ogives.table(maturity.ogives,
-                           xcaption = paste0("**Information on maturity and fecundity used in this assessment as
+                           xcaption = paste0("Information on maturity and fecundity used in this assessment as
                                        shown in Figure~\\ref{fig:main-maturity}. The sample sizes refer
                                        to the subset of samples in Table~\\ref{tab:main-ovaries} for which
                                        age readings and histological estimates of maturity have been completed.
@@ -455,10 +455,10 @@ param_est_table(list(base.model, last.yr.base.model),
                 mle_table = FALSE,
                 xcaption =
                   paste0("Select parameters, derived quantities, ",
-                         "and reference point estimates for the base model ",
-                         "posterior median (MCMC) estimates with ",
-                         "compared to posterior median ",
-                         "estimates from the previous assessment's (",
+                         "and reference point posterior median (MCMC) ",
+                         "estimates for the (",
+                         end.yr, ") base model ",
+                         "compared to the previous assessment's (",
                          end.yr - 1, ") base model."),
                 xlabel = "tab:main-parameter-estimates",
                 font.size = 10,
