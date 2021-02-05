@@ -936,7 +936,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 make.comparison.plot(c(list(base.model), sens.models.2),
                      subplots = 14,
                      model.names = c(base.model.name, sens.model.names.2),
-                     legend = FALSE,
+                     legend = TRUE,
                      indexfleets= c(2),
                      end.yr = end.yr)
 @
@@ -1010,7 +1010,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 \begin{center}
 <<main-recruitment-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows occasional differences in recruitment between certain sensitivity runs">>=
 make.comparison.plot(c(list(base.model), sens.models.4),
-                     legend = FALSE,
+                     legend = TRUE,
                      subplots = 10,
                      model.names = c(base.model.name, sens.model.names.4),
                      end.yr = end.yr)
@@ -1051,7 +1051,7 @@ box()
 make.comparison.plot(c(list(base.model), sens.models.4),
                      subplots = 14,
                      model.names = c(base.model.name, sens.model.names.4),
-                     legend = FALSE,
+                     legend = TRUE,
                      end.yr = end.yr)
 @
 \end{center}

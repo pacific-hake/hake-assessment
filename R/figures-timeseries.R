@@ -490,7 +490,7 @@ make.comparison.plot <- function(models,
     tmp.names <- sapply(models[1:length(models)], "[[", "path")
     model.names <- gsub(".*/", "", tmp.names)
   }
-  compare.summary <- SSsummarize(models, SpawnOutputUnits = "biomass")
+  compare.summary <- SSsummarize(models, SpawnOutputUnits = "biomass", verbose = verbose)
   endyrvec <- "default"
   # If it is a retrospective plot, compute the end year vector of years so the lines end on the correct years
   if(is.retro){
@@ -552,11 +552,19 @@ make.comparison.plot <- function(models,
       geom_ribbon(aes(ymin = lower, ymax = upper), color = NA) +
       geom_line(aes(y = med, color = name), size = 1) +
       geom_point(aes(y = med, color = name), size = 3, stroke = 1.5) +
-      scale_fill_manual(values = fill_cols) +
-      scale_color_manual(values = cols) +
-      scale_shape_manual(values = shapes) +
+      scale_fill_manual(values = fill_cols, guide = FALSE) +
+      scale_color_manual(values = cols, name = "") +
+      scale_shape_manual(values = shapes, name = "") +
       geom_point(aes(x = Year, y = `Log Index`), size = 2, inherit.aes = FALSE) +
       theme(legend.position = "none")
+    if (legend) {
+      g <- g + theme(legend.position = c(0.8, 0.9),
+        legend.background = element_rect(colour = NA),
+        legend.box.background = element_rect(colour = NA, fill = NA),
+        legend.key = element_blank(),
+        legend.text.align = 0,
+        legend.text = element_text(size = 11))
+    }
     return(g)
   }
   SSplotComparisons(compare.summary,
