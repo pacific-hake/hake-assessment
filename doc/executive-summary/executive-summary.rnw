@@ -98,7 +98,7 @@ the last five years, catches were considerably above the long-term average catch
 %in
 %\Sexpr{last.5.years.above.avge[1:(length(last.5.years.above.avge)-1)]}, and
 %\Sexpr{last.5.years.above.avge[length(last.5.years.above.avge)]}
-with the most recent four years being the highest catches on record).
+with the most recent four years having the highest catches on record.
 %and below it
 %in \Sexpr{last.5.years.below.avge}.
 % in \Sexpr{last.5.years.below.avge[1:(length(last.5.years.below.avge)-1)]}.

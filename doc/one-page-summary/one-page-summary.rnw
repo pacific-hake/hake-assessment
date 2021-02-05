@@ -44,9 +44,9 @@ from last year). Quotas were specified unilaterally in 2020 due to the lack of a
   \item The median estimate of female spawning biomass at the start
     of \Sexpr{end.yr} is \Sexpr{curr.bio.median} million~t (with 95\% credible
     interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper}
-    million~t). This is a decrease from the current \Sexpr{end.yr-1} estimate of \Sexpr{prev.bio.median}~million~t
+    million~t). This is less than the median estimate of \Sexpr{end.yr-1} female spawning biomass\Sexpr{prev.bio.median}~million~t
     (with 95\% credible interval
-    \Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper}~million~t).
+    \Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper}~million~t) from the current assessment.
 
 %  \item The estimated joint probability of being both
 %    above the target relative fishing intensity in \Sexpr{end.yr-1}
@@ -56,7 +56,7 @@ from last year). Quotas were specified unilaterally in 2020 due to the lack of a
   \item The estimated probability that spawning biomass at the start of
     \Sexpr{assess.yr} is below the $\Bforty$ (40\% of $B_0$) reference point is
     \Sexpr{probs.curr.below.bforty}\%, and the probability that the relative fishing
-    intensity is above its target at the end of \Sexpr{end.yr-1} is
+    intensity exceeds its target at the end of \Sexpr{end.yr-1} is
     \Sexpr{probs.curr.rel.fish.intens.above.one}\%. The joint
     probability of both these occurring is \Sexpr{joint.percent.prob.above.below}\%.
 
