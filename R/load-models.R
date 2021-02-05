@@ -100,8 +100,8 @@ load_ss_files <- function(model_path = NA,
   model$mcmcpath <- mcmc.dir
   # Save the posterior names from the mcmc output. This is necessary for the function `plot_mcmc_param_stats()`
   tmp <- readLines(file.path(mcmc.dir, "posteriors.sso"), n = 1)
-  tmp <- str_split(tmp$post_names, "[:space:]")[[1]]
-  # Remove Iter and Objective_function as they are not arameters
+  tmp <- str_split(tmp, "[:space:]")[[1]]
+  # Remove Iter and Objective_function as they are not parameters
   model$post_names <- tmp[!tmp %in% c("Iter", "Objective_function")]
 
   # If it has an 'mcmc' sub-directory, load that as well
