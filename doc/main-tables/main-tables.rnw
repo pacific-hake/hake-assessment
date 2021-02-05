@@ -466,7 +466,7 @@ param_est_table(list(base.model, last.yr.base.model),
 @
 
 <<main-reference-points-table, results='asis', echo=FALSE>>=
-make.reference.points.table(base.model,
+make.reference.points.table.old(base.model,
                             xcaption = paste0("Summary of median and 95\\% credibility
                                                intervals of equilibrium reference points for
                                                the \\fishname\\ base assessment model. Equilibrium
@@ -478,7 +478,8 @@ make.reference.points.table(base.model,
                                               (1966--1990; prior to time-varying deviations.)"),
                             xlabel = "tab:main-reference-points",
                             font.size = 10,
-                            space.size = 11)
+                            space.size = 11,
+                            placement = "h")
 @
 
 <<main-decisions-biomass-table, results='asis', echo=FALSE>>=
