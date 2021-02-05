@@ -567,7 +567,7 @@ make.selex.uncertainty.lines.plot(base.model,
 par <- oldpar
 @
 \end{center}
-\caption{**[.png is 1.3Mb; worth subsampling for the plot?] Estimated acoustic (top -- for all years) and fishery selectivities (bottom -- for \Sexpr{end.yr-1} only)
+\caption{Estimated acoustic (top -- for all years) and fishery selectivities (bottom -- for \Sexpr{end.yr-1} only)
   from the posterior distribution for the base model.}
 \label{fig:main-tv-selex-uncertainty-lines}
 \end{figure}
@@ -735,7 +735,7 @@ make.phase.plot(base.model,
                 end.yr = end.yr)
 @
 \end{center}
-\caption{**[increase x-axis, Issue 721, Fig f also] Estimated historical path of median relative spawning biomass in
+\caption{Estimated historical path of median relative spawning biomass in
          year $t$ and corresponding median relative fishing
          intensity in year $t-1$. Labels show the
          start year, end year and year of highest relative fishing
