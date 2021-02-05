@@ -481,7 +481,7 @@ years and Figure~\ref{fig:es-fishing-intensity}).
 % discussed
 % in issue #158: https://github.com/cgrandin/hake-assessment/issues/158
 %
-%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%  Figure f
 \begin{figure}[tbp]
 \begin{center}
 <<fishing-intensity, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we have been below the management target of 1 throughout the time series">>=
@@ -509,22 +509,6 @@ since the 2018 assessment the definition age was lowered to age-2 because these
 fish are often caught by the fishery.
 % Manual 2020 done.
 %
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tbp]
-\begin{center}
-<<exploitation-fraction, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the current exploitation fraction of the stock biomass is approximately 0.1">>=
-make.exploitation.fraction.plot(base.model,
-                                start.yr = start.yr,
-                                end.yr = end.yr-1,
-                                color = "blue",
-                                upper.lim = 0.35)
-@
-\end{center}
-\caption{Trend in median exploitation fraction (catch divided by age-2+ biomass)
-         through \Sexpr{end.yr-1} with 95\% posterior credibility intervals.}
-\label{fig:es-exploitation-fraction}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
 %
 Median relative fishing intensity is estimated to have declined from
 \Sexpr{median.intensity.2010}\% of the target in 2010 to \Sexpr{median.intensity.2015}\%
@@ -568,6 +552,32 @@ due to the appearance of the 1999 year class.
 % Manual 2020 done. For last sentence just check
 %  landings.vs.tac[landings.vs.tac$Year > 2000, c("Year", "ATTAIN")]
 
+\clearpage
+
+% Putting here to get on same page as table, doesn't fit on same page as Figure f
+%%%%%%%%%%%%%%%%%%%%%%%  % Figure g
+\begin{figure}[tbp]
+\begin{center}
+<<exploitation-fraction, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the current exploitation fraction of the stock biomass is approximately 0.1">>=
+make.exploitation.fraction.plot(base.model,
+                                start.yr = start.yr,
+                                end.yr = end.yr-1,
+                                color = "blue",
+                                upper.lim = 0.35)
+@
+\end{center}
+\caption{Trend in median exploitation fraction (catch divided by age-2+ biomass)
+         through \Sexpr{end.yr-1} with 95\% posterior credibility intervals.}
+\label{fig:es-exploitation-fraction}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%% Table e
+
+~\\
+
+\vspace{20mm}  % fudge it manually
+
+~\\
+
 <<landings-tac-table, results='asis', echo=FALSE>>=
 make_landings_tac_table(ct,
                         start_yr = end.yr - 10,
@@ -577,8 +587,34 @@ make_landings_tac_table(ct,
                                      specified unilaterally.",
                         xlabel = "tab:es-landings-tac",
                         font_size = 6,
-                        space_size = 7)
+                        space_size = 7,
+                        placement = "tbp")  # longtable ignores anyway, R
+                                        # gives a warning
 @
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tbp]
+\begin{center}
+<<phase-plot, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we are currently not overfishing nor in an overfished state">>=
+make.phase.plot(base.model,
+                start.yr = start.yr,
+                end.yr = end.yr)
+@
+\end{center}
+\caption{Estimated historical path of median relative spawning biomass in
+         year $t$ and corresponding median relative fishing
+         intensity in year $t-1$. Labels show the
+         start year, end year and year of highest relative fishing
+         intensity; labels correspond to year $t$ (i.e., year of the relative
+         spawning biomass). Gray bars span the 95\% credibility
+         intervals for \Sexpr{end.yr} relative spawning biomass (horizontal) and
+         \Sexpr{end.yr-1} relative fishing intensity (vertical).
+         }
+\label{fig:es-phase}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
 
 The median relative fishing intensity was below target in all years
 % \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]}
@@ -605,27 +641,6 @@ $\Bforty$ result in different population sizes (see Table~\ref{tab:es-reference-
 this difference is not, by far, the major driver of the observed dynamics.
 % 2017 - only in 1999 was it both (just)
 % Manual done 2020.
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tbp]
-\begin{center}
-<<phase-plot, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we are currently not overfishing nor in an overfished state">>=
-make.phase.plot(base.model,
-                start.yr = start.yr,
-                end.yr = end.yr)
-@
-\end{center}
-\caption{Estimated historical path of median relative spawning biomass in
-         year $t$ and corresponding median relative fishing
-         intensity in year $t-1$. Labels show the
-         start year, end year and year of highest relative fishing
-         intensity; labels correspond to year $t$ (i.e., year of the relative
-         spawning biomass). Gray bars span the 95\% credibility
-         intervals for \Sexpr{end.yr} relative spawning biomass (horizontal) and
-         \Sexpr{end.yr-1} relative fishing intensity (vertical).
-         }
-\label{fig:es-phase}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
 %%Manual done 2020.
 %
 % See comment after paragraph for choice of years to use.
