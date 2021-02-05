@@ -208,7 +208,8 @@ make.survey.age1.plot(age.1.index,
 @
 \end{center}
 %\vspace{0mm}
-\caption{**[change to MCMC?] Preliminary acoustic survey age-1 index overlaid on estimated numbers of age-1 fish (MLE from the base model).}
+\caption{Preliminary acoustic survey age-1 index overlaid on estimated numbers
+  of age-1 fish (medians of the posterior distribution from the base model).}
 \label{fig:main-age-one-index}
 \end{figure}
 

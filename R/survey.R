@@ -251,20 +251,20 @@ make.survey.age1.plot <- function(age1index,
   x <- age1index
   yrs <- x$Year
 
-  recr1 <- model$natage[model$natage$Time %in% yrs,"1"]
-  recrAll <- model$natage[model$natage$Time %in% min(yrs):max(yrs),"1"]
+  recr1 <- dplyr::filter(base.model$extra.mcmc$natage_median, Yr %in% yrs)$`1`
+  recrAll <- dplyr::filter(base.model$extra.mcmc$natage_median, Yr %in% min(yrs):max(yrs))$`1`
 
   logAge1 <- log(recr1)
   logIndex <- log(x$Index)
   mn <- mean(logAge1)
   index <- mn * logIndex / mean(logIndex[!is.na(x$Index)])
   plot(min(yrs):max(yrs),
-       recrAll / 1e6,
+       recrAll / 1e3,
        pch = 4,
        type = "b",
        log = "y",
        ylim = range(c(recr1, exp(index)),
-                    na.rm = TRUE) * c(1, 1) / 1e6,
+                    na.rm = TRUE) * c(0.7, 3) / 1e3,
        lwd = 2,
        xaxt = "n",
        xlab = "Year",
@@ -273,12 +273,12 @@ make.survey.age1.plot <- function(age1index,
        col = gray(0.7),
        cex = 0.8)
   points(yrs,
-         exp(index) / 1e6,
+         exp(index) / 1e3,
          pch = 16,
          col = "blue",
          cex = 1.5)
   points(x$Year[!is.na(x$Index)],
-         recr1 / 1e6,
+         recr1 / 1e3,
          pch = 4,
          col = "black",
          cex = 1,
@@ -291,7 +291,7 @@ make.survey.age1.plot <- function(age1index,
          pch = c(4,16),
          lty = NA,
          lwd = 2,
-         bty = "n")
+         bty = "o")
   par <- oldpar
 }
 
