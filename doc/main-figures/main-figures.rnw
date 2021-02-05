@@ -219,8 +219,7 @@ make.survey.age1.plot(age.1.index,
 maturity.ogive.figure(model = base.model, useyears = 1966)
 @
 \end{center}
-\caption{**[looks same as last year so end of caption should be 2019 - make a
-  variable] Fraction of fish that are mature at each age north and south of
+\caption{Fraction of fish that are mature at each age north and south of
   34.44$^\circ$N
   (upper panel) and the fecundity relationship (lower panel).
   The fecundity relationship (purple line) is the product
