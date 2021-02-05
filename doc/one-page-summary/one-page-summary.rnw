@@ -66,9 +66,9 @@ from last year). Quotas were specified unilaterally in 2020 due to the lack of a
 \Sexpr{catch.limit.quantiles["upper"]}~t).
 
   \item Projections are highly uncertain due to uncertainty in
-estimates of recruitment for recent years and, thus, were conducted across a
-range of catch levels. Projections setting the \Sexpr{forecast_yrs[1]} and
-\Sexpr{forecast_yrs[2]} catch equal to the \Sexpr{forecast_yrs[1]-1}
+estimates of recruitment for recent years and so were conducted for various
+catch levels. Projections setting the \Sexpr{forecast_yrs[1]} and
+\Sexpr{forecast_yrs[2]} catches equal to the \Sexpr{forecast_yrs[1]-1}
 coast-wide (unilaterally summed) TAC of
 \Sexpr{last.year.tac}~t show the estimated median spawning biomass
 decreasing from
@@ -80,7 +80,7 @@ of the spawning biomass falling below $\Bforty$ in \Sexpr{end.yr+2}. There is an
 estimated \Sexpr{last.yr.tac.risk.1.biomass.decline}\% chance of the spawning biomass declining from \Sexpr{end.yr} to
 \Sexpr{end.yr+1} and an
 \Sexpr{last.yr.tac.risk.2.biomass.decline}\% chance of it declining from \Sexpr{end.yr+1} to
-\Sexpr{end.yr+2} under this constant level of catch.
+\Sexpr{end.yr+2} for these constant catches.
     % Manual to do (check this enitre bullet point)
     % 3% from Table j, 38% from Table i, 50% from Table j
     % 2018, have automated the years. 2/11/18 AME.
