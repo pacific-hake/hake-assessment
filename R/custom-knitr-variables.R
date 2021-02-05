@@ -191,6 +191,13 @@ last.yr.tac.risk.1.biomass.decline <- f(as.numeric(.risk.last.yr.tac.1[catch.tac
 last.yr.tac.risk.2.biomass.decline <- f(as.numeric(.risk.last.yr.tac.2[catch.tac.ind, 2]))
 last.yr.tac.risk.2.bforty <- f(as.numeric(.risk.last.yr.tac.2[catch.tac.ind, 3]))
 
+# Numbers at age calculations for bubble plot caption -------------------------
+median.nat.no.year <- dplyr::select(base.model$extra.mcmc$natage_median,
+                                                     -c("Yr"))
+max.median.nat <- f(max(median.nat.no.year)/1e3, 1) # billions
+year.of.max.median.nat.ind <- which(median.nat.no.year == max(median.nat.no.year), arr.ind=TRUE)[1]
+year.of.max.median.nat <- base.model$extra.mcmc$natage_median[year.of.max.median.nat.ind, "Yr"]
+
 # Calculations for Executive Summary and Assessment section -------------------
 num.mcmc.samples <- dim(base.model$mcmc)[1]
 median.bio.min <- f(min(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% start.yr:end.yr]), 3)  # min median biomass
@@ -259,6 +266,7 @@ prob.next.over.b40 <- f(100 - as.numeric(base.model$risks[[1]][largest.next.catc
 # Canadian (DFO) provisional reference points ---------------------------------
 dfo.probs.curr <- base.model$risks[[1]][,(ncol(base.model$risks[[1]])-2):ncol(base.model$risks[[1]])]
 dfo.probs.fore <- base.model$risks[[2]][,(ncol(base.model$risks[[2]])-2):ncol(base.model$risks[[2]])]
+
 # Next year DFO probs given largest catch this year ------------
 dfo.prob.next.over.40bmsy <- f(dfo.probs.fore[largest.next.catch.index, paste0("SSB_", assess.yr + 1, ">0.4SSB_MSY")])
 dfo.prob.next.over.80bmsy <- f(dfo.probs.fore[largest.next.catch.index, paste0("SSB_", assess.yr + 1, ">0.8SSB_MSY")])

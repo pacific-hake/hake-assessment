@@ -236,15 +236,10 @@ get_age_comp_limits <- function(model, type = 1){
 #' @importFrom reshape2 melt
 #' @importFrom purrr map2_dfc
 make_numbers_at_age_plot <- function(model,
-                                     scale = 1e6,
+                                     scale = 1e3,
                                      ...){
-  natage <- model$natage %>%
+  natage <- model$extra.mcmc$natage_median %>%
     as_tibble() %>%
-    select(-c(Area, Time, Bio_Pattern, Sex, BirthSeas, Settlement, Platoon, Morph, Seas)) %>%
-    filter(`Beg/Mid` == "B",
-           Era != "VIRG",
-           (Era != "FORE" | Yr == model$endyr + 1)) %>%
-    select(-c(`Beg/Mid`, Era)) %>%
     rename(Year = Yr)
 
   dat <- natage %>%
