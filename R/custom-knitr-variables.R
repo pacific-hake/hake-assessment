@@ -23,6 +23,12 @@ tot.2015.attainment <- ct %>% filter(year == 2015) %>% pull(tot_attain) %>% mean
 tot.9192.attainment <- ct %>% filter(year %in% 1991:1992) %>% pull(tot_attain) %>% mean %>% f(0)
 tot.9399.attainment <- ct %>% filter(year %in% 1993:1999) %>% pull(tot_attain) %>% mean %>% f(0)
 
+# Last year allotments (not the usual ones in 2020) -------------------
+can_last1_allot <- f(pull(ct_last1, can_tac) / pull(ct_last1, tot_tac), 2)
+can_last1_allot <- f(pull(ct_last1, can_tac) / pull(ct_last1, tot_tac), 2)
+
+
+
 # Recent catch ----------------------------------------------------------------
 last.5.years.of.catch.data <- (max(ct$year) - 4):max(ct$year)
 last.5.years.total.catch <- ct_last5 %>% pull(tot_catch)

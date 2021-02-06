@@ -31,7 +31,11 @@ the U.S. was \Sexpr{last.year.us.attained}\% of its quota
 from last year); attainment in Canada was
 \Sexpr{last.year.can.attained}\%
 (\Sexpr{paste0(ifelse(last.2year.can.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.can.attained.diff))}\%
-from last year). Quotas were specified unilaterally in 2020 due to the lack of a bilateral TAC agreement.
+from last year). Quotas were specified unilaterally in 2020 due to the lack of a
+bilateral TAC agreement, such that the US allotment was
+\Sexpr{us.allotment.percent.last.year}\% of the TAC and the Canada allotment was
+\Sexpr{can.allotment.percent.last.year}\%, compared to the usual
+\Sexpr{us.allotment.percent}\% and \Sexpr{can.allotment.percent}\%.
 
   \item The median estimate of the \Sexpr{end.yr} relative spawning biomass
     (female spawning biomass at the start of \Sexpr{end.yr} divided by that at
