@@ -46,12 +46,12 @@ bilateral TAC agreement, such that the US allotment was
     aging large cohorts (2010, 2014, and 2016) and the recent four years of record catches.
 
   \item The median estimate of female spawning biomass at the start
-    of \Sexpr{end.yr} is \Sexpr{curr.bio.median} million~t (with 95\% credible
-    interval from \Sexpr{curr.bio.lower} to \Sexpr{curr.bio.upper}
-    million~t). This is less than the current assessment's median estimate
-    for the \Sexpr{end.yr-1} female spawning biomass of \Sexpr{prev.bio.median}~million~t
+    of \Sexpr{end.yr} is \Sexpr{curr.bio.median.tonnes}~t (with 95\% credible
+    interval from \Sexpr{curr.bio.lower.tonnes} to \Sexpr{curr.bio.upper.tonnes}~t).
+    This is less than the current assessment's median estimate
+    for the \Sexpr{end.yr-1} female spawning biomass of \Sexpr{prev.bio.median.tonnes}~t
     (with 95\% credible interval
-    \Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper}~million~t).
+    \Sexpr{prev.bio.lower.tonnes}--\Sexpr{prev.bio.upper.tonnes}~t).
 
 %  \item The estimated joint probability of being both
 %    above the target relative fishing intensity in \Sexpr{end.yr-1}

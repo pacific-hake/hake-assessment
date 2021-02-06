@@ -23,11 +23,9 @@ tot.2015.attainment <- ct %>% filter(year == 2015) %>% pull(tot_attain) %>% mean
 tot.9192.attainment <- ct %>% filter(year %in% 1991:1992) %>% pull(tot_attain) %>% mean %>% f(0)
 tot.9399.attainment <- ct %>% filter(year %in% 1993:1999) %>% pull(tot_attain) %>% mean %>% f(0)
 
-# Last year allotments (not the usual ones in 2020) -------------------
-can_last1_allot <- f(pull(ct_last1, can_tac) / pull(ct_last1, tot_tac), 2)
-can_last1_allot <- f(pull(ct_last1, can_tac) / pull(ct_last1, tot_tac), 2)
-
-
+# Last year allotments (not the Treaty ones in 2020) -------------------
+can.allotment.percent.last.year <- f(pull(ct_last1, can_tac) / pull(ct_last1, tot_tac) * 100, 2)
+us.allotment.percent.last.year <- f(pull(ct_last1, us_tac) / pull(ct_last1, tot_tac) * 100, 2)
 
 # Recent catch ----------------------------------------------------------------
 last.5.years.of.catch.data <- (max(ct$year) - 4):max(ct$year)
@@ -155,14 +153,24 @@ survey.average.extrap.percent <- f(mean(survey.extrap.percent), 2)
 curr.depl.lower <- f(base.model$mcmccalcs$dlower[names(base.model$mcmccalcs$dlower) %in% end.yr] * 100, 0)
 curr.depl.median <- f(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end.yr] * 100, 0)
 curr.depl.upper <- f(base.model$mcmccalcs$dupper[names(base.model$mcmccalcs$dupper) %in% end.yr] * 100, 0)
+# These are millions of tons:
 curr.bio.lower <- f(base.model$mcmccalcs$slower[names(base.model$mcmccalcs$slower) %in% end.yr], 3)
 curr.bio.median <- f(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% end.yr], 3)
 curr.bio.upper <- f(base.model$mcmccalcs$supper[names(base.model$mcmccalcs$supper) %in% end.yr], 3)
+# These are metric tonnes:
+curr.bio.lower.tonnes <- f(base.model$mcmccalcs$slower[names(base.model$mcmccalcs$slower) %in% end.yr] * 1e6, 0)
+curr.bio.median.tonnes <- f(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% end.yr] * 1e6, 0)
+curr.bio.upper.tonnes <- f(base.model$mcmccalcs$supper[names(base.model$mcmccalcs$supper) %in% end.yr] * 1e6, 0)
 
-# Spawning biomass for previous year (calculated in this assessment) ----------
+# Spawning biomass for previous year (calculated in this assessment) in millions of tonnes and then tonnes----------
 prev.bio.lower <- f(base.model$mcmccalcs$slower[names(base.model$mcmccalcs$slower) %in% last.data.yr], 3)      # last.data.yr = end.yr-1
 prev.bio.median <- f(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% last.data.yr], 3)
 prev.bio.upper <- f(base.model$mcmccalcs$supper[names(base.model$mcmccalcs$supper) %in% last.data.yr], 3)
+prev.bio.lower.tonnes <- f(base.model$mcmccalcs$slower[names(base.model$mcmccalcs$slower) %in% last.data.yr] * 1e6, 0)      # last.data.yr = end.yr-1
+prev.bio.median.tonnes <- f(base.model$mcmccalcs$smed[names(base.model$mcmccalcs$smed) %in% last.data.yr] * 1e6, 0)
+prev.bio.upper.tonnes <- f(base.model$mcmccalcs$supper[names(base.model$mcmccalcs$supper) %in% last.data.yr] * 1e6, 0)
+
+
 
 # Spawning biomass for previous year (calculated in last years assessment) ----
 prev.bio.lower.last.assess <- f(last.yr.base.model$mcmccalcs$slower[names(base.model$mcmccalcs$slower) %in% last.data.yr], 3)      # last.data.yr = end.yr-1
