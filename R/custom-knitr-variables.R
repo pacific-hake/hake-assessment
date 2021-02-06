@@ -381,7 +381,7 @@ recruitment.med.in.2014 <- f(base.model$mcmccalcs$rmed["2014"], 3)
 last.assess.recruitment.med.in.2014 <- f(last.yr.base.model$mcmccalcs$rmed["2014"], 3)
 prob.percent.2014.rec.gt.2010.rec <- f(mean(base.model$mcmc$Recr_2014 > base.model$mcmc$Recr_2010) * 100, 1)
 prob.percent.2016.rec.gt.2010.rec <- f(mean(base.model$mcmc$Recr_2016 > base.model$mcmc$Recr_2010) * 100, 1)
-prob.percent.2014.rec.gt.2016.rec <- f(mean(base.model$mcmc$Recr_2014 > base.model$mcmc$Recr_2016) * 100, 1)
+prob.percent.2014.rec.gt.2016.rec <- f(mean(base.model$mcmc$Recr_2014 > base.model$mcmc$Recr_2016) * 100, 0) #0 dp since it's 99% for 2021
 recruitment.lower.in.2016 <- f(base.model$mcmccalcs$rlower["2016"], 3)
 recruitment.med.in.2016 <- f(base.model$mcmccalcs$rmed["2016"], 3)
 recruitment.upper.in.2016 <- f(base.model$mcmccalcs$rupper["2016"], 3)
