@@ -10,26 +10,27 @@ influential part of this assessment.
 We are grateful for the hard work of the
 U.S. and Canadian acoustics teams, including (in alphabetical order) Alicia
 Billings, Dezhang Chu, Julia Clemons, Steve Deblois, Jackie Detering,
-Stephane Gauthier, Sandy Parker-Stetter, John Pohl, Benjamin Snow,
+Stephane Gauthier, John Pohl, Benjamin Snow,
 Chelsea Stanley, and
 Rebecca Thomas, as well as the crews of the NOAA ship \emph{Bell Shimada} and the
 fishing vessel \emph{Nordic Pearl}.
 We thank the following individuals who contributed technical
-assistance, analysis tools, data, or comments to this assessment
-(or previous ones): Trevor Branch, Jaclyn Cleary, Chelsea Cooke, Sean Cox,
-Cassandra Donavan, Joanne Groot, Rowan Haigh, Kendra Holt,
-Owen Hamel (who gave insightful
-comments on a draft version), Jim Hastie, Melissa
-Head, Allan Hicks, Michelle McClure, Patrick McDonald, Michael Prager, David Sampson,
-Lori Steele, Brad Stenberg, Nathan Taylor, Jim Thorson,
-Vanessa Tuttle, Scott Buchanan (for Canadian sample size information), and Steve
-Wischniowski. Rick Methot was very helpful with insight into Stock Synthesis as
-well as the assessment. We also thank the attendees at the official JTC meeting
+assistance, analysis tools, data, or comments to this assessment:
+Scott Buchanan, Chelsea Cooke, Cassandra Donavan, Mark Freeman, Joanne Groot,
+Marie Guldin, Rowan Haigh, Kendra Holt, Owen Hamel (who gave insightful
+comments on a draft version), Jim Hastie, Melissa Head, Jason Jannot, William Jasper,
+Jerry Leonard, Kristin Marshall, Rick Methot, Patrick McDonald, Cole Monnahan,
+Elizabeth Phillips, Erin Steiner, Brad Stenberg, Ian Taylor, Jim Thorson,
+Vanessa Tuttle, Steve Wischniowski, and contributions by many others that are
+too numerous to list here. 
+We thank the Stock Synthesis and the {\tt r4ss} R package development teams for continually
+improving stock assessment tools used in this assessment.
+We also thank the attendees at the official JTC meeting
 who provided valuable insight into the \Sexpr{end.yr-1} commercial fisheries in
 Canada and the U.S., as well as additional perspective on the acoustic
 survey. We appreciate the input from the AP (particularly for providing
 Appendices~\ref{chap:canada-fishery-report} and~\ref{chap:us-fishery-report})
-and other industry members including
+and other industry representatives including
 Shannon Mann, Mike Okoniewski, Brent Paine, Dave Smith, Dan
 Waldeck, and Teresa Williams.
 % Add the following back in after SRG
