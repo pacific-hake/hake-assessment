@@ -682,7 +682,7 @@ credibility intervals are in Table~\ref{tab:es-reference-points}.
 The medians of sustainable yields and biomass reference points are almost
 9\% lower than in the \Sexpr{last.assess.yr} assessment.
 This is a result of increasing the effective sample size used to describe the
-posterior distributions	of model parameters, leading to more precise point estimates.
+posterior distributions of model parameters, leading to more accurate point estimates.
 The probability that spawning biomass at the beginning of \Sexpr{assess.yr}
 is below $\Bforty$ is
 P$(B_{\Sexpr{assess.yr}} < \Bforty) = \Sexpr{probs.curr.below.bforty}$\%,
