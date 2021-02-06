@@ -940,13 +940,19 @@ Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 %future]
 However, interpolation is
 not appropriate for all catches in
-\Sexpr{assess.yr+1} because catch alternatives~h and~i apply a
-\Sexpr{assess.yr+1} catch level that is dependent on the
-\Sexpr{assess.yr} catch (i.e., it is not constant).  Therefore, the probabilities for
-% \Sexpr{catch_levels[[5]][[1]][1]}~t
-% \Sexpr{catch_levels[[5]][[1]][1]}~t
-\Sexpr{assess.yr+1} shown in Figure~\ref{fig:es-forecast-risk-comparison-year-2}
-are conditional and can be non-linear. This explains why a few probabilities decline
+\Sexpr{assess.yr+1} because catch alternatives~h and~i
+have catches that are $>$\Sexpr{f(catch_levels[[5]][[1]][1])}~t (the constant
+catch for alternative~\Sexpr{letters[5]}) in \Sexpr{assess.yr} but
+$<$\Sexpr{f(catch_levels[[5]][[1]][1])}~t in \Sexpr{assess.yr+1}.
+%
+% \Sexpr{assess.yr+1} because catch alternatives~h and~i apply a
+%\Sexpr{assess.yr+1} catch level that is dependent on the
+%\Sexpr{assess.yr} catch (i.e., it is not constant).  Therefore, the probabilities for
+%% \Sexpr{catch_levels[[5]][[1]][1]}~t
+%% \Sexpr{catch_levels[[5]][[1]][1]}~t
+%\Sexpr{assess.yr+1} shown in Figure~\ref{fig:es-forecast-risk-comparison-year-2}
+% are conditional and can be non-linear.
+This explains why a few probabilities decline
 (rather than rise) with increased \Sexpr{assess.yr+1} catch levels in Table~\ref{tab:es-risk-year-2}
 and Figure~\ref{fig:es-forecast-risk-comparison-year-2}.
 %
