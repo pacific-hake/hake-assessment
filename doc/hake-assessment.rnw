@@ -104,8 +104,9 @@
 \setlist[longitem,5]{label=\alph*)}
 
 \definecolor{rowclr}{RGB}{255, 192, 203}
-%% For centering cell values in a tabularx using stretched cells (X)
+%% For centering or right cell values in a tabularx using stretched cells (X)
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
 \newcommand{\sQuote}[1]{`#1'}
 \newcommand{\dQuote}[1]{``#1''}
 \newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
