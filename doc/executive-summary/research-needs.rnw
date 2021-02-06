@@ -15,28 +15,28 @@ population dynamics and availability to fisheries and surveys. Related, there is
 a need to streamline and broaden the availability of products from oceanographic models (e.g.,
 \ifnum\value{counter_research-needs}>0 {ROMS}\else{Regional Ocean Modeling System; ROMS}\fi)
 so that they are available stock-wide and can be
-used on a reoccurring basis as informative links in operational stock assessments.
+used on a recurring basis as informative links in operational stock assessments.
 
 \item Use and build upon the existing MSE framework to evaluate major sources of
 uncertainty relating to data, model structure, and the harvest policy for this
 fishery and compare potential methods to address them.
 Utilize and adapt this simulation framework to address new and ongoing
-stock assessment research and data needs (see Section~\ref{sec:research}),
+stock assessment research and data needs
 through the Pacific Hake MSE Working Group.
 
-\item Document existing survey methodologies, protocols,
+\item Document the existing survey methodologies, protocols,
 and adaptive survey-design decisions that lead to the development of \fishname\
 biomass and age-composition estimates used in the stock assessment.
-Such a document will ensure transparency, enable repeatability, and
+Such documentation will ensure transparency, enable repeatability, and
 provide a record of changes in procedures over time.
-Continue to conduct research to improve the estimation of age composition
+Also, continue to conduct research to improve the estimation of age composition
 and abundance from data collected during the acoustic survey.
 This includes, but is not limited to, research on
 species identification, target verification, target strength,
-implications of the south to north directionality of the survey,
+implications of the south-to-north directionality of the survey,
 alternative technologies to assist in the survey, and
 efficient analysis methods.
-Where, the latter should include bootstrapping of the acoustic survey time series
+The latter should include bootstrapping of the acoustic survey time series
 or related methods that can incorporate relevant uncertainties
 into the calculations of survey variance.
 Relevant uncertainties include topics such as the target strength relationship,

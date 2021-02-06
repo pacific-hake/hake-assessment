@@ -1037,7 +1037,7 @@ Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 As the large 2010 and 2014 cohorts continue to age, their biomass is expected to decrease
 as losses from mortality outweigh increases from growth.  The smaller but
 above-average 2016 cohort is entering this growth-mortality transition period, suggesting that
-their overall biomass is also expected to decrease as they continue to age.
+its overall biomass will also decrease as it continues to age.
 % Still true for 2017 assessment - see
 %  years.since.2010.recruitment.med.below.mean
 %   2018 assessment.
@@ -1059,7 +1059,7 @@ their overall biomass is also expected to decrease as they continue to age.
 
 There are many research projects that could improve the stock assessment for
 \fishname\ and lead to improved biological understanding and
-decision-making (see Section~\ref{sec:research}). The top three are:
+decision-making. The top three are:
 
 % research-needs.rnw gets loaded in here and also in
 %  research-section/research.rnw in main text, and only contains
