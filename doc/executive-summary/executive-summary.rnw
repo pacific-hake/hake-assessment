@@ -632,18 +632,18 @@ The median relative fishing intensity was below target in all years
 % Only one year for 2017 assessment, so:
 %  except \Sexpr{median.intensity.above.one.years}
 %  No years below for 2018
-(Figure~\ref{fig:es-fishing-intensity}).
+(Figures~\ref{fig:es-fishing-intensity} and~\ref{fig:es-phase}).
 The median relative female spawning biomass was above the $\Bforty$ reference point in
 % 2017 assessment: all years except 1968, 1998-2000 and 2007-2011
 % 2019 assessment: all years except 1999-2000 and 2007-2011
 all years except 2009 and 2010
-(Figure~\ref{fig:es-relative-spawning-biomass}).
+(Figure~\ref{fig:es-relative-spawning-biomass} and~\ref{fig:es-phase}).
 % Andy summarising those years manually, based on:
 % median.relative.bio.below.target
 % Manual done 2020. Interesting that years are becoming fewer.
 As such, the median relative fishing
 intensity has never been above the target of 1.0 when the female spawning biomass
-is also below the
+is below the
 reference point of $\Bforty$ (Figure~\ref{fig:es-phase}). This highlights the
 highly dynamic nature of the stock due to high variation in recruitment strength.
 While the target fishing mortality ($\Fforty$) and
@@ -679,17 +679,15 @@ the start of \Sexpr{end.yr}.
 
 Estimates of the \Sexpr{assess.yr} base model reference points with posterior
 credibility intervals are in Table~\ref{tab:es-reference-points}.
-The medians of sustainable yields and biomass reference points have changed by
-nearly 9\% compared to the \Sexpr{last.assess.yr} assessment. This is a result
-of increasing the effective sample size used to describe the posterior distributions
-of model parameters, leading to more precise point estimates.
+The medians of sustainable yields and biomass reference points are almost
+9\% lower than in the \Sexpr{last.assess.yr} assessment.
 The probability that spawning biomass at the beginning of \Sexpr{assess.yr}
 is below $\Bforty$ is
 P$(B_{\Sexpr{assess.yr}} < \Bforty) = \Sexpr{probs.curr.below.bforty}$\%,
 and of being below $\Btwentyfive$ is
 P$(B_{\Sexpr{assess.yr}} < \Btwentyfive) = \Sexpr{probs.curr.below.btwentyfive}$\%.
 The probability that the relative fishing intensity was above its target of 1.0
-at the end of \Sexpr{end.yr-1} was \Sexpr{probs.curr.rel.fish.intens.above.one}\%.
+at the end of \Sexpr{end.yr-1} is \Sexpr{probs.curr.rel.fish.intens.above.one}\%.
 
 % Manual done 2020.
 \enlargethispage{\baselineskip}
@@ -717,13 +715,12 @@ possible alternative structural models for \simplename\ population dynamics and
 fishery processes (e.g., selectivity)
 and the scientific basis for prior probability distributions. To address such
 structural uncertainties, we performed sensitivity analyses to investigate a
-range of alternative assumptions using Bayesian estimation,
+range of alternative assumptions
 and present the key ones in the main document.
-%We also present full Bayesian
-%analyses for a model that includes the age-1 survey index
-%and a model that uses the new efficient
-%No-U-Turn-Sampler (NUTS) within the R package
-%{\tt adnuts}.
+We also present detailed results
+for a model that includes the age-1 survey index
+and for the base model with Bayesian estimation performed using the
+random walk Metropolis Hastings algorithm (as used in previous assessments).
 
 %**Update from main text**Uncertainty in the best method for calculating acoustic
 % survey biomass is a particular focus and
@@ -775,7 +772,7 @@ make.decision.table(base.model,
                      "), and to the TAC from ",
                      min(forecast_yrs)-2," (row ",
                      letters[catch.prev.tac.ind],
-                     "), the catch values that result
+                     "); and non-constant catch levels that result
                      in a median relative fishing intensity of 100\\% (row ",
                      letters[catch.spr100.ind],
                      "), median catch estimated ",
@@ -924,8 +921,8 @@ make.risk.table(base.model,
                 placement = "tbp")
 @
 
-Management metrics that were identified as important to the JMC and the Advisory
-Panel (AP) in 2012 are presented for
+Management metrics that were identified as important to the Joint Management Committee and the Advisory
+Panel in 2012 are presented for
 \Sexpr{forecast_yrs[2:(length(forecast_yrs)-1)]} and
 \Sexpr{forecast_yrs[length(forecast_yrs)]} projections
 (Tables~\ref{tab:es-risk-year-1}

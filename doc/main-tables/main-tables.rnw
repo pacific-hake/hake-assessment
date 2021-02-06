@@ -507,7 +507,7 @@ make.decision.table(base.model,
                      "), and to the TAC from ",
                      min(forecast_yrs)-2," (row ",
                      letters[catch.prev.tac.ind],
-                     "), the catch values that result
+                     "); and non-constant catch levels that result
                      in a median relative fishing intensity of 100\\% (row ",
                      letters[catch.spr100.ind],
                      "), the median values estimated ",
