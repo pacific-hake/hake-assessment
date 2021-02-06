@@ -13,7 +13,7 @@ survey and commercial fisheries.
 
   \item The main technical change from \Sexpr{last.assess.yr} is the use of a new
     efficient algorithm (the No-U-Turn Sampler) for obtaining posterior samples. Consequently,
-    all model results, including sensitivity and retrospective model runs, are
+    all model results, including sensitivity and retrospective analyses, are
     now based on posterior distributions rather than maximum likelihood estimates.
 
   \item Updates to the data include:
@@ -37,8 +37,8 @@ from last year). Quotas were specified unilaterally in 2020 due to the lack of a
     (female spawning biomass at the start of \Sexpr{end.yr} divided by that at
     unfished equilibrium, $B_0$) is \Sexpr{curr.depl.median}\% but is highly
     uncertain (with 95\% credible interval from \Sexpr{curr.depl.lower}\% to
-    \Sexpr{curr.depl.upper}\%). The median relative spawning biomass reached a recent
-    high of \Sexpr{median.relative.bio.2017}\% in 2017 but has since gradually declined due to
+    \Sexpr{curr.depl.upper}\%). The median relative spawning biomass
+    has progressively declined since 2017 due to the
     aging large cohorts (2010, 2014, and 2016) and the recent four years of record catches.
 
   \item The median estimate of female spawning biomass at the start
@@ -71,11 +71,11 @@ estimates of recruitment for recent years and so were conducted for various
 catch levels. Projections setting the \Sexpr{forecast_yrs[1]} and
 \Sexpr{forecast_yrs[2]} catches equal to the \Sexpr{forecast_yrs[1]-1}
 coast-wide (unilaterally summed) TAC of
-\Sexpr{last.year.tac}~t show the estimated median spawning biomass
+\Sexpr{last.year.tac}~t show the estimated median relative spawning biomass
 decreasing from
-\Sexpr{last.yr.tac.fore.1.biomass}\% of $B_0$ in \Sexpr{end.yr} to
-\Sexpr{last.yr.tac.fore.2.biomass}\% of $B_0$ in \Sexpr{end.yr+1} and to
-\Sexpr{last.yr.tac.fore.3.biomass}\% of $B_0$ in
+\Sexpr{last.yr.tac.fore.1.biomass}\% in \Sexpr{end.yr} to
+\Sexpr{last.yr.tac.fore.2.biomass}\% in \Sexpr{end.yr+1} and to
+\Sexpr{last.yr.tac.fore.3.biomass}\% in
 \Sexpr{end.yr+2}, with a \Sexpr{last.yr.tac.risk.2.bforty}\% chance
 of the spawning biomass falling below $\Bforty$ in \Sexpr{end.yr+2}. There is an
 estimated \Sexpr{last.yr.tac.risk.1.biomass.decline}\% chance of the spawning biomass declining from \Sexpr{end.yr} to
