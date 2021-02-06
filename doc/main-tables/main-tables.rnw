@@ -410,7 +410,7 @@ cohort_table(base.model,
                                     because the empirical weights-at-age
                                     change between years.
                                     Estimated quantities are
-                                    MLEs."),
+                                    medians of the MCMC posteriors."),
              xlabel = "tab:main-cohort-effects",
              font_size = 8,
              space_size = 9)
