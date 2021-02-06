@@ -151,6 +151,9 @@
 \newcommand{\altshort}{alternative run}
 \newcommand{\altlong}{alternative time-varying fecundity run}
 
+%% Make counters so text isn't repeated
+\newcounter{counter_research-needs}
+
 %% Headers and footers
 \lhead{}
 \rhead{}

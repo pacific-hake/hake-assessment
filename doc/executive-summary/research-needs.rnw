@@ -1,53 +1,51 @@
 % research-needs.rnw - gets called into Executive Summary and into
 %  research-section/research.rnw in main text. This is just the first three
 %  for the Exec Summary, that also get called into research.rnw.
-
-% These all look still quite appropriate for 2019 document
+% Manual 2021 done - KFJ
 \begin{enumerate}
 
-\item Continue investigation of links between hake biomass,
-spatial distribution and recruitment, and how
+\item Continue the investigation of links between hake biomass,
+spatial distribution, and recruitment and how
 these links vary with ocean conditions and ecosystem variables such as
-temperature and prey availability. These investigations have the potential to
-improve the scenarios considered in future management strategy evaluation (MSE)
-work as well as providing a better basic understanding of drivers of hake
+temperature and prey availability. These investigations have the potential to improve
+the scenarios considered in future
+\ifnum\value{counter_research-needs}>0 {MSE }\else{management strategy evaluation (MSE) }\fi
+work and the basic understanding of drivers of hake
 population dynamics and availability to fisheries and surveys. Related, there is
 a need to streamline and broaden the availability of products from oceanographic models (e.g.,
-Regional Ocean Modeling System; ROMS) so that they are available stock-wide and can be
+\ifnum\value{counter_research-needs}>0 {ROMS}\else{Regional Ocean Modeling System; ROMS}\fi)
+so that they are available stock-wide and can be
 used on a reoccurring basis as informative links in operational stock assessments.
 
 \item Use and build upon the existing MSE framework to evaluate major sources of
-uncertainty relating to data, model structure and the harvest policy for this
-fishery, and compare potential methods to address them. Incorporate the feedback
-from interested parties into further development of operating and/or
-estimation models, through the Pacific Hake MSE Working Group. Utilize and adapt
-this simulation framework to address new and ongoing (see Section~\ref{sec:research})
-stock assessment research and data needs.
-%%% IGT 2018: removed text below as it seems no longer necessary
-% Specifically, make sure that the operating model is able to provide
-% insight into the important questions defined by these groups. If a spatially,
-% seasonally explicit operating model is needed, then research should focus on how
-% best to model these dynamics in order to capture seasonal effects and potential
-% climate forcing influences in the simulations (see item~1). Investigate the
-% impact of making incorrect assumptions about the underlying recruitment
-% process. Continue to coordinate our MSE research with other scientists in the
-% region engaging in similar research.
+uncertainty relating to data, model structure, and the harvest policy for this
+fishery and compare potential methods to address them.
+Utilize and adapt this simulation framework to address new and ongoing
+stock assessment research and data needs (see Section~\ref{sec:research}),
+through the Pacific Hake MSE Working Group.
 
-\item Document existing acoustic survey methodologies, protocols, and adaptive survey
-design decisions that lead to the development of \fishname biomass and age composition estimates
-used in the stock assessment. Such a document will ensure transparency, enable repeatability, and
-provide a record of changes in procedures over time. Continue to conduct research to improve
-the acoustic survey estimates of age and
-abundance. This includes, but is not limited to, species identification, target
-verification, target strength, directionality of survey, and alternative
-technologies to assist in the survey, as well as improved and more efficient
-analysis methods. Apply bootstrapping (or related) methods to the acoustic survey time series
-to incorporate more of the relevant uncertainties into the survey variance
-calculations. These factors include the target strength relationship, subjective
-scoring of echograms, thresholding methods, the species-mix and demographic
-estimates used to interpret the acoustic backscatter, and others. Continue to
-work with acousticians and survey personnel from the Northwest Fisheries Science Center and
-from Fisheries and Oceans Canada
+\item Document existing survey methodologies, protocols,
+and adaptive survey-design decisions that lead to the development of \fishname\
+biomass and age-composition estimates used in the stock assessment.
+Such a document will ensure transparency, enable repeatability, and
+provide a record of changes in procedures over time.
+Continue to conduct research to improve the estimation of age composition
+and abundance from data collected during the acoustic survey.
+This includes, but is not limited to, research on
+species identification, target verification, target strength,
+implications of the south to north directionality of the survey,
+alternative technologies to assist in the survey, and
+efficient analysis methods.
+Where, the latter should include bootstrapping of the acoustic survey time series
+or related methods that can incorporate relevant uncertainties
+into the calculations of survey variance.
+Relevant uncertainties include topics such as the target strength relationship,
+subjective scoring of echograms, thresholding methods, and
+methods to estimate the species-mix that are used to interpret the acoustic backscatter.
+Continue to work with acousticians and survey personnel from the
+Northwest Fisheries Science Center and
+Fisheries and Oceans Canada
 to determine optimal survey designs given constraints, including designs that incorporate ecosystem-based factors
-and other potential target species (e.g., rockfish, euphausiids, and mesopelagics) for the
-Joint U.S./Canada acoustic survey.
+and other potential target species (e.g., rockfish, euphausiids, and mesopelagics) for the \surveyname.
+
+\addtocounter{counter_research-needs}{1}

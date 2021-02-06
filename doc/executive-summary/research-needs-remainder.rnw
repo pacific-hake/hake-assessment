@@ -1,43 +1,45 @@
 % research-needs-remainder.rnw - the remaining research needs that won't go into
 %  the Executive Summary but only into research.rnw in the main text.
+% Manual 2021 done - KFJ
 
-\item Explore potential recruitment indices for juvenile or young (0 and/or
-  1 year old) \fishname, including further investigations into survey options,
-  refinements and analyses, as well as those that include environment
-  linkages. Also investigate alternative ways to model and forecast recruitment, given
+\item Explore potential recruitment indices for juvenile or young (age-0 and/or
+  age-1) \fishname, including further investigations into survey options,
+  refinements, and analyses, as well as those that include environment
+  linkages. Investigate alternative ways to model and forecast recruitment, given
   the uncertainty present.
 
-\item Develop a set of candidate ecosystem indicator variables that are potentially
-  associated with \fishname biology and ecology (e.g., recruitment, distribution,
+\item Develop a set of candidate ecosystem indicators that are potentially
+  associated with \fishname\ biology and ecology (e.g., recruitment, distribution,
   predator, and prey). Such information can broaden the context within which a single
   species stock assessment is interpreted, be used to support model development, and
-  provide non-assessment indicators to management.  
+  provide non-assessment indicators to management.
 
 \item Explore alternative approaches and related assumptions for parameterizing
   time-varying fishery selectivity in the assessment. Simulations that
   evaluate methods for including multiple variance structures, including interactions,
-  tradeoffs and related assumptions, across multiple processes (e.g., selectivity,
+  tradeoffs, and related assumptions, across multiple processes (e.g., selectivity,
   recruitment, data weighting) in integrated stock assessment models would be
   particularly beneficial.
 %\enlargethispage{\baselineskip}
 
-\item Conduct an inter-laboratory otolith exchange and ageing comparison
-  analysis to update ageing error calculations used in the stock assessment.
+\item Conduct an inter-laboratory otolith exchange and
+  use the results to update estimates of ageing error used in the stock assessment.
   This would include updated information about ageing imprecision and the effects of
-  large cohorts via simulation and blind source age-reading of samples with
+  large cohorts as understood given simulation analyses and
+  blind-source age reads of samples with
   differing underlying age distributions -- with and without dominant year
-  classes. The last inter-laboratory comparison was done in 2010 ('CARE'
-  exchanges), so another exchange program is needed to obtain the best
-  current available information on ageing error.
+  classes. The last inter-laboratory comparison was done in 2010 (``CARE''
+  exchanges).
 
 \item Continue to collect and analyze life-history data, including weight,
   maturity, and fecundity for \fishname. Explore possible relationships among
-  these life-history traits including time-varying changes as well as with body
-  growth and population density. Improve understanding of links between fecundity
+  these life-history traits and the potential for the relationships to vary with
+  time, empirical growth, and population density.
+  Improve understanding of links between fecundity
   and size, age, weight, and batch spawning, as well as spatio-temporal
   variability in the timing of spawning, skip spawning, batch fecundity, and size
   and age at maturity. Continue to explore the possibility of using
-  additional data types (such as length data) within the stock assessment. 
+  additional data types such as length data within the stock assessment.
   Additionally, a more spatially comprehensive maturity analyses that
   incorporates information from Canadian samples would be advantageous.
 
@@ -45,12 +47,6 @@
   \fishname\ in non-survey years when uncertainty in the results of the
   stock assessment presents a potential risk to or underutilization of the
   stock.
-
-%%\item Evaluate the quantity and quality of historical biological data (prior to
-%%  1989 from the Canadian fishery, and prior to 1975 from the U.S. fishery) for
-%%  use as age-composition and weight-at-age data, and/or any historical
-%%  indications of abundance fluctuations.
-%%There is still a bit of work to do, but this has been largely done
 
 \item Consider alternative methods for refining existing prior distributions
   for natural mortality ($M$), including the use of meta-analytic methods.
@@ -68,6 +64,6 @@
 \item Develop mechanisms that improve computing capabilities and storage
   capacity through the use of cloud computing, local high performance computing
   clusters, or other similar productivity enhancements to improve assessment
-  modeling and document building work flow.
+  modeling and work flow that goes into building the assessment document.
 
 \end{enumerate}
