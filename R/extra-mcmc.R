@@ -196,10 +196,7 @@ fetch_extra_mcmc <- function(model_path,
     message("There are no report files in the ", reports_dir, " directory.")
     return(NA)
   }
-  report_files <- grep("^Report_[[:digit:]]+\\.sso$", dir_list)
-  num_reports <- length(report_files)
-  comp_files <- grep("^CompReport_[[:digit:]]+\\.sso$", dir_list)
-  num_comp_reports <- length(comp_files)
+
   message("\nLoading Extra MCMCs from ", extra_mcmc_path)
 
   # Suppress warnings because there is an extra whitespace at the end of the header line in the file.
@@ -229,6 +226,9 @@ fetch_extra_mcmc <- function(model_path,
     nxt <- tibble(from = from_to[i - 1,]$to + 1, to = from_to[i - 1,]$to + num_reports_each[i])
     from_to <- bind_rows(from_to, nxt)
   }
+
+  # DEBUG - Make this way faster, uncomment the following line
+  # from_to <- tibble(from = 1000, to = 1010)
 
   # Load all report files into a list, 1 element for each report file. Elements that are NA had no file found
   reps <- map(1:nrow(from_to), ~{
@@ -382,13 +382,11 @@ fetch_extra_mcmc <- function(model_path,
   extra_mcmc$natage <- extract_rep_table(reps_natage, natage_header) %>%
     select(-(1:3)) %>%
     map_df(as.numeric) %>%
-    filter(Yr %in% start.yr:end.yr) %>%
+    filter(Yr >= start.yr) %>%
     mutate_at(.vars = vars(-Yr), ~{.x / 1e3})
   extra_mcmc$natage_median <- extra_mcmc$natage %>%
     group_by(Yr) %>%
     summarize_all(median)
-  natage_for_exp_calc <- extra_mcmc$natage %>%
-    filter(Yr %in% start.yr:(end.yr - 1))
 
   # Biomass-at-age ------------------------------------------------------------
   batage_header_ind <- grep("BIOMASS_AT_AGE", rep_example) + 1
@@ -406,13 +404,11 @@ fetch_extra_mcmc <- function(model_path,
     filter(`Beg/Mid` == "B") %>%
     select(-c(1:8, 10:13)) %>%
     map_df(as.numeric) %>%
-    filter(Yr %in% start.yr:end.yr) %>%
-    mutate_at(.vars = vars(-Yr), ~{.x / 1e3})
+    mutate_at(.vars = vars(-Yr), ~{.x / 1e3}) %>%
+    filter(Yr >= start.yr)
   extra_mcmc$batage_median <- extra_mcmc$batage %>%
     group_by(Yr) %>%
     summarize_all(median)
-  batage_for_exp_calc <- extra_mcmc$batage %>%
-    filter(Yr %in% start.yr:(end.yr - 1))
 
   # Catch-at-age in numbers ---------------------------------------------------
   catage_header_ind <- grep("CATCH_AT_AGE", rep_example) + 1
@@ -430,7 +426,7 @@ fetch_extra_mcmc <- function(model_path,
   extra_mcmc$catage <- extract_rep_table(reps_catage, catage_header) %>%
     select(-c(1:6, 8:9)) %>%
     map_df(as.numeric) %>%
-    filter(Yr %in% start.yr:(end.yr - 1))
+    filter(Yr >= start.yr)
   extra_mcmc$catage_median <- extra_mcmc$catage %>%
     group_by(Yr) %>%
     summarize_all(median)
@@ -442,8 +438,8 @@ fetch_extra_mcmc <- function(model_path,
   wtatage <- model$wtatage %>%
     as_tibble() %>%
     filter(Fleet == 1) %>%
-    filter(Yr %in% start.yr:(end.yr - 1)) %>%
-    select(-(2:6))
+    select(-(2:6)) %>%
+    filter(Yr >= start.yr)
   wtatage <- map_df(iter, ~{wtatage})
   yrs <- extra_mcmc$catage$Yr
   extra_mcmc$catage_biomass <- map2(extra_mcmc$catage, wtatage, ~{.x * .y}) %>% map_df(~{.x}) %>%
@@ -454,7 +450,7 @@ fetch_extra_mcmc <- function(model_path,
 
   # Exploitation-rate-at-age --------------------------------------------------
   yrs <- extra_mcmc$catage_biomass$Yr
-  extra_mcmc$expatage <- map2(extra_mcmc$catage_biomass, batage_for_exp_calc, ~{.x / .y}) %>% map_df(~{.x}) %>%
+  extra_mcmc$expatage <- map2(extra_mcmc$catage_biomass, extra_mcmc$batage, ~{.x / .y}) %>% map_df(~{.x}) %>%
     mutate(Yr = yrs)
   extra_mcmc$expatage_median <- extra_mcmc$expatage %>%
     group_by(Yr) %>%

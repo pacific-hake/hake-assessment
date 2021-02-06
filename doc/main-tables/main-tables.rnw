@@ -393,12 +393,11 @@ atage_table(
 \pagestyle{mylandscape}
 \centering
 <<main-cohort-effects-table, results='asis', echo=FALSE>>=
-make.cohort.table(base.model,
-                  c(1999, 2010, 2014, 2016),
-                  start.yr,
-                  last.data.yr+1,
-                  csv.dir = output.csv.dir,
-                  xcaption = paste0("For the strong cohorts, calculations of
+cohort_table(base.model,
+             end_yr = last.data.yr + 1,
+             cohorts = c(1999, 2010, 2014, 2016),
+             csv_dir = output.csv.dir,
+             xcaption = paste0("For the strong cohorts, calculations of
                                     what happens to the biomass at each age.
                                     Start Biomass is the biomass at
                                     the beginning of the year, Catch Weight
@@ -412,9 +411,9 @@ make.cohort.table(base.model,
                                     change between years.
                                     Estimated quantities are
                                     MLEs."),
-                  xlabel = "tab:main-cohort-effects",
-                  font.size = 9,
-                  space.size = 10)
+             xlabel = "tab:main-cohort-effects",
+             font_size = 8,
+             space_size = 9)
 @
 \end{landscape}
 \pagestyle{fancy}
