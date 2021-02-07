@@ -625,8 +625,8 @@ via graphical summaries and interactive web applications ({\tt ShinySTAN};
 The objective function, as
 well as all estimated parameters and derived quantities, showed good mixing
 during sampling, no evidence for lack of convergence, and low autocorrelation
-(results for some key parameters are shown in Figures~\ref{fig:main-mcmc-diag-m-r0}
-,~\ref{fig:main-mcmc-diag-h-extra-sd}, and~\ref{fig:main-mcmc-diag-dm}).
+(results for some key parameters are shown in
+Figures~\ref{fig:main-mcmc-diag-m-r0}--\ref{fig:main-mcmc-diag-dm}).
 Correlation-corrected effective sample
 sizes were sufficient to summarize the posterior distributions and neither the
 Geweke nor the Heidelberger and Welch statistics for these parameters exceeded
@@ -1216,8 +1216,7 @@ projections to
 \Sexpr{forecast_yrs[2:(length(forecast_yrs)-1)]} and
 \Sexpr{forecast_yrs[length(forecast_yrs)]} (Tables~\ref{tab:main-risk-year-1}
 and~\ref{tab:main-risk-year-2} and
-Figures~\ref{fig:main-forecast-depletion-comparison}, \ref{fig:main-forecast-risk-comparison-year-1},
-and~\ref{fig:main-forecast-risk-comparison-year-2}).
+Figures~\ref{fig:main-forecast-depletion-comparison}--\ref{fig:main-forecast-risk-comparison-year-2}).
 These metrics summarize the probability of
 various outcomes from the base model given each potential management
 action. Although not linear, probabilities can be interpolated from this table
