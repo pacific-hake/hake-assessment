@@ -454,7 +454,7 @@ that will not be spawning in the upcoming year and senescent fish
 that appear to no longer have viable ovaries.
 
 Tissue samples for genetic analyses have been collected from many of the same
-fish from which ovaries were sampled. It is the hope that, these genetic samples
+fish from which ovaries were sampled. It is the hope that these genetic samples
 may help determine whether the fish
 south of 34.44$^\circ$N are from the same stock as the rest of the coastal population.
 
@@ -467,7 +467,7 @@ Recent west coast stock assessments have utilized the cross-
 and double-reads approach to generate an ageing-error matrix describing the
 imprecision and bias in the observation process as a function of fish age. New
 data and analysis were used in the 2009 assessment to address an additional
-process influencing the ageing of hake, cohort-specific ageing error related to
+process influencing the ageing of hake, namely cohort-specific ageing error related to
 the relative strength of a year-class. This process reflects a tendency for
 uncertain age determinations to be assigned to predominant year classes. The
 result is that the presence of strong year classes is inflated in the age data
@@ -528,7 +528,7 @@ should have relatively little importance in the overall estimates of the
 population dynamics.
 
 Prior to 1975, weight-at-age is assumed to be equal to the mean across all years with data
-(1975-2019), consistent with the 2019 base model.
+(1975-\Sexpr{last.data.yr}), consistent with the \Sexpr{last.assess.yr} base model.
 Both forecast weight-at-age data and forecast selectivity are based on the respective means from the most recent five years
 (\Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}), for consistency.
 
@@ -572,7 +572,7 @@ in this model but retain the empirical approach to modeling weight-at-age used s
 \subsection{Estimated parameters and prior probability distributions}\label{sec:data-estimated-parameters}
 
 Several prior distributions
-(Tables~\ref{tab:main-params-est-summary} and \ref{tab:main-parameter-estimates})
+(Table~\ref{tab:main-params-est-summary})
 are used to fit the model. All informative priors are discussed below.
 
 \subsubsection{Natural Mortality}\label{sec:data-natural-mortality}
@@ -587,8 +587,8 @@ extensively in many previous hake assessments
 (see \citealt{JTC2013} for a discussion of the historical treatment of $M$ and its prior)
 and is repeated here (see Section
 \ref{sec:assessment-sensitivity-analyses}). Alternative prior distributions for
-$M$ typically have a significant impact on the model results; but, in the absence
-of new information on $M$, there has been little option to update the prior.
+$M$ typically have a significant impact on the model results. But in the absence
+of new information on $M$ there has been little option to update the prior.
 
 \subsubsection{Steepness}\label{sec:data-steepness}
 
