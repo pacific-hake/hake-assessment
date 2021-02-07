@@ -523,6 +523,7 @@ the \Sexpr{assess.yr} base model.
 In short, these included the following:
 \begin{itemize}
   \item Update to the latest version of Stock Synthesis, version \Sexpr{ss.version};
+  \item Change the phase of data weighting parameters;
   \item Update catch data from years prior to \Sexpr{last.data.yr};
   \item Update age-composition data from years prior to \Sexpr{last.data.yr};
   \item Update weight-at-age data from years prior to \Sexpr{last.data.yr};
@@ -535,7 +536,8 @@ In short, these included the following:
 
 The bridging steps can be grouped into three main sets of changes,
 with the majority of the steps being those that are performed routinely.
-The first step updated the Stock Synthesis framework to follow current best practices.
+The first step updated the Stock Synthesis framework to follow current best practices and
+adjusted the estimation phase for the data weighting parameters.
 The second step updated the information available from the fishery.
 The third step
 %updated the information available from the survey and
@@ -552,6 +554,9 @@ mostly related to options not explicitly used in this assessment.
 Adaptations within the stock synthesis modeling framework itself had no effect
 on parameter estimates compared to the \Sexpr{last.assess.yr}
 base model and thus no effect on resulting time series either (Figure~\ref{fig:main-bridge-5-panel-1}).
+Similarly, changing the estimation of the Dirichlet Multinomial parameters
+to the final estimation phase (which more accurately reflects the timing of when
+other, manually-tuned, data weighting methods occur) had no effect on results.
 
 The second set of bridging steps was conducted to update the fishery-dependent data.
 This primarily included minor adjustments in catch, fishery age-composition, and
