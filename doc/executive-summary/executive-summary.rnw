@@ -552,7 +552,7 @@ an agreement on a coast-wide 2020 TAC. The U.S. specified catch target was
 \Sexpr{us.allotment.percent.last.year}\% of the total coast-wide catch target, and
 the Canada catch target was \Sexpr{can.allotment.percent.last.year}\%. These
 percentages are different then the usual
-\Sexpr{us.allotment.percent}\% and 
+\Sexpr{us.allotment.percent}\% and
 \Sexpr{can.allotment.percent}\% as specified in the Joint U.S.-Canada
 Agreement for \fishname.
 
