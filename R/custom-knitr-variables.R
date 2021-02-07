@@ -480,6 +480,10 @@ retro.list <- list(base.model)
 for(i in plot.retro.yrs){
   retro.list[[i + 1]] <- base.model$retros[[i]]
 }
+retro.list.age1 <- list(sens.models.2[[1]])
+for(i in plot.retro.yrs){
+  retro.list.age1[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
+}
 # Adding the age-1 index for a sensitivity case -------------------------------
 retro.model.names.age1 <- c(sens.model.names.2[1],
                        map_chr(plot.retro.yrs, ~{paste0("-", .x, ifelse(.x == 1, " year", " years"))}))

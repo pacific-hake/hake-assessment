@@ -399,9 +399,9 @@ This DRAFT document is non-citable.
 <<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
 @
 
-% \rfoot{Appendix~\ref{chap:age1-survey} -- Age-1 survey sensitivity}
-% <<appendices-age1-survey, child='appendix-age1-survey/appendix-age1-survey.rnw'>>=
-% @
+ \rfoot{Appendix~\ref{chap:age1-survey} -- Age-1 survey sensitivity}
+ <<appendices-age1-survey, child='appendix-age1-survey/appendix-age1-survey.rnw'>>=
+ @
 
  \rfoot{Appendix~\ref{chap:rwmh} -- rwMH MCMC run}
  <<appendices-rwmh, child='appendix-rwmh/appendix-rwmh.rnw'>>=
