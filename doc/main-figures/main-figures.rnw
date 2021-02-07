@@ -470,9 +470,7 @@ plot_pearson_bubbles(base.model, type = 1, legend.position = "top", alpha = 0.7)
 plot_pearson_bubbles(base.model, type = 2, alpha = 0.7)
 @
 \end{center}
-\caption{**[Make MCMC?] Pearson residuals for base model MLE fits to the age-composition data. Closed bubbles are positive residuals (observed > expected)
-  and open bubbles are
-  negative residuals (observed < expected).}
+\caption{Pearson residuals for base model fits to the age-composition data for the medians of the MCMC posteriors. Closed bubbles are positive residuals (observed > expected) and open bubbles are negative residuals (observed < expected).}
 \label{fig:main-age-comp-pearson}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
