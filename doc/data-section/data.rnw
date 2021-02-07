@@ -676,7 +676,7 @@ and the negative log-likelihood function is
   \frac{\epsilon_{a}^2}{\Phi^2}.
 \ee
 
-A parameterization for selectivity deviations is being explored
+A parameterization for selectivity deviations was explored
 \citep{JTC2018, JTC2019} based on \citet{Xu2019}
 in an effort to produce a more objective way to determine the degree of
 flexibility. However, further testing of this approach is believed to be
@@ -715,7 +715,7 @@ The likelihood function for the D-M likelihood (see Equation 10 of
 \text{L}(\bm{\pi},\theta|\bm{\tilde{\pi}},n) =
   \frac{\Gamma(n+1)}{\prod\limits_{a=1}^{A_{\scriptscriptstyle{\text{max}}}} \Gamma(n\tilde{\pi}_a + 1)}
   \frac{\Gamma(\theta n)}{\Gamma(n + \theta n)}
-  \prod\limits_{a=1}^{A_{\scriptscriptstyle{\text{max}}}} \frac{\Gamma(n \tilde{\pi}_a + \theta n \pi_a)}{\Gamma(\theta n\pi_a)}
+  \prod\limits_{a=1}^{A_{\scriptscriptstyle{\text{max}}}} \frac{\Gamma(n \tilde{\pi}_a + \theta n \pi_a)}{\Gamma(\theta n\pi_a)},
 % not sure why A_\mbox{max} or A_\text{max} wouldn't work, \scriptscriptstyle does
 \ee
 where
@@ -730,13 +730,13 @@ of the D-M distribution.
 
 The effective sample size associated with this likelihood is given by
 \eb
-n_{\text{eff}} = \frac{1}{1 + \theta} + \frac{n \theta}{1 + \theta}
+n_{\text{eff}} = \frac{1}{1 + \theta} + \frac{n \theta}{1 + \theta}.
 \label{DMeff}
 \ee
 The input sample sizes used in this assessment, which are based on the
 number of trips or hauls, are large enough that the first term
 is insignificant compared to the second term. Consequently,
-$\theta / (1 + \theta)$ can be compared to the sample size
+$\protect{\theta / (1 + \theta)}$ can be compared to the sample size
 multipliers used in the McAllister-Ianelli data-weighting method
 \citep{McAllisterIanelli1997} that was used for assessments prior to 2018
 (Table~\ref{tab:main-assessment-changes}).
@@ -759,9 +759,9 @@ full weight and the likelihood surface is almost completely flat with respect to
 $\log \theta_{\text{surv}}$. The current prior on $\log \theta_{\text{surv}}$
 can be associated with
 an approximately uniform prior of the weight $\theta_{\text{surv}} / (1 +
-\theta_{\text{surv}})$. Where, the parameters of the normal distribution
-were back calculated from a uniform distribution with the bounds of 0 and 1.
-The normal prior on $\log \theta_{\text{surv}}$ has a mean of \Sexpr{effn.prior[2]}
+\theta_{\text{surv}})$, where the parameters of the normal distribution
+were back-calculated from a uniform distribution with the bounds of 0 and 1 \citep{JTC2020}.
+The normal prior for both $\theta_{\text{fish}}$ and $\log \theta_{\text{surv}}$ has a mean of \Sexpr{effn.prior[2]}
 and a standard deviation of \Sexpr{effn.prior[3]}.
 
 Composition data can also be weighted using the Francis method
@@ -776,6 +776,7 @@ the effective sample sizes. This method is known to be sensitive to
 outliers and prone to convergence issues when selectivity is time-varying.
 % todo: potentially remove the McAllister and Francis descriptions in 2022
 
-Sensitivity to the D-M method as compared to the
-McAllister-Ianelli and the Francis methods are presented
+Sensitivity analyses using the McAllister-Ianelli and the Francis methods
+instead of the D-M method
+are presented
 in Section~\ref{sec:assessment-sensitivity-analyses}.
