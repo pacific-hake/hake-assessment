@@ -20,17 +20,20 @@ Fishery-dependent and fishery-independent data used in this assessment
   Canadian fishery
   (\Sexpr{paste(range(unlist(lapply(can.ages[1:3], row.names))), collapse = "--")})
   are used to fit the model
-  (Table~\ref{tab:main-all-age-data-fishery}).
+  (Table~\ref{tab:main-all-age-data-fishery} and Figure~\ref{fig:main-age-comp-bubbles}).
 
 \item Biomass indices and age compositions from the \surveyname\
   % use knitr::combine_words(survey.age.years) below
   (\Sexpr{survey.age.years[-length(survey.age.years)]}, and
   \Sexpr{survey.age.years[length(survey.age.years)]};
-  Tables~\ref{tab:main-all-age-data-survey} and~\ref{tab:main-survey-history}).
+  Tables~\ref{tab:main-all-age-data-survey} and~\ref{tab:main-survey-history}
+  and Figures~\ref{fig:main-age-comp-bubbles} and~\ref{fig:main-survey-extrap-biomass}).
+  The age-1 index derived from the survey (Figure~\ref{fig:main-age-one-index})
+  is not used as data in the base model.
 
 \item Mean observed weight-at-age from fishery and survey catches
   (1975-\Sexpr{max.fishery.age.prop[2]}; Figure~\ref{fig:main-empirical-weight-at-age})
-  and, thus, derived fecundity-at-age as well.
+  and, thus, derived fecundity-at-age as well (Figure~\ref{fig:main-maturity}).
 
 \end{itemize}
 
@@ -49,7 +52,7 @@ histological analyses of ovary samples collected in recent years
 
 Some data sources were not included in the base model but have been explored, used for
 sensitivity analyses, or were included in previous stock assessments.
-Data sources not discussed here have either been
+Data sources not discussed at all here have either been
 discussed at past \fishname\ assessment review meetings or are discussed in more
 detail in the 2013 stock assessment document \citep{JTC2013}.  Some of these
 additional data sources are:
