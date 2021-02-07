@@ -168,77 +168,43 @@ make.parameters.estimated.summary.table <- function(model,
                "Uniform")
                ##fetch.prior.info(se, digits))
 
-  ## Number of survey selectivities is on line 78 of comment-stripped dataframe
-  num.sel <- fetch.and.split(ctl, 78)
-  grep.num.sel <- grep("#", num.sel)
-  if(length(grep.num.sel) > 0){
-    num.sel <- num.sel[1:(grep.num.sel - 1)]
-  }
-  num.sel <- as.numeric(num.sel[length(num.sel)])
-  ## num.sel is the number of selectivity entries in the file for survey
-  ## Age-0 starts on line 104 of comment-stripped dataframe
-  line.num <- 102
-  ages.estimated <- NULL
-  for(i in line.num:(line.num + num.sel - 1)){
-    age.sel <- fetch.and.split(ctl, i)
-    if(age.sel[phase] > 0){
-      ## This age plus one is being estimated
-      ages.estimated <- c(ages.estimated, i - line.num + 1)
-      ## Use the last line to get the values
-      est.sel <- age.sel
-    }
-  }
+  tmp <- data.frame(do.call("rbind",
+    strsplit(grep("AgeSel_.*_Survey.*[0-9]\\)$", ctl, value = TRUE),"\\s+")))
+  s.ages.estimated <- which(tmp[, 7] > 0) - 1
   age.sel.vals <- c(paste0("Non-parametric age-based selectivity: ages ",
-                           min(ages.estimated),
+                           min(s.ages.estimated),
                            "--",
-                           max(ages.estimated)),
-                    length(ages.estimated),
-                    paste0(" (", est.sel[lo], ", ", est.sel[hi], ")"),
+                           max(s.ages.estimated)),
+                    length(s.ages.estimated),
+                    paste0(" (", min(tmp[tmp[, 7]>0, lo]), ", ", min(tmp[tmp[, 7]>0, hi]), ")"),
                     "Uniform")
-                    ##fetch.prior.info(est.sel, digits))
 
-  ## Number of fishery selectivities is on line 77 of comment-stripped dataframe
-  num.sel <- fetch.and.split(ctl, 77)
-  grep.num.sel <- grep("#", num.sel)
-  if(length(grep.num.sel) > 0){
-    num.sel <- num.sel[1:(grep.num.sel - 1)]
-  }
-  num.sel <- as.numeric(num.sel[length(num.sel)])
-  ## num.sel is the number of selectivity entries in the file for survey
-  ## Age-0 starts on line 81 of comment-stripped dataframe
-  line.num <- 81
-  ages.estimated <- NULL
-  for(i in line.num:(line.num + num.sel)){
-    age.sel <- fetch.and.split(ctl, i)
-    if(age.sel[phase] > 0){
-      ## This age plus one is being estimated
-      ages.estimated <- c(ages.estimated, i - line.num)
-      ## Use the last line to get the values
-      est.sel <- age.sel
-    }
-  }
+  tmp <- data.frame(do.call("rbind",
+    strsplit(grep("AgeSel_.*_Fishery.*[0-9]\\)$", ctl, value = TRUE),"\\s+")))
+  f.ages.estimated <- which(type.convert(as.is = TRUE, tmp[, 7]) > 0) - 1
   f.age.sel.vals <- c(paste0("Non-parametric age-based selectivity: ages ",
-                             min(ages.estimated),
+                             min(f.ages.estimated),
                              "--",
-                             max(ages.estimated)),
-                      length(ages.estimated),
-                      paste0("(", est.sel[lo], ", ", est.sel[hi], ")"),
+                             max(f.ages.estimated)),
+                      length(f.ages.estimated),
+                      paste0("(", min(tmp[tmp[, 7]>0, lo]), ", ",
+                        max(tmp[tmp[, 7]>0, hi]), ")"),
                       "Uniform")
-                      ##fetch.prior.info(est.sel, digits))
+  n.yrs.sel.vals <- diff(as.numeric(tmp[tmp[,7]>0,start.yr.sel:end.yr.sel][1, 1:2])) + 1
 
   ## Selectivity deviations for fishery. Uses last line to get values, assumes
   ##  all are the same
   f.age.sel.dev.vals <-
     c(paste0("Selectivity deviations (",
-             est.sel[start.yr.sel],
+             min(tmp[tmp[,start.yr.sel] != 0,start.yr.sel]),
              "--",
-             est.sel[end.yr.sel],
+             max(tmp[tmp[,end.yr.sel] != 0,end.yr.sel]),
              ", ages ",
-             min(ages.estimated),
+             min(f.ages.estimated),
              "--",
-             max(ages.estimated),
+             max(f.ages.estimated),
              ")"),
-      length(ages.estimated) * length(est.sel[start.yr.sel]:est.sel[end.yr.sel]),
+      length(f.ages.estimated) * n.yrs.sel.vals,
       "--",
       paste0("Normal (0, ",
              ##est.sel[sel.dev.sd],
