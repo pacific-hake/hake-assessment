@@ -25,17 +25,20 @@ survey and commercial fisheries.
 
   \item Coast-wide catch in \Sexpr{end.yr-1} was the fourth largest on record at
     \Sexpr{last.year.landings}~t [t represents metric tons],
-out of a total allowable catch (TAC), adjusted for carryovers, of \Sexpr{last.year.tac}~t. Attainment in
-the U.S. was \Sexpr{last.year.us.attained}\% of its quota
-(\Sexpr{paste0(ifelse(last.2year.us.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.us.attained.diff))}\%
-from last year); attainment in Canada was
-\Sexpr{last.year.can.attained}\%
-(\Sexpr{paste0(ifelse(last.2year.can.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.can.attained.diff))}\%
-from last year). Quotas were specified unilaterally in 2020 due to the lack of a
-bilateral TAC agreement, such that the U.S. allotment was
-\Sexpr{us.allotment.percent.last.year}\% of the TAC and the Canada allotment was
-\Sexpr{can.allotment.percent.last.year}\%, compared to the usual
-\Sexpr{us.allotment.percent}\% and \Sexpr{can.allotment.percent}\%.
+    out of a total allowable catch (TAC), adjusted for carryovers, of \Sexpr{last.year.tac}~t.
+    Quotas were specified unilaterally in 2020 due to the lack of a
+    bilateral TAC agreement.  The U.S. caught \Sexpr{last.year.us.attained}\%
+    of their quota (\Sexpr{last.year.us.landings}~t), and Canada caught
+    \Sexpr{last.year.can.attained}\% (\Sexpr{last.year.can.landings}~t) of their quota.
+%Attainment in the U.S. was \Sexpr{last.year.us.attained}\% of its quota
+%(\Sexpr{paste0(ifelse(last.2year.us.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.us.attained.diff))}\%
+%from last year); attainment in Canada was
+%\Sexpr{last.year.can.attained}\%
+%(\Sexpr{paste0(ifelse(last.2year.can.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.can.attained.diff))}\%
+%from last year). 
+%\Sexpr{us.allotment.percent.last.year}\% of the TAC and the Canada allotment was
+%\Sexpr{can.allotment.percent.last.year}\%, compared to the usual
+%\Sexpr{us.allotment.percent}\% and \Sexpr{can.allotment.percent}\%.
 
   \item The median estimate of the \Sexpr{end.yr} relative spawning biomass
     (female spawning biomass at the start of \Sexpr{end.yr} divided by that at
