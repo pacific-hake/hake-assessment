@@ -395,12 +395,13 @@ year classes, respectively.
 The acoustic survey data in this assessment do not include age-1 fish, although
 a separate age-1 index has been explored in the past \citep{JTC2013, JTC2020} and was explored as
 a sensitivity (Appendix~\ref{chap:age1-survey}).
-It is currently not included in the
-base model because more investigations are needed regarding how to best model the data,
-the implications of its inclusion are not fully understood,
-the uncertainty of each estimate is unknown, and
-the survey is not specifically designed to representatively survey age-1 fish.
-However, the estimates track the
+The age-1 index is not included in the
+base model because
+the survey is not specifically designed to representatively survey age-1 fish,
+and a detailed sensitivity analysis in the 2020 assessment \citep{JTC2020} found
+that its inclusion did not consistently improve estimates of recruitment and can
+give misleadingly optimistic forecasts.
+However, in this assessment the estimates track the
 estimated recruitment reasonably well (Figure~\ref{fig:main-age-one-index}).
 
 \subsubsection{Other fishery-independent data}\label{sec:data-other-fishery-independent}
