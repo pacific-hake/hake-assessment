@@ -279,7 +279,7 @@ param_est_table(retro.list,
                             log likelihoods for retrospective analyses.
                             Some values are implied since they occur after
                             the ending year of the respective retrospective
-                            analysis.",
+                            analysis. Dashes indicate that the parameter was not estimated in the model.",
                 xlabel = "tab:main-parameter-estimates-retro",
                 font.size = 10,
                 space.size = 11)
@@ -596,7 +596,7 @@ param_est_table(sens.models.1.for.table,
                                    reference points, and negative log likelihoods for the base
                                    model and some sensitivity runs (described in
                                    Section~\\ref{sec:assessment-sensitivity-analyses}).
-                                  Dashes indicate that the parameter was not esimated model."),
+                                  Dashes indicate that the parameter was not estimated in the model."),
                 xlabel = "tab:main-parameter-estimates-sens-1",
                 font.size = 9,
                 space.size = 11,
@@ -636,7 +636,8 @@ param_est_table(sens.models.3.for.table,
                 xcaption = paste0("Medians of MCMC posteriors for select parameters,
                                    derived quantities, reference points, and negative log likelihoods
                                    for the base model and further sensitivity runs (described in
-                                   Section~\\ref{sec:assessment-sensitivity-analyses})."),
+                                   Section~\\ref{sec:assessment-sensitivity-analyses}).
+                                  Dashes indicate that the parameter was not estimated in the model."),
                 xlabel = "tab:main-parameter-estimates-sens-3",
                 font.size = 9,
                 space.size = 11,
