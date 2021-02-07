@@ -28,14 +28,14 @@ survey and commercial fisheries.
     out of a total allowable catch (TAC), adjusted for carryovers, of \Sexpr{last.year.tac}~t.
     Quotas were specified unilaterally in 2020 due to the lack of a
     bilateral TAC agreement.  The U.S. caught \Sexpr{last.year.us.attained}\%
-    of their quota (\Sexpr{last.year.us.landings}~t), and Canada caught
+    of their quota (\Sexpr{last.year.us.landings}~t) and Canada caught
     \Sexpr{last.year.can.attained}\% (\Sexpr{last.year.can.landings}~t) of their quota.
 %Attainment in the U.S. was \Sexpr{last.year.us.attained}\% of its quota
 %(\Sexpr{paste0(ifelse(last.2year.us.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.us.attained.diff))}\%
 %from last year); attainment in Canada was
 %\Sexpr{last.year.can.attained}\%
 %(\Sexpr{paste0(ifelse(last.2year.can.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.can.attained.diff))}\%
-%from last year). 
+%from last year).
 %\Sexpr{us.allotment.percent.last.year}\% of the TAC and the Canada allotment was
 %\Sexpr{can.allotment.percent.last.year}\%, compared to the usual
 %\Sexpr{us.allotment.percent}\% and \Sexpr{can.allotment.percent}\%.
