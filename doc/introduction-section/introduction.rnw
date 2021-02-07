@@ -102,8 +102,8 @@ continental shelf break, with highest densities located over bottom depths of
 
 Older \fishname\ exhibit the greatest northern migration each season, with two-
 and three-year old fish rarely observed in Canadian waters north of southern
-Vancouver Island. During El Ni\~no events (warm ocean conditions, such as 1998
-and to some extent 2015), a larger proportion of the stock migrates into Canadian waters
+Vancouver Island. During El Ni\~no events (warm ocean conditions such as in 1998),
+a larger proportion of the stock migrates into Canadian waters
 (Figure~\ref{fig:main-backscatter-map}),
 due to temperature effects \citep{MalickHunsickerEtAl2020} and possibly intensified
 northward transport during the period of active
@@ -174,7 +174,7 @@ Throughout the last decade, the total coast-wide catch has tracked harvest
 targets reasonably well.
 %  (Table~\ref{tab:main-landings-tac})    % so Table 4 isn't ref'ed before 1-3
 Since 1999, catch
-targets have been determined using an $\Fforty$ default harvest rate with a
+targets have been calculated using an $\Fforty$ default harvest rate with a
 40:10 adjustment. This decreases the catch linearly from the catch target at a
 relative spawning biomass of 40\%, to zero catch at relative spawning
 biomass values of 10\% or less (called the default harvest policy in the
@@ -208,7 +208,7 @@ fishing is allowed after April 15 south of 40$^\circ$30'N latitude, but only a
 small amount of the shore-based allocation is released prior to the opening of
 the main shore-based fishery (May 15). The current allocation agreement,
 effective since 1997, divides the U.S. harvest into tribal (17.5\%) and non-tribal
-(82.5\%, with a small set aside for research) components.
+(82.5\%, with a small amount set aside for research) components.
 The non-tribal harvest allocation is divided among
 catcher-processors (34\%), motherships (24\%), and the shore-based fleet
 (42\%). Since 2011, the non-tribal U.S. fishery has been fully rationalized with
@@ -261,7 +261,7 @@ pandemic and fewer samples than usual were taken.
 Retention of all catch,
 with the exception of prohibited species, was mandatory. The retention of
 groundfish other than Sablefish, Mackerel, Walleye Pollock, and Pacific Halibut
-on non-observed but electronically monitored, dedicated \fishname\ trips, was
+on non-observed (but electronically monitored) dedicated \fishname\ trips was
 not allowed to exceed 10\% of the landed catch weight. The bycatch allowance for
 Walleye Pollock was 30\% of the total landed weight.
 
@@ -284,14 +284,14 @@ processing industry in 2018, with an exported value of CA\$100~million mainly
 to Ukraine, China, South Africa and Lithuania \citep{DFO2020}.
 
 In the US, over US\$72~million in wages is estimated to have been paid to employees in 2018
-(\href{https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/}
-{https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/}).
+% (\href{https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/}
+(https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/).
 This includes wages paid to crew and captains fishing on catcher vessels that deliver shoreside
 and at-sea to motherships, workers in shore-based processing facilities, crew, captains, and workers
 on catcher-processor vessels, and workers on mothership vessels. The exported value was US\$129.5~million.
-The largest export volumes are to Ukraine, South Africa, and Nigeria which make up about 46\% of the total
-(\href{https://foss.nmfs.noaa.gov/apexfoss/f?p=215:200:2797069701321:::::}
-{https://foss.nmfs.noaa.gov/apexfoss/f?p=215:200:2797069701321:::::}).
+The largest export volumes are to Ukraine, South Africa, and Nigeria, making up about 46\% of the total
+% (\href{https://foss.nmfs.noaa.gov/apexfoss/f?p=215:200:2797069701321:::::}
+(https://foss.nmfs.noaa.gov/apexfoss/f?p=215:200:2797069701321).
 The economic impact in terms of income resulting from whiting production on the U.S. West Coast economy is greater
 than the direct payments to captain, crew, and vessel owners \citep{LeonardWatson2011}. Likewise, the economic
 impact in terms of the number of jobs created is also greater than the direct number of vessel employees.
@@ -377,11 +377,15 @@ reallocated quotas, respectively. There was
 \Sexpr{last.year.us.not.attained}\% of the total U.S. adjusted TAC that was not
 caught.  For further details and specific impacts related to the COVID-19 pandemic
 see the report from the U.S. Advisory Panel
-(Appendix~\ref{chap:us-fishery-report}).
+(Appendix~\ref{chap:us-fishery-report}). Thanks to serological testing of almost
+all crew members prior to departure, one fishing vessel that experienced an
+outbreak of COVID-19 provided the first direct evidence that neutralizing
+antibodies are protective against infection in humans, contributing to the
+science behind vaccine development \citep{AddetiaCrawfordEtAl2020}.
 % Manual done 2020 KFJ
 
 In both U.S. at-sea sectors (CP and MS) the most common fish in the fishery were age-4, age-6, and age-10 associated with the 2016, 2014, and 2010 year-classes.
-Age-2 fish were far less present in the catch this year than in 2018 or 2019.
+Age-2 fish were far less prevalent in the catch this year than in 2018 or 2019.
 Age sampling was conducted on \Sexpr{us.age.n.cp} CP hauls and \Sexpr{us.age.n.ms}
 MS hauls (Table~\ref{tab:main-sampling-history}).
 For the CP sector, the four most abundant age classes (by numbers) seen in \Sexpr{last.data.yr} were
@@ -407,7 +411,7 @@ in \Sexpr{last.data.yr} (Table~\ref{tab:main-us-shore-age-data}).
 
 The at-sea fishery maintained moderately high catch rates throughout the
 year (Figure~\ref{fig:main-us-catch-rates}), averaging higher than in 2018 and 2019
-in all months.
+for all months.
 %around 20 t/hr in the spring (May--June) and 15 t/hr in the fall (September--November).
 %Relative
 %to last year, the spring fisheries saw a decline in catch
@@ -445,14 +449,14 @@ which freezes headed and gutted product while at sea, landed
 % Paraphrased from Appendix B, no point in repeating lots of it:
 Fishing started in March and ended in early December. The general view from the
 Canadian fleet is that general abundance was down in 2020, especially in the shallower
-depths (Figure~\ref{fig:main-can-fishery-depths}).
+depths (Figure~\ref{fig:main-can-at-sea-depths}).
 When found, these aggregations appeared patchier and dissipated more quickly
 when put under fishing pressure than in 2019. The fish caught in Canada appeared to
-be mostly from one age class (600 - 800 gram body weight), with very few smaller fish caught.
+be mostly from one age class (600-800 gram body weight), with very few smaller fish caught.
 
 Usually the most abundant age classes found in the freezer trawler catch are listed here,
 but due to COVID-19 there were no observers on board in 2020, so there were no age samples taken
-and therefore no representation of year class composition from the freezer trawlers.
+and therefore no representation of year-class composition from the freezer trawlers.
 %
 % The most abundant year classes (by numbers) in the Canadian freezer-trawler
 % catch were age
