@@ -326,8 +326,6 @@ This DRAFT document is non-citable.
 <<introduction-sec, child='introduction-section/introduction.rnw'>>=
 @
 
-\clearpage % for 2021 to get footer correct
-
 \rfoot{Section~\ref{sec:data} -- Data}
 <<data-sec, child='data-section/data.rnw'>>=
 @
