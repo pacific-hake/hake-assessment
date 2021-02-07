@@ -228,7 +228,7 @@ fetch_extra_mcmc <- function(model_path,
   }
 
   # DEBUG - Make this way faster, uncomment the following line
-  from_to <- tibble(from = 1000, to = 1010)
+  # from_to <- tibble(from = 1000, to = 1010)
 
   # Load all report files into a list, 1 element for each report file. Elements that are NA had no file found
   reps <- map(1:nrow(from_to), ~{
