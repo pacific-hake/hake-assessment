@@ -1075,8 +1075,8 @@ the asymptotic approximations about the maximum likelihood estimates
 (MLEs) because it allows for asymmetry (Figure~\ref{fig:main-prior-posterior};
 also see \citealt{JTC2012} for further discussion and
 examples).
-Note that we use the term MLE even though the priors are involved in the likelihood
-calculation and so the more accurate term would be the mode of the posterior density.
+%Note that we use the term MLE even though the priors are involved in the likelihood
+%calculation and so the more accurate term would be the mode of the posterior density.
 
 The medians of the key parameters from the posterior distribution are similar to
 those in last year's base model (Table~\ref{tab:main-parameter-estimates}).
