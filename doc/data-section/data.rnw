@@ -139,8 +139,8 @@ This information has also allowed a detailed investigation of shifts in fishery
 timing (see Figure~5 in \citealt{JTC2014}).
 
 Minor updates to catches used in previous assessments were made based on the best available information extracted from the aforementioned databases.
-U.S. shore-based landings from 1986 were decreased by 33 mt relative to previous assessments to reflect a change made in the PacFIN database years prior that is yet to be addressed in the data file.
-This was the most substantial change to U.S. shore-based historical catches; other years were changed less than 4 mt.
+U.S. shore-based landings from 1986 were decreased by 33~t relative to previous assessments to reflect a change made in the PacFIN database years prior that is yet to be addressed in the data file.
+This was the most substantial change to U.S. shore-based historical catches; other years were changed less than 4~t.
 Tribal catches were not available in PacFIN for the U.S. tribal fishery at the time the data were extracted and were added to the extracted number based on information provided by the Makah tribe.
 With the movement towards digital fish tickets for reporting tribal catches, this should be the last year that tribal catches will need to be provided after the fact.
 The Makah tribe is also working on providing historical catches such that shore-based catches can be summarized separately from tribal catches since the onset of the fishery.
@@ -209,13 +209,13 @@ confirm the well-known pattern of very large cohorts born in
 1973, 1977, 1987, 2008, and 2016
 (Table~\ref{tab:main-all-age-data-fishery} and
 Figure~\ref{fig:main-age-comp-bubbles}).
-Recent age-composition data still easily track the 2010 year class,
-as well as large cohorts born since then
+Recent age-composition data still easily track the 2010 cohort,
+as well as the large cohorts born since then
 (Table~\ref{tab:main-all-age-data-fishery} and
 Figure~\ref{fig:main-age-comp-bubbles}).
 Currently, the 2016 cohort is the largest observed cohort in all three U.S. fleets
 (Tables~\ref{tab:main-us-cp-age-data}--\ref{tab:main-us-shore-age-data}).
-Whereas, the 2014 is still the largest observed cohort in the Canadian shoreside fleet
+Whereas the 2014 cohort is still the largest observed cohort in the Canadian shoreside fleet
 (Table \ref{tab:main-can-shore-age-data}).
 Canadian freezer trawlers did not carry observers in 2020 due to the COVID-19 pandemic,
 and thus did not collect ages in 2020.
@@ -228,7 +228,7 @@ For the combined data in \Sexpr{last.data.yr - 1},
 In \Sexpr{last.data.yr}, \Sexpr{top.coh(base.model, last.data.yr, 3, cap = FALSE)}.
 % Manual 2021 KFJ
 
-We caution that proportion-at-age data contains information about the relative
+We caution that proportion-at-age data contain information about the relative
 numbers-at-age, and these can be affected by changing recruitment, selectivity,
 or fishing mortality, making these data difficult to interpret on their own.
 For example, the above-average 2005 and 2006 year classes declined in proportion
@@ -283,7 +283,7 @@ takes place. Observations of age-1 hake are recorded during the survey,
 and an age-1 index is estimated (described below), but it is only used to fit
 the model in a sensitivity analysis.
 
-The \Sexpr{survey.end.yr} survey covered U.S. and Canadian waters from the Point Conception
+The \Sexpr{survey.end.yr} survey covered U.S. and Canadian waters from Point Conception
 to north of Haida Gwaii using 113 transects (Figure \ref{fig:main-backscatter-map}). On average,
 U.S. transects were separated by 10 nmi, while Canadian transects were separated by 20 nmi. The
 NOAA ship Bell M. Shimada completed the U.S. portion of the survey and met with the F/V Nordic
@@ -367,14 +367,14 @@ during the preparation of survey data collected since 2017. The assumptions are 
 
 \end{itemize}
 
-Thus, a full time-series of consistently analyzed survey
+Thus, a full time series of consistently analyzed survey
 biomass (Table~\ref{tab:main-survey-history} and
 Figure~\ref{fig:main-survey-extrap-biomass})
 and age compositions (Table~\ref{tab:main-all-age-data-survey} and Figure~\ref{fig:main-age-comp-bubbles}) since 1995
 are used to fit the stock assessment model.
 These data contain many sources of variability (see \citealt{StewartForrestEtAl2011}),
 but results from research done in 2010 and 2014 on their representativeness
-shows that trawl sampling and post-stratification is only a small source of variability.
+show that trawl sampling and post-stratification is only a small source of variability.
 Specifically, repeated trawls at different depths and spatial locations
 on the same aggregation of hake were similar and
 analyses regarding the method used to stratify the data
