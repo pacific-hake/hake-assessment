@@ -50,8 +50,10 @@ make_landings_tac_table(ct,
                         start_yr = start.yr,
                         end_yr = end.yr-1,
                         xcaption = "\\fishname\\ landings and
-                                     management decisions. Catch targets in 2020 were
-                                     specified unilaterally.",
+                                     management decisions. A dash (--) indicates the management decision
+                                     was either not specified or was unknown to the authors at the time of
+                                     this assessment.
+                                     Catch targets in 2020 were specified unilaterally.",
                         xlabel = "tab:main-landings-tac",
                         font_size = 8,
                         space_size = 10)
