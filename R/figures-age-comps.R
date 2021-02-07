@@ -101,35 +101,10 @@ plot_bubbles <- function(d,
   g
 }
 
-#' Make the age composition Pearson residuals plot for the fleet type given
-#'
-#' @param model A model object as returned from [load.ss.files()]
-#' @param subplot 1 for fishery, 2 for survey
-#' @param ... Additional parameters passed to [plot_pearson_bubbles()]
-#'
-#' @return
-#' @export
-#'
-#' @examples
-make_age_comp_pearson_plot <- function(model,
-                                       subplot = 1,
-                                       ...){
-
-  dat <- model$agedbase %>%
-    filter(Fleet == subplot) %>%
-    transmute(Year = Yr, Age = Bin,  Pearson) %>%
-    as_tibble() %>%
-    mutate(Year = as.integer(Year),
-           Age = as.integer(Age))
-
-  g <- plot_pearson_bubbles(dat, ...)
-
-  g
-}
-
 #' Make a bubble plot from the given data
 #'
 #' @param d a [tibble::tibble()] of the data in long format with column names `Year`, `Age`, and `Proportion`
+#' @param type 1 = Fishery, any other value = Survey
 #' @param clines An optional vector of years to draw cohort lines through
 #' @param yrs A vector of 2, for the years to show on the plot
 #' @param by How many years between year labels on the x-axis
@@ -141,7 +116,8 @@ make_age_comp_pearson_plot <- function(model,
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
-plot_pearson_bubbles <- function(d,
+plot_pearson_bubbles <- function(model,
+                                 type = 1,
                                  clines = c(1980, 1984, 1999, 2010, 2014, 2016),
                                  by = 5,
                                  legend.position = "none",
@@ -149,7 +125,13 @@ plot_pearson_bubbles <- function(d,
                                  xlim = c(1975, year(Sys.Date())),
                                  ...){
 
-  g <- ggplot(d, aes(x = Year,
+  if(type == 1){
+    d <- model$extra.mcmc$comp_fishery_median
+  }else{
+    d <- model$extra.mcmc$comp_survey_median
+  }
+
+  g <- ggplot(d, aes(x = Yr,
                      y = Age,
                      size = abs(Pearson),
                      fill = factor(sign(as.numeric(Pearson))))) +

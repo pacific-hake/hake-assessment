@@ -575,43 +575,33 @@ fetch_extra_mcmc <- function(model_path,
   extra_mcmc$timeseries$Bio_smry.0.975 <- as.numeric(Bio_smry[3,])
 
   comp <- extract_rep_table(reps_comp, comp_header)
-  ## median and quantiles of expected values and Pearsons
+  # Median and quantiles of expected values and Pearson
   iter <- unique(comp$Iter)
   comp <- comp %>%
-    filter(!is.na(Nsamp_adj), Nsamp_adj > 0)
-  exp_table <- comp %>%
-    select(Iter, Exp) %>%
-    group_by(Iter) %>%
-    group_nest()
-  exp_table <- do.call(cbind, exp_table$data)
-  names(exp_table) <- iter
-  exp_table <- apply(exp_table,
-                     MARGIN = 1,
-                     FUN = function(x){quantile(as.numeric(x),
-                                                probs = probs)
-                       })
-  extra_mcmc$agedbase <- model$agedbase
-  extra_mcmc$agedbase$Exp.025 <- exp_table[1,]
-  extra_mcmc$agedbase$Exp <- exp_table[2,]
-  extra_mcmc$agedbase$Exp.975 <- exp_table[3,]
+    filter(!is.na(Nsamp_adj), Nsamp_adj > 0) %>%
+    select(c(Iter, Yr, Fleet, Bin, Obs, Exp, Pearson)) %>%
+    rename(Age = Bin)
+  extra_mcmc$comp_fishery <- comp %>%
+    filter(Fleet == 1) %>%
+    select(-Fleet) %>%
+    mutate_all(as.numeric)
+  extra_mcmc$comp_fishery_median <- extra_mcmc$comp_fishery %>%
+    select(-Iter) %>%
+    group_by(Yr, Age) %>%
+    summarize_all(median) %>%
+    ungroup()
+  extra_mcmc$comp_survey <- comp %>%
+    filter(Fleet == 2) %>%
+    select(-Fleet) %>%
+    mutate_all(as.numeric)
+  extra_mcmc$comp_survey_median <- extra_mcmc$comp_survey %>%
+    select(-Iter) %>%
+    group_by(Yr, Age) %>%
+    summarize_all(median) %>%
+    ungroup()
 
-  pearson_table <- comp %>%
-    select(Iter, Pearson) %>%
-    group_by(Iter) %>%
-    group_nest()
-  pearson_table <- do.call(cbind, pearson_table$data)
-  names(pearson_table) <- iter
-  pearson_table <- apply(pearson_table,
-                     MARGIN = 1,
-                     FUN = function(x){quantile(as.numeric(x),
-                                                probs = probs)
-                     })
-  extra_mcmc$agedbase$Pearson.025 <- pearson_table[1,]
-  extra_mcmc$agedbase$Pearson <- pearson_table[2,]
-  extra_mcmc$agedbase$Pearson.975 <- pearson_table[3,]
-
-  ## add new table of info on posterior distributions of likelihoods
-  ## extra_mcmc$like.info <- like_info
+  # Add new table of info on posterior distributions of likelihoods
+  # extra_mcmc$like.info <- like_info
 
   message("\nFinished loading Extra MCMC output\n")
 

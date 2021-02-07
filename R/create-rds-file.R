@@ -65,6 +65,14 @@ create_rds_file <- function(model_dir = NULL, ...){
   # If this point is reached, no RData file exists so it has to be built from scratch
   model <- load_ss_files(model_fullpath, ...)
 
+  # Try loading extra mcmc output. If none are found or there is a problem, model$extra.mcmc will be NA
+  model$extra.mcmc.path <- file.path(model_fullpath, extra_mcmc_path)
+  if(dir.exists(model$extra.mcmc.path)){
+    model$extra.mcmc <- fetch_extra_mcmc(model$path)
+  }else{
+    model$extra.mcmc <- NA
+  }
+
   # Load forecasts. If none are found or there is a problem, model$forecasts will be NA
   if(dir.exists(file.path(model_fullpath, forecasts_path))){
     catch_levels_fullpath <- file.path(model_fullpath, catch_levels_path)
@@ -88,14 +96,6 @@ create_rds_file <- function(model_dir = NULL, ...){
                                          retrospective_yrs)
   }else{
     model$retros <- NA
-  }
-
-  # Try loading extra mcmc output. If none are found or there is a problem, model$extra.mcmc will be NA
-  model$extra.mcmc.path <- file.path(model_fullpath, extra_mcmc_path)
-  if(dir.exists(model$extra.mcmc.path)){
-    model$extra.mcmc <- fetch_extra_mcmc(model$path)
-  }else{
-    model$extra.mcmc <- NA
   }
 
   saveRDS(model, file = rds_file)
