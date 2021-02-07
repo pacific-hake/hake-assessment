@@ -308,6 +308,7 @@ make.assessment.changes.table(assessment.changes,
 atage_table(
   base.model,
   table_type = 1,
+  end_yr = end.yr,
   csv_dir = output.csv.dir,
   xcaption = paste0("Estimated numbers-at-age at the beginning ",
                     "of the year from the base model (MCMC medians; million)."),
@@ -326,6 +327,7 @@ atage_table(
 atage_table(
   base.model,
   table_type = 5,
+  end_yr = end.yr,
   csv_dir = output.csv.dir,
   xcaption = paste0("Estimated biomass-at-age at the beginning ",
                     "of the year from the base model (MCMC medians; thousand t)."),
@@ -343,6 +345,7 @@ atage_table(
 atage_table(
   base.model,
   table_type = 2,
+  end_yr = end.yr - 1,
   csv_dir = output.csv.dir,
   xcaption = paste0("Estimated exploitation-rate-at-age ",
                     "(catch-at-age divided by biomass-at-age at the beginning of the year) ",
@@ -362,6 +365,7 @@ atage_table(
 atage_table(
   base.model,
   table_type = 3,
+  end_yr = end.yr - 1,
   csv_dir = output.csv.dir,
   xcaption = paste0("Estimated catch-at-age in numbers ",
                     "for each year from the base model (MCMC medians; thousands)."),
@@ -379,6 +383,7 @@ atage_table(
 atage_table(
   base.model,
   table_type = 4,
+  end_yr = end.yr - 1,
   csv_dir = output.csv.dir,
   xcaption = paste0("Estimated catch-at-age in biomass ",
                     "for each year from the base model (MCMC medians; t)."),
@@ -394,7 +399,7 @@ atage_table(
 \centering
 <<main-cohort-effects-table, results='asis', echo=FALSE>>=
 cohort_table(base.model,
-             end_yr = last.data.yr + 1,
+             end_yr = end.yr,
              cohorts = c(1999, 2010, 2014, 2016),
              csv_dir = output.csv.dir,
              xcaption = paste0("For the strong cohorts, calculations of
@@ -412,8 +417,8 @@ cohort_table(base.model,
                                     Estimated quantities are
                                     medians of the MCMC posteriors."),
              xlabel = "tab:main-cohort-effects",
-             font_size = 8,
-             space_size = 9)
+             font_size = 7,
+             space_size = 8)
 @
 \end{landscape}
 \pagestyle{fancy}
