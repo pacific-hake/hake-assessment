@@ -16,6 +16,7 @@ plot_mcmc_param_stats <- function(model,
       oma = c(0, 0, 0.5, 0.5))
 
   parm_nm <- model$post_names
+  parm_nm <- parm_nm[parm_nm != ""]
   mc <- model$mcmc %>%
     select(tidyselect::all_of(parm_nm))
 

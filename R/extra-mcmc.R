@@ -228,7 +228,7 @@ fetch_extra_mcmc <- function(model_path,
   }
 
   # DEBUG - Make this way faster, uncomment the following line
-  # from_to <- tibble(from = 1000, to = 1010)
+  from_to <- tibble(from = 1000, to = 1010)
 
   # Load all report files into a list, 1 element for each report file. Elements that are NA had no file found
   reps <- map(1:nrow(from_to), ~{
@@ -584,21 +584,37 @@ fetch_extra_mcmc <- function(model_path,
   extra_mcmc$comp_fishery <- comp %>%
     filter(Fleet == 1) %>%
     select(-Fleet) %>%
-    mutate_all(as.numeric)
-  extra_mcmc$comp_fishery_median <- extra_mcmc$comp_fishery %>%
-    select(-Iter) %>%
+    mutate_all(as.numeric) %>%
     group_by(Yr, Age) %>%
-    summarize_all(median) %>%
+    summarize(Exp_lower = quantile(Exp, probs = 0.025),
+              Exp_med = quantile(Exp, probs = 0.5),
+              Exp_upper = quantile(Exp, probs = 0.975),
+              Obs_lower = quantile(Obs, probs = 0.025),
+              Obs_med = quantile(Obs, probs = 0.5),
+              Obs_upper = quantile(Obs, probs = 0.975),
+              Pearson_lower = quantile(Pearson, probs = 0.025),
+              Pearson_med = quantile(Pearson, probs = 0.5),
+              Pearson_upper = quantile(Pearson, probs = 0.975)) %>%
     ungroup()
+  extra_mcmc$comp_fishery_median <- extra_mcmc$comp_fishery %>%
+    select(Yr, Age, Obs = Obs_med, Exp = Exp_med, Pearson = Pearson_med)
   extra_mcmc$comp_survey <- comp %>%
     filter(Fleet == 2) %>%
     select(-Fleet) %>%
-    mutate_all(as.numeric)
-  extra_mcmc$comp_survey_median <- extra_mcmc$comp_survey %>%
-    select(-Iter) %>%
+    mutate_all(as.numeric) %>%
     group_by(Yr, Age) %>%
-    summarize_all(median) %>%
+    summarize(Exp_lower = quantile(Exp, probs = 0.025),
+              Exp_med = quantile(Exp, probs = 0.5),
+              Exp_upper = quantile(Exp, probs = 0.975),
+              Obs_lower = quantile(Obs, probs = 0.025),
+              Obs_med = quantile(Obs, probs = 0.5),
+              Obs_upper = quantile(Obs, probs = 0.975),
+              Pearson_lower = quantile(Pearson, probs = 0.025),
+              Pearson_med = quantile(Pearson, probs = 0.5),
+              Pearson_upper = quantile(Pearson, probs = 0.975)) %>%
     ungroup()
+  extra_mcmc$comp_survey_median <- extra_mcmc$comp_survey %>%
+    select(Yr, Age, Obs = Obs_med, Exp = Exp_med, Pearson = Pearson_med)
 
   # Add new table of info on posterior distributions of likelihoods
   # extra_mcmc$like.info <- like_info
