@@ -12,8 +12,8 @@ make.long.parameter.estimates.table(base.model,
                                     digits = 4,
                                     xcaption = "Medians of estimated parameters for the base model.",
                                     xlabel = "tab:app-parameter-estimates",
-                                    font.size = 9,
-                                    space.size = 10)
+                                    font.size = 11,
+                                    space.size = 12)
 @
 
 \clearpage
