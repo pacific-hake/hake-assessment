@@ -761,7 +761,7 @@ further. Broadening
 the prior distribution by increasing the prior standard deviation for the natural mortality
 parameter is examined in sensitivity runs (see Section~\ref{sec:assessment-sensitivity-analyses}).
 Other parameters showed updating from diffuse priors to stationary posterior
-distributions, including $\theta_{\text{surv}}$ (as outlined in
+distributions, including $\theta_{\text{fish}}$ and  $\theta_{\text{surv}}$ (as outlined in
 Section~\ref{sec:data-age-comp-likelihood}).
 
 The \Sexpr{assess.yr} base model specified the same level of variation (standard
@@ -787,7 +787,7 @@ Fishery selectivity on age-2 fish was at its highest
 in 2016, followed by 2018.
 Fishery selectivity for the most recent year was the lowest for age-2 since 2013, and
 then quickly peaked at age-4 before leveling off at older ages
-Figure~\ref{fig:main-tv-selex-uncertainty}). Even though the
+(Figure~\ref{fig:main-tv-selex-uncertainty}). Even though the
 survey selectivity is time invariant, the
 posterior shows a broad band of uncertainty between ages 2 and 5
 (Figure~\ref{fig:main-tv-selex-uncertainty-lines}). The decline in
@@ -826,7 +826,7 @@ from the 2010 year class surpassing the age at which gains in weight from growth
 are greater than the loss in weight from mortality (growth-mortality transition).
 The 2014 year class is estimated to be large, though not as large as the 1999
 and 2010 year classes, increasing the biomass in 2017. The estimated biomass has
-declined since 2017 as the 2014 year class moves through through the growth-mortality
+declined since 2017 as the 2014 year class moves through the growth-mortality
 transition (and the 2010 year class continues to do so) during a time of record catches.
 
 The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning
@@ -860,18 +860,21 @@ intervals.
 
 The new data available for this assessment do not significantly change the
 estimated patterns of recruitment estimated in recent assessments.
-However, estimated recruitments for some recent years have slighlty changed with
-the addition of new data. For example, this assessment's median estimate of the 2014 recruitment changed by
-\Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"], 1)}~billion
-fish (a \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"]) /
-(prev.assess.recruitment.med)["2014"]) * 100), 0)}\% change) compared to last
-year's assessment. Similarly, estimates for 2016 and 2018 have changed by
-\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"]) /
+However, estimated recruitments for some recent years have slightly changed with
+the addition of new data. For example, this assessment's median estimate of the 2014 recruitment is
+% putting in - signs when it's a decrease, and saying 'lower'. So check
+%  carefully in 2022 (could put in an automatic switch for the text)
+\Sexpr{f(-(recruitment.med.to.compare - prev.assess.recruitment.med)["2014"], 1)}~billion
+fish lower than in last year's assessment
+(a \Sexpr{f(-((((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"]) /
+(prev.assess.recruitment.med)["2014"]) * 100), 0)}\% reduction).
+Similarly, estimates for 2016 and 2018 have changed by
+$+$\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"]) /
 (prev.assess.recruitment.med)["2016"]) * 100), 0)}\% and
 \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2018"]) /
 (prev.assess.recruitment.med)["2018"]) * 100), 0)}\%, respectively, but the general
-notion that year class strength is above average for 2016 and well below average for
-2018 remains.
+notion remains that the 2016 cohort is above average and the 2018 cohort is
+well below average.
 
 \fishname\ appear to have low average recruitment with occasional large year-classes
 (Figures~\ref{fig:main-recruitment} and \ref{fig:main-recruitment-devs},
