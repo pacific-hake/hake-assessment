@@ -637,8 +637,7 @@ via graphical summaries and interactive web applications ({\tt ShinySTAN};
 \href{https://mc-stan.org/users/interfaces/shinystan}{https://mc-stan.org/users/interfaces/shinystan}).
 Key diagnostic figures are given in Appendix~\ref{chap:mcmc-diagnostics} and now
 discussed.
-The objective function, as
-well as all estimated parameters and derived quantities, showed good mixing
+All estimated parameters showed good mixing
 during sampling, no evidence for lack of convergence, and low autocorrelation
 (results for some key parameters are shown in
 Figures~\ref{fig:main-mcmc-diag-m-r0}--\ref{fig:main-mcmc-diag-dm}).
