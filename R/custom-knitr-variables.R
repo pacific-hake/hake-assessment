@@ -124,7 +124,7 @@ survey.3.prop.age <- as.numeric(gsub("^a", "", names(survey.last.year.age)[3]))
 survey.3.prop <- f(survey.last.year.age[3] * 100, 1)
 survey.4.prop.age <- as.numeric(gsub("^a", "", names(survey.last.year.age)[4]))
 survey.4.prop <- f(survey.last.year.age[4] * 100, 1)
-survey.a2.prop <- f(survey.last.year["a2"] * 100, 1)
+survey.a2.prop <- f(survey.last.year["a2"], 1)
 last.survey.year <- survey.history[nrow(survey.history),]$year
 last.survey.year.biomass <- f(survey.history[nrow(survey.history),]$biomass, 2) ## millions of tonnes
 penult.survey.year <- survey.history[nrow(survey.history) - 1,]$year
@@ -501,6 +501,9 @@ DM.weight.fishery <- round(theta.fishery/(1 + theta.fishery), 3)
 DM.weight.survey <- round(theta.survey/(1 + theta.survey), 3)
 # MCMC medians for the fishery and survey, and quantiles (and low and high)
 col.effn <- grep("DM_theta.*_1", colnames(base.model$mcmc), perl = TRUE)
+# Probably shouldn't really round these values before then using them in the
+#  weight calculations. Should use f() for values to be in document not round.
+#  No time to look into now (Andy).
 log.theta.fishery.median <- round(median(base.model$mcmc[, col.effn]),3)
 log.theta.fishery.025    <- round(quantile(base.model$mcmc[, col.effn],
                                            probs = 0.025),
@@ -508,12 +511,12 @@ log.theta.fishery.025    <- round(quantile(base.model$mcmc[, col.effn],
 log.theta.fishery.975    <- round(quantile(base.model$mcmc[, col.effn],
                                            probs = 0.975),
                                   3)
-DM.weight.fishery.median <- round(median(exp(base.model$mcmc[, col.effn]) /
+DM.weight.fishery.median <- f(median(exp(base.model$mcmc[, col.effn]) /
                                            ( 1 + exp(base.model$mcmc[, col.effn]))), 3)
-DM.weight.fishery.025    <- round(exp(log.theta.fishery.025) /
+DM.weight.fishery.025    <- f(exp(log.theta.fishery.025) /
                                     (1 + exp(log.theta.fishery.025)),
                                   3)
-DM.weight.fishery.975    <- round(exp(log.theta.fishery.975) /
+DM.weight.fishery.975    <- f(exp(log.theta.fishery.975) /
                                     ( 1 + exp(log.theta.fishery.975)),
                                   3)
 
@@ -525,15 +528,15 @@ log.theta.survey.025    <- round(quantile(base.model$mcmc[, col.effn],
 log.theta.survey.975    <- round(quantile(base.model$mcmc[, col.effn],
                                            probs = 0.975),
                                   3)
-DM.weight.survey.median <- round(median(exp(base.model$mcmc[, col.effn]) /
+DM.weight.survey.median <- f(median(exp(base.model$mcmc[, col.effn]) /
                                           (1 + exp(base.model$mcmc[, col.effn]))), 3)
-DM.weight.survey.025    <- round(exp(log.theta.survey.025) /
+DM.weight.survey.025    <- f(exp(log.theta.survey.025) /
                                   ( 1 + exp(log.theta.survey.025)),
                                   3)
-DM.weight.survey.975    <- round(exp(log.theta.survey.975) /
+DM.weight.survey.975    <- f(exp(log.theta.survey.975) /
                                   ( 1 + exp(log.theta.survey.975)),
                                   3)
-DM.weight.survey.median <- round(median(exp(base.model$mcmc[, col.effn]) /
+DM.weight.survey.median <- f(median(exp(base.model$mcmc[, col.effn]) /
                                           (1 + exp(base.model$mcmc[, col.effn]))), 3)
 DM.weight.survey.low <- f(min(exp(base.model$mcmc[, col.effn]) /
                                 (1 + exp(base.model$mcmc[, col.effn+1]))), 2)
