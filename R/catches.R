@@ -72,7 +72,7 @@ make_catch_table <- function(ct,
                   latex.bold("Foreign"),
                   latex.bold("JV"),
                   latex.bold("Shoreside"),
-                  latex.bold("Freezer-trawl"),
+                  latex.bold("Freezer-Trawler"),
                   latex.bold("Total"))
   }else if(country == 2){
     ct <- ct %>%
