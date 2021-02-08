@@ -150,23 +150,12 @@ make.parameters.estimated.summary.table <- function(model,
               paste0("(", m[lo], ", ", m[hi], ")"),
               fetch.prior.info(m, digits))
 
-  q.vals <- c(paste0("Catchability (",
-                     latex.italics("q"),
-                     ")"),
-              1,
-              "--",
-              "Analytic solution")
-
   ## Survey additional value for SE is at line 74 of comment-stripped dataframe
   se <- fetch.and.split(ctl, 74)
   se.vals <- c("Additional variance for survey log(SE)",
-               if(prior.type[se[p.type]] == "Fixed")
-                 1
-               else
-                 "--",
+               1,
                paste0("(", se[lo], ", ", se[hi], ")"),
                "Uniform")
-               ##fetch.prior.info(se, digits))
 
   tmp <- data.frame(do.call("rbind",
     strsplit(grep("AgeSel_.*_Survey.*[0-9]\\)$", ctl, value = TRUE),"\\s+")))
@@ -194,6 +183,8 @@ make.parameters.estimated.summary.table <- function(model,
 
   ## Selectivity deviations for fishery. Uses last line to get values, assumes
   ##  all are the same
+  sel_blk <- tmp %>% filter(.[, start.yr.sel] > 0)
+  sel_dev_bounds <- paste0("(", sel_blk[1, 1], ", ", sel_blk[1, 2], ")")
   f.age.sel.dev.vals <-
     c(paste0("Selectivity deviations (",
              min(tmp[tmp[,start.yr.sel] != 0,start.yr.sel]),
@@ -205,9 +196,8 @@ make.parameters.estimated.summary.table <- function(model,
              max(f.ages.estimated),
              ")"),
       length(f.ages.estimated) * n.yrs.sel.vals,
-      "--",
+      sel_dev_bounds,
       paste0("Normal (0, ",
-             ##est.sel[sel.dev.sd],
              model$parameters["AgeSel_P3_Fishery(1)_dev_se", "Value"],
              ")"))
 
@@ -222,14 +212,12 @@ make.parameters.estimated.summary.table <- function(model,
                       dm[4], ", ",
                       dm[5],
                       ")"))
-               ##fetch.prior.info(dm, digits))
 
   tab <- rbind(r0.vals,
                h.vals,
                sig.r.vals,
                rec.dev.vals,
                m.vals,
-               q.vals,
                se.vals,
                age.sel.vals,
                f.age.sel.vals,
@@ -258,8 +246,8 @@ make.parameters.estimated.summary.table <- function(model,
   addtorow$pos[[2]] <- 1
   addtorow$pos[[3]] <- 6
   addtorow$pos[[4]] <- 6
-  addtorow$pos[[5]] <- 9
-  addtorow$pos[[6]] <- 11
+  addtorow$pos[[5]] <- 8
+  addtorow$pos[[6]] <- 10
   header_code <- paste0(latex.hline,
                         paste(colnames(tab), collapse = latex.amp()),
                         latex.nline,
@@ -272,7 +260,7 @@ make.parameters.estimated.summary.table <- function(model,
       paste0(latex.bold(latex.under("Stock Dynamics")),
              latex.nline),
       paste0(latex.nline,
-             latex.bold(latex.under("Catchability and selectivity")),
+             latex.bold(latex.under("Selectivity")),
              latex.nline),
       paste0(latex.bold(latex.italics("Acoustic Survey")),
              latex.nline),
