@@ -57,7 +57,6 @@
 
 \end{codefont}
 
-
 \clearpage
 
 \rfoot{Appendix~\ref{chap:weight-at-age-file} -- Weight-at-age file}
@@ -69,3 +68,5 @@
 \lstinputlisting{\Sexpr{gsub("^.*?hake-assessment/","../",file.path(base.model$path, weight_at_age_file_name))}}
 
 \end{codefont}
+
+\clearpage
