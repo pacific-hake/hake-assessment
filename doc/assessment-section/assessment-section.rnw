@@ -562,7 +562,7 @@ other, manually-tuned, data weighting methods occur) had no effect on results.
 
 The second set of bridging steps was conducted to update the fishery-dependent data.
 This primarily included minor adjustments in catch, fishery age-composition, and
-weight-at-age values as databases continually are updated.
+weight-at-age values as databases are continually updated.
 Samples that were recently aged but not available for the \Sexpr{last.assess.yr}
 assessment were included.
 These changes to pre-\Sexpr{last.assess.yr} data were small enough that they had
@@ -606,12 +606,13 @@ in the selectivity parameters from \Sexpr{last.data.yr-1} to
 
 Lastly, the JTC along with support from the SRG (see Section~\ref{sec:assessment-response-review}) updated
 the Bayesian statistical framework used in the \Sexpr{last.assess.yr+1} assessment to utilize a more
-efficient MCMC sampler (No-U-Turn Sampler, NUTS; \citealt{HoffmanGelman2014}) as implemented using the
+efficient MCMC sampler (NUTS; \citealt{HoffmanGelman2014}) as implemented using the
 {\tt adnuts} R package
 \citep{Monnahan2018, Monnahan2019}. NUTS is considered by many to be a straightforward improvement
-in efficiency with high dimensional models relative to classic Hamiltonian
-approaches (via adaptive sampling steps), as well as improved (more effective
-and consistent) parameter space coverage over classic random walk approaches
+in efficiency with high dimensional models over classic random walk approaches
+as it implements Hamiltonian
+approaches (via adaptive sampling steps) as well as improved (more effective
+and consistent) parameter space coverage
 (\citealt{HoffmanGelman2014, NishioArakawa2019}). A comparison with the previously used
 random walk Metropolis Hastings MCMC sampling algorithm is shown in
 Appendix~\ref{chap:rwmh}.
@@ -620,8 +621,8 @@ Appendix~\ref{chap:rwmh}.
 \subsubsub{Model Fit}
 
 The {\tt adnuts} R package was used to apply the NUTS algorithm to produce \Sexpr{f(num.mcmc.samples)}
-MCMC samples to descirbe posterior distributions for model parameters and derived
-quantities.  This is near a four-fold increase in samples from
+MCMC samples to describe posterior distributions for model parameters and derived
+quantities.  This is nearly a four-fold increase in samples from
 \Sexpr{last.assess.yr} assessment \citep{JTC2019}.
 
 
@@ -641,7 +642,7 @@ critical values more frequently than expected via random chance
 (Figure~\ref{fig:main-mcmc-diag-hists}).
 The Gelman-Rubin multi-chain diagnostic test,
 which compares within-chain variance to among-chain variance, further indicated that
-convergence was adequately achieved (examined via {\tt ShinySTAN} web application).
+convergence was adequately achieved (examined via {\tt ShinySTAN}).
 Correlations among key parameters were
 generally low, with the exception of $M$ and $\log R_0$ (Figure~\ref{fig:main-mcmc-pairs}).
 Estimates of recruitment in 2010 and 2014 were correlated with
@@ -655,10 +656,9 @@ correlation
 (\Sexpr{round(cor(base.model$mcmc$Main_RecrDev_2012,base.model$mcmc$Main_RecrDev_2014),2)})
 between the 2012 and 2014 recruitment deviations. This continues to be likely
 caused by the relative proportion of these two cohorts being better informed by
-recent age-composition data than the absolute magnitude of these recruitments.
+recent age-composition data rather than the absolute magnitude of these recruitments.
 
-The prior for $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$ results
-in the estimate (median and 95\% credible interval) for $\log \theta_{\text{fish}}$ of
+The estimate (median and 95\% credible interval) for $\log \theta_{\text{fish}}$ is
 \Sexpr{log.theta.fishery.median}
 (\Sexpr{log.theta.fishery.025},
 \Sexpr{log.theta.fishery.975}),
@@ -668,7 +668,7 @@ of
 \Sexpr{DM.weight.fishery.median}
 (\Sexpr{DM.weight.fishery.025},
 \Sexpr{DM.weight.fishery.975}).
-The prior results in the survey age-composition parameter being well-sampled
+The survey age-composition parameter is also well-sampled
 with
 \protect{$\log \theta_{\text{surv}}$} estimated as
 \Sexpr{log.theta.survey.median}
@@ -698,7 +698,7 @@ The underestimation of the 2009 biomass estimate is much larger than
 the underestimation of any other year.
 The uncertainty of this point (both modeled and actual) is high
 because of the presence of large numbers of Humboldt Squid during the
-survey. Humboldt Squid have similar TS to hake
+survey. Humboldt Squid have similar target strength to hake
 which could introduce bias in the biomass estimate for that year, and
 which also likely influenced hake population dynamics through predation in that year.
 
