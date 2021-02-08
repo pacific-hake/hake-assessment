@@ -1612,7 +1612,8 @@ individuals to predict the size of the 2016 year class.  The base model now has
 \Sexpr{number.to.word(assess.yr - 2016 - 1)} years of data to estimate the size of
 the 2016 cohort, and the uncertainty around this
 estimate has been considerably reduced compared to three years ago
-(Figure~\ref{fig:main-biomass-recruitment-retrospective}).
+(Figure~\ref{fig:main-biomass-recruitment-retrospective}). Medians of various
+quantities of interest are given in Table~\ref{tab:main-parameter-estimates-retro}.
 
 Overall, there is little retrospective change to the relative spawning biomass
 trajectory up to the mid-2010s, and most retrospective change occurs in the
