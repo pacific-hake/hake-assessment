@@ -439,8 +439,8 @@ make.median.posterior.table(
                      of ages 0 and above. Age-2+ biomass includes females and males ages 2 and
                      above. Exploitation fraction is total catch divided by total age-2+ biomass.
                      Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%}). Dashes in cells
-                     for ", end.yr, " indicate quantities that are calculated using ", end.yr, " catch
-                    which has not yet occurred."),
+                     for ", end.yr, " indicate quantities that require ", end.yr, " catch
+                     and so cannot be calculated."),
   xlabel = "tab:main-median-posterior",
   font.size = 9,
   space.size = 10)
@@ -456,8 +456,8 @@ make.ci.posterior.table(
   digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
   xcaption = paste0("Time-series of 95\\% posterior credibility intervals for the quantities
                      shown in Table \\ref{tab:main-median-posterior}. Dashes in cells
-                     for ", end.yr, " indicate quantities that are calculated using ", end.yr, " catch
-                    which has not yet occurred."),
+                     for ", end.yr, " indicate quantities that require ", end.yr, " catch
+                     and so cannot be calculated."),
   xlabel = "tab:main-ci-posterior",
   font.size = 8,
   space.size = 9)

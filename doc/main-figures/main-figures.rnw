@@ -473,7 +473,7 @@ plot_pearson_bubbles(base.model, type = 2, alpha = 0.7)
 \caption{Pearson residuals for base model fits to the age-composition data for
   the medians of the MCMC posteriors. Closed bubbles are positive residuals
   (observed > expected) and open bubbles are negative residuals (observed <
-  expected). Red lines highlight large cohorts.}
+  expected). Red lines track cohorts from years of large recruitment events.}
 \label{fig:main-age-comp-pearson}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1007,7 +1007,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 \caption{MCMC estimates of stock status (relative spawning biomass) for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity.
-  See Figure~\ref{fig:main-biomass-base-alternative-4} for legend.}
+  See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
 \label{fig:main-status-base-alternative-4}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1028,7 +1028,7 @@ box()
 \caption{MCMC estimates of recruitment for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity.
-  See Figure~\ref{fig:main-biomass-base-alternative-4} for legend.}
+  See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
 \label{fig:main-recruit-base-alternative-4}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1048,7 +1048,7 @@ box()
 \caption{MCMC estimates of recruitment deviations for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity.
-  See Figure~\ref{fig:main-biomass-base-alternative-4} for legend.}
+  See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
 \label{fig:main-recruit-devs-base-alternative-4}
 \end{figure}
 
@@ -1067,7 +1067,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 \caption{MCMC estimates of the fit to the survey index of abundance
   for the base model and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity.
-  See Figure~\ref{fig:main-biomass-base-alternative-4} for legend.}
+  See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
 \label{fig:main-index-base-alternative-4}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
