@@ -23,7 +23,8 @@ Jerry Leonard, Kristin Marshall, Rick Methot, Patrick McDonald, Cole Monnahan,
 Elizabeth Phillips, Erin Steiner, Brad Stenberg, Ian Taylor, Jim Thorson,
 Vanessa Tuttle, Steve Wischniowski, and contributions by many others that are
 too numerous to list here.
-We thank the Stock Synthesis and the {\tt r4ss} R package development teams for continually
+We thank the Stock Synthesis, the {\tt r4ss} R package, and the {\tt adnuts}
+R package development teams for continually
 improving stock assessment tools used in this assessment.
 We also thank the attendees at the official JTC meeting
 who provided valuable insight into the \Sexpr{end.yr-1} commercial fisheries in
