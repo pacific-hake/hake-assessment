@@ -400,7 +400,7 @@ cohort_table(base.model,
                                     because the empirical weights-at-age
                                     change between years.
                                     Estimated quantities are
-                                    medians of the MCMC posteriors."),
+                                    posterior medians."),
              xlabel = "tab:main-cohort-effects",
              font_size = 7,
              space_size = 8)
@@ -422,7 +422,7 @@ make.median.posterior.table(
                      of ages 0 and above. Age-2+ biomass includes females and males ages 2 and
                      above. Exploitation fraction is total catch divided by total age-2+ biomass.
                      Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%}). A dash (--)
-                     indicate quantities that require ", end.yr, " catch which has not taken place yet."),
+                     indicates a quantity requiring ", end.yr, " catch which has not taken place yet."),
   xlabel = "tab:main-median-posterior",
   font.size = 9,
   space.size = 10)
@@ -438,7 +438,7 @@ make.ci.posterior.table(
   digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
   xcaption = paste0("Time-series of 95\\% posterior credibility intervals for the quantities
                      shown in Table \\ref{tab:main-median-posterior}. A dash (--)
-                     indicate quantities that require ", end.yr, " catch which has not taken place yet."),
+                     indicates a quantity requiring ", end.yr, " catch which has not taken place yet."),
   xlabel = "tab:main-ci-posterior",
   font.size = 8,
   space.size = 9)
@@ -454,7 +454,7 @@ param_est_table(list(base.model, last.yr.base.model),
                 mle_table = FALSE,
                 xcaption =
                   paste0("Select parameters, derived quantities, ",
-                         "and reference point posterior median (MCMC) ",
+                         "and reference point posterior median ",
                          "estimates for the (",
                          end.yr, ") base model ",
                          "compared to the previous assessment's (",
@@ -468,7 +468,7 @@ param_est_table(list(base.model, last.yr.base.model),
 make.reference.points.table.old(base.model,
                             xcaption = paste0("Summary of median and 95\\% credibility
                                                intervals of equilibrium reference points for
-                                               the \\fishname\\ base assessment model. Equilibrium
+                                               the base assessment model. Equilibrium
                                                reference points were computed using ",
                                               end.yr - 5,
                                                "--",
@@ -485,7 +485,7 @@ make.reference.points.table.old(base.model,
 
 <<main-decisions-biomass-table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption = paste0("Forecast quantiles of \\fishname\\
+                    xcaption = paste0("Forecast quantiles of
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
                      catch levels (rows ",
@@ -527,7 +527,7 @@ make.decision.table(base.model,
 <<main-decisions-spr-table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
                     xcaption = paste0("Decision table of forecast quantiles ",
-                                      "of \\fishname\\ relative fishing intensity ",
+                                      "of relative fishing intensity ",
                                       "(1-SPR)/(1-SPR\\subscr{40\\%}), expressed as ",
                                       "a percentage, for the ",
                                       min(forecast_yrs),
