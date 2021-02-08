@@ -580,8 +580,8 @@ Since the 2011 assessment, a combination of the informative
 prior for natural mortality
 used in previous Canadian assessments and results from analyses using
 \citeauthor{Hoenig1983}'s (\citeyear{Hoenig1983}) method support the use of a
-log-normal distribution with a median of 0.2 and a logarithmic standard deviation of
-0.1. Sensitivity to this prior has been evaluated
+\Sexpr{m.prior[1]} distribution with a median of \Sexpr{m.prior[2]} and a logarithmic standard deviation of
+\Sexpr{m.prior[3]}. Sensitivity to this prior has been evaluated
 extensively in many previous hake assessments
 (see \citealt{JTC2013} for a discussion of the historical treatment of $M$ and its prior)
 and is repeated here (see Section
