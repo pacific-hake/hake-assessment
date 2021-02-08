@@ -1652,7 +1652,7 @@ series, is larger than the uncertainty (95\% credibility interval) reported from
 any single model in recent years.
 Prior to 2004, survey catchability was fixed at 1.0 and this assumption was
 heavily investigated between 2004 and 2007, leading to variability in model results
-because of the use of several different, but fixed, survey
+because of the use of several different, but fixed, values of survey
 catchability. Since 2008, catchability has been freely estimated by the model.
 The fixing of survey catchability had the effect
 of driving the estimate of initial biomass upward, which in turn scaled the

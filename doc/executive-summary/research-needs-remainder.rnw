@@ -40,7 +40,7 @@
   variability in the timing of spawning, skip spawning, batch fecundity, and size
   and age at maturity. Continue to explore the possibility of using
   additional data types such as length data within the stock assessment.
-  Additionally, a more spatially comprehensive maturity analyses that
+  Additionally, a more spatially comprehensive maturity analysis that
   incorporates information from Canadian samples would be advantageous.
 
 \item Maintain the flexibility to undertake additional acoustic surveys for
@@ -64,6 +64,6 @@
 \item Develop mechanisms that improve computing capabilities and storage
   capacity through the use of cloud computing, local high performance computing
   clusters, or other similar productivity enhancements to improve assessment
-  modeling and work flow that goes into building the assessment document.
+  modeling and workflow that goes into building the assessment document.
 
 \end{enumerate}
