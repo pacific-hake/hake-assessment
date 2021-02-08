@@ -295,7 +295,7 @@ atage_table(
   end_yr = end.yr,
   csv_dir = output.csv.dir,
   xcaption = paste0("Estimated numbers-at-age at the beginning ",
-                    "of the year from the base model (MCMC medians; million)."),
+                    "of the year from the base model (posterior medians; million)."),
   xlabel = "tab:main-est-numbers-at-age",
   font_size = 9,
   space_size = 10)
@@ -314,7 +314,7 @@ atage_table(
   end_yr = end.yr,
   csv_dir = output.csv.dir,
   xcaption = paste0("Estimated biomass-at-age at the beginning ",
-                    "of the year from the base model (MCMC medians; thousand t)."),
+                    "of the year from the base model (posterior medians; thousand t)."),
   xlabel = "tab:main-est-biomass-at-age",
   font_size = 9,
   space_size = 10)
@@ -330,10 +330,11 @@ atage_table(
   base.model,
   table_type = 2,
   end_yr = end.yr - 1,
+  digits = 2,
   csv_dir = output.csv.dir,
   xcaption = paste0("Estimated exploitation-rate-at-age ",
                     "(catch-at-age divided by biomass-at-age at the beginning of the year) ",
-                    "for each year from the base model (MCMC medians; percentage of age class removed by fishing). ",
+                    "for each year from the base model (posterior medians; percentage of age class removed by fishing). ",
                     "Annual exploitation rates for ages 6$+$ are equivalent because those fish are fully selected."),
   xlabel = "tab:main-est-exp-rate-at-age",
   font_size = 9,
@@ -352,7 +353,7 @@ atage_table(
   end_yr = end.yr - 1,
   csv_dir = output.csv.dir,
   xcaption = paste0("Estimated catch-at-age in numbers ",
-                    "for each year from the base model (MCMC medians; thousands)."),
+                    "for each year from the base model (posterior medians; thousands)."),
   xlabel = "tab:main-est-catch-at-age",
   font_size = 6,
   space_size = 7)
@@ -370,7 +371,7 @@ atage_table(
   end_yr = end.yr - 1,
   csv_dir = output.csv.dir,
   xcaption = paste0("Estimated catch-at-age in biomass ",
-                    "for each year from the base model (MCMC medians; t)."),
+                    "for each year from the base model (posterior medians; t)."),
   xlabel = "tab:main-est-catch-at-age-biomass",
   font_size = 6,
   space_size = 7)
@@ -386,10 +387,10 @@ cohort_table(base.model,
              end_yr = end.yr,
              cohorts = c(1999, 2010, 2014, 2016),
              csv_dir = output.csv.dir,
-             xcaption = paste0("For the strong cohorts, calculations of
-                                    what happens to the biomass at each age.
-                                    Start Biomass is the biomass at
-                                    the beginning of the year, Catch Weight
+             xcaption = paste0("Calculations showing
+                                    changes in biomass at each age due to natural mortality
+                                    and fishing for recent strong cohorts. Start Biomass is
+                                    the biomass at the beginning of the year, Catch Weight
                                     is the catch for the cohort for the year,
                                     M is the biomass attributed to natural
                                     mortality, and Surviving Biomass is what
@@ -421,8 +422,7 @@ make.median.posterior.table(
                      of ages 0 and above. Age-2+ biomass includes females and males ages 2 and
                      above. Exploitation fraction is total catch divided by total age-2+ biomass.
                      Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%}). A dash (--)
-                     indicate quantities that require ", end.yr, " catch and therfore are not
-                    yet applicable."),
+                     indicate quantities that require ", end.yr, " catch which has not taken place yet."),
   xlabel = "tab:main-median-posterior",
   font.size = 9,
   space.size = 10)
@@ -438,8 +438,7 @@ make.ci.posterior.table(
   digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
   xcaption = paste0("Time-series of 95\\% posterior credibility intervals for the quantities
                      shown in Table \\ref{tab:main-median-posterior}. A dash (--)
-                     indicate quantities that require ", end.yr, " catch and therfore are not
-                    yet applicable."),
+                     indicate quantities that require ", end.yr, " catch which has not taken place yet."),
   xlabel = "tab:main-ci-posterior",
   font.size = 8,
   space.size = 9)
@@ -580,7 +579,7 @@ param_est_table(sens.models.1.for.table,
                 model.names = sens.model.names.1.for.table,
                 end.yr = end.yr,
                 digits = 3,
-                xcaption = paste0("Medians of MCMC posteriors for select parameters, derived quantities,
+                xcaption = paste0("Posterior medians for select parameters, derived quantities,
                                    reference points, and negative log likelihoods for the base
                                    model and some sensitivity runs (described in
                                    Section~\\ref{sec:assessment-sensitivity-analyses}).
@@ -601,7 +600,7 @@ param_est_table(sens.models.2.for.table,
                 model.names = sens.model.names.2.for.table,
                 end.yr = end.yr,
                 digits = 3,
-                xcaption = paste0("Medians of MCMC posteriors for select parameters,
+                xcaption = paste0("Posterior medians for select parameters,
                                    derived quantities, reference points, and negative log likelihoods
                                    for the base model and further sensitivity runs (described in
                                    Section~\\ref{sec:assessment-sensitivity-analyses})."),
@@ -621,7 +620,7 @@ param_est_table(sens.models.3.for.table,
                 model.names = sens.model.names.3.for.table,
                 end.yr = end.yr,
                 digits = 3,
-                xcaption = paste0("Medians of MCMC posteriors for select parameters,
+                xcaption = paste0("Posterior medians for select parameters,
                                    derived quantities, reference points, and negative log likelihoods
                                    for the base model and further sensitivity runs (described in
                                    Section~\\ref{sec:assessment-sensitivity-analyses}).
@@ -641,7 +640,7 @@ param_est_table(retro.list,
                 end.yr = end.yr,
                 digits = 3,
                 getrecs = c(2010, 2014, 2016),
-                xcaption = "Medians of the MCMC posteriors from the base model for
+                xcaption = "Posterior medians from the base model for
                             select parameters, derived quantities,
                             reference point estimates, and negative
                             log likelihoods for retrospective analyses.
