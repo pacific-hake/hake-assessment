@@ -289,6 +289,7 @@ make.us.age.data.table <- function(dat,
 #' @param end_yr End year for the table
 #' @param table_type 1 = Numbers-at-age, 2 = Exploitation-rate-at-age, 3 = Catch-at-age-number
 #' 4 = Catch-at-age-biomass, 5 = Biomass-at-age
+#' @param digits Number of decimal points
 #' @param csv_dir Directory for CSV output
 #' @param xcaption Table caption
 #' @param xlabel The label used to reference the table in latex
@@ -301,6 +302,7 @@ atage_table <- function(model,
                         start_yr = NA,
                         end_yr = NA,
                         table_type = 1,
+                        digits = 0,
                         csv_dir = "out-csv",
                         xcaption = "default",
                         xlabel   = "default",
@@ -343,7 +345,7 @@ atage_table <- function(model,
     mutate(Year = as.character(Year))
   write_csv(dat, fn)
   dat <- dat %>%
-    mutate_at(.vars = vars(-Year), ~{f(.x, 0)})
+    mutate_at(.vars = vars(-Year), ~{f(.x, digits)})
   names(dat)[length(names(dat))] <- paste0(names(dat)[length(names(dat))], "+")
 
   # Add latex headers
