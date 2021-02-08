@@ -708,8 +708,9 @@ This is likely due to slight differences in what the fishery composition data
 and survey composition data, when considered independently, would otherwise
 suggest as population trends.
 Additionally, the population has undergone recent high catch levels and produced
-a couple of above-average cohorts that are now mature resulting in a population
-trend that has been relatively stable from 2013 to \Sexpr{survey.end.yr}.
+a couple of above-average cohorts that are now mature.
+%resulting in a population
+%trend that has been relatively stable from 2013 to \Sexpr{survey.end.yr}.
 
 Fits to the age-composition data continue to show close correspondence to the
 dominant and small cohorts observed in the data
