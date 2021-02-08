@@ -1646,17 +1646,17 @@ other than a positive bias in spawning stock biomass four years previously when 
 year class was initially estimated too high. There is no indication from retrospective
 evaluations that the base model is displaying a systematic bias.
 
-Cohort strength is usually not well estimated until the cohort reaches age 3 or more
-because at age three at least one year of survey age-composition data are available
+Cohort strength is usually not well estimated until the cohort reaches age~3 or more
+because at age~3 at least one year of survey age-composition data are available
 (Figure~\ref{fig:main-retrospective-recruitment}).
 Deviations for the 2010 and 2014 cohorts, which are the largest cohorts since 2010,
 exhibit the largest positive deviations.
 Estimated recruitment deviations for the 2014 cohort
 are above those for 2016 and 2017 cohorts, but the estimated size of the 2014 cohort didn't
-fully stabilize until Age-4.
+fully stabilize until age~4.
 The variability among cohort estimates relative to their estimated size
 in the base model (Figure~\ref{fig:main-relative-retrospective-recruitment})
-further indicates that the estimates can start to improve as early as age-2, but
+further indicates that the estimates can start to improve as early as age~2, but
 some estimates of cohort strength may not stabilize until
 the cohort approaches an age upward of 7 years old.
 The lack of systematic bias in the assessment results could be because
