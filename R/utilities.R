@@ -333,6 +333,13 @@ top.coh <- function(model = NULL,
     select(-Yr) %>%
     sort() %>%
     rev()
+  # The following stops xtfrm.data.frame(x) : cannot xtfrm data frames
+  # from being print
+  # todo: change after more through checking
+  # x <- cbind(Yr = tmp$Yr, x) %>%
+  #   dplyr::filter(Yr == yr) %>% pivot_longer(cols = -Yr) %>%
+  #   arrange(desc(value)) %>% pivot_wider() %>%
+  #   select(-Yr)
   txt <- paste0(ifelse(cap, "The ", "the "),
                 yr - as.numeric(names(x)[1]),
                 " cohort was the largest (",
@@ -341,7 +348,7 @@ top.coh <- function(model = NULL,
   if(num.cohorts > 1){
     for(i in 2:num.cohorts){
       txt <- paste0(txt,
-                    ", followed by the ",
+                    ifelse(i == 2, ", followed by the ", ", then the "),
                     yr - as.numeric(names(x)[i]),
                     " cohort (",
                     f(x[i] * 100, decimals),
