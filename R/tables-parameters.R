@@ -183,8 +183,10 @@ make.parameters.estimated.summary.table <- function(model,
 
   ## Selectivity deviations for fishery. Uses last line to get values, assumes
   ##  all are the same
-  sel_blk <- tmp %>% filter(.[, start.yr.sel] > 0)
-  sel_dev_bounds <- paste0("(", sel_blk[1, 1], ", ", sel_blk[1, 2], ")")
+  sel_dev_inds <- grep("AgeSel.*Fishery.*DEV", model$parameters$Label)
+  sel_devs <- model$parameters[sel_dev_inds,]
+  sel_dev_bounds <- c(first(sel_devs$Min), first(sel_devs$Max))
+  sel_dev_bounds <- paste0("(", sel_dev_bounds[1], ", ", sel_dev_bounds[2], ")")
   f.age.sel.dev.vals <-
     c(paste0("Selectivity deviations (",
              min(tmp[tmp[,start.yr.sel] != 0,start.yr.sel]),
