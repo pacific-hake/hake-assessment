@@ -523,7 +523,7 @@ make.decision.table(base.model,
                      letters[catch.spr100.ind],
                      "), the median values estimated ",
                      "via the default harvest policy
-                     (\\Ffortyten) for the base model (row ",
+                     (\\Ffortyten, row ",
                      letters[catch.default.policy.ind],
                      "), and the fishing intensity that results in a 50\\% probability that the median
                      projected catch will remain the same in ",

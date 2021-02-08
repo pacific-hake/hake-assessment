@@ -985,8 +985,9 @@ The median exploitation fraction decreased from
 \Sexpr{exploitation.med.2012} in 2012 and
 % \Sexpr{exploitation.med.2015} in   % 2012 and 2015 are the same in 2020 assessment
 2015,
-and then increased to \Sexpr{exploitation.med.2017} in 2017 before ending
-at \Sexpr{exploitation.med.penult.yr} in \Sexpr{last.data.yr}.
+and then increased to \Sexpr{exploitation.med.2017} in 2017 before decreasing
+slightly and then increasing to
+\Sexpr{exploitation.med.penult.yr} in \Sexpr{last.data.yr}.
 Although there is a considerable amount of imprecision
 around these recent estimates due to uncertainty in recruitment and spawning
 biomass, the 95\% posterior credibility interval of relative fishing intensity
@@ -1082,10 +1083,11 @@ weights (via the Dirichlet-Multinomial parameters
 $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$).
 The uncertainty portrayed
 by the posterior distribution is a better representation of uncertainty than
-the asymptotic approximations about the maximum likelihood estimates
+asymptotic approximations about maximum likelihood estimates
 (MLEs) because it allows for asymmetry (Figure~\ref{fig:main-prior-posterior};
 also see \citealt{JTC2012} for further discussion and
-examples).
+examples); this is the first \fishname\ assessment to almost exclusively use
+posterior distributions instead of MLEs.
 %Note that we use the term MLE even though the priors are involved in the likelihood
 %calculation and so the more accurate term would be the mode of the posterior density.
 
@@ -1141,10 +1143,10 @@ We report estimates of the base reference points (e.g., $\Fforty$,
 $\Bforty$, $\Bmsy$, and MSY) with posterior credibility intervals in
 Table~\ref{tab:main-reference-points}. Only those based on $\Fforty$ explicitly
 relate to target reference points per the treaty Agreement (see
-Section~\ref{sec:intro-management} and Appendix~\ref{chap:glossary}). The
-median of the female spawning biomass at $\Fforty$ (namely $\BSPRforty$) and
+Section~\ref{sec:intro-management} and Glossary in Appendix~\ref{chap:glossary}). The
+median of the female spawning biomass at $\Fforty$ (namely the median of $\BSPRforty$) and
 the median yield at $\Fforty$ are slightly lower than the estimates in the
-\Sexpr{last.assess.yr} assessment (see also Table~\ref{tab:main-parameter-estimates}).
+\Sexpr{last.assess.yr} assessment (Table~\ref{tab:main-parameter-estimates}).
 % Manual 2021 done
 
 % Look at dfo.probs.curr and decide what to write. Check that
