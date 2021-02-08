@@ -740,15 +740,15 @@ patterns to the fishery and survey age data do not show patterns that would
 indicate systematic bias in model predictions
 (Figure~\ref{fig:main-age-comp-pearson}).
 
-The median posterior density for numbers, biomass,
+The median estimates for numbers, biomass,
 exploitation rate, and catch (in numbers and in biomass) for each age class in
 each year are given in
 Tables~\ref{tab:main-est-numbers-at-age}-\ref{tab:main-est-catch-at-age-biomass}.
 For the major cohorts, the resulting estimated age-specific catch, natural mortality, and
 surviving biomasses are given in Table~\ref{tab:main-cohort-effects}.
-For example, the catch weight of the 2014 cohort at age-5 was slightly larger
-than that of the 2010 cohort at age-5, but the resulting surviving biomass of
-the 2014 cohort was only just under half of the surviving biomass of the 2010
+For example, the catch weight of the 2014 cohort at age-5 was slightly less
+than that of the 2010 cohort at age-5 and the resulting surviving biomass of
+the 2014 cohort was just under half of the surviving biomass of the 2010
 cohort.
 
 Posterior distributions for both steepness and natural mortality are strongly
