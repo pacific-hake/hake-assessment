@@ -449,8 +449,9 @@ fetch_extra_mcmc <- function(model_path,
     summarize_all(median)
 
   # Exploitation-rate-at-age --------------------------------------------------
+  # Divide catch-at-age-biomass by 1000 to make the same units, multiply by 100 to make percentage
   yrs <- extra_mcmc$catage_biomass$Yr
-  extra_mcmc$expatage <- map2(extra_mcmc$catage_biomass, extra_mcmc$batage, ~{.x / .y}) %>% map_df(~{.x}) %>%
+  extra_mcmc$expatage <- map2(extra_mcmc$catage_biomass, extra_mcmc$batage, ~{.x / .y / 1e3 * 100}) %>% map_df(~{.x}) %>%
     mutate(Yr = yrs)
   extra_mcmc$expatage_median <- extra_mcmc$expatage %>%
     group_by(Yr) %>%
