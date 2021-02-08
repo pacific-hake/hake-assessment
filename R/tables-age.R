@@ -35,7 +35,9 @@ make.input.age.data.table <- function(model,
   ## Get ages from column names
   ages.ind <- grep("^a[[:digit:]]+$", nm)
   ages.num <- gsub("^a([[:digit:]]+)$", "\\1", nm[ages.ind])
+  ages.num[length(ages.num)] <- paste0(ages.num[length(ages.num)], "+")
   ## Make all bold
+
   ages <- latex.bold(ages.num)
   ## Put ampersands in between each item and add newline to end
   ages.tex <-latex.paste(ages)
@@ -153,7 +155,9 @@ make.can.age.data.table <- function(dat,
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
   age.headers <- colnames(dat)[grep("^[[:digit:]].*", colnames(dat))]
-  ages.tex <- latex.paste(latex.bold(1:length(age.headers)))
+  ages <- 1:length(age.headers)
+  ages[length(ages)] <- paste0(ages[length(ages)], "+")
+  ages.tex <- latex.paste(latex.bold(ages))
 
   if(fleet == 2 | fleet == 3){
     mlc <- latex.mlc(c("Number",
@@ -229,7 +233,9 @@ make.us.age.data.table <- function(dat,
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
   age.headers <- colnames(dat)[grep("^a.*", colnames(dat))]
-  ages.tex <- latex.paste(latex.bold(1:length(age.headers)))
+  ages <- 1:length(age.headers)
+  ages[length(ages)] <- paste0(ages[length(ages)], "+")
+  ages.tex <- latex.paste(latex.bold(ages))
 
   if(fleet == 1 | fleet == 2){
     mlc <- latex.mlc(c("Number",
