@@ -615,7 +615,12 @@ approaches (via adaptive sampling steps) as well as improved (more effective
 and consistent) parameter space coverage
 (\citealt{HoffmanGelman2014, NishioArakawa2019}). A comparison with the previously used
 random walk Metropolis Hastings MCMC sampling algorithm is shown in
-Appendix~\ref{chap:rwmh}.
+Appendix~\ref{chap:rwmh}. The computational time for the base model run using
+NUTS was $\sim$3.5~hours, about 10 times quicker than using the Metropolis
+Hastings algorithm. Each sensitivity analysis using NUTS also took $\sim$3.5~hours; for
+previous assessments the maximum likelihood estimate (MLE) calculations for
+sensitivity analyses took a few minutes. The retrospective analyses using NUTS took
+up to 74~hours each.
 
 \subsubsection{Assessment model results}\label{sec:assessment-model-results}
 \subsubsub{Model Fit}
@@ -1085,8 +1090,7 @@ weights (via the Dirichlet-Multinomial parameters
 $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$).
 The uncertainty portrayed
 by the posterior distribution is a better representation of uncertainty than
-asymptotic approximations about maximum likelihood estimates
-(MLEs) because it allows for asymmetry (Figure~\ref{fig:main-prior-posterior};
+asymptotic approximations about MLEs because it allows for asymmetry (Figure~\ref{fig:main-prior-posterior};
 also see \citealt{JTC2012} for further discussion and
 examples); this is the first \fishname\ assessment to almost exclusively use
 posterior distributions instead of MLEs.
