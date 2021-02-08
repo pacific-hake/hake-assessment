@@ -1604,8 +1604,8 @@ Appendix~\ref{chap:rwmh}.
 
 Retrospective analyses were performed by iteratively removing the terminal
 years' data and estimating the posterior distribution of parameters under the assumptions of the base
-model. Models with 5 years of data removed had information
-available regarding the above average 2014 year class, but did not yet have information on the
+model. Models with 3 or 4 years of data removed had some information
+available regarding the above-average 2014 year class, but did not yet have information on the
 2016 year class (Figure~\ref{fig:main-biomass-recruitment-retrospective}). Models
 with 2 and 3 years of data removed were just beginning to receive data on age-3 and age-2, respectively,
 individuals to predict the size of the 2016 year class.  The base model now has
