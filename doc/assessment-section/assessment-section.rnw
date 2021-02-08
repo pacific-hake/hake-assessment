@@ -622,7 +622,8 @@ Appendix~\ref{chap:rwmh}. The computational time for the base model run using
 NUTS was $\sim$3.5~hours, about 10 times quicker than using the Metropolis
 Hastings algorithm. Each sensitivity analysis using NUTS also took $\sim$3.5~hours; for
 previous assessments the maximum likelihood estimate (MLE) calculations for
-sensitivity analyses took a few minutes. The longest retrospective analysis using NUTS took 74~hours.
+sensitivity analyses took a few minutes. The longest of the 20 retrospective
+analyses using NUTS took 74~hours.
 
 
 \subsubsection{Assessment model results}\label{sec:assessment-model-results}
