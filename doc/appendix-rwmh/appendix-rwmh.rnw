@@ -547,9 +547,7 @@ par <- oldpar
 plot_mcmc_param_stats(sens.models.7)
 @
 \end{center}
-\caption{Summary histograms of rwMH MCMC diagnostics for all parameters
-together with the derived time series of spawning biomass and relative spawning biomass.
-The level of autocorrelation in the chain (distribution across lag times, i.e., distance between samples in the chain, shown in the top left panel) influences the effective sample size (top right panel) used to estimate posterior distributions. The Geweke statistic (lower left panel) tests for equality between means located in the first part of the chain against means in the last part of the chain. The Heidelberger and Welch statistic (lower right panel) tests if the sampled values come from a stationary distribution by comparing different sections of the chain.}
+\caption{\Sexpr{plot_mcmc_param_stats.makecaption(modelname = "rwMH")}}
 \label{fig:mcmc-diag-hists-rwmh}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
