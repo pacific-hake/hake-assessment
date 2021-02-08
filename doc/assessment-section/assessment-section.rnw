@@ -1365,9 +1365,9 @@ Sensitivity analyses were conducted to investigate influence of data inputs and
 structural uncertainty of the base model by investigating how changes to the
 model affected the estimated values and derived quantities. All sensitivity analyses
 compared MCMC posteriors that were created using the {\tt adnuts} R package
-\citep{Monnahan2018, Monnahan2019} to implement a NO-U-Turn Sampler (NUTS)
+\citep{Monnahan2018, Monnahan2019} to implement the NUTS
 algorithm with a similar number of posterior samples as the base model. For a comparison of the
-parameter estimates for the sensitivities with the base model parameter estimates,
+parameter estimates for the sensitivity analyses with those from the base model
 see Tables~\ref{tab:main-parameter-estimates-sens-1}--\ref{tab:main-parameter-estimates-sens-3}.
 Many additional sensitivity runs were conducted when developing and testing the
 \Sexpr{assess.yr} base model. Here we focus on the main sensitivities which include
@@ -1375,7 +1375,7 @@ the following:
 
 \begin{enumerate}
 
-\item Consideration of a higher standard deviation on the prior distribution
+\item Consideration of higher standard deviations on the prior distribution
   for natural mortality;
 
 \item Consideration of alternative values for steepness;
@@ -1398,7 +1398,7 @@ the following:
 \item Removal of cohort-based ageing error from the model; and
 
 \item Use of the random walk Metropolis Hastings (rwMH) sampling algorithm for
-  defining posterior distributions.
+  calculating posterior distributions.
 
 \end{enumerate}
 
@@ -1462,7 +1462,7 @@ sensitivity analysis had an impact on the overall model results
 % Manual 2020 done
 The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative
 high (1.6) and low (1.0) states. The low value, $\sigma_r = 1.0$,
-resulted in a model where the standard deviation of the MLE estimates of
+resulted in a model where the standard deviation of the MLEs of
 recruitment deviations in the period with the most informative data was
 \Sexpr{f(sigma_R_info %>% filter(model == "Sigma R 1.0", period == "Main") %>% select(SD_of_devs), 2)},
 suggesting that the data were inconsistent with the lower value of $\sigma_r$.
@@ -1484,8 +1484,9 @@ estimated deviations and the uncertainty around the estimates using the formula
 where $\mbox{Var}(\hat{r})$ is the variance among deviations and
 $\mbox{SE}(\hat{r}_y)$ is the standard error of each estimate. It
 produced a suggested
-$\sigma_r$ of \Sexpr{sigma.r.alt.allyr}, which was similar to the
-base-model value of 1.4. Future work will assess similar metrics
+$\sigma_r$ of \Sexpr{sigma.r.alt.allyr}, which was not as similar to the
+base-model value of 1.4 as the 1.55 estimated in the 2020 assessment.
+Future work will assess similar metrics
 strictly in a Bayesian framework.
 
 % Manual 2021 done - CG
@@ -1496,18 +1497,19 @@ can be particularly useful for the most recent years when little information on
 cohort strength is otherwise available. Compared to the base model, estimates
 of spawning biomass throughout most of the time series are similar, but do
 diverge near the end of the time series
-(Table~\ref{tab:main-parameter-estimates-sens-1};
+(Table~\ref{tab:main-parameter-estimates-sens-1},
 Figures~\ref{fig:main-biomass-base-alternative-2} and
-\ref{fig:main-status-base-alternative-2}; \Sexpr{end.yr} estimates are
+\ref{fig:main-status-base-alternative-2}). The \Sexpr{end.yr} estimates of
+relative spawning biomass are
 \Sexpr{f(100*bratio_curr[2], 1)}\%
-of unfished biomass for the base model (95\% credible interval
+for the base model (95\% credible interval
 of \Sexpr{f(100*bratio_curr[1], 1)}--\Sexpr{f(100*bratio_curr[3], 1)}\%) and
 \Sexpr{f(100*bratio_age1[2], 1)}\%
 for the age-1 index model (95\% credible interval
 of \Sexpr{f(100*bratio_age1[1], 1)}--\Sexpr{f(100*bratio_age1[3], 1)}\%)).
 This change is likely due to the age-1 index suggesting higher recruitment
 in 2014 (age-1 in 2015) and 2018 (age-1 in 2019) then what the base model
-otherwise estimates (Figures~\ref{fig:main-age-one-index} and\ref{fig:main-index-base-alternative-2}).
+otherwise estimates (Figures~\ref{fig:main-age-one-index} and~\ref{fig:main-index-base-alternative-2}).
 These changes are not large because the base model generally tracks the trends in the age-1 index well.
 Including the age-1 index led to a worse fit to both the 2017 and 2019 acoustic
 survey estimates compared to the base model (Figure~\ref{fig:main-index-base-alternative-2}).
@@ -1519,7 +1521,7 @@ Appendix~\ref{chap:age1-survey}.
 The base model includes a Dirichlet-Multinomial likelihood component,
 which uses two estimated parameters to automatically weight each of the fishery and survey age
 compositions. The base model was compared to the
-models that used the McAllister-Ianelli and Francis methods.
+models that used the alternative McAllister-Ianelli and Francis methods.
 Both sensitivity methods require manual iterative adjustments to the input sample sizes
 using a derived multiplier.
 The McAllister-Ianelli method, which was used in assessments prior to 2018,
@@ -1529,9 +1531,9 @@ sample size.
 The Francis method attempts to make the fit of the expected mean age
 lie within the uncertainty intervals at a rate which is consistent
 with variability expected based on the adjusted sample sizes.
-The Dirichlet-Multinomial method
-estimated higher weights on the age compositions but
-generally very similar results to the McAllister-Ianelli method.
+The McAllister-Ianelli method
+estimated lower weights on the age compositions but
+generally gave very similar results to the Dirichlet-Multinomial method.
 The McAllister-Ianelli method led to increased uncertainty in estimates of
 early recruitments compared to other weighting methods
 (Figure~\ref{fig:main-recruit-base-alternative-2}).
