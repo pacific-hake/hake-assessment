@@ -115,7 +115,7 @@ The largest changes between the
 year of
 %acoustic survey and
 fishery data and the incorporation of a more efficient MCMC sampling algorithm
-(NUTS) for constructing posterior densities. The latter lead to
+(NUTS) for constructing posterior densities. The latter led to
 the explicit use of Bayesian inference throughout the stock assessment, because full
 posterior distributions were calculated for all sensitivity and retrospective
 analyses for the first time in a \fishname\ assessment.
@@ -257,8 +257,9 @@ to continue to work on the issue.
   \fishname\ early life-history stages and recruitment, which could inform an explicit recruitment index,
   an environmental index linked to recruitment, indicators of recruitment variation
   ($\sigma_R$), and indicators of current or forecast levels of recruitment.
-  Further, the MSE could be an additional option for
-  estimating $\sigma_R$ in MCMC runs while further testing semi-parametric selectivity.}
+  Further, the MSE could provide an additional framework for exploring the estimation of
+  $\sigma_R$ while further testing semi-parametric selectivity
+  given its functionality with respect to estimating random effects.}
 
 \emph{The JTC is also following work being conducted by the International Council for
   the Exploration of the Sea (ICES) Methods Working Group which, among other things,
@@ -355,7 +356,7 @@ age-composition data.}
 Next steps include computing historical age compositions from recent data extractions to confirm that they match those currently used to fit the assessment and updating tables to include all years for both countries. After which, simulations will be conducted to determine how to best assign sample sizes to disparate sampling methods when the data are combined into a single aggregated fleet for modeling purposes.}
 
 \emph{Additionally, the JTC investigated how many tows are typically included in a trip for the shore-based fleet using records from observer data. Knowing how many tows are completed per trip will help to inform non-independence or the amount of overdispersion present in the data and, thus, the level of overdispersion that should be investigated in the simulation.
-Preliminary investigations suggest that on average there are about two hauls conducted per shore-based trip in the U.S., and combined those hauls on average contain about half as much in catch weight as a single at-sea haul.}
+Preliminary investigations suggest that on average there are about two hauls conducted per shore-based trip in the U.S.; and, combined, those hauls, on average, contain about half as much in catch weight as a single at-sea haul.}
 
 5. Two possible approaches to downweighting the fishery age-composition data
 were discussed during the SRG meeting: (1) add time-blocking to allow changes in
@@ -379,7 +380,7 @@ sampled trips, and the number of sampled fish.}
 As the JTC works towards documenting which fish are included in historical age-composition samples (not just sampled; response 4), investigating disaggregated forms of the compositional data will become a doable task because currently the raw data are unavailable.
 Thus, below we note our progress on investigating historical methods used to collect data beyond those noted before.}
 
-\emph{For the U.S. sectors, the average number of fish sampled per haul in the at-sea sector in recent years is three fish, whereas the average number of fish sampled per trip in the shore-based sector is twenty. We assign the input sample size of an at-sea haul or a shore-based trip equally but account for differences in sample weights by weighting composition by landings.
+\emph{For the U.S. sectors, the average number of fish sampled per haul in the at-sea sector in recent years is three, whereas the average number of fish sampled per trip in the shore-based sector is twenty. We assign the input sample size of an at-sea haul or a shore-based trip equally but account for differences in sample weights by weighting composition by landings.
 The JTC explored several approaches for adjusting the input sample sizes for age composition data without changing the method of weighting by landings using data since 2008. These included adjusting the U.S. (or U.S. and Canadian) at-sea sectors to be more consistent with the shore-based sector ratio of fish per sample, and applying generic regression equations built through meta-analysis of West coast groundfish stocks (I. Stewart and S. Miller, unpublished) that define candidate input sample sizes based on the number of samples (hauls or trips) and the number of fish sampled. In both cases, results from exploratory model runs showed similar estimates of equilibrium and current spawning stock biomass compared to what was estimated for this assessment (results not shown). In addition, systematically removing all age-composition data from the beginning of the assessment model time series through 1990 led to similar stock trajectories from 1990 forward (results not shown). Therefore, the JTC will prioritize investigations into input sample sizes for years that include fish still in the population before revisiting historical samples that can be removed from the model without affecting current estimated biomass.}
 
 6.The SRG encourages work to develop a picture of the \fishname\ reproductive
@@ -433,6 +434,8 @@ We have begun a genetics study to characterize the spatial-temporal population s
 of \fishname\ coast wide. Prior genetic analyses in hake have focused on a smaller geographic
 range, over a limited seasonal time scale, and used a limited set of genetic markers
 \citep{IwamotoFordEtAl2004, IwamotoElzEtAl2015}.}
+% todo: 2022
+% OH wanted to know what years the genetic samples were taken
 
 \emph{For this study, samples were grouped in boxes based on spatial-temporal collection
 information (i.e., year, season, and location) and selected samples distributed across
@@ -555,7 +558,7 @@ mostly related to options not explicitly used in this assessment.
 %bias adjustment of the recruitment deviations are turned off.
 Adaptations within the stock synthesis modeling framework itself had no effect
 on parameter estimates compared to the \Sexpr{last.assess.yr}
-base model and thus no effect on resulting time series either (Figure~\ref{fig:main-bridge-5-panel-1}).
+base model and thus no effect on resulting time series (Figure~\ref{fig:main-bridge-5-panel-1}).
 Similarly, changing the estimation of the Dirichlet Multinomial parameters
 to the final estimation phase (which more accurately reflects the timing of when
 other, manually-tuned, data weighting methods occur) had no effect on results.
@@ -580,7 +583,7 @@ estimates without those data (Figure~\ref{fig:main-bridge-5-panel-2}).  However,
 the addition of these data did slightly decrease the uncertainty with recent recruitment
 estimates, though overall uncertainty was still high. Recruitment estimates largely
 did not change with the addition of \Sexpr{last.data.yr} data, the exceptions being
-a reduction in the 2015 and 2018 year classes with the addition of \Sexpr{last.data.yr}
+reductions in the 2015 and 2018 year classes with the addition of \Sexpr{last.data.yr}
 fishery age compositions (Figure~\ref{fig:main-bridge-5-panel-2}).
 This bridging step also shifted the ending year of the deviations
 in the selectivity parameters from \Sexpr{last.data.yr-1} to
@@ -777,7 +780,7 @@ likelihood) to fit to data that suggests high variability among years for each
 age. This level
 of variation led to results that were consistent with the \Sexpr{survey.end.yr} acoustic survey
 biomass estimate and gave reasonable fits to the fishery age composition data,
-while maintaining that there is considerable uncertainty associated with
+given that there is considerable uncertainty associated with
 spatial changes in fish availability (due to movement) and recent
 variability in oceanographic conditions. Estimated selectivity deviations for
 age-3 and age-4 fish are larger from
@@ -808,7 +811,7 @@ reflect time-varying mortality processes.
 
 \subsubsub{Stock biomass}
 
-The base stock assessment model indicates that since the 1960s, \fishname\
+The base stock assessment model indicates that, since the 1960s, \fishname\
 female spawning biomass has ranged from well below to above unfished
 equilibrium (Figures~\ref{fig:main-female-spawning-biomass}
 and~\ref{fig:main-relative-spawning-biomass} and
@@ -830,7 +833,7 @@ above-average 2008 year class. The subsequent decline from 2014 to 2016 is prima
 from the 2010 year class surpassing the age at which gains in weight from growth
 are greater than the loss in weight from mortality (growth-mortality transition).
 The 2014 year class is estimated to be large, though not as large as the 1999
-and 2010 year classes, increasing the biomass in 2017. The estimated biomass has
+and 2010 year classes, resulting in an increased biomass in 2017. The estimated biomass has
 declined since 2017 as the 2014 year class moves through the growth-mortality
 transition (and the 2010 year class continues to do so) during a time of record catches.
 
@@ -983,7 +986,7 @@ fraction does not necessarily correspond to fishing intensity because fishing
 intensity more directly accounts for the age-structure of both the population and
 the catch. Median relative fishing intensity is estimated to have declined from
 \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.2015}\%
-in 2015, and then it leveled off around 75\% from 2016 to 2019 before dropping to
+in 2015, then it leveled off at around 75\% from 2016 to 2019 before dropping to
 \Sexpr{median.intensity.2020}\% in 2020.
 The median exploitation fraction decreased from
 \Sexpr{exploitation.med.2011} in 2011 to recent lows of
@@ -1223,7 +1226,7 @@ and \Sexpr{forecast_yrs[length(forecast_yrs)]} because the $\Fforty$ default
 harvest-rate catch limit is calculated using baseline selectivity from all
 years, whereas the forecasted catches are removed using selectivity averaged
 over the last five years. Recent changes in selectivity will thus be reflected
-in the determination of overfishing. An alternative catch level where median
+in the projection of overfishing. An alternative catch level where median
 relative fishing intensity is 100\% is provided for comparison (catch
 alternative~\Sexpr{letters[catch.spr100.ind]}: FI=100\%).
 
@@ -1349,7 +1352,7 @@ this catch.
 %PFMC refrence points for hake/whiting are: Bmsy = 0.4B0; MSST = 0.25B0.  Will report these as well.
 With respect to PFMC stock size reference points, a level of \Sexpr{assess.yr} catch consistent with the Treaty
 default harvest control rule (\Sexpr{next.treaty.catch}~t) has a
-\Sexpr{pfmc.prob.next.year.below.b40}\% estimated probability of the biomass
+\Sexpr{pfmc.prob.next.year.below.b40}\% estimated probability of resulting in the biomass
 going below $\Bforty$ at the start of \Sexpr{assess.yr + 1} (and
 \Sexpr{pfmc.prob.next.year.below.b25}\% probability of going below
 $\Btwentyfive$; Table~\ref{tab:main-risk-year-1}).
@@ -1384,10 +1387,10 @@ the following:
 
 \item Consideration of alternative values for steepness;
 
-\item Assume higher/lower variation about the stock-recruitment curve
+\item Assumption of higher/lower variation about the stock-recruitment curve
   ($\sigma_r$);
 
-\item Include the age-1 survey index as an additional source of information;
+\item Inclusion of the age-1 survey index as an additional source of information;
 
 \item Use of the McAllister-Ianelli method for data-weighting;
 
@@ -1419,7 +1422,7 @@ deviations for time-varying selectivity and the higher maximum age for
 selectivity both yielded lower effective sample sizes; and all three maximum-age-selectivity
 analyses led to a few failed Heidelberger and Welch statistics.
 
-In general, none of the sensitivities resulted in any substantial departure from
+None of the sensitivities resulted in any substantial departure from
 the main population dynamics of the base model; all models showed large
 estimated increases in spawning biomass in the early- to mid-2010s that continues to be
 driven by the 2010, 2014, and 2016 cohorts. The overall scale of the
@@ -1635,7 +1638,7 @@ quantities of interest are given in Table~\ref{tab:main-parameter-estimates-retr
 
 Overall, there is little retrospective change to the relative spawning biomass
 trajectory up to the mid-2010s, and most retrospective change occurs in the
-final years of the retrospective model
+final years of the retrospective model with the most years removed
 (Figure~\ref{fig:main-biomass-recruitment-retrospective}).
 In the previous assessment, the retrospective bias was a mix of both positive and negative
 biases in these terminal years. In this assessment, there is very little retrospective bias
@@ -1643,13 +1646,13 @@ other than a positive bias in spawning stock biomass four years previously when 
 year class was initially estimated too high. There is no indication from retrospective
 evaluations that the base model is displaying a systematic bias.
 
-Cohort strength is not well estimated until several (usually 3 or more) years of fishery
-catch-at-age data and survey age-composition data have been collected
+Cohort strength is usually not well estimated until the cohort reaches age 3 or more
+because at age three at least one year of survey age-composition data are available
 (Figure~\ref{fig:main-retrospective-recruitment}).
 Deviations for the 2010 and 2014 cohorts, which are the largest cohorts since 2010,
 exhibit the largest positive deviations.
 Estimated recruitment deviations for the 2014 cohort
-are above the 2016 and 2017 cohorts, but the estimated size of the 2014 cohort didn't
+are above those for 2016 and 2017 cohorts, but the estimated size of the 2014 cohort didn't
 fully stabilize until Age-4.
 The variability among cohort estimates relative to their estimated size
 in the base model (Figure~\ref{fig:main-relative-retrospective-recruitment})
