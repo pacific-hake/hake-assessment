@@ -618,7 +618,7 @@ for which selectivity is allowed to be non-zero,
 there is an incremental selectivity parameter, $p_a$,
 for the fishery (for which $A_{\text{min}}=1$). There is also an equivalent
 $p_a$ for the
-survey (for which $A_{\text{min}}=2$ and selectivity is not time-varying), but to keep the notation simple we do
+survey (for which $A_{\text{min}}=2$), but to keep the notation simple we do
 not distinguish between them here because the following calculations are the same for the
 survey and the fishery.
 The selectivity at age $a$ is computed as
@@ -652,28 +652,16 @@ since the 2018 assessment (see \citealt{JTC2018} for justification).
 It is calculated using
 \eb
 p_{ay} = p_a + \epsilon_{ay},
-\label{pay}
 \ee
 where the $\epsilon_{ay}$ are the parameter deviations estimated in the model.
 These deviations are included in an additional likelihood component
-with negative log-likelihood function for the fishery parameters
+with negative log-likelihood proportional to
 \eb
 -\log(\text{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6}
   ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \frac{\epsilon_{ay}^2}{\Phi^2},
 % -\log(\text{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6} ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \left. \dfrac{\epsilon_{ay}^2}{\phi^2}{\vrule height 24pt width 0pt} \right. ,     % to try and make summations larger; can live with as is.
 \ee
 where $\Phi$ is the standard deviation of the normal penalty function.
-
-For the survey, the parameter deviations ($\epsilon_a$) are only between ages
-and not between years, such that
-\eb
-p_{ay} = p_a + \epsilon_{a},
-\ee
-and the negative log-likelihood function is
-\eb
--\log(\text{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6}
-  \frac{\epsilon_{a}^2}{\Phi^2}.
-\ee
 
 A parameterization for selectivity deviations was explored
 \citep{JTC2018, JTC2019} based on \citet{Xu2019}
