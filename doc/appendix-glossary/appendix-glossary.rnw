@@ -39,9 +39,9 @@ AFSC: Alaska Fisheries Science Center (National Marine Fisheries Service).
 
 $B_0$: The unfished equilibrium female spawning biomass. %, or spawning output if not directly proportional to spawning biomass.
 
-$\Bten$: The level of female spawning biomass corresponding to 10\% of unfished equilibrium female spawning biomass, i.e.~$\Bten = 0.1B_0$. This is the level below which the calculated TAC is set to 0, based on the 40:10 adjustment (see above).
+$\Bten$: The level of female spawning biomass corresponding to 10\% of unfished equilibrium female spawning biomass, i.e., $\Bten = 0.1B_0$. This is the level below which the calculated TAC is set to 0, based on the 40:10 adjustment (see above).
 
-$\Bforty$: The level of female spawning biomass corresponding to 40\% of unfished equilibrium female spawning biomass, i.e.~$\Bforty = 0.4B_0$. This is the level below which the calculated TAC is decreased from the value associated with $\Fforty$, based on the 40:10 adjustment (see above).
+$\Bforty$: The level of female spawning biomass corresponding to 40\% of unfished equilibrium female spawning biomass, i.e., ~$\Bforty = 0.4B_0$. This is the level below which the calculated TAC is decreased from the value associated with $\Fforty$, based on the 40:10 adjustment (see above).
 
 $\Bmsy$: The estimated female spawning biomass which theoretically would produce the maximum sustainable yield (MSY) under equilibrium fishing conditions (constant fishing and average recruitment in every year). Also see $\Bforty$ (above).
 
@@ -59,7 +59,7 @@ Catch-per-unit-effort (CPUE): A raw or (frequently) standardized and model-based
 
 %MSE: Catch range: A term used in the MSE to describe simulations in which the JMC decision-making process is modeled very simplistically as replacing any TAC outside of a particular range with the limit of the range, even when this differs from the Default harvest policy (see below). The catch may fall outside the range if the available biomass is insufficient to support such removals.
 
-Catch target: A general term used to describe the catch value used for management. Depending on the context, this may be a limit rather than a target, and may be equal to a TAC, an ABC, the median result of applying the default harvest policy, or some other number. The JTC welcomes input from the JMC on the best terminology to use for these quantities.
+Catch target: A general term used to describe the catch value used for management. Depending on the context, this may be a limit rather than a target and may be equal to a TAC, an ABC, the median result of applying the default harvest policy, or some other number. The JTC welcomes input from the JMC on the best terminology to use for these quantities.
 
 % Closed-loop simulation is an MSE-related definition but used in the 2017 assessment
 Closed-loop simulation: A subset of an MSE that iteratively simulates a population using an operating model, generates data from that population and passes it to an estimation model, uses the estimation model and a management strategy to provide management advice, which then feeds back into the operating model to simulate an additional fixed set of time before repeating this process. % This is illustrated in Figure A.2.
