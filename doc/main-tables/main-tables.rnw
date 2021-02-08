@@ -420,9 +420,9 @@ make.median.posterior.table(
                      unfished equilibrium ($\\Bzero$). Total biomass includes females and males
                      of ages 0 and above. Age-2+ biomass includes females and males ages 2 and
                      above. Exploitation fraction is total catch divided by total age-2+ biomass.
-                     Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%}). Dashes in cells
-                     for ", end.yr, " indicate quantities that require ", end.yr, " catch
-                     and so cannot be calculated."),
+                     Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%}). A dash (--)
+                     indicate quantities that require ", end.yr, " catch and therfore are not
+                    yet applicable."),
   xlabel = "tab:main-median-posterior",
   font.size = 9,
   space.size = 10)
@@ -437,9 +437,9 @@ make.ci.posterior.table(
   end.yr = end.yr,
   digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
   xcaption = paste0("Time-series of 95\\% posterior credibility intervals for the quantities
-                     shown in Table \\ref{tab:main-median-posterior}. Dashes in cells
-                     for ", end.yr, " indicate quantities that require ", end.yr, " catch
-                     and so cannot be calculated."),
+                     shown in Table \\ref{tab:main-median-posterior}. A dash (--)
+                     indicate quantities that require ", end.yr, " catch and therfore are not
+                    yet applicable."),
   xlabel = "tab:main-ci-posterior",
   font.size = 8,
   space.size = 9)
@@ -584,7 +584,7 @@ param_est_table(sens.models.1.for.table,
                                    reference points, and negative log likelihoods for the base
                                    model and some sensitivity runs (described in
                                    Section~\\ref{sec:assessment-sensitivity-analyses}).
-                                  Dashes indicate that the parameter or derived quantity was not estimated in the model."),
+                                  A dash (--) indicates that the parameter or derived quantity was not estimated in the model."),
                 xlabel = "tab:main-parameter-estimates-sens-1",
                 font.size = 9,
                 space.size = 11,
@@ -625,7 +625,7 @@ param_est_table(sens.models.3.for.table,
                                    derived quantities, reference points, and negative log likelihoods
                                    for the base model and further sensitivity runs (described in
                                    Section~\\ref{sec:assessment-sensitivity-analyses}).
-                                  Dashes indicate that the parameter was not estimated in the model."),
+                                  A dash (--) indicates that the parameter was not estimated in the model."),
                 xlabel = "tab:main-parameter-estimates-sens-3",
                 font.size = 9,
                 space.size = 11,
@@ -647,7 +647,8 @@ param_est_table(retro.list,
                             log likelihoods for retrospective analyses.
                             Some values are implied since they occur after
                             the ending year of the respective retrospective
-                            analysis. Dashes indicate that the parameter or derived quantity was not estimated in the model.",
+                            analysis. A dash (--) indicates that the parameter or
+                            derived quantity was not estimated in the model.",
                 xlabel = "tab:main-parameter-estimates-retro",
                 font.size = 10,
                 space.size = 11)
