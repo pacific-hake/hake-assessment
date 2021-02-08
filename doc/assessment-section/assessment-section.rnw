@@ -1413,8 +1413,9 @@ $M$ showed more autocorrelation in $M$ and some failed Heidelberger and Welch
 statistics; the Francis reweighting had a lower effective sample size for most
 parameters; lower standard deviations for time-varying selectivity led to a few
 failed Heidelberger and Welch statistics; the analyses with alternative standard
-deviations for time-varying selectivity and the highest maximum age for
-selectivity both yielded lower effective sample sizes.
+deviations for time-varying selectivity and the higher maximum age for
+selectivity both yielded lower effective sample sizes; and all three maximum-age-selectivity
+analyses led to a few failed Heidelberger and Welch statistics.
 
 In general, none of the sensitivities resulted in any substantial departure from
 the main population dynamics of the base model; all models showed large
