@@ -543,7 +543,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<mcmc-diag-hists-rwmh, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure summarises good MCMC diagnostics for all parameters">>=
+<<mcmc-diag-hists-rwmh, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure summarizes good MCMC diagnostics for all parameters">>=
 plot_mcmc_param_stats(sens.models.7)
 @
 \end{center}
