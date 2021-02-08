@@ -334,6 +334,8 @@ make.phase.plot(sens.models.2[[1]],
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+\clearpage
+
 <<reference-points-table-age1, results='asis', echo=FALSE>>=
 make.reference.points.table(
   sens.models.2[[1]],
