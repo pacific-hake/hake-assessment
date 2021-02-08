@@ -630,6 +630,8 @@ Stationarity of the posterior distribution for model parameters was
 re-assessed via a suite of standard single-chain and multi-chain diagnostic tests
 via graphical summaries and interactive web applications ({\tt ShinySTAN};
 \href{https://mc-stan.org/users/interfaces/shinystan}{https://mc-stan.org/users/interfaces/shinystan}).
+Key diagnostic figures are given in Appendix~\ref{chap:mcmc-diagnostics} and now
+discussed.
 The objective function, as
 well as all estimated parameters and derived quantities, showed good mixing
 during sampling, no evidence for lack of convergence, and low autocorrelation
@@ -1402,6 +1404,18 @@ the following:
 
 \end{enumerate}
 
+The MCMC diagnostics were examined by creating a document
+containing the equivalent of Appendix~\ref{chap:mcmc-diagnostics} for all
+sensitivity analyses (.pdf file available from the JTC upon request). In general,
+diagnostics were similar to those for the base model. Minor differences include:
+sensitivity analyses related to
+$M$ showed more autocorrelation in $M$ and some failed Heidelberger and Welch
+statistics; the Francis reweighting had a lower effective sample size for most
+parameters; lower standard deviations for time-varying selectivity led to a few
+failed Heidelberger and Welch statistics; the analyses with alternative standard
+deviations for time-varying selectivity and the highest maximum age for
+selectivity both yielded lower effective sample sizes.
+
 In general, none of the sensitivities resulted in any substantial departure from
 the main population dynamics of the base model; all models showed large
 estimated increases in spawning biomass in the early- to mid-2010s that continues to be
@@ -1568,8 +1582,9 @@ maximum selectivity at age-5 model resulted in lower estimates of recent stock s
 to the other model runs, while runs with higher maximum age produced similar
 overall stock dynamics but at the cost of a considerable increase in the number of model
 parameters.  The choice of age-6 as the maximum was retained in the base model as it
-offered more flexibility than the choice of age-5. All three alternative runs had reduced
-performance in terms of MCMC diagnostics when compared with the base model.
+offered more flexibility than the choice of age-5.
+%All three alternative runs had reduced
+%performance in terms of MCMC diagnostics when compared with the base model.
 
 % Ageing Error
 % Manual 2021 done - CG
