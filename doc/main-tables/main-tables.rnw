@@ -540,6 +540,8 @@ make.decision.table(base.model,
                     type = "spr")
 @
 
+\clearpage
+
 <<main-risk-forecast-year-1-table, results='asis', echo=FALSE>>=
 make.risk.table(base.model,
                 forecast_yrs,
