@@ -47,6 +47,7 @@ out-csv*
 papers*
 references*
 temp-keep*
+doc/old-pdfs*
 
 # Other
 appendix-srg-requests-2017.rnw
