@@ -197,14 +197,23 @@ make.mcmc.vs.mle.plot(base.model,
 \begin{center}
 %\includegraphics[width=5.5in, height=3.25in]{../../../doc/main-figures/CompareMLE_MCMC}
 <<main.parameter.estimates, results='asis', echo=FALSE>>=
-make.short.parameter.estimates.table(base.model,
-                                     last.yr.base.model,
-                                     end.yr = end.yr,
-                                     digits = 3,
-                                     xcaption = NULL,
-                                     font.size = 7,
-                                     space.size = 7)
-
+param_est_table(list(base.model, last.yr.base.model),
+                model.names = c(base.model.name, last.yr.base.model.name),
+                end.yr = end.yr,
+                digits = 3,
+                getrecs = c(2010, 2014, 2016),
+                show_like = FALSE,
+                mle_table = FALSE,
+                xcaption =
+                  paste0("Select parameters, derived quantities, ",
+                         "and reference point posterior median ",
+                         "estimates for the (",
+                         end.yr, ") base model ",
+                         "compared to the previous assessment's (",
+                         end.yr - 1, ") base model."),
+                xlabel = "tab:main-parameter-estimates",
+                font.size = 10,
+                space.size = 11)
 @
 \end{center}
 \end{frame}
@@ -223,19 +232,18 @@ make.short.parameter.estimates.table(base.model,
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(
-  c(list(base.model),
-    sens.models.1[1],
-    sens.models.1[2],
-    sens.models.1[5],
-    sens.models.1[6]),
-  subplots = 2,
-  model.names = c("Base model ",
-                  sens.model.names.1[1],
-                  sens.model.names.1[2],
-                  sens.model.names.1[5],
-                  sens.model.names.1[6]),
-  end.yr = end.yr)
+make.comparison.plot(c(list(base.model),
+                       sens.models.1[1],
+                       sens.models.1[2],
+                       sens.models.1[5],
+                       sens.models.1[6]),
+                     subplots = 2,
+                     model.names = c("Base model ",
+                                     sens.model.names.1[1],
+                                     sens.model.names.1[2],
+                                     sens.model.names.1[5],
+                                     sens.model.names.1[6]),
+                     end.yr = end.yr)
 par <- oldpar
 @
 \end{center}
@@ -258,13 +266,12 @@ param_est_table(c(list(base.model),
                                 sens.model.names.1[5],
                                 sens.model.names.1[6]),
                 end.yr = end.yr,
-                age.1 = FALSE,
                 digits = 3,
                 xcaption = NULL,
                 font.size = 6.5,
                 space.size = 7,
                 getrecs = c(2010, 2014, 2016),
-                show.likelihoods = FALSE)
+                show_like = FALSE)
 @
 \end{center}
 \end{frame}
@@ -283,15 +290,14 @@ param_est_table(c(list(base.model),
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(
-  c(list(base.model),
-    sens.models.1[3],
-    sens.models.1[4]),
-  subplots = 2,
-  model.names = c("Base model ",
-                  sens.model.names.1[3],
-                  sens.model.names.1[4]),
-  end.yr = end.yr)
+make.comparison.plot(c(list(base.model),
+                       sens.models.1[3],
+                       sens.models.1[4]),
+                     subplots = 2,
+                     model.names = c("Base model ",
+                                     sens.model.names.1[3],
+                                     sens.model.names.1[4]),
+                     end.yr = end.yr)
 par <- oldpar
 @
 \end{center}
@@ -306,15 +312,14 @@ par <- oldpar
 <<sigmar.biomass.fig.rel>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(
-  c(list(base.model),
-    sens.models.1[3],
-    sens.models.1[4]),
-  subplots = 4,
-  model.names = c("Base model ",
-                  sens.model.names.1[3],
-                  sens.model.names.1[4]),
-  end.yr = end.yr)
+make.comparison.plot(c(list(base.model),
+                       sens.models.1[3],
+                       sens.models.1[4]),
+                     subplots = 4,
+                     model.names = c("Base model ",
+                                     sens.model.names.1[3],
+                                     sens.model.names.1[4]),
+                     end.yr = end.yr)
 par <- oldpar
 @
 \end{center}
@@ -328,15 +333,14 @@ par <- oldpar
 \vspace{5pt}
 <<sigmar.recdevs.figure>>=
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(
-  c(list(base.model),
-    sens.models.1[3],
-    sens.models.1[4]),
-  model.names = c("Base model",
-                  sens.model.names.1[3],
-                  sens.model.names.1[4]),
-  subplots = 10,
-  end.yr = end.yr)
+make.comparison.plot(c(list(base.model),
+                       sens.models.1[3],
+                       sens.models.1[4]),
+                     model.names = c("Base model",
+                                     sens.model.names.1[3],
+                                     sens.model.names.1[4]),
+                     subplots = 10,
+                     end.yr = end.yr)
 par <- oldpar
 @
 \end{center}
@@ -355,13 +359,12 @@ param_est_table(c(list(base.model),
                                 sens.model.names.1[3],
                                 sens.model.names.1[4]),
                 end.yr = end.yr,
-                age.1 = FALSE,
                 digits = 3,
                 xcaption = NULL,
                 font.size = 6.5,
                 space.size = 7,
                 getrecs = c(2010, 2014, 2016),
-                show.likelihoods = FALSE)
+                show_like = FALSE)
 @
 \end{center}
 \end{frame}
@@ -378,15 +381,14 @@ param_est_table(c(list(base.model),
 <<harmonicmean.sensitivity.biomass>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(
-  c(list(base.model),
-    sens.models.2[2],
-    sens.models.2[3]),
-  subplots = 2,
-  model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.2[2],
-                  sens.model.names.2[3]),
-  end.yr = end.yr)
+make.comparison.plot(c(list(base.model),
+                       sens.models.2[2],
+                       sens.models.2[3]),
+                     subplots = 2,
+                     model.names = c(paste0("Base model ", end.yr),
+                                     sens.model.names.2[2],
+                                     sens.model.names.2[3]),
+                     end.yr = end.yr)
 par <- oldpar
 @
 \end{center}
@@ -401,22 +403,19 @@ par <- oldpar
 <<harmonicmean.sensitivity.biomass.rel>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(
-  c(list(base.model),
-    sens.models.2[2],
-    sens.models.2[3]),
-  subplots = 4,
-  model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.2[2],
-                  sens.model.names.2[3]),
-  end.yr = end.yr)
+make.comparison.plot(c(list(base.model),
+                       sens.models.2[2],
+                       sens.models.2[3]),
+                     subplots = 4,
+                     model.names = c(paste0("Base model ", end.yr),
+                                     sens.model.names.2[2],
+                                     sens.model.names.2[3]),
+                     end.yr = end.yr)
 par <- oldpar
 @
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
-
-
 
 % 2019 - commenting out next three since not done
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -577,17 +576,16 @@ Here we test:
 <<phi.sensitivity.biomass>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(
-  c(list(base.model),
-    sens.models.4[1],
-    sens.models.4[2],
-    sens.models.4[3]),
-  subplots = 2,
-  model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.4[1],
-                  sens.model.names.4[2],
-                  sens.model.names.4[3]),
-  end.yr = end.yr)
+make.comparison.plot(c(list(base.model),
+                       sens.models.4[1],
+                       sens.models.4[2],
+                       sens.models.4[3]),
+                     subplots = 2,
+                     model.names = c(paste0("Base model ", end.yr),
+                                     sens.model.names.4[1],
+                                     sens.model.names.4[2],
+                                     sens.model.names.4[3]),
+                     end.yr = end.yr)
 par <- oldpar
 @
 \end{center}
@@ -603,18 +601,17 @@ par <- oldpar
 <<phi.sensitivity.survey>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(
-  c(list(base.model),
-    sens.models.4[1],
-    sens.models.4[2],
-    sens.models.4[3]),
-  subplots = 13,
-  model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.4[1],
-                  sens.model.names.4[2],
-                  sens.model.names.4[3]),
-  end.yr = end.yr,
-  legendloc = "bottomright")
+make.comparison.plot(c(list(base.model),
+                       sens.models.4[1],
+                       sens.models.4[2],
+                       sens.models.4[3]),
+                     subplots = 13,
+                     model.names = c(paste0("Base model ", end.yr),
+                                     sens.model.names.4[1],
+                                     sens.model.names.4[2],
+                                     sens.model.names.4[3]),
+                     end.yr = end.yr,
+                     legendloc = "bottomright")
 par <- oldpar
 @
 \end{center}
@@ -630,21 +627,20 @@ par <- oldpar
 <<phi.sensitivity.density.2014>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(
-  c(list(base.model),
-    sens.models.4[1],
-    sens.models.4[2],
-    sens.models.4[3]),
-  subplots = 16,
-  model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.4[1],
-                  sens.model.names.4[2],
-                  sens.model.names.4[3]),
-  legendloc = "topleft",
-  densitynames = c("Recr_2014"),
-  densityxlab  = "Recruitment in 2014 (billions)",
-  indexPlotEach = TRUE,
-  end.yr = end.yr)
+make.comparison.plot(c(list(base.model),
+                       sens.models.4[1],
+                       sens.models.4[2],
+                       sens.models.4[3]),
+                     subplots = 16,
+                     model.names = c(paste0("Base model ", end.yr),
+                                     sens.model.names.4[1],
+                                     sens.model.names.4[2],
+                                     sens.model.names.4[3]),
+                     legendloc = "topleft",
+                     densitynames = c("Recr_2014"),
+                     densityxlab  = "Recruitment in 2014 (billions)",
+                     indexPlotEach = TRUE,
+                     end.yr = end.yr)
 par <- oldpar
 @
 \end{center}
@@ -674,21 +670,20 @@ par <- oldpar
 <<phi.sensitivity.density.2016>>=
 oldpar <- par()
 par(mar = c(7.1, 3.1, 0, 1))
-make.comparison.plot(
-  c(list(base.model),
-    sens.models.4[1],
-    sens.models.4[2],
-    sens.models.4[3]),
-  subplots = 16,
-  model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.4[1],
-                  sens.model.names.4[2],
-                  sens.model.names.4[3]),
-  legendloc = "topright",
-  densitynames = c("Recr_2016"),
-  densityxlab  = "Recruitment in 2016 (billions)",
-  indexPlotEach = TRUE,
-  end.yr = end.yr)
+make.comparison.plot(c(list(base.model),
+                       sens.models.4[1],
+                       sens.models.4[2],
+                       sens.models.4[3]),
+                     subplots = 16,
+                     model.names = c(paste0("Base model ", end.yr),
+                                     sens.model.names.4[1],
+                                     sens.model.names.4[2],
+                                     sens.model.names.4[3]),
+                     legendloc = "topright",
+                     densitynames = c("Recr_2016"),
+                     densityxlab  = "Recruitment in 2016 (billions)",
+                     indexPlotEach = TRUE,
+                     end.yr = end.yr)
 par <- oldpar
 @
 \end{center}
@@ -715,105 +710,7 @@ param_est_table(c(list(base.model),
                 font.size = 7,
                 space.size = 7,
                 getrecs = c(2010, 2014, 2016),
-                show.likelihoods = FALSE)
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-%\section{$\phi$}
-%\subsection{}
-\begin{frame}
-\frametitle{Semi-parametric selectivity approach of Xu et al. (2019)}
-\begin{center}
-\vspace{5pt}
-% , fig.width=8>>=
-<<semi.sensitivity.biomass>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(
-  c(list(base.model),
-    sens.models.4[4:5]),
-  subplots = 2,
-  model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.4[4:5]),
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Semi-parametric selectivity approach of Xu et al. (2019)}
-\begin{center}
-\vspace{5pt}
-% fig.width=8>>=
-<<semi.sensitivity.density.2014>>=
-oldpar <- par()
-par(mar = c(7.1, 3.1, 0, 1))
-make.comparison.plot(
-  c(list(base.model),
-    sens.models.4[4:5]),
-  subplots = 16,
-  model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.4[4:5]),
-  legendloc = "topright",
-  densitynames = c("Recr_2014"),
-  densityxlab  = "Recruitment in 2014 (billions)",
-  indexPlotEach = TRUE,
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Semi-parametric selectivity approach of Xu et al. (2019)}
-\begin{center}
-\vspace{5pt}
-% fig.width=8>>=
-<<semi.sensitivity.density.2016>>=
-oldpar <- par()
-par(mar = c(7.1, 3.1, 0, 1))
-make.comparison.plot(
-  c(list(base.model),
-    sens.models.4[4:5]),
-  subplots = 16,
-  model.names = c(paste0("Base model ", end.yr),
-                  sens.model.names.4[4:5]),
-  legendloc = "topright",
-  densitynames = c("Recr_2016"),
-  densityxlab  = "Recruitment in 2016 (billions)",
-  indexPlotEach = TRUE,
-  end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Semi-parametric selectivity approach of Xu et al. (2019)}
-\begin{center}
-\vspace{-5pt}
-<<semi.sensitivity.table, results='asis', echo=FALSE>>=
-param_est_table(c(list(base.model),
-                  sens.models.4[4:5]),
-                model.names = c("Base model",
-                                sens.model.names.4[4:5]),
-                end.yr = end.yr,
-                digits = 3,
-                xcaption = NULL,
-                font.size = 7,
-                space.size = 7,
-                getrecs = c(2010, 2014, 2016),
-                show.likelihoods = FALSE)
+                show_like = FALSE)
 @
 \end{center}
 \end{frame}
@@ -834,7 +731,6 @@ param_est_table(c(list(base.model),
 \ei
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
-
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Age-1 index}
@@ -897,13 +793,13 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
-\frametitle{Including age-1 index (MCMC)}
+\frametitle{Including age-1 index}
 \begin{center}
 \vspace{5pt}
 <<age1.sensitivity.biomass.a>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot.mcmc(c(list(base.model), list(sens.models.2[[1]])),
+make.comparison.plot(list(base.model, sens.models.2[[1]]),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.2[1]),
                      end.yr = end.yr)
@@ -916,13 +812,13 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \begin{frame}
-\frametitle{Including age-1 index (MCMC)}
+\frametitle{Including age-1 index}
 \begin{center}
 \vspace{5pt}
 <<age1.sensitivity.biomass.b>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot.mcmc(c(list(base.model), list(sens.models.2[[1]])),
+make.comparison.plot(list(base.model, sens.models.2[[1]]),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.2[1]),
                      legend = TRUE,
@@ -1052,7 +948,7 @@ Year & \multicolumn{3}{c}{Absolute recruitment} & \multicolumn{3}{c}{Recruitment
 oldpar <- par()
 par(mar = c(20, 4.1, 0, 1))
 models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
-models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds]
+models.names <- map_chr(base.model$catch.levels[models.inds], ~{.x[[2]]})
 make.forecast.depletion.comparison.plot(base.model,
                                         models.inds,
                                         models.names,
@@ -1060,7 +956,7 @@ make.forecast.depletion.comparison.plot(base.model,
                                         model.end.yr = end.yr,
                                         end.yr =forecast_yrs[length(forecast_yrs)],
                                         legend.loc = "topleft",
-                                        ylim = c(0,1))     # not sure what units
+                                        ylim = c(0, 1))     # not sure what units
                                           # are, but this works
 par <- oldpar
 @
@@ -1077,15 +973,15 @@ par <- oldpar
 oldpar <- par()
 par(mar = c(20, 4.1, 0, 1))
 models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
-models.names <- sapply(sens.models.2[[1]]$catch.levels, "[[", 2)[models.inds]
+models.names <- map_chr(sens.models.2[[1]]$catch.levels[models.inds], ~{.x[[2]]})
 make.forecast.depletion.comparison.plot(sens.models.2[[1]],
                                         models.inds,
                                         models.names,
                                         start.yr = 2009,
                                         model.end.yr = end.yr,
-                                        end.yr =forecast_yrs[length(forecast_yrs)],
+                                        end.yr = forecast_yrs[length(forecast_yrs)],
                                         legend.loc = "topleft",
-                                        ylim = c(0,1.035))   # getting this to
+                                        ylim = c(0, 1.035))   # getting this to
                                           # be same y-scale as other fig
 par <- oldpar
 @
@@ -1104,16 +1000,16 @@ par <- oldpar
 Probability & Base model & Age-1 index \\ % \Sexpr{probs.curr.bforty}\% &  % not using since 1 dp
 \hline
 P$(B_{\Sexpr{assess.yr}} < \Bforty)$ &
-  \Sexpr{f(mean(base.model$mcmc$Bratio_2020 < 0.40) * 100)}\% &
-  \Sexpr{f(mean(sens.models.2[[1]]$mcmc$Bratio_2020 < 0.40) * 100)}\%\\
+  \Sexpr{f(mean(base.model$mcmc[[paste0("Bratio_", end.yr)]] < 0.40) * 100)}\% &
+  \Sexpr{f(mean(sens.models.2[[1]]$mcmc[[paste0("Bratio_", end.yr)]] < 0.40) * 100)}\%\\
 With $410,000$~t catch scenario: & & \\
 %   & & \\
 P$(B_{\Sexpr{assess.yr+1}} < \Bforty)$ &
-  \Sexpr{f( base.model$risks[[1]][4,"Bratio_2021<0.40"])}\% &
-  \Sexpr{f( sens.models.2[[1]]$risks[[1]][4,"Bratio_2021<0.40"])}\% \\
+  \Sexpr{f( base.model$risks[[1]][4, paste0("Bratio_", end.yr + 1, "<0.40")])}\% &
+  \Sexpr{f( sens.models.2[[1]]$risks[[1]][4,paste0("Bratio_", end.yr + 1, "<0.40")])}\% \\
 P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
-  \Sexpr{f( base.model$risks[[2]][4,"Bratio_2022<0.40"])}\% &
-  \Sexpr{f( sens.models.2[[1]]$risks[[2]][4,"Bratio_2022<0.40"])}\% \\
+  \Sexpr{f( base.model$risks[[2]][4, paste0("Bratio_", end.yr + 2, "<0.40")])}\% &
+  \Sexpr{f( sens.models.2[[1]]$risks[[2]][4, paste0("Bratio_", end.yr + 2, "<0.40")])}\% \\
 \hline
 \end{tabular}
 \end{table}
@@ -1124,237 +1020,198 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{ADNUTS}
-\subsection{}
-\begin{frame}
-%\titlepage
-\frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
-\fontsize{11pt}{2}\selectfont
-\bi
-  \item Base model uses a modified random-walk Metropolis MCMC algorithm
-    (in SS using ADMB)
-  \item Newer MCMC algorithm: no-U-turn-sampler (NUTS) -- several desirable
-    technical features, including faster run times
-  \item NUTS is implemented here using R package {\tt adnuts}
-  \item So same base model structure, just different numerical algorithm
-\ei
-~\\
-\bi
-  \item Took $\sim$4.5~h to run, compared to 40~h for usual algorithm
-  \item That included 2.5 h diagnostic step that likely not needed for sensitivity runs
-  \item Resulted in 7,850 samples, more than the usual 2,000
-\ei
-\end{frame}
+% \section{ADNUTS}
+% \subsection{}
+% \begin{frame}
+% %\titlepage
+% \frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
+% \fontsize{11pt}{2}\selectfont
+% \bi
+%   \item Base model uses a modified random-walk Metropolis MCMC algorithm
+%     (in SS using ADMB)
+%   \item Newer MCMC algorithm: no-U-turn-sampler (NUTS) -- several desirable
+%     technical features, including faster run times
+%   \item NUTS is implemented here using R package {\tt adnuts}
+%   \item So same base model structure, just different numerical algorithm
+% \ei
+% ~\\
+% \bi
+%   \item Took $\sim$4.5~h to run, compared to 40~h for usual algorithm
+%   \item That included 2.5 h diagnostic step that likely not needed for sensitivity runs
+%   \item Resulted in 7,850 samples, more than the usual 2,000
+% \ei
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
-\begin{center}
-\vspace{5pt}
-<<adnuts.trace, fig.height=3.2>>=
-oldpar <- par()
-par(mar=c(4.1, 4.1, 12, 0.1))
-make.mcmc.diag.plot(sens.models.6, key.posteriors[3], key.posteriors.titles[3])
-par <- oldpar
-@
-\end{center}
-\end{frame}
+% \subsection{}
+% \begin{frame}
+% \frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
+% \begin{center}
+% \vspace{5pt}
+% <<adnuts.trace, fig.height=3.2>>=
+% oldpar <- par()
+% par(mar=c(4.1, 4.1, 12, 0.1))
+% make.mcmc.diag.plot(sens.models.6, key.posteriors[3], key.posteriors.titles[3])
+% par <- oldpar
+% @
+% \end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{Thin NUTS results to 2,000 samples for steepness}
-\begin{center}
-\vspace{5pt}
-Panel 3: took every 3rd NUTS sample to get 2,000
-<<adnuts.thin.trace, fig.height=3.5>>=
-h_nuts <- sens.models.6$mcmc$SR_BH_steep
-h_base <- base.model$mcmc$SR_BH_steep
-h_nuts_thin <- h_nuts[(1:2000)*3]
-oldpar <- par()
-par(mar=c(7.1, 4.1, 3.1, 0.1),
-    mfrow=c(1,3))
-acf(h_base, lag.max=20, ylab = "Autocorrelation")
-acf(h_nuts, lag.max = 20, ylab = "")
-acf(h_nuts_thin, lag.max = 20, ylab = "")
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%
+% \subsection{}
+% \begin{frame}
+% \frametitle{Base model~~~~~~~~~~}
+% \begin{center}
+% \vspace{5pt}
+% <<base.hists, fig.height=3.5>>=
+% oldpar <- par()
+% par(mar=c(4.1, 4.1, 3.1, 0.1))
+% plot_mcmc_param_stats(base.model)
+% par <- oldpar
+% @
+% \end{center}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{Base model~~~~~~~~~~}
-\begin{center}
-\vspace{5pt}
-<<base.hists, fig.height=3.5>>=
-oldpar <- par()
-par(mar=c(4.1, 4.1, 3.1, 0.1))
-plot_mcmc_param_stats(base.model)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{~~~~~~~~~~NUTS}
-\begin{center}
-\vspace{5pt}
-<<adnuts.hists, fig.height=3.5>>=
-oldpar <- par()
-par(mar=c(4.1, 4.1, 3.1, 0.1))
-plot_mcmc_param_stats(sens.models.6)
-par <- oldpar
-@
-\end{center}
-\end{frame}
+% \subsection{}
+% \begin{frame}
+% \frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
+% \begin{center}
+% \vspace{5pt}
+% <<nuts.sensitivity.biomass.a>>=
+% oldpar <- par()
+% par(mar = c(7.1, 4.1, 0, 1))
+% make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
+%                      subplots = 2,
+%                      model.names = c(base.model.name, sens.model.names.6),
+%                      end.yr = end.yr)
+% par <- oldpar
+% @
+% \end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{}
-\begin{frame}
-\frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
-\begin{center}
-\vspace{5pt}
-<<nuts.sensitivity.biomass.a>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
-                     subplots = 2,
-                     model.names = c(base.model.name, sens.model.names.6),
-                     end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
+% \subsection{}
+% \begin{frame}
+% \frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
+% \begin{center}
+% \vspace{5pt}
+% <<nuts.sensitivity.biomass.b>>=
+% oldpar <- par()
+% par(mar = c(7.1, 4.1, 2, 1))
+% make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
+%                      subplots = 4,
+%                      model.names = c(base.model.name, sens.model.names.6),
+%                      end.yr = end.yr)
+% par <- oldpar
+% @
+% \end{center}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%
+%
+% %%%%%%%%%%%%%%%%%%%%%%%
+% \subsection{}
+% \begin{frame}
+% \frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
+% Comparing medians:
+% \begin{table}[H]
+% \centering
+% \begin{tabular}{ccc}
+% \hline
+% Quantity & Base model & ADNUTS run \\
+% \hline
+% $B_0$ (1,000~t)  & \Sexpr{f(base.model$mcmccalcs$svirg['50%'] * 1000)} &
+%                    \Sexpr{f(sens.models.6$mcmccalcs$svirg['50%'] * 1000)} \\
+% $R_0$ (millions) & \Sexpr{f(base.model$mcmccalcs$rmed["unfished"] * 1000)} &
+%                    \Sexpr{f(sens.models.6$mcmccalcs$rmed["unfished"] * 1000)} \\
+% \hline
+% \end{tabular}
+% \end{table}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
-\begin{center}
-\vspace{5pt}
-<<nuts.sensitivity.biomass.b>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 2, 1))
-make.comparison.plot.mcmc(c(list(base.model), list(sens.models.6)),
-                     subplots = 4,
-                     model.names = c(base.model.name, sens.model.names.6),
-                     end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
-Comparing medians:
-\begin{table}[H]
-\centering
-\begin{tabular}{ccc}
-\hline
-Quantity & Base model & ADNUTS run \\
-\hline
-$B_0$ (1,000~t)  & \Sexpr{f(base.model$mcmccalcs$svirg['50%'] * 1000)} &
-                   \Sexpr{f(sens.models.6$mcmccalcs$svirg['50%'] * 1000)} \\
-$R_0$ (millions) & \Sexpr{f(base.model$mcmccalcs$rmed["unfished"] * 1000)} &
-                   \Sexpr{f(sens.models.6$mcmccalcs$rmed["unfished"] * 1000)} \\
-\hline
-\end{tabular}
-\end{table}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{Base model~~~~~~~~~~}
-\begin{center}
-\vspace{5pt}
-<<base.sensitivity.probs, fig.height=3.5>>=
-oldpar <- par()
-par(mar = c(10, 4.1, 0, 1))
-make.forecast.risk.comparison.plot(base.model,
-                                   forecast_yrs = forecast_yrs,
-                                   fore.yr = forecast_yrs[1],
-                                   colors = c("black","blue","green","orange",
-                                              "red","tan"),
-                                   pch = c(16,17,17,17,15,18),
-                                   legend.loc = "topleft",
-                                   legend.cex = 0.7,
-                                   xlim = c(0, 690))
-par <- oldpar
-@
-\end{center}
-\end{frame}
+% \subsection{}
+% \begin{frame}
+% \frametitle{Base model~~~~~~~~~~}
+% \begin{center}
+% \vspace{5pt}
+% <<base.sensitivity.probs, fig.height=3.5>>=
+% oldpar <- par()
+% par(mar = c(10, 4.1, 0, 1))
+% make.forecast.risk.comparison.plot(base.model,
+%                                    forecast_yrs = forecast_yrs,
+%                                    fore.yr = forecast_yrs[1],
+%                                    colors = c("black","blue","green","orange",
+%                                               "red","tan"),
+%                                    pch = c(16,17,17,17,15,18),
+%                                    legend.loc = "topleft",
+%                                    legend.cex = 0.7,
+%                                    xlim = c(0, 690))
+% par <- oldpar
+% @
+% \end{center}
+% \end{frame}
 % P(B_2021 < B_40%) = 28% with catch of 410,000 (like this years)
 % P(B_2021 < B_40%) = 21% with catch of 410,000 (like this years) for ADNUTS run
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-\frametitle{~~~~~~~~~~NUTS}
-\begin{center}
-\vspace{5pt}
-<<nuts.sensitivity.probs, fig.height=3.5>>=
-oldpar <- par()
-par(mar = c(10, 4.1, 0, 1))
-make.forecast.risk.comparison.plot(sens.models.6,
-                                   forecast_yrs = forecast_yrs,
-                                   fore.yr = forecast_yrs[1],
-                                   colors = c("black","blue","green","orange",
-                                              "red","tan"),
-                                   pch = c(16,17,17,17,15,18),
-                                   legend.loc = "topleft",
-                                   legend.cex = 0.7,
-                                   xlim = c(0, 690))
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\begin{frame}
-%\titlepage
-\frametitle{NUTS conclusions}
-\fontsize{11pt}{2}\selectfont
-\bi
-  \item Worked well, but further considerations will be needed, such as:
-    \bi
-      \item no Stock Synthesis burn-in needed
-      \item want to end up with same number of samples on different machines
-        (depends on cores)
-      \item fix the random number seed
-      \item other algorithm settings
-    \ei
-\ei
-~\\
-\bi
-  \item Suggest {\tt adnuts} be considered for 2021 assessment
-  \item Would enable MCMC results for sensitivities
-  \item However, would need to reduce the number of sensitivities
-    (to reduce build time for the assessment document)
-\ei
-\end{frame}
+% \subsection{}
+% \begin{frame}
+% \frametitle{~~~~~~~~~~NUTS}
+% \begin{center}
+% \vspace{5pt}
+% <<nuts.sensitivity.probs, fig.height=3.5>>=
+% oldpar <- par()
+% par(mar = c(10, 4.1, 0, 1))
+% make.forecast.risk.comparison.plot(sens.models.6,
+%                                    forecast_yrs = forecast_yrs,
+%                                    fore.yr = forecast_yrs[1],
+%                                    colors = c("black","blue","green","orange",
+%                                               "red","tan"),
+%                                    pch = c(16,17,17,17,15,18),
+%                                    legend.loc = "topleft",
+%                                    legend.cex = 0.7,
+%                                    xlim = c(0, 690))
+% par <- oldpar
+% @
+% \end{center}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%
+% \subsection{}
+% \begin{frame}
+% %\titlepage
+% \frametitle{NUTS conclusions}
+% \fontsize{11pt}{2}\selectfont
+% \bi
+%   \item Worked well, but further considerations will be needed, such as:
+%     \bi
+%       \item no Stock Synthesis burn-in needed
+%       \item want to end up with same number of samples on different machines
+%         (depends on cores)
+%       \item fix the random number seed
+%       \item other algorithm settings
+%     \ei
+% \ei
+% ~\\
+% \bi
+%   \item Suggest {\tt adnuts} be considered for 2021 assessment
+%   \item Would enable MCMC results for sensitivities
+%   \item However, would need to reduce the number of sensitivities
+%     (to reduce build time for the assessment document)
+% \ei
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1406,23 +1263,12 @@ Current sensitivity runs, with ones to retain in \alert{red}:
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-# plot.retro.yrs <- 1:5
-retro.list <- list(base.model)
-for(i in plot.retro.yrs){
-  retro.list[[i + 1]] <- base.model$retros[[i]]
-}
 make.comparison.plot(retro.list,
                      subplots = 2,
                      model.names = retro.model.names,
                      legend = TRUE,
                      legendloc = "topright",
                      is.retro = TRUE)
-#make.comparison.plot(retro.list,
-#                     subplots = 8,
-#                     model.names = retro.model.names,
-#                     legend = TRUE,
-#                     legendloc = "topleft",
-#                     is.retro = TRUE)
 par <- oldpar
 @
 \end{center}
