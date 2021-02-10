@@ -648,20 +648,6 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-% Taking out for 2020:
-% \begin{frame}
-% \frametitle{Similar figures from 2017 assessment (Figure A.3); green is $\Phi=0.21$}
-% \begin{center}
-% \vspace{5pt}
-%% fig.width=8>>=
-%% Figure from 2017 assessment knitr-cache; really only want to see bottom one
-%%  but this will do for now; tried (in vain) changing bounding box to crop
-%\includegraphics[height=2.6in]{figures/phi_req2_3_sensitivity-1-2017.eps}
-%end{center}
-%end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Alternative deviations for selectivity, $\Phi$}
 \begin{center}
