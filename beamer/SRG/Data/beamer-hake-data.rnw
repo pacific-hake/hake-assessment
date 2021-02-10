@@ -172,7 +172,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
  \begin{figure}
  \centering
   <<catches, fig.height=4.8, fig.width=8, out.width='0.9\\columnwidth'>>=
-    make.catches.plot(catches, leg.y.loc = 550, leg.cex = 0.7,
+    make.catches.plot(ct, leg.y.loc = 550, leg.cex = 0.7,
       mar = c(4, 4, 3.25, 0.5))
   @
 \end{figure}
