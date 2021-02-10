@@ -686,23 +686,23 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 \end{columns}
 }
 
-%-------------------------------------------------------------------
-\frame{\frametitle{adnuts model equilibrium recruitment}
-\begin{columns}
-  \begin{column}{0.25\textwidth}
-    \bi
-      \item median $\log(R_0)$ = \Sexpr{round(median(sens.models.6$mcmc$SR_LN),2)}
-      \item equilibrium recruitment is 2,314 millions of fish
-      \item adnuts 92\% of base model
-    \ei
-  \end{column}
-  \begin{column}{0.75\textwidth}
-   <<main.mcmc.diag.R0.adnuts, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-   make.mcmc.diag.plot(sens.models.6, key.posteriors[2], key.posteriors.titles[2])
-   @
-  \end{column}
-\end{columns}
-}
+% %-------------------------------------------------------------------
+% \frame{\frametitle{adnuts model equilibrium recruitment}
+% \begin{columns}
+%   \begin{column}{0.25\textwidth}
+%     \bi
+%       \item median $\log(R_0)$ = \Sexpr{round(median(sens.models.6$mcmc$SR_LN),2)}
+%       \item equilibrium recruitment is 2,314 millions of fish
+%       \item adnuts 92\% of base model
+%     \ei
+%   \end{column}
+%   \begin{column}{0.75\textwidth}
+%    <<main.mcmc.diag.R0.adnuts, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+%    make.mcmc.diag.plot(sens.models.6, key.posteriors[2], key.posteriors.titles[2])
+%    @
+%   \end{column}
+% \end{columns}
+% }
 
 %-----------------------------------------------------------------
 \frame{\frametitle{Decison Table - base model}
@@ -733,18 +733,18 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 }
 
 %-----------------------------------------------------------------
-\frame{\frametitle{Decison Table - adnuts model}
-<<decisions.biomass.table_adnuts, results='asis', echo=FALSE>>=
-    make.decision.table.pres(sens.models.6,
-                             models.inds,
-                             xcaption = NULL,
-                             xlabel = "tab:es-decisions-spr",
-                             font.size = 8,
-                             space.size = 10,
-                             type = "biomass",
-                             placement = "h")
-@
-}
+% \frame{\frametitle{Decison Table - adnuts model}
+% <<decisions.biomass.table_adnuts, results='asis', echo=FALSE>>=
+%     make.decision.table.pres(sens.models.6,
+%                              models.inds,
+%                              xcaption = NULL,
+%                              xlabel = "tab:es-decisions-spr",
+%                              font.size = 8,
+%                              space.size = 10,
+%                              type = "biomass",
+%                              placement = "h")
+% @
+% }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
