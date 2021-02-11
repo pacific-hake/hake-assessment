@@ -568,7 +568,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
   \end{column}
   \begin{column}{0.59\textwidth}
     <<age.one.index, fig.height=3.5, fig.width=6, out.width="0.95\\columnwidth">>=
-      make.survey.age1.plot(age.1.index, base.model)
+      make.survey.age1.plot(base.model, age.1.index)
     @
   \end{column}
 \end{columns}

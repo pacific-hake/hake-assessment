@@ -240,19 +240,31 @@ make.survey.biomass.plot <- function(model,
   par <- oldpar
 }
 
-make.survey.age1.plot <- function(age1index,
-                                  model){
-  ## It is assumed that the data file has been read in correctly.
-  ## Assumes that there is only one 'CPUE' index and it is the acoustic survey.
+#' Make a plot of the age-1 index overlaid with model fit to that index
+#'
+#' @param model A model as output by [load_models()]
+#' @param age1index A vector of the age 1 index values
+#' @param legendloc See [legend()]
+#'
+#' @return A plot of the age-1 index fit
+#' @export
+make.survey.age1.plot <- function(model,
+                                  age1index,
+                                  legendloc = "topleft"){
 
-  oldpar <- par()
-  par(mar=c(4, 4, 1, 1) + 0.1)
+  oldpar <- par("mar")
+  on.exit(par(oldpar))
+  par(mar = c(4, 4, 1, 1) + 0.1)
 
   x <- age1index
   yrs <- x$Year
 
-  recr1 <- dplyr::filter(base.model$extra.mcmc$natage_median, Yr %in% yrs)$`1`
-  recrAll <- dplyr::filter(base.model$extra.mcmc$natage_median, Yr %in% min(yrs):max(yrs))$`1`
+  recr1 <- model$extra.mcmc$natage_median %>%
+    filter(Yr %in% yrs) %>%
+    pull(`1`)
+  recrAll <- model$extra.mcmc$natage_median %>%
+    filter(Yr %in% min(yrs):max(yrs)) %>%
+    pull(`1`)
 
   logAge1 <- log(recr1)
   logIndex <- log(x$Index)
@@ -284,7 +296,7 @@ make.survey.age1.plot <- function(age1index,
          cex = 1,
          lwd = 2)
   axis(1, at = x$Year)
-  legend("topleft",
+  legend(legendloc,
          c("Model-estimated age-1 fish",
            "Scaled acoustic survey age-1 index"),
          col = c("black", "blue"),
@@ -292,7 +304,6 @@ make.survey.age1.plot <- function(age1index,
          lty = NA,
          lwd = 2,
          bty = "o")
-  par <- oldpar
 }
 
 make.survey.biomass.extrap.plot <- function(dat){

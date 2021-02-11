@@ -437,7 +437,7 @@ from last year)
   \end{column}
   \begin{column}{0.65\textwidth}
     <<age.one.index, fig.height=4, fig.width=6.5, out.width="0.95\\columnwidth">>=
-      make.survey.age1.plot(age.1.index, base.model)
+      make.survey.age1.plot(base.model, age.1.index)
     @
   \end{column}
 \end{columns}
