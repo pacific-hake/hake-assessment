@@ -1,47 +1,24 @@
-%\documentclass[handout,xcolor=pdftex,dvipsnames,table]{beamer}
-%\documentclass[draft]{beamer}
-%\documentclass[notesonly]{beamer}
-%\documentclass[notes]{beamer}
-\documentclass[aspectratio=169]{beamer}   % then set out.width = '4in'
-%   (probably) in opts_chunk. May still have to manually tweak some
-%\documentclass{beamer}                     % then set out.width = '4.5in'
-%   in opts_chunk.
+\documentclass[aspectratio=169]{beamer}
 \mode<presentation>
-\usetheme[compress]{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
-%\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
-
-%\usefonttheme{serif}
-% font themes: default, professionalfonts, serif, structurebold, structureitalicserif, structuresmallcapsserif
-
+\usetheme[compress]{Singapore}
 \usepackage{graphicx}
 \usepackage{pgf}
 \usepackage{array}
 \usepackage{tabularx}
-\usepackage{booktabs}          %% Used in risk tables
-\usepackage{multirow}          %% Used in decision tables
-%\usepackage{beamerarticle}
-%\usepackage{enumitem}
-%\usepackage{beamerthemesplit}
-\usepackage[T1]{fontenc}  %to use < or > in tables
-
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[T1]{fontenc} % to use < or > in tables
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
-%% syntax is \mlc{first line\\secondline}
+% syntax is \mlc{first line\\secondline}
 \newcommand{\mlc}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 \newcommand{\subscr}[1]{$_{\text{#1}}$}
-
-% pdf is displayed in full screen mode automatically
-%\hypersetup{pdfpagemode=FullScreen}
-
-%\setbeamersize{sidebar width left=0.05in}
 \setbeamersize{text margin left=0.1in}
 \setbeamersize{text margin right=0.1in}
-
 \setbeamertemplate{title page}
 {
 \includegraphics[height=0.5in]{../../images/NOAA.eps}
 \hfill
 \includegraphics[height=0.5in]{../../images/DFO.eps}
-
 \vskip0pt plus 1filll
 \begin{center}
 {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\
@@ -74,10 +51,9 @@
 \newcommand{\en}{\end{enumerate}}
 \newcommand{\bi}{\begin{itemize}}
 \newcommand{\ei}{\end{itemize}}
-\newcommand{\Fforty}{F_{\text{SPR}=40\%}}       % Needs to be done as $\Fforty$
+\newcommand{\Fforty}{F_{\text{SPR}=40\%}}
 \newcommand{\Bforty}{B_{40\%}}
 \newcommand{\red}[1]{\textcolor{red}{#1}}
-
 % From https://tex.stackexchange.com/questions/44983/beamer-removing-headline-and-its-space-on-a-single-frame-for-plan-but-keepin
 % to remove header from a slide (to get more space)
 \makeatletter
@@ -87,10 +63,6 @@
 }{}
 \makeatother
 
-%% <<echo=TRUE,  message=TRUE, results='show', warning=TRUE>>=
-%% opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
-%%                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
-%%                results='show', cache=TRUE, cache.path='knitr-cache/')
 <<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
 library(knitr)  # need this else these options get ignored on first run
 opts_chunk$set(dev = 'cairo_ps',
@@ -112,8 +84,7 @@ load_models_rds()
 source(file.path(rootd.R, "custom-knitr-variables.R"))
 @
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+% -----------------------------------------------------------------------------
 \title[Hake Sensitivities]{\Sexpr{assess.yr} Pacific Hake Assessment: Sensitivities and Retrospectives}
 \author[JTC]{Pacific Hake Joint Technical Committee}
 %\institute{}
@@ -126,101 +97,37 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \titlepage
 }
 
-
-%\section[Outline]{}
-%\frame{\tableofcontents}
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------
 \section{Overview}
 \subsection{}
 \begin{frame}
-%\titlepage
 \frametitle{Overview}
 \fontsize{11pt}{2}\selectfont
+\textbf{All sensitivities are comparisons of MCMC runs}
 \begin{enumerate}
-  \item MLE vs MCMC for the base model
   \item Sensitivities
         \bi
         \item Alternative values for steepness ($h$)
-        \item Variation of recruitment ($\sigma_r$)
         \item Higher standard deviation on prior for natural mortality
+        \item Variation of recruitment ($\sigma_r$)
         \item Alternative data-weighting methods
-        \item Flexibility of time-varying selectivity ($\Phi$)
-        \item Alternative parameterization of time-varying selectivity
-        \item Include age-1 index (full MCMC results)
-        \item Use ADNUTS (full MCMC results)
+        \item Alternative standard deviations on time-varying selectivity ($\Phi$)
+        \item Alternative maximum age for fishery and survey selectivity
+        \item Include age-1 index
+        \item Removal of cohort-based error from the model
+        \item Use of random walk Metropolis Hastings (rwMH) MCMC sampling
         \ei
   \item Retrospectives
         \bi
-        \item Standard %: -\Sexpr{max(plot.retro.yrs)} years
-        \item Cohort determination (`squid plot') %: -\Sexpr{max(retrospective_yrs)} years
-        \item Historical assessments %: - \Sexpr{assess.yr - 1991 + 1} years
+        \item \Sexpr{length(retrospective_yrs)} years into the past
+        \item Cohort determination (`squid plot') for the base model and the age-1 inclusion sensitivity
+        \item Historical assessments: - \Sexpr{assess.yr - 1991 + 1} years
         \ei
 \end{enumerate}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------
 
-%%%%%%%%%%%%%%%%%%%%%%%
-\section{MLE vs MCMC}
-\subsection{}
-\begin{frame}
-\frametitle{MLE vs MCMC}
-\begin{center}
-% , out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
-<<mle.mcmc.1, fig.height=3.5>>=
-make.mcmc.vs.mle.plot(base.model,
-                      end.yr = end.yr,
-                      subplot = 2)
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{MLE vs MCMC}
-\begin{center}
-%, out.width='.88\\columnwidth', out.height='.85\\textheight'>>=
-<<mle.mcmc.2, fig.height=3.5>>=
-make.mcmc.vs.mle.plot(base.model,
-                      end.yr = end.yr,
-                      type = "o",
-                      subplot = 10)
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{MLE vs MCMC}
-\begin{center}
-%\includegraphics[width=5.5in, height=3.25in]{../../../doc/main-figures/CompareMLE_MCMC}
-<<main.parameter.estimates, results='asis', echo=FALSE>>=
-param_est_table(list(base.model, last.yr.base.model),
-                model.names = c(base.model.name, last.yr.base.model.name),
-                end.yr = end.yr,
-                digits = 3,
-                getrecs = c(2010, 2014, 2016),
-                show_like = FALSE,
-                mle_table = FALSE,
-                xcaption =
-                  paste0("Select parameters, derived quantities, ",
-                         "and reference point posterior median ",
-                         "estimates for the (",
-                         end.yr, ") base model ",
-                         "compared to the previous assessment's (",
-                         end.yr - 1, ") base model."),
-                xlabel = "tab:main-parameter-estimates",
-                font.size = 10,
-                space.size = 11)
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------
 \section{$h$ and $M$}
 \subsection{}
 \begin{frame}
@@ -249,9 +156,9 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Sensitivities to steepness, $h$, and natural mortality, $M$}
 \begin{center}
@@ -276,9 +183,9 @@ param_est_table(c(list(base.model),
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \section{Sigma r}
 \subsection{}
 \begin{frame}
@@ -303,9 +210,9 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
 \begin{center}
@@ -325,9 +232,9 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
 \begin{center}
@@ -346,9 +253,9 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
 \begin{center}
@@ -369,10 +276,10 @@ param_est_table(c(list(base.model),
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \section{Weighting}
 \subsection{}
 \begin{frame}
@@ -394,9 +301,9 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Alternative methods for data weighting}
 \vspace{5pt}
@@ -416,10 +323,10 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
 % 2019 - commenting out next three since not done
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 % \begin{frame}
 % \frametitle{U.S. age comps weighted by month - Biomass}
 % \begin{center}
@@ -437,9 +344,9 @@ par <- oldpar
 % @
 % \end{center}
 % \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 %
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 % \begin{frame}
 % \frametitle{Alternative catch stream - Biomass}
 % \begin{center}
@@ -457,9 +364,9 @@ par <- oldpar
 % @
 % \end{center}
 % \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 %
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 % \begin{frame}
 % \frametitle{Alternative catch stream}
 % \begin{center}
@@ -481,11 +388,11 @@ par <- oldpar
 % @
 % \end{center}
 % \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 %
 %
 %
-%%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%%
 % \section{Selectivity}
 % \subsection{}
 % \begin{frame}
@@ -517,9 +424,9 @@ par <- oldpar
 % %  \end{column}
 % %\end{columns}
 % \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 %
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 % \begin{frame}
 % \frametitle{Maximum Age of Estimated Selectivity -- Biomass}
 % \begin{center}
@@ -542,10 +449,10 @@ par <- oldpar
 % @
 % \end{center}
 % \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \section{Selectivity}
 \begin{frame}
 \frametitle{Flexibility in time-varying selectivity -- $\Phi$}
@@ -555,25 +462,19 @@ par <- oldpar
 to reduce an anomalously high estimate of 2014 recruitment driven solely by fishery
 catch-at-age data
 
-\item \red{2018-2020 assessments} -- retained the (equivalent) 2017 value of $\Phi=1.40$
+\item \red{2018-\Sexpr{assess.yr} assessments} -- retained the (equivalent) 2017 value of $\Phi=1.40$
 \ei
 \vspace{20pt}
-Here we test:
-\bi
-\item alternative values of $\Phi$
-\item alternative semi-parameteric approach of Xu et al. (2019)
-\ei
+Here we test alternative values of $\Phi$
 
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{}
+% -----------------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Alternative deviations for selectivity, $\Phi$}
 \begin{center}
 \vspace{5pt}
-% , fig.width=8>>=
 <<phi.sensitivity.biomass>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
@@ -591,15 +492,14 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Alternative deviations for selectivity, $\Phi$}
 \begin{center}
 \vspace{5pt}
-% , fig.width=8>>=
-<<phi.sensitivity.survey>>=
+<<phi.sensitivity.survey, fig.height=3.5, fig.width=8>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot(c(list(base.model),
@@ -612,51 +512,22 @@ make.comparison.plot(c(list(base.model),
                                      sens.model.names.4[2],
                                      sens.model.names.4[3]),
                      end.yr = end.yr,
-                     legendloc = "bottomright")
+                     legend_pos = c(0.2, 0.85))
 par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Alternative deviations for selectivity, $\Phi$}
 \begin{center}
 \vspace{5pt}
 % fig.width=8>>=
-<<phi.sensitivity.density.2014>>=
+<<phi.sensitivity.density.2016, fig.height=3.5>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base.model),
-                       sens.models.4[1],
-                       sens.models.4[2],
-                       sens.models.4[3]),
-                     subplots = 16,
-                     model.names = c(paste0("Base model ", end.yr),
-                                     sens.model.names.4[1],
-                                     sens.model.names.4[2],
-                                     sens.model.names.4[3]),
-                     legendloc = "topleft",
-                     densitynames = c("Recr_2014"),
-                     densityxlab  = "Recruitment in 2014 (billions)",
-                     indexPlotEach = TRUE,
-                     end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Alternative deviations for selectivity, $\Phi$}
-\begin{center}
-\vspace{5pt}
-% fig.width=8>>=
-<<phi.sensitivity.density.2016>>=
-oldpar <- par()
-par(mar = c(7.1, 3.1, 0, 1))
 make.comparison.plot(c(list(base.model),
                        sens.models.4[1],
                        sens.models.4[2],
@@ -675,9 +546,38 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Alternative deviations for selectivity, $\Phi$}
+\begin{center}
+\vspace{5pt}
+% fig.width=8>>=
+<<phi.sensitivity.density.2017, fig.height=3.5>>=
+oldpar <- par()
+par(mar = c(7.1, 3.1, 0, 1))
+make.comparison.plot(c(list(base.model),
+                       sens.models.4[1],
+                       sens.models.4[2],
+                       sens.models.4[3]),
+                     subplots = 16,
+                     model.names = c(paste0("Base model ", end.yr),
+                                     sens.model.names.4[1],
+                                     sens.model.names.4[2],
+                                     sens.model.names.4[3]),
+                     legendloc = "topright",
+                     densitynames = "Recr_2017",
+                     densityxlab  = "Recruitment in 2017 (billions)",
+                     indexPlotEach = TRUE,
+                     end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+% -----------------------------------------------------------------------------%
+
+% -----------------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Alternative deviations for selectivity, $\Phi$}
 \begin{center}
@@ -696,14 +596,14 @@ param_est_table(c(list(base.model),
                 xcaption = NULL,
                 font.size = 7,
                 space.size = 7,
-                getrecs = c(2010, 2014, 2016),
+                getrecs = c(2010, 2016, 2017),
                 show_like = FALSE)
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \section{Fecundity}
 \subsection{}
 \begin{frame}
@@ -717,9 +617,9 @@ param_est_table(c(list(base.model),
   \item Not repeating sensitivities this year
 \ei
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \section{Age-1 index}
 \subsection{}
 \begin{frame}
@@ -740,9 +640,9 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \subsection{}
 \begin{frame}
 \frametitle{Base model fit to age-1 index [MLE]}
@@ -757,9 +657,9 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \subsection{}
 \begin{frame}
 \frametitle{Include age-1 index -- fit to age-1 index [MLE]}
@@ -774,10 +674,10 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \subsection{}
 \begin{frame}
 \frametitle{Including age-1 index}
@@ -794,9 +694,9 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \subsection{}
 \begin{frame}
 \frametitle{Including age-1 index}
@@ -814,9 +714,9 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \subsection{}
 \begin{frame}
 \frametitle{Base model}
@@ -836,10 +736,10 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \subsection{}
 \begin{frame}
 \frametitle{Including age-1 index (MCMC)}
@@ -859,9 +759,9 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 % Table taken directly from hake-assessment.tex and then edited down
 \subsection{}
 \begin{frame}
@@ -888,10 +788,10 @@ Quantity & 2.5\% & Median & 97.5\% \\
 % \endgroup
 \end{table}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \subsection{}
 \begin{frame}
 \frametitle{Recruitments}
@@ -924,9 +824,9 @@ Year & \multicolumn{3}{c}{Absolute recruitment} & \multicolumn{3}{c}{Recruitment
 % \endgroup
 \end{table}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \subsection{}
 \begin{frame}
 \frametitle{Base model projections}
@@ -949,9 +849,9 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \subsection{}
 \begin{frame}
 \frametitle{Age-1 index projections}
@@ -974,9 +874,9 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \subsection{}
 \begin{frame}
 \frametitle{Probabilities change with inclusion of age-1 index}
@@ -1001,12 +901,12 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
 \end{tabular}
 \end{table}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 % \section{ADNUTS}
 % \subsection{}
 % \begin{frame}
@@ -1028,10 +928,10 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
 %   \item Resulted in 7,850 samples, more than the usual 2,000
 % \ei
 % \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 % \subsection{}
 % \begin{frame}
 % \frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
@@ -1045,9 +945,9 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
 % @
 % \end{center}
 % \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-% %%%%%%%%%%%%%%%%%%%%%%%
+% % -----------------------------------------------------------------------------%
 % \subsection{}
 % \begin{frame}
 % \frametitle{Base model~~~~~~~~~~}
@@ -1061,11 +961,11 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
 % @
 % \end{center}
 % \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%
+% % -----------------------------------------------------------------------------%
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 % \subsection{}
 % \begin{frame}
 % \frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
@@ -1082,10 +982,10 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
 % @
 % \end{center}
 % \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 % \subsection{}
 % \begin{frame}
 % \frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
@@ -1102,9 +1002,9 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
 % @
 % \end{center}
 % \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%
+% % -----------------------------------------------------------------------------%
 %
-% %%%%%%%%%%%%%%%%%%%%%%%
+% % -----------------------------------------------------------------------------%
 % \subsection{}
 % \begin{frame}
 % \frametitle{Run base model using NUTS algorithm via \tt{adnuts}}
@@ -1123,10 +1023,10 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
 % \end{tabular}
 % \end{table}
 % \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 % \subsection{}
 % \begin{frame}
 % \frametitle{Base model~~~~~~~~~~}
@@ -1150,9 +1050,9 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
 % \end{frame}
 % P(B_2021 < B_40%) = 28% with catch of 410,000 (like this years)
 % P(B_2021 < B_40%) = 21% with catch of 410,000 (like this years) for ADNUTS run
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 % \subsection{}
 % \begin{frame}
 % \frametitle{~~~~~~~~~~NUTS}
@@ -1174,8 +1074,8 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
 % @
 % \end{center}
 % \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%
-% %%%%%%%%%%%%%%%%%%%%%%%
+% % -----------------------------------------------------------------------------%
+% % -----------------------------------------------------------------------------%
 % \subsection{}
 % \begin{frame}
 % %\titlepage
@@ -1199,9 +1099,9 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
 %     (to reduce build time for the assessment document)
 % \ei
 % \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \subsection{}
 \begin{frame}
 %\titlepage
@@ -1233,10 +1133,10 @@ Current sensitivity runs, with ones to retain in \alert{red}:
 
 \end{enumerate}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \section{Retros}
 \subsection{}
 \begin{frame}
@@ -1260,9 +1160,9 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Retrospectives}
 \begin{center}
@@ -1281,9 +1181,9 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Retrospective -- baby squid plot}
 \begin{center}
@@ -1301,9 +1201,9 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Retrospective -- squid plot}
 \begin{center}
@@ -1322,10 +1222,10 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Historical assessments}
 \begin{center}
@@ -1335,9 +1235,9 @@ make.assessment.history.plot(base.model,
 @
 \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
-%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 \section{Summary}
 \subsection{}
 \begin{frame}
@@ -1353,14 +1253,6 @@ make.assessment.history.plot(base.model,
   certain yet
 \ei
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-%\section[Outline]{}
-%\frame{\tableofcontents}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------%
 
 \end{document}
