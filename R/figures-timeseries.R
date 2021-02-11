@@ -467,6 +467,7 @@ make_squid_plot <- function(model,
 #' @param is.retro If `TRUE`, it is a retrospective plot
 #' @param legend See [r4ss::SSplotComparisons()]
 #' @param legendloc See [r4ss::SSplotComparisons()]
+#' @param legend_pos For `subplots` 13 and 14 only, legend position in the [ggplot2::ggplot()]
 #' @param end.yr End year of the plot. If is.retro is TRUE, this is ignored
 #' and the `endyrvec` argument for [r4ss::SSplotComparisons()] is calculated
 #' @param plot_mcmc If `TRUE`, plot MCMC values. If `FALSE`, plot MLE values
@@ -482,6 +483,7 @@ make.comparison.plot <- function(models,
                                  is.retro = FALSE,
                                  legend = TRUE,
                                  legendloc = "topright",
+                                 legend_pos = c(0.8, 0.9),
                                  end.yr = NULL,
                                  plot_mcmc = TRUE,
                                  verbose = FALSE){
@@ -500,7 +502,7 @@ make.comparison.plot <- function(models,
       endyrvec <- end.yr
     }
   }
-  if(subplots == 14 & plot_mcmc){
+  if(subplots %in% c(13, 14) & plot_mcmc){
     for(i in seq_along(models)){
       if(is.na(models[[i]]$extra.mcmc[1])){
         stop("All models must have had the extra-mcmc run to make this plot with plot_mcmc == TRUE\n",
@@ -513,7 +515,8 @@ make.comparison.plot <- function(models,
       as_tibble() %>%
       filter(Use == 1, Fleet == 2) %>%
       select(Yr, name, Obs, Exp) %>%
-      mutate(Obs = log(Obs), Exp = log(Exp)) %>%
+      mutate(Obs = (if(subplots == 13) Obs else log(Obs)),
+             Exp = (if(subplots == 13) Exp else log(Exp))) %>%
       group_split(name)
 
     # MCMC fit requires extra-mcmc
@@ -529,9 +532,9 @@ make.comparison.plot <- function(models,
         em_upper <- em_upper[1:length(yrs)]
       }
       fits <- as_tibble(list(Yr = yrs,
-                             lower = log(em_lower),
-                             med = log(em_med),
-                             upper = log(em_upper)))
+                             lower = (if(subplots == 13) em_lower else log(em_lower)),
+                             med = (if(subplots == 13) em_med else log(em_med)),
+                             upper = (if(subplots == 13) em_upper else log(em_upper))))
       left_join(fits, .y, by = "Yr", copy = TRUE)
     })
     indices <- map_df(seq_along(indices), ~{
@@ -543,27 +546,29 @@ make.comparison.plot <- function(models,
     fill_cols <- fill_cols[seq(2, length(fill_cols), 2)]
     shapes <- 1:length(models)
 
+    y_label <- ifelse(subplots == 13, "Index", "Log Index")
+    y_label_sym <- sym(y_label)
     indices <- indices %>%
-      rename(`Log Index` = Obs) %>%
+      rename(!!y_label_sym := Obs) %>%
       rename(Year = Yr)
 
     g <- ggplot(indices) +
-      aes(x = Year, y = `Log Index`, group = name, color = name, fill = name, shape = name) +
+      aes(x = Year, y = !!y_label_sym, group = name, color = name, fill = name, shape = name) +
       geom_ribbon(aes(ymin = lower, ymax = upper), color = NA) +
       geom_line(aes(y = med, color = name), size = 1) +
       geom_point(aes(y = med, color = name), size = 3, stroke = 1.5) +
       scale_fill_manual(values = fill_cols, guide = FALSE) +
       scale_color_manual(values = cols, name = "") +
       scale_shape_manual(values = shapes, name = "") +
-      geom_point(aes(x = Year, y = `Log Index`), size = 2, inherit.aes = FALSE) +
+      geom_point(aes(x = Year, y = !!y_label_sym), size = 2, inherit.aes = FALSE) +
       theme(legend.position = "none")
-    if (legend) {
-      g <- g + theme(legend.position = c(0.8, 0.9),
-        legend.background = element_rect(colour = NA),
-        legend.box.background = element_rect(colour = NA, fill = NA),
-        legend.key = element_blank(),
-        legend.text.align = 0,
-        legend.text = element_text(size = 11))
+    if(legend){
+      g <- g + theme(legend.position = legend_pos,
+                     legend.background = element_rect(colour = NA),
+                     legend.box.background = element_rect(colour = NA, fill = NA),
+                     legend.key = element_blank(),
+                     legend.text.align = 0,
+                     legend.text = element_text(size = 11))
     }
     return(g)
   }
@@ -577,6 +582,7 @@ make.comparison.plot <- function(models,
                     indexfleets = indexfleets,
                     endyrvec = endyrvec,
                     densitynames = ifelse(is.null(densitynames), c("SSB_Virgin", "R0"), densitynames),
+                    densityxlab = densityxlab,
                     mcmcVec = plot_mcmc,
                     xaxs = ifelse(all(subplots %in% 1:2), "r", "i"),
                     new = FALSE,
