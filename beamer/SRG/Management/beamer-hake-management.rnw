@@ -192,7 +192,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
     \item Equilibrium calculations
     \bi
       \item Base selectivity (used for years before 1991 as well)
-      \item Mean of weight-at-age across 1975-2019
+      \item Mean of weight-at-age across 1975-\Sexpr{last.data.yr}
       \item Used for \emph{B}\subscr{0}, \emph{F}\subscr{SPR}, MSY, etc.
       \item Recruitment at estimated \emph{R}\subscr{0} or from stock-recruit relationship
     \ei
@@ -225,8 +225,9 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item No fishing results in a slight decline in spawning biomass from 2020 to 2021 before leveling off
-      \item All other catch streams result in decreases in spawning biomass relative to 2020
+      \item No fishing results in a slight decline in spawning biomass from
+        \Sexpr{assess.yr} to \Sexpr{assess.yr+1} before leveling off
+      \item All other catch streams result in decreases in spawning biomass relative to \Sexpr{assess.yr}
       \item Uncertainty is large and increases from \Sexpr{end.yr} to \Sexpr{end.yr+2}
     \ei
   \end{column}
@@ -255,7 +256,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
       \item Quantiles from the posterior distribution for spawning biomass and fishing intensity
       \item Tables provided for the base model as well as age-1 survey and adnuts sensitivity runs
     \ei
-    \item Catch streams % text and which are gray is all manual 2017
+    \item Catch streams % text and which are gray is all manual, updated 2021
     \bi
       \item a. \Sexpr{catch_levels[[1]][[2]]} (zero catch)
       \item b. Constant catch of \Sexpr{catch_levels[[2]][[2]]}
@@ -263,11 +264,12 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
       \item d. Constant catch (\Sexpr{catch_levels[[4]][[2]]})
       \item e. Constant catch (\Sexpr{catch_levels[[5]][[2]]})
       \item \textcolor{gray}{f. Constant catch (\Sexpr{catch_levels[[6]][[2]]})}
-      \item \textcolor{gray}{g. Fishing Intensity = 100\% in each year
+      \item \textcolor{gray}{g. Constant catch (\Sexpr{catch_levels[[7]][[2]]})}
+      \item \textcolor{gray}{h. Fishing Intensity = 100\% in each year
         conditioned on fixed catch in previous year}
-      \item h. Median default Harvest Rule in each year conditioned on
+      \item i. Median default Harvest Rule in each year conditioned on
         fixed catch in previous year
-      \item \textcolor{gray}{i. Median catch in 2020 is the same as
+      \item \textcolor{gray}{j. Median catch in 2020 is the same as
         fixed catch in 2019}
     \ei
     \item More catch streams can be added as determined by SRG/AP/JMC
@@ -286,8 +288,8 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
       \item Median (50\%) decreases from \Sexpr{end.yr} to \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
         for all catch levels
         \bi
-        \item Median is > $B_{40\%}$ for all 2021 catch
-        \item Median goes below $B_{40\%}$ in 2022 between d and e
+        \item Median is > $B_{40\%}$ for all **2021 catch
+        \item Median goes below $B_{40\%}$ in **2022 between d and e
         \ei
     \ei
   \end{column}
