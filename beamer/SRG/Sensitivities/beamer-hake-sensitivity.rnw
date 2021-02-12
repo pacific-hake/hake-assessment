@@ -727,7 +727,6 @@ par <- oldpar
 % -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
-% Table taken directly from hake-assessment.tex and then edited down
 \subsection{}
 \begin{frame}
 \frametitle{$R_0$ and $B_0$ for age-1 index}
