@@ -434,8 +434,7 @@ make_squid_plot <- function(model,
   mdl_list <- list(model)
   retro_list <- map(model$retros, ~{.x})
   models <- c(mdl_list, retro_list)
-  compare_summary <- SSsummarize(models, SpawnOutputUnits = "biomass",
-    verbose = FALSE)
+  compare_summary <- SSsummarize(models, SpawnOutputUnits = "biomass", verbose = FALSE)
   neg_yr_vec <- seq(0, -(length(models) - 1), -1)
   endyrvec <- compare_summary$endyrs + 1 + neg_yr_vec
   SSplotRetroRecruits(compare_summary,
@@ -486,7 +485,8 @@ make.comparison.plot <- function(models,
                                  legend_pos = c(0.8, 0.9),
                                  end.yr = NULL,
                                  plot_mcmc = TRUE,
-                                 verbose = FALSE){
+                                 verbose = FALSE,
+                                 ...){
 
   if(is.null(model.names)){
     tmp.names <- sapply(models[1:length(models)], "[[", "path")
@@ -590,5 +590,6 @@ make.comparison.plot <- function(models,
                                "Recruitment deviations", "Index", "Log index", "SPR ratio", "Density",
                                "", "", "Spawning output",
                                "Harvest rate"),
-                    verbose = verbose)
+                    verbose = verbose,
+                    ...)
 }
