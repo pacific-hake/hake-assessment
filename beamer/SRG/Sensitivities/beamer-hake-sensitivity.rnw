@@ -838,10 +838,9 @@ make.forecast.depletion.comparison.plot(base.model,
                                         models.names,
                                         start.yr = 2009,
                                         model.end.yr = end.yr,
-                                        end.yr =forecast_yrs[length(forecast_yrs)],
+                                        end.yr = forecast_yrs[length(forecast_yrs)],
                                         legend.loc = "topleft",
-                                        ylim = c(0, 1))     # not sure what units
-                                          # are, but this works
+                                        ylim = c(0, 1))
 par <- oldpar
 @
 \end{center}
@@ -865,8 +864,7 @@ make.forecast.depletion.comparison.plot(sens.models.2[[1]],
                                         model.end.yr = end.yr,
                                         end.yr = forecast_yrs[length(forecast_yrs)],
                                         legend.loc = "topleft",
-                                        ylim = c(0, 1.035))   # getting this to
-                                          # be same y-scale as other fig
+                                        ylim = c(0, 0.90))
 par <- oldpar
 @
 \end{center}
@@ -881,19 +879,22 @@ par <- oldpar
 \centering
 \begin{tabular}{lrr}
 \hline
-Probability & Base model & Age-1 index \\ % \Sexpr{probs.curr.bforty}\% &  % not using since 1 dp
+Probability & Base model & Age-1 index \\
 \hline
-P$(B_{\Sexpr{assess.yr}} < \Bforty)$ &
-  \Sexpr{f(mean(base.model$mcmc[[paste0("Bratio_", end.yr)]] < 0.40) * 100)}\% &
-  \Sexpr{f(mean(sens.models.2[[1]]$mcmc[[paste0("Bratio_", end.yr)]] < 0.40) * 100)}\%\\
-With $410,000$~t catch scenario: & & \\
-%   & & \\
+With zero catch scenario: & & \\
 P$(B_{\Sexpr{assess.yr+1}} < \Bforty)$ &
-  \Sexpr{f( base.model$risks[[1]][4, paste0("Bratio_", end.yr + 1, "<0.40")])}\% &
-  \Sexpr{f( sens.models.2[[1]]$risks[[1]][4,paste0("Bratio_", end.yr + 1, "<0.40")])}\% \\
+  \Sexpr{f( base.model$risks[[1]][1, paste0("Bratio_", end.yr + 1, "<0.40")])}\% &
+  \Sexpr{f( sens.models.2[[1]]$risks[[1]][1,paste0("Bratio_", end.yr + 1, "<0.40")])}\% \\
+P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
+  \Sexpr{f( base.model$risks[[2]][1, paste0("Bratio_", end.yr + 2, "<0.40")])}\% &
+  \Sexpr{f( sens.models.2[[1]]$risks[[2]][1, paste0("Bratio_", end.yr + 2, "<0.40")])}\% \\
+With \Sexpr{f(catch_levels[[catch.actual.ind]][[1]][1])}~t catch scenario: & & \\
+P$(B_{\Sexpr{assess.yr+1}} < \Bforty)$ &
+  \Sexpr{f( base.model$risks[[1]][catch.actual.ind, paste0("Bratio_", end.yr + 1, "<0.40")])}\% &
+  \Sexpr{f( sens.models.2[[1]]$risks[[1]][catch.actual.ind, paste0("Bratio_", end.yr + 1, "<0.40")])}\% \\
 P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
   \Sexpr{f( base.model$risks[[2]][4, paste0("Bratio_", end.yr + 2, "<0.40")])}\% &
-  \Sexpr{f( sens.models.2[[1]]$risks[[2]][4, paste0("Bratio_", end.yr + 2, "<0.40")])}\% \\
+  \Sexpr{f( sens.models.2[[1]]$risks[[2]][catch.actual.ind, paste0("Bratio_", end.yr + 2, "<0.40")])}\% \\
 \hline
 \end{tabular}
 \end{table}
