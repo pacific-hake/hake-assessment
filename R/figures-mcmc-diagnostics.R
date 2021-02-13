@@ -578,19 +578,19 @@ make.mcmc.catchability.plot <- function(model,
          col = med_color,
          lwd = 2,
          lty = 1)
-  abline(v = model$cpue$Calc_Q[1],
-         col = mle_color,
-         lwd = 2,
-         lty = 2)
+  #abline(v = model$cpue$Calc_Q[1],
+  #       col = mle_color,
+  #       lwd = 2,
+  #       lty = 2)
   if(!is.null(model2)){
     abline(v = median(model2$extra.mcmc$Q_vector),
            col = model2_med_color,
            lwd = 2,
            lty = 1)
-    abline(v = model2$cpue$Calc_Q[1],
-           col = model2_mle_color,
-           lwd = 2,
-           lty = 2)
+    #abline(v = model2$cpue$Calc_Q[1],
+    #       col = model2_mle_color,
+    #       lwd = 2,
+    #       lty = 2)
   }
   abline(h = 0)
 }

@@ -574,6 +574,7 @@ joint.percent.prob.above.below <- f(sum(base.model$mcmc[[paste0("Bratio_", end.y
 rec_2010 <- get_rec_ci(last.yr.base.model, base.model, 2010)
 rec_2014 <- get_rec_ci(last.yr.base.model, base.model, 2014)
 rec_2016 <- get_rec_ci(last.yr.base.model, base.model, 2016)
+rec_2017 <- get_rec_ci(last.yr.base.model, base.model, 2017)
 
 # Cohort biomass-at-age -------------------------------------------------------
 baa_curr_mle <- get_baa_mle(base.model) %>%
@@ -585,6 +586,7 @@ baa_curr_tot_mle <- sum(baa_curr_mle)
 b_curr_prop_mle_2010 <- baa_curr_mle[assess.yr - 2010 + 1] / baa_curr_tot_mle
 b_curr_prop_mle_2014 <- baa_curr_mle[assess.yr - 2014 + 1] / baa_curr_tot_mle
 b_curr_prop_mle_2016 <- baa_curr_mle[assess.yr - 2016 + 1] / baa_curr_tot_mle
+b_curr_prop_mle_2017 <- baa_curr_mle[assess.yr - 2017 + 1] / baa_curr_tot_mle
 baa <- get_baa(base.model, assess.yr)
 baa_large <- baa %>%
   arrange(desc(Median))

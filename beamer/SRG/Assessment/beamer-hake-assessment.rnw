@@ -26,7 +26,7 @@
 \newcommand{\mlc}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 \newcommand{\subscr}[1]{$_{\text{#1}}$}
 \newcommand{\Fforty}{F_{\text{SPR}=40\%}}       % Needs to be done as $\Fforty$
-\newcommand{\Bforty}{B_{\text{SPR}=40\%}}
+\newcommand{\Bforty}{B_{40\%}}
 \newcommand{\fishname}{Pacific Hake}
 \newcommand{\commonname}{Pacific whiting}
 \newcommand{\sciencename}{Merluccius productus}
@@ -164,7 +164,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \end{frame}
 
 %----------------------------------------------------------
-\frame{\frametitle{Bridging: Update SS / DM phase (Fig. 15)}
+\frame{\frametitle{Bridging: Update SS / DM phase}
   \bc
   <<bridge.biomass.1, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
   oldpar <- par(mfrow = c(1, 2),
@@ -216,7 +216,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 %----------------------------------------------------------
 \frame{\frametitle{Bridging: Update Pre-\Sexpr{last.data.yr}
-  data / add \Sexpr{assess.yr - 1} fishery data (Fig. 16)}
+  data / add \Sexpr{assess.yr - 1} fishery data}
   \bc
   <<bridge.biomass.2, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
   oldpar <- par(mfrow = c(1, 2),
@@ -249,7 +249,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 %----------------------------------------------------------
 \frame{\frametitle{Bridging: Update Pre-\Sexpr{last.data.yr}
-  data / add \Sexpr{assess.yr - 1} fishery data (Fig. 16)}
+  data / add \Sexpr{assess.yr - 1} fishery data}
   \bc
   <<bridge.recdev.biomass.3, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
   make.comparison.plot(bridge.models.2,
@@ -265,7 +265,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Bridging: Fishery empirical weight-at-age (Fig. 13)}
+\frame{\frametitle{Bridging: Fishery empirical weight-at-age}
   \bc
   <<wtage.heatmap, fig.height=3.5>>=
   weight.at.age.heatmap(base.model,
@@ -280,7 +280,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Last assessment: Fishery empirical weight-at-age (Fig. 13 in 2020 doc)}
+\frame{\frametitle{Last assessment: Fishery empirical weight-at-age}
   \bc
   <<last.yr.wtage.heatmap, fig.height=3.5>>=
   weight.at.age.heatmap(last.yr.base.model,
@@ -347,7 +347,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %}
 %
 %----------------------------------------------------------
-\frame{\frametitle{Bridging: rwMH to NUTS (Fig. H1 and H2)}
+\frame{\frametitle{Bridging: rwMH to NUTS}
   \bc
   <<bridge.biomass.4, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
   oldpar <- par(mfrow = c(1, 2),
@@ -374,7 +374,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Bridging: NUTS $R_0$ (Fig. A1)}
+\frame{\frametitle{Bridging: NUTS $R_0$ (Appendix A)}
   \bc
   <<bridge.mcmc.diag.r0.nuts, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
   oldpar <- par(mfrow = c(1, 2),
@@ -388,7 +388,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Bridging: rwMH $R_0$ (Fig. H6)}
+\frame{\frametitle{Bridging: rwMH $R_0$ (Appendix H)}
   \bc
   <<bridge.mcmc.diag.r0.rwMH, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
   oldpar <- par(mfrow = c(1, 2),
@@ -623,10 +623,10 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Large 1999, 2010, and 2014 cohorts fit particularly well.
-      \item Some over- and under-fitting in 1980 and 1984 cohorts.
-      \item Several cohorts in the mid-2000s were underfit (2005, 2006, 2008) when young.
-      \item The 2016 and 2017 cohorts fit well.
+      \item Large 1999, 2010, and 2014 cohorts fit particularly well
+      \item Some over- and under-fitting in 1980 and 1984 cohorts
+      \item Several cohorts in the mid-2000s were underfit (2005, 2006, 2008) when young
+      \item The 2016 and 2017 cohorts fit well
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -681,7 +681,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     \bi
       \item Prior for natural mortality looks to be constraining posterior
       \item Posterior for steepness does not shift much from prior
-      \item DM for fishery is estimated quite certainly for both MLE and MCMC
+      \item DM for fishery has a relatively narrow posterior distribution
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -711,14 +711,14 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
   \begin{table}
     \begin{tabular}{cccc} \hline
       \textcolor{blue}{Median (\Sexpr{assess.yr})} &
-      \textcolor{red}{Median (\Sexpr{assess.yr - 1})} &
-      \textcolor{blue}{MLE (\Sexpr{assess.yr})} &
-      \textcolor{red}{MLE (\Sexpr{assess.yr - 1})} \\
+      \textcolor{red}{Median (\Sexpr{assess.yr - 1})} \\
+      %\textcolor{blue}{MLE (\Sexpr{assess.yr})} &
+      %\textcolor{red}{MLE (\Sexpr{assess.yr - 1})} \\
       \hline
       \textcolor{blue}{\Sexpr{f(median(base.model$extra.mcmc$Q_vector), 2)}} &
-      \textcolor{red}{\Sexpr{f(median(last.yr.base.model$extra.mcmc$Q_vector), 2)}} &
-      \textcolor{blue}{\Sexpr{f(base.model$cpue$Calc_Q[1],2)}}  &
-      \textcolor{red}{\Sexpr{f(last.yr.base.model$cpue$Calc_Q[1],2)}} \\
+      \textcolor{red}{\Sexpr{f(median(last.yr.base.model$extra.mcmc$Q_vector), 2)}} \\
+      %\textcolor{blue}{\Sexpr{f(base.model$cpue$Calc_Q[1],2)}}  &
+      %\textcolor{red}{\Sexpr{f(last.yr.base.model$cpue$Calc_Q[1],2)}} \\
       \hline
     \end{tabular}
   \end{table}
@@ -840,25 +840,31 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Estimates of 2014 and 2016 cohorts}
-\bi
-  \item The probability of the 2014 cohort being larger than the 2010 cohort is \Sexpr{prob.percent.2014.rec.gt.2010.rec}\%
-  \item The probability of the 2016 cohort being larger than the 2010 cohort is \Sexpr{prob.percent.2016.rec.gt.2010.rec}\%
-\ei
-~\\
-
-Addition of new data for this year's model decreases 2014 cohort uncertainty to \Sexpr{rec_2014[[3]]}\%
-and 2016 cohort uncertainty to \Sexpr{rec_2016[[3]]}\% of what it was in the \Sexpr{assess.yr - 1} assessment:
+\frame{\frametitle{Estimates of above average cohorts}
+%\bi
+%  \item The probability of the 2014 cohort being larger than the 2010 cohort is \Sexpr{prob.percent.2014.rec.gt.2010.rec}\%
+%  \item The probability of the 2016 cohort being larger than the 2010 cohort is \Sexpr{prob.percent.2016.rec.gt.2010.rec}\%
+%\ei
+%~\\
+%
+%Addition of new data for this year's model decreases 2014 cohort uncertainty to \Sexpr{rec_2014[[3]]}\%
+%and 2016 cohort uncertainty to \Sexpr{rec_2016[[3]]}\% of what it was in the \Sexpr{assess.yr - 1} assessment:
 
   \begin{table}
     \begin{tabular}{ccrcc} \hline
       Calculation (billions) & Low (2.5\%) & Median & High (97.5\%) & Interval size\\
+      \hline
+      \Sexpr{assess.yr-1} assessment recruitment in 2010 & \Sexpr{rec_2010[[1]][1]} & \Sexpr{rec_2010[[1]][2]} & \Sexpr{rec_2010[[1]][3]} & \Sexpr{rec_2010[[1]][4]}\\
+      \Sexpr{assess.yr} assessment recruitment in 2010 & \Sexpr{rec_2010[[2]][1]} & \Sexpr{rec_2010[[2]][2]} & \Sexpr{rec_2010[[2]][3]} & \Sexpr{rec_2010[[2]][4]}\\
       \hline
       \Sexpr{assess.yr-1} assessment recruitment in 2014 & \Sexpr{rec_2014[[1]][1]} & \Sexpr{rec_2014[[1]][2]} & \Sexpr{rec_2014[[1]][3]} & \Sexpr{rec_2014[[1]][4]}\\
       \Sexpr{assess.yr} assessment recruitment in 2014 & \Sexpr{rec_2014[[2]][1]} & \Sexpr{rec_2014[[2]][2]} & \Sexpr{rec_2014[[2]][3]} & \Sexpr{rec_2014[[2]][4]}\\
       \hline
       \Sexpr{assess.yr-1} assessment recruitment in 2016 & \Sexpr{rec_2016[[1]][1]} & \Sexpr{rec_2016[[1]][2]} & \Sexpr{rec_2016[[1]][3]} & \Sexpr{rec_2016[[1]][4]}\\
       \Sexpr{assess.yr} assessment recruitment in 2016 & \Sexpr{rec_2016[[2]][1]} & \Sexpr{rec_2016[[2]][2]} & \Sexpr{rec_2016[[2]][3]} & \Sexpr{rec_2016[[2]][4]}\\
+      \hline
+      \Sexpr{assess.yr-1} assessment recruitment in 2017 & \Sexpr{rec_2017[[1]][1]} & \Sexpr{rec_2017[[1]][2]} & \Sexpr{rec_2017[[1]][3]} & \Sexpr{rec_2017[[1]][4]}\\
+      \Sexpr{assess.yr} assessment recruitment in 2017 & \Sexpr{rec_2017[[2]][1]} & \Sexpr{rec_2017[[2]][2]} & \Sexpr{rec_2017[[2]][3]} & \Sexpr{rec_2017[[2]][4]}\\
       \hline
     \end{tabular}
   \end{table}
@@ -868,6 +874,7 @@ and 2016 cohort uncertainty to \Sexpr{rec_2016[[3]]}\% of what it was in the \Se
   \item 2010 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2010 * 100, 1)}\% of the biomass
   \item 2014 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2014 * 100, 1)}\% of the biomass
   \item 2016 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2016 * 100, 1)}\% of the biomass
+  \item 2017 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2017 * 100, 1)}\% of the biomass
 \ei
 }
 
@@ -901,9 +908,11 @@ and 2016 cohort uncertainty to \Sexpr{rec_2016[[3]]}\% of what it was in the \Se
 \begin{columns}
   \begin{column}{0.5\textwidth}
     \bi
-      \item Estimated values
+      \item Median posterior distribution estimates
       \item Red line is mean age for the year
       \item Mean age drops significantly in years with large age-0 cohorts
+      \item Mean age increasing over recent years due to ageing large cohorts
+        and no new large year-classes
     \ei
   \end{column}
   \begin{column}{0.5\textwidth}
@@ -964,7 +973,7 @@ and 2016 cohort uncertainty to \Sexpr{rec_2016[[3]]}\% of what it was in the \Se
   \end{table}
   ~\\
 While the median estimate of $B_{\Sexpr{end.yr-1}}$ has increased from last
-year's assessment, the credible interval remains within that from last year's assessment.
+year's assessment, the credible interval remains well within that from last year's assessment.
 }
 
 %----------------------------------------------------------
@@ -1015,373 +1024,230 @@ year's assessment, the credible interval remains within that from last year's as
 %----------------------------------------------------------
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
   {\bf Explore recruitment parameterizations}}
-  \bi
-  \item The SRG notes the high sensitivity of the model to the variance parameter assumed for
-  recruitment deviations ($\sigma_R$). While the spawning
-  biomass trajectories across values of $\sigma_R$ were very close to one another, the corresponding
-  estimates of $R_0$ led to different estimates of stock status (relative spawning biomass).
-  \ei
-
-  \pause
-  {\bf The SRG encourages the JTC to explore methods for parameterizing recruitment and/or
-  estimating $\sigma_R$ that would reduce model sensitivity to the value of this constraint.}
+  %\bi
+  {\bf The SRG notes that $\sigma_R$ is an influential parameter and that
+    determining the choice of $\sigma_R$ remains a challenge and encourages the JTC
+    to continue to work on the issue.}
+  %\ei
 }
 
 %----------------------------------------------------------
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
     {\bf Response:} \emph{Explore recruitment parameterizations}}
   \bi
-    \item Developing best practices for modeling equilibrium recruitment ($R_0$)
-    and recruitment variability ($\sigma_R$)
-    remain broad topics of contemporary research. The JTC continues to conduct,
-    collaborate on, and monitor ongoing research projects concerning
-    approaches for advancing recruitment estimation,
-    as applied to \fishname\ and in general.
+    \item Research to treat recruitment deviations as a random effect and estimate $\sigma_R$
     \pause
-    \item The JTC is conducting and collaborating on simulation projects looking into the concurrent
-    estimation of multiple variance parameters. This includes the estimation of variability
-    associated with time-varying selectivity, $\sigma_R$, of the extra standard deviation parameters
-    on survey index data, and of the Dirichlet-Multinomial parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$.
-    Variance parameters in stock assessment models have a tendency to be interrelated
-    when they capture other sources of variance attributed to model mis-specification rather
-    than variability directly related to the given process.
-    This is particularly
-    important for $\sigma_R$ because without an index of recruitment to directly inform the
-    estimation of $\sigma_R$ it tends to soak up unspecified variability.
+    \item Research, more broadly, the concurrent estimation of multiple variance parameters
+      in stock assessment and their interactions
+    \pause
+    \item Utilize existing MSE framework and other state-space assessment framework
+      developments to explore recruitment estimation
+    \pause
+    \item Explore how early life history survival and factors affecting recruitment can be linked
+      into stock assessment process
+    \pause
+    \item Continue monitoring ongoing development of recruitment priors through meta-analysis research
   \ei
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response:} \emph{Explore recruitment parameterizations (page 2)}}
-  \bi
-    \item The near completion of the Management Strategy Evaluation framework for \fishname\ creates
-    considerable advantages for examining recruitment. For example, using the Template Model
-    Builder (TMB) estimation code developed by Dr. Nis Jacobsen for the MSE, there is opportunity
-    to explore random-effects treatment of recruitment variability.  The MSE
-    framework can also be used to evaluated the robustness of recruitment modeling assumptions on
-    management performance and uncertainty. Further, the MSE could be an additional option for
-    estimating $\sigma_R$ in MCMC runs while further testing semi-parametric selectivity.
-    \pause
-    \item The JTC conducted an analysis looking into autocorrelation of recruitment deviations over
-    time. Results showed no indication of autocorrelation, suggesting there is no need to
-    add additional variance terms to account for temporally-related recruitment deviations. Along with
-    no apparent retrospective pattern, this result suggests that the assessment model is not
-    overly mis-specified. Given the lack of autocorrelation, the assessment model was not
-    sensitive to the addition of an autocorrelation parameter.
-  \ei
-}
-
+%\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+%    {\bf Response:} \emph{Explore recruitment parameterizations (page 2)}}
+%  \bi
+%    \item The near completion of the Management Strategy Evaluation framework for \fishname\ creates
+%    considerable advantages for examining recruitment. For example, using the Template Model
+%    Builder (TMB) estimation code developed by Dr. Nis Jacobsen for the MSE, there is opportunity
+%    to explore random-effects treatment of recruitment variability.  The MSE
+%    framework can also be used to evaluated the robustness of recruitment modeling assumptions on
+%    management performance and uncertainty. Further, the MSE could be an additional option for
+%    estimating $\sigma_R$ in MCMC runs while further testing semi-parametric selectivity.
+%    \pause
+%    \item The JTC conducted an analysis looking into autocorrelation of recruitment deviations over
+%    time. Results showed no indication of autocorrelation, suggesting there is no need to
+%    add additional variance terms to account for temporally-related recruitment deviations. Along with
+%    no apparent retrospective pattern, this result suggests that the assessment model is not
+%    overly mis-specified. Given the lack of autocorrelation, the assessment model was not
+%    sensitive to the addition of an autocorrelation parameter.
+%  \ei
+%}
+%
 %----------------------------------------------------------
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response:} \emph{Explore recruitment parameterizations (page 3)}}
-  \bi
-    \item The JTC is following work being conducted by Dr. Cathleen Vestfals and colleagues at
-    the Northwest Fisheries Science Center looking at identifying climate drivers of
-    \fishname\ early life-history stages and recruitment. Possible outcomes from this work
-    of direct use to the assessment include the development of an explicit recruitment index,
-    an environmental index linked to recruitment, indicators of recruitment variation
-    ($\sigma_R$), and indicators of current or forecasted levels of recruitment.
-    Related work on making fisheries advice robust to time-varying productivity is
-    being conducted at the Pacific Biological Station, as part of a national DFO
-    initiative on an Ecosystem Approach to Fisheries Management.
-    \pause
-    \item The JTC is also following work being conducted by the International Council for
-    the Exploration of the Sea (ICES) Methods Working Group which, among other things,
-    is looking at meta-analytical approaches for estimating recruitment parameters.  Results
-    from this work could be used to develop informative prior distributions on key
-    recruitment parameters.
-  \ei
-}
-
+%\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+%    {\bf Response:} \emph{Explore recruitment parameterizations (page 3)}}
+%  \bi
+%    \item The JTC is following work being conducted by Dr. Cathleen Vestfals and colleagues at
+%    the Northwest Fisheries Science Center looking at identifying climate drivers of
+%    \fishname\ early life-history stages and recruitment. Possible outcomes from this work
+%    of direct use to the assessment include the development of an explicit recruitment index,
+%    an environmental index linked to recruitment, indicators of recruitment variation
+%    ($\sigma_R$), and indicators of current or forecasted levels of recruitment.
+%    Related work on making fisheries advice robust to time-varying productivity is
+%    being conducted at the Pacific Biological Station, as part of a national DFO
+%    initiative on an Ecosystem Approach to Fisheries Management.
+%    \pause
+%    \item The JTC is also following work being conducted by the International Council for
+%    the Exploration of the Sea (ICES) Methods Working Group which, among other things,
+%    is looking at meta-analytical approaches for estimating recruitment parameters.  Results
+%    from this work could be used to develop informative prior distributions on key
+%    recruitment parameters.
+%  \ei
+%}
+%
 %----------------------------------------------------------
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response:} \emph{Explore recruitment parameterizations (page 4)}}
-  \bi
-    \item The JTC plans to continue to work towards evaluating and testing best practices
-    for modeling recruitment variability, including the use of multi-stage recruitment
-    functions. In general, many of these issues are widespread
-    in stock assessment, and scientific-based solutions are likely to be the result of medium
-    to long-term research projects.
-  \ei
-}
-
+%\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+%    {\bf Response:} \emph{Explore recruitment parameterizations (page 4)}}
+%  \bi
+%    \item The JTC plans to continue to work towards evaluating and testing best practices
+%    for modeling recruitment variability, including the use of multi-stage recruitment
+%    functions. In general, many of these issues are widespread
+%    in stock assessment, and scientific-based solutions are likely to be the result of medium
+%    to long-term research projects.
+%  \ei
+%}
+%
 %----------------------------------------------------------
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
   {\bf Time-varying selectivity}}
 % \setbeamercovered{dynamic}   % need for \pause
-  \bi
-  \item The SRG notes that when setting values for other parameters that cannot be estimated
-  directly with confidence, the choice of values should be made using methods that are
-  objective, repeatable, and depend on fits to the observed data rather than on the model's
-  subsequent estimates of biomass or recruitment. One clear example is setting the parameter
-  controlling time-varying fishery selectivity ($\Phi$), with a goal of establishing repeatable steps
-  for setting $\Phi$ each year. This year the JTC presented a semi-parametric method of
-  characterizing the flexibility in selectivity, but this method did not resolve the sensitivity of
-  results to the choice of $\Phi$.
-  \ei
-
-  \pause
-  {\bf The SRG recommends that the JTC provide a review of how
-  time-varying selectivity is parameterized and estimated in other assessments.}
+  %\bi
+  {\bf The SRG encourages ongoing work to develop approaches to estimating
+    variance parameters.}
+  %\ei
 }
 
 %----------------------------------------------------------
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
     {\bf Response:} \emph{Time-varying selectivity}}
   \bi
-    \item Most methods that are available to estimate time-varying selectivity require
-    subjective choices. Common choices include which years to model using a time block,
-    the level of variability to use for a penalized vector, or the degree of smoothing for a spline.
-    Alternatively, state-space models can be used estimate time-varying selectivity in two
-    dimensions, age and time, where the degree of smoothing is estimated.
+    \item Research, more broadly, the concurrent estimation of multiple variance parameters
+      (including time-varying selectivity) in stock assessment and their interactions
     \pause
-    \item A comparison project was recently launched by the ICES Methods Working Group
-    to compare the results of four stock assessment frameworks that estimate
-    time-varying selectivity using different assumptions:
-    State-Space Assessment Model (SAM), Woods Hole Assessment Method (WHAM),
-    Stock Synthesis, and Age Structured Assessment Program (ASAP). Each framework will
-    be fit to data from 10 stocks using multiple configurations. This study will allow
-    for the comparison of estimated trajectories between two state-space frameworks and
-    two well-used statistical catch-at-age models when time-varying selectivity is ignored or
-    estimated using the current best practices for each framework. Results will
-    inform best practices for this assessment in 2021.
+    \item Continue monitoring ongoing time-varying selectivity research, including
+      comparisons among different statistical approaches in different operational and
+      research-based stock assessment frameworks
+    \pause
+    \item Explorations into input age composition sample sizes will need
+      to be jointly considered 
   \ei
 }
 
 %----------------------------------------------------------
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-  {\bf Histological analyses of ovaries}}
+  {\bf Reference points}}
 % \setbeamercovered{dynamic}   % need for \pause
-  \bi
-  \item The histological analysis of ovaries for maturity presented in 2018 showed a distinct
-  difference in the percent of Hake that are mature at age 2 and age 3 between areas, with a
-  greater proportion mature south of Point Conception (34.5$^\circ$N). These data show that there
-  may be two populations of hake, north and south of this boundary. The SRG also notes that
-  ovaries collected in Canada were not used to update the maturity ogive. Hake found in
-  Canada are generally older, and including samples of these fish in the maturity analysis
-  should improve the accuracy of the maturity ogive. The JTC noted that work began late in
-  2018 to address this recommendation.
-  \ei
-
-  \pause
-  {\bf The SRG strongly supports the ongoing genetic
-  analyses to determine whether there are genetic differences among the two southern
-  regions and other regions. In addition, the SRG notes that Canadian samples should be
-  included in the maturity analysis.}
+  %\bi
+  {\bf The SRG recommends that the JTC explore alternative methods of estimating
+    reference points, including dynamic reference points or reference points based
+    on a defined time period. There is some urgency to this work as biomass is
+    declining and the relative spawning biomass may fall below the target level
+    $\Bforty$ within 2 years.}
+  %\ei
 }
 
 %----------------------------------------------------------
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response:} \emph{Histological analyses of ovaries}}
+    {\bf Response:} \emph{Reference points}}
   \bi
-    \item The JTC is in communication with the research team conducting \fishname\
-    genetic analyses. They provided the following information:
+    \item Use the MSE to systematically evaluate dynamic reference points, including
+      the implications of necessary assumptions, as suggested by recent international
+      workshops and related research
     \pause
-    \item Genetic samples have been collected from along the Pacific coast during summer,
-    fall (BC to CA) and winter (OR and CA) and within the Strait of Georgia (BC) during the spring.
-    We have begun a genetics study to characterize the spatial-temporal population structure
-    of \fishname\ coast wide. Prior genetic analyses in hake have focused on a smaller geographic
-    range, over a limited seasonal time scale, and used a limited set of genetic markers.
-    \pause
-    \item For this study, samples were grouped in boxes based on spatial-temporal collection
-    information (i.e., year, season, and location) and selected samples distributed across
-    these boxes. RADseq has been utilized to generate 8,763 genome
-    wide polymorphic markers, which will allow for powerful population genomic analyses
-    as well as association tests of genetic variability with life-history characteristics
-    such as growth rates and age at maturation.
+    \item Preliminary investigations based on the estimated no-fishing ("unfished") time series
+      indicates that the stock could be more productive than what virgin equilibrium
+      conditions otherwise indicate. If this is the case, estimates of relative fishing
+      intensity would be higher than currently estimated, and estimates of relative stock
+      size would be lower than currently estimated. However, many simplifying assumptions
+      are made when estimating unfished time series and these need to be thoroughly examined. 
   \ei
 }
 
 %----------------------------------------------------------
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response:} \emph{Histological analyses of ovaries (page 2)}}
-  \bi
-    \item In the initial round of sequencing, DNA were extracted from 1,092 individuals from
-    across spatial-temporal boxes from 2015--2017. Of these, 876 samples were sequenced based
-    on sufficient DNA concentrations, 667 of which passed quality filters. Preliminary findings
-    generally corroborate the single stock hypothesis with low differentiation amongst locations.
-    A Principal Component Analysis (PCA) groups all coastal individuals across space and time together
-    with Salish Sea individuals clearly distinct. However, using a Bayesian clustering analysis there was
-    evidence for seasonal migration across several winter boxes (across years and location) showing signs
-    of differentiation from the same location in different season and years. This was corroborated
-    with weak but significant pairwise FST comparisons.
-    \pause
-    \item For the next round of sequencing, and to finalize data collection for the project, the team will
-    sequence approximately another 1,000 individuals.  These include recently acquired samples, with the goal
-    of filling in gaps in spatial-temporal boxes and to add additional samples to existing boxes to boost sample sizes.
-    The team expects to complete the sequencing and analyses for these samples in 2020, with publication.
-  \ei
-}
-
-%----------------------------------------------------------
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response:} \emph{Histological analyses of ovaries (page 3)}}
-  \bi
-    \item Canadian ovaries from surveys have been collected since 2018 and could be included in
-    updated maturity analyses planned for the upcoming year. However, logistical considerations
-    will need to be worked out regarding sample exchange and histological analysis workload
-    between DFO and NWFSC.
-    \pause
-    \item Archipelago Marine Research (AMR) Inc. are the sampling contractors for Canadian groundfish
-    sampling, including Shoreside and observers aboard Freezer-trawlers fishing hake. They were contacted
-    in January 2020 about implementing ovary sampling on both of these fleets and have yet to respond.
-    Every effort will be made to ensure ovary sampling happens for the 2020 Canadian hake fishery.
-  \ei
-}
-
-%----------------------------------------------------------
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response:} \emph{Histological analyses of ovaries (page 4)}}
-  \bi
-    \item A new project has been initiated looking at improved methods to differentiate which females
-    will likely spawn from those that will not and, thus, should or should not be included as
-    spawning biomass. The study is using liver and ovary samples collected during NWFSC acoustic surveys
-    (2017--2019) to develop metabolic markers linked to key female reproductive stages. Liver physiology
-    and levels of certain lipid classes may reveal overall metabolic and reproductive status.
-    Preliminary results from initial liver lipid analyses indicate that levels of important structural (phospholipids)
-    and storage (triglycerides) lipids are indicative of female maturation status (immature vs. mature)
-    and may be predictive of reproductive failure (atresia) and/or skipped spawning in \fishname. Work is
-    currently underway to expand the liver lipid analyses and develop molecular markers for lipid synthesis
-    (liver RNA) and ovarian growth and atresia (ovarian RNA). Molecular information from liver and ovary
-    samples together with liver lipid analyses and gonadal histology should provide a broader picture of
-    reproductive status of female \fishname\ and better inform stock assessments.
-  \ei
-}
-
-
-%----------------------------------------------------------
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-  {\bf Effect of sampling protocols on sample sizes}}
+  {\bf Sample sizes and downweighting data}}
 % \setbeamercovered{dynamic}   % need for \pause
-  \bi
-  \item The issue of data weighting remains a significant technical challenge for stock assessments
-  that integrate information of different forms from different sources. The annual number of hauls
-  and trips from which fish ages were used are summed to provide initial sample sizes.
-  If there are changes in the number of fish associated with each
-  sample unit over time, then a corresponding change in the information content of an age-composition sample would be
-  expected. The approach taken to deriving the initial data
-  weights could account for changes in the number of fish per sampling unit. Alternatively, the
-  DM parameter that accounts for variability in the age-composition
-  observations could include a time-varying component to account for changes in the number
-  of fish per sampling unit.
-  \ei
-
-  \pause
-  {\bf The SRG notes that the JTC included information in the 2019
-  assessment on the annual numbers of fish underlying each annual age-composition
-  observation, but were unable to complete an analysis, as requested in the 2018 SRG
-  report, on the effect of potential changes in sampling protocols that could influence the
-  input sample sizes. The SRG reiterates its request for this analysis.}
+  %\bi
+  {\bf The SRG recommends (1) that the JTC undertake simulations to investigate
+    the effect of downweighting age-composition data on management performance,
+    and (2) that the JTC explore temporal trends in sample sizes and appropriate
+    ways of estimating the annual variability in age-composition data.}
+  %\ei
 }
 
 %----------------------------------------------------------
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response:} \emph{Effect of sampling protocols on sample sizes}}
+    {\bf Response:} \emph{Sample sizes and downweighting data}}
   \bi
-    \item Progress was made on documenting the historical methods utilized
-    to sample \fishname\ for otoliths, which began in the 1970s with observers on foreign vessels.
-    Many protocols have remain unchanged over time, but some methods of collecting fish for
-    ageing and the numbers of fish aged per tow or trip have changed. Below, we summarize
-    known major changes.
+    \item Exploration of pre-2008 data proved difficult as they are not investigated
+      annually. There is no way to know if current extractions of historical data from the
+      databases match what was used to generate historical age compositions.
     \pause
-    \item A clear change in protocol was initiated in 1999 for the U.S. at-sea fishery with the
-    move towards random sampling of fish for ages rather than random-stratified sampling,
-    which attempts to collect ages in each 1 cm length bin. Additionally, in 2009
-    at-sea observers started collecting three instead of five sets of otoliths from a haul.
-    \item In Canada, target sample size (n=50) has not changed over time for at-sea observers aboard
-    foreign joint-venture vessels. On freezer-trawlers observers are currently instructed to
-    collect age samples from 60 fish.
-  \ei
-}
-
-%----------------------------------------------------------
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response:} \emph{Effect of sampling protocols on sample sizes (page 2)}}
-  \bi
-    \item In 2016, dockside observers were asked to change their protocols based on JTC input.
-    Samples changed from being collected during dedicated weeks to the landing level.
+    \item Next steps include extracting historical age compositions and rectifying differences,
+      then conduct simulations to determine how to best assign sample sizes to disparate sampling
+      methods when aggregating to a single fleet.
     \pause
-    \item A more complete summary of the changes in the sampling protocol over time will be
-    completed in the upcoming months and included in the 2021 assessment as an appendix.
-    Currently, this information has been used to inform a simulation study that investigated
-    repercussions of biased input sample sizes. Preliminary results suggest
-    that the D-M parameters combined with time-varying selectivity can estimate the time
-    series of spawning stock biomass with little bias when there is no temporal trend in
-    the bias applied to the input sample size. Future investigations will look into temporal
-    trends in this bias, where the trend will be informed by changes in the protocols used
-    to specify the collection of otoliths in the \fishname\ fishery.
+    \item The JTC investigated how many tows are typically included in a trip for the shore-based
+      fleet using records from observer data. The number of tows completed per trip will help inform
+      the amount of overdispersion present in the data and thus used in the simulation. Preliminary
+      investigations suggest that on average there are about two hauls conducted per shore-based trip
+      in the U.S.; and, combined, those hauls, on average, contain about half as much in catch weight
+      as a single at-sea haul.
   \ei
 }
 
 %----------------------------------------------------------
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-  {\bf Explore use of ADNUTS MCMC algorithm}}
+  {\bf Age composition variability}}
 % \setbeamercovered{dynamic}   % need for \pause
-  \bi
-  \item A recent advance in Bayesian analysis (the no U-turn sampler, NUTS) raises the possibility
-  that the assessment model could reach convergence much more quickly than is now possible.
-  Many 2019 sensitivity runs were limited to maximum likelihood estimates (MLE) values,
-  rather than Markov chain Monte Carlo (MCMC) values, to save computing time, minutes
-  versus 2.5 days per run, respectively.
-  \ei
-
-  \pause
-  {\bf The SRG recommends that the JTC continue to
-  explore NUTS and similar options, as using MCMC for all runs would provide better
-  comparability between the base assessment model and sensitivity runs.}
+  %\bi
+  {\bf The SRG recommends that the JTC undertake an analysis of the annual
+    age-composition data in a more disaggregated form (e.g., by fleet) outside
+    of the model to evaluate the sources of between-sample variability in the
+    fishery age-compositions (month, year, fleet, sample size, etc.) and whether
+    the variability relates to simple metrics of sample size such as the number
+    of sampled tows, the number of sampled trips, and the number of sampled fish.}
+  %\ei
 }
 
 %----------------------------------------------------------
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response:} \emph{Explore use of ADNUTS MCMC algorithm}}
+    {\bf Response:} \emph{Age composition variability}}
   \bi
-    \item The JTC evaluated the No U-turn sampler (NUTS) method for conducting efficient
-    Bayesian MCMC sampling using the {\tt adnuts} R package.
-    Results from this evaluation, including comparisons to the current approach for Bayesian
-    MCMC sampling, are shown in Appendix~H. In addition, the JTC explored
-    the added utility of using the ShinyStan application {\tt shinystan} features in {\tt adnuts}
-    to better visualize MCMC diagnostics, including mixing, sampling and divergence metrics, among
-    other things. A demonstration of this application will be shown next. The code
-    used for running NUTS is given at the end of Appendix~H.
+    \item Need to understand the historical data first (in progress). Currently, the
+      disaggregated forms of the compositional data are unavailable because the raw data
+      are unavailable.
+    \pause
+    \item The JTC explored several approaches for adjusting the input sample sizes for age
+      composition data without changing the method of weighting by landings using data since 2008.
+      These included adjusting the U.S. (or U.S. and Canadian) at-sea sectors to be more consistent with the
+      shore-based sector ratio of fish per sample, and applying generic regression equations built
+      through meta-analysis of West coast groundfish stocks that define candidate input sample sizes
+      based on the number of samples (hauls or trips) and the number of fish sampled. In both cases,
+      results from exploratory model runs showed similar estimates of equilibrium and current spawning
+      stock biomass compared to what was estimated for this assessment.
+    \pause
+    \item In addition, systematically removing all age-composition data from the beginning of
+      the assessment model time series through 1990 led to similar stock trajectories from 1990 forward.
   \ei
 }
 
 %----------------------------------------------------------
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-  {\bf Catch data extraction deadline}}
-% \setbeamercovered{dynamic}   % need for \pause
+    {\bf Other requests: see details in assessment document}}
   \bi
-  \item Delays in entry and validation of catches reported on paper tickets in Washington and entry
-  into the PACFIN database was identified as a potential issue. This concern has most often
-  applied to tribal catches. The preferred process is that all data are available from managed
-  regional databases in time for JTC data extraction, which usually occurs early in January.
-  \ei
-
-  \pause
-  {\bf The SRG recommends that the JTC continue to set a deadline for the extraction of
-  catch data and be transparent about the sources of data used in the assessment in the
-  event that data have to be obtained directly from the sources.}
-}
-
-%----------------------------------------------------------
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response:} \emph{Catch data extraction deadline}}
-  \bi
-    \item The JTC set the deadline 3 January 2020 for the extraction of data.
-    In addition, the JTC communicated with U.S. State partners to ensure the
-    most up-to-date data would be available. The streamlining of getting tribal fish
-    tickets into regional databases is advancing with the recent electronic ticket pilot
-    study jointly conducted by the Makah Tribe in Washington State and the Pacific States
-    Marine Fisheries Commission (see the tribal fishery report in
-    Appendix~E). However, nearly
-    50\% of the tribal catch had yet to be incorporated into the PacFIN regional
-    database by the data deadline. Nonetheless, the JTC worked with the Makah Tribe and
-    Washington Department of Fish and Wildlife to ensure the best estimates of
-    tribal catch were included in the stock assessment, despite not yet appearing in
-    PacFIN. The JTC anticipates that data will consistently be available in PacFIN
-    in timely manner moving forward with continued use of electronic ticket reporting
-    for all tribal catch.
+    \item Reproductive cycle: no new ovary samples in 2020 and no new maturity analyses conducted
+    \pause
+    \item Genetic studies: ongoing with second round of sequencing and manuscript underway 
+    \pause
+    \item NUTS: used in base model and sensitivity runs this year
+    \pause
+    \item NUTS: age-1 and rwMH sensitivity runs provided (appendices G and H, respectively)
+    \pause
+    \item Sensitivity models: all requested sensitivity analyses were conducted using NUTS
+    \pause
+    \item Ageing error: study will be conducted using new software package being developed and once
+      updated inter-lab comparisons are completed  
+    \pause
+    \item Historical otoliths: the Burke Museum has not been visited due to COVID-19 related closures
   \ei
 }
 
@@ -1414,32 +1280,61 @@ year's assessment, the credible interval remains within that from last year's as
 %----------------------------------------------------------
 \frame{\frametitle{Summary -- Biomass}
   \bi
-  \item Model continues to fit the age data particularly well.
-  \item The spawning stock is estimated to have been dropping since 2017.
+  \item Model continues to fit the age data particularly well
+  \item The estimated spawning stock biomass has continually dropped since 2017
   \item The median estimate of \Sexpr{end.yr} relative spawning biomass is
     \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
-    \Sexpr{curr.depl.upper}\%).
+    \Sexpr{curr.depl.upper}\%)
   \item The median estimate of \Sexpr{end.yr} female spawning biomass is
     \Sexpr{curr.bio.median}~million~t
-    (\Sexpr{curr.bio.lower}-\Sexpr{curr.bio.upper}~million~t).
+    (\Sexpr{curr.bio.lower}-\Sexpr{curr.bio.upper}~million~t)
   \ei
 }
 
-\frame{\frametitle{Summary -- Key Cohorts}
-  \bi
-  \item The 2010 cohort is estimated to have increased by \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"], 1)}~billion fish over last year's estimate (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"]) / (prev.assess.recruitment.med)["2010"]) * 100), 0)}\%)
-  \item The 2014 cohort is estimated to have increased by \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"], 1)}~billion fish over last year's estimate (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"]) / (prev.assess.recruitment.med)["2014"]) * 100), 0)}\%)
-  \item The 2016 cohort is estimated to have increased by \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"], 1)}~billion fish over last year's estimate (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"]) / (prev.assess.recruitment.med)["2016"]) * 100), 0)}\%)
-  \item The 2010 cohort uncertainty is \Sexpr{rec_2010[[3]]}\% of what it was in the \Sexpr{last.assess.yr} assessment.
-  \item The 2014 cohort uncertainty is \Sexpr{rec_2014[[3]]}\% of what it was in the \Sexpr{last.assess.yr} assessment.
-  \item The 2016 cohort uncertainty is \Sexpr{rec_2016[[3]]}\% of what it was in the \Sexpr{last.assess.yr} assessment.
-  \item 2010 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2010 * 100, 1)}\% of the biomass
-  \item 2014 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2014 * 100, 1)}\% of the biomass
-  \item 2016 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2016 * 100, 1)}\% of the biomass
+%------------------------------------------------------------
+%\frame{\frametitle{Summary -- Key Cohorts}
+%  %\bi
+%  <<main.cohort.table, results='asis', echo=FALSE>>=
+%    cohort_table(base.model,
+%             end_yr = end.yr,
+%             cohorts = c(1999, 2010, 2014, 2016),
+%             csv_dir = output.csv.dir,
+%             xcaption = paste0("Changes in biomass at each age"),
+%             font_size = 4.5,
+%             space_size = 4.5)
+%    @
+%  %\ei
+%} 
+%    
+%--------------------    
 
-  \item The three highest catches have occured in the last three years and we have ageing 2010 and 2014 cohorts such that biomass is trendinng downwards. Without either reduction in catch or a new large cohort, this trend will continue
+%\frame{\frametitle{Summary -- Key Cohorts}
+%  \bi
+%  \item The 2010 cohort is estimated to have increased by \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"], 1)}~billion fish over last year's estimate (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"]) / (prev.assess.recruitment.med)["2010"]) * 100), 0)}\%)
+%  \item The 2014 cohort is estimated to have increased by \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"], 1)}~billion fish over last year's estimate (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"]) / (prev.assess.recruitment.med)["2014"]) * 100), 0)}\%)
+%  \item The 2016 cohort is estimated to have increased by \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"], 1)}~billion fish over last year's estimate (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"]) / (prev.assess.recruitment.med)["2016"]) * 100), 0)}\%)
+%  \item The 2010 cohort uncertainty is \Sexpr{rec_2010[[3]]}\% of what it was in the \Sexpr{last.assess.yr} assessment.
+%  \item The 2014 cohort uncertainty is \Sexpr{rec_2014[[3]]}\% of what it was in the \Sexpr{last.assess.yr} assessment.
+%  \item The 2016 cohort uncertainty is \Sexpr{rec_2016[[3]]}\% of what it was in the \Sexpr{last.assess.yr} assessment.
+%  \item 2010 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2010 * 100, 1)}\% of the biomass
+%  \item 2014 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2014 * 100, 1)}\% of the biomass
+%  \item 2016 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2016 * 100, 1)}\% of the biomass
+%
+%  \item The four highest catches have occured in the last four years and we have ageing 2010 and 2014 cohorts such that biomass is trendinng downwards. 
   % \item The 2014 recruitment has \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of being as
   %   large as the 2010 recruitment.
+%  \ei
+%}
+
+%--------------------    
+
+\frame{\frametitle{Summary -- Key Points}
+  \bi
+  \item Highest catches on record over last four years
+  \item Very low catch of age-2 and age-1 fish in 2020 fishery
+  \item Large 2010 and 2014 cohort biomass: mortality outpacing growth (28\% and 33\%
+    decline, respectively, from beginning of 2020)
+  \item Rate of decline in spawning stock biomass has increased over last 3 years
   \ei
 }
 
