@@ -391,16 +391,16 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 \begin{columns}
   \begin{column}{0.35\textwidth}
     \bi
+% This needs to be somewhat manual so you can pick the cohorts to
+% specify - look at fore.catch.prop and see assessment-section.rnw.
+% Increment the ages (not cohort years!) each assessment.
   \item Default Harvest Rule catch
   \item Dependent on selectivity assumption
-  \item Age-6 (2014 cohort): \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$`6`),0)}\% by numbers,
-    \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$`6`),0)}\% by weight
-  \item Age-4 (2016 cohort): \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$`4`),0)}\% by numbers,
-    \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$`4`),0)}\% by weight
-  \item Age-10 (2010 cohort): \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$`10`),0)}\% by numbers,
-    \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$`10`),0)}\% by weight
-  \item Age-3 (2017 cohort): \Sexpr{round(100*median(base.model$extra.mcmc$natsel.prop$`3`),0)}\% by numbers,
-    \Sexpr{round(100*median(base.model$extra.mcmc$natselwt.prop$`3`),0)}\% by weight
+  \item Median proportions (by numbers) are:
+  \item \Sexpr{fore.catch.prop$Age7}\% age-7 fish, 2014 cohort
+  \item \Sexpr{fore.catch.prop$Age5}\% age-5 fish, 2016 cohort
+  \item \Sexpr{fore.catch.prop$Age4}\% age-4 fish, 2017 cohort
+  \item \Sexpr{fore.catch.prop$Age11}\% age-11 fish, 2010 cohort
     \ei
   \end{column}
   \begin{column}{0.65\textwidth}
