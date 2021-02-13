@@ -447,6 +447,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
   \begin{columns}
     \begin{column}{0.48\textwidth}
       \bi
+        \item **fix figure and update text
         \item \Sexpr{end.yr} default catch limit (bottom row)
         \bi
           \item similarly high correlation for 2010, 2014, and 2016 recruitment
@@ -555,7 +556,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 %% }
 
 
-\frame{\frametitle{Age-1 index: correlation with base recruitment estimates}
+\frame{\frametitle{****Age-1 index: correlation with base recruitment estimates}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
@@ -581,7 +582,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Summary}
 \subsection{}
-\frame{\frametitle{Summary of forecasting}
+\frame{\frametitle{***Summary of forecasting}
   \bi
     \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t)
     \item Uncertainty is large, but stock is likely above $B_{40\%}$ and relative fishing intensity likely to have been below 100\%
@@ -598,7 +599,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Appendix Models}
 \subsection{}
-\frame{\frametitle{Consideration of age-1 survey}
+\frame{\frametitle{**MAYBE JUST ONE SLIDE ON EACH APP Consideration of age-1 survey}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
