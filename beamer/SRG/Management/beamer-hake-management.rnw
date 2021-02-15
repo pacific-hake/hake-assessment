@@ -148,10 +148,12 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 
 %--------------------------------------------------------------
 \frame{\frametitle{Past management: Total Allowable Catch}
-    <<tac.vs.realized.catch.ts, fig.height=3.5>>==
-      management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE, connect_vars_linetype = "solid",
-      connect_vars_alpha = 0.2, curr_assess_biomass = base.model$catch.default.policy[1])
-    @
+<<tac.vs.realized.catch.ts, fig.height=3.5>>==
+management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
+                             connect_vars_linetype = "solid",
+                             connect_vars_alpha = 0.2,
+                             curr_assess_biomass = base.model$catch.default.policy[1])
+@
 }
 
 
@@ -161,6 +163,10 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
   \begin{columns}
     \begin{column}{0.25\textwidth}
       \bi
+        \item \protect{P$(B_{\Sexpr{assess.yr}} / B_0 < 0.4)$} $~~=$\Sexpr{probs.curr.below.bforty}\%
+        \item P(relative fishing intensity at end of \Sexpr{assess.yr-1} $>$ 1.0)
+        $~~= \Sexpr{probs.curr.rel.fish.intens.above.one}\%$
+        \item Joint probability of both is \Sexpr{joint.percent.prob.above.below}\%
         \item Fishing intensity has remained below target
         \item Biomass has mostly remained above target
         % \item When biomass goes below target, the fishing intensity typically
@@ -229,7 +235,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
       \item No fishing results in relatively constant \emph{median} relative
         spawning biomass from \Sexpr{assess.yr} to \Sexpr{assess.yr+1} then
         slight increase
-      \item All other catch streams result in decreases in the median relative to \Sexpr{assess.yr}
+      \item All other catch streams result in decreases in the median
       \item Uncertainty is large and increases from \Sexpr{end.yr} to \Sexpr{end.yr+2}
     \ei
   \end{column}
@@ -284,15 +290,14 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 \begin{columns}
   \begin{column}{0.33\textwidth}
     \bi
-      \item Relative spawning biomass is decreasing in the absence of fishing
-        due to continued decline of large 2010 and 2014 cohorts
-      \item Lower 5\% quantile below $B_{40\%}$ in \Sexpr{end.yr} (35\%)
+      % \item Lower 5\% quantile below $B_{40\%}$ in \Sexpr{end.yr} (35\%)
       \item Median (50\%) decreases from \Sexpr{end.yr} to \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
-        for all catch levels
-        \bi
-        \item Median is > $B_{40\%}$ for all **2021 catch
-        \item Median goes below $B_{40\%}$ in **2022 between d and e
-        \ei
+        for all non-zero catch levels (continued decline of large 2010 and 2014 cohorts)
+        % Commenting in 2021, think should just talk about probs
+        % \bi
+        % \item Median is > $B_{40\%}$ for all **2021 catch
+        % \item Median goes below $B_{40\%}$ in **2022 between d and e
+        % \ei
     \ei
   \end{column}
   \begin{column}{0.65\textwidth}
@@ -316,7 +321,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 \subsection{Risk}
 \frame{\frametitle{Risk table definitions}
   Probabilities associated with biomass and fishing-based metrics for different fixed catch levels
-  (executive summary: Tables i and j; Figures j and k)
+  (see Executive Summary: Tables i and j; Figures j and k)
   \bi
     \item Fix catch in all years previous, and calculate default catch in
       forecast year
@@ -324,8 +329,9 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
       is less than specified biomass
     \item P(relative FI > 100\% target): Probability that relative fishing intensity in fixed catch
       year is greater than the target fishing intensity
-    \item P($C_{y+1} < C_y$): Probability that the calculated catch in forecast
-      year is less than the fixed catch
+    %Only last column of table refers to catches, and is spelt out in words
+    %\item P($C_{y+1} < C_y$): Probability that the calculated catch in forecast
+    %  year is less than the fixed catch
   \ei
 }
 
@@ -444,42 +450,42 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Recruitment}
-\subsection{}
-\frame{\frametitle{Investigating management options \& relationships with recent recruitment}
-  \begin{columns}
-    \begin{column}{0.48\textwidth}
-      \bi
-        \item **fix figure and update text
-        \item \Sexpr{end.yr} default catch limit (bottom row)
-        \bi
-          \item similarly high correlation for 2010, 2014, and 2016 recruitment
-            (\Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr)],
-                base.model$mcmc$Recr_2010),2)},
-            \Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr)],
-                base.model$mcmc$Recr_2014),2)},
-            and
-            \Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr)],
-                base.model$mcmc$Recr_2016),2)},
-            respectively)
-          \item increasing correlation with 2017 recruitment
-            (\Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr)],
-              base.model$mcmc$Recr_2017),2)}, not shown)
-        \ei
-        \item \Sexpr{end.yr+1} default catch limit (not shown) is more dependent on
-          2016 recruitment and the highly uncertain 2017 recruitment
-      \ei
-    \end{column}
-    \begin{column}{0.49\textwidth}
-    <<main.mcmc.pairs, fig.height=8, fig.width=8, out.width='0.92\\columnwidth'>>=
-      make.mcmc.diag.pairs.plot(base.model,
-                                inc.key.params = TRUE,
-                                recr = c(2010, 2014, 2016),
-                                bratio = end.yr,
-                               forecatch = end.yr)
-    @
-    \end{column}
-  \end{columns}
-}
+%% \subsection{}
+%% \frame{\frametitle{Investigating management options \& relationships with recent recruitment}
+%%   \begin{columns}
+%%     \begin{column}{0.48\textwidth}
+%%       \bi
+%%         \item **fix figure and update text
+%%         \item \Sexpr{end.yr} default catch limit (bottom row)
+%%         \bi
+%%           \item similarly high correlation for 2010, 2014, and 2016 recruitment
+%%             ( Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr)],
+%%                 base.model$mcmc$Recr_2010),2)},
+%%              Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr)],
+%%                 base.model$mcmc$Recr_2014),2)},
+%%             and
+%%              Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr)],
+%%                 base.model$mcmc$Recr_2016),2)},
+%%             respectively)
+%%           \item increasing correlation with 2017 recruitment
+%%             ( Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end.yr)],
+%%               base.model$mcmc$Recr_2017),2)}, not shown)
+%%         \ei
+%%         \item Sexpr{end.yr+1} default catch limit (not shown) is more dependent on
+%%           2016 recruitment and the highly uncertain 2017 recruitment
+%%       \ei
+%%     \end{column}
+%%     \begin{column}{0.49\textwidth}
+%%     <<main.mcmc.pairs, fig.height=8, fig.width=8, out.width='0.92\\columnwidth'>>=
+%%       make.mcmc.diag.pairs.plot(base.model,
+%%                                 inc.key.params = TRUE,
+%%                                 recr = c(2010, 2014, 2016),
+%%                                 bratio = end.yr,
+%%                                forecatch = end.yr)
+%%     @
+%%     \end{column}
+%%   \end{columns}
+%% }
 
 
 %% \frame{\frametitle{Investigating management options for different options of recent recruitment}
@@ -557,29 +563,30 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 %% \end{columns}
 %% }
 
-
-\frame{\frametitle{****Age-1 index: correlation with base recruitment estimates}
-\begin{columns}
-  \begin{column}{0.38\textwidth}
-    \bi
-      \item Age-1 index appears to moderately follow estimates of recruitment
-      \item Estimated numbers of age-1 hake in 2019 (2018 year class) lower than 2016
-      and 2014 year classes
-      \bi
-        \item Survey and model estimates suggest decline in numbers of age-1 hake in 2019
-          relative to 2017
-        \item Numbers of age-1 hake caught in the 2019 fishery 1--2\% of
-          what was caught in 2017 and 2018
-      \ei
-    \ei
-  \end{column}
-  \begin{column}{0.59\textwidth}
-    <<age.one.index, fig.height=3.5, fig.width=6, out.width="0.95\\columnwidth">>=
-      make.survey.age1.plot(base.model, age.1.index)
-    @
-  \end{column}
-\end{columns}
-}
+%% Removing for 2021 assessment since not going to mention age-1 index here and
+%% retros cover essentially similar information
+%% \frame{\frametitle{****Age-1 index: correlation with base recruitment estimates}
+%% \begin{columns}
+%%   \begin{column}{0.38\textwidth}
+%%     \bi
+%%       \item Age-1 index appears to moderately follow estimates of recruitment
+%%       \item Estimated numbers of age-1 hake in \Sexpr{assess.yr-1} (\Sexpr{assess.yr-2} year class) lower than **2016
+%%       and **2014 year classes
+%%       \bi
+%%         %\item Survey and model estimates suggest decline in numbers of age-1 hake in 2019
+%%          %  relative to 2017
+%%         \item Numbers of age-1 hake caught in the \Sexpr{assess.yr-1} fishery **1--2\% of
+%%           what was caught in **2017 and **2018
+%%       \ei
+%%     \ei
+%%   \end{column}
+%%   \begin{column}{0.59\textwidth}
+%%     <<age.one.index, fig.height=3.5, fig.width=6, out.width="0.95\\columnwidth">>=
+%%       make.survey.age1.plot(base.model, age.1.index)
+%%     @
+%%   \end{column}
+%% \end{columns}
+%% }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Summary}
