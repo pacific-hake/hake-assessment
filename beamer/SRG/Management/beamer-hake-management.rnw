@@ -163,7 +163,8 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
       \bi
         \item Fishing intensity has remained below target
         \item Biomass has mostly remained above target
-        \item When biomass goes below target, the fishing intensity typically decreases
+        % \item When biomass goes below target, the fishing intensity typically
+        % decreases % not true in 2021 assessment
       \ei
     \end{column}
     \begin{column}{0.75\textwidth}
@@ -201,7 +202,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
   \ei
 }
 
-\subsection{Two year forecasts}
+\subsection{Two-year forecasts}
 \frame{\frametitle{Harvest-rule predicted catch for \Sexpr{assess.yr}}
 \begin{columns}
   \begin{column}{0.38\textwidth}
@@ -221,13 +222,14 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 \end{columns}
 }
 
-\frame{\frametitle{Two year forecasts}
+\frame{\frametitle{Two-year forecasts}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item No fishing results in a slight decline in spawning biomass from
-        \Sexpr{assess.yr} to \Sexpr{assess.yr+1} before leveling off
-      \item All other catch streams result in decreases in spawning biomass relative to \Sexpr{assess.yr}
+      \item No fishing results in relatively constant \emph{median} relative
+        spawning biomass from \Sexpr{assess.yr} to \Sexpr{assess.yr+1} then
+        slight increase
+      \item All other catch streams result in decreases in the median relative to \Sexpr{assess.yr}
       \item Uncertainty is large and increases from \Sexpr{end.yr} to \Sexpr{end.yr+2}
     \ei
   \end{column}
@@ -253,8 +255,8 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
   \bi
     \item Decision table format
     \bi
-      \item Quantiles from the posterior distribution for spawning biomass and fishing intensity
-      \item Tables provided for the base model as well as age-1 survey and adnuts sensitivity runs
+      \item Quantiles from the posterior distribution for relative spawning biomass and fishing intensity
+      % \item Tables provided for the base model as well as age-1 survey and adnuts sensitivity runs
     \ei
     \item Catch streams % text and which are gray is all manual, updated 2021
     \bi
