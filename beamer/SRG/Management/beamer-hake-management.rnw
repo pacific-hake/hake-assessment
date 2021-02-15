@@ -597,176 +597,179 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Appendix Models}
-\subsection{}
-\frame{\frametitle{**MAYBE JUST ONE SLIDE ON EACH APP Consideration of age-1 survey}
-\begin{columns}
-  \begin{column}{0.38\textwidth}
-    \bi
-      \item Age-1 survey model estimates slightly higher median spawning biomass relative
-        to the base model in recent years
-      \item Recent recruitment estimates are higher using age-1 survey
-      \bi
-        \item slightly higher for 2016 ($\approx$10\%) and 2017 ($\approx$20\%)
-        \item considerably higher for 2018 ($\approx$400\%)
-      \ei
-      \item Influences 2010--2022 forecasts (e.g., 2018 year class will be age-2 to
-        age-4, respectively)
-    \ei
-  \end{column}
-  \begin{column}{0.59\textwidth}
-    <<age.one.index.comp, fig.height=3.5, fig.width=6, out.width="0.95\\columnwidth">>=
-      make.comparison.plot(c(list(base.model), list(sens.models.2[[1]])),
-                     subplots = 2,
-                     model.names = c(base.model.name, sens.model.names.2[1]),
-                     end.yr = end.yr,
-                     legendloc = "topright")
-    @
-  \end{column}
-\end{columns}
-}
+%% Commenting out in 2021 to shorten and since covered in sensitivity talk.
+%%  We gave these details in 2020 and decision tables etc. are in Appendices for
+%%  2021 (see #812)
+%% \section{Appendix Models}
+%% \subsection{}
+%% \frame{\frametitle{**MAYBE JUST ONE SLIDE ON EACH APP Consideration of age-1 survey}
+%% \begin{columns}
+%%   \begin{column}{0.38\textwidth}
+%%     \bi
+%%       \item Age-1 survey model estimates slightly higher median spawning biomass relative
+%%         to the base model in recent years
+%%       \item Recent recruitment estimates are higher using age-1 survey
+%%       \bi
+%%         \item slightly higher for 2016 ($\approx$10\%) and 2017 ($\approx$20\%)
+%%         \item considerably higher for 2018 ($\approx$400\%)
+%%       \ei
+%%       \item Influences 2010--2022 forecasts (e.g., 2018 year class will be age-2 to
+%%         age-4, respectively)
+%%     \ei
+%%   \end{column}
+%%   \begin{column}{0.59\textwidth}
+%%     <<age.one.index.comp, fig.height=3.5, fig.width=6, out.width="0.95\\columnwidth">>=
+%%       make.comparison.plot(c(list(base.model), list(sens.models.2[[1]])),
+%%                      subplots = 2,
+%%                      model.names = c(base.model.name, sens.model.names.2[1]),
+%%                      end.yr = end.yr,
+%%                      legendloc = "topright")
+%%     @
+%%   \end{column}
+%% \end{columns}
+%% }
 
-%-------------------------------------------------------------------
-\frame{\frametitle{Consideration of age-1 survey}
-  \bi
-    \item Default harvest rule median catch limit for 2020 is \textcolor{red}{797,158~t (age-1 survey model)} compared to
-      \textbf{666,458~t (base model)}
-    \item Forecasts of spawning biomass using 2019 catch levels (410,000~t) result in higher stock levels
-      for \textcolor{red}{age-1 survey} relative to the \textbf{base} (2020: \textcolor{red}{72}
-       to \textbf{65}; 2021: \textcolor{red}{61} to \textbf{52}; 2022: \textcolor{red}{52} to \textbf{42})
-    \item Similarly, forecasts using 2019 TAC (597,500~t) levels for \textcolor{red}{age-1 survey} relative
-       to \textbf{base} (2020: \textcolor{red}{72} to \textbf{65}; 2021: \textcolor{red}{57} to \textbf{47};
-       2022: \textcolor{red}{44} to \textbf{34})
-    \item Both models estimate a high probability of stock decline from 2020 to 2021
-    \item If 2020 catch is the same as 2019 (410,000~t) then:
-      \bi
-        \item there is a \textcolor{red}{14\%} chance SSB is less than $B_{40\%}$ \textcolor{red}{(age-1 survey model)}
-        \item there is a \textbf{28\%} chance SSB is less than $B_{40\%}$ \textbf{(base model)}
-      \ei
-  \ei
-}
+%% %-------------------------------------------------------------------
+%% \frame{\frametitle{Consideration of age-1 survey}
+%%   \bi
+%%     \item Default harvest rule median catch limit for 2020 is \textcolor{red}{797,158~t (age-1 survey model)} compared to
+%%       \textbf{666,458~t (base model)}
+%%     \item Forecasts of spawning biomass using 2019 catch levels (410,000~t) result in higher stock levels
+%%       for \textcolor{red}{age-1 survey} relative to the \textbf{base} (2020: \textcolor{red}{72}
+%%        to \textbf{65}; 2021: \textcolor{red}{61} to \textbf{52}; 2022: \textcolor{red}{52} to \textbf{42})
+%%     \item Similarly, forecasts using 2019 TAC (597,500~t) levels for \textcolor{red}{age-1 survey} relative
+%%        to \textbf{base} (2020: \textcolor{red}{72} to \textbf{65}; 2021: \textcolor{red}{57} to \textbf{47};
+%%        2022: \textcolor{red}{44} to \textbf{34})
+%%     \item Both models estimate a high probability of stock decline from 2020 to 2021
+%%     \item If 2020 catch is the same as 2019 (410,000~t) then:
+%%       \bi
+%%         \item there is a \textcolor{red}{14\%} chance SSB is less than $B_{40\%}$ \textcolor{red}{(age-1 survey model)}
+%%         \item there is a \textbf{28\%} chance SSB is less than $B_{40\%}$ \textbf{(base model)}
+%%       \ei
+%%   \ei
+%% }
 
-%-------------------------------------------------------------------
-\frame{\frametitle{Acoustic backscatter (red) attributed to age-1 Pacific Hake}
-\bc
-  \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-  \includegraphics[height=2.9in]{../../../doc/main-figures/age1hake_03-19_sA_squareroot_bin_narrow-panel_bluergray}
- \ec
-}
+%% %-------------------------------------------------------------------
+%% \frame{\frametitle{Acoustic backscatter (red) attributed to age-1 Pacific Hake}
+%% \bc
+%%   \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+%%   \includegraphics[height=2.9in]{../../../doc/main-figures/age1hake_03-19_sA_squareroot_bin_narrow-panel_bluergray}
+%%  \ec
+%% }
 
-%-------------------------------------------------------------------
-\frame{\frametitle{Consideration of adnuts package}
-  \bi
-    \item Default harvest rule median catch limit for 2020 is \textcolor{blue}{682,111~t (adnuts model)} compared to
-      \textbf{666,458~t (base model)}
-    \item Forecasts of spawning biomass using 2019 catch levels (410,000~t) result in higher stock levels
-      for \textcolor{blue}{adnuts} relative to \textbf{base} (2020: \textcolor{blue}{73}
-       to \textbf{65}; 2021: \textcolor{blue}{57} to \textbf{52}; 2022: \textcolor{blue}{48} to \textbf{42})
-    \item Similarly, forecasts using 2019 TAC (597,500~t) levels for \textcolor{blue}{adnuts} relative
-       to \textbf{base} (2020: \textcolor{blue}{73} to \textbf{65}; 2021: \textcolor{blue}{52} to \textbf{47};
-       2022: \textcolor{blue}{39} to \textbf{34})
-    \item Both models estimate a high probability of stock decline from 2020 to 2021
-    \item If 2020 catch is the same as 2019 (410,000~t) then:
-      \bi
-        \item there is a \textcolor{blue}{21\%} chance SSB is less than $B_{40\%}$ \textcolor{blue}{(adnuts model)}
-        \item there is a \textbf{28\%} chance SSB is less than $B_{40\%}$ \textbf{(base model)}
-      \ei
-    \item Main difference is a slight change in estimate of $\log(R_0)$
-  \ei
-}
+%% %-------------------------------------------------------------------
+%% \frame{\frametitle{Consideration of adnuts package}
+%%   \bi
+%%     \item Default harvest rule median catch limit for 2020 is \textcolor{blue}{682,111~t (adnuts model)} compared to
+%%       \textbf{666,458~t (base model)}
+%%     \item Forecasts of spawning biomass using 2019 catch levels (410,000~t) result in higher stock levels
+%%       for \textcolor{blue}{adnuts} relative to \textbf{base} (2020: \textcolor{blue}{73}
+%%        to \textbf{65}; 2021: \textcolor{blue}{57} to \textbf{52}; 2022: \textcolor{blue}{48} to \textbf{42})
+%%     \item Similarly, forecasts using 2019 TAC (597,500~t) levels for \textcolor{blue}{adnuts} relative
+%%        to \textbf{base} (2020: \textcolor{blue}{73} to \textbf{65}; 2021: \textcolor{blue}{52} to \textbf{47};
+%%        2022: \textcolor{blue}{39} to \textbf{34})
+%%     \item Both models estimate a high probability of stock decline from 2020 to 2021
+%%     \item If 2020 catch is the same as 2019 (410,000~t) then:
+%%       \bi
+%%         \item there is a \textcolor{blue}{21\%} chance SSB is less than $B_{40\%}$ \textcolor{blue}{(adnuts model)}
+%%         \item there is a \textbf{28\%} chance SSB is less than $B_{40\%}$ \textbf{(base model)}
+%%       \ei
+%%     \item Main difference is a slight change in estimate of $\log(R_0)$
+%%   \ei
+%% }
 
-%-------------------------------------------------------------------
-\frame{\frametitle{Base model equilibrium recruitment}
-\begin{columns}
-  \begin{column}{0.25\textwidth}
-    \bi
-      \item median $\log(R_0)$ = \Sexpr{round(median(base.model$mcmc$SR_LN),2)}
-      \item equilibrium recruitment is 2,505 millions of fish
-    \ei
-  \end{column}
-  \begin{column}{0.75\textwidth}
-   <<main.mcmc.diag.R0.base, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-   make.mcmc.diag.plot(base.model, key.posteriors[2], key.posteriors.titles[2])
-   @
-  \end{column}
-\end{columns}
-}
+%% %-------------------------------------------------------------------
+%% \frame{\frametitle{Base model equilibrium recruitment}
+%% \begin{columns}
+%%   \begin{column}{0.25\textwidth}
+%%     \bi
+%%       \item median $\log(R_0)$ = \Sexpr{round(median(base.model$mcmc$SR_LN),2)}
+%%       \item equilibrium recruitment is 2,505 millions of fish
+%%     \ei
+%%   \end{column}
+%%   \begin{column}{0.75\textwidth}
+%%    <<main.mcmc.diag.R0.base, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+%%    make.mcmc.diag.plot(base.model, key.posteriors[2], key.posteriors.titles[2])
+%%    @
+%%   \end{column}
+%% \end{columns}
+%% }
 
-% %-------------------------------------------------------------------
-% \frame{\frametitle{adnuts model equilibrium recruitment}
-% \begin{columns}
-%   \begin{column}{0.25\textwidth}
-%     \bi
-%       \item median $\log(R_0)$ = \Sexpr{round(median(sens.models.6$mcmc$SR_LN),2)}
-%       \item equilibrium recruitment is 2,314 millions of fish
-%       \item adnuts 92\% of base model
-%     \ei
-%   \end{column}
-%   \begin{column}{0.75\textwidth}
-%    <<main.mcmc.diag.R0.adnuts, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%    make.mcmc.diag.plot(sens.models.6, key.posteriors[2], key.posteriors.titles[2])
-%    @
-%   \end{column}
-% \end{columns}
-% }
+%% % %-------------------------------------------------------------------
+%% % \frame{\frametitle{adnuts model equilibrium recruitment}
+%% % \begin{columns}
+%% %   \begin{column}{0.25\textwidth}
+%% %     \bi
+%% %       \item median $\log(R_0)$ = \Sexpr{round(median(sens.models.6$mcmc$SR_LN),2)}
+%% %       \item equilibrium recruitment is 2,314 millions of fish
+%% %       \item adnuts 92\% of base model
+%% %     \ei
+%% %   \end{column}
+%% %   \begin{column}{0.75\textwidth}
+%% %    <<main.mcmc.diag.R0.adnuts, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+%% %    make.mcmc.diag.plot(sens.models.6, key.posteriors[2], key.posteriors.titles[2])
+%% %    @
+%% %   \end{column}
+%% % \end{columns}
+%% % }
 
-%-----------------------------------------------------------------
-\frame{\frametitle{Decison Table - base model}
-<<decisions.biomass.table_base, results='asis', echo=FALSE>>=
-    make.decision.table.pres(base.model,
-                             models.inds,
-                             xcaption = NULL,
-                             xlabel = "tab:es-decisions-spr",
-                             font.size = 8,
-                             space.size = 10,
-                             type = "biomass",
-                             placement = "h")
-@
-}
+%% %-----------------------------------------------------------------
+%% \frame{\frametitle{Decison Table - base model}
+%% <<decisions.biomass.table_base, results='asis', echo=FALSE>>=
+%%     make.decision.table.pres(base.model,
+%%                              models.inds,
+%%                              xcaption = NULL,
+%%                              xlabel = "tab:es-decisions-spr",
+%%                              font.size = 8,
+%%                              space.size = 10,
+%%                              type = "biomass",
+%%                              placement = "h")
+%% @
+%% }
 
-%-----------------------------------------------------------------
-\frame{\frametitle{Decison Table - age-1 survey model}
-<<decisions.biomass.table_age1, results='asis', echo=FALSE>>=
-    make.decision.table.pres(sens.models.2[[1]],
-                             models.inds,
-                             xcaption = NULL,
-                             xlabel = "tab:es-decisions-spr",
-                             font.size = 8,
-                             space.size = 10,
-                             type = "biomass",
-                             placement = "h")
-@
-}
+%% %-----------------------------------------------------------------
+%% \frame{\frametitle{Decison Table - age-1 survey model}
+%% <<decisions.biomass.table_age1, results='asis', echo=FALSE>>=
+%%     make.decision.table.pres(sens.models.2[[1]],
+%%                              models.inds,
+%%                              xcaption = NULL,
+%%                              xlabel = "tab:es-decisions-spr",
+%%                              font.size = 8,
+%%                              space.size = 10,
+%%                              type = "biomass",
+%%                              placement = "h")
+%% @
+%% }
 
-%-----------------------------------------------------------------
-% \frame{\frametitle{Decison Table - adnuts model}
-% <<decisions.biomass.table_adnuts, results='asis', echo=FALSE>>=
-%     make.decision.table.pres(sens.models.6,
-%                              models.inds,
-%                              xcaption = NULL,
-%                              xlabel = "tab:es-decisions-spr",
-%                              font.size = 8,
-%                              space.size = 10,
-%                              type = "biomass",
-%                              placement = "h")
-% @
-% }
+%% %-----------------------------------------------------------------
+%% % \frame{\frametitle{Decison Table - adnuts model}
+%% % <<decisions.biomass.table_adnuts, results='asis', echo=FALSE>>=
+%% %     make.decision.table.pres(sens.models.6,
+%% %                              models.inds,
+%% %                              xcaption = NULL,
+%% %                              xlabel = "tab:es-decisions-spr",
+%% %                              font.size = 8,
+%% %                              space.size = 10,
+%% %                              type = "biomass",
+%% %                              placement = "h")
+%% % @
+%% % }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\frame{\frametitle{Trevor's request - 4 years forecast decision table}
-%<<decisions.biomass.base.model.with.4.yrs.forecasts, results = 'asis', echo = FALSE>>=
-%  base.model.4 <-  load.models(model.dir, "2019.03.00_base_forecast4")
-%  make.decision.table.pres(base.model.4,
-%                           model.inds = 1:8,
-%                           xcaption = NULL,
-%                           font.size = 4,
-%                           space.size = 5,
-%                           type = "biomass",
-%                           placement = "h")
-%@
-%}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% %\frame{\frametitle{Trevor's request - 4 years forecast decision table}
+%% %<<decisions.biomass.base.model.with.4.yrs.forecasts, results = 'asis', echo = FALSE>>=
+%% %  base.model.4 <-  load.models(model.dir, "2019.03.00_base_forecast4")
+%% %  make.decision.table.pres(base.model.4,
+%% %                           model.inds = 1:8,
+%% %                           xcaption = NULL,
+%% %                           font.size = 4,
+%% %                           space.size = 5,
+%% %                           type = "biomass",
+%% %                           placement = "h")
+%% %@
+%% %}
 
 \end{document}
