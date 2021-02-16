@@ -34,7 +34,7 @@ make.overview.map.plot(path = rootd.map.data)
   from the Joint U.S.~and Canada acoustic surveys
   \Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}. Area of the circle is roughly
   proportional to observed backscatter.
-  Histograms show survey-estimated biomass for ages 2 to 20, with major cohorts
+  Barplots show survey-estimated biomass for ages 2 to 20, with major cohorts
   highlighted in color.
   Figure produced by Julia Clemons (NOAA).}
 \label{fig:main-backscatter-map}
