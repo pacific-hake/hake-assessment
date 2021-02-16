@@ -367,9 +367,9 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
        names(dmed[1]),
        cex = 0.6,
        pos = 1,
-       col=colvec[1])
+       col = colvec[1])
   text(dmed[length(dmed)],
-       pmed[length(pmed)] + 0.015,
+       pmed[length(pmed)] - 0.015,
        names(dmed[length(dmed)]),
        pos = 2,
        cex = 0.6,
