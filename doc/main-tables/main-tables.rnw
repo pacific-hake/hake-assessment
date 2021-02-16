@@ -641,6 +641,7 @@ param_est_table(retro.list,
                 model.names = retro.model.names,
                 end.yr = end.yr,
                 digits = 3,
+                show_like = FALSE,
                 getrecs = c(2010, 2014, 2016),
                 xcaption = "Posterior medians from the base model for
                             select parameters, derived quantities,
