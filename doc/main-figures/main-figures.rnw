@@ -337,9 +337,9 @@ par <- oldpar
 \caption{Bridging models showing the \Sexpr{last.assess.yr} base model
   and the sequential influence of updating to the latest version of Stock Synthesis
   and changing the estimation of the Dirichlet Multinomial parameters to the final
-  estimation phase.  Moving the data weighting parameters to the final phase more
-  accurately reflects the timing of when other methods that manually tune data weights
-  occurs. Panels are spawning biomass
+  estimation phase. Moving the data weighting parameters to the final phase
+  more accurately reflects the timing used in other methods that manually
+  tune data weights. Panels are spawning biomass
   (upper panel), relative spawning biomass (spawning biomass in each year
   relative to the unfished equilibrium spawning biomass, middle left),
   absolute recruitment (middle right), recruitment deviations (lower left),
