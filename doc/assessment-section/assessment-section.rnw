@@ -1125,7 +1125,7 @@ a suite of other informative sensitivity analyses using full MCMC results
 (Section~\ref{sec:assessment-sensitivity-analyses}).
 
 We also present appendices of MCMC results for inclusion of
-of the age-1 survey index (Appendix~\ref{chap:age1-survey}), and the use of
+the age-1 survey index (Appendix~\ref{chap:age1-survey}), and the use of
 the Metropolis Hastings MCMC algorithm for the base model as used in past
 assessments (Appendix~\ref{chap:rwmh}). The inclusion of the age-1
 survey model was chosen because it may improve estimates of recruitment near the end
