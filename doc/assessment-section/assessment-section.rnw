@@ -699,7 +699,7 @@ remains similar to the \Sexpr{last.assess.yr} base model.
 %(Figure~\ref{fig:main-mcmc-survey-fit}).
 The addition of \Sexpr{last.assess.yr} fishery data
 had negligible effect on the fit to survey biomass (Figure~\ref{fig:main-bridge-5-panel-2}).
-Overall, the 2001 survey biomass index continues to be well below any model predictions that were evaluated,
+The 2001 survey biomass index continues to be well below any model predictions that were evaluated,
 and no direct cause for this is known.  The survey did begin earlier that year than all other surveys
 between 1995 and 2009 (Table~\ref{tab:main-survey-history}), which may explain
 some portion of the anomaly, along with El Ni\~no conditions and age structure.
