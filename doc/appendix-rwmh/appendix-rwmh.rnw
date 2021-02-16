@@ -547,7 +547,7 @@ par <- oldpar
 plot_mcmc_param_stats(sens.models.7)
 @
 \end{center}
-\caption{\Sexpr{plot_mcmc_param_stats.makecaption(modelname = "rwMH")}}
+\caption{\Sexpr{plot_mcmc_param_stats_makecaption(modelname = "rwMH")}}
 \label{fig:mcmc-diag-hists-rwmh}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

@@ -61,7 +61,7 @@ par <- oldpar
 plot_mcmc_param_stats(base.model)
 @
 \end{center}
-\caption{\Sexpr{plot_mcmc_param_stats.makecaption(modelname = "base")}}
+\caption{\Sexpr{plot_mcmc_param_stats_makecaption(modelname = "base")}}
 \label{fig:main-mcmc-diag-hists}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

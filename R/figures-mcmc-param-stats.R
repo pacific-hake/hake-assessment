@@ -37,6 +37,7 @@ plot_mcmc_param_stats <- function(model,
     acftemp <- acf(.x, lag.max = 1, type = "correlation", plot = FALSE)
     acoruse <- round(acftemp$acf[2], 3)
     stats$autocor[.y] <<- acoruse
+
     # Geweke statistic
     if(acoruse > 0.4){
       gewuse <- 3
@@ -125,17 +126,14 @@ plot_mcmc_param_stats <- function(model,
 #' Make the caption for [plot_mcmc_param_stats]
 #' @param modelname A character string to represent the model name that
 #' will be pasted into the caption.
-plot_mcmc_param_stats.makecaption <- function(modelname) {
-  out <- paste(
-  "Summary histograms of MCMC diagnostics for all", modelname, "model parameters.",
-  "The level of autocorrelation in the chain",
-  "(distribution across lag times, i.e., distance between samples in the chain, shown in the top left panel)",
-  "influences the effective sample size (top right panel)",
-  "used to estimate posterior distributions.",
-  "The Geweke statistic (lower left panel) tests for equality between",
-  "means located in the first part of the chain against means in the last part of the chain.",
-  "The Heidelberger and Welch statistic (lower right panel)",
-  "tests if the sampled values come from a stationary distribution by comparing different sections of the chain."
-  )
-  return(out)
+plot_mcmc_param_stats_makecaption <- function(modelname){
+  paste("Summary histograms of MCMC diagnostics for all", modelname, "model parameters.",
+        "The level of autocorrelation in the chain",
+        "(distribution across lag times, i.e., distance between samples in the chain, shown in the top left panel)",
+        "influences the effective sample size (top right panel)",
+        "used to estimate posterior distributions.",
+        "The Geweke statistic (lower left panel) tests for equality between",
+        "means located in the first part of the chain against means in the last part of the chain.",
+        "The Heidelberger and Welch statistic (lower right panel)",
+        "tests if the sampled values come from a stationary distribution by comparing different sections of the chain.")
 }
