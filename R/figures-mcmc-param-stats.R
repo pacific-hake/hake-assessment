@@ -5,12 +5,14 @@
 #' @param model A model as output by [load_models()]
 #' @param col A color to shade the bars
 #' @param effn_labels If TRUE, add labels to the top of the bars on the effective sample size plot
+#' @param ylim_mult Multiply the maximum ylim value by this (to show labels on bars better if `effn_labels` is `TRUE`)
 #'
 #' @return A [barplot()]
 #' @export
 plot_mcmc_param_stats <- function(model,
                                   col = get.shade(color = "blue", opacity = 30),
-                                  effn_labels = FALSE){
+                                  effn_labels = FALSE,
+                                  ylim_mult = 1){
 
   oldpar <- par("mar", "oma")
   on.exit(par(oldpar))
@@ -50,9 +52,10 @@ plot_mcmc_param_stats <- function(model,
     stats$geweke[.y] <<- gewuse
 
     # Effective sample size
-    effsize <- coda::effectiveSize(coda::mcmc(.x))
-    effnuse <- round(effsize, 0)
-    stats$effn[.y] <<- min(effnuse, draws)
+    x <- enframe(.x, name = NULL)
+    spec <- coda::spectrum0.ar(x)$spec
+    effsize <- round(ifelse(spec == 0, 0, nrow(x) * var(x) / spec), 0)
+    stats$effn[.y] <<- min(effsize, draws)
 
     # Heidelberger and Welch statistic
     if(acoruse > 0.4){
@@ -99,7 +102,7 @@ plot_mcmc_param_stats <- function(model,
        xlab = "Effective sample size",
        breaks = c(seq(0, draws, by = (draws / 10))),
        xlim = c(0, draws),
-       ylim = c(0, max(j$counts) * 1.1),
+       ylim = c(0, max(j$counts) * ylim_mult),
        labels = effn_labels,
        col = col)
 
