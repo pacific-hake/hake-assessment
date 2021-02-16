@@ -769,7 +769,7 @@ distribution and the prior may be constraining the posterior distribution from s
 further. Broadening
 the prior distribution by increasing the prior standard deviation for the natural mortality
 parameter is examined in sensitivity runs (see Section~\ref{sec:assessment-sensitivity-analyses}).
-Other parameters showed updating from diffuse priors to stationary posterior
+Other parameters showed updating from diffuse priors to posterior
 distributions, including $\theta_{\text{fish}}$ and  $\theta_{\text{surv}}$ (as outlined in
 Section~\ref{sec:data-age-comp-likelihood}).
 
