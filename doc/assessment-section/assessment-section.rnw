@@ -1267,12 +1267,13 @@ Figure~\ref{fig:main-forecast-risk-comparison-year-1}), and a probability of
 \Sexpr{zero.catch.prob.bio.down.2}\% of decreasing from \Sexpr{forecast_yrs[2]}
 to \Sexpr{forecast_yrs[3]} (Table~\ref{tab:main-risk-year-2} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-2}). Note that for zero
-catch in Figure~\ref{fig:main-forecast-depletion-comparison}, the median in 2021
-essentially equals the median in 2022 (i.e., zero difference in the medians),
+catch in Figure~\ref{fig:main-forecast-depletion-comparison}, the median in \Sexpr{end.yr}
+essentially equals the median in \Sexpr{end.yr + 1} (i.e., zero difference in the medians),
 which might be expected to imply a 50\% probability of a decline (not the 65\%
 just mentioned). However, this does not occur because the difference between the
-2021 and 2021 medians is not the same as the median of the 2021 and 2022 differences.
-The median difference between 2021 and 2022
+\Sexpr{end.yr} and \Sexpr{end.yr + 1} medians is not the same as the median of the
+\Sexpr{end.yr} and \Sexpr{end.yr + 1} differences.
+The median difference between \Sexpr{end.yr} and \Sexpr{end.yr + 1}
 is a decline of 0.028 (from calculating the difference for each MCMC sample and
 then taking the median). About 15\% of the
 MCMC samples have a decline in the range -0.028 to 0 (a decline greater than the
