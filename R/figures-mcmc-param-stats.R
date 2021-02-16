@@ -4,11 +4,13 @@
 #'
 #' @param model A model as output by [load_models()]
 #' @param col A color to shade the bars
+#' @param effn_labels If TRUE, add labels to the top of the bars on the effective sample size plot
 #'
 #' @return A [barplot()]
 #' @export
 plot_mcmc_param_stats <- function(model,
-                                  col = get.shade(color = "blue", opacity = 30)){
+                                  col = get.shade(color = "blue", opacity = 30),
+                                  effn_labels = FALSE){
 
   oldpar <- par("mar", "oma")
   on.exit(par(oldpar))
@@ -87,12 +89,18 @@ plot_mcmc_param_stats <- function(model,
         font = 2,
         cex = 1.5)
 
+  j <- hist(stats$effn,
+            breaks = c(seq(0, draws, by = (draws / 10))),
+            plot = FALSE)
+
   hist(stats$effn,
        main = "",
        ylab = "",
        xlab = "Effective sample size",
        breaks = c(seq(0, draws, by = (draws / 10))),
        xlim = c(0, draws),
+       ylim = c(0, max(j$counts) * 1.1),
+       labels = effn_labels,
        col = col)
 
   hist(stats$geweke,
