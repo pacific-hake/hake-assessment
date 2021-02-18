@@ -22,9 +22,6 @@
 \usepackage[T1]{fontenc}  %to use < or > in tables
 
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
-%% syntax is \mlc{first line\\secondline}
-\newcommand{\mlc}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
-\newcommand{\subscr}[1]{$_{\text{#1}}$}
 
 % pdf is displayed in full screen mode automatically
 %\hypersetup{pdfpagemode=FullScreen}
@@ -63,16 +60,7 @@
 \setbeamercolor{footline}{fg=pageCol}
 
 \newcounter{saveenumi}
-
-\newcommand{\bc}{\begin{center}}
-\newcommand{\ec}{\end{center}}
-\newcommand{\bn}{\begin{enumerate}}
-\newcommand{\en}{\end{enumerate}}
-\newcommand{\bi}{\begin{itemize}}
-\newcommand{\ei}{\end{itemize}}
-\newcommand{\Bforty}{B_{40\%}}
-\newcommand{\red}[1]{\textcolor{red}{#1}}
-
+\input{../../hake-beamer.tex}
 %% <<echo=TRUE,  message=TRUE, results='show', warning=TRUE>>=
 %% opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
 %%                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
@@ -112,15 +100,12 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 \author[JTC]{Pacific Hake Joint Technical Committee}
 %\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
-\subtitle{\tiny Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy}
+\subtitle{\tiny \disclaimer}
 
 \begin{document}
 
 \frame[plain]{
 \titlepage
-%\vspace{1in}
-%{\tiny Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy}
-}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}

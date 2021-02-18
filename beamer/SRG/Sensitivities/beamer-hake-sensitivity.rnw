@@ -9,9 +9,6 @@
 \usepackage{multirow}
 \usepackage[T1]{fontenc} % to use < or > in tables
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
-% syntax is \mlc{first line\\secondline}
-\newcommand{\mlc}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
-\newcommand{\subscr}[1]{$_{\text{#1}}$}
 \setbeamersize{text margin left=0.1in}
 \setbeamersize{text margin right=0.1in}
 \setbeamertemplate{title page}
@@ -44,16 +41,7 @@
 \setbeamercolor{footline}{fg=pageCol}
 
 \newcounter{saveenumi}
-
-\newcommand{\bc}{\begin{center}}
-\newcommand{\ec}{\end{center}}
-\newcommand{\bn}{\begin{enumerate}}
-\newcommand{\en}{\end{enumerate}}
-\newcommand{\bi}{\begin{itemize}}
-\newcommand{\ei}{\end{itemize}}
-\newcommand{\Fforty}{F_{\text{SPR}=40\%}}
-\newcommand{\Bforty}{B_{40\%}}
-\newcommand{\red}[1]{\textcolor{red}{#1}}
+\input{../../hake-beamer.tex}
 % From https://tex.stackexchange.com/questions/44983/beamer-removing-headline-and-its-space-on-a-single-frame-for-plan-but-keepin
 % to remove header from a slide (to get more space)
 \makeatletter
@@ -89,7 +77,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \author[JTC]{Pacific Hake Joint Technical Committee}
 %\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
-\subtitle{\tiny Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy}
+\subtitle{\tiny \disclaimer}
 
 \begin{document}
 

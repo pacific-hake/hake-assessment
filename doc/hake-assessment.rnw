@@ -221,11 +221,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   waters in \Sexpr{assess.yr}
 %% Uncomment for DRAFT:
 \\ ~\\ DRAFT for submission to Scientific Review Group
-\thanks{\noindent Disclaimer: These materials do not constitute a formal
-  publication and are for information only. They are in a pre-review,
-  pre-decisional state and should not be formally cited. They are to
-  be considered provisional and do not represent any determination or
-  policy of NOAA or the Department of Commerce.}
+\thanks{\noindent \disclaimer}
 \\ ~\\ ~\\ \pdftooltip{\includegraphics[width=4in]{hake-picture}}{Drawing of a
   \fishname}}
 

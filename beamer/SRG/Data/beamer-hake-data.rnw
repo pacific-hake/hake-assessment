@@ -50,16 +50,7 @@
 }
 
 \newcounter{saveenumi}
-%% syntax is \mlc{first line\\secondline}
-\newcommand{\mlc}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
-\newcommand{\fishname}{Pacific Hake}
-
-\newcommand{\bc}{\begin{center}}
-\newcommand{\ec}{\end{center}}
-\newcommand{\bn}{\begin{enumerate}}
-\newcommand{\en}{\end{enumerate}}
-\newcommand{\bi}{\begin{itemize}}
-\newcommand{\ei}{\end{itemize}}
+\input{../../hake-beamer.tex}
 
 %% <<echo=TRUE,  message=TRUE, results='show', warning=TRUE>>=
 %% opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
@@ -90,6 +81,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \author[JTC]{\includegraphics[height=1in, width=4in]{../../images/hake-on-board.eps}\\Pacific Hake Joint Technical Committee}
 %\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
+\subtitle{\tiny \disclaimer}
 
 
 \begin{document}
