@@ -778,15 +778,22 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
 \frametitle{Run base model using rwMH algorithm}
 \fontsize{11pt}{2}\selectfont
 \bi
-  \item Base model uses NUTS MCMC algorithm (in SS using ADMB)
-  \item Compare with previous (slower) rwMH algorithm
-  \item Same base model structure, just different numerical algorithm
-\ei
-~\\
-\bi
-  \item NUTS resulted in 8,250 posterior samples
-  \item 74,000,000 chain length, with 2,041 posterior samples
-  \item Took $\sim$8~days to run, compared to 4.5~h for NUTS algorithm
+  \item Base model uses NUTS MCMC algorithm
+  \item Compare NUTS with previous rwMH algorithm (last year's base model)
+  \item NUTS:
+    \bi
+      \item took $\sim$4.5~hours to run
+      \item resulted in 8,250 posterior samples
+      \item uses a parallel algorithm, on multiple cores
+      \item better explores the parameter space
+      \item has the same base model structure, just a different numerical algorithm
+    \ei
+  \item rwMH:
+    \bi
+      \item took $\sim$38~hours to run
+      \item resulted in 2,041 posterior samples from a 24,000,000 chain length, after thinning and burning-in
+      \item We also ran one to a chain length of 110,320,000 which resulted in 10,632 posterior samples, and took $\sim$8~days to complete. Results were essentially identical to the 24,000,000 run.
+    \ei
 \ei
 \end{frame}
 % -----------------------------------------------------------------------------%
@@ -984,7 +991,6 @@ make.assessment.history.plot(base.model,
 \item In general, sensitivities show no significant departure from base model
 \item Overall relative pattern consistent -- large increases in biomass in early 2010s
 \item Absolute scale can change for some sensitivities
-\item rwMH appears to have no significant differences compared to NUTS approach
 \item Retrospectives -- 2010 cohort largest
 \item Retrospectives -- 2014 cohort second largest
 \item Retrospectives -- 2016 cohort third largest
