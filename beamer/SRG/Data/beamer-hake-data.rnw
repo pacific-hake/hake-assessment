@@ -99,21 +99,22 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       tail(last.5.years.total.catch,2)[1] * 100))
   @
   \bi
-    \item March \Sexpr{last.assess.yr} the JMC set an adjusted TAC = \Sexpr{last.year.tac} t.
-    \item Canadian and U.S. fisheries predominantly started in February and May, respectively.
-    \item Third-highest coast-wide catch, \Sexpr{pchangecatch}\% decrease from last year.
-    \item No Canadian Joint-Venture Fishery in \Sexpr{last.assess.yr}.
+    \item \Sexpr{last.assess.yr} TAC, adjusted for carryovers, was \Sexpr{last.year.tac} t.
+    \item Canadian and U.S. fisheries predominantly started in March and May, respectively.
+    \item Fourth-highest coast-wide catch, \Sexpr{pchangecatch}\% decrease from last year.
+    \item No Canadian Joint-Venture Fishery and no ages from Freezer-Trawlers in \Sexpr{last.assess.yr}.
     \item Highest proportion-at-age by sector
       \bi
         \item Age-\Sexpr{us.age.1.prop.age.cp} fish in U.S. catcher-processor sector,
         \item Age-\Sexpr{us.age.1.prop.age.ms} fish in U.S. mothership sector,
         \item Age-\Sexpr{us.age.1.prop.age.shore} fish in U.S. shore-based sector,
-        \item Age-\Sexpr{max.freezer.trawler.age.prop.age} fish in Canadian freezer-trawler sector, and
+%        \item Age-\Sexpr{max.freezer.trawler.age.prop.age} fish in Canadian freezer-trawler sector, and
         \item Age-\Sexpr{max.shoreside.age.prop.age} fish in Canadian shoreside sector.
       \ei
-    \item Avoidance of bycatch was problematic for all sectors.
-    \item Stakeholders reported generally good fishing in \Sexpr{last.assess.yr}.
-    \item \Sexpr{last.survey.year} acoustic survey biomass estimate was \Sexpr{last.survey.year.biomass} million tons (\Sexpr{(type.convert(last.factor.penult)-1)*100}\% \Sexpr{ifelse(last.factor.penult > 1, "increase", "decline")} from \Sexpr{penult.survey.year}).
+    \item Avoidance of sablefish was less of an issue this year, but rockfish species were problematic.
+    \item Stakeholders reported generally good fishing in the U.S. and longer search times in Canada relative to recent years.
+    \item No new information from the survey in \Sexpr{last.assess.yr}.
+%    \item \Sexpr{last.survey.year} acoustic survey biomass estimate was \Sexpr{last.survey.year.biomass} million tons (\Sexpr{(type.convert(as.is = TRUE, last.factor.penult)-1)*100}\% \Sexpr{ifelse(last.factor.penult > 1, "increase", "decline")} from \Sexpr{penult.survey.year}).
   \ei
 }
 
@@ -233,7 +234,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
             \item Mothership          -- \Sexpr{f(last.year.us.ms.catch)} t          (\Sexpr{paste0(last.year.us.ms.catch.percent, "\\%")})
             \item Shore-Based         -- \Sexpr{f(last.year.us.shore.catch)} t       (\Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")})
             %todo: automate tribal catch amount
-            \item Tribal (included in shore-based) -- 4,192 t
+            \item Tribal (included in shore-based) -- 133 t
           \ei
         \item \Sexpr{paste0(last.year.us.attained, "\\%")} of the U.S. TAC was caught.
       \ei
@@ -363,7 +364,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       mgp = c(1, 0.6, 0))
     layout(matrix(c(1,2,3,4,5), nrow = 1, ncol = 5, byrow=TRUE))
     make.age.comp.plot(can.shore.age, bg.col = "brown", title = "CAN\nShoreside")
-    make.age.comp.plot(can.ft.age, bg.col = "salmon", title = "CAN\nFreezer Trawler")
+    make.age.comp.plot(can.ft.age, bg.col = "salmon", title = "CAN\nFreezer-Trawler")
     make.age.comp.plot(us.shore.age.tmp, bg.col = "blue", title = "U.S.\nShore-Based")
     make.age.comp.plot(us.cp.age.tmp, bg.col = "royalblue", title = "U.S.\nCatcher-Processor")
     make.age.comp.plot(us.ms.age.tmp, bg.col = "darkblue", title = "U.S.\nMothership")
@@ -408,19 +409,20 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section[Survey]{Survey}
-\subsection{Acoustic backscatter}
-\frame{\frametitle{Acoustic survey backscatter and age composition}
-  \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/hake_survey_1995-19_NASCTimeSeries_BiomassAtAgeHistograms_grayblue}
-}
+% \section[Survey]{Survey}
+% \subsection{Acoustic backscatter}
+% \frame{\frametitle{Acoustic survey backscatter and age composition}
+%   \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/hake_survey_1995-19_NASCTimeSeries_BiomassAtAgeHistograms_grayblue}
+% }
 
-\subsubsection{Age-1 acoustic backscatter}
-\frame{\frametitle{Acoustic survey backscatter of age-1 fish}
-\begin{center}
-  \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-  \includegraphics[height=2.9in]{../../../doc/main-figures/age1hake_03-19_sA_squareroot_bin_narrow-panel_bluergray}
-\end{center}
-}
+% \subsubsection{Age-1 acoustic backscatter}
+% \frame{\frametitle{Acoustic survey backscatter of age-1 fish}
+% \begin{center}
+%   \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+%   \includegraphics[height=2.9in]{../../../doc/main-figures/age1hake_03-19_sA_squareroot_bin_narrow-panel_bluergray}
+% \end{center}
+% }
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  \subsection{Acoustic survey biomass estimates}
@@ -439,13 +441,11 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \subsection{Weight-at-age data}
 \frame{\frametitle{Weight-at-age data}
 \bi
-  \item No weight-at-age data for the Freezer Trawlers in Canada due to lack of
-    scales.
-  \item U.S.~data collected prior to 1975 are irrelevant because they were collected from the Puget Sound stock.
-  \item Newly included data
+  \item No weight-at-age data for Canadian Freezer-Trawler sector because scales are not available.
+  \item Pre-1975 U.S.~weight-at-age data are not included because they were collected from the Puget Sound.
+  \item Updates
     \begin{itemize}
-      \item 1977 -- 2092 samples from Poland Acoustic Survey.
-      \item 2017 --  300 samples from Canadian Acoustic Survey.
+      \item Pulled best information from Canadian databases rather than just pulling new information; **summarize briefly what this means as far as numbers**.
       \item Recently aged fish from historical years.
     \end{itemize}
   \item Historical fecundity uses mean weight-at-age data from all years.
@@ -510,7 +510,8 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
             \item At-sea fishery (2013 -- 2017)
           \ei
         \item Length stratified sampling from surveys with target numbers for 2 cm length bins.
-        \item Data from 2018 and 2019 are expected to be analyzed in 2020.
+        \item Data from 2018 and 2019 are expected to be analyzed in 2021.
+        \item **What is the status of Canadian samples**
       \ei
       \vspace{-3mm}
 %    \end{column}
@@ -563,8 +564,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \bi
     \item Fishery independent
       \bi
-        \item Age-1 index from the acoustic survey (there is a sensitivity
-              which includes this).
+        \item Age-1 index from the acoustic survey (included as a sensitivity).
         \item Length / sex frequencies from the acoustic survey.
         \item Bottom-trawl survey age-composition data.
         \item Juvenile and pre-recruit surveys from the
