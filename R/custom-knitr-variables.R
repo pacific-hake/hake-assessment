@@ -106,6 +106,11 @@ last.year.can.jv.percent <- ((ct_last1 %>% select(can_jv_xx) %>% pull) /
                                   (ct_last1 %>% select(can_catch) %>% pull) * 100) %>% f(1)
 # Years since 2000 (including 2000) that JV catch has been zero
 ch.eq.0.recent <- ct %>% filter(year > 1999) %>% select(year, can_jv_xx) %>% filter(can_jv_xx == 0) %>% nrow
+terminal.year.us.jvforeign <- ct %>% select(year, matches("us_[fj]")) %>%
+  rowwise() %>% mutate(sumV = sum(c_across(matches("us")))) %>% filter(sumV > 0) %>% select(year) %>% max
+first.year.us.atsea <- ct %>% select(year, matches("us_cp|us_ms")) %>%
+  rowwise() %>% mutate(sumV = sum(c_across(matches("us")))) %>% filter(sumV > 0) %>% select(year) %>% min
+
 
 # Survey values ---------------------------------------------------------------
 survey.biomass <- survey.history$biomass

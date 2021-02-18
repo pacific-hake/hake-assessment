@@ -107,7 +107,7 @@ available only by year from \citet{BaileyFrancisEtAl1982} and historical
 assessment documents. Canadian catches prior to 1989 are also unavailable in
 disaggregated form. The U.S. shore-based landings are
 from the Pacific Fishery Information Network (PacFIN). Foreign and Joint-Venture
-catches for 1981--1990 and U.S. domestic at-sea catches for
+catches for 1981--\Sexpr{terminal.year.us.jvforeign} and U.S. domestic at-sea catches for
 1991--\Sexpr{last.data.yr} are
 calculated from the Alaska Fisheries Science Center (AFSC) North Pacific Groundfish and Halibut Observer (NORPAC) database,
 which also stores the NWFSC At-Sea Hake Observer Program data.
@@ -149,8 +149,9 @@ The Makah tribe is also working on providing historical catches such that shore-
 
 Biological information from the U.S. at-sea fishery was
 extracted from the NORPAC database. This included sex, length, weight, and age
-information from the foreign and Joint-Venture fisheries from 1975--1990 and
-from the domestic at-sea fishery since 1991.
+information from the foreign and Joint-Venture fisheries from
+1975--\Sexpr{terminal.year.us.jvforeign} and
+from the domestic at-sea fishery since \Sexpr{first.year.us.atsea}.
 Observers collect data by selecting fish randomly from each haul.
 
 Biological samples from the U.S. shore-based fishery since
