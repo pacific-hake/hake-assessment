@@ -250,35 +250,35 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Bridging: Fishery empirical weight-at-age}
-  \bc
-  <<wtage.heatmap, fig.height=3.5>>=
-  weight.at.age.heatmap(base.model,
-                        proj.line.yr = base.model$endyr,
-                        extrap.mask = weight_age_extrapolation_mask,
-                        proj.line.width = 0.4,
-                        longterm.mean.ages = NULL,
-                        font.size = 1.6,
-                        axis.font.size = 4)
-  @
-  \ec
-}
-
+%\frame{\frametitle{Bridging: Fishery empirical weight-at-age}
+%  \bc
+%  <<wtage.heatmap, fig.height=3.5>>=
+%  weight.at.age.heatmap(base.model,
+%                        proj.line.yr = base.model$endyr,
+%                        extrap.mask = weight_age_extrapolation_mask,
+%                        proj.line.width = 0.4,
+%                        longterm.mean.ages = NULL,
+%                        font.size = 1.6,
+%                        axis.font.size = 4)
+%  @
+%  \ec
+%}
+%
 %----------------------------------------------------------
-\frame{\frametitle{Last assessment: Fishery empirical weight-at-age}
-  \bc
-  <<last.yr.wtage.heatmap, fig.height=3.5>>=
-  weight.at.age.heatmap(last.yr.base.model,
-                        proj.line.yr = last.yr.base.model$endyr,
-                        extrap.mask = weight_age_extrapolation_mask,
-                        proj.line.width = 0.4,
-                        longterm.mean.ages = NULL,
-                        font.size = 1.6,
-                        axis.font.size = 4)
-  @
-  \ec
-}
-
+%\frame{\frametitle{Last assessment: Fishery empirical weight-at-age}
+%  \bc
+%  <<last.yr.wtage.heatmap, fig.height=3.5>>=
+%  weight.at.age.heatmap(last.yr.base.model,
+%                        proj.line.yr = last.yr.base.model$endyr,
+%                        extrap.mask = weight_age_extrapolation_mask,
+%                        proj.line.width = 0.4,
+%                        longterm.mean.ages = NULL,
+%                        font.size = 1.6,
+%                        axis.font.size = 4)
+%  @
+%  \ec
+%}
+%
 %----------------------------------------------------------
 % \frame{\frametitle{Bridging: Add \Sexpr{last.data.yr} survey data / DM Priors (Fig. 17)}
 %   \bc
@@ -332,60 +332,60 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %}
 %
 %----------------------------------------------------------
-\frame{\frametitle{Bridging: rwMH to NUTS}
-  \bc
-  <<bridge.biomass.4, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
-  oldpar <- par(mfrow = c(1, 2),
-                mar =c(5, 4, 1, 1),
-                no.readonly = TRUE)
-  make.comparison.plot(c(list(base.model), list(sens.models.7)),
-                       subplots = 2,
-                       model.names = c(base.model.name, sens.model.names.7),
-                       densitynames = NULL,
-                       legendloc = "topleft",
-                       end.yr = end.yr,
-                       plot_mcmc = TRUE)
-  make.comparison.plot(c(list(base.model), list(sens.models.7)),
-                       subplots = 4,
-                       model.names = c(base.model.name, sens.model.names.7),
-                       densitynames = NULL,
-                       legend = FALSE,
-                       end.yr = end.yr,
-                       plot_mcmc = TRUE)
-  box()
-  par(oldpar)
-  @
-  \ec
-}
-
+%\frame{\frametitle{Bridging: rwMH to NUTS}
+%  \bc
+%  <<bridge.biomass.4, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+%  oldpar <- par(mfrow = c(1, 2),
+%                mar =c(5, 4, 1, 1),
+%                no.readonly = TRUE)
+%  make.comparison.plot(c(list(base.model), list(sens.models.7)),
+%                       subplots = 2,
+%                       model.names = c(base.model.name, sens.model.names.7),
+%                       densitynames = NULL,
+%                       legendloc = "topleft",
+%                       end.yr = end.yr,
+%                       plot_mcmc = TRUE)
+%  make.comparison.plot(c(list(base.model), list(sens.models.7)),
+%                       subplots = 4,
+%                       model.names = c(base.model.name, sens.model.names.7),
+%                       densitynames = NULL,
+%                       legend = FALSE,
+%                       end.yr = end.yr,
+%                       plot_mcmc = TRUE)
+%  box()
+%  par(oldpar)
+%  @
+%  \ec
+%}
+%
 %----------------------------------------------------------
-\frame{\frametitle{Bridging: NUTS $R_0$ (Appendix A)}
-  \bc
-  <<bridge.mcmc.diag.r0.nuts, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
-  oldpar <- par(mfrow = c(1, 2),
-                mar =c(5, 4, 1, 1),
-                no.readonly = TRUE)
-  make.mcmc.diag.plot(base.model, key.posteriors[2], key.posteriors.titles[2])
-  box()
-  par(oldpar)
-  @
-  \ec
-}
-
+%\frame{\frametitle{Bridging: NUTS $R_0$ (Appendix A)}
+%  \bc
+%  <<bridge.mcmc.diag.r0.nuts, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+%  oldpar <- par(mfrow = c(1, 2),
+%                mar =c(5, 4, 1, 1),
+%                no.readonly = TRUE)
+%  make.mcmc.diag.plot(base.model, key.posteriors[2], key.posteriors.titles[2])
+%  box()
+%  par(oldpar)
+%  @
+%  \ec
+%}
+%
 %----------------------------------------------------------
-\frame{\frametitle{Bridging: rwMH $R_0$ (Appendix H)}
-  \bc
-  <<bridge.mcmc.diag.r0.rwMH, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
-  oldpar <- par(mfrow = c(1, 2),
-                mar =c(5, 4, 1, 1),
-                no.readonly = TRUE)
-  make.mcmc.diag.plot(sens.models.7, key.posteriors[2], key.posteriors.titles[2])
-  box()
-  par(oldpar)
-  @
-  \ec
-}
-
+%\frame{\frametitle{Bridging: rwMH $R_0$ (Appendix H)}
+%  \bc
+%  <<bridge.mcmc.diag.r0.rwMH, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+%  oldpar <- par(mfrow = c(1, 2),
+%                mar =c(5, 4, 1, 1),
+%                no.readonly = TRUE)
+%  make.mcmc.diag.plot(sens.models.7, key.posteriors[2], key.posteriors.titles[2])
+%  box()
+%  par(oldpar)
+%  @
+%  \ec
+%}
+%
 %----------------------------------------------------------
 \frame{\frametitle{Bridging: Summary}
   \bi
@@ -401,10 +401,10 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     %  estimate of biomass for the last few years and reduces uncertainty.
     %\item Adding the \Sexpr{last.data.yr} survey age compositions further reduced uncertainty,
     %  but provided a worse fit to the 2017 and \Sexpr{last.data.yr} survey indices.
-    \item Using the random walk Metropolis Hastings (rwMH) MCMC sampling algorithm (used in the
-      \Sexpr{last.assess.yr} base model) lead to similar population trends but a small
-      difference in the $log(R_0)$ parameter when compared to the NUTS algorithm used in the
-      \Sexpr{assess.yr} base model.
+    %\item Using the random walk Metropolis Hastings (rwMH) MCMC sampling algorithm (used in the
+    %  \Sexpr{last.assess.yr} base model) lead to similar population trends but a small
+    %  difference in the $log(R_0)$ parameter when compared to the NUTS algorithm used in the
+    %  \Sexpr{assess.yr} base model.
    \ei
 }
 
@@ -1319,7 +1319,13 @@ year's assessment, the credible interval remains well within that from last year
   \item Very low catch of age-2 and age-1 fish in 2020 fishery
   \item Large 2010 and 2014 cohort biomass: mortality outpacing growth (28\% and 33\%
     decline, respectively, from beginning of 2020)
-  \item Rate of decline in spawning stock biomass has increased over last 3 years
+  \item Rate of spawning stock biomass decline has increased over recent (2018--2021) years
+    \bi
+      \item SSB(2018) to SSB(2019): -1\%
+      \item SSB(2019) to SSB(2020): -13\%
+      \item SSB(2020) to SSB(2021): -25\%
+    \ei
+  \item While relative SSB(2021) is above $\Bforty$, it is approaching it at an increasing pace
   \ei
 }
 
