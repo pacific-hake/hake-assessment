@@ -412,12 +412,11 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 \section{Historical calculations}
 % \subsection{Risk}
 \frame{\frametitle{Compare probabilities in historical assessments to current estimates}
+\pause
   \bi
   \item General question -- how `good' are projection probabilities?
-  \item 2019 assessment Table~i we had:
-    %Example: in 2018 assessment we calculated probability that spawning biomass
-    %would decline between 2018 and  2019, for a number of different values of the
-  % 2018 catch (Table~i).
+
+  \item For example, 2019 assessment Table~i we had:
   \ei
 \begin{table}[h]
 \begin{tabularx}{0.6\textwidth}{lYY}  %{\textwidth}{lYYYYYY}
