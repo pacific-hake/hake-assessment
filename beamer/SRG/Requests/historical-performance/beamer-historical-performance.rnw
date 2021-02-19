@@ -1,0 +1,192 @@
+%\documentclass[handout,xcolor=pdftex,dvipsnames,table]{beamer}
+%\documentclass[draft]{beamer}
+%\documentclass[notesonly]{beamer}
+%\documentclass[notes]{beamer}
+\documentclass[aspectratio=169]{beamer}
+\mode<presentation>
+\usetheme[compress]{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
+%\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
+
+%\usefonttheme{serif}
+% font themes: default, professionalfonts, serif, structurebold, structureitalicserif, structuresmallcapsserif
+
+\usepackage{graphicx}
+\usepackage{pgf}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}          %% Used in risk tables
+\usepackage{multirow}          %% Used in decision tables
+%\usepackage{beamerarticle}
+%\usepackage{enumitem}
+%\usepackage{beamerthemesplit}
+\usepackage[T1]{fontenc}  %to use < or > in tables
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+% pdf is displayed in full screen mode automatically
+%\hypersetup{pdfpagemode=FullScreen}
+
+%\setbeamersize{sidebar width left=0.05in}
+\setbeamersize{text margin left=0.1in}
+\setbeamersize{text margin right=0.1in}
+
+\setbeamertemplate{title page}
+{
+\includegraphics[height=0.5in]{../../../images/NOAA.eps}
+\hfill
+\includegraphics[height=0.5in]{../../../images/DFO.eps}
+
+\vskip0pt plus 1filll
+\begin{center}
+{\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\
+\vskip22pt
+\insertauthor
+\vskip22pt
+\insertdate
+\end{center}
+\vskip50pt
+\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
+\vskip0pt plus 1filll
+}
+
+\definecolor{pageCol}{rgb}{0.5,0.5,1.0}
+
+\setbeamertemplate{footline}
+{
+\begin{beamercolorbox}[wd=.05\paperwidth,ht=0ex,dp=0ex,left]{framenumber in head/foot}%
+\insertframenumber/\inserttotalframenumber
+\end{beamercolorbox}%
+}
+\setbeamercolor{footline}{fg=pageCol}
+
+\newcounter{saveenumi}
+\input{../../../hake-beamer.tex}
+%% <<echo=TRUE,  message=TRUE, results='show', warning=TRUE>>=
+%% opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
+%%                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
+%%                results='show', cache=TRUE, cache.path='knitr-cache/')
+<<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
+library(knitr)  # need this else these options get ignored on first run
+opts_chunk$set(dev = 'cairo_ps',
+               fig.path = 'knitr-cache/',
+               fig.dpi = 96,
+               fig.width = 7.5,
+               fig.height = 4,
+               echo = FALSE,
+               results = FALSE,
+               message = FALSE,
+               warning = FALSE,
+               results = 'hide',
+               cache = TRUE,
+               cache.path = 'knitr-cache/')
+
+source(file.path(here::here(), "R", "all.R"))
+load_models_rds()
+source(file.path(rootd.R, "custom-knitr-variables.R"))
+
+metric <- NULL
+forecasts <- base.model$forecasts[[1]]
+metric$mcmc <- forecasts[[7]]$outputs
+## models.inds are the indices of those which will be plotted against each other
+## next 2 lines copied from executive-summary.rnw  (manual 2017)
+models.inds <- c(1, 2, 4, 5, catch.default.policy.ind)
+models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty catch level name
+
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[Hake Management]{Management outcomes of the \Sexpr{end.yr} Pacific Hake stock assessment}
+\author[JTC]{Pacific Hake Joint Technical Committee}
+%\institute{}
+\date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
+\subtitle{\tiny \disclaimer}
+
+\begin{document}
+
+\frame[plain]{
+\titlepage
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Risk Tables}
+
+%--------------------------------------------------------------
+\frame{\frametitle{Risk based on fixed \Sexpr{end.yr} catch}
+    <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
+      make.risk.table(base.model,
+                      forecast_yrs,
+                      index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                      xcaption = NULL,
+                      font.size = 10,
+                      space.size = 11)
+    @
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Historical calculations}
+% \subsection{Risk}
+\frame{\frametitle{Compare probabilities in historical assessments to current estimates}
+  \bi
+  \item General question -- how `good' are projection probabilities?
+\pause
+  \item For example, 2019 assessment Table~i we had:
+  \ei
+\begin{table}[h]
+\begin{tabularx}{0.6\textwidth}{lYY}  %{\textwidth}{lYYYYYY}
+\toprule
+\mlc{\textbf{Catch} \\ \textbf{in 2019}} &
+\mlc{\textbf{Probability} \\ \textbf{B\subscr{2020} < B\subscr{2019}}} &
+\mlc{\textbf{Probability} \\ \textbf{B\subscr{2020} < B\subscr{40\%}}} \\
+\midrule
+  a:       0 & 17\% & 8\% \\
+  b: 180,000 & 40\% & 13\% \\
+  c: 350,000 & 57\% & 17\% \\
+  \red{d: 410,000} & \red{61\%} & \red{19\%} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+\pause
+\bi
+  \item Now we \emph{know} the 2019 catch was 411,574~t, so row~d was close enough.
+\pause
+\item How do the probabilities in row~d compare to estimating them using the
+    current base model?
+\ei
+}
+
+%--------------------------------------------------------------
+
+\frame{\frametitle{Probabilities of decline in subsequent year}
+\bc
+<<historical.prob.plot.1, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+  make.historical.probs.plot(base.model)
+@
+\ec
+}
+
+\frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
+\bc
+<<historical.prob.plot.2, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+  make.historical.probs.plot(base.model,
+                             type = "bforty")
+@
+\ec
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Summary}
+\subsection{}
+\frame{\frametitle{Summary}
+  \bi
+    \item **Based on
+    \item **
+  \ei
+}
+
+
+
+\end{document}

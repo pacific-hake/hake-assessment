@@ -408,57 +408,6 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 \end{columns}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Historical calculations}
-% \subsection{Risk}
-\frame{\frametitle{Compare probabilities in historical assessments to current estimates}
-\pause
-  \bi
-  \item General question -- how `good' are projection probabilities?
-
-  \item For example, 2019 assessment Table~i we had:
-  \ei
-\begin{table}[h]
-\begin{tabularx}{0.6\textwidth}{lYY}  %{\textwidth}{lYYYYYY}
-\toprule
-\mlc{\textbf{Catch} \\ \textbf{in 2019}} &
-\mlc{\textbf{Probability} \\ \textbf{B\subscr{2020} < B\subscr{2019}}} &
-\mlc{\textbf{Probability} \\ \textbf{B\subscr{2020} < B\subscr{40\%}}} \\
-\midrule
-  a:       0 & 17\% & 8\% \\
-  b: 180,000 & 40\% & 13\% \\
-  c: 350,000 & 57\% & 17\% \\
-  \red{d: 410,000} & \red{61\%} & \red{19\%} \\
-\bottomrule
-\end{tabularx}
-\end{table}
-\bi
-  \item Now we \emph{know} the 2019 catch was 411,574~t, so row~d was close enough.
-  \item How do the probabilities in row~d compare to estimating them using the
-    current base model?
-\ei
-}
-
-%--------------------------------------------------------------
-
-\frame{\frametitle{Probabilities of decline in subsequent year}
-\bc
-<<historical.prob.plot.1, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
-  make.historical.probs.plot(base.model)
-@
-\ec
-}
-
-\frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
-\bc
-<<historical.prob.plot.2, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
-  make.historical.probs.plot(base.model,
-                             type = "bforty")
-@
-\ec
-}
-
-
 %----------------------------------------------------------
 % Commenting out for 2021 for brevity since somewhat duplicates previous slide,
 %  and would need updating since baa_large contains only recent cohorts now)
