@@ -179,7 +179,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \begin{columns}
     \begin{column}[t]{0.5\linewidth}
     \center{\textbf{\textcolor{blue}{Canada}}} \\
-    \center{\textbf{TAC was \Sexpr{last.year.can.tac} t (\Sexpr{paste0(can.allotment.percent, "\\%")})}} \\
+    \center{\textbf{TAC was \Sexpr{last.year.can.tac} t}} \\
     \bi
       \item TAC includes \Sexpr{last.year.can.carryover} t of carryover
       \item Freezer Trawlers and Shoreside -- \Sexpr{last.year.can.shoreside.tac} t
@@ -188,7 +188,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \end{column}
     \begin{column}[t]{0.5\linewidth}
     \center{\textbf{\textcolor{blue}{United States}}} \\
-    \center{\textbf{TAC was \Sexpr{last.year.us.tac} t (\Sexpr{paste0(us.allotment.percent, "\\%")})}} \\
+    \center{\textbf{TAC was \Sexpr{last.year.us.tac} t}} \\
     \bi
       \item Research and bycatch -- \Sexpr{f(last.year.us.research)} t
       \item Tribal               --
@@ -211,7 +211,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \begin{columns}
     \begin{column}[t]{0.5\linewidth}
       \center{\textbf{\textcolor{blue}{Canada}}} \\
-    \center{\textbf{TAC was \Sexpr{last.year.can.tac} t (\Sexpr{paste0(can.allotment.percent, "\\%")})}} \\
+    \center{\textbf{TAC was \Sexpr{last.year.can.tac} t}} \\
       \bi
         \item Total Canadian catch -- \Sexpr{last.year.can.landings} t
         \bi
@@ -225,7 +225,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     \end{column}
     \begin{column}[t]{0.5\linewidth}
       \center{\textbf{\textcolor{blue}{United States}}} \\
-    \center{\textbf{TAC was \Sexpr{last.year.us.tac} t (\Sexpr{paste0(us.allotment.percent, "\\%")})}} \\
+    \center{\textbf{TAC was \Sexpr{last.year.us.tac} t}} \\
       \bi
         \item Total U.S. catch -- \Sexpr{last.year.us.landings} t
           \bi
@@ -359,15 +359,24 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     us.shore.age.tmp <- conv.ages(us.shore.age, rm.cols = 3)
     us.cp.age.tmp <- conv.ages(us.cp.age, rm.cols = 3)
     us.ms.age.tmp <- conv.ages(us.ms.age, rm.cols = 3)
+    can.ft.age.tmp <- data.frame(can.ft.age, check.names = FALSE)
+    can.ft.age.tmp[as.character(
+      ((year(now())-6):(year(now())-1))[!((year(now())-6):(year(now())-1) %in% rownames(can.ft.age))]),
+       ] <- 0
     oldpar <- par
     par(mar=c(1.1, 1.1, 3.1, 1.1), oma=c(3.1, 3.1, 0, 0),
       mgp = c(1, 0.6, 0))
     layout(matrix(c(1,2,3,4,5), nrow = 1, ncol = 5, byrow=TRUE))
-    make.age.comp.plot(can.shore.age, bg.col = "brown", title = "CAN\nShoreside")
-    make.age.comp.plot(can.ft.age, bg.col = "salmon", title = "CAN\nFreezer-Trawler")
-    make.age.comp.plot(us.shore.age.tmp, bg.col = "blue", title = "U.S.\nShore-Based")
-    make.age.comp.plot(us.cp.age.tmp, bg.col = "royalblue", title = "U.S.\nCatcher-Processor")
-    make.age.comp.plot(us.ms.age.tmp, bg.col = "darkblue", title = "U.S.\nMothership")
+    make.age.comp.plot(can.shore.age, bg.col = "brown", 
+      title = "CAN\nShoreside", hide0 = TRUE, frange = 0.05)
+    make.age.comp.plot(can.ft.age.tmp, bg.col = "salmon", 
+      title = "CAN\nFreezer-Trawler", hide0 = TRUE, frange = 0.05)
+    make.age.comp.plot(us.shore.age.tmp, bg.col = "blue", 
+      title = "U.S.\nShore-Based", hide0 = TRUE, frange = 0.05)
+    make.age.comp.plot(us.cp.age.tmp, bg.col = "royalblue", 
+      title = "U.S.\nCatcher-Processor", hide0 = TRUE, frange = 0.05)
+    make.age.comp.plot(us.ms.age.tmp, bg.col = "darkblue", 
+      title = "U.S.\nMothership", hide0 = TRUE, frange = 0.05)
     mtext("Year", side = 1, outer = TRUE, line = 2)
     mtext("Age", side = 2, outer = TRUE, line = 2)
     par <- oldpar
@@ -441,11 +450,10 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \subsection{Weight-at-age data}
 \frame{\frametitle{Weight-at-age data}
 \bi
-  \item No weight-at-age data for Canadian Freezer-Trawler sector because scales are not available.
   \item Pre-1975 U.S.~weight-at-age data are not included because they were collected from the Puget Sound.
   \item Updates
     \begin{itemize}
-      \item Pulled best information from Canadian databases rather than just pulling new information; **summarize briefly what this means as far as numbers**.
+      \item Pulled best information from Canadian databases based on location of sampling.
       \item Recently aged fish from historical years.
     \end{itemize}
   \item Historical fecundity uses mean weight-at-age data from all years.
@@ -482,50 +490,31 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \end{center}
 }
 
-\frame{\frametitle{Sample sizes of weight-at-age by year cont.}
-\begin{center}
-<<main-weight-at-age-numbers-cont, out.height='90%', out.width='90%'>>=
-  weight.at.age.heatmap(base.model,
-                        proj.line.yr = base.model$endyr,
-                        extrap.mask = weight_age_extrapolation_mask,
-                        longterm.mean.ages = NULL,
-                        samplesize = TRUE,
-                        print.years = c(start.yr.age.comps-0.5, midyear+0.5))
-@
-\end{center}
-}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Maturity}
-\subsection{Ovary sampling}
-\frame{\frametitle{Ovary sampling}
-%  \begin{columns}
-%    \begin{column}[t]{0.5\linewidth}
-      \bi
-        \item Sample sources
-          \bi
-            \item Bottom trawl survey (2009, 2012 -- 2017)
-            \item Acoustic survey (2012 -- 2013, 2015 -- 2017)
-            \item At-sea fishery (2013 -- 2017)
-          \ei
-        \item Length stratified sampling from surveys with target numbers for 2 cm length bins.
-        \item Data from 2018 and 2019 are expected to be analyzed in 2021.
-        \item **What is the status of Canadian samples**
-      \ei
-      \vspace{-3mm}
-%    \end{column}
-    %\begin{column}[t]{0.5\linewidth}
-      <<ovary.table, results='asis', echo=FALSE, out.width='0.9\\columnwidth'>>=
-        make.maturity.samples.table(ovary.samples,
-                                    xcaption = "Number of \\fishname\\ ovaries collected for histological analysis.",
-                                    xlabel = "tab:beamer-ovaries",
-                                    font.size = 6,
-                                    space.size = 7)
-      @
-%    \end{column}
-%  \end{columns}
-}
+% \subsection{Ovary sampling}
+% \frame{\frametitle{Ovary sampling}
+%       \bi
+%         \item Sample sources
+%           \bi
+%             \item Bottom trawl survey (2009, 2012 -- 2017)
+%             \item Acoustic survey (2012 -- 2013, 2015 -- 2017)
+%             \item At-sea fishery (2013 -- 2017)
+%           \ei
+%         \item Length stratified sampling from surveys with target numbers for 2 cm length bins.
+%         \item Data from 2018 and 2019 are expected to be analyzed in 2021.
+%         \item **What is the status of Canadian samples**
+%       \ei
+%       \vspace{-3mm}
+%       <<ovary.table, results='asis', echo=FALSE, out.width='0.9\\columnwidth'>>=
+%         make.maturity.samples.table(ovary.samples,
+%                                     xcaption = "Number of \\fishname\\ ovaries collected for histological analysis.",
+%                                     xlabel = "tab:beamer-ovaries",
+%                                     font.size = 6,
+%                                     space.size = 7)
+%       @
+% }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -541,19 +530,19 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Fecundity}
-\frame{\frametitle{Fecundity}
-  \bi
-    \item Fecundity-at-age is set to maturity-at-age $*$ weight-at-age in Stock Synthesis.
-    \item We need a better understanding of:
-      \bi
-        \item Batch spawning.
-        \item Links between fecundity and size, age, and weight.
-        \item How the above topics provide further information about factors that influence time-varying reproductive output.
-      \ei
-    \item More winter acoustic surveys may provide further information about these questions.
-  \ei
-}
+% \subsection{Fecundity}
+% \frame{\frametitle{Fecundity}
+%   \bi
+%     \item Fecundity-at-age is set to maturity-at-age $*$ weight-at-age in Stock Synthesis.
+%     \item We need a better understanding of:
+%       \bi
+%         \item Batch spawning.
+%         \item Links between fecundity and size, age, and weight.
+%         \item How the above topics provide further information about factors that influence time-varying reproductive output.
+%       \ei
+%     \item More winter acoustic surveys may provide further information about these questions.
+%   \ei
+% }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

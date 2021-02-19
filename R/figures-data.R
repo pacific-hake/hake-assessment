@@ -76,11 +76,27 @@ make.cumulative.catch.plot <- function(d,   ## Data as found in the xxxx.catch.b
   legend("topleft", legend = yrs, col = cols, lty = lty, lwd = lwd, cex = leg.cex, bty = "n")
 }
 
+#' A figure for age-composition data with years (x axis) and ages (y axis)
+#'
+#' A bubble plot of age compositions by year that
+#' facilitates tracking cohorts through time.
+#' The function is a wrapper for [PBSmodelling::plotBubbles] that subsets the
+#' data and sets the color scheme.
+#'
+#' @param d The data, with years in the rows and ages in the columns.
+#' @param yrs A vector of years that you want to include. This vector will be used to subset the
+#' data in `d` based on rownames.
+#' @param title The title to pass to [PBSmodelling::plotBubbles] `main` parameter.
+#' @param title.cex A numeric value specifying the size of the text for the title.
+#' @param bg.col A color for the `fill` of the bubbles.
+#' @param ... Arguments to pass to [PBSmodelling::plotBubbles] such as `hide0`.
+#'
+#' @export
 make.age.comp.plot <- function(d,
                                yrs = (year(now())-6):(year(now())-1), ## The years to show on the plot
                                title = NULL,
                                title.cex = 1, ## Title text size
-                               bg.col = "blue"){ ## Fill color for the bubble
+                               bg.col = "blue", ...){ ## Fill color for the bubble
   ## This will make a plot of the ages comps found in the data a for the years given by yrs
   d <- d[rownames(d) %in% yrs,]
   PBSmodelling::plotBubbles(t(d),
@@ -90,7 +106,8 @@ make.age.comp.plot <- function(d,
               las = 1,
               powr = 0.5,
               size = 0.08,
-              main = title)
+              main = title,
+              ...)
 }
 
 make.wt.at.age.plot <- function(d,
