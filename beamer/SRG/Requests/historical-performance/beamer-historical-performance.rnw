@@ -81,7 +81,10 @@ opts_chunk$set(dev = 'cairo_ps',
                cache.path = 'knitr-cache/')
 
 source(file.path(here::here(), "R", "all.R"))
-load_models_rds()
+if(!(exists("models_loaded") && models_loaded)){
+  load_models_rds()
+}
+models_loaded <- TRUE
 source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 metric <- NULL
@@ -96,7 +99,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[Hake Management]{Management outcomes of the \Sexpr{end.yr} Pacific Hake stock assessment}
+\title[Hake Historical Performance]{Historical performance of the Pacific Hake stock assessment}
 \author[JTC]{Pacific Hake Joint Technical Committee}
 %\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
@@ -110,10 +113,17 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
+\subsection{}
+\frame{\frametitle{Introduction}
+  \bi
+    \item This idea stems from a question brought up in the 11th February 2021
+      JMC briefing call.
+    \item Preliminary ideas presented here, not fully thought through.
+    \item Feedback is welcome.
+  \ei
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Risk Tables}
-
 %--------------------------------------------------------------
 \frame{\frametitle{Risk based on fixed \Sexpr{end.yr} catch}
     <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
