@@ -124,7 +124,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \bi
     \item Update Stock Synthesis to version \Sexpr{ss.version}
       compiled with ADMB \Sexpr{admb.version}. 
-    \item Change the phase of the data weighting parameters
+    \item Change the phase of the data-weighting parameters to terminal phase
     \item Update pre-\Sexpr{last.assess.yr} data:
       \bi
       \item Fishery catch
