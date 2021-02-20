@@ -93,6 +93,8 @@ combine_historical_probs <- function(model,
 ##' @param add.50 Whether to add horizontal line at 50%
 ##' @param add.50.col Colour for 50% line
 ##' @param one.year A single year to plot (may automatically work for more years)
+##' @param add.projs Whether to add future projections from current base model
+##' @param num.projs Num of projection catch levels to show
 ##' @param colors
 ##' @param pch
 ##' @param legend.cex
@@ -112,6 +114,8 @@ make.historical.probs.plot <- function(model,
                                        add.50 = TRUE,
                                        add.50.col = "darkgrey",
                                        one.year = 2019,
+                                       add.projs = FALSE,
+                                       num.projs = 5,
                                        colors = c("red", "blue"),
                                        pch = c(16, 17),
                                        legend.cex = 1,
@@ -139,6 +143,16 @@ make.historical.probs.plot <- function(model,
            type = "o",
            pch = pch[2],
            col = colors[2])
+    if(add.projs){
+      segments(rep(assess.yr - 1, num.projs),
+               rep(res$P_decline[length(res$P_decline)], num.projs),
+               rep(assess.yr, num.projs),
+               base.model$risks[[1]][1:num.projs,
+                                     paste0("SSB_", assess.yr + 1, "<SSB_",
+                                            assess.yr)],
+               pch = pch[1],
+               col = colors[1])
+    }
   }
 
   if(type == "decline.one.year"){

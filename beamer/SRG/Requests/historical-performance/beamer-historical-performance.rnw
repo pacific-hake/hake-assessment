@@ -201,7 +201,34 @@ make.historical.probs.plot(base.model,
 \ec
 }
 
-%--------------------------------------------------------------
+%----------------------------------------------------------
+\frame{\frametitle{Absolute Recruitment}
+  \bc
+  <<recruitment, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+    make.recruitment.plot(base.model,
+                          equil.yr = unfished.eq.yr,
+                          start.yr = start.yr,
+                          end.yr = end.yr,
+                          color = "blue",
+                          add.mean = TRUE,
+                          add.r0 = TRUE)
+  @
+  \ec
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Relative Spawning Biomass}
+  \bc
+  <<relative.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+    make.depletion.plot(base.model,
+                        start.yr = start.yr,
+                        end.yr = end.yr,
+                        color = "blue")
+  @
+  \ec
+}
+
+% --------------------------------------------------------------
 
 \frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
 \bc
