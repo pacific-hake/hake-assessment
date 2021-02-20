@@ -217,6 +217,17 @@ make.historical.probs.plot(base.model,
 }
 
 %----------------------------------------------------------
+
+\frame{\frametitle{Probabilities of decline in subsequent year}
+\bc
+<<historical.prob.plot.1d, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+  make.historical.probs.plot(base.model,
+                             add.projs = TRUE)
+@
+\ec
+}
+
+%----------------------------------------------------------
 \frame{\frametitle{Relative Spawning Biomass}
   \bc
   <<relative.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=

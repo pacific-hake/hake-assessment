@@ -89,7 +89,8 @@ combine_historical_probs <- function(model,
 ##'   after historical assessment year, "decline.one.year" to show that for just
 ##'   one year (to explain in a talk), "bforty" to show prob of being below
 ##'   `B_40\%` in the year after ther historical assessment year
-##' @param end
+##' @param end final year for calculations
+##' @param xLim range of x (years) axis
 ##' @param add.50 Whether to add horizontal line at 50%
 ##' @param add.50.col Colour for 50% line
 ##' @param one.year A single year to plot (may automatically work for more years)
@@ -111,6 +112,7 @@ combine_historical_probs <- function(model,
 make.historical.probs.plot <- function(model,
                                        type = "decline",
                                        end = assess.yr - 1,
+                                       xLim = NULL,
                                        add.50 = TRUE,
                                        add.50.col = "darkgrey",
                                        one.year = 2019,
@@ -124,7 +126,7 @@ make.historical.probs.plot <- function(model,
   res <- combine_historical_probs(model = model,
                                   end = end,
                                   ...)
-
+  if(is.null(xLim)) xLim = range(res$Year) + c(0, 1)
   oldpar <- par("mar", "xpd")
   on.exit(par(oldpar))
   par(mar = c(4.5, 4.5, 1, 1))
@@ -132,6 +134,7 @@ make.historical.probs.plot <- function(model,
   if(type == "decline"){
     plot(res$Year,
          res$P_decline,
+         xlim = xLim,
          type = "o",
          pch = pch[1],
          col = colors[1],
@@ -152,12 +155,19 @@ make.historical.probs.plot <- function(model,
                                             assess.yr)],
                pch = pch[1],
                col = colors[1])
+    points(rep(assess.yr, num.projs),
+               base.model$risks[[1]][1:num.projs,
+                                     paste0("SSB_", assess.yr + 1, "<SSB_",
+                                            assess.yr)],
+           pch = pch[1],
+           col = colors[1])
     }
   }
 
   if(type == "decline.one.year"){
     plot(res$Year,
          res$P_decline,
+         xlim = xLim,
          type = "o",
          pch = pch[1],
          col = "white",    # to get axes correct
@@ -192,6 +202,7 @@ make.historical.probs.plot <- function(model,
   if(type == "bforty"){
     plot(res$Year,
          res$P_below_B40,
+         xlim = xLim,
          type = "o",
          pch = pch[1],
          col = colors[1],
