@@ -86,9 +86,13 @@ combine_historical_probs <- function(model,
 ##' Included in management presentation.
 ##' @param model
 ##' @param type "decline" to show probs of spawning biomass declining in year
-##'   after historical assessment year, "bforty" to show prob of being below
+##'   after historical assessment year, "decline.one.year" to show that for just
+##'   one year (to explain in a talk), "bforty" to show prob of being below
 ##'   `B_40\%` in the year after ther historical assessment year
 ##' @param end
+##' @param add.50 Whether to add horizontal line at 50%
+##' @param add.50.col Colour for 50% line
+##' @param one.year A single year to plot (may automatically work for more years)
 ##' @param colors
 ##' @param pch
 ##' @param legend.cex
@@ -105,6 +109,9 @@ combine_historical_probs <- function(model,
 make.historical.probs.plot <- function(model,
                                        type = "decline",
                                        end = assess.yr - 1,
+                                       add.50 = TRUE,
+                                       add.50.col = "darkgrey",
+                                       one.year = 2019,
                                        colors = c("red", "blue"),
                                        pch = c(16, 17),
                                        legend.cex = 1,
@@ -116,7 +123,7 @@ make.historical.probs.plot <- function(model,
 
   oldpar <- par("mar", "xpd")
   on.exit(par(oldpar))
-  par(mar = c(4.5, 4.5, 1, 1), xpd = TRUE) # xpd=TRUE allows points to overlap box around plot
+  par(mar = c(4.5, 4.5, 1, 1))
 
   if(type == "decline"){
     plot(res$Year,
@@ -134,6 +141,40 @@ make.historical.probs.plot <- function(model,
            col = colors[2])
   }
 
+  if(type == "decline.one.year"){
+    plot(res$Year,
+         res$P_decline,
+         type = "o",
+         pch = pch[1],
+         col = "white",    # to get axes correct
+         xlab = "Year, t",
+         ylab = "P(biomass declines from t to t+1)",
+         ylim = c(0, 100))
+
+    res_one_year <- res[which(res$Year == one.year), ]
+
+    points(res_one_year$Year,
+           res_one_year$P_decline,
+           type = "o",
+           pch = pch[1],
+           col = colors[1])
+
+    points(res_one_year$Year,
+           res_one_year$P_decline_curr,
+           type = "o",
+           pch = pch[2],
+           col = colors[2])
+
+    text(rep(res_one_year$Year, 2),
+         c(res_one_year$P_decline,
+           res_one_year$P_decline_curr),
+         labels = c(paste0(res_one_year$P_decline, "%"),
+                    paste0(round(res_one_year$P_decline_curr), "%")),
+         col = colors,
+         pos=2)
+  }
+
+
   if(type == "bforty"){
     plot(res$Year,
          res$P_below_B40,
@@ -149,6 +190,11 @@ make.historical.probs.plot <- function(model,
            pch = pch[2],
            col = colors[2])
     legend.loc = "topleft"
+  }
+
+  if(add.50){
+    abline(h = 50,
+              col = add.50.col) # extended past axes for some reason
   }
 
   legend.text <- c("From year t's assessment",

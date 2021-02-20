@@ -118,8 +118,8 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
   \bi
     \item This idea stems from a question brought up in the 11th February 2021
       JMC briefing call.
-    \item Preliminary ideas presented here, not fully thought through.
-    \item Feedback is welcome.
+    \item Preliminary ideas presented here (developed last week), not fully thought through.
+    \item Feedback is welcome (including from JTC).
   \ei
 }
 
@@ -161,9 +161,9 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 \end{table}
 \pause
 \bi
-  \item Now we \emph{know} the 2019 catch was 411,574~t, so row~d was close enough.
+  \item Now (since it's \Sexpr{assess.yr}) we \emph{know} the 2019 catch was 411,574~t, so row~d was close enough.
 \pause
-\item How do the probabilities in row~d compare to estimating them using the
+\item How do the probabilities in row~d compare to estimates of them from the
     current base model?
 \ei
 }
@@ -172,11 +172,36 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 
 \frame{\frametitle{Probabilities of decline in subsequent year}
 \bc
-<<historical.prob.plot.1, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+<<historical.prob.plot.1a, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+make.historical.probs.plot(base.model,
+                           type = "decline.one.year",
+                           add.50 = FALSE)
+@
+\ec
+}
+
+%--------------------------------------------------------------
+
+\frame{\frametitle{Probabilities of decline in subsequent year}
+\bc
+<<historical.prob.plot.1b, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+make.historical.probs.plot(base.model,
+                           add.50 = FALSE)
+@
+\ec
+}
+
+%--------------------------------------------------------------
+
+\frame{\frametitle{Probabilities of decline in subsequent year}
+\bc
+<<historical.prob.plot.1c, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
   make.historical.probs.plot(base.model)
 @
 \ec
 }
+
+%--------------------------------------------------------------
 
 \frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
 \bc
