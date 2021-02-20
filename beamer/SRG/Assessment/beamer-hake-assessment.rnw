@@ -521,7 +521,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \frame{\frametitle{Diagnostics: Summary}
   \bi
     \item Summary diagnostics for key parameters are shown in Appendix A of the assessment document.
-    \item Additional diagnostic evaluations where performed using the ShinySTAN application, an
+    \item Additional diagnostic evaluations were performed using the ShinySTAN application, an
       analysis and visualization GUI for MCMC, including:
       \bi
       \item Effective sample sizes for all parameters
