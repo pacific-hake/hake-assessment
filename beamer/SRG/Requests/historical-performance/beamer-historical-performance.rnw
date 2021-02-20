@@ -283,7 +283,7 @@ make.historical.probs.plot(base.model,
       all years, except 2012 (presumably due to unknown huge 2010 recruitment)}
   \item{Given large uncertainties, assessments always give some small probability of
       falling below $\Bforty$; current model says that's (in hindsight) even more unlikely}
-  \item{Analysis gives some confidence in the current expectation of remainig
+  \item{Analysis gives some confidence in the current expectation of remaining
       above $\Bforty$; however, note that probabilities are higher than before (except 2012)}
   \ei
 }

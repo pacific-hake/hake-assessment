@@ -579,6 +579,85 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 %% \end{columns}
 %% }
 
+% -----------------------------------------------------------------------------%
+\section{With Age-1 Index}
+\subsection{}
+\begin{frame}
+\frametitle{Base model projections}
+\begin{center}
+<<age1.sensitivity.base.proj, fig.height=3.5>>=
+oldpar <- par()
+par(mar = c(20, 4.1, 0, 1))
+models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
+models.names <- map_chr(base.model$catch.levels[models.inds], ~{.x[[2]]})
+make.forecast.depletion.comparison.plot(base.model,
+                                        models.inds,
+                                        models.names,
+                                        start.yr = 2009,
+                                        model.end.yr = end.yr,
+                                        end.yr = forecast_yrs[length(forecast_yrs)],
+                                        legend.loc = "topleft",
+                                        ylim = c(0, 1))
+par <- oldpar
+@
+\end{center}
+\end{frame}
+% -----------------------------------------------------------------------------%
+
+% -----------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Age-1 index projections}
+\begin{center}
+<<age1.sensitivity.proj, fig.height=3.5>>=
+oldpar <- par()
+par(mar = c(20, 4.1, 0, 1))
+models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
+models.names <- map_chr(sens.models.2[[1]]$catch.levels[models.inds], ~{.x[[2]]})
+make.forecast.depletion.comparison.plot(sens.models.2[[1]],
+                                        models.inds,
+                                        models.names,
+                                        start.yr = 2009,
+                                        model.end.yr = end.yr,
+                                        end.yr = forecast_yrs[length(forecast_yrs)],
+                                        legend.loc = "topleft",
+                                        ylim = c(0, 0.90))
+par <- oldpar
+@
+\end{center}
+\end{frame}
+% -----------------------------------------------------------------------------%
+
+% -----------------------------------------------------------------------------%
+\subsection{Probabilities change with inclusion of age-1 index}
+\begin{frame}
+\frametitle{Probabilities change with inclusion of age-1 index}
+\begin{table}[tbp]
+\centering
+\begin{tabular}{lrr}
+\hline
+Probability & Base model & Age-1 index \\
+\hline
+With zero catch scenario: & & \\
+P$(B_{\Sexpr{assess.yr+1}} < \Bforty)$ &
+  \Sexpr{f( base.model$risks[[1]][1, paste0("Bratio_", end.yr + 1, "<0.40")])}\% &
+  \Sexpr{f( sens.models.2[[1]]$risks[[1]][1,paste0("Bratio_", end.yr + 1, "<0.40")])}\% \\
+P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
+  \Sexpr{f( base.model$risks[[2]][1, paste0("Bratio_", end.yr + 2, "<0.40")])}\% &
+  \Sexpr{f( sens.models.2[[1]]$risks[[2]][1, paste0("Bratio_", end.yr + 2, "<0.40")])}\% \\
+With \Sexpr{f(catch_levels[[catch.actual.ind]][[1]][1])}~t catch scenario: & & \\
+P$(B_{\Sexpr{assess.yr+1}} < \Bforty)$ &
+  \Sexpr{f( base.model$risks[[1]][catch.actual.ind, paste0("Bratio_", end.yr + 1, "<0.40")])}\% &
+  \Sexpr{f( sens.models.2[[1]]$risks[[1]][catch.actual.ind, paste0("Bratio_", end.yr + 1, "<0.40")])}\% \\
+P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
+  \Sexpr{f( base.model$risks[[2]][4, paste0("Bratio_", end.yr + 2, "<0.40")])}\% &
+  \Sexpr{f( sens.models.2[[1]]$risks[[2]][catch.actual.ind, paste0("Bratio_", end.yr + 2, "<0.40")])}\% \\
+\hline
+\end{tabular}
+\end{table}
+\end{frame}
+% -----------------------------------------------------------------------------%
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Summary}
 \subsection{}
