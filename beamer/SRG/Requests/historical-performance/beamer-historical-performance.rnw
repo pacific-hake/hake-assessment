@@ -191,15 +191,6 @@ make.historical.probs.plot(base.model,
 \ec
 }
 
-%--------------------------------------------------------------
-
-\frame{\frametitle{Probabilities of decline in subsequent year}
-\bc
-<<historical.prob.plot.1c, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
-  make.historical.probs.plot(base.model)
-@
-\ec
-}
 
 %----------------------------------------------------------
 \frame{\frametitle{Absolute Recruitment}
@@ -216,7 +207,17 @@ make.historical.probs.plot(base.model,
   \ec
 }
 
-%----------------------------------------------------------
+%--------------------------------------------------------------
+
+\frame{\frametitle{Probabilities of decline in subsequent year}
+\bc
+<<historical.prob.plot.1c, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+  make.historical.probs.plot(base.model)
+@
+\ec
+}
+
+% ----------------------------------------------------------
 
 \frame{\frametitle{Probabilities of decline in subsequent year}
 \bc
@@ -226,6 +227,19 @@ make.historical.probs.plot(base.model,
 @
 \ec
 }
+
+%----------------------------------------------------------
+
+\frame{\frametitle{Probabilities of decline in subsequent year}
+\bi
+  \item{Previous assessments have 'correctly' projected an increase or decrease
+      in subsequent year}
+  \item{An assessment's projection is almost always less definitive than from
+      the current base model, since current model has more information}
+  \item{Analysis gives some confidence in the current expectation of continued decline}
+\ei
+}
+
 
 %----------------------------------------------------------
 \frame{\frametitle{Relative Spawning Biomass}
@@ -250,13 +264,27 @@ make.historical.probs.plot(base.model,
 \ec
 }
 
+\frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
+\bc
+<<historical.prob.plot.2b, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+  make.historical.probs.plot(base.model,
+                             type = "bforty",
+                             add.projs = TRUE)
+@
+\ec
+}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Summary}
 \subsection{}
-\frame{\frametitle{Summary}
+\frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
   \bi
-    \item **Based on
-    \item **
+  \item{Previous assessments have 'correctly' projected being above $\Bforty$ in
+      all years, except 2012 (presumably due to unknown huge 2010 recruitment)}
+  \item{Given large uncertainties, assessments always give some small probability of
+      falling below $\Bforty$; current model says that's (in hindsight) even more unlikely}
+  \item{Analysis gives some confidence in the current expectation of remainig
+      above $\Bforty$; however, note that probabilities are higher than before (except 2012)}
   \ei
 }
 

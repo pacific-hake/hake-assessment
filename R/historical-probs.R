@@ -154,13 +154,15 @@ make.historical.probs.plot <- function(model,
                                      paste0("SSB_", assess.yr + 1, "<SSB_",
                                             assess.yr)],
                pch = pch[1],
-               col = colors[1])
+           col = c("pink",
+                   rep(colors[1], num.projs - 1)))
     points(rep(assess.yr, num.projs),
                base.model$risks[[1]][1:num.projs,
                                      paste0("SSB_", assess.yr + 1, "<SSB_",
                                             assess.yr)],
            pch = pch[1],
-           col = colors[1])
+           col = c("pink",
+                   rep(colors[1], num.projs - 1)))
     }
   }
 
@@ -215,6 +217,24 @@ make.historical.probs.plot <- function(model,
            pch = pch[2],
            col = colors[2])
     legend.loc = "topleft"
+
+    if(add.projs){
+      segments(rep(assess.yr - 1, num.projs),
+               rep(res$P_below_B40[length(res$P_below_B40)], num.projs),
+               rep(assess.yr, num.projs),
+               base.model$risks[[1]][1:5,
+                                     paste0("Bratio_", assess.yr + 1, "<0.40")],
+               pch = pch[1],
+           col = c("pink",
+                   rep(colors[1], num.projs - 1)))
+    points(rep(assess.yr, num.projs),
+               base.model$risks[[1]][1:5,
+                                     paste0("Bratio_", assess.yr + 1, "<0.40")],
+           pch = pch[1],
+           col = c("pink",
+                   rep(colors[1], num.projs - 1)))
+    }
+
   }
 
   if(add.50){
