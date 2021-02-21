@@ -82,7 +82,10 @@ opts_chunk$set(dev = 'cairo_ps',
                cache.path = 'knitr-cache/')
 
 source(file.path(here::here(), "R", "all.R"))
-load_models_rds()
+if(!(exists("models_loaded") && models_loaded)){
+  load_models_rds()
+}
+models_loaded <- TRUE
 source(file.path(rootd.R, "custom-knitr-variables.R"))
 @
 
@@ -1030,7 +1033,7 @@ year's assessment, the credible interval remains well within that from last year
     \item Utilize existing MSE framework and other state-space assessment framework
       developments to explore recruitment estimation
     \pause
-    \item Explore how early life history survival and factors affecting recruitment can be linked
+    \item Explore how larval/juvenile survival and factors affecting recruitment can be linked
       into stock assessment process
     \pause
     \item Continue monitoring ongoing development of recruitment priors through meta-analysis research
@@ -1113,7 +1116,7 @@ year's assessment, the credible interval remains well within that from last year
       comparisons among different statistical approaches in different operational and
       research-based stock assessment frameworks
     \pause
-    \item Explorations into input age composition sample sizes will need
+    \item Explorations into input age-composition sample sizes will need
       to be jointly considered 
   \ei
 }
@@ -1169,7 +1172,7 @@ year's assessment, the credible interval remains well within that from last year
       databases match what was used to generate historical age compositions.
     \pause
     \item Next steps include extracting historical age compositions and rectifying differences,
-      then conduct simulations to determine how to best assign sample sizes to disparate sampling
+      then conducting simulations to determine how to best assign sample sizes to disparate sampling
       methods when aggregating to a single fleet.
     \pause
     \item The JTC investigated how many tows are typically included in a trip for the shore-based
@@ -1268,7 +1271,7 @@ year's assessment, the credible interval remains well within that from last year
 \frame{\frametitle{Summary -- Biomass}
   \bi
   \item Model continues to fit the age data particularly well
-  \item The estimated spawning stock biomass has continually dropped since 2017
+  %\item The estimated spawning stock biomass has continually dropped since 2017
   \item The median estimate of \Sexpr{end.yr} relative spawning biomass is
     \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
     \Sexpr{curr.depl.upper}\%)
@@ -1318,7 +1321,7 @@ year's assessment, the credible interval remains well within that from last year
 \frame{\frametitle{Summary -- Key Points}
   \bi
   \item Highest catches on record over last four years
-  \item Very low catch of age-2 and age-1 fish in 2020 fishery
+  \item Very low catches of age-2 and age-1 fish in 2020 fishery
   \item Large 2010 and 2014 cohort biomass: mortality outpacing growth (28\% and 33\%
     decline, respectively, from beginning of 2020)
   \item Rate of spawning stock biomass decline has increased over recent (2018--2021) years
