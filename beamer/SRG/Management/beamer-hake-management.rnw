@@ -308,9 +308,9 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Risk Tables}
-\subsection{Risk}
-\frame{\frametitle{Risk table definitions}
+% \section{Risk Tables}
+% \subsection{Risk}
+\frame{\frametitle{Probability table definitions}
   Probabilities associated with biomass and fishing-based metrics for different fixed catch levels
   (see Executive Summary: Tables i and j; Figures j and k)
   \bi
@@ -327,7 +327,7 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 }
 
 %--------------------------------------------------------------
-\frame{\frametitle{Risk based on fixed \Sexpr{end.yr} catch}
+\frame{\frametitle{Probabilities based on \Sexpr{end.yr} catch}
     <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
       make.risk.table(base.model,
                       forecast_yrs,
@@ -340,7 +340,7 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 
 %--------------------------------------------------------------
 
-\frame{\frametitle{Risk based on fixed \Sexpr{end.yr} catch (plot)}
+\frame{\frametitle{Probabilities based on \Sexpr{end.yr} catch}
   \bc
     <<forecast.risk.comparison.plot.year.1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
       make.forecast.risk.comparison.plot(base.model,
@@ -356,7 +356,7 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 }
 
 %--------------------------------------------------------------
-\frame{\frametitle{Risk based on fixed \Sexpr{end.yr} and \Sexpr{end.yr+1} catch}
+\frame{\frametitle{Probabilities based on \Sexpr{end.yr} and \Sexpr{end.yr+1} catch}
     <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
       make.risk.table(base.model,
                       forecast_yrs,
@@ -369,7 +369,7 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 
 %--------------------------------------------------------------
 
-\frame{\frametitle{Risk based on fixed \Sexpr{end.yr} and \Sexpr{end.yr+1} catch (plot)}
+\frame{\frametitle{Probabilities based on \Sexpr{end.yr} and \Sexpr{end.yr+1} catch}
   \bc
     <<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
       make.forecast.risk.comparison.plot(base.model,
