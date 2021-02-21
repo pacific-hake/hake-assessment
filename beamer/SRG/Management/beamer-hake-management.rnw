@@ -115,6 +115,17 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 \section{Introduction}
 \subsection{Background}
 \frame{\frametitle{Past management: Total Allowable Catch}
+<<tac.vs.realized.catch.ts, fig.height=3.5>>==
+management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
+                             connect_vars_linetype = "solid",
+                             connect_vars_alpha = 0.2,
+                             curr_assess_biomass = base.model$catch.default.policy[1])
+@
+}
+
+%--------------------------------------------------------------
+
+\frame{\frametitle{Past management: Total Allowable Catch}
 \begin{columns}
   \begin{column}{0.45\textwidth}
 	  \bi
@@ -136,17 +147,6 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
   \end{column}
 \end{columns}
 }
-
-%--------------------------------------------------------------
-\frame{\frametitle{Past management: Total Allowable Catch}
-<<tac.vs.realized.catch.ts, fig.height=3.5>>==
-management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
-                             connect_vars_linetype = "solid",
-                             connect_vars_alpha = 0.2,
-                             curr_assess_biomass = base.model$catch.default.policy[1])
-@
-}
-
 
 %---------------------------------------------------------------
 
@@ -654,6 +654,10 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
 \hline
 \end{tabular}
 \end{table}
+
+Caution: Including age-1 index in some years (especially low biomass states in
+2011 and 2012) would have given misleadingly optimistic forecasts; see 2020 assessment.
+
 \end{frame}
 % -----------------------------------------------------------------------------%
 
@@ -663,16 +667,16 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
 \subsection{}
 \frame{\frametitle{Summary of forecasting}
   \bi
-    \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t)
-    \item Uncertainty is large, but stock has \Sexpr{probs.curr.below.bforty}\%
-      chance of being below $B_{40\%}$, and
+    \item Uncertainty is large, but stock currently has \Sexpr{probs.curr.below.bforty}\%
+      chance of being below $B_{40\%}$ and
       \Sexpr{probs.curr.rel.fish.intens.above.one}\% chance of relative fishing
       intensity being above 100\%
+    \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t)
     \item Forecasts strongly influenced by size of above-average 2014 and 2016
       cohorts, 2017 now looks to be average and 2018 is small.
     \item There is $>78\%$ chance that spawning biomass will decline from
       \Sexpr{assess.yr} to \Sexpr{assess.yr+1} for any catch $\geq 180,000$~t.
-    \item Maintaining a constant catch of 529,290~t (i.e., 2020 TAC) gives a 43\%
+    \item Maintaining a constant catch of 529,290~t (the 2020 TAC) gives a 43\%
       chance of falling below $B_{40\%}$ in 1 year (58\% in 2 years time).
   \ei
 }
