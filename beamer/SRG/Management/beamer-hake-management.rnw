@@ -393,7 +393,6 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 % This needs to be somewhat manual so you can pick the cohorts to
 % specify - look at fore.catch.prop and see assessment-section.rnw.
 % Increment the ages (not cohort years!) each assessment.
-  \item Default Harvest Rule catch
   \item Dependent on selectivity assumption
   \item Median proportions (by numbers) are:
   \item \Sexpr{fore.catch.prop$Age7}\% age-7 fish, 2014 cohort
