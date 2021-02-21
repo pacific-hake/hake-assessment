@@ -179,7 +179,7 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 \subsection{Methods}
 \frame{\frametitle{Forecast methods}
   \bi
-    \item Forecasts are for \Sexpr{end.yr}, \Sexpr{end.yr+1}, and \Sexpr{end.yr+2}
+    \item Forecasts estimate biomass at start of \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
     \bi
       \item Mean of fishery selectivity from \Sexpr{end.yr-5}--\Sexpr{end.yr-1} used in forecasts
       \item Mean of weight-at-age from \Sexpr{end.yr-5}--\Sexpr{end.yr-1} used in forecasts
@@ -597,7 +597,7 @@ make.forecast.depletion.comparison.plot(base.model,
                                         model.end.yr = end.yr,
                                         end.yr = forecast_yrs[length(forecast_yrs)],
                                         legend.loc = "topleft",
-                                        ylim = c(0, 1))
+                                        ylim = c(0, 1.03))
 par <- oldpar
 @
 \end{center}
@@ -620,7 +620,7 @@ make.forecast.depletion.comparison.plot(sens.models.2[[1]],
                                         model.end.yr = end.yr,
                                         end.yr = forecast_yrs[length(forecast_yrs)],
                                         legend.loc = "topleft",
-                                        ylim = c(0, 0.90))
+                                        ylim = c(0, 0.95))
 par <- oldpar
 @
 \end{center}
@@ -671,7 +671,7 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
     \item Forecasts strongly influenced by size of above-average 2014 and 2016
       cohorts, 2017 now looks to be average and 2018 is small.
     \item There is $>78\%$ chance that spawning biomass will decline from
-      \Sexpr{assess.yr} to \Sexpr{assess.yr+1} for any catch $>180,000$~t.
+      \Sexpr{assess.yr} to \Sexpr{assess.yr+1} for any catch $\geq 180,000$~t.
     \item Maintaining a constant catch of 529,290~t (i.e., 2020 TAC) gives a 43\%
       chance of falling below $B_{40\%}$ in 1 year (58\% in 2 years time).
   \ei
