@@ -137,7 +137,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Historical calculations}
+\section{Decline in subsequent year}
 % \subsection{Risk}
 \frame{\frametitle{Compare probabilities in historical assessments to current estimates}
   \bi
@@ -254,7 +254,7 @@ make.historical.probs.plot(base.model,
 }
 
 % --------------------------------------------------------------
-
+\section{Below $\Bforty$ in subsequent year}
 \frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
 \bc
 <<historical.prob.plot.2, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
@@ -279,14 +279,20 @@ make.historical.probs.plot(base.model,
 \subsection{}
 \frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
   \bi
-  \item{Previous assessments have 'correctly' projected being above $\Bforty$ in
+  \item{Previous assessments have 'correctly' projected not falling below $\Bforty$ in
       all years, except 2012 (presumably due to unknown huge 2010 recruitment)}
-  \item{Given large uncertainties, assessments always give some small probability of
+  \item{Given uncertainty in most recent recruitments, assessments always give some small probability of
       falling below $\Bforty$; current model says that's (in hindsight) even more unlikely}
   \item{Analysis gives some confidence in the current expectation of remaining
       above $\Bforty$; however, note that probabilities are higher than before (except 2012)}
   \ei
+
+~\\
+
+Overall, we estimate probabilities of future events, and these results give some idea of the
+confidence we can have in those probabilities.
 }
+
 
 
 
