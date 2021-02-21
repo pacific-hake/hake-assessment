@@ -121,7 +121,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 	    \item March \Sexpr{last.assess.yr}
       \bi
         \item Default harvest TAC = \Sexpr{f((catch.targets %>% filter(Year == last.assess.yr))$`Assessment TAC`)} t
-        \item JMC set adjusted TAC = \Sexpr{last.year.tac} t
+        \item Sum of unilateral TACs = \Sexpr{last.year.tac} t
       \ei
       \item When default HR suggests a large catch, TAC is often set less
       \item Catches are often less than the TAC
@@ -268,8 +268,8 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
         conditioned on fixed catch in previous year}
       \item i. Median default Harvest Rule in each year conditioned on
         fixed catch in previous year
-      \item \textcolor{gray}{j. Median catch in 2020 is the same as
-        fixed catch in 2019}
+      \item \textcolor{gray}{j. Fishing intensity giving 50\% prob.~that the
+          median \Sexpr{assess.yr} catch equals median  \Sexpr{assess.yr+1} catch}
     \ei
     \item More catch streams can be added as determined by SRG/AP/JMC
   \ei
