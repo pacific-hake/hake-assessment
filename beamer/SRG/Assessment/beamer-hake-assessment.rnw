@@ -159,12 +159,14 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
                        subplots = 2,
                        model.names = bridge.model.names.1,
                        densitynames = NULL,
+                       plot_mcmc = FALSE,
                        legendloc = "topleft",
                        end.yr = bridge.model.end.yr.1)
   make.comparison.plot(bridge.models.1,
                        subplots = 9,
                        model.names = bridge.model.names.1,
                        densitynames = NULL,
+                       plot_mcmc = FALSE,
                        legend = FALSE,
                        end.yr = bridge.model.end.yr.1)
   box()
