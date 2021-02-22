@@ -232,7 +232,7 @@ make.historical.probs.plot(base.model,
 
 \frame{\frametitle{Probabilities of decline in subsequent year}
 \bi
-  \item{Previous assessments have 'correctly' projected an increase or decrease
+  \item{Previous assessments have `correctly' projected an increase or decrease
       in subsequent year}
   \item{An assessment's projection is almost always less definitive than from
       the current base model, since current model has more information}
@@ -279,8 +279,10 @@ make.historical.probs.plot(base.model,
 \subsection{}
 \frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
   \bi
-  \item{Previous assessments have 'correctly' projected not falling below $\Bforty$ in
+  \item{Previous assessments have `correctly' projected not falling below $\Bforty$ in
       all years, except 2012 (presumably due to unknown huge 2010 recruitment)}
+  \item{Caveat: that's not a particularly high bar to meet, given the stock was
+      high from 2013 onwards (we can go back further)}
   \item{Given uncertainty in most recent recruitments, assessments always give some small probability of
       falling below $\Bforty$; current model says that's (in hindsight) even more unlikely}
   \item{Analysis gives some confidence in the current expectation of remaining
@@ -291,6 +293,8 @@ make.historical.probs.plot(base.model,
 
 Overall, we estimate probabilities of future events, and these results give some idea of the
 confidence we can have in those probabilities.
+
+Can write up these results for next year if there's interest.
 }
 
 
