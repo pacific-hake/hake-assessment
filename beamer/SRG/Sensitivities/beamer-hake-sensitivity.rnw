@@ -220,24 +220,24 @@ par <- oldpar
 % -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
-\begin{frame}
-\frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
-\begin{center}
-\vspace{5pt}
-<<sigmar.recdevs.figure>>=
-par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base.model),
-                       sens.models.1[3],
-                       sens.models.1[4]),
-                     model.names = c("Base model",
-                                     sens.model.names.1[3],
-                                     sens.model.names.1[4]),
-                     subplots = 10,
-                     end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
+% \begin{frame}
+% \frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
+% \begin{center}
+% \vspace{5pt}
+% <<sigmar.recdevs.figure>>=
+% par(mar = c(7.1, 4.1, 0, 1))
+% make.comparison.plot(c(list(base.model),
+%                        sens.models.1[3],
+%                        sens.models.1[4]),
+%                      model.names = c("Base model",
+%                                      sens.model.names.1[3],
+%                                      sens.model.names.1[4]),
+%                      subplots = 10,
+%                      end.yr = end.yr)
+% par <- oldpar
+% @
+% \end{center}
+% \end{frame}
 % -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
