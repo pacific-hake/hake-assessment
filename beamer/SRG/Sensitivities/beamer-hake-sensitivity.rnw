@@ -96,12 +96,10 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
         \bi
         \item Alternative values for steepness ($h$)
         \item Higher standard deviation on prior for natural mortality
-        \item Variation of recruitment ($\sigma_r$)
+        \item Variation on recruitment ($\sigma_r$)
         \item Alternative data-weighting methods
         \item Alternative standard deviations on time-varying selectivity ($\Phi$)
-        \item Alternative maximum age for fishery and survey selectivity
         \item Include age-1 index
-        \item Removal of cohort-based error from the model
         \item Use of random walk Metropolis Hastings (rwMH) MCMC sampling
         \ei
   \item Retrospectives
@@ -930,7 +928,7 @@ make.assessment.history.plot(base.model,
 \subsection{Overview}
 \begin{frame}
 \frametitle{Summary}
-\vspace{-2cm}
+\vspace{-1cm}
 \bi
   \item In general, sensitivities show no significant departure from base model
   \item Absolute scale changes for some sensitivities mostly due to differing $R_0$ estimates
@@ -951,7 +949,7 @@ make.assessment.history.plot(base.model,
 \section{Summary}
 \subsection{Runtimes}
 \begin{frame}
-\frametitle{Summary}
+\frametitle{Summary -- Runtimes}
 \vspace{-2cm}
 \bi
   \item Total time to run all MCMC models this year:
@@ -961,9 +959,10 @@ make.assessment.history.plot(base.model,
     \item Retrospectives: 10, total = $\sim$96 hours
     \item rwMH long chain run: $\sim$8 days
     \item Total with rwMH long chain: $\sim$16 days
-    \item \textbf{Total without rwMH long chain run: 8 days}
+    \item Total without rwMH long chain run: 8 days
   \ei
   \item \textbf{Total time to run all MCMC models last year: 44.5 hours}
+  \item \textbf{Total time to run all MCMC models this year: 16 days}
 \ei
 \end{frame}
 % -----------------------------------------------------------------------------%
