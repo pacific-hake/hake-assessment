@@ -6,13 +6,23 @@
 #' @param col A color to shade the bars
 #' @param effn_labels If TRUE, add labels to the top of the bars on the effective sample size plot
 #' @param ylim_mult Multiply the maximum ylim value by this (to show labels on bars better if `effn_labels` is `TRUE`)
+#' @param show_ro_loc If TRUE, place the text "R0" over the bar in which the R0 parameter falls
+#' @param ro_yloc If `show_ro_loc` is `TRUE`, use this value as a y value for the text
+#' @param ro_yloc_arr_start If `show_ro_loc` is `TRUE`, use this value as a y value for the start of the arrow
+#' pointing to the bar where R0 is
+#' @param ro_yloc_arr_end If `show_ro_loc` is `TRUE`, use this value as a y value for the end of the arrow
+#' pointing to the bar where R0 is
 #'
 #' @return A [barplot()]
 #' @export
 plot_mcmc_param_stats <- function(model,
                                   col = get.shade(color = "blue", opacity = 30),
                                   effn_labels = FALSE,
-                                  ylim_mult = 1){
+                                  ylim_mult = 1,
+                                  show_ro_loc = FALSE,
+                                  ro_yloc = 50,
+                                  ro_yloc_arr_start = 60,
+                                  ro_yloc_arr_end = 30){
 
   oldpar <- par("mar", "oma")
   on.exit(par(oldpar))
@@ -33,6 +43,7 @@ plot_mcmc_param_stats <- function(model,
 
   hwsums <- c(0, 0, 0)
 
+  ro_loc <- NULL
   map2(mc, seq_along(mc), ~{
     acftemp <- acf(.x, lag.max = 1, type = "correlation", plot = FALSE)
     acoruse <- round(acftemp$acf[2], 3)
@@ -57,7 +68,9 @@ plot_mcmc_param_stats <- function(model,
     spec <- coda::spectrum0.ar(x)$spec
     effsize <- round(ifelse(spec == 0, 0, nrow(x) * var(x) / spec), 0)
     stats$effn[.y] <<- min(effsize, draws)
-
+    if(names(mc)[.y] == "SR_LN(R0)"){
+      ro_loc <<- stats$effn[.y]
+    }
     # Heidelberger and Welch statistic
     if(acoruse > 0.4){
       hwuse <- "No test"
@@ -75,7 +88,7 @@ plot_mcmc_param_stats <- function(model,
     stats$heidelwelsch[.y] <<- hwuse
     NULL
   })
-
+browser()
   # Plotting section
   par(new = FALSE,
       mfrow = c(2, 2))
@@ -106,6 +119,14 @@ plot_mcmc_param_stats <- function(model,
        ylim = c(0, max(j$counts) * ylim_mult),
        labels = effn_labels,
        col = col)
+  if(show_ro_loc && !is.null(ro_loc)){
+    freq_ind <- first(which(ro_loc < j$breaks)) - 1
+    x_loc <- (j$breaks[freq_ind] + j$breaks[freq_ind + 1]) / 2
+    arrows(x0 = x_loc, y0 = ro_yloc_arr_start, x1 = x_loc, y1 = ro_yloc_arr_end, length = 0.05)
+    text(x = x_loc,
+         y = ro_yloc,
+         paste0("R0 (", ro_loc, ")"))
+  }
 
   hist(stats$geweke,
        main = "",
