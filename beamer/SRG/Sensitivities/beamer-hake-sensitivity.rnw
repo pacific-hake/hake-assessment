@@ -100,6 +100,8 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
         \item Alternative data-weighting methods
         \item Alternative standard deviations on time-varying selectivity ($\Phi$)
         \item Include age-1 index
+        \item Alternative maximum age of selectivity
+        \item Using time-invariant ageing error instead of cohort-based ageing error
         \item Use of random walk Metropolis Hastings (rwMH) MCMC sampling
         \ei
   \item Retrospectives
@@ -697,6 +699,48 @@ Year & \multicolumn{3}{c}{Absolute recruitment} & \multicolumn{3}{c}{Recruitment
 % \end{tabular}
 % \end{table}
 % \end{frame}
+% -----------------------------------------------------------------------------%
+
+% -----------------------------------------------------------------------------%
+\section{Max. Age Selectivity}
+\subsection{Spawning biomass}
+\begin{frame}
+\frametitle{Max. Age Selectivity -- Spawning biomass}
+\begin{center}
+\vspace{5pt}
+<<max-age-sel, fig.height=3.5>>=
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 1))
+make.comparison.plot(c(list(base.model), sens.models.6),
+                     subplots = 4,
+                     model.names = c(base.model.name, sens.model.names.6),
+                     legend = TRUE,
+                     end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+% -----------------------------------------------------------------------------%
+
+% -----------------------------------------------------------------------------%
+\section{Age Error}
+\subsection{Spawning biomass}
+\begin{frame}
+\frametitle{Age Error -- Spawning biomass}
+\begin{center}
+\vspace{5pt}
+<<age-error, fig.height=3.5>>=
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 1))
+make.comparison.plot(c(list(base.model), list(sens.models.5)),
+                     subplots = 4,
+                     model.names = c(base.model.name, sens.model.names.5),
+                     legend = TRUE,
+                     end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\end{frame}
 % -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
