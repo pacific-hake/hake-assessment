@@ -429,7 +429,7 @@ param_est_table(c(list(base.model),
 % -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
-\subsection{Age-1 estimates comparisons}
+\section{Age-1 index}
 \begin{frame}
 \frametitle{Base model age-1 estimates compared to age-1 index}
 \begin{center}
@@ -946,7 +946,6 @@ make.assessment.history.plot(base.model,
 % -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
-\section{Summary}
 \subsection{Runtimes}
 \begin{frame}
 \frametitle{Summary -- Runtimes}
