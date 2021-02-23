@@ -32,9 +32,9 @@
 
 \setbeamertemplate{title page}
 {
-\includegraphics[height=0.5in]{../../images/NOAA.eps}
+\includegraphics[height=0.5in]{../../../images/NOAA.eps}
 \hfill
-\includegraphics[height=0.5in]{../../images/DFO.eps}
+\includegraphics[height=0.5in]{../../../images/DFO.eps}
 
 \vskip0pt plus 1filll
 \begin{center}
@@ -60,7 +60,7 @@
 \setbeamercolor{footline}{fg=pageCol}
 
 \newcounter{saveenumi}
-\input{../../hake-beamer.tex}
+\input{../../../hake-beamer.tex}
 
 %% <<echo=TRUE,  message=TRUE, results='show', warning=TRUE>>=
 %% opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
