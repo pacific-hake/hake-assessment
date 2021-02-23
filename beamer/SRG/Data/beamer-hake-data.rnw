@@ -192,11 +192,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     \center{\textbf{TAC was \Sexpr{last.year.us.tac} t}} \\
     \bi
       \item Research and bycatch -- \Sexpr{f(last.year.us.research)} t
-      \item Tribal               --
-        \bi
-        \item \Sexpr{f(last.year.us.tribal)} t
-        \item \Sexpr{f(last.year.us.tribal.quota.reallocated)} t reallocated on \Sexpr{last.year.us.tribal.reallocate.dates}
-        \ei
+      \item Tribal  -- \Sexpr{f(last.year.us.tribal)} t - \Sexpr{f(last.year.us.tribal.quota.reallocated)} t reallocated on \Sexpr{last.year.us.tribal.reallocate.dates}
       \item Catcher Processor    -- \Sexpr{f(last.year.us.cp.quota.reallocated)} t
       \item Mothership           -- \Sexpr{f(last.year.us.ms.quota.reallocated)} t
       \item Shore-Based           -- \Sexpr{f(last.year.us.shore.quota.reallocated)} t
@@ -213,32 +209,23 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     \begin{column}[t]{0.5\linewidth}
       \center{\textbf{\textcolor{blue}{Canada}}} \\
     \center{\textbf{TAC was \Sexpr{last.year.can.tac} t}} \\
-      \bi
-        \item Total Canadian catch -- \Sexpr{last.year.can.landings} t
+\Sexpr{last.year.can.landings} t, \Sexpr{paste0(last.year.can.attained, "\\%")} of the Canadian TAC
         \bi
-          \item Freezer Trawlers -- \Sexpr{last.year.can.freezer} t (\Sexpr{paste0(last.year.can.freezer.percent, "\\%")})
-          \item Shoreside        -- \Sexpr{last.year.can.shore} t   (\Sexpr{paste0(last.year.can.shore.percent, "\\%")})
-          \item Joint Venture    -- \Sexpr{last.year.can.jv} t   (\Sexpr{paste0(last.year.can.jv.percent, "\\%")})
+          \item Freezer Trawlers -- \Sexpr{last.year.can.freezer} t, \Sexpr{paste0(last.year.can.freezer.percent, "\\%")} of Canadian TAC
+          \item Shoreside        -- \Sexpr{last.year.can.shore} t, \Sexpr{paste0(last.year.can.shore.percent, "\\%")} of Canadian TAC
+          \item Joint Venture    -- \Sexpr{last.year.can.jv} t, \Sexpr{paste0(last.year.can.jv.percent, "\\%")} of Canadian TAC
         \ei
-        \bigskip
-        \item \Sexpr{paste0(last.year.can.attained, "\\%")} of the Canadian TAC was caught.
-      \ei
     \end{column}
     \begin{column}[t]{0.5\linewidth}
       \center{\textbf{\textcolor{blue}{United States}}} \\
     \center{\textbf{TAC was \Sexpr{last.year.us.tac} t}} \\
-      \bi
-        \item Total U.S. catch -- \Sexpr{last.year.us.landings} t
+    \Sexpr{last.year.us.landings} t, \Sexpr{paste0(last.year.us.attained, "\\%")} of the U.S. TAC
           \bi
-            %\item Research            -- \Sexpr{f(last.year.us.research.catch)} t    (\Sexpr{paste0(last.year.us.research.catch.percent, "\\%")})
-            \item Catcher Processor  -- \Sexpr{f(last.year.us.cp.catch)} t          (\Sexpr{paste0(last.year.us.cp.catch.percent, "\\%")})
-            \item Mothership          -- \Sexpr{f(last.year.us.ms.catch)} t          (\Sexpr{paste0(last.year.us.ms.catch.percent, "\\%")})
-            \item Shore-Based         -- \Sexpr{f(last.year.us.shore.catch)} t       (\Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")})
+            \item Catcher Processor  -- \Sexpr{f(last.year.us.cp.catch)} t, \Sexpr{paste0(last.year.us.cp.catch.percent, "\\%")} of US CP allocation
+            \item Mothership          -- \Sexpr{f(last.year.us.ms.catch)} t, \Sexpr{paste0(last.year.us.ms.catch.percent, "\\%")} of US MS allocation
+            \item Shore-Based         -- \Sexpr{f(last.year.us.shore.catch)} t, \Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")} of shore-based allocation, includes 133 t of tribal catches
             %todo: automate tribal catch amount
-            \item Tribal (included in shore-based) -- 133 t
           \ei
-        \item \Sexpr{paste0(last.year.us.attained, "\\%")} of the U.S. TAC was caught.
-      \ei
     \end{column}
   \end{columns}
 }
