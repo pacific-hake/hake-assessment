@@ -124,7 +124,7 @@ weight.at.age.heatmap <- function(model,
   w <- as.data.frame(rbind(w, avg))
   w$Yr <- as.integer(w$Yr)
   w$value <- as.numeric(w$value)
-  w$age <- utils::type.convert(w$variable)
+  w$age <- utils::type.convert(w$variable, as.is = TRUE)
 
   nn <- stats::reshape(extrap.mask, direction = "long",
     idvar = c("Yr"), varying = grep("^a", colnames(extrap.mask), value = TRUE),
