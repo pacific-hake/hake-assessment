@@ -16,6 +16,11 @@ from 22nd to 25th February 2021. % in Vancouver, BC, Canada.
 
 % {\bf Request 2 -- XX}
 
+% Placeholder for requested plot - See Issue #825
+<<srg-wt-at-age>>=
+make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1)
+@
+
 % {\bf Request 3 -- XX}
 
 % \clearpage
