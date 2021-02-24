@@ -7,7 +7,7 @@
 %%  to the fourth table in the main-tables section
 \usepackage{chngcntr}
 
-\usepackage{hake}
+\usepackage{../../../../doc/hake}
 %% title gives 'Appendix A', not
 %% just 'A', but doesn't seem to work, may need article class,
 %% but need to see appendix manual.
