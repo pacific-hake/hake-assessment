@@ -533,7 +533,7 @@ make.mcmc.diag.plot(sens.models.7, key.posteriors[6], key.posteriors.titles[6])
 par <- oldpar
 @
 \end{center}
-\caption{Summary of rwMH MCMC diagnostics for the Dirichlet-Multinomial
+\caption{Summary of rwMH MCMC diagnostics for the Dirichlet-multinomial
   age-composition parameters for the fishery ($\theta_{\text{fish}}$, upper
   panels) and the survey ($\theta_{\text{surv}}$, lower panels). Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; cumulative running mean with 5th and 95th percentiles, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
 \label{fig:mcmc-diag-dm-rwmh}

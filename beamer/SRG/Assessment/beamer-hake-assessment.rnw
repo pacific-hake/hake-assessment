@@ -451,7 +451,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %
 %----------------------------------------------------------
 % \begin{frame}
-% \frametitle{Weighting of priors on Dirichlet-Multinomial parameters ($\theta_{fish}$ and $\theta_{surv}$)}
+% \frametitle{Weighting of priors on Dirichlet-multinomial parameters ($\theta_{fish}$ and $\theta_{surv}$)}
 % \begin{columns}
 %   \begin{column}{0.5\textwidth}
 %     \bc
@@ -500,7 +500,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %
 %----------------------------------------------------------
 %\begin{frame}
-%\frametitle{Priors on Dirichlet-Multinomial parameters ($\theta_{fish}$ and $\theta_{surv}$)}
+%\frametitle{Priors on Dirichlet-multinomial parameters ($\theta_{fish}$ and $\theta_{surv}$)}
 %    \bc
 %    <<dm.prior.posterior, fig.height=3.5, fig.width=8,out.width='0.95\\columnwidth'>>=
 %make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,

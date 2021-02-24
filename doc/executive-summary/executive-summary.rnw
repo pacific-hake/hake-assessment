@@ -203,7 +203,7 @@ time-invariant fishery selectivity. Even a small degree of flexibility in the
 fishery selectivity could reduce the effects of errors caused
 by assuming selectivity is constant over time. Therefore, we retain time-varying
 selectivity in this assessment.
-We retain the Dirichlet-Multinomial estimation approach to weighting
+We retain the Dirichlet-multinomial estimation approach to weighting
 composition data.
 We again provide sensitivities to alternative data-weighting
 approaches. Time-varying fecundity, which was introduced in 2019, is retained.

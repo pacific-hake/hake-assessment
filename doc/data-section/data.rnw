@@ -675,7 +675,7 @@ is only used for a sensitivity analysis
 
 \subsubsection{Age composition likelihood}\label{sec:data-age-comp-likelihood}
 
-Since 2018, the assessment has used a Dirichlet-Multinomial (D-M)
+Since 2018, the assessment has used a Dirichlet-multinomial (D-M)
 likelihood \citep{ThorsonEtAl2017Dirichlet} to fit the age-composition data.
 Estimated parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$ serve to
 automatically adjust the weight given to

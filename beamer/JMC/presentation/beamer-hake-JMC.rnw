@@ -159,7 +159,7 @@ fore.names <- cmodels.names <- sapply(base.model$catch.levels, "[[", 2)[fore.ind
       \item Weight-at-age values for \Sexpr{last.assess.yr}
       \item Survey biomass estimate and age data for \Sexpr{last.assess.yr}
     \ei
-    \item Added a prior to the two Dirichlet-Multinomial parameters
+    \item Added a prior to the two Dirichlet-multinomial parameters
       (fishery and survey age-composition weighting parameters)
   \ei
 \end{frame}

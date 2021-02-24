@@ -45,7 +45,7 @@ in the statistical likelihood has changed through the use of various emphasis fa
 size on age compositions (e.g., \citealt{DornSaundersEtAl1999, HelserDornEtAl2002,
 HelserFleischerEtAl2005, StewartForrestEtAl2011}),
 internal estimations of effective sample size using the
-Dirichlet-Multinomial distribution \citep{JTC2018},
+Dirichlet-multinomial distribution \citep{JTC2018},
 and assumptions regarding year-specific
 survey variance. In this assessment, a more efficient Bayesian MCMC sampler
 (No-U-Turn Sampler; NUTS) was used to create parameter posterior distributions,
@@ -128,7 +128,7 @@ maturity ogive updated in 2018 was retained
 Fecundity is defined as weight-at-age multiplied by the maturity ogive
 and is time-varying across years with empirical weight-at-age data
 (\Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}; see Section~\ref{sec:data-weight-at-age}).
-The Dirichlet-Multinomial (D-M)
+The Dirichlet-multinomial (D-M)
 likelihood approach \citep{ThorsonEtAl2017Dirichlet} was again used to estimate the weights
 associated with age-composition data, rather than iteratively tuning the sample size multiplier
 as in 2017 and earlier assessments (see
@@ -176,7 +176,7 @@ likelihood function, using the observed (and extra 2009) sampling variability,
 estimated via kriging, as year-specific weighting. An additional constant and
 additive standard deviation on the log-scale component is included, which was
 freely estimated to accommodate unaccounted-for sources of process and
-observation error. A Dirichlet-Multinomial (D-M) likelihood was applied to age-composition data,
+observation error. A D-M likelihood was applied to age-composition data,
 with input sample sizes equal to the sum of the number of trips or hauls actually sampled across all
 fishing fleets or the number of trawl sets in the research surveys (see Section~\ref{sec:data-age-comp-likelihood}).
 % Manual 2020 KFJ
@@ -234,7 +234,7 @@ to continue to work on the issue.
   time-varying selectivity ($\Phi$),
   $\sigma_R$,
   the extra standard deviation parameters on survey-index data, and
-  the Dirichlet-Multinomial parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$.
+  the Dirichlet-multinomial parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$.
   In this assessment, $\Phi$ and $\sigma_R$ are input as fixed values rather than estimated, though we have explored their estimation within Stock Synthesis in the past and did so again this year.
   Estimation of these variance parameters using wide, uniform priors (given the lack of information available on hyper priors within stock assessments) was unsuccessful. Estimates were clearly interrelated with other sources of variance attributed to model mis-specification rather than variability directly related to the given process.
   This is particularly
@@ -374,7 +374,7 @@ year, fleet, sample size, etc.) and whether the variability relates to simple
 metrics of sample size such as the number of sampled tows, the number of
 sampled trips, and the number of sampled fish.}
 
-\emph{Response to (1) -- The investigation of how many fish are sampled per trip and tow for each fleet noted in response 4 will help inform whether or not a time block on the fishery-specific Dirichlet-Multinomial parameter is supported by the data. Until that work is complete, there is no information available to inform when the time block should begin or end.}
+\emph{Response to (1) -- The investigation of how many fish are sampled per trip and tow for each fleet noted in response 4 will help inform whether or not a time block on the fishery-specific Dirichlet-multinomial parameter is supported by the data. Until that work is complete, there is no information available to inform when the time block should begin or end.}
 
 \emph{Response to (2) -- In 2020, the JTC noted that they were working on a document to summarize the changes in the sampling protocol over time. This work is still in progress and is meant to be a living document that will be updated annually.
 As the JTC works towards documenting which fish are included in historical age-composition samples (not just sampled; response 4), investigating disaggregated forms of the compositional data will become a doable task because currently the raw data are unavailable.
@@ -1088,7 +1088,7 @@ with several important model parameters including: acoustic survey catchability
 recruitment), productivity of the stock (via the steepness parameter, $h$, of
 the stock-recruitment relationship), the rate of natural mortality ($M$), annual
 selectivity for key ages, recruitment deviations, and survey and fishery data
-weights (via the Dirichlet-Multinomial parameters
+weights (via the Dirichlet-multinomial parameters
 $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$).
 The uncertainty portrayed
 by the posterior distribution is a better representation of uncertainty than
@@ -1540,7 +1540,7 @@ Appendix~\ref{chap:age1-survey}.
 
 % section below on composition weighting
 % Manual 2021 done - CG
-The base model includes a Dirichlet-Multinomial likelihood component,
+The base model includes a Dirichlet-multinomial likelihood component,
 which uses two estimated parameters to automatically weight each of the fishery and survey age
 compositions. The base model was compared to the
 models that used the alternative McAllister-Ianelli and Francis methods.
@@ -1555,7 +1555,7 @@ lie within the uncertainty intervals at a rate which is consistent
 with variability expected based on the adjusted sample sizes.
 The McAllister-Ianelli method
 estimated lower weights on the age compositions but
-generally gave very similar results to the Dirichlet-Multinomial method.
+generally gave very similar results to the Dirichlet-multinomial method.
 The McAllister-Ianelli method led to increased uncertainty in estimates of
 early recruitments compared to other weighting methods
 (Figure~\ref{fig:main-recruit-base-alternative-2}).

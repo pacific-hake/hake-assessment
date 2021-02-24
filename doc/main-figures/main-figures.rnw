@@ -498,10 +498,10 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
   key parameters in the base model. The parameters are: natural mortality ($M$),
   equilibrium log recruitment ($\log R_0)$, steepness ($h$), the additional
   process-error standard deviation for the acoustic survey, and the
-  Dirichlet-Multinomial parameters for the fishery ($\theta_{\text{fish}}$) and
+  Dirichlet-multinomial parameters for the fishery ($\theta_{\text{fish}}$) and
   the survey ($\theta_{\text{surv}}$). The maximum likelihood estimates and
   associated symmetric uncertainty intervals are also shown (blue lines). There
-  are 50 bins for each posterior except the two Dirichlet-Multinomial parameters
+  are 50 bins for each posterior except the two Dirichlet-multinomial parameters
   which are grouped into 500 bins.}
 \label{fig:main-prior-posterior}
 \end{figure}
