@@ -216,7 +216,51 @@ The SRG requests that the JTC use a three year average of weight-at-age to produ
 
 <<table1, results='asis', echo=FALSE>>=
 make.decision.table(b_model,
-                    xcaption = paste0("Forecast quantiles of \\fishname\\
+                    xcaption = paste0("Request 1 Model: Forecast quantiles of \\fishname\\
+                     relative spawning biomass at the beginning of the year
+                     before fishing.  Catch alternatives are based on: constant
+                     catch levels (rows ",
+                     catch.constant.str,
+                     "), including catch similar to ",
+                     min(forecast_yrs)-1," (row ",
+                     letters[catch.actual.ind],
+                     "), to the (unilaterally summed) TAC from ",
+                     min(forecast_yrs)-1," (row ",
+                     letters[catch.tac.ind],
+                     "), and to the TAC from ",
+                     min(forecast_yrs)-2," (row ",
+                     letters[catch.prev.tac.ind],
+                     "); and non-constant catch levels that result
+                     in a median relative fishing intensity of 100\\% (row ",
+                     letters[catch.spr100.ind],
+                     "), median catch estimated ",
+                     "via the default harvest policy
+                     (\\Ffortyten, row ",
+                     letters[catch.default.policy.ind],
+                     "), and the fishing intensity that results in a 50\\% probability that the median
+                     projected catch will remain the same in ",
+                     min(forecast_yrs),
+                     " and ",
+                     min(forecast_yrs)+1,
+                     " (row ",
+                     letters[catch.stable.ind],
+                     "). Catch in ",
+                     max(forecast_yrs),
+                     " does not impact the beginning of the year biomass in ",
+                     max(forecast_yrs),
+                     "."),
+                    xlabel = "tab:es-decisions-biomass",
+                    font.size = 12,
+                    space.size = 14,
+                    type = "biomass",
+                    placement = "tbp")
+@
+
+\clearpage
+
+<<table1, results='asis', echo=FALSE>>=
+make.decision.table(base.model,
+                    xcaption = paste0("Base Model: Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
                      catch levels (rows ",
@@ -263,7 +307,7 @@ make.risk.table(b_model,
                 forecast_yrs,
                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
                            ##  forecast year 2 compared to forecast year 1
-                xcaption = paste0("Probabilities related to spawning biomass,
+                xcaption = paste0("Request 1 Model: Probabilities related to spawning biomass,
                              relative fishing intensity, and the ",end.yr+1,
                              " default harvest policy catch for alternative ",
                              end.yr," catch options (explained in
@@ -276,6 +320,25 @@ make.risk.table(b_model,
 
 \clearpage
 
+<<risk-table, results='asis', echo=FALSE>>=
+make.risk.table(base.model,
+                forecast_yrs,
+                index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
+                           ##  forecast year 2 compared to forecast year 1
+                xcaption = paste0("Base Model: Request 1 Model: Probabilities related to spawning biomass,
+                             relative fishing intensity, and the ",end.yr+1,
+                             " default harvest policy catch for alternative ",
+                             end.yr," catch options (explained in
+                             Table~\\ref{tab:es-decisions-biomass})."),
+                xlabel = "tab:es-risk-year-1",
+                font.size = 12,
+                space.size = 14,
+                placement = "tbp")
+@
+
+\clearpage
+
+
 \section{Request 2}
 
 Run the 3 yr projection for relative spawning biomass to the start of 2024. These results will enable the SRG to evaluate the width of the CI really for a three year projection, we have the data if we decide to include a 3-yr projection in the table, and the Canadian delegation has the numbers (even if this does not make it into the assessment or SRG report).
@@ -283,7 +346,7 @@ Run the 3 yr projection for relative spawning biomass to the start of 2024. Thes
 
 <<table2, results='asis', echo=FALSE>>=
 new_decision_table(a_model,
-                   xcaption = paste0("Forecast quantiles of \\fishname\\
+                   xcaption = paste0("Request 2 Model: Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
                      catch levels (rows ",
@@ -323,6 +386,48 @@ new_decision_table(a_model,
                    placement = "tbp")
 @
 
+\clearpage
 
+<<table2, results='asis', echo=FALSE>>=
+new_decision_table(base_model,
+                   xcaption = paste0("Base Model: Request 2 Model: Forecast quantiles of \\fishname\\
+                     relative spawning biomass at the beginning of the year
+                     before fishing.  Catch alternatives are based on: constant
+                     catch levels (rows ",
+                     catch.constant.str,
+                     "), including catch similar to ",
+                     min(forecast_yrs_extra)-1," (row ",
+                     letters[catch.actual.ind],
+                     "), to the (unilaterally summed) TAC from ",
+                     min(forecast_yrs_extra)-1," (row ",
+                     letters[catch.tac.ind],
+                     "), and to the TAC from ",
+                     min(forecast_yrs_extra)-2," (row ",
+                     letters[catch.prev.tac.ind],
+                     "); and non-constant catch levels that result
+                     in a median relative fishing intensity of 100\\% (row ",
+                     letters[catch.spr100.ind],
+                     "), median catch estimated ",
+                     "via the default harvest policy
+                     (\\Ffortyten, row ",
+                     letters[catch.default.policy.ind],
+                     "), and the fishing intensity that results in a 50\\% probability that the median
+                     projected catch will remain the same in ",
+                     min(forecast_yrs_extra),
+                     " and ",
+                     min(forecast_yrs_extra)+1,
+                     " (row ",
+                     letters[catch.stable.ind],
+                     "). Catch in ",
+                     max(forecast_yrs_extra),
+                     " does not impact the beginning of the year biomass in ",
+                     max(forecast_yrs_extra),
+                     "."),
+                   xlabel = "tab:es-decisions-biomass",
+                   font.size = 12,
+                   space.size = 14,
+                   type = "biomass",
+                   placement = "tbp")
+@
 
 \end{document}
