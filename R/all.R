@@ -85,6 +85,7 @@ catch_levels_max_iter <- 20
 
 assess_yr <- 2021
 forecast_yrs <- assess_yr:(assess_yr + 2)
+forecast_yrs_extra <- assess_yr:(assess_yr + 3)
 forecast_probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 
 retrospective_yrs <- 1:10

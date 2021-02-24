@@ -183,6 +183,193 @@ make.decision.table <- function(model,
         hline.after = NULL)
 }
 
+
+#' Make a decision table in the format suggested in the 2021 assessment SRG review meeting
+#'
+#' @param model
+#' @param xcaption
+#' @param xlabel
+#' @param font.size
+#' @param space.size
+#' @param type
+#' @param placement
+#'
+#' @return
+#' @export
+#'
+#' @examples
+new_decision_table <- function(model,
+                               xcaption   = "default",
+                               xlabel     = "default",
+                               font.size  = 9,
+                               space.size = 10,
+                               type      = "biomass",
+                               placement  = "H"){
+
+  if(type != "biomass" & type != "spr"){
+    stop("make.decisions.table: Error - type '",
+         type,
+         "' is not implemented. Stopping...\n\n")
+  }
+  forecast <- model$forecasts[[length(model$forecasts)]]
+  if(type == "biomass"){
+    num.rows <- nrow(forecast[[1]]$biomass) - 1
+    table.header <- latex.bold("Resulting relative spawning biomass")
+  }else{
+    num.rows <- nrow(forecast[[1]]$spr)
+    table.header <- latex.bold("Relative fishing intensity")
+  }
+
+  # *If you add or remove a row from the table, you only need to change the next two variables*
+  #
+  # tab.letters are the letters in the table, one for each forecast management
+  # action and a blank for all but the first year in a management action
+  # additional labels are given for some rows (below letter)
+  rows2Label <- c("d", "f", "g", "h", "i", "j")
+  rowLabels <- list(c(assess.yr - 1, "catch"),
+                    c(assess.yr - 1, "TAC"),
+                    c(assess.yr - 2, "TAC"),
+                    c("FI=", "100\\%"),
+                    c("default", "HR"),
+                    c(paste0("C", assess.yr, "="),
+                      paste0("C", assess.yr + 1)))
+
+  tab.letters <- NULL
+  next.ind <- 1
+  for(i in 1:length(forecast)){
+    tab.letters[next.ind] <- paste0(letters[i], ":")
+    next.ind <- next.ind + 1
+    for(j in 1:(num.rows - 1)){
+      if(letters[i] %in% rows2Label) {
+        lab <- rowLabels[[which(letters[i] == rows2Label)]]
+        tab.letters[next.ind] <- lab[j]
+      } else {
+        tab.letters[next.ind] <- ""
+      }
+      next.ind <- next.ind + 1
+    }
+  }
+  tab.letters <- tab.letters %>%
+    enframe(name = NULL, value = "labels")
+
+  # Merge the list elements into a data frame
+  if(type == "biomass"){
+    forecast.tab <- map(forecast, ~{
+      tmp <- .x$biomass %>%
+        as_tibble(rownames = "Year") %>%
+        select(-c("25%", "75%"))
+      names(tmp) <- gsub("%", "\\\\%", names(tmp))
+      first_biomass_yr <<- slice(tmp, 1)
+      slice(tmp, -1)
+    }) %>% map_df(~{.x})
+  }else{
+    forecast.tab <- f(do.call("rbind",
+                              lapply(forecast, "[[", "spr")) * 100)
+  }
+  first_biomass_yr$Year <- paste("Start", first_biomass_yr$Year)
+
+  c.levels <- map(model$catch.levels, ~{
+    tmp <- .x[[1]]
+    tmp[tmp < 1] <- 0
+    head(tmp, -1)
+  }) %>%
+    unlist %>%
+    enframe(name = NULL, value = "Catch (t)")
+
+  forecast.tab <- forecast.tab %>%
+    bind_cols(c.levels, tab.letters) %>%
+    mutate(Year = as.numeric(Year) - 1,
+           start_yr = paste("Start", Year + 1)) %>%
+    select(labels, Year, `Catch (t)`, start_yr, everything()) %>%
+    mutate(Year = as.character(Year),
+           `Catch (t)` = f(`Catch (t)`),
+           `5\\%` = f(`5\\%`, 2),
+           `50\\%` = f(`50\\%`, 2),
+           `95\\%` = f(`95\\%`, 2))
+
+  first_biomass_yr[ ,-1] <- as.list(f(unlist(first_biomass_yr[ ,-1]), 2))
+
+  quant.levels <- grep("%", names(forecast.tab), value = TRUE)
+
+  # Add the extra header spanning multiple columns
+  addtorow <- list()
+  addtorow$pos <- list()
+  addtorow$pos[[1]] <- -1
+  addtorow$pos[[2]] <- nrow(forecast.tab)
+
+  quant.string <- ""
+  quant.ampersands <- ""
+  quant.cell.defs <- NULL
+  for(i in 1:length(quant.levels)){
+    quant.string <- paste0(quant.string,
+                           latex.amp(),
+                           quant.levels[i])
+    quant.ampersands <- paste0(quant.ampersands,
+                               latex.amp())
+    quant.cell.defs <- c(quant.cell.defs, "Y")
+  }
+  # Add the vertical bar to the edge of the last quant cell
+  quant.cell.defs[length(quant.cell.defs)] <- paste0(quant.cell.defs[length(quant.cell.defs)], "|")
+
+  addtorow$command <- c(paste0(latex.hline,
+                               latex.amp(3),
+                               "Model quantile",
+                               quant.string,
+                               latex.nline,
+                               latex.cline("1-3"),
+                               latex.mcol(3,
+                                          "|c|",
+                                          "Management Action"),
+                               latex.amp(),
+                               "Biomass year",
+                               latex.amp(),
+                               latex.mcol(length(quant.levels),
+                                          "c|",
+                                          table.header),
+                               #quant.ampersands,
+                               latex.nline,
+                               latex.cline("1-3"),
+                               latex.amp(),
+                               "Catch year",
+                               latex.amp(),
+                               "Catch (t)",
+                               latex.amp(),
+                               paste(first_biomass_yr[1,], collapse = latex.amp()),
+                               latex.nline,
+                               latex.hline),
+                        latex.hline)
+
+  # Add the right number of horizontal lines to make the table break in the
+  #  correct places
+  # A line is not needed at the bottom explains (length(forecast)-1).
+  for(i in 1:(length(forecast) - 1)){
+    addtorow$pos[[i + 2]] <- i * num.rows
+    addtorow$command <- c(addtorow$command, latex.hline)
+  }
+
+  ## Make the size string for font and space size
+  size.string <- latex.size.str(font.size, space.size)
+  print(xtable(forecast.tab,
+               caption = xcaption,
+               label = xlabel,
+               align = c("c",
+                         "|c",
+                         "c",
+                         "c|",
+                         "c",
+                         quant.cell.defs)),
+        caption.placement = "top",
+        include.rownames = FALSE,
+        include.colnames = FALSE,
+        sanitize.text.function = function(x){x},
+        size = size.string,
+        add.to.row = addtorow,
+        table.placement = placement,
+        tabular.environment = "tabularx",
+        width = "\\textwidth",
+        hline.after = NULL)
+}
+
 make.decision.table.pres <- function(model,
                                      model.inds,
                                      xcaption   = "default",
