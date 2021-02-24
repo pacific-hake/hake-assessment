@@ -48,7 +48,8 @@ internal estimations of effective sample size using the
 Dirichlet-multinomial distribution \citep{JTC2018},
 and assumptions regarding year-specific
 survey variance. In this assessment, a more efficient Bayesian MCMC sampler
-(No-U-Turn Sampler; NUTS) was used to create parameter posterior distributions,
+(No-U-Turn Sampler; NUTS; \citealt{HoffmanGelman2014}) was used to create parameter posterior distributions
+\citep{Monnahan2018, Monnahan2019},
 a change from previous assessments that used the random walk Metropolis Hastings
 (rwMH) sampler. NUTS has several advantages over the rwMH as described in
 Appendix~\ref{chap:rwmh}). The list of changes discussed above is for illustrative
@@ -115,7 +116,7 @@ The largest changes between the
 year of
 %acoustic survey and
 fishery data and the incorporation of a more efficient MCMC sampling algorithm
-(NUTS) for constructing posterior densities. The latter led to
+(NUTS; \citealt{HoffmanGelman2014}) for constructing posterior densities. The latter led to
 the explicit use of Bayesian inference throughout the stock assessment, because full
 posterior distributions were calculated for all sensitivity and retrospective
 analyses for the first time in a \fishname\ assessment.
