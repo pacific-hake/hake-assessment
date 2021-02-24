@@ -214,7 +214,7 @@ Disclaimer: These materials do not constitute a formal publication and are for i
 
 The SRG requests that the JTC use a three year average of weight-at-age to produce projections of spawning biomass for constant catch levels of 0 and 380,000 t, and associated one-year probabilities with these catches as in Table i of the Executive Summary. The catch associated with the default harvest rate for 2021 would also be useful.  These results will show the influence of the 5-year averaging of weight-at-age in the projections, especially given that 2016 is a year with low weight-at-age. It may support investigating alternative methods for predicting weight-at-age in the future. If the JTC has done this kind of analysis in the past, then the JTC can use it’s discretion regarding completion of this request.
 
-<<table1, results='asis', echo=FALSE>>=
+<<table1b, results='asis', echo=FALSE>>=
 make.decision.table(b_model,
                     xcaption = paste0("Request 1 Model: Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
@@ -249,7 +249,7 @@ make.decision.table(b_model,
                      " does not impact the beginning of the year biomass in ",
                      max(forecast_yrs),
                      "."),
-                    xlabel = "tab:es-decisions-biomass",
+                    xlabel = "tab:es-decisions-biomass-b",
                     font.size = 12,
                     space.size = 14,
                     type = "biomass",
@@ -302,7 +302,7 @@ make.decision.table(base.model,
 
 \clearpage
 
-<<risk-table, results='asis', echo=FALSE>>=
+<<risk-tableb, results='asis', echo=FALSE>>=
 make.risk.table(b_model,
                 forecast_yrs,
                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
@@ -312,7 +312,7 @@ make.risk.table(b_model,
                              " default harvest policy catch for alternative ",
                              end.yr," catch options (explained in
                              Table~\\ref{tab:es-decisions-biomass})."),
-                xlabel = "tab:es-risk-year-1",
+                xlabel = "tab:es-risk-year-1-b",
                 font.size = 12,
                 space.size = 14,
                 placement = "tbp")
@@ -344,7 +344,7 @@ make.risk.table(base.model,
 Run the 3 yr projection for relative spawning biomass to the start of 2024. These results will enable the SRG to evaluate the width of the CI really for a three year projection, we have the data if we decide to include a 3-yr projection in the table, and the Canadian delegation has the numbers (even if this does not make it into the assessment or SRG report).
 (With default weight etc.)
 
-<<table2, results='asis', echo=FALSE>>=
+<<table2a, results='asis', echo=FALSE>>=
 new_decision_table(a_model,
                    xcaption = paste0("Request 2 Model: Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
@@ -379,7 +379,7 @@ new_decision_table(a_model,
                      " does not impact the beginning of the year biomass in ",
                      max(forecast_yrs_extra),
                      "."),
-                   xlabel = "tab:es-decisions-biomass",
+                   xlabel = "tab:es-decisions-biomass-a",
                    font.size = 12,
                    space.size = 14,
                    type = "biomass",
