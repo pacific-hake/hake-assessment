@@ -10,7 +10,7 @@ from 22nd to 25th February 2021. % in Vancouver, BC, Canada.
 
 % Commenting these out to not encourage requests!
 
-% \section{Day 1}
+\section{Day 1}
 
 % {\bf Request 1 -- XX}
 
@@ -25,12 +25,137 @@ make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1)
 
 % \clearpage
 
-% \section{Day 2}
+\section{Day 2}
 
-% {\bf Request 1 -- XX}
+{\bf Request 1 -- XX}
 
-% {\bf Request 2 -- XX}
+{\bf Request 2 -- XX}
 
 % {\bf Request 3 -- XX}
+
+% Andy putting empty lines here to avoid potential conflicts..... his stuff is
+% further down
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Further analyses}
+
+During the JTC's briefing presentation to the Joint Management Committee on February
+11, 2021, a comment was raised about the probabilities in the decision tables
+(such as Tables~** and **) changing from assessment to assessment. The
+probabilities change because a
+decision table in, say, the \Sexpr{assess.yr} assessment already accounts for
+the catch in \Sexpr{assess.yr - 1} and has updated data. But this comment led us
+to investigate the general question of how much confidence can we have in the
+probabilities, based on those from previous assessments.
+
+As an example, the 2019 assessment gave the probability of the spawning stock
+biomass declining in the subsequent year, i.e.~P($B_{2020} < B_{2019}$),
+for each value of several possible catches in 2019 (such as 0~t, 180,000~t,
+350,000~t, 410,000~t etc.). Now, in \Sexpr{assess.yr}, we \emph{know} that the catch in 2019 was
+411,574~t. Therefore, we can select the 410,000~t row (which is close enough to
+411,574~t) in the table from the 2019
+assessment to give P($B_{2020} < B_{2019}$) given the catch that we now know
+occurred in 2019, as estimated in the 2019 assessment.
+
+Then, we can caculate P($B_{2020} < B_{2019}$) using the current
+assessment model, i.e.~calculate our most up-to-date estimate of the probability
+that the stock declined from 2019 to 2020 using all available data. This
+implicitly includes the 411,574~t catch from 2019. Then we can compare these two
+probabilities to ask how much confidence we can put in such one-year-ahead probabilities
+in the stock assessments.
+
+
+
+
 
 \clearpage % Needed to make footers correct
