@@ -88,7 +88,7 @@ plot_mcmc_param_stats <- function(model,
     stats$heidelwelsch[.y] <<- hwuse
     NULL
   })
-browser()
+
   # Plotting section
   par(new = FALSE,
       mfrow = c(2, 2))
