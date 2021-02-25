@@ -467,7 +467,7 @@ param_est_table(list(base.model, last.yr.base.model),
 <<main-reference-points-table, results='asis', echo=FALSE>>=
 make.reference.points.table.old(base.model,
                             xcaption = paste0("Summary of median and 95\\% credibility
-                                               intervals of equilibrium reference points for
+                                               intervals of equilibrium conceptual reference points for
                                                the base assessment model. Equilibrium
                                                reference points were computed using ",
                                               end.yr - 5,

@@ -647,9 +647,9 @@ intensity has never been above the target of 1.0 when the female spawning biomas
 is below the
 reference point of $\Bforty$ (Figure~\ref{fig:es-phase}). This highlights the
 highly dynamic nature of the stock due to high variation in recruitment strength.
-While the target fishing mortality ($\Fforty$) and
+The target fishing mortality ($\Fforty$) and
 $\Bforty$ result in different population sizes (see Table~\ref{tab:es-reference-points}),
-this difference is not, by far, the major driver of the observed dynamics.
+highlighting that there are subtle differences in these conceptual reference points.
 % 2017 - only in 1999 was it both (just)
 % Manual done 2020.
 %%Manual done 2020.
@@ -678,6 +678,10 @@ the start of \Sexpr{end.yr}.
 \subsection*{Reference points} \label{sec:es-reference-points}
 \phantomsection \addcontentsline{toc}{subsection}{Reference points}
 
+The term reference points is used throughout this document to describe common
+conceptual summary metrics. The Treaty specifically identifies $\Fforty$ as the
+default harvest rate and $\Bforty$ as a point where the 40:10 TAC adjustment is triggered
+(see the Glossary in Appendix~\ref{chap:glossary}).
 Estimates of the \Sexpr{assess.yr} base model reference points with posterior
 credibility intervals are in Table~\ref{tab:es-reference-points}.
 The medians of sustainable yields and biomass reference points are almost
@@ -698,7 +702,7 @@ at the end of \Sexpr{end.yr-1} is \Sexpr{probs.curr.rel.fish.intens.above.one}\%
 <<reference-points-table, results='asis', echo=FALSE>>=
 make.reference.points.table.old(base.model,
                             xcaption = paste0("Summary of median and 95\\%
-                             credibility intervals of equilibrium reference points
+                             credibility intervals of equilibrium conceptual reference points
                              for the \\fishname\\ base assessment model.
                              Equilibrium reference points were computed using 1975--",
                              end.yr-1," averages for mean

@@ -1148,11 +1148,14 @@ fishery, and will compare potential methods to address them.
 
 \subsection{Reference points}\label{sec:assessment-reference-points}
 
+The term reference points is used throughout this document to describe common
+conceptual summary metrics. The Treaty specifically identifies $\Fforty$ as the
+default harvest rate and $\Bforty$ as a point where the 40:10 TAC adjustment is triggered
+(see the Glossary in Appendix~\ref{chap:glossary}).
+
 We report estimates of the base reference points (e.g., $\Fforty$,
 $\Bforty$, $\Bmsy$, and MSY) with posterior credibility intervals in
-Table~\ref{tab:main-reference-points}. Only those based on $\Fforty$ explicitly
-relate to target reference points per the treaty Agreement (see
-Section~\ref{sec:intro-management} and Glossary in Appendix~\ref{chap:glossary}). The
+Table~\ref{tab:main-reference-points}. The
 median of the female spawning biomass at $\Fforty$ (namely the median of $\BSPRforty$) and
 the median yield at $\Fforty$ are slightly lower than the estimates in the
 \Sexpr{last.assess.yr} assessment (Table~\ref{tab:main-parameter-estimates}).
