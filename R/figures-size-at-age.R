@@ -126,15 +126,15 @@ weight.at.age.heatmap <- function(model,
   w$value <- as.numeric(w$value)
   w$age <- utils::type.convert(w$variable, as.is = TRUE)
 
-  nn <- stats::reshape(extrap.mask, direction = "long",
-    idvar = c("Yr"), varying = grep("^a", colnames(extrap.mask), value = TRUE),
-    sep = "", timevar = "age")
-  nn[nn$Yr < 0, "Yr"] <- min(w$Yr)
-  nn$Yr <- as.integer(nn$Yr)
+  nn <- pivot_longer(extrap.mask, cols = starts_with("a"),
+    values_to = "a", names_to = "age", names_prefix = "a") %>%
+    arrange(as.numeric(age, fleet, Yr)) %>% 
+    mutate(Yr = if_else(Yr < 0, min(w$Yr), Yr))
 
   valswithmask <- merge(w, nn, by = c("Yr", "age"), all = TRUE)
   valswithmask[is.na(valswithmask$a), "a"] <- 0
-
+  valswithmask <- valswithmask %>%
+    group_by(Yr) %>% mutate(N = sum(a)) %>% ungroup()
   bycolumn <- valswithmask %>%
     group_by(age) %>%
     mutate(rescale = scales::rescale(value)) %>%
@@ -176,9 +176,35 @@ weight.at.age.heatmap <- function(model,
                color = proj.line.color,
                size = proj.line.width) +
     coord_cartesian(expand = FALSE, ylim = print.years)
+
   if(samplesize) {
     g <- g +
-      geom_text(aes(x = factor(age), label = a), size = font.size)
+      geom_text(
+        data = g$data %>% dplyr::filter(Yr != min(w$Yr)),
+        aes(x = factor(age), label = a),
+        size = font.size) +
+      geom_text(
+        data = g$data %>% dplyr::filter(Yr == min(w$Yr)),
+        aes(x = factor(age), y = Yr + .5, label = a),
+        size = font.size, angle = 20) +
+      coord_cartesian(expand = FALSE, ylim = print.years,
+        xlim = c(0.5, model$nage + 2.5)) +
+      geom_text(data = subset(valswithmask, age == 15 & Yr > min(w$Yr)),
+                x = model$nage + 2, aes(label = N, col = rescale(N))) +
+      geom_text(
+        data = g$data %>% dplyr::filter(Yr == min(w$Yr), age == model$nage),
+        label = "sum",
+        x = model$nage + 2,
+        y = min(w$Yr)) +
+    scale_colour_gradientn(colors = colors, guide = FALSE)
+    # Code below adds squiggle line of mean weight-at-age down each column
+    # geom_path(
+    #   data = valswithmask %>% dplyr::filter(Yr > 1965, Yr <= 2020) %>% 
+    #     arrange(Yr) %>%
+    #     group_by(age) %>%
+    #     mutate(scaling = rescale(value,to = c(-0.25,0.25))) %>%
+    #     ungroup(),
+    #   aes(x = age+1 + scaling, y = Yr, group = age))
   } else {
     g <- g +
       geom_text(aes(x = variable, label = sprintf('%0.2f', value)), size = font.size)

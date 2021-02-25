@@ -261,7 +261,7 @@ weight.at.age.heatmap(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-weight-at-age-numbers, fig.height=9, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how the sample sizes for weight-at-age vary between years">>=
+<<main-weight-at-age-numbers, fig.height=9, fig.width=8, is.fig = TRUE, alt.text = "Sample sizes of weight-at-age vary between years and ages with the most samples occurring in age-bins three through seven.">>=
 weight.at.age.heatmap(base.model,
                       proj.line.yr = base.model$endyr,
                       extrap.mask = weight_age_extrapolation_mask,
@@ -270,11 +270,15 @@ weight.at.age.heatmap(base.model,
 @
 \end{center}
 \vspace{0mm}
-\caption{Sample sizes for developing empirical weight-at-age values
-  (colors and transparency as for Figure~\ref{fig:main-empirical-weight-at-age})
-  used in the base model.
-  Data are available from \Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}.
-  The total sample size for each age is shown at the bottom.}
+\caption{Sample sizes of empirical weight-at-age measurements
+  used to calculate mean weight-at-age fit in the base model.
+  Colors and transparency are identical to Figure~\ref{fig:main-empirical-weight-at-age}
+  and based on mean values.
+  Sample sizes of zero highlight years for which data are not available, i.e.,
+  pre \Sexpr{start.yr.age.comps} and post \Sexpr{last.data.yr}.
+  The total sample sizes for each age used in the mean over all years are shown at the bottom and
+  year-specific sample sizes are shown to the right using the same color scale with red indicating
+  small sample sizes and blue indicating the large sample sizes.}
 \label{fig:main-empirical-weight-at-age-numbers}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
