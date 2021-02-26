@@ -1630,7 +1630,8 @@ Appendix~\ref{chap:rwmh}.
 \subsection{Retrospective analyses}\label{sec:assessment-retrospective-analyses}
 
 Retrospective analyses were performed by iteratively removing the terminal
-years' data and estimating the posterior distribution of parameters under the assumptions of the base
+years' data (going back 10 years) and estimating the posterior distribution of
+parameters under the assumptions of the base
 model. Models with 3 or 4 years of data removed had some information
 available regarding the above-average 2014 year class, but did not yet have information on the
 2016 year class (Figure~\ref{fig:main-biomass-recruitment-retrospective}). Models
