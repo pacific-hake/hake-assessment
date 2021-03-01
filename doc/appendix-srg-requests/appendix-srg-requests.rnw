@@ -27,106 +27,155 @@ make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1)
 
 \section{Day 2}
 
-{\bf Request 1 -- XX}
-
-{\bf Request 2 -- XX}
-
-% {\bf Request 3 -- XX}
-
-% Andy putting empty lines here to avoid potential conflicts..... his stuff is
-% further down
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+{\bf Request 1:}
+
+The SRG requests that the JTC use a three year average of weight-at-age to produce projections of spawning biomass for constant catch levels of 0 and 380,000 t, and associated one-year probabilities with these catches as in Table i of the Executive Summary. The catch associated with the default harvest rate for 2021 would also be useful.  These results will show the influence of the 5-year averaging of weight-at-age in the projections, especially given that 2016 is a year with low weight-at-age. It may support investigating alternative methods for predicting weight-at-age in the future. If the JTC has done this kind of analysis in the past, then the JTC can use it’s discretion regarding completion of this request.
+
+{\bf JTC Response:}
+
+The JTC followed the request of the SRG and calculated a three-year average weight-at-age to produce projections using the forecast parameters in Stock Synthesis. Since the forecast parameters are estimated in the base model run, the entire NUTS run had to be re-run for this new model prior to running the 2-year forecasting with the new weights-at-age. This run took approximately 4.5 hours for the NUTS portion, and another 3 hours for the forecasting and model loading steps. Table~\ref{tab:srg-day2-request1-decision-table} shows the relative biomass decision table for this case which is identical to the decision table (Table~\ref{tab:es-decisions-biomass}) found in the Executive summary and can be compared directly.
+
+When compared to the base model decision table, Table~\ref{tab:srg-day2-request1-decision-table} shows an increase in median relative spawning biomass for all constant catch streams (rows a--g). The credible interval is also shifted upwards be several percent relative to the base model.
+
+Table~\ref{tab:srg-day2-request1-risk-table} shows probabilities of several important biomass events compared across catch levels. When compared to the base model (Table~\ref{tab:es-risk-year-1}), the probability that:
+
+- $B_{2022}$ is less than $B_{2021}$ is within 1\% of the base model.
+
+- $B_{2022}$ is less than $B_{40\%}$ is lower for all constant catch levels, and within 4\% of the base model.
+
+- $B_{2022}$ is less than $B_{10\%}$ is 0\% or 1\% for all constant catch levels, and within 1\% of the base model.
+
+<<srg-day2-req1-decision-table, results='asis', echo=FALSE>>=
+make.decision.table(srg_day2_req1_model,
+                    xcaption = paste0("Request 1 Model: Forecast quantiles of \\fishname\\
+                     relative spawning biomass at the beginning of the year
+                     before fishing.  Catch alternatives are based on: constant
+                     catch levels (rows ",
+                     catch.constant.str,
+                     "), including catch similar to ",
+                     min(forecast_yrs)-1," (row ",
+                     letters[catch.actual.ind],
+                     "), to the (unilaterally summed) TAC from ",
+                     min(forecast_yrs)-1," (row ",
+                     letters[catch.tac.ind],
+                     "), and to the TAC from ",
+                     min(forecast_yrs)-2," (row ",
+                     letters[catch.prev.tac.ind],
+                     "); and non-constant catch levels that result
+                     in a median relative fishing intensity of 100\\% (row ",
+                     letters[catch.spr100.ind],
+                     "), median catch estimated ",
+                     "via the default harvest policy
+                     (\\Ffortyten, row ",
+                     letters[catch.default.policy.ind],
+                     "), and the fishing intensity that results in a 50\\% probability that the median
+                     projected catch will remain the same in ",
+                     min(forecast_yrs),
+                     " and ",
+                     min(forecast_yrs)+1,
+                     " (row ",
+                     letters[catch.stable.ind],
+                     "). Catch in ",
+                     max(forecast_yrs),
+                     " does not impact the beginning of the year biomass in ",
+                     max(forecast_yrs),
+                     "."),
+                    xlabel = "tab:srg-day2-request1-decision-table",
+                    font.size = 12,
+                    space.size = 14,
+                    type = "biomass",
+                    placement = "tbp")
+@
+
+<<srg-day2-req1-risk-table, results='asis', echo=FALSE>>=
+make.risk.table(srg_day2_req1_model,
+                forecast_yrs,
+                index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
+                           ##  forecast year 2 compared to forecast year 1
+                xcaption = paste0("Request 1 Model: Probabilities related to spawning biomass,
+                             relative fishing intensity, and the ",end.yr+1,
+                             " default harvest policy catch for alternative ",
+                             end.yr," catch options (explained in
+                             Table~\\ref{tab:srg-day2-request1-decision-table})."),
+                xlabel = "tab:srg-day2-request1-risk-table",
+                font.size = 12,
+                space.size = 14,
+                placement = "tbp")
+@
+
+\clearpage
+
+{\bf Request 2:}
+
+Run the 3 yr projection for relative spawning biomass to the start of 2024. These results will enable the SRG to evaluate the width of the CI really for a three year projection, we have the data if we decide to include a 3-yr projection in the table, and the Canadian delegation has the numbers (even if this does not make it into the assessment or SRG report).
+(With default weight etc.)
+
+{\bf JTC Response:}
+
+The JTC ran the 3-year projections required to make the table, and re-coded the decision table to display the results in a way similar to that shown in a mock-up table provided by the SRG. Due to there being one more forecast parameter, the entire NUTS run had to be re-run for this new model prior to running the 3-year forecasting. This run took approximately 4.5 hours for the NUTS portion, and another 4 hours for the forecasting and model loading steps.
+
+Table~\ref{tab:srg-day2-request2-decision-table} shows the new table, which can be compared with the base model decision table (Table~\ref{tab:es-decisions-biomass}) found in the Executive summary.
+
+Differences between the the new table and the current one in the Executive summary include:
+
+- 2021 biomass is shown in a single row at the top ({\emph Start 2021}) in the new table. In the current one, it is the first row in every row chunk (a--j).
+
+- values shown as proportions instead of as percentages. This allows the removal of all the percentage signs shown on on the relative biomass values which are distracting.
+
+- removal of the 25\% and 75\% columns.
+
+- addition of a new column, {\emph Biomass year}, which gives the timing that the biomass values in the table represent.
+
+- re-naming of the header for the relative biomass values from {\emph Beginning of year relative spawning biomass} to {\emph Resulting relative spawning biomass}.
+
+- the values shown in the {\emph Resulting relative spawning biomass} columns now represent the biomass at the beginning of the year which result due to the catch taken in the previous year, which is found in the ({\emph Catch year}) column.
+
+<<srg-day2-req2-decision-table, results='asis', echo=FALSE>>=
+new_decision_table(srg_day2_req2_model,
+                   xcaption = paste0("Request 2 Model: Forecast quantiles of \\fishname\\
+                     relative spawning biomass at the beginning of the year.
+                     Catch alternatives are based on: constant
+                     catch levels (rows ",
+                     catch.constant.str,
+                     "), including catch similar to ",
+                     min(forecast_yrs_extra)-1," (row ",
+                     letters[catch.actual.ind],
+                     "), to the (unilaterally summed) TAC from ",
+                     min(forecast_yrs_extra)-1," (row ",
+                     letters[catch.tac.ind],
+                     "), and to the TAC from ",
+                     min(forecast_yrs_extra)-2," (row ",
+                     letters[catch.prev.tac.ind],
+                     "); and non-constant catch levels that result
+                     in a median relative fishing intensity of 100\\% (row ",
+                     letters[catch.spr100.ind],
+                     "), median catch estimated ",
+                     "via the default harvest policy
+                     (\\Ffortyten, row ",
+                     letters[catch.default.policy.ind],
+                     "), and the fishing intensity that results in a 50\\% probability that the median
+                     projected catch will remain the same in ",
+                     min(forecast_yrs_extra),
+                     " and ",
+                     min(forecast_yrs_extra)+1,
+                     " (row ",
+                     letters[catch.stable.ind],
+                     ")."),
+                   xlabel = "tab:srg-day2-request2-decision-table",
+                   font.size = 12,
+                   space.size = 14,
+                   type = "biomass",
+                   placement = "tbp")
+@
+
+\clearpage
+
+
+
+
+
+
+% Andy's stuff - 2021
 \section{Further analyses}
 
 During the JTC's briefing presentation to the Joint Management Committee on February

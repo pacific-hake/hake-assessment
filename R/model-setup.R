@@ -255,6 +255,9 @@ load_models_rds <- function(){
   sens.models.5      <<- load_models(sens.model.dir.names.5)
   sens.models.6      <<- load_models(sens.model.dir.names.6)
   sens.models.7      <<- load_models(sens.model.dir.names.7)
+  srg_day2_req1_model <<- load_models("2021.00.47_day2request_wtatage")
+  srg_day2_req2_model <<- load_models("2021.00.46_base_v1_4yrForecast")
+
   ## Lists of sensitivities for the MLE parameters, derived quantiles,
   ##  and reference points table
   ## First set includes base and sensitivity group 1 and 2
