@@ -16,7 +16,7 @@
 #' plot_hist(model=list(base.model), model.name=base.model.name,param_name = "Recr_2019",xlabel = "Rec_2019",legend.pos="none",vert.line=16149000)
 #' 
 plot_hist <- function(model=list(base.model),model.name=base.model.name,param_name = "SR_LN(R0)",
-                            legend.pos="top", vert.line = 0.1,xlabel = expression(ln(R[0]))){
+                            legend.pos="top",xlabel = expression(ln(R[0]))){
   
   #can use legend.pos = "none" for no legend
   
@@ -25,8 +25,6 @@ plot_hist <- function(model=list(base.model),model.name=base.model.name,param_na
   colnames(didit)[2] <- "value"
   didit[["Model"]] <- factor(didit[["Model"]],
                              labels = model.name)
-  trans <- 1 #transparency of geom_vline alpha
-  if(vert.line == 0.1) {trans <- 0}
   # https://www.datanovia.com/en/blog/ggplot-histogram-with-density-curve-in-r-using-secondary-y-axis/
   # 1. Create the histogram plot
   phist <- gghistogram(didit,
@@ -38,8 +36,8 @@ plot_hist <- function(model=list(base.model),model.name=base.model.name,param_na
                        fill = "Model",
                        palette = c("#00AFBB", "#E7B800","#FFDB6D", "#C4961A", "#F4EDCA", 
                                    "#D16103", "#C3D7A4", "#52854C", "#4E84C4", "#293352")) +
-    theme(legend.position = legend.pos) +
-    geom_vline(aes(xintercept = vert.line),alpha = trans)
+    theme(legend.position = legend.pos)
+    
   # 2. Create the density plot with y-axis on the right
   # Remove x axis elements
   pdensity <- ggdensity(didit,
