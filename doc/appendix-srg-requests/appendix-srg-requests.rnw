@@ -12,7 +12,143 @@ from 22nd to 25th February 2021. % in Vancouver, BC, Canada.
 
 \section{Day 1}
 
-% {\bf Request 1 -- XX}
+{\bf Request 1:}
+
+Please plot the NUTS and random walk Metropolis-Hastings estimator outputs for relative biomass with the same scale (one plot) so that the SRG can evaluate any differences that may have occurred.
+
+{\bf JTC Response:}
+
+The JTC made the a density plot, and included additional plots to show the other key parameters and large cohort recruitment parameters. Figures~\ref{fig:srg-day1-req1-ro}--\ref{fig:srg-day1-req1-recr2016} show that, for most parameters the medians are comparable, but for $ln(R_0)$ and $h$, the median value for the NUTS model is slightly less. The median is slightly higher for the Dirichlet-multinomial fishery parameter for the rwMH model. In all cases, the parameter space appears to be better explored with the NUTS model due to the presence of more samples in the tails of the distributions (Blue hash marks).
+
+\begin{figure}[tbp]
+\begin{center}
+<<srg-day1-req1-ro, fig.height = 3.5>>=
+plot_doublehist <- function(param_name = "SR_LN(R0)",
+                            xlabel = expression(ln(R[0]))){
+
+  sums <- SSsummarize(list(base.model, sens.models.7))
+  didit <- bind_rows(lapply(sums$mcmc, "[", param_name), .id = "Model")
+  colnames(didit)[2] <- "value"
+  didit[["Model"]] <- factor(didit[["Model"]],
+                             labels = c("NUTS", "random walk Metropolis-Hastings"))
+
+  # https://www.datanovia.com/en/blog/ggplot-histogram-with-density-curve-in-r-using-secondary-y-axis/
+  # 1. Create the histogram plot
+  phist <- gghistogram(didit,
+                       x = "value",
+                       xlab = xlabel,
+                       add = "median",
+                       rug = TRUE,
+                       fill = "Model",
+                       palette = c("#00AFBB", "#E7B800"))
+  # 2. Create the density plot with y-axis on the right
+  # Remove x axis elements
+  pdensity <- ggdensity(didit,
+                        x = "value",
+                        xlab = xlabel,
+                        color= "Model",
+                        palette = c("#00AFBB", "#E7B800"),
+                        alpha = 0) +
+    scale_y_continuous(expand = expansion(mult = c(0, 0.05)),
+                       position = "right")  +
+    theme_half_open(11, rel_small = 1) +
+    rremove("x.axis")+
+    rremove("xlab") +
+    rremove("x.text") +
+    rremove("x.ticks") +
+    rremove("legend")
+  # 3. Align the two plots and then overlay them.
+  aligned_plots <- align_plots(phist, pdensity, align = "hv", axis = "tblr")
+  ggdraw(aligned_plots[[1]]) + draw_plot(aligned_plots[[2]])
+}
+plot_doublehist()
+@
+\end{center}
+\caption{Density of the $ln(R_0)$ parameter for the NUTS and rwMH models. Medians are shown using dashed vertical lines. Raw count is shown on the left y-axis and density is shown on the right y-axis. Hash marks above x axis are locations of samples.}
+\label{fig:srg-day1-req1-ro}
+\end{figure}
+
+\begin{figure}[tbp]
+\begin{center}
+<<srg-day1-req1-m, fig.height = 3.5>>=
+plot_doublehist("NatM_p_1_Fem_GP_1", "Natural Mortality")
+@
+\end{center}
+\caption{Density of the $m$ (natural mortality) parameter for the NUTS and rwMH models. See Figure~\ref{fig:srg-day1-req1-ro} for details.}
+\label{fig:srg-day1-req1-m}
+\end{figure}
+
+\begin{figure}[tbp]
+\begin{center}
+<<srg-day1-req1-h, fig.height = 3.5>>=
+plot_doublehist("SR_BH_steep", "steepness")
+@
+\end{center}
+\caption{Density of the $h$ (steepness) parameter for the NUTS and rwMH models. See Figure~\ref{fig:srg-day1-req1-ro} for details.}
+\label{fig:srg-day1-req1-h}
+\end{figure}
+
+\begin{figure}[tbp]
+\begin{center}
+<<srg-day1-req1-sd, fig.height = 3.5>>=
+plot_doublehist("Q_extraSD_Acoustic_Survey(2)", "Extra Survey SD")
+@
+\end{center}
+\caption{Density of the Extra survey SD parameter for the NUTS and rwMH models. See Figure~\ref{fig:srg-day1-req1-ro} for details.}
+\label{fig:srg-day1-req1-sd}
+\end{figure}
+
+\begin{figure}[tbp]
+\begin{center}
+<<srg-day1-req1-dm1, fig.height = 3.5>>=
+plot_doublehist("ln(DM_theta)_1", "Dirichlet-multinomial Fishery")
+@
+\end{center}
+\caption{Density of the Dirichlet-multinomial (fishery) parameter for the NUTS and rwMH models. See Figure~\ref{fig:srg-day1-req1-ro} for details.}
+\label{fig:srg-day1-req1-dm1}
+\end{figure}
+
+\begin{figure}[tbp]
+\begin{center}
+<<srg-day1-req1-dm2, fig.height = 3.5>>=
+plot_doublehist("ln(DM_theta)_2", "Dirichlet-multinomial Survey")
+@
+\end{center}
+\caption{Density of the Dirichlet-multinomial (survey) parameter for the NUTS and rwMH models. See Figure~\ref{fig:srg-day1-req1-ro} for details.}
+\label{fig:srg-day1-req1-dm2}
+\end{figure}
+
+\begin{figure}[tbp]
+\begin{center}
+<<srg-day1-req1-recr2010, fig.height = 3.5>>=
+plot_doublehist("Recr_2010", "2010 Recruitment")
+@
+\end{center}
+\caption{Density of the 2010 recruitment parameter for the NUTS and rwMH models. See Figure~\ref{fig:srg-day1-req1-ro} for details.}
+\label{fig:srg-day1-req1-recr2010}
+\end{figure}
+
+\begin{figure}[tbp]
+\begin{center}
+<<srg-day1-req1-recr2014, fig.height = 3.5>>=
+plot_doublehist("Recr_2014", "2014 Recruitment")
+@
+\end{center}
+\caption{Density of the 2014 recruitment parameter for the NUTS and rwMH models. See Figure~\ref{fig:srg-day1-req1-ro} for details.}
+\label{fig:srg-day1-req1-recr2014}
+\end{figure}
+
+\begin{figure}[tbp]
+\begin{center}
+<<srg-day1-req1-recr2016, fig.height = 3.5>>=
+plot_doublehist("Recr_2016", "2016 Recruitment")
+@
+\end{center}
+\caption{Density of the 2016 recruitment parameter for the NUTS and rwMH models. See Figure~\ref{fig:srg-day1-req1-ro} for details.}
+\label{fig:srg-day1-req1-recr2016}
+\end{figure}
+
+\clearpage
 
 % {\bf Request 2 -- XX}
 
