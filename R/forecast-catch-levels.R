@@ -36,6 +36,7 @@ catch_levels <-
 # This is used in the one-page summary and a plot comparing several catch cases,
 #  and elsewhere
 # -----------------------------------------------------------------------------
+catch.levels.num <- length(catch_levels)
 catch.actual.ind <- 4
 catch.tac.ind <- 6
 catch.prev.tac.ind <- 7

@@ -183,8 +183,8 @@ During the JTC's briefing presentation to the Joint Management Committee on Febr
 (such as Tables~\ref{tab:main-risk-year-1} and~\ref{tab:main-risk-year-2}) changing from assessment to assessment. The
 probabilities do indeed change from, for example, \Sexpr{assess.yr - 1} to
 \Sexpr{assess.yr} because the \Sexpr{assess.yr} assessment model depends on the catch
-in \Sexpr{assess.yr - 1}, and has further updated data (such as
-proportions-at-age for earlier cohorts). But this comment led us
+in \Sexpr{assess.yr - 1}, and has updated data (such as
+more proportions-at-age for earlier cohorts). But this comment led us
 to investigate the general question of how much confidence can we have in the
 probabilities in the decision tables.
 
@@ -208,15 +208,16 @@ implicitly includes the 411,574~t catch from 2019. From the current assessment
 model we get P$(B_{2020} < B_{2019}) = 98\%$. The 65\% and 98\% probabilities
 are shown for 2019 in Figure~\ref{fig:appendix-srg-historical-1}.
 
-We have done similar calculations for past assessments, currently going back to
-2012. Specifically, for each assessment year $t$, we calculate
+We have extracted similar probabilities from past assessment documents, currently going back to
+2012, and calculated the analogous probabilities from the current assessment model.
+Specifically, for each assessment year $t$, we take
 P$(B_{t+1} < B_{t} | \mbox{catch we now know to have occurred in year}~t)$ from
-the year $t$ assessment, and also calculate
+the year $t$ assessment document, and also calculate
 P$(B_{t+1} < B_{t})$ from the current base model (results in Figure~\ref{fig:appendix-srg-historical-1}).
 The first probability requires interpolation between catch levels if
 the exact catch in year $t$ was not given in the decision tables in year $t$'s assessment.
 
-The probability of subsequent decline of 43\% from the 2012 assessment is
+The probability of 43\% from the 2012 assessment is
 somewhat above the 0\% calculated using the current assessment model
 (Figure~\ref{fig:appendix-srg-historical-1}). But this make sense, because the
 2012 assessment model had no information that the 2010 recruitment was going to be very large,
@@ -227,11 +228,34 @@ assessment model has some information on the 2010 cohort, and so gives a much
 lower probability that the stock will decline from 2013 to 2014, which concurs
 with the current base model (Figure~\ref{fig:appendix-srg-historical-1}).
 
-For later years, the probabilities switch in tandem to being above or below
-50\%, i.e. each assessment correctly predicts whether the stock will increase or
-decrease the following year. Note that for all years except 2018, the assesment
+For later years, the probabilities vary, but for each year the probabilities
+either both lie above the 50\% line or both lie below it (Figure~\ref{fig:appendix-srg-historical-1}).
+So each assessment correctly predicts whether the stock will increase or
+decrease the following year. Also, for all years (except 2018) the assesment
 year's probabilities are closer to 50\% than those from the current base
-model. This is ....****ANDY TO CONTINUE, add projections explanation to fig caption***
+model. Such behaviour is desirable and sensible. The probabilities being
+calculated are for binary events that either happen or do not (the stock either
+declines or it does not decline, simlar to a tossed coin only being a head or a
+tail). The current assessment model has more information and so gives a more
+definitive probability (closer to 0\% or to 100\%) than year $t$'s
+assessment document. It is desirable that the probabilities from the assessment
+documents are not too definitive (too close to 0\% or to 100\%), since they are
+admitting a wide range of uncertainty given unknown recruitments.
+
+Only for 2018 is probability from the current assessment model closer to 50\%
+than that from that year's assessment. This may be because there is no
+definitive trend in biomass around that time
+(Figure~\ref{fig:main-female-spawning-biomass}), and may or may not get resolved
+in the future with further data.
+
+From this current \Sexpr{assess.yr} assessment, we show the probabilities for
+all catch alternatives in Figure~\ref{fig:appendix-srg-historical-1}, since
+obviously we do not yet know which will correspond to the \Sexpr{assess.yr}
+catch. Catching zero fish in \Sexpr{assess.yr} (colored in pink) obviously gives
+the lowest probability that the stock will decline from \Sexpr{assess.yr} to \Sexpr{assess.yr+1}.
+
+
+This is ....****ANDY TO CONTINUE, add projections explanation to fig caption***
 
 % combine_historical_probs(base.model, end = 2020)   % gives the probs, maybe
 % worth making a table
@@ -253,7 +277,9 @@ make.historical.probs.plot(base.model,
 current \Sexpr{assess.yr} base model. The grey horizontal line is the 50\% value. For each
 year, both probabilities lie on the same side of the grey line, indicating that
 each year's assessment model `correctly` estimates an increase or decrease the
-subsequent year's biomass.}
+subsequent year's biomass. For the \Sexpr{assess.yr} assessment the
+probabilities are shown for all catch alternatives for \Sexpr{assess.yr}, as
+described in Table~\ref{tab:main-decisions-biomass}, with 0~t shown in pink.}
 \label{fig:appendix-srg-historical-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
