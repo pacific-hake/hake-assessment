@@ -179,7 +179,7 @@ The SRG requests that the JTC use a three year average of weight-at-age to produ
 
 The JTC followed the request of the SRG and calculated a three-year average weight-at-age to produce projections using the forecast parameters in Stock Synthesis. Since the forecast parameters are estimated in the base model run, the entire NUTS run had to be re-run for this new model prior to running the 2-year forecasting with the new weights-at-age. This run took approximately 4.5 hours for the NUTS portion, and another 3 hours for the forecasting and model loading steps. Table~\ref{tab:srg-day2-request1-decision-table} shows the relative biomass decision table for this case which is identical in format to the decision table (Table~\ref{tab:es-decisions-biomass}) found in the Executive summary and can be compared directly.
 
-When compared to the base model decision table, Table~\ref{tab:srg-day2-request1-decision-table} shows an increase in median relative spawning biomass for all constant catch streams (rows a--g). The credible interval is also shifted upwards be several percent relative to the base model.
+When compared to the base model decision table, Table~\ref{tab:srg-day2-request1-decision-table} shows an increase in median relative spawning biomass for all constant catch streams (rows a--g). The credible interval is also shifted upwards by several percent relative to the base model.
 
 Table~\ref{tab:srg-day2-request1-risk-table} shows probabilities of several important biomass events compared across catch levels. When compared to the base model (Table~\ref{tab:es-risk-year-1}), the probability that:
 
@@ -276,7 +276,7 @@ Differences between the the new table and the current one in the Executive summa
 
 - The values shown in the \emph{Resulting relative spawning biomass} columns now represent the biomass at the beginning of the year which result due to the catch taken in the previous year, which is found in the (\emph{Catch year}) column.
 
-- Extention of the projections of relative spawning biomass to the start of the \emph{third}
+- Extension of the projections of relative spawning biomass to the start of the \emph{third}
 projection year (\Sexpr{assess.yr + 3}), rather than just the second year.
 
 <<srg-day2-req2-decision-table, results='asis', echo=FALSE>>=
