@@ -23,6 +23,29 @@ key parameters and large cohort recruitment
 parameters. Figures~\ref{fig:srg-day1-req1-ro}--\ref{fig:srg-day1-req1-recr2016}
 show that, for most parameters the medians are comparable, but for $\ln R_0$ and $h$, the median value for the NUTS model is slightly less. The median is slightly higher for the Dirichlet-multinomial fishery parameter for the rwMH model. In all cases, the parameter space appears to be better explored with the NUTS model due to the presence of more samples in the tails of the distributions (Blue hash marks).
 
+The following two excerpts from \citet{Betancourt2018} were presented to the SRG regarding differences between rwMH and NUTS and their appropriateness to high-dimensional models such as the \fishname\ assessment model:
+
+\begin{quote}
+Random walk Metropolis is popular in many applications because of its
+conceptual simplicity. But that seductive simplicity hides a performance
+that scales poorly with increasing dimension and complexity of the target
+distribution. For high-dimensional probability distributions of practical
+interest then we need a better way of exploring the typical set. In particular,
+we need to better exploit the geometry of the typical set itself.
+\end{quote}
+
+\begin{quote}
+Hamiltonian Monte Carlo approaches [e.g., NUTS] can better follow the contours of
+high probability mass, coherently gliding through the typical set.
+Results show that implementations of the Hamiltonian Monte Carlo
+method are geometrically ergodic over a large class of target distributions.
+In particular, this class is significantly larger than the class for non-gradient
+based algorithms like Random Walk Metropolis Hastings, consistent with the
+intuition that gradients are critical to robust Markov chain Monte Carlo
+in high-dimensional problems.
+\end{quote}
+
+
 \begin{figure}[bp]
 \begin{center}
 <<srg-day1-req1-ro, fig.height = 3.5>>=
