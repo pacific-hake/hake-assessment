@@ -475,7 +475,7 @@ i.e.,~P$(B_{t+1} < \Bforty)$.
 The probability of $>50\%$ listed in the the 2012 assessment
 was the poorest performing probability of being
 below $\Bforty$; but, this did not occur thanks again to the very large
-2010 year class. The 2013-2017 assessments had information on the 2010 class
+2010 year class. The 2013-2017 assessments had information on the 2010 year class
 and estimated low probabilities of falling below $\Bforty$. Again, these
 estimates are closer to 50\% than those from the current base model (blue dots),
 which is desirable behavior as mentioned above -- the assessments gave low
@@ -488,8 +488,8 @@ Probabilities from past assessments lie below those estimated from the
 current model (the blue line is below the red line). But, this won't necessarily always
 be the case. In particular, the probabilities calculated
 from projections in this year's assessment, P$(B_{\Sexpr{assess.yr+1}} <
-\Bforty)$, are mostly in the 30\%-50\% range, which is `uncharted territory'
-in the sense that no previous probabilities have been in this range. Also, the
+\Bforty)$, are mostly in the 30\%-50\% range, which has not occurred since 2012.
+Also, the
 biomass has been relatively high in the time period shown, so `correctly
 expecting' the biomass to remain $>\Bforty$ may not be a particular high bar to
 attain. Thus, we
