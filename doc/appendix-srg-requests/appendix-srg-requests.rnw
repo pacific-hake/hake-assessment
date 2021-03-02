@@ -18,19 +18,20 @@ Please plot the NUTS and random walk Metropolis-Hastings estimator outputs for r
 
 {\bf JTC Response:}
 
-The JTC made the density plot, and included additional plots to show the other
-key parameters and large cohort recruitment
-parameters. Figures~\ref{fig:srg-day1-req1-ro}--\ref{fig:srg-day1-req1-recr2016}
-show that, for most parameters the medians are comparable, but for $\ln R_0$ and $h$, the median value for the NUTS model is slightly less. The median is slightly higher for the Dirichlet-multinomial fishery parameter for the rwMH model. In all cases, the parameter space appears to be better explored with the NUTS model due to the presence of more samples in the tails of the distributions (Blue hash marks).
+The JTC made the density plot and included additional plots to show densities of other
+key parameters and estimates of recruitment for large cohorts.
+For most parameters the medians are comparable
+(Figures~\ref{fig:srg-day1-req1-ro}--\ref{fig:srg-day1-req1-recr2016}),
+but for $\ln R_0$, $h$, and Dirichlet-multinomial $\theta$ for the fishery the median value for the NUTS model is slightly less. In all cases, the parameter space appears to be better explored with the NUTS model due to the presence of more samples in the tails of the distributions (blue hash marks).
 
-The following two excerpts from \citet{Betancourt2018} were presented to the SRG regarding differences between rwMH and NUTS and their appropriateness to high-dimensional models such as the \fishname\ assessment model:
+The following two summaries of \citet{Betancourt2018} were presented to the SRG regarding differences between rwMH and NUTS and their appropriateness to high-dimensional models such as the \fishname\ assessment model:
 
 \begin{quote}
-Random walk Metropolis is popular in many applications because of its
-conceptual simplicity. But that seductive simplicity hides a performance
+Random Walk Metropolis is popular in many applications because of its
+conceptual simplicity. But, that seductive simplicity hides a performance
 that scales poorly with increasing dimension and complexity of the target
 distribution. For high-dimensional probability distributions of practical
-interest then we need a better way of exploring the typical set. In particular,
+interest we need a better way of exploring the typical set. In particular,
 we need to better exploit the geometry of the typical set itself.
 \end{quote}
 
@@ -176,7 +177,7 @@ plot_doublehist("Recr_2016", "2016 Recruitment")
 
 \clearpage
 
-The SRG requested informally that a figure shown in the Data presentation be included. This figure shows the weight-at-age through time for ages 2--10 and is included here as Figure~\ref{fig:srg-weight-at-age}.
+The SRG informally requested that a figure shown in the Data presentation be included. This figure shows the weight-at-age through time for ages 2--10 and is included here as Figure~\ref{fig:srg-weight-at-age}.
 
 \begin{figure}[H]
 \begin{center}
@@ -196,17 +197,17 @@ The SRG requests that the JTC use a three year average of weight-at-age to produ
 
 {\bf JTC Response:}
 
-The JTC followed the request of the SRG and calculated a three-year average weight-at-age to produce projections using the forecast parameters in Stock Synthesis. Since the forecast parameters are estimated in the base model run, the entire NUTS run had to be re-run for this new model prior to running the 2-year forecasting with the new weights-at-age. This run took approximately 4.5 hours for the NUTS portion, and another 3 hours for the forecasting and model loading steps. Table~\ref{tab:srg-day2-request1-decision-table} shows the relative biomass decision table for this case which is identical in format to the decision table (Table~\ref{tab:es-decisions-biomass}) found in the Executive summary and can be compared directly.
+The JTC followed the request of the SRG and calculated a three-year average weight-at-age to produce projections using the forecast parameters in Stock Synthesis. Forecast parameters are estimated simultaneously with other parameters, and thus, the base-model results needed to be re-estimated to produce these forecasts with the new weights-at-age. This run took approximately 4.5 hours for the NUTS portion and another 3 hours for the forecasting and model loading steps. Table~\ref{tab:srg-day2-request1-decision-table} shows the relative biomass decision table for this model, which is identical in format to the decision table (Table~\ref{tab:es-decisions-biomass}) found in the Executive Summary and can be compared directly.
 
-When compared to the base model decision table, Table~\ref{tab:srg-day2-request1-decision-table} shows an increase in median relative spawning biomass for all constant catch streams (rows a--g). The credible interval is also shifted upwards by several percent relative to the base model.
+Compared to the base model, three-year average weights-at-age for the forecast period led to an increase in median relative spawning biomass for all constant catch streams (rows a--g in Table~\ref{tab:srg-day2-request1-decision-table}). Credible intervals are also shifted upwards by several percent relative to the base model.
 
-Table~\ref{tab:srg-day2-request1-risk-table} shows probabilities of several important biomass events compared across catch levels. When compared to the base model (Table~\ref{tab:es-risk-year-1}), the probability that:
+Table~\ref{tab:srg-day2-request1-risk-table} shows probabilities of several important biomass events compared across catch levels. When compared to the base model (Table~\ref{tab:es-risk-year-1}), the probability that
 
-- $B_{2022}$ is less than $B_{2021}$ is within 1\% of the base model.
+- $B_{2022}$ is less than $B_{2021}$ is within 1\% of the base model;
 
-- $B_{2022}$ is less than $B_{40\%}$ is lower for all constant catch levels, and within 4\% of the base model.
+- $B_{2022}$ is less than $B_{40\%}$ is lower for all constant catch levels and within 4\% of the base model; and
 
-- $B_{2022}$ is less than $B_{10\%}$ is 0\% or 1\% for all constant catch levels, and within 1\% of the base model.
+- $B_{2022}$ is less than $B_{10\%}$ is 0\% or 1\% for all constant catch levels and within 1\% of the base model.
 
 <<srg-day2-req1-decision-table, results='asis', echo=FALSE>>=
 make.decision.table(srg_day2_req1_model,
@@ -275,25 +276,25 @@ Run the 3 yr projection for relative spawning biomass to the start of 2024. Thes
 
 {\bf JTC Response:}
 
-The JTC ran the 3-year projections required to make the table, and re-coded the decision table to display the results in a way similar to that shown in a mock-up table provided by the SRG. Due to there being one more forecast parameter, the entire NUTS run had to be re-run for this new model prior to running the 3-year forecasting. This run took approximately 4.5 hours for the NUTS portion, and another 4 hours for the forecasting and model loading steps.
+The JTC ran the 3-year projections required to make the table and re-coded the decision table to display the results in a way similar to that shown in a mock-up table provided by the SRG. Due to there being one more forecast parameter compared to the base model, the entire NUTS run had to be re-run for this new model prior to running the 3-year forecasting. This run took approximately 4.5 hours for the NUTS portion and another 4 hours for the forecasting and model loading steps.
 
-Table~\ref{tab:srg-day2-request2-decision-table} shows the new table, which can
+The 3-year projections (Table~\ref{tab:srg-day2-request2-decision-table}) can
 be compared with the base model decision table
-(Table~\ref{tab:es-decisions-biomass}) found in the Executive summary.
+(Table~\ref{tab:es-decisions-biomass}) found in the Executive Summary.
 
-Differences between the the new table and the current one in the Executive summary include:
+Differences between Table~\ref{tab:srg-day2-request2-decision-table} and Table~\ref{tab:es-decisions-biomass} are summarized below.
 
-- 2021 biomass is shown in a single row at the top ({\emph Start 2021}) in the new table. In the current one, it is the first row in every row chunk (a--j).
+- 2021 biomass is shown in a single row at the top (\emph{Start 2021}) in the new table. Whereas, 2021 biomass is the first row in every row chunk (a--j) in Table~\ref{tab:es-decisions-biomass}.
 
-- Values shown as proportions instead of as percentages. This allows the removal of all the percentage signs shown on on the relative biomass values which can be distracting.
+- Values are shown as proportions instead of percentages allowing the removal of percentage signs after relative biomass values which can be distracting.
 
 - Removal of the 25\% and 75\% columns.
 
-- Addition of a new column, \emph{Biomass year}, which gives the timing that the biomass values in the table represent.
+- Addition of a new column, \emph{Biomass year}, which explains the timing of the biomass estimates.
 
 - Re-naming of the header for the relative biomass values from \emph{Beginning of year relative spawning biomass} to \emph{Resulting relative spawning biomass}.
 
-- The values shown in the \emph{Resulting relative spawning biomass} columns now represent the biomass at the beginning of the year which result due to the catch taken in the previous year, which is found in the (\emph{Catch year}) column.
+- The values shown in the \emph{Resulting relative spawning biomass} columns now represent the biomass at the beginning of the year which result due to the catch taken in the previous year. These catches are in the (\emph{Catch year}) column.
 
 - Extension of the projections of relative spawning biomass to the start of the \emph{third}
 projection year (\Sexpr{assess.yr + 3}), rather than just the second year.
