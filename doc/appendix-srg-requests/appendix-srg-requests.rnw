@@ -48,7 +48,7 @@ in high-dimensional problems.
 
 \begin{figure}[bp]
 \begin{center}
-<<srg-day1-req1-ro, fig.height = 3.5>>=
+<<srg-day1-req1-ro, fig.height = 3.5, is.fig = TRUE, alt.text = "This figure shows the log R zero parameter density differences between the NUTS and R W M H algorithms">>=
 plot_doublehist <- function(param_name = "SR_LN(R0)",
                             xlabel = expression(ln(R[0]))){
 
@@ -96,7 +96,7 @@ plot_doublehist()
 
 \begin{figure}[tbp]
 \begin{center}
-<<srg-day1-req1-m, fig.height = 3.5>>=
+<<srg-day1-req1-m, fig.height = 3.5, is.fig = TRUE, alt.text = "This figure shows the natural mortality parameter density differences between the NUTS and R W M H algorithms">>=
 plot_doublehist("NatM_p_1_Fem_GP_1", "Natural Mortality")
 @
 \end{center}
@@ -106,7 +106,7 @@ plot_doublehist("NatM_p_1_Fem_GP_1", "Natural Mortality")
 
 \begin{figure}[tbp]
 \begin{center}
-<<srg-day1-req1-h, fig.height = 3.5>>=
+<<srg-day1-req1-h, fig.height = 3.5, is.fig = TRUE, alt.text = "This figure shows the steepness parameter density differences between the NUTS and R W M H algorithms">>=
 plot_doublehist("SR_BH_steep", "steepness")
 @
 \end{center}
@@ -116,7 +116,7 @@ plot_doublehist("SR_BH_steep", "steepness")
 
 \begin{figure}[tbp]
 \begin{center}
-<<srg-day1-req1-sd, fig.height = 3.5>>=
+<<srg-day1-req1-sd, fig.height = 3.5, is.fig = TRUE, alt.text = "This figure shows the log R zero parameter density differences between the NUTS an R W M H algorithms">>=
 plot_doublehist("Q_extraSD_Acoustic_Survey(2)", "Extra Survey SD")
 @
 \end{center}
@@ -126,7 +126,7 @@ plot_doublehist("Q_extraSD_Acoustic_Survey(2)", "Extra Survey SD")
 
 \begin{figure}[tbp]
 \begin{center}
-<<srg-day1-req1-dm1, fig.height = 3.5>>=
+<<srg-day1-req1-dm1, fig.height = 3.5, is.fig = TRUE, alt.text = "This figure shows the dirichlet multinomial fishery parameter density differences between the NUTS an R W M H algorithms">>=
 plot_doublehist("ln(DM_theta)_1", "Dirichlet-multinomial Fishery")
 @
 \end{center}
@@ -136,7 +136,7 @@ plot_doublehist("ln(DM_theta)_1", "Dirichlet-multinomial Fishery")
 
 \begin{figure}[tbp]
 \begin{center}
-<<srg-day1-req1-dm2, fig.height = 3.5>>=
+<<srg-day1-req1-dm2, fig.height = 3.5, is.fig = TRUE, alt.text = "This figure shows the dirichlet multinomial survey parameter density differences between the NUTS an R W M H algorithms">>=
 plot_doublehist("ln(DM_theta)_2", "Dirichlet-multinomial Survey")
 @
 \end{center}
@@ -146,7 +146,7 @@ plot_doublehist("ln(DM_theta)_2", "Dirichlet-multinomial Survey")
 
 \begin{figure}[tbp]
 \begin{center}
-<<srg-day1-req1-recr2010, fig.height = 3.5>>=
+<<srg-day1-req1-recr2010, fig.height = 3.5, is.fig = TRUE, alt.text = "This figure shows the 2010 recruitment parameter density differences between the NUTS an R W M H algorithms">>=
 plot_doublehist("Recr_2010", "2010 Recruitment")
 @
 \end{center}
@@ -156,7 +156,7 @@ plot_doublehist("Recr_2010", "2010 Recruitment")
 
 \begin{figure}[tbp]
 \begin{center}
-<<srg-day1-req1-recr2014, fig.height = 3.5>>=
+<<srg-day1-req1-recr2014, fig.height = 3.5, is.fig = TRUE, alt.text = "This figure shows the 2014 recruitment parameter density differences between the NUTS an R W M H algorithms">>=
 plot_doublehist("Recr_2014", "2014 Recruitment")
 @
 \end{center}
@@ -166,7 +166,7 @@ plot_doublehist("Recr_2014", "2014 Recruitment")
 
 \begin{figure}[tbp]
 \begin{center}
-<<srg-day1-req1-recr2016, fig.height = 3.5>>=
+<<srg-day1-req1-recr2016, fig.height = 3.5, is.fig = TRUE, alt.text = "This figure shows the 2016 recruitment parameter density differences between the NUTS an R W M H algorithms">>=
 plot_doublehist("Recr_2016", "2016 Recruitment")
 @
 \end{center}
@@ -176,21 +176,17 @@ plot_doublehist("Recr_2016", "2016 Recruitment")
 
 \clearpage
 
-% {\bf Request 2 -- XX}
+The SRG requested informally that a figure shown in the Data presentation be included. This figure shows the weight-at-age through time for ages 2--10 and is included here as Figure~\ref{fig:srg-weight-at-age}.
 
-% Placeholder for requested plot - See Issue #825
 \begin{figure}[H]
 \begin{center}
-<<srg-wt-at-age, fig.height=9,fig.width=8,is.fig=TRUE,alt.text="Annual mean weight-at-age is lower for most ages in the most recent years then for years prior to 1980.">>=
+<<srg-wt-at-age, fig.height = 9, fig.width = 8, is.fig = TRUE, alt.text = "Annual mean weight-at-age is lower for most ages in the most recent years than for years prior to 1980">>=
 make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1)
 @
 \end{center}
 \caption{Annual mean weight-at-age by age (colors for ages one through ten) through time. Blue lines are for the youngest ages and green lines are for the oldest ages shown.}
+\label{fig:srg-weight-at-age}
 \end{figure}
-
-% {\bf Request 3 -- XX}
-
-% \clearpage
 
 \section{Day 2}
 
