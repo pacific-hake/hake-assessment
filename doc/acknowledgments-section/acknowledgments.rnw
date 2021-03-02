@@ -21,7 +21,7 @@ Marie Guldin, Kendra Holt, Owen Hamel (who gave insightful
 comments on a draft version), Jim Hastie, Melissa Head, Jason Jannot, William Jasper,
 Jerry Leonard, Kristin Marshall, Rick Methot, Patrick McDonald, Cole Monnahan,
 Elizabeth Phillips, Erin Steiner, Brad Stenberg, Ian Taylor, Jim Thorson,
-Vanessa Tuttle, Steve Wischniowski, and contributions by many others that are
+Vanessa Tuttle, Joe Watson, Steve Wischniowski, and contributions by many others that are
 too numerous to list here.
 We thank the Stock Synthesis, the {\tt r4ss} R package, and the {\tt adnuts}
 R package development teams for continually
@@ -35,10 +35,12 @@ and other industry representatives including
 Shannon Mann, Mike Okoniewski, Brent Paine, Dave Smith, Dan
 Waldeck, and Teresa Williams.
 % Add the following back in after SRG
-% We thank all the members of the
-% Scientific Review Group for their thoughtful review and smoothly run SRG
-% meeting, including co-chairs John Holmes and Jim Hastie, panel members
-% Trevor Branch, Jaclyn Cleary, Allan Hicks, and David Sampson, and AP advisors
-% Shannon Mann and Lori Steele.
+We thank all the members of the
+Scientific Review Group for their thoughtful review and smoothly run SRG
+meeting, including co-chairs John Holmes and Jim Hastie, panel members
+Trevor Branch,
+% Jaclyn Cleary,
+Allan Hicks, Kendra Holt, and David Sampson, and AP advisors
+Shannon Mann and Lori Steele.
 Finally, we are very thankful to Stacey Miller for
 coordinating the \fishname\ meetings.
