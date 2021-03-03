@@ -68,6 +68,9 @@ cohort_table <- function(model,
       if(.y == 1) tmp else tmp[-length(tmp)]
     })
   coh_waa <- get_coh(waa, cohorts) %>% map(~{.x[-length(.x)]})
+  if(length(coh_naa_next[[1]]) != length(coh_waa[[1]])){
+    coh_naa_next[[1]] <- head(coh_naa_next[[1]], -1)
+  }
   coh_survive_b <- map2(coh_naa_next, coh_waa, ~{
     .x * .y
   }) %>% map(~{.x / 1e3})
@@ -92,7 +95,7 @@ cohort_table <- function(model,
 
   # Make a list of length of number of cohorts, each with a list of 4 value types. This is getting the
   # list into the correct structure for the table
-  df <- map(1:4, ~{
+  df <- map(seq_along(cohorts), ~{
     map_df(lst, ~{
       .x[[.y]]
     }, .y = .x)
@@ -107,7 +110,7 @@ cohort_table <- function(model,
     bind_cols
 
   # Add the Age column
-  age_df <- enframe(0:model$accuage, name = NULL, value = "Age")
+  age_df <- enframe(0:(nrow(df) - 1), name = NULL, value = "Age")
   df <- bind_cols(age_df, df)
 
   # Table constructed, write to a CSV
