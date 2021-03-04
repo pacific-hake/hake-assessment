@@ -362,7 +362,7 @@ from last year)
 \frame{\frametitle{Biomass and relative fishing intentisy}
   \bi
     \item Biomass has remained above $\BfortyB$ since 2011; current estimate is $\frac{B_{\Sexpr{assess.yr}}}{B_0} = \Sexpr{f(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end.yr], 2)}$
-    \item Fishing intensity has continually remained below $\Fforty$; current estimate is 
+    \item Fishing intensity has continually remained below $\Fforty$; current estimate is
     $\frac{1-SPR_{\Sexpr{assess.yr - 1}}}{1 - SPR_{40\%}} = \Sexpr{f(base.model$mcmccalcs$pmed[names(base.model$mcmccalcs$pmed) == assess.yr - 1], 2)}$
     \item The estimated probability that spawning biomass at the start of
     \Sexpr{assess.yr} is below the $\BfortyB$ (40\% of $B_0$) reference point is
@@ -662,23 +662,23 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Alternative Decision Table Format: Spawning Biomass (excerpt)}
+\frame{\frametitle{Alternative Decision Table Format: Spawning Biomass}
 \begin{columns}
-  \begin{column}{0.38\textwidth}
+  \begin{column}{0.3\textwidth}
     \bi
       \item Addition of the resulting biomass from the third year of fishing
       \item Alternative format to hopefully improve understanding
     \ei
   \end{column}
-  \begin{column}{0.59\textwidth}
+  \begin{column}{0.7\textwidth}
   <<decisions.biomass.table.new, results='asis', echo=FALSE>>=
-    new_decision_table(base.model,
-                             xcaption = NULL,
-                             xlabel = "tab:es-decisions-spr",
-                             font.size = 6,
-                             space.size = 6,
-                             type = "biomass",
-                             placement = "h")
+new_decision_table(srg_day2_req2_model,
+                   xcaption = NULL,
+                   xlabel = "tab:decisions-new",
+                   font.size = 6,
+                   space.size = 6,
+                   type = "biomass",
+                   placement = "h")
 @
   \end{column}
 \end{columns}
@@ -875,6 +875,28 @@ cohort_table(base.model,
            pos = 1)
       @
 }
+
+%------------------------------------------------------------------------------
+\subsection{Runtimes}
+\begin{frame}
+\frametitle{Runtimes}
+%\vspace{-2cm}
+\bi
+  \item Total time to run all MCMC models this year:
+  \bi
+    \item Base model: $\sim$4.5 hours
+    \item Sensitivities: 21 * $\sim$4.5~hours = $\sim$4 days
+    \item Retrospectives: 20, total = $\sim$8 days
+    \item rwMH long chain run: $\sim$8 days
+    \item Total with rwMH long chain: $\sim$20+ days
+    \item Total without rwMH long chain run: 12+ days
+  \ei
+  \item \textbf{Total time to run all MCMC models last year: 44.5 hours (1 processor)}
+  \item \textbf{Total time to run all MCMC models this year: 12+ days}
+  \item \textbf{12 days * 7 processor threads in parallel = 84 days}
+  \item The JTC is asking for a 32-processor (64-thread) server to run these in the future
+\ei
+\end{frame}
 
 %----------------------------------------------------------
 \section{Summary}
