@@ -431,10 +431,12 @@ cohortCumSum1999 <- cumsum(cohort.catch(base.model, 1999, trim.end.year = end.yr
 cohortCumSum2010 <- cumsum(cohort.catch(base.model, 2010, trim.end.year = end.yr))
 cohortCumSum2014 <- cumsum(cohort.catch(base.model, 2014, trim.end.year = end.yr))
 cohortCumSum2016 <- cumsum(cohort.catch(base.model, 2016, trim.end.year = end.yr))
+cohortCumSum2017 <- cumsum(cohort.catch(base.model, 2017, trim.end.year = end.yr))
 ages1999 <- as.numeric(names(cohortCumSum1999)) - 1999
 ages2010 <- as.numeric(names(cohortCumSum2010)) - 2010
 ages2014 <- as.numeric(names(cohortCumSum2014)) - 2014
 ages2016 <- as.numeric(names(cohortCumSum2016)) - 2016
+ages2017 <- as.numeric(names(cohortCumSum2017)) - 2017
 
 # Estimated prop at age (numbers) of the catch in first forecast year ---------
 fore.catch.prop <- as.data.frame( t(as.numeric(f(apply(base.model$extra.mcmc$natsel.prop, 2, median)* 100))))

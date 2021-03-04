@@ -27,7 +27,7 @@ management_catch_vs_tac_plot <- function(d,
     select(-c(Depletion, `Biomass estimate`))
   if(!is.null(curr_assess_biomass)){
     new_row <- c(max(d$Year) + 1, NA, NA, curr_assess_biomass)
-    names(new_row) <- c("Year", "Realized catch", "TAC", "Assessment TAC")
+    names(new_row) <- c("Year", "Realized catch", "TAC", "Default HCR TAC")
     d <- bind_rows(d, new_row)
   }
   dd <- melt(d, id.vars = "Year") %>%
@@ -103,20 +103,20 @@ management_catch_vs_tac_1_to_1 <- function(d,
        ylim = ylim)
 
   ## Add points for realized catch
-  points(d$`Assessment TAC` / 1000,
+  points(d$`Default HCR TAC` / 1000,
          d$`Realized catch` / 1000,
          pch = 22,
          bg = d$color,
          col = "black",
          cex = 1.1)
   ## Add points for TAC
-  points(d$`Assessment TAC` / 1000,
+  points(d$`Default HCR TAC` / 1000,
          d$TAC / 1000,
          pch = 16,
          col = "black",
          cex = 1.1)
 
-  text(x = bottom$`Assessment TAC` / 1000,
+  text(x = bottom$`Default HCR TAC` / 1000,
        y = bottom$`Realized catch` / 1000,
        label = substring(bottom$Year, 3),
        pch = 0,
@@ -125,7 +125,7 @@ management_catch_vs_tac_1_to_1 <- function(d,
        srt = 0,
        adj = c(0.5, 2.0))
 
-  text(x = top$`Assessment TAC` / 1000,
+  text(x = top$`Default HCR TAC` / 1000,
        y = top$`Realized catch` / 1000,
        label = substring(top$Year, 3),
        pch = 0,
@@ -134,9 +134,9 @@ management_catch_vs_tac_1_to_1 <- function(d,
        srt = 0,
        adj = c(1.5, 0.5))
 
-  segments(d$`Assessment TAC` / 1000,
+  segments(d$`Default HCR TAC` / 1000,
            d$TAC / 1000,
-           d$`Assessment TAC` / 1000,
+           d$`Default HCR TAC` / 1000,
            d$`Realized catch` / 1000 + 10,
            lwd = 1.5,
            alpha = 0.6)
