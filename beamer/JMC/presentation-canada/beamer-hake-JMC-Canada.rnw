@@ -487,7 +487,7 @@ new_decision_table(srg_day2_req2_model,
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 # plot.retro.yrs <- retro.yrs
-retro.cohorts <- (end.yr - 11):end.yr
+retro.cohorts <- (end.yr - 11):(end.yr - 2)
 make_squid_plot(base.model,
                 subplot = 1,
                 cohorts = retro.cohorts)
