@@ -393,7 +393,7 @@ from last year)
 }
 
 %----------------------------------------------------------
-\section{Past Management}
+\section{Past management}
 \subsection{}
 %\frame{\frametitle{Joint History of Rel. Fishing Intensity and Rel. Biomass (\Sexpr{assess.yr - 1})}
 %\begin{figure}[tbp]
@@ -512,7 +512,7 @@ from last year)
 }
 
 %----------------------------------------------------------
-\section{Risk and Decision Tables}
+\section{Risk and decision tables}
 \subsection{Risk}
 \frame{\frametitle{Risk table definitions}
   Probabilities of specific things happening at different fixed catch levels
@@ -883,7 +883,7 @@ cohort_table(base.model,
 %----------------------------------------------------------
 %Added this section for 2021 JMC - we will need to decide if the analysis is updated (and
 %shown here) every year
-\section{Forecast Retrospective}
+\section{Historical performance}
 \frame{\frametitle{Compare probabilities in historical assessments to current estimates}
   \bi
   \item General question -- how `good' are projection probabilities?
