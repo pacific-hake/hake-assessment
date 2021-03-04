@@ -178,7 +178,7 @@ fore.names <- cmodels.names <- sapply(base.model$catch.levels, "[[", 2)[fore.ind
       for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t \\
       (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]}
       to \Sexpr{catch.limit.quantiles["upper"]}~t)
-    \item New \Sexpr{last.data.yr} age data from fishery and survey is fit well by the model
+    \item New \Sexpr{last.data.yr} age data from fishery is fit well by the model
     \item Coastwide catch in \Sexpr{end.yr-1} was \Sexpr{last.year.landings}~t,
       out of a TAC (adjusted for carryovers) of \Sexpr{last.year.tac}~t
     \item Attainment in the U.S. was \Sexpr{last.year.us.attained}\% of its quota
@@ -220,7 +220,9 @@ from last year)
     \bi
       \item 1999 cohort over-predicted when it was younger
       \item 2011 compositions show less good fits
-      \item Recent years (2012--2019) show good fits
+      \item Recent years (2012--2019) mostly show good fits
+      \item Proportion of 2010 and 2014 cohort in the population differed between fishery and survey data in 2017
+        but largely agreed in 2019
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -242,6 +244,7 @@ from last year)
       \item Large 1999, 2010, and 2014 cohorts fit particularly well
       \item Some over- and under-fitting in 1980 and 1984 cohorts
       \item The 2010, 2014, 2016, and 2017 cohorts fit well
+      \item Very few age-2 fish and no age-1 fish in samples collected from fishery in 2020
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -321,12 +324,12 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Age-1 index: Base model}
+\frame{\frametitle{Age-1 fish: Base model estimates and Age-1 index}
 \begin{columns}
   \begin{column}{0.35\textwidth}
     \bi
       \item Age-1 index moderately tracks model predictions but is not included in the stock assessment model
-      \item Estimated numbers of age-1 hake in 2019 (2018 year class) lower than 2016
+      \item Estimated numbers of age-1 hake in 2019 (2018 year class) are much lower than 2016
       and 2014 year classes
       \item The 2019 age-1 estimate does not come close to the age-1 index value for 2019
     \ei
@@ -340,7 +343,7 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Age-1 index: Model including Age-1 index}
+\frame{\frametitle{Age-1 fish: Sensitivity model including Age-1 index}
 \begin{columns}
   \begin{column}{0.35\textwidth}
     \bi
@@ -358,16 +361,16 @@ from last year)
 %----------------------------------------------------------
 \frame{\frametitle{Biomass and relative fishing intentisy}
   \bi
-    \item Biomass has mostly remained above target ($\frac{B_{\Sexpr{assess.yr}}}{B_0} = \Sexpr{f(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end.yr], 2)}$)
-    \item Fishing intensity has remained below target
-    ($\frac{1-SPR_{\Sexpr{assess.yr - 1}}}{1 - SPR_{40\%}} = \Sexpr{f(base.model$mcmccalcs$pmed[names(base.model$mcmccalcs$pmed) == assess.yr - 1], 2)}$)
+    \item Biomass has remained above $\BfortyB$ since 2011; current estimate is $\frac{B_{\Sexpr{assess.yr}}}{B_0} = \Sexpr{f(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end.yr], 2)}$
+    \item Fishing intensity has continually remained below $\Fforty$; current estimate is 
+    $\frac{1-SPR_{\Sexpr{assess.yr - 1}}}{1 - SPR_{40\%}} = \Sexpr{f(base.model$mcmccalcs$pmed[names(base.model$mcmccalcs$pmed) == assess.yr - 1], 2)}$
     \item The estimated probability that spawning biomass at the start of
-    \Sexpr{assess.yr} is below the $\Bforty$ (40\% of $B_0$) reference point is
+    \Sexpr{assess.yr} is below the $\BfortyB$ (40\% of $B_0$) reference point is
     \Sexpr{probs.curr.below.bforty}\%
     \item The probability that the relative fishing
-    intensity is above its target at the end of \Sexpr{end.yr-1} is
+    intensity is above $\Fforty$ at the end of \Sexpr{end.yr-1} is
     \Sexpr{probs.curr.rel.fish.intens.above.one}\%
-    \item The joint probability of both of these things occurring is \Sexpr{joint.percent.prob.above.below}\%
+    \item The probability of both of these things occurring is \Sexpr{joint.percent.prob.above.below}\%
   \ei
 }
 
@@ -388,19 +391,19 @@ from last year)
 %----------------------------------------------------------
 \section{Past Management}
 \subsection{}
-\frame{\frametitle{Joint History of Rel. Fishing Intensity and Rel. Biomass (\Sexpr{assess.yr - 1})}
-\begin{figure}[tbp]
-\begin{center}
-<<phase.plot.last.yr, fig.height=3, fig.width=6>>=
-      make.phase.plot(last.yr.base.model,
-                      start.yr = start.yr,
-                      end.yr = end.yr - 1,
-                      cex.lab = 0.5)
-  @
-\end{center}
-\end{figure}
-}
-
+%\frame{\frametitle{Joint History of Rel. Fishing Intensity and Rel. Biomass (\Sexpr{assess.yr - 1})}
+%\begin{figure}[tbp]
+%\begin{center}
+%<<phase.plot.last.yr, fig.height=3, fig.width=6>>=
+%      make.phase.plot(last.yr.base.model,
+%                      start.yr = start.yr,
+%                      end.yr = end.yr - 1,
+%                      cex.lab = 0.5)
+%  @
+%\end{center}
+%\end{figure}
+%}
+%
 %----------------------------------------------------------
 \frame{\frametitle{Total Allowable Catch}
 \begin{columns}
@@ -408,8 +411,8 @@ from last year)
       \bi
 	    \item March \Sexpr{last.assess.yr}
       \bi
-        \item Default harvest TAC = \Sexpr{f((catch.targets %>% filter(Year == last.assess.yr))$`Assessment TAC`)} t
-        \item JMC set adjusted TAC = \Sexpr{last.year.tac} t
+        \item Default harvest rule TAC = \Sexpr{f((catch.targets %>% filter(Year == last.assess.yr))$`Default HCR TAC`)} t
+        \item Sum of unilateral TACs = \Sexpr{last.year.tac} t
       \ei
       \item When default HR suggests a large catch, TAC is often set less
       \item Catches are often less than the TAC
@@ -462,8 +465,8 @@ from last year)
   \bi
     \item Forecasts are for \Sexpr{min(forecast_yrs)}--\Sexpr{max(forecast_yrs)}.
     \bi
-      \item Average fishery selectivity from \Sexpr{end.yr-5}--\Sexpr{end.yr-1} used in forecasts.
-      \item Mean of weight-at-age from \Sexpr{end.yr-5}--\Sexpr{end.yr-1} used in forecasts.
+      \item Mean of fishery selectivity from \Sexpr{end.yr-5}--\Sexpr{end.yr-1} used in forecasts
+      \item Mean of weight-at-age from \Sexpr{end.yr-5}--\Sexpr{end.yr-1} used in forecasts
       \item Used for default catch calculations.
       \item Recruitment from stock-recruit relationship (with uncertain deviations).
     \ei
@@ -475,7 +478,7 @@ from last year)
       \item Recruitment at estimated \emph{R}\subscr{0} or from stock-recruit relationship.
     \ei
     \item Catch streams presented for some specific cases.
-    \bi \item We welcome input for additional catch streams. \ei
+    %\bi \item We welcome input for additional catch streams. \ei
   \ei
 }
 
@@ -483,9 +486,11 @@ from last year)
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item No fishing results in a no change in spawning biomass from 2021 to 2022 before increasing slightly
-      \item All other catch streams result in decreases in spawning biomass relative to 2021
-      \item Uncertainty is large and increases from \Sexpr{end.yr} to \Sexpr{end.yr + 2}
+      \item No fishing results in relatively constant \emph{median} relative
+        spawning biomass from \Sexpr{assess.yr} to \Sexpr{assess.yr+1} then
+        slight increase
+      \item All other catch streams result in decreases in the median
+      \item Uncertainty is large and increases from \Sexpr{end.yr} to \Sexpr{end.yr+2}
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -506,12 +511,13 @@ from last year)
 \section{Risk and Decision Tables}
 \subsection{Risk}
 \frame{\frametitle{Risk table definitions}
-  Probabilities of ``bad'' things happening at different fixed catch levels
+  Probabilities of specific things happening at different fixed catch levels
   \bi
   %  \item Fixed catch in all years previous, and calculate default catch in forecast year
     \item P($B_t < B_{XX}$): Probability that biomass in forecasted year ($B_t$) is less than the specified biomass $B_{XX}$
   %  \item FI > 40\% target: Probability that fishing intensity in fixed catch year is greater than the target fishing intensity
-    \item P(relative fishing intensity $> 100\%$)
+    \item P(relative FI > 100\% target): Probability that relative fishing intensity in fixed catch
+      year is greater than the target fishing intensity
     % \item P($C_{y+1} < C_y$): Probability that the calculated catch in forecast year is less than the fixed catch
     \item P(default harvest policy catch for \Sexpr{assess.yr + 1} $<$ catch in \Sexpr{assess.yr})
   \ei
@@ -543,7 +549,7 @@ from last year)
                                          fore.yr = forecast_yrs[1],
                                          colors = c("black","blue","green","orange","red","tan"),
                                          pch = c(16,17,17,17,15,18),
-                                         legend.loc = 0.8,
+                                         legend.loc = "topleft",
                                          legend.cex = 0.8)
 
     @
@@ -571,7 +577,7 @@ from last year)
                                          fore.yr = forecast_yrs[2],
                                          colors = c("black","blue","green","orange","red","tan"),
                                          pch = c(16,17,17,17,15,18),
-                                         legend.loc = 0.65,
+                                         legend.loc = "topleft",
                                          legend.cex = 0.7)
 
     @
@@ -583,20 +589,22 @@ from last year)
 %\subsection{Intro}
 \frame{\frametitle{Decision Tables}
   \bi
-    \item Catch streams
+    \item Catch streams % text and which are gray is all manual, updated 2021
     \bi
       \item a. \Sexpr{catch_levels[[1]][[2]]} (zero catch)
       \item b. Constant catch of \Sexpr{catch_levels[[2]][[2]]}
-      \item c. Constant catch of \Sexpr{catch_levels[[3]][[2]]}
-      \item d. \Sexpr{catch_levels[[4]][[2]]}
+      \item \textcolor{gray}{c. Constant catch of \Sexpr{catch_levels[[3]][[2]]}}
+      \item d. Constant catch (\Sexpr{catch_levels[[4]][[2]]})
       \item e. Constant catch (\Sexpr{catch_levels[[5]][[2]]})
-      \item f. \Sexpr{catch_levels[[6]][[2]]}
-      \item g. \Sexpr{catch_levels[[7]][[2]]}
-      \item h. Fishing Intensity = 100\% in each year conditioned on fixed catch in previous year
-      \item i. Median default Harvest Rule in each year conditioned on fixed catch in previous year
-      \item j. Median catch in \Sexpr{assess.yr} is the same as fixed catch in \Sexpr{assess.yr - 1}
+      \item \textcolor{gray}{f. Constant catch (\Sexpr{catch_levels[[6]][[2]]})}
+      \item \textcolor{gray}{g. Constant catch (\Sexpr{catch_levels[[7]][[2]]})}
+      \item \textcolor{gray}{h. Fishing Intensity = 100\% in each year
+        conditioned on fixed catch in previous year}
+      \item i. Median default Harvest Rule in each year conditioned on
+        fixed catch in previous year
+      \item \textcolor{gray}{j. Fishing intensity giving 50\% prob.~that the
+          median \Sexpr{assess.yr} catch equals median  \Sexpr{assess.yr+1} catch}
     \ei
-    \item More catch streams can be added as determined by the JMC/AP
   \ei
 }
 
@@ -606,15 +614,11 @@ from last year)
 \begin{columns}
   \begin{column}{0.33\textwidth}
     \bi
-      \item Relative spawning biomass is decreasing in the absence of fishing
-        due to continued decline of large 2010 and 2014 cohorts
-      \item Lower 5\% quantile below $B_{40\%}$ in \Sexpr{end.yr} (28\%), last year this was 35\%.
       \item Median (50\%) decreases from \Sexpr{end.yr} to \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
-        for all catch levels
-        \bi
-        \item Median is > $B_{40\%}$ for all 2021 catch
-        \item Median goes below $B_{40\%}$ in 2023 between d and e
-        \ei
+        for all non-zero catch levels examined (continued decline of large 2010 and 2014 cohorts)
+      \item One year forecast: default harvest rule catch results in being above $B_{40\%}$
+      \item Two year forecast: a constant catch of 421,400 t over the next two years results in being at $B_{40\%}$
+        (on average)
     \ei
   \end{column}
   \begin{column}{0.65\textwidth}
@@ -639,7 +643,7 @@ from last year)
     \bi
       %\item Fishing Intensity is different for all years and rows because it accounts for catch that year
       \item Fishing intensity reaches fishing target with a catch of 380,000 t within three years time
-      \item Using the default harvest rate, fishing intensity is slightly above the target (105, 104, 103\%; not shown)
+      \item Using the default harvest rate, fishing intensity is slightly above $\Fforty$ (at 105, 104, and 103\% from 2021 to 2023, respectively; not shown)
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -651,6 +655,29 @@ from last year)
                              font.size = 9,
                              space.size = 9,
                              type = "spr",
+                             placement = "h")
+@
+  \end{column}
+\end{columns}
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Alternative Decision Table Format: Spawning Biomass (excerpt)}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item Addition of the resulting biomass from the third year of fishing
+      \item Alternative format to hopefully improve understanding
+    \ei
+  \end{column}
+  \begin{column}{0.59\textwidth}
+  <<decisions.biomass.table.new, results='asis', echo=FALSE>>=
+    new_decision_table(base.model,
+                             xcaption = NULL,
+                             xlabel = "tab:es-decisions-spr",
+                             font.size = 6,
+                             space.size = 6,
+                             type = "biomass",
                              placement = "h")
 @
   \end{column}
@@ -725,7 +752,7 @@ par <- oldpar
   \begin{column}{0.35\textwidth}
     \bi
       \item Default Harvest Rule catch
-      \item Dependent on selectivity assumption
+      \item Dependent on selectivity and wt-at-age assumptions
       \item Median proportions (by numbers) are:
       \item \Sexpr{fore.catch.prop$Age7}\% age-7 fish, 2014 cohort
       \item \Sexpr{fore.catch.prop$Age5}\% age-5 fish, 2016 cohort
@@ -764,6 +791,7 @@ cohort_table(base.model,
     \item 2010 cohort (ages 1--\Sexpr{last.data.yr - 2010}): \Sexpr{f(max(cohortCumSum2010))} t
     \item 2014 cohort (ages 1--\Sexpr{last.data.yr - 2014}): \Sexpr{f(max(cohortCumSum2014))} t
     \item 2016 cohort (ages 1--\Sexpr{last.data.yr - 2016}): \Sexpr{f(max(cohortCumSum2016))} t
+    \item 2017 cohort (ages 1--\Sexpr{last.data.yr - 2017}): \Sexpr{f(max(cohortCumSum2017))} t
       \ei
     \end{column}
     \begin{column}{0.48\textwidth}
@@ -775,6 +803,12 @@ cohort_table(base.model,
       lines(ages2010, cohortCumSum2010/1e3, lwd=5, col=2)
       lines(ages2014, cohortCumSum2014/1e3, lwd=5, col=4)
       lines(ages2016, cohortCumSum2016/1e3, lwd=5, col="green")
+      lines(ages2017, cohortCumSum2017/1e3, lwd=5, col="orange")
+      text('2017 cohort',
+           x = last.data.yr - 2017 + 1,
+           y = max(cohortCumSum2017 / 1e3),
+           col = "orange",
+           pos = 4)
       text('2016 cohort',
            x = last.data.yr - 2016 + 1,
            y = max(cohortCumSum2016 / 1e3),
@@ -812,7 +846,13 @@ cohort_table(base.model,
       lines(ages2010, cohortCumSum2010/1e3, lwd=5, col=2)
       lines(ages2014, cohortCumSum2014/1e3, lwd=5, col=4)
       lines(ages2016, cohortCumSum2016/1e3, lwd=5, col="green")
+      lines(ages2017, cohortCumSum2017/1e3, lwd=5, col="orange")
       box()
+      text('2017 cohort',
+           x = last.data.yr - 2017 + 1,
+           y = max(cohortCumSum2017 / 1e3),
+           col = "orange",
+           pos = 4)
       text('2016 cohort',
            x = last.data.yr - 2016 + 1,
            y = max(cohortCumSum2016 / 1e3),
@@ -841,14 +881,17 @@ cohort_table(base.model,
 \subsection{}
 \frame{\frametitle{Summary}
   \bi
-    \item Uncertainty is large, but stock is likely above $B_{40\%}$,
-      and fishing intensity is likely to have been below 100\%
+    \item Uncertainty is large, but stock currently has \Sexpr{probs.curr.below.bforty}\%
+      chance of being below $B_{40\%}$ and
+      \Sexpr{probs.curr.rel.fish.intens.above.one}\% chance of relative fishing
+      intensity being above 100\%
     \item Based on the default harvest rule, the estimated median catch limit
       for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t
       (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to
       \Sexpr{catch.limit.quantiles["upper"]}~t)
-    \item Forecasts strongly influenced by size of above average 2010, 2014, and 2016 cohorts
-    \item There is a \Sexpr{f(base.model$risks[[1]][4, 2])}\% chance that spawning biomass will decline from \Sexpr{assess.yr} to \Sexpr{assess.yr + 1} at a catch level of \Sexpr{f(base.model$risks[[1]][4, 1])}~t, partly due to mortality on ageing large cohorts (Figure j)
+    \item Forecasts strongly influenced by size of above-average 2014 and 2016
+      cohorts; 2017 now looks to be average and 2018 is small.
+    \item There is a \Sexpr{f(base.model$risks[[1]][4, 2])}\% chance that spawning biomass will decline from \Sexpr{assess.yr} to \Sexpr{assess.yr + 1} at a catch level of \Sexpr{f(base.model$risks[[1]][4, 1])}~t (i.e., 2020 catch), partly due to mortality on ageing large cohorts (Figure j)
     \item Maintaining a constant catch of 529,290~t (i.e., 2020 TAC) results in a 43\%
       chance of falling below $B_{40\%}$ in 1 year and 58\% in 2 years time (Tables i and j)
   \ei
@@ -860,9 +903,10 @@ cohort_table(base.model,
     \item Highest catch levels on record over last four years (benefit of 2010 and 2014 year classes)
     \item Stock forecasted to decline by \Sexpr{assess.yr + 1} and \Sexpr{assess.yr + 2} under all future catch scenarios
     \item Continued decline in surviving biomass for the large 2010 and 2014 year classes
-    \item Recent recruitment estimates indicate no new dominant year classes; though estimates are highly uncertain
-    \item Stock moving towards 'target' biomass levels; however too rapid of a decline can result in 'overshooting'
-       $\BfortyB$ and other benchmark reference points
+    \item Very low catches of age-2 and age-1 fish in 2020 fishery
+    \item Recent recruitment estimates indicate no new dominant year classes (though estimates are highly uncertain)
+    \item While relative SSB(2021) is above $\BfortyB$, it is approaching it at an increasing pace,
+      and too rapid of a decline can result in 'overshooting' $\BfortyB$ and other benchmark reference points
   \ei
 }
 
