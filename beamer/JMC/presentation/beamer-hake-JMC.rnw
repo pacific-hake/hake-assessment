@@ -876,7 +876,8 @@ cohort_table(base.model,
       @
 }
 
-%------------------------------------------------------------------------------
+%----------------------------------------------------------
+\section{Summary}
 \subsection{Runtimes}
 \begin{frame}
 \frametitle{Runtimes}
@@ -897,11 +898,8 @@ cohort_table(base.model,
   \item The JTC is asking for a 32-processor (64-thread) server to run these in the future
 \ei
 \end{frame}
-
 %----------------------------------------------------------
-\section{Summary}
-\subsection{}
-\frame{\frametitle{Summary}
+\frame{\frametitle{Key metrics}
   \bi
     \item Uncertainty is large, but stock currently has \Sexpr{probs.curr.below.bforty}\%
       chance of being below $B_{40\%}$ and
@@ -920,7 +918,7 @@ cohort_table(base.model,
 }
 
 %-------------------------------------------------------
-\frame{\frametitle{Looking Forward}
+\frame{\frametitle{Key Points}
   \bi
     \item Highest catch levels on record over last four years (benefit of 2010 and 2014 year classes)
     \item Stock forecasted to decline by \Sexpr{assess.yr + 1} and \Sexpr{assess.yr + 2} under all future catch scenarios
