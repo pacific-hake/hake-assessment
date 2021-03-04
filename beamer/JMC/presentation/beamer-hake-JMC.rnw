@@ -1014,7 +1014,10 @@ Can write up these results for next year if there's interest.
   \item \textbf{Total time to run all MCMC models last year: 44.5 hours (1 processor)}
   \item \textbf{Total time to run all MCMC models this year: 12+ days}
   \item \textbf{12 days * 7 processor threads in parallel = 84 days}
-  \item The JTC is asking for a 32-processor (64-thread) server to run these in the future
+  \item \textbf{Total time JTC has to conduct assessment after receiving all
+      data = 31 days}
+  \item The JTC is asking for a 32-core processor (64-thread) server to run these in the future
+  \item Estimated cost about CA\$30,000 (roughly one day of ship survey time)
 \ei
 \end{frame}
 %----------------------------------------------------------
