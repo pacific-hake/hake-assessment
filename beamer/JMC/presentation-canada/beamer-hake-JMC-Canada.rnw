@@ -95,7 +95,11 @@ opts_chunk$set(dev = 'cairo_ps',
                cache.path = 'knitr-cache/')
 
 source(file.path(here::here(), "R", "all.R"))
-load_models_rds()
+if(!(exists("models_loaded") && models_loaded)){
+  load_models_rds()
+}
+models_loaded <- TRUE
+
 source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 metric <- NULL
@@ -280,7 +284,7 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Risk based on \Sexpr{end.yr} catch}
+\frame{\frametitle{Probabilities based on \Sexpr{end.yr} catch}
     <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
       make.risk.table(base.model,
                       forecast_yrs,
@@ -292,7 +296,7 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Risk based on \Sexpr{end.yr} catch}
+\frame{\frametitle{Probabilities based on \Sexpr{end.yr} catch}
   \bc
     <<forecast.risk.comparison.plot.year.1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
       make.forecast.risk.comparison.plot(base.model,
@@ -308,7 +312,7 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Risk based on fixed \Sexpr{end.yr} and \Sexpr{end.yr+1} catch}
+\frame{\frametitle{Probabilities based on fixed \Sexpr{end.yr} and \Sexpr{end.yr+1} catch}
     <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
       make.risk.table(base.model,
                       forecast_yrs,
@@ -320,7 +324,7 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Risk based on \Sexpr{end.yr} catch}
+\frame{\frametitle{Probabilities based on \Sexpr{end.yr} catch}
   \bc
     <<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
       make.forecast.risk.comparison.plot(base.model,
@@ -368,9 +372,6 @@ from last year)
     \bi
       \item Median (50\%) decreases from \Sexpr{end.yr} to \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
         for all non-zero catch levels examined (continued decline of large 2010 and 2014 cohorts)
-      \item One year forecast: default harvest rule catch results in being above $B_{40\%}$
-      \item Two year forecast: a constant catch of 421,400 t over the next two years results in being at $B_{40\%}$
-        (on average)
     \ei
   \end{column}
   \begin{column}{0.65\textwidth}
