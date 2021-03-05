@@ -237,7 +237,7 @@ from last year)
 
 %----------------------------------------------------------
 \section{Forecasts}
-\subsection{Two year forecasts}
+\subsection{Two-year forecasts}
 \frame{\frametitle{Harvest rule predicted catch for \Sexpr{assess.yr}}
 \begin{columns}
   \begin{column}{0.38\textwidth}
@@ -258,7 +258,33 @@ from last year)
 \end{columns}
 }
 
-\frame{\frametitle{Two year forecasts}
+%----------------------------------------------------------
+%\section{Decision Tables}
+\frame{\frametitle{Decision Tables}
+  \bi
+    \item Catch streams % text and which are gray is all manual, updated 2021
+    \bi
+      \item a. \Sexpr{catch_levels[[1]][[2]]} (zero catch)
+      \item b. Constant catch of \Sexpr{catch_levels[[2]][[2]]}
+      \item c. Constant catch of \Sexpr{catch_levels[[3]][[2]]}
+      \item d. Constant catch (\Sexpr{catch_levels[[4]][[2]]})
+      \item e. Constant catch (\Sexpr{catch_levels[[5]][[2]]})
+      \item f. Constant catch (\Sexpr{catch_levels[[6]][[2]]})
+      \item g. Constant catch (\Sexpr{catch_levels[[7]][[2]]})
+      \item h. Fishing Intensity = 100\% in each year
+        conditioned on fixed catch in previous year
+      \item i. Median default Harvest Rule in each year conditioned on
+        fixed catch in previous year
+      \item j. Fishing intensity giving 50\% prob.~that the
+          median \Sexpr{assess.yr} catch equals median  \Sexpr{assess.yr+1} catch
+    \ei
+  \ei
+}
+
+
+
+
+\frame{\frametitle{Two-year forecasts}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
@@ -339,30 +365,6 @@ from last year)
   \ec
 }
 
-
-%----------------------------------------------------------
-%\section{Decision Tables}
-%\subsection{Intro}
-\frame{\frametitle{Decision Tables}
-  \bi
-    \item Catch streams % text and which are gray is all manual, updated 2021
-    \bi
-      \item a. \Sexpr{catch_levels[[1]][[2]]} (zero catch)
-      \item b. Constant catch of \Sexpr{catch_levels[[2]][[2]]}
-      \item c. Constant catch of \Sexpr{catch_levels[[3]][[2]]}
-      \item d. Constant catch (\Sexpr{catch_levels[[4]][[2]]})
-      \item e. Constant catch (\Sexpr{catch_levels[[5]][[2]]})
-      \item f. Constant catch (\Sexpr{catch_levels[[6]][[2]]})
-      \item g. Constant catch (\Sexpr{catch_levels[[7]][[2]]})
-      \item h. Fishing Intensity = 100\% in each year
-        conditioned on fixed catch in previous year
-      \item i. Median default Harvest Rule in each year conditioned on
-        fixed catch in previous year
-      \item j. Fishing intensity giving 50\% prob.~that the
-          median \Sexpr{assess.yr} catch equals median  \Sexpr{assess.yr+1} catch
-    \ei
-  \ei
-}
 
 %----------------------------------------------------------
 \subsection{Spawning Biomass (excerpt)}
