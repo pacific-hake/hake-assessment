@@ -1020,6 +1020,23 @@ Can write up these results for next year if there's interest.
   \item Estimated cost about CA\$30,000 (roughly one day of ship survey time)
 \ei
 \end{frame}
+
+%----------------------------------------------------------
+\frame{\frametitle{Compare biomass for last three assessments}
+\bc
+<<compare.3.yr.models.biomass, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+  # Need to copy this model folder into the models directory, remove all forecasts, extra-mcmc, and retro folders and then
+  # run `build_rds("2019.03.00_base")`
+  model_2019 <- load_models("2019.03.00_base")
+  make.comparison.plot(c(list(base.model), list(last.yr.base.model), list(model_2019)),
+                     subplots = 2,
+                     model.names = c(base.model.name, last.yr.base.model.name, "2019 Base model"),
+                     end.yr = c(end.yr, end.yr - 1, end.yr - 2),
+                     lwd = 3)
+@
+\ec
+}
+
 %----------------------------------------------------------
 \frame{\frametitle{Key metrics}
   \bi
