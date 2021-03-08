@@ -130,10 +130,10 @@ fore.names <- cmodels.names <- sapply(base.model$catch.levels, "[[", 2)[fore.ind
     \item The median estimate of \Sexpr{end.yr} relative spawning biomass is
       \Sexpr{curr.depl.median}\% \\
       (with 95\% interval from \Sexpr{curr.depl.lower}\% to \Sexpr{curr.depl.upper}\%)
-    \item Large 2010 and 2014 cohorts continue to make up large fraction of catches
-    \item 2016 cohort estimated to be above average
-    \item 2017 cohort estimated to be slightly above average
+    \item Large 2010, 2014, and 2016 cohorts continue to make up large fraction of catches
+    \item 2017 cohort estimated to be average
     \item 2018 cohort estimated to be below average
+    \item 2019 and 2020 have no data for estimating size of cohort
     \item Default harvest rule estimated median catch limit
       for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t \\
       (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]}
@@ -415,35 +415,6 @@ new_decision_table(srg_day2_req2_model,
 }
 
 %----------------------------------------------------------
-\begin{frame}
-\frametitle{Retrospective -- squid plot}
-\begin{center}
-\vspace{-5pt}
-%, out.width='0.9\\columnwidth'>>=   Keep following values else
-%   years get too close to the tendrils
-<<squid, fig.height=3.5>>=
-oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-#par(mar = c(4.5, 4.1, 1.5, 1.1))
-# plot.retro.yrs <- retro.yrs
-retro.cohorts <- (end.yr - 11):(end.yr - 2)
-make_squid_plot(base.model,
-                subplot = 1,
-                cohorts = retro.cohorts)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-
-%----------------------------------------------------------
-
-% \frame{\frametitle{Retrospective across assessments -- squid plot}
-% \begin{center}
-%   \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-%   \includegraphics[height=2.9in]{Figures/RetroAssess_squid}
-% \end{center}
-% }
-
-%----------------------------------------------------------
 \frame{\frametitle{Forecast age compositions for \Sexpr{end.yr} fishery catch}
 \begin{columns}
   \begin{column}{0.35\textwidth}
@@ -464,6 +435,27 @@ par <- oldpar
   \end{column}
 \end{columns}
 }
+
+%----------------------------------------------------------
+\section{Retrospectives/Cohorts}
+\begin{frame}
+\frametitle{Retrospective -- squid plot}
+\begin{center}
+\vspace{-5pt}
+%, out.width='0.9\\columnwidth'>>=   Keep following values else
+%   years get too close to the tendrils
+<<squid, fig.height=3.5>>=
+oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
+#par(mar = c(4.5, 4.1, 1.5, 1.1))
+# plot.retro.yrs <- retro.yrs
+retro.cohorts <- (end.yr - 11):(end.yr - 2)
+make_squid_plot(base.model,
+                subplot = 1,
+                cohorts = retro.cohorts)
+par <- oldpar
+@
+\end{center}
+\end{frame}
 
 %----------------------------------------------------------
 \frame{\frametitle{Estimated cumulative catch for large cohorts}
@@ -561,9 +553,53 @@ par <- oldpar
       @
 }
 
+%----------------------------------------------------------
+\section{Compare recent biomass estimates}
+\subsection{Biomass}
+\frame{\frametitle{Compare biomass for last three assessments}
+\bc
+<<compare.3.yr.models.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+  # Need to copy this model folder into the models directory, remove all forecasts, extra-mcmc, and retro folders and then
+  # run `build_rds("2019.03.00_base")`
+  model_2019 <- load_models("2019.03.00_base")
+  make.comparison.plot(c(list(base.model),
+                         list(last.yr.base.model),
+                         list(model_2019)),
+                     subplots = 2,
+                     model.names = c(base.model.name, last.yr.base.model.name, "2019 Base model"),
+                     end.yr = c(end.yr, end.yr - 1, end.yr - 2),
+                     lwd = 4,
+                     legendloc = "topright",
+                     plot_mcmc = TRUE)
+@
+\ec
+}
+
+%----------------------------------------------------------
+\subsection{Relative biomass}
+\frame{\frametitle{Compare relative biomass for last three assessments (2010--2021)}
+\bc
+<<compare.3.yr.models.relbiomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+  # Need to copy this model folder into the models directory, remove all forecasts, extra-mcmc, and retro folders and then
+  # run `build_rds("2019.03.00_base")`
+  model_2019 <- load_models("2019.03.00_base")
+  make.comparison.plot(c(list(base.model),
+                         list(last.yr.base.model),
+                         list(model_2019)),
+                     subplots = 3,
+                     xlim = c(2010, 2021),
+                     model.names = c(base.model.name, last.yr.base.model.name, "2019 Base model"),
+                     end.yr = c(end.yr, end.yr - 1, end.yr - 2),
+                     lwd = 4,
+                     legendloc = "topleft",
+                     plot_mcmc = TRUE)
+@
+\ec
+}
+
 %------------------------------------------------------------------------------
 \section{Summary}
-\subsection{}
+\subsection{Summary}
 \frame{\frametitle{Summary}
   \bi
     \item Uncertainty is large, but stock currently has \Sexpr{probs.curr.below.bforty}\%
