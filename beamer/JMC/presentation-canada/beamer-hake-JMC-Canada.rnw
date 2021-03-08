@@ -325,20 +325,18 @@ from last year)
 \frame{\frametitle{Probabilities based on \Sexpr{end.yr} catch}
   \bc
     <<forecast.risk.comparison.plot.year.1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
-      make.forecast.risk.comparison.plot(base.model,
-                                         forecast_yrs = forecast_yrs,
-                                         fore.yr = forecast_yrs[1],
-                                         colors = c("black", "blue", "green", "orange", "red", "tan"),
-                                         pch = c(16, 17, 17, 17, 15, 18),
-                                         legend.loc = "topleft",
-                                         legend.cex = 0.8)
+        make.forecast.risk.comparison.plot.short(base.model,
+                                                 forecast_yrs = forecast_yrs,
+                                                 fore.yr = forecast_yrs[1],
+                                                 legend.loc = "topleft",
+                                                 legend.cex = 0.8)
 
     @
   \ec
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Probabilities based on fixed \Sexpr{end.yr} and \Sexpr{end.yr+1} catch}
+\frame{\frametitle{Probabilities based on \Sexpr{end.yr} and \Sexpr{end.yr + 1} catch}
     <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
       make.risk.table(base.model,
                       forecast_yrs,
@@ -350,21 +348,18 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Probabilities based on \Sexpr{end.yr} catch}
+\frame{\frametitle{Probabilities based on \Sexpr{end.yr} and \Sexpr{end.yr + 1} catch}
   \bc
     <<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
-      make.forecast.risk.comparison.plot(base.model,
-                                         forecast_yrs = forecast_yrs,
-                                         fore.yr = forecast_yrs[2],
-                                         colors = c("black", "blue", "green", "orange", "red", "tan"),
-                                         pch = c(16, 17, 17, 17, 15, 18),
-                                         legend.loc = "topleft",
-                                         legend.cex = 0.8)
+        make.forecast.risk.comparison.plot.short(base.model,
+                                                 forecast_yrs = forecast_yrs,
+                                                 fore.yr = forecast_yrs[2],
+                                                 legend.loc = "topleft",
+                                                 legend.cex = 0.8)
 
     @
   \ec
 }
-
 
 %----------------------------------------------------------
 \subsection{Spawning Biomass (excerpt)}
