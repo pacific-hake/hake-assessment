@@ -616,9 +616,14 @@ cohort_table(base.model,
   \begin{column}{0.38\textwidth}
     \bi
       %\item Fishing Intensity is different for all years and rows because it accounts for catch that year
-      \item Fishing intensity reaches fishing target with a catch of 380,000 t within three years time
-      \item Using the default harvest rate, fishing intensity is slightly above $\Fforty$ (at 105, 104, and 103\% from 2021 to 2023, respectively; not shown)
+      \item Median (50\% column) gets to roughly 100\% fishing intensity in
+        \bi
+           \item 2023 for 380,000~t
+           \item 2022 for 430,000~t
+           \item 2021 for 529,290~t
+         \ei
     \ei
+  But large uncertainty, e.g. 25\% chance that 380,000~t is $>$100\% in 2021.
   \end{column}
   \begin{column}{0.59\textwidth}
   <<decisions.spr.table, results='asis', echo=FALSE>>=
