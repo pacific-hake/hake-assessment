@@ -194,7 +194,7 @@ from last year)
 \end{frame}
 
 %----------------------------------------------------------
-\section{Data and model fits}
+\section{Catches}
 \frame{\frametitle{Catches}
   \bc
   <<catches, fig.height=3.9, fig.width=7, out.width='0.85\\columnwidth'>>=
@@ -202,65 +202,6 @@ from last year)
                     leg.y.loc = 510, leg.cex = 0.7)
   @
   \ec
-}
-
-%----------------------------------------------------------
-\frame{\frametitle{Fit to the acoustic survey index of abundance}
-  \bc
-  <<mcmc.survey.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-    make.mcmc.survey.fit.plot(base.model,
-                          start.yr = survey.start.yr,
-                          end.yr = survey.end.yr,
-                          probs = c(0.025, 0.975),
-                          y.max = 5.5e6)
-  @
-  \ec
-}
-
-%----------------------------------------------------------
-\frame{\frametitle{Fit to acoustic survey age comps (MCMC)}
-\begin{columns}
-  \begin{column}{0.38\textwidth}
-    \bi
-      \item 1999 cohort over-predicted when it was younger
-      \item 2011 compositions show less good fits
-      \item Recent years (2012--2019) mostly show good fits
-      \item Proportion of 2010 and 2014 cohort in the population differed between fishery and survey data in 2017
-        but largely agreed in 2019
-    \ei
-  \end{column}
-  \begin{column}{0.59\textwidth}
-    \bc
-      <<mcmc.survey.age.comp.fits, fig.height=4.4, fig.width=5.5,out.width='1.0\\columnwidth'>>=
-      make.age.comp.fit.plot(base.model,
-                             subplot = 2)
-     @
-    \ec
-  \end{column}
-\end{columns}
-}
-
-%----------------------------------------------------------
-\frame{\frametitle{Fit to fishery age comps (MCMC)}
-\begin{columns}
-  \begin{column}{0.38\textwidth}
-    \bi
-      \item Large 1999, 2010, and 2014 cohorts fit particularly well
-      \item Some over- and under-fitting in 1980 and 1984 cohorts
-      \item The 2010, 2014, 2016, and 2017 cohorts fit well
-      \item Very few age-2 fish and no age-1 fish in samples collected from fishery in 2020
-    \ei
-  \end{column}
-  \begin{column}{0.59\textwidth}
-    \vspace{-5pt}
-    \bc
-      <<mcmc.fishery.age.comp.fits, fig.height=5.2, fig.width=6.5,out.width='1.0\\columnwidth'>>=
-      make.age.comp.fit.plot(base.model,
-                             subplot = 1)
-     @
-    \ec
-  \end{column}
-\end{columns}
 }
 
 %----------------------------------------------------------
