@@ -194,7 +194,6 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
       \item Recruitment at estimated \emph{R}\subscr{0} or from stock-recruit relationship
     \ei
     \item Catch streams presented for some specific cases
-    \bi \item We welcome input for additional catch streams \ei
   \ei
 }
 
@@ -270,7 +269,7 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
       \item \textcolor{gray}{j. Fishing intensity giving 50\% prob.~that the
           median \Sexpr{assess.yr} catch equals median  \Sexpr{assess.yr+1} catch}
     \ei
-    \item More catch streams can be added as determined by SRG/AP/JMC
+    % \item More catch streams can be added as determined by SRG/AP/JMC
   \ei
 }
 

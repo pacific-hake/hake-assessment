@@ -548,88 +548,16 @@ cohort_table(base.model,
 \end{columns}
 }
 
-%----------------------------------------------------------
-\section{Risk and decision tables}
-\subsection{Risk}
-\frame{\frametitle{Risk table definitions}
-  Probabilities of specific things happening at different fixed catch levels
-  \bi
-  %  \item Fixed catch in all years previous, and calculate default catch in forecast year
-    \item P($B_t < B_{XX}$): Probability that biomass in forecasted year ($B_t$) is less than the specified biomass $B_{XX}$
-  %  \item FI > 40\% target: Probability that fishing intensity in fixed catch year is greater than the target fishing intensity
-    \item P(relative FI > 100\% target): Probability that relative fishing intensity in fixed catch
-      year is greater than the target fishing intensity
-    % \item P($C_{y+1} < C_y$): Probability that the calculated catch in forecast year is less than the fixed catch
-    \item P(default harvest policy catch for \Sexpr{assess.yr + 1} $<$ catch in \Sexpr{assess.yr})
-  \ei
-}
-
-% calculation of 51% probability in risk table vs.
-% 100% Fishing Intensity in decision table:
-% >  mean(models[[3]]$forecasts$outputs[[6]]$SPRratio_2016>1)
-% >  median(models[[3]]$forecasts$outputs[[6]]$SPRratio_2016)
-
-%----------------------------------------------------------
-\frame{\frametitle{Risk based on \Sexpr{end.yr} catch}
-    <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
-      make.risk.table(base.model,
-                      forecast_yrs,
-                      index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                      xcaption = NULL,
-                      font.size = 10,
-                      space.size = 11)
-    @
-}
-
-%----------------------------------------------------------
-\frame{\frametitle{Risk based on \Sexpr{end.yr} catch}
-  \bc
-    <<forecast.risk.comparison.plot.year.1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
-      make.forecast.risk.comparison.plot(base.model,
-                                         forecast_yrs = forecast_yrs,
-                                         fore.yr = forecast_yrs[1],
-                                         colors = c("black","blue","green","orange","red","tan"),
-                                         pch = c(16,17,17,17,15,18),
-                                         legend.loc = "topleft",
-                                         legend.cex = 0.8)
-
-    @
-  \ec
-}
-
-%----------------------------------------------------------
-\frame{\frametitle{Risk based on fixed \Sexpr{end.yr} and \Sexpr{end.yr+1} catch}
-    <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
-      make.risk.table(base.model,
-                      forecast_yrs,
-                      index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                      xcaption = NULL,
-                      font.size = 10,
-                      space.size = 11)
-    @
-}
-
-%----------------------------------------------------------
-\frame{\frametitle{Risk based on fixed \Sexpr{end.yr} and \Sexpr{end.yr+1} catch (plot)}
-  \bc
-    <<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
-      make.forecast.risk.comparison.plot(base.model,
-                                         forecast_yrs = forecast_yrs,
-                                         fore.yr = forecast_yrs[2],
-                                         colors = c("black","blue","green","orange","red","tan"),
-                                         pch = c(16,17,17,17,15,18),
-                                         legend.loc = "topleft",
-                                         legend.cex = 0.7)
-
-    @
-  \ec
-}
-
-%----------------------------------------------------------
-%\section{Decision Tables}
-%\subsection{Intro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Decision Tables}
+\subsection{Intro}
 \frame{\frametitle{Decision Tables}
   \bi
+    \item Decision table format
+    \bi
+      \item Quantiles from the posterior distribution for relative spawning biomass and fishing intensity
+      % \item Tables provided for the base model as well as age-1 survey and adnuts sensitivity runs
+    \ei
     \item Catch streams % text and which are gray is all manual, updated 2021
     \bi
       \item a. \Sexpr{catch_levels[[1]][[2]]} (zero catch)
@@ -646,20 +574,24 @@ cohort_table(base.model,
       \item \textcolor{gray}{j. Fishing intensity giving 50\% prob.~that the
           median \Sexpr{assess.yr} catch equals median  \Sexpr{assess.yr+1} catch}
     \ei
+    % \item More catch streams can be added as determined by SRG/AP/JMC
   \ei
 }
 
-%----------------------------------------------------------
-\subsection{Spawning Biomass (excerpt)}
-\frame{\frametitle{Relative Spawning Biomass (excerpt)}
+
+\subsection{Spawning Biomass}
+\frame{\frametitle{Relative Spawning Biomass}
 \begin{columns}
   \begin{column}{0.33\textwidth}
     \bi
+      % \item Lower 5\% quantile below $B_{40\%}$ in \Sexpr{end.yr} (35\%)
       \item Median (50\%) decreases from \Sexpr{end.yr} to \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
-        for all non-zero catch levels examined (continued decline of large 2010 and 2014 cohorts)
-      \item One year forecast: default harvest rule catch results in being above $B_{40\%}$
-      \item Two year forecast: a constant catch of 421,400 t over the next two years results in being at $B_{40\%}$
-        (on average)
+        for all non-zero catch levels (continued decline of large 2010 and 2014 cohorts)
+        % Commenting in 2021, think should just talk about probs
+        % \bi
+        % \item Median is > $B_{40\%}$ for all **2021 catch
+        % \item Median goes below $B_{40\%}$ in **2022 between d and e
+        % \ei
     \ei
   \end{column}
   \begin{column}{0.65\textwidth}
@@ -668,17 +600,18 @@ cohort_table(base.model,
                              models.inds,
                              xcaption = NULL,
                              xlabel = "tab:es-decisions-spr",
-                             font.size = 9,
-                             space.size = 9,
+                             font.size = 8,
+                             space.size = 10,
                              type = "biomass",
                              placement = "h")
-  @
+@
+
   \end{column}
 \end{columns}
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Fishing Intensity (excerpt)}
+\frame{\frametitle{Fishing Intensity}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
@@ -701,6 +634,86 @@ cohort_table(base.model,
   \end{column}
 \end{columns}
 }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Risk Tables}
+% \subsection{Risk}
+\frame{\frametitle{Probability table definitions}
+  Probabilities associated with biomass and fishing-based metrics for different fixed catch levels
+  (see Executive Summary: Tables i and j; Figures j and k)
+  \bi
+    \item Fix catch in \Sexpr{assess.yr} to estimate $B_{\Sexpr{assess.yr + 1}}$
+    \item Fix catch in \Sexpr{assess.yr} and \Sexpr{assess.yr + 1} to estimate $B_{\Sexpr{assess.yr + 2}}$
+    \item P($B_x < B_y$): Probability that biomass in forecasted year
+      is less than specified biomass
+    \item P(relative FI > 100\% target): Probability that relative fishing intensity in fixed catch
+      year is greater than the target fishing intensity
+    %Only last column of table refers to catches, and is spelt out in words
+    %\item P($C_{y+1} < C_y$): Probability that the calculated catch in forecast
+    %  year is less than the fixed catch
+  \ei
+}
+
+%--------------------------------------------------------------
+\frame{\frametitle{Probabilities based on \Sexpr{end.yr} catch}
+    <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
+      make.risk.table(base.model,
+                      forecast_yrs,
+                      index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                      xcaption = NULL,
+                      font.size = 10,
+                      space.size = 11)
+    @
+}
+
+%--------------------------------------------------------------
+
+\frame{\frametitle{Probabilities based on \Sexpr{end.yr} catch}
+  \bc
+    <<forecast.risk.comparison.plot.year.1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+      make.forecast.risk.comparison.plot(base.model,
+                                         forecast_yrs = forecast_yrs,
+                                         fore.yr = forecast_yrs[1],
+                                         colors = c("black","blue","green","orange","red","tan"),
+                                         pch = c(16,17,17,17,15,18),
+                                         legend.loc = "topleft",
+                                         legend.cex = 0.8)
+
+    @
+  \ec
+}
+
+%--------------------------------------------------------------
+\frame{\frametitle{Probabilities based on \Sexpr{end.yr} and \Sexpr{end.yr+1} catch}
+    <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
+      make.risk.table(base.model,
+                      forecast_yrs,
+                      index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                      xcaption = NULL,
+                      font.size = 10,
+                      space.size = 11)
+    @
+}
+
+%--------------------------------------------------------------
+
+\frame{\frametitle{Probabilities based on \Sexpr{end.yr} and \Sexpr{end.yr+1} catch}
+  \bc
+    <<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+      make.forecast.risk.comparison.plot(base.model,
+                                         forecast_yrs = forecast_yrs,
+                                         fore.yr = forecast_yrs[2],
+                                         colors = c("black","blue","green","orange","red","tan"),
+                                         pch = c(16,17,17,17,15,18),
+                                         legend.loc = "topleft",
+                                         legend.cex = 0.7)
+
+    @
+  \ec
+}
+
+
 
 %----------------------------------------------------------
 \frame{\frametitle{Alternative Decision Table Format: Spawning Biomass}
