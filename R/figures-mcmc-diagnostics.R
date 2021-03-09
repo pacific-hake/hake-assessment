@@ -685,3 +685,100 @@ make.mcmc.depletion.plot <- function(model,         ## model is a model with an 
   #       bty = 'n')
   # # sum(diff > median_change & diff < 0)  # 13.4% of samples are in here
 }
+
+## adapting from make.mcmc.depletion.plot, and values for make.recruitment.plot
+## Plot of MCMC samples of recruitment, to help for Issue #820.
+## just running as:
+##   make.mcmc.recruitment.plot(base.model, start.yr = start.yr, equil.yr = unfished.eq.yr)
+## and manually saving .png.
+## make.mcmc.recruitment.plot(base.model, start.yr = 2006, equil.yr = unfished.eq.yr, samples = 100)
+## make.mcmc.recruitment.plot(base.model, start.yr = 2006, equil.yr = unfished.eq.yr, samples = 100, rescale = TRUE)
+## make.mcmc.recruitment.plot(base.model, start.yr = 1966, equil.yr = unfished.eq.yr, samples = NULL, rescale = TRUE, traceplot = FALSE)
+
+make.mcmc.recruitment.plot <- function(model,         ## model is a model with an mcmc run which has the output of the
+                                                    ##  r4ss package's function
+                                                    ##  SSgetMCMC and has the extra.mcmc member
+                                       equil.yr,
+                                       start.yr,      ## Year to start the plot
+                                       end.yr = 2023,        ## Year to end the plot
+                                       y.max = NULL,   ## maximum value for the y-axis
+                                       samples = 1000,## how many lines to show
+                                       rescale = FALSE, ## whether to rescale by
+                                                        ## a certain year's recruitment
+                                       rescale.yr = 2010,  # year to rescale by if rescaling
+                                       traceplot = TRUE   # do a traceplot of
+                                         # MCMC samples else a median and 95%
+                                         # interval plot
+                                       ){
+  oldpar <- par()
+  par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
+
+  dat <- as_tibble(model$mcmc) %>%
+    select(paste0("Recr_", start.yr):paste0("Recr_", end.yr))
+
+
+# browser()
+  if(rescale){
+    dat <- dat / dat$"Recr_2010"    # generalise ***
+    if(is.null(y.max)){
+      y.max <- 1.2                    # so will miss some super high ones, but
+                                      # easier to see others
+    }
+    yLab <- "Age-0 recruits relative to those in 2010"    # generalise **
+  } else {
+    yLab <- "Age-0 recruits (billions)"
+  }
+
+  # subsamble to help the lines be more visible
+  nsamp <- nrow(dat)    # total samples
+  if(!is.null(samples)){
+    subsample <- floor(seq(1, nsamp, length.out=samples)) # subset (floor to get
+                                                          # integers)
+    dat_sub <- dat[subsample, ]
+  } else {                                                # no subsampling
+    dat_sub <- dat
+  }
+
+  if(is.null(y.max)){
+    y.max <- max(max(dat_sub) * 0.8)  # so will miss some super high ones, but
+                                      # easier to see others
+  }
+
+  plot(0,
+       type = 'n',
+       xlim = c(start.yr-0.5, end.yr+0.5),
+       ylim = c(0, y.max),
+       axes = FALSE,
+       xlab = "Year",
+       ylab = yLab)
+
+  abline(h = 0, col = "lightgrey")
+  paleblue <- rgb(0, 0, 1, 0.2)
+
+  if(traceplot){
+    matplot(x = start.yr:end.yr,
+            y = t(dat_sub),
+            col = paleblue,
+            type = 'l',
+            add=TRUE,
+            lty = 1)
+  } else {        # medians and intervals
+
+    lower <- apply(dat_sub, 2, quantile, probs = 0.025)
+    medians <- apply(dat_sub, 2, median)
+    upper <- apply(dat_sub, 2, quantile, probs = 0.975)
+
+    yrs <- start.yr:end.yr
+    points(yrs, medians, pch = 20)
+    segments(x0 = yrs,
+             y0 = lower,
+             x1 = yrs,
+             y1 = upper,
+             col = "blue")
+  }
+
+  box()
+  axis(1, at = start.yr:end.yr) #cex.axis = 0.8, tcl = -0.6)
+  axis(2)  #, at = 0:5, las = 1)
+  par <- oldpar
+}
