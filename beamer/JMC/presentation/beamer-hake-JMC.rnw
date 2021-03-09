@@ -503,24 +503,25 @@ cohort_table(base.model,
 %----------------------------------------------------------
 \frame{\frametitle{Forecast methods}
   \bi
-    \item Forecasts are for \Sexpr{min(forecast_yrs)}--\Sexpr{max(forecast_yrs)}.
+    \item Forecasts estimate biomass at start of \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
     \bi
       \item Mean of fishery selectivity from \Sexpr{end.yr-5}--\Sexpr{end.yr-1} used in forecasts
       \item Mean of weight-at-age from \Sexpr{end.yr-5}--\Sexpr{end.yr-1} used in forecasts
-      \item Used for default catch calculations.
-      \item Recruitment from stock-recruit relationship (with uncertain deviations).
+      \item Recruitment from stock-recruit relationship (with uncertain deviations)
+      \item Used for default catch limit calculations
+      \item Alternative future catch levels explored
     \ei
-    \item Equilibrium calculations
+    \item Equilibrium calculations (\emph{B}\subscr{0}, \emph{F}\subscr{SPR}, MSY, etc.)
     \bi
-      \item Base selectivity (used for years before 1991 as well).
-      \item Mean of weight-at-age across \Sexpr{start.yr.age.comps}--\Sexpr{assess.yr - 1}.
-      \item Used for \emph{B}\subscr{0}, \emph{F}\subscr{SPR}, MSY, etc.
-      \item Recruitment at estimated \emph{R}\subscr{0} or from stock-recruit relationship.
+      \item Base selectivity (used for years before 1991 as well)
+      \item Mean of weight-at-age across 1975-\Sexpr{last.data.yr}
+      \item Recruitment at estimated \emph{R}\subscr{0} or from stock-recruit relationship
     \ei
-    \item Catch streams presented for some specific cases.
-    %\bi \item We welcome input for additional catch streams. \ei
+    \item Catch streams presented for some specific cases
   \ei
 }
+
+% -------------------------------------------------------
 
 \frame{\frametitle{Two year forecasts}
 \begin{columns}
