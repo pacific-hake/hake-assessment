@@ -328,41 +328,6 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Age-1 fish: Base model estimates and Age-1 index}
-\begin{columns}
-  \begin{column}{0.35\textwidth}
-    \bi
-      \item Age-1 index moderately tracks model predictions but is not included in the stock assessment model
-      \item Estimated numbers of age-1 hake in 2019 (2018 year class) are much lower than 2016
-      and 2014 year classes
-      \item The 2019 age-1 estimate does not come close to the age-1 index value for 2019
-    \ei
-  \end{column}
-  \begin{column}{0.65\textwidth}
-    <<base.age.one.index, fig.height=4, fig.width=6.5, out.width="0.95\\columnwidth">>=
-      make.survey.age1.plot(base.model, age.1.index)
-    @
-  \end{column}
-\end{columns}
-}
-
-%----------------------------------------------------------
-\frame{\frametitle{Age-1 fish: Sensitivity model including Age-1 index}
-\begin{columns}
-  \begin{column}{0.35\textwidth}
-    \bi
-      \item The 2019 age-1 estimate is closer to the age-1 index value for 2019
-    \ei
-  \end{column}
-  \begin{column}{0.65\textwidth}
-    <<age.one.index, fig.height=4, fig.width=6.5, out.width="0.95\\columnwidth">>=
-      make.survey.age1.plot(sens.models.2[[1]], age.1.index)
-    @
-  \end{column}
-\end{columns}
-}
-
-%----------------------------------------------------------
 \frame{\frametitle{Biomass and relative fishing intentisy}
   \bi
     \item Biomass has remained above $\BfortyB$ since 2011; current estimate is $\frac{B_{\Sexpr{assess.yr}}}{B_0} = \Sexpr{f(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end.yr], 2)}$
