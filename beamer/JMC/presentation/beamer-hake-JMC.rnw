@@ -932,18 +932,18 @@ Can write up these results for next year if there's interest.
   \item Total time to run all MCMC models this year:
   \bi
     \item Base model: $\sim$4.5 hours
-    \item Sensitivities: 21 * $\sim$4.5~hours = $\sim$4 days
+    \item Sensitivities: 21 $\times \sim$4.5~hours = $\sim$4 days
     \item Retrospectives: 20, total = $\sim$8 days
     \item rwMH long chain run: $\sim$8 days
     \item Total with rwMH long chain: $\sim$20+ days
     \item Total without rwMH long chain run: 12+ days
   \ei
   \item \textbf{Total time to run all MCMC models last year: 44.5 hours (1 processor)}
-  \item \textbf{Total time to run all MCMC models this year: 12+ days}
-  \item \textbf{12 days * 7 processor threads in parallel = 84 days}
+  \item \textbf{Total time to run all MCMC models this year: \textcolor{red}{12+ days}}
+  \item \textbf{12 days $\times$ 7 processor threads in parallel = 84 days}
   \item \textbf{Total time JTC has to conduct assessment after receiving all
-      data = 31 days}
-  \item The JTC is asking for a 32-core processor (64-thread) server to run these in the future
+      data = \textcolor{red}{31 days}}
+  \item The JTC is looking into a 32-core processor (64-thread) server to run these in the future
   \item Estimated cost about CA\$30,000 (roughly one day of ship survey time)
 \ei
 \end{frame}
