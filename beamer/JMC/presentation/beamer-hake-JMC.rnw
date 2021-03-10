@@ -110,7 +110,7 @@ forecasts <- base.model$forecasts[[1]]
 metric$mcmc <- forecasts[[7]]$outputs
 models.inds <- c(1, 2, 4, 5, catch.default.policy.ind)
 models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds]
-fi.inds <- c(1, 2, 4, 5, catch.tac.ind)
+fi.inds <- c(1, 2, 4, 5, catch.default.policy.ind)
 fi.names <- sapply(base.model$catch.levels, "[[", 2)[fi.inds]
 @
 
