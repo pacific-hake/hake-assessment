@@ -532,10 +532,10 @@ cohort_table(base.model,
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item No fishing results in relatively constant \emph{median} relative
-        spawning biomass from \Sexpr{assess.yr} to \Sexpr{assess.yr+1} then
-        slight increase
-      \item All other catch streams result in decreases in the median
+%      \item No fishing results in relatively constant \emph{median} relative
+%        spawning biomass from \Sexpr{assess.yr} to \Sexpr{assess.yr+1} then
+%        slight increase
+      \item All non-zero catch streams result in decreases in the median
       \item Uncertainty is large and increases from \Sexpr{end.yr} to \Sexpr{end.yr+2}
     \ei
   \end{column}
