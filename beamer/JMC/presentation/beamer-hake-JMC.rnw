@@ -946,7 +946,7 @@ make.historical.probs.plot(base.model,
   \item{Previous assessments have `correctly' projected an increase or decrease
       in subsequent year}
   \item{An assessment's projection is almost always less definitive than from
-      the current base model, since current model has more information}
+      the current base model because the current model has more information}
   \item{Analysis gives some confidence in the current expectation of continued decline}
 \ei
 }
