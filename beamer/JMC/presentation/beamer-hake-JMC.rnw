@@ -225,7 +225,7 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Spawning Biomass}
+\frame{\frametitle{Spawning biomass}
   \bc
   <<female.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.biomass.plot(base.model,
@@ -238,7 +238,7 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Relative Spawning Biomass}
+\frame{\frametitle{Relative spawning biomass}
   \bc
   <<relative.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.depletion.plot(base.model,
@@ -250,7 +250,7 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Fishing Intensity and Exploitation Rate}
+\frame{\frametitle{Fishing intensity and exploitation rate}
   \begin{columns}
     \begin{column}{0.5\textwidth}
       <<fishing.intensity, fig.height=4, fig.width=6, out.width='0.99\\columnwidth'>>=
@@ -289,7 +289,7 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Joint History of Rel. Fishing Intensity and Rel. Biomass (\Sexpr{assess.yr})}
+\frame{\frametitle{Joint history of rel.~fishing intensity and rel.~biomass}
 \begin{figure}[tbp]
 \begin{center}
 <<phase.plot, fig.height=3, fig.width=6>>=
@@ -323,7 +323,7 @@ par <- oldpar
 \end{frame}
 
 %----------------------------------------------------------
-\frame{\frametitle{Estimated changes in biomass at age for recent large cohorts}
+\frame{\frametitle{Estimated changes in biomass-at-age for recent large cohorts}
 <<main.cohort.effects.table.1, results='asis', echo=FALSE>>=
 cohort_table(base.model,
              end_yr = end.yr,
@@ -449,7 +449,7 @@ cohort_table(base.model,
 %}
 %
 %----------------------------------------------------------
-\frame{\frametitle{Total Allowable Catch}
+\frame{\frametitle{Total allowable catch}
 \begin{columns}
   \begin{column}{0.4\textwidth}
       \bi
@@ -474,7 +474,7 @@ cohort_table(base.model,
 }
 
 %--------------------------------------------------------------
-\frame{\frametitle{Total Allowable Catch (time series)}
+\frame{\frametitle{Total allowable catch}
     <<tac.vs.realized.catch.ts, fig.height=3.5>>==
       management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE, connect_vars_linetype = "solid",
       connect_vars_alpha = 0.2, curr_assess_biomass = base.model$catch.default.policy[1])
@@ -527,7 +527,7 @@ cohort_table(base.model,
 
 % -------------------------------------------------------
 
-\frame{\frametitle{Two year forecasts}
+\frame{\frametitle{Two-year forecasts}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
@@ -555,7 +555,7 @@ cohort_table(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Decision Tables}
 \subsection{Intro}
-\frame{\frametitle{Decision Tables}
+\frame{\frametitle{Decision tables}
   \bi
     \item Decision table format
     \bi
@@ -584,7 +584,7 @@ cohort_table(base.model,
 
 
 \subsection{Spawning Biomass}
-\frame{\frametitle{Relative Spawning Biomass}
+\frame{\frametitle{Relative spawning biomass}
 \begin{columns}
   \begin{column}{0.33\textwidth}
     \bi
@@ -615,7 +615,7 @@ cohort_table(base.model,
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Fishing Intensity}
+\frame{\frametitle{Fishing intensity}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
@@ -750,7 +750,7 @@ cohort_table(base.model,
 
 
 %----------------------------------------------------------
-\frame{\frametitle{Alternative Decision Table Format: Spawning Biomass}
+\frame{\frametitle{Alternative decision table format}
 \begin{columns}
   \begin{column}{0.3\textwidth}
     \bi
@@ -992,9 +992,9 @@ Can write up these results for next year if there's interest.
 
 %----------------------------------------------------------
 \section{Summary}
-\subsection{Runtimes}
+\subsection{Run times}
 \begin{frame}
-\frametitle{Runtimes}
+\frametitle{Computational times}
 %\vspace{-2cm}
 \bi
   \item Total time to run all MCMC models this year:
@@ -1036,7 +1036,7 @@ Can write up these results for next year if there's interest.
 }
 
 %-------------------------------------------------------
-\frame{\frametitle{Key Points}
+\frame{\frametitle{Key points}
   \bi
     \item Highest catch levels on record over last four years (benefit of 2010 and 2014 year classes)
     \item Stock forecasted to decline by \Sexpr{assess.yr + 1} and \Sexpr{assess.yr + 2} under all future catch scenarios
