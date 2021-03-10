@@ -756,7 +756,7 @@ cohort_table(base.model,
     \bi
       \item Alternative format to hopefully improve understanding
       \item \rawalert<1>{2021 biomass only once}
-      \item \rawalert<2>{Consequence of a catch shown on same row}
+      \item \rawalert<2>{Consequence of a catch shown on that row}
       \item \rawalert<3>{To show three years requires \emph{three} years of projections}
       \item \rawalert<4>{Less cluttered -- removal of \% signs and 25\% and 75\% quantiles}
     \ei
@@ -790,7 +790,7 @@ cohort_table(base.model,
    & 2023 &       0 & Start 2024 & 0.33 & 0.69 & 1.67 \\
     \hline b: & \rawalert<2>{2021} & \rawalert<2>{180,000} & \rawalert<2>{Start 2022} & \rawalert<2>{0.24} & \rawalert<2>{0.53} & \rawalert<2>{1.17} \\
    & 2022 & 180,000 & Start 2023 & 0.20 & 0.51 & 1.36 \\
-   & 2023 & 180,000 & Start 2024 & 0.18 & 0.54 & 1.52 \\
+   & \rawalert<3>{2023} & \rawalert<3>{180,000} & \rawalert<3>{Start 2024} & \rawalert<3>{0.18} & \rawalert<3>{0.54} & \rawalert<3>{1.52} \\
     \hline d: & 2021 & 380,000 & Start 2022 & 0.19 & 0.47 & 1.12 \\
   2020 & 2022 & 380,000 & Start 2023 & 0.09 & 0.41 & 1.25 \\
   catch & 2023 & 380,000 & Start 2024 & 0.05 & 0.37 & 1.36 \\
@@ -975,7 +975,7 @@ make.historical.probs.plot(base.model,
   \bi
   \item{Previous assessments have `correctly' projected not falling below $\BfortyB$ in
       all years, except 2012 (presumably due to unknown huge 2010 recruitment)}
-  \item{Given uncertainty in most recent recruitments, assessments always give some small probability of
+  \item{Given uncertainty in the most recent recruitments, assessments always give some small probability of
       falling below $\BfortyB$; current model says that's (in hindsight) even more unlikely}
   \item{Analysis gives some confidence in the current expectation of remaining
       above $\BfortyB$; however, note that probabilities are higher than before (except 2012)}
@@ -986,6 +986,7 @@ make.historical.probs.plot(base.model,
 Overall, we estimate probabilities of future events, and these results give some idea of the
 confidence we can have in those probabilities.
 
+~\\
 Can write up these results for next year if there's interest.
 }
 
