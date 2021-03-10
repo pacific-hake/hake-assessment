@@ -179,9 +179,10 @@ fi.names <- sapply(base.model$catch.levels, "[[", 2)[fi.inds]
     \item The median estimate of \Sexpr{end.yr} relative spawning biomass is
       \Sexpr{curr.depl.median}\% \\
       (with 95\% interval from \Sexpr{curr.depl.lower}\% to \Sexpr{curr.depl.upper}\%)
-    \item Large 2010 and 2014 cohorts continue to make up large fraction of catches
-    \item 2016 cohort estimated to be large
-    \item 2017 cohort estimated to be slightly above average
+    \item Large 2010, 2014, and 2016 cohorts continue to make up large fraction of catches
+    \item 2017 cohort estimated to be average
+    \item 2018 cohort estimated to be below average
+    \item 2019 and 2020 have no data for estimating size of cohort
     \item Default harvest rule estimated median catch limit
       for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t \\
       (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]}
