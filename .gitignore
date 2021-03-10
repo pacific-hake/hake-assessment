@@ -33,6 +33,7 @@ alternative_text.csv
 *.toc
 *.upa
 *.upb
+*.xlsx
 *.zip
 
 # Folders
