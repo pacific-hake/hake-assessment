@@ -110,8 +110,8 @@ forecasts <- base.model$forecasts[[1]]
 metric$mcmc <- forecasts[[7]]$outputs
 models.inds <- c(1, 2, 4, 5, catch.default.policy.ind)
 models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds]
-fore.inds <- c(1, 2, 3, 4, 5, catch.tac.ind)
-fore.names <- cmodels.names <- sapply(base.model$catch.levels, "[[", 2)[fore.inds]
+fi.inds <- c(1, 2, 4, 5, catch.tac.ind)
+fi.names <- sapply(base.model$catch.levels, "[[", 2)[fi.inds]
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -586,7 +586,7 @@ cohort_table(base.model,
 \subsection{Spawning Biomass}
 \frame{\frametitle{Relative spawning biomass}
 \begin{columns}
-  \begin{column}{0.33\textwidth}
+  \begin{column}{0.35\textwidth}
     \bi
       % \item Lower 5\% quantile below $B_{40\%}$ in \Sexpr{end.yr} (35\%)
       \item Median (50\%) decreases from \Sexpr{end.yr} to \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
@@ -617,7 +617,7 @@ cohort_table(base.model,
 %----------------------------------------------------------
 \frame{\frametitle{Fishing intensity}
 \begin{columns}
-  \begin{column}{0.38\textwidth}
+  \begin{column}{0.35\textwidth}
     \bi
       %\item Fishing Intensity is different for all years and rows because it accounts for catch that year
       \item Median (50\% column) gets to roughly 100\% fishing intensity in
@@ -629,14 +629,14 @@ cohort_table(base.model,
     \ei
   But large uncertainty, e.g. 25\% chance that 380,000~t is $>$100\% in 2021.
   \end{column}
-  \begin{column}{0.59\textwidth}
+  \begin{column}{0.65\textwidth}
   <<decisions.spr.table, results='asis', echo=FALSE>>=
     make.decision.table.pres(base.model,
-                             fore.inds,
+                             fi.inds,
                              xcaption = NULL,
                              xlabel = "tab:es-decisions-spr",
-                             font.size = 9,
-                             space.size = 9,
+                             font.size = 8,
+                             space.size = 10,
                              type = "spr",
                              placement = "h")
 @
