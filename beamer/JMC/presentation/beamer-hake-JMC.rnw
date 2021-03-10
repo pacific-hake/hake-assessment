@@ -1008,7 +1008,7 @@ Can write up these results for next year if there's interest.
 %    \item Total with rwMH long chain: $\sim$20+ days
 %    \item Total without rwMH long chain run: 12+ days
 %  \ei
-  \item \textbf{Total time to run all MCMC models last year: 44.5 hours (1 processor)}
+  \item \textbf{Total time to run all MCMC models last year: \textcolor{red}{45 hours} (1 processor)}
   \item \textbf{Total time to run all MCMC models this year: \textcolor{red}{12+ days}}
   % \item \textbf{12 days $\times$ 7 processor threads in parallel = 84 days}
   \item \textbf{Total time JTC has to conduct assessment after receiving all
