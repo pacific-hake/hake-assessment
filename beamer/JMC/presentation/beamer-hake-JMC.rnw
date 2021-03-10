@@ -719,6 +719,31 @@ cohort_table(base.model,
 }
 
 
+%----------------------------------------------------------
+\frame{\frametitle{Current decision table format}
+\begin{columns}
+  \begin{column}{0.33\textwidth}
+    %\bi
+      %\item Median (50\%) decreases from \Sexpr{end.yr} to \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
+      %  for all non-zero catch levels (continued decline of large 2010 and 2014 cohorts)
+    %\ei
+  \end{column}
+  \begin{column}{0.65\textwidth}
+  <<decisions.biomass.table.2, results='asis', echo=FALSE>>=
+    make.decision.table.pres(base.model,
+                             models.inds,
+                             xcaption = NULL,
+                             xlabel = "tab:es-decisions-spr",
+                             font.size = 8,
+                             space.size = 10,
+                             type = "biomass",
+                             placement = "h")
+@
+
+  \end{column}
+\end{columns}
+}
+
 
 %----------------------------------------------------------
 \frame{\frametitle{Alternative Decision Table Format: Spawning Biomass}
@@ -730,15 +755,48 @@ cohort_table(base.model,
     \ei
   \end{column}
   \begin{column}{0.7\textwidth}
-  <<decisions.biomass.table.new, results='asis', echo=FALSE>>=
-new_decision_table(srg_day2_req2_model,
-                   xcaption = NULL,
-                   xlabel = "tab:decisions-new",
-                   font.size = 6,
-                   space.size = 6,
-                   type = "biomass",
-                   placement = "h")
-@
+% Replacing the knitr with .tex to manually cut out some of the rows. Can adapt
+% the function in 2022 if people like the new one.
+%  <<decisions.biomass.table.new, results='asis', echo=FALSE>>=
+%new_decision_table(srg_day2_req2_model,
+%                   xcaption = NULL,
+%                   xlabel = "tab:decisions-new",
+%                   font.size = 6,
+%                  space.size = 6,
+%                   type = "biomass",
+%                   placement = "h")
+% @
+
+% latex table generated in R 4.0.2 by xtable 1.8-4 package
+% Thu Mar 04 10:18:16 2021
+\begin{table}[h]
+\centering
+\label{tab:decisions-new}
+\begingroup\fontsize{8}{10}\selectfont
+\begin{tabularx}{\textwidth}{|ccc|cYYY|}
+   \hline  &  &  & Model quantile & 5\% & 50\% & 95\% \\
+   \cline{1-3}\multicolumn{3}{|c|}{Management Action} & Biomass year &
+   \multicolumn{3}{c|}{\textbf{Resulting relative spawning biomass}} \\ \cline{1-3} & Catch year & Catch (t) & Start 2021 & 0.27 & 0.58 & 1.20 \\  \hline  a: & 2021 &       0 & Start 2022 & 0.28 & 0.58 & 1.23 \\
+   & 2022 &       0 & Start 2023 & 0.29 & 0.61 & 1.46 \\
+   & 2023 &       0 & Start 2024 & 0.33 & 0.69 & 1.67 \\
+    \hline b: & 2021 & 180,000 & Start 2022 & 0.24 & 0.53 & 1.17 \\
+   & 2022 & 180,000 & Start 2023 & 0.20 & 0.51 & 1.36 \\
+   & 2023 & 180,000 & Start 2024 & 0.18 & 0.54 & 1.52 \\
+    \hline d: & 2021 & 380,000 & Start 2022 & 0.19 & 0.47 & 1.12 \\
+  2020 & 2022 & 380,000 & Start 2023 & 0.09 & 0.41 & 1.25 \\
+  catch & 2023 & 380,000 & Start 2024 & 0.05 & 0.37 & 1.36 \\
+    \hline e: & 2021 & 430,000 & Start 2022 & 0.17 & 0.46 & 1.10 \\
+   & 2022 & 430,000 & Start 2023 & 0.08 & 0.39 & 1.22 \\
+   & 2023 & 430,000 & Start 2024 & 0.05 & 0.33 & 1.32 \\
+    \hline i: & 2021 & 554,678 & Start 2022 & 0.14 & 0.43 & 1.06 \\
+  default & 2022 & 414,557 & Start 2023 & 0.07 & 0.36 & 1.19 \\
+  HR & 2023 & 352,540 & Start 2024 & 0.04 & 0.33 & 1.32 \\
+    \hline \end{tabularx}
+\endgroup
+\end{table}
+
+
+
   \end{column}
 \end{columns}
 }
