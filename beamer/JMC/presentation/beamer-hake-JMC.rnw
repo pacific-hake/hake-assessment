@@ -728,10 +728,11 @@ cohort_table(base.model,
 \frame{\frametitle{Current decision table format}
 \begin{columns}
   \begin{column}{0.33\textwidth}
-    %\bi
+    \bi
+      \item Compare to alternative format (next slide) to hopefully improve understanding
       %\item Median (50\%) decreases from \Sexpr{end.yr} to \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
       %  for all non-zero catch levels (continued decline of large 2010 and 2014 cohorts)
-    %\ei
+    \ei
   \end{column}
   \begin{column}{0.65\textwidth}
   <<decisions.biomass.table.2, results='asis', echo=FALSE>>=
