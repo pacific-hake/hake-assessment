@@ -293,7 +293,7 @@ from last year)
 \frame{\frametitle{Joint history of rel.~fishing intensity and rel.~biomass}
 \begin{figure}[tbp]
 \begin{center}
-<<phase.plot, fig.height=3, fig.width=6>>=
+<<phase.plot, fig.height=2.8, fig.width=5.5>>=
       make.phase.plot(base.model,
                       start.yr = start.yr,
                       end.yr = end.yr,
@@ -392,7 +392,7 @@ cohort_table(base.model,
 
 %----------------------------------------------------------
 \frame{\frametitle{Estimated cumulative catch for large cohorts}
-      <<cum.catch.large, fig.height=4.5, fig.width=8>>=
+      <<cum.catch.large, fig.height=4, fig.width=8>>=
       par(mar=c(5,4,1,1), cex=1.2)
       plot(ages1999, cohortCumSum1999/1e3, type='l', lwd=5, col=1, las=1,
       xlab='Age', ylab='Cumulative catch (thousands of t)', ylim=c(0,1.35e3), yaxs = 'i', axes = FALSE)
@@ -424,7 +424,7 @@ cohort_table(base.model,
            col = 2,
            pos = 4)
       text('1999 cohort',
-           x = 16,
+           x = 17,
            y = max(cohortCumSum1999 / 1e3),
            col = 1,
            pos = 1)
