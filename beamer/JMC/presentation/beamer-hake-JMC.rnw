@@ -1014,12 +1014,13 @@ Can write up these results for next year if there's interest.
       data = \textcolor{red}{31 days}}
   \item The JTC is looking into a 32-core processor (64-thread) server to run these in the future
   \item Estimated cost about CA\$30,000 (roughly one day of ship survey time)
-  \item Also looking at cloud computing options
+%  \item Also looking at cloud computing options
 \ei
 \begin{enumerate}
   \item Timeline was very tight this year, though there no major hiccups and no new survey data
   \item Deadline for draft assessment was 8th February, really cannot go any earlier
   \item JTC looking for JMC support of computing request
+  \item Would also hugely benefit the MSE process
 \end{enumerate}
 
 \end{frame}
