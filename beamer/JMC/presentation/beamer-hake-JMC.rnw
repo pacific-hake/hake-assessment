@@ -628,7 +628,7 @@ cohort_table(base.model,
            \item 2021 for 529,290~t
          \ei
     \ei
-  But large uncertainty, e.g. 25\% chance that 380,000~t is $>$100\% in 2021.
+  But large uncertainty, e.g., 25\% chance that 380,000~t is $>$100\% in 2021.
   \end{column}
   \begin{column}{0.65\textwidth}
   <<decisions.spr.table, results='asis', echo=FALSE>>=
