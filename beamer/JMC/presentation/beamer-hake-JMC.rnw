@@ -553,7 +553,7 @@ cohort_table(base.model,
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Decision Tables}
+\section{Decision tables}
 \subsection{Intro}
 \frame{\frametitle{Decision tables}
   \bi
