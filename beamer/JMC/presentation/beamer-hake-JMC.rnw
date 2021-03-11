@@ -274,7 +274,7 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Biomass and relative fishing intentisy}
+\frame{\frametitle{Biomass and relative fishing intensity}
   \bi
     \item Biomass has remained above $\BfortyB$ since 2011; current estimate is $\frac{B_{\Sexpr{assess.yr}}}{B_0} = \Sexpr{f(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end.yr], 2)}$
     \item Fishing intensity has continually remained below $\Fforty$; current estimate is
@@ -1059,5 +1059,25 @@ Can write up these results for next year if there's interest.
       and too rapid of a decline can result in 'overshooting' $\BfortyB$ and other benchmark reference points
   \ei
 }
+
+% ---------------------------------------------------------
+
+\begin{frame}
+\frametitle{Questions/requests to the JMC from the JTC}
+%\vspace{-2cm}
+\begin{enumerate}
+  \item Replace decision tables with new format next year?
+  \item For consistency, then also add extra probability tables for the third
+    projection year.
+  \item We call a relative fishing intensity of 100\% a `target', but it is not
+    really a target (something to be aimed for). Suggest in future calling it a
+    `reference level'.
+  \item Requesting support for computing request (high-level support may be
+    helpful due to government computing rules).
+\end{enumerate}
+
+\end{frame}
+
+
 
 \end{document}
