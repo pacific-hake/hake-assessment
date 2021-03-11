@@ -10,9 +10,9 @@ _____________________________________________________________
 
 * Model outputs are now stored using `RDS` files instead of `RData` files. RDS files are smaller due to serialization, and can be assigned to a variable in code instead of being loaded into the global environment.
 
-* There is a choice between `PDF/EPS` figures or `PNG` figures in the final document. `PNG` figures are necessary to conform to web accessibility rules, in particular for the *Automatic reader* function found in PDF viewers.
+* The assessment is now built using `PNG` figures, which are necessary to conform to web accessibility rules, in particular for the *Automatic reader* function found in PDF viewers.
 
-* Alternative text for figures was incorporated in the `PNG` version of the document, to conform to web accessibility standards.
+* Alternative text for figures was incorporated as tooltips, to conform to web accessibility standards.
 
 * Moved some older content off this README page into Wiki pages:
   * [Old methods (pre-2017)](https://github.com/pacific-hake/hake-assessment/wiki/Older-methods-from-pre-2017)
