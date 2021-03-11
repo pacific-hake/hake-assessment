@@ -221,23 +221,30 @@
 {\bf Issue}
 
 The Joint Technical Committee (JTC) currently consists of four members, two each
-from the United States and Canada. The JTC conducts the annual stock assessment
-for \fishname\ under a very tight timeline. Final data are available in early
-January and the assessment is due in early February (in 2021 it was due on 8th
-February). The JTC has created a modern efficient workflow, using many complex
-computational tools.
+from the United States and Canada, that work together to conduct the annual stock assessment
+for \fishname. Final data are available in early
+January and the assessment is due in early February, e.g., February 8th, 2021.
+Thus by necessity, the JTC has created a modern, efficient workflow that utilizes many complex
+computational tools to produce the assessment under the tight time line.
 
-In 2021 the JTC used recent advances in computational algorithms to properly
-quantify the uncertainty in results for all model runs. This was greatly appreciated by the
+In 2021 the JTC further modernized the workflow to include recent advancements in computational algorithms
+known for their increases in efficiency and robustness when paired with
+highly non-linear models such as the \fishname\ model.
+As a result, the JTC was able to provide probabilistic statements
+for all model runs rather than just the base model in 2021.
+This effort was greatly appreciated by the
 Scientific Review Group (the bilateral panel that reviews the stock
-assessment). However, these advances require long computational calculations,
-totalling about 84~days of computing time on a single processor. Using parallel
-computing this took around 12~days of actual time (on our four individual
-computers). The JTC only has about
-31~days from receiving the final data to submitting the draft stock assessment
-document (which totals $>250$~pages). This year the timeline was tight, but there
-no major hiccups and no new survey data, both of which require extra work and
-time. For the 2022 there will be new survey data.
+assessment). The new algorithm is efficient but still requires long computational calculations,
+e.g., 84~days of computing time on a single processor or approximately
+12~days given the current computing capacity available to the JTC.
+This left the JTC with less than 20 days to
+compile the data,
+explore the model results, and
+draft the approximately 250-paged document.
+If exploration of the model results would have
+indicated that models needed adjustment, there is a high likelihood that there would
+not have been sufficient time to do so. Furthermore, time will also be needed next
+year to explore and include survey data.
 
 Thus, the JTC is requesting access to increased computational power.
 
@@ -245,46 +252,38 @@ Thus, the JTC is requesting access to increased computational power.
 
 \begin{enumerate}
 
-  \item At least 64 logical processors to run parallel computations. The main
-    computations used will work on one machine with multiple cores or a virtual
-    machine (but not a cluster).
+  \item At least 64 logical processors to run parallel computations because the
+    computations work on a machine with multiple cores or a virtual
+    machine but not on a cluster.
 
   \item Windows operating system, able to run the statistical software R (and
     numerous R packages), and other programs used by the JTC.
 
   \item Ability of all JTC members (US and Canadian) to efficiently log in,
-    upload and download large ($>$1 Gb) files, and edit and run code. All JTC
-    members require access because of the numerous model runs conducted each
-    year (which cannot fall on one or two people), and to reduce the risk of the
+    upload and download large ($>$1 Gb) files, and edit and run code.
+    The workload is too great for just 1-2 people to have access
+    and to reduce the risk of the
     assessment not being completed due to unforeseen circumstances
-    (such as illness, personal issues, government shutdowns, etc.). Such
-    resiliency reduces pressure and stress on any one or two JTC members.
+    such as illness, personal issues, government shutdowns, etc.
 
-  \item Highly reliable and available -- given the short timelines for the
-    assessment, the computing power needs to be available on demand.
+  \item Available on demand starting in October given
+    the short time line and preparation needs.
+
+  \item Access for the Management Strategy Evaluation team which also
+    has high computing needs.
 
   \item Low administrative overhead to enhance an efficient workflow.
 
-  \item Access is also needed from October to December for updating packages and
-    routines.
-
-  \item The team conducting the Management Strategy Evaluation (MSE) also runs into
-    issues of computational power, due to the need to run extensive
-    simulations. Resulting computational power would also be used for the MSE, with the January to
-    February time reserved solely for the stock assessment.
-
 \end{enumerate}
 
-The two main options available would be (a) cloud computing and (b) a
-stand-alone 32-core (64-thread) computer.
+{\bf Suggested Options}
 
 (a) Cloud computing. Fisheries and Oceans Canada (DFO) does have a cloud
 computing service available, but access for US-located collaborators is not possible.
 
-
-(b) An example of a suitable stand-alone computer is a Dell PowerEdge T640 Tower
-Server (available
-\href{https://www.dell.com/en-ca/work/shop/pdr/poweredge-t640/pe_t640_tm2?selectionState=eyJPQyI6InBlX3Q2NDBfdG0yIiwiTW9kcyI6W3siSWQiOjE1MDcsIk9wdHMiOlt7IklkIjoiR1MzVEdBWCJ9XX0seyJJZCI6MTUzMSwiT3B0cyI6W3siSWQiOiI1MTA2NTQ5In1dfSx7IklkIjoxNTMyLCJPcHRzIjpbeyJJZCI6IjUxMDUyNTMifV19LHsiSWQiOjE1MzMsIk9wdHMiOlt7IklkIjoiSFBCSU9TIn1dfSx7IklkIjoxNTM0LCJPcHRzIjpbeyJJZCI6IlVFRklCIn1dfSx7IklkIjoxNTUwLCJPcHRzIjpbeyJJZCI6IkcyRTVENzYifV19LHsiSWQiOjE1NTEsIk9wdHMiOlt7IklkIjoiR0NFQjlPMyJ9XX0seyJJZCI6MTU2MCwiT3B0cyI6W3siSWQiOiJHUUM1S0pXIiwiUXR5IjoxMn1dfSx7IklkIjoxNTcwLCJPcHRzIjpbeyJJZCI6IkdMNjJYSFEiLCJRdHkiOjJ9XX0seyJJZCI6MTYxMCwiT3B0cyI6W3siSWQiOiJDU1RSRlQifV19LHsiSWQiOjE2MjAsIk9wdHMiOlt7IklkIjoiUjE2MDBXIn1dfSx7IklkIjoxNjIxLCJPcHRzIjpbeyJJZCI6IjJGVFVTIiwiUXR5IjoyfSx7IklkIjoiMTJBMk0iLCJRdHkiOjJ9XX0seyJJZCI6MTY1MCwiT3B0cyI6W3siSWQiOiJHUEJaNVVJIn1dfSx7IklkIjoxNjUxLCJPcHRzIjpbeyJJZCI6IkdIWDJaTk8iLCJRdHkiOjJ9XX0seyJJZCI6MTY1MiwiT3B0cyI6W3siSWQiOiJHSjdXRktZIn1dfSx7IklkIjoxNjU4LCJPcHRzIjpbeyJJZCI6IkdLRzROSDUifV19LHsiSWQiOjE2OTUsIk9wdHMiOlt7IklkIjoiNTEwNTI2NyJ9XX0seyJJZCI6MTY5NiwiT3B0cyI6W3siSWQiOiJHNVIzUEtYIn1dfSx7IklkIjoxNjk3LCJPcHRzIjpbeyJJZCI6IjUxMDc3NTQifV19XSwiVGkiOiIiLCJEaSI6IiJ9&cartItemId=}{\underline{here}})
+(b) An example of a suitable stand-alone computer is a
+\href{https://www.dell.com/en-ca/work/shop/pdr/poweredge-t640/pe_t640_tm2?selectionState=eyJPQyI6InBlX3Q2NDBfdG0yIiwiTW9kcyI6W3siSWQiOjE1MDcsIk9wdHMiOlt7IklkIjoiR1MzVEdBWCJ9XX0seyJJZCI6MTUzMSwiT3B0cyI6W3siSWQiOiI1MTA2NTQ5In1dfSx7IklkIjoxNTMyLCJPcHRzIjpbeyJJZCI6IjUxMDUyNTMifV19LHsiSWQiOjE1MzMsIk9wdHMiOlt7IklkIjoiSFBCSU9TIn1dfSx7IklkIjoxNTM0LCJPcHRzIjpbeyJJZCI6IlVFRklCIn1dfSx7IklkIjoxNTUwLCJPcHRzIjpbeyJJZCI6IkcyRTVENzYifV19LHsiSWQiOjE1NTEsIk9wdHMiOlt7IklkIjoiR0NFQjlPMyJ9XX0seyJJZCI6MTU2MCwiT3B0cyI6W3siSWQiOiJHUUM1S0pXIiwiUXR5IjoxMn1dfSx7IklkIjoxNTcwLCJPcHRzIjpbeyJJZCI6IkdMNjJYSFEiLCJRdHkiOjJ9XX0seyJJZCI6MTYxMCwiT3B0cyI6W3siSWQiOiJDU1RSRlQifV19LHsiSWQiOjE2MjAsIk9wdHMiOlt7IklkIjoiUjE2MDBXIn1dfSx7IklkIjoxNjIxLCJPcHRzIjpbeyJJZCI6IjJGVFVTIiwiUXR5IjoyfSx7IklkIjoiMTJBMk0iLCJRdHkiOjJ9XX0seyJJZCI6MTY1MCwiT3B0cyI6W3siSWQiOiJHUEJaNVVJIn1dfSx7IklkIjoxNjUxLCJPcHRzIjpbeyJJZCI6IkdIWDJaTk8iLCJRdHkiOjJ9XX0seyJJZCI6MTY1MiwiT3B0cyI6W3siSWQiOiJHSjdXRktZIn1dfSx7IklkIjoxNjU4LCJPcHRzIjpbeyJJZCI6IkdLRzROSDUifV19LHsiSWQiOjE2OTUsIk9wdHMiOlt7IklkIjoiNTEwNTI2NyJ9XX0seyJJZCI6MTY5NiwiT3B0cyI6W3siSWQiOiJHNVIzUEtYIn1dfSx7IklkIjoxNjk3LCJPcHRzIjpbeyJJZCI6IjUxMDc3NTQifV19XSwiVGkiOiIiLCJEaSI6IiJ9&cartItemId=}{\underline{Dell PowerEdge T640 Tower
+Server}}
 that contains 32 cores (64 threads). The cost is usually CA\$53,842 and it is
 currently available for CA\$31,057. This is roughly the same as one day of ship
 time for the survey.
