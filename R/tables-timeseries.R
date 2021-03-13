@@ -1,3 +1,21 @@
+#' Make a latex table of credible intervals with columns for female spawning biomass,
+#' relative spawning biomass, total biomass, age 2+ biomass, age-0 recruits, relative
+#' fishing intensity, and exploitation fraction. Also output a CSV file with the table contents.
+#'
+#' @param model A model list as output by [load_models()]
+#' @param start.yr Start year in the table
+#' @param end.yr End year in the table
+#' @param weight.factor Factor to divide biomass values by and multiply the recruitment by
+#' @param xcaption Caption for the latex table
+#' @param xlabel Label for the latex table
+#' @param font.size Size of font
+#' @param space.size Vertical spacing between text in table
+#' @param digits Number of decimal points to round to
+#' @param lower_col Character string name of the column containing the lower credible interval values
+#' @param upper_col Character string name of the column containing the upper credible interval values
+#'
+#' @return An [xtable::xtable()]
+#' @export
 make.ci.posterior.table <- function(model,
                                     start.yr,
                                     end.yr,
@@ -6,35 +24,36 @@ make.ci.posterior.table <- function(model,
                                     xlabel   = "default",
                                     font.size = 9,
                                     space.size = 10,
-                                    digits = 1){
-  ## Returns an xtable in the proper format for the main tables section for
-  ##  credibility intervals for biomass, relative biomass, recruitment,
-  ##  fishing intensity, and exploitation fraction
-  ##
-  ## model - an mcmc run, output of the r4ss package's function SSgetMCMC()
-  ## start.yr - the first year to show in the table
-  ## end.yr - the last year to show in the table
-  ## weight.factor - divide catches by this factor
-  ## xcaption - caption to appear in the calling document
-  ## xlabel - the label used to reference the table in latex
-  ## font.size - size of the font for the table
-  ## space.size - size of the vertical spaces for the table
-  ## digits - number of decimal points on % columns
+                                    digits = 1,
+                                    lower_col = NULL,
+                                    upper_col = NULL){
 
+  stopifnot(!is.null(lower_col))
+  stopifnot(!is.null(upper_col))
+
+  lower_col_sym <- sym(lower_col)
+  upper_col_sym <- sym(upper_col)
   yrs <- start.yr:end.yr
+  df <- map(model$mcmccalcs, ~{.x[names(.x) %in% yrs]})
+  ts <- model$timeseries
 
-  ## Filter the values by years
-  df <- lapply(model$mcmccalcs,
-               function(x){x[names(x) %in% yrs]})
-  extra <- model$extra.mcmc
-  tot.bm.025 <-
-    extra$timeseries$Bio_all.0.025[extra$timeseries$Yr %in% yrs]
-  tot.bm.975 <-
-    extra$timeseries$Bio_all.0.975[extra$timeseries$Yr %in% yrs]
-  smry.bm.025 <-
-    extra$timeseries$Bio_smry.0.025[extra$timeseries$Yr %in% yrs]
-  smry.bm.975 <-
-    extra$timeseries$Bio_smry.0.975[extra$timeseries$Yr %in% yrs]
+  tot_bm <- model$extra.mcmc$total_biomass_quants %>%
+    filter(Yr %in% yrs)
+  stopifnot(lower_col %in% names(tot_bm))
+  stopifnot(upper_col %in% names(tot_bm))
+  tot_bm_lower <- tot_bm %>%
+    pull(!!lower_col_sym)
+  tot_bm_upper <- tot_bm %>%
+    pull(!!upper_col_sym)
+
+  age2plus_bm <- model$extra.mcmc$total_age2_plus_biomass_quants %>%
+    filter(Yr %in% yrs)
+  stopifnot(lower_col %in% names(age2plus_bm))
+  stopifnot(upper_col %in% names(age2plus_bm))
+  age2plus_bm_lower <- age2plus_bm %>%
+    pull(!!lower_col_sym)
+  age2plus_bm_upper <- age2plus_bm %>%
+    pull(!!upper_col_sym)
 
   tab.filt <- cbind(yrs,
                     paste0(f(df$slower * weight.factor),
@@ -43,12 +62,12 @@ make.ci.posterior.table <- function(model,
                     paste0(f(df$dlower * 100, digits),
                            "-",
                            f(df$dupper * 100, digits), "\\%"),
-                    paste0(f(tot.bm.025 / weight.factor),
+                    paste0(f(tot_bm_lower / weight.factor),
                            "-",
-                           f(tot.bm.975 / weight.factor)),
-                    paste0(f(smry.bm.025 / weight.factor),
+                           f(tot_bm_upper / weight.factor)),
+                    paste0(f(age2plus_bm_lower / weight.factor),
                            "-",
-                           f(smry.bm.975 / weight.factor)),
+                           f(age2plus_bm_upper / weight.factor)),
                     paste0(f(df$rlower * weight.factor),
                            "-",
                            f(df$rupper * weight.factor)),
@@ -82,7 +101,6 @@ make.ci.posterior.table <- function(model,
                                       "(thousand t)")),
                           latex.mlc(c("Age-0",
                                       "recruits",
-                                      "",
                                       "(millions)")),
                           latex.mlc(c("(1-SPR)",
                                       "/",
@@ -129,29 +147,33 @@ make.ci.posterior.table <- function(model,
         hline.after = NULL)
 }
 
+#' Make a latex table of medians with columns for female spawning biomass,
+#' relative spawning biomass, total biomass, age 2+ biomass, age-0 recruits, relative
+#' fishing intensity, and exploitation fraction. Also output a CSV file with the table contents.
+#'
+#' @param model A model list as output by [load_models()]
+#' @param start.yr Start year in the table
+#' @param end.yr End year in the table
+#' @param weight.factor Factor to divide biomass values by and multiply the recruitment by
+#' @param csv.dir Directory for outputting the CSV version of the table
+#' @param xcaption Caption for the latex table
+#' @param xlabel Label for the latex table
+#' @param font.size Size of font
+#' @param space.size Vertical spacing between text in table
+#' @param digits Number of decimal points to round to
+#'
+#' @return An [xtable::xtable()]
+#' @export
 make.median.posterior.table <- function(model,
-                                        start.yr,
-                                        end.yr,
+                                        start.yr = NULL,
+                                        end.yr = NULL,
                                         weight.factor = 1000,
                                         csv.dir = NULL,
                                         xcaption = "default",
-                                        xlabel   = "default",
+                                        xlabel = "default",
                                         font.size = 9,
                                         space.size = 10,
                                         digits = 1){
-  ## Returns an xtable in the proper format for the main tables section for
-  ##  biomass, relative biomass, recruitment, fishing intensity, and
-  ##  exploitation fraction
-  ##
-  ## model - an mcmc run, output of the r4ss package's function SSgetMCMC()
-  ## start.yr - the first year to show in the table
-  ## end.yr - the last year to show in the table
-  ## weight.factor - divide catches by this factor
-  ## xcaption - caption to appear in the calling document
-  ## xlabel - the label used to reference the table in latex
-  ## font.size - size of the font for the table
-  ## space.size - size of the vertical spaces for the table
-  ## digits - number of decimal points on % columns
 
   if(!is.null(csv.dir)){
     if(!dir.exists(csv.dir)){
@@ -160,21 +182,20 @@ make.median.posterior.table <- function(model,
   }
 
   yrs <- start.yr:end.yr
-
-  ## Filter the values by years
-  df <- lapply(model$mcmccalcs,
-               function(x){x[names(x) %in% yrs]})
-  ts <- model$extra.mcmc$timeseries
-  tot.bm <-
-    ts$Bio_all[ts$Yr %in% yrs]
-  smry.bm <-
-    ts$Bio_smry[ts$Yr %in% yrs]
+  df <- map(model$mcmccalcs, ~{.x[names(.x) %in% yrs]})
+  ts <- model$timeseries
+  tot_bm <- model$extra.mcmc$total_biomass_quants %>%
+    filter(Yr %in% yrs) %>%
+    select(`0.5`)
+  age2plus_bm <- model$extra.mcmc$total_age2_plus_biomass_quants %>%
+    filter(Yr %in% yrs) %>%
+    select(`0.5`)
 
   tab.filt <- cbind(yrs,
                     f(df$smed * weight.factor),
                     paste0(f(df$dmed * 100, digits), "\\%"),
-                    f(tot.bm / weight.factor),
-                    f(smry.bm / weight.factor),
+                    f(tot_bm / weight.factor),
+                    f(age2plus_bm / weight.factor),
                     f(df$rmed * weight.factor),
                     paste0(f(df$pmed * 100, digits), "\\%"),
                     paste0(f(df$fmed * 100, digits), "\\%"))
@@ -209,18 +230,17 @@ make.median.posterior.table <- function(model,
 
   size.string <- latex.size.str(font.size, space.size)
 
-  ##----------------------------------------------------------------------------
-  ## write the CSV
+  # Write the median posteriors CSV file --------------------------------------
   if(!is.null(csv.dir)){
     dat <- cbind(yrs,
                  df$smed * weight.factor,
                  df$dmed * 100,
-                 tot.bm / weight.factor,
-                 smry.bm / weight.factor,
+                 tot_bm / weight.factor,
+                 age2plus_bm / weight.factor,
                  df$rmed * weight.factor,
                  df$pmed * 100,
                  df$fmed * 100)
-    ## Remove last year from Rel. Fishing intensity and Exploiotation fraction columns
+    # Remove last year from Rel. Fishing intensity and Exploitation fraction columns
     dat[nrow(dat), (ncol(dat)-1):ncol(dat)] <- NA
     colnames(dat) <- c("Year",
                        "Female spawning biomass (thousand t)",

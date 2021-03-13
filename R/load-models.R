@@ -130,7 +130,7 @@ load_ss_files <- function(model_path = NA,
 #' @param upper Upper quantile value
 #' @param biomass.scale Scale the biomass by this amount. The default is 2e6 because
 #' biomass will be shown in the millions of tonnes and it is female only
-#' @param recruitment.scale Scale the recuitment by this amount. The default is 1e6
+#' @param recruitment.scale Scale the recruitment by this amount. The default is 1e6
 #' because recruitment will be shown in millions of tonnes
 #'
 #' @return

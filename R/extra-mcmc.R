@@ -481,20 +481,6 @@ fetch_extra_mcmc <- function(model_path,
   compreps <- compreps[!is.na(compreps)]
   reps_comp <- map(compreps, ~{.x[comp_start_ind:comp_end_ind]})
 
-
-  # like <- map2(reps_like, 1:length(reps_like), ~{
-  #   if(is.na(.x[1])){
-  #     return(NULL)
-  #   }
-  #   likes <- map(str_split(.x, " +"), ~{.x[1:4]})
-  #   do.call(rbind, likes) %>%
-  #     as_tibble() %>%
-  #     filter(!grepl("^#_", V1)) %>%
-  #     add_column(Iter = .y, .before = 1)
-  # })
-  # do.call(rbind, like) %>%
-  #   as_tibble()
-
   # Apply selectivity to numbers-at-age ---------------------------------------
   natage <- extra_mcmc$natage %>%
     filter(Yr == next_yr) %>%
@@ -540,43 +526,28 @@ fetch_extra_mcmc <- function(model_path,
   extra_mcmc$cpue.median <- as.numeric(cpue[2,])
   extra_mcmc$cpue.0.975 <- as.numeric(cpue[3,])
 
-  # Add total biomass to existing time series data frame ----------------------
+  # Add total biomass to time series data frame -------------------------------
   timeseries <- extract_rep_table(reps_bio, bio_header) %>%
     select(Iter, Bio_all, Bio_smry)
   iter <- unique(timeseries$Iter)
-  Bio_all <- timeseries %>%
-    select(Iter, Bio_all) %>%
-    group_by(Iter) %>%
-    group_nest()
-  Bio_all <- do.call(cbind, Bio_all$data)
-  names(Bio_all) <- iter
-  Bio_all <- apply(Bio_all,
-                    MARGIN = 1,
-                    FUN = function(x){quantile(as.numeric(x),
-                                               probs = probs)
-                    })
-  extra_mcmc$timeseries <- model$timeseries
-  extra_mcmc$timeseries$Bio_all.0.025 <- as.numeric(Bio_all[1,])
-  extra_mcmc$timeseries$Bio_all.median <- as.numeric(Bio_all[2,])
-  extra_mcmc$timeseries$Bio_all.0.975 <- as.numeric(Bio_all[3,])
+  bio_yrs <- enframe(model$timeseries$Yr, name = NULL, value = "Yr")
+  ts <- split(timeseries, timeseries$Iter) %>%
+    map_df(~{
+      bind_cols(bio_yrs, .x)
+    }) %>%
+    mutate_all(as.numeric)
 
-  Bio_smry <- timeseries %>%
-    select(Iter, Bio_smry) %>%
-    group_by(Iter) %>%
-    group_nest()
-  Bio_smry <- do.call(cbind, Bio_smry$data)
-  names(Bio_smry) <- iter
-  Bio_smry <- apply(Bio_smry,
-                         MARGIN = 1,
-                         FUN = function(x){quantile(as.numeric(x),
-                                                    probs = probs)
-                         })
-  extra_mcmc$timeseries$Bio_smry.0.025 <- as.numeric(Bio_smry[1,])
-  extra_mcmc$timeseries$Bio_smry.median <- as.numeric(Bio_smry[2,])
-  extra_mcmc$timeseries$Bio_smry.0.975 <- as.numeric(Bio_smry[3,])
+  extra_mcmc$total_biomass_quants <- calc_quantiles_by_group(ts,
+                                                             grp_col = "Yr",
+                                                             col = "Bio_all",
+                                                             probs = probs)
+  extra_mcmc$total_age2_plus_biomass_quants <- calc_quantiles_by_group(ts,
+                                                                       grp_col = "Yr",
+                                                                       col = "Bio_smry",
+                                                                       probs = probs)
 
+  # Median and quantiles of expected values and Pearson -----------------------
   comp <- extract_rep_table(reps_comp, comp_header)
-  # Median and quantiles of expected values and Pearson
   iter <- unique(comp$Iter)
   comp <- comp %>%
     filter(!is.na(Nsamp_adj), Nsamp_adj > 0) %>%
@@ -616,6 +587,20 @@ fetch_extra_mcmc <- function(model_path,
     ungroup()
   extra_mcmc$comp_survey_median <- extra_mcmc$comp_survey %>%
     select(Yr, Age, Obs = Obs_med, Exp = Exp_med, Pearson = Pearson_med)
+
+
+  # like <- map2(reps_like, 1:length(reps_like), ~{
+  #   if(is.na(.x[1])){
+  #     return(NULL)
+  #   }
+  #   likes <- map(str_split(.x, " +"), ~{.x[1:4]})
+  #   do.call(rbind, likes) %>%
+  #     as_tibble() %>%
+  #     filter(!grepl("^#_", V1)) %>%
+  #     add_column(Iter = .y, .before = 1)
+  # })
+  # do.call(rbind, like) %>%
+  #   as_tibble()
 
   # Add new table of info on posterior distributions of likelihoods
   # extra_mcmc$like.info <- like_info

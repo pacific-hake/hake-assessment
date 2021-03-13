@@ -441,7 +441,9 @@ make.ci.posterior.table(
                      indicates a quantity requiring ", end.yr, " catch which has not taken place yet."),
   xlabel = "tab:main-ci-posterior",
   font.size = 8,
-  space.size = 9)
+  space.size = 9,
+  lower_col = "0.025",
+  upper_col = "0.975")
 @
 
 <<main-parameter-estimates, results='asis', echo=FALSE>>=
