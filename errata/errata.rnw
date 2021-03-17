@@ -154,7 +154,7 @@
 
 \begin{document}
 \counterwithin{figure}{section}
-\counterwithin{table}{section}
+% \counterwithin{table}{section}
 
 <<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
 knitr::render_latex()
@@ -195,19 +195,34 @@ models_loaded <- TRUE
 %\input{preamble}
 
 %% Executive summary number Tables a,b,c.
-\renewcommand{\thetable}{\alph{table}}
+% \renewcommand{\thetable}{\alph{table}}
 \renewcommand{\thefigure}{\alph{figure}}
 \renewcommand{\thesection}{\arabic{section}}
 \renewcommand{\theequation}{\arabic{equation}}
 \renewcommand{\thefigure}{\arabic{figure}}
 \setcounter{figure}{0}
+\setcounter{table}{22}
 \clearpage
 
-{\centering \Huge{\textbf{Errata}}}
+% {\centering \Huge{\textbf{Errata}}}
 
-\section{Corrected Table 23}
+Errata to:
 
-Table 23 in the \fishname\ assessment document has two incorrect columns, \textbf{Total Biomass} and \textbf{Age 2+ Biomass}. They values reported were MLEs and should have been MCMC medians. The following table is correct.
+Johnson, K.F., A.M. Edwards, A.M. Berger and C.J. Grandin.
+\Sexpr{assess.yr}. Status of the \fishname\ (whiting) stock in
+U.S. and Canadian waters in \Sexpr{assess.yr}. Prepared by the Joint Technical
+Committee of the U.S. and Canada \fishname/Whiting Agreement, National Marine
+Fisheries Service and Fisheries and Oceans Canada. 269~p.
+
+Table 23 in the above document has incorrect values in two columns,
+\textbf{Total biomass} and \textbf{Age 2+ biomass}. The values reported were
+maximum likelihood estimates instead of Markov Chain Monte Carlo medians. The
+following table is correct.
+
+The credible intervals in the original related Table~24 were
+correct, as were the equivalent tables to Table~23 in recent \fishname\ stock assessment documents.
+
+\clearpage
 
 <<main-median-posterior-table, results='asis', echo=FALSE>>=
 make.median.posterior.table(
@@ -222,13 +237,14 @@ make.median.posterior.table(
                      of ages 0 and above. Age-2+ biomass includes females and males ages 2 and
                      above. Exploitation fraction is total catch divided by total age-2+ biomass.
                      Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%}). A dash (--)
-                     indicates a quantity requiring ", end.yr, " catch which has not taken place yet."),
+                     indicates a quantity requiring ", end.yr,
+                    " catch which has not taken place yet. [Corrected version]."),
   xlabel = "tab:main-median-posterior",
   font.size = 9,
   space.size = 10)
 @
 
-\clearpage
+% \clearpage
 
 
 
