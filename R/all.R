@@ -3,7 +3,7 @@
 #  other R source code files.
 #
 # To debug in an R session, run these 3 commands first:
-# source(here::here("R/all.r"));load_models_rds();source(here::here("R/custom-knitr-variables.r"))
+# source(here::here("R/all.R"));load_models_rds();source(here::here("R/custom-knitr-variables.R"))
 
 library(adnuts)
 library(coda)

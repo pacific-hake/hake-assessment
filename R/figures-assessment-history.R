@@ -3,7 +3,7 @@ make.assessment.history.plot <- function(base,
   ## History of assessments plot
 
   ## The csv file should be set up with blanks for SSB in the most recent year
-  ##  it is read in data-tables.r which is sourced in all.r
+  ##  it is read in data-tables.r which is sourced in all.R
   xx <- assessment.history
   xx <- xx[xx$Value == "SB million mt",]
   xx <- xx[!(xx$Model == "TINSS STAR update" |
