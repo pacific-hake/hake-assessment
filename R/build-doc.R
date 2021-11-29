@@ -35,13 +35,13 @@ build_doc <- function(doc_name = "hake-assessment",
   }
 
   if(!knit_only){
-    shell(paste0(latex_command, " ", doc_name, ".tex"))
-    shell(paste0(latex_command, " ", doc_name, ".tex"))
+    system(paste0(latex_command, " ", doc_name, ".tex"), wait = TRUE)
+    system(paste0(latex_command, " ", doc_name, ".tex"), wait = TRUE)
     if(make_bib){
-      shell(paste0("bibtex ", doc_name))
+      system(paste0("bibtex ", doc_name), wait = TRUE)
     }
-    shell(paste0(latex_command, " ", doc_name, ".tex"))
-    shell(paste0(latex_command, " ", doc_name, ".tex"))
+    system(paste0(latex_command, " ", doc_name, ".tex"), wait = TRUE)
+    system(paste0(latex_command, " ", doc_name, ".tex"), wait = TRUE)
   }
   invisible()
 }
@@ -62,7 +62,7 @@ build_test <- function(doc_name = "hake-assessment-test"){
   knit(paste0(doc_name, ".rnw"))
   # The knitting process creates the global `alt_fig_text`
   #add_alt_text(paste0(doc_name, ".tex"), alt_fig_text)
-  shell(paste0("pdflatex ", doc_name, ".tex"))
+  system(paste0("pdflatex ", doc_name, ".tex"), wait = TRUE)
   invisible()
 }
 
@@ -90,9 +90,9 @@ build_adnuts_doc <- function(knit_only = FALSE,
   knit(paste0(doc_name, ".rnw"))
 
   if(!knit_only){
-    shell(paste0(latex_command, " ", doc_name, ".tex"))
-    shell(paste0(latex_command, " ", doc_name, ".tex"))
-    # shell(paste0(latex_command, " ", doc_name, ".tex"))  # two should be enough
+    system(paste0(latex_command, " ", doc_name, ".tex"), wait = TRUE)
+    system(paste0(latex_command, " ", doc_name, ".tex"), wait = TRUE)
+    # system(paste0(latex_command, " ", doc_name, ".tex"), wait = TRUE)  # two should be enough
   }
   setwd(curr_path)
   invisible()
