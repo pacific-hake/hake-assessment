@@ -33,15 +33,15 @@ echo "user_allow_other" | sudo tee -a /etc/fuse.conf
 # Pull the hake repository and make it writable for user ec2-user
 cd /home/ec2-user
 git clone https://github.com/pacific-hake/hake-assessment
-#groupadd developers
-#usermod -aG developers ec2-user
-#chgrp -R developers hake-assessment
 chmod -R 777 hake-assessment
 
 # Create the new directory to mount the S3 drive on
 mkdir -p /home/ec2-user/hake-assessment/hakedrive
 # Mount the data drive using S3 Fuse
 s3fs hakedrive -o use_cache=/tmp -o allow_other -o umask=0000 /home/ec2-user/hake-assessment/hakedrive
+
+# Install htop
+yum -y install htop
 
 # Install and run docker
 amazon-linux-extras enable docker
