@@ -8,15 +8,9 @@
 
 \begin{codefont}
 
-\lstinputlisting{\Sexpr{gsub("^.*?hake-assessment/","../",base.model$dat.file)}}
+\lstinputlisting{\Sexpr{here::here(models_path, basename(base.model$path), basename(base.model$dat.file))}}
 
 \end{codefont}
-
-%% Alternative approach (but doesn't work yet):
-%% <<SSdatafile, results='markup'>>=
-%% readLines(file.path(base.model$path,data.file.name))
-%% @
-
 
 \clearpage
 
@@ -26,7 +20,7 @@
 
 \begin{codefont}
 
-\lstinputlisting{\Sexpr{gsub("^.*?hake-assessment/","../",base.model$ctl.file)}}
+\lstinputlisting{\Sexpr{here::here(models_path, basename(base.model$path), basename(base.model$ctl.file))}}
 
 \end{codefont}
 
@@ -38,7 +32,7 @@
 
 \begin{codefont}
 
-\lstinputlisting{\Sexpr{gsub("^.*?hake-assessment/","../",file.path(base.model$path, starter_file_name))}}
+\lstinputlisting{\Sexpr{here::here(models_path, basename(base.model$path), starter_file_name)}}
                 % $ [so emacs renders properly]
 
 \end{codefont}
@@ -52,8 +46,7 @@
 
 \begin{codefont}
 
-% \lstinputlisting{\Sexpr{gsub("^.*?hake-assessment/","hake-assessment/",file.path(base.model$path, forecast.file.name))}}
-\lstinputlisting{\Sexpr{gsub("^.*?hake-assessment/","../",file.path(base.model$path, forecast_file_name))}}
+\lstinputlisting{\Sexpr{here::here(models_path, basename(base.model$path), basename(base.model$forecast.file.name))}}
 
 \end{codefont}
 
@@ -65,7 +58,7 @@
 
 \begin{codefont}
 
-\lstinputlisting{\Sexpr{gsub("^.*?hake-assessment/","../",file.path(base.model$path, weight_at_age_file_name))}}
+\lstinputlisting{\Sexpr{here::here(models_path, basename(base.model$path), weight_at_age_file_name)}}
 
 \end{codefont}
 
