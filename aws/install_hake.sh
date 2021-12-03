@@ -36,9 +36,9 @@ git clone https://github.com/pacific-hake/hake-assessment
 chmod -R 777 hake-assessment
 
 # Create the new directory to mount the S3 drive on
-mkdir -p /home/ec2-user/hake-assessment/hakedrive
+mkdir -p /home/ec2-user/hake-assessment/hakestore
 # Mount the data drive using S3 Fuse
-s3fs hakedrive -o use_cache=/tmp -o allow_other -o umask=0000 /home/ec2-user/hake-assessment/hakedrive
+s3fs hakestore -o use_cache=/tmp -o allow_other -o umask=0000 /home/ec2-user/hake-assessment/hakestore
 
 # Install htop
 yum -y install htop
