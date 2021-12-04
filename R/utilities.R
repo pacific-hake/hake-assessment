@@ -1155,6 +1155,13 @@ get_os <- function(){
 #' @export
 get_model_executable <- function(model, loc_dir = getwd(), path_only = FALSE){
 
+  stopifnot(is.character(loc_dir))
+  stopifnot(is.character(model))
+  if(!path_only && !dir.exists(loc_dir)){
+    stop(paste0("Directory ", loc_dir, " does not exist. Check argument 'loc_dir'"),
+         call. = FALSE)
+  }
+
   check_dot <- grep("\\.", model)
   if(length(check_dot)){
     stop("model name cannot include a '.', Do not include extension in model name", call. = FALSE)

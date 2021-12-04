@@ -39,10 +39,6 @@
     seeds <- sample.int(1e+07, size = chains)
   if (iter < 1 | !is.numeric(iter))
     stop("iter must be > 1")
-  stopifnot(is.character(path))
-  stopifnot(is.character(model))
-  if (!dir.exists(path))
-    stop(paste("Folder", path, "does not exist. Check argument 'path'"))
 
   model <- get_model_executable(model, path)
 
