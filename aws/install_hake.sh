@@ -1,9 +1,7 @@
 #!/bin/bash
 #
-# Install S3 Fuse from source so that the hakedrive S3 directory and its
+# Install S3 Fuse from source so that the hakestore S3 directory and its
 # subdirectories can be mounted in the EC2 instance
-#
-# Mount it at /home/ec2-user/hakedrive
 #
 # Import this file into the 'User data' when setting up a new EC2 instance
 
@@ -37,7 +35,7 @@ chmod -R 777 hake-assessment
 
 # Create the new directory to mount the S3 drive on
 mkdir -p /home/ec2-user/hake-assessment/hakestore
-# Mount the data drive using S3 Fuse
+# Mount it at /home/ec2-user/hake-assessment/hakestore using S3 fuse
 s3fs hakestore -o use_cache=/tmp -o allow_other -o umask=0000 /home/ec2-user/hake-assessment/hakestore
 
 # Install htop
@@ -46,18 +44,25 @@ yum -y install htop
 # Install and run docker
 amazon-linux-extras enable docker
 yum -y install docker
+# Adds user ec2-user to the docker group so you don't need to prefix with sudo
 service docker start
-docker pull cgrandin/hake
+usermod -a -G docker ec2-user
+docker pull cgrandin/hake:latest
 cd /home/ec2-user
-docker run -d -p 8787:8787 -e PASSWORD=a --name=hake --mount type=bind,source="$(pwd)",target=/home/rstudio cgrandin/hake
+docker run -d -p 8787:8787 -e USER=rstudio -e PASSWORD=a \
+       -e MODEL_DIR=hakestore/models-2021 --name=hake \
+       --mount type=bind,source="$(pwd)",target=/home/rstudio cgrandin/hake
 
 # Append the docker stuff to rc.local, so that the docker container is started at EVERY
 # start, not just on instance creation as is with User Data.
 'service docker start' >> /etc/rc.local
+'usermod -a -G docker ec2-user' >> /etc/rc.local
 'cd /home/ec2-user' >> /etc/rc.local
-'docker run -d -p 8787:8787 --name=hake --mount type=bind,source="$(pwd)",target=/home/rstudio cgrandin/csasdown-inla' >> /etc/rc.local
+'docker run -d -p 8787:8787 -e USER=rstudio -e PASSWORD=a \
+       -e MODEL_DIR=hakestore/models-2021 --name=hake \
+       --mount type=bind,source="$(pwd)",target=/home/rstudio cgrandin/hake' >> /etc/rc.local
 
 # Open in a webbrowser using instance IP:8787 like this example, 3.96.123.102:8787
-# Rstudio login: rstudio
-# Password: a
+# Rstudio login: rstudio (USER above)
+# Password: a (PASSWORD above)
 
