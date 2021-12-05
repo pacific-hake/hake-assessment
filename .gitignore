@@ -55,3 +55,8 @@ doc/old-pdfs*
 appendix-srg-requests-2017.rnw
 appendix-srg-requests-2018.rnw
 appendix-srg-requests-2019.rnw
+
+# Bash
+.bash_history
+.config/
+.local/
