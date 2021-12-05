@@ -147,8 +147,5 @@ source(file.path(rootd.R, "forecast-catch-levels.R"))
 source(file.path(rootd.R, "data-tables.R"))
 source(file.path(rootd.R, "useful-quantities.R"))
 source(file.path(rootd.R, "historical-probs.R"))
-# Should have a pull request to Cole instead of doing this. Added two functions to utilities.R as well
-source(file.path(rootd.R, "sample_adnuts.R"))
-
 
 theme_set(hake_theme())
