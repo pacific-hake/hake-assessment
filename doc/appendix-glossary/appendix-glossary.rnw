@@ -208,7 +208,7 @@ Pacific Fishery Management Council (PFMC): The U.S. organization under which his
 
 \fishname: Common name for \emph{\sciencename}, the species whose offshore stock in the waters of the United States and Canada is subject of this assessment. % **AME -- it's not really the `stock', it's the species. **IGT -- corrected 2017/01/27
 
-Pacific Whiting: an alternative name for \fishname\ commonly used in the United States.
+\commonname: an alternative name for \fishname\ commonly used in the United States.
 
 Posterior distribution: The probability distribution for parameters or derived quantities from a Bayesian model representing the result of the prior probability distributions (see below) being updated by the observed data via the likelihood equation. For stock assessments, posterior distributions are approximated via numerical methods; one frequently employed method is MCMC (see above).
 
