@@ -32,8 +32,15 @@ run_adnuts <- function(path,
   seeds <- sample(1:1e4, size = reps)
   mcmc_path <- file.path(path, "mcmc")
   if(dir.exists(mcmc_path)){
-    stop("The MCMC directory ", mcmc_path, " exists. Delete it if manually you want to run this and run again.",
-         call. = FALSE)
+    ovrw <- menu(c("Yes", "No"), title = paste0(mcmc_path, " directory exists. Overwrite?"))
+    if(ovrw == 1){
+      unlink(mcmc_path, recursive = TRUE, force = TRUE)
+    }else{
+      stop("The MCMC directory ",
+           mcmc_path,
+           " exists and was not modified. Delete it if you want to run the procedure.",
+           call. = FALSE)
+    }
   }
   dir.create(mcmc_path, showWarnings = FALSE)
   files <- file.path(path, dir(path))
