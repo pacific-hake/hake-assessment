@@ -59,6 +59,9 @@ docker run -d -p 8787:8787 -e USER=rstudio -e PASSWORD=a \
        -e MODEL_DIR=hakestore//models-2021 --name=hake \
        --mount type=bind,source="$(pwd)",target=/home/rstudio cgrandin/hake
 
+# Start in hake-assessment directory
+echo "setwd('hake-assessment')" | tee -a /home/ec2-user/.Rprofile
+
 # Append the docker stuff to rc.local, so that the docker container is started at EVERY
 # start, not just on instance creation as is with User Data.
 'service docker start' >> /etc/rc.local
@@ -68,7 +71,7 @@ docker run -d -p 8787:8787 -e USER=rstudio -e PASSWORD=a \
        -e MODEL_DIR=hakestore//models-2021 --name=hake \
        --mount type=bind,source="$(pwd)",target=/home/rstudio cgrandin/hake' >> /etc/rc.local
 
-# Open in a webbrowser using instance IP:8787 like this example, 3.96.123.102:8787
+# Open in a web browser using instance IP:8787 like this example, 3.96.123.102:8787
 # Rstudio login: rstudio (USER above)
 # Password: a (PASSWORD above)
 
