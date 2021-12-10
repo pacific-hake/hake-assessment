@@ -41,16 +41,22 @@ s3fs hakestore -o use_cache=/tmp -o allow_other -o umask=0000 /home/ec2-user/hak
 # Install htop
 yum -y install htop
 
+# Set the ssh server up to send timeout checks to the clients to make sure they are still connected
+echo "TCPKeepAlive yes" | tee -a /etc/ssh/sshd_config
+echo "ClientAliveInterval 600" | tee -a /etc/ssh/sshd_config
+echo "ClientAliveInterval 0" | tee -a /etc/ssh/sshd_config
+
 # Install and run docker
 amazon-linux-extras enable docker
 yum -y install docker
 # Adds user ec2-user to the docker group so you don't need to prefix with sudo
 service docker start
 usermod -a -G docker ec2-user
-docker pull cgrandin/hake:latest
+chmod 666 /var/run/docker.sock
+docker pull cgrandin/hake
 cd /home/ec2-user
 docker run -d -p 8787:8787 -e USER=rstudio -e PASSWORD=a \
-       -e MODEL_DIR=hakestore/models-2021 --name=hake \
+       -e MODEL_DIR=hakestore//models-2021 --name=hake \
        --mount type=bind,source="$(pwd)",target=/home/rstudio cgrandin/hake
 
 # Append the docker stuff to rc.local, so that the docker container is started at EVERY
@@ -59,7 +65,7 @@ docker run -d -p 8787:8787 -e USER=rstudio -e PASSWORD=a \
 'usermod -a -G docker ec2-user' >> /etc/rc.local
 'cd /home/ec2-user' >> /etc/rc.local
 'docker run -d -p 8787:8787 -e USER=rstudio -e PASSWORD=a \
-       -e MODEL_DIR=hakestore/models-2021 --name=hake \
+       -e MODEL_DIR=hakestore//models-2021 --name=hake \
        --mount type=bind,source="$(pwd)",target=/home/rstudio cgrandin/hake' >> /etc/rc.local
 
 # Open in a webbrowser using instance IP:8787 like this example, 3.96.123.102:8787
