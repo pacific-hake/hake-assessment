@@ -1,3 +1,5 @@
+# Install packages for hake assessment docker image
+
 install.packages(c(
   "cowplot", "date", "furrr", "ggpubr",
   "ggrepel", "here", "maps", "maptools", "matrixcalc",

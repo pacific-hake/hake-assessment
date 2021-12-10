@@ -1,4 +1,6 @@
-# Dockerfile for hake for the cloud
+# Docker script for hake assessment
+# Used to produce Docker image cgrandin/hake
+# https://hub.docker.com/repository/docker/cgrandin/hake
 
 FROM cgrandin/ss as ss
 LABEL maintainer = "chris.grandin@gmail.com"
