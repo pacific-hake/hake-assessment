@@ -32,7 +32,11 @@ run_adnuts <- function(path,
   seeds <- sample(1:1e4, size = reps)
   mcmc_path <- file.path(path, "mcmc")
   if(dir.exists(mcmc_path)){
-    ovrw <- menu(c("Yes", "No"), title = paste0(mcmc_path, " directory exists. Overwrite?"))
+    if(interactive()){
+      ovrw <- menu(c("Yes", "No"), title = paste0(mcmc_path, " directory exists. Overwrite?"))
+    }else{
+      ovrw <- 1
+    }
     if(ovrw == 1){
       unlink(mcmc_path, recursive = TRUE, force = TRUE)
     }else{
