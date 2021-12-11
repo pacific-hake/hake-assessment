@@ -58,7 +58,7 @@ run_forecasts <- function(model_path,
       unlink(file.path(new_forecast_dir, derposts_file_name), force = TRUE)
       unlink(file.path(new_forecast_dir, posts_file_name), force = TRUE)
       shell_command <- paste0("cd ", new_forecast_dir, " & ", ss_executable, " -mceval")
-      shell(shell_command, wait = TRUE, intern = !show_ss_output)
+      system_(shell_command, wait = TRUE, intern = !show_ss_output)
     })
   })
   plan()

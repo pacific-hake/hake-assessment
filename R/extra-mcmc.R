@@ -145,7 +145,7 @@ run_extra_mcmc_chunk <- function(model,
     file.remove(file.path(sub_extra_mcmc_path, compreport_file_name))
 
     shell_command <- paste0("cd ", sub_extra_mcmc_path, " & ", ss_executable, " -maxfn 0 -phase 10 -nohess")
-    shell(shell_command, wait = FALSE, intern = TRUE)
+    system_(shell_command, wait = FALSE, intern = TRUE)
 
     file.copy(file.path(sub_extra_mcmc_path, par_file_name),
               file.path(reports_path, paste0("ss_output", from_to[irow], ".par")),

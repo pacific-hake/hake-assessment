@@ -1115,3 +1115,17 @@ calc_quantiles_by_group <- function(df = NULL,
     select(!!grp_names_sym, everything()) %>%
     ungroup()
 }
+
+#' Call [shell()] or [system()] depending on the Operating System
+#'
+#' @param ... Pass all arguments to the command function
+#'
+#' @return The output from the command function called
+#' @export
+system_ <- function(...){
+  if(get_os() == "windows"){
+    shell(...)
+  }else{
+    system(...)
+  }
+}

@@ -60,7 +60,7 @@ docker run -d -p 8787:8787 -e USER=rstudio -e PASSWORD=a \
        --mount type=bind,source="$(pwd)",target=/home/rstudio cgrandin/hake
 
 # Start in hake-assessment directory
-echo "setwd('hake-assessment')" | tee -a /home/ec2-user/.Rprofile
+echo "if(interactive()) setwd('hake-assessment')" | tee -a /home/ec2-user/.Rprofile
 
 # Append the docker stuff to rc.local, so that the docker container is started at EVERY
 # start, not just on instance creation as is with User Data.

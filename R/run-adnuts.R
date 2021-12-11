@@ -1,5 +1,12 @@
 #' Run the adnuts MCMC for the model found in the directory given
 #'
+#' @details
+#' `path` is the directory in which the MLE will be run, a subdirectory of this called `mcmc` is
+#' where the MCMC will be run using the NUTS algorithm. Inside the `mcmc` directory, several
+#' temporary subdirectories will be created, one for each MCMC chain labeled `chain_*`, AkA
+#' CPU number used in the parallel execution. These will disappear once the run has completed and
+#' the output has been merged.
+#'
 #' @param path Directory where the model files reside
 #' @param n_cores The number of cores to use in parallel MCMC
 #' @param seed The random seed
@@ -23,13 +30,13 @@ run_adnuts <- function(path,
                        check_issues = FALSE,
                        save_image = TRUE){
 
-  tic()
+
   # Chains to run in parallel
   num_machine_cores <- detectCores()
-  reps <- ifelse(is.na(n_cores), num_machine_cores - 1, n_cores)
-  stopifnot(num_machine_cores >= reps)
+  chains <- ifelse(is.na(n_cores), num_machine_cores - 1, n_cores)
+  stopifnot(num_machine_cores >= chains)
   set.seed(seed)
-  seeds <- sample(1:1e4, size = reps)
+  seeds <- sample(1:1e4, size = chains)
   mcmc_path <- file.path(path, "mcmc")
   if(dir.exists(mcmc_path)){
     if(interactive()){
@@ -52,13 +59,9 @@ run_adnuts <- function(path,
   file.copy(files, files_to)
 
   exe <- "ss"
-  curr_path <- getwd()
-  on.exit(setwd(curr_path), add = TRUE)
 
   if(run_mle){
-    setwd(path)
-    system(exe)
-    setwd(curr_path)
+    system_(paste0("cd ", path, " && ", exe))
   }
 
   # Run ADNUTS MCMC
@@ -67,19 +70,18 @@ run_adnuts <- function(path,
   # bias adjustment turned on). Note the -hbf 1 argument.
   # This is a technical requirement b/c NUTS uses a different set of bounding
   # functions and thus the mass matrix will be different.
-  setwd(mcmc_path)
-  system(paste0(exe, " -hbf 1 -nox -iprint 200 -mcmc 15"))
+  system_(paste0("cd ", mcmc_path, " && ", exe, " -hbf 1 -nox -iprint 200 -mcmc 15"))
   save.image(file = rdata_file)
   # Use default MLE covariance (mass matrix) and short parallel NUTS chains
   # started from the MLE. Recall iter is number per core running in parallel.
-  nuts_mle <- sample_nuts(model = exe,
+  nuts_mle <- sample_admb(model = exe,
+                          path = mcmc_path,
+                          algorithm = "NUTS",
                           iter = 100,
                           init = NULL,
                           seeds = seeds,
-                          chains = reps,
+                          chains = chains,
                           warmup = 50,
-                          path = ".",
-                          cores = reps,
                           control = list(metric = "mle",
                                          adapt_delta = adapt_delta))
   save.image(file = rdata_file)
@@ -94,21 +96,21 @@ run_adnuts <- function(path,
   # adapt_delta toward 1 if you have divergences (runs will take longer).
   # Note this is in unbounded parameter space
   mass <- nuts_mle$covar.est
-  inits <- sample_inits(nuts_mle, reps)
-  iterations <- ceiling(((reps * warmup_final) + n_final) / reps)
+  inits <- sample_inits(nuts_mle, chains)
+  iterations <- ceiling(((chains * warmup_final) + n_final) / chains)
   # The following, nuts_updated, is used for inferences
-  nuts_updated <- sample_nuts(model = exe,
+  nuts_updated <- sample_admb(model = exe,
+                              path = mcmc_path,
+                              algorithm = "NUTS",
                               iter = iterations,
                               init = inits,
                               seeds = seeds,
-                              chains = reps,
+                              chains = chains,
                               warmup = warmup_final,
-                              path = ".",
-                              cores = reps,
                               mceval = TRUE,
                               control = list(metric = mass,
                                              adapt_delta = adapt_delta))
   save.image(file = rdata_file)
-  system(paste0(exe, " -mceval"))
-  toc()
+  system_(paste0("cd ", mcmc_path, " && ", exe, " -mceval"))
+
 }

@@ -45,7 +45,9 @@ library(xtable)
 models_path <- Sys.getenv("MODEL_DIR")
 # If you cannot set shell environment variables outside R, uncomment this, but DO NOT push the change to GitHub,
 # or AWS cloud launch will fail
-#models_path <- "hakestore/models-2021"
+if(models_path == ""){
+  models_path <- "models"
+}
 
 rootd <- here::here()
 rootd.R <- file.path(rootd, "R")
