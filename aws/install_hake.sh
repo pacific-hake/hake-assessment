@@ -59,6 +59,10 @@ docker run -d -p 8787:8787 -e USER=rstudio -e PASSWORD=a \
        -e MODEL_DIR=hakestore//models-2021 --name=hake \
        --mount type=bind,source="$(pwd)",target=/home/rstudio cgrandin/hake
 
+# Add rstudio user to sudoers so they can run mkdir command
+echo "rstudio ALL=NOPASSWD: /usr/bin/mkdir" | tee -a /etc/sudoers
+echo "rstudio ALL=NOPASSWD: /usr/bin/rmdir" | tee -a /etc/sudoers
+
 # Start in hake-assessment directory
 echo "if(interactive()) setwd('hake-assessment')" | tee -a /home/ec2-user/.Rprofile
 
@@ -75,3 +79,11 @@ echo "if(interactive()) setwd('hake-assessment')" | tee -a /home/ec2-user/.Rprof
 # Rstudio login: rstudio (USER above)
 # Password: a (PASSWORD above)
 
+cd hake-assessment
+mkdir base_model
+chmod -R 777 base_model
+cp hakestore/models-2021/2021.00.04_base_v1/forecast.ss base_model
+cp hakestore/models-2021/2021.00.04_base_v1/hake_control.ss base_model
+cp hakestore/models-2021/2021.00.04_base_v1/hake_data.ss base_model
+cp hakestore/models-2021/2021.00.04_base_v1/starter.ss base_model
+cp hakestore/models-2021/2021.00.04_base_v1/wtatage.ss base_model
