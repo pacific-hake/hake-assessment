@@ -1129,3 +1129,69 @@ system_ <- function(...){
     system(...)
   }
 }
+
+#' Copy `files` and their containing directories from all subdirectories of `fromdir`
+#' to `todir`. Only subdirs of `fromdir` are searched for `files`, not `fromdir` itself,
+#' and there is no recursion.
+#'
+#' @param fromdir The directory to copy subdirectories anf their `files` from
+#' @param todir The directory to copy subdirectories anf their `files` to
+#' @param files A character vector of file names to include in the copy
+#' @param overwrite If `todir` exists then overwrite its subdirs if they exist.
+#' Everything else in `todir` not pertaining to the copy will remain after the overwrite
+#' @param ignore_missing_files If `FALSE` and any of `files` are missing in subdirectories
+#' of `fromdir`, code execution will stop and an error will be shown. If `TRUE`,, missing
+#' files will be ignored
+#'
+#' @return Nothing
+#' @export
+copy_dirfiles <- function(fromdir = getwd(),
+                          todir = NULL,
+                          files = c("starter.ss",
+                                    "forecast.ss",
+                                    "hake_control.ss",
+                                    "hake_data.ss",
+                                    "wtatage.ss"),
+                          overwrite = TRUE,
+                          ignore_missing_files = TRUE){
+
+  if(is.null(fromdir)){
+    stop("You must provide a directory to copy from (fromdir)", call. = FALSE)
+  }
+  if(!dir.exists(fromdir)){
+    stop("The fromdir directory '", fromdir, "' does not exist", call. = FALSE)
+  }
+  if(is.null(todir)){
+    stop("You must provide a directory to copy to (todir)", call. = FALSE)
+  }
+  if(is.null(files)){
+    stop("You must provide a vector of filenames to copy (files)", call. = FALSE)
+  }
+  if(class(files) != "character"){
+    stop("Your files vector must be a character vector", call. = FALSE)
+  }
+  if(dir.exists(todir)){
+    if(!overwrite){
+      stop("The todir directory '", todir, "' exists and overwrite is set to FALSE", call. = FALSE)
+    }
+  }
+
+  dirs <- list.dirs(fromdir, recursive = FALSE)
+  if(!length(dirs)){
+    warning("No subdirectories were found in the ", fromdir, " directory")
+    return(NULL)
+  }
+
+  dir.create(todir, showWarnings = FALSE)
+  for(path in dirs){
+    subdir_name <- basename(path)
+    new_subdir <- file.path(todir, subdir_name)
+    dir.create(new_subdir, showWarnings = FALSE)
+    cp_flags <- suppressWarnings(file.copy(file.path(path, files), new_subdir, overwrite = TRUE))
+    if(!ignore_missing_files && !all(cp_flags)){
+      stop("Could not copy the file(s):\n",
+           paste(file.path(path, files[!cp_flags]), collapse = "\n"), call. = FALSE)
+    }
+  }
+  message("Copied all subdirectories and given files from '", fromdir, "' to '", todir, "'")
+}
