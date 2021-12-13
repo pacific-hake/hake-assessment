@@ -38,7 +38,7 @@ mkdir -p /home/ec2-user/hake-assessment/hakestore
 # Mount it at /home/ec2-user/hake-assessment/hakestore using S3 fuse
 s3fs hakestore -o use_cache=/tmp -o allow_other -o umask=0000 /home/ec2-user/hake-assessment/hakestore
 
-# Install htop
+# Install htop which is a CPU process viewer
 yum -y install htop
 
 # Set the ssh server up to send timeout checks to the clients to make sure they are still connected
@@ -56,7 +56,7 @@ chmod 666 /var/run/docker.sock
 docker pull cgrandin/hake
 cd /home/ec2-user
 docker run -d -p 8787:8787 -e USER=rstudio -e PASSWORD=a \
-       -e MODEL_DIR=hakestore//models-2021 --name=hake \
+       -e MODEL_DIR=models --name=hake \
        --mount type=bind,source="$(pwd)",target=/home/rstudio cgrandin/hake
 
 # Add rstudio user to sudoers so they can run mkdir command
@@ -65,25 +65,21 @@ echo "rstudio ALL=NOPASSWD: /usr/bin/rmdir" | tee -a /etc/sudoers
 
 # Start in hake-assessment directory
 echo "if(interactive()) setwd('hake-assessment')" | tee -a /home/ec2-user/.Rprofile
+# Make a copy of all SS input files for all models from S3 in their proper named subdirectories
+echo "if(interactive()) source('R/utilities.R')" | tee -a /home/ec2-user/.Rprofile
+echo "if(interactive()) copy_dirfiles('hakestore/models-2021-ss-input-files', 'models')" | tee -a /home/ec2-user/.Rprofile
 
 # Append the docker stuff to rc.local, so that the docker container is started at EVERY
 # start, not just on instance creation as is with User Data.
-'service docker start' >> /etc/rc.local
-'usermod -a -G docker ec2-user' >> /etc/rc.local
-'cd /home/ec2-user' >> /etc/rc.local
-'docker run -d -p 8787:8787 -e USER=rstudio -e PASSWORD=a \
-       -e MODEL_DIR=hakestore//models-2021 --name=hake \
-       --mount type=bind,source="$(pwd)",target=/home/rstudio cgrandin/hake' >> /etc/rc.local
+echo "service docker start" | tee -a /etc/rc.local
+echo "usermod -a -G docker ec2-user" | tee -a /etc/rc.local
+echo "cd /home/ec2-user" | tee -a /etc/rc.local
+echo "docker run -d -p 8787:8787 -e USER=rstudio -e PASSWORD=a \
+                 -e MODEL_DIR=models --name=hake \
+                 --mount type=bind,source="$(pwd)",target=/home/rstudio cgrandin/hake" | tee -a /etc/rc.local
 
 # Open in a web browser using instance IP:8787 like this example, 3.96.123.102:8787
 # Rstudio login: rstudio (USER above)
 # Password: a (PASSWORD above)
 
-cd hake-assessment
-mkdir base_model
-chmod -R 777 base_model
-cp hakestore/models-2021/2021.00.04_base_v1/forecast.ss base_model
-cp hakestore/models-2021/2021.00.04_base_v1/hake_control.ss base_model
-cp hakestore/models-2021/2021.00.04_base_v1/hake_data.ss base_model
-cp hakestore/models-2021/2021.00.04_base_v1/starter.ss base_model
-cp hakestore/models-2021/2021.00.04_base_v1/wtatage.ss base_model
+
