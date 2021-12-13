@@ -1182,11 +1182,15 @@ copy_dirfiles <- function(fromdir = getwd(),
     return(NULL)
   }
 
+  # SS requires these two files have uppercase extension (Linux)
+  files[files == "hake_data.ss"] <- "hake_data.SS"
+  files[files == "hake_control.ss"] <- "hake_control.SS"
+
   dir.create(todir, showWarnings = FALSE)
   for(path in dirs){
     subdir_name <- basename(path)
     new_subdir <- file.path(todir, subdir_name)
-    dir.create(new_subdir, showWarnings = FALSE, mode = "777")
+    dir.create(new_subdir, showWarnings = FALSE)
     cp_flags <- suppressWarnings(file.copy(file.path(path, files), new_subdir, overwrite = TRUE))
     if(!ignore_missing_files && !all(cp_flags)){
       stop("Could not copy the file(s):\n",
