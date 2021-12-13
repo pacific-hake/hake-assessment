@@ -1182,10 +1182,6 @@ copy_dirfiles <- function(fromdir = getwd(),
     return(NULL)
   }
 
-  # SS requires these two files have uppercase extension (Linux)
-  files[files == "hake_data.ss"] <- "hake_data.SS"
-  files[files == "hake_control.ss"] <- "hake_control.SS"
-
   dir.create(todir, showWarnings = FALSE)
   for(path in dirs){
     subdir_name <- basename(path)
@@ -1195,6 +1191,13 @@ copy_dirfiles <- function(fromdir = getwd(),
     if(!ignore_missing_files && !all(cp_flags)){
       stop("Could not copy the file(s):\n",
            paste(file.path(path, files[!cp_flags]), collapse = "\n"), call. = FALSE)
+    }
+    # SS requires these two files have uppercase extension (Linux)
+    if(file.exists(file.path(new_subdir, "hake_control.ss"))){
+      system_(paste0("cd ", new_subdir, " && mv hake_control.ss hake_control.SS"))
+    }
+    if(file.exists(file.path(new_subdir, "hake_data.ss"))){
+      system_(paste0("cd ", new_subdir, " && mv hake_data.ss hake_data.SS"))
     }
   }
   message("Copied all subdirectories and given files from '", fromdir, "' to '", todir, "'")
