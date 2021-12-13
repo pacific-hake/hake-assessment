@@ -1186,7 +1186,7 @@ copy_dirfiles <- function(fromdir = getwd(),
   for(path in dirs){
     subdir_name <- basename(path)
     new_subdir <- file.path(todir, subdir_name)
-    dir.create(new_subdir, showWarnings = FALSE)
+    dir.create(new_subdir, showWarnings = FALSE, mode = "777")
     cp_flags <- suppressWarnings(file.copy(file.path(path, files), new_subdir, overwrite = TRUE))
     if(!ignore_missing_files && !all(cp_flags)){
       stop("Could not copy the file(s):\n",
