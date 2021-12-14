@@ -62,12 +62,15 @@ docker run -d -p 8787:8787 -e USER=rstudio -e PASSWORD=a \
 # Add rstudio user to sudoers so they can run mkdir command
 echo "rstudio ALL=NOPASSWD: /usr/bin/mkdir" | tee -a /etc/sudoers
 echo "rstudio ALL=NOPASSWD: /usr/bin/rmdir" | tee -a /etc/sudoers
+#echo "rstudio ALL=(ALL) NOPASSWD:ALL" | tee -a /etc/sudoers
 
 # Start in hake-assessment directory
 echo "if(interactive()) setwd('hake-assessment')" | tee -a /home/ec2-user/.Rprofile
 # Make a copy of all SS input files for all models from S3 in their proper named subdirectories
-echo "if(interactive()) source('R/utilities.R')" | tee -a /home/ec2-user/.Rprofile
+echo "if(interactive()) source('R/all.R')" | tee -a /home/ec2-user/.Rprofile
 echo "if(interactive()) copy_dirfiles('hakestore/models-2021-ss-input-files', 'models')" | tee -a /home/ec2-user/.Rprofile
+echo "if(interactive()) system_('chmod -R 777 models')" | tee -a /home/ec2-user/.Rprofile
+#echo "if(interactive()) system_('umask 0000')" | tee -a /home/ec2-user/.Rprofile
 
 # Append the docker stuff to rc.local, so that the docker container is started at EVERY
 # start, not just on instance creation as is with User Data.
