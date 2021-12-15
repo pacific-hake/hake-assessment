@@ -54,6 +54,7 @@ run_adnuts <- function(path,
     }
   }
   dir.create(mcmc_path, showWarnings = FALSE)
+  dir.create(file.path(mcmc_path, "sso"), showWarnings = FALSE)
   files <- file.path(path, dir(path))
   files_to <- file.path(mcmc_path, dir(path))
   file.copy(files, files_to)
