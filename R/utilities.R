@@ -1192,12 +1192,32 @@ copy_dirfiles <- function(fromdir = getwd(),
       stop("Could not copy the file(s):\n",
            paste(file.path(path, files[!cp_flags]), collapse = "\n"), call. = FALSE)
     }
-    # SS requires these two files have uppercase extension (Linux)
-    if(file.exists(file.path(new_subdir, "hake_control.ss"))){
-      system_(paste0("cd ", new_subdir, " && mv hake_control.ss hake_control.SS"))
+    # Make sure starter file is lowercase
+    if(file.exists(file.path(new_subdir, "starter.SS"))){
+      system_(paste0("cd ", new_subdir, " && mv starter.SS starter.ss"))
     }
-    if(file.exists(file.path(new_subdir, "hake_data.ss"))){
-      system_(paste0("cd ", new_subdir, " && mv hake_data.ss hake_data.SS"))
+    # Change Uppercase SS extensions in the starter file to lowercase
+    starter_file <- file.path(path, "starter.ss")
+    if(file.exists(starter_file)){
+      starter <- readLines(starter_file)
+      ss_inds <- grep("hake_.*SS", starter)
+      if(length(ss_inds)){
+        starter[ss_inds] <- gsub("SS", "ss", starter[ss_inds])
+        writeLines(starter, starter_file)
+      }
+    }
+    # Make sure all the input files other than starter file are lowercase
+    if(file.exists(file.path(new_subdir, "hake_control.SS"))){
+      system_(paste0("cd ", new_subdir, " && mv hake_control.SS hake_control.ss"))
+    }
+    if(file.exists(file.path(new_subdir, "hake_data.SS"))){
+      system_(paste0("cd ", new_subdir, " && mv hake_data.SS hake_data.ss"))
+    }
+    if(file.exists(file.path(new_subdir, "wtatage.SS"))){
+      system_(paste0("cd ", new_subdir, " && mv wtatage.SS wtatage.ss"))
+    }
+    if(file.exists(file.path(new_subdir, "forecast.SS"))){
+      system_(paste0("cd ", new_subdir, " && mv forecast.SS forecast.ss"))
     }
   }
   message("Copied all subdirectories and given files from '", fromdir, "' to '", todir, "'")
