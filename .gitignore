@@ -17,6 +17,7 @@ alternative_text.csv
 *.png
 *.ppt*
 *.ps
+key_pair.R
 *.RData
 *.rdb
 *.rdx
@@ -35,6 +36,7 @@ alternative_text.csv
 *.upb
 *.xlsx
 *.zip
+
 
 # Folders
 admin*
