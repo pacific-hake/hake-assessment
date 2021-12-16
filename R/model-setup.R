@@ -247,14 +247,14 @@ load_models_rds <- function(){
   }
 
   last.yr.base.model <<- load_models(last.yr.base.model.dir.name)
-  bridge.models.1    <<- load_models(bridge.model.dir.names.1)
-  bridge.models.2    <<- load_models(bridge.model.dir.names.2)
-  sens.models.1      <<- load_models(sens.model.dir.names.1)
-  sens.models.2      <<- load_models(sens.model.dir.names.2, TRUE)
-  sens.models.4      <<- load_models(sens.model.dir.names.4)
-  sens.models.5      <<- load_models(sens.model.dir.names.5)
-  sens.models.6      <<- load_models(sens.model.dir.names.6)
-  sens.models.7      <<- load_models(sens.model.dir.names.7)
+  bridge.models.1 <<- load_models(bridge.model.dir.names.1)
+  bridge.models.2 <<- load_models(bridge.model.dir.names.2)
+  sens.models.1 <<- load_models(sens.model.dir.names.1)
+  sens.models.2 <<- load_models(sens.model.dir.names.2, TRUE)
+  sens.models.4 <<- load_models(sens.model.dir.names.4)
+  sens.models.5 <<- load_models(sens.model.dir.names.5)
+  sens.models.6 <<- load_models(sens.model.dir.names.6)
+  sens.models.7 <<- load_models(sens.model.dir.names.7)
   srg_day2_req1_model <<- load_models("2021.00.47_day2request_wtatage")
   srg_day2_req2_model <<- load_models("2021.00.46_base_v1_4yrForecast")
 
