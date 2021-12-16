@@ -1,7 +1,7 @@
-#' Download a folders and all its contents recursively from an AWS S3 bucket
+#' Download folders and all their contents recursively from an AWS S3 bucket
 #'
-#' @param folders A vector of names of folderss inside the bucket to download.
-#' Can be single folders names or paths to particular folderss. See examples
+#' @param folders A vector of names of folders inside the bucket to download.
+#' Can be single folders names or paths to particular folders. See examples
 #' @param key_pair_file The name of the R file which sets the variables `key` and `secret` to
 #' the AWS IAM key and secret for the connection
 #' @region The AWS region name to use. It MUST match what the bucket region is. You need to ask
