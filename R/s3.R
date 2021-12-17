@@ -54,13 +54,13 @@ s3_download <- function(folders = NULL,
   bl <- bucketlist(key = key, secret = secret)
 
   # Bucket contents, a list of all the object names and sizes and a couple other things
-  bc <- get_bucket(bucket)
+  bc <- get_bucket(bucket, max = Inf)
 
   # Create a list of vectors of length 2: file name and size
   folders_pattern <- paste(folders, collapse = "|")
   files_sizes <- map(bc, ~{
-    if(length(grep(folders_pattern, .x[[1]]))){
-      c(name = .x[[1]], size = object_size(.x))
+    if(length(grep(folders_pattern, .x$Key))){
+      c(name = .x$Key, size = .x$Size) %>% setNames(NULL)
     }else{
       NULL
     }
@@ -156,6 +156,7 @@ s3_upload <- function(folders = NULL,
                 title = paste0("You are about to upload ", length(files), " files. Proceed?"))
   }
 
+  tic()
   if(upl == 1){
     tmp <- map(files, ~{
       size <- as.numeric(system_(paste0("stat --printf='%s' ", .x), intern = TRUE))
@@ -165,6 +166,105 @@ s3_upload <- function(folders = NULL,
                  multipart = ifelse(size > multipart_limit, TRUE, FALSE))
     })
   }
+  toc()
   message("Uploaded all files found in:\n")
   print(file.path(getwd(), folders))
+}
+
+#' Directory listing for the `folder` and subdirectories (if recursion, `r`, is `TRUE`)
+#'
+#' @param folder The relative directory to give the listing for. If `NULL` a recursive listing of
+#' all files in the bucket root will be returned
+#' @param refresh If `TRUE` and the Global variable `s3_dir_vec` exists, overwrite `s3_dir_vec`
+#' with a fresh listing from the S3 source bucket. If `FALSE`, use the values of `s3_dir_vec`
+#' already in memory to display directory contents
+#' @param r recursive? If `TRUE` recurse and display all subdirectories and files. If `FALSE` only
+#' display the current directory's contents
+#'
+#' @return A vector of paths or a [data.tree] object
+#' @export
+s3_dir <- function(folder = NULL,
+                   refresh = FALSE,
+                   r = FALSE,
+                   key_pair_file = here("aws/key_pair.R"),
+                   region = "ca-central-1",
+                   bucket = "hakestore"){
+
+  if(is.null(key_pair_file)){
+    stop("key_pair_file is required", call. = FALSE)
+  }
+  source(key_pair_file)
+  if(!exists("key")){
+    stop("The variable 'key' does not exist. Check your key_pair_file ",
+         "location and contents and try again",
+         call. = FALSE)
+  }
+  if(!exists("secret")){
+    stop("The variable 'secret' does not exist. Check your key_pair_file ",
+         "location and contents and try again",
+         call. = FALSE)
+  }
+  # Remove all trailing slashes
+  while(substr(folder, nchar(folder), nchar(folder)) == "/"){
+    folder <- substr(folder, 1, nchar(folder) - 1)
+  }
+
+  out_format <- function(bytes, digits = 2){
+    j <- map_chr(bytes, ~{
+      if(.x > 1073741824){
+        .x <- .x / 1073741824
+        ext = "GB"
+      }else if(.x > 1048576){
+        .x <- .x / 1048576
+        ext <- "MB"
+      }else if(.x > 1024){
+        .x <- .x / 1024
+        ext <- "kB"
+      }else{
+        ext <- "B"
+      }
+      paste0(format(round(.x, digits), digits = digits, nsmall = digits), " ", ext)
+    })
+  }
+
+  if(refresh || !exists("s3_dir_vec", envir = .GlobalEnv)){
+    Sys.setenv("AWS_DEFAULT_REGION" = region,
+               "AWS_ACCESS_KEY_ID" = key,
+               "AWS_SECRET_ACCESS_KEY" = secret)
+    bl <- bucketlist(key = key, secret = secret)
+
+    # Bucket contents, a list of all the object names and sizes and a couple other things
+    bc <- get_bucket(bucket, max = Inf)
+
+    s3_dir_tree <<- map(bc, ~{
+      data.frame(name = .x$Key, size = .x$Size)
+    }) %>% bind_rows
+  }
+
+  if(is.null(folder)){
+    if(!r){
+      s3_dir_tree <- s3_dir_tree %>%
+        mutate(name = file.path(bucket, gsub("/.*$", "", name))) %>%
+        group_by(name) %>%
+        summarize(size = sum(size))
+    }
+  }else{
+    s3_dir_tree <- s3_dir_tree %>% filter(grepl(paste0(folder, "/"), name))
+    if(!nrow(s3_dir_tree)){
+      stop("'", folder, "' was not found in the directory listing",
+           call. = FALSE)
+    }
+    if(!r){
+      s3_dir_tree <- s3_dir_tree %>%
+        mutate(name = gsub(paste0("^(", folder, "/.*?)/.*$"), "\\1", name)) %>%
+        group_by(name) %>%
+        summarize(size = sum(size))
+    }
+  }
+  s3_dir_tree <- s3_dir_tree %>%
+    mutate(size = out_format(size))
+
+  s3_dir_tree$pathString <- s3_dir_tree$name
+  dir_node <- as.Node(s3_dir_tree)
+  print(dir_node, "size", limit = 1000)
 }
