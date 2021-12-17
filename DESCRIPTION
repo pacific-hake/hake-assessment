@@ -51,5 +51,5 @@ Remotes:
     github::nwfsc-assess/nwfscMapping@development,
     github::r4ss/r4ss@bioscale,
     github::ropensci/rnaturalearthhires
-RoxygenNote: 7.0.2.9000
+RoxygenNote: 7.1.2
 Encoding: UTF-8
