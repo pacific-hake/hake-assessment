@@ -205,10 +205,11 @@ s3_dir <- function(folder = NULL,
          call. = FALSE)
   }
   # Remove all trailing slashes
-  while(substr(folder, nchar(folder), nchar(folder)) == "/"){
-    folder <- substr(folder, 1, nchar(folder) - 1)
+  if(!is.null(folder)){
+    while(substr(folder, nchar(folder), nchar(folder)) == "/"){
+      folder <- substr(folder, 1, nchar(folder) - 1)
+    }
   }
-
   out_format <- function(bytes, digits = 2){
     map_chr(bytes, ~{
       if(.x > 1073741824){
