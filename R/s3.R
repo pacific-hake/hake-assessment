@@ -210,7 +210,7 @@ s3_dir <- function(folder = NULL,
   }
 
   out_format <- function(bytes, digits = 2){
-    j <- map_chr(bytes, ~{
+    map_chr(bytes, ~{
       if(.x > 1073741824){
         .x <- .x / 1073741824
         ext = "GB"
