@@ -1,11 +1,40 @@
 #!/bin/bash
+# *Import this file into the 'User data' when setting up a new EC2 instance*
 #
+# ------------------------------------------------------------------------------
+# Installs everything necessary to make the hake Docker container
+#  useable on a Linux AWS EC2 instance, and setup all directories in an
+#  optimal way for running the models.
+#
+# The first step is setting up a FUSE mount to the 'hakestore' S3
+#  (Amazon's storage resource). This is located at:
+#  https://hakestore.s3.ca-central-1.amazonaws.com
+#  * You need the secret key to access content at the URI *
+#
+# The next step is cloning the hake GitHub repository and then
+#  mounting the S3 bucket within the 'hake-assessment' directory.
+#
+# Docker is downloaded and started, and the cgrandin/hake
+#  Docker image is run so that an Rstudio server is running.
+# Two commands are run to ensure that Docker is restarted on
+#  reboot (or stop and restart of an AWS EC2 instance). Also note
+#  the '--restart always' argument to 'docker run' which restarts
+#  the hake container on Docker on restart.
+#
+# The next step is to add any programs we may want to include, like htop.
+#
+# User permission settings are changed. For example full permissions are
+#  needed by the users for the 'mkdir' and 'rmdir' commands which are needed
+#  to copy files and directories around (and for code in the project that
+#  does copying).
+#
+# Some code to run when Rstudio is launched is provided here, and includes
+#  code to copy all model input files from the S3 FUSE directory (hakestore)
+#  to a 'models' directory in the AWS EC@ instance.
+# ------------------------------------------------------------------------------
+
 # Install S3 Fuse from source so that the hakestore S3 directory and its
 # subdirectories can be mounted in the EC2 instance
-#
-# Import this file into the 'User data' when setting up a new EC2 instance
-
-# Install S3 Fuse from source
 yum update
 yum -y install automake fuse fuse-devel gcc-c++ \
     git libcurl-devel libxml2-devel make openssl-devel
@@ -43,19 +72,13 @@ chmod -R 777 hake-assessment
 # Create the new directory to mount the S3 drive on
 mkdir -p /home/ec2-user/hake-assessment/hakestore
 
-# This is how you would mount the S3 drive manually from the command line
+# This is how you mount the S3 drive the initial time
 #  at /home/ec2-user/hake-assessment/hakestore using S3 fuse:
-# s3fs hakestore -o use_cache=/tmp -o allow_other -o umask=0000 /home/ec2-user/hake-assessment/hakestore
-# Place the s3fs mounting into fstab
+s3fs hakestore -o use_cache=/tmp -o allow_other -o umask=0000 /home/ec2-user/hake-assessment/hakestore
+# Place the s3fs mounting into fstab, and increase permissions so that S3 drive
+#  is re-mounted on start of instance after being stopped
 echo "s3fs#hakestore /home/ec2-user/hake-assessment/hakestore fuse _netdev,allow_other,use_cache=/tmp,umask=0000" | tee -a /etc/fstab
-
-# Install htop, a CPU process viewer
-yum -y install htop
-
-# Set the ssh server up to send timeout checks to the clients to make sure they are still connected
-echo "TCPKeepAlive yes" | tee -a /etc/ssh/sshd_config
-echo "ClientAliveInterval 600" | tee -a /etc/ssh/sshd_config
-echo "ClientAliveInterval 0" | tee -a /etc/ssh/sshd_config
+chmod 777 /etc/fstab
 
 # Install and run docker
 amazon-linux-extras enable docker
@@ -72,6 +95,14 @@ docker run -d -p 8787:8787 -e USER=rstudio -e PASSWORD=a \
 # These two commands ensure the docker service starts when the machine starts after being stopped
 systemctl enable docker.service
 systemctl enable containerd.service
+
+# Install htop, a CPU process viewer
+yum -y install htop
+
+# Set the ssh server up to send timeout checks to the clients to make sure they are still connected
+echo "TCPKeepAlive yes" | tee -a /etc/ssh/sshd_config
+echo "ClientAliveInterval 600" | tee -a /etc/ssh/sshd_config
+echo "ClientAliveInterval 0" | tee -a /etc/ssh/sshd_config
 
 # Add rstudio user to sudoers so they can run mkdir command
 echo "rstudio ALL=NOPASSWD: /usr/bin/mkdir" | tee -a /etc/sudoers
