@@ -228,34 +228,33 @@ s3_dir <- function(folder = NULL,
     })
   }
 
-  if(refresh || !exists("s3_dir_vec", envir = .GlobalEnv)){
-    Sys.setenv("AWS_DEFAULT_REGION" = region,
-               "AWS_ACCESS_KEY_ID" = key,
-               "AWS_SECRET_ACCESS_KEY" = secret)
-    bl <- bucketlist(key = key, secret = secret)
+  Sys.setenv("AWS_DEFAULT_REGION" = region,
+             "AWS_ACCESS_KEY_ID" = key,
+             "AWS_SECRET_ACCESS_KEY" = secret)
+  bl <- bucketlist(key = key, secret = secret)
 
-    # Bucket contents, a list of all the object names and sizes and a couple other things
-    bc <- get_bucket(bucket, max = Inf)
+  # Bucket contents, a list of all the object names and sizes and a couple other things
+  bc <- get_bucket(bucket, max = Inf)
 
-    s3_dir_tree <<- map(bc, ~{
-      data.frame(name = .x$Key, size = .x$Size)
-    }) %>% bind_rows
-  }
+  s3_dir_tree <- map(bc, ~{
+    data.frame(name = .x$Key, size = .x$Size)
+  }) %>% bind_rows
 
   if(is.null(folder)){
-    if(!r){
+    if(!recursive){
       s3_dir_tree <- s3_dir_tree %>%
         mutate(name = file.path(bucket, gsub("/.*$", "", name))) %>%
         group_by(name) %>%
         summarize(size = sum(size))
     }
   }else{
-    s3_dir_tree <- s3_dir_tree %>% filter(grepl(paste0(folder, "/"), name))
+    s3_dir_tree <- s3_dir_tree %>%
+      filter(grepl(paste0("^", folder, "/"), name))
     if(!nrow(s3_dir_tree)){
       stop("'", folder, "' was not found in the directory listing",
            call. = FALSE)
     }
-    if(!r){
+    if(!recursive){
       s3_dir_tree <- s3_dir_tree %>%
         mutate(name = gsub(paste0("^(", folder, "/.*?)/.*$"), "\\1", name)) %>%
         group_by(name) %>%
