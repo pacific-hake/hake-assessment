@@ -68,6 +68,19 @@ s3_download <- function(folders = NULL,
   # Remove NULLs from the list (non-matching folders names)
   files_sizes[map_lgl(files_sizes, is.null)] <- NULL
 
+  # Remove directories (ending in /)
+  files_sizes <- map(files_sizes, ~{
+    k <- grep("/$", .x[1])
+    if(length(k)){
+      NULL
+    }else{
+      .x
+    }
+  })
+  # Remove NULLs from the list (non-matching folders names)
+
+  files_sizes[map_lgl(files_sizes, is.null)] <- NULL
+
   tic()
   # Download all files listed in files
   map(files_sizes, ~{
@@ -175,17 +188,13 @@ s3_upload <- function(folders = NULL,
 #'
 #' @param folder The relative directory to give the listing for. If `NULL` a recursive listing of
 #' all files in the bucket root will be returned
-#' @param refresh If `TRUE` and the Global variable `s3_dir_vec` exists, overwrite `s3_dir_vec`
-#' with a fresh listing from the S3 source bucket. If `FALSE`, use the values of `s3_dir_vec`
-#' already in memory to display directory contents
-#' @param r recursive? If `TRUE` recurse and display all subdirectories and files. If `FALSE` only
+#' @param recursive If `TRUE` recurse and display all subdirectories and files. If `FALSE` only
 #' display the current directory's contents
 #'
 #' @return A vector of paths or a [data.tree] object
 #' @export
 s3_dir <- function(folder = NULL,
-                   refresh = FALSE,
-                   r = FALSE,
+                   recursive = FALSE,
                    key_pair_file = here("aws/key_pair.R"),
                    region = "ca-central-1",
                    bucket = "hakestore"){
