@@ -177,22 +177,24 @@ fetch_extra_mcmc <- function(model_path,
   extra_mcmc <- NULL
 
   if(!dir.exists(extra_mcmc_path)){
-    message("The ", extra_mcmc_path, " directory does not exist, so the extra-mcmc wass not loaded")
+    message("The ", extra_mcmc_path, " directory does not exist, so the extra-mcmc was not loaded")
     return(NA)
   }
-  reports_dir <- file.path(extra_mcmc_path, extra_mcmc_reports_path)
+  extra_mcmc_reports_path <- file.path(model_path, extra_mcmc_reports_path)
+  reports_dir <- extra_mcmc_reports_path
   if(!dir.exists(reports_dir)){
-    message("The ", reports_dir, " directory does not exist, so the extra-mcmc wass not loaded")
+    message("The ", reports_dir, " directory does not exist, so the extra-mcmc was not loaded")
     return(NA)
   }
 
   # Get the extra-mcmc directories done in parallel
-  extra_mcmc_dirs <- dir(extra_mcmc_path)
-  extra_mcmc_dirs <- file.path(extra_mcmc_path, extra_mcmc_dirs[grepl("extra-mcmc", extra_mcmc_dirs)])
+  #extra_mcmc_dirs <- dir(extra_mcmc_path)
+  #extra_mcmc_dirs <- file.path(extra_mcmc_path, extra_mcmc_dirs[grepl("extra-mcmc", extra_mcmc_dirs)])
 
   # Get the number of Report.sso files in the directory
-  dir_list <- dir(reports_dir)
-  if(!length(dir_list)){
+  dir_list <- dir(reports_dir, full.names = TRUE)
+  repfile_list <- grep("/Report_mce_.*$", dir_list, value = TRUE)
+  if(!length(repfile_list)){
     message("There are no report files in the ", reports_dir, " directory.")
     return(NA)
   }
@@ -208,59 +210,28 @@ fetch_extra_mcmc <- function(model_path,
   posts <- posts %>% filter(Iter != "Iter",
                             Iter != 0)
 
-  # Break up the loading of report files into the number of posteriors in each extra-mcmc subdir
-  num_reports_each <- map_int(extra_mcmc_dirs, ~{
-    # Suppress warnings because there may be extra 'Iter' lines followed by '0' lines
-    # because the SS MLE just appends these to the posteriors.sso file
-    suppressWarnings(
-      posts <- read_table2(file.path(.x, posts_file_name), col_types = cols())
-    )
-    posts <- posts %>% filter(Iter != "Iter",
-                              Iter != 0)
-    nrow(posts)
+  # Load all report files into a list, 1 element for each report file. Elements that are NA had no file found
+  reps <- map(repfile_list, ~{
+    if(!file.exists(.x)){
+      return(NA)
+    }
+    readLines(.x)
   })
 
-  # from_to is a two-column data.frame with the indices from and to for each processor to load report files
-  from_to <- tibble(from = 1, to = num_reports_each[1])
-  for(i in 2:length(num_reports_each)){
-    nxt <- tibble(from = from_to[i - 1,]$to + 1, to = from_to[i - 1,]$to + num_reports_each[i])
-    from_to <- bind_rows(from_to, nxt)
-  }
-
-  # DEBUG - Make this way faster, uncomment the following line
-  # from_to <- tibble(from = 1000, to = 1010)
-
-  # Load all report files into a list, 1 element for each report file. Elements that are NA had no file found
-  reps <- map(1:nrow(from_to), ~{
-    inds <- as.numeric(from_to[.x, 1]):as.numeric(from_to[.x, 2])
-    map(inds, ~{
-      rep_file <- file.path(reports_dir, paste0("Report_", .x, ".sso"))
-      if(!file.exists(rep_file)){
-        return(NA)
-      }
-      readLines(rep_file)
-    })
-  }) %>%
-    flatten()
-
   # Load all compreport files into a list, 1 element for each report file. Elements that are NA had no file found
-  compreps <- map(1:nrow(from_to), ~{
-    inds <- as.numeric(from_to[.x, 1]):as.numeric(from_to[.x, 2])
-    map(inds, ~{
-      comprep_file <- file.path(reports_dir, paste0("CompReport_", .x, ".sso"))
-      if(!file.exists(comprep_file)){
-        return(NA)
-      }
-      readLines(comprep_file)
-    })
-  }) %>%
-    flatten()
+  compfile_list <- grep("/CompReport_mce_.*$", dir_list, value = TRUE)
+  compreps <- map(compfile_list, ~{
+    if(!file.exists(.x)){
+      return(NA)
+    }
+    readLines(.x)
+  })
 
   #' Extract the vectors from a list into a [tibble::tibble()]
   #'
   #' @param reps_lst A list of vectors, all the same length and structure,
   #' typically extracted as a portion of a Report.sso file
-  #' @param header A vector of column nmaes for the new table
+  #' @param header A vector of column names for the new table
   #'
   #' @return A [tibble::tibble()] representing one row for each of the list
   #'  elements found in `reps_lst`. A new column called `Iter` is prepended and
@@ -296,32 +267,23 @@ fetch_extra_mcmc <- function(model_path,
   comprep_example <- compreps[[which(!is.na(compreps))[1]]]
 
   # Biomass -------------------------------------------------------------------
-  bio_header_ind <- grep("TIME_SERIES", rep_example) + 1
+  bio_header_ind <- grep("^TIME_SERIES", rep_example) + 1
   bio_header_line <- rep_example[bio_header_ind]
   bio_header_line <- bio_header_line[bio_header_line != ""]
   bio_header <- str_split(bio_header_line, " +")[[1]]
   bio_start_ind <- bio_header_ind + 1
-  if(length(bio_start_ind) > 1){
-    bio_start_ind <- bio_start_ind[2]
-  }
-  bio_end_ind <- grep("SPR_SERIES", rep_example) - 2
-  if(length(bio_end_ind) > 1){
-    bio_end_ind <- bio_end_ind[2]
-  }
+  bio_end_ind <- grep("^SPR_SERIES", rep_example) - 2
   reps <- reps[!is.na(reps)]
   reps_bio <- map(reps, ~{.x[bio_start_ind:bio_end_ind]})
 
   # Likelihood ----------------------------------------------------------------
-  like_start_ind <- grep("LIKELIHOOD", rep_example) + 1
-  if(length(like_start_ind) > 1){
-    like_start_ind <- like_start_ind[2]
-  }
+  like_start_ind <- grep("^LIKELIHOOD", rep_example) + 1
   like_end_ind <- like_start_ind + 28
   reps_like <- map(reps, ~{.x[like_start_ind:like_end_ind]})
 
   # Selectivity ---------------------------------------------------------------
   next_yr <- model$endyr + 1
-  sel_header_ind <- grep("Factor Fleet Yr Seas", rep_example)
+  sel_header_ind <- grep("^AGE_SELEX", rep_example) + 5
   sel_header_line <- rep_example[sel_header_ind]
   sel_header <- str_split(sel_header_line, " +")[[1]]
   sel_ind <- grep(paste0(next_yr, "_1Asel"), rep_example)
@@ -333,54 +295,66 @@ fetch_extra_mcmc <- function(model_path,
     select(-c(Iter, Yr))
 
   # Selectivity * Weight ------------------------------------------------------
-  selwt_ind <- grep(paste0(next_yr, "_1_sel\\*wt"), rep_example)
+  # TODO: hack of subtracting 1 - See issue #856
+  selwt_ind <- grep(paste0(next_yr - 1, "_1_sel\\*wt"), rep_example)
   reps_selwt <- map(reps, ~{.x[selwt_ind]})
   selwt <- extract_rep_table(reps_selwt, sel_header) %>%
     select(-c(2:3, 5:8)) %>%
     map_df(as.numeric) %>%
-    filter(Yr == next_yr) %>%
+    filter(Yr == next_yr - 1) %>%
     select(-c(Iter, Yr))
 
   # Dynamic B0 ----------------------------------------------------------------
-  dynb_header_ind <- grep("Dynamic_Bzero", rep_example) + 1
-  if(length(dynb_header_ind) > 1){
-    if(length(dynb_header_ind) != 3){
-      stop("There are not 3 Dynamic_Bzero entries in the Report.sso file",
-           call. = FALSE)
-    }
-    dynb_fish_header_ind <- dynb_header_ind[2]
-    dynb_nofish_header_ind <- dynb_header_ind[3]
-  }
-  dynb_header <- c("Yr", "Area", "Value")
-  dynb_fish_start_ind <- dynb_fish_header_ind + 4
-  dynb_nofish_start_ind <- dynb_nofish_header_ind + 4
-  dynb_fish_end_ind <- grep("NUMBERS_AT_AGE_Annual_2", rep_example) - 2
-  dynb_nofish_end_ind <- grep("NUMBERS_AT_AGE_Annual_1", rep_example) - 2
-  reps_dynb_fish <- map(reps, ~{.x[dynb_fish_start_ind:dynb_fish_end_ind]})
-  reps_dynb_nofish <- map(reps, ~{.x[dynb_nofish_start_ind:dynb_nofish_end_ind]})
-  extra_mcmc$dynb_fish <- extract_rep_table(reps_dynb_fish, dynb_header) %>%
-    select(-c(1, 3)) %>%
-    map_df(as.numeric) %>%
-    filter(Yr %in% start.yr:end.yr)
-  extra_mcmc$dynb_fish_median <- extra_mcmc$dynb_fish %>%
-    group_by(Yr) %>%
-    summarize(median_bo = median(Value))
-  extra_mcmc$dynb_nofish <- extract_rep_table(reps_dynb_nofish, dynb_header) %>%
-    select(-c(1, 3)) %>%
-    map_df(as.numeric) %>%
-    filter(Yr %in% start.yr:end.yr)
-  extra_mcmc$dynb_nofish_median <- extra_mcmc$dynb_nofish %>%
-    group_by(Yr) %>%
-    summarize(median_bo = median(Value))
+  # dynb_header_ind <- grep("Dynamic_Bzero", rep_example) + 1
+  # if(length(dynb_header_ind) > 1){
+  #   if(length(dynb_header_ind) != 3){
+  #     stop("There are not 3 Dynamic_Bzero entries in the Report.sso file",
+  #          call. = FALSE)
+  #   }
+  #   dynb_fish_header_ind <- dynb_header_ind[2]
+  #   dynb_nofish_header_ind <- dynb_header_ind[3]
+  # }
+  # dynb_header <- c("Yr", "Area", "Value")
+  # dynb_fish_start_ind <- dynb_fish_header_ind + 4
+  # dynb_nofish_start_ind <- dynb_nofish_header_ind + 4
+  # dynb_fish_end_ind <- grep("NUMBERS_AT_AGE_Annual_2", rep_example) - 2
+  # dynb_nofish_end_ind <- grep("NUMBERS_AT_AGE_Annual_1", rep_example) - 2
+  # reps_dynb_fish <- map(reps, ~{.x[dynb_fish_start_ind:dynb_fish_end_ind]})
+  # reps_dynb_nofish <- map(reps, ~{.x[dynb_nofish_start_ind:dynb_nofish_end_ind]})
+  # extra_mcmc$dynb_fish <- extract_rep_table(reps_dynb_fish, dynb_header) %>%
+  #   select(-c(1, 3)) %>%
+  #   map_df(as.numeric) %>%
+  #   filter(Yr %in% start.yr:end.yr)
+  # extra_mcmc$dynb_fish_median <- extra_mcmc$dynb_fish %>%
+  #   group_by(Yr) %>%
+  #   summarize(median_bo = median(Value))
+  # extra_mcmc$dynb_nofish <- extract_rep_table(reps_dynb_nofish, dynb_header) %>%
+  #   select(-c(1, 3)) %>%
+  #   map_df(as.numeric) %>%
+  #   filter(Yr %in% start.yr:end.yr)
+  # extra_mcmc$dynb_nofish_median <- extra_mcmc$dynb_nofish %>%
+  #   group_by(Yr) %>%
+  #   summarize(median_bo = median(Value))
 
   # Numbers-at-age ------------------------------------------------------------
-  natage_header_ind <- grep("NUMBERS_AT_AGE_Annual_2 With_fishery", rep_example) + 1
+  natage_header_ind <- grep("^NUMBERS_AT_AGE", rep_example) + 1
   natage_header <- str_split(rep_example[natage_header_ind], " +")[[1]]
   natage_start_ind <- natage_header_ind + 1
-  natage_end_ind <- grep("Z_AT_AGE_Annual_2 With_fishery", rep_example) - 2
+  natage_end_ind <- grep("^BIOMASS_AT_AGE", rep_example) - 2
   reps_natage <- map(reps, ~{.x[natage_start_ind:natage_end_ind]})
   extra_mcmc$natage <- extract_rep_table(reps_natage, natage_header) %>%
-    select(-(1:3)) %>%
+    select(-c("Area",
+              "Bio_Pattern",
+              "Iter",
+              "Sex",
+              "BirthSeas",
+              "Settlement",
+              "Platoon",
+              "Morph",
+              "Seas",
+              "Beg/Mid",
+              "Era",
+              "Time")) %>%
     map_df(as.numeric) %>%
     filter(Yr >= start.yr) %>%
     mutate_at(.vars = vars(-Yr), ~{.x / 1e3})
@@ -389,20 +363,25 @@ fetch_extra_mcmc <- function(model_path,
     summarize_all(median)
 
   # Biomass-at-age ------------------------------------------------------------
-  batage_header_ind <- grep("BIOMASS_AT_AGE", rep_example) + 1
-  if(length(batage_header_ind) > 1){
-    batage_header_ind <- batage_header_ind[2]
-  }
+  batage_header_ind <- grep("^BIOMASS_AT_AGE", rep_example) + 1
   batage_header <- str_split(rep_example[batage_header_ind], " +")[[1]]
   batage_start_ind <- batage_header_ind + 1
-  batage_end_ind <- grep("NUMBERS_AT_LENGTH", rep_example) - 2
-  if(length(batage_end_ind) > 1){
-    batage_end_ind <- batage_end_ind[2]
-  }
+  batage_end_ind <- grep("^NUMBERS_AT_LENGTH", rep_example) - 2
   reps_batage <- map(reps, ~{.x[batage_start_ind:batage_end_ind]})
   extra_mcmc$batage <- extract_rep_table(reps_batage, batage_header) %>%
     filter(`Beg/Mid` == "B") %>%
-    select(-c(1:8, 10:13)) %>%
+    select(-c("Area",
+               "Bio_Pattern",
+               "Iter",
+               "Sex",
+               "BirthSeas",
+               "Settlement",
+               "Platoon",
+               "Morph",
+               "Seas",
+               "Beg/Mid",
+               "Era",
+               "Time")) %>%
     map_df(as.numeric) %>%
     mutate_at(.vars = vars(-Yr), ~{.x / 1e3}) %>%
     filter(Yr >= start.yr)
@@ -411,20 +390,21 @@ fetch_extra_mcmc <- function(model_path,
     summarize_all(median)
 
   # Catch-at-age in numbers ---------------------------------------------------
-  catage_header_ind <- grep("CATCH_AT_AGE", rep_example) + 1
-  if(length(catage_header_ind) > 1){
-    catage_header_ind <- catage_header_ind[2]
-  }
+  catage_header_ind <- grep("^CATCH_AT_AGE", rep_example) + 1
   catage_header <- gsub("XX", "", str_split(rep_example[catage_header_ind], " +")[[1]])
   catage_header <- catage_header[catage_header != ""]
   catage_start_ind <- catage_header_ind + 1
-  catage_end_ind <- grep("DISCARD_AT_AGE", rep_example) - 2
-  if(length(catage_end_ind) > 1){
-    catage_end_ind <- catage_end_ind[2]
-  }
+  catage_end_ind <- grep("^DISCARD_AT_AGE", rep_example) - 2
   reps_catage <- map(reps, ~{gsub("XX", "", .x[catage_start_ind:catage_end_ind])})
   extra_mcmc$catage <- extract_rep_table(reps_catage, catage_header) %>%
-    select(-c(1:6, 8:9)) %>%
+    select(-c("Area",
+              "Iter",
+              "Fleet",
+              "Sex",
+              "Type",
+              "Morph",
+              "Seas",
+              "Era")) %>%
     map_df(as.numeric) %>%
     filter(Yr >= start.yr)
   extra_mcmc$catage_median <- extra_mcmc$catage %>%
@@ -464,17 +444,14 @@ fetch_extra_mcmc <- function(model_path,
   #   summarize_all(median)
 
   # Catchability --------------------------------------------------------------
-  q_header_ind <- grep("INDEX_2", rep_example) + 1
-  if(length(q_header_ind) > 1){
-    q_header_ind <- q_header_ind[2]
-  }
+  q_header_ind <- grep("^INDEX_2", rep_example) + 1
   q_header <- str_split(rep_example[q_header_ind], " +")[[1]]
   q_start_ind <- q_header_ind + 1
   ncpue <- nrow(model$dat$CPUE)
   q_end_ind <- q_start_ind + ncpue - 1
   reps_q <- map(reps, ~{.x[q_start_ind:q_end_ind]})
-  ## Comp tables
-  comp_header_ind <- grep("Composition_Database", comprep_example) + 1
+  # Comp tables
+  comp_header_ind <- grep("^Composition_Database", comprep_example) + 1
   comp_header <- str_split(comprep_example[comp_header_ind], " +")[[1]]
   comp_start_ind <- comp_header_ind + 1
   comp_end_ind <- grep("End_comp_data", comprep_example) - 1
@@ -482,9 +459,18 @@ fetch_extra_mcmc <- function(model_path,
   reps_comp <- map(compreps, ~{.x[comp_start_ind:comp_end_ind]})
 
   # Apply selectivity to numbers-at-age ---------------------------------------
+  # TODO: hack of subtracting 1 - See issue #859
   natage <- extra_mcmc$natage %>%
-    filter(Yr == next_yr) %>%
+    filter(Yr == next_yr - 1) %>%
     select(-Yr)
+
+  ####  natage has 1998 rows and sel has 999 rows...
+  ####################################################
+  ####################################################
+  ####################################################
+  ####################################################
+  browser()
+
 
   natsel <- natage * sel
   natselwt <- natage * selwt

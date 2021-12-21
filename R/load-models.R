@@ -96,7 +96,7 @@ load_ss_files <- function(model_path = NA,
   # Set default mcmc members to NA. Later code depends on this.
   model$mcmc <- NA
   # Set the mcmc path. This doesn't mean it exists.
-  mcmc.dir <- file.path(model_path, "mcmc")
+  mcmc.dir <- file.path(model_path, "mcmc", "sso")
   model$mcmcpath <- mcmc.dir
   # Save the posterior names from the mcmc output. This is necessary for the function `plot_mcmc_param_stats()`
   tmp <- readLines(file.path(mcmc.dir, "posteriors.sso"), n = 1)

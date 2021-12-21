@@ -69,8 +69,8 @@ stable_catch_path <- "stable-catch"
 spr_100_path <- "spr-100"
 forecasts_path <- "forecasts"
 retrospectives_path <- "retrospectives"
-extra_mcmc_path <- "extra-mcmc"
-extra_mcmc_reports_path <- "reports"
+extra_mcmc_path <- "mcmc/sso"
+extra_mcmc_reports_path <- extra_mcmc_path
 
 ss_executable <- "ss.exe"
 starter_file_name <- "starter.ss"
