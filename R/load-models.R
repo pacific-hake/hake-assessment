@@ -330,8 +330,8 @@ create.key.nuisance.posteriors.files <- function(model,
                                                  key.post.file,
                                                  nuisance.post.file){
   ## Creates the two files for key and nuisance posteriors
-  key.file <- file.path(model$mcmcpath, key.post.file)
-  nuisance.file <- file.path(model$mcmcpath, nuisance.post.file)
+  key.file <- file.path(model$path, extra_mcmc_path, key.post.file)
+  nuisance.file <- file.path(model$path, extra_mcmc_path, nuisance.post.file)
 
   mc <- model$mcmc
   mc.names <- names(mc)

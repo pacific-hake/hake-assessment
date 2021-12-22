@@ -98,10 +98,12 @@ run_catch_levels_default_hr <- function(model,
                                         ...){
 
   mcmc_path <- model$mcmcpath
+  files <- list.files(mcmc_path)
+  files <- files[files != "sso"]
   file.copy(file.path(mcmc_path,
-                      list.files(mcmc_path)),
+                      files),
             file.path(default_hr_path,
-                      list.files(mcmc_path)),
+                      files),
             copy.mode = TRUE)
 
   forecast_file <- file.path(default_hr_path, forecast_file_name)
@@ -156,10 +158,12 @@ run_catch_levels_spr_100 <- function(model,
                                      ...){
 
   mcmc_path <- model$mcmcpath
+  files <- list.files(mcmc_path)
+  files <- files[files != "sso"]
   file.copy(file.path(mcmc_path,
-                      list.files(mcmc_path)),
+                      files),
             file.path(spr_100_path,
-                      list.files(mcmc_path)),
+                      files),
             copy.mode = TRUE)
 
   forecast_file <- file.path(spr_100_path, "forecast.ss")
@@ -239,10 +243,12 @@ run_catch_levels_stable_catch <- function(model,
                                           ...){
 
   mcmc_path <- model$mcmcpath
+  files <- list.files(mcmc_path)
+  files <- files[files != "sso"]
   file.copy(file.path(mcmc_path,
-                      list.files(mcmc_path)),
+                      files),
             file.path(stable_catch_path,
-                      list.files(mcmc_path)),
+                      files),
             copy.mode = TRUE)
 
   forecast_file <- file.path(stable_catch_path, forecast_file_name)

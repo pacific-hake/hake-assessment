@@ -19,7 +19,7 @@ run_extra_mcmc <- function(model_path,
   stopifnot(num_procs < detectCores())
   model <- load_ss_files(model_path)
   model_path <- model$path
-  mcmc_path <- model$mcmcpath
+  mcmc_path <- file.path(model$mcmcpath, "sso")
 
   ## Read posteriors and split up into batches
   num_posts_per_proc <- nrow(model$mcmc) %/% num_procs
@@ -31,7 +31,7 @@ run_extra_mcmc <- function(model_path,
     nxt <- tibble(from = from_to[i - 1,]$to + 1, to = from_to[i - 1,]$to + num_posts_by_proc[i])
     from_to <- bind_rows(from_to, nxt)
   }
-  posts <- read_table2(file.path(model$mcmcpath, posts_file_name), col_types = cols())
+  posts <- read_table2(file.path(mcmc_path, posts_file_name), col_types = cols())
   # Remove all extra columns that start with X. These represent extra whitespace at end of header row in file
   postsxgrep <- grep("^X", names(posts))
   if(length(postsxgrep)){
@@ -39,7 +39,7 @@ run_extra_mcmc <- function(model_path,
       select(-postsxgrep)
   }
   post_lst <- split_df(posts, from_to)
-  derposts <- read_table2(file.path(model$mcmcpath, derposts_file_name), col_types = cols())
+  derposts <- read_table2(file.path(mcmc_path, derposts_file_name), col_types = cols())
   # Remove all extra columns that start with X. These represent extra whitespace at end of header row in file
   derxgrep <- grep("^X", names(derposts))
   if(length(derxgrep)){
@@ -68,97 +68,6 @@ run_extra_mcmc <- function(model_path,
   plan()
 }
 
-#' Setup model files and batch files for a single extra-mcmc folder
-#'
-#' @param model A model as loaded by [load_ss_files()]
-#' @param posts A data frame of posteriors
-#' @param derposts A data frame of derived posteriors
-#' @param extra_mcmc_path The short path of the extra MCMC folder
-#' @param extra_mcmc_num The number of the folder inside the extra MCMC folder
-#' @param from_two A two-element vector for the indices to be used to write the report files
-#' @return
-#' @export
-#'
-#' @examples
-run_extra_mcmc_chunk <- function(model,
-                                 posts,
-                                 derposts,
-                                 extra_mcmc_path = "extra-mcmc",
-                                 extra_mcmc_num,
-                                 from_to,
-                                 ...){
-  from_to <- as.numeric(from_to[1, 1]):as.numeric(from_to[1, 2])
-  model_path <- model$path
-  mcmc_path <- model$mcmcpath
-  checksum <- 999
-  ## create a table of parameter values based on labels in parameters section of Report.sso
-  newpar <- data.frame(value = c(1, model$parameters$Value, checksum),
-                       hash = "#",
-                       label = c("dummy_parm", model$parameters$Label, "checksum999"),
-                       stringsAsFactors = FALSE)
-
-  ## add hash before first column name
-  names(newpar)[1] <- "#value"
-
-  extra_mcmc_full_path <- file.path(model_path, extra_mcmc_path)
-  reports_path <- file.path(extra_mcmc_full_path, "reports")
-
-  sub_extra_mcmc_path <- file.path(extra_mcmc_full_path, paste0(extra_mcmc_path, "-", extra_mcmc_num))
-  dir.create(sub_extra_mcmc_path, showWarnings = FALSE)
-  unlink(file.path(sub_extra_mcmc_path, "*"), recursive = TRUE)
-  dir.create(reports_path, showWarnings = FALSE)
-  unlink(file.path(reports_path, "*"), recursive = TRUE)
-
-  ## Copy files into the subdirectory from the model/mcmc directory
-  file.copy(file.path(mcmc_path, list.files(mcmc_path)), sub_extra_mcmc_path)
-  write_delim(posts, file.path(sub_extra_mcmc_path, posts_file_name))
-  write_delim(derposts, file.path(sub_extra_mcmc_path, derposts_file_name))
-  write_delim(newpar, file.path(sub_extra_mcmc_path, par_file_name))
-
-  start <- SS_readstarter(file.path(sub_extra_mcmc_path, starter_file_name), verbose = FALSE)
-  ## Change starter file to read from par file
-  start$init_values_src <- 1
-  SS_writestarter(start, dir = sub_extra_mcmc_path, file = starter_file_name, overwrite = TRUE, verbose = FALSE)
-
-  ## modify control file to make bias adjustment of recruit devs = 1.0 for all years
-  ## this is required to match specification used by MCMC as noted in
-  ## "Spawner-Recruitment" section of SS User Manual and described in
-  ## Methot & Taylor (2011)
-  ctl_lines <- readLines(file.path(sub_extra_mcmc_path, start$ctlfile))
-  bias_adjust_line_num <- grep("Maximum bias adjustment in MPD", ctl_lines)
-  if(length(bias_adjust_line_num) == 0){
-    # alternative label used in control.ss_new file
-    bias_adjust_line_num <- grep("max_bias_adj_in_MPD", ctl_lines)
-  }
-  ctl_lines[bias_adjust_line_num] <-
-    "-1      # Maximum bias adjustment in MPD (set to -1 for extra.mcmc only)"
-  writeLines(ctl_lines, file.path(sub_extra_mcmc_path, start$ctlfile))
-  for(irow in 1:nrow(posts)){
-    ## replace values in newpar table with posteriors values
-    ## (excluding 1 and 2 for "Iter" and "Objective_function")
-
-    newpar[newpar$label %in% names(posts), 1] <- as.numeric(posts[irow, -(1:2)])
-    write_delim(newpar, file.path(sub_extra_mcmc_path, par_file_name))
-    ## delete existing output files to make sure that if model fails to run,
-    ## it won't just copy the same files again and again
-    file.remove(file.path(sub_extra_mcmc_path, report_file_name))
-    file.remove(file.path(sub_extra_mcmc_path, compreport_file_name))
-
-    shell_command <- paste0("cd ", sub_extra_mcmc_path, " & ", ss_executable, " -maxfn 0 -phase 10 -nohess")
-    system_(shell_command, wait = FALSE, intern = TRUE)
-
-    file.copy(file.path(sub_extra_mcmc_path, par_file_name),
-              file.path(reports_path, paste0("ss_output", from_to[irow], ".par")),
-              overwrite = TRUE)
-    file.copy(file.path(sub_extra_mcmc_path, report_file_name),
-              file.path(reports_path, paste0("Report_", from_to[irow], ".sso")),
-              overwrite = TRUE)
-    file.copy(file.path(sub_extra_mcmc_path, compreport_file_name),
-              file.path(reports_path, paste0("CompReport_", from_to[irow], ".sso")),
-              overwrite = TRUE)
-  }
-}
-
 #' Create and return a list of stats to attach to the main model by
 #' looking in the model's path for the report files.
 #'
@@ -180,22 +89,16 @@ fetch_extra_mcmc <- function(model_path,
     message("The ", extra_mcmc_path, " directory does not exist, so the extra-mcmc was not loaded")
     return(NA)
   }
-  extra_mcmc_reports_path <- file.path(model_path, extra_mcmc_reports_path)
-  reports_dir <- extra_mcmc_reports_path
-  if(!dir.exists(reports_dir)){
-    message("The ", reports_dir, " directory does not exist, so the extra-mcmc was not loaded")
+  if(!dir.exists(extra_mcmc_path)){
+    message("The ", extra_mcmc_path, " directory does not exist, so the extra-mcmc was not loaded")
     return(NA)
   }
 
-  # Get the extra-mcmc directories done in parallel
-  #extra_mcmc_dirs <- dir(extra_mcmc_path)
-  #extra_mcmc_dirs <- file.path(extra_mcmc_path, extra_mcmc_dirs[grepl("extra-mcmc", extra_mcmc_dirs)])
-
   # Get the number of Report.sso files in the directory
-  dir_list <- dir(reports_dir, full.names = TRUE)
+  dir_list <- dir(extra_mcmc_path, full.names = TRUE)
   repfile_list <- grep("/Report_mce_.*$", dir_list, value = TRUE)
   if(!length(repfile_list)){
-    message("There are no report files in the ", reports_dir, " directory.")
+    message("There are no report files in the ", extra_mcmc_path, " directory.")
     return(NA)
   }
 
@@ -203,13 +106,14 @@ fetch_extra_mcmc <- function(model_path,
 
   # Suppress warnings because there is an extra whitespace at the end of the header line in the file.
   suppressWarnings(
-    posts <- read_table2(file.path(mcmc_path, posts_file_name), col_types = cols())
+    posts <- read_table2(file.path(extra_mcmc_path, posts_file_name), col_types = cols())
   )
   # Remove extra MLE run outputs. SS appends a new header followed by a 0-Iter row for an MLE run.
   # Sometimes MLEs are run by accident or on purpose at another time and forgotten about.
   posts <- posts %>% filter(Iter != "Iter",
                             Iter != 0)
 
+  message("Loading Report.sso files...")
   # Load all report files into a list, 1 element for each report file. Elements that are NA had no file found
   reps <- map(repfile_list, ~{
     if(!file.exists(.x)){
@@ -218,6 +122,7 @@ fetch_extra_mcmc <- function(model_path,
     readLines(.x)
   })
 
+  message("Loading CompReport.sso files...")
   # Load all compreport files into a list, 1 element for each report file. Elements that are NA had no file found
   compfile_list <- grep("/CompReport_mce_.*$", dir_list, value = TRUE)
   compreps <- map(compfile_list, ~{
@@ -267,6 +172,7 @@ fetch_extra_mcmc <- function(model_path,
   comprep_example <- compreps[[which(!is.na(compreps))[1]]]
 
   # Biomass -------------------------------------------------------------------
+  message("Extracting biomass...")
   bio_header_ind <- grep("^TIME_SERIES", rep_example) + 1
   bio_header_line <- rep_example[bio_header_ind]
   bio_header_line <- bio_header_line[bio_header_line != ""]
@@ -277,11 +183,13 @@ fetch_extra_mcmc <- function(model_path,
   reps_bio <- map(reps, ~{.x[bio_start_ind:bio_end_ind]})
 
   # Likelihood ----------------------------------------------------------------
+  message("Extracting likelihood...")
   like_start_ind <- grep("^LIKELIHOOD", rep_example) + 1
   like_end_ind <- like_start_ind + 28
   reps_like <- map(reps, ~{.x[like_start_ind:like_end_ind]})
 
   # Selectivity ---------------------------------------------------------------
+  message("Extracting selectivities...")
   next_yr <- model$endyr + 1
   sel_header_ind <- grep("^AGE_SELEX", rep_example) + 5
   sel_header_line <- rep_example[sel_header_ind]
@@ -301,6 +209,7 @@ fetch_extra_mcmc <- function(model_path,
 
   # Selectivity * Weight ------------------------------------------------------
   # TODO: hack of subtracting 1 - See issue #856
+  message("Extracting vulnerable biomass...")
   selwt_ind <- grep(paste0(next_yr - 1, "_1_sel\\*wt"), rep_example)
   reps_selwt <- map(reps, ~{.x[selwt_ind]})
   selwt <- extract_rep_table(reps_selwt, sel_header) %>%
@@ -347,6 +256,7 @@ fetch_extra_mcmc <- function(model_path,
   #   summarize(median_bo = median(Value))
 
   # Numbers-at-age ------------------------------------------------------------
+  message("Extracting Numbers-at-age...")
   natage_header_ind <- grep("^NUMBERS_AT_AGE", rep_example) + 1
   natage_header <- str_split(rep_example[natage_header_ind], " +")[[1]]
   natage_start_ind <- natage_header_ind + 1
@@ -374,6 +284,7 @@ fetch_extra_mcmc <- function(model_path,
     summarize_all(median)
 
   # Biomass-at-age ------------------------------------------------------------
+  message("Extracting Biomass-at-age...")
   batage_header_ind <- grep("^BIOMASS_AT_AGE", rep_example) + 1
   batage_header <- str_split(rep_example[batage_header_ind], " +")[[1]]
   batage_start_ind <- batage_header_ind + 1
@@ -401,6 +312,7 @@ fetch_extra_mcmc <- function(model_path,
     summarize_all(median)
 
   # Catch-at-age in numbers ---------------------------------------------------
+  message("Extracting Catch-at-age...")
   catage_header_ind <- grep("^CATCH_AT_AGE", rep_example) + 1
   catage_header <- gsub("XX", "", str_split(rep_example[catage_header_ind], " +")[[1]])
   catage_header <- catage_header[catage_header != ""]
@@ -423,6 +335,7 @@ fetch_extra_mcmc <- function(model_path,
     summarize_all(median)
 
   # Catch-at-age in biomass ---------------------------------------------------
+  message("Extracting Catch-at-age in biomass...")
   iter <- extract_rep_table(reps_catage, catage_header) %>%
     pull(Iter) %>%
     unique
@@ -441,6 +354,7 @@ fetch_extra_mcmc <- function(model_path,
 
   # Exploitation-rate-at-age --------------------------------------------------
   # Divide catch-at-age-biomass by 1000 to make the same units, multiply by 100 to make percentage
+  message("Extracting Exploitation-rate-at-age...")
   yrs <- extra_mcmc$catage_biomass$Yr
   extra_mcmc$expatage <- map2(extra_mcmc$catage_biomass, extra_mcmc$batage, ~{.x / .y / 1e3 * 100}) %>% map_df(~{.x}) %>%
     mutate(Yr = yrs)
@@ -455,13 +369,16 @@ fetch_extra_mcmc <- function(model_path,
   #   summarize_all(median)
 
   # Catchability --------------------------------------------------------------
+  message("Extracting Survey indices...")
   q_header_ind <- grep("^INDEX_2", rep_example) + 1
   q_header <- str_split(rep_example[q_header_ind], " +")[[1]]
   q_start_ind <- q_header_ind + 1
   ncpue <- nrow(model$dat$CPUE)
   q_end_ind <- q_start_ind + ncpue - 1
   reps_q <- map(reps, ~{.x[q_start_ind:q_end_ind]})
-  # Comp tables
+
+  # Composition tables --------------------------------------------------------
+  message("Extracting Age composition tables...")
   comp_header_ind <- grep("^Composition_Database", comprep_example) + 1
   comp_header <- str_split(comprep_example[comp_header_ind], " +")[[1]]
   comp_start_ind <- comp_header_ind + 1
@@ -471,6 +388,7 @@ fetch_extra_mcmc <- function(model_path,
 
   # Apply selectivity to numbers-at-age ---------------------------------------
   # TODO: hack of subtracting 1 - See issue #859
+  message("Applying selectivity to numbers-at-age...")
   natage <- extra_mcmc$natage %>%
     filter(Yr == next_yr - 1) %>%
     select(-Yr)
@@ -487,6 +405,7 @@ fetch_extra_mcmc <- function(model_path,
     select(-rsum)
 
   # CPUE table and values (Q) -------------------------------------------------
+  message("Extracting 'CPUE' table...")
   q <- extract_rep_table(reps_q, q_header) %>%
     select(Iter, Exp, Calc_Q)
   iter <- unique(q$Iter)
@@ -516,6 +435,7 @@ fetch_extra_mcmc <- function(model_path,
   extra_mcmc$cpue.0.975 <- as.numeric(cpue[3,])
 
   # Add total biomass to time series data frame -------------------------------
+  message("Add biomass summary values to time series data frame...")
   timeseries <- extract_rep_table(reps_bio, bio_header) %>%
     select(Iter, Bio_all, Bio_smry)
   iter <- unique(timeseries$Iter)
@@ -536,6 +456,7 @@ fetch_extra_mcmc <- function(model_path,
                                                                        probs = probs)
 
   # Median and quantiles of expected values and Pearson -----------------------
+  message("Calculating Pearson residuals...")
   comp <- extract_rep_table(reps_comp, comp_header)
   iter <- unique(comp$Iter)
   comp <- comp %>%
