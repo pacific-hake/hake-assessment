@@ -289,7 +289,12 @@ fetch_extra_mcmc <- function(model_path,
   sel_ind <- grep(paste0(next_yr, "_1Asel"), rep_example)
   reps_sel <- map(reps, ~{.x[sel_ind]})
   sel <- extract_rep_table(reps_sel, sel_header) %>%
-    select(-c(2:3, 5:8)) %>%
+    select(-c("Factor",
+              "Fleet",
+              "Seas",
+              "Sex",
+              "Morph",
+              "Label")) %>%
     map_df(as.numeric) %>%
     filter(Yr == next_yr) %>%
     select(-c(Iter, Yr))
@@ -299,7 +304,12 @@ fetch_extra_mcmc <- function(model_path,
   selwt_ind <- grep(paste0(next_yr - 1, "_1_sel\\*wt"), rep_example)
   reps_selwt <- map(reps, ~{.x[selwt_ind]})
   selwt <- extract_rep_table(reps_selwt, sel_header) %>%
-    select(-c(2:3, 5:8)) %>%
+    select(-c("Factor",
+              "Fleet",
+              "Seas",
+              "Sex",
+              "Morph",
+              "Label")) %>%
     map_df(as.numeric) %>%
     filter(Yr == next_yr - 1) %>%
     select(-c(Iter, Yr))
@@ -343,6 +353,7 @@ fetch_extra_mcmc <- function(model_path,
   natage_end_ind <- grep("^BIOMASS_AT_AGE", rep_example) - 2
   reps_natage <- map(reps, ~{.x[natage_start_ind:natage_end_ind]})
   extra_mcmc$natage <- extract_rep_table(reps_natage, natage_header) %>%
+    filter(`Beg/Mid` == "B") %>%
     select(-c("Area",
               "Bio_Pattern",
               "Iter",
@@ -371,17 +382,17 @@ fetch_extra_mcmc <- function(model_path,
   extra_mcmc$batage <- extract_rep_table(reps_batage, batage_header) %>%
     filter(`Beg/Mid` == "B") %>%
     select(-c("Area",
-               "Bio_Pattern",
-               "Iter",
-               "Sex",
-               "BirthSeas",
-               "Settlement",
-               "Platoon",
-               "Morph",
-               "Seas",
-               "Beg/Mid",
-               "Era",
-               "Time")) %>%
+              "Bio_Pattern",
+              "Iter",
+              "Sex",
+              "BirthSeas",
+              "Settlement",
+              "Platoon",
+              "Morph",
+              "Seas",
+              "Beg/Mid",
+              "Era",
+              "Time")) %>%
     map_df(as.numeric) %>%
     mutate_at(.vars = vars(-Yr), ~{.x / 1e3}) %>%
     filter(Yr >= start.yr)
@@ -463,14 +474,6 @@ fetch_extra_mcmc <- function(model_path,
   natage <- extra_mcmc$natage %>%
     filter(Yr == next_yr - 1) %>%
     select(-Yr)
-
-  ####  natage has 1998 rows and sel has 999 rows...
-  ####################################################
-  ####################################################
-  ####################################################
-  ####################################################
-  browser()
-
 
   natsel <- natage * sel
   natselwt <- natage * selwt
