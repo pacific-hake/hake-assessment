@@ -81,32 +81,27 @@ fetch_extra_mcmc <- function(model_path,
                              ...){
 
   model <- load_ss_files(model_path, ...)
-  mcmc_path <- model$mcmcpath
-  extra_mcmc_path <- file.path(model_path, extra_mcmc_path)
-  extra_mcmc <- NULL
 
-  if(!dir.exists(extra_mcmc_path)){
-    message("The ", extra_mcmc_path, " directory does not exist, so the extra-mcmc was not loaded")
-    return(NA)
-  }
-  if(!dir.exists(extra_mcmc_path)){
-    message("The ", extra_mcmc_path, " directory does not exist, so the extra-mcmc was not loaded")
+  if(!dir.exists(model$extra_mcmc_path)){
+    message("The ", model$extra_mcmc_path,
+            " directory does not exist, so the extra mcmc files were not loaded ",
+            " for model located in ", model$path)
     return(NA)
   }
 
   # Get the number of Report.sso files in the directory
-  dir_list <- dir(extra_mcmc_path, full.names = TRUE)
+  dir_list <- dir(model$extra_mcmc_path, full.names = TRUE)
   repfile_list <- grep("/Report_mce_.*$", dir_list, value = TRUE)
   if(!length(repfile_list)){
-    message("There are no report files in the ", extra_mcmc_path, " directory.")
+    message("There are no report files in the ", model$extra_mcmc_path, " directory.")
     return(NA)
   }
 
-  message("\nLoading Extra MCMCs from ", extra_mcmc_path)
+  message("\nLoading Extra MCMCs from ", model$extra_mcmc_path)
 
   # Suppress warnings because there is an extra whitespace at the end of the header line in the file.
   suppressWarnings(
-    posts <- read_table2(file.path(extra_mcmc_path, posts_file_name), col_types = cols())
+    posts <- read_table2(file.path(model$extra_mcmc_path, posts_file_name), col_types = cols())
   )
   # Remove extra MLE run outputs. SS appends a new header followed by a 0-Iter row for an MLE run.
   # Sometimes MLEs are run by accident or on purpose at another time and forgotten about.
@@ -131,6 +126,8 @@ fetch_extra_mcmc <- function(model_path,
     }
     readLines(.x)
   })
+
+  extra_mcmc <- list()
 
   #' Extract the vectors from a list into a [tibble::tibble()]
   #'
