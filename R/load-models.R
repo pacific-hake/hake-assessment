@@ -324,21 +324,21 @@ calc.mcmc <- function(mcmc,
 }
 
 create.key.nuisance.posteriors.files <- function(model,
-                                                 posterior.regex,
-                                                 key.post.file,
-                                                 nuisance.post.file){
+                                                 posterior_regex,
+                                                 key_post_file,
+                                                 nuisance_post_file){
   ## Creates the two files for key and nuisance posteriors
-  key.file <- file.path(model$path, extra_mcmc_path, key.post.file)
-  nuisance.file <- file.path(model$path, extra_mcmc_path, nuisance.post.file)
+  key_file <- here::here(model$extra_mcmc_path, key_post_file)
+  nuisance_file <- here::here(model$extra_mcmc_path, nuisance_post_file)
 
   mc <- model$mcmc
-  mc.names <- names(mc)
-  mcmc.grep <- unique(grep(paste(posterior.regex, collapse="|"), mc.names))
-  mcmc.names <- mc.names[mcmc.grep]
-  keys <- mc[,mcmc.grep]
-  nuisances <- mc[,-mcmc.grep]
-  write.csv(keys, key.file, row.names = FALSE)
-  write.csv(nuisances, nuisance.file, row.names = FALSE)
+  mc_names <- names(mc)
+  mcmc_grep <- unique(grep(paste(posterior_regex, collapse="|"), mc_names))
+  mcmc_names <- mc_names[mcmc_grep]
+  keys <- mc[, mcmc_grep]
+  nuisances <- mc[, -mcmc_grep]
+  write.csv(keys, key_file, row.names = FALSE)
+  write.csv(nuisances, nuisance_file, row.names = FALSE)
 }
 
 #' Load models from files created using [create_rds_file()]

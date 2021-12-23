@@ -97,14 +97,19 @@ run_catch_levels_default_hr <- function(model,
                                         forecast_yrs,
                                         ...){
 
-  mcmc_path <- model$mcmcpath
-  files <- list.files(mcmc_path)
+  files <- list.files(model$mcmc_path)
   files <- files[files != "sso"]
-  file.copy(file.path(mcmc_path,
+  file.copy(file.path(model$mcmc_path,
                       files),
             file.path(default_hr_path,
                       files),
             copy.mode = TRUE)
+
+  # Copy derived posteriors from the applicable directory
+  file.copy(file.path(ifelse(model$extra_mcmc_exists, model$extra_mcmc_path, model$mcmc_path),
+                      derposts_file_name),
+            file.path(default_hr_path,
+                      derposts_file_name))
 
   forecast_file <- file.path(default_hr_path, forecast_file_name)
   default_hr_catch <- vector(length = length(forecast_yrs), mode = "numeric")
@@ -157,14 +162,19 @@ run_catch_levels_spr_100 <- function(model,
                                      catch_levels_max_iter,
                                      ...){
 
-  mcmc_path <- model$mcmcpath
-  files <- list.files(mcmc_path)
+  files <- list.files(model$mcmc_path)
   files <- files[files != "sso"]
-  file.copy(file.path(mcmc_path,
+  file.copy(file.path(model$mcmc_path,
                       files),
             file.path(spr_100_path,
                       files),
             copy.mode = TRUE)
+
+  # Copy derived posteriors from the applicable directory
+  file.copy(file.path(ifelse(model$extra_mcmc_exists, model$extra_mcmc_path, model$mcmc_path),
+                      derposts_file_name),
+            file.path(spr_100_path,
+                      derposts_file_name))
 
   forecast_file <- file.path(spr_100_path, "forecast.ss")
 
@@ -242,14 +252,19 @@ run_catch_levels_stable_catch <- function(model,
                                           catch_levels_max_iter,
                                           ...){
 
-  mcmc_path <- model$mcmcpath
-  files <- list.files(mcmc_path)
+  files <- list.files(model$mcmc_path)
   files <- files[files != "sso"]
-  file.copy(file.path(mcmc_path,
+  file.copy(file.path(model$mcmc_path,
                       files),
             file.path(stable_catch_path,
                       files),
             copy.mode = TRUE)
+
+  # Copy derived posteriors from the applicable directory
+  file.copy(file.path(ifelse(model$extra_mcmc_exists, model$extra_mcmc_path, model$mcmc_path),
+                      derposts_file_name),
+            file.path(stable_catch_path,
+                      derposts_file_name))
 
   forecast_file <- file.path(stable_catch_path, forecast_file_name)
   stable_catch <- vector(length = length(forecast_yrs), mode = "numeric")
@@ -346,7 +361,9 @@ run_catch_levels <- function(model_path,
                            forecast_yrs = forecast_yrs,
                            catch_levels_spr_tol = catch_levels_spr_tol,
                            catch_levels_catch_tol = catch_levels_catch_tol,
-                           catch_levels_max_iter = catch_levels_max_iter){
+                           catch_levels_max_iter = catch_levels_max_iter,
+                           get_os = get_os,
+                           system_ = system_){
     if(x == 1){
       model <- load_ss_files(model_path)
       default_hr_path <- file.path(catch_levels_path, default_hr_path)
@@ -391,6 +408,7 @@ run_catch_levels <- function(model_path,
                                        derposts_file_name = derposts_file_name,
                                        create.key.nuisance.posteriors.files = create.key.nuisance.posteriors.files,
                                        calc.mcmc = calc.mcmc,
+                                       get_os = get_os,
                                        strip.columns = strip.columns,
                                        run_catch_levels_default_hr = run_catch_levels_default_hr,
                                        run_catch_levels_spr_100 = run_catch_levels_spr_100,
@@ -398,6 +416,7 @@ run_catch_levels <- function(model_path,
                                        latex.bold = latex.bold,
                                        forecast_file_name = forecast_file_name,
                                        ss_executable = ss_executable,
-                                       show_ss_output = show_ss_output)))
+                                       show_ss_output = show_ss_output,
+                                       system_ = system_)))
   plan()
 }

@@ -66,8 +66,7 @@ create_rds_file <- function(model_dir = NULL, ...){
   model <- load_ss_files(model_fullpath, ...)
 
   # Try loading extra mcmc output. If none are found or there is a problem, model$extra.mcmc will be NA
-  model$extra.mcmc.path <- file.path(model_fullpath, extra_mcmc_path)
-  if(dir.exists(model$extra.mcmc.path)){
+  if(model$extra_mcmc_exists){
     model$extra.mcmc <- fetch_extra_mcmc(model$path)
   }else{
     model$extra.mcmc <- NA
