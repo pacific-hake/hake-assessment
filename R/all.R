@@ -71,7 +71,7 @@ spr_100_path <- "spr-100"
 forecasts_path <- "forecasts"
 retrospectives_path <- "retrospectives"
 
-ss_executable <- "ss.exe"
+ss_executable <- "ss"
 starter_file_name <- "starter.ss"
 par_file_name <- "ss.par"
 forecast_file_name <- "forecast.ss"
@@ -80,6 +80,8 @@ posts_file_name <- "posteriors.sso"
 derposts_file_name <- "derived_posteriors.sso"
 report_file_name <- "Report.sso"
 compreport_file_name <- "CompReport.sso"
+# For linking commands together in a shell
+cmd_link <- " && "
 
 # Custom catch levels calculations
 # The tolerance in the spr away from 1 for the calculation of catch for SPR = 1

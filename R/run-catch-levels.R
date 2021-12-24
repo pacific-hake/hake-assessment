@@ -137,7 +137,7 @@ run_catch_levels_default_hr <- function(model,
            force = TRUE)
     message("Default HR - for forecast year: ", forecast_yrs[i], " of ", tail(forecast_yrs, 1))
 
-    shell_command <- paste0("cd ", default_hr_path, " & ", ss_executable, " -mceval")
+    shell_command <- paste0("cd ", default_hr_path, cmd_link, ss_executable, " -mceval")
     system_(shell_command, wait = TRUE, intern = !show_ss_output)
   }
 }
@@ -201,7 +201,7 @@ run_catch_levels_spr_100 <- function(model,
                        verbose = FALSE)
       unlink(file.path(spr_100_path, derposts_file_name),
              force = TRUE)
-      shell_command <- paste0("cd ", spr_100_path, " & ", ss_executable, " -mceval")
+      shell_command <- paste0("cd ", spr_100_path, cmd_link, ss_executable, " -mceval")
       system_(shell_command, wait = TRUE, intern = !show_ss_output)
       out <- read.table(file.path(spr_100_path,
                                   derposts_file_name),
@@ -310,7 +310,7 @@ run_catch_levels_stable_catch <- function(model,
                      verbose = FALSE)
     unlink(file.path(stable_catch_path, derposts_file_name),
            force = TRUE)
-    shell_command <- paste0("cd ", stable_catch_path, " & ", ss_executable, " -mceval")
+    shell_command <- paste0("cd ", stable_catch_path, cmd_link, ss_executable, " -mceval")
     system_(shell_command, wait = TRUE, intern = !show_ss_output)
     iter <- iter + 1
   }
@@ -330,7 +330,7 @@ run_catch_levels_stable_catch <- function(model,
                    verbose = FALSE)
   unlink(file.path(stable_catch_path, derposts_file_name),
          force = TRUE)
-  shell_command <- paste0("cd ", stable_catch_path, " & ", ss_executable, " -mceval")
+  shell_command <- paste0("cd ", stable_catch_path, cmd_link, ss_executable, " -mceval")
   system_(shell_command, wait = FALSE, intern = !show_ss_output)
 }
 

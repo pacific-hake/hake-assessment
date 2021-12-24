@@ -56,7 +56,7 @@ run_forecasts <- function(model_path,
       # Evaluate the model using mceval option of ADMB, and retrieve the output
       unlink(file.path(new_forecast_dir, derposts_file_name), force = TRUE)
       unlink(file.path(new_forecast_dir, posts_file_name), force = TRUE)
-      shell_command <- paste0("cd ", new_forecast_dir, " & ", ss_executable, " -mceval")
+      shell_command <- paste0("cd ", new_forecast_dir, cmd_link, ss_executable, " -mceval")
       system_(shell_command, wait = TRUE, intern = !show_ss_output)
     })
   })
