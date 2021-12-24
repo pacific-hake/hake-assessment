@@ -130,6 +130,9 @@ run <- function(model_dir = NULL,
          call. = FALSE)
   }
   if(dir.exists(file.path(model_dir, "mcmc"))){
+    if(run_catch_levels){
+      run_catch_levels(model_dir, ...)
+    }
     if(run_forecasts){
       catch_levels_fullpath <- file.path(model_dir, catch_levels_path)
       if(!dir.exists(catch_levels_fullpath) | run_catch_levels){
