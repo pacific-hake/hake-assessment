@@ -11,7 +11,6 @@ run_forecasts <- function(model_path,
                           ...){
 
   model <- load_ss_files(model_path, ...)
-  mcmc_path <- model$mcmcpath
   forecasts_path <- file.path(model_path, forecasts_path)
   dir.create(forecasts_path, showWarnings = FALSE)
   unlink(file.path(forecasts_path, "*"), recursive = TRUE)
@@ -36,8 +35,8 @@ run_forecasts <- function(model_path,
       dir.create(new_forecast_dir, showWarnings = FALSE)
 
       # Copy all model files into this new forecast directory
-      file.copy(file.path(mcmc_path, list.files(mcmc_path)),
-                file.path(new_forecast_dir, list.files(mcmc_path)), copy.mode = TRUE)
+      file.copy(list.files(model$mcmc_path, full.names = TRUE),
+                file.path(new_forecast_dir, list.files(model$mcmc_path)), copy.mode = TRUE)
 
       # Insert fixed catches into forecast file
       forecast_file <- file.path(new_forecast_dir, forecast_file_name)

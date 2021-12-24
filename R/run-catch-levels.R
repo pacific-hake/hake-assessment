@@ -142,7 +142,7 @@ run_catch_levels_default_hr <- function(model,
   }
 }
 
-#' Run the model iteratively zoning in on a catch value that reduces the SPR to 1, withing the tolerance given
+#' Run the model iteratively zoning in on a catch value that reduces the SPR to 1, within the tolerance given
 #' (`catch_levels_spr_tol`)
 #'
 #' @param model The SS model output as loaded by [load_ss_files()]
