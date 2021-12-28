@@ -190,6 +190,7 @@ s3_upload <- function(folders = NULL,
 #' all files in the bucket root will be returned
 #' @param recursive If `TRUE` recurse and display all subdirectories and files. If `FALSE` only
 #' display the current directory's contents
+#' @param print_limit The maximum number of folders and files to show in the directory listing output
 #'
 #' @return A vector of paths or a [data.tree] object
 #' @export
@@ -197,7 +198,8 @@ s3_dir <- function(folder = NULL,
                    recursive = FALSE,
                    key_pair_file = here("aws/key_pair.R"),
                    region = "ca-central-1",
-                   bucket = "hakestore"){
+                   bucket = "hakestore",
+                   print_limit = 20000){
 
   if(is.null(key_pair_file)){
     stop("key_pair_file is required", call. = FALSE)
@@ -275,5 +277,5 @@ s3_dir <- function(folder = NULL,
 
   s3_dir_tree$pathString <- s3_dir_tree$name
   dir_node <- as.Node(s3_dir_tree)
-  print(dir_node, "size", limit = 1000)
+  print(dir_node, "size", limit = print_limit)
 }
