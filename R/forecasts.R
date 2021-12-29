@@ -38,6 +38,15 @@ run_forecasts <- function(model_path,
       file.copy(list.files(model$mcmc_path, full.names = TRUE),
                 file.path(new_forecast_dir, list.files(model$mcmc_path)), copy.mode = TRUE)
 
+      # Make a modification to the starter file so the extra MCMC files are not created
+      starter_contents <- readLines(file.path(new_forecast_dir, starter_file_name))
+      mcmc_output_ind <- grep("MCMC output detail", starter_contents)
+      mcmc_output_val <- starter_contents[mcmc_output_ind]
+      mcmc_output_val <- gsub("^.*(#.*)", "\\1", mcmc_output_val)
+      mcmc_output_val <- paste0("1 ", mcmc_output_val, " - *Modified by run_forecasts()*")
+      starter_contents[mcmc_output_ind] <- mcmc_output_val
+      writeLines(starter_contents, file.path(new_forecast_dir, starter_file_name))
+
       # Insert fixed catches into forecast file
       forecast_file <- file.path(new_forecast_dir, forecast_file_name)
       fore <- SS_readforecast(forecast_file,
@@ -56,15 +65,10 @@ run_forecasts <- function(model_path,
       # Evaluate the model using mceval option of ADMB, and retrieve the output
       unlink(file.path(new_forecast_dir, derposts_file_name), force = TRUE)
       unlink(file.path(new_forecast_dir, posts_file_name), force = TRUE)
-      # Delete sso file if it exists and create sso folder before calling or the posteriors.sso etc.
-      # files will not be created
-      shell_command <- paste0("cd ", new_forecast_dir, cmd_link, "rm -f sso", cmd_link, "mkdir sso")
-      system_(shell_command)
+      unlink(file.path(new_forecast_dir, "sso"), force = TRUE)
+      # Create sso folder before calling or the posteriors.sso, etc. files will not be created
       shell_command <- paste0("cd ", new_forecast_dir, cmd_link, ss_executable, " -mceval")
       system_(shell_command, wait = TRUE, intern = !show_ss_output)
-      # Remove all Report.sso and CompReport.sso files that were created
-      shell_command <- paste0("cd ", new_forecast_dir, "/sso", cmd_link, "rm Report_mce_*", cmd_link, "rm CompReport_mce_*")
-      system_(shell_command)
     })
   })
   plan()
