@@ -90,7 +90,7 @@ chmod 666 /var/run/docker.sock
 docker pull cgrandin/hake-noextramcmc
 cd /home/ec2-user
 docker run -d -p 8787:8787 -e USER=rstudio -e PASSWORD=a \
-       -e MODEL_DIR=models --name=hake --restart always \
+       -e MODEL_DIR=models -e BASE_MODEL=2021.00.04_base_v1 --name=hake --restart always \
        --mount type=bind,source="$(pwd)",target=/home/rstudio cgrandin/hake-noextramcmc
 # These two commands ensure the docker service starts when the machine starts after being stopped
 systemctl enable docker.service
