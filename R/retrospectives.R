@@ -37,7 +37,7 @@ run_retrospectives <- function(model_path,
   }
 
   # Copy all required model files into the retrospective directory
-  files_to_copy <- c(file.path(model_path, c(ss_executable,
+  files_to_copy <- c(file.path(model_path, c(#ifelse(get_os() == "windows", paste0(ss_executable, ".exe"), ss_executable),
                                              starter_file_name,
                                              forecast_file_name,
                                              weight_at_age_file_name)),
