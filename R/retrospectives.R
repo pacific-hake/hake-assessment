@@ -4,6 +4,8 @@
 #' @param remove_blocks If `TRUE`, remove block designs from control file prior to running
 #' @param retro_mcmc If `TRUE`, run the ADNUTS MCMC in the *mcmc* subdirectory for each
 #' retrospective in addition to the MLE run
+#' @param retro_mcmc_parallel If `TRUE`, run each retrospective in parallel as well as all
+#' retrospective runs in parallel. This should only be used on a cloud machine with many processors
 #' @param continue If TRUE, attempt to continue the runs from where it left off
 #' (in case of unwanted computer shutdown)
 #' @param ...
@@ -20,6 +22,7 @@
 run_retrospectives <- function(model_path,
                                remove_blocks = FALSE,
                                retro_mcmc = TRUE,
+                               retro_mcmc_parallel = FALSE,
                                retro_n_final = 8000,
                                retro_warmup_final = 250,
                                retro_continue = TRUE,
@@ -46,7 +49,7 @@ run_retrospectives <- function(model_path,
 
 
   # Create a directory for each retrospective, copy files, and run retro
-  if(retro_mcmc){
+  if(retro_mcmc && !retro_mcmc_parallel){
     map_cust <- purrr::map
   }else{
     plan("multisession")
