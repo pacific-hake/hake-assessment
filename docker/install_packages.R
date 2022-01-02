@@ -6,7 +6,7 @@ install.packages(c(
   "rgeos", "rnaturalearth", "rstan", "shinystan", "snowfall",
   "tictoc"))
 
-devtools::install_github("r4ss/r4ss")
+devtools::install_github("cgrandin/r4ss")
 devtools::install_github("ropensci/rnaturalearthhires")
 # 2021 assessment SHA for adnuts (Jan 12, 2021 - base run was on
 # Jan 14 so this was the most recent)
