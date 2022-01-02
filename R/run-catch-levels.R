@@ -137,6 +137,9 @@ run_catch_levels_default_hr <- function(model,
            force = TRUE)
     message("Default HR - for forecast year: ", forecast_yrs[i], " of ", tail(forecast_yrs, 1))
 
+    # Make a modification to the starter file so the extra MCMC files are not created
+    modify_starter_mcmc_type(default_hr_path, 1)
+
     shell_command <- paste0("cd ", default_hr_path, cmd_link, ss_executable, " -mceval")
     system_(shell_command, wait = TRUE, intern = !show_ss_output)
   }
@@ -201,6 +204,10 @@ run_catch_levels_spr_100 <- function(model,
                        verbose = FALSE)
       unlink(file.path(spr_100_path, derposts_file_name),
              force = TRUE)
+
+      # Make a modification to the starter file so the extra MCMC files are not created
+      modify_starter_mcmc_type(spr_100_path, 1)
+
       shell_command <- paste0("cd ", spr_100_path, cmd_link, ss_executable, " -mceval")
       system_(shell_command, wait = TRUE, intern = !show_ss_output)
       out <- read.table(file.path(spr_100_path,
@@ -310,6 +317,10 @@ run_catch_levels_stable_catch <- function(model,
                      verbose = FALSE)
     unlink(file.path(stable_catch_path, derposts_file_name),
            force = TRUE)
+
+    # Make a modification to the starter file so the extra MCMC files are not created
+    modify_starter_mcmc_type(stable_catch_path, 1)
+
     shell_command <- paste0("cd ", stable_catch_path, cmd_link, ss_executable, " -mceval")
     system_(shell_command, wait = TRUE, intern = !show_ss_output)
     iter <- iter + 1
