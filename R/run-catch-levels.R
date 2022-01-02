@@ -372,10 +372,7 @@ run_catch_levels <- function(model_path,
                            forecast_yrs = forecast_yrs,
                            catch_levels_spr_tol = catch_levels_spr_tol,
                            catch_levels_catch_tol = catch_levels_catch_tol,
-                           catch_levels_max_iter = catch_levels_max_iter,
-                           get_os = get_os,
-                           cmd_link = cmd_link,
-                           system_ = system_){
+                           catch_levels_max_iter = catch_levels_max_iter){
     if(x == 1){
       model <- load_ss_files(model_path)
       default_hr_path <- file.path(catch_levels_path, default_hr_path)
@@ -429,6 +426,8 @@ run_catch_levels <- function(model_path,
                                        forecast_file_name = forecast_file_name,
                                        ss_executable = ss_executable,
                                        show_ss_output = show_ss_output,
+                                       starter_file_name = starter_file_name,
+                                       modify_starter_mcmc_type = modify_starter_mcmc_type,
                                        cmd_link = cmd_link,
                                        system_ = system_)))
   plan()
