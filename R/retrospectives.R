@@ -41,8 +41,8 @@ run_retrospectives <- function(model_path,
                                              starter_file_name,
                                              forecast_file_name,
                                              weight_at_age_file_name)),
-                     model$ctl.file,
-                     model$dat.file)
+                     model$ctl_file,
+                     model$dat_file)
 
 
   # Create a directory for each retrospective, copy files, and run retro
@@ -103,8 +103,8 @@ run_retrospectives <- function(model_path,
                   overwrite = TRUE,
                   verbose = FALSE)
       if(remove_blocks){
-        ctl_file <- file.path(retro_subdir, model$ctl.file)
-        ctl <- readLines(ctl.file)
+        ctl_file <- file.path(retro_subdir, model$ctl_file)
+        ctl <- readLines(ctl_file)
         ctl[grep("block designs", ctl)] <- "0 # Number of block designs for time varying parameters"
         ctl[grep("blocks per design", ctl) + 0:2] <- "# blocks deleted"
         unlink(ctl_file)
