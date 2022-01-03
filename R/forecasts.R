@@ -39,13 +39,7 @@ run_forecasts <- function(model_path,
                 file.path(new_forecast_dir, list.files(model$mcmc_path)), copy.mode = TRUE)
 
       # Make a modification to the starter file so the extra MCMC files are not created
-      starter_contents <- readLines(file.path(new_forecast_dir, starter_file_name))
-      mcmc_output_ind <- grep("MCMC output detail", starter_contents)
-      mcmc_output_val <- starter_contents[mcmc_output_ind]
-      mcmc_output_val <- gsub("^.*(#.*)", "\\1", mcmc_output_val)
-      mcmc_output_val <- paste0("1 ", mcmc_output_val, " - *Modified by run_forecasts()*")
-      starter_contents[mcmc_output_ind] <- mcmc_output_val
-      writeLines(starter_contents, file.path(new_forecast_dir, starter_file_name))
+      modify_starter_mcmc_type(new_forecast_dir, 1)
 
       # Insert fixed catches into forecast file
       forecast_file <- file.path(new_forecast_dir, forecast_file_name)
