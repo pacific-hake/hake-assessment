@@ -118,6 +118,9 @@ run_retrospectives <- function(model_path,
         unlink(covar_file)
       }
       if(retro_mcmc){
+        # Make a modification to the starter file so the extra MCMC files are not created
+        modify_starter_mcmc_type(retro_subdir, 1)
+
         run_adnuts(retro_subdir,
                    n_final = retro_n_final,
                    warmup_final = retro_warmup_final)
