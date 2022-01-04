@@ -1241,7 +1241,7 @@ modify_starter_mcmc_type <- function(path, value){
     stop("The file ", file.path(path, starter_file_name), " does not exist", call. = FALSE)
   }
   starter_contents <- readLines(file.path(path, starter_file_name))
-  mcmc_output_ind <- grep("MCMC output detail", starter_contents)
+  mcmc_output_ind <- grep("MCMC output detail|MCMC_output_detail", starter_contents)
   mcmc_output_val <- starter_contents[mcmc_output_ind]
   mcmc_output_val <- gsub("^.*(#.*)", "\\1", mcmc_output_val)
   mcmc_output_val <- paste0(value, " ", mcmc_output_val, " - *Modified by run_forecasts()*")

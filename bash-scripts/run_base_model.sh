@@ -15,7 +15,7 @@ mv ~/hake-assessment/$MODEL_DIR/$BASE_MODEL/data_echo.ss_new \
 # retrospectives, and build the RDS file.
 # Environment variable $BASE_MODEL is set in R/model-setup.R
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-build_rds('$BASE_MODEL', run_catch_levels = TRUE, run_forecasts = TRUE)" \
+build_rds('$BASE_MODEL', run_catch_levels = TRUE, run_forecasts = TRUE, build_file = FALSE)" \
 > /dev/null 2>&1)
 
 # Copy all the output for the base model to the persistent S3 drive 'hakestore'

@@ -11,6 +11,7 @@
 #' catch levels runs. If FALSE, catch levels will not be run if the catch-levels directory exists, but they will be run
 #' if the directory does not exist and run_forecasts is TRUE because it is required for the forecasting step
 #' forecast-catch-levels.R
+#' @param build_file If `TRUE`, create the RDS file. If `FALSE`, do not create it (used for running retros, etc)
 #'
 #' @return Nothing
 #' @export
