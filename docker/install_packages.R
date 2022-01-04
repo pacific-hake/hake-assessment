@@ -1,7 +1,7 @@
 # Install packages for hake assessment docker image
 
 install.packages(c(
-  "aws.s3", "cowplot", "data.tree", "date", "furrr", "ggpubr",
+  "aws.s3", "cowplot", "data.tree", "date", "furrr", "future", "ggpubr",
   "ggrepel", "here", "maps", "maptools", "matrixcalc",
   "rgeos", "rnaturalearth", "rstan", "shinystan", "snowfall",
   "tictoc"))
