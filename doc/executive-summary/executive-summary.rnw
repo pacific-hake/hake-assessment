@@ -28,7 +28,7 @@ analysis.
 
 \subsection*{Catches} \label{sec:es-catches} \phantomsection
 \addcontentsline{toc}{subsection}{Catches}
-Coast-wide fishery \fishname\
+**[should update automatically, check it reads okay] Coast-wide fishery \fishname\
 landings averaged \Sexpr{f(mean(ct$tot_catch))}~t from
 \Sexpr{min(ct$year)} to \Sexpr{max(ct$year)}, with a low of
 \Sexpr{f(min(ct$tot_catch))}~t in
@@ -92,7 +92,7 @@ In this stock assessment, the terms catch and landings are used
 interchangeably. Estimates of discard within the target fishery are included,
 but discarding of \fishname\ in non-target fisheries is not. Discard from all
 fisheries, including those that do not target hake, is estimated to be less
-than 1\% of landings in recent years. During
+than 1\% of landings in recent years. **During
 the last five years, catches were considerably above the long-term average catch
 (\Sexpr{f(long.term.avge.catch)}~t),
 %in
@@ -113,8 +113,8 @@ total catch of the 2010, 2014, and 2016 year classes is estimated to be about
 \Sexpr{f(cohort.catch.2010/1e6,2)}~million~t,
 \Sexpr{f(cohort.catch.2014/1e6,2)}~million~t, and
 \Sexpr{f(cohort.catch.2016/1e6,2)}~million~t,
-respectively. Landings in 2020 were most represented by the 2016 (35.23\%)
-and 2014 (30.90\%) year classes. Due to the coronavirus disease 2019 (COVID-19)
+respectively. **Landings in 2020 were most represented by the 2016 (35.23\%)
+and 2014 (30.90\%) year classes. **Due to the coronavirus disease 2019 (COVID-19)
 pandemic, no biological samples
 were available from the Canadian freezer-trawler sector in 2020 because observers
 were not allowed on board.
@@ -155,7 +155,7 @@ indices (Figure~\ref{fig:es-survey-biomass}) and age compositions
 age compositions (\Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}). The 2011 survey index value
 was the lowest in the time series and was followed by the index increasing
 in 2012, 2013, and again in 2015 before decreasing to near the time series average in 2017.
-The 2019 estimate is the fourth highest of the series.
+The 2019 estimate is the fourth highest of the series. **Mention 2021 survey
 % rank(-survey.comparison$with.extrap)
 % Not worth automating as have to think
 %  about what is worth saying each time anyway.
@@ -176,7 +176,7 @@ parameters provides probabilistic
 inferences about uncertain model parameters and forecasts derived from those
 parameters; this is done via Markov chain Monte Carlo sampling using the
 efficient No-U-Turn
-Sampler (NUTS) that was successfully tested in the \Sexpr{last.assess.yr} assessment.
+Sampler (NUTS) that was successfully tested in 2020 and used for the 2021 assessment.
 Sensitivity analyses are used to identify alternative model
 assumptions that may also be consistent with the data. This is the first
 assessment for which the sensitivity and retrospective analyses also use Bayesian
