@@ -178,7 +178,7 @@ parameters; this is done via Markov chain Monte Carlo sampling using the
 efficient No-U-Turn
 Sampler (NUTS) that was successfully tested in 2020 and used for the 2021 assessment.
 Sensitivity analyses are used to identify alternative model
-assumptions that may also be consistent with the data. This is the first
+assumptions that may also be consistent with the data. **This is the second
 assessment for which the sensitivity and retrospective analyses also use Bayesian
 estimation (rather than maximum likelihood estimation).
 Retrospective analyses
@@ -190,7 +190,7 @@ expected management outcomes given repeated application of these procedures over
 the long-term. The results of past (and ongoing) closed-loop simulations influenced
 the decisions made for this assessment.
 
-This \Sexpr{assess.yr} assessment retains the structural form of the base
+**This \Sexpr{assess.yr} assessment retains the structural form of the base
 assessment model from \Sexpr{last.assess.yr} as well as many of the previous
 elements as configured in Stock Synthesis. Analyses conducted in 2014
 showed that allowing for time-varying (rather than fixed) selectivity reduced
@@ -212,7 +212,7 @@ is a representation of the last five years, as for the 2020 assessment.
 
 \subsection*{Stock biomass} \label{sec:es-stock-biomass} \phantomsection
 \addcontentsline{toc}{subsection}{Stock biomass}
-Results from the base model
+**Results from the base model
 indicate that since the 1960s, \fishname\ female spawning biomass has ranged
 from well below to above unfished equilibrium
 (Figures~\ref{fig:es-female-spawning-biomass}
@@ -286,7 +286,7 @@ declined since 2017 as the 2014 year class moves through through the growth-mort
 transition (and the 2010 year class continues to do so) during a time of record catches.
 % Manual 2020 done.
 
-The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning
+**The median estimate of the \Sexpr{end.yr} relative spawning biomass (spawning
 biomass at the start of \Sexpr{end.yr} divided by that at unfished equilibrium,
 $B_0$) is \Sexpr{curr.depl.median}\%. However, the uncertainty
 is large, with a 95\%
@@ -340,7 +340,7 @@ make.recruitment.table(base.model,
 @
 %
 
-The new data available and implementation of NUTS for this assessment do not significantly change the
+**The new data available and implementation of NUTS for this assessment do not significantly change the
 pattern of recruitment estimated in recent assessments.
 However, estimates of absolute recruitment for some recent years have slightly changed.
 For example, this assessment's median estimate of the 2014 recruitment is
@@ -358,7 +358,7 @@ $+$\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"
 notion remains that the 2016 cohort is above average and the 2018 cohort is
 well below average.
 
-\fishname\ appear to
+** \fishname\ appear to
 have low to moderate recruitment with occasional large year-classes
 (Table~\ref{tab:es-recruitment} and Figure~\ref{fig:es-recruitment}).
 %
