@@ -1134,8 +1134,8 @@ system_ <- function(...){
 #' to `todir`. Only subdirs of `fromdir` are searched for `files`, not `fromdir` itself,
 #' and there is no recursion.
 #'
-#' @param fromdir The directory to copy subdirectories anf their `files` from
-#' @param todir The directory to copy subdirectories anf their `files` to
+#' @param fromdir The directory to copy subdirectories and their `files` from
+#' @param todir The directory to copy subdirectories and their `files` to
 #' @param files A character vector of file names to include in the copy
 #' @param overwrite If `todir` exists then overwrite its subdirs if they exist.
 #' Everything else in `todir` not pertaining to the copy will remain after the overwrite
