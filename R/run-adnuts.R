@@ -14,7 +14,7 @@
 #' @param warmup_final The warmup samples (equivalent of burnin)
 #' @param adapt_delta The target acceptance rate. See [adnuts::sample_nuts()]
 #' @param run_mle Run the MLE before running the MCMC
-#' @param check_issues Run [adnuts::launch_shinyadmb()] after imitial short run to discover issues. This will
+#' @param check_issues Run [adnuts::launch_shinyadmb()] after initial short run to discover issues. This will
 #' stop the function before the main iterations are done, so you will have to re-run the function again
 #' with this set to `FALSE`.
 #' @param save_image Save the output as an RData file
