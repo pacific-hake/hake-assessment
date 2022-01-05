@@ -49,8 +49,7 @@ run_adnuts <- function(path,
     }else{
       stop("The MCMC directory ",
            mcmc_path,
-           " exists and was not modified. Delete it if you want to run the procedure.",
-           call. = FALSE)
+           " exists and was not modified. Delete it if you want to run the procedure.")
     }
   }
   dir.create(mcmc_path, showWarnings = FALSE)
@@ -90,8 +89,7 @@ run_adnuts <- function(path,
   # ShinyStan and pairs_admb as above. Fix using the shiny app and rerun this part as needed.
   if(check_issues){
     launch_shinyadmb(nuts_mle)
-    stop("Checked issues. Run function again with check_issues = FALSE to complete run.",
-         call. = FALSE)
+    stop("Checked issues. Run function again with check_issues = FALSE to complete run.")
   }
   # Once acceptable, run again for inference using updated mass matrix. Increase
   # adapt_delta toward 1 if you have divergences (runs will take longer).
