@@ -6,25 +6,25 @@
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
 build_rds('$BASE_MODEL', run_retrospectives = TRUE, retrospective_yrs = 1, build_file = FALSE)" \
-> /dev/null 2>&1) &
+> /dev/null 2>&1; echo "Restrospective - 1 complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
 build_rds('$BASE_MODEL', run_retrospectives = TRUE, retrospective_yrs = 2, build_file = FALSE)" \
-> /dev/null 2>&1) &
+> /dev/null 2>&1; echo "Restrospective - 2 complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
 build_rds('$BASE_MODEL', run_retrospectives = TRUE, retrospective_yrs = 3, build_file = FALSE)" \
-> /dev/null 2>&1) &
+> /dev/null 2>&1; echo "Restrospective - 3 complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
 build_rds('$BASE_MODEL', run_retrospectives = TRUE, retrospective_yrs = 4, build_file = FALSE)" \
-> /dev/null 2>&1) &
+> /dev/null 2>&1; echo "Restrospective - 4 complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
 build_rds('$BASE_MODEL', run_retrospectives = TRUE, retrospective_yrs = 5, build_file = FALSE)" \
-> /dev/null 2>&1) &
+> /dev/null 2>&1; echo "Restrospective - 5 complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
 build_rds('$BASE_MODEL', run_retrospectives = TRUE, retrospective_yrs = 6, build_file = FALSE)" \
-> /dev/null 2>&1)
+> /dev/null 2>&1; echo "Restrospective - 6 complete")
 
