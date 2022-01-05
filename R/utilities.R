@@ -38,11 +38,7 @@ export.depth <- function(x, fleet = ""){
               median = V3,
               upperhinge = V4,
               upper95 = V5) %>%
-    write.csv(file.path(here::here(),
-                        "data",
-                        paste0("depth-can-",
-                               fleet,
-                               ".csv")),
+    write.csv(file.path(rootd.data, paste0("depth-can-", fleet, ".csv")),
               row.names = FALSE)
 }
 
