@@ -487,7 +487,7 @@ make.reference.points.table.old(base.model,
 
 <<main-decisions-biomass-table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption = paste0("**Forecast quantiles of
+                    xcaption = paste0("**[NEW FORMAT IN NEXT TABLE] Forecast quantiles of
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
                      catch levels (rows ",
@@ -526,9 +526,51 @@ make.decision.table(base.model,
                     type = "biomass")
 @
 
+<<main-biomass-table-new, results='asis', echo=FALSE>>=
+new_decision_table(base.model,
+                   xcaption =
+                     paste0("**[NEW FORMAT - third row will get automatically added when base model run long enough; change xlabel to previous table's one when we delete previous table]. Forecast quantiles of \\fishname\\
+                     relative spawning biomass at the beginning of the year.
+                     Catch alternatives are based on: constant
+                     catch levels (rows ",
+                     catch.constant.str,
+                     "), including catch similar to ",
+                     min(forecast_yrs_extra)-1," (row ",
+                     letters[catch.actual.ind],
+                     "), to the (unilaterally summed) TAC from ",
+                     min(forecast_yrs_extra)-1," (row ",
+                     letters[catch.tac.ind],
+                     "), and to the TAC from ",
+                     min(forecast_yrs_extra)-2," (row ",
+                     letters[catch.prev.tac.ind],
+                     "); and non-constant catch levels that result
+                     in a median relative fishing intensity of 100\\% (row ",
+                     letters[catch.spr100.ind],
+                     "), median catch estimated ",
+                     "via the default harvest policy
+                     (\\Ffortyten, row ",
+                     letters[catch.default.policy.ind],
+                     "), and the fishing intensity that results in a 50\\% probability that the median
+                     projected catch will remain the same in ",
+                     min(forecast_yrs_extra),
+                     " and ",
+                     min(forecast_yrs_extra)+1,
+                     " (row ",
+                     letters[catch.stable.ind],
+                     ")."),
+                   xlabel = "tab:srg-day2-request2-decision-table",
+                   font.size = 12,
+                   space.size = 14,
+                   type = "biomass",
+                   placement = "tbp")
+@
+
+\clearpage
+
 <<main-decisions-spr-table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption = paste0("**Decision table of forecast quantiles ",
+                    xcaption =
+                      paste0("**[For new format use type=spr in new_decision_table; so some of previous table and some options from here, including caption] Decision table of forecast quantiles ",
                                       "of relative fishing intensity ",
                                       "(1-SPR)/(1-SPR\\subscr{40\\%}), expressed as ",
                                       "a percentage, for the ",
