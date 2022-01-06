@@ -51,7 +51,7 @@ touch /etc/passwd-s3fs
 # Security credentials tab. Download the CSV and paste the values here.
 # Replace the following line with the line contained in the local file 'key_pair'
 # before uploading to AWS. It cannot be pushed to GitHub.
-echo "KEY:SECRET" | tee -a /etc/passwd-s3fs
+echo "AKIASAK7ORIACODJUJWU:K6+b2+rc785+UotlWqxcBKBb6goPwYs6byRWahkL" | tee -a /etc/passwd-s3fs#echo "KEY:SECRET" | tee -a /etc/passwd-s3fs
 chmod 640 /etc/passwd-s3fs
 # Set Fuse to allow all users access to the newly mounted drives
 echo "user_allow_other" | sudo tee -a /etc/fuse.conf
