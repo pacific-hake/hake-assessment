@@ -35,22 +35,6 @@ The 3-year projections (Table~\ref{tab:srg-day2-request2-decision-table}) can
 be compared with the base model decision table
 (Table~\ref{tab:es-decisions-biomass}) found in the Executive Summary.
 
-Differences between Table~\ref{tab:srg-day2-request2-decision-table} and Table~\ref{tab:es-decisions-biomass} are summarized below.
-
-- 2021 biomass is shown in a single row at the top (\emph{Start 2021}) in the new table. Whereas, 2021 biomass is the first row in every row chunk (a--j) in Table~\ref{tab:es-decisions-biomass}.
-
-- Values are shown as proportions instead of percentages allowing the removal of percentage signs after relative biomass values which can be distracting.
-
-- Removal of the 25\% and 75\% columns.
-
-- Addition of a new column, \emph{Biomass year}, which explains the timing of the biomass estimates.
-
-- Re-naming of the header for the relative biomass values from \emph{Beginning of year relative spawning biomass} to \emph{Resulting relative spawning biomass}.
-
-- The values shown in the \emph{Resulting relative spawning biomass} columns now represent the biomass at the beginning of the year which result due to the catch taken in the previous year. These catches are in the (\emph{Catch year}) column.
-
-- Extension of the projections of relative spawning biomass to the start of the \emph{third}
-projection year (\Sexpr{assess.yr + 3}), rather than just the second year.
 
 
 \clearpage

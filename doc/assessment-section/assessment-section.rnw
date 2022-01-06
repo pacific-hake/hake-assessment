@@ -313,6 +313,29 @@ Hake stock during the COVID-19 pandemic.}
 
 \emph{Response -- **}
 
+Also, the final major conclusion of the SRG report was the following:
+
+The SRG considered revisions to the decision tables in the stock assessment that
+depict fishing intensity for several catch streams and the associated impacts on
+the stock in terms of depletion (spawning biomass relative to $B_0$) for those
+catch streams. One main change was implemented: relative spawning biomass was
+projected forward for three years from 2021 instead of two years and the
+relative biomass values shown in each row now reflect the projected impact of
+the specified amount of harvest on stock status at the beginning of the
+following year. Additionally, the 25\% and 75\% intervals have been removed from
+both tables, leaving the median along with the 5\% and 95\% values from the
+distributions that define the 90\% credible intervals. {\bf The SRG believes that the
+resulting decision tables are clearer and easier to understand and recommends
+that the JMC review these tables along with the standard decision tables, and
+provide feedback to the SRG and JTC as to its preference during the March 15-17,
+2021 JMC Meeting. These alternative decision tables are presented in Appendix~B
+of the JTC Stock Assessment document.}
+
+\emph{Response -- **The JTC agrees with the new improved format
+  and has adopted it in this assessment, as discussed in
+  Section~\ref{sec:assessment-model-projections}.}
+
+
 \subsection{Response to 2020 Scientific Review Group (SRG) review}\label{sec:assessment-response-review-2020}
 
 **Keeping here for now to copy formatting and any text to 2021 response, then delete.
@@ -1337,7 +1360,34 @@ level and year (each row) can be evaluated across the quantiles (columns) of the
 posterior distribution. Table~\ref{tab:main-decisions-biomass} shows projected
 relative spawning biomass outcomes, and Table~\ref{tab:main-decisions-spr} shows
 projected fishing intensity outcomes relative to the 100\% target (based on SPR;
-see table legend). Population dynamics and governing
+see table legend).
+
+**
+The tables use the new format demonstrated by
+\citep{JTC2021} arising from discussions at the 2021 SRG meeting.
+Enhancements include:
+
+**[Copying these here from last year's appendix, may want to briefly summarise
+them, just not as a list].
+-- 2021 biomass is shown in a single row at the top (\emph{Start 2021})
+ in the new table. Whereas, 2021 biomass is the first row in every row
+ chunk (a--j) in Table~\ref{tab:es-decisions-biomass}.
+
+-- Values are shown as proportions instead of percentages
+allowing the removal of percentage signs after relative biomass values which can be distracting.
+
+-- Removal of the 25\% and 75\% columns.
+
+-- Addition of a new column, \emph{Biomass year}, which explains the timing of the biomass estimates.
+
+-- Re-naming of the header for the relative biomass values from \emph{Beginning of year relative spawning biomass} to \emph{Resulting relative spawning biomass}.
+
+-- The values shown in the \emph{Resulting relative spawning biomass} columns now represent the biomass at the beginning of the year which result due to the catch taken in the previous year. These catches are in the (\emph{Catch year}) column.
+
+-- Extension of the projections of relative spawning biomass to the start of the \emph{third}
+-projection year (\Sexpr{assess.yr + 3}), rather than just the second year.
+
+**Population dynamics and governing
 parameters assumed during the forecast period include average recruitment
 (no recruitment deviation); selectivity, weight-at-age and fecundity averaged over
 the five most recent years (\Sexpr{assess.yr-5}--\Sexpr{assess.yr-1}); and all estimated
