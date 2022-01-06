@@ -4,31 +4,24 @@ ____
 *A framework which uses latex and knitr code to build the US/Canadian Pacific hake assessment.*
 _____________________________________________________________
 
-## What's new for 2020/2021
+## What's new for 2022
 
-* All model runs, including sensitivities and retrospectives, were done done using the [ADNUTS](https://github.com/Cole-Monnahan-NOAA/adnuts) MCMC algorithm. MLE runs were done only for the bridging models.
+* All model runs, including bridging, sensitivities, and retrospectives, were done using the [ADNUTS](https://github.com/Cole-Monnahan-NOAA/adnuts) MCMC algorithm.
 
-* Model outputs are now stored using `RDS` files instead of `RData` files. RDS files are smaller due to serialization, and can be assigned to a variable in code instead of being loaded into the global environment.
+* The extra-mcmc routine has been replaced by code in SS (https://github.com/nmfs-stock-synthesis/stock-synthesis). When MCMCs are run in SS, a `Report.sso` and `CompReport.sso` file is produced for each posterior in the `mcmc/sso` subdirectory.
 
-* The assessment is now built using `PNG` figures, which are necessary to conform to web accessibility rules, in particular for the *Automatic reader* function found in PDF viewers.
-
-* Alternative text for figures was incorporated as tooltips, to conform to web accessibility standards.
-
-* Moved some older content off this README page into Wiki pages:
+* Older content that was previously found on this README page can be found on these Wikis:
   * [Old methods (pre-2017)](https://github.com/pacific-hake/hake-assessment/wiki/Older-methods-from-pre-2017)
   * [MCMC commands](https://github.com/pacific-hake/hake-assessment/wiki/MCMC-Commands)
 
-## Prerequisites for 2020/2021
+## Prerequisites for 2022
 
-* R version 4.0.2 "Taking Off Again", released June 22, 2020
+* R version 4.0.3 or greater
 * Install the [tinytex](https://yihui.org/tinytex) package - If the directory `C:/Users/username/AppData/Roaming/TinyTex` exists, delete it before re-installing. See https://github.com/pbs-assess/csasdown/wiki/LaTeX-installation-for-csasdown for more information.
 * Rscript.exe must be on your PATH if you want to use
   **Method 1** for building the document (explained below).
-* The R package `r4ss`, on the `bioscale` branch:
-
-```
-remotes::install_github("r4ss/r4ss", ref = "bioscale")
-```
+* The R packages listed here: https://github.com/pacific-hake/hake-assessment/blob/8a5c1cda1bd3af6d1480e98ae66832526dd5c206/docker/install_packages.R#L3
+* The TEX packages listed here: https://github.com/pacific-hake/hake-assessment/blob/8a5c1cda1bd3af6d1480e98ae66832526dd5c206/docker/install_packages.R#L15
 
 ---
 ## How to create the RDS files required for the document to build
@@ -37,7 +30,7 @@ remotes::install_github("r4ss/r4ss", ref = "bioscale")
 
 * Navigate to the `R` directory and setup the model by editing the files `model-setup.R` and `forecast-catch-levels.R`
 
-* To run all forecasts, retrospectives, and extra-mcmc calculations (required to get posterior survey index trajectories) for the base model, and then build the `RDS` files for the base model, bridge models, and sensitivity models included in the assessment, do the following  [note that `build_rds()` has to be run from your `hake-assessment/` folder, which is given by `here::here()`]:
+* To run all forecasts and retrospectives for the base model, and then build the `RDS` files for the base model, bridge models, and sensitivity models included in the assessment, do the following  [note that `build_rds()` has to be run from your `hake-assessment/` folder, which is given by `here::here()`]:
 
 ```R
 source(here::here("R/all.r"))
@@ -46,8 +39,7 @@ source(here::here("R/all.r"))
 build_rds(model_dirs = "2021.00.04_base_v1",
           run_catch_levels = TRUE,
           run_forecasts = TRUE,
-          run_retrospectives = TRUE,
-          run_extra_mcmc = TRUE)
+          run_retrospectives = TRUE)
 
 # Build the RDS files for all folders in model-setup.R, but do not run any of the model extras
 # (forecasts, retrospectives, catch-levels, and extra-mcmc). Presence of mcmc directories in
@@ -56,7 +48,7 @@ build_rds(model_dirs = "2021.00.04_base_v1",
 build_rds()
 ```
 
-* The retrospectives will be run by default using the ADNUTS MCMC routine set to 8000 samples with a warm-up of 250. This takes a very long time. To change the way this is run you would call `build_rds()` like this:
+* The retrospectives will be run by default using the ADNUTS MCMC routine set to 8000 samples with a warm-up of 250. This takes a very long time (days). To change the way this is run you would call `build_rds()` like this:
 
 ```R
 source(here::here("R/all.r"))
