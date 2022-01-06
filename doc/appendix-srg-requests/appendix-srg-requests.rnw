@@ -14,31 +14,13 @@ from 14th to 17th February 2022. % in Vancouver, BC, Canada.
 
 % {\bf Request 1:}
 
-{\bf JTC Response:}
+% {\bf JTC Response:}
 
 % \section{Day 2}
 
 % {\bf Request 1:}
 
 % {\bf JTC Response:}
-
-{\bf Request 2:}
-
-Run the 3 yr projection for relative spawning biomass to the start of 2024. These results will enable the SRG to evaluate the width of the CI really for a three year projection, we have the data if we decide to include a 3-yr projection in the table, and the Canadian delegation has the numbers (even if this does not make it into the assessment or SRG report).
-(With default weight etc.)
-
-{\bf JTC Response:}
-
-The JTC ran the 3-year projections required to make the table and re-coded the decision table to display the results in a way similar to that shown in a mock-up table provided by the SRG. Due to there being one more forecast parameter compared to the base model, the entire NUTS run had to be re-run for this new model prior to running the 3-year forecasting. This run took approximately 4.5 hours for the NUTS portion and another 4 hours for the forecasting and model loading steps.
-
-The 3-year projections (Table~\ref{tab:srg-day2-request2-decision-table}) can
-be compared with the base model decision table
-(Table~\ref{tab:es-decisions-biomass}) found in the Executive Summary.
-
-
-
-\clearpage
-
 
 \section{Further analyses}
 
