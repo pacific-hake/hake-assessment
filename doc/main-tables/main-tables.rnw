@@ -53,7 +53,7 @@ make_landings_tac_table(ct,
                                      management decisions. A dash (--) indicates the management decision
                                      was either not specified or was unknown to the authors at the time of
                                      this assessment.
-                                     Catch targets in 2020 were specified unilaterally.",
+                                     Catch targets in 2020 and 2021 were specified unilaterally.",
                         xlabel = "tab:main-landings-tac",
                         font_size = 8,
                         space_size = 10)
@@ -73,7 +73,7 @@ make.sampling.history.table(sampling.history,
                               no sampled catch. A number indicates how many
                               samples from the catch were taken. The number of
                               fish with otoliths sampled per haul has varied
-                              over time but is typically small (current
+                              over time but is typically small (**current
                               protocols for the U.S. At-Sea sectors is three fish
                               every third haul).",
                             xlabel = "tab:main-sampling-history",
@@ -218,7 +218,7 @@ make.input.age.data.table(base.model,
 <<main-survey-history-table, results='asis', echo=FALSE>>=
 make.survey.history.table(survey.history,
                           digits = 3,
-                          xcaption = paste0("Summary of the acoustic surveys from 1995 to ", survey.end.yr, "."),
+                          xcaption = paste0("**Summary of the acoustic surveys from 1995 to ", survey.end.yr, "."),
                           xlabel = "tab:main-survey-history",
                           font.size = 10,
                           space.size = 11)
@@ -226,7 +226,7 @@ make.survey.history.table(survey.history,
 
 <<main-maturity-ogives-table, results='asis', echo=FALSE>>=
 make.maturity.ogives.table(maturity.ogives,
-                           xcaption = paste0("Information on maturity and fecundity used in this assessment as
+                           xcaption = paste0("**Information on maturity and fecundity used in this assessment as
                                        shown in Figure~\\ref{fig:main-maturity}. The sample sizes refer
                                        to the subset of samples in Table~\\ref{tab:main-ovaries} for which
                                        age readings and histological estimates of maturity have been completed.
@@ -245,7 +245,7 @@ make.maturity.ogives.table(maturity.ogives,
 
 <<main-ovaries-table, results='asis', echo=FALSE>>=
 make.maturity.samples.table(ovary.samples,
-                            xcaption = "Number of \\fishname\\ ovaries collected for histological analysis.
+                            xcaption = "**Number of \\fishname\\ ovaries collected for histological analysis.
                                         The maturity ogive was determined from a subset of these samples
                                         (up to and including 2017; see \\citealt{JTC2018}).",
                             xlabel = "tab:main-ovaries",
@@ -260,7 +260,7 @@ make.parameters.estimated.summary.table(
   start.rec.dev.yr = recruit.dev.start.yr,
   end.rec.dev.yr = end.yr - 1,
   digits = 2,
-  xcaption = paste0("Summary of estimated model parameters and priors in the base model.
+  xcaption = paste0("**Summary of estimated model parameters and priors in the base model.
                      The Beta prior is parameterized with a mean and standard deviation.
                      The Lognormal prior is parameterized with the median and standard
                      deviation in log space."),
@@ -273,7 +273,7 @@ make.parameters.estimated.summary.table(
 
 <<main-assessment-changes-table, results='asis', echo=FALSE>>=
 make.assessment.changes.table(assessment.changes,
-                              xcaption = paste0("Annual changes in the modeling framework used to assess ",
+                              xcaption = paste0("**[Add 2022] Annual changes in the modeling framework used to assess ",
                                                 "\\fishname\\ since 2011. ",
                                                 "The bias adjustment is reported as the maximum used for each assessment. ",
                                                 "Methods used to weight the age-composition data (Comp Method), i.e., ",
@@ -416,7 +416,7 @@ make.median.posterior.table(
   end.yr = end.yr,
   digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
   csv.dir = output.csv.dir,
-  xcaption = paste0("Time series of median posterior population estimates from the base
+  xcaption = paste0("[**Check total biomass; copy table from errata?]Time series of median posterior population estimates from the base
                      model. Relative spawning biomass is spawning biomass relative to the
                      unfished equilibrium ($\\Bzero$). Total biomass includes females and males
                      of ages 0 and above. Age-2+ biomass includes females and males ages 2 and
@@ -455,7 +455,7 @@ param_est_table(list(base.model, last.yr.base.model),
                 show_like = FALSE,
                 mle_table = FALSE,
                 xcaption =
-                  paste0("Select parameters, derived quantities, ",
+                  paste0("**Select parameters, derived quantities, ",
                          "and reference point posterior median ",
                          "estimates for the (",
                          end.yr, ") base model ",
@@ -468,7 +468,7 @@ param_est_table(list(base.model, last.yr.base.model),
 
 <<main-reference-points-table, results='asis', echo=FALSE>>=
 make.reference.points.table.old(base.model,
-                            xcaption = paste0("Summary of median and 95\\% credibility
+                            xcaption = paste0("**Summary of median and 95\\% credibility
                                                intervals of equilibrium conceptual reference points for
                                                the base assessment model. Equilibrium
                                                reference points were computed using ",
@@ -487,7 +487,7 @@ make.reference.points.table.old(base.model,
 
 <<main-decisions-biomass-table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption = paste0("Forecast quantiles of
+                    xcaption = paste0("**Forecast quantiles of
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
                      catch levels (rows ",
@@ -528,7 +528,7 @@ make.decision.table(base.model,
 
 <<main-decisions-spr-table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
-                    xcaption = paste0("Decision table of forecast quantiles ",
+                    xcaption = paste0("**Decision table of forecast quantiles ",
                                       "of relative fishing intensity ",
                                       "(1-SPR)/(1-SPR\\subscr{40\\%}), expressed as ",
                                       "a percentage, for the ",
@@ -583,7 +583,7 @@ param_est_table(sens.models.1.for.table,
                 model.names = sens.model.names.1.for.table,
                 end.yr = end.yr,
                 digits = 3,
-                xcaption = paste0("Posterior medians for select parameters, derived quantities,
+                xcaption = paste0("**Posterior medians for select parameters, derived quantities,
                                    reference points, and negative log likelihoods for the base
                                    model and some sensitivity runs (described in
                                    Section~\\ref{sec:assessment-sensitivity-analyses}).
@@ -604,7 +604,7 @@ param_est_table(sens.models.2.for.table,
                 model.names = sens.model.names.2.for.table,
                 end.yr = end.yr,
                 digits = 3,
-                xcaption = paste0("Posterior medians for select parameters,
+                xcaption = paste0("**Posterior medians for select parameters,
                                    derived quantities, reference points, and negative log likelihoods
                                    for the base model and further sensitivity runs (described in
                                    Section~\\ref{sec:assessment-sensitivity-analyses})."),
@@ -624,7 +624,7 @@ param_est_table(sens.models.3.for.table,
                 model.names = sens.model.names.3.for.table,
                 end.yr = end.yr,
                 digits = 3,
-                xcaption = paste0("Posterior medians for select parameters,
+                xcaption = paste0("**Posterior medians for select parameters,
                                    derived quantities, reference points, and negative log likelihoods
                                    for the base model and further sensitivity runs (described in
                                    Section~\\ref{sec:assessment-sensitivity-analyses}).
@@ -645,7 +645,7 @@ param_est_table(retro.list,
                 digits = 3,
                 show_like = FALSE,
                 getrecs = c(2010, 2014, 2016),
-                xcaption = "Posterior medians from the base model for
+                xcaption = "**Posterior medians from the base model for
                             select parameters, derived quantities,
                             reference point estimates, and negative
                             log likelihoods for retrospective analyses.
