@@ -6,6 +6,8 @@ _____________________________________________________________
 
 ## What's new for 2022
 
+* Model runs will be done on Amazon AWS cloud computers. The document can also be built remotely on those computing instances.
+
 * All model runs, including bridging, sensitivities, and retrospectives, were done using the [ADNUTS](https://github.com/Cole-Monnahan-NOAA/adnuts) MCMC algorithm.
 
 * The extra-mcmc routine has been replaced by code in SS (https://github.com/nmfs-stock-synthesis/stock-synthesis). When MCMCs are run in SS, a `Report.sso` and `CompReport.sso` file is produced for each posterior in the `mcmc/sso` subdirectory.
