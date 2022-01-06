@@ -570,7 +570,7 @@ new_decision_table(base.model,
 <<main-decisions-spr-table, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
                     xcaption =
-                      paste0("**[For new format use type=spr in new_decision_table; so some of previous table and some options from here, including caption] Decision table of forecast quantiles ",
+                      paste0("**[For new format use type equals spr in new.decision.table; so some of previous table and some options from here, including caption] Decision table of forecast quantiles ",
                                       "of relative fishing intensity ",
                                       "(1-SPR)/(1-SPR\\subscr{40\\%}), expressed as ",
                                       "a percentage, for the ",

@@ -1102,7 +1102,7 @@ been produced throughout the range of observed spawning biomass
 series of median recruitment deviation estimates for the years 1970-\Sexpr{last.data.yr - 2}, which
 are informed by the age compositions, is
 \Sexpr{sd.med.recr.dev.estimates}. This value is higher than,
-but consistent with, the base model value of \Sexpr{base.model$sigma_R_in}.
+but consistent with, the base model value of \Sexpr{base.model$sigma_R_in}.  % $
 
 % \clearpage % To avoid dangling subheading
 
@@ -1304,6 +1304,7 @@ the median yield at $\Fforty$ are slightly lower than the estimates in the
 % Look at dfo.probs.curr and decide what to write. Check that
 %   ncol(base.model$risks[[1]]) == 10   (i.e. no new columns added)
 % ***Have to update custom-knitr-variables (see UNHARDWIRE in that, when have time).
+% $
 **As part of the DFO Sustainable Fisheries Framework, \citet{DFO2009} defined
 a limit reference point as being a biomass
 below which serious harm is believed to be occurring to the stock,
