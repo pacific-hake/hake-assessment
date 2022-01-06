@@ -16,19 +16,6 @@ from 14th to 17th February 2022. % in Vancouver, BC, Canada.
 
 {\bf JTC Response:}
 
-
-The SRG informally requested that a figure shown in the Data presentation be included. This figure shows the weight-at-age through time for ages 2--10 and is included here as Figure~\ref{fig:srg-weight-at-age}.
-
-\begin{figure}[H]
-\begin{center}
-<<srg-wt-at-age, fig.height = 9, fig.width = 8, is.fig = TRUE, alt.text = "Annual mean weight-at-age is lower for most ages in the most recent years than for years prior to 1980">>=
-make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1)
-@
-\end{center}
-\caption{Annual mean weight-at-age by age (colors for ages one through ten) through time. Blue lines are for the youngest ages and green lines are for the oldest ages shown.}
-\label{fig:srg-weight-at-age}
-\end{figure}
-
 \section{Day 2}
 
 {\bf Request 1:}
