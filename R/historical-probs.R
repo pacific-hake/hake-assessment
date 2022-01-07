@@ -105,6 +105,7 @@ combine_historical_probs <- function(model,
 ##' @param num.projs Num of projection catch levels to show
 ##' @param colors
 ##' @param pch
+##' @param lwd.val
 ##' @param legend.cex
 ##' @param legend.loc
 ##' @param main.title
@@ -130,6 +131,7 @@ make.historical.probs.plot <- function(model,
                                        num.projs = catch.levels.num,
                                        colors = c("red", "blue"),
                                        pch = c(16, 17),
+                                       lwd.val = 1,
                                        legend.cex = 1,
                                        legend.loc = "bottomright",
                                        main.title = NULL,
@@ -147,7 +149,8 @@ make.historical.probs.plot <- function(model,
              res$P_decline_curr,
              type = "o",
              pch = pch[2],
-             col = colors[2])
+             col = colors[2],
+             lwd = lwd.val)
       if(add.projs){
         segments(rep(assess.yr - 1, num.projs),
                  rep(res$P_decline[length(res$P_decline)], num.projs),
@@ -157,14 +160,16 @@ make.historical.probs.plot <- function(model,
                                          assess.yr)],
                  pch = pch[1],
                  col = c("pink",
-                         rep(colors[1], num.projs - 1)))
+                         rep(colors[1], num.projs - 1)),
+                 lwd = lwd.val)
         points(rep(assess.yr, num.projs),
                model$risks[[1]][1:num.projs,
                                 paste0("SSB_", assess.yr + 1, "<SSB_",
                                        assess.yr)],
                pch = pch[1],
                col = c("pink",
-                       rep(colors[1], num.projs - 1)))
+                       rep(colors[1], num.projs - 1)),
+               lwd = lwd.val)
       }
     }
 
@@ -173,7 +178,8 @@ make.historical.probs.plot <- function(model,
              res$P_below_B40_curr,
              type = "o",
              pch = pch[2],
-             col = colors[2])
+             col = colors[2],
+             lwd = lwd.val)
       if(add.projs){
         segments(rep(assess.yr - 1, num.projs),
                  rep(res$P_below_B40[length(res$P_below_B40)], num.projs),
@@ -182,13 +188,15 @@ make.historical.probs.plot <- function(model,
                                   paste0("Bratio_", assess.yr + 1, "<0.40")],
                  pch = pch[1],
                  col = c("pink",
-                         rep(colors[1], num.projs - 1)))
+                         rep(colors[1], num.projs - 1)),
+                 lwd = lwd.val)
         points(rep(assess.yr, num.projs),
                model$risks[[1]][1:num.projs,
                                 paste0("Bratio_", assess.yr + 1, "<0.40")],
                pch = pch[1],
                col = c("pink",
-                       rep(colors[1], num.projs - 1)))
+                       rep(colors[1], num.projs - 1)),
+               lwd = lwd.val)
       }
     }
   } else {      # create new plot
@@ -207,12 +215,14 @@ make.historical.probs.plot <- function(model,
            xlab = "Year, t",
            ylab = "P(biomass declines from t to t+1)",
            ylim = c(0, 100),
-           main = main.title)
+           main = main.title,
+           lwd = lwd.val)
       points(res$Year,
              res$P_decline_curr,
              type = "o",
              pch = pch[2],
-             col = colors[2])
+             col = colors[2],
+             lwd = lwd.val)
       if(add.projs){
         segments(rep(assess.yr - 1, num.projs),
                  rep(res$P_decline[length(res$P_decline)], num.projs),
@@ -222,14 +232,16 @@ make.historical.probs.plot <- function(model,
                                          assess.yr)],
                  pch = pch[1],
                  col = c("pink",
-                         rep(colors[1], num.projs - 1)))
+                         rep(colors[1], num.projs - 1)),
+                 lwd = lwd.val)
         points(rep(assess.yr, num.projs),
                model$risks[[1]][1:num.projs,
                                 paste0("SSB_", assess.yr + 1, "<SSB_",
                                        assess.yr)],
                pch = pch[1],
                col = c("pink",
-                       rep(colors[1], num.projs - 1)))
+                       rep(colors[1], num.projs - 1)),
+               lwd = lwd.val)
       }
     }
 
@@ -243,7 +255,8 @@ make.historical.probs.plot <- function(model,
            xlab = "Year, t",
            ylab = "P(biomass declines from t to t+1)",
            ylim = c(0, 100),
-           main = main.title)
+           main = main.title,
+           lwd = lwd.val)
 
       res_one_year <- res[which(res$Year == one.year), ]
 
@@ -251,13 +264,15 @@ make.historical.probs.plot <- function(model,
              res_one_year$P_decline,
              type = "o",
              pch = pch[1],
-             col = colors[1])
+             col = colors[1],
+             lwd = lwd.val)
 
       points(res_one_year$Year,
              res_one_year$P_decline_curr,
              type = "o",
              pch = pch[2],
-             col = colors[2])
+             col = colors[2],
+             lwd = lwd.val)
 
       text(rep(res_one_year$Year, 2),
            c(res_one_year$P_decline,
@@ -278,12 +293,14 @@ make.historical.probs.plot <- function(model,
            col = colors[1],
            xlab = "Year, t",
            ylab = "P(biomass is below B40% in year t+1)",
-           ylim = c(0, 100))
+           ylim = c(0, 100),
+           lwd = lwd.val)
       points(res$Year,
              res$P_below_B40_curr,
              type = "o",
              pch = pch[2],
-             col = colors[2])
+             col = colors[2],
+             lwd = lwd.val)
       legend.loc = "topleft"
 
       if(add.projs){
@@ -294,13 +311,15 @@ make.historical.probs.plot <- function(model,
                                   paste0("Bratio_", assess.yr + 1, "<0.40")],
                  pch = pch[1],
                  col = c("pink",
-                         rep(colors[1], num.projs - 1)))
+                         rep(colors[1], num.projs - 1)),
+                 lwd = lwd.val)
         points(rep(assess.yr, num.projs),
                model$risks[[1]][1:num.projs,
                                 paste0("Bratio_", assess.yr + 1, "<0.40")],
                pch = pch[1],
                col = c("pink",
-                       rep(colors[1], num.projs - 1)))
+                       rep(colors[1], num.projs - 1)),
+               lwd = lwd.val)
       }
 
     }
@@ -314,7 +333,7 @@ make.historical.probs.plot <- function(model,
            legend.text,
            col = colors,
            lty = 1,
-           lwd = 2,
+           lwd = lwd.val,
            pch = pch,
            cex = legend.cex,
            bty = "y")
@@ -350,6 +369,7 @@ make.historical.probs.retro.plot <- function(model,
                              end = assess.yr - 1,
                              xLim = xLim,
                              add.to.plot = FALSE,
+                             lwd.val = 2,
                              ...)
 
   for(i in rev(1:earliest.retro.to.use)){
