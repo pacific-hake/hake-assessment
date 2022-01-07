@@ -21,8 +21,11 @@ RUN apt-get update -qq && \
 
 COPY --from=ss /usr/bin/ss /usr/bin/ss
 COPY install_packages.R install_packages.R
+COPY add_port.sh add_port.sh
 RUN Rscript install_packages.R
 
 ENV SS_HOME=/usr/bin/ss
 ENV PATH=$SS_HOME:$PATH
+
+CMD ["bash", "./add_port.sh"]
 
