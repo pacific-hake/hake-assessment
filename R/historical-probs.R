@@ -344,6 +344,14 @@ make.historical.probs.retro.plot <- function(model,
   earliest.retro.available = length(base.model$retros)
   earliest.retro.to.use = assess.yr - xLim[1] - 1  # any further is before xLim[1]
 
+  # Always do the current base model first, since want it when make.one.figure = TRUE
+  make.historical.probs.plot(base.model,
+                             type = type,
+                             end = assess.yr - 1,
+                             xLim = xLim,
+                             add.to.plot = FALSE,
+                             ...)
+
   for(i in rev(1:earliest.retro.to.use)){
     make.historical.probs.plot(base.model$retros[[i]],
                                type = type,
@@ -351,20 +359,11 @@ make.historical.probs.retro.plot <- function(model,
                                xLim = xLim,
                                legend.text = c("From year t's assessment",
                                                paste0("Retrospective with data to ",
-                                                      assess.yr - 1 - i)),
-                               add.to.plot = (i != earliest.retro.to.use &
-                                              make.one.figure),
-                                              # Must make first figure new
+                                                      assess.yr - 1 - i)), # ignored when make.one.figure = TRUE
+                               add.to.plot = make.one.figure,
                                ...)
   Sys.sleep(1)
   }
-  make.historical.probs.plot(base.model,
-                             type = type,
-                             end = assess.yr - 1,
-                             xLim = xLim,
-                             add.to.plot = make.one.figure,
-                             ...)
-
   # From squid plot, but don't think needed
   # oldpar <- par()
   # on.exit(par(oldpar))
