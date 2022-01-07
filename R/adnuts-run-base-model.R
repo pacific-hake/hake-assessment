@@ -17,7 +17,7 @@
 # iterations is now a derived quantity based on desired samples (n.final) and cores for the final
 # (nuts.updated) set of evaluations only; others remain static as they are much smaller for testing
 
-devtools::install_github('Cole-Monnahan-NOAA/adnuts', ref = 'dev')
+devtools::install_github('Cole-Monnahan-NOAA/adnuts', ref = 'main')
 library(adnuts)
 library(snowfall)
 library(rstan)
@@ -112,7 +112,7 @@ nuts.updated <- sample_nuts(model = exe,
                             cores = reps,
                             mceval = TRUE,
                             control = list(metric = mass,
-                                           adapt_delta = 0.9))
+                                           adapt_delta = 0.95))
 save.image(file = rdata_file)
 end_time <- Sys.time()
 cat("Elapsed time: ", end_time - start_time, "\n")
