@@ -129,6 +129,10 @@ make.historical.probs.plot <- function(model,
                                        pch = c(16, 17),
                                        legend.cex = 1,
                                        legend.loc = "bottomright",
+                                       main.title = NULL,
+                                       legend.text =
+                                         c("From year t's assessment",
+                                           "From current base model"),
                                        ...){
   res <- combine_historical_probs(model = model,
                                   end = end,
@@ -147,7 +151,8 @@ make.historical.probs.plot <- function(model,
          col = colors[1],
          xlab = "Year, t",
          ylab = "P(biomass declines from t to t+1)",
-         ylim = c(0, 100))
+         ylim = c(0, 100),
+         main = main.title)
     points(res$Year,
            res$P_decline_curr,
            type = "o",
@@ -182,7 +187,8 @@ make.historical.probs.plot <- function(model,
          col = "white",    # to get axes correct
          xlab = "Year, t",
          ylab = "P(biomass declines from t to t+1)",
-         ylim = c(0, 100))
+         ylim = c(0, 100),
+         main = main.title)
 
     res_one_year <- res[which(res$Year == one.year), ]
 
@@ -249,9 +255,6 @@ make.historical.probs.plot <- function(model,
               col = add.50.col) # extended past axes for some reason
   }
 
-  legend.text <- c("From year t's assessment",
-                   "From current base model")
-
   legend(legend.loc,
          legend.text,
          col = colors,
@@ -260,4 +263,44 @@ make.historical.probs.plot <- function(model,
          pch = pch,
          cex = legend.cex,
          bty = "y")
+}
+
+
+
+#' Make a panel plot of the historical probability calculations that uses
+#'  retrospective runs (given we have them). Calls
+#'  `make.historical.probs.plot()` for each retrospective.
+#'
+#' @param model Model with retrospectives
+#'
+#' @param type "decline" or "bforty" as needed for
+#'   `make.historical.probs.plot()`
+#' @param xLim range of x (years) axis
+#' @param ... arguments to pass to `make.historical.probs.plot()`
+#' @export
+make.historical.probs.retro.plot <- function(model,
+                                             type = "decline",
+                                             xLim = c(2012, assess.yr),
+                                             ...){
+  for(i in 1:length(base.model$retros)){
+    make.historical.probs.plot(base.model$retros[[i]],
+                               type = type,
+                               end = assess.yr - 1 - i,
+                               xLim = xLim,
+                               legend.text = c("From year t's assessment",
+                                               paste0("Retrospective with data to ",
+                                                      assess.yr - 1 - i)),
+                               ...)
+  Sys.sleep(5)
+  }
+  make.historical.probs.plot(base.model,
+                             type = type,
+                             end = assess.yr - 1,
+                             xLim = xLim,
+                             main.title = paste0("Data up to and including ", assess.yr - 1),
+                             ...)
+
+  # From squid plot, but don't think needed
+  # oldpar <- par()
+  # on.exit(par(oldpar))
 }
