@@ -64,10 +64,17 @@ calc_historical_probs <- function(model,
 ##' @examples combine_historical_probs(model = base.model, end = assess.yr-1)
 combine_historical_probs <- function(model,
                                      file = paste0(rootd,
-                                              "/data/assessment-history-probs.csv"),
+                                                   "/data/assessment-history-probs.csv"),
+                                     start = 2012,
+                                     end,
                                      ...){
-  res <- cbind(read.csv(file, comment.char = "#"),
+  hist_probs <- read.csv(file,
+                         comment.char = "#")
+
+  res <- cbind(hist_probs[hist_probs$Year %in% start:end, ],
                calc_historical_probs(model,
+                                     start = start,
+                                     end = end,
                                      ...)
                )
   stopifnot(res$year == res$Year)
