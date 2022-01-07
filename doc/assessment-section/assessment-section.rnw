@@ -1867,7 +1867,9 @@ recent years.
 The uncertainty interval associated with the \Sexpr{end.yr} assessment brackets the majority of the
 historical estimates.
 
-\subsection{Evaluating past projections}\label{sec:assessment-past-projections}
+\subsection{Performance of past projections}\label{sec:assessment-past-projections}
+
+**Updated some text, but everything needs checking once get new results.
 
 A comment in 2021 about the probabilities in the decision tables
 (such as Tables~\ref{tab:main-risk-year-1} and~\ref{tab:main-risk-year-2})
@@ -1897,34 +1899,10 @@ that the stock declined from 2019 to 2020 using all available data. This
 implicitly includes the 411,574~t catch from 2019. From the current assessment
 model we get P$(B_{2020} < B_{2019}) = 98\%$. **Need to automate the 98\%.
 The 65\% and 98\% probabilities
-are shown for 2019 in Figure~\ref{fig:appendix-srg-historical-1}.
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tbp]
-\begin{center}
-<<appendix-srg-historical-1, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model.">>=
-make.historical.probs.plot(base.model,
-                           add.projs = TRUE)
-@
-\end{center}
-%\vspace{0mm}
-\caption{For each year $t$, the probability that the spawning biomass at the
-  start of $t+1$ is below that at the start of $t$ is calculated in two ways.
-  Red: the probability is taken from year $t$'s stock assessment document, from
-  the row in the decision table corresponding to the consequent catch in year $t$
-(with interpolation if necessary). Blue: the probability is calculated using the
-current \Sexpr{assess.yr} base model. The grey horizontal line is the 50\% value. For each
-year, both probabilities lie on the same side of the grey line, indicating that
-each year's assessment model `correctly` estimates an increase or decrease the
-subsequent year's biomass. For the \Sexpr{assess.yr} assessment the
-probabilities are shown for all catch alternatives for \Sexpr{assess.yr}, as
-described in Table~\ref{tab:main-decisions-biomass}, with 0~t shown in pink.}
-\label{fig:appendix-srg-historical-1}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
+are shown for 2019 in Figure~\ref{fig:main-historical-1}.
 
 We extracted similar probabilities from past assessment documents going back to
-2012 (Figure~\ref{fig:appendix-srg-historical-1}).
+2012 (Figure~\ref{fig:main-historical-1}).
 For each assessment year $t$, we take the value of
 P$(B_{t+1} < B_{t})$ from year $t$'s stock assessment document, specifically the
 row in the decision table corresponding to the
@@ -1932,19 +1910,19 @@ catch that we now know to have occurred in year~$t$.
 This can require interpolation between catch levels if
 the exact catch in year $t$ was not given in the decision tables in year $t$'s assessment.
 We also calculate analogous probabilities,
-P$(B_{t+1} < B_{t})$, from the current base model (Figure~\ref{fig:appendix-srg-historical-1}).
+P$(B_{t+1} < B_{t})$, from the current base model (Figure~\ref{fig:main-historical-1}).
 
 The probability of 43\% from the 2012 assessment is
-somewhat above the 0\% calculated using the current assessment model
-(Figure~\ref{fig:appendix-srg-historical-1}). But, this makes sense because the
+somewhat above the ** 0\% calculated using the current assessment model
+(Figure~\ref{fig:main-historical-1}). But, this makes sense because the
 2012 assessment model had no information that the 2010 recruitment was going to be very large,
 whereas the current base model does have such information from many years of age
 data. Hence, the current model confidently `expects' a large increase in spawning biomass
 from 2012 to 2013 as the individuals in the 2010 cohort grew in size. The 2013
-assessment model had some information on the 2010 cohort, so the lower estimated probability that the stock would decline from 2013 to 2014 better concurs with the current base model than results from the 2012 assessment (Figure~\ref{fig:appendix-srg-historical-1}).
+assessment model had some information on the 2010 cohort, so the lower estimated probability that the stock would decline from 2013 to 2014 better concurs with the current base model than results from the 2012 assessment (Figure~\ref{fig:main-historical-1}).
 
 For later years, the probabilities vary, but for each year the probabilities
-either both lie above the 50\% line or both lie below it (Figure~\ref{fig:appendix-srg-historical-1}).
+either both lie above the 50\% line or both lie below it (Figure~\ref{fig:main-historical-1}).
 So, each assessment correctly predicts whether the stock will increase or
 decrease the following year. Also, for all years (except 2018) the assessment
 year's probabilities are closer to 50\% than those from the current base
@@ -1964,40 +1942,14 @@ definitive trend in biomass around that time
 in the future with additional data.
 
 From this current \Sexpr{assess.yr} assessment's projections, we show the probabilities for
-all catch alternatives in Figure~\ref{fig:appendix-srg-historical-1} because
+all catch alternatives in Figure~\ref{fig:main-historical-1} because
 we do not yet know which will correspond to the \Sexpr{assess.yr}
 catch. Catching zero fish in \Sexpr{assess.yr} (colored in pink) obviously gives
 the lowest probability that the stock will decline from \Sexpr{assess.yr} to \Sexpr{assess.yr+1}.
 
 We also provide similar calculations for the
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tbp]
-\begin{center}
-<<appendix-srg-historical-2, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock going below B40.">>=
-make.historical.probs.plot(base.model,
-                           add.projs = TRUE,
-                           type = "bforty")
-@
-\end{center}
-%\vspace{0mm}
-\caption{For each year $t$, the probability that the spawning biomass at the
-  start of $t+1$ is below $\Bforty$ is calculated in two ways (as for
-  Figure~\ref{fig:appendix-srg-historical-1}).
-  Red: the probability is taken from year $t$'s stock assessment document, from
-  the row in the decision table corresponding to the consequent catch in year $t$
-(with interpolation if necessary). Blue: the probability is calculated using the
-current \Sexpr{assess.yr} base model. The grey horizontal line is the 50\% value. For each
-year except 2012, both probabilities lie on the same side of the grey line, indicating that
-each year's assessment model `correctly` estimates that the subsequent year's
-biomass will not fall below $\Bforty$.
-For the \Sexpr{assess.yr} assessment the
-probabilities are shown for all catch alternatives for \Sexpr{assess.yr}, as
-described in Table~\ref{tab:main-decisions-biomass}, with 0~t shown in pink.}
-\label{fig:appendix-srg-historical-2}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
 probability of the biomass falling below
-$\Bforty$ in the subsequent year (Figure~\ref{fig:appendix-srg-historical-2}),
+$\Bforty$ in the subsequent year (Figure~\ref{fig:main-historical-2}),
 i.e.,~P$(B_{t+1} < \Bforty)$.
 The 2012 assessment gave a $>50\%$ chance of the biomass falling below
 $\Bforty$ in the subsequent year. This was the highest such probability from
@@ -2010,7 +1962,7 @@ which is desirable behavior as mentioned above -- the assessments gave low
 probabilities of an unlikely event occurring that we now believe to have been even more
 unlikely to have occurred. Since the 2018 assessment, the estimated probability
 of the biomass falling below $\Bforty$ are $>10\%$ and
-continue to rise (Figure~\ref{fig:appendix-srg-historical-2}).
+continue to rise (Figure~\ref{fig:main-historical-2}).
 
 Probabilities from past assessments lie below those estimated from the
 current model (the blue line is below the red line). But, this won't necessarily always

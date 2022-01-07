@@ -1285,3 +1285,53 @@ make.assessment.history.plot(base.model,
 \label{fig:main-historical-assessments}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<historical-1, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model.">>=
+make.historical.probs.plot(base.model,
+                           add.projs = TRUE)
+@
+\end{center}
+\caption{For each year $t$, the probability that the spawning biomass at the
+  start of $t+1$ is below that at the start of $t$ is calculated in two ways.
+  Red: the probability is taken from year $t$'s stock assessment document, from
+  the row in the decision table corresponding to the consequent catch in year $t$
+(with interpolation if necessary). Blue: the probability is calculated using the
+current \Sexpr{assess.yr} base model. The grey horizontal line is the 50\% value. **For each
+year, both probabilities lie on the same side of the grey line, indicating that
+each year's assessment model `correctly` estimates an increase or decrease the
+subsequent year's biomass. For the \Sexpr{assess.yr} assessment the
+probabilities are shown for all catch alternatives for \Sexpr{assess.yr}, as
+described in Table~\ref{tab:main-decisions-biomass}, with 0~t shown in pink.}
+\label{fig:main-historical-1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<historical-2, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock going below B40.">>=
+make.historical.probs.plot(base.model,
+                           add.projs = TRUE,
+                           type = "bforty")
+@
+\end{center}
+%\vspace{0mm}
+\caption{For each year $t$, the probability that the spawning biomass at the
+  start of $t+1$ is below $\Bforty$ is calculated in two ways (as for
+  Figure~\ref{fig:main-historical-1}).
+  Red: the probability is taken from year $t$'s stock assessment document, from
+  the row in the decision table corresponding to the consequent catch in year $t$
+(with interpolation if necessary). Blue: the probability is calculated using the
+current \Sexpr{assess.yr} base model. The grey horizontal line is the 50\% value. **For each
+year except 2012, both probabilities lie on the same side of the grey line, indicating that
+each year's assessment model `correctly` estimates that the subsequent year's
+biomass will not fall below $\Bforty$.
+For the \Sexpr{assess.yr} assessment the
+probabilities are shown for all catch alternatives for \Sexpr{assess.yr}, as
+described in Table~\ref{tab:main-decisions-biomass}, with 0~t shown in pink.}
+\label{fig:main-historical-2}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
