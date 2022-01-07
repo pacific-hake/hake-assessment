@@ -107,6 +107,9 @@ combine_historical_probs <- function(model,
 ##' @param pch
 ##' @param legend.cex
 ##' @param legend.loc
+##' @param main.title
+##' @param legend.text
+##' @param add.to.plot whether to add to an existing plot
 ##' @param ...
 ##' @return
 ##' @export
@@ -133,136 +136,189 @@ make.historical.probs.plot <- function(model,
                                        legend.text =
                                          c("From year t's assessment",
                                            "From current base model"),
+                                       add.to.plot = FALSE,
                                        ...){
   res <- combine_historical_probs(model = model,
                                   end = end,
                                   ...)
-  if(is.null(xLim)) xLim = range(res$Year) + c(0, 1)
-  oldpar <- par("mar", "xpd")
-  on.exit(par(oldpar))
-  par(mar = c(4.5, 4.5, 1, 1))
-
-  if(type == "decline"){
-    plot(res$Year,
-         res$P_decline,
-         xlim = xLim,
-         type = "o",
-         pch = pch[1],
-         col = colors[1],
-         xlab = "Year, t",
-         ylab = "P(biomass declines from t to t+1)",
-         ylim = c(0, 100),
-         main = main.title)
-    points(res$Year,
-           res$P_decline_curr,
-           type = "o",
-           pch = pch[2],
-           col = colors[2])
-    if(add.projs){
-      segments(rep(assess.yr - 1, num.projs),
-               rep(res$P_decline[length(res$P_decline)], num.projs),
-               rep(assess.yr, num.projs),
+  if(add.to.plot){
+    if(type == "decline"){
+      points(res$Year,
+             res$P_decline_curr,
+             type = "o",
+             pch = pch[2],
+             col = colors[2])
+      if(add.projs){
+        segments(rep(assess.yr - 1, num.projs),
+                 rep(res$P_decline[length(res$P_decline)], num.projs),
+                 rep(assess.yr, num.projs),
+                 model$risks[[1]][1:num.projs,
+                                  paste0("SSB_", assess.yr + 1, "<SSB_",
+                                         assess.yr)],
+                 pch = pch[1],
+                 col = c("pink",
+                         rep(colors[1], num.projs - 1)))
+        points(rep(assess.yr, num.projs),
                model$risks[[1]][1:num.projs,
-                                     paste0("SSB_", assess.yr + 1, "<SSB_",
-                                            assess.yr)],
+                                paste0("SSB_", assess.yr + 1, "<SSB_",
+                                       assess.yr)],
                pch = pch[1],
-           col = c("pink",
-                   rep(colors[1], num.projs - 1)))
-    points(rep(assess.yr, num.projs),
-               model$risks[[1]][1:num.projs,
-                                     paste0("SSB_", assess.yr + 1, "<SSB_",
-                                            assess.yr)],
-           pch = pch[1],
-           col = c("pink",
-                   rep(colors[1], num.projs - 1)))
-    }
-  }
-
-  if(type == "decline.one.year"){
-    plot(res$Year,
-         res$P_decline,
-         xlim = xLim,
-         type = "o",
-         pch = pch[1],
-         col = "white",    # to get axes correct
-         xlab = "Year, t",
-         ylab = "P(biomass declines from t to t+1)",
-         ylim = c(0, 100),
-         main = main.title)
-
-    res_one_year <- res[which(res$Year == one.year), ]
-
-    points(res_one_year$Year,
-           res_one_year$P_decline,
-           type = "o",
-           pch = pch[1],
-           col = colors[1])
-
-    points(res_one_year$Year,
-           res_one_year$P_decline_curr,
-           type = "o",
-           pch = pch[2],
-           col = colors[2])
-
-    text(rep(res_one_year$Year, 2),
-         c(res_one_year$P_decline,
-           res_one_year$P_decline_curr),
-         labels = c(paste0(res_one_year$P_decline, "%"),
-                    paste0(round(res_one_year$P_decline_curr), "%")),
-         col = colors,
-         pos=2)
-  }
-
-
-  if(type == "bforty"){
-    plot(res$Year,
-         res$P_below_B40,
-         xlim = xLim,
-         type = "o",
-         pch = pch[1],
-         col = colors[1],
-         xlab = "Year, t",
-         ylab = "P(biomass is below B40% in year t+1)",
-         ylim = c(0, 100))
-    points(res$Year,
-           res$P_below_B40_curr,
-           type = "o",
-           pch = pch[2],
-           col = colors[2])
-    legend.loc = "topleft"
-
-    if(add.projs){
-      segments(rep(assess.yr - 1, num.projs),
-               rep(res$P_below_B40[length(res$P_below_B40)], num.projs),
-               rep(assess.yr, num.projs),
-               model$risks[[1]][1:num.projs,
-                                     paste0("Bratio_", assess.yr + 1, "<0.40")],
-               pch = pch[1],
-           col = c("pink",
-                   rep(colors[1], num.projs - 1)))
-    points(rep(assess.yr, num.projs),
-               model$risks[[1]][1:num.projs,
-                                     paste0("Bratio_", assess.yr + 1, "<0.40")],
-           pch = pch[1],
-           col = c("pink",
-                   rep(colors[1], num.projs - 1)))
+               col = c("pink",
+                       rep(colors[1], num.projs - 1)))
+      }
     }
 
-  }
+    if(type == "bforty"){
+      points(res$Year,
+             res$P_below_B40_curr,
+             type = "o",
+             pch = pch[2],
+             col = colors[2])
+      if(add.projs){
+        segments(rep(assess.yr - 1, num.projs),
+                 rep(res$P_below_B40[length(res$P_below_B40)], num.projs),
+                 rep(assess.yr, num.projs),
+                 model$risks[[1]][1:num.projs,
+                                  paste0("Bratio_", assess.yr + 1, "<0.40")],
+                 pch = pch[1],
+                 col = c("pink",
+                         rep(colors[1], num.projs - 1)))
+        points(rep(assess.yr, num.projs),
+               model$risks[[1]][1:num.projs,
+                                paste0("Bratio_", assess.yr + 1, "<0.40")],
+               pch = pch[1],
+               col = c("pink",
+                       rep(colors[1], num.projs - 1)))
+      }
+    }
+  } else {      # create new plot
+    if(is.null(xLim)) xLim = range(res$Year) + c(0, 1)
+    oldpar <- par("mar", "xpd")
+    on.exit(par(oldpar))
+    par(mar = c(4.5, 4.5, 1, 1))
 
-  if(add.50){
-    abline(h = 50,
-              col = add.50.col) # extended past axes for some reason
-  }
+    if(type == "decline"){
+      plot(res$Year,
+           res$P_decline,
+           xlim = xLim,
+           type = "o",
+           pch = pch[1],
+           col = colors[1],
+           xlab = "Year, t",
+           ylab = "P(biomass declines from t to t+1)",
+           ylim = c(0, 100),
+           main = main.title)
+      points(res$Year,
+             res$P_decline_curr,
+             type = "o",
+             pch = pch[2],
+             col = colors[2])
+      if(add.projs){
+        segments(rep(assess.yr - 1, num.projs),
+                 rep(res$P_decline[length(res$P_decline)], num.projs),
+                 rep(assess.yr, num.projs),
+                 model$risks[[1]][1:num.projs,
+                                  paste0("SSB_", assess.yr + 1, "<SSB_",
+                                         assess.yr)],
+                 pch = pch[1],
+                 col = c("pink",
+                         rep(colors[1], num.projs - 1)))
+        points(rep(assess.yr, num.projs),
+               model$risks[[1]][1:num.projs,
+                                paste0("SSB_", assess.yr + 1, "<SSB_",
+                                       assess.yr)],
+               pch = pch[1],
+               col = c("pink",
+                       rep(colors[1], num.projs - 1)))
+      }
+    }
 
-  legend(legend.loc,
-         legend.text,
-         col = colors,
-         lty = 1,
-         lwd = 2,
-         pch = pch,
-         cex = legend.cex,
-         bty = "y")
+    if(type == "decline.one.year"){
+      plot(res$Year,
+           res$P_decline,
+           xlim = xLim,
+           type = "o",
+           pch = pch[1],
+           col = "white",    # to get axes correct
+           xlab = "Year, t",
+           ylab = "P(biomass declines from t to t+1)",
+           ylim = c(0, 100),
+           main = main.title)
+
+      res_one_year <- res[which(res$Year == one.year), ]
+
+      points(res_one_year$Year,
+             res_one_year$P_decline,
+             type = "o",
+             pch = pch[1],
+             col = colors[1])
+
+      points(res_one_year$Year,
+             res_one_year$P_decline_curr,
+             type = "o",
+             pch = pch[2],
+             col = colors[2])
+
+      text(rep(res_one_year$Year, 2),
+           c(res_one_year$P_decline,
+             res_one_year$P_decline_curr),
+           labels = c(paste0(res_one_year$P_decline, "%"),
+                      paste0(round(res_one_year$P_decline_curr), "%")),
+           col = colors,
+           pos=2)
+    }
+
+
+    if(type == "bforty"){
+      plot(res$Year,
+           res$P_below_B40,
+           xlim = xLim,
+           type = "o",
+           pch = pch[1],
+           col = colors[1],
+           xlab = "Year, t",
+           ylab = "P(biomass is below B40% in year t+1)",
+           ylim = c(0, 100))
+      points(res$Year,
+             res$P_below_B40_curr,
+             type = "o",
+             pch = pch[2],
+             col = colors[2])
+      legend.loc = "topleft"
+
+      if(add.projs){
+        segments(rep(assess.yr - 1, num.projs),
+                 rep(res$P_below_B40[length(res$P_below_B40)], num.projs),
+                 rep(assess.yr, num.projs),
+                 model$risks[[1]][1:num.projs,
+                                  paste0("Bratio_", assess.yr + 1, "<0.40")],
+                 pch = pch[1],
+                 col = c("pink",
+                         rep(colors[1], num.projs - 1)))
+        points(rep(assess.yr, num.projs),
+               model$risks[[1]][1:num.projs,
+                                paste0("Bratio_", assess.yr + 1, "<0.40")],
+               pch = pch[1],
+               col = c("pink",
+                       rep(colors[1], num.projs - 1)))
+      }
+
+    }
+
+    if(add.50){
+      abline(h = 50,
+             col = add.50.col) # extended past axes for some reason
+    }
+
+    legend(legend.loc,
+           legend.text,
+           col = colors,
+           lty = 1,
+           lwd = 2,
+           pch = pch,
+           cex = legend.cex,
+           bty = "y")
+  }
 }
 
 
@@ -276,14 +332,18 @@ make.historical.probs.plot <- function(model,
 #' @param type "decline" or "bforty" as needed for
 #'   `make.historical.probs.plot()`
 #' @param xLim range of x (years) axis
+#' @param make.one.figure whether to plot everything on one figure or new figure
+#'   for each retro.
 #' @param ... arguments to pass to `make.historical.probs.plot()`
 #' @export
 make.historical.probs.retro.plot <- function(model,
                                              type = "decline",
                                              xLim = c(2012, assess.yr),
+                                             make.one.figure = TRUE,
                                              ...){
   earliest.retro.available = length(base.model$retros)
   earliest.retro.to.use = assess.yr - xLim[1] - 1  # any further is before xLim[1]
+
   for(i in rev(1:earliest.retro.to.use)){
     make.historical.probs.plot(base.model$retros[[i]],
                                type = type,
@@ -292,14 +352,17 @@ make.historical.probs.retro.plot <- function(model,
                                legend.text = c("From year t's assessment",
                                                paste0("Retrospective with data to ",
                                                       assess.yr - 1 - i)),
+                               add.to.plot = (i != earliest.retro.to.use &
+                                              make.one.figure),
+                                              # Must make first figure new
                                ...)
-  Sys.sleep(5)
+  Sys.sleep(1)
   }
   make.historical.probs.plot(base.model,
                              type = type,
                              end = assess.yr - 1,
                              xLim = xLim,
-                             main.title = paste0("Data up to and including ", assess.yr - 1),
+                             add.to.plot = make.one.figure,
                              ...)
 
   # From squid plot, but don't think needed
