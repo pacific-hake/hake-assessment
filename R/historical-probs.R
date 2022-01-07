@@ -282,7 +282,9 @@ make.historical.probs.retro.plot <- function(model,
                                              type = "decline",
                                              xLim = c(2012, assess.yr),
                                              ...){
-  for(i in 1:length(base.model$retros)){
+  earliest.retro.available = length(base.model$retros)
+  earliest.retro.to.use = assess.yr - xLim[1] - 1  # any further is before xLim[1]
+  for(i in rev(1:earliest.retro.to.use)){
     make.historical.probs.plot(base.model$retros[[i]],
                                type = type,
                                end = assess.yr - 1 - i,
