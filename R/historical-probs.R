@@ -26,10 +26,10 @@ calc_historical_probs <- function(model,
   year <- seq(start, end)
 
   for(i in 1:length(year)){
-    P_decline_curr[i] <- mean(base.model$mcmc[[paste0("SSB_", year[i] + 1) ]] <
-                              base.model$mcmc[[paste0("SSB_", year[i]) ]]) * 100
+    P_decline_curr[i] <- mean(model$mcmc[[paste0("SSB_", year[i] + 1) ]] <
+                              model$mcmc[[paste0("SSB_", year[i]) ]]) * 100
 
-    P_below_B40_curr[i] <- mean(base.model$mcmc[[paste0("Bratio_", year[i] + 1) ]]
+    P_below_B40_curr[i] <- mean(model$mcmc[[paste0("Bratio_", year[i] + 1) ]]
                                 < 0.40) * 100
   }
 
@@ -150,14 +150,14 @@ make.historical.probs.plot <- function(model,
       segments(rep(assess.yr - 1, num.projs),
                rep(res$P_decline[length(res$P_decline)], num.projs),
                rep(assess.yr, num.projs),
-               base.model$risks[[1]][1:num.projs,
+               model$risks[[1]][1:num.projs,
                                      paste0("SSB_", assess.yr + 1, "<SSB_",
                                             assess.yr)],
                pch = pch[1],
            col = c("pink",
                    rep(colors[1], num.projs - 1)))
     points(rep(assess.yr, num.projs),
-               base.model$risks[[1]][1:num.projs,
+               model$risks[[1]][1:num.projs,
                                      paste0("SSB_", assess.yr + 1, "<SSB_",
                                             assess.yr)],
            pch = pch[1],
@@ -222,13 +222,13 @@ make.historical.probs.plot <- function(model,
       segments(rep(assess.yr - 1, num.projs),
                rep(res$P_below_B40[length(res$P_below_B40)], num.projs),
                rep(assess.yr, num.projs),
-               base.model$risks[[1]][1:num.projs,
+               model$risks[[1]][1:num.projs,
                                      paste0("Bratio_", assess.yr + 1, "<0.40")],
                pch = pch[1],
            col = c("pink",
                    rep(colors[1], num.projs - 1)))
     points(rep(assess.yr, num.projs),
-               base.model$risks[[1]][1:num.projs,
+               model$risks[[1]][1:num.projs,
                                      paste0("Bratio_", assess.yr + 1, "<0.40")],
            pch = pch[1],
            col = c("pink",
