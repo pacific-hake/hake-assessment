@@ -1335,3 +1335,81 @@ described in Table~\ref{tab:main-decisions-biomass}, with 0~t shown in pink.}
 \label{fig:main-historical-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<historical-retro-1, fig.height=10, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
+par(mfrow = c(3,1))
+make.historical.probs.retro.plot(base.model,
+                                 select.retros = 1:3,
+                                 make.one.figure = FALSE)
+@
+\end{center}
+\caption{**Retrospective versions of Figure~\ref{fig:main-historical-1} for first
+  three retrospectives (rephrase). **May not include all these, just wanted
+  to get them constructed and add options. Will take a bit of explaining
+  but they seem interesting.
+  For each panel, the current base model is run using only data up to the year
+  shown (i.e. a retrospective analysis). Results are shown in a single panel in
+  Figure~\ref{fig:main-historical-retro-all}.}
+\label{fig:main-historical-retro-1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<historical-retro-2, fig.height=10, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
+par(mfrow = c(3,1))
+make.historical.probs.retro.plot(base.model,
+                                 select.retros = 4:6,
+                                 make.one.figure = FALSE)
+@
+\end{center}
+\caption{**Retrospective versions of Figure~\ref{fig:main-historical-1} for second
+  three retrospectives. The pink 2015 value for 2016 retro is interesting (for
+  2021 assessment results - interesting if changes with new model). Only one for
+  which newer model with data to year $t$
+  performs 'worse' than original assessment from year $t$. Check the years are
+  lined up right **not off by a year?.
+  For each panel, the current base model is run using only data up to the year
+  shown (i.e. a retrospective analysis). Results are shown in a single panel in
+  Figure~\ref{fig:main-historical-retro-all}.}
+\label{fig:main-historical-retro-2}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<historical-retro-3, fig.height=10, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
+par(mfrow = c(3,1))
+make.historical.probs.retro.plot(base.model,
+                                 select.retros = 7:8,
+                                 make.one.figure = FALSE)
+@
+\end{center}
+\caption{**Retrospective versions of Figure~\ref{fig:main-historical-1} for final
+  retrospectives **bump select.retros to 9 when have updated base model results.
+  For each panel, the current base model is run using only data up to the year
+  shown (i.e. a retrospective analysis). Results are shown in a single panel in
+  Figure~\ref{fig:main-historical-retro-all}.}
+\label{fig:main-historical-retro-3}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<historical-retro-all, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
+make.historical.probs.retro.plot(base.model)
+@
+\end{center}
+\caption{**Retrospective results of **Figure~\ref{fig:main-historical-retro-1}
+  shown in a single panel.}
+\label{fig:main-historical-retro-all}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%

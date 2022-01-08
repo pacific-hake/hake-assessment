@@ -360,6 +360,9 @@ make.historical.probs.plot <- function(model,
 #' @param time.sleep seconds to pause between plots
 #' @param omit.current omit current base model plot when doing individual plots
 #'   (e.g. for panel plot don't need it, probably already shown it -- see example).
+#' @param select.retros vector of retrospective runs to use, where 1:4 would be
+#'   the earliest four retrospective runs (for not doing all plots to be able to
+#'   spread them out over multiple pages).
 #' @param ... arguments to pass to `make.historical.probs.plot()`
 #' @export
 #' @examples
@@ -386,9 +389,15 @@ make.historical.probs.retro.plot <- function(model,
                                                       "lightgrey"),
                                              time.sleep = 0,
                                              omit.current = TRUE,
+                                             select.retros = NULL,
                                              ...){
   earliest.retro.available = length(base.model$retros)
   earliest.retro.to.use = assess.yr - xLim[1] - 1  # any further is before xLim[1]
+  retros.to.use = rev(1:earliest.retro.to.use)
+  if(!is.null(select.retros)){
+    retros.to.use = retros.to.use[select.retros]
+  }
+
 
   # Always do the current base model first, since want it when make.one.figure =
   # TRUE, but don't (for multiple plots) if omit.current = FALSE
@@ -409,7 +418,7 @@ make.historical.probs.retro.plot <- function(model,
       Sys.sleep(time.sleep)
   }
 
-  for(i in rev(1:earliest.retro.to.use)){
+  for(i in retros.to.use){
     if(!make.one.figure){
       # Still want current base model results and full legend for individual plots
       make.historical.probs.plot(base.model,
@@ -422,7 +431,7 @@ make.historical.probs.retro.plot <- function(model,
                                  legend.text =
                                    c("From year t's assessment",
                                      "From current base model",
-                                     paste0("Retrospective with data to ",
+                                     paste0("Retrospective: data to ",
                                             assess.yr - 1 - i)),
                                  colors = c("red", "blue", cols[i]),
                                  ...)
