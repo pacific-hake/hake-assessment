@@ -1415,8 +1415,27 @@ make.historical.probs.retro.plot(base.model,
 make.historical.probs.retro.plot(base.model)
 @
 \end{center}
-\caption{**Retrospective results of **Figure~\ref{fig:main-historical-retro-1}
+\caption{**Retrospective results of
+  Figures~\ref{fig:main-historical-retro-1}--\ref{fig:main-historical-retro-3}
   shown in a single panel.}
 \label{fig:main-historical-retro-all}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<historical-retro-bforty-all, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining below B40 with those from the current base model and for retrospective analyses.">>=
+make.historical.probs.retro.plot(base.model,
+                                 type = "bforty")
+@
+\end{center}
+\caption{**Retrospective results of **Figure~\ref{fig:main-historical-2}, just
+  showing all in a single panel. Intriguing that the retro estimate
+  with data up to 2011 (first
+  black square) is not close to that from the 2012 assessment (that uses the
+  same data). Does this tell us that it's model changes not data changes?}
+\label{fig:main-historical-retro-bforty-all}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
