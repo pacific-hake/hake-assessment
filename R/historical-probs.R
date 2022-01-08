@@ -353,12 +353,25 @@ make.historical.probs.plot <- function(model,
 #' @param xLim range of x (years) axis
 #' @param make.one.figure whether to plot everything on one figure or new figure
 #'   for each retro.
+#' @param cols vector colors to use
+#' @param time.sleep seconds to pause between plots
 #' @param ... arguments to pass to `make.historical.probs.plot()`
 #' @export
 make.historical.probs.retro.plot <- function(model,
                                              type = "decline",
                                              xLim = c(2012, assess.yr),
                                              make.one.figure = TRUE,
+                                             cols = c("darkgreen",
+                                                      "lightgreen",
+                                                      "brown",
+                                                      "pink",
+                                                      "orange",
+                                                      "gold",
+                                                      "darkgrey",
+                                                      "black",
+                                                      "yellow",
+                                                      "lightgrey"),
+                                             time.sleep = 0,
                                              ...){
   earliest.retro.available = length(base.model$retros)
   earliest.retro.to.use = assess.yr - xLim[1] - 1  # any further is before xLim[1]
@@ -369,7 +382,7 @@ make.historical.probs.retro.plot <- function(model,
                              end = assess.yr - 1,
                              xLim = xLim,
                              add.to.plot = FALSE,
-                             lwd.val = 2,
+                             lwd.val = 3,
                              ...)
 
   for(i in rev(1:earliest.retro.to.use)){
@@ -381,8 +394,9 @@ make.historical.probs.retro.plot <- function(model,
                                                paste0("Retrospective with data to ",
                                                       assess.yr - 1 - i)), # ignored when make.one.figure = TRUE
                                add.to.plot = make.one.figure,
+                               colors = c("red", cols[i]),
                                ...)
-  Sys.sleep(1)
+  Sys.sleep(time.sleep)
   }
   # From squid plot, but don't think needed
   # oldpar <- par()
