@@ -16,7 +16,9 @@
 ##' @export
 ##' @author Andrew Edwards
 ##' @examples
+##' @donttest{
 ##' calc_historical_probs(base.model, end = assess.yr-1)
+##' @}
 calc_historical_probs <- function(model,
                                   start = 2012,
                                   end
@@ -61,7 +63,10 @@ calc_historical_probs <- function(model,
 ##' @return
 ##' @export
 ##' @author Andrew Edwards
-##' @examples combine_historical_probs(model = base.model, end = assess.yr-1)
+##' @examples
+##' @donttest{
+##' combine_historical_probs(model = base.model, end = assess.yr-1)
+##' @}
 combine_historical_probs <- function(model,
                                      file = paste0(rootd,
                                                    "/data/assessment-history-probs.csv"),
@@ -104,7 +109,7 @@ combine_historical_probs <- function(model,
 ##' @param add.projs Whether to add future projections from current base model
 ##' @param num.projs Num of projection catch levels to show
 ##' @param colors
-##' @param pch
+##' @param pch change legend call also if change this
 ##' @param lwd.val
 ##' @param legend.cex
 ##' @param legend.loc
@@ -116,10 +121,8 @@ combine_historical_probs <- function(model,
 ##' @export
 ##' @author Andrew Edwards
 ##' @examples
-##'  make.historical.probs.plot(base.model)
-##' @donttest{
-##' @
-##' @}
+##' make.historical.probs.plot(base.model)
+##'
 make.historical.probs.plot <- function(model,
                                        type = "decline",
                                        end = assess.yr - 1,
@@ -342,7 +345,7 @@ make.historical.probs.plot <- function(model,
 
 
 
-#' Make a panel plot of the historical probability calculations that uses
+#' Make individual plots or one overlaid historical probability calculations that uses
 #'  retrospective runs (given we have them). Calls
 #'  `make.historical.probs.plot()` for each retrospective.
 #'
@@ -355,8 +358,18 @@ make.historical.probs.plot <- function(model,
 #'   for each retro.
 #' @param cols vector colors to use
 #' @param time.sleep seconds to pause between plots
+#' @param omit.current omit current base model plot when doing individual plots
+#'   (e.g. for panel plot don't need it, probably already shown it -- see example).
 #' @param ... arguments to pass to `make.historical.probs.plot()`
 #' @export
+#' @examples
+#' @donttest{
+#' make.historical.probs.retro.plot(base.model)
+#'
+#' par(mfrow = c(3,3))
+#' make.historical.probs.retro.plot(base.model, make.one.figure = FALSE,
+#'  time.sleep = 2)
+#' @}
 make.historical.probs.retro.plot <- function(model,
                                              type = "decline",
                                              xLim = c(2012, assess.yr),
@@ -372,29 +385,56 @@ make.historical.probs.retro.plot <- function(model,
                                                       "yellow",
                                                       "lightgrey"),
                                              time.sleep = 0,
+                                             omit.current = TRUE,
                                              ...){
   earliest.retro.available = length(base.model$retros)
   earliest.retro.to.use = assess.yr - xLim[1] - 1  # any further is before xLim[1]
 
-  # Always do the current base model first, since want it when make.one.figure = TRUE
-  make.historical.probs.plot(base.model,
-                             type = type,
-                             end = assess.yr - 1,
-                             xLim = xLim,
-                             add.to.plot = FALSE,
-                             lwd.val = 3,
-                             ...)
+  # Always do the current base model first, since want it when make.one.figure =
+  # TRUE, but don't (for multiple plots) if omit.current = FALSE
+  if(make.one.figure | !omit.current){
+      make.historical.probs.plot(base.model,
+                                 type = type,
+                                 end = assess.yr - 1,
+                                 xLim = xLim,
+                                 add.to.plot = FALSE,
+                                 lwd.val = 3,
+                                 pch = c(16, 17, 15),
+                                 legend.text =
+                                   c("From year t's assessment",
+                                     "From current base model",
+                                     "Retrospectives"),
+                                 colors = c("red", "blue", "grey"),
+                                 ...)
+      Sys.sleep(time.sleep)
+  }
 
   for(i in rev(1:earliest.retro.to.use)){
+    if(!make.one.figure){
+      # Still want current base model results and full legend for individual plots
+      make.historical.probs.plot(base.model,
+                                 type = type,
+                                 end = assess.yr - 1 - i,
+                                 xLim = xLim,
+                                 add.to.plot = FALSE,
+                                 lwd.val = 3,
+                                 pch = c(16, 17, 15),
+                                 legend.text =
+                                   c("From year t's assessment",
+                                     "From current base model",
+                                     paste0("Retrospective with data to ",
+                                            assess.yr - 1 - i)),
+                                 colors = c("red", "blue", cols[i]),
+                                 ...)
+    }
+
     make.historical.probs.plot(base.model$retros[[i]],
                                type = type,
                                end = assess.yr - 1 - i,
                                xLim = xLim,
-                               legend.text = c("From year t's assessment",
-                                               paste0("Retrospective with data to ",
-                                                      assess.yr - 1 - i)), # ignored when make.one.figure = TRUE
-                               add.to.plot = make.one.figure,
+                               add.to.plot = TRUE,
                                colors = c("red", cols[i]),
+                               pch = c(16, 15),
                                ...)
   Sys.sleep(time.sleep)
   }
