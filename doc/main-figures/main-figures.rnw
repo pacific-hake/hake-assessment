@@ -1352,7 +1352,9 @@ make.historical.probs.retro.plot(base.model,
   but they seem interesting.
   For each panel, the current base model is run using only data up to the year
   shown (i.e. a retrospective analysis). Results are shown in a single panel in
-  Figure~\ref{fig:main-historical-retro-all}.}
+  Figure~\ref{fig:main-historical-retro-all}. Final retro point should in theory
+  be close to the red point, difference is due to model changes (and
+  maybe slightly updated data)....}
 \label{fig:main-historical-retro-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1369,10 +1371,14 @@ make.historical.probs.retro.plot(base.model,
 \end{center}
 \caption{**Retrospective versions of Figure~\ref{fig:main-historical-1} for second
   three retrospectives. The pink 2015 value for 2016 retro is interesting (for
-  2021 assessment results - interesting if changes with new model). Only one for
+  2021 assessment results - interesting if changes with new model -- check).
+  Only one for
   which newer model with data to year $t$
-  performs 'worse' than original assessment from year $t$. Check the years are
-  lined up right **not off by a year?.
+  performs 'worse' than original assessment from year $t$. Looking at
+  squid plot I think it may possibly be the slight drop in 2010 retro from
+  age 5 to 6 (a big abs decrease in estimated 2010 rec
+  when going from 2015 data to 2016); maybe think about more, may
+  be too hard to tease out (and those thoughts may be wrong).
   For each panel, the current base model is run using only data up to the year
   shown (i.e. a retrospective analysis). Results are shown in a single panel in
   Figure~\ref{fig:main-historical-retro-all}.}
@@ -1386,12 +1392,13 @@ make.historical.probs.retro.plot(base.model,
 <<historical-retro-3, fig.height=10, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
 par(mfrow = c(3,1))
 make.historical.probs.retro.plot(base.model,
-                                 select.retros = 7:8,
+                                 select.retros = 7:9,
                                  make.one.figure = FALSE)
 @
 \end{center}
 \caption{**Retrospective versions of Figure~\ref{fig:main-historical-1} for final
-  retrospectives **bump select.retros to 9 when have updated base model results.
+  retrospectives **can also bump select.retros to 10 when have updated base
+  model results, maybe just add to next plot.
   For each panel, the current base model is run using only data up to the year
   shown (i.e. a retrospective analysis). Results are shown in a single panel in
   Figure~\ref{fig:main-historical-retro-all}.}
