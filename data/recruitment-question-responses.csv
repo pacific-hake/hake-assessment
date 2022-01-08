@@ -1,0 +1,24 @@
+# recruitment-question-responses.csv - taking the timestamps off recruitment-question-responses-orig.csv to leave just the answers, then adding two more columns to be a range of values based on that response. If one number was given as a response then put that for both columns.
+Answer, Low, High
+"Well the bars only cover 95% of the values so it will be off by a bit but I think that only the lowest point in 2010 matters because of the 'at least as large' part. So then how much of the 2014 bar is above that point, so around 65-70%", 65, 70
+"Andy: 15-20% guess by Chris in March, then quickly calculated 5.07% (using median of 2010).", 15, 20
+"no, it is not. ", 0, 0
+40%, 40, 40
+10%, 10, 10
+45% based on my amateur interpretation of the credibility intervals, 45, 45
+"Roughly speaking I would guess ~25%. The median for 2010 is ~15-16 and the 2.5th interval extends down to ~10. The median of 2014 is very close to what the interval might be if you went to 99%. So roughly speaking, half of both distributions overlap. With ~50% of each overlapping, that gives 0.5 x  0.5 or 0.25. ", 25, 25
+Approximately 60%, 60, 60
+"Roughly 50 percent, or whatever the overlap of the error bars is", 50, 50
+50%, 50, 50
+"10%,   Most retrospectives show cohort strength to be over estimated initially and are downgraded over time in subsequent assessments.", 10, 10
+"50%, based on extent of CI overlap and 2014 mean/median being ~50% of 2010.", 50, 50
+low,NA,NA
+~50%, 45, 50
+50%, 50, 50
+Relatively low - maybe 25%?  Half of the probability for 2010 (lower half) is in the range of the upper half of the 2014 probability distribution.  So I figure somewhere around 25%.  Fairly low.  I'll be curious to know if I've totally misinterpreted this plot!, 25, 25
+10%, 10, 10
+10%, 10, 10
+about 40-50%?, 40, 50
+20-30%, 20, 30
+30%-50%. No more than 50%, 30, 50
+0.4, 40, 40
