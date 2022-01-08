@@ -391,7 +391,7 @@ make.historical.probs.retro.plot <- function(model,
                                              omit.current = TRUE,
                                              select.retros = NULL,
                                              ...){
-  earliest.retro.available = length(base.model$retros)
+  earliest.retro.available = length(model$retros)
   earliest.retro.to.use = assess.yr - xLim[1] - 1  # any further is before xLim[1]
   retros.to.use = rev(1:earliest.retro.to.use)
   if(!is.null(select.retros)){
@@ -402,7 +402,7 @@ make.historical.probs.retro.plot <- function(model,
   # Always do the current base model first, since want it when make.one.figure =
   # TRUE, but don't (for multiple plots) if omit.current = FALSE
   if(make.one.figure | !omit.current){
-      make.historical.probs.plot(base.model,
+      make.historical.probs.plot(model,
                                  type = type,
                                  end = assess.yr - 1,
                                  xLim = xLim,
@@ -421,7 +421,7 @@ make.historical.probs.retro.plot <- function(model,
   for(i in retros.to.use){
     if(!make.one.figure){
       # Still want current base model results and full legend for individual plots
-      make.historical.probs.plot(base.model,
+      make.historical.probs.plot(model,
                                  type = type,
                                  end = assess.yr - 1 - i,
                                  xLim = xLim,
@@ -437,7 +437,7 @@ make.historical.probs.retro.plot <- function(model,
                                  ...)
     }
 
-    make.historical.probs.plot(base.model$retros[[i]],
+    make.historical.probs.plot(model$retros[[i]],
                                type = type,
                                end = assess.yr - 1 - i,
                                xLim = xLim,
