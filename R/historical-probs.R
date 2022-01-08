@@ -363,6 +363,7 @@ make.historical.probs.plot <- function(model,
 #' @param select.retros vector of retrospective runs to use, where 1:4 would be
 #'   the earliest four retrospective runs (for not doing all plots to be able to
 #'   spread them out over multiple pages).
+#' @param lwd.val.for.retros lwd for retro lines, default of 1 is for one.figure
 #' @param ... arguments to pass to `make.historical.probs.plot()`
 #' @export
 #' @examples
@@ -384,15 +385,25 @@ make.historical.probs.retro.plot <- function(model,
                                                       "orange",
                                                       "gold",
                                                       "darkgrey",
+                                                      "violet",
                                                       "black",
-                                                      "yellow",
                                                       "lightgrey"),
                                              time.sleep = 0,
                                              omit.current = TRUE,
                                              select.retros = NULL,
+                                             lwd.val.for.retros = 1,
                                              ...){
-  earliest.retro.available = length(model$retros)
-  earliest.retro.to.use = assess.yr - xLim[1] - 1  # any further is before xLim[1]
+  if(!make.one.figure){   # override default for multiple figures
+    lwd.val.for.retros = 3
+  }
+
+  earliest.retro.available = length(model$retros)  # For 2021 base.case: 10
+  earliest.retro.to.use = assess.yr - xLim[1]      # any further is before
+                                        # xLim[1], want first retro year of data
+                                        # to be 2011 (for 2012 calcs to compare
+                                        # with 2012 assessment), which is retros[[9]].
+
+
   retros.to.use = rev(1:earliest.retro.to.use)
   if(!is.null(select.retros)){
     retros.to.use = retros.to.use[select.retros]
@@ -423,7 +434,7 @@ make.historical.probs.retro.plot <- function(model,
       # Still want current base model results and full legend for individual plots
       make.historical.probs.plot(model,
                                  type = type,
-                                 end = assess.yr - 1 - i,
+                                 end = assess.yr - i,
                                  xLim = xLim,
                                  add.to.plot = FALSE,
                                  lwd.val = 3,
@@ -439,11 +450,12 @@ make.historical.probs.retro.plot <- function(model,
 
     make.historical.probs.plot(model$retros[[i]],
                                type = type,
-                               end = assess.yr - 1 - i,
+                               end = assess.yr - i,
                                xLim = xLim,
                                add.to.plot = TRUE,
                                colors = c("red", cols[i]),
                                pch = c(16, 15),
+                               lwd.val = lwd.val.for.retros,
                                ...)
   Sys.sleep(time.sleep)
   }
