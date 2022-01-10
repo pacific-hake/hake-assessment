@@ -707,9 +707,28 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
                                        rescale.yr = 2010,  # year to rescale by
                                          # if rescaling, not fully functional
                                          # yet though
-                                       traceplot = TRUE   # do a traceplot of
+                                       traceplot = TRUE,   # do a traceplot of
                                          # MCMC samples else a median and 95%
-                                         # interval plot
+                                       # interval plot
+                                       highlight = FALSE,  # whether to
+                                         # highlight some samples
+                                       highlight.num = 5,   # how many to
+                                         # highlight, then highlight them
+                                         # equally spaced out (in order of 2010
+                                         # recruitment), plus the 2nd and
+                                         # penultimate samples.
+                                       highlight.cols = c("darkgreen",
+                                                          "red",
+                                                          "pink",
+                                                          "black",
+                                                          "orange",
+                                                          "gold",
+                                                          "brown",
+                                                          "darkgrey",
+                                                          "violet",
+                                                          "black",
+                                                          "lightgrey"),
+                                       highlight.lwd = 2
                                        ){
   oldpar <- par()
   par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
@@ -762,6 +781,23 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
             type = 'l',
             add=TRUE,
             lty = 1)
+    if(highlight){
+      highlight.rows <- c(2,
+                          round(1:(highlight.num-1) * (samples/(highlight.num -
+                                                                1))))
+      highlight.rows[length(highlight.rows)] <-
+        highlight.rows[length(highlight.rows)] - 1 # so penultimate
+      dat_sub_highlight <- as_tibble(dat_sub) %>%
+        arrange(Recr_2010)
+      dat_sub_highlight <- dat_sub_highlight[highlight.rows, ]
+      matplot(x = start.yr:end.yr,
+              y = t(dat_sub_highlight),
+              col = highlight.cols,
+              type = 'l',
+              add=TRUE,
+              lty = 1,
+              lwd = highlight.lwd)
+    }
   } else {        # medians and intervals
 
     lower <- apply(dat_sub, 2, quantile, probs = 0.025)

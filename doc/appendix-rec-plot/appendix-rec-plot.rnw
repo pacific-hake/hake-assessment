@@ -91,7 +91,8 @@ make.mcmc.recruitment.plot(base.model,
                            start.yr = 2006,
                            equil.yr = unfished.eq.yr,
                            samples = 100,
-                           end.yr = assess.yr - 1)  # since will use last.yr.
+                           end.yr = assess.yr - 1,   # since will use last.yr.
+                           highlight = TRUE)
 @
 \end{center}
 \caption{**A subsample of 100 MCMC time series estimates of recruitment, for the
@@ -108,7 +109,8 @@ make.mcmc.recruitment.plot(base.model,
                            equil.yr = unfished.eq.yr,
                            samples = 100,
                            rescale = TRUE,
-                           end.yr = assess.yr - 1)
+                           end.yr = assess.yr - 1,
+                           highlight = FALSE)
 @
 \end{center}
 \caption{**Trace plots for 100 MCMC samples as in Figure~\ref{fig:recruitment-trace-recent}, but
@@ -187,7 +189,8 @@ make.mcmc.recruitment.plot(base.model,
                            start.yr = 2006,
                            equil.yr = unfished.eq.yr,
                            samples = 100,
-                           end.yr = assess.yr + 2)  # since will use last.yr.
+                           end.yr = assess.yr + 2,  # since will use last.yr.
+                           highlight = FALSE)
 @
 \end{center}
 \caption{**A subsample of 100 MCMC time series estimates of recruitment, for the
