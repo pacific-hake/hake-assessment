@@ -8,26 +8,6 @@
 This appendix contains some ideas to develop an extra figure to intuitively show
 recruitment variability.
 
-Variability in annual recruitment is a key feature of the \fishname\
-stock. This is demonstrated  in figures of the estimated
-recruitment of age-0 fish in each year, as shown in
-Figure~\ref{fig:main-recruitment} and the equivalent
-figure from the \Sexpr{assess.yr - 1} assessment \citep{JTC2021}, reproduced as
-Figure~\ref{fig:recruitment-last-asssessment} below).
-
-However, we realised that these figures may not clearly or intuitively convey
-certain aspects. To understand this, the JTC sent a survey to all participants of
-the \fishname\ process, who were asked to
-anonymously answer the following question (via a Google Form that included a
-copy of the relevant figure):
-\begin{quote}
-``Figure e in the 2021 Pacific Hake stock assessment document
-shows the estimated recruitment each year. From this figure
-what do you think the chance (probability) is that the 2014 cohort is at least
-as large as the 2010 cohort? Please give a percentage or a range, and feel
-free to add any text if you like. All answers are anonymous. Thanks.''
-\end{quote}
-%
 \begin{figure}[b]
 \begin{center}
 <<recruitment-last-assessment, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016">>=
@@ -48,6 +28,27 @@ make.recruitment.plot(base.model,
   interval shaded between the dotted lines.}
 \label{fig:recruitment-last-asssessment}
 \end{figure}
+
+
+Variability in annual recruitment is a key feature of the \fishname\
+stock. This is demonstrated  in figures of the estimated
+recruitment of age-0 fish in each year, as shown in
+Figure~\ref{fig:main-recruitment} and the equivalent
+figure from the \Sexpr{assess.yr - 1} assessment \citep{JTC2021}, reproduced
+here as Figure~\ref{fig:recruitment-last-asssessment}.
+
+However, we realised that these figures may not clearly or intuitively convey
+certain aspects. To understand this, the JTC sent a survey to all participants of
+the \fishname\ process, who were asked to
+anonymously answer the following question (via a Google Form that included a
+copy of the relevant figure):
+\begin{quote}
+``Figure e in the 2021 Pacific Hake stock assessment document
+shows the estimated recruitment each year. From this figure
+what do you think the chance (probability) is that the 2014 cohort is at least
+as large as the 2010 cohort? Please give a percentage or a range, and feel
+free to add any text if you like. All answers are anonymous. Thanks.''
+\end{quote}
 
 **WHEN HAVE 2022 base model CHANGE THESE FIGURES to last.yr.base.model not
 base.model, so that this text is correct (and the figure is one we asked people
@@ -89,7 +90,8 @@ because larger values of 2014 recruitment are associated with large values of
 make.mcmc.recruitment.plot(base.model,
                            start.yr = 2006,
                            equil.yr = unfished.eq.yr,
-                           samples = 100)
+                           samples = 100,
+                           end.yr = assess.yr - 1)  # since will use last.yr.
 @
 \end{center}
 \caption{**A subsample of 100 MCMC time series estimates of recruitment, for the
@@ -105,7 +107,8 @@ make.mcmc.recruitment.plot(base.model,
                            start.yr = 2006,
                            equil.yr = unfished.eq.yr,
                            samples = 100,
-                           rescale = TRUE)
+                           rescale = TRUE,
+                           end.yr = assess.yr - 1)
 @
 \end{center}
 \caption{**Trace plots for 100 MCMC samples as in Figure~\ref{fig:recruitment-trace-recent}, but
@@ -122,7 +125,8 @@ make.mcmc.recruitment.plot(base.model,
                            equil.yr = unfished.eq.yr,
                            samples = NULL,
                            rescale = TRUE,
-                           traceplot = FALSE)
+                           traceplot = FALSE,
+                           end.yr = assess.yr - 1)
 @
 \end{center}
 \caption{**Estimated recruitments divided by the estimated 2010 recruitment for
@@ -143,10 +147,13 @@ make.mcmc.recruitment.plot(base.model,
                            equil.yr = unfished.eq.yr,
                            samples = NULL,
                            rescale = TRUE,
-                           traceplot = FALSE)
+                           traceplot = FALSE,
+                           end.yr = assess.yr - 1)
 @
 \end{center}
-\caption{**As for Figure~\ref{fig:recruitment-scale} but for all years.}
+\caption{**As for Figure~\ref{fig:recruitment-scale} but for all
+  years. **Probably delete this one if not too different, and just
+  jump to the next one.}
 \label{fig:recruitment-scale-all}
 \end{figure}
 
@@ -158,7 +165,8 @@ make.mcmc.recruitment.plot(base.model,
                            equil.yr = unfished.eq.yr,
                            samples = NULL,
                            rescale = TRUE,
-                           traceplot = FALSE)
+                           traceplot = FALSE,
+                           end.yr = assess.yr)
 @
 \end{center}
 \caption{**As for Figure~\ref{fig:recruitment-scale} but for the current stock
@@ -168,7 +176,25 @@ make.mcmc.recruitment.plot(base.model,
 \label{fig:recruitment-scaled-2010}
 \end{figure}
 
+The traceplots also help understand the recruitment used in recent years and
+projection years.... Figure~\ref{fig:recruitment-trace-proj}. ...Explains
+projection years in Figure~\ref{fig:recruitment-scaled-2010}.
 
+\begin{figure}[tbp]
+\begin{center}
+<<recruitment-trace-proj, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016">>=
+make.mcmc.recruitment.plot(base.model,
+                           start.yr = 2006,
+                           equil.yr = unfished.eq.yr,
+                           samples = 100,
+                           end.yr = assess.yr + 2)  # since will use last.yr.
+@
+\end{center}
+\caption{**A subsample of 100 MCMC time series estimates of recruitment, for the
+  current base model, showing the projection years. **Increment end.yr if we have
+  that now. This also helps with Issue \#843. **Do five subsample colours}
+\label{fig:recruitment-trace-proj}
+\end{figure}
 
 
 In the 2018 assessment this probability was explicitly estimated to be
