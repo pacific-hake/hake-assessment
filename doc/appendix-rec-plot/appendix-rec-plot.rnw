@@ -1,6 +1,6 @@
 \newpage
 
-\chapter{Further figures to better understand recruitment variability}
+\chapter{New figures to better convey recruitment variability}
 \label{chap:rec-plot}
 
 This appendix contains some ideas to develop an extra figure to intuitively show
@@ -10,22 +10,22 @@ Variability in annual recruitment is a key feature of the \fishname\
 stock. This is demonstrated  in figures of the estimated
 recruitment of age-0 fish in each year, as shown in
 Figure~\ref{fig:main-recruitment} and the equivalent
-figure from the \Sexpr{assess.yr - 1} assessment \citep{JTC2021}
-(Figure~\ref{fig:recruitment-last-asssessment} below).
+figure from the \Sexpr{assess.yr - 1} assessment \citep{JTC2021}, reproduced as
+Figure~\ref{fig:recruitment-last-asssessment} below).
 
-However, these figures do not clearly or intuitively convey certain aspects. The
-JTC sent a survey to participants of the \fishname\ process, who were asked to
+However, we realised that these figures may not clearly or intuitively convey
+certain aspects. To understand this, the JTC sent a survey to all participants of
+the \fishname\ process, who were asked to
 anonymously answer the following question (via a Google Form that included a
 copy of the relevant figure):
 
-% \begin{quote}
-Figure e in the 2021 Pacific Hake stock assessment document
+\begin{quote}
+``Figure e in the 2021 Pacific Hake stock assessment document
 shows the estimated recruitment each year. From this figure
 what do you think the chance (probability) is that the 2014 cohort is at least
 as large as the 2010 cohort? Please give a percentage or a range, and feel
-free to add any text if you like. All answers are anonymous. Thanks.
-% \end{quote}
-
+free to add any text if you like. All answers are anonymous. Thanks.''
+\end{quote}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[b]
@@ -48,5 +48,29 @@ make.recruitment.plot(last.yr.base.model,
   interval shaded between the dotted lines.}
 \label{fig:recruitment-last-asssessment}
 \end{figure}
+
+Results are shown in Figure **. However, from the full MCMC results, the
+estimated probability that `the 2014 cohort is at least
+as large as the 2010 cohort` is in fact \Sexpr{prob.percent.2014.rec.gt.2010.rec}\%.
+
+% In issue I did: mean(base.model$mcmc$"Recr_2014" > base.model$mcmc$"Recr_2010")
+
+Thus it seems appropriate to explain the issue to derive an intuitive figure to
+complement the existing figure.
+
+
+
+
+
+
+In the 2018 assessment this probability was explicitly estimated to be
+4.8\% \citep{JTC2018} (**also see Issue \#422). Figure~e from 2018 has median for 2014 above
+the lower end of the 2010 credible interval (unlike
+Figure~\ref{fig:recruitment-last-asssessment}). Now that there are more data
+available regarding the 2014 cohort (compared to the 2018 assessment) it is
+estimated to be \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% of the 2014 cohort
+being as large as the 2010 cohort. More data allows for more certainty (less
+uncertainty) in such a calculation. **May be confusing.
+
 
 \clearpage        % needed for footer to be correct
