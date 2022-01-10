@@ -3,6 +3,8 @@
 \chapter{New figures to better convey recruitment variability}
 \label{chap:rec-plot}
 
+% Taking ideas from Issue #836.
+
 This appendix contains some ideas to develop an extra figure to intuitively show
 recruitment variability.
 
@@ -18,7 +20,6 @@ certain aspects. To understand this, the JTC sent a survey to all participants o
 the \fishname\ process, who were asked to
 anonymously answer the following question (via a Google Form that included a
 copy of the relevant figure):
-
 \begin{quote}
 ``Figure e in the 2021 Pacific Hake stock assessment document
 shows the estimated recruitment each year. From this figure
@@ -26,12 +27,11 @@ what do you think the chance (probability) is that the 2014 cohort is at least
 as large as the 2010 cohort? Please give a percentage or a range, and feel
 free to add any text if you like. All answers are anonymous. Thanks.''
 \end{quote}
-
-%%%%%%%%%%%%%%%%%%%%%%%
+%
 \begin{figure}[b]
 \begin{center}
 <<recruitment-last-assessment, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016">>=
-make.recruitment.plot(last.yr.base.model,
+make.recruitment.plot(base.model,
                       equil.yr = unfished.eq.yr,
                       start.yr = start.yr,
                       end.yr = end.yr,
@@ -49,6 +49,11 @@ make.recruitment.plot(last.yr.base.model,
 \label{fig:recruitment-last-asssessment}
 \end{figure}
 
+**WHEN HAVE 2022 base model CHANGE THESE FIGURES to last.yr.base.model not
+base.model, so that this text is correct (and the figure is one we asked people
+about). Don't change final one as want that based on the new base model, plus
+will be interesting to compare to how it differs to last year's base model.
+
 Results are shown in Figure **. However, from the full MCMC results, the
 estimated probability that `the 2014 cohort is at least
 as large as the 2010 cohort` is in fact \Sexpr{prob.percent.2014.rec.gt.2010.rec}\%.
@@ -58,7 +63,110 @@ as large as the 2010 cohort` is in fact \Sexpr{prob.percent.2014.rec.gt.2010.rec
 Thus it seems appropriate to explain the issue to derive an intuitive figure to
 complement the existing figure.
 
+The reason for asking about comparing the 2014 cohort to the 2010 cohort is that
+the 2010 cohort is the largest for some time
+(Figure~\ref{fig:recruitment-last-asssessment}), with 1999 looking somewhat
+comparable. Thus, people familiar with \fishname have an intuition about the
+2014 cohort being very large. The y-axis in
+Figure~\ref{fig:recruitment-last-asssessment} is in terms of billions of age-0
+fish. While this is the correct unit for recruitment, it may not be a very
+intuitive scale. So it can be desirable to want to compare the size of cohorts
+with the huge 2010 cohort.
 
+In Figure~\ref{fig:recruitment-last-asssessment} the credible interval for the
+2014 recruitment extends above the median for the 2010 recruitment, and thus
+intuitively one could expect that there is some (non-zero) chance that 2014
+could be larger than 2010.
+
+However, the reason that the estimated probability of the 2014 cohort being
+larger than the 2010 cohort is \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% is
+because larger values of 2014 recruitment are associated with large values of
+2010 recruitment.
+
+\begin{figure}[tbp]
+\begin{center}
+<<recruitment-trace-recent, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016">>=
+make.mcmc.recruitment.plot(base.model,
+                           start.yr = 2006,
+                           equil.yr = unfished.eq.yr,
+                           samples = 100)
+@
+\end{center}
+\caption{**A subsample of 100 MCMC time series estimates of recruitment, for the
+  \Sexpr{assess.yr - 1} assessment model. **Do 5 or so example specific
+  colours.}
+\label{fig:recruitment-trace-recent}
+\end{figure}
+%
+\begin{figure}[tbp]
+\begin{center}
+<<recruitment-trace-scale, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016">>=
+make.mcmc.recruitment.plot(base.model,
+                           start.yr = 2006,
+                           equil.yr = unfished.eq.yr,
+                           samples = 100,
+                           rescale = TRUE)
+@
+\end{center}
+\caption{**Trace plots for 100 MCMC samples as in Figure~\ref{fig:recruitment-trace-recent}, but
+  with each sample divided by its estimate of the 2010 recruitment.  **Do 5 or so example specific colours.}
+\label{fig:recruitment-trace-scale}
+\end{figure}
+
+
+\begin{figure}[tbp]
+\begin{center}
+<<recruitment-scale, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016">>=
+make.mcmc.recruitment.plot(base.model,
+                           start.yr = 2006,
+                           equil.yr = unfished.eq.yr,
+                           samples = NULL,
+                           rescale = TRUE,
+                           traceplot = FALSE)
+@
+\end{center}
+\caption{**Estimated recruitments divided by the estimated 2010 recruitment for
+  years **-**.
+  Trace plots for 100 MCMC samples as in Figure~\ref{fig:recruitment-trace-recent}, but
+  with each sample divided by its estimate of the 2010 recruitment.
+  Medians (solid circles) of the resulting posterior distribution for
+  recruitment relative to that in 2010, with
+  95\% posterior credibility intervals (blue lines). }
+\label{fig:recruitment-scale}
+\end{figure}
+
+\begin{figure}[tbp]
+\begin{center}
+<<recruitment-scale-all, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016">>=
+make.mcmc.recruitment.plot(base.model,
+                           start.yr = 1966,
+                           equil.yr = unfished.eq.yr,
+                           samples = NULL,
+                           rescale = TRUE,
+                           traceplot = FALSE)
+@
+\end{center}
+\caption{**As for Figure~\ref{fig:recruitment-scale} but for all years.}
+\label{fig:recruitment-scale-all}
+\end{figure}
+
+\begin{figure}[tbp]
+\begin{center}
+<<recruitment-scaled-2010, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016">>=
+make.mcmc.recruitment.plot(base.model,
+                           start.yr = 1966,
+                           equil.yr = unfished.eq.yr,
+                           samples = NULL,
+                           rescale = TRUE,
+                           traceplot = FALSE)
+@
+\end{center}
+\caption{**As for Figure~\ref{fig:recruitment-scale} but for the current stock
+  assessment' base model (rather than last year's). **DO NOT CHANGE base.model
+  to last.yr.base.model here, unlike other figures. **CHECK all end years, may
+  have to change default. **Update all alt texts for these.}
+\label{fig:recruitment-scaled-2010}
+\end{figure}
 
 
 
