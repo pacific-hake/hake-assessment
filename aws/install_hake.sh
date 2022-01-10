@@ -130,6 +130,10 @@ echo "ClientAliveInterval 600" | tee -a /etc/ssh/sshd_config
 echo "ClientAliveInterval 0" | tee -a /etc/ssh/sshd_config
 
 # R Startup Settings -----------------------------------------------------------
+# Remove unnecessary R directory
+echo "if(interactive()) unlink('/home/rstudio/R', recursive = TRUE, force = TRUE)" | tee -a /home/ec2-user/.Rprofile
+echo "if(interactive()) unlink('/home/cgrandin/R', recursive = TRUE, force = TRUE)" | tee -a /home/cgrandin/.Rprofile
+echo "if(interactive()) unlink('/home/aedwards/R', recursive = TRUE, force = TRUE)" | tee -a /home/aedwards/.Rprofile
 # Start in hake-assessment directory
 echo "if(interactive()) setwd('hake-assessment')" | tee -a /home/ec2-user/.Rprofile
 echo "if(interactive()) setwd('hake-assessment')" | tee -a /home/cgrandin/.Rprofile
