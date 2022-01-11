@@ -1,6 +1,6 @@
 # Year - assessment year, t.
 # P_decline - that assessment's % estimate of P(B_t+1 < B_t | known catch).
-#  Use the known catch for year t (from the 2021 assessment), look at year t's
+#  Use the known catch for year t (calculated for the t+1 assessment), look at year t's
 #  assessment decision table (Table i) and use the closest catch to the now known
 #  catch, or interpolate, to give P(B_t+1 < B_t | known catch), i.e. the prob
 #  of the stock declining from t to t+1 given a catch based on what we know the
@@ -22,6 +22,7 @@
 # 2018 - 413,719 actual, options were 350,000 and 440,000, so 2/3 from 350,000, interpolate.
 # 2019 - 411,574 actual, use 410,000
 # 2020 - 379,270 actual, use halfway between 350,000 and 410,000
+# 2021 - 320,000 actual (approx), each 30,000 was about 1% change in P_decline and 2% in P_below_B40
 Year, P_decline, P_below_B40
 2012, 43, 58
 2013, 5, 5
@@ -32,3 +33,4 @@ Year, P_decline, P_below_B40
 2018, 67, 15
 2019, 61, 19
 2020, 94, 27
+2021, 84, 32
