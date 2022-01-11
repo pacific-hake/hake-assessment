@@ -711,7 +711,9 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
                                          # MCMC samples else a median and 95%
                                        # interval plot
                                        highlight = FALSE,  # whether to
-                                         # highlight some samples
+                                         # just highlight some colour-code
+                                         # samples instead of many same colour
+                                         # ones (superimposing is too busy)
                                        highlight.num = 5,   # how many to
                                          # highlight, then highlight them
                                          # equally spaced out (in order of 2010
@@ -775,12 +777,14 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
   paleblue <- rgb(0, 0, 1, 0.2)
 
   if(traceplot){
-    matplot(x = start.yr:end.yr,
+    if(!highlight){
+      matplot(x = start.yr:end.yr,
             y = t(dat_sub),
             col = paleblue,
             type = 'l',
             add=TRUE,
             lty = 1)
+    }
     if(highlight){
       highlight.rows <- c(2,
                           round(1:(highlight.num-1) * (samples/(highlight.num -
