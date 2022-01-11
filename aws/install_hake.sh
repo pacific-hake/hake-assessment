@@ -3,6 +3,7 @@
 # Keys -------------------------------------------------------------------------
 # *Remove these keys before pushing to GitHub*
 
+# Environment variables --------------------------------------------------------
 models_dir=models
 base_model_dir=2021.00.04_base_v1
 
@@ -144,10 +145,13 @@ echo "if(interactive()) setwd('hake-assessment')" | tee -a /home/aedwards/.Rprof
 # Set environment variables for R terminal
 echo "MODELS_DIR=$models_dir" >> /home/ec2-user/.Renviron
 echo "BASE_MODEL=$base_model_dir" >> /home/ec2-user/.Renviron
+echo "PATH=/usr/bin/ss:$PATH" >> /home/ec2-user/.Renviron
 echo "MODELS_DIR=$models_dir" >> /home/cgrandin/.Renviron
 echo "BASE_MODEL=$base_model_dir" >> /home/cgrandin/.Renviron
+echo "PATH=/usr/bin/ss:$PATH" >> /home/cgrandin/.Renviron
 echo "MODELS_DIR=$models_dir" >> /home/aedwards/.Renviron
 echo "BASE_MODEL=$base_model_dir" >> /home/aedwards/.Renviron
+echo "PATH=/usr/bin/ss:$PATH" >> /home/aedwards/.Renviron
 # Make a copy of all SS input files for all models from S3 in their proper named
 #  subdirectories
 echo "if(interactive()) source('R/all.R')" | tee -a /home/ec2-user/.Rprofile
