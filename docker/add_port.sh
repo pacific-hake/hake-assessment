@@ -57,7 +57,7 @@ esac
 #  so that the file doesn't contain more than one www-port entry
 grep -q "www-port" /etc/rstudio/rserver.conf || echo "www-port=$port" >> /etc/rstudio/rserver.conf
 
-rstudio-server start
+rstudio-server restart
 # Necessary to stop Docker container from exiting after completion of CMD
 tail -f /dev/null
 
