@@ -176,6 +176,10 @@ sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 2
 ## -----------------------------------------------------------------------------
+## **For 2022: change first one (and its name) to be the run that excludes age1 survey, then
+## full appendix (and other results) will be somewhat automatic (even if some
+## variables have 'age1' in them, we know this to be the sens that removes age-1
+## index instead of adding it (as in the past).**
 sens.model.dir.names.2 <- c("2021.00.23_age1Survey",
                             "2021.00.24_compWeight_HarmonicMean",
                             "2021.00.25_compWeight_Francis")

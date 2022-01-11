@@ -3,6 +3,12 @@
 \chapter{Sensitivity run that includes the age-1 survey}
 \label{chap:age1-survey}
 
+**For 2022 assessment we currently plan to include the age-1 survey in the base
+model, and so this appendix would become a sensitivity that \emph{excludes}
+it. If `sens.models.2[[1]]` is that run, then these figures will be automatic -
+need to change text and captions. Rest of this is untouched from 2021 assessment
+(don't forget to change chapter title!).
+
 This appendix contains Bayesian MCMC results for the model run in which the age-1
 survey index is included as an index of recruitment as described in
 Sections~\ref{sec:data-acoustic-survey} and \ref{sec:assessment-sensitivity-analyses}
