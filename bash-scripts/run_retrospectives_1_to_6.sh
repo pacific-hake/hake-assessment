@@ -28,3 +28,6 @@ build_rds('$BASE_MODEL', run_retrospectives = TRUE, retrospective_yrs = 5, build
 build_rds('$BASE_MODEL', run_retrospectives = TRUE, retrospective_yrs = 6, build_file = FALSE)" \
 > /dev/null 2>&1; echo "Restrospective - 6 complete")
 
+cp -R ~/hake-assessment/$MODEL_DIR/$BASE_MODEL/retrospectives/retro-0[1-6] \
+~/hake-assessment/hakestore/$BASE_MODEL/retrospectives
+echo "Copied Base model retrospectives 1-6 to S3 storage"
