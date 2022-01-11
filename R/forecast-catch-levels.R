@@ -1,21 +1,19 @@
 # -----------------------------------------------------------------------------
-# The forecasting yrs and probs can be set to whatever is required, the
-#  code is set up to automatically accomodate changes
+# The forecasting yrs and probabilities can be set to whatever is required, the
+#  code is set up to automatically accommodate changes
 #  Change them in all.R
 # -----------------------------------------------------------------------------
 
 # -----------------------------------------------------------------------------
-# catch_levels is a list of N lists of catch levels with 3 items each:
+# catch_levels is a list of N 3-item lists of catch levels with values:
 #  1. values for catch to forecast
-#  2. their pretty names
+#  2. their pretty names to appear in the document
 #  3. their directory names
 # Each element of the list is a list of length equal to the
 # number of elements in forecast_yrs.
-# Constant catch values set at the most recent TAC (row 4)
-# 3 additional catch levels will be calculated for each model,
-#  see the calc.catch.levels() and fetch.catch.levels() functions
+# See the calc.catch.levels() and fetch.catch.levels() functions
 #  is load-models.R for details. The NA's below will be populated in each model
-#  by the routines.
+#  by those two functions.
 
 # -----------------------------------------------------------------------------
 catch_levels <-
