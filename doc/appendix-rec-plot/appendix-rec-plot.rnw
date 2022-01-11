@@ -49,28 +49,44 @@ as large as the 2010 cohort? Please give a percentage or a range, and feel
 free to add any text if you like. All answers are anonymous. Thanks.''
 \end{quote}
 
-**WHEN HAVE 2022 base model change these figures to last.yr.base.model not
-base.model, so that this text is correct (and the figure is one we asked people
-about). And go through text again (Andy can do, plus do some editing). Don't change final ones changed as want that based on the new base model, plus
-will be interesting to compare to how it differs to last year's base model. OR
-maybe just do them all for new base model if they look similar enough.
-
 Results are shown in Figure **. However, from the full MCMC results, the
 estimated probability that `the 2014 cohort is at least
 as large as the 2010 cohort` is in fact \Sexpr{prob.percent.2014.rec.gt.2010.rec}\%.
+%
+\begin{figure}[tbp]
+\begin{center}
+<<recruitment-answers, fig.height=4.5, fig.width=5, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016">>=
+make.rec.question.plot()
+@
+\end{center}
+\caption{Results from 21 respondents giving their estimated
+  probability, as a percentage, that the 2014 cohort is at least as large as the
+  2010 cohort, based on Figure~\ref{fig:recruitment-last-asssessment}. Respondents
+  gave either single estimates (dots) or a range (dots connected by lines). A further
+  respondent answered `Low' (not shown), and an answer of 0.4 is assumed to mean 40\%
+  (not 0.4\%).}
+\label{fig:recruitment-answers}
+\end{figure}
+%
+Therfore it seems appropriate to explain this discrepancy and to derive an
+intuitive figure to complement the existing figure.
+
+[**Andy will do: when have 2022 base model change the figures to last.yr.base.model not
+base.model, so that this text is correct (and the figure is one we asked people
+about). And go through text again (plus do some editing). Don't change final
+one as want that based on the new base model, plus
+will be interesting to compare to how it differs to last year's base model. OR
+maybe just do them all for new base model if they look similar enough.]
 
 % In issue I did: mean(base.model$mcmc$"Recr_2014" > base.model$mcmc$"Recr_2010")
-
-Thus it seems appropriate to explain the issue to derive an intuitive figure to
-complement the existing figure.
 
 The reason for asking about comparing the 2014 cohort to the 2010 cohort is that
 the 2010 cohort is the largest for some time
 (Figure~\ref{fig:recruitment-last-asssessment}), with 1999 looking somewhat
-comparable. Thus, people familiar with \fishname have an intuition about the
+comparable. Thus, people familiar with \fishname\ have an intuition about the
 2014 cohort being very large. Also, the probability that the 2014 cohort could
 be as large as the 2010 cohort was explicitly calculated to be 4.8\% in the 2018
-assessment \citep{JTC2018}; we return to this later.
+assessment \citep{JTC2018}, we return to this later.
 
 The y-axis in
 Figure~\ref{fig:recruitment-last-asssessment} is in terms of billions of age-0
@@ -267,12 +283,16 @@ make.mcmc.recruitment.plot(base.model,
 \end{figure}
 
 **This last figure may also help when answering Issue \#843 (and SRG request), regarding Trevor's
-idea about sampling from past recruitments. It looks (eyeballing it) that we're
-covering the full range pretty well. Could do a quick analysis if necessary.
+idea about sampling from past recruitments for the projections. It looks (eyeballing it) that we're
+covering the full range pretty well. Could do a quick analysis if necessary --
+use the MCMC samples and compare with sampling from past recruitments.
 
 In the 2018 assessment the probability that the 2014 cohort was larger
 than the 2010 cohort was explicitly calculated to be
-4.8\% \citep{JTC2018} (**also see Issue \#422). Figure~e from 2018 has the median for 2014 above
+4.8\% \citep{JTC2018} (**also see Issue \#422). The only age composition data informing the size
+of the 2014 cohort would have been from the fishery when the cohort
+was of age 1, 2, and 3, and from the survey age when it was of age 3 (the 2017 survey).
+Figure~e from 2018 has the median for 2014 above
 the lower end of the 2010 credible interval (unlike
 Figure~\ref{fig:recruitment-last-asssessment}). Now that there are more data
 available regarding the 2014 cohort (compared to the 2018 assessment) the
@@ -280,6 +300,6 @@ probability is
 estimated to be \Sexpr{prob.percent.2014.rec.gt.2010.rec}\%.
 More data allows for more certainty (less
 uncertainty) in such a calculation, hence why the probability changes with later
-assessments. **May be confusing, could just leave out
+assessments.
 
 \clearpage        % needed for footer to be correct

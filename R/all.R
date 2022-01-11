@@ -160,5 +160,5 @@ source(file.path(rootd.R, "forecast-catch-levels.R"))
 source(file.path(rootd.R, "data-tables.R"))
 source(file.path(rootd.R, "useful-quantities.R"))
 source(file.path(rootd.R, "historical-probs.R"))
-
+source(file.path(rootd.R, "recruitment-question-responses.R"))
 theme_set(hake_theme())
