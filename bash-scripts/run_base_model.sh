@@ -3,7 +3,7 @@
 # Run base model MCMC using adnuts on AWS
 # Environment variable $MODEL_DIR is set in aws/install_hake.sh
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-run_adnuts('$MODEL_DIR/$BASE_MODEL', adapt_delta = 0.99)" \
+run_adnuts('$MODEL_DIR/$BASE_MODEL', adapt_delta = 0.95)" \
 > /dev/null 2>&1; echo "Base model MCMC complete")
 
 # Change a filename so that it works with hake-assessment code.
