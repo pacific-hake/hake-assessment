@@ -8,8 +8,6 @@ install.packages(c(
 
 devtools::install_github("cgrandin/r4ss")
 devtools::install_github("ropensci/rnaturalearthhires")
-# 2021 assessment SHA for adnuts (Jan 12, 2021 - base run was on
-# Jan 14 so this was the most recent)
 devtools::install_github("cgrandin/adnuts@hake2021")
 
 tinytex::tlmgr_install(c(
