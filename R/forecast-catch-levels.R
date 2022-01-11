@@ -21,14 +21,19 @@
 catch_levels <-
   list(list(rep(0.01, length(forecast_yrs)), "No Fishing", "01-0"),
        list(rep(180000, length(forecast_yrs)), "180,000 t", "02-180000"),
-       list(rep(350000, length(forecast_yrs)), "350,000 t", "03-350000"),
-       list(rep(380000, length(forecast_yrs)), "2020 catch: 380,000 t", "04-380000"),
-       list(rep(430000, length(forecast_yrs)), "430,000 t", "05-430000"),
-       list(rep(529290, length(forecast_yrs)), "2020 TAC: 529,290 t", "06-529290"),
-       list(rep(597500, length(forecast_yrs)), "2019 TAC: 597,500 t", "07-597500"),
-       list(rep(NA, length(forecast_yrs)), "FI=100%", "07-spr-100"),
-       list(rep(NA, length(forecast_yrs)), "Default Harvest Policy", "08-default-hr"),
-       list(rep(NA, length(forecast_yrs)), "Stable Catch", "09-stable-catch"))
+       list(rep(225000, length(forecast_yrs)), "225,000 t", "03-225000"),
+       list(rep(270000, length(forecast_yrs)), "270,000 t", "04-270000"),
+       list(c(320000, 288000, 259200), "320,000 t 10% red.", "05-320000-10"),
+       list(rep(325000, length(forecast_yrs)), "2021 catch: 325,000 t", "06-325000"),
+       list(rep(350000, length(forecast_yrs)), "350,000 t", "07-350000"),
+       list(c(350000, 315000, 283500), "350,000 t 10% red.", "08-350000-10"),
+       list(rep(380000, length(forecast_yrs)), "380,000 t", "09-380000"),
+       list(c(380000, 342000, 307800), "380,000 t 10% red.", "10-380000-10"),
+       list(rep(430000, length(forecast_yrs)), "430,000 t", "11-430000"),
+       list(rep(529290, length(forecast_yrs)), "2021 TAC: 529,290 t", "12-529290"),
+       list(rep(NA, length(forecast_yrs)), "FI=100%", "13-spr-100"),
+       list(rep(NA, length(forecast_yrs)), "Default Harvest Policy", "14-default-hr"),
+       list(rep(NA, length(forecast_yrs)), "Stable Catch", "15-stable-catch"))
 
 # -----------------------------------------------------------------------------
 # Indices for the forecasts list, which list items above are the TAC case and
@@ -37,11 +42,12 @@ catch_levels <-
 #  and elsewhere
 # -----------------------------------------------------------------------------
 catch.levels.num <- length(catch_levels)
-catch.actual.ind <- 4
-catch.tac.ind <- 6
-catch.prev.tac.ind <- 7
-catch.spr100.ind <- 8
-catch.default.policy.ind <- 9
-catch.stable.ind <- 10
-catch.constant.rows <- 1:7
+catch.actual.ind <- 6
+catch.tac.ind <- 12
+catch.spr100.ind <- 13
+catch.default.policy.ind <- 14
+catch.stable.ind <- 15
+catch.reduction.rows <- c(5, 8, 10)
+catch.constant.rows <- c(1, 2, 3, 4, 6, 7, 9, 11, 12)
 catch.constant.str <- paste(letters[catch.constant.rows], collapse = ", ")
+catch.reduction.str <- paste(letters[catch.reduction.rows], collapse = ", ")

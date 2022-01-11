@@ -773,16 +773,15 @@ make.decision.table(base.model,
                      "), including catch similar to ",
                      min(forecast_yrs)-1," (row ",
                      letters[catch.actual.ind],
-                     "), to the (unilaterally summed) TAC from ",
+                     "), to catch levels reduced by 10\\% each year (rows ",
+                     catch.reduction.str,
+                     "); to the (unilaterally summed) TAC from ",
                      min(forecast_yrs)-1," (row ",
                      letters[catch.tac.ind],
-                     "), and to the TAC from ",
-                     min(forecast_yrs)-2," (row ",
-                     letters[catch.prev.tac.ind],
                      "); and non-constant catch levels that result
                      in a median relative fishing intensity of 100\\% (row ",
                      letters[catch.spr100.ind],
-                     "), median catch estimated ",
+                     "), the median values estimated ",
                      "via the default harvest policy
                      (\\Ffortyten, row ",
                      letters[catch.default.policy.ind],
@@ -799,10 +798,9 @@ make.decision.table(base.model,
                      max(forecast_yrs),
                      "."),
                     xlabel = "tab:es-decisions-biomass",
-                    font.size = 12,
-                    space.size = 14,
-                    type = "biomass",
-                    placement = "tbp")
+                    font.size = 10,
+                    space.size = 11,
+                    type = "biomass")
 @
 
 **Mention switch to new format**  Decision tables give the projected population status (relative spawning biomass)
