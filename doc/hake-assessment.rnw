@@ -400,9 +400,9 @@ paragraph.
 <<appendices-age1-survey, child='appendix-age1-survey/appendix-age1-survey.rnw'>>=
 @
 
-\rfoot{Appendix~\ref{chap:rwmh} -- rwMH MCMC run}
-<<appendices-rwmh, child='appendix-rwmh/appendix-rwmh.rnw'>>=
-@
+% \rfoot{Appendix~\ref{chap:rwmh} -- rwMH MCMC run}
+% <<appendices-rwmh, child='appendix-rwmh/appendix-rwmh.rnw'>>=
+% @
 
 
 \rfoot{Appendix~\ref{chap:rec-plot} -- Recruitment plots}
