@@ -49,7 +49,7 @@ library(tictoc)
 library(tidyverse)
 library(xtable)
 
-models_path <- Sys.getenv("MODEL_DIR")
+models_path <- Sys.getenv("MODELS_DIR")
 # If you cannot set shell environment variables outside R, uncomment this, but DO NOT push the change to GitHub,
 # or AWS cloud launch will fail
 if(models_path == ""){

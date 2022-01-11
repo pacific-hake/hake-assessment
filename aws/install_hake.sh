@@ -3,6 +3,9 @@
 # Keys -------------------------------------------------------------------------
 # *Remove these keys before pushing to GitHub*
 
+models_dir=models
+base_model_dir=2021.00.04_base_v1
+
 # Users ------------------------------------------------------------------------
 # Add user cgrandin
 useradd -m cgrandin
@@ -101,17 +104,17 @@ chmod 666 /var/run/docker.sock
 docker pull cgrandin/hake
 cd /home/ec2-user
 docker run -d -p 8787:8787 -e USER=rstudio -e PASSWORD=a \
-       -e MODEL_DIR=models -e BASE_MODEL=2021.00.04_base_v1 --name=hake-rstudio --restart always \
+       -e MODELS_DIR=$models_dir -e BASE_MODEL=$base_model_dir --name=hake-rstudio --restart always \
        --mount type=bind,source="$(pwd)",target=/home/rstudio cgrandin/hake
 # Run docker container for user cgrandin
 cd /home/cgrandin
 docker run -d -p 8780:8780 -e USER=cgrandin -e PASSWORD=a \
-       -e MODEL_DIR=models -e BASE_MODEL=2021.00.04_base_v1 --name=hake-cgrandin --restart always \
+       -e MODELS_DIR=$models_dir -e BASE_MODEL=$base_model_dir --name=hake-cgrandin --restart always \
        --mount type=bind,source="$(pwd)",target=/home/cgrandin cgrandin/hake
 # Run docker container for user aedwards
 cd /home/aedwards
 docker run -d -p 8781:8781 -e USER=aedwards -e PASSWORD=a \
-       -e MODEL_DIR=models -e BASE_MODEL=2021.00.04_base_v1 --name=hake-aedwards --restart always \
+       -e MODELS_DIR=$models_dir -e BASE_MODEL=$base_model_dir --name=hake-aedwards --restart always \
        --mount type=bind,source="$(pwd)",target=/home/aedwards cgrandin/hake
 
 # These two commands ensure the docker service starts when the machine starts after being stopped
@@ -131,13 +134,20 @@ echo "ClientAliveInterval 0" | tee -a /etc/ssh/sshd_config
 
 # R Startup Settings -----------------------------------------------------------
 # Remove unnecessary R directory
-echo "if(interactive()) unlink('/home/rstudio/R', recursive = TRUE, force = TRUE)" | tee -a /home/ec2-user/.Rprofile
-echo "if(interactive()) unlink('/home/cgrandin/R', recursive = TRUE, force = TRUE)" | tee -a /home/cgrandin/.Rprofile
-echo "if(interactive()) unlink('/home/aedwards/R', recursive = TRUE, force = TRUE)" | tee -a /home/aedwards/.Rprofile
+#echo "if(interactive()) unlink('/home/rstudio/R', recursive = TRUE, force = TRUE)" | tee -a /home/ec2-user/.Rprofile
+#echo "if(interactive()) unlink('/home/cgrandin/R', recursive = TRUE, force = TRUE)" | tee -a /home/cgrandin/.Rprofile
+#echo "if(interactive()) unlink('/home/aedwards/R', recursive = TRUE, force = TRUE)" | tee -a /home/aedwards/.Rprofile
 # Start in hake-assessment directory
 echo "if(interactive()) setwd('hake-assessment')" | tee -a /home/ec2-user/.Rprofile
 echo "if(interactive()) setwd('hake-assessment')" | tee -a /home/cgrandin/.Rprofile
 echo "if(interactive()) setwd('hake-assessment')" | tee -a /home/aedwards/.Rprofile
+# Set environment variables for R terminal
+echo "MODELS_DIR=$models_dir" >> /home/ec2-user/.Renviron
+echo "BASE_MODEL=$base_model_dir" >> /home/ec2-user/.Renviron
+echo "MODELS_DIR=$models_dir" >> /home/cgrandin/.Renviron
+echo "BASE_MODEL=$base_model_dir" >> /home/cgrandin/.Renviron
+echo "MODELS_DIR=$models_dir" >> /home/aedwards/.Renviron
+echo "BASE_MODEL=$base_model_dir" >> /home/aedwards/.Renviron
 # Make a copy of all SS input files for all models from S3 in their proper named
 #  subdirectories
 echo "if(interactive()) source('R/all.R')" | tee -a /home/ec2-user/.Rprofile
