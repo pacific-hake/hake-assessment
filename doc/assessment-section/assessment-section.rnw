@@ -52,7 +52,9 @@ survey variance. ** In this assessment, a more efficient Bayesian MCMC sampler
 \citep{Monnahan2018, Monnahan2019},
 a change from previous assessments that used the random walk Metropolis Hastings
 (rwMH) sampler. NUTS has several advantages over the rwMH as described in
-Appendix~\ref{chap:rwmh}). The list of changes discussed above is for illustrative
+**Appendix~now-removed.
+% \ref{chap:rwmh}).
+The list of changes discussed above is for illustrative
 purposes only; it is only a small fraction of the different data choices
 analysts have made and that reviewers have required.
 
@@ -616,7 +618,7 @@ in the 2021 assessment.}
   age-1 index in the base model.}
 
 \emph{Response -- Detailed results from using the random walk Metropolis MCMC
-  algorithm are presented in Appendix~\ref{chap:rwmh}, and full results from including the age-1
+  algorithm are presented in Appendix~**, and full results from including the age-1
   index are presented in Appendix~\ref{chap:age1-survey}.}
 
 10. {\bf The SRG also recommends the following additional sensitivities
@@ -759,7 +761,7 @@ approaches (via adaptive sampling steps) as well as improved (more effective
 and consistent) parameter space coverage
 (\citealt{HoffmanGelman2014, NishioArakawa2019}). A comparison with the previously used
 random walk Metropolis Hastings MCMC sampling algorithm is shown in
-Appendix~\ref{chap:rwmh}. The computational time for the base model run using
+Appendix~**now-removed. The computational time for the base model run using
 NUTS was $\sim$3.5~hours, about 10 times quicker than using the Metropolis
 Hastings algorithm. Each sensitivity analysis using NUTS also took $\sim$3.5~hours; for
 previous assessments the maximum likelihood estimate (MLE) calculations for
@@ -1268,7 +1270,7 @@ a suite of other informative sensitivity analyses using full MCMC results
 **We also present appendices of MCMC results for inclusion of
 the age-1 survey index (Appendix~\ref{chap:age1-survey}), and the use of
 the Metropolis Hastings MCMC algorithm for the base model as used in past
-assessments (Appendix~\ref{chap:rwmh}). The inclusion of the age-1
+assessments (Appendix~**removed). The inclusion of the age-1
 survey model was chosen because it may improve estimates of recruitment near the end
 of the time series and of age compositions during the forecast period, even though the acoustic
 survey design is not structured specifically for indexing age-1 fish. The use of
@@ -1789,7 +1791,7 @@ time-invariant ageing error vector model.
 **The impact of using the random walk Metropolis Hastings (rwMH) MCMC algorithm with data inputs
 and model structure equivalent to the base model is shown in
 Table~\ref{tab:main-parameter-estimates-sens-3} and discussed in further details in
-Appendix~\ref{chap:rwmh}.
+Appendix~**now-removed.
 
 %An additional sensitivity run arising from the Scientific Review Group
 %meeting held from 25th February to 28nd February 2020 related to input sample size is documented
