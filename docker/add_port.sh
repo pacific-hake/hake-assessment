@@ -52,9 +52,12 @@ case $USER in
 	;;
 esac
 
+# If the file has a line containing www-port, do nothing. Otherwise write the port
+#  to the file. This is to cover the case where the rstudio server is stopped and restarted,
+#  so that the file doesn't contain more than one www-port entry
 grep -q "www-port" /etc/rstudio/rserver.conf || echo "www-port=$port" >> /etc/rstudio/rserver.conf
 
-# Necessary to stop Docker container from exiting after completion of CMD
 rstudio-server start
+# Necessary to stop Docker container from exiting after completion of CMD
 tail -f /dev/null
 
