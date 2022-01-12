@@ -23,6 +23,24 @@ build_rds('$BASE_MODEL', run_catch_levels = TRUE, build_file = FALSE)" \
 build_rds('$BASE_MODEL', run_catch_levels = FALSE, run_forecasts = TRUE, build_file = FALSE)" \
 > /dev/null 2>&1; echo "Base model forecasts complete")
 
+# Delete the unnecessary files. Some are huge (eg. echoinput.sso can 3GB)
+find ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/forecasts -type f -name 'admodel.*' -delete
+find ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/forecasts -type f -name 'Cumreport.sso' -delete
+find ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/forecasts -type f -name 'echoinput.sso' -delete
+find ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/forecasts -type f -name 'fmin.log' -delete
+find ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/forecasts -type f -name 'Forecast-report.sso' -delete
+find ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/forecasts -type f -name 'mcmc' -delete
+find ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/forecasts -type f -name 'runnumber.ss' -delete
+find ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/forecasts -type f -name 'ParmTrace.sso' -delete
+find ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/forecasts -type f -name 'posterior_vectors.sso' -delete
+find ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/forecasts -type f -name 'posterior_obj_func.sso' -delete
+find ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/forecasts -type f -name 'rebuild.sso' -delete
+find ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/forecasts -type f -name 'sims' -delete
+find ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/forecasts -type f -name 'ss.*' -delete
+find ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/forecasts -type f -name 'unbounded.csv' -delete
+find ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/forecasts -type f -name 'warning.sso' -delete
+find ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/forecasts -type f -name 'wtatage.ss_new' -delete
+
 # Copy all the output for the base model to the persistent S3 drive 'hakestore'
 DATE_STR="_jan04_2022"
 cp -R ~/hake-assessment/$MODELS_DIR/$BASE_MODEL \
