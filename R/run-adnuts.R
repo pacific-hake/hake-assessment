@@ -18,6 +18,10 @@
 #' stop the function before the main iterations are done, so you will have to re-run the function again
 #' with this set to `FALSE`.
 #' @param save_image Save the output as an RData file
+#' @param extra_mcmc If `TRUE`, run SS extra mcmc option which outputs files into the `sso` subdirectory. If
+#'`FALSE`, those files will not be created and the `posteriors.sso` and `dervied_posteriors.sso` files
+#' will be in the running directory
+#' @param exe The name of the executable
 #'
 #' @return Nothing
 run_adnuts <- function(path,
@@ -28,7 +32,9 @@ run_adnuts <- function(path,
                        adapt_delta = 0.9,
                        run_mle = TRUE,
                        check_issues = FALSE,
-                       save_image = TRUE){
+                       save_image = TRUE,
+                       extra_mcmc = TRUE,
+                       exe = ifelse(exists("ss_executable"), ss_executable, "ss")){
 
 
   # Chains to run in parallel
@@ -53,12 +59,18 @@ run_adnuts <- function(path,
     }
   }
   dir.create(mcmc_path, showWarnings = FALSE)
-  dir.create(file.path(mcmc_path, "sso"), showWarnings = FALSE)
-  files <- file.path(path, dir(path))
-  files_to <- file.path(mcmc_path, dir(path))
-  file.copy(files, files_to)
 
-  exe <- "ss"
+  if(extra_mcmc){
+    dir.create(file.path(mcmc_path, "sso"), showWarnings = FALSE)
+  }
+  files <- file.path(path, dir(path))
+  files <- files[!grepl("mcmc$", files)]
+  file.copy(files, mcmc_path)
+  if(extra_mcmc){
+    modify_starter_mcmc_type(mcmc_path, 2)
+  }else{
+    modify_starter_mcmc_type(mcmc_path, 1)
+  }
 
   if(run_mle){
     system_(paste0("cd ", path, " && ", exe))
