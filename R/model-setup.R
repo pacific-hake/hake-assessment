@@ -126,29 +126,27 @@ message("Last assessment year's base model pretty name: ", last.yr.base.model.na
 ## Bridge models group 1
 ## -----------------------------------------------------------------------------
 ## First one must be last.yr.base.model.dir.name:
-bridge.model.dir.names.1 <- c(last.yr.base.model.dir.name,
-                              "2020.01.01_newSSexe",
-                              "2020.01.02_DM_last_extraSD_last")
-bridge.model.names.1 <- c(last.yr.base.model.name,
-                          "Update stock synthesis",
-                          "DM parameters estimated in last phase")
-bridge.model.end.yr.1 <- end.yr - c(1, 1, 1) # subtract 1 year from all 4 models
+bridge.model.dir.names.1 <- c("2022.01.01_newSSexe",
+                              "2022.01.03_newcatchage",
+                              "2022.01.05_updatesurvey",
+                              "2022.01.06_newsurvey",
+                              "2022.01.07_newwtatage")
+bridge.model.names.1 <- c("2021 base model",
+                          "Update all fishery catch and comps",
+                          "Update pre-2021 survey data",
+                          "Add 2021 survey data",
+                          "Update wt-at-age data")
+bridge.model.end.yr.1 <- end.yr - c(1, 0, 0, 0, 0) # subtract 1 year from all 4 models
 
 
 ## -----------------------------------------------------------------------------
 ## Bridge models group 2
 ## -----------------------------------------------------------------------------
-bridge.model.dir.names.2 <- c("2020.01.02_DM_last_extraSD_last",
-                              "2021.00.00_update_pre2020_data",
-                              "2021.00.01_add_2020_catch",
-                              "2021.00.02_add_wt_at_age",
-                              "2021.00.03_add_fishery_comps")
-bridge.model.names.2 <- c("DM parameters estimated in last phase",
-                          "Update pre-2020 data",
-                          "Add 2020 catch",
-                          "Add 2020 weight-at-age information",
-                          "Add 2020 fishery comps")
-bridge.model.end.yr.2 <- end.yr - c(1, 0, 0, 0, 0)
+bridge.model.dir.names.2 <- c("2022.01.07_newwtatage",
+                              "2022.01.09_age1index")
+bridge.model.names.2 <- c("Update wt-at-age data",
+                          "Add age 1 index = 2022 base model")
+bridge.model.end.yr.2 <- end.yr - c(0, 0)
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 1
@@ -181,11 +179,9 @@ sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
 ## variables have 'age1' in them, we know this to be the sens that removes age-1
 ## index instead of adding it (as in the past).**
 sens.model.dir.names.2 <- c("2021.00.23_age1Survey",
-                            "2021.00.24_compWeight_HarmonicMean",
-                            "2021.00.25_compWeight_Francis")
-sens.model.names.2 <- c("Add Age 1 Index",
-                        "McAllister Ianelli Weighting",
-                        "Francis Weighting")
+                            "2021.00.24_compWeight_HarmonicMean")
+sens.model.names.2 <- c("Remove Age 1 Index",
+                        "Downweight Fishery Comps")
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 4
