@@ -295,8 +295,8 @@ runs_sens_base <- function(dirbase, run = FALSE, niters = 6) {
   # run the model with no prior on sigmaR
   aa <- mapply(setup_sensitivity,
     name.sens = sprintf("sigmaR_%sprior", c("w", "wo")),
-    number.sens = 66:67)
-    )
+    number.sens = 66:67
+  )
   for (ii in seq_along(aa)) {
     ctl <- setup_ctl(aa)
     ctl[["SR_parms"]]["SR_sigmaR", "INIT"] <- 1.4
