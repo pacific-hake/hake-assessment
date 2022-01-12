@@ -6,9 +6,9 @@ install.packages(c(
   "rgeos", "rnaturalearth", "rstan", "shinystan", "snowfall",
   "tictoc"))
 
-devtools::install_github("cgrandin/r4ss")
-devtools::install_github("ropensci/rnaturalearthhires")
-devtools::install_github("cgrandin/adnuts@hake2021")
+devtools::install_github("cgrandin/r4ss") # Commit 106da0ab8a611818a2ed72d45ff8d2af7ae58c55
+devtools::install_github("ropensci/rnaturalearthhires") # Commit 2ed7a937f3cca4f44b157098c472f6b3ae8cd9f3
+devtools::install_github("cgrandin/adnuts@hake2021") # Commit 8f7d8004a059fa3d4a6948bc896d3293d6b3930e
 
 tinytex::tlmgr_install(c(
   "amsmath", "adjustbox", "algorithmicx", "algorithms", "appendix",
