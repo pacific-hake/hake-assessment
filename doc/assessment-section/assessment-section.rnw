@@ -1716,6 +1716,20 @@ survey estimates compared to the base model (Figure~\ref{fig:main-index-base-alt
 For further details and results from the age-1 survey index sensitivity see
 Appendix~\ref{chap:age1-survey}.
 
+The high age-1 survey index from 2021 is largely in concurrence with 
+oceanographic conditions, as summarized in NOAA's annual Ecosystem Status Report
+of the California Current. Recruitment is generally impacted by oceanographic 
+conditions both during maternal preconditioning and during egg and larval 
+stages. During maternal preconditioning (spring-fall, 2019) upwelling 
+conditions were variable but near average \citep{HarveyGarfieldEtAl2020}. Weaker
+upwelling conditions are associated with higher \fishname\ recruitment during this 
+phase (Vestfals et al., pers. comm.). During egg and larval phases (2020), ocean 
+conditions were broadly associated with high productivity across many taxa 
+\citep{HarveyGarfieldEtAl2021}. These conditions were marked by strong winter 
+upwelling which brings nutrients to coastal waters, cooler temperatures, an 
+energy-rich copepod community, and high productivity of krill, a key food source
+for \fishname\ \citep{BuckleyLivingston1997, HarveyGarfieldEtAl2021}.
+
 % section below on composition weighting
 % Manual 2021 done - CG
 **The base model includes a Dirichlet-multinomial likelihood component,
