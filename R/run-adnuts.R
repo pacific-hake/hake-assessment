@@ -22,6 +22,7 @@
 #'`FALSE`, those files will not be created and the `posteriors.sso` and `dervied_posteriors.sso` files
 #' will be in the running directory
 #' @param exe The name of the executable
+#' @param input_files The input files for SS
 #'
 #' @return Nothing
 run_adnuts <- function(path,
@@ -34,8 +35,12 @@ run_adnuts <- function(path,
                        check_issues = FALSE,
                        save_image = TRUE,
                        extra_mcmc = TRUE,
-                       exe = ifelse(exists("ss_executable"), ss_executable, "ss")){
-
+                       exe = ifelse(exists("ss_executable"), ss_executable, "ss"),
+                       input_files = c(ifelse(exists("starter_file_name"), starter_file_name, "starter.ss"),
+                                       ifelse(exists("starter_file_name"), forecast_file_name, "forecast.ss"),
+                                       ifelse(exists("weight_at_age_file_name"), weight_at_age_file_name, "wtatage.ss"),
+                                       ifelse(exists("control_file_name"), control_file_name, "hake_control.ss"),
+                                       ifelse(exists("data_file_name"), data_file_name, "hake_data.ss"))){
 
   # Chains to run in parallel
   num_machine_cores <- detectCores()
@@ -63,8 +68,7 @@ run_adnuts <- function(path,
   if(extra_mcmc){
     dir.create(file.path(mcmc_path, "sso"), showWarnings = FALSE)
   }
-  files <- file.path(path, dir(path))
-  files <- files[!grepl("mcmc$", files)]
+  files <- file.path(path, input_files)
   file.copy(files, mcmc_path)
   if(extra_mcmc){
     modify_starter_mcmc_type(mcmc_path, 2)
