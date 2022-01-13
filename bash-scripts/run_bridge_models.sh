@@ -3,27 +3,27 @@
 # Run bridging models MCMCs using adnuts on AWS. Each needs 16 CPUs, so need 96 CPUs for these 6
 # Environment variable $MODELS_DIR is set in aws/install_hake.sh
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-run_adnuts('$MODELS_DIR/2022.01.01_newSSexe', adapt_delta = 0.95)" \
+run_adnuts('$MODELS_DIR/2022.01.01_newSSexe', adapt_delta = 0.95, extra_mcmc = FALSE)" \
 > /dev/null 2>&1; echo "2022.01.01_newSSexe MCMC complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-run_adnuts('$MODELS_DIR/2022.01.03_newcatchage', adapt_delta = 0.95)" \
+run_adnuts('$MODELS_DIR/2022.01.03_newcatchage', adapt_delta = 0.95, extra_mcmc = FALSE)" \
 > /dev/null 2>&1; echo "2022.01.03_newcatchage MCMC complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-run_adnuts('$MODELS_DIR/2022.01.05_updatesurvey', adapt_delta = 0.95)" \
+run_adnuts('$MODELS_DIR/2022.01.05_updatesurvey', adapt_delta = 0.95, extra_mcmc = FALSE)" \
 > /dev/null 2>&1; echo "2022.01.05_updatesurvey MCMC complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-run_adnuts('$MODELS_DIR/2022.01.06_newsurvey', adapt_delta = 0.95)" \
+run_adnuts('$MODELS_DIR/2022.01.06_newsurvey', adapt_delta = 0.95, extra_mcmc = FALSE)" \
 > /dev/null 2>&1; echo "2022.01.06_newsurvey MCMC complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-run_adnuts('$MODELS_DIR/2022.01.07_newwtatage', adapt_delta = 0.95)" \
+run_adnuts('$MODELS_DIR/2022.01.07_newwtatage', adapt_delta = 0.95, extra_mcmc = FALSE)" \
 > /dev/null 2>&1; echo "2022.01.07_newwtatage MCMC complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-run_adnuts('$MODELS_DIR/2022.01.09_age1index', adapt_delta = 0.95)" \
+run_adnuts('$MODELS_DIR/2022.01.09_age1index', adapt_delta = 0.95, extra_mcmc = FALSE)" \
 > /dev/null 2>&1; echo "2022.01.09_age1index MCMC complete")
 
 # Copy all the output to the persistent S3 drive 'hakestore'

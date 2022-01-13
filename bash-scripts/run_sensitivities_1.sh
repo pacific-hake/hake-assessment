@@ -3,28 +3,28 @@
 # Run sensitivity models MCMCs using adnuts on AWS. Each needs 16 CPUs, so need 96 CPUs for these 6
 # Environment variable $MODELS_DIR is set in aws/install_hake.sh
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-run_adnuts('$MODELS_DIR/2022.01.15_h_prior_mean_low', adapt_delta = 0.95)" \
+run_adnuts('$MODELS_DIR/2022.01.15_h_prior_mean_low', adapt_delta = 0.95, extra_mcmc = FALSE)" \
 > /dev/null 2>&1; echo "2022.01.15_h_prior_mean_low MCMC complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-run_adnuts('$MODELS_DIR/2022.01.16_h_fix_high', adapt_delta = 0.95)" \
+run_adnuts('$MODELS_DIR/2022.01.16_h_fix_high', adapt_delta = 0.95, extra_mcmc = FALSE)" \
 > /dev/null 2>&1; echo "2022.01.16_h_fix_high MCMC complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-run_adnuts('$MODELS_DIR/2022.01.17_sigmR_fix_low', adapt_delta = 0.95)" \
+run_adnuts('$MODELS_DIR/2022.01.17_sigmR_fix_low', adapt_delta = 0.95, extra_mcmc = FALSE)" \
 > /dev/null 2>&1; echo "2022.01.17_sigmR_fix_low MCMC complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-run_adnuts('$MODELS_DIR/2022.01.18_sigmR_fix_high', adapt_delta = 0.95)" \
+run_adnuts('$MODELS_DIR/2022.01.18_sigmR_fix_high', adapt_delta = 0.95, extra_mcmc = FALSE)" \
 > /dev/null 2>&1; echo "2022.01.18_sigmR_fix_high MCMC complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-run_adnuts('$MODELS_DIR/2022.01.20_M_0.2SD', adapt_delta = 0.95)" \
+run_adnuts('$MODELS_DIR/2022.01.20_M_0.2SD', adapt_delta = 0.95, extra_mcmc = FALSE)" \
 > /dev/null 2>&1; echo "2022.01.20_M_0.2SD MCMC complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-run_adnuts('$MODELS_DIR/2022.01.21_M_0.3SD', adapt_delta = 0.95)" \
-> /dev/null 2>&1; echo "2022.01.21_M_0.3SD MCMC complete") &
+run_adnuts('$MODELS_DIR/2022.01.21_M_0.3SD', adapt_delta = 0.95, extra_mcmc = FALSE)" \
+> /dev/null 2>&1; echo "2022.01.21_M_0.3SD MCMC complete")
 
 # Copy all the output to the persistent S3 drive 'hakestore'
 cp -R ~/hake-assessment/$MODELS_DIR/2022.01.15_h_prior_mean_low \
