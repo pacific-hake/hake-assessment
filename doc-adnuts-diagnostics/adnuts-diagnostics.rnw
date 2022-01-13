@@ -256,7 +256,7 @@ replaces that for the main acoustic survey, as identified in the figure labels.
 # All the model results to show diagnostics for. Doing manually as easy to
 #  change on the fly and hard to automate, so do a check here:
 if(!(length(sens.models.1) == 6 &
-     length(sens.models.2) == 3 &
+     length(sens.models.2) == 2 &
      # length(sens.models.3) == ?? &
      length(sens.models.4) == 3 &
      length(sens.models.5) > 100 & # it currently just has one model
@@ -278,7 +278,6 @@ diagnostic.model <- c("base.model",
                       "sens.models.1[[6]]",
                       "sens.models.2[[1]]",
                       "sens.models.2[[2]]",
-                      "sens.models.2[[3]]",
                       "sens.models.4[[1]]",
                       "sens.models.4[[2]]",
                       "sens.models.4[[3]]",
