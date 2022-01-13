@@ -4,7 +4,7 @@ $NNO_AGE1_MODEL=2022.01.23_age1Survey
 # Run base model without the age-1 index MCMC using adnuts on AWS
 # Environment variable $MODELS_DIR is set in aws/install_hake.sh
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-run_adnuts('$MODELS_DIR/$NO_AGE1_MODEL', adapt_delta = 0.95)" \
+run_adnuts('$MODELS_DIR/$NO_AGE1_MODEL', adapt_delta = 0.95, extra_mcmc = TRUE)" \
 > /dev/null 2>&1; echo "No age-1 model MCMC complete")
 
 # Change a filename so that it works with hake-assessment code.
