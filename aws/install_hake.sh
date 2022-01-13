@@ -5,7 +5,7 @@
 
 # Environment variables --------------------------------------------------------
 models_dir=models
-base_model_dir=2021.00.04_base_v1
+base_model_dir=2022.00.04_base_v1
 
 # Users ------------------------------------------------------------------------
 # Add user cgrandin
@@ -157,9 +157,9 @@ echo "PATH=/usr/bin/ss:$PATH" >> /home/aedwards/.Renviron
 echo "if(interactive()) source('R/all.R')" | tee -a /home/ec2-user/.Rprofile
 echo "if(interactive()) source('R/all.R')" | tee -a /home/cgrandin/.Rprofile
 echo "if(interactive()) source('R/all.R')" | tee -a /home/aedwards/.Rprofile
-echo "if(interactive()) copy_dirfiles('hakestore/models-2021-ss-input-files', 'models')" | tee -a /home/ec2-user/.Rprofile
-echo "if(interactive()) copy_dirfiles('hakestore/models-2021-ss-input-files', 'models')" | tee -a /home/cgrandin/.Rprofile
-echo "if(interactive()) copy_dirfiles('hakestore/models-2021-ss-input-files', 'models')" | tee -a /home/aedwards/.Rprofile
+echo "if(interactive()) copy_dirfiles('hakestore/models-2022-ss-input-files', 'models')" | tee -a /home/ec2-user/.Rprofile
+echo "if(interactive()) copy_dirfiles('hakestore/models-2022-ss-input-files', 'models')" | tee -a /home/cgrandin/.Rprofile
+echo "if(interactive()) copy_dirfiles('hakestore/models-2022-ss-input-files', 'models')" | tee -a /home/aedwards/.Rprofile
 echo "if(interactive()) system_('chmod -R 777 models')" | tee -a /home/ec2-user/.Rprofile
 echo "if(interactive()) system_('chmod -R 777 models')" | tee -a /home/cgrandin/.Rprofile
 echo "if(interactive()) system_('chmod -R 777 models')" | tee -a /home/aedwards/.Rprofile
