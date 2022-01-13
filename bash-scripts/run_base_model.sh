@@ -34,5 +34,5 @@ find ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/forecasts -type f \
 # Copy all the output for the base model to the persistent S3 drive 'hakestore'
 DATE_STR="_jan04_2022"
 cp -R ~/hake-assessment/$MODELS_DIR/$BASE_MODEL \
-~/hake-assessment/hakestore/$BASE_MODEL$DATE_STR
+~/hake-assessment/hakestore/$MODELS_DIR/$BASE_MODEL
 echo "Copied Base model output to S3 storage"

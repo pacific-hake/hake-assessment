@@ -5,7 +5,7 @@
 
 # Environment variables --------------------------------------------------------
 models_dir=models
-base_model_dir=2022.00.04_base_v1
+base_model_dir=2022.01.10_base
 
 # Users ------------------------------------------------------------------------
 # Add user cgrandin
