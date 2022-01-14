@@ -58,9 +58,9 @@ doc/old-pdfs*
 appendix-srg-requests-2017.rnw
 appendix-srg-requests-2018.rnw
 appendix-srg-requests-2019.rnw
+/data/recruitment-question-responses-orig.csv
 
 # Bash
 .bash_history
 .config/
 .local/
-/data/recruitment-question-responses-orig.csv
