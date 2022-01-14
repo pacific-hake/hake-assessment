@@ -1,6 +1,6 @@
 #!/bin/bash
 
-$NNO_AGE1_MODEL=2022.01.23_age1Survey
+NO_AGE1_MODEL=2022.01.23_age1Survey
 # Run base model without the age-1 index MCMC using adnuts on AWS
 # Environment variable $MODELS_DIR is set in aws/install_hake.sh
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
@@ -31,6 +31,10 @@ build_rds('$NO_AGE1_MODEL', run_catch_levels = FALSE, run_forecasts = TRUE, buil
 # Delete the unnecessary files. Some are huge (eg. echoinput.sso can 3GB)
 find ~/hake-assessment/$MODELS_DIR/$NO_AGE1_MODEL/forecasts -type f \
  ! \( -name 'posteriors.sso' -o -name 'derived_posteriors.sso' -o -name 'forecast.ss' \) -delete
+
+# Build the RDS file
+(trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
+build_rds('$NO_AGE1_MODEL')" > /dev/null 2>&1)
 
 # Copy all the output for the base model to the persistent S3 drive 'hakestore'
 cp -R ~/hake-assessment/$MODELS_DIR/$NO_AGE1_MODEL \
