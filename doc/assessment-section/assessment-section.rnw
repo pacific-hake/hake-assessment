@@ -221,7 +221,7 @@ that text again (then we will delete those).
   determining the choice of $\sigma_R$ remains a challenge and encourages the
   JTC to continue to work on the issue.}
 
-\emph{**Kelli check, especially ** spots and close issue #468 when done**
+\emph{**Kelli check, especially ** spots and close issue \#468 when done**
   Response -- Developing best practices for modeling equilibrium recruitment ($R_0$)
   and recruitment variability ($\sigma_R$)
   remain broad topics of contemporary research. Recent recommendations have been that the next
@@ -262,7 +262,7 @@ that text again (then we will delete those).
   \fishname\ early life-history stages and recruitment, which could eventually inform an explicit recruitment index,
   an environmental index linked to recruitment, indicators of recruitment variation
   ($\sigma_R$), and indicators of current or forecast levels of recruitment. These options are currently being
-  investigated by the JTC, the MSE working group, and collaborating colleagues} 
+  investigated by the JTC, the MSE working group, and collaborating colleagues}
 
 \emph{**In addition to the MSE TMB estimation model, other state-space stock assessment platforms (such as the
   Woods Hole Assessment Model, WHAM) may also be useful for investigating alternative approaches to
@@ -324,7 +324,7 @@ analysis. {\bf The SRG encourages continued sampling and analysis to improve
 understanding of the Pacific Hake reproductive cycle.}
 
 \emph{Response -- A project was initiated at the Northwest Fisheries Science Center just
-  prior to the start of the COVID-19 pandemic that seeks to refine \fishname stock assessment
+  prior to the start of the COVID-19 pandemic that seeks to refine \fishname\ stock assessment
   assumptions through incorporation of physiological indices of fish reproductive and metabolic status.
   This novel biological information would bolster the current practice of using gonadal histology
   alone for surveyed \fishname, and provide important data to more accurately determine the reproductive
@@ -334,16 +334,16 @@ understanding of the Pacific Hake reproductive cycle.}
   these lipids are also considerably shifted when aborted/atretic ovarian follicles
   are observed, suggesting that lipid levels may be predictive of skipped spawning, which can reduce
   the effective spawning stock biomass. In 2021, over 20 novel gene expression assays were designed
-  for validation in \fishname that target factors involved in ovarian development and atresia. Gonadal histology
+  for validation in \fishname\ that target factors involved in ovarian development and atresia. Gonadal histology
   and staging was also conducted for fish collected in summer 2018 and 2019, and additional physiological
   samples were collected during the Northwest Fisheries Science Center 2021 Summer Hake Trawl Survey.
   To the extent that onsite laboratory work will be possible in 2022, the goal for the project is to conduct
-  liver lipid-class and ovarian RNA analyses for \fishname samples collected in 2018 and 2019.
+  liver lipid-class and ovarian RNA analyses for \fishname\ samples collected in 2018 and 2019.
   The addition of these samples will greatly expand the data set, and will help determine the utility
   of physiological indicators of reproductive/metabolic status. New developments are expect to inform
-  future \fishname stock assessments.}
-  
-\emph{\fishname ovary samples continue to be collected (see Table~\ref{tab:main-ovaries}) for future
+  future \fishname\ stock assessments.}
+
+\emph{\fishname\ ovary samples continue to be collected (see Table~\ref{tab:main-ovaries}) for future
   analyses. While laboratory work has been limited over the past year due to facility closures, plans remain
   to include available Canadian samples in subsequent maturity analyses.}
 
@@ -1826,17 +1826,17 @@ survey estimates compared to the base model (Figure~\ref{fig:main-index-base-alt
 For further details and results from the age-1 survey index sensitivity see
 Appendix~\ref{chap:age1-survey}.
 
-The high age-1 survey index from 2021 is largely in concurrence with 
+The high age-1 survey index from 2021 is largely in concurrence with
 oceanographic conditions, as summarized in NOAA's annual Ecosystem Status Report
-of the California Current. Recruitment is generally impacted by oceanographic 
-conditions both during maternal preconditioning and during egg and larval 
-stages. During maternal preconditioning (spring-fall, 2019) upwelling 
+of the California Current. Recruitment is generally impacted by oceanographic
+conditions both during maternal preconditioning and during egg and larval
+stages. During maternal preconditioning (spring-fall, 2019) upwelling
 conditions were variable but near average \citep{HarveyGarfieldEtAl2020}. Weaker
-upwelling conditions are associated with higher \fishname\ recruitment during this 
-phase (Vestfals et al., pers. comm.). During egg and larval phases (2020), ocean 
-conditions were broadly associated with high productivity across many taxa 
-\citep{HarveyGarfieldEtAl2021}. These conditions were marked by strong winter 
-upwelling which brings nutrients to coastal waters, cooler temperatures, an 
+upwelling conditions are associated with higher \fishname\ recruitment during this
+phase (Vestfals et al., pers. comm.). During egg and larval phases (2020), ocean
+conditions were broadly associated with high productivity across many taxa
+\citep{HarveyGarfieldEtAl2021}. These conditions were marked by strong winter
+upwelling which brings nutrients to coastal waters, cooler temperatures, an
 energy-rich copepod community, and high productivity of krill, a key food source
 for \fishname\ \citep{BuckleyLivingston1997, HarveyGarfieldEtAl2021}.
 
