@@ -114,7 +114,8 @@ run_retrospectives <- function(model_path,
 
         run_adnuts(retro_subdir,
                    n_final = retro_n_final,
-                   warmup_final = retro_warmup_final)
+                   warmup_final = retro_warmup_final,
+                   ...)
       }else{
         shell_command <- paste0("cd ", retro_subdir, cmd_link, ss_executable, " -nox")
         system_(shell_command, wait = FALSE, intern = !show_ss_output)

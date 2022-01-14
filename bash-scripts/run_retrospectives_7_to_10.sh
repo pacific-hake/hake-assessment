@@ -8,19 +8,19 @@
 # Just 'cp hakestore/models/2022.01.10_base/* models/2022.01.10_base'
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-run_retrospectives('$MODELS_DIR/$BASE_MODEL', retrospective_yrs = 7)" \
+run_retrospectives('$MODELS_DIR/$BASE_MODEL', retrospective_yrs = 7, n_cores = 16)" \
 > /dev/null 2>&1; echo "Restrospective - 7 complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-run_retrospectives('$MODELS_DIR/$BASE_MODEL', retrospective_yrs = 8)" \
+run_retrospectives('$MODELS_DIR/$BASE_MODEL', retrospective_yrs = 8, n_cores = 16)" \
 > /dev/null 2>&1; echo "Restrospective - 8 complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-run_retrospectives('$MODELS_DIR/$BASE_MODEL', retrospective_yrs = 9)" \
+run_retrospectives('$MODELS_DIR/$BASE_MODEL', retrospective_yrs = 9, n_cores = 16)" \
 > /dev/null 2>&1; echo "Restrospective - 9 complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-run_retrospectives('$MODELS_DIR/$BASE_MODEL', retrospective_yrs = 10)" \
+run_retrospectives('$MODELS_DIR/$BASE_MODEL', retrospective_yrs = 10, n_cores = 16)" \
 > /dev/null 2>&1; echo "Restrospective - 10 complete")
 
 cp -R ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/retrospectives/retro-0[7-9] \
