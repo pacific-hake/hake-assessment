@@ -4,28 +4,30 @@
 # optimal speed so they need 96 CPUS
 # Environment variable $BASE_MODEL is set in R/model-setup.R
 
+# Required the MLE run in the root part of the model directory have all it files present
+# Just 'cp hakestore/models/2022.01.10_base/* models/2022.01.10_base'
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-build_rds('$BASE_MODEL', run_retrospectives = TRUE, retrospective_yrs = 1, build_file = FALSE)" \
+run_retrospectives('$MODELS_DIR/$BASE_MODEL', retrospective_yrs = 1)" \
 > /dev/null 2>&1; echo "Restrospective - 1 complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-build_rds('$BASE_MODEL', run_retrospectives = TRUE, retrospective_yrs = 2, build_file = FALSE)" \
+run_retrospectives('$MODELS_DIR/$BASE_MODEL', retrospective_yrs = 2)" \
 > /dev/null 2>&1; echo "Restrospective - 2 complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-build_rds('$BASE_MODEL', run_retrospectives = TRUE, retrospective_yrs = 3, build_file = FALSE)" \
+run_retrospectives('$MODELS_DIR/$BASE_MODEL', retrospective_yrs = 3)" \
 > /dev/null 2>&1; echo "Restrospective - 3 complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-build_rds('$BASE_MODEL', run_retrospectives = TRUE, retrospective_yrs = 4, build_file = FALSE)" \
+run_retrospectives('$MODELS_DIR/$BASE_MODEL', retrospective_yrs = 4)" \
 > /dev/null 2>&1; echo "Restrospective - 4 complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-build_rds('$BASE_MODEL', run_retrospectives = TRUE, retrospective_yrs = 5, build_file = FALSE)" \
+run_retrospectives('$MODELS_DIR/$BASE_MODEL', retrospective_yrs = 5)" \
 > /dev/null 2>&1; echo "Restrospective - 5 complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-build_rds('$BASE_MODEL', run_retrospectives = TRUE, retrospective_yrs = 6, build_file = FALSE)" \
+run_retrospectives('$MODELS_DIR/$BASE_MODEL', retrospective_yrs = 6)" \
 > /dev/null 2>&1; echo "Restrospective - 6 complete")
 
 cp -R ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/retrospectives/retro-0[1-6] \

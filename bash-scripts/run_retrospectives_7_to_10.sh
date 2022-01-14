@@ -4,20 +4,23 @@
 # optimal speed so they need 64 CPUS
 # Environment variable $BASE_MODEL is set in R/model-setup.R
 
+# Required the MLE run in the root part of the model directory have all it files present
+# Just 'cp hakestore/models/2022.01.10_base/* models/2022.01.10_base'
+
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-build_rds('$BASE_MODEL', run_retrospectives = TRUE, retrospective_yrs = 7, build_file = FALSE)" \
+run_retrospectives('$MODELS_DIR/$BASE_MODEL', retrospective_yrs = 7)" \
 > /dev/null 2>&1; echo "Restrospective - 7 complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-build_rds('$BASE_MODEL', run_retrospectives = TRUE, retrospective_yrs = 8, build_file = FALSE)" \
+run_retrospectives('$MODELS_DIR/$BASE_MODEL', retrospective_yrs = 8)" \
 > /dev/null 2>&1; echo "Restrospective - 8 complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-build_rds('$BASE_MODEL', run_retrospectives = TRUE, retrospective_yrs = 9, build_file = FALSE)" \
+run_retrospectives('$MODELS_DIR/$BASE_MODEL', retrospective_yrs = 9)" \
 > /dev/null 2>&1; echo "Restrospective - 9 complete") &
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd(here::here()); source('R/all.R'); \
-build_rds('$BASE_MODEL', run_retrospectives = TRUE, retrospective_yrs = 10, build_file = FALSE)" \
+run_retrospectives('$MODELS_DIR/$BASE_MODEL', retrospective_yrs = 10)" \
 > /dev/null 2>&1; echo "Restrospective - 10 complete")
 
 cp -R ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/retrospectives/retro-0[7-9] \
