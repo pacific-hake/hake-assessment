@@ -24,7 +24,7 @@ run_retrospectives <- function(model_path,
                                retro_warmup_final = 250,
                                retro_continue = TRUE,
                                retrospective_yrs = NA,
-                               ...){
+                               n_cores = NA){
 
   stopifnot(!is.na(retrospective_yrs))
 
@@ -115,7 +115,7 @@ run_retrospectives <- function(model_path,
         run_adnuts(retro_subdir,
                    n_final = retro_n_final,
                    warmup_final = retro_warmup_final,
-                   ...)
+                   n_cores = n_cores)
       }else{
         shell_command <- paste0("cd ", retro_subdir, cmd_link, ss_executable, " -nox")
         system_(shell_command, wait = FALSE, intern = !show_ss_output)
