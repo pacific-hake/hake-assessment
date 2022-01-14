@@ -28,7 +28,8 @@ s3_download <- function(folders = NULL,
                         key_pair_file = here("aws/key_pair.R"),
                         region = "ca-central-1",
                         multipart_limit = 1e6,
-                        bucket = "hakestore"){
+                        bucket = "hakestore",
+                        ext = NA){
 
   if(is.null(folders)){
     stop("folders cannot be NULL, it must be a vector or folders or paths to folders found in the S3 bucket",
@@ -51,10 +52,11 @@ s3_download <- function(folders = NULL,
   Sys.setenv("AWS_DEFAULT_REGION" = region,
              "AWS_ACCESS_KEY_ID" = key,
              "AWS_SECRET_ACCESS_KEY" = secret)
+
   bl <- bucketlist(key = key, secret = secret)
 
   # Bucket contents, a list of all the object names and sizes and a couple other things
-  bc <- get_bucket(bucket, max = Inf)
+  bc <- get_bucket(bucket, max = 20000)
 
   # Create a list of vectors of length 2: file name and size
   folders_pattern <- paste(folders, collapse = "|")
@@ -67,6 +69,16 @@ s3_download <- function(folders = NULL,
   }) %>% setNames(NULL)
   # Remove NULLs from the list (non-matching folders names)
   files_sizes[map_lgl(files_sizes, is.null)] <- NULL
+
+  # Filter extension if asked for
+  if(!is.na(ext)){
+    files_sizes <- map(files_sizes, ~{
+      fn <- .x[1]
+      ext_match <- grepl(paste0("\\.", ext, "$"), fn)
+      if(ext_match) .x else NULL
+    })
+    files_sizes <- files_sizes[!map_lgl(files_sizes, is.null)]
+  }
 
   # Remove directories (ending in /)
   files_sizes <- map(files_sizes, ~{
