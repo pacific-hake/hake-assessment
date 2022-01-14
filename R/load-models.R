@@ -152,14 +152,14 @@ calc.mcmc <- function(mcmc,
   cols.to.strip <- c("Virgin", "Initial")
   ssb <- strip.columns(ssb, cols.to.strip)
 
-  slower <- apply(ssb, 2, quantile, prob = lower)
-  smed   <- apply(ssb, 2, quantile, prob = 0.5)
-  supper <- apply(ssb, 2, quantile, prob = upper)
+  slower <- apply(ssb, 2, quantile, prob = lower, na.rm = TRUE)
+  smed   <- apply(ssb, 2, quantile, prob = 0.5, na.rm = TRUE)
+  supper <- apply(ssb, 2, quantile, prob = upper, na.rm = TRUE)
 
   depl   <- apply(ssb, 2, function(x){x / sinit.post})
-  dlower <- apply(depl, 2, quantile, prob = lower)
-  dmed   <- apply(depl, 2, quantile, prob = 0.5)
-  dupper <- apply(depl, 2, quantile, prob = upper)
+  dlower <- apply(depl, 2, quantile, prob = lower, na.rm = TRUE)
+  dmed   <- apply(depl, 2, quantile, prob = 0.5, na.rm = TRUE)
+  dupper <- apply(depl, 2, quantile, prob = upper, na.rm = TRUE)
 
   ## 1e6 used here because recruitment will be shown in the millions of tonnes
   recr <- mcmc[,grep("Recr_", names(mcmc))] / recruitment.scale
@@ -176,10 +176,10 @@ calc.mcmc <- function(mcmc,
     grep("unfished", names(recr), ignore.case = TRUE, value = TRUE))
   recr <- strip.columns(recr, cols.to.strip)
 
-  rmed <- apply(recr, 2, quantile, prob = 0.5)
-  rmean <- apply(recr, 2, mean)
-  rlower <- apply(recr, 2, quantile,prob = lower)
-  rupper <- apply(recr, 2, quantile,prob = upper)
+  rmed <- apply(recr, 2, quantile, prob = 0.5, na.rm = TRUE)
+  rmean <- apply(recr, 2, mean, na.rm = TRUE)
+  rlower <- apply(recr, 2, quantile,prob = lower, na.rm = TRUE)
+  rupper <- apply(recr, 2, quantile,prob = upper, na.rm = TRUE)
 
   dev <- mcmc[,c(grep("Early_InitAge_", names(mcmc)),
                  grep("Early_RecrDev_", names(mcmc)),
@@ -200,22 +200,22 @@ calc.mcmc <- function(mcmc,
   late.yrs <- names(dev[-early])
   names(dev) <- c(as.character(early.yrs), late.yrs)
 
-  devlower <- apply(dev, 2, quantile, prob = lower)
-  devmed <- apply(dev, 2, quantile, prob = 0.5)
-  devupper <- apply(dev, 2, quantile, prob = upper)
+  devlower <- apply(dev, 2, quantile, prob = lower, na.rm = TRUE)
+  devmed <- apply(dev, 2, quantile, prob = 0.5, na.rm = TRUE)
+  devupper <- apply(dev, 2, quantile, prob = upper, na.rm = TRUE)
 
   spr <- mcmc[,grep("SPRratio_", names(mcmc))]
   names(spr) <- gsub("SPRratio_", "", names(spr))
 
-  plower <- apply(spr, 2, quantile, prob = lower)
-  pmed <- apply(spr, 2, quantile, prob = 0.5)
-  pupper <- apply(spr, 2, quantile, prob = upper)
+  plower <- apply(spr, 2, quantile, prob = lower, na.rm = TRUE)
+  pmed <- apply(spr, 2, quantile, prob = 0.5, na.rm = TRUE)
+  pupper <- apply(spr, 2, quantile, prob = upper, na.rm = TRUE)
 
   f <- mcmc[,grep("F_", names(mcmc))]
   names(f) <- gsub("F_", "", names(f))
-  flower <- apply(f, 2, quantile, prob = lower)
-  fmed   <- apply(f, 2, quantile, prob = 0.5)
-  fupper <- apply(f, 2, quantile, prob = upper)
+  flower <- apply(f, 2, quantile, prob = lower, na.rm = TRUE)
+  fmed   <- apply(f, 2, quantile, prob = 0.5, na.rm = TRUE)
+  fupper <- apply(f, 2, quantile, prob = upper, na.rm = TRUE)
 
   # Calculations for the reference points table
   probs <- c(lower, 0.5, upper)

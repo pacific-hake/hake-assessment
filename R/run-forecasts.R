@@ -75,18 +75,18 @@ run_forecasts <- function(model_path,
 #'
 #' @param model_path Path of the model
 #' @param forecasts_path Path of the forecasts
-#' @param catch_levels The table of catch levels with same structure as found in forecast-catch-levels.R
+#' @param my_catch_levels The table of catch levels with same structure as found in forecast-catch-levels.R
 #' @param forecast_yrs The forecast years
 #' @param ...
 #'
 #' @return A list of forecast outputs as read in by [r4ss::SSgetMCMC()]
 #' @export
 fetch_forecasts <- function(model_path,
-                            catch_levels,
+                            my_catch_levels,
                             ...){
 
   # Extract the catch level names from the list into a vector
-  catch_levels_names <- map_chr(catch_levels, ~{.x[[3]]})
+  catch_levels_names <- map_chr(my_catch_levels, ~{.x[[3]]})
 
   forecasts_path <- file.path(model_path, forecasts_path)
   if(!dir.exists(forecasts_path)){
@@ -105,10 +105,10 @@ fetch_forecasts <- function(model_path,
     dir_listing <- dir(fore_path)
     if(!identical(catch_levels_names, dir_listing)){
       stop("There is a discrepancy between what you have set ",
-           "for the catch.levels names \n and what appears in the forecasts directory '",
+           "for the catch_levels_names \n and what appears in the forecasts directory '",
            fore_path,"'. \n Check the names in both and try again.\n\n", call. = FALSE)
     }
-    lvls_lst <- future_map2(catch_levels, .x, ~{
+    lvls_lst <- future_map2(my_catch_levels, .x, ~{
       fore_level_path <- file.path(fore_path, .x[[3]])
       message("Loading forecast data from ", fore_level_path)
 
@@ -126,8 +126,10 @@ fetch_forecasts <- function(model_path,
       # Now, filter out the projected years only
       sb_proj_cols <- sb %>% select(one_of(as.character(forecast_yrs)))
       spr_proj_cols <- spr %>% select(one_of(as.character(forecast_yrs)))
-      list(biomass = t(apply(sb_proj_cols, 2, quantile, probs = forecast_probs)),
-           spr = t(apply(spr_proj_cols, 2, quantile, probs = forecast_probs)),
+      sb_proj_cols <- na.omit(sb_proj_cols)
+      spr_proj_cols <- na.omit(spr_proj_cols)
+      list(biomass = t(apply(sb_proj_cols, 2, quantile, probs = forecast_probs, na.rm = TRUE)),
+           spr = t(apply(spr_proj_cols, 2, quantile, probs = forecast_probs, na.rm = TRUE)),
            mcmccalcs = calc.mcmc(mcmc_out),
            outputs = mcmc_out)
     }, .options = furrr_options(globals = c("f",
