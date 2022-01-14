@@ -6,7 +6,10 @@
 #' retrospective in addition to the MLE run
 #' @param continue If TRUE, attempt to continue the runs from where it left off
 #' (in case of unwanted computer shutdown)
-#' @param ...
+#' @param retrospective_yrs The years (e.g. 1:6) to run so each of these numbers means that many
+#' years of data removed from the model
+#' @param n_cores The number of CPUs to use if running `run_adnuts()`
+#' @param ... Arguments passed to `load_ss_files()`
 #'
 #' @details This will create a *retrospectives* directory in the same directory as the model resides,
 #' create a directory for each retrospective year, copy all model files into each directory,
@@ -24,7 +27,8 @@ run_retrospectives <- function(model_path,
                                retro_warmup_final = 250,
                                retro_continue = TRUE,
                                retrospective_yrs = NA,
-                               n_cores = NA){
+                               n_cores = NA,
+                               ...){
 
   stopifnot(!is.na(retrospective_yrs))
 
