@@ -8,7 +8,7 @@
 %%  match them to correpsonding chunk number. Was hoping to just remove that
 %%  chunk's cached files and re-run (to save remaking all figures), but that
 %%  doesn't seem to work as it messes up knitr rebuilding a cache. The
-%%  knit_expand doesn't create a giant knitr file.
+%%  knit_expand doesn't create a giant knitr file. Set cache=FALSE if in trouble.
 
 
 \documentclass[12pt]{book}
@@ -189,8 +189,8 @@ opts_chunk$set(
              warning = FALSE,
              comment = "#>",
              results = 'hide',
-             fig.path = 'knitr-cache-png/',
-             cache.path = 'knitr-cache-png/',
+             fig.path = 'knitr-cache/',
+             cache.path = 'knitr-cache/',
              cache = TRUE)
 
 source(here::here("R/all.R"))
@@ -248,7 +248,7 @@ exist for that senstivity run), plus histograms of diagnostics for all estimated
 parameters, and pairs plots for key parameters and further standard ones of
 interest. See captions for details.
 
-Captions are identical from chapter to chapter. Note that for the sensitivity
+Captions are identical from chapter to chapter. **Note that for the sensitivity
 run that includes the age-1 survey, the extra standard deviation for this survey
 replaces that for the main acoustic survey, as identified in the figure labels.
 
@@ -287,6 +287,9 @@ diagnostic.model <- c("base.model",
                       "sens.models.6[[3]]",
                       "sens.models.7"       # only one element
                       )
+
+# diagnostic.model <- rep(diagnostic.model[1],
+#                         2)# for debugging
 @
 
 <<generate, echo=FALSE, results='asis'>>=
