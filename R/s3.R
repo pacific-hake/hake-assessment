@@ -10,6 +10,7 @@
 #' @param multipart_limit The number of bytes to trigger a multipart download. If any file is
 #' larger than this, it will use the S3 multipart download which is significantly faster
 #' @param bucket The name of the S3 bucket
+#' @param ext An extension to filter for. Only files with this extension will be downloaded
 #' @return Nothing (folders structure downloaded in the directory given by `getwd()`)
 #' @importFrom aws.s3 get_bucket bucketlist save_object object_size
 #' @importFrom purrr map map_chr map_lgl map
