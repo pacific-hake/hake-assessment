@@ -126,12 +126,12 @@ message("Last assessment year's base model pretty name: ", last.yr.base.model.na
 ## Bridge models group 1
 ## -----------------------------------------------------------------------------
 ## First one must be last.yr.base.model.dir.name:
-bridge.model.dir.names.1 <- c("2022.01.01_newSSexe",
+bridge.model.dir.names.1 <- c(last.yr.base.model.dir.name,
                               "2022.01.03_newcatchage",
                               "2022.01.05_updatesurvey",
-                              "2022.01.06_newsurvey",
+                              "2022.01.05_updatesurvey", # "2022.01.06_newsurvey",
                               "2022.01.07_newwtatage")
-bridge.model.names.1 <- c("2021 base model",
+bridge.model.names.1 <- c(last.yr.base.model.name,
                           "Update all fishery catch and comps",
                           "Update pre-2021 survey data",
                           "Add 2021 survey data",
@@ -153,17 +153,15 @@ bridge.model.end.yr.2 <- end.yr - c(0, 0)
 ## -----------------------------------------------------------------------------
 ## NOTE: If any sensitivity models change order or definition, then check that
 ##  definitions are still correct in custom-knitr-variables.R (seach that for
-##  'sens.model')
+##  'sens.model'); also see load_models_rds() defined at the end of this file.
 ## NOTE: For ADNUTS diagnostics document, update the list in adnuts-diagnostics.rnw if
 ##  sensitivity models get added or removed here.
-
-
-sens.model.dir.names.1 <- c("2021.00.15_h_prior_mean_low",
-                            "2021.00.16_h_fix_high",
-                            "2021.00.17_sigmaR_fix_low",
-                            "2021.00.18_sigmaR_fix_high",
-                            "2021.00.20_M_0.2SD",
-                            "2021.00.21_M_0.3SD")
+sens.model.dir.names.1 <- c("2022.01.15_h_prior_mean_low",
+                            "2022.01.16_h_fix_high",
+                            "2022.01.17_sigmR_fix_low",
+                            "2022.01.18_sigmR_fix_high",
+                            "2022.01.20_M_0.2SD",
+                            "2022.01.21_M_0.3SD")
 sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
                         "Steepness Fix 1.0",
                         "Sigma R 1.0",
@@ -178,17 +176,17 @@ sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
 ## full appendix (and other results) will be somewhat automatic (even if some
 ## variables have 'age1' in them, we know this to be the sens that removes age-1
 ## index instead of adding it (as in the past).**
-sens.model.dir.names.2 <- c("2021.00.23_age1Survey",
-                            "2021.00.24_compWeight_HarmonicMean")
+sens.model.dir.names.2 <- c("2022.01.23_age1Survey",
+                            "2022.01.24_compWeight_HarmonicMean")
 sens.model.names.2 <- c("Remove Age 1 Index",
                         "Downweight Fishery Comps")
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 4
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.4 <- c("2021.00.27_tvSelect_phi_extralow",
-                            "2021.00.28_tvSelect_phi_low",
-                            "2021.00.29_tvSelect_phi_high")
+sens.model.dir.names.4 <- c("2022.01.27_tvSelect_phi_extralow",
+                            "2022.01.28_tvSelect_phi_low",
+                            "2022.01.28_tvSelect_phi_low") # "2022.01.29_tvSelect_phi_high")  # CHANGE WHEN IT's RUN
 sens.model.names.4 <- c("Phi t.v. selectivity (0.21)",
                         "Phi t.v. selectivity (0.70)",
                         "Phi t.v. selectivity (2.10)")
@@ -196,15 +194,15 @@ sens.model.names.4 <- c("Phi t.v. selectivity (0.21)",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 5  -
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.5 <- c("2021.00.30_noCohort_ageError")
-sens.model.names.5 <- c("Time-invariant ageing error vector")
+sens.model.dir.names.5 <- c("2022.01.28_tvSelect_phi_low")
+sens.model.names.5 <- c("DUMMY FOR NOW")
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 6  -
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.6 <- c("2021.00.43_maxSel_Age5",
-                            "2021.00.44_maxSel_Age7",
-                            "2021.00.45_maxSel_Age8")
+sens.model.dir.names.6 <- c("2022.01.43_maxSel_Age5",
+                            "2022.01.44_maxSel_Age7",
+                            "2022.01.45_maxSel_Age8")
 sens.model.names.6 <- c("Max. age selectivity 5",
                         "Max. age selectivity 7",
                         "Max. age selectivity 8")
@@ -212,8 +210,8 @@ sens.model.names.6 <- c("Max. age selectivity 5",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 7  - MH mcmc
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.7 <- c("2021.00.40_MH_mcmc")
-sens.model.names.7 <- c("RW Metrop. Hast. (rwMH)")
+sens.model.dir.names.7 <- c("2022.01.28_tvSelect_phi_low")
+sens.model.names.7 <- c("DUMMY FOR NOW")
 
 model_list <- c(base.model.dir.name,
                 unlist(bridge.model.dir.names.1),
@@ -255,8 +253,8 @@ load_models_rds <- function(){
   sens.models.5 <<- load_models(sens.model.dir.names.5)
   sens.models.6 <<- load_models(sens.model.dir.names.6)
   sens.models.7 <<- load_models(sens.model.dir.names.7)
-  srg_day2_req1_model <<- load_models("2021.00.47_day2request_wtatage")
-  srg_day2_req2_model <<- load_models("2021.00.46_base_v1_4yrForecast")
+#  srg_day2_req1_model <<- load_models("2022.01.47_day2request_wtatage")
+#  srg_day2_req2_model <<- load_models("2022.01.46_base_v1_4yrForecast")
 
   ## Lists of sensitivities for the MLE parameters, derived quantiles,
   ##  and reference points table
