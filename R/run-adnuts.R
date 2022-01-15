@@ -81,13 +81,11 @@ run_adnuts <- function(path,
   }
 
   # Run ADNUTS MCMC
-  rdata_file <- "hake.Rdata"
   # First re-optimize to get the correct mass matrix for NUTS (and without
   # bias adjustment turned on). Note the -hbf 1 argument.
   # This is a technical requirement b/c NUTS uses a different set of bounding
   # functions and thus the mass matrix will be different.
   system_(paste0("cd ", mcmc_path, " && ", exe, " -hbf 1 -nox -iprint 200 -mcmc 15"))
-  save.image(file = rdata_file)
   # Use default MLE covariance (mass matrix) and short parallel NUTS chains
   # started from the MLE. Recall iter is number per core running in parallel.
   nuts_mle <- sample_admb(model = exe,
@@ -100,9 +98,10 @@ run_adnuts <- function(path,
                           warmup = 50,
                           control = list(metric = "mle",
                                          adapt_delta = adapt_delta))
-  save.image(file = rdata_file)
   # Check for issues like slow mixing, divergences, max treedepths with
   # ShinyStan and pairs_admb as above. Fix using the shiny app and rerun this part as needed.
+  rdata_file <- file.path(mcmc_path, "pre_run_hake.Rdata")
+  save.image(file = rdata_file)
   if(check_issues){
     launch_shinyadmb(nuts_mle)
     stop("Checked issues. Run function again with check_issues = FALSE to complete run.")
@@ -125,6 +124,7 @@ run_adnuts <- function(path,
                               mceval = TRUE,
                               control = list(metric = mass,
                                              adapt_delta = adapt_delta))
+  rdata_file <- file.path(mcmc_path, "hake.Rdata")
   save.image(file = rdata_file)
   system_(paste0("cd ", mcmc_path, " && ", exe, " -mceval"))
 
