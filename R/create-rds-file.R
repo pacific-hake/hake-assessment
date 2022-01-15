@@ -102,6 +102,21 @@ create_rds_file <- function(model_dir = NULL, ...){
   invisible()
 }
 
+#' Append retrospective runs to the already-built RDS file and re-save it
+#'
+#' @param rds_fn RDS filename
+#' @param retrospective_yrs a vector of years to include in the loading
+#'
+#' @return Nothing
+append_retros <- function(rds_fn, retrospective_yrs = 10){
+
+  stopifnot(file.exists(rds_fn))
+  model <- readRDS(rds_fn)
+  model$retros <- fetch_retrospectives(model$retropath,
+                                       retrospective_yrs)
+  saveRDS(model, rds_fn)
+}
+
 #' Run extra models for forecasting, retrospectives, and extra MCMC (one report file per posterior)
 #'
 #' @details This is a wrapper function for calling [run_catch_levels()], [run_forecasts()],
