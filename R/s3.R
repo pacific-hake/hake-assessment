@@ -56,7 +56,7 @@ s3_download <- function(folders = NULL,
   bl <- bucketlist(key = key, secret = secret)
 
   # Bucket contents, a list of all the object names and sizes and a couple other things
-  bc <- get_bucket(bucket, max = 20000)
+  bc <- get_bucket(bucket, max = Inf)
 
   # Create a list of vectors of length 2: file name and size
   folders_pattern <- paste(folders, collapse = "|")
