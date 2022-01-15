@@ -45,7 +45,7 @@ message("End year for model: ", end.yr)
 survey.start.yr <- 1995
 message("First survey year: ", survey.start.yr)
 ## Last year in the survey timeseries
-survey.end.yr <- 2019
+survey.end.yr <- 2021
 ## Years in which the survey took place
 surv.yrs <- c(1995,
               1998,
@@ -59,7 +59,8 @@ surv.yrs <- c(1995,
               2013,
               2015,
               2017,
-              2019)
+              2019,
+              2021)
 
 # tick marks for time series plot (not catch time series though)
 big.ticks <- seq(1970, end.yr + 4, 5)
@@ -95,7 +96,7 @@ message("Key posteriors file: ", nuisance.posteriors.file)
 ## -----------------------------------------------------------------------------
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
-base.model.dir.name <- "2021.00.04_base_v1"
+base.model.dir.name <- "2022.01.10_base"
 base.model.name <- paste0(assess.yr, " Base model")
 
 message("Base model directory name: ", base.model.dir.name)
@@ -116,8 +117,7 @@ message("Base model pretty name: ", base.model.name)
 ## -----------------------------------------------------------------------------
 ## Last assessment year's base model name and directory
 ## -----------------------------------------------------------------------------
-##last.yr.base.model.dir.name <- "00_45_2017base"
-last.yr.base.model.dir.name <- "2020.01.00_base"
+last.yr.base.model.dir.name <- "2021.00.04_base_v1"
 last.yr.base.model.name <- paste(last.assess.yr, "Base model")
 message("Last assessment year's base model directory name: ", last.yr.base.model.dir.name)
 message("Last assessment year's base model pretty name: ", last.yr.base.model.name)
