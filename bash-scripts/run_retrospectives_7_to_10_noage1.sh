@@ -25,7 +25,7 @@ run_retrospectives('$MODELS_DIR/$NO_AGE1_MODEL', retrospective_yrs = 10, n_cores
 > /dev/null 2>&1; echo "Restrospective - 10 complete")
 
 cp -R ~/hake-assessment/$MODELS_DIR/$NO_AGE1_MODEL/retrospectives/retro-0[7-9] \
-~/hake-assessment/hakestore/$NO_AGE1_MODEL/retrospectives
+~/hake-assessment/hakestore/$MODELS_DIR/$NO_AGE1_MODEL/retrospectives
 cp -R ~/hake-assessment/$MODELS_DIR/$NO_AGE1_MODEL/retrospectives/retro-10 \
-~/hake-assessment/hakestore/$NO_AGE1_MODEL/retrospectives
+~/hake-assessment/hakestore/$MODELS_DIR/$NO_AGE1_MODEL/retrospectives
 echo "Copied Base model retrospectives 7-10 to S3 storage"

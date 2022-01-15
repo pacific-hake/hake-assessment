@@ -32,5 +32,5 @@ run_retrospectives('$MODELS_DIR/$BASE_MODEL', retrospective_yrs = 6, n_cores = 1
 > /dev/null 2>&1; echo "Restrospective - 6 complete")
 
 cp -R ~/hake-assessment/$MODELS_DIR/$BASE_MODEL/retrospectives/retro-0[1-6] \
-~/hake-assessment/hakestore/$BASE_MODEL/retrospectives
+~/hake-assessment/hakestore/$MODELS_DIR/$BASE_MODEL/retrospectives
 echo "Copied Base model retrospectives 1-6 to S3 storage"
