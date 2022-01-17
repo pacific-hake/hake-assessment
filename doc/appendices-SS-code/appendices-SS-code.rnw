@@ -8,7 +8,7 @@
 
 \begin{codefont}
 
-\lstinputlisting{\Sexpr{here::here(models_path, basename(base.model$path), basename(base.model$dat.file))}}
+\lstinputlisting{\Sexpr{here::here(models_path, basename(base.model$path), basename(base.model$dat_file))}}
 
 \end{codefont}
 
@@ -20,7 +20,7 @@
 
 \begin{codefont}
 
-\lstinputlisting{\Sexpr{here::here(models_path, basename(base.model$path), basename(base.model$ctl.file))}}
+\lstinputlisting{\Sexpr{here::here(models_path, basename(base.model$path), basename(base.model$ctl_file))}}
 
 \end{codefont}
 
