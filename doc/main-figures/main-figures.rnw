@@ -323,7 +323,8 @@ make.comparison.plot(bridge.models.1,
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      plot_mcmc = FALSE,
-                     end.yr = bridge.model.end.yr.1)
+                     end.yr = bridge.model.end.yr.1,
+                     btarg = 0.4)
 make.comparison.plot(bridge.models.1,
                      subplots = 10,
                      model.names = bridge.model.names.1,
@@ -393,7 +394,8 @@ make.comparison.plot(bridge.models.2,
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      plot_mcmc = FALSE,
-                     end.yr = bridge.model.end.yr.2)
+                     end.yr = bridge.model.end.yr.2,
+                     btarg = 0.4)
 make.comparison.plot(bridge.models.2,
                      subplots = 10,
                      model.names = bridge.model.names.2,
