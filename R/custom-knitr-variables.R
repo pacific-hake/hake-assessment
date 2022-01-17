@@ -459,12 +459,12 @@ sigma.r <- f(base.model$sigma_R_in, 2)
 
 # Alternative sigma.r based on all years of recdevs ---------------------------
 # sigma_R_info <- map(setNames(c(list(base.model), sens.models.1), c("base", sens.model.names.1)),
-#                     ~{r4ss::extract_sigma_R_info(.x$mcmc, .x$sigma_R_in)}) %>% bind_rows(.id = "model")
-sigma_R_info <- map2(c(list(base.model), sens.models.1), c("base", sens.model.names.1),
-                    ~{extract_sigma_r(.x, .y, .x$sigma_R_in)}) %>% bind_rows(.id = "model")
+sigma_R_info <- extract_sigma_r(c(list(base.model), sens.models.1), c("base", sens.model.names.1), base.model$sigma_R_in)
 
-sigma.r.alt.allyr <- f(sigma_R_info %>% filter(model == "base", period == "Early+Main+Late") %>%
-  select(alternative_sigma_R),2)
+sigma.r.alt.allyr <- sigma_R_info %>%
+  filter(model == "base", period == "Early+Main+Late") %>%
+  pull(alternative_sigma_R) %>%
+  f(2)
 
 # Range of "main" recdevs -----------------------------------------------------
 main.recdev.start <- min(base.model$recruit$Yr[base.model$recruit$era=="Main"])

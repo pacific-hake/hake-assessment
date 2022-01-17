@@ -41,8 +41,6 @@ extract_sigma_r <- function(models = NA,
                             model_names = NA,
                             sigma_r_in = NA) {
 
-  stopifnot(!is.na(models))
-  stopifnot(!is.na(model_names))
   stopifnot(!is.na(sigma_r_in))
   stopifnot(length(models) == length(model_names))
 
