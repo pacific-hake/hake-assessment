@@ -1,7 +1,7 @@
 #' Download folders and all their contents recursively from an AWS S3 bucket
 #'
 #' @name s3_functions
-#' @param folders A vector of names of folders inside the bucket to download.
+#' @param folders A vector of names of folders or single files inside the bucket to download.
 #' Can be single folders names or paths to particular folders. See examples
 #' @param key_pair_file The name of the R file which sets the variables `key` and `secret` to
 #' the AWS IAM key and secret for the connection
@@ -68,6 +68,7 @@ s3_download <- function(folders = NULL,
       NULL
     }
   }) %>% setNames(NULL)
+
   # Remove NULLs from the list (non-matching folders names)
   files_sizes[map_lgl(files_sizes, is.null)] <- NULL
 
