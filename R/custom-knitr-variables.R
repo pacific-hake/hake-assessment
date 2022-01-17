@@ -455,13 +455,21 @@ fore.catch.prop.wt.age10.median <- median(base.model$extra.mcmc$natselwt.prop[,1
 fore.catch.prop.wt.age11.median <- median(base.model$extra.mcmc$natselwt.prop[,12]) * 100
 
 # Sigma_r, standard deviation of recruitment variability ----------------------
-sigma.r <- f(base.model$sigma_R_in, 2)
+sigma_r <- f(base.model$sigma_R_in, 2)
 
-# Alternative sigma.r based on all years of recdevs ---------------------------
-# sigma_R_info <- map(setNames(c(list(base.model), sens.models.1), c("base", sens.model.names.1)),
-sigma_R_info <- extract_sigma_r(c(list(base.model), sens.models.1), c("base", sens.model.names.1), base.model$sigma_R_in)
-
-sigma.r.alt.allyr <- sigma_R_info %>%
+# Alternative sigma_r based on all years of recdevs ---------------------------
+sigma_r_info <- extract_sigma_r(c(list(base.model), sens.models.1),
+                                c("base", sens.model.names.1),
+                                base.model$sigma_R_in)
+sigma_r_hi_main <- sigma_r_info %>%
+  filter(model == "Sigma R 1.6", period == "Main") %>%
+  pull(SD_of_devs) %>%
+  f(2)
+sigma_r_lo_main <- sigma_r_info %>%
+  filter(model == "Sigma R 1.0", period == "Main") %>%
+  pull(SD_of_devs) %>%
+  f(2)
+sigma_r_alt_allyr <- sigma_r_info %>%
   filter(model == "base", period == "Early+Main+Late") %>%
   pull(alternative_sigma_R) %>%
   f(2)
