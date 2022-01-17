@@ -98,11 +98,11 @@ run_adnuts <- function(path,
                           warmup = 50,
                           control = list(metric = "mle",
                                          adapt_delta = adapt_delta))
-  # Check for issues like slow mixing, divergences, max treedepths with
+  # Check for issues like slow mixing, divergences, max tree depths with
   # ShinyStan and pairs_admb as above. Fix using the shiny app and rerun this part as needed.
-  rdata_file <- file.path(mcmc_path, "pre_run_hake.Rdata")
-  save.image(file = rdata_file)
+  rdata_file <- file.path(mcmc_path, "hake.Rdata")
   if(check_issues){
+    save(list = ls(all.names = TRUE), file = rdata_file, envir = environment())
     launch_shinyadmb(nuts_mle)
     stop("Checked issues. Run function again with check_issues = FALSE to complete run.")
   }
@@ -124,8 +124,8 @@ run_adnuts <- function(path,
                               mceval = TRUE,
                               control = list(metric = mass,
                                              adapt_delta = adapt_delta))
-  rdata_file <- file.path(mcmc_path, "hake.Rdata")
-  save.image(file = rdata_file)
+
+  save(list = ls(all.names = TRUE), file = rdata_file, envir = environment())
   system_(paste0("cd ", mcmc_path, " && ", exe, " -mceval"))
 
 }
