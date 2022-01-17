@@ -129,14 +129,14 @@ message("Last assessment year's base model pretty name: ", last.yr.base.model.na
 bridge.model.dir.names.1 <- c(last.yr.base.model.dir.name,
                               "2022.01.03_newcatchage",
                               "2022.01.05_updatesurvey",
-                             #"2022.01.06_newsurvey",
+                              "2022.01.06_newsurvey",
                               "2022.01.07_newwtatage")
 bridge.model.names.1 <- c(last.yr.base.model.name,
                           "Update all fishery catch and comps",
                           "Update pre-2021 survey data",
-                          #"Add 2021 survey data",
+                          "Add 2021 survey data",
                           "Update wt-at-age data")
-bridge.model.end.yr.1 <- end.yr - c(1, 1, 1, 0) # subtract 1 year from all 4 models
+bridge.model.end.yr.1 <- end.yr - c(1, 1, 1, 1, 0) # subtract 1 year from all 4 models
 
 
 ## -----------------------------------------------------------------------------
