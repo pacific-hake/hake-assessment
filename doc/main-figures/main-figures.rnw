@@ -907,7 +907,8 @@ make.comparison.plot(c(list(base.model), sens.models.1),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.1),
                      legend = FALSE,
-                     end.yr = end.yr)
+                     end.yr = end.yr,
+                     btarg = 0.4)
 @
 \end{center}
 %\vspace{0mm}
