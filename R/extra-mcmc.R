@@ -131,7 +131,7 @@ fetch_extra_mcmc <- function(model_path,
               "Morph",
               "Label")) %>%
     map_df(as.numeric) %>%
-    filter(Yr == next_yr) %>%
+    dplyr::filter(Yr == next_yr) %>%
     select(-c(Iter, Yr))
 
   # Selectivity * Weight ------------------------------------------------------
@@ -147,7 +147,7 @@ fetch_extra_mcmc <- function(model_path,
               "Morph",
               "Label")) %>%
     map_df(as.numeric) %>%
-    filter(Yr == next_yr - 1) %>%
+    dplyr::filter(Yr == next_yr - 1) %>%
     select(-c(Iter, Yr))
 
   # Dynamic B0 ----------------------------------------------------------------
@@ -170,14 +170,14 @@ fetch_extra_mcmc <- function(model_path,
   # extra_mcmc$dynb_fish <- extract_rep_table(reps_dynb_fish, dynb_header) %>%
   #   select(-c(1, 3)) %>%
   #   map_df(as.numeric) %>%
-  #   filter(Yr %in% start.yr:end.yr)
+  #   dplyr::filter(Yr %in% start.yr:end.yr)
   # extra_mcmc$dynb_fish_median <- extra_mcmc$dynb_fish %>%
   #   group_by(Yr) %>%
   #   summarize(median_bo = median(Value))
   # extra_mcmc$dynb_nofish <- extract_rep_table(reps_dynb_nofish, dynb_header) %>%
   #   select(-c(1, 3)) %>%
   #   map_df(as.numeric) %>%
-  #   filter(Yr %in% start.yr:end.yr)
+  #   dplyr::filter(Yr %in% start.yr:end.yr)
   # extra_mcmc$dynb_nofish_median <- extra_mcmc$dynb_nofish %>%
   #   group_by(Yr) %>%
   #   summarize(median_bo = median(Value))
@@ -190,7 +190,7 @@ fetch_extra_mcmc <- function(model_path,
   natage_end_ind <- grep("^BIOMASS_AT_AGE", rep_example) - 2
   reps_natage <- map(reps, ~{.x[natage_start_ind:natage_end_ind]})
   extra_mcmc$natage <- extract_rep_table(reps_natage, natage_header) %>%
-    filter(`Beg/Mid` == "B") %>%
+    dplyr::filter(`Beg/Mid` == "B") %>%
     select(-c("Area",
               "Bio_Pattern",
               "Iter",
@@ -204,7 +204,7 @@ fetch_extra_mcmc <- function(model_path,
               "Era",
               "Time")) %>%
     map_df(as.numeric) %>%
-    filter(Yr >= start.yr) %>%
+    dplyr::filter(Yr >= start.yr) %>%
     mutate_at(.vars = vars(-Yr), ~{.x / 1e3})
   extra_mcmc$natage_median <- extra_mcmc$natage %>%
     group_by(Yr) %>%
@@ -218,7 +218,7 @@ fetch_extra_mcmc <- function(model_path,
   batage_end_ind <- grep("^NUMBERS_AT_LENGTH", rep_example) - 2
   reps_batage <- map(reps, ~{.x[batage_start_ind:batage_end_ind]})
   extra_mcmc$batage <- extract_rep_table(reps_batage, batage_header) %>%
-    filter(`Beg/Mid` == "B") %>%
+    dplyr::filter(`Beg/Mid` == "B") %>%
     select(-c("Area",
               "Bio_Pattern",
               "Iter",
@@ -233,7 +233,7 @@ fetch_extra_mcmc <- function(model_path,
               "Time")) %>%
     map_df(as.numeric) %>%
     mutate_at(.vars = vars(-Yr), ~{.x / 1e3}) %>%
-    filter(Yr >= start.yr)
+    dplyr::filter(Yr >= start.yr)
   extra_mcmc$batage_median <- extra_mcmc$batage %>%
     group_by(Yr) %>%
     summarize_all(median)
@@ -256,7 +256,7 @@ fetch_extra_mcmc <- function(model_path,
               "Seas",
               "Era")) %>%
     map_df(as.numeric) %>%
-    filter(Yr >= start.yr)
+    dplyr::filter(Yr >= start.yr)
   extra_mcmc$catage_median <- extra_mcmc$catage %>%
     group_by(Yr) %>%
     summarize_all(median)
@@ -268,9 +268,9 @@ fetch_extra_mcmc <- function(model_path,
     unique
   wtatage <- model$wtatage %>%
     as_tibble() %>%
-    filter(Fleet == 1) %>%
+    dplyr::filter(Fleet == 1) %>%
     select(-(2:6)) %>%
-    filter(Yr >= start.yr)
+    dplyr::filter(Yr >= start.yr)
   wtatage <- map_df(iter, ~{wtatage})
   yrs <- extra_mcmc$catage$Yr
   extra_mcmc$catage_biomass <- map2(extra_mcmc$catage, wtatage, ~{.x * .y}) %>% map_df(~{.x}) %>%
@@ -317,7 +317,7 @@ fetch_extra_mcmc <- function(model_path,
   # TODO: hack of subtracting 1 - See issue #859
   message("Applying selectivity to numbers-at-age...")
   natage <- extra_mcmc$natage %>%
-    filter(Yr == next_yr - 1) %>%
+    dplyr::filter(Yr == next_yr - 1) %>%
     select(-Yr)
 
   natsel <- natage * sel
@@ -387,11 +387,11 @@ fetch_extra_mcmc <- function(model_path,
   comp <- extract_rep_table(reps_comp, comp_header)
   iter <- unique(comp$Iter)
   comp <- comp %>%
-    filter(!is.na(Nsamp_adj), Nsamp_adj > 0) %>%
+    dplyr::filter(!is.na(Nsamp_adj), Nsamp_adj > 0) %>%
     select(c(Iter, Yr, Fleet, Bin, Obs, Exp, Pearson)) %>%
     rename(Age = Bin)
   extra_mcmc$comp_fishery <- comp %>%
-    filter(Fleet == 1) %>%
+    dplyr::filter(Fleet == 1) %>%
     select(-Fleet) %>%
     mutate_all(as.numeric) %>%
     group_by(Yr, Age) %>%
@@ -408,7 +408,7 @@ fetch_extra_mcmc <- function(model_path,
   extra_mcmc$comp_fishery_median <- extra_mcmc$comp_fishery %>%
     select(Yr, Age, Obs = Obs_med, Exp = Exp_med, Pearson = Pearson_med)
   extra_mcmc$comp_survey <- comp %>%
-    filter(Fleet == 2) %>%
+    dplyr::filter(Fleet == 2) %>%
     select(-Fleet) %>%
     mutate_all(as.numeric) %>%
     group_by(Yr, Age) %>%
@@ -433,7 +433,7 @@ fetch_extra_mcmc <- function(model_path,
   #   likes <- map(str_split(.x, " +"), ~{.x[1:4]})
   #   do.call(rbind, likes) %>%
   #     as_tibble() %>%
-  #     filter(!grepl("^#_", V1)) %>%
+  #     dplyr::filter(!grepl("^#_", V1)) %>%
   #     add_column(Iter = .y, .before = 1)
   # })
   # do.call(rbind, like) %>%
