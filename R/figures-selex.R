@@ -226,11 +226,10 @@ make.multiple.tv.selex.uncertainty.plots <- function(tv.sel.list ## A list of ou
 }
 
 make.selex.uncertainty.lines.plot <- function(model,
-                                              ages = 1:8,
-                                              year = end.yr-1, # final fishing year
-                                              type = 1, ## 1 = Fishery, any other value is the survey
-                                              selex.list = NULL,  ## A list of time varying selectivites as returned by calc.tv.selex
-                                                                  ## *Only used when type=1 (fishery)
+                                              year = end.yr - 1, # final fishing year
+                                              type = 1, # 1 = Fishery, any other value is the survey
+                                              selex.list = NULL, # A list of time varying selectivites as returned by calc.tv.selex
+                                                                 # *Only used when type=1 (fishery)
                                               probs = c(0.025, 0.975)
                                               ){
   ## Plots estimated selectivity lines from each sample in the posterior distribution
@@ -238,7 +237,7 @@ make.selex.uncertainty.lines.plot <- function(model,
     stop("make.mcmc.selex.uncertainty.plot: Error - when type = 1, you must supply a selex.list.\n")
   }
   oldpar <- par()
-  par(mar=c(4,4,1,1))
+  par(mar=c(4, 4, 1, 1))
   sel.med <- selex.list$median
   yrs <- as.numeric(names(sel.med))
   if(type == 1){
@@ -252,6 +251,7 @@ make.selex.uncertainty.lines.plot <- function(model,
     selex.lower <- selex.list$lower[,which(yrs==year)]
     selex.upper <- selex.list$upper[,which(yrs==year)]
     seg.color <- rgb(0.1, 0.1, 1, 0.8)
+    ages <- seq_len(ncol(selex))
   }else{
     # survey catch is simpler because it doesn't change over time
     selex <- model$mcmc[,grep("Selex_std_2_Fem_A_", names(model$mcmc))]
@@ -259,12 +259,15 @@ make.selex.uncertainty.lines.plot <- function(model,
     selex.lower <- apply(selex, 2, quantile, prob = probs[1])
     selex.upper <- apply(selex, 2, quantile, prob = probs[2])
     seg.color <- rgb(1,0.1,0.1,0.8)
+    ages <- as.numeric(gsub("^.*([0-9])$", "\\1", names(selex)))
   }
+
   # make empty plot
   plot(ages,
        selex.med[ages],
        type = "n",
        ylim = c(0, 1),
+       xlim = c(1, 8),
        pch = 20,
        xlab = "Age",
        ylab = "Selectivity",
@@ -272,18 +275,18 @@ make.selex.uncertainty.lines.plot <- function(model,
        las = 1)
   # loop over MCMC samples and make lines for each one
   for(i in 1:nrow(selex)) {
-    lines(ages, selex[i, ages], col = rgb(0, 0, 0, 0.1))
+    lines(ages, selex[i, seq_along(ages)], col = rgb(0, 0, 0, 0.1))
   }
   # add vertical segments
   segments(ages,
-           selex.upper[ages],
+           selex.upper[seq_along(ages)],
            ages,
-           selex.lower[ages],
+           selex.lower[seq_along(ages)],
            col = seg.color,
            lwd = 3)
   # add points with connecting lines
   points(ages,
-         selex.med[ages],
+         selex.med[seq_along(ages)],
          type='b',
          lwd = 2,
          pch = 16,
