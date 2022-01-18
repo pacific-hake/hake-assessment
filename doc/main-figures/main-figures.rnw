@@ -585,7 +585,6 @@ make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
 oldpar <- par(no.readonly = TRUE)
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
 make.selex.uncertainty.lines.plot(base.model,
-                                  ages = 2:5,
                                   year = last.data.yr,
                                   type = 2,   # this is survey, don't think year gets used
                                   probs = c(0.025, 0.975))
