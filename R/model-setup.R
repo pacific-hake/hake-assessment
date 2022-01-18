@@ -77,7 +77,7 @@ message("Last year of model data: ", last.data.yr)
 key.posteriors <- c("NatM",
                     "SR_LN",
                     "SR_BH_steep",
-                    "Q_extraSD",
+                    "Q_extraSD_Acoustic_Survey",
                     "ln\\(DM_theta\\)_1",
                     "ln\\(DM_theta\\)_2")
 key.posteriors.titles <- c("Natural mortality",
