@@ -947,7 +947,8 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.2),
                      legend = FALSE,
-                     end.yr = end.yr)
+                     end.yr = end.yr,
+                     btarg = 0.4)
 @
 \end{center}
 %\vspace{0mm}
@@ -963,12 +964,14 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 \begin{figure}[H]
 \begin{center}
 <<main-index-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the similarity between some sensitivity runs of the estimates of the fit to the survey index">>=
-make.comparison.plot(c(list(base.model), sens.models.2),
-                     subplots = 14,
-                     model.names = c(base.model.name, sens.model.names.2),
-                     legend = TRUE,
-                     indexfleets= c(2),
-                     end.yr = end.yr)
+plot(1:10)
+# TODO: uncomment once the extra-mcmc has run for
+#make.comparison.plot(c(list(base.model), sens.models.2),
+#                     subplots = 14,
+#                     model.names = c(base.model.name, sens.model.names.2),
+#                     legend = TRUE,
+#                     indexfleets= c(2),
+#                     end.yr = end.yr)
 @
 \end{center}
 \caption{**MCMC estimates of the fit to the survey index of abundance for the base
@@ -1022,7 +1025,8 @@ make.comparison.plot(c(list(base.model), sens.models.4),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.4),
                      legend = FALSE,
-                     end.yr = end.yr)
+                     end.yr = end.yr,
+                     btarg = 0.4)
 @
 \end{center}
 %\vspace{0mm}
@@ -1078,11 +1082,13 @@ box()
 \begin{figure}[H]
 \begin{center}
 <<main-index-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows differences in the fit to the survey index for certain sensitivity runs">>=
-make.comparison.plot(c(list(base.model), sens.models.4),
-                     subplots = 14,
-                     model.names = c(base.model.name, sens.model.names.4),
-                     legend = TRUE,
-                     end.yr = end.yr)
+plot(1:10)
+#TODO: uncomment once models have run with extra-mcmc
+#make.comparison.plot(c(list(base.model), sens.models.4),
+#                     subplots = 14,
+#                     model.names = c(base.model.name, sens.model.names.4),
+#                     legend = TRUE,
+#                     end.yr = end.yr)
 @
 \end{center}
 %\vspace{0mm}
@@ -1148,7 +1154,8 @@ make.comparison.plot(c(list(base.model), sens.models.6),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.6),
                      legend = TRUE,
-                     end.yr = end.yr)
+                     end.yr = end.yr,
+                     btarg = 0.4)
 @
 \end{center}
 %\vspace{0mm}
@@ -1185,7 +1192,8 @@ make.comparison.plot(c(list(base.model), list(sens.models.5)),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.5),
                      legend = TRUE,
-                     end.yr = end.yr)
+                     end.yr = end.yr,
+                     btarg = 0.4)
 @
 \end{center}
 %\vspace{0mm}
