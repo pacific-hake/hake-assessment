@@ -116,12 +116,22 @@
 
 \newenvironment{codefont}{\fontfamily{pcr}\selectfont}{\par}
 
-%% http://texdoc.net/texmf-dist/doc/latex/listings/listings.pdf
-\lstset{breakatwhitespace=TRUE,
-  title=\lstname,
-  breaklines=TRUE,
-  breakautoindent=FALSE,
-  basicstyle=\ttfamily\footnotesize}
+\lstset{
+  language=R,
+  numbers=left,
+  frame=single,
+  commentstyle=\color{dkgreen},
+  basicstyle={\scriptsize\ttfamily},
+  keywordstyle=\color{blue},
+  %identifierstyle=\color{blue},
+  stringstyle=\color{mauve},
+  captionpos=t,
+  showstringspaces=false,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3,
+  caption=\getlstname,
+}
 
 %% Multi-line-cell in an xtable
 %% syntax is \mlc{first line\\secondline}

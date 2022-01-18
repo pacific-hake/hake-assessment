@@ -349,3 +349,19 @@
 \setkeys{Gin}{width=\linewidth,height=\textheight,keepaspectratio}
 
 \usepackage{pdfcomment}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\makeatletter
+\DeclareRobustCommand{\getlstname}{%
+ \begingroup
+  % \lstname seems to change hyphens into \textendash
+  \def\textendash{-}%
+  \filename@parse{\lstname}%
+  \texttt{\filename@base.\filename@ext}%
+ \endgroup
+}
+\makeatother
+
