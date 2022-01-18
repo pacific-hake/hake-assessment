@@ -35,8 +35,8 @@ fetch_extra_mcmc <- function(model_path,
   )
   # Remove extra MLE run outputs. SS appends a new header followed by a 0-Iter row for an MLE run.
   # Sometimes MLEs are run by accident or on purpose at another time and forgotten about.
-  posts <- posts %>% filter(Iter != "Iter",
-                            Iter != 0)
+  posts <- posts %>% dplyr::filter(Iter != "Iter",
+                                   Iter != 0)
 
   message("Loading Report.sso files...")
   # Load all report files into a list, 1 element for each report file. Elements that are NA had no file found
