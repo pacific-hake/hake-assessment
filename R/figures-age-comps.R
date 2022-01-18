@@ -401,15 +401,16 @@ age.fits <- function(model,
                      verbose = FALSE) {
 
   if(f == 1){
+    ages <- c(1, 15) #age range
     d <- model$extra.mcmc$comp_fishery
   }else{
+    ages <- c(2, 15) #age range
     d <- model$extra.mcmc$comp_survey
   }
+  ages.list <- ages[1]:ages[2]
 
   first.year <- min(d$Yr)
   subtle.color <- "gray40"
-  ages <- c(1, 15) #age range
-  ages.list <- ages[1]:ages[2]
   years <- sort(unique(d$Yr))
   obs.data <- NULL
   pred.data <- NULL
@@ -424,6 +425,7 @@ age.fits <- function(model,
       pred.data.975 <- rbind(pred.data.975, j %>% pull(Exp_upper))
     }
   }
+
   colnames(obs.data) <- ages.list
   colnames(pred.data) <- ages.list
   colnames(pred.data.025) <- ages.list
@@ -480,15 +482,15 @@ age.fits <- function(model,
     if(yr %% mfcol[1] == 0){
       axis(side = 1,
            at = x,
-           lab = 1:15,
+           lab = ages.list,
            line = -0.1,
            col.axis = subtle.color,
            col = subtle.color,
            lwd = 0.5,
            lwd.ticks = 0.5)  #just use for the labels, to allow more control than names.arg
       axis(side = 1,
-           at = x[(1:15) %% 2 == 0],
-           lab = (1:15)[(1:15) %% 2 == 0],
+           at = x[ages.list %% 2 == 0],
+           lab = ages.list[ages.list %% 2 == 0],
            line = -0.1,
            col.axis = subtle.color,
            col = subtle.color,
