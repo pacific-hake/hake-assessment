@@ -303,7 +303,8 @@ make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1)
 <<main-bridge-5-panel-1, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the minimal differences between the first bridging models for various model outputs">>=
 oldpar <- par(no.readonly=TRUE)
 par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
-layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
+#layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
+layout(matrix(c(1,1,2,3,4,4), nrow = 3, ncol = 2, byrow=TRUE))
 bridge.density.names <- c("SSB_Virgin",
                           "R0",
                           "Main_RecrDev_2010",
@@ -315,14 +316,14 @@ make.comparison.plot(bridge.models.1,
                      subplots = 2,
                      model.names = bridge.model.names.1,
                      densitynames = bridge.density.names,
-                     plot_mcmc = FALSE,
+                     plot_mcmc = TRUE,
                      end.yr = bridge.model.end.yr.1)
 make.comparison.plot(bridge.models.1,
                      subplots = 4,
                      model.names = bridge.model.names.1,
                      densitynames = bridge.density.names,
                      legend = FALSE,
-                     plot_mcmc = FALSE,
+                     plot_mcmc = TRUE,
                      end.yr = bridge.model.end.yr.1,
                      btarg = 0.4)
 make.comparison.plot(bridge.models.1,
@@ -330,25 +331,23 @@ make.comparison.plot(bridge.models.1,
                      model.names = bridge.model.names.1,
                      densitynames = bridge.density.names,
                      legend = FALSE,
-                     plot_mcmc = FALSE,
+                     plot_mcmc = TRUE,
                      end.yr = bridge.model.end.yr.1)
 make.comparison.plot(bridge.models.1,
                      subplots = 12,
                      model.names = bridge.model.names.1,
                      densitynames = bridge.density.names,
                      legend = FALSE,
-                     plot_mcmc = FALSE,
+                     plot_mcmc = TRUE,
                      end.yr = bridge.model.end.yr.1)
 box()
-make.comparison.plot(bridge.models.1,
-                     subplots = 13,
-                     model.names = bridge.model.names.1,
-                     densitynames = bridge.density.names,
-                     indexPlotEach = TRUE,
-                     indexUncertainty = TRUE,
-                     legend = FALSE,
-                     plot_mcmc = FALSE,
-                     end.yr = bridge.model.end.yr.1)
+# TODO: This should be MCMC but they all need to be extra-mcmc also
+# make.comparison.plot(bridge.models.1,
+#                      subplots = 14,
+#                      model.names = bridge.model.names.1,
+#                      legend = TRUE,
+#                      indexfleets= c(2),
+#                      end.yr = bridge.model.end.yr.1)
 mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
@@ -374,7 +373,8 @@ par <- oldpar
 <<main-bridge-5-panel-2, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the minimal differences between the first bridging models for various model outputs">>=
 oldpar <- par(no.readonly=TRUE)
 par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
-layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
+#layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
+layout(matrix(c(1,1,2,3,4,4), nrow = 3, ncol = 2, byrow=TRUE))
 bridge.density.names <- c("SSB_Virgin",
                           "R0",
                           "Main_RecrDev_2010",
@@ -386,14 +386,14 @@ make.comparison.plot(bridge.models.2,
                      subplots = 2,
                      model.names = bridge.model.names.2,
                      densitynames = bridge.density.names,
-                     plot_mcmc = FALSE,
+                     plot_mcmc = TRUE,
                      end.yr = bridge.model.end.yr.2)
 make.comparison.plot(bridge.models.2,
                      subplots = 4,
                      model.names = bridge.model.names.2,
                      densitynames = bridge.density.names,
                      legend = FALSE,
-                     plot_mcmc = FALSE,
+                     plot_mcmc = TRUE,
                      end.yr = bridge.model.end.yr.2,
                      btarg = 0.4)
 make.comparison.plot(bridge.models.2,
@@ -401,25 +401,27 @@ make.comparison.plot(bridge.models.2,
                      model.names = bridge.model.names.2,
                      densitynames = bridge.density.names,
                      legend = FALSE,
-                     plot_mcmc = FALSE,
+                     plot_mcmc = TRUE,
                      end.yr = bridge.model.end.yr.2)
 make.comparison.plot(bridge.models.2,
                      subplots = 12,
                      model.names = bridge.model.names.2,
                      densitynames = bridge.density.names,
                      legend = FALSE,
-                     plot_mcmc = FALSE,
+                     plot_mcmc = TRUE,
                      end.yr = bridge.model.end.yr.2)
 box()
-make.comparison.plot(bridge.models.2,
-                     subplots = 13,
-                     model.names = bridge.model.names.2,
-                     densitynames = bridge.density.names,
-                     indexPlotEach = TRUE,
-                     indexUncertainty = TRUE,
-                     legend = FALSE,
-                     plot_mcmc = FALSE,
-                     end.yr = bridge.model.end.yr.2)
+# TODO: This should be bridge.models.2, but that fails due to age1-index having more than one index.
+#       Also this should be MCMC but that breaks
+# make.comparison.plot(bridge.models.1,
+#                      subplots = 13,
+#                      model.names = bridge.model.names.2,
+#                      densitynames = bridge.density.names,
+#                      indexPlotEach = TRUE,
+#                      indexUncertainty = TRUE,
+#                      legend = FALSE,
+#                      plot_mcmc = FALSE,
+#                      end.yr = bridge.model.end.yr.2)
 mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
