@@ -44,18 +44,18 @@ range of alternate models investigated by the JTC, a subset of sensitivity
 analyses are also reported to provide a broad qualitative comparison of
 structural uncertainty with respect to the base case. These sensitivity analyses
 are thoroughly described in this assessment document.
-**The structural assumptions
+The structural assumptions
 of this \Sexpr{assess.yr} base model,
 implemented using version \Sexpr{ss.version} of the Stock Synthesis software
 \citep{MethotWetzel2013},
-% Manual done 2021 AME
-are the same as the
-\Sexpr{last.assess.yr} base model \citep{JTC2020}.
-The Bayesian estimation is computed using a new efficient approach
-that was successfully tested in last year's assessment
-\citep{JTC2020}. Consequently, for the
-first time, all sensitivity analyses and retrospective runs are performed in
-a Bayesian context rather than just using maximum likelihood estimation.
+% Manual done 2022 AMB
+are largely the same as the
+\Sexpr{last.assess.yr} base model \citep{JTC2020}.  The exception is that the
+\Sexpr{assess.yr} base model includes the age-1 index.
+The Bayesian estimation continues to be computed using a new efficient approach
+that was successfully tested in 2020 assessment
+\citep{JTC2020}. For the first time, all model runs reported in this stock
+assessment document are performed in a Bayesian context.
 % Use this later:
 %Bayesian Markov chain Monte Carlo (MCMC) sampling, the
 % No-U-Turn Sampler (NUTS; \citealt{HoffmanGelman2014}), implemented using the
@@ -172,9 +172,9 @@ quotas were an average of \Sexpr{tot.9399.attainment}\% of the limit. The Agreem
 Canada establishes U.S. and Canadian shares of the coast-wide total allowable
  catch (TAC) at \Sexpr{us.allotment.percent}\% and
 \Sexpr{can.allotment.percent}\%, respectively, and this distribution has been
-adhered to since 2005. **However, a bilateral
-agreement on the coast-wide TAC could not be reached in 2020, and thus, catch targets were set unilaterally
-for the first time since the inception of the Agreement.
+adhered to since 2005. However, a bilateral
+agreement on the coast-wide TAC could not be reached in 2020 or 2021, and thus, catch targets were set unilaterally
+during these years for the first time since the inception of the Agreement.
 
 **Throughout the last decade, the total coast-wide catch has tracked harvest
 targets reasonably well.
@@ -201,7 +201,7 @@ stock assessment outputs.
 \subsubsection{Management of \fishname\ in the United States}
 \label{sec:intro-management-us}
 
-**In the U.S. zone, participants in the directed fishery are required to use
+In the U.S. zone, participants in the directed fishery are required to use
 pelagic trawls with a codend mesh of at least 7.5~cm (3~inches). Regulations
 also restrict the area and season of fishing to reduce the bycatch of Chinook
 salmon (\emph{Oncorhynchus tshawytscha}), depleted rockfish stocks
@@ -225,9 +225,9 @@ cooperatives in the at-sea mothership and catcher-processor sectors. Starting in
 allocation in its ``usual and accustomed fishing area''. The At-Sea Hake Observer
 Program has been monitoring fishing vessel activity since 1975, originally monitoring
 foreign and joint-venture vessels. Observer coverage has been 100\% on all domestic
-vessels since 1991 (including the 2020 fishing season, despite the COVID-19 pandemic).
+vessels since 1991 (including the 2020 and 2021 fishing seasons, despite the COVID-19 pandemic).
 
-**Shortly after the 1997 allocation agreement was approved by the Pacific Marine
+Shortly after the 1997 allocation agreement was approved by the Pacific Marine
 Fisheries Commission, fishing companies owning catcher-processor (CP)
 vessels with U.S. west coast groundfish permits established the Pacific Whiting
 Conservation Cooperative (PWCC). The primary role of the PWCC is to distribute
@@ -290,7 +290,7 @@ over CA\$26~million in wages was estimated to have been paid to employees of the
 processing industry in 2018, with an exported value of CA\$100~million in product mainly
 to Ukraine, China, South Africa and Lithuania \citep{DFO2020}.
 
-**In the US, over US\$72~million in wages is estimated to have been paid to employees in 2018
+In the US, over US\$72~million in wages is estimated to have been paid to employees in 2018
 % (\href{https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/}
 (https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/).
 This includes wages paid to crew and captains fishing on catcher vessels that deliver shoreside
