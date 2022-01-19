@@ -400,7 +400,7 @@ param_est_table <- function(models,
                                 mdp %>% filter(Label == "Q_extraSD_Age1_Survey(3)") %>% pull(Value) %>% f(digits), NA),
         catchability = f(md$cpue$Calc_Q[1], digits),
         recs,
-        bo = (mddq %>% filter(Label == "SSB_Initial") %>% pull(Value) / 2e3) %>% f(0),
+        bo = (mddq %>% filter(Label == "SSB_Initial") %>% pull(Value) / 1e3) %>% f(0),
         ssb_2009 = ((mddq %>% filter(Label == "SSB_2009") %>% pull(Value)) /
                       (mddq %>% filter(Label == "SSB_Initial") %>% pull(Value)) * 100) %>% f(1) %>% paste0("\\%"),
         ssb_curr = ((mddq %>% filter(Label == paste0("SSB_", end.yr)) %>% pull(Value)) /
