@@ -115,15 +115,15 @@ runs_sens_base <- function(dirbase) {
 
   aa <- setup_sensitivity(number.sens = 5, name.sens = "M_0.2SD")
   ctl <- setup_ctl(aa)
-  ctl[["MG_parms"]]["NatM_p_1_Fem_GP_1", "PR_SD"] <- 0.2
+  ctl[["MG_parms"]]["NatM_uniform_Fem_GP_1", "PR_SD"] <- 0.2
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
   aa <- setup_sensitivity(number.sens = 6, name.sens = "M_0.3SD")
   ctl <- setup_ctl(aa)
-  ctl[["MG_parms"]]["NatM_p_1_Fem_GP_1", "PR_SD"] <- 0.3
+  ctl[["MG_parms"]]["NatM_uniform_Fem_GP_1", "PR_SD"] <- 0.3
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
   aa <- setup_sensitivity(number.sens = 7, name.sens = "M_hamel_prior")
   ctl <- setup_ctl(aa)
-  ctl[["MG_parms"]]["NatM_p_1_Fem_GP_1", c("PRIOR", "PR_SD")] <- c(-1.53245582, 0.4384383)
+  ctl[["MG_parms"]]["NatM_uniform_Fem_GP_1", c("PRIOR", "PR_SD")] <- c(-1.53245582, 0.4384383)
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
 
   aa <- setup_sensitivity(number.sens = 8, name.sens = "age1Survey")

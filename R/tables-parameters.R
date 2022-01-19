@@ -333,7 +333,7 @@ param_est_table <- function(models,
     names(recs) <- paste0("recr_", getrecs)
     recs <- f(recs, 0)
     df <- enframe(
-      c(nat_m = f(median(.x$mcmc$`NatM_p_1_Fem_GP_1`), digits),
+      c(nat_m = f(median(.x$mcmc$`NatM_uniform_Fem_GP_1`), digits),
         ro = f((median(.x$mcmc$`SR_LN(R0)`) %>% exp) / 1e3, 0),
         h = ifelse(is.null(.x$mcmc$`SR_BH_steep`), NA, f(median(.x$mcmc$`SR_BH_steep`), digits)),
         survey_sd = f(median(.x$mcmc$`Q_extraSD_Acoustic_Survey(2)`), digits),
@@ -385,7 +385,7 @@ param_est_table <- function(models,
     recs <- map_chr(getrecs, ~{(mddq %>% filter(Label == paste0("Recr_", .x)) %>% pull(Value) / 1e3) %>% f(0)})
     names(recs) <- paste0("recr_", getrecs)
     mle_tab <- enframe(
-      c(nat_m = mdp %>% filter(Label == "NatM_p_1_Fem_GP_1") %>% pull(Value) %>% f(digits),
+      c(nat_m = mdp %>% filter(Label == "NatM_uniform_Fem_GP_1") %>% pull(Value) %>% f(digits),
         ro = ((mdp %>% filter(Label == "SR_LN(R0)") %>% pull(Value) %>% log) * 1e3) %>% f(0),
         h = mdp %>% filter(Label == "SR_BH_steep") %>% pull(Value) %>% f(digits),
         survey_sd = mdp %>% filter(Label == "Q_extraSD_Acoustic_Survey(2)") %>% pull(Value) %>% f(digits),
