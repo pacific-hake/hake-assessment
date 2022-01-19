@@ -225,10 +225,12 @@ new_decision_table <- function(model,
   # tab.letters are the letters in the table, one for each forecast management
   # action and a blank for all but the first year in a management action
   # additional labels are given for some rows (below letter)
-  rows2Label <- c("d", "f", "g", "h", "i", "j")
-  rowLabels <- list(c(assess.yr - 1, "catch"),
+  rows2Label <- c("e", "f", "h", "j", "l", "m", "n", "o")
+  rowLabels <- list(c("10\\%", "reduction"),
+                    c(assess.yr - 1, "catch"),
+                    c("10\\%", "reduction"),
+                    c("10\\%", "reduction"),
                     c(assess.yr - 1, "TAC"),
-                    c(assess.yr - 2, "TAC"),
                     c("FI=", "100\\%"),
                     c("default", "HR"),
                     c(paste0("C", assess.yr, "="),

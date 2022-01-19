@@ -486,7 +486,7 @@ make.reference.points.table.old(base.model,
 
 \clearpage
 
-<<main-decisions-biomass-table, results='asis', echo=FALSE>>=
+<<main-decisions-biomass-table-old, results='asis', echo=FALSE>>=
 make.decision.table(base.model,
                     xcaption = paste0("**[NEW FORMAT IN NEXT TABLE] Forecast quantiles of
                      relative spawning biomass at the beginning of the year
@@ -520,47 +520,46 @@ make.decision.table(base.model,
                      " does not impact the beginning of the year biomass in ",
                      max(forecast_yrs),
                      "."),
-                    xlabel = "tab:main-decisions-biomass",
+                    xlabel = "tab:main-decisions-biomass-old",
                     font.size = 10,
                     space.size = 11,
                     type = "biomass")
 @
 
-<<main-biomass-table-new, results='asis', echo=FALSE>>=
+<<main-biomass-table, results='asis', echo=FALSE>>=
 new_decision_table(base.model,
                    xcaption =
-                     paste0("**[NEW FORMAT - third row will get automatically added when base model run long enough; change xlabel to previous table's one when we delete previous table]. Forecast quantiles of \\fishname\\
+                     paste0("Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year.
                      Catch alternatives are based on: constant
-                     catch levels (rows ",
+                     catches (rows ",
                      catch.constant.str,
                      "), including catch similar to ",
-                     min(forecast_yrs_extra)-1," (row ",
+                     min(forecast_yrs_extra)-1," (row~",
                      letters[catch.actual.ind],
-                     "), to the (unilaterally summed) TAC from ",
-                     min(forecast_yrs_extra)-1," (row ",
+                     ") and to the (unilaterally summed) TAC from ",
+                     min(forecast_yrs_extra)-1," (row~",
                      letters[catch.tac.ind],
-                     "), and to the TAC from ",
-                     min(forecast_yrs_extra)-2," (row ",
-                     letters[catch.prev.tac.ind],
-                     "); and non-constant catch levels that result
-                     in a median relative fishing intensity of 100\\% (row ",
+                     "); and non-constant catches that result in
+                     annual 10\\% declines in catch (rows ",
+                     catch.reduction.str,
+                     "), median relative fishing intensity of 100\\% (row ",
                      letters[catch.spr100.ind],
                      "), median catch estimated ",
                      "via the default harvest policy
-                     (\\Ffortyten, row ",
+                     (\\Ffortyten, row~",
                      letters[catch.default.policy.ind],
                      "), and the fishing intensity that results in a 50\\% probability that the median
                      projected catch will remain the same in ",
                      min(forecast_yrs_extra),
                      " and ",
                      min(forecast_yrs_extra)+1,
-                     " (row ",
+                     " (row~",
                      letters[catch.stable.ind],
                      ")."),
-                   xlabel = "tab:srg-day2-request2-decision-table",
-                   font.size = 12,
-                   space.size = 14,
+                   xlabel = "tab:main-decisions-biomass",
+                   font.size = 11,
+                   space.size = 12,
                    type = "biomass",
                    placement = "tbp")
 @
