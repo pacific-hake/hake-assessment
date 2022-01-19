@@ -1,4 +1,5 @@
 make.survey.history.table <- function(dat,
+                                      dat.age1,
                                       digits = 3,
                                       xcaption = "default",
                                       xlabel   = "default",
@@ -10,7 +11,9 @@ make.survey.history.table <- function(dat,
   ##  spaces, and the spaces will be replaced by newlines in the output
   ##
   ## dat is a data frame containing the survey history
-  ## digits - number of decimal points for biomass and CV values
+  ## dat.age1 is a data frame containing the age-1 values (columns year and
+  ##  value, in 1000s of age-1 fish), will be displayed as billions
+  ## digits - number of decimal places for biomass and CV values, and age-1 index
   ## xcaption - caption to appear in the calling document
   ## xlabel - the label used to reference the table in latex
   ## font.size - size of the font for the table
@@ -25,6 +28,10 @@ make.survey.history.table <- function(dat,
                 q <- sapply(p, function(y){gsub("-", " ", y)})})
   dat$vessels <- sapply(lst, function(x){latex.mlc(x, FALSE)})
 
+  dat <- dplyr::left_join(dat, dat.age1, by = c("year" = "Year"))
+  dat$Index <- dat$Index/1e6     # Convert thousands to billions
+  dat$Index[!is.na(dat$Index)] <- f(dat$Index[!is.na(dat$Index)], digits)
+
   dat[is.na(dat)] <- "--"
 
   colnames(dat) <- c(latex.bold("Year"),
@@ -33,14 +40,17 @@ make.survey.history.table <- function(dat,
                      latex.mlc(c("End",
                                  "date")),
                      latex.bold("Vessels"),
-                     latex.mlc(c("Biomass",
+                     latex.mlc(c("Age-2+ biomass",
                                  "index",
                                  "(million t)")),
                      latex.mlc(c("Sampling",
                                  "CV")),
                      latex.mlc(c("Number of",
                                  "hauls with",
-                                 "age samples")))
+                                 "age samples")),
+                     latex.mlc(c("Age-1 index",
+                                 "(billions of",
+                                 "fish)")))
 
   size.string <- latex.size.str(font.size, space.size)
   print(xtable(dat,
