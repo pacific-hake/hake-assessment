@@ -616,6 +616,30 @@ make.risk.table(base.model,
                 space.size = 11)
 @
 
+<<main-risk-forecast-year-3-table, results='asis', echo=FALSE>>=
+make.risk.table(base.model,
+                forecast_yrs,
+                index = 3, ## Index in model$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                xcaption = paste0("Probabilities related to spawning biomass,
+                                 relative fishing intensity, and the ",
+                                  end.yr+3,
+                                  " default harvest policy catch for alternative ",
+                                  end.yr+2,
+                                  " catch options, given the ",
+                                  end.yr,
+                                  " and ",
+                                  end.yr+1,
+                                  " catch levels shown in
+                                  Tables~\\ref{tab:main-risk-year-1}
+                                  and~\\ref{tab:main-risk-year-2}  (catch options
+                                  explained in Table
+                                  \\ref{tab:main-decisions-biomass})."),
+                xlabel = "tab:main-risk-year-3",
+                font.size = 10,
+                space.size = 11)
+@
+
+
 \begin{landscape}
 \pagestyle{mylandscape}
 \centering
