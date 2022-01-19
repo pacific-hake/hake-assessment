@@ -431,7 +431,7 @@ freezer-trawler age data in this year's assessment.}
   trawler age data and came to the conclusion that the loss of these data had little
   impact on overall results.  This is, in part, because there were 2020 Canadian
   age data available from the shoreside fleet, and the Canadian shoreside and freezer-
-  trawler fleets tend to provide similar age-composition information.
+  trawler fleets tend to provide similar age-composition information.}
 
 \emph{In 2021, there was almost no biological data available for the Canadian fishery.
   In summary, there was a single shoreside trip sampled, compared to a recent five year
@@ -451,15 +451,15 @@ and a five-year average of recent observations is used for all years of the
 projections. {\bf The SRG requests that the JTC explore alternative methods for
 forecasting weight-at-age and evaluate whether they can improve projections.}
 
-\emph{Response -- It is important to capture key, mechanistic and/or stochastic, population processes 
+\emph{Response -- It is important to capture key, mechanistic and/or stochastic, population processes
   in stock assessment projections to sufficiently characterize levels of prediction uncertainty
   that are consistent with available information to adequately contextualize metrics used to aid
   management decisions. Likewise, it is as important to evaluate the basic population dynamic
   assumptions used in such projections. Recent, current, and future recruitment is perhaps the most
   influential source of uncertainty in stock assessment projections. As a result, the JTC has
   prioritized research on recruitment, including supporting analyses and the justification for using
-  the age-1 index in the \Sexpr{assess.yr} base model and other related analyses mentioned in this section.
-  
+  the age-1 index in the \Sexpr{assess.yr} base model and other related analyses mentioned in this section.}
+
 \emph{Empirical weight-at-age data indicate inter-annual variation in \fishname growth, and this variation could
   be related to individual cohort effects (e.g., large cohorts have a negative growth relationship with
   adjacent cohorts). The JTC is scoping plans to explicitly evaluate these relationships using random effects
