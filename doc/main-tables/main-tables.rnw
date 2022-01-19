@@ -217,6 +217,7 @@ make.input.age.data.table(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 <<main-survey-history-table, results='asis', echo=FALSE>>=
 make.survey.history.table(survey.history,
+                          age.1.index,
                           digits = 3,
                           xcaption = paste0("**Summary of the acoustic surveys from 1995 to ", survey.end.yr, "."),
                           xlabel = "tab:main-survey-history",

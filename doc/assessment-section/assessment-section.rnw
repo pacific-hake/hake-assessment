@@ -213,10 +213,6 @@ The following are the `SRG Recommendations and Conclusions for the Pacific Hake
 Stock Assessment' from the 2021 SRG report, and associated responses from the
 JTC:
 
-**Probably check each relevant Issue to get the text started. Note that last
-year's replies are still currently shown below in case we want to use any of
-that text again (then we will delete those).
-
 1. {\bf The SRG notes that $\sigma_R$ is an influential parameter and that
   determining the choice of $\sigma_R$ remains a challenge and encourages the
   JTC to continue to work on the issue.}
@@ -299,7 +295,9 @@ that text again (then we will delete those).
 
 \emph{Response -- The JTC conducted the standard suite of catch projections using recruitment fixed
   at the median and mean level as calculated across the main recruitment time period (1970-2020).
-  Resulting decision tables are presented in Appendix~\ref{chap:rec-plot}).}
+  Resulting decision tables are presented in Appendix~\ref{chap:rec-plot}. Related, the JTC
+  also solicited alternative catch levels for use in projections from the JMC and has included those
+  in decision tables.}
 
 4. Pacific Hake dynamics are highly variable even without fishing
   mortality. {\bf The SRG encourages the JTC (and MSE technical team) to continue
@@ -345,7 +343,7 @@ understanding of the Pacific Hake reproductive cycle.}
 
 \emph{\fishname\ ovary samples continue to be collected (see Table~\ref{tab:main-ovaries}) for future
   analyses. While laboratory work has been limited over the past year due to facility closures, plans remain
-  to include available Canadian samples in subsequent maturity analyses.}
+  to include any available Canadian samples in subsequent maturity analyses.}
 
 6. {\bf The SRG strongly supports the ongoing genetic analyses to determine whether
 there are genetic differences between Pacific Hake from the area south of Point
@@ -372,13 +370,20 @@ Conception and coastal regions to the north.}
 steepness, natural mortality, $\sigma_R$ , alternative standard deviations for
 time-varying selectivity, and down-weighting fishery age-composition data.}
 
-\emph{Response -- **}
+\emph{Response -- The JTC has conducted all of the requested sensitivities (and many
+  others) and provides summaries in written (Section~\ref{sec:assessment-sensitivity-analyses})),
+  tabular (Tables beginning with~\ref{tab:main-parameter-estimates-sens-1}), and
+  graphical (Figures beginning with~\ref{fig:main-biomass-base-alternative-1}) formats in
+  this document. Diagnostics of sensitivity models are produced in a separate document
+  and are available upon request.}
 
 8. {\bf The SRG encourages the JTC to include a complete reproduction of the
 executive summary incorporating the age-1 index in the next assessment and, if
 time permits, the retrospective analyses.}
 
-\emph{Response -- **}
+\emph{Response -- The age-1 index is incorporated into the 2022 base assessment model.
+  As a result, the JTC has produced executive summary style tables and figures for
+  the sensitivity model that excludes the age-1 index (see Appendix~\ref{chap:age1-survey}).}
 
 9. Based on the preliminary results shown, previous assessments have `correctly'
 projected an increase or decrease in recruitment and spawning biomass in
@@ -387,7 +392,10 @@ current base model results. Given that this analysis provides some confidence in
 the current expectations of continued stock decline, {\bf the SRG recommends that the
 JTC continue to explore and refine this analysis for future assessments.}
 
-\emph{Response -- **}
+\emph{Response -- The JTC produced Appendix ~\ref{chap:rec-plot} in response to this
+  request, which includes a refinement of the analysis presented last year.  Related, the
+  JTC is continuing to explore options for improving recruitment estimation and predictions
+  (see Responses 1--3, 5, and 8).}
 
 10. The SRG notes that there are currently multiple strong cohorts in the stock
 where previously there was only one strong cohort during the period of sample
@@ -396,34 +404,78 @@ on this observation, the SRG recommends that an ageing error study using samples
 collected during the past decade be conducted in conjunction with the Committee
 of Age Reading Experts (CARE).}
 
-\emph{Response -- **}
+\emph{Response -- An ageing error study in conjunction with CARE has commenced, including
+  planned sample exchanges between United States and Canada ageing labs. However, a full exchange
+  is on hold until there are staff to process the necessary aquatic animal health import permits
+  to send age structures to Canada.}
 
 11. {\bf The SRG recommends that historical sources of data be investigated to
 determine whether they can be used to supplement the weight-at-age matrix},
 including unaged otolith samples (and associated data) from the 1970s that may
 be available in the Burke Museum in Seattle.
 
-\emph{Response -- **}
+\emph{Response -- Restrictions related to the COVID-19 pandemic have limited the availability
+  to access historical data. Even if historical \fishname age structures were found and where
+  determined to be in a usable state, these new strictures would need to be integrated into existing
+  ageing laboratory work plans.  The JTC has conducted analyses previously showing that small changes to
+  historical data have little relevance to current management quantities of interest. So at this time,
+  the JTC does not expect small amounts of historical weight-at-age data to significantly alter
+  stock assessment results used for management decisions.}
 
 12. {\bf If biological data cannot be collected by any fleet in 2021, the SRG
 encourages the JTC to explore model sensitivity to that absence. We commend the
 JTC for their foresight in investigating the impact of the lack of 2020 Canadian
 freezer-trawler age data in this year's assessment.}
 
-\emph{Response -- **}
+\emph{Response -- **Kelli to add more or edit pending analysis** In 2021, the JTC explored the absence of 2020 Canadian freezer-
+  trawler age data and came to the conclusion that the loss of these data had little
+  impact on overall results.  This is, in part, because there were 2020 Canadian
+  age data available from the shoreside fleet, and the Canadian shoreside and freezer-
+  trawler fleets tend to provide similar age-composition information.
+
+\emph{In 2021, there was almost no biological data available for the Canadian fishery.
+  In summary, there was a single shoreside trip sampled, compared to a recent five year
+  average of 55 trips, and no freezer-trawler age data. The consequence of
+  this loss of data is a disproportionate (relative to areal catch) reliance on age data
+  sampled from Unites States waters as being representative of the coastwide population for the
+  2021 fishing year.  The fishery in the United States on average comprises of lower proportions of older fish
+  relative to Canada}
+
+\emph{The JTC is  concerned about multi-year changes in sampling and, in particular,
+  the loss of complete data series.  As a result, the JTC conducted analyses to evaluate potential
+  medium to long-term impacts on the stock assessment with the loss of Canadian age data.  **Method
+  and results of Kelli's analysis here...}
 
 13. Uncertainty in weight-at-age is not accounted for in the stock assessment
 and a five-year average of recent observations is used for all years of the
 projections. {\bf The SRG requests that the JTC explore alternative methods for
 forecasting weight-at-age and evaluate whether they can improve projections.}
 
-\emph{Response -- **}
+\emph{Response -- It is important to capture key, mechanistic and/or stochastic, population processes 
+  in stock assessment projections to sufficiently characterize levels of prediction uncertainty
+  that are consistent with available information to adequately contextualize metrics used to aid
+  management decisions. Likewise, it is as important to evaluate the basic population dynamic
+  assumptions used in such projections. Recent, current, and future recruitment is perhaps the most
+  influential source of uncertainty in stock assessment projections. As a result, the JTC has
+  prioritized research on recruitment, including supporting analyses and the justification for using
+  the age-1 index in the \Sexpr{assess.yr} base model and other related analyses mentioned in this section.
+  
+\emph{Empirical weight-at-age data indicate inter-annual variation in \fishname growth, and this variation could
+  be related to individual cohort effects (e.g., large cohorts have a negative growth relationship with
+  adjacent cohorts). The JTC is scoping plans to explicitly evaluate these relationships using random effects
+  models to partition the variance components (year and cohort) in available weight-at-age data. The JTC also
+  plans to explore new weight-at-age forecasting capabilities in Stock Synthesis (once fully tested). A simulation
+  experiment that evaluates the influence of variable weight-at-age data relative to other sources of variance in
+  stock assessment projections (e.g., recruitment) would also be useful. Until this work is completed, the JTC continues to use
+  a recent 5-year average in the projection period, because it is consistent with recent data (** this figure
+  reference needs changing to the wt-at-age across time figure that we show in presentations, once added
+  to the document;** see Figure~\ref{fig:main-bridge-5-panel-1}).}
 
 14. {\bf The SRG appreciates the dedication and teamwork displayed by the JTC in
 producing the best available scientific information and advice on the Pacific
 Hake stock during the COVID-19 pandemic.}
 
-\emph{Response -- **}
+\emph{Response -- Teamwork is an attribute of great interest and pride within the JTC, thank you.}
 
 Also, the final major conclusion of the SRG report was the following:
 
@@ -443,327 +495,10 @@ provide feedback to the SRG and JTC as to its preference during the March 15-17,
 2021 JMC Meeting. These alternative decision tables are presented in Appendix~B
 of the JTC Stock Assessment document.}
 
-\emph{Response -- **The JTC agrees with the new improved format
-  and has adopted it in this assessment, as discussed in
-  Section~\ref{sec:assessment-model-projections}.}
+\emph{Response -- Over the past year, the JTC engaged in discussions with the JMC about decision
+  table formatting and alternative projection catch streams. As a result, the JTC will be using the
+  the new format in the 2022 stock assessment, as discussed in Section~\ref{sec:assessment-model-projections}.}
 
-
-\subsection{Response to 2020 Scientific Review Group (SRG) review}\label{sec:assessment-response-review-2020}
-
-**Keeping here for now to copy formatting and any text to 2021 response, then delete.
-
-The Scientific Review Group (SRG) meeting was held from February 25-28, 2020
-at the Graduate Seattle Hotel, Seattle, WA, USA.
-
-The following are the `SRG Recommendations and Conclusions for the Pacific Hake
-Stock Assessment' from the 2020 SRG report, and associated responses from the
-JTC:
-
-1. The SRG notes that $\sigma_R$ is an influential parameter and that
-determining the choice of $\sigma_R$ remains a challenge and encourages the JTC
-to continue to work on the issue.
-
-% From Issue \#468:
-\emph{Response -- Developing best practices for modeling equilibrium recruitment ($R_0$)
-  and recruitment variability ($\sigma_R$)
-  remain broad topics of contemporary research. Recent recommendations have been that the next
-  generation of stock assessments should concomitantly treat recruitment deviations
-  as a random effect and estimate $\sigma_R$ \citep{Punt2020}.
-  The JTC continues to conduct,
-  collaborate on, and monitor ongoing research projects concerning
-  approaches for advancing recruitment estimation, as applied to \fishname\ and
-  in general. Many of these issues are widespread
-  in stock assessment, and scientific-based solutions are likely to be the result of medium
-  to long-term research projects. We now briefly discuss several of these research
-  endeavors.}
-
-\emph{The JTC plans to participate in collaborative research to investigate the concurrent
-  estimation of multiple variance parameters within stock assessments.
-  For \fishname, this includes the estimation of the variability associated with
-  time-varying selectivity ($\Phi$),
-  $\sigma_R$,
-  the extra standard deviation parameters on survey-index data, and
-  the Dirichlet-multinomial parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$.
-  In this assessment, $\Phi$ and $\sigma_R$ are input as fixed values rather than estimated, though we have explored their estimation within Stock Synthesis in the past and did so again this year.
-  Estimation of these variance parameters using wide, uniform priors (given the lack of information available on hyper priors within stock assessments) was unsuccessful. Estimates were clearly interrelated with other sources of variance attributed to model mis-specification rather than variability directly related to the given process.
-  This is particularly
-  important for $\sigma_R$ because without an index of recruitment to directly inform the
-  estimation of $\sigma_R$ it tends to soak up unspecified variability.
-  The Laplace approximation \citep{ThorsonHicksEtAl2015} was also investigated this year as an alternative means to estimate these parameters. Estimates from this method were also large and need further investigation with respect to their correlation.
-  This work is related to time-varying selectivity research, as discussed in response 2
-  below.}
-
-\emph{The completion of the Management Strategy Evaluation framework for \fishname\ continues to create
-  considerable advantages for examining recruitment. The Template Model
-  Builder (TMB) estimation code developed by Dr. Nis Jacobsen for the MSE mimics the stock assessment
-  model and insights gained through the treatment of recruitment variability as random-effects
-  \citep{Thorson2019} is being explored.  Other state-space stock assessment platforms (such as the
-  Woods Hole Assessment Model, WHAM) may also be useful for investigating alternative approaches to
-  estimate recruitment variability. The MSE framework can also be used to evaluate the robustness
-  of recruitment modeling assumptions and the advantages of including environmentally-driven recruitment indices
-  on management performance and uncertainty.  Research being conducted by Dr. Cathleen Vestfals and
-  colleagues at the Northwest Fisheries Science Center is focused on identifying climate drivers of
-  \fishname\ early life-history stages and recruitment, which could inform an explicit recruitment index,
-  an environmental index linked to recruitment, indicators of recruitment variation
-  ($\sigma_R$), and indicators of current or forecast levels of recruitment.
-  Further, the MSE could provide an additional framework for exploring the estimation of
-  $\sigma_R$ while further testing semi-parametric selectivity
-  given its functionality with respect to estimating random effects.}
-
-\emph{The JTC is also following work being conducted by the International Council for
-  the Exploration of the Sea (ICES) Methods Working Group which, among other things,
-  is looking at meta-analytical approaches for estimating recruitment parameters.  Results
-  from this work could be used to develop informative prior distributions on key
-  recruitment parameters. This work is expected to be published in the next year or so.}
-
-2. The JTC described efforts and collaborations with the ICES
-Methods Working Group to address the
-issue of estimating the variance parameter ($\Phi$) for time-varying
-selectivity. Results from this collaboration are expected to inform the 2021
-assessment. The SRG encourages ongoing work to develop approaches to estimating
-variance parameters.
-
-\emph{Response -- The JTC is involved with collaborative research to investigate the concurrent
-  estimation of multiple variance parameters (for example through the use of the Laplace approximation
-  to implement mixed-effect parameter estimation) and interactions among them. This is consistent
-  with recent recommendations by \citep{Xu2020} that simultaneous treatment of data weighting
-  and time-varying selectivity (as well as other variance terms such as $\sigma_R$) is needed
-  for use in operational stock assessments. Input sample sizes for age composition data can
-  influence data weighting, further suggesting a comprehensive approach is needed.}
-
-\emph{Most methods that are available to estimate time-varying selectivity specifically require
-  subjective choices (e.g., number of years or time blocks to model, the level of variability
-  to use for a penalized vector, or the degree of smoothing for a spline). State-space models can
-  be used estimate time-varying selectivity in two dimensions, age and time, where the degree
-  of smoothing is estimated \citep{NielsenBerg2014}.}
-
-\emph{An ICES Methods Working Group project is in the process of comparing four stock assessment
-  frameworks that estimate time-varying selectivity using different assumptions:
-  State-Space Assessment Model (SAM), Woods Hole Assessment Method (WHAM), Stock Synthesis, and
-  Age Structured Assessment Program (ASAP). Each framework is being fit to data from 10 stocks
-  using multiple configurations. Results from this study will be comparisons of
-  estimated trajectories between two state-space frameworks and two well-used
-  statistical catch-at-age models when time-varying selectivity is ignored or
-  estimated using the current best practices for each framework. The JTC expects that the results,
-  once completed, will inform best practices for this assessment.
-  Currently, two of the four frameworks have been fit to the data and input files need to be converted to allow for fitting of the remaining frameworks.}
-
-3. The SRG notes that the removal of the zero-sum constraint on recruitment
-deviations has implications on the estimate of $R_0$ and the perception of stock
-status based on relative spawning biomass. As the stock is currently well above
-$\Bforty$, management decision-making is not expected to be affected in
-2020. {\bf The SRG recommends that the JTC explore alternative methods of estimating
-reference points, including dynamic reference points or reference points based
-on a defined time period. There is some urgency to this work as biomass is
-declining and the relative spawning biomass may fall below the target level
-${\bf \emph{B}_{40\%}}$ within 2 years.}
-
-\emph{Response -- Members of the JTC are also part of the \fishname\ MSE technical work group.
-  Considerable developments have been made over the past year refining the MSE simulation code, as
-  well as working with stakeholders through iterative JMC meetings to better define management
-  objectives and performance metrics. Members of the JTC have contributed to an ICES reference point
-  report \citep{ICESwkrpChange2021} dedicated to density
-  dependence and ecosystem change and a Canadian Ocean Frontier Institute workshop on management reference
-  points in highly dynamic environments.  In both cases, the benefits and costs of using dynamic
-  reference points were discussed. Guidance stemming from these workshops confirms that careful
-  consideration is warranted when using dynamic reference points and should preferably be
-  examined in an MSE.  The JTC anticipates using the MSE to broadly test alternative
-  management procedures, including those related to alternative harvest rules and related reference
-  points.}
-
-\emph{Preliminary investigations based on estimated no-fishing ("unfished") time series seems to suggest
-  that the \fishname\ stock may be more productive than what virgin equilibrium conditions otherwise
-  indicate. If this is the case, estimates of relative fishing intensity would be higher than currently
-  estimated, and estimates of relative stock size would be lower than currently estimated. However, many
-  simplifying assumptions are made when estimating unfished time series and these need to be thoroughly
-  examined.}
-
-\emph{Related work on making fisheries advice robust to time-varying productivity is
-  being conducted at the Pacific Biological Station, as part of a national DFO
-  initiative on an Ecosystem Approach to Fisheries Management. The JTC will be monitoring
-  guidance that stems from this initiative.} % That DFO bit can stay as it's still ongoing
-  %(reporting out in 2021)
-
-\emph{The JTC is collaborating with regional oceanographers and ecosystem scientists
-  to develop a set of ecosystem indicators relative to \fishname\ ecology and population
-  dynamics for use as an annual reporting tool. These metrics could be evaluated
-  as a set of
-  "stoplight" indicators as a means to collectively support ecosystem-based fisheries management, and
-  be presented to Treaty advisory bodies as supplementary information to the stock
-  assessment.}
-
-4. The SRG notes that age-composition data sample sizes are high in recent
-years, increasing the weight of fishery age-composition data relative to the
-survey data. Artificially downweighting the sample sizes for recent years had a
-significant impact on assessment results. {\bf The SRG recommends (1) that the JTC
-undertake simulations to investigate the effect of downweighting age-composition
-data on management performance, and (2) that the JTC explore temporal trends in
-sample sizes and appropriate ways of estimating the annual variability in
-age-composition data.}
-
-\emph{Response -- To inform these simulations, the JTC first engaged in an exploration of the data with the goal of determining how many fish and how many tows from each fleet currently inform the aggregated age compositions. This proved to be more difficult than it should have been. Historical age-composition data prior to 2008 are not investigated annually, and thus, there is no way to know if current extractions of historical data from the databases match what was used to generate the historical age-composition data. Though, we do provide the number of fish and the number of trips or tows now for some of the most recent data (Tables~\ref{tab:main-us-cp-age-data}-\ref{tab:main-us-shore-age-data}).
-Next steps include computing historical age compositions from recent data extractions to confirm that they match those currently used to fit the assessment and updating tables to include all years for both countries. After which, simulations will be conducted to determine how to best assign sample sizes to disparate sampling methods when the data are combined into a single aggregated fleet for modeling purposes.}
-
-\emph{Additionally, the JTC investigated how many tows are typically included in a trip for the shore-based fleet using records from observer data. Knowing how many tows are completed per trip will help to inform non-independence or the amount of overdispersion present in the data and, thus, the level of overdispersion that should be investigated in the simulation.
-Preliminary investigations suggest that on average there are about two hauls conducted per shore-based trip in the U.S.; and, combined, those hauls, on average, contain about half as much in catch weight as a single at-sea haul.}
-
-5. Two possible approaches to downweighting the fishery age-composition data
-were discussed during the SRG meeting: (1) add time-blocking to allow changes in
-the estimated Dirichlet-multinomial parameter that controls the effective sample
-size for the fishery age-composition data, and (2) investigate annual
-age-composition data among different fleets outside of the model. The first
-approach, although relatively easy to implement, does not resolve the potential
-problem that the input sample size in the current base model is measured using a
-mixture of metrics (the number of sampled tows for at-sea samples versus the
-number of sampled trips for shore-side samples). {\bf The SRG recommends that
-the JTC undertake an analysis of the annual age-composition data in a more
-disaggregated form (e.g., by fleet) outside of the model to evaluate the
-sources of between-sample variability in the fishery age-compositions (month,
-year, fleet, sample size, etc.) and whether the variability relates to simple
-metrics of sample size such as the number of sampled tows, the number of
-sampled trips, and the number of sampled fish.}
-
-\emph{Response to (1) -- The investigation of how many fish are sampled per trip and tow for each fleet noted in response 4 will help inform whether or not a time block on the fishery-specific Dirichlet-multinomial parameter is supported by the data. Until that work is complete, there is no information available to inform when the time block should begin or end.}
-
-\emph{Response to (2) -- In 2020, the JTC noted that they were working on a document to summarize the changes in the sampling protocol over time. This work is still in progress and is meant to be a living document that will be updated annually.
-As the JTC works towards documenting which fish are included in historical age-composition samples (not just sampled; response 4), investigating disaggregated forms of the compositional data will become a doable task because currently the raw data are unavailable.
-Thus, below we note our progress on investigating historical methods used to collect data beyond those noted before.}
-
-\emph{For the U.S. sectors, the average number of fish sampled per haul in the at-sea sector in recent years is three, whereas the average number of fish sampled per trip in the shore-based sector is twenty. We assign the input sample size of an at-sea haul or a shore-based trip equally but account for differences in sample weights by weighting composition by landings.
-The JTC explored several approaches for adjusting the input sample sizes for age composition data without changing the method of weighting by landings using data since 2008. These included adjusting the U.S. (or U.S. and Canadian) at-sea sectors to be more consistent with the shore-based sector ratio of fish per sample, and applying generic regression equations built through meta-analysis of West coast groundfish stocks (I. Stewart and S. Miller, unpublished) that define candidate input sample sizes based on the number of samples (hauls or trips) and the number of fish sampled. In both cases, results from exploratory model runs showed similar estimates of equilibrium and current spawning stock biomass compared to what was estimated for this assessment (results not shown). In addition, systematically removing all age-composition data from the beginning of the assessment model time series through 1990 led to similar stock trajectories from 1990 forward (results not shown). Therefore, the JTC will prioritize investigations into input sample sizes for years that include fish still in the population before revisiting historical samples that can be removed from the model without affecting current estimated biomass.}
-
-6.The SRG encourages work to develop a picture of the \fishname\ reproductive
-cycle both seasonally and at the life-time scale based on histological and
-physiological measurements. In addition, the SRG notes that Canadian samples and
-those from the winter research cruises should be included in the maturity
-analysis. {\bf The SRG encourages continued sampling to improve understanding of
-the Pacific Hake reproductive cycle.}
-
-\emph{Response -- No new ovary samples were collected in 2020 due to the cancellation of
-  summer research cruises as a result of COVID-19. Additionally, no new maturity analyses have been
-  conducted this year because, among other things, access to laboratory equipment was
-  restricted.}
-
-\emph{Canadian ovaries from surveys have been collected in 2018 and 2019.  These samples
-  could be included in future updated maturity analyses. However, logistical considerations
-  will need to be worked out regarding sample exchange and histological analysis workload
-  between DFO and NWFSC.}
-
-\emph{A new project was initiated looking at improved methods to differentiate females
-  that will likely spawn from those that will not and, thus, should or should not be included
-  as spawning biomass. The study is using liver and ovary samples collected during NWFSC acoustic
-  surveys (2017-2019) to develop metabolic markers linked to key female reproductive stages.
-  Liver physiology and levels of certain lipid classes may reveal overall metabolic and reproductive
-  status. Preliminary results from liver lipid analyses indicate that levels of important structural
-  (phospholipids) and storage (triglycerides) lipids are indicative of female maturation status
-  (immature vs. mature) and may be predictive of reproductive failure (atresia) and/or skipped spawning
-  in \fishname. Initial molecular analyses of gonad samples indicate differences in ribosomal RNA ratio
-  between sexes and immature and mature fish that are consistent with results for liver lipids.
-  Work is currently underway to expand the liver lipid analyses and develop additional molecular markers
-  for lipid synthesis (liver RNA) and ovarian growth and atresia (ovarian RNA). Molecular information
-  from liver and ovary samples together with liver lipid analyses and gonadal histology should provide
-  a broader picture of reproductive status of female \fishname\ and better inform stock assessments.
-  This project was significantly impacted by the COVID-19 pandemic, the inability to access labs,
-  and the cancellation of the 2020 Summer Hake research survey, during which biological samples would have been
-  collected. Despite these impacts, progress was made developing liver lipid analyses, developing a number
-  of new molecular (gene expressions) assays for ribosomal RNAs in \fishname, completing histological analyses
-  of ovarian tissue samples, and analyzing histology results in relation to potential physiological
-  indicators of reproductive success.}
-
-7. {\bf The SRG strongly supports the ongoing genetic analyses to determine
-  whether there are genetic differences between Pacific Hake from the area south
-  of Point Conception and other regions.}
-
-\emph{Response -- The JTC is in communication with the research team conducting \fishname\
-genetic analyses. They provided the following update.}
-
-\emph{Genetic samples have been collected from along the Pacific coast during summer,
-fall (BC to CA) and winter (OR and CA) and within the Strait of Georgia (BC) during the spring.
-We have begun a genetics study to characterize the spatial-temporal population structure
-of \fishname\ coast wide. Prior genetic analyses in hake have focused on a smaller geographic
-range, over a limited seasonal time scale, and used a limited set of genetic markers
-\citep{IwamotoFordEtAl2004, IwamotoElzEtAl2015}.}
-% todo: 2022
-% OH wanted to know what years the genetic samples were taken
-
-\emph{For this study, samples were grouped in boxes based on spatial-temporal collection
-information (i.e., year, season, and location) and selected samples distributed across
-these boxes. RADseq \citep{BairdEtterEtAl2008, AliORoukeEtAl2016} has been utilized to generate 8,763 genome
-wide polymorphic markers, which will allow for powerful population genomic analyses
-as well as association tests of genetic variability with life-history characteristics
-such as growth rates and age at maturation.}
-
-\emph{In the initial round of sequencing, DNA were extracted from 1,092 individuals from
-across spatial-temporal boxes from 2015--2017. Of these, 876 samples were sequenced based
-on sufficient DNA concentrations, 667 of which passed quality filters. Preliminary findings
-generally corroborate the single stock hypothesis with low differentiation amongst locations.
-A Principal Component Analysis (PCA) groups all coastal individuals across space and time together
-with Salish Sea individuals clearly distinct. However, using a Bayesian clustering analysis there was
-evidence for seasonal migration across several winter boxes (across years and location) showing signs
-of differentiation from the same location in different season and years. This was corroborated
-with weak but significant pairwise FST comparisons.}
-
-\emph{The second round of RADseq libraries, which include approximately 1200 individuals,
-have been constructed and are in the queue for sequencing at the University of Oregon.
-Approximately 75\% of these individuals will pass quality filter parameters and
-will finalize data collection for the project.
-These include recently acquired samples that will fill in gaps in spatial-temporal boxes
-(especially from Canada) and add additional samples to existing boxes to boost sample sizes.
-This approach will provide the best picture to date of \fishname\ genetic population structure.
-Research was expected to commence in 2020 but the lack of access to laboratories due to
-COVID-19 restrictions delayed the completion of the sequencing and analyses for these samples.
-Research and the submission of a peer-reviewed publication should be completed in 2021.}
-
-8. The SRG notes that the no-U-turn sampler (NUTS) algorithm is more efficient
-and explores parameter space more fully than the MCMC algorithm used to estimate
-parameter uncertainty in the current and previous base assessment models. {\bf The
-SRG supports the use of NUTS for the base model and sensitivity runs in the 2021 assessment.}
-
-\emph{Response -- NUTS has been used for the base model and all sensitivity and retrospective runs
-in the 2021 assessment.}
-
-9. {\bf The SRG recommends sensitivity analyses structured as follows, if NUTS
-  is used in the 2021 base model: (1) using the random walk Metropolis MCMC
-  algorithm as in the 2020 assessment, and (2) using NUTS when including the
-  age-1 index in the base model.}
-
-\emph{Response -- Detailed results from using the random walk Metropolis MCMC
-  algorithm are presented in Appendix~**, and full results from including the age-1
-  index are presented in Appendix~\ref{chap:age1-survey}.}
-
-10. {\bf The SRG also recommends the following additional sensitivities
-  (conducted if possible using NUTS, but otherwise using MLE): steepness,
-  natural mortality, $\sigma_R$, alternative standard deviations for
-  time-varying selectivity, increasing maximum age for constant selectivity and
-  downweighting fishery age-composition data.}
-
-\emph{Response -- These sensitivity analyses were all completed using NUTS
-  (typically taking 3-4 hours to run). Results are presented in
-  Section~\ref{sec:assessment-sensitivity-analyses}.}
-
-11. The SRG notes that there are currently multiple strong cohorts in the stock
-where previously there was only one strong cohort during the period of sample
-collection for the ageing error matrix that supports the assessment model. {\bf
-  Based on this observation, the SRG recommends that an ageing error study using
-  samples collected during the past decade be conducted in conjunction with the
-  Committee of Age Reading Experts (CARE).}
-
-\emph{Response -- An updated ageing error analysis is currently planned for after another
-  CARE exchange between ageing labs is completed. This will allow for comprehensive
-  inclusion of both within and between lab double reads spanning multiple years.
-  The JTC also plans to utilize an upgraded ageing error
-  software package currently in development by the University of Washington and the
-  Commonwealth Scientific and Industrial Research Organisation (CSIRO).}
-
-12. {\bf The SRG recommends that historical sources of data be investigated to
-determine whether they can be used to supplement the weight-at-age matrix,}
-including unaged otolith samples (and associated data) from the 1970s that may
-be available in the Burke Museum in Seattle.
-
-\emph{Response -- Due to impacts and closures related to COVID-19, no progress has been made
-  visiting the Burke Museum to better understand archived samples or available data.
-  First steps will be to investigate whether otoliths at the museum are in usable shape, and to
-  create summaries of what is potentially available.}
 
 \newpage
 
