@@ -333,7 +333,10 @@ param_est_table <- function(models,
     names(recs) <- paste0("recr_", getrecs)
     recs <- f(recs, 0)
     df <- enframe(
-      c(nat_m = f(median(.x$mcmc$`NatM_uniform_Fem_GP_1`), digits),
+      c(nat_m =
+          ifelse("NatM_uniform_Fem_GP_1" %in% names(.x$mcmc),
+                 f(median(.x$mcmc$`NatM_uniform_Fem_GP_1`), digits),
+                 f(median(.x$mcmc$`NatM_p_1_Fem_GP_1`), digits)), # 2022 name changed
         ro = f((median(.x$mcmc$`SR_LN(R0)`) %>% exp) / 1e3, 0),
         h = ifelse(is.null(.x$mcmc$`SR_BH_steep`), NA, f(median(.x$mcmc$`SR_BH_steep`), digits)),
         survey_sd = f(median(.x$mcmc$`Q_extraSD_Acoustic_Survey(2)`), digits),
