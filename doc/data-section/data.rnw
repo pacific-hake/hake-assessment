@@ -28,8 +28,9 @@ Fishery-dependent and fishery-independent data used in this assessment
   \Sexpr{survey.age.years[length(survey.age.years)]};
   Tables~\ref{tab:main-all-age-data-survey} and~\ref{tab:main-survey-history}
   and Figures~\ref{fig:main-age-comp-bubbles} and~\ref{fig:main-survey-extrap-biomass}).
-  The age-1 index derived from the survey (Figure~\ref{fig:main-age-one-index})
-  is ** not used as data in the base model.
+
+\item The age-1 index (billions of age-1 fish) derived from the survey
+  (Table~\ref{tab:main-survey-history} and Figure~\ref{fig:main-age-one-index}).
 
 \item ** Mean observed weight-at-age from fishery and survey catches
   (1975-\Sexpr{max.fishery.age.prop[2]}; Figure~\ref{fig:main-empirical-weight-at-age})
