@@ -1,28 +1,27 @@
 \newpage
 
-\chapter{Sensitivity run that includes the age-1 survey}
+\chapter{Sensitivity run that excludes the age-1 survey}
 \label{chap:age1-survey}
 
-**For 2022 assessment we currently plan to include the age-1 survey in the base
-model, and so this appendix would become a sensitivity that \emph{excludes}
-it. If `sens.models.2[[1]]` is that run, then these figures will be automatic -
-need to change text and captions. Rest of this is untouched from 2021 assessment
-(don't forget to change chapter title!).
-
 This appendix contains Bayesian MCMC results for the model run in which the age-1
-survey index is included as an index of recruitment as described in
+survey index is excluded as an index of recruitment as described in
 Sections~\ref{sec:data-acoustic-survey} and \ref{sec:assessment-sensitivity-analyses}
 (also see Table~\ref{tab:main-parameter-estimates-sens-1}).
 It highlights
 model uncertainty arising from a different structural assumption or analytical choice
-compared to the base model, and the inclusion of the age-1 index was deemed
+compared to the base model, and the exclusion of the age-1 index was deemed
 important enough to warrant further consideration, especially in the context of characterizing
-forecast uncertainty. Nonetheless, this appendix is meant to provide supplemental information,
+forecast uncertainty, and given it was excluded in the base model for previous assessments.
+Nonetheless, this appendix is meant to provide supplemental information,
 and should not be viewed as an alternative base model.
 The figures and tables show results from this sensitivity run.
 
-The estimated size of the 2010 and 2014 year classes when using only data when that
-cohort is age-2 is closer to the final estimated size when using the age-1 index
+**Need to update the next paragraph depending on final results. Current results (with
+diagnostics issue) give high 2020 recruitment without age-1, so it's not just
+age-1 index driving that. That might help counter our previous warning below.
+
+**[2021 assessment text] The estimated size of the 2010 and 2014 year classes when using only data when that
+cohort is age-2 is closer to the final estimated size when excluding the age-1 index
 (Figure~\ref{fig:retrospective-recruitment-age1}) than it is for the base model
 (Figure~\ref{fig:main-retrospective-recruitment}). In terms of general year class strength,
 the main difference between models is with the 2018 year class where the age-1 index estimates
@@ -57,7 +56,7 @@ Figures \ref{fig:spawning-biomass-age1}--\ref{fig:forecast-risk-comparison-year-
 and
 Tables~\ref{tab:biomass-age1}--\ref{tab:risk-year-2-age1}
 show further quantities of interest and decision tables from the MCMC results
-when including the age-1 index.
+when excluding the age-1 index.
 
 
 
