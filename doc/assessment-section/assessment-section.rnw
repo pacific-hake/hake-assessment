@@ -357,19 +357,19 @@ Conception and coastal regions to the north.}
 
 \emph{Response -- Genetic work headed by Gary Longo at the Northwest Fisheries Science
   Center continues using samples from throughout the United States west coast as well
-  as British Columbia, including the Straight of Georgia and Puget Sound.
+  as British Columbia, including the Strait of Georgia and Puget Sound.
   Across two rounds of sequencing, DNA were extracted from 2311 individuals
-  across a range of spatial-temporal grid locations from 2015-2019. A total of
+  across a range of spatial-temporal grid locations from 2015--2019. A total of
   2008 were sequenced based on sufficient DNA concentrations, and 1417 passed quality
   filters. Population genetic analyses generally corroborate the
-  single stock hypothesis with little to no differentiation among the spatial temporal grids.
+  single-stock hypothesis with little to no differentiation among the spatial temporal grids.
   A Principal Component Analysis grouped all Coastal individuals across space and time
-  together, while Salish Sea individuals fall out as clearly distinct. Likewise, a Bayesian clustering
+  together, while Salish Sea individuals fell out as clearly distinct. Likewise, a Bayesian clustering
   analysis found that the observed genetic variation is best explained by two distinct genetic clusters,
   the Salish Sea and Coastal populations. However, there was some evidence for weak differentiation among
   some spatial-temporal grid locations (across years and location), which may be due to weak differentiation
   among cohorts. This pattern was corroborated with weak, but statistically significant, pairwise FST statistic
-  comparisons. Overall, the genetic results corroborate the single stock hypothesis, and highlight the strong
+  comparisons. Overall, the genetic results corroborate the single-stock hypothesis, and highlight the strong
   differentiation between the resident Salish Sea population and the migratory, coastal population.}
 
 7. {\bf The SRG also recommends continuing to conduct the following sensitivities:
@@ -377,9 +377,9 @@ steepness, natural mortality, $\sigma_R$ , alternative standard deviations for
 time-varying selectivity, and down-weighting fishery age-composition data.}
 
 \emph{Response -- The JTC has conducted all of the requested sensitivities (and many
-  others) and provides summaries in written (Section~\ref{sec:assessment-sensitivity-analyses})),
-  tabular (Tables beginning with~\ref{tab:main-parameter-estimates-sens-1}), and
-  graphical (Figures beginning with~\ref{fig:main-biomass-base-alternative-1}) formats in
+  others) and provides summaries in written (Section~\ref{sec:assessment-sensitivity-analyses}),
+  tabular (beginning with Table~\ref{tab:main-parameter-estimates-sens-1}), and
+  graphical (beginning with Figure~\ref{fig:main-biomass-base-alternative-1}) formats in
   this document. Diagnostics of sensitivity models are produced in a separate document
   and are available upon request.}
 
@@ -388,7 +388,8 @@ executive summary incorporating the age-1 index in the next assessment and, if
 time permits, the retrospective analyses.}
 
 \emph{Response -- The age-1 index is incorporated into the 2022 base assessment model.
-  As a result, the JTC has produced executive summary style tables and figures for
+  As a result, the JTC has produced a reproduction
+  of the Executive Summary tables and figures for the results
   the sensitivity model that excludes the age-1 index (see Appendix~\ref{chap:age1-survey}).}
 
 9. Based on the preliminary results shown, previous assessments have `correctly'
@@ -398,8 +399,12 @@ current base model results. Given that this analysis provides some confidence in
 the current expectations of continued stock decline, {\bf the SRG recommends that the
 JTC continue to explore and refine this analysis for future assessments.}
 
-\emph{Response -- The JTC produced Appendix ~\ref{chap:rec-plot} in response to this
-  request, which includes a refinement of the analysis presented last year.  Related, the
+\emph{Response -- The JTC has extended this analysis in
+  Figures~\ref{fig:main-historical-1}--\ref{fig:main-historical-retro-bforty-all}
+  in response to this
+  request, including a retrospective component given that
+  all retrospective model runs are performed using MCMC.
+  Related, the
   JTC is continuing to explore options for improving recruitment estimation and predictions
   (see Responses 1--3, 5, and 8).}
 
@@ -421,8 +426,8 @@ including unaged otolith samples (and associated data) from the 1970s that may
 be available in the Burke Museum in Seattle.
 
 \emph{Response -- Restrictions related to the COVID-19 pandemic have limited the availability
-  to access historical data. Even if historical \fishname age structures were found and where
-  determined to be in a usable state, these new strictures would need to be integrated into existing
+  to access historical data. Even if historical \fishname\ age structures were found and were
+  determined to be in a usable state, these new structures would need to be integrated into existing
   ageing laboratory work plans.  The JTC has conducted analyses previously showing that small changes to
   historical data have little relevance to current management quantities of interest. So at this time,
   the JTC does not expect small amounts of historical weight-at-age data to significantly alter
@@ -436,19 +441,19 @@ freezer-trawler age data in this year's assessment.}
 \emph{Response -- **Kelli to add more or edit pending analysis** In 2021, the JTC explored the absence of 2020 Canadian freezer-
   trawler age data and came to the conclusion that the loss of these data had little
   impact on overall results.  This is, in part, because there were 2020 Canadian
-  age data available from the shoreside fleet, and the Canadian shoreside and freezer-
-  trawler fleets tend to provide similar age-composition information.}
+  age data available from the shoreside fleet, and the Canadian shoreside and
+  freezer-trawler fleets tend to provide similar age-composition information.}
 
-\emph{In 2021, there was almost no biological data available for the Canadian fishery.
-  In summary, there was a single shoreside trip sampled, compared to a recent five year
+\emph{In 2021, there were almost no biological data available for the Canadian fishery.
+  In summary, there was a single shoreside trip sampled, compared to a recent five-year
   average of 55 trips, and no freezer-trawler age data. The consequence of
   this loss of data is a disproportionate (relative to areal catch) reliance on age data
-  sampled from Unites States waters as being representative of the coastwide population for the
-  2021 fishing year.  The fishery in the United States on average comprises of lower proportions of older fish
-  relative to Canada}
+  sampled from US waters as being representative of the coastwide population for the
+  2021 fishing year.  The fishery in the US on average comprises lower proportions of older fish
+  relative to the fishery in Canada.}
 
 \emph{The JTC is  concerned about multi-year changes in sampling and, in particular,
-  the loss of complete data series.  As a result, the JTC conducted analyses to evaluate potential
+  the ending of complete data series.  As a result, the JTC conducted analyses to evaluate potential
   medium to long-term impacts on the stock assessment with the loss of Canadian age data.  **Method
   and results of Kelli's analysis here...}
 
@@ -457,25 +462,25 @@ and a five-year average of recent observations is used for all years of the
 projections. {\bf The SRG requests that the JTC explore alternative methods for
 forecasting weight-at-age and evaluate whether they can improve projections.}
 
-\emph{Response -- It is important to capture key, mechanistic and/or stochastic, population processes
+\emph{Response -- It is important to capture key, mechanistic and/or stochastic population processes
   in stock assessment projections to sufficiently characterize levels of prediction uncertainty
   that are consistent with available information to adequately contextualize metrics used to aid
-  management decisions. Likewise, it is as important to evaluate the basic population dynamic
-  assumptions used in such projections. Recent, current, and future recruitment is perhaps the most
-  influential source of uncertainty in stock assessment projections. As a result, the JTC has
+  management decisions. Likewise, it is as important to evaluate the basic population-dynamics
+  assumptions used in such projections. Recent, current, and future recruitment are perhaps the most
+  influential sources of uncertainty in stock assessment projections. As a result, the JTC has
   prioritized research on recruitment, including supporting analyses and the justification for using
   the age-1 index in the \Sexpr{assess.yr} base model and other related analyses mentioned in this section.}
 
-\emph{Empirical weight-at-age data indicate inter-annual variation in \fishname growth, and this variation could
-  be related to individual cohort effects (e.g., large cohorts have a negative growth relationship with
+\emph{Empirical weight-at-age data indicate inter-annual variation in \fishname\ growth, and this variation could
+  be related to individual cohort effects (e.g., large cohorts have a negative growth
+  influence on
   adjacent cohorts). The JTC is scoping plans to explicitly evaluate these relationships using random effects
   models to partition the variance components (year and cohort) in available weight-at-age data. The JTC also
   plans to explore new weight-at-age forecasting capabilities in Stock Synthesis (once fully tested). A simulation
   experiment that evaluates the influence of variable weight-at-age data relative to other sources of variance in
   stock assessment projections (e.g., recruitment) would also be useful. Until this work is completed, the JTC continues to use
-  a recent 5-year average in the projection period, because it is consistent with recent data (** this figure
-  reference needs changing to the wt-at-age across time figure that we show in presentations, once added
-  to the document;** see Figure~\ref{fig:main-bridge-5-panel-1}).}
+  a recent five-year average in the projection period, because it is consistent with recent data
+  (Figures~\ref{fig:main-empirical-weight-at-age} and~\ref{fig:main-weight-at-age-lines}).}
 
 14. {\bf The SRG appreciates the dedication and teamwork displayed by the JTC in
 producing the best available scientific information and advice on the Pacific
