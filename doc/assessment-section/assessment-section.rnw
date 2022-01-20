@@ -250,15 +250,16 @@ JTC:
 \emph{The Management Strategy Evaluation (MSE) framework for \fishname\ creates
   considerable advantages for examining recruitment. The associated Template Model
   Builder (TMB) estimation code used in the MSE mimics the stock assessment
-  model and insights gained through the treatment of recruitment variability as random-effects
-  \citep{Thorson2019} is continuing to be explored.  The MSE framework can also be used to evaluate the robustness
+  model. Insights gained through the treatment of recruitment
+  variability as random effects \citep{Thorson2019} continue to be explored.
+  The MSE framework can also be used to evaluate the robustness
   of recruitment modeling assumptions and the advantages of including environmentally-driven recruitment indices
   on management performance and uncertainty.  Research slated to be published by Dr. Cathleen Vestfals and
   colleagues at the Northwest Fisheries Science Center has identified specific climate drivers associated with
   \fishname\ early life-history stages and recruitment, which could eventually inform an explicit recruitment index,
   an environmental index linked to recruitment, indicators of recruitment variation
   ($\sigma_R$), and indicators of current or forecast levels of recruitment. These options are currently being
-  investigated by the JTC, the MSE working group, and collaborating colleagues}
+  investigated by the JTC, the MSE working group, and collaborating colleagues.}
 
 \emph{**In addition to the MSE TMB estimation model, other state-space stock assessment platforms (such as the
   Woods Hole Assessment Model, WHAM) may also be useful for investigating alternative approaches to
@@ -277,7 +278,7 @@ JTC:
 
 \emph{Response -- The JTC has begun exploring approaches to make informed decisions about
   current and future recruitment in projections. The inclusion, and associated justification,
-  of the age 1 index in the 2022 base model is one example of this (see
+  of the age-1 index in the 2022 base model is one example of this (see
   Section~\ref{sec:assessment-base-model}). Additionally, the JTC
   is evaluating alternative recruitment indices using relationships with oceanographic
   and environmental variables.}
@@ -287,7 +288,10 @@ JTC:
   for recruitment during the projection period are the stock-recruitment curve,
   the stock-recruitment curve with a multiplier, and the mean
   across a user-defined time period.  The MSE tool could be used
-  to consider alternative recruitment distributional assumptions as future research.}
+  to consider alternative recruitment distributional assumptions as future research.
+  Note that some of the figures in Appendix~\ref{chap:rec-plot} give an
+  improved understanding of the current method for simulating recruitment
+  in the projections.}
 
 3. {\bf The SRG requests that the JTC consider developing a decision table in
   the next assessment with recruitment fixed at the median and mean levels to
@@ -295,7 +299,9 @@ JTC:
 
 \emph{Response -- The JTC conducted the standard suite of catch projections using recruitment fixed
   at the median and mean level as calculated across the main recruitment time period (1970-2020).
-  Resulting decision tables are presented in Appendix~\ref{chap:rec-plot}. Related, the JTC
+  Resulting decision tables are presented in Appendix~\ref{chap:rec-plot}
+  **wrong appendix, the new tables are not included yet.
+  Related to this, the JTC
   also solicited alternative catch levels for use in projections from the JMC and has included those
   in decision tables.}
 
@@ -322,7 +328,7 @@ analysis. {\bf The SRG encourages continued sampling and analysis to improve
 understanding of the Pacific Hake reproductive cycle.}
 
 \emph{Response -- A project was initiated at the Northwest Fisheries Science Center just
-  prior to the start of the COVID-19 pandemic that seeks to refine \fishname\ stock assessment
+  prior to the start of the COVID-19 pandemic that seeked to refine \fishname\ stock assessment
   assumptions through incorporation of physiological indices of fish reproductive and metabolic status.
   This novel biological information would bolster the current practice of using gonadal histology
   alone for surveyed \fishname, and provide important data to more accurately determine the reproductive
