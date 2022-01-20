@@ -762,45 +762,43 @@ wide range of uncertainty, the 95\% credibility interval being
 \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
 
 % May need to move after the next paragraph
-%%** Remove "(unilaterally summed)" text from this caption (and main-table caption; table 28) after 2021
+%%** Remove "(unilaterally summed)" text from this caption (and main-table caption; table 28) after 2022
 <<decisions-biomass-table, results='asis', echo=FALSE>>=
-make.decision.table(base.model,
-                    xcaption = paste0("**Forecast quantiles of \\fishname\\
-                     relative spawning biomass at the beginning of the year
-                     before fishing.  Catch alternatives are based on: constant
-                     catch levels (rows ",
+new_decision_table(base.model,
+                   xcaption =
+                     paste0("Forecast quantiles of \\fishname\\
+                     relative spawning biomass at the beginning of the year.
+                     Catch alternatives are based on: constant
+                     catches (rows ",
                      catch.constant.str,
                      "), including catch similar to ",
-                     min(forecast_yrs)-1," (row ",
+                     min(forecast_yrs_extra)-1," (row~",
                      letters[catch.actual.ind],
-                     "), to catch levels reduced by 10\\% each year (rows ",
-                     catch.reduction.str,
-                     "); to the (unilaterally summed) TAC from ",
-                     min(forecast_yrs)-1," (row ",
+                     ") and to the (unilaterally summed) TAC from ",
+                     min(forecast_yrs_extra)-1," (row~",
                      letters[catch.tac.ind],
-                     "); and non-constant catch levels that result
-                     in a median relative fishing intensity of 100\\% (row ",
+                     "); and non-constant catches that result in
+                     annual 10\\% declines in catch (rows ",
+                     catch.reduction.str,
+                     "), median relative fishing intensity of 100\\% (row ",
                      letters[catch.spr100.ind],
-                     "), the median values estimated ",
+                     "), median catch estimated ",
                      "via the default harvest policy
-                     (\\Ffortyten, row ",
+                     (\\Ffortyten, row~",
                      letters[catch.default.policy.ind],
                      "), and the fishing intensity that results in a 50\\% probability that the median
                      projected catch will remain the same in ",
-                     min(forecast_yrs),
+                     min(forecast_yrs_extra),
                      " and ",
-                     min(forecast_yrs)+1,
-                     " (row ",
+                     min(forecast_yrs_extra)+1,
+                     " (row~",
                      letters[catch.stable.ind],
-                     "). Catch in ",
-                     max(forecast_yrs),
-                     " does not impact the beginning of the year biomass in ",
-                     max(forecast_yrs),
-                     "."),
-                    xlabel = "tab:es-decisions-biomass",
-                    font.size = 10,
-                    space.size = 11,
-                    type = "biomass")
+                     ")."),
+                   xlabel = "tab:es-decisions-biomass",
+                   font.size = 11,
+                   space.size = 12,
+                   type = "biomass",
+                   placement = "tbp")
 @
 
 **Mention switch to new format**  Decision tables give the projected population status (relative spawning biomass)
