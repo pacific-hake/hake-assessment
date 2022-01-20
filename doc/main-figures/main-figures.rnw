@@ -831,7 +831,7 @@ make.forecast.risk.comparison.plot(base.model,
                                    legend.cex = 0.7)
 @
 \end{center}
-\caption{**Graphical representation of the base model results presented in Table \ref{tab:main-risk-year-1} for various catches in
+\caption{Graphical representation of the base model results presented in Table \ref{tab:main-risk-year-1} for various catches in
   \Sexpr{forecast_yrs[1]}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
 \label{fig:main-forecast-risk-comparison-year-1}
 %% \end{figure}
@@ -850,7 +850,7 @@ make.forecast.risk.comparison.plot(base.model,
                                    legend.cex = 0.7)
 @
 \end{center}
-\caption{**Graphical representation of the base model results presented in Table~\ref{tab:main-risk-year-2} for catch in
+\caption{Graphical representation of the base model results presented in Table~\ref{tab:main-risk-year-2} for catch in
   \Sexpr{forecast_yrs[2]}, given the \Sexpr{forecast_yrs[1]} catch level shown in Table \ref{tab:main-risk-year-1}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
 \label{fig:main-forecast-risk-comparison-year-2}
 \end{figure}
@@ -870,7 +870,7 @@ make.forecast.risk.comparison.plot(base.model,
                                    legend.cex = 0.7)
 @
 \end{center}
-\caption{**Graphical representation of the base model results presented in Table \ref{tab:main-risk-year-3} for catch in
+\caption{Graphical representation of the base model results presented in Table \ref{tab:main-risk-year-3} for catch in
   \Sexpr{forecast_yrs[3]}, given the \Sexpr{forecast_yrs[1]} and \Sexpr{forecast_yrs[2]}
   catch levels shown in Tables~\ref{tab:main-risk-year-1} and~\ref{tab:main-risk-year-2}.
   The symbols indicate points
