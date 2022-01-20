@@ -845,81 +845,7 @@ make.decision.table(base.model,
                     placement = "tbp")
 @
 
-
-
-\clearpage  % 2018: Then forces Table i and Fig j to be on same page, and j/k.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tbp]
-\begin{center}
-<<forecast-depletion-comparison-plot, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median relative spawning biomass is projected to decline for all non-zero catch levels evaluated">>=
-## Look at catch.levels and catch.levels to decide which to include here
-## models.inds are the indices of those which will be plotted against each other
-models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
-models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds]
-                       ## pretty catch level name
-make.forecast.depletion.comparison.plot(base.model,
-                                        models.inds,
-                                        models.names,
-                                        start.yr = 2009,
-                                        model.end.yr = end.yr,
-                                        end.yr =forecast_yrs[length(forecast_yrs)],
-                                        legend.loc = "topleft")
-@
-\end{center}
-\caption{Time series of estimated relative spawning biomass to \Sexpr{end.yr}
-         from the base model, and forecast trajectories to
-         \Sexpr{forecast_yrs[length(forecast_yrs)]} (grey region) for several management actions
-         defined in Table~\ref{tab:es-decisions-biomass}, with 95\%
-         posterior credibility intervals.}
-\label{fig:es-forecast-depletion-comparison}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tbp]
-\begin{center}
-<<forecast-risk-comparison-plot-year-1, fig.height=5, fig.width=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline next year regardless of catch level">>=
-make.forecast.risk.comparison.plot(base.model,
-                                   forecast_yrs = forecast_yrs,
-                                   fore.yr = forecast_yrs[1],
-                                   colors = c("black","blue","green","orange",
-                                              "red","tan"),
-                                   pch = c(16,17,17,17,15,18),
-                                   legend.loc = "topleft",
-                                   legend.cex = 0.7)
-@
-\end{center}
-\caption{Graphical representation of the probabilities related to spawning
-         biomass, relative fishing intensity, and the \Sexpr{end.yr+1} default
-         harvest policy catch for alternative \Sexpr{end.yr} catch options
-         (explained in Table~\ref{tab:es-decisions-biomass}) as listed in
-         Table~\ref{tab:es-risk-year-1}. The symbols indicate points that were
-         computed directly from model output and lines interpolate between the
-         points.}
-\label{fig:es-forecast-risk-comparison-year-1}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Move to after next paragraph if it appears too early. It shouldn't since
-%  so many tables around.
-<<risk-forecast-year-1-table, results='asis', echo=FALSE>>=
-make.risk.table(base.model,
-                forecast_yrs,
-                index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
-                           ##  forecast year 2 compared to forecast year 1
-                xcaption = paste0("Probabilities related to spawning biomass,
-                             relative fishing intensity, and the ",end.yr+1,
-                             " default harvest policy catch for alternative ",
-                             end.yr," catch options (explained in
-                             Table~\\ref{tab:es-decisions-biomass})."),
-                xlabel = "tab:es-risk-year-1",
-                font.size = 12,
-                space.size = 14,
-                placement = "tbp")
-@
-
+[**May have to move paragraph after tables]
 **Management metrics that were identified as important to the Joint Management Committee and the Advisory
 Panel in 2012 are presented for
 \Sexpr{forecast_yrs[2:(length(forecast_yrs)-1)]} and
@@ -954,12 +880,92 @@ $<$\Sexpr{f(catch_levels[[5]][[1]][1])}~t in \Sexpr{assess.yr+1}.
 This explains why a few probabilities decline
 (rather than rise) with increased \Sexpr{assess.yr+1} catch levels in Table~\ref{tab:es-risk-year-2}
 and Figure~\ref{fig:es-forecast-risk-comparison-year-2}.
-%
-%
+
+
+% \clearpage  % 2018: Then forces Table i and Fig j to be on same page, and j/k.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<forecast-risk-comparison-plot-year-2, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline next year regardless of catch level">>=
+<<forecast-depletion-comparison-plot, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median relative spawning biomass is projected to decline for all non-zero catch levels evaluated">>=
+## Look at catch.levels and catch.levels to decide which to include here
+## models.inds are the indices of those which will be plotted against each other
+models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
+models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds]
+                       ## pretty catch level name
+make.forecast.depletion.comparison.plot(base.model,
+                                        models.inds,
+                                        models.names,
+                                        start.yr = 2009,
+                                        model.end.yr = end.yr,
+                                        end.yr =forecast_yrs[length(forecast_yrs)],
+                                        legend.loc = "topleft")
+@
+\end{center}
+\caption{Time series of estimated relative spawning biomass to \Sexpr{end.yr}
+         from the base model, and forecast trajectories to
+         \Sexpr{forecast_yrs[length(forecast_yrs)]} (grey region) for several management actions
+         defined in Table~\ref{tab:es-decisions-biomass}, with 95\%
+         posterior credibility intervals.}
+\label{fig:es-forecast-depletion-comparison}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
+
+%% 2022: To keep each year's figure and table on the same page, due to
+%%  the five extra catch streams, needed to shrink fig.height from 5 to 4.5
+%%  and have smaller space.size for Year 2 and 3 tables (since caption
+%%  has an extra row -- could keep all captions to two rows of text, but
+%%  tweaking the spacing seemed a better option to keep the captions explicit).
+%%  Year 1 forecast
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tbp]
+\begin{center}
+<<forecast-risk-comparison-plot-year-1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline next year regardless of catch level">>=
+make.forecast.risk.comparison.plot(base.model,
+                                   forecast_yrs = forecast_yrs,
+                                   fore.yr = forecast_yrs[1],
+                                   colors = c("black","blue","green","orange",
+                                              "red","tan"),
+                                   pch = c(16,17,17,17,15,18),
+                                   legend.loc = "topleft",
+                                   legend.cex = 0.7)
+@
+\end{center}
+\caption{Graphical representation of the probabilities related to spawning
+         biomass, relative fishing intensity, and the \Sexpr{end.yr+1} default
+         harvest policy catch for alternative \Sexpr{end.yr} catch options
+         (explained in Table~\ref{tab:es-decisions-biomass}) as listed in
+         Table~\ref{tab:es-risk-year-1}. The symbols indicate points that were
+         computed directly from model output and lines interpolate between the
+         points.}
+\label{fig:es-forecast-risk-comparison-year-1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+<<risk-forecast-year-1-table, results='asis', echo=FALSE>>=
+make.risk.table(base.model,
+                forecast_yrs,
+                index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
+                           ##  forecast year 2 compared to forecast year 1
+                xcaption = paste0("Probabilities related to spawning biomass,
+                             relative fishing intensity, and the ",end.yr+1,
+                             " default harvest policy catch for alternative ",
+                             end.yr," catch options (explained in
+                             Table~\\ref{tab:es-decisions-biomass})."),
+                xlabel = "tab:es-risk-year-1",
+                font.size = 12,
+                space.size = 12,
+                placement = "tbp")
+@
+\clearpage
+
+%% Year 2 forecast
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tbp]
+\begin{center}
+<<forecast-risk-comparison-plot-year-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline next year regardless of catch level">>=
 make.forecast.risk.comparison.plot(base.model,
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[2],
@@ -988,16 +994,18 @@ make.risk.table(base.model,
                 xcaption = paste0("Probabilities related to spawning biomass,
                  relative fishing intensity, and the ",end.yr+2," default harvest
                  policy catch for alternative ",end.yr+1," catch options, given
-                 the ",end.yr," catch level shown in
+                 the ",end.yr," catch shown in
                  Table~\\ref{tab:es-risk-year-1} (catch options explained in
                  Table~\\ref{tab:es-decisions-biomass})."),
                 xlabel = "tab:es-risk-year-2",
                 font.size = 12,
-                space.size = 14,
+                space.size = 11,
                 placement = "tbp")
 @
-%
 
+\clearpage
+
+%% Year 3 forecast
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
@@ -1036,19 +1044,19 @@ make.risk.table(base.model,
                                   end.yr,
                                   " and ",
                                   end.yr+1,
-                                  " catch levels shown in
+                                  " catches shown in
                                   Tables~\\ref{tab:es-risk-year-1}
                                   and~\\ref{tab:es-risk-year-2}  (catch options
                                   explained in Table
                                   \\ref{tab:es-decisions-biomass})."),
                 xlabel = "tab:es-risk-year-3",
-                font.size = 10,
+                font.size = 12,
                 space.size = 11,
                 placement = "tbp")
 @
 \clearpage
 
-
+%% End of projection figures and tables code
 
 **The predicted relative spawning biomass trajectory through
 \Sexpr{forecast_yrs[length(forecast_yrs)]} is shown in
