@@ -594,8 +594,8 @@ make.risk.table(base.model,
                                   end.yr,
                                   " catch options (catch options explained in Table \\ref{tab:main-decisions-biomass})."),
                 xlabel = "tab:main-risk-year-1",
-                font.size = 10,
-                space.size = 11)
+                font.size = 12,
+                space.size = 13)
 @
 
 <<main-risk-forecast-year-2-table, results='asis', echo=FALSE>>=
@@ -612,8 +612,8 @@ make.risk.table(base.model,
                                   " catch level shown in Table~\\ref{tab:main-risk-year-1} (catch options
                                   explained in Table \\ref{tab:main-decisions-biomass})."),
                 xlabel = "tab:main-risk-year-2",
-                font.size = 10,
-                space.size = 11)
+                font.size = 12,
+                space.size = 13)
 @
 
 <<main-risk-forecast-year-3-table, results='asis', echo=FALSE>>=
@@ -635,8 +635,8 @@ make.risk.table(base.model,
                                   explained in Table
                                   \\ref{tab:main-decisions-biomass})."),
                 xlabel = "tab:main-risk-year-3",
-                font.size = 10,
-                space.size = 11)
+                font.size = 12,
+                space.size = 13)
 @
 
 
