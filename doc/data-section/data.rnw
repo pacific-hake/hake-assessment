@@ -11,7 +11,7 @@ Fishery-dependent and fishery-independent data used in this assessment
   from \Sexpr{start.yr} to \Sexpr{last.data.yr} (Tables
   \ref{tab:intro-catches-US}--\ref{tab:main-landings-tac}).
 
-\item **Age compositions aggregated by year and country for the last ten years
+\item Fishery age compositions aggregated by year and country for the last ten years
   are available
   (Tables~\ref{tab:main-us-cp-age-data}--\ref{tab:main-can-ft-age-data})
   to investigate region-specific trends;
@@ -29,10 +29,10 @@ Fishery-dependent and fishery-independent data used in this assessment
   Tables~\ref{tab:main-all-age-data-survey} and~\ref{tab:main-survey-history}
   and Figures~\ref{fig:main-age-comp-bubbles} and~\ref{fig:main-survey-extrap-biomass}).
 
-\item The age-1 index (billions of age-1 fish) derived from the survey
+\item The age-1 index (billions of age-1 fish) derived from the \surveyname\
   (Table~\ref{tab:main-survey-history} and Figure~\ref{fig:main-age-one-index}).
 
-\item ** Mean observed weight-at-age from fishery and survey catches
+\item Mean observed weight-at-age from fishery and survey catches
   (1975-\Sexpr{max.fishery.age.prop[2]}; Figure~\ref{fig:main-empirical-weight-at-age})
   and, thus, derived fecundity-at-age as well (Figure~\ref{fig:main-maturity}).
 
@@ -45,8 +45,8 @@ were input as fixed values in the assessment model:
 
 \item Ageing-error matrices based on cross-read and double-blind-read otoliths.
 
-\item **Proportion of female hake mature by age, as developed from
-histological analyses of ovary samples collected in recent years
+\item Proportion of female hake mature by age, as developed from
+recent histological analyses of ovary samples
   (Table~\ref{tab:main-ogives} and Figure~\ref{fig:main-maturity}).
 
 \end{itemize}
@@ -99,10 +99,10 @@ additional data sources are:
 
 \subsubsection{Total catch}\label{sec:data-total-catch}
 
-**[think still good] The catch of \fishname\ for \Sexpr{start.yr}--\Sexpr{last.data.yr} is
+The catch of \fishname\ for \Sexpr{start.yr}--\Sexpr{last.data.yr} is
 summarized by nation and fishery sector
 (Tables~\ref{tab:intro-catches-US}--\ref{tab:main-landings-tac})
-and modeled as yearly catches.
+and modeled as yearly coast-wide catches.
 Catches in U.S. waters prior to 1978 are
 available only by year from \citet{BaileyFrancisEtAl1982} and historical
 assessment documents. Canadian catches prior to 1989 are also unavailable in
