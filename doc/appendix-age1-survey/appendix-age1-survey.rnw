@@ -356,44 +356,43 @@ make.reference.points.table(
                             placement = "H")
 @
 
+%%** Remove "(unilaterally summed)" text from this caption (and main-table caption; table 28) after 2022
 <<decisions-biomass-table-age1, results='asis', echo=FALSE>>=
-make.decision.table(sens.models.2[[1]],
-                    xcaption = paste0("Forecast quantiles of \\fishname\\
-                     relative spawning biomass at the beginning of the year
-                     before fishing.  Catch alternatives are based on: constant
-                     catch levels (rows ",
+new_decision_table(sens.models.2[[1]],
+                   xcaption =
+                     paste0("Forecast quantiles of \\fishname\\
+                     relative spawning biomass at the beginning of the year.
+                     Catch alternatives are based on: constant
+                     catches (rows ",
                      catch.constant.str,
                      "), including catch similar to ",
-                     min(forecast_yrs)-1," (row ",
+                     min(forecast_yrs_extra)-1," (row~",
                      letters[catch.actual.ind],
-                     ") and the TAC from ",
-                     min(forecast_yrs)-1," (row ",
+                     ") and to the (unilaterally summed) TAC from ",
+                     min(forecast_yrs_extra)-1," (row~",
                      letters[catch.tac.ind],
-                     "), the catch values that result
-                     in a median relative fishing intensity of 100\\% (row ",
+                     "); and non-constant catches that result in
+                     annual 10\\% declines in catch (rows ",
+                     catch.reduction.str,
+                     "), median relative fishing intensity of 100\\% (row ",
                      letters[catch.spr100.ind],
-                     "), the median values estimated ",
+                     "), median catch estimated ",
                      "via the default harvest policy
-                     (\\Ffortyten) for the base model (row ",
+                     (\\Ffortyten, row~",
                      letters[catch.default.policy.ind],
                      "), and the fishing intensity that results in a 50\\% probability that the median
                      projected catch will remain the same in ",
-                     min(forecast_yrs),
+                     min(forecast_yrs_extra),
                      " and ",
-                     min(forecast_yrs)+1,
-                     " (row ",
+                     min(forecast_yrs_extra)+1,
+                     " (row~",
                      letters[catch.stable.ind],
-                     "). Catch in ",
-                     max(forecast_yrs),
-                     " does not impact the beginning of the
-                     year biomass in ",
-                     max(forecast_yrs),
-                     "."),
+                     ")."),
                     xlabel = "tab:decisions-biomass-age1",
-                    font.size = 12,
-                    space.size = 14,
-                    type = "biomass",
-                    placement = "H")
+                   font.size = 11,
+                   space.size = 12,
+                   type = "biomass",
+                   placement = "H")
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -419,19 +418,19 @@ make.forecast.depletion.comparison.plot(sens.models.2[[1]],
          \Sexpr{forecast_yrs[length(forecast_yrs)]} (grey region) for several management actions
          defined in Table~\ref{tab:decisions-biomass-age1}, with 95\%
          posterior credibility intervals.}
-% The \Sexpr{end.yr} catch of \Sexpr{f(base.model$catch.default.policy[1])}~t was calculated
-%  using the default harvest policy, as defined in the Agreement.}
-% Above commented sentence Was in 2016 but I think is wrong - plot shows the
-%  FI=100% action, so not sure why this talks about default HR (action g).
-%  And no need to define anything here again anyway; now just refer to table.
 \label{fig:forecast-depletion-comparison-age1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+\clearpage
+
+%% 2022: See notes in Exec Summary regarding tweaks to keep each year's figure
+%%  and table on the same page, due to the five extra catch streams.
+%%  Year 1 forecast
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+\begin{figure}[tbp]
 \begin{center}
-<<forecast-risk-comparison-plot-year-1-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline next year regardless of catch level using the age-1 sensitivity model">>=
+<<forecast-risk-comparison-plot-year-1-age1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline next year regardless of catch level using the age-1 sensitivity model">>=
 make.forecast.risk.comparison.plot(sens.models.2[[1]],
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[1],
@@ -444,15 +443,14 @@ make.forecast.risk.comparison.plot(sens.models.2[[1]],
 \end{center}
 \caption{Graphical representation of the probabilities related to spawning
          biomass, relative fishing intensity, and the \Sexpr{end.yr+1} default
-         harvest policy catch for alternative \Sexpr{end.yr} catch options (catch
-         options explained in Table~\ref{tab:decisions-biomass-age1}) as listed in
+         harvest policy catch for alternative \Sexpr{end.yr} catch options
+         (explained in Table~\ref{tab:decisions-biomass-age1}) as listed in
          Table~\ref{tab:risk-year-1-age1}. The symbols indicate points that were
          computed directly from model output and lines interpolate between the
          points.}
 \label{fig:forecast-risk-comparison-year-1-age1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
 <<risk-forecast-year-1-table-age1, results='asis', echo=FALSE>>=
 make.risk.table(sens.models.2[[1]],
                 forecast_yrs,
@@ -461,18 +459,20 @@ make.risk.table(sens.models.2[[1]],
                 xcaption = paste0("Probabilities related to spawning biomass,
                              relative fishing intensity, and the ",end.yr+1,
                              " default harvest policy catch for alternative ",
-                             end.yr," catch options (catch options explained in
+                             end.yr," catch options (explained in
                              Table~\\ref{tab:decisions-biomass-age1})."),
                 xlabel = "tab:risk-year-1-age1",
                 font.size = 12,
-                space.size = 14,
-                placement = "H")
+                space.size = 12,
+                placement = "tbp")
 @
+\clearpage
 
+%% Year 2 forecast
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+\begin{figure}[tbp]
 \begin{center}
-<<forecast-risk-comparison-plot-year-2-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline next year regardless of catch level using the age-1 sensitivity model">>=
+<<forecast-risk-comparison-plot-year-2-age1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline next year regardless of catch level using the age-1 sensitivity model">>=
 make.forecast.risk.comparison.plot(sens.models.2[[1]],
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[2],
@@ -493,7 +493,6 @@ directly from model output and lines interpolate between the points.}
 \label{fig:forecast-risk-comparison-year-2-age1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
 <<risk-forecast-year-2-table-age1, results='asis', echo=FALSE>>=
 make.risk.table(sens.models.2[[1]],
                 forecast_yrs,
@@ -502,13 +501,64 @@ make.risk.table(sens.models.2[[1]],
                 xcaption = paste0("Probabilities related to spawning biomass,
                  relative fishing intensity, and the ",end.yr+2," default harvest
                  policy catch for alternative ",end.yr+1," catch options, given
-                 the ",end.yr," catch level shown in
+                 the ",end.yr," catch shown in
                  Table~\\ref{tab:risk-year-1-age1} (catch options explained in
                  Table~\\ref{tab:decisions-biomass-age1})."),
                 xlabel = "tab:risk-year-2-age1",
                 font.size = 12,
-                space.size = 14,
-                placement = "H")
+                space.size = 11,
+                placement = "tbp")
+@
+\clearpage
+
+%% Year 3 forecast
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tbp]
+\begin{center}
+<<forecast-risk-comparison-plot-year-3-age1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline in the next three years regardless of catch level using the age-1 sensitivity model">>=
+make.forecast.risk.comparison.plot(sens.models.2[[1]],
+                                   forecast_yrs = forecast_yrs,
+                                   fore.yr = forecast_yrs[3],
+                                   colors = c("black","blue","green","orange","red","tan"),
+                                   pch = c(16,17,17,17,15,18),
+                                   legend.loc = "topleft",
+                                   legend.cex = 0.7)
+@
+\end{center}
+\caption{Graphical representation of the probabilities related to spawning
+biomass, relative fishing intensity, and the \Sexpr{end.yr+3} default harvest
+policy catch for
+ alternative \Sexpr{end.yr+2} catch options (including
+associated \Sexpr{end.yr} and \Sexpr{end.yr+1} catches; catch options explained in
+Table~\ref{tab:decisions-biomass-age1}) as listed in
+Table~\ref{tab:risk-year-3-age1}.
+The symbols indicate points
+that were computed directly from model output and lines interpolate between the points.}
+\label{fig:forecast-risk-comparison-year-3-age1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+<<risk-forecast-year-3-table-age1, results='asis', echo=FALSE>>=
+make.risk.table(sens.models.2[[1]],
+                forecast_yrs,
+                index = 3, ## Index in model$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                xcaption = paste0("Probabilities related to spawning biomass,
+                                 relative fishing intensity, and the ",
+                                  end.yr+3,
+                                  " default harvest policy catch for alternative ",
+                                  end.yr+2,
+                                  " catch options, given the ",
+                                  end.yr,
+                                  " and ",
+                                  end.yr+1,
+                                  " catches shown in
+                                  Tables~\\ref{tab:risk-year-1-age1}
+                                  and~\\ref{tab:risk-year-2-age1}  (catch options
+                                  explained in Table
+                                  \\ref{tab:decisions-biomass-age1})."),
+                xlabel = "tab:risk-year-3-age1",
+                font.size = 12,
+                space.size = 11,
+                placement = "tbp")
 @
 
 \clearpage        % needed for footer to be correct
