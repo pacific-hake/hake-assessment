@@ -31,10 +31,12 @@ run_adnuts <- function(path,
                        n_final = 8000,
                        warmup_final = 250,
                        adapt_delta = 0.9,
+                       parallel = TRUE,
                        run_mle = TRUE,
                        check_issues = FALSE,
                        save_image = TRUE,
                        extra_mcmc = FALSE,
+                       hess_step = FALSE,
                        exe = ifelse(exists("ss_executable"), ss_executable, "ss"),
                        input_files = c(ifelse(exists("starter_file_name"), starter_file_name, "starter.ss"),
                                        ifelse(exists("starter_file_name"), forecast_file_name, "forecast.ss"),
@@ -68,8 +70,12 @@ run_adnuts <- function(path,
   if(extra_mcmc){
     dir.create(file.path(mcmc_path, "sso"), showWarnings = FALSE)
   }
+  if(hess_step){
+    input_files <- c(input_files, "admodel.cov", "admodel.hes", "ss.bar")
+  }
   files <- file.path(path, input_files)
   file.copy(files, mcmc_path)
+
   if(extra_mcmc){
     modify_starter_mcmc_type(mcmc_path, 2)
   }else{
@@ -78,14 +84,18 @@ run_adnuts <- function(path,
 
   if(run_mle){
     system_(paste0("cd ", path, " && ", exe))
+    if(hess_step){
+      system_(paste0("cd ", path, " && ", exe, " -hbf 1 -nox -iprint 200 -mcmc 15 -hess_step 10 -binp ss.bar"))
+    }else{
+      # First re-optimize to get the correct mass matrix for NUTS (and without
+      # bias adjustment turned on). Note the -hbf 1 argument.
+      # This is a technical requirement b/c NUTS uses a different set of bounding
+      # functions and thus the mass matrix will be different.
+      system_(paste0("cd ", mcmc_path, " && ", exe, " -hbf 1 -nox -iprint 200 -mcmc 15"))
+    }
   }
 
   # Run ADNUTS MCMC
-  # First re-optimize to get the correct mass matrix for NUTS (and without
-  # bias adjustment turned on). Note the -hbf 1 argument.
-  # This is a technical requirement b/c NUTS uses a different set of bounding
-  # functions and thus the mass matrix will be different.
-  system_(paste0("cd ", mcmc_path, " && ", exe, " -hbf 1 -nox -iprint 200 -mcmc 15"))
   # Use default MLE covariance (mass matrix) and short parallel NUTS chains
   # started from the MLE. Recall iter is number per core running in parallel.
   nuts_mle <- sample_admb(model = exe,
@@ -94,10 +104,12 @@ run_adnuts <- function(path,
                           iter = 100,
                           init = NULL,
                           seeds = seeds,
+                          parallel = parallel,
                           chains = chains,
                           warmup = 50,
                           control = list(metric = "mle",
-                                         adapt_delta = adapt_delta))
+                                         adapt_delta = adapt_delta),
+                          hess_step = hess_step)
   # Check for issues like slow mixing, divergences, max tree depths with
   # ShinyStan and pairs_admb as above. Fix using the shiny app and rerun this part as needed.
   rdata_file <- file.path(mcmc_path, "hake.Rdata")
@@ -119,11 +131,13 @@ run_adnuts <- function(path,
                               iter = iterations,
                               init = inits,
                               seeds = seeds,
+                              parallel = parallel,
                               chains = chains,
                               warmup = warmup_final,
                               mceval = TRUE,
                               control = list(metric = mass,
-                                             adapt_delta = adapt_delta))
+                                             adapt_delta = adapt_delta),
+                              hess_step = hess_step)
 
   save(list = ls(all.names = TRUE), file = rdata_file, envir = environment())
   system_(paste0("cd ", mcmc_path, " && ", exe, " -mceval"))
