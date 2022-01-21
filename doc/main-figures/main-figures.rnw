@@ -25,7 +25,7 @@ make.overview.map.plot(path = rootd.map.data)
                 %  from -20 to -21 jumps it to the left when using center.
                 %  Commenting out {center} works better.
 \pdftooltip{\includegraphics[max size={1.15\paperwidth}{1.15\paperheight}]
-  {main-figures/hake_survey_1995-19_NASCTimeSeries_BiomassAtAgeHistograms_grayblue}}{This
+  {main-figures/hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue_update}}{This
   figure shows that \fishname\ migrate further north in some years}
   % Download from Google Drive
 % \end{center}
@@ -52,7 +52,7 @@ make.overview.map.plot(path = rootd.map.data)
 \begin{center}
 \hspace{-10mm}
 \pdftooltip{\includegraphics[max size={1.10\paperwidth}{1.10\paperheight}]
-   {main-figures/age1hake_03-19_sA_squareroot_bin_narrow-panel_bluergray}}{This
+   {main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue}}{This
    figure shows the assumed varying locations of age-1 \fishname}
    % Download from Google Drive
 \end{center}
