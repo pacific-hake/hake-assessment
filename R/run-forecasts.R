@@ -60,7 +60,6 @@ run_forecasts <- function(model_path,
       unlink(file.path(new_forecast_dir, derposts_file_name), force = TRUE)
       unlink(file.path(new_forecast_dir, posts_file_name), force = TRUE)
       unlink(file.path(new_forecast_dir, "sso"), force = TRUE)
-      # Create sso folder before calling or the posteriors.sso, etc. files will not be created
       shell_command <- paste0("cd ", new_forecast_dir, cmd_link, ss_executable, " -mceval")
       system_(shell_command, wait = TRUE, intern = !show_ss_output)
     })
