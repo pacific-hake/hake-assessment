@@ -478,8 +478,19 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
                                       probs = c(0.025, 0.975), ## Confidence interval values lower and upper
                                       y.max = 5.5e6, ## maximum value for the y-axis
                                       samples = 1000, ## how many lines to show
-                                      leg.cex = 1    ## Legend tect size
+                                      leg.cex = 1,    ## Legend tect size
+                                      survey.type = "biomass"   # or age1 for
+                                        # age-1 survey
                                       ){
+  stopifnot(survey.type %in% c("biomass", "age1"))
+  if(survey.type == "biomass"){
+    y.lab = "Biomass index (million t)"
+    survey.index = 2} else {
+
+    y.lab = "Age-1 index (*** billions fish??)"
+    survey.index = 3
+  }
+
   ## Plot the fit of the model to the acoustic survey with 95% C.I.
   oldpar <- par()
   par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
@@ -491,9 +502,9 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
        yaxs = 'i',
        axes = FALSE,
        xlab = "Year",
-       ylab = "Biomass index (million t)")
+       ylab = y.lab)
   dat <- model$dat
-  cpue <- dat$CPUE[dat$CPUE$index > 0,]
+  cpue <- dat$CPUE[dat$CPUE$index == survey.index,]
   segments(x0 = as.numeric(cpue$year),
            y0 = qlnorm(probs[1], meanlog = log(as.numeric(cpue$obs)), sdlog = as.numeric(cpue$se_log)),
            y1 = qlnorm(probs[2], meanlog = log(as.numeric(cpue$obs)), sdlog = as.numeric(cpue$se_log)),
@@ -542,10 +553,10 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
   )
   # Observed points
   points(col = "black",
-    x = model$cpue$Yr[model$cpue$Use==1],
-    y = model$cpue$Obs[model$cpue$Use == 1],
+    x = cpue$year,  # model$cpue$Yr[model$cpue$Use==1],
+    y = cpue$obs,   #model$cpue$Obs[model$cpue$Use == 1],
     pch = 1)
-  axis(1, at = model$cpue$Yr[model$cpue$Use==1], cex.axis = 0.8, tcl = -0.6)
+  axis(1, at = cpue$year, cex.axis = 0.8, tcl = -0.6)
   axis(1,
        at = (start.yr-4):(end.yr+7),
        lab = rep("", length((start.yr-4):(end.yr+7))),
