@@ -186,7 +186,7 @@ sens.model.names.2 <- c("Remove Age 1 Index",
 ## -----------------------------------------------------------------------------
 sens.model.dir.names.4 <- c("2022.01.27_tvSelect_phi_extralow",
                             "2022.01.28_tvSelect_phi_low",
-                            "2022.01.28_tvSelect_phi_low") # "2022.01.29_tvSelect_phi_high")  # CHANGE WHEN IT's RUN
+                            "2022.01.29_tvSelect_phi_high")
 sens.model.names.4 <- c("Phi t.v. selectivity (0.21)",
                         "Phi t.v. selectivity (0.70)",
                         "Phi t.v. selectivity (2.10)")
