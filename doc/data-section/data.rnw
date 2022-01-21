@@ -293,7 +293,7 @@ transects were mostly separated by 10 nmi, except 20 nmi spacing was used north 
 Bay to Cape Mendocino and again in northern Washington to account for available ship days at sea.
 In Canada, transects were separated by 10 nmi along Vancouver Island and then 20 nmi further north. The
 NOAA ship Bell M. Shimada and the F/V Nordic Pearl worked collaboratively to completed the full extent
-of the survey in 2021. 
+of the survey in 2021.
 %Four saildrones (Saildrone, Inc) accompanied the Shimada in U.S. waters during the
 %survey, attempting to remain within approximately 3-5 days of the Shimada on any given transect.
 %The utility of saildrones as a tool for \fishname\ management is currently being evaluated.
@@ -326,7 +326,7 @@ Weak 2019 El Ni\~no conditions decreased in their prevalence starting in March o
 to neutral conditions by July. Consequently,
 the 2019 survey saw \fishname\ on all survey transects from just north of Morro Bay, California to the northern end of Vancouver Island, with the greatest offshore extent found off of Cape Mendocino. The 2021 survey saw the majority of \fishname\ in
 U.S. waters and a continuation of moving towards higher productivity, La Ni\~na conditions in the
-California Current from 2020 to 2021. 
+California Current from 2020 to 2021.
 Ongoing research is looking into relationships between environmental
 conditions and \fishname\ distribution and recruitment, which will help to inform the mechanisms
 behind observations \citep{MalickSiedleckiEtAl2020}.
@@ -419,7 +419,7 @@ the  EK 60 and EK80 echosounders (the same approach used for the acoustic-trawl 
 analyses confirmed that the same conversion factor was appropriate. In 2021, some age-1 fish were found
 in isolated homogeneous pockets, but were more so found to be mixed in with older fish.
 That same general pattern has occurred since 2015, with the exception of 2019 were age-1 fish were
-mostly in isolated pockets. 
+mostly in isolated pockets.
 
 The decision to include the age-1 index in the base model this year was based on
 multiple factors. While the acoustic-trawl survey  was not originally designed to
@@ -807,5 +807,5 @@ the effective sample sizes. The Francis method is known to be sensitive to
 outliers and prone to convergence issues when selectivity is time-varying. As
 a result, a sensitivity analysis was conducted that down-weighted composition data
 to a level consistent with weights obtained from the McAllister-Ianelli harmonic
-mean method (see Section~\ref{sec:assessment-sensitivity-analyses). 
+mean method (see Section~\ref{sec:assessment-sensitivity-analyses}).
 % todo: potentially remove the McAllister and Francis descriptions in 2022
