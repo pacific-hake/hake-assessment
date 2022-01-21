@@ -457,14 +457,14 @@ given in the 2013 stock assessment \citep{JTC2013}.
 
 \subsubsection{Maturity and fecundity}\label{sec:data-maturity}
 
-**The fecundity relationship data were updated for the 2018 assessment
+The fecundity relationship data were updated for the 2018 assessment
 \citep{JTC2018}.
 Previously, fecundity was based on the product of the maturity-at-length reported
 by \citet{DornSaunders1997} and the weight-at-length estimated in 2011. These
 values were converted to fecundity-at-age using a parametric growth curve
 estimated in 2011 from a model that included length data.
 
-**In 2018, a new age-based maturity ogive
+In 2018, a new age-based maturity ogive
 (Table~\ref{tab:main-ogives} and Figure~\ref{fig:main-maturity})
 was developed using histological estimates
 of functional maturity from 1,947 ovaries that were associated with age estimates.
@@ -480,7 +480,7 @@ noting that additional samples are available (including samples collected from
 Canadian waters since 2018) but have yet to be analyzed.
 % Manual 2021 KFJ
 
-**Time-varying fecundity-at-age was modeled using year-specific weight-at-age
+Time-varying fecundity-at-age was modeled using year-specific weight-at-age
 values in the calculation of fecundity \citep{JTC2019}.
 Samples from age-15$+$ fish were pooled for both the maturity and weight-at-age
 estimation due to limited sample sizes. Consequently, the age 15$+$ estimates were
@@ -488,10 +488,13 @@ applied to ages 15-20 for purposes of modeling
 the population dynamics (Figure~\ref{fig:main-maturity}).
 
 Some fish at almost every age were found to be functionally immature based
-on the histological criteria.
+on histological criteria.
 Older, functionally immature fish are a combination of ``skip spawners''
 that will not be spawning in the upcoming year and senescent fish
-that appear to no longer have viable ovaries.
+that appear to no longer have viable ovaries. Recently initiated research
+is investigating the impacts of functionally immature individuals on
+estimates of spawning stock biomass. Results of which could help refine
+the fraction of fish mature at each age.
 
 Tissue samples for genetic analyses have been collected from many of the same
 fish from which ovaries were sampled. It is the hope that these genetic samples
@@ -514,7 +517,7 @@ result is that the presence of strong year classes is inflated in the age data
 while neighboring year classes are under-represented relative to what would be
 observed if ageing error were consistent at age across cohorts.
 
-**To account for these observation errors in the model, year-specific ageing-error
+To account for these observation errors in the model, year-specific ageing-error
 matrices (defined via vectors of standard deviations of observed age at true
 age) are applied, where the standard deviations of strong year classes are
 reduced by a constant proportion. For the 2009 and 2010 assessments, this
@@ -532,16 +535,15 @@ Since 2011, cohort-specific ageing error has been used to reduce
 the ageing-error standard deviation by a factor of 0.55
 for the largest cohorts: 1980, 1984, 1999, 2010, and 2014. In the 2014 base
 model \citep{JTC2014}, the 2008 cohort was also included in this set, but
-current estimates show this year class to be enough less than the four largest year classes
-that a reduction has not been included for the 2008 year class in any assessment since then.
-Also, the model presented
+subsequent estimates show this year class to not be as strong as previously thought, and
+thus was removed from this list since 2015. Also, the model presented
 here does not include the reduction in ageing error for age-1 fish under the
 assumption that they never represent a large enough proportion of the samples to
-cause the cohort-effect.
+cause measurement error related to the cohort-effect.
 
 \subsubsection{Weight-at-age}\label{sec:data-weight-at-age}
 
-**A matrix of empirically derived population weight-at-age by year
+A matrix of empirically derived population weight-at-age by year
 (Figure \ref{fig:main-empirical-weight-at-age}) is used in the
 current assessment model to translate numbers-at-age directly to biomass-at-age.
 Mean weight-at-age was
@@ -567,12 +569,12 @@ to the amount of catch, so the combinations of year and age with no samples
 should have relatively little importance in the overall estimates of the
 population dynamics.
 
-**Prior to 1975, weight-at-age is assumed to be equal to the mean across all years with data
+Prior to 1975, weight-at-age is assumed to be equal to the mean across all years with data
 (1975-\Sexpr{last.data.yr}), consistent with the \Sexpr{last.assess.yr} base model.
 Both forecast weight-at-age data and forecast selectivity are based on the respective means from the most recent five years
 (\Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}), for consistency.
 
-**The use of empirical weight-at-age is a convenient method
+The use of empirical weight-at-age is a convenient method
 to capture the variability in both the weight-at-length relationship within and
 among years as well as the variability in length-at-age, without requiring
 parametric models to represent these relationships. However, this method
@@ -606,7 +608,7 @@ successful for \fishname.
 The lack of success was particularly evident in the residuals to the
 length-frequency data from models prior to 2011. We have not revisited the
 potential avenues for explicitly modeling variability in length- and weight-at-age
-in this model but retain the empirical approach to modeling weight-at-age used since
+in this model, and retain the empirical approach to modeling weight-at-age used since
 2011 and described above, which models this variability implicitly.
 
 \subsection{Estimated parameters and prior probability distributions}\label{sec:data-estimated-parameters}
@@ -617,7 +619,7 @@ are used to fit the model. All informative priors are discussed below.
 
 \subsubsection{Natural Mortality}\label{sec:data-natural-mortality}
 
-**Since the 2011 assessment, a combination of the informative
+Since the 2011 assessment, a combination of the informative
 prior for natural mortality
 used in previous Canadian assessments and results from analyses using
 \citeauthor{Hoenig1983}'s (\citeyear{Hoenig1983}) method support the use of a
@@ -632,7 +634,7 @@ of new information on $M$ there has been little option to update the prior.
 
 \subsubsection{Steepness}\label{sec:data-steepness}
 
-**The prior for the steepness parameter of the stock-recruitment function
+The prior for the steepness parameter of the stock-recruitment function
 is based on the median (0.79) and the 20th (0.67) and 80th
 (0.87) percentiles from \citeauthor{MyersBowenEtAl1999}'s
 (\citeyear{MyersBowenEtAl1999}) meta-analysis of the family Gadidae and
@@ -707,9 +709,10 @@ where $\Phi$ is the standard deviation of the normal penalty function.
 A parameterization for selectivity deviations was explored
 \citep{JTC2018, JTC2019} based on \citet{Xu2019}
 in an effort to produce a more objective way to determine the degree of
-flexibility. **However, further testing of this approach is believed to be
-necessary before making the change so it
-is only used for a sensitivity analysis
+flexibility. However, further testing of this approach in conjunction with
+other time varying parameters is warranted. In response to the \fishname\ population
+being comprised of several large cohorts over the past decade, alternative maximum
+ages for selectivity were once again investigated this year as a sensitivity analysis
 (see Section~\ref{sec:assessment-sensitivity-analyses}).
 % Manual 2021 KFJ
 
@@ -722,7 +725,7 @@ automatically adjust the weight given to
 the fishery-composition data and the
 survey-composition data, respectively.
 % Prior information
-** Both priors for $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$
+Both priors for $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$
 are a normal distribution with a mean of \Sexpr{effn.prior[2]}
 and standard deviation of \Sexpr{effn.prior[3]}.
 In the 2019 assessment, uniform priors were used, but $\log
@@ -800,12 +803,9 @@ method which estimates the weights),
 where the sample sizes are adjusted such that the fit of the expected
 compositions should fit within the estimated uncertainty at a rate
 that is consistent with the variability expected given
-the effective sample sizes. This method is known to be sensitive to
-outliers and prone to convergence issues when selectivity is time-varying.
+the effective sample sizes. The Francis method is known to be sensitive to
+outliers and prone to convergence issues when selectivity is time-varying. As
+a result, a sensitivity analysis was conducted that down-weighted composition data
+to a level consistent with weights obtained from the McAllister-Ianelli harmonic
+mean method (see Section~\ref{sec:assessment-sensitivity-analyses). 
 % todo: potentially remove the McAllister and Francis descriptions in 2022
-
-** [todo: potentially remove the McAllister and Francis descriptions in 2022]
-Sensitivity analyses using the McAllister-Ianelli and the Francis methods
-instead of the D-M method
-are presented
-in Section~\ref{sec:assessment-sensitivity-analyses}.
