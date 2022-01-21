@@ -470,6 +470,7 @@ make.mcmc.diag.pairs.plot <- function(model,
         lower.panel = panel.cor)
 }
 
+# MCMC trace plots for either age-2+ biomass or age-1 index
 make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an mcmc run which has the output of the
                                                      ##  r4ss package's function SSgetMCMC and has the extra.mcmc member
                                       start.yr,      ## Year to start the plot
@@ -515,10 +516,25 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
   nsamp <- ncol(model$extra.mcmc$cpue.table) # total samples
   subsample <- floor(seq(1, nsamp, length.out=samples)) # subset (floor to get integers)
 
+  # Need to do biomass and age1 surveys, this was what it was when only biomass,
+  #  but the first rows were that index
+  # y = model$extra.mcmc$cpue.table[1:length(start.yr:end.yr), subsample],
+  # model$extra.mcmc$cpue.table is 54x8015, each row presumably corresponding to
+  #  a row of model$dat$CPUE. -survey.index here corresponds to non-survey years
+  y.vals.to.plot <- model$extra.mcmc$cpue.table[model$dat$CPUE$index %in%
+                                                c(survey.index, -survey.index) &
+                                                model$dat$CPUE$year %in%
+                                                start.yr:end.yr,
+                                                subsample]
+
+  # If doesn't work then try results from (may have to transpose, or reshape):
+  #  recr1 <- base.model$extra.mcmc$natage %>% dplyr::select("Yr", "1") %>%
+  #    dplyr::filter(Yr %in% 1995:2021)
+
   # lines showing expected survey values include in-between years
   # where no survey took place and therefore are not included in surv.yrs
   matplot(x = start.yr:end.yr,
-          y = model$extra.mcmc$cpue.table[1:length(start.yr:end.yr), subsample],
+          y = y.vals.to.plot,
           col = rgb(0, 0, 1, 0.03),
           type = 'l',
           add=TRUE,
