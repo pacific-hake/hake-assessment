@@ -480,16 +480,24 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
                                       y.max = 5.5e6, ## maximum value for the y-axis
                                       samples = 1000, ## how many lines to show
                                       leg.cex = 1,    ## Legend tect size
-                                      survey.type = "biomass"   # or age1 for
-                                        # age-1 survey
+                                      survey.type = "biomass", # or age1 for age-1 survey
+                                      survey.col = "black"  # colour for survey points
                                       ){
   stopifnot(survey.type %in% c("biomass", "age1"))
   if(survey.type == "biomass"){
     y.lab = "Biomass index (million t)"
-    survey.index = 2} else {
-
-    y.lab = "Age-1 index (*** billions fish??)"
+    survey.index = 2
+    legend.text = c("Observed survey biomass with\ninput (wide) and estimated (narrow) 95% intervals",
+                    "Median MCMC estimate of expected survey biomass",
+                    paste0("A subset (", samples, ") of the MCMC estimates of expected survey biomass"))
+    addedSE <- model$mcmc %>% summarise(across(starts_with("Q_extraSD_Acoustic"), ~median(.x)))
+  } else {
+    y.lab = "Age-1 index (billions of fish)"
     survey.index = 3
+    legend.text = c("Observed age-1 index with\ninput (wide) and estimated (narrow) 95% intervals",
+                    "Median MCMC estimate of expected age-1 numbers",
+                    paste0("A subset (", samples, ") of the MCMC estimates of expected age-1 numbers"))
+    addedSE <- model$mcmc %>% summarise(across(starts_with("Q_extraSD_Age1"), ~median(.x)))
   }
 
   ## Plot the fit of the model to the acoustic survey with 95% C.I.
@@ -510,17 +518,18 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
            y0 = qlnorm(probs[1], meanlog = log(as.numeric(cpue$obs)), sdlog = as.numeric(cpue$se_log)),
            y1 = qlnorm(probs[2], meanlog = log(as.numeric(cpue$obs)), sdlog = as.numeric(cpue$se_log)),
            lwd = 3,
-           lend = 1)
+           lend = 1,
+           col = survey.col)
 
   # subsamble to help the lines be more visible
   nsamp <- ncol(model$extra.mcmc$cpue.table) # total samples
   subsample <- floor(seq(1, nsamp, length.out=samples)) # subset (floor to get integers)
 
   # Need to do biomass and age1 surveys, this was what it was when only biomass,
-  #  but the first rows were that index
+  #  but the first rows happend to be that index:
   # y = model$extra.mcmc$cpue.table[1:length(start.yr:end.yr), subsample],
   # model$extra.mcmc$cpue.table is 54x8015, each row presumably corresponding to
-  #  a row of model$dat$CPUE. -survey.index here corresponds to non-survey years
+  #  a row of model$dat$CPUE. -survey.index here corresponds to non-survey years:
   y.vals.to.plot <- model$extra.mcmc$cpue.table[model$dat$CPUE$index %in%
                                                 c(survey.index, -survey.index) &
                                                 model$dat$CPUE$year %in%
@@ -528,7 +537,7 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
                                                 subsample]
 
   # If doesn't work then try results from (may have to transpose, or reshape):
-  #  recr1 <- base.model$extra.mcmc$natage %>% dplyr::select("Yr", "1") %>%
+  #  recr1 <- model$extra.mcmc$natage %>% dplyr::select("Yr", "1") %>%
   #    dplyr::filter(Yr %in% 1995:2021)
 
   # lines showing expected survey values include in-between years
@@ -540,38 +549,39 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
           add=TRUE,
           lty = 1)
   lines(x = start.yr:end.yr,
-        y = model$extra.mcmc$cpue.median[1:length(start.yr:end.yr)],
+        # y = model$extra.mcmc$cpue.median[1:length(start.yr:end.yr)],
+        y = model$extra.mcmc$cpue.median[model$dat$CPUE$index %in%
+                                         c(survey.index, -survey.index) &
+                                         model$dat$CPUE$year %in%
+                                         start.yr:end.yr],
         col = rgb(0, 0, 0.5, 0.7),
         lty = 1,
         lwd = 3)
   legend('topleft',
-         legend = c("Observed survey biomass with\ninput (wide) and estimated (narrow) 95% intervals",
-                    "Median MCMC estimate of expected survey biomass",
-                    paste0("A subset (", samples, ") of the MCMC estimates of expected survey biomass")),
+         legend = legend.text,
          lwd = c(NA,3,1),
          pch = c(21, NA, NA),
          bg = 'white',
          text.col = gray(0.6),
-         col = c(1,
+         col = c(survey.col,
                  rgb(0, 0, 0.5, 0.7),
                  rgb(0, 0, 1, 0.4)),
          cex = leg.cex,
          bty = 'n')
   # Estimated interval with added uncertainty
-  addedSE <- model$mcmc %>%
-    summarise(across(starts_with("Q_extraSD"), ~median(.x)))
   arrows(
     x0 = as.numeric(cpue$year),
     x1 = as.numeric(cpue$year),
     y0 = qlnorm(probs[1], meanlog = log(as.numeric(cpue$obs)), sdlog = as.numeric(cpue$se_log) + addedSE[1,1]),
     y1 = qlnorm(probs[2], meanlog = log(as.numeric(cpue$obs)), sdlog = as.numeric(cpue$se_log) + addedSE[1,1]),
-   length = 0.03, angle = 90, code = 3, col = "black"
+   length = 0.03, angle = 90, code = 3, col = survey.col
   )
   # Observed points
-  points(col = "black",
+  points(
     x = cpue$year,  # model$cpue$Yr[model$cpue$Use==1],
     y = cpue$obs,   #model$cpue$Obs[model$cpue$Use == 1],
-    pch = 1)
+    pch = 1,
+    col = survey.col)
   axis(1, at = cpue$year, cex.axis = 0.8, tcl = -0.6)
   axis(1,
        at = (start.yr-4):(end.yr+7),
@@ -579,7 +589,7 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
        cex.axis = 0.8,
        tcl = -0.3)
   box()
-  axis(2, at = (0:5)*1e6, lab = 0:5, las = 1)
+  axis(2, at = (0:20)*1e6, lab = 0:20, las = 1)
   par <- oldpar
 }
 

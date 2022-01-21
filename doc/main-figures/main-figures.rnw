@@ -464,6 +464,33 @@ make.mcmc.survey.fit.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
+<<main-mcmc-age1-fit, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows many posterior trajectories of the expected numbers of age-1 fish fitting well to the age-1 index.">>=
+make.mcmc.survey.fit.plot(base.model,
+                          start.yr = survey.start.yr,
+                          end.yr = survey.end.yr,
+                          surv.yrs = surv.yrs,
+                          probs = c(0.025, 0.975),
+                          y.max = 10e6,
+                          survey.type = "age1",
+                          survey.col = "red")
+@
+\end{center}
+\caption{**Fits (colored lines) to the age-1 index estimated from the
+  acoustic survey (points) with input 95\% intervals around the observations.
+  The thin blue lines are the results of a random subset of individual MCMC samples.
+  Thicker uncertainty intervals around observed survey points indicate 95\%
+  log-normal uncertainty intervals estimated by the [**still correct to say for
+  age-1??]
+  kriging method and are used as input to the assessment model.
+  Thinner uncertainty intervals indicate estimated 95\% uncertainty intervals that account for the
+  model estimate of additional uncertainty.}
+\label{fig:main-mcmc-age1-fit}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
 <<main-age-comp-fits, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the age composition estimates fit well to the actual data">>=
 oldpar <- par(no.readonly = TRUE)
 ## par(mar=c(4.1, 4.1, 3.1, 0.1))
