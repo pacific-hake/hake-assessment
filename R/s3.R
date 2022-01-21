@@ -1,3 +1,44 @@
+s3_quick_download <- function(folders = NULL,
+                              key_pair_file = here("aws/key_pair.R"),
+                              region = "ca-central-1",
+                              multipart_limit = 1e6,
+                              bucket = "hakestore",
+                              ext = NA){
+
+  if(is.null(folders)){
+    stop("folders cannot be NULL, it must be a vector or folders or paths to folders found in the S3 bucket",
+         call. = FALSE)
+  }
+  if(is.null(key_pair_file)){
+    stop("key_pair_file is required", call. = FALSE)
+  }
+  source(key_pair_file)
+  if(!exists("key")){
+    stop("The variable 'key' does not exist. Check your key_pair_file ",
+         "location and contents and try again",
+         call. = FALSE)
+  }
+  if(!exists("secret")){
+    stop("The variable 'secret' does not exist. Check your key_pair_file ",
+         "location and contents and try again",
+         call. = FALSE)
+  }
+  Sys.setenv("AWS_DEFAULT_REGION" = region,
+             "AWS_ACCESS_KEY_ID" = key,
+             "AWS_SECRET_ACCESS_KEY" = secret)
+
+  tic()
+  # Download all files listed in files
+  map(folders, ~{
+    save_object(.x[1],
+                .x[1],
+                bucket = bucket,
+                multipart = ifelse(.x[2] > multipart_limit, TRUE, FALSE))})
+  toc()
+  message("\nFiles downloaded to:")
+  print(file.path(getwd(), folders))
+}
+
 #' Download folders and all their contents recursively from an AWS S3 bucket
 #'
 #' @name s3_functions
