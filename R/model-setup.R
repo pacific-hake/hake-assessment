@@ -245,13 +245,22 @@ load_models_rds <- function(){
   }
 
   last.yr.base.model <<- load_models(last.yr.base.model.dir.name)
+
   # For 2022 assessment only due to changes in SS3 to make figures and tables work.
   #  Can remove in 2023:
   if(last.yr.base.model.name == "2021 Base model"){
     last.yr.base.model$mcmc[, grep("SSB", names(last.yr.base.model$mcmc))] <<-
       last.yr.base.model$mcmc[, grep("SSB", names(last.yr.base.model$mcmc))]/2
   }
+
   bridge.models.1 <<- load_models(bridge.model.dir.names.1)
+  # For 2022 assessment only due to changes in SS3 to make figures and tables work.
+  #  Can remove in 2023:
+  if(bridge.model.names.1[1] == "2021 Base model"){
+    bridge.models.1[[1]]$mcmc[, grep("SSB", names(bridge.models.1[[1]]$mcmc))] <<-
+      bridge.models.1[[1]]$mcmc[, grep("SSB", names(bridge.models.1[[1]]$mcmc))]/2
+  }
+
   bridge.models.2 <<- load_models(bridge.model.dir.names.2)
   sens.models.1 <<- load_models(sens.model.dir.names.1)
   sens.models.2 <<- load_models(sens.model.dir.names.2, TRUE)
