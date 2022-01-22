@@ -109,14 +109,17 @@ between 2001 and 2008 were predominantly comprised of fish from the very large
 1999 year class, with the cumulative removal (through \Sexpr{end.yr-1}) from
 that cohort estimated at approximately
 \Sexpr{f(cohort.catch.1999/1e6,2)}~million~t. Through \Sexpr{last.data.yr}, the
-total catch of the 2010, 2014, and 2016 year classes is estimated to be about
+cumulative catch of the 2010, 2014, and 2016 year classes is estimated to be about
 \Sexpr{f(cohort.catch.2010/1e6,2)}~million~t,
 \Sexpr{f(cohort.catch.2014/1e6,2)}~million~t, and
 \Sexpr{f(cohort.catch.2016/1e6,2)}~million~t,
-respectively. **Landings in 2020 were most represented by the 2016 (35.23\%)
-and 2014 (30.90\%) year classes. **Due to the coronavirus disease 2019 (COVID-19)
+respectively.
+In the \Sexpr{end.yr-1} catch,
+\Sexpr{top.coh(base.model, last.data.yr, 3, cap = FALSE)}.
+% Can check that manually from final row of Table 10 showing the proportions at age
+**Due to the coronavirus disease 2019 (COVID-19)
 pandemic, no biological samples
-were available from the Canadian freezer-trawler sector in 2020 because observers
+were available from the Canadian freezer-trawler sector in 2021 because observers
 were not allowed on board.
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
