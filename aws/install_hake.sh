@@ -187,34 +187,58 @@ usermod -a -G docker koken
 chmod 666 /var/run/docker.sock
 docker pull $docker_container
 cd /home/ec2-user
-docker run -d -p 8787:8787 -e USER=rstudio -e PASSWORD=a \
-       -e MODELS_DIR=$models_dir -e BASE_MODEL=$base_model_dir --name=hake-rstudio --restart always \
+docker run -d -p 8787:8787 \
+       -e USER=rstudio \
+       -e PASSWORD=a \
+       -e MODELS_DIR=$models_dir \
+       -e BASE_MODEL=$base_model_dir \
+       --name=hake-rstudio --restart always \
        --mount type=bind,source="$(pwd)",target=/home/rstudio $docker_container
 # Run docker container for user cgrandin
 cd /home/cgrandin
-docker run -d -p 8780:8780 -e USER=cgrandin -e PASSWORD=a \
-       -e MODELS_DIR=$models_dir -e BASE_MODEL=$base_model_dir --name=hake-cgrandin --restart always \
+docker run -d -p 8780:8780 \
+       -e USER=cgrandin \
+       -e PASSWORD=a \
+       -e MODELS_DIR=$models_dir \
+       -e BASE_MODEL=$base_model_dir \
+       --name=hake-cgrandin --restart always \
        --mount type=bind,source="$(pwd)",target=/home/cgrandin $docker_container
 # Run docker container for user aedwards
 cd /home/aedwards
-docker run -d -p 8781:8781 -e USER=aedwards -e PASSWORD=a \
-       -e MODELS_DIR=$models_dir -e BASE_MODEL=$base_model_dir --name=hake-aedwards --restart always \
+docker run -d -p 8781:8781 \
+       -e USER=aedwards \
+       -e PASSWORD=a \
+       -e MODELS_DIR=$models_dir \
+       -e BASE_MODEL=$base_model_dir \
+       --name=hake-aedwards --restart always \
        --mount type=bind,source="$(pwd)",target=/home/aedwards $docker_container
 # Run docker container for user aberger
 cd /home/aberger
-docker run -d -p 8782:8782 -e USER=aberger -e PASSWORD=a \
-       -e MODELS_DIR=$models_dir -e BASE_MODEL=$base_model_dir --name=hake-aberger --restart always \
+docker run -d -p 8782:8782 \
+       -e USER=aberger \
+       -e PASSWORD=a \
+       -e MODELS_DIR=$models_dir \
+       -e BASE_MODEL=$base_model_dir \
+       --name=hake-aberger --restart always \
        --mount type=bind,source="$(pwd)",target=/home/aberger $docker_container
 # Run docker container for user kjohnson
 cd /home/kjohnson
-docker run -d -p 8783:8783 -e USER=kjohnson -e PASSWORD=a \
-       -e MODELS_DIR=$models_dir -e BASE_MODEL=$base_model_dir --name=hake-kjohnson --restart always \
+docker run -d -p 8783:8783 \
+       -e USER=kjohnson \
+       -e PASSWORD=a \
+       -e MODELS_DIR=$models_dir \
+       -e BASE_MODEL=$base_model_dir \
+       --name=hake-kjohnson --restart always \
        --mount type=bind,source="$(pwd)",target=/home/kjohnson $docker_container
 # Run docker container for user koken
 cd /home/koken
-docker run -d -p 8784:8784 -e USER=koken -e PASSWORD=a \
-       -e MODELS_DIR=$models_dir -e BASE_MODEL=$base_model_dir --name=hake-koken --restart always \
-       --mount type=bind,source="$(pwd)",target=/home/koken $docker_container
+docker run -d -p 8784:8784 \
+           -e USER=koken \
+           -e PASSWORD=a \
+           -e MODELS_DIR=$models_dir \
+	   -e BASE_MODEL=$base_model_dir \
+           --name=hake-koken --restart always \
+           --mount type=bind,source="$(pwd)",target=/home/koken $docker_container
 
 # These two commands ensure the docker service starts when the machine starts after being stopped
 systemctl enable docker.service
