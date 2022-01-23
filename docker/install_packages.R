@@ -1,9 +1,9 @@
 # Install packages for hake assessment docker image
 
 # 2022
-devtools::install_github("cgrandin/r4ss") # Commit 106da0ab8a611818a2ed72d45ff8d2af7ae58c55
+devtools::install_github("cgrandin/r4ss") # Commit 25c69c0fc19e1925e2f8007b53dbf33e0982433f
 devtools::install_github("ropensci/rnaturalearthhires") # Commit 2ed7a937f3cca4f44b157098c472f6b3ae8cd9f3
-devtools::install_github("cgrandin/adnuts@hake2021") # Commit 8f7d8004a059fa3d4a6948bc896d3293d6b3930e
+devtools::install_github("cgrandin/adnuts@hake2021") # Commit b13f166a55244dec5a271601d0839060e62ece92
 
 # 2021
 #devtools::install_github("r4ss/r4ss@7e15b") # Commit 7e15ba6d7566f574a9c33a90c26d5f79c3a75bd4
