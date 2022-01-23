@@ -206,8 +206,10 @@ last.yr.tac.fore.2.biomass <- f(.fore.last.yr.tac$biomass[2,3] * 100)
 last.yr.tac.fore.3.biomass <- f(.fore.last.yr.tac$biomass[3,3] * 100)
 .risk.last.yr.tac.1 <- base.model$risks[[1]]
 .risk.last.yr.tac.2 <- base.model$risks[[2]]
+.risk.last.yr.tac.3 <- base.model$risks[[3]]
 last.yr.tac.risk.1.biomass.decline <- f(as.numeric(.risk.last.yr.tac.1[catch.tac.ind, 2]))
 last.yr.tac.risk.2.biomass.decline <- f(as.numeric(.risk.last.yr.tac.2[catch.tac.ind, 2]))
+last.yr.tac.risk.3.biomass.decline <- f(as.numeric(.risk.last.yr.tac.3[catch.tac.ind, 2]))
 last.yr.tac.risk.2.bforty <- f(as.numeric(.risk.last.yr.tac.2[catch.tac.ind, 3]))
 
 # Numbers at age calculations for bubble plot caption -------------------------
