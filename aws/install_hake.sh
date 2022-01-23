@@ -14,7 +14,7 @@ access_key=""
 # Bash environment variables ---------------------------------------------------
 models_dir=models
 base_model_dir=2022.01.10_base
-docker_container=cgrandin/hake_hess_step
+docker_container=cgrandin/hake
 #docker_container=cgrandin/hake_2021
 #docker_container=cgrandin/hake_admb_ss
 
