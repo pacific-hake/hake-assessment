@@ -574,9 +574,9 @@ utilization rate (proportion of catch target removed) has been
 \Sexpr{tot.last.10.years.attainment}\% (Table~\ref{tab:es-landings-tac}). Over
 the last five years (\Sexpr{end.yr-5} to \Sexpr{end.yr-1}), the mean utilization
 rates were \Sexpr{usa.last.5.years.attainment}\% for the United States
-and \Sexpr{can.last.5.years.attainment}\% for Canada. **However, country-specific
-quotas (or catch targets) in 2020 were specified unilaterally, due to the lack of
-an agreement on a coast-wide 2020 TAC. The U.S. catch target was
+and \Sexpr{can.last.5.years.attainment}\% for Canada. Country-specific
+quotas (or catch targets) in 2021 were specified unilaterally, due to the lack of
+an agreement on a coast-wide 2021 TAC. The U.S. catch target was
 \Sexpr{us.allotment.percent.last.year}\% of the total coast-wide catch target, and
 the Canada catch target was \Sexpr{can.allotment.percent.last.year}\%. These
 percentages are different to the usual
@@ -584,7 +584,7 @@ percentages are different to the usual
 \Sexpr{can.allotment.percent}\% as specified in the Joint U.S.-Canada
 Agreement for \fishname.
 
-**Total landings last exceeded
+Total landings last exceeded
 the coast-wide quota in 2002 when utilization was 112\%, though
 the fishing intensity was relatively low that year
 due to the appearance of the 1999 year class.
@@ -655,7 +655,7 @@ make.phase.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-**The median relative fishing intensity was below target in all years
+The median relative fishing intensity was below target in all years
 % \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]}
 % and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
 % Only one year for 2017 assessment, so:
@@ -665,7 +665,7 @@ make.phase.plot(base.model,
 The median relative female spawning biomass was above the $\Bforty$ reference point in
 % 2017 assessment: all years except 1968, 1998-2000 and 2007-2011
 % 2019 assessment: all years except 1999-2000 and 2007-2011
-all years except 2009 and 2010
+all years except 2007, 2009, and 2010
 (Figures~\ref{fig:es-relative-spawning-biomass} and~\ref{fig:es-phase}).
 % Andy summarising those years manually, based on:
 % median.relative.bio.below.target
@@ -695,7 +695,7 @@ since \Sexpr{median.relative.bio.above.target.since}.
 % Manual done 2020. Years chosen are based on median.relative.bio.below.target,
 %  2011 no longer below ref point in 2020 assessment.
 
-**While there is large uncertainty in the estimates of relative
+While there is large uncertainty in the estimates of relative
 fishing intensity and relative spawning biomass, the model estimates a
 \Sexpr{joint.percent.prob.above.below}\%
 joint probability of being both above the target relative fishing intensity
@@ -712,10 +712,9 @@ default harvest rate and $\Bforty$ as a point where the 40:10 TAC adjustment is 
 (see the Glossary in Appendix~\ref{chap:glossary}).
 Estimates of the \Sexpr{assess.yr} base model reference points with posterior
 credibility intervals are in Table~\ref{tab:es-reference-points}.
-**The medians of sustainable yields and biomass reference points are almost
-9\% lower than in the \Sexpr{last.assess.yr} assessment.
-This is a result of increasing the effective sample size used to describe the
-posterior distributions of model parameters, leading to more accurate point estimates.
+The medians of sustainable yields and biomass reference points are almost
+10\% higher than in the \Sexpr{last.assess.yr} assessment.
+This is a result of incorporating the age-1 index to help refine estimates of recruitment.
 The probability that spawning biomass at the beginning of \Sexpr{assess.yr}
 is below $\Bforty$ is
 P$(B_{\Sexpr{assess.yr}} < \Bforty) = \Sexpr{probs.curr.below.bforty}$\%,
@@ -745,17 +744,14 @@ make.reference.points.table.old(base.model,
 \subsection*{Unresolved problems and major uncertainties}\label{sec:es-unresolved-problems}
 \phantomsection \addcontentsline{toc}{subsection}{Unresolved problems and major uncertainties}
 Measures of uncertainty in the base model underestimate the total uncertainty in
-the current stock status and projections because they do not account for
+the current stock status and projections, because they do not account for
 possible alternative structural models for \simplename\ population dynamics and
 fishery processes (e.g., selectivity)
 and the scientific basis for prior probability distributions. To address such
 structural uncertainties, we performed sensitivity analyses to investigate a
-range of alternative assumptions
-and present the key ones in the main document.
-**We also present detailed results
-for a model that includes the age-1 survey index
-and for the base model with Bayesian estimation performed using the
-random walk Metropolis Hastings algorithm (as used in previous assessments).
+range of alternative assumptions and present the key ones in the main document. A more
+extensive examination of sensitivity results are provided for a model that excludes
+that age-1 index (see Appendix~\ref{chap:age1-survey}).
 
 %**Update from main text**Uncertainty in the best method for calculating acoustic
 % survey biomass is a particular focus and
@@ -769,8 +765,10 @@ cohorts and results in time-varying fishery selectivity. This volatility results
 in a high level of uncertainty in estimates of current stock status and stock
 projections because, with limited data to estimate incoming recruitment, the
 cohorts are fished before the assessment can accurately determine how big
-they are (i.e., cohort strength is not well known until it is observed
-by the fishery and survey, typically at minimum age-3).  Further, the interaction
+they are (i.e., cohort strength is typically not well known until it is observed
+by the fishery and survey, typically at minimum age-3).  While the addition of the age-1 index
+helps inform recent recruitment, the survey is conducted every other year and does not directly
+address current or future recruitment expectations. Further, the interaction
 among variance parameters that govern variability in fishery selectivity and recruitment
 parameters through time, as well as those used in relative data weighting, is not well
 understood and could propagate uncertainty beyond what is presented in this assessment.
@@ -865,8 +863,8 @@ make.decision.table(base.model,
                      the $\\Fforty$ harvest policy calculated using baseline
                      selectivity."),
                     xlabel = "tab:es-decisions-spr",
-                    font.size = 12,
-                    space.size = 14,
+                    font.size = 11,
+                    space.size = 12,
                     type = "spr",
                     placement = "tbp")
 @
