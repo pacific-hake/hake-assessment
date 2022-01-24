@@ -117,10 +117,8 @@ respectively.
 In the \Sexpr{end.yr-1} catch,
 \Sexpr{top.coh(base.model, last.data.yr, 3, cap = FALSE)}.
 % Can check that manually from final row of Table 10 showing the proportions at age
-**Due to the coronavirus disease 2019 (COVID-19)
-pandemic, no biological samples
-were available from the Canadian freezer-trawler sector in 2021 because observers
-were not allowed on board.
+Due to staffing issues, age data were unavailable from the Canadian freezer-trawler
+fleet and minimally available for the Shoreside fleet in \Sexpr{end.yr-1}. 
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
@@ -151,21 +149,40 @@ make.survey.biomass.extrap.plot(survey.comparison)
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tbp]
+\begin{center}
+<<survey-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the survey estimate has decreased slighlty from 2019 to 2021">>=
+#make.survey.biomass.plot(base.model)
+make.survey.age1.plot(age.1.index)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Age-1 index (numbers of fish) with approximate 95\% confidence intervals are
+  based on sampling variability. See Table~\ref{tab:main-survey-history} for values
+  used in the base model.}
+\label{fig:es-survey-age1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 This Joint Technical Committee (JTC) assessment depends primarily on the fishery
 landings (\Sexpr{start.yr}--\Sexpr{last.data.yr}), acoustic survey biomass
 indices (Figure~\ref{fig:es-survey-biomass}) and age compositions
-(\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}), as well as fishery
-age compositions (\Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}). The 2011 survey index value
-was the lowest in the time series and was followed by the index increasing
+(\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}), an age-1 index (Figure~\ref{fig:es-survey-age1}),
+as well as fishery age compositions (\Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}).
+The 2011 survey index value was the lowest in the time series and was followed by the index increasing
 in 2012, 2013, and again in 2015 before decreasing to near the time series average in 2017.
-The 2019 estimate is the fourth highest of the series. **Mention 2021 survey
+The 2019 estimate is the fourth highest of the series, and the 2021 estimate is near the time
+series average.
 % rank(-survey.comparison$with.extrap)
 % Not worth automating as have to think
 %  about what is worth saying each time anyway.
 Age-composition data from the
-aggregated fisheries and the acoustic survey provide data that
-facilitates estimating relative cohort strength, i.e., strong and weak
-cohorts.
+aggregated fisheries and the acoustic survey, along with the age-1 index,
+provide data that facilitates estimating relative cohort strength,
+i.e., strong and weak cohorts. The age-1 index suggests particularly large numbers
+of pre-spawn fish in 2011, 2009, 2015, and 2021 (2010, 2008, 2014, and 2020 year-
+classes, respectively).
 
 The assessment uses a Bayesian estimation approach, sensitivity analyses, and
 retrospective investigations to evaluate the potential consequences of parameter

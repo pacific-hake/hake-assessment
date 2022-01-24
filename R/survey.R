@@ -367,6 +367,42 @@ make.survey.biomass.extrap.plot <- function(dat){
   axis(1, at = ests$year, cex.axis = 0.8)
 }
 
+make.survey.age1.plot <- function(dat){
+  ## dat - data.frame of different indices
+  ## show - vector of which values to show
+  oldpar <- par("mar", "las", "cex.axis")
+  on.exit(par(oldpar))
+  
+  ## Remove non-data years from the data frame no longer needed because we're
+  ##  comparing cases with different range of years
+  ## dat <- dat[complete.cases(dat),]
+  
+  # values with extrapolation used in base model
+  ests <- data.frame(year = dat$Year,
+                     obs = dat$Index,
+                     se_log = dat$CV)
+  ests$obs <- ests$obs*1e3
+  ests$lo <- exp(log(ests$obs) - 1.96 * ests$se_log)
+  ests$hi <- exp(log(ests$obs) + 1.96 * ests$se_log)
+  ests$value <- ests$obs
+  
+    plotBars.fn(ests$year,
+              log(ests),
+              scale = 1,
+              ylim = c(10, 26),
+              yaxs = 'i',
+              pch = 20,
+              xlab="Year",
+              ylab = "Age-1 index estimate (log(fish))",
+              cex = 1.5,
+              las = 1,
+              gap = 0.05,
+              xaxt = "n",
+              ciLwd = 3,
+              ciCol = rgb(0, 0, 0, 0.5))
+  axis(1, at = ests$year, cex.axis = 0.7)
+}
+
 make.kriging.parameters.table <- function(krig.pars = kriging.pars,
                                           xcaption = "default",
                                           xlabel   = "default",
