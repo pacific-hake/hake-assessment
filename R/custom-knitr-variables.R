@@ -271,6 +271,9 @@ zero.catch.prob.bio.down.1 <- f(base.model$risks[[1]][1,2])
 # Prob biomass declines year after next to year after that with zero catch ----
 zero.catch.prob.bio.down.2 <- f(base.model$risks[[2]][1,2])
 
+# Prob biomass declines year after next to year after that with zero catch ----
+zero.catch.prob.bio.down.3 <- f(base.model$risks[[3]][1,2])
+
 # Prob current biomass being above/below B40%, B25%, and B10% -----------------------
 probs.curr.bforty <- f(mean(base.model$mcmc[[paste0("Bratio_", assess.yr)]] > 0.40) * 100, 1)
 probs.curr.btwentyfive <- f(mean(base.model$mcmc[[paste0("Bratio_", assess.yr)]] > 0.25) * 100, 1)

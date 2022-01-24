@@ -445,7 +445,7 @@ new_decision_table(sens.models.2[[1]],
 <<forecast-depletion-comparison-plot-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median relative spawning biomass is projected to decline for all non-zero catch levels evaluated using the age-1 sensitivity model">>=
 ## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those which will be plotted against each other
-models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
+models.inds <- c(1, 2, 6, catch.tac.ind, catch.default.policy.ind)
 models.names <- sapply(sens.models.2[[1]]$catch.levels, "[[", 2)[models.inds]
                        ## pretty catch level name
 make.forecast.depletion.comparison.plot(sens.models.2[[1]],

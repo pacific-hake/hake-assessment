@@ -786,7 +786,7 @@ understood and could propagate uncertainty beyond what is presented in this asse
 \subsection*{Forecast decision tables} \label{sec:es-forecast-decision-table}
 \phantomsection \addcontentsline{toc}{subsection}{Forecast decision tables}
 
-**The catch limit for \Sexpr{min(forecast_yrs)} based on the default \Ffortyten{}
+The catch limit for \Sexpr{min(forecast_yrs)} based on the default \Ffortyten{}
 harvest policy has a median of \Sexpr{catch.limit.quantiles["median"]}~t with a
 wide range of uncertainty, the 95\% credibility interval being
 \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
@@ -831,20 +831,21 @@ new_decision_table(base.model,
                    placement = "tbp")
 @
 
-**Mention switch to new format**  Decision tables give the projected population status (relative spawning biomass)
+Decision tables give the projected population status (relative spawning biomass)
 and fishing intensity relative to the target under different catch alternatives for the
 base model (Tables~\ref{tab:es-decisions-biomass}
-and~\ref{tab:es-decisions-spr}). The tables are organized such that the
-projected outcome for each potential catch level and year (each row) can be
-evaluated across the quantiles (columns) of the posterior
-distribution. Figure~\ref{fig:es-forecast-depletion-comparison} shows
+and~\ref{tab:es-decisions-spr}). The tables have been reorganized this year to improve
+interpretation so that the projected outcome for each potential catch level and year
+(each row) can be more readily evaluated across the quantiles (columns) of the posterior
+distribution. Tables now show the result of a third year of catches on subsequent estimates
+of stock status and fishing intensity. Figure~\ref{fig:es-forecast-depletion-comparison} shows
 the projected biomass for several catch alternatives. Population dynamics and governing
 parameters assumed during the forecast period include average recruitment
 (no recruitment deviation); selectivity, weight-at-age and fecundity averaged over
 the five most recent years (\Sexpr{assess.yr-5}--\Sexpr{assess.yr-1}); and all other
 parameters as constant.
 
-**A relative fishing intensity above 1 (or 100\% when shown as a percentage) indicates fishing greater than the
+A relative fishing intensity above 1 (or 100\% when shown as a percentage) indicates fishing greater than the
 $\Fforty$ default harvest rate catch target. This can happen for the median
 relative fishing intensity in projected years because the $\Fforty$ default
 harvest-rate catch limit is calculated using baseline selectivity from all
@@ -852,7 +853,7 @@ years, whereas the forecasted catches are removed using selectivity
 averaged over the last five years. Recent changes in selectivity will thus be reflected
 in the determination of fishing in excess of the default harvest
 policy. Alternative catch levels where median relative fishing intensity is
-100\% for three years of projections are provided for comparison (scenario g:
+100\% for three years of projections are provided for comparison (scenario m:
 FI=100\%).
 % Manual 2020 done.
 %
@@ -873,15 +874,17 @@ make.decision.table(base.model,
                     placement = "tbp")
 @
 
-[**May have to move paragraph after tables]
-**Management metrics that were identified as important to the Joint Management Committee and the Advisory
+%[**May have to move paragraph after tables]
+Management metrics that were identified as important to the Joint Management Committee and the Advisory
 Panel in 2012 are presented for
 \Sexpr{forecast_yrs[2:(length(forecast_yrs)-1)]} and
 \Sexpr{forecast_yrs[length(forecast_yrs)]} projections
-(Tables~\ref{tab:es-risk-year-1}
-and~\ref{tab:es-risk-year-2} and
-Figures~\ref{fig:es-forecast-risk-comparison-year-1}
-and~\ref{fig:es-forecast-risk-comparison-year-2}).
+(Tables~\ref{tab:es-risk-year-1},
+~\ref{tab:es-risk-year-2},
+and~\ref{tab:es-risk-year-3};
+Figures~\ref{fig:es-forecast-risk-comparison-year-1},
+~\ref{fig:es-forecast-risk-comparison-year-2},
+and~\ref{fig:es-forecast-risk-comparison-year-3}).
 These metrics summarize the probability of various outcomes from the base model
 given each potential management action. Although not linear, probabilities can
 be interpolated from these results for intermediate catch
@@ -893,10 +896,13 @@ Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 %future]
 However, interpolation is
 not appropriate for all catches in
-\Sexpr{assess.yr+1} because catch alternatives~h and~i
-have catches that are $>$\Sexpr{f(catch_levels[[5]][[1]][1])}~t (the constant
-catch for alternative~\Sexpr{letters[5]}) in \Sexpr{assess.yr} but
-$<$\Sexpr{f(catch_levels[[5]][[1]][1])}~t in \Sexpr{assess.yr+1}.
+\Sexpr{assess.yr+1} or \Sexpr{assess.yr+2}, because they are conditional on previous
+year(s) catch levels.
+%removed this text because it gets even more complicated with two more years to consider
+%catch alternatives~h and~i
+%have catches that are $>$\Sexpr{f(catch_levels[[5]][[1]][1])}~t (the constant
+%catch for alternative~\Sexpr{letters[5]}) in \Sexpr{assess.yr} but
+%$<$\Sexpr{f(catch_levels[[5]][[1]][1])}~t in \Sexpr{assess.yr+1}.
 %
 % \Sexpr{assess.yr+1} because catch alternatives~h and~i apply a
 %\Sexpr{assess.yr+1} catch level that is dependent on the
@@ -907,7 +913,9 @@ $<$\Sexpr{f(catch_levels[[5]][[1]][1])}~t in \Sexpr{assess.yr+1}.
 % are conditional and can be non-linear.
 This explains why a few probabilities decline
 (rather than rise) with increased \Sexpr{assess.yr+1} catch levels in Table~\ref{tab:es-risk-year-2}
-and Figure~\ref{fig:es-forecast-risk-comparison-year-2}.
+and Figure~\ref{fig:es-forecast-risk-comparison-year-2} and \Sexpr{assess.yr+2}
+catch levels in Table~\ref{tab:es-risk-year-3}
+and Figure~\ref{fig:es-forecast-risk-comparison-year-3}.
 
 
 % \clearpage  % 2018: Then forces Table i and Fig j to be on same page, and j/k.
@@ -919,7 +927,7 @@ and Figure~\ref{fig:es-forecast-risk-comparison-year-2}.
 <<forecast-depletion-comparison-plot, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median relative spawning biomass is projected to decline for all non-zero catch levels evaluated">>=
 ## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those which will be plotted against each other
-models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
+models.inds <- c(1, 2, 6, catch.tac.ind, catch.default.policy.ind)
 models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds]
                        ## pretty catch level name
 make.forecast.depletion.comparison.plot(base.model,
@@ -1086,25 +1094,27 @@ make.risk.table(base.model,
 
 %% End of projection figures and tables code
 
-**The predicted relative spawning biomass trajectory through
+The predicted relative spawning biomass trajectory through
 \Sexpr{forecast_yrs[length(forecast_yrs)]} is shown in
 Figure~\ref{fig:es-forecast-depletion-comparison} for several of the management
-actions. With zero catch for the next two years, the biomass has a
+actions. With zero catch for the next three years, the biomass has a
 \Sexpr{zero.catch.prob.bio.down.1}\% probability of decreasing from
-\Sexpr{forecast_yrs[1]} to \Sexpr{forecast_yrs[2]} (Table~\ref{tab:es-risk-year-1}) and a
+\Sexpr{forecast_yrs[1]} to \Sexpr{forecast_yrs[2]} (Table~\ref{tab:es-risk-year-1}), a
 \Sexpr{zero.catch.prob.bio.down.2}\% probability of decreasing from
-\Sexpr{forecast_yrs[2]} to \Sexpr{forecast_yrs[3]} (Table~\ref{tab:es-risk-year-2}).
+\Sexpr{forecast_yrs[2]} to \Sexpr{forecast_yrs[3]} (Table~\ref{tab:es-risk-year-2}), and a
+\Sexpr{zero.catch.prob.bio.down.3}\% probability of decreasing from
+\Sexpr{forecast_yrs[3]} to \Sexpr{forecast_yrs[4]} (Table~\ref{tab:es-risk-year-3}).
 %Manual 2020 done, though all automated.
 
 % The spawning biomass is predicted to decrease from \Sexpr{end.yr} to
 %  \Sexpr{end.yr+1} with a less than 50\% probability only for the 0~t and
 %  180,000~t catch levels (Table~\ref{tab:es-risk-year-1} and
 %  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
-**The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
-\Sexpr{end.yr+1} is over 65\% for all catch levels
+The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
+\Sexpr{end.yr+1} is under 55\% for all catch levels
 (Table~\ref{tab:es-risk-year-1} and
-Figure~\ref{fig:es-forecast-risk-comparison-year-1}). It is 86\% for the
-\Sexpr{end.yr} catch level similar to that for \Sexpr{end.yr-1} (catch alternative~d).
+Figure~\ref{fig:es-forecast-risk-comparison-year-1}). It is 30\% for the
+\Sexpr{end.yr} catch level similar to that for \Sexpr{end.yr-1} (catch alternative~f).
 % Can maybe unhardwire some numbers with things like
 % \Sexpr{f(min(base.model$risks[[1]][,2]))}\% (see assesment-section).
 %The highest probability of
@@ -1112,8 +1122,8 @@ Figure~\ref{fig:es-forecast-risk-comparison-year-1}). It is 86\% for the
 %(row~g in Table~\ref{tab:es-risk-year-1}).
 For all explored catches,
 the maximum probability of the spawning biomass dropping below $B_{10\%}$ at
-the start of \Sexpr{end.yr+1} is 2\%, and of
-dropping below $B_{40\%}$ is 46\%
+the start of \Sexpr{end.yr+1} is 0\%, and of
+dropping below $B_{40\%}$ is 19\%
 (Table~\ref{tab:es-risk-year-1} and
 Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % It should be noted that
@@ -1121,10 +1131,10 @@ Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % the large 2010 year class.
 % Andy presumes that last phrase is still true - not sure where/how to check
 % 2018 - probably not worth saying that any more.
-**As the large 2010 and 2014 cohorts continue to age, their biomass is expected to decrease
-as losses from mortality outweigh increases from growth.  The smaller but
-above-average 2016 cohort is entering this growth-mortality transition period, suggesting that
-its overall biomass will also decrease as it continues to age.
+As the large 2010, 2014, and 2016 cohorts continue to age, their biomass is expected to decrease
+as losses from mortality outweigh increases from growth.  The
+estimated above-average 2020 cohort will play a large role in determining spawning stock biomass
+during the forecast years presented here.
 % Still true for 2017 assessment - see
 %  years.since.2010.recruitment.med.below.mean
 %   2018 assessment.
