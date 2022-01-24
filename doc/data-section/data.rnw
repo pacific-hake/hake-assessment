@@ -7,7 +7,7 @@ Fishery-dependent and fishery-independent data used in this assessment
 
 \begin{itemize}
 
-\item Total catch from all U.S. and Canadian fisheries that target hake
+\item Total catch from all U.S. and Canadian fisheries that target \fishname\
   from \Sexpr{start.yr} to \Sexpr{last.data.yr} (Tables
   \ref{tab:intro-catches-US}--\ref{tab:main-landings-tac}).
 
@@ -45,7 +45,7 @@ were input as fixed values in the assessment model:
 
 \item Ageing-error matrices based on cross-read and double-blind-read otoliths.
 
-\item Proportion of female hake mature by age, as developed from
+\item Proportion of female \fishname\ mature by age, as developed from
 recent histological analyses of ovary samples
   (Table~\ref{tab:main-ogives} and Figure~\ref{fig:main-maturity}).
 
@@ -71,7 +71,7 @@ additional data sources are:
 \item Bottom trawl surveys in the U.S. and Canada (various years and spatial
   coverage from 1977--\Sexpr{last.assess.yr}).
 
-\item NWFSC/Southwest Fisheries Science Center/PWCC coast-wide juvenile hake and rockfish surveys
+\item NWFSC/Southwest Fisheries Science Center/PWCC coast-wide juvenile \fishname\ and rockfish surveys
   (2001--\Sexpr{last.assess.yr}).
 
 \item Bycatch of \fishname\ in the trawl fishery for Pink Shrimp off the coast of
@@ -85,8 +85,8 @@ additional data sources are:
   with methods consistent with more current sampling programs.
 
 \item California Cooperative Oceanic Fisheries Investigations (CalCOFI)
-  larval hake production index, 1951-2006. The data source was
-  previously explored and rejected as a potential index of hake spawning stock
+  larval \fishname\ production index, 1951-2006. The data source was
+  previously explored and rejected as a potential index of \fishname\ spawning stock
   biomass.
 
 % \item Joint U.S. and Canada acoustic survey index of age-1 \fishname.
@@ -243,7 +243,7 @@ these data to estimate the absolute sizes of incoming cohorts, which become more
 precise after they have been observed several times (i.e., encountered by the
 fishery and survey over several years).
 
-Both the weight- and length-at-age information suggest that hake growth has
+Both the weight- and length-at-age information suggest that growth of \fishname\ has
 fluctuated markedly over time (see Figure~7 in
 \citealt{StewartForrestEtAl2011}). This is particularly evident in the frequency
 of larger fish ($>55$~cm) before 1990 and a shift to much more average-sized fish in more
@@ -279,11 +279,11 @@ and Canada. The acoustic surveys performed in
 (Table~\ref{tab:main-survey-history}).
 The acoustic survey samples transects that represent all waters
 off the coasts of the U.S. and Canada thought to contain all portions of the
-age-2$+$ \fishname\ stock. Age-0 and age-1 hake have been historically
+age-2$+$ \fishname\ stock. Age-0 and age-1 \fishname\ have been historically
 excluded from the main survey effort, due to largely different schooling behavior
-relative to older hake, concerns about their catchability by the trawl gear,
+relative to older \fishname\, concerns about their catchability by the trawl gear,
 and differences in expected location during the summer months when the survey
-takes place. Observations of age-1 hake are recorded during the survey,
+takes place. Observations of age-1 \fishname\ are recorded during the survey,
 and additional analyses are conducted to develop an age-1 index
 (described below).
 
@@ -299,8 +299,8 @@ of the survey in 2021.
 %The utility of saildrones as a tool for \fishname\ management is currently being evaluated.
 % Manual 2021 KFJ
 
-Distributions of hake backscatter plotted for each acoustic survey since 1995
-illustrate the variable spatial patterns of age-2$+$ hake across years
+Distributions of the backscatter of \fishname\ plotted for each acoustic survey since 1995
+illustrate the variable spatial patterns of age-2$+$ fish across years
 (Figure~\ref{fig:main-backscatter-map}). This variability is
 due in part to changes in the composition of the age-2$+$ population
 because older \fishname\ tend to migrate farther north and partly due to
@@ -313,7 +313,7 @@ Northern California. There was a strong La Ni\~na event in 2000.
 In 2003, 2005, and 2007 the distribution of \fishname\ did
 not show an unusual coast-wide pattern despite 2003 and 2007 being characterized
 as El Ni\~no years. In 2009, 2011, 2012, and 2013 the
-majority of the hake distribution was again found in U.S. waters, which is more
+majority of the distribution of \fishname\ was again found in U.S. waters, which is more
 likely due to age-composition than the environment, although 2013 showed some
 warmer than average sea-surface temperatures. In 2015, sea-surface temperatures
 were warmer again, resulting in a northern shift in the overall
@@ -338,8 +338,8 @@ length data necessary to scale the acoustic backscatter into biomass (see
 Table~\ref{tab:main-survey-history} for the number of trawls in each survey
 year). Biological samples collected from these trawls are post-stratified,
 based on similarity in size composition, and the composite length frequency is
-used to characterize the hake size distribution along each transect and to
-predict the expected backscattering cross section for hake based on the fish
+used to characterize the size distribution of \fishname\ along each transect and to
+predict the expected backscattering cross section for \fishname\ based on the fish
 size-target strength (TS) relationship. Any potential biases that might be
 caused by factors such as alternative TS relationships are partially accounted
 for in catchability, but variability in the estimated survey biomass due to
@@ -349,7 +349,7 @@ assessment.
 Acoustic survey data are analyzed using kriging,
 which accounts for spatial correlation to provide an
 estimate of total biomass as well as an estimate of the year-specific sampling
-variability due to patchiness of hake schools and irregular transects
+variability due to patchiness of schools of \fishname\ and irregular transects
 \citep{Petitgas1993, RivoirardSimmondsEtAl2000, MelloRose2005,
 SimmondsMacLennan2006}. Advantages to the kriging approach are discussed in the
 2013 stock assessment \citep{JTC2013}.
@@ -394,7 +394,7 @@ These data contain many sources of variability (see \citealt{StewartForrestEtAl2
 but results from research done in 2010 and 2014 on their representativeness
 show that trawl sampling and post-stratification is only a small source of variability.
 Specifically, repeated trawls at different depths and spatial locations
-on the same aggregation of hake were similar and
+on the same aggregation of \fishname\ were similar and
 analyses regarding the method used to stratify the data
 led to similar overall conclusions.
 
@@ -510,7 +510,7 @@ Recent west coast stock assessments have utilized the cross-
 and double-reads approach to generate an ageing-error matrix describing the
 imprecision and bias in the observation process as a function of fish age. New
 data and analysis were used in the 2009 assessment to address an additional
-process influencing the ageing of hake, namely cohort-specific ageing error related to
+process influencing the ageing of \fishname\, namely cohort-specific ageing error related to
 the relative strength of a year-class. This process reflects a tendency for
 uncertain age determinations to be assigned to predominant year classes. The
 result is that the presence of strong year classes is inflated in the age data
@@ -625,7 +625,7 @@ used in previous Canadian assessments and results from analyses using
 \citeauthor{Hoenig1983}'s (\citeyear{Hoenig1983}) method support the use of a
 \Sexpr{m.prior[1]} distribution with a median of \Sexpr{m.prior[2]} and a logarithmic standard deviation of
 \Sexpr{m.prior[3]}. Sensitivity to this prior has been evaluated
-extensively in many previous hake assessments
+extensively in many previous assessments of \fishname\
 (see \citealt{JTC2013} for a discussion of the historical treatment of $M$ and its prior)
 and is repeated here (see Section
 \ref{sec:assessment-sensitivity-analyses}). Alternative prior distributions for
