@@ -23,6 +23,8 @@ COPY --from=ss /usr/bin/ss /usr/bin/ss
 COPY --from=ss /usr/bin/admb /usr/bin/admb
 COPY install_packages.R install_packages.R
 COPY add_port.sh add_port.sh
+COPY credentials credentials
+COPY config config
 RUN Rscript install_packages.R
 
 ENV SS_HOME=/usr/bin/ss
