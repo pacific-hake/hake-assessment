@@ -25,12 +25,12 @@ make.overview.map.plot(path = rootd.map.data)
                 %  from -20 to -21 jumps it to the left when using center.
                 %  Commenting out {center} works better.
 \pdftooltip{\includegraphics[max size={1.15\paperwidth}{1.15\paperheight}]
-  {main-figures/hake_survey_1995-19_NASCTimeSeries_BiomassAtAgeHistograms_grayblue}}{This
+  {main-figures/hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue}}{This
   figure shows that \fishname\ migrate further north in some years}
-  % Download from Google Drive
+   % Get pdf from Julia then convert with 'magick <name>.pdf <name>.png' and push to GitHub.
 % \end{center}
 % \vspace{-3mm}
-\caption{**Spatial distribution of acoustic backscatter attributable to age-2 and older \fishname\
+\caption{Spatial distribution of acoustic backscatter attributable to age-2 and older \fishname\
   from the Joint U.S.~and Canada acoustic surveys
   \Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}. Area of the circle is roughly
   proportional to observed backscatter.
@@ -52,12 +52,12 @@ make.overview.map.plot(path = rootd.map.data)
 \begin{center}
 \hspace{-10mm}
 \pdftooltip{\includegraphics[max size={1.10\paperwidth}{1.10\paperheight}]
-   {main-figures/age1hake_03-19_sA_squareroot_bin_narrow-panel_bluergray}}{This
+   {main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue}}{This
    figure shows the assumed varying locations of age-1 \fishname}
-   % Download from Google Drive
+   % Get pdf from Julia then convert with 'magick <name>.pdf <name>.png' and push to GitHub.
 \end{center}
 %\vspace{-5mm}
-\caption{**Spatial distribution of acoustic backscatter attributable to age-1 \fishname\
+\caption{Spatial distribution of acoustic backscatter attributable to age-1 \fishname\
   from the Joint U.S.~and Canada acoustic surveys 2003--\Sexpr{survey.end.yr}. Age-1 \fishname\ are not fully sampled
   during the acoustic survey and were not explicitly considered during establishment of the
   survey sampling design. Area of the circle is roughly
