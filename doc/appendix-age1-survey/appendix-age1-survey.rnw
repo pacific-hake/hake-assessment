@@ -14,7 +14,8 @@ important enough to warrant further consideration, especially in the context of 
 forecast uncertainty, and given it was excluded in the base model for previous assessments.
 Nonetheless, this appendix is meant to provide supplemental information,
 and should not be viewed as an alternative base model.
-The figures and tables show results from this sensitivity run.
+The figures and tables show results from this sensitivity run (plus
+Figure~\ref{fig:age-one-index-age1-base} for the base model, as noted in its caption).
 
 **Need to update the next paragraph depending on final results. Current results (with
 diagnostics issue) give high 2020 recruitment without age-1, so it's not just
@@ -52,6 +53,8 @@ age-1 index at that time would have given misleadingly optimistic forecasts.
 %Recall that the survey design is not structured specifically for indexing age-1
 %fish.
 
+
+**Mention Figures~\ref{fig:age-one-index-age1-base} and~-ref{fig:age-one-index-age1}
 Figures \ref{fig:spawning-biomass-age1}--\ref{fig:forecast-risk-comparison-year-2-age1}
 and
 Tables~\ref{tab:biomass-age1}--\ref{tab:risk-year-2-age1}
@@ -168,6 +171,48 @@ par <- oldpar
 \label{fig:retrospective-biomass-base-age1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<age-one-index-age1-sens, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the age-1 index has dropped from 2017 to 2019">>=
+make.survey.age1.plot(sens.models.2[[1]],
+                      age.1.index)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Acoustic survey age-1 index overlaid on estimated numbers
+  of age-1 fish (medians of the posterior distribution) from the
+  sensitivity model run that
+  that {\bf excludes the age-1 index}.
+  The index is scaled to
+  have the same mean as the estimated age-1 fish on a log scale,
+  as the index is not included in this sensitivity run.
+  The equivalent figure
+  for the base model is shown in Figure~\ref{fig:age-one-index-base}.}
+\label{fig:age-one-index-age1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<age-one-index-age1-base, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the age-1 index has dropped from 2017 to 2019">>=
+make.survey.age1.plot(base.model,
+                      age.1.index)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Acoustic survey age-1 index overlaid on estimated numbers
+  of age-1 fish (medians of the posterior distribution) from the base model
+  that {\bf includes the age-1 index}. The index is scaled to
+  have the same mean as the estimated age-1 fish on a log scale
+  for comparison with Figure~\ref{fig:age-one-index-age1}.}
+\label{fig:age-one-index-age1-base}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]

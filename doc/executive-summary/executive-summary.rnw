@@ -135,13 +135,13 @@ fleet and minimally available for the Shoreside fleet in \Sexpr{end.yr-1}.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<survey-biomass, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the survey estimate has increased from 2017 to 2019">>=
+<<survey-biomass, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the survey estimate has decreased from 2019 to 2021">>=
 #make.survey.biomass.plot(base.model)
 make.survey.biomass.extrap.plot(survey.comparison)
 @
 \end{center}
 %\vspace{0mm}
-\caption{Acoustic survey biomass indices (millions of tons).
+\caption{Acoustic survey biomass indices of age-2+ fish (millions of tons).
   Approximate 95\% confidence intervals are based on sampling variability
   (intervals without squid/hake apportionment uncertainty in 2009 are displayed in black). See
   Table~\ref{tab:main-survey-history} for values used in the base model.}
@@ -152,14 +152,19 @@ make.survey.biomass.extrap.plot(survey.comparison)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<survey-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the age-1 survey estimate has decreased slightly from 2019 to 2021">>=
-make.survey.age1.plot.data(age.1.index)
+<<survey-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the age-1 survey estimate has increased from 2019 to 2021">>=
+make.survey.age1.plot.data(age.1.index,
+                           log.scale = FALSE,
+                           yLim = c(0,10))
 @
 \end{center}
 %\vspace{0mm}
-\caption{Age-1 index (numbers of fish) and approximate 95\% confidence intervals
+\caption{Relative age-1 indices (numbers of fish) and approximate 95\% confidence intervals
   based on sampling variability. See Table~\ref{tab:main-survey-history} for values
-  used in the base model.}
+  used in the base model. The index is relative because
+  the survey does not attempt to get catch all available
+  age-1 fish and the index does not include kriging
+  like the age-2+ biomass estimate.}
 \label{fig:es-survey-age1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

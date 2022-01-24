@@ -285,8 +285,9 @@ make.survey.age1.plot <- function(model,
        pch = 4,
        type = "b",
        log = "y",
-       ylim = range(c(recr1, exp(index)),
-                    na.rm = TRUE) * c(0.7, 3) / 1e3,
+       ylim = c(0.015, 50),
+#       ylim = range(c(recr1, exp(index)),
+#                    na.rm = TRUE) * c(0.7, 3) / 1e3,
        lwd = 2,
        xaxt = "n",
        xlab = "Year",
@@ -368,41 +369,68 @@ make.survey.biomass.extrap.plot <- function(dat){
 }
 
 # Plot the age-1 index data only (see make.survey.age1.plot for results)
-make.survey.age1.plot.data <- function(dat){
-  ## dat - data.frame of different indices, age.1.index
-  ## show - vector of which values to show
+make.survey.age1.plot.data <- function(dat,
+                                       log.scale = TRUE,
+                                       yLim = c(10, 26)){
+  ## dat - data.frame of age 1 index (saved as age.1.index)
+  ## log - whether to show log scale or not
+  ## yLim - ylim value, default is for log.scale = TRUE in 2022
   oldpar <- par("mar", "las", "cex.axis")
   on.exit(par(oldpar))
 
-  ## Remove non-data years from the data frame no longer needed because we're
-  ##  comparing cases with different range of years
-  ## dat <- dat[complete.cases(dat),]
-
+  par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
   # values with extrapolation used in base model
   ests <- data.frame(year = dat$Year,
                      obs = dat$Index,
                      se_log = dat$CV)
-  ests$obs <- ests$obs*1e3
+
+  # convert to 1000s of fish for log plot, billions for linear plot:
+  if(log.scale){
+    ests$obs <- ests$obs*1e3} else {
+    ests$obs <- ests$obs/1e6}
+
   ests$lo <- exp(log(ests$obs) - 1.96 * ests$se_log)
   ests$hi <- exp(log(ests$obs) + 1.96 * ests$se_log)
   ests$value <- ests$obs
 
+  if(log.scale){
     plotBars.fn(ests$year,
-              log(ests),
-              scale = 1,
-              ylim = c(10, 26),
-              yaxs = 'i',
-              pch = 20,
-              xlab="Year",
-              ylab = "Age-1 index estimate (log(fish))",
-              cex = 1.5,
-              las = 1,
-              gap = 0.05,
-              xaxt = "n",
-              ciLwd = 3,
-              ciCol = rgb(0, 0, 0, 0.5))
-  axis(1, at = ests$year, cex.axis = 0.7)
+                log(ests),
+                scale = 1,
+                ylim = yLim,
+                yaxs = 'i',
+                pch = 20,
+                xlab="Year",
+                ylab = "Relative age-1 index estimate (log(fish))",
+                cex = 1.5,
+                las = 1,
+                gap = 0.05,
+                xaxt = "n",
+                ciLwd = 3,
+                ciCol = rgb(0, 0, 0, 0.5))
+  }
+
+  if(!log.scale){
+    plotBars.fn(ests$year,
+                ests,
+                scale = 1,
+                ylim = yLim,
+                yaxs = 'i',
+                pch = 20,
+                xlab="Year",
+                ylab = "Relative age-1 index (billions of fish)",
+                cex = 1.5,
+                las = 1,
+                gap = 0.05,
+                xaxt = "n",
+                ciLwd = 3,
+                ciCol = rgb(0, 0, 0, 0.5))
+  }
+  axis(1, at = ests$year, cex.axis = 0.8)
 }
+
+
+
 
 make.kriging.parameters.table <- function(krig.pars = kriging.pars,
                                           xcaption = "default",
