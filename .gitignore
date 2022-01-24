@@ -4,6 +4,7 @@
 *.aux
 *.bbl
 *.blg
+credentials
 *.docx
 *.doc
 *.dvi
