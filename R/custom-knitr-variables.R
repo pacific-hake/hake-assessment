@@ -239,6 +239,7 @@ median.intensity.2017 <- f(base.model$mcmccalcs$pmed["2017"] * 100, 1)
 median.intensity.2018 <- f(base.model$mcmccalcs$pmed["2018"] * 100, 1)
 median.intensity.2019 <- f(base.model$mcmccalcs$pmed["2019"] * 100, 1)
 median.intensity.2020 <- f(base.model$mcmccalcs$pmed["2020"] * 100, 1)
+median.intensity.2021 <- f(base.model$mcmccalcs$pmed["2021"] * 100, 1)
 median.intensity.penult.yr <- f(base.model$mcmccalcs$pmed[as.character(end.yr-1)] * 100, 1)
 median.relative.bio <- base.model$mcmccalcs$dmed
 median.relative.bio.2007.to.2010 <- median.relative.bio[c("2007", "2008", "2009", "2010")]
