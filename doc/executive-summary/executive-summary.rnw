@@ -118,7 +118,7 @@ In the \Sexpr{end.yr-1} catch,
 \Sexpr{top.coh(base.model, last.data.yr, 3, cap = FALSE)}.
 % Can check that manually from final row of Table 10 showing the proportions at age
 Due to staffing issues, age data were unavailable from the Canadian freezer-trawler
-fleet and minimally available for the Shoreside fleet in \Sexpr{end.yr-1}. 
+fleet and minimally available for the Shoreside fleet in \Sexpr{end.yr-1}.
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
@@ -152,9 +152,8 @@ make.survey.biomass.extrap.plot(survey.comparison)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<survey-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the survey estimate has decreased slighlty from 2019 to 2021">>=
-#make.survey.biomass.plot(base.model)
-make.survey.age1.plot(age.1.index)
+<<survey-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the age-1 survey estimate has decreased slightly from 2019 to 2021">>=
+make.survey.age1.plot.data(age.1.index)
 @
 \end{center}
 %\vspace{0mm}
