@@ -114,12 +114,12 @@ calculated from the Alaska Fisheries Science Center (AFSC) North Pacific Groundf
 which also stores the NWFSC At-Sea Hake Observer Program data.
 Canadian
 Joint-Venture catches from 1989 are from the Groundfish Biological (GFBio)
-database. The Canadian shore-based landings are from the Groundfish
+database. Canadian shore-based landings are from the Groundfish
 Catch (GFCatch) database (from 1989 to 1995), the Pacific Harvest
 Trawl (PacHarvTrawl) database (from 1996 to March 31 2007), and the
 Fisheries Operations System (FOS) database (from April 1 2007 to present).
 
-The vessels in the U.S. shore-based fishery carry
+Vessels in the U.S. shore-based fishery carry
 observers and are required to retain all catch and bycatch for sampling by plant
 observers. All catches from U.S. at-sea vessels, Canadian Joint-Venture vessels,
 and Canadian freezer trawlers
@@ -127,12 +127,12 @@ are monitored by at-sea observers. The exception was during 2020 and 2021 when
 there were no observers on Canadian freezer trawlers due to a suite of staffing issues.
 Canadian observers use volume/density
 methods to estimate total catch in each codend and this is used for catch reporting.
-Canadian shoreside landings are recorded by
-dockside monitors using total catch weights provided by processing plants.
+Canadian shoreside landings are monitored using
+at-sea observers or electronic monitoring and
+catch is recorded by
+dockside monitors within the Groundfish Trawl Dockside Monitoring Program
+using total catch weights provided by processing plants.
 Discards are negligible relative to the total fishery catch for all sectors.
-% todo: are all shoreside trips observed using electronic observations, and
-% when did this start?
-% todo: @cgrandin what was the observer coverage in 2020?
 
 For recent catches with haul or trip-level information,
 removals by month during the fishing season allowed for the estimation of
