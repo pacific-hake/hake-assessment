@@ -14,7 +14,8 @@ access_key=""
 # Bash environment variables ---------------------------------------------------
 models_dir=models
 base_model_dir=2022.01.10_base
-docker_container=cgrandin/hake
+#docker_container=cgrandin/hake # ADMB commit 1376cb55 "Sept 11, 2021 - Update azure-pipelines.yml for Azure Pipelines"
+docker_container=cgrandin/hake_admb_1376cb # ADMB commit for version 12.3
 #docker_container=cgrandin/hake_2021
 #docker_container=cgrandin/hake_admb_ss
 
