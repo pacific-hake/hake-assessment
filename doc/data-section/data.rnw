@@ -410,8 +410,8 @@ from the
 \Sexpr{combine_words(last.survey.year-type.convert(as.is=TRUE,names(survey.last.year.age[1:5])))}
 year classes, respectively.
 
-The acoustic-trawl survey data in this assessment do not include age-1 fish, although
-a separate age-1 index has been explored in the past \citep{JTC2013, JTC2020}. The age-1 index
+The acoustic-trawl survey biomass estimate in this assessment does not include age-1 fish, although
+a separate age-1 index has been explored in the past \citep{JTC2013, JTC2020, JTC2021}. The age-1 index
 is in numbers of fish and confirms the large 2010 and 2014 year classes and the moderate year-classes
 in 2008, 2016, and 2020 (Table~\ref{tab:main-survey-history} and Figure~\ref{fig:main-age-one-index}).
 The 2021 age-1 index estimate was scaled by a factor of 1.06 to account for differences between
@@ -425,7 +425,7 @@ The decision to include the age-1 index in the base model this year was based on
 multiple factors. While the acoustic-trawl survey  was not originally designed to
 index recruitment, independent age-1 estimates from the survey have tracked
 recruitment estimates reasonably well when using assessment models that do not
-incorporate age-1 acoustic data (Figure~\ref{fig:main-age-one-index}).  Incorporating
+incorporate age-1 acoustic data (e.g.~Figure 11 of \citealt{JTC2021}). Incorporating
 the age-1 index results in estimates of recruitment strength (e.g., size of yearly
 deviations from the stock-recruitment relationship) that are informed on average one year
 earlier than models without the index (see Figures~\ref{fig:main-retrospective-recruitment}

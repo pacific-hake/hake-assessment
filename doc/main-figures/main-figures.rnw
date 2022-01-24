@@ -203,13 +203,18 @@ make.survey.biomass.extrap.plot(survey.comparison)
 \begin{figure}[H]
 \begin{center}
 <<main-age-one-index, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the age-1 index has dropped from 2017 to 2019">>=
-make.survey.age1.plot(base.model,
-                      age.1.index)
+make.survey.age1.plot.data(age.1.index,
+                           log.scale = FALSE,
+                           yLim = c(0,10))
 @
 \end{center}
 %\vspace{0mm}
-\caption{**[maybe no longer call it preliminary if we use it]Preliminary acoustic survey age-1 index overlaid on estimated numbers
-  of age-1 fish (medians of the posterior distribution from the base model).}
+\caption{Relative age-1 indices (numbers of fish) and approximate 95\% confidence intervals
+  based on sampling variability. See Table~\ref{tab:main-survey-history} for values
+  used in the base model. The index is relative because
+  the survey does not attempt to get catch all available
+  age-1 fish and the index does not include kriging
+  like the age-2+ biomass estimate.}
 \label{fig:main-age-one-index}
 \end{figure}
 
