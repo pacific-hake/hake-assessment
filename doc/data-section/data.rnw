@@ -163,24 +163,21 @@ are substantial landings of \fishname, primarily Eureka, Newport, Astoria, and
 Westport. Port samplers routinely take one sample per offload (or trip)
 consisting of 100 randomly selected fish for individual length and weight, and
 from these typically 20 fish are randomly subsampled for otolith extraction.
-%Updates to historical shore-based age compositions may be noticeable for some
-%years compared to the last assessment because PacFIN increased the number of
-%significant digits stored in their database, and thus more precision was available
-%for creating these compositions.
-% Manual 2021 KFJ: delete the previous sentence in 2021
 
-** Observers aboard Canadian freezer-trawler vessels
+Observers aboard Canadian freezer-trawler vessels
 (\emph{\Sexpr{combine_words(gsub("\\#","\\\\#", can.vessels))}})
-sample otoliths and lengths from each haul. The sampled weight from which
+collect 50 otoliths and 300 lengths per sample, sampling once per day during
+trips that on average last approximately seven days.
+The sampled weight from which
 biological information is collected must be inferred from length-weight
 relationships.
-% todo: Information about how many samples are collected
 
 For electronically observed shoreside trips, port samplers obtain
-biological data from the landed catch. Observed domestic haul-level information
+biological data from the landed catch.
+For each trip, 50 ages and 300 lengths are sampled from the catch.
+Observed domestic haul-level information
 is then aggregated to the trip level to be consistent with the unobserved trips
 that are sampled in ports.
-% todo: document sample sizes of age and lengths
 
 When there is a Canadian Joint-Venture fishery,
 length samples are collected every second day of fishing operations, and
