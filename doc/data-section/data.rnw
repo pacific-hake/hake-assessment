@@ -729,9 +729,13 @@ Estimated parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$ serve to
 automatically adjust the weight given to
 the fishery-composition data and the
 survey-composition data, respectively.
-**Mention total likelihood calculation updated from last year?
+As of 2021, Stock Synthesis now includes the constant of integration
+in the likelihood calculation for the D-M model
+such that likelihoods are comparable across weighting methods.
+Where previously, the D-M method appeared to always be the model that fit the data best.
 
-Integration of the data weighting increases the efficiency of the assessment process, removes the
+Integration of weighting the composition data within the assessment
+increases the efficiency of the assessment process, removes the
 subjective choice of how many iterations are required,
 and ensures that the results of model sensitivities, retrospective analyses,
 and likelihood profiles are automatically tuned, rather than having the
@@ -769,7 +773,8 @@ is insignificant compared to the second term. Consequently,
 $\protect{\theta / (1 + \theta)}$ can be compared to the sample size
 multipliers used in the McAllister-Ianelli data-weighting method
 \citep{McAllisterIanelli1997} that was used for assessments prior to 2018
-(Table~\ref{tab:main-assessment-changes}).
+(Table~\ref{tab:main-assessment-changes}) and
+as a sensitivity (see Section~\ref{sec:assessment-sensitivity-analyses}).
 In short, the McAllister-Ianelli method involves
 iteratively adjusting multipliers of the input sample sizes
 passed to the multinomial likelihoods until they are
@@ -797,14 +802,10 @@ and a standard deviation of \Sexpr{effn.prior[3]}.
 Composition data can also be weighted using the Francis method
 (T2.6 in Table 2 of \citealp{Francis2011}),
 which is based on variability in the observed ages by year.
-This method, like the McAllister-Ianelli method, is iterative (unlike the D-M
-method which estimates the weights),
+This method, like the McAllister-Ianelli method, is iterative,
 where the sample sizes are adjusted such that the fit of the expected
-compositions should fit within the estimated uncertainty at a rate
+compositions should be within the estimated uncertainty at a rate
 that is consistent with the variability expected given
 the effective sample sizes. The Francis method is known to be sensitive to
 outliers and prone to convergence issues when selectivity is time-varying. As
-a result, a sensitivity analysis was conducted that down-weighted composition data
-to a level consistent with weights obtained from the McAllister-Ianelli harmonic
-mean method (see Section~\ref{sec:assessment-sensitivity-analyses}).
-% todo: potentially remove the McAllister and Francis descriptions in 2022
+a result, the Francis method was not included as a sensitivity.
