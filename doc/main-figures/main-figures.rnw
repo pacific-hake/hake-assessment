@@ -1299,17 +1299,20 @@ make_squid_plot(base.model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{**Retrospective analysis of recruitment deviations from MCMC models over the last
+\caption{Retrospective analysis of recruitment deviations from MCMC models over the last
   \Sexpr{length(retro_cohorts) + 1} years. Recruitment deviations are
-  the log-scale differences between recruitment estimated by the model
+  the median log-scale differences between recruitment estimated by the model
   and expected recruitment from the spawner-recruit relationship.
   Age-0 recruitment deviations are non-zero because MCMC allows for
   sampling from the full log-normal distribution.
   Lines represent estimated recruitment deviations for cohorts from
   \Sexpr{min(retro_cohorts)} to \Sexpr{max(retro_cohorts)}, with cohort
   birth year marked at the right of each color-coded line. Values are
-  estimated by models using data available only up to the year in which
-  each cohort was a given age.}
+  estimated by models using data available only up to the start of the year in which
+  each cohort became a given age (so the 2014 cohort is age-8 at the
+  start of 2022, and so that retrospective calculation
+  includes data to 2021).} %Sorry, no time to
+  % automate that right now
 \label{fig:main-retrospective-recruitment}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1325,7 +1328,7 @@ make_squid_plot(base.model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{**Retrospective recruitment estimates shown in
+\caption{Retrospective recruitment estimates shown in
   Figure \ref{fig:main-retrospective-recruitment} scaled
   relative to the most recent estimate of the strength of each cohort.}
 \label{fig:main-relative-retrospective-recruitment}
@@ -1414,8 +1417,14 @@ make.historical.probs.retro.plot(base.model,
 @
 \end{center}
 \caption{Retrospective versions of Figure~\ref{fig:main-historical-1}.
-  For each panel, the current base model is run using only data up to the year
-  shown (i.e. a retrospective analysis). Results are shown in a single panel in
+  For each panel, the current base model is run using only data up to
+  (and including) the year
+  shown (i.e. a retrospective analysis) -- `data to 2011' would
+  equate to doing an assessment at the start of 2012.
+  Results are shown for further retrospective years in
+  Figures~\ref{fig:main-historical-retro-2}
+  and~\ref{fig:main-historical-retro-3}, and
+  in a single panel in
   Figure~\ref{fig:main-historical-retro-all}.}
 \label{fig:main-historical-retro-1}
 \end{figure}
@@ -1431,19 +1440,8 @@ make.historical.probs.retro.plot(base.model,
                                  make.one.figure = FALSE)
 @
 \end{center}
-\caption{**Retrospective versions of Figure~\ref{fig:main-historical-1} for second
-  three retrospectives. The pink 2015 value for 2016 retro is interesting (for
-  2021 assessment results - interesting if changes with new model -- check).
-  Only one for
-  which newer model with data to year $t$
-  performs 'worse' than original assessment from year $t$. Looking at
-  squid plot I think it may possibly be the slight drop in 2010 retro from
-  age 5 to 6 (a big abs decrease in estimated 2010 rec
-  when going from 2015 data to 2016); maybe think about more, may
-  be too hard to tease out (and those thoughts may be wrong).
-  For each panel, the current base model is run using only data up to the year
-  shown (i.e. a retrospective analysis). Results are shown in a single panel in
-  Figure~\ref{fig:main-historical-retro-all}.}
+\caption{As for Figure~\ref{fig:main-historical-retro-1} for
+  further retrospective years.}
 \label{fig:main-historical-retro-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1458,17 +1456,11 @@ make.historical.probs.retro.plot(base.model,
                                  make.one.figure = FALSE)
 @
 \end{center}
-\caption{**Retrospective versions of Figure~\ref{fig:main-historical-1} for final
-  retrospectives **can also bump select.retros to 10 when have updated base
-  model results, maybe just add to next plot.
-  For each panel, the current base model is run using only data up to the year
-  shown (i.e. a retrospective analysis). Results are shown in a single panel in
-  Figure~\ref{fig:main-historical-retro-all}.}
+\caption{As for Figure~\ref{fig:main-historical-retro-1} for
+  further retrospective years.}
 \label{fig:main-historical-retro-3}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]

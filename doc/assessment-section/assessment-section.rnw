@@ -1915,5 +1915,28 @@ Figure~\ref{fig:historical-retro-all-age1} (excluding the age-1 index), which
 is caused by changes in model structure (and any updates in data) since
 2012 beyond the inclusion of the age-1 index (else the square and circle would overlap).
 
+For 2013 onwards
+(Figures~\ref{fig:main-historical-retro-1}--\ref{fig:main-historical-retro-all}),
+the retrospective probabilities (colored squares) are
+generally close to the probabilities currently estimated using all available
+data (blue triangles), with 2018 again being an exception. All retrospectives are shown together in
+Figure~\ref{fig:main-historical-retro-all} for ease of comparison.
 
-**Andy got to here for now...
+Of note is that
+P$(B_{2016} < B_{2015})$ is close to the current base model's value when using
+data up to 2014 (the dark grey square and blue squares at 2015 are close together in the
+top panel of Figure~\ref{fig:main-historical-retro-2}). Yet, when the 2015 data
+are included, the probability falls noticeably (the gold square at 2014 in the middle panel of
+Figure~\ref{fig:main-historical-retro-2}). It falls further when the 2016 data
+are included (the orange square at 2014 in the bottom panel of
+Figure~\ref{fig:main-historical-retro-2}), and then agrees with the current base
+model when the 2017 data are included (the pink square at 2014 in the top panel of
+Figure~\ref{fig:main-historical-retro-3}). This is presumably explained by the
+retrospective analysis of recruitment deviations of the large 2014 cohort. The
+2014 cohort is
+overestimated (compared to current estimates) when including data up to 2015 and
+2016 (the highest two green points for the 2014 cohort in
+Figure~\ref{fig:main-retrospective-recruitment}), but then is more consistently
+estimated once the 2017 data are included (note that 2017 was a survey
+year). The same behaviour is seen when excluding the age-1 index
+(Figure~\ref{fig:historical-retro-all-age1}).
