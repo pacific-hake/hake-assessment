@@ -767,7 +767,9 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
                                                           "violet",
                                                           "black",
                                                           "lightgrey"),
-                                       highlight.lwd = 2
+                                       highlight.lwd = 2,
+                                       auto.xaxis = TRUE  # label normally, else
+                                         # use bigticks
                                        ){
   oldpar <- par()
   par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
@@ -855,7 +857,14 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
   }
 
   box()
-  axis(1, at = start.yr:end.yr) #cex.axis = 0.8, tcl = -0.6)
+  if(auto.xaxis){
+    axis(1, at = start.yr:end.yr) #cex.axis = 0.8, tcl = -0.6)
+    } else {
+    axis(1, at = big.ticks)
+    axis(1,
+         at = little.ticks,
+         lab = rep("",length(little.ticks)), tcl = -0.3)
+    }
   axis(2)  #, at = 0:5, las = 1)
   par <- oldpar
 }
