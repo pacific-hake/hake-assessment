@@ -212,9 +212,9 @@ make.survey.age1.plot.data(age.1.index,
 \caption{Relative age-1 indices (numbers of fish) and approximate 95\% confidence intervals
   based on sampling variability. See Table~\ref{tab:main-survey-history} for values
   used in the base model. The index is relative because
-  the survey does not attempt to get catch all available
-  age-1 fish and the index does not include kriging
-  like the age-2+ biomass estimate.}
+  the survey does not attempt to catch all available
+  age-1 fish and the analysis does not include kriging
+  like what is done to estimate age-2$+$ biomass.}
 \label{fig:main-age-one-index}
 \end{figure}
 
