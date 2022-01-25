@@ -121,7 +121,7 @@ fishery data and the incorporation of the age-1 index into the base model.
 
 The \Sexpr{assess.yr} base model includes a time series (1995 to
 \Sexpr{last.survey.year}) of acoustic age-2$+$ biomass
-estimates and acoustic estimates of age-1 fish (see 
+estimates and acoustic estimates of age-1 fish (see
 Section~\ref{sec:data-acoustic-survey} for more details on the age-1 index).
 Maturity is assumed to be time-invariant and the
 maturity ogive updated in 2018 was retained
@@ -1744,11 +1744,6 @@ historical estimates.
 
 \subsection{Performance of past projections}\label{sec:assessment-past-projections}
 
-**Updated some text, but everything needs checking once get new results.
-
-**Also need to add text regarding the new retrospective plots (some thoughts are
-in the captions, but need to flesh out here once have 2022 results).
-
 A comment from an industry representative in 2021 about the probabilities in the
 decision tables
 (such as Tables~\ref{tab:main-risk-year-1} and~\ref{tab:main-risk-year-2})
@@ -1766,7 +1761,7 @@ probabilities in the decision tables.
 As an example, the 2019 assessment provides the estimated probability of the spawning stock
 biomass declining in the subsequent year, i.e.,~P($B_{2020} < B_{2019}$),
 for several possible catches in 2019 (such as 0~t, 180,000~t,
-350,000~t, 410,000~t etc.). Now, in \Sexpr{assess.yr}, we \emph{`know'} that the catch in 2019 was
+350,000~t, 410,000~t etc.). Now, in \Sexpr{assess.yr}, we `know' that the catch in 2019 was
 411,574~t. Therefore, we can select the 410,000~t row (which is close enough to
 411,574~t) in the table from the 2019
 assessment to give that assessment's
@@ -1777,7 +1772,7 @@ We can also calculate P($B_{2020} < B_{2019}$) using the current
 assessment model, i.e.,~calculate our most up-to-date estimate of the probability
 that the stock declined from 2019 to 2020 using all available data. This
 implicitly includes the 411,574~t catch from 2019. From the current assessment
-model we get P$(B_{2020} < B_{2019}) =$ \Sexpr{prob.decline.from.2019.to.2020.curr}\%.
+model we get P$(B_{2020} < B_{2019}) =$\Sexpr{prob.decline.from.2019.to.2020.curr}\%.
 The \Sexpr{prob.decline.from.2019.to.2020.historic}\% and
 \Sexpr{prob.decline.from.2019.to.2020.curr}\% probabilities
 are shown for 2019 in Figure~\ref{fig:main-historical-1}.
@@ -1793,7 +1788,7 @@ the exact catch in year $t$ was not given in the decision tables in year $t$'s a
 We also calculate analogous probabilities,
 P$(B_{t+1} < B_{t})$, from the current base model (Figure~\ref{fig:main-historical-1}).
 
-The historic probability of \Sexpr{prob.decline.from.2012.to.2013.historic}\%
+The historic probability of P$(B_{2013} < B_{2012}) =$\Sexpr{prob.decline.from.2012.to.2013.historic}\%
 from the 2012 assessment is
 somewhat above the \Sexpr{prob.decline.from.2012.to.2013.curr}\% calculated using the current assessment model
 (Figure~\ref{fig:main-historical-1}). But, this makes sense because the
@@ -1826,17 +1821,19 @@ documents are not too definitive (too close to 0\% or to 100\%) because they are
 admitting a wide range of uncertainty given unknown recruitments. The 2021 assessment's
 estimate is very close to that of this year's assessment.
 
-Interestingly, in Figure~B.3.1 of \citet{JTC2021} we found that the 2018 probability from the
+Interestingly, in Figure~B.3.1 of the 2021 assessment \citep{JTC2021} we found that the 2018 probability from the
 2021 base model was above
-the 50\% line (unlike for this year's base model), agreeing with the 2018 assessment calculation. And it was the only
+the 50\% line (unlike for this year's base model), agreeing with the 2018
+assessment calculation (2018 was also the only
 year for which the probability from the 2021 assessment model was closer to 50\%
-than that from that year's assessment. This may be because there is no
+than that from that year's assessment). The differing results to the current
+base model may be because there is no
 definitive trend in biomass around that time
 (Figure~\ref{fig:main-female-spawning-biomass}), with the median spawning biomass
 slightly increasing from 2018 to 2019, whereas it was slightly decreasing in the
 equivalent figure in the 2021 assessment. Thus, probabilities of annual decline are
-expected to be sensitive to slight changes in results in such cases (and whether
-the stock declines or increases is not so important when such changes are small).
+expected to be sensitive to slight changes in results in such cases. Whether
+the stock declines or increases is not so important when such changes are small.
 
 From this current \Sexpr{assess.yr} assessment's projections, we show the probabilities for
 all catch alternatives in Figure~\ref{fig:main-historical-1} because
@@ -1887,8 +1884,8 @@ decline further next year.
 
 Overall, these results suggest good confidence in the
 projected probabilities from the assessment model. Past projections of increases
-or decreases in the stock the following year have been `correct' (the most
-probable direction has been correct). And, except for the 2012 assessment
+or decreases in the stock the following year have almost always been `correct' (the most
+probable direction has agreed with the latest base model and data). And, except for the 2012 assessment
 incorrectly expecting the biomass to fall below $\Bforty$ (which did not happen thanks
 the large 2010 year class), projections `correctly' estimated the
 biomass to not go below $\Bforty$.
@@ -1899,32 +1896,24 @@ and~\ref{fig:main-historical-2}. By using data only up to 2011, the current
 base model estimates a very low probability of biomass decline from 2012 to 2013,
 P$(B_{2013} < B_{2012})$, similar to that from the base model with data from all years
 (top panel of Figure~\ref{fig:main-historical-retro-1}). However, the 2012 assessment estimated
-a much higher probability of 43\%. This difference is presumably due to changes in model structure
-since 2012 (Table~\ref{tab:main-assessment-changes}).
+a much higher probability of 43\%. This difference is presumably due to changes in modelling
+framework since 2012 (Table~\ref{tab:main-assessment-changes}).
 
 An obvious relevant
 change is the inclusion of the age-1 index in this year's base model. The equivalent retrospective
 calculation for the sensitivity run that excludes the age-1 index (and hence excludes
-the 2011 age-1 index that shows the large 2010 cohort), gives
+the 2011 age-1 index that gives strong evidence for the large 2010 cohort), gives
 P$(B_{2013} < B_{2012}) >20\%$
-(Figure~\ref{fig:historical-retro-all-age1}). This suggest that the age-1 index
-accounts for some of the improvement of the estimate of
-of P$(B_{2013} < B_{2012})$ between the retrospective calculation using the
-current base model (grey point in top panel of Figure~\ref{fig:main-historical-retro-1}) and
-the 2012 assessment's calculation (red point in top panel of Figure~\ref{fig:main-historical-retro-1}).
+(grey square in Figure~\ref{fig:historical-retro-all-age1}). This suggest that the age-1 index
+accounts for some of the reduction
+of P$(B_{2013} < B_{2012})$ from the 2012 assessment's calculation (red circle
+in top panel of Figure~\ref{fig:main-historical-retro-1}) to the retrospective calculation using the
+current base model but data only up to 2011 (grey square in top panel of
+Figure~\ref{fig:main-historical-retro-1}). However, there
+is still a difference between the grey square and red circle at 2012 in
+Figure~\ref{fig:historical-retro-all-age1} (excluding the age-1 index), which
+is caused by changes in model structure (and any updates in data) since
+2012 beyond the inclusion of the age-1 index (else the square and circle would overlap).
 
-Note that P$(B_{2013} < B_{2012})$ in Figure~\ref{fig:historical-retro-all-age1}
-(excluding the age-1 index)
-is still somewhat below the value estimated in the 2012 assessment, unlike
-Figure~\ref{fig:main-historical-retro-1} that includes the age-1 index. Hence,
-it is not solely the addition of the age-1 index (but also other model changes)
-that leads to the improved estimation of P$(B_{2013} < B_{2012})$ when compared
-to the latest base model with all information. **Though maybe that's a bit
-circular - comparing new base model with data up to 2011 with new base model
-with all data, and saying it does better than 2012 model assumptions. Think about.
 
 **Andy got to here for now...
-
- Final retro point should in theory
-  be close to the red point, difference is due to model changes (and
-  maybe slightly updated data).
