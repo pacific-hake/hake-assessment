@@ -22,7 +22,7 @@ Fishery-dependent and fishery-independent data used in this assessment
   are used to fit the model
   (Table~\ref{tab:main-all-age-data-fishery} and Figure~\ref{fig:main-age-comp-bubbles}).
 
-\item Biomass indices and age compositions from the \surveyname\
+\item Biomass index and age compositions from the \surveyname\
   % use knitr::combine_words(survey.age.years) below
   (\Sexpr{survey.age.years[-length(survey.age.years)]}, and
   \Sexpr{survey.age.years[length(survey.age.years)]};
@@ -64,7 +64,7 @@ additional data sources are:
 
 \item Fishery and acoustic survey age-at-length compositions.
 
-\item Biomass indices and age compositions from the following years of the
+\item Biomass index and age compositions from the following years of the
   \surveyname\, 1977, 1980, 1983, 1986, 1989, and 1992.
   % presume won't change, no need to automate.
 
@@ -402,9 +402,9 @@ The \Sexpr{last.survey.year} survey age composition was made up of
 from the
 \Sexpr{combine_words(last.survey.year-type.convert(as.is=TRUE,names(survey.last.year.age[1:5])))}
 year classes, respectively.
-Note that the estimate of biomass does not include age-1 fish and 
+Note that the estimate of biomass does not include age-1 fish and
 the age compositions used to estimate selectivity of the survey also exclude
-age-1 fish (Table~\ref{tab:main-all-age-data-survey}). 
+age-1 fish (Table~\ref{tab:main-all-age-data-survey}).
 
 A separate age-1 index (numbers of fish) has been explored for its inclusion in the
 assessment since 2013 \citep{JTC2013, JTC2020, JTC2021}.

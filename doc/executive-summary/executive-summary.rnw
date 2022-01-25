@@ -141,10 +141,10 @@ make.survey.biomass.extrap.plot(survey.comparison)
 @
 \end{center}
 %\vspace{0mm}
-\caption{Acoustic survey biomass indices of age-2+ fish (millions of tons).
+\caption{Acoustic survey biomass index of age-2+ fish (millions of tons).
   Approximate 95\% confidence intervals are based on sampling variability
-  (intervals without squid/hake apportionment uncertainty in 2009 are displayed in black). See
-  Table~\ref{tab:main-survey-history} for values used in the base model.}
+  (intervals without squid/hake apportionment uncertainty in 2009 are
+  displayed in black).}
 \label{fig:es-survey-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -159,9 +159,10 @@ make.survey.age1.plot.data(age.1.index,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Relative age-1 indices (numbers of fish) and approximate 95\% confidence intervals
-  based on sampling variability. See Table~\ref{tab:main-survey-history} for values
-  used in the base model. The index is relative because
+\caption{Relative age-1 index (numbers of fish)
+  and approximate 95\% confidence intervals
+  based on sampling variability.
+  The index is relative because
   the survey does not attempt to catch all available
   age-1 fish and the analysis does not include kriging
   like what is done to estimate age-2$+$ biomass.}
@@ -170,8 +171,8 @@ make.survey.age1.plot.data(age.1.index,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 This Joint Technical Committee (JTC) assessment depends primarily on the fishery
-landings (\Sexpr{start.yr}--\Sexpr{last.data.yr}), acoustic survey biomass
-indices (Figure~\ref{fig:es-survey-biomass}) and age compositions
+landings (\Sexpr{start.yr}--\Sexpr{last.data.yr}), an acoustic survey biomass
+index (Figure~\ref{fig:es-survey-biomass}) and age compositions
 (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}), an age-1 index (Figure~\ref{fig:es-survey-age1}),
 as well as fishery age compositions (\Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}).
 The 2011 survey index value was the lowest in the time series and was followed by the index increasing
@@ -193,8 +194,8 @@ retrospective investigations to evaluate the potential consequences of parameter
 uncertainty, alternative structural models, and historical performance of the
 assessment model, respectively. The Bayesian approach combines prior knowledge
 about natural mortality, stock-recruitment steepness (a parameter for stock
-productivity), and several other parameters, with likelihoods for acoustic survey
-biomass indices, acoustic survey age-composition data, age-1 indices, and fishery
+productivity), and several other parameters, with likelihoods for the acoustic survey
+biomass index, acoustic survey age-composition data, the age-1 index, and fishery
 age-composition data. Integrating the joint posterior distribution over model
 parameters provides probabilistic
 inferences about uncertain model parameters and forecasts derived from those
