@@ -2,39 +2,29 @@
 %  the Executive Summary but only into research.rnw in the main text.
 % Manual 2021 done - KFJ
 
-\item **Explore potential recruitment indices for juvenile or young (age-0 and/or
-  age-1) \fishname, including further investigations into survey options,
-  refinements, and analyses, as well as those that include environment
-  linkages. Investigate alternative ways to model and forecast recruitment, given
-  the uncertainty present.
+%This one moved to top three so repetitive here
+%\item **Explore potential recruitment indices for juvenile or young (age-0 and/or
+%  age-1) \fishname, including further investigations into survey options,
+%  refinements, and analyses, as well as those that include environment
+%  linkages. Investigate alternative ways to model and forecast recruitment, given
+%  the uncertainty present.
 
-\item **Develop a set of candidate ecosystem indicators that are potentially
+\item Develop a set of candidate ecosystem indicators that are potentially
   associated with \fishname\ biology and ecology (e.g., recruitment, distribution,
   predator, and prey). Such information can broaden the context within which a single
   species stock assessment is interpreted, be used to support model development, and
   provide non-assessment indicators to management.
 
-\item **Explore alternative approaches and related assumptions for parameterizing
-  time-varying fishery selectivity in the assessment. Simulations that
-  evaluate methods for including multiple variance structures, including interactions,
-  tradeoffs, and related assumptions, across multiple processes (e.g., selectivity,
-  recruitment, data weighting) in integrated stock assessment models would be
-  particularly beneficial.
-%\enlargethispage{\baselineskip}
-
-\item **Conduct an inter-laboratory otolith exchange and
+\item Conduct an inter-laboratory otolith exchange and
   use the results to update estimates of ageing error used in the stock assessment.
   This would include updated information about ageing imprecision and the effects of
   large cohorts as understood given simulation analyses and
   blind-source age reads of samples with
   differing underlying age distributions -- with and without dominant year
   classes. The last inter-laboratory comparison was done in 2010 (``CARE''
-  exchanges). In addition, investigate whether otolith collections at
-  the Burke Museum in Seattle include \fishname\, and if so what is the quality,
-  quantity, and time period coverage of available samples. Such attributes will help
-  determine if these samples could eventually contribute to the stock assessment.
+  exchanges). 
 
-\item **Continue to collect and analyze life-history data, including weight,
+\item Continue to collect and analyze life-history data, including weight,
   maturity, and fecundity for \fishname. Explore possible relationships among
   these life-history traits and correlations with
   time, empirical growth, and population density.
@@ -46,32 +36,32 @@
   Additionally, a more spatially comprehensive maturity analysis that
   incorporates information from Canadian samples would be advantageous.
 
-\item **Continue to analyze \fishname\ genetics. In particular, completing
-  the ongoing genetics testing and analysis required to evaluate spatial-temporal
-  population structure will provide an improved understanding across the extent
-  of the coastal population.
+\item Explore the operational use of eDNA data for characterizing aspects
+  of \fishname\ population dynamics, such as changes in species distribution or
+  perhaps density, and the incorporation of these data into stock assessments.
 
-\item **Maintain the flexibility to undertake additional acoustic surveys for
+\item Maintain the flexibility to undertake additional acoustic surveys for
   \fishname\ in non-survey years when uncertainty in the results of the
   stock assessment presents a potential risk to or underutilization of the
   stock.
 
-\item **Consider alternative methods for refining existing prior distributions
+\item Explore alternative approaches and related assumptions for parameterizing
+  time-varying fishery selectivity in the assessment. Simulations that
+  evaluate methods for including multiple variance structures, including interactions,
+  tradeoffs, and related assumptions, across multiple processes (e.g., selectivity,
+  recruitment, data weighting) in integrated stock assessment models would be
+  particularly beneficial.
+%\enlargethispage{\baselineskip}
+
+\item Consider alternative methods for refining existing prior distributions
   for natural mortality ($M$), including the use of meta-analytic methods.
   Evaluate feasibility of estimating age-specific natural mortality for
   \fishname.
 
-\item **Develop and evaluate new diagnostics for Bayesian MCMC model evaluations.
-
-\item **Explore the potential to use acoustic data collected from commercial
+\item Explore the potential to use acoustic data collected from commercial
   fishing vessels to study hake distributions, schooling patterns, and other
   questions of interest. This could be similar to the
   ``acoustic vessels of opportunity'' program on fishing vessels
   targeting Pollock in Alaska \citep{StienessenHonkalehtoEtAl2019}.
-
-\item **Develop mechanisms that improve computing capabilities and storage
-  capacity through the use of cloud computing, local high performance computing
-  clusters, or other similar productivity enhancements to improve assessment
-  modeling and workflow that goes into building the assessment document.
 
 \end{enumerate}
