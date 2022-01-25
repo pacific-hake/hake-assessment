@@ -1745,34 +1745,37 @@ historical estimates.
 **Also need to add text regarding the new retrospective plots (some thoughts are
 in the captions, but need to flesh out here once have 2022 results).
 
-A comment in 2021 about the probabilities in the decision tables
+A comment from an industry representative in 2021 about the probabilities in the
+decision tables
 (such as Tables~\ref{tab:main-risk-year-1} and~\ref{tab:main-risk-year-2})
-changing from assessment to assessment led \citep{JTC2021} to
+changing from assessment to assessment led \citet{JTC2021} to
 investigate the general question of how much confidence can we have in the
 probabilities in the decision tables.
 
 % 2021:
-% Doing some numbers manually to get done. Next year can supply Tables also,
-% plus automate a bit. Plus do a retrospective analysis now that we have MCMC retros, maybe as an
-% animation (and panel plot if needed for the document). Would really enhance understanding.
-% combine_historical_probs(base.model, end = 2020)   % gives the probs, maybe
+% Doing some numbers manually to get done. Next year can supply Tables also maybe,
+% plus automate a bit. Plus do a retrospective analysis now that we have MCMC retros.
+% combine_historical_probs(model = base.model, end = assess.yr-1)
+% gives the probs, maybe
 % worth making a table
 
 As an example, the 2019 assessment provides the estimated probability of the spawning stock
 biomass declining in the subsequent year, i.e.,~P($B_{2020} < B_{2019}$),
 for several possible catches in 2019 (such as 0~t, 180,000~t,
-350,000~t, 410,000~t etc.). Now, in \Sexpr{assess.yr}, we \emph{know} that the catch in 2019 was
+350,000~t, 410,000~t etc.). Now, in \Sexpr{assess.yr}, we \emph{`know'} that the catch in 2019 was
 411,574~t. Therefore, we can select the 410,000~t row (which is close enough to
 411,574~t) in the table from the 2019
-assessment to give that assessment's P$(B_{2020} < B_{2019}) = 61\%$, given the catch
+assessment to give that assessment's
+P$(B_{2020} < B_{2019})=$\Sexpr{prob.decline.from.2019.to.2020.historic}\%, given the catch
 that we now know occurred in 2019.
 
 We can also calculate P($B_{2020} < B_{2019}$) using the current
 assessment model, i.e.,~calculate our most up-to-date estimate of the probability
 that the stock declined from 2019 to 2020 using all available data. This
 implicitly includes the 411,574~t catch from 2019. From the current assessment
-model we get P$(B_{2020} < B_{2019}) = 98\%$. **Need to automate the 98\%.
-The 65\% and 98\% probabilities
+model we get P$(B_{2020} < B_{2019}) =$ \Sexpr{prob.decline.from.2019.to.2020.curr}\%.
+The \Sexpr{prob.decline.from.2019.to.2020.historic}\% and
+\Sexpr{prob.decline.from.2019.to.2020.curr}\% probabilities
 are shown for 2019 in Figure~\ref{fig:main-historical-1}.
 
 We extracted similar probabilities from past assessment documents going back to
@@ -1786,8 +1789,9 @@ the exact catch in year $t$ was not given in the decision tables in year $t$'s a
 We also calculate analogous probabilities,
 P$(B_{t+1} < B_{t})$, from the current base model (Figure~\ref{fig:main-historical-1}).
 
-The probability of 43\% from the 2012 assessment is
-somewhat above the ** 0\% calculated using the current assessment model
+The historic probability of \Sexpr{prob.decline.from.2012.to.2013.historic}\%
+from the 2012 assessment is
+somewhat above the \Sexpr{prob.decline.from.2012.to.2013.curr}\% calculated using the current assessment model
 (Figure~\ref{fig:main-historical-1}). But, this makes sense because the
 2012 assessment model had no information that the 2010 recruitment was going to be very large,
 whereas the current base model does have such information from many years of age

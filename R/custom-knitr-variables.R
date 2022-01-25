@@ -271,7 +271,7 @@ zero.catch.prob.bio.down.1 <- f(base.model$risks[[1]][1,2])
 # Prob biomass declines year after next to year after that with zero catch ----
 zero.catch.prob.bio.down.2 <- f(base.model$risks[[2]][1,2])
 
-# Prob biomass declines year after next to year after that with zero catch ----
+# Prob biomass declines two year's after next to year after that with zero catch ----
 zero.catch.prob.bio.down.3 <- f(base.model$risks[[3]][1,2])
 
 # Prob current biomass being above/below B40%, B25%, and B10% -----------------------
@@ -620,3 +620,35 @@ baa_large <- baa %>%
 baa_2010 <- baa %>% filter(Cohort == 2010) %>% pull(Median) * 100
 baa_2014 <- baa %>% filter(Cohort == 2014) %>% pull(Median) * 100
 baa_2016 <- baa %>% filter(Cohort == 2016) %>% pull(Median) * 100
+
+# Probabilities for historical performance analyses
+historical.probs.tibble <- combine_historical_probs(model = base.model,
+                                                    end = assess.yr-1) %>% as_tibble()
+
+prob.decline.from.2019.to.2020.historic <-
+  dplyr::filter(historical.probs.tibble,
+                Year == 2019) %>%
+  dplyr::select("P_decline") %>%
+  as.numeric() %>%
+  f()
+
+prob.decline.from.2019.to.2020.curr <-
+  dplyr::filter(historical.probs.tibble,
+                Year == 2019) %>%
+  dplyr::select("P_decline_curr") %>%
+  as.numeric() %>%
+  f()
+
+prob.decline.from.2012.to.2013.historic <-
+  dplyr::filter(historical.probs.tibble,
+                Year == 2012) %>%
+  dplyr::select("P_decline") %>%
+  as.numeric() %>%
+  f()
+
+prob.decline.from.2012.to.2013.curr <-
+  dplyr::filter(historical.probs.tibble,
+                Year == 2012) %>%
+  dplyr::select("P_decline_curr") %>%
+  as.numeric() %>%
+  f()
