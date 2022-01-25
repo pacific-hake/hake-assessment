@@ -194,7 +194,7 @@ make.survey.age1.plot(sens.models.2[[1]],
   have the same mean as the estimated age-1 fish on a log scale,
   as the index is not included in this sensitivity run.
   The equivalent figure
-  for the base model is shown in Figure~\ref{fig:age-one-index-base}.}
+  for the base model is shown in Figure~\ref{fig:age-one-index-age1-base}.}
 \label{fig:age-one-index-age1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%
