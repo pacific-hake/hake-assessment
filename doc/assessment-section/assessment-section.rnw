@@ -1940,3 +1940,15 @@ Figure~\ref{fig:main-retrospective-recruitment}), but then is more consistently
 estimated once the 2017 data are included (note that 2017 was a survey
 year). The same behaviour is seen when excluding the age-1 index
 (Figure~\ref{fig:historical-retro-all-age1}).
+
+The equivalent retrospective figure to Figure~\ref{fig:main-historical-2}
+for P$(B_{t+1} < \Bforty)$, Figure~\ref{fig:main-historical-retro-bforty-all},
+shows, in particular, that
+P$(B_{2013} < \Bforty)$ when using data up to 2011 (first grey square,
+though hidden by other squares) is very low, compared to the 2012
+assessment's estimate of $>50\%$. This is also the case (though not quite as
+low) when including the age-1 index
+(Figure~\ref{fig:historical-retro-bforty-all-age1}), again
+suggesting that changes in model
+framework beyond inclusion of the age-1 index are impacting
+understanding of stock dynamics.

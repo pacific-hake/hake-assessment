@@ -625,6 +625,20 @@ make.historical.probs.retro.plot(sens.models.2[[1]])
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<historical-retro-bforty-all-age1, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining below B40 with those from the current base model and for retrospective analyses for the age-1 sensitivity analysis.">>=
+make.historical.probs.retro.plot(sens.models.2[[1]],
+                                 type = "bforty")
+@
+\end{center}
+\caption{Equivalent of Figure~\ref{fig:main-historical-retro-bforty-all}
+  for the age-1 sensitivity run, showing retrospective analysis
+  of P$(B_{t+1} < \Bforty)$ for each year $t$.}
+\label{fig:historical-retro-bforty-all-age1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \clearpage        % needed for footer to be correct
