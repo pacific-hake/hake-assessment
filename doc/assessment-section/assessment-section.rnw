@@ -525,32 +525,29 @@ A set of `bridging' models was constructed to evaluate the component-specific
 effects of all changes from the \Sexpr{last.assess.yr} base model to
 the \Sexpr{assess.yr} base model.
 
-**In short, these included the following:
+In short, these included the following:
 \begin{itemize}
   \item Update to the latest version of Stock Synthesis, version \Sexpr{ss.version};
-  \item Change the phase of data weighting parameters;
-  \item Update catch data from years prior to \Sexpr{last.data.yr};
-  \item Update age-composition data from years prior to \Sexpr{last.data.yr};
-  \item Update weight-at-age data from years prior to \Sexpr{last.data.yr};
-  \item Add \Sexpr{last.data.yr} total catch;
-  \item Add \Sexpr{last.data.yr} fishery age-composition and weight-at-age data; and
+  \item Update catch and age-composition data from years prior to \Sexpr{last.data.yr};
+  \item Add new catch and age composition data for \Sexpr{last.data.yr};
+  \item Update acoustic survey biomass and age-composition data from years prior to \Sexpr{last.data.yr};
+  \item Add the \Sexpr{last.data.yr} acoustic survey biomass and age-composition estimates;
+  \item Add weight-at-age data for \Sexpr{last.data.yr} as well as update data for years prior; and
+  \item Add the age-1 index time series.
   %\item Add \Sexpr{last.data.yr} survey biomass estimate;
   %\item Add \Sexpr{last.data.yr} survey age-composition data; and
-  \item Implement the NUTS algorithm for Bayesian posterior sampling.
 \end{itemize}
 
-**Age-1 index also if using.
-
-**The bridging steps can be grouped into three main sets of changes,
+The bridging steps can be grouped into three main sets of changes,
 with the majority of the steps being those that are performed routinely.
 The first step updated the Stock Synthesis framework to follow current best practices and
 adjusted the estimation phase for the data weighting parameters.
-The second step updated the information available from the fishery.
+The second step updated all information available from the fishery and acoustic survey.
 The third step
 %updated the information available from the survey and
-implemented other changes to the model structure or statistical framework.
+implemented changes related to the addition of the age-1 index.
 
-**Stock Synthesis version \Sexpr{ss.version} includes
+Stock Synthesis version \Sexpr{ss.version} includes
 a number of changes since the version used by \citet{JTC2020},
 mostly related to options not explicitly used in this assessment.
 %Changes relevant to the assessment of \fishname\ include changes to
@@ -560,28 +557,31 @@ mostly related to options not explicitly used in this assessment.
 %bias adjustment of the recruitment deviations are turned off.
 Adaptations within the stock synthesis modeling framework itself had no effect
 on parameter estimates compared to the \Sexpr{last.assess.yr}
-base model and thus no effect on resulting time series (Figure~\ref{fig:main-bridge-5-panel-1}).
-Similarly, changing the estimation of the Dirichlet Multinomial parameters
-to the final estimation phase (which more accurately reflects the timing of when
-other, manually-tuned, data weighting methods occur) had no effect on results.
+base model and thus no effect on resulting time series.
+%(Figure~\ref{fig:main-bridge-5-panel-1}).
+%Similarly, changing the estimation of the Dirichlet Multinomial parameters
+%to the final estimation phase (which more accurately reflects the timing of when
+%other, manually-tuned, data weighting methods occur) had no effect on results.
 
-**The second set of bridging steps was conducted to update the fishery-dependent data.
-This primarily included minor adjustments in catch, fishery age-composition, and
+The second set of bridging steps was conducted to update fishery-dependent
+and fishery-independent data.
+This primarily included minor adjustments in catch, fishery age-composition, 
+the 2019 acoustic survey biomass estimate, and
 weight-at-age values as databases are continually updated.
 Samples that were recently aged but not available for the \Sexpr{last.assess.yr}
 assessment were included.
 These changes to pre-\Sexpr{last.assess.yr} data were small enough that they had
-little impact on the model results (Figure~\ref{fig:main-bridge-5-panel-2}).
+little impact on the model results (Figure~\ref{fig:main-bridge-5-panel-1}).
 
-**The addition of \Sexpr{last.data.yr} catch allowed the model to be
+The addition of \Sexpr{last.data.yr} catch allowed the model to be
 extended to the start of \Sexpr{assess.yr}, but the estimates for
 \Sexpr{assess.yr} remained highly uncertain
-(Figure~\ref{fig:main-bridge-5-panel-2})
+(Figure~\ref{fig:main-bridge-5-panel-1})
 in the absence of additional information about recent recruitment.
 Adding \Sexpr{last.data.yr} fishery age-composition and weight-at-age data
 had relatively little impact on the historical biomass estimates,
 indicating that the observed \Sexpr{last.data.yr} ages were consistent with the model
-estimates without those data (Figure~\ref{fig:main-bridge-5-panel-2}).  However,
+estimates without those data (Figure~\ref{fig:main-bridge-5-panel-1}).  However,
 the addition of these data did slightly decrease the uncertainty with recent recruitment
 estimates, though overall uncertainty was still high. Recruitment estimates largely
 did not change with the addition of \Sexpr{last.data.yr} data, the exceptions being
