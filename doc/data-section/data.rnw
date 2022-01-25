@@ -729,13 +729,7 @@ Estimated parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$ serve to
 automatically adjust the weight given to
 the fishery-composition data and the
 survey-composition data, respectively.
-% Prior information
-Both priors for $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$
-are a normal distribution with a mean of \Sexpr{effn.prior[2]}
-and standard deviation of \Sexpr{effn.prior[3]}.
-In the 2019 assessment, uniform priors were used, but $\log
-\theta_{\text{surv}}$ was fixed at the estimate from a maximum likelihood
-estimate (MLE) run (see below). **Mention total likelihood calculation updated from last year?
+**Mention total likelihood calculation updated from last year?
 
 Integration of the data weighting increases the efficiency of the assessment process, removes the
 subjective choice of how many iterations are required,
