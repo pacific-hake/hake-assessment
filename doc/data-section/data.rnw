@@ -625,7 +625,8 @@ in this model, and retain the empirical approach to modeling weight-at-age used 
 
 Several prior distributions
 (Table~\ref{tab:main-params-est-summary})
-are used to fit the model. All informative priors are discussed below.
+are used to fit the model.
+The priors that are assumed to be informative are discussed below.
 
 \subsubsection{Natural Mortality}\label{sec:data-natural-mortality}
 
@@ -657,23 +658,17 @@ Section \ref{sec:assessment-sensitivity-analyses}).
 
 \subsubsection{Variability on fishery selectivity deviations}\label{sec:data-variability-selectivity}
 
-Time-varying fishery selectivity was introduced in the 2014 assessment
-\citep{JTC2014} and is modeled with yearly deviations applied to the
-selectivity-at-age parameters. A penalty function in the form of a normal
-distribution is applied to each deviation to keep the deviation from straying
+Time-varying selectivity was introduced in the 2014 assessment
+\citep{JTC2014} and is modeled using yearly deviations since 1991 applied to the
+selectivity-at-age parameters for the fishery.
+A penalty function in the form of a normal
+distribution is applied to each deviation to keep it from straying
 far from zero, unless the data are overwhelming. The amount of deviation from
-zero is controlled by a fixed standard deviation, $\Phi$. Further details on the
-time-varying selectivity function are provided below and described by
-\citet{JTC2018} in detail.
+zero is controlled by a fixed standard deviation, $\Phi$ \citep{JTC2018}.
 
-For each age $a \geq A_{\text{min}}$, where $A_{\text{min}}$ is the minimum age
-for which selectivity is allowed to be non-zero,
-there is an incremental selectivity parameter, $p_a$,
-for the fishery (for which $A_{\text{min}}=1$). There is also an equivalent
-$p_a$ for the
-survey (for which $A_{\text{min}}=2$), but to keep the notation simple we do
-not distinguish between them here because the following calculations are the same for the
-survey and the fishery.
+For each age $a \geq A_{\text{min}}$, where $A_{\text{min}}=1$ is the minimum age
+for which fishery selectivity is allowed to be non-zero,
+there is an incremental selectivity parameter, $p_a$.
 The selectivity at age $a$ is computed as
 \eb
 S_a = \exp (S'_a - S'_{\text{max}}),
@@ -696,35 +691,35 @@ base model for both the fishery and the survey),
 $p_a = 0$ gives constant selectivity beyond the last estimated
 value. The condition that maximum selectivity equals 1 results in one fewer
 degree of freedom than the number of estimated $p_a$. Therefore,
-$p_{A_{\text{min}}}=0$ can be set for the fishery and for the survey.
+$p_{A_{\text{min}}}=0$.
 
 The implementation of time-varying selectivity uses a set of deviations
-to control annual changes to the fishery selectivity parameters. The standard deviation,
+to control annual changes to the fishery selectivity parameters.
+The standard deviation of the normal penalty function,
 $\Phi$, associated with these deviations has been fixed at \Sexpr{sel.Phi.val}
 since the 2018 assessment (see \citealt{JTC2018} for justification).
-It is calculated using
+Using
 \eb
 p_{ay} = p_a + \epsilon_{ay},
 \ee
-where the $\epsilon_{ay}$ are the parameter deviations estimated in the model.
-These deviations are included in an additional likelihood component
+$\epsilon_{ay}$ are the parameter deviations estimated in the model.
+For years with time-varying parameters,
+these deviations are included in an additional likelihood component
 with negative log-likelihood proportional to
 \eb
 -\log(\text{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6}
-  ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \frac{\epsilon_{ay}^2}{\Phi^2},
+  ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \frac{\epsilon_{ay}^2}{\Phi^2}.
 % -\log(\text{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6} ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \left. \dfrac{\epsilon_{ay}^2}{\phi^2}{\vrule height 24pt width 0pt} \right. ,     % to try and make summations larger; can live with as is.
 \ee
-where $\Phi$ is the standard deviation of the normal penalty function.
-
-A parameterization for selectivity deviations was explored
-\citep{JTC2018, JTC2019} based on \citet{Xu2019}
-in an effort to produce a more objective way to determine the degree of
-flexibility. However, further testing of this approach in conjunction with
-other time varying parameters is warranted. In response to the \fishname\ population
+ 
+Further testing of alternative methods for parameterizing time-varying selectivity
+(e.g., \citet{Xu2019}) should be investigated in conjunction with
+the estimation of additional time varying parameters.
+In response to the \fishname\ population
 being comprised of several large cohorts over the past decade, alternative maximum
 ages for selectivity were once again investigated this year as a sensitivity analysis
 (see Section~\ref{sec:assessment-sensitivity-analyses}).
-% Manual 2021 KFJ
+% Manual 2022 KFJ
 
 \subsubsection{Age composition likelihood}\label{sec:data-age-comp-likelihood}
 
