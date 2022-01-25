@@ -61,6 +61,10 @@ Tables~\ref{tab:biomass-age1}--\ref{tab:risk-year-2-age1}
 show further quantities of interest and decision tables from the MCMC results
 when excluding the age-1 index.
 
+A retrospective plot of historical performance is given in
+Figure~{fig:historical-retro-all-age1}, and discussed with respect to
+Figure~\ref{fig:historical-retro-all-age1} in
+Section~\ref{sec:assessment-past-projections}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -604,5 +608,23 @@ make.risk.table(sens.models.2[[1]],
                 space.size = 11,
                 placement = "tbp")
 @
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<historical-retro-all-age1, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses for the age-1 sensitivity analysis.">>=
+make.historical.probs.retro.plot(sens.models.2[[1]])
+@
+\end{center}
+\caption{Equivalent of Figure~\ref{fig:main-historical-retro-all}
+  for the age-1 sensitivity run, showing retrospective analysis
+  of the probabilities of decline.}
+\label{fig:historical-retro-all-age1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 \clearpage        % needed for footer to be correct

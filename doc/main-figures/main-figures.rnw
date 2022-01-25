@@ -1413,15 +1413,10 @@ make.historical.probs.retro.plot(base.model,
                                  make.one.figure = FALSE)
 @
 \end{center}
-\caption{**Retrospective versions of Figure~\ref{fig:main-historical-1} for first
-  three retrospectives (rephrase). **May not include all these, just wanted
-  to get them constructed and add options. Will take a bit of explaining
-  but they seem interesting.
+\caption{Retrospective versions of Figure~\ref{fig:main-historical-1}.
   For each panel, the current base model is run using only data up to the year
   shown (i.e. a retrospective analysis). Results are shown in a single panel in
-  Figure~\ref{fig:main-historical-retro-all}. Final retro point should in theory
-  be close to the red point, difference is due to model changes (and
-  maybe slightly updated data)....}
+  Figure~\ref{fig:main-historical-retro-all}.}
 \label{fig:main-historical-retro-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

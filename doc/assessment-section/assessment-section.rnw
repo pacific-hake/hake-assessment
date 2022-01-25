@@ -1888,3 +1888,39 @@ probable direction has been correct). And, except for the 2012 assessment
 incorrectly expecting the biomass to fall below $\Bforty$ (which did not happen thanks
 the large 2010 year class), projections `correctly' estimated the
 biomass to not go below $\Bforty$.
+
+Given we have full Bayesian results for the retrospective analyses, we can
+calculate restrospective versions of Figures~\ref{fig:main-historical-1}
+and~\ref{fig:main-historical-2}. By using data only up to 2011, the current
+base model estimates a very low probability of biomass decline from 2012 to 2013,
+P$(B_{2013} < B_{2012})$, similar to that from the base model with data from all years
+(top panel of Figure~\ref{fig:main-historical-retro-1}). However, the 2012 assessment estimated
+a much higher probability of 43\%. This difference is presumably due to changes in model structure
+since 2012 (Table~\ref{tab:main-assessment-changes}).
+
+An obvious relevant
+change is the inclusion of the age-1 index in this year's base model. The equivalent retrospective
+calculation for the sensitivity run that excludes the age-1 index (and hence excludes
+the 2011 age-1 index that shows the large 2010 cohort), gives
+P$(B_{2013} < B_{2012}) >20\%$
+(Figure~\ref{fig:historical-retro-all-age1}). This suggest that the age-1 index
+accounts for some of the improvement of the estimate of
+of P$(B_{2013} < B_{2012})$ between the retrospective calculation using the
+current base model (grey point in top panel of Figure~\ref{fig:main-historical-retro-1}) and
+the 2012 assessment's calculation (red point in top panel of Figure~\ref{fig:main-historical-retro-1}).
+
+Note that P$(B_{2013} < B_{2012})$ in Figure~\ref{fig:historical-retro-all-age1}
+(excluding the age-1 index)
+is still somewhat below the value estimated in the 2012 assessment, unlike
+Figure~\ref{fig:main-historical-retro-1} that includes the age-1 index. Hence,
+it is not solely the addition of the age-1 index (but also other model changes)
+that leads to the improved estimation of P$(B_{2013} < B_{2012})$ when compared
+to the latest base model with all information. **Though maybe that's a bit
+circular - comparing new base model with data up to 2011 with new base model
+with all data, and saying it does better than 2012 model assumptions. Think about.
+
+**Andy got to here for now...
+
+ Final retro point should in theory
+  be close to the red point, difference is due to model changes (and
+  maybe slightly updated data).
