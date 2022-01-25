@@ -794,12 +794,12 @@ wide range of uncertainty, the 95\% credibility interval being
 % May need to move after the next paragraph
 %%** Remove "(unilaterally summed)" text from this caption (and main-table caption; table 28) after 2022
 <<decisions-biomass-table, results='asis', echo=FALSE>>=
-new_decision_table(base.model,
+decision_table(base.model,
                    xcaption =
                      paste0("Forecast quantiles of \\fishname\\
-                     relative spawning biomass at the beginning of the year.
-                     Catch alternatives are based on: constant
-                     catches (rows ",
+                             relative spawning biomass at the beginning of the year.
+                             Catch alternatives are based on: constant
+                             catches (rows ",
                      catch.constant.str,
                      "), including catch similar to ",
                      min(forecast_yrs_extra)-1," (row~",
@@ -808,7 +808,7 @@ new_decision_table(base.model,
                      min(forecast_yrs_extra)-1," (row~",
                      letters[catch.tac.ind],
                      "); and non-constant catches that result in
-                     annual 10\\% declines in catch (rows ",
+                             annual 10\\% declines in catch (rows ",
                      catch.reduction.str,
                      "), median relative fishing intensity of 100\\% (row ",
                      letters[catch.spr100.ind],
@@ -858,7 +858,7 @@ FI=100\%).
 % Manual 2020 done.
 %
 <<decisions-spr-table, results='asis', echo=FALSE>>=
-make.decision.table(base.model,
+decision_table(base.model,
                     xcaption = paste0("Forecast quantiles of \\fishname\\
                      relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}),
                      expressed as a percentage, for the ",min(forecast_yrs),"--",max(forecast_yrs)," catch

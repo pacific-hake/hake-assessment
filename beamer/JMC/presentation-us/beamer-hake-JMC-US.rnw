@@ -397,14 +397,14 @@ from last year)
   \end{column}
   \begin{column}{0.7\textwidth}
   <<decisions.biomass.table.new, results='asis', echo=FALSE>>=
-new_decision_table(srg_day2_req2_model,
-                   xcaption = NULL,
-                   xlabel = "tab:decisions-new",
-                   font.size = 6,
-                   space.size = 6,
-                   type = "biomass",
-                   placement = "h")
-@
+  decision_table(srg_day2_req2_model,
+                 xcaption = NULL,
+                 xlabel = "tab:decisions-new",
+                 font.size = 6,
+                 space.size = 6,
+                 type = "biomass",
+                 placement = "h")
+  @
   \end{column}
 \end{columns}
 }

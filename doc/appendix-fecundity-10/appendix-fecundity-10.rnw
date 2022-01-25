@@ -193,8 +193,8 @@ make.reference.points.table(
 @
 
 <<decisions-biomass-table-fecundity, results='asis', echo=FALSE>>=
-make.decision.table(sens.models.5[[3]],
-                    xcaption = paste0("Forecast quantiles of \\fishname\\
+decision_table(sens.models.5[[3]],
+               xcaption = paste0("Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
                      catch levels (rows ",
@@ -225,11 +225,11 @@ make.decision.table(sens.models.5[[3]],
                      year biomass in ",
                      max(forecast_yrs),
                      "."),
-                    xlabel = "tab:decisions-biomass-fecundity",
-                    font.size = 12,
-                    space.size = 14,
-                    type = "biomass",
-                    placement = "H")
+               xlabel = "tab:decisions-biomass-fecundity",
+               font.size = 12,
+               space.size = 14,
+               type = "biomass",
+               placement = "H")
 @
 
 %%%%%%%%%%%%%%%%%%%%%%%

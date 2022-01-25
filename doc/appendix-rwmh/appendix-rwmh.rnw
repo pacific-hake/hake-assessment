@@ -311,7 +311,7 @@ box()
 %@
 %
 %<<decisions-biomass-table-adnuts, results='asis', echo=FALSE>>=
-%make.decision.table(sens.models.6,
+%decision_table(sens.models.6,
 %                    xcaption = paste0("Forecast quantiles of \\fishname\\
 %                     relative spawning biomass at the beginning of the year
 %                     before fishing.  Catch alternatives are based on: constant

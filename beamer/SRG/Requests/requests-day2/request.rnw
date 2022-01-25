@@ -215,8 +215,8 @@ Disclaimer: These materials do not constitute a formal publication and are for i
 The SRG requests that the JTC use a three year average of weight-at-age to produce projections of spawning biomass for constant catch levels of 0 and 380,000 t, and associated one-year probabilities with these catches as in Table i of the Executive Summary. The catch associated with the default harvest rate for 2021 would also be useful.  These results will show the influence of the 5-year averaging of weight-at-age in the projections, especially given that 2016 is a year with low weight-at-age. It may support investigating alternative methods for predicting weight-at-age in the future. If the JTC has done this kind of analysis in the past, then the JTC can use it’s discretion regarding completion of this request.
 
 <<table1b, results='asis', echo=FALSE>>=
-make.decision.table(b_model,
-                    xcaption = paste0("Request 1 Model: Forecast quantiles of \\fishname\\
+decision_table(b_model,
+               xcaption = paste0("Request 1 Model: Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
                      catch levels (rows ",
@@ -249,18 +249,18 @@ make.decision.table(b_model,
                      " does not impact the beginning of the year biomass in ",
                      max(forecast_yrs),
                      "."),
-                    xlabel = "tab:es-decisions-biomass-b",
-                    font.size = 12,
-                    space.size = 14,
-                    type = "biomass",
-                    placement = "tbp")
+               xlabel = "tab:es-decisions-biomass-b",
+               font.size = 12,
+               space.size = 14,
+               type = "biomass",
+               placement = "tbp")
 @
 
 \clearpage
 
 <<table1, results='asis', echo=FALSE>>=
-make.decision.table(base.model,
-                    xcaption = paste0("Base Model: Forecast quantiles of \\fishname\\
+decision_table(base.model,
+               xcaption = paste0("Base Model: Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
                      catch levels (rows ",
@@ -293,11 +293,11 @@ make.decision.table(base.model,
                      " does not impact the beginning of the year biomass in ",
                      max(forecast_yrs),
                      "."),
-                    xlabel = "tab:es-decisions-biomass",
-                    font.size = 12,
-                    space.size = 14,
-                    type = "biomass",
-                    placement = "tbp")
+               xlabel = "tab:es-decisions-biomass",
+               font.size = 12,
+               space.size = 14,
+               type = "biomass",
+               placement = "tbp")
 @
 
 \clearpage
@@ -345,8 +345,8 @@ Run the 3 yr projection for relative spawning biomass to the start of 2024. Thes
 (With default weight etc.)
 
 <<table2a, results='asis', echo=FALSE>>=
-new_decision_table(a_model,
-                   xcaption = paste0("Request 2 Model: Forecast quantiles of \\fishname\\
+decision_table(a_model,
+               xcaption = paste0("Request 2 Model: Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
                      catch levels (rows ",
@@ -379,18 +379,18 @@ new_decision_table(a_model,
                      " does not impact the beginning of the year biomass in ",
                      max(forecast_yrs_extra),
                      "."),
-                   xlabel = "tab:es-decisions-biomass-a",
-                   font.size = 12,
-                   space.size = 14,
-                   type = "biomass",
-                   placement = "tbp")
+               xlabel = "tab:es-decisions-biomass-a",
+               font.size = 12,
+               space.size = 14,
+               type = "biomass",
+               placement = "tbp")
 @
 
 \clearpage
 
 <<table2, results='asis', echo=FALSE>>=
-make.decision.table(base.model,
-                    xcaption = paste0("Base Model: Forecast quantiles of \\fishname\\
+decision_table(base.model,
+               xcaption = paste0("Base Model: Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
                      catch levels (rows ",
@@ -423,11 +423,11 @@ make.decision.table(base.model,
                      " does not impact the beginning of the year biomass in ",
                      max(forecast_yrs),
                      "."),
-                    xlabel = "tab:es-decisions-biomass",
-                    font.size = 12,
-                    space.size = 14,
-                    type = "biomass",
-                    placement = "tbp")
+               xlabel = "tab:es-decisions-biomass",
+               font.size = 12,
+               space.size = 14,
+               type = "biomass",
+               placement = "tbp")
 @
 
 \end{document}
