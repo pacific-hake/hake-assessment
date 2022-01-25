@@ -1793,16 +1793,24 @@ The historic probability of \Sexpr{prob.decline.from.2012.to.2013.historic}\%
 from the 2012 assessment is
 somewhat above the \Sexpr{prob.decline.from.2012.to.2013.curr}\% calculated using the current assessment model
 (Figure~\ref{fig:main-historical-1}). But, this makes sense because the
-2012 assessment model had no information that the 2010 recruitment was going to be very large,
-whereas the current base model does have such information from many years of age
+2012 assessment model had no information that the 2010 recruitment was going to be very large
+(it did not include the age-1 index, which in 2011 did indicate a large 2010 recruitment,
+Table~\ref{fig:main-age-one-index}).
+However, the current base model does have such information from many years of age
 data. Hence, the current model confidently `expects' a large increase in spawning biomass
 from 2012 to 2013 as the individuals in the 2010 cohort grew in size. The 2013
-assessment model had some information on the 2010 cohort, so the lower estimated probability that the stock would decline from 2013 to 2014 better concurs with the current base model than results from the 2012 assessment (Figure~\ref{fig:main-historical-1}).
+assessment model had some information on the 2010 cohort, so the lower estimated
+probability that the stock would decline from 2013 to 2014 better concurs with
+the current base model than results from the 2012 assessment
+(Figure~\ref{fig:main-historical-1}).
 
 For later years, the probabilities vary, but for each year the probabilities
-either both lie above the 50\% line or both lie below it (Figure~\ref{fig:main-historical-1}).
+either both lie above the 50\% line or both lie below it (Figure~\ref{fig:main-historical-1}),
+except for 2018.
 So, each assessment correctly predicts whether the stock will increase or
-decrease the following year. Also, for all years (except 2018) the assessment
+decrease the following year, except for 2018. Also, for all years (except 2018
+and 2021)
+the assessment
 year's probabilities are closer to 50\% than those from the current base
 model. Such behavior is desirable and sensible. These probabilities
 are for binary events that either happen or do not happen (the stock either
@@ -1811,19 +1819,29 @@ tail). The current assessment model has more information and thus provides a mor
 definitive probability (closer to 0\% or to 100\%) than year $t$'s
 assessment document. It is desirable that the probabilities from the assessment
 documents are not too definitive (too close to 0\% or to 100\%) because they are
-admitting a wide range of uncertainty given unknown recruitments.
+admitting a wide range of uncertainty given unknown recruitments. The 2021 assessment's
+estimate is very close to that of this year's assessment.
 
-Only for 2018 is the probability from the current assessment model closer to 50\%
+Interestingly, in Figure~B.3.1 of \citet{JTC2021} we found that the 2018 probability from the
+2021 base model was above
+the 50\% line (unlike for this year's base model), agreeing with the 2018 assessment calculation. And it was the only
+year for which the probability from the 2021 assessment model was closer to 50\%
 than that from that year's assessment. This may be because there is no
 definitive trend in biomass around that time
-(Figure~\ref{fig:main-female-spawning-biomass}) and it may or may not get resolved
-in the future with additional data.
+(Figure~\ref{fig:main-female-spawning-biomass}), with the median spawning biomass
+slightly increasing from 2018 to 2019, whereas it was slightly decreasing in the
+equivalent figure in the 2021 assessment. Thus, probabilities of annual decline are
+expected to be sensitive to slight changes in results in such cases (and whether
+the stock declines or increases is not so important when such changes are small).
 
 From this current \Sexpr{assess.yr} assessment's projections, we show the probabilities for
 all catch alternatives in Figure~\ref{fig:main-historical-1} because
 we do not yet know which will correspond to the \Sexpr{assess.yr}
 catch. Catching zero fish in \Sexpr{assess.yr} (colored in pink) obviously gives
 the lowest probability that the stock will decline from \Sexpr{assess.yr} to \Sexpr{assess.yr+1}.
+All probabilities except the highest catch lie below the 50\% line, consistent with the
+expected large size of the 2020 cohort that will increase the spawning biomass
+as those fish grow and become mature.
 
 We also provide similar calculations for the
 probability of the biomass falling below
@@ -1838,22 +1856,30 @@ and estimated low probabilities of falling below $\Bforty$. Again, these
 estimates are closer to 50\% than those from the current base model (blue dots),
 which is desirable behavior as mentioned above -- the assessments gave low
 probabilities of an unlikely event occurring that we now believe to have been even more
-unlikely to have occurred. Since the 2018 assessment, the estimated probability
-of the biomass falling below $\Bforty$ are $>10\%$ and
-continue to rise (Figure~\ref{fig:main-historical-2}).
+unlikely to have occurred. Since the 2018 assessment, the estimated probabilities
+of the biomass falling below $\Bforty$ were $>10\%$ and
+continued to rise (Figure~\ref{fig:main-historical-2}), until they fell in this year's assessment
+presumably again due to the incoming 2020 cohort.
 
 Probabilities from past assessments lie below those estimated from the
 current model (the blue line is below the red line). But, this won't necessarily always
-be the case. In particular, the probabilities calculated
-from projections in this year's assessment, P$(B_{\Sexpr{assess.yr+1}} <
-\Bforty)$, are mostly in the 30\%-50\% range, which has not previously occurred.
-Also, the
+be the case. The probability from the 2021 assessment was the highest since
+2012, yet probabilites from this 2022 assessment are much lower. If the incoming
+2020 cohort is not as large it currently appears to be, then this would explain
+any future overlapping of the blue and red lines.
+
+% In particular, the probabilities calculated
+% from projections in this year's assessment, P$(B_{\Sexpr{assess.yr+1}} <
+% \Bforty)$, are mostly in the 30\%-50\% range, which has not previously occurred.
+Note that the
 biomass has been relatively high in the time period shown, so `correctly
 expecting' the biomass to remain $>\Bforty$ may not be a particular high bar to
 attain. Thus, we
 cannot simply conclude that the current assessment's probabilities will also turn out to be
-over-estimates of the probability of being $<\Bforty$ once we have more data
-(i.e., the blue line may cross the red line in the future).
+over-estimates of the probability of being $<\Bforty$ once we have more data, although
+it does appear from Figure~\ref{fig:main-historical-1} that the biomass is not expected to
+decline further next year.
+% (i.e., the blue line may cross the red line in the future).
 
 Overall, these results suggest good confidence in the
 projected probabilities from the assessment model. Past projections of increases
