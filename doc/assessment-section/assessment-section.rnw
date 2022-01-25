@@ -407,7 +407,12 @@ JTC continue to explore and refine this analysis for future assessments.}
   Figures~\ref{fig:main-historical-1}--\ref{fig:main-historical-retro-bforty-all}
   in response to this
   request, including a retrospective component given that
-  all retrospective model runs are performed using MCMC.
+  all retrospective model runs are performed using MCMC. Analyses are also
+  presented for the age-1 sensitivity run in
+  Figures~\ref{fig:historical-retro-all-age1}
+  and~\ref{fig:historical-retro-bforty-all-age1}; all results
+  are discussed in
+  Section~\ref{sec:assessment-past-projections}.
   Related, the
   JTC is continuing to explore options for improving recruitment estimation and predictions
   (see Responses 1--3, 5, and 8).}

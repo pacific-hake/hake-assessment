@@ -54,17 +54,21 @@ age-1 index at that time would have given misleadingly optimistic forecasts.
 %fish.
 
 
-**Mention Figures~\ref{fig:age-one-index-age1-base} and~-ref{fig:age-one-index-age1}
+**Mention Figures~\ref{fig:age-one-index-age1-base} and~\ref{fig:age-one-index-age1}.
+
 Figures \ref{fig:spawning-biomass-age1}--\ref{fig:forecast-risk-comparison-year-2-age1}
 and
 Tables~\ref{tab:biomass-age1}--\ref{tab:risk-year-2-age1}
 show further quantities of interest and decision tables from the MCMC results
 when excluding the age-1 index.
 
-A retrospective plot of historical performance is given in
-Figure~{fig:historical-retro-all-age1}, and discussed with respect to
-Figure~\ref{fig:historical-retro-all-age1} in
+Retrospective analyses of historical performance are given in
+Figures~\ref{fig:historical-retro-all-age1}
+and~\ref{fig:historical-retro-bforty-all-age1}, and discussed with respect to
+the equivalent base model results (Figures~\ref{fig:main-historical-retro-all}
+and~\ref{fig:main-historical-retro-bforty-all}) in
 Section~\ref{sec:assessment-past-projections}.
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
