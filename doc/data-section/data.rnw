@@ -571,7 +571,8 @@ to the amount of catch, so the combinations of year and age with no samples
 should have relatively little importance in the overall estimates of the
 population dynamics.
 
-Prior to 1975, weight-at-age is assumed to be equal to the mean across all years with data
+Prior to 1975, weight-at-age is assumed to be equal to the mean of all available
+information for each respective age
 (1975-\Sexpr{last.data.yr}), consistent with the \Sexpr{last.assess.yr} base model.
 Both forecast weight-at-age data and forecast selectivity are based on the respective means from the most recent five years
 (\Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}), for consistency.
