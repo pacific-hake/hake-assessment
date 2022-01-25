@@ -47,18 +47,17 @@ HelserFleischerEtAl2005, StewartForrestEtAl2011}),
 internal estimations of effective sample size using the
 Dirichlet-multinomial distribution \citep{JTC2018},
 and assumptions regarding year-specific
-survey variance. ** In this assessment, a more efficient Bayesian MCMC sampler
+survey variance. Since 2021, a more efficient Bayesian MCMC sampler
 (No-U-Turn Sampler; NUTS; \citealt{HoffmanGelman2014}) was used to create parameter posterior distributions
 \citep{Monnahan2018, Monnahan2019},
 a change from previous assessments that used the random walk Metropolis Hastings
-(rwMH) sampler. NUTS has several advantages over the rwMH as described in
-**Appendix~now-removed.
+(rwMH) sampler (details described in \citep{JTC2021}).
 % \ref{chap:rwmh}).
 The list of changes discussed above is for illustrative
 purposes only; it is only a small fraction of the different data choices
 analysts have made and that reviewers have required.
 
-**The structure of the assessment models has perhaps had the largest number of
+The structure of the assessment models has perhaps had the largest number of
 changes. In terms of spatial models, analysts have considered
 spatially explicit forms \citep{Dorn1994, Dorn1997}, spatially implicit forms
 \citep{HelserStewartEtAl2006}, and single-area models \citep{JTC2012}. Predicted
@@ -85,11 +84,11 @@ combinations of data, assessment models, and harvest control rules. In addition
 to the cases examined in the assessment documents, there have been many more
 requested at review panel meetings.
 
-** While there have been many changes to \fishname\ management procedures, each one
+While there have been many changes to \fishname\ management procedures, each one
 has been considered carefully. Available data have changed over the years, and there
 have been many advances in the discipline of fisheries science. In some ways,
 the latter has evolved considerably over the course of the historical hake
-fishery, new statistical techniques (e.g., Bayesian vs.~maximum likelihood methods)
+fishery. New statistical techniques (e.g., Bayesian vs.~maximum likelihood methods)
 and software (e.g., NUTS vs.~random walk Metropolis Hastings samplers) have evolved
 and the scientific literature has
 suggested potentially important biological dynamics to consider (e.g., movement and
@@ -101,14 +100,14 @@ in the Agreement
 trying to improve the caliber and relevance of the assessments by responding to
 new scientific developments, policy requirements, and different or new insights
 during the peer review process. Until the process for a MSE
-began, initiated in 2013 \citep{JTC2013} and currently being revisited,
+began, initiated in 2013 \citep{JTC2013} and currently being revisited \citep{JacobsenEtAl2021},
 none of these management procedure changes were evaluated by simulation and
 quantitatively compared with performance measures.
 
 \subsection{Description of base model}\label{sec:assessment-base-model}
 
-** The \Sexpr{assess.yr} base model is similar in structure to the base model in
-the \Sexpr{last.assess.yr} stock assessment.
+The \Sexpr{assess.yr} base model has the same population dynamics structure
+as the \Sexpr{last.assess.yr} stock assessment.
 The statistical-catch-at-age model assumes that the
 \fishname\ population is a single coast-wide stock subject to
 one aggregated fleet with combined male and female population dynamics.
@@ -116,16 +115,15 @@ Stock Synthesis \citep{MethotWetzel2013} version \Sexpr{ss.version} was used.
 The largest changes between the
 \Sexpr{last.assess.yr} and \Sexpr{assess.yr} stock assessments are the addition of another
 year of
-%acoustic survey and
-fishery data and the incorporation of a more efficient MCMC sampling algorithm
-(NUTS; \citealt{HoffmanGelman2014}) for constructing posterior densities. The latter led to
-the explicit use of Bayesian inference throughout the stock assessment, because full
-posterior distributions were calculated for all sensitivity and retrospective
-analyses for the first time in a \fishname\ assessment.
+acoustic survey and
+fishery data and the incorporation of the age-1 index into the base model.
 % Manual 2020 KFJ
 
-** The \Sexpr{assess.yr} base model includes an acoustic data time series from 1995
-to \Sexpr{last.survey.year}. Maturity is assumed to be time-invariant and the
+The \Sexpr{assess.yr} base model includes a time series (1995 to
+\Sexpr{last.survey.year}) of acoustic age-2$+$ biomass
+estimates and acoustic estimates of age-1 fish (see 
+Section~\ref{sec:data-acoustic-survey} for more details on the age-1 index).
+Maturity is assumed to be time-invariant and the
 maturity ogive updated in 2018 was retained
 (see Section~\ref{sec:data-maturity}).
 Fecundity is defined as weight-at-age multiplied by the maturity ogive
@@ -159,27 +157,33 @@ Beverton-Holt parameterization, with the log of the mean unexploited recruitment
 (log~$R_0$) freely estimated. This assessment uses the same Beta-distributed prior for
 stock-recruit steepness ($h$), based on \citet{MyersBowenEtAl1999}, that has
 been applied since 2011 \citep{StewartForrestEtAl2011, JTC2012, JTC2013,
-JTC2014, JTC2015, JTC2016, JTC2017, JTC2018, JTC2019, JTC2020}. Year-specific recruitment deviations were estimated
+JTC2014, JTC2015, JTC2016, JTC2017, JTC2018, JTC2019, JTC2020, JTC2021}.
+Year-specific recruitment deviations were estimated
 from \Sexpr{main.recdev.early}--\Sexpr{main.recdev.end+1}
-as well as the years \Sexpr{assess.yr-1}, \Sexpr{assess.yr}, \Sexpr{assess.yr+1}, and
-\Sexpr{assess.yr+2} for purposes of forecasting. The standard deviation,
-$\sigma_r$, of recruitment variability, serving as both a recruitment deviation
-constraint and bias-correction term, is fixed at
+as well as the years \Sexpr{assess.yr}--\Sexpr{assess.yr+3}
+for purposes of forecasting. The standard deviation,
+$\sigma_r$, of recruitment variability serves as a recruitment deviation
+constraint and is fixed at
 \Sexpr{base.model$sigma_R_in} in this assessment. This value is based on
 consistency with the observed variability in the time series of recruitment
 deviation estimates, and is the same as assumed in assessments from 2013 to
 \Sexpr{last.assess.yr} (Table~\ref{tab:main-assessment-changes}).
-Survey catchability was calculated analytically as per \citet{LudwigWalters1981}
-for each sample of posterior parameters, resulting in a distribution of survey catchability.
+Catchability associated with the acoustic survey and the age-1 index were
+calculated analytically as per \citet{LudwigWalters1981}
+for each sample of posterior parameters, resulting in a distribution of catchability
+for each.
 % Manual 2020 KFJ
 
-** Statistical likelihood functions used for data fitting are typical of many stock
+Statistical likelihood functions used for data fitting are typical of many stock
 assessments. The acoustic survey index of abundance was fit via a log-normal
 likelihood function, using the observed (and extra 2009) sampling variability,
-estimated via kriging, as year-specific weighting. An additional constant and
-additive standard deviation on the log-scale component is included, which was
+estimated via kriging, as year-specific weighting. The age-1 index was also specified
+as having lognormal error structure. An additional constant and
+additive standard deviation on the log-scale component is included for both the
+acoustic survey and the age-1 index, which were
 freely estimated to accommodate unaccounted-for sources of process and
-observation error. A D-M likelihood was applied to age-composition data,
+observation error.
+A D-M likelihood was applied to age-composition data,
 with input sample sizes equal to the sum of the number of trips or hauls actually sampled across all
 fishing fleets or the number of trawl sets in the research surveys (see Section~\ref{sec:data-age-comp-likelihood}).
 % Manual 2020 KFJ
@@ -200,9 +204,9 @@ facilitated the collaborative writing of this document.
 In particular, having most of the code automatically shared since the 2016
 assessment \citep{JTC2016} allows for the completion of a full assessment
 in the limited time available.
-A DFO workshop \citep{EdwardsDupliseaEtAl2018} shared such a
-`transparent, traceable, and transferable' workflow with a wider audience,
-partly motivated by the ongoing \fishname\ assessments.
+%A DFO workshop \citep{EdwardsDupliseaEtAl2018} shared such a
+%`transparent, traceable, and transferable' workflow with a wider audience,
+%partly motivated by the ongoing \fishname\ assessments.
 
 \subsection{Response to 2021 Scientific Review Group (SRG) review}\label{sec:assessment-response-review}
 
