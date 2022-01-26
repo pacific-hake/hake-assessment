@@ -439,8 +439,11 @@ survey estimates and related uncertainty.
 
 In addition to the age-1 index, ongoing research is evaluating whether environmental drivers
 of recruitment can be used to accurately predict recruitment. Improving recent and current
-estimates of recruitment is a high priority because it will help improve spawning stock biomass
-projections that are directly used for making management decisions. A model without the age-1
+estimates of recruitment is a high priority because it will help
+increase the likelihood that realized levels of spawning stock biomass lie within the
+estimated prediction intervals and potentially reduce the prediction interval itself
+thereby increasing the robustness of management decisions.
+A model without the age-1
 index was explored as a sensitivity (Appendix~\ref{chap:age1-survey}).
 
 \subsubsection{Other fishery-independent data}\label{sec:data-other-fishery-independent}
