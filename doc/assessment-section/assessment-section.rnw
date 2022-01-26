@@ -622,7 +622,7 @@ in the assessment model through a lognormal contribution to the likelihood funct
 Section~\ref{sec:data-acoustic-survey} provides further description and justification
 for using the age-1 index in the base model. The addition of this data source resulted
 in a slight increase in recent recruitment, most noticeably for the 2018 and 2020 year
-classes (Figure~\ref{fig:main-bridge-5-panel-2}). In turn, this results in slightly higher
+classes (Figure~\ref{fig:main-bridge-5-panel-2}). In turn, this results in a slightly higher
 trajectory of spawning stock biomass from 2013--2022 and a change in 2022 stock status
 (relative spawning stock biomass) from
 \Sexpr{round(median(bridge.models.2[[1]]$mcmc$Bratio_2022),3)*100}\%. to
@@ -631,19 +631,20 @@ trajectory of spawning stock biomass from 2013--2022 and a change in 2022 stock 
 \subsubsection{Assessment model results}\label{sec:assessment-model-results}
 \subsubsub{Model Fit}
 
-**The {\tt adnuts} R package was used to apply the NUTS algorithm to produce \Sexpr{f(num.mcmc.samples)}
+The {\tt adnuts} R package was used to apply the NUTS algorithm to produce \Sexpr{f(num.mcmc.samples)}
 MCMC samples to describe posterior distributions for model parameters and derived
-quantities.  This is nearly a four-fold increase in samples from
-\Sexpr{last.assess.yr} assessment \citep{JTC2019}.
+quantities.  This is nearly a ten-fold increase in samples from the
+2020 assessment \citep{JTC2020} and earlier and a 33\% increase in samples from last
+years assessment \citep{JTC2021}.
 
-**Stationarity of the posterior distribution for model parameters was
+Stationarity of the posterior distribution for model parameters was
 re-assessed via a suite of standard single-chain and multi-chain diagnostic tests
 via graphical summaries and interactive web applications ({\tt ShinySTAN};
 \href{https://mc-stan.org/users/interfaces/shinystan}{https://mc-stan.org/users/interfaces/shinystan}).
 Key diagnostic figures are given in Appendix~\ref{chap:mcmc-diagnostics} and now
 discussed.
 All estimated parameters showed good mixing
-during sampling, no evidence for lack of convergence, and low autocorrelation
+during sampling, no evidence for lack of convergence, and acceptable autocorrelation
 (results for some key parameters are shown in
 Figures~\ref{fig:main-mcmc-diag-m-r0}--\ref{fig:main-mcmc-diag-dm}).
 Correlation-corrected effective sample
