@@ -96,7 +96,7 @@ message("Key posteriors file: ", nuisance.posteriors.file)
 ## -----------------------------------------------------------------------------
 ## Base model name and directory
 ## -----------------------------------------------------------------------------
-base.model.dir.name <- "2022.01.10_base"
+base.model.dir.name <- "2022.01.10_base_v2"
 base.model.name <- paste0(assess.yr, " Base model")
 
 message("Base model directory name: ", base.model.dir.name)
