@@ -1,7 +1,6 @@
 % research-needs.rnw - gets called into Executive Summary and into
 %  research-section/research.rnw in main text. This is just the first three
 %  for the Exec Summary, that also get called into research.rnw.
-% Manual 2021 done - KFJ
 \begin{enumerate}
 
 \item Conduct research to evaluate ways to improve recent,
@@ -14,7 +13,7 @@ the \fishname\ management framework. For example, estimates could be included
 in the stock assessment as a standalone data source (similar to acoustic survey
 biomass estimates) or the estimation procedure itself could be integrated directly
 into the stock assessment model. Results from such work should be connected to ongoing
-research related to recruitment variability,$\sigma_R$, as discussed in
+research related to recruitment variability, $\sigma_R$, as discussed in
 Section~\ref{sec:assessment-response-review}. Related, there is
 a need to streamline and broaden the availability of products from oceanographic models (e.g.,
 \ifnum\value{counter_research-needs}>0 {ROMS}\else{Regional Ocean Modeling System; ROMS}\fi)
@@ -33,8 +32,7 @@ spatial distribution, and recruitment and how
 these links vary with ocean conditions and ecosystem variables such as
 temperature, transport, and prey availability would be beneficial.
 These investigations have the potential to improve
-the scenarios considered in future
-\ifnum\value{counter_research-needs}>0 {MSE }\else{management strategy evaluation (MSE) }\fi
+the scenarios considered in future MSE
 work and the basic understanding of drivers of hake
 population dynamics and availability to fisheries and surveys. 
 
