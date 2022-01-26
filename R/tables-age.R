@@ -1,3 +1,18 @@
+#' Make an at-age table showing percentage of each age by year
+#'
+#' @param model The model to make the table for
+#' @param fleet The fishing fleet (1 = commercial, 2 = survey)
+#' @param start.yr First year in table
+#' @param end.yr Last year in table
+#' @param csv.dir Directory for output of the table in csv format
+#' @param xcaption Caption for the table
+#' @param xlabel Latex label to use in the main document for this table
+#' @param font.size Point size of font
+#' @param space.size Vertical space between rows of table
+#' @param placement Latex table placement string
+#' @param decimals Number if decimal points to show
+#'
+#' @return an [xtable::xtable()]
 make.input.age.data.table <- function(model,
                                       fleet = 1,
                                       start.yr,
@@ -9,62 +24,53 @@ make.input.age.data.table <- function(model,
                                       space.size = 10,
                                       placement = "htbp",
                                       decimals = 2){
-  ## Returns an xtable in the proper format for the main tables section for
-  ##  combined fishery or survey age data
-  ##
-  ## fleet - 1 = Fishery, 2 = Survey
-  ## start.yr - start the table on this year
-  ## end.yr - end the table on this year
-  ## xcaption - caption to appear in the calling document
-  ## xlabel - the label used to reference the table in latex
-  ## font.size - size of the font for the table
-  ## space.size - size of the vertical spaces for the table
-  ## placement - latex code for placement of table
-  ## decimals - number of decimals in the numbers in the table
 
   if(!dir.exists(csv.dir)){
     dir.create(csv.dir)
   }
 
-  ## Get ages from header names
+  # Get ages from header names
   age.df <- model$dat$agecomp
+  if(fleet == 2){
+    age.df <- age.df[ , names(age.df) != "a1"]
+  }
   nm <- colnames(age.df)
   yr <- age.df$Yr
   flt <- age.df$FltSvy
   n.samp <- age.df$Nsamp
-  ## Get ages from column names
+  # Get ages from column names
   ages.ind <- grep("^a[[:digit:]]+$", nm)
   ages.num <- gsub("^a([[:digit:]]+)$", "\\1", nm[ages.ind])
   ages.num[length(ages.num)] <- paste0(ages.num[length(ages.num)], "+")
-  ## Make all bold
-
+  # Make all bold
   ages <- latex.bold(ages.num)
-  ## Put ampersands in between each item and add newline to end
+  # Put ampersands in between each item and add newline to end
   ages.tex <-latex.paste(ages)
 
-  ## Construct age data frame
-  age.df <- age.df[,ages.ind]
+  # Construct age data frame
+  age.df <- age.df[, ages.ind]
   age.df <- t(apply(age.df,
                     1,
                     function(x){
                       as.numeric(x) / sum(as.numeric(x))
                     }))
-  age.headers <- paste0(latex.mcol(1, "c", ages), latex.amp())
+  #age.headers <- paste0(latex.mcol(1, "c", ages), latex.amp())
   age.df <- cbind(yr, n.samp, flt, age.df)
 
-  ## Fishery or survey?
+  # Fishery or survey?
   age.df <- age.df[age.df[,"flt"] == fleet,]
-  ## Remove fleet information from data frame
+  # Remove fleet information from data frame
   age.df <- age.df[,-3]
-  ## Extract years
+  # Extract years
   age.df <- age.df[age.df[,"yr"] >= start.yr & age.df[,"yr"] <= end.yr,]
 
-  ## Make number of samples pretty
+  # Make number of samples pretty
   age.df[,2] <- f(as.numeric(age.df[,2]))
-  ## Make percentages for age proportions
+  # Make percentages for age proportions
   age.df[,-c(1,2)] <- as.numeric(age.df[,-c(1,2)]) * 100
   age.df[,-c(1,2)] <- f(as.numeric(age.df[,-c(1,2)]), decimals)
-  ## Add the extra header spanning multiple columns
+
+  # Add the extra header spanning multiple columns
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
@@ -89,12 +95,13 @@ make.input.age.data.table <- function(model,
                              latex_continue(ncol(age.df), addtorow$command))
 
   size.string <- latex.size.str(font.size, space.size)
-  ## Write the CSV
+  # Write the CSV
   cnames <- colnames(age.df)
   cnames[3:length(cnames)] <- ages.num
-  ## Add + for plus group
+  # Add + for plus group
   cnames[length(cnames)] <- paste0(cnames[length(cnames)], "+")
   colnames(age.df) <- cnames
+
   write.csv(age.df,
             file.path(csv.dir,
                       ifelse(fleet == 1,
