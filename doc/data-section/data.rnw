@@ -392,7 +392,7 @@ analyses regarding the method used to stratify the data
 led to similar overall conclusions.
 
 Estimated age-2$+$ biomass in the survey increased steadily over the four
-surveys conducted in 2011-2013 and 2015 (Table~\ref{tab:main-all-age-data-survey} and
+surveys conducted in 2011-2013 and 2015 (Table~\ref{tab:main-survey-history} and
 Figure~\ref{fig:main-survey-extrap-biomass}). It decreased in 2017
 to \Sexpr{f(survey.biomass["2017"], 2)}~million~t and then increased to
 1.72 million~t in 2019 before decreasing again to \Sexpr{last.survey.year.biomass}~million~t in \Sexpr{last.survey.year}.
@@ -711,7 +711,7 @@ with negative log-likelihood proportional to
   ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \frac{\epsilon_{ay}^2}{\Phi^2}.
 % -\log(\text{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6} ~\sum_{y=1991}^{\Sexpr{last.data.yr}} \left. \dfrac{\epsilon_{ay}^2}{\phi^2}{\vrule height 24pt width 0pt} \right. ,     % to try and make summations larger; can live with as is.
 \ee
- 
+
 Further testing of alternative methods for parameterizing time-varying selectivity
 (e.g., \citet{Xu2019}) should be investigated in conjunction with
 the estimation of additional time varying parameters.

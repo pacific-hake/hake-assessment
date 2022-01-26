@@ -1803,7 +1803,7 @@ somewhat above the \Sexpr{prob.decline.from.2012.to.2013.curr}\% calculated usin
 (Figure~\ref{fig:main-historical-1}). But, this makes sense because the
 2012 assessment model had no information that the 2010 recruitment was going to be very large
 (it did not include the age-1 index, which in 2011 did indicate a large 2010 recruitment,
-Table~\ref{fig:main-age-one-index}).
+Figure~\ref{fig:main-age-one-index}).
 However, the current base model does have such information from many years of age
 data. Hence, the current model confidently `expects' a large increase in spawning biomass
 from 2012 to 2013 as the individuals in the 2010 cohort grew in size. The 2013
