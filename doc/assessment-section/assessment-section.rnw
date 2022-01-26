@@ -140,12 +140,13 @@ of the allowable deviations unchanged from the \Sexpr{last.assess.yr} base model
 The general parameterization of
 selectivity was retained, although additional parameters were required to
 estimate an additional year of deviations. The selectivity of the acoustic survey is
-assumed to not change over time. Selectivity curves were modeled as
+assumed to be time invariant. Selectivity curves were modeled as
 non-parametric functions estimating age-specific values for each age beginning
-at age-2 for the acoustic survey (because age-1 fish are mainly excluded from
-the sampling design) and age-1 for the fishery until a maximum age of 6 (all
-fish 6 and older have the same selectivity).
-% Manual 2020 KFJ
+at age two for the acoustic survey of age-2$+$ biomass
+and age one for the fishery until a maximum age of six, after which
+all ages are assumed to have the same selectivity.
+Selectivity of the age-1 index was fixed at zero for all ages except age one,
+which was fixed at the maximum value of one.
 
 ** Prior probability distributions are used for a select few parameters
 and fixed values are used for several parameters. For the base model, the
