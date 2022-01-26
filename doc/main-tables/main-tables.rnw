@@ -486,46 +486,6 @@ make.reference.points.table.old(base.model,
 
 \clearpage
 
-<<main-decisions-biomass-table-old, results='asis', echo=FALSE>>=
-make.decision.table(base.model,
-                    xcaption = paste0("**[NEW FORMAT IN NEXT TABLE] Forecast quantiles of
-                     relative spawning biomass at the beginning of the year
-                     before fishing.  Catch alternatives are based on: constant
-                     catch levels (rows ",
-                     catch.constant.str,
-                     "), including catch similar to ",
-                     min(forecast_yrs)-1," (row ",
-                     letters[catch.actual.ind],
-                     "), to catch levels reduced by 10\\% each year (rows ",
-                     catch.reduction.str,
-                     "); to the (unilaterally summed) TAC from ",
-                     min(forecast_yrs)-1," (row ",
-                     letters[catch.tac.ind],
-                     "); and non-constant catch levels that result
-                     in a median relative fishing intensity of 100\\% (row ",
-                     letters[catch.spr100.ind],
-                     "), the median values estimated ",
-                     "via the default harvest policy
-                     (\\Ffortyten, row ",
-                     letters[catch.default.policy.ind],
-                     "), and the fishing intensity that results in a 50\\% probability that the median
-                     projected catch will remain the same in ",
-                     min(forecast_yrs),
-                     " and ",
-                     min(forecast_yrs)+1,
-                     " (row ",
-                     letters[catch.stable.ind],
-                     "). Catch in ",
-                     max(forecast_yrs),
-                     " does not impact the beginning of the year biomass in ",
-                     max(forecast_yrs),
-                     "."),
-                    xlabel = "tab:main-decisions-biomass-old",
-                    font.size = 10,
-                    space.size = 11,
-                    type = "biomass")
-@
-
 <<main-biomass-table, results='asis', echo=FALSE>>=
 decision_table(base.model,
                xcaption =
@@ -567,20 +527,21 @@ decision_table(base.model,
 \clearpage
 
 <<main-decisions-spr-table, results='asis', echo=FALSE>>=
-make.decision.table(base.model,
-                    xcaption =
-                      paste0("**[For new format use type equals spr in new.decision.table; so some of previous table and some options from here, including caption] Decision table of forecast quantiles ",
-                                      "of relative fishing intensity ",
-                                      "(1-SPR)/(1-SPR\\subscr{40\\%}), expressed as ",
-                                      "a percentage, for the ",
-                                      min(forecast_yrs),
-                                      "--",
-                                      max(forecast_yrs),
-                                      " catch alternatives presented in Table \\ref{tab:main-decisions-biomass}. Values greater than 100\\% indicate fishing intensities greater than the $\\Fforty$ harvest policy calculated using baseline selectivity."),
-                    xlabel = "tab:main-decisions-spr",
-                    font.size = 10,
-                    space.size = 11,
-                    type = "spr")
+decision_table(base.model,
+               xcaption = paste0("Forecast quantiles of \\fishname\\
+                     relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}),
+                     expressed as a proportion,
+                     for the ",min(forecast_yrs),"--",max(forecast_yrs)-1," catch
+                     alternatives presented in
+                     Table~\\ref{tab:es-decisions-biomass}. Values greater than
+                     1 indicate relative fishing intensities greater than
+                     the $\\Fforty$ harvest policy calculated using baseline
+                     selectivity."),
+               xlabel = "tab:main-decisions-spr",
+               font.size = 10,
+               space.size = 11,
+               type = "spr")
+
 @
 
 \clearpage

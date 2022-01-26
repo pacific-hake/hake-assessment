@@ -862,10 +862,11 @@ FI=100\%).
 decision_table(base.model,
                     xcaption = paste0("Forecast quantiles of \\fishname\\
                      relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}),
-                     expressed as a percentage, for the ",min(forecast_yrs),"--",max(forecast_yrs)," catch
+                     expressed as a proportion,
+                     for the ",min(forecast_yrs),"--",max(forecast_yrs)-1," catch
                      alternatives presented in
                      Table~\\ref{tab:es-decisions-biomass}. Values greater than
-                     100\\% indicate relative fishing intensities greater than
+                     1 indicate relative fishing intensities greater than
                      the $\\Fforty$ harvest policy calculated using baseline
                      selectivity."),
                     xlabel = "tab:es-decisions-spr",
