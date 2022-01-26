@@ -938,6 +938,7 @@ get_prior_data <- function(model, param_regex){
       prior <- exp(-1 * Prior_Like)
     }
 
+    mle <- NULL
     if(!is.na(parsd) && parsd > 0){
       mle <- dnorm(Pval, finalval, parsd)
       mlescale <- 1 / (sum(mle) * mean(diff(Pval)))

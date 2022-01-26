@@ -23,6 +23,7 @@ make_mcmc_priors_vs_posts_plot <- function(prior_mle,
                                            show_prior = TRUE,
                                            show_init = TRUE,
                                            show_mle = TRUE,
+                                           show_median = TRUE,
                                            show_legend = FALSE,
                                            title_text = "",
                                            hist_breaks = 50){
@@ -83,10 +84,12 @@ make_mcmc_priors_vs_posts_plot <- function(prior_mle,
        freq = FALSE,
        col = colvec[4],
        border = colvec[4])
-  abline(v = postmedian,
-         col = colvec[5],
-         lwd = 2,
-         lty = ltyvec[3])
+  if(show_median){
+    abline(v = postmedian,
+           col = colvec[5],
+           lwd = 2,
+           lty = ltyvec[3])
+  }
 
   if(show_prior){
     lines(prior_mle$Pval,
@@ -127,7 +130,7 @@ make_mcmc_priors_vs_posts_plot <- function(prior_mle,
   box()
 
   if(show_legend){
-    showvec <- c(show_prior, show_mle, show_init)
+    showvec <- c(show_prior, show_mle, show_median, show_init)
     legend("topleft",
            cex = 1.2,
            bty = "n",
