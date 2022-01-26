@@ -8,7 +8,7 @@
 \begin{itemize}
   \item The stock assessment model for \Sexpr{assess.yr} has the same population
     dynamics structure as the \Sexpr{last.assess.yr} model. It is fit to an acoustic
-    survey index of abundance, an index of age-1 fish, annual commercial catch data,
+    survey index of biomass, an index of age-1 fish, annual commercial catch data,
     and age-composition data from the survey and commercial fisheries. The addition of
     the age-1 index is the main model change from \Sexpr{last.assess.yr}.
 
