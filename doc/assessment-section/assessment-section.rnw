@@ -187,10 +187,9 @@ observation error.
 A D-M likelihood was applied to age-composition data,
 with input sample sizes equal to the sum of the number of trips or hauls actually sampled across all
 fishing fleets or the number of trawl sets in the research surveys (see Section~\ref{sec:data-age-comp-likelihood}).
-% Manual 2020 KFJ
 
-**Uncertainty of estimated quantities was calculated via MCMC simulations using
-NUTS, initiated to achieve a minimum of 8,000
+Uncertainty of estimated quantities was calculated via MCMC simulations using
+NUTS, initiated to achieve a minimum of 12,000
 posterior samples. Medians (50\% quantiles) are reported together with the
 bounds of 95\% credibility intervals calculated as
 the 2.5\% quantile and the 97.5\% quantile of posterior distributions from the
