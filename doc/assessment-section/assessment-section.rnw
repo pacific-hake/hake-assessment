@@ -8,7 +8,7 @@
 
 In spite of the relatively short history of fishing, \fishname\ have surely been
 subject to a larger number of stock assessments than any marine species off the
-west coast of the U.S.~and Canada. These assessments have included a large
+west coast of the U.S.A.~and Canada. These assessments have included a large
 variety of age-structured models. Initially, a cohort analysis tuned to fishery
 CPUE was used \citep{FrancisSwartzmanEtAl1982}. Later, the cohort analysis was
 tuned to National Marine Fisheries Service (NMFS) triennial acoustic survey estimates of absolute abundance at age
@@ -31,7 +31,7 @@ modified over the years through modifications to target-strength calculations
 \citep{StewartHamel2010}. While survey data have been the key index for
 abundance since 1988, surveys that have been used have varied considerably. The
 AFSC/NWFSC triennial bottom trawl survey was used from 1988 before being
-discarded from the 2009 assessment (by \citealt{HamelStewart2009}). Acoustic
+discarded from the 2009 assessment \citet{HamelStewart2009}. Acoustic
 surveys from the years prior to 1995 were used for assessments in the early
 1990s, but \citet{StewartForrestEtAl2011} reviewed these early surveys and
 deemed that sampling had been insufficient to be comparable with more
@@ -48,13 +48,12 @@ internal estimations of effective sample size using the
 Dirichlet-multinomial distribution \citep{JTC2018},
 and assumptions regarding year-specific
 survey variance. Since 2021, a more efficient Bayesian MCMC sampler
-(No-U-Turn Sampler; NUTS; \citealt{HoffmanGelman2014}) was used to create parameter posterior distributions
+(No-U-Turn Sampler; NUTS; \citealt{HoffmanGelman2014}) was used to estimate posterior distributions
 \citep{Monnahan2018, Monnahan2019},
 a change from previous assessments that used the random walk Metropolis Hastings
 (rwMH) sampler (details described in \citep{JTC2021}).
-% \ref{chap:rwmh}).
 The list of changes discussed above is for illustrative
-purposes only; it is only a small fraction of the different data choices
+purposes only; it is only a small fraction of the different choices
 analysts have made and that reviewers have required.
 
 The structure of the assessment models has perhaps had the largest number of
@@ -87,8 +86,8 @@ requested at review panel meetings.
 While there have been many changes to \fishname\ management procedures, each one
 has been considered carefully. Available data have changed over the years, and there
 have been many advances in the discipline of fisheries science. In some ways,
-the latter has evolved considerably over the course of the historical hake
-fishery. New statistical techniques (e.g., Bayesian vs.~maximum likelihood methods)
+the latter has evolved considerably over the course of the fishery for \fishname.
+New statistical techniques (e.g., Bayesian vs.~maximum likelihood methods)
 and software (e.g., NUTS vs.~random walk Metropolis Hastings samplers) have evolved
 and the scientific literature has
 suggested potentially important biological dynamics to consider (e.g., movement and
@@ -117,7 +116,6 @@ The largest changes between the
 year of
 acoustic survey and
 fishery data and the incorporation of the age-1 index into the base model.
-% Manual 2020 KFJ
 
 The \Sexpr{assess.yr} base model includes a time series (1995 to
 \Sexpr{last.survey.year}) of acoustic age-2$+$ biomass
@@ -129,8 +127,8 @@ maturity ogive updated in 2018 was retained
 Fecundity is defined as weight-at-age multiplied by the maturity ogive
 and is time-varying across years with empirical weight-at-age data
 (\Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}; see Section~\ref{sec:data-weight-at-age}).
-The Dirichlet-multinomial (D-M)
-likelihood approach \citep{ThorsonEtAl2017Dirichlet} was again used to estimate the weights
+The D-M
+likelihood approach \citep{ThorsonEtAl2017Dirichlet} is again used to estimate the weights
 associated with age-composition data, rather than iteratively tuning the sample size multiplier
 as in 2017 and earlier assessments (see
 Section~\ref{sec:data-age-comp-likelihood}). Time-varying fishery
@@ -148,7 +146,7 @@ all ages are assumed to have the same selectivity.
 Selectivity of the age-1 index was fixed at zero for all ages except age one,
 which was fixed at the maximum value of one.
 
-** Prior probability distributions are used for a select few parameters
+Prior probability distributions are used for a select few parameters
 and fixed values are used for several parameters. For the base model, the
 instantaneous rate of natural mortality ($M$) is estimated with a
 \Sexpr{m.prior[1]} prior having a median of \Sexpr{m.prior[2]} and a standard
@@ -167,16 +165,15 @@ $\sigma_r$, of recruitment variability serves as a recruitment deviation
 constraint and is fixed at
 \Sexpr{base.model$sigma_R_in} in this assessment. This value is based on
 consistency with the observed variability in the time series of recruitment
-deviation estimates, and is the same as assumed in assessments from 2013 to
+deviation estimates and is the same as assumed in assessments from 2013 to
 \Sexpr{last.assess.yr} (Table~\ref{tab:main-assessment-changes}).
 Catchability associated with the acoustic survey and the age-1 index were
 calculated analytically as per \citet{LudwigWalters1981}
 for each sample of posterior parameters, resulting in a distribution of catchability
 for each.
-% Manual 2020 KFJ
 
 Statistical likelihood functions used for data fitting are typical of many stock
-assessments. The acoustic survey index of abundance was fit via a log-normal
+assessments. The acoustic survey was fit via a log-normal
 likelihood function, using the observed (and extra 2009) sampling variability,
 estimated via kriging, as year-specific weighting. The age-1 index was also specified
 as having lognormal error structure. An additional constant and
@@ -198,15 +195,12 @@ files for the base model are given in
 Appendices~\ref{chap:data-file}-\ref{chap:weight-at-age-file}.
 
 Calculations and figures from Stock Synthesis output were performed using
-\Sexpr{R.Version()$version.string} \citep{R2020} and many R packages (in
+\Sexpr{R.Version()$version.string} \citep{R2021} and many R packages (in
 particular r4ss, adnuts, and xtable). The use of R, knitr, \LaTeX~and GitHub immensely
 facilitated the collaborative writing of this document.
-In particular, having most of the code automatically shared since the 2016
+In particular, having most of the code under version control since the 2016
 assessment \citep{JTC2016} allows for the completion of a full assessment
 in the limited time available.
-%A DFO workshop \citep{EdwardsDupliseaEtAl2018} shared such a
-%`transparent, traceable, and transferable' workflow with a wider audience,
-%partly motivated by the ongoing \fishname\ assessments.
 
 \subsection{Response to 2021 Scientific Review Group (SRG) review}\label{sec:assessment-response-review}
 
