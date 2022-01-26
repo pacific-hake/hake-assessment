@@ -932,13 +932,14 @@ and Figure~\ref{fig:es-forecast-risk-comparison-year-3}.
 models.inds <- c(1, 2, 6, catch.tac.ind, catch.default.policy.ind)
 models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds]
                        ## pretty catch level name
-make.forecast.depletion.comparison.plot(base.model,
-                                        models.inds,
-                                        models.names,
-                                        start.yr = 2009,
-                                        model.end.yr = end.yr,
-                                        end.yr =forecast_yrs[length(forecast_yrs)],
-                                        legend.loc = "topleft")
+plot(1:10)
+# make.forecast.depletion.comparison.plot(base.model,
+#                                         models.inds,
+#                                         models.names,
+#                                         start.yr = 2009,
+#                                         model.end.yr = end.yr,
+#                                         end.yr =forecast_yrs[length(forecast_yrs)],
+#                                         legend.loc = "topleft")
 @
 \end{center}
 \caption{Time series of estimated relative spawning biomass to \Sexpr{end.yr}
