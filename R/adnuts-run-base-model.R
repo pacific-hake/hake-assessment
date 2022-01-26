@@ -17,14 +17,14 @@
 # iterations is now a derived quantity based on desired samples (n.final) and cores for the final
 # (nuts.updated) set of evaluations only; others remain static as they are much smaller for testing
 
-devtools::install_github('Cole-Monnahan-NOAA/adnuts', ref = 'main')
+devtools::install_github('Cole-Monnahan-NOAA/adnuts', ref = 'main', force = TRUE)
 library(adnuts)
 library(snowfall)
 library(rstan)
 library(shinystan)
 library(matrixcalc)
 
-# Final evaluation settings: desired number of samples for final run (n.final) and warmup 
+# Final evaluation settings: desired number of samples for final run (n.final) and warmup
 # for final run (warmup.final)
 n.final <- 8000
 warmup.final <- 250
@@ -55,7 +55,6 @@ pilot <- sample_rwm(model = exe,
                      thin = thin,
                      seeds = seeds,
                      init = inits,
-                     parallel = TRUE,
                      chains = reps,
                      warmup = warmup,
                      path = pth,
