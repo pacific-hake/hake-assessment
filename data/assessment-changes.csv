@@ -13,4 +13,4 @@ Year,Framework,Survey,Comp_Method,Comp_Fishery,Comp_Survey,MCMC,Change
 2019,SS 3.30.10.00,no,Dirichlet-Multinomial,0.46,0.92,2000,Change to time-varying fecundity
 2020,SS 3.30.14.08,yes,Dirichlet-Multinomial,0.46,0.92,2000,Add Normal prior for Dirichlet parameters; remove rec devs sum to zero restriction
 2021,SS 3.30.16.03,no,Dirichlet-Multinomial,0.46,0.92,8250,No U-turn MCMC Sampling (adnuts)
-2022,,yes,Dirichlet-Multinomial,,,,Add age-1 index
+2022,SS 3.30.16.03,yes,Dirichlet-Multinomial,0.363,0.93,12005,Add age-1 index
