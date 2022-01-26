@@ -457,7 +457,7 @@ make.mcmc.diag.pairs.plot(base.model,
                           key.posteriors.names = key.posteriors.titles,
                           recr = c(2010, 2014),
                           bratio = end.yr,
-                          forecatch = end.yr)
+                          forecatch = c(end.yr, end.yr+1, end.yr+2))
 @
 \end{center}
 \caption{Posterior correlations among key parameters and derived

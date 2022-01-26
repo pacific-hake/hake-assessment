@@ -435,7 +435,7 @@ make.mcmc.diag.pairs.plot <- function(model,
   if(!is.null(recr) & inc.key.params){
     str <- paste0("Recr_", recr)
     lst <- lapply(seq_along(str), function(x){
-      select(m, contains(str[x]))
+      select(m, starts_with(str[x]))
     })
     df <- bind_cols(df, lst)
     labels <- c(labels, paste0("Recruitment\n", recr))
@@ -454,7 +454,7 @@ make.mcmc.diag.pairs.plot <- function(model,
       select(m, contains(str[x]))
     })
     df <- bind_cols(df, lst)
-    labels <- c(labels, paste0("Default\nharvest\nin ", forecatch))
+    labels <- c(labels, paste0("Default\nharvest ", forecatch))
   }
   labels <- gsub(" +", "\n", labels)
   labels <- gsub("-", "-\n", labels)
