@@ -111,7 +111,7 @@ and~\ref{fig:recruitment-trace-recent-highlight}). [From here on we are using re
 from this year's base model, since they are very similar to those from last year's
 recruitment estimates (Figure~\ref{fig:recruitment-last-asssessment}), up until
 2019 for which there is now more data].
-%
+
 \begin{figure}[tbp]
 \begin{center}
 <<recruitment-trace-recent, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016">>=
@@ -148,8 +148,7 @@ make.mcmc.recruitment.plot(base.model,
 \end{center}
 \caption{As for Figure~\ref{fig:recruitment-trace-recent} but for just 10
   colour-coded samples to show their non-overlapping nature (this expectedly breaks down in
-  the final years due to a lack of data and random sampling for the
-  projection years).}
+  the final years due to a lack of data and random sampling).}
 \label{fig:recruitment-trace-recent-highlight}
 \end{figure}
 
@@ -225,7 +224,7 @@ make.mcmc.recruitment.plot(base.model,
 
 Showing the same results for all years (Figure~\ref{fig:recruitment-scale-all}), including
 projection years,
-we see that
+we see that:
 %
 \begin{itemize}
 \item the 2014 cohort is definitely smaller than the 2010 cohort, whereas
@@ -233,8 +232,8 @@ we see that
   large as 2010;
 
 \item there have only been two past recruitment events (1980 and 1984) that might be as large as 2010.
-  Whereas Figure~\ref{fig:main-recruitment} also suggests that 1970, 1999 and 2014
-  could possibly be that large, giving an
+  Whereas Figure~\ref{fig:main-recruitment} suggests that 1970, 1999 and 2014
+  could also possibly be that large, giving an
   over-optimistic impression of how often we can expect cohorts the size of the
   2010 cohort to occur.
 
@@ -244,33 +243,28 @@ we see that
   median is for 2020).
 
 \item there are no data to inform the 2021 recruitment, and so for that and the
-  2022-2024 projection years, the model isallowing recruitments as large as
+  2022-2024 projection years, the model is allowing recruitments as large as
   2010, although half of the projected recruitments are very low (below the
-  dots), as expected from the lognormal recruitment deviations used in the
-  model.
+  dots representing the medians), as expected from the lognormal recruitment
+  deviations used in the model.
 \end{itemize}
 
 The explicit MCMC subsamples for projection years
 (Figures~\ref{fig:recruitment-trace-recent},
-\ref{fig:recruitment-trace-recent-highlight}  and~\ref{fig:recruitment-trace-scale})
+\ref{fig:recruitment-trace-recent-highlight} and~\ref{fig:recruitment-trace-scale})
 make it clear how the projection years do have recruitment time series that
 cross each other. This is because the recruitment deviation for each MCMC sample
 each year is based on a
 random draw from the lognormal distribution stock recruitment (and then applied
 to the stock-recruitment curve for that that MCMC sample, based on the sample's
-estimated parameters). Since the random draws are independent from year to yet,
+estimated parameters). Since the random draws are independent from year to year,
 a large recruitment (from a large recruitment deviation) in one year does not
-imply a large recruitment in the next year, unlke for the earlier years (and
+imply a large recruitment in the next year, unlike for the earlier years (as
 shown explicitly in Figure~\ref{fig:recruitment-trace-recent-highlight}).
-
-**The traceplot figures may also help when answering Issue \#843 (and SRG request), regarding Trevor's
-idea about sampling from past recruitments for the projections. It looks (eyeballing it) that we're
-covering the full range pretty well. Could do a quick analysis if necessary --
-use the MCMC samples and compare with sampling from past recruitments.
 
 In the 2018 assessment the probability that the 2014 cohort was larger
 than the 2010 cohort was explicitly calculated to be
-4.8\% \citep{JTC2018} (**also see Issue \#422). The only age composition data informing the size
+4.8\% \citep{JTC2018}. The only age composition data informing the size
 of the 2014 cohort would have been from the fishery when the cohort
 was of age 1, 2, and 3, and from the survey age when it was of age 3 (the 2017 survey).
 Figure~e from 2018 has the median for 2014 above
@@ -282,5 +276,13 @@ estimated to be \Sexpr{prob.percent.2014.rec.gt.2010.rec}\%.
 More data allows for more certainty (less
 uncertainty) in such a calculation, hence why the probability changes with later
 assessments.
+
+Given this analysis, we can include the resulting Figure~\ref{fig:recruitment-scale-all}
+in future assessments, and hope that it gives a more intuitive understanding of
+the scale of recruitments. Participants in the \fishname\ process have an
+intuition that the 2010 is a very large recruitment event --
+Figure~\ref{fig:recruitment-scale-all} shows how it is the largest for at least
+30 years, and that such large cohorts are rarer than is inferred from
+Figure~\ref{fig:main-recruitment}.
 
 \clearpage        % needed for footer to be correct
