@@ -834,14 +834,13 @@ make.forecast.catch.posterior.plot(base.model,
 models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
 #models.names <- sapply(base.model$catch.levels, "[[", 2) ## pretty catch level name
 models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty catch level name
-plot(1:10)
-# make.forecast.depletion.comparison.plot(base.model,
-#                                        models.inds,
-#                                        models.names,
-#                                        start.yr = forecast_yrs[length(forecast_yrs)] - 10,
-#                                        model.end.yr = end.yr,
-#                                        end.yr = forecast_yrs[length(forecast_yrs)],
-#                                        legend.loc = "topleft")
+make.forecast.depletion.comparison.plot(base.model,
+                                        models.inds,
+                                        models.names,
+                                        start.yr = forecast_yrs[length(forecast_yrs)] - 10,
+                                        model.end.yr = end.yr,
+                                        end.yr = forecast_yrs[length(forecast_yrs)],
+                                        legend.loc = "topleft")
 @
 \end{center}
 \caption{**Time series of relative spawning biomass at the start of each year until \Sexpr{end.yr} as estimated from the base model, and forecast trajectories
