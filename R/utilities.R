@@ -256,8 +256,10 @@ cohort.catch <- function(model, cohort, ages = 0:20, trim.end.year = NA) {
   catage <- model$catage
   w <- model$wtatage
   cohort.yrs <- cohort + ages
-  caa <- as.matrix(catage[catage$Yr %in% cohort.yrs, as.character(ages)])
   waa <- w[w$Fleet == 1 & w$Yr %in% cohort.yrs, ]
+  tmp_caa <- catage[catage$Yr %in% cohort.yrs, ]
+  tmp_caa <- tmp_caa[tmp_caa$Yr %in% waa$Yr, ]
+  caa <- as.matrix(tmp_caa[, as.character(ages)])
   waa <- waa[, names(waa) %in% ages]
   catch.waa <- as.matrix(caa * waa)
 
