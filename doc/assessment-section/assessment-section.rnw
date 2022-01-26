@@ -11,7 +11,7 @@ subject to a larger number of stock assessments than any marine species off the
 west coast of the U.S.A.~and Canada. These assessments have included a large
 variety of age-structured models. Initially, a cohort analysis tuned to fishery
 CPUE was used \citep{FrancisSwartzmanEtAl1982}. Later, the cohort analysis was
-tuned to National Marine Fisheries Service (NMFS) triennial acoustic survey estimates of absolute abundance at age
+tuned to National Marine Fisheries Service (NMFS) triennial acoustic survey estimates of absolute biomass at age
 \citep{HollowedAdlersteinEtAl1988}. Since 1989, Stock Synthesis models using
 fishery catch-at-age data and acoustic survey estimates of population biomass
 and age composition have been the primary assessment method
@@ -29,7 +29,7 @@ historical hake assessments. For example, the processing of acoustic data has be
 modified over the years through modifications to target-strength calculations
 \citep{DornSaunders1997} or the introduction of kriging
 \citep{StewartHamel2010}. While survey data have been the key index for
-abundance since 1988, surveys that have been used have varied considerably. The
+biomass since 1988, surveys that have been used have varied considerably. The
 AFSC/NWFSC triennial bottom trawl survey was used from 1988 before being
 discarded from the 2009 assessment \citet{HamelStewart2009}. Acoustic
 surveys from the years prior to 1995 were used for assessments in the early
@@ -207,8 +207,8 @@ in the limited time available.
 The Scientific Review Group (SRG) meeting was held virtually from February
 22-25, 2021.
 
-The following are the `SRG Recommendations and Conclusions for the Pacific Hake
-Stock Assessment' from the 2021 SRG report, and associated responses from the
+The following are the `SRG Recommendations and Conclusions for the \fishname\
+Stock Assessment' from the 2021 SRG report and associated responses from the
 JTC:
 
 1. {\bf The SRG notes that $\sigma_R$ is an influential parameter and that
@@ -218,14 +218,15 @@ JTC:
 \emph{**Kelli check, especially ** spots and close issue \#468 when done**
   Response -- Developing best practices for modeling equilibrium recruitment ($R_0$)
   and recruitment variability ($\sigma_R$)
-  remain broad topics of contemporary research. Recent recommendations have been that the next
-  generation of stock assessments should concomitantly treat recruitment deviations
+  remain broad topics of contemporary research. Recent recommendations suggest that the next
+  generation of stock assessment modeling frameworks
+  should concomitantly treat recruitment deviations
   as a random effect and estimate $\sigma_R$ \citep{Punt2020}.
   The JTC continues to conduct,
   collaborate on, and monitor ongoing research projects concerning
   approaches for advancing recruitment estimation, as applied to \fishname\ and
   in general. Many of these issues are widespread
-  in stock assessment, and scientific-based solutions are likely to be the result of medium
+  in stock assessment and scientific-based solutions are likely to be the result of medium
   to long-term research projects. We provide an update to our previous response, including specific
   advances in research endeavors.}
 
