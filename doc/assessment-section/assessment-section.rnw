@@ -292,10 +292,14 @@ JTC:
   for recruitment during the projection period are the stock-recruitment curve,
   the stock-recruitment curve with a multiplier, and the mean
   across a user-defined time period.  The MSE tool could be used
-  to consider alternative recruitment distributional assumptions as future research.
-  Note that some of the figures in Appendix~\ref{chap:rec-plot} give an
-  improved understanding of the current method for simulating recruitment
-  in the projections.}
+  to consider alternative recruitment distributional assumptions as future research.}
+
+\emph{Also, Appendix~\ref{chap:rec-plot} presents some new ideas
+  for visualising recruitment relative to large recruitment years,
+  to avoid a misunderstanding of how large some recruitment
+  events might be. It also includes figures that further
+  enhance understanding of
+  the current method for simulating recruitments in the projection years.}
 
 3. {\bf The SRG requests that the JTC consider developing a decision table in
   the next assessment with recruitment fixed at the median and mean levels to
@@ -303,8 +307,8 @@ JTC:
 
 \emph{Response -- The JTC conducted the standard suite of catch projections using recruitment fixed
   at the median and mean level as calculated across the main recruitment time period (1970-2020).
-  Resulting decision tables are presented in Appendix~\ref{chap:rec-plot}
-  **wrong appendix, the new tables are not included yet.
+  Resulting decision tables are presented in Appendix~****
+  **the new tables are not done yet.
   Related to this, the JTC
   also solicited alternative catch levels for use in projections from the JMC and has included those
   in decision tables.}
@@ -570,7 +574,7 @@ base model and thus no effect on resulting time series.
 
 The second set of bridging steps was conducted to update fishery-dependent
 and fishery-independent data.
-This primarily included minor adjustments in catch, fishery age-composition, 
+This primarily included minor adjustments in catch, fishery age-composition,
 the 2019 acoustic survey biomass estimate, and
 weight-at-age values as databases are continually updated.
 Samples that were recently aged but not available for the \Sexpr{last.assess.yr}
