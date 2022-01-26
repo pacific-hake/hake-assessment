@@ -583,61 +583,57 @@ assessment were included.
 These changes to pre-\Sexpr{last.assess.yr} data were small enough that they had
 little impact on the model results (Figure~\ref{fig:main-bridge-5-panel-1}).
 
-The addition of \Sexpr{last.data.yr} catch allowed the model to be
+The addition of \Sexpr{last.data.yr} catch and fishery age compositions allowed the model to be
 extended to the start of \Sexpr{assess.yr}, but the estimates for
 \Sexpr{assess.yr} remained highly uncertain
 (Figure~\ref{fig:main-bridge-5-panel-1})
 in the absence of additional information about recent recruitment.
-Adding \Sexpr{last.data.yr} fishery age-composition and weight-at-age data
-had relatively little impact on the historical biomass estimates,
+These data had relatively little impact on the historical biomass estimates,
 indicating that the observed \Sexpr{last.data.yr} ages were consistent with the model
-estimates without those data (Figure~\ref{fig:main-bridge-5-panel-1}).  However,
-the addition of these data did slightly decrease the uncertainty with recent recruitment
-estimates, though overall uncertainty was still high. Recruitment estimates largely
-did not change with the addition of \Sexpr{last.data.yr} data, the exceptions being
-reductions in the 2015 and 2018 year classes with the addition of \Sexpr{last.data.yr}
-fishery age compositions (Figure~\ref{fig:main-bridge-5-panel-2}).
+estimates without those data (Figure~\ref{fig:main-bridge-5-panel-1}). However,
+the addition of these data did slightly shift recent recruitment
+estimates, though overall uncertainty was still high. Recruitment estimates and stock
+trajectory were relatively unchanged with the addition of \Sexpr{last.data.yr}
+weight-at-age data.
 This bridging step also shifted the ending year of the deviations
 in the selectivity parameters from \Sexpr{last.data.yr-1} to
 \Sexpr{last.data.yr} because of the addition of fishery data in \Sexpr{last.data.yr}.
 
-**See commented paragraph for template text for including new survey estimate.
-%Including the fishery-independent biomass estimate led to a slightly more optimistic
-%trajectory of the stock over the last couple of years
-%(Figure~\ref{fig:main-bridge-5-panel-3}),
-%which was to be expected given the increase in the
-%index relative to \Sexpr{penult.survey.year}.
-%The addition of survey age-composition data led to reduced
-%uncertainty, particularly for the 2010, 2014, 2016, and 2017 year classes.
-%The 2010 and 2014 year classes are estimated to be higher in this
-%assessment than they were in the \Sexpr{last.assess.yr} assessment.
-%This increase is largely driven by the addition
-%of the 2019 acoustic survey age compositions
+Including the \Sexpr{last.data.yr} fishery-independent biomass estimate and
+age compositions led to a slightly more optimistic
+trajectory of the stock over the last couple of years
+(Figure~\ref{fig:main-bridge-5-panel-1}),
+whereas updating the 2019 survey biomass estimate itself had negligible
+effect. The addition of \Sexpr{last.data.yr} survey data led to small shifts
+in expected recruitment, particularly for the 2016, 2017, and 2018 year classes.
+The 2018 year class is estimated to be higher in this
+assessment than in the \Sexpr{last.assess.yr} assessment, but it still remains
+a below average year class.
+This increase is largely driven by the addition
+of the 2021 acoustic survey age compositions, because this
 %where the proportion of age-9 fish and age-5 fish were higher than what
 %the \Sexpr{end.yr-1} assessment model would have otherwise predicted
-%given mortality. The \Sexpr{last.assess.yr} acoustic survey was the first time
-%the 2016 and 2017 cohorts were adequately sampled (age-2 or older) by the survey,
-%which is why the uncertainty associated with these cohorts was reduced (though
-%still quite uncertain; Figure~\ref{fig:main-bridge-5-panel-3}).
+%given mortality.
+was the first time
+the 2018 and 2019 cohorts were adequately sampled (age-2 or older) by the survey,
+which is why the uncertainty associated with these cohorts was reduced (though
+still quite uncertain; Figure~\ref{fig:main-bridge-5-panel-1}).
 
-**Lastly, the JTC along with support from the SRG (see Section~\ref{sec:assessment-response-review}) updated
-the Bayesian statistical framework used in the \Sexpr{last.assess.yr+1} assessment to utilize a more
-efficient MCMC sampler (NUTS; \citealt{HoffmanGelman2014}) as implemented using the
-{\tt adnuts} R package
-\citep{Monnahan2018, Monnahan2019}. NUTS is considered by many to be a straightforward improvement
-in efficiency with high dimensional models over classic random walk approaches
-as it implements Hamiltonian
-approaches (via adaptive sampling steps) as well as improved (more effective
-and consistent) parameter space coverage
-(\citealt{HoffmanGelman2014, NishioArakawa2019}). A comparison with the previously used
-random walk Metropolis Hastings MCMC sampling algorithm is shown in
-Appendix~**now-removed. The computational time for the base model run using
-NUTS was $\sim$3.5~hours, about 10 times quicker than using the Metropolis
-Hastings algorithm. Each sensitivity analysis using NUTS also took $\sim$3.5~hours; for
-previous assessments the maximum likelihood estimate (MLE) calculations for
-sensitivity analyses took a few minutes. The longest of the 20 retrospective
-analyses using NUTS took 74~hours.
-
+The final bridging step added the age-1 index time series (1995 to
+\Sexpr{last.survey.year}) as an additional source of information to inform recent
+recruitment. The age-1 index has been evaluated in many previous stock
+assessments as a sensitivity analysis, and in recent years a close examination
+of the full suite of assessment results (mimicking the structure of executive summary)
+were produced in appendices to examine this key sensitivity model run. The age-1 index is fit
+in the assessment model through a lognormal contribution to the likelihood function.
+Section~\ref{sec:data-acoustic-survey} provides further description and justification
+for using the age-1 index in the base model. The addition of this data source resulted
+in a slight increase in recent recruitment, most noticeably for the 2018 and 2020 year
+classes (Figure~\ref{fig:main-bridge-5-panel-2}). In turn, this results in slightly higher
+trajectory of spawning stock biomass from 2013--2022 and a change in 2022 stock status
+(relative spawning stock biomass) from
+\Sexpr{round(median(bridge.models.2[[1]]$mcmc$Bratio_2022),3)*100}\%. to
+\Sexpr{round(median(base.model$mcmc$Bratio_2022),3)*100}\%.
 
 \subsubsection{Assessment model results}\label{sec:assessment-model-results}
 \subsubsub{Model Fit}
