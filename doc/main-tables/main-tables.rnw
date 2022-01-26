@@ -538,8 +538,8 @@ decision_table(base.model,
                      the $\\Fforty$ harvest policy calculated using baseline
                      selectivity."),
                xlabel = "tab:main-decisions-spr",
-               font.size = 10,
-               space.size = 11,
+               font.size = 11,
+               space.size = 12,
                type = "spr")
 
 @
