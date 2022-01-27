@@ -118,7 +118,7 @@ In the \Sexpr{end.yr-1} catch,
 \Sexpr{top.coh(base.model, last.data.yr, 3, cap = FALSE)}.
 % Can check that manually from final row of Table 10 showing the proportions at age
 Due to staffing issues, age data were unavailable from the Canadian freezer-trawler
-fleet and minimally available for the Shoreside fleet in \Sexpr{end.yr-1}.
+fleet and minimally available for the shoreside fleet in \Sexpr{end.yr-1}.
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
@@ -159,7 +159,8 @@ make.survey.age1.plot.data(age.1.index,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Relative age-1 index (numbers of fish)
+\caption{Relative acoustic survey index of
+  age-1 fish (numbers of fish)
   and approximate 95\% confidence intervals
   based on sampling variability.
   The index is relative because
@@ -173,9 +174,10 @@ make.survey.age1.plot.data(age.1.index,
 This Joint Technical Committee (JTC) assessment depends primarily on the fishery
 landings (\Sexpr{start.yr}--\Sexpr{last.data.yr}), an acoustic survey biomass
 index (Figure~\ref{fig:es-survey-biomass}) and age compositions
-(\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}), an age-1 index (Figure~\ref{fig:es-survey-age1}),
+(\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}), an acoustic survey index of
+age-1 fish (Figure~\ref{fig:es-survey-age1}),
 as well as fishery age compositions (\Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}).
-The 2011 survey index value was the lowest in the time series and was followed by the index increasing
+In 2011 the survey biomass index was the lowest in the time series and was followed by the index increasing
 in 2012, 2013, and again in 2015 before decreasing to near the time series average in 2017.
 The 2019 estimate is the fourth highest of the series, and the 2021 estimate is near the time
 series average.
@@ -186,8 +188,8 @@ Age-composition data from the
 aggregated fisheries and the acoustic survey, along with the age-1 index,
 provide data that facilitates estimating relative cohort strength,
 i.e., strong and weak cohorts. The age-1 index suggests particularly large numbers
-of pre-spawn fish in 2011, 2009, 2015, and 2021 (2010, 2008, 2014, and 2020 year-
-classes, respectively).
+of age-1 fish in 2009, 2011, 2015, and 2021 (2008, 2010, 2014, and 2020
+year-classes, respectively).
 
 The assessment uses a Bayesian estimation approach, sensitivity analyses, and
 retrospective investigations to evaluate the potential consequences of parameter
@@ -205,8 +207,8 @@ Sampler (NUTS) that was successfully tested in 2020 and used for the 2021 assess
 Sensitivity analyses are used to identify alternative model
 assumptions that may also be consistent with the data. This is the first time
 the entire assessment, including model bridging, sensitivity, and retrospective
-analyses, has used Bayesian
-estimation (rather than maximum likelihood estimation).
+analyses, has used only Bayesian
+estimation (rather than some maximum likelihood estimation).
 Retrospective analyses
 identify possible poor performance of the assessment model with respect to
 future predictions. Past assessments have conducted closed-loop simulations
@@ -219,8 +221,8 @@ the decisions made for this assessment.
 This \Sexpr{assess.yr} assessment retains the same general population dynamics structure
 as the base assessment model from \Sexpr{last.assess.yr} as well as many of the previous
 elements as configured in Stock Synthesis. The main change from \Sexpr{last.assess.yr} is
-the addition of the age-1 index to help inform recent and current recruitment expectations
-(see Section~\ref{sec:data-acoustic-survey} for more details).
+the addition of the age-1 index to help inform recent and current recruitment expectations.
+% (see Section~\ref{sec:data-acoustic-survey} for more details).
 Analyses conducted in 2014
 showed that allowing for time-varying (rather than fixed) selectivity reduced
 the magnitude of extreme cohort strength estimates. In closed-loop simulations,
@@ -326,10 +328,11 @@ the \Sexpr{end.yr} female spawning biomass is \Sexpr{curr.bio.median}~million~t 
 95\% posterior credibility interval from \Sexpr{curr.bio.lower} to
 \Sexpr{curr.bio.upper}~million~t). The current estimate of the \Sexpr{end.yr-1} female
 spawning biomass is \Sexpr{prev.bio.median}
-(\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. **This is a slightly higher
+(\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. **This is a
+somewhat higher
 median and broader credibility interval than the \Sexpr{prev.bio.median.last.assess}
 (\Sexpr{prev.bio.lower.last.assess}--\Sexpr{prev.bio.upper.last.assess})~million~t estimated in the \Sexpr{end.yr-1}
-assessment.
+assessment. **Flesh out an explanation, see Issue.
 % Manual 2020 done (updated numbers in final sentence and revised text).
 <<biomass-table, results='asis', echo=FALSE>>=
 make.biomass.table(base.model,
@@ -380,7 +383,7 @@ For example, this assessment's median estimate of the 2014 recruitment is
 fish higher than in last year's assessment
 (a \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"]) /
 (prev.assess.recruitment.med)["2014"]) * 100), 0)}\% increase).
-Similarly, estimates for 2016 and 2018 have increased by
+Similarly, estimates for the large 2016 and small 2018 recruitments have increased by
 \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"]) /
 (prev.assess.recruitment.med)["2016"]) * 100), 0)}\% and
 \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2018"]) /
@@ -431,7 +434,7 @@ year class (\Sexpr{top.coh(base.model, 2016, spec.yr=2014)}\% of the 2016 catch 
 2014 year class; this was larger than the proportion of age-2 fish,
 \Sexpr{top.coh(base.model, 2012, spec.yr=2010)}\%, from the 2010 year
 class in 2012). The median estimate of the 2010 year class is
-just below the highest ever (for 1980), with a \Sexpr{prob.percent.2010.rec.gt.1980.rec}\%
+very slightly below the highest ever (for 1980), with a \Sexpr{prob.percent.2010.rec.gt.1980.rec}\%
 probability that the 2010 year class is larger than the 1980 year class (this
 probability was \Sexpr{prob.percent.2010.rec.gt.1980.rec.last.year.assess}\% for
 last year's assessment).
@@ -536,7 +539,8 @@ make.fishing.intensity.plot(base.model,
 % Just look at Table 25(ish) for first sentence:
 Median exploitation fraction (catch divided by biomass of fish of age-2 and
 above) peaked in 2006 and reached similar levels in 1999 and 2008
-(Figure~\ref{fig:es-exploitation-fraction}). Over the last five years, the exploitation
+(Figure~\ref{fig:es-exploitation-fraction}). Over the last five years, the
+median exploitation
 fraction was the highest in 2017 followed closely by 2020 (Table~\ref{tab:es-fishing-intensity}).
 Note that in earlier assessments the
 exploitation fraction was often defined in terms of fish age-3 and above, but
@@ -547,10 +551,10 @@ fish are often caught by the fishery.
 %
 Median relative fishing intensity is estimated to have declined from
 \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.2015}\%
-in 2015, and then it leveled off around 75\% from 2016 to 2019 before dropping to
+in 2015, and then it leveled off around 70\% from 2016 to 2019 before dropping to
 \Sexpr{median.intensity.2020}\% in 2020 and
 \Sexpr{median.intensity.2021}\% in 2021.
-The exploitation fraction has increased from a recent low of
+The median exploitation fraction has increased from a recent low of
 \Sexpr{exploitation.med.2012} in 2012 to \Sexpr{exploitation.med.2017} in 2017 and has
 remained relatively stable since then (dropping no further than
 \Sexpr{exploitation.med.2018}). % Happen
@@ -914,11 +918,9 @@ year(s) catch levels.
 %\Sexpr{assess.yr+1} shown in Figure~\ref{fig:es-forecast-risk-comparison-year-2}
 % are conditional and can be non-linear.
 This explains why a few probabilities decline
-(rather than rise) with increased \Sexpr{assess.yr+1} catch levels in Table~\ref{tab:es-risk-year-2}
-and Figure~\ref{fig:es-forecast-risk-comparison-year-2} and \Sexpr{assess.yr+2}
-catch levels in Table~\ref{tab:es-risk-year-3}
-and Figure~\ref{fig:es-forecast-risk-comparison-year-3}.
-
+(rather than rise) with increased \Sexpr{assess.yr+1} and \Sexpr{assess.yr+2}
+catch levels in Tables~\ref{tab:es-risk-year-2} and~\ref{tab:es-risk-year-3}
+and Figures~\ref{fig:es-forecast-risk-comparison-year-2} and~\ref{fig:es-forecast-risk-comparison-year-3}.
 
 % \clearpage  % 2018: Then forces Table i and Fig j to be on same page, and j/k.
 
@@ -1112,7 +1114,7 @@ actions. With zero catch for the next three years, the biomass has a
 %  180,000~t catch levels (Table~\ref{tab:es-risk-year-1} and
 %  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
-\Sexpr{end.yr+1} is under 55\% for all catch levels
+\Sexpr{end.yr+1} is under 57\% for all catch levels
 (Table~\ref{tab:es-risk-year-1} and
 Figure~\ref{fig:es-forecast-risk-comparison-year-1}). It is 30\% for the
 \Sexpr{end.yr} catch level similar to that for \Sexpr{end.yr-1} (catch alternative~f).
@@ -1124,7 +1126,7 @@ Figure~\ref{fig:es-forecast-risk-comparison-year-1}). It is 30\% for the
 For all explored catches,
 the maximum probability of the spawning biomass dropping below $B_{10\%}$ at
 the start of \Sexpr{end.yr+1} is 0\%, and of
-dropping below $B_{40\%}$ is 19\%
+dropping below $B_{40\%}$ is 18\%
 (Table~\ref{tab:es-risk-year-1} and
 Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % It should be noted that
