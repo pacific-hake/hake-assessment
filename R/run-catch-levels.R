@@ -289,6 +289,9 @@ run_catch_levels_stable_catch <- function(model,
                                                     forecast_yrs[2])][[1]]))
     stable_catch[3] <- median(as.numeric(out[paste0("ForeCatch_",
                                                     forecast_yrs[3])][[1]]))
+    stable_catch[4] <- median(as.numeric(out[paste0("ForeCatch_",
+                                                    forecast_yrs[4])][[1]]))
+
     message("Stable Catch: ")
     message("Catch difference from forecast year 1 to 2: ", abs(stable_catch[1] - stable_catch[2]),
             " < ", catch_levels_catch_tol, " ? ",
