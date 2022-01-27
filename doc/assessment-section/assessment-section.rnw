@@ -1100,8 +1100,8 @@ start of \Sexpr{end.yr}.
 
 \subsection{Model uncertainty}\label{sec:assessment-model-uncertainty}
  % Manual 2020 done
-**The base assessment model integrates over the substantial uncertainty associated
-with several important model parameters including: acoustic survey catchability
+The base assessment model integrates over the substantial uncertainty associated
+with several important model parameters including: acoustic survey and age-1 index catchability
 ($q$), the magnitude of the stock (via the $\log R_0$ parameter for equilibrium
 recruitment), productivity of the stock (via the steepness parameter, $h$, of
 the stock-recruitment relationship), the rate of natural mortality ($M$), annual
@@ -1112,56 +1112,56 @@ The uncertainty portrayed
 by the posterior distribution is a better representation of uncertainty than
 asymptotic approximations about MLEs because it allows for asymmetry (Figure~\ref{fig:main-prior-posterior};
 also see \citealt{JTC2012} for further discussion and
-examples); this is the first \fishname\ assessment to almost exclusively use
-posterior distributions instead of MLEs.
+examples).
+%this is the first \fishname\ assessment to almost exclusively use
+%posterior distributions instead of MLEs.
 %Note that we use the term MLE even though the priors are involved in the likelihood
 %calculation and so the more accurate term would be the mode of the posterior density.
 
-**The medians of the key parameters from the posterior distribution are similar to
-those in last year's base model (Table~\ref{tab:main-parameter-estimates}).
-However, medians of some of the derived quantities do change somewhat; in particular,
-the 2010 and 2016 recruitments increase while the 2014 recruitment decreases,
-and $B_0$ has declined from that estimated in the \Sexpr{assess.yr - 1} assessment.
+The medians of the key parameters from the posterior distribution are similar to
+those in last year's base model (Table~\ref{tab:main-parameter-estimates}). The largest
+change was a 12\% increase in unfished recruitment ($R_0$).
+Medians of some of the derived quantities also change somewhat; in particular,
+recruitment in 2010, 2014, and 2016 increased,
+and $B_0$ has increased from that estimated in the \Sexpr{assess.yr - 1} assessment.
 
-**The \fishname\ stock displays a very high degree of recruitment variability,
+The \fishname\ stock displays a very high degree of recruitment variability,
 perhaps the largest of any west coast groundfish stock, resulting in large and
 rapid biomass changes. This volatility, coupled with a dynamic fishery that
-potentially targets strong cohorts (resulting in time-varying selectivity), and
-little data to inform incoming recruitment until the cohort is at least age-2,
+potentially targets strong cohorts (resulting in time-varying selectivity)
 will in most circumstances continue to result in highly uncertain
 estimates of current stock status and even less-certain projections of the stock
-trajectory.
+trajectory. The addition of the age-1 index in this assessment will, in some cases, help
+to reduce this uncertainty.  However, further work is needed to improve upon the
+characterization of uncertainty in the age-1 index itself, which is based on a
+time invariant assumption about index observation error and catchability.
 
-**Uncertainty measures in the base model underestimate the total uncertainty in
-the current stock status and projections because they do not account for
+Uncertainty measures in the base model underestimate the total uncertainty in
+the current stock status and projections, because they do not account for
 alternative structural models for hake population dynamics and fishery processes
 (e.g., recruitment, selectivity, or spatial fleet or population structure), the
-effects of alternative data-weighting choices, and the scientific basis for prior
+effects of alternative data-weighting choices, survey catchability, and the scientific basis for prior
 probability distributions. To address structural uncertainties, the JTC investigated
 a range of alternative models, and we present the key sensitivity analyses along with
 a suite of other informative sensitivity analyses using full MCMC results
 (Section~\ref{sec:assessment-sensitivity-analyses}).
 
-**We also present appendices of MCMC results for inclusion of
-the age-1 survey index (Appendix~\ref{chap:age1-survey}), and the use of
-the Metropolis Hastings MCMC algorithm for the base model as used in past
-assessments (Appendix~**removed). The inclusion of the age-1
-survey model was chosen because it may improve estimates of recruitment near the end
-of the time series and of age compositions during the forecast period, even though the acoustic
-survey design is not structured specifically for indexing age-1 fish. The use of
-the Metropolis Hastings algorithm is for comparison with the new NUTS algorithm,
-to complement the similar comparison conducted last year with the introduction
-of NUTS \citep{JTC2020}.
+We also present an appendix showing results for the sensitivity model that excludes
+the age-1 survey index (Appendix~\ref{chap:age1-survey}). The exclusion of the age-1
+survey model was chosen because it matches the model structure of the
+\Sexpr{assess.yr - 1} base assessment model. 
 
-
-**The JTC continues to be committed to advancing MSE analyses, by coordinating
+The JTC continues to be committed to advancing MSE analyses, by coordinating
 research with the \fishname\ MSE Working Group and other scientists in the region
 engaged in similar research. Incorporating feedback from the
 Working Group and stakeholders will ensure that operating models will be able to
 provide insight into the important questions defined by interested parties.
 Specifically, the development of MSE tools will evaluate major sources of
 uncertainty relating to data, model structure and the harvest policy for this
-fishery, and will compare potential methods to address them.
+fishery, and will compare potential methods to address them. In the coming year,
+this will include evaluating the utility of
+incorporating environmentally-driven age-0 recruitment indices into the stock
+assessment.
 
 \subsection{Reference points}\label{sec:assessment-reference-points}
 
