@@ -44,13 +44,16 @@ make.survey.history.table <- function(dat,
                                  "index",
                                  "(million t)")),
                      latex.mlc(c("Sampling",
-                                 "CV")),
+                                 "CV age-2+")),
                      latex.mlc(c("Number of",
                                  "hauls with",
                                  "age samples")),
                      latex.mlc(c("Age-1 index",
                                  "(billions of",
-                                 "fish)")))
+                                 "fish)")),
+                     latex.mlc(c("Sampling",
+                                 "CV age-1"))
+                    )
 
   size.string <- latex.size.str(font.size, space.size)
   print(xtable(dat,
