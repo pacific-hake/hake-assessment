@@ -642,26 +642,6 @@ param_est_table(sens.models.2.for.table,
 \end{landscape}
 \pagestyle{fancy}
 
-\begin{landscape}
-\pagestyle{mylandscape}
-\centering
-<<main-parameter-estimates-sens-3, results='asis', echo=FALSE>>=
-param_est_table(sens.models.3.for.table,
-                model.names = sens.model.names.3.for.table,
-                end.yr = end.yr,
-                digits = 3,
-                xcaption = paste0("**Posterior medians for select parameters,
-                                   derived quantities, reference points, and negative log likelihoods
-                                   for the base model and further sensitivity runs (described in
-                                   Section~\\ref{sec:assessment-sensitivity-analyses}).
-                                  A dash (--) indicates that the parameter was not estimated in the model."),
-                xlabel = "tab:main-parameter-estimates-sens-3",
-                font.size = 9,
-                space.size = 11,
-                getrecs = c(2010, 2014, 2016))
-@
-\end{landscape}
-\pagestyle{fancy}
 \clearpage
 
 <<main-parameter-estimates-retro, results='asis', echo=FALSE>>=

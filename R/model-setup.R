@@ -194,8 +194,8 @@ sens.model.names.4 <- c("Phi t.v. selectivity (0.21)",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 5  -
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.5 <- c("2022.01.28_tvSelect_phi_low")
-sens.model.names.5 <- c("DUMMY FOR NOW")
+## sens.model.dir.names.5 <- c("2022.01.28_tvSelect_phi_low")
+## sens.model.names.5 <- c("DUMMY FOR NOW")
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 6  -
@@ -210,8 +210,8 @@ sens.model.names.6 <- c("Max. age selectivity 5",
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 7  - MH mcmc
 ## -----------------------------------------------------------------------------
-sens.model.dir.names.7 <- c("2022.01.28_tvSelect_phi_low")
-sens.model.names.7 <- c("DUMMY FOR NOW")
+## sens.model.dir.names.7 <- c("2022.01.28_tvSelect_phi_low")
+## sens.model.names.7 <- c("DUMMY FOR NOW")
 
 model_list <- c(base.model.dir.name,
                 unlist(bridge.model.dir.names.1),
@@ -219,9 +219,9 @@ model_list <- c(base.model.dir.name,
                 unlist(sens.model.dir.names.1),
                 unlist(sens.model.dir.names.2),
                 unlist(sens.model.dir.names.4),
-                unlist(sens.model.dir.names.5),
-                unlist(sens.model.dir.names.6),
-                unlist(sens.model.dir.names.7))
+                # unlist(sens.model.dir.names.5),
+                unlist(sens.model.dir.names.6))
+                # unlist(sens.model.dir.names.7))
 model_list <- model_list[! model_list %in% last.yr.base.model.dir.name]
 model_list <- as.list(unique(model_list))
 
@@ -265,9 +265,9 @@ load_models_rds <- function(){
   sens.models.1 <<- load_models(sens.model.dir.names.1)
   sens.models.2 <<- load_models(sens.model.dir.names.2, TRUE)
   sens.models.4 <<- load_models(sens.model.dir.names.4)
-  sens.models.5 <<- load_models(sens.model.dir.names.5)
+  # sens.models.5 <<- load_models(sens.model.dir.names.5)
   sens.models.6 <<- load_models(sens.model.dir.names.6)
-  sens.models.7 <<- load_models(sens.model.dir.names.7)
+  # sens.models.7 <<- load_models(sens.model.dir.names.7)
 #  srg_day2_req1_model <<- load_models("2022.01.47_day2request_wtatage")
 #  srg_day2_req2_model <<- load_models("2022.01.46_base_v1_4yrForecast")
 
@@ -280,12 +280,16 @@ load_models_rds <- function(){
 
   ## Removing the sens group 4 from this because it's causing problems when
   ## running param_est_table()
-  sens.models.2.for.table <<- c(list(base.model), sens.models.4)
-  sens.model.names.2.for.table <<- c("Base model", sens.model.names.4)
+  sens.models.2.for.table <<- c(list(base.model),
+                                sens.models.4,
+                                sens.models.6)
+  sens.model.names.2.for.table <<- c("Base model",
+                                     sens.model.names.4,
+                                     sens.model.names.6)
 
   ## Third set
-  sens.models.3.for.table <<- c(list(base.model), list(sens.models.5), sens.models.6, list(sens.models.7))
-  sens.model.names.3.for.table <<- c("Base model", sens.model.names.5, sens.model.names.6, sens.model.names.7)
+  # sens.models.3.for.table <<- c(list(base.model), list(sens.models.5), sens.models.6, list(sens.models.7))
+  # sens.model.names.3.for.table <<- c("Base model", sens.model.names.5, sens.model.names.6, sens.model.names.7)
 
   ## Fourth set
   # sens.models.4.for.table <<- c(list(base.model), list(sens.models.6))
