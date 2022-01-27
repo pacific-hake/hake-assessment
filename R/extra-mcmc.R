@@ -332,7 +332,40 @@ fetch_extra_mcmc <- function(model_path,
     select(-rsum)
 
   # CPUE table and values (Q) -------------------------------------------------
-  message("Extracting 'CPUE' table...")
+  message("Extracting index fits and catchabilities...")
+  index_table <- extract_rep_table(reps_q, q_header)
+browser()
+  extra_mcmc$q.med <- index_table %>%
+    mutate(Calc_Q = as.numeric(Calc_Q)) %>%
+    group_by(Fleet, Yr) %>%
+    summarize(value = median(Calc_Q))
+
+  extra_mcmc$q.025 <- index_table %>%
+    mutate(Calc_Q = as.numeric(Calc_Q)) %>%
+    group_by(Fleet, Yr) %>%
+    summarize(value = quantile(Calc_Q, probs = 0.025))
+
+  extra_mcmc$q.975 <- index_table %>%
+    mutate(Calc_Q = as.numeric(Calc_Q)) %>%
+    group_by(Fleet, Yr) %>%
+    summarize(value = quantile(Calc_Q, probs = 0.975))
+
+  extra_mcmc$index.med <- index_table %>%
+    mutate(Exp = as.numeric(Exp)) %>%
+    group_by(Fleet, Yr) %>%
+    summarize(value = median(Exp))
+
+  extra_mcmc$index.025 <- index_table %>%
+    mutate(Exp = as.numeric(Exp)) %>%
+    group_by(Fleet, Yr) %>%
+    summarize(value = quantile(Exp, 0.025))
+
+  extra_mcmc$index.975 <- index_table %>%
+    mutate(Exp = as.numeric(Exp)) %>%
+    group_by(Fleet, Yr) %>%
+    summarize(value = quantile(Exp, 0.975))
+
+  # Deprecated objects
   q <- extract_rep_table(reps_q, q_header) %>%
     select(Iter, Exp, Calc_Q)
   iter <- unique(q$Iter)
