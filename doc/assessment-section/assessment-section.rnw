@@ -215,8 +215,7 @@ JTC:
   determining the choice of $\sigma_R$ remains a challenge and encourages the
   JTC to continue to work on the issue.}
 
-\emph{**Kelli check, especially ** spots and close issue \#468 when done**
-  Response -- Developing best practices for modeling equilibrium recruitment ($R_0$)
+\emph{Response -- Developing best practices for modeling equilibrium recruitment ($R_0$)
   and recruitment variability ($\sigma_R$)
   remain broad topics of contemporary research. Recent recommendations suggest that the next
   generation of stock assessment modeling frameworks
@@ -234,41 +233,60 @@ JTC:
   estimation of multiple variance parameters within stock assessments.
   For \fishname, this includes the estimation of the variability associated with
   time-varying selectivity ($\Phi$), $\sigma_R$,
-  the extra standard deviation parameters on survey-index data, and
-  the Dirichlet-multinomial parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$.
-  In this assessment, $\Phi$ and $\sigma_R$ are input as fixed values rather than estimated,
-  though we have explored their estimation within Stock Synthesis in the past and did so again this year.
-  Estimation of these variance parameters using wide, uniform priors (given the lack of information available
-  on hyper priors within stock assessments) have previously been unsuccessful. Estimates were clearly interrelated with other
-  sources of variance attributed to model mis-specification rather than variability directly related to the given process.
-  The Laplace approximation \citep{ThorsonHicksEtAl2015} has been investigated
-  as an alternative means to estimate these parameters. However, estimates from this method were also large
-  and need further investigation with respect to their correlation. The JTC is planning to engage in a collaborative simulation
-  study that investigates the estimation of multiple variance parameters in the coming year.}
+  extra standard deviation parameters on index data, and
+  Dirichlet-multinomial parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$.
+  In this assessment, $\Phi$ and $\sigma_R$ are input as fixed parameters because
+  Stock Synthesis uses penalized likelihood, and therefore,
+  is not formulated to estimate random effects.
+  Additionally, estimation of these variance parameters using MCMC
+  requires the specification of hyperpriors for which there has been little research.
+  The Laplace approximation \citep{ThorsonHicksEtAl2015} was investigated
+  as an alternative means to estimate these parameters.
+  However, estimates from this method were large and simulation shows them to
+  be biased high.
+  Additional research still in its infancy suggests that stock assessment frameworks
+  with the ability to estimate random effects internally are
+  better at estimating autocorrelated processes than random processes.
+  Next steps for the JTC includes fitting Stock Synthesis to these
+  same data sets to determine best practices when variance parameters cannot be estimated
+  and fitting a wide variety of stock assessment frameworks to data when
+  multiple random processes are present in the true dynamics.}
 
 \emph{The Management Strategy Evaluation (MSE) framework for \fishname\ creates
-  considerable advantages for examining recruitment. The associated Template Model
-  Builder (TMB) estimation code used in the MSE mimics the stock assessment
-  model. Insights gained through the treatment of recruitment
-  variability as random effects \citep{Thorson2019} continue to be explored.
+  considerable advantages for examining recruitment.
+  The stock assessment model in the MSE is written in Template Model Builder (TMB),
+  which provides efficient estimation of random effects using the Laplace approximation,
+  while being parameterized to mimic the pertinent features of Stock Synthesis used in this assessment.
+  Thus, the performance of using restricted maximum likelihood to estimate $\sigma_R$ \citep{Thorson2019}
+  can be investigated in terms of management as well as statistical performance.
   The MSE framework can also be used to evaluate the robustness
   of recruitment modeling assumptions and the advantages of including environmentally-driven recruitment indices
   on management performance and uncertainty.  Research slated to be published by Dr. Cathleen Vestfals and
-  colleagues at the Northwest Fisheries Science Center has identified specific climate drivers associated with
-  \fishname\ early life-history stages and recruitment, which could eventually inform an explicit recruitment index,
-  an environmental index linked to recruitment, indicators of recruitment variation
-  ($\sigma_R$), and indicators of current or forecast levels of recruitment. These options are currently being
-  investigated by the JTC, the MSE working group, and collaborating colleagues.}
+  colleagues at the Northwest Fisheries Science Center that identified specific climate drivers associated with
+  \fishname\ early life-history stages and recruitment is now being used to
+  select which environment variables to fit as an index of recruitment within the stock assessment model.
+  The utility of fitting to a recruitment index will be investigated in terms of
+  forecasting skill and management performance within the MSE by the MSE working group.}
 
-\emph{**In addition to the MSE TMB estimation model, other state-space stock assessment platforms (such as the
-  Woods Hole Assessment Model, WHAM) may also be useful for investigating alternative approaches to
-  estimate recruitment variability.}
+\emph{The number of stock assessment frameworks written in TMB or other platforms that allow for
+  the estimation of random effects is increasing.
+  These frameworks, specifically the
+  Woods Hole Assessment Model (WHAM; citealt{StockMiller2021}) and
+  State-Space Assessment Model (SAM; \citealt{NielsenBerg2014})
+  are both peer reviewed and currently being used for management
+  The JTC has fit WHAM to data on \fishname\ and
+  explored the estimates of several variance parameters that are currently only
+  explored via sensitivity analyses in Stock Synthesis.
+  Next steps include fitting data using SAM and
+  using estimates from both frameworks as inputs to Stock Synthesis.}
 
-\emph{**The JTC is also following work being conducted by the International Council for
+\emph{The JTC is also following work being conducted by the International Council for
   the Exploration of the Sea (ICES) Methods Working Group which, among other things,
-  is looking at meta-analytical approaches for estimating recruitment parameters.  Results
+  is looking at meta-analytical approaches for estimating recruitment parameters. Results
   from this work could be used to develop informative prior distributions on key
-  recruitment parameters. This work is expected to be published in the next year or so.}
+  recruitment parameters.
+  Deliverables were put on hold as a result of COVID-19 but
+  the project has been making recent progress.}
 
 2. {\bf The SRG recommends exploring alternative methods to simulate recruitment
   in the projections, such as drawing from past observations or using a mixture
