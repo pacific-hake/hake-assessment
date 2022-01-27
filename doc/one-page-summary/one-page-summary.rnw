@@ -25,7 +25,7 @@
     staffing issues, age data were unavailable from the Canadian freezer-trawler fleet and minimally
     available for the shoreside fleet in \Sexpr{end.yr-1}.
 
-  \item Coast-wide catch in \Sexpr{end.yr-1} was about average over the past decade at
+  \item Coast-wide catch in \Sexpr{end.yr-1} was about the average over the past decade at
     \Sexpr{last.year.landings}~t [t represents metric tons],
     out of a total allowable catch (TAC), adjusted for carryovers, of \Sexpr{last.year.tac}~t.
     Quotas were specified unilaterally in 2021 due to the lack of a
@@ -47,9 +47,13 @@
     unfished equilibrium, $B_0$) is \Sexpr{curr.depl.median}\% but is highly
     uncertain (with 95\% credible interval from \Sexpr{curr.depl.lower}\% to
     \Sexpr{curr.depl.upper}\%). The median relative spawning biomass
-    has declined since 2017 but remains well above levels of conservation concern.
-    Stock status increased relative to last year due to slightly higher estimates of
-    recent recruitment than were previously expected.
+    has progressively declined since 2019, due to the aging large cohorts (2010,
+    2014, and 2016) and relatively high catches. Based on limited data, the 2020
+    cohort looks likely to be large.
+%     Stock status increased relative to last year due to slightly higher estimates of
+%    recent recruitment than were previously expected.
+% That last sentence seemed a bit confusing. We'd have to compare the 2021 B/B0 with
+%  2021 assessment's value (which we kind of do in the Exec Summary).
 
   \item The median estimate of female spawning biomass at the start
     of \Sexpr{end.yr} is \Sexpr{curr.bio.median.tonnes}~t (with 95\% credible
@@ -82,7 +86,7 @@ catch levels. Projections setting the \Sexpr{forecast_yrs[1]} and
 \Sexpr{forecast_yrs[2]} catches equal to the \Sexpr{forecast_yrs[1]-1}
 coast-wide (unilaterally summed) TAC of
 \Sexpr{last.year.tac}~t show the estimated median relative spawning biomass
-staying relatively stable from
+changing from
 \Sexpr{last.yr.tac.fore.1.biomass}\% in \Sexpr{end.yr} to
 \Sexpr{last.yr.tac.fore.2.biomass}\% in \Sexpr{end.yr+1} to
 \Sexpr{last.yr.tac.fore.3.biomass}\% in

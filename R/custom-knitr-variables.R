@@ -309,7 +309,7 @@ same.catch.prob.year.after.next.below.b40 <- f(base.model$risks[[2]][catch.actua
 probs.curr.rel.fish.intens.above.one <-
   f(sum(base.model$mcmc[[paste0("SPRratio_", end.yr-1)]] > 1) /
     nrow(base.model$mcmc) * 100,
-    1)
+    0)
 catches.below.200000.since.1986 <- number.to.word(length(filter(ct, tot_catch <= 200000, year > 1986)$year))
 
 # Age composition data for data section ---------------------------------------
@@ -593,7 +593,7 @@ depl_no_ageerr <- sens.models.5$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) 
 # and below the $\Bforty$ (40\% of $B_0$) reference point at the start of \Sexpr{end.yr}
 joint.percent.prob.above.below <- f(sum(base.model$mcmc[[paste0("Bratio_", end.yr)]] < 0.4 &
                                         base.model$mcmc[[paste0("SPRratio_", end.yr-1)]] > 1) / nrow(base.model$mcmc) * 100,
-                                  1)
+                                  0)
 
 # Cohort medians, credible intervals ------------------------------------------
 rec_2010 <- get_rec_ci(last.yr.base.model, base.model, 2010)
