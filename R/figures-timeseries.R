@@ -462,7 +462,8 @@ make_squid_plot <- function(model,
 #' @param densityxlab X-axis label
 #' @param indexPlotEach See [r4ss::SSplotComparisons()]
 #' @param indexUncertainty See [r4ss::SSplotComparisons()]
-#' @param indexfleets See [r4ss::SSplotComparisons()]
+#' @param indexfleets See [r4ss::SSplotComparisons()] or if `subplot` == 13 and this == 2,
+#' plot age 2+ acoustic survey. If `subplot` == 13 and this == 3, plot age-1 acoustic survey
 #' @param is.retro If `TRUE`, it is a retrospective plot
 #' @param legend See [r4ss::SSplotComparisons()]
 #' @param legendloc See [r4ss::SSplotComparisons()]
@@ -471,6 +472,8 @@ make_squid_plot <- function(model,
 #' and the `endyrvec` argument for [r4ss::SSplotComparisons()] is calculated
 #' @param plot_mcmc If `TRUE`, plot MCMC values. If `FALSE`, plot MLE values
 #' @param verbose Be verbose on output
+#' @param fleet If `subplot` == 13 and this == 2, plot age 2+ acoustic survey.
+#' If `subplot` == 13 and this == 3, plot age-1 acoustic survey
 make.comparison.plot <- function(models,
                                  subplots = 1,
                                  model.names = NULL,
@@ -481,8 +484,10 @@ make.comparison.plot <- function(models,
                                  indexfleets = NULL,
                                  is.retro = FALSE,
                                  legend = TRUE,
-                                 legendloc = "topright",
+                                 legend_loc = "topright",
                                  legend_pos = c(0.8, 0.9),
+                                 legend_order = seq(1, length(models)),
+                                 legend_ncol = 1,
                                  end.yr = NULL,
                                  plot_mcmc = TRUE,
                                  verbose = FALSE,
@@ -492,6 +497,7 @@ make.comparison.plot <- function(models,
     tmp.names <- sapply(models[1:length(models)], "[[", "path")
     model.names <- gsub(".*/", "", tmp.names)
   }
+
   compare.summary <- SSsummarize(models, SpawnOutputUnits = "biomass", verbose = verbose)
   endyrvec <- "default"
   # If it is a retrospective plot, compute the end year vector of years so the lines end on the correct years
@@ -511,72 +517,90 @@ make.comparison.plot <- function(models,
       }
     }
     # Make a list of data frames of the indices, one data frame for each model
-    indices <- compare.summary$indices %>%
-      as_tibble() %>%
-      filter(Use == 1, Fleet == 2) %>%
-      select(Yr, name, Obs, Exp) %>%
-      mutate(Obs = (if(subplots == 13) Obs else log(Obs)),
-             Exp = (if(subplots == 13) Exp else log(Exp))) %>%
-      group_split(name)
+    indices <- map2(models, model.names, ~{.x$dat$CPUE %>%
+        mutate(med = .x$extra.mcmc$cpue.median,
+               lower = .x$extra.mcmc$cpue.0.025,
+               upper = .x$extra.mcmc$cpue.0.975) %>%
+        filter(index > 0) %>%
+        rename(fleet = index) %>%
+        select(-seas) %>%
+        mutate(name = .y)}) %>%
+      map_df(~{.x})
 
-    # MCMC fit requires extra-mcmc
-    indices <- map2(models, indices, ~{
-      yrs <- min(.y$Yr):max(.y$Yr)
-      em_lower <- .x$extra.mcmc$cpue.0.025
-      em_med <- .x$extra.mcmc$cpue.median
-      em_upper <- .x$extra.mcmc$cpue.0.975
-      if(length(.x$fleet_ID) == 3){
-        # Scenario where Age-1 index was included
-        em_lower <- em_lower[1:length(yrs)]
-        em_med <- em_med[1:length(yrs)]
-        em_upper <- em_upper[1:length(yrs)]
+    legendfun <- function(legend_labels, pch, type = "b", col, lty, lwd) {
+
+      if(is.numeric(legend_loc)){
+        usr <- par()$usr
+        legendloc <- list(x = usr[1] + legendloc[1] * (usr[2] - usr[1]),
+                          y = usr[3] + legendloc[2] * (usr[4] - usr[3]))
       }
-      fits <- as_tibble(list(Yr = yrs,
-                             lower = (if(subplots == 13) em_lower else log(em_lower)),
-                             med = (if(subplots == 13) em_med else log(em_med)),
-                             upper = (if(subplots == 13) em_upper else log(em_upper))))
-      left_join(fits, .y, by = "Yr", copy = TRUE)
-    })
-    indices <- map_df(seq_along(indices), ~{
-      indices[[.x]] <- indices[[.x]] %>% mutate(name = model.names[.x])
-    })
-    cols <- rich.colors.short(2 * length(models))
-    cols <- cols[seq(2, length(cols), 2)]
-    fill_cols <- rich.colors.short(2 * length(models), alpha = 0.1)
-    fill_cols <- fill_cols[seq(2, length(fill_cols), 2)]
-    shapes <- 1:length(models)
-
-    y_label <- ifelse(subplots == 13, "Index", "Log Index")
-    y_label_sym <- sym(y_label)
-    indices <- indices %>%
-      rename(!!y_label_sym := Obs) %>%
-      rename(Year = Yr)
-
-    g <- ggplot(indices) +
-      aes(x = Year, y = !!y_label_sym, group = name, color = name, fill = name, shape = name) +
-      geom_ribbon(aes(ymin = lower, ymax = upper), color = NA) +
-      geom_line(aes(y = med, color = name), size = 1) +
-      geom_point(aes(y = med, color = name), size = 3, stroke = 1.5) +
-      scale_fill_manual(values = fill_cols, guide = FALSE) +
-      scale_color_manual(values = cols, name = "") +
-      scale_shape_manual(values = shapes, name = "") +
-      geom_point(aes(x = Year, y = !!y_label_sym), size = 2, inherit.aes = FALSE) +
-      theme(legend.position = "none")
-    if(legend){
-      g <- g + theme(legend.position = legend_pos,
-                     legend.background = element_rect(colour = NA),
-                     legend.box.background = element_rect(colour = NA, fill = NA),
-                     legend.key = element_blank(),
-                     legend.text.align = 0,
-                     legend.text = element_text(size = 11))
+      # if type input is "l" then turn off points on top of lines in legend
+      legend_pch <- pch
+      if(type == "l"){
+        legend_pch <- rep(NA, length(pch))
+      }
+      legend(legend_loc,
+             legend = legend_labels[legend_order],
+             col = col[legend_order],
+             lty = lty[legend_order],
+             seg.len = 2,
+             lwd = lwd[legend_order],
+             pch = legend_pch[legend_order],
+             bty = "n",
+             ncol = legend_ncol)
     }
-    return(g)
+
+    # Plot using base R
+    indices <- indices %>%
+      filter(fleet %in% indexfleets) %>%
+      mutate_at(.vars = vars(lower, upper, med, obs), ~{.x / 1e6})
+    xlim <- range(min(indices$year), max(indices$year))
+    ylim <- range(0, indices$upper)
+    plot(0,
+         type = "n",
+         yaxs = "i",
+         ylim = ylim,
+         xlim = xlim,
+         xlab = "Year",
+         ylab = "Biomass (million t)",
+         axes = FALSE)
+    index_names <- unique(indices$name)
+    first_index <- indices %>% filter(name == index_names[1])
+    points(first_index$year, first_index$obs, pch = 19, cex = 1.5)
+    if(length(models) == 2){
+      cols <- rich.colors.short(length(models))
+    }else{
+      cols <- rich.colors.short(length(models) + 1)[-1]
+    }
+    for(i in 1:length(models)){
+      rows <- indices %>% filter(name == index_names[i])
+      x <- rows$year
+      y <- rows$med
+      lower <- rows$lower
+      upper <- rows$upper
+      lines(x + 0.1 * (i - 1), y, pch = 19, lwd = 2, lty = 1, col = cols[i], type = "b")
+      arrows(x0 = x + 0.1 * (i - 1), y0 = lower, x1 = x + 0.1 * (i - 1), y1 = upper, lwd = 2, lty = 1,
+             col = cols[i], length = 0.025, angle = 90, code = 3)
+    }
+    box()
+    axis(1, pretty(xlim))
+    axis(2, pretty(ylim))
+    if(legend){
+      legend_labels <- index_names
+      legendfun(legend_labels,
+                type = "b",
+                pch = rep(19, length(index_names)),
+                col = cols,
+                lty = rep(1, length(index_names)),
+                lwd = rep(1, length(index_names)))
+    }
+    return(invisible(NULL))
   }
   SSplotComparisons(compare.summary,
                     subplots = subplots,
                     legend = legend,
                     legendlabels = model.names,
-                    legendloc = legendloc,
+                    legendloc = legend_loc,
                     indexPlotEach = indexPlotEach,
                     indexUncertainty = indexUncertainty,
                     indexfleets = indexfleets,
