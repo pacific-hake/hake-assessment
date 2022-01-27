@@ -59,7 +59,7 @@
   \item The median estimate of female spawning biomass at the start
     of \Sexpr{end.yr} is \Sexpr{curr.bio.median.tonnes}~t (with 95\% credible
     interval from \Sexpr{curr.bio.lower.tonnes} to \Sexpr{curr.bio.upper.tonnes}~t).
-    This is less than this assessments median estimate
+    This is less than this assessment's median estimate
     for the \Sexpr{end.yr-1} female spawning biomass of \Sexpr{prev.bio.median.tonnes}~t
     (with 95\% credible interval
     \Sexpr{prev.bio.lower.tonnes}--\Sexpr{prev.bio.upper.tonnes}~t).

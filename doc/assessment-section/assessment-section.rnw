@@ -329,7 +329,7 @@ JTC:
   Thus, we first calculated the median of median posterior estimates of recruitment
   from the main time period.
   Second, we calculated the ratio between this median value and $R_0$
-  to use as a scaling factor on virgin recruitment, which is an option in Stock Synthesis. 
+  to use as a scaling factor on virgin recruitment, which is an option in Stock Synthesis.
   Last, the option for mean recruitment was specified using the mean over the main time period.
   Resulting decision tables are presented in Appendix~****~\ref{chap:}
   **the new tables are not done yet.
@@ -982,7 +982,7 @@ is estimated to be about average in size. With the addition of the age-1 index, 
 is information beyond just fishery encounters in
 the data to estimate the size of the \Sexpr{end.yr-2} year class. Collectively, these data
 indicate that the \Sexpr{end.yr-2} year class is above average, while the 2019 year class is
-informed by the \Sexpr{last.survey.year} survey and fishery data, but has no age-1 index.
+informed by the \Sexpr{last.survey.year} biomass index and fishery data, but has no age-1 index.
 
 %The additional data in the 2020 assessment has decreased the median estimate of the
 %2014 year class to
@@ -1042,7 +1042,7 @@ Tables~\ref{tab:main-median-posterior} and
 \ref{tab:main-ci-posterior}). Although displaying similar patterns, the exploitation
 fraction does not necessarily correspond to fishing intensity because fishing
 intensity more directly accounts for the age-structure of both the population and
-the catch. 
+the catch.
 Median relative fishing intensity is estimated to have declined from
 \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.2015}\%
 in 2015, and then it leveled off around 70\% from 2016 to 2019 before dropping to
@@ -1058,7 +1058,7 @@ biomass, the 95\% posterior credibility interval of relative fishing intensity
 was below the SPR management target from 2012 through 2016 and again from 2018
 to 2021 (Figure~\ref{fig:main-fishing-intensity}). The median estimate
 for 2017 is below the management target, however the 95\% posterior
-credibility intervals do include the target level.
+credibility interval does include the target level.
 
 % Note that exploitation.med.penult.yr comes out as 0.06, but in Table d
 %  is 0.065, because the true value is 0.0648.... The text rounds to two decimal
@@ -1185,7 +1185,7 @@ a suite of other informative sensitivity analyses using full MCMC results
 We also present an appendix showing results for the sensitivity model that excludes
 the age-1 survey index (Appendix~\ref{chap:age1-survey}). The exclusion of the age-1
 survey model was chosen because it matches the model structure of the
-\Sexpr{assess.yr - 1} base assessment model. 
+\Sexpr{assess.yr - 1} base assessment model.
 
 The JTC continues to be committed to advancing MSE analyses, by coordinating
 research with the \fishname\ MSE Working Group and other scientists in the region

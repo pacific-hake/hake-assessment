@@ -189,7 +189,7 @@ aggregated fisheries and the acoustic survey, along with the age-1 index,
 provide data that facilitates estimating relative cohort strength,
 i.e., strong and weak cohorts. The age-1 index suggests particularly large numbers
 of age-1 fish in 2009, 2011, 2015, and 2021 (2008, 2010, 2014, and 2020
-year-classes, respectively), and is not available for most even years
+year classes, respectively), and is not available for most even years
 (odd year classes).
 
 The assessment uses a Bayesian estimation approach, sensitivity analyses, and
@@ -386,7 +386,7 @@ fish higher than in last year's assessment
 (prev.assess.recruitment.med)["2014"]) * 100), 0)}\% increase).
 Similarly, estimates for the large 2016 and small 2018 recruitments have increased by
 \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"]) /
-(prev.assess.recruitment.med)["2016"]) * 100), 0)}\% 
+(prev.assess.recruitment.med)["2016"]) * 100), 0)}\%
 (\Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"], 1)}~billion fish) and
 \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2018"]) /
 (prev.assess.recruitment.med)["2018"]) * 100), 0)}\%
@@ -395,7 +395,7 @@ respectively, but the general notion remains that the 2016 cohort is above avera
 and the 2018 cohort is below average.
 
 \fishname\ appear to
-have low to moderate recruitment with occasional large year-classes
+have low to moderate recruitment with occasional large year classes
 (Table~\ref{tab:es-recruitment} and Figure~\ref{fig:es-recruitment}).
 %
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -457,7 +457,7 @@ very high chance (\Sexpr{prob.percent.2014.rec.gt.2016.rec}\%) that 2014 is larg
 With the addition of the age-1 index, there is information beyond just fishery encounters in
 the data to estimate the size of the \Sexpr{end.yr-2} year class. Collectively, these data
 indicate that the \Sexpr{end.yr-2} year class is above average, while the 2019 year class is
-informed by the \Sexpr{last.survey.year} survey and fishery data, but has no age-1 index.
+informed by the \Sexpr{last.survey.year} biomass index and fishery data, but has no age-1 index.
 There is no information in the data to estimate the sizes of the
 \Sexpr{end.yr-1} and \Sexpr{end.yr} year classes. Retrospective analyses of year
 class strength for young fish have shown the estimates of recent recruitment to
