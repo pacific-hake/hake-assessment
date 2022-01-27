@@ -159,7 +159,7 @@ make.comparison.plot(retro.list,
                      subplots = 2,
                      model.names = retro.model.names,
                      legend = TRUE,
-                     legendloc = "topright",
+                     legend_loc = "topright",
                      plot_mcmc = TRUE,
                      is.retro = TRUE)
 ## Now for age-1 index sensitivity
