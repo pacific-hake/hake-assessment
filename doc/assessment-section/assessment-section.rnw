@@ -727,7 +727,15 @@ a couple of above-average cohorts that are now mature.
 %resulting in a population
 %trend that has been relatively stable from 2013 to \Sexpr{survey.end.yr}.
 
-The base model fit to the index of age-1 fish (Figure~\ref{fig:main-mcmc-age1-fit})
+The base model fit to the index of age-1 fish highlights some over- and
+under-estimation but an overall general confirmation of relative year class strength
+(Figure~\ref{fig:main-mcmc-age1-fit}). In particular, age-1 fish from the 2008 and 2014
+cohorts were under estimated relative to the index, while the 1995 and 2016 were
+over estimated. The 2010 cohort was closely fit.  Age-1 fish in 2021 (2020 cohort)
+were slightly under estimated and had the largest amount of uncertainty in the time
+series.  The model indicates that the 2020 year class may be similar in
+size to the 2016 cohort, based on information in the age-1 index and from age-1 fish
+caught in the fishery.
 
 Fits to the age-composition data continue to show close correspondence to the
 dominant and small cohorts observed in the data
@@ -757,7 +765,7 @@ patterns to the fishery and survey age data do not show patterns that would
 indicate systematic bias in model predictions
 (Figure~\ref{fig:main-age-comp-pearson}).
 
-** The median estimates for numbers, biomass,
+The median estimates for numbers, biomass,
 exploitation rate, and catch (in numbers and in biomass) for each age class in
 each year are given in
 Tables~\ref{tab:main-est-numbers-at-age}-\ref{tab:main-est-catch-at-age-biomass}.
@@ -768,7 +776,7 @@ than that of the 2010 cohort at age-5 and the resulting surviving biomass of
 the 2014 cohort was approximately half of the surviving biomass of the 2010
 cohort.
 
-** Posterior distributions for both steepness and natural mortality are strongly
+Posterior distributions for both steepness and natural mortality are strongly
 influenced by priors (Figure~\ref{fig:main-prior-posterior}). The posterior for
 steepness is only slightly updated by the data, as expected given the low
 sensitivity to steepness values found in previous hake assessments. The natural
@@ -781,7 +789,7 @@ Other parameters showed updating from diffuse priors to posterior
 distributions, including $\theta_{\text{fish}}$ and  $\theta_{\text{surv}}$ (as outlined in
 Section~\ref{sec:data-age-comp-likelihood}).
 
-**The \Sexpr{assess.yr} base model specified the same level of variation (standard
+The \Sexpr{assess.yr} base model specified the same level of variation (standard
 deviation of $\Phi = 1.4$) associated with time-varying fishery selectivity as
 the \Sexpr{last.assess.yr} base model, effectively
 allowing the model flexibility (i.e., a lower penalty on the overall
@@ -802,8 +810,9 @@ in the fishery age compositions initially, but decreasing in prominence
 from 2013 onward (Figure~\ref{fig:main-age-comp-fits}).
 Fishery selectivity on age-2 fish was at its highest
 in 2016, followed by 2018.
-Fishery selectivity for the most recent year was the lowest for age-2 since 2013, and
-then quickly peaked at age-4 before leveling off at older ages
+Fishery selectivity for the most recent year was characteristic of a logistic
+pattern, where selectivity increase smoothly from age-2
+to a peak at age-5 and older ages
 (Figure~\ref{fig:main-tv-selex-uncertainty}). Even though the
 survey selectivity is time invariant, the
 posterior shows a broad band of uncertainty between ages 2 and 5
