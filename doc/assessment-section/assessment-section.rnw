@@ -505,8 +505,10 @@ forecasting weight-at-age and evaluate whether they can improve projections.}
   plans to explore new weight-at-age forecasting capabilities in Stock Synthesis (once fully tested). A simulation
   experiment that evaluates the influence of variable weight-at-age data relative to other sources of variance in
   stock assessment projections (e.g., recruitment) would also be useful. Until this work is completed, the JTC continues to use
-  a recent five-year average in the projection period, because it is consistent with recent data
-  (Figures~\ref{fig:main-empirical-weight-at-age} and~\ref{fig:main-weight-at-age-lines}).}
+  a recent five-year average in the projection period because it is consistent with recent data
+  (Figures~\ref{fig:main-empirical-weight-at-age} and~\ref{fig:main-weight-at-age-lines}).
+  This assumption is consistent with what is allowable within other stock assessment frameworks that accommodate
+  time-varying dynamics.}
 
 14. {\bf The SRG appreciates the dedication and teamwork displayed by the JTC in
 producing the best available scientific information and advice on the Pacific
