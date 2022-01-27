@@ -296,9 +296,13 @@ JTC:
 \emph{Response -- The JTC has begun exploring approaches to make informed decisions about
   current and future recruitment in projections. The inclusion, and associated justification,
   of the age-1 index in the 2022 base model is one example of this (see
-  Sections~\ref{sec:data-acoustic-survey} and~\ref{sec:assessment-base-model}). Additionally, the JTC
-  is evaluating alternative recruitment indices using relationships with oceanographic
-  and environmental variables.}
+  Sections~\ref{sec:data-acoustic-survey} and~\ref{sec:assessment-base-model}).
+  Additionally, the JTC has been exploring the fit of oceanographic and environmental
+  variables identified by Dr. Cathleen Vestfals as being informative about the
+  early life history of \fishname\ as indices of recruitment within Stock Synthesis.
+  Originally, these variables were only available for the years 1980--2010.
+  Recently, data through 2020 were kindly provided and future research will will focus on
+  how to best create a single time series from the two periods.}
 
 \emph{Stock synthesis currently does not have capacity to draw from past observations or use
   mixing distributions to simulate recruitment in the projection period. Available options
@@ -307,55 +311,63 @@ JTC:
   across a user-defined time period.  The MSE tool could be used
   to consider alternative recruitment distributional assumptions as future research.}
 
-\emph{Also, Appendix~\ref{chap:rec-plot} presents some new ideas
-  for visualising recruitment relative to large recruitment years,
-  to avoid a misunderstanding of how large some recruitment
+\emph{Appendix~\ref{chap:rec-plot} presents some new ideas
+  for visualising annual recruitment relative to the largest recent recruitment
+  to avoid misunderstanding how large some recruitment
   events might be. It also includes figures that further
   enhance understanding of
-  the current method for simulating recruitments in the projection years.}
+  the current method for projecting recruitment.}
 
 3. {\bf The SRG requests that the JTC consider developing a decision table in
   the next assessment with recruitment fixed at the median and mean levels to
   assess the resulting impact on stock depletion.}
 
 \emph{Response -- The JTC conducted the standard suite of catch projections using recruitment fixed
-  at the median and mean level as calculated across the main recruitment time period (1970-2020).
-  Resulting decision tables are presented in Appendix~****
+  at the median and mean level as calculated across the main recruitment time period (1970--2020).
+  Specifying projected recruitment as the median of a given year range is not an option in
+  Stock Synthesis.
+  Thus, we first calculated the median of median posterior estimates of recruitment
+  from the main time period.
+  Second, we calculated the ratio between this median value and $R_0$
+  to use as a scaling factor on virgin recruitment, which is an option in Stock Synthesis. 
+  Last, the option for mean recruitment was specified using the mean over the main time period.
+  Resulting decision tables are presented in Appendix~****~\ref{chap:}
   **the new tables are not done yet.
   Related to this, the JTC
   also solicited alternative catch levels for use in projections from the JMC and has included those
   in decision tables.}
 
-4. Pacific Hake dynamics are highly variable even without fishing
+4. \fishname\ dynamics are highly variable even without fishing
   mortality. {\bf The SRG encourages the JTC (and MSE technical team) to continue
   investigating the usefulness of dynamic reference points in the management of
-  Pacific Hake.}
+  \fishname.}
 
 \emph{Response -- There has been no additional work investigating the usefulness of dynamic
   reference points over the past year. Instead, the JTC and MSE technical team have been
   working with Stock Synthesis developers to incorporate dynamic reference point
-  capabilities into the hake stock assessment statistical (Bayesian) and MSE coding
-  (full closed-loop simulation) frameworks. The hake stock
-  assessment can now estimate posterior distributions associated with dynamic reference points.
+  capabilities into the stock assessment statistical (Bayesian) and MSE coding
+  (full closed-loop simulation) frameworks.
+  Posterior distributions associated with dynamic reference points are now possible
+  within Stock Synthesis.
   Likewise, the MSE can now utilize dynamic reference points in management procedure
   scenarios. The JTC plans to continue engaging in research related to dynamic reference
   points broadly, as well as specifically for \fishname.}
 
-5. The SRG encourages work to develop a picture of the Pacific Hake reproductive
+5. The SRG encourages work to develop a picture of the \fishname\ reproductive
 cycle both seasonally and at the life-time scale based on histological and
 physiological measurements. In addition, the SRG notes that Canadian samples and
 those from the winter research cruises should be included in the maturity
 analysis. {\bf The SRG encourages continued sampling and analysis to improve
-understanding of the Pacific Hake reproductive cycle.}
+understanding of the \fishname\ reproductive cycle.}
 
 \emph{Response -- A project was initiated at the Northwest Fisheries Science Center just
   prior to the start of the COVID-19 pandemic that seeked to refine \fishname\ stock assessment
   assumptions through incorporation of physiological indices of fish reproductive and metabolic status.
   This novel biological information would bolster the current practice of using gonadal histology
-  alone for surveyed \fishname, and provide important data to more accurately determine the reproductive
+  alone for surveyed \fishname\ and provide important data to more accurately determine the reproductive
   cycle of females and the potential spawning stock biomass.
   Data generated so far indicate that two types of lipids, triacylglycerols and phospholipids,
-  in hake livers are inversely related and predictive of sexual maturity in females. Levels of
+  in the livers of \fishname\ are inversely related and predictive of sexual maturity in females. Levels of
   these lipids are also considerably shifted when aborted/atretic ovarian follicles
   are observed, suggesting that lipid levels may be predictive of skipped spawning, which can reduce
   the effective spawning stock biomass. In 2021, over 20 novel gene expression assays were designed
@@ -364,33 +376,33 @@ understanding of the Pacific Hake reproductive cycle.}
   samples were collected during the Northwest Fisheries Science Center 2021 Summer Hake Trawl Survey.
   To the extent that onsite laboratory work will be possible in 2022, the goal for the project is to conduct
   liver lipid-class and ovarian RNA analyses for \fishname\ samples collected in 2018 and 2019.
-  The addition of these samples will greatly expand the data set, and will help determine the utility
+  The addition of these samples will greatly expand the data set and will help determine the utility
   of physiological indicators of reproductive/metabolic status. New developments are expected to inform
-  future \fishname\ stock assessments.}
+  maturity in future \fishname\ stock assessments.}
 
 \emph{\fishname\ ovary samples continue to be collected (see Table~\ref{tab:main-ovaries}) for future
   analyses. While laboratory work has been limited over the past year due to facility closures, plans remain
   to include any available Canadian samples in subsequent maturity analyses.}
 
 6. {\bf The SRG strongly supports the ongoing genetic analyses to determine whether
-there are genetic differences between Pacific Hake from the area south of Point
+there are genetic differences between \fishname\ from the area south of Point
 Conception and coastal regions to the north.}
 
 \emph{Response -- Genetic work headed by Gary Longo at the Northwest Fisheries Science
-  Center continues using samples from throughout the United States west coast as well
-  as British Columbia, including the Strait of Georgia and Puget Sound.
+  Center using samples from throughout the United States west coast as well
+  as British Columbia, including the Strait of Georgia and Puget Sound is ongoing.
   Across two rounds of sequencing, DNA were extracted from 2311 individuals
   across a range of spatial-temporal grid locations from 2015--2019. A total of
   2008 were sequenced based on sufficient DNA concentrations, and 1417 passed quality
   filters. Population genetic analyses generally corroborate the
-  single-stock hypothesis with little to no differentiation among the spatial temporal grids.
+  single-stock hypothesis with little to no differentiation among the spatial-temporal grids.
   A Principal Component Analysis grouped all Coastal individuals across space and time
   together, while Salish Sea individuals fell out as clearly distinct. Likewise, a Bayesian clustering
   analysis found that the observed genetic variation is best explained by two distinct genetic clusters,
   the Salish Sea and Coastal populations. However, there was some evidence for weak differentiation among
   some spatial-temporal grid locations (across years and location), which may be due to weak differentiation
   among cohorts. This pattern was corroborated with weak, but statistically significant, pairwise FST statistic
-  comparisons. Overall, the genetic results corroborate the single-stock hypothesis, and highlight the strong
+  comparisons. Overall, the genetic results corroborate the single-stock hypothesis and highlight the strong
   differentiation between the resident Salish Sea population and the migratory, coastal population.}
 
 7. {\bf The SRG also recommends continuing to conduct the following sensitivities:
@@ -408,9 +420,9 @@ time-varying selectivity, and down-weighting fishery age-composition data.}
 executive summary incorporating the age-1 index in the next assessment and, if
 time permits, the retrospective analyses.}
 
-\emph{Response -- The age-1 index is incorporated into the 2022 base assessment model.
+\emph{Response -- The age-1 index is incorporated into the 2022 base model.
   As a result, the JTC has produced a reproduction
-  of the Executive Summary tables and figures for the results
+  of the Executive Summary tables and figures for the results of
   the sensitivity model that excludes the age-1 index (see Appendix~\ref{chap:age1-survey}).}
 
 9. Based on the preliminary results shown, previous assessments have `correctly'
@@ -425,7 +437,7 @@ JTC continue to explore and refine this analysis for future assessments.}
   in response to this
   request, including a retrospective component given that
   all retrospective model runs are performed using MCMC. Analyses are also
-  presented for the age-1 sensitivity run in
+  presented for the sensitivity to the base model that removes the age-1 index in
   Figures~\ref{fig:historical-retro-all-age1}
   and~\ref{fig:historical-retro-bforty-all-age1}; all results
   are discussed in
@@ -474,8 +486,8 @@ freezer-trawler age data in this year's assessment.}
   In summary, there was a single shoreside trip sampled, compared to a recent five-year
   average of 55 trips, and no freezer-trawler age data. The consequence of
   this loss of data is a disproportionate (relative to areal catch) reliance on age data
-  sampled from US waters as being representative of the coastwide population for the
-  2021 fishing year.  The fishery in the US on average comprises lower proportions of older fish
+  sampled from U.S. waters as being representative of the coast-wide population for the
+  2021 fishing year.  The fishery in the U.S. on average comprises lower proportions of older fish
   relative to the fishery in Canada.}
 
 \emph{The JTC is  concerned about multi-year changes in sampling and, in particular,
