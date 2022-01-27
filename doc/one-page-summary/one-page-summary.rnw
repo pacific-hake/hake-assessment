@@ -7,10 +7,10 @@
 
 \begin{itemize}
   \item The stock assessment model for \Sexpr{assess.yr} has the same population
-    dynamics structure as the \Sexpr{last.assess.yr} model. It is fit to an acoustic
-    survey index of biomass, an index of age-1 fish, annual commercial catch data,
-    and age-composition data from the survey and commercial fisheries. The addition of
-    the age-1 index is the main model change from \Sexpr{last.assess.yr}.
+    dynamics structure as the \Sexpr{last.assess.yr} model. For \Sexpr{assess.yr},
+    it is fit to an acoustic survey index of biomass, an index of age-1 fish, annual
+    commercial catch data, and age-composition data from the survey and commercial fisheries.
+    The addition of the age-1 index is the main change in data streams from \Sexpr{last.assess.yr}.
 
 %  \item The main change from \Sexpr{last.assess.yr} is the use of the age-1 index
 %    efficient algorithm (the No-U-Turn Sampler) for obtaining posterior samples. Consequently,
@@ -18,15 +18,16 @@
 %    now based on posterior distributions rather than maximum likelihood estimates.
 
   \item Updates to the data include:
-    the biomass estimate and age-composition data from the acoustic survey conducted in \Sexpr{survey.end.yr},
+    the new biomass estimate and age-composition data from the acoustic survey conducted in \Sexpr{survey.end.yr},
     fishery catch and age-composition data from \Sexpr{end.yr-1}, weight-at-age data for
     \Sexpr{end.yr-1}, the addition of the age-1 index time series
     (\Sexpr{survey.start.yr}~--\Sexpr{survey.end.yr}), and minor changes to pre-\Sexpr{end.yr-1} data. Due to
-    staffing issues, age data were unavailable from the Canadian freezer-trawler fleet and minimally
-    available for the shoreside fleet in \Sexpr{end.yr-1}.
+    staffing issues, age data from \Sexpr{end.yr-1} were unavailable from the Canadian freezer-trawler fleet and minimally
+    available for the shoreside fleet.
 
-  \item Coast-wide catch in \Sexpr{end.yr-1} was about the average over the past decade at
-    \Sexpr{last.year.landings}~t [t represents metric tons],
+  \item Coast-wide catch in \Sexpr{end.yr-1} was \Sexpr{last.year.landings}~t
+    [t represents metric tons], which is near the average over the past decade of
+    \Sexpr{f(round(mean(ct$tot_catch[(end.yr-start.yr-9):(end.yr-start.yr)]),0))}~t,
     out of a total allowable catch (TAC), adjusted for carryovers, of \Sexpr{last.year.tac}~t.
     Quotas were specified unilaterally in 2021 due to the lack of a
     bilateral TAC agreement. The U.S. caught \Sexpr{last.year.us.landings}~t (\Sexpr{last.year.us.attained}\%
@@ -58,7 +59,7 @@
   \item The median estimate of female spawning biomass at the start
     of \Sexpr{end.yr} is \Sexpr{curr.bio.median.tonnes}~t (with 95\% credible
     interval from \Sexpr{curr.bio.lower.tonnes} to \Sexpr{curr.bio.upper.tonnes}~t).
-    This is less than the current assessment's median estimate
+    This is less than this assessments median estimate
     for the \Sexpr{end.yr-1} female spawning biomass of \Sexpr{prev.bio.median.tonnes}~t
     (with 95\% credible interval
     \Sexpr{prev.bio.lower.tonnes}--\Sexpr{prev.bio.upper.tonnes}~t).
@@ -71,7 +72,7 @@
   \item The estimated probability that spawning biomass at the start of
     \Sexpr{assess.yr} is below the $\Bforty$ (40\% of $B_0$) reference point is
     \Sexpr{probs.curr.below.bforty}\%, and the probability that the relative fishing
-    intensity exceeds its target at the end of \Sexpr{end.yr-1} is
+    intensity exceeds its target in \Sexpr{end.yr-1} is
     \Sexpr{probs.curr.rel.fish.intens.above.one}\%. The joint
     probability of both these occurring is \Sexpr{joint.percent.prob.above.below}\%.
 
@@ -81,8 +82,8 @@
 \Sexpr{catch.limit.quantiles["upper"]}~t).
 
   \item Projections are highly uncertain due to uncertainty in
-estimates of recruitment for recent years and so were conducted for various
-catch levels. Projections setting the \Sexpr{forecast_yrs[1]} and
+estimates of recruitment for recent years and so were conducted for a fairly wide
+range of catch levels. Projections setting the \Sexpr{forecast_yrs[1]} and
 \Sexpr{forecast_yrs[2]} catches equal to the \Sexpr{forecast_yrs[1]-1}
 coast-wide (unilaterally summed) TAC of
 \Sexpr{last.year.tac}~t show the estimated median relative spawning biomass
