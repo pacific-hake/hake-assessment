@@ -1,3 +1,17 @@
+#'Creates a table summarizing lead parameters
+#'
+#' @param model The model to use for the table
+#' @param start.rec.dev.yr First year of estimated recruitment devs
+#' @param end.rec.dev.yr Last year of estimated recruitment devs
+#' @param digits Number of decimal points
+#' @param xcaption Caption for the table
+#' @param xlabel Latex label reference in the main doc
+#' @param font.size Point size of font
+#' @param space.size Vertical size between rows in the table
+#' @param return.xtable If `TRUE`, return the latex-formatted table code. If `FALSE`
+#' return the data frame instead
+#' @return Either a data frame or [xtable::xtable()] object
+#' @export
 make.parameters.estimated.summary.table <- function(model,
                                                     start.rec.dev.yr,
                                                     end.rec.dev.yr,
@@ -7,25 +21,13 @@ make.parameters.estimated.summary.table <- function(model,
                                                     font.size = 9,
                                                     space.size = 10,
                                                     return.xtable = TRUE){
-  ## Returns an xtable for the parameters estimated summary
-  ##
-  ## model - an mcmc run, output of the r4ss package's function SSgetMCMC()
-  ## start.rec.dev.yr - first year of estimated recruitment devs
-  ## end.rec.dev.yr - last year of estimated recruitment devs
-  ## digits - number of decimal points for the estimates
-  ## xcaption - caption to appear in the calling document
-  ## xlabel - the label used to reference the table in latex
-  ## font.size - size of the font for the table
-  ## space.size - size of the vertical spaces for the table
-  ## return.xtable - if TRUE, return an xtable, if FALSE return R data frame
 
-  ## Column indices for the values as found in the control file
   lo <- 1
   hi <- 2
   init <- 3
-  p.mean <- 4 ## prior mean
-  p.sd <- 5   ## prior sd
-  p.type <- 6 ## prior type
+  p.mean <- 4 # prior mean
+  p.sd <- 5   # prior sd
+  p.type <- 6 # prior type
   phase <- 7
   start.yr.sel <- 10
   end.yr.sel <- 11
@@ -37,32 +39,31 @@ make.parameters.estimated.summary.table <- function(model,
                   "3" = "Lognormal")
 
   fetch.and.split <- function(ctl, x){
-    ## Fetch the line x from the vector ctl and split it up, removing spaces.
-    ## Also remove any leading spaces
-    ## Return the vector of values
+    # Fetch the line x from the vector ctl and split it up, removing spaces.
+    # Also remove any leading spaces
+    # Return the vector of values
     j <- ctl[x]
-    ## Remove inter-number spaces
+    # Remove inter-number spaces
     j <- strsplit(j," +")[[1]]
-    ## Remove leading spaces
+    # Remove leading spaces
     j <- j[j != ""]
     return(j)
   }
 
-  fetch.prior.info <- function(vals,
-                               digits = 2){
-    ## Looks at the prior type p.type and phase, and if uniform will return
-    ##  "Uniform"
-    ## If not uniform, it will parse the vals and build a string defining
-    ##  the prior info.
-    ## If Fixed, it will return the initial value
-    ## If Lognormal, it will parse the vals and build a string defining the
-    ##  prior info, with the exp function applied
+  fetch.prior.info <- function(vals, digits = 2){
+    # Looks at the prior type p.type and phase, and if uniform will return
+    #  "Uniform"
+    # If not uniform, it will parse the vals and build a string defining
+    #  the prior info.
+    # If Fixed, it will return the initial value
+    # If Lognormal, it will parse the vals and build a string defining the
+    #  prior info, with the exp function applied
     if(vals[p.type] < 0 & vals[phase] > 0){
-      ## Uniform prior on estimated parameter
+      # Uniform prior on estimated parameter
       return("Uniform")
     }
     if(vals[p.type] < 0 & vals[phase] < 0){
-      ## Fixed parameter
+      # Fixed parameter
       return(vals[init])
     }
     # if(prior.type[vals[p.type]] == "Lognormal"){
@@ -80,11 +81,11 @@ make.parameters.estimated.summary.table <- function(model,
   #  but not 'between' whitespace.
   ctl <- gsub("^[[:blank:]]+", "", ctl)
   ctl <- gsub("[[:blank:]]+$", "", ctl)
-  ## Remove all lines that start with a comment
+  # Remove all lines that start with a comment
   ctl <- ctl[-grep("^#.*", ctl)]
 
-  ## R0 is at line 43 of comment-stripped dataframe. Get it's values which can
-  ##  be indexed by the variables defined above
+  # R0 is at line 43 of comment-stripped dataframe. Get it's values which can
+  #  be indexed by the variables defined above
   r0 <- fetch.and.split(ctl, 43)
   r0.vals <- c(paste0("Log (",
                       latex.subscr(latex.italics("R"),
@@ -119,9 +120,9 @@ make.parameters.estimated.summary.table <- function(model,
                   sig.r[3])
                   ##fetch.prior.info(sig.r, digits))
 
-  ## Recruitment devs, lower and upper bound found on lines 63 and 64 of
-  ##  comment-stripped dataframe
-  ## The number of them comes from the arguments to this function (for now)
+  # Recruitment devs, lower and upper bound found on lines 63 and 64 of
+  #  comment-stripped dataframe
+  # The number of them comes from the arguments to this function (for now)
   rec.dev.lb <- fetch.and.split(ctl, 63)[1]
   rec.dev.ub <- fetch.and.split(ctl, 64)[1]
   rec.dev.vals <- c(paste0("Log recruitment deviations: ",
@@ -138,7 +139,7 @@ make.parameters.estimated.summary.table <- function(model,
                            latex.italics("$\\sigma_r$"),
                            ")"))
 
-  ## Natural mortality is at line 25 of comment-stripped dataframe
+  # Natural mortality
   m <- fetch.and.split(ctl, 25)
   m.vals <- c(paste0("Natural mortality (",
                      latex.italics("M"),
@@ -150,8 +151,8 @@ make.parameters.estimated.summary.table <- function(model,
               paste0("(", m[lo], ", ", m[hi], ")"),
               fetch.prior.info(m, digits))
 
-  ## Survey additional value for SE is at line 74 of comment-stripped dataframe
-  se <- fetch.and.split(ctl, 74)
+  # Survey additional value for SE
+  se <- fetch.and.split(ctl, 75)
   se.vals <- c("Additional variance for survey log(SE)",
                1,
                paste0("(", se[lo], ", ", se[hi], ")"),
@@ -168,6 +169,13 @@ make.parameters.estimated.summary.table <- function(model,
                     paste0(" (", min(tmp[tmp[, 7]>0, lo]), ", ", min(tmp[tmp[, 7]>0, hi]), ")"),
                     "Uniform")
 
+  # Age-1 survey additional value for SE
+  se.age1 <- fetch.and.split(ctl, 77)
+  se.vals.age1 <- c("Additional variance for age-1 index log(SE)",
+               1,
+               paste0("(", se.age1[lo], ", ", se.age1[hi], ")"),
+               "Uniform")
+
   tmp <- data.frame(do.call("rbind",
     strsplit(grep("AgeSel_.*_Fishery.*[0-9]\\)$", ctl, value = TRUE),"\\s+")))
   f.ages.estimated <- which(type.convert(as.is = TRUE, tmp[, 7]) > 0) - 1
@@ -181,8 +189,8 @@ make.parameters.estimated.summary.table <- function(model,
                       "Uniform")
   n.yrs.sel.vals <- diff(as.numeric(tmp[tmp[,7]>0,start.yr.sel:end.yr.sel][1, 1:2])) + 1
 
-  ## Selectivity deviations for fishery. Uses last line to get values, assumes
-  ##  all are the same
+  # Selectivity deviations for fishery. Uses last line to get values, assumes
+  #  all are the same
   sel_dev_inds <- grep("AgeSel.*Fishery.*DEV", model$parameters$Label)
   sel_devs <- model$parameters[sel_dev_inds,]
   sel_dev_bounds <- c(first(sel_devs$Min), first(sel_devs$Max))
@@ -203,7 +211,7 @@ make.parameters.estimated.summary.table <- function(model,
              model$parameters["AgeSel_P3_Fishery(1)_dev_se", "Value"],
              ")"))
 
-  ## Dirichlet-Multinomial likelihood parameters
+  # Dirichlet-Multinomial likelihood parameters
   dm <- fetch.and.split(ctl, 121)
   dm.vals <- c(paste0("Dirichlet-Multinomial likelihood (",
                        latex.italics("$\\log \\theta$"),
@@ -222,6 +230,7 @@ make.parameters.estimated.summary.table <- function(model,
                m.vals,
                se.vals,
                age.sel.vals,
+               se.vals.age1,
                f.age.sel.vals,
                f.age.sel.dev.vals,
                dm.vals)
@@ -230,8 +239,8 @@ make.parameters.estimated.summary.table <- function(model,
     return(tab)
   }
 
-  ## Make first row empty to make the Stock Dynamics header appear below the
-  ##  horizontal line
+  # Make first row empty to make the Stock Dynamics header appear below the
+  #  horizontal line
   tab <- rbind(c("", "", "", ""), tab)
 
   colnames(tab) <- c(latex.bold("Parameter"),
@@ -249,7 +258,8 @@ make.parameters.estimated.summary.table <- function(model,
   addtorow$pos[[3]] <- 6
   addtorow$pos[[4]] <- 6
   addtorow$pos[[5]] <- 8
-  addtorow$pos[[6]] <- 10
+  addtorow$pos[[6]] <- 9
+  addtorow$pos[[7]] <- 11
   header_code <- paste0(latex.hline,
                         paste(colnames(tab), collapse = latex.amp()),
                         latex.nline,
@@ -262,9 +272,11 @@ make.parameters.estimated.summary.table <- function(model,
       paste0(latex.bold(latex.under("Stock Dynamics")),
              latex.nline),
       paste0(latex.nline,
-             latex.bold(latex.under("Selectivity")),
+             latex.bold(latex.under("Data Source")),
              latex.nline),
       paste0(latex.bold(latex.italics("Acoustic Survey")),
+             latex.nline),
+      paste0(latex.bold(latex.italics("Age-1 Survey")),
              latex.nline),
       paste0(latex.bold(latex.italics("Fishery")),
              latex.nline),
