@@ -921,17 +921,19 @@ However, estimates of absolute recruitment for some recent years have slightly i
 For example, this assessment's median estimate of the 2014 recruitment is
 % putting in - signs when it's a decrease, and saying 'lower'. So check
 %  carefully in 2022 (could put in an automatic switch for the text)
-\Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"], 1)}~billion
+\Sexpr{f(((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"])*1000, 0)}~million
 fish higher than in last year's assessment
 (a \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"]) /
 (prev.assess.recruitment.med)["2014"]) * 100), 0)}\% increase).
 Similarly, estimates for the large 2016 and small 2018 recruitments have increased by
 \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"]) /
-(prev.assess.recruitment.med)["2016"]) * 100), 0)}\% and
+(prev.assess.recruitment.med)["2016"]) * 100), 0)}\%
+(\Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"], 1)}~billion fish) and
 \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2018"]) /
-(prev.assess.recruitment.med)["2018"]) * 100), 0)}\%, respectively, but the general
-notion remains that the 2016 cohort is above average and the 2018 cohort is
-below average.
+(prev.assess.recruitment.med)["2018"]) * 100), 0)}\%
+(\Sexpr{f(((recruitment.med.to.compare - prev.assess.recruitment.med)["2018"])*1000, 0)}~million fish),
+respectively, but the general notion remains that the 2016 cohort is above average
+and the 2018 cohort is below average.
 
 \fishname\ appear to have low average recruitment with occasional large year-classes
 (Figures~\ref{fig:main-recruitment} and \ref{fig:main-recruitment-devs},
@@ -979,7 +981,8 @@ of fishery data and three years of survey data. The 2017 year class was first ob
 is estimated to be about average in size. With the addition of the age-1 index, there
 is information beyond just fishery encounters in
 the data to estimate the size of the \Sexpr{end.yr-2} year class. Collectively, these data
-indicate that the \Sexpr{end.yr-2} year class is above average.
+indicate that the \Sexpr{end.yr-2} year class is above average, while the 2019 year class is
+informed by the \Sexpr{last.survey.year} survey and fishery data, but has no age-1 index.
 
 %The additional data in the 2020 assessment has decreased the median estimate of the
 %2014 year class to
@@ -1021,7 +1024,7 @@ but consistent with, the base model value of \Sexpr{base.model$sigma_R_in}.  % $
 
 \subsubsub{Exploitation status}
 
-Median relative fishing intensity is estimated to have been below
+The median estimated relative fishing intensity on the stock is below
 the SPR$_{40\%}$ target for all years
 % sort(median.intensity)    % 2017 assessment 1999 was slightly over
 (Figure~\ref{fig:main-fishing-intensity} and
@@ -1053,8 +1056,8 @@ Although there is a considerable amount of imprecision
 around these recent estimates due to uncertainty in recruitment and spawning
 biomass, the 95\% posterior credibility interval of relative fishing intensity
 was below the SPR management target from 2012 through 2016 and again from 2018
-to 2021 (Figure~\ref{fig:main-fishing-intensity}). The median estimates
-for 2017 are below the management target, however the 95\% posterior
+to 2021 (Figure~\ref{fig:main-fishing-intensity}). The median estimate
+for 2017 is below the management target, however the 95\% posterior
 credibility intervals do include the target level.
 
 % Note that exploitation.med.penult.yr comes out as 0.06, but in Table d
