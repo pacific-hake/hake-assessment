@@ -516,6 +516,9 @@ make.comparison.plot <- function(models,
              call. = FALSE)
       }
     }
+    if(is.null(indexfleets)){
+      stop("You chose subplot 13 or 14, so you need to provide an indexfleet to plot")
+    }
     # Make a list of data frames of the indices, one data frame for each model
     indices <- map2(models, model.names, ~{.x$dat$CPUE %>%
         mutate(med = .x$extra.mcmc$cpue.median,

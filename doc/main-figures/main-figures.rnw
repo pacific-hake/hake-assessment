@@ -1134,9 +1134,10 @@ box()
 \begin{center}
 <<main-index-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows differences in the fit to the survey index for certain sensitivity runs">>=
 make.comparison.plot(c(list(base.model), sens.models.4),
-                     subplots = 14,
+                     subplots = 13,
                      model.names = c(base.model.name, sens.model.names.4),
                      legend = TRUE,
+                     indexfleets = 2,
                      end.yr = end.yr)
 @
 \end{center}
@@ -1232,7 +1233,7 @@ make.comparison.plot(retro.list,
                      subplots = 10,
                      model.names = retro.model.names,
                      legend = TRUE,
-                     legendloc = "topleft",
+                     legend_loc = "topleft",
                      plot_mcmc = TRUE,
                      is.retro = TRUE)
 mtext("Year", side = 1, line = 1, outer = TRUE)

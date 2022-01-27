@@ -167,7 +167,7 @@ make.comparison.plot(retro.list.age1,
                      subplots = 2,
                      model.names = retro.model.names.age1,
                      legend = TRUE,
-                     legendloc = "topright",
+                     legend_loc = "topright",
                      plot_mcmc = TRUE,
                      is.retro = TRUE)
 mtext("Year", side = 1, line = 1, outer = TRUE)
