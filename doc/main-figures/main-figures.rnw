@@ -1028,7 +1028,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-recruit-base-alternative-2}
-\end{figure}
+% \end{figure}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %% JOINED ON PAGE
