@@ -1267,3 +1267,47 @@ get_os <- function(){
   }
   tolower(os)
 }
+
+make_small_rds <- function(models = c("2022.01.03_newcatchage",
+                                      "2022.01.05_updatesurvey",
+                                      "2022.01.06_newsurvey",
+                                      "2022.01.07_newwtatage",
+                                      "2022.01.15_h_prior_mean_low",
+                                      "2022.01.16_h_fix_high",
+                                      "2022.01.17_sigmR_fix_low",
+                                      "2022.01.18_sigmR_fix_high",
+                                      "2022.01.20_M_0.2SD",
+                                      "2022.01.21_M_0.3SD",
+                                      "2022.01.24_compWeight_HarmonicMean",
+                                      "2022.01.27_tvSelect_phi_extralow",
+                                      "2022.01.28_tvSelect_phi_low",
+                                      "2022.01.29_tvSelect_phi_high",
+                                      "2022.01.43_maxSel_Age5",
+                                      "2022.01.44_maxSel_Age7",
+                                      "2022.01.45_maxSel_Age8",
+                                      "2022.01.100_zerosumcontraint")){
+
+  for(i in 1:length(models)){
+    fn <- file.path("models", models[i], paste0(models[i], ".rds"))
+    x <- readRDS(fn)
+    ex <- x$extra.mcmc
+    if(!is.na(ex[1])){
+      x$extra.mcmc <- NULL
+
+      x$extra.mcmc$Q_vector <- ex$Q_vector
+      x$extra.mcmc$cpue.median <- ex$cpue.median
+      x$extra.mcmc$cpue.0.025 <- ex$cpue.0.025
+      x$extra.mcmc$cpue.0.975 <- ex$cpue.0.975
+      x$extra.mcmc$q.med <- ex$q.med
+      x$extra.mcmc$index.med <- ex$index.025
+      x$extra.mcmc$index.025 <- ex$index.025
+      x$extra.mcmc$index.975 <- ex$index.975
+
+      fn_split <- strsplit(fn, "/")[[1]]
+      fn_split[3] <- paste0("small_", fn_split[3])
+      fn <- paste(fn_split, collapse = "/")
+      saveRDS(x, fn)
+      message(fn)
+    }
+  }
+}

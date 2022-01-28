@@ -370,7 +370,16 @@ load_models <- function(model_dirs,
          call. = FALSE)
   }
   for(i in 1:length(model_rds_files)){
-    ret_list[[i]] <- readRDS(model_rds_files[i])
+    small_file <- file.path(rootd.models, model_dirs[i], paste0("small_", model_dirs[i], ".rds"))
+    if(file.exists(small_file)){
+      #message("Trying ", small_file)
+      #gzfile(small_file, "rb")
+      ret_list[[i]] <- readRDS(small_file)
+      message("Loaded small RDS file: ", small_file)
+    }else{
+      ret_list[[i]] <- readRDS(model_rds_files[i])
+      message("Loaded large RDS file: ", model_rds_files[i])
+    }
   }
   if(length(model_dirs) == 1){
     if(ret_single_list){
