@@ -1014,6 +1014,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 % \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
 \begin{center}
 <<main-recruit-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the occasional changes in recruitment deviations for some of the sensitivity runs">>=
 make.comparison.plot(c(list(base.model), sens.models.2),
@@ -1033,7 +1034,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 %% JOINED ON PAGE
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
-\begin{figure}[H]
+% \begin{figure}[H]
 \begin{center}
 <<main-index-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the similarity between some sensitivity runs of the estimates of the fit to the survey index">>=
 make.comparison.plot(c(list(base.model), sens.models.2),
@@ -1049,6 +1050,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-index-base-alternative-2}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 % \clearpage
 
