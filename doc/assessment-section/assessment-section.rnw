@@ -1654,34 +1654,38 @@ for \fishname\ \citep{BuckleyLivingston1997, HarveyGarfieldEtAl2021}.
 
 % section below on composition weighting
 % Manual 2021 done - CG
-**The base model includes a Dirichlet-multinomial likelihood component,
+The base model includes a Dirichlet-multinomial likelihood component,
 which uses two estimated parameters to automatically weight each of the fishery and survey age
-compositions. The base model was compared to the
-models that used the alternative McAllister-Ianelli and Francis methods.
-Both sensitivity methods require manual iterative adjustments to the input sample sizes
-using a derived multiplier.
-The McAllister-Ianelli method, which was used in assessments prior to 2018,
+compositions. The base model was compared to a sensitivity model that down-weighted
+the fishery age compositions relative to the survey age compositions. The data weighting used
+in the sensitivity model was based on the McAllister-Ianelli method.
+This method requires manual iterative adjustments to the input sample sizes
+using a derived multiplier. The McAllister-Ianelli method, which was used in assessments prior to 2018,
 attempts to make the arithmetic mean of the input
 sample size approximately equal to the harmonic mean of the effective
-sample size.
-The Francis method attempts to make the fit of the expected mean age
+sample size. The McAllister-Ianelli method
+suggested a weighting factor of 0.14 and 0.46 (ratio of 0.30) for fishery and survey
+age compositions, respectively. The median estiamte from Dirichlet-multinomial method
+used in the base model was \Sexpr{DM.weight.fishery.median} and
+\Sexpr{DM.weight.survey.median} (ratio of
+\Sexpr{f(as.numeric(DM.weight.fishery.median) / 
+as.numeric(DM.weight.survey.median),2)}).
+Down-weighting fishery composition data using the McAllister-Ianelli method
+led to minor changes in relative spawning stock biomass and increased uncertainty
+in estimates of early recruitments compared to the base model
+(Figures~\ref{fig:main-status-base-alternative-2} and~\ref{fig:main-recruit-base-alternative-2}).
+Another weighting approach, the Francis method, attempts
+to make the fit of the expected mean age
 lie within the uncertainty intervals at a rate which is consistent
-with variability expected based on the adjusted sample sizes.
-The McAllister-Ianelli method
-estimated lower weights on the age compositions but
-generally gave very similar results to the Dirichlet-multinomial method.
-The McAllister-Ianelli method led to increased uncertainty in estimates of
-early recruitments compared to other weighting methods
-(Figure~\ref{fig:main-recruit-base-alternative-2}).
-The Francis method increased the weighting of the fishery
-composition data resulting in a similar time series of biomass, though
-slightly reduced in scale. As noted in Section~\ref{sec:data-age-comp-likelihood},
+with variability expected based on the adjusted sample sizes. However, as
+noted in Section~\ref{sec:data-age-comp-likelihood},
 the Francis method is known to be sensitive to outliers and prone to convergence
-issues when selectivity is time-varying, as it is in this assessment.
+issues when selectivity is time-varying, as it is in this assessment, and thus was
+not included as a sensitivity.
 
 % section below on selectivity
 % Manual 2021 - CG
-**The degree of flexibility of annual variation in the fishery selectivity was tested using
+The degree of flexibility of annual variation in the fishery selectivity was tested using
 three sensitivities which set alternative values of the $\Phi$ parameter
 (Figures~\ref{fig:main-biomass-base-alternative-4}-\ref{fig:main-index-base-alternative-4}).
 The consideration of alternative standard deviations ($\Phi$) for time-varying
@@ -1693,41 +1697,45 @@ did not appreciably influence the estimates, or precision, associated with recru
 in 2014 (Figure~\ref{fig:main-recruit-base-alternative-4}).
 However, recruitment estimates for 2016 and 2017 are linked to the choice of $\Phi$, where the
 model with the smallest $\Phi$ at 0.21 estimates the 2016 and 2017 recruitment deviation as
-the highest of the $\Phi$ sensitivity models (Figure~\ref{fig:main-recruit-devs-base-alternative-4})
-and provides the worst fit to the most recent survey biomass estimate
+the highest of the $\Phi$ sensitivity models (Figure~\ref{fig:main-recruit-devs-base-alternative-4}),
+leading to a large increase in spawning biomass in recent years compared to the base model
+(Figure~\ref{\ref{fig:main-biomass-base-alternative-4}}). It also
+provides the worst fit to the most recent survey biomass estimate
 (Figure~\ref{fig:main-index-base-alternative-4}).
 
-**The estimated population trends throughout the time series are similar, irrespective of maximum
+The estimated population trends throughout the time series are similar, irrespective of maximum
 selectivity age (Figures~\ref{fig:main-biomass-base-alternative-6}-\ref{fig:main-status-base-alternative-6}).
-The largest differences are prior to the mid-1980s when age-composition data was sparse. The
-maximum selectivity at age-5 model resulted in lower estimates of recent stock status compared
+The largest differences are in the mid-1980s when age-composition data was sparse, and then again 
+over the last few years of the model. The
+maximum selectivity at age-5 model resulted in the lowest estimate of the 2016 year class compared
 to the other model runs, while runs with higher maximum age produced similar
-overall stock dynamics but at the cost of a considerable increase in the number of model
-parameters.  The choice of age-6 as the maximum was retained in the base model as it
-offered more flexibility than the choice of age-5.
+levels of recruitment but at the cost of a considerable increase in the number of model
+parameters (Table~\ref{tab:main-parameter-estimates-sens-2}).  The choice of age-6 as the
+maximum was retained in the base model as it offered more flexibility than the choice of age-5.
 %All three alternative runs had reduced
 %performance in terms of MCMC diagnostics when compared with the base model.
 
 % Ageing Error
-% Manual 2021 done - CG
-**The impact of assuming a time-invariant ageing error vector instead of a
-cohort-based ageing error matrix (as in the base model) was evaluated.  The
-largest changes to model results are associated with estimates of equilibrium
-unfished biomass (Table~\ref{tab:main-parameter-estimates-sens-3} and
-Figure~\ref{fig:main-biomass-base-alternative-5}) and thus relative spawning biomass
-(Figure~\ref{fig:main-status-base-alternative-5}). These differences stem from
-the population model being restricted in the time-invariant case to fitting
-age-composition data with a stationary level of measurement error associated
-with each age. There is very little difference in the current relative biomass between the two,
-with the base model having a median relative biomass of \Sexpr{f(100*depl_curr, 1)}\% and
-the time-invariant ageing error vector model having a median relative biomass of
-\Sexpr{f(100*depl_no_ageerr, 1)}\%. The credible interval is larger for the
-time-invariant ageing error vector model.
+% Did not run this sensitivity in 2022
+%The impact of assuming a time-invariant ageing error vector instead of a
+%cohort-based ageing error matrix (as in the base model) was evaluated.  The
+%largest changes to model results are associated with estimates of equilibrium
+%unfished biomass (Table~\ref{tab:main-parameter-estimates-sens-3} and
+%Figure~\ref{fig:main-biomass-base-alternative-5}) and thus relative spawning biomass
+%(Figure~\ref{fig:main-status-base-alternative-5}). These differences stem from
+%the population model being restricted in the time-invariant case to fitting
+%age-composition data with a stationary level of measurement error associated
+%with each age. There is very little difference in the current relative biomass between the two,
+%with the base model having a median relative biomass of \Sexpr{f(100*depl_curr, 1)}\% and
+%the time-invariant ageing error vector model having a median relative biomass of
+%\Sexpr{f(100*depl_no_ageerr, 1)}\%. The credible interval is larger for the
+%time-invariant ageing error vector model.
 
-**The impact of using the random walk Metropolis Hastings (rwMH) MCMC algorithm with data inputs
-and model structure equivalent to the base model is shown in
-Table~\ref{tab:main-parameter-estimates-sens-3} and discussed in further details in
-Appendix~**now-removed.
+%Did not run this sensitivity in 2022
+%The impact of using the random walk Metropolis Hastings (rwMH) MCMC algorithm with data inputs
+%and model structure equivalent to the base model is shown in
+%Table~\ref{tab:main-parameter-estimates-sens-3} and discussed in further details in
+%Appendix~**now-removed.
 
 %An additional sensitivity run arising from the Scientific Review Group
 %meeting held from 25th February to 28nd February 2020 related to input sample size is documented
