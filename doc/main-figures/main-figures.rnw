@@ -501,7 +501,7 @@ make.age.comp.fit.plot(base.model,
 par <- oldpar
 @
 \end{center}
-\caption{**Base model fits to the observed fishery (top) and acoustic survey (bottom) age-composition data.
+\caption{Base model fits to the observed fishery (top) and acoustic survey (bottom) age-composition data.
   Colored bars show observed proportions with colors following each cohort across years.
   Points with intervals indicate median expected proportions and 95\% credibility
   intervals from the MCMC calculations.}
@@ -518,7 +518,7 @@ plot_pearson_bubbles(base.model, type = 1, legend.position = "top", alpha = 0.7)
 plot_pearson_bubbles(base.model, type = 2, alpha = 0.7)
 @
 \end{center}
-\caption{**Pearson residuals for base model fits to the age-composition data for
+\caption{Pearson residuals for base model fits to the age-composition data for
   the medians of the MCMC posteriors. Closed bubbles are positive residuals
   (observed > expected) and open bubbles are negative residuals (observed <
   expected). Red lines track cohorts from years of large recruitment events.}
@@ -545,15 +545,16 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{**Prior (black lines) and posterior (gray histograms) distributions for
+\caption{Prior (black lines) and posterior (gray histograms) distributions for
   key parameters in the base model. The parameters are: natural mortality ($M$),
   equilibrium log recruitment ($\log R_0)$, steepness ($h$), the additional
-  process-error standard deviation for the acoustic survey, and the
+  process-error standard deviation for the biomass index, and the
   Dirichlet-multinomial parameters for the fishery ($\theta_{\text{fish}}$) and
-  the survey ($\theta_{\text{surv}}$). The maximum likelihood estimates and
-  associated symmetric uncertainty intervals are also shown (blue lines). There
-  are 50 bins for each posterior except the two Dirichlet-multinomial parameters
-  which are grouped into 500 bins.}
+  the survey ($\theta_{\text{surv}}$).}
+  % This didn't seem needed for 2022:
+  % There
+  % are 50 bins for each posterior except the two Dirichlet-multinomial parameters
+  % which are grouped into 500 bins.}
 \label{fig:main-prior-posterior}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -573,7 +574,7 @@ tv.selex <- calc.tv.selex(base.model,
 make.tv.selex.plot(tv.selex)
 @
 \end{center}
-\caption{**Mountains plot of median fishery selectivity in each year for the base model. Range of selectivity is 0 to 1 in each year.}
+\caption{Mountains plot of median fishery selectivity in each year for the base model. Range of selectivity is 0 to 1 in each year.}
 \label{fig:main-tv-selex}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -598,7 +599,7 @@ tv.selex.right <- calc.tv.selex(base.model,
 make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
 @
 \end{center}
-\caption{**Fishery selectivity sampled from posterior probability distribution by year for the base model.
+\caption{Fishery selectivity sampled from posterior probability distribution by year for the base model.
   Black dots and bars indicate the median and 95\% credibility interval, respectively. The shaded polygon
   also shows the 95\% credibility interval. Range is from 0 to 1 within each year. Selectivity
   for \Sexpr{tv.selex.start.yr} is shared for all years from \Sexpr{start.yr} to
