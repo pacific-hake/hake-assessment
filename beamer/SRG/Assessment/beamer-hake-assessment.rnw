@@ -126,7 +126,8 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \frametitle{Changes from \Sexpr{last.assess.yr} assessment}
   \bi
     \item Update Stock Synthesis to version \Sexpr{ss.version}
-      compiled with ADMB \Sexpr{admb.version}. 
+      compiled with ADMB \Sexpr{admb.version} at Git commit \Sexpr{admb.commit}
+      on \Sexpr{admb.commit.date}.
     \item Change the phase of the data-weighting parameters to terminal phase
     \item Update pre-\Sexpr{last.assess.yr} data:
       \bi
@@ -1117,7 +1118,7 @@ year's assessment, the credible interval remains well within that from last year
       research-based stock assessment frameworks
     \pause
     \item Explorations into input age-composition sample sizes will need
-      to be jointly considered 
+      to be jointly considered
   \ei
 }
 
@@ -1147,7 +1148,7 @@ year's assessment, the credible interval remains well within that from last year
       conditions otherwise indicate. If this is the case, estimates of relative fishing
       intensity would be higher than currently estimated, and estimates of relative stock
       size would be lower than currently estimated. However, many simplifying assumptions
-      are made when estimating unfished time series and these need to be thoroughly examined. 
+      are made when estimating unfished time series and these need to be thoroughly examined.
   \ei
 }
 
@@ -1226,7 +1227,7 @@ year's assessment, the credible interval remains well within that from last year
   \bi
     \item Reproductive cycle: no new ovary samples in 2020 and no new maturity analyses conducted
     \pause
-    \item Genetic studies: ongoing with second round of sequencing and manuscript underway 
+    \item Genetic studies: ongoing with second round of sequencing and manuscript underway
     \pause
     \item NUTS: used in base model and sensitivity runs this year
     \pause
@@ -1235,7 +1236,7 @@ year's assessment, the credible interval remains well within that from last year
     \item Sensitivity models: all requested sensitivity analyses were conducted using NUTS
     \pause
     \item Ageing error: study will be conducted using new software package being developed and once
-      updated inter-lab comparisons are completed  
+      updated inter-lab comparisons are completed
     \pause
     \item Historical otoliths: the Burke Museum has not been visited due to COVID-19 related closures
   \ei
@@ -1294,9 +1295,9 @@ year's assessment, the credible interval remains well within that from last year
 %             space_size = 4.5)
 %    @
 %  %\ei
-%} 
-%    
-%--------------------    
+%}
+%
+%--------------------
 
 %\frame{\frametitle{Summary -- Key Cohorts}
 %  \bi
@@ -1310,13 +1311,13 @@ year's assessment, the credible interval remains well within that from last year
 %  \item 2014 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2014 * 100, 1)}\% of the biomass
 %  \item 2016 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2016 * 100, 1)}\% of the biomass
 %
-%  \item The four highest catches have occured in the last four years and we have ageing 2010 and 2014 cohorts such that biomass is trendinng downwards. 
+%  \item The four highest catches have occured in the last four years and we have ageing 2010 and 2014 cohorts such that biomass is trendinng downwards.
   % \item The 2014 recruitment has \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of being as
   %   large as the 2010 recruitment.
 %  \ei
 %}
 
-%--------------------    
+%--------------------
 
 \frame{\frametitle{Summary -- Key Points}
   \bi

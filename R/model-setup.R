@@ -15,12 +15,18 @@ message("Last assessment year: ", last.assess.yr)
 output.csv.dir <- file.path(rootd, "out-csv")
 
 ## -----------------------------------------------------------------------------
-## The version of SS and ADMB used in this assessment
+## The versions of software used in this assessment
 ## -----------------------------------------------------------------------------
-ss.version <- "3.30.16.03"
-message("SS version: ", ss.version)
-admb.version <- "12.2"
-message("ADMB version: ", admb.version)
+ss.version <- "3.30.18"
+ss.commit <- "a0f982"
+ss.commit.date <- "January 10, 2022"
+
+admb.version <- "12.3"
+admb.commit <- "1376cb"
+admb.commit.date <- "September 11, 2021"
+
+r4ss.commit <- "1e70b9"
+adnuts.commit <- "0bc76b"
 
 ## -----------------------------------------------------------------------------
 ## Data start and endpoint variables
