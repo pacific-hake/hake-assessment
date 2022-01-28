@@ -495,11 +495,11 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
                     paste0("A subset (", samples, ") of the MCMC estimates of expected survey biomass"))
     addedSE <- model$mcmc %>% summarise(across(starts_with("Q_extraSD_Acoustic"), ~median(.x)))
   } else {
-    y.lab = "Age-1 index (billions of fish)"
+    y.lab = "Relative age-1 index (billions of fish)"
     survey.index = 3
     legend.text = c("Observed age-1 index with\ninput (wide) and estimated (narrow) 95% intervals",
-                    "Median MCMC estimate of expected age-1 numbers",
-                    paste0("A subset (", samples, ") of the MCMC estimates of expected age-1 numbers"))
+                    "Median MCMC estimate of scaled age-1 numbers",
+                    paste0("A subset (", samples, ") of the MCMC estimates of scaled age-1 numbers"))
     addedSE <- model$mcmc %>% summarise(across(starts_with("Q_extraSD_Age1"), ~median(.x)))
   }
 

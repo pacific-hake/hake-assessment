@@ -450,7 +450,7 @@ make.mcmc.survey.fit.plot(base.model,
                           y.max = 5.5e6)
 @
 \end{center}
-\caption{**Fits (colored lines) to the acoustic survey (points) with input 95\% intervals around the observations.
+\caption{Fits (colored lines) to the acoustic survey (points) with input 95\% intervals around the observations.
   The thin blue lines are the results of a random subset of individual MCMC samples.
   Thicker uncertainty intervals around observed survey points indicate 95\%
   log-normal uncertainty intervals estimated by the kriging method and are used as input to the assessment model.
@@ -474,13 +474,12 @@ make.mcmc.survey.fit.plot(base.model,
                           survey.col = "red")
 @
 \end{center}
-\caption{**Fits (colored lines) to the age-1 index estimated from the
+\caption{Fits (colored lines) to the relative age-1 index estimated from the
   acoustic survey (points) with input 95\% intervals around the observations.
   The thin blue lines are the results of a random subset of individual MCMC samples.
   Thicker uncertainty intervals around observed survey points indicate 95\%
-  log-normal uncertainty intervals estimated by the [**still correct to say for
-  age-1??]
-  kriging method and are used as input to the assessment model.
+  log-normal uncertainty intervals based on sampling variability
+  and are used as input to the assessment model.
   Thinner uncertainty intervals indicate estimated 95\% uncertainty intervals that account for the
   model estimate of additional uncertainty.}
 \label{fig:main-mcmc-age1-fit}
