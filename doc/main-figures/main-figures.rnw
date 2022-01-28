@@ -1272,9 +1272,14 @@ make_squid_plot(base.model,
   \Sexpr{min(retro_cohorts)} to \Sexpr{max(retro_cohorts)}, with cohort
   birth year marked at the right of each color-coded line. Values are
   estimated by models using data available only up to the start of the year in which
-  each cohort became a given age (so the 2014 cohort is age-8 at the
-  start of 2022, and so that retrospective calculation
-  includes data to 2021).} %Sorry, no time to
+  each cohort became a given age (so the last year of data is
+  cohort~birth~year~$+$~cohort~age~$-$1). For example,
+  the right-most point for the 2014 cohort shows the
+  cohort at age-8 (i.e. at the start of 2022, which represents
+  the base model and includes data to 2021). The next point
+  to the left is the 2014 cohort at age-7, calculated by
+  removing one year of data (so includes data up to 2020).}
+  % Sorry, no time to
   % automate that right now
 \label{fig:main-retrospective-recruitment}
 \end{figure}
