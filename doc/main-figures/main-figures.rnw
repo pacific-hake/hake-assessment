@@ -293,12 +293,14 @@ weight.at.age.heatmap(base.model,
 \begin{figure}[H]
 \begin{center}
 <<main-weight-at-age-lines, fig.height = 9, fig.width = 8, is.fig = TRUE, alt.text = "Annual mean weight-at-age is lower for most ages in the most recent years than for years prior to 1980">>=
-make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1)
+make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1, highlight = 5)
 @
 \end{center}
-\caption{**[Mention in text, standardize wording and axis label with preceding two figures,
-  (empirical instead of 'annual mean'?),
-  maybe add tick marks]. Annual mean weight-at-age by age (colors for ages one through ten) through time. Blue lines are for the youngest ages and green lines are for the oldest ages shown.}
+\caption{Empirical mean weight-at-age (kg) values for ages 2--10
+  used for the base model, as in Figure~\ref{fig:main-empirical-weight-at-age} but
+  shown as time series.
+  Blue lines are for the youngest ages and green lines are for the oldest ages
+  shown, with age-5 highlighted in bold as a visual aid.}
 \label{fig:main-weight-at-age-lines}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

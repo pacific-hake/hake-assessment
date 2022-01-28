@@ -18,7 +18,7 @@ make.cumulative.catch.plot <- function(d,   ## Data as found in the xxxx.catch.b
       idvar = "year", varying = 2:NCOL(d), sep = "",
       timevar = "month", v.names = "catch")
   }
-  d <- d %>% 
+  d <- d %>%
     filter(year %in% yrs)
 ## TODO: Fix this to work on new file structure of can-ft-catch-by-month.csv.
 ## See hakedata package (canada) as it has this function already built in.
@@ -115,7 +115,8 @@ make.wt.at.age.plot <- function(d,
                                 lwd = 3,
                                 lty = 1,
                                 xlab = "Year",
-                                ylab = "Mean weight-at-age (kg)"){
+                                ylab = "Mean weight-at-age (kg)",
+                                highlight = NULL){
   if (any(is.na(d$year))) d <- d[!is.na(d$year), ]
   year <- d$year
   df <- d[, names(d) %in% ages]
@@ -138,6 +139,15 @@ make.wt.at.age.plot <- function(d,
           lwd = lwd,
           lty = lty)
   }
+  # Bold the highlighted age:
+  if(!is.null(highlight)){
+    lines(year, df[, names(df) == highlight],
+          col = cols[names(df) == highlight],
+          pch = 20,
+          lwd = 3*lwd,
+          lty = lty)
+  }
+
   text(year[length(year)] + 1, df[nrow(df),], ages, col = cols)
 }
 
