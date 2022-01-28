@@ -771,8 +771,15 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
                                                           "black",
                                                           "lightgrey"),
                                        highlight.lwd = 2,
-                                       auto.xaxis = TRUE  # label normally, else
-                                         # use bigticks
+                                       auto.xaxis = TRUE,  # label normally, else
+                                       # use bigticks
+                                       col.intervals.not.rescale = "blue", # intervals col
+                                             # when not rescaling
+                                       col.intervals.rescale = "red", # col when
+                                       # rescaling
+                                       trace.col.not.rescale = rgb(0, 0, 1,
+                                                                   0.2), # paleblue
+                                       trace.col.rescale = rgb(1, 0, 0, 0.2)
                                        ){
   oldpar <- par()
   par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
@@ -787,9 +794,13 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
       y.max <- 1.2                    # so will miss some super high ones, but
                                       # easier to see others
     }
+    col.intervals <- col.intervals.rescale
+    trace.col  <- trace.col.rescale
     yLab <- paste0("Age-0 recruits relative to those in ", rescale.yr)
   } else {
     yLab <- "Age-0 recruits (billions)"
+    col.intervals <- col.intervals.not.rescale
+    trace.col  <- trace.col.not.rescale
   }
 
   # subsamble to help the lines be more visible
@@ -816,13 +827,13 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
        ylab = yLab)
 
   abline(h = 0, col = "lightgrey")
-  paleblue <- rgb(0, 0, 1, 0.2)
+  # paleblue <- rgb(0, 0, 1, 0.2)
 
   if(traceplot){
     if(!highlight){
       matplot(x = start.yr:end.yr,
             y = t(dat_sub),
-            col = paleblue,
+            col = trace.col,
             type = 'l',
             add=TRUE,
             lty = 1)
@@ -856,7 +867,7 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
              y0 = lower,
              x1 = yrs,
              y1 = upper,
-             col = "blue")
+             col = col.intervals)
   }
 
   box()

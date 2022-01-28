@@ -1,6 +1,6 @@
 \newpage
 
-\chapter{New way to further convey recruitment variability}
+\chapter{Options to further convey recruitment variability}
 \label{chap:rec-plot}
 
 % Taking ideas from Issue #836.
@@ -176,8 +176,9 @@ make.mcmc.recruitment.plot(base.model,
                            highlight = FALSE)
 @
 \end{center}
-\caption{Trace plots for 100 MCMC samples in Figure~\ref{fig:recruitment-trace-recent}, but
-  with each sample divided by its estimate of the 2010 recruitment.}
+\caption{Trace plots for the 100 MCMC samples in Figure~\ref{fig:recruitment-trace-recent}, but
+  with each sample divided by its estimate of the 2010 recruitment. Red
+  is used to indicate this division by the 2010 recruitment.}
 \label{fig:recruitment-trace-scale}
 \end{figure}
 %
@@ -200,7 +201,7 @@ make.mcmc.recruitment.plot(base.model,
 \caption{Estimated recruitments divided by the estimated 2010 recruitment.
   Medians (solid circles) of the resulting posterior distribution for
   recruitment relative to that in 2010, with
-  95\% posterior credibility intervals (blue lines). }
+  95\% posterior credibility intervals (red lines). }
 \label{fig:recruitment-scale}
 \end{figure}
 
