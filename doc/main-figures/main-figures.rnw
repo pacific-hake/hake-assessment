@@ -358,16 +358,15 @@ mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
 \end{center}
-\caption{**Bridging models showing the \Sexpr{last.assess.yr} base model
-  and the sequential influence of updating to the latest version of Stock Synthesis
-  and changing the estimation of the Dirichlet Multinomial parameters to the final
-  estimation phase. Moving the data weighting parameters to the final phase
-  more accurately reflects the timing used in other methods that manually
-  tune data weights. Panels are spawning biomass
+\caption{Bridging models showing the sequential addition of updating
+  pre-\Sexpr{last.data.yr} fishery data, pre-\Sexpr{last.data.yr} survey data,
+  adding \Sexpr{last.data.yr} survey data, and adding
+  \Sexpr{last.data.yr} weight-at-age information.
+  Panels are spawning biomass
   (upper panel), relative spawning biomass (spawning biomass in each year
   relative to the unfished equilibrium spawning biomass, middle left),
   absolute recruitment (middle right), recruitment deviations (lower left),
-  and survey index (lower right).}
+  and survey biomass index (lower right).}
 \label{fig:main-bridge-5-panel-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -426,14 +425,14 @@ mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
 \end{center}
-\caption{**Bridging models showing the sequential addition of updating pre-2020
-  fishery data, adding 2020 catch data, and adding 2020 weight-at-age information, and
-  adding 2020 fishery composition data starting from the final bridge model
-  in Figure \ref{fig:main-bridge-5-panel-1}. Panels are spawning biomass
+\caption{Bridging models showing the addition of
+  the age-1 index to the final bridging model (update weight-at-age
+  data) from
+  Figure \ref{fig:main-bridge-5-panel-1}. Panels are spawning biomass
   (upper panel), relative spawning biomass (spawning biomass in each year
   relative to the unfished equilibrium spawning biomass, middle left),
-  absolute recruitment (middle right), recruitment deviations (lower left),
-  and survey index (lower right).}
+  absolute recruitment (middle right),
+  survey biomass index (lower left), and age-1 index (lower right).}
 \label{fig:main-bridge-5-panel-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
