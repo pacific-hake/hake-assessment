@@ -47,9 +47,9 @@ load_ss_files <- function(model_path = NA,
 
   # Load MPD results
   model <- tryCatch({
-    SS_output(dir = model_path, verbose = FALSE, printstats = printstats, covar = FALSE)
+    SS_output(dir = model_path, verbose = FALSE, printstats = printstats, covar = FALSE, wtfile = "wtatage.ss")
   }, error = function(e){
-    SS_output(dir = model_path, verbose = FALSE, printstats = printstats, covar = FALSE, forecast = FALSE)
+    SS_output(dir = model_path, verbose = FALSE, printstats = printstats, covar = FALSE, forecast = FALSE, wtfile = "wtatage.ss")
   })
 
   # Load the data file and control file for the model
