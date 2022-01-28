@@ -584,9 +584,7 @@ The bridging steps can be grouped into three main sets of changes,
 with the majority of the steps being those that are performed routinely.
 The first step updated the Stock Synthesis framework to follow current best practices.
 The second step updated all information available from the fishery and acoustic survey.
-The third step
-%updated the information available from the survey and
-implemented changes related to the addition of the age-1 index.
+The third step implemented changes related to the addition of the age-1 index.
 
 Stock Synthesis version \Sexpr{ss.version} (at Git commit \Sexpr{ss.commit}) includes
 a number of changes since the version used by \citet{JTC2020},
@@ -600,9 +598,6 @@ Adaptations within the stock synthesis modeling framework itself had no effect
 on parameter estimates compared to the \Sexpr{last.assess.yr}
 base model and thus no effect on resulting time series.
 %(Figure~\ref{fig:main-bridge-5-panel-1}).
-%Similarly, changing the estimation of the Dirichlet Multinomial parameters
-%to the final estimation phase (which more accurately reflects the timing of when
-%other, manually-tuned, data weighting methods occur) had no effect on results.
 
 The second set of bridging steps was conducted to update fishery-dependent
 and fishery-independent data.
