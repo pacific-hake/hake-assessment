@@ -334,7 +334,7 @@ fetch_extra_mcmc <- function(model_path,
   # CPUE table and values (Q) -------------------------------------------------
   message("Extracting index fits and catchabilities...")
   index_table <- extract_rep_table(reps_q, q_header)
-browser()
+
   extra_mcmc$q.med <- index_table %>%
     mutate(Calc_Q = as.numeric(Calc_Q)) %>%
     group_by(Fleet, Yr) %>%
