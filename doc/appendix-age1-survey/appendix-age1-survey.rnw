@@ -85,7 +85,7 @@ make_squid_plot(sens.models.2[[1]],
 \end{center}
 %\vspace{0mm}
 \caption{Retrospective analysis of recruitment deviations from MCMC models over the last
-  \Sexpr{length(plot.retro.yrs)+1} years. Recruitment deviations are
+  \Sexpr{length(retro_cohorts) + 1} years. Recruitment deviations are
   the log-scale differences between recruitment estimated by the model
   and expected recruitment from the spawner-recruit relationship.
   Lines represent estimated recruitment deviations for cohorts from
