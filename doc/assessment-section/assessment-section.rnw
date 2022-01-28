@@ -1462,7 +1462,7 @@ then the probability of the biomass going below $\Bforty$ is
 
 \subsection{Sensitivity analyses }\label{sec:assessment-sensitivity-analyses}
 
-**Sensitivity analyses were conducted to investigate influence of data inputs and
+Sensitivity analyses were conducted to investigate influence of data inputs and
 structural uncertainty of the base model by investigating how changes to the
 model affected the estimated values and derived quantities. All sensitivity analyses
 compared MCMC posteriors that were created using the {\tt adnuts} R package
@@ -1474,7 +1474,7 @@ Many additional sensitivity runs were conducted when developing and testing the
 \Sexpr{assess.yr} base model. Here we focus on the main sensitivities which include
 the following:
 
-**update list (and see earlier also I think)
+%**update list (and see earlier also I think)
 
 \begin{enumerate}
 
@@ -1486,42 +1486,42 @@ the following:
 \item Assumption of higher/lower variation about the stock-recruitment curve
   ($\sigma_r$);
 
-\item Inclusion of the age-1 survey index as an additional source of information;
+\item Removal of the age-1 index as a data source;
 
-\item Use of the McAllister-Ianelli method for data-weighting;
-
-\item Use of the Francis method for data-weighting;
+\item Down weighting fishery age composition data;
 
 \item Consideration of alternative standard deviations for time-varying
-  selectivity;
+  selectivity; and
 
 \item Consideration of an alternative maximum age for fishery and survey
-  selectivity;
+  selectivity.
 
-\item Removal of cohort-based ageing error from the model; and
-
-\item Use of the random walk Metropolis Hastings (rwMH) sampling algorithm for
-  calculating posterior distributions.
+%\item Removal of cohort-based ageing error from the model; and
 
 \end{enumerate}
 
-**[have code to create .pdf - can do again this year] The MCMC diagnostics were examined by creating a document
-containing the equivalent of Appendix~\ref{chap:mcmc-diagnostics} for all
-sensitivity analyses (.pdf file available from the JTC upon request). In general,
-diagnostics were similar to those for the base model. Minor differences include:
-sensitivity analyses related to
-$M$ showed more autocorrelation in $M$ and some failed Heidelberger and Welch
-statistics; the Francis reweighting had a lower effective sample size for most
-parameters; lower standard deviations for time-varying selectivity led to a few
-failed Heidelberger and Welch statistics; the analyses with alternative standard
-deviations for time-varying selectivity and the higher maximum age for
-selectivity both yielded lower effective sample sizes; and all three maximum-age-selectivity
-analyses led to a few failed Heidelberger and Welch statistics.
+%removing this paragraph for 2022, but should be added back in for 2023
+%removed because of discrepency in diagnostic plots (not results really) between
+%base and sensitivity runs in 2022
+%**[have code to create .pdf - can do again this year] The MCMC diagnostics were examined by creating a document
+%containing the equivalent of Appendix~\ref{chap:mcmc-diagnostics} for all
+%sensitivity analyses (.pdf file available from the JTC upon request). In general,
+%diagnostics were similar to those for the base model. Minor differences include:
+%sensitivity analyses related to
+%$M$ showed more autocorrelation in $M$ and some failed Heidelberger and Welch
+%statistics; the Francis reweighting had a lower effective sample size for most
+%parameters; lower standard deviations for time-varying selectivity led to a few
+%failed Heidelberger and Welch statistics; the analyses with alternative standard
+%deviations for time-varying selectivity and the higher maximum age for
+%selectivity both yielded lower effective sample sizes; and all three maximum-age-selectivity
+%analyses led to a few failed Heidelberger and Welch statistics.
 
-**None of the sensitivities resulted in any substantial departure from
-the main population dynamics of the base model; all models showed large
+None of the sensitivities resulted in any substantial departure from
+the main population dynamics of the base model. All sensitivity models showed large
 estimated increases in spawning biomass in the early- to mid-2010s that continues to be
-driven by the 2010, 2014, and 2016 cohorts. The overall scale of the
+driven by the 2010, 2014, and 2016 cohorts and a steady reduction in spawning biomass from
+high levels over the last few years.  All sensitivity models indicate that \Sexpr{assess.yr}
+relative spawning stock biomass is above $\Bforty$. The overall scale of the
 population was impacted by various alternative assumptions, and the highly
 uncertain size of the recent cohorts were more variable across sensitivity analyses
 than earlier cohorts which have been observed for more years.
@@ -1535,7 +1535,7 @@ than earlier cohorts which have been observed for more years.
 % even though this is generlaized, it is not very general since the index
 % number of the list is used
 
-**Several key underlying structural model assumptions were identified that have
+Several key underlying structural model assumptions were identified that have
 persisted across many previous hake assessments, and thus warrant revisiting
 annually as a set of reference sensitivity examinations to new base models.
 Those identified here (as noted above) include the specification of natural mortality, the level
@@ -1544,7 +1544,7 @@ the resiliency of the stock in terms of recruitment (steepness).
 
 % section below on natural mortality sensitivity
 % Manual 2021 done - CG
-**The standard deviation of the prior distribution on natural mortality was
+The standard deviation of the prior distribution on natural mortality was
 increased from the base model value of 0.1 to 0.2 and 0.3. The median of the MCMC posteriors
 for natural mortality increased from
 \Sexpr{f(nat_m[2], 3)} with a 95\% credible interval
@@ -1554,14 +1554,15 @@ of \Sexpr{f(nat_m_03[1], 3)}--\Sexpr{f(nat_m_03[3], 3)}
 for the sensitivity run with the prior standard
 deviation set to 0.3 (Table~\ref{tab:main-parameter-estimates-sens-1}). In addition to allowing a higher estimated value for
 natural mortality, the broader prior on $M$ also increased the overall scale of
-the population, the estimated stock status relative to $B_0$, and the
-uncertainty in spawning biomass on both absolute and relative scales
+the population, the estimated stock status relative to $B_0$ prior to 1990, the
+uncertainty in spawning biomass on both absolute and relative scales, halved estimated relative
+fishing intensity in \Sexpr{end.yr-1}, and doubled equilibrium yield at $\BSPRforty$.
 (Table~\ref{tab:main-parameter-estimates-sens-1} and Figures~\ref{fig:main-biomass-base-alternative-1}
 and~\ref{fig:main-status-base-alternative-1}).
 
 % section below on steepness sensitivity
 % Manual 2021 done - CG
-**The mean of the prior distribution on steepness was decreased from 0.777 (base)
+The mean of the prior distribution on steepness was decreased from 0.777 (base)
 to 0.5 and, separately, steepness was fixed at 1.0. The decrease in the mean of the
 prior resulted in a decrease in the MCMC estimate of steepness from
 a median of \Sexpr{f(steep[2],3)} with a 95\% credible interval
@@ -1570,27 +1571,32 @@ a median of \Sexpr{f(steep_prior_05[2],3)} with a 95\% credible interval
 of \Sexpr{f(steep_prior_05[1], 3)}--\Sexpr{f(steep_prior_05[3], 3)}
 (Table~\ref{tab:main-parameter-estimates-sens-1}).
 However, neither steepness
-sensitivity analysis had an impact on the overall model results
+sensitivity analysis had an impact on the overall model results 
 (Figures~\ref{fig:main-biomass-base-alternative-1} and
-\ref{fig:main-status-base-alternative-1}).
+\ref{fig:main-status-base-alternative-1}), because \fishname\ spawning biomass has
+remained above levels where changes in steepness would appreciably influence
+stock-recruit dynamics (Figure~\ref{fig:main-mcmc-sr-variability}).
 
 % section below on sigma_r
 **The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative
 high (1.6) and low (1.0) states. The low value, $\sigma_r = 1.0$,
 resulted in a model where the standard deviation of the MLEs of
 recruitment deviations in the period with the most informative data was
-\Sexpr{sigma_r_lo_main},
+1.55,
 suggesting that the data were inconsistent with the lower value of $\sigma_r$.
 The high value, $\sigma_r = 1.6$, resulted in a model with a more
 consistent standard deviation for the estimated recruitment deviations, at
-\Sexpr{sigma_r_hi_main}.
+1.86.
 However, the high $\sigma_r$ model had a larger difference between the
 spawning biomass at unfished
 equilibrium and the spawning biomass at the initial year of the model
 than the low $\sigma_r$ model
 (Table~\ref{tab:main-parameter-estimates-sens-1} and
 Figures~\ref{fig:main-biomass-base-alternative-1} and
-\ref{fig:main-status-base-alternative-1}). The method of \citet{MethotTaylor2011}
+\ref{fig:main-status-base-alternative-1}). Similar to previous assessments,
+estimates of unfished recruitment ($\log R_0$) and relative spawning biomass are sensitive
+to $\sigma_r$, whereas absolute estimates of spawning biomass are insensitive.
+The method of \citet{MethotTaylor2011}
 considers a combination of the variability among the
 estimated deviations and the uncertainty around the estimates using the formula
 \eb
@@ -1599,17 +1605,15 @@ estimated deviations and the uncertainty around the estimates using the formula
 where $\mbox{Var}(\hat{r})$ is the variance among deviations and
 $\mbox{SE}(\hat{r}_y)$ is the standard error of each estimate. It
 produced a suggested
-$\sigma_r$ of \Sexpr{sigma_r_alt_allyr}, which was not as similar to the
-base-model value of 1.4 as the 1.55 estimated in the 2020 assessment.
-Future work will assess similar metrics
-strictly in a Bayesian framework.
+$\sigma_r$ of 1.77, which was slightly more similar to the
+base-model value of 1.4 than the 1.81 estimated in the 2021 assessment.
+%the sigma R calculated values were done by hand using the posteriors.sso file for each model
+%following the above equation using the Main period rec devs
 
 % Manual 2021 done - CG
-**The sensitivity of the base model to the inclusion of the age-1 survey index
-provides an additional source of information about the recruitment of different
-year classes (see discussion in Section~\ref{sec:data-acoustic-survey}), which
-can be particularly useful for the most recent years when little information on
-cohort strength is otherwise available. Compared to the base model, estimates
+The sensitivity of the base model to the removal of the age-1 survey index
+provides a comparative evaluation of how the base model incorporates information
+about juvenile fish. Compared to the base model, estimates
 of spawning biomass throughout most of the time series are similar, but do
 diverge near the end of the time series
 (Table~\ref{tab:main-parameter-estimates-sens-1},
@@ -1620,15 +1624,18 @@ relative spawning biomass are
 for the base model (95\% credible interval
 of \Sexpr{f(100*bratio_curr[1], 1)}--\Sexpr{f(100*bratio_curr[3], 1)}\%) and
 \Sexpr{f(100*bratio_age1[2], 1)}\%
-for the age-1 index model (95\% credible interval
+for the removal of the age-1 index model (95\% credible interval
 of \Sexpr{f(100*bratio_age1[1], 1)}--\Sexpr{f(100*bratio_age1[3], 1)}\%)).
-This change is likely due to the age-1 index suggesting higher recruitment
-in 2014 (age-1 in 2015) and 2018 (age-1 in 2019) than the base model
-(Figures~\ref{fig:main-age-one-index} and~\ref{fig:main-index-base-alternative-2}).
-These changes are not large because the base model generally tracks the trends in the age-1 index well.
-Including the age-1 index led to a worse fit to both the 2017 and 2019 acoustic
-survey estimates compared to the base model (Figure~\ref{fig:main-index-base-alternative-2}).
-For further details and results from the age-1 survey index sensitivity see
+This change is likely due to the age-1 index suggesting slightly higher recruitment
+in 2014 (age-1 in 2015) and 2016 (age-1 in 2017) and moderately higher in 2018 (age-1 in 2019)
+and 2021 (age-1 in 2020) than the model without the index
+(Figures~\ref{fig:main-age-one-index} and~\ref{fig:main-recruit-base-alternative-2}).
+The largest changes are for the most recent years where the model without the index
+has less information about recruitment size.  
+Removing the age-1 index led to minor changes in fit to the acoustic survey estimates, with
+some years showing slight improvement and others a slight deterioration compared to the base
+model (Figure~\ref{fig:main-index-base-alternative-2}).
+For further details and results from the removal of the age-1 survey index sensitivity see
 Appendix~\ref{chap:age1-survey}.
 
 The high age-1 survey index from 2021 is largely in concurrence with
