@@ -121,7 +121,7 @@ maturity.ogive.figure <- function(model, useyears = 1975:2018){
   }
 
   # add legend
-  legend('bottomright', legend=c("South of 34.44°", "North of 34.44°"),
+  legend('bottomright', legend=c("South of 34.44\u00B0", "North of 34.44\u00B0"),
          #title="Size/number indicates sample size")
          bg='white', box.col='grey', col=1, pt.bg=c(col.S, col.N), pch=21, pt.cex=2)
   box()

@@ -91,7 +91,7 @@ make.catches.plot(ct, leg.y.loc = 550)
 \pdftooltip{\includegraphics[width=0.75\paperwidth]{main-figures/fishCatchRatesUS}}{This
   figure shows changes in catch rates for the U.S. fleet}
 \end{center}
-\caption{**Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in
+\caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in
   the U.S. at-sea fleet from \Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}.}
 \label{fig:main-us-catch-rates}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -114,7 +114,7 @@ make.catches.plot(ct, leg.y.loc = 550)
   mtext("Depth (m)", side = 2, outer = TRUE, line = -0.5, col = "black")
 @
 \end{center}
-\caption{**Distribution of fishing depths (left) and bottom depths (right), in meters, of hauls targeting \fishname\ in the U.S. Catcher-Processor and Mothership sectors from \Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}. Horizontal lines in each box represents the median depth and boxes encompass the middle 50\% of the data. Whiskers encompass the 95\% quantiles.}
+\caption{Distribution of fishing depths (left) and bottom depths (right), in meters, of hauls targeting \fishname\ in the U.S. Catcher-Processor and Mothership sectors from \Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}. Horizontal lines in each box represents the median depth and boxes encompass the middle 50\% of the data. Whiskers encompass the 95\% quantiles.}
 \label{fig:main-us-at-sea-depths}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -144,7 +144,7 @@ make.catches.plot(ct, leg.y.loc = 550)
   mtext("Depth (m)", side = 2, outer = TRUE, line = -0.5, col = "black")
 @
 \end{center}
-\caption{**Distribution of fishing depths (left) and bottom depths (right), in meters, of hauls targeting \fishname\ in the Canadian fleets from \Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}. Horizontal lines in each box represents the median depth and boxes encompass the middle 50\% of the data. Whiskers encompass the 95\% quantiles.}
+\caption{Distribution of fishing depths (left) and bottom depths (right), in meters, of hauls targeting \fishname\ in the Canadian fleets from \Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}. Horizontal lines in each box represents the median depth and boxes encompass the middle 50\% of the data. Whiskers encompass the 95\% quantiles.}
 \label{fig:main-can-at-sea-depths}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -156,7 +156,7 @@ make.catches.plot(ct, leg.y.loc = 550)
 make.data.overview.plot(base.model)
 @
 \end{center}
-\caption{**Overview of data used in this assessment,
+\caption{Overview of data used in this assessment,
   \Sexpr{start.yr}--\Sexpr{last.data.yr}.
   Circle areas are proportional to the precision within the data type.}
 \label{fig:main-data-overview}
@@ -172,7 +172,7 @@ make_age_comp_bubble_plot(base.model, subplot = 1, legend.position = "top", alph
 make_age_comp_bubble_plot(base.model, subplot = 2, alpha = 0.4)
 @
 \end{center}
-\caption{**Age compositions for the aggregate fishery (top, all sectors combined) and acoustic survey (bottom)
+\caption{Age compositions for the aggregate fishery (top, all sectors combined) and acoustic survey (bottom)
   for the years \Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}.
   Proportions in each year sum to 1.0 and area of the bubbles are
   proportional to the proportion and consistent in both panels (see key at top).
@@ -225,7 +225,7 @@ make.survey.age1.plot.data(age.1.index,
 maturity.ogive.figure(model = base.model, useyears = 1966)
 @
 \end{center}
-\caption{**Fraction of fish that are mature at each age north and south of
+\caption{Fraction of fish that are mature at each age north and south of
   34.44$^\circ$N
   (upper panel) and the fecundity relationship (lower panel).
   The fecundity relationship (purple line) is the product
