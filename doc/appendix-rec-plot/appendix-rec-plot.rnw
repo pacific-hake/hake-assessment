@@ -230,16 +230,17 @@ we see that:
 \begin{itemize}
 \item the 2014 cohort is definitely smaller than the 2010 cohort, whereas
   intution (Figure~\ref{fig:recruitment-answers}) from the usual plots is that it could possibly be as
-  large as 2010;
+  large as the 2010 cohort;
 
-\item there have only been two past recruitment events (1980 and 1984) that might be as large as 2010.
+\item there have only been two past recruitment events (1980 and 1984) that
+  might be as large as in 2010.
   Whereas Figure~\ref{fig:main-recruitment} suggests that 1970, 1999 and 2014
-  could also possibly be that large, giving an
+  could also possibly be larger than in 2010, giving an
   over-optimistic impression of how often we can expect cohorts the size of the
   2010 cohort to occur.
 
-\item with the limited data available, the 2020 cohort is expected to be above
-  average, possibly as large as the 2010 cohort, but with a 50\% chance of being
+\item with the very limited data available, the 2020 cohort is expected to be above
+  average, with a chance of being as large as the 2010 cohort, but most likely being
   roughly only a third of the size of the 2010 cohort (from looking at where the
   median is for 2020).
 
@@ -258,10 +259,11 @@ cross each other. This is because the recruitment deviation for each MCMC sample
 each year is based on a
 random draw from the lognormal distribution stock recruitment (and then applied
 to the stock-recruitment curve for that MCMC sample, based on the sample's
-estimated parameters). Since the random draws are independent from year to year,
-a large recruitment (from a large recruitment deviation) in one year does not
-imply a large recruitment in the next year, unlike for the earlier years (as
-shown explicitly in Figure~\ref{fig:recruitment-trace-recent-highlight}).
+estimated parameters).
+% Since the random draws are independent from year to year,
+% a large recruitment (from a large recruitment deviation) in one year does not
+% imply a large recruitment in the next year, unlike for the earlier years (as
+% shown explicitly in Figure~\ref{fig:recruitment-trace-recent-highlight}).
 
 In the 2018 assessment the probability that the 2014 cohort was larger
 than the 2010 cohort was explicitly calculated to be
@@ -278,7 +280,7 @@ More data allows for more certainty (less
 uncertainty) in such a calculation, hence why the probability can change with later
 assessments.
 
-Given this analysis, we can include the resulting Figure~\ref{fig:recruitment-scale-all}
+Given this analysis, we can maybe include the resulting Figure~\ref{fig:recruitment-scale-all}
 in future assessments, and hope that it gives a more intuitive understanding of
 the scale of recruitments. Participants in the \fishname\ process have an
 intuition that the 2010 is a very large recruitment event --
