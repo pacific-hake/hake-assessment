@@ -586,7 +586,7 @@ bratio_age1 <- quantile(sens.models.2[[1]]$mcmc[[paste0("Bratio_", assess.yr)]],
 
 # ... Depletion ---------------------------------------------------------------
 depl_curr <- base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) == assess.yr]
-depl_no_ageerr <- sens.models.5$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) == assess.yr]
+# depl_no_ageerr <- sens.models.5$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) == assess.yr]
 
 # ... Joint probability -------------------------------------------------------
 # (%age) of being being both above the target relative fishing intensity in \Sexpr{end.yr-1}
