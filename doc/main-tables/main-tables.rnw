@@ -456,7 +456,7 @@ param_est_table(list(base.model, last.yr.base.model),
                 show_like = FALSE,
                 mle_table = FALSE,
                 xcaption =
-                  paste0("**Select parameters, derived quantities, ",
+                  paste0("Select parameters, derived quantities, ",
                          "and reference point posterior median ",
                          "estimates for the (",
                          end.yr, ") base model ",
