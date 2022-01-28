@@ -582,8 +582,7 @@ In short, these included the following:
 
 The bridging steps can be grouped into three main sets of changes,
 with the majority of the steps being those that are performed routinely.
-The first step updated the Stock Synthesis framework to follow current best practices and
-adjusted the estimation phase for the data weighting parameters.
+The first step updated the Stock Synthesis framework to follow current best practices.
 The second step updated all information available from the fishery and acoustic survey.
 The third step
 %updated the information available from the survey and
