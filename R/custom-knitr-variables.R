@@ -601,19 +601,7 @@ rec_2014 <- get_rec_ci(last.yr.base.model, base.model, 2014)
 rec_2016 <- get_rec_ci(last.yr.base.model, base.model, 2016)
 rec_2017 <- get_rec_ci(last.yr.base.model, base.model, 2017)
 
-# Don't think these MLE ones get used.
 # Cohort biomass-at-age -------------------------------------------------------
-baa_curr_mle <- get_baa_mle(base.model) %>%
-  filter(Year == assess.yr) %>%
-  select(-Year)
-# Proportions that cohorts contribute to biomass in assessment year -----------
-baa_curr_tot_mle <- sum(baa_curr_mle)
-b_curr_prop_mle_2010 <- baa_curr_mle[assess.yr - 2010 + 1] / baa_curr_tot_mle
-b_curr_prop_mle_2014 <- baa_curr_mle[assess.yr - 2014 + 1] / baa_curr_tot_mle
-b_curr_prop_mle_2016 <- baa_curr_mle[assess.yr - 2016 + 1] / baa_curr_tot_mle
-b_curr_prop_mle_2017 <- baa_curr_mle[assess.yr - 2017 + 1] / baa_curr_tot_mle
-
-# Cohort biomass-at-age based on MCMC:
 baa <- get_baa(base.model, assess.yr)
 baa_large <- baa %>%
   arrange(desc(Median))
