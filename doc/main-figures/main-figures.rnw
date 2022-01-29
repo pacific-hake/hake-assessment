@@ -1272,12 +1272,14 @@ make_squid_plot(base.model,
   \Sexpr{min(retro_cohorts)} to \Sexpr{max(retro_cohorts)}, with cohort
   birth year marked at the right of each color-coded line.
   For example, the right-most point for the \Sexpr{assess.yr - 8} cohort shows the
-  cohort at age eight (i.e., at the start of \Sexpr{assess.yr}, which represents
-  the base model and includes data to \Sexpr{assess.yr - 1}). The next point
-  to the left is the \Sexpr{assess.yr - 8} cohort at age seven, calculated by
+  cohort at age-8 (i.e., at the start of \Sexpr{assess.yr}, which represents
+  the base model and includes data to \Sexpr{assess.yr - 1} because
+  data collection ends December~31). The next point
+  to the left is the \Sexpr{assess.yr - 8} cohort at age-7, calculated by
   removing one year of data (so includes data up to \Sexpr{assess.yr - 2}).
   Thus, models are fit to data available only up to the start of the year in which
-  each cohort became a given age, i.e., data ends collection ends December 31,
+  each cohort became a given age, such that the last year of data
+  for a given point equals
   cohort~birth~year~$+$~cohort~age~$-$1.}
 \label{fig:main-retrospective-recruitment}
 \end{figure}
