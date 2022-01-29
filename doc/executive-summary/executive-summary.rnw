@@ -329,12 +329,12 @@ the \Sexpr{end.yr} female spawning biomass is \Sexpr{curr.bio.median}~million~t 
 95\% posterior credibility interval from \Sexpr{curr.bio.lower} to
 \Sexpr{curr.bio.upper}~million~t). The current estimate of the \Sexpr{end.yr-1} female
 spawning biomass is \Sexpr{prev.bio.median}
-(\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. **This is a
+(\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. This is a
 somewhat higher
 median and broader credibility interval than the \Sexpr{prev.bio.median.last.assess}
 (\Sexpr{prev.bio.lower.last.assess}--\Sexpr{prev.bio.upper.last.assess})~million~t estimated in the \Sexpr{end.yr-1}
-assessment. **Flesh out an explanation, see Issue.
-% Manual 2020 done (updated numbers in final sentence and revised text).
+assessment. The increase appears to be due to the information in the 2021 survey data.
+% Manual 2022 done (updated numbers in final sentence and revised text).
 <<biomass-table, results='asis', echo=FALSE>>=
 make.biomass.table(base.model,
                    start.yr = end.yr-9,

@@ -586,7 +586,7 @@ In short, these included the following:
 \begin{itemize}
   \item Update to the latest version of Stock Synthesis, version \Sexpr{ss.version};
   \item Update catch and age-composition data from years prior to \Sexpr{last.data.yr};
-  \item Add new catch and age composition data for \Sexpr{last.data.yr};
+  \item Add new catch and age-composition data for \Sexpr{last.data.yr};
   \item Update acoustic survey biomass and age-composition data from years prior to \Sexpr{last.data.yr};
   \item Add the \Sexpr{last.data.yr} acoustic survey biomass and age-composition estimates;
   \item Add weight-at-age data for \Sexpr{last.data.yr} as well as update data for years prior; and
@@ -649,9 +649,9 @@ effect. The addition of \Sexpr{last.data.yr} survey data led to small shifts
 in expected recruitment, particularly for the 2016, 2017, and 2018 year classes.
 The 2018 year class is estimated to be higher in this
 assessment than in the \Sexpr{last.assess.yr} assessment, but it still remains
-a below average year class.
+a below-average year class.
 This increase is largely driven by the addition
-of the 2021 acoustic survey age compositions, because this
+of the 2021 acoustic-survey age compositions, because this
 %where the proportion of age-9 fish and age-5 fish were higher than what
 %the \Sexpr{end.yr-1} assessment model would have otherwise predicted
 %given mortality.
@@ -671,8 +671,8 @@ Section~\ref{sec:data-acoustic-survey} provides further description and justific
 for using the age-1 index in the base model. The addition of this data source resulted
 in a slight increase in recent recruitment, most noticeably for the 2018 and 2020 year
 classes (Figure~\ref{fig:main-bridge-5-panel-2}). In turn, this results in a slightly higher
-trajectory of spawning stock biomass from 2013--2022 and a change in 2022 stock status
-(relative spawning stock biomass) from
+trajectory of spawning stock biomass from 2013--2022 and a change in 2022
+median relative spawning stock biomass from
 \Sexpr{round(median(bridge.models.2[[1]]$mcmc$Bratio_2022),3)*100}\%. to
 \Sexpr{round(median(base.model$mcmc$Bratio_2022),3)*100}\%.
 
@@ -682,21 +682,24 @@ trajectory of spawning stock biomass from 2013--2022 and a change in 2022 stock 
 The {\tt adnuts} R package \citep{Monnahan2018} was used to apply the NUTS algorithm producing
 \Sexpr{f(num.mcmc.samples)} MCMC samples which describe posterior distributions for model
 parameters and derived quantities.This is nearly a ten-fold increase in samples from the
-2020 assessment \citep{JTC2020} and earlier and a 33\% increase in samples from last
-years assessment \citep{JTC2021}. The {\tt adnuts} software goes through several steps including
-a pilot run which is short parallel-chain Random Walk Metropolis (RWM) run to ensure the model MCMC is
+2020 assessment \citep{JTC2020} and earlier, and a 33\% increase in samples from last
+year's assessment \citep{JTC2021}. The {\tt adnuts} software goes through several steps including
+a pilot run which is a short parallel-chain Random Walk Metropolis (RWM) run to ensure the MCMC algorithm is
 converging. Once the pilot had been checked for convergence, low effective sample size,
 and for slow mixing parameters by comparing pairwise correlation plots, an MLE was run to
 obtain the MLE covariance matrix. The covariance matrix was used as the mass matrix for
 the main NUTS run. The MLE run was a short run producing 500 samples and with a warmup of
 100. The mass matrix was passed to the main NUTS run, and \Sexpr{f(num.mcmc.samples)}
-samples from the posterior were generated. The $adapt\_delta$ value, which reduces
-divergence and forces sampling from a wider part of the posterior, was set to 0.95 for
-the main NUTS run. The choice an $adapt\_delta$ of 0.95 was made based on less divergence
-of the posterior and higher effective sample size compared to 0.9, which was used for last
+samples from the posterior were generated. The {\tt adapt\_delta} value
+sets the target average acceptance probability,
+% which reduces
+% divergence and forces sampling from a wider part of the posterior,
+and was set to 0.95 for
+the main NUTS run. The choice of {\tt adapt\_delta} of 0.95 was made based on less divergence
+of the posterior and higher effective sample size compared to 0.90, which was used for last
 year's assessment. A full explanation of the NUTS algorithm and the {\tt adnuts} package,
 including an analysis with the \fishname\ stock
-can be found in \citealp{Monnahan2019}.
+can be found in \citet{Monnahan2019}.
 
 Cloud computing was used for the first time for this assessment through Amazon Web Services' (AWS)
 Elastic Compute Cloud (EC2) instances. Use of these services allowed the JTC to run many models
@@ -774,7 +777,7 @@ is the same (Figure~\ref{fig:main-mcmc-survey-fit}).
 The addition of \Sexpr{last.assess.yr} fishery data
 was the main reason for this change in fit to the 2019 data point (Figure~\ref{fig:main-bridge-5-panel-1}).
 The \Sexpr{last.assess.yr} survey estimate was lower than in 2019 (second lowest since 2013),
-and the model fit indicates a decline in biomass relative to the stable 2013--2019 period.
+and the model fit indicates a decline in biomass compared to the relatively stable 2013--2019 period.
 The 2001 survey biomass index continues to be well below any model predictions that were evaluated,
 and no direct cause for this is known.  The survey did begin earlier that year than all other surveys
 between 1995 and 2009 (Table~\ref{tab:main-survey-history}), which may explain
@@ -799,11 +802,12 @@ a couple of above-average cohorts that are now mature.
 
 The base model fit to the index of age-1 fish highlights some over- and
 under-estimation but an overall general confirmation of relative year class strength
-(Figure~\ref{fig:main-mcmc-age1-fit}). In particular, age-1 fish from the 2008 and 2014
-cohorts were under estimated relative to the index, while the 1995 and 2016 were
-over estimated. The 2010 cohort was closely fit.  Age-1 fish in 2021 (2020 cohort)
-were slightly under estimated and had the largest amount of uncertainty in the time
-series.  The model indicates that the 2020 year class may be similar in
+(Figure~\ref{fig:main-mcmc-age1-fit}). In particular, age-1 fish in 2009 and 2015
+(the 2008 and 2014 cohorts) were underestimated relative to the index, while the
+age-1 fish in 1995 and 2017 (1994 and 2016 cohorts) were overestimated.
+The age-1 fish in 2011 (the large 2010 cohort) was closely fit.  Age-1 fish in 2021 (2020 cohort)
+were slightly underestimated and, being so young, had the largest amount of uncertainty in the time
+series. The model indicates that the 2020 cohort may be similar in
 size to the 2016 cohort, based on information in the age-1 index and from age-1 fish
 caught in the fishery.
 
@@ -866,12 +870,12 @@ allowing the model flexibility (i.e., a lower penalty on the overall
 likelihood) to fit to data that suggests high variability among years for each
 age. This level
 of variation led to results that were consistent with the \Sexpr{survey.end.yr} acoustic survey
-biomass estimate and gave reasonable fits to the fishery age composition data,
+biomass estimate and gave reasonable fits to the fishery age-composition data,
 given that there is considerable uncertainty associated with
 spatial changes in fish availability (due to movement) and recent
 variability in oceanographic conditions. Estimated selectivity deviations for
 age-3 and age-4 fish are larger from
-2010 to 2012 than in recent years until 2020 when age-4 was large again (Figures~\ref{fig:main-tv-selex}
+2010 to 2012 than in recent years until 2020 when the deviation for age-4 was large again (Figures~\ref{fig:main-tv-selex}
 and~\ref{fig:main-tv-selex-uncertainty}). The median selectivity peaks at age 4
 in 2010, 2012 and 2020 and at age 3 in 2011 suggesting targeting (or generally higher
 availability) of the younger cohorts
@@ -939,11 +943,12 @@ the \Sexpr{end.yr} spawning biomass is \Sexpr{curr.bio.median}~million~t (with a
 95\% posterior credibility interval from \Sexpr{curr.bio.lower} to
 \Sexpr{curr.bio.upper}~million~t). The estimate of the \Sexpr{end.yr-1} female
 spawning biomass is \Sexpr{prev.bio.median}
-(\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. This is a slightly higher
+(\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. This is a somewhat higher
 median and broader credibility interval than the \Sexpr{prev.bio.median.last.assess}
 (\Sexpr{prev.bio.lower.last.assess}--\Sexpr{prev.bio.upper.last.assess})~million~t estimated
 in the \Sexpr{end.yr-1} assessment, but there is considerable overlap of the credibility
-intervals.
+intervals. The increase appears to be due to the information in the 2021 survey data (as outlined in
+Section~\ref{sec:assessment-changes}).   % copied to Exec Summary also.
 %%The additional
 %%data in the 2018 assessment has reduced the uncertainty of the 2017 biomass, and
 %%decreased the median partly due to the impact of the survey biomass estimate.
@@ -1007,8 +1012,8 @@ The current assessment also estimates a strong 2014 year class
 The 2016 cohort also appears to be above average at
 \Sexpr{top.coh(base.model, 2018, spec.yr=2016)}\% of the 2018 catch,
 \Sexpr{top.coh(base.model, 2019, spec.yr=2016)}\% of the 2019 catch,
-\Sexpr{top.coh(base.model, 2020, spec.yr=2016)}\% of the 2020 catch,
-\Sexpr{top.coh(base.model, 2021, spec.yr=2016)}\% of the 2021 catch
+\Sexpr{top.coh(base.model, 2020, spec.yr=2016)}\% of the 2020 catch, and
+\Sexpr{top.coh(base.model, 2021, spec.yr=2016)}\% of the 2021 catch.
 Although the absolute size of the 2014 year
 class remains uncertain, at least more so than
 cohorts that have been observed for more years, seven years of fishery data and four years of survey data
@@ -1144,7 +1149,7 @@ The median relative fishing intensity was below target in all years throughout t
 Figures~\ref{fig:main-fishing-intensity} and~\ref{fig:main-phase}).
 The median relative spawning biomass was
 above the $\Bforty$ reference point in all years except 2007, 2009, and 2010
-(Table~\ref{tab:main-median-posterior} and Figures~\ref{fig:main-relative-spawning-biomass} and~\ref{fig:main-phase}).
+(Table~\ref{tab:main-median-posterior} and Figure~\ref{fig:main-relative-spawning-biomass}).
 % 2017 assessment: all years except 1968, 1998-2000 and 2007-2011
 % 2019 assessment: all years except 1999-2000 and 2007-2011
 % Andy summarising those years manually, based on:
@@ -1174,8 +1179,8 @@ start of \Sexpr{end.yr}.
 \subsection{Model uncertainty}\label{sec:assessment-model-uncertainty}
  % Manual 2020 done
 The base assessment model integrates over the substantial uncertainty associated
-with several important model parameters including: acoustic survey and age-1 index catchability
-($q_b$ and $q_1$ respectively), the magnitude of the stock (via the $\log R_0$ parameter for equilibrium
+with several important model parameters including: biomass index and age-1 index catchabilities
+($q_b$ and $q_1$, respectively), the magnitude of the stock (via the $\log R_0$ parameter for equilibrium
 recruitment), productivity of the stock (via the steepness parameter, $h$, of
 the stock-recruitment relationship), the rate of natural mortality ($M$), annual
 selectivity for key ages, recruitment deviations, and survey and fishery data
@@ -1239,7 +1244,7 @@ assessment.
 \subsection{Reference points}\label{sec:assessment-reference-points}
 
 The term reference points is used throughout this document to describe common
-conceptual summary metrics. The Treaty specifically identifies $\Fforty$ as the
+conceptual summary metrics. The Agreement specifically identifies $\Fforty$ as the
 default harvest rate and $\Bforty$ as a point where the 40:10 TAC adjustment is triggered
 (see the Glossary in Appendix~\ref{chap:glossary}).
 
@@ -1520,7 +1525,7 @@ the following:
 
 \item Removal of the age-1 index as a data source;
 
-\item Down weighting fishery age composition data;
+\item Down weighting fishery age-composition data;
 
 \item Consideration of alternative standard deviations for time-varying
   selectivity; and
