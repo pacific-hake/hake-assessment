@@ -135,7 +135,7 @@ make.recruitment.plot <- function(model,            ## model is an mcmc run and 
               ylim = c(0,upper.lim),
               pch = 20,
               xlab = "Year",
-              ylab = "Age 0 recruits (billions)",
+              ylab = "Age-0 recruits (billions)",
               cex = 0.8,
               las = 1,
               gap = 0,

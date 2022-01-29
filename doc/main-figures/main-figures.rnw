@@ -643,7 +643,7 @@ make.biomass.plot(base.model,
                   color = "blue")
 @
 \end{center}
-\caption{**Median of the posterior distribution for female spawning biomass at the start of each year ($B_t$) for the base model up to \Sexpr{end.yr} (solid line)
+\caption{Median of the posterior distribution for female spawning biomass at the start of each year ($B_t$) for the base model up to \Sexpr{end.yr} (solid line)
   with 95\% posterior credibility intervals (shaded area).}
 \label{fig:main-female-spawning-biomass}
 %% \end{figure}
@@ -660,7 +660,7 @@ make.depletion.plot(base.model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{**Median (solid line) of the posterior distribution for relative spawning biomass ($B_t/B_0$) for the base model
+\caption{Median (solid line) of the posterior distribution for relative spawning biomass ($B_t/B_0$) for the base model
   through \Sexpr{end.yr} with 95\% posterior credibility intervals (shaded area). Dashed horizontal lines show 10\%, 40\% and 100\% levels.}
 \label{fig:main-relative-spawning-biomass}
 \end{figure}
@@ -680,7 +680,7 @@ make.recruitment.plot(base.model,
                       add.r0 = TRUE)
 @
 \end{center}
-\caption{**Medians (solid circles) and means ($\times$) of the posterior distribution for recruitment (billions of age-0 fish) with
+\caption{Medians (solid circles) and means ($\times$) of the posterior distribution for recruitment (billions of age-0 fish) with
   95\% posterior credibility intervals (blue lines). The median of the posterior distribution for mean unfished
   equilibrium recruitment ($R_0$) is shown as the horizontal dashed line with a 95\% posterior credibility
   interval shaded between the dotted lines.}
@@ -697,7 +697,7 @@ make.recruitment.dev.plot(base.model,
 
 @
 \end{center}
-\caption{**Medians (solid circles) of the posterior distribution for log-scale recruitment deviations with
+\caption{Medians (solid circles) of the posterior distribution for log-scale recruitment deviations with
   95\% posterior credibility intervals (blue lines). Recruitment deviations for the years \Sexpr{recruit.dev.start.yr}--\Sexpr{start.yr-1}
   are used to calculate the numbers at age in \Sexpr{start.yr}, the initial year of the model.}
 \label{fig:main-recruitment-devs}
@@ -717,7 +717,7 @@ make_numbers_at_age_plot(base.model,
                          xlim = c(1965, assess.yr))
 @
 \end{center}
-\caption{**Bubble plot of the medians of the posterior distributions of population
+\caption{Bubble plot of the medians of the posterior distributions of population
   numbers at age at the beginning of each year, where diagonals follow each
   year-class through time. The red line represents the mean age. The scale of the bubbles is represented in the key where the units are
   billions of fish; the largest overall bubble represents the
