@@ -336,8 +336,8 @@ JTC:
   Second, we calculated the ratio between this median value and $R_0$
   to use as a scaling factor on virgin recruitment, which is an option in Stock Synthesis.
   Last, the option for mean recruitment was specified using the mean over the main time period.
-  Resulting decision tables are presented in Appendix~****~\ref{chap:}
-  **the new tables are not done yet.
+  Resulting decision tables are presented in Appendix~****
+  **the new tables are not done, not sure if will be done.
   Related to this, the JTC
   also solicited alternative catch levels for use in projections from the JMC and has included those
   in decision tables.}
@@ -1566,7 +1566,7 @@ a median of \Sexpr{f(steep_prior_05[2],3)} with a 95\% credible interval
 of \Sexpr{f(steep_prior_05[1], 3)}--\Sexpr{f(steep_prior_05[3], 3)}
 (Table~\ref{tab:main-parameter-estimates-sens-1}).
 However, neither steepness
-sensitivity analysis had an impact on the overall model results 
+sensitivity analysis had an impact on the overall model results
 (Figures~\ref{fig:main-biomass-base-alternative-1} and
 \ref{fig:main-status-base-alternative-1}), because \fishname\ spawning biomass has
 remained above levels where changes in steepness would appreciably influence
@@ -1626,7 +1626,7 @@ in 2014 (age-1 in 2015) and 2016 (age-1 in 2017) and moderately higher in 2018 (
 and 2021 (age-1 in 2020) than the model without the index
 (Figures~\ref{fig:main-age-one-index} and~\ref{fig:main-recruit-base-alternative-2}).
 The largest changes are for the most recent years where the model without the index
-has less information about recruitment size.  
+has less information about recruitment size.
 Removing the age-1 index led to minor changes in fit to the acoustic survey estimates, with
 some years showing slight improvement and others a slight deterioration compared to the base
 model (Figure~\ref{fig:main-index-base-alternative-2}).
@@ -1663,7 +1663,7 @@ suggested a weighting factor of 0.14 and 0.46 (ratio of 0.30) for fishery and su
 age compositions, respectively. The median estiamte from Dirichlet-multinomial method
 used in the base model was \Sexpr{DM.weight.fishery.median} and
 \Sexpr{DM.weight.survey.median} (ratio of
-\Sexpr{f(as.numeric(DM.weight.fishery.median) / 
+\Sexpr{f(as.numeric(DM.weight.fishery.median) /
 as.numeric(DM.weight.survey.median),2)}).
 Down-weighting fishery composition data using the McAllister-Ianelli method
 led to minor changes in relative spawning stock biomass and increased uncertainty
@@ -1700,7 +1700,7 @@ provides the worst fit to the most recent survey biomass estimate
 
 The estimated population trends throughout the time series are similar, irrespective of maximum
 selectivity age (Figures~\ref{fig:main-biomass-base-alternative-6}-\ref{fig:main-status-base-alternative-6}).
-The largest differences are in the mid-1980s when age-composition data was sparse, and then again 
+The largest differences are in the mid-1980s when age-composition data was sparse, and then again
 over the last few years of the model. The
 maximum selectivity at age-5 model resulted in the lowest estimate of the 2016 year class compared
 to the other model runs, while runs with higher maximum age produced similar
