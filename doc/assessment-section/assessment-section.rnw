@@ -677,13 +677,36 @@ trajectory of spawning stock biomass from 2013--2022 and a change in 2022 stock 
 \Sexpr{round(median(base.model$mcmc$Bratio_2022),3)*100}\%.
 
 \subsubsection{Assessment model results}\label{sec:assessment-model-results}
-\subsubsub{Model Fit}
+\subsubsub{Software and Hardware}
 
-The {\tt adnuts} R package was used to apply the NUTS algorithm to produce \Sexpr{f(num.mcmc.samples)}
-MCMC samples to describe posterior distributions for model parameters and derived
-quantities.  This is nearly a ten-fold increase in samples from the
+The {\tt adnuts} R package \citep{Monnahan2018} was used to apply the NUTS algorithm producing
+\Sexpr{f(num.mcmc.samples)} MCMC samples which describe posterior distributions for model
+parameters and derived quantities.This is nearly a ten-fold increase in samples from the
 2020 assessment \citep{JTC2020} and earlier and a 33\% increase in samples from last
-years assessment \citep{JTC2021}.
+years assessment \citep{JTC2021}. The {\tt adnuts} software goes through several steps including
+a pilot run which is short parallel-chain Random Walk Metropolis (RWM) run to ensure the model MCMC is
+converging. Once the pilot had been checked for convergence, low effective sample size,
+and for slow mixing parameters by comparing pairwise correlation plots, an MLE was run to
+obtain the MLE covariance matrix. The covariance matrix was used as the mass matrix for
+the main NUTS run. The MLE run was a short run producing 500 samples and with a warmup of
+100. The mass matrix was passed to the main NUTS run, and \Sexpr{f(num.mcmc.samples)}
+samples from the posterior were generated. The $adapt\_delta$ value, which reduces
+divergence and forces sampling from a wider part of the posterior, was set to 0.95 for
+the main NUTS run. The choice an $adapt\_delta$ of 0.95 was made based on less divergence
+of the posterior and higher effective sample size compared to 0.9, which was used for last
+year's assessment. A full explanation of the NUTS algorithm and the {\tt adnuts} package,
+including an analysis with the \fishname\ stock
+can be found in \citealp{Monnahan2019}.
+
+Cloud computing was used for the first time for this assessment through Amazon Web Services' (AWS)
+Elastic Compute Cloud (EC2) instances. Use of these services allowed the JTC to run many models
+simultaneously and to acquire more samples from the posterior distribution. The heavy workload
+of model runs was moved from local computers to cloud instances leaving local computers
+available to continue work on the document and other analyses that were explored. Storage for the model output
+was on AWS Simple Storage Service (S3) which can hold "any amount of data" and be accessed only
+with dual secret keys.
+
+\subsubsub{Model Fit}
 
 Stationarity of the posterior distribution for model parameters was
 re-assessed via a suite of standard single-chain and multi-chain diagnostic tests
