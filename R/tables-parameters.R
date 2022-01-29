@@ -353,7 +353,7 @@ param_est_table <- function(models,
         h = ifelse(is.null(.x$mcmc$`SR_BH_steep`), NA, f(median(.x$mcmc$`SR_BH_steep`), digits)),
 
         survey_sd = f(median(.x$mcmc$`Q_extraSD_Acoustic_Survey(2)`), digits),
-        catchability = ifelse(is.null(.x$mcmc$extra.mcmc), NA, f(median(.x$extra.mcmc$Q_vector), digits)),
+        catchability = ifelse(is.null(.x$extra.mcmc), NA, f(median(.x$extra.mcmc$Q_vector), digits)),
 
         survey_age1_sd = ifelse(is.null(.x$mcmc$`Q_extraSD_Age1_Survey(3)`), NA, f(median(.x$mcmc$`Q_extraSD_Age1_Survey(3)`), digits)),
         catchability_age1 = ifelse(all(is.null(.x$extra.mcmc)), NA, f(as.numeric(.x$extra.mcmc$q.med[.x$extra.mcmc$q.med$Fleet == 3, ][1, "value"]), digits)),
