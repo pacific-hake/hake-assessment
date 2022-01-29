@@ -348,15 +348,15 @@ param_est_table <- function(models,
       c(nat_m =
           ifelse("NatM_uniform_Fem_GP_1" %in% names(.x$mcmc),
                  f(median(.x$mcmc$`NatM_uniform_Fem_GP_1`), digits),
-                 f(median(.x$mcmc$`NatM_p_1_Fem_GP_1`), digits)), # 2022 name changed
+                 f(median(.x$mcmc$`NatM_p_1_Fem_GP_1`), digits)),
         ro = f((median(.x$mcmc$`SR_LN(R0)`) %>% exp) / 1e3, 0),
         h = ifelse(is.null(.x$mcmc$`SR_BH_steep`), NA, f(median(.x$mcmc$`SR_BH_steep`), digits)),
 
         survey_sd = f(median(.x$mcmc$`Q_extraSD_Acoustic_Survey(2)`), digits),
-        catchability = f(median(.x$extra.mcmc$Q_vector), digits),
+        catchability = ifelse(is.null(.x$mcmc$extra.mcmc), NA, f(median(.x$extra.mcmc$Q_vector), digits)),
 
         survey_age1_sd = ifelse(is.null(.x$mcmc$`Q_extraSD_Age1_Survey(3)`), NA, f(median(.x$mcmc$`Q_extraSD_Age1_Survey(3)`), digits)),
-        catchability_age1 = ifelse(all(is.na(.x$extra.mcmc)), NA, f(as.numeric(.x$extra.mcmc$q.med[.x$extra.mcmc$q.med$Fleet == 3, ][1, "value"]), digits)),
+        catchability_age1 = ifelse(all(is.null(.x$extra.mcmc)), NA, f(as.numeric(.x$extra.mcmc$q.med[.x$extra.mcmc$q.med$Fleet == 3, ][1, "value"]), digits)),
 
         dm_fishery = ifelse(is.null(.x$mcmc$`ln(DM_theta)_1`),
                             ifelse(is.null(.x$mcmc$`ln(EffN_mult)_1`),
@@ -505,8 +505,8 @@ param_est_table <- function(models,
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- 1
-  addtorow$pos[[2]] <- ifelse(age_1, 9, 8)
-  addtorow$pos[[3]] <- ifelse(age_1, 15, 14)
+  addtorow$pos[[2]] <- ifelse(age_1, 10, 9)
+  addtorow$pos[[3]] <- ifelse(age_1, 16, 15)
   addtorow$command <-
     c(paste0(latex.bold(latex.under("Parameters")),
              latex.nline),
@@ -517,7 +517,7 @@ param_est_table <- function(models,
              latex.bold(latex.under("Reference Points based on $\\Fforty$")),
              latex.nline))
   if(show_like){
-    addtorow$pos[[4]] <- ifelse(age_1, 20, 19)
+    addtorow$pos[[4]] <- ifelse(age_1, 21, 20)
     addtorow$command <- c(addtorow$command,
                           paste0(latex.nline,
                                  latex.bold(latex.under("Negative log likelihoods")),
