@@ -110,8 +110,7 @@ as the \Sexpr{last.assess.yr} stock assessment.
 The statistical-catch-at-age model assumes that the
 \fishname\ population is a single coast-wide stock subject to
 one aggregated fleet with combined male and female population dynamics.
-Stock Synthesis \citep{MethotWetzel2013} version \Sexpr{ss.version} was used, at
-Git commit \Sexpr{ss.commit} which was compiled on \Sexpr{ss.commit.date}.
+Stock Synthesis \citep{MethotWetzel2013} version \Sexpr{ss.version} was the modeling platform used.
 The largest changes between the
 \Sexpr{last.assess.yr} and \Sexpr{assess.yr} stock assessments are the addition of another
 year of
@@ -570,7 +569,7 @@ the \Sexpr{assess.yr} base model.
 
 In short, these included the following:
 \begin{itemize}
-  \item Update to the latest version of Stock Synthesis, version \Sexpr{ss.version}, at Git commit \Sexpr{ss.commit};
+  \item Update to the latest version of Stock Synthesis, version \Sexpr{ss.version};
   \item Update catch and age-composition data from years prior to \Sexpr{last.data.yr};
   \item Add new catch and age composition data for \Sexpr{last.data.yr};
   \item Update acoustic survey biomass and age-composition data from years prior to \Sexpr{last.data.yr};
@@ -587,8 +586,8 @@ The first step updated the Stock Synthesis framework to follow current best prac
 The second step updated all information available from the fishery and acoustic survey.
 The third step implemented changes related to the addition of the age-1 index.
 
-Stock Synthesis version \Sexpr{ss.version} (at Git commit \Sexpr{ss.commit}) includes
-a number of changes since the version used by \citet{JTC2020},
+Stock Synthesis version \Sexpr{ss.version} includes
+a number of changes since the version used by \citet{JTC2021},
 mostly related to options not explicitly used in this assessment.
 %Changes relevant to the assessment of \fishname\ include changes to
 %increase the convergence of estimates of catchability and parameter deviations,

@@ -46,8 +46,7 @@ structural uncertainty with respect to the base case. These sensitivity analyses
 are thoroughly described in this assessment document.
 The structural assumptions
 of this \Sexpr{assess.yr} base model,
-implemented using version \Sexpr{ss.version} of the Stock Synthesis software,
-compiled at Git commit \Sexpr{ss.commit} on \Sexpr{ss.commit.date}.
+implemented using version \Sexpr{ss.version} of the Stock Synthesis software.
 \citep{MethotWetzel2013},
 % Manual done 2022 AMB
 are largely the same as the
