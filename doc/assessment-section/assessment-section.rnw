@@ -481,24 +481,39 @@ encourages the JTC to explore model sensitivity to that absence. We commend the
 JTC for their foresight in investigating the impact of the lack of 2020 Canadian
 freezer-trawler age data in this year's assessment.}
 
-\emph{Response -- **Kelli to add more or edit pending analysis** In 2021, the JTC explored the absence of 2020 Canadian freezer-
+\emph{Response -- In 2021, the JTC explored the absence of 2020 Canadian freezer-
   trawler age data and came to the conclusion that the loss of these data had little
   impact on overall results.  This is, in part, because there were 2020 Canadian
-  age data available from the shoreside fleet, and the Canadian shoreside and
+  age data available from the shoreside fleet and the Canadian shoreside and
   freezer-trawler fleets tend to provide similar age-composition information.}
 
 \emph{In 2021, there were almost no biological data available for the Canadian fishery.
-  In summary, there was a single shoreside trip sampled, compared to a recent five-year
-  average of 55 trips, and no freezer-trawler age data. The consequence of
+  Just a single shoreside trip was sampled, compared to a recent five-year
+  average of 55 trips, and no freezer-trawler's provided age data.
+  The single sample from the shoreside fishery represents 0.22\% of
+  the total number of samples collected in 2021 but because age-composition data are
+  scaled by catch to create a single aggregated composition, the sample is
+  weighted to represent 5\% of the 2021 age composition.
+  Fortunately, in 2021 the catches in the Canadian shoreside fishery were less
+  than average, which has been around 15\% over the last two decades,
+  or else the single sample would have been given even more weight.
+  The consequences of
   this loss of data is a disproportionate (relative to areal catch) reliance on age data
   sampled from U.S. waters as being representative of the coast-wide population for the
-  2021 fishing year.  The fishery in the U.S. on average comprises lower proportions of older fish
-  relative to the fishery in Canada.}
+  2021 fishing year. Where, age-composition information from U.S. fisheries
+  typically includes fewer older fish relative information from the Canadian fisheries.}
 
 \emph{The JTC is  concerned about multi-year changes in sampling and, in particular,
   the ending of complete data series.  As a result, the JTC conducted analyses to evaluate potential
-  medium to long-term impacts on the stock assessment with the loss of Canadian age data.  **Method
-  and results of Kelli's analysis here...}
+  medium to long-term impacts on the stock assessment with the loss of Canadian age data.
+  Starting with the most recent year to 2008,
+  we recalculated the age compositions used to fit the model assuming that
+  samples were not available from the Canadian freezer-trawler fishery or any
+  Canadian fishery (see Table~\ref{tab:main-sampling-history} for sample sizes).
+  The base model was refit to these contrived data sets similar to a retrospective analysis
+  except only Canadian age data was removed.
+  Estimates of recent spawning stock biomass decreased as years of information were removed
+  because the data contained less information on older fish than the full data set.}
 
 13. Uncertainty in weight-at-age is not accounted for in the stock assessment
 and a five-year average of recent observations is used for all years of the
