@@ -174,16 +174,16 @@ calc_risk <- function(forecast_outputs = NA,
   metric <- function(case_ind, x, yr, yr_ind){
     out <- NULL
     out[1] <- catch_levels[yr_ind, case_ind]
-    out[2] <- sum(x[, paste0("SSB_", yr + 1)] < x[, paste0("SSB_", yr)]) / nrow(x) * 100.0
-    out[3] <- sum(x[, paste0("Bratio_", yr + 1)] < 0.40) / nrow(x) * 100.0
-    out[4] <- sum(x[, paste0("Bratio_", yr + 1)] < 0.25) / nrow(x) * 100.0
-    out[5] <- sum(x[, paste0("Bratio_", yr + 1)] < 0.10) / nrow(x) * 100.0
-    out[6] <- sum(x[, paste0("SPRratio_", yr)] > 1.00) / nrow(x) * 100.0
-    out[7] <- sum(x[, paste0("ForeCatch_", yr + 1)] < out[1]) / nrow(x) * 100.0
+    out[2] <- sum(x[, paste0("SSB_", yr + 1)] < x[, paste0("SSB_", yr)], na.rm = TRUE) / nrow(x) * 100.0
+    out[3] <- sum(x[, paste0("Bratio_", yr + 1)] < 0.40, na.rm = TRUE) / nrow(x) * 100.0
+    out[4] <- sum(x[, paste0("Bratio_", yr + 1)] < 0.25, na.rm = TRUE) / nrow(x) * 100.0
+    out[5] <- sum(x[, paste0("Bratio_", yr + 1)] < 0.10, na.rm = TRUE) / nrow(x) * 100.0
+    out[6] <- sum(x[, paste0("SPRratio_", yr)] > 1.00, na.rm = TRUE) / nrow(x) * 100.0
+    out[7] <- sum(x[, paste0("ForeCatch_", yr + 1)] < out[1], na.rm = TRUE) / nrow(x) * 100.0
     ## DFO values
-    out[8] <- sum(x[, paste0("SSB_", yr)] > x[, "SSB_MSY"]) / nrow(x) * 100.0
-    out[9] <- sum(x[, paste0("SSB_", yr)] > 0.4 * x[, "SSB_MSY"]) / nrow(x) * 100.0
-    out[10] <- sum(x[, paste0("SSB_", yr)] > 0.8 * x[, "SSB_MSY"]) / nrow(x) * 100.0
+    out[8] <- sum(x[, paste0("SSB_", yr)] > x[, "SSB_MSY"], na.rm = TRUE) / nrow(x) * 100.0
+    out[9] <- sum(x[, paste0("SSB_", yr)] > 0.4 * x[, "SSB_MSY"], na.rm = TRUE) / nrow(x) * 100.0
+    out[10] <- sum(x[, paste0("SSB_", yr)] > 0.8 * x[, "SSB_MSY"], na.rm = TRUE) / nrow(x) * 100.0
     names(out) <- c(paste0("ForeCatch_", yr),
                     paste0("SSB_", yr + 1, "<SSB_", yr),
                     paste0("Bratio_", yr + 1, "<0.40"),
@@ -205,17 +205,14 @@ calc_risk <- function(forecast_outputs = NA,
     # This call calculates the metrics for each element in the list (each catch case)
     #  and binds them together into a data frame. If there was a problem,
     #  (e.g. a bridge model is set up for forecasting) it will be set to NA.
-    risk_list[[yr]] <- tryCatch({
-      do.call("rbind",
+    risk_list[[yr]] <-
+       do.call("rbind",
               lapply(1:length(outputs),
                      function(ind, yr, yr_ind){
                        metric(ind, outputs[[ind]], yr, yr_ind)
                      },
                      yr = forecast_yrs[yr],
                      yr_ind = yr))
-    }, error = function(e){
-      NA
-    })
   }
   names(risk_list) <- names(forecast_outputs[1:(length(forecast_outputs) - 1)])
 
