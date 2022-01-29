@@ -1041,7 +1041,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      subplots = 14,
                      model.names = c(base.model.name, sens.model.names.2),
                      legend = TRUE,
-                     legendloc = "bottomright",  # seems to get ignored
+                     legend_loc = "topleft",
                      indexfleets= c(2),
                      end.yr = end.yr)
 @
@@ -1140,6 +1140,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
                      subplots = 13,
                      model.names = c(base.model.name, sens.model.names.4),
                      legend = TRUE,
+                     legend_loc = "topleft",
                      indexfleets = 2,
                      end.yr = end.yr)
 @
