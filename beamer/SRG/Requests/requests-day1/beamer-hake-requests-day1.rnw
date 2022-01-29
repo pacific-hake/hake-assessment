@@ -207,7 +207,7 @@ Statistics Methodology, Cornell University. 60p. https://arxiv.org/abs/1701.0243
 \begin{frame}
 \frametitle{Density of $M$, NUTS vs rwMH}
 <<fig2, fig.height = 3.5>>=
-plot_doublehist("NatM_p_1_Fem_GP_1", "Natural Mortality")
+plot_doublehist("NatM_uniform_Fem_GP_1", "Natural Mortality")
 @
 \end{frame}
 % -----------------------------------------------------------------------------
