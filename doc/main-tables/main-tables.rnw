@@ -600,7 +600,6 @@ make.risk.table(base.model,
                 space.size = 13)
 @
 
-
 \begin{landscape}
 \pagestyle{mylandscape}
 \centering
@@ -609,7 +608,7 @@ param_est_table(sens.models.1.for.table,
                 model.names = sens.model.names.1.for.table,
                 end.yr = end.yr,
                 digits = 3,
-                xcaption = paste0("**Posterior medians for select parameters, derived quantities,
+                xcaption = paste0("Posterior medians for select parameters, derived quantities,
                                    reference points, and negative log likelihoods for the base
                                    model and some sensitivity runs (described in
                                    Section~\\ref{sec:assessment-sensitivity-analyses}).
@@ -619,18 +618,13 @@ param_est_table(sens.models.1.for.table,
                 space.size = 11,
                 getrecs = c(2010, 2014, 2016))
 @
-\end{landscape}
-\pagestyle{fancy}
 
-\begin{landscape}
-\pagestyle{mylandscape}
-\centering
 <<main-parameter-estimates-sens-2, results='asis', echo=FALSE>>=
 param_est_table(sens.models.2.for.table,
                 model.names = sens.model.names.2.for.table,
                 end.yr = end.yr,
                 digits = 3,
-                xcaption = paste0("**Posterior medians for select parameters,
+                xcaption = paste0("Posterior medians for select parameters,
                                    derived quantities, reference points, and negative log likelihoods
                                    for the base model and further sensitivity runs (described in
                                    Section~\\ref{sec:assessment-sensitivity-analyses})."),
@@ -651,14 +645,14 @@ param_est_table(retro.list,
                 digits = 3,
                 show_like = FALSE,
                 getrecs = c(2010, 2014, 2016),
-                xcaption = "**Posterior medians from the base model for
+                xcaption = "Posterior medians from the base model for
                             select parameters, derived quantities,
                             reference point estimates, and negative
                             log likelihoods for retrospective analyses.
                             Some values are implied since they occur after
                             the ending year of the respective retrospective
                             analysis. A dash (--) indicates that the parameter or
-                            derived quantity was not estimated in the model.",
+                            derived quantity was not output by the model.",
                 xlabel = "tab:main-parameter-estimates-retro",
                 font.size = 10,
                 space.size = 11)
