@@ -948,7 +948,9 @@ spawning biomass is \Sexpr{prev.bio.median}
 median and broader credibility interval than the \Sexpr{prev.bio.median.last.assess}
 (\Sexpr{prev.bio.lower.last.assess}--\Sexpr{prev.bio.upper.last.assess})~million~t estimated
 in the \Sexpr{end.yr-1} assessment, but there is considerable overlap of the credibility
-intervals. The increase appears to be due to the information in the 2021 survey data (as outlined in
+intervals.
+The increase appears to be due to the addition of survey data, namely the 2021
+biomass index and age compositions, plus the full age-1 index (as outlined in
 Section~\ref{sec:assessment-changes}).   % copied to Exec Summary also.
 %%The additional
 %%data in the 2018 assessment has reduced the uncertainty of the 2017 biomass, and

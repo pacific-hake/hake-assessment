@@ -333,7 +333,9 @@ spawning biomass is \Sexpr{prev.bio.median}
 somewhat higher
 median and broader credibility interval than the \Sexpr{prev.bio.median.last.assess}
 (\Sexpr{prev.bio.lower.last.assess}--\Sexpr{prev.bio.upper.last.assess})~million~t estimated in the \Sexpr{end.yr-1}
-assessment. The increase appears to be due to the information in the 2021 survey data.
+assessment.
+The increase appears to be due to the addition of survey data, namely the 2021
+biomass index and age compositions, plus the full age-1 index.
 % Manual 2022 done (updated numbers in final sentence and revised text).
 <<biomass-table, results='asis', echo=FALSE>>=
 make.biomass.table(base.model,
