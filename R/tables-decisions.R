@@ -81,7 +81,6 @@ decision_table <- function(model,
     first_biomass_yr <<- slice(tmp, 1)
     slice(tmp, -1)
   }) %>% map_df(~{.x})
-  first_biomass_yr$Year <- paste("Start", first_biomass_yr$Year)
 
   c.levels <- map(model$catch.levels, ~{
     tmp <- .x[[1]]
@@ -94,7 +93,7 @@ decision_table <- function(model,
   forecast.tab <- forecast.tab %>%
     bind_cols(c.levels, tab.letters) %>%
     mutate(Year = as.numeric(Year) - 1,
-           start_yr = paste("Start", Year + 1)) %>%
+           start_yr = as.character(Year + 1)) %>%
     select(labels, Year, `Catch (t)`, start_yr, everything()) %>%
     mutate(Year = as.character(Year),
            `Catch (t)` = f(`Catch (t)`),
@@ -127,33 +126,37 @@ decision_table <- function(model,
   quant.cell.defs[length(quant.cell.defs)] <- paste0(quant.cell.defs[length(quant.cell.defs)], "|")
 
   if(type == "biomass"){
-    addtorow$command <- c(paste0(latex.hline,
-                                 latex.amp(3),
-                                 "Model quantile",
-                                 quant.string,
+    addtorow$command <- c(paste0(latex.cline("1-7"),
+                                 latex.mcol(3,
+                                            "|c|",
+                                            ""),
+                                 latex.amp(),
+                                 latex.bold("Biomass at"),
+                                 latex.amp(),
+                                 latex.mcol(3,
+                                            "c|",
+                                            table.header),
                                  latex.nline,
                                  latex.cline("1-3"),
                                  latex.mcol(3,
                                             "|c|",
-                                            "Management Action"),
+                                            latex.bold("Management Action")),
                                  latex.amp(),
-                                 "Biomass year",
+                                 latex.bold("start of year"),
                                  latex.amp(),
-                                 latex.mcol(length(quant.levels),
-                                            "c|",
-                                            table.header),
-                                 #quant.ampersands,
+                                 paste(latex.bold(quant.levels), collapse = latex.amp()),
                                  latex.nline,
-                                 latex.cline("1-3"),
+                                 latex.hline,
                                  latex.amp(),
-                                 "Catch year",
+                                 latex.bold("Catch year"),
                                  latex.amp(),
-                                 "Catch (t)",
+                                 latex.bold("Catch (t)"),
                                  latex.amp(),
                                  paste(first_biomass_yr[1,], collapse = latex.amp()),
                                  latex.nline,
                                  latex.hline),
                           latex.hline)
+
   }else{
     addtorow$command <- c(paste0(latex.cline("1-6"),
                                  latex.mcol(3,
@@ -164,7 +167,7 @@ decision_table <- function(model,
                                             "c|",
                                             table.header),
                                  latex.nline,
-                                 latex.cline("1-3"),
+                                 latex.hline,
                                  latex.amp(),
                                  latex.bold("Catch year"),
                                  latex.amp(),
@@ -188,7 +191,7 @@ decision_table <- function(model,
                "|c",
                "c",
                "c|",
-               "c",
+               "c|",
                quant.cell.defs)
   }else if(type == "spr"){
     align <- c("c",
