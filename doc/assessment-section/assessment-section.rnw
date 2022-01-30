@@ -11,31 +11,36 @@ subject to a larger number of stock assessments than any marine species off the
 west coast of the U.S.A.~and Canada. These assessments have included a large
 variety of age-structured models. Initially, a cohort analysis tuned to fishery
 CPUE was used \citep{FrancisSwartzmanEtAl1982}. Later, the cohort analysis was
-tuned to National Marine Fisheries Service (NMFS) triennial acoustic survey estimates of absolute biomass at age
-\citep{HollowedAdlersteinEtAl1988}. Since 1989, Stock Synthesis models using
+tuned to National Marine Fisheries Service (NMFS) triennial acoustic survey
+estimates of absolute biomass at age \citep{HollowedAdlersteinEtAl1988}.
+Since 1989, Stock Synthesis models fit to
 fishery catch-at-age data and acoustic survey estimates of population biomass
-and age composition have been the primary assessment method
-\citep{JTC2021}.
+and age composition have been the primary assessment method.
 
 While the general form of the age-structured assessment has remained similar since 1991,
 modeling procedures have been modified in a variety of ways. There have been
-alternative data choices, post-data collection processing routines, different
-data-weighting schemes, many structural assumptions for the stock
-assessment model, alternative MCMC sampling algorithms, and alternative
+alternative data choices, post-data collection processing routines,
+data-weighting schemes, structural assumptions for the stock
+assessment model, MCMC sampling algorithms, and
 control rules (Table~\ref{tab:main-assessment-changes}).
+Analysts are constantly trying to improve the caliber and relevance of the assessment by
+responding to new scientific developments related to statistics and biological dynamics,
+policy requirements, and
+different or new insights brought up during the peer review process.
 
-Data processing, choices, and weighting have been modified several times in
-historical hake assessments. For example, the processing of acoustic data has been
-modified over the years through modifications to target-strength calculations
-\citep{DornSaunders1997} or the introduction of kriging
-\citep{StewartHamel2010}. While survey data have been the key index for
+Data processing, filtering, and weighting choices have been modified several times
+since the first assessment. For example, modifications to the target-strength
+relationship used to scale acoustic data changed in 1997 \citep{DornSaunders1997}
+and kriging was implemented to account for the spatial correlation in the
+acoustic data in 2010 \citep{StewartHamel2010}.
+While survey data have been the key index for
 biomass since 1988, surveys that have been used have varied considerably. The
 AFSC/NWFSC triennial bottom trawl survey was used from 1988 before being
 discarded from the 2009 assessment \citep{HamelStewart2009}. Acoustic
 surveys from the years prior to 1995 were used for assessments in the early
-1990s, but \citet{StewartForrestEtAl2011} reviewed these early surveys and
-deemed that sampling had been insufficient to be comparable with more
-recent data. Various recruitment indices have also been considered, but subsequently
+1990s but \citet{StewartForrestEtAl2011} reviewed these early surveys and
+deemed that sampling was insufficient to be comparable with more
+recent data. Various recruitment indices have also been considered and subsequently
 rejected \citep{HelserDornEtAl2002, HelserFleischerEtAl2005,
 StewartHamel2010}. The process for generating fecundity-at-age from weight-at-age data
 changed in 2019 from using time-invariant to year-specific values.
@@ -53,7 +58,7 @@ survey variance. Since 2021, a more efficient Bayesian MCMC sampler
 a change from previous assessments that used the random walk Metropolis Hastings
 (rwMH) sampler (details described in \citealt{JTC2021}).
 The list of changes discussed above is for illustrative
-purposes only; it is only a small fraction of the different choices
+purposes only and represents a small fraction of the different choices
 analysts have made and that reviewers have required.
 
 The structure of the assessment models has perhaps had the largest number of
@@ -65,7 +70,7 @@ recruitment has been modeled by sampling historical recruitment (e.g.,
 relationship parameterized using maximum sustainable yield ($\text{MSY}$) and
 the fishing mortality rate estimated to produce the MSY ($\Fmsy$; \citealt{Martell2010}),
 and using several alternative steepness priors \citep{JTC2012,
-JTC2013}. Selectivity has also been modeled in several ways:
+JTC2013}. Selectivity has also been modeled in several ways,
 invariant \citep{JTC2012, JTC2013}, time-varying with \citep{HelserDornEtAl2002}
 and without \citep{Dorn1994, DornSaunders1997, JTC2012, JTC2013} a random walk,
 alternative levels of allowable deviation through time \citep{JTC2013, JTC2017},
@@ -77,31 +82,17 @@ these stock assessments. \fishname\ stock assessments have presented decision
 makers with constant $F$, variable $F$, and the following hybrid control rules:
 $F_{\text{SPR}=35\%}$, $\Fforty$, \Ffortyten, $F_{\text{SPR}=45\%}$,
 $F_{\text{SPR}=45\%}$--40:10, and $F_{\text{SPR}=50\%}$ (e.g., \citealt{Dorn1996,
-JTC2013}). The above is only a small fraction of the number of management
-procedures that have actually been investigated. There have been many other
-combinations of data, assessment models, and harvest control rules. In addition
-to the cases examined in the assessment documents, there have been many more
-requested at review panel meetings.
+JTC2013}).
+Changes to policies such as
+the United States' National Standards Guidelines in 2002 and
+the \Ffortyten{} harvest control rule in the Agreement (Appendix~\ref{chap:glossary})
+have required specific changes to control rules.
 
-While there have been many changes to \fishname\ modeling procedures, each one
-has been considered carefully. Available data have changed over the years, and there
-have been many advances in the discipline of fisheries science. In some ways,
-the latter has evolved considerably over the course of the fishery for \fishname.
-New statistical techniques (e.g., Bayesian vs.~maximum likelihood methods)
-and software (e.g., NUTS vs.~random walk Metropolis Hastings samplers) have evolved
-and the scientific literature has
-suggested potentially important biological dynamics to consider (e.g., movement and
-connectivity). Policies requiring the application of
-specific control rules have also changed such as the United States' National
-Standards Guidelines in 2002 and the \Ffortyten{} harvest control rule
-in the Agreement
-(see Glossary in Appendix~\ref{chap:glossary}). Analysts making changes to \fishname\ modeling procedures have been
-trying to improve the caliber and relevance of the assessments by responding to
-new scientific developments, policy requirements, and different or new insights
-during the peer review process. Until the process for a MSE
-began, initiated in 2013 \citep{JTC2013} and currently being revisited \citep{JacobsenEtAl2021},
-none of these modeling procedure changes were evaluated by simulation and
-quantitatively compared with performance measures.
+In addition to the examples given above and changes documented in stock assessments,
+there have been many more investigations conducted at review panel meetings.
+Starting in 2013, the addition of the MSE \citep{JTC2013, JacobsenEtAl2021} facilitated
+investigating changes to the modeling procedure in terms of pre-specified objectives
+that aim for a sustainable coast-wide fishery.
 
 \subsection{Description of base model}\label{sec:assessment-base-model}
 
