@@ -317,7 +317,7 @@ fetch_extra_mcmc <- function(model_path,
   # TODO: hack of subtracting 1 - See issue #859
   message("Applying selectivity to numbers-at-age...")
   natage <- extra_mcmc$natage %>%
-    dplyr::filter(Yr == next_yr - 1) %>%
+    dplyr::filter(Yr == next_yr) %>%
     select(-Yr)
 
   natsel <- natage * sel
