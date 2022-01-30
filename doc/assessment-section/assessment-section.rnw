@@ -1445,10 +1445,11 @@ during the forecast years presented here.
 
 It should be noted
 that forecasted biomass is not only influenced by catch levels.
-As the large 2010 and 2014 cohorts continue to age, their biomass is expected to decrease
+As the large 2010 and 2014 cohorts continue to age, their biomass is
+will continue to decrease (Table~\ref{tab:main-cohort-effects})
 as losses from mortality outweigh increases from growth. The smaller
-above-average 2016 cohort is entering this growth-mortality transition period,
-and the average 2017 cohort will do so soon.
+above-average 2016 cohort has also entered this growth-mortality transition period
+(Table~\ref{tab:main-cohort-effects}).
 The below-average 2015 and 2018 cohorts will contribute much less to forecasted spawning
 biomass than the larger cohorts. The probability
 that the \Sexpr{forecast_yrs[2]} spawning biomass will be less than the
@@ -1458,8 +1459,9 @@ Figure~\ref{fig:main-forecast-risk-comparison-year-1}).
 
 
 % This needs to be somewhat manual so you can pick the cohorts to
-% specify - look at fore.catch.prop.  Increment the years each assessment.
-**[not incremented manual years yet, see comments] The age composition (in numbers) of the catch in \Sexpr{forecast_yrs[1]} is
+% specify - look at fore.catch.prop.  Increment the ages each assessment.
+**[not incremented manual years yet, see comments and Issue \#920]
+The age composition (in numbers) of the catch in \Sexpr{forecast_yrs[1]} is
 projected to be (using MCMC medians)
 \Sexpr{fore.catch.prop$Age4}\% age-4 fish from the 2017 year-class,
 \Sexpr{fore.catch.prop$Age5}\% age-5 fish from the 2016 year-class,
