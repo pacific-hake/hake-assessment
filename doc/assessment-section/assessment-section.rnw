@@ -173,7 +173,7 @@ biomass index and the age-1 index, which were
 freely estimated to accommodate unaccounted-for sources of process and
 observation error.
 A D-M likelihood was applied to age-composition data,
-with input sample sizes equal to the sum of the number of trips or hauls actually sampled across all
+with input sample sizes equal to the sum of the number of trips and hauls sampled across all
 fishing fleets or the number of trawl sets in the research surveys (see Section~\ref{sec:data-age-comp-likelihood}).
 
 Uncertainty of estimated quantities was calculated via MCMC simulations using
