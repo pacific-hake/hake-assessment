@@ -191,17 +191,14 @@ the 2.5\% quantile and the 97.5\% quantile of posterior distributions from the
 MCMC samples, to give equal-tailed intervals.
 
 The {\tt adnuts} software goes through several steps including
-a pilot run which is a short parallel-chain Random Walk Metropolis (RWM) run to ensure the MCMC algorithm is
+a pilot run using rwMH sampling with a few short chains in parallel to ensure the MCMC algorithm is
 converging. Once the pilot had been checked for convergence, low effective sample size,
-and for slow mixing parameters by comparing pairwise correlation plots, an MLE was run to
-obtain the MLE covariance matrix. The covariance matrix was used as the mass matrix for
-the main NUTS run. The MLE run was a short run producing 500 samples and with a warmup of
-100. The mass matrix was passed to the main NUTS run, and \Sexpr{f(num.mcmc.samples)}
-samples from the posterior were generated. The {\tt adapt\_delta} value
-sets the target average acceptance probability,
-% which reduces
-% divergence and forces sampling from a wider part of the posterior,
-and was set to 0.95 for
+and for slow mixing parameters by comparing pairwise correlation plots, MLE was run to
+obtain the covariance matrix. The covariance matrix is then used as the mass matrix for
+a short run producing 500 samples using a warmup of 100 samples.
+The covariance matrix from this short run is used as the mass matrix for the main run, providing
+\Sexpr{f(num.mcmc.samples)} samples from the posterior for inference. The {\tt adapt\_delta} value
+sets the target average acceptance probability and was set to 0.95 for
 the main NUTS run. The choice of {\tt adapt\_delta} of 0.95 was made based on less divergence
 of the posterior and higher effective sample size compared to 0.90, which was used for last
 year's assessment. A full explanation of the NUTS algorithm and the {\tt adnuts} package,
@@ -210,15 +207,15 @@ can be found in \citet{Monnahan2019}.
 
 Cloud computing was used for the first time for this assessment through Amazon Web Services' (AWS)
 Elastic Compute Cloud (EC2) instances. Use of these services allowed the JTC to run many models
-simultaneously and to acquire more samples from the posterior distribution. The heavy workload
-of model runs was moved from local computers to cloud instances leaving local computers
-available to continue work on the document and other analyses that were explored. Storage for the model output
-was on AWS Simple Storage Service (S3) which can hold "any amount of data" and be accessed only
-with dual secret keys.
+simultaneously and to acquire more samples from the posterior distribution than what was used
+for inference in the last assessment. Thus, the use of AWS left local computers
+available to continue work on the document and other analyses.
+AWS Simple Storage Service (S3), which can hold "any amount of data" privately, was used to
+share the model results between JTC members.
 
 Calculations and figures from Stock Synthesis output were performed using
-\Sexpr{R.Version()$version.string} \citep{R2021} and many R packages (in
-particular r4ss, adnuts, and xtable). The use of R, knitr, \LaTeX~and GitHub immensely
+\Sexpr{R.Version()$version.string} and many R \citep{R2021} packages (in
+particular r4ss, adnuts, and xtable). The use of R, knitr, \LaTeX, and GitHub immensely
 facilitated the collaborative writing of this document.
 In particular, having most of the code under version control since the 2016
 assessment \citep{JTC2016} allows for the completion of a full assessment
