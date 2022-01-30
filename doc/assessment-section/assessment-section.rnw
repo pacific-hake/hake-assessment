@@ -98,6 +98,7 @@ that aim for a sustainable coast-wide fishery.
 
 The \Sexpr{assess.yr} base model has the same population dynamics structure
 as the \Sexpr{last.assess.yr} stock assessment.
+See Appendices~\ref{chap:data-file}-\ref{chap:weight-at-age-file} for input files.
 The statistical-catch-at-age model assumes that the
 \fishname\ population is a single coast-wide stock subject to
 one aggregated fleet with combined male and female population dynamics.
@@ -176,23 +177,20 @@ A D-M likelihood was applied to age-composition data,
 with input sample sizes equal to the sum of the number of trips and hauls sampled across all
 fishing fleets or the number of trawl sets in the research surveys (see Section~\ref{sec:data-age-comp-likelihood}).
 
-Uncertainty of estimated quantities was calculated via MCMC simulations using
-NUTS, initiated to achieve a minimum of \Sexpr{f(num.mcmc.samples)}
-posterior samples for the base model (and 8,000 samples for all other runs).
-Medians (50\% quantiles) are reported together with the
-bounds of 95\% credibility intervals calculated as
-the 2.5\% quantile and the 97.5\% quantile of posterior distributions from the
-MCMC samples, to give equal-tailed intervals. The Stock Synthesis input
-files for the base model are given in
-Appendices~\ref{chap:data-file}-\ref{chap:weight-at-age-file}.
-
 \subsubsub{Software and Hardware}
 
 The {\tt adnuts} R package \citep{Monnahan2018} was used to apply the NUTS algorithm producing
 \Sexpr{f(num.mcmc.samples)} MCMC samples which describe posterior distributions for model
-parameters and derived quantities.This is nearly a ten-fold increase in samples from the
-2020 assessment \citep{JTC2020} and earlier, and a 33\% increase in samples from last
-year's assessment \citep{JTC2021}. The {\tt adnuts} software goes through several steps including
+parameters and derived quantities. This is nearly a ten-fold increase in samples from the
+2020 assessment \citep{JTC2020} and earlier and a 33\% increase in samples from last
+year's assessment \citep{JTC2021}. The number of samples in sensitivities to the base model
+was not increased relative to the last assessment, i.e., 8,000 samples.
+Medians (50\% quantiles) are reported together with the
+bounds of 95\% credibility intervals calculated as
+the 2.5\% quantile and the 97.5\% quantile of posterior distributions from the
+MCMC samples, to give equal-tailed intervals.
+
+The {\tt adnuts} software goes through several steps including
 a pilot run which is a short parallel-chain Random Walk Metropolis (RWM) run to ensure the MCMC algorithm is
 converging. Once the pilot had been checked for convergence, low effective sample size,
 and for slow mixing parameters by comparing pairwise correlation plots, an MLE was run to
