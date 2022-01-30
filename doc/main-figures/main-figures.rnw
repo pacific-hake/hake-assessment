@@ -841,8 +841,10 @@ make.forecast.depletion.comparison.plot(base.model,
 \end{center}
 \caption{Time series of relative spawning biomass at the start of each year until \Sexpr{end.yr} as estimated from the base model, and forecast trajectories
   to the start of \Sexpr{forecast_yrs[length(forecast_yrs)]} for several management options from the decision table (grey region), with 95\% posterior
-  credibility intervals. The \Sexpr{end.yr} catch of \Sexpr{f(base.model$catch.default.policy[1])}~t was calculated using the default
-  harvest policy, as defined in the Agreement.}
+  credibility intervals. The default harvest policy catches are
+  \Sexpr{f(base.model$catch.default.policy[1])}~t in \Sexpr{end.yr},
+  \Sexpr{f(base.model$catch.default.policy[2])}~t in \Sexpr{end.yr+1}, and
+  \Sexpr{f(base.model$catch.default.policy[3])}~t in \Sexpr{end.yr+2}.}
 \label{fig:main-forecast-depletion-comparison}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
