@@ -196,6 +196,38 @@ MCMC samples, to give equal-tailed intervals. The Stock Synthesis input
 files for the base model are given in
 Appendices~\ref{chap:data-file}-\ref{chap:weight-at-age-file}.
 
+\subsubsub{Software and Hardware}
+
+The {\tt adnuts} R package \citep{Monnahan2018} was used to apply the NUTS algorithm producing
+\Sexpr{f(num.mcmc.samples)} MCMC samples which describe posterior distributions for model
+parameters and derived quantities.This is nearly a ten-fold increase in samples from the
+2020 assessment \citep{JTC2020} and earlier, and a 33\% increase in samples from last
+year's assessment \citep{JTC2021}. The {\tt adnuts} software goes through several steps including
+a pilot run which is a short parallel-chain Random Walk Metropolis (RWM) run to ensure the MCMC algorithm is
+converging. Once the pilot had been checked for convergence, low effective sample size,
+and for slow mixing parameters by comparing pairwise correlation plots, an MLE was run to
+obtain the MLE covariance matrix. The covariance matrix was used as the mass matrix for
+the main NUTS run. The MLE run was a short run producing 500 samples and with a warmup of
+100. The mass matrix was passed to the main NUTS run, and \Sexpr{f(num.mcmc.samples)}
+samples from the posterior were generated. The {\tt adapt\_delta} value
+sets the target average acceptance probability,
+% which reduces
+% divergence and forces sampling from a wider part of the posterior,
+and was set to 0.95 for
+the main NUTS run. The choice of {\tt adapt\_delta} of 0.95 was made based on less divergence
+of the posterior and higher effective sample size compared to 0.90, which was used for last
+year's assessment. A full explanation of the NUTS algorithm and the {\tt adnuts} package,
+including an analysis with the \fishname\ stock
+can be found in \citet{Monnahan2019}.
+
+Cloud computing was used for the first time for this assessment through Amazon Web Services' (AWS)
+Elastic Compute Cloud (EC2) instances. Use of these services allowed the JTC to run many models
+simultaneously and to acquire more samples from the posterior distribution. The heavy workload
+of model runs was moved from local computers to cloud instances leaving local computers
+available to continue work on the document and other analyses that were explored. Storage for the model output
+was on AWS Simple Storage Service (S3) which can hold "any amount of data" and be accessed only
+with dual secret keys.
+
 Calculations and figures from Stock Synthesis output were performed using
 \Sexpr{R.Version()$version.string} \citep{R2021} and many R packages (in
 particular r4ss, adnuts, and xtable). The use of R, knitr, \LaTeX~and GitHub immensely
@@ -677,37 +709,6 @@ median relative spawning stock biomass from
 \Sexpr{round(median(base.model$mcmc$Bratio_2022),3)*100}\%.
 
 \subsubsection{Assessment model results}\label{sec:assessment-model-results}
-\subsubsub{Software and Hardware}
-
-The {\tt adnuts} R package \citep{Monnahan2018} was used to apply the NUTS algorithm producing
-\Sexpr{f(num.mcmc.samples)} MCMC samples which describe posterior distributions for model
-parameters and derived quantities.This is nearly a ten-fold increase in samples from the
-2020 assessment \citep{JTC2020} and earlier, and a 33\% increase in samples from last
-year's assessment \citep{JTC2021}. The {\tt adnuts} software goes through several steps including
-a pilot run which is a short parallel-chain Random Walk Metropolis (RWM) run to ensure the MCMC algorithm is
-converging. Once the pilot had been checked for convergence, low effective sample size,
-and for slow mixing parameters by comparing pairwise correlation plots, an MLE was run to
-obtain the MLE covariance matrix. The covariance matrix was used as the mass matrix for
-the main NUTS run. The MLE run was a short run producing 500 samples and with a warmup of
-100. The mass matrix was passed to the main NUTS run, and \Sexpr{f(num.mcmc.samples)}
-samples from the posterior were generated. The {\tt adapt\_delta} value
-sets the target average acceptance probability,
-% which reduces
-% divergence and forces sampling from a wider part of the posterior,
-and was set to 0.95 for
-the main NUTS run. The choice of {\tt adapt\_delta} of 0.95 was made based on less divergence
-of the posterior and higher effective sample size compared to 0.90, which was used for last
-year's assessment. A full explanation of the NUTS algorithm and the {\tt adnuts} package,
-including an analysis with the \fishname\ stock
-can be found in \citet{Monnahan2019}.
-
-Cloud computing was used for the first time for this assessment through Amazon Web Services' (AWS)
-Elastic Compute Cloud (EC2) instances. Use of these services allowed the JTC to run many models
-simultaneously and to acquire more samples from the posterior distribution. The heavy workload
-of model runs was moved from local computers to cloud instances leaving local computers
-available to continue work on the document and other analyses that were explored. Storage for the model output
-was on AWS Simple Storage Service (S3) which can hold "any amount of data" and be accessed only
-with dual secret keys.
 
 \subsubsub{Model Fit}
 
@@ -1300,15 +1301,13 @@ P$(B_{\Sexpr{assess.yr}} > \Btwentyfive) = \Sexpr{probs.curr.btwentyfive}$\%.
 
 \subsection{Model projections}\label{sec:assessment-model-projections}
 
-**Think some of these paragraphs get repeated in Exec Summary.
-
-**The median catch limit for \Sexpr{min(forecast_yrs)} based on the default
+The median catch limit for \Sexpr{min(forecast_yrs)} based on the default
 \Ffortyten{} harvest policy is \Sexpr{catch.limit.quantiles["median"]}~t, but
 has a wide range of uncertainty (Figure~\ref{fig:main-projected-catch-density}),
 with the 95\% credibility interval being
 \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
 
-**[change if new format used] Decision tables give projected population status (relative spawning biomass) and
+Decision tables give projected population status (relative spawning biomass) and
 relative fishing intensity under different catch alternatives for the base model
 (Tables~\ref{tab:main-decisions-biomass} and~\ref{tab:main-decisions-spr}). The
 tables are organized such that the projected outcome for each potential catch
@@ -1318,38 +1317,36 @@ relative spawning biomass outcomes, and Table~\ref{tab:main-decisions-spr} shows
 projected fishing intensity outcomes relative to the 100\% target (based on SPR;
 see table legend).
 
-**
 The tables use the new format demonstrated by
-\citep{JTC2021} arising from discussions at the 2021 SRG meeting.
+\citet{JTC2021} arising from discussions at the 2021 SRG meeting.
 Enhancements include:
+\begin{itemize}
+  \item showing current spawning biomass once in a single row at the top (\emph{Start 2022})
+    rather than repeating it;
 
-**[Copying these here from last year's appendix, may want to briefly summarise
-them, just not as a list].
--- 2021 biomass is shown in a single row at the top (\emph{Start 2021})
- in the new table. Whereas, 2021 biomass is the first row in every row
- chunk (a--j) in Table~\ref{tab:es-decisions-biomass}.
+  \item showing values as proportions instead of percentages;
 
--- Values are shown as proportions instead of percentages
-allowing the removal of percentage signs after relative biomass values which can be distracting.
+  \item removing the 25\% and 75\% columns;
 
--- Removal of the 25\% and 75\% columns.
+  \item adding a new column, \emph{Biomass year}, which emphasizes the timing of the biomass estimates;
 
--- Addition of a new column, \emph{Biomass year}, which explains the timing of the biomass estimates.
+  \item re-naming of the header for the relative biomass values from \emph{Beginning of year relative spawning biomass} to \emph{Resulting relative spawning biomass};
 
--- Re-naming of the header for the relative biomass values from \emph{Beginning of year relative spawning biomass} to \emph{Resulting relative spawning biomass}.
+  \item the values shown in the \emph{Resulting relative spawning biomass} columns now represent the biomass at
+    the beginning of the year resulting from the catch taken in the previous year,
+    as given in the \emph{Catch year} column;
 
--- The values shown in the \emph{Resulting relative spawning biomass} columns now represent the biomass at the beginning of the year which result due to the catch taken in the previous year. These catches are in the (\emph{Catch year}) column.
+  \item extending the projections of relative spawning biomass to the start of the \emph{third}
+   projection year (\Sexpr{assess.yr + 3}), rather than just the second year.
+\end{itemize}
 
--- Extension of the projections of relative spawning biomass to the start of the \emph{third}
--projection year (\Sexpr{assess.yr + 3}), rather than just the second year.
-
-**Population dynamics and governing
+Population dynamics and governing
 parameters assumed during the forecast period include average recruitment
 (no recruitment deviation); selectivity, weight-at-age and fecundity averaged over
 the five most recent years (\Sexpr{assess.yr-5}--\Sexpr{assess.yr-1}); and all estimated
 parameters constant (at their estimates for each particular MCMC sample).
 
-**Relative fishing intensity exceeding 1 (or 100\% when shown as a percentage) indicates fishing in excess of the
+Relative fishing intensity exceeding 1 (or 100\% when shown as a percentage) indicates fishing in excess of the
 $\Fforty$ default harvest rate limit. This can happen for the median
 relative fishing intensity in \Sexpr{forecast_yrs[1:(length(forecast_yrs)-1)]}
 and \Sexpr{forecast_yrs[length(forecast_yrs)]} because the $\Fforty$ default
@@ -1360,13 +1357,13 @@ in the projection of overfishing. An alternative catch level where median
 relative fishing intensity is 100\% is provided for comparison (catch
 alternative~\Sexpr{letters[catch.spr100.ind]}: FI=100\%).
 
-**Management metrics that were first identified as important to the Joint Management
+Management metrics that were first identified as important to the Joint Management
 Committee (JMC) and the Advisory Panel (AP) in 2012 are presented for
-projections to
 \Sexpr{forecast_yrs[2:(length(forecast_yrs)-1)]} and
-\Sexpr{forecast_yrs[length(forecast_yrs)]} (Tables~\ref{tab:main-risk-year-1}
-and~\ref{tab:main-risk-year-2} and
-Figures~\ref{fig:main-forecast-depletion-comparison}--\ref{fig:main-forecast-risk-comparison-year-2}).
+\Sexpr{forecast_yrs[length(forecast_yrs)]}
+projections
+(Tables~\ref{tab:main-risk-year-1}--\ref{tab:main-risk-year-3} and
+Figures~\ref{fig:main-forecast-depletion-comparison}--\ref{fig:main-forecast-risk-comparison-year-3}).
 These metrics summarize the probability of
 various outcomes from the base model given each potential management
 action. Although not linear, probabilities can be interpolated from this table
@@ -1374,54 +1371,78 @@ for intermediate catch
 values in \Sexpr{assess.yr} (Table~\ref{tab:main-risk-year-1} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-1}). However, interpolation is
 not appropriate for all catches in
-\Sexpr{assess.yr+1} because catch alternatives~h and~i have catches
-that are larger than 430,000~t
+\Sexpr{assess.yr+1} and \Sexpr{assess.yr+2} because
+they are conditional on previous year(s) catch levels.
+%catch alternatives~h and~i have catches
+%that are larger than 430,000~t
 % \Sexpr{catch_levels[[5]][[1]][1]}
-(the constant catch for alternative~\Sexpr{letters[5]}) in \Sexpr{assess.yr} but smaller than
-430,000~t
+%(the constant catch for alternative~\Sexpr{letters[5]}) in \Sexpr{assess.yr} but smaller% than
+% 430,000~t
 % \Sexpr{catch_levels[[5]][[1]][1]}
-in \Sexpr{assess.yr+1} (Table~\ref{tab:main-decisions-spr});
-this explains why a few probabilities decline
-(rather than rise) with increased \Sexpr{assess.yr+1} catch levels in Table~\ref{tab:main-risk-year-2}
-and Figure~\ref{fig:main-forecast-risk-comparison-year-2}.
+%in \Sexpr{assess.yr+1} (Table~\ref{tab:main-decisions-spr});
+This explains why a few probabilities decline
+(rather than rise) with increased \Sexpr{assess.yr+1} and \Sexpr{assess.yr+2}
+catch levels in Tables~\ref{tab:main-risk-year-2}
+and~\ref{tab:main-risk-year-3}
+and Figures~\ref{fig:main-forecast-risk-comparison-year-2}
+and~\ref{fig:main-forecast-risk-comparison-year-3}.
 
-**Figure~\ref{fig:main-forecast-depletion-comparison} shows the predicted
+Figure~\ref{fig:main-forecast-depletion-comparison} shows the projected
 relative spawning biomass trajectory through
 \Sexpr{forecast_yrs[length(forecast_yrs)]} for several of these management
-actions. With zero catch for the next two years, the biomass has a probability
-of \Sexpr{zero.catch.prob.bio.down.1}\% of decreasing from
-\Sexpr{forecast_yrs[1]} to \Sexpr{forecast_yrs[2]}
-(Table~\ref{tab:main-risk-year-1} and
-Figure~\ref{fig:main-forecast-risk-comparison-year-1}), and a probability of
-\Sexpr{zero.catch.prob.bio.down.2}\% of decreasing from \Sexpr{forecast_yrs[2]}
-to \Sexpr{forecast_yrs[3]} (Table~\ref{tab:main-risk-year-2} and
-Figure~\ref{fig:main-forecast-risk-comparison-year-2}). Note that for zero
-catch in Figure~\ref{fig:main-forecast-depletion-comparison}, the median in \Sexpr{end.yr}
-essentially equals the median in \Sexpr{end.yr + 1} (i.e., zero difference in the medians),
-which might be expected to imply a 50\% probability of a decline (not the 65\%
-just mentioned). However, this does not occur because the difference between the
-\Sexpr{end.yr} and \Sexpr{end.yr + 1} medians is not the same as the median of the
-\Sexpr{end.yr} and \Sexpr{end.yr + 1} differences.
-The median difference between \Sexpr{end.yr} and \Sexpr{end.yr + 1}
-is a decline of 0.028 (from calculating the difference for each MCMC sample and
-then taking the median). About 15\% of the
-MCMC samples have a decline in the range -0.028 to 0 (a decline greater than the
-median difference but less than the difference in the medians). This accounts for the
-apparent discrepancy in the 50\% and 65\% probabilities.
+actions. With zero catch for the next three years, the biomass has a
+\Sexpr{zero.catch.prob.bio.down.1}\% probability of decreasing from
+\Sexpr{forecast_yrs[1]} to \Sexpr{forecast_yrs[2]} (Table~\ref{tab:main-risk-year-1}
+and Figure~\ref{fig:main-forecast-risk-comparison-year-1}), a
+\Sexpr{zero.catch.prob.bio.down.2}\% probability of decreasing from
+\Sexpr{forecast_yrs[2]} to \Sexpr{forecast_yrs[3]} (Table~\ref{tab:main-risk-year-2}
+and Figure~\ref{fig:main-forecast-risk-comparison-year-2}),
+and a
+\Sexpr{zero.catch.prob.bio.down.3}\% probability of decreasing from
+\Sexpr{forecast_yrs[3]} to \Sexpr{forecast_yrs[4]} (Table~\ref{tab:main-risk-year-3}
+and Figure~\ref{fig:main-forecast-risk-comparison-year-3}).
+
+% Not needed for 2022, but keep around. It's described in a 2020 or 2021 issue.
+%Note that for zero
+%catch in Figure~\ref{fig:main-forecast-depletion-comparison}, the median in \Sexpr{end.yr}
+%essentially equals the median in \Sexpr{end.yr + 1} (i.e., zero difference in the medians),
+%which might be expected to imply a 50\% probability of a decline (not the 65\%
+%just mentioned). However, this does not occur because the difference between the
+%\Sexpr{end.yr} and \Sexpr{end.yr + 1} medians is not the same as the median of the
+%Sexpr{end.yr} and \Sexpr{end.yr + 1} differences.
+%The median difference between \Sexpr{end.yr} and \Sexpr{end.yr + 1}
+%is a decline of 0.028 (from calculating the difference for each MCMC sample and
+%then taking the median). About 15\% of the
+%MCMC samples have a decline in the range -0.028 to 0 (a decline greater than the
+%median difference but less than the difference in the medians). This accounts for the
+%apparent discrepancy in the 50\% and 65\% probabilities.
 
 % Make consistent with Exec Summary (that has older text commented out for
 % possible future use)
-**The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
-\Sexpr{end.yr+1} is over 65\% for all catch levels, including zero
+The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
+\Sexpr{end.yr+1} is under 57\% for all catch levels
 (Table~\ref{tab:main-risk-year-1} and
-Figure~\ref{fig:main-forecast-risk-comparison-year-1}). It is 86\% for the
-\Sexpr{end.yr} catch level similar to that for \Sexpr{end.yr-1} (catch alternative~d).
+Figure~\ref{fig:main-forecast-risk-comparison-year-1}). It is 30\% for the
+\Sexpr{end.yr} catch level similar to that for \Sexpr{end.yr-1} (catch alternative~f).
+%The highest probability of
+%decrease is 97\%, which is for the default harvest policy
+%(row~g in Table~\ref{tab:es-risk-year-1}).
 For all explored catches,
-the maximum probability of the spawning biomass dropping below $B_{10\%}$ at
-the start of \Sexpr{end.yr+1} is 2\%, and of
-dropping below $B_{40\%}$ is 46\%
-(Table~\ref{tab:main-risk-year-1} and
-Figure~\ref{fig:main-forecast-risk-comparison-year-1}).
+the maximum probability of the spawning biomass dropping below $B_{10\%}$
+at the start of \Sexpr{end.yr+1} is 0\%,
+at the start of \Sexpr{end.yr+2} is 1\%,
+and at the start of \Sexpr{end.yr+3} is 7\%
+(Tables~\ref{tab:main-risk-year-1}--\ref{tab:main-risk-year-3} and
+Figures~\ref{fig:main-forecast-risk-comparison-year-1}--\ref{fig:main-forecast-risk-comparison-year-3}).
+The similar maximum probability of dropping below $\Bforty$
+at the start of \Sexpr{end.yr+1} is 18\%,
+at the start of \Sexpr{end.yr+2} is 31\%,
+and at the start of \Sexpr{end.yr+3} is 44\%.
+As the large 2010, 2014, and 2016 cohorts continue to age, their biomass is expected to decrease
+as losses from mortality outweigh increases from growth.  The
+estimated above-average 2020 cohort will play a large role in determining spawning stock biomass
+during the forecast years presented here.
+
 It should be noted
 that forecasted biomass is not only influenced by catch levels.
 As the large 2010 and 2014 cohorts continue to age, their biomass is expected to decrease
