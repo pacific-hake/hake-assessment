@@ -1485,7 +1485,8 @@ for the 2010 cohort
 %  column heading calls here because years will change.
 % Calculations could do with standardising maybe, though can be helpful to be
 %  forced to think about them.
-**With respect to the DFO reference points, with the largest
+% 2022 - all updated automatically.
+With respect to the DFO reference points, with the largest
 \Sexpr{assess.yr} catch of \Sexpr{largest.next.catch}~t given in Table~\ref{tab:main-risk-year-1},
 at the start of \Sexpr{assess.yr+1} the stock is expected to be above the critical zone with a probability of
 P$(B_{\Sexpr{assess.yr+1}} > \Bten)=
@@ -1504,8 +1505,8 @@ P$(B_{\Sexpr{assess.yr+1}} > \Bmsy) = \Sexpr{dfo.prob.next.over.bmsy}$\% for
 this catch.
 
 %PFMC refrence points for hake/whiting are: Bmsy = 0.4B0; MSST = 0.25B0.  Will report these as well.
-**With respect to PFMC stock size reference points, a level of \Sexpr{assess.yr} catch consistent with the Treaty
-default harvest control rule (\Sexpr{next.treaty.catch}~t) has a
+With respect to PFMC stock size reference points, a level of \Sexpr{assess.yr} catch consistent with the Agreement
+default harvest control rule (\Sexpr{next.treaty.catch}~t) has an
 \Sexpr{pfmc.prob.next.year.below.b40}\% estimated probability of resulting in the biomass
 going below $\Bforty$ at the start of \Sexpr{assess.yr + 1} (and
 \Sexpr{pfmc.prob.next.year.below.b25}\% probability of going below
@@ -1517,7 +1518,7 @@ then the probability of the biomass going below $\Bforty$ is
 \Sexpr{assess.yr + 1} and
 \Sexpr{same.catch.prob.year.after.next.below.b40}\% for the start of
 \Sexpr{assess.yr + 2}.
-%Manual done 2021, and put some as custom variables
+%Manual done 2022, and put some as custom variables
 % \enlargethispage{\baselineskip}
 
 \subsection{Sensitivity analyses }\label{sec:assessment-sensitivity-analyses}
