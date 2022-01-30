@@ -1549,7 +1549,7 @@ the following:
 
 \item Removal of the age-1 index as a data source;
 
-\item Down weighting fishery age-composition data;
+\item Downweighting fishery age-composition data;
 
 \item Consideration of alternative standard deviations for time-varying
   selectivity; and
@@ -1717,7 +1717,7 @@ for \fishname\ \citep{BuckleyLivingston1997, HarveyGarfieldEtAl2021}.
 % Manual 2021 done - CG
 The base model includes a Dirichlet-multinomial likelihood component,
 which uses two estimated parameters to automatically weight each of the fishery and survey age
-compositions. The base model was compared to a sensitivity model that down-weighted
+compositions. The base model was compared to a sensitivity model that downweighted
 the fishery age compositions relative to the survey age compositions. The data weighting used
 in the sensitivity model was based on the McAllister-Ianelli method.
 This method requires manual iterative adjustments to the input sample sizes
@@ -1731,7 +1731,7 @@ used in the base model was \Sexpr{DM.weight.fishery.median} and
 \Sexpr{DM.weight.survey.median} (ratio of
 \Sexpr{f(as.numeric(DM.weight.fishery.median) /
 as.numeric(DM.weight.survey.median),2)}).
-Down-weighting fishery composition data using the McAllister-Ianelli method
+Downweighting fishery composition data using the McAllister-Ianelli method
 led to minor changes in relative spawning stock biomass and increased uncertainty
 in estimates of early recruitments compared to the base model
 (Figures~\ref{fig:main-status-base-alternative-2} and~\ref{fig:main-recruit-base-alternative-2}).

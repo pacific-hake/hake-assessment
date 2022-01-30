@@ -250,7 +250,7 @@ weight.at.age.heatmap(base.model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{**Empirical weight-at-age (kg) values used for the base model. Colors
+\caption{Empirical weight-at-age (kg) values used for the base model. Colors
   correspond to the values, with red being the lightest fish (across all years
   and ages) and blue being the heaviest fish. For each age, the most transparent cells indicate
   the lightest fish of that age.
@@ -276,7 +276,7 @@ weight.at.age.heatmap(base.model,
 @
 \end{center}
 \vspace{0mm}
-\caption{**Sample sizes of empirical weight-at-age measurements
+\caption{Sample sizes of empirical weight-at-age measurements
   used to calculate mean weight-at-age fit in the base model.
   Colors and transparency are identical to Figure~\ref{fig:main-empirical-weight-at-age}
   and based on mean values.
@@ -626,7 +626,7 @@ make.selex.uncertainty.lines.plot(base.model,
 par <- oldpar
 @
 \end{center}
-\caption{**Estimated acoustic (top -- for all years) and fishery selectivities (bottom -- for \Sexpr{end.yr-1} only)
+\caption{Estimated acoustic (top -- for all years) and fishery selectivities (bottom -- for \Sexpr{end.yr-1} only)
   from the posterior distribution for the base model.}
 \label{fig:main-tv-selex-uncertainty-lines}
 \end{figure}
@@ -740,7 +740,7 @@ make.mcmc.sr.variability.plot(base.model,
                               probs = c(0.025, 0.5, 0.975))
 @
 \end{center}
-\caption{**Estimated stock-recruit relationship for the base model with median predicted recruitments
+\caption{Estimated stock-recruit relationship for the base model with median predicted recruitments
   and 95\% posterior credibility intervals. Colors indicate time-period, with yellow colors in the
   early years and blue colors in the recent years. The thick solid black line indicates the central
   tendency (mean) and the red line indicates the central tendency after bias correcting for the log-normal
@@ -762,7 +762,7 @@ make.fishing.intensity.plot(base.model,
                             upper.lim = 1.5)
 @
 \end{center}
-\caption{**Trend in median fishing intensity (relative to the SPR management target) through \Sexpr{end.yr-1}
+\caption{Trend in median fishing intensity (relative to the SPR management target) through \Sexpr{end.yr-1}
   with 95\% posterior credibility intervals. The management target defined in the Agreement is shown as a horizontal line at 1.0.}
 \label{fig:main-fishing-intensity}
 %% \end{figure}
@@ -779,7 +779,7 @@ make.exploitation.fraction.plot(base.model,
                                 upper.lim = 0.35)
 @
 \end{center}
-\caption{**Trend in median exploitation fraction (catch divided by biomass of fish of age-2 and above) through \Sexpr{end.yr-1} with 95\% posterior credibility intervals.}
+\caption{Trend in median exploitation fraction (catch divided by biomass of fish of age-2 and above) through \Sexpr{end.yr-1} with 95\% posterior credibility intervals.}
 \label{fig:main-exploitation-fraction}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -794,7 +794,7 @@ make.phase.plot(base.model,
                 end.yr = end.yr)
 @
 \end{center}
-\caption{**Estimated historical path of median relative spawning biomass in
+\caption{Estimated historical path of median relative spawning biomass in
          year $t$ and corresponding median relative fishing
          intensity in year $t-1$. Labels show the
          start year, end year and year of highest relative fishing
@@ -815,7 +815,7 @@ make.forecast.catch.posterior.plot(base.model,
                                    fore.yr = end.yr)
 @
 \end{center}
-\caption{**The posterior distribution of the default \Sexpr{end.yr} catch limit calculated using the default harvest
+\caption{The posterior distribution of the default \Sexpr{end.yr} catch limit calculated using the default harvest
   policy (\Ffortyten). The median is \Sexpr{catch.limit.quantiles["median"]}~t (vertical line), with the dark shaded area ranging from the 2.5\% quantile to the 97.5\% quantile, covering the range \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.}
 \label{fig:main-projected-catch-density}
 %% \end{figure}
@@ -839,7 +839,7 @@ make.forecast.depletion.comparison.plot(base.model,
                                         legend.loc = "topleft")
 @
 \end{center}
-\caption{**Time series of relative spawning biomass at the start of each year until \Sexpr{end.yr} as estimated from the base model, and forecast trajectories
+\caption{Time series of relative spawning biomass at the start of each year until \Sexpr{end.yr} as estimated from the base model, and forecast trajectories
   to the start of \Sexpr{forecast_yrs[length(forecast_yrs)]} for several management options from the decision table (grey region), with 95\% posterior
   credibility intervals. The \Sexpr{end.yr} catch of \Sexpr{f(base.model$catch.default.policy[1])}~t was calculated using the default
   harvest policy, as defined in the Agreement.}
@@ -918,7 +918,7 @@ make.forecast.risk.comparison.plot(base.model,
 make.age.comp.forecast.plot(base.model)
 @
 \end{center}
-\caption{**Forecast age compositions in numbers and in weight for the \Sexpr{end.yr} fishery catch
+\caption{Forecast age compositions in numbers and in weight for the \Sexpr{end.yr} fishery catch
   (combined across all sectors in both countries). Gray bars show median estimates.
   Thick black lines show 50\% credibility intervals and thin black lines show 95\%
   credibility intervals. These estimates are based on the posterior distribution for
@@ -942,7 +942,7 @@ make.comparison.plot(c(list(base.model), sens.models.1),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{**MCMC estimates of spawning biomass for the base
+\caption{MCMC estimates of spawning biomass for the base
   model and alternative sensitivity runs representing changing the mean of
   the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, lower (1.0) and higher
   (1.6) levels of variation assumed about the stock-recruitment relationship
@@ -965,7 +965,7 @@ make.comparison.plot(c(list(base.model), sens.models.1),
 @
 \end{center}
 %\vspace{0mm}
-\caption{**MCMC estimates of stock status (relative
+\caption{MCMC estimates of stock status (relative
   spawning biomass) for the base model and alternative sensitivity runs
   representing changing key parameters. See
   Figure~\ref{fig:main-biomass-base-alternative-1} for sensitivity descriptions.}
@@ -984,10 +984,9 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{**MCMC estimates of spawning biomass for the base model and alternative
-  sensitivity runs that represent the following changes in data: adding an age-1 index of abundance,
-  using the McAllister-Ianelli approach to weight composition data, and using the
-  Francis approach to weight composition data.}
+\caption{MCMC estimates of spawning biomass for the base model and alternative
+  sensitivity runs that represent the following changes in data: removing the age-1 index of abundance
+  and downweighting fishery composition data using the McAllister-Ianelli method.}
 \label{fig:main-biomass-base-alternative-2}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1005,7 +1004,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 @
 \end{center}
 %\vspace{0mm}
-\caption{**MCMC estimates of stock status (relative spawning biomass) for the base
+\caption{MCMC estimates of stock status (relative spawning biomass) for the base
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-status-base-alternative-2}
@@ -1024,7 +1023,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{**MCMC estimates of recruitment deviations for the base
+\caption{MCMC estimates of recruitment deviations for the base
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-recruit-base-alternative-2}
@@ -1046,7 +1045,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{**MCMC estimates of the fit to the survey index of abundance for the base
+\caption{MCMC estimates of the fit to the biomass index for the base
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-index-base-alternative-2}
@@ -1064,7 +1063,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{**MCMC estimates of spawning biomass for the base model
+\caption{MCMC estimates of spawning biomass for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity.}
 \label{fig:main-biomass-base-alternative-4}
@@ -1084,7 +1083,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 @
 \end{center}
 %\vspace{0mm}
-\caption{**MCMC estimates of stock status (relative spawning biomass) for the base model
+\caption{MCMC estimates of stock status (relative spawning biomass) for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity.
   See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
@@ -1105,7 +1104,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 box()
 @
 \end{center}
-\caption{**MCMC estimates of recruitment for the base model
+\caption{MCMC estimates of recruitment for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity.
   See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
@@ -1125,7 +1124,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 box()
 @
 \end{center}
-\caption{**MCMC estimates of recruitment deviations for the base model
+\caption{MCMC estimates of recruitment deviations for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity.
   See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
@@ -1146,7 +1145,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 @
 \end{center}
 %\vspace{0mm}
-\caption{**MCMC estimates of the fit to the survey index of abundance
+\caption{MCMC estimates of the fit to the survey index of abundance
   for the base model and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity.
   See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
@@ -1193,7 +1192,7 @@ make.comparison.plot(c(list(base.model), sens.models.6),
                      end.yr = end.yr)
 @
 \end{center}
-\caption{**MCMC estimates of spawning biomass for the base
+\caption{MCMC estimates of spawning biomass for the base
   model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5)
   or increased (age-7 and age-8) relative to the base model (age-6).}
 \label{fig:main-biomass-base-alternative-6}
@@ -1213,7 +1212,7 @@ make.comparison.plot(c(list(base.model), sens.models.6),
 @
 \end{center}
 %\vspace{0mm}
-\caption{**MCMC estimates of stock status for the base
+\caption{MCMC estimates of stock status for the base
   model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5)
   or increased (age-7 and age-8) relative to the base model (age-6).}
 \label{fig:main-status-base-alternative-6}
@@ -1244,7 +1243,7 @@ mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
 \end{center}
-\caption{**Estimates of spawning biomass at the start of each year (top)
+\caption{Estimates of spawning biomass at the start of each year (top)
   and recruitment (bottom) for the base model and retrospective runs
   (based on MCMC model runs).}
 \label{fig:main-biomass-recruitment-retrospective}
@@ -1313,9 +1312,9 @@ make.assessment.history.plot(base.model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{**Summary of historical \fishname\ assessment estimates of spawning
+\caption{Summary of historical \fishname\ assessment estimates of spawning
   biomass. Estimates are MLEs or MCMC medians depending on the model structure.
-  Shading represents the approximate 95\% confidence range from the
+  Shading represents the 95\% credible interval from the
   \Sexpr{end.yr} base model.}
 \label{fig:main-historical-assessments}
 \end{figure}
