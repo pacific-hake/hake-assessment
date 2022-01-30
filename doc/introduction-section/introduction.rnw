@@ -178,7 +178,7 @@ adhered to since 2005. However, a bilateral
 agreement on the coast-wide TAC could not be reached in 2020 or 2021, and thus, catch targets were set unilaterally
 during these years for the first time since the inception of the Agreement.
 
-**Throughout the last decade, the total coast-wide catch has tracked harvest
+Throughout the last decade, the total coast-wide catch has tracked harvest
 targets reasonably well.
 %  (Table~\ref{tab:main-landings-tac})    % so Table 4 isn't ref'ed before 1-3
 Since 1999, catch
@@ -244,7 +244,7 @@ managed with IFQs.
 
 \subsubsection{Management of \fishname\ in Canada}\label{sec:intro-management-canada}
 
-**Canadian groundfish managers distribute their portion
+Canadian groundfish managers distribute their portion
 (usually \Sexpr{can.allotment.percent}\%) of the TAC as quota to
 individual license holders. In \Sexpr{last.data.yr}, Canadian hake fishermen
 were allocated a TAC of \Sexpr{last.year.can.tac}~t, including
@@ -257,16 +257,16 @@ codends from Canadian catcher vessels while at sea.
 % Manual done 2021 CJG
 The last year a Joint-Venture fishery was conducted was in \Sexpr{latest.year.can.jv}.
 
-**In \Sexpr{last.data.yr}, all Canadian \fishname\ trips remained subject to 100\%
-observer coverage, by either electronic monitoring for the shoreside component
+In \Sexpr{last.data.yr}, all Canadian \fishname\ trips were subject to 100\%
+observer coverage, by electronic monitoring for the shoreside component
 of the domestic fishery or on-board observer for the freezer-trawler
-component. However, due to the COVID-19 pandemic, observers were not allowed to
+component. However, due to the staffing issues, there were no observers available to
 board freezer trawler vessels for the entirety of the hake fishing season. All
 shoreside hake landings are usually subject to 100\% verification by the groundfish
-Dockside Monitoring Program (DMP), but these were also impacted by the COVID-19
-pandemic and fewer samples than usual were taken.
+Dockside Monitoring Program (DMP), but these were also impacted by staffing
+issues and only one sample in was taken.
 
-**Retention of all catch,
+Retention of all catch,
 with the exception of prohibited species, was mandatory. The retention of
 groundfish other than Sablefish, Mackerel, Walleye Pollock, and Pacific Halibut
 on non-observed (but electronically monitored) dedicated \fishname\ trips was
@@ -311,7 +311,7 @@ US\$311~million in income and 4,200 jobs.
 \subsubsection{Overview of the fisheries in \Sexpr{last.data.yr}}\label{sec:intro-fisheries-overview}
 %**ADJUST AGAIN AS NEEDED in 2022
 %The Joint Management Committee (JMC) determined an adjusted (for carryovers)
-**The coast-wide TAC of \Sexpr{last.year.tac}~t for \Sexpr{last.data.yr}
+The coast-wide TAC of \Sexpr{last.year.tac}~t for \Sexpr{last.data.yr}
 was specified as the sum of unilateral TAC decisions due to the lack of
 a bilateral agreement in \Sexpr{last.data.yr}. The U.S. catch target
 was set at \Sexpr{last.year.us.tac}~t and the Canadian catch target at
@@ -438,30 +438,32 @@ despite vessels needing to implement bycatch-avoidance measures
 
 \subsubsub{Canada}
 
-**The \Sexpr{last.data.yr} Canadian \fishname\ domestic fishery removed
+The \Sexpr{last.data.yr} Canadian \fishname\ domestic fishery removed
 \Sexpr{last.year.can.landings}~t from Canadian waters, which was
 \Sexpr{last.year.can.attained}\% of the Canadian TAC of
-\Sexpr{last.year.can.tac}~t. The attainment for Canada appears much higher than usual,
-due to Canadian managers setting a lower Canadian TAC than what would have been allotted
-using the usual method which is calculated as \Sexpr{can.allotment.percent}\% of a
-bilaterally agreed-upon TAC.
+\Sexpr{last.year.can.tac}~t. The attainment for Canada appears much lower than usual, due
+to the fishing vessels having a difficult time finding fish in Canadian waters. The
+Canadian report from the Advisory panel explains this in more detail (\ref{chap:canada-fishery-report}).
+%The attainment for Canada appears much higher than usual,
+%due to Canadian managers setting a lower Canadian TAC than what would have been allotted
+%using the usual method which is calculated as \Sexpr{can.allotment.percent}\% of a
+%bilaterally agreed-upon TAC.
 
 The shoreside component, made up of vessels landing fresh round product onshore,
 landed \Sexpr{last.year.can.shore}~t. The freezer-trawler component,
 which freezes headed and gutted product while at sea, landed
-\Sexpr{last.year.can.freezer}~t. **There was no Joint-Venture fishery this year.
-% Manual done 2021 CJG
+\Sexpr{last.year.can.freezer}~t. There was no Joint-Venture fishery this year.
 
 % Paraphrased from Appendix B, no point in repeating lots of it:
-** Fishing started in March and ended in early December. The general view from the
-Canadian fleet is that general abundance was down in 2020, especially in the shallower
-depths (Figure~\ref{fig:main-can-at-sea-depths}).
-When found, these aggregations appeared patchier and dissipated more quickly
-when put under fishing pressure than in 2019. The fish caught in Canada appeared to
-be mostly from one age class (600-800 gram body weight), with very few smaller fish caught.
+Fishing started in early April and ended in mid-October. The general view from the
+Canadian fleet is that general abundance was down in 2021, especially in the shallower
+depths (Figure~\ref{fig:main-can-at-sea-depths}). Finding fish was difficult in 2021.
+The fish caught in Canada appeared to
+be mostly from one age class (approximately 800 grams body weight), with very few smaller fish
+(less than 500 grams) caught.
 
-** Usually the most abundant age classes found in the freezer trawler catch are listed here,
-but due to COVID-19 there were no observers on board in 2020, so there were no age samples taken
+Usually the most abundant age classes found in the freezer trawler catch are listed here,
+but due staffing issues with observers there were no observers on board in 2021, so there were no age samples taken
 and therefore no representation of year-class composition from the freezer trawlers.
 %
 % The most abundant year classes (by numbers) in the Canadian freezer-trawler
@@ -475,11 +477,10 @@ and therefore no representation of year-class composition from the freezer trawl
 % \Sexpr{fourth.freezer.trawler.age.prop.age} at
 % \Sexpr{fourth.freezer.trawler.age.prop}\%.
 
-** Every otolith sampled dockside from the shoreside fleet was aged this year, in order
-to make up for the loss of samples from the freezer trawlers. This kept the total
-number of otoliths sampled similar to other years, despite a smaller overall sample size.
+Although there were four samples taken from the Shoreside fleet, only one sample was received in time for ageing
+for this year's assessment.
 
-** The most abundant year classes in the
+The most abundant year classes in the
 Canadian Shoreside catch were age \Sexpr{max.shoreside.age.prop.age} at
 \Sexpr{max.shoreside.age.prop}\%, age \Sexpr{second.shoreside.age.prop.age} at
 \Sexpr{second.shoreside.age.prop}\%, age \Sexpr{third.shoreside.age.prop.age} at
