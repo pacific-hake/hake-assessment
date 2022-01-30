@@ -146,8 +146,7 @@ Section~\ref{sec:data-natural-mortality}). The stock-recruitment function is a
 Beverton-Holt parameterization, with the log of the mean unexploited recruitment
 (log~$R_0$) freely estimated. This assessment uses the same Beta-distributed prior for
 stock-recruit steepness ($h$), based on \citet{MyersBowenEtAl1999}, that has
-been applied since 2011 \citep{StewartForrestEtAl2011, JTC2012, JTC2013,
-JTC2014, JTC2015, JTC2016, JTC2017, JTC2018, JTC2019, JTC2020, JTC2021}.
+been applied since 2011 \citep{StewartForrestEtAl2011}.
 Year-specific recruitment deviations were estimated
 from \Sexpr{main.recdev.early}--\Sexpr{main.recdev.end+1}
 as well as the years \Sexpr{assess.yr}--\Sexpr{assess.yr+3}
