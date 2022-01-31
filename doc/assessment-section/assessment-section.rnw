@@ -1451,15 +1451,15 @@ Figure~\ref{fig:main-forecast-risk-comparison-year-1}).
 
 The age composition (in numbers) of the catch in \Sexpr{forecast_yrs[1]} is
 projected to be (using MCMC medians)
-\Sexpr{fore.catch.prop$Age6}\% age-6 fish from the \Sexpr{forecast_yrs[1] - 6} year-class,
-\Sexpr{fore.catch.prop$Age2}\% age-2 fish from the \Sexpr{forecast_yrs[1] - 2} year-class,
-\Sexpr{fore.catch.prop$Age8}\% age-8 fish from the \Sexpr{forecast_yrs[1] - 8} year-class,
-\Sexpr{fore.catch.prop$Age5}\% age-5 fish from the \Sexpr{forecast_yrs[1] - 5} year-class,
-% \Sexpr{fore.catch.prop$Age4}\% age-4 fish from the \Sexpr{forecast_yrs[1] - 4} year-class,
-% \Sexpr{fore.catch.prop$Age7}\% age-7 fish from the \Sexpr{forecast_yrs[1] - 7} year-class and
+\Sexpr{fore.catch.prop$Age6}\% age-6 fish from the \Sexpr{forecast_yrs[1] - 6} cohort,
+\Sexpr{fore.catch.prop$Age2}\% age-2 fish from the \Sexpr{forecast_yrs[1] - 2} cohort,
+\Sexpr{fore.catch.prop$Age8}\% age-8 fish from the \Sexpr{forecast_yrs[1] - 8} cohort,
+\Sexpr{fore.catch.prop$Age5}\% age-5 fish from the \Sexpr{forecast_yrs[1] - 5} cohort,
+% \Sexpr{fore.catch.prop$Age4}\% age-4 fish from the \Sexpr{forecast_yrs[1] - 4} cohort,
+% \Sexpr{fore.catch.prop$Age7}\% age-7 fish from the \Sexpr{forecast_yrs[1] - 7} cohort and
 and only
-\Sexpr{fore.catch.prop$Age12}\% age-12 fish from the large \Sexpr{forecast_yrs[1] - 12} year-class
-% \Sexpr{fore.catch.prop$Age11}\% age-11 fish from the \Sexpr{forecast_yrs[1] - 11} year-class
+\Sexpr{fore.catch.prop$Age12}\% age-12 fish from the large \Sexpr{forecast_yrs[1] - 12} cohort
+% \Sexpr{fore.catch.prop$Age11}\% age-11 fish from the \Sexpr{forecast_yrs[1] - 11} cohort
 (Figure~\ref{fig:main-age-comp-forecast}).
 However, those estimates are highly
 uncertain with the 95\% credibility interval for the age-6 fraction spanning
