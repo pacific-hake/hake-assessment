@@ -18,6 +18,9 @@ weight_age_extrapolation_mask.file <- "wtatage_all_samplesize.csv"
 
 ## Canada-specific data
 can.age.file <- "can-age-data.csv"
+can.ss.num.fish.file <- "can-ss-num-fish-aged.csv"
+can.ft.num.fish.file <- "can-ft-num-fish-aged.csv"
+can.jv.num.fish.file <- "can-jv-num-fish-aged.csv"
 can.ft.catch.by.month.file <- "can-ft-catch-by-month.csv"
 can.ss.catch.by.month.file <- "can-ss-catch-by-month.csv"
 can.jv.catch.by.month.file <- "can-jv-catch-by-month.csv"
@@ -49,6 +52,9 @@ survey.comparison <- read.csv(file.path(rootd.data, survey.comparison.file), str
 sampling.history <- load.sampling.history(file.path(rootd.data, sampling.history.file))
 further.tac <- further.tac.details(file.path(rootd.data, further.tac.file))
 can.ages <- load.can.age.data(file.path(rootd.data, can.age.file))
+can.ss.num.fish <- read.csv(file.path(rootd.data, can.ss.num.fish.file))
+can.ft.num.fish <- read.csv(file.path(rootd.data, can.ft.num.fish.file))
+can.jv.num.fish <- read.csv(file.path(rootd.data, can.jv.num.fish.file))
 ovary.samples <- read_csv(file.path(rootd.data, ovary.samples.file))
 maturity.ogives <- read.csv(file.path(rootd.data, maturity.ogives.file), stringsAsFactors = FALSE)
 maturity.samples <- read.csv(file.path(rootd.data, maturity.samples.file), stringsAsFactors = FALSE)

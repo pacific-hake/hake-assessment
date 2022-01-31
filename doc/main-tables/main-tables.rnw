@@ -138,17 +138,18 @@ make.us.age.data.table(us.shore.age,
 
 <<main-can-shore-age-data-table, results='asis', echo=FALSE>>=
 make.can.age.data.table(can.ages,
+                        can.ss.num.fish,
                         fleet = 1,
                         start.yr = end.yr - num.recent.yrs,
                         end.yr = last.data.yr,
-                       xcaption = paste0("Recent age proportion data used in the assessment for ",
-                                         "the Canadian Shoreside fleet. Proportions are ",
-                                         "calculated from numbers of individuals in each age group. ",
-                                         "Age 15 is an accumulator group."),
-                       xlabel = "tab:main-can-shore-age-data",
-                       font.size = 10,
-                       space.size = 11,
-                       decimals = 2)
+                        xcaption = paste0("Recent age proportion data used in the assessment for ",
+                                          "the Canadian Shoreside fleet. Proportions are ",
+                                          "calculated from numbers of individuals in each age group. ",
+                                          "Age 15 is an accumulator group."),
+                        xlabel = "tab:main-can-shore-age-data",
+                        font.size = 10,
+                        space.size = 11,
+                        decimals = 2)
 @
 \end{landscape}
 \pagestyle{fancy}
@@ -158,13 +159,14 @@ make.can.age.data.table(can.ages,
 \centering
 <<main-can-ft-age-data-table, results='asis', echo=FALSE>>=
 make.can.age.data.table(can.ages,
+                        can.ft.num.fish,
                         fleet = 2,
                         start.yr = end.yr - num.recent.yrs,
                         end.yr = last.data.yr,
-                       xcaption = paste0("Recent age proportion data used in the assessment for ",
-                                         "the Canadian freezer-trawler fleet. Proportions are ",
-                                         "calculated from numbers of individuals in each age group. ",
-                                         "Age 15 is an accumulator group."),
+                        xcaption = paste0("Recent age proportion data used in the assessment for ",
+                                          "the Canadian freezer-trawler fleet. Proportions are ",
+                                          "calculated from numbers of individuals in each age group. ",
+                                          "Age 15 is an accumulator group."),
                         xlabel = "tab:main-can-ft-age-data",
                         font.size = 10,
                         space.size = 11,

@@ -125,6 +125,7 @@ make.input.age.data.table <- function(model,
 }
 
 make.can.age.data.table <- function(dat,
+                                    dat_num_fish,
                                     fleet = 1,
                                     start.yr,
                                     end.yr,
@@ -152,16 +153,25 @@ make.can.age.data.table <- function(dat,
   ages.df <- cbind(n.trip.haul, ages.df)
   dat <- cbind(as.numeric(rownames(ages.df)), ages.df)
   dat <- dat[dat[,1] >= start.yr & dat[,1] <= end.yr,]
+  colnames(dat)[1] <- "year"
+  dat <- as_tibble(dat)
+  dat_num_fish <- as_tibble(dat_num_fish)
 
-  dat[,2] <- as.numeric(f(dat[,2]))
-  ## Make percentages
-  dat[,-c(1,2)] <- dat[,-c(1,2)] * 100
-  dat[,-c(1,2)] <- f(dat[,-c(1,2)], decimals)
-  ## Add the extra header spanning multiple columns
+  dat <- dat %>%
+    left_join(dat_num_fish, by = "year") %>%
+    select(year, num_fish, n.trip.haul, everything()) %>%
+    mutate(n.trip.haul = as.numeric(f(n.trip.haul))) %>%
+    mutate(year = as.character(year))
+
+  # Make percentages
+  dat[, -c(1, 2, 3)] <- dat[, -c(1, 2, 3)] * 100
+  dat[, -c(1, 2, 3)] <- apply(dat[, -c(1, 2, 3)], 2, function(x) f(x, decimals))
+  dat[, 2:3] <- apply(dat[, 2:3], 2, function(x) f(x))
+  # Add the extra header spanning multiple columns
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
-  age.headers <- colnames(dat)[grep("^[[:digit:]].*", colnames(dat))]
+  age.headers <- names(dat)[grep("^[[:digit:]].*", names(dat))]
   ages <- 1:length(age.headers)
   ages[length(ages)] <- paste0(ages[length(ages)], "+")
   ages.tex <- latex.paste(latex.bold(ages))
@@ -173,9 +183,14 @@ make.can.age.data.table <- function(dat,
     mlc <- latex.mlc(c("Number",
                        "of trips"))
   }
+  num_fish <- latex.mlc(c("Number",
+                          "of fish"))
+
   addtorow$command <-
     paste0(latex.hline,
            latex.bold("Year"),
+           latex.amp(),
+           num_fish,
            latex.amp(),
            mlc,
            latex.amp(),
@@ -183,7 +198,7 @@ make.can.age.data.table <- function(dat,
                       "c",
                       latex.bold("Age (\\% of total for each year)")),
            latex.nline,
-           latex.amp(2),
+           latex.amp(3),
            ages.tex,
            latex.nline,
            latex.hline)
