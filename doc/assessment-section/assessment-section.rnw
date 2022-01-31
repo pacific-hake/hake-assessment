@@ -1795,50 +1795,40 @@ maximum was retained in the base model as it offered more flexibility than the c
 
 \subsection{Retrospective analyses}\label{sec:assessment-retrospective-analyses}
 
-**Retrospective analyses were performed by iteratively removing the terminal
+Retrospective analyses were performed by iteratively removing the terminal
 years' data (going back 10 years) and estimating the posterior distribution of
 parameters under the assumptions of the base
-model. Models with 3 or 4 years of data removed had some information
-available regarding the above-average 2014 year class, but did not yet have information on the
-2016 year class (Figure~\ref{fig:main-biomass-recruitment-retrospective}). Models
-with 2 and 3 years of data removed were just beginning to receive data on age-3 and age-2, respectively,
-individuals to predict the size of the 2016 year class.  The base model now has
-\Sexpr{number.to.word(assess.yr - 2016 - 1)} years of data to estimate the size of
-the 2016 cohort, and the uncertainty around this
-estimate has been considerably reduced compared to three years ago
-(Figure~\ref{fig:main-biomass-recruitment-retrospective}). Medians of various
-quantities of interest are given in Table~\ref{tab:main-parameter-estimates-retro}.
+model. With the addition of the age-1 index in this year's base model, the recruitment
+strength comes closer to the long-term stable estimate by age~2 in some cases.
+For example, the age~2 recruitment deviations for the 2016 cohort are almost the same as
+with the addition of further years of data. There is only a slight increase.
+However, some cohort recruitments are over-estimated at age~2.
+This can be seen most obviously with the 2014 cohort which reached a high deviation
+after two years, then even higher after three years only to drop down to a lower value
+and then stabilize at around age~4 with the addition of more data.
+A similar pattern can be seen with the 2017 cohort.
 
-**Overall, there is little retrospective change to the relative spawning biomass
+The stability of the recruitment estimates seen in this plot is also evident in the uncertainty estimates of
+each cohort. Uncertainty around the 2016 cohort has been substantially reduced compared
+with five years ago (Figure~\ref{fig:main-biomass-recruitment-retrospective}, bottom figure).
+Medians of various quantities of interest are given in Table~\ref{tab:main-parameter-estimates-retro}.
+
+Overall, there is little retrospective change to the relative spawning biomass
 trajectory up to the mid-2010s, and most retrospective change occurs in the
 final years of the retrospective model with the most years removed
 (Figure~\ref{fig:main-biomass-recruitment-retrospective}).
-In the previous assessment, the retrospective bias was a mix of both positive and negative
-biases in these terminal years. In this assessment, there is very little retrospective bias
-other than a positive bias in spawning stock biomass four years previously when the 2014
+In this assessment, there is very little retrospective bias
+other than a positive bias in spawning stock biomass five years previously when the 2014
 year class was initially estimated too high. There is no indication from retrospective
 evaluations that the base model is displaying a systematic bias.
 
-**Cohort strength is usually not well estimated until the cohort reaches age~3 or more
+Cohort strength is usually not well estimated until the cohort reaches age~3 or more
 because at age~3 at least one year of survey age-composition data are available
-(Figure~\ref{fig:main-retrospective-recruitment}).
-Deviations for the 2010 and 2014 cohorts, which are the largest cohorts since 2010,
-exhibit the largest positive deviations.
-Estimated recruitment deviations for the 2014 cohort
-are above those for 2016 and 2017 cohorts, but the estimated size of the 2014 cohort didn't
-fully stabilize until age~4.
-The variability among cohort estimates relative to their estimated size
-in the base model (Figure~\ref{fig:main-relative-retrospective-recruitment})
-further indicates that the estimates can start to improve as early as age~2, but
-some estimates of cohort strength may not stabilize until
-the cohort approaches an age upward of 7 years old.
-The lack of systematic bias in the assessment results could be because
-both of the largest cohorts are now older than 7 years old.
-This illustrates that multiple observations of each cohort are needed in
-order to more accurately determine their recruitment strength.
+(Figure~\ref{fig:main-retrospective-recruitment}). Addition of the age-1 index can
+bring this down to age~2 but not without the caveat of possible over-estimation.
 
-**A comparison of the actual assessment models used in each year since
-\Sexpr{min(assessment.history$Year)} is shown in
+A comparison of the actual assessment models used in each year since
+\Sexpr{min(assessment.history$Year, na.rm = TRUE)} is shown in
 Figure~\ref{fig:main-historical-assessments}. There have been substantial
 differences in the structural assumptions of the models and,
 thus, results submitted each year.
