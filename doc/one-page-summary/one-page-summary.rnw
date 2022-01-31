@@ -26,7 +26,7 @@
     available for the shoreside fleet.
 
   \item Coast-wide catch in \Sexpr{end.yr-1} was \Sexpr{last.year.landings}~t
-    [t represents metric tons], which is near the average over the past decade of
+    [t represents metric tons], close to the average over the past decade of
     \Sexpr{f(mean(ct$tot_catch[(end.yr-start.yr-9):(end.yr-start.yr)]),0)}~t,
     out of a total allowable catch (TAC), adjusted for carryovers, of \Sexpr{last.year.tac}~t.
     Quotas were specified unilaterally in 2021 due to the lack of a
