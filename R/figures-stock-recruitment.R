@@ -66,7 +66,7 @@ make.mcmc.sr.variability.plot <- function(model,
   lines(c(0, dlnorm(x = adj, meanlog = meanlog, sdlog = sigma_R)),
         y = c(adj, adj), lty = 1, col = 2)
   axis(2, at = c(0, adj, 1, nrow(model$mcmc)), lab = rep("", 4), las = 1)
-  mtext("Distribution relative to unfished equilibrium", side = 4, line = -2, adj = 0.8)
+  mtext("Distribution of absolute recruitments", side = 4, line = -2, adj = 0.8)
 
   # Main plot
   par(mar = c(4, 4, 1, 1) + 0.1, mgp = c(2.3, 1, 0))
@@ -117,7 +117,7 @@ make.mcmc.sr.variability.plot <- function(model,
   points(1, 1, pch = 16, cex = 2)
   points(1, adj, pch = 16, cex = 2, col = 2)
 
-  mtext(expression(italic(R)[0]~~(billions)), side = 4, line = 1, adj = 0.25)
+  mtext("Recruitment (billions)", side = 4, line = 1, adj = 0.25)
   axis(4, at = 1, label = round(mn.r.virg / 1e6, 1), las = 1, cex.axis = 0.8)
   axis(4, at = adj, label = round(adj * mn.r.virg / 1e6, 1), las = 1, cex.axis = 0.8)
   axis(4, at = 0, lab = " 0", las = 1, cex.axis = 0.8)

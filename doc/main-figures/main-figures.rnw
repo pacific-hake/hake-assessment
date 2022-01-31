@@ -746,7 +746,7 @@ make.mcmc.sr.variability.plot(base.model,
   tendency (mean) and the red line indicates the central tendency after bias correcting for the log-normal
   distribution (median). Shading around stock-recruit curves indicates uncertainty in shape associated
   with distribution of the steepness parameter ($h$). The gray polygon on the right indicates the
-  expected distribution of recruitments relative to the unfished equilibrium.}
+  expected distribution of absolute recruitments.}
 \label{fig:main-mcmc-sr-variability}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
