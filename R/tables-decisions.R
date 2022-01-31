@@ -372,6 +372,23 @@ make.decision.table.pres <- function(model,
         hline.after = NULL)
 }
 
+#' Creates LaTeX code to make a probability of risk table with various probabilities
+#' of things happening with the stock
+#'
+#' @param model A model from this project
+#' @param forecast.yrs A vector of forecast years
+#' @param index Index for which forecast year data to use. e.g. 1 = second forecast year
+#' compared to the first. If there were N forecast years, this can be from 1 to N-1.
+#' @param xcaption Caption to appear in the calling document
+#' @param xlabel Label used to reference the table in LaTeX
+#' @param font.size Point size of font in table
+#' @param space.size Vertical space between rows
+#' @param placement LaTeX code for placement of the table, e.g. "H" or "tbp"
+#' @param type If you want both columns of catch (i.e., type = 2),
+#' where the original doesn't and uses type = 1
+#'
+#' @return LaTeX code to render the table
+#' @export
 make.risk.table <- function(model,
                             forecast.yrs,
                             index = 1,
@@ -381,21 +398,6 @@ make.risk.table <- function(model,
                             space.size = 10,
                             placement = "H",
                             type = 1){
-  ## Returns an xtable in the proper format for the executive summary risk
-  ##  tables
-  ##
-  ## model - an mcmc run, output of the r4ss package's function SSgetMCMC()
-  ## forecast.yrs - a vector of the years which ere forecast
-  ## index - Index for which risk data to use. e.g. 1 = second forecast year
-  ##  compared to the first. If there were N forecast years, this can be from
-  ##  1 to N-1.
-  ## xcaption - caption to appear in the calling document
-  ## xlabel - the label used to reference the table in latex
-  ## font.size - size of the font for the table
-  ## space.size - size of the vertical spaces for the table
-  ## placement - latex code for placement of table
-  ## type - if you want both columns of catch (i.e., type = 2),
-  ## where the original doesn't and uses type = 1
 
   risk <- model$risks[[index]]
   ## Remove last 3 columns which are DFO values
