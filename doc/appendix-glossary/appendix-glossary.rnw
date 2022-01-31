@@ -364,10 +364,13 @@ intensity.plot()
 \begin{figure}[t]
 \begin{center}
 <<SPR-illustration, fig.height=7, fig.width=6, is.fig = TRUE, alt.text = "This figure shows how SPR is calculated">>=
-make.SPR.illustration(base.model, yrs = start.yr.age.comps:last.data.yr)
+make.SPR.illustration(last.yr.base.model, yrs = start.yr.age.comps:last.data.yr)
 @
 \end{center}
-\caption{**Change function to use MCMC not MLE (Issue \#834), and change caption. Illustration of the spawning potential ratio (SPR) calculation based on the combination of maturity and fecundity used in the model, using the maximum likelihood estimates of natural mortality, selectivity, and fishing mortality in the final year of the base model.}
+\caption{Illustration of the spawning potential ratio (SPR) calculation based on
+  the combination of maturity and fecundity used in the model, using the maximum
+  likelihood estimates of natural mortality, selectivity, and fishing mortality
+  in the final year of the base model from the 2021 assessment \citep{JTC2021}.}
 %  **Need to make terminology the same as the fishing intensity definition.....
 \label{fig:glossary-SPR-illustration}
 \end{figure}
