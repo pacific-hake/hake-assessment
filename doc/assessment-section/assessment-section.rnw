@@ -1111,7 +1111,7 @@ coast-wide fishery was the lowest of the previous decade
 (\Sexpr{tot.2015.attainment}\%) due, in part, to difficulties locating
 aggregations of fish and possibly economic reasons.
 % Manual done 2020 - check above sentence with
-%  landings.vs.tac[landings.vs.tac$Year %in% (end.yr-10):(end.yr-1),10].
+%  landings.vs.tac[landings.vs.tac$Year %in% (end.yr-10):(end.yr-1),10].  % $
 Before 2015,
 the underutilization in the United States was mostly a result of unrealized
 catch in the tribal apportionment, while reports from stakeholders in Canada
@@ -1245,9 +1245,8 @@ the median yield at $\Fforty$ are higher than the estimates in the
 % Manual 2021 done
 
 % Look at dfo.probs.curr and decide what to write. Check that
-%   ncol(base.model$risks[[1]]) == 10   (i.e. no new columns added)
+%   ncol(base.model$risks[[1]]) == 10   (i.e. no new columns added) % $
 % ***Have to update custom-knitr-variables (see UNHARDWIRE in that, when have time).
-% $
 As part of the DFO Sustainable Fisheries Framework, \citet{DFO2009} defined
 a limit reference point as being a biomass
 below which serious harm is believed to be occurring to the stock,
@@ -1446,24 +1445,36 @@ Figure~\ref{fig:main-forecast-risk-comparison-year-1}).
 
 
 % This needs to be somewhat manual so you can pick the cohorts to
-% specify - look at fore.catch.prop.  Increment the ages each assessment.
-**[not incremented manual years yet, see comments and Issue \#920]
+% specify - look at fore.catch.prop and pick the highest and
+% put them in order. Comment out un-needed ones.
+% Ages and years are now automated.
+
 The age composition (in numbers) of the catch in \Sexpr{forecast_yrs[1]} is
 projected to be (using MCMC medians)
-\Sexpr{fore.catch.prop$Age4}\% age-4 fish from the 2017 year-class,
-\Sexpr{fore.catch.prop$Age5}\% age-5 fish from the 2016 year-class,
-\Sexpr{fore.catch.prop$Age7}\% age-7 fish from the 2014 year-class and
-\Sexpr{fore.catch.prop$Age11}\% age-11 fish from the 2010 year-class
-(Figure~\ref{fig:main-age-comp-forecast}). However, those estimates are highly
-uncertain with the 95\% credibility interval for the age-7 fraction spanning
-\Sexpr{f(fore.catch.prop.age7.lower)}\%--\Sexpr{f(fore.catch.prop.age7.upper)}\%.
-Due to the lower average weight at age-4 versus age-11, the median expected
+\Sexpr{fore.catch.prop$Age6}\% age-6 fish from the \Sexpr{forecast_yrs[1] - 6} year-class,
+\Sexpr{fore.catch.prop$Age2}\% age-2 fish from the \Sexpr{forecast_yrs[1] - 2} year-class,
+\Sexpr{fore.catch.prop$Age8}\% age-8 fish from the \Sexpr{forecast_yrs[1] - 8} year-class,
+\Sexpr{fore.catch.prop$Age5}\% age-5 fish from the \Sexpr{forecast_yrs[1] - 5} year-class,
+% \Sexpr{fore.catch.prop$Age4}\% age-4 fish from the \Sexpr{forecast_yrs[1] - 4} year-class,
+% \Sexpr{fore.catch.prop$Age7}\% age-7 fish from the \Sexpr{forecast_yrs[1] - 7} year-class and
+and only
+\Sexpr{fore.catch.prop$Age12}\% age-12 fish from the large \Sexpr{forecast_yrs[1] - 12} year-class
+% \Sexpr{fore.catch.prop$Age11}\% age-11 fish from the \Sexpr{forecast_yrs[1] - 11} year-class
+(Figure~\ref{fig:main-age-comp-forecast}).
+However, those estimates are highly
+uncertain with the 95\% credibility interval for the age-6 fraction spanning
+\Sexpr{f(fore.catch.prop.age6.lower)}\%--\Sexpr{f(fore.catch.prop.age6.upper)}\%,
+and for the very young and highly uncertain age-2 fraction spanning
+\Sexpr{f(fore.catch.prop.age2.lower)}\%--\Sexpr{f(fore.catch.prop.age2.upper)}\%.
+
+Due to the higher average weight at age-6 versus age-2, the median expected
 proportion of the \Sexpr{forecast_yrs[1]} catch by weight
-is \Sexpr{f(fore.catch.prop.wt.age4.median)}\% for the 2017 cohort
-(compared to \Sexpr{fore.catch.prop$Age4}\% by numbers)
-and \Sexpr{f(fore.catch.prop.wt.age11.median)}\%
-for the 2010 cohort
-(compared to \Sexpr{fore.catch.prop$Age11}\% by numbers; Figure~\ref{fig:main-age-comp-forecast}).
+is \Sexpr{f(fore.catch.prop.wt.age6.median)}\% for the age-6 \Sexpr{forecast_yrs[1] - 6} cohort
+(compared to \Sexpr{fore.catch.prop$Age6}\% by numbers)
+and \Sexpr{f(fore.catch.prop.wt.age2.median)}\%      % $
+for the age-2 \Sexpr{forecast_yrs[1] - 2} cohort
+(compared to \Sexpr{fore.catch.prop$Age2}\% by numbers;
+Figure~\ref{fig:main-age-comp-forecast}).     % $
 
 % Manual done 2020.
 % Look at dfo.probs.fore (though that's not the one used here) and decide what to write. Check which row has the
