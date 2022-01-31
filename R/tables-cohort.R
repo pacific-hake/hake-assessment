@@ -154,16 +154,23 @@ cohort_table <- function(model,
       paste0(addtorow$command,
              latex.amp(),
              latex.mcol(4,
-                        "c",
+                        "c|",
                         latex.bold(paste(cohorts[i],
                                          " cohort"))))
   }
   addtorow$command <- paste0(addtorow$command, latex.nline)
   size_string <- latex.size.str(font_size, space_size)
+  al <- get.align(ncol(df))
+  al[2] <- paste0("|", al[2], "|")
+  for(i in 3:length(al)){
+    if(i %% 4 == 2){
+      al[i] <- paste0(al[i], "|")
+    }
+  }
   print(xtable(df,
                caption = xcaption,
                label = xlabel,
-               align = get.align(ncol(df))),
+               align = al),
         caption.placement = "top",
         add.to.row = addtorow,
         table.placement = "H",

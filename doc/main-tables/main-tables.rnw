@@ -390,20 +390,19 @@ cohort_table(base.model,
              end_yr = end.yr,
              cohorts = c(1999, 2010, 2014, 2016),
              csv_dir = output.csv.dir,
-             xcaption = paste0("Calculations showing
-                                    changes in biomass at each age due to natural mortality
-                                    and fishing for recent strong cohorts. Start Biomass is
-                                    the biomass at the beginning of the year, Catch Weight
-                                    is the catch for the cohort for the year,
-                                    M is the biomass attributed to natural
-                                    mortality, and Surviving Biomass is what
-                                    survives to the end of the year. Surviving
-                                    Biomass does not
-                                    equal the Start Biomass in the following year
-                                    because the empirical weights-at-age
-                                    change between years.
-                                    Estimated quantities are
-                                    posterior medians."),
+             xcaption = "Calculations showing
+                         changes in biomass at each age due to natural mortality
+                         and fishing for recent strong cohorts. Start Biomass is
+                         the biomass at the beginning of the year, Catch Weight
+                         is the catch for the cohort for the year,
+                         M is the biomass attributed to natural
+                         mortality, and Surviving Biomass is what
+                         survives to the end of the year. Surviving
+                         Biomass does not
+                         equal the Start Biomass in the following year
+                         because the empirical weights-at-age
+                         change between years.
+                         Estimated quantities are posterior medians.",
              xlabel = "tab:main-cohort-effects",
              font_size = 7,
              space_size = 8)
