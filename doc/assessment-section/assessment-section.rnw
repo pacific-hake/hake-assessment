@@ -1642,7 +1642,7 @@ remained above levels where changes in steepness would appreciably influence
 stock-recruit dynamics (Figure~\ref{fig:main-mcmc-sr-variability}).
 
 % section below on sigma_r
-**The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative
+The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative
 high (1.6) and low (1.0) states. The low value, $\sigma_r = 1.0$,
 resulted in a model where the standard deviation of the MLEs of
 recruitment deviations in the period with the most informative data was
