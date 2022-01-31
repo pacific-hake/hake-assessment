@@ -348,20 +348,16 @@ JTC:
   the next assessment with recruitment fixed at the median and mean levels to
   assess the resulting impact on stock depletion.}
 
-\emph{Response -- The JTC conducted the standard suite of catch projections using recruitment fixed
-  at the median and mean level as calculated across the main recruitment time period (1970--2020).
-  Specifying projected recruitment as the median of a given year range is not an option in
-  Stock Synthesis.
-  Thus, we first calculated the median of median posterior estimates of recruitment
-  from the main time period.
-  Second, we calculated the ratio between this median value and $R_0$
-  to use as a scaling factor on virgin recruitment, which is an option in Stock Synthesis.
-  Last, the option for mean recruitment was specified using the mean over the main time period.
-  Resulting decision tables are presented in Appendix~****
-  **the new tables are not done, not sure if will be done.
-  Related to this, the JTC
-  also solicited alternative catch levels for use in projections from the JMC and has included those
-  in decision tables.}
+\emph{Response -- Specifying projected recruitment as the median of a given year range
+  is not currently an option in Stock Synthesis.
+  To work around this, the JTC calculated the median of estimates of recruitment from
+  the main time period (1970--2020) and scaled this value to the estimate of $R_0$.
+  Scaled median recruitment was then used as in input value to Stock Synthesis
+  which does allow for scaling forecasted recruitment in terms of virgin recruitment.
+  The standard suite of catch projections were then conducted using
+  mean recruitment from the main time period and scaled virgin recruitment based on
+  the median estimates of recruitment relative to $R_0$.
+  Results will be presented during the SRG in 2022 during the review.}
 
 4. \fishname\ dynamics are highly variable even without fishing
   mortality. {\bf The SRG encourages the JTC (and MSE technical team) to continue
