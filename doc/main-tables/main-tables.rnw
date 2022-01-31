@@ -615,7 +615,7 @@ param_est_table(sens.models.1.for.table,
                                   A dash (--) indicates that the parameter or derived quantity was not estimated in the model."),
                 xlabel = "tab:main-parameter-estimates-sens-1",
                 font.size = 9,
-                space.size = 11,
+                space.size = 10,
                 getrecs = c(2010, 2014, 2016))
 @
 
