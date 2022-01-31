@@ -1799,7 +1799,8 @@ Retrospective analyses were performed by iteratively removing the terminal
 years' data (going back 10 years) and estimating the posterior distribution of
 parameters under the assumptions of the base
 model. With the addition of the age-1 index in this year's base model, the recruitment
-strength comes closer to the long-term stable estimate by age~2 in some cases.
+strength comes closer to the long-term stable estimate by age~2 in some cases
+(Figure~\ref{fig:main-retrospective-recruitment}).
 For example, the age~2 recruitment deviations for the 2016 cohort are almost the same as
 with the addition of further years of data. There is only a slight increase.
 However, some cohort recruitments are over-estimated at age~2.
