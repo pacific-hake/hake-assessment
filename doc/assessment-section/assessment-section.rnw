@@ -297,7 +297,7 @@ JTC:
 \emph{The number of stock assessment frameworks written in TMB or other platforms that allow for
   the estimation of random effects is increasing.
   These frameworks, specifically the
-  Woods Hole Assessment Model (WHAM; citealt{StockMiller2021}) and
+  Woods Hole Assessment Model (WHAM; \citealt{StockMiller2021}) and
   State-Space Assessment Model (SAM; \citealt{NielsenBerg2014})
   are both peer reviewed and currently being used for management
   The JTC has fit WHAM to data on \fishname\ and
@@ -1729,7 +1729,7 @@ attempts to make the arithmetic mean of the input
 sample size approximately equal to the harmonic mean of the effective
 sample size. The McAllister-Ianelli method
 suggested a weighting factor of 0.14 and 0.46 (ratio of 0.30) for fishery and survey
-age compositions, respectively. The median estiamte from Dirichlet-multinomial method
+age compositions, respectively. The median estimate from Dirichlet-multinomial method
 used in the base model was \Sexpr{DM.weight.fishery.median} and
 \Sexpr{DM.weight.survey.median} (ratio of
 \Sexpr{f(as.numeric(DM.weight.fishery.median) /
@@ -1991,7 +1991,7 @@ presumably again due to the incoming 2020 cohort.
 Probabilities from past assessments lie below those estimated from the
 current model (the blue line is below the red line). But, this won't necessarily always
 be the case. The probability from the 2021 assessment was the highest since
-2012, yet probabilites from this 2022 assessment are much lower. If the incoming
+2012, yet probabilities from this 2022 assessment are much lower. If the incoming
 2020 cohort is not as large it currently appears to be, then this would explain
 any future overlapping of the blue and red lines.
 

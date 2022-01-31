@@ -136,7 +136,6 @@ freezer-trawler fleet and minimally available for the shoreside fleet.
 \begin{figure}[tbp]
 \begin{center}
 <<survey-biomass, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the survey estimate has decreased from 2019 to 2021">>=
-#make.survey.biomass.plot(base.model)
 make.survey.biomass.extrap.plot(survey.comparison)
 @
 \end{center}
