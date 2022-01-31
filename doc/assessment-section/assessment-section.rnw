@@ -780,8 +780,9 @@ survey. Humboldt Squid have similar target strength to hake
 which could introduce bias in the biomass estimate for that year, and
 which also likely influenced hake population dynamics through predation in that year.
 
-The median posterior density estimates underfit the 2015 survey
-index, overfit the 2017 and 2019 indices, and closely fit the 2021 index (Figure~\ref{fig:main-mcmc-survey-fit}).
+The median posterior density estimates were less than the 2015 survey index,
+greater than the 2017 and 2019 survey indices, and
+closely fit the 2021 index (Figure~\ref{fig:main-mcmc-survey-fit}).
 This is likely due to slight differences in what the fishery composition data
 and survey composition data, when considered independently, would otherwise
 suggest as population trends.
@@ -790,13 +791,13 @@ a couple of above-average cohorts that are now mature.
 %resulting in a population
 %trend that has been relatively stable from 2013 to \Sexpr{survey.end.yr}.
 
-The base model fit to the index of age-1 fish highlights some over- and
-under-estimation but an overall general confirmation of relative cohort strength
-(Figure~\ref{fig:main-mcmc-age1-fit}). In particular, age-1 fish in 2009 and 2015
-(the 2008 and 2014 cohorts) were underestimated relative to the index, while the
-age-1 fish in 1995 and 2017 (1994 and 2016 cohorts) were overestimated.
+The base model fit to the index of age-1 fish highlights 
+an overall general confirmation of relative cohort strength
+(Figure~\ref{fig:main-mcmc-age1-fit}). In particular,
+the 2008 and 2014 cohorts were estimated to be less than the index, while the
+1994 and 2016 cohorts were estimated to be larger than indicated by the index.
 The age-1 fish in 2011 (the large 2010 cohort) was closely fit.  Age-1 fish in 2021 (2020 cohort)
-were slightly underestimated and, being so young, had the largest amount of uncertainty in the time
+were estimated slightly under the index value and, being so young, had the largest amount of uncertainty in the time
 series. The model indicates that the 2020 cohort may be similar in
 size to the 2016 cohort, based on information in the age-1 index and from age-1 fish
 caught in the fishery.
@@ -1031,7 +1032,7 @@ informed by the \Sexpr{last.survey.year} biomass index and fishery data, but has
 
 The model currently estimates small 2011, 2013, 2015, 2018
 and 2019 year classes (median recruitment well below the mean of all median recruitments) and near
-average 2012 and 2017 year class.  The proportion of the catch that was age-1 fish
+average 2012 and 2017 year class.  The proportion of the fishery catch that was age-1 fish
 in 2019 (2018 year class) and 2020 (2019 year class) was well below that observed in 2018
 (2017 year class) and 2017 (2016 year class; Table~\ref{tab:main-all-age-data-fishery}).
 % See exec-summary text, and look at this also:
