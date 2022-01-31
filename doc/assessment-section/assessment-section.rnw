@@ -1528,7 +1528,7 @@ compared MCMC posteriors that were created using the {\tt adnuts} R package
 \citep{Monnahan2018, Monnahan2019} to implement the NUTS
 algorithm with a similar number of posterior samples as the base model. For a comparison of the
 parameter estimates for the sensitivity analyses with those from the base model
-see Tables~\ref{tab:main-parameter-estimates-sens-1}--\ref{tab:main-parameter-estimates-sens-3}.
+see Tables~\ref{tab:main-parameter-estimates-sens-1}--\ref{tab:main-parameter-estimates-sens-2}.
 Many additional sensitivity runs were conducted when developing and testing the
 \Sexpr{assess.yr} base model. Here we focus on the main sensitivities which include
 the following:
