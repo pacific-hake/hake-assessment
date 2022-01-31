@@ -570,10 +570,16 @@ make.comparison.plot <- function(models,
     index_names <- unique(indices$name)
     first_index <- indices %>% filter(name == index_names[1])
     points(first_index$year, first_index$obs, pch = 19, cex = 1.5)
+    # Get the plot mask so colors match
+    is_plotted <- NULL
+    models_plotted <- unique(indices$name)
+    for(nm in seq_along(model.names)){
+      is_plotted[nm] <- ifelse(length(grep(model.names[nm], models_plotted)), TRUE, FALSE)
+    }
     if(length(models) == 2){
-      cols <- rich.colors.short(length(models))
+      cols <- rich.colors.short(length(models))[is_plotted]
     }else{
-      cols <- rich.colors.short(length(models) + 1)[-1]
+      cols <- rich.colors.short(length(models) + 1)[-1][is_plotted]
     }
     for(i in 1:length(models)){
       rows <- indices %>% filter(name == index_names[i])
