@@ -1328,8 +1328,8 @@ Enhancements include:
 \end{itemize}
 
 Population dynamics and governing
-parameters assumed during the forecast period include average recruitment
-(no recruitment deviation); selectivity, weight-at-age and fecundity averaged over
+parameters assumed during the forecast period include random recruitment;
+selectivity, weight-at-age and fecundity averaged over
 the five most recent years (\Sexpr{assess.yr-5}--\Sexpr{assess.yr-1}); and all estimated
 parameters constant (at their estimates for each particular MCMC sample).
 

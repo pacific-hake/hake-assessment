@@ -853,8 +853,8 @@ interpretation so that the projected outcome for each potential catch level and 
 distribution. Tables now show the result of a third year of catches on subsequent estimates
 of stock status and fishing intensity. Figure~\ref{fig:es-forecast-depletion-comparison} shows
 the projected biomass for several catch alternatives. Population dynamics and governing
-parameters assumed during the forecast period include average recruitment
-(no recruitment deviation); selectivity, weight-at-age and fecundity averaged over
+parameters assumed during the forecast period include random recruitment;
+selectivity, weight-at-age and fecundity averaged over
 the five most recent years (\Sexpr{assess.yr-5}--\Sexpr{assess.yr-1}); and all other
 parameters as constant.
 
