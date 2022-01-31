@@ -432,9 +432,6 @@ make.survey.age1.plot.data <- function(dat,
   axis(1, at = ests$year, cex.axis = 0.8)
 }
 
-
-
-
 make.kriging.parameters.table <- function(krig.pars = kriging.pars,
                                           xcaption = "default",
                                           xlabel   = "default",

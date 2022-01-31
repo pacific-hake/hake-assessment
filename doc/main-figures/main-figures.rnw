@@ -205,7 +205,7 @@ make.survey.biomass.extrap.plot(survey.comparison)
 <<main-age-one-index, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the age-1 index has dropped from 2017 to 2019">>=
 make.survey.age1.plot.data(age.1.index,
                            log.scale = FALSE,
-                           yLim = c(0,10))
+                           yLim = c(0, 16))
 @
 \end{center}
 %\vspace{0mm}
