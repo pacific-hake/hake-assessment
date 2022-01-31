@@ -443,7 +443,7 @@ The \Sexpr{last.data.yr} Canadian \fishname\ domestic fishery removed
 \Sexpr{last.year.can.attained}\% of the Canadian TAC of
 \Sexpr{last.year.can.tac}~t. The attainment for Canada appears much lower than usual, due
 to the fishing vessels having a difficult time finding fish in Canadian waters. The
-Canadian report from the Advisory panel explains this in more detail (\ref{chap:canada-fishery-report}).
+Canadian report from the Advisory panel explains this in more detail (Appendix~\ref{chap:canada-fishery-report}).
 %The attainment for Canada appears much higher than usual,
 %due to Canadian managers setting a lower Canadian TAC than what would have been allotted
 %using the usual method which is calculated as \Sexpr{can.allotment.percent}\% of a
